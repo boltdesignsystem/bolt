@@ -6,7 +6,9 @@
       "theme:": "xdark",
       "text": "XDark Button w/ External JS Example",
       attributes: {
-        class: "js-button-theme-xdark",
+        class: [
+          "js-button-theme-xdark"
+        ]
       }
     } %}
   {% endblock %}
@@ -14,41 +16,45 @@
 
 <script>
   // Fired every time the custom element has rendered.
-  var element = document.querySelector('.js-button-theme-xdark');
-  var setupHasAlreadyRun = false;
-  var elementBeingTargeted = 'button';
-  var selector;
+  var buttonElement = document.querySelector('.js-button-theme-xdark');
+  var buttonEventAdded = false;
+  var alreadyExistingButtonEvent = false;
+  var clickEventAdded = false;
+  var innerButtonElement;
 
-  if (element._wasInitiallyRendered){
-    setupEventListener(false);
+  if (buttonElement._wasInitiallyRendered === true){
+    if (innerButtonElement && alreadyExistingButtonEvent){
+      console.log('was already rendered but an event already exists so using that.');
+    } else {
+      alreadyExistingButtonEvent = true;
+      console.log('The button has already been rendered BUT the initially targeted element does not currently exist (likely due to the component re-rendering). Removing old event listener + re-adding an event listener to account for that.');
+      buttonElement.removeEventListener('rendered', setupButtonClickEvent, false);
+      buttonElement.addEventListener('rendered', setupButtonClickEvent, true);
+    }
   } else {
-    element.addEventListener('rendered', setupEventListener);
+    console.log('waiting for button to be initially rendered');
+    alreadyExistingButtonEvent = true;
+    buttonElement.addEventListener('rendered', setupButtonClickEvent);
   }
 
-  function setupEventListener(removeEventListener = true){
-    if (element.useShadow){
-      selector = element.shadowRoot.querySelector(elementBeingTargeted);
-    } else {
-      selector = element.querySelector(elementBeingTargeted);
-    }
-    ready();
+  function setupButtonClickEvent(){
+    console.log('handle button click event');
+    innerButtonElement = buttonElement.renderRoot.querySelector('button');
 
-    if (removeEventListener){
-      element.removeEventListener("rendered", setupEventListener, true);
-    }
-  }
-
-  function ready(){
-    if (setupHasAlreadyRun){
-      selector.removeEventListener('click', buttonClicked, true);
+    if (clickEventAdded === true){
+      clickEventAdded = false;
+      console.log('button click event already added -- removing old click event');
+      innerButtonElement.removeEventListener('click', buttonClicked, true);
     } else {
-      setupHasAlreadyRun = true;
+      console.log('button click event not yet added -- no need to remove old click event.');
     }
-    selector.addEventListener('click', buttonClicked);
+
+    clickEventAdded = true;
+    innerButtonElement.addEventListener('click', buttonClicked, true);
   }
 
   function buttonClicked(){
     console.log('the button tag inside the rendered xdark bolt-button was clicked!');
+    document.body.classList.toggle('t-bolt-xdark');
   }
-
 </script>

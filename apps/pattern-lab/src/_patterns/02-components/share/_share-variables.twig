@@ -1,0 +1,29 @@
+{% set sources =
+  [
+    {
+      name: "facebook",
+      url: "https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
+    },
+    {
+      name: "twitter",
+      url: "https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+    },
+    {
+      name: "linkedin",
+      url: "https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
+    },
+    {
+      name: "email",
+      url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+    }
+  ]
+%}
+
+{% set copy_to_clipboard =
+  {
+    text_to_copy: "https://boltdesignsystem.com"
+  }
+%}
+
+{% block content %}
+{% endblock %}

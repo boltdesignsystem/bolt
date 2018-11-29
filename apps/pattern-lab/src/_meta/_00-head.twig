@@ -35,6 +35,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Bolt Design System</title>
 
+    <link rel="image_src" href="/images/bolt-logo-480.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbyzAXRqNz">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=LbyzAXRqNz">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=LbyzAXRqNz">
@@ -49,19 +50,19 @@
 
     <!-- OG Tags -->
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Bolt Design System: Page Title" />
-    <meta property="og:description" content="Sample description" />
-    <meta property="og:image" content="https://boltdesignsystem.com/images/500x500-480.jpg" />
-    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:title" content="Bolt Design System" />
+    <meta property="og:description" content="The Bolt Design System provides guidelines, reusable UI components, visual styles, tools, and other resources that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope." />
+    <meta property="og:image" content="https://boltdesignsystem.com/images/bolt-logo-480.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="480" />
     <meta property="og:image:height" content="480" />
-    <meta property="og:url" content="https://boltdesignsystem.com/some-page-title-here" />
+    <meta property="og:url" content="https://boltdesignsystem.com/" />
     <meta property="og:site_name" content="Bolt Design System" />
     <!-- Twitter specific tags -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Bolt Design System: Page Title" />
-    <meta name="twitter:description" content="Sample description" />
-    <meta name="twitter:image" content="https://boltdesignsystem.com/images/500x500-480.jpg" />
+    <meta name="twitter:title" content="Bolt Design System" />
+    <meta name="twitter:description" content="The Bolt Design System provides guidelines, reusable UI components, visual styles, tools, and other resources that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope." />
+    <meta name="twitter:image" content="https://boltdesignsystem.com/images/bolt-logo-480.png" />
     <meta name="twitter:site" content="@pega" />
 
     <!-- async load PL's CSS -->
@@ -86,57 +87,12 @@
     </script>
 
 
-
     <!-- WIP. Temp solution to async load multiple lang-specific CSS builds based on query string in URL -->
     <script>
-    !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
-
-    /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
-    !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){function e(){t.media=a}var a=t.media||"all";t.addEventListener?t.addEventListener("load",e):t.attachEvent&&t.attachEvent("onload",e),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(e,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
-
-
-    /*! loadJS: load a JS file asynchronously. [c]2014 @scottjehl, Filament Group, Inc. (Based on http://goo.gl/REQGQ by Paul Irish). Licensed MIT */
-    (function( w ){
-      var loadJS = function( src, cb ){
-        "use strict";
-        var ref = w.document.getElementsByTagName( "script" )[ 0 ];
-        var script = w.document.createElement( "script" );
-        script.src = src;
-        script.async = true;
-        ref.parentNode.insertBefore( script, ref );
-        if (cb && typeof(cb) === "function") {
-          script.onload = cb;
-        }
-        return script;
-      };
-      // commonjs
-      if( typeof module !== "undefined" ){
-        module.exports = loadJS;
-      }
-      else {
-        w.loadJS = loadJS;
-      }
-    }( typeof global !== "undefined" ? global : this ));
-
+      {{ inline( assets["loadcss.js"] | default("") ) }}
     </script>
 
 
-    <script>
-      // commenting out till IE 11 is polyfilled w/ this
-      {# var urlParams = new URLSearchParams(window.location.search);
-
-      var allAssets = {{ allAssets|json_encode() }};
-
-      if (urlParams.has('lang')){
-
-        var langSelected = urlParams.get('lang');
-
-        var globalJS = allAssets[langSelected]['bolt-global.js'];
-        var globalCSS = allAssets[langSelected]['bolt-global.css'];
-
-        loadCSS(globalCSS);
-      } #}
-    </script>
 
   </head>
   {# @todo Get `c-bolt-site` class back someplace, perhaps on a template/layout, perhaps on the `<body>` when needed. Was causing all Patterns to expand too wide, no matter browser width #}

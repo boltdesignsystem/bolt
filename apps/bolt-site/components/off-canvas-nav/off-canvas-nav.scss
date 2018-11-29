@@ -108,20 +108,20 @@
   @include bolt-font-size(small);
   display: flex;
   flex-direction: row-reverse;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   position: relative;
   outline: none;
 
   &:before {
     content: '';
+    opacity: 0.2;
     position: absolute;
-    left: 0;
     top: 100%;
     bottom: -999px;
+    left: 0;
     width: 1px;
     background-color: currentColor;
-    opacity: 0.2;
   }
 }
 

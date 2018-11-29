@@ -2,6 +2,7 @@ const chalk = require('chalk');
 const path = require('path');
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('bolt');
+const address = require('address');
 
 const { readYamlFileSync } = require('./yaml');
 const { validateSchema } = require('./schemas');
@@ -21,6 +22,7 @@ let config = {};
 // 3. Env Vars with `bolt_` prefix; `bolt_verbosity=1` will override `config.verbosity` - case matters!
 // 4. Certain command line options like `bolt build --verbosity 5` - not every config option is overridable this way.
 // For both 3 & 4, it doesn't support deep merges, so only top level properties.
+const ip = address.ip();
 
 async function getDefaultConfig() {
   return Promise.all([
@@ -31,10 +33,13 @@ async function getDefaultConfig() {
     return {
       port: ports[0],
       proxyPort: ports[1],
+      renderingServicePort: ports[2],
+      ip,
+      env: process.env.NODE_ENV,
+      enableCache: configSchema.properties.enableCache.default,
       proxyHeader: configSchema.properties.proxyHeader.default,
       watch: configSchema.properties.watch.default,
       sourceMaps: configSchema.properties.sourceMaps.default,
-      renderingServicePort: ports[2],
       i18n: configSchema.properties.i18n.default,
       renderingService: configSchema.properties.renderingService.default,
       namespace: configSchema.properties.namespace.default,

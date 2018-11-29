@@ -17,7 +17,11 @@ const config = {
   plConfigFile: './config/config.yml',
   verbosity: 2,
   schemaErrorReporting: 'cli',
-  webpackDevServer: true,
+  enableCache: true,
+  webpackDevServer: {
+    enabled: true,
+    watchedExtensions: ['.markup-only.html'],
+  },
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -130,11 +134,11 @@ const config = {
     ],
     individual: [
       // example specifying a standalone component's CSS and JS individually
-      // {
-      //   name: 'pl',
-      //   scss: ./src/index.scss',
-      //   js: './src/index.js',
-      // },
+      {
+        name: 'loadcss',
+        js: './src/loadcss-fix.js',
+        //   scss: ./src/index.scss',
+      },
       '@bolt/components-critical-fonts',
       '@bolt/components-critical-css-vars',
     ],

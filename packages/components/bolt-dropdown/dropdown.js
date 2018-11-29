@@ -4,7 +4,11 @@ import {
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import { wire, withHyperHtml } from '@bolt/core/renderers';
+import {
+  render,
+  withLitHtml,
+  html,
+} from '@bolt/core/renderers/renderer-lit-html';
 
 import Handorgel from 'handorgel';
 
@@ -12,7 +16,7 @@ import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss
 import styles from './dropdown.scss';
 
 @define
-class BoltDropdown extends withHyperHtml() {
+class BoltDropdown extends withLitHtml() {
   static is = 'bolt-dropdown';
 
   static props = {
@@ -111,27 +115,32 @@ class BoltDropdown extends withHyperHtml() {
     const dropdownTitle = this.slots.title
       ? this.slot('title')
       : this.props.title
-        ? this.props.title
-        : '';
+      ? this.props.title
+      : '';
 
-    return wire(this.props)`
+    return html`
       <h3 class="${dropdownHeaderClasses}">
         <button class="c-bolt-dropdown__header-button">
           ${dropdownTitle}
 
           <span class="c-bolt-dropdown__header-icons">
             <div class="c-bolt-dropdown__header-icons-inner">
-              <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--open">
+              <span
+                class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--open"
+              >
                 <bolt-icon name="chevron-down"></bolt-icon>
               </span>
 
-              <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--close">
+              <span
+                class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--close"
+              >
                 <bolt-icon name="chevron-up"></bolt-icon>
               </span>
             </div>
           </span>
         </button>
-      </h3>`;
+      </h3>
+    `;
   }
 
   template() {
@@ -143,17 +152,14 @@ class BoltDropdown extends withHyperHtml() {
     const dropdownChildren = this.slots.default
       ? this.slot('default')
       : this.props.children
-        ? this.props.children
-        : '';
+      ? this.props.children
+      : '';
 
-    return wire(this.props)`
+    return html`
       <div class="${classes}" id="${this.uuid}">
         ${this.dropdownHeader()}
-
         <div class="c-bolt-dropdown__content">
-          <div class="c-bolt-dropdown__content-inner">
-            ${dropdownChildren}
-          </div>
+          <div class="c-bolt-dropdown__content-inner">${dropdownChildren}</div>
         </div>
       </div>
     `;
@@ -161,7 +167,7 @@ class BoltDropdown extends withHyperHtml() {
 
   render() {
     this.dropdownTemplate = document.createDocumentFragment();
-    this.dropdownTemplate.appendChild(this.template());
+    render(this.template(), this.dropdownTemplate);
 
     this.contentElem = this.dropdownTemplate.querySelector(
       '.c-bolt-dropdown__content',
@@ -213,9 +219,8 @@ class BoltDropdown extends withHyperHtml() {
       },
     );
 
-    return this.html`
-      ${this.addStyles([styles, heightUtils])}
-      ${this.dropdownTemplate}
+    return html`
+      ${this.addStyles([styles, heightUtils])} ${this.dropdownTemplate}
     `;
   }
 }

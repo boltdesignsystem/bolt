@@ -33,7 +33,7 @@
     // }
   }
 
-  .pl-c-modal & {
+  .pl-c-drawer & {
     // adjusts the absolutely positioned tabs container when nested inside the PL drawer
     // @todo: refactor to eliminate the need for this  
     @media all and (min-width: $pl-bp-med) {
@@ -108,16 +108,17 @@
  * 1) Tab content contains the tab panels
  */
 .pl-c-tabs__content {
-  flex: 1 0 auto;
-  overflow: scroll;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  overflow: hidden;
   -webkit-overflow-scrolling: touch;
-  max-height: 90%;
-  padding-top: 0.5rem;
+  height: 100%;
 
   /**
      *  Tab content inside modal
      */
-  .pl-c-modal & {
+  .pl-c-drawer & {
     border: 0;
   }
 }
@@ -130,9 +131,11 @@
 .pl-c-tabs__panel {
   display: none;
   min-height: 12rem;
+  height: 100%;
 
   &.pl-is-active-tab {
     display: block;
+    display: flex;
   }
 
   /**

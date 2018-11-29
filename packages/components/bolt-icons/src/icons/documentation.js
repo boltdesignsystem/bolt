@@ -3,6 +3,6 @@
 
   export const Documentation = ({ bgColor, fgColor, size, ...otherProps }) => {
       return (
-        <svg xmlns:xlink="http://www.w3.org/1999/xlink" {...otherProps} viewBox="0 0 32 32"><defs><path id="a" d="M25 19H11a1 1 0 0 0 0 2.001h14A1 1 0 1 0 25 19zm3 5.001a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V4a1 1 0 0 1 1-.999h18c.553 0 1 .447 1 .999v20.001zM28 1H8a2 2 0 0 0-2 2.001v22A2 2 0 0 0 8 27h20a2 2 0 0 0 2-1.999v-22A2 2 0 0 0 28 1zm-3 12.001H11a1 1 0 1 0 0 2h14a1 1 0 0 0 0-2zm-14-4h8A1 1 0 1 0 19 7h-8a1 1 0 0 0 0 2.001zm-7-4A2 2 0 0 0 2 7v22a2 2 0 0 0 2 2.001h22A2 2 0 0 0 28 29H4V5.001z"/></defs><g fill="none" fill-rule="evenodd"><mask id="b" fill="#fff"><use xlink:href="#a"/></mask><g fill={bgColor} mask="url(#b)"><path d="M0 0h32v32H0z"/></g></g></svg>
+        <svg data-name="Layer 1" {...otherProps} viewBox="0 0 28 30"><path fill={bgColor} fill-rule="evenodd" d="M23 18H9a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2zm3 5a.94.94 0 0 1-1 1H7a.94.94 0 0 1-1-1V3a.94.94 0 0 1 1-1h18a.94.94 0 0 1 1 1zm0-23H6a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-3 12H9a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2zM9 8h8a.94.94 0 0 0 1-1 .94.94 0 0 0-1-1H9a.94.94 0 0 0-1 1 .94.94 0 0 0 1 1zM2 4a2 2 0 0 0-2 2v22a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2H2z" data-name="path-1"/></svg>
       )
 };
