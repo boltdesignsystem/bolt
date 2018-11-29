@@ -82,13 +82,6 @@ module.exports = {
   //   // }
   // },
 
-  'Bolt Docs: Verify Docs Site Compiled + Deployed': function(browser) {
-    browser
-      .url(`${testingUrl}`)
-      .waitForElementVisible('.c-bolt-site', 1000)
-      .assert.containsText('.c-bolt-navbar__title-text', 'Bolt Design System')
-      .end();
-  },
 
   'Pattern Lab: Confirm Successful Now.sh Deploy + Pattern Lab Compiled': function(
     browser,
