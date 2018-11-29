@@ -9,7 +9,7 @@ const path = require('path');
 const sassdoc = require('sassdoc');
 const yaml = require('js-yaml');
 const crypto = require('crypto');
-const BoltCache = require('../utils/cache');
+const { BoltCache } = require('../utils/cache');
 
 class SassDocPlugin {
   constructor(options, pluginOptions) {

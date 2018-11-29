@@ -47,6 +47,7 @@ $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
   &:before {
     @include bolt-font-size(xsmall);
     @include bolt-font-weight(bold);
+    content: counter(li);
 
     display: block;
     position: absolute;
@@ -54,10 +55,9 @@ $bolt-ordered-list-bullet-bg-color: rgba(bolt-color(gray), 0.2);
     left: bolt-spacing(medium) * -1;
     width: $bolt-ordered-list-bullet-size;
     height: $bolt-ordered-list-bullet-size;
-    content: counter(li);
     color: bolt-theme(headline);
-    text-align: center;
     line-height: $bolt-ordered-list-bullet-size;
+    text-align: center;
     border-radius: $bolt-ordered-list-bullet-size;
     background-color: $bolt-ordered-list-bullet-bg-color;
   }

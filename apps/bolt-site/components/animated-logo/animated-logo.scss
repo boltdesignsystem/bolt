@@ -20,14 +20,14 @@
 }
 
 .c-bds-logo {
-  overflow: visible; // so the logo doesn't get chopped off
+  opacity: 0;
   position: relative;
-  animation-name: bds-logo-fade;
+  overflow: visible; // so the logo doesn't get chopped off
   animation-delay: 0.2s;
   animation-duration: 1s;
-  animation-timing-function: cubic-bezier(0.22, 1, 0.32, 1);
   animation-fill-mode: forwards;
-  opacity: 0;
+  animation-name: bds-logo-fade;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.32, 1);
   perspective: 1000px;
 }
 

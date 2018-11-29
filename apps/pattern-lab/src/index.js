@@ -1,3 +1,8 @@
+import './_patterns/02-components/card/__tests__';
+import './_patterns/01-styleguide/100-rendering-performance/bolt-preact-test';
+import './_patterns/01-styleguide/100-rendering-performance/bolt-lit-test';
+import './_patterns/01-styleguide/100-rendering-performance/lazy-lit-test';
+
 import 'core-js/modules/es6.string.starts-with';
 import 'iframe-resizer/js/iframeResizer.contentWindow.min.js';
 

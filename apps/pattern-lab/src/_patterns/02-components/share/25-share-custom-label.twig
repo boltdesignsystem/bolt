@@ -1,0 +1,9 @@
+{% extends "@pl/_share-variables.twig" %}
+
+{% block content %}
+  {% include "@bolt-components-share/share.twig" with {
+    text: "This is a custom label",
+    sources: sources,
+    copy_to_clipboard: copy_to_clipboard,
+  } only %}
+{% endblock %}

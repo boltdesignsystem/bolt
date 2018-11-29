@@ -76,6 +76,7 @@
         - static
         - drupal
         - pwa
+        - test
     renderingService:
       type: boolean
       description: Automatically start up the PHP / Twig Rendering Service?
@@ -113,10 +114,24 @@
       title: Local server start path
       description: This is the `path/to/file.html` in `http://localhost:3000/path/to/file.html`
       default: '/'
+    ip:
+      type: string
+      title: IP address internally populated. Used for local dev testing w/ Webpack Dev Server.
     webpackDevServer:
-      type: boolean
+      type: boolean, object
       default: false
-      description: Enable the WebPack Dev Server.
+      description: WebPack Dev Server related config
+      items:
+        enabled:
+          type: boolean
+          description: Enables WebPack Dev Server.
+        watchedExtensions:
+          type: array
+          description: Array of file extensions in the wwwDir that Webpack Dev Server will watch and trigger an HMR update when changed or added.
+    enableCache:
+      default: false
+      type: boolean
+      description: Experimental new `@bolt/build-tools` option that caches the output from Webpack's build to significantly speed up the build tools after the first normal compile.
     dataDir:
       type: string
       description: This is the directory where generated json data files exist with information about the overall build. Defaults to `data` inside `buildDir`

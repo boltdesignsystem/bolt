@@ -47,11 +47,11 @@ $bolt-pagination-item-size: bolt-spacing(medium);
   line-height: $bolt-pagination-item-size;
   text-align: center;
   text-decoration: none;
-  white-space: nowrap;
   border-radius: $bolt-pagination-item-size;
   background-color: transparent;
-  transition: opacity $bolt-pagination-transition;
   -webkit-backface-visibility: hidden; // Removes the 1px jump with opacity transition
+  transition: opacity $bolt-pagination-transition;
+  white-space: nowrap;
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
@@ -63,9 +63,9 @@ $bolt-pagination-item-size: bolt-spacing(medium);
   }
 
   &.is-current {
+    opacity: bolt-opacity(100);  // Current item is not a link so its styling shouldn't change based on state.
     color: bolt-theme(background);
     background-color: bolt-theme(headline-link);
-    opacity: 1;  // Current item is not a link so its styling shouldn't change based on state.
   }
 }
 
@@ -104,6 +104,6 @@ $bolt-pagination-item-size: bolt-spacing(medium);
   &:hover,
   &:active,
   &:focus:active {
-    opacity: 1;
+    opacity: bolt-opacity(100);
   }
 }

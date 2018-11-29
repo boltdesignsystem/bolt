@@ -6,9 +6,6 @@ const classNames = require('classnames');
 import { store } from '../../store.js'; // connect to redux
 import { BaseComponent } from '../base-component.js';
 
-import './pl-layout.scss?external';
-
-
 import iFrameResize from 'iframe-resizer/src/iframeResizer.js';
 iFrameResize({
   checkOrigin: false,
