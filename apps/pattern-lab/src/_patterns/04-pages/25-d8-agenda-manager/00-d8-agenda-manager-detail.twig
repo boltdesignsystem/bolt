@@ -33,18 +33,16 @@
         }
       } only %}
 
-      {% if thumbnailPath %}
-        <div class="u-bolt-margin-bottom-small">
-          <img src="/pattern-lab/images/content/{{ thumbnailPath }}">
-        </div>
-      {% endif %}
+      <div class="u-bolt-margin-bottom-small">
+        <img src="/pattern-lab/images/content/{{ thumbnailPath|default("logos/logo-aflac.png") }}">
+      </div>
 
       {% include "@bolt/eyebrow.twig" with {
         text: "Session: spark talk"
       } only %}
 
       {% include "@bolt/headline.twig" with {
-        text: pageTitle|default('Page Title here'),
+        text: pageTitle|default("What Aflac is Learning About Consumer Expectations Through Monitoring Tech Disruptions"),
         size: "xxxlarge",
         tag: "h1"
       } only %}
