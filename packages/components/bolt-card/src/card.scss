@@ -12,8 +12,6 @@
 bolt-card {
   @include bolt-card-content-border-radius;
 
-  transition: transform $bolt-transition;
-
   &[height='full'] {
     display: flex;
     height: 100%;
@@ -74,22 +72,18 @@ bolt-card {
   cursor: pointer;
   border-radius: $bolt-card-border-radius;
   transition: opacity $bolt-transition;
-}
 
-
-// Hover effects
-bolt-card:hover,
-bolt-card:focus,
-bolt-card.is-hover,
-bolt-card.is-focus {
-  .c-bolt-card__link {
+  &:hover,
+  &:focus,
+  &.is-hover,
+  &.is-focus {
     opacity: 1;
   }
 }
 
-bolt-card[href]:hover,
-bolt-card[href]:focus,
-bolt-card[href].is-hover,
-bolt-card[href].is-focus {
-  transform: translate3d(0, -1px, 0);
+// This makes sure if the user is hovering over the video or the actions (which have higher z-index), the shadow effects still appear.
+bolt-card:hover {
+  .c-bolt-card__link {
+    opacity: 1;
+  }
 }

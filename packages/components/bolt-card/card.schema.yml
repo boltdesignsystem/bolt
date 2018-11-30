@@ -33,7 +33,7 @@ properties:
     type: object
     description: Providing a link will make the whole card clickable.
     properties:
-      href:
+      url:
         type: string
       attributes:
         type: object
@@ -48,6 +48,9 @@ properties:
       video:
         type: object
         ref: '@bolt-components-video/video.schema.yml'
+  raised:
+    type: boolean
+    description: Manually switch on / off the raised (shadow + animation effect) treament. By default this config option is applied if the card contains a bolt-card-link OR includes the `href` prop.
   body:
     type: object
     description: Body section of the card, accepts pre-configured eyebrow, headline, and paragraph or custom content.
