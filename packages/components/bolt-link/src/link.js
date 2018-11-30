@@ -39,6 +39,8 @@ class BoltLink extends withLitHtml() {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.validate = ajv.compile(schema);
+    self.styles = styles;
+    self.baseClass = 'c-bolt-link';
     return self;
   }
 
@@ -131,20 +133,43 @@ class BoltLink extends withLitHtml() {
     declarativeClickHandler(this);
   }
 
+  linkTemplate(href, classes, target, children = null) {
+    return html`
+      <a href="${href}" class="${classes}" target="${target}">${children}</a>
+    `;
+  }
+
+  customLinkTemplate(href = '', classes = '', target = '') {
+    const renderedLink = this.rootElement.firstChild.cloneNode(true);
+    renderedLink.setAttribute('href', href);
+    renderedLink.className += ' ' + classes;
+
+    if (target !== undefined && target !== '') {
+      renderedLink.setAttribute('target', target);
+    } else {
+      renderedLink.removeAttribute('target');
+    }
+
+    return renderedLink;
+  }
+
+  // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
+  hasHref() {
+    return this.props.url.length > 0 && this.props.url !== 'null';
+  }
+
+  // Assign default target attribute value if one isn't specified
+  anchorTarget() {
+    return this.props.target && this.hasHref() ? this.props.target : '_self';
+  }
+
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const { url, target, isHeadline } = this.validateProps(this.props);
 
-    const classes = cx('c-bolt-link', {
-      'c-bolt-link--headline': isHeadline,
+    const classes = cx(this.baseClass, {
+      [`${this.baseClass}--headline`]: isHeadline,
     });
-
-    // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
-    const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
-
-    // Assign default target attribute value if one isn't specified
-    const anchorTarget =
-      this.props.target && hasUrl ? this.props.target : '_self';
 
     // The linkElement to render, based on the initial HTML passed alone.
     let renderedLink;
@@ -153,7 +178,7 @@ class BoltLink extends withLitHtml() {
       switch (name) {
         case 'before':
         case 'after':
-          const iconClasses = cx('c-bolt-link__icon', {
+          const iconClasses = cx(`${this.baseClass}__icon`, {
             'is-empty': name in this.slots === false,
           });
 
@@ -167,7 +192,7 @@ class BoltLink extends withLitHtml() {
             >
           `;
         default:
-          const itemClasses = cx('c-bolt-link__text', {
+          const itemClasses = cx(`${this.baseClass}__text`, {
             'is-empty': name in this.slots === false,
           });
 
@@ -188,22 +213,21 @@ class BoltLink extends withLitHtml() {
     ];
 
     if (this.rootElement) {
-      renderedLink = this.rootElement.firstChild.cloneNode(true);
-      if (renderedLink.getAttribute('href') === null && hasUrl) {
-        renderedLink.setAttribute('href', this.props.url);
-      }
-      renderedLink.className += ' ' + classes;
-      render(innerSlots, renderedLink);
+      renderedLink = render(
+        innerSlots,
+        this.customLinkTemplate(url, classes, target),
+      );
     } else {
-      renderedLink = html`
-        <a href="${this.props.url}" class="${classes}" target="${anchorTarget}"
-          >${innerSlots}</a
-        >
-      `;
+      renderedLink = this.linkTemplate(
+        url,
+        classes,
+        this.anchorTarget(),
+        innerSlots,
+      );
     }
 
     return html`
-      ${this.addStyles([styles])} ${renderedLink}
+      ${this.addStyles([this.styles])} ${renderedLink}
     `;
   }
 }
