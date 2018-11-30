@@ -13,12 +13,12 @@
 
 // automatically raise the default z-index of nested bolt-links in the bolt-card-body so they aren't covered by the bolt-card-link layer
 .c-bolt-card__body ::slotted(bolt-link) {
-  z-index: 2;
   position: relative;
+  z-index: 2;
 }
 
 // fallback version of the above styles -- used if shadow dom isn't supported or not getting used in certain situations
 .c-bolt-card__body bolt-link {
-  z-index: 2;
   position: relative;
+  z-index: 2;
 }

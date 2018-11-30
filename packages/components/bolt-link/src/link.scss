@@ -26,14 +26,13 @@ bolt-link {
   display: flex; // Container is set to "inline-flex" so this can just be "flex"
   align-items: center; // So icons are vertically centered
   opacity: bolt-opacity(100);
+  width: 100%; // always fill the width available (internally)
   color: bolt-theme(link);
   text-decoration: underline;
   cursor: pointer;
   border: none;  // [1]
   background: none;  // [1]
   transition: all $bolt-link-transition;
-  width: 100%; // always fill the width available (internally)
-
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
