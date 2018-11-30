@@ -10,7 +10,7 @@
 @include bolt-custom-element('bolt-card', block, medium);
 
 bolt-card {
-  @include bolt-card-content-border-radius;
+  @include bolt-card-content-reset;
   position: relative;
 
   &[height='full'] {
@@ -23,16 +23,16 @@ bolt-card {
 // Card container styles
 .c-bolt-card {
   @include bolt-card-border-reset;
-  @include bolt-card-content-border-radius;
+  @include bolt-card-content-reset;
   @include bolt-margin(0);
   @include bolt-padding(0);
   @include bolt-shadow('level-20', false, $bolt-card-shadow-color);
 
   display: flex;
-  flex-basis: 100%;
   flex-direction: column;
   flex-grow: 1;
   position: relative;
+  height: 100%;
   border-radius: $bolt-card-border-radius;
   border-width: $bolt-card-border-width;
 
@@ -59,7 +59,7 @@ bolt-card {
 
 .c-bolt-card--raised {
   transition: transform $bolt-transition;
-  
+
   &:before {
     @include bolt-shadow('level-30', false, $bolt-card-shadow-color);
     content: '';
@@ -73,7 +73,8 @@ bolt-card {
     transition: opacity $bolt-transition;
   }
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     transform: translate3d(0, -1px, 0);
 
     &:before {

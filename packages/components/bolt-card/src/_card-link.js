@@ -15,11 +15,11 @@ class BoltCardLink extends BoltLink {
   constructor() {
     super();
     this.styles = styles;
-    this.baseClass = 'c-bolt-card-link';
+    this.baseClass = 'c-bolt-card__link';
   }
 
   render() {
-    const classes = cx('c-bolt-card-link');
+    const classes = cx('c-bolt-card__link');
 
     return html`
       ${this.addStyles([styles])}
