@@ -17,43 +17,22 @@
       &lt;p&gt;This is some sample content.&lt;/p&gt;
     </textarea>
     <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/classic/ckeditor.js"></script>
-    <script>
-      ClassicEditor
-        .create( document.querySelector( '#editor-classic' ) )
-        .catch( error => {
-          console.error( error );
-        } );
-    </script>
 
-    <br>
+    {# <br>
 
     <h1>Inline editor</h1>
     <div id="editor-inline">
-      <p>This is some sample content.</p>
+      {% include "_bolt-component-examples.twig" %}
     </div>
     <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/inline/ckeditor.js"></script>
-    <script>
-      InlineEditor
-        .create( document.querySelector( '#editor-inline' ) )
-        .catch( error => {
-          console.error( error );
-        } );
-    </script>
 
     <br>
 
     <h1>Balloon editor</h1>
     <div id="editor-balloon">
-      <p>This is some sample content.</p>
+      {% include "_bolt-component-examples.twig" %}
     </div>
-    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/balloon/ckeditor.js"></script>
-    <script>
-      BalloonEditor
-        .create( document.querySelector( '#editor-balloon' ) )
-        .catch( error => {
-          console.error( error );
-        } );
-    </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/balloon/ckeditor.js"></script> #}
 
   {% endset %}
   {% include "@bolt/band.twig" with {
