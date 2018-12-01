@@ -1,6 +1,6 @@
 {% set schema = bolt.data.components["@bolt-components-card"].schema %}
 
-{% grid "o-bolt-grid--flex o-bolt-grid--center" %}
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
   {% for height in schema.properties.height.enum %}
     {% if height == "full" %}
       {% set more_text = "In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie." %}

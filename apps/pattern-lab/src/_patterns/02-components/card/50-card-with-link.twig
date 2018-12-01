@@ -1,4 +1,3 @@
-
 {% macro video() %}
 <bolt-card-media>
     <bolt-ratio aspect-ratio-height="9" aspect-ratio-width="16">
@@ -8,74 +7,150 @@
 {% endmacro %}
 
 {% macro image() %}
-<bolt-ratio  aspect-ratio-height="3" aspect-ratio-width="4" style="--aspect-ratio-height: 3; --aspect-ratio-width: 4;">
-  <img src="/pattern-lab/images/placeholders/tout-4x3-climber.jpg">
-</bolt-ratio>
+<bolt-card-media>
+    <bolt-ratio  aspect-ratio-height="3" aspect-ratio-width="4" style="--aspect-ratio-height: 3; --aspect-ratio-width: 4;">
+      <img src="/pattern-lab/images/placeholders/tout-4x3-climber.jpg">
+    </bolt-ratio>
+  </bolt-card-media>
 {% endmacro %}
 
 {% macro body() %}
-<bolt-card-body>Xdark card with <bolt-link target="_blank" url="https://boltdesignsystem.com/docs">external link</bolt-link>.</bolt-card-body>
+<bolt-card-body>Card body.</bolt-card-body>
+{% endmacro %}
+
+{% macro body_clickable() %}
+<bolt-card-body>This is a card with an overall link that makes the whole card clickable.</bolt-card-body>
+{% endmacro %}
+
+{% macro body_with_link() %}
+<bolt-card-body>This is a card with an overall link that makes the whole card clickable, while the body can still have <bolt-link target="_blank" url="https://boltdesignsystem.com/docs">text links</bolt-link> that would go somewhere else.</bolt-card-body>
 {% endmacro %}
 
 {% macro actions() %}
 <bolt-card-actions>
-    <bolt-card-action url="https://google.com">Test</bolt-card-action>
-    <bolt-card-action url="https://www1.pega.com" external>Test 2</bolt-card-action>
+    <bolt-card-action url="https://pega.com">
+      Internal link
+    </bolt-card-action>
+    <bolt-card-action url="https://yahoo.com" external>
+      External link
+    </bolt-card-action>
   </bolt-card-actions>
 {% endmacro %}
 
 {% macro code_example(code, copy) %}
-<bolt-code-snippet lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
-  {{ code | replace({
-    '<': '&lt;', 
-    '>': '&gt;',
-  }) | trim | raw }}  
-{% endspaceless %}</bolt-code-snippet>
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
 {% endmacro %}
 
 
 {% import _self as card_demo %}
 
 
-{% set card_demo_1 %}
-<bolt-card theme="xdark" url="https://google.com">
-  {% include card_demo.video() %}
+{% set card_web_component_demo %}
+<bolt-card>
+  {% include card_demo.image() %}
   {% include card_demo.body() %}
   {% include card_demo.actions() %}
 </bolt-card>
 {% endset %}
 
+{% set simple_link_demo %}
+<bolt-card url="https://google.com">
+  {% include card_demo.image() %}
+  {% include card_demo.body_clickable() %}
+</bolt-card>
+{% endset %}
+
+{% set advanced_link_demo %}
+<bolt-card>
+  <bolt-card-link url="https://google.com" target="_blank" custom-attribute="foo" html-attribute="bar"></bolt-card-link>
+  {% include card_demo.image() %}
+  {% include card_demo.body_clickable() %}
+</bolt-card>
+{% endset %}
+
+{% set nested_links_demo %}
+<bolt-card url="https://google.com">
+  {% include card_demo.video() %}
+  {% include card_demo.body_with_link() %}
+  {% include card_demo.actions() %}
+</bolt-card>
+{% endset %}
+
 <div class="o-bolt-wrapper">
-  {% grid %}
-    {% cell "u-bolt-width-1/1" %}
-      <bolt-text headline>Option 1: <code>url</code> prop</bolt-text>
-      
-      <bolt-text tag="p">The simplest way to get an entire card to be clickable is by passing a URL to the <code>url</code> prop on the main <code>&lt;bolt-card&gt;</code> component itself.</bolt-text>
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Card is a web component, you can simply use <code>&lt;bolt-card&gt;</code> in the markup to make it render. Its inner content is comprised of <code>&lt;bolt-card-media&gt;</code>, <code>&lt;bolt-card-body&gt;</code>, and <code>&lt;bolt-card-actions&gt;</code>. <code>&lt;bolt-card-link&gt;</code> can be used when needed.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ card_web_component_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include card_demo.code_example(card_web_component_demo, true) %}
 
-      {% include card_demo.code_example('<bolt-card url="https://google.com">...</bolt-card>', false) %}
-    {% endcell %}
+  <bolt-text headline>
+    Simple Link Usage
+  </bolt-text>
+  <bolt-text>
+    The simplest way to make the whole card clickable is by passing an URL to the <code>url</code> prop on the main <code>&lt;bolt-card&gt;</code> component itself.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ simple_link_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include card_demo.code_example(simple_link_demo, true) %}
 
-    {% cell "u-bolt-width-1/1" %}
-      <div class="u-bolt-padding-medium" style="border: 1px solid rgba(0, 0, 0, .2);">
-        <div style="max-width: 480px; margin: 0 auto;">
-          {{ card_demo_1 }}
-        </div>
-      </div>
-    {% endcell %}
+  <bolt-text headline>
+    Advanced Link Usage
+  </bolt-text>
+  <bolt-text>
+    Insert a <code>&lt;bolt-card-link&gt;</code> inside <code>&lt;bolt-card&gt;</code>, and you can pass more than just <code>url</code>. <code>&lt;bolt-card-link&gt;</code> acts exactly like <code>&lt;bolt-link&gt;</code>, it accepts all the props from <code>&lt;bolt-link&gt;</code> and any other attributes that are allowed in <code>&lt;bolt-link&gt;</code>.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ advanced_link_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include card_demo.code_example(advanced_link_demo, true) %}
 
-    {% cell "u-bolt-width-1/1" %}
-      {% include card_demo.code_example(card_demo_1, true) %}
-    {% endcell %}
-  {% endgrid %}
+  <bolt-text headline>
+    Nested Links
+  </bolt-text>
+  <bolt-text>
+    While making the whole card clickable, you are still able to insert nested links as needed. Any <code>&lt;bolt-link&gt;</code> and <code>&lt;bolt-card-action&gt;</code> will work as expected.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ nested_links_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include card_demo.code_example(nested_links_demo, true) %}
 </div>
 
 
+{#
 
 {% set card_demo_2 %}
-<bolt-card theme="xdark">
+<bolt-card>
   <bolt-card-link url="https://boltdesignsystem.com">
     {% include card_demo.video() %}
-    {% include card_demo.body() %}
+    {% include card_demo.body_with_link() %}
     {% include card_demo.actions() %}
   </bolt-card-link>
 </bolt-card>
@@ -104,7 +179,7 @@
 </div>
 
 {% set card_demo_3 %}
-<bolt-card theme="xdark">
+<bolt-card>
   <bolt-card-link url="https://boltdesignsystem.com"></bolt-card-link>
   {% include card_demo.video() %}
   {% include card_demo.body() %}
@@ -116,7 +191,7 @@
   {% grid %}
     {% cell "u-bolt-width-1/1" %}
       <bolt-text>Option 3: Place <code>&lt;bolt-card-link&gt;</code> as a sibling to the inner card content</bolt-text>
-      
+
 {% include card_demo.code_example('
 <bolt-card>
   <bolt-card-link url="https://boltdesignsystem.com"></bolt-card-link>
@@ -141,11 +216,11 @@
 
 
 {% set card_demo_4 %}
-<bolt-card theme="xdark">
+<bolt-card>
   <bolt-card-link url="https://boltdesignsystem.com">
     <a url="foo.com" target="_blank" data-foo="bar"></a>
   </bolt-card-link>
-  
+
   {% include card_demo.video() %}
   {% include card_demo.body() %}
   {% include card_demo.actions() %}
@@ -176,11 +251,11 @@
 
 
 
-<bolt-card theme="xdark">
+<bolt-card>
   <bolt-card-link url="https://boltdesignsystem.com">
     <a url="foo.com" target="_blank" data-foo="bar"></a>
   </bolt-card-link>
-  
+
   {% include card_demo.image() %}
   {% include card_demo.body() %}
   {% include card_demo.actions() %}
@@ -188,9 +263,9 @@
 
 
 
-<bolt-card theme="xdark" url="google.com">
+<bolt-card url="google.com">
   <bolt-card-link url="https://boltdesignsystem.com"></bolt-card-link>
-  
+
   <bolt-card-media>
     <bolt-link url="/pattern-lab/images/placeholders/tout-4x3-climber.jpg" target="_blank">
       {% include card_demo.image() %}
@@ -220,7 +295,7 @@
 </bolt-ratio>
 
 
-<bolt-card theme="xdark">
+<bolt-card>
   <bolt-card-link url="https://boltdesignsystem.com">
     <bolt-card-media>
       <bolt-ratio  aspect-ratio-height="3" aspect-ratio-width="4" style="--aspect-ratio-height: 3; --aspect-ratio-width: 4;">
@@ -238,3 +313,4 @@
     </bolt-card-actions>
   </bolt-card-link>
 </bolt-card>
+ #}
