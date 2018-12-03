@@ -18,7 +18,9 @@
   <replace-with-grandchildren>
     <ul {{ attributes.addClass(classes) }}>
       {% for item in items %}
-        {% include "@bolt-components-unordered-list/_unordered-list-item.twig" %}
+        {% if item %}
+          {% include "@bolt-components-unordered-list/_unordered-list-item.twig" %}
+        {% endif %}
       {% endfor %}
     </ul>
   </replace-with-grandchildren>

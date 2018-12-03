@@ -22,6 +22,9 @@
 // Register Custom Block Element
 @include bolt-custom-element('bolt-ordered-list', block, medium);
 
+bolt-ordered-list {
+  counter-reset: li;
+}
 
 // Styles
 .c-bolt-ordered-list {

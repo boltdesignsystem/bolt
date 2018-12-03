@@ -3,26 +3,41 @@
 {% set base_class = "c-bolt-ordered-list-item" %}
 
 {% set last = loop.last %}
-{% set index = loop.index %}
 {% set classes = [
-  base_class,
+  "#{base_class}-spacing",
   last ? "#{base_class}--last-item",
 ] %}
+
+{% if item.text %}
+  {% set item = item.text %}
+{% endif %}
 
 <bolt-ordered-list-item
   {% if last %} last {% endif %}
 >
   <replace-with-grandchildren>
-    <li {{ item_attributes.addClass(classes) }}>
-      {% if index %}
-        {% include "@bolt-components-ordered-list/_ordered-list-item-index.twig" %}
-      {% endif %}
-      {% if item.text %}
-        {{ item.text }}
-      {% elseif item.items %}
-        {% for item in item.items %}
-          {% include "@bolt/text.twig" with item only %}
-        {% endfor %}
+    {#<li {{ item_attributes.addClass(classes) }}>#}
+      {#{% if item is iterable %}#}
+        {#{% for i in item %}#}
+          {#{{ i }}#}
+        {#{%  endfor %}#}
+      {#{% else %}#}
+        {#{{ item }}#}
+      {#{% endif %}#}
+    {#</li>#}
+    <li class="{{ "#{base_class}" }}">
+      {% if item is iterable %}
+        {% for i in item %}
+          {% set inner_item_attributes = create_attribute({}) %}
+          {% set last_i = loop.last %}
+          {% set inner_classes = [
+            "#{base_class}-spacing",
+            last_i ? "#{base_class}--last-item",
+          ] %}
+          <div {{ inner_item_attributes.addClass(inner_classes) }}>{{ i }}</div>
+        {%  endfor %}
+      {% else %}
+        <div {{ item_attributes.addClass(classes) }}>{{ item }}</div>
       {% endif %}
     </li>
   </replace-with-grandchildren>

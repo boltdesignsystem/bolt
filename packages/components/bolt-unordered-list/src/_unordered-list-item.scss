@@ -4,7 +4,7 @@
 $bolt-unordered-list-bullet-size: 8px; // Using px here because I need to make a perfect circle without subpixel issues.
 
 .c-bolt-unordered-list-item {
-  @include bolt-margin(0 0 small medium);
+  @include bolt-margin(0 0 0 medium);
   @include bolt-padding(0);
 
   position: relative;
@@ -22,7 +22,11 @@ $bolt-unordered-list-bullet-size: 8px; // Using px here because I need to make a
     background-color: bolt-theme(headline);
   }
 
-  &.c-bolt-unordered-list-item--last-item {
+  &-spacing {
+    @include bolt-margin-bottom(small);
+  }
+
+  &--last-item {
     @include bolt-margin-bottom(0);
   }
 }

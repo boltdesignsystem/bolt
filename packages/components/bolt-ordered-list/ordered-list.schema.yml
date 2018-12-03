@@ -1,5 +1,7 @@
 title: Ordered List
 type: object
+required:
+  - items
 properties:
   attributes:
     type: object
@@ -19,14 +21,7 @@ properties:
           description: Passes to `@bolt/text.twig`
   items:
     type: array
-    title: The content items
-    description: These are all of the items in the ordered list
+    description: All items can be simple text or `items`.
     items:
-      type: object
-      description: A single list item object with either a `text` or `contentItems` key
-      properties:
-        text:
-          type: string
-        contentItems:
-          type: object
-          description: Passes to `@bolt/text.twig`
+      type: [string, object, array]
+      description: Renderable content (i.e. a string, render array, or included pattern) for a single list item.
