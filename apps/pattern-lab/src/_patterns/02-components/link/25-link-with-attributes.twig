@@ -1,0 +1,52 @@
+{% set link_with_attributes %}
+  <p>
+    {% include "@bolt-components-link/link.twig" with {
+      text: "This is a link with additional attributes",
+      url: "#!",
+      attributes: {
+        "data-test": "test data value",
+        "id": "test_id_123",
+        "name": "test name value",
+      }
+    } only %}
+  </p>
+{% endset %}
+
+{% set link_with_attributes_code %}
+  {% verbatim %}
+    {% include "@bolt-components-link/link.twig" with {
+      text: "This is a link with additional attributes",
+      url: "#!",
+      attributes: {
+        "data-test": "test data value",
+        "id": "test_id_123",
+        "name": "test name value",
+      }
+    } only %}
+  {% endverbatim %}
+{% endset %}
+
+{% import _self as link_demo %}
+
+<div class="o-bolt-wrapper u-bolt-margin-bottom">
+  <bolt-text headline font-size="xxlarge" tag="h1">
+    Links with additional attributes
+  </bolt-text>
+  <bolt-text>
+    Below are examples of the <code>&lt;bolt-link&gt;</code> component with additional attributes passed via the <code>attributes</code> object.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ link_with_attributes }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+
+  {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+    display: "block",
+    lang: "twig",
+    syntax: "dark",
+    content: link_with_attributes_code
+  } only %}
+</div>
