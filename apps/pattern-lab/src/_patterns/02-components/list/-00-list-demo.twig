@@ -1,8 +1,8 @@
 <div class="pl-c-main">
     <div class="pl-c-pattern-index">
-
-        <h3>UL list</h3>
-        <bolt-list tag="ul" display="block" spacing="small" separator="dashed">
+        <h3>Dynamic display</h3>
+        <p>(block on small, inline on medium, large and full)</p>
+        <bolt-list display="inline@small" spacing="small" separator="dashed">
             <bolt-list-item>
                 Item 1
             </bolt-list-item>
@@ -15,67 +15,48 @@
             <bolt-list-item>
                 Item 4
             </bolt-list-item>
-            <bolt-list-item>
+            <bolt-list-item last>
                 Item 5
             </bolt-list-item>
         </bolt-list>
 
-        {#<h3>OL list</h3>#}
-        {#<bolt-list tag="ol" inset>#}
-            {#<bolt-list-item>#}
-                {#Item 1#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 2#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 3#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 4#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 5#}
-            {#</bolt-list-item>#}
-        {#</bolt-list>#}
+        <h3>Display inline</h3>
+        <bolt-list display="inline" spacing="small" separator="dashed">
+            <bolt-list-item>
+              Item 1
+            </bolt-list-item>
+            <bolt-list-item>
+              Item 2
+            </bolt-list-item>
+            <bolt-list-item>
+              Item 3
+            </bolt-list-item>
+            <bolt-list-item>
+              Item 4
+            </bolt-list-item>
+            <bolt-list-item last>
+              Item 5
+            </bolt-list-item>
+        </bolt-list>
 
-        {#<h3>DIV list</h3>#}
-        {#<bolt-list tag="div" separator="solid">#}
-            {#<bolt-list-item>#}
-                {#Item 1#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 2#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 3#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 4#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 5#}
-            {#</bolt-list-item>#}
-        {#</bolt-list>#}
-
-        {#<h3>SPAN list</h3>#}
-        {#<bolt-list tag="span" display="inline" separator="dashed">#}
-            {#<bolt-list-item>#}
-                {#Item 1#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 2#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 3#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 4#}
-            {#</bolt-list-item>#}
-            {#<bolt-list-item>#}
-                {#Item 5#}
-            {#</bolt-list-item>#}
-        {#</bolt-list>#}
+        <h3>Display Block</h3>
+        <bolt-list display="block" spacing="small" separator="dashed">
+            <bolt-list-item>
+              Item 1
+            </bolt-list-item>
+            <bolt-list-item>
+              Item 2
+            </bolt-list-item>
+            <bolt-list-item>
+              Item 3
+            </bolt-list-item>
+            <bolt-list-item>
+              Item 4
+            </bolt-list-item>
+            <bolt-list-item last>
+              Item 5
+            </bolt-list-item>
+        </bolt-list>
     </div>
 </div>
 
