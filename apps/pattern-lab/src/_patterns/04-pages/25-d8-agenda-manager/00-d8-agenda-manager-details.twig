@@ -34,7 +34,7 @@
       } only %}
 
       <div class="u-bolt-margin-bottom-small">
-        <img src="/pattern-lab/images/content/{{ thumbnailPath|default("logos/logo-aflac.png") }}">
+        <img src="{{ thumbnailPath|default("http://dummyimage.com/250x250/4d494d/686a82.gif&text=placeholder+image") }}">
       </div>
 
       {% include "@bolt/eyebrow.twig" with {
@@ -42,7 +42,7 @@
       } only %}
 
       {% include "@bolt/headline.twig" with {
-        text: pageTitle|default("What Aflac is Learning About Consumer Expectations Through Monitoring Tech Disruptions"),
+        text: pageTitle|default("Insert Page Title Here"),
         size: "xxxlarge",
         tag: "h1"
       } only %}
@@ -62,8 +62,7 @@
               name: "calendar",
               size: "medium"
             } only %}
-
-            June 3, 2018, 10:00A - 11:00A
+            {{ eventTime|default("Insert Time Here") }}
           </div>
 
           <div>
@@ -71,8 +70,7 @@
               name: "map-pin",
               size: "medium"
             } only %}
-
-            MGM Grand Hotel, Room 2014
+            {{ eventLocation|default("Insert Location Here") }}
           </div>
 
         {% endcell %}
@@ -146,7 +144,7 @@
       {% grid %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
           {% include "@bolt/text.twig" with {
-            text: "They deliver consistently exceptional experiences, personalized to the individual, and seamlessly across the entire spectrum of relationship. Secondly, they are operational powerhouses, able to continuously optimize their business systems while empowering employees with tools that lead to increasingly higher levels of production and efficiency. Finally, they are fiercely agile. They respond quickly to changing market conditions. They are the agitators and disruptors that redefine the standards in their industries. And they are masters at leveraging technology to gain an advantage. In his opening keynote at PegaWorld, Alan Trefler, Pega’s Founder and CEO, will explore the ways in which truly great brands are achieving staggering results through the pragmatic application of innovative technologies and the revolutionary way they build and evolve software. Using these approaches, enterprises are able to meet the challenges of today and create the disruptive opportunities of tomorrow. They are future-empowered."
+            text: eventDescription|default("Insert Event Description Here. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum.")
           } only %}
 
           {% include "@bolt/headline.twig" with {
