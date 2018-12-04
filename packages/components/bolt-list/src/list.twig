@@ -53,21 +53,18 @@
     base_class,
     display in display_options ? "#{base_class}--display-#{display}" : "",
     spacing in spacing_options ? "#{base_class}--spacing-#{spacing}" : "",
-    separator in separator_options ? "#{base_class}--separator-#{separator}" : "",
     align in align_options ? "#{base_class}--align-#{align}" : "",
     valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
     inset ? "#{base_class}--inset",
   ] %}
 
-  <{{ tag }} {{ inner_attributes.addClass(classes) }}>
-    {% for item in items %}
-      <{{ item_tag }} class="{{ "#{base_class}__item" }}">
-        {% if item is iterable %}
-          {{ item.content | join }}
-        {% else %}
-          {{ item }}
+  <replace-with-grandchildren>
+    <{{ tag }} {{ inner_attributes.addClass(classes) }}>
+      {% for item in items %}
+        {% if item %}
+          {% include "@bolt-components-list/_list-item.twig" %}
         {% endif %}
-      </{{ item_tag }}>
-    {% endfor %}
-  </{{ tag }}>
+      {% endfor %}
+    </{{ tag }}>
+  </replace-with-grandchildren>
 </bolt-list>
