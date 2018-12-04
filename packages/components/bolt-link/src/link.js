@@ -213,10 +213,8 @@ class BoltLink extends withLitHtml() {
     ];
 
     if (this.rootElement) {
-      renderedLink = render(
-        innerSlots,
-        this.customLinkTemplate(url, classes, target),
-      );
+      renderedLink = this.customLinkTemplate(url, classes, target);
+      render(innerSlots, renderedLink);
     } else {
       renderedLink = this.linkTemplate(
         url,
