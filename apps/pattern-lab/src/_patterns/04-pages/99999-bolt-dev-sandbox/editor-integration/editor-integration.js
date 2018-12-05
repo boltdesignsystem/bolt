@@ -6,7 +6,15 @@ if (typeof window.ClassicEditor !== 'undefined') {
   window.ClassicEditor.create(document.querySelector('#editor-classic'), {
     heading: {
       options: [
-        { model: 'paragraph', view: 'bolt-text', title: 'Paragraph' },
+        // { model: 'paragraph', view: 'bolt-text', title: 'Paragraph' },
+        {
+          model: 'paragraphCustom',
+          view: {
+            name: 'bolt-text',
+            attributes: { 'ck-custom': true }, // must have *some* attribute, otherwise matches other 'bolt-text' elements first
+          },
+          title: 'Paragraph',
+        },
         {
           model: 'headline1',
           view: {
@@ -90,17 +98,17 @@ if (typeof window.ClassicEditor !== 'undefined') {
           title: 'Link',
         },
         { model: 'blockquote', view: 'bolt-blockquote', title: 'Blockquote' },
-        {
-          model: 'ordered-list',
-          view: 'bolt-ordered-list',
-          title: 'Ordered list',
-        },
-        {
-          model: 'unordered-list',
-          view: 'bolt-unordered-list',
-          title: 'Unordered list',
-        },
-        { model: 'code', view: 'bolt-code-snippet', title: 'Code snippet' },
+        // {
+        //   model: 'ordered-list',
+        //   view: 'bolt-ordered-list',
+        //   title: 'Ordered list',
+        // },
+        // {
+        //   model: 'unordered-list',
+        //   view: 'bolt-unordered-list',
+        //   title: 'Unordered list',
+        // },
+        // { model: 'code', view: 'bolt-code-snippet', title: 'Code snippet' },
       ],
     },
   }).catch(error => {
