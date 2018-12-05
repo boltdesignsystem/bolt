@@ -107,7 +107,10 @@ class BoltList extends withContext(withLitHtml()) {
         }
       });
 
-      if (updatedDefaultSlot[updatedDefaultSlot.length - 1].attributes.length === 0) {
+      if (
+        updatedDefaultSlot[updatedDefaultSlot.length - 1].attributes.length ===
+        0
+      ) {
         updatedDefaultSlot[updatedDefaultSlot.length - 1].setAttribute(
           'last',
           '',
