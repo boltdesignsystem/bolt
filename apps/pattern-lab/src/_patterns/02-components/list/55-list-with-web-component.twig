@@ -1,0 +1,82 @@
+<h2>Web Component Usage</h2>
+<p>Bolt List is a web component, you can simply use
+  {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+    "display": "inline",
+    "content": "<bolt-list>"
+  } only %}
+  in the markup to make it render. Its inner content is comprised of
+  {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+    "display": "inline",
+    "content": "<bolt-list-items>"
+  } only %}
+.</p>
+<h3>Example</h3>
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  display: "block",
+  lang: "html",
+  content: "
+<bolt-list>
+  <bolt-list-item>Item 1</bolt-list-item>
+  <bolt-list-item>Item 2</bolt-list-item>
+  <bolt-list-item>Item 3</bolt-list-item>
+  <bolt-list-item>Item 4</bolt-list-item>
+  <bolt-list-item>Item 5</bolt-list-item>
+</bolt-list>"
+} only %}
+<h3>Dynamic inline@small</h3>
+<bolt-list display="inline@small" spacing="small" separator="dashed">
+  <bolt-list-item>
+      Item 1
+  </bolt-list-item>
+  <bolt-list-item>
+      Item 2
+  </bolt-list-item>
+  <bolt-list-item>
+      Item 3
+  </bolt-list-item>
+  <bolt-list-item>
+      Item 4
+  </bolt-list-item>
+  <bolt-list-item>
+      Item 5
+  </bolt-list-item>
+</bolt-list>
+
+<h3>Display inline</h3>
+<bolt-list display="inline" spacing="small" separator="dashed">
+  <bolt-list-item>
+    Item 1
+  </bolt-list-item>
+  <bolt-list-item>
+    Item 2
+  </bolt-list-item>
+  <bolt-list-item>
+    Item 3
+  </bolt-list-item>
+  <bolt-list-item>
+    Item 4
+  </bolt-list-item>
+  <bolt-list-item>
+    Item 5
+  </bolt-list-item>
+</bolt-list>
+
+<h3>Display Block</h3>
+<bolt-list display="block" spacing="small" separator="dashed">
+  <bolt-list-item>
+    Item 1
+  </bolt-list-item>
+  <bolt-list-item>
+    Item 2
+  </bolt-list-item>
+  <bolt-list-item>
+    Item 3
+  </bolt-list-item>
+  <bolt-list-item>
+    Item 4
+  </bolt-list-item>
+  <bolt-list-item>
+    Item 5
+  </bolt-list-item>
+</bolt-list>
+
