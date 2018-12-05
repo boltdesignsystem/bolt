@@ -24,6 +24,22 @@
   flex-flow: row wrap;
 }
 
+.c-bolt-list--display-flex {
+  display: flex;
+  flex-flow: row wrap;
+  //
+  //bolt-list-item {
+    //display: flex;
+    //flex-basis: 0;
+    //flex-grow: 1;
+    //text-align: center;
+    //border-right: 1px solid red;
+    //border-bottom: 1px solid red;
+    //align-items: center;
+  //}
+  //display: table;
+}
+
 @each $breakpoint in $bolt-breakpoints {
   $breakpoint-name: nth($breakpoint, 1);
 

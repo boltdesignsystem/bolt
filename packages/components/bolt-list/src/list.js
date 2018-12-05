@@ -23,6 +23,7 @@ export const ListContext = defineContext({
   display: 'inline',
   spacing: 'none',
   inset: false,
+  align: 'start',
   separator: 'none',
 });
 
@@ -87,6 +88,7 @@ class BoltList extends withContext(withLitHtml()) {
     this.contexts.get(ListContext).display = display || this.props.display;
     this.contexts.get(ListContext).spacing = spacing || this.props.spacing;
     this.contexts.get(ListContext).inset = inset || this.props.inset;
+    this.contexts.get(ListContext).align = align || this.props.align;
     this.contexts.get(ListContext).separator =
       separator || this.props.separator;
 

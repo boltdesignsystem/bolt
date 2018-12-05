@@ -9,12 +9,14 @@
   display in display_options ? "#{base_class}--display-#{display}" : "",
   spacing in spacing_options ? "#{base_class}--spacing-#{spacing}" : "",
   separator in separator_options ? "#{base_class}--separator-#{separator}" : "",
+  align in align_options ? "#{base_class}--align-#{align}" : "",
   last ? "#{base_class}--last-item",
   inset ? "#{base_class}--inset",
 ] %}
 
 <bolt-list-item
   {% if last %} last {% endif %}
+  {% if display == "flex" %} class="{{ "#{base_class}--display-#{display}" }}" {% endif %}
 >
   <replace-with-grandchildren>
     <{{ tag }} {{ attributes.addClass(classes) }}>
