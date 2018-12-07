@@ -31,25 +31,22 @@
   } only %}
 #}
 
+{% set schema = bolt.data.components["@bolt-components-blockquote"].schema %}
+
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-blockquote'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set prefix = "c-bolt-" %}
+{# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
+{% set size_options = schema.properties.size.enum %}
 
-{% set sizeOptions = [
-  "large",
-  "xlarge",
-  "xxlarge"
-] %}
-
-{% set alignItemsOptions = {
+{% set align_items_options = {
   "left": "start",
   "center": "center",
   "right": "end"
 } %}
 
-{% set borderOptions = {
+{% set border_options = {
   "none": "borderless",
   "vertical": "bordered-vertical",
   "horizontal": "bordered-horizontal"
@@ -58,8 +55,8 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 
-{% set componentName = "blockquote" %}
-{% set baseClass = prefix ~ componentName %}
+{% set component_name = "blockquote" %}
+{% set base_class = "c-bolt-blockquote" %}
 {% set size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
 {% set alignItems = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
 {% set border = border == false and border is null ? "vertical" : border | default("vertical") %}
@@ -67,25 +64,31 @@
 
 
 {% set classes = [
-  baseClass,
-  size in sizeOptions ? baseClass ~ "--" ~ size : "",
-  alignItems in alignItemsOptions|keys ? baseClass ~ "--align-items-" ~ alignItemsOptions[alignItems],
-  border in borderOptions|keys ? baseClass ~ "--" ~ borderOptions[border],
-  indent ? baseClass ~ "--indented" : "",
-  fullBleed == "true" ? baseClass ~ "--full" : ""
+  base_class,
+  size in size_options ? base_class ~ "--" ~ size : "",
+  alignItems in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[alignItems],
+  border in border_options|keys ? base_class ~ "--" ~ border_options[border],
+  indent ? base_class ~ "--indented" : "",
+  fullBleed == "true" ? base_class ~ "--full" : ""
 ] %}
 
-<bolt-{{ componentName }} bolt-component>
+<bolt-{{ component_name }} bolt-component 
+  size="{{ size }}"
+  align-items="{{ alignItems }}"
+  border="{{ border }}"
+  {% if indent %} indent="{{ indent }}" {% endif %}
+  {% if fullBleed %} full-bleed="{{ fullBleed }}" {% endif %}
+>
   <blockquote {{ attributes.addClass(classes) }}>
     {% if logo %}
       {% block blockquote_logo %}
-        <div class="{{ "#{baseClass}__logo" }}">
+        <div class="{{ "#{base_class}__logo" }}">
           {% include "@bolt/logo.twig" with logo only %}
         </div>
       {% endblock %}
     {% endif %}
     {% block blockquote_quote %}
-      <div class="{{ "#{baseClass}__quote" }}">
+      <div class="{{ "#{base_class}__quote" }}">
         {% include "@bolt/text.twig" with {
           text: content,
           tag: "div",
@@ -96,15 +99,15 @@
     {% endblock %}
     {% if author %}
       {% block blockquote_footer %}
-        <footer class="{{ "#{baseClass}__footer" }}">
+        <footer class="{{ "#{base_class}__footer" }}">
           {% if author.image %}
-            <div class="{{ "#{baseClass}__footer-item" }}">
-              <div class="{{ "#{baseClass}__image" }}">
+            <div class="{{ "#{base_class}__footer-item" }}">
+              <div class="{{ "#{base_class}__image" }}">
                 {% include "@bolt/image.twig" with author.image only %}
               </div>
             </div>
           {% endif %}
-          <div class="{{ "#{baseClass}__footer-item" }}">
+          <div class="{{ "#{base_class}__footer-item" }}">
             {% include "@bolt/text.twig" with {
               text: author.name,
               tag: "cite",
@@ -122,4 +125,4 @@
       {% endblock %}
     {% endif %}
   </blockquote>
-</bolt-{{ componentName }}>
+</bolt-{{ component_name }}>
