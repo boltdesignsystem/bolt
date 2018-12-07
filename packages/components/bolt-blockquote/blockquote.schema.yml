@@ -42,19 +42,19 @@ properties:
     default: false
     type: boolean
   logo:
-      description: Add a logo component.
-      type: object
-      ref: '@bolt-components-logo/logo.schema.yml'
+    description: Add a logo component.
+    type: object
+    ref: '@bolt-components-logo/logo.schema.yml'
   author:
-      description: Author of the quote.
-      type: object
-      properties:
-        name:
-          type: string
-          description: Author's name.
-        title:
-          type: string
-          description: Author's title.
-        image:
-          type: object
-          ref: '@bolt-components-image/image.schema.yml'
+    description: Author of the quote.
+    type: object
+    properties:
+      name:
+        type: string
+        description: Author's name.
+      title:
+        type: string
+        description: Author's title.
+      image:
+        type: object
+        ref: '@bolt-components-image/image.schema.yml'
