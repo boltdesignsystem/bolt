@@ -33,7 +33,7 @@ class BoltCodeSnippetClass extends withPreact() {
   };
 
   highlightHTML(code, lang) {
-    const escapedLangs = ['scss', 'html'];
+    const escapedLangs = ['scss'];
 
     code = escapedLangs.includes(lang)
       ? code
