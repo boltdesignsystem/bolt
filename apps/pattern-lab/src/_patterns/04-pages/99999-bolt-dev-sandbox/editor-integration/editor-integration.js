@@ -126,6 +126,7 @@ if (typeof window.CKEDITOR !== 'undefined') {
     // Default CKEditor styles are included as well to avoid copying default styles.
     contentsCss: [
       '/pattern-lab/build/bolt-global.css',
+      '/pattern-lab/build/bolt-global-en.css', // for staging build
       'body { margin: 8px; }',
     ],
     // removePlugins: 'format',
