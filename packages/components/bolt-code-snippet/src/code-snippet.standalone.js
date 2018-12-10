@@ -33,7 +33,10 @@ class BoltCodeSnippetClass extends withPreact() {
   };
 
   replaceEntities(string) {
-    return string.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+    return string
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>');
   }
 
   highlightHTML(code, lang) {
