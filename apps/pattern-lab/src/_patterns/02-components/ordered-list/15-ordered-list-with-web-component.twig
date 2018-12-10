@@ -1,0 +1,35 @@
+<h2>Web Component Usage</h2>
+<p>Bolt Ordered List is a web component, you can simply use
+  {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+    display: "inline",
+    lang: "html",
+    content: "&lt;bolt-ordered-list&gt;"
+  } only %}
+  in the markup to make it render. Its inner content is comprised of
+  {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+    display: "inline",
+    lang: "html",
+    content: "&lt;bolt-ordered-list-item&gt;"
+  } only %}
+  .</p>
+<h3>Example</h3>
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  display: "block",
+  lang: "html",
+  content: "&lt;bolt-ordered-list&gt;
+  &lt;bolt-ordered-list-item&gt;Item 1&lt;/bolt-ordered-list-item&gt;
+  &lt;bolt-ordered-list-item&gt;Item 2&lt;/bolt-ordered-list-item&gt;
+  &lt;bolt-ordered-list-item&gt;Item 3&lt;/bolt-ordered-list-item&gt;
+  &lt;bolt-ordered-list-item&gt;Item 4&lt;/bolt-ordered-list-item&gt;
+  &lt;bolt-ordered-list-item&gt;Item 5&lt;/bolt-ordered-list-item&gt;
+&lt;/bolt-ordered-list&gt;"
+} only %}
+
+<bolt-ordered-list>
+  <bolt-ordered-list-item>Item 1</bolt-ordered-list-item>
+  <bolt-ordered-list-item>Item 2</bolt-ordered-list-item>
+  <bolt-ordered-list-item>Item 3</bolt-ordered-list-item>
+  <bolt-ordered-list-item>Item 4</bolt-ordered-list-item>
+  <bolt-ordered-list-item>Item 5</bolt-ordered-list-item>
+</bolt-ordered-list>
+

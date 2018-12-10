@@ -13,6 +13,26 @@ class BoltUnorderedList extends withLitHtml() {
   render() {
     const classes = cx('c-bolt-unordered-list');
 
+    if (this.slots.default) {
+      const updatedDefaultSlot = [];
+
+      this.slots.default.forEach(item => {
+        if (item.tagName) {
+          updatedDefaultSlot.push(item);
+        }
+      });
+
+      if (
+        updatedDefaultSlot[updatedDefaultSlot.length - 1].attributes.length ===
+        0
+      ) {
+        updatedDefaultSlot[updatedDefaultSlot.length - 1].setAttribute(
+          'last',
+          '',
+        );
+      }
+    }
+
     return html`
       ${this.addStyles([styles])}
       <ul class="${classes}">

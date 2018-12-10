@@ -17,13 +17,32 @@ class BoltUnorderedListItem extends withLitHtml() {
   render() {
     const { last } = this.props;
 
-    const classes = cx('c-bolt-unordered-list-item', {
+    const itemClasses = cx('c-bolt-unordered-list-item');
+    const classes = cx('c-bolt-unordered-list-item__content', {
       [`c-bolt-unordered-list-item--last-item`]: last,
     });
 
+    console.log(this.slots.default);
+    if (this.slots.default.length > 1) {
+      this.slots.default.forEach((item, index) => {
+        if (item.tagName) {
+          const wrapper = document.createElement('div');
+          wrapper.classList.add('c-bolt-unordered-list-item__content');
+
+          if (index === this.slots.default.length - 2) {
+            wrapper.classList.add('c-bolt-unordered-list-item-last-item');
+          }
+
+          item = item.parentNode.insertBefore(wrapper, item);
+        }
+      });
+    }
+
     return html`
       ${this.addStyles([styles])}
-      <li class="${classes}">${this.slot('default')}</li>
+      <li class="${itemClasses}"><div class="${classes}">${this.slot(
+      'default',
+    )}</div></li>
     `;
   }
 }

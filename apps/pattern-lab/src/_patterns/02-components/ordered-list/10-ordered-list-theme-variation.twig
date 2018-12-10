@@ -8,11 +8,21 @@
           "Do not include any data or information in your posts that are confidential!",
           "Apply basic practices for collaborative work.",
           "Be honest, respectful, trustworthy and helpful.",
-          "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise."
+          "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.",
+          [
+            "Answer questions authoritatively and concisely.",
+            include("@bolt-components-ordered-list/ordered-list.twig", {
+              items: [
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4"
+              ]
+            })
+          ]
         ]
       } only %}
     {% endblock %}
   {% endembed %}
   <br>
 {% endfor %}
-

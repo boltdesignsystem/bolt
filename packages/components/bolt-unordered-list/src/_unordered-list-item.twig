@@ -3,7 +3,7 @@
 
 {% set last = loop.last %}
 {% set classes = [
-  "#{base_class}-spacing",
+  "#{base_class}bolt-ordered-list",
   last ? "#{base_class}--last-item",
 ] %}
 
@@ -21,7 +21,7 @@
           {% set inner_item_attributes = create_attribute({}) %}
           {% set last_i = loop.last %}
           {% set inner_classes = [
-            "#{base_class}-spacing",
+            "#{base_class}bolt-ordered-list",
             last_i ? "#{base_class}--last-item",
           ] %}
           <div {{ inner_item_attributes.addClass(inner_classes) }}>{{ i }}</div>
