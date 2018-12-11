@@ -53,7 +53,6 @@ $bolt-blockquote-image-border-style: $bolt-border-style;
 $bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
 $bolt-blockquote-image-size: 4rem;
 
-
 // Register Custom Block Element
 @include bolt-custom-element('bolt-blockquote', block, medium);
 
@@ -120,13 +119,11 @@ bolt-blockquote {
   }
 }
 
-
 // Logo
 .c-bolt-blockquote__logo {
   @include bolt-margin-bottom(small);
   display: block;
 }
-
 
 // Quotation
 .c-bolt-blockquote__quote {
@@ -149,7 +146,6 @@ bolt-blockquote {
     content: '\201D';
   }
 }
-
 
 // Attribution
 .c-bolt-blockquote__image {
@@ -176,7 +172,6 @@ bolt-blockquote {
     @include bolt-margin-bottom(0);
   }
 }
-
 
 // Horizontal alignment of items inside
 .c-bolt-blockquote--align-items-start,
@@ -211,7 +206,6 @@ bolt-blockquote[align-items='right'] {
     @include bolt-margin-left(auto);
   }
 }
-
 
 // Border Options
 .c-bolt-blockquote--bordered-vertical {
@@ -251,18 +245,19 @@ bolt-blockquote[align-items='right'] {
 }
 
 .c-bolt-blockquote--bordered-horizontal {
-  &:before, &:after {
+  &:before,
+  &:after {
     display: inline-block;
     display: inline-flex;
   }
 }
 
 .c-bolt-blockquote--borderless {
-  &:before, &:after {
+  &:before,
+  &:after {
     display: none;
   }
 }
-
 
 // Full bleed. Text takes up full width of screen instead of hitting a max width
 .c-bolt-blockquote--full {
@@ -270,7 +265,6 @@ bolt-blockquote[align-items='right'] {
     max-width: 100%;
   }
 }
-
 
 // Indent options
 .c-bolt-blockquote--indented {
@@ -284,7 +278,6 @@ bolt-blockquote[align-items='right'] {
     @include bolt-margin-left(0);
   }
 }
-
 
 // Perfecting the hanging quotation mark's position in all browsers.
 .c-bolt-blockquote--align-items-start,
@@ -315,7 +308,7 @@ bolt-blockquote[align-items='right'] {
 
     p:last-child:after {
       position: absolute;
-      transform: translate3d(10%, 0 ,0);
+      transform: translate3d(10%, 0, 0);
     }
   }
 }
