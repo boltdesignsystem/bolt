@@ -19,9 +19,13 @@
   {% set align = "end" %}
 {% endif %}
 
+{# DEPRECATED.  Use the property 'border_radius' with a value of 'full' instead. #}
+{% if rounded == "rounded" %}
+  {% set border_radius = "full" %}
+{% endif %}
+
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
 {% set alignOptions = schema.properties.align.enum %}
-{% set roundedOptions = schema.properties.rounded.enum %}
 {% set radius_options = schema.properties.border_radius.enum %}
 {% set sizeOptions = schema.properties.size.enum %}
 {% set styleOptions = schema.properties.style.enum %}
@@ -63,7 +67,6 @@
   disabled ? "c-bolt-button--disabled" : "",
   size in sizeOptions ? "c-bolt-button--#{size}" : "",
   width in widthOptions ? "c-bolt-button--#{width}" : "",
-  rounded in roundedOptions ? "c-bolt-button--#{rounded}" : "",
   border_radius in radius_options ? baseClass ~ "--border-radius-#{border_radius}" : "",
   style in styleOptions ? "c-bolt-button--#{style}" : "c-bolt-button--#{schema.properties.style.default}",
   transform in transformOptions and transform != "none" ? "c-bolt-button--#{transform}": "",
@@ -121,7 +124,6 @@ Sort classes passed in via attributes into two groups:
   {% if size %} size="{{ size }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
   {% if width %} width="{{ width }}" {% endif %}
-  {% if rounded %} rounded="{{ rounded }}" {% endif %}
   {% if iconOnly %} icon-only="true" {% endif %}
   {% if transform %} transform="{{ transform }}" {% endif %}
   {% if disabled == true %} disabled {% endif %}
