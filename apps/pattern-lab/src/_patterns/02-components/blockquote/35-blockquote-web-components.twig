@@ -1,0 +1,119 @@
+<h3>Simple</h3>
+{# {% include "@bolt-components-blockquote/blockquote.twig" with {
+  "author": {
+    "name": "Michelangelo di Lodovico Buonarroti Simoni",
+    "title": "Renaissance Artist"
+  },
+  "content": "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>"
+} %} #}
+
+<bolt-blockquote author-name="Michelangelo di Lodovico Buonarroti Simoni
+" author-title="Renaissance Artist" author-image="/pattern-lab/images/placeholders/500x500.jpg">
+  <p>Praesent adipiscing. Quisque ut nisi. Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi.</p>
+  <p>In auctor lobortis lacus. Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis. Fusce fermentum.</p>
+</bolt-blockquote>
+
+<h3>Alignment</h3>
+{# {% include "@bolt-components-blockquote/blockquote.twig" with {
+  alignItems: "left",
+  logo: {
+    invert: true,
+    src: "/pattern-lab/images/content/logos/logo-paypal.svg"
+  },
+  content: "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",
+  author: {
+    image: {
+      src: "/pattern-lab/images/placeholders/500x500.jpg",
+      lazyload: false
+    },
+    name: "Michelangelo di Lodovico Buonarroti Simoni",
+    title: "Renaissance Artist"
+  }
+} %} #}
+
+<bolt-blockquote size="xlarge" align-items="left">
+  <p>Praesent adipiscing. Quisque ut nisi. Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi.</p>
+</bolt-blockquote>
+
+<bolt-blockquote size="xlarge" align-items="center">
+  <p>Praesent adipiscing. Quisque ut nisi. Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi.</p>
+</bolt-blockquote>
+
+<bolt-blockquote size="xlarge">
+  <p>Praesent adipiscing. Quisque ut nisi. Donec interdum, metus et hendrerit aliquet, dolor diam sagittis ligula, eget egestas libero turpis vel mi.</p>
+</bolt-blockquote>
+
+
+{# <h3>Indentation</h3> #}
+{# {% include '@bolt-components-blockquote/blockquote.twig' with {
+  indent: boolean.value,
+  author: {
+    name: "Michelangelo di Lodovico Buonarroti Simoni",
+    title: "Renaissance Artist"
+  },
+  content: "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>"
+} %} #}
+
+{# <h3>Border</h3> #}
+{# {% include '@bolt-components-blockquote/blockquote.twig' with {
+  border: border,
+  author: {
+    name: "Michelangelo di Lodovico Buonarroti Simoni",
+    title: "Renaissance Artist"
+  },
+  content: "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>"
+} %} #}
+
+{# <h3>Multiple Paragraphs</h3> #}
+{# {% include "@bolt-components-blockquote/blockquote.twig" with {
+  "content": "<p>Blockquote can have one paragraph. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus.</p> <p>Or it can have multiple paragraphs. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci.</p>",
+  "author": {
+    "name": "Mike Mai",
+    "title": "Pegasystems",
+  },
+} %} #}
+
+{# <h3>Theme</h3> #}
+{# {% for theme in ["xlight", "light", "dark", "xdark"] %} #}
+{# {% for theme in ["dark", "xdark"] %}
+  <p>theme: {{ theme }}</p>
+  {% embed "@utils/theme-demo.twig" %}
+    {% block demo_content %}
+      {% include "@bolt-components-blockquote/blockquote.twig" with {
+        "theme": theme,
+        "size": "xxlarge",
+        "alignItems": "center",
+        "border": "horizontal",
+        "fullBleed": true,
+        "logo": {
+          "invert": true,
+          "src": "/pattern-lab/images/content/logos/logo-paypal.svg"
+        },
+        "content": "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",
+        "author": {
+          "image": {
+            "src": "/pattern-lab/images/placeholders/500x500.jpg",
+            "lazyload": false
+          },
+          "name": "Michelangelo di Lodovico Buonarroti Simoni",
+          "title": "Renaissance Artist"
+        }
+      } %}
+    {% endblock %}
+  {% endembed %}
+{% endfor %}
+
+{% set demo_theme %}
+  <bolt-blockquote size="xlarge" align-items="center" border="horizontal" full-bleed>
+    Text to appear in blockquote.
+  </bolt-blockquote>
+{% endset %}
+
+{% for theme in ["dark", "xdark"] %}
+  <p>theme: {{ theme }}</p>
+  {% embed "@utils/theme-demo.twig" %}
+    {% block demo_content %}
+      {{ demo_theme }}
+    {% endblock %}
+  {% endembed %}
+{% endfor %} #}
