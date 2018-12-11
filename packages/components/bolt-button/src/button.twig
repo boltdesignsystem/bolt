@@ -126,6 +126,7 @@ Sort classes passed in via attributes into two groups:
   {% if transform %} transform="{{ transform }}" {% endif %}
   {% if disabled == true %} disabled {% endif %}
   {% if noShadow %} no-shadow {% endif %}
+  {% if border_radius %} border-radius="{{ border_radius }}" {% endif %}
 
   {% if target or attributes['target'] %} target="{{ target | default(attributes['target']) }}" {% endif %}
 
