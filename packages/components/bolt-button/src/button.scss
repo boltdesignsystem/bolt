@@ -138,6 +138,14 @@ bolt-button[width='full@small'],
   border-radius: 50rem;
 }
 
+@each $radius-name, $radius-value in $bolt-button-border-radii {
+  .c-bolt-button--border-radius-#{$radius_name} {
+    &,
+    &:before {
+      border-radius: $radius-value;
+    }
+  }
+}
 
 
 

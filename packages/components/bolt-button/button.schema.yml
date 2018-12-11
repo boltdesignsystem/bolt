@@ -90,6 +90,16 @@ properties:
     description: 'What kind of rounded corners should the button have?'
     enum:
       - rounded
+  border_radius:
+    type: string
+    title: 'Border Radius'
+    description: 'Amount of rounding that the corners of the button should have'
+    default: small
+    enum:
+      - none
+      - small
+      - medium
+      - full
   iconOnly:
     type: boolean
     title: 'Icon Only?'
