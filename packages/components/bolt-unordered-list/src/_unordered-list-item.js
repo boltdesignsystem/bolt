@@ -22,7 +22,6 @@ class BoltUnorderedListItem extends withLitHtml() {
       [`c-bolt-unordered-list-item--last-item`]: last,
     });
 
-    console.log(this.slots.default);
     if (this.slots.default.length > 1) {
       this.slots.default.forEach((item, index) => {
         if (item.tagName) {

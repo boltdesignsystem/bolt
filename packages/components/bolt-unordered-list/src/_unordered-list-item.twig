@@ -22,7 +22,7 @@
           {% set last_i = loop.last %}
           {% set inner_classes = [
             "#{base_class}bolt-ordered-list",
-            last_i ? "#{base_class}--last-item",
+            last and last_i ? "#{base_class}--last-item",
           ] %}
           <div {{ inner_item_attributes.addClass(inner_classes) }}>{{ i }}</div>
         {%  endfor %}
