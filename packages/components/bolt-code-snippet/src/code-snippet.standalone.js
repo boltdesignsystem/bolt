@@ -49,7 +49,7 @@ class BoltCodeSnippetClass extends withPreact() {
   }
 
   connecting() {
-    if (this.querySelector('[is*=shadow-root]')) {
+    if(this.querySelector('[is*=shadow-root]')) {
       const parentElement = this.querySelector('[is*=shadow-root]');
       this.innerHTML = parentElement.innerHTML;
     }
