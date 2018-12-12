@@ -9,7 +9,7 @@
     "components"
   ],
   "version": "2.2.0",
-  "sourceFilesFrom": "0.9.0",
+  "homepage": "https://bolt-design-system.com",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -22,17 +22,22 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-figure",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "src/figure.scss",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/"
+  },
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "style": "index.scss",
+  "twig": "src/figure.twig",
+  "schema": "figure.schema.yml",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@bolt/core": "^2.2.0"
   },
-  "schema": "figure.schema.yml",
   "gitHead": "8dd538d0bd2b00baeac2779570d00e27d23405db"
 }
