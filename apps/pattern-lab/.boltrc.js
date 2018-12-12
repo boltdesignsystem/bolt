@@ -57,6 +57,11 @@ const config = {
         glob: '**',
         dist: '../../www/pattern-lab/images/',
       },
+      {
+        base: './src/assets',
+        glob: '*',
+        dist: '../../www/pattern-lab/images/',
+      },
     ],
   },
 
