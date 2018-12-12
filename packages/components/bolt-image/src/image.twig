@@ -2,20 +2,20 @@
   {{ validate_data_schema(bolt.data.components['@bolt-components-image'].schema, _self) | raw }}
 {% endif %}
 
-{% set imageDataBolt = bolt.data.images[src] %} {# Data from Bolt Manifest #}
-{% set imageDataTwig = getImageData(src)  %} {# Data from processing image file #}
+{% set image_data_bolt = bolt.data.images[src] %} {# Data from Bolt Manifest #}
+{% set image_data_twig = getImageData(src)  %} {# Data from processing image file #}
 
 {% set ext = src|split('.')|last %}
-{% set height = height|default(imageDataTwig.height) %}
-{% set width = width|default(imageDataTwig.width) %}
+{% set height = height|default(image_data_twig.height) %}
+{% set width = width|default(image_data_twig.width) %}
 {% set lazyload = lazyload ?? true %}
-{% set placeholderDummySrc = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
-{% set placeholderColor = imageDataTwig.color|default('hsl(233, 33%, 97%)') %}
-{% set placeholderImage = imageDataTwig.base64|default(placeholderDummySrc) %}
+{% set placeholder_dummy_src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
+{% set placeholder_color = image_data_twig.color|default('hsl(233, 33%, 97%)') %}
+{% set placeholder_image = image_data_twig.base64|default(placeholder_dummy_src) %}
 {% set sizes = sizes | default("auto") %}
 {% set srcset = srcset|default(src) %}
-{% if imageDataBolt.srcset %}
-  {% set srcset = imageDataBolt.srcset %}
+{% if image_data_bolt.srcset %}
+  {% set srcset = image_data_bolt.srcset %}
 {% endif %}
 
 {% if ratio is defined and ratio == false %}
@@ -30,60 +30,60 @@
 
 {% set attributes = create_attribute(attributes | default({})) %}
 
-{% set imageClasses = [
+{% set image_classes = [
   "c-bolt-image__image"
 ] %}
 
-{% set placeholderClasses = [
+{% set placeholder_classes = [
   "c-bolt-image__image-placeholder"
 ] %}
 
-{% set lazyloadClasses = [
+{% set lazyload_classes = [
   lazyload ? "c-bolt-image__lazyload",
   lazyload ? "c-bolt-image__lazyload--fade" : "",
   lazyload and ext == "jpg" ? "c-bolt-image__lazyload--blur" : "",
   lazyload ? "js-lazyload" : ""
 ] %}
 
-{% set imageAttributes = create_attribute(imageAttributes | default({})).addClass(imageClasses, lazyloadClasses)
+{% set image_attributes = create_attribute(image_attributes | default({})).addClass(image_classes, lazyload_classes)
   .setAttribute('alt', alt ? alt : null)
   .setAttribute( (lazyload ? "data-" : null) ~ "srcset", srcset ? srcset : null)
   .setAttribute( (lazyload ? "data-" : null) ~ "sizes", sizes)
-  .setAttribute('src', lazyload ? placeholderDummySrc : src)
+  .setAttribute('src', lazyload ? placeholder_dummy_src : src)
 %}
 
 {% if zoom %}
-  {% set imageAttributes = imageAttributes.setAttribute("data-zoom", src) %}
+  {% set image_attributes = image_attributes.setAttribute("data-zoom", src) %}
 {% endif %}
 
-{% set imageFallbackAttributes = create_attribute({}).addClass(imageClasses)
+{% set image_fallback_attributes = create_attribute({}).addClass(image_classes)
   .setAttribute('alt', alt ? alt : null)
   .setAttribute('src', src)
   .setAttribute(srcset ? "srcset" : "", srcset ? srcset : null)
 %}
 
 
-{% set imageTag %}
-  <img {{ imageAttributes }} />
+{% set image_tag %}
+  <img {{ image_attributes }} />
 
   {# Only output noscript fallback if lazyloading, and ratio will be output #}
   {# @todo Salem, can you take a quick look at this conditional. Wouldn't we want the noscript fallback regardless of useAspectRatio and height and width?#}
   {% if lazyload and width > 0 and height > 0 and useAspectRatio == true %}
-    <noscript> <img {{ imageFallbackAttributes }} /> </noscript>
+    <noscript> <img {{ image_fallback_attributes }} /> </noscript>
   {% endif %}
 {% endset %}
 
-{% set imagePlaceholder %}
-  <img {{ imageAttributes.removeClass(imageClasses, lazyloadClasses).addClass(placeholderClasses)
+{% set image_placeholder %}
+  <img {{ image_attributes.removeClass(image_classes, lazyload_classes).addClass(placeholder_classes)
   .removeAttribute("data-srcset")
   .removeAttribute("src")
   .removeAttribute("data-sizes")
   .removeAttribute("srcset")
-  .setAttribute("src", placeholderImage)
+  .setAttribute("src", placeholder_image)
   }} />
 {% endset %}
 
-<bolt-image {% if placeholderColor and ext == "jpg" %} style="background-color: {{ placeholderColor }};" {% endif %}>
+<bolt-image {% if placeholder_color and ext == "jpg" %} style="background-color: {{ placeholder_color }};" {% endif %}>
   {% block image_content %}
     {% if width > 0 and height > 0 and useAspectRatio == true %}
       {% embed "@bolt-components-ratio/ratio.twig" with {
@@ -92,13 +92,13 @@
         aspectRatioWidth: width * 1
       } %}
         {% block ratio_content %}
-          {{ ext == "jpg" ? imagePlaceholder : "" }}
-          {{ imageTag }}
+          {{ ext == "jpg" ? image_placeholder : "" }}
+          {{ image_tag }}
         {% endblock %}
       {% endembed %}
     {% else %}
-      {{ ext == "jpg" ? imagePlaceholder : "" }}
-      {{ imageTag }}
+      {{ ext == "jpg" ? image_placeholder : "" }}
+      {{ image_tag }}
     {% endif %}
   {% endblock %}
 </bolt-image>
