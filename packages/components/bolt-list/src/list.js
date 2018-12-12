@@ -95,6 +95,7 @@ class BoltList extends withContext(withLitHtml()) {
     const classes = cx('c-bolt-list', {
       [`c-bolt-list--display-${display}`]: display,
       [`c-bolt-list--spacing-${spacing}`]: spacing,
+      [`c-bolt-list--separator-${separator}`]: separator,
       [`c-bolt-list--align-${align}`]: align,
       [`c-bolt-list--valign-${valign}`]: valign,
       [`c-bolt-list--inset`]: inset,

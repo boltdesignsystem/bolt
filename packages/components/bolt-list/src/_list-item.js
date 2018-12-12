@@ -18,7 +18,12 @@ class BoltListItem extends withContext(withLitHtml()) {
   // subscribe to specific props that are defined and available on the parent container
   // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
   static get consumes() {
-    return [[ListContext, ['tag', 'spacing', 'inset', 'separator', 'display', 'align']]];
+    return [
+      [
+        ListContext,
+        ['tag', 'spacing', 'inset', 'separator', 'display', 'align'],
+      ],
+    ];
   }
 
   connectedCallback() {

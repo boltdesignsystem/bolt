@@ -27,17 +27,6 @@
 .c-bolt-list--display-flex {
   display: flex;
   flex-flow: row wrap;
-  //
-  //bolt-list-item {
-    //display: flex;
-    //flex-basis: 0;
-    //flex-grow: 1;
-    //text-align: center;
-    //border-right: 1px solid red;
-    //border-bottom: 1px solid red;
-    //align-items: center;
-  //}
-  //display: table;
 }
 
 @each $breakpoint in $bolt-breakpoints {
@@ -60,17 +49,43 @@
   $spacing-value-name: nth($spacing-value, 1);
 
   .c-bolt-list--spacing-#{$spacing-value-name} {
-    margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
-    margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
-
+    &:not(.c-bolt-list--display-flex) {
+      margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
+      margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
+    }
   }
 
   .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
-    @include bolt-margin-left(0);
-    @include bolt-margin-bottom(0);
+    &:not(.c-bolt-list--display-flex) {
+      @include bolt-margin-left(0);
+      @include bolt-margin-bottom(0);
+    }
   }
 }
 
+// Separator Prop
+$bolt-list-separator-styles: solid, dashed;
+
+@each $separator-style in $bolt-list-separator-styles {
+  .c-bolt-list--separator-#{$separator-style} {
+    border: {
+      width: 0;
+      color: rgba(bolt-color(gray), 0.25);
+      style: #{$separator-style};
+    }
+  }
+}
+
+[class*='c-bolt-list--separator'] {
+  &:not(.c-bolt-list--separator-none) {
+    &.c-bolt-list--display-flex {
+      border: {
+        top-width: 1px;
+        left-width: 1px;
+      }
+    }
+  }
+}
 
 // Align and Valign Props
 $bolt-list-alignments: start, center, end;

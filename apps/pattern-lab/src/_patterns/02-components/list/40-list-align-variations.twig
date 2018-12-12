@@ -24,4 +24,15 @@
       }),
     ]
   } only %}
+  <h3>Flex list align: {{ align }}</h3>
+  {% include "@bolt-components-list/list.twig" with {
+    display: "flex",
+    align: align,
+    separator: "solid",
+    items: [
+      "Placeholder 1",
+      "Placeholder 2",
+      "Placeholder 3"
+    ]
+  } only %}
 {% endfor %}

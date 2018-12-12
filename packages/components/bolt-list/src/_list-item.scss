@@ -22,16 +22,22 @@
   $spacing-value-name: nth($spacing-value, 1);
 
   .c-bolt-list-item--spacing-#{$spacing-value-name} {
-    @include bolt-margin-left(#{$spacing-value-name});
-    @include bolt-margin-bottom(#{$spacing-value-name});
+    &:not(.c-bolt-list-item--display-flex) {
+      @include bolt-margin-left(#{$spacing-value-name});
+      @include bolt-margin-bottom(#{$spacing-value-name});
 
-    &.c-bolt-list-item--inset {
-      @include bolt-margin-left(0);
-      @include bolt-margin-bottom(0);
-      @include bolt-padding-top(#{$spacing-value-name});
-      @include bolt-padding-right(#{$spacing-value-name});
-      @include bolt-padding-bottom(#{$spacing-value-name});
-      @include bolt-padding-left(#{$spacing-value-name});
+      &.c-bolt-list-item--inset {
+        @include bolt-margin-left(0);
+        @include bolt-margin-bottom(0);
+        @include bolt-padding-top(#{$spacing-value-name});
+        @include bolt-padding-right(#{$spacing-value-name});
+        @include bolt-padding-bottom(#{$spacing-value-name});
+        @include bolt-padding-left(#{$spacing-value-name});
+      }
+    }
+
+    &.c-bolt-list-item--display-flex {
+      @include bolt-padding(#{$spacing-value-name});
     }
   }
 }
@@ -60,6 +66,15 @@ $bolt-list-separator-styles: solid, dashed;
     &.c-bolt-list-item--display-inline {
       &:not(.c-bolt-list-item--last-item) {
         border-right-width: 1px;
+      }
+    }
+
+    &.c-bolt-list-item--display-flex {
+        border: {
+          right-width: 1px;
+          bottom-width: 1px;
+        }
+      &:not(.c-bolt-list-item--last-item) {
       }
     }
 
