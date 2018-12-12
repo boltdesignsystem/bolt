@@ -17,6 +17,7 @@ const defaultConfig = {
   buildDir: './dist',
   prod: false, // or false for local dev
   sourceMaps: true,
+  publicPath: '/styleguide/',
 };
 
 module.exports = async function() {
@@ -86,13 +87,13 @@ module.exports = async function() {
       resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-          react: 'preact-compat',
+          react: path.resolve(__dirname, './src/scripts/utils/preact-compat'),
           'react-dom': 'preact-compat',
         },
       },
       output: {
         path: path.resolve(process.cwd(), `${config.buildDir}/styleguide`),
-        publicPath: '/pattern-lab/styleguide/',
+        publicPath: `${config.publicPath}`,
         filename: '[name].js',
         chunkFilename: `js/[name]-chunk-[chunkhash].js`,
       },
@@ -151,6 +152,18 @@ module.exports = async function() {
             },
           },
           {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: '@svgr/webpack',
+              },
+            ],
+          },
+          {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
+          },
+          {
             test: /\.scss$/,
             oneOf: [
               {
@@ -179,10 +192,28 @@ module.exports = async function() {
         ],
       },
       cache: true,
-      mode: config.prod ? 'production' : 'development',
+      // mode: config.prod ? 'production' : 'development',
+      mode: 'development', // temp workaround till strange rendering issues with full `production` mode are switched on in Webpack
       optimization: {
+        minimize: true,
+        occurrenceOrder: true,
+        namedChunks: true,
+        removeAvailableModules: true,
+        removeEmptyChunks: true,
+        nodeEnv: 'production',
         mergeDuplicateChunks: true,
         concatenateModules: true,
+        splitChunks: {
+          chunks: 'async',
+          cacheGroups: {
+            vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'async',
+              reuseExistingChunk: true,
+            },
+          },
+        },
         minimizer: config.prod
           ? [
               new UglifyJsPlugin({

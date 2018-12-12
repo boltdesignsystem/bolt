@@ -18,44 +18,6 @@
   flex-direction: column;
   overflow: hidden;
   flex-grow: 1;
-
-  /**
-     * Tabs inside a code panel
-     */
-
-  .pl-c-pattern-info__panel--code & {
-    // @media all and (min-width: $pl-bp-large) {
-      position: absolute;
-      top: 1rem;
-      bottom: 1rem;
-      left: 1rem;
-      right: 1rem;
-    // }
-  }
-
-  .pl-c-drawer & {
-    // adjusts the absolutely positioned tabs container when nested inside the PL drawer
-    // @todo: refactor to eliminate the need for this  
-    @media all and (min-width: $pl-bp-med) {
-      right: 1.5rem;
-
-      @supports(padding: unquote('max(0px, env(safe-area-inset-right))')) {
-        right: unquote('max(1.5rem, env(safe-area-inset-right))');
-      }
-    }
-
-    @media all and (min-width: 848px) {
-      right: 2.3rem;
-
-      @supports(padding: unquote('max(0px, env(safe-area-inset-right))')) {
-        right: unquote('max(2.3rem, calc(env(safe-area-inset-right) + 1.4rem))');
-      }
-    }
-    
-    @media all and (min-width: $pl-bp-xl) {
-      left: 2rem;
-    }
-  }
 }
 
 /**
@@ -68,7 +30,9 @@
   list-style: none;
   margin: 0;
   padding: 0.5rem 0;
+  padding-bottom: 0;
   background-color: $pl-color-white;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
 /**
@@ -77,15 +41,15 @@
 .pl-c-tabs__link {
   display: block;
   line-height: 1;
-  padding: 0.2rem 0.4rem;
-  border: 1px solid transparent;
-  border-radius: $pl-border-radius-med;
+  border-bottom: 4px solid transparent;
   color: $pl-color-gray-50;
   background-color: $pl-color-white;
   cursor: pointer;
   text-decoration: none;
-  text-transform: lowercase;
+  text-transform: uppercase;
   transition: all $pl-animate-quick ease-out;
+  padding: 8px;
+  font-size: 13px;
 
   &:hover {
     color: $pl-color-gray-87;
@@ -98,8 +62,7 @@
      */
   &.pl-is-active-tab {
     color: $pl-color-gray-87;
-    background-color: $pl-color-gray-07;
-    border: 1px solid $pl-color-gray-13;
+    border-bottom-color: #bf6500;
   }
 }
 
@@ -108,19 +71,11 @@
  * 1) Tab content contains the tab panels
  */
 .pl-c-tabs__content {
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 0;
-  overflow: hidden;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
-  height: 100%;
-
-  /**
-     *  Tab content inside modal
-     */
-  .pl-c-drawer & {
-    border: 0;
-  }
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /**
@@ -130,12 +85,11 @@
  */
 .pl-c-tabs__panel {
   display: none;
-  min-height: 12rem;
-  height: 100%;
 
   &.pl-is-active-tab {
-    display: block;
     display: flex;
+    height: 100%;
+    flex-grow: 1;
   }
 
   /**
@@ -147,9 +101,18 @@
   pre[class*='language-'] {
     background-color: transparent;
     margin: 0;
-    padding: 0;
+    padding-top: 1rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
     border: 0;
     display: block;
+    width: 100%; // fill parent container
+    max-height: 20rem;
+
+    .pl-c-drawer & {
+      max-height: none;
+    }
   }
 
   code[class*='language-'] {

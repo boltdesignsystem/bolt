@@ -1,10 +1,10 @@
 import { define, props } from 'skatejs';
 import { h } from 'preact';
 
+
 import { store } from '../../store.js'; // connect to the Redux store.
 import { updateThemeMode } from '../../actions/app.js'; // redux actions needed
 import { BaseComponent } from '../base-component.js';
-
 
 @define
 class ThemeToggle extends BaseComponent {

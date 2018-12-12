@@ -8,31 +8,9 @@
  */
 .pl-c-body--theme-light {
   /**
-     * Header
-     */
-  .pl-c-header {
-    background-color: $pl-color-white;
-    border-bottom: 1px solid $pl-color-gray-20;
-  }
-
-  /**
      * Tools dropdown
      */
 
-  // don't show border to the left / bottom when in vertical mode
-  @media all and (max-width: $pl-bp-med - 1) {
-    .pl-c-tools__list.pl-is-active {
-      border-bottom: 1px solid $pl-color-gray-20;
-      border-left: 1px solid $pl-color-gray-20;
-    }
-  }
-
-  &:not(.pl-c-body--theme-sidebar) {
-    .pl-c-tools__list.pl-is-active {
-      border-bottom: 1px solid $pl-color-gray-20;
-      border-left: 1px solid $pl-color-gray-20;
-    }
-  }
 
   /**
      * Nav link dropdown
@@ -79,7 +57,6 @@
     background-color: $pl-color-gray-13 !important;
   }
 
-
   /**
      * Typeahead input
      */
@@ -99,15 +76,6 @@
         color: $pl-color-gray-87;
       }
     }
-  }
-
-  /**
-     * Modal inside a light theme
-     */
-  .pl-c-drawer {
-    background-color: $pl-color-white;
-    color: $pl-color-gray-70;
-    border-top: 1px solid $pl-color-gray-20;
   }
 
   /**

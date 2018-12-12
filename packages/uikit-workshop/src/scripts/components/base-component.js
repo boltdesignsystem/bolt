@@ -32,7 +32,8 @@ export class BaseComponent extends withComponent(withPreact()) {
   }
 
   _stateChanged(state) {
-    throw new Error('_stateChanged() not implemented', this);
+    // throw new Error('_stateChanged() not implemented', this);
+    this.triggerUpdate();
   }
 
   /**

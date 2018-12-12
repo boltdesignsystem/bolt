@@ -5,7 +5,6 @@ export const UPDATE_DRAWER_STATE = 'UPDATE_DRAWER_STATE';
 export const UPDATE_DRAWER_HEIGHT = 'UPDATE_DRAWER_HEIGHT';
 export const IS_VIEWALL_PAGE = 'IS_VIEWALL_PAGE';
 
-
 export const updateLayoutMode = layoutMode => (dispatch, getState) => {
   if (getState().app.layoutMode !== layoutMode) {
     dispatch({
@@ -24,7 +23,6 @@ export const updateThemeMode = themeMode => (dispatch, getState) => {
   }
 };
 
-
 export const updateDrawerState = opened => (dispatch, getState) => {
   if (getState().app.drawerOpened !== opened) {
     dispatch({
@@ -34,7 +32,10 @@ export const updateDrawerState = opened => (dispatch, getState) => {
   }
 };
 
-export const updateDrawerAnimationState = drawerIsAnimating => (dispatch, getState) => {
+export const updateDrawerAnimationState = drawerIsAnimating => (
+  dispatch,
+  getState
+) => {
   if (getState().app.drawerIsAnimating !== drawerIsAnimating) {
     dispatch({
       type: UPDATE_DRAWER_ANIMATION_STATE,

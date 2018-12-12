@@ -17,3 +17,20 @@
   -webkit-text-size-adjust: 100%;
   display: flex; // Required for IE 11 to display overall PL layout correctly
 }
+
+.pl-c-body--theme-dark,
+:root {
+  --theme-bg: #262829;
+  --theme-secondary: #1B1C1C;
+  --theme-text: white;
+  --theme-primary: #37393a;
+  --theme-border: #323435;
+}
+
+.pl-c-body--theme-light {
+  --theme-bg: white;
+  --theme-secondary: #EBEBEB;
+  --theme-text: #262829;
+  --theme-primary: white;
+  --theme-border: #ddd;
+}

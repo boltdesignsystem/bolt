@@ -5,10 +5,20 @@
 import $ from 'jquery';
 import Hogan from 'hogan.js';
 import Prism from 'prismjs';
+import Normalizer from 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
 import { Panels } from './panels';
 import { panelsUtil } from './panels-util';
 import { urlHandler, Dispatcher } from '../utils';
-import './copy-to-clipboard';
+import './pl-copy-to-clipboard/pl-copy-to-clipboard';
+
+const normalizeWhitespace = new Normalizer({
+  'remove-trailing': true,
+  'remove-indent': true,
+  'left-trim': true,
+  'right-trim': true,
+  'break-lines': 80,
+  'tabs-to-spaces': 2,
+});
 
 export const panelsViewer = {
   // set up some defaults
@@ -88,8 +98,11 @@ export const panelsViewer = {
           /* eslint-disable */
           e.onload = (function(i, panels, patternData, iframeRequest) {
             return function() {
+              let normalizedCode = normalizeWhitespace.normalize(
+                this.responseText
+              );
               const prismedContent = Prism.highlight(
-                this.responseText,
+                normalizedCode,
                 Prism.languages.html
               );
               template = document.getElementById(panels[i].templateID);
@@ -98,6 +111,9 @@ export const panelsViewer = {
                 language: 'html',
                 code: prismedContent,
               });
+              templateRendered = normalizeWhitespace.normalize(
+                templateRendered
+              );
               panels[i].content = templateRendered;
               Dispatcher.trigger('checkPanels', [
                 panels,
@@ -119,7 +135,15 @@ export const panelsViewer = {
           template = document.getElementById(panel.templateID);
           templateCompiled = Hogan.compile(template.innerHTML);
           templateRendered = templateCompiled.render(patternData);
-          panels[i].content = templateRendered;
+          const normalizedCode = normalizeWhitespace.normalize(
+            templateRendered
+          );
+          normalizedCode.replace(/[\r\n]+/g, '\n\n');
+          const highlightedCode = Prism.highlight(
+            normalizedCode,
+            Prism.languages.html
+          );
+          panels[i].content = highlightedCode;
           Dispatcher.trigger('checkPanels', [
             panels,
             patternData,

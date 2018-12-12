@@ -1,9 +1,12 @@
 import { define, props } from 'skatejs';
 import { h } from 'preact';
+import { store } from '../../store.js'; // connect to redux
+
 import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
 import classNames from 'classnames';
 import Mousetrap from 'mousetrap';
+import { Tooltip } from '../pl-tooltip/pl-tooltip';
 
 import VisuallyHidden from '@reach/visually-hidden';
 import Autosuggest from 'react-autosuggest';
@@ -28,6 +31,7 @@ class Search extends BaseComponent {
     this.state = {
       value: '',
       suggestions: [],
+      isFocused: false,
     };
 
     this.receiveIframeMessage = this.receiveIframeMessage.bind(this);
@@ -37,6 +41,26 @@ class Search extends BaseComponent {
     this.closeSearch = this.closeSearch.bind(this);
     this.renderInputComponent = this.renderInputComponent.bind(this);
     this.openSearch = this.openSearch.bind(this);
+
+    // this.items = [];
+    // for (const patternType in window.patternPaths) {
+    //   if (window.patternPaths.hasOwnProperty(patternType)) {
+    //     for (const pattern in window.patternPaths[patternType]) {
+    //       if (window.patternPaths[patternType].hasOwnProperty(pattern)) {
+    //         const obj = {};
+    //         obj.label = patternType + '-' + pattern;
+    //         obj.id = window.patternPaths[patternType][pattern];
+    //         this.items.push(obj);
+    //       }
+    //     }
+    //   }
+    // }
+
+    return self;
+  }
+
+  connecting(){
+    super.connecting && super.connecting();
 
     this.items = [];
     for (const patternType in window.patternPaths) {
@@ -51,17 +75,21 @@ class Search extends BaseComponent {
         }
       }
     }
-
-    return self;
+    
   }
 
   connected() {
     const self = this;
-    Mousetrap.bind('command+f', function(e) {
+    Mousetrap.bind('command+shift+f', function(e) {
       e.preventDefault();
       self.toggleSearch();
     });
     window.addEventListener('message', this.receiveIframeMessage, false);
+  }
+
+  _stateChanged(state) {
+    // throw new Error('_stateChanged() not implemented', this);
+    this.triggerUpdate();
   }
 
   rendered() {
@@ -75,8 +103,15 @@ class Search extends BaseComponent {
     clearButtonText: props.string,
   };
 
-  // External Redux store not yet in use
-  _stateChanged(state) {}
+  onInput = e => {
+    let value = e.target.value;
+
+    this.setState({
+      value: value,
+    });
+
+    this.onSuggestionsFetchRequested({ value }); // re-render search results immediately based on latest input value
+  };
 
   toggleSearch() {
     if (!this.state.isOpen) {
@@ -325,19 +360,37 @@ class Search extends BaseComponent {
         : 'Find a Pattern',
       value,
       onChange: this.onChange,
+      onInput: this.onInput,
     };
 
     return (
-      <Autosuggest
-        theme={theme}
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={this.getSuggestionValue}
-        renderSuggestion={this.renderSuggestion}
-        inputProps={inputProps}
-        renderInputComponent={this.renderInputComponent}
-      />
+      <div>
+        <Tooltip
+          placement="top"
+          trigger="hover"
+          tooltip="Hotkey: ⌘ + shift + f"
+          usePortal={false}
+        >
+          {({ getTriggerProps, triggerRef }) => (
+            <div
+              {...getTriggerProps({
+                ref: triggerRef,
+              })}
+            >
+              <Autosuggest
+                theme={theme}
+                suggestions={suggestions}
+                onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                getSuggestionValue={this.getSuggestionValue}
+                renderSuggestion={this.renderSuggestion}
+                inputProps={inputProps}
+                renderInputComponent={this.renderInputComponent}
+              />            
+            </div>
+          )}
+        </Tooltip>
+      </div>
     );
   }
 }
