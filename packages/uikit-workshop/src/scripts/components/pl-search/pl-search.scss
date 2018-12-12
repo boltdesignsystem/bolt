@@ -18,13 +18,14 @@ pl-search {
   flex-shrink: 0;
   padding: 0.4rem 0.5rem;
   display: inline-block;
-  align-self: center;
+  align-self: stretch;
   
   @media screen and (min-width: $pl-bp-med) {
     margin-left: 1rem;
     flex-direction: row;
     flex-shrink: 1;
     order: 2; // Display after nav list items on wider screens
+    align-self: center;
 
     .pl-c-body--theme-sidebar & {
       flex-direction: column;
