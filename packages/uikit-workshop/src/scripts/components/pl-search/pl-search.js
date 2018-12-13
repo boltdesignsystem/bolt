@@ -366,7 +366,7 @@ class Search extends BaseComponent {
     return (
       <div>
         <Tooltip
-          placement="top"
+          placement="bottom"
           trigger="hover"
           tooltip="Hotkey: ⌘ + shift + f"
           usePortal={false}

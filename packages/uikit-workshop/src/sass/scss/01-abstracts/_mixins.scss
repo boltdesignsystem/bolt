@@ -27,7 +27,8 @@
  * Header Link Style
  */
 @mixin linkStyle() {
-  color: $pl-color-gray-50; // @WIP: #C3C8CC;
+  // color: $pl-color-gray-50; // @WIP: #C3C8CC;
+  color: var(--theme-text);
   text-decoration: none;
   padding: 0.4rem 0.5rem;
   border: 0;
@@ -40,14 +41,14 @@
   outline: 0;
 
   &:hover {
-    color: $pl-color-white;
+    // color: $pl-color-white;
     background-color: $pl-color-gray-87;
   }
 
   &:focus:active,
   &.pl-is-active,
   &:active {
-    color: $pl-color-white;
+    // color: $pl-color-white;
     // background-color: $pl-color-gray-87;
     // outline: 1px dotted $pl-color-gray-50;
     // outline-offset: -1px;
@@ -59,7 +60,7 @@
      */
   .pl-c-body--theme-light & {
     background-color: $pl-color-white;
-    color: $pl-color-gray-70;
+    // color: $pl-color-gray-70;
 
     &:hover {
       background-color: $pl-color-gray-07;

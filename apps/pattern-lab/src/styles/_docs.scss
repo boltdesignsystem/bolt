@@ -1,6 +1,12 @@
 @import '@bolt/core';
 
 .bolt-docs {
+  color: bolt-theme(text);
+  
+  .pl-c-category__title-link {
+    color: bolt-theme(link);
+  }
+
   &__schema {
     ul {
       p {
@@ -143,12 +149,12 @@
   @include bolt-font-size(xxlarge);
   @include bolt-font-weight(semibold);
   @include bolt-margin-bottom(medium);
-  color: bolt-color(black);
+  color: bolt-theme(headline);
 }
 
 .c-bolt-docs__lead {
   @include bolt-font-weight(regular);
-  color: bolt-color(black);
+  color: bolt-theme(headline);
   border: 1px dotted transparent;
   border-radius: 4px;
   transition: border 0.3s ease-in-out;
@@ -196,12 +202,12 @@
     @include bolt-font-family(code);
     transform: translate3d(0, 0, 0);
     width: 100%;
-    border: 1px solid bolt-color(gray, light);
+    border: 1px solid bolt-theme(border);
     table-layout: auto;
   }
 
   thead {
-    border-bottom: 1px solid bolt-color(gray, light);
+    border-bottom: 1px solid bolt-theme(border);
   }
 
   tr {
@@ -275,12 +281,12 @@
     @include bolt-margin-bottom(0);
     transform: translate3d(0, 0, 0);
     width: 100%;
-    border: 1px solid bolt-color(gray, light);
+    border: 1px solid bolt-theme(border);
     table-layout: auto;
   }
 
   thead {
-    border-bottom: 1px solid bolt-color(gray, light);
+    border-bottom: 1px solid bolt-theme(border);
   }
 
   tr {
@@ -296,7 +302,7 @@
     @include bolt-padding(small);
     @include bolt-font-size(xsmall);
     @include bolt-font-weight(semibold);
-    color: bolt-color(gray, dark);
+    color: bolt-theme(headline);
     text-align: left;
     text-transform: uppercase;
     vertical-align: bottom;

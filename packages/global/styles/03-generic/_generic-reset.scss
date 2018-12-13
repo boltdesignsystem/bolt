@@ -16,6 +16,10 @@ figure,
 }
 /* stylelint-enable selector-list-comma-newline-after */
 
+#{$bolt-all-heading-elements}:not([class]){
+  color: bolt-theme(headline);
+}
+
 /*
 * Remove text-shadow in selection highlight:
 * https://twitter.com/miketaylr/status/12228805301

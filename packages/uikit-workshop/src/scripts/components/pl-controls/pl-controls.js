@@ -21,15 +21,25 @@ class Controls extends BaseComponent {
   }
 
   _stateChanged(state) {
+    this.pxSize = state.app.viewportPx;
+    this.emSize = state.app.viewportEm;
     this.triggerUpdate();
+  }
+
+  connected() {
+    const state = store.getState();
+    this.pxSize = state.app.viewportPx;
+    this.emSize = state.app.viewportEm;
+    // store.dispatch(updateThemeMode(this.themeMode));
   }
 
   render() {
     const { ishControlsHide } = window.ishControls;
+    // const { pxSize, emSize } = 
 
     return (
       <div className="pl-c-controls">
-        <ViewportSize />
+        <ViewportSize px={this.pxSize} em={this.emSize} />
         <ViewportSizeList {...ishControlsHide} />
         <pl-tools-menu />
       </div>

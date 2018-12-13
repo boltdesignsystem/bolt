@@ -15,13 +15,10 @@ pl-drawer {
   right: 0;
   z-index: 20;
   overflow: visible;
-
-  .pl-c-body--theme-light & {
-    // Modal / Drawer inside a light theme
-    background-color: $pl-color-white;
-    color: $pl-color-gray-70;
-    border-top: 1.1px solid $pl-color-gray-20; // sub-pixel bug in Chrome. border disappears sometimes when set to 1px
-  }
+  border-top: 1.1px solid $pl-color-gray-20; // sub-pixel bug in Chrome. border disappears sometimes when set to 1px
+  border-top-color: var(--theme-border);
+  background-color: var(--theme-primary);
+  color: var(--theme-text);
 }
 
 
@@ -33,8 +30,8 @@ pl-drawer {
   display: flex;
   flex-direction: column;
   font-family: $pl-font;
-  background-color: $pl-color-gray-87;
-  color: $pl-color-gray-20;
+  // background-color: $pl-color-gray-87;
+  // color: $pl-color-gray-20;
   width: 100%;
   height: 100%;
   transform: translate3d(0, 0, 0);
@@ -48,11 +45,11 @@ pl-drawer {
     }
   }
 
-  .pl-c-body--theme-light & {
-    // Modal / Drawer inside a light theme
-    background-color: $pl-color-white;
-    color: $pl-color-gray-70;
-  }
+  // .pl-c-body--theme-light & {
+  //   // Modal / Drawer inside a light theme
+  //   background-color: $pl-color-white;
+  //   color: $pl-color-gray-70;
+  // }
 
   /**
      * Active drawer

@@ -13,7 +13,10 @@ class ThemeToggle extends BaseComponent {
   constructor(self) {
     self = super(self);
     this.useShadow = false;
-    return self;
+    this.targetOrigin =
+      window.location.protocol === 'file:'
+        ? '*'
+        : window.location.protocol + '//' + window.location.host;
   }
 
   connected() {
@@ -28,6 +31,21 @@ class ThemeToggle extends BaseComponent {
 
   _stateChanged(state) {
     this.themeMode = state.app.themeMode;
+
+    this.iframeElement = document.querySelector('.pl-js-iframe');
+
+    console.log(this.iframeElement);
+
+    if (this.iframeElement){
+      const obj = JSON.stringify({
+        event: 'patternLab.stateChange',
+        state,
+      });
+      this.iframeElement.contentWindow.postMessage(
+        obj,
+        this.targetOrigin
+      );
+    }
   }
 
   render({ themeMode }) {

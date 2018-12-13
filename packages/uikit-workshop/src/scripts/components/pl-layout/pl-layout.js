@@ -23,6 +23,10 @@ class Layout extends BaseComponent {
   constructor(self) {
     self = super(self);
     this.useShadow = false;
+    this.targetOrigin =
+      window.location.protocol === 'file:'
+        ? '*'
+        : window.location.protocol + '//' + window.location.host;
     return self;
   }
 
@@ -37,9 +41,14 @@ class Layout extends BaseComponent {
     this.themeMode = state.app.themeMode;
   }
 
+  rendered(){
+    this.iframeElement = document.querySelector('.pl-js-iframe');
+  }
+
   _stateChanged(state) {
     this.layoutMode = state.app.layoutMode;
     this.themeMode = state.app.themeMode;
+    this.iframeElement = document.querySelector('.pl-js-iframe');
 
     const classes = classNames({
       [`pl-c-body--theme-${this.themeMode}`]: this.themeMode !== undefined,
@@ -49,6 +58,19 @@ class Layout extends BaseComponent {
     });
 
     this.className = classes;
+
+    console.log(this.iframeElement);
+
+    if (this.iframeElement){
+      const obj = JSON.stringify({
+        event: 'patternLab.stateChange',
+        state,
+      });
+      this.iframeElement.contentWindow.postMessage(
+        obj,
+        this.targetOrigin
+      );
+    }
   }
 }
 

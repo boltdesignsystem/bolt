@@ -6,6 +6,9 @@ import $ from 'jquery';
 import Mousetrap from 'mousetrap';
 import { urlHandler, DataSaver, patternName } from '../utils';
 
+import { store } from '../store.js'; // connect to the Redux store.
+import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux actions needed
+
 (function(w) {
   let sw = document.body.clientWidth; //Viewport Width
 
@@ -313,6 +316,9 @@ import { urlHandler, DataSaver, patternName } from '../utils';
       theSize = size;
     }
 
+    // store.dispatch(updateViewportWidth(theSize));
+    
+
     //Conditionally remove CSS animation class from viewport
     if (animate === false) {
       $('.pl-js-vp-iframe-container, .pl-js-iframe').removeClass('vp-animate'); //If aninate is set to false, remove animate class from viewport
@@ -382,12 +388,18 @@ import { urlHandler, DataSaver, patternName } from '../utils';
     }
 
     if (target === 'updatePxInput') {
-      $sizePx.val(pxSize);
+      // $sizePx.val(pxSize);
+      store.dispatch(updateViewportPx(pxSize));
+
     } else if (target === 'updateEmInput') {
-      $sizeEms.val(emSize.toFixed(2));
+      // $sizeEms.val(emSize.toFixed(2));
+
+      store.dispatch(updateViewportEm(emSize.toFixed(2)));
     } else {
-      $sizeEms.val(emSize.toFixed(2));
-      $sizePx.val(pxSize);
+      // $sizeEms.val(emSize.toFixed(2));
+      store.dispatch(updateViewportEm(emSize.toFixed(2)));
+      // $sizePx.val(pxSize);
+      store.dispatch(updateViewportPx(pxSize));
     }
   }
 

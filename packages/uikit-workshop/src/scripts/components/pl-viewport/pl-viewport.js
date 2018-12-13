@@ -9,6 +9,9 @@ import { BaseComponent } from '../base-component.js';
 
 import styles from '../../../sass/pattern-lab--iframe-loader.scss';
 
+import iFrameResize from 'iframe-resizer/src/iframeResizer.js';
+
+
 @define
 class IFrame extends BaseComponent {
   static is = 'pl-iframe';
@@ -20,12 +23,43 @@ class IFrame extends BaseComponent {
     return self;
   }
 
-  _stateChanged(state) {}
+  connected(){
+    const state = store.getState();
+    this.themeMode = state.app.themeMode;
+
+    // console.log(this.themeMode);
+  }
+
+  _stateChanged(state) {
+    if (this.iframe){
+      this.iframe.iFrameResizer.sendMessage(state);
+    } else {
+      this.delaySendingMessage = true;
+    }
+  }
+  
+  rendered(){
+    this.iframe = this.querySelector('.pl-js-iframe');
+
+    const self = this;
+
+    iFrameResize({
+      checkOrigin: false,
+      initCallback(){
+        if (self.delaySendingMessage === true){
+          self.delaySendingMessage = false;
+    
+          const state = store.getState();
+          self.iframe.iFrameResizer.sendMessage(state);
+        }
+      }
+    }, this.iframe);
+  }
 
   render() {
     const IframeInner = () => {
       return (
-        <div>
+        <div className={`pl-c-body--theme-${this.themeMode}`}>
           <style>{styles[0][1]}</style>
           <div className={'pl-c-loader'}>
             <div className={'pl-c-loader__content'}>
@@ -63,7 +97,7 @@ class IFrame extends BaseComponent {
         <div class="pl-c-viewport__cover pl-js-viewport-cover" />
         <div class="pl-c-viewport__iframe-wrapper pl-js-vp-iframe-container">
           <iframe
-            class="pl-c-viewport__iframe pl-js-iframe"
+            className={`pl-c-viewport__iframe pl-js-iframe pl-c-body--theme-${this.themeMode}`}
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
             srcdoc={render(<IframeInner />)}
           />

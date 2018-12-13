@@ -9,6 +9,7 @@
 */
 .pl-c-html {
   min-height: 100%;
+  background-color: var(--theme-secondary);
 }
 
 .pl-c-body {
@@ -20,17 +21,20 @@
 
 .pl-c-body--theme-dark,
 :root {
-  --theme-bg: #262829;
-  --theme-secondary: #1B1C1C;
+  --theme-bg: #161B3D;
+  --theme-primary: #060924;
+  --theme-secondary: #0D1230;
   --theme-text: white;
-  --theme-primary: #37393a;
-  --theme-border: #323435;
+  --theme-text-rgb: 255,255,255;
+  --theme-border: rgba(255, 255, 255, 0.2);
 }
 
 .pl-c-body--theme-light {
   --theme-bg: white;
-  --theme-secondary: #EBEBEB;
+  // --theme-secondary: #EBEBEB;
+  --theme-secondary: white;
   --theme-text: #262829;
+  --theme-text-rgb: 38, 40, 41;
   --theme-primary: white;
   --theme-border: #ddd;
 }
