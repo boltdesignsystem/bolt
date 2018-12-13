@@ -20,7 +20,6 @@
   $spacing-value-name: nth($spacing-value, 1);
 
   .c-bolt-list-item--spacing-#{$spacing-value-name} {
-    &:not(.c-bolt-list-item--display-flex) {
       @include bolt-margin-left(#{$spacing-value-name});
       @include bolt-margin-bottom(#{$spacing-value-name});
 
@@ -32,11 +31,6 @@
         @include bolt-padding-bottom(#{$spacing-value-name});
         @include bolt-padding-left(#{$spacing-value-name});
       }
-    }
-
-    &.c-bolt-list-item--display-flex {
-      @include bolt-padding(#{$spacing-value-name});
-    }
   }
 }
 
@@ -54,36 +48,43 @@ $bolt-list-separator-styles: solid, dashed;
 }
 
 [class*='c-bolt-list-item--separator'] {
-  &:not(.c-bolt-list-item--separator-none) {
-    &.c-bolt-list-item--display-block {
-      &:not(.c-bolt-list-item--last-item) {
-        border-bottom-width: 1px;
+  &.c-bolt-list-item--display-block {
+    &:not(.c-bolt-list-item--last-item) {
+      border-bottom-width: 1px;
+    }
+  }
+
+  &.c-bolt-list-item--display-inline {
+    &:not(.c-bolt-list-item--last-item) {
+      border-right-width: 1px;
+    }
+  }
+
+  &.c-bolt-list-item--display-flex {
+    &.c-bolt-list-item--inset,
+    &:not([class*='c-bolt-list-item--spacing']) {
+      border: {
+        right-width: 1px;
+        bottom-width: 1px;
       }
     }
 
-    &.c-bolt-list-item--display-inline {
-      &:not(.c-bolt-list-item--last-item) {
+    &[class*='c-bolt-list-item--spacing'] {
+      &:not(.c-bolt-list-item--inset) {
+        border-width: 1px;
+      }
+    }
+  }
+
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
+
+    &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
+      border-bottom-width: 1px;
+
+      @include bolt-mq($breakpoint-name) {
         border-right-width: 1px;
-      }
-    }
-
-    &.c-bolt-list-item--display-flex {
-        border: {
-          right-width: 1px;
-          bottom-width: 1px;
-        }
-    }
-
-    @each $breakpoint in $bolt-breakpoints {
-      $breakpoint-name: nth($breakpoint, 1);
-
-      &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
-        border-bottom-width: 1px;
-
-        @include bolt-mq($breakpoint-name) {
-          border-right-width: 1px;
-          border-bottom-width: 0;
-        }
+        border-bottom-width: 0;
       }
     }
   }
@@ -103,6 +104,12 @@ $bolt-list-separator-styles: solid, dashed;
     &.c-bolt-list-item--spacing-#{$spacing-value-name} {
       &.c-bolt-list-item--display-inline {
         @include bolt-padding-right(#{$spacing-value-name});
+      }
+    }
+
+    &.c-bolt-list-item--spacing-#{$spacing-value-name} {
+      &.c-bolt-list-item--display-flex {
+        @include bolt-padding(#{$spacing-value-name});
       }
     }
 

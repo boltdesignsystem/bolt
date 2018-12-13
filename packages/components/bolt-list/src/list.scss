@@ -49,17 +49,13 @@
   $spacing-value-name: nth($spacing-value, 1);
 
   .c-bolt-list--spacing-#{$spacing-value-name} {
-    &:not(.c-bolt-list--display-flex) {
-      margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
-      margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
-    }
+    margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
+    margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
   }
 
   .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
-    &:not(.c-bolt-list--display-flex) {
-      @include bolt-margin-left(0);
-      @include bolt-margin-bottom(0);
-    }
+    @include bolt-margin-left(0);
+    @include bolt-margin-bottom(0);
   }
 }
 
@@ -77,8 +73,9 @@ $bolt-list-separator-styles: solid, dashed;
 }
 
 [class*='c-bolt-list--separator'] {
-  &:not(.c-bolt-list--separator-none) {
-    &.c-bolt-list--display-flex {
+  &.c-bolt-list--display-flex {
+    &.c-bolt-list--inset,
+    &:not([class*='c-bolt-list--spacing']) {
       border: {
         top-width: 1px;
         left-width: 1px;
