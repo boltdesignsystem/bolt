@@ -61,11 +61,13 @@ $bolt-list-separator-styles: solid, dashed;
       $breakpoint-name: nth($breakpoint, 1);
 
       &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
-        border-bottom-width: 1px;
+        &:not(.c-bolt-list-item--last-item) {
+          border-bottom-width: 1px;
 
-        @include bolt-mq($breakpoint-name) {
-          border-right-width: 1px;
-          border-bottom-width: 0;
+          @include bolt-mq($breakpoint-name) {
+            border-right-width: 1px;
+            border-bottom-width: 0;
+          }
         }
       }
     }
@@ -94,7 +96,7 @@ $bolt-list-separator-styles: solid, dashed;
         $breakpoint-name: nth($breakpoint, 1);
 
         &.c-bolt-list-item--spacing-#{$spacing-value-name} {
-          .c-bolt-list-item--display-inline\@#{$breakpoint-name} {
+          &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
             @include bolt-padding-bottom(#{$spacing-value-name});
 
             @include bolt-mq($breakpoint-name) {
