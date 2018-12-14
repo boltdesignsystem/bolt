@@ -16,14 +16,12 @@ before_install:
 # - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
 # - export PATH="$HOME/.yarn/bin:$PATH"
 
-before_script:
-- phpenv config-rm xdebug.ini
-
 install:
 # - yarn run setup
 
-before_script:
+#before_script:
 # - yarn run lint
+#- phpenv config-rm xdebug.ini
 
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 script:
@@ -35,12 +33,12 @@ script:
 - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
 - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
 - docker push boltdesignsystem/bolt:latest && docker push boltdesignsystem/bolt:${GIT_SHA}
-# - bash ./travis.sh # time command already run inside the travis.sh script
-# - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
 
 after_script:
-  - echo '' && echo 'About to deploy...' && echo ''
-  - cd deploys && DOCKER_TAG=$GIT_SHA npx now deploy --force --team boltdesignsystem --token $NOW_TOKEN
+  - npm i -g now@latest
+  - yarn deploy
+  - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
+  - time ./scripts/update-read-only-git-repos.sh
 
 cache:
   apt: true

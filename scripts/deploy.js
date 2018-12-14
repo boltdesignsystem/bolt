@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const url = require('url');
+const { resolve } = require('path');
 const querystring = require('querystring');
 const fetch = require('node-fetch');
 const {spawnSync} = require('child_process');
@@ -30,8 +31,13 @@ async function init() {
       TRAVIS_REPO_SLUG,
       // If the current build is for a git tag, this variable is set to the tag’s name
       TRAVIS_TAG,
+      TRAVIS_BUILD_WEB_URL,
     } = process.env;
 
+    // also made in `.travis.yml` during docker tag
+    const gitSha = spawnSync('git', ['rev-parse', '--short' 'HEAD'], {
+      encoding: 'utf8',
+    }).trim();
 
     console.log({
       TRAVIS,
@@ -40,6 +46,8 @@ async function init() {
       TRAVIS_PULL_REQUEST,
       TRAVIS_REPO_SLUG,
       TRAVIS_TAG,
+      TRAVIS_BUILD_WEB_URL,
+      gitSha,
     });
 
     let branchName = 'detached-HEAD';
@@ -64,7 +72,6 @@ async function init() {
     const baseNowArgs = [
       '--platform-version=1',
       '--team=boltdesignsystem',
-      '--local-config=../now.json',
     ];
 
     if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
@@ -72,11 +79,15 @@ async function init() {
     console.log('Starting deploy...');
     const deployOutput = spawnSync('now', [
       'deploy',
-      './www',
-      '--name=boltdesignsystem',
-      '--static',
+      '--force',
+      `--meta TRAVIS_BUILD_WEB_URL=${TRAVIS_BUILD_WEB_URL}`,
+      `--env DOCKER_TAG=${gitSha}`,
+      `--build-env DOCKER_TAG=${gitSha}`,
       ...baseNowArgs,
-    ], {encoding: 'utf8'});
+    ], {
+      encoding: 'utf8',
+      cwd: resolve(__dirname, '../deploys'),
+    });
     if (deployOutput.status !== 0) {
       console.error('Error deploying:');
     }
