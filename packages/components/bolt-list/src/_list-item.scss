@@ -61,12 +61,12 @@ $bolt-list-separator-styles: solid, dashed;
   }
 
   &.c-bolt-list-item--display-flex {
-    &.c-bolt-list-item--inset,
-    &:not([class*='c-bolt-list-item--spacing']) {
-      border: {
-        right-width: 1px;
-        bottom-width: 1px;
-      }
+    position: relative;
+    top: -1px;
+    right: -1px;
+    border: {
+      top-width: 1px;
+      right-width: 1px;
     }
 
     &[class*='c-bolt-list-item--spacing'] {

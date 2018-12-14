@@ -76,10 +76,7 @@ $bolt-list-separator-styles: solid, dashed;
   &.c-bolt-list--display-flex {
     &.c-bolt-list--inset,
     &:not([class*='c-bolt-list--spacing']) {
-      border: {
-        top-width: 1px;
-        left-width: 1px;
-      }
+      overflow: hidden;
     }
   }
 }
@@ -115,7 +112,8 @@ $bolt-list-alignments: start, center, end;
   }
 
   .c-bolt-list--valign-#{$alignment} {
-    &.c-bolt-list--display-inline {
+    &.c-bolt-list--display-inline,
+    &.c-bolt-list--display-flex {
       @if $alignment != 'center' {
         align-items: flex-#{$alignment};
       }
