@@ -2,9 +2,11 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Share
 type: object
 not:
-  required:
-    - inline
-    - copyToClipboard
+  anyOf:
+    - required:
+      - inline
+    - required:
+      - copyToClipboard
 properties:
   attributes:
     type: object

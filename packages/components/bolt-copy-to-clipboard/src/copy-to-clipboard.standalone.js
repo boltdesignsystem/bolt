@@ -1,10 +1,10 @@
 import ClipboardJS from 'clipboard';
 
 import { props, define } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 @define
-class BoltCopyToClipboard extends withHyperHtml() {
+class BoltCopyToClipboard extends withLitHtml() {
   static is = 'bolt-copy-to-clipboard';
 
   constructor(self) {
@@ -40,6 +40,12 @@ class BoltCopyToClipboard extends withHyperHtml() {
 
   disconnecting() {
     this.clipboardInstance.destroy();
+  }
+
+  render() {
+    return html`
+      ${this.slot('default')}
+    `;
   }
 }
 

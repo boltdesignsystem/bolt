@@ -12,24 +12,22 @@ $bolt-share-block-link-inline-spacing: 'xsmall';
   display: block;
 }
 
-$bolt-share-opacity: 100, 80, 60, 40, 20;
-
-@each $opacity in $bolt-share-opacity {
-  .c-bolt-share--opacity-#{$opacity} {
-    opacity: #{$opacity / 100};
+@each $key, $value in $bolt-opacities {
+  .c-bolt-share--opacity-#{$key} {
+    @include bolt-opacity($key);
     transition: opacity $bolt-transition;
 
     &:hover {
-      opacity: 1;
+      opacity: bolt-opacity(100);
     }
   }
 }
 
 .c-bolt-share__label {
   @include bolt-font-size(xsmall);
+  opacity: bolt-opacity(60);
 
   color: bolt-theme(text);
-  opacity: 0.6;
 }
 
 .c-bolt-share__label--medium {
@@ -66,9 +64,9 @@ $bolt-share-opacity: 100, 80, 60, 40, 20;
 // Custom animation is used here because the markup is different than the default copy to clipboard animation.
 .c-bolt-share__copy-animation {
   display: inline-block;
-  animation-name: a-bolt-share-copy-animation-spin;
   animation-duration: 2s;
   animation-iteration-count: infinite;
+  animation-name: a-bolt-share-copy-animation-spin;
   animation-timing-function: linear;
 }
 

@@ -39,7 +39,7 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   @include bolt-padding(0);
 
   a {
-    opacity: 1;
+    opacity: bolt-opacity(100);
     transition: all $bolt-transition;
 
     &:link,
@@ -249,8 +249,8 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
     }
 
     &:before {
-      position: absolute;
       content: '\201C';
+      position: absolute;
       transform: translate3d(-110%, 0, 0);
     }
 
@@ -260,20 +260,10 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   }
 
   // Opacity
-  &--opacity-100 {
-    opacity: 1;
-  }
-  &--opacity-80 {
-    opacity: 0.8;
-  }
-  &--opacity-60 {
-    opacity: 0.6;
-  }
-  &--opacity-40 {
-    opacity: 0.4;
-  }
-  &--opacity-20 {
-    opacity: 0.2;
+  @each $key, $value in $bolt-opacities {
+    &--opacity-#{$key} {
+      opacity: bolt-opacity($key);
+    }
   }
 
   // Icon Alignment

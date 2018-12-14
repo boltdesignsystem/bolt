@@ -55,7 +55,7 @@ class BoltTooltip extends withPreact() {
     } else {
       classes.push(`${baseClass}--spacing-small`);
     }
-    // @todo: Conditionally render slot similar to how HyperHtml is doing it
+    // @todo: Conditionally render slot similar to how Lit-HTML is doing it
     return (
       <span>
         {this.useShadow && <style>{styles[0][1]}</style>}

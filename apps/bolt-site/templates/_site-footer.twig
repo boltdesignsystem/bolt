@@ -6,6 +6,8 @@
   {% set assets = [] %}
 {% endif %}
 
-<script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
+{% set cacheBuster = bolt.data.config.prod ? "?v=" ~ bolt.data.fullManifest.version : "" %}
+
+<script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}{{ cacheBuster }}" async></script>
   </body>
 </html>

@@ -3,6 +3,6 @@
 
   export const CustomerOnboarding = ({ bgColor, fgColor, size, ...otherProps }) => {
       return (
-        <svg {...otherProps} viewBox="0 0 32 32"><path fill={bgColor} fill-rule="evenodd" d="M6 10a7 7 0 1 1 13.999.001A7 7 0 0 1 6 10m11.403 7.846A8.993 8.993 0 0 0 22 10a9 9 0 0 0-18 0 8.993 8.993 0 0 0 4.598 7.846C4.15 19.602 1 23.93 1 29v2h2v-2c0-5.523 4.478-10 10-10a9.96 9.96 0 0 1 6.903 2.777l.097-.778h1.915a12.018 12.018 0 0 0-4.512-3.153M30 24.999h-3V22a1 1 0 1 0-2 0v2.999h-3A1 1 0 0 0 22 27h3v3a1 1 0 0 0 2 0v-3h3a1 1 0 1 0 0-2.001"/></svg>
+        <svg data-name="Layer 1" {...otherProps} viewBox="0 0 30 30"><path fill={bgColor} fill-rule="evenodd" d="M5 9a7 7 0 1 1 7 7 7 7 0 0 1-7-7m11.4 7.8A9 9 0 1 0 3 9a8.92 8.92 0 0 0 4.6 7.8A12.14 12.14 0 0 0 0 28v2h2v-2a10 10 0 0 1 16.9-7.2l.1-.8h1.9a12 12 0 0 0-4.5-3.2M29 24h-3v-3a1 1 0 0 0-2 0v3h-3a1 1 0 0 0 0 2h3v3a1 1 0 0 0 2 0v-3h3a1 1 0 0 0 0-2" data-name="Page-1"/></svg>
       )
 };

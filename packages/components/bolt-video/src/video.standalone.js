@@ -1,10 +1,7 @@
-import { define, props, css } from '@bolt/core/utils';
+import { beforeNextRender, define, props, css } from '@bolt/core/utils';
 import { h, withPreact } from '@bolt/core/renderers';
 import dasherize from 'dasherize';
 import Mousetrap from 'mousetrap';
-
-// Bolt v2.0 will be shipping with this in Bolt core -- manually adding this in to the Bolt video player as a temp workaround till then.
-import { beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
 
 let index = 0;
 
@@ -71,6 +68,7 @@ class BoltVideo extends withPreact() {
     showMeta: props.boolean,
     showMetaTitle: props.boolean,
     closeButtonText: props.string,
+    shareDescription: props.string,
     loop: props.boolean,
     // onError: null,
     // onPlay: null,
@@ -120,6 +118,8 @@ class BoltVideo extends withPreact() {
       directToFullscreen: false,
       resetOnFinish: false,
     };
+
+    this.shareDescription = this.shareDescription || 'Share This Video';
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
@@ -215,6 +215,8 @@ class BoltVideo extends withPreact() {
     if (elem.controls === false) {
       elem.player.muted(true);
     }
+
+    player.socialOverlay.options_.description = elem.props.shareDescription;
 
     player.on('loadedmetadata', function() {
       const duration = player.mediainfo.duration;

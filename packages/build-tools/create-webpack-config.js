@@ -38,8 +38,8 @@ async function createWebpackConfig(buildConfig) {
   const publicPath = config.publicPath
     ? config.publicPath
     : config.wwwDir
-      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-      : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
+    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+    : config.buildDir; // @todo Ensure ends with `/` or we can get `distfonts/` instead of `dist/fonts/`
 
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@bolt/sass-export-data')({
@@ -346,7 +346,16 @@ async function createWebpackConfig(buildConfig) {
     },
     resolve: {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
-      extensions: ['.js', '.jsx', '.mjs', '.json', '.svg', '.scss'],
+      extensions: [
+        '.js',
+        '.jsx',
+        '.mjs',
+        '.json',
+        '.svg',
+        '.scss',
+        '.ts',
+        '.tsx',
+      ],
       alias: {
         react: 'preact-compat',
         'react-dom': 'preact-compat',
@@ -354,6 +363,13 @@ async function createWebpackConfig(buildConfig) {
     },
     module: {
       rules: [
+        {
+          test: /\.(ts|tsx)$/,
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+          },
+        },
         {
           test: /\.scss$/,
           oneOf: [
@@ -372,7 +388,7 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.(js|mjs)$/,
+          test: /\.(js|tsx|mjs)$/,
           exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: {
             loader: 'babel-loader',
@@ -506,14 +522,14 @@ async function createWebpackConfig(buildConfig) {
       }),
     );
 
-    // @todo Evaluate best source map approach for production
+    // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
     webpackConfig.devtool =
       config.sourceMaps === false ? '' : 'hidden-source-map';
   } else {
     // not prod
     // @todo fix source maps
     webpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'cheap-module-eval-source-map';
+      config.sourceMaps === false ? '' : 'eval-source-map';
   }
 
   if (config.wwwDir) {
