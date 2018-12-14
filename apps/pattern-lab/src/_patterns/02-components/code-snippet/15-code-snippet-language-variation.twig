@@ -1,43 +1,69 @@
+{% set css %}{%- verbatim -%}
+.my-css {
+  display: block;
+}
+{%- endverbatim -%}{% endset %}
+
+{% set scss %}{%- verbatim -%}
+.my-scss {
+  @include my-mixin;
+}
+{%- endverbatim -%}{% endset %}
+
+{% set html %}{%- verbatim -%}
+<header>
+  <h1>Headline</h1>
+</header>
+{%- endverbatim -%}{% endset %}
+
+{% set js %}{%- verbatim -%}
+import { polyfillLoader } from '@bolt/core';
+{%- endverbatim -%}{% endset %}
+
+{% set twig %}{%- verbatim -%}
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  "display": "block",
+  "lang": "html",
+  "content": "Some code snippet"
+} only %}
+{%- endverbatim -%}{% endset %}
+
 <h3>css:</h3>
 {% embed "@bolt-components-code-snippet/code-snippet.twig" with {
   "display": "block",
-  "lang": "css"
+  "lang": "css",
+  "content": css
 } only %}
-{% block children %}{% verbatim %}.my-css { display: block; }{% endverbatim %}{% endblock %}
 {% endembed %}
 
 <h3>scss:</h3>
 {% embed "@bolt-components-code-snippet/code-snippet.twig" with {
   "display": "block",
-  "lang": "scss"
+  "lang": "scss",
+  "content": scss
 } only %}
-{% block children %}{% verbatim %}.my-scss { @include my-mixin; }{% endverbatim %}{% endblock %}
 {% endembed %}
 
 <h3>html:</h3>
 {% embed "@bolt-components-code-snippet/code-snippet.twig" with {
   "display": "block",
-  "lang": "html"
+  "lang": "html",
+  "content": html
 } only %}
-{% block children %}{% verbatim %}<header><h1>Headline</h1></header>{% endverbatim %}{% endblock %}
 {% endembed %}
 
 <h3>javascript:</h3>
 {% embed "@bolt-components-code-snippet/code-snippet.twig" with {
   "display": "block",
-  "lang": "js"
+  "lang": "js",
+  "content": js
 } only %}
-{% block children %}{% verbatim %}import { polyfillLoader } from '@bolt/core';{% endverbatim %}{% endblock %}
 {% endembed %}
 
 <h3>twig:</h3>
 {% embed "@bolt-components-code-snippet/code-snippet.twig" with {
   "display": "block",
-  "lang": "twig"
+  "lang": "twig",
+  "content": twig
 } only %}
-{% block children %}{% verbatim %}{% include "@bolt-components-code-snippet/code-snippet.twig" with {
-  "display": "block",
-  "lang": "html",
-  "content": "Some code snippet"
-} only %}{% endverbatim %}{% endblock %}
 {% endembed %}

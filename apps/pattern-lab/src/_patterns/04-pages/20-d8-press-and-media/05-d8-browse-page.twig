@@ -43,7 +43,7 @@
     size: "large",
     theme: "dark",
     fullBleed: true,
-    page_title: "Press Releases",
+    page_title: page_title|default("Insert Page Title Here"),
     background: {
       shapeGroup: "B"
     }
@@ -169,8 +169,7 @@
           name: "email",
           url: "mailto:?&body=Sample%20Text%20--%20https%3A//bolt-design-system.com"
         }
-      ],
-      inline: true
+      ]
     } only %}
   </div>
 

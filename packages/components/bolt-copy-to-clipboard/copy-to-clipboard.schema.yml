@@ -43,8 +43,12 @@ properties:
 required:
   - text_to_copy
 not:
-  required:
-    - iconSize
-    - copiedText
-    - text
-    - url
+  anyOf:
+    - required:
+      - iconSize
+    - required:
+      - copiedText
+    - required:
+      - text
+    - required:
+      - url
