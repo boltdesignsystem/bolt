@@ -1,4 +1,3 @@
-$schema: http://json-schema.org/draft-04/schema#
 title: Image
 type: object
 anyOf:
@@ -17,6 +16,13 @@ properties:
     type: boolean
     description: Lazyload can boost performance by loading images on demand, instead of on initial page load.
     default: true
+    enum:
+      - true
+      - false
+  noLazyload:
+    type: boolean
+    description: Override the default lazyload behavior. Only used to the web component, where the presence of a boolean property always equates to `true`.
+    default: false
     enum:
       - true
       - false
