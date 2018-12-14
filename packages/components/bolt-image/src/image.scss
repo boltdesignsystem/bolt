@@ -1,11 +1,18 @@
+@import '@bolt/core';
+
 // Image Component Styling (if any)
 
 bolt-image {
   display: block;
 }
 
+.c-bolt-image__image {
+  // temp fix, prevents huge image when in shadow dom but not in bolt-ratio
+  max-width: 100%;
+}
+
 .c-bolt-image__lazyload {
-  transition: opacity .2s ease, filter .2s ease;
+  transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
 .c-bolt-image__lazyload--blur {
@@ -24,8 +31,7 @@ bolt-image {
   }
 }
 
-
 .c-bolt-image__image-placeholder {
   pointer-events: none;
-  transition: opacity .2s ease;
+  transition: opacity 0.2s ease;
 }

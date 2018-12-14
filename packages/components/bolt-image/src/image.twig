@@ -1,5 +1,7 @@
+{% set schema = bolt.data.components["@bolt-components-image"].schema %}
+
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-image'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
 {% set image_data_bolt = bolt.data.images[src] %} {# Data from Bolt Manifest #}
@@ -17,6 +19,8 @@
 {% if image_data_bolt.srcset %}
   {% set srcset = image_data_bolt.srcset %}
 {% endif %}
+
+{% set alt = alt ? alt : null %}
 
 {% if ratio is defined and ratio == false %}
   {% set useAspectRatio = false %}
@@ -46,7 +50,7 @@
 ] %}
 
 {% set image_attributes = create_attribute(image_attributes | default({})).addClass(image_classes, lazyload_classes)
-  .setAttribute('alt', alt ? alt : null)
+  .setAttribute('alt', alt)
   .setAttribute( (lazyload ? "data-" : null) ~ "srcset", srcset ? srcset : null)
   .setAttribute( (lazyload ? "data-" : null) ~ "sizes", sizes)
   .setAttribute('src', lazyload ? placeholder_dummy_src : src)
@@ -57,7 +61,7 @@
 {% endif %}
 
 {% set image_fallback_attributes = create_attribute({}).addClass(image_classes)
-  .setAttribute('alt', alt ? alt : null)
+  .setAttribute('alt', alt)
   .setAttribute('src', src)
   .setAttribute(srcset ? "srcset" : "", srcset ? srcset : null)
 %}
@@ -83,7 +87,18 @@
   }} />
 {% endset %}
 
-<bolt-image {% if placeholder_color and ext == "jpg" %} style="background-color: {{ placeholder_color }};" {% endif %}>
+<bolt-image
+  {% if src %}src="{{ src }}"{% endif %}
+  {% if srcset %}srcset="{{ srcset }}"{% endif %}
+  {% if alt %}alt="{{ alt }}"{% endif %}
+  {% if sizes %}sizes="{{ sizes }}"{% endif %}
+  {% if width %}width="{{ width }}"{% endif %}
+  {% if height %}height="{{ height }}"{% endif %}
+  {% if useAspectRatio %}use-aspect-ratio{% endif %}
+  {% if zoom %}zoom{% endif %}
+  {% if not lazyload %}no-lazyload{% endif %}
+  {% if placeholder_color and ext == "jpg" %} style="background-color: {{ placeholder_color }};" {% endif %}
+  >
   {% block image_content %}
     {% if width > 0 and height > 0 and useAspectRatio == true %}
       {% embed "@bolt-components-ratio/ratio.twig" with {
