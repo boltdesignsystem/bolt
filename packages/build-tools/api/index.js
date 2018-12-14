@@ -38,6 +38,12 @@ async function handleRequest(req, res, next) {
   // @todo test with `GET` requests
   // @todo test with empty body
   switch (pathname) {
+    case '/':
+      res.json({
+        ok: true,
+        message: `Welcome to the Bolt Design System API! Have a nice day!`,
+      });
+      break;
     case '/render-twig':
       try {
         /** @var renderResponse {Response} */
@@ -72,7 +78,7 @@ async function handleRequest(req, res, next) {
       res.end(
         JSON.stringify({
           ok: false,
-          message: `Not api route found at: ${url}`,
+          message: `No api route found at: ${pathname}`,
         }),
         'utf8',
         () =>
