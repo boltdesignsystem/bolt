@@ -35,7 +35,7 @@ async function init() {
     } = process.env;
 
     // also made in `.travis.yml` during docker tag
-    const gitSha = spawnSync('git', ['rev-parse', '--short' 'HEAD'], {
+    const gitSha = spawnSync('git', ['rev-parse', '--short', 'HEAD'], {
       encoding: 'utf8',
     }).trim();
 

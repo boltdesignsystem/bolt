@@ -35,7 +35,7 @@ script:
 - docker push boltdesignsystem/bolt:latest && docker push boltdesignsystem/bolt:${GIT_SHA}
 
 after_script:
-  - npm i -g now@latest
+  - npm i -g now@latest node-fetch git-semver-tags # @todo remove these; need them for following script since we don't `yarn install` (it all happens inside Docker build)
   - yarn deploy
   - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
   - time ./scripts/update-read-only-git-repos.sh
