@@ -8,8 +8,8 @@ language: php
 php:
   - 7.1
 
-addons:
-  sauce_connect: true
+#addons:
+#  sauce_connect: true
 
 before_install:
 # - nvm install # version lifted from `.nvmrc`
@@ -37,7 +37,7 @@ script:
 after_script:
   - npm i -g now@latest node-fetch git-semver-tags # @todo remove these; need them for following script since we don't `yarn install` (it all happens inside Docker build)
   - yarn deploy
-  - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
+#  - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
   - time ./scripts/update-read-only-git-repos.sh
 
 cache:
