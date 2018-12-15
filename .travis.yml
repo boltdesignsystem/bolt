@@ -26,7 +26,7 @@ install:
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
 script:
 - docker --log-level error pull boltdesignsystem/bolt || true
-- docker build --pull --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
+- docker build --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
 - docker images
 - echo $DOCKER_HUB_PASS | docker login --username $DOCKER_HUB_USER --password-stdin
 - GIT_SHA="$(git rev-parse --short HEAD)"
