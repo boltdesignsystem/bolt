@@ -39,6 +39,11 @@ async function init() {
       encoding: 'utf8',
     }).stdout.trim();
 
+    const gitShaLong = spawnSync('git', ['rev-parse', 'HEAD'], {
+      encoding: 'utf8',
+    }).stdout.trim();
+
+
     console.log({
       TRAVIS,
       TRAVIS_BRANCH,
@@ -76,7 +81,7 @@ async function init() {
 
     if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
 
-    await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitSha}`, {
+    await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitShaLong}`, {
       method: 'POST',
       body: JSON.stringify({
         state: 'pending',
@@ -132,7 +137,7 @@ async function init() {
     if (aliasOutput.status !== 0) {
       console.error('Error aliasing:');
       console.log(aliasOutput.stdout, aliasOutput.stderr);
-      const response = await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitSha}`, {
+      const response = await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitShaLong}`, {
         method: 'POST',
         body: JSON.stringify({
           state: 'error',
@@ -148,7 +153,7 @@ async function init() {
     }
     console.log(aliasOutput.stdout, aliasOutput.stderr);
 
-    const response = await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitSha}`, {
+    const response = await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitShaLong}`, {
       method: 'POST',
       body: JSON.stringify({
         state: 'success',
