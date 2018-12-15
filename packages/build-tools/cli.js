@@ -74,9 +74,7 @@ if (program.configFile) {
 
         config.renderingService =
           typeof options.renderingService === 'undefined'
-            ? process.env.TRAVIS
-              ? false
-              : config.renderingService
+            ? config.renderingService
             : options.renderingService;
 
         config.env = process.env.NODE_ENV
