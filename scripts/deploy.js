@@ -80,9 +80,12 @@ async function init() {
     const deployOutput = spawnSync('now', [
       'deploy',
       '--force',
-      `--meta TRAVIS_BUILD_WEB_URL=${TRAVIS_BUILD_WEB_URL}`,
-      `--env DOCKER_TAG=${gitSha}`,
-      `--build-env DOCKER_TAG=${gitSha}`,
+      '--meta',
+      `TRAVIS_BUILD_WEB_URL="${TRAVIS_BUILD_WEB_URL}"`,
+      '--env',
+      `DOCKER_TAG=${gitSha}`,
+      '--build-env',
+      `DOCKER_TAG=${gitSha}`,
       ...baseNowArgs,
     ], {
       encoding: 'utf8',
@@ -90,6 +93,8 @@ async function init() {
     });
     if (deployOutput.status !== 0) {
       console.error('Error deploying:');
+      console.log(deployOutput.stdout, deployOutput.stderr);
+      process.exit(1);
     }
     console.log(deployOutput.stdout, deployOutput.stderr);
     const deployedUrl = deployOutput.stdout.trim();
