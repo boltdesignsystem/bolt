@@ -37,6 +37,7 @@ async function handleRequest(req, res, next) {
   // }
   // @todo test with `GET` requests
   // @todo test with empty body
+  console.log(`api request received at ${pathname}`); // remove once we're sure this works on server
   switch (pathname) {
     case '/':
       res.json({
