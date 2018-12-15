@@ -82,8 +82,8 @@ if (program.configFile) {
         config.env = process.env.NODE_ENV
           ? process.env.NODE_ENV
           : typeof options.env === 'undefined'
-          ? config.env
-          : options.env;
+            ? config.env
+            : options.env;
 
         config.webpackStats =
           typeof options.webpackStats === 'undefined'
