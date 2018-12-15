@@ -103,7 +103,6 @@ async function init() {
       .replace('boltdesignsystem-', '')
       .replace('.now.sh', '');
 
-
     console.log('Aliasing to branch/tag name...');
     // Making sure branch name is ok to be in URL
     const branchUrlPart = branchName
@@ -173,22 +172,26 @@ async function init() {
 
 - Branch link: ${aliasedUrl}
 - Permalink: ${deployedUrl}
-
-<details>
-
-- Commit built: ${process.env.TRAVIS_COMMIT}
-- [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${process.env.TRAVIS_BUILD_ID})
-
-</details>
 `.trim();
+
+//       const extra = `<details>
+//
+// - Commit built: ${process.env.TRAVIS_COMMIT}
+// - [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${process.env.TRAVIS_BUILD_ID})
+//
+// </details>
+// `.trim();
       // end GitHub comment template
 
-      const githubCommentEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments`;
+      const githubStatusEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitSha}`;
 
-      const response = await fetch(githubCommentEndpoint, {
+      const response = await fetch(githubStatusEndpoint, {
         method: 'POST',
         body: JSON.stringify({
-          body: githubCommentText,
+          state: 'success',
+          target_url: aliasedUrl,
+          context: 'deploy/now.sh',
+          description: githubCommentText,
         }),
         headers: {
           Authorization: `Bearer ${GITHUB_TOKEN}`,
@@ -196,7 +199,8 @@ async function init() {
       }).then(res => res.json());
       console.log(response);
       console.log('GitHub comment posted');
-    } else {
+    }
+    else {
       console.log('This is not a Pull Request build, so will not try to comment on PR.');
     }
     // @todo Errors should be passed to `catch`
