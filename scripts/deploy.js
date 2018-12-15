@@ -76,6 +76,18 @@ async function init() {
 
     if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
 
+    await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitSha}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        state: 'pending',
+        context: 'deploy/now.sh',
+        description: '',
+      }),
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+      },
+    }).then(res => res.json()).then(results => console.log(results));
+
     console.log('Starting deploy...');
     const deployOutput = spawnSync('now', [
       'deploy',
@@ -120,9 +132,35 @@ async function init() {
     if (aliasOutput.status !== 0) {
       console.error('Error aliasing:');
       console.log(aliasOutput.stdout, aliasOutput.stderr);
+      const response = await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitSha}`, {
+        method: 'POST',
+        body: JSON.stringify({
+          state: 'error',
+          context: 'deploy/now.sh',
+          description: `${aliasOutput.stdout} - ${aliasOutput.stderr}`,
+        }),
+        headers: {
+          Authorization: `Bearer ${GITHUB_TOKEN}`,
+        },
+      }).then(res => res.json());
+      console.log(response);
       process.exit(1);
     }
     console.log(aliasOutput.stdout, aliasOutput.stderr);
+
+    const response = await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitSha}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        state: 'success',
+        target_url: deployedUrl,
+        context: 'deploy/now.sh',
+        description: `Alias set to ${aliasedUrl}`,
+      }),
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+      },
+    }).then(res => res.json());
+    console.log(response);
 
     // if this is a tagged release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `v1-2-3-boltdesignsystem.com`
     if (TRAVIS_TAG && TRAVIS_TAG === latestTag) {
@@ -172,26 +210,22 @@ async function init() {
 
 - Branch link: ${aliasedUrl}
 - Permalink: ${deployedUrl}
-`.trim();
 
-//       const extra = `<details>
-//
-// - Commit built: ${process.env.TRAVIS_COMMIT}
-// - [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${process.env.TRAVIS_BUILD_ID})
-//
-// </details>
-// `.trim();
+<details>
+
+- Commit built: ${process.env.TRAVIS_COMMIT}
+- [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${process.env.TRAVIS_BUILD_ID})
+
+</details>
+`.trim();
       // end GitHub comment template
 
-      const githubStatusEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitSha}`;
+      const githubCommentEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments`;
 
-      const response = await fetch(githubStatusEndpoint, {
+      const response = await fetch(githubCommentEndpoint, {
         method: 'POST',
         body: JSON.stringify({
-          state: 'success',
-          target_url: aliasedUrl,
-          context: 'deploy/now.sh',
-          description: githubCommentText,
+          body: githubCommentText,
         }),
         headers: {
           Authorization: `Bearer ${GITHUB_TOKEN}`,
