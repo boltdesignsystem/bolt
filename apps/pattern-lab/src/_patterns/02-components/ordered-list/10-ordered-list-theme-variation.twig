@@ -2,7 +2,7 @@
   <p>Theme: {{ theme }}</p>
   {% embed "@utils/theme-demo.twig" %}
     {% block demo_content %}
-      {% include "@bolt-components-ordered-list/ordered-list.twig" with {
+      {% include "@bolt-components-ol/ol.twig" with {
         "theme": theme,
         "items" : [
           "Do not include any data or information in your posts that are confidential!",
@@ -11,7 +11,7 @@
           "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.",
           [
             "Answer questions authoritatively and concisely.",
-            include("@bolt-components-ordered-list/ordered-list.twig", {
+            include("@bolt-components-ol/ol.twig", {
               items: [
                 "Item 1",
                 "Item 2",

@@ -1,5 +1,5 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-unordered-list/unordered-list.twig" with {
+{% include "@bolt-components-ul/ul.twig" with {
   "items": [
     "Do not include any data or information in your posts that are confidential!",
     "Apply basic practices for collaborative work.",
@@ -13,6 +13,6 @@
 {% endverbatim %}{% endset %}
 
 {% include "@utils/docs.twig" with {
-  componentName: "unordered-list",
+  componentName: "ul",
   usage: usage
 } only %}

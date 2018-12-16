@@ -1,5 +1,5 @@
 {% set usage %}{% verbatim %}
-{% include "@bolt-components-ordered-list/ordered-list.twig" with {
+{% include "@bolt-components-ol/ol.twig" with {
   items: [
     "Do not include any data or information in your posts that are confidential!",
     "Apply basic practices for collaborative work.",
@@ -10,6 +10,6 @@
 {% endverbatim %}{% endset %}
 
 {% include "@utils/docs.twig" with {
-  componentName: "ordered-list",
+  componentName: "ol",
   usage: usage
 } only %}
