@@ -6,7 +6,7 @@ export function BoltBase(Base = HTMLElement) {
   return class extends Base {
     constructor(self) {
       super(self);
-      self._wasInitiallyRendered = false;
+      this._wasInitiallyRendered = false;
       return self;
     }
 
