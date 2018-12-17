@@ -212,13 +212,17 @@ class BoltImage extends withLitHtml() {
 
     const imageClasses = cx('c-bolt-image__image');
 
+    // negate and rename variable for readability
+    const lazyload = !noLazyload;
+
     // const placeholderClasses = cx('c-bolt-image__image-placeholder');
 
     const lazyloadClasses = cx({
-      'c-bolt-image__lazyload': !noLazyload,
-      'c-bolt-image__lazyload--fade': !noLazyload,
+      'c-bolt-image__lazyload': lazyload,
+      'c-bolt-image__lazyload--fade': lazyload,
+      'c-bolt-image__lazyload--blur': lazyload,
       // 'c-bolt-image__lazyload--blur': lazyload && ext == 'jpg', // TODO: get image data
-      'js-lazyload': !noLazyload,
+      'js-lazyload': lazyload,
     });
 
     const imageData = this.getImageData(src);
@@ -227,12 +231,12 @@ class BoltImage extends withLitHtml() {
     const imageTemplate = this.imageTemplate(
       src,
       alt,
-      !noLazyload,
+      lazyload,
       srcset || src,
       sizes,
       zoom,
       cx(imageClasses, lazyloadClasses),
-      !noLazyload && imageWidth && imageHeight && useAspectRatio,
+      lazyload && imageWidth && imageHeight && useAspectRatio,
     );
 
     let renderedImage = this.slot('default');
