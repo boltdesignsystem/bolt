@@ -16,10 +16,7 @@ class ReplaceWithChildren extends HTMLElement {
 
     // Originally was this.replaceWith(...this.childNodes) but IE11 doesn't like that
     while (this.firstChild) {
-      // double-check to confirm the parent element still exists
-      if (parentElement) {
-        parentElement.appendChild(this.firstChild);
-      }
+      parentElement.appendChild(this.firstChild);
     }
     if (parentElement) {
       parentElement.removeChild(this);
