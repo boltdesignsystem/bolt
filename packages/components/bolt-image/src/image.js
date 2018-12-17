@@ -15,7 +15,7 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import Ajv from 'ajv';
 
 import imageStyles from './image.scss';
-import ratioStyles from '../../bolt-ratio/src/ratio.scss';
+import ratioStyles from '@bolt/components-ratio/src/ratio.scss';
 
 import schema from '../image.schema.yml';
 
