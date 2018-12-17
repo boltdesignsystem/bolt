@@ -28,7 +28,8 @@ class BoltButton extends withLitHtml() {
     color: props.string,
     text: props.string,
     size: props.string,
-    rounded: props.boolean,
+    rounded: props.boolean, // DEPRECATED.  Use border-radius instead of rounded.
+    borderRadius: props.string,
     iconOnly: props.boolean,
     width: props.string,
     align: props.string,
@@ -118,7 +119,6 @@ class BoltButton extends withLitHtml() {
 
   render() {
     const classes = cx('c-bolt-button', {
-      'c-bolt-button--rounded': this.props.rounded,
       'c-bolt-button--disabled': this.props.disabled,
       'c-bolt-button--icon-only': this.props.iconOnly,
       'c-bolt-button--center': !this.props.align, // defautl align prop
@@ -129,6 +129,10 @@ class BoltButton extends withLitHtml() {
       [`c-bolt-button--${this.props.size}`]: this.props.size,
       [`c-bolt-button--${this.props.width}`]: this.props.width,
       [`c-bolt-button--${this.props.transform}`]: this.props.transform,
+      [`c-bolt-button--border-radius-full`]:
+        this.props.rounded && !this.props.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.
+      [`c-bolt-button--border-radius-${this.props.borderRadius}`]: this.props
+        .borderRadius,
     });
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
