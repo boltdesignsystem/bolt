@@ -4,25 +4,10 @@ import { findParentTag } from '../utils/find-parent-tag';
 
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
-    constructor(...args) {
-      super(...args);
-      this._wasInitiallyRendered = false;
-    }
-
-    connectedCallback() {
-      // NOTE: it's SUPER important that setupSlots is run during the component's connectedCallback lifecycle event
-      // Without this, browsers like IE 11 won't re-render as expected when props change!
-      if (!this.slots) {
-        this.setupSlots();
-      }
-
-      // Automatically force a component to render if no props exist BUT props are defined.
-      if (
-        Object.keys(this.props).length !== 0 &&
-        Object.keys(this._props).length === 0
-      ) {
-        this.updated();
-      }
+    constructor(self) {
+      super(self);
+      self._wasInitiallyRendered = false;
+      return self;
     }
 
     setupSlots() {
