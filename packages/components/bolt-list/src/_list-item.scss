@@ -20,17 +20,17 @@
   $spacing-value-name: nth($spacing-value, 1);
 
   .c-bolt-list-item--spacing-#{$spacing-value-name} {
-      @include bolt-margin-left(#{$spacing-value-name});
-      @include bolt-margin-bottom(#{$spacing-value-name});
+    @include bolt-margin-left(#{$spacing-value-name});
+    @include bolt-margin-bottom(#{$spacing-value-name});
 
-      &.c-bolt-list-item--inset {
-        @include bolt-margin-left(0);
-        @include bolt-margin-bottom(0);
-        @include bolt-padding-top(#{$spacing-value-name});
-        @include bolt-padding-right(#{$spacing-value-name});
-        @include bolt-padding-bottom(#{$spacing-value-name});
-        @include bolt-padding-left(#{$spacing-value-name});
-      }
+    &.c-bolt-list-item--inset {
+      @include bolt-margin-left(0);
+      @include bolt-margin-bottom(0);
+      @include bolt-padding-top(#{$spacing-value-name});
+      @include bolt-padding-right(#{$spacing-value-name});
+      @include bolt-padding-bottom(#{$spacing-value-name});
+      @include bolt-padding-left(#{$spacing-value-name});
+    }
   }
 }
 
@@ -61,9 +61,10 @@ $bolt-list-separator-styles: solid, dashed;
   }
 
   &.c-bolt-list-item--display-flex {
-    position: relative;
-    top: -1px;
-    right: -1px;
+    margin:{
+      top: -1px;
+      right: -1px;
+    }
     border: {
       top-width: 1px;
       right-width: 1px;
@@ -71,7 +72,8 @@ $bolt-list-separator-styles: solid, dashed;
 
     &[class*='c-bolt-list-item--spacing'] {
       &:not(.c-bolt-list-item--inset) {
-        border-width: 1px;
+        padding-left: 0;
+        border-top-width: 0;
       }
     }
   }
