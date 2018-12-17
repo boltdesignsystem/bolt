@@ -22,17 +22,18 @@ class BoltListItem extends withLitHtml() {
   };
 
   connected() {
-    this.level = this.parentNode.level ? this.parentNode.level : this.props.level;
+    this.level = this.parentNode.level
+      ? this.parentNode.level
+      : this.props.level;
     this.type = this.parentNode.tagName === 'BOLT-OL' ? 'ol' : 'ul';
   }
 
   render() {
-    // this.level = this.parentNode.level ? this.parentNode.level : this.level;
-
     const classes = cx('c-bolt-li', {
       [`c-bolt-li--l${this.level}`]: this.level,
       [`c-bolt-li--${this.type}-item`]: this.type,
-      [`c-bolt-li--level-${this.level % 3 !== 0 ? this.level % 3 : 3}`]: this.level, // allow up to 3 levels of nested styles before repeating
+      [`c-bolt-li--level-${this.level % 3 !== 0 ? this.level % 3 : 3}`]: this
+        .level, // allow up to 3 levels of nested styles before repeating
     });
 
     // helper function called by the mapWithDepth util to increment the depth of nested children

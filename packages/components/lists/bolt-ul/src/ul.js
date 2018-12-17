@@ -93,8 +93,6 @@ class BoltUnorderedList extends withLitHtml() {
       }
     }
 
-
-
     const classes = cx('c-bolt-ul', {
       [`c-bolt-ul--l${level}`]: level,
       [`c-bolt-ul--level-${level}`]: level,
