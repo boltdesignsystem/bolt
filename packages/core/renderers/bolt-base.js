@@ -1,6 +1,7 @@
 import { withComponent, shadow, props } from 'skatejs';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 import { findParentTag } from '../utils/find-parent-tag';
+import Ajv from 'ajv';
 
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
@@ -58,6 +59,27 @@ export function BoltBase(Base = HTMLElement) {
       } else {
         return this;
       }
+    }
+
+    validateProps(schema, propData) {
+      var validatedData = propData;
+      const ajv = new Ajv({ useDefaults: 'shared' });
+
+      // remove default strings in prop data so schema validation can fill in the default
+      for (let property in validatedData) {
+        if (validatedData[property] === '') {
+          delete validatedData[property];
+        }
+      }
+
+      let isValid = ajv.validate(schema, validatedData);
+
+      // bark at any schema validation errors
+      if (!isValid) {
+        console.log(ajv.errors);
+      }
+
+      return validatedData;
     }
 
     addStyles(stylesheet) {
