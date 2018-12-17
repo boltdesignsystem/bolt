@@ -5,12 +5,6 @@
 @import '@bolt/core';
 @import './_card-settings-and-tools.scss';
 
-// automatically raise the default z-index of nested media content (allows for non-clickable images to be overlayed but clickable images + video to work as expected)
-bolt-card-media {
-  position: relative;
-  z-index: $bolt-card-video-z-index;
-}
-
 .c-bolt-card__media {
   display: block;
   background-color: bolt-theme(background);
