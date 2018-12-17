@@ -20,6 +20,7 @@
     <li class="{{ classes|join(" ") }}">
       {{ children }}
 
+      {# @todo: can we remove this? it doesn't look like the last-item logic is needed for this #}
       {# {% if item is iterable %}
         {% for i in item %}
           {% set inner_item_attributes = create_attribute({}) %}

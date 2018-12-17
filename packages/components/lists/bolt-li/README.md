@@ -1,4 +1,4 @@
-List item helper element used by other list-like components (like `<bolt-ul>` and `<bolt-ol>`).
+List item helper element shared by other list-like components like `<bolt-ul>` and `<bolt-ol>`.
 
 ###### Install via NPM
 
