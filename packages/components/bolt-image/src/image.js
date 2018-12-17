@@ -24,8 +24,6 @@ const ajv = new Ajv({ useDefaults: 'shared' });
 let cx = classNames.bind(imageStyles);
 
 import './_image-lazy-sizes';
-import { get } from 'http';
-
 @define
 class BoltImage extends withLitHtml() {
   static is = 'bolt-image';
