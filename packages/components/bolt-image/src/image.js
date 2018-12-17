@@ -18,12 +18,12 @@ import imageStyles from './image.scss';
 import ratioStyles from '@bolt/components-ratio/src/ratio.scss';
 
 import schema from '../image.schema.yml';
+import './_image-lazy-sizes';
 
 const ajv = new Ajv({ useDefaults: 'shared' });
 
 let cx = classNames.bind(imageStyles);
 
-import './_image-lazy-sizes';
 @define
 class BoltImage extends withLitHtml() {
   static is = 'bolt-image';
