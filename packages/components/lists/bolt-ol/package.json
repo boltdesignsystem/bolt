@@ -1,5 +1,5 @@
 {
-  "name": "@bolt/components-ordered-list",
+  "name": "@bolt/components-ol",
   "description": "Ordered-list Component in Bolt",
   "keywords": [
     "bolt design system",
@@ -9,7 +9,6 @@
     "components"
   ],
   "version": "2.2.0",
-  "sourceFilesFrom": "0.9.0",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -24,17 +23,17 @@
   ],
   "homepage": "https://bolt-design-system.com",
   "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-ordered-list",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-ol",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "style": "index.scss",
   "main": "index.js",
-  "twig": "src/ordered-list.twig",
-  "schema": "ordered-list.schema.yml",
+  "twig": "src/ol.twig",
+  "schema": "ol.schema.yml",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^2.2.0"
-  },
-  "gitHead": "8dd538d0bd2b00baeac2779570d00e27d23405db"
+    "@bolt/core": "^2.2.0",
+    "@bolt/components-li": "^2.2.0"
+  }
 }

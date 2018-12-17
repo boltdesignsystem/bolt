@@ -1,14 +1,14 @@
 @import '@bolt/core';
 
 // Register Custom Block Element
-@include bolt-custom-element('bolt-ordered-list', block, medium);
+@include bolt-custom-element('bolt-ol', block, medium);
 
-bolt-ordered-list {
+bolt-ol {
   counter-reset: li;
 }
 
 // Styles
-.c-bolt-ordered-list {
+.c-bolt-ol {
   @include bolt-margin(0);
   @include bolt-padding(0);
 

@@ -2,16 +2,16 @@ import { define } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import styles from './ordered-list.scss';
+import styles from './ol.scss';
 
 let cx = classNames.bind(styles);
 
 @define
 class BoltOrderedList extends withLitHtml() {
-  static is = 'bolt-ordered-list';
+  static is = 'bolt-ol';
 
   render() {
-    const classes = cx('c-bolt-ordered-list');
+    const classes = cx('c-bolt-ol');
 
     if (this.slots.default) {
       const updatedDefaultSlot = [];
