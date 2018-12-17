@@ -4,7 +4,7 @@
 {% endif %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set base_class = "c-bolt-unordered-list" %}
+{% set base_class = "c-bolt-ul" %}
 
 {% set classes = [
   base_class
@@ -14,14 +14,23 @@
   {% set items = contentItems %}
 {% endif %}
 
-<bolt-unordered-list>
+<bolt-ul>
   <replace-with-grandchildren>
     <ul {{ attributes.addClass(classes) }}>
       {% for item in items %}
-        {% if item %}
-          {% include "@bolt-components-unordered-list/_unordered-list-item.twig" %}
+        {% if item is iterable %}
+          {% set nested_item = item | merge({
+            type: "ul"
+          }) %}
+          {% include "@bolt-components-li/li.twig" with nested_item only %}
+        {% else %}
+          {% set list_item = {
+            type: "ul",
+            children: item,
+          } %}
+          {% include "@bolt-components-li/li.twig" with list_item only %}
         {% endif %}
       {% endfor %}
     </ul>
   </replace-with-grandchildren>
-</bolt-unordered-list>
+</bolt-ul>

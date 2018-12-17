@@ -1,12 +1,12 @@
 @import '@bolt/core';
 
 // Register Custom Block Element
-@include bolt-custom-element('bolt-unordered-list', block, medium);
+@include bolt-custom-element('bolt-ul', block, small);
 
 // Styles
-.c-bolt-unordered-list {
+.c-bolt-ul {
   @include bolt-margin(0);
   @include bolt-padding(0);
-
+  box-sizing: border-box;
   list-style: none;
 }
