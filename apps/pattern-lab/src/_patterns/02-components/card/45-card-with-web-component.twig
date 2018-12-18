@@ -90,7 +90,7 @@
     Web Component Usage
   </bolt-text>
   <bolt-text>
-    Bolt Card is a web component, you can simply use <code>&lt;bolt-card&gt;</code> in the markup to make it render. Its inner content is comprised of <code>&lt;bolt-card-media&gt;</code>, <code>&lt;bolt-card-body&gt;</code>, and <code>&lt;bolt-card-actions&gt;</code>. <code>&lt;bolt-card-link&gt;</code> can be used when needed.
+    Bolt Card is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-card&gt;</bolt-code-snippet> in the markup to make it render. Its inner content is comprised of <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-media&gt;</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-body&gt;</bolt-code-snippet>, and <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-actions&gt;</bolt-code-snippet>.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -99,13 +99,15 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include card_demo.code_example(card_web_component_demo, true) %}
+  <div class="u-bolt-margin-bottom-large">
+    {% include card_demo.code_example(card_web_component_demo, true) %}
+  </div>
 
   <bolt-text headline>
     Simple Link Usage
   </bolt-text>
   <bolt-text>
-    The simplest way to make the whole card clickable is by passing an URL to the <code>url</code> prop on the main <code>&lt;bolt-card&gt;</code> component itself.
+    The simplest way to make the whole card clickable is by passing a link address to the <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet> prop on the main <bolt-code-snippet display="inline" lang="html">&lt;bolt-card&gt;</bolt-code-snippet> component itself.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -114,13 +116,15 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include card_demo.code_example(simple_link_demo, true) %}
+  <div class="u-bolt-margin-bottom-large">
+    {% include card_demo.code_example(simple_link_demo, true) %}
+  </div>
 
   <bolt-text headline>
     Advanced Link Usage
   </bolt-text>
   <bolt-text>
-    Insert a <code>&lt;bolt-card-link&gt;</code> inside <code>&lt;bolt-card&gt;</code>, and you can pass more than just <code>url</code>. <code>&lt;bolt-card-link&gt;</code> acts exactly like <code>&lt;bolt-link&gt;</code>, it accepts all the props from <code>&lt;bolt-link&gt;</code> and any other attributes that are allowed in <code>&lt;bolt-link&gt;</code>.
+    Insert a <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-link&gt;</bolt-code-snippet> inside <bolt-code-snippet display="inline" lang="html">&lt;bolt-card&gt;</bolt-code-snippet>, and you can pass more than just <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet>. <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-link&gt;</bolt-code-snippet> acts exactly like <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>, it accepts all the props from <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> and any other attributes that are allowed in <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -129,13 +133,15 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include card_demo.code_example(advanced_link_demo, true) %}
+  <div class="u-bolt-margin-bottom-large">
+    {% include card_demo.code_example(advanced_link_demo, true) %}
+  </div>
 
   <bolt-text headline>
     Nested Links
   </bolt-text>
   <bolt-text>
-    While making the whole card clickable, you are still able to insert nested links as needed. Any <code>&lt;bolt-link&gt;</code> and <code>&lt;bolt-card-action&gt;</code> will work as expected.
+    While making the whole card clickable, you are still able to insert nested links as needed. Any <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-link&gt;</bolt-code-snippet>, and <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-action&gt;</bolt-code-snippet> will work as expected.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -144,5 +150,7 @@
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include card_demo.code_example(nested_links_demo, true) %}
+  <div class="u-bolt-margin-bottom-large">
+    {% include card_demo.code_example(nested_links_demo, true) %}
+  </div>
 </div>

@@ -11,7 +11,7 @@
       },
       body: {
         headline: "No link",
-        paragraph: "This card doesn't have an link.",
+        paragraph: "This card doesn't have a link.",
       },
       actions: [
         {
@@ -24,7 +24,7 @@
   {% cell "u-bolt-width-6/12 u-bolt-width-3/12@small" %}
     {% include "@bolt-components-card/card.twig" with {
       link: {
-        href: "http://pega.com",
+        url: "http://pega.com",
       },
       media: {
         image: {
@@ -34,7 +34,7 @@
       },
       body: {
         headline: "With link",
-        paragraph: "This card has an link, which makes the whole card clickable, but you can still have the action button to link somewhere else if needed.",
+        paragraph: "This card has a link, which makes the whole card clickable, but you can still have the action button to link somewhere else if needed.",
       },
       actions: [
         {
@@ -47,7 +47,7 @@
   {% cell "u-bolt-width-6/12 u-bolt-width-3/12@small" %}
     {% include "@bolt-components-card/card.twig" with {
       link: {
-        href: "#!",
+        url: "#!",
         attributes: {
           "on-click": "toggle",
           "on-click-target": videoUuid,
@@ -65,7 +65,7 @@
       },
       body: {
         headline: "With link and video",
-        paragraph: "This card has an link, which makes the whole card clickable, and you can make it play/pause the video. Action button is optional in this case.",
+        paragraph: "This card has a link, which makes the whole card clickable, and you can make it play/pause the video. Action button is optional in this case.",
       },
       actions: [
         {
