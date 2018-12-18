@@ -7,37 +7,29 @@ import {
   afterNextRender,
   watchForComponentMutations,
 } from '@bolt/core/utils';
+import classNames from 'classnames/bind';
 import {
   withLitHtml,
   html,
   render,
 } from '@bolt/core/renderers/renderer-lit-html';
+import Ajv from 'ajv';
 
-import classNames from 'classnames/bind';
+import styles from './link.scss';
+import schema from '../link.schema.yml';
 
-import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
-import styles from './button.scss';
+const ajv = new Ajv({ useDefaults: 'shared' });
 
 let cx = classNames.bind(styles);
 
 @define
-class BoltButton extends withLitHtml() {
-  static is = 'bolt-button';
+class BoltLink extends withLitHtml() {
+  static is = 'bolt-link';
 
   static props = {
-    color: props.string,
-    text: props.string,
-    size: props.string,
-    rounded: props.boolean, // DEPRECATED.  Use border-radius instead of rounded.
-    borderRadius: props.string,
-    iconOnly: props.boolean,
-    width: props.string,
-    align: props.string,
-    transform: props.string,
-    disabled: props.boolean,
-    target: props.string,
     url: props.string,
-
+    target: props.string,
+    isHeadline: props.boolean,
     onClick: props.string, // Managed by base class
     onClickTarget: props.string, // Managed by base class
   };
@@ -46,21 +38,43 @@ class BoltButton extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
+    self.validate = ajv.compile(schema);
     return self;
+  }
+
+  // @todo: move to the global Bolt Base component after we're done testing this out with the new refactored Card component
+  validateProps(propData) {
+    var validatedData = propData;
+
+    // remove default strings in prop data so schema validation can fill in the default
+    for (let property in validatedData) {
+      if (validatedData[property] === '') {
+        delete validatedData[property];
+      }
+    }
+
+    let isValid = this.validate(validatedData);
+
+    // bark at any schema validation errors
+    if (!isValid) {
+      console.log(this.validate.errors);
+    }
+
+    return validatedData;
   }
 
   connecting() {
     const root = this;
 
-    // If the initial <bolt-button> element contains a button or link, break apart the original HTML so we can retain any button or a tags but swap out the inner content with slots.
+    // If the initial <bolt-link> element contains a link, break apart the original HTML so we can retain the a tag but swap out the inner content with slots.
 
-    // Make sure the button component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in Lit-HTML after booting up!
+    // Make sure the button component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
     if (this._wasInitiallyRendered === false) {
       this.childNodes.forEach((childElement, i) => {
-        if (childElement.tagName === 'BUTTON' || childElement.tagName === 'A') {
+        if (childElement.tagName === 'A') {
           root.rootElement = document.createDocumentFragment();
 
-          // Take any existing buttons and links and move them to the root of the custom element
+          // Take any existing elements and move them to the root of the custom element
           while (childElement.firstChild) {
             root.appendChild(childElement.firstChild);
           }
@@ -118,38 +132,28 @@ class BoltButton extends withLitHtml() {
   }
 
   render() {
-    const classes = cx('c-bolt-button', {
-      'c-bolt-button--disabled': this.props.disabled,
-      'c-bolt-button--icon-only': this.props.iconOnly,
-      'c-bolt-button--center': !this.props.align, // defautl align prop
-      [`c-bolt-button--${this.props.align}`]: this.props.align,
-      'c-bolt-button--primary': !this.props.color, // default color prop
-      [`c-bolt-button--${this.props.color}`]: this.props.color,
-      'c-bolt-button--medium': !this.props.size,
-      [`c-bolt-button--${this.props.size}`]: this.props.size,
-      [`c-bolt-button--${this.props.width}`]: this.props.width,
-      [`c-bolt-button--${this.props.transform}`]: this.props.transform,
-      [`c-bolt-button--border-radius-full`]:
-        this.props.rounded && !this.props.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.
-      [`c-bolt-button--border-radius-${this.props.borderRadius}`]: this.props
-        .borderRadius,
+    // validate the original prop data passed along -- returns back the validated data w/ added default values
+    const { url, target, isHeadline } = this.validateProps(this.props);
+
+    const classes = cx('c-bolt-link', {
+      'c-bolt-link--headline': isHeadline,
     });
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
     const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
 
     // Assign default target attribute value if one isn't specified
-    const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
+    const anchorTarget =
+      this.props.target && hasUrl ? this.props.target : '_self';
 
-    // The buttonElement to render, based on the initial HTML passed alone.
-    let buttonElement = null;
-    const self = this;
+    // The linkElement to render, based on the initial HTML passed alone.
+    let renderedLink;
 
     const slotMarkup = name => {
       switch (name) {
         case 'before':
         case 'after':
-          const iconClasses = cx('c-bolt-button__icon', {
+          const iconClasses = cx('c-bolt-link__icon', {
             'is-empty': name in this.slots === false,
           });
 
@@ -163,9 +167,8 @@ class BoltButton extends withLitHtml() {
             >
           `;
         default:
-          const itemClasses = cx('c-bolt-button__item', {
+          const itemClasses = cx('c-bolt-link__text', {
             'is-empty': name in this.slots === false,
-            'u-bolt-visuallyhidden': this.props.iconOnly,
           });
 
           return html`
@@ -185,25 +188,24 @@ class BoltButton extends withLitHtml() {
     ];
 
     if (this.rootElement) {
-      buttonElement = this.rootElement.firstChild.cloneNode(true);
-      buttonElement.className += ' ' + classes;
-      render(innerSlots, buttonElement);
-    } else if (hasUrl) {
-      buttonElement = html`
-        <a href="${this.props.url}" class="${classes}" target="${urlTarget}"
+      renderedLink = this.rootElement.firstChild.cloneNode(true);
+      if (renderedLink.getAttribute('href') === null && hasUrl) {
+        renderedLink.setAttribute('href', this.props.url);
+      }
+      renderedLink.className += ' ' + classes;
+      render(innerSlots, renderedLink);
+    } else {
+      renderedLink = html`
+        <a href="${this.props.url}" class="${classes}" target="${anchorTarget}"
           >${innerSlots}</a
         >
-      `;
-    } else {
-      buttonElement = html`
-        <button class="${classes}">${innerSlots}</button>
       `;
     }
 
     return html`
-      ${this.addStyles([styles, visuallyhiddenUtils])} ${buttonElement}
+      ${this.addStyles([styles])} ${renderedLink}
     `;
   }
 }
 
-export { BoltButton };
+export { BoltLink };
