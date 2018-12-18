@@ -36,5 +36,38 @@
         }),
       ]
     } only %}
+    <h3>Flex list with inset spacing ({{ spacing }}) and separators</h3>
+    {% include "@bolt-components-list/list.twig" with {
+      display: "flex",
+      spacing: spacing,
+      separator: "solid",
+      inset: true,
+      items: [
+        include("@bolt-components-link/link.twig", {
+          text: "Item 1",
+          url: "#!",
+          icon: {
+            name: "chevron-right",
+            position: "before"
+          },
+        }),
+        include("@bolt-components-link/link.twig", {
+          text: "Item 2",
+          url: "#!",
+          icon: {
+            name: "chevron-right",
+            position: "before"
+          },
+        }),
+        include("@bolt-components-link/link.twig", {
+          text: "Item 3",
+          url: "#!",
+          icon: {
+            name: "chevron-right",
+            position: "before"
+          },
+        }),
+      ]
+    } only %}
   {% endif %}
 {% endfor %}

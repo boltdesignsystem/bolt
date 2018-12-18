@@ -11,6 +11,10 @@
   display: block;
 }
 
+.c-bolt-list-item--display-flex {
+  flex: 1 0 auto;
+}
+
 // Spacing Prop
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
@@ -72,6 +76,24 @@ $bolt-list-separator-styles: solid, dashed;
       }
     }
   }
+
+  &.c-bolt-list-item--display-flex {
+    margin:{
+      top: -1px;
+      right: -1px;
+    }
+    border: {
+      top-width: 1px;
+      right-width: 1px;
+    }
+
+    &[class*='c-bolt-list-item--spacing'] {
+      &:not(.c-bolt-list-item--inset) {
+        padding-left: 0;
+        border-top-width: 0;
+      }
+    }
+  }
 }
 
 // Specific settings for when the separator prop interacts with other props. This is where things get really crazy.
@@ -88,6 +110,12 @@ $bolt-list-separator-styles: solid, dashed;
     &.c-bolt-list-item--spacing-#{$spacing-value-name} {
       &.c-bolt-list-item--display-inline {
         @include bolt-padding-right(#{$spacing-value-name});
+      }
+    }
+
+    &.c-bolt-list-item--spacing-#{$spacing-value-name} {
+      &.c-bolt-list-item--display-flex {
+        @include bolt-padding(#{$spacing-value-name});
       }
     }
 
