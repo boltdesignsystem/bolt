@@ -23,11 +23,9 @@
   baseClass
 ] %}
 
-{% set codeContent %}{% spaceless %}
+{% set codeContent %}
   <code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }} nohighlight" is="shadow-root">{% block children %}{{ content }}{% endblock %}</code>
-{% endspaceless %}{% endset %}
-
-
+{% endset %}
 
 
 <bolt-{{ componentName }}
@@ -37,7 +35,9 @@
   {% if copyToClipboard %} copy-to-clipboard {% endif %}
 >
   {% if display == "inline" %}
-    {{ codeContent }}
+    {% spaceless %}
+      {{ codeContent }}
+    {% endspaceless %}
   {% else %}
     <pre {{ attributes.addClass(classes) }}>{{ codeContent }}</pre>
   {% endif %}

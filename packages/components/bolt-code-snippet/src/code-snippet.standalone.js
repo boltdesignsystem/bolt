@@ -6,7 +6,6 @@ import {
 } from '@bolt/core/utils';
 import { h, withPreact } from '@bolt/core/renderers';
 
-import ClipboardJS from 'clipboard';
 import html from 'preact-html';
 import Prism from 'prismjs/components/prism-core';
 
@@ -31,21 +30,17 @@ class BoltCodeSnippetClass extends withPreact() {
     lang: props.string,
     display: props.string,
     syntax: props.string,
-    copyToClipboard: props.boolean,
   };
 
+  replaceEntities(string) {
+    return string
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>');
+  }
+
   highlightHTML(code, lang) {
-    const escapedLangs = ['scss', 'html'];
-
-    code = escapedLangs.includes(lang)
-      ? code
-          .replace(/&amp;/g, '&')
-          .replace(/&lt;/g, '<')
-          .replace(/&gt;/g, '>')
-      : code;
-    const highlightedHTML = Prism.highlight(code, Prism.languages[lang]);
-
-    return highlightedHTML;
+    return Prism.highlight(this.replaceEntities(code), Prism.languages[lang]);
   }
 
   constructor(self) {
@@ -65,44 +60,8 @@ class BoltCodeSnippetClass extends withPreact() {
     }
   }
 
-  rendered() {
-    if (this.props.copyToClipboard === true) {
-      const code = this.code;
-      const clipboard = new ClipboardJS(
-        this.renderRoot.querySelector('.js-bolt-copy-code'),
-        {
-          text(trigger) {
-            return code
-              .replace(/&amp;/g, '&')
-              .replace(/&lt;/g, '<')
-              .replace(/&gt;/g, '>');
-          },
-        },
-      );
-
-      clipboard.on('success', e => {
-        e.trigger.textContent = 'Copied';
-        e.trigger.setAttribute('color', 'secondary');
-
-        // Show the "success" status.
-        setTimeout(() => {
-          e.trigger.textContent = 'Copy';
-          e.trigger.setAttribute('color', 'primary');
-        }, 1000);
-      });
-    }
-  }
-
-  expandCode() {
-    const preTag = this.renderRoot.querySelector('pre');
-    const arrowButton = this.renderRoot.querySelector('.js-bolt-expand-code');
-    preTag.style.maxHeight = '9999px';
-
-    arrowButton.style.opacity = '0';
-  }
-
   render() {
-    const { copyToClipboard, lang, display, syntax } = this.props;
+    const { lang, display, syntax } = this.props;
     const highlightedCode = this.highlightHTML(this.code, lang);
 
     const codeClasses = css(
@@ -124,44 +83,22 @@ class BoltCodeSnippetClass extends withPreact() {
       lang ? `language-${lang}` : 'language-html',
     );
 
-    const Code = () => {
+    if (display === 'inline') {
       return (
         <code className={codeClasses}>
           {this.addStyles([styles])}
           {html(highlightedCode)}
         </code>
       );
-    };
-
-    const Pre = () => {
+    } else {
       return (
         <pre className={preClasses}>
-          <Code />
+          <code className={codeClasses}>
+            {this.addStyles([styles])}
+            {html(highlightedCode)}
+          </code>
         </pre>
       );
-    };
-
-    if (display === 'inline') {
-      return <Code />;
-    } else {
-      if (copyToClipboard) {
-        return (
-          <div style="position: relative;">
-            <Pre />
-
-            <bolt-button
-              style="bottom: 1rem; right: 1rem; position: absolute;"
-              size="xsmall"
-              color="primary"
-              className="js-bolt-copy-code"
-              rounded="rounded">
-              Copy
-            </bolt-button>
-          </div>
-        );
-      } else {
-        return <Pre />;
-      }
     }
   }
 }
