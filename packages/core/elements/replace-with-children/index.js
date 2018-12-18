@@ -2,14 +2,10 @@ import { define } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 @define
-class ReplaceWithChildren extends withLitHtml() {
+class ReplaceWithChildren extends HTMLElement {
   static is = 'replace-with-children';
 
-  connecting() {
-    this.replaceElementWithChildren();
-  }
-
-  replaceElementWithChildren() {
+  connectedCallback() {
     const parentElement = this.parentElement;
 
     if (!parentElement) {
