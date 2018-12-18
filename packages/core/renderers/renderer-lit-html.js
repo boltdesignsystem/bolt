@@ -39,9 +39,13 @@ export function withLitHtml(Base = HTMLElement) {
 
       if (this.useShadow && hasNativeShadowDomSupport) {
         if (name === 'default') {
-          return html`<slot />`;
+          return html`
+            <slot />
+          `;
         } else {
-          return html`<slot name="${name}" />`;
+          return html`
+            <slot name="${name}" />
+          `;
         }
       } else {
         if (name === 'default') {
