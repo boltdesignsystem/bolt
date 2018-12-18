@@ -180,7 +180,10 @@ class BoltVideo extends withPreact() {
       elem.player.muted(true);
     }
 
-    player.socialOverlay.options_.description = elem.props.shareDescription;
+    // auto-configure the social overlay config (loaded via the social plugin)
+    if (player.socialOverlay) {
+      player.socialOverlay.options_.description = elem.props.shareDescription;
+    }
 
     player.on('loadedmetadata', function() {
       const duration = player.mediainfo.duration;
