@@ -44,7 +44,7 @@
 
   <replace-with-children {{ inner_attributes.addClass(classes) }}>
     {% if link %}
-      <a {% if link_href %}href="{{ link_href }}"{% endif %} class="{{ "#{base_class}__link" }}" {{ link_attributes }}></a>
+      <bolt-card-link {% if link_href %}url="{{ link_href }}"{% endif %} class="{{ "#{base_class}__link" }}" {{ link_attributes }}></bolt-card-link>
     {% endif %}
 
     {% block children %}

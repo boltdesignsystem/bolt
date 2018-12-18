@@ -36,6 +36,8 @@ class BoltCard extends withContext(withLitHtml()) {
     theme: props.string, // xdark | dark | light | xlight
     tag: props.string, // div | figure | article
     height: props.string, // full | auto
+    raised: props.boolean,
+    url: props.string,
   };
 
   constructor(self) {
@@ -67,30 +69,50 @@ class BoltCard extends withContext(withLitHtml()) {
   }
 
   render() {
+    const isRaised =
+      (this.props.raised && this.props.raised === true) ||
+      (this.props.url && this.props.url.length > 0) ||
+      this.querySelector('bolt-card-link');
+
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const { theme, tag } = this.validateProps(this.props);
     this.contexts.get(CardContext).tag = tag;
 
     const classes = cx('c-bolt-card', {
+      [`c-bolt-card--raised`]: isRaised,
       [`t-bolt-${theme}`]: theme && theme !== 'none',
     });
 
     let renderedCard;
 
+    const cardLink =
+      this.props.url && !this.querySelector('bolt-card-link')
+        ? html`
+            <bolt-card-link
+              url="${this.props.url}"
+              ?target="${this.props.target}"
+            ></bolt-card-link>
+          `
+        : '';
+
     switch (tag) {
       case 'article':
         renderedCard = html`
-          <article class="${classes}">${this.slot('default')}</article>
+          <article class="${classes}">
+            ${cardLink} ${this.slot('default')}
+          </article>
         `;
         break;
       case 'figure':
         renderedCard = html`
-          <figure class="${classes}">${this.slot('default')}</figure>
+          <figure class="${classes}">
+            ${cardLink} ${this.slot('default')}
+          </figure>
         `;
         break;
       default:
         renderedCard = html`
-          <div class="${classes}">${this.slot('default')}</div>
+          <div class="${classes}">${cardLink} ${this.slot('default')}</div>
         `;
     }
 

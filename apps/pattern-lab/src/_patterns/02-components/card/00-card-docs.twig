@@ -1,4 +1,6 @@
 {% set usage %}{% verbatim %}
+// Standard Card
+
 {% include "@bolt-components-card/card.twig" with {
   media: {
     image: {
@@ -17,6 +19,18 @@
       url: "https://pega.com",
     },
   ],
+} only %}
+
+// Custom Content
+
+{% include "@bolt-components-card/card.twig" with {
+  body: {
+    content: "Pass custom content to the card body.",
+  },
+} only %}
+
+{% include "@bolt-components-card/card.twig" with {
+  content: "Pass completely custom content to the card, without the styles of the card body.",
 } only %}
 {% endverbatim %}{% endset %}
 

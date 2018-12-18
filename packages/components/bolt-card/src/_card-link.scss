@@ -1,0 +1,18 @@
+/* ------------------------------------ *\
+   Card Link
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import './_card-settings-and-tools.scss';
+
+.c-bolt-card__link {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $bolt-card-link-z-index; // a small z-index is required here so the <bolt-card-link> covers most types of content used inside the card component, except for a few exceptions
+  cursor: pointer;
+}

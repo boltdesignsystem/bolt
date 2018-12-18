@@ -105,7 +105,7 @@
       </thead>
 
       <tbody>
-        {% for key, prop in schema.properties %}
+        {% for key, prop in schema.properties if not schema.properties[key].hidden %}
           <tr class="c-bolt-docs-table__row">
             <td class="c-bolt-docs-table__col c-bolt-docs-table__col--key">{{ key }}{% if key in requiredProps %}<span class="required-key" title="Required">*</span>{% endif %}</td>
 

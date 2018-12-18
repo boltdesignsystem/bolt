@@ -10,7 +10,8 @@
 @include bolt-custom-element('bolt-card', block, medium);
 
 bolt-card {
-  @include bolt-card-content-border-radius;
+  @include bolt-card-content-reset;
+  position: relative;
 
   &[height='full'] {
     display: flex;
@@ -22,16 +23,16 @@ bolt-card {
 // Card container styles
 .c-bolt-card {
   @include bolt-card-border-reset;
-  @include bolt-card-content-border-radius;
+  @include bolt-card-content-reset;
   @include bolt-margin(0);
   @include bolt-padding(0);
   @include bolt-shadow('level-20', false, $bolt-card-shadow-color);
 
   display: flex;
-  flex-basis: 100%;
   flex-direction: column;
   flex-grow: 1;
   position: relative;
+  height: 100%;
   border-radius: $bolt-card-border-radius;
   border-width: $bolt-card-border-width;
 
@@ -56,34 +57,32 @@ bolt-card {
   }
 }
 
+.c-bolt-card--raised {
+  transition: transform $bolt-transition;
 
-// When this is present, the whole card is clickable
-.c-bolt-card__link {
-  @include bolt-shadow('level-30', false, $bolt-card-shadow-color);
-
-  display: block;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: $bolt-card-url-z-index;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  border-radius: $bolt-card-border-radius;
-  transition: opacity $bolt-transition;
+  &:before {
+    @include bolt-shadow('level-30', false, $bolt-card-shadow-color);
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: $bolt-card-border-radius;
+    transition: opacity $bolt-transition;
+  }
 
   &:hover,
-  &:focus,
-  &.is-hover,
-  &.is-focus {
-    opacity: 1;
-  }
-}
+  &:focus-within {
+    transform: translate3d(0, -1px, 0);
 
-// This makes sure if the user is hovering over the video or the actions (which have higher z-index), the shadow effects still appear.
-bolt-card:hover {
-  .c-bolt-card__link {
-    opacity: 1;
+    &:before {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    transform: translate3d(0, 0, 0);
   }
 }

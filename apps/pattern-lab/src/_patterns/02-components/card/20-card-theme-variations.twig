@@ -4,7 +4,7 @@
   {% set cards %}
     {% for theme in themes.properties.colors.enum %}
       <div class="u-bolt-margin-bottom-medium">
-        {% grid "o-bolt-grid--flex o-bolt-grid--center" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
           {% cell "u-bolt-width-6/12 u-bolt-width-5/12@small" %}
             {% include "@bolt-components-card/card.twig" with {
               theme: theme,

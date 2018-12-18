@@ -1,5 +1,5 @@
 /* ------------------------------------ *\
-   Cards
+   Card Media
 \* ------------------------------------ */
 
 @import '@bolt/core';
@@ -8,6 +8,11 @@
 .c-bolt-card__media {
   display: block;
   background-color: bolt-theme(background);
+}
+
+// required so the nested content fills the full width of the card -- otherwise content (like a ratio object with an image inside) might not display as expected.
+.c-bolt-card__media ::slotted(*) {
+  width: 100%;
 }
 
 .c-bolt-card__media--video {
