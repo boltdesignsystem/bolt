@@ -234,6 +234,16 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     }
   }
 
+  .vjs-overlay {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .vjs-overlay--hidden {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
   // Cue Points
   .vjs-overlay-no-background {
     @include bolt-margin(0);

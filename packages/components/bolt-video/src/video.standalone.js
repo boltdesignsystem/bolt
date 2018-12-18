@@ -373,13 +373,21 @@ class BoltVideo extends withPreact() {
 
   hideOverlay() {
     if (this.overlayElement) {
-      this.overlayElement.classList.add('vjs-hidden');
+      this.overlayElement.classList.add('vjs-overlay--hidden');
+
+      setTimeout(() => {
+        this.overlayElement.classList.add('vjs-hidden');
+      }, 200);
     }
   }
 
   showOverlay() {
     if (this.overlayElement) {
       this.overlayElement.classList.remove('vjs-hidden');
+
+      setTimeout(() => {
+        this.overlayElement.classList.remove('vjs-overlay--hidden');
+      }, 50);
     }
   }
 
