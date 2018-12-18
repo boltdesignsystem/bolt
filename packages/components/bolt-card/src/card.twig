@@ -20,7 +20,7 @@
 {% set height = height in height_options ? height : schema.properties.height.default %}
 
 {% if link %}
-  {% set link_href = link.href %}
+  {% set link_url = link.url %}
   {% set link_attributes = create_attribute(link.attributes) %}
 {% endif %}
 
@@ -30,7 +30,7 @@
   {% if tag %} tag="{{ tag }}" {% endif %}
   {% if theme %} theme="{{ theme }}" {% endif %}
   {% if height %} height="{{ height }}" {% endif %}
-  {% if link_href %} href="{{ link_href }}" {% endif %}
+  {% if link_url %} url="{{ link_url }}" {% endif %}
   {{ attributes }}
 >
   {# This sets none values to not render anything. #}
@@ -44,7 +44,7 @@
 
   <replace-with-children {{ inner_attributes.addClass(classes) }}>
     {% if link %}
-      <bolt-card-link {% if link_href %}url="{{ link_href }}"{% endif %} class="{{ "#{base_class}__link" }}" {{ link_attributes }}></bolt-card-link>
+      <bolt-card-link {% if link_url %}url="{{ link_url }}"{% endif %} class="{{ "#{base_class}__link" }}" {{ link_attributes }}></bolt-card-link>
     {% endif %}
 
     {% block children %}

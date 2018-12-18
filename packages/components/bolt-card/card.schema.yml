@@ -6,7 +6,7 @@ properties:
     description: A Drupal-style attributes object with extra attributes to append to this component.
   tag:
     type: string
-    description: Html tag immediately within the `bolt-card` element.
+    description: HTML tag that contains the card content.
     default: article
     enum:
       - div
@@ -21,7 +21,7 @@ properties:
       - full
   theme:
     type: string
-    description: Bolt theme.
+    description: Controls the theme of the individual card.
     default: none
     enum:
       - none
@@ -35,12 +35,13 @@ properties:
     properties:
       url:
         type: string
+        description: Address for the link.
       attributes:
         type: object
         description: A Drupal-style attributes object with extra attributes to append to this component.
   media:
     type: object
-    description: Media section of the card, accepts either image or video.
+    description: Media section of the card, accepts either image and video, or custom content.
     properties:
       image:
         type: object
@@ -48,6 +49,12 @@ properties:
       video:
         type: object
         ref: '@bolt-components-video/video.schema.yml'
+      content:
+        type:
+          - string
+          - array
+          - object
+        description: Passing free-form content into the card media will ignore image or video data. Use this if the pre-configured image or video doesn't satisfy your needs.
   body:
     type: object
     description: Body section of the card, accepts pre-configured eyebrow, headline, and paragraph or custom content.
