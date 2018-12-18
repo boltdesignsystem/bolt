@@ -6,7 +6,7 @@ import { getSubArray } from '../utils';
 
 export const VideoOverlayContent = props => {
   return (
-    <bolt-button color="primary" url={props.url}>
+    <bolt-button color="primary" url={props.url} target={props.target}>
       {props.text}
     </bolt-button>
   );
@@ -110,7 +110,12 @@ export function cuePointsPlugin(player, elem) {
     }
 
     ReactDOM.render(
-      <VideoOverlayContent url={ctaUrl} text={ctaText} />,
+      <VideoOverlayContent
+        url={ctaUrl}
+        text={ctaText}
+        onClick={elem.pause()}
+        target="_blank"
+      />,
       elem.overlayElement,
     );
   }
