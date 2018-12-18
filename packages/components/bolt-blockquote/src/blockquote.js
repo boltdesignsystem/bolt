@@ -11,12 +11,9 @@ import {
   html,
   render,
 } from '@bolt/core/renderers/renderer-lit-html';
-import Ajv from 'ajv';
 
 import styles from './blockquote.scss';
 import schema from '../blockquote.schema.yml';
-
-const ajv = new Ajv({ useDefaults: 'shared' });
 
 let cx = classNames.bind(styles);
 
@@ -28,7 +25,6 @@ class BoltBlockquote extends withLitHtml() {
     size: props.string,
     alignItems: props.string,
     border: props.string,
-    content: props.string,
     indent: props.boolean,
     fullBleed: props.boolean,
     authorName: props.string,
@@ -40,29 +36,23 @@ class BoltBlockquote extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.validate = ajv.compile(schema);
     return self;
   }
 
-  // @todo: move to the global Bolt Base component after we're done testing this out with the new refactored Card component
-  validateProps(propData) {
-    var validatedData = propData;
+  getModifiedSchema(schema) {
+    var modifiedSchema = schema;
 
-    // remove default strings in prop data so schema validation can fill in the default
-    for (let property in validatedData) {
-      if (validatedData[property] === '') {
-        delete validatedData[property];
+    // Remove "content" from schema, does not apply to web component.
+    for (let property in modifiedSchema.properties) {
+      if (property === 'content') {
+        delete modifiedSchema.properties[property];
       }
     }
 
-    let isValid = this.validate(validatedData);
+    const index = modifiedSchema.required.indexOf('content');
+    modifiedSchema.required.splice(index, 1);
 
-    // bark at any schema validation errors
-    if (!isValid) {
-      console.log(this.validate.errors);
-    }
-
-    return validatedData;
+    return modifiedSchema;
   }
 
   connecting() {
@@ -219,7 +209,7 @@ class BoltBlockquote extends withLitHtml() {
       authorName,
       authorTitle,
       authorImage,
-    } = this.validateProps(this.props);
+    } = this.validateProps(this.getModifiedSchema(schema), this.props);
 
     const classes = cx('c-bolt-blockquote', {
       [`c-bolt-blockquote--${size}`]: size,
