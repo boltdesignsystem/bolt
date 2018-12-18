@@ -48,10 +48,6 @@ properties:
       video:
         type: object
         ref: '@bolt-components-video/video.schema.yml'
-  raised:
-    type: boolean
-    description: Manually switch on / off the raised (shadow + animation effect) treament. By default this config option is applied if the card contains a bolt-card-link OR includes the `url` prop.
-    hidden: true
   body:
     type: object
     description: Body section of the card, accepts pre-configured eyebrow, headline, and paragraph or custom content.
@@ -90,9 +86,13 @@ properties:
       - array
       - object
     description: Content will override media, body, and actions props. Use this to build a completely cuztomized card.
+  raised:
+    type: boolean
+    description: Manually switch on / off the raised (shadow + animation effect) treament. By default this config option is applied if the card contains a bolt-card-link OR includes the `url` prop.
+    hidden: true
   contentItems:
-    title: Deprecated
+    title: DEPRECATED
     description: Please use content.
   contentTag:
-    title: Deprecated
+    title: DEPRECATED
     description: The tag prop already takes care of any semantic tag usage.
