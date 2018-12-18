@@ -71,7 +71,7 @@ properties:
       - cue
   enabled_plugins:
     type: string
-    description: 'Space-separated list of built-in `<bolt-video> plugins for Brightcove to enable. Current include `social`, `email`, `playback`, and `cue`. For example: `<bolt-video enabled-plugins="social email playback"></bolt-video>`'
+    description: 'Space-separated list of built-in `&lt;bolt-video&gt; plugins for Brightcove to enable. Current include `social`, `email`, `playback`, and `cue`. For example: `&lt;bolt-video enabled-plugins="social email playback"&gt;&lt;/bolt-video&gt;`'
   disabled_plugins:
     type: string
-    description: 'Space-separated list of any built-in `<bolt-video>` plugins for Brightcove to disable. Used to opt-out of any video plugins that are enabled by default (ex. the `playback` plugin). For example: `<bolt-video enabled-plugins="social email" disabled-plugins="playback"></bolt-video>`'
+    description: 'Space-separated list of any built-in bolt-video plugins for Brightcove to disable. Used to opt-out of any video plugins that are enabled by default (ex. the `playback` plugin). For example: `&lt;bolt-video enabled-plugins="social email" disabled-plugins="playback"&gt;&lt;/bolt-video&gt;`'
