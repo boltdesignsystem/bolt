@@ -5,7 +5,6 @@ export function getSubArray(targetArray, objProperty, value) {
     objFound = false,
     idxArr = [];
 
-  console.log(objProperty);
   for (i = 0; i < totalItems; i++) {
     if (targetArray[i][objProperty] === value) {
       objFound = true;
