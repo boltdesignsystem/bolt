@@ -1,7 +1,7 @@
+import Ajv from 'ajv';
 import { withComponent, shadow, props } from 'skatejs';
 import { hasNativeShadowDomSupport } from '../utils/environment';
 import { findParentTag } from '../utils/find-parent-tag';
-import Ajv from 'ajv';
 
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
