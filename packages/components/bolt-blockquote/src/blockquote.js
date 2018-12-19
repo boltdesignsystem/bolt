@@ -1,7 +1,7 @@
 import {
   props,
   define,
-  sanitizeBoltClasses,
+  getComponentRootElement,
   hasNativeShadowDomSupport,
   watchForComponentMutations,
 } from '@bolt/core/utils';
@@ -56,35 +56,20 @@ class BoltBlockquote extends withLitHtml() {
   }
 
   connecting() {
-    const root = this;
-
-    // If the initial <bolt-link> element contains a link, break apart the original HTML so we can retain the a tag but swap out the inner content with slots.
-
-    // Make sure the button component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
+    // Make sure the component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
     if (this._wasInitiallyRendered === false) {
-      this.childNodes.forEach((childElement, i) => {
-        if (childElement.tagName === 'BLOCKQUOTE') {
-          root.rootElement = document.createDocumentFragment();
+      let rootElement = getComponentRootElement(this.childNodes, 'blockquote');
 
-          // Take any existing elements and move them to the root of the custom element
-          while (childElement.firstChild) {
-            root.appendChild(childElement.firstChild);
-          }
+      if (rootElement) {
+        this.rootElement = document.createDocumentFragment();
 
-          if (childElement.className) {
-            childElement.className = sanitizeBoltClasses(childElement);
-          }
-
-          if (
-            childElement.getAttribute('is') &&
-            childElement.getAttribute('is') === 'shadow-root'
-          ) {
-            childElement.removeAttribute('is');
-          }
-
-          root.rootElement.appendChild(childElement);
+        // Take any child elements and move them to the root of the custom element
+        while (rootElement.firstChild) {
+          this.appendChild(rootElement.firstChild);
         }
-      });
+
+        this.rootElement.appendChild(rootElement);
+      }
     }
   }
 
