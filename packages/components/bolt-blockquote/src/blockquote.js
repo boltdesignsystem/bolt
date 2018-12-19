@@ -144,11 +144,11 @@ class BoltBlockquote extends withLitHtml() {
     }
   }
 
-  quoteTemplate(children = null) {
+  quoteTemplate(size, children = null) {
     const text = html`
       <bolt-text
         tag="div"
-        font-size="${this.props.size}"
+        font-size="${size}"
         font-weight="semibold"
         color="theme-headline"
       >
@@ -195,7 +195,7 @@ class BoltBlockquote extends withLitHtml() {
       renderedBlockquote.className += ' ' + classes;
       render(this.slot('default'), renderedBlockquote);
     } else {
-      const quote = this.quoteTemplate(this.slot('default'));
+      const quote = this.quoteTemplate(size, this.slot('default'));
       const author = this.authorTemplate(authorName, authorTitle, authorImage);
       const blockquoteInner = html`
         ${quote} ${author}
