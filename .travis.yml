@@ -33,7 +33,7 @@ script:
 - GIT_SHA="$(git rev-parse --short HEAD)"
 - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
 - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
-- docker --log-level error push boltdesignsystem/bolt:latest 
+#- docker --log-level error push boltdesignsystem/bolt:latest 
 - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
 
 # @todo reconsider script deps install process; need them for following script since we don't `yarn install` (it all happens inside Docker build)
