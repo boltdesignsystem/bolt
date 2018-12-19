@@ -73,21 +73,6 @@ class BoltBlockquote extends withLitHtml() {
     }
   }
 
-  rendered() {
-    super.rendered(); // ensure any events emitted by the Bolt Base class fire as expected
-
-    // re-render if Shadow DOM is supported and enabled; temp workaround to dealing w/ components already rendered, but without slot support
-    if (hasNativeShadowDomSupport && this.useShadow) {
-      this.observer = watchForComponentMutations(this);
-
-      this.observer.observe(this, {
-        attributes: false,
-        childList: true,
-        characterData: false,
-      });
-    }
-  }
-
   disconnecting() {
     // this.removeEventListener('click', this.clickHandler);
 
