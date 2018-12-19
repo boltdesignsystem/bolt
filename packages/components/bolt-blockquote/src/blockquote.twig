@@ -55,7 +55,6 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 
-{% set component_name = "blockquote" %}
 {% set base_class = "c-bolt-blockquote" %}
 {% set size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
 {% set alignItems = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
@@ -70,7 +69,8 @@
   fullBleed ? base_class ~ "--full" : ""
 ] %}
 
-<bolt-{{ component_name }} bolt-component 
+<bolt-blockquote
+  {# todo: make all of these conditional, so that no attributes are needed by default #}
   size="{{ size }}"
   align-items="{{ alignItems }}"
   border="{{ border }}"
@@ -123,4 +123,4 @@
       {% endblock %}
     {% endif %}
   </blockquote>
-</bolt-{{ component_name }}>
+</bolt-blockquote>
