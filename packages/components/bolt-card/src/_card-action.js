@@ -1,3 +1,4 @@
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
@@ -31,8 +32,10 @@ class BoltCardAction extends withLitHtml() {
                   color="text"
                   width="full"
                   align="start"
-                  url="${url}"
-                  target="${external ? '_blank' : '_self'}"
+                  url="${ifDefined(url ? url : undefined)}"
+                  target="${
+                    ifDefined(url ? (external ? '_blank' : '_self') : undefined)
+                  }"
                 >
                   ${this.slot('default')}
                   <bolt-icon
