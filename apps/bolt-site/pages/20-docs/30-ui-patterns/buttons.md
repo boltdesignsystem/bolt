@@ -1,10 +1,9 @@
 ---
 title: Buttons
 ---
-
 Buttons are used to provide a clear call to action. Their role is to provide immediate affordance for the next steps a user should take on a screen—whether it's to download a file, sign up for a demo, or save progress on a screen.
 
-*For complete examples of our buttons in action along with schema and API information, see the [button component](/pattern-lab/?p=viewall-components-button) and [button group component](/pattern-lab/?p=viewall-components-buttons-group) documentation in Pattern Lab.*
+_For complete examples of our buttons in action along with schema and API information, see the [button component](/pattern-lab/?p=viewall-components-button) and [button group component](/pattern-lab/?p=viewall-components-buttons-group) documentation in Pattern Lab._
 
 ## Best Practices
 
@@ -31,20 +30,20 @@ Below are some examples of common use cases for buttons.
 When placed in a themed container (such as a band or a card), buttons are styled based on the container's theme, along with the type of button getting used (primary, secondary, text, etc).
 
 <figure>
-<img src="../../../images/band_dark_single-button.png" />
-<figcaption>In `dark` and `xdark` bands, the primary button is in `yellow`.</figcaption>
+<img src="/images/band_dark_single-button.png" />
+<figcaption>In \\`dark\\` and \\`xdark\\` bands, the primary button is in \\`yellow\\`.</figcaption>
 </figure>
 
 <figure>
-<img src="../../../images/band_xlight_one-button.png" />
-<figcaption>In `light` and `xlight` bands, the primary button is `indigo`.</figcaption>
+<img src="/images/band_xlight_one-button.png" />
+<figcaption>In \\`light\\` and \\`xlight\\` bands, the primary button is \\`indigo\\`.</figcaption>
 </figure>
 
 When two buttons exist in the same band, the second button should be styled as a `secondary` button. In bands, you can use a button group to create the styling by default. 
 
 <figure>
-<img src="../../../images/band_light_dual-button.png" />
-<figcaption>In `light` and `xlight` bands, the primary button color is `indigo` and the secondary is `white`.</figcaption>
+<img src="/images/band_light_dual-button.png" />
+<figcaption>In \\`light\\` and \\`xlight\\` bands, the primary button color is \\`indigo\\` and the secondary is \\`white\\`.</figcaption>
 </figure>
 
 When creating a layout that includes a number of calls to action, such as a trio of cards, use the `text` style button instead of `primary` or `secondary` button styles to minimize cognitive overload.
@@ -53,3 +52,13 @@ When creating a layout that includes a number of calls to action, such as a trio
 <img src="../../../images/band_xlight_three-cards.png" />
 <figcaption>Multiple calls to action require a more subtle approach.</figcaption>
 </figure>
+
+
+
+
+
+Hello world!
+
+
+
+![](/images/500x500.jpg)
