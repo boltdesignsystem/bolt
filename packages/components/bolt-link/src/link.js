@@ -13,12 +13,9 @@ import {
   html,
   render,
 } from '@bolt/core/renderers/renderer-lit-html';
-import Ajv from 'ajv';
 
 import styles from './link.scss';
 import schema from '../link.schema.yml';
-
-const ajv = new Ajv({ useDefaults: 'shared' });
 
 let cx = classNames.bind(styles);
 
@@ -38,29 +35,7 @@ class BoltLink extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.validate = ajv.compile(schema);
     return self;
-  }
-
-  // @todo: move to the global Bolt Base component after we're done testing this out with the new refactored Card component
-  validateProps(propData) {
-    var validatedData = propData;
-
-    // remove default strings in prop data so schema validation can fill in the default
-    for (let property in validatedData) {
-      if (validatedData[property] === '') {
-        delete validatedData[property];
-      }
-    }
-
-    let isValid = this.validate(validatedData);
-
-    // bark at any schema validation errors
-    if (!isValid) {
-      console.log(this.validate.errors);
-    }
-
-    return validatedData;
   }
 
   connecting() {
@@ -133,7 +108,7 @@ class BoltLink extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { url, target, isHeadline } = this.validateProps(this.props);
+    const { url, target, isHeadline } = this.validateProps(schema, this.props);
 
     const classes = cx('c-bolt-link', {
       'c-bolt-link--headline': isHeadline,
