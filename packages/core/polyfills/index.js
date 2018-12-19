@@ -34,7 +34,9 @@ if (!window.customElements || window.customElements.forcePolyfill) {
 
 // NOTE: any browser that does not have template or ES6 features
 // must load the full suite (called `lite` for legacy reasons) of polyfills.
-if (
+if {
+  // https://stackoverflow.com/a/21825207 - IE 11 check
+  (!!window.MSInputMethodContext && !!document.documentMode) ||
   !('content' in document.createElement('template')) ||
   !window.Promise ||
   !Array.from ||
