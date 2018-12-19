@@ -203,7 +203,6 @@ class BoltBlockquote extends withLitHtml() {
       size,
       alignItems,
       border,
-      content,
       indent,
       fullBleed,
       authorName,
