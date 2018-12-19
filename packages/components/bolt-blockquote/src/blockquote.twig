@@ -60,8 +60,6 @@
 {% set size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
 {% set alignItems = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
 {% set border = border == false and border is null ? "vertical" : border | default("vertical") %}
-{% set fullBleed = fullBleed == false and fullBleed is null ? "false" : "true" %}
-
 
 {% set classes = [
   base_class,
@@ -69,15 +67,15 @@
   alignItems in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[alignItems],
   border in border_options|keys ? base_class ~ "--" ~ border_options[border],
   indent ? base_class ~ "--indented" : "",
-  fullBleed == "true" ? base_class ~ "--full" : ""
+  fullBleed ? base_class ~ "--full" : ""
 ] %}
 
 <bolt-{{ component_name }} bolt-component 
   size="{{ size }}"
   align-items="{{ alignItems }}"
   border="{{ border }}"
-  {% if indent %} indent="{{ indent }}" {% endif %}
-  {% if fullBleed %} full-bleed="{{ fullBleed }}" {% endif %}
+  {% if indent %} indent {% endif %}
+  {% if fullBleed %} full-bleed {% endif %}
 >
   <blockquote {{ attributes.addClass(classes) }}>
     {% if logo %}
