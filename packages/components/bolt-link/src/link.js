@@ -24,6 +24,7 @@ class BoltLink extends BoltAction {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
+    // Define a list of tag names that are allowed in the component root. See: @bolt/core/utils/get-component-root-element.js
     self.rootElementTags = ['a'];
     return self;
   }
