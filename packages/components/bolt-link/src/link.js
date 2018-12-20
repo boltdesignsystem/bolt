@@ -1,18 +1,14 @@
 import {
   props,
   define,
-  declarativeClickHandler,
-  sanitizeBoltClasses,
-  hasNativeShadowDomSupport,
-  afterNextRender,
-  watchForComponentMutations,
 } from '@bolt/core/utils';
-import classNames from 'classnames/bind';
 import {
-  withLitHtml,
   html,
   render,
 } from '@bolt/core/renderers/renderer-lit-html';
+import { BoltAction } from '@bolt/core/renderers/bolt-action';
+
+import classNames from 'classnames/bind';
 
 import styles from './link.scss';
 import schema from '../link.schema.yml';
@@ -20,7 +16,7 @@ import schema from '../link.schema.yml';
 let cx = classNames.bind(styles);
 
 @define
-class BoltLink extends withLitHtml() {
+class BoltLink extends BoltAction {
   static is = 'bolt-link';
 
   static props = {
@@ -34,76 +30,8 @@ class BoltLink extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
+    self.rootElementTags = ['a'];
     return self;
-  }
-
-  connecting() {
-    const root = this;
-
-    // If the initial <bolt-link> element contains a link, break apart the original HTML so we can retain the a tag but swap out the inner content with slots.
-
-    // Make sure the button component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
-    if (this._wasInitiallyRendered === false) {
-      this.childNodes.forEach((childElement, i) => {
-        if (childElement.tagName === 'A') {
-          root.rootElement = document.createDocumentFragment();
-
-          // Take any existing elements and move them to the root of the custom element
-          while (childElement.firstChild) {
-            root.appendChild(childElement.firstChild);
-          }
-
-          if (childElement.className) {
-            childElement.className = sanitizeBoltClasses(childElement);
-          }
-
-          if (
-            childElement.getAttribute('is') &&
-            childElement.getAttribute('is') === 'shadow-root'
-          ) {
-            childElement.removeAttribute('is');
-          }
-
-          root.rootElement.appendChild(childElement);
-        }
-      });
-    }
-
-    // When possible, use afterNextRender to defer non-critical work until after first paint.
-    afterNextRender(this, function() {
-      this.addEventListener('click', this.clickHandler);
-    });
-  }
-
-  rendered() {
-    super.rendered(); // ensure any events emitted by the Bolt Base class fire as expected
-
-    // re-render if Shadow DOM is supported and enabled; temp workaround to dealing w/ components already rendered, but without slot support
-    if (hasNativeShadowDomSupport && this.useShadow) {
-      this.observer = watchForComponentMutations(this);
-
-      this.observer.observe(this, {
-        attributes: false,
-        childList: true,
-        characterData: false,
-      });
-    }
-  }
-
-  disconnecting() {
-    this.removeEventListener('click', this.clickHandler);
-
-    if (hasNativeShadowDomSupport && this.useShadow) {
-      if (this.observer) {
-        this.observer.disconnect();
-      }
-    }
-  }
-
-  // Attach external events declaratively
-  clickHandler(event) {
-    declarativeClickHandler(this);
   }
 
   render() {
