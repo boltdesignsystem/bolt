@@ -14,4 +14,11 @@ polyfillLoader.then(res => {
       webpackChunkName: 'replace-with-grandchildren'
     */ '@bolt/core/elements/replace-with-grandchildren');
   }
+
+  if (!window.customElements.get('bolt-action')) {
+    import(/*
+      webpackMode: 'eager',
+      webpackChunkName: 'bolt-action'
+    */ '@bolt/core/elements/bolt-action');
+  }
 });
