@@ -1,11 +1,5 @@
-import {
-  props,
-  define,
-} from '@bolt/core/utils';
-import {
-  html,
-  render,
-} from '@bolt/core/renderers/renderer-lit-html';
+import { props, define } from '@bolt/core/utils';
+import { html, render } from '@bolt/core/renderers/renderer-lit-html';
 import { BoltAction } from '@bolt/core/renderers/bolt-action';
 
 import classNames from 'classnames/bind';
