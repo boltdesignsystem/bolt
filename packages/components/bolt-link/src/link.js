@@ -24,6 +24,7 @@ class BoltLink extends BoltAction {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
+    self.schema = schema;
     // Define a list of tag names that are allowed in the component root. See: @bolt/core/utils/get-component-root-element.js
     self.rootElementTags = ['a'];
     return self;
@@ -31,7 +32,7 @@ class BoltLink extends BoltAction {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { url, target, isHeadline } = this.validateProps(schema, this.props);
+    const { url, target, isHeadline } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-link', {
       'c-bolt-link--headline': isHeadline,

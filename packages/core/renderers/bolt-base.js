@@ -54,7 +54,7 @@ export function BoltBase(Base = HTMLElement) {
       }
     }
 
-    validateProps(schema, propData) {
+    validateProps(propData) {
       var validatedData = propData;
       const ajv = new Ajv({ useDefaults: 'shared' });
 
@@ -65,11 +65,13 @@ export function BoltBase(Base = HTMLElement) {
         }
       }
 
-      let isValid = ajv.validate(schema, validatedData);
+      if (this.schema) {
+        let isValid = ajv.validate(this.schema, validatedData);
 
-      // bark at any schema validation errors
-      if (!isValid) {
-        console.log(ajv.errors);
+        // bark at any schema validation errors
+        if (!isValid) {
+          console.log(ajv.errors);
+        }
       }
 
       return validatedData;
