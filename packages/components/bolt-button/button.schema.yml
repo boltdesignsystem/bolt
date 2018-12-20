@@ -5,8 +5,11 @@ type: object
 required:
   - text
 not:
-  required:
-    - itemAlignment
+  anyOf:
+    - required:
+      - itemAlignment
+    - required:
+      - rounded
 properties:
   attributes:
     type: object
@@ -85,11 +88,16 @@ properties:
       - full
       - full@small
   rounded:
+    title: 'DEPRECATED'
+    description: 'Use the border_radius parameter instead'
+  border_radius:
     type: string
-    title: 'Rounded Corners?'
-    description: 'What kind of rounded corners should the button have?'
+    title: 'Border Radius'
+    description: 'Amount of rounding that the corners of the button should have'
+    default: regular
     enum:
-      - rounded
+      - regular
+      - full
   iconOnly:
     type: boolean
     title: 'Icon Only?'
