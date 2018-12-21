@@ -26,7 +26,7 @@ async function asyncConfig() {
     config = Object.assign(
       {
         plConfigFile: 'config/config.yml',
-        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md', 'png', 'php'],
+        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md', 'png'],
         debounceRate: 1000,
       },
       await getConfig(),
@@ -144,7 +144,7 @@ async function watch() {
   const watcher = chokidar.watch(watchedFiles, {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignored: ['**/node_modules/**', '**/vendor/**'],
+    ignored: ['**/node_modules/**', '**/vendor/**', '**/.twig-renderer/**'],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events

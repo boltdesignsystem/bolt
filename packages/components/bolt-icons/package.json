@@ -32,7 +32,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon -e svg --watch src/svgs --exec npm run build",
-    "postinstall": "npm run build",
     "postbootstrap": "npm run build",
     "build": "node ./build-icons.js "
   },

@@ -142,10 +142,14 @@ async function buildPrep() {
   config = config || (await getConfig());
   try {
     await getExtraTasks();
-    config.prod ? await clean() : '';
+    // config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
-    if (config.env === 'pl' || config.env === 'static') {
+    if (
+      config.env === 'pl' ||
+      config.env === 'static' ||
+      config.env === 'pwa'
+    ) {
       await writeBoltVersions();
     }
     await manifest.writeTwigNamespaceFile(

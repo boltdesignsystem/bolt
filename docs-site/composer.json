@@ -1,0 +1,48 @@
+{
+  "name": "pattern-lab/edition-drupal-standard",
+  "type": "project",
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../packages/core-php"
+    },
+    {
+      "type": "path",
+      "url": "../packages/drupal-stubs"
+    },
+    {
+      "type": "path",
+      "url": "../packages/styleguidekit-twig-default"
+    }
+  ],
+  "require": {
+    "bolt-design-system/core-php": "*",
+    "bolt-design-system/drupal-stubs": "*",
+    "twig/twig": "^1.0",
+    "bolt-design-system/styleguidekit-twig-default": "*",
+    "pattern-lab/drupal-twig-extensions": "^0.2.0",
+    "webmozart/path-util": "*",
+    "symfony/finder": "*",
+    "wa72/html-pretty-min": "^0.2.0",
+    "pattern-lab/core": "^2.8.10",
+    "pattern-lab/patternengine-twig": "^2.2.2",
+    "cweagans/composer-patches": "^1.6.4",
+    "evanlovely/plugin-twig-namespaces": "^1.1.1"
+  },
+  "scripts": {
+    "server": "php core/console --server",
+    "build": "php -d memory_limit=4048M core/console --generate",
+    "watch": "php core/console --watch",
+    "start": "php core/console --server --quiet & php core/console --watch",
+    "post-install-cmd": [
+      "cd .twig-renderer && composer install --no-interaction --prefer-dist"
+    ]
+  },
+  "extra": {
+    "patches-file": "composer.patches.json",
+    "installer-types": [
+      "patternlab-plugin"
+    ]
+  }
+}

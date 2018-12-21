@@ -29,7 +29,7 @@ async function asyncConfig() {
   } else {
     config = Object.assign(
       {
-        watchedExtensions: ['twig', 'md', 'html', 'yml', 'php'],
+        watchedExtensions: ['twig', 'md', 'html', 'yml'],
       },
       await getConfig(),
     );
@@ -255,7 +255,7 @@ function compileWithNoExit() {
 async function watch() {
   config = Object.assign(
     {
-      watchedExtensions: ['.twig', '.md', '.html', '.yml', '.php'],
+      watchedExtensions: ['.twig', '.md', '.html', '.yml'],
     },
     await getConfig(),
   );
@@ -271,7 +271,12 @@ async function watch() {
   const watcher = chokidar.watch(watchedPaths, {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignored: ['**/node_modules/**', '**/vendor/**'],
+    ignored: [
+      '**/node_modules/**',
+      '**/vendor/**',
+      '**/_patterns/**',
+      '**/.twig-renderer/**',
+    ],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
