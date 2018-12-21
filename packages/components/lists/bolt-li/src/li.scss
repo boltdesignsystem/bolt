@@ -20,36 +20,66 @@ bolt-li {
 }
 
 // unordered-list specific list-item styles
-.c-bolt-li--ul-item:before {
-  content: '';
-  display: block;
-  box-sizing: border-box;
-  position: absolute;
-  top: calc(0.55rem + 1px);
-  left: bolt-spacing(small) * -2;
-  width: $bolt-ul-bullet-size;
-  height: $bolt-ul-bullet-size;
-  line-height: $bolt-ul-bullet-size;
-  border: 1px solid bolt-theme(headline);
-  border-radius: $bolt-ul-bullet-size;
-  background-color: bolt-theme(headline);
+.c-bolt-li--ul-item {
+  &:before {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    top: calc(0.55rem + 1px);
+    left: bolt-spacing(small) * -2;
+    width: $bolt-ul-bullet-size;
+    height: $bolt-ul-bullet-size;
+    line-height: $bolt-ul-bullet-size;
+    border: 1px solid bolt-theme(headline);
+    border-radius: $bolt-ul-bullet-size;
+    background-color: bolt-theme(headline);
+  }
+
+  &.c-bolt-li--level {
+    &-2 {
+      &:before {
+        border-radius: $bolt-ul-bullet-size;
+        background-color: transparent;
+      }
+    }
+
+    &-3 {
+      &:before {
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+ol,
+bolt-ol {
+  > bolt-li {
+    position: relative;
+
+    &:before {
+      @include bolt-font-size(xsmall);
+      @include bolt-font-weight(bold);
+      content: counter(li);
+      position: absolute;
+      top: .25em;
+      left: bolt-spacing(small) / 2;
+      counter-increment: li;
+    }
+  }
 }
 
 // ordered-list specific list-item styles
 .c-bolt-li--ol-item:before {
-  @include bolt-font-size(xsmall);
-  @include bolt-font-weight(bold);
-  content: counter(li);
+  content: '';
   display: block;
   position: absolute;
   top: 0.125em;
   left: bolt-spacing(small) * -2;
   width: $bolt-ol-bullet-size;
   height: $bolt-ol-bullet-size;
-  counter-increment: li;
   color: bolt-theme(headline);
   line-height: $bolt-ol-bullet-size;
-  text-align: center;
   border-radius: $bolt-ol-bullet-size;
   background-color: $bolt-ol-bullet-bg-color;
 }

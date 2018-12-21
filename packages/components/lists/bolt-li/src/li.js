@@ -13,7 +13,7 @@ class BoltListItem extends withLitHtml() {
   static props = {
     level: {
       ...props.number,
-      ...{ default: 1 },
+      ...{ default: 0 },
     },
     type: {
       ...props.string,
@@ -22,10 +22,11 @@ class BoltListItem extends withLitHtml() {
   };
 
   connected() {
-    this.level = this.parentNode.level
-      ? this.parentNode.level
-      : this.props.level;
     this.type = this.parentNode.tagName === 'BOLT-OL' ? 'ol' : 'ul';
+    this.level =
+      this.parentNode.level && this.type === 'ul'
+        ? this.parentNode.level
+        : this.props.level;
   }
 
   render() {
@@ -40,6 +41,8 @@ class BoltListItem extends withLitHtml() {
     function addNestedLevelProps(childNode, depth) {
       childNode.level = depth + 1;
     }
+
+    console.log(this.slots.default);
 
     this.slots.default = this.slots.default.map(
       mapWithDepth(this.level, addNestedLevelProps),

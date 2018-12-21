@@ -1,43 +1,41 @@
 <h2>Web Component Usage</h2>
-<p>Bolt Unordered List is a web component, you can simply use <code class="language-html">&lt;bolt-unordered-list&gt;</code> in the markup to make it render. Its inner content is comprised of <code class="language-html">&lt;bolt-unordered-list-item&gt;</code>.</p>
+<p>Bolt Unordered List is a web component, you can simply use <code class="language-html">&lt;bolt-ul&gt;</code> in the markup to make it render. Its inner content is comprised of <code class="language-html">&lt;bolt-li&gt;</code>.</p>
 <h3>Example</h3>
-<pre class="c-bolt-code-snippet-syntax--light"><code class="language-html">&lt;bolt-unordered-list&gt;
-  &lt;bolt-unordered-list-item&gt;Item 1&lt;/bolt-unordered-list-item&gt;
-  &lt;bolt-unordered-list-item&gt;Item 2&lt;/bolt-unordered-list-item&gt;
-  &lt;bolt-unordered-list-item&gt;Item 3&lt;/bolt-unordered-list-item&gt;
-  &lt;bolt-unordered-list-item&gt;Item 4&lt;/bolt-unordered-list-item&gt;
-  &lt;bolt-unordered-list-item&gt;Item 5&lt;/bolt-unordered-list-item&gt;
-&lt;/bolt-unordered-list&gt;</code></pre>
+<pre class="c-bolt-code-snippet-syntax--light"><code class="language-html">&lt;bolt-ul&gt;
+  &lt;bolt-li&gt;Item 1&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 2&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 3&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 4&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 5&lt;/bolt-li&gt;
+&lt;/bolt-ul&gt;</code></pre>
 
-<bolt-unordered-list>
-  <bolt-unordered-list-item>Item 1</bolt-unordered-list-item>
-  <bolt-unordered-list-item>Item 2</bolt-unordered-list-item>
-  <bolt-unordered-list-item>Item 3</bolt-unordered-list-item>
-  <bolt-unordered-list-item>Item 4</bolt-unordered-list-item>
-  <bolt-unordered-list-item>Item 5</bolt-unordered-list-item>
-</bolt-unordered-list>
+<bolt-ul>
+  <bolt-li>Item 1</bolt-li>
+  <bolt-li>Item 2</bolt-li>
+  <bolt-li>Item 3</bolt-li>
+  <bolt-li>Item 4</bolt-li>
+  <bolt-li>Item 5</bolt-li>
+</bolt-ul>
 
-
-<ul>
-  <li>Coffee</li>
-  <li>Tea
-    <ul>
-      <li>Black tea</li>
-      <li>Green tea
-        <ul>
-          <li>Good tea</li>
-          <li>Great tea
-            <ul>
-              <li>Is the best</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>Milk</li>
-</ul>
-
+<bolt-ul>
+  <bolt-li>Coffee</bolt-li>
+  <bolt-li>Tea
+    <bolt-ul>
+      <bolt-li>Black tea</bolt-li>
+      <bolt-li>Green tea
+        <bolt-ul>
+          <bolt-li>Good tea</bolt-li>
+          <bolt-li>Great tea
+            <bolt-ul>
+              <bolt-li>Is the best</bolt-li>
+            </bolt-ul>
+          </bolt-li>
+        </bolt-ul>
+      </bolt-li>
+    </bolt-ul>
+  </bolt-li>
+  <bolt-li>Milk</bolt-li>
+</bolt-ul>
 
 <bolt-ul>
   <bolt-li>Do not include any data or information in your posts that are confidential!</bolt-li>
@@ -46,65 +44,53 @@
   <bolt-li>Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.</bolt-li>
 </bolt-ul>
 
+<bolt-demo class="t-bolt-dark">
+  <bolt-ul>
+    <bolt-li>L1 - Tea</bolt-li>
+    <bolt-li>L1 - Coffee
+      <bolt-ul>
+        <bolt-li>L2 - Light roast</bolt-li>
+        <bolt-li>
+          L2 - Dark roast
+          <bolt-ul>
+            <bolt-li>
+              L3 - Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.
+              <bolt-ul>
+                <bolt-li>L4 - Tea</bolt-li>
+                <bolt-li>L4 - Coffee
+                  <bolt-ul>
+                    <bolt-li>L5 - Light roast</bolt-li>
+                    <bolt-li>
+                      L5 - Dark roast
+                      <bolt-ul>
+                        <bolt-li>
+                          L6 - Italian Roast
+                        </bolt-li>
+                        <bolt-li>
+                          L6 - Coffee from Italy
+                        </bolt-li>
+                      </bolt-ul>
+                    </bolt-li>
+                    <bolt-li>L5 - Medium roast</bolt-li>
+                  </bolt-ul>
+                </bolt-li>
+                <bolt-li>L4 - Milk</bolt-li>
+              </bolt-ul>
+            </bolt-li>
+            <bolt-li>
+              L3 - Coffee from Italy
+            </bolt-li>
+          </bolt-ul>
+        </bolt-li>
+        <bolt-li>L2 - Medium roast</bolt-li>
+      </bolt-ul>
+    </bolt-li>
+    <bolt-li>L1 - Milk</bolt-li>
+  </bolt-ul>
+</bolt-demo>
 
-<bolt-ul class="t-bolt-dark">
-  <bolt-li>L1 - Tea</bolt-li>
-  <bolt-li>L1 - Coffee
-    <bolt-ul>
-      <bolt-li>L2 - Light roast</bolt-li>
-      <bolt-li>
-        L2 - Dark roast
-        <bolt-ul>
-          <bolt-li>
-            Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.
-            <bolt-ul>
-              <bolt-li>L4 - Tea</bolt-li>
-              <bolt-li>L4 - Coffee
-                <bolt-ul>
-                  <bolt-li>L5 - Light roast</bolt-li>
-                  <bolt-li>
-                    L5 - Dark roast
-                    <bolt-ul>
-                      <bolt-li>
-                        L6 - Italian Roast
-                      </bolt-li>
-                      <bolt-li>
-                        L6 - Coffee from Italy
-                      </bolt-li>
-                    </bolt-ul>
-                  </bolt-li>
-                  <bolt-li>L5 - Medium roast</bolt-li>
-                </bolt-ul>
-              </bolt-li>
-              <bolt-li>L4 - Milk</bolt-li>
-            </bolt-ul>
-          </bolt-li>
-          <bolt-li>
-            L3 - Coffee from Italy
-          </bolt-li>
-        </bolt-ul>
-      </bolt-li>
-      <bolt-li>L2 - Medium roast</bolt-li>
-    </bolt-ul>
-  </bolt-li>
-  <bolt-li>L1 - Milk</bolt-li>
-</bolt-ul>
-
-<bolt-ul class="t-bolt-light">
-  <bolt-li>Coffee</bolt-li>
-  <bolt-li>Tea
-    <bolt-ul>
-      <bolt-li>Black tea</bolt-li>
-      <bolt-li>Green tea</bolt-li>
-    </bolt-ul>
-  </bolt-li>
-  <bolt-li>Milk</bolt-li>
-</bolt-ul>
-
-
-
-<form>
-  <bolt-ul class="t-bolt-dark">
+<bolt-demo class="t-bolt-light">
+  <bolt-ul>
     <bolt-li>Coffee</bolt-li>
     <bolt-li>Tea
       <bolt-ul>
@@ -114,8 +100,10 @@
     </bolt-li>
     <bolt-li>Milk</bolt-li>
   </bolt-ul>
+</bolt-demo>
 
-  <bolt-ul class="t-bolt-light">
+<bolt-demo class="t-bolt-dark">
+  <bolt-ul>
     <bolt-li>Coffee</bolt-li>
     <bolt-li>Tea
       <bolt-ul>
@@ -125,14 +113,25 @@
     </bolt-li>
     <bolt-li>Milk</bolt-li>
   </bolt-ul>
-</form>
+</bolt-demo>
 
+<bolt-demo class="t-bolt-light">
+  <bolt-ul>
+    <bolt-li>Coffee</bolt-li>
+    <bolt-li>Tea
+      <bolt-ol>
+        <bolt-li>Black tea</bolt-li>
+        <bolt-li>Green tea</bolt-li>
+      </bolt-ol>
+    </bolt-li>
+    <bolt-li>Milk</bolt-li>
+  </bolt-ul>
+</bolt-demo>
 
-
-
-
-<bolt-ul>
-  <bolt-li>Coffee</bolt-li>
-  <bolt-li>Tea</bolt-li>
-  <bolt-li>Milk</bolt-li>
-</bolt-ul>
+<bolt-demo>
+  <bolt-ul>
+    <bolt-li>Coffee</bolt-li>
+    <bolt-li>Tea</bolt-li>
+    <bolt-li>Milk</bolt-li>
+  </bolt-ul>
+</bolt-demo>

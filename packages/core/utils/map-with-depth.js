@@ -10,12 +10,6 @@ export function mapWithDepth(depth, cb) {
   };
 }
 
-// export function recursiveMapWithDepth(depth, cb) {
-//   return function mapChildrenWithDepth(child) {
-//     return mapChild(child, depth, true, cb);
-//   };
-// }
-
 /**
  * Utility function to help render a specific AST tree child into the VDOM
  * @param {any} child - the AST tree child being converted
@@ -24,19 +18,9 @@ export function mapWithDepth(depth, cb) {
  * @returns {any} - returns the child element of the AST tree being react-renderable
  */
 export function mapChild(child, depth, cb) {
-  // let currentDepth = depth;
-
   if (cb) {
     cb(child, depth);
   }
-
-  // if (recursive === true) {
-  //   if (child.slots) {
-  //     child.slots.default.map(mapWithDepth(currentLevel, recursive, cb));
-  //   } else if (child.children) {
-  //     child.children.map(mapWithDepth(currentLevel, recursive, cb));
-  //   }
-  // }
 
   return child;
 }

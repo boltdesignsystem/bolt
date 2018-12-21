@@ -6,7 +6,6 @@
 
 {% set base_class = "c-bolt-ol" %}
 
-
 {% set classes = [
   base_class
 ] %}
@@ -25,7 +24,6 @@
           }) %}
           {% include "@bolt-components-li/li.twig" with nested_item only %}
         {% else %}
-
           {% set list_item = {
             type: "ol",
             children: item,
