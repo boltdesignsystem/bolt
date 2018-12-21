@@ -11,7 +11,7 @@ if (boltSelect) {
       shouldOpenInNewWindow = false;
     }
   });
-  
+
   boltSelect.addEventListener('choice', function(e) {
     var url = e.detail.choice.value;
     if (url && window.location.href !== url) {
