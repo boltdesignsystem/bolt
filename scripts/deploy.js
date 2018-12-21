@@ -2,6 +2,14 @@
 const url = require('url');
 const { resolve } = require('path');
 const querystring = require('querystring');
+const {
+  setGitHubStatus,
+  createGitHubComment,
+  outputBanner,
+  runAndShow,
+  runAndReturn,
+  getGitSha,
+} = require('ci-utils');
 const fetch = require('node-fetch');
 const {spawnSync} = require('child_process');
 const { promisify } = require('util');
@@ -35,14 +43,8 @@ async function init() {
     } = process.env;
 
     // also made in `.travis.yml` during docker tag
-    const gitSha = spawnSync('git', ['rev-parse', '--short', 'HEAD'], {
-      encoding: 'utf8',
-    }).stdout.trim();
-
-    const gitShaLong = spawnSync('git', ['rev-parse', 'HEAD'], {
-      encoding: 'utf8',
-    }).stdout.trim();
-
+    const gitSha = getGitSha(true);
+    const gitShaLong = getGitSha();
 
     console.log({
       TRAVIS,
@@ -81,19 +83,12 @@ async function init() {
 
     if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
 
-    await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitShaLong}`, {
-      method: 'POST',
-      body: JSON.stringify({
-        state: 'pending',
-        context: 'deploy/now.sh',
-        description: '',
-      }),
-      headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`,
-      },
-    }).then(res => res.json()).then(results => console.log(results));
+    await setGitHubStatus({
+      state: 'pending',
+      context: 'deploy/now.sh',
+    });
 
-    console.log('Starting deploy...');
+    outputBanner('Starting deploy...');
     const deployOutput = spawnSync('now', [
       'deploy',
       '--force',
@@ -137,35 +132,22 @@ async function init() {
     if (aliasOutput.status !== 0) {
       console.error('Error aliasing:');
       console.log(aliasOutput.stdout, aliasOutput.stderr);
-      const response = await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitShaLong}`, {
-        method: 'POST',
-        body: JSON.stringify({
-          state: 'error',
-          context: 'deploy/now.sh',
-          description: `${aliasOutput.stdout} - ${aliasOutput.stderr}`,
-        }),
-        headers: {
-          Authorization: `Bearer ${GITHUB_TOKEN}`,
-        },
-      }).then(res => res.json());
-      console.log(response);
+
+      await setGitHubStatus({
+        state: 'error',
+        context: 'deploy/now.sh',
+        description: `${aliasOutput.stdout} - ${aliasOutput.stderr}`,
+      });
       process.exit(1);
     }
     console.log(aliasOutput.stdout, aliasOutput.stderr);
 
-    const response = await fetch(`https://api.github.com/repos/${TRAVIS_REPO_SLUG}/statuses/${gitShaLong}`, {
-      method: 'POST',
-      body: JSON.stringify({
-        state: 'success',
-        target_url: deployedUrl,
-        context: 'deploy/now.sh',
-        description: `Alias set to ${aliasedUrl}`,
-      }),
-      headers: {
-        Authorization: `Bearer ${GITHUB_TOKEN}`,
-      },
-    }).then(res => res.json());
-    console.log(response);
+    await setGitHubStatus({
+      state: 'success',
+      context: 'deploy/now.sh',
+      url: deployedUrl,
+      description: `Alias set to ${aliasedUrl}`,
+    });
 
     // if this is a tagged release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `v1-2-3-boltdesignsystem.com`
     if (TRAVIS_TAG && TRAVIS_TAG === latestTag) {
@@ -225,19 +207,9 @@ async function init() {
 `.trim();
       // end GitHub comment template
 
-      const githubCommentEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments`;
+      const results = await createGitHubComment(githubCommentText, TRAVIS_PULL_REQUEST);
+      console.log(`GitHub comment made: ${results.html_url}`);
 
-      const response = await fetch(githubCommentEndpoint, {
-        method: 'POST',
-        body: JSON.stringify({
-          body: githubCommentText,
-        }),
-        headers: {
-          Authorization: `Bearer ${GITHUB_TOKEN}`,
-        },
-      }).then(res => res.json());
-      console.log(response);
-      console.log('GitHub comment posted');
     }
     else {
       console.log('This is not a Pull Request build, so will not try to comment on PR.');
