@@ -5,9 +5,7 @@ dist: trusty
 stages:
   # - smoke # this ensures a "user" install works properly
   - precache # warm up cache for default Node.js version
-  - lint # lint code and docs
-  - test # all tests
-  - build # full build + deploy
+  - lint-test-and-build # lint code and docs
 
 language: php
 php:
@@ -15,14 +13,14 @@ php:
 
 jobs:
   include:
-    - stage: test
+    - stage: lint-test-and-build
       script: yarn run test
 
-    - stage: lint
+    - stage: lint-test-and-build
       script: yarn run lint
 
     # smoke tests use default npm.
-    - stage: build
+    - stage: lint-test-and-build
       before_install: true
       install: yarn run setup
       script: yarn run build
