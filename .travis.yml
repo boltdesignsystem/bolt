@@ -15,13 +15,16 @@ jobs:
   include:
     - stage: lint-test-and-build
       script: yarn && yarn run test
+      name: 'Smoke Tests'
 
     - stage: lint-test-and-build
       script: yarn && yarn run lint
+      name: 'Linting'
 
     - stage: lint-test-and-build
       install: yarn run setup:uikit
       script: yarn run build:uikit
+      name: 'Build UIKit'
 
     # smoke tests use default npm.
     - stage: lint-test-and-build
@@ -29,6 +32,7 @@ jobs:
       install: yarn run setup
       script: yarn run build:website && yarn run build:icons
       after_success: yarn run deploy
+      name: 'Build + Deploy'
       cache:
         yarn: true
         directories:
@@ -51,6 +55,7 @@ jobs:
 # - export PATH="$HOME/.yarn/bin:$PATH"
 
 before_install:
+  - nvm install # version lifted from `.nvmrc`
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
   - export PATH="$HOME/.yarn/bin:$PATH"
 # `nvm install` happens before the cache is restored, which means
