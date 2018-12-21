@@ -1,6 +1,7 @@
 import { props, define } from '@bolt/core/utils';
 import { html, render } from '@bolt/core/renderers/renderer-lit-html';
 import { BoltAction } from '@bolt/core/elements/bolt-action';
+import { convertInitialTags } from '@bolt/core/decorators';
 
 import classNames from 'classnames/bind';
 
@@ -10,6 +11,7 @@ import schema from '../link.schema.yml';
 let cx = classNames.bind(styles);
 
 @define
+@convertInitialTags('a') // The first matching tag will have its attributes converted to component props
 class BoltLink extends BoltAction {
   static is = 'bolt-link';
 
@@ -25,8 +27,6 @@ class BoltLink extends BoltAction {
   constructor(self) {
     self = super(self);
     self.schema = schema;
-    // Define a list of tag names that are allowed in the component root. See: @bolt/core/utils/get-component-root-element.js
-    self.rootElementTags = ['a'];
     return self;
   }
 

@@ -1,7 +1,5 @@
 /**
- * Get the first element in list of nodes which matches any of the given tag names.
- * Used by components that look for a specific element in the component root and preserve that element even after the component initializes.
- * For example: <bolt-link> will preserve an <a> found in the component root rather than render one from its own props.
+ * Get the first matching element in list of nodes. Sanitize classes and attributes, and return the element.
  *
  * @param {NodeList} nodeList - A list of nodes in the DOM tree.
  * @param {(string|string[])} tags - A tag name or a list of tag names.

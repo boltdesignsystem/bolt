@@ -1,6 +1,7 @@
 import { props, define } from '@bolt/core/utils';
 import { html, render } from '@bolt/core/renderers/renderer-lit-html';
 import { BoltAction } from '@bolt/core/elements/bolt-action';
+import { convertInitialTags } from '@bolt/core/decorators';
 
 import classNames from 'classnames/bind';
 
@@ -10,6 +11,7 @@ import styles from './button.scss';
 let cx = classNames.bind(styles);
 
 @define
+@convertInitialTags(['button', 'a']) // The first matching tag will have its attributes converted to component props
 class BoltButton extends BoltAction {
   static is = 'bolt-button';
 
@@ -33,8 +35,6 @@ class BoltButton extends BoltAction {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    // Define a list of tag names that are allowed in the component root. See: @bolt/core/utils/get-component-root-element.js
-    self.rootElementTags = ['button', 'a'];
     return self;
   }
 

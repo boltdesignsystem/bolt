@@ -2,7 +2,6 @@ import {
   props,
   define,
   declarativeClickHandler,
-  getComponentRootElement,
   hasNativeShadowDomSupport,
   afterNextRender,
   watchForComponentMutations,
@@ -28,26 +27,6 @@ class BoltAction extends withLitHtml() {
   }
 
   connecting() {
-    // Make sure the component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
-    if (this._wasInitiallyRendered === false) {
-      // If the initial element contains a child node, break apart the original HTML so we can retain the a tag but swap out the inner content with slots.
-      let rootElement = getComponentRootElement(
-        this.childNodes,
-        this.rootElementTags,
-      );
-
-      if (rootElement) {
-        this.rootElement = document.createDocumentFragment();
-
-        // Take any child elements and move them to the root of the custom element
-        while (rootElement.firstChild) {
-          this.appendChild(rootElement.firstChild);
-        }
-
-        this.rootElement.appendChild(rootElement);
-      }
-    }
-
     // When possible, use afterNextRender to defer non-critical work until after first paint.
     afterNextRender(this, function() {
       this.addEventListener('click', this.clickHandler);
