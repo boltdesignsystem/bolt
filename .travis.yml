@@ -49,7 +49,7 @@ jobs:
 # - export PATH="$HOME/.yarn/bin:$PATH"
 
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version version-number
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
   - export PATH="$HOME/.yarn/bin:$PATH"
 # `nvm install` happens before the cache is restored, which means
 # we must install our own npm elsewhere (`~/npm`)
