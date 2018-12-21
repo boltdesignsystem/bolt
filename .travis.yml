@@ -4,7 +4,7 @@ dist: trusty
 # these are executed in order.  each must pass for the next to be run
 stages:
   # - smoke # this ensures a "user" install works properly
-  - precache # warm up cache for default Node.js version
+  #- precache # warm up cache for default Node.js version
   - lint-test-and-build # lint code and docs
 
 language: php
@@ -29,23 +29,10 @@ jobs:
 
     # smoke tests use default npm.
     - stage: lint-test-and-build
-      before_install: true
-      install: yarn run setup
+      install: yarn && yarn run composer
       script: yarn run build:website && yarn run build:icons
       after_success: yarn run deploy
       name: 'Build + Deploy'
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - ~/.npm # cache npm's cache
-          - ~/npm # cache latest npm
-          - docs-site/vendor
-          - docs-site/.twig-renderer/vendor
-          - docs-site/node_modules
-
-    - stage: precache
-      script: true
 
 # addons:
 #   sauce_connect: true
