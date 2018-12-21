@@ -1,36 +1,95 @@
 sudo: false
 dist: trusty
 
+# these are executed in order.  each must pass for the next to be run
+stages:
+  # - smoke # this ensures a "user" install works properly
+  - precache # warm up cache for default Node.js version
+  - lint # lint code and docs
+  - test # all tests
+  - build # full build + deploy
+
 language: php
 php:
   - 7.1
 
-addons:
-  sauce_connect: true
+jobs:
+  include:
+    - stage: test
+      script: yarn run test
+
+    - stage: lint
+      script: yarn run lint
+
+    # smoke tests use default npm.
+    - stage: build
+      before_install: true
+      install: yarn run setup
+      script: yarn run build
+      after_success: yarn run deploy
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - ~/.npm # cache npm's cache
+          - ~/npm # cache latest npm
+          - docs-site/vendor
+          - docs-site/.twig-renderer/vendor
+          - docs-site/node_modules
+
+    - stage: precache
+      script: true
+
+# addons:
+#   sauce_connect: true
+
+# before_install:
+# - nvm install # version lifted from `.nvmrc`
+# - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
+# - export PATH="$HOME/.yarn/bin:$PATH"
 
 before_install:
-- nvm install # version lifted from `.nvmrc`
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
-- export PATH="$HOME/.yarn/bin:$PATH"
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version version-number
+  - export PATH="$HOME/.yarn/bin:$PATH"
+# `nvm install` happens before the cache is restored, which means
+# we must install our own npm elsewhere (`~/npm`)
+# before_install: |
+#   [[ ! -x ~/npm/node_modules/.bin/npm ]] && {
+#     # caching feature creates `~/npm` for us
+#     cd ~/npm && npm install npm
+#     cd -
+#   } || true
+  # avoids bugs around https://github.com/travis-ci/travis-ci/issues/5092
+  # export PATH=~/npm/node_modules/.bin:$PATH
+# this avoids compilation in most cases (where we don't need it)
 
-before_script:
-- phpenv config-rm xdebug.ini
+# before_script:
+# - phpenv config-rm xdebug.ini
 
-install:
-- yarn run setup
+# install:
+# - yarn run setup
 
-before_script:
-- yarn run lint
+# before_script:
+# - yarn run lint
 
 # Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
-script:
-- bash ./travis.sh # time command already run inside the travis.sh script
-- npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
+# script:
+# - bash ./travis.sh # time command already run inside the travis.sh script
+# - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
 
+# cache:
+#   apt: true
+#   directories:
+#     - $HOME/.composer/cache/files
 cache:
-  apt: true
+  yarn: true
   directories:
-    - $HOME/.composer/cache/files
+    - node_modules
+    - ~/.npm # cache npm's cache
+    - ~/npm # cache latest npm
+    - docs-site/vendor
+    - docs-site/.twig-renderer/vendor
+    - docs-site/node_modules
 
 notifications:
   email:
