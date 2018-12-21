@@ -14,7 +14,8 @@ php:
 jobs:
   include:
     - stage: lint-test-and-build
-      script: yarn && yarn run test
+      install: yarn && yarn run composer
+      script: yarn run test
       name: 'Smoke Tests'
 
     - stage: lint-test-and-build
