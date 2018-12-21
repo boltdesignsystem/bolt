@@ -83,13 +83,13 @@ polyfillLoader.then((res) => {
 ]
 ```
 
-**<u>Step 7</u>:** Add component to `package.json` AND `.boltrc.js` within the Pattern Lab dir `/apps/pattern-lab/`
+**<u>Step 7</u>:** Add component to `package.json` AND `.boltrc.js` within the Pattern Lab dir `/docs-site/`
 
 **<u>Step 8</u>:** Build the things! `cd` to the root and run `npm run bootstrap`
 
 - This command will install your references to the new component and will allow you to begin to build/test your new component within Pattern Lab.
 
-**<u>Step 9</u>:** Create a new dir for your component within `/apps/pattern-lab/src/_patterns/02-components/` and add a new "docs" twig file, named like `00-COMPONENT-docs.twig`:
+**<u>Step 9</u>:** Create a new dir for your component within `/docs-site/src/_patterns/02-components/` and add a new "docs" twig file, named like `00-COMPONENT-docs.twig`:
 
 ```
 {% set schema = get_data('@bolt-components-COMPONENT/NEW-COMPONENT.schema.yml') %}

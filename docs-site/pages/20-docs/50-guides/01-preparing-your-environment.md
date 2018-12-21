@@ -124,7 +124,7 @@ This performs all the setup and install tasks needed to run the Bolt docs and Pa
 
 5. Finally, assuming you didn't get any errors during Step 4, you should be able to `cd` into the `apps/pattern-lab` folder to get the code to compile, watch for changes, start up a local dev server, etc.
 ```bash
-cd apps/pattern-lab
+cd docs-site
 npm start
 ```
 
