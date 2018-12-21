@@ -22,15 +22,15 @@ jobs:
       script: yarn && yarn run lint
       name: 'Linting'
 
-    - stage: lint-test-and-build
-      install: yarn run setup:uikit
-      script: yarn run build:uikit
-      name: 'Build UIKit'
+    #- stage: lint-test-and-build
+    #  install: yarn run setup:uikit
+    #  script: yarn run build:uikit
+    #  name: 'Build UIKit'
 
     # smoke tests use default npm.
     - stage: lint-test-and-build
-      install: yarn && yarn run composer
-      script: yarn run build:website && yarn run build:icons
+      install: yarn run setup
+      script: yarn run build:website
       after_success: yarn run deploy
       name: 'Build + Deploy'
 
