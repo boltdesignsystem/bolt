@@ -41,7 +41,7 @@
     "lint:style:fix": "yarn run lint:style -- --fix",
     "_lint:twig": "./packages/core-php/vendor/bin/twig-lint lint packages --only-print-errors && ./packages/core-php/vendor/bin/twig-lint lint docs-site --only-print-errors --exclude=example-integrations/drupal-lab",
     "lint:yaml": "npx yamllint 'packages/**/*.yml' --ignore='**/vendor/**'",
-    "lint": "npx npm-run-all --continue-on-error --parallel lint:js lint:style lint:yaml",
+    "lint": "npx npm-run-all --continue-on-error --parallel lint:js lint:style",
     "prepush": "yarn run test && yarn run lint",
     "test:js": "NODE_ENV='test' npx jest --testFailureExitCode 1",
     "_test:js:watch": "jest --watch",
