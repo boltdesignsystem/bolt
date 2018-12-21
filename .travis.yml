@@ -14,16 +14,20 @@ php:
 jobs:
   include:
     - stage: lint-test-and-build
-      script: yarn run test
+      script: yarn && yarn run test
 
     - stage: lint-test-and-build
-      script: yarn run lint
+      script: yarn && yarn run lint
+
+    - stage: lint-test-and-build
+      install: yarn run setup:uikit
+      script: yarn run build:uikit
 
     # smoke tests use default npm.
     - stage: lint-test-and-build
       before_install: true
       install: yarn run setup
-      script: yarn run build
+      script: yarn run build:website && yarn run build:icons
       after_success: yarn run deploy
       cache:
         yarn: true
