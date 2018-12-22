@@ -24,7 +24,7 @@
     "setup": "yarn && yarn run bootstrap && yarn run composer",
     "setup:uikit": "cd packages/uikit-workshop && yarn",
     "build": "npm run build:website",
-    "build:website": "cd docs-site && yarn run build",
+    "build:website": "cd docs-site && yarn run build:prod",
     "build:icons": "npx lerna exec --scope @bolt/components-icons -- yarn run build",
     "build:uikit": "cd packages/uikit-workshop && yarn run build",
     "composer": "npx npm-run-all --parallel composer:*",

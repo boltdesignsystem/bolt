@@ -18,7 +18,7 @@ async function writeVersionDataToJson(versionData) {
   });
 
   fs.writeFile(
-    path.join(process.cwd(), config.dataDir, '/bolt-releases.bolt.json'),
+    path.join(config.dataDir, '/bolt-releases.bolt.json'),
     JSON.stringify({
       options: versionInfo,
     }),
@@ -37,18 +37,18 @@ async function gatherBoltVersions() {
   ).start();
 
   // Skip over checking for Bolt releases when not in prod mode to speed up the initial build
-  if (!config.prod) {
-    versionSpinner.succeed(
-      chalk.green('Skipped gathering data on every Bolt release -- dev build!'),
-    );
-    return [
-      {
-        label: 'Local Dev',
-        type: 'option',
-        value: `http://localhost:${config.port}/${config.startPath}`,
-      },
-    ];
-  }
+  // if (!config.prod) {
+  versionSpinner.succeed(
+    chalk.green('Skipped gathering data on every Bolt release -- dev build!'),
+  );
+  return [
+    {
+      label: 'Local Dev',
+      type: 'option',
+      value: `http://localhost:${config.port}/${config.startPath}`,
+    },
+  ];
+  // }
 
   const tags = await gitSemverTags();
 

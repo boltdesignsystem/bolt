@@ -17,11 +17,11 @@ class SassDocPlugin {
       try {
         // Load .sassdocrc configuration
         options = yaml.safeLoad(
-          fs.readFileSync(path.join(process.cwd(), '.sassdocrc'), 'utf-8'),
+          fs.readFileSync(path.join(__dirname, '.sassdocrc'), 'utf-8'),
         );
       } catch (err) {
         console.warn(err);
-        throw new Error(`Invalid or no .sassdocrc found in: ${process.cwd()}`);
+        throw new Error(`Invalid or no .sassdocrc found in: ${__dirname}`);
       }
     }
 

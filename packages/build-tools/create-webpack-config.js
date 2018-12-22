@@ -43,7 +43,7 @@ async function createWebpackConfig(buildConfig) {
 
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@bolt/sass-export-data')({
-    path: path.resolve(process.cwd(), config.dataDir),
+    path: config.dataDir,
   });
 
   // map out Twig namespaces with the NPM package name
@@ -55,7 +55,8 @@ async function createWebpackConfig(buildConfig) {
   let themifyOptions = {
     watchForChanges: config.watch === true ? true : false,
     classPrefix: 't-bolt-',
-    screwIE11: false,
+    // screwIE11: false,
+    screwIE11: true,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -65,12 +66,10 @@ async function createWebpackConfig(buildConfig) {
   themifyOptions = deepmerge(themifyOptions, {
     fallback: {
       jsonPath: path.resolve(
-        process.cwd(),
         config.buildDir,
         `data/${themifyOptions.fallback.jsonDataExport}.json`,
       ),
       cssPath: path.resolve(
-        process.cwd(),
         config.buildDir,
         `${themifyOptions.fallback.filename}.css`,
       ),
@@ -331,13 +330,6 @@ async function createWebpackConfig(buildConfig) {
   const webpackConfig = {
     target: 'web',
     entry: await buildWebpackEntry(),
-    // watchOptions: {
-    //   ignored: [
-    //     path.resolve(process.cwd(), config.buildDir) + '**/*',
-    //     path.resolve(process.cwd(), config.wwwDir) + '**/*',
-    //     'node_modules',
-    //   ],
-    // },
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       filename: `[name]${langSuffix}.js`,
@@ -448,10 +440,7 @@ async function createWebpackConfig(buildConfig) {
       new SassDocPlugin(
         {
           src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
-          dest: path.resolve(
-            process.cwd(),
-            `${config.buildDir}/data/sassdoc.bolt.json`,
-          ),
+          dest: path.resolve(`${config.dataDir}/sassdoc.bolt.json`),
         },
         {
           outputPath: config.buildDir,
@@ -535,7 +524,7 @@ async function createWebpackConfig(buildConfig) {
   if (config.wwwDir) {
     webpackConfig.devServer = {
       logLevel: 'silent',
-      contentBase: path.resolve(process.cwd(), config.wwwDir),
+      contentBase: config.wwwDir,
       quiet: true,
       clientLogLevel: 'none',
       port: config.port,

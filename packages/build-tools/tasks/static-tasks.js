@@ -275,7 +275,7 @@ async function watch() {
       '**/node_modules/**',
       '**/vendor/**',
       '**/_patterns/**',
-      '**/.twig-renderer/**',
+      '**/vendor-*/**',
     ],
   });
 
