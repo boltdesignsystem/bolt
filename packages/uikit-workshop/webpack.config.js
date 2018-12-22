@@ -16,7 +16,7 @@ const explorer = cosmiconfig('patternlab');
 const defaultConfig = {
   buildDir: './dist',
   prod: false, // or false for local dev
-  sourceMaps: true,
+  sourceMaps: false,
 };
 
 module.exports = async function() {

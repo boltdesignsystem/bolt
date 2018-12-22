@@ -19,7 +19,6 @@ const config = {
   startPath: '/',
   plConfigFile: './config/config.yml',
   verbosity: 2,
-  sourceMaps: false,
   // schemaErrorReporting: 'cli',
   schemaErrorReporting: 'none',
   enableCache: true,
