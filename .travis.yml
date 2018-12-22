@@ -13,27 +13,21 @@ php:
 
 jobs:
   include:
-    # - stage: lint-test-and-build
-    #   install: yarn && yarn run composer
-    #   script: yarn run test
-    #   name: 'Smoke Tests'
-
-    # - stage: lint-test-and-build
-    #   script: yarn && yarn run lint
-    #   name: 'Linting'
-
-    #- stage: lint-test-and-build
-    #  install: yarn run setup:uikit
-    #  script: yarn run build:uikit
-    #  name: 'Build UIKit'
-
-    # smoke tests use default npm.
     - stage: lint-test-and-build
-      script: yarn run setup && yarn run build:website && yarn run deploy
-        # - 
-        # - yarn run build:website
-        # - yarn run deploy
+      name: 'Smoke Tests'
+      install: yarn && yarn run composer
+      script: yarn run test
+
+    - stage: lint-test-and-build
+      name: 'Linting'
+      script: yarn && yarn run lint
+
+    - stage: lint-test-and-build
       name: 'Build + Deploy'
+      script:
+        - yarn run setup
+        - yarn run build:website
+        - yarn run deploy
 
 # addons:
 #   sauce_connect: true
