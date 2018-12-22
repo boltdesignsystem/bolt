@@ -1,6 +1,6 @@
 <?php
 
-require_once '.twig-renderer/vendor/autoload.php';
+require_once 'vendor-renderer/autoload.php';
 
 function addBoltExtensions(\Twig_Environment &$env, $config) {
   $env->addExtension(new \Bolt\TwigExtensions\BoltCore());

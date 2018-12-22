@@ -29,9 +29,10 @@ jobs:
 
     # smoke tests use default npm.
     - stage: lint-test-and-build
-      install: yarn run setup
-      script: yarn run build:website
-      after_success: yarn run deploy
+      install: 
+        - yarn run setup
+        - yarn run build:website
+        - yarn run deploy
       name: 'Build + Deploy'
 
 # addons:
