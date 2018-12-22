@@ -13,14 +13,14 @@ php:
 
 jobs:
   include:
-    - stage: lint-test-and-build
-      install: yarn && yarn run composer
-      script: yarn run test
-      name: 'Smoke Tests'
+    # - stage: lint-test-and-build
+    #   install: yarn && yarn run composer
+    #   script: yarn run test
+    #   name: 'Smoke Tests'
 
-    - stage: lint-test-and-build
-      script: yarn && yarn run lint
-      name: 'Linting'
+    # - stage: lint-test-and-build
+    #   script: yarn && yarn run lint
+    #   name: 'Linting'
 
     #- stage: lint-test-and-build
     #  install: yarn run setup:uikit

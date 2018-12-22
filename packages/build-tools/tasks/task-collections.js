@@ -85,7 +85,12 @@ async function clean() {
         ];
         break;
       case 'pwa':
-        dirs = [path.join(path.resolve(config.wwwDir), '**')];
+        dirs = [
+          path.join(path.resolve(config.wwwDir), '**'),
+          `!${path.resolve(config.wwwDir)}`,
+          `!${path.resolve(config.wwwDir, 'pattern-lab')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
+          `!${path.join(path.resolve(config.wwwDir, 'pattern-lab'), '**')}`,
+        ];
         break;
       default:
         dirs = [config.buildDir];
@@ -142,7 +147,7 @@ async function buildPrep() {
   config = config || (await getConfig());
   try {
     await getExtraTasks();
-    // config.prod ? await clean() : '';
+    config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
     if (
