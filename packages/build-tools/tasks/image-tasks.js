@@ -101,8 +101,7 @@ async function processImage(file, set) {
       const newSizedPath = path.format(thisPathInfo);
       const newSizeWebPath = makeWebPath(newSizedPath);
 
-      // temporarily skip over to speed up Travis CI checks
-      if (config.prod === 'skip') {
+      if (config.prod) {
         if (isOrig) {
           await writeFile(newSizedPath, originalFileBuffer);
           if (
