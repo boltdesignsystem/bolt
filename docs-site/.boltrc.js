@@ -13,8 +13,8 @@ const config = {
   // Environmental variable / preset to use
   env: 'pwa',
   srcDir: './pages',
-  buildDir: '../www/build',
-  wwwDir: '../www/',
+  buildDir: path.join(__dirname, '../www/build'),
+  wwwDir: path.join(__dirname, '../www'),
   startPath: '/',
   plConfigFile: './config/config.yml',
   verbosity: 2,
@@ -40,7 +40,7 @@ const config = {
     },
     'bolt-assets': {
       recursive: true,
-      paths: ['../../www/build'],
+      paths: ['../www/build'],
     },
     utils: {
       recursive: true,
