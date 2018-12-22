@@ -55,8 +55,7 @@ async function createWebpackConfig(buildConfig) {
   let themifyOptions = {
     watchForChanges: config.watch === true ? true : false,
     classPrefix: 't-bolt-',
-    // screwIE11: false,
-    screwIE11: true,
+    screwIE11: false,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
