@@ -96,7 +96,7 @@ async function clean() {
         dirs = [config.buildDir];
         break;
     }
-    await internalTasks.clean(dirs);
+    // await internalTasks.clean(dirs);
   } catch (error) {
     log.errorAndExit('Clean failed', error);
   }
@@ -150,6 +150,7 @@ async function buildPrep() {
     config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
+    console.log(process.cwd());
     if (
       config.env === 'pl' ||
       config.env === 'static' ||

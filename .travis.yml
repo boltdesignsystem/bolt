@@ -29,10 +29,10 @@ jobs:
 
     # smoke tests use default npm.
     - stage: lint-test-and-build
-      install: 
-        - yarn run setup
-        - yarn run build:website
-        - yarn run deploy
+      script: yarn run setup && yarn run build:website && yarn run deploy
+        # - 
+        # - yarn run build:website
+        # - yarn run deploy
       name: 'Build + Deploy'
 
 # addons:
@@ -77,15 +77,15 @@ before_install:
 #   apt: true
 #   directories:
 #     - $HOME/.composer/cache/files
-cache:
-  yarn: true
-  directories:
-    - node_modules
-    - ~/.npm # cache npm's cache
-    - ~/npm # cache latest npm
-    - docs-site/vendor
-    - docs-site/.twig-renderer/vendor
-    - docs-site/node_modules
+# cache:
+#   yarn: true
+#   directories:
+#     - node_modules
+#     - ~/.npm # cache npm's cache
+#     - ~/npm # cache latest npm
+#     - docs-site/vendor
+#     - docs-site/.twig-renderer/vendor
+#     - docs-site/node_modules
 
 notifications:
   email:
