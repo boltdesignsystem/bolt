@@ -24,7 +24,7 @@ jobs:
       name: 'Linting'
       before_script: yarn
       script: 
-        - yarn run lint:scss
+        - yarn run lint:style
         - yarn run lint:js
       cache:
         yarn: true
