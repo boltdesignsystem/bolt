@@ -12,7 +12,7 @@ jobs:
   include:
     - stage: build-and-deploy
       name: 'Smoke Tests'
-      before_script: yarn run setup
+      before_script: yarn && yarn run composer
       script: yarn run test
       cache:
         yarn: true
