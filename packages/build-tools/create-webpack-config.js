@@ -55,7 +55,8 @@ async function createWebpackConfig(buildConfig) {
   let themifyOptions = {
     watchForChanges: config.watch === true ? true : false,
     classPrefix: 't-bolt-',
-    screwIE11: false,
+    // screwIE11: false,
+    screwIE11: true,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -380,11 +381,13 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(js|tsx|mjs)$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+          // exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+          exclude: /(node_modules|bower_components)/,
           use: {
             loader: 'babel-loader',
             options: {
               babelrc: false,
+              cacheDirectory: true,
               presets: ['@bolt/babel-preset-bolt'],
             },
           },
@@ -479,6 +482,7 @@ async function createWebpackConfig(buildConfig) {
       new UglifyJsPlugin({
         sourceMap: config.sourceMaps,
         parallel: true,
+        cache: true,
         uglifyOptions: {
           compress: true,
           mangle: true,

@@ -1,28 +1,26 @@
 {
-  "name": "bolt/twig-renderer",
-  "type": "project",
+  "name": "bolt-design-system/twig-renderer",
+  "type": "library",
+  "version": "1.0.0",
   "license": "MIT",
   "minimum-stability": "dev",
   "repositories": [
     {
       "type": "path",
-      "url": "../../packages/core-php"
+      "url": "../core-php"
     },
     {
       "type": "path",
-      "url": "../../packages/drupal-stubs"
+      "url": "../drupal-stubs"
     }
   ],
   "require": {
-    "bolt-design-system/core-php": "*",
-    "bolt-design-system/drupal-stubs": "*",
+    "bolt-design-system/core-php": "^1.0.0",
+    "bolt-design-system/drupal-stubs": "^1.0.0",
     "twig/twig": "^1.0",
     "pattern-lab/drupal-twig-extensions": "^0.2.0",
     "webmozart/path-util": "*",
     "symfony/finder": "*",
     "wa72/html-pretty-min": "^0.2.0"
-  },
-  "config": {
-    "vendor-dir": "../vendor-renderer"
   }
 }

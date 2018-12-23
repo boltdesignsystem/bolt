@@ -147,7 +147,7 @@ async function buildPrep() {
   config = config || (await getConfig());
   try {
     await getExtraTasks();
-    config.prod ? await clean() : '';
+    // config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
     if (

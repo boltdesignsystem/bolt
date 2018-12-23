@@ -20,6 +20,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "postinstall": "composer update --prefer-dist"
+  },
   "schema": "utils/config.schema.yml",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "homepage": "https://bolt-design-system.com",

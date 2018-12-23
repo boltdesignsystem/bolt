@@ -27,12 +27,13 @@
     "shudrum/array-finder": "^1.1",
     "gregwar/image": "^2.0",
     "tooleks/php-avg-color-picker": "^1.1.2",
-    "asm89/twig-lint": "^1.0"
-  },
-  "require-dev": {
+    "asm89/twig-lint": "^1.0",
     "phpunit/phpunit": "^7"
   },
   "scripts": {
-    "test": "phpunit --colors=always tests"
+    "test": [
+      "@composer update",
+      "phpunit --colors=always tests"
+    ]
   }
 }

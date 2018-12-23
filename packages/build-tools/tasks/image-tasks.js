@@ -47,7 +47,7 @@ const svgo = new SVGO({
 
 const boltImageSizes = [
   // 50,
-  100,
+  // 100,
   // 200,
   320,
   // 480,
@@ -57,7 +57,7 @@ const boltImageSizes = [
   // 1366,
   // 1536,
   1920,
-  2560,
+  // 2560,
   // 2880,
 ];
 

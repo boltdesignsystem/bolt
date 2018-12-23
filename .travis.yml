@@ -15,8 +15,8 @@ jobs:
       before_script:
         - phpenv config-rm xdebug.ini
         - composer global require hirak/prestissimo
-        - yarn
-        - yarn run composer
+        - yarn --production
+        # - yarn run composer
       script: yarn run test
       cache:
         yarn: true

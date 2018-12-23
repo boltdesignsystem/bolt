@@ -161,7 +161,9 @@ const config = {
   ],
   alterTwigEnv: [
     {
-      file: path.join(__dirname, 'SetupTwigRenderer.php'),
+      file: `${path.dirname(
+        resolve.sync('@bolt/twig-renderer/package.json'),
+      )}/SetupTwigRenderer.php`,
       functions: ['addBoltExtensions'],
     },
   ],

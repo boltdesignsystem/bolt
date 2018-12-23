@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d2654402aade0e586f3bf5a94a20f387",
+    "content-hash": "e448e433bfd973af2cba961eccbab89a",
     "packages": [
         {
             "name": "asm89/twig-lint",
@@ -98,12 +98,17 @@
         },
         {
             "name": "bolt-design-system/core-php",
-            "version": "2.2.1",
+            "version": "1.8.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bolt-design-system/core-php.git",
+                "reference": "1ea01173567c81c5c5d1124eca19cce3289dda34"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../packages/core-php",
-                "reference": "9377783eea7b64c884f53b78d8151c6e415a058f",
-                "shasum": null
+                "type": "zip",
+                "url": "https://api.github.com/repos/bolt-design-system/core-php/zipball/1ea01173567c81c5c5d1124eca19cce3289dda34",
+                "reference": "1ea01173567c81c5c5d1124eca19cce3289dda34",
+                "shasum": ""
             },
             "require": {
                 "asm89/twig-lint": "^1.0",
@@ -125,11 +130,7 @@
                     "Bolt\\": "src/"
                 }
             },
-            "scripts": {
-                "test": [
-                    "phpunit --colors=always tests"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -142,15 +143,16 @@
                     "name": "Evan Lovely"
                 }
             ],
-            "description": "Core PHP functionality for Bolt"
+            "description": "Core PHP functionality for Bolt",
+            "time": "2018-09-13T13:33:00+00:00"
         },
         {
             "name": "bolt-design-system/drupal-stubs",
-            "version": "1.0.0-rc.6",
+            "version": "1.0.0",
             "dist": {
                 "type": "path",
-                "url": "../../packages/drupal-stubs",
-                "reference": "a390a394526d9e72de6d89b7bb70c25b0cd3bf93",
+                "url": "../drupal-stubs",
+                "reference": "47ff39e4bcce3d550e030211ad2ced8eb9dc4acb",
                 "shasum": null
             },
             "require": {
@@ -783,12 +785,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "769711e77f96207f972739309337c13c3216cf28"
+                "reference": "3017962e094c870f6c177ed39481bd92345f0689"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/769711e77f96207f972739309337c13c3216cf28",
-                "reference": "769711e77f96207f972739309337c13c3216cf28",
+                "url": "https://api.github.com/repos/symfony/console/zipball/3017962e094c870f6c177ed39481bd92345f0689",
+                "reference": "3017962e094c870f6c177ed39481bd92345f0689",
                 "shasum": ""
             },
             "require": {
@@ -844,7 +846,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-12-15T10:33:10+00:00"
+            "time": "2018-12-23T14:04:59+00:00"
         },
         {
             "name": "symfony/debug",
@@ -908,12 +910,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "6cf2be5cbd0e87aa35c01f80ae0bf40b6798e442"
+                "reference": "44359157a3ea917105c7285405448574e0bf3d0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/6cf2be5cbd0e87aa35c01f80ae0bf40b6798e442",
-                "reference": "6cf2be5cbd0e87aa35c01f80ae0bf40b6798e442",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/44359157a3ea917105c7285405448574e0bf3d0e",
+                "reference": "44359157a3ea917105c7285405448574e0bf3d0e",
                 "shasum": ""
             },
             "require": {
@@ -949,7 +951,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-11T19:48:54+00:00"
+            "time": "2018-12-22T13:25:23+00:00"
         },
         {
             "name": "symfony/options-resolver",
