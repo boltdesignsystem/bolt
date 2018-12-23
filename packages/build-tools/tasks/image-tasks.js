@@ -29,20 +29,36 @@ const svgo = new SVGO({
 });
 
 // @todo Consider moving this to a place to share - also duplicated in `@bolt/core/images-sizes.js`
+// const boltImageSizes = [
+//   50,
+//   100,
+//   200,
+//   320,
+//   480,
+//   640,
+//   800,
+//   1024,
+//   1366,
+//   1536,
+//   1920,
+//   2560,
+//   2880,
+// ];
+
 const boltImageSizes = [
-  50,
+  // 50,
   100,
-  200,
+  // 200,
   320,
-  480,
+  // 480,
   640,
-  800,
+  // 800,
   1024,
-  1366,
-  1536,
+  // 1366,
+  // 1536,
   1920,
   2560,
-  2880,
+  // 2880,
 ];
 
 function makeWebPath(imagePath) {
@@ -112,14 +128,14 @@ async function processImage(file, set) {
             await sharp(originalFileBuffer)
               .resize(size)
               .jpeg({
-                quality: 50,
-                progressive: true,
-                optimiseScans: true,
-                force: false,
+                // quality: 50,
+                // progressive: true,
+                // optimiseScans: true,
+                // force: false,
               })
               .png({
-                progressive: true,
-                force: false,
+                // progressive: true,
+                // force: false,
               })
               .toFile(newSizedPath);
           } else if (pathInfo.ext === '.svg') {
@@ -129,14 +145,14 @@ async function processImage(file, set) {
           } else {
             await sharp(originalFileBuffer)
               .jpeg({
-                quality: 50,
-                progressive: true,
-                optimiseScans: true,
-                force: false,
+                // quality: 50,
+                // progressive: true,
+                // optimiseScans: true,
+                // force: false,
               })
               .png({
-                progressive: true,
-                force: false,
+                // progressive: true,
+                // force: false,
               })
               .toFile(newSizedPath);
           }
@@ -150,14 +166,14 @@ async function processImage(file, set) {
             await sharp(originalFileBuffer)
               .resize(size)
               .jpeg({
-                quality: 50,
-                progressive: true,
-                optimiseScans: true,
-                force: false,
+                // quality: 50,
+                // progressive: true,
+                // optimiseScans: true,
+                // force: false,
               })
               .png({
-                progressive: true,
-                force: false,
+                // progressive: true,
+                // force: false,
               })
               .toFile(newSizedPath);
           } else {

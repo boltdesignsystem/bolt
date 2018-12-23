@@ -12,32 +12,24 @@ jobs:
   include:
     - stage: build-and-deploy
       name: 'Smoke Tests'
-      before_script:
-        - phpenv config-rm xdebug.ini
-        - yarn
-        - yarn run composer
+      before_script: yarn run setup
       script: yarn run test
       cache:
         yarn: true
         directories:
           - node_modules
-          - docs-site/vendor
-          - docs-site/vendor-renderer
           - docs-site/cache
 
     - stage: build-and-deploy
       name: 'Linting'
-      before_script:
-        - phpenv config-rm xdebug.ini
-        - yarn
-      script: yarn run lint
+      before_script: yarn
+      script: 
+        - yarn run lint:scss
+        - yarn run lint:js
       cache:
         yarn: true
         directories:
           - node_modules
-          - docs-site/vendor
-          - docs-site/vendor-renderer
-          - docs-site/cache
 
     - stage: build-and-deploy
       name: 'Build + Deploy'
@@ -50,8 +42,6 @@ jobs:
         yarn: true
         directories:
           - node_modules
-          - docs-site/vendor
-          - docs-site/vendor-renderer
           - docs-site/cache
 
 # addons:
