@@ -77,11 +77,11 @@
 
     {# <script>console.log('Bolt Global Twig variable. In Twig, you can tap into the `bolt` global var to access all sorts of helpful information about the Bolt Design System, such as colors, spacing, and more. Most is exported from Sass; to add more, add this to any Sass file: `@include export-data("myVariables.bolt.json", $my-variables-in-a-sass-map);`, and then you can access it in Twig via `bolt.data.myVariables`. Here is all the data available to the current templates, including the `bolt` var:');</script> #}
 
-    {% if inline_global_data %}
+    {# {% if inline_global_data %}
       <script>
-        window.bolt = JSON.parse('{{ bolt|json_encode|e('js') }}');
+        window.bolt = JSON.parse('{{ bolt.data|json_encode|e('js') }}');
       </script>
-    {% endif %}
+    {% endif %} #}
 
   </head>
   <body class="c-bolt-site  c-bds-layout {% if currentUrl == 'index.html' %} t-bolt-xdark {% endif %} c-bds-layout--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }} {{ hasSidebar ? 'c-bds-layout--has-sidebar' : ''}}">
