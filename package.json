@@ -21,30 +21,33 @@
   ],
   "scripts": {
     "start": "cd docs-site && yarn run start",
-    "setup": "yarn --production",
-    "setup:uikit": "cd packages/uikit-workshop && yarn",
-    "build": "npm run build:website",
-    "build:full": "run-p --race build:*",
-    "build:website": "cd docs-site && yarn run build:prod",
-    "build:icons": "npx lerna exec --scope @bolt/components-icons -- yarn run build",
-    "build:uikit": "npx lerna exec --scope @bolt/uikit-workshop -- yarn run build",
-    "postbootstrap": "node scripts/monorepo-tests.js",
+    "build": "cd docs-site && yarn run build:prod",
+
+    "setup": "yarn",
+    "setup:rebuild": "yarn --force",
+
     "deploy": "./scripts/deploy.js",
-    "clean:git": "git clean -xdf && rm -rf **/vendor **/node_modules && find . -empty -type d -delete",
-    "clean:lerna": "npx lerna clean --yes",
-    "clean": "npm run clean:lerna && npm run clean:git",
-    "prepublishOnly": "yarn run build && node scripts/monorepo-tests.js",
+    
+    "clean": "npx npm-run-all --parallel clean:*",
+    "clean:empty": "find . -empty -type d -delete",
+    "clean:composer": "find . -name 'vendor' -type d -exec rm -rf {} +",
+    "clean:cache": "find . -name 'cache' -type d -exec rm -rf {} +",
+    "clean:npm": "find . -name 'node_modules' -type d -exec rm -rf {} +",
+    
+    "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
-    "lint:style": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
-    "lint:yaml": "yamllint 'packages/**/*.yml' --ignore='**/vendor/**'",
-    "lint": "run-p --race lint:*",
-    "prepush": "yarn run test && yarn run lint",
-    "test": "run-p --race test:*",
-    "test:js": "NODE_ENV='test' jest --testFailureExitCode 1",
-    "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test"
+    "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
+    
+    "test": "npm-run-all --parallel test:*",
+    "test:js": "NODE_ENV='test' jest",
+    "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
+    
+    "postbootstrap": "node scripts/monorepo-tests.js",
+    "prepublishOnly": "node scripts/monorepo-tests.js"
   },
   "dependencies": {
-    "@bolt/config-eslint": "^2.2.1",
+    "@bolt/twig-renderer": "file:packages/twig-renderer",
+    "@bolt/config-eslint": "*",
     "sassdoc": "^2.5.0",
     "npm-run-all": "^4.1.5",
     "jest": "^23.5.0"
@@ -63,9 +66,11 @@
   "workspaces": {
     "packages": [
       "docs-site",
+      "packages/uikit-workshop",
       "packages/build-tools",
       "packages/build-tools/plugins/*",
       "packages/components/*",
+      "packages/drupal-stubs",
       "packages/config-presets/*",
       "packages/core",
       "packages/core-php",
