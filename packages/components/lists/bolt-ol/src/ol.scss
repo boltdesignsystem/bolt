@@ -12,6 +12,11 @@ bolt-ol {
   @include bolt-margin(0);
   @include bolt-padding(0);
 
+  margin-bottom: bolt-spacing(xxsmall) * -1;
   list-style: none;
   counter-reset: li;
+
+  &--nested {
+    margin-top: bolt-spacing(xxsmall);
+  }
 }

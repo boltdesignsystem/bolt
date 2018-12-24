@@ -42,8 +42,6 @@ class BoltListItem extends withLitHtml() {
       childNode.level = depth + 1;
     }
 
-    console.log(this.slots.default);
-
     this.slots.default = this.slots.default.map(
       mapWithDepth(this.level, addNestedLevelProps),
     );

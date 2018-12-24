@@ -7,6 +7,12 @@
 .c-bolt-ul {
   @include bolt-margin(0);
   @include bolt-padding(0);
+
   box-sizing: border-box;
+  margin-bottom: bolt-spacing(xxsmall) * -1;
   list-style: none;
+
+  &--nested {
+    margin-top: bolt-spacing(xxsmall);
+  }
 }

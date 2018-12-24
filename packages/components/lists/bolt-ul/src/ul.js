@@ -22,7 +22,6 @@ class BoltUnorderedList extends withLitHtml() {
   static is = 'bolt-ul';
 
   static props = {
-    last: props.boolean,
     level: {
       ...props.number,
       ...{ default: 1 },
@@ -33,7 +32,6 @@ class BoltUnorderedList extends withLitHtml() {
     let level = this.level;
 
     if (this.parentNode.tagName) {
-      console.log(this.parentNode.level);
       if (this.parentNode.tagName === 'BOLT-LI' && this.parentNode.level) {
         level = this.parentNode.level + 1;
       }
@@ -42,6 +40,7 @@ class BoltUnorderedList extends withLitHtml() {
     const classes = cx('c-bolt-ul', {
       [`c-bolt-ul--l${level}`]: level,
       [`c-bolt-ul--level-${level}`]: level,
+      [`c-bolt-ul--nested`]: level > 1,
     });
 
     this.slots.default.map(mapWithDepth(level, addNestedLevelProps));

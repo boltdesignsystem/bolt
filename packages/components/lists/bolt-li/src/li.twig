@@ -1,39 +1,29 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set base_class = "c-bolt-li" %}
 
-{% set last = loop.last %}
 {% set classes = [
   "#{base_class}",
-  type ? "#{base_class}--#{type}-item",
+  type ? "#{base_class}--#{type}-item"
 ] %}
 
-{% if item.text %}
-  {% set children = item.text %}
-{% elseif item.children %}
-  {% set children = item.children %}
-{% elseif item %}
-  {% set children = item %}
+{% if length %}
+  {% if index == 1 %}
+    <bolt-li {{ attributes }}>
+      <replace-with-grandchildren>
+        <li class="{{ classes|join(" ") }}">
+  {% endif %}
+  {{ children }}
+  {% if length == index %}
+        </li>
+      </replace-with-grandchildren>
+    </bolt-li>
+  {% endif %}
+{% else %}
+  <bolt-li {{ attributes }}>
+    <replace-with-grandchildren>
+      <li class="{{ classes|join(" ") }}">
+        {{ children }}
+      </li>
+    </replace-with-grandchildren>
+  </bolt-li>
 {% endif %}
-
-<bolt-li {{ attributes }}>
-  <replace-with-grandchildren>
-    <li class="{{ classes|join(" ") }}">
-      {{ children }}
-
-      {# @todo: can we remove this? it doesn't look like the last-item logic is needed for this #}
-      {# {% if item is iterable %}
-        {% for i in item %}
-          {% set inner_item_attributes = create_attribute({}) %}
-          {% set last_i = loop.last %}
-          {% set inner_classes = [
-            "#{base_class}bolt-ordered-list",
-            last and last_i ? "#{base_class}--last-item",
-          ] %}
-          {{ i }}
-        {%  endfor %}
-      {% else %}
-       {{ item }}
-      {% endif %} #}
-    </li>
-  </replace-with-grandchildren>
-</bolt-li>

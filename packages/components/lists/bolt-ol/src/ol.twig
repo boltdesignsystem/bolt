@@ -19,10 +19,15 @@
     <ol {{ attributes.addClass(classes) }}>
       {% for item in items %}
         {% if item is iterable %}
-          {% set nested_item = item | merge({
-            type: "ol"
-          }) %}
-          {% include "@bolt-components-li/li.twig" with nested_item only %}
+          {% for i in item %}
+            {% set nested_item = {
+              type: "ol",
+              children: i,
+              index: loop.index,
+              length: loop.length,
+            } %}
+            {% include "@bolt-components-li/li.twig" with nested_item only %}
+          {% endfor %}
         {% else %}
           {% set list_item = {
             type: "ol",
