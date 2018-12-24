@@ -54,7 +54,7 @@ Subheads and body copy are displayed at Regular weight. For body copy, we defaul
 
 ### Teasers
 
-*For a full reference of teaser variations along with API docs, visit the [teaser reference in Pattern Lab](https://bolt-design-system.com/pattern-lab/?p=viewall-components-teaser).*
+*For a full reference of teaser variations along with API docs, visit the [teaser reference in Pattern Lab](https://boltdesignsystem.com/pattern-lab/?p=viewall-components-teaser).*
 
 A teaser is most commonly used in cards and bands. It contains an eyebrow, heading, and a paragraph. In some cases, it will also include an optional subheading.
 
@@ -86,7 +86,7 @@ For long form content, page titles always use the XXL Heading. From there, `h2` 
 
 ### Unordered lists
 
-Unordered lists are styled with standard bullets, and are optimized for all color themes. For all options and API docs, see the [unordered list reference](https://bolt-design-system.com/pattern-lab/?p=viewall-components-unordered-list) in Pattern Lab.
+Unordered lists are styled with standard bullets, and are optimized for all color themes. For all options and API docs, see the [unordered list reference](https://boltdesignsystem.com/pattern-lab/?p=viewall-components-unordered-list) in Pattern Lab.
 
 <figure>
 <img src="/images/docs/type-ul-light.png" />
@@ -95,7 +95,7 @@ Unordered lists are styled with standard bullets, and are optimized for all colo
 
 ### Ordered Lists
 
-Ordered lists are also optimized for all color themes. For all options and API docs, see the [ordered list reference](https://bolt-design-system.com/pattern-lab/?p=viewall-components-ordered-list) in Pattern Lab.
+Ordered lists are also optimized for all color themes. For all options and API docs, see the [ordered list reference](https://boltdesignsystem.com/pattern-lab/?p=viewall-components-ordered-list) in Pattern Lab.
 
 <figure>
 <img src="/images/docs/type-ol-dark.png" />

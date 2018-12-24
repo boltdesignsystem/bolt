@@ -14,7 +14,7 @@ title: What’s New in Bolt 1.x?
 <hr>
 
 ## Docs Improvements
-- Brand new [Bolt site](https://bolt-design-system.com)!
+- Brand new [Bolt site](https://boltdesignsystem.com)!
 - [Quick Start Guide](/docs/guides/quick-start-guide.html) now available
 - Pattern Lab Docs Reinvented
   - Component-specific docs now baked into Pattern Lab, powered by the component’s `README.md`

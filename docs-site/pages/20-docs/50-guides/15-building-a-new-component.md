@@ -25,7 +25,7 @@ Below you'll find a step-by-step guide to walk through the process of adding a n
   "name": "@bolt/[NEW-COMPONENT]",
   "description": "BLANK Component in Bolt",
   "version": "0.0.0",
-  "homepage": "https://bolt-design-system.com",
+  "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
   "repository": {
     "type": "git",
