@@ -162,7 +162,9 @@ class BoltLink extends withLitHtml() {
               >${
                 name in this.slots
                   ? this.slot(name)
-                  : html`<slot name="${name}" />`
+                  : html`
+                      <slot name="${name}" />
+                    `
               }</span
             >
           `;
@@ -174,7 +176,11 @@ class BoltLink extends withLitHtml() {
           return html`
             <span class="${itemClasses}"
               >${
-                name in this.slots ? this.slot('default') : html`<slot/>`
+                name in this.slots
+                  ? this.slot('default')
+                  : html`
+                      <slot />
+                    `
               }</span
             >
           `;
