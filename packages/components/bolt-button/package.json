@@ -21,9 +21,16 @@
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^2.2.1"
+    "@bolt/core": "^2.2.1",
+    "@babel/cli": "^7.0.0",
+    "@bolt/babel-preset-bolt": "^2.2.1"
   },
-  "scripts": {},
+  "scripts": {
+    "_build": "babel --source-maps --out-dir dist/ ./src/*.js --delete-dir-on-start",
+    "_prepublishOnly": "yarn build",
+    "_postinstall": "yarn build",
+    "_watch": "yarn build --watch"
+  },
   "schema": "button.schema.yml",
   "gitHead": "6368a1636ee39759167cd146de58a42fbd62453a"
 }
