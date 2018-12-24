@@ -1,7 +1,7 @@
 const path = require('path');
 const log = require('../utils/log');
 const webpackTasks = require('./webpack-tasks');
-const criticalcssTasks = require('./criticalcss-tasks');
+// const criticalcssTasks = require('./criticalcss-tasks');
 const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
@@ -125,15 +125,15 @@ async function serve(buildTime = timer.start()) {
   }
 }
 
-async function criticalcss() {
-  try {
-    const criticalTasks = [];
-    criticalTasks.push(criticalcssTasks.build());
-    return Promise.all(criticalTasks);
-  } catch (error) {
-    log.errorAndExit('Critical CSS failed', error);
-  }
-}
+// async function criticalcss() {
+//   try {
+//     const criticalTasks = [];
+//     criticalTasks.push(criticalcssTasks.build());
+//     return Promise.all(criticalTasks);
+//   } catch (error) {
+//     log.errorAndExit('Critical CSS failed', error);
+//   }
+// }
 
 async function images() {
   try {
@@ -243,5 +243,5 @@ module.exports = {
   buildPrep,
   watch,
   clean,
-  criticalcss,
+  // criticalcss,
 };
