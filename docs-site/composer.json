@@ -35,7 +35,8 @@
     "server": "php core/console --server",
     "build": "php -d memory_limit=4048M core/console --generate",
     "watch": "php core/console --watch",
-    "start": "php core/console --server --quiet & php core/console --watch"
+    "start": "php core/console --server --quiet & php core/console --watch",
+    "setup": "@composer install --no-interaction --prefer-dist --no-progress"
   },
   "extra": {
     "patches-file": "composer.patches.json",

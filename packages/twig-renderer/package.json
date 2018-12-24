@@ -13,6 +13,7 @@
     }
   ],
   "dependencies": {
+    "@bolt/drupal-stubs": "2.2.1",
     "@basalt/twig-renderer": "^0.10.2",
     "@bolt/build-tools": "^2.2.1",
     "sleep-promise": "^8.0.1"
@@ -21,7 +22,7 @@
     "access": "public"
   },
   "scripts": {
-    "postinstall": "composer update --prefer-dist"
+    "postinstall": "composer run setup"
   },
   "schema": "utils/config.schema.yml",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",

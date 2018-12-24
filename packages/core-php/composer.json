@@ -32,7 +32,7 @@
   },
   "scripts": {
     "test": [
-      "@composer update",
+      "@composer install --no-interaction --prefer-dist --no-progress",
       "phpunit --colors=always tests"
     ]
   }
