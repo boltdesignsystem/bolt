@@ -15,8 +15,7 @@ jobs:
       before_script:
         - phpenv config-rm xdebug.ini
         - composer global require hirak/prestissimo
-        - yarn --production
-        # - yarn run composer
+        - yarn run setup
       script: yarn run test
       cache:
         yarn: true
@@ -28,7 +27,7 @@ jobs:
       name: 'Linting'
       before_script: yarn
       script: 
-        - yarn run lint:style
+        - yarn run lint:scss
         - yarn run lint:js
       cache:
         yarn: true
@@ -42,7 +41,7 @@ jobs:
         - composer global require hirak/prestissimo
         - yarn run setup
       script:
-        - yarn run build:website
+        - yarn run build
         - yarn run deploy
         # - sh./scripts/update-read-only-git-repos.sh
       cache:
