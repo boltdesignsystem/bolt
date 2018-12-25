@@ -16,8 +16,8 @@ const npmSass = require('npm-sass');
 const WriteAssetsWebpackPlugin = require('write-assets-webpack-plugin');
 const { BoltCache, getFileHash } = require('@bolt/build-tools/utils/cache');
 const chokidar = require('chokidar');
+const SassDocPlugin = require('@bolt/sass-webpack-plugin');
 const { getConfig } = require('./utils/config-store');
-const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
 const { boltWebpackProgress } = require('./utils/webpack-helpers');
 
 const {
