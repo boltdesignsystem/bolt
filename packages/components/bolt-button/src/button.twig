@@ -51,7 +51,7 @@
 {% elseif tag == "link" or tag == "a" or url != null %}
   {% set tag = "a" %}
   {% if url %}
-    {% set attributes = attributes.setAttribute("href", url) %}
+    {% set innerAttributes = innerAttributes.setAttribute("href", url) %}
   {% endif %}
 {% elseif tag == "reset" %}
   {% set tag = "button" %}
