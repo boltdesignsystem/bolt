@@ -4,8 +4,28 @@ const path = require('path');
 const ora = require('ora');
 const chalk = require('chalk');
 const checkLinks = require('check-links');
-const { gitSemverTags } = require('./git-semver-tags');
+const InCache = require('incache');
+const octokit = require('@octokit/rest')({
+  debug: false,
+  headers: {
+    Accept: 'application/vnd.github.v3.raw',
+  },
+});
 const { getConfig } = require('./config-store');
+
+const store = new InCache({
+  autoRemovePeriod: 900, // refresh git tags + releases every 15 minutes
+  autoSave: true,
+  autoSaveMode: 'timer',
+});
+
+// so we don't go over rate limits
+if (process.env.GITHUB_TOKEN) {
+  octokit.authenticate({
+    type: 'token',
+    token: process.env.GITHUB_TOKEN,
+  });
+}
 
 const urlsToCheck = [];
 
@@ -36,26 +56,26 @@ async function gatherBoltVersions() {
     chalk.blue('Gathering data on the latest Bolt Design System releases...'),
   ).start();
 
-  // Skip over checking for Bolt releases when not in prod mode to speed up the initial build
-  if (!config.prod) {
-    versionSpinner.succeed(
-      chalk.green('Skipped gathering data on every Bolt release -- dev build!'),
-    );
-    return [
-      {
-        label: 'Local Dev',
-        type: 'option',
-        value: `http://localhost:${config.port}/${config.startPath}`,
-      },
-    ];
+  const tagUrls = [];
+  let tags; // grab tags from Github API or via local file cache
+
+  if (store.get('bolt-tags')) {
+    tags = store.get('bolt-tags');
+  } else {
+    await octokit.repos
+      .listTags({
+        owner: 'bolt-design-system',
+        repo: 'bolt',
+        per_page: 9999,
+      })
+      .then(({ data, headers, status }) => {
+        tags = data;
+        store.set('bolt-tags', data);
+      });
   }
 
-  const tags = await gitSemverTags();
-
-  const tagUrls = [];
-
   for (index = 0; index < tags.length; index++) {
-    let tag = tags[index];
+    let tag = tags[index].name;
     let tagString = tag
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-`
@@ -68,10 +88,17 @@ async function gatherBoltVersions() {
     urlsToCheck.push(oldSiteUrl);
   }
 
-  const results = await checkLinks(urlsToCheck);
+  let results;
+
+  if (store.get('bolt-urls-to-test')) {
+    results = store.get('bolt-urls-to-test');
+  } else {
+    results = await checkLinks(urlsToCheck);
+    store.set('bolt-urls-to-test', results);
+  }
 
   for (index = 0; index < tags.length; index++) {
-    let tag = tags[index];
+    let tag = tags[index].name;
     let tagString = tag
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-`
