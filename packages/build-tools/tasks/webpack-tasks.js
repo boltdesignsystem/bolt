@@ -60,7 +60,6 @@ async function server(customWebpackConfig) {
         `webpack-hot-middleware/client?noInfo=true&http://localhost:${
           webpackConfig[0].devServer.port
         }/`,
-        'webpack/hot/dev-server',
       );
     }
 

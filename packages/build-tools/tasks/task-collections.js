@@ -71,8 +71,11 @@ async function clean() {
         dirs = [
           path.join(path.resolve(config.wwwDir), '**'),
           `!${path.resolve(config.wwwDir)}`,
-          `!${path.resolve(config.wwwDir, 'pattern-lab')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
-          `!${path.join(path.resolve(config.wwwDir, 'pattern-lab'), '**')}`,
+          `!${path.resolve(config.wwwDir, 'pattern-lab/styleguide')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
+          `!${path.join(
+            path.resolve(config.wwwDir, 'pattern-lab/styleguide'),
+            '**',
+          )}`,
         ];
         break;
       case 'pl':
@@ -147,7 +150,7 @@ async function buildPrep() {
   config = config || (await getConfig());
   try {
     await getExtraTasks();
-    // config.prod ? await clean() : '';
+    config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
     if (
