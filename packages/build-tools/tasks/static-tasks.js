@@ -102,6 +102,7 @@ async function getPages(srcDir) {
   const allPaths = await globby([
     path.join(srcDir, '**/*.{md,html}'),
     '!**/_*/**/*.{md,html}',
+    '!**/pattern-lab/**/*',
     '!**/_*.{md,html}',
   ]);
 
@@ -130,7 +131,7 @@ async function getPages(srcDir) {
 async function getNestedPages(folder) {
   config = config || (await asyncConfig());
 
-  const items = await globby(['*', '!_*'], {
+  const items = await globby(['*', '!_*', '!pattern-lab'], {
     cwd: folder,
     onlyFiles: false,
   });
