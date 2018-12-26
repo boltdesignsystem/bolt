@@ -19,8 +19,8 @@ bolt-link {
 
 // Component styles
 .c-bolt-link {
-  @include bolt-padding(0);  // [1]
-  @include bolt-font-family(body);  // [1]
+  @include bolt-padding(0); // [1]
+  @include bolt-font-family(body); // [1]
 
   display: block;
   display: flex; // Container is set to "inline-flex" so this can just be "flex"
@@ -29,10 +29,9 @@ bolt-link {
   color: bolt-theme(link);
   text-decoration: underline;
   cursor: pointer;
-  border: none;  // [1]
-  background: none;  // [1]
+  border: none; // [1]
+  background: none; // [1]
   transition: all $bolt-link-transition;
-
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
@@ -44,8 +43,6 @@ bolt-link {
   }
 }
 
-
-
 // Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.
 .c-bolt-link--headline {
   color: bolt-theme(headline-link);
@@ -56,7 +53,6 @@ bolt-link {
   }
 }
 
-
 // Text and icon spacing
 .c-bolt-link__text + .c-bolt-link__icon:not(.is-empty) {
   @include bolt-margin-left(xxsmall);
@@ -65,7 +61,6 @@ bolt-link {
 .c-bolt-link__icon:not(.is-empty) + .c-bolt-link__text {
   @include bolt-margin-left(xxsmall);
 }
-
 
 // Icon styles
 .c-bolt-link__icon {
