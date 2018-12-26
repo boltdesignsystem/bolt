@@ -11,14 +11,12 @@ const fs = require('fs');
 const deepmerge = require('deepmerge');
 const resolve = require('resolve');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const globImporter = require('node-sass-glob-importer');
 const npmSass = require('npm-sass');
 const WriteAssetsWebpackPlugin = require('write-assets-webpack-plugin');
-const { BoltCache, getFileHash } = require('@bolt/build-tools/utils/cache');
-const chokidar = require('chokidar');
-const SassDocPlugin = require('@bolt/sass-webpack-plugin');
+const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('./utils/config-store');
 const { boltWebpackProgress } = require('./utils/webpack-helpers');
+const { webpackStats, statsPreset } = require('./utils/webpack-verbosity');
 
 const {
   getBoltManifest,
@@ -55,7 +53,7 @@ async function createWebpackConfig(buildConfig) {
   let themifyOptions = {
     watchForChanges: config.watch === true ? true : false,
     classPrefix: 't-bolt-',
-    screwIE11: false,
+    screwIE11: true,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -183,89 +181,6 @@ async function createWebpackConfig(buildConfig) {
     return entry;
   }
 
-  // Map out the global config verbosity setting to the 6 preset levels of Webpack stats: https://webpack.js.org/configuration/stats/#stats + https://github.com/webpack/webpack/blob/b059e07cf90db871fe9497f5c14b9383fc71d2ad/lib/Stats.js#L906
-
-  const webpackStats = {
-    0: 'none', // Output nothing
-    1: 'errors-only', // only output when errors happen
-    2: 'minimal', // only output when errors or new compilation happen
-    3: 'normal', // standard output
-    4: 'detailed',
-    5: 'verbose', // output everything
-  };
-
-  function statsPreset(name) {
-    /**
-     * Accepted values: none, errors-only, minimal, normal, detailed,
-     * verbose. Any other falsy value will behave as 'none', truthy
-     * values as 'normal'
-     */
-    const pn =
-      (typeof name === 'string' && name.toLowerCase()) || name || 'none';
-
-    switch (pn) {
-      case 'none':
-        return {
-          all: false,
-        };
-      case 'verbose':
-        return {
-          entrypoints: true,
-          modules: false,
-          colors: true,
-          chunks: true,
-          chunkModules: true,
-          chunkOrigins: true,
-          depth: true,
-          env: true,
-          reasons: true,
-          usedExports: true,
-          providedExports: true,
-          optimizationBailout: true,
-          errorDetails: true,
-          publicPath: true,
-          exclude: () => false,
-          maxModules: Infinity,
-        };
-      case 'detailed':
-        return {
-          entrypoints: true,
-          chunks: true,
-          colors: true,
-          chunkModules: false,
-          chunkOrigins: true,
-          depth: true,
-          usedExports: true,
-          providedExports: true,
-          optimizationBailout: true,
-          errorDetails: true,
-          publicPath: true,
-          exclude: () => false,
-          maxModules: Infinity,
-        };
-      case 'minimal':
-        return {
-          all: false,
-          colors: true,
-          modules: true,
-          maxModules: 0,
-          errors: true,
-          warnings: true,
-        };
-      case 'errors-only':
-        return {
-          all: false,
-          colors: true,
-          errors: true,
-          moduleTrace: true,
-        };
-      default:
-        return {
-          colors: true,
-        };
-    }
-  }
-
   const scssLoaders = [
     {
       loader: 'css-loader',
@@ -294,38 +209,24 @@ async function createWebpackConfig(buildConfig) {
         level: config.prod ? 2 : 0,
         format: config.prod ? false : 'beautify',
         inline: ['remote'],
-        format: 'beautify',
       },
     },
     {
       loader: 'resolve-url-loader',
     },
 
-    // @todo: conditionally toggle sass-loader vs fast-sass-loader based on --debug flag when sourcemaps are needed
     {
       loader: 'sass-loader',
       options: {
         sourceMap: config.sourceMaps,
-        importer: [globImporter(), npmSass.importer],
+        importer: [npmSass.importer],
         functions: sassExportData,
         precision: 3,
         data: globalSassData.join('\n'),
       },
     },
-    // @todo: re-evaluate options similar to fast-sass-loader, but w/ importer support
-    // {
-    //   loader: '@bolt/fast-sass-loader',
-    //   options: {
-    //     sourceMap: true,
-    //     functions: sassExportData,
-    //     outputStyle: 'expanded',
-    //     precision: 3,
-    //     data: globalSassData.join('\n'),
-    //   },
-    // },
   ];
 
-  // THIS IS IT!! The object that gets passed in as WebPack's config object.
   const webpackConfig = {
     target: 'web',
     entry: await buildWebpackEntry(),
@@ -371,7 +272,7 @@ async function createWebpackConfig(buildConfig) {
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: [
-                'css-hot-loader',
+                // 'css-hot-loader',
                 MiniCssExtractPlugin.loader,
                 scssLoaders,
               ].reduce((acc, val) => acc.concat(val), []),
@@ -454,7 +355,8 @@ async function createWebpackConfig(buildConfig) {
   }
 
   // Enable new experimental cache mode to significantly speed up the initial build times
-  if (config.enableCache && !config.prod) {
+  // if (config.enableCache && !config.prod) {
+  if (config.enableCache) {
     webpackConfig.plugins.push(
       new HardSourceWebpackPlugin({
         info: {
@@ -525,53 +427,16 @@ async function createWebpackConfig(buildConfig) {
   if (config.wwwDir) {
     webpackConfig.devServer = {
       logLevel: 'silent',
-      contentBase: config.wwwDir,
+      log: false,
+      overlayWarnings: true,
+      overlay: true,
       quiet: true,
       clientLogLevel: 'none',
       port: config.port,
       stats: statsPreset(webpackStats[config.verbosity]),
       hot: config.prod ? false : true,
-      inline: true,
       noInfo: true, // webpackTasks.watch handles output info related to success & failure
       publicPath,
-      watchContentBase: false,
-      before(app, server) {
-        if (!config.prod && config.webpackDevServer) {
-          if (config.webpackDevServer.watchedExtensions) {
-            const watchedPaths = [];
-
-            // generate wwwDir globbed paths for each file extension being watched
-            config.webpackDevServer.watchedExtensions.forEach(ext => {
-              watchedPaths.push(path.join(config.wwwDir, '**/*' + ext));
-            });
-
-            // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
-            const watcher = chokidar.watch(watchedPaths, {
-              ignoreInitial: true,
-              cwd: process.cwd(),
-              ignored: ['**/node_modules/**', '**/vendor/**'],
-            });
-
-            // only auto-refresh when a particular file's contents has changed to reduce browser thrashing
-            watcher.on('all', (event, filePath) => {
-              if (event === 'add' || event === 'change') {
-                getFileHash(filePath, function(hash) {
-                  let previousFileHash = BoltCache.get(filePath);
-                  let currentFileHash = hash;
-
-                  if (
-                    previousFileHash === undefined ||
-                    previousFileHash !== currentFileHash
-                  ) {
-                    BoltCache.set(filePath, currentFileHash);
-                    server.sockWrite(server.sockets, 'content-changed');
-                  }
-                });
-              }
-            });
-          }
-        }
-      },
     };
   }
 
