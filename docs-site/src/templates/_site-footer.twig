@@ -1,15 +1,14 @@
 
-{# @TODO: how do we get this to use the exact same values from our global .js config without having the source of truth live as a .yml or .json file...? #}
-{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
+  {# @TODO: how do we get this to use the exact same values from our global .js config without having the source of truth live as a .yml or .json file...? #}
+  {% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
+
+  {% set assets = [] %}
+  {% if fileExists(manifestConfigFile) %}
+    {% set assets = get_data(manifestConfigFile) %}
+  {% endif %}
 
   <!--DO NOT REMOVE-->
   {{ patternLabFoot | raw }}
-
-  {% if fileExists(manifestConfigFile) %}
-    {% set assets = get_data(manifestConfigFile) %}
-  {% else %}
-    {% set assets = [] %}
-  {% endif %}
 
   <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
 

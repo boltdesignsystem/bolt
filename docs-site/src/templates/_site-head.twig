@@ -1,9 +1,8 @@
 {% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
 
+{% set assets = [] %}
 {% if fileExists(manifestConfigFile) %}
   {% set assets = get_data(manifestConfigFile) %}
-{% else %}
-  {% set assets = [] %}
 {% endif %}
 
 {% set urlChunks = page.url | split('/') %}
