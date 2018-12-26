@@ -1,79 +1,74 @@
-{% set schema = bolt.data.components['@bolt-components-band'].schema %}
+{% set schema = bolt.data.components["@bolt-components-band"].schema %}
+
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set prefix = "c-bolt-" %}
-{% set contentTags = ["div", "article", "section", "header", "footer", "nav", "figcaption"] %} {# Available content container tags #}
-{% set fullBleedOptions = [true, false] %}
-
+{# Variables #}
+{% set base_class = "c-bolt-band" %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
 
-{# Defaults for a vanilla `Band` component #}
-{% set componentName = "band" %}
-{% set baseClass = prefix ~ componentName %}
-{% set contentTag = contentTag in contentTags ? contentTag: "div" %}
-{% set fullBleed = fullBleed == false and fullBleed is not null ? false : true %}
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
+{% set tag_options = schema.properties.tag.enum %}
+{% set size_options = schema.properties.size.enum %}
+{% set theme_options = schema.properties.theme.enum %}
 
-{# set fullBleed = fullBleed in fullBleedOptions ? fullBleed | default(false) #}
+{# Check that the component's current prop values are valid. if not, default to the schema default #}
+{% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
+{% set size = size in size_options ? size : schema.properties.size.default %}
+{% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
+{% set full_bleed = full_bleed is sameas(true) or full_bleed is sameas(false) ? full_bleed : schema.properties.full_bleed.default %}
 
-{% set size = size in schema.properties.size.enum ? size : schema.properties.size.default %}
-{% set size = size == "none" ? false : size %}
-{% set theme = theme in schema.properties.theme.enum ? theme : schema.properties.theme.default %}
-{% set theme = theme == "none" ? false : theme %}
+{# Deprecated #}
+{% if fullBleed %}
+  {% set fullBleed = full_bleed %}
+{% endif %}
+{% if contentTag %}
+  {% set contentTag = null %}
+{% endif %}
 
+{# Array of classes based on the defined + default props #}
 {% set classes = [
-  baseClass,
-  fullBleed == true ? baseClass ~ "--" ~ "full" : "",
-  size ? baseClass ~ "--" ~ size : "",
-  theme ? "t-bolt-" ~ theme : ""
+  base_class,
+  size in size_options and size != "none" ? "#{base_class}--#{size}" : "",
+  theme in theme_options and theme != "none" ? "t-bolt-#{theme}" : "",
+  full_bleed ? "#{base_class}--full-bleed",
 ] %}
 
-<bolt-{{ componentName }}
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in attributes["class"] %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+{# band component's custom element wrapper #}
+<bolt-band
+  {% if tag %} tag="{{ tag }}" {% endif %}
   {% if size %} size="{{ size }}" {% endif %}
   {% if theme %} theme="{{ theme }}" {% endif %}
-  {{ attributes.addClass(classes) }}>
-  {% set renderedBandContent %}
-    {% block band_background %}
-      {% if background %}
-        {% include "@bolt/background.twig" with background only %}
-      {% endif %}
-    {% endblock band_background %}
-    <{{ contentTag }} class="{{ "#{baseClass}__content" }}">
-      {% block band_outer_content %}
-        {%- set block_band_content -%}
-          {%- block band_content -%}
-            {{ content }}
-          {%- endblock -%}
-        {%- endset -%}
-
-        {# merge together array of items with the content / band_content block so each item can get wrapped properly #}
-        {% set items = items | default([]) %}
-
-        {# Note: using block('band_content') to check for emptiness can cause duplicate rendering issues and should be avoided.  #}
-        {% if block_band_content is not empty %}
-          {% set items = items | merge([{
-            content: block_band_content,
-            position: {
-              row_start: content_row_start ? content_row_start : schema.properties.content_row_start.default
-            }
-          }]) %}
-        {% endif %}
-
-        {% if items is not empty %}
-          {% include "@bolt-components-grid/grid.twig" with {
-            vinset: vinset ? vinset : size,
-            row_gutter: row_gutter | default( items|length > 1 ? "small" : "none"),
-            items: items
-          } only %}
-        {% endif %}
-      
-      {% endblock %}
-    </{{ contentTag }}>
-  {% endset %}
-
-  {% include "@bolt/wrapper.twig" with {
-    full: false,
-    content: renderedBandContent
-  } only %}
-</bolt-{{ componentName }}>
+  {% if full_bleed %} full-bleed {% endif %}
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ attributes | without("class") }}
+>
+  <{{ tag }} {{ inner_attributes.addClass(inner_classes) }}>
+    {% if background %}
+      {% include "@bolt-components-background/background.twig" with background only %}
+    {% endif %}
+    <div class="{{ "#{baseClass}__content" }}">
+      {% include "@bolt/wrapper.twig" with {
+        content: content,
+      } only %}
+    </div>
+  </{{ tag }}>
+</bolt-band>

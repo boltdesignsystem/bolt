@@ -7,22 +7,31 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
-  fullBleed:
+  content:
+    type:
+      - string
+      - array
+      - object
+    description: Content will override media, body, and actions props. Use this to build a completely cuztomized card.
+  full_bleed:
     type: boolean
+    default: true
     description: If set to true, the band will take the full width of the page.
   size:
     type: string
     description: Height of the band.
     default: medium
     enum:
+      - none
       - xsmall
       - small
       - medium
       - large
-      - none
-  contentTag:
+      - xlarge
+  tag:
     type: string
     description: Html tag to use for the band's content.
+    default: div
     enum:
       - div
       - article
@@ -30,17 +39,17 @@ properties:
       - header
       - footer
       - nav
-      - figcaption
+      - figure
   theme:
     type: string
     description: Bolt theme.
     default: dark
     enum:
+      - none
       - xlight
       - light
       - dark
       - xdark
-      - none
   row_gutter:
     description: "Configures the amount of vertical whitespace in-between each <code>&lt;bolt-grid-item&gt;</code> in the nested <code>&lt;bolt-grid&gt;</code> component.</code>. Defaults to <code>small</code> when there's more than than 1 item in the items array, otherwise defaults to <code>none</code>. Shares the same <code>row_gutter</code> config options as the <a href='https://github.com/bolt-design-system/bolt/blob/master/packages/components/bolt-grid/grid.schema.yml#L9' target='_blank'>grid component</a>."
     type: string
@@ -65,3 +74,9 @@ properties:
         type: object
         ref: '@bolt-components-grid/grid-item.schema.yml'
         description: "Layout-specific config options for each internal <code>&lt;bolt-grid-item&gt;</code>"
+  fullBleed:
+    title: DEPRECATED
+    description: Please use `full_bleed`.
+  contentTag:
+    title: DEPRECATED
+    description: Please use `tag`.
