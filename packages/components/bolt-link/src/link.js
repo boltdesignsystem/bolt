@@ -153,21 +153,15 @@ class BoltLink extends withLitHtml() {
       switch (name) {
         case 'before':
         case 'after':
-          const iconClasses = cx('c-bolt-link__icon', {
-            'is-empty': name in this.slots === false,
-          });
+          const iconClasses = cx('c-bolt-link__icon');
 
-          return html`
-            <span class="${iconClasses}"
-              >${
-                name in this.slots
-                  ? this.slot(name)
-                  : html`
-                      <slot name="${name}" />
-                    `
-              }</span
-            >
-          `;
+          return name in this.slots
+            ? html`
+                <span class="${iconClasses}">${this.slot(name)}</span>
+              `
+            : html`
+                <slot name="${name}" />
+              `;
         default:
           const itemClasses = cx('c-bolt-link__text', {
             'is-empty': name in this.slots === false,
