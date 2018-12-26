@@ -56,7 +56,7 @@ const config = {
       {
         base: './src/assets/images',
         glob: '**',
-        dist: path.join(__dirname, '../www/images'),
+        dist: '../www/images',
       },
     ],
   },
