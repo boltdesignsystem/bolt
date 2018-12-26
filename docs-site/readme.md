@@ -1,13 +1,12 @@
-# Bolt Site (Storefront)
+# Unified Bolt Docs + Pattern Lab Site (Storefront)
 
 ```bash
-npm run compile # compiles it all
-npm start # compiles, then start server and watches
+yarn start # compiles, then start server and watches
 ```
 
 ## Content
 
-Content goes in `./content/` and can be either `.md` or `.html` files with Yaml front matter like so:
+Static site content goes in `./src/pages/static-site` and can be either `.md` or `.html` files with Yaml front matter like so:
 
 ```
 ---
@@ -23,7 +22,7 @@ All that's necessary is `title`. Adding `nav: main` puts it in main menu; and is
 
 ## Templates
 
-All templates are in `./templates/`. If a piece of content declares `template: foo` in yaml front matter, then it's data will get passed to `./templates/foo.twig`, otherwise it'll go to `./templates/default.twig`. 
+All templates are in `./src/templates/`. If a piece of content declares `template: foo` in yaml front matter, then it's data will get passed to `./src/templates/foo.twig`, otherwise it'll go to `./src/templates/default.twig`. 
 
 To see what data is available, just open your console on any page. Here's the basic breakdown though:
 

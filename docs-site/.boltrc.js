@@ -12,7 +12,7 @@ const config = {
   openServerAtStart: false,
   // Environmental variable / preset to use
   env: 'pwa',
-  srcDir: './pages',
+  srcDir: './src/pages',
   buildDir: '../www/build',
   dataDir: '../www/build/data',
   wwwDir: '../www',
@@ -24,17 +24,16 @@ const config = {
   enableCache: true,
   webpackDevServer: {
     enabled: true,
-    watchedExtensions: ['.markup-only.html'],
   },
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
-      paths: ['templates', '../packages/components'],
+      paths: ['src/templates', '../packages/components'],
     },
     pl: {
       recursive: true,
       paths: [
-        './src',
+        './src/pages/pattern-lab',
         /* Example of including additional component paths to include in the main @bolt namespace */
         // path.relative(process.cwd(), path.dirname(require.resolve('@bolt/components-sticky/package.json'))),
       ],
@@ -45,17 +44,17 @@ const config = {
     },
     utils: {
       recursive: true,
-      paths: ['src/_includes'],
+      paths: ['./src/components/pattern-lab-utils'],
     },
     'bolt-site': {
       recursive: true,
-      paths: ['templates', 'components'],
+      paths: ['src/templates', 'src/components'],
     },
   },
   images: {
     sets: [
       {
-        base: './assets/images',
+        base: './src/assets/images',
         glob: '**',
         dist: path.join(__dirname, '../www/images'),
       },
@@ -131,14 +130,14 @@ const config = {
        * webpack-cli directly using Bolt's webpack config)
        */
       // Keeping PL specific assets here so we can remove an extra JS + CSS request from the site
-      resolve.sync('./index.scss'),
-      resolve.sync('./index.js'),
+      resolve.sync('./src/index.scss'),
+      resolve.sync('./src/index.js'),
     ],
     individual: [
       // example specifying a standalone component's CSS and JS individually
       {
         name: 'loadcss',
-        js: './src/loadcss-fix.js',
+        js: './src/components/loadcss-fix/loadcss-fix.js',
         //   scss: ./src/index.scss',
       },
       '@bolt/components-critical-fonts',
@@ -147,7 +146,7 @@ const config = {
   },
   copy: [
     {
-      from: `assets/**/*`,
+      from: `src/assets/**/*`,
       to: path.join(__dirname, '../www/assets'),
       flatten: true,
     },
