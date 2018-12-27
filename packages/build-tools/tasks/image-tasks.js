@@ -153,7 +153,7 @@ async function processImage(file, set) {
               force: false,
               compressionLevel: 9,
             })
-            .toFile(newSizeLocalPath);
+            .toFile(newSizedPath);
 
           if (
             pathInfo.ext === '.jpeg' ||
@@ -173,7 +173,7 @@ async function processImage(file, set) {
                 force: false,
                 compressionLevel: 9,
               })
-              .toFile(newSizeLocalPath);
+              .toFile(newSizedPath);
           } else if (pathInfo.ext === '.svg') {
             const result = await svgo.optimize(originalFileBuffer);
             const optimizedSVG = result.data;
@@ -191,7 +191,7 @@ async function processImage(file, set) {
                 force: false,
                 compressionLevel: 9,
               })
-              .toFile(newSizeLocalPath);
+              .toFile(newSizedPath);
           }
         } else {
           // http://sharp.pixelplumbing.com/en/stable/
@@ -213,11 +213,11 @@ async function processImage(file, set) {
                 force: false,
                 compressionLevel: 9,
               })
-              .toFile(newSizeLocalPath);
+              .toFile(newSizedPath);
           } else {
             await sharp(originalFileBuffer)
               .resize(size)
-              .toFile(newSizeLocalPath);
+              .toFile(newSizedPath);
           }
         }
       } else {
