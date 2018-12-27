@@ -7,209 +7,108 @@
   {% endspaceless %}</bolt-code-snippet>
 {% endmacro %}
 
-{% set link_custom_elements %}
-<p>
-  <bolt-link>
-    <a href="#!">
-      Link text
-    </a>
-  </bolt-link>
-</p>
-
-<p>
-  <bolt-link>
-    <a href="#!">
-      <bolt-icon slot="before" name="info-open"></bolt-icon>
-      Link text with icon
-    </a>
-  </bolt-link>
-</p>
-
-<p>
-  <bolt-link>
-    <a href="#!">
-      Link text with icon
-      <bolt-icon slot="after" name="info-open"></bolt-icon>
-    </a>
-  </bolt-link>
-</p>
-{% endset %}
-
-{% set link_custom_elements_without_anchor %}
-<p>
-  <bolt-link url="#!">
-    Link Text
-  </bolt-link>
-</p>
-
-<p>
-  <bolt-link url="#!">
-    <bolt-icon slot="before" name="info-open"></bolt-icon>
-    Link text with icon
-  </bolt-link>
-</p>
-
-<p>
-  <bolt-link url="#!">
-    Link text with icon
-    <bolt-icon slot="after" name="info-open"></bolt-icon>
-  </bolt-link>
-</p>
-{% endset %}
-
-{% set link_custom_elements_in_paragraph %}
-<p>
-  Sunt laborum ad in consectetur consectetur duis in Lorem ut
-  <bolt-link url="#!">
-    <a href="#!">
-      This is a text link
-    </a>
-  </bolt-link>
-  . Magna non voluptate deserunt fugiat esse esse cillum.
-  <bolt-link url="#!">
-    <a href="#!">
-      <bolt-icon slot="before" name="info-open"></bolt-icon>
-      This is a text link
-    </a>
-  </bolt-link>
-  velit commodo cillum sint enim reprehenderit sunt labore commodo dolor.
-  <bolt-link url="#!">
-    <a href="#!">
-      This is a text link
-      <bolt-icon slot="after" name="info-open"></bolt-icon>
-    </a>
-  </bolt-link>
-</p>
-{% endset %}
-
-{% set link_custom_elements_with_theme %}
-  {% set link %}
-    <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xlarge c-bolt-headline--link">
-      <bolt-link url="#!" is-headline="true">
-        <a href="#!">
-          This is a text link
-          <bolt-icon slot="after" name="chevron-right"></bolt-icon>
-        </a>
-      </bolt-link>
-    </h2>
-    <bolt-link url="#!">
-      <a href="#!">
-        This is a text link
-      </a>
-    </bolt-link>
-  {% endset %}
-
-  <div>
-  {% include "@bolt-components-band/band.twig" with {
-    theme: "xlight",
-    content: link,
-    fullBleed: false
-  } only %}
-  </div>
-
-  <div>
-  {% include "@bolt-components-band/band.twig" with {
-    theme: "light",
-    content: link,
-    fullBleed: false
-  } only %}
-  </div>
-
-  <div>
-  {% include "@bolt-components-band/band.twig" with {
-    theme: "dark",
-    content: link,
-    fullBleed: false
-  } only %}
-  </div>
-
-  <div>
-  {% include "@bolt-components-band/band.twig" with {
-    theme: "xdark",
-    content: link,
-    fullBleed: false
-  } only %}
-  </div>
-{% endset %}
-
 {% import _self as link_demo %}
 
+{% set link_demo_simple %}
+<bolt-link url="#!">
+  Link Text
+</bolt-link>
+{% endset %}
+
+{% set link_demo_advanced %}
+<bolt-link>
+  <a href="#!">Link Text</a>
+</bolt-link>
+{% endset %}
+
+{% set link_demo_icon %}
+<bolt-link>
+  <bolt-icon slot="before" name="info-open"></bolt-icon>
+  Link text with icon
+</bolt-link>
+
+<bolt-link>
+  Link text with icon
+  <bolt-icon slot="after" name="info-open"></bolt-icon>
+</bolt-link>
+{% endset %}
+
+{% set link_demo_inline %}
+<p>Lorem ipsum <bolt-link url="#!">dolor sit amet</bolt-link>, consectetuer adipiscing elit <bolt-link url="#!">link text with icon<bolt-icon slot="after" name="info-open"></bolt-icon></bolt-link>.</p>
+{% endset %}
+
 <div class="o-bolt-wrapper">
-  <div class="u-bolt-margin-bottom-large">
-    <bolt-text headline font-size="xxlarge" tag="h1">
-      Links with custom elements
-    </bolt-text>
-    <bolt-text>
-      Below are examples of the <code>&lt;bolt-link&gt;</code> component built purely using custom elements, rather than via Twig include. These examples have been added for testing and demo purposes.
-    </bolt-text>
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Link is a web component. Wrap your link content inside the <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> custom element, add a <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet> attribute, and the component will render a semantic link with Bolt styles. Note: the component also accepts the <bolt-code-snippet display="inline" lang="html">target</bolt-code-snippet> attribute with standard HTML <bolt-code-snippet display="inline" lang="html">target</bolt-code-snippet> values.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ link_demo_simple }}
+      {% endcell %}
+    {% endgrid %}
   </div>
-
   <div class="u-bolt-margin-bottom-large">
-    <bolt-text headline>
-      Custom elements with anchor
-    </bolt-text>
-    <bolt-text>
-      Bolt-Links should contain an anchor element within the custom element so that even when JS is disabled the link is still functional. If you are including the component via Twig template, the anchor is added automatically.
-    </bolt-text>
-    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
-          {{ link_custom_elements }}
-        {% endcell %}
-      {% endgrid %}
-    </div>
-    {% include link_demo.code_example(link_custom_elements, false) %}
+    {% include link_demo.code_example(link_demo_simple, true) %}
   </div>
+</div>
 
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Advanced Usage
+  </bolt-text>
+  <bolt-text>
+    You may also include a semantic <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> tag inside of <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> yourself. You might choose to do this because you require a clickable link even when JS is disabled or because you require additional attributes on the <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> tag which cannot be passed down through the web component. Bolt Link will find this <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> tag and convert its attributes to props.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ link_demo_advanced }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
   <div class="u-bolt-margin-bottom-large">
-    <bolt-text headline>
-      Custom elements without anchor
-    </bolt-text>
-    <bolt-text>
-      Even when an anchor is not added manually, one will be added via JS when the <code>&lt;bolt-link&gt;</code> web component initializes.
-    </bolt-text>
-    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
-          {{ link_custom_elements_without_anchor }}
-        {% endcell %}
-      {% endgrid %}
-    </div>
-    {% include link_demo.code_example(link_custom_elements_without_anchor, false) %}
+    {% include link_demo.code_example(link_demo_advanced, true) %}
   </div>
+</div>
 
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Links with Icons
+  </bolt-text>
+  <bolt-text>
+    Add icons to links by including a <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> element with the <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> attribute (with value of <bolt-code-snippet display="inline" lang="html">before</bolt-code-snippet> or <bolt-code-snippet display="inline" lang="html">after</bolt-code-snippet>). For icons to have the correct spacing, you <em>must</em> include the slot attribute as shown below.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ link_demo_icon }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
   <div class="u-bolt-margin-bottom-large">
-    <bolt-text headline>
-      Custom elements in paragraph
-    </bolt-text>
-    <bolt-text>
-      Below are some examples of the <code>&lt;bolt-link&gt;</code> used inline in a paragraph.
-    </bolt-text>
-    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
-          {{ link_custom_elements_in_paragraph }}
-        {% endcell %}
-      {% endgrid %}
-    </div>
-    {% include link_demo.code_example(link_custom_elements_in_paragraph, false) %}
+    {% include link_demo.code_example(link_demo_icon, true) %}
   </div>
+</div>
 
-  {# todo: Hiding this example for now. HTML it generates is unformatted and hard to read #}
-  {# <div class="u-bolt-margin-bottom-large">
-    <bolt-text headline>
-      Custom elements with theme
-    </bolt-text>
-    <bolt-text>
-      Below are some examples of the <code>&lt;bolt-link&gt;</code> used within a "themed" <code>&lt;bolt-band&gt;</code> component.
-    </bolt-text>
-    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
-          {{ link_custom_elements_with_theme }}
-        {% endcell %}
-      {% endgrid %}
-    </div>
-    {% include link_demo.code_example(link_custom_elements_with_theme, false) %}
-  </div> #}
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Inline Links
+  </bolt-text>
+  <bolt-text>
+    When using inline links, it is best to put the link HTML on a single line (no line breaks). Inline links will show the whitespace in and around the linke HTML, so removing these line breaks is necessary to eliminate unwanted space.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ link_demo_inline }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include link_demo.code_example(link_demo_inline, true) %}
+  </div>
 </div>
