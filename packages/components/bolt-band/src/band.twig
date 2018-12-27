@@ -65,10 +65,32 @@
     {% if background %}
       {% include "@bolt-components-background/background.twig" with background only %}
     {% endif %}
-    <div class="{{ "#{base_class}__content" }}">
-      {% include "@bolt/wrapper.twig" with {
-        content: content,
-      } only %}
-    </div>
+
+    {% set band_content %}
+      <div class="{{ "#{base_class}__content" }}">
+        {% include "@bolt/wrapper.twig" with {
+          content: content,
+        } only %}
+      </div>
+    {% endset %}
+
+    {# Render pinned content if there is any #}
+    {% if pinned_content %}
+      {% set pinned_content_upper = pinned_content.upper %}
+      {% set pinned_content_lower = pinned_content.lower %}
+
+      {% if pinned_content_upper %}
+        <div class="{{ "#{base_class}__pinned-area #{base_class}__pinned-area--upper" }}">
+        </div>
+      {% endif %}
+      {{ band_content }}
+      {% if pinned_content_lower %}
+        <div class="{{ "#{base_class}__pinned-area #{base_class}__pinned-area--lower" }}">
+        </div>
+      {% endif %}
+    {% else %}
+    {# Otherwise, render just the content #}
+      {{ band_content }}
+    {% endif %}
   </{{ tag }}>
 </bolt-band>

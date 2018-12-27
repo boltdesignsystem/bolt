@@ -1,0 +1,94 @@
+{% set content %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxxlarge",
+    text: "This Is a Headline",
+  } only %}
+  {% include "@bolt-components-headline/subheadline.twig" with {
+    size: "xxlarge",
+    text: "This Is a Subheadline",
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This is a button",
+  } only %}
+{% endset %}
+
+{% set pinned_content %}
+  {% include '@bolt-components-share/share.twig' with {
+    sources: [
+      {
+        name: "facebook",
+        url: "https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
+      },
+      {
+        name: "twitter",
+        url: "https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+      },
+      {
+        name: "linkedin",
+        url: "https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
+      },
+      {
+        name: "email",
+        url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+      }
+    ],
+    copy_to_clipboard: {
+      text_to_copy: "https://boltdesignsystem.com"
+    }
+  } %}
+{% endset %}
+
+
+{% include "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "dark",
+  background: {
+    opacity: "heavy",
+    fill: "color",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/pattern-lab/images/content/backgrounds/background-short-1.jpg",
+        lazyload: false
+      }
+    ]
+  },
+  content: content,
+  pinned_content: {
+    upper: [
+      {
+        align: "start",
+        content: "start",
+      },
+      {
+        align: "center",
+        content: "center",
+      },
+      {
+        align: "end",
+        content: "end",
+      },
+    ],
+    lower: [
+      {
+        align: "start",
+        content: "start",
+      },
+      {
+        align: "center",
+        content: "center",
+      },
+      {
+        align: "end",
+        content: "end",
+      },
+    ]
+  }
+} only %}
+
+
+
