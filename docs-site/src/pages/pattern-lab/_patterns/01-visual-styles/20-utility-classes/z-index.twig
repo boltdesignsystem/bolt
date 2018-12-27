@@ -10,7 +10,7 @@
 
   {% macro recursive_zindex_demo(list) %}
     {% set utility_class = bolt.data.zIndexes["utility-class-prefix"] ~ list|keys|last %}
-    <div class="bolt-z-index-demo {{ utility_class }}">
+    <div class="c-bds-z-index-demo {{ utility_class }}">
       {% if list|slice(0, -1)|length  %}
         {{ _self.recursive_zindex_demo(list|slice(0, -1)) }}
       {% endif %}

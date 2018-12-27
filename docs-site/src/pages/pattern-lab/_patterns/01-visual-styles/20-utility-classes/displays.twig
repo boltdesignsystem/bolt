@@ -16,10 +16,10 @@
 
   {% block utility_demo %}
     {% for mode in display_modes|keys %}
-      <div class="c-bolt-docs__display-demo">
+      <div class="c-bds-docs__display-demo">
         <h4>Display: {{ mode }}</h4>
         <div><code>{{ ".u-bolt-#{mode}" }}</code></div>
-        Lacus nec eleifend nullam nisi parturient nunc placerat euismod, congue aliquet lacinia tempus cursus velit netus augue, neque auctor imperdiet per nisl mollis eros. <strong class="c-bolt-docs__display-focus {{ "u-bolt-#{mode}" }}">&lt;strong&gt; TAG W/ DISPLAY: {{ mode|upper }}</strong> Venenatis tortor etiam potenti arcu condimentum leo lacinia urna faucibus, platea habitant parturient rhoncus ultricies risus nascetur luctus eros mollis, dignissim integer gravida vitae vulputate litora mi consequat.
+        Lacus nec eleifend nullam nisi parturient nunc placerat euismod, congue aliquet lacinia tempus cursus velit netus augue, neque auctor imperdiet per nisl mollis eros. <strong class="c-bds-docs__display-focus {{ "u-bolt-#{mode}" }}">&lt;strong&gt; TAG W/ DISPLAY: {{ mode|upper }}</strong> Venenatis tortor etiam potenti arcu condimentum leo lacinia urna faucibus, platea habitant parturient rhoncus ultricies risus nascetur luctus eros mollis, dignissim integer gravida vitae vulputate litora mi consequat.
       </div>
     {% endfor %}
   {% endblock %}

@@ -20,14 +20,14 @@
   {% endblock %}
 
   {% block utility_demo %}
-    <div class="c-bolt-docs-color-demo">
+    <div class="c-bds-docs-color-demo">
       {% for key, collection in utility_classes %}
         {% if key != "all" %}
-          <div class="c-bolt-docs-color-demo__type">
+          <div class="c-bds-docs-color-demo__type">
             <h5>{{ key|capitalize }} Colors</h5>
-            <div class="c-bolt-docs-color-demo__collection">
+            <div class="c-bds-docs-color-demo__collection">
               {% for base, color in collection %}
-                <div class="c-bolt-docs-color-demo__color">
+                <div class="c-bds-docs-color-demo__color">
                   {% embed "@bolt/wrapper.twig" %}
                     {% block wrapper_content %}
                       {% grid with {
