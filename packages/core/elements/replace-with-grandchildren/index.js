@@ -1,37 +1,21 @@
 import { define } from '@bolt/core/utils';
-import { html } from '@bolt/core/renderers/renderer-lit-html';
-import { ReplaceWithChildren } from '@bolt/core/elements/replace-with-children';
+import { ReplaceWithChildren } from '../replace-with-children';
 
 @define
-class RemoveHtmlTag extends ReplaceWithChildren {
+class ReplaceWithGrandchildren extends ReplaceWithChildren {
   static is = 'replace-with-grandchildren';
 
-  constructor(self) {
-    self = super(self);
-    self.useShadow = false;
-    return self;
-  }
-
-  connecting() {
-    this.removeChildKeepGrandchildren();
-    super.connecting();
-  }
-
-  removeChildKeepGrandchildren() {
+  connectedCallback() {
     const childHtmlTag = this.children[0];
 
-    // // Originally was this.replaceWith(...this.childNodes) but IE11 doesn't like that
+    // Originally was this.replaceWith(...this.childNodes) but IE11 doesn't like that
     while (childHtmlTag.firstChild) {
       this.appendChild(childHtmlTag.firstChild);
     }
     this.removeChild(childHtmlTag);
-  }
 
-  render() {
-    return html`
-      ${this.slot('default')}
-    `;
+    super.connectedCallback();
   }
 }
 
-export { RemoveHtmlTag };
+export { ReplaceWithGrandchildren };

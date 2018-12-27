@@ -2,6 +2,8 @@
 @mixin bolt-button-reset {
   @include bolt-padding(0);
   @include bolt-font-family(body);
+
+  -webkit-appearance: none; // override default [type=submit] button styles coming from Normalize
 }
 
 @mixin bolt-button-raised() {
