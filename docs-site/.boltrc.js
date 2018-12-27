@@ -146,7 +146,7 @@ const config = {
   },
   copy: [
     {
-      from: `src/assets/**/*`,
+      from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),
       flatten: true,
     },
@@ -154,7 +154,7 @@ const config = {
       from: `${path.dirname(
         resolve.sync('@bolt/global/package.json'),
       )}/favicons/bolt`,
-      to: path.join(__dirname, '../www'),
+      to: path.join(__dirname, '../www/'),
       flatten: true,
     },
   ],

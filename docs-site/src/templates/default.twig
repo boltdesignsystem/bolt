@@ -38,7 +38,7 @@
       <main class="c-bds-layout__main {{ currentUrl != 'index.html' ? 't-bolt-xlight' }}">
 
         {% set content %}
-          <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--matrix o-bolt-grid--rev o-bolt-grid--bottom u-bolt-margin-bottom-medium">
+          <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--matrix o-bolt-grid--rev o-bolt-grid--bottom u-bolt-margin-bottom-small">
             <div class="o-bolt-grid__cell u-bolt-text-align-right u-bolt-margin-left-auto">
               {% include "@bolt-components-link/link.twig" with {
                 url: "https://github.com/bolt-design-system/bolt/blob/" ~ gitBranch ~ "/docs-site/" ~  page.srcPath,
@@ -63,10 +63,10 @@
             </div>
           </div>
 
-          
-          
           <article>
-            {{ page.body|raw }}
+            {% block article_content %}
+              {{ page.body|raw }}
+            {% endblock %}
           </article>
         {% endset %}
       

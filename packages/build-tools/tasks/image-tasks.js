@@ -11,11 +11,39 @@ const globby = require('globby');
 const ora = require('ora');
 const sharp = require('sharp');
 const SVGO = require('svgo');
+const { spawnSync } = require('child_process');
 const log = require('../utils/log');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
 const { flattenArray } = require('../utils/general');
 let config;
+
+const {
+  TRAVIS,
+  TRAVIS_BRANCH,
+  TRAVIS_PULL_REQUEST_BRANCH,
+  TRAVIS_PULL_REQUEST,
+} = process.env;
+
+let branchName = 'detached-HEAD';
+try {
+  branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
+    encoding: 'utf8',
+  })
+    .stdout.replace('refs/heads/', '')
+    .replace(/\//g, '-')
+    .trim();
+} catch (error) {
+  process.exit(1);
+}
+
+if (TRAVIS === 'true') {
+  if (TRAVIS_PULL_REQUEST === 'false') {
+    branchName = TRAVIS_BRANCH;
+  } else {
+    branchName = TRAVIS_PULL_REQUEST_BRANCH;
+  }
+}
 
 const svgo = new SVGO({
   plugins: [
@@ -28,38 +56,27 @@ const svgo = new SVGO({
   ],
 });
 
-// @todo Consider moving this to a place to share - also duplicated in `@bolt/core/images-sizes.js`
-// const boltImageSizes = [
-//   50,
-//   100,
-//   200,
-//   320,
-//   480,
-//   640,
-//   800,
-//   1024,
-//   1366,
-//   1536,
-//   1920,
-//   2560,
-//   2880,
-// ];
-
-const boltImageSizes = [
-  // 50,
-  // 100,
-  // 200,
+// full set of image sizes used by default unless being run on a feature-specific branch
+let boltImageSizes = [
+  50,
+  100,
+  200,
   320,
-  // 480,
+  480,
   640,
-  // 800,
+  800,
   1024,
-  // 1366,
-  // 1536,
+  1366,
+  1536,
   1920,
-  // 2560,
-  // 2880,
+  2560,
+  2880,
 ];
+
+// don't resize images to all available options on feature-specific branches to speed up build times
+if (branchName.includes('feature') === true) {
+  boltImageSizes = [320, 640, 1024, 1920];
+}
 
 function makeLocalPath(imagePath) {
   return `${path.join(config.wwwDir, imagePath)}`;

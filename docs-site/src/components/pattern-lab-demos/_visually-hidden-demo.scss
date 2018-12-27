@@ -1,4 +1,4 @@
-.c-bolt-docs__visually-hidden-demo {
+.c-bds-docs__visually-hidden-demo {
   @extend %bolt-demo-wrapper;
 
   input[type='checkbox']{
@@ -33,7 +33,7 @@
 
   input:checked + label {
     background: bolt-color(indigo, light);
-    & + .c-bolt-docs__visually-hidden-inner > .c-bolt-docs__visually-hidden-content {
+    & + .c-bds-docs__visually-hidden-inner > .c-bds-docs__visually-hidden-content {
       @include bolt-visuallyhidden(important);
       opacity: 0;
     }
@@ -49,11 +49,11 @@
   }
 }
 
-.c-bolt-docs__visually-hidden-inner {
+.c-bds-docs__visually-hidden-inner {
   @include bolt-margin-top(1rem);
 }
 
-.c-bolt-docs__visually-hidden-content {
+.c-bds-docs__visually-hidden-content {
   @extend %bolt-demo-item;
   opacity: 1;
   transition: opacity 0.2s ease-in-out;

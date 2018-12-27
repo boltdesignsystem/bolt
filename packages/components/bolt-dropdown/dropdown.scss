@@ -82,13 +82,14 @@ bolt-dropdown {
 .c-bolt-dropdown__header-label {
   @include bolt-padding-top(small);
   @include bolt-padding-bottom(small);
-  @include bolt-padding-left(medium);
-  @include bolt-padding-right(medium);
+  @include bolt-padding-right(small);
+  @include bolt-padding-left(small);
   @include bolt-font-size(medium);
   @include bolt-font-weight(semibold);
 
   display: flex;
   justify-content: space-between;
+  text-align: left; // otherwise some dropdown menus are center aligned in the Shadow DOM
 
   align-items: center; // vertical align
 
@@ -220,9 +221,9 @@ bolt-dropdown {
   align-items: center;
   position: relative;
   overflow: hidden; // so transformed icons don't spill out
-  margin-top: bolt-spacing(small) * -1;
-  margin-right: bolt-spacing(medium) * -1;
-  margin-bottom: bolt-spacing(small) * -1;
+  margin-top: bolt-spacing(xsmall) * -1;
+  margin-right: bolt-spacing(small) * -1;
+  margin-bottom: bolt-spacing(xsmall) * -1;
 
   &:before {
     content: '';

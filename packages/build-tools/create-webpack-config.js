@@ -11,8 +11,8 @@ const fs = require('fs');
 const deepmerge = require('deepmerge');
 const resolve = require('resolve');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
-const WriteAssetsWebpackPlugin = require('write-assets-webpack-plugin');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('./utils/config-store');
 const { boltWebpackProgress } = require('./utils/webpack-helpers');
@@ -318,10 +318,7 @@ async function createWebpackConfig(buildConfig) {
     },
     plugins: [
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new WriteAssetsWebpackPlugin({
-        force: true,
-        extension: ['js', 'json', 'css'],
-      }),
+      new WriteFilePlugin(),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,

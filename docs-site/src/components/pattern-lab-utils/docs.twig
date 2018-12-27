@@ -16,8 +16,8 @@
 {% endspaceless %}{% endset %}
 
 
-<div class="c-bolt-docs t-bolt-xlight">
-  <div class="c-bolt-docs__page-content">
+<div class="c-bds-docs t-bolt-xlight">
+  <div class="c-bds-docs__page-content">
     {% include "@bolt/headline.twig" with {
       size: "xxxlarge",
       tag: "h1",
@@ -25,7 +25,7 @@
     } only %}
 
     {% if readmeFile %}
-      <div class="c-bolt-docs__readme">
+      <div class="c-bds-docs__readme">
         {% include "@bolt/headline.twig" with {
           size: "xxlarge",
           tag: "h2",
@@ -35,12 +35,12 @@
           attributes: {
             class: [
               "u-bolt-margin-bottom-xsmall",
-              "c-bolt-docs__heading-fragment"
+              "c-bds-docs__heading-fragment"
             ],
             id: "getting-started"
           }
         } only %}
-        <div class="c-bolt-docs__lead u-bolt-margin-bottom-large">
+        <div class="c-bds-docs__lead u-bolt-margin-bottom-large">
           {{ source(readmeFile) | markdown }}
         </div>
       </div>
@@ -56,7 +56,7 @@
         attributes: {
           class: [
             "u-bolt-margin-bottom-xsmall",
-            "c-bolt-docs__heading-fragment"
+            "c-bds-docs__heading-fragment"
           ],
           id: "usage"
         }
@@ -81,13 +81,13 @@
         attributes: {
           class: [
             "u-bolt-margin-bottom-xsmall",
-            "c-bolt-docs__heading-fragment"
+            "c-bds-docs__heading-fragment"
           ],
           id: "schema"
         }
       } only %}
 
-      <div class="bolt-docs__schema u-bolt-margin-bottom-large">
+      <div class="c-bds-schema-table u-bolt-margin-bottom-large">
         {% include '@utils/schema-docs.twig' with { schema: schema } only %}
       </div>
     {% endif %}
@@ -102,13 +102,13 @@
         attributes: {
           class: [
             "u-bolt-margin-bottom-xsmall",
-            "c-bolt-docs__heading-fragment"
+            "c-bds-docs__heading-fragment"
           ],
           id: "schema"
         }
       } only %}
 
-      <ul class="c-bolt-docs__page-nav-list u-bolt-margin-bottom-large">
+      <ul class="c-bds-docs__page-nav-list u-bolt-margin-bottom-large">
         {% for link in links %}
           <li>
             {% include "@bolt/headline.twig" with {
@@ -135,8 +135,8 @@
     {% endif %}
   </div>
 
-  <div class="c-bolt-docs__page-nav u-bolt-padding-right-medium@medium">
-    <ul class="o-bolt-ui-list o-bolt-ui-list--xsmall c-bolt-docs__page-nav-list">
+  <div class="c-bds-docs__page-nav u-bolt-padding-right-medium@medium">
+    <ul class="o-bolt-ui-list o-bolt-ui-list--xsmall c-bds-docs__page-nav-list">
       <li class="o-bolt-ui-list__item">
         <ul class="o-bolt-ui-list o-bolt-ui-list--xxsmall o-bolt-ui-list--borderless">
           {% if readmeFile %}
@@ -257,7 +257,7 @@
 
       {% if readmeFile %}
         <li class="o-bolt-ui-list__item">
-          <a href="{{ github_url(readmeFile) }}" class="c-bolt-docs__page-nav__link" target="_blank">
+          <a href="{{ github_url(readmeFile) }}" class="c-bds-docs__page-nav__link" target="_blank">
             <bolt-icon name="pencil"></bolt-icon>
             Edit this page
           </a>

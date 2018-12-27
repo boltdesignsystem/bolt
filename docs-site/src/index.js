@@ -12,9 +12,9 @@ import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-int
 //    * Docs Edit README Link > Simple edit hover effect
 //    */
 //   const editLink = document.getElementsByClassName(
-//     'c-bolt-docs__page-nav__link',
+//     'c-bds-docs__page-nav__link',
 //   );
-//   const editWrap = document.getElementsByClassName('c-bolt-docs__lead');
+//   const editWrap = document.getElementsByClassName('c-bds-docs__lead');
 
 //   function toggleEditOn() {
 //     editWrap[0].classList.add('edit-this-readme');
