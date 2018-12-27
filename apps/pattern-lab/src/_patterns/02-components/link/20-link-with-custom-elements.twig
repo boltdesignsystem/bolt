@@ -42,7 +42,7 @@
     Web Component Usage
   </bolt-text>
   <bolt-text>
-    Bolt Link is a web component. Wrap your link content inside the <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> custom element, add a <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet> attribute, and the component will render a semantic link with Bolt styles. Note: the component also accepts the <bolt-code-snippet display="inline" lang="html">target</bolt-code-snippet> attribute with standard HTML <bolt-code-snippet display="inline" lang="html">target</bolt-code-snippet> values.
+    Bolt Link is a web component that renders a semantic link with Bolt styles. To make a simple link, wrap your link text in a <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> custom element and add the <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet> attribute to <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>. Note: <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> also accepts the <bolt-code-snippet display="inline" lang="html">target</bolt-code-snippet> attribute with standard HTML <bolt-code-snippet display="inline" lang="html">target</bolt-code-snippet> values.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -61,7 +61,7 @@
     Advanced Usage
   </bolt-text>
   <bolt-text>
-    You may also include a semantic <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> tag inside of <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> yourself. You might choose to do this because you require a clickable link even when JS is disabled or because you require additional attributes on the <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> tag which cannot be passed down through the web component. Bolt Link will find this <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> tag and convert its attributes to props.
+    You may also include your own a semantic <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> tag inside <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>. You might choose to do this because you require a clickable link even when JS is disabled or because you require additional attributes on the <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> tag that cannot be passed down through the web component. Bolt Link will find this <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> tag and convert its attributes to props.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -80,7 +80,7 @@
     Links with Icons
   </bolt-text>
   <bolt-text>
-    Add icons to links by including a <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> element with the <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> attribute (with value of <bolt-code-snippet display="inline" lang="html">before</bolt-code-snippet> or <bolt-code-snippet display="inline" lang="html">after</bolt-code-snippet>). For icons to have the correct spacing, you <em>must</em> include the slot attribute as shown below.
+    You can add icons to links by including a <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> element with the <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> attribute set to either <bolt-code-snippet display="inline" lang="html">before</bolt-code-snippet> or <bolt-code-snippet display="inline" lang="html">after</bolt-code-snippet>. For icons to have the correct spacing, you <em>must</em> include the slot attribute as shown below.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -99,7 +99,7 @@
     Inline Links
   </bolt-text>
   <bolt-text>
-    When using inline links, it is best to put the link HTML on a single line (no line breaks). Inline links will show the whitespace in and around the linke HTML, so removing these line breaks is necessary to eliminate unwanted space.
+    When using inline links, it is best not to use line breaks in your <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> tag. Inline links will show the whitespace in and around the <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> tag, so removing these line breaks is necessary to eliminate unwanted space.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
