@@ -31,9 +31,9 @@
     "phpunit/phpunit": "^7"
   },
   "scripts": {
-    "setup": "@composer install --no-interaction --prefer-dist --no-progress",
+    "setup": "@composer update --no-interaction --prefer-dist --no-progress",
     "test": [
-      "@composer install --no-interaction --prefer-dist --no-progress",
+      "@composer update --no-interaction --prefer-dist --no-progress",
       "vendor/bin/phpunit --colors=always tests"
     ]
   }
