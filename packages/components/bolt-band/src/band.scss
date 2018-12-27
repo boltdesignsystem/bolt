@@ -26,12 +26,20 @@ bolt-band {
   transition: min-height 0.3s ease; // don't transition band widths
 }
 
-@each $spacing-value in $bolt-spacing-values {
-  $spacing-value-name: nth($spacing-value, 1);
+$bolt-band-sizes: (
+  'xsmall': bolt-v-spacing(small),
+  'small': bolt-v-spacing(medium),
+  'medium': bolt-v-spacing(large),
+  'large': bolt-v-spacing(xlarge),
+);
 
-  .c-bolt-band--#{$spacing-value-name} {
-    @include bolt-padding-top(#{$spacing-value-name});
-    @include bolt-padding-bottom(#{$spacing-value-name});
+@each $size in $bolt-band-sizes {
+  $size-name: nth($size, 1);
+  $size-value: nth($size, 2);
+
+  .c-bolt-band--#{$size-name} {
+    padding-top: $size-value;
+    padding-bottom: $size-value;
   }
 }
 
@@ -41,5 +49,7 @@ bolt-band {
 
 
 
-.c-bolt-band__content {
+.c-bolt-band__content,
+.c-bolt-band__content--pinned {
+  position: relative;
 }

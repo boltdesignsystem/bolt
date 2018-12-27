@@ -65,7 +65,7 @@
     {% if background %}
       {% include "@bolt-components-background/background.twig" with background only %}
     {% endif %}
-    <div class="{{ "#{baseClass}__content" }}">
+    <div class="{{ "#{base_class}__content" }}">
       {% include "@bolt/wrapper.twig" with {
         content: content,
       } only %}
