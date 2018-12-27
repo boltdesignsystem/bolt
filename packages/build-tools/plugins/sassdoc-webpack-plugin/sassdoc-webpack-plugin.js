@@ -1,7 +1,6 @@
 // Ported over and forked from the original version by https://github.com/oddbird/sassdoc-theme-herman/blob/master/sassdoc-webpack-plugin.js
 
 /* eslint-disable no-sync, no-console */
-
 'use strict';
 
 const fs = require('fs');
@@ -9,7 +8,7 @@ const path = require('path');
 const sassdoc = require('sassdoc');
 const yaml = require('js-yaml');
 const crypto = require('crypto');
-const { BoltCache } = require('../utils/cache');
+const { BoltCache } = require('@bolt/build-tools/utils/cache');
 
 class SassDocPlugin {
   constructor(options, pluginOptions) {
@@ -17,11 +16,11 @@ class SassDocPlugin {
       try {
         // Load .sassdocrc configuration
         options = yaml.safeLoad(
-          fs.readFileSync(path.join(process.cwd(), '.sassdocrc'), 'utf-8'),
+          fs.readFileSync(path.join(__dirname, '.sassdocrc'), 'utf-8'),
         );
       } catch (err) {
         console.warn(err);
-        throw new Error(`Invalid or no .sassdocrc found in: ${process.cwd()}`);
+        throw new Error(`Invalid or no .sassdocrc found in: ${__dirname}`);
       }
     }
 

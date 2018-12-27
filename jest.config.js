@@ -2,7 +2,7 @@
 module.exports = {
   testPathIgnorePatterns: [
     'sandbox',
-    'apps/pattern-lab',
+    'docs-site',
     'brightcove-player.test.js',
     'example-integrations/drupal-lab',
     'packages/uikit-workshop',

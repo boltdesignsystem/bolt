@@ -29,24 +29,44 @@ const svgo = new SVGO({
 });
 
 // @todo Consider moving this to a place to share - also duplicated in `@bolt/core/images-sizes.js`
+// const boltImageSizes = [
+//   50,
+//   100,
+//   200,
+//   320,
+//   480,
+//   640,
+//   800,
+//   1024,
+//   1366,
+//   1536,
+//   1920,
+//   2560,
+//   2880,
+// ];
+
 const boltImageSizes = [
-  50,
-  100,
-  200,
+  // 50,
+  // 100,
+  // 200,
   320,
-  480,
+  // 480,
   640,
-  800,
+  // 800,
   1024,
-  1366,
-  1536,
+  // 1366,
+  // 1536,
   1920,
-  2560,
-  2880,
+  // 2560,
+  // 2880,
 ];
 
+function makeLocalPath(imagePath) {
+  return `${path.join(config.wwwDir, imagePath)}`;
+}
+
 function makeWebPath(imagePath) {
-  return `/${path.relative(config.wwwDir, imagePath)}`;
+  return `${path.relative(config.wwwDir, imagePath)}`;
 }
 
 async function writeImageManifest(imgManifest) {
@@ -100,10 +120,24 @@ async function processImage(file, set) {
       });
       const newSizedPath = path.format(thisPathInfo);
       const newSizeWebPath = makeWebPath(newSizedPath);
+      const newSizeLocalPath = makeLocalPath(newSizedPath);
 
       if (config.prod) {
         if (isOrig) {
-          await writeFile(newSizedPath, originalFileBuffer);
+          await sharp(originalFileBuffer)
+            .jpeg({
+              quality: 50,
+              progressive: true,
+              optimiseScans: true,
+              force: false,
+            })
+            .png({
+              progressive: true,
+              force: false,
+              compressionLevel: 9,
+            })
+            .toFile(newSizeLocalPath);
+
           if (
             pathInfo.ext === '.jpeg' ||
             pathInfo.ext === '.jpg' ||
@@ -120,12 +154,13 @@ async function processImage(file, set) {
               .png({
                 progressive: true,
                 force: false,
+                compressionLevel: 9,
               })
-              .toFile(newSizedPath);
+              .toFile(newSizeLocalPath);
           } else if (pathInfo.ext === '.svg') {
             const result = await svgo.optimize(originalFileBuffer);
             const optimizedSVG = result.data;
-            await writeFile(newSizedPath, optimizedSVG);
+            await writeFile(newSizeLocalPath, optimizedSVG);
           } else {
             await sharp(originalFileBuffer)
               .jpeg({
@@ -137,8 +172,9 @@ async function processImage(file, set) {
               .png({
                 progressive: true,
                 force: false,
+                compressionLevel: 9,
               })
-              .toFile(newSizedPath);
+              .toFile(newSizeLocalPath);
           }
         } else {
           // http://sharp.pixelplumbing.com/en/stable/
@@ -158,12 +194,13 @@ async function processImage(file, set) {
               .png({
                 progressive: true,
                 force: false,
+                compressionLevel: 9,
               })
-              .toFile(newSizedPath);
+              .toFile(newSizeLocalPath);
           } else {
             await sharp(originalFileBuffer)
               .resize(size)
-              .toFile(newSizedPath);
+              .toFile(newSizeLocalPath);
           }
         }
       } else {

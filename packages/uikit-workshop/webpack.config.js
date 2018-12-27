@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const CriticalCssPlugin = require('critical-css-webpack-plugin');
+// const CriticalCssPlugin = require('critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
@@ -16,7 +16,7 @@ const explorer = cosmiconfig('patternlab');
 const defaultConfig = {
   buildDir: './dist',
   prod: false, // or false for local dev
-  sourceMaps: true,
+  sourceMaps: false,
 };
 
 module.exports = async function() {
@@ -232,31 +232,31 @@ module.exports = async function() {
 
     if (config.prod) {
       webpackConfig.plugins.push(
-        new CriticalCssPlugin({
-          base: path.resolve(__dirname, config.buildDir),
-          src: 'index.html',
-          dest: 'index.html',
-          inline: true,
-          minify: true,
-          extract: true,
-          width: 1300,
-          height: 900,
-          penthouse: {
-            keepLargerMediaQueries: true,
+        // new CriticalCssPlugin({
+        //   base: path.resolve(__dirname, config.buildDir),
+        //   src: 'index.html',
+        //   dest: 'index.html',
+        //   inline: true,
+        //   minify: true,
+        //   extract: true,
+        //   width: 1300,
+        //   height: 900,
+        //   penthouse: {
+        //     keepLargerMediaQueries: true,
 
-            // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
-            forceInclude: [
-              '.pl-c-body--theme-light',
-              '.pl-c-body--theme-sidebar',
-              '.pl-c-body--theme-sidebar .pl-c-viewport',
-              '.pl-c-body--theme-density-compact',
-            ],
-            timeout: 30000, // ms; abort critical CSS generation after this timeout
-            maxEmbeddedBase64Length: 1000,
-            renderWaitTime: 1000,
-            blockJSRequests: false,
-          },
-        })
+        //     // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
+        //     forceInclude: [
+        //       '.pl-c-body--theme-light',
+        //       '.pl-c-body--theme-sidebar',
+        //       '.pl-c-body--theme-sidebar .pl-c-viewport',
+        //       '.pl-c-body--theme-density-compact',
+        //     ],
+        //     timeout: 30000, // ms; abort critical CSS generation after this timeout
+        //     maxEmbeddedBase64Length: 1000,
+        //     renderWaitTime: 1000,
+        //     blockJSRequests: false,
+        //   },
+        // })
       );
     }
 
