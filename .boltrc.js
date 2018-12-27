@@ -15,7 +15,7 @@
  */
 const path = require('path');
 const globby = require('globby');
-const baseBoltDir = path.join(__dirname, './apps/bolt-site');
+const baseBoltDir = path.join(__dirname, './docs-site');
 const siteConfig = require(path.join(baseBoltDir, '.boltrc'));
 
 // Paths that are relative to `baseBoltDir` must now be relative to this directory (i.e. `__dirname`)
