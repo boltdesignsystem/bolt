@@ -4,10 +4,8 @@
 {% set classes = [
   "#{base_class}",
   type ? "#{base_class}--#{type}-item",
-  not nested ? "#{base_class}--last-item",
+  last ? "#{base_class}--last-item",
 ] %}
-
-last [{{ last }}]
 
 {% if nested %}
   {% if index == 1 %}

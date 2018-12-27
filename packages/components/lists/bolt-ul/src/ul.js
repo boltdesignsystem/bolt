@@ -61,8 +61,7 @@ class BoltUnorderedList extends withLitHtml() {
 
       if (
         updatedDefaultSlot[updatedDefaultSlot.length - 1].attributes.length ===
-          0 &&
-        !nested
+        0
       ) {
         updatedDefaultSlot[updatedDefaultSlot.length - 1].setAttribute(
           'last',
