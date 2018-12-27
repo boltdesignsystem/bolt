@@ -33,7 +33,6 @@ class BoltOrderedList extends withLitHtml() {
     let nested = false;
 
     if (this.parentNode.tagName) {
-      console.log(this.parentNode.level);
       if (
         this.parentNode.tagName === 'BOLT-LI' &&
         this.parentNode.parentNode.tagName === 'BOLT-OL'
