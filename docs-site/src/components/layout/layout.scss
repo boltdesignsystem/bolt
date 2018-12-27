@@ -4,7 +4,7 @@ $bds-sidebar-width: 320px;
 
 .c-bds-layout {
   grid-template-columns: auto 1fr auto;
-  height: 100vh;
+  // height: 100vh;
   
   @include bolt-mq(medium) {
     &.c-bds-layout--has-sidebar {
@@ -143,7 +143,6 @@ $bds-sidebar-width: 320px;
   @include bolt-mq(medium) {
     position: relative;
     transform: translate3d(0, 0, 0);
-    z-index: auto; // reset z-index to avoid overlap issues with nested components in the header (ex. version selector)
   
     @include bolt-mq(medium) {
       .c-bds-layout--has-sidebar & {
