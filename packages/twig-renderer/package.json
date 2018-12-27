@@ -13,6 +13,7 @@
     }
   ],
   "dependencies": {
+    "@bolt/drupal-twig-extensions": "2.2.1",
     "@basalt/twig-renderer": "^0.10.2",
     "@bolt/build-tools": "^2.2.1",
     "sleep-promise": "^8.0.1"
@@ -20,8 +21,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "postinstall": "composer run setup"
+  },
   "schema": "utils/config.schema.yml",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "gitHead": "6368a1636ee39759167cd146de58a42fbd62453a"
+  "gitHead": "6368a1636ee39759167cd146de58a42fbd62453a",
   "homepage": "https://boltdesignsystem.com"
 }
