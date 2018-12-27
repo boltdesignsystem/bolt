@@ -1,8 +1,9 @@
 {
-  "name": "bolt-design-system/drupal-stubs",
-  "description": "Stubbed in Drupal functionality",
-  "version": "1.0.0-rc.6",
+  "name": "bolt-design-system/drupal-twig-extensions",
+  "description": "Extra Twig extensions for adding Drupal-specific functionality to Bolt",
+  "version": "2.2.1",
   "type": "library",
+  "minimum-stability": "dev",
   "license": "MIT",
   "authors": [
     {
@@ -29,5 +30,10 @@
     "twig/twig": "^1.0",
     "drupal/core-render": "^8.0.0",
     "drupal/core-utility": "^8.0.0"
+  },
+  "scripts": {
+    "setup": [
+      "@composer install --no-interaction --prefer-dist --no-progress"
+    ]
   }
 }
