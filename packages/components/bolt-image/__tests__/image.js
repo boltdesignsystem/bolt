@@ -9,6 +9,7 @@ describe('<bolt-image> Component', async () => {
     const results = await render('@bolt-components-image/image.twig', {
       src: '/images/placeholders/tout-4x3-climber.jpg',
       alt: 'A Rock Climber',
+      lazyload: true,
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
