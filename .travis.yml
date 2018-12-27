@@ -43,7 +43,7 @@ jobs:
       script:
         - yarn run build
         - yarn run deploy
-        - sh ./scripts/update-read-only-git-repos.sh
+        # - sh ./scripts/update-read-only-git-repos.sh @todo: run this only on Bolt releases
       cache:
         yarn: true
         directories:
