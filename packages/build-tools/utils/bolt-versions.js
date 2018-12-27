@@ -13,11 +13,7 @@ const octokit = require('@octokit/rest')({
 });
 const { getConfig } = require('./config-store');
 
-const store = new InCache({
-  autoRemovePeriod: 900, // refresh git tags + releases every 15 minutes
-  autoSave: true,
-  autoSaveMode: 'timer',
-});
+const store = new InCache();
 
 // so we don't go over rate limits
 if (process.env.GITHUB_TOKEN) {
@@ -60,18 +56,15 @@ async function gatherBoltVersions() {
   let tags; // grab tags from Github API or via local file cache
 
   if (store.get('bolt-tags')) {
-    tags = store.get('bolt-tags');
+    tags = await store.get('bolt-tags');
   } else {
-    await octokit.repos
-      .listTags({
-        owner: 'bolt-design-system',
-        repo: 'bolt',
-        per_page: 9999,
-      })
-      .then(({ data, headers, status }) => {
-        tags = data;
-        store.set('bolt-tags', data);
-      });
+    tags = await octokit.repos.listTags({
+      owner: 'bolt-design-system',
+      repo: 'bolt',
+      per_page: 9999,
+    }).data;
+    await store.set('bolt-tags', tags, { maxAge: 900 });
+    await store.save();
   }
 
   for (index = 0; index < tags.length; index++) {
@@ -91,10 +84,11 @@ async function gatherBoltVersions() {
   let results;
 
   if (store.get('bolt-urls-to-test')) {
-    results = store.get('bolt-urls-to-test');
+    results = await store.get('bolt-urls-to-test');
   } else {
     results = await checkLinks(urlsToCheck);
-    store.set('bolt-urls-to-test', results);
+    await store.set('bolt-urls-to-test', results, { maxAge: 900 });
+    await store.save();
   }
 
   for (index = 0; index < tags.length; index++) {
