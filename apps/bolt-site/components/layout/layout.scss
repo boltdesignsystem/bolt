@@ -143,6 +143,7 @@ $bds-sidebar-width: 320px;
   @include bolt-mq(medium) {
     position: relative;
     transform: translate3d(0, 0, 0);
+    z-index: auto; // reset z-index to avoid overlap issues with nested components in the header (ex. version selector)
   
     @include bolt-mq(medium) {
       .c-bds-layout--has-sidebar & {

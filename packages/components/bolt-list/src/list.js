@@ -23,6 +23,7 @@ export const ListContext = defineContext({
   display: 'inline',
   spacing: 'none',
   inset: false,
+  align: 'start',
   separator: 'none',
 });
 
@@ -87,16 +88,38 @@ class BoltList extends withContext(withLitHtml()) {
     this.contexts.get(ListContext).display = display || this.props.display;
     this.contexts.get(ListContext).spacing = spacing || this.props.spacing;
     this.contexts.get(ListContext).inset = inset || this.props.inset;
+    this.contexts.get(ListContext).align = align || this.props.align;
     this.contexts.get(ListContext).separator =
       separator || this.props.separator;
 
     const classes = cx('c-bolt-list', {
       [`c-bolt-list--display-${display}`]: display,
-      [`c-bolt-list--spacing-${spacing}`]: spacing,
+      [`c-bolt-list--spacing-${spacing}`]: spacing !== 'none',
+      [`c-bolt-list--separator-${separator}`]: separator !== 'none',
       [`c-bolt-list--align-${align}`]: align,
       [`c-bolt-list--valign-${valign}`]: valign,
       [`c-bolt-list--inset`]: inset,
     });
+
+    if (this.slots.default) {
+      const updatedDefaultSlot = [];
+
+      this.slots.default.forEach(item => {
+        if (item.tagName) {
+          updatedDefaultSlot.push(item);
+        }
+      });
+
+      if (
+        updatedDefaultSlot[updatedDefaultSlot.length - 1].attributes.length ===
+        0
+      ) {
+        updatedDefaultSlot[updatedDefaultSlot.length - 1].setAttribute(
+          'last',
+          '',
+        );
+      }
+    }
 
     let renderedList;
 

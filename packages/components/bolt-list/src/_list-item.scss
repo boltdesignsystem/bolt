@@ -11,6 +11,10 @@
   display: block;
 }
 
+.c-bolt-list-item--display-flex {
+  flex: 1 0 auto;
+}
+
 // Spacing Prop
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
@@ -61,12 +65,32 @@ $bolt-list-separator-styles: solid, dashed;
       $breakpoint-name: nth($breakpoint, 1);
 
       &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
-        border-bottom-width: 1px;
+        &:not(.c-bolt-list-item--last-item) {
+          border-bottom-width: 1px;
 
-        @include bolt-mq($breakpoint-name) {
-          border-right-width: 1px;
-          border-bottom-width: 0;
+          @include bolt-mq($breakpoint-name) {
+            border-right-width: 1px;
+            border-bottom-width: 0;
+          }
         }
+      }
+    }
+  }
+
+  &.c-bolt-list-item--display-flex {
+    margin:{
+      top: -1px;
+      right: -1px;
+    }
+    border: {
+      top-width: 1px;
+      right-width: 1px;
+    }
+
+    &[class*='c-bolt-list-item--spacing'] {
+      &:not(.c-bolt-list-item--inset) {
+        padding-left: 0;
+        border-top-width: 0;
       }
     }
   }
@@ -89,12 +113,18 @@ $bolt-list-separator-styles: solid, dashed;
       }
     }
 
+    &.c-bolt-list-item--spacing-#{$spacing-value-name} {
+      &.c-bolt-list-item--display-flex {
+        @include bolt-padding(#{$spacing-value-name});
+      }
+    }
+
     &:not(.c-bolt-list-item--inset) {
       @each $breakpoint in $bolt-breakpoints {
         $breakpoint-name: nth($breakpoint, 1);
 
         &.c-bolt-list-item--spacing-#{$spacing-value-name} {
-          .c-bolt-list-item--display-inline\@#{$breakpoint-name} {
+          &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
             @include bolt-padding-bottom(#{$spacing-value-name});
 
             @include bolt-mq($breakpoint-name) {
