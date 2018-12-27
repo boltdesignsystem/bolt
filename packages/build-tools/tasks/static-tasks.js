@@ -272,11 +272,7 @@ async function watch() {
   const watcher = chokidar.watch(watchedPaths, {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignored: [
-      '**/node_modules/**',
-      '**/vendor/**',
-      '**/_patterns/**',
-    ],
+    ignored: ['**/node_modules/**', '**/vendor/**', '**/_patterns/**'],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events

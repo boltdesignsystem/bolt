@@ -89,16 +89,14 @@ bolt-dropdown {
 
   display: flex;
   justify-content: space-between;
-  text-align: left; // otherwise some dropdown menus are center aligned in the Shadow DOM
-
   align-items: center; // vertical align
-
   -webkit-appearance: none;
   position: relative;
   width: 100%;
-
+  
   margin-bottom: 0;
   color: bolt-theme(headline-link);
+  text-align: left; // otherwise some dropdown menus are center aligned in the Shadow DOM
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -362,13 +360,6 @@ bolt-dropdown {
   transition: height 0.2s ease;
 }
 
-.c-bolt-dropdown__content--opened {
-  // overflow: visible;
-}
-
-
-
-
 .c-bolt-dropdown__content-inner {
   @include bolt-padding-top(xsmall);
   @include bolt-padding-bottom(xsmall);
@@ -449,12 +440,8 @@ bolt-dropdown {
 
 
 .c-bolt-dropdown__content--open {
-  overlow: hidden;
+  overflow: hidden;
 }
-
-
-
-
 
 .c-bolt-block-list {
   display: block;
@@ -512,13 +499,6 @@ bolt-dropdown {
     --bolt-nav-item-transform: none,
   ));
 }
-
-.c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-nav__indicator,
-.c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-nav__indicator,
-.c-bolt-dropdown__content--opened .c-bolt-nav__indicator {
-  // opacity: bolt-opacity(100);
-}
-
 
 .c-bolt-dropdown__content--opened {
   @include bolt-css-vars((

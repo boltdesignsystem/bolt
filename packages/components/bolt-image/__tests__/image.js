@@ -7,7 +7,7 @@ const { tag } = schema.properties;
 describe('<bolt-image> Component', async () => {
   test('<bolt-image> with ratio object compiles', async () => {
     const results = await render('@bolt-components-image/image.twig', {
-      src: '/pattern-lab/images/placeholders/tout-4x3-climber.jpg',
+      src: '/images/placeholders/tout-4x3-climber.jpg',
       alt: 'A Rock Climber',
     });
     expect(results.ok).toBe(true);
@@ -16,7 +16,7 @@ describe('<bolt-image> Component', async () => {
 
   test('<bolt-image> with ratio object and lazyloading disabled compiles', async () => {
     const results = await render('@bolt-components-image/image.twig', {
-      src: '/pattern-lab/images/placeholders/tout-4x3-climber.jpg',
+      src: '/images/placeholders/tout-4x3-climber.jpg',
       alt: 'A Rock Climber',
       lazyload: false,
     });

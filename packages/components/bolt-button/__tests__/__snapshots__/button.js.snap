@@ -1,14 +1,122 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`button Button with an onClick attributes renders properly 1`] = `
+"<bolt-button
+   align=\\"center\\"    color=\\"primary\\"    size=\\"medium\\"          transform=\\"none\\"        border-radius=\\"regular\\" 
+  
+     on-click=\\"on-click-test\\"   
+  
+>
+
+    <button  class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+    <replace-with-children class=\\"c-bolt-button__item \\">Button w/ onClick via attributes</replace-with-children>
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+  </button>
+</bolt-button>"
+`;
+
+exports[`button Button with an onClick param renders properly 1`] = `
+"<bolt-button
+   align=\\"center\\"    color=\\"primary\\"    size=\\"medium\\"          transform=\\"none\\"        border-radius=\\"regular\\" 
+  
+     on-click=\\"on-click-test\\"   
+  
+>
+
+    <button  class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+    <replace-with-children class=\\"c-bolt-button__item \\">Button with onClick via param</replace-with-children>
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+  </button>
+</bolt-button>"
+`;
+
+exports[`button Button with c-bolt- class is thrown out 1`] = `
+"<bolt-button
+   align=\\"center\\"    color=\\"primary\\"    size=\\"medium\\"          transform=\\"none\\"        border-radius=\\"regular\\" 
+  
+      
+  
+>
+
+    <button  class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+    <replace-with-children class=\\"c-bolt-button__item \\">Button with outer JS-prefixed class</replace-with-children>
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+  </button>
+</bolt-button>"
+`;
+
+exports[`button Button with inner classes via Drupal Attributes 1`] = `
+"<bolt-button
+   align=\\"center\\"    color=\\"primary\\"    size=\\"medium\\"          transform=\\"none\\"        border-radius=\\"regular\\" 
+  
+      
+  
+>
+
+    <button  class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center is-active\\" is=\\"shadow-root\\">
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+    <replace-with-children class=\\"c-bolt-button__item \\">Button with inner classes</replace-with-children>
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+  </button>
+</bolt-button>"
+`;
+
+exports[`button Button with outer JS-class via Drupal Attributes 1`] = `
+"<bolt-button
+   align=\\"center\\"    color=\\"primary\\"    size=\\"medium\\"          transform=\\"none\\"        border-radius=\\"regular\\" 
+  
+      
+   class=\\"js-click-me\\"
+>
+
+    <button  class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+    <replace-with-children class=\\"c-bolt-button__item \\">Button with outer JS-prefixed class</replace-with-children>
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+  </button>
+</bolt-button>"
+`;
+
+exports[`button Button with outer classes via Drupal Attributes 1`] = `
+"<bolt-button
+   align=\\"center\\"    color=\\"primary\\"    size=\\"medium\\"          transform=\\"none\\"        border-radius=\\"regular\\" 
+  
+      
+   class=\\"u-bolt-padding-medium\\"
+>
+
+    <button  class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+    <replace-with-children class=\\"c-bolt-button__item \\">Button with outer classes</replace-with-children>
+          <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
+  
+  </button>
+</bolt-button>"
+`;
+
 exports[`button basic button 1`] = `
 "<bolt-button
    align=\\"center\\"    color=\\"primary\\"    size=\\"medium\\"          transform=\\"none\\"        border-radius=\\"regular\\" 
   
       
   
-  >
+>
 
-    <button  class=\\"c-bolt-button  c-bolt-button--medium  c-bolt-button--border-radius-regular c-bolt-button--primary  c-bolt-button--center \\" is=\\"shadow-root\\">
+    <button  class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
           <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
   
     <replace-with-children class=\\"c-bolt-button__item \\">Hello World</replace-with-children>
@@ -24,9 +132,9 @@ exports[`button button tag: a 1`] = `
   
       
   
-  >
+>
 
-    <a  class=\\"c-bolt-button  c-bolt-button--medium  c-bolt-button--border-radius-regular c-bolt-button--primary  c-bolt-button--center \\" is=\\"shadow-root\\">
+    <a  class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
           <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
   
     <replace-with-children class=\\"c-bolt-button__item \\">Hello World</replace-with-children>
@@ -42,9 +150,9 @@ exports[`button button tag: button 1`] = `
   
       
   
-  >
+>
 
-    <button  class=\\"c-bolt-button  c-bolt-button--medium  c-bolt-button--border-radius-regular c-bolt-button--primary  c-bolt-button--center \\" is=\\"shadow-root\\">
+    <button  class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
           <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
   
     <replace-with-children class=\\"c-bolt-button__item \\">Hello World</replace-with-children>
@@ -60,9 +168,9 @@ exports[`button button tag: link 1`] = `
   
       
   
-  >
+>
 
-    <a  class=\\"c-bolt-button  c-bolt-button--medium  c-bolt-button--border-radius-regular c-bolt-button--primary  c-bolt-button--center \\" is=\\"shadow-root\\">
+    <a  class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
           <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
   
     <replace-with-children class=\\"c-bolt-button__item \\">Hello World</replace-with-children>
@@ -77,10 +185,10 @@ exports[`button button tag: reset 1`] = `
    align=\\"center\\"    color=\\"primary\\"    size=\\"medium\\"          transform=\\"none\\"        border-radius=\\"regular\\" 
   
       
-   type=\\"reset\\"
-  >
+  
+>
 
-    <button  type=\\"reset\\" class=\\"c-bolt-button  c-bolt-button--medium  c-bolt-button--border-radius-regular c-bolt-button--primary  c-bolt-button--center \\" is=\\"shadow-root\\">
+    <button  type=\\"reset\\" class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
           <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
   
     <replace-with-children class=\\"c-bolt-button__item \\">Hello World</replace-with-children>
@@ -95,10 +203,10 @@ exports[`button button tag: submit 1`] = `
    align=\\"center\\"    color=\\"primary\\"    size=\\"medium\\"          transform=\\"none\\"        border-radius=\\"regular\\" 
   
       
-   type=\\"submit\\"
-  >
+  
+>
 
-    <button  type=\\"submit\\" class=\\"c-bolt-button  c-bolt-button--medium  c-bolt-button--border-radius-regular c-bolt-button--primary  c-bolt-button--center \\" is=\\"shadow-root\\">
+    <button  type=\\"submit\\" class=\\"c-bolt-button c-bolt-button--medium c-bolt-button--border-radius-regular c-bolt-button--primary c-bolt-button--center\\" is=\\"shadow-root\\">
           <replace-with-children class=\\"c-bolt-button__icon is-empty\\"></replace-with-children>
   
     <replace-with-children class=\\"c-bolt-button__item \\">Hello World</replace-with-children>
