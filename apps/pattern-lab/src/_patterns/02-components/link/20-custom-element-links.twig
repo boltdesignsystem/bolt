@@ -12,49 +12,27 @@
 
     {# no props, no attributes on the anchor #}
     <p>
-      <bolt-link>
-        <a>
-          Link text
-        </a>
-      </bolt-link>
+      <bolt-link><a>Link text</a></bolt-link>
     </p>
 
     {# no props, url and class attributes on the anchor #}
     <p>
-      <bolt-link>
-        <a href="#!" class="c-bolt-link">
-          Link text
-        </a>
-      </bolt-link>
+      <bolt-link><a href="#!" class="c-bolt-link">Link text</a></bolt-link>
     </p>
 
     {# url prop, no attributes on the anchor #}
     <p>
-      <bolt-link url="#!">
-        <a>
-          Link text
-        </a>
-      </bolt-link>
+      <bolt-link url="#!"><a>Link text</a></bolt-link>
     </p>
 
     {# with icon in "before" slot #}
     <p>
-      <bolt-link>
-        <a href="#!" class="c-bolt-link">
-          <bolt-icon slot="before" name="info-open"></bolt-icon>
-          Link text with icon
-        </a>
-      </bolt-link>
+      <bolt-link><a href="#!" class="c-bolt-link"><bolt-icon slot="before" name="info-open"></bolt-icon>Link text with icon</a></bolt-link>
     </p>
 
     {# with icon in "before" slot #}
     <p>
-      <bolt-link>
-        <a href="#!" class="c-bolt-link">
-          Link text with icon
-          <bolt-icon slot="after" name="info-open"></bolt-icon>
-        </a>
-      </bolt-link>
+      <bolt-link><a href="#!" class="c-bolt-link">Link text with icon<bolt-icon slot="after" name="info-open"></bolt-icon></a></bolt-link>
     </p>
 
   {% endcell %}
@@ -65,32 +43,22 @@
 
     {# no props #}
     <p>
-      <bolt-link>
-        Link text
-      </bolt-link>
+      <bolt-link>Link text</bolt-link>
     </p>
 
     {# url prop #}
     <p>
-      <bolt-link url="#!">
-        Link Text
-      </bolt-link>
+      <bolt-link url="#!">Link Text</bolt-link>
     </p>
 
     {# with icon in "before" slot #}
     <p>
-      <bolt-link url="#!">
-        <bolt-icon slot="before" name="info-open"></bolt-icon>
-        Link text with icon
-      </bolt-link>
+      <bolt-link url="#!"><bolt-icon slot="before" name="info-open"></bolt-icon>Link text with icon</bolt-link>
     </p>
 
     {# with icon in "before" slot #}
     <p>
-      <bolt-link url="#!">
-        Link text with icon
-        <bolt-icon slot="after" name="info-open"></bolt-icon>
-      </bolt-link>
+      <bolt-link url="#!">Link text with icon<bolt-icon slot="after" name="info-open"></bolt-icon></bolt-link>
     </p>
 
   {% endcell %}
@@ -100,26 +68,7 @@
     <h2>Custom elements in a paragraph</h2>
 
     <p>
-      Sunt laborum ad in consectetur consectetur duis in Lorem ut
-      <bolt-link url="#!">
-        <a href="#!" class="c-bolt-link">
-          This is a text link
-        </a>
-      </bolt-link>
-      . Magna non voluptate deserunt fugiat esse esse cillum.
-      <bolt-link url="#!">
-        <a href="#!" class="c-bolt-link">
-          <bolt-icon slot="before" name="info-open"></bolt-icon>
-          This is a text link
-        </a>
-      </bolt-link>
-      velit commodo cillum sint enim reprehenderit sunt labore commodo dolor.
-      <bolt-link url="#!">
-        <a href="#!" class="c-bolt-link">
-          This is a text link
-          <bolt-icon slot="after" name="info-open"></bolt-icon>
-        </a>
-      </bolt-link>
+      Sunt laborum ad in consectetur consectetur duis in Lorem ut <bolt-link url="#!"><a href="#!" class="c-bolt-link">This is a text link</a></bolt-link>. Magna non voluptate deserunt fugiat esse esse cillum. <bolt-link url="#!"><a href="#!" class="c-bolt-link"><bolt-icon slot="before" name="info-open"></bolt-icon>This is a text link</a></bolt-link> velit commodo cillum sint enim reprehenderit sunt labore commodo dolor. <bolt-link url="#!"><a href="#!" class="c-bolt-link">This is a text link<bolt-icon slot="after" name="info-open"></bolt-icon></a></bolt-link>
     </p>
 
   {% endcell %}
@@ -127,18 +76,9 @@
 
 {% set link %}
   <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xlarge c-bolt-headline--link">
-    <bolt-link url="#!" is-headline="true">
-      <a href="#!" class="c-bolt-link">
-        This is a text link
-        <bolt-icon slot="after" name="chevron-right"></bolt-icon>
-      </a>
-    </bolt-link>
+    <bolt-link url="#!" is-headline="true"><a href="#!" class="c-bolt-link">This is a text link<bolt-icon slot="after" name="chevron-right"></bolt-icon></a></bolt-link>
   </h2>
-  <bolt-link url="#!">
-    <a href="#!" class="c-bolt-link">
-      This is a text link
-    </a>
-  </bolt-link>
+  <bolt-link url="#!"><a href="#!" class="c-bolt-link">This is a text link</a></bolt-link>
 {% endset %}
 
 {% include "@bolt-components-band/band.twig" with {

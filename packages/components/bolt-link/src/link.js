@@ -31,7 +31,9 @@ class BoltLink extends BoltAction {
   }
 
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
+    // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
+
+    // Validate the original prop data passed along -- returns back the validated data w/ added default values
     const { url, target, isHeadline } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-link', {
@@ -52,37 +54,26 @@ class BoltLink extends BoltAction {
       switch (name) {
         case 'before':
         case 'after':
-          const iconClasses = cx('c-bolt-link__icon', {
-            'is-empty': name in this.slots === false,
-          });
-
-          return html`
-            <span class="${iconClasses}"
-              >${
-                name in this.slots
-                  ? this.slot(name)
-                  : html`
-                      <slot name="${name}" />
-                    `
-              }</span
-            >
-          `;
+          const iconClasses = cx('c-bolt-link__icon');
+          // [1]
+          // prettier-ignore
+          return name in this.slots
+            ? html`<span class="${iconClasses}">${this.slot(name)}</span>`
+            : html`<slot name="${name}" />`;
         default:
           const itemClasses = cx('c-bolt-link__text', {
             'is-empty': name in this.slots === false,
           });
 
-          return html`
-            <span class="${itemClasses}"
+          // [1]
+          // prettier-ignore
+          return html`<span class="${itemClasses}"
               >${
                 name in this.slots
                   ? this.slot('default')
-                  : html`
-                      <slot />
-                    `
+                  : html`<slot />`
               }</span
-            >
-          `;
+            >`;
       }
     };
 
@@ -100,16 +91,16 @@ class BoltLink extends BoltAction {
       renderedLink.className += ' ' + classes;
       render(innerSlots, renderedLink);
     } else {
-      renderedLink = html`
-        <a href="${this.props.url}" class="${classes}" target="${anchorTarget}"
+      // [1]
+      // prettier-ignore
+      renderedLink = html`<a href="${this.props.url}" class="${classes}" target="${anchorTarget}"
           >${innerSlots}</a
-        >
-      `;
+        >`;
     }
 
-    return html`
-      ${this.addStyles([styles])} ${renderedLink}
-    `;
+    // [1]
+    // prettier-ignore
+    return html`${this.addStyles([styles])} ${renderedLink}`;
   }
 }
 
