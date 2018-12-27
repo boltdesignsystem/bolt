@@ -30,20 +30,46 @@ class BoltUnorderedList extends withLitHtml() {
 
   render() {
     let level = this.level;
+    let nested = false;
 
     if (this.parentNode.tagName) {
       if (this.parentNode.tagName === 'BOLT-LI' && this.parentNode.level) {
         level = this.parentNode.level + 1;
+      }
+
+      if (this.parentNode.tagName === 'BOLT-LI') {
+        nested = true;
       }
     }
 
     const classes = cx('c-bolt-ul', {
       [`c-bolt-ul--l${level}`]: level,
       [`c-bolt-ul--level-${level}`]: level,
-      [`c-bolt-ul--nested`]: level > 1,
+      [`c-bolt-ul--nested`]: nested,
     });
 
     this.slots.default.map(mapWithDepth(level, addNestedLevelProps));
+
+    if (this.slots.default) {
+      const updatedDefaultSlot = [];
+
+      this.slots.default.forEach(item => {
+        if (item.tagName) {
+          updatedDefaultSlot.push(item);
+        }
+      });
+
+      if (
+        updatedDefaultSlot[updatedDefaultSlot.length - 1].attributes.length ===
+          0 &&
+        !nested
+      ) {
+        updatedDefaultSlot[updatedDefaultSlot.length - 1].setAttribute(
+          'last',
+          '',
+        );
+      }
+    }
 
     return html`
       ${this.addStyles([styles])}

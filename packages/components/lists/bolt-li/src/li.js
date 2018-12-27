@@ -11,6 +11,10 @@ class BoltListItem extends withLitHtml() {
   static is = 'bolt-li';
 
   static props = {
+    last: {
+      ...props.boolean,
+      ...{ default: false },
+    },
     level: {
       ...props.number,
       ...{ default: 0 },
@@ -33,6 +37,7 @@ class BoltListItem extends withLitHtml() {
     const classes = cx('c-bolt-li', {
       [`c-bolt-li--l${this.level}`]: this.level,
       [`c-bolt-li--${this.type}-item`]: this.type,
+      [`c-bolt-li--last-item`]: this.last,
       [`c-bolt-li--level-${this.level % 3 !== 0 ? this.level % 3 : 3}`]: this
         .level, // allow up to 3 levels of nested styles before repeating
     });

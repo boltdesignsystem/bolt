@@ -22,25 +22,37 @@ class BoltOrderedList extends withLitHtml() {
   static is = 'bolt-ol';
 
   static props = {
-    last: props.boolean,
     level: {
       ...props.number,
-      ...{ default: 1 },
+      ...{ default: 0 },
     },
   };
 
   render() {
     let level = this.level;
+    let nested = false;
 
     if (this.parentNode.tagName) {
-      if (this.parentNode.tagName === 'BOLT-LI' && this.parentNode.level) {
-        level = this.parentNode.level + 1;
+      console.log(this.parentNode.level);
+      if (
+        this.parentNode.tagName === 'BOLT-LI' &&
+        this.parentNode.parentNode.tagName === 'BOLT-OL'
+      ) {
+        level = this.parentNode.level - 1;
+      } else {
+        level = this.parentNode.level;
+      }
+
+      if (this.parentNode.tagName === 'BOLT-LI') {
+        nested = true;
       }
     }
 
     const classes = cx('c-bolt-ol', {
-      [`c-bolt-ol--nested`]: level > 1,
+      [`c-bolt-ol--nested`]: nested,
     });
+
+    this.slots.default.map(mapWithDepth(level, addNestedLevelProps));
 
     if (this.slots.default) {
       const updatedDefaultSlot = [];

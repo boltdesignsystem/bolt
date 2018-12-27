@@ -3,7 +3,6 @@
 {% endif %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
-
 {% set base_class = "c-bolt-ol" %}
 
 {% set classes = [
@@ -23,6 +22,7 @@
             {% set nested_item = {
               type: "ol",
               children: i,
+              nested: true,
               index: loop.index,
               length: loop.length,
             } %}
@@ -32,6 +32,10 @@
           {% set list_item = {
             type: "ol",
             children: item,
+            nested: false,
+            index: loop.index,
+            length: loop.length,
+            last: loop.last
           } %}
           {% include "@bolt-components-li/li.twig" with list_item only %}
         {% endif %}

@@ -17,6 +17,10 @@ bolt-li {
   margin-bottom: bolt-spacing(xxsmall);
   margin-left: bolt-spacing(medium); // was bolt-spacing(small) + bolt-spacing(xsmall) but this breaks down when mixing together ordered and unordered lists
   @include bolt-padding(0);
+
+  &--last-item {
+    margin-bottom: 0;
+  }
 }
 
 // unordered-list specific list-item styles
@@ -47,6 +51,25 @@ bolt-li {
     &-3 {
       &:before {
         border-radius: 0;
+      }
+    }
+  }
+}
+
+.c-bolt-ul {
+  .c-bolt-ul {
+    .c-bolt-li--ul-item {
+      &:before {
+        border-radius: $bolt-ul-bullet-size;
+        background-color: transparent;
+      }
+    }
+
+    .c-bolt-ul {
+      .c-bolt-li--ul-item {
+        &:before {
+          border-radius: 0;
+        }
       }
     }
   }

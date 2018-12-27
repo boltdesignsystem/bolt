@@ -1,6 +1,5 @@
-{% set schema = bolt.data.components['@bolt-components-unordered-list'].schema %}
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-ul'].schema, _self) | raw }}
 {% endif %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
@@ -23,6 +22,7 @@
             {% set nested_item = {
               type: "ul",
               children: i,
+              nested: true,
               index: loop.index,
               length: loop.length,
             } %}
@@ -32,6 +32,10 @@
           {% set list_item = {
             type: "ul",
             children: item,
+            nested: false,
+            index: loop.index,
+            length: loop.length,
+            last: loop.last
           } %}
           {% include "@bolt-components-li/li.twig" with list_item only %}
         {% endif %}
