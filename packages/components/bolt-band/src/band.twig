@@ -27,6 +27,15 @@
 {% if contentTag %}
   {% set contentTag = null %}
 {% endif %}
+{% if row_gutter %}
+  {% set row_gutter = null %}
+{% endif %}
+{% if content_row_start %}
+  {% set content_row_start = null %}
+{% endif %}
+{% if items %}
+  {% set items = null %}
+{% endif %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
@@ -81,14 +90,49 @@
 
       {% if pinned_content_upper %}
         <div class="{{ "#{base_class}__pinned-area #{base_class}__pinned-area--upper" }}">
+          {% set pinned_content_upper_items %}
+            <div class="{{ "#{base_class}__pinned-items" }}">
+              {% for item in pinned_content_upper %}
+                {% set item_align = item.align %}
+                {% set item_classes = [
+                  "#{base_class}__pinned-item",
+                  item_align ? "#{base_class}__pinned-item--#{item_align}" : "",
+                ] %}
+
+                <div {{ attributes.addClass(item_classes) }}>
+                  {{ item.content }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endset %}
+
+          {% include "@bolt/wrapper.twig" with {
+            content: pinned_content_upper_items,
+          } only %}
         </div>
       {% endif %}
+
       {{ band_content }}
+
       {% if pinned_content_lower %}
         <div class="{{ "#{base_class}__pinned-area #{base_class}__pinned-area--lower" }}">
+          {% set pinned_content_lower_items %}
+            <div class="{{ "#{base_class}__pinned-items" }}">
+              {% for item in pinned_content_lower %}
+                <div class="{{ "#{base_class}__pinned-item #{base_class}__pinned-item--#{item.align}" }}">
+                  {{ item.content }}
+                </div>
+              {% endfor %}
+            </div>
+          {% endset %}
+
+          {% include "@bolt/wrapper.twig" with {
+            content: pinned_content_lower_items,
+          } only %}
         </div>
       {% endif %}
     {% else %}
+
     {# Otherwise, render just the content #}
       {{ band_content }}
     {% endif %}

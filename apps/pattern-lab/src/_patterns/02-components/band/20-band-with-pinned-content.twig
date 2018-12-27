@@ -12,8 +12,30 @@
   } only %}
 {% endset %}
 
-{% set pinned_content %}
+{% set pinned_breadcrumb %}
+  {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+    contentItems: [
+      include("@bolt-components-link/link.twig", {
+        "text": "Home",
+        "url": "#!"
+      }),
+      include("@bolt-components-link/link.twig", {
+        "text": "Landing Page",
+        "url": "#!"
+      }),
+      include("@bolt-components-link/link.twig", {
+        "text": "Sub Page",
+        "url": "#!"
+      }),
+      "Current Page"
+    ]
+  } only %}
+{% endset %}
+
+{% set pinned_share %}
   {% include '@bolt-components-share/share.twig' with {
+    size: "small",
+    opacity: 60,
     sources: [
       {
         name: "facebook",
@@ -38,57 +60,63 @@
   } %}
 {% endset %}
 
+<h3>Each pinned area (upper and lower) can have 1 or more items, spacing will be evenly distributed</h3>
+<div class="u-bolt-margin-bottom-small">
+  {% include "@bolt-components-band/band.twig" with {
+    size: "large",
+    content: content,
+    pinned_content: {
+      upper: [
+        {
+          content: "upper pinned 1",
+        },
+        {
+          content: "upper pinned 2",
+        },
+        {
+          content: "upper pinned 3",
+        },
+      ],
+      lower: [
+        {
+          content: "lower pinned 1",
+        },
+        {
+          content: "lower pinned 2",
+        },
+        {
+          content: "lower pinned 3",
+        },
+      ]
+    }
+  } only %}
+</div>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-band/band.twig" with {
+    size: "large",
+    content: content,
+    pinned_content: {
+      upper: [
+        {
+          content: pinned_breadcrumb,
+        },
+        {
+          content: pinned_share,
+        },
+      ],
+    }
+  } only %}
+</div>
 
+<h3>When there is only 1 item, you can set the align prop to your liking (start, center, end)</h3>
 {% include "@bolt-components-band/band.twig" with {
-  size: "medium",
-  theme: "dark",
-  background: {
-    opacity: "heavy",
-    fill: "color",
-    focalPoint: {
-      vertical: "center",
-      horizontal: "center"
-    },
-    contentItems: [
-      {
-        pattern: "image",
-        src: "/pattern-lab/images/content/backgrounds/background-short-1.jpg",
-        lazyload: false
-      }
-    ]
-  },
   content: content,
   pinned_content: {
     upper: [
       {
-        align: "start",
-        content: "start",
-      },
-      {
-        align: "center",
-        content: "center",
-      },
-      {
+        content: pinned_share,
         align: "end",
-        content: "end",
       },
     ],
-    lower: [
-      {
-        align: "start",
-        content: "start",
-      },
-      {
-        align: "center",
-        content: "center",
-      },
-      {
-        align: "end",
-        content: "end",
-      },
-    ]
   }
 } only %}
-
-
-

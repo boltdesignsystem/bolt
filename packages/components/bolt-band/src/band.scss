@@ -40,6 +40,18 @@ $bolt-band-sizes: (
   .c-bolt-band--#{$size-name} {
     padding-top: $size-value;
     padding-bottom: $size-value;
+
+    .c-bolt-band__pinned-area {
+      min-height: $size-value;
+    }
+
+    .c-bolt-band__pinned-area--upper {
+      margin-top: $size-value * -1;
+    }
+
+    .c-bolt-band__pinned-area--lower {
+      margin-bottom: $size-value * -1;
+    }
   }
 }
 
@@ -49,6 +61,60 @@ $bolt-band-sizes: (
 
 
 
-.c-bolt-band__content {
+.c-bolt-band__content,
+.c-bolt-band__pinned-area {
   position: relative;
+}
+
+.c-bolt-band__pinned-area {
+  display: flex;
+
+  &--upper {
+    align-items: flex-start;
+  }
+
+  &--lower {
+    align-items: flex-end;
+  }
+
+  > * {
+    width: 100%;
+  }
+}
+
+
+.c-bolt-band__pinned-items {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1;
+  margin-top: bolt-v-spacing(small) / 2;
+  margin-right: bolt-spacing(xsmall) * -1 / 2;
+  margin-bottom: bolt-v-spacing(small) / 2;
+  margin-left: bolt-spacing(xsmall) * -1 / 2;
+}
+
+.c-bolt-band__pinned-item {
+  padding-top: bolt-v-spacing(xsmall) / 2;
+  padding-right: bolt-spacing(xsmall) / 2;
+  padding-bottom: bolt-v-spacing(xsmall) / 2;
+  padding-left: bolt-spacing(xsmall) / 2;
+  line-height: 1;
+
+  // Align modifiers are only needed if there's only one item.
+  &--start:only-child {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  &--end:only-child {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  &--center:only-child {
+    margin-right: auto;
+    margin-left: auto;
+  }
 }
