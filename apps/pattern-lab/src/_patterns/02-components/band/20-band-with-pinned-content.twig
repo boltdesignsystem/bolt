@@ -34,7 +34,6 @@
 
 {% set pinned_share %}
   {% include '@bolt-components-share/share.twig' with {
-    size: "small",
     opacity: 60,
     sources: [
       {
@@ -110,6 +109,7 @@
 
 <h3>When there is only 1 item, you can set the align prop to your liking (start, center, end)</h3>
 {% include "@bolt-components-band/band.twig" with {
+  size: "large",
   content: content,
   pinned_content: {
     upper: [

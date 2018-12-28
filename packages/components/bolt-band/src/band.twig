@@ -89,7 +89,7 @@
       {% set pinned_content_lower = pinned_content.lower %}
 
       {% if pinned_content_upper %}
-        <div class="{{ "#{base_class}__pinned-area #{base_class}__pinned-area--upper" }}">
+        <div class="{{ "#{base_class}__content #{base_class}__content--pinned #{base_class}__content--pinned-upper" }}">
           {% set pinned_content_upper_items %}
             <div class="{{ "#{base_class}__pinned-items" }}">
               {% for item in pinned_content_upper %}
@@ -115,7 +115,7 @@
       {{ band_content }}
 
       {% if pinned_content_lower %}
-        <div class="{{ "#{base_class}__pinned-area #{base_class}__pinned-area--lower" }}">
+        <div class="{{ "#{base_class}__content #{base_class}__content--pinned #{base_class}__content--pinned-lower" }}">
           {% set pinned_content_lower_items %}
             <div class="{{ "#{base_class}__pinned-items" }}">
               {% for item in pinned_content_lower %}
