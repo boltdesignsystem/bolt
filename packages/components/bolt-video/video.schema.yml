@@ -60,6 +60,7 @@ properties:
     description: An array of the default `<bolt-video>` player plugins that are globally enabled by default.
     enum:
       - playback
+    hidden: true
   available_plugins:
     type: array
     readonly: true
@@ -69,6 +70,7 @@ properties:
       - social
       - email
       - cue
+    hidden: true
   enabled_plugins:
     type: string
     description: 'Space-separated list of built-in `<bolt-video>` plugins for Brightcove to enable. Current include `social`, `email`, `playback`, and `cue`. For example: `<bolt-video enabled-plugins="cue social email playback">`.'
