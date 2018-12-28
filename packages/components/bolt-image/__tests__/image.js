@@ -4,7 +4,7 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../image.schema.yml'));
 const { tag } = schema.properties;
 
-describe('<bolt-image> Component', async () => {
+describe.skip('<bolt-image> Component', async () => {
   test('<bolt-image> with ratio object compiles', async () => {
     const results = await render('@bolt-components-image/image.twig', {
       src: '/images/placeholders/tout-4x3-climber.jpg',
