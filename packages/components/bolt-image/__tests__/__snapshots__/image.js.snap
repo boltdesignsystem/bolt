@@ -3,9 +3,9 @@
 exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading disabled compiles 1`] = `
 
 <bolt-image style="background-color: hsl(233, 33%, 97%);">
-  <bolt-ratio aspect-ratio-height="500"
-              aspect-ratio-width="500"
-              style="--aspect-ratio-height: 500; --aspect-ratio-width: 500;"
+  <bolt-ratio aspect-ratio-height="660"
+              aspect-ratio-width="1200"
+              style="--aspect-ratio-height: 660; --aspect-ratio-width: 1200;"
   >
     <img class="c-bolt-image__image-placeholder"
          alt="A Rock Climber"
@@ -14,9 +14,9 @@ exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading d
     >
     <img class="c-bolt-image__image"
          alt="A Rock Climber"
-         srcset="/images/placeholders/500x500-320.jpg 320w"
+         srcset="/images/placeholders/1200x660-320.jpg 320w, /images/placeholders/1200x660-640.jpg 640w, /images/placeholders/1200x660-1024.jpg 1024w"
          sizes="auto"
-         src="/images/placeholders/500x500.jpg"
+         src="/images/placeholders/1200x660.jpg"
     >
   </bolt-ratio>
 </bolt-image>
@@ -26,9 +26,9 @@ exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading d
 exports[`<bolt-image> Component <bolt-image> with ratio object compiles 1`] = `
 
 <bolt-image style="background-color: hsl(233, 33%, 97%);">
-  <bolt-ratio aspect-ratio-height="500"
-              aspect-ratio-width="500"
-              style="--aspect-ratio-height: 500; --aspect-ratio-width: 500;"
+  <bolt-ratio aspect-ratio-height="660"
+              aspect-ratio-width="1200"
+              style="--aspect-ratio-height: 660; --aspect-ratio-width: 1200;"
   >
     <img class="c-bolt-image__image-placeholder"
          alt="A Rock Climber"
@@ -36,15 +36,15 @@ exports[`<bolt-image> Component <bolt-image> with ratio object compiles 1`] = `
     >
     <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
          alt="A Rock Climber"
-         data-srcset="/images/placeholders/500x500-320.jpg 320w"
+         data-srcset="/images/placeholders/1200x660-320.jpg 320w, /images/placeholders/1200x660-640.jpg 640w, /images/placeholders/1200x660-1024.jpg 1024w"
          data-sizes="auto"
          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
     >
     <noscript>
       <img class="c-bolt-image__image"
            alt="A Rock Climber"
-           src="/images/placeholders/500x500.jpg"
-           srcset="/images/placeholders/500x500-320.jpg 320w"
+           src="/images/placeholders/1200x660.jpg"
+           srcset="/images/placeholders/1200x660-320.jpg 320w, /images/placeholders/1200x660-640.jpg 640w, /images/placeholders/1200x660-1024.jpg 1024w"
       >
     </noscript>
   </bolt-ratio>

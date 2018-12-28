@@ -6,7 +6,7 @@ const schema = readYamlFileSync(join(__dirname, '../image.schema.yml'));
 describe('<bolt-image> Component', async () => {
   test('<bolt-image> with ratio object compiles', async () => {
     const results = await render('@bolt-components-image/image.twig', {
-      src: '/images/placeholders/500x500.jpg',
+      src: '/images/placeholders/1200x660.jpg',
       alt: 'A Rock Climber',
       lazyload: true,
     });
@@ -16,7 +16,7 @@ describe('<bolt-image> Component', async () => {
 
   test('<bolt-image> with ratio object and lazyloading disabled compiles', async () => {
     const results = await render('@bolt-components-image/image.twig', {
-      src: '/images/placeholders/500x500.jpg',
+      src: '/images/placeholders/1200x660.jpg',
       alt: 'A Rock Climber',
       lazyload: false,
     });
