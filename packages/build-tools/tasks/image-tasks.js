@@ -136,7 +136,6 @@ async function processImage(file, set) {
 
       if (config.prod) {
         if (isOrig) {
-
           if (
             pathInfo.ext === '.jpeg' ||
             pathInfo.ext === '.jpg' ||
