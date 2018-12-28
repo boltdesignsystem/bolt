@@ -11,7 +11,6 @@ const globby = require('globby');
 const ora = require('ora');
 const sharp = require('sharp');
 const SVGO = require('svgo');
-const { spawnSync } = require('child_process');
 const log = require('../utils/log');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
@@ -78,12 +77,8 @@ if (branchName.includes('feature') === true) {
   boltImageSizes = [320, 640, 1024, 1920];
 }
 
-function makeLocalPath(imagePath) {
-  return `${path.join(config.wwwDir, imagePath)}`;
-}
-
 function makeWebPath(imagePath) {
-  return `${path.relative(config.wwwDir, imagePath)}`;
+  return `/${path.relative(config.wwwDir, imagePath)}`;
 }
 
 async function writeImageManifest(imgManifest) {
@@ -137,23 +132,9 @@ async function processImage(file, set) {
       });
       const newSizedPath = path.format(thisPathInfo);
       const newSizeWebPath = makeWebPath(newSizedPath);
-      const newSizeLocalPath = makeLocalPath(newSizedPath);
 
       if (config.prod) {
         if (isOrig) {
-          await sharp(originalFileBuffer)
-            .jpeg({
-              quality: 50,
-              progressive: true,
-              optimiseScans: true,
-              force: false,
-            })
-            .png({
-              progressive: true,
-              force: false,
-              compressionLevel: 9,
-            })
-            .toFile(newSizeLocalPath);
 
           if (
             pathInfo.ext === '.jpeg' ||
@@ -171,13 +152,12 @@ async function processImage(file, set) {
               .png({
                 progressive: true,
                 force: false,
-                compressionLevel: 9,
               })
-              .toFile(newSizeLocalPath);
+              .toFile(newSizedPath);
           } else if (pathInfo.ext === '.svg') {
             const result = await svgo.optimize(originalFileBuffer);
             const optimizedSVG = result.data;
-            await writeFile(newSizeLocalPath, optimizedSVG);
+            await writeFile(newSizedPath, optimizedSVG);
           } else {
             await sharp(originalFileBuffer)
               .jpeg({
@@ -189,9 +169,8 @@ async function processImage(file, set) {
               .png({
                 progressive: true,
                 force: false,
-                compressionLevel: 9,
               })
-              .toFile(newSizeLocalPath);
+              .toFile(newSizedPath);
           }
         } else {
           // http://sharp.pixelplumbing.com/en/stable/
@@ -211,13 +190,12 @@ async function processImage(file, set) {
               .png({
                 progressive: true,
                 force: false,
-                compressionLevel: 9,
               })
-              .toFile(newSizeLocalPath);
+              .toFile(newSizedPath);
           } else {
             await sharp(originalFileBuffer)
               .resize(size)
-              .toFile(newSizeLocalPath);
+              .toFile(newSizedPath);
           }
         }
       } else {
