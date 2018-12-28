@@ -654,24 +654,27 @@ class BoltVideo extends withPreact() {
         />
         {this.props.showMeta && h(videoMetaTag)}
         {this.props.isBackgroundVideo && (
-          <a
+          <div
+            onClick={this.handleClose}
             className={css(
               `c-${bolt.namespace}-video__close-button`,
               `c-${bolt.namespace}-video__close-button--icon-to-text`,
-            )}
-            href="javascript:"
-            onClick={this.handleClose}>
+            )}>
             <span className={`c-${bolt.namespace}-video__close-button-icon`}>
-              <div class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
-                <span class="c-bolt-button__icon">
-                  <bolt-icon name="close" size="small" />
-                </span>
-              </div>
+              <bolt-button
+                icon-only
+                size="xsmall"
+                color="secondary"
+                border-radius="full">
+                <bolt-icon name="close" size="small" slot="after" />
+              </bolt-button>
             </span>
             <span className={`c-${bolt.namespace}-video__close-button-text`}>
-              {closeButtonText}
+              <bolt-button size="small" color="text">
+                {closeButtonText}
+              </bolt-button>
             </span>
-          </a>
+          </div>
         )}
       </span>
     );
