@@ -7,17 +7,19 @@
   "main": "bolt.js",
   "scripts": {
     "postinstall": "composer run setup",
-    "build": "bolt build",
-    "build:lang": "bolt build --i18n",
-    "build:noisy": "bolt build --verbosity 5",
-    "build:prod": "bolt build --prod",
+    "build": "npm run test:pl && bolt build",
+    "build:lang": "npm run test:pl && bolt build --i18n",
+    "build:noisy": "npm run test:pl && bolt build --verbosity 5",
+    "build:prod": "npm run test:pl && bolt build --prod",
+    "build:pl": "bolt prep && npx lerna exec --scope @bolt/uikit-workshop --loglevel=silent -- yarn run build",
     "serve": "bolt serve",
     "watch": "bolt watch",
-    "start": "bolt start",
+    "start": "npm run test:pl && bolt start",
     "start:lang": "bolt start --i18n",
     "start:prod": "bolt start --prod",
     "setup": "cd ../ && npm run setup",
     "clean": "cd ../ && npm run clean",
+    "test:pl": "[[ -d ../www/pattern-lab/styleguide/js && -d ../www/pattern-lab/styleguide/css && -f ../www/pattern-lab/index.html ]] && echo '✔ Pattern Lab UIKit Already Built!' | chalk green || (chalk yellow '⚠️ Uh-oh. Pattern Labs UIKit is missing... Regenerating!' && yarn run build:pl)",
     "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
     "test": "npm run test:links"
   },
@@ -26,6 +28,7 @@
     "url": "https://github.com/bolt-design-system/bolt"
   },
   "dependencies": {
+    "chalk-cli": "^4.1.0",
     "@bolt/twig-renderer": "^2.2.1",
     "@bolt/build-tools": "^2.2.1",
     "@bolt/components-action-blocks": "^2.2.1",
