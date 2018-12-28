@@ -1,67 +1,9 @@
-{% set schema = bolt.data.components["@bolt-components-card"].schema %}
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
+{# If the props being passed match the deprecated schema, use the adaptor for the deprecated card.  #}
+{% if contentItems %}
+  {% include "@bolt-components-card/_adaptor-for-deprecated-card.twig" %}
+{% else %}
+  {% include "@bolt-components-card/_adaptor-for-new-card.twig" %}
 {% endif %}
 
-{# Variables #}
-{% set base_class = "c-bolt-card" %}
-{% set attributes = create_attribute(attributes|default({})) %}
-{% set inner_attributes = create_attribute({}) %}
-
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{% set tag_options = schema.properties.tag.enum %}
-{% set theme_options = schema.properties.theme.enum %}
-{% set height_options = schema.properties.height.enum %}
-
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
-{% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
-{% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
-{% set height = height in height_options ? height : schema.properties.height.default %}
-
-{% if link %}
-  {% set link_url = link.url %}
-  {% set link_attributes = create_attribute(link.attributes) %}
-{% endif %}
-
-
-{# card component's custom element wrapper #}
-<bolt-card
-  {% if tag %} tag="{{ tag }}" {% endif %}
-  {% if theme %} theme="{{ theme }}" {% endif %}
-  {% if height %} height="{{ height }}" {% endif %}
-  {% if link_url %} url="{{ link_url }}" {% endif %}
-  {{ attributes }}
->
-  {# This sets none values to not render anything. #}
-  {% set theme = theme == "none" ? false : theme %}
-
-  {# Array of classes based on the defined + default props #}
-  {% set classes = [
-    base_class,
-    theme in theme_options ? "t-bolt-#{theme}" : "",
-  ] %}
-
-  <replace-with-children {{ inner_attributes.addClass(classes) }}>
-    {% if link %}
-      <bolt-card-link {% if link_url %}url="{{ link_url }}"{% endif %} class="{{ "#{base_class}__link" }}" {{ link_attributes }}></bolt-card-link>
-    {% endif %}
-
-    {% block children %}
-      {% if content %}
-        {# The replace function is a hack to get around the utf-8 bug. #}
-        {{ content | join | replace({"UTF-8": ""}) }}
-      {% else %}
-        {% if media %}
-          {% include "@bolt-components-card/_card-media.twig" %}
-        {% endif %}
-        {% if body %}
-          {% include "@bolt-components-card/_card-body.twig" %}
-        {% endif %}
-        {% if actions %}
-          {% include "@bolt-components-card/_card-actions.twig" %}
-        {% endif %}
-      {% endif %}
-    {% endblock children %}
-  </replace-with-children>
-</bolt-card>
+{# @TODO In the next major version of Bolt, remove the adaptors and replace the contents of this file (card.twig)
+with the contents of _adaptor-for-new-card.twig #}
