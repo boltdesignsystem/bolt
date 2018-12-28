@@ -35,7 +35,7 @@
     "build": "php -d memory_limit=4048M core/console --generate",
     "watch": "php core/console --watch",
     "start": "php core/console --server --quiet & php core/console --watch",
-    "setup": "@composer update --no-interaction --prefer-dist --no-progress",
+    "setup": "@composer install --no-interaction --prefer-dist --no-progress",
     "post-install-cmd": [
       "PatternLab\\Installer::postInstallCmd"
     ],
