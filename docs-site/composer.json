@@ -35,7 +35,27 @@
     "build": "php -d memory_limit=4048M core/console --generate",
     "watch": "php core/console --watch",
     "start": "php core/console --server --quiet & php core/console --watch",
-    "setup": "@composer update --no-interaction --prefer-dist --no-progress"
+    "setup": "@composer update --no-interaction --prefer-dist --no-progress",
+    "post-install-cmd": [
+      "PatternLab\\Installer::postInstallCmd"
+    ],
+    "post-update-cmd": [
+      "PatternLab\\Installer::postUpdateCmd"
+    ],
+    "post-root-package-install": [
+      "PatternLab\\Installer::setProjectInstall",
+      "PatternLab\\Installer::getSuggestedStarterKits",
+      "PatternLab\\Installer::getConfigOverrides"
+    ],
+    "post-package-install": [
+      "PatternLab\\Installer::postPackageInstall"
+    ],
+    "post-package-update": [
+      "PatternLab\\Installer::postPackageUpdate"
+    ],
+    "pre-package-uninstall": [
+      "PatternLab\\Installer::prePackageUninstall"
+    ]
   },
   "extra": {
     "patches-file": "composer.patches.json",
