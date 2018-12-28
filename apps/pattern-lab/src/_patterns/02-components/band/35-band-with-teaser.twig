@@ -1,0 +1,33 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+      {# This is a standard teaser #}
+      {% include "@bolt-components-headline/eyebrow.twig" with {
+        text: "This Is an Eyebrow",
+      } only %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxxlarge",
+        text: "This Is a Headline",
+      } only %}
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        size: "xxlarge",
+        text: "This Is a Subheadline",
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "This is a paragraph.",
+      } only %}
+      {% include "@bolt-components-logo/logo.twig" with {
+        src: "/pattern-lab/images/content/logos/logo-paypal.svg",
+        lazyload: false,
+      } only %}
+      {% include "@bolt-components-button/button.twig" with {
+        text: "This is a button",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "light",
+  content: content,
+} only %}
