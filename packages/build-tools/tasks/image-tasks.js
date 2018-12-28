@@ -74,9 +74,9 @@ let boltImageSizes = [
 ];
 
 // don't resize images to all available options on feature-specific branches to speed up build times
-// if (branchName.includes('feature') === true) {
-//  boltImageSizes = [320, 640, 1024, 1920];
-// }
+if (branchName.includes('feature') === true) {
+  boltImageSizes = [320, 640, 1024, 1920];
+}
 
 function makeLocalPath(imagePath) {
   return `${path.join(config.wwwDir, imagePath)}`;
