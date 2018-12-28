@@ -102,82 +102,151 @@
   {% endfor %}
 {% endset %}
 
-<bolt-card
-    {% if theme %} class="t-bolt-{{ theme }}"{% endif %}
-    {% if url %}url={{ url }}{% endif %}
-    bolt-component>
-  <{{ tag }} {{ attributes.addClass(classes) }}>
+{% set cardBody %}
+  {% block card_body %}
+    {% for key,item in _items if item.pattern in _allowedCardBodyItems %}
+      {% if item.pattern %}
+        {% include pattern_template(item.pattern) with item only %}
+      {% elseif key != "content" %}
+        {% include pattern_template(key) with item only %}
+      {% else %}
+        {{ item }}
+      {% endif %}
 
-  {% if block('card_media') is not empty %}
-    <div class="{{ "#{baseClass}__media" }}">{% spaceless %}
-        {% block card_media %}
-          {{ cardMedia }}
-        {% endblock %}
-      {% endspaceless %}</div>
-  {% endif %}
+    {% endfor %}
+  {% endblock card_body %}
+{% endset %}
 
 
-  {% if block('card_body') is not empty %}
-  <{{ contentTag }} class="{{ "#{baseClass}__body" }}">{% spaceless %}
-    {% block card_body %}
-      {% for key,item in _items if item.pattern in _allowedCardBodyItems %}
-        {% if item.pattern %}
-          {% include pattern_template(item.pattern) with item only %}
-        {% elseif key != "content" %}
-          {% include pattern_template(key) with item only %}
-        {% else %}
-          {{ item }}
-        {% endif %}
+{# TODO Transform the deprecated data structure for footer links into the data format expected by 'actions'.
+  It will be impossible to get 1:1 coverage because there is no way in the new structure to pass freeform content to
+  to the footer area, but we can at least support the most common forms of deprecated data.
+#}
+{#{% for item in _items if item.pattern in _allowedCardFooterItems %}#}
+  {#{% set paramOverrides = {#}
+    {#align: "start",#}
+    {#style: "text",#}
+    {#width: "full",#}
+  {#} %}#}
 
-      {% endfor %}
-    {% endblock card_body %}
-  {% endspaceless %}</{{ contentTag }}>
-{% endif %}
+  {#{% if item.icon == null %}#}
+    {#{% if item.external == true %}#}
+      {#{% set iconOverrides = {#}
+        {#icon: {#}
+          {#name: "external-link"#}
+        {#}#}
+      {#} %}#}
+    {#{% else %}#}
+      {#{% set iconOverrides = {#}
+        {#icon: {#}
+          {#name: "chevron-right"#}
+        {#}#}
+      {#} %}#}
+    {#{% endif %}#}
+  {#{% endif %}#}
 
-    {% if block('card_footer') is not empty %}
-      <div class="{{ "#{baseClass}__footer" }}">{% spaceless %}
-          {% block card_footer %}
+  {#<div class="{{ "#{baseClass}__footer-item" }}">#}
+    {#{% if item.pattern %}#}
+      {#{% set item = item | merge(paramOverrides) %}#}
 
-            {% for item in _items if item.pattern in _allowedCardFooterItems %}
-              {% set paramOverrides = {
-                align: "start",
-                style: "text",
-                width: "full",
-              } %}
+      {# if icon default data set, merge that in as well #}
+      {#{% if iconOverrides %}#}
+        {#{% set item = item | merge(iconOverrides) %}#}
+      {#{% endif %}#}
+      {#{% include pattern_template(item.pattern) with item only %}#}
+    {#{% else %}#}
+      {#{{ item }}#}
+    {#{% endif %}#}
+  {#</div>#}
+{#{% endfor %}#}
 
-              {% if item.icon == null %}
-                {% if item.external == true %}
-                  {% set iconOverrides = {
-                    icon: {
-                      name: "external-link"
-                    }
-                  } %}
-                {% else %}
-                  {% set iconOverrides = {
-                    icon: {
-                      name: "chevron-right"
-                    }
-                  } %}
-                {% endif %}
-              {% endif %}
+{# TODO Either "whitelist" each parameter that may be passed through or remove the 'only' keyword and include
+   _adaptor-for-new-card.twig instead #}
+{% include "@bolt-components-card/card.twig" with {
+  media: {
+    content: cardMedia,
+  },
+  body: {
+    content: cardBody,
+  }
+} only %}
 
-              <div class="{{ "#{baseClass}__footer-item" }}">
-                {% if item.pattern %}
-                  {% set item = item | merge(paramOverrides) %}
+
+{# TODO Old card structure temporarily kept for reference. #}
+{#<bolt-card#}
+    {#{% if theme %} class="t-bolt-{{ theme }}"{% endif %}#}
+    {#{% if url %}url={{ url }}{% endif %}#}
+    {#bolt-component>#}
+  {#<{{ tag }} {{ attributes.addClass(classes) }}>#}
+
+  {#{% if block('card_media') is not empty %}#}
+    {#<div class="{{ "#{baseClass}__media" }}">{% spaceless %}#}
+        {#{% block card_media %}#}
+          {#{{ cardMedia }}#}
+        {#{% endblock %}#}
+      {#{% endspaceless %}</div>#}
+  {#{% endif %}#}
+
+
+  {#{% if block('card_body') is not empty %}#}
+  {#<{{ contentTag }} class="{{ "#{baseClass}__body" }}">{% spaceless %}#}
+    {#{% block card_body %}#}
+      {#{% for key,item in _items if item.pattern in _allowedCardBodyItems %}#}
+        {#{% if item.pattern %}#}
+          {#{% include pattern_template(item.pattern) with item only %}#}
+        {#{% elseif key != "content" %}#}
+          {#{% include pattern_template(key) with item only %}#}
+        {#{% else %}#}
+          {#{{ item }}#}
+        {#{% endif %}#}
+
+      {#{% endfor %}#}
+    {#{% endblock card_body %}#}
+  {#{% endspaceless %}</{{ contentTag }}>#}
+{#{% endif %}#}
+
+    {#{% if block('card_footer') is not empty %}#}
+      {#<div class="{{ "#{baseClass}__footer" }}">{% spaceless %}#}
+          {#{% block card_footer %}#}
+            {#{% for item in _items if item.pattern in _allowedCardFooterItems %}#}
+              {#{% set paramOverrides = {#}
+                {#align: "start",#}
+                {#style: "text",#}
+                {#width: "full",#}
+              {#} %}#}
+
+              {#{% if item.icon == null %}#}
+                {#{% if item.external == true %}#}
+                  {#{% set iconOverrides = {#}
+                    {#icon: {#}
+                      {#name: "external-link"#}
+                    {#}#}
+                  {#} %}#}
+                {#{% else %}#}
+                  {#{% set iconOverrides = {#}
+                    {#icon: {#}
+                      {#name: "chevron-right"#}
+                    {#}#}
+                  {#} %}#}
+                {#{% endif %}#}
+              {#{% endif %}#}
+
+              {#<div class="{{ "#{baseClass}__footer-item" }}">#}
+                {#{% if item.pattern %}#}
+                  {#{% set item = item | merge(paramOverrides) %}#}
 
                   {# if icon default data set, merge that in as well #}
-                  {% if iconOverrides %}
-                    {% set item = item | merge(iconOverrides) %}
-                  {% endif %}
-                  {% include pattern_template(item.pattern) with item only %}
-                {% else %}
-                  {{ item }}
-                {% endif %}
-              </div>
-            {% endfor %}
-
-          {% endblock card_footer %}
-        {% endspaceless %}</div>
-    {% endif %}
-</{{ tag }}>
-</bolt-card>
+                  {#{% if iconOverrides %}#}
+                    {#{% set item = item | merge(iconOverrides) %}#}
+                  {#{% endif %}#}
+                  {#{% include pattern_template(item.pattern) with item only %}#}
+                {#{% else %}#}
+                  {#{{ item }}#}
+                {#{% endif %}#}
+              {#</div>#}
+            {#{% endfor %}#}
+          {#{% endblock card_footer %}#}
+        {#{% endspaceless %}</div>#}
+    {#{% endif %}#}
+{#</{{ tag }}>#}
+{#</bolt-card>#}
