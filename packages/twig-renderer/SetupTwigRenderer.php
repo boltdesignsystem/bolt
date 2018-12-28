@@ -11,4 +11,7 @@ function addBoltExtensions(\Twig_Environment &$env, $config) {
   $env->addFunction(new \Twig_SimpleFunction('customTwigFunctionThatSaysWorld', function () {
     return 'Custom World';
   }));
+
+  // temporarily disable Twig schema validation for the static site generator till the unknown 500 error being thrown is troubleshooted
+  $env->addGlobal('enable_json_schema_validation', false); 
 }

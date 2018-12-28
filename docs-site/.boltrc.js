@@ -19,8 +19,7 @@ const config = {
   startPath: '/',
   plConfigFile: './config/config.yml',
   verbosity: 2,
-  // schemaErrorReporting: 'cli',
-  schemaErrorReporting: 'none',
+  schemaErrorReporting: 'cli',
   enableCache: true,
   webpackDevServer: {
     enabled: true,
