@@ -5,7 +5,7 @@
   {% block band_content %}
 
 {% macro text(text, size, tag) %}
-  {% include "@bolt/text.twig" with {
+  {% include "@bolt-components-headline/text.twig" with {
     text: text,
     size: size  | default("medium"),
     tag: tag | default("p")
@@ -82,11 +82,11 @@
           size: "xxlarge"
         } only %}
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Omni-channel customer journeys are increasingly recognized as the best practice standard by which organizations need to define, implement, and measure their marketing strategy and assign marketing spend. Maintaining advertising technology (adtech) and marketing technology (martech) silos creates technology, organizational, and capability gaps—preventing us from effectively driving toward coherent, profitable, and delightful customer experiences across both owned and paid media, throughout the entire customer life cycle. And yet, with the growing maturity of data management platform (DMP) implementations—combined with greater adoption and utilization of decision management platforms—these two unique worlds of adtech and martech can be bridged, with pre-built technology solutions that deliver new, previously unachievable use cases. By combining powerful DMP technology with advanced AI, marketing organizations can optimize ad spend, reduce attrition, improve acquisition rates, and increase revenues."
         } only %}
 
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: "Download this whitepaper to learn about:"
         } only %}
 

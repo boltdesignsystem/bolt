@@ -86,7 +86,7 @@
     {% endif %}
     {% block blockquote_quote %}
       <div class="{{ "#{baseClass}__quote" }}">
-        {% include "@bolt/text.twig" with {
+        {% include "@bolt-components-headline/text.twig" with {
           text: content,
           tag: "div",
           size: size,
@@ -105,14 +105,14 @@
             </div>
           {% endif %}
           <div class="{{ "#{baseClass}__footer-item" }}">
-            {% include "@bolt/text.twig" with {
+            {% include "@bolt-components-headline/text.twig" with {
               text: author.name,
               tag: "cite",
               size: "xsmall",
               weight: "bold"
             } only %}
             {% if author.title %}
-              {% include "@bolt/text.twig" with {
+              {% include "@bolt-components-headline/text.twig" with {
                 text: author.title,
                 size: "xsmall"
               } only %}

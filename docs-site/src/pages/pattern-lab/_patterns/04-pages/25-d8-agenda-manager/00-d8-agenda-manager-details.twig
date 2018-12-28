@@ -112,13 +112,13 @@
                   text: speaker.name,
                 } only %}
 
-                {% include "@bolt/text.twig" with {
+                {% include "@bolt-components-headline/text.twig" with {
                   text: speaker.title,
                   tag: "div",
                   size: "xsmall"
                 } only %}
 
-                {% include "@bolt/text.twig" with {
+                {% include "@bolt-components-headline/text.twig" with {
                   text: speaker.org,
                   size: "xsmall",
                   weight: "bold"
@@ -143,7 +143,7 @@
 
       {% grid %}
         {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
-          {% include "@bolt/text.twig" with {
+          {% include "@bolt-components-headline/text.twig" with {
             text: eventDescription|default("Insert Event Description Here. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum.")
           } only %}
 
