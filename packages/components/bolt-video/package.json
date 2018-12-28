@@ -4,12 +4,10 @@
 	"keywords": [
 		"bolt design system",
 		"bolt",
-		"css framework",
 		"design system",
 		"components"
 	],
 	"version": "2.2.1",
-	"sourceFilesFrom": "0.10.2",
 	"maintainers": [
 		{
 			"name": "Salem Ghoweri",
@@ -27,12 +25,13 @@
 	"repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video",
 	"bugs": "https://github.com/bolt-design-system/bolt/issues",
 	"schema": "video.schema.yml",
-	"style": "src/video.scss",
-	"main": "src/video.js",
+	"style": "index.scss",
+	"main": "index.js",
 	"publishConfig": {
 		"access": "public"
 	},
 	"dependencies": {
+		"lodash.isequal": "^4.5.0",
 		"@bolt/components-button": "^2.2.1",
 		"@bolt/core": "^2.2.1",
 		"@bolt/components-ratio": "^2.2.0",
