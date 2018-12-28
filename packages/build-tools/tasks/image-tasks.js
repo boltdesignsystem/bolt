@@ -11,6 +11,7 @@ const globby = require('globby');
 const ora = require('ora');
 const sharp = require('sharp');
 const SVGO = require('svgo');
+const { spawnSync } = require('child_process');
 const log = require('../utils/log');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
