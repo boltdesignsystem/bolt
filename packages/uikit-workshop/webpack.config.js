@@ -211,6 +211,7 @@ module.exports = async function() {
           ],
           {
             allowExternal: true,
+            verbose: false,
 
             // perform clean just before files are emitted to the output dir
             beforeEmit: true,

@@ -5,7 +5,6 @@
   "main": "gulpfile.js",
   "private": true,
   "scripts": {
-    "postinstall": "yarn run build",
     "build": "webpack-cli --config webpack.config.js --display=minimal",
     "watch": "webpack-cli --config webpack.config.js --progress --watch",
     "test": "npm run build -- --bail"
