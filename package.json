@@ -24,7 +24,7 @@
     "build": "cd docs-site && yarn run build:prod",
 
     "setup": "yarn",
-    "setup:quick": "yarn install --production --ignore-scripts",
+    "setup:quick": "yarn install --production",
     "setup:full": "yarn --force",
 
     "deploy": "./scripts/deploy.js",
@@ -34,6 +34,7 @@
     "clean:composer": "find . -name 'vendor' -type d -exec rm -rf {} +",
     "clean:cache": "find . -name 'cache' -type d -exec rm -rf {} +",
     "clean:npm": "find . -name 'node_modules' -type d -exec rm -rf {} +",
+    "clean:www": "find . -name 'www' -type d -exec rm -rf {} +",
     
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
