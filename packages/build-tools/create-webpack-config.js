@@ -313,12 +313,52 @@ async function createWebpackConfig(buildConfig) {
       ],
     },
     mode: config.prod ? 'production' : 'development',
+    // optimization: {
+    //   mergeDuplicateChunks: true,
+    // },
     optimization: {
+      minimize: true,
+      occurrenceOrder: true,
+      namedChunks: true,
+      removeAvailableModules: true,
+      removeEmptyChunks: true,
+      nodeEnv: 'production',
       mergeDuplicateChunks: true,
+      concatenateModules: true,
+      splitChunks: {
+        chunks: 'async',
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'async',
+            reuseExistingChunk: true,
+          },
+        },
+      },
+      minimizer: config.prod
+        ? [
+            new UglifyJsPlugin({
+              sourceMap: true,
+              parallel: true,
+              cache: true,
+              uglifyOptions: {
+                compress: true,
+                mangle: true,
+                output: {
+                  comments: false,
+                  beautify: false,
+                },
+              },
+            }),
+          ]
+        : [],
     },
     plugins: [
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new WriteFilePlugin(),
+      new WriteFilePlugin({
+        test: /^(?!.*(hot)).*/,
+      }),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
