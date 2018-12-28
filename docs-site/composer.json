@@ -30,6 +30,11 @@
     "cweagans/composer-patches": "^1.6.4",
     "evanlovely/plugin-twig-namespaces": "^1.1.1"
   },
+  "autoload": {
+    "psr-0": {
+      "PatternLab": "core/src/"
+    }
+  },
   "scripts": {
     "server": "php core/console --server",
     "build": "php -d memory_limit=4048M core/console --generate",
