@@ -1,9 +1,11 @@
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const chalk = require('chalk');
+const browserSync = require('browser-sync').create();
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const createWebpackConfig = require('../create-webpack-config');
 const { getConfig } = require('../utils/config-store');
 const { boltWebpackMessages } = require('../utils/webpack-helpers');
+const { handleRequest } = require('../api');
 
 let boltBuildConfig;
 
@@ -56,40 +58,49 @@ async function server(customWebpackConfig) {
     // Add Hot Module Reloading scripts to Webpack entrypoint
     if (webpackConfig[0].devServer.hot) {
       webpackConfig[0].entry['bolt-global'].unshift(
-        `webpack-dev-server/client?http://localhost:${
+        `webpack-hot-middleware/client?noInfo=true&http://localhost:${
           webpackConfig[0].devServer.port
         }/`,
-        'webpack/hot/dev-server',
       );
     }
 
-    const server = new WebpackDevServer(compiler, webpackConfig[0].devServer);
+    /**
+     * Run Browsersync and use middleware for Hot Module Replacement
+     */
+    browserSync.init({
+      logLevel: 'info',
+      ui: false,
+      notify: false,
+      open: boltBuildConfig.open,
+      logFileChanges: false,
+      port: webpackConfig[0].devServer.port,
+      watchOptions: {
+        ignoreInitial: true,
+      },
+      middleware: [
+        {
+          route: '/api',
+          handle: handleRequest,
+        },
+      ],
+      server: {
+        baseDir: boltBuildConfig.wwwDir,
+        middleware: [
+          webpackDevMiddleware(compiler, webpackConfig[0].devServer),
+          webpackHotMiddleware(compiler, {
+            log: false,
+            quiet: true,
+            noInfo: true,
+          }),
+        ],
+      },
 
-    server.listen(boltBuildConfig.port, '0.0.0.0', err => {
-      const localLabel = chalk.bold('Local: ');
-      const localAddress = chalk.magenta(
-        `http://localhost:${boltBuildConfig.port}/${boltBuildConfig.startPath}`,
-      );
-
-      const externalLabel = chalk.bold('External: ');
-      const externalAddress = chalk.magenta(
-        `http://${boltBuildConfig.ip}:${boltBuildConfig.port}/${
-          boltBuildConfig.startPath
-        }`,
-      );
-
-      const lineBreak = chalk.gray(
-        '--------------------------------------------',
-      );
-
-      console.log(`\n${lineBreak}`);
-      console.log(`${localLabel}${localAddress}`);
-      console.log(`${externalLabel}${externalAddress}`);
-      console.log(`${lineBreak}`);
-
-      if (err) {
-        reject(err);
-      }
+      // no need to watch '*.js' here, webpack will take care of it for us,
+      // including full page reloads if HMR won't work
+      files: [
+        `${boltBuildConfig.wwwDir}/**/*.css`,
+        `${boltBuildConfig.wwwDir}/**/*.html`,
+      ],
     });
   });
 }

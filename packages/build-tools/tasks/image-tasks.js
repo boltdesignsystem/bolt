@@ -11,11 +11,39 @@ const globby = require('globby');
 const ora = require('ora');
 const sharp = require('sharp');
 const SVGO = require('svgo');
+const { spawnSync } = require('child_process');
 const log = require('../utils/log');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
 const { flattenArray } = require('../utils/general');
 let config;
+
+const {
+  TRAVIS,
+  TRAVIS_BRANCH,
+  TRAVIS_PULL_REQUEST_BRANCH,
+  TRAVIS_PULL_REQUEST,
+} = process.env;
+
+let branchName = 'detached-HEAD';
+try {
+  branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
+    encoding: 'utf8',
+  })
+    .stdout.replace('refs/heads/', '')
+    .replace(/\//g, '-')
+    .trim();
+} catch (error) {
+  process.exit(1);
+}
+
+if (TRAVIS === 'true') {
+  if (TRAVIS_PULL_REQUEST === 'false') {
+    branchName = TRAVIS_BRANCH;
+  } else {
+    branchName = TRAVIS_PULL_REQUEST_BRANCH;
+  }
+}
 
 const svgo = new SVGO({
   plugins: [
@@ -28,8 +56,8 @@ const svgo = new SVGO({
   ],
 });
 
-// @todo Consider moving this to a place to share - also duplicated in `@bolt/core/images-sizes.js`
-const boltImageSizes = [
+// full set of image sizes used by default unless being run on a feature-specific branch
+let boltImageSizes = [
   50,
   100,
   200,
@@ -44,6 +72,14 @@ const boltImageSizes = [
   2560,
   2880,
 ];
+
+// don't resize images to all available options on feature-specific branches to speed up build times
+if (
+  branchName.includes('feature') === true &&
+  process.env.NODE_ENV !== 'test'
+) {
+  boltImageSizes = [320, 640, 1024, 1920];
+}
 
 function makeWebPath(imagePath) {
   return `/${path.relative(config.wwwDir, imagePath)}`;
@@ -103,7 +139,6 @@ async function processImage(file, set) {
 
       if (config.prod) {
         if (isOrig) {
-          await writeFile(newSizedPath, originalFileBuffer);
           if (
             pathInfo.ext === '.jpeg' ||
             pathInfo.ext === '.jpg' ||

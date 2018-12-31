@@ -1,5 +1,5 @@
 const url = require('url');
-const fetch = require('node-fetch');
+const { render } = require('@bolt/twig-renderer');
 const { getConfig } = require('../utils/config-store');
 const log = require('../utils/log');
 
@@ -31,13 +31,9 @@ async function handleRequest(req, res, next) {
   const config = await getConfig();
   const { method } = req;
   const { pathname, query, search } = url.parse(req.url, true);
-  // let body;
-  // if (method === 'POST') {
-  const body = await getBody(req);
-  // }
   // @todo test with `GET` requests
   // @todo test with empty body
-  console.log(`api request received at ${pathname}`); // remove once we're sure this works on server
+  // console.log(`api request received at ${pathname}`); // remove once we're sure this works on server
   switch (pathname) {
     case '/':
       res.json({
@@ -45,33 +41,23 @@ async function handleRequest(req, res, next) {
         message: `Welcome to the Bolt Design System API! Have a nice day!`,
       });
       break;
-    case '/render-twig':
+    case '/render':
       try {
-        /** @var renderResponse {Response} */
-        const renderResponse = await fetch(
-          `http://127.0.0.1:${config.renderingServicePort}${search}`,
-          {
-            method,
-            body: method === 'POST' ? JSON.stringify(body) : null,
-          },
-        );
-        const data = await renderResponse.text();
-        // console.log(renderResponse);
-
-        const { status } = renderResponse;
-        const warning = renderResponse.headers.get('Warning');
-        res.setHeader(
-          'Content-Type',
-          renderResponse.headers.get('Content-Type'),
-        );
-        res.statusCode = status;
-        if (warning) {
-          res.statusMessage = warning;
-          res.setHeader('Warning', warning);
+        if (!query.template) {
+          log.error('The template paramater is missing!');
         }
-        res.end(data);
+        const body = await getBody(req);
+        const { ok, html, message } = await render(query.template, body);
+
+        if (!ok) {
+          log.error(message);
+        }
+        res.end(html);
       } catch (error) {
-        log.errorAndExit('Error connecting to phpServer api endpoint', error);
+        log.errorAndExit(
+          'Error rendering Twig using the Twig rendering service...',
+          error,
+        );
       }
       break;
     default:

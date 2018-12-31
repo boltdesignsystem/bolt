@@ -3,9 +3,8 @@ FROM basaltinc/docker-node-php-base:latest
 WORKDIR /app
 COPY . .
 EXPOSE 3123
-RUN yarn setup
-RUN yarn lint
-RUN yarn build
-RUN yarn test
+RUN composer global require hirak/prestissimo
+RUN yarn run setup
+RUN yarn run build
 
 CMD yarn serve

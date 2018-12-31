@@ -1,7 +1,7 @@
 const path = require('path');
 const log = require('../utils/log');
 const webpackTasks = require('./webpack-tasks');
-const criticalcssTasks = require('./criticalcss-tasks');
+// const criticalcssTasks = require('./criticalcss-tasks');
 const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
@@ -71,8 +71,11 @@ async function clean() {
         dirs = [
           path.join(path.resolve(config.wwwDir), '**'),
           `!${path.resolve(config.wwwDir)}`,
-          `!${path.resolve(config.wwwDir, 'pattern-lab')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
-          `!${path.join(path.resolve(config.wwwDir, 'pattern-lab'), '**')}`,
+          `!${path.resolve(config.wwwDir, 'pattern-lab/styleguide')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
+          `!${path.join(
+            path.resolve(config.wwwDir, 'pattern-lab/styleguide'),
+            '**',
+          )}`,
         ];
         break;
       case 'pl':
@@ -85,7 +88,12 @@ async function clean() {
         ];
         break;
       case 'pwa':
-        dirs = [path.join(path.resolve(config.wwwDir), '**')];
+        dirs = [
+          path.join(path.resolve(config.wwwDir), '**'),
+          `!${path.resolve(config.wwwDir)}`,
+          `!${path.resolve(config.wwwDir, 'pattern-lab')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
+          `!${path.join(path.resolve(config.wwwDir, 'pattern-lab'), '**')}`,
+        ];
         break;
       default:
         dirs = [config.buildDir];
@@ -103,9 +111,9 @@ async function serve(buildTime = timer.start()) {
 
   try {
     const serverTasks = [];
-    if (config.renderingService) {
-      serverTasks.push(extraTasks.server.phpServer());
-    }
+    // if (config.renderingService) {
+    //   serverTasks.push(extraTasks.server.phpServer());
+    // }
     if (config.wwwDir) {
       if (config.webpackDevServer && config.watch !== false) {
         serverTasks.push(webpackTasks.server());
@@ -120,15 +128,15 @@ async function serve(buildTime = timer.start()) {
   }
 }
 
-async function criticalcss() {
-  try {
-    const criticalTasks = [];
-    criticalTasks.push(criticalcssTasks.build());
-    return Promise.all(criticalTasks);
-  } catch (error) {
-    log.errorAndExit('Critical CSS failed', error);
-  }
-}
+// async function criticalcss() {
+//   try {
+//     const criticalTasks = [];
+//     criticalTasks.push(criticalcssTasks.build());
+//     return Promise.all(criticalTasks);
+//   } catch (error) {
+//     log.errorAndExit('Critical CSS failed', error);
+//   }
+// }
 
 async function images() {
   try {
@@ -145,13 +153,14 @@ async function buildPrep() {
     config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
-    if (config.env === 'pl' || config.env === 'static') {
+    if (
+      config.env === 'pl' ||
+      config.env === 'static' ||
+      config.env === 'pwa'
+    ) {
       await writeBoltVersions();
     }
-    await manifest.writeTwigNamespaceFile(
-      process.cwd(),
-      config.extraTwigNamespaces,
-    );
+    await manifest.writeTwigNamespaceFile();
   } catch (error) {
     log.errorAndExit('Build failed', error);
   }
@@ -237,5 +246,5 @@ module.exports = {
   buildPrep,
   watch,
   clean,
-  criticalcss,
+  // criticalcss,
 };

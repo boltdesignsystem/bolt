@@ -165,7 +165,7 @@ if (program.configFile) {
       .action(async options => {
         log.info('Starting prep work.');
         await updateConfig(options, program);
-        require('./tasks/task-collections').prep();
+        require('./tasks/task-collections').buildPrep();
       });
 
     // `bolt prep`

@@ -1,0 +1,60 @@
+.c-bds-docs__visually-hidden-demo {
+  @extend %bolt-demo-wrapper;
+
+  input[type='checkbox']{
+    display: none;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+
+  label {
+    display: block;
+    position: relative;
+    width: 50px;
+    height: 25px;
+    text-indent: -9999px;
+    cursor: pointer;
+    border-radius: 50px;
+    background: bolt-color(gray);
+  }
+
+  label:after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 22px;
+    height: 15px;
+    border-radius: 22px;
+    background: #fff;
+    transition: 0.3s;
+  }
+
+  input:checked + label {
+    background: bolt-color(indigo, light);
+    & + .c-bds-docs__visually-hidden-inner > .c-bds-docs__visually-hidden-content {
+      @include bolt-visuallyhidden(important);
+      opacity: 0;
+    }
+  }
+
+  input:checked + label:after {
+    left: calc(100% - 5px);
+    transform: translateX(-100%);
+  }
+
+  label:active:after {
+    width: 32px;
+  }
+}
+
+.c-bds-docs__visually-hidden-inner {
+  @include bolt-margin-top(1rem);
+}
+
+.c-bds-docs__visually-hidden-content {
+  @extend %bolt-demo-item;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}

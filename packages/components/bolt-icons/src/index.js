@@ -97,6 +97,7 @@ export * from './icons/sales-automation';
 export * from './icons/scalability';
 export * from './icons/search';
 export * from './icons/share';
+export * from './icons/star-solid';
 export * from './icons/support';
 export * from './icons/system-admin';
 export * from './icons/training';
