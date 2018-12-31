@@ -74,6 +74,8 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
 
         display: block;
         position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         width: calc(100% + 4px);
         height: calc(100% + 4px);
       }
@@ -229,6 +231,112 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
         height: auto;
         font-size: 1.4rem;
       }
+    }
+  }
+
+  .vjs-overlay {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .vjs-overlay--hidden {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  // Cue Points
+  .vjs-overlay-no-background {
+    @include bolt-margin(0);
+    @include bolt-padding(40px 9px);
+
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    background-color: transparent;
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-top-left {
+      top: 0;
+    }
+
+    &.vjs-overlay-bottom,
+    &.vjs-overlay-bottom-right,
+    &.vjs-overlay-bottom-left {
+      bottom: 0;
+    }
+
+    &.vjs-overlay-right,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-bottom-right {
+      right: 0;
+      text-align: right;
+      text-align: end;
+    }
+
+    &.vjs-overlay-left,
+    &.vjs-overlay-top-left,
+    &.vjs-overlay-bottom-left {
+      left: 0;
+      text-align: left;
+      text-align: start;
+    }
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-center,
+    &.vjs-overlay-bottom {
+      left: 0;
+    }
+  }
+
+  .vjs-overlay-background {
+    @include bolt-margin(0);
+    @include bolt-padding(xsmall);
+    @include bolt-font-family(body);
+    @include bolt-font-size(small);
+
+    width: auto;
+    max-width: 100%;
+    color: bolt-color(black);
+    text-shadow: 0 0 0.25rem bolt-color(white);
+    border-radius: $bolt-border-radius;
+    box-shadow: inset 0 0 2rem bolt-color(white), 0 0 0.25rem bolt-color(gray, light);
+    background-color: rgba(bolt-color(white), 0.9);
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-top-left {
+      top: 40px;
+    }
+
+    &.vjs-overlay-bottom,
+    &.vjs-overlay-bottom-right,
+    &.vjs-overlay-bottom-left {
+      bottom: 40px;
+    }
+
+    &.vjs-overlay-right,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-bottom-right {
+      right: 9px;
+    }
+
+    &.vjs-overlay-left,
+    &.vjs-overlay-top-left,
+    &.vjs-overlay-bottom-left {
+      left: 9px;
+    }
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-bottom {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.vjs-overlay-center {
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
     }
   }
 }
