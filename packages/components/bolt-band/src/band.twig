@@ -71,14 +71,22 @@
   {{ attributes | without("class") }}
 >
   <{{ tag }} {{ inner_attributes.addClass(inner_classes) }}>
+    {# Render background if there is any #}
     {% if background %}
       {% include "@bolt-components-background/background.twig" with background only %}
     {% endif %}
 
-    {% set band_content %}
+    {# Setting a block so it doesn't break legacy embeds #}
+    {% set regular_content %}
+      {% block band_content %}
+        {{ content }}
+      {% endblock %}
+    {% endset %}
+
+    {% set regular_content_wrapper %}
       <div class="{{ "#{base_class}__content" }}">
         {% include "@bolt/wrapper.twig" with {
-          content: content,
+          content: regular_content,
         } only %}
       </div>
     {% endset %}
@@ -112,7 +120,7 @@
         </div>
       {% endif %}
 
-      {{ band_content }}
+      {{ regular_content_wrapper }}
 
       {% if pinned_content_lower %}
         <div class="{{ "#{base_class}__content #{base_class}__content--pinned #{base_class}__content--pinned-lower" }}">
@@ -134,7 +142,7 @@
     {% else %}
 
     {# Otherwise, render just the content #}
-      {{ band_content }}
+      {{ regular_content_wrapper }}
     {% endif %}
   </{{ tag }}>
 </bolt-band>
