@@ -9,7 +9,7 @@
 
 import { getComponentRootElement } from '@bolt/core/utils';
 
-export function convertInitialTags(tags) {
+export function convertInitialTags(tags, shallow = true) {
   return target => {
     return class extends target {
       connecting() {
@@ -23,9 +23,11 @@ export function convertInitialTags(tags) {
           if (rootElement) {
             this.rootElement = document.createDocumentFragment();
 
-            // Take any child elements and move them to the root of the custom element
-            while (rootElement.firstChild) {
-              this.appendChild(rootElement.firstChild);
+            if (shallow) {
+              // Take any child elements and move them to the root of the custom element
+              while (rootElement.firstChild) {
+                this.appendChild(rootElement.firstChild);
+              }
             }
 
             this.rootElement.appendChild(rootElement);
