@@ -74,7 +74,10 @@ let boltImageSizes = [
 ];
 
 // don't resize images to all available options on feature-specific branches to speed up build times
-if (branchName.includes('feature') === true) {
+if (
+  branchName.includes('feature') === true &&
+  process.env.NODE_ENV !== 'test'
+) {
   boltImageSizes = [320, 640, 1024, 1920];
 }
 
