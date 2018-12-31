@@ -60,7 +60,6 @@ async function prep() {
 async function render(template, data = {}) {
   await prep();
   const results = await twigRenderer.render(template, data);
-  // console.log({ results });
   return results;
 }
 

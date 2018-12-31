@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-logo/logo.twig" with {
+  src: "/images/content/logos/logo-paypal.svg"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "logo",
+  usage: usage
+} only %}

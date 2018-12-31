@@ -1,36 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading disabled compiles 1`] = `
-"<bolt-image  style=\\"background-color: hsl(233, 33%, 97%);\\" >
-            
 
+<bolt-image style="background-color: hsl(233, 33%, 97%);">
+  <bolt-ratio aspect-ratio-height="660"
+              aspect-ratio-width="1200"
+              style="--aspect-ratio-height: 660; --aspect-ratio-width: 1200;"
+  >
+    <img class="c-bolt-image__image-placeholder"
+         alt="A Rock Climber"
+         sizes="auto"
+         src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+    >
+    <img class="c-bolt-image__image"
+         alt="A Rock Climber"
+         srcset="/fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-1024.jpg 1024w"
+         sizes="auto"
+         src="/fixtures/1200x660.jpg"
+    >
+  </bolt-ratio>
+</bolt-image>
 
-    
-    
-
-<bolt-ratio  aspect-ratio-height=\\"480\\" aspect-ratio-width=\\"640\\" style=\\"--aspect-ratio-height: 480; --aspect-ratio-width: 640;\\">
-              <img  class=\\"c-bolt-image__image-placeholder\\" alt=\\"A Rock Climber\\" sizes=\\"auto\\" src=\\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\\" />
-
-            <img  class=\\"c-bolt-image__image\\" alt=\\"A Rock Climber\\" srcset=\\"/pattern-lab/images/placeholders/tout-4x3-climber.jpg\\" sizes=\\"auto\\" src=\\"/pattern-lab/images/placeholders/tout-4x3-climber.jpg\\" />
-
-      
-        </bolt-ratio>      </bolt-image>"
 `;
 
 exports[`<bolt-image> Component <bolt-image> with ratio object compiles 1`] = `
-"<bolt-image  style=\\"background-color: hsl(233, 33%, 97%);\\" >
-            
 
+<bolt-image style="background-color: hsl(233, 33%, 97%);">
+  <bolt-ratio aspect-ratio-height="660"
+              aspect-ratio-width="1200"
+              style="--aspect-ratio-height: 660; --aspect-ratio-width: 1200;"
+  >
+    <img class="c-bolt-image__image-placeholder"
+         alt="A Rock Climber"
+         src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+    >
+    <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload"
+         alt="A Rock Climber"
+         data-srcset="/fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-1024.jpg 1024w"
+         data-sizes="auto"
+         src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+    >
+    <noscript>
+      <img class="c-bolt-image__image"
+           alt="A Rock Climber"
+           src="/fixtures/1200x660.jpg"
+           srcset="/fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-1024.jpg 1024w"
+      >
+    </noscript>
+  </bolt-ratio>
+</bolt-image>
 
-    
-    
-
-<bolt-ratio  aspect-ratio-height=\\"480\\" aspect-ratio-width=\\"640\\" style=\\"--aspect-ratio-height: 480; --aspect-ratio-width: 640;\\">
-              <img  class=\\"c-bolt-image__image-placeholder\\" alt=\\"A Rock Climber\\" src=\\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\\" />
-
-            <img  class=\\"c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade c-bolt-image__lazyload--blur js-lazyload\\" alt=\\"A Rock Climber\\" data-srcset=\\"/pattern-lab/images/placeholders/tout-4x3-climber.jpg\\" data-sizes=\\"auto\\" src=\\"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\\" />
-
-          <noscript> <img  class=\\"c-bolt-image__image\\" alt=\\"A Rock Climber\\" src=\\"/pattern-lab/images/placeholders/tout-4x3-climber.jpg\\" srcset=\\"/pattern-lab/images/placeholders/tout-4x3-climber.jpg\\" /> </noscript>
-  
-        </bolt-ratio>      </bolt-image>"
 `;

@@ -10,7 +10,7 @@
   "sourceFilesFrom": "0.10.2",
   "version": "2.2.1",
   "author": "Salem Ghoweri",
-  "homepage": "https://bolt-design-system.com",
+  "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
@@ -30,10 +30,9 @@
   },
   "main": "src/index.js",
   "scripts": {
+    "postinstall": "yarn run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon -e svg --watch src/svgs --exec npm run build",
-    "postinstall": "npm run build",
-    "postbootstrap": "npm run build",
     "build": "node ./build-icons.js "
   },
   "gitHead": "6368a1636ee39759167cd146de58a42fbd62453a"
