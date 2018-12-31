@@ -56,7 +56,9 @@ jobs:
         - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
         - docker --log-level error push boltdesignsystem/bolt:latest 
         - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
-        
+      after_script:
+        - cd scripts && npm install
+        - npm run deploy
       cache:
         yarn: true
         directories:
