@@ -474,6 +474,9 @@ async function createWebpackConfig(buildConfig) {
       hot: config.prod ? false : true,
       noInfo: true, // webpackTasks.watch handles output info related to success & failure
       publicPath,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
     };
   }
 
