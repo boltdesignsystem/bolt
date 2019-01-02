@@ -4,12 +4,13 @@
  * Example: `<bolt-link>` will convert attributes on an `<a>` into component props.
  *
  * @param {(string|string[])} tags - A tag name or a list of tag names.
- * @returns {Object} - The original Class with extended `connecting()` method
+ * @param {boolean} moveChildrenToRoot - If true, moves children of the root element to the custom element root.
+ * @returns {Object} - The original Class with extended `connecting()` method.
  */
 
 import { getComponentRootElement } from '@bolt/core/utils';
 
-export function convertInitialTags(tags, shallow = true) {
+export function convertInitialTags(tags, moveChildrenToRoot = true) {
   return target => {
     return class extends target {
       connecting() {
@@ -23,7 +24,7 @@ export function convertInitialTags(tags, shallow = true) {
           if (rootElement) {
             this.rootElement = document.createDocumentFragment();
 
-            if (shallow) {
+            if (moveChildrenToRoot) {
               // Take any child elements and move them to the root of the custom element
               while (rootElement.firstChild) {
                 this.appendChild(rootElement.firstChild);
