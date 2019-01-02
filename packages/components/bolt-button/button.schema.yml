@@ -1,19 +1,10 @@
-$schema: 'http://json-schema.org/draft-04/schema#'
 title: 'Bolt Button'
 description: 'Buttons are the core of our action components.'
 type: object
-required:
-  - text
-not:
-  anyOf:
-    - required:
-      - itemAlignment
-    - required:
-      - rounded
 properties:
-  attributes:
-    type: object
-    description: A Drupal-style attributes object with extra attributes to append to this component.
+  # attributes:
+  #   type: any
+  #   description: A Drupal-style attributes object with extra attributes to append to this component.
   text:
     title: 'Button Text'
     description: 'The text displayed inside a button'
@@ -30,6 +21,7 @@ properties:
   icon:
     type: object
     description: Icon data as expected by the icon component.  Accepts an additional 'position' parameter that determines placement within the button.
+    ref: '@bolt-components-icon/icon.schema.yml'
     properties:
       position:
         type: string
@@ -105,3 +97,11 @@ properties:
     default: false
     required:
       - icon
+required:
+  - text
+not:
+  anyOf:
+    - required:
+      - itemAlignment
+    - required:
+      - rounded

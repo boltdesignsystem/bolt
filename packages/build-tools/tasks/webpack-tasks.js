@@ -56,13 +56,13 @@ async function server(customWebpackConfig) {
     const compiler = boltWebpackMessages(webpack(webpackConfig));
 
     // Add Hot Module Reloading scripts to Webpack entrypoint
-    if (webpackConfig[0].devServer.hot) {
-      webpackConfig[0].entry['bolt-global'].unshift(
-        `webpack-hot-middleware/client?noInfo=true&http://localhost:${
-          webpackConfig[0].devServer.port
-        }/`,
-      );
-    }
+    // if (webpackConfig[0].devServer.hot) {
+    //   webpackConfig[0].entry['bolt-global'].unshift(
+    //     `webpack-hot-middleware/client?noInfo=true&http://localhost:${
+    //       webpackConfig[0].devServer.port
+    //     }/`,
+    //   );
+    // }
 
     /**
      * Run Browsersync and use middleware for Hot Module Replacement

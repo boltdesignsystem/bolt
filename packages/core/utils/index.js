@@ -15,6 +15,8 @@ export * from './wait-for-transition-end';
 export * from './watch-for-component-mutations';
 export * from './context/define-context';
 export * from './context/with-context';
+export * from './extend';
+export { deepEquals } from './deep-equals';
 
 // https://www.polymer-project.org/3.0/docs/devguide/custom-elements#defer-work
 export {

@@ -6,8 +6,79 @@
 {% if schemaForm and schema %}
   <bolt-component-demo>
     {% set schemaForm = schemaForm|merge({ schema: schema }) %}
-    <script type="application/json">{{ schemaForm | json_encode }}</script>
-    <div class="schema-form-root"></div>
+    {% set definitions = {} %}
+    {% set properties = {} %}
+
+    {% for key, prop in schema.properties %}
+      {% set propertyValues = {} %}
+      {% set propertyValues = schema.properties[key] %}
+
+      {% if prop.ref %}
+        {% set refName = prop.ref|split("/")[0]|replace({'@':''}) %}
+        {% set referenceData = get_data(prop.ref) %}
+        {% set reference = {} %}
+
+        {% if referenceData.type %}
+          {% set reference = reference|merge({
+            type: referenceData.type
+          }) %}
+        {% endif %}
+
+        {% if referenceData.properties %}
+          {% set reference = reference|merge({
+            properties: referenceData.properties
+          }) %}
+        {% endif %}
+
+        {% if referenceData.required %}
+          {% set reference = reference|merge({
+            required: referenceData.required
+          }) %}
+        {% endif %}
+
+        {% if referenceData.enum %}
+          {% set reference = reference|merge({
+            enum: referenceData.enum
+          }) %}
+        {% endif %}
+
+        {% if referenceData.default %}
+          {% set reference = reference|merge({
+            default: referenceData.default
+          }) %}
+        {% endif %}
+
+        {% set definitions = definitions | merge({
+          ("" ~ refName): reference
+        }) %}
+
+        {% set propertyValues = propertyValues|merge({
+          "$ref": '#/definitions/' ~ prop.ref|split("/")[0]|replace({'@': ''})
+        }) %}
+        {# {% set newSchema = newSchema|merge(newSchema.properties[key]['$ref'] = '#/definitions/' ~ prop.ref %}
+        {% set newSchema  newSchema|merge({
+          definitions
+        }.['definitions'][prop.ref] = reference %} #}
+      {% endif %}
+
+      {% set properties = properties|merge({
+        ("" ~ key): propertyValues
+      }) %}
+    {% endfor %}
+
+    {% if definitions %}
+      {% set schema = schema|merge({
+        definitions: definitions,
+      }) %}
+    {% endif %}
+
+    {% if properties %}
+      {% set schema = schema|merge({
+        properties: properties,
+      }) %}
+    {% endif %}
+    
+    <bolt-component-explorer initial-layout="{{ schemaForm.layout }}" template="{{ schemaForm.template }}" schema="{{ schema | json_encode() | raw | escape('html_attr') }}" form-data="{{ schemaForm.initialData | json_encode() | escape('html_attr') }}"></bolt-component-explorer>
   </bolt-component-demo>
 {% endif %}
 
