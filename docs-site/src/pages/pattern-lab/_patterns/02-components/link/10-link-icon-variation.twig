@@ -19,9 +19,8 @@
     },
   } only %}
 </p>
-<p>And the link may also appear in a paragraph:</p>
-<p>
-  Aute et occaecat cupidatat
+
+{% set inline_link_1 %}
   {% include "@bolt-components-link/link.twig" with {
     text: "adipisicing fugiat",
     url: "#!",
@@ -30,12 +29,14 @@
       position: "before"
     },
   } only %}
-   qui magna amet cupidatat eiusmod fugiat aute.
+{% endset %}
+{% set inline_link_2 %}
   {% include "@bolt-components-link/link.twig" with {
     text: "Velit ex sit sint",
     url: "#!",
   } only %}
-  in nisi est proident deserunt eu esse aliquip cillum. Anim ea magna sit exercitation exercitation fugiat culpa quis ea adipisicing.
+{% endset %}
+{% set inline_link_3 %}
   {% include "@bolt-components-link/link.twig" with {
     text: "Learn more",
     url: "#!",
@@ -43,4 +44,8 @@
       name: "chevron-right",
     },
   } only %}
+{% endset %}
+<p>And the link may also appear in a paragraph:</p>
+<p>
+  Aute et occaecat cupidatat {{ inline_link_1 }}. Qui magna amet cupidatat eiusmod fugiat aute. {{ inline_link_2 }} in nisi est proident deserunt eu esse aliquip cillum. Anim ea magna sit exercitation exercitation fugiat culpa quis ea adipisicing. {{ inline_link_3 }}
 </p>

@@ -11,36 +11,42 @@
 
 {# Variables #}
 {% set base_class = "c-bolt-link" %}
-
-{% set classes = [
-  base_class,
-  isHeadline ? 'c-bolt-link--headline' : ''
-] %}
+{% set attributes = create_attribute(attributes | default(attributes) | default({})) %}
+{% set attributes = attributes.addClass(classes) %}
 
 {% if icon %}
   {% set icon_position = icon.position in icon_positions ? icon.position : schema.properties.icon.properties.position.default %}
 {% endif %}
 
-{% set attributes = create_attribute(attributes | default(attributes) | default({})) %}
-{% set attributes = attributes.addClass(classes) %}
-
-{% if url or attributes['url'] %}
-  {% set url = url | default(attributes['url']) %}
-{% elseif href or attributes['href'] %}
-  {% set url = href | default(attributes['href']) %}
+{% if url or attributes["url"] %}
+  {% set url = url | default(attributes["url"]) %}
+{% elseif href or attributes["href"] %}
+  {% set url = href | default(attributes["href"]) %}
 {% endif %}
 
-{% if target or attributes['target'] %}
-  {% set target = target | default(attributes['target']) %}
+{% if target or attributes["target"] %}
+  {% set target = target | default(attributes["target"]) %}
 {% endif %}
 
-{% if onClick or attributes['on-click'] %}
-  {% set onClick = onClick | default(attributes['on-click']) %}
+{% if onClick or attributes["on-click"] %}
+  {% set onClick = onClick | default(attributes["on-click"]) %}
 {% endif %}
 
-{% if onClickTarget or attributes['on-click-target'] %}
-  {% set onClickTarget = onClickTarget | default(attributes['on-click-target']) %}
+{% if onClickTarget or attributes["on-click-target"] %}
+  {% set onClickTarget = onClickTarget | default(attributes["on-click-target"]) %}
 {% endif %}
+
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
+{% set display_options = schema.properties.display.enum %}
+
+{# Check that the component's current prop values are valid. If not, default to the schema default #}
+{% set display = display in display_options ? display : schema.properties.display.default %}
+
+{% set classes = [
+  base_class,
+  isHeadline ? "c-bolt-link--headline" : "",
+  display in display_options ? "#{base_class}--display-#{display}" : "",
+] %}
 
 {#
 Sort classes passed in via attributes into two groups:
@@ -59,11 +65,11 @@ Sort classes passed in via attributes into two groups:
 {% endfor %}
 
 {# Filter out attributes assigned above #}
-{% set filteredAttributes = attributes | without('url') | without('href') | without('target') | without('class') %}
+{% set filteredAttributes = attributes | without("url") | without("href") | without("target") | without("class") %}
 
 {# link component's custom element wrapper #}
 {% spaceless %}<bolt-link
-  {{ filteredAttributes }}
+  {% if display %} display="{{ display }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
   {% if target %} target="{{ target }}" {% endif %}
   {% if isHeadline %} is-headline="true" {% endif %}
@@ -72,19 +78,21 @@ Sort classes passed in via attributes into two groups:
   {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
   {% if onClick %} on-click="{{ onClick }}" {% endif %}
   {% if onClickTarget %} on-click-target="{{ onClickTarget }}" {% endif %}
+
+  {{ filteredAttributes }}
 >
   {# Add semantic <a> tag for better accessibility #}
   <a
-    {{ filteredAttributes }}
     {% if url %} href="{{ url }}" {% endif %}
     {% if target %} target="{{ target }}" {% endif %}
     class="{{ innerClasses|join(' ') }}"
     is="shadow-root"
+    {{ filteredAttributes }}
   >
-    {{ macros.slotted_icon(icon, icon_position, 'before') }}
+    {{ macros.slotted_icon(icon, icon_position, "before") }}
     <replace-with-children class="{{ "#{base_class}__text" }}">
       {{- text | default(label) | default("Learn More") -}}
     </replace-with-children>
-    {{ macros.slotted_icon(icon, icon_position, 'after') }}
+    {{ macros.slotted_icon(icon, icon_position, "after") }}
   </a>
 </bolt-link>{% endspaceless %}
