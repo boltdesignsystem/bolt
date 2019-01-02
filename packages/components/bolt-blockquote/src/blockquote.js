@@ -1,16 +1,13 @@
-import {
-  props,
-  define,
-  getComponentRootElement,
-  hasNativeShadowDomSupport,
-  watchForComponentMutations,
-} from '@bolt/core/utils';
-import classNames from 'classnames/bind';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import {
   withLitHtml,
   html,
   render,
 } from '@bolt/core/renderers/renderer-lit-html';
+
+import { convertInitialTags } from '@bolt/core/decorators';
+
+import classNames from 'classnames/bind';
 
 import styles from './blockquote.scss';
 import schema from '../blockquote.schema.yml';
@@ -18,6 +15,7 @@ import schema from '../blockquote.schema.yml';
 let cx = classNames.bind(styles);
 
 @define
+@convertInitialTags('blockquote', false) // The first matching tag will have its attributes converted to component props
 class BoltBlockquote extends withLitHtml() {
   static is = 'bolt-blockquote';
 
@@ -36,6 +34,7 @@ class BoltBlockquote extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
+    self.schema = this.getModifiedSchema(schema);
     return self;
   }
 
@@ -55,33 +54,6 @@ class BoltBlockquote extends withLitHtml() {
     return modifiedSchema;
   }
 
-  connecting() {
-    // Make sure the component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
-    if (this._wasInitiallyRendered === false) {
-      let rootElement = getComponentRootElement(this.childNodes, 'blockquote');
-
-      if (rootElement) {
-        this.rootElement = document.createDocumentFragment();
-
-        // Take any child elements and move them to the root of the custom element
-        while (rootElement.firstChild) {
-          this.appendChild(rootElement.firstChild);
-        }
-
-        this.rootElement.appendChild(rootElement);
-      }
-    }
-  }
-
-  disconnecting() {
-    // this.removeEventListener('click', this.clickHandler);
-
-    if (hasNativeShadowDomSupport && this.useShadow) {
-      if (this.observer) {
-        this.observer.disconnect();
-      }
-    }
-  }
 
   get alignItemsOption() {
     switch (this.props.alignItems) {
@@ -178,7 +150,7 @@ class BoltBlockquote extends withLitHtml() {
       authorName,
       authorTitle,
       authorImage,
-    } = this.validateProps(this.getModifiedSchema(schema), this.props);
+    } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-blockquote', {
       [`c-bolt-blockquote--${size}`]: size,
