@@ -63,9 +63,8 @@ class BoltBlockquote extends withLitHtml() {
     return modifiedSchema;
   }
 
-
-  get alignItemsOption() {
-    switch (this.props.alignItems) {
+  getAlignItemsOption(prop) {
+    switch (prop) {
       case 'right':
         return 'end';
       case 'center':
@@ -76,8 +75,8 @@ class BoltBlockquote extends withLitHtml() {
     }
   }
 
-  get borderOption() {
-    switch (this.props.border) {
+  getBorderOption(prop) {
+    switch (prop) {
       case 'none':
         return 'borderless';
       case 'horizontal':
@@ -88,8 +87,24 @@ class BoltBlockquote extends withLitHtml() {
     }
   }
 
+  logoTemplate() {
+    const logoClasses = cx('c-bolt-blockquote__logo');
+
+    return this.slots['logo']
+      ? html`
+          <div class="${logoClasses}">${this.slot('logo')}</div>
+        `
+      : html`
+          <slot name="logo" />
+        `;
+  }
+
   authorTemplate(name, title, image) {
     if (name) {
+      const footerClasses = cx('c-bolt-blockquote__footer');
+      const footerItemClasses = cx('c-bolt-blockquote__footer-item');
+      const imageClasses = cx('c-bolt-blockquote__image');
+
       const authorName = html`
         <bolt-text
           tag="cite"
@@ -107,17 +122,18 @@ class BoltBlockquote extends withLitHtml() {
         </bolt-text>
       `;
 
+      // TODO: replace 'img' with 'bolt-image' once 'bolt-image' is converted to web component
       const authorImage = html`
-        <div class="c-bolt-blockquote__footer-item">
-          <div class="c-bolt-blockquote__image">
-            <bolt-image src="${image}"></bolt-image>
+        <div class="${footerItemClasses}">
+          <div class="${imageClasses}">
+            <img src="${image}" alt="Photo of ${name}" />
           </div>
         </div>
       `;
 
       return html`
-        <footer class="c-bolt-blockquote__footer">
-          <div class="c-bolt-blockquote__footer-item">
+        <footer class="${footerClasses}">
+          <div class="${footerItemClasses}">
             ${image && authorImage} ${authorName} ${title && authorTitle}
           </div>
         </footer>
@@ -163,8 +179,12 @@ class BoltBlockquote extends withLitHtml() {
 
     const classes = cx('c-bolt-blockquote', {
       [`c-bolt-blockquote--${size}`]: size,
-      [`c-bolt-blockquote--align-items-${this.alignItemsOption}`]: alignItems,
-      [`c-bolt-blockquote--${this.borderOption}`]: border,
+      [`c-bolt-blockquote--align-items-${this.getAlignItemsOption(
+        alignItems,
+      )}`]: this.getAlignItemsOption(alignItems),
+      [`c-bolt-blockquote--${this.getBorderOption(
+        border,
+      )}`]: this.getBorderOption(border),
       [`c-bolt-blockquote--indented`]: indent,
       [`c-bolt-blockquote--full`]: fullBleed,
     });
@@ -174,12 +194,12 @@ class BoltBlockquote extends withLitHtml() {
     if (this.rootElement) {
       renderedBlockquote = this.rootElement.firstChild.cloneNode(true);
       renderedBlockquote.className += ' ' + classes;
-      render(this.slot('default'), renderedBlockquote);
     } else {
+      const logo = this.logoTemplate();
       const quote = this.quoteTemplate(size, this.slot('default'));
       const author = this.authorTemplate(authorName, authorTitle, authorImage);
       const blockquoteInner = html`
-        ${quote} ${author}
+        ${logo} ${quote} ${author}
       `;
       renderedBlockquote = this.blockquoteTemplate(classes, blockquoteInner);
     }
