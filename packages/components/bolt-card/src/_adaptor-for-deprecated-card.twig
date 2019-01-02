@@ -1,8 +1,8 @@
 {% set schema = bolt.data.components['@bolt-components-card'].schema %}
 
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
-{% endif %}
+{#{% if enable_json_schema_validation %}#}
+  {#{{ validate_data_schema(schema, _self) | raw }}#}
+{#{% endif %}#}
 
 {% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
 {% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
@@ -83,9 +83,6 @@
   {% set _items = _items | merge([item]) %}
 {% endfor %}
 
-
-
-
 {% set cardMedia %}
   {% for key, item in _items if item.pattern in _allowedCardHeaderItems %}
     {% if item.pattern %}
@@ -118,57 +115,21 @@
 {% endset %}
 
 
-{# TODO Transform the deprecated data structure for footer links into the data format expected by 'actions'.
-  It will be impossible to get 1:1 coverage because there is no way in the new structure to pass freeform content to
-  to the footer area, but we can at least support the most common forms of deprecated data.
-#}
-{#{% for item in _items if item.pattern in _allowedCardFooterItems %}#}
-  {#{% set paramOverrides = {#}
-    {#align: "start",#}
-    {#style: "text",#}
-    {#width: "full",#}
-  {#} %}#}
+{% set cardActions = [] %}
+{% for cardAction in _items if cardAction.pattern in _allowedCardFooterItems %}
+  {% set cardActions = cardActions|merge(cardAction) %}
+{% endfor %}
 
-  {#{% if item.icon == null %}#}
-    {#{% if item.external == true %}#}
-      {#{% set iconOverrides = {#}
-        {#icon: {#}
-          {#name: "external-link"#}
-        {#}#}
-      {#} %}#}
-    {#{% else %}#}
-      {#{% set iconOverrides = {#}
-        {#icon: {#}
-          {#name: "chevron-right"#}
-        {#}#}
-      {#} %}#}
-    {#{% endif %}#}
-  {#{% endif %}#}
+{# TODO Either "whitelist" each parameter that may be passed through or remove the 'only' keyword and include _adaptor-for-new-card.twig instead #}
 
-  {#<div class="{{ "#{baseClass}__footer-item" }}">#}
-    {#{% if item.pattern %}#}
-      {#{% set item = item | merge(paramOverrides) %}#}
-
-      {# if icon default data set, merge that in as well #}
-      {#{% if iconOverrides %}#}
-        {#{% set item = item | merge(iconOverrides) %}#}
-      {#{% endif %}#}
-      {#{% include pattern_template(item.pattern) with item only %}#}
-    {#{% else %}#}
-      {#{{ item }}#}
-    {#{% endif %}#}
-  {#</div>#}
-{#{% endfor %}#}
-
-{# TODO Either "whitelist" each parameter that may be passed through or remove the 'only' keyword and include
-   _adaptor-for-new-card.twig instead #}
 {% include "@bolt-components-card/card.twig" with {
   media: {
     content: cardMedia,
   },
   body: {
     content: cardBody,
-  }
+  },
+  actions: cardActions
 } only %}
 
 
