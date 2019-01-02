@@ -29,7 +29,9 @@ export function BoltBase(Base = HTMLElement) {
 
     connectedCallback() {
       super.connectedCallback && super.connectedCallback;
-      this._storeUnsubscribe = store.subscribe(() => this.stateChanged(store.getState()));
+      this._storeUnsubscribe = store.subscribe(() =>
+        this.stateChanged(store.getState()),
+      );
       this.stateChanged(store.getState());
     }
 
