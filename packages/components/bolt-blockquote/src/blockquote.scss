@@ -13,46 +13,6 @@ $bolt-blockquote-image-size: 4rem;
 // Register Custom Block Element
 @include bolt-custom-element('bolt-blockquote', block, medium);
 
-// Attribute selectors for parent bolt-blockquote
-bolt-blockquote {
-  > p:first-child:before,
-  > p:last-child:after {
-    font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
-  }
-
-  > p:first-child:before {
-    content: '\201C';
-  }
-
-  > p:last-child:after {
-    content: '\201D';
-  }
-
-  &[align-items='left'] {
-    > p:first-child:before {
-      position: absolute;
-      transform: translate3d(-110%, 0, 0);
-    }
-  }
-
-  &[align-items='center'] {
-    > p:first-child:before {
-      @include bolt-padding(0 2px);
-    }
-  }
-
-  &[align-items='right'] {
-    > p:first-child:before {
-      @include bolt-padding(0 2px);
-    }
-
-    > p:last-child:after {
-      position: absolute;
-      transform: translate3d(10%, 0, 0);
-    }
-  }
-}
-
 // Blockquote container
 .c-bolt-blockquote {
   @include bolt-margin(0);
@@ -102,6 +62,26 @@ bolt-blockquote {
   p:last-child:after {
     content: '\201D';
   }
+
+  ::slotted(p:first-child),
+  ::slotted(p:last-child) {
+    &:before,
+    &:after {
+      font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
+    }
+  }
+
+  ::slotted(p:first-child) {
+    &:before {
+      content: '\201C';
+    }
+  }
+
+  ::slotted(p:last-child) {
+    &:after {
+      content: '\201D';
+    }
+  }
 }
 
 // Attribution
@@ -131,8 +111,7 @@ bolt-blockquote {
 }
 
 // Horizontal alignment of items inside
-.c-bolt-blockquote--align-items-start,
-bolt-blockquote[align-items='left'] {
+.c-bolt-blockquote--align-items-start {
   text-align: left;
 
   .c-bolt-blockquote__quote,
@@ -142,8 +121,7 @@ bolt-blockquote[align-items='left'] {
   }
 }
 
-.c-bolt-blockquote--align-items-center,
-bolt-blockquote[align-items='center'] {
+.c-bolt-blockquote--align-items-center {
   text-align: center;
 
   .c-bolt-blockquote__quote,
@@ -153,8 +131,7 @@ bolt-blockquote[align-items='center'] {
   }
 }
 
-.c-bolt-blockquote--align-items-end,
-bolt-blockquote[align-items='right'] {
+.c-bolt-blockquote--align-items-end {
   text-align: right;
 
   .c-bolt-blockquote__quote,
@@ -237,35 +214,58 @@ bolt-blockquote[align-items='right'] {
 }
 
 // Perfecting the hanging quotation mark's position in all browsers.
-.c-bolt-blockquote--align-items-start,
-bolt-blockquote[align-items='left'] {
+.c-bolt-blockquote--align-items-start {
   .c-bolt-blockquote__quote {
     p:first-child:before {
       position: absolute;
       transform: translate3d(-110%, 0, 0);
     }
-  }
-}
 
-.c-bolt-blockquote--align-items-center,
-bolt-blockquote[align-items='center'] {
-  .c-bolt-blockquote__quote {
-    p:first-child:before {
-      @include bolt-padding(0 2px);
+    ::slotted(p:first-child) {
+      &:before {
+        position: absolute;
+        transform: translate3d(-110%, 0, 0);
+      }
     }
   }
 }
 
-.c-bolt-blockquote--align-items-end,
-bolt-blockquote[align-items='right'] {
+.c-bolt-blockquote--align-items-center {
   .c-bolt-blockquote__quote {
     p:first-child:before {
       @include bolt-padding(0 2px);
+    }
+
+    ::slotted(p:first-child) {
+      &:before {
+        @include bolt-padding(0 2px);
+      }
+    }
+  }
+}
+
+.c-bolt-blockquote--align-items-end {
+  .c-bolt-blockquote__quote {
+    p:first-child:before {
+      @include bolt-padding(0 2px);
+    }
+
+    ::slotted(p:first-child) {
+      &:before {
+        @include bolt-padding(0 2px);
+      }
     }
 
     p:last-child:after {
       position: absolute;
       transform: translate3d(10%, 0, 0);
+    }
+
+    ::slotted(p:first-child) {
+      &:after {
+        position: absolute;
+        transform: translate3d(10%, 0, 0);
+      }
     }
   }
 }
