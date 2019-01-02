@@ -10,6 +10,15 @@ import { convertInitialTags } from '@bolt/core/decorators';
 import classNames from 'classnames/bind';
 
 import styles from './blockquote.scss';
+// Logo, Ratio, and Image styles needed for bolt-logo (when loaded via twig)
+import logoStyles from '@bolt/components-logo/src/logo.scss';
+import ratioStyles from '@bolt/components-ratio/src/ratio.scss';
+import imageStyles from '@bolt/components-image/src/image.scss';
+// Twig template uses "bolt-headline" component instead of bolt-text-v2
+import textStyles from '@bolt/components-headline/src/headline.scss';
+// Global styles needed for proper spacing of P tags in Twig template
+import globalStyles from '@bolt/global/styles/index.scss';
+
 import schema from '../blockquote.schema.yml';
 
 let cx = classNames.bind(styles);
@@ -176,7 +185,17 @@ class BoltBlockquote extends withLitHtml() {
     }
 
     return html`
-      ${this.addStyles([styles])} ${renderedBlockquote}
+      ${
+        this.addStyles([
+          styles,
+          logoStyles,
+          ratioStyles,
+          imageStyles,
+          textStyles,
+          globalStyles,
+        ])
+      }
+      ${renderedBlockquote}
     `;
   }
 }
