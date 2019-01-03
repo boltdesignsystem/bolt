@@ -1,0 +1,30 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Text Align"
+} only %}
+
+  {% set alignments = bolt.data.alignments %}
+
+  {% block utility_description %}
+    <p>Add the utility class <code>.u-bolt-text-align-xx</code> where xx equals the alignment you wish to apply.</p>
+    <p><strong><u>Possible values include:</u></strong></p>
+    <ul>
+      {% for align in alignments %}
+        <li><code>{{ ".u-bolt-text-align-#{align}" }}</code></li>
+      {% endfor %}
+    </ul>
+  {% endblock %}
+
+  {% block utility_demo %}
+    {% for align in alignments %}
+      <div class="c-bds-docs__text-align-demo">
+        <h4><code>{{ ".u-bolt-text-align-#{align}" }}</code></h4>
+        <div class="c-bds-docs__text-align-item {{ "u-bolt-text-align-#{align}" }}">
+          <p><strong>Diam a ad vel fermentum maecenas ipsum</strong></p>
+          <p>Convallis habitasse mattis natoque himenaeos conubia tincidunt.</p>
+          <p>Vitae turpis morbi tristique diam tincidunt conubia nostra quisque tortor massa, congue vivamus etiam lacinia cum adipiscing lectus nec eros, euismod neque felis faucibus aptent dolor malesuada iaculis penatibus. Lacus aptent integer consectetur sem ridiculus proin malesuada sociis.</p>
+        </div>
+      </div>
+    {% endfor %}
+  {% endblock %}
+
+{% endembed %}

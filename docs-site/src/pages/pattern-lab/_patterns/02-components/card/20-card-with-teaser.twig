@@ -1,0 +1,30 @@
+<div style="max-width: 500px; padding: 2rem;">
+  {% include "@bolt-components-card/card.twig" with {
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+        lazyload: false,
+        alt: "Anthem Video"
+      },
+      {
+        pattern: "teaser",
+        logo: {
+          src: "/images/content/logos/logo-paypal.svg",
+          lazyload: false,
+        },
+        content: "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      },
+      {
+        pattern: "button",
+        text: "Learn More",
+        url: "http://pega.com",
+      },
+      {
+        pattern: "button",
+        text: "Weitere Informationen",
+        url: "http://pega.com",
+      },
+    ]
+  } only %}
+</div>

@@ -62,7 +62,7 @@ Sort classes passed in via attributes into two groups:
 {% set filteredAttributes = attributes | without('url') | without('href') | without('target') | without('class') %}
 
 {# link component's custom element wrapper #}
-<bolt-link
+{% spaceless %}<bolt-link
   {{ filteredAttributes }}
   {% if url %} url="{{ url }}" {% endif %}
   {% if target %} target="{{ target }}" {% endif %}
@@ -83,8 +83,8 @@ Sort classes passed in via attributes into two groups:
   >
     {{ macros.slotted_icon(icon, icon_position, 'before') }}
     <replace-with-children class="{{ "#{base_class}__text" }}">
-      {{ text | default(label) | default("Learn More") }}
+      {{- text | default(label) | default("Learn More") -}}
     </replace-with-children>
     {{ macros.slotted_icon(icon, icon_position, 'after') }}
   </a>
-</bolt-link>
+</bolt-link>{% endspaceless %}

@@ -1,20 +1,23 @@
+import Ajv from 'ajv';
 import { withComponent, shadow, props } from 'skatejs';
-import { hasNativeShadowDomSupport } from '../utils/environment';
-import { findParentTag } from '../utils/find-parent-tag';
+import { findParentTag, hasNativeShadowDomSupport } from '../utils';
 
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
-    constructor(...args) {
-      super(...args);
+    constructor(self) {
+      super(self);
       this._wasInitiallyRendered = false;
+      return self;
     }
 
-    connectedCallback() {
-      // NOTE: it's SUPER important that setupSlots is run during the component's connectedCallback lifecycle event
-      // Without this, browsers like IE 11 won't re-render as expected when props change!
-      if (!this.slots) {
-        this.setupSlots();
-      }
+    /**
+     * Update component state and schedule a re-render.
+     * @param {object} state A dict of state properties to be shallowly merged
+     * 	into the current state
+     */
+    setState(state) {
+      this.state = Object.assign({}, this.state, state);
+      // super.shouldUpdate && super.shouldUpdate();
     }
 
     setupSlots() {
@@ -60,6 +63,29 @@ export function BoltBase(Base = HTMLElement) {
       }
     }
 
+    validateProps(propData) {
+      var validatedData = propData;
+      const ajv = new Ajv({ useDefaults: 'shared' });
+
+      // remove default strings in prop data so schema validation can fill in the default
+      for (let property in validatedData) {
+        if (validatedData[property] === '') {
+          delete validatedData[property];
+        }
+      }
+
+      if (this.schema) {
+        let isValid = ajv.validate(this.schema, validatedData);
+
+        // bark at any schema validation errors
+        if (!isValid) {
+          console.log(ajv.errors);
+        }
+      }
+
+      return validatedData;
+    }
+
     addStyles(stylesheet) {
       let styles = Array.from(stylesheet);
       styles = styles.join(' ');
@@ -88,11 +114,6 @@ export function BoltBase(Base = HTMLElement) {
       });
 
       return slots;
-    }
-
-    disconnectedCallback() {
-      this.disconnecting && this.disconnecting();
-      this.disconnected && this.disconnected();
     }
 
     rendered() {

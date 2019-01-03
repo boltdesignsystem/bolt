@@ -24,6 +24,11 @@
   flex-flow: row wrap;
 }
 
+.c-bolt-list--display-flex {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 @each $breakpoint in $bolt-breakpoints {
   $breakpoint-name: nth($breakpoint, 1);
 
@@ -46,7 +51,6 @@
   .c-bolt-list--spacing-#{$spacing-value-name} {
     margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
     margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
-
   }
 
   .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
@@ -55,6 +59,24 @@
   }
 }
 
+// Separator Prop
+$bolt-list-separator-styles: solid, dashed;
+
+@each $separator-style in $bolt-list-separator-styles {
+  .c-bolt-list--separator-#{$separator-style} {
+    border: {
+      width: 0;
+      color: rgba(bolt-color(gray), 0.25);
+      style: #{$separator-style};
+    }
+  }
+}
+
+[class*='c-bolt-list--separator'] {
+  &.c-bolt-list--display-flex {
+    overflow: hidden;
+  }
+}
 
 // Align and Valign Props
 $bolt-list-alignments: start, center, end;
@@ -87,7 +109,8 @@ $bolt-list-alignments: start, center, end;
   }
 
   .c-bolt-list--valign-#{$alignment} {
-    &.c-bolt-list--display-inline {
+    &.c-bolt-list--display-inline,
+    &.c-bolt-list--display-flex {
       @if $alignment != 'center' {
         align-items: flex-#{$alignment};
       }

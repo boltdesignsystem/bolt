@@ -1,0 +1,18 @@
+.c-bds-shadow-demo__card {
+  display: inline-block;
+  position: relative;
+  width: 325px;
+  height: 225px;
+  margin: 0.5rem;
+  padding: 0.7rem;
+  vertical-align: top;
+  border-radius: 3px;
+  background: #fff;
+
+  code {
+    font-size: 0.7rem;
+  }
+  &[class*='hoverable']:hover {
+    @include bolt-z-index('contentTop');
+  }
+}

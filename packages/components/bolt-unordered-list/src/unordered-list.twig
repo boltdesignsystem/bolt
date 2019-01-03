@@ -23,7 +23,7 @@
           {{ listItem.text }}
         {% elseif listItem.contentItems %}
           {% for item in listItem.contentItems %}
-            {% include "@bolt/text.twig" with item only %}
+            {% include "@bolt-components-headline/text.twig" with item only %}
           {% endfor %}
         {% endif %}
       </li>

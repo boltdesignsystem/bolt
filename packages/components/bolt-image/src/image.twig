@@ -101,16 +101,15 @@
   >
   {% block image_content %}
     {% if width > 0 and height > 0 and useAspectRatio == true %}
-      {% embed "@bolt-components-ratio/ratio.twig" with {
+      {% include "@bolt-components-ratio/ratio.twig" with {
         attributes: attributes,
         aspectRatioHeight: height * 1,
-        aspectRatioWidth: width * 1
-      } %}
-        {% block ratio_content %}
-          {{ ext == "jpg" ? image_placeholder : "" }}
-          {{ image_tag }}
-        {% endblock %}
-      {% endembed %}
+        aspectRatioWidth: width * 1,
+        children: [
+          ext == "jpg" ? image_placeholder : "",
+          image_tag,
+        ] | join("")
+      } only %}
     {% else %}
       {{ ext == "jpg" ? image_placeholder : "" }}
       {{ image_tag }}

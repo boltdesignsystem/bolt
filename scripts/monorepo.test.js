@@ -12,7 +12,7 @@ function flattenDeep(arr1) {
   );
 }
 
-jest.setTimeout(15000);
+jest.setTimeout(30000);
 
 describe('monorepo', async () => {
   /**
@@ -57,7 +57,7 @@ describe('monorepo', async () => {
           pkg.publishConfig !== 'undefined',
           `Please add a publishConfig to ${
             pkg.name
-          }'s package.json. Check out the Bolt Design System docs section on Adding a New Component for more info: https://bolt-design-system.com/docs/guides/adding-a-new-component.`,
+          }'s package.json. Check out the Bolt Design System docs section on Adding a New Component for more info: https://boltdesignsystem.com/docs/guides/adding-a-new-component.`,
         );
 
         assert.strictEqual(
@@ -65,7 +65,7 @@ describe('monorepo', async () => {
           'public',
           `Please set publishConfig.access to "public" in ${
             pkg.name
-          }'s package.json. Check out the Bolt Design System docs section on Adding a New Component for more info: https://bolt-design-system.com/docs/guides/adding-a-new-component.`,
+          }'s package.json. Check out the Bolt Design System docs section on Adding a New Component for more info: https://boltdesignsystem.com/docs/guides/adding-a-new-component.`,
         );
       }
     });

@@ -1,0 +1,28 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Visually Hidden",
+  sassdoc_items: [
+    {
+      title: "@mixin bolt-visuallyhidden",
+      anchor: link["styleguide-sassdoc"] ~ "#mixin-bolt-visuallyhidden"
+    }
+  ]
+} only %}
+
+  {% block utility_description %}
+    <p>Add the utility class <code>.u-bolt-visuallyhidden</code> to correctly hide an element visually (for accessibility).</p>
+  {% endblock %}
+
+  {% block utility_demo %}
+    <p><strong><u>Note:</u></strong> The below example does not use the utility class for the pure css toggle, but instead uses the exact same mixin from the utility class to achieve the exact same example behavior.</p>
+    <div class="c-bds-docs__visually-hidden-demo">
+      <h4>Visibility toggle</h4>
+      <input type="checkbox" id="hidden-demo-switcher" /><label for="hidden-demo-switcher">Toggle</label>
+      <div class="c-bds-docs__visually-hidden-inner u-bolt-height-xxlarge">
+        <div class="c-bds-docs__visually-hidden-content u-bolt-height-full u-bolt-text-align-center">
+          <strong>[ Item to hide ]</strong>
+        </div>
+      </div>
+    </div>
+  {% endblock %}
+
+{% endembed %}

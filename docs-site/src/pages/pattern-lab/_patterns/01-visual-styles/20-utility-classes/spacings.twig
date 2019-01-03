@@ -1,0 +1,94 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Spacing",
+  sassdoc_items: [
+    {
+      title: "$bolt-spacing-properties",
+      anchor: link["styleguide-sassdoc"] ~ "#variable-bolt-spacing-properties"
+    },
+    {
+      title: "$bolt-spacing-directions",
+      anchor: link["styleguide-sassdoc"] ~ "#variable-bolt-spacing-directions"
+    },
+    {
+      title: "$bolt-spacing-sizes",
+      anchor: link["styleguide-sassdoc"] ~ "#variable-bolt-spacing-sizes"
+    }
+  ]
+} only %}
+
+  {% set spacing_sizes = bolt.data.spacingSizes %}
+  {% set spacing_properties = bolt.data.spacingProperties %}
+  {% set spacing_directions = bolt.data.spacingDirections %}
+
+  {% block utility_description %}
+    <p>Add the utility class <code>.u-bolt-xx-yy-zz</code> where <strong>xx</strong> equals the <strong><u>spacing</u></strong> property, <strong>yy</strong> equals the <strong><u>direction</u></strong>, and <strong>zz (optional)</strong> equals the t-shirt <strong><u>size</u></strong> you wish to apply. For example:</p>
+    <ul>
+      <li><code>.u-bolt-margin-left-large</code> = margin-left: {{ spacing_sizes.large }}</li>
+      <li><code>.u-bolt-margin-right</code> = margin-right: {{ spacing_sizes[""] }}</li>
+    </ul>
+    <p><strong>(xx) <u>Possible <u>property</u> values include:</u></strong></p>
+    <ul>
+      {% for property in spacing_properties %}
+        <li><code>{{ property }}</code></li>
+      {% endfor %}
+    </ul>
+    <p><strong>(yy) <u>Possible <u>direction</u> values include:</u></strong></p>
+    <ul>
+      {% for direction in spacing_directions %}
+        {% if direction %}
+          <li><code>{{ direction }}</code></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <p><strong>(zz) <u>Possible <u>size</u> values include:</u></strong></p>
+    <ul>
+      {% for size, value in spacing_sizes %}
+        <li><code>{{ size == "" ? "[base]" : size }}</code>: {{ value }}</li>
+      {% endfor %}
+    </ul>
+  {% endblock %}
+
+  {% block utility_demo %}
+    <div class="c-bds-docs__spacing-demo">
+      <h4><code>.u-bolt-margin-left</code></h4>
+      <div class="c-bds-docs__spacing-item u-bolt-inline-block u-bolt-margin-left">
+        <strong>margin-left: {{ spacing_sizes[""] }}</strong>
+      </div>
+    </div>
+    <div class="c-bds-docs__spacing-demo">
+      <h4><code>.u-bolt-margin-left-large</code></h4>
+      <div class="c-bds-docs__spacing-item u-bolt-inline-block u-bolt-margin-left-large">
+        <strong>margin-left: {{ spacing_sizes.large }}</strong>
+      </div>
+    </div>
+    <div class="c-bds-docs__spacing-demo">
+      <h4><code>.u-bolt-margin-left-xxlarge</code></h4>
+      <div class="c-bds-docs__spacing-item u-bolt-inline-block u-bolt-margin-left-xxlarge">
+        <strong>margin-left: {{ spacing_sizes.xxlarge }}</strong>
+      </div>
+    </div>
+
+    <div class="c-bds-docs__spacing-demo">
+      <h4><code>.u-bolt-padding</code></h4>
+      <div class="c-bds-docs__spacing-item u-bolt-inline-block u-bolt-padding">
+        <strong>padding: {{ spacing_sizes[""] }}</strong>
+      </div>
+    </div>
+    <div class="c-bds-docs__spacing-demo">
+      <h4><code>.u-bolt-padding-large</code></h4>
+      <div class="c-bds-docs__spacing-item u-bolt-inline-block u-bolt-padding-large">
+        <strong>padding: {{ spacing_sizes.large }}</strong>
+      </div>
+    </div>
+    <div class="c-bds-docs__spacing-demo">
+      <h4><code>.u-bolt-padding-left-xlarge</code><br /><code>.u-bolt-padding-right-xlarge</code><br /><code>.u-bolt-padding-top</code><br /><code>.u-bolt-padding-bottom</code></h4>
+      <div class="c-bds-docs__spacing-item u-bolt-inline-block u-bolt-padding-left-xlarge u-bolt-padding-right-xlarge u-bolt-padding-top u-bolt-padding-bottom">
+        <strong>padding-left: {{ spacing_sizes.xlarge }}</strong><br />
+        <strong>padding-right: {{ spacing_sizes.xlarge }}</strong><br />
+        <strong>padding-top: {{ spacing_sizes.large }}</strong><br />
+        <strong>padding-bottom: {{ spacing_sizes.large }}</strong>
+      </div>
+    </div>
+  {% endblock %}
+
+{% endembed %}

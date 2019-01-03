@@ -1,0 +1,13 @@
+.c-bds-docs__display-focus {
+  @extend %bolt-demo-item-border;
+  @extend %bolt-demo-item-background;
+  height: 50px;
+}
+
+.c-bds-docs__display-demo {
+  @include bolt-margin-bottom(2rem);
+
+  &:last-of-type {
+    @include bolt-margin-bottom(0);
+  }
+}

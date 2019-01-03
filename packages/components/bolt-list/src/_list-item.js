@@ -18,7 +18,12 @@ class BoltListItem extends withContext(withLitHtml()) {
   // subscribe to specific props that are defined and available on the parent container
   // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
   static get consumes() {
-    return [[ListContext, ['tag', 'spacing', 'inset', 'separator', 'display']]];
+    return [
+      [
+        ListContext,
+        ['tag', 'spacing', 'inset', 'separator', 'display', 'align'],
+      ],
+    ];
   }
 
   connectedCallback() {
@@ -27,13 +32,14 @@ class BoltListItem extends withContext(withLitHtml()) {
   }
 
   render() {
-    const { tag, spacing, inset, separator, display } = this.context;
+    const { tag, spacing, inset, separator, display, align } = this.context;
     const { last } = this.props;
 
     const classes = cx('c-bolt-list-item', {
       [`c-bolt-list-item--display-${display}`]: display,
       [`c-bolt-list-item--spacing-${spacing}`]: spacing !== 'none',
       [`c-bolt-list-item--separator-${separator}`]: separator !== 'none',
+      [`c-bolt-list-item--align-${align}`]: align,
       [`c-bolt-list-item--last-item`]: last,
       [`c-bolt-list-item--inset`]: inset,
     });
