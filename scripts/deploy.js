@@ -1,16 +1,25 @@
 #!/usr/bin/env node
 const url = require('url');
+const { resolve } = require('path');
 const querystring = require('querystring');
+const {
+  setGitHubStatus,
+  createGitHubComment,
+  outputBanner,
+  runAndShow,
+  runAndReturn,
+  getGitSha,
+} = require('ci-utils');
 const fetch = require('node-fetch');
-const {spawnSync} = require('child_process');
+const { spawnSync } = require('child_process');
 const { promisify } = require('util');
 const gitSemverTags = require('git-semver-tags');
 const promisifyGitTags = promisify(gitSemverTags);
 
 async function init() {
   try {
-  const tags = await promisifyGitTags();
-  const latestTag = tags[0];
+    const tags = await promisifyGitTags();
+    const latestTag = tags[0];
 
     const {
       NOW_TOKEN,
@@ -30,8 +39,12 @@ async function init() {
       TRAVIS_REPO_SLUG,
       // If the current build is for a git tag, this variable is set to the tag’s name
       TRAVIS_TAG,
+      TRAVIS_BUILD_WEB_URL,
     } = process.env;
 
+    // also made in `.travis.yml` during docker tag
+    const gitSha = getGitSha(true);
+    const gitShaLong = getGitSha();
 
     console.log({
       TRAVIS,
@@ -40,13 +53,18 @@ async function init() {
       TRAVIS_PULL_REQUEST,
       TRAVIS_REPO_SLUG,
       TRAVIS_TAG,
+      TRAVIS_BUILD_WEB_URL,
+      gitSha,
     });
 
     let branchName = 'detached-HEAD';
     try {
       branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
         encoding: 'utf8',
-      }).stdout.replace('refs/heads/', '').replace(/\//g, '-').trim();
+      })
+        .stdout.replace('refs/heads/', '')
+        .replace(/\//g, '-')
+        .trim();
     } catch (error) {
       process.exit(1);
     }
@@ -64,21 +82,47 @@ async function init() {
     const baseNowArgs = [
       '--platform-version=1',
       '--team=boltdesignsystem',
-      '--local-config=../now.json',
     ];
 
     if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
 
-    console.log('Starting deploy...');
+    await setGitHubStatus({
+      state: 'pending',
+      context: 'deploy/now.sh',
+    });
+
+    outputBanner('Starting deploy...');
     const deployOutput = spawnSync('now', [
       'deploy',
-      './www',
-      '--name=boltdesignsystem',
-      '--static',
+      '--force',
+      '--meta',
+      `TRAVIS_BUILD_WEB_URL="${TRAVIS_BUILD_WEB_URL}"`,
+      '--env',
+      `DOCKER_TAG=${gitSha}`,
+      '--build-env',
+      `DOCKER_TAG=${gitSha}`,
       ...baseNowArgs,
-    ], {encoding: 'utf8'});
+    ], {
+      encoding: 'utf8',
+      cwd: resolve(__dirname, '../deploys'),
+    });
+
+    // const deployOutput = spawnSync(
+    //   'now',
+    //   [
+    //     'deploy',
+    //     './www',
+    //     '--name=boltdesignsystem',
+    //     '--static',
+    //     ...baseNowArgs,
+    //   ],
+    //   { encoding: 'utf8' },
+    // );
+
     if (deployOutput.status !== 0) {
       console.error('Error deploying:');
+      console.log(deployOutput.stdout, deployOutput.stderr);
+      process.exit(1);
     }
     console.log(deployOutput.stdout, deployOutput.stderr);
     const deployedUrl = deployOutput.stdout.trim();
@@ -87,37 +131,49 @@ async function init() {
       .replace('boltdesignsystem-', '')
       .replace('.now.sh', '');
 
-
     console.log('Aliasing to branch/tag name...');
     // Making sure branch name is ok to be in URL
     const branchUrlPart = branchName
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-` now.sh subdomains can't have `--` for some reason
       .replace(/\./g, '-'); // `.` => `-`
-    const aliasedUrlSubdomain = `${encodeURIComponent(branchUrlPart)}.boltdesignsystem`;
+    const aliasedUrlSubdomain = `${encodeURIComponent(
+      branchUrlPart,
+    )}.boltdesignsystem`;
     const aliasedUrl = `https://${aliasedUrlSubdomain}.com`;
-    const aliasOutput = spawnSync('now', [
-      'alias',
-      deployedUrl,
-      aliasedUrl,
-      ...baseNowArgs,
-    ], {encoding: 'utf8'});
+    const aliasOutput = spawnSync(
+      'now',
+      ['alias', deployedUrl, aliasedUrl, ...baseNowArgs],
+      { encoding: 'utf8' },
+    );
     if (aliasOutput.status !== 0) {
       console.error('Error aliasing:');
       console.log(aliasOutput.stdout, aliasOutput.stderr);
+
+      await setGitHubStatus({
+        state: 'error',
+        context: 'deploy/now.sh',
+        description: `${aliasOutput.stdout} - ${aliasOutput.stderr}`,
+      });
       process.exit(1);
     }
     console.log(aliasOutput.stdout, aliasOutput.stderr);
 
+    await setGitHubStatus({
+      state: 'success',
+      context: 'deploy/now.sh',
+      url: deployedUrl,
+      description: `Alias set to ${aliasedUrl}`,
+    });
+
     // if this is a tagged release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `v1-2-3-boltdesignsystem.com`
     if (TRAVIS_TAG && TRAVIS_TAG === latestTag) {
       console.log('Is tag build, aliasing to main site.');
-      const aliasOutput2 = spawnSync('now', [
-        'alias',
-        deployedUrl,
-        'boltdesignsystem.com',
-        ...baseNowArgs,
-      ], {encoding: 'utf8'});
+      const aliasOutput2 = spawnSync(
+        'now',
+        ['alias', deployedUrl, 'boltdesignsystem.com', ...baseNowArgs],
+        { encoding: 'utf8' },
+      );
       if (aliasOutput2.status !== 0) {
         console.error('Error aliasing:');
         console.log(aliasOutput2.stdout, aliasOutput2.stderr);
@@ -126,30 +182,33 @@ async function init() {
       console.log(aliasOutput2.stdout, aliasOutput2.stderr);
 
       console.log('aliasing www.boltdesignsystem.com to main site too.');
-      const aliasOutput3 = spawnSync('now', [
-        'alias',
-        deployedUrl,
-        'www.boltdesignsystem.com',
-        ...baseNowArgs,
-      ], {encoding: 'utf8'});
+      const aliasOutput3 = spawnSync(
+        'now',
+        ['alias', deployedUrl, 'www.boltdesignsystem.com', ...baseNowArgs],
+        { encoding: 'utf8' },
+      );
       if (aliasOutput3.status !== 0) {
         console.error('Error aliasing:');
         console.log(aliasOutput3.stdout, aliasOutput3.stderr);
         process.exit(1);
       }
       console.log(aliasOutput3.stdout, aliasOutput3.stderr);
-
-    } else if (TRAVIS_TAG && TRAVIS_TAG !== latestTag){
-      console.error(`Error aliasing: Travis Tag of ${TRAVIS_TAG} doesn't match the latest tag of ${latestTag}`);
+    } else if (TRAVIS_TAG && TRAVIS_TAG !== latestTag) {
+      console.error(
+        `Error aliasing: Travis Tag of ${TRAVIS_TAG} doesn't match the latest tag of ${latestTag}`,
+      );
       process.exit(1);
     } else {
-      console.log('Skipping now.sh tag alias since this isn\'t a tagged version.');
+      console.log(
+        "Skipping now.sh tag alias since this isn't a tagged version.",
+      );
     }
-
 
     // `TRAVIS_PULL_REQUEST` is either `'false'` or a PR number like `'55'`. All strings.
     if (TRAVIS && TRAVIS_PULL_REQUEST !== 'false') {
-      console.log('This is a Pull Request build, so will not try to comment on PR.');
+      console.log(
+        'This is a Pull Request build, so will not try to comment on PR.',
+      );
 
       // The GitHub comment template - Can handle HTML
       const githubCommentText = `
@@ -161,25 +220,16 @@ async function init() {
 <details>
 
 - Commit built: ${process.env.TRAVIS_COMMIT}
-- [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${process.env.TRAVIS_BUILD_ID})
+- [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${
+        process.env.TRAVIS_BUILD_ID
+      })
 
 </details>
 `.trim();
       // end GitHub comment template
+      const results = await createGitHubComment(githubCommentText, TRAVIS_PULL_REQUEST);
+      console.log(`GitHub comment made: ${results.html_url}`);
 
-      const githubCommentEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments`;
-
-      const response = await fetch(githubCommentEndpoint, {
-        method: 'POST',
-        body: JSON.stringify({
-          body: githubCommentText,
-        }),
-        headers: {
-          Authorization: `Bearer ${GITHUB_TOKEN}`,
-        },
-      }).then(res => res.json());
-      console.log(response);
-      console.log('GitHub comment posted');
     } else {
       console.log('This is not a Pull Request build, so will not try to comment on PR.');
     }
@@ -191,4 +241,3 @@ async function init() {
 }
 
 init();
-

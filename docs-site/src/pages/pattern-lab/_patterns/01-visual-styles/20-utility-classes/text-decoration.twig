@@ -1,0 +1,29 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Text Decoration"
+} only %}
+
+  {% set decorations = bolt.data.textDecoration %}
+
+  {% block utility_description %}
+    <p>Add the utility class <code>.u-bolt-text-decoration-xx</code> where xx equals the decoration style you wish to apply.</p>
+    <p><strong><u>Possible values include:</u></strong></p>
+    <ul>
+      {% for style in decorations %}
+        <li><code>{{ ".u-bolt-text-decoration-#{style}" }}</code></li>
+      {% endfor %}
+    </ul>
+  {% endblock %}
+
+  {% block utility_demo %}
+    {% for style in decorations %}
+      <div class="c-bds-docs__text-decoration-demo">
+        <h4><code>{{ ".u-bolt-text-decoration-#{style}" }}</code></h4>
+        <div class="c-bds-docs__text-decoration-item u-bolt-padding {{ "u-bolt-text-decoration-#{style}" }}">
+          <p><strong>Erat sit dolor enim placerat sodales cubilia</strong></p>
+          <p>Venenatis curae ante etiam iaculis habitasse ligula ridiculus, tempus nibh nostra justo praesent pulvinar augue habitant, ac mauris lacinia sociosqu auctor aliquam.</p>
+        </div>
+      </div>
+    {% endfor %}
+  {% endblock %}
+
+{% endembed %}

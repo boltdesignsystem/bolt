@@ -32,7 +32,7 @@ async function init() {
     debug: true,
     alterTwigEnv: config.alterTwigEnv,
     hasExtraInfoInResponses: false, // Will add `info` onto results with a lot of info about Twig Env
-    maxConcurrency: 1,
+    maxConcurrency: 10,
     keepAlive: false, // setting this to true will cause subsequent template / page recompiles to not regenerate when the source files have changed
   });
   state = STATES.READY;
@@ -60,7 +60,6 @@ async function prep() {
 async function render(template, data = {}) {
   await prep();
   const results = await twigRenderer.render(template, data);
-  // console.log({ results });
   return results;
 }
 

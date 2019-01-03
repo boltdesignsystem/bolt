@@ -72,7 +72,7 @@ class TwigFunctions {
           return file_get_contents($filename);
 
         } else {
-          throw new \Exception('Warning: the file ' . $fullPath . ' trying to be inlined doesn\'t seem to exist...');
+          throw new \Exception('Warning: the file ' . $filename . ' trying to be inlined doesn\'t seem to exist...');
         }
       } else {
         // throw error saying `bolt.data` isn't set up right

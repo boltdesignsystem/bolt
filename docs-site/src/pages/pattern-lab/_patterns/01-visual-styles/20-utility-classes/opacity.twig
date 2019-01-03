@@ -1,0 +1,42 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Opacity"
+} only %}
+
+  {% set opacities = bolt.data.opacity %}
+
+  {% block utility_description %}
+    <p>Add the utility class <code>.u-bolt-opacity-xx</code> where xx equals the opacity you wish to apply.</p>
+    <p><strong><u>Possible values include:</u></strong></p>
+    <ul>
+      {% for key, value in opacities %}
+        <li><code>{{ key }}</code></li>
+      {% endfor %}
+    </ul>
+  {% endblock %}
+
+  {% block utility_demo %}
+    {% for key, value in opacities|reverse(true) %}
+      <div class="c-bds-docs__opacity-demo">
+        <h4>Opacity class: <code>{{ ".u-bolt-opacity-#{key}" }}</code></h4>
+        <div class="c-bds-docs__opacity-item {{ "u-bolt-opacity-#{key}" }}">
+          {% include "@bolt-components-teaser/teaser.twig" with {
+            content: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            buttons: [
+              {
+                pattern: "button",
+                style: "primary",
+                text: "CTA 1"
+              },
+              {
+                pattern: "button",
+                style: "secondary",
+                text: "CTA 2"
+              }
+            ]
+          } only %}
+        </div>
+      </div>
+    {% endfor %}
+  {% endblock %}
+
+{% endembed %}

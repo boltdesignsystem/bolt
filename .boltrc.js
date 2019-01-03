@@ -15,12 +15,24 @@
  */
 const path = require('path');
 const globby = require('globby');
-const baseBoltDir = path.join(__dirname, './apps/bolt-site');
+const baseBoltDir = path.join(__dirname, './docs-site');
 const siteConfig = require(path.join(baseBoltDir, '.boltrc'));
 
 // Paths that are relative to `baseBoltDir` must now be relative to this directory (i.e. `__dirname`)
 const adjustRelativePath = thePath =>
-  path.relative(__dirname, path.resolve(baseBoltDir, thePath));
+path.relative(__dirname, path.resolve(baseBoltDir, thePath));
+
+// Gather directories for any/all image fixtures and consolidate for the image resizing task
+const imageFixtureDirs = globby.sync(path.join(__dirname, './packages/components/**/fixtures/**/*.{jpg,jpeg,png}')).map(file => path.dirname(file));
+const imageSets = [];
+
+imageFixtureDirs.forEach((fixturePath) => {
+  imageSets.push({
+    base: fixturePath,
+    glob: '**',
+    dist: path.join(adjustRelativePath(siteConfig.wwwDir), 'fixtures'),
+  });
+});
 
 module.exports = {
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
@@ -32,4 +44,7 @@ module.exports = {
       .map(pkg => pkg.name),
   },
   alterTwigEnv: siteConfig.alterTwigEnv,
+  images: {
+    sets: imageSets,
+  },
 };

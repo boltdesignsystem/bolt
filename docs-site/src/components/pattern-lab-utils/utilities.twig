@@ -1,0 +1,64 @@
+<div class="c-bds-docs t-bolt-xlight">
+  <div class="c-bds-docs__page-content">
+    {% if utility_name %}
+      {% include "@bolt/headline.twig" with {
+        size: "xxxlarge",
+        tag: "h1",
+        text: utility_name
+      } only %}
+    {% endif %}
+
+    <div class="c-bds-docs__readme">
+      {% include "@bolt/headline.twig" with {
+        size: "xxlarge",
+        tag: "h2",
+        url: "#utility-description",
+        text: "Utility Description",
+        icon: "none",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-xsmall",
+            "c-bds-docs__heading-fragment"
+          ],
+          id: "utility-description"
+        }
+      } only %}
+      <div class="c-bds-docs__lead u-bolt-margin-bottom-large">
+        {% block utility_description %}
+          <p>Description block empty.</p>
+        {% endblock %}
+      </div>
+    </div>
+
+    <div class="c-bds-docs__utility-demo">
+      {% include "@bolt/headline.twig" with {
+        size: "xlarge",
+        tag: "h2",
+        url: "#demo",
+        text: "Demo",
+        icon: "none",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-medium",
+            "c-bds-docs__heading-fragment"
+          ],
+          id: "demo"
+        }
+      } only %}
+      {% block utility_demo %}
+        <p>Demo block empty.</p>
+      {% endblock %}
+    </div>
+
+    {% if sassdoc_items %}
+      <div class="c-bds-docs__sassdoc-reference">
+        <h5>SassDoc references</h5>
+        <ul>
+          {% for item in sassdoc_items %}
+            <li><a target="_blank" href="{{ item.anchor }}">{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</div>

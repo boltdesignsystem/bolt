@@ -1,9 +1,12 @@
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const chalk = require('chalk');
+const express = require('express');
+const browserSync = require('browser-sync');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const createWebpackConfig = require('../create-webpack-config');
 const { getConfig } = require('../utils/config-store');
 const { boltWebpackMessages } = require('../utils/webpack-helpers');
+const { handleRequest } = require('../api');
 
 let boltBuildConfig;
 
@@ -52,44 +55,43 @@ async function server(customWebpackConfig) {
 
   return new Promise((resolve, reject) => {
     const compiler = boltWebpackMessages(webpack(webpackConfig));
+    const server = express();
 
-    // Add Hot Module Reloading scripts to Webpack entrypoint
-    if (webpackConfig[0].devServer.hot) {
-      webpackConfig[0].entry['bolt-global'].unshift(
-        `webpack-dev-server/client?http://localhost:${
-          webpackConfig[0].devServer.port
-        }/`,
-        'webpack/hot/dev-server',
-      );
-    }
+    server.use(webpackDevMiddleware(compiler, webpackConfig[0].devServer));
+    server.use(
+      webpackHotMiddleware(compiler, {
+        log: false,
+        quiet: true,
+        noInfo: true,
+        logLevel: 'silent',
+        reload: true,
+      }),
+    );
 
-    const server = new WebpackDevServer(compiler, webpackConfig[0].devServer);
+    server.use(express.static(boltBuildConfig.wwwDir));
+    server.use('/api', handleRequest);
 
-    server.listen(boltBuildConfig.port, '0.0.0.0', err => {
-      const localLabel = chalk.bold('Local: ');
-      const localAddress = chalk.magenta(
-        `http://localhost:${boltBuildConfig.port}/${boltBuildConfig.startPath}`,
-      );
-
-      const externalLabel = chalk.bold('External: ');
-      const externalAddress = chalk.magenta(
-        `http://${boltBuildConfig.ip}:${boltBuildConfig.port}/${
-          boltBuildConfig.startPath
-        }`,
-      );
-
-      const lineBreak = chalk.gray(
-        '--------------------------------------------',
-      );
-
-      console.log(`\n${lineBreak}`);
-      console.log(`${localLabel}${localAddress}`);
-      console.log(`${externalLabel}${externalAddress}`);
-      console.log(`${lineBreak}`);
-
+    server.listen(boltBuildConfig.port, '0.0.0.0', function onStart(err) {
       if (err) {
-        reject(err);
+        console.log(err);
       }
+
+      browserSync({
+        proxy: 'localhost:' + boltBuildConfig.port,
+        logLevel: 'info',
+        ui: false,
+        notify: false,
+        open: boltBuildConfig.open,
+        logFileChanges: false,
+        reloadOnRestart: true,
+        watchOptions: {
+          ignoreInitial: true,
+        },
+        files: [
+          `${boltBuildConfig.wwwDir}/**/*.css`,
+          `${boltBuildConfig.wwwDir}/**/*.html`,
+        ],
+      });
     });
   });
 }
