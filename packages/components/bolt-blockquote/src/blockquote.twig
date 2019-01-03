@@ -54,7 +54,6 @@
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
-
 {% set base_class = "c-bolt-blockquote" %}
 {% set size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
 {% set alignItems = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
@@ -81,7 +80,7 @@
     {% if logo %}
       {% block blockquote_logo %}
         <div class="{{ "#{base_class}__logo" }}">
-          {% include "@bolt/logo.twig" with logo only %}
+          {% include "@bolt/logo.twig" with logo|merge({"lazyload": false}) only %}
         </div>
       {% endblock %}
     {% endif %}
@@ -101,7 +100,7 @@
           {% if author.image %}
             <div class="{{ "#{base_class}__footer-item" }}">
               <div class="{{ "#{base_class}__image" }}">
-                {% include "@bolt/image.twig" with author.image only %}
+                {% include "@bolt/image.twig" with author.image|merge({"lazyload": false}) only %}
               </div>
             </div>
           {% endif %}
