@@ -1,5 +1,6 @@
 const webpack = require('webpack');
-const browserSync = require('browser-sync').create();
+const express = require('express');
+const browserSync = require('browser-sync');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const createWebpackConfig = require('../create-webpack-config');
@@ -54,53 +55,43 @@ async function server(customWebpackConfig) {
 
   return new Promise((resolve, reject) => {
     const compiler = boltWebpackMessages(webpack(webpackConfig));
+    const server = express();
 
-    // Add Hot Module Reloading scripts to Webpack entrypoint
-    // if (webpackConfig[0].devServer.hot) {
-    //   webpackConfig[0].entry['bolt-global'].unshift(
-    //     `webpack-hot-middleware/client?noInfo=true&http://localhost:${
-    //       webpackConfig[0].devServer.port
-    //     }/`,
-    //   );
-    // }
+    server.use(webpackDevMiddleware(compiler, webpackConfig[0].devServer));
+    server.use(
+      webpackHotMiddleware(compiler, {
+        log: false,
+        quiet: true,
+        noInfo: true,
+        logLevel: 'silent',
+        reload: true,
+      }),
+    );
 
-    /**
-     * Run Browsersync and use middleware for Hot Module Replacement
-     */
-    browserSync.init({
-      logLevel: 'info',
-      ui: false,
-      notify: false,
-      open: boltBuildConfig.open,
-      logFileChanges: false,
-      port: webpackConfig[0].devServer.port,
-      watchOptions: {
-        ignoreInitial: true,
-      },
-      middleware: [
-        {
-          route: '/api',
-          handle: handleRequest,
+    server.use(express.static(boltBuildConfig.wwwDir));
+    server.use('/api', handleRequest);
+
+    server.listen(boltBuildConfig.port, '0.0.0.0', function onStart(err) {
+      if (err) {
+        console.log(err);
+      }
+
+      browserSync({
+        proxy: 'localhost:' + boltBuildConfig.port,
+        logLevel: 'info',
+        ui: false,
+        notify: false,
+        open: boltBuildConfig.open,
+        logFileChanges: false,
+        reloadOnRestart: true,
+        watchOptions: {
+          ignoreInitial: true,
         },
-      ],
-      server: {
-        baseDir: boltBuildConfig.wwwDir,
-        middleware: [
-          webpackDevMiddleware(compiler, webpackConfig[0].devServer),
-          webpackHotMiddleware(compiler, {
-            log: false,
-            quiet: true,
-            noInfo: true,
-          }),
+        files: [
+          `${boltBuildConfig.wwwDir}/**/*.css`,
+          `${boltBuildConfig.wwwDir}/**/*.html`,
         ],
-      },
-
-      // no need to watch '*.js' here, webpack will take care of it for us,
-      // including full page reloads if HMR won't work
-      files: [
-        `${boltBuildConfig.wwwDir}/**/*.css`,
-        `${boltBuildConfig.wwwDir}/**/*.html`,
-      ],
+      });
     });
   });
 }

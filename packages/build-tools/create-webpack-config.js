@@ -150,10 +150,6 @@ async function createWebpackConfig(buildConfig) {
     if (components.global) {
       entry[globalEntryName] = [];
 
-      if (!config.prod && config.webpackDevServer) {
-        entry[globalEntryName].push('webpack/hot/dev-server');
-      }
-
       components.global.forEach(component => {
         if (component.assets.style) {
           entry[globalEntryName].push(component.assets.style);
@@ -163,6 +159,14 @@ async function createWebpackConfig(buildConfig) {
           entry[globalEntryName].push(component.assets.main);
         }
       });
+
+      if (!config.prod && config.webpackDevServer) {
+        entry[globalEntryName].push(
+          `webpack-hot-middleware/client?name=${
+            config.lang
+          }&noInfo=true&quiet=true&logLevel=silent&reload=true`,
+        );
+      }
     }
     if (components.individual) {
       components.individual.forEach(component => {
@@ -356,9 +360,7 @@ async function createWebpackConfig(buildConfig) {
     },
     plugins: [
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new WriteFilePlugin({
-        test: /^(?!.*(hot)).*/,
-      }),
+      new WriteFilePlugin(),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
@@ -388,7 +390,10 @@ async function createWebpackConfig(buildConfig) {
   };
 
   if (!config.prod && config.webpackDevServer) {
-    webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+    webpackConfig.plugins.push(
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
+    );
   }
 
   // Enable new experimental cache mode to significantly speed up the initial build times
@@ -469,14 +474,10 @@ async function createWebpackConfig(buildConfig) {
       overlay: true,
       quiet: true,
       clientLogLevel: 'none',
-      port: config.port,
       stats: statsPreset(webpackStats[config.verbosity]),
       hot: config.prod ? false : true,
       noInfo: true, // webpackTasks.watch handles output info related to success & failure
       publicPath,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
     };
   }
 

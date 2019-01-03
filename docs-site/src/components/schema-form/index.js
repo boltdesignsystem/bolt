@@ -2,7 +2,8 @@ import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
   import(/* 
-    webpackMode: 'eager', 
+    webpackMode: 'lazy', 
     webpackChunkName: 'bolt-component-explorer' 
   */ './component-explorer.js');
 });
+
