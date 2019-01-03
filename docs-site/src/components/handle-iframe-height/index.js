@@ -10,6 +10,8 @@ if (window.self !== window.top) {
 } else {
   import('iframe-resizer/src/iframeResizer.js').then(module => {
     const iFrameResize = module.default;
-    iFrameResize();
+    iFrameResize({
+      checkOrigin: false,
+    });
   });
 }
