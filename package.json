@@ -56,7 +56,7 @@
 
     "test:v": "rm -rf scripts/verdaccio && npm run config:v & npm run start:v",
     "start:v": "npx verdaccio --listen 4000 -c scripts/verdaccio.yml",
-    "config:v": "wait-on http://localhost:4000/ && npx npm-auth-to-token@1.0.0 -u 'bolt' -p 'bolt' -e 'bolt@boltdesignsystem.com' -r http://localhost:4000 && npm run publish:v",
+    "config:v": "wait-on http://localhost:4000/ && npx npm-auth-to-token@1.0.0 -u 'bolt' -p 'bolt' -e 'bolt@boltdesignsystem.com' -r http://localhost:4000",
     "publish:v": "npx lerna publish"
   },
 
