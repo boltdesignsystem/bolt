@@ -1,15 +1,8 @@
 import Ajv from 'ajv';
-import isEqual from 'lodash.isequal';
 import { withComponent, shadow, props } from 'skatejs';
-import merge from 'lodash.merge';
-import {
-  deepEquals,
-  extend,
-  findParentTag,
-  hasNativeShadowDomSupport,
-} from '../utils';
-
-import { store } from '../store.js';
+import * as deepmerge from 'deepmerge';
+import isEqual from 'react-fast-compare';
+import { findParentTag, hasNativeShadowDomSupport } from '../utils';
 
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
@@ -19,64 +12,14 @@ export function BoltBase(Base = HTMLElement) {
       return self;
     }
 
-    async shouldReRender(props, state, prevProps, prevState) {
-      return !deepEquals(props, prevProps) || !deepEquals(state, prevState);
-    }
-
-    async shouldUpdate(prevProps, prevState) {
-      return this.shouldReRender(this, prevProps, prevState);
-    }
-
-    connectedCallback() {
-      super.connectedCallback && super.connectedCallback;
-      this._storeUnsubscribe = store.subscribe(() =>
-        this.stateChanged(store.getState()),
-      );
-      this.stateChanged(store.getState());
-    }
-
-    stateChanged(state) {}
-
-    disconnectedCallback() {
-      this._storeUnsubscribe();
-      super.disconnectedCallback && super.disconnectedCallback();
-    }
-
     /**
      * Update component state and schedule a re-render.
-     * @param {object} state A dict of state properties to be shallowly merged
-     * 	into the current state, or a function that will produce such a dict. The
-     * 	function is called with the current state and props.
-     * @param {() => void} callback A function to be called once component state is
-     * 	updated
+     * @param {object} state A dict of state properties to be deepy merged
+     * 	into the current state
      */
-    async setState(state, callback) {
-      // @todo: review to see which merge we should be using here.
-      // this.state = merge(this.state || {}, state);
-      this.state = extend(
-        extend({}, this.state),
-        typeof state === 'function' ? state(this.state, this.props) : state,
-      );
-
-      if (!this._prevState) {
-        this._prevState = this.state;
-      }
-
-      if (
-        await this.shouldReRender(
-          this.props,
-          this.state,
-          this._prevProps,
-          this._prevState,
-        )
-      ) {
-        await this.triggerUpdate();
-      }
-
-      if (callback) {
-        // await this._renderCallbacks.push(callback); // @todo: review to see if / how we can implement the normal setState callback
-        callback();
-      }
+    async setState(state) {
+      this.state = deepmerge.all([this.state ? this.state : {}, state]);
+      // super.shouldUpdate && super.shouldUpdate();
     }
 
     setupSlots() {
