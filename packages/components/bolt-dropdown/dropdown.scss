@@ -82,22 +82,21 @@ bolt-dropdown {
 .c-bolt-dropdown__header-label {
   @include bolt-padding-top(small);
   @include bolt-padding-bottom(small);
-  @include bolt-padding-left(medium);
-  @include bolt-padding-right(medium);
+  @include bolt-padding-right(small);
+  @include bolt-padding-left(small);
   @include bolt-font-size(medium);
   @include bolt-font-weight(semibold);
 
   display: flex;
   justify-content: space-between;
-
   align-items: center; // vertical align
-
   -webkit-appearance: none;
   position: relative;
   width: 100%;
-
+  
   margin-bottom: 0;
   color: bolt-theme(headline-link);
+  text-align: left; // otherwise some dropdown menus are center aligned in the Shadow DOM
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -220,9 +219,9 @@ bolt-dropdown {
   align-items: center;
   position: relative;
   overflow: hidden; // so transformed icons don't spill out
-  margin-top: bolt-spacing(small) * -1;
-  margin-right: bolt-spacing(medium) * -1;
-  margin-bottom: bolt-spacing(small) * -1;
+  margin-top: bolt-spacing(xsmall) * -1;
+  margin-right: bolt-spacing(small) * -1;
+  margin-bottom: bolt-spacing(xsmall) * -1;
 
   &:before {
     content: '';
@@ -361,13 +360,6 @@ bolt-dropdown {
   transition: height 0.2s ease;
 }
 
-.c-bolt-dropdown__content--opened {
-  // overflow: visible;
-}
-
-
-
-
 .c-bolt-dropdown__content-inner {
   @include bolt-padding-top(xsmall);
   @include bolt-padding-bottom(xsmall);
@@ -448,12 +440,8 @@ bolt-dropdown {
 
 
 .c-bolt-dropdown__content--open {
-  overlow: hidden;
+  overflow: hidden;
 }
-
-
-
-
 
 .c-bolt-block-list {
   display: block;
@@ -511,13 +499,6 @@ bolt-dropdown {
     --bolt-nav-item-transform: none,
   ));
 }
-
-.c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-nav__indicator,
-.c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-nav__indicator,
-.c-bolt-dropdown__content--opened .c-bolt-nav__indicator {
-  // opacity: bolt-opacity(100);
-}
-
 
 .c-bolt-dropdown__content--opened {
   @include bolt-css-vars((

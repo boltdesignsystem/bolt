@@ -1,0 +1,20 @@
+ul.bolt-icon-list-demo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0;
+  list-style-type: none;
+
+  li {
+    width: 25%;
+    margin: 25px 0;
+    text-align: center;
+    @media (max-width: 768px) {
+      width: 33%;
+    }
+    @media (max-width: 575px) {
+      width: 50%;
+      margin: 15px 0;
+    }
+  }
+}

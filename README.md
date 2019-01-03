@@ -1,5 +1,5 @@
 <h1>
-  <img align="left" width="40" src="https://raw.githubusercontent.com/bolt-design-system/bolt/master/apps/bolt-site/images/bolt-logo.png">
+  <img align="left" width="40" src="https://raw.githubusercontent.com/bolt-design-system/bolt/master/docs-site/images/bolt-logo.png">
   Bolt Design System
 </h1>
 
@@ -11,7 +11,6 @@
 git clone https://github.com/bolt-design-system/bolt.git ~/sites/bolt
 cd ~/sites/bolt
 npm run setup
-cd apps/pattern-lab
 npm start
 ```
 

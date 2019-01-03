@@ -1,0 +1,30 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Widths"
+} only %}
+
+{% set widths = bolt.data.widths %}
+
+{% block utility_description %}
+  <p>Add the utility class <code>.u-bolt-width-xx/xx</code> where xx equals the <code>N</code> number of columns you wish to apply.</p>
+  <p>The calculation is <code>[numerator]</code> / <code>[denominator]</code> * 100%.</p>
+  <p><strong>For example:</strong> <code>.u-bolt-width-3/4</code> would give us 3 / 4 = <strong>0.75</strong> * 100% = <strong>75%</strong>.</p>
+  <p><strong><u>Possible column width values include:</u></strong></p>
+  <ul>
+    {% for i in widths|first..widths|last %}
+      <li><code>{{ i }}</code></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+{% block utility_demo %}
+  {% for i in widths|first..widths|last %}
+    <div class="c-bds-docs__width-demo">
+      <h4><code>{{ ".u-bolt-width-1/#{i}" }}</code></h4>
+      <div class="c-bds-docs__width-item {{ "u-bolt-width-1/#{i}" }}">
+        <strong>{{ (1 / i * 100) | number_format(2)}}%</strong>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+{% endembed %}
