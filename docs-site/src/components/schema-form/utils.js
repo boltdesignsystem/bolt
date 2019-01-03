@@ -10,6 +10,11 @@ export function prepSchema(schema) {
     delete newSchema.not;
   }
 
+  // temporarily remove the Drupal-specific attributes object -- workaround to form error
+  if (newSchema.properties['attributes']){
+    delete newSchema.properties['attributes'];
+  }
+
   for (let property in newSchema.properties) {
     if (newSchema.properties[property].title === 'DEPRECATED') {
       delete newSchema.properties[property];
@@ -20,7 +25,7 @@ export function prepSchema(schema) {
         delete newSchema.properties[property].ref;
       }
     } catch (error) {
-      console.log('ref does not exist!');
+      // console.log('ref does not exist!');
     }
 
     try {
@@ -30,7 +35,7 @@ export function prepSchema(schema) {
         }
       }
     } catch (error) {
-      console.log('$ref does not exist!');
+      // console.log('$ref does not exist!');
     }
   }
 
