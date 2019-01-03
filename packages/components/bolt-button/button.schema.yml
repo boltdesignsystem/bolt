@@ -1,10 +1,19 @@
+$schema: 'http://json-schema.org/draft-04/schema#'
 title: 'Bolt Button'
 description: 'Buttons are the core of our action components.'
 type: object
+required:
+  - text
+not:
+  anyOf:
+    - required:
+      - itemAlignment
+    - required:
+      - rounded
 properties:
-  # attributes:
-  #   type: any
-  #   description: A Drupal-style attributes object with extra attributes to append to this component.
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   text:
     title: 'Button Text'
     description: 'The text displayed inside a button'
@@ -97,11 +106,3 @@ properties:
     default: false
     required:
       - icon
-required:
-  - text
-not:
-  anyOf:
-    - required:
-      - itemAlignment
-    - required:
-      - rounded
