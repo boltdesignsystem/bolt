@@ -22,24 +22,25 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set base_class = "c-bolt-blockquote" %}
-{% set size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
-{% set alignItems = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
-{% set border = border == false and border is null ? "vertical" : border | default("vertical") %}
+
+{# Prefix modified variables with 'mod_' and preserve original values #}
+{% set mod_size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
+{% set mod_align_items = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
+{% set mod_border = border == false and border is null ? "vertical" : border | default("vertical") %}
 
 {% set classes = [
   base_class,
-  size in size_options ? base_class ~ "--" ~ size : "",
-  alignItems in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[alignItems],
-  border in border_options|keys ? base_class ~ "--" ~ border_options[border],
+  mod_size in size_options ? base_class ~ "--" ~ mod_size : "",
+  mod_align_items in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[mod_align_items],
+  mod_border in border_options|keys ? base_class ~ "--" ~ border_options[mod_border],
   indent ? base_class ~ "--indented" : "",
   fullBleed ? base_class ~ "--full" : ""
 ] %}
 
 <bolt-blockquote
-  {# todo: make all of these conditional, so that no attributes are needed by default #}
-  size="{{ size }}"
-  align-items="{{ alignItems }}"
-  border="{{ border }}"
+  {% if size %} size="{{ size }}" {% endif %}
+  {% if alignItems %} align-items="{{ alignItems }}" {% endif %}
+  {% if border %} border="{{ border }}" {% endif %}
   {% if indent %} indent {% endif %}
   {% if fullBleed %} full-bleed {% endif %}
 >
@@ -56,7 +57,7 @@
         {% include "@bolt-components-headline/text.twig" with {
           text: content,
           tag: "div",
-          size: size,
+          size: mod_size,
           weight: "semibold"
         } only %}
       </div>
