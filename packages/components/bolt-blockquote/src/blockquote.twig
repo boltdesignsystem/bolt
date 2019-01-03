@@ -1,36 +1,3 @@
-{# Sample Usage
-  {% include "@bolt/twig" with {
-    // Default is large. [large, xlarge, xxlarge]
-    "size": "large",
-
-    // Default is left. [left, center, right]
-    "alignItems": "left",
-
-    // Default is vertical. [vertical, horizontal, none]
-    "border": "vertical",
-
-    // Default is false. [true, false]
-    "fullBleed": false,
-
-    // Logo is optional.
-    "logo": {
-      "src": "/images/sample/PayPal-logo.svg"
-    },
-
-    // Content is required.
-    "content": "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",
-
-    // Author is optional.
-    "author": {
-      "image": {
-        "src": "/images/placeholders/500x500.jpg"
-      },
-      "name": "Michelangelo di Lodovico Buonarroti Simoni",
-      "title": "Renaissance Artist"
-    }
-  } only %}
-#}
-
 {% set schema = bolt.data.components["@bolt-components-blockquote"].schema %}
 
 {% if enable_json_schema_validation %}
