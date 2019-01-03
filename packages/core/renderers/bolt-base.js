@@ -1,7 +1,5 @@
 import Ajv from 'ajv';
 import { withComponent, shadow, props } from 'skatejs';
-import * as deepmerge from 'deepmerge';
-import isEqual from 'react-fast-compare';
 import { findParentTag, hasNativeShadowDomSupport } from '../utils';
 
 export function BoltBase(Base = HTMLElement) {
@@ -14,11 +12,11 @@ export function BoltBase(Base = HTMLElement) {
 
     /**
      * Update component state and schedule a re-render.
-     * @param {object} state A dict of state properties to be deepy merged
+     * @param {object} state A dict of state properties to be shallowly merged
      * 	into the current state
      */
-    async setState(state) {
-      this.state = deepmerge.all([this.state ? this.state : {}, state]);
+    setState(state) {
+      this.state = Object.assign({}, this.state, state);
       // super.shouldUpdate && super.shouldUpdate();
     }
 

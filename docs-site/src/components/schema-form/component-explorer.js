@@ -4,6 +4,7 @@ import { define, props } from '@bolt/core/utils';
 import { prepSchema } from './utils';
 import ResponsiveLocalStorageLayout from './grid-layout';
 import { h, withPreact } from '@bolt/core/renderers';
+import isEqual from 'react-fast-compare';
 // import { store } from '@bolt/core/store.js'; // redux store
 
 import {
@@ -80,43 +81,23 @@ export default class ComponentExplorer extends withPreact() {
       renderedHTML: '',
       schema: prepSchema(this.props.schema),
     });
-    // const state = store.getState();
-    // if (state.componentExplorer.formData !== undefined){
-    //   this.setState({
-    //     formData: state.componentExplorer.formData !== '' ? state.componentExplorer.formData : this.props.formData,
-    //     renderedHTML: state.componentExplorer.renderedHTML || '',
-    //     schema: prepSchema(this.props.schema),
-    //   });
-    // } else {
-    //   this.setState({
-    //     formData: this.props.formData,
-    //     renderedHTML: state.componentExplorer.renderedHTML || '',
-    //     schema: prepSchema(this.props.schema),
-    //   });
-    // }
-
   }
-
-  // stateChanged(state) {
-  //   this.setState({
-  //     formData: state.componentExplorer.formData || this.state.formData,
-  //     renderedHTML: state.componentExplorer.renderedHTML || '',
-  //   });
-  // }
 
   resetForm() {
     this.setState({
-      formData: ''
-    });
-    this.setState({
       formData: this.props.formData,
     });
-
-    // store.dispatch(updateComponentExplorerForm(this.props.formData));
+    this.onFormChange({formData: this.props.formData});
   }
 
-  async onFormChange(value) {
-    this.state.formData = value.formData;
+  shouldUpdate(prevProps, prevState) {
+    return (!isEqual(prevState,this.state));
+  }
+
+  onFormChange(value) {
+    this.setState({
+      formData: value.formData,
+    });
     this.requestRender(value.formData);
     // // store.dispatch(updateComponentExplorerForm(value.formData));
   };
@@ -144,7 +125,7 @@ export default class ComponentExplorer extends withPreact() {
       const body = await res.text();
   
       if (!res.ok) {
-        console.error(`Error: rendering ${this.props.template}`, body);
+        // console.error(`Error: rendering ${this.props.template}`, body);
         return;
       } else {
         if (self.state.renderedHTML !== body){
@@ -152,16 +133,15 @@ export default class ComponentExplorer extends withPreact() {
             clearTimeout(self.state.typingTimeout);
           }
 
-          self.state.isTyping = false;
           self.state.typingTimeout = setTimeout(function () {
             if (self.state.isTyping === false){
-              console.log('setting state for updated HTML');
+              // console.log('setting state for updated HTML');
               self.setState({
-                // formData: formData,
                 renderedHTML: body,
               });
             }
-          }, 200);
+          }, 150);
+          self.state.isTyping = false;
         }
       }
       // store.dispatch(updateComponentExplorerPreview(body));
@@ -169,12 +149,10 @@ export default class ComponentExplorer extends withPreact() {
   }
 
   render() {
-    console.log('render');
     const { initialLayout } = this.props;
     const linkTags = `<link rel="stylesheet" href="/build/bolt-global.css">`;
     const bodyScripts = `<script src="/build/bolt-global.js" async></script>`;
     const isHorizontal = initialLayout === 'horizontal';
-
     const schema = prepSchema(this.props.schema);
 
     const iFrameProps = {
