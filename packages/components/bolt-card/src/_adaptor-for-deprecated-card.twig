@@ -1,8 +1,8 @@
 {% set schema = bolt.data.components['@bolt-components-card'].schema %}
 
-{#{% if enable_json_schema_validation %}#}
-  {#{{ validate_data_schema(schema, _self) | raw }}#}
-{#{% endif %}#}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
 
 {% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
 {% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
@@ -14,22 +14,15 @@
 {# Defaults for a vanilla `Card` component #}
 {% set componentName = "card" %}
 {% set baseClass = prefix ~ componentName %}
-{% set theme = theme %}
-{% set tag = tag in tags ? tag: "div" %}
+{% set cardTheme = theme | default('none') %}
+{% set cardTag = tag in tags ? tag : "div" %}
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 
 {% set classes = [
   baseClass
 ] %}
 
-{% if url %}
-  {% set attributes = attributes.setAttribute("data-href", url) %}
-{% endif %}
-
 {% set _card_footer_block = block('card_footer') %}
-
-
-
 
 {% set _allowedCardHeaderItems = ["image", "video"] %}
 {% set _allowedCardBodyItems = ["eyebrow", "content", "text", "headline", "teaser"] %}
@@ -61,8 +54,6 @@
     {% endfor %}
   {% endif %}
 {% endfor %}
-
-
 
 {% for key, item in _context if item.pattern in _allowedItems or key in _allowedItems %}
   {% if key == "teaser" %}
@@ -109,20 +100,21 @@
       {% else %}
         {{ item }}
       {% endif %}
-
     {% endfor %}
   {% endblock card_body %}
 {% endset %}
 
-
 {% set cardActions = [] %}
 {% for cardAction in _items if cardAction.pattern in _allowedCardFooterItems %}
+  {% set cardAction = [cardAction] %}
   {% set cardActions = cardActions|merge(cardAction) %}
 {% endfor %}
 
 {# TODO Either "whitelist" each parameter that may be passed through or remove the 'only' keyword and include _adaptor-for-new-card.twig instead #}
 
 {% include "@bolt-components-card/card.twig" with {
+  theme: cardTheme,
+  tag: cardTag,
   media: {
     content: cardMedia,
   },
@@ -131,7 +123,6 @@
   },
   actions: cardActions
 } only %}
-
 
 {# TODO Old card structure temporarily kept for reference. #}
 {#<bolt-card#}

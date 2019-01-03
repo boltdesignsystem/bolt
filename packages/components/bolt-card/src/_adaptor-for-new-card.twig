@@ -1,8 +1,8 @@
 {% set schema = bolt.data.components["@bolt-components-card"].schema %}
 
-{#{% if enable_json_schema_validation %}#}
-  {#{{ validate_data_schema(schema, _self) | raw }}#}
-{#{% endif %}#}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
 
 {# Variables #}
 {% set base_class = "c-bolt-card" %}

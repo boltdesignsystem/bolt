@@ -113,6 +113,7 @@
 
 <div style="max-width: 500px; padding: 2rem;">
   {% include "@bolt-components-card/card.twig" with {
+    url: 'http://goolge.pl',
     contentItems: [
       {
         pattern: "image",
@@ -130,12 +131,12 @@
       },
       {
         pattern: "button",
-        text: "Learn More",
+        text: "CTA 1",
         url: "http://pega.com",
       },
       {
         pattern: "button",
-        text: "Weitere Informationen",
+        text: "CTA 2",
         url: "http://pega.com",
       },
     ]
@@ -502,11 +503,13 @@
             {
               pattern: "button",
               text: "Button 1",
+              external: true,
               url: "http://pega.com"
             },
             {
-              pattern: "button",
-              text: "Button 2",
+              pattern: "link",
+              text: "Link",
+              external: true,
               url: "http://pega.com"
             }
           ]
