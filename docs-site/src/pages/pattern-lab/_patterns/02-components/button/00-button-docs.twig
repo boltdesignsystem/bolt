@@ -6,5 +6,16 @@
 
 {% include "@utils/docs.twig" with {
   componentName: "button",
-  usage: usage
+  usage: usage,
+  schemaForm: {
+    template: '@bolt-components-button/button.twig',
+    layout: "horizontal",
+    initialData: {
+      text: "Button w/ Icon `after` Text",
+      icon: {
+        name: "chevron-right",
+        position: "after"
+      }
+    },
+  },
 } only %}

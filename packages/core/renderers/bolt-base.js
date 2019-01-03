@@ -1,7 +1,6 @@
 import Ajv from 'ajv';
 import { withComponent, shadow, props } from 'skatejs';
-import { hasNativeShadowDomSupport } from '../utils/environment';
-import { findParentTag } from '../utils/find-parent-tag';
+import { findParentTag, hasNativeShadowDomSupport } from '../utils';
 
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
@@ -9,6 +8,16 @@ export function BoltBase(Base = HTMLElement) {
       super(self);
       this._wasInitiallyRendered = false;
       return self;
+    }
+
+    /**
+     * Update component state and schedule a re-render.
+     * @param {object} state A dict of state properties to be shallowly merged
+     * 	into the current state
+     */
+    setState(state) {
+      this.state = Object.assign({}, this.state, state);
+      // super.shouldUpdate && super.shouldUpdate();
     }
 
     setupSlots() {
@@ -105,11 +114,6 @@ export function BoltBase(Base = HTMLElement) {
       });
 
       return slots;
-    }
-
-    disconnectedCallback() {
-      this.disconnecting && this.disconnecting();
-      this.disconnected && this.disconnected();
     }
 
     rendered() {
