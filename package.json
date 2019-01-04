@@ -41,7 +41,6 @@
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
     "serve": "node server.js",
     "postbootstrap": "node scripts/monorepo-tests.js",
-    "prepublishOnly": "node scripts/monorepo-tests.js",
     "commit": "git-cz",
     "upgrade": "yarn upgrade-interactive --latest",
     "verdaccio": "rm -rf scripts/verdaccio && npm run config:v & npm run start:v",

@@ -37,9 +37,9 @@ cd ../../
 # npx lerna version --registry http://localhost:4000 
 # npx lerna publish from-package --registry http://localhost:4000 --canary
 
-npx lerna publish preminor --registry http://localhost:4000 --npm-tag next --preid rc --no-commit-hooks --no-git-reset --verify-access
+npx lerna publish --registry http://localhost:4000 --npm-tag next --preid rc --no-commit-hooks --no-git-reset --verify-access
 CURRENT_VERSION=`git describe --abbrev=0`
-git push origin :refs/tags/v$CURRENT_VERSION
+git push origin :refs/tags/$CURRENT_VERSION
 node scripts/update-php-package-versions.js
 
 # ./update-read-only-git-repos.sh
