@@ -1,4 +1,5 @@
 import './components/version-selector/version-selector';
+import './components/schema-form';
 import './components/handle-iframe-height';
 import './pages/pattern-lab/_patterns/02-components/card/__tests__';
 // import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-preact-test';

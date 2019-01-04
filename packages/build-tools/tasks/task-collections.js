@@ -111,9 +111,9 @@ async function serve(buildTime = timer.start()) {
 
   try {
     const serverTasks = [];
-    if (config.renderingService) {
-      serverTasks.push(extraTasks.server.phpServer());
-    }
+    // if (config.renderingService) {
+    //   serverTasks.push(extraTasks.server.phpServer());
+    // }
     if (config.wwwDir) {
       if (config.webpackDevServer && config.watch !== false) {
         serverTasks.push(webpackTasks.server());
