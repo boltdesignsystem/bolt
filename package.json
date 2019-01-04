@@ -43,13 +43,12 @@
     "postbootstrap": "node scripts/monorepo-tests.js",
     "prepublishOnly": "node scripts/monorepo-tests.js",
     "commit": "git-cz",
-    "lerna:publish": "lerna publish --verify-access",
     "upgrade": "yarn upgrade-interactive --latest",
     "verdaccio": "rm -rf scripts/verdaccio && npm run config:v & npm run start:v",
     "start:v": "npx verdaccio --listen 4000 -c scripts/verdaccio.yml",
     "config:v": "wait-on http://localhost:4000/ && npx npm-auth-to-token@1.0.0 -u 'bolt' -p 'bolt' -e 'bolt@boltdesignsystem.com' -r http://localhost:4000",
-    "publish:v": "npx lerna publish",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "prerelease:test": "./scripts/publishing/pre-release.sh"
   },
   "dependencies": {
     "@semantic-release/commit-analyzer": "6.1.0",

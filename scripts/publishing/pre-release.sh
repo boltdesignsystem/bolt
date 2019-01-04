@@ -40,8 +40,15 @@ npx lerna publish $1 --registry http://localhost:4000 --npm-tag next --preid rc 
 git push origin :refs/tags/v$1
 node scripts/update-php-package-versions.js
 
+# ./update-read-only-git-repos.sh
+
+# rm -rf verdaccio/
+# killall verdaccio
+# exit 1;
+
 git add .
 git commit -m "v$1"
 git tag -fa v$1
 git push --force
 git push --tags --force
+
