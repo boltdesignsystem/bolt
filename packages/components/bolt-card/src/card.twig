@@ -1,9 +1,15 @@
 {# If the props being passed match the deprecated schema, use the adaptor for the deprecated card.  #}
 {% if contentItems %}
-  {% include "@bolt-components-card/_adaptor-for-deprecated-card.twig" %}
+  {% embed "@bolt-components-card/_adaptor-for-deprecated-card.twig" %}
+    {#{% block card_body %}#}
+      {#{{ block('card_body') }}#}
+    {#{% endblock card_body %}#}
+    {#{% block card_footer %}#}
+      {#{{ block('card_footer') }}#}
+    {#{% endblock card_footer %}#}
+  {% endembed %}
 {% else %}
   {% include "@bolt-components-card/_adaptor-for-new-card.twig" %}
 {% endif %}
 
-{# @TODO In the next major version of Bolt, remove the adaptors and replace the contents of this file (card.twig)
-with the contents of _adaptor-for-new-card.twig #}
+{# @TODO In the next major version of Bolt, remove the adaptors and replace the contents of this file (card.twig) with the contents of _adaptor-for-new-card.twig #}

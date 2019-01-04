@@ -1,28 +1,18 @@
-{% set schema = bolt.data.components['@bolt-components-card'].schema %}
+{% set schema = bolt.data.components["@bolt-components-card"].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
 {% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
-{% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
+{#{% set contentTags = ["div", "article", "section", "figcaption"] %} #}{# Available content container tags #}
 {% set themes = ["xlight", "light", "dark", "xdark"] %}
-{% set prefix = "c-bolt-" %}
 
-{% set attributes = create_attribute(attributes|default({})) %}
+{#{% set attributes = create_attribute(attributes|default({})) %}#}
 
-{# Defaults for a vanilla `Card` component #}
-{% set componentName = "card" %}
-{% set baseClass = prefix ~ componentName %}
-{% set cardTheme = theme | default('none') %}
+{% set cardTheme = theme in themes ? theme : "none" %}
 {% set cardTag = tag in tags ? tag : "div" %}
-{% set contentTag = contentTag in contentTags ? contentTag: "div" %}
-
-{% set classes = [
-  baseClass
-] %}
-
-{% set _card_footer_block = block('card_footer') %}
+{#{% set contentTag = contentTag in contentTags ? contentTag: "div" %}#}
 
 {% set _allowedCardHeaderItems = ["image", "video"] %}
 {% set _allowedCardBodyItems = ["eyebrow", "content", "text", "headline", "teaser"] %}
@@ -77,11 +67,11 @@
 {% set cardMedia %}
   {% for key, item in _items if item.pattern in _allowedCardHeaderItems %}
     {% if item.pattern %}
-      {% if item.pattern == 'image' and url is not empty %}
+      {% if item.pattern == "image" and url is not empty %}
         <a href="{{url}}">
       {% endif %}
       {% include pattern_template(item.pattern) with item only %}
-      {% if item.pattern == 'image' and url is not empty %}
+      {% if item.pattern == "image" and url is not empty %}
         </a>
       {% endif %}
     {% else %}
@@ -109,8 +99,6 @@
   {% set cardAction = [cardAction] %}
   {% set cardActions = cardActions|merge(cardAction) %}
 {% endfor %}
-
-{# TODO Either "whitelist" each parameter that may be passed through or remove the 'only' keyword and include _adaptor-for-new-card.twig instead #}
 
 {% include "@bolt-components-card/card.twig" with {
   theme: cardTheme,

@@ -1,4 +1,4 @@
-<div style="max-width: 500px; padding: 2rem;">
+<div style="max-width: 500px; padding: 2rem; margin: 1rem auto">
   {% include "@bolt-components-card/card.twig" with {
     contentItems: [
       {
@@ -28,9 +28,7 @@
       }
     ]
   } only %}
-</div>
 
-<div style="max-width: 500px; padding: 2rem;">
   {% include "@bolt-components-card/card.twig" with {
     tag: "article",
     contentTag: "div",
@@ -67,11 +65,9 @@
       },
     ]
   } only %}
-</div>
 
-{% set videoUuid3 = "js-bolt-video-uuid--3c" %}
+  {% set videoUuid3 = "js-bolt-video-uuid--3c" %}
 
-<div style="max-width: 500px; padding: 2rem;">
   {% include "@bolt-components-card/card.twig" with {
     tag: "article",
     contentTag: "div",
@@ -109,9 +105,7 @@
       }
     ]
   } only %}
-</div>
 
-<div style="max-width: 500px; padding: 2rem;">
   {% include "@bolt-components-card/card.twig" with {
     url: 'http://goolge.pl',
     contentItems: [
@@ -141,8 +135,27 @@
       },
     ]
   } only %}
-</div>
 
+  <h1>Edge cases</h1>
+  {% embed "@bolt-components-card/card.twig" with {
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/pattern-lab/images/placeholders/landscape-16x9-mountains.jpg",
+        lazyload: false,
+        alt: "Anthem Video"
+      }
+    ]
+  } only %}
+    {% block card_body %}
+      Freeform card body content
+    {% endblock %}
+
+    {% block card_footer %}
+      Freeform card footer content
+    {% endblock %}
+  {% endembed %}
+</div>
 
 {% embed "@bolt-components-band/band.twig" with {
   size: "large",
