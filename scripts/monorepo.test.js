@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
 const globby = require('globby');
-const rootPkg = require(path.join(__dirname, '../../package.json'));
+const rootPkg = require(path.join(__dirname, '../package.json'));
 const assert = require('assert');
 
 function flattenDeep(arr1) {

@@ -13,8 +13,8 @@ cd ../../
 
 npm run lint
 npm run test
-node scripts/publishing/monorepo-tests.js
-./node_modules/.bin/jest scripts/publishing/monorepo.test.js
+node scripts/monorepo-tests.js
+./node_modules/.bin/jest scripts/monorepo.test.js
 
 echo 'Finished release pre-checks!';
 

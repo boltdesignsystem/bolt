@@ -10,7 +10,7 @@ const lstat = promisify(fs.lstat);
  * Ensures every directory in `../node_modules/@bolt/` is a symbolic link, if not then, a package is being pulled from npm instead of the local repo - which causes problems.
  */
 function checkMonorepoSymlinks() {
-  const baseDir = path.resolve(__dirname, '../../node_modules/@bolt');
+  const baseDir = path.resolve(__dirname, '../node_modules/@bolt');
   readdir(baseDir)
     .then(dirNames =>
       Promise.all(
