@@ -6,8 +6,11 @@ cd ../../
 
 CURRENT_BRANCH=`git rev-parse --symbolic-full-name --abbrev-ref HEAD`
 
-if [[ $CURRENT_BRANCH != 'next/2.x' && $CURRENT_BRANCH != 'next/1.x' ]]; then
-  echo "Error: cannot publish a pre-release on a branch that's not next/2.x or next/1.x. Aborting the pre-release.";
+if [[ $CURRENT_BRANCH == 'release/2.x' || $CURRENT_BRANCH == 'release/1.x' ]]; then
+  echo "Error: you can't publish a pre-release on a release branch! Try running 'npm run release' to do a full release instead.";
+  exit 1;
+elif [[ $CURRENT_BRANCH != 'release/2.x' && $CURRENT_BRANCH != 'release/1.x' ]]; then
+  echo "Error: you can't publish a pre-release on the $CURRENT_BRANCH branch. Aborting...";
   exit 1;
 fi
 
