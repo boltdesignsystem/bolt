@@ -13,26 +13,19 @@
   "right": "end"
 } %}
 
-{% set border_options = {
-  "none": "borderless",
-  "vertical": "bordered-vertical",
-  "horizontal": "bordered-horizontal"
-} %}
-
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {% set base_class = "c-bolt-blockquote" %}
 
-{# Prefix modified variables with 'mod_' and preserve original values #}
-{% set mod_size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
-{% set mod_align_items = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
-{% set mod_border = border == false and border is null ? "vertical" : border | default("vertical") %}
+{% set size = size in schema.properties.size.enum ? size : schema.properties.size.default %}
+{% set align_items = alignItems in schema.properties.alignItems.enum ? size : schema.properties.alignItems.default %}
+{% set border = border in schema.properties.border.enum ? border : schema.properties.border.default %}
 
 {% set classes = [
   base_class,
-  mod_size in size_options ? base_class ~ "--" ~ mod_size : "",
-  mod_align_items in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[mod_align_items],
-  mod_border in border_options|keys ? base_class ~ "--" ~ border_options[mod_border],
+  size in size_options ? base_class ~ "--" ~ size : "",
+  align_items in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[align_items],
+  border == 'none' ? base_class ~ "--borderless" : base_class ~ "--" ~ border,
   indent ? base_class ~ "--indented" : "",
   fullBleed ? base_class ~ "--full" : ""
 ] %}
@@ -57,7 +50,7 @@
         {% include "@bolt-components-headline/text.twig" with {
           text: content,
           tag: "div",
-          size: mod_size,
+          size: size,
           weight: "semibold"
         } only %}
       </div>
