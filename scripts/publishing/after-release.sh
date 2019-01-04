@@ -9,7 +9,7 @@ git push origin :refs/tags/$CURRENT_VERSION
 node scripts/update-php-package-versions.js
 
 ## Update snapshot tests that depend on 
-./scripts/update-read-only-git-repos.sh $CURRENT_VERSION
+./scripts/update-read-only-git-repos.sh
 
 # git add .
 # git commit --amend --no-edit

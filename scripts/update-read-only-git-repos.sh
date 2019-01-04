@@ -11,13 +11,14 @@ cd ../
 #   fi
 # fi
 # Run helper subsplit script ported over from from https://raw.githubusercontent.com/dflydev/git-subsplit/master/git-subsplit.sh
+CURRENT_VERSION=`git describe --abbrev=0`
 
 ./scripts/git-subsplit.sh init https://${GH_TOKEN}@github.com/sghoweri/core-php.git
 ./scripts/git-subsplit.sh publish --work-dir=$PWD packages/core-php:https://${GH_TOKEN}@github.com/sghoweri/core-php.git \
-  --heads="master, release/1.x, release/2.x, prerelease/2.x" --update --tags="$TRAVIS_TAG"
+  --heads="master, release/1.x, release/2.x, prerelease/2.x" --update --tags="$CURRENT_VERSION"
 rm -rf .subsplit
 
 ./scripts/git-subsplit.sh init https://${GH_TOKEN}@github.com/sghoweri/bolt_connect.git
 ./scripts/git-subsplit.sh publish --work-dir=$PWD packages/drupal-modules/bolt_connect:https://${GH_TOKEN}@github.com/sghoweri/bolt_connect.git \
-  --heads="master, release/1.x, release/2.x, prerelease/2.x" --update --tags="$TRAVIS_TAG"
+  --heads="master release/1.x release/2.x prerelease/2.x" --update --tags="$CURRENT_VERSION"
 rm -rf .subsplit
