@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-rc.1](https://github.com/bolt-design-system/bolt/compare/v2.3.0-rc.0...v2.3.0-rc.1) (2019-01-04)
+
+
+### Bug Fixes
+
+* updating release script to prompt user for version being released ([2d320e4](https://github.com/bolt-design-system/bolt/commit/2d320e4))
+
+
+
+# v2.3.0-rc.0 (2019-01-04)
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/compare/v2.2.1...v2.3.0-rc.0) (2019-01-04)
 
 
