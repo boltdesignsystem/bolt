@@ -39,7 +39,6 @@ cd ../../
 npx lerna publish $1 --registry http://localhost:4000 --npm-tag next --preid rc --no-commit-hooks --no-git-reset --verify-access
 git push origin :refs/tags/v$1
 node scripts/update-php-package-versions.js
-git status
 
 git add .
 git commit -m "v$1"
