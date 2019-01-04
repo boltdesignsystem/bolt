@@ -8,11 +8,11 @@ CURRENT_VERSION=`git describe --abbrev=0`
 git push origin :refs/tags/$CURRENT_VERSION
 node scripts/update-php-package-versions.js
 
+git add .
+git commit --amend --no-edit
+git tag -f $CURRENT_VERSION
+git push --force --no-verify
+git push --tags --force --no-verify
+
 ## Update snapshot tests that depend on 
 ./scripts/update-read-only-git-repos.sh
-
-# git add .
-# git commit --amend --no-edit
-# git tag -f $CURRENT_VERSION
-# git push --force --no-verify
-# git push --tags --force --no-verify
