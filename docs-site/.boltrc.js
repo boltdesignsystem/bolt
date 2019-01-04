@@ -102,7 +102,6 @@ const config = {
       '@bolt/components-navbar',
       '@bolt/components-navlink',
       '@bolt/components-logo',
-      '@bolt/components-ordered-list',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
       '@bolt/components-pagination',
@@ -115,7 +114,8 @@ const config = {
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
-      '@bolt/components-unordered-list',
+      '@bolt/components-ul',
+      '@bolt/components-ol',
       '@bolt/components-video',
       '@bolt/components-grid',
       /**

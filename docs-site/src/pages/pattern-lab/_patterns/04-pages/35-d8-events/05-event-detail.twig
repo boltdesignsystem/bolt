@@ -94,20 +94,12 @@
 
           <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market."</p>
 
-          {% include "@bolt/unordered-list.twig" with {
-            contentItems : [
-              {
-                text: "The growing importance and demands of a unified adtech and martech world"
-              },
-              {
-                text: "Four foundational use cases for unifying your DMP"
-              },
-              {
-                text: "The role of decisioning technology"
-              },
-              {
-                text: "The unified DMP solution offered by Merkle | Comet and Pega® Customer Decision Hub, Pega’s decisioning technology—providing a bi-directional integration of your third-party DMP and marketing technology"
-              }
+          {% include "@bolt-components-ul/ul.twig" with {
+            items : [
+              "The growing importance and demands of a unified adtech and martech world",
+              "Four foundational use cases for unifying your DMP",
+              "The role of decisioning technology",
+              "The unified DMP solution offered by Merkle | Comet and Pega® Customer Decision Hub, Pega’s decisioning technology—providing a bi-directional integration of your third-party DMP and marketing technology"
             ]
           } only %}
 
