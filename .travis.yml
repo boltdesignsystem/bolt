@@ -58,7 +58,6 @@ jobs:
       after_script:
         - cd scripts && npm install
         - npm run deploy
-        - sh ./scripts/update-read-only-git-repos.sh #@todo: run this only on Bolt releases
       cache:
         yarn: true
         directories:
