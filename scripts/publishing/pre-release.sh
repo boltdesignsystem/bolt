@@ -36,8 +36,11 @@ cd ../../
 
 # npx lerna version --registry http://localhost:4000 
 # npx lerna publish from-package --registry http://localhost:4000 --canary
-npx lerna publish $1 --registry http://localhost:4000 --npm-tag next --preid rc --no-commit-hooks --no-git-reset --verify-access
-git push origin :refs/tags/v$1
+
+PREV_VERSION=`git describe --abbrev=0`
+npx lerna publish --registry http://localhost:4000 --npm-tag next --preid rc --no-commit-hooks --no-git-reset --verify-access
+CURRENT_VERSION=`git describe --abbrev=0`
+git push origin :refs/tags/v$CURRENT_VERSION
 node scripts/update-php-package-versions.js
 
 # ./update-read-only-git-repos.sh
@@ -47,8 +50,8 @@ node scripts/update-php-package-versions.js
 # exit 1;
 
 git add .
-git commit -m "v$1"
-git tag -fa v$1
+git commit -m "v$CURRENT_VERSION"
+git tag -fa v$CURRENT_VERSION
 git push --force
 git push --tags --force
 
