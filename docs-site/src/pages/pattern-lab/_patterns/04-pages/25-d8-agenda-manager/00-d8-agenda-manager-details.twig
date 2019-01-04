@@ -152,17 +152,11 @@
             text: "What you'll learn"
           } only %}
 
-          {% include "@bolt/unordered-list.twig" with {
-            contentItems : [
-              {
-                text: "The growing importance and demands of a unified adtech and martech world"
-              },
-              {
-                text: "Four foundational use cases for unifying your DMP"
-              },
-              {
-                text: "The role of decisioning technology"
-              }
+          {% include "@bolt-components-ul/ul.twig" with {
+            items : [
+              "The growing importance and demands of a unified adtech and martech world",
+              "Four foundational use cases for unifying your DMP",
+              "The role of decisioning technology"
             ]
           } only %}
         {% endcell %}
