@@ -3,5 +3,5 @@ Stylistic bulleted list for article content. Part of the Bolt “Components” C
 ###### Install via NPM
 
 ```
-npm install @bolt/components-unordered-list
+npm install @bolt/components-ul
 ```

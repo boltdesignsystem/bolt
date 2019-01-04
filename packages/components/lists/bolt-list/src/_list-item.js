@@ -52,7 +52,7 @@ class BoltListItem extends withContext(withLitHtml()) {
               <li class="${classes}">${this.slot('default')}</li>
             `
           : html`
-              <span class="${classes}"> ${this.slot('default')} </span>
+              <span class="${classes}">${this.slot('default')} </span>
             `
       }
     `;

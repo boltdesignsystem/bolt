@@ -109,33 +109,21 @@ ClassicEditor
     </figure>
     <h3>Ordered List</h3>
     <figure class="u-bolt-margin-bottom-medium">
-      {% include "@bolt-components-ordered-list/ordered-list.twig" with {
-        "contentItems" : [
-          {
-            "text": "Ordered list is"
-          },
-          {
-            "text": "Ordered list component"
-          },
-          {
-            "text": "with default settings"
-          }
+      {% include "@bolt-components-ol/ol.twig" with {
+        "items" : [
+          "Ordered list is",
+          "Ordered list component",
+          "with default settings"
         ]
       } %}
     </figure>
     <h3>Unordered List</h3>
     <figure class="u-bolt-margin-bottom-medium">
-      {% include "@bolt-components-unordered-list/unordered-list.twig" with {
-        "contentItems" : [
-          {
-            "text": "Unordered list is"
-          },
-          {
-            "text": "Unordered list component"
-          },
-          {
-            "text": "with default settings"
-          }
+      {% include "@bolt-components-ul/ul.twig" with {
+        "items" : [
+          "Unordered list is",
+          "Unordered list component",
+          "with default settings"
         ]
       } %}
     </figure>
@@ -200,14 +188,10 @@ ClassicEditor
     </figure>
     <h3>Missing in Bolt</h3>
     <figure>
-      {% include "@bolt-components-ordered-list/ordered-list.twig" with {
-        "contentItems" : [
-          {
-            "text": "<mark>Figure (Image and Video): the figure component needs to be styled.</mark>"
-          },
-          {
-            "text": "<mark>All existing components other than the code snippet are not yet web components</mark>"
-          }
+      {% include "@bolt-components-ol/ol.twig" with {
+        "items" : [
+          "<mark>Figure (Image and Video): the figure component needs to be styled.</mark>",
+          "<mark>All existing components other than the code snippet are not yet web components</mark>"
         ]
       } %}
     </figure>
