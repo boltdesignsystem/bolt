@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/bolt-design-system/bolt/compare/v2.3.2...v2.4.0) (2019-01-04)
+
+
+### Bug Fixes
+
+* fixing typo in publish script ([00eb747](https://github.com/bolt-design-system/bolt/commit/00eb747))
+* fixing typo in release script logic ([302d161](https://github.com/bolt-design-system/bolt/commit/302d161))
+* updating prompt when trying to do an rc or full release ([7879f57](https://github.com/bolt-design-system/bolt/commit/7879f57))
+
+
+
+
+
 ## [2.3.2](https://github.com/bolt-design-system/bolt/compare/v2.3.1...v2.3.2) (2019-01-04)
 
 **Note:** Version bump only for package bolt
