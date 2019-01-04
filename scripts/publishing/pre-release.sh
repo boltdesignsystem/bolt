@@ -48,9 +48,11 @@ node scripts/update-php-package-versions.js
 # killall verdaccio
 # exit 1;
 
+echo $CURRENT_VERSION;
+
 git add .
-git commit -m "v$CURRENT_VERSION"
-git tag -fa v$CURRENT_VERSION
+git commit -m "$CURRENT_VERSION"
+git tag -f v$CURRENT_VERSION
 git push --force
 git push --tags --force
 
