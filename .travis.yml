@@ -58,6 +58,7 @@ jobs:
       after_script:
         - cd scripts && npm install
         - npm run deploy
+        - ./scripts/update-read-only-git-repos.sh
       cache:
         yarn: true
         directories:
