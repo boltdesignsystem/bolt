@@ -6,7 +6,7 @@ cd ../../
 
 CURRENT_BRANCH=`git rev-parse --symbolic-full-name --abbrev-ref HEAD`
 
-DEFAULT_BUMP="prerelease"
+DEFAULT_BUMP="preminor"
 BUMP=${1:-$DEFAULT_BUMP}
 
 if [[ $CURRENT_BRANCH == 'release/2.x' || $CURRENT_BRANCH == 'release/1.x' ]]; then
