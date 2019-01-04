@@ -1,15 +1,15 @@
 
 #!/bin/bash
 # set -x
-# set -e
+set -e
 # Start in this directory even if ran elsewhere
 cd "$(dirname "$0")"
 cd ../../
 
-# if [ -n "$(git status --porcelain)" ]; then
-#   echo "Error: your git status is not clean. Aborting release.";
-#   exit 1;
-# fi
+if [ -n "$(git status --porcelain)" ]; then
+  echo "Error: your git status is not clean. Aborting release.";
+  exit 1;
+fi
 
 npm run lint
 npm run test
