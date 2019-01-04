@@ -10,7 +10,6 @@ node scripts/update-php-package-versions.js
 
 ## Update snapshot tests that depend on 
 ./scripts/update-read-only-git-repos.sh $CURRENT_VERSION
-# rm -rf
 
 # git add .
 # git commit --amend --no-edit

@@ -9,6 +9,8 @@ if [ -n "$(git status --porcelain)" ]; then
   exit 1;
 fi
 
+rm -rf ./scripts/verdaccio/storage/@bolt # remove folder from verdaccio before publishing or running through any tests
+
 npm run lint
 npm run test
 
