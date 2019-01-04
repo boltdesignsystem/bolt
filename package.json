@@ -36,7 +36,7 @@
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
-    "test": "npm-run-all --parallel test:*",
+    "test": "npm-run-all --parallel test:js test:php",
     "test:js": "NODE_ENV='test' jest",
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
     "serve": "node server.js",
@@ -47,7 +47,8 @@
     "start:v": "npx verdaccio --listen 4000 -c scripts/verdaccio.yml",
     "config:v": "wait-on http://localhost:4000/ && npx npm-auth-to-token@1.0.0 -u 'bolt' -p 'bolt' -e 'bolt@boltdesignsystem.com' -r http://localhost:4000",
     "semantic-release": "semantic-release",
-    "prerelease:test": "./scripts/publishing/pre-release.sh"
+    "prerelease": "./scripts/publishing/pre-release.sh",
+    "release": "./scripts/publishing/release.sh"
   },
   "dependencies": {
     "@semantic-release/commit-analyzer": "6.1.0",
