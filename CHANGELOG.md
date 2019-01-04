@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0-rc.7...v2.3.0) (2019-01-04)
+
+
+### Bug Fixes
+
+* move to the right folder before running publish-related commands ([b40f12e](https://github.com/bolt-design-system/bolt/commit/b40f12e))
+
+
+
+
+
 # [2.3.0-rc.7](https://github.com/bolt-design-system/bolt/compare/v2.3.0-rc.6...v2.3.0-rc.7) (2019-01-04)
 
 
