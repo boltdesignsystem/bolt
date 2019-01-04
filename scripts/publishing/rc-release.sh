@@ -7,7 +7,7 @@ cd ../../
 CURRENT_BRANCH=`git rev-parse --symbolic-full-name --abbrev-ref HEAD`
 
 if [[ $CURRENT_BRANCH != 'next/2.x' && $CURRENT_BRANCH != 'next/1.x' ]]; then
-  echo "Error: cannot publish a pre-release on a branch that's not `next/2.x` or `next/1.x`. Aborting the pre-release.";
+  echo "Error: cannot publish a pre-release on a branch that's not next/2.x or next/1.x. Aborting the pre-release.";
   exit 1;
 fi
 
