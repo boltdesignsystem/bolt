@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-rc.5](https://github.com/bolt-design-system/bolt/compare/v2.3.0-rc.4...v2.3.0-rc.5) (2019-01-04)
+
+
+### Bug Fixes
+
+* update subtree split task to automatically grab and push the latest git tag ([5b3e5ea](https://github.com/bolt-design-system/bolt/commit/5b3e5ea))
+* update testing repo url ([e7898e5](https://github.com/bolt-design-system/bolt/commit/e7898e5))
+
+
+
+
+
 # [2.3.0-rc.4](https://github.com/bolt-design-system/bolt/compare/v2.3.0-rc.3...v2.3.0-rc.4) (2019-01-04)
 
 **Note:** Version bump only for package bolt

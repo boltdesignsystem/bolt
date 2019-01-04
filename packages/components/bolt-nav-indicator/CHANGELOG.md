@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0-rc.5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.3.0-rc.4...v2.3.0-rc.5) (2019-01-04)
+
+**Note:** Version bump only for package @bolt/components-nav-indicator
+
+
+
+
+
 # [2.3.0-rc.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.3.0-rc.3...v2.3.0-rc.4) (2019-01-04)
 
 **Note:** Version bump only for package @bolt/components-nav-indicator
