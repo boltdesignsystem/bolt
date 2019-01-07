@@ -38,14 +38,17 @@
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema. #}
 {% set display_options = schema.properties.display.enum %}
+{% set valign_options = schema.properties.valign.enum %}
 
 {# Check that the component's current prop values are valid. If not, default to the schema default #}
 {% set display = display in display_options ? display : schema.properties.display.default %}
+{% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
 
 {% set classes = [
   base_class,
   isHeadline ? "c-bolt-link--headline" : "",
   display in display_options ? "#{base_class}--display-#{display}" : "",
+  valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
 ] %}
 
 {#
@@ -70,6 +73,7 @@ Sort classes passed in via attributes into two groups:
 {# link component's custom element wrapper #}
 {% spaceless %}<bolt-link
   {% if display %} display="{{ display }}" {% endif %}
+  {% if valign %} valign="{{ valign }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
   {% if target %} target="{{ target }}" {% endif %}
   {% if isHeadline %} is-headline="true" {% endif %}

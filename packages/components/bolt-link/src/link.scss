@@ -16,12 +16,15 @@ $bolt-link-transition: $bolt-transition;
   @include bolt-padding(0); // [1]
   @include bolt-font-family(body); // [1]
 
+  display: inline;
+  margin-left: bolt-spacing(xxsmall) * -1;
   opacity: bolt-opacity(100);
   color: bolt-theme(link);
   text-decoration: underline;
   cursor: pointer;
   border: none; // [1]
   background: none; // [1]
+  appearance: none; // [1]
   transition: all $bolt-link-transition;
 
   &:hover {
@@ -35,9 +38,32 @@ $bolt-link-transition: $bolt-transition;
 }
 
 .c-bolt-link--display-flex {
-  display: flex;
-  align-items: center;
+  display: inline-flex;
+
+  &.c-bolt-link--valign-start {
+    align-items: flex-start;
+  }
+
+  &.c-bolt-link--valign-center {
+    align-items: center;
+  }
 }
+
+.c-bolt-link--display-inline {
+  .c-bolt-link__icon {
+    display: inline;
+  }
+}
+
+.c-bolt-link__icon,
+.c-bolt-link__text {
+  @include bolt-padding-left(xxsmall);
+}
+
+.c-bolt-link__text {
+  display: inline;
+}
+
 
 // Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.
 .c-bolt-link--headline {
@@ -47,18 +73,4 @@ $bolt-link-transition: $bolt-transition;
   &:hover {
     text-decoration: underline;
   }
-}
-
-// Text and icon spacing
-.c-bolt-link__text + .c-bolt-link__icon:not(.is-empty) {
-  @include bolt-margin-left(xxsmall);
-}
-
-.c-bolt-link__icon:not(.is-empty) + .c-bolt-link__text {
-  @include bolt-margin-left(xxsmall);
-}
-
-// Icon styles
-.c-bolt-link__icon {
-  line-height: 1;
 }

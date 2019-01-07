@@ -11,6 +11,13 @@ properties:
     enum:
       - inline
       - flex
+  valign:
+    type: string
+    description: Controls the vertical alignment of text and icon.
+    default: center
+    enum:
+      - start
+      - center
   text:
     type: [string, object, array]
     description: Renderable text content for the link.

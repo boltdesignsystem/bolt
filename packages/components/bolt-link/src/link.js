@@ -16,6 +16,8 @@ class BoltLink extends BoltAction {
   static is = 'bolt-link';
 
   static props = {
+    display: props.string,
+    valign: props.string,
     url: props.string,
     target: props.string,
     isHeadline: props.boolean,
@@ -34,10 +36,12 @@ class BoltLink extends BoltAction {
     // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
 
     // Validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { url, target, isHeadline } = this.validateProps(this.props);
+    const { display, valign, url, target, isHeadline } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-link', {
-      'c-bolt-link--headline': isHeadline,
+      [`c-bolt-link--display-${display}`]: display,
+      [`c-bolt-link--valign-${valign}`]: valign,
+      [`c-bolt-link--headline`]: isHeadline,
     });
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
