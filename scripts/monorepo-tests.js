@@ -12,23 +12,32 @@ const lstat = promisify(fs.lstat);
 function checkMonorepoSymlinks() {
   const baseDir = path.resolve(__dirname, '../node_modules/@bolt');
   readdir(baseDir)
-    .then(dirNames => Promise.all(dirNames.map((dirName) => {
-      const item = {
-        path: path.join(baseDir, dirName),
-      };
-      return new Promise((resolve, reject) => {
-        lstat(item.path)
-          .then((stats) => {
-            item.stats = stats;
-            resolve(item);
-          })
-          .catch(reject);
-      });
-    })))
-    .then((items) => {
-      items.forEach((item) => {
-        if (!item.stats.isSymbolicLink() && !item.path.includes('fast-sass-loader') ) {
-          console.log('🛑 Error: Everything in "node_modules/@bolt/" should be a symbolic link to ensure the monorepo is set up correctly. You most likely have a version mismatch between this and something that is using it.');
+    .then(dirNames =>
+      Promise.all(
+        dirNames.map(dirName => {
+          const item = {
+            path: path.join(baseDir, dirName),
+          };
+          return new Promise((resolve, reject) => {
+            lstat(item.path)
+              .then(stats => {
+                item.stats = stats;
+                resolve(item);
+              })
+              .catch(reject);
+          });
+        }),
+      ),
+    )
+    .then(items => {
+      items.forEach(item => {
+        if (
+          !item.stats.isSymbolicLink() &&
+          !item.path.includes('fast-sass-loader')
+        ) {
+          console.log(
+            '🛑 Error: Everything in "node_modules/@bolt/" should be a symbolic link to ensure the monorepo is set up correctly. You most likely have a version mismatch between this and something that is using it.',
+          );
           console.log(item.path);
           process.exit(1);
         } else {
@@ -36,11 +45,13 @@ function checkMonorepoSymlinks() {
         }
       });
     })
-    .catch((error) => {
+    .catch(error => {
       console.log('🛑 uh oh!', error);
       process.exit(1);
     });
-  console.log('✅  Monorepo check that `@bolt` packages are symlinked looks good!');
+  console.log(
+    '✅  Monorepo check that `@bolt` packages are symlinked looks good!',
+  );
 }
 
 checkMonorepoSymlinks();
