@@ -95,6 +95,12 @@
         {% endif %}
       {% endfor %}
     {% endblock card_body %}
+    {% if block('card_footer') %}
+      <hr style="margin-left: -2rem; margin-right: -2rem; width: calc(100% + 4rem)">
+    {% endif %}
+    {% block card_footer %}
+      {{ card_footer }}
+    {% endblock card_footer %}
   {% endset %}
 
   {% set cardActions = [] %}
