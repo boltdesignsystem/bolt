@@ -36,7 +36,9 @@ class BoltLink extends BoltAction {
     // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
 
     // Validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { display, valign, url, target, isHeadline } = this.validateProps(this.props);
+    const { display, valign, url, target, isHeadline } = this.validateProps(
+      this.props,
+    );
 
     const classes = cx('c-bolt-link', {
       [`c-bolt-link--display-${display}`]: display,
