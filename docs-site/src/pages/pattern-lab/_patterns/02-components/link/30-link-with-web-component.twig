@@ -17,15 +17,15 @@
 
 {% set link_demo_icon %}
 <p>
-  <bolt-link><bolt-icon slot="before" name="info-open"></bolt-icon>This is a link with icon</bolt-link>
+  <bolt-link><a href="https://pega.com"><bolt-icon slot="before" name="info-open"></bolt-icon>This is a link with icon</a></bolt-link>
 </p>
 <p>
-  <bolt-link>This is a link with icon<bolt-icon slot="after" name="info-open"></bolt-icon></bolt-link>
+  <bolt-link><a href="https://pega.com">This is a link with icon<bolt-icon slot="after" name="info-open"></bolt-icon></a></bolt-link>
 </p>
 {% endset %}
 
 {% set link_demo_inline %}
-<p>Lorem ipsum <bolt-link url="https://pega.com">dolor sit amet</bolt-link>, consectetuer adipiscing elit.</p>
+<p>This is an <bolt-link><a href="https://pega.com">inline link</a></bolt-link>, and this is an <bolt-link><a href="https://pega.com"><bolt-icon slot="before" name="info-open"></bolt-icon>inline link with an icon</a></bolt-link>. Inline links are truly inline, which means the text can wrap to a second line and the icon falls on the baseline either before or after the text.</p>
 {% endset %}
 
 <div class="o-bolt-wrapper">
@@ -34,7 +34,7 @@
       Web Component Usage
     </bolt-text>
     <bolt-text>
-      Bolt Link is a web component that renders a semantic link with Bolt styles. To make a simple link, wrap a semantic <bolt-code-snippet display="inline" lang="html">a</bolt-code-snippet> element inside a <bolt-code-snippet display="inline" lang="html">bolt-link</bolt-code-snippet>. Common HTML attributes such as <bolt-code-snippet display="inline" lang="html">href</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">target</bolt-code-snippet> placed on the <bolt-code-snippet display="inline" lang="html">a</bolt-code-snippet> would work as expected.
+      Bolt Link is a web component that renders a semantic link with Bolt styles. To make a simple link, wrap a semantic <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> element with a <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> element. Common HTML attributes such as <bolt-code-snippet display="inline" lang="html">href</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">target</bolt-code-snippet> placed on the <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> would work as expected.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
