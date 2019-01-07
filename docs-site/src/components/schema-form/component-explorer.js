@@ -138,7 +138,7 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
         backgroundColor: '#F6F6F9',
         margin: '0 auto',
       })}">
-        <div class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-6/10"
+        <div class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-6/10@xsmall"
           style="${styleMap({
             backgroundColor: '#FFF',
             border: '1px solid rgba(0, 0, 0, .075)',
@@ -150,7 +150,7 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
           </div>
         </div>
         <div
-          class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-4/10"
+          class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-4/10@xsmall"
           style="${styleMap({
             flexBasis: '200px',
             overflow: 'visible',
