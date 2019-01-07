@@ -36,12 +36,12 @@
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
-    "test": "npm-run-all --parallel test:*",
+    "test": "npm-run-all --parallel test:js test:php test:monorepo",
     "test:js": "NODE_ENV='test' jest",
+    "test:monorepo": "node scripts/monorepo-tests.js",
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
     "serve": "node server.js",
     "postbootstrap": "node scripts/monorepo-tests.js",
-    "prepublishOnly": "node scripts/monorepo-tests.js"
   },
   "dependencies": {
     "ci-utils": "^0.5.0",
