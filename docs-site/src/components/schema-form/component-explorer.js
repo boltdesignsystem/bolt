@@ -1,114 +1,94 @@
-import Form from 'react-jsonschema-form';
 import qs from 'querystring';
-import { define, props } from '@bolt/core/utils';
+import { define, props, defineContext, withContext } from '@bolt/core/utils';
 import { prepSchema } from './utils';
-import ResponsiveLocalStorageLayout from './grid-layout';
-import { h, withPreact } from '@bolt/core/renderers';
 import isEqual from 'react-fast-compare';
-// import { store } from '@bolt/core/store.js'; // redux store
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { styleMap } from 'lit-html/directives/style-map.js';
+import { guard } from 'lit-html/directives/guard';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
-import {
-  updateComponentExplorerForm,
-  updateComponentExplorerPreview,
-} from '@bolt/core/actions'; // redux actions needed by this element.
+
+// define which specific props to provide to children that subscribe
+export const ComponentExplorerContext = defineContext({
+  schema: '',
+  formData: '',
+  template: '',
+  initialLayout: '',
+});
 
 import styles from './component-explorer.scss';
 import globalStyles from '@bolt/global/styles/index.scss';
 
-const Iframe = (data) => {
-  const { linkTags, headScripts, bodyScripts, html } = data.props;
-  
-  return (
-    <iframe
-      srcdoc={`
-        <!DOCTYPE html>
-          <html style="min-height: 100%; display: flex; box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 30px;">
-            <head>
-              ${linkTags}
-              ${headScripts}
-            </head>
-            <body style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
-              ${html}
-              ${bodyScripts}
-            </body>
-          </html>`
-      }
-      sandbox="allow-same-origin allow-scripts"
-      style={{
-        width: '100%',
-        height: '100%',
-        border: 'none',
-        display: 'block',
-        alignSelf: 'center',
-      }}>
-      Your browser does not support iframes.
-    </iframe>
-  );
-};
-
 
 @define
-export default class ComponentExplorer extends withPreact() {
+export default class ComponentExplorer extends withContext(withLitHtml()) {
   static is = 'bolt-component-explorer';
 
   static props = {
+    schemaUuid: props.string,
     schema: props.object,
     formData: props.object,
     template: props.string,
     initialLayout: props.any, //PropTypes.oneOf(['vertical', 'horizontal']),
   };
+  
+  // provide context info to children that subscribe
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get provides() {
+    return [ComponentExplorerContext];
+  }
 
   constructor(props) {
     super(props);
-    this.timeout =  null;
     this.state = {
       formData: '',
       renderedHTML: '',
       schema: '',
     };
+    this.useShadow = false;
     this.requestRender = this.requestRender.bind(this);
     this.onFormChange = this.onFormChange.bind(this);
-    // this.requestRender = debouce(this.requestRender.bind(this), 10);
-    // this.requestRender = debouce(this.requestRender.bind(this), 150);
-
   }
 
   connecting() {
     super.connecting && super.connecting();
+    const jsonNode = document.getElementById(this.props.schemaUuid);
 
+    if (jsonNode){
+      const jsonText = jsonNode.textContent;
+      this.schema = prepSchema(JSON.parse(jsonText));
+    }
+    
     this.setState({
       formData: this.props.formData,
       renderedHTML: '',
-      schema: prepSchema(this.props.schema),
+      schema: this.props.schema || '',
     });
+
+    this.addEventListener('onFormChange', this.onFormChange);
   }
 
   resetForm() {
-    this.setState({
-      formData: this.props.formData,
-    });
-    this.onFormChange({formData: this.props.formData});
+    this.contexts.get(ComponentExplorerContext).formData = this.props.formData;
+    if (this.schemaForm){
+      this.schemaForm.resetForm();
+    }
   }
 
   shouldUpdate(prevProps, prevState) {
-    return (!isEqual(prevState,this.state));
+    return !isEqual(prevState, this.state);
   }
 
-  onFormChange(value) {
-    this.setState({
-      formData: value.formData,
-    });
-    this.requestRender(value.formData);
-    // // store.dispatch(updateComponentExplorerForm(value.formData));
-  };
+  onFormChange(event) {
+    this.state.formData = event.detail.formData;
+    this.requestRender(event.detail.formData);
+    // store.dispatch(updateComponentExplorerForm(value.formData));
+  }
 
   async requestRender(formData) {
     const self = this;
 
-    self.state.isTyping = true;
-
     if (formData && formData !== '') {
-
       const res = await fetch(
         `/api/render?${qs.stringify({
           template: this.props.template,
@@ -123,118 +103,82 @@ export default class ComponentExplorer extends withPreact() {
       );
 
       const body = await res.text();
-  
+
       if (!res.ok) {
-        // console.error(`Error: rendering ${this.props.template}`, body);
+        console.error(`Error: rendering ${this.props.template}`, body);
         return;
       } else {
-        if (self.state.renderedHTML !== body){
-          if (self.state.typingTimeout) {
-            clearTimeout(self.state.typingTimeout);
-          }
-
-          self.state.typingTimeout = setTimeout(function () {
-            if (self.state.isTyping === false){
-              // console.log('setting state for updated HTML');
-              self.setState({
-                renderedHTML: body,
-              });
-            }
-          }, 150);
-          self.state.isTyping = false;
-        }
+        self.setState({
+          renderedHTML: body,
+        });
       }
       // store.dispatch(updateComponentExplorerPreview(body));
     }
   }
 
+  rendered(){
+    super.rendered && super.rendered();
+    this.schemaForm = this.querySelector('schema-form');
+  }
+
   render() {
-    const { initialLayout } = this.props;
-    const linkTags = `<link rel="stylesheet" href="/build/bolt-global.css">`;
-    const bodyScripts = `<script src="/build/bolt-global.js" async></script>`;
+    const { initialLayout, formData } = this.props;
     const isHorizontal = initialLayout === 'horizontal';
     const schema = prepSchema(this.props.schema);
 
-    const iFrameProps = {
-      linkTags, 
-      headScripts: '',
-      bodyScripts, 
-      html: this.state.renderedHTML,
-    };
+    this.contexts.get(ComponentExplorerContext).schema = schema;
+    this.contexts.get(ComponentExplorerContext).formData = this.state.formData || formData;
 
-    return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: isHorizontal ? 'row' : 'column',
-          flexWrap: 'wrap',
-          backgroundColor: '#F6F6F9',
-          margin: '0 auto',
-          maxWidth: '1024px',
-        }}>
-        {this.addStyles([styles, globalStyles])}
-        <div
-          className="u-bolt-width-1/1 u-bolt-width-7/10@small"
-          style={{
+    return html`
+      ${this.addStyles([styles, globalStyles])}
+      <div style="${styleMap({
+        display: 'flex',
+        flexDirection: isHorizontal ? 'row' : 'column',
+        flexWrap: 'wrap',
+        backgroundColor: '#F6F6F9',
+        margin: '0 auto',
+      })}">
+        <div class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-6/10"
+          style="${styleMap({
             backgroundColor: '#FFF',
             border: '1px solid rgba(0, 0, 0, .075)',
             display: 'flex',
             position: 'relative',
-          }}>
-          <div
-            key="1"
-            style="width: 100%;"
-            data-grid={{
-              w: 1,
-              h: 3,
-              x: 0,
-              y: 0,
-              minW: 1,
-              minH: 3,
-              maxH: 3,
-            }}>
-            <div
-              class="browser-0-0-1"
-              style="
-              height: 100%; display: flex; box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 30px;">
-              <Iframe props={iFrameProps} />
-            </div>
+          })}">
+          <div class="u-bolt-padding-medium c-bds-component-explorer__demo-container" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 30px;">
+            ${unsafeHTML(this.state.renderedHTML || '')}
           </div>
         </div>
-
         <div
-          className="u-bolt-width-1/1 u-bolt-width-3/10@small"
-          style={{
+          class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-4/10"
+          style="${styleMap({
+            flexBasis: '200px',
             overflow: 'visible',
             marginLeft: 'auto',
             position: 'relative',
-          }}>
+          })}">
           <div
-            style={{
+            style="${styleMap({
               minHeight: '320px',
-              maxHeight: '600px',
               overflow: 'scroll',
               '-webkit-overflow-scroll': 'touch',
-            }}>
-            <Form
-              schema={schema}
-              formData={this.state.formData}
-              onChange={data => this.onFormChange(data)}
-              onError={data => console.error('Error in Schema Form', formData)}
-            />
+            })}">
+             ${guard(schema, () => schema === schema ? html`<bolt-schema-form></bolt-schema-form>` : '')}
           </div>
-          <button
-            style={{
+          <bolt-button
+            size="xsmall"
+            color="text"
+            style="${styleMap({
               position: 'absolute',
               bottom: 0,
               right: 0,
               transform: 'translate3d(0, 100%, 0)',
-            }}
-            onClick={() => this.resetForm()}>
-            Reset Form
-          </button>
+            })}"
+            @click=${() => this.resetForm()}>
+            Reset Component Demo
+          </bolt-button>
         </div>
       </div>
-    );
+    `;
   }
 }
