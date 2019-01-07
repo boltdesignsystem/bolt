@@ -17,14 +17,14 @@ $bolt-link-transition: $bolt-transition;
   @include bolt-font-family(body); // [1]
 
   display: inline;
-  margin-left: bolt-spacing(xxsmall) * -1;
+  appearance: none; // [1]
   opacity: bolt-opacity(100);
+  margin-left: bolt-spacing(xxsmall) * -1;
   color: bolt-theme(link);
   text-decoration: underline;
   cursor: pointer;
   border: none; // [1]
   background: none; // [1]
-  appearance: none; // [1]
   transition: all $bolt-link-transition;
 
   &:hover {
