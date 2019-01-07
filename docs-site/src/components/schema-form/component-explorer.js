@@ -118,7 +118,7 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
 
   rendered(){
     super.rendered && super.rendered();
-    this.schemaForm = this.querySelector('schema-form');
+    this.schemaForm = this.querySelector('bolt-schema-form');
   }
 
   render() {
