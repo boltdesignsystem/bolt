@@ -257,15 +257,35 @@ $bds-sidebar-width: 320px;
     grid-template-columns: 1fr 80% 20% 1fr;
   }
 }
+
+.c-bds-docs__page-intro {
+  @include bolt-margin-bottom(medium);
+  width: 100%;
+
+  min-width: 0;
+  max-width: 1440px;
+  -ms-grid-row: 2; /* [1] */
+  -ms-grid-row-span: 1; /* [1] */
+  grid-row: 2/span 1;
+
+  -ms-grid-column: 1; /* [1] */
+  -ms-grid-column-span: 3; /* [1] */
+  grid-column: 1/span 3;
+
+  @include bolt-mq(medium) {
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+  }
+}
   
 .c-bds-docs__page-content {
   width: 100%;
 
   min-width: 0;
   max-width: 960px;
-  -ms-grid-row: 3; /* [1] */
+  -ms-grid-row: 4; /* [1] */
   -ms-grid-row-span: 1; /* [1] */
-  grid-row: 3/span 1;
+  grid-row: 4/span 1;
 
   -ms-grid-column: 1; /* [1] */
   -ms-grid-column-span: 3; /* [1] */
@@ -277,9 +297,9 @@ $bds-sidebar-width: 320px;
 
     margin-left: initial; // remove on larger screens
 
-    -ms-grid-row: 3; /* [1] */
+    -ms-grid-row: 4; /* [1] */
     -ms-grid-row-span: 1; /* [1] */
-    grid-row: 3/span 1;
+    grid-row: 4/span 1;
 
     -ms-grid-column: 1; /* [1] */
     -ms-grid-column-span: 2; /* [1] */
@@ -287,9 +307,9 @@ $bds-sidebar-width: 320px;
   }
 
   @include bolt-mq(large) {
-    -ms-grid-row: 3; /* [1] */
+    -ms-grid-row: 4; /* [1] */
     -ms-grid-row-span: 1; /* [1] */
-    grid-row: 3/span 1;
+    grid-row: 4/span 1;
 
     -ms-grid-column: 2; /* [1] */
     -ms-grid-column-span: 1; /* [1] */
@@ -298,9 +318,9 @@ $bds-sidebar-width: 320px;
 }
   
 .c-bds-docs__page-nav {
-  -ms-grid-row: 2; /* [1] */
+  -ms-grid-row: 3; /* [1] */
   -ms-grid-row-span: 1; /* [1] */
-  grid-row: 2/span 1;
+  grid-row: 3/span 1;
 
   -ms-grid-column: 1; /* [1] */
   -ms-grid-column-span: 3; /* [1] */
@@ -309,9 +329,9 @@ $bds-sidebar-width: 320px;
   text-align: right;
 
   @include bolt-mq(medium) {
-    -ms-grid-row: 3; /* [1] */
+    -ms-grid-row: 4; /* [1] */
     -ms-grid-row-span: 1; /* [1] */
-    grid-row: 3/span 1;
+    grid-row: 4/span 1;
 
     -ms-grid-column: 3; /* [1] */
     -ms-grid-column-span: 1; /* [1] */
