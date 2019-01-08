@@ -21,8 +21,7 @@ module.exports = {
     host: '127.0.0.1',
     port: 4444,
     cli_args: {
-      'webdriver.chrome.driver': './nod',
-      'webdriver.ie.driver': './node_modules/chromedriver/bin/chromedriver',
+      'webdriver.chrome.driver': './node_modules/chromedriver/bin/chromedriver',
     },
   },
   test_workers: { enabled: true, workers: 'auto' },
