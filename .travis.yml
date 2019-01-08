@@ -5,7 +5,8 @@ services:
   - docker
 
 stages:
-  - build-and-deploy # lint code and docs
+#  - build-and-deploy # lint code and docs
+  - nightwatch # lint code and docs
 
 language: php
 php:
@@ -13,6 +14,10 @@ php:
 
 jobs:
   include:
+    - stage: nightwatch
+      name: 'Nightwatch 1'
+      script:
+        - npx nightwatch --config nightwatch.js --env chrome,ie11
     - stage: build-and-deploy
       name: 'Smoke Tests'
       before_script:
@@ -29,7 +34,7 @@ jobs:
     - stage: build-and-deploy
       name: 'Linting'
       before_script: yarn run setup:quick
-      script: 
+      script:
         - yarn run lint:scss
         - yarn run lint:js
       cache:
@@ -54,7 +59,7 @@ jobs:
         - GIT_SHA="$(git rev-parse --short HEAD)"
         - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
         - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
-        - docker --log-level error push boltdesignsystem/bolt:latest 
+        - docker --log-level error push boltdesignsystem/bolt:latest
         - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
       after_script:
         - cd scripts && npm install
@@ -75,12 +80,11 @@ before_install:
 
 # @todo: re-enable and add to a separate Travis Job for handling post-deploy tests
 
-# addons:
-#   sauce_connect: true
+addons:
+  sauce_connect: true
 
 # script:
 # - bash ./travis.sh # time command already run inside the travis.sh script
-# - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
 
 notifications:
   email:
