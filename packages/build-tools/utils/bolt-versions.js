@@ -62,7 +62,8 @@ async function gatherBoltVersions() {
       owner: 'bolt-design-system',
       repo: 'bolt',
       per_page: 9999,
-    }).data;
+    });
+    tags = tags.data;
     await store.set('bolt-tags', tags, { maxAge: 900 });
     await store.save();
   }
