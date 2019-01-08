@@ -24,7 +24,8 @@ module.exports = {
   //     'webdriver.chrome.driver': './node_modules/chromedriver/bin/chromedriver',
   //   },
   // },
-  // test_workers: { enabled: true, workers: 'auto' },
+  live_output: false, // set to `true` to see output as it happens; make appear interlaced if ran in parallel
+  test_workers: { enabled: true, workers: 'auto' },
   test_settings: {
     local: {
       screenshots: {

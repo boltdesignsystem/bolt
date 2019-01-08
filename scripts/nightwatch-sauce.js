@@ -90,13 +90,14 @@ async function sendTravisTestInfo(capabilities, testId) {
 }
 
 
-module.exports = function sauce(callback) {
-  const currentTest = this.client.currentTest;
-  const username = this.client.options.username;
-  const sessionId = this.client.capabilities['webdriver.remote.sessionid'];
-  const accessKey = this.client.options.accessKey;
+module.exports = function sauce(client, callback) {
+  console.log('nightwatch-sauce ran as afterEach', client);
+  const currentTest = client.currentTest;
+  const username = client.options.username;
+  const sessionId = client.capabilities['webdriver.remote.sessionid'];
+  const accessKey = client.options.accessKey;
 
-  if (!this.client.launch_url.match(/saucelabs/)) {
+  if (!client.launch_url.match(/saucelabs/)) {
     console.log('Not saucelabs ...');
     return callback();
   }
@@ -114,7 +115,7 @@ module.exports = function sauce(callback) {
 
   const requestPath = `/rest/v1/${username}/jobs/${sessionId}`;
 
-  sendTravisTestInfo(this.client.capabilities, sessionId);
+  sendTravisTestInfo(client.capabilities, sessionId);
 
   function responseCallback(res) {
     res.setEncoding('utf8');
