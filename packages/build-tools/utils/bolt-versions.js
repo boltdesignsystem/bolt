@@ -5,15 +5,44 @@ const ora = require('ora');
 const chalk = require('chalk');
 const checkLinks = require('check-links');
 const InCache = require('incache');
-const octokit = require('@octokit/rest')({
+const Octokit = require('@octokit/rest').plugin(
+  require('@octokit/plugin-throttling'),
+);
+
+const octokit = new Octokit({
+  throttle: {
+    onRateLimit: (retryAfter, options) => {
+      console.warn(
+        `Github API Request quota exhausted for request ${options.method} ${
+          options.url
+        }`,
+      );
+
+      if (options.request.retryCount === 0) {
+        // only retries once
+        console.log(`Retrying after ${retryAfter} seconds!`);
+        return true;
+      }
+    },
+    onAbuseLimit: (retryAfter, options) => {
+      // does not retry, only logs a warning
+      console.warn(
+        `Github API abuse detected for request ${options.method} ${
+          options.url
+        }`,
+      );
+    },
+  },
   debug: false,
   headers: {
     Accept: 'application/vnd.github.v3.raw',
   },
 });
-const { getConfig } = require('./config-store');
 
+const { getConfig } = require('./config-store');
+const { fileExists } = require('./general');
 const store = new InCache();
+let isUsingOldData = false; // remember if we are using up to date version data or older (stale) data as a fallback
 
 // so we don't go over rate limits
 if (process.env.GITHUB_TOKEN) {
@@ -58,14 +87,50 @@ async function gatherBoltVersions() {
   if (store.get('bolt-tags')) {
     tags = await store.get('bolt-tags');
   } else {
-    tags = await octokit.repos.listTags({
-      owner: 'bolt-design-system',
-      repo: 'bolt',
-      per_page: 9999,
-    });
-    tags = tags.data;
-    await store.set('bolt-tags', tags, { maxAge: 900 });
-    await store.save();
+    try {
+      tags = await octokit.repos.listTags({
+        owner: 'bolt-design-system',
+        repo: 'bolt',
+        per_page: 9999,
+      });
+      tags = tags.data;
+      await store.set('bolt-tags', tags, { maxAge: 5 * 60 * 1000 }); // set 5 minute cache expiration
+      await store.save();
+    } catch (err) {
+      // handle expired cached data + not having a GITHUB_TOKEN set as an environmental variable
+
+      // use old stale data if it exists
+      if (fileExists(path.join(process.cwd(), '.incache'))) {
+        let staleData = fs.readFileSync(path.join(process.cwd(), '.incache'));
+        staleData = JSON.parse(staleData);
+        const oldTags = staleData['bolt-tags'].value;
+        const oldUrls = staleData['bolt-urls-to-test'].value;
+
+        await store.set('bolt-tags', oldTags, { maxAge: 5 * 60 * 1000 }); // set 5 minute cache expiration
+        await store.set('bolt-urls-to-test', oldUrls, {
+          maxAge: 5 * 60 * 1000,
+        }); // set 5 minute cache expiration
+        await store.save();
+
+        tags = oldTags;
+        isUsingOldData = true; // remember this is old stale data for later
+      } else {
+        // otherwise just use a static version of the dropdown menu so the docs site doesn't break
+        versionSpinner.warn(
+          chalk.yellow(
+            'Could not generate the list of the latest releases of Bolt due to a missing GITHUB_TOKEN auth token + not finding an old version to fall back on. Skipping for now...',
+          ),
+        );
+
+        return [
+          {
+            label: 'Latest',
+            type: 'option',
+            value: `https://boltdesignsystem.com`,
+          },
+        ];
+      }
+    }
   }
 
   for (index = 0; index < tags.length; index++) {
@@ -88,7 +153,7 @@ async function gatherBoltVersions() {
     results = await store.get('bolt-urls-to-test');
   } else {
     results = await checkLinks(urlsToCheck);
-    await store.set('bolt-urls-to-test', results, { maxAge: 900 });
+    await store.set('bolt-urls-to-test', results, { maxAge: 5 * 60 * 1000 });
     await store.save();
   }
 
@@ -117,9 +182,19 @@ async function gatherBoltVersions() {
     }
   }
 
-  versionSpinner.succeed(
-    chalk.green('Gathered data on the latest Bolt Design System releases!'),
-  );
+  if (isUsingOldData) {
+    versionSpinner.warn(
+      chalk.yellow(
+        'Using Could not find a GITHUB_TOKEN auth token and the cached version of the latest Bolt releases has expired -- using the old (expired) data for now...',
+      ),
+    );
+  } else {
+    versionSpinner.succeed(
+      chalk.green(
+        'Finished gathering data on the latest Bolt Design System releases!',
+      ),
+    );
+  }
 
   return tagUrls;
 }
