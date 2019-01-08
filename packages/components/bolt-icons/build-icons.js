@@ -5,6 +5,7 @@ const path = require('path');
 const cheerio = require('cheerio');
 const prettier = require('prettier');
 const SVGO = require('svgo');
+const yaml = require('js-yaml');
 
 const svgo = new SVGO({
   plugins: [
@@ -260,11 +261,28 @@ async function build() {
       allExports.join('\n'),
       'utf-8',
     );
+    generateYAML(icons);
     console.log(`Built ${iconPaths.length} icons.`);
   } catch (error) {
     console.error(error);
     console.error(
       'Error trying to run "npm run build" for "@bolt/components-icons".',
+    );
+    process.exitCode = 1;
+  }
+}
+
+async function generateYAML(icons) {
+  try{
+    const names = icons.map(icon => icon.id);
+    const schema = yaml.safeLoad(fs.readFileSync('../bolt-icon/icon.schema.yml', 'utf8'));
+    schema.properties.name.enum = names;
+    fs.writeFileSync('../bolt-icon/icon.schema.yml',yaml.safeDump(schema));
+    console.log(`Icon Schema Updated`);
+  } catch (error) {
+    console.error(error);
+    console.error(
+      'Error trying to generate Icon YAML document for "@bolt/components-icon".',
     );
     process.exitCode = 1;
   }
