@@ -4,8 +4,6 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
-{% set size_options = schema.properties.size.enum %}
 
 {% set align_items_options = {
   "left": "start",
@@ -23,7 +21,7 @@
 
 {% set classes = [
   base_class,
-  size in size_options ? base_class ~ "--" ~ size : "",
+  size in schema.properties.size.enum ? base_class ~ "--" ~ size : "",
   align_items in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[align_items],
   border == 'none' ? base_class ~ "--borderless" : base_class ~ "--bordered-" ~ border,
   indent ? base_class ~ "--indented" : "",
