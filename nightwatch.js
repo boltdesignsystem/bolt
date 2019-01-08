@@ -52,7 +52,7 @@ module.exports = {
         on_error: true,
         path: 'reports/screenshots/',
       },
-      filter: '*.e2e.js',
+      filter: '**/*.e2e.js',
       launch_url: 'http://ondemand.saucelabs.com:80',
       selenium_port: 80,
       selenium_host: 'ondemand.saucelabs.com',
