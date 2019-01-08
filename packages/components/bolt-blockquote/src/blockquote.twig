@@ -25,7 +25,7 @@
   base_class,
   size in size_options ? base_class ~ "--" ~ size : "",
   align_items in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[align_items],
-  border == 'none' ? base_class ~ "--borderless" : base_class ~ "--" ~ border,
+  border == 'none' ? base_class ~ "--borderless" : base_class ~ "--bordered-" ~ border,
   indent ? base_class ~ "--indented" : "",
   fullBleed ? base_class ~ "--full" : ""
 ] %}
