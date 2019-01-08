@@ -20,7 +20,7 @@ jobs:
         # Prevent chrome deadlock
         - export DBUS_SESSION_BUS_ADDRESS=/dev/null
         - yarn run setup
-        - npx nightwatch --config nightwatch.js --env chrome
+        - npx nightwatch --verbose --config nightwatch.js --env chrome
     - stage: build-and-deploy
       name: 'Smoke Tests'
       before_script:
