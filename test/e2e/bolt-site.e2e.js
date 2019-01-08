@@ -101,5 +101,5 @@ module.exports = {
   //     .verify.title('Pattern Lab - components-overview')
   //     .end();
   // },
-  tearDown: sauce,
+  afterEach: sauce,
 };

@@ -54,9 +54,7 @@ const sauce = require('../../scripts/nightwatch-sauce');
 //   return server;
 // }
 
-var testingUrl = process.env.NOW_URL = 'https://boltdesignsystem.com';
-
-// let testingUrl = ''; // cached deploy url we grab from the now.sh API
+const testingUrl = process.env.NOW_URL || 'https://boltdesignsystem.com';
 
 module.exports = {
   // async beforeEach(browser, done) {
@@ -89,8 +87,8 @@ module.exports = {
     browser
       .url(`${testingUrl}/pattern-lab/index.html`)
       .waitForElementVisible('.pl-c-body', 1000)
-      .verify.title('Pattern Lab - components-overview')
+      .verify.title('Pattern Lab')
       .end();
   },
-  tearDown: sauce,
+  afterEach: sauce,
 };

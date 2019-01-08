@@ -9,7 +9,10 @@ const fetch = require('node-fetch');
 const {
   spawnSync
 } = require('child_process');
-
+const {
+  setGitHubStatus,
+  // createGitHubComment,
+} = require('ci-utils');
 
 // Util for capitalization
 function capitalize(string) {
@@ -91,7 +94,6 @@ async function sendTravisTestInfo(capabilities, testId) {
 
 
 module.exports = function sauce(client, callback) {
-  console.log('nightwatch-sauce ran as afterEach', client);
   const currentTest = client.currentTest;
   const username = client.options.username;
   const sessionId = client.capabilities['webdriver.remote.sessionid'];
@@ -108,6 +110,14 @@ module.exports = function sauce(client, callback) {
   }
 
   const passed = currentTest.results.passed === currentTest.results.tests;
+
+  setGitHubStatus({
+    state: passed ? 'success' : 'failure',
+    context: 'nightwatch',
+    description: '',
+    url: '',
+  }).then(results => console.log(results))
+    .catch(console.log.bind(console));
 
   const data = JSON.stringify({
     passed,

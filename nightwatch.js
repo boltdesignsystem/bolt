@@ -1,5 +1,6 @@
 const globby = require('globby');
 const path = require('path');
+const { setGitHubStatus } = require('ci-utils');
 
 let srcFolders = globby.sync([
   'packages/**/*.e2e.js',
@@ -12,6 +13,15 @@ srcFolders = srcFolders.map(function(folder) {
 });
 
 process.env.NOW_URL = process.env.NOW_URL || 'https://boltdesignsystem.com';
+
+if (process.env.TRAVIS) {
+  setGitHubStatus({
+    state: 'pending',
+    context: 'nightwatch',
+  })
+    .then(results => console.log(results))
+    .catch(console.log.bind(console));
+}
 
 module.exports = {
   // selenium: {
