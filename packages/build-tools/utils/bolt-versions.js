@@ -18,10 +18,16 @@ const octokit = new Octokit({
         }`,
       );
 
-      if (options.request.retryCount === 0) {
+      // only retry if wait is 15 seconds or less
+      if (options.request.retryCount === 0 && retryAfter <= 15) {
         // only retries once
         console.log(`Retrying after ${retryAfter} seconds!`);
         return true;
+      } else {
+        console.log(
+          `Skipping auto-retry since we don't want to wait ${retryAfter} seconds!`,
+        );
+        return false;
       }
     },
     onAbuseLimit: (retryAfter, options) => {
