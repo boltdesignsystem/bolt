@@ -19,11 +19,13 @@ module.exports = {
     server_path: require('selenium-server').path,
     log_path: './reports',
     host: '127.0.0.1',
-    port: 9515,
+    port: 4444,
     cli_args: {
-      'webdriver.chrome.driver': require('chromedriver').path,
+      'webdriver.chrome.driver': './nod',
+      'webdriver.ie.driver': './node_modules/chromedriver/bin/chromedriver',
     },
   },
+  test_workers: { enabled: true, workers: 'auto' },
   test_settings: {
     local: {
       screenshots: {

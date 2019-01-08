@@ -18,7 +18,7 @@ jobs:
       name: 'Nightwatch 1'
       script:
         - yarn run setup
-        - npx nightwatch --config nightwatch.js --env chrome,ie11
+        - npx nightwatch --config nightwatch.js
     - stage: build-and-deploy
       name: 'Smoke Tests'
       before_script:
