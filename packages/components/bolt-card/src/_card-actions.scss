@@ -5,6 +5,10 @@
 @import '@bolt/core';
 @import './_card-settings-and-tools.scss';
 
+bolt-card-actions {
+  @include bolt-card-border-reset;
+}
+
 .c-bolt-card__actions {
   display: flex;
   flex-wrap: wrap;
