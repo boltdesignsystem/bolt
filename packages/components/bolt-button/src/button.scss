@@ -14,7 +14,6 @@
 bolt-button {
   display: inline-block; // Fallback
   display: inline-flex; // So equal height works
-  -webkit-appearance: none; // override default [type=submit] button styles coming from Normalize
 }
 
 .c-bolt-button {
@@ -116,15 +115,31 @@ bolt-button {
 
 
 
-/** Button Width Variations **/
+// full width variations
 bolt-button[width='full'],
 .c-bolt-button--full {
   width: 100%;
 }
 
+// :host selector for correctly styling the <bolt-button> element inside other components
+// writing this out in a separate selector due to unsupporting browsers throwing out the :host selector
+:host([width='full']) {
+  width: 100%;
+}
+
+
+// full@small width variations
 bolt-button[width='full@small'],
 .c-bolt-button--full\@small {
-  @media screen and (max-width: map-get($bolt-breakpoints, small)) {
+  @include bolt-mq($from: small) {
+    width: 100%;
+  }
+}
+
+// :host selector for correctly styling the <bolt-button> element inside other components
+// writing this out in a separate selector due to unsupporting browsers throwing out the :host selector
+:host([width='full@small']) {
+  @include bolt-mq($from: small) {
     width: 100%;
   }
 }
@@ -132,12 +147,14 @@ bolt-button[width='full@small'],
 
 
 
-/** Rounded off buttons (ie. pills or icon-only buttons) **/
-.c-bolt-button--rounded,
-.c-bolt-button--rounded:before {
-  border-radius: 50rem;
+@each $radius-name, $radius-value in $bolt-button-border-radii {
+  .c-bolt-button--border-radius-#{$radius_name} {
+    &,
+    &:before {
+      border-radius: $radius-value;
+    }
+  }
 }
-
 
 
 

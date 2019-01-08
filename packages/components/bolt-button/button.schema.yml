@@ -5,8 +5,11 @@ type: object
 required:
   - text
 not:
-  required:
-    - itemAlignment
+  anyOf:
+    - required:
+      - itemAlignment
+    - required:
+      - rounded
 properties:
   attributes:
     type: object
@@ -27,6 +30,7 @@ properties:
   icon:
     type: object
     description: Icon data as expected by the icon component.  Accepts an additional 'position' parameter that determines placement within the button.
+    ref: '@bolt-components-icon/icon.schema.yml'
     properties:
       position:
         type: string
@@ -85,11 +89,16 @@ properties:
       - full
       - full@small
   rounded:
+    title: 'DEPRECATED'
+    description: 'Use the border_radius parameter instead'
+  border_radius:
     type: string
-    title: 'Rounded Corners?'
-    description: 'What kind of rounded corners should the button have?'
+    title: 'Border Radius'
+    description: 'Amount of rounding that the corners of the button should have'
+    default: regular
     enum:
-      - rounded
+      - regular
+      - full
   iconOnly:
     type: boolean
     title: 'Icon Only?'

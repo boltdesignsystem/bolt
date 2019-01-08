@@ -1,0 +1,40 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Clearfix",
+  sassdoc_items: [
+    {
+      title: "@mixin bolt-clearfix",
+      anchor: link["styleguide-sassdoc"] ~ "#mixin-bolt-clearfix"
+    }
+  ]
+} only %}
+
+  {% block utility_description %}
+    <p>Add the utility class <code>.u-bolt-clearfix</code> to a parent wrapper containing floating elements.</p>
+    <p><strong><u>NOTE</u>:</strong> This is ONLY intended to work in the case where all elements within the parent wrapper are floating and are blowing out the wrapper. Seen below:</p>
+  {% endblock %}
+
+  {% block utility_demo %}
+    <div class="c-bds-docs__clearfix-demo">
+      <h3><u>Without</u> Parent Clear Fix</h3>
+      <div class="c-bds-docs__clearfix-demo__left">
+        <strong>FLOAT LEFT</strong>
+      </div>
+      <div class="c-bds-docs__clearfix-demo__right">
+        <strong>FLOAT RIGHT</strong><br />Fermentum iaculis volutpat turpis aliquet nisi ultrices odio sit orci, blandit arcu pretium sed nunc fames dui semper, netus libero vulputate sapien ornare elit justo rhoncus. Aptent dis quam turpis accumsan sociosqu maecenas erat leo, proin himenaeos potenti ac blandit torquent curae diam ante, phasellus ultricies elit praesent pulvinar hendrerit parturient. Ornare class taciti praesent arcu magnis, potenti sagittis senectus ultricies posuere netus, euismod aliquam tincidunt ante. Inceptos nisi vehicula non venenatis mus sollicitudin fermentum luctus, curabitur primis nec tortor parturient quis suscipit. Taciti duis maecenas pellentesque tellus habitant fringilla sodales vestibulum placerat condimentum class nascetur risus pretium, mattis accumsan orci a eget quisque tempor posuere vel ipsum cras vivamus sagittis.
+      </div>
+    </div>
+
+    <div class="c-bds-docs__clearfix-separator"></div>
+
+    <div class="c-bds-docs__clearfix-demo u-bolt-clearfix">
+      <h3><u>With</u> Parent Clear Fix</h3>
+      <div class="c-bds-docs__clearfix-demo__left">
+        <strong>FLOAT LEFT</strong>
+      </div>
+      <div class="c-bds-docs__clearfix-demo__right">
+        <strong>FLOAT RIGHT</strong><br />Fermentum iaculis volutpat turpis aliquet nisi ultrices odio sit orci, blandit arcu pretium sed nunc fames dui semper, netus libero vulputate sapien ornare elit justo rhoncus. Aptent dis quam turpis accumsan sociosqu maecenas erat leo, proin himenaeos potenti ac blandit torquent curae diam ante, phasellus ultricies elit praesent pulvinar hendrerit parturient. Ornare class taciti praesent arcu magnis, potenti sagittis senectus ultricies posuere netus, euismod aliquam tincidunt ante. Inceptos nisi vehicula non venenatis mus sollicitudin fermentum luctus, curabitur primis nec tortor parturient quis suscipit. Taciti duis maecenas pellentesque tellus habitant fringilla sodales vestibulum placerat condimentum class nascetur risus pretium, mattis accumsan orci a eget quisque tempor posuere vel ipsum cras vivamus sagittis.
+      </div>
+    </div>
+  {% endblock %}
+
+{% endembed %}

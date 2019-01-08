@@ -61,7 +61,6 @@ class TwigRenderer {
     ]);
 
     $this->twigExtensions = [
-      // '\PatternLab\DrupalTwigExtensions\Basic',
       '\Bolt\TwigExtensions\BoltCore',
       '\Bolt\TwigExtensions\BoltExtras',
     ];
