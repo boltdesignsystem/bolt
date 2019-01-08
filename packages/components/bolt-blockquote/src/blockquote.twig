@@ -18,7 +18,7 @@
 {% set base_class = "c-bolt-blockquote" %}
 
 {% set size = size in schema.properties.size.enum ? size : schema.properties.size.default %}
-{% set align_items = alignItems in schema.properties.alignItems.enum ? size : schema.properties.alignItems.default %}
+{% set align_items = alignItems in schema.properties.alignItems.enum ? alignItems : schema.properties.alignItems.default %}
 {% set border = border in schema.properties.border.enum ? border : schema.properties.border.default %}
 
 {% set classes = [
