@@ -98,6 +98,7 @@ async function getLatestDeploy() {
         teamId: 'team_etXPus2wqbe3W15GcdHsbAs8', // boltdesignsystem
       },
     }).then(results => {
+      console.log({ results });
       if (results.error) {
         process.stderr.write(`Error getting latest now.sh deploy: ${results.error.message}`);
         process.exit(1);
