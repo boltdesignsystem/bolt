@@ -10,7 +10,7 @@ const qs = require('querystring');
  * @param {Object} [opt.query]
  * @return {Promise<any>}
  */
-function post({ path, requestBody, query }) {
+function post({ path, requestBody, query, TOKEN }) {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'POST',
@@ -54,7 +54,7 @@ function post({ path, requestBody, query }) {
 function get({ path, query, hostname, TOKEN }) {
   return new Promise((resolve, reject) => {
     const options = {
-      method: '',
+      method: 'GET',
       hostname,
       path: query ? `${path}?${qs.stringify(query)}` : path,
       headers: {
@@ -63,7 +63,6 @@ function get({ path, query, hostname, TOKEN }) {
         Authorization: `token ${TOKEN}`,
       },
     };
-
     const req = http.request(options, res => {
       const chunks = [];
 
@@ -86,17 +85,25 @@ function get({ path, query, hostname, TOKEN }) {
  * @return {Promise<string>} - URL of latest deploymennt
  */
 async function getLatestDeploy() {
+  if (!process.env.NOW_TOKEN) {
+    process.stderr.write('NOW_TOKEN env var required and is missing');
+    process.exit(1);
+  }
   return new Promise((resolve, reject) => {
     get({
       path: '/v2/now/deployments',
       hostname: 'api.zeit.co',
-      token: process.env.NOW_TOKEN,
+      TOKEN: process.env.NOW_TOKEN,
       query: {
         teamId: 'team_etXPus2wqbe3W15GcdHsbAs8', // boltdesignsystem
       },
-    }).then(({ deployments }) => {
+    }).then(results => {
+      if (results.error) {
+        process.stderr.write(`Error getting latest now.sh deploy: ${results.error.message}`);
+        process.exit(1);
+      }
       // If a deployment hasn't finished uploading (is incomplete), the url property will have a value of null.
-      const result = deployments.find(d => d.url);
+      const result = results.deployments.find(d => d.url);
       if (result) {
         resolve(result.url);
       } else {
