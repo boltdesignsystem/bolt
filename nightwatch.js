@@ -14,17 +14,17 @@ srcFolders = srcFolders.map(function(folder) {
 process.env.NOW_URL = process.env.NOW_URL || 'https://boltdesignsystem.com';
 
 module.exports = {
-  selenium: {
-    start_process: true,
-    server_path: require('selenium-server').path,
-    log_path: './reports',
-    host: '127.0.0.1',
-    port: 4444,
-    cli_args: {
-      'webdriver.chrome.driver': './node_modules/chromedriver/bin/chromedriver',
-    },
-  },
-  test_workers: { enabled: true, workers: 'auto' },
+  // selenium: {
+  //   start_process: true,
+  //   server_path: require('selenium-server').path,
+  //   log_path: './reports',
+  //   host: '127.0.0.1',
+  //   port: 4444,
+  //   cli_args: {
+  //     'webdriver.chrome.driver': './node_modules/chromedriver/bin/chromedriver',
+  //   },
+  // },
+  // test_workers: { enabled: true, workers: 'auto' },
   test_settings: {
     local: {
       screenshots: {
