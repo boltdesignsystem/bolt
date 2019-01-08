@@ -37,6 +37,22 @@ module.exports = {
   live_output: false, // set to `true` to see output as it happens; make appear interlaced if ran in parallel
   test_workers: { enabled: true, workers: 'auto' },
   test_settings: {
+    compatible_testcase_support: true,
+    default: {
+      screenshots: {
+        enabled: true,
+        on_failure: true,
+        on_error: true,
+        path: 'reports/screenshots/',
+      },
+      filter: '**/*.e2e.js',
+      launch_url: 'http://ondemand.saucelabs.com:80',
+      selenium_port: 80,
+      selenium_host: 'ondemand.saucelabs.com',
+      silent: true,
+      username: process.env.SAUCE_USERNAME,
+      access_key: process.env.SAUCE_ACCESS_KEY,
+    },
     local: {
       screenshots: {
         enabled: true,
@@ -55,22 +71,6 @@ module.exports = {
         },
       },
     },
-    default: {
-      screenshots: {
-        enabled: true,
-        on_failure: true,
-        on_error: true,
-        path: 'reports/screenshots/',
-      },
-      filter: '**/*.e2e.js',
-      launch_url: 'http://ondemand.saucelabs.com:80',
-      selenium_port: 80,
-      selenium_host: 'ondemand.saucelabs.com',
-      silent: true,
-      username: process.env.SAUCE_USERNAME,
-      access_key: process.env.SAUCE_ACCESS_KEY,
-    },
-    compatible_testcase_support: true,
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
