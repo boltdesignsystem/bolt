@@ -289,6 +289,7 @@ async function generateFile(icons) {
       JSON.stringify(names, null, 4),
     );
     console.log('Config:', config);
+    console.log('Dir Name:', __dirname);
     console.log(`Icon Schema updated and Icons JSON generated.`);
   } catch (error) {
     console.error(error);
