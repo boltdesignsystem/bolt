@@ -288,6 +288,7 @@ async function generateFile(icons) {
       path.join(__dirname, '../../../', config.dataDir, 'icons.bolt.json'),
       JSON.stringify(names, null, 4),
     );
+    console.log('Config:', config);
     console.log(`Icon Schema updated and Icons JSON generated.`);
   } catch (error) {
     console.error(error);
