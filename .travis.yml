@@ -5,7 +5,7 @@ services:
   - docker
 
 stages:
-#  - build-and-deploy # lint code and docs
+  - build-and-deploy # lint code and docs
   - nightwatch # lint code and docs
 
 language: php
@@ -14,11 +14,6 @@ php:
 
 jobs:
   include:
-    - stage: nightwatch
-      name: 'Nightwatch 1'
-      script:
-        - yarn run setup
-        - npx nightwatch --verbose --config nightwatch.js --env chrome,ie11
     - stage: build-and-deploy
       name: 'Smoke Tests'
       before_script:
@@ -73,6 +68,11 @@ jobs:
           - www/pattern-lab/styleguide/js
           - www/pattern-lab/styleguide/css
           - www/pattern-lab/index.html
+    - stage: nightwatch
+      name: 'Nightwatch End-to-End'
+        script:
+          - yarn run setup
+          - npx nightwatch --verbose --config nightwatch.js --env chrome,ie11
 
 before_install:
   - nvm install # version lifted from `.nvmrc`

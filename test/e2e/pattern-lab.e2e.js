@@ -87,7 +87,7 @@ module.exports = {
     browser
       .url(`${testingUrl}/pattern-lab/index.html`)
       .waitForElementVisible('.pl-c-body', 1000)
-      .verify.title('Pattern Lab')
+      .verify.title('Pattern Lab - components-overview')
       .end();
   },
   afterEach: sauce,
