@@ -19,6 +19,7 @@ jobs:
         - phpenv config-rm xdebug.ini
         - composer global require hirak/prestissimo
         - yarn run setup:quick
+        - node scripts/sample-check-run-use.js
       script: yarn run test
       cache:
         yarn: true
@@ -69,7 +70,7 @@ jobs:
           - www/pattern-lab/index.html
 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d && ls && ls scripts
+  - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
   - nvm install # version lifted from `.nvmrc`
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
   - export PATH="$HOME/.yarn/bin:$PATH"
