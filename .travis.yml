@@ -16,7 +16,6 @@ jobs:
     - stage: build-and-deploy
       name: 'Smoke Tests'
       before_script:
-        - ./scripts/get-latest-deploy.sh
         - phpenv config-rm xdebug.ini
         - composer global require hirak/prestissimo
         - yarn run setup:quick
@@ -60,7 +59,7 @@ jobs:
       after_script:
         - cd scripts && npm install
         - npm run deploy
-        - echo 'Latest deploy:' && ./get-latest-deploy.sh
+        - echo 'Latest deploy:' && ./get-latest-deploy.js
       cache:
         yarn: true
         directories:
