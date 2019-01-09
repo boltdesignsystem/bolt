@@ -281,14 +281,11 @@ async function generateFile(icons) {
       fs.readFileSync('../bolt-icon/icon.schema.yml', 'utf8'),
     );
     schema.properties.name.enum = names;
-    config.dataDir = config.dataDir.includes('../')
-      ? config.dataDir
-      : '../../../'.concat(config.dataDir);
     // update bolt-icon schema with newest icons from svgs folder
     await fs.writeFile('../bolt-icon/icon.schema.yml', yaml.safeDump(schema));
     // generate `icons.bolt.json` file with newest icons array
     await fs.writeFile(
-      path.join(config.dataDir, 'icons.bolt.json'),
+      path.join(__dirname, '../../../', config.dataDir, 'icons.bolt.json'),
       JSON.stringify(names, null, 4),
     );
     console.log(`Icon Schema updated and Icons JSON generated.`);
