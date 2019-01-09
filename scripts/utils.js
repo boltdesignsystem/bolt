@@ -84,7 +84,7 @@ function get({ path, query, hostname, TOKEN }) {
  * @link https://zeit.co/docs/api/v1/#endpoints/deployments/list-all-the-deployments
  * @return {Promise<string>} - URL of latest deploymennt
  */
-async function getLatestDeploy() {
+function getLatestDeploy() {
   if (!process.env.NOW_TOKEN) {
     process.stderr.write('NOW_TOKEN env var required and is missing');
     process.exit(1);
