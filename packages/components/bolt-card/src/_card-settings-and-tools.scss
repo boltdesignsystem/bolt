@@ -20,7 +20,7 @@ $bolt-card-video-z-index: $bolt-card-individual-link-z-index;
   border-color: $bolt-card-border-color;
 }
 
-@mixin bolt-card-content-reset {
+@mixin bolt-card-content-conditions {
   // [Mai] Only the card body should not have hidden overflow and border radius because its background is transparent. This also catches any kind of free-form content being passed, making sure they don't poke outside the card (which has rounded corners and box shadows). The reason the card itself shouldn't have hidden overflow is because the card body can contain some kind of tooltip bubble or dropdown ui, they can poke out of the card naturally.
   > * {
     overflow: hidden;
@@ -63,5 +63,13 @@ $bolt-card-video-z-index: $bolt-card-individual-link-z-index;
       @include bolt-margin-top(auto);
       @include bolt-margin-bottom(auto);
     }
+  }
+
+  > * + bolt-card-actions {
+    border-top-width: $bolt-card-border-width;
+  }
+
+  > bolt-card-actions:not(:last-child) {
+    border-bottom-width: $bolt-card-border-width;
   }
 }

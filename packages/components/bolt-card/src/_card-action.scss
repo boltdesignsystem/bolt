@@ -19,6 +19,7 @@ bolt-card-action {
 
   display: block;
   position: relative;
+  top: $bolt-card-border-width * -1;
   border-top-width: $bolt-card-border-width;
 
   &:before {
@@ -27,7 +28,7 @@ bolt-card-action {
     top: 0;
     left: $bolt-card-border-width * -1;
     width: $bolt-card-border-width;
-    height: 100%;
+    height: calc(100% + #{$bolt-card-border-width});
     background-color: $bolt-card-border-color;
   }
 

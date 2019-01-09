@@ -10,7 +10,7 @@
       icon: {
         name: external == false or external == null ? "chevron-right" : "external-link",
       },
-      attributes: attributes
+      attributes: attributes|default({})
     } only %}
   </replace-with-children>
 </bolt-card-action>

@@ -10,7 +10,7 @@
 @include bolt-custom-element('bolt-card', block, medium);
 
 bolt-card {
-  @include bolt-card-content-reset;
+  @include bolt-card-content-conditions;
   position: relative;
 
   &[height='full'] {
@@ -23,7 +23,7 @@ bolt-card {
 // Card container styles
 .c-bolt-card {
   @include bolt-card-border-reset;
-  @include bolt-card-content-reset;
+  @include bolt-card-content-conditions;
   @include bolt-margin(0);
   @include bolt-padding(0);
   @include bolt-shadow('level-20', false, $bolt-card-shadow-color);

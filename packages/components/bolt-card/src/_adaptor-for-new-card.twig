@@ -44,24 +44,34 @@
 
   <replace-with-children {{ inner_attributes.addClass(classes) }}>
     {% if link %}
-      <bolt-card-link {% if link_url %}url="{{ link_url }}"{% endif %} class="{{ "#{base_class}__link" }}" {{ link_attributes }}></bolt-card-link>
+      <bolt-card-link
+          class="{{ "#{base_class}__link" }}"
+          {{ link_attributes }}
+      >
+        <a
+            {% if link_url %}
+              href="{{ link_url }}"
+            {% else %}
+              href="#!"
+            {% endif %}
+        >
+        </a>
+      </bolt-card-link>
     {% endif %}
 
-    {% block children %}
-      {% if content %}
-        {# The replace function is a hack to get around the utf-8 bug. #}
-        {{ content | join | replace({"UTF-8": ""}) }}
-      {% else %}
-        {% if media %}
-          {% include "@bolt-components-card/_card-media.twig" %}
-        {% endif %}
-        {% if body %}
-          {% include "@bolt-components-card/_card-body.twig" %}
-        {% endif %}
-        {% if actions %}
-          {% include "@bolt-components-card/_card-actions.twig" %}
-        {% endif %}
+    {% if content %}
+      {# The replace function is a hack to get around the utf-8 bug. #}
+      {{ content | join | replace({"UTF-8": ""}) }}
+    {% else %}
+      {% if media %}
+        {% include "@bolt-components-card/_card-media.twig" %}
       {% endif %}
-    {% endblock children %}
+      {% if body %}
+        {% include "@bolt-components-card/_card-body.twig" %}
+      {% endif %}
+      {% if actions %}
+        {% include "@bolt-components-card/_card-actions.twig" %}
+      {% endif %}
+    {% endif %}
   </replace-with-children>
 </bolt-card>
