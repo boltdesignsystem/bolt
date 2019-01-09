@@ -5,7 +5,10 @@ services:
   - docker
 
 stages:
-  - build-and-deploy # lint code and docs
+  - smoke-tests # smoke tests
+  - linting # lint code and docs
+  - build # build docker and artifacts
+  - deploy # deploy docker build
 
 language: php
 php:
@@ -13,7 +16,7 @@ php:
 
 jobs:
   include:
-    - stage: build-and-deploy
+    - stage: smoke-tests
       name: 'Smoke Tests'
       before_script:
         - phpenv config-rm xdebug.ini
@@ -26,7 +29,7 @@ jobs:
           - node_modules
           - docs-site/cache
 
-    - stage: build-and-deploy
+    - stage: linting
       name: 'Linting'
       before_script: yarn run setup:quick
       script:
@@ -37,7 +40,7 @@ jobs:
         directories:
           - node_modules
 
-    - stage: build-and-deploy
+    - stage: build
       name: 'Build Docker'
       # before_script:
       #   - phpenv config-rm xdebug.ini
@@ -57,7 +60,7 @@ jobs:
           - www/pattern-lab/styleguide/js
           - www/pattern-lab/styleguide/css
           - www/pattern-lab/index.html
-    - stage: build-and-deploy
+    - stage: deploy
       name: 'Deploy Docker'
       script:
         - docker images
