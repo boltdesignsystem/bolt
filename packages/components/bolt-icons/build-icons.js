@@ -281,6 +281,8 @@ async function generateFile(icons) {
       fs.readFileSync('../bolt-icon/icon.schema.yml', 'utf8'),
     );
     schema.properties.name.enum = names;
+    console.log('Config:', config);
+    console.log('Dir Name:', __dirname);
     // update bolt-icon schema with newest icons from svgs folder
     await fs.writeFile('../bolt-icon/icon.schema.yml', yaml.safeDump(schema));
     // generate `icons.bolt.json` file with newest icons array
@@ -288,8 +290,6 @@ async function generateFile(icons) {
       path.join(__dirname, '../../../', config.dataDir, 'icons.bolt.json'),
       JSON.stringify(names, null, 4),
     );
-    console.log('Config:', config);
-    console.log('Dir Name:', __dirname);
     console.log(`Icon Schema updated and Icons JSON generated.`);
   } catch (error) {
     console.error(error);
