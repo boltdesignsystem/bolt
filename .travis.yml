@@ -29,7 +29,7 @@ jobs:
     - stage: build-and-deploy
       name: 'Linting'
       before_script: yarn run setup:quick
-      script: 
+      script:
         - yarn run lint:scss
         - yarn run lint:js
       cache:
@@ -38,7 +38,7 @@ jobs:
           - node_modules
 
     - stage: build-and-deploy
-      name: 'Build + Deploy'
+      name: 'Build Docker'
       # before_script:
       #   - phpenv config-rm xdebug.ini
       #   - composer global require hirak/prestissimo
@@ -49,12 +49,23 @@ jobs:
         # - sh ./scripts/update-read-only-git-repos.sh @todo: run this only on Bolt releases
         - docker --log-level error pull boltdesignsystem/bolt || true
         - docker build --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/cache
+          - www/pattern-lab/styleguide/js
+          - www/pattern-lab/styleguide/css
+          - www/pattern-lab/index.html
+    - stage: build-and-deploy
+      name: 'Deploy Docker'
+      script:
         - docker images
         - echo $DOCKER_HUB_PASS | docker login --username $DOCKER_HUB_USER --password-stdin
         - GIT_SHA="$(git rev-parse --short HEAD)"
         - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
         - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
-        - docker --log-level error push boltdesignsystem/bolt:latest 
+        - docker --log-level error push boltdesignsystem/bolt:latest
         - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
       after_script:
         - cd scripts && npm install
