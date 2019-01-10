@@ -4,7 +4,7 @@ const { join } = require('path');
 const { readFileSync, writeFileSync } = require('fs');
 const sauce = require('./scripts/nightwatch-sauce');
 
-const dataFilePath = join(tmpdir, 'nightwatch-results.json');
+const dataFilePath = join(tmpdir(), 'nightwatch-results.json');
 const read = () => JSON.parse(readFileSync(dataFilePath, 'utf8'));
 const write = data => writeFileSync(dataFilePath, JSON.stringify(data), 'utf8');
 
