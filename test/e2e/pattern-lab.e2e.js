@@ -1,9 +1,9 @@
-const sauce = require('../../scripts/nightwatch-sauce');
+// const sauce = require('../../scripts/nightwatch-sauce');
 const { getLatestDeploy } = require('../../scripts/utils');
 let testingUrl = 'https://boltdesignsystem.com';
 
 module.exports = {
-  beforeEach(client, done) {
+  before(client, done) {
     getLatestDeploy()
       .then(url => {
         testingUrl = url;
@@ -26,5 +26,5 @@ module.exports = {
       .end();
   },
 
-  afterEach: sauce,
+  // afterEach: sauce,
 };

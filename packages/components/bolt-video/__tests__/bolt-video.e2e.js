@@ -1,11 +1,11 @@
-const sauce = require('../../../../scripts/nightwatch-sauce');
+// const sauce = require('../../../../scripts/nightwatch-sauce');
 const { getLatestDeploy } = require('../../../../scripts/utils');
 
 let testingUrl = 'https://boltdesignsystem.com';
 let currentBrowser;
 
 module.exports = {
-  beforeEach(client, done) {
+  before(client, done) {
     getLatestDeploy()
       .then(url => {
         testingUrl = url;
@@ -24,7 +24,7 @@ module.exports = {
 
     browser
       .url(
-        `${baseUrl}/pattern-lab/patterns/02-components-video-40-video-w-inline-script-and-email-share/02-components-video-40-video-w-inline-script-and-email-share.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-video-40-video-w-inline-script-and-email-share/02-components-video-40-video-w-inline-script-and-email-share.html`,
       )
       .waitForElementVisible('.video-js', 1000)
       .click('.vjs-big-play-button')
@@ -84,7 +84,7 @@ module.exports = {
 
     browser
       .url(
-        `${baseUrl}/pattern-lab/patterns/02-components-video-25-video-w-external-controls/02-components-video-25-video-w-external-controls.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-video-25-video-w-external-controls/02-components-video-25-video-w-external-controls.html`,
       )
       .waitForElementVisible('bolt-button', 1000)
       .click('bolt-button')
@@ -125,5 +125,5 @@ module.exports = {
       .end();
   },
 
-  afterEach: sauce,
+  // afterEach: sauce,
 };

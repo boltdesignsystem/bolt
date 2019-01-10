@@ -27,11 +27,14 @@ if (process.env.TRAVIS) {
       // details: '',
     },
   })
-    .then(results => console.log(results))
+    .then(results => {
+      console.log(`Check run started for Nightwatch: ${results.html_url}`);
+    })
     .catch(console.log.bind(console));
 }
 
 module.exports = {
+  globals_path: './nightwatch-globals.js',
   // selenium: {
   //   start_process: true,
   //   server_path: require('selenium-server').path,
