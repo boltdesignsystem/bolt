@@ -1,16 +1,6 @@
 #!/usr/bin/env node
-const url = require('url');
 const { resolve } = require('path');
-const querystring = require('querystring');
-const {
-  setGitHubStatus,
-  createGitHubComment,
-  outputBanner,
-  runAndShow,
-  runAndReturn,
-  getGitSha,
-} = require('ci-utils');
-const fetch = require('node-fetch');
+const { outputBanner, getGitSha } = require('ci-utils');
 const { spawnSync } = require('child_process');
 const { promisify } = require('util');
 const gitSemverTags = require('git-semver-tags');
@@ -87,27 +77,33 @@ async function init() {
 
     if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
 
-
     await setCheckRun({
-      name: 'deploy/now.sh',
+      name: 'Deploy - now.sh',
       status: 'in_progress',
     });
 
     outputBanner('Starting deploy...');
-    const deployOutput = spawnSync('now', [
-      'deploy',
-      '--force',
-      '--meta',
-      `TRAVIS_BUILD_WEB_URL="${TRAVIS_BUILD_WEB_URL}"`,
-      '--env',
-      `DOCKER_TAG=${gitSha}`,
-      '--build-env',
-      `DOCKER_TAG=${gitSha}`,
-      ...baseNowArgs,
-    ], {
-      encoding: 'utf8',
-      cwd: resolve(__dirname, '../deploys'),
-    });
+    const deployOutput = spawnSync(
+      'now',
+      [
+        'deploy',
+        '--force',
+        `--meta TRAVIS_BUILD_WEB_URL="${TRAVIS_BUILD_WEB_URL}"`,
+        `--meta TRAVIS_PULL_REQUEST_BRANCH="${TRAVIS_PULL_REQUEST_BRANCH}"`,
+        `--meta TRAVIS_BRANCH="${TRAVIS_BRANCH}"`,
+        `--meta branchName="${branchName}"`,
+        `--meta gitSha="${gitSha}"`,
+        '--env',
+        `DOCKER_TAG=${gitSha}`,
+        '--build-env',
+        `DOCKER_TAG=${gitSha}`,
+        ...baseNowArgs,
+      ],
+      {
+        encoding: 'utf8',
+        cwd: resolve(__dirname, '../deploys'),
+      },
+    );
 
     // const deployOutput = spawnSync(
     //   'now',
@@ -126,7 +122,7 @@ async function init() {
       console.log(deployOutput.stdout, deployOutput.stderr);
       await setCheckRun({
         status: 'completed',
-        name: 'deploy/now.sh',
+        name: 'Deploy - now.sh',
         conclusion: 'failure',
         output: {
           title: 'Now.sh Deploy failure',
@@ -166,7 +162,7 @@ ${deployOutput.stderr}
 
       await setCheckRun({
         status: 'completed',
-        name: 'deploy/now.sh',
+        name: 'Deploy - now.sh',
         conclusion: 'failure',
         output: {
           title: 'Now.sh Deploy failure',
@@ -182,7 +178,7 @@ ${aliasOutput.stderr}
 
     await setCheckRun({
       status: 'completed',
-      name: 'deploy/now.sh',
+      name: 'Deploy - now.sh',
       conclusion: 'success',
       output: {
         title: 'Now.sh Deploy',
@@ -202,10 +198,12 @@ ${aliasOutput.stderr}
         { encoding: 'utf8' },
       );
       if (aliasOutput2.status !== 0) {
+        // @todo setCheckRun
         console.error('Error aliasing:');
         console.log(aliasOutput2.stdout, aliasOutput2.stderr);
         process.exit(1);
       }
+      // @todo setCheckRun
       console.log(aliasOutput2.stdout, aliasOutput2.stderr);
 
       console.log('aliasing www.boltdesignsystem.com to main site too.');
@@ -215,12 +213,15 @@ ${aliasOutput.stderr}
         { encoding: 'utf8' },
       );
       if (aliasOutput3.status !== 0) {
+        // @todo setCheckRun
         console.error('Error aliasing:');
         console.log(aliasOutput3.stdout, aliasOutput3.stderr);
         process.exit(1);
       }
+      // @todo setCheckRun
       console.log(aliasOutput3.stdout, aliasOutput3.stderr);
     } else if (TRAVIS_TAG && TRAVIS_TAG !== latestTag) {
+      // @todo setCheckRun
       console.error(
         `Error aliasing: Travis Tag of ${TRAVIS_TAG} doesn't match the latest tag of ${latestTag}`,
       );
@@ -230,40 +231,10 @@ ${aliasOutput.stderr}
         "Skipping now.sh tag alias since this isn't a tagged version.",
       );
     }
-
-    // `TRAVIS_PULL_REQUEST` is either `'false'` or a PR number like `'55'`. All strings.
-    if (TRAVIS && TRAVIS_PULL_REQUEST !== 'false') {
-      console.log(
-        'This is a Pull Request build, so will not try to comment on PR.',
-      );
-
-      // The GitHub comment template - Can handle HTML
-      const githubCommentText = `
-:zap: PR built on Travis and deployed a now preview here:
-
-- Branch link: ${aliasedUrl}
-- Permalink: ${deployedUrl}
-
-<details>
-
-- Commit built: ${process.env.TRAVIS_COMMIT}
-- [Travis build](https://travis-ci.org/${process.env.TRAVIS_REPO_SLUG}/builds/${
-        process.env.TRAVIS_BUILD_ID
-      })
-
-</details>
-`.trim();
-      // end GitHub comment template
-      const results = await createGitHubComment(githubCommentText, TRAVIS_PULL_REQUEST);
-      console.log(`GitHub comment made: ${results.html_url}`);
-
-    } else {
-      console.log('This is not a Pull Request build, so will not try to comment on PR.');
-    }
-    // @todo Errors should be passed to `catch`
   } catch (error) {
     console.log('Error');
     console.error(error);
+    process.exit(1);
   }
 }
 
