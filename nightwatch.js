@@ -3,6 +3,8 @@ const path = require('path');
 const { setCheckRun } = require('./scripts/check-run');
 const { getLatestDeploy } = require('./scripts/utils');
 
+/* eslint-disable camelcase */
+
 let srcFolders = globby.sync([
   'packages/**/*.e2e.js',
   'apps/**/*.e2e.js',
@@ -14,6 +16,9 @@ srcFolders = srcFolders.map(function(folder) {
 });
 
 process.env.NOW_URL = process.env.NOW_URL || 'https://boltdesignsystem.com';
+const launch_url = process.env.NOW_URL || 'https://boltdesignsystem.com';
+
+console.log({ launch_url });
 
 if (process.env.TRAVIS) {
   setCheckRun({
@@ -34,6 +39,7 @@ if (process.env.TRAVIS) {
 }
 
 module.exports = {
+  launch_url,
   globals_path: './nightwatch-globals.js',
   persist_globals: true,
   // selenium: {

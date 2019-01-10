@@ -1,13 +1,13 @@
 const { outputBanner } = require('ci-utils');
 const sauce = require('./scripts/nightwatch-sauce');
 
-module.exports = {
+const theGlobals = {
   testingUrl: 'https://boltdesignsystem.com',
   results: [],
   testCount: 0,
 
   afterEach(browser, cb) {
-    browser.globals.testCount += 1;
+    theGlobals.testCount += 1;
     outputBanner(`global afterEach called, testCount at ${testCount}`);
     sauce(browser, cb);
   },
@@ -19,3 +19,5 @@ module.exports = {
     cb();
   },
 };
+
+module.exports = theGlobals;
