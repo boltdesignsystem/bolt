@@ -1,33 +1,16 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import {
-  withLitHtml,
-  html,
-  render,
-} from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 import { convertInitialTags } from '@bolt/core/decorators';
-
 import classNames from 'classnames/bind';
-
-// Logo, Ratio, and Image styles needed for bolt-logo (when loaded via twig)
-import logoStyles from '@bolt/components-logo/src/logo.scss';
-import ratioStyles from '@bolt/components-ratio/src/ratio.scss';
-import imageStyles from '@bolt/components-image/src/image.scss';
-
-// Twig template uses "bolt-headline" component instead of bolt-text-v2
-import textStyles from '@bolt/components-headline/src/headline.scss';
-
-// Global styles needed for proper spacing of P tags in Twig template
-import globalStyles from '@bolt/global/styles/index.scss';
-
 import styles from './blockquote.scss';
-
 import schema from '../blockquote.schema.yml';
 
 let cx = classNames.bind(styles);
 
 @define
-@convertInitialTags('blockquote', false) // The first matching tag will have its attributes converted to component props
+@convertInitialTags('blockquote') // The first matching tag will have its attributes converted to component props
 class BoltBlockquote extends withLitHtml() {
   static is = 'bolt-blockquote';
 
@@ -90,83 +73,6 @@ class BoltBlockquote extends withLitHtml() {
     }
   }
 
-  logoTemplate() {
-    const logoClasses = cx('c-bolt-blockquote__logo');
-
-    return this.slots['logo']
-      ? html`
-          <div class="${logoClasses}">${this.slot('logo')}</div>
-        `
-      : html`
-          <slot name="logo" />
-        `;
-  }
-
-  authorTemplate(name, title, image) {
-    if (name) {
-      const footerClasses = cx('c-bolt-blockquote__footer');
-      const footerItemClasses = cx('c-bolt-blockquote__footer-item');
-      const imageClasses = cx('c-bolt-blockquote__image');
-
-      const authorName = html`
-        <bolt-text
-          tag="cite"
-          font-size="xsmall"
-          font-weight="bold"
-          color="theme-headline"
-        >
-          ${name}
-        </bolt-text>
-      `;
-
-      const authorTitle = html`
-        <bolt-text font-size="xsmall" color="theme-headline">
-          ${title}
-        </bolt-text>
-      `;
-
-      // TODO: replace 'img' with 'bolt-image' once 'bolt-image' is converted to web component
-      const authorImage = html`
-        <div class="${footerItemClasses}">
-          <div class="${imageClasses}">
-            <img src="${image}" alt="Photo of ${name}" />
-          </div>
-        </div>
-      `;
-
-      return html`
-        <footer class="${footerClasses}">
-          <div class="${footerItemClasses}">
-            ${image && authorImage} ${authorName} ${title && authorTitle}
-          </div>
-        </footer>
-      `;
-    }
-  }
-
-  quoteTemplate(size, children = null) {
-    const text = html`
-      <bolt-text
-        tag="div"
-        font-size="${size}"
-        font-weight="semibold"
-        color="theme-headline"
-      >
-        ${children}
-      </bolt-text>
-    `;
-
-    return html`
-      <div class="c-bolt-blockquote__quote">${text}</div>
-    `;
-  }
-
-  blockquoteTemplate(classes, children = null) {
-    return html`
-      <blockquote class="${classes}">${children}</blockquote>
-    `;
-  }
-
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const {
@@ -192,33 +98,121 @@ class BoltBlockquote extends withLitHtml() {
       [`c-bolt-blockquote--full`]: fullBleed,
     });
 
-    let renderedBlockquote;
+    const AuthorImage = elem => {
+      const { props, slots } = elem;
+      if (slots['author-image'] || props.authorImage) {
+        return html`
+          <div class="${cx('c-bolt-blockquote__image')}">
+            ${
+              slots['author-image']
+                ? html`
+                    ${elem.slot('author-image')}
+                  `
+                : html`
+                    <img
+                      src="${props.authorImage}"
+                      alt=${ifDefined(props.authorTitle)}
+                    />
+                  `
+            }
+          </div>
+        `;
+      }
+    };
 
-    if (this.rootElement) {
-      renderedBlockquote = this.rootElement.firstChild.cloneNode(true);
-      renderedBlockquote.className += ' ' + classes;
-    } else {
-      const logo = this.logoTemplate();
-      const quote = this.quoteTemplate(size, this.slot('default'));
-      const author = this.authorTemplate(authorName, authorTitle, authorImage);
-      const blockquoteInner = html`
-        ${logo} ${quote} ${author}
-      `;
-      renderedBlockquote = this.blockquoteTemplate(classes, blockquoteInner);
+    const AuthorTitle = elem => {
+      const { props, slots } = elem;
+      if (slots['author-title'] || props.authorTitle) {
+        return html`
+          <bolt-text tag="cite" font-size="xsmall" color="theme-headline">
+            ${
+              this.slots['author-title']
+                ? this.slot('author-title')
+                : props.authorTitle
+            }
+          </bolt-text>
+        `;
+      }
+    };
+
+    const AuthorName = elem => {
+      const { props, slots } = elem;
+      if (slots['author-name'] || props.authorName) {
+        return html`
+          <bolt-text
+            tag="cite"
+            font-size="xsmall"
+            color="theme-headline"
+            font-weight="bold"
+          >
+            ${
+              this.slots['author-name']
+                ? this.slot('author-name')
+                : props.authorName
+            }
+          </bolt-text>
+        `;
+      }
+    };
+
+    let footerItems = [];
+    footerItems.push(AuthorImage(this), AuthorName(this), AuthorTitle(this));
+
+    // console.log(footerItems);
+    if (this.slots.default) {
+      const defaultSlot = [];
+
+      this.slots.default.forEach(item => {
+        if (item.tagName) {
+          defaultSlot.push(item);
+        }
+      });
+
+      if (defaultSlot[0].attributes.length === 0) {
+        defaultSlot[0].classList.add('is-first-child');
+
+        if (defaultSlot.length === 1) {
+          defaultSlot[0].classList.add('is-last-child');
+        }
+      }
+
+      if (defaultSlot[defaultSlot.length - 1].attributes.length === 0) {
+        defaultSlot[defaultSlot.length - 1].classList.add('is-last-child');
+      }
     }
 
     return html`
-      ${
-        this.addStyles([
-          styles,
-          logoStyles,
-          ratioStyles,
-          imageStyles,
-          textStyles,
-          globalStyles,
-        ])
-      }
-      ${renderedBlockquote}
+      ${this.addStyles([styles])}
+      <blockquote class="${classes}" is="shadow-root">
+        <div class="${cx('c-bolt-blockquote__logo')}">${this.slot('logo')}</div>
+        <div class="${cx('c-bolt-blockquote__quote')}">
+          <bolt-text
+            tag="div"
+            font-size="${size}"
+            font-weight="semibold"
+            color="theme-headline"
+          >
+            ${this.slot('default')}
+          </bolt-text>
+        </div>
+        ${
+          footerItems.length > 0
+            ? html`
+                <footer class="${cx('c-bolt-blockquote__footer')}">
+                  ${
+                    footerItems.map(
+                      footerItem => html`
+                        <div class="${cx('c-bolt-blockquote__footer-item')}">
+                          ${footerItem}
+                        </div>
+                      `,
+                    )
+                  }
+                </footer>
+              `
+            : ''
+        }
+      </blockquote>
     `;
   }
 }
