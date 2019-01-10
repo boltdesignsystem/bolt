@@ -98,6 +98,10 @@ $bolt-blockquote-image-size: 4rem;
   border-width: $bolt-blockquote-image-border-width;
   border-style: $bolt-blockquote-image-border-style;
   border-color: $bolt-blockquote-image-border-color;
+
+  > * {
+    max-width: 100%;
+  }
 }
 
 .c-bolt-blockquote__footer {
@@ -133,6 +137,11 @@ $bolt-blockquote-image-size: 4rem;
     @include bolt-margin-right(auto);
     @include bolt-margin-left(auto);
   }
+
+  .c-bolt-blockquote__logo > *::slotted(*) {
+    @include bolt-margin-right(auto);
+    @include bolt-margin-left(auto);
+  }
 }
 
 .c-bolt-blockquote--align-items-end {
@@ -140,6 +149,11 @@ $bolt-blockquote-image-size: 4rem;
 
   .c-bolt-blockquote__quote,
   .c-bolt-blockquote__logo > * {
+    @include bolt-margin-right(0);
+    @include bolt-margin-left(auto);
+  }
+
+  .c-bolt-blockquote__logo > *::slotted(*) {
     @include bolt-margin-right(0);
     @include bolt-margin-left(auto);
   }
