@@ -35,6 +35,7 @@ if (process.env.TRAVIS) {
 
 module.exports = {
   globals_path: './nightwatch-globals.js',
+  persist_globals: true,
   // selenium: {
   //   start_process: true,
   //   server_path: require('selenium-server').path,
