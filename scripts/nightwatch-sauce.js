@@ -52,9 +52,10 @@ const bodyExample = {
  * @param {string} testId
  * @param {Object} data - data sent to Sauce Labs
  * @param {Object} body - data sent back from Sauce Labs (see `bodyExample`)
+ * @param {boolean} passed
  * @return {Promise<void>}
  */
-async function sendTravisTestInfo(capabilities, testId, data, body) {
+async function sendTravisTestInfo(capabilities, testId, data, body, passed) {
   outputBanner('sendTravisTestInfo running..');
   console.log({
     capabilities,
@@ -182,7 +183,8 @@ module.exports = function sauce(client, callback) {
         client.capabilities,
         sessionId,
         data,
-        body
+        body,
+        passed
       ).then(results => callback());
     });
   }
