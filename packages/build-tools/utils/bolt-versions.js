@@ -90,7 +90,8 @@ async function gatherBoltVersions() {
   const tagUrls = [];
   let tags; // grab tags from Github API or via local file cache
 
-  if (store.get('bolt-tags')) {
+  // use local cache if available, but not on Travis tagged releases
+  if (store.get('bolt-tags') && !process.env.TRAVIS_TAG) {
     tags = await store.get('bolt-tags');
   } else {
     try {
