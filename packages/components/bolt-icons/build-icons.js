@@ -287,7 +287,10 @@ async function generateFile(icons) {
     await fs.mkdirp(path.join(dataDirectory));
 
     // update bolt-icon schema with newest icons from svgs folder
-    await fs.writeFile(path.join(boltIconDirectory, 'icon.schema.yml'), yaml.safeDump(schema));
+    await fs.writeFile(
+      path.join(boltIconDirectory, 'icon.schema.yml'),
+      yaml.safeDump(schema),
+    );
     // generate `icons.bolt.json` file with newest icons array
     await fs.writeFile(
       path.join(dataDirectory, 'icons.bolt.json'),
