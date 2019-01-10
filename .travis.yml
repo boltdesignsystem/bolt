@@ -68,11 +68,12 @@ jobs:
           - www/pattern-lab/styleguide/js
           - www/pattern-lab/styleguide/css
           - www/pattern-lab/index.html
+
     - stage: nightwatch
       name: 'Nightwatch End-to-End'
-        script:
-          - yarn run setup
-          - npx nightwatch --verbose --config nightwatch.js --env chrome,ie11
+      script:
+        - yarn run setup
+        - npx nightwatch --verbose --config nightwatch.js --env chrome,ie11
 
 before_install:
   - nvm install # version lifted from `.nvmrc`
