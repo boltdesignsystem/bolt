@@ -96,9 +96,9 @@ module.exports = {
         version: '70',
         javascriptEnabled: true,
         acceptSslCerts: true,
-        chromeOptions: {
-          args: ['headless'],
-        },
+//         chromeOptions: {
+//           args: ['headless'],
+//         },
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,
