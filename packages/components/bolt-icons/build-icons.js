@@ -226,6 +226,7 @@ async function transpileIcons(icons) {
         singleQuote: true,
         trailingComma: 'es5',
         bracketSpacing: true,
+        jsxBracketSameLine: true,
         parser: 'flow',
       });
 
