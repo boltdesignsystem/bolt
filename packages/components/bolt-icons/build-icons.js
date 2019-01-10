@@ -6,7 +6,7 @@ const cheerio = require('cheerio');
 const prettier = require('prettier');
 const SVGO = require('svgo');
 const yaml = require('js-yaml');
-const { getConfig } = require('../../build-tools/utils/config-store');
+const { getConfig } = require('@bolt/build-tools/utils/config-store');
 
 const svgo = new SVGO({
   plugins: [
@@ -280,14 +280,17 @@ async function generateFile(icons) {
     const schema = yaml.safeLoad(
       fs.readFileSync('../bolt-icon/icon.schema.yml', 'utf8'),
     );
+    const dataDirectory = path.join(__dirname, '../../../', config.dataDir);
+    const boltIconDirectory = path.join(__dirname, '../bolt-icon');
+
     schema.properties.name.enum = names;
-    console.log('Config:', config);
-    console.log('Dir Name:', __dirname);
+    await fs.mkdirp(path.join(dataDirectory));
+
     // update bolt-icon schema with newest icons from svgs folder
-    await fs.writeFile('../bolt-icon/icon.schema.yml', yaml.safeDump(schema));
+    await fs.writeFile(path.join(boltIconDirectory, 'icon.schema.yml'), yaml.safeDump(schema));
     // generate `icons.bolt.json` file with newest icons array
     await fs.writeFile(
-      path.join(__dirname, '../../../', config.dataDir, 'icons.bolt.json'),
+      path.join(dataDirectory, 'icons.bolt.json'),
       JSON.stringify(names, null, 4),
     );
     console.log(`Icon Schema updated and Icons JSON generated.`);
