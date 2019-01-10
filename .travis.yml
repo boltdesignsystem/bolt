@@ -5,7 +5,7 @@ services:
   - docker
 
 stages:
-  - build-and-deploy # lint code and docs
+#  - build-and-deploy # lint code and docs
   - nightwatch # lint code and docs
 
 language: php
@@ -75,7 +75,7 @@ jobs:
       name: 'Nightwatch End-to-End'
       script:
         - yarn run setup
-        - npx nightwatch --verbose --config nightwatch.js --env chrome,ie11
+        - npx nightwatch --config nightwatch.js --env chrome,ie11
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d

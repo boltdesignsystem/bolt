@@ -99,19 +99,19 @@ async function sendTravisTestInfo(capabilities, testId, data, body, passed) {
 - [View Test in Sauce Labs](https://saucelabs.com/beta/tests/${testId}/commands)
     `.trim();
 
-    const details = `
+    const text = `
+- log_url: ${body.log_url}
+
 <details>
   <summary>Data</summary>
 
-\`\`\`json
-${JSON.stringify({ body, data, capabilities, testId }, null, '  ')}
-\`\`\`
+<pre>
+  <code>
+  ${JSON.stringify({ body, data, capabilities, testId }, null, '  ')}
+  </code>
+</pre>
 
 </details>
-
-- log_url: ${body.log_url}
--     
-
 `.trim();
 
     const results = await setCheckRun({
@@ -121,7 +121,7 @@ ${JSON.stringify({ body, data, capabilities, testId }, null, '  ')}
       output: {
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
         summary,
-        details,
+        text,
         images: [
           {
             alt: `Image of ${capabilities.browserName} test`,
