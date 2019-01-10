@@ -69,6 +69,7 @@ module.exports = {
   },
 
   '<bolt-video> plays via <bolt-button> on-click hook': function(browser) {
+    const { testingUrl } = browser.globals;
     currentBrowser = '--' + browser.currentEnv || 'chrome';
     let testName = 'bolt-video-external-controls';
 

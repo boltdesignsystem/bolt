@@ -1,5 +1,6 @@
 const sauce = require('./scripts/nightwatch-sauce');
 
+let totalReports = 0;
 module.exports = {
   testingUrl: 'https://boltdesignsystem.com',
   afterEach(browser, cb) {
@@ -7,7 +8,8 @@ module.exports = {
     sauce(browser, cb);
   },
   reporter(results, cb) {
-    console.log('global reporter called');
+    totalReports += 1;
+    console.log(`global reporter called ${totalReports}`);
     console.log(results);
     cb();
   },
