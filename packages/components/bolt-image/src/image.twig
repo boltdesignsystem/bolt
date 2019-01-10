@@ -83,7 +83,7 @@
   }} />
 {% endset %}
 
-<bolt-image {% if placeholderColor and ext == "jpg" %} style="background-color: {{ placeholderColor }};" {% endif %}>
+<bolt-image {% if slot %} slot="{{ slot }}" {% endif %} {% if placeholderColor and ext == "jpg" %} style="background-color: {{ placeholderColor }};" {% endif %}>
   {% block image_content %}
     {% if width > 0 and height > 0 and useAspectRatio == true %}
       {% include "@bolt-components-ratio/ratio.twig" with {
