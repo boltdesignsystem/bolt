@@ -64,20 +64,24 @@ $bolt-blockquote-image-size: 4rem;
   }
 
   ::slotted(p:first-child),
-  ::slotted(p:last-child) {
+  ::slotted(p.is-first-child),
+  ::slotted(p:last-child),
+  ::slotted(p.is-last-child), {
     &:before,
     &:after {
       font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
     }
   }
 
-  ::slotted(p:first-child) {
+  ::slotted(p:first-child),
+  ::slotted(p.is-first-child) {
     &:before {
       content: '\201C';
     }
   }
 
-  ::slotted(p:last-child) {
+  ::slotted(p:last-child),
+  ::slotted(p.is-last-child) {
     &:after {
       content: '\201D';
     }
@@ -221,7 +225,8 @@ $bolt-blockquote-image-size: 4rem;
       transform: translate3d(-110%, 0, 0);
     }
 
-    ::slotted(p:first-child) {
+    ::slotted(p:first-child),
+    ::slotted(p.is-first-child) {
       &:before {
         position: absolute;
         transform: translate3d(-110%, 0, 0);
@@ -236,7 +241,8 @@ $bolt-blockquote-image-size: 4rem;
       @include bolt-padding(0 2px);
     }
 
-    ::slotted(p:first-child) {
+    ::slotted(p:first-child),
+    ::slotted(p.is-first-child) {
       &:before {
         @include bolt-padding(0 2px);
       }
@@ -249,8 +255,9 @@ $bolt-blockquote-image-size: 4rem;
     p:first-child:before {
       @include bolt-padding(0 2px);
     }
-
-    ::slotted(p:first-child) {
+    
+    ::slotted(p:first-child),
+    ::slotted(p.is-first-child) {
       &:before {
         @include bolt-padding(0 2px);
       }
@@ -261,7 +268,8 @@ $bolt-blockquote-image-size: 4rem;
       transform: translate3d(10%, 0, 0);
     }
 
-    ::slotted(p:first-child) {
+    ::slotted(p:last-child),
+    ::slotted(p.is-last-child) {
       &:after {
         position: absolute;
         transform: translate3d(10%, 0, 0);
