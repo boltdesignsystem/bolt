@@ -100,7 +100,7 @@ async function gatherBoltVersions() {
         per_page: 9999,
       });
       tags = tags.data;
-      await store.set('bolt-tags', tags, { maxAge: 5 * 60 * 1000 }); // set 5 minute cache expiration
+      await store.set('bolt-tags', tags, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // set 30 day cache
       await store.save();
     } catch (err) {
       // handle expired cached data + not having a GITHUB_TOKEN set as an environmental variable
@@ -112,10 +112,12 @@ async function gatherBoltVersions() {
         const oldTags = staleData['bolt-tags'].value;
         const oldUrls = staleData['bolt-urls-to-test'].value;
 
-        await store.set('bolt-tags', oldTags, { maxAge: 5 * 60 * 1000 }); // set 5 minute cache expiration
+        await store.set('bolt-tags', oldTags, {
+          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        });
         await store.set('bolt-urls-to-test', oldUrls, {
-          maxAge: 5 * 60 * 1000,
-        }); // set 5 minute cache expiration
+          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        });
         await store.save();
 
         tags = oldTags;
@@ -159,7 +161,9 @@ async function gatherBoltVersions() {
     results = await store.get('bolt-urls-to-test');
   } else {
     results = await checkLinks(urlsToCheck);
-    await store.set('bolt-urls-to-test', results, { maxAge: 5 * 60 * 1000 });
+    await store.set('bolt-urls-to-test', results, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
     await store.save();
   }
 
