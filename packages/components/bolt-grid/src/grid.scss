@@ -4,64 +4,50 @@
 
 @import '@bolt/core';
 
+@mixin bolt-support-grid-gap {
+  @supports (grid-gap: 1px) {
+    @content;
+  }
+}
 
 bolt-grid {
   display: grid;
-  width: 100%;
+  /*width: 100%;*/
   grid-template-columns: repeat(12, 1fr); // by default (at least for now) always assume a 12-column grid
   grid-auto-rows: minmax(min-content, max-content);
 
-  &[vinset]:not([vinset='none']){
-    &:before {
-      content: '';
-      grid-column-start: 1;
-      grid-column-end: span 12;
-      grid-row-start: 1;
-      grid-row-end: 1;
-      display: block;
-    }
-    
-    &:after {
-      content: '';
-      grid-column-start: 1;
-      grid-column-end: span 12;
-      grid-row-start: auto;
-      -ms-grid-row: 12;
-      -ms-grid-row-span: 13;
-      display: block;
-    }
-  }
-
-
   @each $name, $value in $bolt-spacing-values {
-    &[vinset='#{$name}'] {
-      grid-template-rows: minmax(#{bolt-v-spacing(#{$name})}, max-content);
-      grid-auto-rows: minmax(#{bolt-v-spacing(#{$name})}, max-content);
+    &[gutter='#{$name}'] {
+      margin-left: bolt-spacing(#{$name}) * -1;
 
-      // temporary workaround for forcing the auto-generated rows before/after the grid to be a minimum height in IE 11
-      &:before, &:after {
-        min-height: bolt-v-spacing(#{$name});
+      > bolt-grid-item {
+        @include bolt-margin-left(#{$name});
       }
 
-      @supports (grid-auto-rows: auto) {
-        grid-template-rows: auto;
+      @include bolt-support-grid-gap {
+        grid-gap: bolt-spacing(#{$name});
+        margin-left: 0;
+
+        > bolt-grid-item {
+          @include bolt-margin-left(0);
+        }
       }
     }
 
     &[row-gutter='#{$name}'] {
-      // Use margin to replicate grid-row-gap when not natively supported by the browser.
-      &:before,
-      > bolt-grid-item {
-        @include bolt-margin-bottom(#{$name});
+      margin-top: bolt-v-spacing(#{$name}) * -1;
 
-        @supports (grid-row-gap: 1px) {
-          // When grid-row-gap is natively supported, reset this workaround.
-          @include bolt-margin-bottom(0);
-        }
+      > bolt-grid-item {
+        @include bolt-margin-top(#{$name});
       }
 
-      @supports (grid-row-gap: 1px) {
+      @include bolt-support-grid-gap {
         grid-row-gap: bolt-v-spacing(#{$name});
+        margin-top: 0;
+
+        > bolt-grid-item {
+          @include bolt-margin-top(0);
+        }
       }
     }
   }
@@ -69,11 +55,11 @@ bolt-grid {
 
 
 
-$grid-item-alignments: (
-  end, start, center
+$bolt-grid-item-alignments: (
+  start, center, end
 );
 
-$grid-item-elements: (
+$bolt-grid-item-directions: (
   column, row
 );
 
@@ -85,39 +71,39 @@ bolt-grid-item {
   grid-row-end: auto;
 
   // auto-generate styles for declarative vertical and horizontal alignment of individual <bolt-grid-item>s
-  @each $alignment in $grid-item-alignments {
+  @each $alignment in $bolt-grid-item-alignments {
     &[align='#{$alignment}']{
       justify-self: #{$alignment};
     }
   }
 
-  @each $valignment in $grid-item-alignments {
+  @each $valignment in $bolt-grid-item-alignments {
     &[valign='#{$valignment}']{
       align-self: #{$valignment};
     }
   }
 
-  
+
   // auto-generate styles for declarative rows and columns
-  @each $element in $grid-item-elements {
+  @each $direction in $bolt-grid-item-directions {
     // non-breakpoint variations of grid-column-start and grid-row-start
     @for $start-option from 1 through 12 {
-      &[#{$element}-start~='#{$start-option}']{
-        grid-#{$element}-start: #{$start-option};
+      &[#{$direction}-start~='#{$start-option}']{
+        grid-#{$direction}-start: #{$start-option};
       }
     }
 
     // non-breakpoint variations of grid-column-end and grid-row-end
     @for $end-option from 1 through 12 {
-      &[#{$element}-end~='#{$end-option}']{
-        grid-#{$element}-end: #{$end-option};
+      &[#{$direction}-end~='#{$end-option}']{
+        grid-#{$direction}-end: #{$end-option};
       }
     }
 
     // non-breakpoint span variations of grid-column-end and grid-row-end
     @for $option from 1 through 12 {
-      &[#{$element}-span~='#{$option}']{
-        grid-#{$element}-end: span #{$option};
+      &[#{$direction}-span~='#{$option}']{
+        grid-#{$direction}-end: span #{$option};
       }
     }
 
@@ -126,20 +112,20 @@ bolt-grid-item {
       $breakpoint-name: nth($breakpoint, 1);
       @for $start-option from 1 through 12 {
         @include bolt-mq($breakpoint-name) {
-          &[#{$element}-start~='#{$start-option}\@#{$breakpoint-name}']{
-            grid-#{$element}-start: #{$start-option};
+          &[#{$direction}-start~='#{$start-option}\@#{$breakpoint-name}']{
+            grid-#{$direction}-start: #{$start-option};
           }
         }
       }
     }
-  
-    
+
+
     @each $breakpoint in $bolt-breakpoints {
       $breakpoint-name: nth($breakpoint, 1);
       @for $end-option from 1 through 12 {
         @include bolt-mq($breakpoint-name) {
-          &[#{$element}-end~='#{$end-option}\@#{$breakpoint-name}']{
-            grid-#{$element}-end: #{$end-option};
+          &[#{$direction}-end~='#{$end-option}\@#{$breakpoint-name}']{
+            grid-#{$direction}-end: #{$end-option};
           }
         }
       }
@@ -150,13 +136,11 @@ bolt-grid-item {
       $breakpoint-name: nth($breakpoint, 1);
       @include bolt-mq($breakpoint-name) {
         @for $option from 1 through 12 {
-          &[#{$element}-span~='#{$option}\@#{$breakpoint-name}']{
-            grid-#{$element}-end: span #{$option};
+          &[#{$direction}-span~='#{$option}\@#{$breakpoint-name}']{
+            grid-#{$direction}-end: span #{$option};
           }
         }
       }
     }
   }
 }
-
-

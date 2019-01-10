@@ -6,6 +6,15 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
+  gutter:
+    type: string
+    description: Specifies the gutter size between the columns of the grid.
+    default: medium
+    enum:
+      - none
+      - small
+      - medium
+      - large
   row_gutter:
     type: string
     description: Specifies the row gutter size between the rows of the grid.
@@ -15,17 +24,6 @@ properties:
       - small
       - medium
       - large
-  vinset:
-    type: string
-    description: The size of the inner space (vertical inset) that sits above / below the grid itself
-    default: none
-    enum:
-      - none
-      - xsmall
-      - small
-      - medium
-      - large
-      - xlarge
   items:
     type: array
     description: Array of content items to display inside the grid itself.

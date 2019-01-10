@@ -3,13 +3,13 @@
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
+{% set gutter = gutter ? gutter : null %}
 {% set row_gutter = row_gutter ? row_gutter : null %}
-{% set vinset = vinset ? vinset : "none" %}
 
 <bolt-grid
   {{ attributes }}
+  {% if gutter %}gutter="{{ gutter }}"{% endif %}
   {% if row_gutter %}row-gutter="{{ row_gutter }}"{% endif %}
-  {% if vinset %}vinset="{{ vinset }}"{% endif %}
 >
   {% for item in items %}
     {% if item is iterable %}
