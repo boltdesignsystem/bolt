@@ -15,10 +15,21 @@ function capitalize(string) {
   return string && string[0].toUpperCase() + string.slice(1);
 }
 
-
-async function sendTravisTestInfo(capabilities, testId) {
-  outputBanner('sendTravisTestInfo ran with these "capabilities":');
-  console.log(capabilities);
+/**
+ * @param {Object} capabilities
+ * @param {string} testId
+ * @param {Object} data - data sent to Sauce Labs
+ * @param {Object} body - data sent back from Sauce Labs
+ * @return {Promise<void>}
+ */
+async function sendTravisTestInfo(capabilities, testId, data, body) {
+  outputBanner('sendTravisTestInfo running..');
+  console.log({
+    capabilities,
+    testId,
+    data,
+    body,
+  });
   try {
     const {
       GITHUB_TOKEN,
@@ -67,7 +78,7 @@ async function sendTravisTestInfo(capabilities, testId) {
     `.trim();
 
     const results = await setCheckRun({
-      name: 'Nightwatch',
+      name: `Nightwatch - ${testId}`,
       status: passed ? 'success' : 'failure',
       conclusion: passed ? 'success' : 'failure',
       output: {
@@ -80,13 +91,13 @@ async function sendTravisTestInfo(capabilities, testId) {
     outputBanner('setCheckRun results');
     console.log(results);
     outputBanner('DONE: sendTravisTestInfo');
+    return results;
   } catch (error) {
     console.log('Error');
     console.error(error);
     process.exit(1);
   }
 }
-
 
 module.exports = function sauce(client, callback) {
   const currentTest = client.currentTest;
@@ -112,17 +123,24 @@ module.exports = function sauce(client, callback) {
 
   const requestPath = `/rest/v1/${username}/jobs/${sessionId}`;
 
-  sendTravisTestInfo(client.capabilities, sessionId);
 
   function responseCallback(res) {
     res.setEncoding('utf8');
     console.log('Response: ', res.statusCode, JSON.stringify(res.headers));
+    let bodies = [];
     res.on('data', function onData(chunk) {
       console.log('BODY: ' + chunk);
+      bodies.push(chunk);
     });
     res.on('end', function onEnd() {
-      console.info('Finished updating saucelabs');
-      callback();
+      const body = JSON.parse(bodies.join());
+      console.info('Finished updating saucelabs', body);
+      sendTravisTestInfo(
+        client.capabilities,
+        sessionId,
+        data,
+        body
+      ).then(results => callback());
     });
   }
 
