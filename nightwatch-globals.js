@@ -8,7 +8,7 @@ const theGlobals = {
 
   afterEach(browser, cb) {
     theGlobals.testCount += 1;
-    outputBanner(`global afterEach called, testCount at ${testCount}`);
+    outputBanner(`global afterEach called, testCount at ${theGlobals.testCount}`);
     sauce(browser, cb);
   },
 
