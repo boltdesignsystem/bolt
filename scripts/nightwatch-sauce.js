@@ -102,6 +102,12 @@ async function sendTravisTestInfo(capabilities, testId, data, body, passed) {
     const text = `
 - log_url: ${body.log_url}
 
+<video controls>
+  <source src="${body.video_url}" type="video/mp4">
+  <p>Your browser doesn't support HTML5 video. Here is
+     a <a href="${body.video_url}">link to the video</a> instead.</p>
+</video>
+
 <details>
   <summary>Data</summary>
 
