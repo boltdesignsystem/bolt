@@ -15,11 +15,43 @@ function capitalize(string) {
   return string && string[0].toUpperCase() + string.slice(1);
 }
 
+// eslint-ignore
+const bodyExample = {
+  'browser_short_version': '11',
+  'video_url': 'https://assets.saucelabs.com/jobs/54b93a335aa94b23b8411d6cbdc8a00b/video.mp4',
+  'creation_time': 1547091312,
+  'custom-data': null,
+  'browser_version': '11.285.17134.0.',
+  'owner': '[secure]',
+  'id': '54b93a335aa94b23b8411d6cbdc8a00b',
+  'record_screenshots': true,
+  'record_video': true,
+  'build': null,
+  'passed': true,
+  'public': 'public',
+  'assigned_tunnel_id': null,
+  'status': 'in progress',
+  'log_url': 'https://assets.saucelabs.com/jobs/54b93a335aa94b23b8411d6cbdc8a00b/selenium-server.log',
+  'start_time': 1547091312,
+  'proxied': false,
+  'modification_time': 1547091328,
+  'tags': [],
+  'name': 'E2e/Pattern Lab E2e',
+  'commands_not_successful': 0,
+  'video_secret': 'f9e39a9e373e4afc8eb71fc07f23966a',
+  'consolidated_status': 'passed',
+  'end_time': null,
+  'error': null,
+  'os': 'Windows 10',
+  'breakpointed': null,
+  'browser': 'iexplore',
+};
+
 /**
  * @param {Object} capabilities
  * @param {string} testId
  * @param {Object} data - data sent to Sauce Labs
- * @param {Object} body - data sent back from Sauce Labs
+ * @param {Object} body - data sent back from Sauce Labs (see `bodyExample`)
  * @return {Promise<void>}
  */
 async function sendTravisTestInfo(capabilities, testId, data, body) {
@@ -60,22 +92,26 @@ async function sendTravisTestInfo(capabilities, testId, data, body) {
     });
 
     const summary = `
-<h3>:zap: Sauce Labs Test for ${capabilities.browserName} Passed!</h3>
-<a href="https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png" target="_blank">
-<img align="right" width="50%" src="https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png" alt="Image of ${capabilities.browserName} test"></a>
+- Browser Name: ${capitalize(capabilities.browserName)}
+- Browser Version: ${capabilities.version}
+- Browser Platform: ${capitalize(capabilities.platform)}
+- [View Test in Sauce Labs](https://saucelabs.com/beta/tests/${testId}/commands)
     `.trim();
 
     const details = `
-<details open>
-  <summary>Test Details</summary>
-  <ul>
-    <li>Browser Name: ${capitalize(capabilities.browserName)}</li>
-    <li>Browser Version: ${capabilities.version}</li>
-    <li>Browser Platform: ${capitalize(capabilities.platform)}</li>
-    <li><a href="https://saucelabs.com/beta/tests/${testId}/commands" target="_blank">View Test in Sauce Labs</a></li>
-  </ul>
+<details>
+  <summary>Data</summary>
+
+\`\`\`json
+${JSON.stringify({ body, data, capabilities, testId }, null, '  ')}
+\`\`\`
+
 </details>
-    `.trim();
+
+- log_url: ${body.log_url}
+-     
+
+`.trim();
 
     const results = await setCheckRun({
       name: `Nightwatch - ${testId}`,
@@ -85,6 +121,13 @@ async function sendTravisTestInfo(capabilities, testId, data, body) {
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
         summary,
         details,
+        images: [
+          {
+            alt: `Image of ${capabilities.browserName} test`,
+            image_url: `https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png`,
+            caption: `${capabilities.browserName} Passed!`,
+          },
+        ],
       },
     });
 
