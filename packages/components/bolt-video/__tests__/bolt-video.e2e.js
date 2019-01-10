@@ -1,24 +1,14 @@
 // const sauce = require('../../../../scripts/nightwatch-sauce');
-const { getLatestDeploy } = require('../../../../scripts/utils');
+// const { getLatestDeploy } = require('../../../../scripts/utils');
 
-let testingUrl = 'https://boltdesignsystem.com';
+// let testingUrl = 'https://boltdesignsystem.com';
 let currentBrowser;
 
 module.exports = {
-  before(client, done) {
-    getLatestDeploy()
-      .then(url => {
-        testingUrl = url;
-        done();
-      })
-      .catch(err => {
-        console.log('error getLatestDeploy before a Nightwatch test', err);
-        process.exit(1);
-      });
-  },
-
   tags: ['component', 'video'],
   'Bolt Video Playback Rate': function(browser) {
+    const { testingUrl } = browser.globals;
+    console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
     let testName = 'bolt-video-playback-rate';
 
