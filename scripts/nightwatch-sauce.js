@@ -116,7 +116,7 @@ ${JSON.stringify({ body, data, capabilities, testId }, null, '  ')}
 
     const results = await setCheckRun({
       name: `Nightwatch - ${testId}`,
-      status: passed ? 'success' : 'failure',
+      status: 'completed',
       conclusion: passed ? 'success' : 'failure',
       output: {
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
