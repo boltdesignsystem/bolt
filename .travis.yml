@@ -61,6 +61,7 @@ jobs:
       after_script:
         - cd scripts && npm install
         - npm run deploy
+        - echo 'Latest deploy:' && ./get-latest-deploy.js
       cache:
         yarn: true
         directories:
