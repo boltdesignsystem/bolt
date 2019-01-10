@@ -1,6 +1,7 @@
 const globby = require('globby');
 const path = require('path');
 const { setCheckRun } = require('./scripts/check-run');
+const { getLatestDeploy } = require('./scripts/utils');
 
 let srcFolders = globby.sync([
   'packages/**/*.e2e.js',

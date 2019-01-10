@@ -1,13 +1,22 @@
-const baseUrl = process.env.NOW_URL || 'https://boltdesignsystem.com';
+const sauce = require('../../../../scripts/nightwatch-sauce');
+const { getLatestDeploy } = require('../../../../scripts/utils');
 
-// const chai = require('chai');
-// var assert = chai.assert;
-
-// const { client } = require('nightwatch-api');
-
+let testingUrl = 'https://boltdesignsystem.com';
 let currentBrowser;
 
 module.exports = {
+  beforeEach(client, done) {
+    getLatestDeploy()
+      .then(url => {
+        testingUrl = url;
+        done();
+      })
+      .catch(err => {
+        console.log('error getLatestDeploy before a Nightwatch test', err);
+        process.exit(1);
+      });
+  },
+
   tags: ['component', 'video'],
   'Bolt Video Playback Rate': function(browser) {
     currentBrowser = '--' + browser.currentEnv || 'chrome';
@@ -115,4 +124,6 @@ module.exports = {
       )
       .end();
   },
+
+  afterEach: sauce,
 };
