@@ -73,8 +73,17 @@ brew install php72
 ```
 
 After upgrading PHP, be sure to restart your iTerm instance. Otherwise, an old PHP version may still be linked, and composer will install mismatched packages.
+####Attention PHP 7.3 users
+In you are using PHP 7.3 you will must update yours `php.ini` and disable PHP PCRE JIT compilation by replacing this line:
+```bash
+;pcre.jit=1
+```
+to
+```bash
+pcre.jit=0
+```
 
-> Note: PHP 7.1 is technically fine if that's what you already have pre-installed.
+> Note: PHP 7.1 is technically fine if that's what you already have pre-installed. 
 
 ```
 brew install composer
