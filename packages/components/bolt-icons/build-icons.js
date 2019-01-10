@@ -273,11 +273,13 @@ async function build() {
 }
 
 async function generateYAML(icons) {
-  try{
+  try {
     const names = icons.map(icon => icon.id);
-    const schema = yaml.safeLoad(fs.readFileSync('../bolt-icon/icon.schema.yml', 'utf8'));
+    const schema = yaml.safeLoad(
+      fs.readFileSync('../bolt-icon/icon.schema.yml', 'utf8'),
+    );
     schema.properties.name.enum = names;
-    fs.writeFileSync('../bolt-icon/icon.schema.yml',yaml.safeDump(schema));
+    fs.writeFileSync('../bolt-icon/icon.schema.yml', yaml.safeDump(schema));
     console.log(`Icon Schema Updated`);
   } catch (error) {
     console.error(error);
