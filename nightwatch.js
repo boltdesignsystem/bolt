@@ -21,21 +21,21 @@ const launch_url = process.env.NOW_URL || 'https://boltdesignsystem.com';
 console.log({ launch_url });
 
 if (process.env.TRAVIS) {
-  setCheckRun({
-    name: 'Nightwatch',
-    status: 'in_progress',
-    output: {
-      title: 'Nightwatch running...',
-      summary: `
-      - Url used: ${process.env.NOW_URL}
-      `.trim(),
-      // details: '',
-    },
-  })
-    .then(results => {
-      console.log(`Check run started for Nightwatch: ${results.html_url}`);
-    })
-    .catch(console.log.bind(console));
+  // setCheckRun({
+  //   name: 'Nightwatch',
+  //   status: 'in_progress',
+  //   output: {
+  //     title: 'Nightwatch running...',
+  //     summary: `
+  //     - Url used: ${process.env.NOW_URL}
+  //     `.trim(),
+  //     // details: '',
+  //   },
+  // })
+  //   .then(results => {
+  //     console.log(`Check run started for Nightwatch: ${results.html_url}`);
+  //   })
+  //   .catch(console.log.bind(console));
 }
 
 module.exports = {
