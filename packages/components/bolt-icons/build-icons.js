@@ -7,6 +7,7 @@ const prettier = require('prettier');
 const SVGO = require('svgo');
 const yaml = require('js-yaml');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { buildPrep } = require('@bolt/build-tools/tasks/task-collections');
 
 const svgo = new SVGO({
   plugins: [
@@ -277,6 +278,7 @@ async function build() {
 async function generateFile(icons) {
   try {
     const config = await getConfig();
+    await buildPrep();
     const names = icons.map(icon => icon.id);
     const schema = yaml.safeLoad(
       fs.readFileSync('../bolt-icon/icon.schema.yml', 'utf8'),
