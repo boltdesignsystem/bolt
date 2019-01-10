@@ -92,23 +92,29 @@ async function sendTravisTestInfo(capabilities, testId, data, body, passed) {
       TRAVIS_TAG,
     });
 
-    const summary = `
+    const result = {
+      capabilities,
+      testId,
+      data,
+      body,
+    };
+
+    const results = [result];
+
+    const text = results
+      .map(result => {
+        const { capabilities, testId, data, body } = result;
+        return `
 - Browser Name: ${capitalize(capabilities.browserName)}
 - Browser Version: ${capabilities.version}
 - Browser Platform: ${capitalize(capabilities.platform)}
 - [View Test in Sauce Labs](https://saucelabs.com/beta/tests/${testId}/commands)
-    `.trim();
-
-    const text = `
-- log_url: ${body.log_url}
-
-<video controls>
-  <source src="${body.video_url}" type="video/mp4">
-  <p>Your browser doesn't support HTML5 video. Here is
-     a <a href="${body.video_url}">link to the video</a> instead.</p>
-</video>
-
-<details>
+- log_url: ${body.log_url}      
+- video: ${body.video_url}
+ 
+ [image](https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png)
+ 
+ <details>
   <summary>Data</summary>
 
 <pre>
@@ -117,29 +123,26 @@ async function sendTravisTestInfo(capabilities, testId, data, body, passed) {
   </code>
 </pre>
 
-</details>
-`.trim();
+</details>  
 
-    const results = await setCheckRun({
+---   
+      `.trim();
+      })
+      .join();
+
+    await setCheckRun({
       name: `Nightwatch - ${testId}`,
       status: 'completed',
       conclusion: passed ? 'success' : 'failure',
       output: {
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
-        summary,
+        summary: `
+        - Results: ${passed ? 'Success' : 'Failed'}
+        `.trim(),
         text,
-        images: [
-          {
-            alt: `Image of ${capabilities.browserName} test`,
-            image_url: `https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png`,
-            caption: `${capabilities.browserName} Passed!`,
-          },
-        ],
       },
     });
 
-    outputBanner('setCheckRun results');
-    console.log(results);
     outputBanner('DONE: sendTravisTestInfo');
     return results;
   } catch (error) {
@@ -173,7 +176,6 @@ module.exports = function sauce(client, callback) {
 
   const requestPath = `/rest/v1/${username}/jobs/${sessionId}`;
 
-
   function responseCallback(res) {
     res.setEncoding('utf8');
     console.log('Response: ', res.statusCode, JSON.stringify(res.headers));
@@ -190,7 +192,7 @@ module.exports = function sauce(client, callback) {
         sessionId,
         data,
         body,
-        passed
+        passed,
       ).then(results => callback());
     });
   }
@@ -198,16 +200,19 @@ module.exports = function sauce(client, callback) {
   try {
     console.log('Updating saucelabs', requestPath);
 
-    const req = https.request({
-      hostname: 'saucelabs.com',
-      path: requestPath,
-      method: 'PUT',
-      auth: `${username}:${accessKey}`,
-      headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': data.length,
+    const req = https.request(
+      {
+        hostname: 'saucelabs.com',
+        path: requestPath,
+        method: 'PUT',
+        auth: `${username}:${accessKey}`,
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': data.length,
+        },
       },
-    }, responseCallback);
+      responseCallback,
+    );
 
     req.on('error', function onError(e) {
       console.log('problem with request: ' + e.message);
