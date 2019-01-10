@@ -3,23 +3,22 @@
 // Tell Sauce Labs about Nightwatch fails
 
 const https = require('https');
-const url = require('url');
-const querystring = require('querystring');
-const fetch = require('node-fetch');
-const {
-  spawnSync
-} = require('child_process');
-const {
-  setGitHubStatus,
-  // createGitHubComment,
-} = require('ci-utils');
+const { outputBanner } = require('ci-utils');
+const { setCheckRun } = require('./check-run');
 
-// Util for capitalization
+/**
+ * Util for capitalization
+ * @param string
+ * @return {string}
+ */
 function capitalize(string) {
   return string && string[0].toUpperCase() + string.slice(1);
 }
 
+
 async function sendTravisTestInfo(capabilities, testId) {
+  outputBanner('sendTravisTestInfo ran with these "capabilities":');
+  console.log(capabilities);
   try {
     const {
       GITHUB_TOKEN,
@@ -49,11 +48,13 @@ async function sendTravisTestInfo(capabilities, testId) {
       TRAVIS_TAG,
     });
 
-    const githubCommentText = `
+    const summary = `
 <h3>:zap: Sauce Labs Test for ${capabilities.browserName} Passed!</h3>
 <a href="https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png" target="_blank">
 <img align="right" width="50%" src="https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png" alt="Image of ${capabilities.browserName} test"></a>
+    `.trim();
 
+    const details = `
 <details open>
   <summary>Test Details</summary>
   <ul>
@@ -65,30 +66,24 @@ async function sendTravisTestInfo(capabilities, testId) {
 </details>
     `.trim();
 
-    // `TRAVIS_PULL_REQUEST` is either `'false'` or a PR number like `'55'`. All strings.
-    if (TRAVIS && TRAVIS_PULL_REQUEST != 'false') {
-      console.log('This is a Pull Request build, so will not try to comment on PR.');
+    const results = await setCheckRun({
+      name: 'Nightwatch',
+      status: passed ? 'success' : 'failure',
+      conclusion: passed ? 'success' : 'failure',
+      output: {
+        title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
+        summary,
+        details,
+      },
+    });
 
-      const githubCommentEndpoint = `https://api.github.com/repos/${TRAVIS_REPO_SLUG}/issues/${TRAVIS_PULL_REQUEST}/comments`;
-
-      const response = await fetch(githubCommentEndpoint, {
-        method: 'POST',
-        body: JSON.stringify({
-          body: githubCommentText,
-        }),
-        headers: {
-          Authorization: `Bearer ${GITHUB_TOKEN}`,
-        },
-      }).then(res => res.json());
-      console.log(response);
-      console.log('GitHub comment posted');
-    } else {
-      console.log('This is not a Pull Request build, so will not try to comment on PR.');
-    }
-  // @todo Errors should be passed to `catch`
+    outputBanner('setCheckRun results');
+    console.log(results);
+    outputBanner('DONE: sendTravisTestInfo');
   } catch (error) {
     console.log('Error');
     console.error(error);
+    process.exit(1);
   }
 }
 
@@ -110,14 +105,6 @@ module.exports = function sauce(client, callback) {
   }
 
   const passed = currentTest.results.passed === currentTest.results.tests;
-
-  setGitHubStatus({
-    state: passed ? 'success' : 'failure',
-    context: 'nightwatch',
-    description: '',
-    url: '',
-  }).then(results => console.log(results))
-    .catch(console.log.bind(console));
 
   const data = JSON.stringify({
     passed,

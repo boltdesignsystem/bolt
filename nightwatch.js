@@ -1,6 +1,6 @@
 const globby = require('globby');
 const path = require('path');
-const { setGitHubStatus } = require('ci-utils');
+const { setCheckRun } = require('./scripts/check-run');
 
 let srcFolders = globby.sync([
   'packages/**/*.e2e.js',
@@ -15,9 +15,16 @@ srcFolders = srcFolders.map(function(folder) {
 process.env.NOW_URL = process.env.NOW_URL || 'https://boltdesignsystem.com';
 
 if (process.env.TRAVIS) {
-  setGitHubStatus({
-    state: 'pending',
-    context: 'nightwatch',
+  setCheckRun({
+    name: 'Nightwatch',
+    status: 'in_progress',
+    output: {
+      title: 'Nightwatch running...',
+      summary: `
+      - Url used: ${process.env.NOW_URL}
+      `.trim(),
+      // details: '',
+    },
   })
     .then(results => console.log(results))
     .catch(console.log.bind(console));
