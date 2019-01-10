@@ -19,7 +19,7 @@ jobs:
         - phpenv config-rm xdebug.ini
         - composer global require hirak/prestissimo
         - yarn run setup:quick
-        - node scripts/sample-check-run-use.js
+        - node ./scripts/create-check-suite.js
       script: yarn run test
       cache:
         yarn: true

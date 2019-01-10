@@ -15,6 +15,7 @@ const { spawnSync } = require('child_process');
 const { promisify } = require('util');
 const gitSemverTags = require('git-semver-tags');
 const promisifyGitTags = promisify(gitSemverTags);
+const { setCheckRun } = require('./check-run');
 
 async function init() {
   try {
@@ -86,9 +87,10 @@ async function init() {
 
     if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
 
-    await setGitHubStatus({
-      state: 'pending',
-      context: 'deploy/now.sh',
+
+    await setCheckRun({
+      name: 'deploy/now.sh',
+      status: 'in_progress',
     });
 
     outputBanner('Starting deploy...');
@@ -122,6 +124,18 @@ async function init() {
     if (deployOutput.status !== 0) {
       console.error('Error deploying:');
       console.log(deployOutput.stdout, deployOutput.stderr);
+      await setCheckRun({
+        status: 'completed',
+        name: 'deploy/now.sh',
+        conclusion: 'failure',
+        output: {
+          title: 'Now.sh Deploy failure',
+          summary: `
+${deployOutput.stdout}
+${deployOutput.stderr}
+          `.trim(),
+        },
+      });
       process.exit(1);
     }
     console.log(deployOutput.stdout, deployOutput.stderr);
@@ -150,20 +164,33 @@ async function init() {
       console.error('Error aliasing:');
       console.log(aliasOutput.stdout, aliasOutput.stderr);
 
-      await setGitHubStatus({
-        state: 'error',
-        context: 'deploy/now.sh',
-        description: `${aliasOutput.stdout} - ${aliasOutput.stderr}`,
+      await setCheckRun({
+        status: 'completed',
+        name: 'deploy/now.sh',
+        conclusion: 'failure',
+        output: {
+          title: 'Now.sh Deploy failure',
+          summary: `
+${aliasOutput.stdout}
+${aliasOutput.stderr}
+          `.trim(),
+        },
       });
       process.exit(1);
     }
     console.log(aliasOutput.stdout, aliasOutput.stderr);
 
-    await setGitHubStatus({
-      state: 'success',
-      context: 'deploy/now.sh',
-      url: deployedUrl,
-      description: `Alias set to ${aliasedUrl}`,
+    await setCheckRun({
+      status: 'completed',
+      name: 'deploy/now.sh',
+      conclusion: 'success',
+      output: {
+        title: 'Now.sh Deploy',
+        summary: `
+- ${deployedUrl}
+- ${aliasedUrl}
+        `.trim(),
+      },
     });
 
     // if this is a tagged release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `v1-2-3-boltdesignsystem.com`
