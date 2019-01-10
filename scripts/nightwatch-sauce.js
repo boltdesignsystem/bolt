@@ -6,6 +6,8 @@ const https = require('https');
 const { outputBanner } = require('ci-utils');
 const { setCheckRun } = require('./check-run');
 
+const allResults = [];
+
 /**
  * Util for capitalization
  * @param string
@@ -185,6 +187,14 @@ module.exports = function sauce(client, callback) {
     res.on('end', function onEnd() {
       const body = JSON.parse(bodies.join());
       console.info('Finished updating saucelabs', body);
+      allResults.push({
+        capabilities: client.capabilities,
+        sessionId,
+        data,
+        body,
+        passed,
+      });
+      outputBanner(`Total tests collected: ${allResults.length}`);
       sendTravisTestInfo(
         client.capabilities,
         sessionId,
