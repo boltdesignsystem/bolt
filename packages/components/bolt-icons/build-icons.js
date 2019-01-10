@@ -229,7 +229,7 @@ async function transpileIcons(icons) {
         parser: 'flow',
       });
 
-      await fs.outputFile(location, element, 'utf-8');
+      await fs.outputFile(location, component, 'utf-8');
       // Later when we call `const icons = await transpileIcons(iconPaths);` - `icons` will be an array of these objects:
       return {
         location,
