@@ -42,6 +42,19 @@
           "value": "application/schema+json"
         }
       ]
+    },
+    {
+      "source": "**/*",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Origin, X-Requested-With, Content-Type, Accept, Range"
+        }
+      ]
     }
   ]
 }

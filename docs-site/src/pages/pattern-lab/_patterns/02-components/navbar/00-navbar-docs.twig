@@ -28,28 +28,33 @@
   componentName: "navbar",
   usage: usage,
   schemaForm: {
-    demoTemplate: '@bolt-components-navbar/navbar.twig',
+    template: '@bolt-components-navbar/navbar.twig',
     layout: "horizontal",
     initialData: {
-      title: {
-        tag: "h2",
-        text: "Title Text",
-        icon: {
-          name: "brand-operations"
+      width: "auto",
+      "title": {
+        "tag": "h2",
+        "text": "Title Text",
+        "icon": {
+          "name": "marketing-gray"
         }
       },
-      links: [
+      "links": [
         {
-          text: "Link 1 Text",
-          url: "link-1-url"
+          "text": "Features",
+          "url": "#!"
         },
         {
-          text: "Link 2 Text",
-          url: "link-2-url"
+          "text": "Resources",
+          "url": "#!"
         },
         {
-          text: "Link 3 Text",
-          url: "link-3-url"
+          "text": "Industry Apps",
+          "url": "#!"
+        },
+        {
+          "text": "Customer Success",
+          "url": "#!"
         }
       ]
     },

@@ -1,10 +1,12 @@
 {% set usage %}{% verbatim %}
 {% include "@bolt-components-figure/figure.twig" with {
-  image: {
-    src: "/images/placeholders/500x500.jpg",
-    lazyload: false
+  media: {
+    image: {
+      src: "/images/placeholders/500x500.jpg",
+      lazyload: false
+    },
   },
-  caption: "The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark."
+  caption: "Figure caption."
 } only %}
 {% endverbatim %}{% endset %}
 

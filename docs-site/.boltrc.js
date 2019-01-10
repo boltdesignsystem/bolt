@@ -6,7 +6,6 @@ const config = {
   // array of languages to compile the design system. note, these are ignored when the --i18n flag is set to false
   // Note: if lang is defined, the first item is currently the one used by default in the Pattern Lab build, pending further iterations on this!
   // lang: ['en', 'ja'],
-  lang: ['en'],
 
   renderingService: false, // starts PHP service for rendering Twig templates
   openServerAtStart: false,
@@ -73,7 +72,7 @@ const config = {
   components: {
     global: [
       '@bolt/global',
-      // '@bolt/schema-form',
+      '@bolt/schema-form',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
@@ -103,7 +102,6 @@ const config = {
       '@bolt/components-navbar',
       '@bolt/components-navlink',
       '@bolt/components-logo',
-      '@bolt/components-ordered-list',
       '@bolt/components-page-footer',
       '@bolt/components-page-header',
       '@bolt/components-pagination',
@@ -116,7 +114,8 @@ const config = {
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
-      '@bolt/components-unordered-list',
+      '@bolt/components-ul',
+      '@bolt/components-ol',
       '@bolt/components-video',
       '@bolt/components-grid',
       /**

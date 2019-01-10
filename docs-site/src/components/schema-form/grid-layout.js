@@ -1,5 +1,6 @@
 import { h } from '@bolt/core';
-import React from 'react';
+// import React from 'react';
+import React, { Component } from 'react';
 import { WidthProvider, Responsive } from 'react-grid-layout';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
@@ -8,7 +9,7 @@ const originalLayouts = getFromLS('layouts') || {};
 /**
  * This layout demonstrates how to sync multiple responsive layouts to localstorage.
  */
-export default class ResponsiveLocalStorageLayout extends React.PureComponent {
+export class ResponsiveLocalStorageLayout extends React.Component {
   constructor(props) {
     super(props);
 
