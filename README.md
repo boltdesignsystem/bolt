@@ -1,5 +1,5 @@
 <h1>
-  <img align="left" width="40" src="https://raw.githubusercontent.com/bolt-design-system/bolt/master/docs-site/images/bolt-logo.png">
+  <img align="left" width="40" src="https://raw.githubusercontent.com/bolt-design-system/bolt/master/docs-site/src/assets/images/bolt-logo.png">
   Bolt Design System
 </h1>
 

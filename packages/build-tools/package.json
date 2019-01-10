@@ -1,6 +1,6 @@
 {
   "name": "@bolt/build-tools",
-  "version": "2.2.2",
+  "version": "2.3.0-rc.0",
   "license": "MIT",
   "description": "Curated collection of front-end build tools in the Bolt Design System.",
   "main": "index.js",
@@ -21,13 +21,13 @@
     }
   ],
   "dependencies": {
-    "incache": "^7.2.1",
+    "@octokit/plugin-throttling": "^2.1.0",
+    "@bolt/babel-preset-bolt": "^2.3.0-rc.0",
+    "@bolt/config-browserlist": "^2.3.0-rc.0",
+    "@bolt/postcss-themify": "^2.3.0-rc.0",
+    "@bolt/sass-export-data": "^2.3.0-rc.0",
+    "@bolt/sassdoc-webpack-plugin": "^2.3.0-rc.0",
     "@octokit/rest": "^16.3.0",
-    "@bolt/babel-preset-bolt": "^2.2.2",
-    "@bolt/config-browserlist": "^2.2.2",
-    "@bolt/postcss-themify": "^2.2.2",
-    "@bolt/sass-export-data": "^2.2.2",
-    "@bolt/sassdoc-webpack-plugin": "^2.2.2",
     "address": "^1.0.3",
     "autoprefixer": "^9.4.3",
     "babel-loader": "^8.0.4",
@@ -51,6 +51,7 @@
     "front-matter": "^3.0.1",
     "globby": "^8.0.1",
     "hard-source-webpack-plugin": "git+https://github.com/chronweigle/hard-source-webpack-plugin/#add-prefix",
+    "incache": "^7.2.1",
     "js-yaml": "^3.12.0",
     "json-loader": "^0.5.7",
     "jsonschema": "^1.2.4",
@@ -70,8 +71,8 @@
     "postcss-loader": "^3.0.0",
     "postcss-scss": "^2.0.0",
     "pretty-ms": "^4.0.0",
-    "resolve-url-loader": "^3.0.0",
     "resolve": "^1.9.0",
+    "resolve-url-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
     "sassdoc": "^2.5.1",
     "semver": "^5.6.0",
@@ -83,11 +84,11 @@
     "typescript": "^3.2.2",
     "uglifyjs-webpack-plugin": "^2.1.0",
     "url-loader": "^1.1.2",
+    "webpack": "4.28.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-middleware": "^3.4.0",
     "webpack-hot-middleware": "^2.24.3",
     "webpack-manifest-plugin": "^2.0.4",
-    "webpack": "4.28.2",
     "write-file-webpack-plugin": "^4.5.0",
     "yaml-loader": "^0.5.0",
     "yargs": "^12.0.5"
@@ -98,5 +99,5 @@
   "schema": "utils/config.schema.yml",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "homepage": "https://boltdesignsystem.com",
-  "gitHead": "6368a1636ee39759167cd146de58a42fbd62453a"
+  "gitHead": "b47538629e315eeecbdfcb8d0c22e787b3bcc089"
 }
