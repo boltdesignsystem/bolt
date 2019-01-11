@@ -122,7 +122,7 @@ async function setGithubAppSauceResults(
 ---
     `.trim();
 
-    await setCheckRun({
+    return await setCheckRun({
       name: `Nightwatch - ${capitalize(capabilities.browserName)}: ${capitalize(
         capabilities.platform,
       )}`,
@@ -136,9 +136,6 @@ async function setGithubAppSauceResults(
         text,
       },
     });
-
-    outputBanner('DONE: setGithubAppSauceResults');
-    return results;
   } catch (error) {
     console.log('Error');
     console.error(error);
@@ -179,6 +176,10 @@ module.exports = function sauce(client, callback) {
         sessionId,
         results,
         passed,
-      ).then(results => callback());
+      ).then(results => {
+        outputBanner('DONE: setGithubAppSauceResults');
+        console.log(results);
+        callback();
+      });
     });
 };
