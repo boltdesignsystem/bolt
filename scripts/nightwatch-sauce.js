@@ -117,7 +117,7 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
 ---
     `.trim();
 
-    return await setCheckRun({
+    await setCheckRun({
       name: `Nightwatch - ${capitalize(capabilities.browserName)}: ${capitalize(
         capabilities.platform,
       )} - ${sessionId}`,

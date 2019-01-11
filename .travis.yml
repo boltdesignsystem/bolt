@@ -67,7 +67,6 @@ jobs:
       script:
         - yarn run setup
         - npx nightwatch --config nightwatch.js --env chrome,ie11
-        - cat /tmp/nightwatch-results.json || true
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
