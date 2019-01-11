@@ -189,8 +189,8 @@ ${aliasOutput.stderr}
       },
     });
 
-    // if this is a tagged release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `v1-2-3-boltdesignsystem.com`
-    if (TRAVIS_TAG && TRAVIS_TAG === latestTag) {
+    // if this is a tagged full release, then it should become the main site. we aliased above so we have a tagged version out as well i.e. `v1-2-3-boltdesignsystem.com`
+    if (TRAVIS_TAG && TRAVIS_TAG === latestTag && !latestTag.includes('rc')) {
       console.log('Is tag build, aliasing to main site.');
       const aliasOutput2 = spawnSync(
         'now',
