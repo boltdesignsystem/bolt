@@ -53,18 +53,22 @@ const bodyExample = {
 /**
  * @param {Object} capabilities
  * @param {string} testId
- * @param {Object} data - data sent to Sauce Labs
  * @param {Object} body - data sent back from Sauce Labs (see `bodyExample`)
  * @param {boolean} passed
  * @return {Promise<void>}
  */
-async function sendTravisTestInfo(capabilities, testId, data, body, passed) {
-  outputBanner('sendTravisTestInfo running..');
+async function setGithubAppSauceResults(
+  capabilities,
+  testId,
+  body,
+  passed,
+) {
+  outputBanner('setGithubAppSauceResults running..');
   console.log({
     capabilities,
     testId,
-    data,
     body,
+    passed,
   });
   try {
     const {
@@ -95,19 +99,7 @@ async function sendTravisTestInfo(capabilities, testId, data, body, passed) {
       TRAVIS_TAG,
     });
 
-    const result = {
-      capabilities,
-      testId,
-      data,
-      body,
-    };
-
-    const results = [result];
-
-    const text = results
-      .map(result => {
-        const { capabilities, testId, data, body } = result;
-        return `
+    const text = `
 - Browser Name: ${capitalize(capabilities.browserName)}
 - Browser Version: ${capabilities.version}
 - Browser Platform: ${capitalize(capabilities.platform)}
@@ -122,19 +114,19 @@ async function sendTravisTestInfo(capabilities, testId, data, body, passed) {
 
 <pre>
   <code>
-  ${JSON.stringify({ body, data, capabilities, testId }, null, '  ')}
+  ${JSON.stringify({ body, passed, capabilities, testId }, null, '  ')}
   </code>
 </pre>
 
 </details>  
 
----   
-      `.trim();
-      })
-      .join();
+---
+    `.trim();
 
     await setCheckRun({
-      name: `Nightwatch - ${testId}`,
+      name: `Nightwatch - ${capitalize(capabilities.browserName)}: ${capitalize(
+        capabilities.platform,
+      )}`,
       status: 'completed',
       conclusion: passed ? 'success' : 'failure',
       output: {
@@ -146,7 +138,7 @@ async function sendTravisTestInfo(capabilities, testId, data, body, passed) {
       },
     });
 
-    outputBanner('DONE: sendTravisTestInfo');
+    outputBanner('DONE: setGithubAppSauceResults');
     return results;
   } catch (error) {
     console.log('Error');
@@ -157,9 +149,8 @@ async function sendTravisTestInfo(capabilities, testId, data, body, passed) {
 
 module.exports = function sauce(client, callback) {
   const currentTest = client.currentTest;
-  const username = client.options.username;
   const sessionId = client.capabilities['webdriver.remote.sessionid'];
-  const accessKey = client.options.accessKey;
+  const { username, accessKey } = client.options;
 
   if (!client.launch_url.match(/saucelabs/)) {
     console.log('Not saucelabs ...');
@@ -173,16 +164,8 @@ module.exports = function sauce(client, callback) {
 
   const passed = currentTest.results.passed === currentTest.results.tests;
 
-  // @todo removed this redundant piece of infor with passed variable
-  const data = JSON.stringify({
-    passed,
-  });
-
-  // const requestPath = `/rest/v1/${username}/jobs/${sessionId}`;
-
   fetch(`https://saucelabs.com/rest/v1/${username}/jobs/${sessionId}`, {
     method: 'PUT',
-    // double check this
     auth: `${username}:${accessKey}`,
     headers: {
       'Content-Type': 'application/json',
@@ -190,66 +173,14 @@ module.exports = function sauce(client, callback) {
       'Content-Length': data.length,
     },
   })
-    .then(res => {
-      const { ok } = res;
-      return res.json();
-    })
+    .then(res => res.json())
     .then(results => {
-      outputBanner(`Results from SauceLabs Call: ${results}`)
-      sendTravisTestInfo(
+      outputBanner(`Results from SauceLabs Call: ${results}`);
+      setGithubAppSauceResults(
         client.capabilities,
         sessionId,
-        data,
         results,
         passed,
       ).then(results => callback());
     });
-
-  // function responseCallback(res) {
-  //   res.setEncoding('utf8');
-  //   console.log('Response: ', res.statusCode, JSON.stringify(res.headers));
-  //   let bodies = [];
-  //   res.on('data', function onData(chunk) {
-  //     console.log('BODY: ' + chunk);
-  //     bodies.push(chunk);
-  //   });
-  //   res.on('end', function onEnd() {
-  //     const body = JSON.parse(bodies.join());
-  //     console.info('Finished updating saucelabs', body);
-  //     sendTravisTestInfo(
-  //       client.capabilities,
-  //       sessionId,
-  //       data,
-  //       body,
-  //       passed,
-  //     ).then(results => callback());
-  //   });
-  // }
-
-  // try {
-  //   console.log('Updating saucelabs', requestPath);
-  //
-  //   const req = https.request(
-  //     {
-  //       hostname: 'saucelabs.com',
-  //       path: requestPath,
-  //       method: 'PUT',
-  //       auth: `${username}:${accessKey}`,
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Content-Length': data.length,
-  //       },
-  //     },
-  //     responseCallback,
-  //   );
-  //
-  //   req.on('error', function onError(e) {
-  //     console.log('problem with request: ' + e.message);
-  //   });
-  //   req.write(data);
-  //   req.end();
-  // } catch (error) {
-  //   console.log('Error', error);
-  //   callback();
-  // }
 };
