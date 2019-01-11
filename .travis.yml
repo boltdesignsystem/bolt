@@ -20,9 +20,11 @@ jobs:
         - phpenv config-rm xdebug.ini
         - composer global require hirak/prestissimo
         - yarn run setup:quick
+        - ./scripts/check-run-queue.js 'Lint'
+        - ./scripts/check-run-queue.js 'Unit'
       script:
-        - node test/lint.js
-        - node test/unit.js
+        - ./test/lint.js
+        - ./test/unit.js
       cache:
         yarn: true
         directories:
