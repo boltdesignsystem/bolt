@@ -179,12 +179,11 @@ function handleNightwatchResults(client, callback) {
   })
     .then(() => {
       outputBanner('DONE: setGithubAppSauceResults');
-      callback();
     })
     .catch(err => {
       console.log('Error setGithubAppSauceResults:', err);
-      callback();
     });
+  callback();
 }
 
 module.exports = {
