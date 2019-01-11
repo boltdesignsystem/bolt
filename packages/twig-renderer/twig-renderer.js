@@ -32,8 +32,8 @@ async function init() {
     debug: true,
     alterTwigEnv: config.alterTwigEnv,
     hasExtraInfoInResponses: false, // Will add `info` onto results with a lot of info about Twig Env
-    maxConcurrency: 10,
-    keepAlive: false, // setting this to true will cause subsequent template / page recompiles to not regenerate when the source files have changed
+    maxConcurrency: 50,
+    keepAlive: config.prod ? true : false, // setting this to true will cause subsequent template / page recompiles to not regenerate when the source files have changed
   });
   state = STATES.READY;
 }
@@ -46,7 +46,7 @@ async function prep() {
       return await init();
     case STATES.STARTING:
       while (state === STATES.STARTING) {
-        await sleep(100); // eslint-disable-line no-await-in-loop
+        await sleep(20); // eslint-disable-line no-await-in-loop
       }
   }
 }
