@@ -66,7 +66,7 @@ $bolt-blockquote-image-size: 4rem;
   ::slotted(p:first-child),
   ::slotted(p.is-first-child),
   ::slotted(p:last-child),
-  ::slotted(p.is-last-child), {
+  ::slotted(p.is-last-child) {
     &:before,
     &:after {
       font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
@@ -271,7 +271,7 @@ $bolt-blockquote-image-size: 4rem;
     p:first-child:before {
       @include bolt-padding(0 2px);
     }
-    
+
     ::slotted(p:first-child),
     ::slotted(p.is-first-child) {
       &:before {
