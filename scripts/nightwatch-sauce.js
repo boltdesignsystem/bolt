@@ -15,12 +15,17 @@ function capitalize(string) {
 }
 
 /**
- * @param {Object} currentTest - Meta data of current tests
- * @param {Object} capabilities - Browser/Client capabilities and settings
- * @param {string} sessionId - Testing Session Id in SauceLabs
+ * @param {Object} opt
+ * @param {Object} opt.currentTest - Meta data of current tests
+ * @param {Object} opt.capabilities - Browser/Client capabilities and settings
+ * @param {string} opt.sessionId - Testing Session Id in SauceLabs
  * @return {Promise<void>}
  */
-async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
+async function setGithubAppSauceResults({
+  currentTest,
+  capabilities,
+  sessionId,
+}) {
   outputBanner('setGithubAppSauceResults running..');
   console.log({
     currentTest,
@@ -69,17 +74,16 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
 - Browser Platform: ${capitalize(capabilities.platform)}
 - [View Test in Sauce Labs](https://saucelabs.com/beta/tests/${sessionId}/commands)
  
- [image](https://assets.saucelabs.com/jobs/${sessionId}/0001screenshot.png)
+ ![image](https://assets.saucelabs.com/jobs/${sessionId}/0001screenshot.png)
  
  ---
  
-<details>
+<details open>
   <summary>Test Result Details</summary>
   ${Object.keys(currentTest.results.testcases).map(testName => {
     return `
----
-    
-- Test Name: ${testName}
+### Test Name: ${testName}
+
 - Time: ${currentTest.results.testcases[testName].time} seconds
 - Assertions: ${currentTest.results.testcases[testName].tests}
 - Passed: ${currentTest.results.testcases[testName].passed}
@@ -87,6 +91,7 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
 - Failed: ${currentTest.results.testcases[testName].failed}
 - Skipped: ${currentTest.results.testcases[testName].skipped}
 
+---
         `.trim();
   })}
 </details>
@@ -95,18 +100,23 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
 
 <details>
   <summary>Data</summary>
-  <pre>
-    <code>
-    ${JSON.stringify({ currentTest, capabilities, sessionId }, null, '  ')}
-    </code>
-  </pre>
+  
+  \`\`\`json
+   ${JSON.stringify({ currentTest, capabilities, sessionId }, null, '  ')}
+  \`\`\`
+  
+  <!--<pre> <code class="highlight highlight-source-json"> </code> </pre>-->
+  
 </details>  
     `.trim();
-
+    const name = [
+      'NW',
+      currentTest.name,
+      capitalize(capabilities.browserName),
+      capitalize(capabilities.platform),
+    ].join(' - ');
     await setCheckRun({
-      name: `NW.js - ${capitalize(capabilities.browserName)}: ${capitalize(
-        capabilities.platform,
-      )} - ${currentTest.name}`,
+      name,
       status: 'completed',
       conclusion: passed ? 'success' : 'failure',
       output: {
@@ -124,7 +134,12 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
   }
 }
 
-module.exports = function sauce(client, callback) {
+/**
+ * @param {Object} client - Nightwatch instance @todo add link to API docs
+ * @param {function} callback
+ * @returns {void}
+ */
+function handleNightwatchResults(client, callback) {
   const currentTest = client.currentTest;
   const sessionId = client.capabilities['webdriver.remote.sessionid'];
   const { username, accessKey } = client.options;
@@ -139,12 +154,22 @@ module.exports = function sauce(client, callback) {
     return callback();
   }
 
-  setGithubAppSauceResults(currentTest, client.capabilities, sessionId).then(
-    results => {
+  setGithubAppSauceResults({
+    currentTest,
+    capabilities: client.capabilities,
+    sessionId,
+  })
+    .then(results => {
       outputBanner('DONE: setGithubAppSauceResults');
       console.log(results);
-    },
-  );
+      callback();
+    })
+    .catch(err => {
+      console.log('Error setGithubAppSauceResults:', err);
+      callback();
+    });
+}
 
-  callback();
+module.exports = {
+  handleNightwatchResults,
 };

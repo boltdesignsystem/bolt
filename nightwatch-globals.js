@@ -6,7 +6,7 @@
 // const { tmpdir } = require('os');
 // const { join } = require('path');
 // const { readFileSync, writeFileSync } = require('fs');
-const sauce = require('./scripts/nightwatch-sauce');
+const { handleNightwatchResults } = require('./scripts/nightwatch-sauce');
 
 // const dataFilePath = join(tmpdir(), 'nightwatch-results.json');
 
@@ -31,7 +31,7 @@ const theGlobals = {
     // write(data);
     // // theGlobals.testCount += 1;
     // outputBanner(`global afterEach called, testCount at ${data.testCount}`);
-    sauce(browser, cb);
+    handleNightwatchResults(browser, cb);
   },
 
   reporter(results, cb) {
@@ -39,7 +39,7 @@ const theGlobals = {
     // const data = read();
     // data.results.push(results);
     // write(data);
-    // console.log(`global reporter called; have total of ${data.results.length}`);
+    console.log('global reporter called');
     console.log(results);
     cb();
   },
