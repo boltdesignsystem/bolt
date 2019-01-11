@@ -621,6 +621,7 @@ class BoltVideo extends withPreact() {
     }
 
     const classes = css(
+      `t-bolt-xdark`,
       `c-${bolt.namespace}-video`,
       this.props.controls === false
         ? `c-${bolt.namespace}-video--hide-controls`

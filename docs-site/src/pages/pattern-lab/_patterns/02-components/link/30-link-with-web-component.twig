@@ -1,0 +1,80 @@
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as link_demo %}
+
+{% set link_demo_advanced %}
+<bolt-link>
+  <a href="https://pega.com" target="_blank">This is a link</a>
+</bolt-link>
+{% endset %}
+
+{% set link_demo_icon %}
+<p>
+  <bolt-link><a href="https://pega.com"><bolt-icon slot="before" name="info-open"></bolt-icon>This is a link with icon</a></bolt-link>
+</p>
+<p>
+  <bolt-link><a href="https://pega.com">This is a link with icon<bolt-icon slot="after" name="info-open"></bolt-icon></a></bolt-link>
+</p>
+{% endset %}
+
+{% set link_demo_inline %}
+<p>This is an <bolt-link><a href="https://pega.com">inline link</a></bolt-link>, and this is an <bolt-link><a href="https://pega.com"><bolt-icon slot="before" name="info-open"></bolt-icon>inline link with an icon</a></bolt-link>. Inline links are truly inline, which means the text can wrap to a second line and the icon falls on the baseline either before or after the text.</p>
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Web Component Usage
+    </bolt-text>
+    <bolt-text>
+      Bolt Link is a web component that renders a semantic link with Bolt styles. To make a simple link, wrap a semantic <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> element with a <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> element. Common HTML attributes such as <bolt-code-snippet display="inline" lang="html">href</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">target</bolt-code-snippet> placed on the <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> would work as expected.
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+        {% cell "u-bolt-width-12/12" %}
+          {{ link_demo_advanced }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include link_demo.code_example(link_demo_advanced, true) %}
+  </div>
+
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Inline Links
+    </bolt-text>
+    <bolt-text>
+      When using inline links, do not add line breaks in or around your <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> tag. Inline links will show the white-space added by line breaks, so removing them is necessary to eliminate unwanted space.
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+        {% cell "u-bolt-width-12/12" %}
+          {{ link_demo_inline }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include link_demo.code_example(link_demo_inline, true) %}
+  </div>
+
+  <bolt-text headline>
+    Links with Icons
+  </bolt-text>
+  <bolt-text>
+    To add icons to <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>, place a <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> next to your link text. For icons to have the correct spacing, you <em>must</em> add the <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> attribute to <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet>. The <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> value can be <bolt-code-snippet display="inline" lang="html">before</bolt-code-snippet> or <bolt-code-snippet display="inline" lang="html">after</bolt-code-snippet>.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ link_demo_icon }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include link_demo.code_example(link_demo_icon, true) %}
+</div>
