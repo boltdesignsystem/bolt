@@ -50,34 +50,38 @@ $bolt-blockquote-image-size: 4rem;
   max-width: 44rem;
   color: bolt-theme(headline);
 
-  p:first-child:before,
-  p:last-child:after {
+  p:not([slot]):first-child:before,
+  p:not([slot]):last-child:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
   }
 
-  p:first-child:before {
+  p:not([slot]):first-child:before {
     content: '\201C';
   }
 
-  p:last-child:after {
+  p:not([slot]):last-child:after {
     content: '\201D';
   }
 
   ::slotted(p:first-child),
-  ::slotted(p:last-child) {
+  ::slotted(p.is-first-child),
+  ::slotted(p:last-child),
+  ::slotted(p.is-last-child), {
     &:before,
     &:after {
       font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
     }
   }
 
-  ::slotted(p:first-child) {
+  ::slotted(p:first-child),
+  ::slotted(p.is-first-child) {
     &:before {
       content: '\201C';
     }
   }
 
-  ::slotted(p:last-child) {
+  ::slotted(p:last-child),
+  ::slotted(p.is-last-child) {
     &:after {
       content: '\201D';
     }
@@ -87,13 +91,19 @@ $bolt-blockquote-image-size: 4rem;
 // Attribution
 .c-bolt-blockquote__image {
   display: inline-block;
+  box-sizing: border-box;
   width: $bolt-blockquote-image-size;
   height: $bolt-blockquote-image-size;
   overflow: hidden;
+  vertical-align: middle;
   border-radius: 50%;
   border-width: $bolt-blockquote-image-border-width;
   border-style: $bolt-blockquote-image-border-style;
   border-color: $bolt-blockquote-image-border-color;
+
+  > * {
+    max-width: 100%;
+  }
 }
 
 .c-bolt-blockquote__footer {
@@ -129,6 +139,11 @@ $bolt-blockquote-image-size: 4rem;
     @include bolt-margin-right(auto);
     @include bolt-margin-left(auto);
   }
+
+  .c-bolt-blockquote__logo > *::slotted(*) {
+    @include bolt-margin-right(auto);
+    @include bolt-margin-left(auto);
+  }
 }
 
 .c-bolt-blockquote--align-items-end {
@@ -136,6 +151,11 @@ $bolt-blockquote-image-size: 4rem;
 
   .c-bolt-blockquote__quote,
   .c-bolt-blockquote__logo > * {
+    @include bolt-margin-right(0);
+    @include bolt-margin-left(auto);
+  }
+
+  .c-bolt-blockquote__logo > *::slotted(*) {
     @include bolt-margin-right(0);
     @include bolt-margin-left(auto);
   }
@@ -221,7 +241,8 @@ $bolt-blockquote-image-size: 4rem;
       transform: translate3d(-110%, 0, 0);
     }
 
-    ::slotted(p:first-child) {
+    ::slotted(p:first-child),
+    ::slotted(p.is-first-child) {
       &:before {
         position: absolute;
         transform: translate3d(-110%, 0, 0);
@@ -236,7 +257,8 @@ $bolt-blockquote-image-size: 4rem;
       @include bolt-padding(0 2px);
     }
 
-    ::slotted(p:first-child) {
+    ::slotted(p:first-child),
+    ::slotted(p.is-first-child) {
       &:before {
         @include bolt-padding(0 2px);
       }
@@ -249,8 +271,9 @@ $bolt-blockquote-image-size: 4rem;
     p:first-child:before {
       @include bolt-padding(0 2px);
     }
-
-    ::slotted(p:first-child) {
+    
+    ::slotted(p:first-child),
+    ::slotted(p.is-first-child) {
       &:before {
         @include bolt-padding(0 2px);
       }
@@ -261,7 +284,8 @@ $bolt-blockquote-image-size: 4rem;
       transform: translate3d(10%, 0, 0);
     }
 
-    ::slotted(p:first-child) {
+    ::slotted(p:last-child),
+    ::slotted(p.is-last-child) {
       &:after {
         position: absolute;
         transform: translate3d(10%, 0, 0);

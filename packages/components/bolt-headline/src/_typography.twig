@@ -64,6 +64,10 @@
   {% set longTitle = true %}
 {% endif %}
 
+{% if slot %}
+  {% set attributes = attributes.setAttribute("slot", slot) %}
+{% endif %}
+
 
 {% set classes = [
   baseClass,
