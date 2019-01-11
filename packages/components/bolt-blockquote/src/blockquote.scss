@@ -90,6 +90,7 @@ $bolt-blockquote-image-size: 4rem;
 
 // Attribution
 .c-bolt-blockquote__image {
+  @include bolt-margin-bottom(small);
   display: inline-block;
   box-sizing: border-box;
   width: $bolt-blockquote-image-size;
@@ -112,7 +113,6 @@ $bolt-blockquote-image-size: 4rem;
 }
 
 .c-bolt-blockquote__footer-item {
-  @include bolt-margin-bottom(small);
   display: block;
 
   &:last-child {
