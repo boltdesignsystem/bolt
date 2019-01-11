@@ -3,6 +3,7 @@
 // Tell Sauce Labs about Nightwatch fails
 
 const { outputBanner } = require('ci-utils');
+const fetch = require('node-fetch');
 const { setCheckRun } = require('./check-run');
 
 /**
