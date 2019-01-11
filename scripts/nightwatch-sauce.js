@@ -2,7 +2,6 @@
 
 // Tell Sauce Labs about Nightwatch fails
 
-const fetch = require('node-fetch');
 const { outputBanner } = require('ci-utils');
 const { setCheckRun } = require('./check-run');
 
@@ -52,7 +51,6 @@ const bodyExample = {
 /**
  * @param {Object} capabilities
  * @param {string} testId
- * @param {Object} body - data sent back from Sauce Labs (see `bodyExample`)
  * @param {boolean} passed
  * @return {Promise<void>}
  */
@@ -98,8 +96,6 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
 - Browser Version: ${capabilities.version}
 - Browser Platform: ${capitalize(capabilities.platform)}
 - [View Test in Sauce Labs](https://saucelabs.com/beta/tests/${sessionId}/commands)
-- log_url: ${body.log_url}      
-- video: ${body.video_url}
  
  [image](https://assets.saucelabs.com/jobs/${sessionId}/0001screenshot.png)
  
@@ -118,16 +114,16 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
     `.trim();
 
     await setCheckRun({
-      name: `Nightwatch - ${capitalize(capabilities.browserName)}: ${capitalize(
+      name: `NW.js - ${capitalize(capabilities.browserName)}: ${capitalize(
         capabilities.platform,
-      )} - ${sessionId}`,
+      )} - ${currentTest.name}`,
       status: 'completed',
       conclusion: passed ? 'success' : 'failure',
       output: {
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
-        summary: `
-        - Results: ${passed ? 'Success' : 'Failed'}
-        `.trim(),
+        summary: `- Results: ${currentTest.results.passed} of ${
+          currentTest.results.tests
+        }`.trim(),
         text,
       },
     });
@@ -159,6 +155,6 @@ module.exports = function sauce(client, callback) {
     .then(results => {
       outputBanner('DONE: setGithubAppSauceResults');
       console.log(results);
-    })
-    .then(() => callback());
+    });
+  callback();
 };
