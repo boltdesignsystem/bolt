@@ -3,6 +3,7 @@
 // Tell Sauce Labs about Nightwatch fails
 
 const https = require('https');
+const fetch = require('node-fetch');
 const { outputBanner } = require('ci-utils');
 const { setCheckRun } = require('./check-run');
 
@@ -17,34 +18,36 @@ function capitalize(string) {
 
 // eslint-ignore
 const bodyExample = {
-  'browser_short_version': '11',
-  'video_url': 'https://assets.saucelabs.com/jobs/54b93a335aa94b23b8411d6cbdc8a00b/video.mp4',
-  'creation_time': 1547091312,
+  browser_short_version: '11',
+  video_url:
+    'https://assets.saucelabs.com/jobs/54b93a335aa94b23b8411d6cbdc8a00b/video.mp4',
+  creation_time: 1547091312,
   'custom-data': null,
-  'browser_version': '11.285.17134.0.',
-  'owner': '[secure]',
-  'id': '54b93a335aa94b23b8411d6cbdc8a00b',
-  'record_screenshots': true,
-  'record_video': true,
-  'build': null,
-  'passed': true,
-  'public': 'public',
-  'assigned_tunnel_id': null,
-  'status': 'in progress',
-  'log_url': 'https://assets.saucelabs.com/jobs/54b93a335aa94b23b8411d6cbdc8a00b/selenium-server.log',
-  'start_time': 1547091312,
-  'proxied': false,
-  'modification_time': 1547091328,
-  'tags': [],
-  'name': 'E2e/Pattern Lab E2e',
-  'commands_not_successful': 0,
-  'video_secret': 'f9e39a9e373e4afc8eb71fc07f23966a',
-  'consolidated_status': 'passed',
-  'end_time': null,
-  'error': null,
-  'os': 'Windows 10',
-  'breakpointed': null,
-  'browser': 'iexplore',
+  browser_version: '11.285.17134.0.',
+  owner: '[secure]',
+  id: '54b93a335aa94b23b8411d6cbdc8a00b',
+  record_screenshots: true,
+  record_video: true,
+  build: null,
+  passed: true,
+  public: 'public',
+  assigned_tunnel_id: null,
+  status: 'in progress',
+  log_url:
+    'https://assets.saucelabs.com/jobs/54b93a335aa94b23b8411d6cbdc8a00b/selenium-server.log',
+  start_time: 1547091312,
+  proxied: false,
+  modification_time: 1547091328,
+  tags: [],
+  name: 'E2e/Pattern Lab E2e',
+  commands_not_successful: 0,
+  video_secret: 'f9e39a9e373e4afc8eb71fc07f23966a',
+  consolidated_status: 'passed',
+  end_time: null,
+  error: null,
+  os: 'Windows 10',
+  breakpointed: null,
+  browser: 'iexplore',
 };
 
 /**
@@ -170,57 +173,83 @@ module.exports = function sauce(client, callback) {
 
   const passed = currentTest.results.passed === currentTest.results.tests;
 
+  // @todo removed this redundant piece of infor with passed variable
   const data = JSON.stringify({
     passed,
   });
 
-  const requestPath = `/rest/v1/${username}/jobs/${sessionId}`;
+  // const requestPath = `/rest/v1/${username}/jobs/${sessionId}`;
 
-  function responseCallback(res) {
-    res.setEncoding('utf8');
-    console.log('Response: ', res.statusCode, JSON.stringify(res.headers));
-    let bodies = [];
-    res.on('data', function onData(chunk) {
-      console.log('BODY: ' + chunk);
-      bodies.push(chunk);
-    });
-    res.on('end', function onEnd() {
-      const body = JSON.parse(bodies.join());
-      console.info('Finished updating saucelabs', body);
+  fetch(`https://saucelabs.com/rest/v1/${username}/jobs/${sessionId}`, {
+    method: 'PUT',
+    // double check this
+    auth: `${username}:${accessKey}`,
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'Content-Length': data.length,
+    },
+  })
+    .then(res => {
+      const { ok } = res;
+      return res.json();
+    })
+    .then(results => {
+      outputBanner(`Results from SauceLabs Call: ${results}`)
       sendTravisTestInfo(
         client.capabilities,
         sessionId,
         data,
-        body,
+        results,
         passed,
       ).then(results => callback());
     });
-  }
 
-  try {
-    console.log('Updating saucelabs', requestPath);
+  // function responseCallback(res) {
+  //   res.setEncoding('utf8');
+  //   console.log('Response: ', res.statusCode, JSON.stringify(res.headers));
+  //   let bodies = [];
+  //   res.on('data', function onData(chunk) {
+  //     console.log('BODY: ' + chunk);
+  //     bodies.push(chunk);
+  //   });
+  //   res.on('end', function onEnd() {
+  //     const body = JSON.parse(bodies.join());
+  //     console.info('Finished updating saucelabs', body);
+  //     sendTravisTestInfo(
+  //       client.capabilities,
+  //       sessionId,
+  //       data,
+  //       body,
+  //       passed,
+  //     ).then(results => callback());
+  //   });
+  // }
 
-    const req = https.request(
-      {
-        hostname: 'saucelabs.com',
-        path: requestPath,
-        method: 'PUT',
-        auth: `${username}:${accessKey}`,
-        headers: {
-          'Content-Type': 'application/json',
-          'Content-Length': data.length,
-        },
-      },
-      responseCallback,
-    );
-
-    req.on('error', function onError(e) {
-      console.log('problem with request: ' + e.message);
-    });
-    req.write(data);
-    req.end();
-  } catch (error) {
-    console.log('Error', error);
-    callback();
-  }
+  // try {
+  //   console.log('Updating saucelabs', requestPath);
+  //
+  //   const req = https.request(
+  //     {
+  //       hostname: 'saucelabs.com',
+  //       path: requestPath,
+  //       method: 'PUT',
+  //       auth: `${username}:${accessKey}`,
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Content-Length': data.length,
+  //       },
+  //     },
+  //     responseCallback,
+  //   );
+  //
+  //   req.on('error', function onError(e) {
+  //     console.log('problem with request: ' + e.message);
+  //   });
+  //   req.write(data);
+  //   req.end();
+  // } catch (error) {
+  //   console.log('Error', error);
+  //   callback();
+  // }
 };
