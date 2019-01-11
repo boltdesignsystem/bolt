@@ -10,7 +10,7 @@
   <replace-with-children class="{{ "#{base_class}__body" }}">
     {% if card_body_content %}
       {# The replace function is a hack to get around the utf-8 bug. #}
-      {{ body.content | join | replace({"UTF-8": ""}) }}
+      {{ card_body_content | join | replace({"UTF-8": ""}) }}
     {% else %}
       {% set card_eyebrow = body.eyebrow %}
       {% set card_headline = body.headline %}
