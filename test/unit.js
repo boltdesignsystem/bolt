@@ -4,7 +4,7 @@ const { execAndReport } = require('../scripts/check-run');
 
 execAndReport({
   cmd: 'yarn test',
-  name: 'Unit Test',
+  name: 'Unit',
 })
   .then(results => {
     outputBanner('Unit: done');
