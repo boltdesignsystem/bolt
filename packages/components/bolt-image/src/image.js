@@ -10,8 +10,8 @@ import path from 'path';
 
 import classNames from 'classnames/bind';
 
-import imageStyles from './image.scss';
 import ratioStyles from '@bolt/components-ratio/src/ratio.scss';
+import imageStyles from './image.scss';
 
 import schema from '../image.schema.yml';
 
@@ -112,10 +112,10 @@ class BoltImage extends withLitHtml() {
     const canUseAspectRatio = imageWidth && imageHeight && useAspectRatio;
 
     const classes = cx('c-bolt-image__image', {
-      ['c-bolt-image__lazyload']: lazyload,
-      ['c-bolt-image__lazyload--fade']: lazyload,
-      ['c-bolt-image__lazyload--blur']: lazyload && imageExt == '.jpg',
-      ['js-lazyload']: lazyload,
+      'c-bolt-image__lazyload': lazyload,
+      'c-bolt-image__lazyload--fade': lazyload,
+      'c-bolt-image__lazyload--blur': lazyload && imageExt === '.jpg',
+      'js-lazyload': lazyload,
     });
 
     const imageElement = () => {
@@ -138,7 +138,7 @@ class BoltImage extends withLitHtml() {
     };
 
     const placeholderImageElement = () => {
-      if (useAspectRatio && imageExt == '.jpg') {
+      if (useAspectRatio && imageExt === '.jpg') {
         return html`
           <img
             class="${cx('c-bolt-image__image-placeholder')}"
@@ -182,7 +182,7 @@ class BoltImage extends withLitHtml() {
       `;
     };
 
-    if (placeholderColor && canUseAspectRatio && imageExt == '.jpg') {
+    if (placeholderColor && canUseAspectRatio && imageExt === '.jpg') {
       this.style.backgroundColor = placeholderColor;
     }
 
