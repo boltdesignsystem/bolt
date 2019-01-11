@@ -92,7 +92,7 @@ async function setGithubAppSauceResults({
 - Failed: ${currentTest.results.testcases[testName].failed}
 - Skipped: ${currentTest.results.testcases[testName].skipped}
 
-        `.trim();
+`;
   })}
 </details>
 
