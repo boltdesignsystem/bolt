@@ -56,20 +56,15 @@ const bodyExample = {
  * @param {boolean} passed
  * @return {Promise<void>}
  */
-async function setGithubAppSauceResults(
-  capabilities,
-  testId,
-  body,
-  passed,
-) {
+async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
   outputBanner('setGithubAppSauceResults running..');
   console.log({
+    currentTest,
     capabilities,
-    testId,
-    body,
-    passed,
+    sessionId,
   });
   try {
+    const passed = currentTest.results.passed === currentTest.results.tests;
     const {
       GITHUB_TOKEN,
       // if in Travis, then it's `"true"`
@@ -102,18 +97,18 @@ async function setGithubAppSauceResults(
 - Browser Name: ${capitalize(capabilities.browserName)}
 - Browser Version: ${capabilities.version}
 - Browser Platform: ${capitalize(capabilities.platform)}
-- [View Test in Sauce Labs](https://saucelabs.com/beta/tests/${testId}/commands)
+- [View Test in Sauce Labs](https://saucelabs.com/beta/tests/${sessionId}/commands)
 - log_url: ${body.log_url}      
 - video: ${body.video_url}
  
- [image](https://assets.saucelabs.com/jobs/${testId}/0001screenshot.png)
+ [image](https://assets.saucelabs.com/jobs/${sessionId}/0001screenshot.png)
  
  <details>
   <summary>Data</summary>
 
 <pre>
   <code>
-  ${JSON.stringify({ body, passed, capabilities, testId }, null, '  ')}
+  ${JSON.stringify({ currentTest, capabilities, sessionId }, null, '  ')}
   </code>
 </pre>
 
@@ -125,7 +120,7 @@ async function setGithubAppSauceResults(
     return await setCheckRun({
       name: `Nightwatch - ${capitalize(capabilities.browserName)}: ${capitalize(
         capabilities.platform,
-      )} - ${testId}`,
+      )} - ${sessionId}`,
       status: 'completed',
       conclusion: passed ? 'success' : 'failure',
       output: {
@@ -158,40 +153,12 @@ module.exports = function sauce(client, callback) {
     return callback();
   }
 
-  const passed = currentTest.results.passed === currentTest.results.tests;
   outputBanner(`CurrentTest Results: ${JSON.stringify(currentTest.results)}`);
 
-  outputBanner(`Results from SauceLabs Call: ${JSON.stringify(results)}`);
-  setGithubAppSauceResults(client.capabilities, sessionId, results, passed)
+  setGithubAppSauceResults(currentTest, client.capabilities, sessionId)
     .then(results => {
       outputBanner('DONE: setGithubAppSauceResults');
       console.log(results);
     })
     .then(() => callback());
-
-  // const passed = currentTest.results.passed === currentTest.results.tests;
-  // outputBanner(`CurrentTest Results: ${JSON.stringify(currentTest.results)}`);
-  //
-  // fetch(`https://saucelabs.com/rest/v1/${username}/jobs/${sessionId}`, {
-  //   method: 'PUT',
-  //   auth: `${username}:${accessKey}`,
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Accept: 'application/json',
-  //   },
-  // })
-  //   .then(res => res.json())
-  //   .then(results => {
-  //     outputBanner(`Results from SauceLabs Call: ${JSON.stringify(results)}`);
-  //     setGithubAppSauceResults(
-  //       client.capabilities,
-  //       sessionId,
-  //       results,
-  //       passed,
-  //     ).then(results => {
-  //       outputBanner('DONE: setGithubAppSauceResults');
-  //       console.log(results);
-  //     });
-  //   })
-  //   .then(() => callback());
 };
