@@ -5,6 +5,26 @@ const path = require('path');
 const cheerio = require('cheerio');
 const prettier = require('prettier');
 const SVGO = require('svgo');
+const yaml = require('js-yaml');
+const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const resolve = require('resolve');
+const debounce = require('lodash.debounce');
+const chokidar = require('chokidar');
+const Ora = require('ora');
+const chalk = require('chalk');
+const log = require('../utils/log');
+
+let initialBuild = true;
+let iconSpinner;
+
+const startBuildingIconsMsg = 'Building Bolt SVG Icons for the first time...';
+const startRebuildingIconsMsg = 'Rebuilding Bolt SVG Icons...';
+
+const finishedBuildingIconsMsg = 'Finished building Bolt SVG Icons!';
+const finishedRebuildingIconsMsg = 'Finished rebuilding Bolt SVG Icons!';
+
+const failedBuildingIconsMsg = 'Initial build of the Bolt SVG Icons failed!';
+const failedRebuildingIconsMsg = 'Failed to rebuild Bolt SVG Icons!';
 
 const svgo = new SVGO({
   plugins: [
@@ -116,7 +136,9 @@ const svgo = new SVGO({
   ],
 });
 
-const rootDir = path.join(__dirname);
+const rootDir = path.dirname(
+  resolve.sync('@bolt/components-icons/package.json'),
+);
 const buildDir = path.join(rootDir, 'src/icons');
 
 /**
@@ -224,10 +246,11 @@ async function transpileIcons(icons) {
         singleQuote: true,
         trailingComma: 'es5',
         bracketSpacing: true,
+        jsxBracketSameLine: true,
         parser: 'flow',
       });
 
-      await fs.outputFile(location, element, 'utf-8');
+      await fs.outputFile(location, component, 'utf-8');
       // Later when we call `const icons = await transpileIcons(iconPaths);` - `icons` will be an array of these objects:
       return {
         location,
@@ -247,7 +270,15 @@ function alphabetizeIconList(a, b) {
 
 async function build() {
   try {
+    const config = await getConfig();
     const iconPaths = await globby(path.join(rootDir, 'src/svgs/**/*.svg'));
+
+    iconSpinner = new Ora(
+      chalk.blue(
+        initialBuild ? startBuildingIconsMsg : startRebuildingIconsMsg,
+      ),
+    ).start();
+
     await fs.remove(path.join(rootDir, 'src/icons')); // Clean folder
     await fs.outputFile(path.join(rootDir, 'src', 'index.js'), '', 'utf-8');
     const icons = await transpileIcons(iconPaths);
@@ -260,14 +291,100 @@ async function build() {
       allExports.join('\n'),
       'utf-8',
     );
-    console.log(`Built ${iconPaths.length} icons.`);
+    generateFile(icons);
+
+    if (config.verbosity > 2) {
+      log.dim(`Built ${iconPaths.length} icons.`);
+    }
   } catch (error) {
-    console.error(error);
-    console.error(
-      'Error trying to run "npm run build" for "@bolt/components-icons".',
+    iconSpinner.fail(
+      chalk.red(
+        initialBuild
+          ? `${failedBuildingIconsMsg} : ${error}`
+          : `${failedRebuildingIconsMsg} : ${error}`,
+      ),
     );
+
     process.exitCode = 1;
   }
 }
 
-build();
+build.description = 'Minify & convert raw SVG files to browser-friendly icons.';
+build.displayName = 'icons:build';
+
+async function generateFile(icons) {
+  try {
+    const config = await getConfig();
+
+    const iconComponentDir = path.dirname(
+      resolve.sync('@bolt/components-icon/package.json'),
+    );
+    const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.yml');
+    const names = icons.map(icon => icon.id);
+    const schema = yaml.safeLoad(fs.readFileSync(iconComponentSchema, 'utf8'));
+    schema.properties.name.enum = names;
+
+    // update bolt-icon schema with newest icons from svgs folder
+    await fs.writeFile(iconComponentSchema, yaml.safeDump(schema));
+    // generate `icons.bolt.json` file with newest icons array
+    await fs.writeFile(
+      path.join(config.dataDir, 'icons.bolt.json'),
+      JSON.stringify(names, null, 4),
+    );
+
+    iconSpinner.succeed(
+      chalk.green(
+        initialBuild ? finishedBuildingIconsMsg : finishedRebuildingIconsMsg,
+      ),
+    );
+
+    initialBuild = false;
+  } catch (error) {
+    iconSpinner.fail(
+      chalk.red(
+        initialBuild
+          ? `Error trying to generate Icon YAML document for "@bolt/components-icon". ${error}`
+          : `Error trying to regenerate Icon YAML document for "@bolt/components-icon". ${error}`,
+      ),
+    );
+
+    process.exitCode = 1;
+  }
+}
+
+async function watch() {
+  const config = await getConfig();
+
+  // for now, only watch the main @bolt/components-icons folder for .svg file changes.
+  // @todo: update to include extra folders specified in the .boltrc config
+  const dirs = [rootDir];
+
+  // Used by watches
+  const debouncedCompile = debounce(build, config.debounceRate);
+
+  const globPattern = '**/*.svg';
+  const watchedFiles = [dirs.map(dir => path.join(dir, globPattern))];
+
+  // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
+  const watcher = chokidar.watch(watchedFiles, {
+    ignoreInitial: true,
+    cwd: process.cwd(),
+    ignored: ['**/node_modules/**', '**/vendor/**'],
+  });
+
+  // list of all events: https://www.npmjs.com/package/chokidar#methods--events
+  watcher.on('all', (event, path) => {
+    if (config.verbosity > 3) {
+      console.log('Re-building Bolt Icon: ', event, path);
+    }
+    debouncedCompile();
+  });
+}
+
+watch.description = 'Watch and rebuild Bolt SVG Icons';
+watch.displayName = 'icons:watch';
+
+module.exports = {
+  build,
+  watch,
+};
