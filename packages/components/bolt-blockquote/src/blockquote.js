@@ -33,6 +33,38 @@ class BoltBlockquote extends withLitHtml() {
     return self;
   }
 
+  rendered() {
+    super.rendered && super.rendered();
+    const self = this;
+
+    if (window.MutationObserver) {
+      // Re-generate slots + re-render when mutations are observed
+      const mutationCallback = function(mutationsList, observer) {
+        self.slots = self._checkSlots();
+        self.triggerUpdate();
+      };
+
+      // Create an observer instance linked to the callback function
+      self.observer = new MutationObserver(mutationCallback);
+
+      // Start observing the target node for configured mutations
+      self.observer.observe(this, {
+        attributes: false,
+        childList: true,
+        subtree: true,
+      });
+    }
+  }
+
+  disconnected() {
+    super.disconnected && super.disconnected();
+
+    // remove MutationObserver if supported + exists
+    if (window.MutationObserver && this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
   getModifiedSchema(schema) {
     var modifiedSchema = schema;
 
@@ -73,6 +105,35 @@ class BoltBlockquote extends withLitHtml() {
     }
   }
 
+  // automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
+  addClassesToSlottedChildren() {
+    if (this.slots) {
+      if (this.slots.default) {
+        const defaultSlot = [];
+
+        this.slots.default.forEach(item => {
+          if (item.tagName) {
+            item.classList.remove('is-first-child');
+            item.classList.remove('is-last-child'); // clean up existing classes
+            defaultSlot.push(item);
+          }
+        });
+
+        if (defaultSlot[0]) {
+          defaultSlot[0].classList.add('is-first-child');
+
+          if (defaultSlot.length === 1) {
+            defaultSlot[0].classList.add('is-last-child');
+          }
+        }
+
+        if (defaultSlot[defaultSlot.length - 1]) {
+          defaultSlot[defaultSlot.length - 1].classList.add('is-last-child');
+        }
+      }
+    }
+  }
+
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const {
@@ -101,28 +162,7 @@ class BoltBlockquote extends withLitHtml() {
     let footerItems = [];
     footerItems.push(AuthorImage(this), AuthorName(this), AuthorTitle(this));
 
-    // automatically add classes for the first and last slotted item to help with tricky ::slotted selectors
-    if (this.slots.default) {
-      const defaultSlot = [];
-
-      this.slots.default.forEach(item => {
-        if (item.tagName) {
-          defaultSlot.push(item);
-        }
-      });
-
-      if (defaultSlot[0].attributes.length === 0) {
-        defaultSlot[0].classList.add('is-first-child');
-
-        if (defaultSlot.length === 1) {
-          defaultSlot[0].classList.add('is-last-child');
-        }
-      }
-
-      if (defaultSlot[defaultSlot.length - 1].attributes.length === 0) {
-        defaultSlot[defaultSlot.length - 1].classList.add('is-last-child');
-      }
-    }
+    this.addClassesToSlottedChildren();
 
     return html`
       ${this.addStyles([styles])}
