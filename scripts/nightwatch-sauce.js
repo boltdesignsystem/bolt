@@ -161,26 +161,37 @@ module.exports = function sauce(client, callback) {
   const passed = currentTest.results.passed === currentTest.results.tests;
   outputBanner(`CurrentTest Results: ${JSON.stringify(currentTest.results)}`);
 
-  fetch(`https://saucelabs.com/rest/v1/${username}/jobs/${sessionId}`, {
-    method: 'PUT',
-    auth: `${username}:${accessKey}`,
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-  })
-    .then(res => res.json())
+  outputBanner(`Results from SauceLabs Call: ${JSON.stringify(results)}`);
+  setGithubAppSauceResults(client.capabilities, sessionId, results, passed)
     .then(results => {
-      outputBanner(`Results from SauceLabs Call: ${JSON.stringify(results)}`);
-      setGithubAppSauceResults(
-        client.capabilities,
-        sessionId,
-        results,
-        passed,
-      ).then(results => {
-        outputBanner('DONE: setGithubAppSauceResults');
-        console.log(results);
-      });
+      outputBanner('DONE: setGithubAppSauceResults');
+      console.log(results);
     })
     .then(() => callback());
+
+  // const passed = currentTest.results.passed === currentTest.results.tests;
+  // outputBanner(`CurrentTest Results: ${JSON.stringify(currentTest.results)}`);
+  //
+  // fetch(`https://saucelabs.com/rest/v1/${username}/jobs/${sessionId}`, {
+  //   method: 'PUT',
+  //   auth: `${username}:${accessKey}`,
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Accept: 'application/json',
+  //   },
+  // })
+  //   .then(res => res.json())
+  //   .then(results => {
+  //     outputBanner(`Results from SauceLabs Call: ${JSON.stringify(results)}`);
+  //     setGithubAppSauceResults(
+  //       client.capabilities,
+  //       sessionId,
+  //       results,
+  //       passed,
+  //     ).then(results => {
+  //       outputBanner('DONE: setGithubAppSauceResults');
+  //       console.log(results);
+  //     });
+  //   })
+  //   .then(() => callback());
 };
