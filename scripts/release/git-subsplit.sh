@@ -238,7 +238,7 @@ subsplit_publish()
 
 			if [ $RETURNCODE -eq 0 ]
 			then
-				PUSH_CMD="git push -q ${DRY_RUN} --force $REMOTE_NAME ${LOCAL_BRANCH}:${HEAD}"
+				PUSH_CMD="git push --no-verify -q ${DRY_RUN} --force $REMOTE_NAME ${LOCAL_BRANCH}:${HEAD}"
 
 				if [ -n "$VERBOSE" ];
 				then
@@ -306,7 +306,7 @@ subsplit_publish()
 			say " - subtree split for '${TAG}' [DONE]"
 			if [ $RETURNCODE -eq 0 ]
 			then
-				PUSH_CMD="git push -q ${DRY_RUN} --force ${REMOTE_NAME} ${LOCAL_TAG}:refs/tags/${TAG}"
+				PUSH_CMD="git push --no-verify -q ${DRY_RUN} --force ${REMOTE_NAME} ${LOCAL_TAG}:refs/tags/${TAG}"
 
 				if [ -n "$VERBOSE" ];
 				then
