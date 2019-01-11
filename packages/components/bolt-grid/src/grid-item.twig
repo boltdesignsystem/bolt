@@ -15,7 +15,6 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 <bolt-grid-item
-  {{ attributes }}
   {% if row_start %}row-start="{{ row_start }}"{% endif %}
   {% if row_end %}row-end="{{ row_end }}"{% endif %}
   {% if row_span %}row-span="{{ row_span }}"{% endif %}
@@ -26,8 +25,7 @@
 
   {% if align %}align="{{ align }}"{% endif %}
   {% if valign %}valign="{{ valign }}"{% endif %}
+  {{ attributes }}
 >
-  {% if content %}
-    {{ content }}
-  {% endif %}
+  {{ content }}
 </bolt-grid-item>
