@@ -114,6 +114,7 @@
               <replace-with-children class="{{ "#{base_class}__footer-item" }}">
                 {% include "@bolt-components-headline/text.twig" with {
                   text: author.title,
+                  tag: "cite",
                   size: "xsmall",
                   slot: "author-title"
                 } only %}
