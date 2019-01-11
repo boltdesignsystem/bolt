@@ -1,4 +1,5 @@
 import lazySizes from 'lazysizes'; // Mostly just for automatic `size` attribute support
+// import 'lazysizes/src/lazysizes-intersection';
 import 'lazysizes/plugins/unveilhooks/ls.unveilhooks';
 import 'lazysizes/plugins/progressive/ls.progressive';
 import 'lazysizes/plugins/respimg/ls.respimg'; // Lighter weight version of picturefill
@@ -10,4 +11,5 @@ Object.assign(lazySizes.cfg, {
   loadingClass: 'is-lazyloading',
   loadedClass: 'is-lazyloaded',
   preloadAfterLoad: true,
+  // preloadAfterLoad: false,
 });
