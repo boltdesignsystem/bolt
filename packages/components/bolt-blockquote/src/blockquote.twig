@@ -85,7 +85,7 @@
       </replace-with-grandchildren>
     {% endblock %}
 
-    {# {% if author %}
+    {% if author %}
       {% block blockquote_footer %}
         <replace-with-grandchildren>
           <footer class="{{ "#{base_class}__footer" }}">
@@ -124,6 +124,6 @@
         </replace-with-grandchildren>
       
       {% endblock %}
-    {% endif %} #}
+    {% endif %}
   </blockquote>
 </bolt-blockquote>
