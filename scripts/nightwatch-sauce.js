@@ -14,44 +14,10 @@ function capitalize(string) {
   return string && string[0].toUpperCase() + string.slice(1);
 }
 
-// eslint-ignore
-const bodyExample = {
-  browser_short_version: '11',
-  video_url:
-    'https://assets.saucelabs.com/jobs/54b93a335aa94b23b8411d6cbdc8a00b/video.mp4',
-  creation_time: 1547091312,
-  'custom-data': null,
-  browser_version: '11.285.17134.0.',
-  owner: '[secure]',
-  id: '54b93a335aa94b23b8411d6cbdc8a00b',
-  record_screenshots: true,
-  record_video: true,
-  build: null,
-  passed: true,
-  public: 'public',
-  assigned_tunnel_id: null,
-  status: 'in progress',
-  log_url:
-    'https://assets.saucelabs.com/jobs/54b93a335aa94b23b8411d6cbdc8a00b/selenium-server.log',
-  start_time: 1547091312,
-  proxied: false,
-  modification_time: 1547091328,
-  tags: [],
-  name: 'E2e/Pattern Lab E2e',
-  commands_not_successful: 0,
-  video_secret: 'f9e39a9e373e4afc8eb71fc07f23966a',
-  consolidated_status: 'passed',
-  end_time: null,
-  error: null,
-  os: 'Windows 10',
-  breakpointed: null,
-  browser: 'iexplore',
-};
-
 /**
- * @param {Object} capabilities
- * @param {string} testId
- * @param {boolean} passed
+ * @param {Object} currentTest - Meta data of current tests
+ * @param {Object} capabilities - Browser/Client capabilities and settings
+ * @param {string} sessionId - Testing Session Id in SauceLabs
  * @return {Promise<void>}
  */
 async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
@@ -97,7 +63,7 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
 - Results: ${currentTest.results.passed} of ${
       currentTest.results.tests
     } test cases passed
-- Time: ${currentTest.results.time}
+- Total Time: ${currentTest.results.time} seconds
 - Browser Name: ${capitalize(capabilities.browserName)}
 - Browser Version: ${capabilities.version}
 - Browser Platform: ${capitalize(capabilities.platform)}
@@ -109,13 +75,16 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
   <summary>Test Result Details</summary>
   ${Object.keys(currentTest.results.testcases).map(testName => {
     return `
+---
+    
 - Test Name: ${testName}
-- Time: ${currentTest.results.testcases[testName].time}
+- Time: ${currentTest.results.testcases[testName].time} seconds
 - Tests: ${currentTest.results.testcases[testName].tests}
 - Passed: ${currentTest.results.testcases[testName].passed}
 - Errors: ${currentTest.results.testcases[testName].errors}
 - Failed: ${currentTest.results.testcases[testName].failed}
 - Skipped: ${currentTest.results.testcases[testName].skipped}
+
         `.trim();
   })}
 </details>
@@ -142,7 +111,7 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
         summary: `- Results: ${currentTest.results.passed} of ${
           currentTest.results.tests
-        }`.trim(),
+        } tests passed`.trim(),
         text,
       },
     });
@@ -174,5 +143,6 @@ module.exports = function sauce(client, callback) {
       console.log(results);
     },
   );
+
   callback();
 };
