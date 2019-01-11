@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const execa = require('execa');
+const getStream = require('get-stream');
 const fs = require('fs');
 const { join } = require('path');
 const fetch = require('node-fetch');
@@ -6,26 +8,26 @@ const { getGitSha } = require('ci-utils');
 
 const installationId = '572023';
 const repoSlug = 'bolt-design-system/bolt';
-const privateKey = fs.readFileSync(
-  join(__dirname, './bolt-design-system-bot.private-key.pem'),
-  'utf8',
-);
-
-if (!privateKey) {
-  console.error('Could not find private key PEM file');
-  process.exit(1);
-}
-
-const jwtToken = jwt.sign(
-  {
-    iss: '23351',
-  },
-  privateKey,
-  {
-    algorithm: 'RS256',
-    expiresIn: '10m',
-  },
-);
+// const privateKey = fs.readFileSync(
+//   join(__dirname, './bolt-design-system-bot.private-key.pem'),
+//   'utf8',
+// );
+//
+// if (!privateKey) {
+//   console.error('Could not find private key PEM file');
+//   process.exit(1);
+// }
+//
+// const jwtToken = jwt.sign(
+//   {
+//     iss: '23351',
+//   },
+//   privateKey,
+//   {
+//     algorithm: 'RS256',
+//     expiresIn: '10m',
+//   },
+// );
 
 let accessToken;
 
@@ -73,6 +75,51 @@ async function getAccessToken() {
 
   accessToken = results.token;
   return results.token;
+}
+
+async function execAndReport({ cmd, name }) {
+  try {
+    const {
+      failed,
+      code,
+      timedOut,
+      stdout,
+      stderr,
+      message,
+    } = await execa.shell(cmd);
+    process.stdout.write(stdout);
+    process.stderr.write(stderr);
+    await setCheckRun({
+      name,
+      status: 'completed',
+      conclusion: 'success',
+      output: {
+        title: name,
+        summary: `Ran ${cmd}`,
+      },
+    });
+    return failed;
+  } catch (err) {
+    const { failed, code, timedOut, stdout, stderr, message } = err;
+    process.stdout.write(stdout);
+    process.stderr.write(stderr);
+    await setCheckRun({
+      name,
+      status: 'completed',
+      conclusion: 'failure',
+      output: {
+        title: name,
+        summary: `Ran ${cmd}`,
+        text: `
+<pre><code>
+${message}
+</code></pre>
+        `.trim(),
+      },
+    });
+
+    return failed;
+  }
 }
 
 /**
@@ -183,4 +230,5 @@ async function setCheckRun({
 module.exports = {
   createCheckSuite,
   setCheckRun,
+  execAndReport,
 };

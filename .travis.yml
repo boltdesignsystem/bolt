@@ -33,7 +33,8 @@ jobs:
       before_script: yarn run setup:quick
       script:
         - yarn run lint:scss
-        - yarn run lint:js
+        - node scripts/lint.js
+#        - yarn run lint:js
       cache:
         yarn: true
         directories:
