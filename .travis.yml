@@ -47,7 +47,6 @@ jobs:
       script:
         # - yarn run build
         # - yarn run deploy
-        # - sh ./scripts/update-read-only-git-repos.sh @todo: run this only on Bolt releases
         - docker --log-level error pull boltdesignsystem/bolt || true
         - docker build --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
         - docker images
@@ -60,6 +59,7 @@ jobs:
       after_script:
         - cd scripts && npm install
         - npm run deploy
+        - sh ./release/update-read-only-git-repos.sh
       cache:
         yarn: true
         directories:
