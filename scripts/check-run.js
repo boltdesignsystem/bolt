@@ -76,15 +76,22 @@ async function getAccessToken() {
   return results.token;
 }
 
+/**
+ * Exec Shell Command and Report Results to GitHub Checks
+ * @param {Object} opt
+ * @param {string} opt.cmd - Shell command to execute from CWD
+ * @param {string} opt.name - GitHub Checks Name
+ * @return {Promise<boolean>} Did cmd fail?
+ */
 async function execAndReport({ cmd, name }) {
   try {
     const {
       failed,
-      code,
-      timedOut,
+      // code,
+      // timedOut,
       stdout,
       stderr,
-      message,
+      // message,
     } = await execa.shell(cmd);
     process.stdout.write(stdout);
     process.stderr.write(stderr);
@@ -99,7 +106,14 @@ async function execAndReport({ cmd, name }) {
     });
     return failed;
   } catch (err) {
-    const { failed, code, timedOut, stdout, stderr, message } = err;
+    const {
+      failed,
+      // code,
+      // timedOut,
+      stdout,
+      stderr,
+      message,
+    } = err;
     process.stdout.write(stdout);
     process.stderr.write(stderr);
     await setCheckRun({
@@ -170,7 +184,7 @@ async function createCheckSuite() {
  * @param {Object} opt
  * @param opt.name
  * @param [opt.status='queued'] - One of queued, in_progress, or completed
- * @param {GitHubCheckOutput} opt.output
+ * @param {GitHubCheckOutput} [opt.output]
  * @param [opt.conclusion] - The final conclusion of the check. Can be one of success, failure, neutral, cancelled, timed_out, or action_required. When the conclusion is action_required, additional details should be provided on the site specified by details_url.
  * @param {string} [opt.details_url]
  * @return {Promise<Object>}

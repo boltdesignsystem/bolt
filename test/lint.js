@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 const { outputBanner } = require('ci-utils');
-const { execAndReport } = require('./check-run');
+const { execAndReport } = require('../scripts/check-run');
 
 execAndReport({
-  cmd: 'yarn lint:js',
-  name: 'lint',
+  cmd: 'yarn lint',
+  name: 'Lint',
 })
   .then(results => {
-    outputBanner('done exec');
+    outputBanner('Lint: done');
   })
   .catch(err => {
-    outputBanner('exec error');
+    outputBanner('Lint: error');
     // console.log(err);
     process.exit(1);
   });

@@ -20,21 +20,9 @@ jobs:
         - phpenv config-rm xdebug.ini
         - composer global require hirak/prestissimo
         - yarn run setup:quick
-        #- node ./scripts/create-check-suite.js
-      script: yarn run test
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - docs-site/cache
-
-    - stage: build-and-deploy
-      name: 'Linting'
-      before_script: yarn run setup:quick
       script:
-        - yarn run lint:scss
-        - node scripts/lint.js
-#        - yarn run lint:js
+        - node test/lint.js
+        - node test/unit.js
       cache:
         yarn: true
         directories:
