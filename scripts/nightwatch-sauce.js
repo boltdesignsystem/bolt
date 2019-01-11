@@ -125,7 +125,7 @@ async function setGithubAppSauceResults(
     return await setCheckRun({
       name: `Nightwatch - ${capitalize(capabilities.browserName)}: ${capitalize(
         capabilities.platform,
-      )}`,
+      )} - ${testId}`,
       status: 'completed',
       conclusion: passed ? 'success' : 'failure',
       output: {
@@ -159,6 +159,7 @@ module.exports = function sauce(client, callback) {
   }
 
   const passed = currentTest.results.passed === currentTest.results.tests;
+  outputBanner(`CurrentTest Results: ${JSON.stringify(currentTest.results)}`);
 
   fetch(`https://saucelabs.com/rest/v1/${username}/jobs/${sessionId}`, {
     method: 'PUT',
@@ -170,7 +171,7 @@ module.exports = function sauce(client, callback) {
   })
     .then(res => res.json())
     .then(results => {
-      outputBanner(`Results from SauceLabs Call: ${results}`);
+      outputBanner(`Results from SauceLabs Call: ${JSON.stringify(results)}`);
       setGithubAppSauceResults(
         client.capabilities,
         sessionId,
@@ -179,7 +180,7 @@ module.exports = function sauce(client, callback) {
       ).then(results => {
         outputBanner('DONE: setGithubAppSauceResults');
         console.log(results);
-        callback();
       });
-    });
+    })
+    .then(() => callback());
 };
