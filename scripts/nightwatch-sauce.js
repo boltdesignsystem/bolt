@@ -44,25 +44,45 @@ async function setGithubAppSauceResults({
       results,
     } = currentTest;
 
+    const { SAUCE_USERNAME, SAUCE_ACCESS_KEY } = process.env;
+    const auth = Buffer.from(`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`).toString(
+      'base64',
+    );
+
+    const assetBaseUrl = `https://assets.saucelabs.com/jobs/${sessionId}`;
+
+    // just the file names, not absolute paths
+    const assetNames = await fetch(
+      // https://wiki.saucelabs.com/display/DOCS/Job+Methods
+      `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${sessionId}/assets`,
+      {
+        headers: {
+          Authorization: `Basic ${auth}`,
+          Accept: 'application/json',
+        },
+      },
+    ).then(res => res.json());
+
+    /** @type {{ 'sauce-log': string, 'video': string, 'selenium-log': string, screenshots: string[], 'video.mp4': string  }} */
+    const assets = {};
+    Object.keys(assetNames).forEach(key => {
+      const value = assetNames[key];
+      if (key === 'screenshots') {
+        assets[key] = value.map(v => `${assetBaseUrl}/${v}`);
+      } else {
+        assets[key] = `${assetBaseUrl}/${value}`;
+      }
+    });
+
     /** @type {boolean} */
     const passed = results.passed === results.tests - results.skipped;
 
-    const text = `
-- Results: ${results.passed} of ${results.tests} test cases passed
-- Total Time: ${results.time} seconds
-- Browser Name: ${capitalize(capabilities.browserName)}
-- Browser Version: ${capabilities.version}
-- Browser Platform: ${capitalize(capabilities.platform)}
-- [View Test in Sauce Labs](https://saucelabs.com/beta/tests/${sessionId}/commands)
- 
- ![image](https://assets.saucelabs.com/jobs/${sessionId}/0001screenshot.png)
- 
- ---
- 
+    const text = ` 
 <details open>
   <summary>Test Result Details</summary>
-  ${Object.keys(results.testcases).map(testName => {
-    return `
+  ${Object.keys(results.testcases)
+    .map(testName => {
+      return `
     
 ### Assertion: ${testName}
 
@@ -74,19 +94,18 @@ async function setGithubAppSauceResults({
 - Skipped: ${results.testcases[testName].skipped}
 
 `;
-  }).join()}
+    })
+    .join()}
 </details>
 
 ---
 
 <details>
   <summary>Data</summary>
-  
-  \`\`\`json
-   ${JSON.stringify({ currentTest, capabilities, sessionId }, null, '  ')}
-  \`\`\`
-  
-  <!--<pre> <code class="highlight highlight-source-json"> </code> </pre>-->
+
+\`\`\`json
+${JSON.stringify({ currentTest, capabilities, sessionId }, null, '  ')}
+\`\`\`
   
 </details>  
     `.trim();
@@ -102,10 +121,23 @@ async function setGithubAppSauceResults({
       conclusion: passed ? 'success' : 'failure',
       output: {
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
-        summary: `- Results: ${currentTest.results.passed} of ${
-          currentTest.results.tests
-        } tests passed`.trim(),
+        summary: `
+- Results: ${results.passed} of ${results.tests} test cases passed
+- Total Time: ${results.time} seconds
+- Browser Name: ${capitalize(capabilities.browserName)}
+- Browser Version: ${capabilities.version}
+- Browser Platform: ${capitalize(capabilities.platform)}
+- [View Test in Sauce Labs](https://saucelabs.com/beta/tests/${sessionId}/commands)
+- [Video](${assets.video})
+- [sauce-log](${assets['sauce-log']})
+- [selenium-log](${assets['selenium-log']})
+        `.trim(),
         text,
+        images: assets.screenshots.map((screenshot, i) => ({
+          image_url: screenshot,
+          alt: `Screenshot ${i}`,
+          caption: assetNames.screenshot[i],
+        })),
       },
     });
   } catch (error) {
