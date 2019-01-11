@@ -82,7 +82,8 @@ async function setGithubAppSauceResults({
   <summary>Test Result Details</summary>
   ${Object.keys(currentTest.results.testcases).map(testName => {
     return `
-### Test Name: ${testName}
+    
+### Assertion: ${testName}
 
 - Time: ${currentTest.results.testcases[testName].time} seconds
 - Assertions: ${currentTest.results.testcases[testName].tests}
@@ -91,7 +92,6 @@ async function setGithubAppSauceResults({
 - Failed: ${currentTest.results.testcases[testName].failed}
 - Skipped: ${currentTest.results.testcases[testName].skipped}
 
----
         `.trim();
   })}
 </details>
