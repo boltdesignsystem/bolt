@@ -81,7 +81,7 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
     
 - Test Name: ${testName}
 - Time: ${currentTest.results.testcases[testName].time} seconds
-- Tests: ${currentTest.results.testcases[testName].tests}
+- Assertions: ${currentTest.results.testcases[testName].tests}
 - Passed: ${currentTest.results.testcases[testName].passed}
 - Errors: ${currentTest.results.testcases[testName].errors}
 - Failed: ${currentTest.results.testcases[testName].failed}
