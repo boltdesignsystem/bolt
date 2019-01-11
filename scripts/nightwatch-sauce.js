@@ -75,6 +75,8 @@ async function setGithubAppSauceResults({
       }
     });
 
+    console.log({ assetNames, assets });
+
     /** @type {boolean} */
     const passed = results.passed === results.tests - results.skipped;
 
@@ -134,11 +136,13 @@ ${JSON.stringify({ currentTest, capabilities, sessionId }, null, '  ')}
 - [selenium-log](${assets['selenium-log']})
         `.trim(),
         text,
-        images: assets.screenshots.map((screenshot, i) => ({
-          image_url: screenshot,
-          alt: `Screenshot ${i}`,
-          caption: assetNames.screenshot[i],
-        })),
+        images: assets.screenshots
+          ? assets.screenshots.map((screenshot, i) => ({
+              image_url: screenshot,
+              alt: `Screenshot ${i}`,
+              caption: assetNames.screenshot[i],
+            }))
+          : null,
       },
     });
   } catch (error) {
