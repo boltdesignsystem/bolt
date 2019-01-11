@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
 const execa = require('execa');
-const getStream = require('get-stream');
 const fs = require('fs');
 const { join } = require('path');
 const fetch = require('node-fetch');
@@ -8,26 +7,26 @@ const { getGitSha } = require('ci-utils');
 
 const installationId = '572023';
 const repoSlug = 'bolt-design-system/bolt';
-// const privateKey = fs.readFileSync(
-//   join(__dirname, './bolt-design-system-bot.private-key.pem'),
-//   'utf8',
-// );
-//
-// if (!privateKey) {
-//   console.error('Could not find private key PEM file');
-//   process.exit(1);
-// }
-//
-// const jwtToken = jwt.sign(
-//   {
-//     iss: '23351',
-//   },
-//   privateKey,
-//   {
-//     algorithm: 'RS256',
-//     expiresIn: '10m',
-//   },
-// );
+const privateKey = fs.readFileSync(
+  join(__dirname, './bolt-design-system-bot.private-key.pem'),
+  'utf8',
+);
+
+if (!privateKey) {
+  console.error('Could not find private key PEM file');
+  process.exit(1);
+}
+
+const jwtToken = jwt.sign(
+  {
+    iss: '23351',
+  },
+  privateKey,
+  {
+    algorithm: 'RS256',
+    expiresIn: '10m',
+  },
+);
 
 let accessToken;
 
