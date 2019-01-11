@@ -5,6 +5,7 @@ const webpackTasks = require('./webpack-tasks');
 const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
+const iconTasks = require('./icon-tasks');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
 const { writeBoltVersions } = require('../utils/bolt-versions');
@@ -171,6 +172,15 @@ async function build(shouldReturnTime = false) {
   config = config || (await getConfig());
   try {
     await buildPrep(startTime);
+
+    // don't try to process / convert SVG icons if the `@bolt/components-icon` package isn't part of the build
+    if (
+      config.components.global.includes('@bolt/components-icon') ||
+      config.components.individual.includes('@bolt/components-icon')
+    ) {
+      await iconTasks.build();
+    }
+
     config.prod || config.watch === false ? await webpackTasks.compile() : '';
     await images();
     config.prod || config.watch === false
@@ -209,6 +219,14 @@ async function watch() {
         watchTasks.push(extraTasks.patternLab.watch());
         watchTasks.push(extraTasks.static.watch());
         break;
+    }
+
+    // don't watch for SVG icon changes if the `@bolt/components-icon` package isn't part of the build
+    if (
+      config.components.global.includes('@bolt/components-icon') ||
+      config.components.individual.includes('@bolt/components-icon')
+    ) {
+      watchTasks.push(iconTasks.watch());
     }
 
     return Promise.all(watchTasks);
