@@ -68,11 +68,8 @@ jobs:
       script:
         - yarn run setup
         - ./scripts/get-latest-deploy.js
-        - node ./scripts/get-latest-deploy.js
-        - echo $NOW_URL
         - NOW_URL=$(./scripts/get-latest-deploy.js)
-        - echo $NOW_URL
-        - echo "The Now URL is $NOW_URL - and this better work"
+        - echo "The Now URL is $NOW_URL"
         - npx nightwatch --config nightwatch.js --env chrome,ie11
 
 before_install:

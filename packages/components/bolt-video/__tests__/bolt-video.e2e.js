@@ -1,7 +1,3 @@
-// const sauce = require('../../../../scripts/nightwatch-sauce');
-// const { getLatestDeploy } = require('../../../../scripts/utils');
-
-// let testingUrl = 'https://boltdesignsystem.com';
 let currentBrowser;
 
 module.exports = {
@@ -115,6 +111,4 @@ module.exports = {
       )
       .end();
   },
-
-  // afterEach: sauce,
 };

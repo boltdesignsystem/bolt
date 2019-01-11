@@ -1,9 +1,5 @@
 const globby = require('globby');
 const path = require('path');
-const { setCheckRun } = require('./scripts/check-run');
-const { getLatestDeploy } = require('./scripts/utils');
-
-/* eslint-disable camelcase */
 
 let srcFolders = globby.sync([
   'packages/**/*.e2e.js',
@@ -15,31 +11,7 @@ srcFolders = srcFolders.map(function(folder) {
   return path.dirname(folder);
 });
 
-process.env.NOW_URL = process.env.NOW_URL || 'https://boltdesignsystem.com';
-const launch_url = process.env.NOW_URL || 'https://boltdesignsystem.com';
-
-console.log({ launch_url });
-
-if (process.env.TRAVIS) {
-  // setCheckRun({
-  //   name: 'Nightwatch',
-  //   status: 'in_progress',
-  //   output: {
-  //     title: 'Nightwatch running...',
-  //     summary: `
-  //     - Url used: ${process.env.NOW_URL}
-  //     `.trim(),
-  //     // details: '',
-  //   },
-  // })
-  //   .then(results => {
-  //     console.log(`Check run started for Nightwatch: ${results.html_url}`);
-  //   })
-  //   .catch(console.log.bind(console));
-}
-
 module.exports = {
-  launch_url,
   globals_path: './nightwatch-globals.js',
   persist_globals: true,
   // selenium: {
