@@ -1,11 +1,11 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import { ifDefined } from 'lit-html/directives/if-defined';
 
 import { convertInitialTags } from '@bolt/core/decorators';
 import classNames from 'classnames/bind';
 import styles from './blockquote.scss';
 import schema from '../blockquote.schema.yml';
+import { AuthorImage, AuthorName, AuthorTitle } from './Author';
 
 let cx = classNames.bind(styles);
 
@@ -98,67 +98,10 @@ class BoltBlockquote extends withLitHtml() {
       [`c-bolt-blockquote--full`]: fullBleed,
     });
 
-    const AuthorImage = elem => {
-      const { props, slots } = elem;
-      if (slots['author-image'] || props.authorImage) {
-        return html`
-          <div class="${cx('c-bolt-blockquote__image')}">
-            ${
-              slots['author-image']
-                ? html`
-                    ${elem.slot('author-image')}
-                  `
-                : html`
-                    <img
-                      src="${props.authorImage}"
-                      alt=${ifDefined(props.authorTitle)}
-                    />
-                  `
-            }
-          </div>
-        `;
-      }
-    };
-
-    const AuthorTitle = elem => {
-      const { props, slots } = elem;
-      if (slots['author-title'] || props.authorTitle) {
-        return html`
-          <bolt-text tag="cite" font-size="xsmall" color="theme-headline">
-            ${
-              this.slots['author-title']
-                ? this.slot('author-title')
-                : props.authorTitle
-            }
-          </bolt-text>
-        `;
-      }
-    };
-
-    const AuthorName = elem => {
-      const { props, slots } = elem;
-      if (slots['author-name'] || props.authorName) {
-        return html`
-          <bolt-text
-            tag="cite"
-            font-size="xsmall"
-            color="theme-headline"
-            font-weight="bold"
-          >
-            ${
-              this.slots['author-name']
-                ? this.slot('author-name')
-                : props.authorName
-            }
-          </bolt-text>
-        `;
-      }
-    };
-
     let footerItems = [];
     footerItems.push(AuthorImage(this), AuthorName(this), AuthorTitle(this));
 
-    // console.log(footerItems);
+    // automatically add classes for the first and last slotted item to help with tricky ::slotted selectors
     if (this.slots.default) {
       const defaultSlot = [];
 
