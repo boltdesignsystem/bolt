@@ -34,7 +34,7 @@
     "clean:npm": "find . -name 'node_modules' -type d -exec rm -rf {} +",
     "clean:www": "find . -name 'www' -type d -exec rm -rf {} +",
     "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js' 'scripts/**/*.js'",
+    "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
     "test:js": "NODE_ENV='test' jest",
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
