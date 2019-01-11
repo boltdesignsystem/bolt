@@ -14,3 +14,7 @@
 - [ ] If you are a "Reviewer", respond by clicking approve or request changes.
 - [ ] ADD MORE TEST STEPS HERE
 
+### Component Specific Testing
+
+- [ ] [bolt-video](https://github.com/bolt-design-system/bolt/blob/master/packages/components/bolt-video/TESTING.md)
+- [ ] [bolt-button](https://github.com/bolt-design-system/bolt/blob/master/packages/components/bolt-button/TESTING.md)
