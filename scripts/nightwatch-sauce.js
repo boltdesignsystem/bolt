@@ -71,6 +71,8 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
  
  [image](https://assets.saucelabs.com/jobs/${sessionId}/0001screenshot.png)
  
+ ---
+ 
 <details>
   <summary>Test Result Details</summary>
   ${Object.keys(currentTest.results.testcases).map(testName => {
@@ -89,6 +91,8 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
   })}
 </details>
 
+---
+
 <details>
   <summary>Data</summary>
   <pre>
@@ -97,8 +101,6 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
     </code>
   </pre>
 </details>  
-
----
     `.trim();
 
     await setCheckRun({
