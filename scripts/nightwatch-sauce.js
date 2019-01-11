@@ -2,7 +2,6 @@
 
 // Tell Sauce Labs about Nightwatch fails
 
-const https = require('https');
 const fetch = require('node-fetch');
 const { outputBanner } = require('ci-utils');
 const { setCheckRun } = require('./check-run');
@@ -170,7 +169,6 @@ module.exports = function sauce(client, callback) {
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      'Content-Length': data.length,
     },
   })
     .then(res => res.json())

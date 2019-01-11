@@ -1,19 +1,24 @@
-const { outputBanner } = require('ci-utils');
-const { tmpdir } = require('os');
-const { join } = require('path');
-const { readFileSync, writeFileSync } = require('fs');
+// Global afterEach and reporter for all nightwatch tests
+// Commented out code provides the ability to collect all nightwatch results to one json file
+// Commented out code to be used if nightwatch results reporting needs to be consolidated in Github Checks
+
+// const { outputBanner } = require('ci-utils');
+// const { tmpdir } = require('os');
+// const { join } = require('path');
+// const { readFileSync, writeFileSync } = require('fs');
 const sauce = require('./scripts/nightwatch-sauce');
 
-const dataFilePath = join(tmpdir(), 'nightwatch-results.json');
-const read = () => JSON.parse(readFileSync(dataFilePath, 'utf8'));
-const write = data => writeFileSync(dataFilePath, JSON.stringify(data), 'utf8');
+// const dataFilePath = join(tmpdir(), 'nightwatch-results.json');
 
-console.log({ dataFilePath });
+// const read = () => JSON.parse(readFileSync(dataFilePath, 'utf8'));
+// const write = data => writeFileSync(dataFilePath, JSON.stringify(data), 'utf8');
 
-write({
-  testCount: 0,
-  results: [],
-});
+// console.log({ dataFilePath });
+
+// write({
+//   testCount: 0,
+//   results: [],
+// });
 
 const theGlobals = {
   testingUrl: 'https://boltdesignsystem.com',
@@ -21,20 +26,20 @@ const theGlobals = {
   testCount: 0,
 
   afterEach(browser, cb) {
-    const data = read();
-    data.testCount += 1;
-    write(data);
-    // theGlobals.testCount += 1;
-    outputBanner(`global afterEach called, testCount at ${data.testCount}`);
+    // const data = read();
+    // data.testCount += 1;
+    // write(data);
+    // // theGlobals.testCount += 1;
+    // outputBanner(`global afterEach called, testCount at ${data.testCount}`);
     sauce(browser, cb);
   },
 
   reporter(results, cb) {
     // totalReports += 1;
-    const data = read();
-    data.results.push(results);
-    write(data);
-    console.log(`global reporter called; have total of ${data.results.length}`);
+    // const data = read();
+    // data.results.push(results);
+    // write(data);
+    // console.log(`global reporter called; have total of ${data.results.length}`);
     console.log(results);
     cb();
   },
