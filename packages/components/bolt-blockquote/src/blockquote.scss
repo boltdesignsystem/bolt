@@ -50,16 +50,16 @@ $bolt-blockquote-image-size: 4rem;
   max-width: 44rem;
   color: bolt-theme(headline);
 
-  p:first-child:before,
-  p:last-child:after {
+  p:not([slot]):first-child:before,
+  p:not([slot]):last-child:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
   }
 
-  p:first-child:before {
+  p:not([slot]):first-child:before {
     content: '\201C';
   }
 
-  p:last-child:after {
+  p:not([slot]):last-child:after {
     content: '\201D';
   }
 
@@ -90,7 +90,9 @@ $bolt-blockquote-image-size: 4rem;
 
 // Attribution
 .c-bolt-blockquote__image {
+  box-sizing: border-box;
   display: inline-block;
+  vertical-align: middle;
   width: $bolt-blockquote-image-size;
   height: $bolt-blockquote-image-size;
   overflow: hidden;
