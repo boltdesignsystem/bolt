@@ -51,6 +51,8 @@ jobs:
       after_script:
         - cd scripts && npm install
         - npm run deploy
+        - ./scripts/get-latest-deploy.js
+        - node ./scripts/get-latest-deploy.js
         - ./release/update-read-only-git-repos.sh
       cache:
         yarn: true
@@ -65,6 +67,12 @@ jobs:
       name: 'Nightwatch End-to-End'
       script:
         - yarn run setup
+        - ./scripts/get-latest-deploy.js
+        - node ./scripts/get-latest-deploy.js
+        - echo $NOW_URL
+        - NOW_URL=$(./scripts/get-latest-deploy.js)
+        - echo $NOW_URL
+        - echo "The Now URL is $NOW_URL - and this better work"
         - npx nightwatch --config nightwatch.js --env chrome,ie11
 
 before_install:
