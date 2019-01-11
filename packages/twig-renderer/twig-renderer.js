@@ -33,7 +33,7 @@ async function init() {
     alterTwigEnv: config.alterTwigEnv,
     hasExtraInfoInResponses: false, // Will add `info` onto results with a lot of info about Twig Env
     maxConcurrency: 50,
-    keepAlive: config.prod ? true : false, // setting this to true will cause subsequent template / page recompiles to not regenerate when the source files have changed
+    keepAlive: false, // setting this to true will cause subsequent template / page recompiles to not regenerate when the source files have changed
   });
   state = STATES.READY;
 }
