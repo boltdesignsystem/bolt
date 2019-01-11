@@ -71,8 +71,7 @@
   <img {{ image_attributes }} />
 
   {# Only output noscript fallback if lazyloading, and ratio will be output #}
-  {# @todo Salem, can you take a quick look at this conditional. Wouldn't we want the noscript fallback regardless of useAspectRatio and height and width?#}
-  {% if lazyload and width > 0 and height > 0 and useAspectRatio == true %}
+  {% if lazyload %}
     <noscript> <img {{ image_fallback_attributes }} /> </noscript>
   {% endif %}
 {% endset %}
