@@ -62,7 +62,9 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
     sessionId,
   });
   try {
-    const passed = currentTest.results.passed === currentTest.results.tests;
+    const passed =
+      currentTest.results.passed ===
+      currentTest.results.tests - currentTest.results.skipped;
     const {
       GITHUB_TOKEN,
       // if in Travis, then it's `"true"`
@@ -92,6 +94,10 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
     });
 
     const text = `
+- Results: ${currentTest.results.passed} of ${
+      currentTest.results.tests
+    } test cases passed
+- Time: ${currentTest.results.time}
 - Browser Name: ${capitalize(capabilities.browserName)}
 - Browser Version: ${capabilities.version}
 - Browser Platform: ${capitalize(capabilities.platform)}
@@ -99,15 +105,28 @@ async function setGithubAppSauceResults(currentTest, capabilities, sessionId) {
  
  [image](https://assets.saucelabs.com/jobs/${sessionId}/0001screenshot.png)
  
- <details>
+<details>
+  <summary>Test Result Details</summary>
+  ${Object.keys(currentTest.results.testcases).map(testName => {
+    return `
+- Test Name: ${testName}
+- Time: ${currentTest.results.testcases[testName].time}
+- Tests: ${currentTest.results.testcases[testName].tests}
+- Passed: ${currentTest.results.testcases[testName].passed}
+- Errors: ${currentTest.results.testcases[testName].errors}
+- Failed: ${currentTest.results.testcases[testName].failed}
+- Skipped: ${currentTest.results.testcases[testName].skipped}
+        `.trim();
+  })}
+</details>
+
+<details>
   <summary>Data</summary>
-
-<pre>
-  <code>
-  ${JSON.stringify({ currentTest, capabilities, sessionId }, null, '  ')}
-  </code>
-</pre>
-
+  <pre>
+    <code>
+    ${JSON.stringify({ currentTest, capabilities, sessionId }, null, '  ')}
+    </code>
+  </pre>
 </details>  
 
 ---
@@ -149,12 +168,11 @@ module.exports = function sauce(client, callback) {
     return callback();
   }
 
-  outputBanner(`CurrentTest Results: ${JSON.stringify(currentTest.results)}`);
-
-  setGithubAppSauceResults(currentTest, client.capabilities, sessionId)
-    .then(results => {
+  setGithubAppSauceResults(currentTest, client.capabilities, sessionId).then(
+    results => {
       outputBanner('DONE: setGithubAppSauceResults');
       console.log(results);
-    });
+    },
+  );
   callback();
 };
