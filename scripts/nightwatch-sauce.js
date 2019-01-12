@@ -62,30 +62,34 @@ async function setGithubAppSauceResults({
           Accept: 'application/json',
         },
       },
-    ).then(async res => {
+    ).then(res => {
       const { ok, status, statusText } = res;
       console.log('response from getting asset names', {
         ok,
         status,
         statusText,
       });
-      console.log('text response ', await res.text());
-      console.log('json response ', await res.json());
-      return {};
+      if (ok) {
+        return res.json();
+      } else {
+        return {};
+      }
     });
-    //
-    // /** @type {{ 'sauce-log': string, 'video': string, 'selenium-log': string, screenshots: string[], 'video.mp4': string  }} */
-    // const assets = {};
-    // Object.keys(assetNames).forEach(key => {
-    //   const value = assetNames[key];
-    //   if (key === 'screenshots') {
-    //     assets[key] = value.map(v => `${assetBaseUrl}/${v}`);
-    //   } else {
-    //     assets[key] = `${assetBaseUrl}/${value}`;
-    //   }
-    // });
-    //
-    // console.log({ assetNames, assets });
+
+    /** @type {{ 'sauce-log': string, 'video': string, 'selenium-log': string, screenshots: string[], 'video.mp4': string  }} */
+    const assets = {};
+    // if (assetNames) {
+    //   Object.keys(assetNames).forEach(key => {
+    //     const value = assetNames[key];
+    //     if (key === 'screenshots') {
+    //       assets[key] = value.map(v => `${assetBaseUrl}/${v}`);
+    //     } else {
+    //       assets[key] = `${assetBaseUrl}/${value}`;
+    //     }
+    //   });
+    // }
+
+    console.log({ assetNames, assets });
 
     /** @type {boolean} */
     const passed = results.passed === results.tests - results.skipped;
@@ -96,7 +100,7 @@ async function setGithubAppSauceResults({
   ${Object.keys(results.testcases)
     .map(testName => {
       return `
-    
+          
 ### Assertion: ${testName}
 
 - Time: ${results.testcases[testName].time} seconds
@@ -105,6 +109,8 @@ async function setGithubAppSauceResults({
 - Errors: ${results.testcases[testName].errors}
 - Failed: ${results.testcases[testName].failed}
 - Skipped: ${results.testcases[testName].skipped}
+
+![](https://assets.saucelabs.com/jobs/${sessionId}/0001screenshot.png)
 
 `;
     })
