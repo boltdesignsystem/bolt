@@ -1,8 +1,9 @@
 const { handleNightwatchResults } = require('./scripts/nightwatch-sauce');
 
-const testingUrl = process.env.NOW_URL
-  ? `https://${process.env.NOW_URL}`
-  : 'https://boltdesignsystem.com';
+//const testingUrl = process.env.NOW_URL
+//  ? `https://${process.env.NOW_URL}`
+//  : 'https://boltdesignsystem.com';
+const testingUrl = 'https://boltdesignsystem.com';
 console.log(`Nightwatch testingUrl is ${testingUrl}`);
 
 // Global afterEach and reporter for all nightwatch tests
