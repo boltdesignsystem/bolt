@@ -1,5 +1,41 @@
 const globby = require('globby');
+const { getGitSha } = require('ci-utils');
+const fetch = require('node-fetch');
 const path = require('path');
+
+const {
+  NOW_URL,
+  SAUCE_USERNAME,
+  SAUCE_ACCESS_KEY,
+  // for push builds, or builds not triggered by a pull request, this is the name of the branch.
+  // for builds triggered by a pull request this is the name of the branch targeted by the pull request.
+  // for builds triggered by a tag, this is the same as the name of the tag(TRAVIS_TAG).
+  TRAVIS_BRANCH,
+  // if the current job is a pull request, the name of the branch from which the PR originated
+  // if the current job is a push build, this variable is empty("").
+  TRAVIS_PULL_REQUEST_BRANCH,
+  // The pull request number if the current job is a pull request, "false" if it’s not a pull request.
+  TRAVIS_PULL_REQUEST,
+  // The slug (in form: owner_name/repo_name) of the repository currently being built.
+  TRAVIS_REPO_SLUG,
+  // If the current build is for a git tag, this variable is set to the tag’s name
+  TRAVIS_TAG,
+  TRAVIS_BUILD_WEB_URL,
+  TRAVIS_JOB_NUMBER,
+} = process.env;
+
+const gitSha = getGitSha(true);
+const gitShaLong = getGitSha();
+
+//const testingUrl = NOW_URL
+//  ? `https://${NOW_URL}`
+//  : 'https://boltdesignsystem.com';
+const testingUrl = 'https://boltdesignsystem.com';
+console.log(`Nightwatch testingUrl is ${testingUrl}`);
+
+const auth = Buffer.from(`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`).toString(
+  'base64',
+);
 
 let srcFolders = globby.sync([
   'packages/**/*.e2e.js',
@@ -11,8 +47,111 @@ srcFolders = srcFolders.map(function(folder) {
   return path.dirname(folder);
 });
 
+/**
+ * Util for capitalization
+ * @param string
+ * @return {string}
+ */
+function capitalize(string) {
+  return string && string[0].toUpperCase() + string.slice(1);
+}
+
+/**
+ * @param {Object} client - Nightwatch instance @todo add link to API docs
+ * @param {function} callback
+ * @returns {void}
+ */
+function handleNightwatchResults(client, callback) {
+  const currentTest = client.currentTest;
+  const sessionId = client.capabilities['webdriver.remote.sessionid'];
+  const { username, accessKey } = client.options;
+  const {
+    /** @type {string} - Name of test */
+    name,
+    /** @type {string} - Name of test file, ie `__tests__/bolt-video.e2e` */
+    module: testFileName,
+    /** @type {string} */
+    group,
+    /** @type {{ time: string, assertions: array, passed: number, errors: number, failed: number, skipped: number, tests: number, steps: array, timeMs: number}} */
+    results,
+  } = currentTest;
+
+  if (!client.launch_url.match(/saucelabs/)) {
+    console.log('Not saucelabs ...');
+    callback();
+    return;
+  }
+
+  if (!username || !accessKey || !sessionId) {
+    console.log('No username, accessKey or sessionId');
+    callback();
+    return;
+  }
+
+  const passed = results.passed === results.tests - results.skipped;
+  console.log(`Passed: ${passed ? 'Yes' : 'No'} - ${name}`);
+  fetch(
+    // https://wiki.saucelabs.com/display/DOCS/Job+Methods
+    `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${sessionId}`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `Basic ${auth}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        passed,
+        build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
+        tags: ['CI'],
+        'custom-data': {
+          TRAVIS_JOB_NUMBER,
+          TRAVIS_BRANCH,
+          TRAVIS_PULL_REQUEST_BRANCH,
+          TRAVIS_PULL_REQUEST,
+          TRAVIS_REPO_SLUG,
+          TRAVIS_TAG,
+          TRAVIS_BUILD_WEB_URL,
+          gitSha,
+          gitShaLong,
+        },
+      }),
+    },
+  )
+    .then(res => {
+      if (res.ok) {
+        console.log(`Set SauceLabs details ok`);
+      } else {
+        console.log(`Set SauceLabs details not ok`);
+        throw new Error(`Set SauceLabs details not ok ${res.statusText}`);
+      }
+      return res.json();
+    })
+    .then(() => callback())
+    .catch(err => {
+      console.log(`Error setting SauceLabs details`, err);
+      process.exit(1);
+    });
+}
+
 module.exports = {
-  globals_path: './nightwatch-globals.js',
+  globals: {
+    testingUrl,
+    results: [],
+    testCount: 0,
+
+    afterEach(browser, cb) {
+      handleNightwatchResults(browser, cb);
+    },
+
+    reporter(results, cb) {
+      // Might be used if nightwatch results reporting needs to be consolidated in Github Checks
+      console.log('global reporter called');
+      console.log(results);
+      console.log(results.modules);
+      cb();
+    },
+  },
   persist_globals: true,
   // selenium: {
   //   start_process: true,
