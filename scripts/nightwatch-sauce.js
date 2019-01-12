@@ -2,7 +2,7 @@
 
 // Tell Sauce Labs about Nightwatch fails
 
-const { outputBanner } = require('ci-utils');
+const { outputBanner, getGitSha } = require('ci-utils');
 const fetch = require('node-fetch');
 const { setCheckRun } = require('./check-run');
 
@@ -14,6 +14,11 @@ const { setCheckRun } = require('./check-run');
 function capitalize(string) {
   return string && string[0].toUpperCase() + string.slice(1);
 }
+
+const { SAUCE_USERNAME, SAUCE_ACCESS_KEY } = process.env;
+const auth = Buffer.from(`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`).toString(
+  'base64',
+);
 
 /**
  * @param {Object} opt
@@ -45,11 +50,6 @@ async function setGithubAppSauceResults({
       results,
     } = currentTest;
 
-    const { SAUCE_USERNAME, SAUCE_ACCESS_KEY } = process.env;
-    const auth = Buffer.from(`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`).toString(
-      'base64',
-    );
-
     const assetBaseUrl = `https://assets.saucelabs.com/jobs/${sessionId}`;
 
     // just the file names, not absolute paths
@@ -62,20 +62,30 @@ async function setGithubAppSauceResults({
           Accept: 'application/json',
         },
       },
-    ).then(res => res.json());
-
-    /** @type {{ 'sauce-log': string, 'video': string, 'selenium-log': string, screenshots: string[], 'video.mp4': string  }} */
-    const assets = {};
-    Object.keys(assetNames).forEach(key => {
-      const value = assetNames[key];
-      if (key === 'screenshots') {
-        assets[key] = value.map(v => `${assetBaseUrl}/${v}`);
-      } else {
-        assets[key] = `${assetBaseUrl}/${value}`;
-      }
+    ).then(async res => {
+      const { ok, status, statusText } = res;
+      console.log('response from getting asset names', {
+        ok,
+        status,
+        statusText,
+      });
+      console.log('text response ', await res.text());
+      console.log('json response ', await res.json());
+      return {};
     });
-
-    console.log({ assetNames, assets });
+    //
+    // /** @type {{ 'sauce-log': string, 'video': string, 'selenium-log': string, screenshots: string[], 'video.mp4': string  }} */
+    // const assets = {};
+    // Object.keys(assetNames).forEach(key => {
+    //   const value = assetNames[key];
+    //   if (key === 'screenshots') {
+    //     assets[key] = value.map(v => `${assetBaseUrl}/${v}`);
+    //   } else {
+    //     assets[key] = `${assetBaseUrl}/${value}`;
+    //   }
+    // });
+    //
+    // console.log({ assetNames, assets });
 
     /** @type {boolean} */
     const passed = results.passed === results.tests - results.skipped;
@@ -136,13 +146,13 @@ ${JSON.stringify({ currentTest, capabilities, sessionId }, null, '  ')}
 - [selenium-log](${assets['selenium-log']})
         `.trim(),
         text,
-        images: assets.screenshots
-          ? assets.screenshots.map((screenshot, i) => ({
-              image_url: screenshot,
-              alt: `Screenshot ${i}`,
-              caption: assetNames.screenshot[i],
-            }))
-          : null,
+        // images: assets.screenshots
+        //   ? assets.screenshots.map((screenshot, i) => ({
+        //       image_url: screenshot,
+        //       alt: `Screenshot ${i}`,
+        //       caption: assetNames.screenshot[i],
+        //     }))
+        //   : [],
       },
     });
   } catch (error) {
@@ -161,6 +171,16 @@ function handleNightwatchResults(client, callback) {
   const currentTest = client.currentTest;
   const sessionId = client.capabilities['webdriver.remote.sessionid'];
   const { username, accessKey } = client.options;
+  const {
+    /** @type {string} - Name of test */
+    name,
+    /** @type {string} - Name of test file, ie `__tests__/bolt-video.e2e` */
+    module: testFileName,
+    /** @type {string} */
+    group,
+    /** @type {{ time: string, assertions: array, passed: number, errors: number, failed: number, skipped: number, tests: number, steps: array, timeMs: number}} */
+    results,
+  } = currentTest;
 
   if (!client.launch_url.match(/saucelabs/)) {
     console.log('Not saucelabs ...');
@@ -172,18 +192,54 @@ function handleNightwatchResults(client, callback) {
     return callback();
   }
 
-  setGithubAppSauceResults({
-    currentTest,
-    capabilities: client.capabilities,
-    sessionId,
-  })
-    .then(() => {
-      outputBanner('DONE: setGithubAppSauceResults');
+  const passed = results.passed === results.tests - results.skipped;
+
+  fetch(
+    // https://wiki.saucelabs.com/display/DOCS/Job+Methods
+    `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${sessionId}`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `Basic ${auth}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        passed,
+        build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
+        tags: ['CI'],
+        'custom-data': {
+          gitSha: getGitSha(),
+        },
+      }),
+    },
+  )
+    .then(async res => {
+      if (res.ok) {
+        console.log(`Set SauceLabs details ok`);
+      } else {
+        console.log(`Set SauceLabs details not ok`);
+      }
+      const results = await res.json();
+      console.log(results);
+      setGithubAppSauceResults({
+        currentTest,
+        capabilities: client.capabilities,
+        sessionId,
+      })
+        .then(() => {
+          outputBanner('DONE: setGithubAppSauceResults');
+          callback();
+        })
+        .catch(err => {
+          console.log('Error setGithubAppSauceResults:', err);
+          process.exit(1);
+        });
     })
     .catch(err => {
-      console.log('Error setGithubAppSauceResults:', err);
+      console.log(`Error setting SauceLabs details`, err);
+      process.exit(1);
     });
-  callback();
 }
 
 module.exports = {

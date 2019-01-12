@@ -17,6 +17,7 @@ const theGlobals = {
     // Might be used if nightwatch results reporting needs to be consolidated in Github Checks
     console.log('global reporter called');
     console.log(results);
+    console.log(results.modules);
     cb();
   },
 };
