@@ -142,15 +142,15 @@ async function setGithubAppSauceResults(sauceResults) {
 - [Selenium Log](${assets['selenium-log']})
 - [Automator Log](${assets['automator.log']})
 
-${screenshots.map((s, i) => `![Screenshot ${i}](${s})`).join()}
+${screenshots.map((s, i) => `[![Screenshot ${i}](${s})](${s})`).join('')}
   
 </details>
 `;
           })
-          .join()}
+          .join('')}
       `;
       })
-      .join();
+      .join('');
 
     const details = `
 <details>
@@ -170,8 +170,12 @@ ${JSON.stringify(sauceResults, null, '  ')}
       output: {
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
         summary,
-        text,
-        details,
+        text: `${text}
+
+---
+
+${details}        
+        `,
         // images: assets.screenshots
         //   ? assets.screenshots.map((screenshot, i) => ({
         //       image_url: screenshot,
