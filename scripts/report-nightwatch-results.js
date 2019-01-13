@@ -149,6 +149,8 @@ async function setGithubAppSauceResults(sauceResults) {
 <details open>
 <summary><h3>Screenshots</h3></summary>
 
+> If screenshots do not show, it may have to do with tests themselves or SauceLabs (not kept for more than 30 days). Check url the images link to for original url.
+
 ${screenshots
               .map(
                 (s, i) => `
