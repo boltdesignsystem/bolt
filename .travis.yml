@@ -84,7 +84,7 @@ jobs:
         - echo "The Now URL is $NOW_URL"
         - time curl -sSf "$NOW_URL" > /dev/null # warming up site
         - npx nightwatch --config nightwatch.js --env chrome,ie11
-        - sleep 10 # letting Sauce Labs settle before asking it questions
+        - sleep 120 # letting Sauce Labs settle before asking it questions; making extra long to see if it helps with image urls loading by going from 10s to this
         - ./scripts/report-nightwatch-results.js
       cache:
         yarn: true
