@@ -60,7 +60,7 @@ async function collectSauceLabResults(build) {
     const tests = await Promise.all(
       buildJobs.map(async buildJob => {
         // just the file names, not absolute paths
-        const assetBaseUrl = `https://assets.saucelabs.com/jobs/${buildJob.id}`;
+        const assetBaseUrl = `https://`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`@assets.saucelabs.com/jobs/${buildJob.id}`;
         /** @type {{ 'sauce-log': string, 'video': string, 'selenium-log': string, screenshots: string[], 'video.mp4': string  }} */
         const assets = await fetch(
           // https://wiki.saucelabs.com/display/DOCS/Job+Methods
@@ -106,6 +106,7 @@ async function collectSauceLabResults(build) {
             return theAssets;
           })
           .then(async allAssets => {
+            return allAssets;
             // not filtering them yet, just checking; perhaps requesting them will make them work for GitHub
             const validScreenshots = await Promise.all(
               allAssets.screenshots.map(async s => ({
