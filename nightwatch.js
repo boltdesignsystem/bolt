@@ -27,9 +27,7 @@ const {
 const gitSha = getGitSha(true);
 const gitShaLong = getGitSha();
 
-const testingUrl = NOW_URL
-  ? `https://${NOW_URL}`
-  : 'https://boltdesignsystem.com';
+const testingUrl = NOW_URL ? NOW_URL : 'https://boltdesignsystem.com';
 // const testingUrl = 'https://boltdesignsystem.com';
 console.log(`Nightwatch testingUrl is ${testingUrl}`);
 

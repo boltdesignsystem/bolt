@@ -105,7 +105,7 @@ function getLatestDeploy() {
       // If a deployment hasn't finished uploading (is incomplete), the url property will have a value of null.
       const result = results.deployments.find(d => d.url);
       if (result) {
-        resolve(result.url);
+        resolve(`https://${result.url}`);
       } else {
         reject(new Error('No deployments found'));
       }
