@@ -48,15 +48,6 @@ srcFolders = srcFolders.map(function(folder) {
 });
 
 /**
- * Util for capitalization
- * @param string
- * @return {string}
- */
-function capitalize(string) {
-  return string && string[0].toUpperCase() + string.slice(1);
-}
-
-/**
  * @param {Object} client - Nightwatch instance @todo add link to API docs
  * @param {function} callback
  * @returns {void}

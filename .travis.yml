@@ -22,6 +22,7 @@ jobs:
         - yarn run setup:quick
         - ./scripts/check-run-queue.js 'Lint'
         - ./scripts/check-run-queue.js 'Unit'
+        - ./scripts/check-run-queue.js 'Nightwatch'
       script:
         - ./test/lint.js
         - ./test/unit.js
@@ -71,6 +72,7 @@ jobs:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
         - npx nightwatch --config nightwatch.js --env chrome,ie11
+        - ./scripts/report-nightwatch-results.js
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
