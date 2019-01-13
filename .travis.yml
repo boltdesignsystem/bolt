@@ -22,7 +22,6 @@ jobs:
         - yarn run setup:quick
         - ./scripts/check-run-queue.js 'Lint'
         - ./scripts/check-run-queue.js 'Unit'
-        - ./scripts/check-run-queue.js 'Nightwatch'
       script:
         - ./test/lint.js
         - ./test/unit.js
@@ -68,10 +67,12 @@ jobs:
       name: 'Nightwatch End-to-End'
       script:
         - yarn run setup
+        - ./scripts/check-run-queue.js 'Nightwatch'
         - ./scripts/get-latest-deploy.js
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
         - npx nightwatch --config nightwatch.js --env chrome,ie11
+        - sleep 10 
         - ./scripts/report-nightwatch-results.js
 
 before_install:

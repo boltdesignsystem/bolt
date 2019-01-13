@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 const fetch = require('node-fetch');
 const { groupBy } = require('lodash');
-const { setCheckRun } = require('../scripts/check-run');
+// const { setCheckRun } = require('../scripts/check-run');
 
 const { SAUCE_USERNAME, SAUCE_ACCESS_KEY, TRAVIS_JOB_NUMBER } = process.env;
 if (!SAUCE_ACCESS_KEY && !SAUCE_USERNAME && !TRAVIS_JOB_NUMBER) {
   console.log(
     `Missing Env Vars, need: SAUCE_USERNAME, SAUCE_ACCESS_KEY, TRAVIS_JOB_NUMBER`,
   );
-  process.exit(1);
+  // process.exit(1);
 }
 
 const auth = Buffer.from(`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`).toString(
@@ -58,16 +58,17 @@ async function collectSauceLabResults(build) {
             },
           },
         )
-          .then(res => {
+          .then(async res => {
             const { ok, status, statusText } = res;
             if (ok) {
               return res.json();
             } else {
+              const body = res.text();
               console.log(
-                `SauceLabs asset name fetch not ok for ${buildJob.id}`,
+                `SauceLabs asset name fetch not ok for ${buildJob.id}: ${body}`,
               );
               throw new Error(
-                `Could not get SauceLabs job assets ${status} ${statusText}`,
+                `Could not get SauceLabs job assets ${status} ${statusText}. ${body}`,
               );
             }
           })
@@ -188,7 +189,7 @@ ${JSON.stringify(sauceResults, null, '  ')}
 }
 
 async function go() {
-  const build = `build-${TRAVIS_JOB_NUMBER}`;
+  const build = `build-7442.1` || `build-${TRAVIS_JOB_NUMBER}`;
   const sauceResults = await collectSauceLabResults(build);
   const checkRunSubmitResults = await setGithubAppSauceResults(sauceResults);
   console.log(`Submitted Check Run Results: ${checkRunSubmitResults.html_url}`);
