@@ -11,7 +11,7 @@ if (!name) {
 
 setCheckRun({
   name,
-  status: 'complete',
+  status: 'completed',
   conclusion: 'success',
 })
   .then(results => {
