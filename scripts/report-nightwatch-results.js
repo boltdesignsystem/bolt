@@ -145,7 +145,7 @@ async function setGithubAppSauceResults(sauceResults) {
 - [Selenium Log](${assets['selenium-log']})
 - [Automator Log](${assets['automator.log']})
 
-<details open>
+<details>
 <summary>Screenshots</summary>
 
 > If screenshots do not show, it may have to do with tests themselves or SauceLabs (not kept for more than 30 days). Check url the images link to for original url.
