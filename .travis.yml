@@ -16,9 +16,13 @@ before_install:
 services:
   - docker
 
+# Stages run sequentially; the jobs in them run in parallel
 stages:
   - prep
   - test-live-site
+#  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
+#  - name: super-hard-tests
+#    if: branch = master
 
 jobs:
   include:
@@ -81,8 +85,9 @@ jobs:
         - ./scripts/check-run-in-progress.js 'Nightwatch'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
+        - time curl -sSf "$NOW_URL" > /dev/null # warming up site
         - npx nightwatch --config nightwatch.js --env chrome,ie11
-        - sleep 10
+        - sleep 10 # letting Sauce Labs settle before asking it questions
         - ./scripts/report-nightwatch-results.js
       cache:
         yarn: true
@@ -96,12 +101,18 @@ jobs:
         - ./scripts/check-run-in-progress.js 'Site is live'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
-        - curl -sSf "$NOW_URL" > /dev/null || ./scripts/check-run-failure.js 'Site is live' && exit 1
+        - time curl -sSf "$NOW_URL" > /dev/null || ./scripts/check-run-failure.js 'Site is live' && exit 1
         - ./scripts/check-run-success.js 'Site is live'
       cache:
         yarn: true
         directories:
           - node_modules
+
+    - stage: test-live-site
+      name: 'Example master only job'
+      if: branch = master
+      script:
+        - echo "This only runs on master builds"
 
 notifications:
   email:

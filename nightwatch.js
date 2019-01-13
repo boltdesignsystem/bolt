@@ -27,10 +27,10 @@ const {
 const gitSha = getGitSha(true);
 const gitShaLong = getGitSha();
 
-//const testingUrl = NOW_URL
-//  ? `https://${NOW_URL}`
-//  : 'https://boltdesignsystem.com';
-const testingUrl = 'https://boltdesignsystem.com';
+const testingUrl = NOW_URL
+  ? `https://${NOW_URL}`
+  : 'https://boltdesignsystem.com';
+// const testingUrl = 'https://boltdesignsystem.com';
 console.log(`Nightwatch testingUrl is ${testingUrl}`);
 
 const auth = Buffer.from(`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`).toString(
@@ -198,9 +198,9 @@ module.exports = {
         version: '70',
         javascriptEnabled: true,
         acceptSslCerts: true,
-//         chromeOptions: {
-//           args: ['headless'],
-//         },
+        //         chromeOptions: {
+        //           args: ['headless'],
+        //         },
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,
