@@ -213,7 +213,7 @@ ${details}
 }
 
 async function go() {
-  const build = `build-7442.1` || `build-${TRAVIS_JOB_NUMBER}`;
+  const build = `build-${TRAVIS_JOB_NUMBER}`;
   const sauceResults = await collectSauceLabResults(build);
   const checkRunSubmitResults = await setGithubAppSauceResults(sauceResults);
   console.log(`Submitted Check Run Results: ${checkRunSubmitResults.html_url}`);
