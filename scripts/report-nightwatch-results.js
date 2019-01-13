@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 const fetch = require('node-fetch');
 const { groupBy } = require('lodash');
-// const { setCheckRun } = require('../scripts/check-run');
+const { setCheckRun } = require('../scripts/check-run');
 
 const { SAUCE_USERNAME, SAUCE_ACCESS_KEY, TRAVIS_JOB_NUMBER } = process.env;
 if (!SAUCE_ACCESS_KEY && !SAUCE_USERNAME && !TRAVIS_JOB_NUMBER) {
   console.log(
     `Missing Env Vars, need: SAUCE_USERNAME, SAUCE_ACCESS_KEY, TRAVIS_JOB_NUMBER`,
   );
-  // process.exit(1);
+  process.exit(1);
 }
 
 const auth = Buffer.from(`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`).toString(
