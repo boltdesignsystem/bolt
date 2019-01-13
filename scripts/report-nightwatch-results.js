@@ -15,6 +15,22 @@ const auth = Buffer.from(`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`).toString(
   'base64',
 );
 
+/**
+ * @param {string} url
+ * @return {Promise<boolean>}
+ */
+async function isRemoteAssetOk(url) {
+  try {
+    const { ok, status, headers } = await fetch(url);
+    const { 'Content-Length': contentLength } = headers;
+    console.log(`isRemoteAssetOk ${url}`, { ok, status, contentLength });
+    return ok;
+  } catch (err) {
+    console.error(`Error on isRemoteAssetOk for ${url}`, err);
+    return false;
+  }
+}
+
 async function collectSauceLabResults(build) {
   try {
     const buildJobs = await fetch(
@@ -77,15 +93,27 @@ async function collectSauceLabResults(build) {
             Object.keys(assetNames).forEach(key => {
               const value = assetNames[key];
               if (key === 'screenshots') {
-                theAssets[key] = value.map(name => ({
-                  name,
-                  url: `${assetBaseUrl}/${name}`,
-                }));
+                theAssets[key] = value.map(name => {
+                  return {
+                    name,
+                    url: `${assetBaseUrl}/${name}`,
+                  };
+                });
               } else {
                 theAssets[key] = `${assetBaseUrl}/${value}`;
               }
             });
             return theAssets;
+          })
+          .then(async allAssets => {
+            // not filtering them yet, just checking; perhaps requesting them will make them work for GitHub
+            const validScreenshots = await Promise.all(
+              allAssets.screenshots.map(async s => ({
+                ...s,
+                ok: await isRemoteAssetOk(s.url),
+              })),
+            );
+            return validScreenshots;
           });
 
         return {
