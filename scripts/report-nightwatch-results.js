@@ -77,7 +77,10 @@ async function collectSauceLabResults(build) {
             Object.keys(assetNames).forEach(key => {
               const value = assetNames[key];
               if (key === 'screenshots') {
-                theAssets[key] = value.map(v => `${assetBaseUrl}/${v}`);
+                theAssets[key] = value.map(name => ({
+                  name,
+                  url: `${assetBaseUrl}/${name}`,
+                }));
               } else {
                 theAssets[key] = `${assetBaseUrl}/${value}`;
               }
@@ -119,7 +122,8 @@ async function setGithubAppSauceResults(sauceResults) {
         const tests = testSets[testName];
 
         return `
-# ${testName}
+<details open>
+<summary><h1>${testName}</h1></summary>
 
         ${tests
           .map(test => {
@@ -134,7 +138,7 @@ async function setGithubAppSauceResults(sauceResults) {
             return `
 <details open>
 <summary>
-  ${passed ? ':+1:' : ':-1:'} ${browser} ${browserVer} ${os}
+  <h2>${passed ? ':+1:' : ':-1:'} ${browser} ${browserVer} ${os}</h2>
 </summary>
   
 - [Video](${assets.video})
@@ -142,13 +146,28 @@ async function setGithubAppSauceResults(sauceResults) {
 - [Selenium Log](${assets['selenium-log']})
 - [Automator Log](${assets['automator.log']})
 
-${screenshots.map((s, i) => `[![Screenshot ${i}](${s})](${s})`).join('')}
-  
+<details open>
+<summary><h3>Screenshots</h3></summary>
+
+${screenshots
+              .map(
+                (s, i) => `
+###### Screenshot ${i}
+
+[![${s.name}](${s.url})](${s.url})
+
+`,
+              )
+              .join('')}
+
+</details>
+
 </details>
 `;
           })
           .join('')}
-      `;
+</details>      
+`;
       })
       .join('');
 
