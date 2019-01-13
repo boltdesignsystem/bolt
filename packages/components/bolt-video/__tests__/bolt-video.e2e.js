@@ -10,7 +10,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-video-40-video-w-inline-script-and-email-share/02-components-video-40-video-w-inline-script-and-email-share.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-video-35-video-with-inline-script-and-external-controls/02-components-video-35-video-with-inline-script-and-external-controls.html`,
       )
       .waitForElementVisible('.video-js', 1000)
       .click('.vjs-big-play-button')
@@ -71,7 +71,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-video-25-video-w-external-controls/02-components-video-25-video-w-external-controls.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-video-25-video-with-external-controls/02-components-video-25-video-with-external-controls.html`,
       )
       .waitForElementVisible('bolt-button', 1000)
       .click('bolt-button')

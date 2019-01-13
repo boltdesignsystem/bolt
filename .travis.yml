@@ -18,15 +18,15 @@ services:
 
 # Stages run sequentially; the jobs in them run in parallel
 stages:
-  - prep
-  - test-live-site
+  - Prep
+  - Test Live Site
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
-#  - name: super-hard-tests
+#  - name: Super Hard Tests
 #    if: branch = master
 
 jobs:
   include:
-    - stage: prep
+    - stage: Prep
       name: 'Smoke Tests: Install, Lint, Unit'
       before_script:
         - phpenv config-rm xdebug.ini
@@ -45,7 +45,7 @@ jobs:
         directories:
           - node_modules
 
-    - stage: prep
+    - stage: Prep
       name: 'Build + Deploy'
       # before_script:
       #   - phpenv config-rm xdebug.ini
@@ -78,7 +78,7 @@ jobs:
           - www/pattern-lab/styleguide/css
           - www/pattern-lab/index.html
 
-    - stage: test-live-site
+    - stage: Test Live Site
       name: 'Nightwatch End-to-End'
       script:
         - yarn run setup
@@ -94,21 +94,22 @@ jobs:
         directories:
           - node_modules
 
-    - stage: test-live-site
+    - stage: Test Live Site
       name: 'Ensure site is live'
       script:
         - yarn run setup
         - ./scripts/check-run-in-progress.js 'Site is live'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
-        - time curl -sSf "$NOW_URL" > /dev/null || ./scripts/check-run-failure.js 'Site is live' && exit 1
-        - ./scripts/check-run-success.js 'Site is live'
+#        - time curl -sSf "$NOW_URL" > /dev/null || ./scripts/check-run-failure.js 'Site is live' && exit 1
+#        - ./scripts/check-run-success.js 'Site is live'
+        - time curl -sSf "$NOW_URL" > /dev/null
       cache:
         yarn: true
         directories:
           - node_modules
 
-    - stage: test-live-site
+    - stage: Test Live Site
       name: 'Example master only job'
       if: branch = master
       script:
