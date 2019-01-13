@@ -34,9 +34,6 @@ jobs:
         - yarn run setup:quick
         - ./scripts/check-run-queue.js 'Lint'
         - ./scripts/check-run-queue.js 'Unit'
-        - ./scripts/check-run-queue.js 'Nightwatch'
-        - ./scripts/check-run-queue.js 'Deploy - now.sh'
-        - ./scripts/check-run-queue.js 'Site is live'
       script:
         - ./test/lint.js
         - ./test/unit.js
