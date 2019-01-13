@@ -114,7 +114,7 @@ async function setGithubAppSauceResults(sauceResults) {
 - ${passedTests} of ${totalTests} passed    
     `.trim();
 
-    const text = Object.key(testSets)
+    const text = Object.keys(testSets)
       .map(testName => {
         const tests = testSets[testName];
 

@@ -2,6 +2,7 @@ const globby = require('globby');
 const { getGitSha } = require('ci-utils');
 const fetch = require('node-fetch');
 const path = require('path');
+const { setCheckRun } = require('./scripts/check-run');
 
 const {
   NOW_URL,
@@ -46,6 +47,8 @@ let srcFolders = globby.sync([
 srcFolders = srcFolders.map(function(folder) {
   return path.dirname(folder);
 });
+
+setCheckRun({ name: 'Nightwatch', status: 'in_progress' });
 
 /**
  * @param {Object} client - Nightwatch instance @todo add link to API docs
