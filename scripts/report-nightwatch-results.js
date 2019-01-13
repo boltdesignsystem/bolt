@@ -122,8 +122,8 @@ async function setGithubAppSauceResults(sauceResults) {
         const tests = testSets[testName];
 
         return `
+# ${testName}
 <details open>
-<summary><h1>${testName}</h1></summary>
 
         ${tests
           .map(test => {
@@ -136,10 +136,9 @@ async function setGithubAppSauceResults(sauceResults) {
             } = test;
             const { screenshots } = assets;
             return `
+## ${passed ? ':+1:' : ':-1:'} ${browser} ${browserVer} ${os}
+
 <details open>
-<summary>
-  <h2>${passed ? ':+1:' : ':-1:'} ${browser} ${browserVer} ${os}</h2>
-</summary>
   
 - [Video](${assets.video})
 - [Sauce Log](${assets['sauce-log']})
@@ -147,7 +146,7 @@ async function setGithubAppSauceResults(sauceResults) {
 - [Automator Log](${assets['automator.log']})
 
 <details open>
-<summary><h3>Screenshots</h3></summary>
+<summary>Screenshots</summary>
 
 > If screenshots do not show, it may have to do with tests themselves or SauceLabs (not kept for more than 30 days). Check url the images link to for original url.
 
@@ -175,7 +174,7 @@ ${screenshots
 
     const details = `
 <details>
-  <summary>Data</summary>
+  <summary>Full Page Data</summary>
 
 \`\`\`json
 ${JSON.stringify(sauceResults, null, '  ')}
