@@ -101,6 +101,10 @@ jobs:
 #        - time curl -sSf "$NOW_URL" > /dev/null || ./scripts/check-run-failure.js 'Site is live' && exit 1
 #        - ./scripts/check-run-success.js 'Site is live'
         - time curl -sSf "$NOW_URL" > /dev/null
+      after_success:
+        - ./scripts/check-run-success.js 'Site is live'
+      after_failure:
+        - ./scripts/check-run-failure.js 'Site is live'
       cache:
         yarn: true
         directories:
