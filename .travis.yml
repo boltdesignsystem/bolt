@@ -1,27 +1,38 @@
 sudo: required
 dist: trusty
+language: php
+php:
+  - 7.1
+
+addons:
+  sauce_connect: true
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
+  - nvm install # version lifted from `.nvmrc`
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
+  - export PATH="$HOME/.yarn/bin:$PATH"
 
 services:
   - docker
 
 stages:
-#  - build-and-deploy # lint code and docs
-  - nightwatch # lint code and docs
-
-language: php
-php:
-  - 7.1
+  - prep
+  - test-live-site
 
 jobs:
   include:
-    - stage: build-and-deploy
-      name: 'Smoke Tests'
+    - stage: prep
+      name: 'Smoke Tests: Install, Lint, Unit'
       before_script:
         - phpenv config-rm xdebug.ini
         - composer global require hirak/prestissimo
         - yarn run setup:quick
         - ./scripts/check-run-queue.js 'Lint'
         - ./scripts/check-run-queue.js 'Unit'
+        - ./scripts/check-run-queue.js 'Nightwatch'
+        - ./scripts/check-run-queue.js 'Deploy - now.sh'
+        - ./scripts/check-run-queue.js 'Site is live'
       script:
         - ./test/lint.js
         - ./test/unit.js
@@ -30,7 +41,7 @@ jobs:
         directories:
           - node_modules
 
-    - stage: build-and-deploy
+    - stage: prep
       name: 'Build + Deploy'
       # before_script:
       #   - phpenv config-rm xdebug.ini
@@ -49,45 +60,48 @@ jobs:
         - docker --log-level error push boltdesignsystem/bolt:latest
         - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
       after_script:
+        - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - cd scripts && npm install
         - npm run deploy
-        - ./scripts/get-latest-deploy.js
-        - node ./scripts/get-latest-deploy.js
         - ./release/update-read-only-git-repos.sh
       cache:
         yarn: true
         directories:
           - node_modules
+          - scripts/node_modules
           - docs-site/cache
           - www/pattern-lab/styleguide/js
           - www/pattern-lab/styleguide/css
           - www/pattern-lab/index.html
 
-    - stage: nightwatch
+    - stage: test-live-site
       name: 'Nightwatch End-to-End'
       script:
         - yarn run setup
-        - ./scripts/check-run-queue.js 'Nightwatch'
-        - ./scripts/get-latest-deploy.js
+        - ./scripts/check-run-in-progress.js 'Nightwatch'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
         - npx nightwatch --config nightwatch.js --env chrome,ie11
         - sleep 10
         - ./scripts/report-nightwatch-results.js
+      cache:
+        yarn: true
+        directories:
+          - node_modules
 
-before_install:
-  - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
-  - nvm install # version lifted from `.nvmrc`
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
-  - export PATH="$HOME/.yarn/bin:$PATH"
-
-# @todo: re-enable and add to a separate Travis Job for handling post-deploy tests
-
-addons:
-  sauce_connect: true
-
-# script:
-# - bash ./travis.sh # time command already run inside the travis.sh script
+    - stage: test-live-site
+      name: 'Ensure site is live'
+      script:
+        - yarn run setup
+        - ./scripts/check-run-in-progress.js 'Site is live'
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
+        - curl -sSf "$NOW_URL" > /dev/null || ./scripts/check-run-failure.js 'Site is live' && exit 1
+        - ./scripts/check-run-success.js 'Site is live'
+      cache:
+        yarn: true
+        directories:
+          - node_modules
 
 notifications:
   email:
