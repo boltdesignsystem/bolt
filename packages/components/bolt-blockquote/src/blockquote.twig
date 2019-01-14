@@ -64,31 +64,31 @@
 >
   <blockquote {{ inner_attributes.addClass(inner_classes) }} is="shadow-root">
     {% if logo %}
-      {% block blockquote_logo %}
-        <replace-with-children class="{{ "#{base_class}__logo" }}">
+      <replace-with-children class="{{ "#{base_class}__logo" }}">
+        {% block blockquote_logo %}
           {% include "@bolt/logo.twig" with logo|merge({
             "lazyload": false, 
             slot: "logo",
           }) only %}
-        </replace-with-children>
-      {% endblock %}
+        {% endblock %}
+      </replace-with-children>
     {% endif %}
 
-    {% block blockquote_quote %}
-      <replace-with-grandchildren class="{{ "#{base_class}__quote" }}">
+    <replace-with-grandchildren class="{{ "#{base_class}__quote" }}">
+      {% block blockquote_quote %}
         {% include "@bolt-components-headline/text.twig" with {
           text: content,
           tag: "div",
           size: size,
           weight: "semibold"
         } only %}
-      </replace-with-grandchildren>
-    {% endblock %}
+      {% endblock %}
+    </replace-with-grandchildren>
 
     {% if author %}
-      {% block blockquote_footer %}
-        <replace-with-grandchildren>
-          <footer class="{{ "#{base_class}__footer" }}">
+      <replace-with-grandchildren>
+        <footer class="{{ "#{base_class}__footer" }}">
+          {% block blockquote_footer %}
             
             {% if author.image %}
               <replace-with-grandchildren class="{{ "#{base_class}__footer-item" }}">
@@ -121,10 +121,9 @@
               </replace-with-children>
             {% endif %}
             
-          </footer>
-        </replace-with-grandchildren>
-      
-      {% endblock %}
+          {% endblock %}
+        </footer>
+      </replace-with-grandchildren>
     {% endif %}
   </blockquote>
 </bolt-blockquote>
