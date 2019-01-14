@@ -101,7 +101,7 @@ async function init() {
       ],
       {
         encoding: 'utf8',
-        cwd: resolve(__dirname, '../deploys'),
+        cwd: resolve(__dirname, '../'),
       },
     );
 
