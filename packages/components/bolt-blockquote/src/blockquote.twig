@@ -65,63 +65,55 @@
   <blockquote {{ inner_attributes.addClass(inner_classes) }} is="shadow-root">
     {% if logo %}
       <replace-with-children class="{{ "#{base_class}__logo" }}">
-        {% block blockquote_logo %}
-          {% include "@bolt/logo.twig" with logo|merge({
-            "lazyload": false, 
-            slot: "logo",
-          }) only %}
-        {% endblock %}
+        {% include "@bolt/logo.twig" with logo|merge({
+          "lazyload": false, 
+          slot: "logo",
+        }) only %}
       </replace-with-children>
     {% endif %}
 
     <replace-with-grandchildren class="{{ "#{base_class}__quote" }}">
-      {% block blockquote_quote %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: content,
-          tag: "div",
-          size: size,
-          weight: "semibold"
-        } only %}
-      {% endblock %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: content,
+        tag: "div",
+        size: size,
+        weight: "semibold"
+      } only %}
     </replace-with-grandchildren>
 
     {% if author %}
       <replace-with-grandchildren>
         <footer class="{{ "#{base_class}__footer" }}">
-          {% block blockquote_footer %}
-            
-            {% if author.image %}
-              <replace-with-grandchildren class="{{ "#{base_class}__footer-item" }}">
-                <div class="{{ "#{base_class}__image" }}">
-                  {% include "@bolt/image.twig" with author.image|merge({"lazyload": false, slot:"author-image"}) only %}
-                </div>
-              </replace-with-grandchildren>
-            {% endif %}
+          {% if author.image %}
+            <replace-with-grandchildren class="{{ "#{base_class}__footer-item" }}">
+              <div class="{{ "#{base_class}__image" }}">
+                {% include "@bolt/image.twig" with author.image|merge({"lazyload": false, slot:"author-image"}) only %}
+              </div>
+            </replace-with-grandchildren>
+          {% endif %}
 
-            {% if author.name %}
-              <replace-with-children class="{{ "#{base_class}__footer-item" }}">
-                {% include "@bolt-components-headline/text.twig" with {
-                  text: author.name,
-                  tag: "cite",
-                  size: "xsmall",
-                  weight: "bold",
-                  slot: "author-name"
-                } %}
-              </replace-with-children>
-            {% endif %}
+          {% if author.name %}
+            <replace-with-children class="{{ "#{base_class}__footer-item" }}">
+              {% include "@bolt-components-headline/text.twig" with {
+                text: author.name,
+                tag: "cite",
+                size: "xsmall",
+                weight: "bold",
+                slot: "author-name"
+              } %}
+            </replace-with-children>
+          {% endif %}
 
-            {% if author.title %}
-              <replace-with-children class="{{ "#{base_class}__footer-item" }}">
-                {% include "@bolt-components-headline/text.twig" with {
-                  text: author.title,
-                  tag: "cite",
-                  size: "xsmall",
-                  slot: "author-title"
-                } only %}
-              </replace-with-children>
-            {% endif %}
-            
-          {% endblock %}
+          {% if author.title %}
+            <replace-with-children class="{{ "#{base_class}__footer-item" }}">
+              {% include "@bolt-components-headline/text.twig" with {
+                text: author.title,
+                tag: "cite",
+                size: "xsmall",
+                slot: "author-title"
+              } only %}
+            </replace-with-children>
+          {% endif %}
         </footer>
       </replace-with-grandchildren>
     {% endif %}
