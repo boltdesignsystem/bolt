@@ -23,6 +23,7 @@
     "start": "cd docs-site && yarn run start",
     "build": "cd docs-site && yarn run build:prod",
     "setup": "yarn",
+    "setup:php": "lerna exec --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php -- yarn run setup",
     "setup:quick": "yarn install --production",
     "setup:full": "yarn --force",
     "deploy": "./scripts/deploy.js",
@@ -40,6 +41,7 @@
     "test:js": "NODE_ENV='test' jest",
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
     "serve": "node server.js",
+    "postinstall": "yarn run setup:php",
     "postbootstrap": "node scripts/monorepo-tests.js",
     "prepublishOnly": "node scripts/monorepo-tests.js"
   },
