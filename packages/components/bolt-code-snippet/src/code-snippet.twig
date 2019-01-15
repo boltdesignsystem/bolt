@@ -24,7 +24,7 @@
 ] %}
 
 {% set codeContent %}
-  <code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }} nohighlight" is="shadow-root">{% block children %}{{ content }}{% endblock %}</code>
+  <code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }} nohighlight" is="shadow-root">{{ content }}</code>
 {% endset %}
 
 
