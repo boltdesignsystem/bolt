@@ -2,7 +2,7 @@
 {% set _body_block = block('card_body') %}
 {% set _footer_block = block('card_footer') %}
 
-{% if contentItems %}
+{% if (contentItems) or (_body_block is not empty) or (_footer_block is not empty) %}
   {% set schema = bolt.data.components["@bolt-components-card"].schema %}
 
   {% if enable_json_schema_validation %}
