@@ -3,6 +3,7 @@ const express = require('express');
 const browserSync = require('browser-sync');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const chalk = require('chalk');
 const createWebpackConfig = require('../create-webpack-config');
 const { getConfig } = require('../utils/config-store');
 const { boltWebpackMessages } = require('../utils/webpack-helpers');
@@ -49,24 +50,48 @@ watch.description = 'Watch & fast re-compile Webpack';
 watch.displayName = 'webpack:watch';
 
 async function server(customWebpackConfig) {
-  boltBuildConfig = boltBuildConfig || (await getConfig());
+  const boltBuildConfig = await getConfig();
+  const useHotMiddleware =
+    Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1
+      ? false
+      : true;
+
   const webpackConfig =
     customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
+
+  const browserSyncFileToWatch = [
+    `${boltBuildConfig.wwwDir}/**/*.css`,
+    `${boltBuildConfig.wwwDir}/**/*.html`,
+  ];
+
+  if (useHotMiddleware === false) {
+    browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
+  }
 
   return new Promise((resolve, reject) => {
     const compiler = boltWebpackMessages(webpack(webpackConfig));
     const server = express();
 
     server.use(webpackDevMiddleware(compiler, webpackConfig[0].devServer));
-    server.use(
-      webpackHotMiddleware(compiler, {
-        log: false,
-        quiet: true,
-        noInfo: true,
-        logLevel: 'silent',
-        reload: true,
-      }),
-    );
+
+    // Don't use hot middleware when there's more than 1 language setup in the config -- workaround to prevent infinite loops when doing local dev
+    if (useHotMiddleware) {
+      server.use(
+        webpackHotMiddleware(compiler, {
+          log: false,
+          quiet: true,
+          noInfo: true,
+          logLevel: 'silent',
+          reload: true,
+        }),
+      );
+    } else {
+      console.log(
+        chalk.yellow(
+          '\n⚠️  Warning: disabling webpackHotMiddleware (HMR) to avoid infinite loops... falling back to a simple page reload. \n   To re-enable HMR, update your .boltrc config to only compile for one language at a time while doing local dev work.\n',
+        ),
+      );
+    }
 
     server.use(express.static(boltBuildConfig.wwwDir));
     server.use('/api', handleRequest);
@@ -87,10 +112,7 @@ async function server(customWebpackConfig) {
         watchOptions: {
           ignoreInitial: true,
         },
-        files: [
-          `${boltBuildConfig.wwwDir}/**/*.css`,
-          `${boltBuildConfig.wwwDir}/**/*.html`,
-        ],
+        files: browserSyncFileToWatch,
       });
     });
   });
