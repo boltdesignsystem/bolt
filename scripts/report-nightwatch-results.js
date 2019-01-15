@@ -318,12 +318,12 @@ async function setGithubAppSauceResults(sauceResults) {
             
             // this adds to the full Check Run grid of images
             allImages.push(
-              ...screenshots.map(screenshot => {
+              ...screenshots.map((screenshot, i) => {
                 const name = screenshot.split('/').pop();
                 return {
                   image_url: screenshot,
                   alt: name,
-                  caption: `${browser} ${browserVer} ${os}`,
+                  caption: `${i}/${screenshots.length}: ${testName} - ${browser} ${browserVer} ${os}`,
                 };
               }),
             );
