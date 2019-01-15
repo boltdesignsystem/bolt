@@ -295,6 +295,8 @@ async function setGithubAppSauceResults(sauceResults) {
 - ${passedTests} of ${totalTests} passed    
     `.trim();
 
+    const allImages = [];
+
     const text = Object.keys(testSets)
       .map(testName => {
         const tests = testSets[testName];
@@ -313,10 +315,23 @@ async function setGithubAppSauceResults(sauceResults) {
               os,
             } = test;
             const { screenshots, finalScreenshot } = assets;
+            
+            // this adds to the full Check Run grid of images
+            allImages.push(
+              ...screenshots.map(screenshot => {
+                const name = screenshot.split('/').pop();
+                return {
+                  image_url: screenshot,
+                  alt: name,
+                  caption: `${browser} ${browserVer} ${os}`,
+                };
+              }),
+            );
+            
             return `
-## ${passed ? ':+1:' : ':-1:'} ${browser} ${browserVer} ${os}
+## ${passed ? ':+1:' : ':-1:'} ${browser} ${browserVer} ${os} ([details](${test.sauceLabsPage}))
 
-<details open>
+<details>
   
 - See video, logs, steps and more at [SauceLabs](${test.sauceLabsPage})
 
@@ -365,19 +380,13 @@ ${JSON.stringify(sauceResults, null, '  ')}
       output: {
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
         summary,
+        images: allImages,
         text: `${text}
 
 ---
 
 ${details}        
         `,
-        // images: assets.screenshots
-        //   ? assets.screenshots.map((screenshot, i) => ({
-        //       image_url: screenshot,
-        //       alt: `Screenshot ${i}`,
-        //       caption: assetNames.screenshot[i],
-        //     }))
-        //   : [],
       },
     });
   } catch (error) {
