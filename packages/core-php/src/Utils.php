@@ -115,4 +115,32 @@ class Utils {
     }
     return false;
   }
+
+  public static function setProp($key, $value, $schema, $array) {
+    // If key is in schema
+    if (!empty($schema["properties"]) && array_key_exists($key, $schema["properties"])){
+      // skip "attributes" key
+      if ($key != "attributes") {
+        // if value is array, call this function on array with that segment of the schema
+        if (is_array($value)) {
+          $obj = $value;
+          $objSchema = $schema["properties"][$key];
+          foreach ($obj as $objKey => $objValue) {
+            $array = self::setProp($objKey, $objValue, $objSchema, $array);
+          }
+        } else {
+          // otherwise set key
+          $keyName = $key;
+          if (array_key_exists("name", $schema["properties"][$key])) {
+            // use "name" from schema if set
+            $keyName = $schema["properties"][$key]["name"];
+          }
+          $array[$keyName] = $value;
+        }
+      }
+    }
+
+    return $array;
+  }
+
 }

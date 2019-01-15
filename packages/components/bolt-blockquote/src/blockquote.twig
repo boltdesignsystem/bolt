@@ -6,18 +6,8 @@
 
 {# Variables #}
 {% set base_class = "c-bolt-blockquote" %}
-{% set props = create_attribute({
-  "size": size,
-  "align-items": alignItems,
-  "border": border,
-  "indent": indent,
-  "full-bleed": fullBleed,
-  "author-name": author.name,
-  "author-title": author.title,
-  "author-title": author.title,
-  "author-image": author.image
-}) %}
-{% set attributes = merge_attributes(create_attribute(attributes|default({})), props) %}
+{% set props = initialize_props(_context, schema) %}
+{% set attributes = create_attribute(attributes|default({})|merge(props)) %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Required by Blockquote to map prop values to strings used in classname #}
@@ -64,7 +54,7 @@
 
 <bolt-blockquote
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ attributes|without('class') }}
+  {{ attributes|without("content")|without("class") }}
 >
   <blockquote {{ inner_attributes.addClass(inner_classes) }} is="shadow-root">
     {% if logo %}

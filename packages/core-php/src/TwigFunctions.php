@@ -282,6 +282,20 @@ class TwigFunctions {
     });
   }
 
+
+  // Loops through context, returns props that are in schema (skips Drupal attributes)
+  public static function initialize_props() {
+    return new Twig_SimpleFunction('initialize_props', function($context, $schema) {
+      $props = array();
+
+      foreach ($context as $key => $value) {
+        $props = Utils::setProp($key, $value, $schema, $props);
+      }
+
+      return $props;
+    });
+  }
+
   public static function github_url() {
     return new Twig_SimpleFunction('github_url', function(\Twig_Environment $env, $twigPath) {
       $filePath = TwigTools\Utils::resolveTwigPath($env, $twigPath);
