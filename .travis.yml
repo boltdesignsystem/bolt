@@ -16,13 +16,13 @@ before_install:
 services:
   - docker
 
+# see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
 stages:
   - Prep
   - Test Live Site
-#  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
-#  - name: Super Hard Tests
-#    if: branch = master
+  - name: Post
+    if: branch = master
 
 jobs:
   include:
@@ -44,38 +44,15 @@ jobs:
 
     - stage: Prep
       name: 'Build + Deploy'
-      # before_script:
-      #   - phpenv config-rm xdebug.ini
-      #   - composer global require hirak/prestissimo
-      #   - yarn run setup
       script:
-        # - yarn run build
-        # - yarn run deploy
-#        - docker --log-level error pull boltdesignsystem/bolt || true
-#        - docker build --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
-#        - docker images
-#        - echo $DOCKER_HUB_PASS | docker login --username $DOCKER_HUB_USER --password-stdin
-#        - GIT_SHA="$(git rev-parse --short HEAD)"
-#        - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
-#        - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
-#        - docker --log-level error push boltdesignsystem/bolt:latest
-#        - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
-#      after_script:
         - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - cd scripts && npm install
         - npm run deploy
-        # need to reset git repo before `update-read-only-git-repos.sh`
-        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
-        - ./release/update-read-only-git-repos.sh
       cache:
         yarn: true
         directories:
           - node_modules
           - scripts/node_modules
-          - docs-site/cache
-          - www/pattern-lab/styleguide/js
-          - www/pattern-lab/styleguide/css
-          - www/pattern-lab/index.html
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
@@ -100,8 +77,6 @@ jobs:
         - ./scripts/check-run-in-progress.js 'Site is live'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
-#        - time curl -sSf "$NOW_URL" > /dev/null || ./scripts/check-run-failure.js 'Site is live' && exit 1
-#        - ./scripts/check-run-success.js 'Site is live'
         - time curl -sSf "$NOW_URL" > /dev/null
       after_success:
         - ./scripts/check-run-success.js 'Site is live'
@@ -117,6 +92,11 @@ jobs:
       if: branch = master
       script:
         - echo "This only runs on master builds"
+
+    - stage: Post
+      name: Update Read Only Git Repos
+      script:
+        - ./release/update-read-only-git-repos.sh
 
 notifications:
   email:
