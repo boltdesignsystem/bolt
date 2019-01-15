@@ -27,6 +27,10 @@
   "right": "end"
 } %}
 
+{# Blockquote content is not required to be wrapped in a <p> tag, but if it is, update variables accordingly #}
+{% set quote_tag = "<p>" in content ? "replace-with-grandchildren" : "replace-with-children" %}
+{% set text_tag = "<p>" in content ? "div" : "p" %}
+
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set size = size in schema.properties.size.enum ? size : schema.properties.size.default %}
 {% set align_items = alignItems in schema.properties.alignItems.enum ? alignItems : schema.properties.alignItems.default %}
@@ -72,14 +76,14 @@
       </replace-with-children>
     {% endif %}
 
-    <replace-with-grandchildren class="{{ "#{base_class}__quote" }}">
+    <{{quote_tag}} class="{{ "#{base_class}__quote" }}">
       {% include "@bolt-components-headline/text.twig" with {
         text: content,
-        tag: "div",
+        tag: text_tag,
         size: size,
         weight: "semibold"
       } only %}
-    </replace-with-grandchildren>
+    </{{quote_tag}}>
 
     {% if author %}
       <replace-with-grandchildren>
