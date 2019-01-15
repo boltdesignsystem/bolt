@@ -92,7 +92,6 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
       const res = await fetch(
         `/api/render?${qs.stringify({
           template: this.props.template,
-          keepAlive: true,
         })}`,
         {
           method: 'POST',
