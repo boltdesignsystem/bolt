@@ -47,7 +47,7 @@ jobs:
       script:
         - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - cd scripts && npm install
-        - npm run deploy
+        - travis_wait 30 npm run deploy
       cache:
         yarn: true
         directories:
