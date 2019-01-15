@@ -1,5 +1,6 @@
-const { loadCSS } = require('fg-loadcss/src/loadCSS.js');
 import { supportsCSSVars } from '@bolt/core/utils';
+import { loadCSS } from 'fg-loadcss/src/loadCSS.js'; // helper function to conditionally load CSS files asynchronously
+global.loadCSS = loadCSS;
 
 /**
  * 1. Global environmental variables added in Bolt's Webpack config via the
