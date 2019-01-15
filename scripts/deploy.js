@@ -94,9 +94,9 @@ async function init() {
         //`--meta branchName="${branchName}"`,
         //`--meta gitSha="${gitSha}"`,
         '--env',
-        `DOCKER_TAG=${gitSha}`,
+        `GIT_SHA=${gitSha}`,
         '--build-env',
-        `DOCKER_TAG=${gitSha}`,
+        `GIT_SHA=${gitSha}`,
         ...baseNowArgs,
       ],
       {
