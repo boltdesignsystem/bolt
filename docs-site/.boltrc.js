@@ -132,13 +132,8 @@ const config = {
       resolve.sync('./src/index.js'),
     ],
     individual: [
-      // example specifying a standalone component's CSS and JS individually
-      {
-        name: 'loadcss',
-        js: './src/components/loadcss-fix/loadcss-fix.js',
-        //   scss: ./src/index.scss',
-      },
       '@bolt/components-critical-fonts',
+      '@bolt/components-critical-css',
       '@bolt/components-critical-css-vars',
     ],
   },
