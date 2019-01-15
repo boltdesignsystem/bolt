@@ -48,13 +48,7 @@
         class="{{ "#{base_class}__link" }}"
         {{ link_attributes }}
       >
-        <a
-          {% if link_url %}
-            href="{{ link_url }}"
-          {% else %}
-            href="#!"
-          {% endif %}
-        >
+        <a href="{{ link_url }}">
         </a>
       </bolt-card-link>
     {% endif %}
