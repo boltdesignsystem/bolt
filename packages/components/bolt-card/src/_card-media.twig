@@ -4,7 +4,8 @@
 {% set card_media_content = media.content %}
 
 {% if card_media_content %}
-  {{ card_media_content }}
+  {# The replace function is a hack to get around the utf-8 bug. #}
+  {{ card_media_content | join | replace({"UTF-8": ""}) }}
 {% else %}
   {% if card_image %}
     <bolt-card-media>

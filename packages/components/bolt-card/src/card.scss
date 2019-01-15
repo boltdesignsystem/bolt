@@ -86,3 +86,13 @@ bolt-card {
     transform: translate3d(0, 0, 0);
   }
 }
+
+// Old card footer
+
+.c-bolt-card__footer {
+  @include bolt-padding(small #{$bolt-card-body-spacing});
+  @include bolt-card-border-reset;
+
+  display: block;
+  border-top-width: $bolt-card-border-width;
+}
