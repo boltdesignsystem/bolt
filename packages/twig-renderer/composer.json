@@ -4,7 +4,19 @@
   "version": "2.2.1",
   "license": "MIT",
   "minimum-stability": "dev",
+  "repositories": [
+	  {
+      "type": "path",
+	    "url": "../core-php"
+	  },
+    {
+      "type": "path",
+      "url": "../drupal-twig-extensions"
+    }
+  ],
   "require": {
+    "bolt-design-system/core-php": "*",
+    "bolt-design-system/drupal-twig-extensions": "*",
     "twig/twig": "^1.0",
     "webmozart/path-util": "*",
     "symfony/finder": "*"
