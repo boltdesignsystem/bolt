@@ -14,6 +14,7 @@ const sh = require('../utils/sh');
 const { readYamlFileSync } = require('../utils/yaml');
 const manifest = require('../utils/manifest');
 const timer = require('../utils/timer');
+const { fileExists, dirExists } = require('../utils/general');
 
 let plSource, plPublic, consolePath;
 let config;
@@ -26,7 +27,7 @@ async function asyncConfig() {
     config = Object.assign(
       {
         plConfigFile: 'config/config.yml',
-        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md', 'png', 'php'],
+        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md', 'png'],
         debounceRate: 1000,
       },
       await getConfig(),
@@ -108,7 +109,42 @@ async function plBuild(errorShouldExit) {
 }
 
 async function compile() {
-  return await plBuild(true);
+  config = config || (await asyncConfig());
+
+  const jsFolderExists = await dirExists(
+    path.join(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/js/'),
+  );
+
+  const scssFolderExists = await dirExists(
+    path.join(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/css/'),
+  );
+
+  const indexHtmlExists = await fileExists(
+    path.join(process.cwd(), config.wwwDir, 'pattern-lab/index.html'),
+  );
+
+  const isPatternLabAlreadyCompiled =
+    jsFolderExists && scssFolderExists && indexHtmlExists;
+
+  // check if pattern lab's UIKIt assets exist -- automatically regenerate if the required assets are missing.
+  if (!isPatternLabAlreadyCompiled) {
+    chalk.yellow('⚠️ Uh-oh. Pattern Labs UIKit is missing... Regenerating!');
+    sh(
+      'yarn',
+      [
+        '--cwd',
+        path.join(process.cwd(), '../packages/uikit-workshop'),
+        'run',
+        'build',
+      ],
+      false,
+      false,
+    ).then(output => {
+      // console.log(output);
+    });
+  }
+
+  await plBuild(true);
 }
 
 compile.description = 'Compile Pattern Lab';

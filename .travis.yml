@@ -1,41 +1,92 @@
-sudo: false
+sudo: required
 dist: trusty
+
+services:
+  - docker
+
+stages:
+  - build-and-deploy # lint code and docs
 
 language: php
 php:
   - 7.1
 
-addons:
-  sauce_connect: true
+jobs:
+  include:
+    - stage: build-and-deploy
+      name: 'Smoke Tests'
+      before_script:
+        - phpenv config-rm xdebug.ini
+        - composer global require hirak/prestissimo
+        - yarn run setup:quick
+        #- node ./scripts/create-check-suite.js
+      script: yarn run test
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/cache
+
+    - stage: build-and-deploy
+      name: 'Linting'
+      before_script: yarn run setup:quick
+      script: 
+        - yarn run lint:scss
+        - yarn run lint:js
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+
+    - stage: build-and-deploy
+      name: 'Build + Deploy'
+      # before_script:
+      #   - phpenv config-rm xdebug.ini
+      #   - composer global require hirak/prestissimo
+      #   - yarn run setup
+      script:
+        # - yarn run build
+        # - yarn run deploy
+        - docker --log-level error pull boltdesignsystem/bolt || true
+        - docker build --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
+        - docker images
+        - echo $DOCKER_HUB_PASS | docker login --username $DOCKER_HUB_USER --password-stdin
+        - GIT_SHA="$(git rev-parse --short HEAD)"
+        - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
+        - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
+        - docker --log-level error push boltdesignsystem/bolt:latest 
+        - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
+      after_script:
+        - cd scripts && npm install
+        - npm run deploy
+        - sh ./release/update-read-only-git-repos.sh
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/cache
+          - www/pattern-lab/styleguide/js
+          - www/pattern-lab/styleguide/css
+          - www/pattern-lab/index.html
 
 before_install:
-- nvm install # version lifted from `.nvmrc`
-- curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
-- export PATH="$HOME/.yarn/bin:$PATH"
+  - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
+  - nvm install # version lifted from `.nvmrc`
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
+  - export PATH="$HOME/.yarn/bin:$PATH"
 
-before_script:
-- phpenv config-rm xdebug.ini
+# @todo: re-enable and add to a separate Travis Job for handling post-deploy tests
 
-install:
-- yarn run setup
+# addons:
+#   sauce_connect: true
 
-before_script:
-- yarn run lint
-
-# Can't do deploy on `after_success` b/c if deploy fails, the build still reports success. Can't use `deploy` step b/c Travis skips that on PRs.
-script:
-- bash ./travis.sh # time command already run inside the travis.sh script
-- npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
-
-cache:
-  apt: true
-  directories:
-    - $HOME/.composer/cache/files
+# script:
+# - bash ./travis.sh # time command already run inside the travis.sh script
+# - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
 
 notifications:
   email:
     on_success: never
-    on_failure: always
+    on_failure: never # @todo re-enable
   slack:
     secure: cNto+gWAoK1JM9jBNG4i4rMSybv3twMbqlFSCohQFBDMwKFMdlyWqFDX6iYKtHxWEDzrZyRz3qiJ8/S44mgjeKJ/xHbHDtPchp/KL2P1htipvwD2EZXobcBEGl83v2rmtFO1WNJUPB3RIJE2yt1wJsX7NIXpDw82hePmaIvNJmtbLpK/J5uaFqGNHIsctmULgVmGSNSTyK4nYxxjNNLd0EvO37Y6VN8FhsKNu2NHMKeeQxinEvETDUh8XuqXZYNWE3PBvVa4OiDhgnr5K27jsnWX+wEmqg0xY+CMf7mUSTqVN61fA7LnHyM0qcGGmB6YTv4QYLMwPydp+nsjDcm3St9D+KOTsQ4ExOaEAL/6EnAEpl8GtxST+ytdqswhCC4yMCO61Hy+M5AoXgDSGrrXHgZakDMAcEVcJdH38791hRxcuM3ldVmHAlAWFdgRLG5rRMVh3qoXz7jbraoTdjyKMegQIQdKR2SX7O9Dv0EEtLz4lTFN2RENvAjLggUPPU+ESoUHmSbwmPGnt7jy3ra2AI3nnYpfn/0e6Op/A3z7HLbdm3XyuNWoTPhy1mc4Adca+HosJ37UPv7nDRIGds1sKYAeWq94+rEk+/6IQ/oRIDRhSYsQbLLWnU6DH4o7iOj7D+X/ngjqmF75nW2s5+7rtdBHFvNzOJalCKHiDTMfdlQ=
-

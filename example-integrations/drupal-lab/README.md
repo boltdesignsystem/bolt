@@ -35,7 +35,7 @@ composer run bolt:start
 
 
 ### Compiling theme-specific front-end Sass and JavaScript
-Check out the `.boltrc` config example used in Bolt's [Pattern Lab configuration](https://github.com/bolt-design-system/bolt/blob/master/apps/pattern-lab/.boltrc.js#L132). This example shows that you can combine and build components coming from Bolt with additional front-end code that lives locally in your site theme using one unified build process!
+Check out the `.boltrc` config example used in Bolt's [Pattern Lab configuration](https://github.com/bolt-design-system/bolt/blob/master/docs-site/.boltrc.js#L132). This example shows that you can combine and build components coming from Bolt with additional front-end code that lives locally in your site theme using one unified build process!
 
 
 #### Workflows

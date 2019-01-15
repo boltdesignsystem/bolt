@@ -1,0 +1,11 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-link/link.twig" with {
+  text: "This is a link",
+  url: "https://pega.com"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "link",
+  usage: usage
+} only %}
