@@ -64,6 +64,8 @@ jobs:
         - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - cd scripts && npm install
         - npm run deploy
+        # need to reset git repo before `update-read-only-git-repos.sh`
+        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./release/update-read-only-git-repos.sh
       cache:
         yarn: true
