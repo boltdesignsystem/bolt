@@ -9,7 +9,7 @@
 {% set column_end = position.column_end ? position.column_end : column_end | default(null) %}
 {% set column_span = position.column_span ? position.column_span : column_span | default(12) %}
 
-{% set align = position.align ? position.align : align | default(null) %}
+{# {% set align = position.align ? position.align : align | default(null) %} #}
 {% set valign = position.valign ? position.valign : valign | default(null) %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
@@ -23,7 +23,7 @@
   {% if column_end %}column-end="{{ column_end }}"{% endif %}
   {% if column_span %}column-span="{{ column_span }}"{% endif %}
 
-  {% if align %}align="{{ align }}"{% endif %}
+  {# {% if align %}align="{{ align }}"{% endif %} #}
   {% if valign %}valign="{{ valign }}"{% endif %}
   {{ attributes }}
 >

@@ -1,6 +1,6 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
-title: 'Bolt Grid'
-description: 'Flexible component to build out CSS Grid-based layouts'
+title: Bolt Grid
+description: Flexible component to build out CSS Grid-based layouts
 type: object
 properties:
   attributes:
@@ -30,8 +30,8 @@ properties:
     properties:
       content:
         type: [string, object, array]
-        description: "Content to render inside each <code>&lt;bolt-grid-item&gt;</code>"
-      position:
+        description: Content to render inside each item.
+      item:
         type: object
         ref: '@bolt-components-grid/grid-item.schema.yml'
-        description: "Layout-specific config options for each internal <code>&lt;bolt-grid-item&gt;</code>"
+        description: Layout-specific config options for item.

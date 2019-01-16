@@ -1,0 +1,88 @@
+<h3>Each item can span from 1 to 12 columns</h3>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    row_gutter: "small",
+    items: [
+      {
+        row_start: "1",
+        column_start: "1",
+        column_span: "3",
+        content: "Span 3 columns",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+          ]
+        }
+      },
+      {
+        row_start: "2",
+        column_start: "1",
+        column_span: "6",
+        content: "Span 6 columns",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+          ]
+        }
+      },
+      {
+        row_start: "3",
+        column_start: "1",
+        column_span: "9",
+        content: "Span 9 columns",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+          ]
+        }
+      },
+      {
+        row_start: "4",
+        column_start: "1",
+        column_span: "12",
+        content: "Span 12 columns",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+          ]
+        }
+      },
+    ]
+  } only %}
+</div>
+
+<h3>Use any combination that adds up to 12 columns to form a row</h3>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        row_start: "1",
+        column_start: "1",
+        column_span: "3",
+        content: "Span 3 columns",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+          ]
+        }
+      },
+      {
+        row_start: "1",
+        column_start: "4",
+        column_span: "9",
+        content: "Span 9 columns",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+          ]
+        }
+      },
+    ]
+  } only %}
+</div>

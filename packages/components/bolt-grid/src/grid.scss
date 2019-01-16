@@ -65,9 +65,12 @@ $bolt-grid-item-directions: (
 bolt-grid-item {
   display: block;
   width: auto;
+
+/*
   max-width: 100%;
   grid-row-start: auto;
   grid-row-end: auto;
+*/
 
   // auto-generate styles for declarative vertical and horizontal alignment of individual <bolt-grid-item>s
   @each $alignment in $bolt-grid-item-alignments {
