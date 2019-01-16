@@ -155,6 +155,86 @@
       Freeform card footer content
     {% endblock %}
   {% endembed %}
+
+  {% embed "@bolt/card.twig" with {
+    "field_press_release_date": "December 12, 2018",
+    "field_press_release_label": "Example",
+    "field_press_release_url": "https://pega.com",
+    "field_press_release_body": "Lorem ipsum dolor sit amit.",
+    "field_press_release_image": "<img src='/images/placeholders/landscape-16x9-mountains.jpg'>",
+  } only %}
+    {% block card_media %}
+      {{ field_press_release_image }}
+    {% endblock %}
+
+    {% block card_body %}
+      {% include "@bolt/eyebrow.twig" with {
+        "text": field_press_release_date,
+      } only %}
+
+      {% include "@bolt/headline.twig" with {
+        "text": field_press_release_label,
+        "size": "large",
+      } only %}
+
+      {{ field_press_release_body }}
+    {% endblock %}
+
+    {% block card_footer %}
+      {% include "@bolt/button.twig" with {
+        "style": "text",
+        "width": "full",
+        "align": "start",
+        "text": 'Read more'|t,
+        "url": field_press_release_url,
+        "icon": { "name": "chevron-right" },
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@bolt/card.twig" with {
+    "customer_media": "<img src='/images/placeholders/landscape-16x9-mountains.jpg'>",
+    "contentItems": [
+      {
+        pattern: "eyebrow",
+        text: "John Doe",
+      },
+      {
+        pattern: "headline",
+        tag: "h3",
+        size: "large",
+        text: "Title of this article",
+      },
+      {
+        pattern: "button",
+        text: 'Read article',
+        url: "https://pega.com",
+      },
+    ],
+    "theme": "xlight",
+  } only %}
+    {% block card_media %}
+      {{ customer_media }}
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@bolt/card.twig" with {
+    theme: 'xlight',
+    attributes: {
+      class: [
+        'js-full-width-search-result',
+        'is-actionable'
+      ],
+      onclick: "location.href='https://pega.com'"
+    }
+  } only %}
+
+    {% block card_body %}
+      Body of card with attributes.
+    {% endblock %}
+  {% endembed %}
+
+
 </div>
 
 {% embed "@bolt-components-band/band.twig" with {
