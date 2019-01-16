@@ -1,9 +1,10 @@
 import { BoltAction } from '@bolt/core/elements/bolt-action';
 import { props, define } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
-import { html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, render } from '@bolt/core/renderers/renderer-lit-html';
 import { convertInitialTags } from '@bolt/core/decorators';
 
+import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 import styles from './_card-link.scss';
 
 let cx = classNames.bind(styles);
@@ -25,6 +26,14 @@ class BoltCardLink extends BoltAction {
 
     let renderedLink;
 
+    const slotMarkup = () => {
+      return html`
+        <span class="${cx('u-bolt-visuallyhidden')}"
+          >${this.slot('default')}</span
+        >
+      `;
+    };
+
     if (this.rootElement) {
       renderedLink = this.rootElement.firstChild.cloneNode(true);
       if (renderedLink.tagName === 'A') {
@@ -36,24 +45,23 @@ class BoltCardLink extends BoltAction {
         }
       }
       renderedLink.className += ' ' + classes;
+      render(slotMarkup(), renderedLink);
     } else {
       if (hasUrl) {
         renderedLink = html`
-          <a
-            href="${this.props.url}"
-            class="${classes}"
-            target="${urlTarget}"
-          ></a>
+          <a href="${this.props.url}" class="${classes}" target="${urlTarget}"
+            >${slotMarkup()}</a
+          >
         `;
       } else {
         renderedLink = html`
-          <button class="${classes}" type="button"></button>
+          <button class="${classes}" type="button">${slotMarkup()}</button>
         `;
       }
     }
 
     return html`
-      ${this.addStyles([styles])} ${renderedLink}
+      ${this.addStyles([styles, visuallyhiddenUtils])} ${renderedLink}
     `;
   }
 }
