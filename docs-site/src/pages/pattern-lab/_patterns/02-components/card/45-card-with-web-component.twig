@@ -63,7 +63,7 @@
 {% endset %}
 
 {% set simple_link_demo %}
-<bolt-card url="https://google.com">
+<bolt-card url="https://google.com" url-text="Go to google.com">
   {% include card_demo.image() %}
   {% include card_demo.body_clickable() %}
 </bolt-card>
@@ -71,7 +71,7 @@
 
 {% set advanced_link_demo %}
 <bolt-card>
-  <bolt-card-link url="https://google.com" target="_blank" custom-attribute="foo" html-attribute="bar"></bolt-card-link>
+  <bolt-card-link custom-attribute="foo" html-attribute="bar"><a href="http://google.com" target="_blank">Go to google.com</a></bolt-card-link>
   {% include card_demo.image() %}
   {% include card_demo.body_clickable() %}
 </bolt-card>
@@ -107,7 +107,7 @@
     Simple Link Usage
   </bolt-text>
   <bolt-text>
-    The simplest way to make the whole card clickable is by passing a link address to the <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet> prop on the main <bolt-code-snippet display="inline" lang="html">&lt;bolt-card&gt;</bolt-code-snippet> component itself.
+    The simplest way to make the whole card clickable is by passing a link address to the <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet> prop on the main <bolt-code-snippet display="inline" lang="html">&lt;bolt-card&gt;</bolt-code-snippet> component itself. Also include the <bolt-code-snippet display="inline" lang="html">url-text</bolt-code-snippet> prop for accessibility.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -124,7 +124,7 @@
     Advanced Link Usage
   </bolt-text>
   <bolt-text>
-    Insert a <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-link&gt;</bolt-code-snippet> inside <bolt-code-snippet display="inline" lang="html">&lt;bolt-card&gt;</bolt-code-snippet>, and you can pass more than just <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet>. <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-link&gt;</bolt-code-snippet> acts exactly like <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>, it accepts all the props from <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> and any other attributes that are allowed in <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>.
+    Insert a <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-link&gt;</bolt-code-snippet> inside <bolt-code-snippet display="inline" lang="html">&lt;bolt-card&gt;</bolt-code-snippet> and you can pass more than just <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet>. <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-link&gt;</bolt-code-snippet> is similar to <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet>. You can add custom attributes to <bolt-code-snippet display="inline" lang="html">&lt;bolt-card-link&gt;</bolt-code-snippet> and insert a semantic <bolt-code-snippet display="inline" lang="html">&lt;a&gt;</bolt-code-snippet> or <bolt-code-snippet display="inline" lang="html">&lt;button&gt;</bolt-code-snippet> element inside.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
