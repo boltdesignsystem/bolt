@@ -9,7 +9,7 @@ describe('<bolt-image>', async () => {
     const results = await render('@bolt-components-card/card.twig', {
       media: {
         image: {
-          src: '/images/placeholders/landscape-16x9-mountains.jpg',
+          src: '/fixtures/landscape-16x9-mountains.jpg',
           alt: 'Image alt.',
         },
       },
