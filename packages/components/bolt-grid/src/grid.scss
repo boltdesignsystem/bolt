@@ -72,75 +72,41 @@ bolt-grid-item {
   grid-row-end: auto;
 */
 
-  // auto-generate styles for declarative vertical and horizontal alignment of individual <bolt-grid-item>s
-  @each $alignment in $bolt-grid-item-alignments {
-    &[align='#{$alignment}']{
-      justify-self: #{$alignment};
-    }
-  }
-
   @each $valignment in $bolt-grid-item-alignments {
     &[valign='#{$valignment}']{
       align-self: #{$valignment};
     }
   }
 
-
-  // auto-generate styles for declarative rows and columns
+  // Column, row start and end
   @each $direction in $bolt-grid-item-directions {
-    // non-breakpoint variations of grid-column-start and grid-row-start
-    @for $start-option from 1 through 12 {
-      &[#{$direction}-start~='#{$start-option}']{
-        grid-#{$direction}-start: #{$start-option};
+    @for $bolt-grid-columns from 1 through 12 {
+      &[#{$direction}-start~='#{$bolt-grid-columns}']{
+        grid-#{$direction}-start: #{$bolt-grid-columns};
+      }
+
+      &[#{$direction}-span~='#{$bolt-grid-columns}']{
+        grid-#{$direction}-end: span #{$bolt-grid-columns};
       }
     }
+  }
 
-    // non-breakpoint variations of grid-column-end and grid-row-end
-    @for $end-option from 1 through 12 {
-      &[#{$direction}-end~='#{$end-option}']{
-        grid-#{$direction}-end: #{$end-option};
-      }
-    }
+  // Responsive column start and end
+  @each $breakpoint in $bolt-breakpoints {
+    $breakpoint-name: nth($breakpoint, 1);
 
-    // non-breakpoint span variations of grid-column-end and grid-row-end
-    @for $option from 1 through 12 {
-      &[#{$direction}-span~='#{$option}']{
-        grid-#{$direction}-end: span #{$option};
-      }
-    }
-
-    // breakpoint variations of grid-column-start and grid-row-start
-    @each $breakpoint in $bolt-breakpoints {
-      $breakpoint-name: nth($breakpoint, 1);
-      @for $start-option from 1 through 12 {
-        @include bolt-mq($breakpoint-name) {
-          &[#{$direction}-start~='#{$start-option}\@#{$breakpoint-name}']{
-            grid-#{$direction}-start: #{$start-option};
-          }
-        }
-      }
-    }
-
-
-    @each $breakpoint in $bolt-breakpoints {
-      $breakpoint-name: nth($breakpoint, 1);
-      @for $end-option from 1 through 12 {
-        @include bolt-mq($breakpoint-name) {
-          &[#{$direction}-end~='#{$end-option}\@#{$breakpoint-name}']{
-            grid-#{$direction}-end: #{$end-option};
-          }
-        }
-      }
-    }
-
-    // breakpoint-specific span variations of grid-column-end and grid-row-end
-    @each $breakpoint in $bolt-breakpoints {
-      $breakpoint-name: nth($breakpoint, 1);
+    @for $bolt-grid-columns from 1 through 12 {
       @include bolt-mq($breakpoint-name) {
-        @for $option from 1 through 12 {
-          &[#{$direction}-span~='#{$option}\@#{$breakpoint-name}']{
-            grid-#{$direction}-end: span #{$option};
-          }
+        &[column-start~='#{$bolt-grid-columns}\@#{$breakpoint-name}']{
+          grid-column-start: #{$bolt-grid-columns};
+        }
+      }
+    }
+
+    @include bolt-mq($breakpoint-name) {
+      @for $bolt-grid-columns from 1 through 12 {
+        &[column-span~='#{$bolt-grid-columns}\@#{$breakpoint-name}']{
+          grid-column-end: span #{$bolt-grid-columns};
         }
       }
     }

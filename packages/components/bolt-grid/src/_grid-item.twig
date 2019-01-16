@@ -1,0 +1,32 @@
+{% set item_attributes = create_attribute(attributes|default({})) %}
+
+{% set item_row_start = item.row_start %}
+{% set item_row_span = item.row_span %}
+{% set item_column_start = item.column_start %}
+{% set item_column_span = item.column_span %}
+{% set item_valign = item.valign %}
+
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
+{% set item_row_start_options = schema.properties.item_row_start.enum %}
+{% set row_span_options = schema.properties.item_row_span.enum %}
+{% set column_start_options = schema.properties.item_column_start.enum %}
+{% set column_span_options = schema.properties.item_column_span.enum %}
+{% set valign_options = schema.properties.item_valign.enum %}
+
+{# Check that the component's current prop values are valid. if not, default to the schema default #}
+{% set item_row_start = item_row_start in item_row_start_options ? item_row_start : schema.properties.item_row_start.default %}
+{% set item_row_span = item_row_span in item_row_span_options ? item_row_span : schema.properties.item_row_span.default %}
+{% set item_column_start = item_column_start in item_column_start_options ? item_column_start : schema.properties.item_column_start.default %}
+{% set item_column_span = item_column_span in item_column_span_options ? item_column_span : schema.properties.item_column_span.default %}
+{% set item_valign = item_valign in item_valign_options ? item_valign : schema.properties.item_valign.default %}
+
+<bolt-grid-item
+  {% if row_start %}row-start="{{ row_start }}"{% endif %}
+  {% if row_span %}row-span="{{ row_span }}"{% endif %}
+  {% if column_start %}column-start="{{ column_start }}"{% endif %}
+  {% if column_span %}column-span="{{ column_span }}"{% endif %}
+  {% if valign %}valign="{{ valign }}"{% endif %}
+  {{ item_attributes }}
+>
+  {{ content }}
+</bolt-grid-item>

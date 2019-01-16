@@ -1,6 +1,6 @@
-{% set placeholder %}
+{% set item_content %}
   {% include "@bolt-components-placeholder/placeholder.twig" with {
-    text: "Grid item",
+    text: "Item",
   } only %}
 {% endset %}
 
@@ -9,40 +9,19 @@
   row_gutter: "medium",
   items: [
     {
-      row_start: "1",
       column_start: "1",
       column_span: "4",
-      content: placeholder,
+      content: item_content,
     },
     {
-      row_start: "1",
       column_start: "5",
       column_span: "4",
-      content: placeholder,
+      content: item_content,
     },
     {
-      row_start: "1",
       column_start: "9",
       column_span: "4",
-      content: placeholder,
-    },
-    {
-      row_start: "2",
-      column_start: "1",
-      column_span: "4",
-      content: placeholder,
-    },
-    {
-      row_start: "2",
-      column_start: "5",
-      column_span: "4",
-      content: placeholder,
-    },
-    {
-      row_start: "2",
-      column_start: "9",
-      column_span: "4",
-      content: placeholder,
+      content: item_content,
     },
   ]
 } only %}

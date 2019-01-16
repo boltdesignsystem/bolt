@@ -49,13 +49,7 @@
 >
   <div {{ inner_attributes.addClass(inner_classes) }}>
     {% for item in items %}
-      {% if item is iterable %}
-        {% include "@bolt-components-grid/grid-item.twig" with item only %}
-      {% else %}
-        {% include "@bolt-components-grid/grid-item.twig" with {
-          content: item,
-        } only %}
-      {% endif %}
+      {% include "@bolt-components-grid/_grid-item.twig" with item %}
     {% endfor %}
   </div>
 </bolt-grid>
