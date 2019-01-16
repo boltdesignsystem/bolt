@@ -1,32 +1,23 @@
-import {
-  props,
-  define,
-  declarativeClickHandler,
-  sanitizeBoltClasses,
-  hasNativeShadowDomSupport,
-  afterNextRender,
-  watchForComponentMutations,
-} from '@bolt/core/utils';
+import { props, define } from '@bolt/core/utils';
+import { html, render } from '@bolt/core/renderers/renderer-lit-html';
+import { BoltAction } from '@bolt/core/elements/bolt-action';
+import { convertInitialTags } from '@bolt/core/decorators';
+
 import classNames from 'classnames/bind';
-import {
-  withLitHtml,
-  html,
-  render,
-} from '@bolt/core/renderers/renderer-lit-html';
-import Ajv from 'ajv';
 
 import styles from './link.scss';
 import schema from '../link.schema.yml';
 
-const ajv = new Ajv({ useDefaults: 'shared' });
-
 let cx = classNames.bind(styles);
 
 @define
-class BoltLink extends withLitHtml() {
+@convertInitialTags('a') // The first matching tag will have its attributes converted to component props
+class BoltLink extends BoltAction {
   static is = 'bolt-link';
 
   static props = {
+    display: props.string,
+    valign: props.string,
     url: props.string,
     target: props.string,
     isHeadline: props.boolean,
@@ -37,139 +28,30 @@ class BoltLink extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    self.validate = ajv.compile(schema);
-    self.styles = styles;
-    self.baseClass = 'c-bolt-link';
+    self.schema = schema;
     return self;
   }
 
-  // @todo: move to the global Bolt Base component after we're done testing this out with the new refactored Card component
-  validateProps(propData) {
-    var validatedData = propData;
-
-    // remove default strings in prop data so schema validation can fill in the default
-    for (let property in validatedData) {
-      if (validatedData[property] === '') {
-        delete validatedData[property];
-      }
-    }
-
-    let isValid = this.validate(validatedData);
-
-    // bark at any schema validation errors
-    if (!isValid) {
-      console.log(this.validate.errors);
-    }
-
-    return validatedData;
-  }
-
-  connecting() {
-    const root = this;
-
-    // If the initial <bolt-link> element contains a link, break apart the original HTML so we can retain the a tag but swap out the inner content with slots.
-
-    // Make sure the button component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
-    if (this._wasInitiallyRendered === false) {
-      this.childNodes.forEach((childElement, i) => {
-        if (childElement.tagName === 'A') {
-          root.rootElement = document.createDocumentFragment();
-
-          // Take any existing elements and move them to the root of the custom element
-          while (childElement.firstChild) {
-            root.appendChild(childElement.firstChild);
-          }
-
-          if (childElement.className) {
-            childElement.className = sanitizeBoltClasses(childElement);
-          }
-
-          if (
-            childElement.getAttribute('is') &&
-            childElement.getAttribute('is') === 'shadow-root'
-          ) {
-            childElement.removeAttribute('is');
-          }
-
-          root.rootElement.appendChild(childElement);
-        }
-      });
-    }
-
-    // When possible, use afterNextRender to defer non-critical work until after first paint.
-    afterNextRender(this, function() {
-      this.addEventListener('click', this.clickHandler);
-    });
-  }
-
-  rendered() {
-    super.rendered(); // ensure any events emitted by the Bolt Base class fire as expected
-
-    // re-render if Shadow DOM is supported and enabled; temp workaround to dealing w/ components already rendered, but without slot support
-    if (hasNativeShadowDomSupport && this.useShadow) {
-      this.observer = watchForComponentMutations(this);
-
-      this.observer.observe(this, {
-        attributes: false,
-        childList: true,
-        characterData: false,
-      });
-    }
-  }
-
-  disconnecting() {
-    this.removeEventListener('click', this.clickHandler);
-
-    if (hasNativeShadowDomSupport && this.useShadow) {
-      if (this.observer) {
-        this.observer.disconnect();
-      }
-    }
-  }
-
-  // Attach external events declaratively
-  clickHandler(event) {
-    declarativeClickHandler(this);
-  }
-
-  linkTemplate(href, classes, target, children = null) {
-    return html`
-      <a href="${href}" class="${classes}" target="${target}">${children}</a>
-    `;
-  }
-
-  customLinkTemplate(href = '', classes = '', target = '') {
-    const renderedLink = this.rootElement.firstChild.cloneNode(true);
-    renderedLink.setAttribute('href', href);
-    renderedLink.className += ' ' + classes;
-
-    if (target !== undefined && target !== '') {
-      renderedLink.setAttribute('target', target);
-    } else {
-      renderedLink.removeAttribute('target');
-    }
-
-    return renderedLink;
-  }
-
-  // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
-  hasHref() {
-    return this.props.url.length > 0 && this.props.url !== 'null';
-  }
-
-  // Assign default target attribute value if one isn't specified
-  anchorTarget() {
-    return this.props.target && this.hasHref() ? this.props.target : '_self';
-  }
-
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { url, target, isHeadline } = this.validateProps(this.props);
+    // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
 
-    const classes = cx(this.baseClass, {
-      [`${this.baseClass}--headline`]: isHeadline,
+    // Validate the original prop data passed along -- returns back the validated data w/ added default values
+    const { display, valign, url, target, isHeadline } = this.validateProps(
+      this.props,
+    );
+
+    const classes = cx('c-bolt-link', {
+      [`c-bolt-link--display-${display}`]: display,
+      [`c-bolt-link--valign-${valign}`]: valign,
+      [`c-bolt-link--headline`]: isHeadline,
     });
+
+    // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
+    const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
+
+    // Assign default target attribute value if one isn't specified
+    const anchorTarget =
+      this.props.target && hasUrl ? this.props.target : '_self';
 
     // The linkElement to render, based on the initial HTML passed alone.
     let renderedLink;
@@ -178,31 +60,26 @@ class BoltLink extends withLitHtml() {
       switch (name) {
         case 'before':
         case 'after':
-          const iconClasses = cx(`${this.baseClass}__icon`, {
+          const iconClasses = cx('c-bolt-link__icon');
+          // [1]
+          // prettier-ignore
+          return name in this.slots
+            ? html`<span class="${iconClasses}">${this.slot(name)}</span>`
+            : html`<slot name="${name}" />`;
+        default:
+          const itemClasses = cx('c-bolt-link__text', {
             'is-empty': name in this.slots === false,
           });
 
-          return html`
-            <span class="${iconClasses}"
+          // [1]
+          // prettier-ignore
+          return html`<span class="${itemClasses}"
               >${
                 name in this.slots
-                  ? this.slot(name)
-                  : html`<slot name="${name}" />`
+                  ? this.slot('default')
+                  : html`<slot />`
               }</span
-            >
-          `;
-        default:
-          const itemClasses = cx(`${this.baseClass}__text`, {
-            'is-empty': name in this.slots === false,
-          });
-
-          return html`
-            <span class="${itemClasses}"
-              >${
-                name in this.slots ? this.slot('default') : html`<slot/>`
-              }</span
-            >
-          `;
+            >`;
       }
     };
 
@@ -213,20 +90,23 @@ class BoltLink extends withLitHtml() {
     ];
 
     if (this.rootElement) {
-      renderedLink = this.customLinkTemplate(url, classes, target);
+      renderedLink = this.rootElement.firstChild.cloneNode(true);
+      if (renderedLink.getAttribute('href') === null && hasUrl) {
+        renderedLink.setAttribute('href', this.props.url);
+      }
+      renderedLink.className += ' ' + classes;
       render(innerSlots, renderedLink);
     } else {
-      renderedLink = this.linkTemplate(
-        url,
-        classes,
-        this.anchorTarget(),
-        innerSlots,
-      );
+      // [1]
+      // prettier-ignore
+      renderedLink = html`<a href="${this.props.url}" class="${classes}" target="${anchorTarget}"
+          >${innerSlots}</a
+        >`;
     }
 
-    return html`
-      ${this.addStyles([this.styles])} ${renderedLink}
-    `;
+    // [1]
+    // prettier-ignore
+    return html`${this.addStyles([styles])} ${renderedLink}`;
   }
 }
 

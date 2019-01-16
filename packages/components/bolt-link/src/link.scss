@@ -11,27 +11,20 @@
 // Component variables
 $bolt-link-transition: $bolt-transition;
 
-bolt-link {
-  display: inline-block;
-  display: inline-flex;
-  vertical-align: bottom; // Fixes alignment when link appears next to inline text, "top" also works
-}
-
 // Component styles
 .c-bolt-link {
-  @include bolt-padding(0);  // [1]
-  @include bolt-font-family(body);  // [1]
+  @include bolt-padding(0); // [1]
+  @include bolt-font-family(body); // [1]
 
-  display: block;
-  display: flex; // Container is set to "inline-flex" so this can just be "flex"
-  align-items: center; // So icons are vertically centered
+  display: inline;
+  appearance: none; // [1]
   opacity: bolt-opacity(100);
-  width: 100%; // always fill the width available (internally)
+  margin-left: bolt-spacing(xxsmall) * -1;
   color: bolt-theme(link);
   text-decoration: underline;
   cursor: pointer;
-  border: none;  // [1]
-  background: none;  // [1]
+  border: none; // [1]
+  background: none; // [1]
   transition: all $bolt-link-transition;
 
   &:hover {
@@ -44,6 +37,32 @@ bolt-link {
   }
 }
 
+.c-bolt-link--display-flex {
+  display: inline-flex;
+
+  &.c-bolt-link--valign-start {
+    align-items: flex-start;
+  }
+
+  &.c-bolt-link--valign-center {
+    align-items: center;
+  }
+}
+
+.c-bolt-link--display-inline {
+  .c-bolt-link__icon {
+    display: inline;
+  }
+}
+
+.c-bolt-link__icon,
+.c-bolt-link__text {
+  @include bolt-padding-left(xxsmall);
+}
+
+.c-bolt-link__text {
+  display: inline;
+}
 
 
 // Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.
@@ -54,27 +73,4 @@ bolt-link {
   &:hover {
     text-decoration: underline;
   }
-}
-
-
-// Text and icon spacing
-.c-bolt-link__text + .c-bolt-link__icon:not(.is-empty) {
-  @include bolt-margin-left(xxsmall);
-}
-
-.c-bolt-link__icon:not(.is-empty) + .c-bolt-link__text {
-  @include bolt-margin-left(xxsmall);
-}
-
-
-// Icon styles
-.c-bolt-link__icon {
-  display: inline-block;
-  line-height: 1; // workaround so icons can be vertically aligned properly
-  vertical-align: baseline;
-}
-
-// grow to fill up any extra unused space available (needed mostly for nested bolt-link instances in other deeply nested components (like <bolt-card> and <bolt-link> wrapping images + <bolt-image> and <bolt-ratio> combos)
-.c-bolt-link__text {
-  flex-grow: 1;
 }

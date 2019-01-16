@@ -1,9 +1,13 @@
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
+const express = require('express');
+const browserSync = require('browser-sync');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const chalk = require('chalk');
 const createWebpackConfig = require('../create-webpack-config');
 const { getConfig } = require('../utils/config-store');
 const { boltWebpackMessages } = require('../utils/webpack-helpers');
+const { handleRequest } = require('../api');
 
 let boltBuildConfig;
 
@@ -46,50 +50,70 @@ watch.description = 'Watch & fast re-compile Webpack';
 watch.displayName = 'webpack:watch';
 
 async function server(customWebpackConfig) {
-  boltBuildConfig = boltBuildConfig || (await getConfig());
+  const boltBuildConfig = await getConfig();
+  const useHotMiddleware =
+    Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1
+      ? false
+      : true;
+
   const webpackConfig =
     customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
 
+  const browserSyncFileToWatch = [
+    `${boltBuildConfig.wwwDir}/**/*.css`,
+    `${boltBuildConfig.wwwDir}/**/*.html`,
+  ];
+
+  if (useHotMiddleware === false) {
+    browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
+  }
+
   return new Promise((resolve, reject) => {
     const compiler = boltWebpackMessages(webpack(webpackConfig));
+    const server = express();
 
-    // Add Hot Module Reloading scripts to Webpack entrypoint
-    if (webpackConfig[0].devServer.hot) {
-      webpackConfig[0].entry['bolt-global'].unshift(
-        `webpack-dev-server/client?http://localhost:${
-          webpackConfig[0].devServer.port
-        }/`,
-        'webpack/hot/dev-server',
+    server.use(webpackDevMiddleware(compiler, webpackConfig[0].devServer));
+
+    // Don't use hot middleware when there's more than 1 language setup in the config -- workaround to prevent infinite loops when doing local dev
+    if (useHotMiddleware) {
+      server.use(
+        webpackHotMiddleware(compiler, {
+          log: false,
+          quiet: true,
+          noInfo: true,
+          logLevel: 'silent',
+          reload: true,
+        }),
+      );
+    } else {
+      console.log(
+        chalk.yellow(
+          '\n⚠️  Warning: disabling webpackHotMiddleware (HMR) to avoid infinite loops... falling back to a simple page reload. \n   To re-enable HMR, update your .boltrc config to only compile for one language at a time while doing local dev work.\n',
+        ),
       );
     }
 
-    const server = new WebpackDevServer(compiler, webpackConfig[0].devServer);
+    server.use(express.static(boltBuildConfig.wwwDir));
+    server.use('/api', handleRequest);
 
-    server.listen(boltBuildConfig.port, '0.0.0.0', err => {
-      const localLabel = chalk.bold('Local: ');
-      const localAddress = chalk.magenta(
-        `http://localhost:${boltBuildConfig.port}/${boltBuildConfig.startPath}`,
-      );
-
-      const externalLabel = chalk.bold('External: ');
-      const externalAddress = chalk.magenta(
-        `http://${boltBuildConfig.ip}:${boltBuildConfig.port}/${
-          boltBuildConfig.startPath
-        }`,
-      );
-
-      const lineBreak = chalk.gray(
-        '--------------------------------------------',
-      );
-
-      console.log(`\n${lineBreak}`);
-      console.log(`${localLabel}${localAddress}`);
-      console.log(`${externalLabel}${externalAddress}`);
-      console.log(`${lineBreak}`);
-
+    server.listen(boltBuildConfig.port, '0.0.0.0', function onStart(err) {
       if (err) {
-        reject(err);
+        console.log(err);
       }
+
+      browserSync({
+        proxy: 'localhost:' + boltBuildConfig.port,
+        logLevel: 'info',
+        ui: false,
+        notify: false,
+        open: boltBuildConfig.open,
+        logFileChanges: false,
+        reloadOnRestart: true,
+        watchOptions: {
+          ignoreInitial: true,
+        },
+        files: browserSyncFileToWatch,
+      });
     });
   });
 }
