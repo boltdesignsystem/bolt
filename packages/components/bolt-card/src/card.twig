@@ -21,6 +21,7 @@
 
 {% if link %}
   {% set link_url = link.url %}
+  {% set link_target = link.target %}
   {% set link_attributes = create_attribute(link.attributes) %}
 {% endif %}
 
@@ -45,11 +46,15 @@
   <replace-with-children {{ inner_attributes.addClass(classes) }}>
     {% if link %}
       <bolt-card-link
-        class="{{ "#{base_class}__link" }}"
         {{ link_attributes }}
       >
-        <a href="{{ link_url }}">
-        </a>
+        {% if link_url %}
+          <a
+            href="{{ link_url }}"
+            class="{{ "#{base_class}__link" }}"
+            {% if link_target %} target="{{ link_target }}"{% endif %}
+          ></a>
+        {% endif %}
       </bolt-card-link>
     {% endif %}
 
