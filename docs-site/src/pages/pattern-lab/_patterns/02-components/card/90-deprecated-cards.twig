@@ -193,6 +193,39 @@
   {% endembed %}
 
   {% embed "@bolt/card.twig" with {
+    "field_press_release_date": "December 12, 2018",
+    "field_press_release_label": "Example",
+    "field_press_release_url": "https://pega.com",
+    "field_press_release_body": "Lorem ipsum dolor sit amit.",
+    "field_press_release_image": "<img src='/images/placeholders/landscape-16x9-mountains.jpg'>",
+  } only %}
+    {% block card_media %}
+      {{ field_press_release_image }}
+    {% endblock %}
+
+    {% block card_body %}
+      {% include "@bolt/eyebrow.twig" with {
+        "text": field_press_release_date,
+      } only %}
+
+      {% include "@bolt/headline.twig" with {
+        "text": field_press_release_label,
+        "size": "large",
+      } only %}
+
+      {{ field_press_release_body }}
+    {% endblock %}
+
+    {% block card_footer %}
+      <div class="u-bolt-padding-medium">
+        <div>
+          <p class="c-bolt-text c-bolt-text--xsmall">We welcome your registration to join the Pega Independent Software Vendor (ISV) program. Please provide the following information, and a representative from Pega will reach out to you with the next steps for you to become a member.</p>
+        </div>
+      </div>
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@bolt/card.twig" with {
     "customer_media": "<img src='/images/placeholders/landscape-16x9-mountains.jpg'>",
     "contentItems": [
       {

@@ -1,8 +1,9 @@
 {# Create variables for blocks that can be overrided using old card schema. #}
+{% set _body_media = block('card_media') %}
 {% set _body_block = block('card_body') %}
 {% set _footer_block = block('card_footer') %}
 
-{% if (contentItems) or (_body_block is not empty) or (_footer_block is not empty) %}
+{% if (contentItems) or (_body_media is not empty) or (_body_block is not empty) or (_footer_block is not empty) %}
   {% include "@bolt-components-card/_old-card-adapter.twig" %}
 {% else %}
   {#

@@ -3,6 +3,7 @@
 
 {% set cardTheme = theme in themes ? theme : "none" %}
 {% set cardTag = tag in tags ? tag : "div" %}
+{% set cardAttributes = attributes ? attributes : {} %}
 
 {% set _allowedCardHeaderItems = ["image", "video"] %}
 {% set _allowedCardBodyItems = ["eyebrow", "content", "text", "headline", "teaser"] %}
@@ -54,42 +55,6 @@
   {% set _items = _items | merge([item]) %}
 {% endfor %}
 
-{% set cardMedia %}
-  {% for key, item in _items if item.pattern in _allowedCardHeaderItems %}
-    {% if item.pattern %}
-      {% if item.pattern == "image" and url is not empty %}
-        <a href="{{url}}">
-      {% endif %}
-      {% include pattern_template(item.pattern) with item only %}
-      {% if item.pattern == "image" and url is not empty %}
-        </a>
-      {% endif %}
-    {% else %}
-      {{ item }}
-    {% endif %}
-  {% endfor %}
-{% endset %}
-
-{% set cardBody %}
-  {% if _body_block is not empty %}
-    {{ _body_block | raw }}
-  {% else %}
-    {% for key,item in _items if item.pattern in _allowedCardBodyItems %}
-      {% if item.pattern %}
-        {% include pattern_template(item.pattern) with item only %}
-      {% elseif key != "content" %}
-        {% include pattern_template(key) with item only %}
-      {% else %}
-        {{ item }}
-      {% endif %}
-    {% endfor %}
-  {% endif %}
-  {% if _footer_block is not empty %}
-    <hr style="margin-left: -2rem; margin-right: -2rem; width: calc(100% + 4rem)">
-    {{ _footer_block | raw }}
-  {% endif %}
-{% endset %}
-
 {% set cardActions = [] %}
 
 {% for cardAction in _items if cardAction.pattern in _allowedCardFooterItems %}
@@ -97,16 +62,65 @@
   {% set cardActions = cardActions|merge(cardAction) %}
 {% endfor %}
 
+{% set cardMedia %}
+  <bolt-card-media>
+    {% if _body_media is not empty %}
+      {{ _body_media | raw }}
+    {% else %}
+      {% for key, item in _items if item.pattern in _allowedCardHeaderItems %}
+        {% if item.pattern %}
+          {% if item.pattern == "image" and url is not empty %}
+            <a href="{{url}}">
+          {% endif %}
+          {% include pattern_template(item.pattern) with item only %}
+          {% if item.pattern == "image" and url is not empty %}
+            </a>
+          {% endif %}
+        {% else %}
+          {{ item }}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </bolt-card-media>
+{% endset %}
+
+{% set cardBody %}
+  <bolt-card-body>
+    {% if _body_block is not empty %}
+        {{ _body_block | raw }}
+    {% else %}
+      {% for key,item in _items if item.pattern in _allowedCardBodyItems %}
+        {% if item.pattern %}
+          {% include pattern_template(item.pattern) with item only %}
+        {% elseif key != "content" %}
+          {% include pattern_template(key) with item only %}
+        {% else %}
+          {{ item }}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </bolt-card-body>
+  {% if _footer_block is not empty %}
+    <div class="c-bolt-card__footer">
+      {{ _footer_block | raw }}
+    </div>
+  {% elseif cardActions | length > 0 %}
+    {% include "@bolt-components-card/_card-actions.twig" with {
+      actions: cardActions,
+    } only %}
+  {% endif %}
+{% endset %}
+
+{% set cardContent %}
+  {{ cardMedia }}
+  {{ cardBody }}
+{% endset %}
+
 {% include "@bolt-components-card/card.twig" with {
+  attributes: cardAttributes,
   theme: cardTheme,
   tag: cardTag,
-  media: {
-    content: cardMedia,
-  },
-  body: {
-    content: cardBody,
-  },
-  actions: cardActions
+  content: cardContent,
 } only %}
 
 {# TODO Old card structure temporarily kept for reference. #}
