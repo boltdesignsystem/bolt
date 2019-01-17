@@ -265,7 +265,7 @@ class TwigFunctions {
     });
   }
 
-  // Loops through context, returns props that are in schema (skips Drupal attributes)
+  // Loops through _context, returns props that are in schema
   public static function initialize_props() {
     return new Twig_SimpleFunction('initialize_props', function($context, $schema) {
       $props = array();
