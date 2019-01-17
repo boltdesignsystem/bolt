@@ -1,4 +1,10 @@
-{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{bolt.data.config.lang ? "-" ~ bolt.data.config.lang[0] : ""}.json" %}
+{% if bolt.data.config.lang is iterable %}
+  {% set lang = bolt.data.config.lang[0] %}
+{% else %}
+  {% set lang = bolt.data.config.lang %}
+{% endif %}
+
+{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
 
 {% set assets = [] %}
 {% if fileExists(manifestConfigFile) %}
