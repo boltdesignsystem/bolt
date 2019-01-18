@@ -31,7 +31,7 @@
 
     <a href="#" class="c-bds-layout__sidebar__overlay"></a>
   {% endif %}
-  
+
   <div class="c-bds-layout__content c-bolt-site__content {% if hasSidebar %} c-bds-layout__content--has-sidebar{% endif %} {% if currentUrl == 'index.html' %}c-bolt-site__content--middle {% endif %}">
 
     <div class="c-bds-layout__wrapper">
@@ -63,16 +63,16 @@
             </div>
           </div>
 
-          
-          
+
+
           <article>
             {{ page.body|raw }}
           </article>
         {% endset %}
-      
+
         {% include "@bolt-components-band/band.twig" with {
           content: content,
-          fullBleed: false,
+          full_bleed: false,
           theme: currentUrl == 'index.html' ? 'none' : 'xlight'
         } only %}
       </main>
@@ -82,7 +82,7 @@
       {% embed "@bolt-components-band/band.twig" with {
         theme: "xlight",
         size: "xsmall",
-        fullBleed: false,
+        full_bleed: false,
         page: page,
       } only %}
         {% block band_content %}

@@ -2,9 +2,8 @@
 {% embed "@bolt-components-band/band.twig" with {
   size: size | default("large"),
   theme: theme | default("dark"),
-  fullBleed: true,
+  full_bleed: true,
   tag: "figure",
-  contentTag: "figcaption"
 } %}
   {% block band_background %}
     {% if background %}
