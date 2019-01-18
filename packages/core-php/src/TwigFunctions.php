@@ -267,14 +267,8 @@ class TwigFunctions {
 
   // Loops through _context, returns props that are in schema
   public static function initialize_props() {
-    return new Twig_SimpleFunction('initialize_props', function($context, $schema) {
-      $props = array();
-
-      foreach ($context as $key => $value) {
-        $props = Utils::setProp($key, $value, $schema, $props);
-      }
-
-      return $props;
+    return new Twig_SimpleFunction('initialize_props', function($items, $schema) {
+      return Utils::build_props_array($items, $schema);
     });
   }
 

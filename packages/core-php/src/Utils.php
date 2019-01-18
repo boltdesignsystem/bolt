@@ -116,31 +116,37 @@ class Utils {
     return false;
   }
 
-  public static function setProp($key, $value, $schema, $array) {
-    // If key is in schema
-    if (!empty($schema["properties"]) && array_key_exists($key, $schema["properties"])){
-      // skip "attributes" key
-      if ($key != "attributes") {
-        // if value is array, call this function again with that value and matching schema segment
-        if (is_array($value)) {
-          $obj = $value;
-          $objSchema = $schema["properties"][$key];
-          foreach ($obj as $objKey => $objValue) {
-            $array = self::setProp($objKey, $objValue, $objSchema, $array);
+  /**
+   * Build an array of props, filter out any props that are not in the schema
+   * @param array $items - Twig "_context", all the available template variables
+   * @param array $schema - The schema object for a particular component
+   * @return array - An associative array of props
+   */
+  public static function build_props_array($items, $schema) {
+    $props = array();
+
+    // If schema has properties to check against
+    if (!empty($schema["properties"])) {
+      foreach ($items as $key => $value) {
+        // If item is in the schema (skip attributes)
+        if (array_key_exists($key, $schema["properties"]) && $key != "attributes"){
+          if (is_array($value)) {
+            // If item is an array, run it through again with the relevant schema section
+            $nestedProps = self::build_props_array($value, $schema["properties"][$key]);
+            $props = array_merge($props, $nestedProps);
+          } else {
+            // Otherwise, add to props, use custom prop "name" if set
+            if (array_key_exists("name", $schema["properties"][$key])) {
+              $props[$schema["properties"][$key]["name"]] = $value;
+            } else {
+              $props[$key] = $value;
+            }
           }
-        } else {
-          // otherwise add to array
-          $keyName = $key;
-          if (array_key_exists("name", $schema["properties"][$key])) {
-            // use "name" from schema if set
-            $keyName = $schema["properties"][$key]["name"];
-          }
-          $array[$keyName] = $value;
         }
       }
     }
 
-    return $array;
+    return $props;
   }
 
 }
