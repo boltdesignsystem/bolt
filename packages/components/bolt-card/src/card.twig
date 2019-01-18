@@ -21,9 +21,10 @@
 
 {% if link %}
   {% set link_url = link.url %}
+  {% set link_text = link.text %}
+  {% set link_target = link.target %}
   {% set link_attributes = create_attribute(link.attributes) %}
 {% endif %}
-
 
 {# card component's custom element wrapper #}
 <bolt-card
@@ -45,11 +46,19 @@
   <replace-with-children {{ inner_attributes.addClass(classes) }}>
     {% if link %}
       <bolt-card-link
-        class="{{ "#{base_class}__link" }}"
         {{ link_attributes }}
       >
-        <a href="{{ link_url }}">
-        </a>
+        {% if link_url %}
+          <a
+            href="{{ link_url }}"
+            class="{{ "#{base_class}__link" }}"
+            {% if link_target %} target="{{ link_target }}"{% endif %}
+          >
+            {% if link_text %}
+              <replace-with-children class="u-bolt-visuallyhidden">{{ link_text }}</replace-with-children>
+            {% endif %}
+          </a>
+        {% endif %}
       </bolt-card-link>
     {% endif %}
 

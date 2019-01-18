@@ -1,44 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`card basic card 1`] = `
-"<bolt-card
-   tag=\\"article\\"    theme=\\"none\\"    height=\\"full\\"     
+
+<bolt-card tag="article"
+           theme="none"
+           height="full"
 >
-    
-    
-  <replace-with-children  class=\\"c-bolt-card\\">
-    
-                                      
+  <replace-with-children class="c-bolt-card">
+    <bolt-card-body>
+      <replace-with-children class="c-bolt-card__body">
+        <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+          This is a paragraph.
+        </p>
+      </replace-with-children>
+    </bolt-card-body>
+  </replace-with-children>
+</bolt-card>
 
-<bolt-card-body>
-  <replace-with-children class=\\"c-bolt-card__body\\">
-                      
-                            
-
-
-  
-
- 
-  
-
-
-
-
-  
-
-  
-
-
-
-
-
-<p  class=\\"c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium\\">
-  
-      This is a paragraph.
-  
-  </p>
-            </replace-with-children>
-</bolt-card-body>
-                            </replace-with-children>
-</bolt-card>"
 `;
