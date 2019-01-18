@@ -91,22 +91,24 @@ bolt-grid-item {
     }
   }
 
-  // Responsive column start and end
-  @each $breakpoint in $bolt-breakpoints {
-    $breakpoint-name: nth($breakpoint, 1);
+  // Responsive column, row start and end
+  @each $direction in $bolt-grid-item-directions {
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
 
-    @for $bolt-grid-columns from 1 through 12 {
-      @include bolt-mq($breakpoint-name) {
-        &[column-start~='#{$bolt-grid-columns}\@#{$breakpoint-name}']{
-          grid-column-start: #{$bolt-grid-columns};
+      @for $bolt-grid-columns from 1 through 12 {
+        @include bolt-mq($breakpoint-name) {
+          &[#{$direction}-start~='#{$bolt-grid-columns}\@#{$breakpoint-name}']{
+            grid-#{$direction}-start: #{$bolt-grid-columns};
+          }
         }
       }
-    }
 
-    @include bolt-mq($breakpoint-name) {
-      @for $bolt-grid-columns from 1 through 12 {
-        &[column-span~='#{$bolt-grid-columns}\@#{$breakpoint-name}']{
-          grid-column-end: span #{$bolt-grid-columns};
+      @include bolt-mq($breakpoint-name) {
+        @for $bolt-grid-columns from 1 through 12 {
+          &[#{$direction}-span~='#{$bolt-grid-columns}\@#{$breakpoint-name}']{
+            grid-#{$direction}-end: span #{$bolt-grid-columns};
+          }
         }
       }
     }
