@@ -160,3 +160,564 @@
 ```
 
 
+----------
+----------
+
+# Button component functional testing steps
+Functional testing should be performed manually by the QA team across the standard compliment of browsers. Instructions are divided into desktop and mobile browser categories. If browser type is not specified, the test applies to both browser types.
+
+## Feature: Button
+	In order to communicate a call-to-action on a Pega web property appropriate to the placement context
+	As a UX designer, developer or content administrator
+	I need to ensure the "bolt-button" component renders and functions as expected
+
+## Scenario: Component page performance in desktop browser
+1. Given I am using a "desktop" browser
+1. And I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
+1. Then I should see the text "Bolt Button"
+1. When I refresh the page
+1. And I immediately begin clicking the scroll bar at the side of the browser
+1. Then the page should scroll smoothly with less than "1" second of delay
+![Scroll-bar check](images/performance.png)
+
+## Scenario: Component page performance in mobile browser
+1. Given I am using a "mobile" browser
+1. And I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
+1. Then I should see the text "Bolt Button"
+1. When I refresh the page
+1. And I immediately begin swiping up up to scroll the page
+1. Then the page should scroll smoothly with less than "1" second of delay
+
+
+## Scenario: Button Border Radii    
+`// This is a purely visual test, use VRT`
+
+
+## Scenario: Button Sizes    
+`// This is a purely visual test, use VRT`
+
+
+## Scenario: Button Styles in desktop browser
+![Button styles](images/button_styles.png)
+
+1. Given I am using a "desktop" browser
+1. And I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
+1. And I am looking at the page section "Button Styles"
+1. Then I should see the text "Primary Button States"
+1. And I should see a group of "5" buttons
+1. And I should see the button "Button (Default)"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button (Default)"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Button (Disabled)"
+1. And the button's background color should be "cool light gray"
+1. And the button's text color should be "cool gray"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button (Disabled)"
+1. Then the cursor should change to "not allowed"
+1. And the button should not move
+1. And the button's shadow should not change
+1. And I should see the button "Button (Hover)"
+1. And the button's background color should be "light indigo"
+1. And the button's text color should be "white"
+1. And I should see a "large" shadow on the button
+1. When I mouse over the button "Button (Hover)"
+1. Then the cursor should change to "pointer"
+1. And the button should not move
+1. And the button's shadow should not change
+1. And I should see the button "Button (Focus)"
+1. And the button's background color should be "dark indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button (Focus)"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Button (Active)"
+1. And the button's background color should be "darker indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button (Active)"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the text "Secondary Button States"
+1. And I should see a group of "5" buttons
+1. And I should see the button "Button (Default)"
+1. And the button's background color should be "white"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button (Default)"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Button (Disabled)"
+1. And the button's background color should be "cool light gray"
+1. And the button's text color should be "cool gray"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button (Disabled)"
+1. Then the cursor should change to "not allowed"
+1. And the button should not move
+1. And the button's shadow should not change
+1. And I should see the button "Button (Hover)"
+1. And the button's background color should be "white"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "large" shadow on the button
+1. When I mouse over the button "Button (Hover)"
+1. Then the cursor should change to "pointer"
+1. And the button should not move
+1. And the button's shadow should not change
+1. And I should see the button "Button (Focus)"
+1. And the button's background color should be "very light warm gray"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button (Focus)"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Button (Active)"
+1. And the button's background color should be "warm light gray"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button (Active)"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the text "Text Button States"
+1. And I should see a group of "5" buttons
+1. And I should see the button "Button (Default)"
+1. And the button's background color should be "transparent"
+1. And the button's text color should be "indigo"
+1. And I should not see a shadow on the button
+1. When I mouse over the button "Button (Default)"
+1. Then the cursor should change to "pointer"
+1. And the button's text should get slightly lighter
+1. And I should see the button "Button (Disabled)"
+1. And the button's background color should be "cool light gray"
+1. And the button's text color should be "cool gray"
+1. And I should not see a shadow on the button
+1. When I mouse over the button "Button (Disabled)"
+1. Then the cursor should change to "not allowed"
+1. And the button should not move
+1. And the button's background color should get slightly lighter
+1. And I should see the button "Button (Hover)"
+1. And the button's background color should be "transparent"
+1. And the button's text color should be "very dark gray"
+1. And I should not see a shadow on the button
+1. When I mouse over the button "Button (Hover)"
+1. Then the cursor should change to "pointer"
+1. And the button should not move
+1. And the button's text should get slightly lighter
+1. And I should see the button "Button (Focus)"
+1. And the button's background color should be "transparent"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button (Focus)"
+1. Then the cursor should change to "pointer"
+1. And the button should not move
+1. And the button's text should get slightly lighter
+1. And I should see the button "Button (Active)"
+1. And the button's background color should be "transparent"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button (Active)"
+1. Then the cursor should change to "pointer"
+1. And the button should not move
+1. And the button's text should get slightly lighter
+
+## Scenario: Button Styles in mobile browser
+![Button styles, mobile](images/button_styles_mobile.png)
+
+1. Given I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
+1. And I am looking at the page section "Button Styles"
+1. Then I should see the text "Primary Button States"
+1. And I should see a group of "5" buttons
+1. And I should see the button "Button (Default)"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button (Default)"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Button (Disabled)"
+1. And the button's background color should be "cool light gray"
+1. And the button's text color should be "cool gray"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button (Disabled)"
+1. Then the cursor should change to "not allowed"
+1. And the button should not move
+1. And the button's shadow should not change
+1. And I should see the button "Button (Hover)"
+1. And the button's background color should be "light indigo"
+1. And the button's text color should be "white"
+1. And I should see a "large" shadow on the button
+1. When I touch and hold the button "Button (Hover)"
+1. Then the button should not move
+1. And the button's shadow should not change
+1. And I should see the button "Button (Focus)"
+1. And the button's background color should be "dark indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button (Focus)"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Button (Active)"
+1. And the button's background color should be "darker indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button (Active)"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the text "Secondary Button States"
+1. And I should see a group of "5" buttons
+1. And I should see the button "Button (Default)"
+1. And the button's background color should be "white"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button (Default)"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Button (Disabled)"
+1. And the button's background color should be "cool light gray"
+1. And the button's text color should be "cool gray"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button (Disabled)"
+1. Then the button should not move
+1. And the button's shadow should not change
+1. And I should see the button "Button (Hover)"
+1. And the button's background color should be "white"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "large" shadow on the button
+1. When I touch and hold the button "Button (Hover)"
+1. Then the button should not move
+1. And the button's shadow should not change
+1. And I should see the button "Button (Focus)"
+1. And the button's background color should be "very light warm gray"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button (Focus)"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Button (Active)"
+1. And the button's background color should be "warm light gray"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button (Active)"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the text "Text Button States"
+1. And I should see a group of "5" buttons
+1. And I should see the button "Button (Default)"
+1. And the button's background color should be "transparent"
+1. And the button's text color should be "indigo"
+1. And I should not see a shadow on the button
+1. When I touch and hold the button "Button (Default)"
+1. Then the button's text should get slightly lighter
+1. And I should see the button "Button (Disabled)"
+1. And the button's background color should be "cool light gray"
+1. And the button's text color should be "cool gray"
+1. And I should not see a shadow on the button
+1. When I touch and hold the button "Button (Disabled)"
+1. Then the cursor should change to "not allowed"
+1. And the button should not move
+1. And the button's background color should get slightly lighter
+1. And I should see the button "Button (Hover)"
+1. And the button's background color should be "transparent"
+1. And the button's text color should be "very dark gray"
+1. And I should not see a shadow on the button
+1. When I touch and hold the button "Button (Hover)"
+1. Then the button should not move
+1. And the button's text should get slightly lighter
+1. And I should see the button "Button (Focus)"
+1. And the button's background color should be "transparent"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button (Focus)"
+1. Then the button should not move
+1. And the button's text should get slightly lighter
+1. And I should see the button "Button (Active)"
+1. And the button's background color should be "transparent"
+1. And the button's text color should be "very dark gray"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button (Active)"
+1. Then the button should not move
+1. And the button's text should get slightly lighter
+
+## Scenario: Button Themes
+`// This is a purely visual test, use VRT`
+
+## Scenario: Button Widths in desktop browser
+![Button Widths](images/button_widths.png)
+
+
+1. Given I am using a "desktop" browser
+1. And I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
+1. And I am looking at the page section "Button Widths"
+1. Then I should see the button "Example full Button"
+1. And the button should have a "full screen" button width
+1. And I should see the button "Example full@small Button"
+1. And the button should have a "full screen" button width
+
+## Scenario: Button Widths in mobile browser
+![Button Widths, mobile](images/button_widths_mobile.png)
+
+1. Given I am using a "mobile" browser
+1. And I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
+1. And I am looking at the page section "Button Widths"
+1. Then I should see the button "Example full Button"
+1. And the button should have a "full screen" button width
+1. And I should see the button "Example full@small Button"
+1. And the button should have a "normal" button width
+
+## Scenario: Button Tags in desktop browser
+![Button Tags](images/button_tags.png)
+
+1. Given I am using a "desktop" browser
+1. And I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
+1. And I am looking at the page section "Button Tags"
+1. Then I should see the button "a-tag based Button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "a-tag based Button"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "link-tag based Button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "link-tag based Button"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "button-tag based Button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "button-tag based Button"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "submit-tag based Button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "submit-tag based Button"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "reset-tag based Button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "submit-tag based Button"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+
+## Scenario: Button Tags in mobile browser
+1. And I am looking at the page section "Button Tags"
+1. Then I should see the button "a-tag based Button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "a-tag based Button"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "link-tag based Button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "link-tag based Button"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "button-tag based Button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "button-tag based Button"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "submit-tag based Button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "submit-tag based Button"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "reset-tag based Button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "submit-tag based Button"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+
+## Scenario: Button Align Items
+`// This is a purely visual test, use VRT`
+
+## Scenario: Button Transform
+`// This is a purely visual test, use VRT`
+
+## Scenario: Button With Icon
+`// This is a purely visual test, use VRT`
+
+## Scenario: Button With Icon
+`// This is a purely visual test, use VRT`
+
+## Scenario: Custom Element Buttons in desktop browser
+![Custom Element Buttons](images/button_custom.png)
+
+1. Given I am using a "desktop" browser
+1. And I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
+1. And I am looking at the page section "Custom Element Buttons"
+1. Then I should see the button "Simple primary button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And the button should not have an icon
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Simple primary button"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Simple secondary button"
+1. And the button's background color should be "white"
+1. And the button's text color should be "very dark gray"
+1. And the button should not have an icon
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Simple secondary button"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Simple text button"
+1. And the button's background color should be "transparent"
+1. And the button's text color should be "indigo"
+1. And the button should not have an icon
+1. And I should not see a shadow on the button
+1. When I mouse over the button "Simple text button"
+1. Then the cursor should change to "pointer"
+1. And the button's text should get slightly lighter
+1. And I should see the button "Simple primary button-link"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And the button should not have an icon
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Simple primary button-link"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Secondary disabled"
+1. And the button's background color should be "cool light gray"
+1. And the button's text color should be "cool gray"
+1. And the button should not have an icon
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Secondary disabled"
+1. Then the cursor should change to "not allowed"
+1. And the button should not move
+1. And the button's shadow should not change
+1. And I should see the button "Button with 1 slotted icon"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And the button should have a "left arrow" icon
+1. And the "left arrow" icon should be to the "left" of the button's text
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button with 1 slotted icon"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Button with 2 slotted icons"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And the button should have a "left arrow" icon
+1. And the "left arrow" icon should be to the "left" of the button's text
+1. And the button should have a "right chevron" icon
+1. And the "right chevron" icon should be to the "right" of the button's text
+1. And I should see a "very slight" shadow on the button
+1. When I mouse over the button "Button with 2 slotted icons"
+1. Then the cursor should change to "pointer"
+1. And the button should move vertically slightly
+1. And the button's shadow should get larger
+
+
+## Scenario: Custom Element Buttons in mobile browser
+1. Given I am using a "mobile" browser
+1. And I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
+1. And I am looking at the page section "Custom Element Buttons"
+1. Then I should see the button "Simple primary button"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And the button should not have an icon
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Simple primary button"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Simple secondary button"
+1. And the button's background color should be "white"
+1. And the button's text color should be "very dark gray"
+1. And the button should not have an icon
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Simple secondary button"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Simple text button"
+1. And the button's background color should be "transparent"
+1. And the button's text color should be "indigo"
+1. And the button should not have an icon
+1. And I should not see a shadow on the button
+1. When I touch and hold the button "Simple text button"
+1. Then the button's text should get slightly lighter
+1. And I should see the button "Simple primary button-link"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And the button should not have an icon
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Simple primary button-link"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Secondary disabled"
+1. And the button's background color should be "cool light gray"
+1. And the button's text color should be "cool gray"
+1. And the button should not have an icon
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Secondary disabled"
+1. Then the button should not move
+1. And the button's shadow should not change
+1. And I should see the button "Button with 1 slotted icon"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And the button should have a "left arrow" icon
+1. And the "left arrow" icon should be to the "left" of the button's text
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button with 1 slotted icon"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+1. And I should see the button "Button with 2 slotted icons"
+1. And the button's background color should be "indigo"
+1. And the button's text color should be "white"
+1. And the button should have a "left arrow" icon
+1. And the "left arrow" icon should be to the "left" of the button's text
+1. And the button should have a "right chevron" icon
+1. And the "right chevron" icon should be to the "right" of the button's text
+1. And I should see a "very slight" shadow on the button
+1. When I touch and hold the button "Button with 2 slotted icons"
+1. Then the button should move vertically slightly
+1. And the button's shadow should get larger
+
+## Scenario: Button With 3rd Party Js
+![Toggled state of button](images/button_js.png)
+
+1. Given I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
+1. And I am looking at the page section "Button With 3rd Party Js"
+1. Then I should see the button "XDark Button w/ External JS Example"
+1. And the background color of the button should be "indigo"
+1. When I click or tap the button "XDark Button w/ External JS Example"
+1. Then the background color of the page should be "dark royal blue"
+1. And the background color of the button should be "gold"
+1. When I click or tap the button "XDark Button w/ External JS Example"
+1. Then the background color of the page should be "white"
+1. And the background color of the button should be "indigo"
+
