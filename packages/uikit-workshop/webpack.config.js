@@ -3,7 +3,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-// const CriticalCssPlugin = require('critical-css-webpack-plugin');
+const CriticalCssPlugin = require('critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
@@ -86,7 +86,7 @@ module.exports = async function() {
       resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-          react: 'preact-compat',
+          react: path.resolve(__dirname, './src/scripts/utils/preact-compat'),
           'react-dom': 'preact-compat',
         },
       },
@@ -133,6 +133,13 @@ module.exports = async function() {
                   ],
                 ],
                 plugins: [
+                  [
+                    '@babel/plugin-transform-runtime',
+                    {
+                      helpers: false,
+                      regenerator: true,
+                    },
+                  ],
                   ['@babel/plugin-proposal-decorators', { legacy: true }],
                   '@babel/plugin-proposal-class-properties',
                   '@babel/plugin-syntax-dynamic-import',
@@ -149,6 +156,18 @@ module.exports = async function() {
                 ],
               },
             },
+          },
+          {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: '@svgr/webpack',
+              },
+            ],
+          },
+          {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
           },
           {
             test: /\.scss$/,
@@ -179,10 +198,28 @@ module.exports = async function() {
         ],
       },
       cache: true,
-      mode: config.prod ? 'production' : 'development',
+      // mode: config.prod ? 'production' : 'development',
+      mode: 'development', // temp workaround till strange rendering issues with full `production` mode are switched on in Webpack
       optimization: {
+        minimize: true,
+        occurrenceOrder: true,
+        namedChunks: true,
+        removeAvailableModules: true,
+        removeEmptyChunks: true,
+        nodeEnv: 'production',
         mergeDuplicateChunks: true,
         concatenateModules: true,
+        splitChunks: {
+          chunks: 'async',
+          cacheGroups: {
+            vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'async',
+              reuseExistingChunk: true,
+            },
+          },
+        },
         minimizer: config.prod
           ? [
               new UglifyJsPlugin({
@@ -211,7 +248,6 @@ module.exports = async function() {
           ],
           {
             allowExternal: true,
-            verbose: false,
 
             // perform clean just before files are emitted to the output dir
             beforeEmit: true,
@@ -233,31 +269,31 @@ module.exports = async function() {
 
     if (config.prod) {
       webpackConfig.plugins.push(
-        // new CriticalCssPlugin({
-        //   base: path.resolve(__dirname, config.buildDir),
-        //   src: 'index.html',
-        //   dest: 'index.html',
-        //   inline: true,
-        //   minify: true,
-        //   extract: true,
-        //   width: 1300,
-        //   height: 900,
-        //   penthouse: {
-        //     keepLargerMediaQueries: true,
+        new CriticalCssPlugin({
+          base: path.resolve(__dirname, config.buildDir),
+          src: 'index.html',
+          dest: 'index.html',
+          inline: true,
+          minify: true,
+          extract: true,
+          width: 1300,
+          height: 900,
+          penthouse: {
+            keepLargerMediaQueries: true,
 
-        //     // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
-        //     forceInclude: [
-        //       '.pl-c-body--theme-light',
-        //       '.pl-c-body--theme-sidebar',
-        //       '.pl-c-body--theme-sidebar .pl-c-viewport',
-        //       '.pl-c-body--theme-density-compact',
-        //     ],
-        //     timeout: 30000, // ms; abort critical CSS generation after this timeout
-        //     maxEmbeddedBase64Length: 1000,
-        //     renderWaitTime: 1000,
-        //     blockJSRequests: false,
-        //   },
-        // })
+            // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
+            forceInclude: [
+              '.pl-c-body--theme-light',
+              '.pl-c-body--theme-sidebar',
+              '.pl-c-body--theme-sidebar .pl-c-viewport',
+              '.pl-c-body--theme-density-compact',
+            ],
+            timeout: 30000, // ms; abort critical CSS generation after this timeout
+            maxEmbeddedBase64Length: 1000,
+            renderWaitTime: 1000,
+            blockJSRequests: false,
+          },
+        })
       );
     }
 

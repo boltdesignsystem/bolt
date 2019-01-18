@@ -3,8 +3,25 @@
 @import '@bolt/core';
 $bds-sidebar-width: 320px;
 
+html {
+  display: flex;
+  min-height: 100vh;
+}
+
 .c-bds-layout {
   grid-template-columns: auto 1fr auto;
+  display: grid;
+
+  &--parent:not(.c-bds-layout--has-sidebar) {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    height: auto;
+    min-height: 100vh;
+  }
   
   @include bolt-mq(medium) {
     &.c-bds-layout--has-sidebar {
@@ -35,6 +52,8 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__header {
+  position: relative;
+  position: sticky;
   grid-column-start: 1;
   grid-column-end: 3;
   z-index: bolt-z-index('modalBG') + 20;
@@ -112,7 +131,7 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__sidebar {
-  @include bolt-padding-top(large);
+  @include bolt-margin-top(large);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -191,8 +210,13 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__content {
+  .c-bds-layout--parent:not(.c-bds-layout--has-sidebar) & {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  /* autoprefixer: ignore next */
   display: grid;
-  overflow: auto;
   grid-column-start: 1;
   grid-column-end: 3;
   grid-template-columns: auto;

@@ -1,10 +1,20 @@
 {% embed "@bolt/band.twig" with {
   size: "none",
   theme: "light",
-  fullBleed: true
+  fullBleed: true,
+  attributes: {
+    class: [
+      "u-bolt-min-height-screen",
+      "u-bolt-flex"
+    ],
+    style: [
+      "justify-content: center;",
+      "align-items: center;"
+    ]
+  }
 } only %}
   {% block band_content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-min-height-screen u-bolt-padding-medium" %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-padding-medium" %}
       {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
         {% include "@bolt-components-headline/headline.twig" with {
           tag: "h1",

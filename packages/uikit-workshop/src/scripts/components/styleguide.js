@@ -4,7 +4,10 @@
 
 import $ from 'jquery';
 import Mousetrap from 'mousetrap';
-import { urlHandler, DataSaver } from '../utils';
+import { urlHandler, DataSaver, patternName } from '../utils';
+
+import { store } from '../store.js'; // connect to the Redux store.
+import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux actions needed
 
 (function(w) {
   let sw = document.body.clientWidth; //Viewport Width
@@ -53,36 +56,6 @@ import { urlHandler, DataSaver } from '../utils';
     if (fullMode === true) {
       sizeiframe(sw, false);
     }
-  });
-
-  // Nav menu button on small screens
-  $('.pl-js-nav-trigger').on('click', function(e) {
-    e.preventDefault();
-    $('.pl-js-nav-target').toggleClass('pl-is-active');
-  });
-
-  // Accordion dropdown
-  $('.pl-js-acc-handle').on('click', function(e) {
-    const $this = $(this);
-    const $panel = $this.next('.pl-js-acc-panel');
-    const subnav = $this
-      .parent()
-      .parent()
-      .hasClass('pl-js-acc-panel');
-
-    //Close other panels if link isn't a subnavigation item
-    if (!subnav) {
-      $('.pl-js-acc-handle')
-        .not($this)
-        .removeClass('pl-is-active');
-      $('.pl-js-acc-panel')
-        .not($panel)
-        .removeClass('pl-is-active');
-    }
-
-    //Activate selected panel
-    $this.toggleClass('pl-is-active');
-    $panel.toggleClass('pl-is-active');
   });
 
   //Size View Events
@@ -413,11 +386,15 @@ import { urlHandler, DataSaver } from '../utils';
 
     if (target === 'updatePxInput') {
       $sizePx.val(pxSize);
+      store.dispatch(updateViewportPx(pxSize));
     } else if (target === 'updateEmInput') {
       $sizeEms.val(emSize.toFixed(2));
+      store.dispatch(updateViewportEm(emSize.toFixed(2)));
     } else {
       $sizeEms.val(emSize.toFixed(2));
       $sizePx.val(pxSize);
+      store.dispatch(updateViewportEm(emSize.toFixed(2)));
+      store.dispatch(updateViewportPx(pxSize));
     }
   }
 
@@ -523,17 +500,8 @@ import { urlHandler, DataSaver } from '../utils';
     '//' +
     window.location.host +
     window.location.pathname.replace('index.html', '');
-  let patternName =
-    window.config.defaultPattern !== undefined &&
-    typeof window.config.defaultPattern === 'string' &&
-    window.config.defaultPattern.trim().length > 0
-      ? window.config.defaultPattern
-      : 'all';
   let iFramePath =
     baseIframePath + 'styleguide/html/styleguide.html?' + Date.now();
-  if (oGetVars.p !== undefined || oGetVars.pattern !== undefined) {
-    patternName = oGetVars.p !== undefined ? oGetVars.p : oGetVars.pattern;
-  }
 
   if (patternName !== 'all') {
     const patternPath = urlHandler.getFileName(patternName);
@@ -549,14 +517,6 @@ import { urlHandler, DataSaver } from '../utils';
       null,
       null
     );
-  }
-
-  // Open in new window link
-  if (document.querySelector('.pl-js-open-new-window')) {
-    // Set value of href to the path to the pattern
-    document
-      .querySelector('.pl-js-open-new-window')
-      .setAttribute('href', urlHandler.getFileName(patternName));
   }
 
   urlHandler.skipBack = true;
@@ -583,12 +543,12 @@ import { urlHandler, DataSaver } from '../utils';
     document
       .querySelector('.pl-js-iframe')
       .contentWindow.postMessage(obj, urlHandler.targetOrigin);
-    closePanels();
+    // closePanels();
   });
 
   // handle when someone clicks on the grey area of the viewport so it auto-closes the nav
   $('.pl-js-viewport').click(function() {
-    closePanels();
+    // closePanels();
   });
 
   // Listen for resize changes

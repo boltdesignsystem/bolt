@@ -6,11 +6,11 @@ import { h } from 'preact';
 
 export class BaseComponent extends withComponent(withPreact()) {
   get renderRoot() {
-    if (this.useShadow === true && supportsShadowDom) {
-      return super.renderRoot || shadow(this);
-    } else {
-      return this;
-    }
+    // if (this.useShadow === true && supportsShadowDom) {
+    //   return super.renderRoot || shadow(this);
+    // } else {
+    return this;
+    // }
   }
 
   disconnectedCallback() {
@@ -32,7 +32,8 @@ export class BaseComponent extends withComponent(withPreact()) {
   }
 
   _stateChanged(state) {
-    throw new Error('_stateChanged() not implemented', this);
+    // throw new Error('_stateChanged() not implemented', this);
+    this.triggerUpdate();
   }
 
   /**

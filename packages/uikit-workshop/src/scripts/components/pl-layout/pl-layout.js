@@ -1,6 +1,6 @@
 import { define, props } from 'skatejs';
 import { h } from 'preact';
-import Hogan from 'hogan.js';
+
 const classNames = require('classnames');
 
 import { store } from '../../store.js'; // connect to redux
@@ -10,7 +10,7 @@ import iFrameResize from 'iframe-resizer/src/iframeResizer.js';
 iFrameResize({
   checkOrigin: false,
   scrolling: false,
-  heightCalculationMethod: 'documentElementOffset', // most accurate calculation in testing available options 
+  heightCalculationMethod: 'documentElementOffset', // most accurate calculation in testing available options
   initCallback() {
     document.querySelector('.pl-js-iframe').classList.add('is-ready'); // toggles class that removes initial min-height styling
   },
@@ -22,35 +22,11 @@ class Layout extends BaseComponent {
 
   constructor(self) {
     self = super(self);
-    try {
-      /* load pattern nav */
-      const template = document.querySelector('.pl-js-pattern-nav-template');
-      const templateCompiled = Hogan.compile(template.innerHTML);
-      const templateRendered = templateCompiled.render(window.navItems);
-      this.renderRoot.querySelector(
-        '.pl-js-pattern-nav-target'
-      ).innerHTML = templateRendered;
-
-      /* load ish controls */
-      const controlsTemplate = document.querySelector(
-        '.pl-js-ish-controls-template'
-      );
-      const controlsTemplateCompiled = Hogan.compile(
-        controlsTemplate.innerHTML
-      );
-      const controlsTemplateRendered = controlsTemplateCompiled.render(
-        window.ishControls
-      );
-      this.renderRoot.querySelector(
-        '.pl-js-controls'
-      ).innerHTML = controlsTemplateRendered;
-    } catch (e) {
-      const message =
-        '<p>Please generate your site before trying to view it.</p>';
-      this.renderRoot.querySelector(
-        '.pl-js-pattern-nav-target'
-      ).innerHTML = message;
-    }
+    self.useShadow = false;
+    self.targetOrigin =
+      window.location.protocol === 'file:'
+        ? '*'
+        : window.location.protocol + '//' + window.location.host;
     return self;
   }
 
@@ -61,17 +37,18 @@ class Layout extends BaseComponent {
 
   connected() {
     const state = store.getState();
-    this.layoutMode = state.app.layoutMode;
+    this.layoutMode = state.app.layoutMode || 'vertical';
     this.themeMode = state.app.themeMode;
   }
 
-  get renderRoot() {
-    return this;
+  rendered(){
+    this.iframeElement = document.querySelector('.pl-js-iframe');
   }
 
   _stateChanged(state) {
     this.layoutMode = state.app.layoutMode;
     this.themeMode = state.app.themeMode;
+    this.iframeElement = document.querySelector('.pl-js-iframe');
 
     const classes = classNames({
       [`pl-c-body--theme-${this.themeMode}`]: this.themeMode !== undefined,
@@ -81,6 +58,17 @@ class Layout extends BaseComponent {
     });
 
     this.className = classes;
+
+    if (this.iframeElement){
+      const obj = JSON.stringify({
+        event: 'patternLab.stateChange',
+        state,
+      });
+      this.iframeElement.contentWindow.postMessage(
+        obj,
+        this.targetOrigin
+      );
+    }
   }
 }
 
