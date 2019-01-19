@@ -526,7 +526,8 @@ import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux
 
   // Close all dropdowns and navigation
   function closePanels() {
-    $('.pl-js-nav-container, .pl-js-acc-handle, .pl-js-acc-panel').removeClass(
+    //$('.pl-js-nav-container, .pl-js-acc-handle, .pl-js-acc-panel').removeClass(
+    $('.pl-js-nav-container').removeClass(
       'pl-is-active'
     );
   }
@@ -543,12 +544,12 @@ import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux
     document
       .querySelector('.pl-js-iframe')
       .contentWindow.postMessage(obj, urlHandler.targetOrigin);
-    // closePanels();
+    closePanels();
   });
 
   // handle when someone clicks on the grey area of the viewport so it auto-closes the nav
   $('.pl-js-viewport').click(function() {
-    // closePanels();
+    closePanels();
   });
 
   // Listen for resize changes
