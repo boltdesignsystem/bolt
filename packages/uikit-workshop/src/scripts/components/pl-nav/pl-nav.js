@@ -196,6 +196,8 @@ class Nav extends BaseComponent {
       // @todo: how do we want to handle exceptions here?
     }
 
+    const shouldAutoOpenNav = window.matchMedia("(min-width: calc(42em))").matches && this.layoutMode === 'vertical';
+
     if (data.event !== undefined && data.event === 'patternLab.pageLoad') {
       try {
         if (URLSearchParams !== undefined){
@@ -224,14 +226,14 @@ class Nav extends BaseComponent {
                 const childDropdownTrigger = activeLink.nextSibling;
                 const childDropdown = activeLink.parentNode.nextSibling;
     
-                if (childDropdown){
+                if (childDropdown && shouldAutoOpenNav){
                   if (childDropdown.tagName){
                     childDropdown.classList.add('pl-is-active');
                     this.previousActiveLinks.push(childDropdown);
                   }
                 }
       
-                if (childDropdownTrigger){
+                if (childDropdownTrigger && shouldAutoOpenNav){
                   if (childDropdownTrigger.tagName){
                     childDropdownTrigger.classList.add('pl-is-active');
                     this.previousActiveLinks.push(childDropdownTrigger);
@@ -242,7 +244,7 @@ class Nav extends BaseComponent {
               const parentDropdown = activeLink.closest('.pl-js-acc-panel');
               let parentDropdownTrigger = parentDropdown.previousSibling;
     
-              if (parentDropdown.previousSibling.classList.contains('pl-c-nav__link--overview-wrapper')){
+              if (parentDropdown.previousSibling.classList.contains('pl-c-nav__link--overview-wrapper') && shouldAutoOpenNav){
                 this.previousActiveLinks.push(parentDropdown.previousSibling);
                 parentDropdown.previousSibling.classList.add('pl-is-active');
                 parentDropdownTrigger = parentDropdown.previousSibling.querySelector('.pl-js-acc-handle');
@@ -251,39 +253,45 @@ class Nav extends BaseComponent {
               const grandparentDropdown = parentDropdown.closest('.pl-c-nav__sublist--dropdown');
               const grandparentDropdownTrigger = grandparentDropdown.previousSibling;
     
-              if (parentDropdown){
+              if (parentDropdown && shouldAutoOpenNav){
                 parentDropdown.classList.add('pl-is-active');
                 this.previousActiveLinks.push(parentDropdown);
               }
-    
+              
+              // don't auto-open 
               if (parentDropdownTrigger){
-                parentDropdownTrigger.classList.add('pl-is-active');
-                this.previousActiveLinks.push(parentDropdownTrigger);
+                if (shouldAutoOpenNav === true || parentDropdownTrigger.classList.contains('pl-c-nav__link--title') === false) {
+                  parentDropdownTrigger.classList.add('pl-is-active');
+                  this.previousActiveLinks.push(parentDropdownTrigger);
+                }
               }
               
-              if (grandparentDropdown){
-                if (this.layoutMode === 'vertical'){
+              if (grandparentDropdown && shouldAutoOpenNav){
+                if (shouldAutoOpenNav){
                   grandparentDropdown.classList.add('pl-is-active');
                 }
                 this.previousActiveLinks.push(grandparentDropdown);
               }
     
-              if (grandparentDropdownTrigger){
-                if (this.layoutMode === 'vertical'){
+              if (grandparentDropdownTrigger && shouldAutoOpenNav){
+                if (shouldAutoOpenNav){
                   grandparentDropdownTrigger.classList.add('pl-is-active');
                 }
                 this.previousActiveLinks.push(grandparentDropdownTrigger);
               }
     
-              let topOffset;
-    
-              if (activeLink.closest('.pl-c-nav__subsublist')){
-                topOffset = activeLink.closest('.pl-c-nav__subsublist').getBoundingClientRect().top - scrollContainerOffset - activeLink.getBoundingClientRect().height;
-              } else {
-                topOffset = activeLink.getBoundingClientRect().top - scrollContainerOffset;
-              }
               
-              scrollContainer.scrollTop = topOffset;
+              if (shouldAutoOpenNav){
+                let topOffset;
+
+                if (activeLink.closest('.pl-c-nav__subsublist')){
+                  topOffset = activeLink.closest('.pl-c-nav__subsublist').getBoundingClientRect().top - scrollContainerOffset - activeLink.getBoundingClientRect().height;
+                } else {
+                  topOffset = activeLink.getBoundingClientRect().top - scrollContainerOffset;
+                }
+                
+                scrollContainer.scrollTop = topOffset;
+              }
             }
           }
         }

@@ -526,10 +526,17 @@ import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux
 
   // Close all dropdowns and navigation
   function closePanels() {
-    //$('.pl-js-nav-container, .pl-js-acc-handle, .pl-js-acc-panel').removeClass(
-    $('.pl-js-nav-container').removeClass(
-      'pl-is-active'
-    );
+    const state = store.getState();
+    const layoutMode = state.app.layoutMode || 'vertical';
+    if (window.matchMedia("(max-width: calc(42em - 1px))").matches || layoutMode === 'horizontal'){
+      $('.pl-js-nav-container, .pl-js-acc-handle, .pl-js-acc-panel').removeClass(
+        'pl-is-active'
+      );
+    } else {
+      $('.pl-js-nav-container').removeClass(
+        'pl-is-active'
+      );
+    }
   }
 
   // update the iframe with the source from clicked element in pull down menu. also close the menu
@@ -548,9 +555,9 @@ import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux
   });
 
   // handle when someone clicks on the grey area of the viewport so it auto-closes the nav
-  $('.pl-js-viewport').click(function() {
-    closePanels();
-  });
+  // $('.pl-js-viewport').click(function() {
+  //   closePanels();
+  // });
 
   // Listen for resize changes
   if (window.orientation !== undefined) {

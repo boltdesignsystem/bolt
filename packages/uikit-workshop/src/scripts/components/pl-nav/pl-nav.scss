@@ -363,7 +363,7 @@ pl-nav {
   &.pl-is-active {
     &:before,
     &:after {
-      opacity: 0.1;
+      opacity: 0.05;
     }
   }
 
@@ -435,7 +435,7 @@ pl-nav {
     background-color: currentColor;
     transition: opacity $pl-animate-quick ease-out;
     content: '';
-    opacity: 0.1;
+    opacity: 0;
     height: 1.4rem;
     width: 1.4rem;
     display: block;
@@ -449,13 +449,13 @@ pl-nav {
   &:hover {
     background-color: transparent !important;
     &:after {
-      opacity: 0.15;
+      opacity: 0.1;
     }
   }
 
   &:active:after,
   &.pl-is-active:after {
-    opacity: 0.15;
+    opacity: 0.1;
   }
 }
 
