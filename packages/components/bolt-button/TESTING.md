@@ -1,4 +1,4 @@
-# Button component testing steps
+# Button component developer testing steps
 
 ## Button renders as expected (functionally and visually)
 
