@@ -13,8 +13,8 @@ loadPolyfills.then(res => {
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-toggle-layout' */ './components/pl-toggle-layout/pl-toggle-layout');
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-toggle-theme' */ './components/pl-toggle-theme/pl-toggle-theme');
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-tools-menu' */ './components/pl-tools-menu/pl-tools-menu');
-  import(/* webpackMode: 'lazy', webpackChunkName: 'pl-modal-viewer' */ './components/modal-viewer');
-  import(/* webpackMode: 'lazy', webpackChunkName: 'pl-styleguide' */ './components/styleguide');
+  import(/* webpackMode: 'eager', webpackChunkName: 'pl-modal-viewer' */ './components/modal-viewer');
+  import(/* webpackMode: 'eager', webpackChunkName: 'pl-styleguide' */ './components/styleguide');
 });
 
 import './components/panels';
