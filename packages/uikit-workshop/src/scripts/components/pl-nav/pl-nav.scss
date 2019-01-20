@@ -36,11 +36,10 @@ pl-nav {
   display: flex;
   flex-direction: column;
   transition: max-height $pl-animate-quick ease-out;
-  // padding: 0 0.6rem;
 
   @media all and (min-width: $pl-bp-med) {
     .pl-c-body--theme-sidebar & {
-      // padding: 1rem;
+      padding-bottom: 0.5rem;
       display: block;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
@@ -199,6 +198,7 @@ pl-nav {
 .pl-c-nav__link--sublink {
   text-transform: none;
   font-size: 0.8rem;
+  line-height: 1.45;
   padding-left: $pl-space + ($pl-space / 2);
 
   &.pl-is-active {
@@ -363,7 +363,7 @@ pl-nav {
   &.pl-is-active {
     &:before,
     &:after {
-      opacity: 0.05;
+      opacity: 0.025;
     }
   }
 
@@ -448,14 +448,16 @@ pl-nav {
 
   &:hover {
     background-color: transparent !important;
-    &:after {
+
+    &:after,
+    &:focus:after {
       opacity: 0.1;
     }
   }
 
-  &:active:after,
-  &.pl-is-active:after {
-    opacity: 0.1;
+  &:active:not(:hover):after,
+  &:focus:not(:hover):after {
+    opacity: 0;
   }
 }
 

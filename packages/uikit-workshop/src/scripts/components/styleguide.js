@@ -325,6 +325,8 @@ import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux
 
     $('.pl-js-vp-iframe-container').width(theSize + viewportResizeHandleWidth); //Resize viewport wrapper to desired size + size of drag resize handler
     $sgIframe.width(theSize); //Resize viewport to desired size
+    const state = store.getState();
+    const isViewallPage = state.app.isViewallPage;
 
     const targetOrigin =
       window.location.protocol === 'file:'
@@ -405,6 +407,8 @@ import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux
 
   //Update The viewport size
   function updateViewportWidth(size) {
+
+    // @todo: update to conditionally adjust behavior of viewall page width
     const state = store.getState();
     const isViewallPage = state.app.isViewallPage;
 
