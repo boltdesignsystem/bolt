@@ -4,8 +4,8 @@ if (window.self !== window.top) {
   // automatically remove the min-height default set to the body element when viewing PL pages from inside an iframe on the docs site, but via a utility class
   window.iFrameResizer = {
     readyCallback() {
-      document.documentElement.classList.add('u-bolt-min-height-none');
-      document.body.classList.add('u-bolt-min-height-none');
+      // document.documentElement.classList.add('u-bolt-min-height-none');
+      // document.body.classList.add('u-bolt-min-height-none');
     },
   };
 } else {
