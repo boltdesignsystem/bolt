@@ -5,6 +5,7 @@ $bds-sidebar-width: 320px;
 
 html {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
@@ -37,6 +38,8 @@ html {
   justify-self: stretch;
   grid-column-start: 1;
   grid-column-end: 1;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .c-bds-layout__title {
@@ -277,8 +280,8 @@ html {
   }
 
   @include bolt-mq(medium) {
-    -ms-grid-columns: 1fr 80% 20% 1fr; /* [1] */
-    grid-template-columns: 1fr 80% 20% 1fr;
+    -ms-grid-columns: 1fr 75% 25% 1fr; /* [1] */
+    grid-template-columns: 1fr 75% 25% 1fr;
   }
 }
 
@@ -342,6 +345,7 @@ html {
 }
   
 .c-bds-docs__page-nav {
+  @include bolt-margin-bottom(large);
   -ms-grid-row: 3; /* [1] */
   -ms-grid-row-span: 1; /* [1] */
   grid-row: 3/span 1;
