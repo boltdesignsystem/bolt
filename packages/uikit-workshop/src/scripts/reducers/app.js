@@ -7,6 +7,7 @@ import {
   UPDATE_VIEWPORT_EM,
   UPDATE_THEME_MODE,
   IS_VIEWALL_PAGE,
+  UPDATE_CURRENT_URL,
 } from '../actions/app.js';
 
 const app = (state = {}, action) => {
@@ -15,6 +16,11 @@ const app = (state = {}, action) => {
       return {
         ...state,
         layoutMode: action.layoutMode,
+      };
+    case UPDATE_CURRENT_URL:
+      return {
+        ...state,
+        currentUrl: action.currentUrl,
       };
     case UPDATE_VIEWPORT_PX:
       return {

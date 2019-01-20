@@ -5,7 +5,17 @@ export const UPDATE_DRAWER_STATE = 'UPDATE_DRAWER_STATE';
 export const UPDATE_VIEWPORT_PX = 'UPDATE_VIEWPORT_PX';
 export const UPDATE_VIEWPORT_EM = 'UPDATE_VIEWPORT_EM';
 export const UPDATE_DRAWER_HEIGHT = 'UPDATE_DRAWER_HEIGHT';
+export const UPDATE_CURRENT_URL = 'UPDATE_CURRENT_URL';
 export const IS_VIEWALL_PAGE = 'IS_VIEWALL_PAGE';
+
+export const updateCurrentUrl = currentUrl => (dispatch, getState) => {
+  if (getState().app.currentUrl !== currentUrl) {
+    dispatch({
+      type: UPDATE_CURRENT_URL,
+      currentUrl,
+    });
+  }
+};
 
 export const updateLayoutMode = layoutMode => (dispatch, getState) => {
   if (getState().app.layoutMode !== layoutMode) {

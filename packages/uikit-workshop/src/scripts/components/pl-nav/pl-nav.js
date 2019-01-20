@@ -174,140 +174,13 @@ const ButtonTitle = props => {
 class Nav extends BaseComponent {
   static is = 'pl-nav';
 
-  _stateChanged(state) {
-    this.layoutMode = state.app.layoutMode || 'vertical';
-    // this.triggerUpdate();
-  }
-
-  receiveIframeMessage(event) {
-    // does the origin sending the message match the current host? if not dev/null the request
-    if (
-      window.location.protocol !== 'file:' &&
-      event.origin !== window.location.protocol + '//' + window.location.host
-    ) {
-      return;
-    }
-
-    let data = {};
-    try {
-      data =
-        typeof event.data !== 'string' ? event.data : JSON.parse(event.data);
-    } catch (e) {
-      // @todo: how do we want to handle exceptions here?
-    }
-
-    const shouldAutoOpenNav = window.matchMedia("(min-width: calc(42em))").matches && this.layoutMode === 'vertical';
-
-    if (data.event !== undefined && data.event === 'patternLab.pageLoad') {
-      try {
-        if (URLSearchParams !== undefined){
-          var urlParams = new URLSearchParams(window.location.search);
-          const currentUrl = urlParams.get('p');
-          const self = this;
-    
-          const scrollContainer = document.querySelector('.pl-js-nav-container');
-          const scrollContainerOffset = document.querySelector('.pl-js-nav-container').getBoundingClientRect().top;
-    
-          if (currentUrl){
-            const activeLink = document.querySelector(`[data-patternpartial="${currentUrl}"]`);
-            if (this.previousActiveLinks.length > 0){
-              this.previousActiveLinks.forEach(function(link, index){
-                self.previousActiveLinks[index].classList.remove('pl-is-active');
-              });
-            }
-            this.previousActiveLinks = [];
-    
-            if (activeLink){
-              activeLink.classList.add('pl-is-active');
-              this.previousActiveLinks.push(activeLink);
-    
-              // handle overview links vs nested links
-              if (activeLink.classList.contains('pl-js-link-overview')){
-                const childDropdownTrigger = activeLink.nextSibling;
-                const childDropdown = activeLink.parentNode.nextSibling;
-    
-                if (childDropdown && shouldAutoOpenNav){
-                  if (childDropdown.tagName){
-                    childDropdown.classList.add('pl-is-active');
-                    this.previousActiveLinks.push(childDropdown);
-                  }
-                }
-      
-                if (childDropdownTrigger && shouldAutoOpenNav){
-                  if (childDropdownTrigger.tagName){
-                    childDropdownTrigger.classList.add('pl-is-active');
-                    this.previousActiveLinks.push(childDropdownTrigger);
-                  }
-                }
-              }
-    
-              const parentDropdown = activeLink.closest('.pl-js-acc-panel');
-              let parentDropdownTrigger = parentDropdown.previousSibling;
-    
-              if (parentDropdown.previousSibling.classList.contains('pl-c-nav__link--overview-wrapper') && shouldAutoOpenNav){
-                this.previousActiveLinks.push(parentDropdown.previousSibling);
-                parentDropdown.previousSibling.classList.add('pl-is-active');
-                parentDropdownTrigger = parentDropdown.previousSibling.querySelector('.pl-js-acc-handle');
-              }
-    
-              const grandparentDropdown = parentDropdown.closest('.pl-c-nav__sublist--dropdown');
-              const grandparentDropdownTrigger = grandparentDropdown.previousSibling;
-    
-              if (parentDropdown && shouldAutoOpenNav){
-                parentDropdown.classList.add('pl-is-active');
-                this.previousActiveLinks.push(parentDropdown);
-              }
-              
-              // don't auto-open 
-              if (parentDropdownTrigger){
-                if (shouldAutoOpenNav === true || parentDropdownTrigger.classList.contains('pl-c-nav__link--title') === false) {
-                  parentDropdownTrigger.classList.add('pl-is-active');
-                  this.previousActiveLinks.push(parentDropdownTrigger);
-                }
-              }
-              
-              if (grandparentDropdown && shouldAutoOpenNav){
-                if (shouldAutoOpenNav){
-                  grandparentDropdown.classList.add('pl-is-active');
-                }
-                this.previousActiveLinks.push(grandparentDropdown);
-              }
-    
-              if (grandparentDropdownTrigger && shouldAutoOpenNav){
-                if (shouldAutoOpenNav){
-                  grandparentDropdownTrigger.classList.add('pl-is-active');
-                }
-                this.previousActiveLinks.push(grandparentDropdownTrigger);
-              }
-    
-              
-              if (shouldAutoOpenNav){
-                let topOffset;
-
-                if (activeLink.closest('.pl-c-nav__subsublist')){
-                  topOffset = activeLink.closest('.pl-c-nav__subsublist').getBoundingClientRect().top - scrollContainerOffset - activeLink.getBoundingClientRect().height;
-                } else {
-                  topOffset = activeLink.getBoundingClientRect().top - scrollContainerOffset;
-                }
-                
-                scrollContainer.scrollTop = topOffset;
-              }
-            }
-          }
-        }
-      } catch(error){
-        console.log(error);
-      }
-    }
-  }
-
   constructor(self) {
     self = super(self);
     self.toggleNavPanel = self.toggleNavPanel.bind(self);
     self.toggleSpecialNavPanel = self.toggleSpecialNavPanel.bind(self);
-    self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
+    self.handleURLChange = self.handleURLChange.bind(self);
+    // self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
     self.isOpenClass = 'pl-is-active';
-    self.previousActiveLinks = [];
     self.useShadow = false;
     return self;
   }
@@ -316,11 +189,95 @@ class Nav extends BaseComponent {
     const state = store.getState();
     this.layoutMode = state.app.layoutMode || 'vertical';
     this.elem = this;
-    window.addEventListener('message', this.receiveIframeMessage, false);
+    this.previousActiveLinks = [];
+  }
+
+  _stateChanged(state) {
+    this.layoutMode = state.app.layoutMode || 'vertical';
+    this.currentUrl = state.app.currentUrl;
+    this.handleURLChange();
+  }
+
+  handleURLChange() {
+    const shouldAutoOpenNav = window.matchMedia("(min-width: calc(42em))").matches && this.layoutMode === 'vertical';
+
+    const currentUrl = this.currentUrl;
+    const activeLink = document.querySelector(`[data-patternpartial="${currentUrl}"]`);
+    const self = this;
+    
+    if (this.previousActiveLinks){
+      this.previousActiveLinks.forEach(function(link, index){
+        self.previousActiveLinks[index].classList.remove('pl-is-active');
+      });
+    }
+    this.previousActiveLinks = [];
+    
+    if (activeLink){
+      activeLink.classList.add('pl-is-active');
+      this.previousActiveLinks.push(activeLink);
+
+      // handle overview links vs nested links
+      if (activeLink.classList.contains('pl-js-link-overview')){
+        const childDropdownTrigger = activeLink.nextSibling;
+        const childDropdown = activeLink.parentNode.nextSibling;
+
+        if (childDropdown && shouldAutoOpenNav){
+          if (childDropdown.tagName){
+            childDropdown.classList.add('pl-is-active');
+            this.previousActiveLinks.push(childDropdown);
+          }
+        }
+
+        if (childDropdownTrigger && shouldAutoOpenNav){
+          if (childDropdownTrigger.tagName){
+            childDropdownTrigger.classList.add('pl-is-active');
+            this.previousActiveLinks.push(childDropdownTrigger);
+          }
+        }
+      }
+
+      const parentDropdown = activeLink.closest('.pl-js-acc-panel');
+      let parentDropdownTrigger = parentDropdown.previousSibling;
+
+      if (parentDropdown.previousSibling.classList.contains('pl-c-nav__link--overview-wrapper') && shouldAutoOpenNav){
+        this.previousActiveLinks.push(parentDropdown.previousSibling);
+        parentDropdown.previousSibling.classList.add('pl-is-active');
+        parentDropdownTrigger = parentDropdown.previousSibling.querySelector('.pl-js-acc-handle');
+      }
+
+      const grandparentDropdown = parentDropdown.closest('.pl-c-nav__sublist--dropdown');
+      const grandparentDropdownTrigger = grandparentDropdown.previousSibling;
+
+      if (parentDropdown && shouldAutoOpenNav){
+        parentDropdown.classList.add('pl-is-active');
+        this.previousActiveLinks.push(parentDropdown);
+      }
+      
+      // don't auto-open 
+      if (parentDropdownTrigger){
+        if (shouldAutoOpenNav === true || parentDropdownTrigger.classList.contains('pl-c-nav__link--title') === false) {
+          parentDropdownTrigger.classList.add('pl-is-active');
+          this.previousActiveLinks.push(parentDropdownTrigger);
+        }
+      }
+      
+      if (grandparentDropdown && shouldAutoOpenNav){
+        if (shouldAutoOpenNav){
+          grandparentDropdown.classList.add('pl-is-active');
+        }
+        this.previousActiveLinks.push(grandparentDropdown);
+      }
+
+      if (grandparentDropdownTrigger && shouldAutoOpenNav){
+        if (shouldAutoOpenNav){
+          grandparentDropdownTrigger.classList.add('pl-is-active');
+        }
+        this.previousActiveLinks.push(grandparentDropdownTrigger);
+      }
+    }
   }
 
   static props = {
-    // autoClose: props.boolean,
     autoClose: {
       ...props.boolean,
       ...{ default: true },

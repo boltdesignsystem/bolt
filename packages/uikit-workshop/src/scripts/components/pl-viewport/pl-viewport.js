@@ -5,6 +5,7 @@ const classNames = require('classnames');
 import render from 'preact-render-to-string';
 
 import { store } from '../../store.js'; // connect to redux
+import { updateCurrentUrl } from '../../actions/app.js'; // redux actions
 import { BaseComponent } from '../base-component.js';
 
 import styles from '../../../sass/pattern-lab--iframe-loader.scss';
@@ -20,14 +21,16 @@ class IFrame extends BaseComponent {
     self = super(self);
     self.useShadow = false;
     self.styleguideReady = false;
+    self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
     return self;
   }
 
   connected(){
     const state = store.getState();
     this.themeMode = state.app.themeMode;
-
-    // console.log(this.themeMode);
+    this.isViewallPage = state.app.isViewallPage;
+    this.currentUrl = state.app.currentUrl;
+    window.addEventListener('message', this.receiveIframeMessage, false);
   }
 
   _stateChanged(state) {
@@ -101,12 +104,52 @@ class IFrame extends BaseComponent {
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
             srcdoc={render(<IframeInner />)}
           />
-          <div class="pl-c-viewport__resizer pl-js-resize-container">
-            <div class="pl-c-viewport__resizer-handle pl-js-resize-handle" />
-          </div>
+          {
+            this.state.isViewallPage === false && (
+              <div class="pl-c-viewport__resizer pl-js-resize-container">
+                <div class="pl-c-viewport__resizer-handle pl-js-resize-handle" />
+              </div>
+            )
+          }
         </div>
       </div>
     );
+  }
+
+  receiveIframeMessage(event) {
+    // does the origin sending the message match the current host? if not dev/null the request
+    if (
+      window.location.protocol !== 'file:' &&
+      event.origin !== window.location.protocol + '//' + window.location.host
+    ) {
+      return;
+    }
+
+    let data = {};
+    try {
+      data =
+        typeof event.data !== 'string' ? event.data : JSON.parse(event.data);
+    } catch (e) {
+      // @todo: how do we want to handle exceptions here?
+    }
+
+    if (data.event !== undefined && data.event === 'patternLab.pageLoad') {
+      try {
+        // add a slight delay to make sure the URL params have had a chance to update first before updating the current url 
+        setTimeout(() => {
+          if (URLSearchParams !== undefined){
+            var urlParams = new URLSearchParams(window.location.search);
+            const currentUrl = urlParams.get('p');
+  
+            if (currentUrl){
+              store.dispatch(updateCurrentUrl(currentUrl));
+            }
+          }
+        }, 25);
+      } catch(error){
+        console.log(error);
+      }
+    }
   }
 }
 
