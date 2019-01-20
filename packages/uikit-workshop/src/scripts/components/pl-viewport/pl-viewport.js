@@ -7,6 +7,7 @@ import render from 'preact-render-to-string';
 import { store } from '../../store.js'; // connect to redux
 import { updateCurrentUrl } from '../../actions/app.js'; // redux actions
 import { BaseComponent } from '../base-component.js';
+import { urlHandler, patternName } from '../../utils';
 
 import styles from '../../../sass/pattern-lab--iframe-loader.scss';
 
@@ -22,10 +23,18 @@ class IFrame extends BaseComponent {
     self.useShadow = false;
     self.styleguideReady = false;
     self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
+    //set up the default for the
+    self.baseIframePath =
+      window.location.protocol +
+      '//' +
+      window.location.host +
+      window.location.pathname.replace('index.html', '');
+    self.defaultIframePath = self.baseIframePath + '?p=components-overview';
     return self;
   }
 
   connected(){
+    const self = this;
     const state = store.getState();
     this.themeMode = state.app.themeMode;
     this.isViewallPage = state.app.isViewallPage;
@@ -35,16 +44,63 @@ class IFrame extends BaseComponent {
 
   _stateChanged(state) {
     if (this.iframe){
-      this.iframe.iFrameResizer.sendMessage(state);
+      if (this.iframe.iFrameResizer){
+        this.iframe.iFrameResizer.sendMessage(state);
+      } else {
+        this.delaySendingMessage = true;
+      }
     } else {
       this.delaySendingMessage = true;
     }
   }
+
+  navigateTo(pattern = patternName, rewrite = false) {
+    const patternPath = urlHandler.getFileName(pattern);
+    this.iFramePath =
+      patternPath !== ''
+        ? this.baseIframePath + patternPath + '?' + Date.now()
+        : this.defaultIframePath;
+
+    if (rewrite === true){
+      window.history.replaceState(
+        {
+          pattern,
+        },
+        null,
+        null
+      );
+      urlHandler.skipBack = true;
+    }
+
+    this.iframe.contentWindow.location.replace(this.iFramePath);
+    urlHandler.pushPattern(pattern, patternPath);
+  }
+
+  handleUpdatingCurrentUrl(){
+    setTimeout(() => {
+      if (URLSearchParams !== undefined){
+        var urlParams = new URLSearchParams(window.location.search);
+        const currentUrl = urlParams.get('p');
+
+        if (currentUrl){
+          store.dispatch(updateCurrentUrl(currentUrl));
+        }
+      }
+    }, 25);
+  }
   
   rendered(){
+    super.rendered && super.rendered();
     this.iframe = this.querySelector('.pl-js-iframe');
 
     const self = this;
+
+    if (this.styleguideReady === false){
+      if (patternName !== 'all') {
+        this.navigateTo(patternName, true);
+        this.styleguideReady = true;
+      }
+    }
 
     iFrameResize({
       checkOrigin: false,
@@ -117,6 +173,8 @@ class IFrame extends BaseComponent {
   }
 
   receiveIframeMessage(event) {
+    const self = this;
+
     // does the origin sending the message match the current host? if not dev/null the request
     if (
       window.location.protocol !== 'file:' &&
@@ -136,16 +194,7 @@ class IFrame extends BaseComponent {
     if (data.event !== undefined && data.event === 'patternLab.pageLoad') {
       try {
         // add a slight delay to make sure the URL params have had a chance to update first before updating the current url 
-        setTimeout(() => {
-          if (URLSearchParams !== undefined){
-            var urlParams = new URLSearchParams(window.location.search);
-            const currentUrl = urlParams.get('p');
-  
-            if (currentUrl){
-              store.dispatch(updateCurrentUrl(currentUrl));
-            }
-          }
-        }, 25);
+        self.handleUpdatingCurrentUrl();
       } catch(error){
         console.log(error);
       }

@@ -306,42 +306,45 @@ import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux
   function sizeiframe(size, animate) {
     let theSize;
 
-    if (size > maxViewportWidth) {
-      //If the entered size is larger than the max allowed viewport size, cap value at max vp size
-      theSize = maxViewportWidth;
-    } else if (size < minViewportWidth) {
-      //If the entered size is less than the minimum allowed viewport size, cap value at min vp size
-      theSize = minViewportWidth;
-    } else {
-      theSize = size;
+    // @todo: refactor to better handle the iframe async rendering
+    if (document.querySelector('.pl-js-iframe')){
+      if (size > maxViewportWidth) {
+        //If the entered size is larger than the max allowed viewport size, cap value at max vp size
+        theSize = maxViewportWidth;
+      } else if (size < minViewportWidth) {
+        //If the entered size is less than the minimum allowed viewport size, cap value at min vp size
+        theSize = minViewportWidth;
+      } else {
+        theSize = size;
+      }
+  
+      //Conditionally remove CSS animation class from viewport
+      if (animate === false) {
+        $('.pl-js-vp-iframe-container, .pl-js-iframe').removeClass('vp-animate'); //If aninate is set to false, remove animate class from viewport
+      } else {
+        $('.pl-js-vp-iframe-container, .pl-js-iframe').addClass('vp-animate');
+      }
+  
+      $('.pl-js-vp-iframe-container').width(theSize + viewportResizeHandleWidth); //Resize viewport wrapper to desired size + size of drag resize handler
+      $sgIframe.width(theSize); //Resize viewport to desired size
+      const state = store.getState();
+      const isViewallPage = state.app.isViewallPage;
+  
+      const targetOrigin =
+        window.location.protocol === 'file:'
+          ? '*'
+          : window.location.protocol + '//' + window.location.host;
+      const obj = JSON.stringify({
+        event: 'patternLab.resize',
+        resize: 'true',
+      });
+      document
+        .querySelector('.pl-js-iframe')
+        .contentWindow.postMessage(obj, targetOrigin);
+  
+      updateSizeReading(theSize); //Update values in toolbar
+      saveSize(theSize); //Save current viewport to cookie
     }
-
-    //Conditionally remove CSS animation class from viewport
-    if (animate === false) {
-      $('.pl-js-vp-iframe-container, .pl-js-iframe').removeClass('vp-animate'); //If aninate is set to false, remove animate class from viewport
-    } else {
-      $('.pl-js-vp-iframe-container, .pl-js-iframe').addClass('vp-animate');
-    }
-
-    $('.pl-js-vp-iframe-container').width(theSize + viewportResizeHandleWidth); //Resize viewport wrapper to desired size + size of drag resize handler
-    $sgIframe.width(theSize); //Resize viewport to desired size
-    const state = store.getState();
-    const isViewallPage = state.app.isViewallPage;
-
-    const targetOrigin =
-      window.location.protocol === 'file:'
-        ? '*'
-        : window.location.protocol + '//' + window.location.host;
-    const obj = JSON.stringify({
-      event: 'patternLab.resize',
-      resize: 'true',
-    });
-    document
-      .querySelector('.pl-js-iframe')
-      .contentWindow.postMessage(obj, targetOrigin);
-
-    updateSizeReading(theSize); //Update values in toolbar
-    saveSize(theSize); //Save current viewport to cookie
   }
 
   $('.pl-js-vp-iframe-container').on(
@@ -502,71 +505,6 @@ import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux
   } else if (trackViewportWidth && (vpWidth = DataSaver.findValue('vpWidth'))) {
     updateViewportWidth(vpWidth);
   }
-
-  // set up the defaults for the
-  const baseIframePath =
-    window.location.protocol +
-    '//' +
-    window.location.host +
-    window.location.pathname.replace('index.html', '');
-  let iFramePath =
-    baseIframePath + 'styleguide/html/styleguide.html?' + Date.now();
-
-  if (patternName !== 'all') {
-    const patternPath = urlHandler.getFileName(patternName);
-    iFramePath =
-      patternPath !== ''
-        ? baseIframePath + patternPath + '?' + Date.now()
-        : iFramePath;
-    document.getElementById('title').innerHTML = 'Pattern Lab - ' + patternName;
-    window.history.replaceState(
-      {
-        pattern: patternName,
-      },
-      null,
-      null
-    );
-  }
-
-  urlHandler.skipBack = true;
-  document
-    .querySelector('.pl-js-iframe')
-    .contentWindow.location.replace(iFramePath);
-
-  // Close all dropdowns and navigation
-  function closePanels() {
-    const state = store.getState();
-    const layoutMode = state.app.layoutMode || 'vertical';
-    if (window.matchMedia("(max-width: calc(42em - 1px))").matches || layoutMode === 'horizontal'){
-      $('.pl-js-nav-container, .pl-js-acc-handle, .pl-js-acc-panel').removeClass(
-        'pl-is-active'
-      );
-    } else {
-      $('.pl-js-nav-container').removeClass(
-        'pl-is-active'
-      );
-    }
-  }
-
-  // update the iframe with the source from clicked element in pull down menu. also close the menu
-  // having it outside fixes an auto-close bug i ran into
-  $('a[data-patternpartial]').on('click', function(e) {
-    e.preventDefault();
-    // update the iframe via the history api handler
-    const obj = JSON.stringify({
-      event: 'patternLab.updatePath',
-      path: urlHandler.getFileName($(this).attr('data-patternpartial')),
-    });
-    document
-      .querySelector('.pl-js-iframe')
-      .contentWindow.postMessage(obj, urlHandler.targetOrigin);
-    closePanels();
-  });
-
-  // handle when someone clicks on the grey area of the viewport so it auto-closes the nav
-  // $('.pl-js-viewport').click(function() {
-  //   closePanels();
-  // });
 
   // Listen for resize changes
   if (window.orientation !== undefined) {

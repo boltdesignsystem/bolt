@@ -33,8 +33,9 @@ const SubSubList = (props) => {
             <div class="pl-c-nav__link--overview-wrapper">
               <a href={`patterns/${patternSubtypeItem.patternPath}`}
                 className={`pl-c-nav__link pl-c-nav__link--sublink
-                  ${patternSubtypeItem.patternName === 'View All' ? 'pl-c-nav__link--overview pl-js-link-overview' : 'pl-c-nav__link--subsublink'}
+                ${patternSubtypeItem.patternName === 'View All' ? 'pl-c-nav__link--overview pl-js-link-overview' : 'pl-c-nav__link--subsublink'}
                 `}
+                onClick={(e) => elem.handleClick(e, patternSubtypeItem.patternPartial)}
                 data-patternpartial={patternSubtypeItem.patternPartial}>
                   { 
                     patternSubtypeItem.patternName === 'View All' ? 
@@ -85,6 +86,7 @@ const SubSubList = (props) => {
                     className={`pl-c-nav__link pl-c-nav__link--sublink
                       ${patternSubtypeItem.patternName === 'View All' ? 'pl-c-nav__link--overview' : 'pl-c-nav__link--subsublink'}
                     `}
+                    onClick={(e) => elem.handleClick(e, patternSubtypeItem.patternPartial)}
                     data-patternpartial={patternSubtypeItem.patternPartial}>
                       { 
                         patternSubtypeItem.patternName === 'View All' ? 
@@ -178,7 +180,10 @@ class Nav extends BaseComponent {
     self = super(self);
     self.toggleNavPanel = self.toggleNavPanel.bind(self);
     self.toggleSpecialNavPanel = self.toggleSpecialNavPanel.bind(self);
+    self.handleClick = self.handleClick.bind(self);
     self.handleURLChange = self.handleURLChange.bind(self);
+    self._hasInitiallyRendered = false;
+    self.handleURLChangeOnRender = false;
     // self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
     self.isOpenClass = 'pl-is-active';
     self.useShadow = false;
@@ -190,6 +195,7 @@ class Nav extends BaseComponent {
     this.layoutMode = state.app.layoutMode || 'vertical';
     this.elem = this;
     this.previousActiveLinks = [];
+    this.iframeElem = document.querySelector('pl-iframe');
   }
 
   _stateChanged(state) {
@@ -198,7 +204,33 @@ class Nav extends BaseComponent {
     this.handleURLChange();
   }
 
+  handleClick(event, pattern) {
+    event.preventDefault();
+    this.iframeElem.navigateTo(pattern);
+
+    this.navContainer = document.querySelector('.pl-js-nav-container');
+    this.navAccordionTriggers = document.querySelectorAll('.pl-js-acc-handle');
+    this.navAccordionPanels = document.querySelectorAll('.pl-js-acc-panel');
+
+    if (window.matchMedia("(max-width: calc(42em - 1px))").matches || this.layoutMode === 'horizontal'){
+      this.navContainer.classList.remove('pl-is-active');
+      this.navAccordionTriggers.forEach((trigger) => {
+        trigger.classList.remove('pl-is-active');
+      });
+      this.navAccordionPanels.forEach((panel) => {
+        panel.classList.remove('pl-is-active');
+      });
+    } else {
+      this.navContainer.classList.remove('pl-is-active');
+    }
+  }
+
   handleURLChange() {
+    if (!this._hasInitiallyRendered){
+      this.handleURLChangeOnRender = true;
+      return;
+    }
+  
     const shouldAutoOpenNav = window.matchMedia("(min-width: calc(42em))").matches && this.layoutMode === 'vertical';
 
     const currentUrl = this.currentUrl;
@@ -330,6 +362,17 @@ class Nav extends BaseComponent {
     $panel.toggleClass(this.isOpenClass);
   }
 
+  rendered(){
+    if (this._hasInitiallyRendered === false){
+      this._hasInitiallyRendered = true;
+    }
+
+    if (this.handleURLChangeOnRender === true){
+      this.handleURLChangeOnRender = false;
+      this.handleURLChange();
+    }
+  }
+
   render({ layoutMode }) {
     const patternTypes = window.navItems.patternTypes;
 
@@ -373,6 +416,7 @@ class Nav extends BaseComponent {
                         <a
                           href={`patterns/${patternItem.patternPath}`}
                           class="pl-c-nav__link pl-c-nav__link--pattern"
+                          onClick={(e) => this.handleClick(e, patternItem.patternPartial)}
                           data-patternpartial={patternItem.patternPartial}
                           tabindex="0"
                         >

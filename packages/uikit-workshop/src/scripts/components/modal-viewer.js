@@ -11,6 +11,7 @@ import { updateDrawerState, isViewallPage } from '../actions/app.js';
 
 export const modalViewer = {
   // set up some defaults
+  delayCheckingModalViewer: false,
   iframeElement: document.querySelector('.pl-js-iframe'),
   active: false,
   switchText: true,
@@ -198,10 +199,15 @@ export const modalViewer = {
       event: 'patternLab.patternQuery',
       switchText,
     });
-    modalViewer.iframeElement.contentWindow.postMessage(
-      obj,
-      modalViewer.targetOrigin
-    );
+
+    // only emit this when the iframe element exists.
+    // @todo: refactor to better handle async UI rendering
+    if (modalViewer.iframeElement){
+      modalViewer.iframeElement.contentWindow.postMessage(
+        obj,
+        modalViewer.targetOrigin
+      );
+    }
   },
 
   /**
@@ -228,6 +234,13 @@ export const modalViewer = {
     }
 
     if (data.event !== undefined && data.event === 'patternLab.pageLoad') {
+
+      // @todo: refactor to better handle async iframe loading
+      // extra check to make sure the PL drawer will always render even if the iframe gets async loaded / rendered. 
+      if (modalViewer.delayCheckingModalViewer){
+        modalViewer._handleInitialModalViewerState();
+      }
+
       if (
         data.patternpartial.indexOf('viewall-') === 0 ||
         data.patternpartial.indexOf('all') === 0
@@ -276,14 +289,29 @@ export const modalViewer = {
     }
   },
 
+  _handleInitialModalViewerState(){
+    // try to re-locate the iframe element if this UI logic ran too early and the iframe component wasn't yet rendered
+    if (!modalViewer.iframeElement){
+      modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
+    }
+
+    // only try to auto-open / auto-close the drawer UI if the iframe element exists
+    // @todo: refactor to better handle async UI rendering
+    if (modalViewer.iframeElement){
+      modalViewer.delayCheckingModalViewer = false;
+      if (modalViewer.active) {
+        modalViewer.open();
+      } else {
+        modalViewer.close();
+      }
+    } else {
+      modalViewer.delayCheckingModalViewer = true;
+    }
+  },
+
   _stateChanged(state) {
     modalViewer.active = state.app.drawerOpened;
-
-    if (modalViewer.active) {
-      modalViewer.open();
-    } else {
-      modalViewer.close();
-    }
+    modalViewer._handleInitialModalViewerState();
   },
 };
 
