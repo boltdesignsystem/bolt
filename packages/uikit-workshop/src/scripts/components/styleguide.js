@@ -405,8 +405,13 @@ import { updateViewportPx, updateViewportEm } from '../actions/app.js'; // redux
 
   //Update The viewport size
   function updateViewportWidth(size) {
-    $('.pl-js-iframe').width(size);
-    $('.pl-js-vp-iframe-container').width(size * 1 + 14);
+    const state = store.getState();
+    const isViewallPage = state.app.isViewallPage;
+
+    if(!isViewallPage){
+      $('.pl-js-iframe').width(size);
+      $('.pl-js-vp-iframe-container').width(size * 1 + 14);
+    }
 
     updateSizeReading(size);
   }

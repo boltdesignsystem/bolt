@@ -15,12 +15,12 @@ $bolt-link-transition: $bolt-transition;
 .c-bolt-link {
   @include bolt-padding(0); // [1]
   @include bolt-font-family(body); // [1]
-
   display: inline;
   appearance: none; // [1]
   opacity: bolt-opacity(100);
   margin-left: bolt-spacing(xxsmall) * -1;
   color: bolt-theme(link);
+  line-height: 1.45;
   text-decoration: underline;
   cursor: pointer;
   border: none; // [1]
@@ -57,7 +57,7 @@ $bolt-link-transition: $bolt-transition;
 
 .c-bolt-link__icon,
 .c-bolt-link__text {
-  @include bolt-padding-left(xxsmall);
+  @include bolt-padding-left(xsmall);
 }
 
 .c-bolt-link__text {
