@@ -269,14 +269,13 @@
     {% endif %}
   </div>
 
-  <div class="c-bds-docs__page-nav u-bolt-padding-right-medium@medium">
+  <div class="c-bds-docs__page-nav">
     {% set upper_list %}
       {% include "@bolt-components-list/list.twig" with {
         display: "block",
         spacing: "xsmall",
         align: "start",
         valign: "center",
-        inset: true,
         items: [
           include("@bolt/link.twig", {
             text: "Getting Started",
@@ -311,19 +310,19 @@
             display: "flex",
             isHeadline: true,
             icon: {
-              position: "before",
+              position: "after",
               size: "small",
               name: "pencil"
             },
           }) : '',
           fileExists(testingFile) ? include("@bolt/link.twig", {
-            text: "View Testing Steps",
+            text: "Testing Steps",
             url: github_url(testingFile),
             target: "_blank",
             display: "flex",
             isHeadline: true,
             icon: {
-              position: "before",
+              position: "after",
               size: "small",
               name: "documentation"
             }
@@ -336,9 +335,13 @@
       display: "block",
       spacing: "xsmall",
       separator: "solid",
-      inset: true,
       align: "start",
       valign: "center",
+      attributes: {
+        style: [
+          "font-size: 0.9em;"
+        ]
+      },
       items: [
         upper_list,
         lower_list
