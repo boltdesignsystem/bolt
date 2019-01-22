@@ -47,7 +47,7 @@ async function handleRequest(req, res, next) {
           log.error('The template paramater is missing!');
         }
         const body = await getBody(req);
-        const { ok, html, message } = await render(query.template, body);
+        const { ok, html, message } = await render(query.template, body, true);
 
         if (!ok) {
           log.error(message);

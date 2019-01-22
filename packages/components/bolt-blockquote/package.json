@@ -26,13 +26,17 @@
   "license": "MIT",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "src/blockquote.scss",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^2.3.0-rc.0"
+    "@bolt/core": "^2.3.0-rc.0",
+    "@bolt/components-text": "^2.3.0-rc.0",
+    "@bolt/components-image": "^2.3.0-rc.0"
   },
+  "style": "index.scss",
+  "main": "index.js",
+  "twig": "src/blockquote.twig",
   "schema": "blockquote.schema.yml",
   "gitHead": "b47538629e315eeecbdfcb8d0c22e787b3bcc089"
 }
