@@ -274,7 +274,7 @@
       {% include "@bolt-components-list/list.twig" with {
         display: "block",
         spacing: "xsmall",
-        align: "start",
+        align: "end",
         valign: "center",
         items: [
           include("@bolt/link.twig", {
@@ -300,7 +300,7 @@
       {% include "@bolt-components-list/list.twig" with {
         display: "block",
         spacing: "xsmall",
-        align: "start",
+        align: "end",
         valign: "center",
         items: [
           fileExists(readmeFile) ? include("@bolt/link.twig", {
@@ -335,7 +335,7 @@
       display: "block",
       spacing: "xsmall",
       separator: "solid",
-      align: "start",
+      align: "end",
       valign: "center",
       attributes: {
         style: [
