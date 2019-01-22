@@ -352,15 +352,7 @@ class IFrame extends BaseComponent {
 
     function handleIframeCoverResize(e) {
       const viewportWidth = origViewportWidth + 2 * (e.clientX - origClientX);
-      console.log(viewportWidth);
-
       if (viewportWidth > minViewportWidth) {
-        // if (!DataSaver.findValue('vpWidth')) {
-        //   DataSaver.addValue('vpWidth', viewportWidth);
-        // } else {
-        //   DataSaver.updateValue('vpWidth', viewportWidth);
-        // }
-
         self.sizeiframe(viewportWidth, false);
       }
     }
