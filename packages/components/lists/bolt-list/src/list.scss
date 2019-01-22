@@ -22,6 +22,7 @@
 .c-bolt-list--display-inline {
   display: inline-flex;
   flex-flow: row wrap;
+  width: 100%; // The inline here is talking about the items inside, the List component itself is still a block level element that would fill up the space of any container.
 }
 
 .c-bolt-list--display-flex {

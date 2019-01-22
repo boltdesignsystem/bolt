@@ -19,10 +19,12 @@ class BoltListItem extends withContext(withLitHtml()) {
   // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
   static get consumes() {
     return [
-      [
-        ListContext,
-        ['tag', 'spacing', 'inset', 'separator', 'display', 'align'],
-      ],
+      [ListContext, 'spacing'],
+      [ListContext, 'tag'],
+      [ListContext, 'inset'],
+      [ListContext, 'separator'],
+      [ListContext, 'display'],
+      [ListContext, 'align'],
     ];
   }
 
