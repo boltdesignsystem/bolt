@@ -5,7 +5,9 @@ const classNames = require('classnames');
 import render from 'preact-render-to-string';
 
 import { store } from '../../store.js'; // connect to redux
-import { updateCurrentUrl } from '../../actions/app.js'; // redux actions
+import { updateCurrentPattern, updateCurrentUrl } from '../../actions/app.js'; // redux actions
+import { updateViewportPx, updateViewportEm } from '../../actions/app.js'; // redux actions needed
+import { minViewportWidth, maxViewportWidth } from '../../utils';
 import { BaseComponent } from '../base-component.js';
 import { urlHandler, patternName } from '../../utils';
 
@@ -21,8 +23,17 @@ class IFrame extends BaseComponent {
   constructor(self) {
     self = super(self);
     self.useShadow = false;
+    self.fullMode = true;
+    self.viewportResizeHandleWidth = 14; //Width of the viewport drag-to-resize handle
+    self._hasInitiallyRendered = false;
+    self.bodySize =
+    window.config.ishFontSize !== undefined
+      ? parseInt(window.config.ishFontSize, 10)
+      : parseInt(window.getComputedStyle(document.body, null).getPropertyValue('font-size'), 10); //Body size of the document
     self.styleguideReady = false;
     self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
+    self.handleResize = self.handleResize.bind(self);
+    self.handleMouseDown = self.handleMouseDown.bind(self);
     //set up the default for the
     self.baseIframePath =
       window.location.protocol +
@@ -36,26 +47,156 @@ class IFrame extends BaseComponent {
   connected(){
     const self = this;
     const state = store.getState();
-    this.themeMode = state.app.themeMode;
-    this.isViewallPage = state.app.isViewallPage;
-    this.currentUrl = state.app.currentUrl;
+    this.themeMode = state.app.themeMode || 'dark';
+    this.isViewallPage = state.app.isViewallPage || false;
+    this.currentPattern = state.app.currentPattern || '';
+
+    if (state.app.viewportPx){
+      this.sizeiframe(state.app.viewportPx, false);
+    }
+
     window.addEventListener('message', this.receiveIframeMessage, false);
+    window.addEventListener('resize', this.handleResize);
+    
+    this.handleOrientationChange();
+    // this.updateSizeReading(document.body.clientWidth);
+  }
+
+  //Resize the viewport
+  //'size' is the target size of the viewport
+  //'animate' is a boolean for switching the CSS animation on or off. 'animate' is true by default, but can be set to false for things like nudging and dragging
+  sizeiframe(size, animate) {
+    let theSize;
+    const self = this;
+
+    // @todo: refactor to better handle the iframe async rendering
+    if (this.iframe){
+      if (animate === true) {
+        this.iframeContainer.classList.add('vp-animate');
+        this.iframe.classList.add('vp-animate');
+      }
+      
+      if (size > maxViewportWidth) {
+        //If the entered size is larger than the max allowed viewport size, cap value at max vp size
+        theSize = maxViewportWidth;
+      } else if (size < minViewportWidth) {
+        //If the entered size is less than the minimum allowed viewport size, cap value at min vp size
+        theSize = minViewportWidth;
+      } else {
+        theSize = size;
+      }
+
+      // resize viewport wrapper to desired size + size of drag resize handler
+      this.iframeContainer.style.width = theSize + this.viewportResizeHandleWidth + 'px'; 
+      // this.iframe.style.width = theSize + 'px'; // resize viewport to desired size
+
+      // auto-remove transition classes if not the animate param isn't set to true
+      setTimeout(function(){
+        if (animate === true) {
+          self.iframeContainer.classList.remove('vp-animate');
+          self.iframe.classList.remove('vp-animate');
+        }
+      }, 800);
+      
+      const targetOrigin =
+        window.location.protocol === 'file:'
+          ? '*'
+          : window.location.protocol + '//' + window.location.host;
+
+      const obj = JSON.stringify({
+        event: 'patternLab.resize',
+        resize: 'true',
+      });
+
+      this.iframe.contentWindow.postMessage(obj, targetOrigin);
+  
+      this.updateSizeReading(theSize); // update the displayed values in the toolbar
+    }
+  }
+
+  handleOrientationChange(){
+     // Listen for resize changes
+    const self = this;
+    if (window.orientation !== undefined) {
+      this.origOrientation = window.orientation;
+      window.addEventListener(
+        'orientationchange',
+        function() {
+          if (window.orientation !== this.origOrientation) {
+            let newWidth = window.innerWidth;
+            self.iframeContainer.style.width = newWidth;
+            self.iframe.style.width = newWidth;
+            self.updateSizeReading(newWidth);
+            this.origOrientation = window.orientation;
+          }
+        },
+        false
+      );
+    }
+  }
+
+  handleResize(){
+    this.updateSizeReading(this.iframe.clientWidth);
+  }
+
+  // Update Pixel and Em inputs
+  // 'size' is the input number
+  // 'unit' is the type of unit: either px or em. Default is px. 
+  // Accepted values are 'px' and 'em'
+  // 'target' is what inputs to update. Defaults to both
+  updateSizeReading(size, unit, target) {
+    let emSize, pxSize;
+
+    if (unit === 'em') {
+      // if size value is in em units
+      emSize = size;
+      pxSize = Math.floor(size * this.bodySize);
+    } else {
+      // if value is px or absent
+      pxSize = size;
+      emSize = size / this.bodySize;
+    }
+
+    if (target === 'updatePxInput') {
+      store.dispatch(updateViewportPx(pxSize));
+    } else if (target === 'updateEmInput') {
+      store.dispatch(updateViewportEm(emSize.toFixed(2)));
+    } else {
+      store.dispatch(updateViewportPx(pxSize));
+      store.dispatch(updateViewportEm(emSize.toFixed(2)));
+    }
   }
 
   _stateChanged(state) {
-    if (this.iframe){
-      if (this.iframe.iFrameResizer){
-        this.iframe.iFrameResizer.sendMessage(state);
+    if (this._hasInitiallyRendered){
+      if (state.app.viewportPx){
+        this.sizeiframe(state.app.viewportPx, false);
       } else {
-        this.delaySendingMessage = true;
+        this.sizeiframe(this.iframe.clientWidth, false);
       }
-    } else {
-      this.delaySendingMessage = true;
     }
+  //   // this.store = state;
+  //   // super._stateChanged && super._stateChanged();
+  //   // this.triggerUpdate();
+  //   // if (state.app.currentPattern !== this.currentPattern){
+  //   //   console.log(state.app);
+  //   //   if (this.iframe){
+  //   //     if (this.iframe.iFrameResizer){
+  //   //       this.iframe.iFrameResizer.sendMessage(state);
+  //   //     } else {
+  //   //       this.delaySendingMessage = true;
+  //   //     }
+  //   //   } else {
+  //   //     this.delaySendingMessage = true;
+  //   //   }
+  //   // }
   }
 
   navigateTo(pattern = patternName, rewrite = false) {
     const patternPath = urlHandler.getFileName(pattern);
+
+    urlHandler.pushPattern(pattern, patternPath);
+
     this.iFramePath =
       patternPath !== ''
         ? this.baseIframePath + patternPath + '?' + Date.now()
@@ -71,27 +212,48 @@ class IFrame extends BaseComponent {
       );
       urlHandler.skipBack = true;
     }
-
     this.iframe.contentWindow.location.replace(this.iFramePath);
-    urlHandler.pushPattern(pattern, patternPath);
   }
 
-  handleUpdatingCurrentUrl(){
-    setTimeout(() => {
-      if (URLSearchParams !== undefined){
-        var urlParams = new URLSearchParams(window.location.search);
-        const currentUrl = urlParams.get('p');
+  handleUpdatingCurrentPattern(currentPattern){
+    const currentUrl = urlHandler.getFileName(currentPattern);
 
-        if (currentUrl){
-          store.dispatch(updateCurrentUrl(currentUrl));
-        }
+    store.dispatch(updateCurrentPattern(currentPattern));
+    store.dispatch(updateCurrentUrl(currentUrl));
+
+    const data = {
+      currentPattern,
+    };
+
+    if (
+      window.history.state === undefined ||
+      window.history.state === null ||
+      window.history.state.pattern !== currentPattern
+    ) {
+      // urlHandler.pushPattern(currentPattern, currentUrl);
+      // add to the history
+      const addressReplacement =
+        window.location.protocol === 'file:'
+          ? null
+          : window.location.protocol +
+            '//' +
+            window.location.host +
+            window.location.pathname.replace('index.html', '') +
+            '?p=' +
+            currentPattern;
+      if (window.history.pushState !== undefined) {
+        window.history.pushState(data, null, addressReplacement);
       }
-    }, 25);
+
+      this.currentPattern = currentPattern;
+    }
   }
   
   rendered(){
     super.rendered && super.rendered();
     this.iframe = this.querySelector('.pl-js-iframe');
+    this.iframeContainer = this.querySelector('.pl-js-vp-iframe-container');
+    this.iframeCover = this.querySelector('.pl-js-viewport-cover');
 
     const self = this;
 
@@ -151,26 +313,73 @@ class IFrame extends BaseComponent {
       );
     };
 
+    const initialWidth = store.getState().app.viewportPx ? store.getState().app.viewportPx + 'px;' : '100%;';
+
     return (
       <div class="pl-c-viewport pl-js-viewport">
         <div class="pl-c-viewport__cover pl-js-viewport-cover" />
-        <div class="pl-c-viewport__iframe-wrapper pl-js-vp-iframe-container">
+        <div class="pl-c-viewport__iframe-wrapper pl-js-vp-iframe-container" 
+         style={`width: ${initialWidth}`}
+        >
           <iframe
             className={`pl-c-viewport__iframe pl-js-iframe pl-c-body--theme-${this.themeMode}`}
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
             srcdoc={render(<IframeInner />)}
+            // style={`width: ${initialWidth}`}
           />
           {
-            this.state.isViewallPage === false && (
-              <div class="pl-c-viewport__resizer pl-js-resize-container">
-                <div class="pl-c-viewport__resizer-handle pl-js-resize-handle" />
-              </div>
-            )
+            <div class="pl-c-viewport__resizer pl-js-resize-container">
+              <div class="pl-c-viewport__resizer-handle pl-js-resize-handle" 
+                onMouseDown={e => this.handleMouseDown(e)}
+              />
+            </div>
           }
         </div>
       </div>
     );
   }
+
+  handleMouseDown(event) {
+    // capture default data
+    const self = this;
+    const origClientX = event.clientX;
+    const origViewportWidth = this.iframe.clientWidth;
+
+    this.fullMode = false;
+
+    // show the cover
+    this.iframeCover.style.display = 'block';
+
+    function handleIframeCoverResize(e) {
+      const viewportWidth = origViewportWidth + 2 * (e.clientX - origClientX);
+      console.log(viewportWidth);
+
+      if (viewportWidth > minViewportWidth) {
+        // if (!DataSaver.findValue('vpWidth')) {
+        //   DataSaver.addValue('vpWidth', viewportWidth);
+        // } else {
+        //   DataSaver.updateValue('vpWidth', viewportWidth);
+        // }
+
+        self.sizeiframe(viewportWidth, false);
+      }
+    }
+
+    // add the mouse move event and capture data. also update the viewport width
+    this.iframeCover.addEventListener('mousemove', handleIframeCoverResize);
+
+    document.body.addEventListener('mouseup', function() {
+      self.iframeCover.removeEventListener('mousemove', handleIframeCoverResize);
+      self.iframeCover.style.display = 'none';
+    });
+
+    return false;
+  }
+
+
+  // .mousedown(function(event) {
+    
+  // });
 
   receiveIframeMessage(event) {
     const self = this;
@@ -193,8 +402,24 @@ class IFrame extends BaseComponent {
 
     if (data.event !== undefined && data.event === 'patternLab.pageLoad') {
       try {
+        // console.log('patternLab.pageLoad');
         // add a slight delay to make sure the URL params have had a chance to update first before updating the current url 
-        self.handleUpdatingCurrentUrl();
+        self.handleUpdatingCurrentPattern(event.data.details.patternData.patternPartial);
+
+        // check and share the initial iframe width once ready
+        // workaround to address strange rendering quirk if this is set too early
+        if (self._hasInitiallyRendered === false){
+          
+          const state = store.getState();
+          if (state.app.viewportPx){
+            self.sizeiframe(state.app.viewportPx, false);
+          } else {
+            self.sizeiframe(self.iframe.clientWidth, false);
+          }
+
+
+          self._hasInitiallyRendered = true;
+        }
       } catch(error){
         console.log(error);
       }

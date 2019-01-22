@@ -2,6 +2,7 @@ import { define, props } from 'skatejs';
 import { h } from 'preact';
 import { BaseComponent } from '../base-component.js';
 import { urlHandler, patternName } from '../../utils';
+import { store } from '../../store'; // redux store
 
 import NewTabIcon from '../../../icons/new-tab.svg';
 import HelpIcon from '../../../icons/help.svg';
@@ -11,7 +12,9 @@ import SettingsIcon from '../../../icons/settings.svg';
 class ToolsMenu extends BaseComponent {
   static is = 'pl-tools-menu';
 
-  _stateChanged(state) {}
+  _stateChanged(state) {
+    this.currentUrl = state.app.currentUrl || urlHandler.getFileName(patternName);
+  }
 
   constructor(self) {
     self = super(self);
@@ -21,7 +24,9 @@ class ToolsMenu extends BaseComponent {
   }
 
   connecting() {
+    const state = store.getState();
     const { ishControlsHide } = window.ishControls;
+    this.currentUrl = state.app.currentUrl || urlHandler.getFileName(patternName);
     this.ishControlsHide = ishControlsHide;
   }
 
@@ -35,8 +40,6 @@ class ToolsMenu extends BaseComponent {
   }
 
   render() {
-    const patternPath = urlHandler.getFileName(patternName);
-
     return (
       <div class="pl-c-tools">
         <button
@@ -66,7 +69,7 @@ class ToolsMenu extends BaseComponent {
           {!this.ishControlsHide['views-new'] && (
             <li class="pl-c-tools__item">
               <a
-                href={patternPath}
+                href={this.currentUrl}
                 class="pl-c-tools__action pl-js-open-new-window"
                 target="_blank"
               >

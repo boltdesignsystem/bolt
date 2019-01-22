@@ -82,17 +82,18 @@ pl-tools-menu {
 
   &:before {
     content: '';
-    border-left: 12px solid transparent;
-    border-right: 12px solid transparent;
-    border-bottom: 14px solid;
-    border-bottom-color:  $pl-color-gray-87;
-    border-bottom-color: var(--theme-primary,  $pl-color-gray-87);
+    height: 14px;
+    width: 14px;
+    background-color: $pl-color-gray-87;
+    background-color: var(--theme-primary,  $pl-color-gray-87);
     position: absolute;
-    right: 2px;
+    right: 0px;
     top: -10px;
+    transform: translateY(50%) translateX(-50%) rotate(45deg);
     transition: opacity 0.1s ease-out;
     opacity: 0;
     visibility: hidden;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
 
     .pl-c-body--theme-sidebar & {
       @media all and (min-width: $pl-bp-med) {

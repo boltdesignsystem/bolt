@@ -19,8 +19,8 @@ class Logo extends BaseComponent {
     this.themeMode = state.app.themeMode || 'dark';
   }
 
-  _stateChanged(state) {
-    this.triggerUpdate();
+  shouldUpdate(prevProps, prevState) {
+    return true;
   }
 
   static props = {

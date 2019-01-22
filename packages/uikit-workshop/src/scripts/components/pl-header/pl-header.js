@@ -28,7 +28,12 @@ class Header extends BaseComponent {
   };
 
   _stateChanged(state) {
-    this.themeMode = state.app.themeMode;
+    this.themeMode = state.app.themeMode || 'dark';
+    this.triggerUpdate();
+  }
+
+  shouldUpdate(prevProps, prevState) {
+    return true;
   }
 
   toggleNav() {
@@ -56,7 +61,7 @@ class Header extends BaseComponent {
           <pl-search max-results="10" placeholder="Find a Pattern" />
           <pl-nav />
         </nav>
-        <pl-controls />
+        <pl-controls></pl-controls>
       </header>
     );
   }

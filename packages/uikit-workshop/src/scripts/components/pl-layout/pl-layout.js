@@ -69,6 +69,7 @@ class Layout extends BaseComponent {
         this.targetOrigin
       );
     }
+    this.triggerUpdate();
   }
 }
 

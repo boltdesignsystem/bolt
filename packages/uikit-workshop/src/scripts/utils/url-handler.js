@@ -174,28 +174,7 @@ export const urlHandler = {
         .querySelector('.pl-js-iframe')
         .contentWindow.postMessage(obj, urlHandler.targetOrigin);
     } else {
-      // add to the history
-      const addressReplacement =
-        window.location.protocol === 'file:'
-          ? null
-          : window.location.protocol +
-            '//' +
-            window.location.host +
-            window.location.pathname.replace('index.html', '') +
-            '?p=' +
-            pattern;
-      if (window.history.pushState !== undefined) {
-        window.history.pushState(data, null, addressReplacement);
-      }
       document.getElementById('title').innerHTML = 'Pattern Lab - ' + pattern;
-
-      // Open in new window link
-      if (document.querySelector('.pl-js-open-new-window') !== undefined) {
-        // Set value of href to the path to the pattern
-        document
-          .querySelector('.pl-js-open-new-window')
-          .setAttribute('href', urlHandler.getFileName(pattern));
-      }
     }
   },
 
@@ -228,9 +207,6 @@ export const urlHandler = {
       .querySelector('.pl-js-iframe')
       .contentWindow.postMessage(obj, urlHandler.targetOrigin);
     document.getElementById('title').innerHTML = 'Pattern Lab - ' + patternName;
-    document
-      .querySelector('.pl-js-open-new-window')
-      .setAttribute('href', urlHandler.getFileName(patternName));
   },
 };
 

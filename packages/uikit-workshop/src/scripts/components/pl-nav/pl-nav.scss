@@ -36,6 +36,7 @@ pl-nav {
   display: flex;
   flex-direction: column;
   transition: max-height $pl-animate-quick ease-out;
+  flex-shrink: 0;
 
   @media all and (min-width: $pl-bp-med) {
     .pl-c-body--theme-sidebar & {
@@ -43,6 +44,7 @@ pl-nav {
       display: block;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
+      flex-shrink: 1;
     }
   }
 
@@ -147,12 +149,11 @@ pl-nav {
   @include linkStyle;
   color: inherit;
   line-height: 1.5;
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
   display: flex;
   align-items: center;
   margin: 0; // remove default button margin in Safari
   color: inherit;
+  padding: 0.7rem 0.5rem;
   
   // makes link layout / size more consistent in the sidebar layout, especially when display: flex styles are removed for more consistent IE 11 rendering
   .pl-c-body--theme-sidebar & {
@@ -160,11 +161,13 @@ pl-nav {
   }
 }
 
+.pl-c-nav__link,
 .pl-c-nav__link--section-dropdown,
 .pl-c-nav__link--sublink,
 .pl-c-nav__link--overview {
   @include linkStyle;
   position: relative;
+  color: inherit;
   
   &:after {
     content: '';
@@ -327,6 +330,20 @@ pl-nav {
 }
 
 
+.pl-c-nav__link--overview.pl-is-active {
+
+  &:hover:before {
+    opacity: 0.1;
+  }
+  // &:before {
+  //   opacity: 0.05;
+  // }
+
+  // &:hover:before {
+  //   opacity: 0.1;
+  // }
+}
+
 .pl-c-nav__link--overview-wrapper,
 .pl-c-nav__subsublist--dropdown,
 .pl-c-nav__link--overview {
@@ -353,7 +370,6 @@ pl-nav {
     opacity: 0;
     top: 0;
     bottom: 0;
-    background-color: transparent;
     border-top: 1px solid rgba(0, 0, 0, .1);
     border-bottom: 1px solid rgba(0, 0, 0, .1);
     z-index: 1;
@@ -369,7 +385,7 @@ pl-nav {
 
   .pl-c-body--theme-dark & {
     &:before {
-      background-color: rgba(255, 255, 255, .1);
+      // background-color: rgba(255, 255, 255, .1);
     }
 
     &:after {
@@ -395,9 +411,12 @@ pl-nav {
 
 .pl-c-nav__link--title {
   font-size: 0.9rem;
-  font-weight: 700;
   color: $pl-color-gray-20;
   color: var(--theme-text, $pl-color-gray-20);
+
+  &.pl-is-active {
+    font-weight: 700;
+  }
 
   .pl-c-body--theme-light & {
     color: $pl-color-black;
@@ -430,6 +449,7 @@ pl-nav {
   border-radius: 50rem;
   justify-content: center;
   align-items: center;
+  color: currentColor;
 
   &:after {
     background-color: currentColor;
@@ -447,7 +467,7 @@ pl-nav {
   }
 
   &:hover {
-    background-color: transparent !important;
+    // background-color: transparent !important;
 
     &:after,
     &:focus:after {

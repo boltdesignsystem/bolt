@@ -8,6 +8,7 @@ import {
   UPDATE_THEME_MODE,
   IS_VIEWALL_PAGE,
   UPDATE_CURRENT_URL,
+  UPDATE_CURRENT_PATTERN,
 } from '../actions/app.js';
 
 const app = (state = {}, action) => {
@@ -21,6 +22,11 @@ const app = (state = {}, action) => {
       return {
         ...state,
         currentUrl: action.currentUrl,
+      };
+    case UPDATE_CURRENT_PATTERN:
+      return {
+        ...state,
+        currentPattern: action.currentPattern,
       };
     case UPDATE_VIEWPORT_PX:
       return {
