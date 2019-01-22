@@ -26,7 +26,7 @@
 {% set cacheBuster = bolt.data.config.prod ? "?v=" ~ bolt.data.fullManifest.version : "" %}
 
 <!DOCTYPE html>
-<html lang="en-US" class="{{ bolt.data.config.prod ? '' : 'js-fonts-loaded' }}">
+<html lang="en-US">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
@@ -89,5 +89,4 @@
     {% endif %} #}
 
   </head>
-  <body class="c-bolt-site  c-bds-layout {% if currentUrl == 'index.html' %} t-bolt-xdark {% endif %} c-bds-layout--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }} {{ hasSidebar ? 'c-bds-layout--has-sidebar' : ''}}">
-
+  <body class="c-bolt-site  c-bds-layout {% if currentUrl == 'index.html' %} t-bolt-xdark {% endif %} c-bds-layout--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }} {{ hasSidebar ? 'c-bds-layout--has-sidebar' : ''}} {{ patternLabFoot ? 'u-bolt-min-height-none' : '' }}">
