@@ -357,6 +357,8 @@ html {
   text-align: right;
 
   @include bolt-mq(medium) {
+    @include bolt-padding-right(medium);
+
     -ms-grid-row: 4; /* [1] */
     -ms-grid-row-span: 1; /* [1] */
     grid-row: 4/span 1;
