@@ -21,7 +21,10 @@ bolt-band {
 
 // Component styles
 .c-bolt-band {
-  display: block;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
   position: relative;
   width: 100%;
   min-height: 0;
@@ -64,11 +67,11 @@ $bolt-band-sizes: (
 // Band content
 .c-bolt-band__content {
   position: relative;
+  width: 100%;
 }
 
 .c-bolt-band__content--pinned {
   display: table; // Table display is used to make this work in IE.
-  width: 100%;
 
   > * {
     display: table-cell;
