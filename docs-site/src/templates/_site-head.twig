@@ -93,12 +93,12 @@
     {% endif %} #}
 
     {% if patternLabFoot %}
-      {% set pl_data = patternLabFoot | raw | striptags | json_encode() %}
+      {# {% set pl_data = patternLabFoot | raw | striptags %} #}
 
       <script>
-        var patternLab = JSON.parse({{ pl_data }});
+        {# var patternLab = JSON.parse({{ pl_data }});
         delete patternLab.cssEnabled;
-        delete patternLab.extraOutput;
+        delete patternLab.extraOutput; #}
 
         {# console.clear(); // clear previous messages with new page loads in PL #}
         {# console.log('Pattern / Component Info:'); #}
