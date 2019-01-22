@@ -8,18 +8,17 @@ loadPolyfills.then(res => {
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-drawer' */ './components/pl-drawer/pl-drawer');
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-header' */ './components/pl-header/pl-header');
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-iframe' */ './components/pl-viewport/pl-viewport');
+  import(/* webpackMode: 'eager', webpackChunkName: 'pl-viewport-sizes' */ './components/pl-viewport-size-list/pl-viewport-size-list');
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-search' */ './components/pl-search/pl-search');
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-toggle-info' */ './components/pl-toggle-info/pl-toggle-info');
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-toggle-layout' */ './components/pl-toggle-layout/pl-toggle-layout');
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-toggle-theme' */ './components/pl-toggle-theme/pl-toggle-theme');
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-tools-menu' */ './components/pl-tools-menu/pl-tools-menu');
   import(/* webpackMode: 'eager', webpackChunkName: 'pl-modal-viewer' */ './components/modal-viewer');
-  import(/* webpackMode: 'eager', webpackChunkName: 'pl-styleguide' */ './components/styleguide');
 });
 
 import './components/panels';
 import './components/panels-viewer';
-import './components/plugin-loader';
 
 //// Add hook to auto re-render the root component.
 if (typeof module.hot === 'object') {
