@@ -76,8 +76,9 @@
     </style>
 
     <script>
-      {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+      {{ inline( assets["bolt-components-critical-css.js"] | default("") ) }}
       {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
+      {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
     </script>
 
     {# <script>console.log('Bolt Global Twig variable. In Twig, you can tap into the `bolt` global var to access all sorts of helpful information about the Bolt Design System, such as colors, spacing, and more. Most is exported from Sass; to add more, add this to any Sass file: `@include export-data("myVariables.bolt.json", $my-variables-in-a-sass-map);`, and then you can access it in Twig via `bolt.data.myVariables`. Here is all the data available to the current templates, including the `bolt` var:');</script> #}
@@ -90,3 +91,4 @@
 
   </head>
   <body class="c-bolt-site  c-bds-layout {% if currentUrl == 'index.html' %} t-bolt-xdark {% endif %} c-bds-layout--{{ urlChunks | length >= 2 ? urlChunks|first : 'parent' }} {{ hasSidebar ? 'c-bds-layout--has-sidebar' : ''}} {{ patternLabFoot ? 'u-bolt-min-height-none' : '' }}">
+  
