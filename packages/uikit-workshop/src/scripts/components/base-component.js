@@ -45,20 +45,10 @@ export class BaseComponent extends withComponent(withPreact()) {
    * 	updated
    */
   setState(state, callback) {
-    if (!this._prevState) {
-      this._prevState = this.state;
-    }
 
-    this.state = extend(
-      extend({}, this.state),
-      typeof state === 'function' ? state(this.state, this.props) : state
-    );
+    this.state = Object.assign({}, this.state, state);
 
-    if (callback) {
-      this._renderCallbacks.push(callback);
-    }
 
-    this.triggerUpdate();
   }
 
   _renderStyles(stylesheets) {
