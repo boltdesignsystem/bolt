@@ -292,6 +292,10 @@ class BoltText extends withLitHtml() {
           return html`
             <span class="${classes}">${innerHTML}</span>
           `;
+        case 'cite':
+          return html`
+            <cite class="${classes}">${innerHTML}</cite>
+          `;
         default:
           return html`
             <p class="${classes}">${innerHTML}</p>
