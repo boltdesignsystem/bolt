@@ -1,0 +1,26 @@
+@import '@bolt/core';
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-ul', block, small);
+
+// Styles
+.c-bolt-ul {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+
+  box-sizing: border-box;
+  margin-bottom: bolt-spacing(xxsmall) * -1;
+  list-style: none;
+
+  &--nested {
+    margin-top: bolt-spacing(xxsmall);
+  }
+}
+
+.c-bolt-ul,
+.c-bolt-ol {
+  .c-bolt-ul,
+  .c-bolt-ol {
+    margin-top: bolt-spacing(xxsmall);
+  }
+}

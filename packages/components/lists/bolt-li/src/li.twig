@@ -1,0 +1,30 @@
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set base_class = "c-bolt-li" %}
+
+{% set classes = [
+  "#{base_class}",
+  type ? "#{base_class}--#{type}-item",
+  last ? "#{base_class}--last-item",
+] %}
+
+{% if nested %}
+  {% if index == 1 %}
+    <bolt-li {{ attributes }}>
+      <replace-with-grandchildren>
+        <li class="{{ classes|join(" ") }}">
+  {% endif %}
+  {{ children }}
+  {% if length == index %}
+        </li>
+      </replace-with-grandchildren>
+    </bolt-li>
+  {% endif %}
+{% else %}
+  <bolt-li {{ attributes }}>
+    <replace-with-grandchildren>
+      <li class="{{ classes|join(" ") }}">
+        {{ children }}
+      </li>
+    </replace-with-grandchildren>
+  </bolt-li>
+{% endif %}

@@ -1,0 +1,226 @@
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  size: "medium"
+} %}
+  {% block band_content %}
+
+{% macro text(text, size, tag) %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: text,
+    size: size  | default("medium"),
+    tag: tag | default("p")
+  } only %}
+{% endmacro %}
+{% import _self as bolt %}
+
+
+      {% grid "o-bolt-grid--middle o-bolt-grid--center o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
+
+        {# TODO: check if image exists #}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-5/12@medium' %}
+          {% include "@bolt/image.twig" with {
+            src: "/images/content/promos/promo-16x9-anthem.jpg",
+            lazyload: false
+          } only %}
+        {% endcell %}
+
+
+        {% cell 'u-bolt-width-1/1 u-bolt-width-7/12@medium' %}
+
+          {% include "@bolt/eyebrow.twig" with {
+            text: "White Paper"
+          } only %}
+          {% include "@bolt/headline.twig" with {
+            text: page_title|default("Insert Page Title Here"),
+            size: "xxxlarge"
+          } only %}
+
+
+
+          {% include "@bolt/inline-list.twig" with {
+            delimeted: true,
+            items: [
+              {
+                "text": bolt.text("30 Pages", "xsmall", "span")
+              },
+              {
+                "text": bolt.text("128kb PDF", "xsmall", "span")
+              }
+            ]
+          } only %}
+
+          {% include "@bolt/button.twig" with {
+            text: "Download Now",
+            url: "https://www.pega.com/download-now",
+            style: "primary"
+          } only %}
+
+
+        {% endcell %}
+
+
+
+      {% endgrid %}
+
+  {% endblock %}
+{% endembed %}
+
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "xlight",
+  size: "medium"
+} %}
+  {% block band_content %}
+
+    {% grid %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
+
+        {% include "@bolt/subheadline.twig" with {
+          text: "The foundational use cases that are unifying the worlds of adtech and martech.",
+          size: "xxlarge"
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Omni-channel customer journeys are increasingly recognized as the best practice standard by which organizations need to define, implement, and measure their marketing strategy and assign marketing spend. Maintaining advertising technology (adtech) and marketing technology (martech) silos creates technology, organizational, and capability gaps—preventing us from effectively driving toward coherent, profitable, and delightful customer experiences across both owned and paid media, throughout the entire customer life cycle. And yet, with the growing maturity of data management platform (DMP) implementations—combined with greater adoption and utilization of decision management platforms—these two unique worlds of adtech and martech can be bridged, with pre-built technology solutions that deliver new, previously unachievable use cases. By combining powerful DMP technology with advanced AI, marketing organizations can optimize ad spend, reduce attrition, improve acquisition rates, and increase revenues."
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Download this whitepaper to learn about:"
+        } only %}
+
+        <ul>
+          <li>The growing importance and demands of a unified adtech and martech world</li>
+          <li>Four foundational use cases for unifying your DMP</li>
+          <li>The role of decisioning technology</li>
+          <li>The unified DMP solution offered by Merkle | Comet and Pega® Customer Decision Hub, Pega’s decisioning technology—providing a bi-directional integration of your third-party DMP and marketing technology</li>
+        </ul>
+
+        <hr>
+
+        {% include "@bolt/headline.twig" with {
+          text: "Category:",
+          size: "small",
+          transform: "uppercase"
+        } only %}
+
+        {% include "@bolt/chip-list.twig" with {
+          "contentItems": [
+            {
+              "text": "First tag",
+              "url": "yahoo.com"
+            },
+            {
+              "text": "Sales Automation and Stuff"
+            },
+            {
+              "text": "CRM"
+            },
+            {
+              "text": "White Paper"
+            },
+            {
+              "text": "Pega.com"
+            }
+          ]
+        } %}
+
+      {% endcell %}
+    {% endgrid %}
+
+
+  {% endblock %}
+{% endembed %}
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "light"
+} %}
+  {% block band_content %}
+
+    {% include "@bolt/headline.twig" with {
+      text: "Related resources",
+      size: "xlarge",
+      tag: "h3"
+    } only %}
+
+    {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
+
+
+        {% include "@bolt/card-w-teaser-list.twig" with {
+          teasers: [
+            {
+              eyebrow: {
+                text: "Asset type"
+              },
+              headlines: [
+                {
+                  "type": "headline",
+                  "text": "Asset Title comes From ECM Enterprise Content...",
+                  "size": "large",
+                  "url": "Google.com"
+                }
+              ]
+            },
+            {
+              eyebrow: {
+                text: "Asset type"
+              },
+              headlines: [
+                {
+                  "type": "headline",
+                  "text": "Asset Title comes From ECM Enterprise Content...",
+                  "size": "large"
+                }
+              ]
+            },
+            {
+              eyebrow: {
+                text: "Asset type"
+              },
+              headlines: [
+                {
+                  "type": "headline",
+                  "text": "Asset Title comes From ECM Enterprise Content...",
+                  "size": "large"
+                }
+              ]
+            }
+          ]
+        } only %}
+
+      {% endcell %}
+
+      {% cell 'u-bolt-width-1/1 u-bolt-width-1/2@medium' %}
+         {% include "@bolt/card-w-teaser.twig" with {
+            "image": {
+              "src": "/images/placeholders/1200x660.jpg",
+              "lazyload": false
+            },
+            "teaser": {
+              "headlines": [
+                {
+                  "type": "headline",
+                  "text": "Pega 7 for Operations",
+                  "size": "large"
+                }
+              ],
+              "content": "Simplify and automate to reduce costs and improve agility.",
+              "buttons": [
+                {
+                  "text": "Learn More About Pega 7",
+                  "style": "secondary",
+                  "url": "www.google.com/pega7"
+                }
+              ]
+            }
+        } only %}
+
+      {% endcell %}
+    {% endgrid %}
+
+  {% endblock %}
+{% endembed %}

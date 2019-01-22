@@ -1,0 +1,428 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "small",
+    theme: "dark",
+    attributes: {
+      class: "u-bolt-margin-bottom-medium"
+    }
+  } %}
+    {% block band_content  %}
+      Placeholder for this page's header
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
+
+{% block main_content %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "small",
+    theme: "xlight"
+  } %}
+    {% block band_content  %}
+
+      {% include "@bolt/headline.twig" with {
+        text: "2018 Agenda",
+        size: "small",
+        tag: "span",
+        url: "#!",
+        icon: {
+          name: "arrow-left",
+          position: "before"
+        }
+      } only %}
+
+      <div class="u-bolt-margin-bottom-small">
+        <img src="{{ thumbnailPath|default("http://dummyimage.com/250x250/4d494d/686a82.gif&text=placeholder+image") }}">
+      </div>
+
+      {% include "@bolt/eyebrow.twig" with {
+        text: "Session: spark talk"
+      } only %}
+
+      {% include "@bolt/headline.twig" with {
+        text: pageTitle|default("Insert Page Title Here"),
+        size: "xxxlarge",
+        tag: "h1"
+      } only %}
+
+      {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
+          {% include "@bolt/headline.twig" with {
+            size: "xsmall",
+            transform: "uppercase",
+            tag: "h3",
+            text: "Date and Location",
+          } only %}
+
+          <div class="u-bolt-margin-bottom-small">
+            {% include "@bolt/icon.twig" with {
+              name: "calendar",
+              size: "medium"
+            } only %}
+            {{ eventTime|default("Insert Time Here") }}
+          </div>
+
+          <div>
+            {% include "@bolt/icon.twig" with {
+              name: "map-pin",
+              size: "medium"
+            } only %}
+            {{ eventLocation|default("Insert Location Here") }}
+          </div>
+
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
+          {% include "@bolt/headline.twig" with {
+            size: "xsmall",
+            transform: "uppercase",
+            tag: "h3",
+            text: "Speaker(s)",
+          } only %}
+
+          {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
+
+            {% set speakers = [
+              {
+                name: "Alan Trefler",
+                title: "President and CEO",
+                org: "Pegasystems"
+              },
+              {
+                name: "Micheal Hines",
+                title: "President",
+                org: "Cisco"
+              },
+              {
+                name: "Winifred Gomez",
+                title: "Vice President",
+                org: "Accenture"
+              }
+            ] %}
+
+            {% for speaker in speakers %}
+
+              {% cell "u-bolt-width-1/1 u-bolt-width-1/3@xsmall" %}
+                {% include "@bolt/headline.twig" with {
+                  size: "xsmall",
+                  tag: "h3",
+                  text: speaker.name,
+                } only %}
+
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: speaker.title,
+                  tag: "div",
+                  size: "xsmall"
+                } only %}
+
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: speaker.org,
+                  size: "xsmall",
+                  weight: "bold"
+                } only %}
+
+              {% endcell %}
+
+            {% endfor %}
+          {% endgrid %}
+
+        {% endcell %}
+      {% endgrid %}
+
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "small",
+    theme: "xlight"
+  } only %}
+    {% block band_content  %}
+
+      {% grid %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-9/12@medium' %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: eventDescription|default("Insert Event Description Here. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum.")
+          } only %}
+
+          {% include "@bolt/headline.twig" with {
+            size: "small",
+            text: "What you'll learn"
+          } only %}
+
+          {% include "@bolt-components-ul/ul.twig" with {
+            items : [
+              "The growing importance and demands of a unified adtech and martech world",
+              "Four foundational use cases for unifying your DMP",
+              "The role of decisioning technology"
+            ]
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+
+    {% endblock %}
+  {% endembed %}
+
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "small",
+    theme: "xlight"
+  } only %}
+    {% block band_content  %}
+
+      <hr>
+
+      {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/headline.twig" with {
+            text: "Topics",
+            size: "small"
+          } only %}
+
+          {% include "@bolt/chip-list.twig" with {
+            contentItems: [
+              {
+                "text": "Analytics",
+                "url": "#"
+              },
+              {
+                "text": "BPM",
+                "url": "#"
+              },
+              {
+                "text": "Customer Onboarding",
+                "url": "#"
+              },
+              {
+                "text": "Sales Efficiency",
+                "url": "#"
+              },
+              {
+                "text": "Case Management",
+                "url": "#"
+              },
+              {
+                "text": "Cloud",
+                "url": "#"
+              },
+              {
+                "text": "CRM",
+                "url": "#"
+              },
+              {
+                "text": "Customer Loyalty",
+                "url": "#"
+              }
+            ]
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/headline.twig" with {
+            text: "Industries",
+            size: "small"
+          } only %}
+
+          {% include "@bolt/chip-list.twig" with {
+            "contentItems": [
+              {
+                "text": "Healthcare",
+                "url": "#"
+              },
+              {
+                "text": "Hospitality",
+                "url": "#"
+              },
+              {
+                "text": "Government",
+                "url": "#"
+              }
+            ]
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/headline.twig" with {
+            text: "Products",
+            size: "small"
+          } only %}
+
+          {% include "@bolt/chip-list.twig" with {
+            "contentItems": [
+              {
+                "text": "Marketing",
+                "url": "#"
+              },
+              {
+                "text": "Field Service",
+                "url": "#"
+              }
+            ]
+          } only %}
+        {% endcell %}
+
+      {% endgrid %}
+
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "small",
+    theme: "xlight",
+    attributes: {
+      class: "u-bolt-margin-bottom-xlarge"
+    }
+  } only %}
+
+    {% block band_content  %}
+
+      <hr>
+
+      {% include "@bolt/headline.twig" with {
+        size: "xlarge",
+        tag: "h2",
+        text: "Related Sessions",
+      } only %}
+
+      {% grid "o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+
+          {% include "@bolt/eyebrow.twig" with {
+            text: "Spark Talk"
+          } only %}
+
+          {% include "@bolt/headline.twig" with {
+            text: "What Aflac is learning about consumer expectations through monitoring tech disruptions",
+            size: "large",
+            tag: "h3",
+            url: "#!"
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/eyebrow.twig" with {
+            text: "Spark Talk"
+          } only %}
+
+          {% include "@bolt/headline.twig" with {
+            text: "Leverage Mobile and Collaboration to Increase Revenue and Decrease Order-to-Cash Cycle Time",
+            size: "large",
+            tag: "h3",
+            url: "#!"
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/eyebrow.twig" with {
+            text: "Spark Talk"
+          } only %}
+
+          {% include "@bolt/headline.twig" with {
+            text: "PayPal Delivers World Class Customer Service, Worldwide",
+            size: "large",
+            tag: "h3",
+            url: "#!"
+          } only %}
+        {% endcell %}
+
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    size: "medium"
+  } %}
+
+    {% block band_content  %}
+      {% grid "o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/teaser.twig" with {
+            "headlines": [
+              {
+                "type": "headline",
+                "text": "Register Now",
+                "size": "large"
+              }
+            ],
+            "content": "Time is running out to take advantage of end-of-year pricing.",
+            "buttons": [
+              {
+                "text": "Register Now!",
+                "url": "#"
+              }
+            ]
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/teaser.twig" with {
+            "headlines": [
+              {
+                "type": "headline",
+                "text": "Become a PegaWorld Insider",
+                "size": "large"
+              }
+            ],
+            "content": "Stay up-to-date on all the latest PegaWorld news and announcements.",
+            "buttons": [
+              {
+                "text": "Sign up",
+                "url": "#",
+                "style": "secondary"
+              }
+            ]
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/headline.twig" with {
+            text: "Connect to start a conversation",
+            size: "large"
+          } only %}
+
+          {% include "@bolt/headline.twig" with {
+            text: "#PegaWorld18",
+            size: "xxlarge",
+            weight: "regular",
+            attributes: {
+              class: ["u-bolt-color-yellow"]
+            }
+          } only %}
+
+
+          {% set socialIcons = [
+            {
+              name: "twitter",
+              url: "#!"
+            },
+            {
+              name: "facebook-solid",
+              url: "#!"
+            },
+            {
+              name: "linkedin-solid",
+              url: "#!"
+            },
+            {
+              name: "youtube-solid",
+              url: "#!"
+            }
+          ] %}
+
+          {% for icon in socialIcons %}
+            <a class="u-bolt-margin-right-small" href="{{ icon.url }}">
+              {% include "@bolt/icon.twig" with {
+                name: icon.name,
+                size: "medium"
+              } only %}
+            </a>
+          {% endfor %}
+        {% endcell %}
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+{% endblock %}

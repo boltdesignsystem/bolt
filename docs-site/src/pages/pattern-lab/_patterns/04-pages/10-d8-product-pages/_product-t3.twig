@@ -1,0 +1,806 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% embed "@pl/_band--feature.twig" with {
+    teaserPosition: "left",
+    teaserWidth: "2/3",
+    size: "large",
+    full: true,
+    theme: "dark",
+    background: {
+      opacity: "medium",
+      fill: "gradient",
+      focalPoint: {
+        vertical: "center",
+        horizontal: "right"
+      },
+      contentItems: [{
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-3.jpg"
+      }]
+    },
+    primaryTeaser: {
+      headlines: [
+        {
+          type: "headline",
+          text: "CRM Applications",
+          size: "xsmall",
+          tag: "span",
+          url: "pega.com",
+          icon: {
+            name: "arrow-left",
+            position: "before"
+          }
+        },
+        {
+          type: "headline",
+          text: "Dynamically recommend next-best-actions for your customers.",
+          size: "xxxlarge",
+          tag: "h1"
+        }
+      ],
+      buttons: [
+        {
+          text: "Call to Action",
+          style: "primary",
+          url: "#!"
+        }
+      ]
+    }
+  } only %}
+
+  {% endembed %}
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "small",
+  theme: "dark",
+  full_bleed: true
+} only %}
+  {% block band_content %}
+    {% set videoUuid1 = "js-bolt-video-uuid--1" %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "o-u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+        {% include "@bolt/headline.twig" with {
+          text: "Explore the Pega CRM Suite",
+          size: "xxlarge"
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.",
+          size: "medium"
+        } only %}
+        {% include "@bolt/video.twig" with {
+          "videoId": "5609376179001",
+          "accountId": "1900410236",
+          "playerId": "r1CAdLzTW",
+          "videoUuid": videoUuid1
+        } only %}
+      {% endcell %}
+
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+        {% include "@bolt/headline.twig" with {
+          text: "Get to know Pega Marketing",
+          size: "xlarge",
+          tag: "h2"
+        } only %}
+
+        {% include "@bolt/ui-list.twig" with {
+          size: "small",
+          contentItems : [
+            {
+              contentItems: [
+                {
+                  pattern: "flag",
+                  valign: "middle",
+                  url: "#!",
+                  figure: {
+                    "icon": {
+                      name: "app-development",
+                      size: "large",
+                      background: "circle",
+                      color: "teal"
+                    }
+                  },
+                  items: [
+                    {
+                      "pattern": "headline",
+                      "size": "small",
+                      "text": "Download the data Sheet",
+                      "url": "https://www.google.com",
+                      "icon": {
+                        name: "chevron-right"
+                      },
+                      tag: "h3"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              contentItems: [
+                {
+                  pattern: "flag",
+                  valign: "middle",
+                  url: "#!",
+                  figure: {
+                    "icon": {
+                      name: "sales-automation",
+                      size: "large",
+                      background: "circle",
+                      color: "teal"
+                    }
+                  },
+                  items: [
+                    {
+                      "pattern": "headline",
+                      "size": "small",
+                      "text": "Download the Overview document",
+                      "url": "https://www.google.com",
+                      "icon": {
+                        name: "chevron-right"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              contentItems: [
+                {
+                  pattern: "flag",
+                  valign: "middle",
+                  url: "#!",
+                  figure: {
+                    "icon": {
+                      name: "customer-service",
+                      size: "large",
+                      background: "circle",
+                      color: "teal"
+                    }
+                  },
+                  items: [
+                    {
+                      "pattern": "headline",
+                      "size": "small",
+                      "text": "View Pricing for Pega Marketing",
+                      "url": "https://www.google.com",
+                      "icon": {
+                        name: "chevron-right"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+  {% endblock %}
+{% endembed %}
+
+
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "xlight",
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+        {% include "@bolt/headline.twig" with {
+          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+          weight: "regular",
+          size: "xxlarge",
+          tag: "h2"
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+          size: "medium"
+        } only %}
+
+        {% include "@bolt/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Call to action",
+              "style": "primary"
+            },
+            {
+              "text": "Call to action",
+              "style": "secondary"
+            }
+          ]
+        } only %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% include "@bolt/device-viewer.twig" with {
+          device: "ipad",
+          orientation: "landscape",
+          color: "black",
+          image: {
+            src: "/images/content/screenshots/device-screenshot--tablet.jpg"
+          }
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+  {% endblock %}
+{% endembed %}
+
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "light",
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% include "@bolt/device-viewer.twig" with {
+          device: "ipad",
+          orientation: "portrait",
+          color: "black",
+          image: {
+            src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg"
+          }
+        } only %}
+      {% endcell %}
+
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+        {% include "@bolt/subheadline.twig" with {
+          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+          size: "xxlarge",
+          tag: "span"
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+          size: "medium"
+        } only %}
+
+        {% include "@bolt/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Call to action",
+              "style": "primary"
+            },
+            {
+              "text": "Call to action",
+              "style": "secondary"
+            }
+          ]
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+  {% endblock %}
+{% endembed %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "small",
+    theme: "xdark",
+    full_bleed: true
+  } only %}
+    {% block band_content %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% set videoUuid3 = "js-bolt-video-uuid--3c" %}
+          {% include "@bolt/video.twig" with {
+            "videoId": "5609376179001",
+            "accountId": "1900410236",
+            "playerId": "r1CAdLzTW",
+            "videoUuid": videoUuid3
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% include "@bolt/subheadline.twig" with {
+            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+            size: "xxlarge",
+            tag: "span"
+          } only %}
+
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+            size: "medium"
+          } only %}
+          {% include "@bolt/button.twig" with {
+            text: "Toggle video",
+            tag: "button",
+            attributes: {
+              "on-click": "toggle",
+              "on-click-target": videoUuid3
+            }
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "xlight",
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+        {% include "@bolt/subheadline.twig" with {
+          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+          size: "xxlarge",
+          tag: "span"
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+          size: "medium"
+        } only %}
+
+        {% include "@bolt/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Call to action",
+              "style": "primary"
+            },
+            {
+              "text": "Call to action",
+              "style": "secondary"
+            }
+          ]
+        } only %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% include "@bolt/device-viewer.twig" with {
+          device: "iphone8",
+          orientation: "portrait",
+          color: "black",
+          image: {
+            src: "/images/content/screenshots/device-screenshot--phone.jpg"
+          }
+        } only %}
+      {% endcell %}
+
+       {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% include "@bolt/device-viewer.twig" with {
+          device: "iphone8",
+          orientation: "portrait",
+          color: "gold",
+          image: {
+            src: "/images/content/screenshots/device-screenshot--phone.jpg"
+          }
+        } only %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% include "@bolt/device-viewer.twig" with {
+          device: "iphone8",
+          orientation: "landscape",
+          color: "gold",
+          image: {
+            src: "/images/content/screenshots/device-screenshot--phone.jpg"
+          }
+        } only %}
+      {% endcell %}
+
+
+       {% cell "u-bolt-width-1/1" %}
+        {% include "@bolt/device-viewer.twig" with {
+          device: "iphone8",
+          orientation: "landscape",
+          color: "black",
+          image: {
+            src: "/images/content/screenshots/device-screenshot--phone.jpg"
+          }
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+  {% endblock %}
+{% endembed %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "small",
+    theme: "xdark",
+    full_bleed: true
+  } only %}
+    {% block band_content %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% include "@bolt/subheadline.twig" with {
+            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+            size: "xxlarge",
+            tag: "span"
+          } only %}
+
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+            size: "medium"
+          } only %}
+          {% set videoUuid2 = "js-bolt-video-uuid--2" %}
+          {% include "@bolt/button.twig" with {
+            text: "Toggle video",
+            tag: "button",
+            attributes: {
+              "on-click": "toggle",
+              "on-click-target": videoUuid2
+            }
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% include "@bolt/video.twig" with {
+            "videoId": "5609376179001",
+            "accountId": "1900410236",
+            "playerId": "r1CAdLzTW",
+            "videoUuid": videoUuid2
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "light",
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix o-bolt-grid--center" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
+        {% include "@bolt/subheadline.twig" with {
+          text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+          size: "xxlarge",
+          tag: "span"
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+          size: "medium"
+        } only %}
+
+        {% include "@bolt/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Call to action",
+              "style": "primary"
+            },
+            {
+              "text": "Call to action",
+              "style": "secondary"
+            }
+          ]
+        } only %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
+        {% include "@bolt/device-viewer.twig" with {
+          device: "macbook",
+          orientation: "landscape",
+          color: "black",
+          image: {
+            src: "/images/content/screenshots/device-screenshot--desktop.jpg"
+          }
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "small",
+  theme: "xdark",
+  full_bleed: true
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+        {% set videoUuid3b = "js-bolt-video-uuid--3b" %}
+        {% include "@bolt/video.twig" with {
+          "videoId": "5609376179001",
+          "accountId": "1900410236",
+          "playerId": "r1CAdLzTW",
+          "videoUuid": videoUuid3b
+        } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+          {% include "@bolt/subheadline.twig" with {
+            text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+            size: "xxlarge",
+            tag: "span"
+          } only %}
+
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+            size: "medium"
+          } only %}
+          {% include "@bolt/button.twig" with {
+            text: "Toggle video",
+            tag: "button",
+            attributes: {
+              "on-click": "toggle",
+              "on-click-target": videoUuid3b
+            }
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+
+{% embed "@pl/_band--collection.twig" with {
+  "theme": "xlight",
+  "size": "medium",
+  "contentItems": [
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/images/content/promos/promo-16x9-anthem.jpg"
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "logo": {
+          src: "/images/content/logos/logo-paypal.svg"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Gartner Magic Quadrant for the CRM Customer Engagement Center",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Learn More",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/images/content/promos/promo-16x9-anthem.jpg"
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Gartner Magic Quadrant for the CRM Customer Engagement Center",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Learn More",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/images/content/promos/promo-16x9-anthem.jpg"
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Gartner Magic Quadrant for the CRM Customer Engagement Center",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Learn More",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          }
+        ]
+      }
+    }
+  ]
+} %}
+  {% block band_content %}
+
+
+
+   {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-margin-bottom" %}
+
+      {% cell "u-bolt-flex-grow" %}
+
+        {% grid %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Analyst Reports",
+              size: "xlarge",
+              tag: "h3"
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+
+      {% cell %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "See all analyst reports",
+          size: "small",
+          weight: "bold",
+          tag: "p",
+          url: "pega.com",
+          icon: {
+            name: "chevron-right",
+            position: "after"
+          }
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+    {{ parent() }}
+  {% endblock band_content %}
+{% endembed %}
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "xdark",
+  full_bleed: true,
+  background: {
+    "opacity": "heavy",
+    "fill": "color",
+    "focalPoint": {
+      "vertical": "center",
+      "horizontal": "center"
+    },
+    "contentItems": [
+      {
+        "pattern": "image",
+        "src": "/images/content/backgrounds/background-tall-1.jpg"
+      }
+    ]
+  }
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center" %}
+
+
+
+        {% include "@bolt/blockquote.twig" with {
+          size: "xlarge",
+          border: "horizontal",
+          alignItems: "center",
+          logo: {
+            src: "/images/content/logos/logo-paypal.svg",
+            invert: true
+          },
+          author: {
+            image: {
+              src: "/images/placeholders/500x500.jpg"
+            },
+            name: "Jessica Cuthbertson",
+            title: "CEO, RBS"
+          },
+          content: "<p>We’re creating an environment where we know our customers individually, and we want to use what we know to really understand what’s important to them – so we can be there in the moments that matter.</p>"
+        } only %}
+
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Watch Birgit König, Ph.D., CEO, Allianz Health Germany, share how the Pega platform meets rapidly changing customer expectations."
+        } only %}
+
+        {% include "@bolt/button.twig" with {
+          text: "Call to Action",
+          url: "www.google.com",
+          style: "secondary"
+        } only %}
+
+
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "small",
+  theme: "xdark",
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow" %}
+
+        {% grid %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+            {% include "@bolt/headline.twig" with {
+              text: "See How Pega Can Help Your Business",
+              size: "xlarge"
+            } only %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+
+      {% cell "u-bolt-width-1/1@only-small" %}
+        {% include "@bolt/button.twig" with {
+          text: "Call to action",
+          width: "full",
+          size: "medium"
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+  {% endblock %}
+{% endembed %}
+
+
+
+
+
+
+{% endblock %}

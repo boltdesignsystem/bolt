@@ -1,0 +1,60 @@
+{% set inline_link_icon_before %}
+  {% include "@bolt-components-link/link.twig" with {
+    display: "inline",
+    text: "inline link with an icon before",
+    url: "https://pega.com",
+    icon: {
+      name: "info-open",
+      position: "before"
+    },
+  } only %}
+{% endset %}
+
+{% set inline_link_icon_after %}
+  {% include "@bolt-components-link/link.twig" with {
+    display: "inline",
+    text: "inline link with an icon after",
+    url: "https://pega.com",
+    icon: {
+      name: "info-open",
+      position: "after"
+    },
+  } only %}
+{% endset %}
+
+{% set flex_link_icon_before %}
+  {% include "@bolt-components-link/link.twig" with {
+    display: "flex",
+    text: "This is a flex link with an icon. Very important to note that flex links are never to be mixed inline within a paragraph of non-link text because the text wraps differently and the icon hangs to the side.",
+    url: "https://pega.com",
+    icon: {
+      name: "chevron-left",
+      position: "before"
+    },
+  } only %}
+{% endset %}
+
+{% set flex_link_icon_after %}
+  {% include "@bolt-components-link/link.twig" with {
+    display: "flex",
+    text: "This is a flex link with an icon. Very important to note that flex links are never to be mixed inline within a paragraph of non-link text because the text wraps differently and the icon hangs to the side.",
+    url: "https://pega.com",
+    icon: {
+      name: "chevron-right",
+      position: "after"
+    },
+  } only %}
+{% endset %}
+
+<h3>Inline link</h3>
+<p>
+  This is an {{ inline_link_icon_before }}, and this is an {{ inline_link_icon_after }}. Inline links are truly inline, which means the text can wrap to a second line and the icon falls on the baseline either before or after the text.
+</p>
+
+<h3>Flex link</h3>
+<p>
+  {{ flex_link_icon_before }}
+</p>
+<p>
+  {{ flex_link_icon_after }}
+</p>

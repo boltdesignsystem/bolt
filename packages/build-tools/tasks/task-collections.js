@@ -1,10 +1,11 @@
 const path = require('path');
 const log = require('../utils/log');
 const webpackTasks = require('./webpack-tasks');
-const criticalcssTasks = require('./criticalcss-tasks');
+// const criticalcssTasks = require('./criticalcss-tasks');
 const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
+const iconTasks = require('./icon-tasks');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
 const { writeBoltVersions } = require('../utils/bolt-versions');
@@ -71,8 +72,11 @@ async function clean() {
         dirs = [
           path.join(path.resolve(config.wwwDir), '**'),
           `!${path.resolve(config.wwwDir)}`,
-          `!${path.resolve(config.wwwDir, 'pattern-lab')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
-          `!${path.join(path.resolve(config.wwwDir, 'pattern-lab'), '**')}`,
+          `!${path.resolve(config.wwwDir, 'pattern-lab/styleguide')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
+          `!${path.join(
+            path.resolve(config.wwwDir, 'pattern-lab/styleguide'),
+            '**',
+          )}`,
         ];
         break;
       case 'pl':
@@ -85,7 +89,12 @@ async function clean() {
         ];
         break;
       case 'pwa':
-        dirs = [path.join(path.resolve(config.wwwDir), '**')];
+        dirs = [
+          path.join(path.resolve(config.wwwDir), '**'),
+          `!${path.resolve(config.wwwDir)}`,
+          `!${path.resolve(config.wwwDir, 'pattern-lab')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
+          `!${path.join(path.resolve(config.wwwDir, 'pattern-lab'), '**')}`,
+        ];
         break;
       default:
         dirs = [config.buildDir];
@@ -103,9 +112,9 @@ async function serve(buildTime = timer.start()) {
 
   try {
     const serverTasks = [];
-    if (config.renderingService) {
-      serverTasks.push(extraTasks.server.phpServer());
-    }
+    // if (config.renderingService) {
+    //   serverTasks.push(extraTasks.server.phpServer());
+    // }
     if (config.wwwDir) {
       if (config.webpackDevServer && config.watch !== false) {
         serverTasks.push(webpackTasks.server());
@@ -120,15 +129,15 @@ async function serve(buildTime = timer.start()) {
   }
 }
 
-async function criticalcss() {
-  try {
-    const criticalTasks = [];
-    criticalTasks.push(criticalcssTasks.build());
-    return Promise.all(criticalTasks);
-  } catch (error) {
-    log.errorAndExit('Critical CSS failed', error);
-  }
-}
+// async function criticalcss() {
+//   try {
+//     const criticalTasks = [];
+//     criticalTasks.push(criticalcssTasks.build());
+//     return Promise.all(criticalTasks);
+//   } catch (error) {
+//     log.errorAndExit('Critical CSS failed', error);
+//   }
+// }
 
 async function images() {
   try {
@@ -145,13 +154,14 @@ async function buildPrep() {
     config.prod ? await clean() : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
-    if (config.env === 'pl' || config.env === 'static') {
+    if (
+      config.env === 'pl' ||
+      config.env === 'static' ||
+      config.env === 'pwa'
+    ) {
       await writeBoltVersions();
     }
-    await manifest.writeTwigNamespaceFile(
-      process.cwd(),
-      config.extraTwigNamespaces,
-    );
+    await manifest.writeTwigNamespaceFile();
   } catch (error) {
     log.errorAndExit('Build failed', error);
   }
@@ -162,6 +172,15 @@ async function build(shouldReturnTime = false) {
   config = config || (await getConfig());
   try {
     await buildPrep(startTime);
+
+    // don't try to process / convert SVG icons if the `@bolt/components-icon` package isn't part of the build
+    if (
+      config.components.global.includes('@bolt/components-icon') ||
+      config.components.individual.includes('@bolt/components-icon')
+    ) {
+      await iconTasks.build();
+    }
+
     config.prod || config.watch === false ? await webpackTasks.compile() : '';
     await images();
     config.prod || config.watch === false
@@ -202,6 +221,14 @@ async function watch() {
         break;
     }
 
+    // don't watch for SVG icon changes if the `@bolt/components-icon` package isn't part of the build
+    if (
+      config.components.global.includes('@bolt/components-icon') ||
+      config.components.individual.includes('@bolt/components-icon')
+    ) {
+      watchTasks.push(iconTasks.watch());
+    }
+
     return Promise.all(watchTasks);
   } catch (error) {
     log.errorAndExit('Watch failed', error);
@@ -237,5 +264,5 @@ module.exports = {
   buildPrep,
   watch,
   clean,
-  criticalcss,
+  // criticalcss,
 };

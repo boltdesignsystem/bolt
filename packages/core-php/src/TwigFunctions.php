@@ -72,7 +72,7 @@ class TwigFunctions {
           return file_get_contents($filename);
 
         } else {
-          throw new \Exception('Warning: the file ' . $fullPath . ' trying to be inlined doesn\'t seem to exist...');
+          throw new \Exception('Warning: the file ' . $filename . ' trying to be inlined doesn\'t seem to exist...');
         }
       } else {
         // throw error saying `bolt.data` isn't set up right
@@ -262,6 +262,23 @@ class TwigFunctions {
     return new Twig_SimpleFunction('create_attribute', function($attributes) {
       return is_array($attributes) ? new Attribute($attributes) : $attributes;
       // print_r(Attribute);
+    });
+  }
+
+  // Custom function for merging Drupal Attribute objects
+  // Gives $source preference, unless a key is set in both arrays and $source value is empty or null
+  public static function merge_attributes() {
+    return new Twig_SimpleFunction('merge_attributes', function($target, $source) {
+      // For each key in $source...
+      foreach ($source as $key => $value) {
+        // If $key is not in $target, or if $key is in $target and $value in $source is empty, add/overwrite $key in $target
+        // NOTE: empty() and is_null() do not work in the second half of this statement. Why is that?
+        if (empty($target[$key]) || (!empty($target[$key]) && $value != "")) {
+          $target[$key] = $value;
+        }
+      }
+
+      return $target;
     });
   }
 

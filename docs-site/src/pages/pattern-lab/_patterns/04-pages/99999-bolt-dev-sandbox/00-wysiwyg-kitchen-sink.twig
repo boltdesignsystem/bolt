@@ -1,0 +1,211 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+  {% set header %}
+    {% include "@bolt/headline.twig" with {
+      "text": "WYSIWYG Elements to Bolt Components",
+      "size": "xxxlarge",
+      "tag": "h1"
+    } only %}
+  {% endset %}
+  {% set article %}
+    <h3>Ideal CKEditor Config</h3>
+    <p>Bolt needs to create an example of CKEditor that can map to web components, and all the related Bolt components need to become web components.</p>
+    {% set ckeditor %}
+ClassicEditor
+  .create( document.querySelector( '#editor' ), {
+    heading: {
+      options: [
+        { model: 'paragraph', view: 'bolt-text', title: 'Paragraph' },
+        { model: 'headline1', view: 'bolt-text', title: 'Headline xxxlarge h1', attributes: { headline: true, font-size: 'xxxlarge', tag: 'h1' } },
+        { model: 'headline2', view: 'bolt-text', title: 'Headline xxlarge h2', attributes: { headline: true, font-size: 'xxlarge', tag: 'h2' } },
+        { model: 'headline3', view: 'bolt-text', title: 'Headline xlarge h3', attributes: { headline: true, font-size: 'xlarge', tag: 'h3' } },
+        { model: 'headline4', view: 'bolt-text', title: 'Headline large h4', attributes: { headline: true, font-size: 'large', tag: 'h4' } },
+        { model: 'headline5', view: 'bolt-text', title: 'Headline small h5', attributes: { headline: true, font-size: 'small', tag: 'h5' } },
+        { model: 'headline6', view: 'bolt-text', title: 'Headline xsmall h6', attributes: { headline: true, font-size: 'xsmall', tag: 'h6' } },
+        { model: 'subheadline1', view: 'bolt-text', title: 'Subheadline xxlarge', attributes: { subheadline: true, font-size: 'xxlarge', tag: 'p' } },
+        { model: 'subheadline2', view: 'bolt-text', title: 'Subheadline xlarge', attributes: { subheadline: true, font-size: 'xlarge', tag: 'p' } },
+        { model: 'subheadline3', view: 'bolt-text', title: 'Subheadline large', attributes: { subheadline: true, font-size: 'large', tag: 'p' } },
+        { model: 'eyebrow', view: 'bolt-text', title: 'Eyebrow', attributes: { eyebrow: true, tag: 'p' } },
+        { model: 'link', view: 'bolt-text', title: 'Link', attributes: { eyebrow: true, tag: 'a' } },
+        { model: 'blockquote', view: 'bolt-blockquote', title: 'Blockquote' },
+        { model: 'ordered-list', view: 'bolt-ordered-list', title: 'Ordered list' },
+        { model: 'unordered-list', view: 'bolt-unordered-list', title: 'Unordered list' },
+        { model: 'code', view: 'bolt-code-snippet', title: 'Code snippet' },
+      ]
+    }
+  } )
+  .then( ... )
+  .catch( ... );
+    {% endset %}
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+        "display": "block",
+        "content": ckeditor
+      } only %}
+    </figure>
+    <h3>CKEditor Docs</h3>
+    <p>The docs show that mapping each style option to a specific tag and class is possible, but we need to figure out if it can do attributes as well. Otherwise, we'd have to make sure our web components can work without any attributes.</p>
+    <p>
+      <a href="https://github.com/ckeditor/ckeditor-dev/tree/major/plugins">https://github.com/ckeditor/ckeditor-dev/tree/major/plugins</a>
+      <br>
+      <a href="https://docs.ckeditor.com/ckeditor4/latest/guide/dev_acf.html">https://docs.ckeditor.com/ckeditor4/latest/guide/dev_acf.html</a>
+      <br>
+      <a href="https://docs.ckeditor.com/ckeditor4/latest/api/CKEDITOR_config.html#cfg-protectedSource">https://docs.ckeditor.com/ckeditor4/latest/api/CKEDITOR_config.html#cfg-protectedSource</a>
+    </p>
+    <h3>Headlines</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt/headline.twig" with {
+        "text": "Headline 1 is XXLarge Headline",
+        "size": "xxlarge",
+        "tag": "h2"
+      } only %}
+      {% include "@bolt/headline.twig" with {
+        "text": "Headline 2 is XLarge Headline",
+        "size": "xlarge",
+        "tag": "h3"
+      } only %}
+      {% include "@bolt/headline.twig" with {
+        "text": "Headline 3 is Large Headline",
+        "size": "large",
+        "tag": "h4"
+      } only %}
+    </figure>
+    <h3>Text</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-headline/text.twig" with {
+        "text": "Body text is medium sized text.",
+        "tag": "p"
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        "text": "Italic text is <em>emphasized</em>.",
+        "tag": "p"
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        "text": "Bold text is <strong>strong</strong>.",
+        "tag": "p"
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        "text": "Superscript text is <sup>sup</sup>.",
+        "tag": "p"
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        "text": "Subscript text is <sub>sub</sub>.",
+        "tag": "p"
+      } only %}
+    </figure>
+    <h3>Link</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-link/link.twig" with {
+        text: "Link is link component with default settings.",
+        url: "#!",
+      } only %}
+    </figure>
+    <h3>Blockquote</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-blockquote/blockquote.twig" with {
+        "content": "<p>Blockquote is blockquote component with default settings.</p>",
+      } only %}
+    </figure>
+    <h3>Ordered List</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-ol/ol.twig" with {
+        "items" : [
+          "Ordered list is",
+          "Ordered list component",
+          "with default settings"
+        ]
+      } %}
+    </figure>
+    <h3>Unordered List</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-ul/ul.twig" with {
+        "items" : [
+          "Unordered list is",
+          "Unordered list component",
+          "with default settings"
+        ]
+      } %}
+    </figure>
+    <h3>Code</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+        "display": "block",
+        "content": "Code text is the Code Snippet component with default settings."
+      } only %}
+    </figure>
+    <h3>Table</h3>
+    <figure class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-table/table.twig" with {
+        headers: {
+          top: {
+            cells: [
+              "Column 1",
+              "Column 2",
+              "Column 3",
+            ]
+          },
+          side: {
+            cells: [
+              "Row 1",
+              "Row 2",
+              "Row 3",
+              "Footer",
+            ]
+          }
+        },
+        rows: [
+          {
+            cells: [
+              "Table is the Table component with default settings.",
+              "R1C2",
+              "R1C3",
+            ]
+          },
+          {
+            cells: [
+              "R2C1",
+              "R2C2",
+              "R2C3",
+            ]
+          },
+          {
+            cells: [
+              "R3C1",
+              "R3C2",
+              "R3C3",
+            ]
+          }
+        ],
+        footer: {
+          cells: [
+            "FC1",
+            "FC2",
+            "FC3",
+          ]
+        }
+      } only %}
+    </figure>
+    <h3>Missing in Bolt</h3>
+    <figure>
+      {% include "@bolt-components-ol/ol.twig" with {
+        "items" : [
+          "<mark>Figure (Image and Video): the figure component needs to be styled.</mark>",
+          "<mark>All existing components other than the code snippet are not yet web components</mark>"
+        ]
+      } %}
+    </figure>
+  {% endset %}
+
+
+
+  {% include "@bolt-components-band/band.twig" with {
+    "theme": "dark",
+    "size": "large",
+    "content": header
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    "theme": "xlight",
+    "content": article
+  } only %}
+{% endblock %}

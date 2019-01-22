@@ -1,0 +1,23 @@
+%bolt-demo-wrapper-border {
+  border: 2px dashed bolt-color(gray, light);
+}
+
+%bolt-demo-wrapper {
+  @extend %bolt-demo-wrapper-border;
+  padding: 1rem;
+}
+
+%bolt-demo-item-border {
+  border: 2px dashed #545da6;
+}
+
+%bolt-demo-item-background {
+  color: bolt-color(indigo);
+  background: bolt-color(indigo, xlight);
+}
+
+%bolt-demo-item {
+  @extend %bolt-demo-item-border;
+  @extend %bolt-demo-item-background;
+  padding: 1rem;
+}

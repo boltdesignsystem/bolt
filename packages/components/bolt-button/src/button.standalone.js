@@ -42,15 +42,16 @@ class BoltButton extends BoltAction {
     const classes = cx('c-bolt-button', {
       'c-bolt-button--disabled': this.props.disabled,
       'c-bolt-button--icon-only': this.props.iconOnly,
-      'c-bolt-button--center': !this.props.align, // defautl align prop
+      'c-bolt-button--center': !this.props.align, // Default align
       [`c-bolt-button--${this.props.align}`]: this.props.align,
-      'c-bolt-button--primary': !this.props.color, // default color prop
+      'c-bolt-button--primary': !this.props.color, // Default color
       [`c-bolt-button--${this.props.color}`]: this.props.color,
       'c-bolt-button--medium': !this.props.size,
       [`c-bolt-button--${this.props.size}`]: this.props.size,
       [`c-bolt-button--${this.props.width}`]: this.props.width,
       [`c-bolt-button--${this.props.transform}`]: this.props.transform,
-      [`c-bolt-button--border-radius-full`]:
+      'c-bolt-button--border-radius-regular': !this.props.borderRadius, // Default border radius
+      'c-bolt-button--border-radius-full':
         this.props.rounded && !this.props.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.
       [`c-bolt-button--border-radius-${this.props.borderRadius}`]: this.props
         .borderRadius,

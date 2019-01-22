@@ -1,0 +1,384 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "medium",
+    theme: "xdark",
+    full_bleed: true,
+    background: {
+      "opacity": "medium",
+      "fill": "color",
+      "focalPoint": {
+        "vertical": "center",
+        "horizontal": "center"
+      },
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/images/content/backgrounds/events-landing.png",
+          "lazyload": true
+        }
+      ]
+    }
+  } only %}
+
+    {% block band_content %}
+
+      {% embed "@bolt-components-band/band.twig" with {
+        size: "medium",
+        theme: "none"
+      } only %}
+
+        {% block band_content  %}
+
+          {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-text-align-center" %}
+              {% include "@bolt/headline.twig" with {
+                text: "Events at Pega: Meet the people behind the tech",
+                size: "xxxlarge",
+                tag: "h1"
+              } only %}
+
+              {% include "@bolt/subheadline.twig" with {
+                text: "Join Pega thought leaders, customers, and partners from around the world and explore the power of Pega firsthand."
+              } only %}
+            {% endcell %}
+          {% endgrid %}
+
+        {% endblock %}
+      {% endembed %}
+
+      {% embed "@bolt-components-band/band.twig" with {
+        size: "medium",
+        theme: "none"
+      } only %}
+
+        {% block band_content  %}
+
+          {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
+              {% include "@bolt/headline.twig" with {
+                text: "Featured Pega Events",
+                size: "xxlarge"
+              } only %}
+
+              {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+                {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
+                  {% embed "@bolt-components-card/card.twig" with {
+                    url: "#!",
+                    contentItems: [
+                      {
+                        pattern: "button",
+                        text: "Learn more"
+                      }
+                    ]
+                  } only %}
+
+                    {% block card_media %}
+                    {% endblock %}
+
+                    {% block card_body %}
+                      {% include "@bolt-components-headline/eyebrow.twig" with {
+                        text: "Conference | June 3-6, 2018",
+                      } only %}
+
+                      {% include "@bolt-components-headline/headline.twig" with {
+                        text: "PEGAWORLD 2018"
+                      } only %}
+
+                      <p>
+                        We get it.  Plenty of events promise big things, or to make dreams come true.  At our flagship
+                        event, PegaWorld, we definitely think big - but we also empower you with the technology and
+                        know-how to turn ideas into actual results.
+                      </p>
+
+                    {% endblock %}
+                  {% endembed %}
+                {% endcell %}
+
+                {% cell "u-bolt-width-1/1 u-bolt-width-1/2@medium" %}
+
+                  {% embed "@bolt-components-card/card.twig" with {
+                    url: "#!",
+                    contentItems: [
+                      {
+                        pattern: "button",
+                        text: "Learn more"
+                      }
+                    ]
+                  } only %}
+
+                    {% block card_media %}
+                    {% endblock %}
+
+                    {% block card_body %}
+                      {% include "@bolt-components-headline/eyebrow.twig" with {
+                        text: "Networking | Multiple Dates",
+                      } only %}
+
+                      {% include "@bolt-components-headline/headline.twig" with {
+                        text: "Customer Engagement Summits",
+                      } only %}
+
+                      <p>
+                        Customer engagement, digital transformation - where do you stand?  Which technology is best?
+                        Artifical Intelligence?  Robotics?  The Customer Engagement Summits offers you the opportunity to
+                        meet your peers, talk to experts, listen to business experiences and turn your digital
+                        transformation into a reality!
+                      </p>
+
+                    {% endblock %}
+                  {% endembed %}
+
+                {% endcell %}
+              {% endgrid %}
+
+            {% endcell %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-1/3@medium" %}
+              {% include "@bolt/headline.twig" with {
+                text: "Find Us Here Also",
+                size: "xxlarge"
+              } only %}
+
+                {% set listItems %}
+
+                {% endset %}
+
+                {% include "@bolt/ui-list.twig" with {
+                  size: "small",
+                  contentItems : [
+                    {
+                      contentItems: [
+                        {
+                          "pattern": "headline",
+                          "size": "large",
+                          "text": "Mobil World Congress, 2/26-3/1",
+                          "url": "#",
+                          "icon": {
+                            name: "external-link"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      contentItems: [
+                        {
+                          "pattern": "headline",
+                          "size": "large",
+                          "text": "CCW 2018, 2/27 - 3/1",
+                          "url": "#",
+                          "icon": {
+                            name: "external-link"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      contentItems: [
+                        {
+                          "pattern": "headline",
+                          "size": "large",
+                          "text": "HIMSS18, 3/5 - 3/10",
+                          "url": "#",
+                          "icon": {
+                            name: "external-link"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      contentItems: [
+                        {
+                          "pattern": "headline",
+                          "size": "large",
+                          "text": "ACAMS 2018, 4/9",
+                          "url": "#",
+                          "icon": {
+                            name: "external-link"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                } only %}
+
+
+            {% endcell %}
+          {% endgrid %}
+        {% endblock %}
+      {% endembed %}
+    {% endblock %}
+  {% endembed %}
+
+
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    size: "medium"
+  } %}
+
+    {% block band_content  %}
+      <p>
+        Showing 555 results in <a href="#">filter 1</a>, <a href="#">filter 2</a>, and "<b>search term</b>" (<a href="">Clear filters</a>)
+      </p>
+      {% grid "o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-3/12@medium" %}
+
+          {% set facets = [
+            {
+              title: 'Type',
+              checkboxes: ['Webinar', 'Conference', 'Showcase', 'Networking']
+            },
+            {
+              title: 'Location',
+              checkboxes: ['United States', 'Europe', 'Asia Pacific', 'Latin America']
+            },
+            {
+              title: 'Industry',
+              checkboxes: [
+                'Communications Service Providers',
+                'Energy & Utilities',
+                'Financial Services',
+                'Government',
+                'Healthcare',
+                'Insurance',
+                'Life Sciences',
+                'Manufacturing & High Technology'
+              ]
+            }
+          ] %}
+
+          {% for facet in facets %}
+
+            {% set checkboxChildren %}
+              {% for checkbox in facet.checkboxes %}
+                {% include ("@pl/30-form-element-demo-checkbox.twig") with {
+                  "labelTitle": checkbox,
+                  "elementId": "checkbox-" ~ facet.title ~ checkbox
+                } only %}
+              {% endfor %}
+            {% endset %}
+
+            {% set fieldsetChildren %}
+              {% include "@bolt-components-form/form-checkboxes.twig" with {
+                children: checkboxChildren
+              } only %}
+            {% endset %}
+
+            {% include "@bolt-components-form/form-fieldset.twig" with {
+              "legendTitle": facet.title,
+              "children": fieldsetChildren
+            } only %}
+          {% endfor %}
+
+          {% include "@pl/_event-annotation.twig" with {
+            text: 'At mobile breakpoints, search facets should appear in an overlay.  This page does not show that
+            behavior.  See <a class="c-bolt-link" target="_blank" href="http://5a8474d2be40f13bcfebaa78.bolt.netlify.com/patterns/04-pages-d8-partners-d8-partners-search/04-pages-d8-partners-d8-partners-search.html">this temporary page</a> for an example'
+          } only %}
+
+          {% include "@pl/_event-annotation.twig" with {
+            text: 'Styling details of the form fields such as font size may appear slightly different.  That should
+            not be reason to fail this during QA - the correct sizes will be pulled in when the site is updated to use
+            the latest 1.x version of Bolt.'
+          } only %}
+
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-9/12@medium" %}
+          {% grid "o-bolt-grid--matrix" %}
+            {% for i in 1..6 %}
+              {% cell "u-bolt-width-1/1" %}
+                {% embed "@bolt/card.twig" with {
+                  theme: "xlight"
+                } only %}
+
+                  {% block card_media %}
+                  {% endblock %}
+
+                  {% block card_body %}
+
+                    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+                      {% cell "u-bolt-width-1/1 u-bolt-width-1/4@small" %}
+                        {% include "@bolt/image.twig" with {
+                          src: "/images/placeholders/500x500.jpg",
+                          lazyload: false
+                        } only %}
+                      {% endcell %}
+
+                      {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+                        {% include "@bolt/eyebrow.twig" with {
+                          text: "Conference | Rebruary 26 - March 1 2018 | Barcelona, Spain"
+                        } only %}
+
+                        {% include "@bolt/headline.twig" with {
+                          text: "Mobile World Congress",
+                          size: "xlarge"
+                        } only %}
+
+                        <p> The Pega Communications and Media team is hosting a meeting room at Mobile World Congress - the world's
+                          largest gathering for the mobile industry.  Visit us in Hall 2, stand C31MR at the Fira Gran Via conference
+                          facility in Barcelona, Spain.  View the event page to request a meeting in advance.</p>
+
+                        <p>
+                          {% include "@bolt/link.twig" with {
+                            text: "Request a Meeting",
+                            icon: {
+                              name: "chevron-right"
+                            }
+                          } only %}
+                        </p>
+                      {% endcell %}
+                    {% endgrid %}
+                  {% endblock %}
+                {% endembed %}
+              {% endcell %}
+            {% endfor %}
+          {% endgrid %}
+        {% endcell %}
+      {% endgrid %}
+
+    {% endblock %}
+  {% endembed %}
+
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "large",
+    theme: "xdark"
+  } only %}
+    {% block band_content %}
+
+      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center" %}
+          {% include "@bolt/blockquote.twig" with {
+            size: "xlarge",
+            border: "none",
+            alignItems: "center",
+            logo: {
+              src: "/images/content/logos/logo-paypal.svg",
+              invert: true,
+              lazyload: true
+            },
+            author: {
+              image: {
+                src: "/images/placeholders/500x500.jpg",
+                lazyload: true
+              },
+              name: "Jessica Cuthbertson",
+              title: "CEO, RBS"
+            },
+            content: "<p>We’re creating an environment where we know our customers individually, and we want to use what we know to really understand what’s important to them – so we can be there in the moments that matter.</p>"
+          } only %}
+
+        {% endcell %}
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+
+{% endblock %}
+
+
+

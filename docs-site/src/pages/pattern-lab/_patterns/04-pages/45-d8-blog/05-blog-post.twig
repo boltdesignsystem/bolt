@@ -1,0 +1,205 @@
+{% set article_body = article_body|join("") %}
+
+{# Placeholder Frame #}
+{% extends "@pl/_www-page-template.twig" %}
+{# End Placeholder Frame #}
+
+{% block main_content %}
+  {# Navigation #}
+  {% embed "@bolt-components-sticky/sticky.twig" %}
+    {% block sticky_content %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        theme: "dark",
+        title: {
+          tag: "h1",
+          text: "Future Proof",
+          url: "http://pega.com/blog",
+        },
+        links: [
+          {
+            text: "Digital Process Automation",
+            url: "#a",
+          },
+          {
+            text: "1-to-1 Customer Engagement",
+            url: "#a",
+          },
+          {
+            text: "Customer Service",
+            url: "#a",
+          },
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
+  {# End Navigation #}
+
+  {# Hero #}
+  {% set hero %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--middle" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-5/12@medium" %}
+        {% include "@bolt-components-image/image.twig" with {
+          src: featured_image,
+          alt: article_title,
+          lazyload: false,
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-7/12@medium" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: article_title,
+          size: "xxxlarge",
+          tag: "h1",
+        } only %}
+        {% include "@bolt-components-list/list.twig" with {
+          display: "inline@small",
+          tag: "div",
+          separator: "solid",
+          items: [
+            include("@bolt-components-headline/text.twig", {
+              text: "By " ~ auhtor_name ~ ", " ~ article_date,
+            }),
+            include("@bolt-components-share/share.twig", {
+              size: "small",
+              text: "Share",
+              sources: [
+                {
+                  name: "facebook",
+                  url: "https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse"
+                },
+                {
+                  name: "twitter",
+                  url: "https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+                },
+                {
+                  name: "linkedin",
+                  url: "https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html"
+                },
+                {
+                  name: "email",
+                  url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+                }
+              ],
+              copy_to_clipboard: {
+                text_to_copy: "http://pega.com"
+              }
+            }),
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    size: "medium",
+    content: hero,
+  } only %}
+  {# End Hero #}
+
+  {# Main Article #}
+  {% set main_article %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+        {{ article_body }}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  <article>
+    {% include "@bolt-components-band/band.twig" with {
+      theme: "xlight",
+      size: "medium",
+      content: main_article,
+    } only %}
+  </article>
+  {# End Main Article #}
+
+  {# Article Meta #}
+  {% set article_meta %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Category",
+      size: "xlarge",
+      tag: "h3",
+      attributes: {
+        class: "u-bolt-margin-bottom-small",
+      }
+    } only %}
+    {% include "@bolt-components-list/list.twig" with {
+      display: "inline",
+      items: [
+        include("@bolt-components-chip/chip.twig", {
+          text: "Tag",
+          url: "#!",
+        }),
+        include("@bolt-components-chip/chip.twig", {
+          text: "Tag",
+          url: "#!",
+        }),
+        include("@bolt-components-chip/chip.twig", {
+          text: "Tag",
+          url: "#!",
+        }),
+        include("@bolt-components-chip/chip.twig", {
+          text: "Tag",
+          url: "#!",
+        }),
+        include("@bolt-components-chip/chip.twig", {
+          text: "Tag",
+          url: "#!",
+        }),
+      ]
+    } only %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "About the Author",
+      size: "xlarge",
+      tag: "h3",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: author_bio,
+      size: "large",
+      tag: "p",
+    } only %}
+
+    {% include "@bolt-components-share/share.twig" with {
+      size: "medium",
+      text: "Share this post",
+      sources: [
+        {
+          name: "facebook",
+          url: "https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse"
+        },
+        {
+          name: "twitter",
+          url: "https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+        },
+        {
+          name: "linkedin",
+          url: "https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html"
+        },
+        {
+          name: "email",
+          url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+        }
+      ],
+      copy_to_clipboard: {
+        text_to_copy: "http://pega.com"
+      }
+    } only %}
+  {% endset %}
+
+  <div class="o-bolt-wrapper u-bolt-margin-bottom-large">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+        {% include "@bolt-components-band/band.twig" with {
+          theme: "light",
+          size: "small",
+          full_bleed: false,
+          content: article_meta,
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {# End Article Meta #}
+
+{% endblock %}

@@ -1,8 +1,0 @@
-{% set sassdocs = bolt.data.sassdoc %}
-
-{% if sassdocs %}
-{% include "@utils/sassdocs.twig" with {
-  title: "Bolt SassDoc",
-  contentItems: sassdocs
-} only %}
-{% endif %}
