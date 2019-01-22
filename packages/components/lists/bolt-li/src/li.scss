@@ -52,24 +52,24 @@ $bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
   }
 }
 
-//.c-bolt-ul {
-//  .c-bolt-ul {
-//    .c-bolt-li--ul-item {
-//      &:before {
-//        border-radius: $bolt-ul-bullet-size;
-//        background-color: transparent;
-//      }
-//    }
-//
-//    .c-bolt-ul {
-//      .c-bolt-li--ul-item {
-//        &:before {
-//          border-radius: 0;
-//        }
-//      }
-//    }
-//  }
-//}
+.c-bolt-ul {
+  .c-bolt-ul {
+    .c-bolt-li--ul-item {
+      &:before {
+        border-radius: $bolt-ul-bullet-size;
+        background-color: transparent;
+      }
+    }
+
+    .c-bolt-ul {
+      .c-bolt-li--ul-item {
+        &:before {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
 
 ol,
 bolt-ol {
