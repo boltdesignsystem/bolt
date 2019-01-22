@@ -51,9 +51,9 @@ jobs:
       script:
         # - yarn run build
         # - yarn run deploy
-        - travis_wait 30  docker --log-level error pull boltdesignsystem/bolt || true
-        - travis_wait 30 docker build --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
-        - travis_wait 30 docker images
+        - docker --log-level error pull boltdesignsystem/bolt || true
+        - docker build --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
+        - docker images
         - echo $DOCKER_HUB_PASS | docker login --username $DOCKER_HUB_USER --password-stdin
         - GIT_SHA="$(git rev-parse --short HEAD)"
         - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
@@ -61,9 +61,9 @@ jobs:
         - docker --log-level error push boltdesignsystem/bolt:latest
         - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
       after_script:
-        - travis_wait 30 ./scripts/check-run-in-progress.js 'Deploy - now.sh'
+        - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - cd scripts && npm install
-        - travis_wait 30 npm run deploy
+        - npm run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./release/update-read-only-git-repos.sh
