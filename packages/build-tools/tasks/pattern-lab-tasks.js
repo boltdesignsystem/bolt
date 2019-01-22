@@ -143,8 +143,22 @@ async function compile() {
       // console.log(output);
     });
   }
-
+  
   await plBuild(true);
+  
+  sh(
+   'yarn',
+    [
+      '--cwd',
+      path.join(process.cwd(), '../packages/uikit-workshop'),
+      'run',
+      'build',
+    ],
+    false,
+    false,
+  ).then(output => {
+    // console.log(output);
+  });
 }
 
 compile.description = 'Compile Pattern Lab';
