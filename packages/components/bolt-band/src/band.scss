@@ -67,18 +67,24 @@ $bolt-band-sizes: (
 }
 
 .c-bolt-band__content--pinned {
-  display: flex;
+  display: table; // Table display is used to make this work in IE.
+  width: 100%;
+
+  > * {
+    display: table-cell;
+    width: 100%;
+  }
 
   &-upper {
-    align-items: flex-start;
+    > * {
+      vertical-align: top;
+    }
   }
 
   &-lower {
-    align-items: flex-end;
-  }
-
-  > * {
-    width: 100%;
+    > * {
+      vertical-align: bottom;
+    }
   }
 }
 
