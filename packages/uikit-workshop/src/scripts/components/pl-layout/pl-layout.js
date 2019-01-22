@@ -1,10 +1,9 @@
 import { define, props } from 'skatejs';
-import { h } from 'preact';
-
 const classNames = require('classnames');
+import { html } from 'lit-html';
 
 import { store } from '../../store.js'; // connect to redux
-import { BaseComponent } from '../base-component.js';
+import { BaseLitComponent } from '../base-component.js';
 
 import iFrameResize from 'iframe-resizer/src/iframeResizer.js';
 iFrameResize({
@@ -17,7 +16,7 @@ iFrameResize({
 });
 
 @define
-class Layout extends BaseComponent {
+class Layout extends BaseLitComponent {
   static is = 'pl-layout';
 
   constructor(self) {
@@ -69,7 +68,16 @@ class Layout extends BaseComponent {
         this.targetOrigin
       );
     }
-    this.triggerUpdate();
+  }
+
+  render(){
+    return html`
+      <pl-header></pl-header>
+      <div class="pl-c-viewport-modal-wrapper">
+        <pl-iframe></pl-iframe>
+        <pl-drawer></pl-drawer>
+      </div>
+    `;
   }
 }
 

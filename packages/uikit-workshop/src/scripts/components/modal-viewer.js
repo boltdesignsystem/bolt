@@ -76,10 +76,21 @@ export const modalViewer = {
           event: 'patternLab.annotationsHighlightShow',
           annotations: modalViewer.patternData.annotations,
         });
-        modalViewer.iframeElement.contentWindow.postMessage(
-          obj,
-          modalViewer.targetOrigin
-        );
+
+        if (modalViewer.iframeElement.contentWindow){
+          modalViewer.iframeElement.contentWindow.postMessage(
+            obj,
+            modalViewer.targetOrigin
+          );
+        } else {
+          modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
+
+          if (modalViewer.iframeElement.contentWindow){
+            modalViewer.open();
+          } else {
+            console.log('modelViewer open cannot find the iframeElement...');
+          }
+        }
       }
     }
   },
@@ -92,18 +103,31 @@ export const modalViewer = {
     const obj = JSON.stringify({
       event: 'patternLab.patternModalClose',
     });
-    modalViewer.iframeElement.contentWindow.postMessage(
-      obj,
-      modalViewer.targetOrigin
-    );
 
-    const obj2 = JSON.stringify({
-      event: 'patternLab.annotationsHighlightHide',
-    });
-    modalViewer.iframeElement.contentWindow.postMessage(
-      obj2,
-      modalViewer.targetOrigin
-    );
+    if (modalViewer.iframeElement){
+      if (modalViewer.iframeElement.contentWindow){
+        modalViewer.iframeElement.contentWindow.postMessage(
+          obj,
+          modalViewer.targetOrigin
+        );
+    
+        const obj2 = JSON.stringify({
+          event: 'patternLab.annotationsHighlightHide',
+        });
+        modalViewer.iframeElement.contentWindow.postMessage(
+          obj2,
+          modalViewer.targetOrigin
+        );
+      } else {
+        modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
+        
+        if (modalViewer.iframeElement.contentWindow){
+          modalViewer.close();
+        } else {
+          console.log('modelViewer close cannot find the iframeElement...');
+        }
+      }
+    }
   },
 
   /**
@@ -121,10 +145,20 @@ export const modalViewer = {
         patternPartial,
         modalContent: templateRendered.outerHTML,
       });
-      modalViewer.iframeElement.contentWindow.postMessage(
-        obj,
-        modalViewer.targetOrigin
-      );
+      if (modalViewer.iframeElement.contentWindow){
+        modalViewer.iframeElement.contentWindow.postMessage(
+          obj,
+          modalViewer.targetOrigin
+        );
+      } else {
+        modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
+      
+        if (modalViewer.iframeElement.contentWindow){
+          modalViewer.insert(templateRendered, patternPartial, iframePassback);
+        } else {
+          console.log('modelViewer insert cannot find the iframeElement...');
+        }
+      }
     } else {
       const contentContainer = document.querySelector('.pl-js-drawer-content');
 
@@ -203,10 +237,20 @@ export const modalViewer = {
     // only emit this when the iframe element exists.
     // @todo: refactor to better handle async UI rendering
     if (modalViewer.iframeElement){
-      modalViewer.iframeElement.contentWindow.postMessage(
-        obj,
-        modalViewer.targetOrigin
-      );
+      if (modalViewer.iframeElement.contentWindow){
+        modalViewer.iframeElement.contentWindow.postMessage(
+          obj,
+          modalViewer.targetOrigin
+        );
+      } else {
+        modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
+
+        if (modalViewer.iframeElement.contentWindow){
+          modalViewer.queryPattern(switchText);
+        } else {
+          console.log('queryPattern cannot find the iframeElement...');
+        }
+      }
     }
   },
 
@@ -311,7 +355,9 @@ export const modalViewer = {
 
   _stateChanged(state) {
     modalViewer.active = state.app.drawerOpened;
-    modalViewer._handleInitialModalViewerState();
+    if (modalViewer.iframeElement){
+      modalViewer._handleInitialModalViewerState();
+    }
   },
 };
 

@@ -7,6 +7,8 @@ const CriticalCssPlugin = require('critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const path = require('path');
 
 const cosmiconfig = require('cosmiconfig');
@@ -16,7 +18,7 @@ const explorer = cosmiconfig('patternlab');
 const defaultConfig = {
   buildDir: './dist',
   prod: false, // or false for local dev
-  sourceMaps: false,
+  sourceMaps: true,
 };
 
 module.exports = async function() {
@@ -198,6 +200,7 @@ module.exports = async function() {
         ],
       },
       cache: true,
+      devtool: 'eval-source-map',
       // mode: config.prod ? 'production' : 'development',
       mode: 'development', // temp workaround till strange rendering issues with full `production` mode are switched on in Webpack
       optimization: {
@@ -239,6 +242,13 @@ module.exports = async function() {
           : [],
       },
       plugins: [
+        new PrerenderSPAPlugin({
+          // Required - The path to the webpack-outputted app to prerender.
+          // staticDir: path.join(__dirname, 'dist'),
+          staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
+          // Required - Routes to render.
+          routes: [ '/'],
+        }),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
           [
@@ -258,6 +268,7 @@ module.exports = async function() {
           template: 'src/html/index.html',
           inject: false,
         }),
+        new PreloadWebpackPlugin(),
         new MiniCssExtractPlugin({
           filename: `[name].css`,
           chunkFilename: `[id].css`,
@@ -267,35 +278,33 @@ module.exports = async function() {
       ],
     };
 
-    if (config.prod) {
-      webpackConfig.plugins.push(
-        new CriticalCssPlugin({
-          base: path.resolve(__dirname, config.buildDir),
-          src: 'index.html',
-          dest: 'index.html',
-          inline: true,
-          minify: true,
-          extract: true,
-          width: 1300,
-          height: 900,
-          penthouse: {
-            keepLargerMediaQueries: true,
+    webpackConfig.plugins.push(
+      new CriticalCssPlugin({
+        base: path.resolve(__dirname, config.buildDir),
+        src: 'index.html',
+        dest: 'index.html',
+        inline: true,
+        minify: true,
+        extract: false,
+        width: 1300,
+        height: 900,
+        penthouse: {
+          keepLargerMediaQueries: true,
 
-            // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
-            forceInclude: [
-              '.pl-c-body--theme-light',
-              '.pl-c-body--theme-sidebar',
-              '.pl-c-body--theme-sidebar .pl-c-viewport',
-              '.pl-c-body--theme-density-compact',
-            ],
-            timeout: 30000, // ms; abort critical CSS generation after this timeout
-            maxEmbeddedBase64Length: 1000,
-            renderWaitTime: 1000,
-            blockJSRequests: false,
-          },
-        })
-      );
-    }
+          // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
+          forceInclude: [
+            '.pl-c-body--theme-light',
+            '.pl-c-body--theme-sidebar',
+            '.pl-c-body--theme-sidebar .pl-c-viewport',
+            '.pl-c-body--theme-density-compact',
+          ],
+          timeout: 30000, // ms; abort critical CSS generation after this timeout
+          maxEmbeddedBase64Length: 1000,
+          renderWaitTime: 1000,
+          blockJSRequests: false,
+        },
+      })
+    );
 
     return resolve(webpackConfig);
   });

@@ -3,6 +3,7 @@ import withPreact from '@skatejs/renderer-preact';
 import { store } from '../store.js';
 import { extend, supportsShadowDom } from '../utils/index.js';
 import { h } from 'preact';
+import withLitHtml from '@skatejs/renderer-lit-html';
 
 export class BaseComponent extends withComponent(withPreact()) {
   get renderRoot() {
@@ -60,5 +61,45 @@ export class BaseComponent extends withComponent(withPreact()) {
     } else {
       return null;
     }
+  }
+}
+
+export class BaseLitComponent extends withComponent(withLitHtml()) {
+  get renderRoot() {
+    return this;
+  }
+
+  disconnectedCallback() {
+    this.__storeUnsubscribe();
+
+    if (super.disconnectedCallback) {
+      super.disconnectedCallback();
+    }
+  }
+
+  connectedCallback() {
+    this.__storeUnsubscribe = store.subscribe(() =>
+      this._stateChanged(store.getState())
+    );
+    this._stateChanged(store.getState());
+    if (super.connectedCallback) {
+      super.connectedCallback();
+    }
+  }
+
+  _stateChanged(state) {
+    this.triggerUpdate();
+  }
+
+  /**
+   * Update component state and schedule a re-render.
+   * @param {object} state A dict of state properties to be shallowly merged
+   * 	into the current state, or a function that will produce such a dict. The
+   * 	function is called with the current state and props.
+   * @param {() => void} callback A function to be called once component state is
+   * 	updated
+   */
+  setState(state, callback) {
+    this.state = Object.assign({}, this.state, state);
   }
 }
