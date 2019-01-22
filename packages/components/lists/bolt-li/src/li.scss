@@ -7,9 +7,9 @@ $bolt-ul-bullet-size: 6px; // Using px here because I need to make a perfect cir
 $bolt-ol-bullet-size: $bolt-line-height--xsmall + rem;
 $bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
 
-bolt-li {
-  display: list-item;
-}
+//bolt-li {
+//  display: list-item;
+//}
 
 .c-bolt-li {
   box-sizing: border-box;
@@ -35,9 +35,9 @@ bolt-li {
     width: $bolt-ul-bullet-size;
     height: $bolt-ul-bullet-size;
     line-height: $bolt-ul-bullet-size;
-    border: 1px solid bolt-theme(headline);
+    border: 1px solid currentColor;
     border-radius: $bolt-ul-bullet-size;
-    background-color: bolt-theme(headline);
+    background-color: currentColor;
   }
 
   &.c-bolt-li--level {
@@ -56,24 +56,24 @@ bolt-li {
   }
 }
 
-.c-bolt-ul {
-  .c-bolt-ul {
-    .c-bolt-li--ul-item {
-      &:before {
-        border-radius: $bolt-ul-bullet-size;
-        background-color: transparent;
-      }
-    }
-
-    .c-bolt-ul {
-      .c-bolt-li--ul-item {
-        &:before {
-          border-radius: 0;
-        }
-      }
-    }
-  }
-}
+//.c-bolt-ul {
+//  .c-bolt-ul {
+//    .c-bolt-li--ul-item {
+//      &:before {
+//        border-radius: $bolt-ul-bullet-size;
+//        background-color: transparent;
+//      }
+//    }
+//
+//    .c-bolt-ul {
+//      .c-bolt-li--ul-item {
+//        &:before {
+//          border-radius: 0;
+//        }
+//      }
+//    }
+//  }
+//}
 
 ol,
 bolt-ol {
