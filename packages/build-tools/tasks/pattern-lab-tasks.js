@@ -138,9 +138,9 @@ async function compile() {
         'build',
       ],
       false,
-      false,
+      true,
     ).then(output => {
-      // console.log(output);
+      console.log(output);
     });
   }
   
@@ -155,9 +155,9 @@ async function compile() {
       'build',
     ],
     false,
-    false,
+    true,
   ).then(output => {
-    // console.log(output);
+    console.log(output);
   });
 }
 
