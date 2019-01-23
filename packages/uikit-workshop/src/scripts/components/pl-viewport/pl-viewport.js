@@ -1,7 +1,6 @@
 import { define, props } from 'skatejs';
 import { h } from 'preact';
 
-const classNames = require('classnames');
 import render from 'preact-render-to-string';
 
 import { store } from '../../store.js'; // connect to redux
@@ -13,7 +12,6 @@ import { urlHandler, patternName } from '../../utils';
 
 import styles from '../../../sass/pattern-lab--iframe-loader.scss';
 
-import iFrameResize from 'iframe-resizer/src/iframeResizer.js';
 
 
 @define
