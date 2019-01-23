@@ -66,14 +66,8 @@ bolt-grid-item {
   display: block;
   width: auto;
 
-/*
-  max-width: 100%;
-  grid-row-start: auto;
-  grid-row-end: auto;
-*/
-
   @each $valignment in $bolt-grid-item-alignments {
-    &[valign='#{$valignment}']{
+    &[valign='#{$valignment}'] {
       align-self: #{$valignment};
     }
   }
@@ -81,11 +75,11 @@ bolt-grid-item {
   // Column, row start and end
   @each $direction in $bolt-grid-item-directions {
     @for $bolt-grid-columns from 1 through 12 {
-      &[#{$direction}-start~='#{$bolt-grid-columns}']{
+      &[#{$direction}-start~='#{$bolt-grid-columns}'] {
         grid-#{$direction}-start: #{$bolt-grid-columns};
       }
 
-      &[#{$direction}-span~='#{$bolt-grid-columns}']{
+      &[#{$direction}-span~='#{$bolt-grid-columns}'] {
         grid-#{$direction}-end: span #{$bolt-grid-columns};
       }
     }
@@ -98,7 +92,7 @@ bolt-grid-item {
 
       @for $bolt-grid-columns from 1 through 12 {
         @include bolt-mq($breakpoint-name) {
-          &[#{$direction}-start~='#{$bolt-grid-columns}\@#{$breakpoint-name}']{
+          &[#{$direction}-start~='#{$bolt-grid-columns}\@#{$breakpoint-name}'] {
             grid-#{$direction}-start: #{$bolt-grid-columns};
           }
         }
@@ -106,7 +100,7 @@ bolt-grid-item {
 
       @include bolt-mq($breakpoint-name) {
         @for $bolt-grid-columns from 1 through 12 {
-          &[#{$direction}-span~='#{$bolt-grid-columns}\@#{$breakpoint-name}']{
+          &[#{$direction}-span~='#{$bolt-grid-columns}\@#{$breakpoint-name}'] {
             grid-#{$direction}-end: span #{$bolt-grid-columns};
           }
         }
