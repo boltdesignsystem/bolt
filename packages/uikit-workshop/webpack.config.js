@@ -17,8 +17,8 @@ const explorer = cosmiconfig('patternlab');
 // @todo: wire these two ocnfigs up to use cosmicconfig!
 const defaultConfig = {
   buildDir: './dist',
-  prod: false, // or false for local dev
-  sourceMaps: true,
+  prod: true, // or false for local dev
+  sourceMaps: false,
 };
 
 module.exports = async function() {
@@ -200,9 +200,7 @@ module.exports = async function() {
         ],
       },
       cache: true,
-      devtool: 'eval-source-map',
-      // mode: config.prod ? 'production' : 'development',
-      mode: 'development', // temp workaround till strange rendering issues with full `production` mode are switched on in Webpack
+      mode: config.prod ? 'production' : 'development',
       optimization: {
         minimize: true,
         occurrenceOrder: true,
@@ -226,7 +224,7 @@ module.exports = async function() {
         minimizer: config.prod
           ? [
               new UglifyJsPlugin({
-                sourceMap: true,
+                sourceMap: false,
                 parallel: true,
                 cache: true,
                 uglifyOptions: {
