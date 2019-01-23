@@ -31,7 +31,7 @@ $bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
     width: $bolt-ul-bullet-size;
     height: $bolt-ul-bullet-size;
     line-height: $bolt-ul-bullet-size;
-    border: 1px solid currentColor;
+    border: $bolt-border-width $bolt-border-style currentColor;
     border-radius: $bolt-ul-bullet-size;
     background-color: currentColor;
   }
@@ -47,6 +47,7 @@ $bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
     &-3 {
       &:before {
         border-radius: 0;
+        background-color: currentColor;
       }
     }
   }
@@ -65,6 +66,7 @@ $bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
       .c-bolt-li--ul-item {
         &:before {
           border-radius: 0;
+          background-color: currentColor;
         }
       }
     }
