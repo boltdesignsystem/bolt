@@ -412,7 +412,8 @@ pl-nav {
 
 .pl-c-nav__link--overview.pl-c-nav__link--overview.pl-c-nav__link--overview {
   font-size: 0.9rem;
-  padding-right: 2.5rem;
+  margin-right: 2.5rem;
+  padding-right: 0.5rem;
   padding-left: 1.5rem;
 }
 
@@ -453,24 +454,35 @@ pl-nav {
   top: 50%;
   border: 2px solid transparent !important;
   transform: translateY(-50%);
-  border-radius: 50rem;
   justify-content: center;
   align-items: center;
   color: currentColor;
 
+  // border to indicate which nav links have two specific actions
+  &:before {
+    opacity: 0.1;
+    right: 2.4rem;
+    width: 1px;
+    left: auto;
+    transform: translateY(-50%);
+  }
+
   &:after {
-    background-color: currentColor;
+    opacity: 0;
+    width: 2.5rem;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+  }
+
+  &:before,
+  &:after {
+    height: 2.5rem;
     transition: opacity $pl-animate-quick ease-out;
     content: '';
-    opacity: 0;
-    height: 2.5rem;
-    width: 2.5rem;
     display: block;
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    border-radius: 50rem;
+    background-color: currentColor;
   }
 
   &:hover {
