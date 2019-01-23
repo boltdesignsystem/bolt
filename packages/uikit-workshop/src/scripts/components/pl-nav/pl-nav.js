@@ -121,8 +121,8 @@ const SpecialButton = props => {
     >
       <span class="pl-c-nav__link-icon">
         <ArrowIcon
-          height={16}
-          width={16}
+          height={24}
+          width={24}
           viewBox="0 0 24 24"
           fill="currentColor"
         />
@@ -141,8 +141,8 @@ const Button = props => {
     >
       <span class="pl-c-nav__link-icon">
         <ArrowIcon
-          height={16}
-          width={16}
+          height={24}
+          width={24}
           viewBox="0 0 24 24"
           fill="currentColor"
         />

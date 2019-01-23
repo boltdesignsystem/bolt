@@ -37,6 +37,8 @@ pl-nav {
   flex-direction: column;
   transition: max-height $pl-animate-quick ease-out;
   flex-shrink: 0;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 
   @media all and (min-width: $pl-bp-med) {
     .pl-c-body--theme-sidebar & {
@@ -405,7 +407,7 @@ pl-nav {
 
 .pl-c-nav__link--overview.pl-c-nav__link--overview.pl-c-nav__link--overview {
   font-size: 0.9rem;
-  padding-right: 2rem;
+  padding-right: 2.5rem;
   padding-left: 1.5rem;
 }
 
@@ -435,8 +437,8 @@ pl-nav {
 }
 
 .pl-c-nav__link--section-dropdown {
-  width: 2rem !important;
-  height: 2rem !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
   padding: 0 !important;
   display: flex;
   justify-content: center;
@@ -456,8 +458,8 @@ pl-nav {
     transition: opacity $pl-animate-quick ease-out;
     content: '';
     opacity: 0;
-    height: 1.4rem;
-    width: 1.4rem;
+    height: 2.5rem;
+    width: 2.5rem;
     display: block;
     position: absolute;
     top: 50%;
