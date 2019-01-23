@@ -1,11 +1,11 @@
 <mark style="display: block;" class="u-bolt-margin-bottom-large">
   <div class="u-bolt-padding-small">
-    <p><strong>Support for Internet Explorer:</strong> Due to IE's outdated technology, it is mandatory to define column_start and row_start if you want the grid to render correctly.</p>
+    <p><strong>Support for Internet Explorer:</strong> Due to IE's outdated technology, it is mandatory to define column start and row start if you want the grid to render correctly.</p>
   </div>
 </mark>
 
-<h3>Column_start and column_span</h3>
-<p>The Bolt Grid is built on the concept of column_start and column_span, this allows the user to have full control of the grid layout.</p>
+<h3>Column start and column span</h3>
+<p>The Bolt Grid is built on the concept of column start and column span, this allows the user to have full control of the grid layout.</p>
 
 <h3>Common usage</h3>
 
@@ -21,7 +21,7 @@
   } only %}
 {% endset %}
 
-<p>Main content in the center (column_start 3 and column_span 8) with 2 asides.</p>
+<p>Main content in the center (column start 3 and column span 8) with 2 asides.</p>
 <div class="u-bolt-margin-bottom-medium">
   {% include "@bolt-components-grid/grid.twig" with {
     items: [
@@ -44,7 +44,7 @@
   } only %}
 </div>
 
-<p>Main content with an aside (column_start 9 and column_span 4).</p>
+<p>Main content with an aside (column start 9 and column span 4).</p>
 <div class="u-bolt-margin-bottom-large">
   {% include "@bolt-components-grid/grid.twig" with {
     items: [
@@ -63,8 +63,8 @@
 </div>
 
 
-<h3>Row_start and row_span</h3>
-<p>Row_start and row_span are also available, they are for less common layouts.</p>
+<h3>Row start and row span</h3>
+<p>Row start and row span are also available, they are for less common layouts.</p>
 
 {% set item_row %}
   {% include "@bolt-components-placeholder/placeholder.twig" with {
