@@ -1,0 +1,37 @@
+.demo-transition {
+  background: #ddd;
+  padding: 1em;
+  margin-bottom: 1em;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.demo-transition.transition-opacity:hover {
+  opacity: 0;
+}
+.demo-transition.transition-move {
+  position: relative;
+}
+.demo-transition.transition-move::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 3px;
+  top: 0;
+  left: 8px;
+  bottom: 0;
+  background: black;
+}
+.demo-transition.transition-move:hover::after {
+  left: calc(100% - 8px);
+}
+
+.demo-transition {
+  &.transition-opacity {
+    transition: opacity $bolt-duration--medium $bolt-timing--burst $bolt-delay--xsmall;
+  }
+  &.transition-move::after {
+    transition: left $bolt-timing--burst $bolt-delay--medium;
+  }
+}

@@ -1,0 +1,21 @@
+/// Grow
+/// Apply this to a container to zoom the target on hover.
+/// See [example in Pattern Lab](../../pattern-lab/public/?p=base-grow).
+/// @group animations
+/// @param $target [img] - The selector to grow.
+@mixin grow($target: 'img') {
+  overflow: hidden;
+
+  #{$target} {
+    transition: transform $trans-move;
+    transform: translateZ(0);
+    &:hover {
+      transform: scale(1.03) translateZ(0);
+    }
+  }
+}
+
+/// @group animations
+.u-anim-grow {
+  @include grow($target: '.u-anim-grow__target');
+}
