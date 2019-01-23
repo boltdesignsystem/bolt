@@ -338,19 +338,10 @@ pl-nav {
 
 
 .pl-c-nav__link--overview.pl-is-active {
-
   &:hover:before {
     opacity: 0.1;
   }
-  // &:before {
-  //   opacity: 0.05;
-  // }
-
-  // &:hover:before {
-  //   opacity: 0.1;
-  // }
 }
-
 .pl-c-nav__link--overview-wrapper,
 .pl-c-nav__subsublist--dropdown,
 .pl-c-nav__link--overview {
@@ -412,9 +403,14 @@ pl-nav {
 
 .pl-c-nav__link--overview.pl-c-nav__link--overview.pl-c-nav__link--overview {
   font-size: 0.9rem;
-  margin-right: 2.5rem;
   padding-right: 0.5rem;
   padding-left: 1.5rem;
+  position: relative;
+  flex-grow: 1;
+
+  &:not(:only-child) {
+    margin-right: 2.5rem;
+  }
 }
 
 .pl-c-nav__link--title {
@@ -502,4 +498,5 @@ pl-nav {
 
 .pl-c-nav__link--overview-wrapper {
   position: relative;
+  display: flex;
 }
