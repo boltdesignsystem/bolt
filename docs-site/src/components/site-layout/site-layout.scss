@@ -38,8 +38,11 @@ html {
   justify-self: stretch;
   grid-column-start: 1;
   grid-column-end: 1;
-  max-width: 900px;
   margin: 0 auto;
+
+  .c-bds-layout__content--has-sidebar & {
+    max-width: 900px;
+  }
 }
 
 .c-bds-layout__title {
