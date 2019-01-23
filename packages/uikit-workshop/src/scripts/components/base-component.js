@@ -15,7 +15,7 @@ export class BaseComponent extends withComponent(withPreact()) {
   }
 
   disconnectedCallback() {
-    this.__storeUnsubscribe();
+    this.__storeUnsubscribe && this.__storeUnsubscribe();
 
     if (super.disconnectedCallback) {
       super.disconnectedCallback();
@@ -46,10 +46,7 @@ export class BaseComponent extends withComponent(withPreact()) {
    * 	updated
    */
   setState(state, callback) {
-
     this.state = Object.assign({}, this.state, state);
-
-
   }
 
   _renderStyles(stylesheets) {
