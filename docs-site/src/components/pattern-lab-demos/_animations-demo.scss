@@ -1,37 +1,93 @@
-.demo-transition {
-  background: #ddd;
-  padding: 1em;
+.demo-animated-slider {
+  position: relative;
   margin-bottom: 1em;
+  padding: 1em;
   text-align: center;
-  border-radius: 8px;
   cursor: pointer;
+  border-radius: 8px;
+  background: #ddd;
+
+  /// Duration Variations
+  &.demo-animated-slider--duration-xfast::after {
+    transition-duration: $bolt-duration--xfast;
+  }
+  &.demo-animated-slider--duration-fast::after {
+    transition-duration: $bolt-duration--fast;
+  }
+  &.demo-animated-slider--duration-medium::after {
+    transition-duration: $bolt-duration--medium;
+  }
+  &.demo-animated-slider--duration-slow::after {
+    transition-duration: $bolt-duration--slow;
+  }
+  &.demo-animated-slider--duration-xslow::after {
+    transition-duration: $bolt-duration--xslow;
+  }
+
+  /// Timing Function Variations
+  &.demo-animated-slider--timing-linear::after {
+    transition-timing-function: $bolt-timing--linear;
+  }
+  &.demo-animated-slider--timing-ease-out::after {
+    transition-timing-function: $bolt-timing--ease-out;
+  }
+  &.demo-animated-slider--timing-ease-in::after {
+    transition-timing-function: $bolt-timing--ease-in;
+  }
+  &.demo-animated-slider--timing-ease-in-out::after {
+    transition-timing-function: $bolt-timing--ease-in-out;
+  }
+  &.demo-animated-slider--timing-swing-in-out::after {
+    transition-timing-function: $bolt-timing--swing-in-out;
+  }
+  &.demo-animated-slider--timing-burst::after {
+    transition-timing-function: $bolt-timing--burst;
+  }
+
+  /// Delay
+  &.demo-animated-slider--delay-xsmall::after {
+    transition-delay: $bolt-delay--xsmall;
+  }
+  &.demo-animated-slider--delay-small::after {
+    transition-delay: $bolt-delay--small;
+  }
+  &.demo-animated-slider--delay-medium::after {
+    transition-delay: $bolt-delay--medium;
+  }
+  &.demo-animated-slider--delay-long::after {
+    transition-delay: $bolt-delay--long;
+  }
+  &.demo-animated-slider--delay-xlong::after {
+    transition-delay: $bolt-delay--xlong;
+  }
 }
 
-.demo-transition.transition-opacity:hover {
-  opacity: 0;
-}
-.demo-transition.transition-move {
-  position: relative;
-}
-.demo-transition.transition-move::after {
+.demo-animated-slider::after {
   content: '';
   display: inline-block;
   position: absolute;
-  width: 3px;
   top: 0;
-  left: 8px;
   bottom: 0;
+  left: 8px;
+  width: 3px;
   background: black;
+  transition-duration: $bolt-duration--medium;
+  transition-delay: $bolt-delay--xsmall;
+  transition-property: left;
+  transition-timing-function: $bolt-timing--linear;
 }
-.demo-transition.transition-move:hover::after {
+
+.demo-animated-slider:hover::after {
   left: calc(100% - 8px);
 }
 
-.demo-transition {
-  &.transition-opacity {
-    transition: opacity $bolt-duration--medium $bolt-timing--burst $bolt-delay--xsmall;
-  }
-  &.transition-move::after {
-    transition: left $bolt-timing--burst $bolt-delay--medium;
-  }
-}
+//.demo-animated-slider.transition-opacity:hover {
+//  opacity: 0;
+//}
+
+//.demo-animated-slider {
+//  &.transition-opacity {
+//    transition: opacity $bolt-duration--medium $bolt-timing--burst
+//      $bolt-delay--xsmall;
+//  }
+//}
