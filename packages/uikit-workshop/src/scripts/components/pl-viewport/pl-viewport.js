@@ -273,24 +273,8 @@ class IFrame extends BaseComponent {
     const self = this;
     if (!this._hasInitiallyRendered){
       this._hasInitiallyRendered = true;
-
-      // if (patternName !== 'all') {
-      //   urlHandler.skipBack = false;
       this.navigateTo(patternName, true);
-      // }
     }
-
-    iFrameResize({
-      checkOrigin: false,
-      initCallback(){
-        if (self.delaySendingMessage === true){
-          self.delaySendingMessage = false;
-    
-          const state = store.getState();
-          self.iframe.iFrameResizer.sendMessage(state);
-        }
-      }
-    }, this.iframe);
   }
 
   render() {
@@ -413,12 +397,6 @@ class IFrame extends BaseComponent {
         }
 
         // check and share the initial iframe width once ready
-        const state = store.getState();
-        if (state.app.viewportPx){
-          self.sizeiframe(state.app.viewportPx, false);
-        } else {
-          self.sizeiframe(self.iframe.clientWidth, false);
-        }
       } catch(error){
         console.log(error);
       }
