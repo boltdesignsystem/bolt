@@ -6,45 +6,14 @@ import './components/pl-controls/pl-controls';
 import './components/pl-drawer/pl-drawer';
 import './components/pl-header/pl-header';
 import './components/pl-viewport/pl-viewport';
-// import './components/pl-viewport-size-list/pl-viewport-size-list';
-// import './components/pl-search/pl-search';
 import './components/pl-toggle-info/pl-toggle-info';
 import './components/pl-toggle-layout/pl-toggle-layout';
 import './components/pl-toggle-theme/pl-toggle-theme';
 import './components/pl-tools-menu/pl-tools-menu';
-// import './components/modal-viewer';
-// import './components/panels';
-// import './components/panels-viewer';
-
-import(
-  /* webpackChunkName: "pl-viewport-sizes" */
-  /* webpackMode: "lazy" */
-  /* webpackPreload: true */
-  './components/pl-viewport-size-list/pl-viewport-size-list');
-
-import(
-  /* webpackChunkName: "pl-search" */
-  /* webpackMode: "lazy" */
-  /* webpackPreload: true */
-  './components/pl-search/pl-search');
-
-import(
-  /* webpackChunkName: "pl-panels-viewer" */
-  /* webpackMode: "lazy" */
-  /* webpackPreload: true */
-  './components/panels-viewer');
-
-import(
-  /* webpackChunkName: "pl-panels" */
-  /* webpackMode: "lazy" */
-  /* webpackPreload: true */
-  './components/panels');
-
-import(
-  /* webpackChunkName: "pl-modal-viewer" */
-  /* webpackMode: "lazy" */
-  /* webpackPreload: true */
-  './components/modal-viewer');
+import './components/pl-viewport-size-list/pl-viewport-size-list';
+import './components/pl-search/pl-search';
+import './components/modal-viewer';
+import './components/panels-viewer';
 
 // Add hook to auto re-render the root component.
 if (typeof module.hot === 'object') {

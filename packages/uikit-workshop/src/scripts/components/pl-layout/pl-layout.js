@@ -45,15 +45,15 @@ class Layout extends BaseLitComponent {
   }
 
   _stateChanged(state) {
-    this.layoutMode = state.app.layoutMode;
+    this.layoutMode = state.app.layoutMode || 'vertical';
     this.themeMode = state.app.themeMode;
     this.iframeElement = document.querySelector('.pl-js-iframe');
 
-    const classes = classNames({
+    const layoutModeClass = this.layoutMode === 'vertical' ? 'sidebar' : 'horizontal';
+
+    const classes = classNames(
+      `pl-c-body--theme-${layoutModeClass}`, {
       [`pl-c-body--theme-${this.themeMode}`]: this.themeMode !== undefined,
-      [`pl-c-body--theme-${
-        this.layoutMode === 'vertical' ? 'sidebar' : 'horizontal'
-      }`]: this.layoutMode !== undefined,
     });
 
     this.className = classes;

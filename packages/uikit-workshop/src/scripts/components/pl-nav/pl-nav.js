@@ -119,6 +119,7 @@ const SpecialButton = props => {
       role="tab"
       {...props}
     >
+      {props.children}
       <span class="pl-c-nav__link-icon">
         <ArrowIcon
           height={24}
@@ -127,7 +128,6 @@ const SpecialButton = props => {
           fill="currentColor"
         />
       </span>
-      {props.children}
     </button>
   );
 };
@@ -139,6 +139,9 @@ const Button = props => {
       role="tab"
       {...props}
     >
+      <span className={`pl-c-nav__link-text`}>
+        {props.children}
+      </span>
       <span class="pl-c-nav__link-icon">
         <ArrowIcon
           height={24}
@@ -147,7 +150,6 @@ const Button = props => {
           fill="currentColor"
         />
       </span>
-      {props.children}
     </button>
   );
 };
@@ -161,13 +163,15 @@ const ButtonTitle = props => {
     >
       <span class="pl-c-nav__link-icon">
         <ArrowIcon
-          height={16}
+          height={24}
           width={16}
           viewBox="0 0 24 24"
           fill="currentColor"
         />
       </span>
-      {props.children}
+      <span className={`pl-c-nav__link-text`}>
+        {props.children}
+      </span>
     </button>
   );
 };
