@@ -9,7 +9,8 @@
   &lt;bolt-li&gt;Item 5&lt;/bolt-li&gt;
 &lt;/bolt-ul&gt;</code></pre>
 
-<bolt-ul>
+<h3>Simple usage</h3>
+<bolt-ul class="custom-class">
   <bolt-li>Item 1</bolt-li>
   <bolt-li>Item 2</bolt-li>
   <bolt-li>Item 3</bolt-li>
@@ -17,6 +18,7 @@
   <bolt-li>Item 5</bolt-li>
 </bolt-ul>
 
+<h3>Nesting of lists (ol and ul)</h3>
 <bolt-ul>
   <bolt-li>Coffee</bolt-li>
   <bolt-li>Tea
@@ -37,14 +39,7 @@
   <bolt-li>Milk</bolt-li>
 </bolt-ul>
 
-<bolt-ul>
-  <bolt-li>Do not include any data or information in your posts that are confidential!</bolt-li>
-  <bolt-li>Apply basic practices for collaborative work.</bolt-li>
-  <bolt-li>Be honest, respectful, trustworthy and helpful.</bolt-li>
-  <bolt-li>Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.</bolt-li>
-</bolt-ul>
-
-<bolt-demo class="t-bolt-dark">
+<bolt-demo>
   <bolt-ul>
     <bolt-li>L1 - Tea</bolt-li>
     <bolt-li>L1 - Coffee
@@ -86,6 +81,48 @@
       </bolt-ul>
     </bolt-li>
     <bolt-li>L1 - Milk</bolt-li>
+  </bolt-ul>
+</bolt-demo>
+
+<bolt-demo>
+  <bolt-ul>
+    <bolt-li>Level 1 - Item 1</bolt-li>
+    <bolt-li>Level 1 - Item 2</bolt-li>
+    <bolt-li>Level 1 - Item 3</bolt-li>
+    <bolt-li>Level 1 - Item 4
+      <bolt-ol>
+        <bolt-li>Level 2 - Item 1</bolt-li>
+        <bolt-li>Level 2 - Item 2</bolt-li>
+        <bolt-li>Level 2 - Item 3
+          <bolt-ul>
+            <bolt-li>Level 3 - Item 1</bolt-li>
+            <bolt-li>Level 3 - Item 2
+              <bolt-ol>
+                <bolt-li>Level 4 - Item 1
+                  <bolt-ul>
+                    <bolt-li>Level 5 - Item 1</bolt-li>
+                    <bolt-li>Level 5 - Item 2</bolt-li>
+                    <bolt-li>Level 5 - Item 3</bolt-li>
+                    <bolt-li>Level 5 - Item 4</bolt-li>
+                    <bolt-li>Level 5 - Item 5</bolt-li>
+                  </bolt-ul>
+                </bolt-li>
+                <bolt-li>Level 4 - Item 2</bolt-li>
+                <bolt-li>Level 4 - Item 3</bolt-li>
+                <bolt-li>Level 4 - Item 4</bolt-li>
+                <bolt-li>Level 4 - Item 5</bolt-li>
+              </bolt-ol>
+            </bolt-li>
+            <bolt-li>Level 3 - Item 3</bolt-li>
+            <bolt-li>Level 3 - Item 4</bolt-li>
+            <bolt-li>Level 3 - Item 5</bolt-li>
+          </bolt-ul>
+        </bolt-li>
+        <bolt-li>Level 2 - Item 4</bolt-li>
+        <bolt-li>Level 2 - Item 5</bolt-li>
+      </bolt-ol>
+    </bolt-li>
+    <bolt-li>Level 1 - Item 5</bolt-li>
   </bolt-ul>
 </bolt-demo>
 
@@ -135,3 +172,18 @@
     <bolt-li>Milk</bolt-li>
   </bolt-ul>
 </bolt-demo>
+
+<h3>Theme variations</h3>
+{% for theme in ["xlight", "light", "dark", "xdark"] %}
+  <p>Theme: {{ theme }}</p>
+  <bolt-demo class="t-bolt-{{ theme }}">
+    <bolt-ol>
+      <bolt-li>Item 1</bolt-li>
+      <bolt-li>Item 2</bolt-li>
+      <bolt-li>Item 3</bolt-li>
+      <bolt-li>Item 4</bolt-li>
+      <bolt-li>Item 5</bolt-li>
+    </bolt-ol>
+  </bolt-demo>
+  <br>
+{% endfor %}
