@@ -141,7 +141,7 @@ async function compile() {
         false,
         true,
       ).then(output => {
-        console.log(output);
+        // console.log(output);
       });
     }
   });
