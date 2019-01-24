@@ -126,3 +126,17 @@
 .demo-animated-slider:hover::after {
   left: calc(100% - 8px);
 }
+
+.staggered-animation-demo__item {
+  @include bolt-transition--fade-in-slide-up($base: true);
+  &[data-anim-triggered="yes"] {
+    @include bolt-transition--fade-in-slide-up($active: true);
+  }
+}
+
+#staggered-animation-band .o-bolt-grid__cell {
+  @include bolt-transition--fade-in-slide-up($base: true);
+  &[data-anim-triggered="yes"] {
+    @include bolt-transition--fade-in-slide-up($active: true);
+  }
+}

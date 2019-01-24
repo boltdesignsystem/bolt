@@ -1,0 +1,56 @@
+<div style="display: flex; flex-wrap: wrap;" id="staggered-animation-demo">
+  {% for i in 0..10 %}
+    <div class="staggered-animation-demo__item" style="height: 100px; width: 100px; background-color: grey; margin: 2rem;"></div>
+  {% endfor %}
+</div>
+<button id="staggered-animation-demo__trigger">Click Me</button>
+<button id="staggered-animation-demo__reset">Reset</button>
+
+
+<script>
+  // Event handler for button to fire demo staggered fade in slide up
+  document
+    .querySelector('#staggered-animation-demo__trigger')
+    .addEventListener('click', function() {
+      // Trigger staggered animation
+      document
+        .querySelector('#staggered-animation-demo')
+        .dispatchEvent(new Event('anim-trigger'));
+    });
+
+  // Reset Button - Clear out old demo animation trigger data attributes
+  document
+    .querySelector('#staggered-animation-demo__reset')
+    .addEventListener('click', function() {
+      document
+        .querySelectorAll('#staggered-animation-demo .staggered-animation-demo__item')
+        .forEach(function(element) {
+          element.setAttribute('data-anim-triggered', 'no');
+        });
+    });
+
+  /**
+   * Trigger animations on this element.
+   * Adds data attribute and triggers event handlers
+   * @param {Element} el The element
+   */
+  function triggerAnimation(el) {
+    if (el.getAttribute('data-anim-triggered') !== 'yes') {
+      el.setAttribute('data-anim-triggered', 'yes');
+      // el.trigger('anim-trigger');
+    }
+  }
+
+  // add eventHandlers to staggered anim content
+  document
+    .querySelector('#staggered-animation-demo')
+    .addEventListener('anim-trigger', function() {
+      document.querySelectorAll('.staggered-animation-demo__item').forEach(function(element, index) {
+        var delay = 250 * index;
+        setTimeout(function() {
+          triggerAnimation(element);
+        }.bind(element), delay);
+      })
+    })
+</script>
+
