@@ -85,6 +85,9 @@ module.exports = async function() {
         'js/patternlab-viewer': './src/scripts/patternlab-viewer.js',
         'css/pattern-lab': './src/sass/pattern-lab.scss',
       },
+      performance: {
+        hints: false,
+      },
       resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
@@ -256,6 +259,7 @@ module.exports = async function() {
           ],
           {
             allowExternal: true,
+            verbose: false,
 
             // perform clean just before files are emitted to the output dir
             beforeEmit: true,
