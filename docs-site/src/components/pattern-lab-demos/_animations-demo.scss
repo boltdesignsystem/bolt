@@ -60,6 +60,28 @@
   &.demo-animated-slider--delay-xlong::after {
     transition-delay: $bolt-delay--xlong;
   }
+
+  // Transition mixins
+  &.demo-animated-slider--fade-in {
+    @include bolt-transition__fade-in($base: true);
+    &:hover {
+      @include bolt-transition__fade-in($active: true);
+    }
+  }
+
+  &.demo-animated-slider--fade-out {
+    @include bolt-transition__fade-out($base: true);
+    &:hover {
+      @include bolt-transition__fade-out($active: true);
+    }
+  }
+
+  &.demo-animated-slider--fade-in-slide-up {
+    @include bolt-transition__fade-in-slide-up($base: true);
+    &:hover {
+      @include bolt-transition__fade-in-slide-up($active: true);
+    }
+  }
 }
 
 .demo-animated-slider::after {
