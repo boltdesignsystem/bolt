@@ -13,7 +13,7 @@
   {% set items = contentItems %}
 {% endif %}
 
-<bolt-ol>
+<bolt-ol {{ attributes }}>
   <replace-with-grandchildren>
     <ol {{ attributes.addClass(classes) }}>
       {% for item in items %}
