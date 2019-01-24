@@ -252,6 +252,15 @@ export const modalViewer = {
           console.log('queryPattern cannot find the iframeElement...');
         }
       }
+    } else {
+      modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
+
+      if (modalViewer.iframeElement.contentWindow){
+        modalViewer.iframeElement.contentWindow.postMessage(
+          obj,
+          modalViewer.targetOrigin
+        );
+      }
     }
   },
 
