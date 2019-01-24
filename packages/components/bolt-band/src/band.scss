@@ -71,22 +71,39 @@ $bolt-band-sizes: (
 }
 
 .c-bolt-band__content--pinned {
-  display: table; // Table display is used to make this work in IE.
+  display: flex;
 
   > * {
-    display: table-cell;
     width: 100%;
   }
 
   &-upper {
-    > * {
-      vertical-align: top;
-    }
+    align-items: flex-start;
   }
 
   &-lower {
+    align-items: flex-end;
+  }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .c-bolt-band__content--pinned {
+    display: table; // Table display is used to make this work in IE.
+
     > * {
-      vertical-align: bottom;
+      display: table-cell;
+    }
+
+    &-upper {
+      > * {
+        vertical-align: top;
+      }
+    }
+
+    &-lower {
+      > * {
+        vertical-align: bottom;
+      }
     }
   }
 }
