@@ -1,11 +1,24 @@
 module.exports = {
-  'Bolt Docs: Verify Docs Site Compiled + Deployed': function(browser) {
+  "Bolt Site: verify boltdesignsystem.com's homepage compiled + deployed": function(
+    browser,
+  ) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     browser
       .url(`${testingUrl}`)
-      .waitForElementVisible('.c-bolt-site', 1000)
+      .waitForElementVisible('.c-bds-layout', 1000)
       .assert.containsText('.c-bolt-navbar__title-text', 'Bolt')
+      .end();
+  },
+
+  "Bolt Site: verify boltdesignsystem.com's getting started page compiled + deployed": function(
+    browser,
+  ) {
+    const { testingUrl } = browser.globals;
+    browser
+      .url(`${testingUrl}/docs/getting-started/index.html`)
+      .waitForElementVisible('.c-bds-layout__content--has-sidebar', 1000)
+      .assert.containsText('h2', 'Getting Started')
       .end();
   },
 };
