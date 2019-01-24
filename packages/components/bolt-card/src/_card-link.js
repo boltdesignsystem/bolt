@@ -30,9 +30,15 @@ class BoltCardLink extends BoltAction {
 
     const slotMarkup = () => {
       return html`
-        <span class="${cx('u-bolt-visuallyhidden')}"
-          >${this.slot('default')}</span
-        >
+        <span class="${cx('u-bolt-visuallyhidden')}">
+          ${
+            'default' in this.slots
+              ? this.slot('default')
+              : html`
+                  <slot />
+                `
+          }
+        </span>
       `;
     };
 
