@@ -51,6 +51,10 @@
   .c-bolt-list--spacing-#{$spacing-value-name} {
     margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
     margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
+
+    &.c-bolt-list--display-inline {
+      width: calc(100% + #{bolt-spacing($spacing-value-name)} + 1px); // The inline here is talking about the items inside, the List component itself is still a block level element that would fill up the space of any container.
+    }
   }
 
   .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {

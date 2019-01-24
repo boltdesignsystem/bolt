@@ -114,6 +114,14 @@ class BoltButton extends BoltAction {
 
     if (this.rootElement) {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
+      if (buttonElement.tagName === 'A') {
+        if (buttonElement.getAttribute('href') === null && hasUrl) {
+          buttonElement.setAttribute('href', this.props.url);
+        }
+        if (buttonElement.getAttribute('target') === null && urlTarget) {
+          buttonElement.setAttribute('target', urlTarget);
+        }
+      }
       buttonElement.className += ' ' + classes;
       render(innerSlots, buttonElement);
     } else if (hasUrl) {

@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const execa = require('execa');
 const fs = require('fs');
 const { join } = require('path');
 const fetch = require('node-fetch');
@@ -76,6 +77,65 @@ async function getAccessToken() {
 }
 
 /**
+ * Exec Shell Command and Report Results to GitHub Checks
+ * @param {Object} opt
+ * @param {string} opt.cmd - Shell command to execute from CWD
+ * @param {string} opt.name - GitHub Checks Name
+ * @return {Promise<boolean>} Did cmd fail?
+ */
+async function execAndReport({ cmd, name }) {
+  try {
+    const {
+      failed,
+      // code,
+      // timedOut,
+      stdout,
+      stderr,
+      // message,
+    } = await execa.shell(cmd);
+    process.stdout.write(stdout);
+    process.stderr.write(stderr);
+    await setCheckRun({
+      name,
+      status: 'completed',
+      conclusion: 'success',
+      output: {
+        title: name,
+        summary: `Ran ${cmd}`,
+      },
+    });
+    return failed;
+  } catch (err) {
+    const {
+      failed,
+      // code,
+      // timedOut,
+      stdout,
+      stderr,
+      message,
+    } = err;
+    process.stdout.write(stdout);
+    process.stderr.write(stderr);
+    await setCheckRun({
+      name,
+      status: 'completed',
+      conclusion: 'failure',
+      output: {
+        title: name,
+        summary: `Ran ${cmd}`,
+        text: `
+<pre><code>
+${message}
+</code></pre>
+        `.trim(),
+      },
+    });
+
+    return failed;
+  }
+}
+
+/**
  * @return {Promise<Object>}
  * @link https://developer.github.com/v3/checks/suites/#create-a-check-suite
  */
@@ -111,15 +171,32 @@ async function createCheckSuite() {
 }
 
 /**
- * @param opt
+ * @typedef {Object} GitHubCheckOutput
+ * @param {string} title
+ * @param {string} summary - supports Markdown
+ * @param {string} [text] - supports Markdown
+ * @param {Object[]} [annotations]
+ * @param {{ alt: string, image_url: string, caption: string }[]} [images] - Image Grid using absolute urls
+ * @link https://developer.github.com/v3/checks/runs/#output-object
+ */
+
+/**
+ * @param {Object} opt
  * @param opt.name
- * @param opt.status
- * @param opt.output
+ * @param [opt.status='queued'] - One of queued, in_progress, or completed
+ * @param {GitHubCheckOutput} [opt.output]
  * @param [opt.conclusion] - The final conclusion of the check. Can be one of success, failure, neutral, cancelled, timed_out, or action_required. When the conclusion is action_required, additional details should be provided on the site specified by details_url.
+ * @param {string} [opt.details_url]
  * @return {Promise<Object>}
  * @link https://developer.github.com/v3/checks/runs/#create-a-check-run
  */
-async function setCheckRun({ name, status, output, conclusion }) {
+async function setCheckRun({
+  name,
+  status = 'queued',
+  output,
+  conclusion,
+  details_url,
+}) {
   const token = accessToken || (await getAccessToken());
   const body = {
     name,
@@ -166,4 +243,5 @@ async function setCheckRun({ name, status, output, conclusion }) {
 module.exports = {
   createCheckSuite,
   setCheckRun,
+  execAndReport,
 };

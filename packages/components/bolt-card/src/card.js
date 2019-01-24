@@ -38,6 +38,7 @@ class BoltCard extends withContext(withLitHtml()) {
     height: props.string, // full | auto
     raised: props.boolean,
     url: props.string,
+    urlText: props.string,
   };
 
   constructor(self) {
@@ -91,7 +92,8 @@ class BoltCard extends withContext(withLitHtml()) {
             <bolt-card-link
               url="${this.props.url}"
               ?target="${this.props.target}"
-            ></bolt-card-link>
+              >${this.props.urlText}</bolt-card-link
+            >
           `
         : '';
 

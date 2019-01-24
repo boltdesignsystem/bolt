@@ -1,44 +1,48 @@
 sudo: required
 dist: trusty
-
-services:
-  - docker
-
-stages:
-  - build-and-deploy # lint code and docs
-
 language: php
 php:
   - 7.1
 
+addons:
+  sauce_connect: true
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
+  - nvm install # version lifted from `.nvmrc`
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
+services:
+  - docker
+
+# Stages run sequentially; the jobs in them run in parallel
+stages:
+  - Prep
+  - Test Live Site
+#  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
+#  - name: Super Hard Tests
+#    if: branch = master
+
 jobs:
   include:
-    - stage: build-and-deploy
-      name: 'Smoke Tests'
+    - stage: Prep
+      name: 'Smoke Tests: Install, Lint, Unit'
       before_script:
         - phpenv config-rm xdebug.ini
         - composer global require hirak/prestissimo
         - yarn run setup:quick
-        #- node ./scripts/create-check-suite.js
-      script: yarn run test
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - docs-site/cache
-
-    - stage: build-and-deploy
-      name: 'Linting'
-      before_script: yarn run setup:quick
-      script: 
-        - yarn run lint:scss
-        - yarn run lint:js
+        - ./scripts/check-run-queue.js 'Lint'
+        - ./scripts/check-run-queue.js 'Unit'
+      script:
+        - ./test/lint.js
+        - ./test/unit.js
       cache:
         yarn: true
         directories:
           - node_modules
 
-    - stage: build-and-deploy
+    - stage: Prep
       name: 'Build + Deploy'
       # before_script:
       #   - phpenv config-rm xdebug.ini
@@ -54,35 +58,65 @@ jobs:
         - GIT_SHA="$(git rev-parse --short HEAD)"
         - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
         - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
-        - docker --log-level error push boltdesignsystem/bolt:latest 
+        - docker --log-level error push boltdesignsystem/bolt:latest
         - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
       after_script:
+        - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - cd scripts && npm install
         - npm run deploy
-        - sh ./release/update-read-only-git-repos.sh
+        # need to reset git repo before `update-read-only-git-repos.sh`
+        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+        - ./release/update-read-only-git-repos.sh
       cache:
         yarn: true
         directories:
           - node_modules
+          - scripts/node_modules
           - docs-site/cache
           - www/pattern-lab/styleguide/js
           - www/pattern-lab/styleguide/css
           - www/pattern-lab/index.html
 
-before_install:
-  - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
-  - nvm install # version lifted from `.nvmrc`
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
-  - export PATH="$HOME/.yarn/bin:$PATH"
+    - stage: Test Live Site
+      name: 'Nightwatch End-to-End'
+      script:
+        - yarn run setup
+        - ./scripts/check-run-in-progress.js 'Nightwatch'
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - echo "The Now URL is $NOW_URL"
+        - time curl -sSf "$NOW_URL" > /dev/null # warming up site
+        - npx nightwatch --config nightwatch.js --env chrome,ie11
+        - sleep 10
+        - ./scripts/report-nightwatch-results.js
+      cache:
+        yarn: true
+        directories:
+          - node_modules
 
-# @todo: re-enable and add to a separate Travis Job for handling post-deploy tests
+    - stage: Test Live Site
+      name: 'Ensure site is live'
+      script:
+        - yarn run setup
+        - ./scripts/check-run-in-progress.js 'Site is live'
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
+#        - time curl -sSf "$NOW_URL" > /dev/null || ./scripts/check-run-failure.js 'Site is live' && exit 1
+#        - ./scripts/check-run-success.js 'Site is live'
+        - time curl -sSf "$NOW_URL" > /dev/null
+      after_success:
+        - ./scripts/check-run-success.js 'Site is live'
+      after_failure:
+        - ./scripts/check-run-failure.js 'Site is live'
+      cache:
+        yarn: true
+        directories:
+          - node_modules
 
-# addons:
-#   sauce_connect: true
-
-# script:
-# - bash ./travis.sh # time command already run inside the travis.sh script
-# - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
+    - stage: Test Live Site
+      name: 'Example master only job'
+      if: branch = master
+      script:
+        - echo "This only runs on master builds"
 
 notifications:
   email:

@@ -1,6 +1,6 @@
-var supportsCSSVars = window.CSS && CSS.supports('color', 'var(--primary)');
-
-const { loadCSS } = require('fg-loadcss/src/loadCSS.js');
+import { supportsCSSVars } from '@bolt/core/utils';
+import { loadCSS } from 'fg-loadcss/src/loadCSS.js'; // helper function to conditionally load CSS files asynchronously
+global.loadCSS = loadCSS;
 
 /**
  * 1. Global environmental variables added in Bolt's Webpack config via the
@@ -9,6 +9,7 @@ const { loadCSS } = require('fg-loadcss/src/loadCSS.js');
  */
 const themeCSSFallback = bolt.themingFallbackCSS; /* [1] */
 
-if (!supportsCSSVars) {
+// make sure our global themeCSSFallback variable is defined before trying to async load the fallback CSS
+if (!supportsCSSVars && themeCSSFallback) {
   loadCSS(themeCSSFallback);
 }
