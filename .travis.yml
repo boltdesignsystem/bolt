@@ -48,7 +48,7 @@ jobs:
       script:
         - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - cd scripts && npm install
-        - npm run deploy
+        - travis_wait npm run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./release/update-read-only-git-repos.sh
