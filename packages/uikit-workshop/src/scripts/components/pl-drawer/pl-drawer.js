@@ -6,8 +6,6 @@ import {
   updateDrawerState,
   updateDrawerHeight,
   updateDrawerAnimationState,
-  // updateAppHeight,
-  // updateViewportHeight,
 } from '../../actions/app.js'; // redux actions needed by this element.
 import { css } from '../../utils';
 import { BaseComponent } from '../base-component.js';

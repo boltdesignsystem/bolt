@@ -7,7 +7,6 @@ import { store } from '../../store.js'; // redux store
 import ArrowIcon from '../../../icons/arrow-down.svg';
 import { BaseComponent } from '../base-component.js';
 import { scrollTo, scrollIntoView } from 'scroll-js';
-import $ from 'jquery';
 import 'url-search-params-polyfill';
 
 const SubSubList = (props) => {
@@ -189,12 +188,12 @@ class Nav extends BaseComponent {
     self._hasInitiallyRendered = false;
     self.handleURLChangeOnRender = false;
     self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
-    self.isOpenClass = 'pl-is-active';
     self.useShadow = false;
     return self;
   }
-
+  
   connected() {
+    this.isOpenClass = 'pl-is-active';
     const self = this;
     const state = store.getState();
     this.layoutMode = state.app.layoutMode || '';
@@ -390,44 +389,65 @@ class Nav extends BaseComponent {
   };
 
   toggleSpecialNavPanel(e) {
-    const $this = $(e.target);
-    const $panel = $this.parent().next();
-    const $subnav = $panel.parent().parent().hasClass('pl-js-acc-panel');
+    const target = e.target;
+    const panel = target.parentNode.nextSibling;
+    const subnav = panel.parentNode.parentNode.classList.contains('pl-js-acc-panel');
 
-    if (!$subnav) {
-      $('.pl-js-acc-handle')
-        .not($this)
-        .removeClass(this.isOpenClass);
-      $('.pl-js-acc-panel')
-        .not($panel)
-        .removeClass(this.isOpenClass);
+    if (!subnav) {
+      const navTriggers = document.querySelectorAll(`.pl-js-acc-handle.pl-is-active`);
+      const navPanels = document.querySelectorAll(`.pl-js-acc-panel.pl-is-active`);
+
+      navTriggers.forEach((navTrigger) => {
+        if(navTrigger !== target) {
+          navTrigger.classList.remove('pl-is-active');
+        }
+      });
+
+      navPanels.forEach((navPanel) => {
+        if(navPanel !== target) {
+          navPanel.classList.remove('pl-is-active');
+        }
+      });
     }
 
-    // Activate the selected panel
-    $this.toggleClass(this.isOpenClass);
-    $panel.toggleClass(this.isOpenClass);
+    if (target.classList.contains('pl-is-active')){
+      target.classList.remove('pl-is-active');
+      panel.classList.remove('pl-is-active');
+    } else {
+      target.classList.add('pl-is-active');
+      panel.classList.add('pl-is-active');
+    }
   }
 
   toggleNavPanel(e) {
-    const $this = $(e.target);
-    const $panel = $this.next('.pl-js-acc-panel');
-    const $subnav = $this
-      .parent()
-      .parent()
-      .hasClass('pl-js-acc-panel');
+    const target = e.target;
+    const panel = target.nextSibling;
+    const subnav = target.parentNode.parentNode.classList.contains('pl-js-acc-panel');
 
-    if (!$subnav) {
-      $('.pl-js-acc-handle')
-        .not($this)
-        .removeClass(this.isOpenClass);
-      $('.pl-js-acc-panel')
-        .not($panel)
-        .removeClass(this.isOpenClass);
+    if (!subnav) {
+      const navTriggers = document.querySelectorAll('.pl-js-acc-handle');
+      const navPanels = document.querySelectorAll('.pl-js-acc-panel');
+
+      navTriggers.forEach((navTrigger) => {
+        if(navTrigger !== target) {
+          navTrigger.classList.remove('pl-is-active');
+        }
+      });
+
+      navPanels.forEach((navPanel) => {
+        if(navPanel !== target) {
+          navPanel.classList.remove('pl-is-active');
+        }
+      });
     }
-
-    // Activate the selected panel
-    $this.toggleClass(this.isOpenClass);
-    $panel.toggleClass(this.isOpenClass);
+    
+    if (target.classList.contains('pl-is-active')){
+      target.classList.remove('pl-is-active');
+      panel.classList.remove('pl-is-active');
+    } else {
+      target.classList.add('pl-is-active');
+      panel.classList.add('pl-is-active');
+    }
   }
 
   rendered(){

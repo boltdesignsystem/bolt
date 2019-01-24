@@ -26,6 +26,7 @@ export const modalViewer = {
    * initialize the modal window
    */
   onReady() {
+    window.addEventListener('message', modalViewer.receiveIframeMessage, false);
     // make sure the listener for checkpanels is set-up
     Dispatcher.addListener('insertPanels', modalViewer.insert);
 
@@ -363,4 +364,4 @@ export const modalViewer = {
 
 modalViewer.onReady();
 
-window.addEventListener('message', modalViewer.receiveIframeMessage, false);
+

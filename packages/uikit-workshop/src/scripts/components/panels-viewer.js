@@ -2,7 +2,6 @@
  * Panel Builder - supports building the panels to be included in the modal or styleguide
  */
 
-import $ from 'jquery';
 import Hogan from 'hogan.js';
 import Prism from 'prismjs';
 import Normalizer from 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
@@ -298,16 +297,17 @@ export const panelsViewer = {
     }
 
     // find lineage links in the rendered content and add postmessage handlers in case it's in the modal
-    $('.pl-js-lineage-link', templateRendered).on('click', function(e) {
-      e.preventDefault();
-      const obj = JSON.stringify({
-        event: 'patternLab.updatePath',
-        path: urlHandler.getFileName($(this).attr('data-patternpartial')),
-      });
-      document
-        .querySelector('.pl-js-iframe')
-        .contentWindow.postMessage(obj, panelsViewer.targetOrigin);
-    });
+    // @todo: refactor and re-enable
+    // $('.pl-js-lineage-link', templateRendered).on('click', function(e) {
+    //   e.preventDefault();
+    //   const obj = JSON.stringify({
+    //     event: 'patternLab.updatePath',
+    //     path: urlHandler.getFileName($(this).attr('data-patternpartial')),
+    //   });
+    //   document
+    //     .querySelector('.pl-js-iframe')
+    //     .contentWindow.postMessage(obj, panelsViewer.targetOrigin);
+    // });
 
     // gather panels from plugins
     Dispatcher.trigger('insertPanels', [
@@ -331,19 +331,3 @@ export const panelsViewer = {
  * 5) Add mouseup event to the body so that when drag is released, the modal
  * stops resizing and modal cover doesn't display anymore.
  */
-$('.pl-js-modal-resizer').mousedown(function(event) {
-  /* 1 */
-
-  $('.pl-js-modal-cover').css('display', 'block'); /* 2 */
-
-  $('.pl-js-modal-cover').mousemove(function(e) {
-    /* 3 */
-    const panelHeight = window.innerHeight - e.clientY + 32; /* 4 */
-    $('.pl-js-modal').css('height', panelHeight + 'px'); /* 4 */
-  });
-});
-
-$('body').mouseup(function() {
-  $('.pl-js-modal').unbind('mousemove'); /* 5 */
-  $('.pl-js-modal-cover').css('display', 'none'); /* 5 */
-});

@@ -6,8 +6,6 @@ import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
 import classNames from 'classnames';
 import Mousetrap from 'mousetrap';
-import { Tooltip } from '../pl-tooltip/pl-tooltip';
-
 import VisuallyHidden from '@reach/visually-hidden';
 import Autosuggest from 'react-autosuggest';
 
@@ -240,14 +238,7 @@ class Search extends BaseComponent {
     const patternName = urlHandler.getFileName(newValue);
 
     if (patternName) {
-      const obj = JSON.stringify({
-        event: 'patternLab.updatePath',
-        path: patternName,
-      });
-
-      document
-        .querySelector('.pl-js-iframe')
-        .contentWindow.postMessage(obj, urlHandler.targetOrigin);
+      document.querySelector('pl-iframe').navigateTo(newValue);
     }
 
     this.setState({
