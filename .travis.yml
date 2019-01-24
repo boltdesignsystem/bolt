@@ -21,8 +21,9 @@ services:
 stages:
   - Prep
   - Test Live Site
-  - name: Post
-    if: branch = master
+#  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
+#  - name: Super Hard Tests
+#    if: branch = master
 
 jobs:
   include:
@@ -47,7 +48,10 @@ jobs:
       script:
         - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - cd scripts && npm install
-        - travis_wait 30 npm run deploy
+        - npm run deploy
+        # need to reset git repo before `update-read-only-git-repos.sh`
+        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+        - ./release/update-read-only-git-repos.sh
       cache:
         yarn: true
         directories:
@@ -91,12 +95,7 @@ jobs:
       name: 'Example master only job'
       if: branch = master
       script:
-        - echo "This only runs on master builds"
-
-    - stage: Post
-      name: Update Read Only Git Repos
-      script:
-        - ./release/update-read-only-git-repos.sh
+        - echo "This example only runs on master branch builds"
 
 notifications:
   email:

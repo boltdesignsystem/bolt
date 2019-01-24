@@ -1,10 +1,11 @@
 import { define, props } from 'skatejs';
 import { h } from 'preact';
+import { store } from '../../store.js'; // connect to redux
+
 import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
 import classNames from 'classnames';
 import Mousetrap from 'mousetrap';
-
 import VisuallyHidden from '@reach/visually-hidden';
 import Autosuggest from 'react-autosuggest';
 
@@ -17,26 +18,47 @@ class Search extends BaseComponent {
 
   constructor(self) {
     self = super(self);
-    this.useShadow = false;
-    this.defaultMaxResults = 10;
+    self.useShadow = false;
+    self.defaultMaxResults = 10;
 
     // Autosuggest is a controlled component.
     // This means that you need to provide an input value
     // and an onChange handler that updates this value (see below).
     // Suggestions also need to be provided to the Autosuggest,
     // and they are initially empty because the Autosuggest is closed.
-    this.state = {
+    self.state = {
       value: '',
       suggestions: [],
+      isFocused: false,
     };
 
-    this.receiveIframeMessage = this.receiveIframeMessage.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.toggleSearch = this.toggleSearch.bind(this);
-    // this.clearSearch = this.clearSearch.bind(this);
-    this.closeSearch = this.closeSearch.bind(this);
-    this.renderInputComponent = this.renderInputComponent.bind(this);
-    this.openSearch = this.openSearch.bind(this);
+    self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
+    self.onChange = self.onChange.bind(self);
+    self.toggleSearch = self.toggleSearch.bind(self);
+    // self.clearSearch = self.clearSearch.bind(self);
+    self.closeSearch = self.closeSearch.bind(self);
+    self.renderInputComponent = self.renderInputComponent.bind(self);
+    self.openSearch = self.openSearch.bind(self);
+
+    // self.items = [];
+    // for (const patternType in window.patternPaths) {
+    //   if (window.patternPaths.hasOwnProperty(patternType)) {
+    //     for (const pattern in window.patternPaths[patternType]) {
+    //       if (window.patternPaths[patternType].hasOwnProperty(pattern)) {
+    //         const obj = {};
+    //         obj.label = patternType + '-' + pattern;
+    //         obj.id = window.patternPaths[patternType][pattern];
+    //         this.items.push(obj);
+    //       }
+    //     }
+    //   }
+    // }
+
+    return self;
+  }
+
+  connecting(){
+    super.connecting && super.connecting();
 
     this.items = [];
     for (const patternType in window.patternPaths) {
@@ -51,17 +73,21 @@ class Search extends BaseComponent {
         }
       }
     }
-
-    return self;
+    
   }
 
   connected() {
     const self = this;
-    Mousetrap.bind('command+f', function(e) {
+    Mousetrap.bind('command+shift+f', function(e) {
       e.preventDefault();
       self.toggleSearch();
     });
     window.addEventListener('message', this.receiveIframeMessage, false);
+  }
+
+  _stateChanged(state) {
+    // throw new Error('_stateChanged() not implemented', this);
+    this.triggerUpdate();
   }
 
   rendered() {
@@ -75,8 +101,15 @@ class Search extends BaseComponent {
     clearButtonText: props.string,
   };
 
-  // External Redux store not yet in use
-  _stateChanged(state) {}
+  onInput = e => {
+    let value = e.target.value;
+
+    this.setState({
+      value: value,
+    });
+
+    this.onSuggestionsFetchRequested({ value }); // re-render search results immediately based on latest input value
+  };
 
   toggleSearch() {
     if (!this.state.isOpen) {
@@ -205,14 +238,7 @@ class Search extends BaseComponent {
     const patternName = urlHandler.getFileName(newValue);
 
     if (patternName) {
-      const obj = JSON.stringify({
-        event: 'patternLab.updatePath',
-        path: patternName,
-      });
-
-      document
-        .querySelector('.pl-js-iframe')
-        .contentWindow.postMessage(obj, urlHandler.targetOrigin);
+      document.querySelector('pl-iframe').navigateTo(newValue);
     }
 
     this.setState({
@@ -325,9 +351,38 @@ class Search extends BaseComponent {
         : 'Find a Pattern',
       value,
       onChange: this.onChange,
+      onInput: this.onInput,
     };
 
     return (
+      <div>
+        <Autosuggest
+          theme={theme}
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          getSuggestionValue={this.getSuggestionValue}
+          renderSuggestion={this.renderSuggestion}
+          inputProps={inputProps}
+          renderInputComponent={this.renderInputComponent}
+        />
+      </div>
+    );
+  }
+}
+
+/* <Tooltip
+  placement="bottom"
+  trigger="hover"
+  tooltip="Hotkey: ⌘ + shift + f"
+  usePortal={false}
+>
+  {({ getTriggerProps, triggerRef }) => (
+    <div
+      {...getTriggerProps({
+        ref: triggerRef,
+      })}
+    >
       <Autosuggest
         theme={theme}
         suggestions={suggestions}
@@ -337,9 +392,9 @@ class Search extends BaseComponent {
         renderSuggestion={this.renderSuggestion}
         inputProps={inputProps}
         renderInputComponent={this.renderInputComponent}
-      />
-    );
-  }
-}
+      />            
+    </div>
+  )}
+</Tooltip> */
 
 export { Search };

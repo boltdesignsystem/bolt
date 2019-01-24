@@ -8,8 +8,8 @@
 {% for display in schema.properties.display.enum %}
   <h3>{{ display }}:</h3>
   {% embed "@bolt-components-code-snippet/code-snippet.twig" with {
-    "display": display,
-    "content": code
+    display: display,
+    content: code
   } only %}
   {% endembed %}
 {% endfor %}

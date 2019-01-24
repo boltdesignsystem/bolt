@@ -36,6 +36,7 @@ const auth = Buffer.from(`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`).toString(
 );
 
 let srcFolders = globby.sync([
+  'docs-site/**/*.e2e.js',
   'packages/**/*.e2e.js',
   'apps/**/*.e2e.js',
   'test/*/*.e2e.js',

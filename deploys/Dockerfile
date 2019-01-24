@@ -1,5 +1,6 @@
 ARG GIT_SHA=master
-FROM basaltinc/docker-node-php-base:latest
+# FROM basaltinc/docker-node-php-base:latest
+FROM boltdesignsystem/bolt-docker:lastest
 WORKDIR /app
 #COPY . .
 EXPOSE 3123
@@ -10,8 +11,6 @@ RUN echo "Building git sha: ${GIT_SHA}" && \
   echo "And am building this commit: " && \
   git log -n 1 HEAD
 
-RUN yarn install
-RUN composer global require hirak/prestissimo
 RUN yarn run setup
 RUN yarn run build
 

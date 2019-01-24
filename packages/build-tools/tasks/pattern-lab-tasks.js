@@ -126,25 +126,25 @@ async function compile() {
   const isPatternLabAlreadyCompiled =
     jsFolderExists && scssFolderExists && indexHtmlExists;
 
-  // check if pattern lab's UIKIt assets exist -- automatically regenerate if the required assets are missing.
-  if (!isPatternLabAlreadyCompiled) {
-    chalk.yellow('⚠️ Uh-oh. Pattern Labs UIKit is missing... Regenerating!');
-    sh(
-      'yarn',
-      [
-        '--cwd',
-        path.join(process.cwd(), '../packages/uikit-workshop'),
-        'run',
-        'build',
-      ],
-      false,
-      false,
-    ).then(output => {
-      // console.log(output);
-    });
-  }
-
-  await plBuild(true);
+  await plBuild(true).then(output => {
+    // check if pattern lab's UIKIt assets exist -- automatically regenerate if the required assets are missing.
+    if (!isPatternLabAlreadyCompiled || config.prod === true) {
+      chalk.yellow('⚠️ Uh-oh. Pattern Labs UIKit is missing... Regenerating!');
+      sh(
+        'yarn',
+        [
+          '--cwd',
+          path.join(process.cwd(), '../packages/uikit-workshop'),
+          'run',
+          'build',
+        ],
+        false,
+        true,
+      ).then(output => {
+        // console.log(output);
+      });
+    }
+  });
 }
 
 compile.description = 'Compile Pattern Lab';
