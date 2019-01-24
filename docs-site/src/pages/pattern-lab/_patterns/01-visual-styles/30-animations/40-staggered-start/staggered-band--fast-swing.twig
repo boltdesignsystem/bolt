@@ -1,4 +1,4 @@
-<div id="staggered-animation-band">
+<div id="staggered-animation-band--fast-swing">
 {% include "@bolt-components-band/band--collection.twig" with {
   size: "medium",
   theme: "xlight",
@@ -87,26 +87,26 @@
 } %}
 </div>
 
-<button id="staggered-animation-band__trigger">Click Me</button>
-<button id="staggered-animation-band__reset">Reset</button>
+<button id="staggered-animation-band--fast-swing__trigger">Click Me</button>
+<button id="staggered-animation-band--fast-swing__reset">Reset</button>
 
 <script>
   // Event handler for button to fire demo staggered fade in slide up
   document
-    .querySelector('#staggered-animation-band__trigger')
+    .querySelector('#staggered-animation-band--fast-swing__trigger')
     .addEventListener('click', function() {
       // Trigger staggered animation
       document
-        .querySelector('#staggered-animation-band')
+        .querySelector('#staggered-animation-band--fast-swing')
         .dispatchEvent(new Event('anim-trigger'));
     });
 
   // Reset Button - Clear out old demo animation trigger data attributes
   document
-    .querySelector('#staggered-animation-band__reset')
+    .querySelector('#staggered-animation-band--fast-swing__reset')
     .addEventListener('click', function() {
       document
-        .querySelectorAll('#staggered-animation-band .o-bolt-grid__cell')
+        .querySelectorAll('#staggered-animation-band--fast-swing .o-bolt-grid__cell')
         .forEach(function(element) {
           element.setAttribute('data-anim-triggered', 'no');
         });
@@ -126,10 +126,10 @@
 
   // add eventHandlers to staggered anim content
   document
-    .querySelector('#staggered-animation-band')
+    .querySelector('#staggered-animation-band--fast-swing')
     .addEventListener('anim-trigger', function() {
-      document.querySelectorAll('.o-bolt-grid__cell').forEach(function(element, index) {
-        var delay = 250 * index;
+      document.querySelectorAll('#staggered-animation-band--fast-swing .o-bolt-grid__cell').forEach(function(element, index) {
+        var delay = 400 * index;
         setTimeout(function() {
           triggerAnimation(element);
         }.bind(element), delay);
