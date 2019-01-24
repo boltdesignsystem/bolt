@@ -68,19 +68,42 @@
       @include bolt-transition__fade-in($active: true);
     }
   }
-
   &.demo-animated-slider--fade-out {
     @include bolt-transition__fade-out($base: true);
     &:hover {
       @include bolt-transition__fade-out($active: true);
     }
   }
-
   &.demo-animated-slider--fade-in-slide-up {
     @include bolt-transition__fade-in-slide-up($base: true);
     &:hover {
       @include bolt-transition__fade-in-slide-up($active: true);
     }
+  }
+
+  // Animations
+  &.demo-animated-slider--spin {
+    @include bolt-animation__spin($base: true);
+    &:hover {
+      @include bolt-animation__spin($active: true);
+    }
+  }
+  // Animations
+  &.demo-animated-slider--spin-delay {
+    @include bolt-animation__spin($base: true, $delay: $bolt-delay--long);
+    &:hover {
+      @include bolt-animation__spin($active: true);
+    }
+  }
+  // Animations
+  &.demo-animated-slider--quickly {
+    @include bolt-animation__spin($base: true, $duration: $bolt-duration--xfast);
+    &:hover {
+      @include bolt-animation__spin($active: true);
+    }
+  }
+  &.demo-animated-slider--active {
+    @include bolt-animation__spin($base: true, $duration: $bolt-duration--slow, $active: true, $timing-function: $bolt-timing--linear);
   }
 }
 
