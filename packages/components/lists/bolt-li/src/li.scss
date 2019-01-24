@@ -108,7 +108,7 @@ bolt-ol {
 }
 
 // [Mai] This is an IE specific fix to center the number inside the circle. IE calculates line-height differently.
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+@include bolt-ie11-only {
   .c-bolt-li--ol-item:before {
     line-height: $bolt-line-height--medium;
   }
