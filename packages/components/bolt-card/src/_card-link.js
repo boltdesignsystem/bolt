@@ -14,8 +14,10 @@ let cx = classNames.bind(styles);
 class BoltCardLink extends BoltAction {
   static is = 'bolt-card-link';
 
-  constructor() {
-    super();
+  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  constructor(self) {
+    self = super(self);
+    return self;
   }
 
   render() {
