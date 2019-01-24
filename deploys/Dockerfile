@@ -1,6 +1,6 @@
 ARG GIT_SHA=master
 # FROM basaltinc/docker-node-php-base:latest
-FROM boltdesignsystem/bolt-docker:lastest
+FROM boltdesignsystem/bolt-docker:latest
 WORKDIR /app
 #COPY . .
 EXPOSE 3123

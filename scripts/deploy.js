@@ -92,7 +92,7 @@ async function init() {
         //`--meta TRAVIS_PULL_REQUEST_BRANCH="${TRAVIS_PULL_REQUEST_BRANCH}"`,
         //`--meta TRAVIS_BRANCH="${TRAVIS_BRANCH}"`,
         //`--meta branchName="${branchName}"`,
-        //`--meta gitSha="${gitSha}"`,
+        `--meta gitSha="${gitSha}"`,
         '--env',
         `GIT_SHA=${gitSha}`,
         '--build-env',
@@ -116,6 +116,7 @@ async function init() {
     //   ],
     //   { encoding: 'utf8' },
     // );
+    console.log(deployOutput.stdout);
 
     if (deployOutput.status !== 0) {
       console.error('Error deploying:');
