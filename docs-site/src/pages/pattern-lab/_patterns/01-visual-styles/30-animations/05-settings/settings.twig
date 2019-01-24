@@ -1,24 +1,57 @@
 <div style="max-width: 400px; padding: 40px">
   <h2>Durations</h2>
-  <div class="demo-animated-slider demo-animated-slider--duration-xfast"><strong>Extra Fast</strong> (Hover to see effect)</div>
-  <div class="demo-animated-slider demo-animated-slider--duration-fast"><strong>Fast</strong> (Hover to see effect)</div>
-  <div class="demo-animated-slider demo-animated-slider--duration-medium"><strong>Medium</strong> (Hover to see effect)</div>
-  <div class="demo-animated-slider demo-animated-slider--duration-slow"><strong>Slow</strong> (Hover to see effect)</div>
-  <div class="demo-animated-slider demo-animated-slider--duration-xslow"><strong>Extra Slow</strong> (Hover to see effect)</div>
+  <div id="durations-demo">
+    <div class="demo-animated-slider demo-animated-slider--duration-xfast"><strong>Extra Fast</strong> (Hover to see effect)</div>
+    <div class="demo-animated-slider demo-animated-slider--duration-fast"><strong>Fast</strong> (Hover to see effect)</div>
+    <div class="demo-animated-slider demo-animated-slider--duration-medium"><strong>Medium</strong> (Hover to see effect)</div>
+    <div class="demo-animated-slider demo-animated-slider--duration-slow"><strong>Slow</strong> (Hover to see effect)</div>
+    <div class="demo-animated-slider demo-animated-slider--duration-xslow"><strong>Extra Slow</strong> (Hover to see effect)</div>
+  </div>
+  <button id="durations-demo-trigger">Click Me</button>
+  <script>
+    document.querySelector('#durations-demo-trigger').addEventListener('click', function() {
+      document.querySelectorAll('#durations-demo .demo-animated-slider').forEach(function(el) {el.setAttribute('data-anim-triggered', 'yes')});
+      setTimeout(function() {
+        document.querySelectorAll('#durations-demo .demo-animated-slider').forEach(function(el) {el.setAttribute('data-anim-triggered', 'no')});
+      }, 2000);
+    });
+  </script>
 
   <h2>Timing Functions</h2>
-  <div class="demo-animated-slider demo-animated-slider--timing-linear"><strong>Linear</strong> (Hover to see effect)</div>
-  <div class="demo-animated-slider demo-animated-slider--timing-ease-out"><strong>Ease out</strong> (Hover to see effect)</div>
-  <div class="demo-animated-slider demo-animated-slider--timing-ease-in"><strong>Ease In</strong> (Hover to see effect)</div>
-  <div class="demo-animated-slider demo-animated-slider--timing-ease-in-out"><strong>East In Out</strong> (Hover to see effect)</div>
-  <div class="demo-animated-slider demo-animated-slider--timing-swing-in-out"><strong>Swing In Out</strong> (Hover to see effect)</div>
-  <div class="demo-animated-slider demo-animated-slider--timing-burst"><strong>Burst</strong> (Hover to see effect)</div>
+  <div id="timings-demo">
+    <div class="demo-animated-slider demo-animated-slider--timing-linear"><strong>Linear</strong> (Hover to see effect)</div>
+    <div class="demo-animated-slider demo-animated-slider--timing-ease-out"><strong>Ease out</strong> (Hover to see effect)</div>
+    <div class="demo-animated-slider demo-animated-slider--timing-ease-in"><strong>Ease In</strong> (Hover to see effect)</div>
+    <div class="demo-animated-slider demo-animated-slider--timing-ease-in-out"><strong>East In Out</strong> (Hover to see effect)</div>
+    <div class="demo-animated-slider demo-animated-slider--timing-swing-in-out"><strong>Swing In Out</strong> (Hover to see effect)</div>
+    <div class="demo-animated-slider demo-animated-slider--timing-burst"><strong>Burst</strong> (Hover to see effect)</div>
+  </div>
+  <button id="timings-demo-trigger">Click Me</button>
+  <script>
+    document.querySelector('#timings-demo-trigger').addEventListener('click', function() {
+      document.querySelectorAll('#timings-demo .demo-animated-slider').forEach(function(el) {el.setAttribute('data-anim-triggered', 'yes')});
+      setTimeout(function() {
+        document.querySelectorAll('#timings-demo .demo-animated-slider').forEach(function(el) {el.setAttribute('data-anim-triggered', 'no')});
+      }, 2000);
+    });
+  </script>
 
   <h2>Delays</h2>
+  <div id="delays-demo">
   <div class="demo-animated-slider demo-animated-slider--delay-xsmall"><strong>Extra Fast</strong> (Hover to see effect)</div>
   <div class="demo-animated-slider demo-animated-slider--delay-small"><strong>Fast</strong> (Hover to see effect)</div>
   <div class="demo-animated-slider demo-animated-slider--delay-medium"><strong>Medium</strong> (Hover to see effect)</div>
   <div class="demo-animated-slider demo-animated-slider--delay-long"><strong>Slow</strong> (Hover to see effect)</div>
   <div class="demo-animated-slider demo-animated-slider--delay-xlong"><strong>Extra Slow</strong> (Hover to see effect)</div>
+  </div>
+  <button id="delays-demo-trigger">Click Me</button>
+  <script>
+    document.querySelector('#delays-demo-trigger').addEventListener('click', function() {
+      document.querySelectorAll('#delays-demo .demo-animated-slider').forEach(function(el) {el.setAttribute('data-anim-triggered', 'yes')});
+      setTimeout(function() {
+        document.querySelectorAll('#delays-demo .demo-animated-slider').forEach(function(el) {el.setAttribute('data-anim-triggered', 'no')});
+      }, 2000);
+    });
+  </script>
 
 </div>

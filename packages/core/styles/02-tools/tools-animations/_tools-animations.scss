@@ -15,15 +15,13 @@
 /// @param {String|Number} $iteration [infinite] - Number of iterations of the animation to go through. Number or defaults to infinite
 /// @param {String} $direction [normal] - Animation direction (normal, reserve, etc)
 /// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
-///
 /// @example Fade-in on hover
 /// .class {
-//    @include bolt-transition__fade-in($base: true);
-//    &:hover {
-//      @include bolt-transition__fade-in($active: true);
-//    }
-//  }
-///
+///    @include bolt-transition__fade-in($base: true);
+///    &:hover {
+///      @include bolt-transition__fade-in($active: true);
+///    }
+///  }
 @mixin bolt-animation__spin(
   $base: false,
   $active: false,

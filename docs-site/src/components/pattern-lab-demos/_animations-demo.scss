@@ -122,17 +122,7 @@
   transition-timing-function: $bolt-timing--linear;
 }
 
+.demo-animated-slider[data-anim-triggered="yes"]::after,
 .demo-animated-slider:hover::after {
   left: calc(100% - 8px);
 }
-
-//.demo-animated-slider.transition-opacity:hover {
-//  opacity: 0;
-//}
-
-//.demo-animated-slider {
-//  &.transition-opacity {
-//    transition: opacity $bolt-duration--medium $bolt-timing--burst
-//      $bolt-delay--xsmall;
-//  }
-//}

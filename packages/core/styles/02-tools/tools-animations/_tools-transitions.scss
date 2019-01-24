@@ -15,11 +15,11 @@
 /// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
 /// @example Fade-in on hover
 /// .class {
-//    @include bolt-transition__fade-in($base: true);
-//    &:hover {
-//      @include bolt-transition__fade-in($active: true);
-//    }
-//  }
+///   @include bolt-transition__fade-in($base: true);
+///   &:hover {
+///     @include bolt-transition__fade-in($active: true);
+///   }
+/// }
 @mixin bolt-transition__fade-in(
   $base: false,
   $active: false,
@@ -33,8 +33,8 @@
     transition-duration: $duration;
     transition-delay: $delay;
     transition-timing-function: $timing-function;
-    will-change: opacity;
     transform: translateZ(0);
+    will-change: opacity;
   }
   @if $active {
     opacity: 1;
@@ -49,11 +49,11 @@
 /// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
 /// @example Fade-out on hover
 /// .class {
-//    @include bolt-transition__fade-in($base: true);
-//    &:hover {
-//      @include bolt-transition__fade-in($active: true);
-//    }
-//  }
+///   @include bolt-transition__fade-in($base: true);
+///   &:hover {
+///     @include bolt-transition__fade-in($active: true);
+///   }
+/// }
 @mixin bolt-transition__fade-out(
   $base: false,
   $active: false,
@@ -84,11 +84,11 @@
 /// @param {String} $slide-up-distance [$bolt-spacing-gutter] - Delay before transition
 /// @example Fade-in and slide-up on hover
 /// .class {
-//    @include bolt-transition__fade-in($base: true);
-//    &:hover {
-//      @include bolt-transition__fade-in($active: true);
-//    }
-//  }
+///   @include bolt-transition__fade-in($base: true);
+///   &:hover {
+///     @include bolt-transition__fade-in($active: true);
+///   }
+/// }
 @mixin bolt-transition__fade-in-slide-up(
   $base: false,
   $active: false,
@@ -100,8 +100,8 @@
   @if $base {
     opacity: 0;
     transform: translateY($slide-up-distance) translateZ(0);
-    transition: opacity $duration $timing-function $delay, transform $duration $timing-function $delay;
     will-change: opacity;
+    transition: opacity $duration $timing-function $delay, transform $duration $timing-function $delay;
   }
   @if $active {
     opacity: 1;
