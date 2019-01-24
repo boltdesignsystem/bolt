@@ -31,9 +31,11 @@ $bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
     width: $bolt-ul-bullet-size;
     height: $bolt-ul-bullet-size;
     line-height: $bolt-ul-bullet-size;
-    border: $bolt-border-width $bolt-border-style currentColor;
     border-radius: $bolt-ul-bullet-size;
-    background-color: currentColor;
+    border-width: $bolt-border-width;
+    border-style: $bolt-border-style;
+    border-color: bolt-theme(headline);
+    background-color: bolt-theme(headline);
   }
 
   &.c-bolt-li--level {
