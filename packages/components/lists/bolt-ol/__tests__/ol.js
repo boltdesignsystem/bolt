@@ -1,11 +1,7 @@
-const { render } = require('@bolt/twig-renderer');
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../ol.schema.yml'));
-const { tag } = schema.properties;
+const { render, renderString } = require('@bolt/twig-renderer');
 
-describe('<bolt-image>', async () => {
-  test('<bolt-card>', async () => {
+describe('<bolt-ol> Component', async () => {
+  test('basic usage with attributes', async () => {
     const results = await render('@bolt-components-ol/ol.twig', {
       attributes: {
         class: ['some-class', 'another-class'],
@@ -18,7 +14,58 @@ describe('<bolt-image>', async () => {
         'Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.',
       ],
     });
-    console.log({ results });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('with nested <bolt-ul> list compiles', async () => {
+    const results = await renderString(`
+      {% include '@bolt-components-ol/ol.twig' with {
+        items: [
+          'Do not include any data or information in your posts that are confidential!',
+          'Apply basic practices for collaborative work.',
+          'Be honest, respectful, trustworthy and helpful.',
+          'Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.',
+          [
+            'Answer questions authoritatively and concisely.',
+            include('@bolt-components-ul/ul.twig', {
+              items: [
+                'Item 1',
+                'Item 2',
+                'Item 3',
+                'Item 4'
+              ]
+            })
+          ]
+        ]
+      } %}
+    `);
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('with nested <bolt-ol> list compiles', async () => {
+    const results = await renderString(`
+      {% include '@bolt-components-ol/ol.twig' with {
+        items: [
+          'Do not include any data or information in your posts that are confidential!',
+          'Apply basic practices for collaborative work.',
+          'Be honest, respectful, trustworthy and helpful.',
+          'Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.',
+          [
+            'Answer questions authoritatively and concisely.',
+            include('@bolt-components-ol/ol.twig', {
+              items: [
+                'Item 1',
+                'Item 2',
+                'Item 3',
+                'Item 4'
+              ]
+            })
+          ]
+        ]
+      } %}
+    `);
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
