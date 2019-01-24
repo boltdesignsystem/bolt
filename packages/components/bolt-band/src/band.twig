@@ -9,17 +9,6 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 
-{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
-{% set tag_options = schema.properties.tag.enum %}
-{% set size_options = schema.properties.size.enum %}
-{% set theme_options = schema.properties.theme.enum %}
-
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
-{% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
-{% set size = size in size_options ? size : schema.properties.size.default %}
-{% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
-{% set full_bleed = full_bleed is sameas(true) or full_bleed is sameas(false) ? full_bleed : schema.properties.full_bleed.default %}
-
 {# Deprecated #}
 {% if fullBleed %}
   {% set full_bleed = fullBleed %}
@@ -37,11 +26,22 @@
   {% set items = null %}
 {% endif %}
 
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
+{% set tag_options = schema.properties.tag.enum %}
+{% set size_options = schema.properties.size.enum %}
+{% set theme_options = schema.properties.theme.enum %}
+
+{# Check that the component's current prop values are valid. if not, default to the schema default #}
+{% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
+{% set size = size in size_options ? size : schema.properties.size.default %}
+{% set theme = theme in theme_options ? theme : schema.properties.theme.default %}
+{% set full_bleed = full_bleed is sameas(true) or full_bleed is sameas(false) ? full_bleed : schema.properties.full_bleed.default %}
+
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  size in size_options and size != "none" ? "#{base_class}--#{size}" : "",
-  theme in theme_options and theme != "none" ? "t-bolt-#{theme}" : "",
+  size != "none" ? "#{base_class}--#{size}" : "",
+  theme != "none" ? "t-bolt-#{theme}" : "",
   full_bleed ? "#{base_class}--full-bleed",
 ] %}
 
