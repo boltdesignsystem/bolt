@@ -14,7 +14,11 @@ const STATES = {
 };
 let state = STATES.NOT_STARTED;
 
-async function init() {
+/**
+ * Initialize Twig Renderer instance
+ * @param {Boolean} keepAlive - Optionally tell the Twig renderer service to keep alive to help speed up requests
+ */
+async function init(keepAlive = false) {
   state = STATES.STARTING;
   const config = await getConfig();
   const relativeFrom = path.dirname(config.configFileUsed);
@@ -32,21 +36,21 @@ async function init() {
     debug: true,
     alterTwigEnv: config.alterTwigEnv,
     hasExtraInfoInResponses: false, // Will add `info` onto results with a lot of info about Twig Env
-    maxConcurrency: 10,
-    keepAlive: false, // setting this to true will cause subsequent template / page recompiles to not regenerate when the source files have changed
+    maxConcurrency: 50,
+    keepAlive, // only set this to be true when doing in-browser requests to avoid issues with this process not exiting when complete
   });
   state = STATES.READY;
 }
 
-async function prep() {
+async function prep(keepAlive) {
   switch (state) {
     case STATES.READY:
       return;
     case STATES.NOT_STARTED:
-      return await init();
+      return await init(keepAlive);
     case STATES.STARTING:
       while (state === STATES.STARTING) {
-        await sleep(100); // eslint-disable-line no-await-in-loop
+        await sleep(20); // eslint-disable-line no-await-in-loop
       }
   }
 }
@@ -55,10 +59,11 @@ async function prep() {
  * Render Twig Template
  * @param {string} template - Template name (i.e. `@bolt/button.twig`)
  * @param {Object} data - Optional data to pass to template
+ * @param {Boolean} keepAlive - Optionally tell the Twig renderer service to keep alive to help speed up requests
  * @return {Promise<{{ ok: boolean, html: string, message: string}}>} - Results of render
  */
-async function render(template, data = {}) {
-  await prep();
+async function render(template, data = {}, keepAlive = false) {
+  await prep(keepAlive);
   const results = await twigRenderer.render(template, data);
   return results;
 }
@@ -67,10 +72,11 @@ async function render(template, data = {}) {
  * Render Twig String
  * @param {string} templateString - String that is a Twig template (i.e. `<p>{{ text }}</p>`)
  * @param {Object} data - Optional data to pass to template
+ * @param {Boolean} keepAlive - Optionally tell the Twig renderer service to keep alive to help speed up requests
  * @return {Promise<{{ ok: boolean, html: string, message: string}}>} - Results of render
  */
-async function renderString(templateString, data = {}) {
-  await prep();
+async function renderString(templateString, data = {}, keepAlive = false) {
+  await prep(keepAlive);
   const results = await twigRenderer.renderString(templateString, data);
   // console.log({ results });
   return results;
