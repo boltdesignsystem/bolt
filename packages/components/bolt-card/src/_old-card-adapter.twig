@@ -111,6 +111,34 @@
   {% endif %}
 {% endset %}
 
+{% if teasers %}
+  {% set teaserItems = {} %}
+  {% set items = [] %}
+
+  {% set cardBody %}
+    {% for teaser in teasers %}
+
+      {% set teaserItem %}
+        {% include "@bolt/teaser.twig" with teaser only %}
+      {% endset %}
+
+      {% set items = items | merge([teaserItem]) %}
+
+    {% endfor %}
+
+
+    {% set teaserItems = teaserItems | merge({
+      display: "block",
+      separator: "solid",
+      spacing: "medium",
+      inset: true,
+      items: items,
+    }) %}
+
+    {% include "@bolt-components-list/list.twig" with teaserItems only %}
+  {% endset %}
+{% endif %}
+
 {% set cardContent %}
   {{ cardMedia }}
   {{ cardBody }}
