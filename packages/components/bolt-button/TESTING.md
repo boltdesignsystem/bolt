@@ -131,7 +131,7 @@
 
 ## Slotted content renders as expected
 
-1. Slotted content nested inside the`<bolt-button>` when initially booting up is placed inside the correct inner container (ex. `c-bolt-button__item` vs `c-bolt-button__icon`) if a slot attribute is used.
+1. Slotted content nested inside the `<bolt-button>` when initially booting up is placed inside the correct inner container (ex. `c-bolt-button__item` vs `c-bolt-button__icon`) if a slot attribute is used.
 
 ```html
 <bolt-button>
@@ -140,7 +140,7 @@
 </bolt-button>
 ```
 
-2. Slotted content nested inside the`<bolt-button>` when initially booting up is placed inside the default button slot (ex. `c-bolt-button__item`) if a slot attribute is not specified.
+2. Slotted content nested inside the `<bolt-button>` when initially booting up is placed inside the default button slot (ex. `c-bolt-button__item`) if a slot attribute is not specified.
 
 ```html
 <bolt-button>
