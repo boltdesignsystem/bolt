@@ -78,6 +78,10 @@
   {% set attributes = attributes.setAttribute("eyebrow", "") %}
 {% endif %}
 
+{% if slot %}
+  {% set attributes = attributes.setAttribute("slot", slot) %}
+{% endif %}
+
 {# Icon specific attributes #}
 {# this is for when someone is using an eyebrow, headline, or subheadline with url but doesn't want the chevron right #}
 
