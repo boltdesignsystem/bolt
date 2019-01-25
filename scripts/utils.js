@@ -102,7 +102,7 @@ function getLatestDeploy() {
         process.stderr.write(`Error getting latest now.sh deploy: ${results.error.message}`);
         process.exit(1);
       }
-      console.log(results.deployments);
+      // console.log(results.deployments);
       // If a deployment hasn't finished uploading (is incomplete), the url property will have a value of null.
       const result = results.deployments.find(d => d.url);
       if (result) {
