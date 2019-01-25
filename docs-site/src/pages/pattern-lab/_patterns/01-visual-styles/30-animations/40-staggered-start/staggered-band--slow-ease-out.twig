@@ -1,3 +1,7 @@
+
+<button id="staggered-animation-band--slow-ease-out__trigger">Click Me</button>
+<button id="staggered-animation-band--slow-ease-out__reset">Reset</button>
+
 <div id="staggered-animation-band--slow-ease-out">
 {% include "@bolt-components-band/band--collection.twig" with {
   size: "medium",
@@ -87,9 +91,6 @@
 } %}
 </div>
 
-<button id="staggered-animation-band--slow-ease-out__trigger">Click Me</button>
-<button id="staggered-animation-band--slow-ease-out__reset">Reset</button>
-
 <script>
   // Event handler for button to fire demo staggered fade in slide up
   document
@@ -106,7 +107,7 @@
     .querySelector('#staggered-animation-band--slow-ease-out__reset')
     .addEventListener('click', function() {
       document
-        .querySelectorAll('#staggered-animation-band--slow-ease-out .o-bolt-grid__cell')
+        .querySelectorAll('#staggered-animation-band--slow-ease-out [class*="bolt"]')
         .forEach(function(element) {
           element.setAttribute('data-anim-triggered', 'no');
         });
@@ -128,8 +129,8 @@
   document
     .querySelector('#staggered-animation-band--slow-ease-out')
     .addEventListener('anim-trigger', function() {
-      document.querySelectorAll('#staggered-animation-band--slow-ease-out .o-bolt-grid__cell').forEach(function(element, index) {
-        var delay = 400 * index;
+      document.querySelectorAll('#staggered-animation-band--slow-ease-out [class*="bolt"]').forEach(function(element, index) {
+        var delay = 100 * index;
         setTimeout(function() {
           triggerAnimation(element);
         }.bind(element), delay);

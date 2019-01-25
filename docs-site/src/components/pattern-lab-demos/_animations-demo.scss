@@ -141,10 +141,10 @@
   }
 }
 
-#staggered-animation-band--slow-ease-out .o-bolt-grid__cell {
-  @include bolt-transition--fade-in-slide-up($base: true, $timing-function: $bolt-timing--ease-out, $duration: $bolt-duration--xslow, $delay: $bolt-delay--xsmall);
+#staggered-animation-band--slow-ease-out [class*="bolt"] {
+  @include bolt-transition--fade-in-slide-up($base: true, $timing-function: $bolt-timing--ease-out, $duration: $bolt-duration--fast, $delay: $bolt-delay--xsmall);
   &[data-anim-triggered="yes"] {
-    @include bolt-transition--fade-in-slide-up($active: true, $timing-function: $bolt-timing--ease-out, $duration: $bolt-duration--xslow, $delay: $bolt-delay--xsmall);
+    @include bolt-transition--fade-in-slide-up($active: true, $timing-function: $bolt-timing--ease-out, $duration: $bolt-duration--fast, $delay: $bolt-delay--xsmall);
   }
 }
 
