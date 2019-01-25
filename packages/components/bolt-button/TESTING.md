@@ -17,7 +17,7 @@
 </form>
 ```
 
-3. Like all Bolt components, any individual `<bolt-button>`  can always be forced to render to the Light DOM (if a `no-shadow` attribute is added to the custom element tag.
+3. Like all Bolt components, any individual `<bolt-button>` can always be forced to render to the Light DOM if a `no-shadow` attribute is added to the custom element tag.
 
 ```html
 <bolt-button no-shadow>Light DOM via the <code>no-shadow</code> attribute</bolt-button>
@@ -32,7 +32,7 @@
 
 ## Responds to prop changes as expected
 
-1. Changing the button color attribute in the browser (ex. `primary` to `secondary` triggers the component to visually re-render as expected (including the correct class names being used internally):
+1. Changing the button `color` attribute in the browser (ex. `primary` to `secondary`) triggers the component to visually re-render as expected (including the correct class names being used internally):
 
 - [ ] In JavaScript-only buttons being rendered to the Shadow DOM
 - [ ] In JavaScript-only buttons being rendered to the Light DOM
@@ -41,9 +41,9 @@
 
 ## Event handlers work as expected		
 
-1. `<bolt-button>` on-click events are properly attached and work as expected (ex. `<bolt-button>` will toggle the `<bolt-video>` component to start / stop to play when wired up correctly)
+1. `<bolt-button>` on-click events are properly attached and work as expected (ex. `<bolt-button>` will toggle the `<bolt-video>` component to start / stop to play when wired up correctly).
 
-2. `<bolt-button>` on-click events are properly attached and work as expected when buttons are added to the page dynamically 
+2. `<bolt-button>` on-click events are properly attached and work as expected when buttons are added to the page dynamically.
 
 > For example,  a `<bolt-buttons>` that’s inside a nested card injected via Get Smart Content will respond to click events as expected.
 
@@ -185,7 +185,7 @@ Functional testing should be performed manually by the QA team across the standa
 1. And I am viewing the URL "[https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-button/index.html)"
 1. Then I should see the text "Bolt Button"
 1. When I refresh the page
-1. And I immediately begin swiping up up to scroll the page
+1. And I immediately begin swiping up to scroll the page
 1. Then the page should scroll smoothly with less than "1" second of delay
 
 
