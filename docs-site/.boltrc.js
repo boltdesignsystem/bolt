@@ -72,6 +72,7 @@ const config = {
   components: {
     global: [
       '@bolt/global',
+      '@bolt/animations',
       '@bolt/schema-form',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',

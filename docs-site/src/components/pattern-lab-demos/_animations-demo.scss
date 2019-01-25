@@ -1,3 +1,5 @@
+@import '@bolt/animations';
+
 .demo-animated-slider {
   position: relative;
   margin-bottom: 1em;
@@ -97,13 +99,21 @@
   }
   // Animations
   &.demo-animated-slider--quickly {
-    @include bolt-animation__spin($base: true, $duration: $bolt-duration--xfast);
+    @include bolt-animation__spin(
+      $base: true,
+      $duration: $bolt-duration--xfast
+    );
     &:hover {
       @include bolt-animation__spin($active: true);
     }
   }
   &.demo-animated-slider--active {
-    @include bolt-animation__spin($base: true, $duration: $bolt-duration--slow, $active: true, $timing-function: $bolt-timing--linear);
+    @include bolt-animation__spin(
+      $base: true,
+      $duration: $bolt-duration--slow,
+      $active: true,
+      $timing-function: $bolt-timing--linear
+    );
   }
 }
 
@@ -122,35 +132,55 @@
   transition-timing-function: $bolt-timing--linear;
 }
 
-.demo-animated-slider[data-anim-triggered="yes"]::after,
+.demo-animated-slider[data-anim-triggered='yes']::after,
 .demo-animated-slider:hover::after {
   left: calc(100% - 8px);
 }
 
 .staggered-animation-demo__item {
   @include bolt-transition--fade-in-slide-up($base: true);
-  &[data-anim-triggered="yes"] {
+  &[data-anim-triggered='yes'] {
     @include bolt-transition--fade-in-slide-up($active: true);
   }
 }
 
 #staggered-animation-band .o-bolt-grid__cell {
   @include bolt-transition--fade-in-slide-up($base: true);
-  &[data-anim-triggered="yes"] {
+  &[data-anim-triggered='yes'] {
     @include bolt-transition--fade-in-slide-up($active: true);
   }
 }
 
-#staggered-animation-band--slow-ease-out [class*="bolt"] {
-  @include bolt-transition--fade-in-slide-up($base: true, $timing-function: $bolt-timing--ease-out, $duration: $bolt-duration--fast, $delay: $bolt-delay--xsmall);
-  &[data-anim-triggered="yes"] {
-    @include bolt-transition--fade-in-slide-up($active: true, $timing-function: $bolt-timing--ease-out, $duration: $bolt-duration--fast, $delay: $bolt-delay--xsmall);
+#staggered-animation-band--slow-ease-out [class*='bolt'] {
+  @include bolt-transition--fade-in-slide-up(
+    $base: true,
+    $timing-function: $bolt-timing--ease-out,
+    $duration: $bolt-duration--fast,
+    $delay: $bolt-delay--xsmall
+  );
+  &[data-anim-triggered='yes'] {
+    @include bolt-transition--fade-in-slide-up(
+      $active: true,
+      $timing-function: $bolt-timing--ease-out,
+      $duration: $bolt-duration--fast,
+      $delay: $bolt-delay--xsmall
+    );
   }
 }
 
 #staggered-animation-band--fast-swing .o-bolt-grid__cell {
-  @include bolt-transition--fade-in-slide-up($base: true, $timing-function: $bolt-timing--swing-in-out, $duration: $bolt-duration--xslow, $delay: $bolt-delay--xsmall);
-  &[data-anim-triggered="yes"] {
-    @include bolt-transition--fade-in-slide-up($active: true, $timing-function: $bolt-timing--swing-in-out, $duration: $bolt-duration--xslow, $delay: $bolt-delay--xsmall);
+  @include bolt-transition--fade-in-slide-up(
+    $base: true,
+    $timing-function: $bolt-timing--swing-in-out,
+    $duration: $bolt-duration--xslow,
+    $delay: $bolt-delay--xsmall
+  );
+  &[data-anim-triggered='yes'] {
+    @include bolt-transition--fade-in-slide-up(
+      $active: true,
+      $timing-function: $bolt-timing--swing-in-out,
+      $duration: $bolt-duration--xslow,
+      $delay: $bolt-delay--xsmall
+    );
   }
 }
