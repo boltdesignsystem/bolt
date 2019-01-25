@@ -66,6 +66,7 @@
   // Transition mixins
   &.demo-animated-slider--fade-in {
     @include bolt-transition__fade-in($base: true);
+    &[data-anim-triggered="yes"],
     &:hover {
       @include bolt-transition__fade-in($active: true);
     }
