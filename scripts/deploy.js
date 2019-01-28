@@ -197,7 +197,7 @@ async function init() {
     }
 
     try {
-      const child = shell.exec(`now deploy --meta gitSha="${gitSha}" --env GIT_SHA=${gitSha} --build-env GIT_SHA=${gitSha} --platform-version=1 --team=boltdesignsystem`).stdout;
+      const child = shell.exec(`now deploy --meta gitSha="${gitSha}" --env GIT_SHA=${gitSha} --build-env GIT_SHA=${gitSha} --platform-version=1 --team=boltdesignsystem --token=${NOW_TOKEN}`).stdout;
 
       await handleNowDeploy(child);
     } catch (error) {
