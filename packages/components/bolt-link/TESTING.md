@@ -2,9 +2,9 @@
 
 ## Button renders as expected
 
-1. Server-side (Twig) pre-rendered links perform a one-time upgrade to become fully client-side (JS) rendered web components. When the web component initializes, its inner HTML is replaced, including the `<replace-with-children>` helper element, while the content inside the HTML is retained.
+1. Server-side pre-rendered custom elements perform a one-time upgrade to become fully client-side rendered web components. When a web component initializes, its inner HTML is replaced, including the `<replace-with-children>` helper element, while the content inside the HTML is retained.
 
-1. When a link web component initializes, it will be rendered either to the Shadow DOM or to the Light DOM. The default is to render to the Shadow DOM, but it will render to the Light DOM in the following cases:
+1. When a web component initializes, it will be rendered either to the Shadow DOM or to the Light DOM. The default behavior is to render to the Shadow DOM, but it will render to the Light DOM in the following cases:
 
    - You are using an older browser (IE11).
    - The component is nested inside a `<form>` tag:
