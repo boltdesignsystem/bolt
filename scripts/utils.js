@@ -1,5 +1,9 @@
 const http = require('https');
 const qs = require('querystring');
+const execa = require('execa');
+
+// helper function to get gitSha without needing a GITHUB_TOKEN (for local dev);
+const gitSha = execa.sync('git', ['rev-parse', '--short', 'HEAD']).stdout;
 
 /**
  * @param {Object} opt
@@ -41,7 +45,6 @@ function post({ path, requestBody, query, TOKEN }) {
     req.end();
   });
 }
-
 
 /**
  * @param {Object} opt
@@ -91,31 +94,40 @@ function getLatestDeploy() {
   }
   return new Promise((resolve, reject) => {
     get({
-      path: '/v2/now/deployments',
+      path: '/v4/now/deployments',
       hostname: 'api.zeit.co',
       TOKEN: process.env.NOW_TOKEN,
       query: {
         teamId: 'team_etXPus2wqbe3W15GcdHsbAs8', // boltdesignsystem
       },
-    }).then(results => {
-      if (results.error) {
-        process.stderr.write(`Error getting latest now.sh deploy: ${results.error.message}`);
-        process.exit(1);
-      }
-      // console.log(results.deployments);
-      // If a deployment hasn't finished uploading (is incomplete), the url property will have a value of null.
-      const result = results.deployments.find(d => d.url);
-      if (result) {
-        resolve(`https://${result.url}`);
-      } else {
-        reject(new Error('No deployments found'));
-      }
-    }).catch(error => {
-      reject(error);
-    });
+    })
+      .then(results => {
+        if (results.error) {
+          process.stderr.write(
+            `Error getting latest now.sh deploy: ${results.error.message}`,
+          );
+          process.exit(1);
+        }
+
+        // If a deployment hasn't finished uploading (is incomplete), the url property will have a value of null.
+        const resultsWithGitSha = results.deployments.filter(
+          d => d.meta.gitSha === gitSha,
+        );
+        const result = resultsWithGitSha.find(d => d.url);
+
+        if (result) {
+          resolve(`https://${result.url}`);
+        } else {
+          reject(new Error('No deployments found'));
+        }
+      })
+      .catch(error => {
+        reject(error);
+      });
   });
 }
 
 module.exports = {
   getLatestDeploy,
+  gitSha,
 };
