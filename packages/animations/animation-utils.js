@@ -49,10 +49,8 @@ export function isElementInViewport(el) {
   const {
     innerHeight,
     innerWidth,
-    document: { documentElement },
-  } = window.top;
-  const { clientHeight, clientWidth } = documentElement;
-
+  } = window;
+  const { innerHeight: clientHeight, innerWidth: clientWidth } = window.top;
   // console.table({
   //   isInIframe,
   //   top,
@@ -77,7 +75,6 @@ export function isElementInViewport(el) {
  * @param {HTMLElement[]} items
  */
 export function triggerVisibleAnimations(items) {
-  // console.log('triggerVisibleAnimations');
   items.forEach(item => {
     if (isElementInViewport(item)) {
       // console.log('is Visible');
@@ -93,13 +90,12 @@ export function watchForOnViewAnims() {
   if (!elementsToTrigger.length > 0) {
     return;
   }
-  const doIt = debounce(() => triggerVisibleAnimations(elementsToTrigger), 500);
+  const doIt = debounce(() => triggerVisibleAnimations(elementsToTrigger), 300);
 
   // placing function call at bottom of call stack so other function can finish up first
   setTimeout(doIt, 0);
 
-  // @todo these events are not firing inside the PL iFrame, but are when viewed alone via "Open in New Window"
-  document.addEventListener('scroll', () => {
+  window.top.document.addEventListener('scroll', () => {
     doIt();
   });
   document.addEventListener('resize', () => {
