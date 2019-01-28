@@ -39,8 +39,8 @@ jobs:
     - stage: Prep
       name: 'Build + Deploy'
       script:
-        - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - yarn run setup
+        - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - yarn run build
         - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
