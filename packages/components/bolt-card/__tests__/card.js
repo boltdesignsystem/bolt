@@ -1,11 +1,7 @@
 const { render } = require('@bolt/twig-renderer');
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../card.schema.yml'));
-const { tag } = schema.properties;
 
-describe('<bolt-image>', async () => {
-  test('<bolt-card>', async () => {
+describe('<bolt-card> Component', async () => {
+  test('basic usage', async () => {
     const results = await render('@bolt-components-card/card.twig', {
       media: {
         image: {
