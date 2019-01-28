@@ -11,6 +11,10 @@ const promisifyGitTags = promisify(gitSemverTags);
 
 let outputBanner, setCheckRun;
 
+const baseNowArgs = ['--platform-version=1', '--team=boltdesignsystem'];
+
+if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
+
 let branchName = 'detached-HEAD';
 try {
   branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
@@ -183,10 +187,6 @@ async function init() {
     }
 
     console.log(`Branch Name: ${branchName}`);
-
-    const baseNowArgs = ['--platform-version=1', '--team=boltdesignsystem'];
-
-    if (NOW_TOKEN) baseNowArgs.push(`--token=${NOW_TOKEN}`);
 
     if (GITHUB_TOKEN) {
       await setCheckRun({
