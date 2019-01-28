@@ -49,10 +49,7 @@ export function isElementInViewport(el) {
   const {
     innerHeight,
     innerWidth,
-    top: {
-      innerHeight: clientHeight,
-      innerWidth: clientWidth
-    }
+    top: { innerHeight: clientHeight, innerWidth: clientWidth },
   } = window;
   // console.table({
   //   isInIframe,

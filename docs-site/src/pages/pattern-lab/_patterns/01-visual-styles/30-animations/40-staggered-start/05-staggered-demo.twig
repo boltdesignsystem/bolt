@@ -1,13 +1,67 @@
-<div style="display: flex; flex-wrap: wrap;" id="staggered-animation-demo">
-  {% for i in 0..10 %}
+<h2>Staggered/Sequenced Animation</h2>
+<p>Bolt's Animation utilities allow for the coordination of multiple animations and transitions.</p>
+
+<div style="display: flex; flex-wrap: wrap;" class="staggered-animation-demo" id="staggered-animation-demo--looping" data-anim-triggered="yes">
+  {% for i in 0..7 %}
     <div class="staggered-animation-demo__item" style="height: 100px; width: 100px; background-color: grey; margin: 2rem;"></div>
   {% endfor %}
 </div>
-<button id="staggered-animation-demo__trigger">Click Me</button>
-<button id="staggered-animation-demo__reset">Reset</button>
+
+<h4>Staggered/Sequenced Animation Triggers</h4>
+<p>Staggered animations are agnostic to their triggering event. Here we have the same staggered animation as above, but triggered by button click events.</p>
+<div>
+  <button  id="staggered-animation-demo__trigger">Click Me</button>
+  <button id="staggered-animation-demo__reset">Reset</button>
+</div>
+<div style="display: flex; flex-wrap: wrap;" class="staggered-animation-demo" id="staggered-animation-demo">
+  {% for i in 0..7 %}
+    <div class="staggered-animation-demo__item" style="height: 100px; width: 100px; background-color: grey; margin: 2rem;"></div>
+  {% endfor %}
+</div>
+
+{#<p>They can even be fired by scroll events.</p>#}
+{#<div style="display: flex; flex-wrap: wrap;" id="staggered-animation-demo--scroll" data-anim-triggered="view">#}
+  {#{% for i in 0..10 %}#}
+    {#<div class="staggered-animation-demo__item" style="height: 100px; width: 100px; background-color: grey; margin: 2rem;"></div>#}
+  {#{% endfor %}#}
+{#</div>#}
+{#<p>Note: To reset the "on scroll" transition, please refresh the page.</p>#}
 
 
 <script>
+  document
+    .querySelectorAll('.staggered-animation-demo')
+    .forEach(function(demo) {
+       demo.addEventListener('anim-trigger', function() {
+         demo.setAttribute('data-anim-triggered', 'yes');
+         demo.querySelectorAll('.staggered-animation-demo__item').forEach(function(element, index) {
+           var delay = 250 * index;
+           setTimeout(function() {
+             triggerAnimation(element);
+           }.bind(element), delay);
+         })
+       })
+    });
+
+  // Looping Demo
+  function loopingStaggeredDemo() {
+    var loopingDemo = window.document
+      .querySelector('#staggered-animation-demo--looping');
+    loopingDemo
+      .dispatchEvent(new Event('anim-trigger'));
+    setTimeout(function() {
+      loopingDemo
+        .setAttribute('data-anim-triggered', 'no');
+      loopingDemo
+        .querySelectorAll('.staggered-animation-demo__item')
+        .forEach(function(element) {
+          element.setAttribute('data-anim-triggered', 'no');
+        });
+    }, 3500);
+  }
+  loopingStaggeredDemo();
+  window.setInterval(loopingStaggeredDemo, 4500);
+
   // Event handler for button to fire demo staggered fade in slide up
   document
     .querySelector('#staggered-animation-demo__trigger')
@@ -40,17 +94,5 @@
       // el.trigger('anim-trigger');
     }
   }
-
-  // add eventHandlers to staggered anim content
-  document
-    .querySelector('#staggered-animation-demo')
-    .addEventListener('anim-trigger', function() {
-      document.querySelectorAll('.staggered-animation-demo__item').forEach(function(element, index) {
-        var delay = 250 * index;
-        setTimeout(function() {
-          triggerAnimation(element);
-        }.bind(element), delay);
-      })
-    })
 </script>
 
