@@ -1,83 +1,84 @@
 @import '@bolt/animations';
 
-.demo-animated-slider {
+.demo-animated-bar {
   position: relative;
   margin-bottom: 1em;
   padding: 1em;
   text-align: center;
   cursor: pointer;
   border-radius: 8px;
+  max-width: 400px;
   background: #ddd;
 
   /// Duration Variations
-  &.demo-animated-slider--duration-xfast::after {
+  &.demo-animated-bar--duration-xfast::after {
     transition-duration: $bolt-duration--xfast;
   }
-  &.demo-animated-slider--duration-fast::after {
+  &.demo-animated-bar--duration-fast::after {
     transition-duration: $bolt-duration--fast;
   }
-  &.demo-animated-slider--duration-medium::after {
+  &.demo-animated-bar--duration-medium::after {
     transition-duration: $bolt-duration--medium;
   }
-  &.demo-animated-slider--duration-slow::after {
+  &.demo-animated-bar--duration-slow::after {
     transition-duration: $bolt-duration--slow;
   }
-  &.demo-animated-slider--duration-xslow::after {
+  &.demo-animated-bar--duration-xslow::after {
     transition-duration: $bolt-duration--xslow;
   }
 
   /// Timing Function Variations
-  &.demo-animated-slider--timing-linear::after {
+  &.demo-animated-bar--timing-linear::after {
     transition-timing-function: $bolt-timing--linear;
   }
-  &.demo-animated-slider--timing-ease-out::after {
+  &.demo-animated-bar--timing-ease-out::after {
     transition-timing-function: $bolt-timing--ease-out;
   }
-  &.demo-animated-slider--timing-ease-in::after {
+  &.demo-animated-bar--timing-ease-in::after {
     transition-timing-function: $bolt-timing--ease-in;
   }
-  &.demo-animated-slider--timing-ease-in-out::after {
+  &.demo-animated-bar--timing-ease-in-out::after {
     transition-timing-function: $bolt-timing--ease-in-out;
   }
-  &.demo-animated-slider--timing-swing-in-out::after {
+  &.demo-animated-bar--timing-swing-in-out::after {
     transition-timing-function: $bolt-timing--swing-in-out;
   }
-  &.demo-animated-slider--timing-burst::after {
+  &.demo-animated-bar--timing-burst::after {
     transition-timing-function: $bolt-timing--burst;
   }
 
   /// Delay
-  &.demo-animated-slider--delay-xsmall::after {
+  &.demo-animated-bar--delay-xsmall::after {
     transition-delay: $bolt-delay--xsmall;
   }
-  &.demo-animated-slider--delay-small::after {
+  &.demo-animated-bar--delay-small::after {
     transition-delay: $bolt-delay--small;
   }
-  &.demo-animated-slider--delay-medium::after {
+  &.demo-animated-bar--delay-medium::after {
     transition-delay: $bolt-delay--medium;
   }
-  &.demo-animated-slider--delay-long::after {
+  &.demo-animated-bar--delay-long::after {
     transition-delay: $bolt-delay--long;
   }
-  &.demo-animated-slider--delay-xlong::after {
+  &.demo-animated-bar--delay-xlong::after {
     transition-delay: $bolt-delay--xlong;
   }
 
   // Transition mixins
-  &.demo-animated-slider--fade-in {
+  &.demo-animated-bar--fade-in {
     @include bolt-transition__fade-in($base: true);
     &[data-anim-triggered="yes"],
     &:hover {
       @include bolt-transition__fade-in($active: true);
     }
   }
-  &.demo-animated-slider--fade-out {
+  &.demo-animated-bar--fade-out {
     @include bolt-transition__fade-out($base: true);
     &:hover {
       @include bolt-transition__fade-out($active: true);
     }
   }
-  &.demo-animated-slider--fade-in-slide-up {
+  &.demo-animated-bar--fade-in-slide-up {
     @include bolt-transition__fade-in-slide-up($base: true);
     &:hover {
       @include bolt-transition__fade-in-slide-up($active: true);
@@ -85,7 +86,7 @@
   }
 
   // Animations
-  &.demo-animated-slider--spin {
+  &.demo-animated-bar--spin {
     @include bolt-animation__spin(
       $base: true,
       $duration: $bolt-duration--xslow,
@@ -93,7 +94,7 @@
       $timing-function: $bolt-timing--linear
     );
   }
-  &.demo-animated-slider--zoom-in {
+  &.demo-animated-bar--zoom-in {
     @include bolt-animation__zoom-in(
       $base: true,
       $duration: $bolt-duration--xslow,
@@ -101,7 +102,7 @@
       $timing-function: $bolt-timing--linear
     );
   }
-  &.demo-animated-slider--zoom-in-down {
+  &.demo-animated-bar--zoom-in-down {
     @include bolt-animation__zoom-in-down(
       $base: true,
       $duration: $bolt-duration--xslow,
@@ -109,7 +110,7 @@
       $timing-function: $bolt-timing--linear
     );
   }
-  &.demo-animated-slider--zoom-in-left {
+  &.demo-animated-bar--zoom-in-left {
     @include bolt-animation__zoom-in-left(
       $base: true,
       $duration: $bolt-duration--xslow,
@@ -117,7 +118,23 @@
       $timing-function: $bolt-timing--linear
     );
   }
-  &.demo-animated-slider--heart-beat {
+  &.demo-animated-bar--heart-beat {
+     @include bolt-animation__heart-beat(
+       $base: true,
+       $duration: $bolt-duration--medium,
+       $active: true,
+       $timing-function: $bolt-timing--linear
+     );
+   }
+  &.demo-animated-bar--heart-beat--fast {
+    @include bolt-animation__heart-beat(
+      $base: true,
+      $duration: $bolt-duration--fast,
+      $active: true,
+      $timing-function: $bolt-timing--linear
+    );
+  }
+  &.demo-animated-bar--heart-beat--xslow {
     @include bolt-animation__heart-beat(
       $base: true,
       $duration: $bolt-duration--xslow,
@@ -125,9 +142,18 @@
       $timing-function: $bolt-timing--linear
     );
   }
+  &.demo-animated-bar--heart-beat--alternate {
+    @include bolt-animation__heart-beat(
+      $base: true,
+      $direction: alternate,
+      $duration: $bolt-duration--medium,
+      $active: true,
+      $timing-function: $bolt-timing--linear
+    );
+  }
 }
 
-.demo-animated-slider::after {
+.demo-animated-bar--with-slider::after {
   content: '';
   display: inline-block;
   position: absolute;
@@ -142,8 +168,8 @@
   transition-timing-function: $bolt-timing--linear;
 }
 
-.demo-animated-slider[data-anim-triggered='yes']::after,
-.demo-animated-slider:hover::after {
+.demo-animated-bar--with-slider[data-anim-triggered='yes']::after,
+.demo-animated-bar--with-slider:hover::after {
   left: calc(100% - 8px);
 }
 
