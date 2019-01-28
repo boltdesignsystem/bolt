@@ -2,7 +2,7 @@
 
 .demo-animated-bar {
   position: relative;
-  margin-bottom: 1em;
+  //margin-bottom: 1em;
   padding: 1em;
   text-align: center;
   cursor: pointer;
@@ -77,14 +77,30 @@
   }
   &.demo-animated-bar--fade-out {
     @include bolt-transition__fade-out($base: true);
+    &[data-anim-triggered="yes"],
     &:hover {
       @include bolt-transition__fade-out($active: true);
     }
   }
   &.demo-animated-bar--fade-in-slide-up {
     @include bolt-transition__fade-in-slide-up($base: true);
+    &[data-anim-triggered="yes"],
     &:hover {
       @include bolt-transition__fade-in-slide-up($active: true);
+    }
+  }
+  &.demo-animated-bar--fade-in--xfast {
+    @include bolt-transition__fade-in($base: true, $duration: $bolt-duration--xfast);
+    &[data-anim-triggered="yes"],
+    &:hover {
+      @include bolt-transition__fade-in($active: true);
+    }
+  }
+  &.demo-animated-bar--fade-in--xslow {
+    @include bolt-transition__fade-in($base: true, $duration: $bolt-duration--xslow);
+    &[data-anim-triggered="yes"],
+    &:hover {
+      @include bolt-transition__fade-in($active: true);
     }
   }
 
