@@ -1,3 +1,4 @@
+// @todo Delete this file, its only here as an example
 /**
  * @file
  * animations script.

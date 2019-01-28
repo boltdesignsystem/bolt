@@ -45,3 +45,117 @@
     animation-play-state: running;
   }
 }
+
+@mixin bolt-animation__zoom(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--ease-in-out,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--zoom;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+
+@mixin bolt-animation__zoom-in(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--ease-in-out,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--zoom-in;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+
+@mixin bolt-animation__zoom-in-left(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--ease-in-out,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--zoom-in-left;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+@mixin bolt-animation__zoom-in-down(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--ease-in-out,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--zoom-in-down;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
+
+@mixin bolt-animation__heart-beat(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--ease-in-out,
+  $iteration: infinite,
+  $direction: normal,
+  $delay: $bolt-delay--xsmall
+) {
+  @if $base {
+    animation-delay: $delay;
+    animation-direction: $direction;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration;
+    animation-name: bolt-animation--heart-beat;
+    animation-play-state: paused;
+    animation-timing-function: $timing-function;
+  }
+  @if $active {
+    animation-play-state: running;
+  }
+}
