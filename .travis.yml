@@ -4,9 +4,6 @@ language: php
 php:
   - 7.1
 
-addons:
-  sauce_connect: true
-
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
   - nvm install # version lifted from `.nvmrc`
@@ -38,10 +35,6 @@ jobs:
       script:
         - ./test/lint.js
         - ./test/unit.js
-      cache:
-        yarn: true
-        directories:
-          - node_modules
 
     - stage: Prep
       name: 'Build + Deploy'
@@ -53,14 +46,11 @@ jobs:
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./release/update-read-only-git-repos.sh
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - scripts/node_modules
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
+      addons:
+        sauce_connect: true
       script:
         - yarn run setup
         - ./scripts/check-run-in-progress.js 'Nightwatch'
@@ -70,10 +60,6 @@ jobs:
         - npx nightwatch --config nightwatch.js --env chrome,ie11
         - sleep 10
         - ./scripts/report-nightwatch-results.js
-      cache:
-        yarn: true
-        directories:
-          - node_modules
 
     - stage: Test Live Site
       name: 'Ensure site is live'
