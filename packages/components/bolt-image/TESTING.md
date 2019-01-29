@@ -6,9 +6,9 @@ View the [Lazyload Variations page](https://master.boltdesignsystem.com/pattern-
 
 - Lazyloaded images have the class `c-bolt-image__lazyload`. The class `is-lazyloaded` is added after the image is loaded.
 - Lazyloaded images have a `<noscript>` fallback that contains an image that loads normally.
-- JPG images get special treatment. They transition from a blurred low-resolution placeholder image to a sharp lazyloaded image.
-  - JPG images have the class `c-bolt-image__lazyload--blur`.
-- All lazyloaded images are loaded after the window onload event, including not-in-view images.
+- Lazyloaded JPG images get special treatment. They transition from a blurred low-resolution placeholder image to a sharp lazyloaded image.
+  - Lazyloaded JPG images have the class `c-bolt-image__lazyload--blur`.
+- All lazyloaded images are loaded after the window `onload` event, including not-in-view images.
   - This setting is controlled by the `preloadAfterLoad` option in the `lazySizes` plugin. See [the docs](https://github.com/aFarkas/lazysizes#js-api---options).
 
 ---
