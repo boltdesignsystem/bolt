@@ -6,12 +6,14 @@ const { promisify } = require('util');
 const execa = require('execa');
 const shell = require('shelljs');
 const gitSemverTags = require('git-semver-tags');
+const { outputBanner } = require('ci-utils');
+const { setCheckRun } = require('./check-run');
 const { gitSha } = require('./utils');
 const promisifyGitTags = promisify(gitSemverTags);
 
 let outputBanner, setCheckRun;
 
-const {
+let {
   NOW_TOKEN,
   GITHUB_TOKEN,
   // if in Travis, then it's `"true"`
@@ -46,13 +48,6 @@ try {
     .trim();
 } catch (error) {
   process.exit(1);
-}
-
-let GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
-
-if (GITHUB_TOKEN !== '') {
-  setCheckRun = require('./check-run').setCheckRun;
-  outputBanner = require('ci-utils').outputBanner;
 }
 
 async function handleNowDeploy(deployOutput) {
