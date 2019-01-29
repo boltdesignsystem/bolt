@@ -126,6 +126,7 @@ function handleNightwatchResults(client, callback) {
 
 module.exports = {
   globals: {
+    asyncHookTimeout: 30000, // increasing timeout to prevent errors in Sauce Labs
     testingUrl,
     results: [],
     testCount: 0,
