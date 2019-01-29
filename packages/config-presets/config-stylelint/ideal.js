@@ -7,7 +7,6 @@ module.exports = {
   plugins: [
     'stylelint-order',
     'stylelint-scss',
-    'stylelint-declaration-block-order',
     'stylelint-declaration-use-variable',
     'stylelint-selector-bem-pattern',
     'stylelint-declaration-strict-value',
