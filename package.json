@@ -46,7 +46,7 @@
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
     "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:full": "./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11 $NOW_URL",
-    "serve": "node server.js",
+    "serve": "cd deploy && node index.js",
     "postinstall": "yarn run setup:php",
     "postbootstrap": "node scripts/monorepo-tests.js",
     "cz": "git-cz",
@@ -72,19 +72,22 @@
       "@commitlint/config-conventional"
     ]
   },
-  "dependencies": {
-    "shelljs": "^0.8.3",
-    "ci-utils": "^0.5.0",
-    "lerna": "^3.8.4",
-    "express": "^4.16.3",
+  "devDependencies": {
+    "@instructure/cz-lerna-changelog": "^5.40.0",
     "@commitlint/cli": "^7.3.2",
     "@commitlint/config-conventional": "^7.3.1",
-    "@instructure/cz-lerna-changelog": "^5.40.0",
     "commitizen": "^3.0.5",
     "cz-conventional-changelog": "^2.1.0",
     "editorconfig-checker": "^1.3.3",
     "git-semver-tags": "^2.0.0",
     "husky": "^1.3.1",
+    "verdaccio": "^3.10.1"
+  },
+  "dependencies": {
+    "shelljs": "^0.8.3",
+    "ci-utils": "^0.5.0",
+    "lerna": "^3.8.4",
+    "express": "^4.16.3",
     "jest-serializer-html": "^5.0.0",
     "jest": "^23.6.0",
     "jsonwebtoken": "^8.4.0",
@@ -97,7 +100,6 @@
     "sassdoc": "^2.5.0",
     "sleep-promise": "^8.0.1",
     "url-exists": "^1.0.3",
-    "verdaccio": "^3.10.1",
     "wait-on": "^3.2.0",
     "yaml-lint": "^1.2.4"
   },
@@ -107,6 +109,7 @@
       "docs-site/src/components/*",
       "packages/uikit-workshop",
       "packages/build-tools",
+      "packages/api",
       "packages/build-tools/plugins/*",
       "packages/components/*",
       "packages/drupal-twig-extensions",
