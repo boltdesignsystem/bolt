@@ -29,14 +29,32 @@
 
 <div {{ attributes.addClass(classes | raw) }}>
   {% if figure %}
+    {% set old_figure_with_icon = figure.icon %}
+    {% set old_figure_with_image = figure.image %}
+
     <div class="o-bolt-flag__figure">
       {% block flag_figure %}
-        {% set figureContent %}  
-          {% include "@bolt/figure.twig" with figure only %}
+        {% set figureContent %}
+          {% if old_figure_with_icon %}
+            {% include "@bolt-components-figure/figure.twig" with {
+              media: {
+                icon: old_figure_with_icon
+              }
+            } only %}
+          {% elseif old_figure_with_image %}
+            {% include "@bolt-components-figure/figure.twig" with {
+              media: {
+                image: old_figure_with_image
+              }
+            } only %}
+          {% else %}
+            {% include "@bolt-components-figure/figure.twig" with figure only %}
+          {% endif %}
         {% endset %}
 
         {% if url %}
-          {% include "@bolt/link.twig" with {
+          {% include "@bolt-components-link/link.twig" with {
+            display: "flex",
             url: url,
             text: figureContent
           } only %}
@@ -56,7 +74,7 @@
           {{ item.text }}
         {% endif %}
       {% endfor %}
-      
+
       {{ content }}
 
     {% endblock %}
