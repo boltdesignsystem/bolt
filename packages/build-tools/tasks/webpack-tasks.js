@@ -4,10 +4,10 @@ const browserSync = require('browser-sync');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const chalk = require('chalk');
+const { handleRequest } = require('@bolt/api');
 const createWebpackConfig = require('../create-webpack-config');
 const { getConfig } = require('../utils/config-store');
 const { boltWebpackMessages } = require('../utils/webpack-helpers');
-const { handleRequest } = require('../api');
 
 let boltBuildConfig;
 

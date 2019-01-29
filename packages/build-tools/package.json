@@ -20,8 +20,10 @@
       "web": "https://github.com/sghoweri"
     }
   ],
+  "peerDependencies": {
+    "@bolt/twig-renderer": "^2.3.0-rc.0"
+  },
   "dependencies": {
-    "@bolt/twig-renderer": "^2.3.0-rc.0",
     "express": "^4.16.4",
     "chalk": "^2.4.1",
     "jsonschema": "^1.2.4",
@@ -36,7 +38,10 @@
     "lodash.debounce": "^4.0.8",
     "marked": "^0.5.2",
     "portfinder": "^1.0.20",
-    "uppercamelcase": "^3.0.0",
+    "uppercamelcase": "^3.0.0"
+  },
+  "devDependencies": {
+    "@bolt/api": "^2.3.0-rc.0",
     "@bolt/babel-preset-bolt": "^2.3.0-rc.0",
     "@bolt/config-browserlist": "^2.3.0-rc.0",
     "@bolt/postcss-themify": "^2.3.0-rc.0",
