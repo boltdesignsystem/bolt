@@ -85,7 +85,7 @@
     {% endset %}
 
     {# Items are deprecated but still supported, remove this completely once items are gone for good. #}
-    {% if items %}
+    {% if items and pinned_content is empty %}
       {% include "@bolt-components-band/_band-deprecated-items.twig" %}
     {% endif %}
 
