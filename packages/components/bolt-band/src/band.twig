@@ -16,6 +16,7 @@
 {% if contentTag %}
   {% set tag = contentTag %}
 {% endif %}
+{# row_gutter, content_row_start, items are also deprecated but this twig still supports them, see more comments below where items are being rendered #}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
 {% set tag_options = schema.properties.tag.enum %}
@@ -63,6 +64,7 @@
 >
   <{{ tag }} {{ inner_attributes.addClass(inner_classes) }}>
     {# Render background if there is any #}
+    {# Setting a block so it doesn't break legacy embeds #}
     {% block band_background %}
       {% if background %}
         {% include "@bolt-components-background/background.twig" with background only %}
