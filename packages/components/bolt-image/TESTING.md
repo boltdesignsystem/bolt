@@ -1,4 +1,4 @@
-# Link component developer testing steps
+# Image component developer testing steps
 
 ## Lazyloading expected behavior
 
