@@ -70,35 +70,41 @@
   // Transition mixins
   &.demo-animated-bar--fade-in {
     @include bolt-transition__fade-in($base: true);
-    &[data-anim-triggered="yes"],
+    &[data-anim-triggered='yes'],
     &:hover {
       @include bolt-transition__fade-in($active: true);
     }
   }
   &.demo-animated-bar--fade-out {
     @include bolt-transition__fade-out($base: true);
-    &[data-anim-triggered="yes"],
+    &[data-anim-triggered='yes'],
     &:hover {
       @include bolt-transition__fade-out($active: true);
     }
   }
   &.demo-animated-bar--fade-in-slide-up {
     @include bolt-transition__fade-in-slide-up($base: true);
-    &[data-anim-triggered="yes"],
+    &[data-anim-triggered='yes'],
     &:hover {
       @include bolt-transition__fade-in-slide-up($active: true);
     }
   }
   &.demo-animated-bar--fade-in--xfast {
-    @include bolt-transition__fade-in($base: true, $duration: $bolt-duration--xfast);
-    &[data-anim-triggered="yes"],
+    @include bolt-transition__fade-in(
+      $base: true,
+      $duration: $bolt-duration--xfast
+    );
+    &[data-anim-triggered='yes'],
     &:hover {
       @include bolt-transition__fade-in($active: true);
     }
   }
   &.demo-animated-bar--fade-in--xslow {
-    @include bolt-transition__fade-in($base: true, $duration: $bolt-duration--xslow);
-    &[data-anim-triggered="yes"],
+    @include bolt-transition__fade-in(
+      $base: true,
+      $duration: $bolt-duration--xslow
+    );
+    &[data-anim-triggered='yes'],
     &:hover {
       @include bolt-transition__fade-in($active: true);
     }
@@ -138,13 +144,13 @@
     );
   }
   &.demo-animated-bar--heart-beat {
-     @include bolt-animation__heart-beat(
-       $base: true,
-       $duration: $bolt-duration--medium,
-       $active: true,
-       $timing-function: $bolt-timing--linear
-     );
-   }
+    @include bolt-animation__heart-beat(
+      $base: true,
+      $duration: $bolt-duration--medium,
+      $active: true,
+      $timing-function: $bolt-timing--linear
+    );
+  }
   &.demo-animated-bar--heart-beat--fast {
     @include bolt-animation__heart-beat(
       $base: true,
@@ -170,6 +176,11 @@
       $timing-function: $bolt-timing--linear
     );
   }
+}
+
+//@todo get rid of this shame code
+.demo-animated-bar--with-slider {
+  margin-bottom: 0.5rem;
 }
 
 .demo-animated-bar--with-slider::after {
@@ -214,12 +225,7 @@
     $delay: $bolt-delay--xsmall
   );
   &[data-anim-triggered='yes'] {
-    @include bolt-transition--fade-in-slide-up(
-      $active: true,
-      $timing-function: $bolt-timing--ease-out,
-      $duration: $bolt-duration--fast,
-      $delay: $bolt-delay--xsmall
-    );
+    @include bolt-transition--fade-in-slide-up($active: true);
   }
 }
 
@@ -231,11 +237,6 @@
     $delay: $bolt-delay--xsmall
   );
   &[data-anim-triggered='yes'] {
-    @include bolt-transition--fade-in-slide-up(
-      $active: true,
-      $timing-function: $bolt-timing--swing-in-out,
-      $duration: $bolt-duration--xslow,
-      $delay: $bolt-delay--xsmall
-    );
+    @include bolt-transition--fade-in-slide-up($active: true);
   }
 }
