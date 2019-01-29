@@ -20,7 +20,7 @@ module.exports = {
     'plugin/selector-bem-pattern': null,
     'no-duplicate-selectors': null,
     'function-comma-space-before': null,
-    'plugin/declaration-block-order': null,
+    // 'plugin/declaration-block-order': null, @todo: swap for another stylelint plugin that isn't deprecated
     'scss/selector-no-redundant-nesting-selector': null,
     'block-opening-brace-space-before': null,
     'declaration-block-no-shorthand-property-overrides': null,
