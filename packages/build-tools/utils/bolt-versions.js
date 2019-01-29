@@ -40,9 +40,6 @@ const octokit = new Octokit({
     },
   },
   debug: false,
-  headers: {
-    Accept: 'application/vnd.github.v3.raw',
-  },
 });
 
 const { getConfig } = require('./config-store');
