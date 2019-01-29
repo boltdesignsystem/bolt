@@ -1,19 +1,22 @@
-ARG GIT_SHA=master
 # FROM basaltinc/docker-node-php-base:latest
 FROM boltdesignsystem/bolt-docker:latest
 WORKDIR /app
-COPY . .
 
 EXPOSE 3123
-# RUN echo "Building git sha: ${GIT_SHA}" && \
-#   git clone --depth 50 https://github.com/bolt-design-system/bolt.git . && \
-#   git checkout ${GIT_SHA} && \
-#   echo "Was passed this GIT_SHA to build: \"${GIT_SHA}\" " && \
-#   echo "And am building this commit: " && \
-#   git log -n 1 HEAD
 
+COPY docs-site /app/docs-site
+COPY packages /app/packages
+COPY www /app/www
+COPY server/package.json .
+COPY .boltrc.js .
+COPY yarn.lock .
+COPY server /app/server
+RUN rm -rf /app/packages/uikit-workshop
 
-RUN yarn run setup:quick
-# RUN yarn run build
+RUN cd packages/twig-renderer && yarn run setup
+RUN cd packages/drupal-twig-extensions && yarn run setup 
+RUN cd packages/core-php && yarn run setup
 
-CMD yarn serve
+RUN yarn install --production
+
+CMD node server/index.js

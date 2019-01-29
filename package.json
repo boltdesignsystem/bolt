@@ -46,7 +46,7 @@
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
     "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:full": "./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11 $NOW_URL",
-    "serve": "cd deploy && node index.js",
+    "serve": "cd server && node index.js",
     "postinstall": "yarn run setup:php",
     "postbootstrap": "node scripts/monorepo-tests.js",
     "cz": "git-cz",

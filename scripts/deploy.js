@@ -3,7 +3,6 @@ const { resolve } = require('path');
 
 const { spawnSync } = require('child_process');
 const { promisify } = require('util');
-const execa = require('execa');
 const shell = require('shelljs');
 const gitSemverTags = require('git-semver-tags');
 const { outputBanner } = require('ci-utils');
