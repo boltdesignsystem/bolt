@@ -14,16 +14,7 @@
   {% set full_bleed = fullBleed %}
 {% endif %}
 {% if contentTag %}
-  {% set contentTag = null %}
-{% endif %}
-{% if row_gutter %}
-  {% set row_gutter = null %}
-{% endif %}
-{% if content_row_start %}
-  {% set content_row_start = null %}
-{% endif %}
-{% if items %}
-  {% set items = null %}
+  {% set tag = contentTag %}
 {% endif %}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
@@ -72,24 +63,31 @@
 >
   <{{ tag }} {{ inner_attributes.addClass(inner_classes) }}>
     {# Render background if there is any #}
-    {% if background %}
-      {% include "@bolt-components-background/background.twig" with background only %}
-    {% endif %}
+    {% block band_background %}
+      {% if background %}
+        {% include "@bolt-components-background/background.twig" with background only %}
+      {% endif %}
+    {% endblock %}
 
-    {# Setting a block so it doesn't break legacy embeds #}
-    {% set regular_content %}
+    {# Render regular content #}
+    {% set regular_content_block %}
+      {# Setting a block so it doesn't break legacy embeds #}
       {% block band_content %}
         {{ content }}
       {% endblock %}
     {% endset %}
-
-    {% set regular_content_wrapper %}
+    {% set regular_content %}
       <div class="{{ "#{base_class}__content" }}">
         {% include "@bolt/wrapper.twig" with {
-          content: regular_content,
+          content: regular_content_block,
         } only %}
       </div>
     {% endset %}
+
+    {# Items are deprecated but still supported, remove this completely once items are gone for good. #}
+    {% if items %}
+      {% include "@bolt-components-band/_band-deprecated-items.twig" %}
+    {% endif %}
 
     {# Render pinned content if there is any #}
     {% if pinned_content %}
@@ -120,7 +118,7 @@
         </div>
       {% endif %}
 
-      {{ regular_content_wrapper }}
+      {{ regular_content }}
 
       {% if pinned_content_lower %}
         <div class="{{ "#{base_class}__content #{base_class}__content--pinned #{base_class}__content--pinned-lower" }}">
@@ -142,7 +140,7 @@
     {% else %}
 
     {# Otherwise, render just the content #}
-      {{ regular_content_wrapper }}
+      {{ regular_content }}
     {% endif %}
   </{{ tag }}>
 </bolt-band>
