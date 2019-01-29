@@ -36,19 +36,19 @@ Here are a few representative examples of how to use spacing in your layouts.
 
 ### Card with teaser
 
-![Card with Teaser](/images/docs/spacing_card.png)
+![Card with Teaser](/images/docs/spacing_card.jpg)
 
 In a teaser card, use `small` spacing to separate text elements from one another. `medium` spacing provides breathing room around the main content components.
 
 ### Hero bands
 
-![Background band with breadcrumb, headline, CTA and quote](/images/docs/spacing_band.png)
+![Background band with breadcrumb, headline, CTA and quote](/images/docs/spacing_band.jpg)
 
 In a hero/feature band, use `medium` spacing to create visual distinction between elements in each section, and incorporate `xlarge` spacing around the sections to help provide breathing room for the image.
 
 ### Multi-card bands
 
-![3-card lockup with headline and subhead, plus link button](/images/docs/spacing_three-card-band.png)
+![3-card lockup with headline and subhead, plus link button](/images/docs/spacing_three-card-band.jpg)
 
 When using a band to hold multiple things, including headlines, cards and other elements, be judicious with spacing around each element to ensure that the eye can move through the section easily. 
 

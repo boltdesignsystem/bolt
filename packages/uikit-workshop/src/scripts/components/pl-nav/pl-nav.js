@@ -244,7 +244,9 @@ class Nav extends BaseComponent {
 
     if (data.event !== undefined && data.event === 'patternLab.pageClick') {
       try {
-        self.cleanupActiveNav();
+        if (window.matchMedia("(min-width: calc(42em))").matches && self.layoutMode !== 'vertical'){
+          self.cleanupActiveNav();
+        }
       } catch(error){
         console.log(error);
       }
