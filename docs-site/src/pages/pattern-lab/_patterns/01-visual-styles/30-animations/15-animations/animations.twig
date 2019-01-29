@@ -28,32 +28,32 @@
 <p>First, apply base styling to prep element for animation.</p>
 {{ '```scss
 .class {
-  @include bolt-animation__zoom-in($base: true);
+  @include bolt-animation--zoom-in($base: true);
 }
 ```' | markdown }}
 <p>Next, apply the same mixin with <code>$base: true</code> to the css.</p>
 <p>For example, to trigger the animation on hover...</p>
 {{ '```scss
 .class {
-  @include bolt-animation__zoom-in($base: true);
+  @include bolt-animation--zoom-in($base: true);
   &:hover {
-    @include bolt-animation__zoom-in($active: true);
+    @include bolt-animation--zoom-in($active: true);
   }
 }
 ```' | markdown }}
 <p>Additionally, animations can be tied to data attributes that are applied with the javascript animation utitilites provided through <code>@bolt/animations</code>.</p>
 {{ '```scss
 .class {
-  @include bolt-animation__zoom-in($base: true);
+  @include bolt-animation--zoom-in($base: true);
   &[data-anim-triggered="yes"] {
-    @include bolt-animation__zoom-in($active: true);
+    @include bolt-animation--zoom-in($active: true);
   }
 }
 ```' | markdown }}
 <p>Or the animation can be fired without a triggering event.</p>
 {{ '```scss
 .class {
-  @include bolt-animation__zoom-in($base: true, $active: true);
+  @include bolt-animation--zoom-in($base: true, $active: true);
 }
 ```' | markdown }}
 
@@ -63,7 +63,7 @@
 <h4>Heart Beat - Extra Slow</h4>
 {{ '```scss
 .class {
-  @include bolt-animation__heart-beat($base: true, $active: true, $duration: $bolt-duration--xslow);
+  @include bolt-animation--heart-beat($base: true, $active: true, $duration: $bolt-duration--xslow);
 }
 ```' | markdown }}
 <div style="padding-left: 2rem; margin-bottom: 5rem">
@@ -73,7 +73,7 @@
 <h4>Heart Beat - Default</h4>
 {{ '```scss
 .class {
-  @include bolt-animation__heart-beat($base: true, $active: true);
+  @include bolt-animation--heart-beat($base: true, $active: true);
 }
 ```' | markdown }}
 <div style="padding-left: 2rem; margin-bottom: 5rem">
@@ -83,7 +83,7 @@
 <h4>Heart Beat - Fast</h4>
 {{ '```scss
 .class {
-  @include bolt-animation__heart-beat($base: true, $active: true, $duration: $bolt-duration--fast);
+  @include bolt-animation--heart-beat($base: true, $active: true, $duration: $bolt-duration--fast);
 }
 ```' | markdown }}
 <div style="padding-left: 2rem; margin-bottom: 5rem">
@@ -93,7 +93,7 @@
 <h4>Heart Beat - Alternate Direction</h4>
 {{ '```scss
 .class {
-  @include bolt-animation__heart-beat($base: true, $active: true, $direction: alternate);
+  @include bolt-animation--heart-beat($base: true, $active: true, $direction: alternate);
 }
 ```' | markdown }}
 <div style="padding-left: 2rem; margin-bottom: 5rem">

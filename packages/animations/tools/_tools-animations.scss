@@ -18,12 +18,12 @@
 /// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
 /// @example Fade-in on hover
 /// .class {
-///    @include bolt-transition__fade-in($base: true);
+///    @include bolt-animation--fade-in($base: true);
 ///    &:hover {
-///      @include bolt-transition__fade-in($active: true);
+///      @include bolt-animation--fade-in($active: true);
 ///    }
 ///  }
-@mixin bolt-animation__spin(
+@mixin bolt-animation--spin(
   $base: false,
   $active: false,
   $duration: $bolt-duration--medium,
@@ -56,12 +56,12 @@
 /// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
 /// @example Zoom in on hover
 /// .class {
-///    @include bolt-transition__zoom-in($base: true);
+///    @include bolt-animation--zoom-in($base: true);
 ///    &:hover {
-///      @include bolt-transition__zoom-in($active: true);
+///      @include bolt-animation--zoom-in($active: true);
 ///    }
 ///  }
-@mixin bolt-animation__zoom-in(
+@mixin bolt-animation--zoom-in(
   $base: false,
   $active: false,
   $duration: $bolt-duration--medium,
@@ -94,12 +94,12 @@
 /// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
 /// @example Zoom in left on hover
 /// .class {
-///    @include bolt-transition__zoom-in-left($base: true);
+///    @include bolt-animation--zoom-in-left($base: true);
 ///    &:hover {
-///      @include bolt-transition__zoom-in-left($active: true);
+///      @include bolt-animation--zoom-in-left($active: true);
 ///    }
 ///  }
-@mixin bolt-animation__zoom-in-left(
+@mixin bolt-animation--zoom-in-left(
   $base: false,
   $active: false,
   $duration: $bolt-duration--medium,
@@ -132,12 +132,12 @@
 /// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
 /// @example Zoom in down on hover
 /// .class {
-///    @include bolt-transition__zoom-in-down($base: true);
+///    @include bolt-animation--zoom-in-down($base: true);
 ///    &:hover {
-///      @include bolt-transition__zoom-in-down($active: true);
+///      @include bolt-animation--zoom-in-down($active: true);
 ///    }
 ///  }
-@mixin bolt-animation__zoom-in-down(
+@mixin bolt-animation--zoom-in-down(
   $base: false,
   $active: false,
   $duration: $bolt-duration--medium,
@@ -170,12 +170,12 @@
 /// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
 /// @example Heart Beat on hover
 /// .class {
-///    @include bolt-transition__heart-beat($base: true);
+///    @include bolt-animation--heart-beat($base: true);
 ///    &:hover {
-///      @include bolt-transition__heart-beat($active: true);
+///      @include bolt-animation--heart-beat($active: true);
 ///    }
 ///  }
-@mixin bolt-animation__heart-beat(
+@mixin bolt-animation--heart-beat(
   $base: false,
   $active: false,
   $duration: $bolt-duration--medium,

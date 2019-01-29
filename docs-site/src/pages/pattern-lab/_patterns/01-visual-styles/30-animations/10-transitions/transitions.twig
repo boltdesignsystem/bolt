@@ -7,12 +7,12 @@
   <div style="border: dashed 1px lime; display: inline-block; margin-bottom: 0.5rem;">
     <div class="demo-animated-bar demo-animated-bar--fade-in"><strong>Fade in</strong></div>
   </div>
-{{ '```
+{{ '```scss
 .class {
-  @include bolt-transition__fade-in($base: true);
+  @include bolt-transition--fade-in($base: true);
   &[data-anim-triggered="yes"],
   &:hover {
-    @include bolt-transition__fade-in($active: true);
+    @include bolt-transition--fade-in($active: true);
   }
 }
 ```' | markdown }}
@@ -20,12 +20,12 @@
   <div style="border: dashed 1px lime; display: inline-block; margin-bottom: 0.5rem;">
     <div class="demo-animated-bar demo-animated-bar--fade-out"><strong>Fade Out</strong></div>
   </div>
-{{ '```
+{{ '```scss
 .class {
-  @include bolt-transition__fade-out($base: true);
+  @include bolt-transition--fade-out($base: true);
   &[data-anim-triggered="yes"],
   &:hover {
-    @include bolt-transition__fade-out($active: true);
+    @include bolt-transition--fade-out($active: true);
   }
 }
 ```' | markdown }}
@@ -33,12 +33,12 @@
   <div style="border: dashed 1px lime; display: inline-block; margin-bottom: 0.5rem;">
     <div class="demo-animated-bar demo-animated-bar--fade-in-slide-up"><strong>Fade In and Slide Up</strong></div>
   </div>
-{{ '```
+{{ '```scss
 .class {
-    @include bolt-transition__fade-in-slide-up($base: true);
+    @include bolt-transition--fade-in-slide-up($base: true);
     &[data-anim-triggered="yes"],
     &:hover {
-      @include bolt-transition__fade-in-slide-up($active: true);
+      @include bolt-transition--fade-in-slide-up($active: true);
     }
   }
 ```' | markdown }}
@@ -48,25 +48,25 @@
 <p>First, apply base styling to prep element for transition.</p>
 {{ '```scss
 .class {
-  @include bolt-transition__fade-in($base: true);
+  @include bolt-transition--fade-in($base: true);
 }
 ```' | markdown }}
 <p>Next, apply the same mixin with <code>$base: true</code> to the css.</p>
 <p>For example, to trigger the transition on hover...</p>
 {{ '```scss
 .class {
-  @include bolt-transition__fade-in($base: true);
+  @include bolt-transition--fade-in($base: true);
   &:hover {
-    @include bolt-transition__fade-in($active: true);
+    @include bolt-transition--fade-in($active: true);
   }
 }
 ```' | markdown }}
 <p>Additionally, transitions can be tied to data attributes that are applied with the javascript transition utilities provided through <code>@bolt/animations</code>.</p>
 {{ '```scss
 .class {
-  @include bolt-transition__fade-in($base: true);
+  @include bolt-transition--fade-in($base: true);
   &[data-anim-triggered="yes"] {
-    @include bolt-transition__fade-in($active: true);
+    @include bolt-transition--fade-in($active: true);
   }
 }
 ```' | markdown }}
@@ -82,9 +82,9 @@
   </div>
 {{ '```scss
 .class {
-  @include bolt-transition__fade-in($base: true);
+  @include bolt-transition--fade-in($base: true);
   &[data-anim-triggered="yes"] {
-    @include bolt-transition__fade-in($active: true);
+    @include bolt-transition--fade-in($active: true);
   }
 }
 ```' | markdown }}
@@ -95,9 +95,9 @@
   </div>
 {{ '```scss
 .class {
-  @include bolt-transition__fade-in($base: true, $duration: $bolt-duration--xslow);
+  @include bolt-transition--fade-in($base: true, $duration: $bolt-duration--xslow);
   &[data-anim-triggered="yes"] {
-    @include bolt-transition__fade-in($active: true);
+    @include bolt-transition--fade-in($active: true);
   }
 }
 ```' | markdown }}
@@ -108,9 +108,9 @@
   </div>
 {{ '```scss
 .class {
-  @include bolt-transition__fade-in($base: true, $duration: $bolt-duration--xfast);
+  @include bolt-transition--fade-in($base: true, $duration: $bolt-duration--xfast);
   &[data-anim-triggered="yes"] {
-    @include bolt-transition__fade-in($active: true);
+    @include bolt-transition--fade-in($active: true);
   }
 }
 ```' | markdown }}

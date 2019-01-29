@@ -2,12 +2,11 @@
 
 .demo-animated-bar {
   position: relative;
-  //margin-bottom: 1em;
+  max-width: 400px;
   padding: 1em;
   text-align: center;
   cursor: pointer;
   border-radius: 8px;
-  max-width: 400px;
   background: #ddd;
 
   /// Duration Variations
@@ -69,50 +68,50 @@
 
   // Transition mixins
   &.demo-animated-bar--fade-in {
-    @include bolt-transition__fade-in($base: true);
+    @include bolt-transition--fade-in($base: true);
     &[data-anim-triggered='yes'],
     &:hover {
-      @include bolt-transition__fade-in($active: true);
+      @include bolt-transition--fade-in($active: true);
     }
   }
   &.demo-animated-bar--fade-out {
-    @include bolt-transition__fade-out($base: true);
+    @include bolt-transition--fade-out($base: true);
     &[data-anim-triggered='yes'],
     &:hover {
-      @include bolt-transition__fade-out($active: true);
+      @include bolt-transition--fade-out($active: true);
     }
   }
   &.demo-animated-bar--fade-in-slide-up {
-    @include bolt-transition__fade-in-slide-up($base: true);
+    @include bolt-transition--fade-in-slide-up($base: true);
     &[data-anim-triggered='yes'],
     &:hover {
-      @include bolt-transition__fade-in-slide-up($active: true);
+      @include bolt-transition--fade-in-slide-up($active: true);
     }
   }
   &.demo-animated-bar--fade-in--xfast {
-    @include bolt-transition__fade-in(
+    @include bolt-transition--fade-in(
       $base: true,
       $duration: $bolt-duration--xfast
     );
     &[data-anim-triggered='yes'],
     &:hover {
-      @include bolt-transition__fade-in($active: true);
+      @include bolt-transition--fade-in($active: true);
     }
   }
   &.demo-animated-bar--fade-in--xslow {
-    @include bolt-transition__fade-in(
+    @include bolt-transition--fade-in(
       $base: true,
       $duration: $bolt-duration--xslow
     );
     &[data-anim-triggered='yes'],
     &:hover {
-      @include bolt-transition__fade-in($active: true);
+      @include bolt-transition--fade-in($active: true);
     }
   }
 
   // Animations
   &.demo-animated-bar--spin {
-    @include bolt-animation__spin(
+    @include bolt-animation--spin(
       $base: true,
       $duration: $bolt-duration--xslow,
       $active: true,
@@ -120,7 +119,7 @@
     );
   }
   &.demo-animated-bar--zoom-in {
-    @include bolt-animation__zoom-in(
+    @include bolt-animation--zoom-in(
       $base: true,
       $duration: $bolt-duration--xslow,
       $active: true,
@@ -128,7 +127,7 @@
     );
   }
   &.demo-animated-bar--zoom-in-down {
-    @include bolt-animation__zoom-in-down(
+    @include bolt-animation--zoom-in-down(
       $base: true,
       $duration: $bolt-duration--xslow,
       $active: true,
@@ -136,7 +135,7 @@
     );
   }
   &.demo-animated-bar--zoom-in-left {
-    @include bolt-animation__zoom-in-left(
+    @include bolt-animation--zoom-in-left(
       $base: true,
       $duration: $bolt-duration--xslow,
       $active: true,
@@ -144,7 +143,7 @@
     );
   }
   &.demo-animated-bar--heart-beat {
-    @include bolt-animation__heart-beat(
+    @include bolt-animation--heart-beat(
       $base: true,
       $duration: $bolt-duration--medium,
       $active: true,
@@ -152,7 +151,7 @@
     );
   }
   &.demo-animated-bar--heart-beat--fast {
-    @include bolt-animation__heart-beat(
+    @include bolt-animation--heart-beat(
       $base: true,
       $duration: $bolt-duration--fast,
       $active: true,
@@ -160,7 +159,7 @@
     );
   }
   &.demo-animated-bar--heart-beat--xslow {
-    @include bolt-animation__heart-beat(
+    @include bolt-animation--heart-beat(
       $base: true,
       $duration: $bolt-duration--xslow,
       $active: true,
@@ -168,7 +167,7 @@
     );
   }
   &.demo-animated-bar--heart-beat--alternate {
-    @include bolt-animation__heart-beat(
+    @include bolt-animation--heart-beat(
       $base: true,
       $direction: alternate,
       $duration: $bolt-duration--medium,
@@ -210,6 +209,7 @@
   }
 }
 
+/* stylelint-disable selector-max-id */
 #staggered-animation-band .o-bolt-grid__cell {
   @include bolt-transition--fade-in-slide-up($base: true);
   &[data-anim-triggered='yes'] {
@@ -240,3 +240,4 @@
     @include bolt-transition--fade-in-slide-up($active: true);
   }
 }
+/* stylelint-enable selector-max-id */

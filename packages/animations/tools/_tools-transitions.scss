@@ -16,12 +16,12 @@
 /// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
 /// @example Fade-in on hover
 /// .class {
-///   @include bolt-transition__fade-in($base: true);
+///   @include bolt-transition--fade-in($base: true);
 ///   &:hover {
-///     @include bolt-transition__fade-in($active: true);
+///     @include bolt-transition--fade-in($active: true);
 ///   }
 /// }
-@mixin bolt-transition__fade-in(
+@mixin bolt-transition--fade-in(
   $base: false,
   $active: false,
   $duration: $bolt-duration--medium,
@@ -50,12 +50,12 @@
 /// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
 /// @example Fade-out on hover
 /// .class {
-///   @include bolt-transition__fade-in($base: true);
+///   @include bolt-transition--fade-in($base: true);
 ///   &:hover {
-///     @include bolt-transition__fade-in($active: true);
+///     @include bolt-transition--fade-in($active: true);
 ///   }
 /// }
-@mixin bolt-transition__fade-out(
+@mixin bolt-transition--fade-out(
   $base: false,
   $active: false,
   $duration: $bolt-duration--medium,
@@ -85,12 +85,12 @@
 /// @param {String} $slide-up-distance [$bolt-spacing-gutter] - Delay before transition
 /// @example Fade-in and slide-up on hover
 /// .class {
-///   @include bolt-transition__fade-in($base: true);
+///   @include bolt-transition--fade-in($base: true);
 ///   &:hover {
-///     @include bolt-transition__fade-in($active: true);
+///     @include bolt-transition--fade-in($active: true);
 ///   }
 /// }
-@mixin bolt-transition__fade-in-slide-up(
+@mixin bolt-transition--fade-in-slide-up(
   $base: false,
   $active: false,
   $duration: $bolt-duration--medium,
