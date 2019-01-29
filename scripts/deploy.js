@@ -11,8 +11,6 @@ const { setCheckRun } = require('./check-run');
 const { gitSha } = require('./utils');
 const promisifyGitTags = promisify(gitSemverTags);
 
-let outputBanner, setCheckRun;
-
 let {
   NOW_TOKEN,
   GITHUB_TOKEN,
