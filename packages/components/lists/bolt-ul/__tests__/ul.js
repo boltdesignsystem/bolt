@@ -4,7 +4,7 @@ describe('<bolt-ul> Component', async () => {
   test('basic usage with attributes', async () => {
     const results = await render('@bolt-components-ul/ul.twig', {
       attributes: {
-        class: ['js-some-class', 'c-another-class'],
+        'data-attr': 'some attribute',
         onclick: "location.href='https://pega.com'",
       },
       items: [

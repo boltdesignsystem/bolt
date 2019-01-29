@@ -2,12 +2,13 @@
 
 exports[`<bolt-ol> Component basic usage with attributes 1`] = `
 
-<bolt-ol class="js-some-class c-another-class"
+<bolt-ol data-attr="some attribute"
          onclick="location.href=&#039;https://pega.com&#039;"
 >
   <replace-with-grandchildren>
-    <ol class="js-some-class c-another-class c-bolt-ol"
+    <ol data-attr="some attribute"
         onclick="location.href=&#039;https://pega.com&#039;"
+        class="c-bolt-ol"
     >
       <bolt-li>
         <replace-with-grandchildren>
