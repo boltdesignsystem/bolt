@@ -83,7 +83,7 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: Inline link wrapping
 
 1. Given I am using a "desktop" browser
-1. And I am viewing the URL [Link Display Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-10-link-display-variations/02-components-link-10-link-display-variations.html)
+1. And I am viewing the [Link Display Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-10-link-display-variations/02-components-link-10-link-display-variations.html)
 1. And I am looking at the section "Inline link"
 1. Then I should see a paragraph that contains two links
 1. When I resize the browser to less than 600px wide
@@ -92,7 +92,7 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: Flex link icon position
 
 1. Given I am using a "desktop" browser
-1. And I am viewing the URL [Link Display Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-10-link-display-variations/02-components-link-10-link-display-variations.html)
+1. And I am viewing the [Link Display Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-10-link-display-variations/02-components-link-10-link-display-variations.html)
 1. And I am looking at the section "Flex link"
 1. Then I should see two links
 1. And each link has an icon to the left or right
@@ -102,7 +102,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: Link vertical-alignment variations (start)
 
-1. Given I am viewing the URL [Link Valign Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-20-link-valign-variations/02-components-link-20-link-valign-variations.html)
+1. Given I am viewing the [Link Valign Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-20-link-valign-variations/02-components-link-20-link-valign-variations.html)
 1. And I am looking at the section "Link Valign Variations"
 1. And I am looking at the sub-section "Valign: start"
 1. Then I should see a link with an icon "fixed" to the left
@@ -110,7 +110,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: Link vertical-alignment variations (center)
 
-1. Given I am viewing the URL [Link Valign Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-20-link-valign-variations/02-components-link-20-link-valign-variations.html)
+1. Given I am viewing the [Link Valign Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-link-20-link-valign-variations/02-components-link-20-link-valign-variations.html)
 1. And I am looking at the section "Link Valign Variations"
 1. And I am looking at the sub-section "Valign: center"
 1. Then I should see a link with an icon "fixed" to the left
