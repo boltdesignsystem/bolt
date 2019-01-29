@@ -11,8 +11,8 @@ const Octokit = require('@octokit/rest').plugin(
 
 const octokit = new Octokit({
   auth() {
-    if (process.env.GITHUB_TOKEN){
-      return `token ${process.env.GITHUB_TOKEN}`
+    if (process.env.GITHUB_TOKEN) {
+      return `token ${process.env.GITHUB_TOKEN}`;
     } else {
       return undefined;
     }
