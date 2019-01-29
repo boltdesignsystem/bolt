@@ -1,7 +1,6 @@
 const url = require('url');
 const { render } = require('@bolt/twig-renderer');
-const { getConfig } = require('../utils/config-store');
-const log = require('../utils/log');
+const log = require('@bolt/build-tools/utils/log');
 
 async function getBody(request) {
   return new Promise((resolve, reject) => {
@@ -28,7 +27,6 @@ async function getBody(request) {
  * @param next
  */
 async function handleRequest(req, res, next) {
-  const config = await getConfig();
   const { method } = req;
   const { pathname, query, search } = url.parse(req.url, true);
   // @todo test with `GET` requests
