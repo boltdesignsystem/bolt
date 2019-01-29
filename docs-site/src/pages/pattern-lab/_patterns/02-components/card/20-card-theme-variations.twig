@@ -2,40 +2,42 @@
 
 {% for theme in themes.properties.colors.enum %}
   {% set cards %}
-    {% for theme in themes.properties.colors.enum %}
-      <div class="u-bolt-margin-bottom-medium">
-        {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-          {% cell "u-bolt-width-6/12 u-bolt-width-5/12@small" %}
-            {% include "@bolt-components-card/card.twig" with {
-              theme: theme,
-              body: {
-                paragraph: "This card has its own theme prop set to: <mark>" ~ theme ~ "</mark>. In this scenario, the card background color is solid.",
-              },
-              actions: [
-                {
-                  text: "This is a button",
-                  url: "http://pega.com",
-                }
-              ],
-            } only %}
-          {% endcell %}
-          {% cell "u-bolt-width-6/12 u-bolt-width-5/12@small" %}
-            {% include "@bolt-components-card/card.twig" with {
-              theme: "none",
-              body: {
-                paragraph: "This card has its own theme prop set to: <mark>none</mark>. In this scenario, the card background color is semi-transparent.",
-              },
-              actions: [
-                {
-                  text: "This is a button",
-                  url: "http://pega.com",
-                }
-              ],
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      </div>
-    {% endfor %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% for theme in themes.properties.colors.enum %}
+        {% cell "u-bolt-width-12/12" %}
+          {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+            {% cell "u-bolt-width-6/12 u-bolt-width-5/12@small" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: theme,
+                body: {
+                  paragraph: "This card has its own theme prop set to: <mark>" ~ theme ~ "</mark>. In this scenario, the card background color is solid.",
+                },
+                actions: [
+                  {
+                    text: "This is a button",
+                    url: "http://pega.com",
+                  }
+                ],
+              } only %}
+            {% endcell %}
+            {% cell "u-bolt-width-6/12 u-bolt-width-5/12@small" %}
+              {% include "@bolt-components-card/card.twig" with {
+                theme: "none",
+                body: {
+                  paragraph: "This card has its own theme prop set to: <mark>none</mark>. In this scenario, the card background color is semi-transparent.",
+                },
+                actions: [
+                  {
+                    text: "This is a button",
+                    url: "http://pega.com",
+                  }
+                ],
+              } only %}
+            {% endcell %}
+          {% endgrid %}
+        {% endcell %}
+      {% endfor %}
+    {% endgrid %}
   {% endset %}
 
   <h3>Inside {{ theme|upper }} Parent Container</h3>
