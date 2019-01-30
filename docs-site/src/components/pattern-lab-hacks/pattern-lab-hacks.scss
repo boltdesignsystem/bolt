@@ -39,8 +39,13 @@
   max-height: 0px; // prevent background from showing up
 }
 
+.pl-c-category,
 .pl-c-category__title, 
 .pl-c-pattern[id*=-docs] > .pl-c-pattern__header, 
 .pl-c-pattern[id*=-docs] > .pl-c-pattern__extra {
   display: none;
+}
+
+.pl-c-category:first-of-type {
+  margin: 0;
 }

@@ -1,0 +1,1 @@
+Adds automatic `<link rel="preload">` async CSS Loading support for browsers that don't natively support it (via the Filamentgroup's invaluable [loadCSS])(https://www.npmjs.com/package/fg-loadcss) library).
