@@ -54,10 +54,12 @@ Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
    with Zend OPcache v7.2.12, Copyright (c) 1999-2018, by Zend Technologies
 ```
 
-## Part II. Configure PHPStorm for Xdebug
+## Part II. Configure Your IDE for Xdebug
 
-Note: Many IDEs besides PHPStorm support Xdebug-- refer to their documentation for specifics, but the steps
+Note: Many IDEs besides PHPStorm and VS Code support Xdebug-- refer to their documentation for specifics, but the steps
 below should still provide helpful high level guidance on what you're doing.
+
+### PHPStorm
 
 Generic docs can be found at https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html#integrationWithProduct.
 Below are quickstart/Pattern Lab-specific instructions:
@@ -79,7 +81,17 @@ Below are quickstart/Pattern Lab-specific instructions:
 - Confirm that the `Debug Port` in the `Xdebug` section is 9000 (or whatever you configured the port to be in part I.
   Unless you have a good reason, leave it as 9000).
 
+### VS Code
+
+**Step 1.** Install "PHP Debug" Extension
+
+- In VS Code, go to "Extensions" (Shift-Cmd-E).
+- Search the Extensions Marketplace for "PHP Debug" ([this one](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug))
+- Install "PHP Debug" and reload Workspace
+
 ## Part III. Setup the Pattern lab build command as a script you can debug
+
+### PHPStorm
 
 **Step 1.** In PHPStorm's `Edit` menu, go to `Edit Configurations...`.
 
@@ -109,3 +121,33 @@ Click in the left margin to set a breakpoint. It should look like this:
 If you've done it right, execution should pause on the breakpoint you set.
 
 ![Running script](/images/docs/debugging-xdebug-running.png)
+
+### VS Code
+
+**Step 1.** Configure "PHP Debug" in the Debugger
+
+- In VS Code, open "Debugger" (Shift-Cmd-D).
+- At the top of the Debugger pane you should see a little gear icon.
+- Click on the little gear icon to configure `launch.json`
+- You should see a Menu with the placeholder text "Select Environment". Choose "PHP".
+- This adds adds a `launch.json` configuration file to your Workspace with two PHP debug modes:
+  - One named "Listen for XDebug"
+  - One named "Launch currently open script"
+
+**Step 2.** Set a breakpoint
+
+- Open the `docs-site/core/console` PHP file in VS Code
+- Click to the left of the line number on line 18 to set a breakpoint.
+
+**Step 3.** Test the Debugger
+
+- Back in the Debugger pane, you should see a menu at the top with a "play" icon to its left
+- Select "Listen for Debug" from the menu and click "play"
+- Startup Pattern Lab by running `npm start`
+
+If you've done it right, execution should pause on the breakpoint you set.
+
+For more information, see:
+
+- [PHP Debug Docs](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug)
+- [Debugging PHP in Visual Studio Code](https://scotch.io/@chenster/debugging-php-in-visual-studio-code205#toc-xdebug-in-visual-studio-code)
