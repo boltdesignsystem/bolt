@@ -39,6 +39,7 @@
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
     "test": "npm-run-all --parallel test:js test:php test:monorepo",
     "test:js": "NODE_ENV='test' jest",
+    "jest:update": "NODE_ENV='test' jest -u",
     "test:monorepo": "node scripts/monorepo-tests.js",
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
     "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
