@@ -32,6 +32,7 @@ After installation is complete, the output from that command should tell you whe
   [Xdebug]
   zend_extension="/path/to/xdebug.so"
   xdebug.remote_enable=1
+  xdebug.remote_autostart=1
   xdebug.remote_port="9000"
   ```
 
