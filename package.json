@@ -43,6 +43,7 @@
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
     "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
     "test:e2e:full-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
+    "test:e2e:full-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
     "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:full": "./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11 $NOW_URL",
@@ -70,7 +71,6 @@
     ]
   },
   "devDependencies": {
-    "saucelabs": "^1.5.0",
     "@commitlint/cli": "^7.4.0",
     "@commitlint/config-conventional": "^7.3.1",
     "@instructure/cz-lerna-changelog": "^5.40.0",
