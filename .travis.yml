@@ -49,8 +49,8 @@ jobs:
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
-      addons:
-        sauce_connect: true
+      # addons:
+      #   sauce_connect: true
       script:
         - yarn run setup
         - ./scripts/check-run-in-progress.js 'Nightwatch'
