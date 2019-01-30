@@ -32,7 +32,7 @@ A collection band contains a series of teasers or cards, with the option to add 
 
 <figure>
 
-<img src="/images/docs/color_light-cards.png" />
+<img src="/images/docs/color_light-cards.jpg" />
 
 <figcaption>In a collection band, a trio of cards points users to more information about a topic.</figcaption>
 
@@ -44,7 +44,7 @@ The action band includes a series of links associated with icons. Use an action 
 
 <figure>
 
-<img src="/images/docs/icons_action-band.png" />
+<img src="/images/docs/icons_action-band.jpg" />
 
 <figcaption>The action band provides instant links to high-level information.</figcaption>
 
@@ -56,7 +56,7 @@ The feature band provides the most flexible options for mixing content, interact
 
 <figure>
 
-<img src="/images/docs/band_feature_image-CTA.png" />
+<img src="/images/docs/band_feature_image-CTA.jpg" />
 
 <figcaption>The simplest way to use a feature band is to display an image next to a teaser and CTA.</figcaption>
 
@@ -64,7 +64,7 @@ The feature band provides the most flexible options for mixing content, interact
 
 <figure>
 
-<img src="/images/docs/band_feature_zoom-CTA.png" />
+<img src="/images/docs/band_feature_zoom-CTA.jpg" />
 
 <figcaption>On product pages, feature bands are used to showcase zoomable product screenshots alongside teasers and CTAs.</figcaption>
 
@@ -72,7 +72,7 @@ The feature band provides the most flexible options for mixing content, interact
 
 <figure>
 
-<img src="/images/docs/band_feature_video-ui-list.png" />
+<img src="/images/docs/band_feature_video-ui-list.jpg" />
 
 <figcaption>In one of the more complex configurations, a video appears beside a UI list that features important links to further information.</figcaption>
 
@@ -84,7 +84,7 @@ The flag band contains for a brief, highly targeted message with a single call t
 
 <figure>
 
-<img src="/images/docs/color_band_xdark.png" />
+<img src="/images/docs/color_band_xdark.jpg" />
 
 <figcaption>The flag band is the most simple band configuration.</figcaption>
 
@@ -96,7 +96,7 @@ Use an index band to group distinct sections of text-based content, such as teas
 
 <figure>
 
-<img src="/images/docs/band_index.png" />
+<img src="/images/docs/band_index.jpg" />
 
 <figcaption>An index band can be a way to showcase multiple case studies, product featuresets or other textual information. </figcaption>
 
@@ -108,7 +108,7 @@ A lockup band focuses content on a single, high-value message, with a number of 
 
 <figure>
 
-<img src="/images/docs/band_lockup.png" />
+<img src="/images/docs/band_lockup.jpg" />
 
 <figcaption>Most often used on the home page, a lockup band allows you to showcase a number of messages within a constrained space.</figcaption>
 
@@ -120,7 +120,7 @@ The body content band helps content authors create more robust content sections 
 
 <figure>
 
-<img src="/images/docs/band_content-body-article.png" />
+<img src="/images/docs/band_content-body-article.jpg" />
 
 <figcaption>On an `xlight` background, a content body band can serve as the main container of a page.</figcaption>
 
@@ -128,7 +128,7 @@ The body content band helps content authors create more robust content sections 
 
 <figure>
 
-<img src="/images/docs/band_content-body-hero.png" />
+<img src="/images/docs/band_content-body-hero.jpg" />
 
 <figcaption>Within a page, use a content body band to create a strong header with a streamlined message.</figcaption>
 

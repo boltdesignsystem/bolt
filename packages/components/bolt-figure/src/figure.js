@@ -45,13 +45,11 @@ class BoltFigure extends withLitHtml() {
 
           return html`
             <figcaption class="${captionClasses}">
-              ${
-                name in this.slots
-                  ? this.slot('default')
-                  : html`
-                      <slot />
-                    `
-              }
+              ${name in this.slots
+                ? this.slot('default')
+                : html`
+                    <slot />
+                  `}
             </figcaption>
           `;
       }
