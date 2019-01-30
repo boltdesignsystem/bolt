@@ -28,19 +28,19 @@ Themes are specialized color combinations that allow you to be creative while st
 
 Dark themes should be primarily used as a focal point on the page. They are commonly used as page heroes, or further down the page to call attention to an important section. As a rule of thumb, dark themes should take up no more than 20-30% of page real estate. 
 
-![Use an x-dark band as the hero of a page, or as a small callout feature.](/images/docs/color_band_xdark.png)
+![Use an x-dark band as the hero of a page, or as a small callout feature.](/images/docs/color_band_xdark.jpg)
 
-![Use a Dark band in the middle of the page to create a strong feature, or to provide a bit of contrast against  an X-Dark band.](/images/docs/color_band_dark.png)
+![Use a Dark band in the middle of the page to create a strong feature, or to provide a bit of contrast against  an X-Dark band.](/images/docs/color_band_dark.jpg)
 
 ### light and x-light
 
 Light themes are used to encapsulate larger amounts of information, and to help users absorb larger amounts of content. Use as the main body of the page, to present search results or cards, or to offset promotional messaging from a dark band. 
 
-![A collection of 3 cards on a Light band](/images/docs/color_light-cards.png)
+![A collection of 3 cards on a Light band](/images/docs/color_light-cards.jpg)
 
 For body copy, such as articles, always use the x-light theme.
 
-![For long-form body copy, use an x-light band](/images/docs/color_light-content.png)
+![For long-form body copy, use an x-light band](/images/docs/color_light-content.jpg)
 
 ## System status/messaging colors
 

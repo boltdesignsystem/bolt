@@ -28,17 +28,15 @@ class BoltCardBody extends withContext(withLitHtml()) {
 
     return html`
       ${this.addStyles([styles])}
-      ${
-        tag === 'figure'
-          ? html`
-              <figcaption class="${classes}">
-                ${this.slot('default')}
-              </figcaption>
-            `
-          : html`
-              <div class="${classes}">${this.slot('default')}</div>
-            `
-      }
+      ${tag === 'figure'
+        ? html`
+            <figcaption class="${classes}">
+              ${this.slot('default')}
+            </figcaption>
+          `
+        : html`
+            <div class="${classes}">${this.slot('default')}</div>
+          `}
     `;
   }
 }

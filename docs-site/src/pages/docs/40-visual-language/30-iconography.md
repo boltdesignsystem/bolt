@@ -49,14 +49,14 @@ By default, icons take on the primary headline color for the background theme.
 
 If actionable, icons take on a specific override color based on the theme that adds affordance.
 
-![In an action band, the hover state changes the color of the icon and text.](/images/docs/icons_action-band.png)
+![In an action band, the hover state changes the color of the icon and text.](/images/docs/icons_action-band.jpg)
 
 
 
 ### Do: Use icons to convey meaning or distinguish among a set
-![Add a shape around each icon to bring visual consistency to the list.](/images/docs/icons_DO-1.png)   ![Use icons to help users easily distinguish between items in a set.](/images/docs/icons_DO-2.png)
+![Add a shape around each icon to bring visual consistency to the list.](/images/docs/icons_DO-1.jpg)   ![Use icons to help users easily distinguish between items in a set.](/images/docs/icons_DO-2.jpg)
 
 ### Don’t: Use icons inconsistently
-![Don’t mix items that have icons with items that don’t.](/images/docs/icons_DONOT-1.png)   ![Don’t use icons with distinctly different visual styling.](/images/docs/icons_DONOT-2.png)
+![Don’t mix items that have icons with items that don’t.](/images/docs/icons_DONOT-1.jpg)   ![Don’t use icons with distinctly different visual styling.](/images/docs/icons_DONOT-2.jpg)
 
 

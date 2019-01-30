@@ -101,7 +101,7 @@ $bolt-list-separator-styles: solid, dashed;
   @each $spacing-value in $bolt-spacing-values {
     $spacing-value-name: nth($spacing-value, 1);
 
-    &.c-bolt-list-item--spacing-#{$spacing-value-name} {
+    &:not(.c-bolt-list-item--last-item).c-bolt-list-item--spacing-#{$spacing-value-name} {
       &.c-bolt-list-item--display-block {
         @include bolt-padding-bottom(#{$spacing-value-name});
       }

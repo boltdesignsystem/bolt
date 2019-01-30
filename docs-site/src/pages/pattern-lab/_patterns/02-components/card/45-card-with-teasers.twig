@@ -74,7 +74,6 @@
     display: "block",
     separator: "solid",
     spacing: "medium",
-    inset: true,
     items: [
       teaser_1,
       teaser_2,
@@ -94,7 +93,9 @@
   {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
     {% include "@bolt-components-card/card.twig" with {
       height: "auto",
-      content: block_list_2,
+      body: {
+        content: block_list_2,
+      },
     } only %}
   {% endcell %}
 {% endgrid %}
