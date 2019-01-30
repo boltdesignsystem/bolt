@@ -20,13 +20,17 @@
       "web": "https://github.com/sghoweri"
     }
   ],
+  "peerDependencies": {
+    "@bolt/twig-renderer": "^2.3.0-rc.0"
+  },
   "dependencies": {
     "@bolt/babel-preset-bolt": "^2.3.0-rc.0",
     "@bolt/config-browserlist": "^2.3.0-rc.0",
     "@bolt/postcss-themify": "^2.3.0-rc.0",
     "@bolt/sass-export-data": "^2.3.0-rc.0",
     "@bolt/sassdoc-webpack-plugin": "^2.3.0-rc.0",
-    "@octokit/rest": "^16.3.0",
+    "@octokit/plugin-throttling": "^2.3.0",
+    "@octokit/rest": "^16.13.3",
     "address": "^1.0.3",
     "autoprefixer": "^9.4.3",
     "babel-loader": "^8.0.4",
@@ -49,7 +53,7 @@
     "file-loader": "^3.0.1",
     "front-matter": "^3.0.1",
     "globby": "^8.0.1",
-    "hard-source-webpack-plugin": "git+https://github.com/chronweigle/hard-source-webpack-plugin/#add-prefix",
+    "hard-source-webpack-plugin-patch": "^0.13.3",
     "incache": "^7.2.1",
     "js-yaml": "^3.12.0",
     "json-loader": "^0.5.7",
@@ -75,7 +79,7 @@
     "sass-loader": "^7.1.0",
     "sassdoc": "^2.5.1",
     "semver": "^5.6.0",
-    "sharp": "^0.21.1",
+    "sharp": "^0.21.3",
     "string-replace-loader": "^2.1.1",
     "style-loader": "^0.23.1",
     "svgo": "^1.1.1",
