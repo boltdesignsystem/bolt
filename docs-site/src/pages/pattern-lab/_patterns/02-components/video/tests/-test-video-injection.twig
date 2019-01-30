@@ -1,0 +1,30 @@
+<div class="o-bolt-wrapper u-bolt-padding-top-large u-bolt-padding-bottom-large">
+
+  <div class="o-bolt-grid">
+    <div class="o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-1/2@small">
+      <p>Bolt video player with HTML on the page before the JS runs. The HTML for this was from copying and pasting in the HTML from Pattern Lab's copy to clipboard.</p>
+      <bolt-ratio  aspect-ratio-height="9" aspect-ratio-width="16" style="--aspect-ratio-height: 9; --aspect-ratio-width: 16;">
+        <bolt-video  data-setup="{&quot;techOrder&quot;: [&quot;Html5&quot;], &quot;resizeManager&quot;: false}" video-id="3861325118001" account-id="1900410236" show-meta show-meta-title player-id="r1CAdLzTW" controls v="1.7.0"></bolt-video>
+      </bolt-ratio>
+    </div>
+
+    <div class="o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-1/2@small">
+      <p>Bolt video player markup that's dynamically injected into the page. Markup being injected was properly copied over from Pattern Lab's HTML example.</p>
+
+      <bolt-button onclick="injectVideo()" class="u-bolt-margin-bottom-medium">Inject video player</bolt-button>
+      <div class="js-video-container"></div>
+
+      <script>
+        function injectVideo(){
+          var injectionContainer = document.querySelector('.js-video-container');
+
+          var newPlayer = document.createElement('div');
+          newPlayer.innerHTML = '<bolt-ratio  aspect-ratio-height="9" aspect-ratio-width="16" style="--aspect-ratio-height: 9; --aspect-ratio-width: 16;"><bolt-video  class="js-bolt-video-uuid--634704280" data-setup="{&quot;techOrder&quot;: [&quot;Html5&quot;], &quot;resizeManager&quot;: false}" video-id="3861325118001" account-id="1900410236" show-meta show-meta-title player-id="r1CAdLzTW" controls v="1.7.0"></bolt-video></bolt-ratio>';
+
+          injectionContainer.appendChild(newPlayer);
+        }
+      </script>
+    </div>
+  </div>
+
+</div>

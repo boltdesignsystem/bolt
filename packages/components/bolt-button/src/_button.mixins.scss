@@ -1,7 +1,13 @@
+@function bolt-button-border-radius($name) {
+  @return map-get($bolt-button-border-radii, $name);
+}
+
 // Lightweight style reset for button and input elements
 @mixin bolt-button-reset {
   @include bolt-padding(0);
   @include bolt-font-family(body);
+
+  -webkit-appearance: none; // override default [type=submit] button styles coming from Normalize
 }
 
 @mixin bolt-button-raised() {
@@ -37,31 +43,31 @@
 
   display: inline-block;
   display: inline-flex;
-  align-items: center;
-  flex-grow: 1;
   flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
   position: relative;
-  cursor: pointer;
+  transform: translate3d(0, 0, 0);
   text-decoration: none;
   vertical-align: middle;
-  border-style: $bolt-button-border-style;
+  cursor: pointer;
+  border-radius: bolt-button-border-radius('regular');
   border-width: $bolt-button-border-width;
-  border-radius: $bolt-button-border-radius;
-  transform: translate3d(0, 0, 0);
+  border-style: $bolt-button-border-style;
 
   &:before {
+    content: '';
     display: block;
+    opacity: 0.2;
     position: absolute;
-    z-index: bolt-z-index('background') - 5;
     top: 0;
     left: 0;
+    z-index: bolt-z-index('background') - 5;
     width: 100%;
     height: 100%;
-    content: '';
     pointer-events: none;
-    border-radius: $bolt-button-border-radius;
+    border-radius: bolt-button-border-radius('regular');
     @include bolt-shadow('level-10', true);
-    opacity: 0.2;
   }
 }
 
@@ -71,29 +77,29 @@
 @mixin bolt-button-style--primary() {
   &,
   &:visited {
-    border-color: bolt-theme(primary);
     color: bolt-theme(text-on-primary);
+    border-color: bolt-theme(primary);
     background-color: bolt-theme(primary);
   }
 
   &:hover,
   &.is-hover {
-    border-color: bolt-theme(primary-lighten-15);
     color: bolt-theme(text-on-primary-lighten-15);
+    border-color: bolt-theme(primary-lighten-15);
     background-color: bolt-theme(primary-lighten-15);
   }
 
   &:focus,
   &.is-focus {
+    color: bolt-theme(text-on-primary-darken-15);
     border-color: bolt-theme(primary-darken-15);
     background-color: bolt-theme(primary-darken-15);
-    color: bolt-theme(text-on-primary-darken-15);
   }
 
   &:active,
   &.is-active {
-    border-color: bolt-theme(primary-darken-25);
     color: bolt-theme(text-on-primary-darken-25);
+    border-color: bolt-theme(primary-darken-25);
     background-color: bolt-theme(primary-darken-25);
   }
 }
@@ -101,29 +107,29 @@
 @mixin bolt-button-style--secondary() {
   &,
   &:visited {
-    border-color: bolt-theme(secondary);
     color: bolt-theme(text-on-secondary);
+    border-color: bolt-theme(secondary);
     background-color: bolt-theme(secondary);
   }
 
   &.is-hover,
   &:hover {
-    border-color: bolt-theme(secondary-lighten-5);
     color: bolt-theme(text-on-secondary-lighten-5);
+    border-color: bolt-theme(secondary-lighten-5);
     background-color: bolt-theme(secondary-lighten-5);
   }
 
   &:focus,
   &.is-focus {
-    border-color: bolt-theme(secondary-darken-3);
     color: bolt-theme(text-on-secondary-darken-3);
+    border-color: bolt-theme(secondary-darken-3);
     background-color: bolt-theme(secondary-darken-3);
   }
 
   &:active,
   &.is-active {
-    border-color: bolt-theme(secondary-darken-10);
     color: bolt-theme(text-on-secondary-darken-10);
+    border-color: bolt-theme(secondary-darken-10);
     background-color: bolt-theme(secondary-darken-10);
   }
 }
@@ -200,19 +206,19 @@
   );
   &.c-bolt-button,
   &.c-bolt-button:visited {
-    border-color: $button-background-color-default;
     color: bolt-text-contrast($button-background-color-default);
+    border-color: $button-background-color-default;
     background-color: $button-background-color-default;
   }
   &:focus,
   &:hover {
-    border-color: $button-background-color-hover;
     color: bolt-text-contrast($button-background-color-default);
+    border-color: $button-background-color-hover;
     background-color: $button-background-color-hover;
   }
   &:active {
-    border-color: $button-background-color-active;
     color: bolt-text-contrast($button-background-color-default);
+    border-color: $button-background-color-active;
     background-color: $button-background-color-active;
   }
 }

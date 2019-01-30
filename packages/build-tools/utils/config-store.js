@@ -28,13 +28,12 @@ async function getDefaultConfig() {
   return Promise.all([
     await getPort(configSchema.properties.port.default),
     await getPort(configSchema.properties.proxyPort.default),
-    await getPort(configSchema.properties.renderingServicePort.default),
   ]).then(function(ports) {
     return {
       port: ports[0],
       proxyPort: ports[1],
-      renderingServicePort: ports[2],
       ip,
+      env: process.env.NODE_ENV,
       enableCache: configSchema.properties.enableCache.default,
       proxyHeader: configSchema.properties.proxyHeader.default,
       watch: configSchema.properties.watch.default,

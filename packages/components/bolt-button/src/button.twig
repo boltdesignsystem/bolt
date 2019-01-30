@@ -6,6 +6,7 @@
 
 {% set baseClass = "c-bolt-button" %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set innerAttributes = create_attribute({}) %}
 
 {# DEPRECATED.  Use the prooperty 'align' instead of 'itemAlignment'. #}
 {% if itemAlignment %}
@@ -19,9 +20,14 @@
   {% set align = "end" %}
 {% endif %}
 
+{# DEPRECATED.  Use the property 'border_radius' with a value of 'full' instead. #}
+{% if rounded == "rounded" %}
+  {% set border_radius = "full" %}
+{% endif %}
+
 {# set up psuedo self-validation by limiting param values to what's specifically allowed in the component schema #}
 {% set alignOptions = schema.properties.align.enum %}
-{% set roundedOptions = schema.properties.rounded.enum %}
+{% set radius_options = schema.properties.border_radius.enum %}
 {% set sizeOptions = schema.properties.size.enum %}
 {% set styleOptions = schema.properties.style.enum %}
 {% set tagOptions = schema.properties.tag.enum %}
@@ -37,23 +43,24 @@
 {% set style = style in styleOptions ? style : schema.properties.style.default %}
 {% set tag = tag in tagOptions ? tag : schema.properties.tag.default %}
 {% set transform = transform in transformOptions ? transform : schema.properties.transform.default %}
+{% set border_radius = border_radius in radius_options ? border_radius : schema.properties.border_radius.default %}
 
 {% if tag == "submit" %}
   {% set tag = "button" %}
-  {% set attributes = attributes.setAttribute("type", "submit") %}
+  {% set innerAttributes = innerAttributes.setAttribute("type", "submit") %}
 {% elseif tag == "link" or tag == "a" or url != null %}
   {% set tag = "a" %}
   {% if url %}
-    {% set attributes = attributes.setAttribute("href", url) %}
+    {% set innerAttributes = innerAttributes.setAttribute("href", url) %}
   {% endif %}
 {% elseif tag == "reset" %}
   {% set tag = "button" %}
-  {% set attributes = attributes.setAttribute("type", "reset") %}
+  {% set innerAttributes = innerAttributes.setAttribute("type", "reset") %}
 {% endif %}
 
 {# shorthand for manually setting HTML attribute `type` such as submit or reset #}
 {% if type %}
-  {% set attributes = attributes.setAttribute("type", type) %}
+  {% set innerAttributes = innerAttributes.setAttribute("type", type) %}
 {% endif %}
 
 {% set classes = [
@@ -61,7 +68,7 @@
   disabled ? "c-bolt-button--disabled" : "",
   size in sizeOptions ? "c-bolt-button--#{size}" : "",
   width in widthOptions ? "c-bolt-button--#{width}" : "",
-  rounded in roundedOptions ? "c-bolt-button--#{rounded}" : "",
+  border_radius in radius_options ? baseClass ~ "--border-radius-#{border_radius}" : "",
   style in styleOptions ? "c-bolt-button--#{style}" : "c-bolt-button--#{schema.properties.style.default}",
   transform in transformOptions and transform != "none" ? "c-bolt-button--#{transform}": "",
   align in alignOptions ? baseClass ~ "--" ~ align : "",
@@ -77,20 +84,28 @@
 {% endif %}
 
 
-{# filter external classnames to allow a very small select number to trickle onto the inner button tag ("is-" and "has-" classes really) while still allowing utility classes and other misc non-component classes to get added to the outer custom element #}
-{% set outerClasses = utils | default([]) %}
+{#
+Sort classes passed in via attributes into two groups:
+1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via atttributes)
+#}
+{% set outerClasses = [] %}
 {% set innerClasses = classes %}
+{% set originalClasses = [] %}
 
 {% for class in attributes["class"] %}
-  {% if class starts with "u-" or class starts with "js-" %}
-    {% set outerClasses = outerClasses|merge([class]) %}
-  {% elseif class starts with "is-" or class starts with "has-" %}
+  {% if class starts with "is-" == true %}
+    {% set innerClasses = innerClasses|merge([class]) %}
+  {% elseif class starts with "has-" == true %}
     {% set innerClasses = innerClasses|merge([class]) %}
   {% elseif class starts with "c-bolt-" == false %}
     {% set outerClasses = outerClasses|merge([class]) %}
   {% endif %}
+  {% set originalClasses = originalClasses|merge([class]) %}
 {% endfor %}
 
+{% set attributes = attributes.removeClass(originalClasses).addClass(outerClasses) %}
+{% set innerAttributes = innerAttributes.removeClass(originalClasses).addClass(innerClasses) %}
 
 {% macro slottedIcon(icon, iconPosition, slotName) %}
   {% if icon and iconPosition == slotName %}
@@ -116,11 +131,11 @@
   {% if size %} size="{{ size }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
   {% if width %} width="{{ width }}" {% endif %}
-  {% if rounded %} rounded="{{ rounded }}" {% endif %}
   {% if iconOnly %} icon-only="true" {% endif %}
   {% if transform %} transform="{{ transform }}" {% endif %}
   {% if disabled == true %} disabled {% endif %}
   {% if noShadow %} no-shadow {% endif %}
+  {% if border_radius %} border-radius="{{ border_radius }}" {% endif %}
 
   {% if target or attributes['target'] %} target="{{ target | default(attributes['target']) }}" {% endif %}
 
@@ -128,12 +143,11 @@
   {% if onClick or attributes['on-click'] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
   {% if onClickTarget or attributes['on-click-target'] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %}
 
-  {{ attributes | without('class') | without('target') | without('id') | without('type') }}
-  {% if outerClasses %} class="{{ outerClasses|join(' ') }}" {% endif %}
+  {{ attributes|without('target')|without('id')|without('on-click') }}
 >
 
   {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
-  <{{ tag }} {{ attributes | without('class') | without('on-click') | without('on-click-target') }} class="{{ innerClasses|join(' ') }}" is="shadow-root">
+  <{{ tag }} {{ innerAttributes|without('on-click')|without('on-click-target') }} is="shadow-root">
     {{ macros.slottedIcon(icon, iconPosition, 'before') }}
     <replace-with-children class="c-bolt-button__item {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</replace-with-children>
     {{ macros.slottedIcon(icon, iconPosition, 'after') }}

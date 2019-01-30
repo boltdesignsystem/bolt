@@ -30,21 +30,21 @@ bolt-dropdown {
 
 
 .c-bolt-dropdown {
-  overflow: hidden;
   position: relative;
-  background-color: bolt-theme(background);
+  overflow: hidden;
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
+  background-color: bolt-theme(background);
 }
 
 .c-bolt-dropdown__header {
   @include bolt-font-weight(semibold);
   @include bolt-font-size(medium); // Normalizes line height so pre and post JS looks the same
+  display: flex;
   position: relative;
   z-index: 10;
   margin: 0;
-  display: flex;
-  background-color: bolt-theme(background);
   box-shadow: 0 1px 2px 0 rgba(bolt-color(black), 0.1);
+  background-color: bolt-theme(background);
 
   .c-bolt-dropdown--collapse\@small & {
     @include bolt-mq(small) {
@@ -54,18 +54,18 @@ bolt-dropdown {
 
    &:after {
     content: '';
+    display: block;
+    opacity: bolt-opacity(0);
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
-    pointer-events: none;
+    left: 0;
     z-index: -1;
-    display: block;
+    pointer-events: none;
     background-color: transparent;
-    transition: opacity .1s ease;
-    opacity: bolt-opacity(0);
     background-color: bolt-theme(headline-link);
+    transition: opacity .1s ease;
   }
 }
 
@@ -82,25 +82,30 @@ bolt-dropdown {
 .c-bolt-dropdown__header-label {
   @include bolt-padding-top(small);
   @include bolt-padding-bottom(small);
-  @include bolt-padding-left(medium);
-  @include bolt-padding-right(medium);
+  @include bolt-padding-right(small);
+  @include bolt-padding-left(small);
   @include bolt-font-size(medium);
   @include bolt-font-weight(semibold);
 
-  margin-bottom: 0;
-  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; // vertical align
+  -webkit-appearance: none;
   position: relative;
+  width: 100%;
+  
+  margin-bottom: 0;
+  color: bolt-theme(headline-link);
+  text-align: left; // otherwise some dropdown menus are center aligned in the Shadow DOM
+  cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  width: 100%;
   font: inherit;
-
-  -webkit-appearance: none;
   border: none;
   background-color: transparent;
-  color: bolt-theme(headline-link);
+  background-color: bolt-theme(background);
 
   outline-offset: -3px;
   outline-width: 2px;
@@ -109,12 +114,6 @@ bolt-dropdown {
     outline: none;
   }
 
-  align-items: center; // vertical align
-  justify-content: space-between;
-
-  display: flex;
-  background-color: bolt-theme(background);
-
   .c-bolt-dropdown__header--center & {
     justify-content: center;
   }
@@ -122,29 +121,29 @@ bolt-dropdown {
 
 
 .c-bolt-dropdown__header-link {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
   position: absolute;
-  width: 1px;
-  white-space: nowrap;
-  outline-offset: -3px;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  outline-offset: -3px;
 
 
   &:focus,
   &:active {
-    clip: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
     width: auto;
+    height: auto;
+    overflow: visible;
+    margin: 0;
+    clip: auto;
     white-space: inherit;
   }
 }
@@ -168,71 +167,71 @@ bolt-dropdown {
   display: block;
 }
 .c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-dropdown__header-link--close {
+  top: 0;
   // height: 50px;
   left: 0;
-  top: 0;
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
 
 
 .c-bolt-dropdown__content {
-  overflow: auto;
-  transition: all .2s cubic-bezier(0, 0, .3, 1) .1s;
-  position: relative;
-  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
-  left: 0;
-  width: 100%;
-  z-index: 1;
-  transform: translateY(-100px);
   display: none;
+  position: relative;
+  left: 0;
+  transform: translateY(-100px);
+  z-index: 1;
+  width: 100%;
   height: 0;
+  overflow: auto;
+  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
+  transition: all .2s cubic-bezier(0, 0, .3, 1) .1s;
 
   &[data-open]:not([style*="height"]) {
-    transition: none;
-    height: auto;
     visibility: visible;
+    height: auto;
+    transition: none;
   }
 
   &:not([role="region"]){
-    max-height: 0px; // Height of bar
-    visibility: hidden;
     display: block;
+    visibility: hidden;
     height: auto;
+    max-height: 0px; // Height of bar
   }
 
   .c-bolt-dropdown--collapse\@small & {
     @include bolt-mq(small) {
-      max-height: none;
-      visibility: visible;
       display: block;
-      height: auto;
+      visibility: visible;
       transform: translate3d(0, 0, 0);
+      height: auto;
+      max-height: none;
     }
   }
 }
 
 
 .c-bolt-dropdown__header-icons {
-  margin-top: bolt-spacing(small) * -1;
-  margin-bottom: bolt-spacing(small) * -1;
-  margin-right: bolt-spacing(medium) * -1;
-  position: relative;
   display: inline-flex;
+  flex-shrink: 0; // for when there is a very long title - adds left/right spacing
   justify-content: center;
   align-items: center;
+  position: relative;
   overflow: hidden; // so transformed icons don't spill out
-  flex-shrink: 0; // for when there is a very long title - adds left/right spacing
+  margin-top: bolt-spacing(xsmall) * -1;
+  margin-right: bolt-spacing(small) * -1;
+  margin-bottom: bolt-spacing(xsmall) * -1;
 
   &:before {
+    content: '';
+    opacity: .1;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     width: 1px;
-    opacity: .1;
     background-color: bolt-theme(headline-link);
-    content: '';
 
     .c-bolt-dropdown__header--center & {
       display: none;
@@ -248,13 +247,13 @@ bolt-dropdown {
 
 .c-bolt-dropdown__header-icon {
   display: inline-block;
-  vertical-align: middle;
-  font-size: 1.5rem;
+  position: relative;
   padding: calc(1.5rem / 2);
   // height: 3rem;
   // width: 3rem;
   line-height: 0; // Workaround to line-height messing up icon alignment
-  position: relative;
+  vertical-align: middle;
+  font-size: 1.5rem;
   transition: opacity .2s ease;
   // transform-style: preserve-3d;
   // transform-origin: center center;
@@ -346,41 +345,34 @@ bolt-dropdown {
 .c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-dropdown__content,
 .c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-dropdown__content {
   visibility: visible;
-  max-height: 250px;
-  transition: all .2s cubic-bezier(0, 0, .3, 1) .1s;
   visibility: visible;
   transform: translate3d(0, 0, 0);
+  max-height: 250px;
+  transition: all .2s cubic-bezier(0, 0, .3, 1) .1s;
   transition: transform 300ms ease, height 300ms ease;
 }
 
 
 .c-bolt-dropdown__content--open {
   display: block;
+  transform: translate3d(0, 0, 0);
   // overflow: hidden;
   transition: height 0.2s ease;
-  transform: translate3d(0, 0, 0);
 }
-
-.c-bolt-dropdown__content--opened {
-  // overflow: visible;
-}
-
-
-
 
 .c-bolt-dropdown__content-inner {
   @include bolt-padding-top(xsmall);
   @include bolt-padding-bottom(xsmall);
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  position: relative;
 
   // padding-top: 13px;
   // padding-bottom: 13px;
   // padding-left: 16px;
   // padding-right: 16px;
   opacity: bolt-opacity(0);
+  position: relative;
+  overflow: auto;
   transition: opacity .1s ease;
+  -webkit-overflow-scrolling: touch;
 
   .c-bolt-dropdown--collapse\@small & {
     @include bolt-mq(small) {
@@ -391,20 +383,20 @@ bolt-dropdown {
 
   &:after {
     content: '';
+    display: block;
+    opacity: bolt-opacity(100);
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
     z-index: -1;
-    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
     background-color: transparent;
-    transition: opacity 0.1s ease;
     background-color: bolt-theme(background);
-    opacity: bolt-opacity(100);
 
     filter: contrast(80%) brightness(110%);
+    transition: opacity 0.1s ease;
   }
 }
 
@@ -419,15 +411,15 @@ bolt-dropdown {
 
 .c-bolt-dropdown__toggle-text {
   position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
   -webkit-clip-path: inset(0 0 99.9% 99.9%);
   clip-path: inset(0 0 99.9% 99.9%);
-  overflow: hidden;
-  height: 1px;
-  width: 1px;
-  padding: 0;
-  border: 0;
 }
 
 
@@ -448,12 +440,8 @@ bolt-dropdown {
 
 
 .c-bolt-dropdown__content--open {
-  overlow: hidden;
+  overflow: hidden;
 }
-
-
-
-
 
 .c-bolt-block-list {
   display: block;
@@ -467,8 +455,8 @@ bolt-dropdown {
 
 
 .c-bolt-nav__item {
-  transform: var(--bolt-nav-item-transform, none);
   opacity: var(--bolt-nav-item-opacity, 1);
+  transform: var(--bolt-nav-item-transform, none);
   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
 
   .c-bolt-dropdown--collapse\@small & {
@@ -511,13 +499,6 @@ bolt-dropdown {
     --bolt-nav-item-transform: none,
   ));
 }
-
-.c-bolt-dropdown__state:target + .c-bolt-dropdown .c-bolt-nav__indicator,
-.c-bolt-dropdown__state:checked + .c-bolt-dropdown .c-bolt-nav__indicator,
-.c-bolt-dropdown__content--opened .c-bolt-nav__indicator {
-  // opacity: bolt-opacity(100);
-}
-
 
 .c-bolt-dropdown__content--opened {
   @include bolt-css-vars((

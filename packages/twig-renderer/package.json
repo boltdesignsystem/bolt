@@ -1,6 +1,6 @@
 {
   "name": "@bolt/twig-renderer",
-  "version": "2.2.2",
+  "version": "2.3.0-rc.0",
   "license": "MIT",
   "description": "Renders Twig",
   "main": "twig-renderer.js",
@@ -13,15 +13,19 @@
     }
   ],
   "dependencies": {
-    "@basalt/twig-renderer": "^0.10.2",
-    "@bolt/build-tools": "^2.2.2",
+    "@basalt/twig-renderer": "^0.12.0",
+    "@bolt/build-tools": "^2.3.0-rc.0",
+    "@bolt/drupal-twig-extensions": "^2.3.0-rc.0",
     "sleep-promise": "^8.0.1"
   },
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "setup": "composer run setup"
+  },
   "schema": "utils/config.schema.yml",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "homepage": "https://bolt-design-system.com",
-  "gitHead": "b41fc6afcf7daba96841792286a1d9a15aa44d30"
+  "gitHead": "b47538629e315eeecbdfcb8d0c22e787b3bcc089",
+  "homepage": "https://boltdesignsystem.com"
 }

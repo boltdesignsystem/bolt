@@ -1,0 +1,32 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Z-index",
+  sassdoc_items: [
+    {
+      title: "@mixin bolt-z-index",
+      anchor: link["styleguide-sassdoc"] ~ "#mixin-bolt-z-index"
+    }
+  ]
+} only %}
+
+  {% macro recursive_zindex_demo(list) %}
+    {% set utility_class = bolt.data.zIndexes["utility-class-prefix"] ~ list|keys|last %}
+    <div class="c-bds-z-index-demo {{ utility_class }}">
+      {% if list|slice(0, -1)|length  %}
+        {{ _self.recursive_zindex_demo(list|slice(0, -1)) }}
+      {% endif %}
+      <p>Z-Index: <code>{{ list|keys|last }}</code>: {{ list|last }}<br>Utility Class: <code>{{ utility_class }}</code></p>
+    </div>
+  {% endmacro %}
+
+  {% set class_prefix = bolt.data.zIndexes["utility-class-prefix"] %}
+
+  {% block utility_description %}
+    <p>Add the utility class <code>{{ class_prefix }}xx</code> where xx equals the z index level you wish to apply.</p>
+    <p><strong>For example:</strong> <code>.{{ class_prefix ~ bolt.data.zIndexes.sets|keys|first }}</code></p>
+  {% endblock %}
+
+  {% block utility_demo %}
+    {{ _self.recursive_zindex_demo(bolt.data.zIndexes.sets) }}
+  {% endblock %}
+
+{% endembed %}

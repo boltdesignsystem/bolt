@@ -4,8 +4,55 @@ const path = require('path');
 const ora = require('ora');
 const chalk = require('chalk');
 const checkLinks = require('check-links');
-const { gitSemverTags } = require('./git-semver-tags');
+const InCache = require('incache');
+const Octokit = require('@octokit/rest').plugin(
+  require('@octokit/plugin-throttling'),
+);
+
+const octokit = new Octokit({
+  auth() {
+    if (process.env.GITHUB_TOKEN) {
+      return `token ${process.env.GITHUB_TOKEN}`;
+    } else {
+      return undefined;
+    }
+  },
+  throttle: {
+    onRateLimit: (retryAfter, options) => {
+      console.warn(
+        `Github API Request quota exhausted for request ${options.method} ${
+          options.url
+        }`,
+      );
+
+      // only retry if wait is 15 seconds or less
+      if (options.request.retryCount === 0 && retryAfter <= 15) {
+        // only retries once
+        console.log(`Retrying after ${retryAfter} seconds!`);
+        return true;
+      } else {
+        console.log(
+          `Skipping auto-retry since we don't want to wait ${retryAfter} seconds!`,
+        );
+        return false;
+      }
+    },
+    onAbuseLimit: (retryAfter, options) => {
+      // does not retry, only logs a warning
+      console.warn(
+        `Github API abuse detected for request ${options.method} ${
+          options.url
+        }`,
+      );
+    },
+  },
+  debug: false,
+});
+
 const { getConfig } = require('./config-store');
+const { fileExists } = require('./general');
+const store = new InCache();
+let isUsingOldData = false; // remember if we are using up to date version data or older (stale) data as a fallback
 
 const urlsToCheck = [];
 
@@ -18,7 +65,7 @@ async function writeVersionDataToJson(versionData) {
   });
 
   fs.writeFile(
-    path.join(process.cwd(), config.dataDir, '/bolt-releases.bolt.json'),
+    path.join(config.dataDir, '/bolt-releases.bolt.json'),
     JSON.stringify({
       options: versionInfo,
     }),
@@ -36,26 +83,63 @@ async function gatherBoltVersions() {
     chalk.blue('Gathering data on the latest Bolt Design System releases...'),
   ).start();
 
-  // Skip over checking for Bolt releases when not in prod mode to speed up the initial build
-  if (!config.prod) {
-    versionSpinner.succeed(
-      chalk.green('Skipped gathering data on every Bolt release -- dev build!'),
-    );
-    return [
-      {
-        label: 'Local Dev',
-        type: 'option',
-        value: `http://localhost:${config.port}/${config.startPath}`,
-      },
-    ];
+  const tagUrls = [];
+  let tags; // grab tags from Github API or via local file cache
+
+  // use local cache if available, but not on Travis tagged releases
+  if (store.get('bolt-tags') && !process.env.TRAVIS_TAG) {
+    tags = await store.get('bolt-tags');
+  } else {
+    try {
+      tags = await octokit.repos.listTags({
+        owner: 'bolt-design-system',
+        repo: 'bolt',
+        per_page: 9999,
+      });
+      tags = tags.data;
+      await store.set('bolt-tags', tags, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // set 30 day cache
+      await store.save();
+    } catch (err) {
+      // handle expired cached data + not having a GITHUB_TOKEN set as an environmental variable
+
+      // use old stale data if it exists
+      if (fileExists(path.join(process.cwd(), '.incache'))) {
+        let staleData = fs.readFileSync(path.join(process.cwd(), '.incache'));
+        staleData = JSON.parse(staleData);
+        const oldTags = staleData['bolt-tags'].value;
+        const oldUrls = staleData['bolt-urls-to-test'].value;
+
+        await store.set('bolt-tags', oldTags, {
+          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        });
+        await store.set('bolt-urls-to-test', oldUrls, {
+          maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+        });
+        await store.save();
+
+        tags = oldTags;
+        isUsingOldData = true; // remember this is old stale data for later
+      } else {
+        // otherwise just use a static version of the dropdown menu so the docs site doesn't break
+        versionSpinner.warn(
+          chalk.yellow(
+            'Could not generate the list of the latest releases of Bolt due to a missing GITHUB_TOKEN auth token + not finding an old version to fall back on. Skipping for now...',
+          ),
+        );
+
+        return [
+          {
+            label: 'Latest',
+            type: 'option',
+            value: `https://boltdesignsystem.com`,
+          },
+        ];
+      }
+    }
   }
 
-  const tags = await gitSemverTags();
-
-  const tagUrls = [];
-
   for (index = 0; index < tags.length; index++) {
-    let tag = tags[index];
+    let tag = tags[index].name;
     let tagString = tag
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-`
@@ -68,10 +152,20 @@ async function gatherBoltVersions() {
     urlsToCheck.push(oldSiteUrl);
   }
 
-  const results = await checkLinks(urlsToCheck);
+  let results;
+
+  if (store.get('bolt-urls-to-test')) {
+    results = await store.get('bolt-urls-to-test');
+  } else {
+    results = await checkLinks(urlsToCheck);
+    await store.set('bolt-urls-to-test', results, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
+    await store.save();
+  }
 
   for (index = 0; index < tags.length; index++) {
-    let tag = tags[index];
+    let tag = tags[index].name;
     let tagString = tag
       .replace(/\//g, '-') // `/` => `-`
       .replace('--', '-') // `--` => `-`
@@ -95,9 +189,19 @@ async function gatherBoltVersions() {
     }
   }
 
-  versionSpinner.succeed(
-    chalk.green('Gathered data on the latest Bolt Design System releases!'),
-  );
+  if (isUsingOldData) {
+    versionSpinner.warn(
+      chalk.yellow(
+        'Using Could not find a GITHUB_TOKEN auth token and the cached version of the latest Bolt releases has expired -- using the old (expired) data for now...',
+      ),
+    );
+  } else {
+    versionSpinner.succeed(
+      chalk.green(
+        'Finished gathering data on the latest Bolt Design System releases!',
+      ),
+    );
+  }
 
   return tagUrls;
 }

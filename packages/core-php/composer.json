@@ -1,7 +1,7 @@
 {
   "name": "bolt-design-system/core-php",
   "description": "Core PHP functionality for Bolt",
-  "version": "2.2.2",
+  "version": "2.3.0-rc.0",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -27,12 +27,14 @@
     "shudrum/array-finder": "^1.1",
     "gregwar/image": "^2.0",
     "tooleks/php-avg-color-picker": "^1.1.2",
-    "asm89/twig-lint": "^1.0"
-  },
-  "require-dev": {
+    "asm89/twig-lint": "^1.0",
     "phpunit/phpunit": "^7"
   },
   "scripts": {
-    "test": "phpunit --colors=always tests"
+    "setup": "@composer install --no-interaction --prefer-dist --no-progress",
+    "test": [
+      "@composer install --no-interaction --prefer-dist --no-progress",
+      "vendor/bin/phpunit --colors=always tests"
+    ]
   }
 }
