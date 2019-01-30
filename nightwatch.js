@@ -51,7 +51,7 @@ srcFolders = srcFolders.map(function(folder) {
  * @param {function} callback
  * @returns {void}
  */
-function handleNightwatchResults(client, callback) {
+async function handleNightwatchResults(client, callback) {
   const currentTest = client.currentTest;
   const sessionId = client.capabilities['webdriver.remote.sessionid'];
   const { username, accessKey } = client.options;
@@ -80,48 +80,50 @@ function handleNightwatchResults(client, callback) {
 
   const passed = results.passed === results.tests - results.skipped;
   console.log(`Passed: ${passed ? 'Yes' : 'No'} - ${name}`);
-  fetch(
-    // https://wiki.saucelabs.com/display/DOCS/Job+Methods
-    `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${sessionId}`,
-    {
-      method: 'PUT',
-      headers: {
-        Authorization: `Basic ${auth}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        passed,
-        build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
-        tags: ['CI'],
-        'custom-data': {
-          TRAVIS_JOB_NUMBER,
-          TRAVIS_BRANCH,
-          TRAVIS_PULL_REQUEST_BRANCH,
-          TRAVIS_PULL_REQUEST,
-          TRAVIS_REPO_SLUG,
-          TRAVIS_TAG,
-          TRAVIS_BUILD_WEB_URL,
-          gitSha,
-          gitShaLong,
+
+  try {
+    const res = await fetch(
+      // https://wiki.saucelabs.com/display/DOCS/Job+Methods
+      `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${sessionId}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Basic ${auth}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-      }),
-    },
-  )
-    .then(res => {
-      if (res.ok) {
-        console.log(`Set SauceLabs details ok`);
-      } else {
-        console.log(`Set SauceLabs details not ok`);
-        throw new Error(`Set SauceLabs details not ok ${res.statusText}`);
-      }
-      return res.json();
-    })
-    .then(() => callback())
-    .catch(err => {
-      console.log(`Error setting SauceLabs details`, err);
-      process.exit(1);
-    });
+        body: JSON.stringify({
+          passed,
+          build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
+          tags: ['CI'],
+          'custom-data': {
+            TRAVIS_JOB_NUMBER,
+            TRAVIS_BRANCH,
+            TRAVIS_PULL_REQUEST_BRANCH,
+            TRAVIS_PULL_REQUEST,
+            TRAVIS_REPO_SLUG,
+            TRAVIS_TAG,
+            TRAVIS_BUILD_WEB_URL,
+            gitSha,
+            gitShaLong,
+          },
+        }),
+      },
+    );
+
+    if (res.ok) {
+      console.log(`Set SauceLabs details ok`);
+    } else {
+      console.log(`Set SauceLabs details not ok`);
+      throw new Error(`Set SauceLabs details not ok ${res.statusText}`);
+    }
+
+    callback();
+    return res.json();
+  } catch (err) {
+    console.log(`Error setting SauceLabs details`, err);
+    process.exit(1);
+  }
 }
 
 module.exports = {
