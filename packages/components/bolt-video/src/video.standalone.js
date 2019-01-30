@@ -39,7 +39,7 @@ class BoltVideo extends withPreact() {
     },
     enabledPlugins: {
       ...props.string,
-      ...{ default: 'cue' },
+      ...{ default: 'playback' },
     },
     disabledPlugins: props.string,
     overlayBackground: props.boolean,
@@ -49,7 +49,7 @@ class BoltVideo extends withPreact() {
     self = super(self);
     self.useShadow = false;
 
-    this.defaultPlugins = ['cue', 'playback'];
+    this.defaultPlugins = ['playback'];
 
     index += 1;
 
