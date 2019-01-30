@@ -47,27 +47,50 @@
     "release:rc": "./scripts/release/rc-release.sh",
     "release": "./scripts/release/release.sh"
   },
-  "dependencies": {
-    "ci-utils": "^0.5.0",
-    "sassdoc": "^2.5.0",
-    "npm-run-all": "^4.1.5",
-    "jest": "^23.6.0",
-    "jest-serializer-html": "^5.0.0"
-  },
   "husky": {
     "hooks": {
-      "pre-push": "yarn run lint"
+      "pre-push": "yarn run lint",
+      "commitmsg": "commitlint -E $GIT_PARAMS"
     }
   },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/@instructure/cz-lerna-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "devDependencies": {
+    "@commitlint/cli": "^7.4.0",
+    "@commitlint/config-conventional": "^7.3.1",
+    "@instructure/cz-lerna-changelog": "^5.40.0",
+    "commitizen": "^3.0.5",
+    "cz-conventional-changelog": "^2.1.0",
     "editorconfig-checker": "^1.3.3",
-    "express": "^4.16.3",
-    "git-semver-tags": "^2.0.0",
+    "git-semver-tags": "^2.0.2",
     "husky": "^1.3.1",
-    "nightwatch": "^1.0.8",
-    "node-fetch": "^2.2.0",
+    "inquirer": "^6.2.1",
+    "semantic-release": "^15.13.3"
+  },
+  "dependencies": {
+    "ci-utils": "^0.5.0",
+    "express": "^4.16.4",
+    "jest-serializer-html": "^6.0.0",
+    "jest": "^24.0.0",
+    "jsonwebtoken": "^8.4.0",
     "lerna": "^3.10.7",
+    "nightwatch": "^1.0.18",
+    "node-fetch": "^2.3.0",
     "now": "latest",
+    "npm-run-all": "^4.1.5",
+    "os-name": "^3.0.0",
+    "os": "^0.1.1",
+    "sassdoc": "^2.5.1",
+    "shelljs": "^0.8.3",
+    "sleep-promise": "^8.0.1",
     "url-exists": "^1.0.3",
     "yaml-lint": "^1.2.4"
   },
