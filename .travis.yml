@@ -59,6 +59,9 @@ jobs:
       after_script:
         - cd scripts && npm install
         - npm run deploy
+        # need to reset git repo before `update-read-only-git-repos.sh`
+        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+        - ./scripts/release/update-read-only-git-repos.sh
       cache:
         yarn: true
         directories:
