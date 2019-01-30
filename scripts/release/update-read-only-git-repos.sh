@@ -3,7 +3,7 @@ cd "$(dirname "$0")"
 cd ../../
 
 # Run helper subsplit script ported over from from https://raw.githubusercontent.com/dflydev/git-subsplit/master/git-subsplit.sh
-CURRENT_VERSION=`git describe --abbrev=0`
+CURRENT_VERSION=`git describe --tags --abbrev=0`
 CURRENT_BRANCH=`git rev-parse --symbolic-full-name --abbrev-ref HEAD`
 
 if [ -n "$(git status --porcelain)" ]; then
