@@ -1,6 +1,6 @@
 # Link component developer testing steps
 
-## Button renders as expected
+## Link renders as expected
 
 1. Server-side pre-rendered custom elements perform a one-time upgrade to become fully client-side rendered web components. When a web component initializes, its inner HTML is replaced, including the `<replace-with-children>` helper element, while the content inside the HTML is retained.
 
@@ -11,17 +11,15 @@
 
      ```html
      <form>
-       <bolt-button
-         >Light DOM inside a <code>&lt;form&gt;</code> tag</bolt-button
-       >
+       <bolt-link>Light DOM inside a <code>&lt;form&gt;</code> tag</bolt-link>
      </form>
      ```
 
    - The component has the `no-shadow` attribute:
 
      ```html
-     <bolt-button no-shadow
-       >Light DOM via the <code>no-shadow</code> attribute</bolt-button
+     <bolt-link no-shadow
+       >Light DOM via the <code>no-shadow</code> attribute</bolt-link
      >
      ```
 
@@ -37,7 +35,7 @@ Updating `<bolt-link>` props in the browser should trigger the component to re-r
 
 ## Slotted content renders as expected
 
-Slotted content inside `<bolt-button>`, when the component initializes, should be placed inside the correct inner container. For example:
+Slotted content inside `<bolt-link>`, when the component initializes, should be placed inside the correct inner container. For example:
 
 1. Link text should be placed in the default slot and wrapped in a `<span>` element with the class `c-bolt-link__text`.
 1. An icon in the `after` or `before` slot should be wrapped in a `<span>` element with the class `c-bolt-link__icon`.
