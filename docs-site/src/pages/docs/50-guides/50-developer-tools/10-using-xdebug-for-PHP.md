@@ -126,26 +126,39 @@ If you've done it right, execution should pause on the breakpoint you set.
 
 **Step 1.** Configure "PHP Debug" in the Debugger
 
-- In VS Code, open "Debugger" (Shift-Cmd-D).
-- At the top of the Debugger pane you should see a little gear icon.
+- In VS Code, open the "Debug" pane (Shift-Cmd-D).
+- At the top of the "Debug" pane you will see a little gear icon.
+
+![Configure Launch.json](/images/docs/debugging-xdebug-vs-config.png)
+
 - Click on the little gear icon to configure `launch.json`
-- You should see a Menu with the placeholder text "Select Environment". Choose "PHP".
+- You will see a Menu with the placeholder text "Select Environment".
+- Choose "PHP".
+
+![Choose PHP Environment](/images/docs/debugging-xdebug-vs-environment.png)
+
 - This adds adds a `launch.json` configuration file to your Workspace with two PHP debug modes:
-  - One named "Listen for XDebug"
-  - One named "Launch currently open script"
+  - "Listen for XDebug"
+  - "Launch currently open script"
+
+![Launch.json file](/images/docs/debugging-xdebug-vs-launch.png)
 
 **Step 2.** Set a breakpoint
 
 - Open the `docs-site/core/console` PHP file in VS Code
 - Click to the left of the line number on line 18 to set a breakpoint.
 
+![Set breakpoint](/images/docs/debugging-xdebug-vs-breakpoint.png)
+
 **Step 3.** Test the Debugger
 
-- Back in the Debugger pane, you should see a menu at the top with a "play" icon to its left
+- Back in the "Debug" pane, next to the little gear icon, you will see a menu and a "play" icon
 - Select "Listen for Debug" from the menu and click "play"
-- Startup Pattern Lab by running `npm start`
+- Then, start up Pattern Lab by running `npm start`
 
 If you've done it right, execution should pause on the breakpoint you set.
+
+![Paused at breakpoint](/images/docs/debugging-xdebug-vs-pause.png)
 
 For more information, see:
 
