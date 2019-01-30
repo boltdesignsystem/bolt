@@ -11,8 +11,8 @@ node scripts/release/update-php-package-versions.js
 git add .
 git commit --amend --no-edit
 git tag -f $CURRENT_VERSION
-git push --force --no-verify
-git push --tags --force --no-verify
+git push --no-verify
+git push --tags --no-verify
 
 ## Update snapshot tests that depend on 
 ./scripts/release/update-read-only-git-repos.sh
