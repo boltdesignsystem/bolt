@@ -1,4 +1,5 @@
 const globby = require('globby');
+const SauceLabs = require('saucelabs');
 const { getGitSha } = require('ci-utils');
 const fetch = require('node-fetch');
 const path = require('path');
@@ -23,6 +24,11 @@ const {
   TRAVIS_BUILD_WEB_URL,
   TRAVIS_JOB_NUMBER,
 } = process.env;
+
+const saucelabs = new SauceLabs({
+  username: SAUCE_USERNAME,
+  password: SAUCE_ACCESS_KEY,
+});
 
 const gitSha = getGitSha(true);
 const gitShaLong = getGitSha();
@@ -118,8 +124,17 @@ async function handleNightwatchResults(client, callback) {
       throw new Error(`Set SauceLabs details not ok ${res.statusText}`);
     }
 
-    callback();
-    return res.json();
+    saucelabs.updateJob(
+      sessionId,
+      {
+        name,
+        passed,
+      },
+      callback,
+    );
+
+    const results = await res.json();
+    return results;
   } catch (err) {
     console.log(`Error setting SauceLabs details`, err);
     process.exit(1);
