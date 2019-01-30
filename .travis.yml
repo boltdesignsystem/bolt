@@ -49,15 +49,15 @@ jobs:
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
-      addons:
-        sauce_connect: true
+      # addons:
+      #   sauce_connect: true
       script:
         - yarn run setup
         - ./scripts/check-run-in-progress.js 'Nightwatch'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
         - time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - npx nightwatch --config nightwatch.js --env chrome,ie11
+        - yarn run test:e2e:full
         - sleep 10
         - ./scripts/report-nightwatch-results.js
 
