@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const shell = require('shelljs');
 const { TRAVIS } = require('./travis-vars');
 const { setCheckRun } = require('../check-run');
