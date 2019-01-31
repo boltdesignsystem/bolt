@@ -2,7 +2,7 @@
 const shell = require('shelljs');
 const { outputBanner } = require('ci-utils');
 const { gitSha } = require('./utils');
-let setCheckRun;
+const setCheckRun = require('./check-run');
 
 const {
   TRAVIS,
@@ -13,10 +13,6 @@ const {
   TRAVIS_TAG,
   TRAVIS_BUILD_WEB_URL,
 } = require('./utils/travis-vars');
-
-if (TRAVIS) {
-  setCheckRun = require('./check-run');
-}
 
 let { NOW_TOKEN, GITHUB_TOKEN } = process.env;
 

@@ -1,10 +1,6 @@
 const shell = require('shelljs');
 const { TRAVIS } = require('./travis-vars');
-let setCheckRun;
-
-if (TRAVIS) {
-  setCheckRun = require('../check-run');
-}
+const setCheckRun = require('../check-run');
 
 let { NOW_TOKEN } = process.env;
 const baseNowArgs = ['--platform-version=1', '--team=boltdesignsystem'];
@@ -42,20 +38,18 @@ async function aliasNowUrl(originalUrl, prefix) {
     console.log('Error aliasing:');
     console.log(aliasOutput.stdout, aliasOutput.stderr);
 
-    if (setCheckRun) {
-      await setCheckRun({
-        status: 'completed',
-        name: 'Deploy - now.sh',
-        conclusion: 'failure',
-        output: {
-          title: 'Now.sh Deploy failure',
-          summary: `
+    await setCheckRun({
+      status: 'completed',
+      name: 'Deploy - now.sh',
+      conclusion: 'failure',
+      output: {
+        title: 'Now.sh Deploy failure',
+        summary: `
 ${aliasOutput.stdout}
 ${aliasOutput.stderr}
-          `.trim(),
-        },
-      });
-    }
+        `.trim(),
+      },
+    });
 
     process.exit(1);
   } else {
@@ -63,20 +57,18 @@ ${aliasOutput.stderr}
     console.log(aliasOutput.stdout);
     // console.log(deployedUrl);
     // console.log(aliasedUrl);
-    if (setCheckRun) {
-      await setCheckRun({
-        status: 'completed',
-        name: 'Deploy - now.sh',
-        conclusion: 'success',
-        output: {
-          title: 'Now.sh Deploy',
-          summary: `
-    - ${deployedUrl}
-    - ${aliasedUrl}
-          `.trim(),
-        },
-      });
-    }
+    await setCheckRun({
+      status: 'completed',
+      name: 'Deploy - now.sh',
+      conclusion: 'success',
+      output: {
+        title: 'Now.sh Deploy',
+        summary: `
+  - ${deployedUrl}
+  - ${aliasedUrl}
+        `.trim(),
+      },
+    });
   }
 }
 
