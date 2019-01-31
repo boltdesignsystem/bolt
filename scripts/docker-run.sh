@@ -2,7 +2,7 @@
 # Start in this directory even if ran elsewhere
 cd "$(dirname "$0")"
 # Up to root of repo
-cd ..
+cd ../deploys
 
 # Show all commands ran
 set -x

@@ -3,15 +3,10 @@
 @import '@bolt/core';
 $bds-sidebar-width: 320px;
 
-html {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 .c-bds-layout {
   grid-template-columns: auto 1fr auto;
   display: grid;
+  min-height: 100vh;
 
   &--parent:not(.c-bds-layout--has-sidebar) {
     display: flex;
