@@ -2,7 +2,7 @@
 const shell = require('shelljs');
 const { outputBanner } = require('ci-utils');
 const { gitSha } = require('./utils');
-let setCheckRun = '';
+let setCheckRun;
 
 const {
   TRAVIS,
@@ -14,7 +14,7 @@ const {
   TRAVIS_BUILD_WEB_URL,
 } = require('./utils/travis-vars');
 
-if (TRAVIS !== undefined) {
+if (TRAVIS) {
   setCheckRun = require('./check-run');
 }
 

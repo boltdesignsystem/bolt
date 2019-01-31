@@ -1,8 +1,8 @@
 const shell = require('shelljs');
 const { TRAVIS } = require('./travis-vars');
-let setCheckRun = '';
+let setCheckRun;
 
-if (TRAVIS !== undefined) {
+if (TRAVIS) {
   setCheckRun = require('../check-run');
 }
 
