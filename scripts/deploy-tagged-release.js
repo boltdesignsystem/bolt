@@ -20,10 +20,7 @@ getLatestDeploy()
       aliasNowUrl(url, '');
       aliasNowUrl(url, 'www');
     } else {
-      console.error(
-        `Error aliasing: Travis Tag of ${TRAVIS_TAG} doesn't match the latest tag of ${latestTag}`,
-      );
-      process.exit(1);
+      // skip alias to main site
     }
   })
   .catch(error => {
