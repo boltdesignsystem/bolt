@@ -29,7 +29,12 @@ async function aliasNowUrl(originalUrl, prefix) {
   }
 
   console.log(`Attempting to alias ${originalUrl} to ${aliasedUrl}...`);
-
+  
+  await setCheckRun({
+    status: 'in_progress',
+    name: 'Deploy - now.sh (alias)',
+  });
+  
   const aliasOutput = shell.exec(
     `now alias ${deployedUrl} ${aliasedUrl} --platform-version=1 --team=boltdesignsystem --token=${NOW_TOKEN}`,
   );
@@ -40,7 +45,7 @@ async function aliasNowUrl(originalUrl, prefix) {
 
     await setCheckRun({
       status: 'completed',
-      name: 'Deploy - now.sh',
+      name: 'Deploy - now.sh (alias)',
       conclusion: 'failure',
       output: {
         title: 'Now.sh Deploy failure',
@@ -59,7 +64,7 @@ ${aliasOutput.stderr}
     // console.log(aliasedUrl);
     await setCheckRun({
       status: 'completed',
-      name: 'Deploy - now.sh',
+      name: 'Deploy - now.sh (alias)',
       conclusion: 'success',
       output: {
         title: 'Now.sh Deploy',
