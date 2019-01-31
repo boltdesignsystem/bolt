@@ -1,6 +1,6 @@
 const shell = require('shelljs');
 const { TRAVIS } = require('./travis-vars');
-const setCheckRun = require('../check-run');
+const { setCheckRun } = require('../check-run');
 
 let { NOW_TOKEN } = process.env;
 const baseNowArgs = ['--platform-version=1', '--team=boltdesignsystem'];

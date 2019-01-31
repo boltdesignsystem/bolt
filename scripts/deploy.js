@@ -2,7 +2,7 @@
 const shell = require('shelljs');
 const { outputBanner } = require('ci-utils');
 const { gitSha } = require('./utils');
-const setCheckRun = require('./check-run');
+const { setCheckRun } = require('./check-run');
 
 const {
   TRAVIS,
@@ -37,13 +37,11 @@ async function init() {
       gitSha,
     });
 
-    if (setCheckRun) {
-      await setCheckRun({
-        name: 'Deploy - now.sh',
-        status: 'in_progress',
-      });
-      outputBanner('Starting deploy...');
-    }
+    await setCheckRun({
+      name: 'Deploy - now.sh',
+      status: 'in_progress',
+    });
+    outputBanner('Starting deploy...');
 
     try {
       const deployedUrl = shell.exec(
@@ -52,39 +50,35 @@ async function init() {
 
       let deployedUrlPretty = deployedUrl.trim();
 
-      if (setCheckRun) {
-        await setCheckRun({
-          status: 'completed',
-          name: 'Deploy - now.sh (basic)',
-          conclusion: 'success',
-          output: {
-            title: 'Now.sh Basic Deploy',
-            summary: `
-      - ${deployedUrlPretty}
-            `.trim(),
-          },
-        });
-      }
+      await setCheckRun({
+        status: 'completed',
+        name: 'Deploy - now.sh (basic)',
+        conclusion: 'success',
+        output: {
+          title: 'Now.sh Basic Deploy',
+          summary: `
+    - ${deployedUrlPretty}
+          `.trim(),
+        },
+      });
 
       // await handleNowDeploy(child);
     } catch (error) {
       console.error('Error deploying:');
       console.log(error.stdout, error.stderr);
 
-      if (setCheckRun) {
-        await setCheckRun({
-          status: 'completed',
-          name: 'Deploy - now.sh',
-          conclusion: 'failure',
-          output: {
-            title: 'Now.sh Deploy failure',
-            summary: `
-  ${error.stdout}
-  ${error.stderr}
-            `.trim(),
-          },
-        });
-      }
+      await setCheckRun({
+        status: 'completed',
+        name: 'Deploy - now.sh',
+        conclusion: 'failure',
+        output: {
+          title: 'Now.sh Deploy failure',
+          summary: `
+${error.stdout}
+${error.stderr}
+          `.trim(),
+        },
+      });
       process.exit(1);
     }
   } catch (error) {
