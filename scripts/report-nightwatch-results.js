@@ -231,8 +231,14 @@ async function collectSauceLabResults(build) {
           }
         });
 
+        const filteredScreenshots = await Promise.all(
+          assetsNames.screenshots.filter(
+            screenshot => !screenshot.includes('0000screenshot.png'),
+          ),
+        );
+
         const screenshots = await Promise.all(
-          assetsNames.screenshots.map(screenshot =>
+          filteredScreenshots.map(screenshot =>
             transferFileFromSauceToNow(screenshot, buildJob.id),
           ),
         );
