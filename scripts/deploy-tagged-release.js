@@ -4,6 +4,7 @@ const gitSemverTags = require('git-semver-tags');
 const promisifyGitTags = promisify(gitSemverTags);
 const { getLatestDeploy } = require('./utils');
 const { aliasNowUrl } = require('./utils/handle-now-aliases');
+const { TRAVIS_TAG } = require('./utils/travis-vars');
 
 getLatestDeploy()
   .then(async url => {
