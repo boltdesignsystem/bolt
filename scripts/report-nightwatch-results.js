@@ -315,7 +315,7 @@ async function setGithubAppSauceResults(sauceResults) {
               os,
             } = test;
             const { screenshots, finalScreenshot } = assets;
-            
+
             // this adds to the full Check Run grid of images
             allImages.push(
               ...screenshots.map((screenshot, i) => {
@@ -323,13 +323,17 @@ async function setGithubAppSauceResults(sauceResults) {
                 return {
                   image_url: screenshot,
                   alt: name,
-                  caption: `${i}/${screenshots.length}: ${testName} - ${browser} ${browserVer} ${os}`,
+                  caption: `${i}/${
+                    screenshots.length
+                  }: ${testName} - ${browser} ${browserVer} ${os}`,
                 };
               }),
             );
-            
+
             return `
-## ${passed ? ':+1:' : ':-1:'} ${browser} ${browserVer} ${os} ([details](${test.sauceLabsPage}))
+## ${passed ? ':+1:' : ':-1:'} ${browser} ${browserVer} ${os} ([details](${
+              test.sauceLabsPage
+            }))
 
 <details>
   
