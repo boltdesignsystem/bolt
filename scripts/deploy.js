@@ -38,7 +38,7 @@ async function init() {
     });
 
     await setCheckRun({
-      name: 'Deploy - now.sh',
+      name: 'Deploy - now.sh (basic)',
       status: 'in_progress',
     });
     outputBanner('Starting deploy...');
@@ -69,7 +69,7 @@ async function init() {
 
       await setCheckRun({
         status: 'completed',
-        name: 'Deploy - now.sh',
+        name: 'Deploy - now.sh (basic)',
         conclusion: 'failure',
         output: {
           title: 'Now.sh Deploy failure',
