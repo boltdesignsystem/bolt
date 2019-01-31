@@ -62,6 +62,9 @@ jobs:
         - yarn run test:e2e:full
         - sleep 10
         - ./scripts/report-nightwatch-results.js
+      after_success:
+        - ./scripts/deploy-branch-alias.js
+        - ./scripts/deploy-tagged-release.js
 
     - stage: Test Live Site
       name: 'Ensure site is live'
