@@ -42,7 +42,6 @@ jobs:
         # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
-        - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - yarn run build
         - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
