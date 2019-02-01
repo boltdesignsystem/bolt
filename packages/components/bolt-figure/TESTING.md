@@ -6,7 +6,7 @@ The server-side pre-rendered `bolt-figure` component should look almost identica
 
 1. Disable JS and view the [Figure Media Variations page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-figure-10-figure-media-variations/02-components-figure-10-figure-media-variations.html).
 1. Then, enable JS and watch as the figure components re-render on the client-side.
-1. The layout should not shift, e.g. the space between the media and the caption is present before and after the web component initializes.
+1. The layout should not shift, e.g. the space between the media and the caption is present before and after the web component re-renders.
 1. The `font-family` of the figure caption will change when JS is disabled, but the `font-size` should be the same.
    - Does not apply to [Figure with Web Component](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-figure-15-figure-with-web-component/02-components-figure-15-figure-with-web-component.html). In these examples, we cannot set the `font-size` until the component has rendered.
 
