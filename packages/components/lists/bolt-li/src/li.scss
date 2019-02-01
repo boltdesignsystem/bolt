@@ -7,10 +7,6 @@ $bolt-ul-bullet-size: 6px; // Using px here because I need to make a perfect cir
 $bolt-ol-bullet-size: $bolt-line-height--xsmall + rem;
 $bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
 
-bolt-li {
-  display: list-item;
-}
-
 .c-bolt-li {
   box-sizing: border-box;
   position: relative;
@@ -35,8 +31,10 @@ bolt-li {
     width: $bolt-ul-bullet-size;
     height: $bolt-ul-bullet-size;
     line-height: $bolt-ul-bullet-size;
-    border: 1px solid bolt-theme(headline);
     border-radius: $bolt-ul-bullet-size;
+    border-width: $bolt-border-width;
+    border-style: $bolt-border-style;
+    border-color: bolt-theme(headline);
     background-color: bolt-theme(headline);
   }
 
@@ -51,6 +49,7 @@ bolt-li {
     &-3 {
       &:before {
         border-radius: 0;
+        background-color: bolt-theme(headline);
       }
     }
   }
@@ -69,6 +68,7 @@ bolt-li {
       .c-bolt-li--ul-item {
         &:before {
           border-radius: 0;
+          background-color: bolt-theme(headline);
         }
       }
     }
@@ -108,7 +108,7 @@ bolt-ol {
 }
 
 // [Mai] This is an IE specific fix to center the number inside the circle. IE calculates line-height differently.
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+@include bolt-ie11-only {
   .c-bolt-li--ol-item:before {
     line-height: $bolt-line-height--medium;
   }

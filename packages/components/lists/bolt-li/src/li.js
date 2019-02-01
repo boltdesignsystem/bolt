@@ -26,7 +26,10 @@ class BoltListItem extends withLitHtml() {
   };
 
   connected() {
-    this.type = this.parentNode.tagName === 'BOLT-OL' ? 'ol' : 'ul';
+    this.type =
+      this.parentNode.tagName === 'BOLT-OL' || this.parentNode.tagName === 'OL'
+        ? 'ol'
+        : 'ul';
     this.level =
       this.parentNode.level && this.type === 'ul'
         ? this.parentNode.level

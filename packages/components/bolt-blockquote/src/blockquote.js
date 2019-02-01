@@ -167,15 +167,13 @@ class BoltBlockquote extends withLitHtml() {
     return html`
       ${this.addStyles([styles])}
       <blockquote class="${classes}" is="shadow-root">
-        ${
-          this.slots.logo
-            ? html`
-                <div class="${cx('c-bolt-blockquote__logo')}">
-                  ${this.slot('logo')}
-                </div>
-              `
-            : ''
-        }
+        ${this.slots.logo
+          ? html`
+              <div class="${cx('c-bolt-blockquote__logo')}">
+                ${this.slot('logo')}
+              </div>
+            `
+          : ''}
         <div class="${cx('c-bolt-blockquote__quote')}">
           <bolt-text
             tag="div"
@@ -186,23 +184,19 @@ class BoltBlockquote extends withLitHtml() {
             ${this.slot('default')}
           </bolt-text>
         </div>
-        ${
-          footerItems.length > 0
-            ? html`
-                <footer class="${cx('c-bolt-blockquote__footer')}">
-                  ${
-                    footerItems.map(
-                      footerItem => html`
-                        <div class="${cx('c-bolt-blockquote__footer-item')}">
-                          ${footerItem}
-                        </div>
-                      `,
-                    )
-                  }
-                </footer>
-              `
-            : ''
-        }
+        ${footerItems.length > 0
+          ? html`
+              <footer class="${cx('c-bolt-blockquote__footer')}">
+                ${footerItems.map(
+                  footerItem => html`
+                    <div class="${cx('c-bolt-blockquote__footer-item')}">
+                      ${footerItem}
+                    </div>
+                  `,
+                )}
+              </footer>
+            `
+          : ''}
       </blockquote>
     `;
   }

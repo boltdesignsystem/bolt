@@ -1,12 +1,20 @@
 {
-  "lerna": "3.4.3",
-  "version": "2.3.0-rc.0",
+  "lerna": "3.10.7",
+  "version": "2.3.0",
   "command": {
     "publish": {
       "allowBranch": [
         "next/*",
         "release/*"
-      ]
+      ],
+      "conventionalCommits": true,
+      "gitReset": true,
+      "includeMergedTags": true,
+      "noCommitHooks": true,
+      "verifyAccess": true
+    },
+    "changed": {
+      "includeMergedTags": true
     }
   },
   "npmClient": "yarn",

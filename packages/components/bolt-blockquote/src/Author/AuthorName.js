@@ -10,11 +10,9 @@ export const AuthorName = elem => {
         color="theme-headline"
         font-weight="bold"
       >
-        ${
-          elem.slots['author-name']
-            ? elem.slot('author-name')
-            : props.authorName
-        }
+        ${elem.slots['author-name']
+          ? elem.slot('author-name')
+          : props.authorName}
       </bolt-text>
     `;
   }
