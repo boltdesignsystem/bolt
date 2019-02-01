@@ -39,8 +39,9 @@ jobs:
     - stage: Prep
       name: 'Build + Deploy'
       script:
+        # Clear incache file on normal Travis builds
+        - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
-        - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - yarn run build
         - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
@@ -58,8 +59,11 @@ jobs:
         - echo "The Now URL is $NOW_URL"
         - time curl -sSf "$NOW_URL" > /dev/null # warming up site
         - yarn run test:e2e:full
-        - sleep 10
+        - sleep 60
         - ./scripts/report-nightwatch-results.js
+      after_success:
+        - ./scripts/deploy-branch-alias.js
+        - ./scripts/deploy-tagged-release.js
 
     - stage: Test Live Site
       name: 'Ensure site is live'

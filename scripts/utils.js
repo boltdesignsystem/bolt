@@ -113,10 +113,24 @@ function getLatestDeploy() {
         const resultsWithGitSha = results.deployments.filter(
           d => d.meta.gitSha === gitSha,
         );
+
+        const fallbackResultsWithGitSha = results.deployments.filter(d =>
+          gitSha.includes(d.meta.gitSha),
+        );
+
         const result = resultsWithGitSha.find(d => d.url);
+
+        // if an exact match isn't found, check partial matches and sort by most recent
+        fallbackResultsWithGitSha.sort(function(a, b) {
+          // Turn created unix time strings into dates, and then sort by what happened most recently
+          return new Date(a.created) - new Date(b.created);
+        });
+        const fallbackResults = fallbackResultsWithGitSha.find(d => d.url);
 
         if (result) {
           resolve(`https://${result.url}`);
+        } else if (fallbackResults) {
+          resolve(`https://${fallbackResults.url}`);
         } else {
           reject(new Error('No deployments found'));
         }
