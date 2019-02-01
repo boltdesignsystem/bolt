@@ -1,4 +1,4 @@
-$schema: http://json-schema.org/draft-04/schema#
+$schema: 'http://json-schema.org/draft-04/schema#'
 title: Icon
 type: object
 required:
@@ -8,10 +8,12 @@ properties:
     type: string
     description: Icon name.
     enum:
-      #todo: dynamically generate or reference these
+      - academy
       - add-open
       - add-solid
+      - agile
       - app-development
+      - app-exchange
       - arrow-left
       - asset-data
       - asset-infographic
@@ -22,19 +24,21 @@ properties:
       - asset-presentation
       - asset-text
       - asset-video
+      - bolt-logo-colored
+      - brand-operations
       - calendar
       - careers
       - case-management
+      - check
       - check-circle
       - check-solid
-      - check
       - chevron-down
       - chevron-left
       - chevron-right
       - chevron-up
+      - close
       - close-open
       - close-solid
-      - close
       - cloud
       - co-browse
       - communications
@@ -43,21 +47,23 @@ properties:
       - customer-onboarding
       - customer-service
       - data-integrations
+      - documentation
       - download
       - email
       - energy
       - entertainment
-      - exit-full screen
+      - exit-full-screen
       - external-link
-      - eye-off
       - eye
-      - facebook-solid
+      - eye-off
       - facebook
-      - field-service-gray
+      - facebook-solid
       - field-service
+      - field-service-gray
       - filter
       - financial
       - full-screen
+      - github
       - global
       - government
       - healthcare
@@ -66,40 +72,52 @@ properties:
       - info-open
       - info-solid
       - insurance
+      - integration
       - intelligent-virtual-assistant
+      - java
+      - knowledgebase
+      - launchpad
       - life-sciences
-      - linkedin-solid
       - linkedin
+      - linkedin-solid
       - lock
       - manufacturing
-      - map-pin-solid
       - map-pin
-      - marketing-gray
+      - map-pin-solid
       - marketing
+      - marketing-gray
       - menu
       - minus-open
       - minus-solid
       - mobility
       - more
+      - omni-channel
       - partners
       - pencil
       - platform
       - podcast
       - print
       - product
+      - product-delivery
       - refresh
+      - reporting
       - retail
       - robo-auto
       - sales-automation
+      - scalability
       - search
       - share
+      - star-solid
+      - support
+      - system-admin
       - training
       - transportation
-      - twitter-solid
       - twitter
+      - twitter-solid
       - unlock
       - upload
       - user
+      - user-interface
       - video
       - vision
       - warning
@@ -124,5 +142,5 @@ properties:
     type: string
     description: Icon color. Currently only support default (black) and teal.
     enum:
-     - teal
-     - blue
+      - teal
+      - blue

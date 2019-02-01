@@ -1,0 +1,43 @@
+{% embed "@bolt-components-dropdown/dropdown.twig" with {
+  title: "Really Extremely Long Example Header Text Example",
+  center: true
+} %}
+  {% block content %}
+    {% include "@bolt-components-block-list/block-list.twig" with {
+      "items": [
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 1 Text",
+          "url": "#!"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 2 Text",
+          "url": "#!"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 3 Text",
+          "url": "#!"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 4 Text",
+          "url": "#!"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 5 Text",
+          "url": "#!"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 6 Text",
+          "url": "#!"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 7 Text",
+          "url": "#!"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 8 Text",
+          "url": "#!"
+        }),
+      ]
+    } %}
+  {% endblock %}
+{% endembed %}

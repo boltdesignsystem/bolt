@@ -21,7 +21,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 }
 
 .c-bolt-headline {
-
   &:not(:last-child) {
     @include bolt-margin-bottom(medium);
   }
@@ -43,8 +42,8 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 
   &:first-child:before {
     content: '\201C';
-    transform: translate3d(-110%, 0, 0);
     position: absolute;
+    transform: translate3d(-110%, 0, 0);
   }
 
   &:last-child:after {
@@ -57,9 +56,9 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-eyebrow {
   @include bolt-margin-bottom(0.1rem);
   @include bolt-font-size(xsmall);
+  opacity: 0.8;
   text-transform: uppercase;
   letter-spacing: $bolt-headline--plus-letter-spacing;
-  opacity: 0.8;
 }
 
 
@@ -68,12 +67,12 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline__line {
   flex: 1 0 1rem;
   align-self: center;
+  opacity: 0.2;
   height: 1px;
   border-width: 0;
   border-style: none;
   /* stylelint-disable-next-line scale-unlimited/declaration-strict-value */
   background-color: inherit;
-  opacity: 0.2;
 
   &:first-child {
     @include bolt-margin(0 small 0 0);
@@ -136,6 +135,12 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
   @include bolt-font-size(xxxlarge);
 }
 
+// When headline is 60+ chars long
+.c-bolt-headline--xxxlarge-min {
+  line-height: $bolt-line-height--xxxlarge;
+  font-size: $bolt-font-size--xxxlarge--min;
+}
+
 .c-bolt-text--xxlarge,
 .c-bolt-subheadline--xxlarge,
 .c-bolt-headline--xxlarge {
@@ -153,12 +158,6 @@ $bolt-headline--plus-letter-spacing: 0.05rem;
 .c-bolt-headline--large {
   @include bolt-font-size(large);
 }
-
-.c-bolt-text a:not([class]),
-.c-bolt-text .c-bolt-link {
-  text-decoration: underline;
-}
-
 
 
 .c-bolt-text--medium {

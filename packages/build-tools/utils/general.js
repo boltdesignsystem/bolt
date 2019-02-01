@@ -1,5 +1,7 @@
 const fs = require('fs');
+const { promisify } = require('util');
 const log = require('./log');
+const stat = promisify(fs.stat);
 
 /**
  * Flatten Array
@@ -44,17 +46,47 @@ function uniqueArray(item) {
  * @param filePath {string} - Path to file to ensure exists
  */
 function ensureFileExists(filePath) {
-  fs.access(filePath, (err) => {
+  fs.access(filePath, err => {
     if (err) {
-      log.errorAndExit('This file ^^^ does not exist and it was referenced in package.json for that component, please make sure the file path is correct.', filePath);
+      log.errorAndExit(
+        'This file ^^^ does not exist and it was referenced in package.json for that component, please make sure the file path is correct.',
+        filePath,
+      );
     }
   });
 }
 
+/**
+ * Check if a file exists
+ * @param path {string} - Path to the file to check
+ */
+async function fileExists(path) {
+  try {
+    const stats = await stat(path);
+    return stats.isFile() ? true : false;
+  } catch (err) {
+    return false;
+  }
+}
+
+/**
+ * Check if a directory exists
+ * @param path {string} - Path to the directory to check
+ */
+async function dirExists(path) {
+  try {
+    const stats = await stat(path);
+    return stats.isDirectory() ? true : false;
+  } catch (err) {
+    return false;
+  }
+}
 
 module.exports = {
   flattenArray,
   concatArrays,
   uniqueArray,
   ensureFileExists,
+  dirExists,
+  fileExists,
 };

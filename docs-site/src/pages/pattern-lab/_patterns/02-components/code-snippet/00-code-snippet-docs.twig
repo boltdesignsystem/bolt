@@ -1,0 +1,12 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  display: "block",
+  lang: "html",
+  content: "Some code snippet"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "code-snippet",
+  usage: usage
+} only %}

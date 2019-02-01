@@ -4,12 +4,10 @@
 	"keywords": [
 		"bolt design system",
 		"bolt",
-		"css framework",
 		"design system",
 		"components"
 	],
-	"version": "1.2.3",
-	"sourceFilesFrom": "0.10.2",
+	"version": "2.3.0",
 	"maintainers": [
 		{
 			"name": "Salem Ghoweri",
@@ -22,18 +20,23 @@
 			"web": "http://mikemai.net/"
 		}
 	],
-	"homepage": "https://bolt-design-system.com",
+	"homepage": "https://boltdesignsystem.com",
 	"license": "MIT",
 	"repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video",
 	"bugs": "https://github.com/bolt-design-system/bolt/issues",
-	"style": "src/video.scss",
-	"main": "src/video.js",
+	"schema": "video.schema.yml",
+	"style": "index.scss",
+	"main": "index.js",
 	"publishConfig": {
 		"access": "public"
 	},
 	"dependencies": {
-		"@bolt/components-button": "^1.2.3",
-		"@bolt/core": "^1.2.3",
-		"dasherize": "^2.0.0"
-	}
+		"@bolt/components-button": "^2.3.0",
+		"@bolt/components-ratio": "^2.3.0",
+		"@bolt/core": "^2.3.0",
+		"dasherize": "^2.0.0",
+		"lodash.isequal": "^4.5.0",
+		"mousetrap": "^1.6.1"
+	},
+	"gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
 }

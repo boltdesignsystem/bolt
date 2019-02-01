@@ -1,12 +1,13 @@
-import { h } from '@bolt/core';
+import { h } from '@bolt/core/renderers';
 
 export const Platform = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
-    <svg width={size} height={size} {...otherProps} viewBox="0 0 32 32">
+    <svg data-name="Layer 1" {...otherProps} viewBox="0 0 32 28">
       <path
-        d="M16 2L0 10l16 8 16-8-16-8zM3.999 9.777L16 3.999l12 5.778-12 6.222L3.999 9.777zm23.537 6.222L16 22 4.465 15.999H0L16 24l16-8.001h-4.464zm0 6.001L16 28 4.465 22H0l16 8 16-8h-4.464z"
         fill={bgColor}
         fill-rule="evenodd"
+        d="M16 0L0 8l16 8 16-8zM4 7.8L16 2l12 5.8L16 14zM27.5 14L16 20 4.5 14H0l16 8 16-8zm0 6L16 26 4.5 20H0l16 8 16-8z"
+        data-name="Page-1"
       />
     </svg>
   );

@@ -1,0 +1,71 @@
+{% set prefix = "c-bolt-" %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set componentName = "search-filter" %}
+{% set baseClass = prefix ~ componentName %}
+
+{% set classes = [
+  baseClass
+] %}
+
+{% set panelId = "search-filter" %}
+
+<bolt-{{ componentName }} bolt-component>
+  <div {{ attributes.addClass(classes) }}>
+    <div class="{{ "#{baseClass}__trigger" }}">
+      {% include "@bolt-components-button/button.twig" with {
+        "text": "Close search filter"|t,
+        "url": "#" ~ panelId,
+        "size": "xsmall",
+        "style": "primary",
+        "border_radius": "full",
+        "iconOnly": true,
+        "icon": {
+          "name": "more",
+          "size": "medium"
+        }
+      } only %}
+    </div>
+
+    <div class="{{ "#{baseClass}__panel" }}" id="{{ panelId }}">
+      <div class="c-bolt-search-filter__panel-content">
+        {% block search_filter %}
+          {{ content }}
+        {% endblock search_filter %}
+      </div>
+
+      <div class="{{ "#{baseClass}__panel-controls #{baseClass}__panel-controls--submit" }}">
+        {% include "@bolt-components-button-group/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Apply"|t,
+              "style": "primary",
+              "url": "#!"
+            },
+            {
+              "text": "Cancel"|t,
+              "style": "secondary",
+              "url": "#!"
+            }
+          ]
+        } only %}
+      </div>
+
+      <div class="{{ "#{baseClass}__panel-controls #{baseClass}__panel-controls--close" }}">
+        {% include "@bolt-components-button/button.twig" with {
+          "text": "Close search filter"|t,
+          "url": "#!",
+          "size": "xsmall",
+          "style": "text",
+          "border_radius": "full",
+          "iconOnly": true,
+          "icon": {
+            "name": "close",
+            "size": "medium"
+          }
+        } only %}
+      </div>
+    </div>
+  </div>
+</bolt-{{ componentName }}>

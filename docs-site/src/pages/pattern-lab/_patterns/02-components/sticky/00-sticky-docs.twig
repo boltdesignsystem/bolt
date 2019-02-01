@@ -1,0 +1,14 @@
+{% set usage %}{% verbatim %}
+{% embed "@bolt-components-sticky/sticky.twig" %}
+  {% block sticky_content %}
+
+    // Sticky content
+
+  {% endblock %}
+{% endembed %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "sticky",
+  usage: usage
+} only %}

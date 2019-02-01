@@ -1,12 +1,13 @@
-import { h } from '@bolt/core';
+import { h } from '@bolt/core/renderers';
 
 export const Transportation = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
-    <svg width={size} height={size} {...otherProps} viewBox="0 0 32 32">
+    <svg data-name="Layer 1" {...otherProps} viewBox="0 0 28 32">
       <path
-        d="M12 5.999h8V3.998h-8v2.001zm16 2H4v-5a1 1 0 0 1 1-1h22a1 1 0 0 1 1 1v5zm0 10.999v1.001H4v-10h24v8.999zm-2 7A1.999 1.999 0 1 1 28 24a1.998 1.998 0 0 1-2 1.998zm-3.446 0H9.446A3.96 3.96 0 0 0 10 24c0-.732-.211-1.41-.555-2.001h13.11A3.962 3.962 0 0 0 22 24c0 .731.211 1.408.554 1.998zM6 25.998A1.999 1.999 0 1 1 8 24a1.998 1.998 0 0 1-2 1.998zM28 0H4a2 2 0 0 0-2 1.999V24c0 1.477.81 2.752 2 3.445v3.553a1 1 0 1 0 2 0V28h20v2.998a1 1 0 1 0 2 0v-3.553c1.191-.693 2-1.968 2-3.445V1.999A2 2 0 0 0 28 0z"
         fill={bgColor}
         fill-rule="evenodd"
+        d="M10 6h8V4h-8zm16 2H2V3a.94.94 0 0 1 1-1h22a.94.94 0 0 1 1 1zm0 11v1H2V10h24zm-2 7a2 2 0 1 1 2-2 2 2 0 0 1-2 2zm-3.4 0H7.4a4.66 4.66 0 0 0 .6-2 3.61 3.61 0 0 0-.6-2h13.1a4.66 4.66 0 0 0-.6 2 4.79 4.79 0 0 0 .7 2zM4 26a2 2 0 1 1 2-2 2 2 0 0 1-2 2zM26 0H2a2 2 0 0 0-2 2v22a3.76 3.76 0 0 0 2 3.4V31a.94.94 0 0 0 1 1 .94.94 0 0 0 1-1v-3h20v3a1 1 0 0 0 2 0v-3.6a4 4 0 0 0 2-3.4V2a2 2 0 0 0-2-2z"
+        data-name="Page-1"
       />
     </svg>
   );

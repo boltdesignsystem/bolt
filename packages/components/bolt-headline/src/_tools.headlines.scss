@@ -11,19 +11,25 @@
   // display: flex; // @todo: uncomment when fixing headline flex behavior
   // flex-flow: row nowrap; // @todo: uncomment when fixing headline flex behavior
 
-  color: inherit;
-  color: var(--bolt-theme-heading, inherit);
+  color: bolt-theme(headline);
 
 
   &:last-child {
     @include bolt-margin-bottom(0);
   }
 
-
   // Headline + Icon and/or Icon + Headline Spacing
-  &__text ~ &__icon,
-  &__icon ~ &__text {
-    @include bolt-margin-left(xxsmall);
+  &--icon-position-before,
+  &--icon-position-left {
+    .c-bolt-headline__icon {
+      @include bolt-margin-right(xxsmall);
+    }
+  }
+  &--icon-position-after,
+  &--icon-position-right {
+    .c-bolt-headline__icon {
+      @include bolt-margin-left(xxsmall);
+    }
   }
 }
 
@@ -60,18 +66,18 @@
 /** Left, center and right text alignment options **/
 @mixin bolt-headline-text-alignment {
   &--left {
-    text-align: left;
     justify-content: flex-start;
+    text-align: left;
   }
 
   &--center {
-    text-align: center;
     justify-content: center;
+    text-align: center;
   }
 
   &--right {
-    text-align: right;
     justify-content: flex-end;
+    text-align: right;
   }
 }
 

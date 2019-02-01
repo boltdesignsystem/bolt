@@ -1,8 +1,8 @@
 const { promisify } = require('util');
-const log = require('./log');
 const yaml = require('js-yaml');
 const fs = require('fs');
 const path = require('path');
+const log = require('./log');
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 const { ensureFileExists } = require('./general');
@@ -83,7 +83,6 @@ async function getDataFile(filePath) {
   ensureFileExists(filePath);
   const fileInfo = path.parse(filePath);
   try {
-
     switch (fileInfo.ext) {
       case '.json':
         const fileContents = await readFile(filePath, 'utf8');

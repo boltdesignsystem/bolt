@@ -8,16 +8,22 @@
     "ui toolkit",
     "design system"
   ],
-  "version": "1.1.2",
-  "sourceFilesFrom": "0.0.0",
+  "version": "2.3.0",
   "author": "Salem Ghoweri",
-  "homepage": "https://bolt-design-system.com",
+  "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "src/link.scss",
   "publishConfig": {
     "access": "public"
   },
-  "schema": "link.schema.yml"
+  "dependencies": {
+    "@bolt/core": "^2.3.0",
+    "ajv": "^6.5.4"
+  },
+  "style": "index.scss",
+  "main": "index.js",
+  "twig": "src/link.twig",
+  "schema": "link.schema.yml",
+  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
 }

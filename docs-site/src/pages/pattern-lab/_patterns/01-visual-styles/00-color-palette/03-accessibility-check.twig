@@ -1,0 +1,166 @@
+{% grid with {
+  attributes: {
+    class: [
+      "o-bolt-grid--flex",
+      "o-bolt-grid--small",
+      "o-bolt-grid--matrix"
+    ]
+  }
+} %}
+  {% for colorName, palette in bolt.data.colors.all %}
+{% cell with {
+  attributes: {
+    class: [
+      "u-bolt-width-1/1",
+      "u-bolt-width-1/2@small",
+      "u-bolt-width-1/3@medium",
+      "u-bolt-width-1/4@large"
+    ]
+  }
+} %}
+
+  <bolt-swatch class="c-bolt-swatch">
+    {% for tone, colorValue in palette | reverse %}
+      <div class="c-bolt-accessibility-table" style="color: {{ colorValue | rgb2hex | text_contrast }}; background-color: {{ colorValue | rgb2hex }};">
+
+        <ul class="c-bolt-accessibility-table__table" aria-label="Accessibility table for {{ colorName }} — {{ tone }}" role="table">
+
+          <li role="row" class="c-bolt-accessibility-table__row c-bolt-accessibility-table__row--header" aria-label="Accessibility row  for Dark text on {{ colorName }} — {{ tone }}">
+              <div class="c-bolt-accessibility-table__column">
+                <span class="c-bolt-accessibility-table__title">
+                  {{ colorName }} — {{ tone }}
+                </span>
+              </div>
+
+              <div class="c-bolt-accessibility-table__column">
+                <span class="c-bolt-accessibility-table__text c-bolt-accessibility-table__text--large">Aa</span>
+                <span class="c-bolt-accessibility-table__small-text"></span>
+              </div>
+
+              <div class="c-bolt-accessibility-table__column">
+                <span class="c-bolt-accessibility-table__text c-bolt-accessibility-table__text--medium">Aa</span>
+                <span class="c-bolt-accessibility-table__small-text"></span>
+              </div>
+            </li>
+
+            <li role="row" class="c-bolt-accessibility-table__row">
+
+              {% set color = colorValue | rgb2hex | replace({'#': ''}) %}
+              {% set results = color_contrast(color, 'ffffff') %}
+
+
+              <div class="c-bolt-accessibility-table__column c-bolt-accessibility-table__column--white">
+                White ({{ results["ratio"]|round(2, 'common') }})
+              </div>
+
+
+              <div class="c-bolt-accessibility-table__column">
+
+                {% if results["levelAAANormal"] == "pass" %}
+                  {% set wcag_level = 'AAA' %}
+                {% elseif results["levelAANormal"] %}
+                  {% set wcag_level = 'AA' %}
+                {% elseif results["levelAALarge"] == "pass" or results["levelAAMediumBold"] == "pass" %}
+                  {% set wcag_level = 'AA18' %}
+                {% else %}
+                  {% set wcag_level = 'fail' %}
+                {% endif %}
+
+                {# wcag_level #}
+                {% set results_class = "c-bolt-accessibility-table__results--#{wcag_level}" %}
+
+                <span class="c-bolt-accessibility-table__results {{ results_class }}">
+                  {{ results["levelAALarge"] }}
+
+                  {% if results["levelAALarge"] == 'fail' %}
+                    <bolt-icon name="close-solid" class="u-bolt-color-error"></bolt-icon>
+                  {% else %}
+                    <bolt-icon name="check-solid" class="u-bolt-color-success"></bolt-icon>
+                  {% endif %}
+                </span>
+                <!-- <span class="c-bolt-accessibility-table__score"></span> -->
+              </div>
+
+              <div class="c-bolt-accessibility-table__column">
+                {% set color = colorValue | rgb2hex | replace({'#': ''}) %}
+                {% set results = color_contrast(color, 'ffffff') %}
+                <span class="c-bolt-accessibility-table__results">
+                  {{ results["levelAANormal"] }}
+
+                  {% if results["levelAANormal"] == 'fail' %}
+                    <bolt-icon name="close-solid" class="u-bolt-color-error"></bolt-icon>
+                  {% else %}
+                    <bolt-icon name="check-solid" class="u-bolt-color-success"></bolt-icon>
+                  {% endif %}
+                </span>
+
+                <!-- <span class="c-bolt-accessibility-table__score">
+                  ({{ results["ratio"]|round(2, 'common') }})
+                </span> -->
+              </div>
+            </li>
+
+
+            <li role="row" class="c-bolt-accessibility-table__row">
+              {% set color = colorValue | rgb2hex | replace({'#': ''}) %}
+              {% set results = color_contrast(color, '000000') %}
+
+              <div class="c-bolt-accessibility-table__column c-bolt-accessibility-table__column--black">
+                Black ({{ results["ratio"]|round(2, 'common') }})
+              </div>
+
+              <div class="c-bolt-accessibility-table__column">
+                {% if results["levelAAANormal"] == "pass" %}
+                  {% set wcag_level = 'AAA' %}
+                {% elseif results["levelAANormal"] %}
+                  {% set wcag_level = 'AA' %}
+                {% elseif results["levelAALarge"] == "pass" or results["levelAAMediumBold"] == "pass" %}
+                  {% set wcag_level = 'AA18' %}
+                {% else %}
+                  {% set wcag_level = 'fail' %}
+                {% endif %}
+
+
+                {% set results_class = "c-bolt-accessibility-table__results--#{wcag_level}" %}
+
+                <span class="c-bolt-accessibility-table__results {{ results_class }}">
+                  {{ results["levelAALarge"] }}
+
+                  {% if results["levelAALarge"] == 'fail' %}
+                    <bolt-icon name="close-solid" class="u-bolt-color-error"></bolt-icon>
+                  {% else %}
+                    <bolt-icon name="check-solid" class="u-bolt-color-success"></bolt-icon>
+                  {% endif %}
+                </span>
+
+                <!-- <span class="c-bolt-accessibility-table__score">
+                  ({{ results["ratio"]|round(2, 'common') }})
+                </span> -->
+              </div>
+
+              <div class="c-bolt-accessibility-table__column">
+                {% set color = colorValue | rgb2hex | replace({'#': ''}) %}
+                {% set results = color_contrast(color, '000000') %}
+                <span class="c-bolt-accessibility-table__results">
+                  {{ results["levelAANormal"] }}
+
+                  {% if results["levelAANormal"] == 'fail' %}
+                    <bolt-icon name="close-solid" class="u-bolt-color-error"></bolt-icon>
+                  {% else %}
+                    <bolt-icon name="check-solid" class="u-bolt-color-success"></bolt-icon>
+                  {% endif %}
+                </span>
+
+                <!-- <span class="c-bolt-accessibility-table__score">
+                </span> -->
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        {% endfor %}
+      </bolt-swatch>
+    {% endcell %}
+  {% endfor %}
+
+{% endgrid %}

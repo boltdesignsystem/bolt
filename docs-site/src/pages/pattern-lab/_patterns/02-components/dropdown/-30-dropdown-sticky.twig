@@ -1,0 +1,87 @@
+<div style="height:30vh;background-color:lightgray;">
+  <h3>Content before sticky dropdown</h3>
+</div>
+
+{% embed "@bolt-components-sticky/sticky.twig" %}
+  {% block sticky_content %}
+    {% embed "@bolt-components-dropdown/dropdown.twig" with {
+      title: "Toggle Menu"
+    } %}
+      {% block content %}
+        {% include "@bolt-components-nav/nav.twig" with {
+          "links": [
+            {
+              "text": "Link 1 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 2 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 3 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 4 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 5 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 6 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 7 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 8 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 9 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 10 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 11 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 13 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 14 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 15 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 16 Text",
+              "url": "#!"
+            },
+            {
+              "text": "Link 17 Text",
+              "url": "#!"
+            }
+          ]
+        } %}
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}
+
+<div style="height:160vh;background-color:lightgray;">
+  <h3>Content after sticky dropdown</h3>
+</div>
+

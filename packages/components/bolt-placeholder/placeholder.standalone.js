@@ -1,24 +1,21 @@
 import {
   define,
   props,
-  withComponent,
   css,
   hasNativeShadowDomSupport,
-  BoltComponent,
-  declarativeClickHandler,
-  sanitizeBoltClasses,
-} from '@bolt/core';
+} from '@bolt/core/utils';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import placeholderStyles from './placeholder.scss';
 
 @define
-class BoltPlaceholder extends BoltComponent() {
+class BoltPlaceholder extends withLitHtml() {
   static is = 'bolt-placeholder';
 
   static props = {
     animated: props.boolean,
     size: props.string,
-  }
+  };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
@@ -36,9 +33,7 @@ class BoltPlaceholder extends BoltComponent() {
   }
 
   render({ props, state }) {
-    const classes = css(
-      'c-bolt-placeholder',
-    );
+    const classes = css('c-bolt-placeholder');
 
     const wrapperClasses = css(
       'c-bolt-placeholder__wrapper ',
@@ -47,20 +42,22 @@ class BoltPlaceholder extends BoltComponent() {
 
     const contentClasses = css(
       'c-bolt-placeholder__content',
-      this.props.size ? `c-bolt-placeholder__content--${this.props.size}` : 'c-bolt-placeholder__content--medium',
+      this.props.size
+        ? `c-bolt-placeholder__content--${this.props.size}`
+        : 'c-bolt-placeholder__content--medium',
     );
 
-    return this.html`
-      ${ this.addStyles([placeholderStyles]) }
-      <div class=${classes}>
-        <div class=${wrapperClasses}>
+    return html`
+      ${this.addStyles([placeholderStyles])}
+      <div class="${classes}">
+        <div class="${wrapperClasses}">
           <div class="c-bolt-placeholder__wrapper-y"></div>
           <div class="c-bolt-placeholder__wrapper-x"></div>
-          <div class=${contentClasses}>
-            ${this.slot('default')}
-          </div>
+          <div class="${contentClasses}">${this.slot('default')}</div>
         </div>
       </div>
     `;
   }
 }
+
+export { BoltPlaceholder };

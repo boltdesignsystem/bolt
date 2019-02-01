@@ -1,0 +1,133 @@
+{% set formChildren %}
+
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "First Name",
+    "inputAttributes": {
+      "placeholder": "Enter First Name",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "Last Name",
+    "inputAttributes": {
+      "placeholder": "Enter Last Name",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "Email Address",
+    "inputAttributes": {
+      "placeholder": "Enter Email Address",
+      "type": "email",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "Job Title",
+    "inputAttributes": {
+      "placeholder": "Enter Job Title",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "Company Name",
+    "inputAttributes": {
+      "placeholder": "Enter Company Name",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "Phone Number",
+    "inputAttributes": {
+      "placeholder": "Enter Phone Number",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/40-form-element-demo-select.twig" with {
+    "title": "Functional Area",
+    "selectAttributes": {
+      "required": true
+    },
+    "options": [
+      {
+        "type": "option",
+        "value": "",
+        "label": "- Select Functional Area -"
+      },
+      {
+        "type": "option",
+        "value": "a",
+        "label": "Argentina"
+      },
+      {
+        "type": "option",
+        "value": "b",
+        "label": "Belgium"
+      },
+      {
+        "type": "option",
+        "value": "c",
+        "label": "Croatia"
+      }
+    ]
+  } only %}
+
+  {% include "@pl/40-form-element-demo-select.twig" with {
+    "title": "Country",
+    "selectAttributes": {
+      "required": true
+    },
+    "options": [
+      {
+        "type": "option",
+        "value": "",
+        "label": "- Select Country -"
+      },
+      {
+        "type": "option",
+        "value": "a",
+        "label": "Argentina"
+      },
+      {
+        "type": "option",
+        "value": "b",
+        "label": "Belgium"
+      },
+      {
+        "type": "option",
+        "value": "c",
+        "label": "Croatia"
+      }
+    ]
+  } only %}
+
+  {% include "@pl/30-form-element-demo-checkbox.twig" with {
+    "labelTitle": "Receive periodic emails on key analyst reports, Pega events, and important news.  You can unsubscribe at any time",
+    "elementId": "receive-emails",
+    "labelDisplayType": "inline"
+  } only %}
+
+  {% include "@bolt/button.twig" with {
+    "text": "Register",
+    "width": "full",
+    "tag": "submit"
+  } only %}
+
+
+{% endset %}
+
+{% include "@bolt/form.twig" with {
+  children: formChildren
+} only %}

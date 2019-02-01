@@ -65,8 +65,8 @@ bolt-inline-list {
 
 // Inline List Delimited
 .o-bolt-inline-list--delimited > .o-bolt-inline-list__item:not(:last-child):after {
-  color: currentColor;
   content: '#{$bolt-inline-list-delimit-character}';
+  color: currentColor;
   // align-self: inherit; // Trick to inherit valignment w/o hard coding
 }
 
@@ -82,7 +82,7 @@ bolt-inline-list {
     }
   }
 
-  > .o-bolt-inline-list__item {
+  > .o-bolt-inline-list__item:not(:last-child) {
     margin-right: bolt-spacing(xsmall);
 
     &:after {
@@ -102,7 +102,7 @@ bolt-inline-list {
     }
   }
 
-  > .o-bolt-inline-list__item {
+  > .o-bolt-inline-list__item:not(:last-child) {
     margin-right: bolt-spacing(small);
 
     &:after {
@@ -123,7 +123,7 @@ bolt-inline-list {
     }
   }
 
-  > .o-bolt-inline-list__item {
+  > .o-bolt-inline-list__item:not(:last-child) {
     margin-right: bolt-spacing(medium);
   }
 

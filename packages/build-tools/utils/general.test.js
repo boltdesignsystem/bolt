@@ -29,7 +29,14 @@ test('Concat two 1 dimensional arrays', () => {
 
 test('Concat 2 dimensional arrays', () => {
   const test = general.concatArrays(testArray, test2DArray);
-  const expectedResults = ['red', 'green', 'blue', 'red', ['forest', 'neon green'], ['seafoam']];
+  const expectedResults = [
+    'red',
+    'green',
+    'blue',
+    'red',
+    ['forest', 'neon green'],
+    ['seafoam'],
+  ];
 
   expect(test).toEqual(expectedResults);
 });

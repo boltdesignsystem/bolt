@@ -1,0 +1,30 @@
+.c-bds-docs__flex-demo {
+  @extend %bolt-demo-wrapper;
+  @include bolt-margin-bottom(2rem);
+  resize: horizontal;
+  overflow-y: auto;
+  &+h4 {
+    @include bolt-margin-top(4rem);
+  }
+}
+
+.c-bds-docs__flex-item {
+  @extend %bolt-demo-item-border;
+  @extend %bolt-demo-item-background;
+  text-align: center;
+
+  &--shrink-0 {
+    flex-shrink: 0;
+    font-weight: 400 !important;
+  }
+
+  &--basis-100 {
+    flex-basis: 100px;
+  }
+
+  &.u-bolt-flex-grow,
+  &.u-bolt-flex-shrink,
+  &.u-bolt-flex-basis-auto {
+    @include bolt-font-weight(bold);
+  }
+}

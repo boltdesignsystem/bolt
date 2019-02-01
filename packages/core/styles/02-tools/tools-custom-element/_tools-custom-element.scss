@@ -1,0 +1,53 @@
+/* ------------------------------------ *\
+  Custom Element
+\* ------------------------------------ */
+// This defines the following for a Bolt custom element.
+// 1. Sets the display (block, inline, etc.)
+// 2. Sets the spacing (block = margin-bottom; inline = margin-right)
+
+
+$bolt-blocky-elements: (block, flex, grid);
+
+
+// [Salem] @todo: move to separate function
+@function bolt-list-contains($list, $value) {
+  @return not not index($list, $value);
+}
+
+
+@mixin bolt-custom-element(
+  $elementName,
+  $display: inline,
+  $spacing: null
+) {
+  #{$elementName} {
+    display: $display;
+
+    // inline-based elements by default try to get margin-right spacing, if a spacing size is specified
+    @if (
+      $display == 'inline' or
+      $display == 'inline-block' or
+      $display == 'inline-flex'
+    ) {
+      @if $spacing != null {
+        &:not(:last-child) {
+          @include bolt-margin-right($spacing);
+        }
+      }
+    }
+
+    // otherwise block-like elements expect margin-bottom spacing, again if a spacing size is specified
+    @else {
+      @if $spacing != null {
+        &:not(:last-child) {
+          @include bolt-margin-bottom($spacing);
+        }
+      }
+    }
+
+    @content;
+  }
+}
+
+// Example Usage
+// @include bolt-custom-element('bolt-component-name', $display: block, $spacing: medium);

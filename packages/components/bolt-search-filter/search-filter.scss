@@ -1,0 +1,128 @@
+/* ------------------------------------ *\
+   Search
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+$bolt-search-filter-transition: $bolt-transition;
+
+.c-bolt-search-filter {
+  display: block;
+}
+
+.c-bolt-search-filter__trigger {
+  display: block;
+  position: fixed;
+  right: bolt-spacing(medium);
+  bottom: bolt-v-spacing(medium);
+  z-index: 99998;
+
+  @include bolt-mq(medium) {
+    display: none;
+  }
+}
+
+.c-bolt-search-filter__panel {
+  @media screen and (max-width: (bolt-breakpoint(medium) - 1px)) {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    background-color: bolt-color(white);
+
+    &,
+    > * {
+      transition: all $bolt-search-filter-transition;
+    }
+
+    &:not(:target) {
+      opacity: bolt-opacity(0);
+      pointer-events: none;
+
+      .c-bolt-search-filter__panel-content,
+      .c-bolt-search-filter__panel-controls--close,
+      .c-bolt-search-filter__panel-controls--submit {
+        transform: translateY(-2rem);
+      }
+    }
+
+    &:target {
+      opacity: bolt-opacity(100);
+
+      .c-bolt-search-filter__panel-content,
+      .c-bolt-search-filter__panel-controls--close,
+      .c-bolt-search-filter__panel-controls--submit {
+        transform: translateY(0%);
+      }
+    }
+  }
+}
+
+.c-bolt-search-filter__panel-content {
+  @media screen and (max-width: (bolt-breakpoint(medium) - 1px)) {
+    @include bolt-padding(medium);
+    display: block;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: bolt-color(white);
+  }
+}
+
+.c-bolt-search-filter__panel-controls {
+  display: block;
+  box-shadow: 0px -2px 4px rgba(bolt-color(black), 0.1);
+
+  @include bolt-mq(medium) {
+    display: none;
+  }
+}
+
+.c-bolt-search-filter__panel-controls--close {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99999;
+}
+
+.c-bolt-search-filter__panel-controls--submit {
+  @include bolt-padding(medium, squished);
+  width: 100%;
+  background-color: bolt-color(white);
+}
+
+.c-bolt-search-inline-tags {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+
+  display: inline;
+}
+
+.c-bolt-search-inline-tag {
+  @include bolt-font-weight(semibold);
+  display: inline;
+  display: inline-flex;
+  color: bolt-theme(link);
+  text-decoration: none;
+  transition: all $bolt-transition;
+
+  &:after {
+
+    content: ',';
+    display: inline-block;
+    *display: inline;
+    color: bolt-theme(text);
+    vertical-align: middle;
+
+    // are these two lines still necessary? isn't this an old IE workaround?
+    zoom: 1;
+  }
+
+  &:hover {
+    text-decoration: line-through;
+  }
+}

@@ -1,5 +1,9 @@
 {% set schema = bolt.data.components['@bolt-components-placeholder'].schema %}
 
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
 {# Defaults for a vanilla `Placeholder` component #}
 {% set prefix = "c-bolt-" %}
 {% set componentName = "placeholder" %}
@@ -48,8 +52,3 @@
     </replace-with-children>
   </replace-with-children>
 </bolt-placeholder>
-
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-placeholder/placeholder.schema.yml', _self) | raw }}
-{% endif %}

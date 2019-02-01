@@ -1,0 +1,13 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Chip List
+type: object
+require:
+  - contentItems
+properties:
+  contentItems:
+    type: array
+    description: An array of Chips.
+    items:
+      type: object
+      description: Chip.
+      ref: '@bolt-components-chip/chip.schema.yml'

@@ -1,50 +1,38 @@
+{% set schema = bolt.data.components['@bolt-components-band'].schema %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
 {% set prefix = "c-bolt-" %}
-{% set tags = ["div", "article", "section", "header", "footer", "nav", "figure"] %} {# Available overall container tags #}
 {% set contentTags = ["div", "article", "section", "header", "footer", "nav", "figcaption"] %} {# Available content container tags #}
 {% set fullBleedOptions = [true, false] %}
-{% set sizes = [
-  "xsmall",
-  "small",
-  "medium",
-  "large"
-] %}
-{% set themes = [
-  "xlight",
-  "light",
-  "medium",
-  "dark",
-  "xdark"
-] %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {# Defaults for a vanilla `Band` component #}
 {% set componentName = "band" %}
 {% set baseClass = prefix ~ componentName %}
-{% set tag = tag in tags ? tag: "div" %}
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 {% set fullBleed = fullBleed == false and fullBleed is not null ? false : true %}
 
 {# set fullBleed = fullBleed in fullBleedOptions ? fullBleed | default(false) #}
-{% if size != "none" %}
-  {% set size = size | default("medium") %}
-{% endif %}
-{% if theme != "none" %}
-  {% set theme = theme | default("dark") %}
-{% endif %}
 
+{% set size = size in schema.properties.size.enum ? size : schema.properties.size.default %}
+{% set size = size == "none" ? false : size %}
+{% set theme = theme in schema.properties.theme.enum ? theme : schema.properties.theme.default %}
+{% set theme = theme == "none" ? false : theme %}
 
 {% set classes = [
   baseClass,
   fullBleed == true ? baseClass ~ "--" ~ "full" : "",
-  size in sizes ? baseClass ~ "--" ~ size : "",
-  theme in themes ? "t-bolt-" ~ theme : ""
+  size ? baseClass ~ "--" ~ size : "",
+  theme ? "t-bolt-" ~ theme : ""
 ] %}
 
 <bolt-{{ componentName }}
-  size="{{ size }}"
-  theme="{{ theme }}"
-  bolt-component {{ attributes.addClass(classes) }}>
+  {% if size %} size="{{ size }}" {% endif %}
+  {% if theme %} theme="{{ theme }}" {% endif %}
+  {{ attributes.addClass(classes) }}>
   {% set renderedBandContent %}
     {% block band_background %}
       {% if background %}
@@ -52,9 +40,35 @@
       {% endif %}
     {% endblock band_background %}
     <{{ contentTag }} class="{{ "#{baseClass}__content" }}">
-      {% block band_content %}
-        {{ content }}
-      {% endblock band_content %}
+      {% block band_outer_content %}
+        {%- set block_band_content -%}
+          {%- block band_content -%}
+            {{ content }}
+          {%- endblock -%}
+        {%- endset -%}
+
+        {# merge together array of items with the content / band_content block so each item can get wrapped properly #}
+        {% set items = items | default([]) %}
+
+        {# Note: using block('band_content') to check for emptiness can cause duplicate rendering issues and should be avoided.  #}
+        {% if block_band_content is not empty %}
+          {% set items = items | merge([{
+            content: block_band_content,
+            position: {
+              row_start: content_row_start ? content_row_start : schema.properties.content_row_start.default
+            }
+          }]) %}
+        {% endif %}
+
+        {% if items is not empty %}
+          {% include "@bolt-components-grid/grid.twig" with {
+            vinset: vinset ? vinset : size,
+            row_gutter: row_gutter | default( items|length > 1 ? "small" : "none"),
+            items: items
+          } only %}
+        {% endif %}
+      
+      {% endblock %}
     </{{ contentTag }}>
   {% endset %}
 
@@ -63,7 +77,3 @@
     content: renderedBandContent
   } only %}
 </bolt-{{ componentName }}>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-band/band.schema.yml', _self) | raw }}
-{% endif %}

@@ -1,0 +1,29 @@
+{% include "@bolt-components-headline/headline.twig" with {
+  "size": "large",
+  "text": "Activate linked title by passing in an url"
+} only %}
+
+{% include "@bolt-components-navbar/navbar.twig" with {
+  "title": {
+    "tag": "h2",
+    "text": "Title Text",
+    "icon": {
+      "name": "marketing-gray"
+    },
+    "url": "#!"
+  },
+  "links": [
+    {
+      "text": "Link 1 Text",
+      "url": "#!"
+    },
+    {
+      "text": "Link 2 Text",
+      "url": "#!"
+    },
+    {
+      "text": "Link 3 Text",
+      "url": "#!"
+    }
+  ]
+} %}

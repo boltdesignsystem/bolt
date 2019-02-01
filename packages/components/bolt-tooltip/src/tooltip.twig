@@ -1,5 +1,8 @@
-{% set attributes = create_attribute(attributes|default({})) %}
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-tooltip'].schema, _self) | raw }}
+{% endif %}
 
+{% set attributes = create_attribute(attributes|default({})) %}
 {% set componentName = "tooltip" %}
 
 {% if trigger %}
@@ -47,7 +50,3 @@
 {% set customElementName = customElementName | default('bolt-' ~ componentName) %}
 
 <{{ customElementName }} {{ attributes }}></{{ customElementName }}>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema('@bolt-components-tooltip/tooltip.schema.yml', _self) | raw }}
-{% endif %}

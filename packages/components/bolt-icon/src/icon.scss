@@ -1,57 +1,47 @@
 @import '@bolt/core';
 
-
 bolt-icon {
   display: inline-block;
-  vertical-align: middle;
-  // display: inline-flex;
-  color: inherit;
-  color: var(--bolt-theme-icon, inherit);
+  transform: translate3d(0, 0, 0); // Create a stacking context to scope internal z-index values.
   width: 1em; // Default icon size if size prop not specified
   height: 1em; // Default icon size if size prop not specified
+  vertical-align: middle;
+  transition: inherit;
 
   &:not(:resolved){
-    padding-bottom: 100%; // Default square icons
     height: 0;
+    padding-bottom: 100%; // Default square icons
   }
 }
 
 :host {
   display: inline-block;
-  color: inherit;
-  color: var(--bolt-theme-icon, inherit);
   vertical-align: middle;
 }
 
 
 // By default, icons should inherit the size of the container it's put inside
 
-//Wrapper
+// Wrapper
 .c-bolt-icon {
   position: relative;
 }
 
 .c-bolt-icon__icon {
-  display: block; //required for vertically aligning icons
+  display: block; // required for vertically aligning icons
+  box-sizing: border-box;
   position: relative;
+  z-index: bolt-z-index('content');
   width: 1em;
   height: 1em;
-  box-sizing: border-box;
-  z-index: bolt-z-index('content');
-  color: inherit;
-  color: var(--bolt-theme-icon, inherit);
-
-  // The primary goal of this is to set the transition for icon color.  Perhaps it's a
-  // bit heavy-handed, but it seems more robust than just applying this to, say, 'path' elements.
-  * {
-    transition: all $bolt-transition;
-  }
+  color: var(--bolt-theme-icon);
+  pointer-events: none;
 }
 
 bolt-icon[size='small'],
 .c-bolt-icon--small > .c-bolt-icon__icon {
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
 }
 
 bolt-icon[size='medium'],
@@ -79,25 +69,28 @@ bolt-icon[size='xlarge'],
 
 .c-bolt-icon--small > .c-bolt-icon__icon {
   stroke: currentColor;
-  stroke-width: 2px;
+  stroke-width: 1px;
 }
 
 
 .c-bolt-icon__background-shape {
+
+  // Fallback if CSS vars are not supported.
+  opacity: 0.1;
   position: absolute;
-  z-index: bolt-z-index('contentBottom');
   top: 50%;
   left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: bolt-z-index('contentBottom');
   width: 100%;
   height: 0;
   padding-bottom: 100%;
-  transform: translate3d(-50%, -50%, 0);
+  background-color: currentColor;
 
-  opacity: 0.1;
-  opacity: var(--bolt-theme-icon-background-opacity, 0.1);
-
-  background-color: currentColor; // Fallback if CSS vars not supported
-  background-color: var(--bolt-theme-icon-background, var(--bolt-theme-primary-text-default, currentColor));
+  @supports(--css: variables) {
+    opacity: var(--bolt-theme-icon-background-opacity, 0.1);
+    background-color: var(--bolt-theme-icon-background, var(--bolt-theme-primary-text-default, currentColor));
+  }
 }
 
 .c-bolt-icon__background-shape--circle {
@@ -116,22 +109,60 @@ bolt-icon[size='xlarge'],
   $brand-color: bolt-color(teal);
   $contrast-color: bolt-text-contrast($brand-color);
 
+  // Fallbacks if CSS vars are not supported.
+  color: $contrast-color;
+
+  .c-bolt-icon__background-shape {
+    opacity: bolt-opacity(100);
+    background-color: $brand-color;
+  }
+
   @include bolt-css-vars((
     --bolt-theme-icon: $contrast-color,
     --bolt-theme-icon-background: $brand-color,
-    --bolt-theme-icon-background-opacity: 1,
+    --bolt-theme-icon-background-opacity: bolt-opacity(100),
   ));
+
+  // Properties must be re-declared here so that CSS variable values will take precedence over hard-coded values for
+  // fallback browsers.  Remove this when support for browsers that don't support CSS vars is dropped.
+  @supports(--css: variables) {
+    color: var(--bolt-theme-icon);
+
+    .c-bolt-icon__background-shape {
+      opacity: var(--bolt-theme-icon-background-opacity);
+      background-color: var(--bolt-theme-icon-background);
+    }
+  }
 }
 
 .c-bolt-icon--blue {
   $brand-color: bolt-color(blue);
+  $contrast-color: bolt-text-contrast($brand-color);
+
+  // Fallbacks if CSS vars are not supported.
   color: $brand-color;
+
+  .c-bolt-icon__background-shape {
+    opacity: bolt-opacity(100);
+    background-color: $contrast-color;
+  }
 
   @include bolt-css-vars((
     --bolt-theme-icon: $brand-color,
-    --bolt-theme-icon-background: bolt-text-contrast($brand-color),
-    --bolt-theme-icon-background-opacity: 1,
+    --bolt-theme-icon-background: $contrast-color,
+    --bolt-theme-icon-background-opacity: bolt-opacity(100),
   ));
+
+  // Properties must be re-declared here so that CSS variable values will take precedence over hard-coded values for
+  // fallback browsers.  Remove this when support for browsers that don't support CSS vars is dropped.
+  @supports(--css: variables) {
+    color: var(--bolt-theme-icon);
+
+    .c-bolt-icon__background-shape {
+      opacity: var(--bolt-theme-icon-background-opacity);
+      background-color: var(--bolt-theme-icon-background);
+    }
+  }
 }
 
 .c-bolt-icon__background {

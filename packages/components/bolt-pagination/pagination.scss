@@ -1,0 +1,109 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Pagination
+\* ------------------------------------ */
+
+$bolt-pagination-transition: $bolt-transition;
+$bolt-pagination-item-size: bolt-spacing(medium);
+
+
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-pagination', block, medium);
+
+.c-bolt-pagination {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+
+  display: flex;
+  list-style: none;
+}
+
+// [Mai] Alignment options, use center as default.
+.c-bolt-pagination--align-center {
+  justify-content: center;
+}
+
+.c-bolt-pagination--align-start {
+  justify-content: flex-start;
+}
+
+.c-bolt-pagination--align-end {
+  justify-content: flex-end;
+}
+
+.c-bolt-pagination__item {
+  @include bolt-margin(0);
+  @include bolt-padding(0 2px); // [Mai] This will give big numbers (over 3 digits) some padding left and right so it's not touching the edge.
+  @include bolt-font-family(body);
+  @include bolt-font-weight(semibold);
+  @include bolt-font-size(small);
+
+  display: block;
+  min-width: $bolt-pagination-item-size;
+  height: $bolt-pagination-item-size;
+  color: bolt-theme(headline-link);
+  line-height: $bolt-pagination-item-size;
+  text-align: center;
+  text-decoration: none;
+  border-radius: $bolt-pagination-item-size;
+  background-color: transparent;
+  -webkit-backface-visibility: hidden; // Removes the 1px jump with opacity transition
+  transition: opacity $bolt-pagination-transition;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: $bolt-global-link-hover-opacity;
+  }
+
+  &:active,
+  &:focus:active {
+    opacity: $bolt-global-link-active-opacity;
+  }
+
+  &.is-current {
+    opacity: bolt-opacity(100);  // Current item is not a link so its styling shouldn't change based on state.
+    color: bolt-theme(background);
+    background-color: bolt-theme(headline-link);
+  }
+}
+
+.c-bolt-pagination__item--prev,
+.c-bolt-pagination__item--next {
+  min-width: auto;
+
+  @include bolt-mq($until: small) { // [Mai] This is the opposite of @include bolt-mq(small).
+    .c-bolt-pagination__text {
+      @include bolt-visuallyhidden;
+    }
+  }
+}
+
+.c-bolt-pagination__item--prev {
+  @include bolt-margin-right(small);
+
+  @include bolt-mq(small) {
+    .c-bolt-pagination__icon {
+      @include bolt-margin-right(xxsmall);
+    }
+  }
+}
+
+.c-bolt-pagination__item--next {
+  @include bolt-margin-left(small);
+
+  @include bolt-mq(small) {
+    .c-bolt-pagination__icon {
+      @include bolt-margin-left(xxsmall);
+    }
+  }
+}
+
+.c-bolt-pagination__item--ellipsis {
+  &:hover,
+  &:active,
+  &:focus:active {
+    opacity: bolt-opacity(100);
+  }
+}

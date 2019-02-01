@@ -1,19 +1,12 @@
-import {
-  h,
-  render,
-  define,
-  props,
-  withComponent,
-  hasNativeShadowDomSupport,
-  withPreact,
-} from '@bolt/core';
+import { define, props } from '@bolt/core/utils';
+import { h, withPreact } from '@bolt/core/renderers';
 
-import styles from './tooltip.scss';
 import button from '@bolt/components-button/src/button.scss';
 import colorUtils from '@bolt/global/styles/07-utilities/_utilities-colors.scss';
+import styles from './tooltip.scss';
 
 @define
-export class BoltTooltip extends withPreact(withComponent()) {
+class BoltTooltip extends withPreact() {
   static is = 'bolt-tooltip';
 
   static props = {
@@ -31,12 +24,13 @@ export class BoltTooltip extends withPreact(withComponent()) {
     count: props.string, // For use ONLY with share
   };
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
     this.useShadow = false; // @todo: Get this working with shadowDOM + slots
+    return self;
   }
 
-  connectedCallback() {
+  connecting() {
     this.triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
   }
 
@@ -45,11 +39,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
     const baseClass = 'c-bolt-tooltip';
     const vert = data.positionVert ? data.positionVert : 'up';
 
-    const classes = [
-      baseClass,
-      `is-push-${vert}`,
-      'is-align-center',
-    ];
+    const classes = [baseClass, `is-push-${vert}`, 'is-align-center'];
 
     if (data.triggerType === 'button') {
       classes.push(`${baseClass}--action`);
@@ -65,12 +55,10 @@ export class BoltTooltip extends withPreact(withComponent()) {
     } else {
       classes.push(`${baseClass}--spacing-small`);
     }
-    // @todo: Conditionally render slot similar to how HyperHtml is doing it
+    // @todo: Conditionally render slot similar to how Lit-HTML is doing it
     return (
       <span>
-        {this.useShadow &&
-          <style>{styles[0][1]}</style>
-        }
+        {this.useShadow && <style>{styles[0][1]}</style>}
         <span className={classes.join(' ')}>
           <tooltip-trigger
             text={data.triggerText}
@@ -82,9 +70,12 @@ export class BoltTooltip extends withPreact(withComponent()) {
             toggle-icon={data.triggerToggleIcon}
             trigger-id={this.triggerID}
           />
-          <TooltipContent trigger={data.triggerType} trigger-id={this.triggerID} count={data.count}>
+          <BoltTooltipContent
+            trigger={data.triggerType}
+            trigger-id={this.triggerID}
+            count={data.count}>
             <span dangerouslySetInnerHTML={{ __html: data.content }} />
-          </TooltipContent>
+          </BoltTooltipContent>
         </span>
       </span>
     );
@@ -92,7 +83,7 @@ export class BoltTooltip extends withPreact(withComponent()) {
 }
 
 @define
-class TooltipTrigger extends withPreact(withComponent()) {
+class BoltTooltipTrigger extends withPreact() {
   static is = 'tooltip-trigger';
 
   static props = {
@@ -106,8 +97,10 @@ class TooltipTrigger extends withPreact(withComponent()) {
     triggerId: props.string,
   };
 
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
+    this.useShadow = false; // @todo: Get this working with shadowDOM + slots
+    return self;
   }
 
   render() {
@@ -131,12 +124,12 @@ class TooltipTrigger extends withPreact(withComponent()) {
 
     return (
       <span>
-        {data.trigger === 'button' &&
-        <span>
-          <style>{button[0][1]}</style>
-          <style>{colorUtils[0][1]}</style>
-        </span>
-        }
+        {data.trigger === 'button' && (
+          <span>
+            <style>{button[0][1]}</style>
+            <style>{colorUtils[0][1]}</style>
+          </span>
+        )}
         <span
           className="c-bolt-tooltip__trigger"
           aria-describedby={data.triggerId}
@@ -145,45 +138,44 @@ class TooltipTrigger extends withPreact(withComponent()) {
               // Fixes issue with css transitions within re-rendered components
               this.classList.toggle('is-active');
             }
-          }}
-        >
-          {data.trigger === 'button' &&
-          <button className={classes.join(' ')}>
+          }}>
+          {data.trigger === 'button' && (
+            <button className={classes.join(' ')}>
               <div className="toggle--closed">
-              {data.icon &&
-                <span className="c-bolt-button__icon">
-                  <bolt-icon name={data.icon} size={size} />
-                </span>
-              }
+                {data.icon && (
+                  <span className="c-bolt-button__icon">
+                    <bolt-icon name={data.icon} size={size} />
+                  </span>
+                )}
                 {data.text}
               </div>
               <div className="toggle--open">
-                {data.toggleIcon &&
+                {data.toggleIcon && (
                   <span className="c-bolt-button__icon">
                     <bolt-icon name={data.toggleIcon} size={size} />
                   </span>
-                }
+                )}
                 {data.toggleText}
               </div>
-          </button>
-          }
-          {data.trigger === 'text' &&
-          <span>
-            {data.icon &&
-              <span className="c-bolt-button__icon">
-                <bolt-icon name={data.icon} size={size} />
-              </span>
-            }
-            {data.text}
-          </span>
-          }
+            </button>
+          )}
+          {data.trigger === 'text' && (
+            <span>
+              {data.icon && (
+                <span className="c-bolt-button__icon">
+                  <bolt-icon name={data.icon} size={size} />
+                </span>
+              )}
+              {data.text}
+            </span>
+          )}
         </span>
       </span>
     );
   }
 }
 
-const TooltipContent = (props) => {
+const BoltTooltipContent = props => {
   const classes = [
     'c-bolt-tooltip__content',
     `c-bolt-tooltip__content--${props.trigger}`,
@@ -192,10 +184,14 @@ const TooltipContent = (props) => {
     classes.push(`c-bolt-tooltip__content--count-${props.count}`);
   }
   return (
-    <span id={props['trigger-id']} className={classes.join(' ')} role="tooltip" aria-hidden="true">
-      <span className="c-bolt-tooltip__content-bubble">
-        {props.children}
-      </span>
+    <span
+      id={props['trigger-id']}
+      className={classes.join(' ')}
+      role="tooltip"
+      aria-hidden="true">
+      <span className="c-bolt-tooltip__content-bubble">{props.children}</span>
     </span>
   );
 };
+
+export { BoltTooltip, BoltTooltipTrigger, BoltTooltipContent };

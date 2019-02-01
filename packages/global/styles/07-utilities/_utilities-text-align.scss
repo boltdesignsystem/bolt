@@ -4,15 +4,22 @@
 
 .u-bolt-text-align-right {
   text-align: right !important;
-  align-items: flex-end !important;
+  text-align: end !important;
 }
 
 .u-bolt-text-align-left {
   text-align: left !important;
-  align-items: flex-start !important;
+  text-align: start !important;
 }
 
 .u-bolt-text-align-center {
   text-align: center !important;
-  align-items: center !important;
 }
+
+.u-bolt-text-align-justify {
+  text-align: justify !important;
+}
+
+$bolt-alignment-props: ('right', 'left', 'center', 'justify');
+
+@include export-data('alignments.bolt.json', $bolt-alignment-props);

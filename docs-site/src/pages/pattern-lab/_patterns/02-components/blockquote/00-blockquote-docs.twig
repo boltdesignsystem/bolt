@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-blockquote/blockquote.twig" with {
+  content: "<p>The greater danger for most of us lies not in ... achieving our mark.</p>"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "blockquote",
+  usage: usage
+} only %}

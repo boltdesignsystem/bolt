@@ -1,0 +1,36 @@
+/* ------------------------------------ *\
+   THEMES
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+// loop through all defined themes to auto-generate Theme-specific classes w/ vars.
+// also clean up the Sass map data we export for the Themify-based PostCSS build step and convert everything to rgb just for the data that's exported.
+@each $themeName, $themeOptions in $bolt-themes {
+  $selector: '.t-bolt-#{$themeName}';
+
+  @if ($themeName == 'xlight') {
+    $selector: ':root, .t-bolt-#{$themeName}';
+  }
+
+  #{unquote($selector)} {
+    @each $themeOptionName, $themeOptionValue in $themeOptions {
+
+      @if type-of($themeOptionValue) == color and type-of($themeOptionValue) != string {
+        $red: round(red($themeOptionValue));
+        $green: round(green($themeOptionValue));
+        $blue: round(blue($themeOptionValue));
+
+        --bolt-theme-#{$themeOptionName}: #{$red, $green, $blue};
+      } @else {
+        --bolt-theme-#{$themeOptionName}: #{$themeOptionValue};
+      }
+    }
+
+    color: bolt-theme-prop-value($themeName, text);
+    color: rgba(var(--bolt-theme-text), 1);
+
+    background-color: bolt-theme-prop-value($themeName, background);
+    background-color: rgba(var(--bolt-theme-background), 1);
+  }
+}

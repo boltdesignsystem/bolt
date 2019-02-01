@@ -12,11 +12,54 @@
       type: string
       title: Namespace prefix to use in classnames
       default: 'bolt'
+    lang:
+      type: array, string
+      title: Array of language-specific builds to generate. The 1st langugage specified is the default used for local development.
+      default:
+        - en
+    watch:
+      type: boolean
+      description: Configures internal tasks to watch for changes vs exiting when finished.
+      default: false
+    sourceMaps:
+      type: boolean
+      description: When set to true, generates sourcemaps when CSS and JS files are compiled.
+      default: true
+    i18n:
+      type: boolean
+      description: Should the design system's assets be compiled for multiple languages? Automatically defaults to false for local dev, true for prod.
+    port:
+      type: number
+      title: Desired port for Browsersync server
+      default: 3000
+    proxyPort:
+      type: number
+      title: Desired port for Webpack Proxy
+      default: 8080
+    proxyHeader:
+      type: string
+      description: Special request header when proxying Webpack's dev server
+      default: 'browsersync-proxy'
     templatesDir:
       type: array
       title: Template paths being added
       default:
         - templates
+    copy:
+      type: array
+      description: The copy config is an array of objects specifying any files or folders that should get copied over to the build directory. Uses https://github.com/webpack-contrib/copy-webpack-plugin under the hood so any configuration options available there also apply here as well.
+      items:
+        type: object
+        properties:
+          from:
+            type: [string, object]
+            description: The files and/or directories to copy over
+          to:
+            type: [string, object]
+            description: The destination of the files being copied over
+          flatten:
+            type: boolean
+            description: Specify if any nested folders should get flattened down to a single level when copying over.
     globalData:
       type: object
       properties:
@@ -27,11 +70,24 @@
     env:
       type: string
       title: Environment Type
-      description: Where is this being compiled? Pattern Lab? Drupal?
+      description: What is being compiled? Pattern Lab? Drupal? A static site? Or is the new in-progress Progressive Web App (PWA) that combines Pattern Lab + the docs site into one single environment?
       enum:
         - pl
         - static
         - drupal
+        - pwa
+        - test
+    renderingService:
+      type: boolean
+      description: Automatically start up the PHP / Twig Rendering Service?
+      default: false
+    renderingServicePort:
+      type: number
+      title: Desired port for PHP Rendering Service
+      default: 8087
+    alterTwigEnv:
+      type: array
+      description: Extends and alters the PHP-based Twig environment used when compiling Twig templates. Used for adding custom Twig extensions + [configuring environment options](https://twig.symfony.com/doc/1.x/api.html#environment-options). Passed directly to the @basalt/twig-renderer config option of same name.
     srcDir:
       type: string
       title: Source Directory
@@ -57,11 +113,25 @@
       type: string
       title: Local server start path
       description: This is the `path/to/file.html` in `http://localhost:3000/path/to/file.html`
-      default: ''
+      default: '/'
+    ip:
+      type: string
+      title: IP address internally populated. Used for local dev testing w/ Webpack Dev Server.
     webpackDevServer:
-      type: boolean
+      type: boolean, object
       default: false
-      description: Enable the WebPack Dev Server.
+      description: WebPack Dev Server related config
+      items:
+        enabled:
+          type: boolean
+          description: Enables WebPack Dev Server.
+        watchedExtensions:
+          type: array
+          description: Array of file extensions in the wwwDir that Webpack Dev Server will watch and trigger an HMR update when changed or added.
+    enableCache:
+      default: false
+      type: boolean
+      description: Experimental new `@bolt/build-tools` option that caches the output from Webpack's build to significantly speed up the build tools after the first normal compile.
     dataDir:
       type: string
       description: This is the directory where generated json data files exist with information about the overall build. Defaults to `data` inside `buildDir`
@@ -136,6 +206,17 @@
       type: boolean
       description: Production build, will compress assets.
       default: false
+    schemaErrorReporting:
+      description: Setting for where schema errors should be reported.  Note that reporting to cli will cause builds to fail if there are errors.
+      type: string
+      default: console
+      enum:
+        - none
+        - console
+        - cli
+    configFileUsed:
+      type: string
+      description: The filepath to the `.boltrc` file used to load config. Programatically added to config.
 
   definitions:
     components:

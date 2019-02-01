@@ -1,26 +1,42 @@
 /* ------------------------------------ *\
-  #VISUALLY HIDDEN UTILITIES
+  OPACITY UTILITIES
+  see `_settings-opacity.scss`
 \* ------------------------------------ */
 
 @import '@bolt/core';
 
-$bolt-opacity-props: (0, .25, .50, .75, 1);
+@each $opacity-name, $opacity-value in $bolt-opacities {
+  .u-bolt-opacity-#{$opacity-name} {
+    @include bolt-opacity($opacity-name);
+  }
 
-@mixin bolt-opacity-utils($breakpoint: null) {
-  @each $value in $bolt-opacity-props {
-    $name: $value * 100;
-    .u-bolt-opacity-#{$name}#{$breakpoint} {
-      opacity: $value !important;
+  @each $breakpoint-name, $breakpoint-value in $bolt-breakpoints {
+    .u-bolt-opacity-#{$opacity-name}\@#{$breakpoint-name} {
+      @include bolt-mq($breakpoint-name) {
+        @include bolt-opacity($opacity-name);
+      }
     }
   }
 }
 
-@include bolt-opacity-utils;
+// DEPRECATED. These opacity values will be removed in Bolt 3.0.  See $bolt-opacities for valid opacity values.
+// To remove support, delete all the code below this line.
+$bolt-deprecated-opacities-map: (
+  25: 20,
+  50: 60,
+  75: 80,
+);
 
-// Loop over our breakpoints
-@each $breakpoint in $breakpoints {
-  $breakpointName: nth($breakpoint, 1);
-  @include respond-to($breakpointName) {
-    @include bolt-opacity-utils(\@#{$breakpointName});
+@each $old-opacity, $new-opacity in $bolt-deprecated-opacities-map {
+  .u-bolt-opacity-#{$old-opacity} {
+    @include bolt-opacity($new-opacity);
+  }
+
+  @each $breakpoint-name, $breakpoint-value in $bolt-breakpoints {
+    .u-bolt-opacity-#{$old-opacity}\@#{$breakpoint-name} {
+      @include bolt-mq($breakpoint-name) {
+        @include bolt-opacity($new-opacity);
+      }
+    }
   }
 }

@@ -1,0 +1,39 @@
+{% set exampleThemes = [
+  "xlight",
+  "light",
+  "medium",
+  "dark",
+  "xdark"
+] %}
+
+{% for theme in exampleThemes %}
+  <div class="t-bolt-{{ theme }} u-bolt-padding-small u-bolt-height-xxlarge">
+    {% embed "@bolt-components-dropdown/dropdown.twig" with {
+      title: "Dropdown Menu, Theme: " ~ theme,
+      center: true
+    } %}
+      {% block content %}
+        {% include "@bolt-components-block-list/block-list.twig" with {
+          "items": [
+            include("@bolt-components-link/link.twig", {
+              "text": "Link 1 Text",
+              "url": "#!"
+            }),
+            include("@bolt-components-link/link.twig", {
+              "text": "Link 2 Text",
+              "url": "#!"
+            }),
+            include("@bolt-components-link/link.twig", {
+              "text": "Link 3 Text",
+              "url": "#!"
+            }),
+            include("@bolt-components-link/link.twig", {
+              "text": "Link 4 Text",
+              "url": "#!"
+            }),
+          ]
+        } %}
+      {% endblock %}
+    {% endembed %}
+  </div>
+{% endfor %}

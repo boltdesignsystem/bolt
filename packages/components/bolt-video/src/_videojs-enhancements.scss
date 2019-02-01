@@ -1,119 +1,346 @@
-// Vertically and horizontally center the default Brightcove share overlay content
-.vjs-modal-dialog .vjs-modal-dialog-content {
-  position: relative; // override position: absolute
-  overflow-x: auto; // clearfix floated children
-  height: auto; // override height: 100%
-  max-width: 1024px;
-  max-height: 56.25vw;
-  margin: 0 auto;
-  -webkit-overflow-scrolling: touch;
+@import '@bolt/core';
+
+
+// Dev Notes
+// 1. [Mai] Because these styles are overrides, they need to be repeated.
+// 2. [Mai] Input font-size needs to be 16px to prevent zooming.
+// 3. [Mai] Hide close captions button.
+// 4. [Mai] Flexbox messes up IE layout, this prevents IE from loading display: flex.
+// 5. Required so videos with intrinsic ratio (used in the <bolt-ratio> object) properly fill the space available in IE 11.
+// 6. [Mai] These gradients cover up part of the squre to form a triangle. A triangle had to be formed this way because % width has to be used to determine a flexible triangle based on the video size.
+// 7. [Mai] This optically centers the triangle.
+// 8. [Denton] Hide the title when sharing to minimize the chances that you'll see a scrollbar, which is undesirable.  The description field will take its place.
+
+
+$bolt-video-js-button-text-color: bolt-color(indigo);
+$bolt-video-js-button-background-color: bolt-color(yellow);
+$bolt-video-js-button-transition: $bolt-transition;
+$bolt-video-js-button-border-radius: $bolt-border-radius;
+$bolt-video-js-button-shadow-color: bolt-color(black);
+$bolt-video-js-button-shadow-level: 'level-20';
+$bolt-video-js-button-shadow-level-hover: 'level-40';
+
+@mixin bolt-video-js-button($opacity: bolt-opacity(100)) {
+  opacity: $opacity;
+  color: $bolt-video-js-button-text-color;
+  background-color: $bolt-video-js-button-background-color;
+  transition: all $bolt-video-js-button-transition;
 }
 
-.video-js .vjs-poster {
-  background-color: transparent;
-}
+.video-js {
+  position: absolute; // [5]
+  width: 100%;
+  height: 100%;
 
-.video-js .vjs-big-play-button.vjs-big-play-button {
-  @include bolt-button-style(secondary);
-  margin-top: auto;
-  margin-left: auto;
-  width: 4.5rem;
-  height: 4.5rem;
-  transform: translate3d(-50%, -50%, 0);
-  box-shadow: 1px 2px 3px 0 rgba(47,49,50,0.15);
-  transition: all $bolt-transition;
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 4px 3px rgb(59, 153, 252);
+  video,
+  .vjs-big-play-button {
+    cursor: pointer;
   }
 
-  .vjs-icon-placeholder {
-    display: block;
-    position: relative;
-    align-self: center;
-    line-height: 1; // Fixes vertical alignment issues w/ the icon in IE11 and Chrome
-  }
+  .vjs-big-play-button {
+    @include bolt-margin(0);
+    @include bolt-padding(0);
+    @include bolt-video-js-button($opacity: bolt-opacity(100));
+    @include bolt-shadow($key: $bolt-video-js-button-shadow-level, $base-color: $bolt-video-js-button-shadow-color);
 
-  .vjs-icon-placeholder:before {
-    color: bolt-color(blue);
-    display: block;
-    position: relative;
-    height: auto;
-    width: auto;
-    pointer-events: none; // prevent clicks from sticking
-  }
-}
-
-.video-js .vjs-control.vjs-close-button {
-  padding: 1.4rem;
-
-  > * {
-    display: flex;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    justify-content: center;
-    flex-direction: column;
+    top: auto;
+    right: auto;
+    bottom: bolt-v-spacing(xsmall);
+    left: bolt-spacing(xsmall);
+    width: calc(1.2rem + 6%);
+    height: calc(1rem + 6%);
+    line-height: 1;
+    border: none;
+    border-radius: $bolt-video-js-button-border-radius;
 
-    &:before {
-      font-size: 1.4rem;
+    .vjs-icon-placeholder {
+      @include bolt-margin(0);
+      @include bolt-padding(0 0 65% 0);
+
+      display: block;
+      position: absolute;
+      top: 18%; // [7]
+      left: 42%; // [7]
+      width: 40%;
       height: auto;
-      width: auto;
-      position: relative;
+      padding-bottom: 40%;
+      background-color: $bolt-video-js-button-text-color;
+
+      &:before,
+      &:after {
+        @include bolt-font-family(body);
+        content: '';
+
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+      }
+
+      &:before {
+        background:
+          linear-gradient(
+            -30deg,
+            $bolt-video-js-button-background-color 48%, // [6]
+            transparent 50%
+          );
+      }
+
+      &:after {
+        background:
+          linear-gradient(
+            -150deg,
+            $bolt-video-js-button-background-color 48%, // [6]
+            transparent 50%
+          );
+      }
+    }
+
+    &:hover,
+    &:focus {
+      @include bolt-video-js-button($opacity: $bolt-global-link-hover-opacity); // [1]
+      @include bolt-shadow($key: $bolt-video-js-button-shadow-level-hover, $base-color: $bolt-video-js-button-shadow-color);
+    }
+
+    &:active {
+      @include bolt-video-js-button($opacity: $bolt-global-link-active-opacity); // [1]
+    }
+
+  }
+
+  &:hover .vjs-big-play-button,
+  &:focus .vjs-big-play-button {
+    @include bolt-video-js-button($opacity: $bolt-global-link-hover-opacity); // [1]
+    @include bolt-shadow($key: $bolt-video-js-button-shadow-level-hover, $base-color: $bolt-video-js-button-shadow-color);
+  }
+
+  &:active .vjs-big-play-button {
+    @include bolt-video-js-button($opacity: $bolt-global-link-active-opacity); // [1]
+  }
+
+  .vjs-poster {
+    background-color: transparent;
+  }
+
+  .vjs-slider {
+    background: rgba($bolt-video-js-button-background-color, 0.15);
+  }
+
+  .vjs-load-progress,
+  .vjs-load-progress div {
+    background: rgba($bolt-video-js-button-background-color, 0.25);
+  }
+
+  .vjs-playlist-sidebar .vjs-playlist-show-hide button:hover,
+  .vjs-menu-button-popup .vjs-menu .vjs-menu-item.vjs-selected,
+  .vjs-play-progress,
+  .vjs-volume-level {
+    background-color: $bolt-video-js-button-background-color;
+  }
+
+  .vjs-modal-dialog {
+    overflow: hidden;
+    background: rgba(bolt-color(black), 0.9);
+
+    .vjs-modal-dialog-content {
+      @include bolt-padding(xsmall 2.5rem xsmall small);
+      @include bolt-font-size(medium, tight);
+
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      overflow: auto;
+
+      @supports(display: flex) { // [4]
+        display: flex;
+        justify-content: center;
+      }
+
+      .vjs-social-title {
+        @include bolt-visuallyhidden; // [8]
+      }
+
+      .vjs-social-description {
+        @include bolt-margin-bottom(0.5rem);
+        @include bolt-font-size(small, tight);
+        @include bolt-font-weight(bold);
+        white-space: nowrap;
+      }
+
+      .vjs-social-share-links {
+        @include bolt-font-size(small, tight);
+        margin-right: -0.25rem;
+        margin-left: -0.25rem;
+      }
+
+      .vjs-social-share-link {
+        @include bolt-margin(0.25rem);
+      }
+
+      .vjs-social-label-text {
+        @include bolt-font-size(xsmall);
+      }
+
+      .vjs-social-embed-code {
+        display: none;
+      }
+
+      form {
+        @include bolt-margin(auto);
+        @include bolt-font-family(body);
+        width: 100%;
+        max-width: 40rem;
+
+        input[type='text'] {
+          font-size: 16px; // [2]
+        }
+
+        label {
+          @include bolt-padding(0);
+
+          width: 100%;
+        }
+
+        > * {
+          @include bolt-margin-bottom(xsmall);
+        }
+      }
+    }
+  }
+
+  .vjs-control.vjs-close-button {
+    width: bolt-spacing(2.5rem);
+    height: bolt-spacing(2.5rem);
+
+    > * {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      &:before {
+        position: relative;
+        width: auto;
+        height: auto;
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .vjs-overlay {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .vjs-overlay--hidden {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  // Cue Points
+  .vjs-overlay-no-background {
+    @include bolt-margin(0);
+    @include bolt-padding(40px 9px);
+
+    width: 100%;
+    max-width: none;
+    border-radius: 0;
+    background-color: transparent;
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-top-left {
+      top: 0;
+    }
+
+    &.vjs-overlay-bottom,
+    &.vjs-overlay-bottom-right,
+    &.vjs-overlay-bottom-left {
+      bottom: 0;
+    }
+
+    &.vjs-overlay-right,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-bottom-right {
+      right: 0;
+      text-align: right;
+      text-align: end;
+    }
+
+    &.vjs-overlay-left,
+    &.vjs-overlay-top-left,
+    &.vjs-overlay-bottom-left {
+      left: 0;
+      text-align: left;
+      text-align: start;
+    }
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-center,
+    &.vjs-overlay-bottom {
+      left: 0;
+    }
+  }
+
+  .vjs-overlay-background {
+    @include bolt-margin(0);
+    @include bolt-padding(xsmall);
+    @include bolt-font-family(body);
+    @include bolt-font-size(small);
+
+    width: auto;
+    max-width: 100%;
+    color: bolt-color(black);
+    text-shadow: 0 0 0.25rem bolt-color(white);
+    border-radius: $bolt-border-radius;
+    box-shadow: inset 0 0 2rem bolt-color(white), 0 0 0.25rem bolt-color(gray, light);
+    background-color: rgba(bolt-color(white), 0.9);
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-top-left {
+      top: 40px;
+    }
+
+    &.vjs-overlay-bottom,
+    &.vjs-overlay-bottom-right,
+    &.vjs-overlay-bottom-left {
+      bottom: 40px;
+    }
+
+    &.vjs-overlay-right,
+    &.vjs-overlay-top-right,
+    &.vjs-overlay-bottom-right {
+      right: 9px;
+    }
+
+    &.vjs-overlay-left,
+    &.vjs-overlay-top-left,
+    &.vjs-overlay-bottom-left {
+      left: 9px;
+    }
+
+    &.vjs-overlay-top,
+    &.vjs-overlay-bottom {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    &.vjs-overlay-center {
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
     }
   }
 }
 
-.vjs-social-overlay .vjs-social-direct-link input, .vjs-social-overlay .vjs-social-embed-code input, .vjs-social-overlay .vjs-social-start-from input {
-  font-size: 16px; // min 16px to prevent zooming
-}
-
-.video-js {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.video-js .vjs-modal-dialog {
-  overflow: auto; // so psuedo layer below shows up
-  box-sizing: border-box;
-  z-index: bolt-z-index('nav');
-  max-width: 768px;
-  margin: 0 auto;
-  overflow: visible; // override default overflow: hidden
-  background: transparent; // override default gradient so the psuedo layer is the only backgrond showing up
-  position: absolute; // override position: absolute
-  height: auto; // override height: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -50%, 0);
-
-  &:before {
-    content: '';
-    display: block;
-    background-color: rgba(bolt-color(black), 0.8);
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(255, 255, 255, 0));
-    width: auto;
-    height: auto;
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-    bottom: -9990px;
-    right: -9990px;
-    opacity: 1;
-    pointer-events: none;
-  }
-}
-
-.vjs-social-overlay .vjs-social-description,
-.vjs-social-overlay .vjs-social-title {
-  white-space: normal;
-}
-
-// Hide close captions button
 .vjs-subs-caps-button {
-  display: none;
+  display: none; // [3]
 }

@@ -1,18 +1,15 @@
 // Add additional spacing size rules for handling auto and zero'd rules
 $bolt-spacing-sizes-extras: (
-  'none': 0,
-  'auto': 'auto'
+  none: 0,
+  auto: auto,
 );
 
 // Merge extra size options into Sass Map of sizes that already exist, tacking on to the front
 $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
 
-
-
-
 // prefix prop name if value set
 @function bolt-prefix-prop-name($propName) {
-  @if ($propName !='') {
+  @if ($propName != '') {
     @return '-' + $propName;
   } @else {
     @return $propName;
@@ -26,13 +23,12 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
 
       @each $type in $bolt-spacing-types {
         @each $size, $value in $bolt-spacing-sizes {
-
           $sizeName: bolt-prefix-prop-name($size);
           $typeName: bolt-prefix-prop-name($type);
           $directionName: bolt-prefix-prop-name($direction);
           $propName: '-' + $prop;
 
-          @if ($size=='none' and $value == 0) {
+          @if ($size== 'none' and $value == 0) {
             $size: 0;
           }
 
@@ -43,14 +39,19 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
           .u-bolt#{$propName}#{$directionName}#{$sizeName}#{$typeName}#{$breakpoint} {
             $sizes: null null null null;
             $size-index: index($bolt-spacing-directions, $direction);
-            @if ($direction !='') {
+            @if ($direction != '') {
               $sizes: set-nth($sizes, $size-index - 1, $size);
             } @else {
               $sizes: $size $size $size $size;
             }
             $normalizedSizes: _bolt-normalize-spacing-sizes($sizes, null);
 
-            @include _bolt-directional-property(#{$prop}, false, $normalizedSizes, important);
+            @include _bolt-directional-property(
+              #{$prop},
+              false,
+              $normalizedSizes,
+              important
+            );
           }
         }
       }
@@ -58,14 +59,16 @@ $bolt-spacing-sizes: map-merge($bolt-spacing-sizes-extras, $bolt-spacing-sizes);
   }
 }
 
-
-
 @include bolt-spacing-sizes-utils;
 
 // Loop over our breakpoints
-@each $breakpoint in $breakpoints {
+@each $breakpoint in $bolt-breakpoints {
   $breakpointName: nth($breakpoint, 1);
-  @include respond-to($breakpointName) {
+  @include bolt-mq($breakpointName) {
     @include bolt-spacing-sizes-utils(\@#{$breakpointName});
   }
 }
+
+@include export-data('spacing-sizes.bolt.json', $bolt-spacing-sizes);
+@include export-data('spacing-properties.bolt.json', $bolt-spacing-properties);
+@include export-data('spacing-directions.bolt.json', $bolt-spacing-directions);

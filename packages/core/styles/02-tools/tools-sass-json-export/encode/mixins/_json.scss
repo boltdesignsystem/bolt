@@ -1,0 +1,44 @@
+/* stylelint-disable selector-type-no-unknown, scss/at-mixin-pattern */
+
+/// JSON.stringify a value and pass it as a font-family of head element
+/// @access public
+/// @param {*} $value - value to be stringified
+/// @param {String} $flag (all) - output driver
+/// @require {function} bolt-json-encode
+@mixin bolt-json-encode($value, $flag: 'all') {
+  $flag: if(index('all' 'regular' 'media' 'comment', $flag), $flag, 'all');
+  $json: bolt-json-encode($value);
+
+  // Persistent comment
+  @if $flag == 'comment' or $flag == 'all' {
+    /*! json-encode: #{$json} */
+  }
+  // Regular property value pair
+  @if $flag == 'regular' or $flag == 'all' {
+    // All browsers except IE8-
+    body {
+      &::before {
+        // This element must be in the render tree to get it via getComputedStyle(document.body, ':before');
+        content: bolt-json-encode($value);
+        display: block;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+    }
+
+    // All browsers except Opera (Presto based)
+    head {
+      font-family: bolt-json-encode($value);
+    }
+  }
+
+  // Falsy media query
+  @if $flag == 'media' or $flag == 'all' {
+    @media -json-encode {
+      json {
+        json: $json;
+      }
+    }
+  }
+}

@@ -1,12 +1,19 @@
+////
+/// @group Settings: Layout
+////
+
 /* ------------------------------------ *\
-  Z INDEX SETTINGS
   see `_tools-z-index.scss`
   see `_utilities-z-index.scss`
 \* ------------------------------------ */
 
+/// Z-Index Settings
+/// @type Map
+/// @see {mixin} bolt-z-index
+/// @see bolt-z-index
 $bolt-z-indexes: (
-  'utility-class-prefix': 'u-bolt-z-index--',
   sets: (
+    fab: 300,
     modal: 200,
     modalBG: 180,
     navFixed: 160,

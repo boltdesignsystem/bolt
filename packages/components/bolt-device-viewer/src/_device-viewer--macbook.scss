@@ -10,12 +10,12 @@ $bolt-macbook-shadow: none;
 .c-bolt-macbook-viewer {
   width: 100%;
   max-width: $bolt-macbook-viewer-width * .6;
-  background-color: #bebebe;
-  border-top-left-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
   border-top-right-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
-  border-bottom-left-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
+  border-top-left-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
   border-bottom-right-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
+  border-bottom-left-radius: (34px / $bolt-macbook-viewer-width * 100%) (34px / $bolt-macbook-viewer-height * 100%);
   box-shadow: $bolt-macbook-shadow;
+  background-color: #bebebe;
 }
 
 .c-bolt-macbook-viewer__inner {
@@ -28,17 +28,17 @@ $bolt-macbook-shadow: none;
     left: 4px / $bolt-macbook-viewer-width * 100%;
     width: auto;
     height: auto;
-    border-top-left-radius: (30px / $bolt-macbook-viewer-width * 100%) (30px / $bolt-macbook-viewer-height * 100%);
     border-top-right-radius: (30px / $bolt-macbook-viewer-width * 100%) (30px / $bolt-macbook-viewer-height * 100%);
-    border-bottom-left-radius: (30px / $bolt-macbook-viewer-width * 100%) (30px / $bolt-macbook-viewer-height * 100%);
+    border-top-left-radius: (30px / $bolt-macbook-viewer-width * 100%) (30px / $bolt-macbook-viewer-height * 100%);
     border-bottom-right-radius: (30px / $bolt-macbook-viewer-width * 100%) (30px / $bolt-macbook-viewer-height * 100%);
+    border-bottom-left-radius: (30px / $bolt-macbook-viewer-width * 100%) (30px / $bolt-macbook-viewer-height * 100%);
     background-color: #1e1e1e;
   }
 }
 
 .c-bolt-macbook-viewer__screen {
-  background: bolt-color(white);
   padding-bottom: 62.5%;
+  background: bolt-color(white);
 }
 
 .c-bolt-macbook-viewer__top-bar,
@@ -51,6 +51,7 @@ $bolt-macbook-shadow: none;
 
 .c-bolt-macbook-viewer__top-bar {
   $offset: 70px / $bolt-macbook-viewer-width * 100%;
+  content: '';
 
   display: block;
   position: absolute;
@@ -58,11 +59,10 @@ $bolt-macbook-shadow: none;
   left: $offset * -1; // originally -70px
   width: calc(100% + 2 * #{$offset});
   height: 40px / $bolt-macbook-viewer-height * 100%;
-  content: '';
-  border-bottom-left-radius: (90px / $bolt-macbook-viewer-width * 100%) (18px / 40px * 100%); // originally 90px 18px
   border-bottom-right-radius: (90px / $bolt-macbook-viewer-width * 100%) (18px / 40px * 100%); // originally 90px 18px
-  background-color: #bebebe;
+  border-bottom-left-radius: (90px / $bolt-macbook-viewer-width * 100%) (18px / 40px * 100%); // originally 90px 18px
   box-shadow: inset 0 -4px 13px 3px rgba(34, 34, 34, 0.6);
+  background-color: #bebebe;
 
   &:before {
     content: '';
@@ -72,9 +72,9 @@ $bolt-macbook-shadow: none;
     left: 0;
     width: 100%;
     height: 24px / 40px * 100%;
-    background-color: #f0f0f0;
     border-bottom: 2px solid #aaa;
     border-radius: 5px;
+    background-color: #f0f0f0;
   }
 
   &:after {
@@ -86,11 +86,11 @@ $bolt-macbook-shadow: none;
     left: 0;
     width: 16%;
     height: 14px / 40px * 100%;
-    background-color: #ddd;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
     border-radius: 0 0 20px 20px;
     box-shadow: inset 0 -3px 10px #999;
+    background-color: #ddd;
   }
 }
 
@@ -129,12 +129,12 @@ $bolt-macbook-shadow: none;
 }
 
 .c-bolt-macbook-viewer__camera {
-  background-color: #3c3d3d;
   top: 20px / $bolt-macbook-viewer-height * 100%;
   left: 50%;
+  transform: translateX(-50%); // Center align without knowing size of element
   width: 10px / $bolt-macbook-viewer-width * 100%;
   height: 10px / $bolt-macbook-viewer-height * 100%;
-  transform: translateX(-50%); // Center align without knowing size of element
+  background-color: #3c3d3d;
 }
 
 .c-bolt-macbook-viewer__home {

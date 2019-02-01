@@ -1,9 +1,9 @@
-import { h } from '@bolt/core';
+import { h } from '@bolt/core/renderers';
 
 export const ExternalLink = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
-    <svg width={size} height={size} {...otherProps} viewBox="0 0 24 24">
-      <g fill={bgColor} fill-rule="evenodd">
+    <svg {...otherProps} viewBox="0 0 24 24">
+      <g fill="none" fill-rule="evenodd">
         <path />
         <g fill={bgColor}>
           <path d="M18 11.977c-.55 0-1 .45-1 1v6c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1v-11c0-.55.45-1 1-1h6c.55 0 1-.45 1-1s-.45-1-1-1H5c-1.656 0-3 1.344-3 3v11c0 1.656 1.344 3 3 3h11c1.656 0 3-1.344 3-3v-6c0-.55-.45-1-1-1" />

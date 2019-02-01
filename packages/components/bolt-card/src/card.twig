@@ -1,5 +1,9 @@
 {% set schema = bolt.data.components['@bolt-components-card'].schema %}
 
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
 {% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
 {% set contentTags = ["div", "article", "section", "figcaption"] %} {# Available content container tags #}
 {% set themes = ["xlight", "light", "dark", "xdark"] %}
@@ -15,8 +19,7 @@
 {% set contentTag = contentTag in contentTags ? contentTag: "div" %}
 
 {% set classes = [
-  baseClass,
-  theme in themes ? "t-bolt-" ~ theme : "",
+  baseClass
 ] %}
 
 {% if url %}
@@ -50,7 +53,7 @@
         {% endfor %}
 
         {% set item = item | merge({
-          "buttons": null
+          "buttons": []
         }) %}
       {% endif %}
 
@@ -68,7 +71,7 @@
         {% set button = button | merge({ "pattern": "button" }) %}
         {% set _items = _items | merge([button]) %}
       {% endfor %}
-      {% set item = item | merge({ "buttons": null }) %}
+      {% set item = item | merge({ "buttons": [] }) %}
     {% endif %}
   {% endif %}
 
@@ -100,7 +103,7 @@
 {% endset %}
 
 <bolt-card
-  theme="{{ theme }}"
+  {% if theme %} class="t-bolt-{{ theme }}"{% endif %}
   {% if url %}url={{ url }}{% endif %}
   bolt-component>
   <{{ tag }} {{ attributes.addClass(classes) }}>
@@ -137,8 +140,9 @@
 
           {% for item in _items if item.pattern in _allowedCardFooterItems %}
             {% set paramOverrides = {
-              itemAlignment: "left",
+              align: "start",
               style: "text",
+              width: "full",
             } %}
 
             {% if item.icon == null %}
@@ -177,7 +181,3 @@
     {% endif %}
   </{{ tag }}>
 </bolt-card>
-
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
-{% endif %}

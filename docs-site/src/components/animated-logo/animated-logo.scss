@@ -1,0 +1,36 @@
+@keyframes bds-logo-fade {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.4, 0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(0.6, 0.6);
+  }
+}
+
+@keyframes bds-logo-scale-in-out {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+  }
+}
+
+.c-bds-logo {
+  opacity: 0;
+  position: relative;
+  overflow: visible; // so the logo doesn't get chopped off
+  animation-delay: 0.2s;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-name: bds-logo-fade;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.32, 1);
+  perspective: 1000px;
+}
+
+.c-bds-logo__inner {
+  animation: bds-logo-scale-in-out 24s ease-in-out infinite;
+}

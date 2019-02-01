@@ -1,0 +1,38 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-navbar'].schema, _self) | raw }}
+{% endif %}
+
+{% set schema = bolt.data.components["@bolt-components-navbar"].schema %}
+
+{# Support backwards compatibiliy.  Future implementations that wish to disable the theme should
+use the string "none" rather than a boolean false #}
+{% set theme = theme is sameas(false) ? "none" : theme %}
+
+{% set themeOptions = schema.properties.theme.enum %}
+{% set widthOptions = schema.properties.width.enum %}
+
+{% set theme = theme in themeOptions ? theme : schema.properties.theme.default %}
+{% set width = width in widthOptions ? width : schema.properties.width.default %}
+{% set theme = theme == "none" ? false : theme %}
+
+<bolt-navbar
+  {% if theme %} class="t-bolt-{{ theme }}" {% endif %}
+  {% if center %} center {% endif %}
+  {% if width %} width={{width}} {% endif %}
+>
+  <nav class="c-bolt-navbar c-bolt-navbar--{{ width }} {% if center %} c-bolt-navbar--center c-bolt-navbar--small{% endif %}">
+    {% block navbar_inner %}
+      {% if title %}
+        <div class="c-bolt-navbar__title">
+          {% block navbar_title %}
+            {% include "@bolt-components-navbar/_navbar-title.twig" with title only %}
+          {% endblock %}
+        </div>
+      {% endif %}
+
+      {% block navbar_nav %}
+        {% include "@bolt-components-nav-priority/nav-priority.twig" %}
+      {% endblock %}
+    {% endblock %}
+  </nav>
+</bolt-navbar>

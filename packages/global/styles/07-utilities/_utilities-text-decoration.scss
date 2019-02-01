@@ -1,0 +1,19 @@
+/* ------------------------------------ *\
+   Text decoration utils
+\* ------------------------------------ */
+
+.u-bolt-text-decoration-none {
+  text-decoration: none !important;
+}
+
+.u-bolt-text-decoration-underline {
+  text-decoration: underline !important;
+}
+
+.u-bolt-text-decoration-line-through {
+  text-decoration: line-through !important;
+}
+
+$bolt-text-decoration-props: ('none', 'underline', 'line-through');
+
+@include export-data('text-decoration.bolt.json', $bolt-text-decoration-props);

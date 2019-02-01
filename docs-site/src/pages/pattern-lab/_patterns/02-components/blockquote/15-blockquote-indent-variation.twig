@@ -1,0 +1,25 @@
+{% set schema = bolt.data.components['@bolt-components-blockquote'].schema %}
+{% set booleans = [
+    {
+      label: "True",
+      value: true
+    },
+    {
+      label: "False",
+      value: false
+    }
+  ]
+%}
+
+{% for boolean in booleans %}
+  <p>Indent: {{ boolean.label }}</p>
+  {% include '@bolt-components-blockquote/blockquote.twig' with {
+    indent: boolean.value,
+    author: {
+      name: "Michelangelo di Lodovico Buonarroti Simoni",
+      title: "Renaissance Artist"
+    },
+    content: "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>"
+  } %}
+{% endfor %}
+

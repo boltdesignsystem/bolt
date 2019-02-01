@@ -1,36 +1,26 @@
 import {
-  h,
-  render,
-  define,
-  props,
-  withComponent,
-  withPreact,
-  css,
-  spacingSizes,
-  hasNativeShadowDomSupport,
-  supportsCSSVars,
   colorContrast,
+  css,
+  define,
+  hasNativeShadowDomSupport,
+  props,
   rgb2hex,
-} from '@bolt/core';
+  supportsCSSVars,
+} from '@bolt/core/utils';
+import { spacingSizes } from '@bolt/core/data';
+import { h, withPreact } from '@bolt/core/renderers';
 
 import PubSub from 'pubsub-js';
 import upperCamelCase from 'uppercamelcase';
 import * as Icons from '@bolt/components-icons';
 import styles from './icon.scss';
 
-const backgroundStyles = [
-  'circle',
-  'square',
-];
+const backgroundStyles = ['circle', 'square'];
 
-const colors = [
-  'teal',
-  'blue',
-];
-
+const colors = ['teal', 'blue'];
 
 @define
-export class BoltIcon extends withPreact(withComponent()) {
+class BoltIcon extends withPreact() {
   static is = 'bolt-icon';
 
   static props = {
@@ -41,8 +31,8 @@ export class BoltIcon extends withPreact(withComponent()) {
 
     // programatically spell out the contrast color that needs to get used
     contrastColor: props.string,
-  }
-  
+  };
+
   constructor(self) {
     self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
@@ -50,17 +40,17 @@ export class BoltIcon extends withPreact(withComponent()) {
     return self;
   }
 
-  connectedCallback() {
+  connecting() {
     const elem = this;
 
     this.state = {
       primaryColor: 'var(--bolt-theme-icon, currentColor)',
-      secondaryColor: 'var(--bolt-theme-background, #fff)',
-    }
+      secondaryColor: 'rgba(var(--bolt-theme-background), 1)',
+    };
 
     // listen for page changes to decide when colors need to get recalculated
     if (!this.useCssVars) {
-      const checkIfColorChanged = function (msg, data) {
+      const checkIfColorChanged = function(msg, data) {
         /**
          * The container with the class change contains this particular icon element so
          * we should double-check the color contrast values.
@@ -68,7 +58,7 @@ export class BoltIcon extends withPreact(withComponent()) {
         if (data.target.contains) {
           if (data.target.contains(elem)) {
             const recalculatedSecondaryColor = colorContrast(
-              rgb2hex(window.getComputedStyle(elem).getPropertyValue('color')),
+              window.getComputedStyle(elem).getPropertyValue('color'),
             );
 
             elem.setAttribute('contrast-color', recalculatedSecondaryColor);
@@ -77,7 +67,10 @@ export class BoltIcon extends withPreact(withComponent()) {
         }
       };
 
-      const colorObserver = PubSub.subscribe('component.icon', checkIfColorChanged);
+      const colorObserver = PubSub.subscribe(
+        'component.icon',
+        checkIfColorChanged,
+      );
     }
 
     if (!this.useCssVars) {
@@ -91,7 +84,6 @@ export class BoltIcon extends withPreact(withComponent()) {
         );
       }
     }
-    
   }
 
   render() {
@@ -100,44 +92,45 @@ export class BoltIcon extends withPreact(withComponent()) {
 
     const classes = css(
       'c-bolt-icon',
-      size && spacingSizes[size] && spacingSizes[size] !== '' ? `c-bolt-icon--${size}` : '',
+      size && spacingSizes[size] && spacingSizes[size] !== ''
+        ? `c-bolt-icon--${size}`
+        : '',
       name ? `c-bolt-icon--${name}` : '',
       color && colors.includes(color) ? `c-bolt-icon--${color}` : '',
     );
 
-    const iconClasses = css(
-      'c-bolt-icon__icon',
-    );
+    const iconClasses = css('c-bolt-icon__icon');
 
     const backgroundClasses = css(
       'c-bolt-icon__background-shape',
-      background && backgroundStyles.includes(background) ? `c-bolt-icon__background-shape--${background}` : '',
+      background && backgroundStyles.includes(background)
+        ? `c-bolt-icon__background-shape--${background}`
+        : '',
     );
 
     const Icon = name ? upperCamelCase(name) : '';
     const IconTag = Icons[`${Icon}`];
-    const iconSize =  size && spacingSizes[size] ? ( spacingSizes[size].replace('rem', '') * (16 / 2)) : ( spacingSizes.medium.replace('rem', '') * (16 / 2) );
-
+    const iconSize =
+      size && spacingSizes[size]
+        ? spacingSizes[size].replace('rem', '') * (16 / 2)
+        : spacingSizes.medium.replace('rem', '') * (16 / 2);
 
     return (
       <div className={classes}>
-        {this.useShadow &&
-          <style>{styles[0][1]}</style>
-        }
+        {this.useShadow && <style>{styles[0][1]}</style>}
         <IconTag
-          className={ iconClasses }
-          size={ iconSize }
-          bgColor={ primaryColor }
-          fgColor={ secondaryColor }
+          className={iconClasses}
+          size={iconSize}
+          bgColor={primaryColor}
+          fgColor={secondaryColor}
         />
-        {background && size === 'xlarge' &&
-          <span className={backgroundClasses}></span>
-        }
+        {background && size === 'xlarge' && (
+          <span className={backgroundClasses} />
+        )}
       </div>
     );
   }
 }
-
 
 /**
  * If CSS Vars are unsupported, listen for class changes on the page to selectively
@@ -149,11 +142,14 @@ const observedElements = [];
 if (!supportsCSSVars && !observedElements.includes(document.body)) {
   observedElements.push(document.body);
 
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
       if (mutation.attributeName === 'class') {
         // publish a topic asyncronously
-        PubSub.publish('component.icon', { event: 'color-change', target: mutation.target });
+        PubSub.publish('component.icon', {
+          event: 'color-change',
+          target: mutation.target,
+        });
       }
     });
   });
@@ -161,11 +157,11 @@ if (!supportsCSSVars && !observedElements.includes(document.body)) {
   // Attach the mutation observer to the body to listen for className changes
   observer.observe(document.body, {
     attributes: true,
-    attributeFilter: [
-      'class',
-    ],
+    attributeFilter: ['class'],
     attributeOldValue: false,
     childList: false,
     subtree: true,
   });
 }
+
+export { BoltIcon };

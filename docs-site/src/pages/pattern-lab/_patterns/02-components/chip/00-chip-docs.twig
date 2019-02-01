@@ -1,0 +1,11 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-chip/chip.twig" with {
+  text: "This is a chip",
+  url: "#!",
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "chip",
+  usage: usage
+} only %}

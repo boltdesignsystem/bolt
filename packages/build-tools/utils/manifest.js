@@ -1,23 +1,59 @@
+const { promisify } = require('util');
+const resolve = require('resolve');
+const fs = require('fs');
+const path = require('path');
 const log = require('./log');
 const { ensureFileExists } = require('./general');
-const { promisify } = require('util');
-const fs = require('fs');
 const writeFile = promisify(fs.writeFile);
 const { getDataFile } = require('./yaml');
 const { validateSchemaSchema } = require('./schemas');
-const path = require('path');
-const config = require('./config-store').getConfig();
-const pkg = require('../package.json');
-const lernaPkg = require('../../../lerna.json'); // Use the pkg version in lerna.json vs the pkg version for `@bolt/build-tools`
+const { getConfig } = require('./config-store');
+
+// recursively flatten heavily nested arrays
+function flattenDeep(arr1) {
+  return arr1.reduce(
+    (acc, val) =>
+      Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val),
+    [],
+  );
+}
+
+// utility function to help with removing duplicate objects (like shared dependencies)
+function removeDuplicateObjectsFromArray(originalArray, prop) {
+  var newArray = [];
+  var lookupObject = {};
+
+  for (var i in originalArray) {
+    lookupObject[originalArray[i][prop]] = originalArray[i];
+  }
+
+  for (i in lookupObject) {
+    newArray.push(lookupObject[i]);
+  }
+  return newArray;
+}
 
 let boltManifest = {
   name: 'Bolt Manifest',
-  version: lernaPkg.version,
+  version: '', // retrieved below
   components: {
     global: [],
+    globalDeps: [], // global Bolt dependencies aggregated from package.json
     individual: [],
   },
 };
+
+// getting `boltManifest.version`
+// ideally we want the version from `lerna.json` as that's always the highest, but sometimes that file is not located at `../../../lerna.json` - like when this is compiling in a Drupal Site (Drupal Lab doesn't count), in that case we'll just fall back on the version from this package.
+try {
+  boltManifest.version = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '../../../lerna.json'), 'utf8'),
+  ).version;
+} catch (error) {
+  boltManifest.version = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8'),
+  ).version;
+}
 
 /**
  * Get information about a components assets
@@ -63,16 +99,36 @@ async function getPkgInfo(pkgName) {
     }
     ensureFileExists(pkgName);
     return info;
-  } else {// package name
+  } else {
+    // package name
     const pkgJsonPath = require.resolve(`${pkgName}/package.json`);
     const dir = path.dirname(pkgJsonPath);
     const pkg = require(pkgJsonPath);
+
     const info = {
       name: pkg.name,
       basicName: pkg.name.replace('@bolt/', 'bolt-'),
       dir,
       assets: {},
+      deps: [],
     };
+
+    if (pkg.peerDependencies) {
+      for (dependencyPackageName in pkg.peerDependencies) {
+        if (dependencyPackageName.includes('bolt')) {
+          info.deps.push(dependencyPackageName);
+        }
+      }
+    }
+
+    if (pkg.dependencies) {
+      for (dependencyPackageName in pkg.dependencies) {
+        if (dependencyPackageName.includes('bolt')) {
+          info.deps.push(dependencyPackageName);
+        }
+      }
+    }
+
     info.twigNamespace = `@${info.basicName}`;
     if (pkg.style) {
       info.assets.style = path.join(dir, pkg.style);
@@ -83,10 +139,33 @@ async function getPkgInfo(pkgName) {
       ensureFileExists(info.assets.main);
     }
     if (pkg.schema) {
-      const schemaFilePath = path.join(dir, pkg.schema);
-      const schema = await getDataFile(schemaFilePath);
-      validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
-      info.schema = schema;
+      if (typeof pkg.schema === 'object') {
+        if (info.schema === undefined) {
+          info.schema = [];
+        }
+
+        const schemas = pkg.schema;
+
+        for (const schemaPath of schemas) {
+          const schemaFilePath = path.join(dir, schemaPath);
+          // eslint-disable-next-line
+          const schema = await getDataFile(schemaFilePath);
+          validateSchemaSchema(
+            schema,
+            `Schema not valid for: ${schemaFilePath}`,
+          );
+          const schemaMachineName = schema.title
+            .replace(/ /g, '-')
+            .toLowerCase();
+
+          info.schema[schemaMachineName] = schema;
+        }
+      } else {
+        const schemaFilePath = path.join(dir, pkg.schema);
+        const schema = await getDataFile(schemaFilePath);
+        validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
+        info.schema = schema;
+      }
     }
     // @todo Allow verbosity settings
     // console.log(assets);
@@ -94,14 +173,53 @@ async function getPkgInfo(pkgName) {
   }
 }
 
+// loop through package-specific dependencies to merge and dedupe
+async function aggregateBoltDependencies(data) {
+  let componentDependencies = [];
+  let componentsWithoutDeps = data;
+
+  componentsWithoutDeps.forEach(item => {
+    if (item.deps) {
+      componentDependencies.push([...item.deps]);
+    }
+  });
+
+  componentDependencies = flattenDeep(componentDependencies);
+
+  componentDependencies = componentDependencies.filter(function(x, i, a) {
+    if (x !== '@bolt/build-tools' && a.indexOf(x) === i) {
+      return x;
+    }
+  });
+
+  let globalDepsSrc = await Promise.all(componentDependencies.map(getPkgInfo));
+
+  componentsWithoutDeps = componentsWithoutDeps.concat(globalDepsSrc);
+
+  var uniqueComponentsWithDeps = removeDuplicateObjectsFromArray(
+    componentsWithoutDeps,
+    'name',
+  );
+
+  return uniqueComponentsWithDeps;
+}
+
 async function buildBoltManifest() {
+  const config = await getConfig();
   try {
     if (config.components.global) {
-      const globalSrc = await Promise.all(config.components.global.map(getPkgInfo));
-      boltManifest.components.global = globalSrc;
+      let globalSrc = await Promise.all(
+        config.components.global.map(getPkgInfo),
+      );
+
+      const globalSrcPlusDeps = await aggregateBoltDependencies(globalSrc);
+
+      boltManifest.components.global = globalSrcPlusDeps;
     }
     if (config.components.individual) {
-      const individualSrc = await Promise.all(config.components.individual.map(getPkgInfo));
+      const individualSrc = await Promise.all(
+        config.components.individual.map(getPkgInfo),
+      );
       boltManifest.components.individual = individualSrc;
     }
   } catch (err) {
@@ -111,7 +229,8 @@ async function buildBoltManifest() {
   return boltManifest;
 }
 
-function getBoltManifest() {
+async function getBoltManifest() {
+  const boltManifest = await buildBoltManifest();
   return boltManifest;
 }
 
@@ -120,25 +239,51 @@ function getBoltManifest() {
  * @param relativeFrom {string} - If present, the path will be relative from this, else it will be absolute.
  * @returns {Array<String>} {dirs} - List of all component/package paths in Bolt Manifest
  */
-function getAllDirs(relativeFrom) {
+async function getAllDirs(relativeFrom) {
   const dirs = [];
-  const { global, individual } = getBoltManifest().components;
-  [global, individual].forEach((componentList) => {
-    componentList.forEach((component) => {
-      dirs.push(relativeFrom
-        ? path.relative(relativeFrom, component.dir)
-        : component.dir,
-      );
-    });
-  });
+  const manifest = await getBoltManifest();
+  [manifest.components.global, manifest.components.individual].forEach(
+    componentList => {
+      componentList.forEach(component => {
+        dirs.push(
+          relativeFrom
+            ? path.relative(relativeFrom, component.dir)
+            : component.dir,
+        );
+      });
+    },
+  );
+
   return dirs;
 }
 
-function createComponentsManifest() {
+/**
+ * Similar to createComponentsManifest, this function provides an object of Twig namespaces that map 1:1 with the
+ * cooresponding NPM package name.
+ */
+async function mapComponentNameToTwigNamespace() {
+  const twigNamespaces = {};
+  const manifest = await getBoltManifest();
+  const allComponents = [
+    ...manifest.components.global,
+    ...manifest.components.individual,
+  ];
+  allComponents.forEach(component => {
+    if (component.twigNamespace) {
+      twigNamespaces[component.twigNamespace] = component.name;
+    }
+  });
+  return twigNamespaces;
+}
+
+async function createComponentsManifest() {
   const components = {};
-  const manifest = getBoltManifest();
-  const allComponents = [...manifest.components.global, ...manifest.components.individual];
-  allComponents.forEach((component) => {
+  const manifest = await getBoltManifest();
+  const allComponents = [
+    ...manifest.components.global,
+    ...manifest.components.individual,
+  ];
+  allComponents.forEach(component => {
     if (component.twigNamespace) {
       components[component.twigNamespace] = component;
     }
@@ -147,30 +292,47 @@ function createComponentsManifest() {
 }
 
 async function writeBoltManifest() {
+  const config = await getConfig();
   try {
-    await writeFile(path.resolve(config.dataDir, './full-manifest.bolt.json'), JSON.stringify(getBoltManifest()));
-    await writeFile(path.resolve(config.dataDir, './components.bolt.json'), JSON.stringify(createComponentsManifest()));
-    await writeFile(path.resolve(config.dataDir, './config.bolt.json'), JSON.stringify(config));
+    await writeFile(
+      path.resolve(config.dataDir, './full-manifest.bolt.json'),
+      JSON.stringify(await getBoltManifest()),
+    );
+    await writeFile(
+      path.resolve(config.dataDir, './components.bolt.json'),
+      JSON.stringify(await createComponentsManifest()),
+    );
+    await writeFile(
+      path.resolve(config.dataDir, './config.bolt.json'),
+      JSON.stringify(config),
+    );
   } catch (error) {
     log.errorAndExit('Could not write bolt manifest files', error);
   }
 }
 
 /**
- * Builds & writes info file for Twig Namespaces
- * Creates `bolt-twig-namespaces.json` in `config.dataDir` from the Bolt Manifest. That is pulled in by [Twig Namespace plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces) in the PL config file.
+ * Builds config for Twig Namespaces
  * @param relativeFrom {string} - If present, the path will be relative from this, else it will be absolute.
  * @param extraNamespaces {object} - Extra namespaces to add to file in [this format](https://packagist.org/packages/evanlovely/plugin-twig-namespaces)
  * @async
- * @returns {Promise<void>}
+ * @see writeTwigNamespaceFile
+ * @returns {Promise<object>}
  */
-async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
+async function getTwigNamespaceConfig(relativeFrom, extraNamespaces = {}) {
+  const config = await getConfig();
   const namespaces = {};
   const allDirs = [];
-  const { global, individual } = getBoltManifest().components;
+  const manifest = await getBoltManifest();
+  const global = manifest.components.global;
+  const individual = manifest.components.individual;
 
-  [global, individual].forEach((componentList) => {
-    componentList.forEach((component) => {
+  [global, individual].forEach(componentList => {
+    componentList.forEach(component => {
+      if (!component.twigNamespace) {
+        return;
+      }
+
       const dir = relativeFrom
         ? path.relative(relativeFrom, component.dir)
         : component.dir;
@@ -184,21 +346,20 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
     });
   });
 
-  const namespaceConfigFile = Object.assign({
-    // Can hit anything with `@bolt`
-    bolt: {
-      recursive: true,
-      paths: [
-        ...allDirs,
-      ],
+  const namespaceConfigFile = Object.assign(
+    {
+      // Can hit anything with `@bolt`
+      bolt: {
+        recursive: true,
+        paths: [...allDirs],
+      },
+      'bolt-data': {
+        recursive: true,
+        paths: [config.dataDir],
+      },
     },
-    'bolt-data': {
-      recursive: true,
-      paths: [
-        config.dataDir,
-      ],
-    },
-  }, namespaces);
+    namespaces,
+  );
 
   // `extraNamespaces` serves two purposes:
   // 1. To add extra namespaces that have not been declared
@@ -212,31 +373,52 @@ async function writeTwigNamespaceFile(relativeFrom, extraNamespaces = {}) {
   //    This causes the folder declared in `extraNamespaces` to be looked in first for templates, before our default;
   //    allowing end user developers to selectively overwrite some templates.
   if (extraNamespaces) {
-    Object.keys(extraNamespaces).forEach((namespace) => {
+    Object.keys(extraNamespaces).forEach(namespace => {
       const settings = extraNamespaces[namespace];
-      if (namespaceConfigFile[namespace]) {
+      if (
+        namespaceConfigFile[namespace] &&
+        settings.paths !== undefined // make sure the paths config is defined before trying to merge
+      ) {
         // merging the two, making sure the paths from `extraNamespaces` go first
         namespaceConfigFile[namespace].paths = [
           ...settings.paths,
           ...namespaceConfigFile[namespace].paths,
         ];
-      } else {
+
+        // don't add a new namespace key if the paths config option wasn't defined. prevents PHP errors if a namespace key was defined but no paths specified.
+      } else if (settings.paths !== undefined) {
         namespaceConfigFile[namespace] = settings;
       }
     });
   }
 
+  return namespaceConfigFile;
+}
+
+/**
+ * Write Twig Namespace File
+ * Creates `bolt-twig-namespaces.json` in `config.dataDir` from the Bolt Manifest. That is pulled in by [Twig Namespace plugin](https://packagist.org/packages/evanlovely/plugin-twig-namespaces) in the PL config file.
+ * @see getTwigNamespaceConfig;
+ * @return {Promise<void>}
+ */
+async function writeTwigNamespaceFile() {
+  const config = await getConfig();
+  const namespaceConfigFile = await getTwigNamespaceConfig(
+    process.cwd(),
+    config.extraTwigNamespaces,
+  );
   await writeFile(
     path.join(config.dataDir, 'twig-namespaces.bolt.json'),
     JSON.stringify(namespaceConfigFile, null, '  '),
   );
 }
 
-
 module.exports = {
   buildBoltManifest,
   getBoltManifest,
   writeBoltManifest,
   writeTwigNamespaceFile,
+  getTwigNamespaceConfig,
+  mapComponentNameToTwigNamespace,
   getAllDirs,
 };

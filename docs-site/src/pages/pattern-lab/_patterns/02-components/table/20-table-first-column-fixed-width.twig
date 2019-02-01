@@ -1,0 +1,86 @@
+<h3>Set column widths to be flexible.</h3>
+{% include "@bolt-components-table/table.twig" with {
+  headers: {
+    top: {
+      cells: [
+        "Prop",
+        "Description",
+        "Type",
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        "attributes",
+        "Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.",
+        "<code>object</code>",
+      ]
+    },
+    {
+      cells: [
+        "headers",
+        "Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.",
+        "<code>object</code>",
+      ]
+    },
+    {
+      cells: [
+        "rows",
+        "Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.",
+        "<code>array</code>",
+      ]
+    },
+    {
+      cells: [
+        "format",
+        "Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.",
+        "<code>string</code>",
+      ]
+    },
+  ],
+} only %}
+
+<h3>Set the width of the first column to be as wide as the longest text.</h3>
+{% include "@bolt-components-table/table.twig" with {
+  first_col_fixed_width: true,
+  headers: {
+    top: {
+      cells: [
+        "Prop",
+        "Description",
+        "Type",
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        "attributes",
+        "Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.",
+        "<code>object</code>",
+      ]
+    },
+    {
+      cells: [
+        "headers",
+        "Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.",
+        "<code>object</code>",
+      ]
+    },
+    {
+      cells: [
+        "rows",
+        "Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.",
+        "<code>array</code>",
+      ]
+    },
+    {
+      cells: [
+        "format",
+        "Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.",
+        "<code>string</code>",
+      ]
+    },
+  ],
+} only %}

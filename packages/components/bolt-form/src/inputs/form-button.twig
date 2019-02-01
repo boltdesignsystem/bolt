@@ -1,31 +1,40 @@
 {#
-  @TODO It was hoped that this template wouldn't be needed, because we really should just use the button component
-  instead.  As of this writing, it is very close, with the following exception:
-    - Button component needs support for displaying the icon to the left of the text within a button.
-
-  Once that support can be added, this template should just include the button component rather than building it up
-  a button on its own.
- #}
+/**
+ * @file
+ * A form button element.
+ *
+ * This is designed to work just like <bolt-button> except that:
+ *    a) It accepts fewer parameters.  The underlying assumption is that you really
+ *       shouldn't need many options for a form submit button.
+ *    b) It is not rendered using javascript.  That ensures that Bolt javascript cannot
+ *       interfere with anything the consuming end wants to do with its forms.
+ *
+ * Available variables
+ *   - attributes (object): A list of HTML attributes for the button element.
+ *   - text (renderable, REQUIRED): Text to show within the button
+ *   - width (enum): One of "full", "full@small", or "" (empty string)
+ *   - icon (object): data as expected by the bolt-icon component.
+ */
+#}
 
 {% set attributes = create_attribute(attributes | default({})) %}
 
 {% set classes = [
   "c-bolt-button",
+  "c-bolt-button--center",
+  "c-bolt-button--medium",
   "c-bolt-button--primary",
-  "c-bolt-button--item-align-center"
+  width is not empty ? "c-bolt-button--" ~ width : "",
 ] %}
-
-{% set widthOptions = ["full", "full@small"] %}
-{% if width in widthOptions %}
-  {% set attributes = attributes.addClass("c-bolt-button--" ~ width) %}
-{% endif %}
 
 <button {{ attributes.addClass(classes) }}>
   {% if icon %}
-    <span class="c-bolt-button__icon" {% if iconOnly %}u-bolt-margin-left-none {% endif %}">
+    <span class="c-bolt-button__icon">
       {% include "@bolt/icon.twig" with icon only %}
     </span>
   {% endif %}
 
-  {{ text }}
+  <span class="c-bolt-button__item">
+    {{ text }}
+  </span>
 </button>

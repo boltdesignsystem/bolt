@@ -1,0 +1,19 @@
+{% block global_header %}{% endblock %}
+
+
+<div class="c-bolt-site__content c-bolt-site__content--middle"><!-- vertically center -->
+  <div class="o-bolt-wrapper">
+    <main>
+      <article>
+        {% block main_content %}
+          <!-- <p>Example main content block.</p> -->
+        {% endblock %}
+      </article>
+    </main>
+  </div>
+</div>
+<div class="c-bolt-site__footer c-bolt-page-footer">
+  <div class="o-bolt-wrapper">
+    {% include "@bolt/page-footer.twig" %}
+  </div>
+</div>

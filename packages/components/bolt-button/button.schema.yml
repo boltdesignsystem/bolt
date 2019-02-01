@@ -4,23 +4,40 @@ description: 'Buttons are the core of our action components.'
 type: object
 required:
   - text
+not:
+  anyOf:
+    - required:
+      - itemAlignment
+    - required:
+      - rounded
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   text:
     title: 'Button Text'
     description: 'The text displayed inside a button'
     type: string
   transform:
-      type: string
-      description: Text transformation.
-      default: none
-      enum:
-        - uppercase
-        - lowercase
-        - capitalize
-        - none
-  theme:
-    description: 'Themes, which are globally defined.'  # @todo Pulling this information in is a work in progress. Should be dynamically generated
-#    $ref: '@bolt/theme.schema.json#/properties/themes'
+    type: string
+    description: Text transformation.
+    default: none
+    enum:
+      - uppercase
+      - lowercase
+      - capitalize
+      - none
+  icon:
+    type: object
+    description: Icon data as expected by the icon component.  Accepts an additional 'position' parameter that determines placement within the button.
+    ref: '@bolt-components-icon/icon.schema.yml'
+    properties:
+      position:
+        type: string
+        default: after
+        enum:
+          - before
+          - after
   tag:
     title: 'Semantic tag'
     description: 'What should this element semantically be?'
@@ -43,13 +60,17 @@ properties:
       - medium
       - large
       - xlarge
+  itemAlignment:
+    title: 'DEPRECATED'
+    description: 'Use the align parameter instead.'
   align:
     title: 'Button Alignment'
+    description: 'How should content be horizontally aligned?  Note: the values <em>left</em> and <em>right</em> are <strong>DEPRECATED</strong>, use <em>start</em> and <em>end</em> instead.'
     type: string
     enum:
-      - left
+      - start
       - center
-      - right
+      - end
     default: center
   style:
     type: string
@@ -68,14 +89,20 @@ properties:
       - full
       - full@small
   rounded:
+    title: 'DEPRECATED'
+    description: 'Use the border_radius parameter instead'
+  border_radius:
     type: string
-    title: 'Rounded Corners?'
-    description: 'What kind of rounded corners should the button have?'
+    title: 'Border Radius'
+    description: 'Amount of rounding that the corners of the button should have'
+    default: regular
     enum:
-      - rounded
+      - regular
+      - full
   iconOnly:
     type: boolean
     title: 'Icon Only?'
     description: 'Is this an icon-only button (with visually hidden text)?'
+    default: false
     required:
       - icon

@@ -8,18 +8,18 @@
  * 2. Reset local font-size inheritance to prevent components w/o default font sizes from breaking
  */
 .o-bolt-grid {
-  font-size: 0; /* stylelint-disable-line */ /* [1] */
+  flex: 1 1 auto; //Automatically auto fill any available space, in case a grid is nested inside of a flexbox-friendly parent container.
   margin: 0;
+  margin-left: bolt-spacing(medium) * -1;
   padding: 0;
   list-style: none;
-  margin-left: bolt-spacing(medium) * -1;
-  flex: 1 1 auto; //Automatically auto fill any available space, in case a grid is nested inside of a flexbox-friendly parent container.
+  font-size: 0; /* stylelint-disable-line */ /* [1] */
 }
 
 .o-bolt-grid__cell {
   display: inline-block;
-  vertical-align: top;
   padding-left: bolt-spacing(medium);
+  vertical-align: top;
   font-size: 1rem; /* stylelint-disable-line */ /* [2] */
 }
 
@@ -51,8 +51,8 @@
  * classes. Extends `.o-bolt-grid`.
  */
 .o-bolt-grid--center {
-  text-align: center;
   justify-content: center;
+  text-align: center;
 
   > .o-bolt-grid__cell {
     text-align: left;
@@ -85,8 +85,8 @@
  * Align the entire grid to the right. Extends `.grid`.
  */
 .o-bolt-grid--right {
-  text-align: right;
   justify-content: flex-end;
+  text-align: right;
 
   > .o-bolt-grid__cell {
     text-align: left;
@@ -94,18 +94,18 @@
 }
 
 .o-bolt-grid__cell--middle {
-  vertical-align: middle;
   align-self: center;
+  vertical-align: middle;
 }
 
 .o-bolt-grid__cell--top {
-  vertical-align: top;
   align-self: flex-start;
+  vertical-align: top;
 }
 
 .o-bolt-grid__cell--bottom {
-  vertical-align: bottom;
   align-self: flex-end;
+  vertical-align: bottom;
 }
 
 

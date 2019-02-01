@@ -1,0 +1,9 @@
+/* stylelint-disable scss/at-function-pattern */
+
+/// Encode `null` to JSON
+/// @access private
+/// @param {Null} $null - `null`
+/// @return {String}
+@function _json-encode--null($null) {
+  @return 'null';
+}

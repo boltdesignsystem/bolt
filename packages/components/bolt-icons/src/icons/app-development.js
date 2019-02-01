@@ -1,12 +1,13 @@
-import { h } from '@bolt/core';
+import { h } from '@bolt/core/renderers';
 
 export const AppDevelopment = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
-    <svg width={size} height={size} {...otherProps} viewBox="0 0 32 32">
+    <svg data-name="Layer 1" {...otherProps} viewBox="0 0 30 30">
       <path
-        d="M29 9H3V4a1 1 0 0 1 1-1h24a1 1 0 0 1 1 1v5zm0 19a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11h26v17zm1-27H2a1 1 0 0 0-1 .999V30a1 1 0 0 0 1 1h28a1 1 0 0 0 1-1V1.999A1 1 0 0 0 30 1zM9 7h2V5H9v2zm4 0h2V5h-2v2zM5 7h2V5H5v2zm10 18h2v-4h4v-2h-4v-4h-2v4h-4v2h4v4z"
         fill={bgColor}
         fill-rule="evenodd"
+        d="M28 8H2V3a.94.94 0 0 1 1-1h24a.94.94 0 0 1 1 1zm0 19a.94.94 0 0 1-1 1H3a.94.94 0 0 1-1-1V10h26zm1-27H1a.94.94 0 0 0-1 1v28a.94.94 0 0 0 1 1h28a.94.94 0 0 0 1-1V1a.94.94 0 0 0-1-1zM8 6h2V4H8zm4 0h2V4h-2zM4 6h2V4H4zm10 18h2v-4h4v-2h-4v-4h-2v4h-4v2h4z"
+        data-name="Page-1"
       />
     </svg>
   );

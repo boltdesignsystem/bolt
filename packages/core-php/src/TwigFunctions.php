@@ -26,6 +26,27 @@ class TwigFunctions {
   }
 
 
+  public static function fileExists() {
+    return new Twig_SimpleFunction('fileExists', function(\Twig_Environment $env, $context, $path) {
+      $result = '';
+
+      try {
+        $full_path = is_file($path) ? $path : Bolt\Utils::optionallyResolveTwigPath($env, $path);
+
+        if (file_exists($full_path)) {
+          $result = true;
+        }
+      } catch (\Exception $e) {
+        $result = false;
+      }
+      return $result;
+    }, [
+      'needs_environment' => true,
+      'needs_context' => true,
+    ]);
+  }
+
+
   public static function inlineFile() {
     return new Twig_SimpleFunction('inline', function($context, $filename) {
       if (!$filename){
@@ -34,14 +55,24 @@ class TwigFunctions {
 
       $context = new ArrayFinder($context);
       $buildDir = $context->get('bolt.data.config.buildDir');
+      $wwwDir = $context->get('bolt.data.config.wwwDir');
 
       if ($buildDir) {
-        $fullPath = Path::join($buildDir, $filename);
+        $fullBuildDir = Path::join($buildDir, $filename);
+        $fullWwwDir = Path::join($wwwDir, $filename);
 
-        if (file_exists($fullPath)){
-          return file_get_contents($fullPath);
+        // Look in a few places before giving up
+        if (file_exists($fullBuildDir)){ // Check the build directory
+          return file_get_contents($fullBuildDir);
+
+        } elseif (file_exists($fullWwwDir)) { // Check the wwwDir
+          return file_get_contents($fullWwwDir);
+
+        } elseif (file_exists($filename)) { // As a last resort, check to make sure the filename path can't be resolved as-is
+          return file_get_contents($filename);
+
         } else {
-          throw new \Exception('Warning: the file ' . $fullPath . ' trying to be inlined doesn\'t seem to exist...');
+          throw new \Exception('Warning: the file ' . $filename . ' trying to be inlined doesn\'t seem to exist...');
         }
       } else {
         // throw error saying `bolt.data` isn't set up right
@@ -231,6 +262,23 @@ class TwigFunctions {
     return new Twig_SimpleFunction('create_attribute', function($attributes) {
       return is_array($attributes) ? new Attribute($attributes) : $attributes;
       // print_r(Attribute);
+    });
+  }
+
+  // Custom function for merging Drupal Attribute objects
+  // Gives $source preference, unless a key is set in both arrays and $source value is empty or null
+  public static function merge_attributes() {
+    return new Twig_SimpleFunction('merge_attributes', function($target, $source) {
+      // For each key in $source...
+      foreach ($source as $key => $value) {
+        // If $key is not in $target, or if $key is in $target and $value in $source is empty, add/overwrite $key in $target
+        // NOTE: empty() and is_null() do not work in the second half of this statement. Why is that?
+        if (empty($target[$key]) || (!empty($target[$key]) && $value != "")) {
+          $target[$key] = $value;
+        }
+      }
+
+      return $target;
     });
   }
 

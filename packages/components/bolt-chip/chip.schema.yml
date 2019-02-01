@@ -2,9 +2,19 @@ $schema: http://json-schema.org/draft-04/schema#
 title: Chip
 type: object
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   text:
     type: string
     description: Chip Text.
   url:
     type: string
     description: Optional. When url is present, tag changes to `a`, otherwise tag would be `span`.
+  tag:
+    type: string
+    description: Html tag to be used. If a URL is provided, this will be ignored and `a` will be always be used.
+    default: span
+    enum:
+      - a
+      - span

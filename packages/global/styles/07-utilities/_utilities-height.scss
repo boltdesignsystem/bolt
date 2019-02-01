@@ -1,5 +1,5 @@
 /* ------------------------------------ *\
-  #VISUALLY HIDDEN UTILITIES
+  #HEIGHT UTILITIES
 \* ------------------------------------ */
 
 @import '@bolt/core';
@@ -18,6 +18,8 @@ $bolt-height-props: (
   'screen': 100vh,
 );
 
+
+// Height
 @mixin bolt-height-utils($breakpoint: null) {
   @each $name, $value in $bolt-height-props {
     .u-bolt-height-#{$name}#{$breakpoint} {
@@ -29,9 +31,31 @@ $bolt-height-props: (
 @include bolt-height-utils;
 
 // Loop over our breakpoints
-@each $breakpoint in $breakpoints {
+@each $breakpoint in $bolt-breakpoints {
   $breakpointName: nth($breakpoint, 1);
-  @include respond-to($breakpointName) {
+  @include bolt-mq($breakpointName) {
     @include bolt-height-utils(\@#{$breakpointName});
   }
 }
+
+
+// Min height
+@mixin bolt-min-height-utils($breakpoint: null) {
+  @each $name, $value in $bolt-height-props {
+    .u-bolt-min-height-#{$name}#{$breakpoint} {
+      min-height: $value !important;
+    }
+  }
+}
+
+@include bolt-min-height-utils;
+
+// Loop over our breakpoints
+@each $breakpoint in $bolt-breakpoints {
+  $breakpointName: nth($breakpoint, 1);
+  @include bolt-mq($breakpointName) {
+    @include bolt-min-height-utils(\@#{$breakpointName});
+  }
+}
+
+@include export-data('height.bolt.json', $bolt-height-props);

@@ -11,25 +11,40 @@
 
 /*
  * Default Font Family Stacks
- *
- * 1. This maps to the system UI font.
- * 2. This is for known system UI fonts & requires updates
  */
+
+/// Default sans-serif fallback font stack containing [1] maps to the system UI font and [2] known system UI fonts. Used within the $bolt-font-families map.
+/// @see $bolt-font-families
 $bolt-font-family--sans-fallback:
   -apple-system, BlinkMacSystemFont, /* [1] */
   'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', /* [2] */
-  'Helvetica Neue', sans-serif;
+  'Helvetica Neue', sans-serif !default;
+
+/// Default serif font stack. Used within the $bolt-font-families map.
+/// @see $bolt-font-families
 $bolt-font-family--serif: 'Georgia', serif;
-$bolt-font-family--mono-fallback: monospace;
+
+/// Default monospace fallback font stack. Used within the $bolt-font-families map.
+/// @see $bolt-font-families
+$bolt-font-family--mono-fallback: monospace, monospace;
 
 
 /*
  * Custom web font stacks
  */
-$bolt-font-family--sans:  'Open Sans', 'Helvetica Neue', sans-serif;
-$bolt-font-family--sans-subset: 'OpenSansSubset', 'Helvetica Neue', sans-serif;
-$bolt-font-family--serif: 'Georgia', serif;
-$bolt-font-family--mono:  'Courier New', monospace;
+
+/// Default sans-serif font stack. Used within the $bolt-font-families map.
+/// @see $bolt-font-families
+$bolt-font-family--sans:  'Open Sans', 'Helvetica Neue', sans-serif !default;
+
+/// Default sans-serif subset font stack. Used within the $bolt-font-families map.
+/// @see $bolt-font-families
+
+$bolt-font-family--sans-subset: 'OpenSansSubset', 'Helvetica Neue', sans-serif !default;
+
+/// Default monospace font stack. Used within the $bolt-font-families map.
+/// @see $bolt-font-families
+$bolt-font-family--mono:  monospace, monospace;
 
 
 /*
@@ -38,6 +53,7 @@ $bolt-font-family--mono:  'Courier New', monospace;
 
 /// Bolt's definition of body, heading, and code text.
 /// @type Map
+/// @see {mixin} bolt-font-family
 $bolt-font-families: (
   font-families: (
     body: (
@@ -47,8 +63,8 @@ $bolt-font-families: (
     ),
     bodySubset: (
       fallback-font: $bolt-font-family--sans-fallback,
-      custom-font: $bolt-font-family--sans-subset,
-      loaded-class: $bolt-fonts--subset-loaded-class
+      custom-font:   $bolt-font-family--sans-subset,
+      loaded-class:  $bolt-fonts--subset-loaded-class
     ),
     heading: (
       fallback-font: $bolt-font-family--sans-fallback,
@@ -62,3 +78,5 @@ $bolt-font-families: (
     )
   )
 );
+
+@include export-data('typography/font-families.bolt.#{$bolt-lang}.json', $bolt-font-families);

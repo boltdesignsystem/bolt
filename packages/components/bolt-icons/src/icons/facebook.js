@@ -1,11 +1,11 @@
-import { h } from '@bolt/core';
+import { h } from '@bolt/core/renderers';
 
 export const Facebook = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
-    <svg width={size} height={size} {...otherProps} viewBox="0 0 16 28">
+    <svg data-name="Layer 1" {...otherProps} viewBox="0 0 16.62 32">
       <path
-        d="M14.984.187v4.125h-2.453c-1.922 0-2.281.922-2.281 2.25v2.953h4.578l-.609 4.625H10.25v11.859H5.469V14.14H1.485V9.515h3.984V6.109C5.469 2.156 7.891 0 11.422 0c1.687 0 3.141.125 3.563.187z"
         fill={bgColor}
+        d="M16.62.23v5.08h-3c-2.37 0-2.81 1.13-2.81 2.77v3.63h5.63l-.74 5.69h-4.91V32H4.91V17.4H0v-5.69h4.91V7.52c0-4.87 3-7.52 7.32-7.52a37.12 37.12 0 0 1 4.39.23z"
       />
     </svg>
   );

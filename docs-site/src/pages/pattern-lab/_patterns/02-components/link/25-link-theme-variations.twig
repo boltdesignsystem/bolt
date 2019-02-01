@@ -1,0 +1,31 @@
+{% set link %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Headline Link with Default Icon",
+    url: "#!"
+  } only %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Text link",
+    url: "#!"
+  } only %}
+{% endset %}
+
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "xlight",
+  content: link
+} only %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "light",
+  content: link
+} only %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  content: link
+} only %}
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "xdark",
+  content: link
+} only %}

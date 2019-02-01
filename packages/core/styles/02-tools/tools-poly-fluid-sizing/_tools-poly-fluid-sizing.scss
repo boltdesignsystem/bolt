@@ -2,13 +2,18 @@
   TOOLS - POLY SIZING
 \* ------------------------------------ */
 
-/// bolt-poly-fluid-sizing
+////
+/// @group Tools: Breakpoints
+/// @author Mike Mai
+////
+
 /// Generate linear interpolated size values through multiple break points
-/// @param $property - A string CSS property name
-/// @param $map - A Sass map of viewport unit and size value pairs
+/// @param {string} $property - A string CSS property name
+/// @param {map} $map - A Sass map of viewport unit and size value pairs
 /// @requires bolt-linear-interpolation
 /// @requires bolt-map-sort
-/// @example
+/// @see {mixin} bolt-font-size
+/// @example scss
 ///   @include bolt-poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
 @mixin bolt-poly-fluid-sizing($property, $map) {
   // Get the number of provided breakpoints

@@ -1,414 +1,550 @@
-import {
-  h,
-  render,
-  define,
-  props,
-  withComponent,
-  withPreact,
-  css,
-  spacingSizes,
-} from '@bolt/core';
+import { beforeNextRender, define, props, css } from '@bolt/core/utils';
+import { h, withPreact } from '@bolt/core/renderers';
+import Mousetrap from 'mousetrap';
+import classNames from 'classnames';
 
-import dasherize from 'dasherize';
+import {
+  socialPlugin,
+  emailPlugin,
+  playbackPlugin,
+  cuePointsPlugin,
+} from '../plugins/index';
+import { datasetToObject, formatVideoDuration } from '../utils';
 
 let index = 0;
+@define
+class BoltVideo extends withPreact() {
+  static is = `${bolt.namespace}-video`;
 
-import metaStyles from './_video-meta.scss';
+  static props = {
+    videoId: props.string,
+    accountId: props.string,
+    playerId: props.string,
+    poster: props.object,
+    isBackgroundVideo: props.boolean,
+    onInit: props.string,
+    showMeta: props.boolean,
+    showMetaTitle: props.boolean,
+    closeButtonText: props.string,
+    shareDescription: props.string,
+    loop: props.boolean,
+    controls: props.boolean,
+    autoplay: props.boolean,
+    resetOnFinish: props.boolean,
+    directToFullscreen: props.boolean,
+    hideFullScreenButton: props.boolean,
+    overlayAlignment: {
+      ...props.string,
+      ...{ default: 'bottom' },
+    },
+    enabledPlugins: {
+      ...props.string,
+      ...{ default: 'playback' },
+    },
+    disabledPlugins: props.string,
+    overlayBackground: props.boolean,
+  };
 
-export function BoltVideoMeta() {
-  return class BoltVideoMetaClass extends withPreact(withComponent()) {
+  constructor(self) {
+    self = super(self);
+    self.useShadow = false;
 
-    constructor(self) {
-      self = super(self);
-      return self;
+    this.defaultPlugins = ['playback'];
+
+    index += 1;
+
+    // These bindings are necessary to make `this` work in the callback
+    this.onPlay = this.onPlay.bind(this);
+    this.onPause = this.onPause.bind(this);
+    this.onEnded = this.onEnded.bind(this);
+    this.onDurationChange = this.onDurationChange.bind(this);
+    this.onSeeked = this.onSeeked.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.collapseOnClickAway = this.collapseOnClickAway.bind(this);
+
+    // BoltVideo.globalErrors.forEach(this.props.onError);
+
+    this.shareDescription = this.shareDescription || 'Share This Video';
+
+    // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
+    // even if the handler is attached to another element (window in this case)
+    this._onWindowResize = this._onWindowResize.bind(this);
+
+    return self;
+  }
+
+  get expandedHeight() {
+    return this.getAttribute('expandedHeight');
+  }
+
+  static availablePlugins = {
+    playback: playbackPlugin,
+    cue: cuePointsPlugin,
+    social: socialPlugin,
+    email: emailPlugin,
+  };
+
+  /**
+   * Properties and their corresponding attributes should mirror one another.
+   * To this effect, the property setter for `expanded` handles truthy/falsy
+   * values and reflects those to the state of the attribute. It’s important
+   * to note that there are no side effects taking place in the property
+   * setter. For example, the setter does not set `aria-expanded`. Instead,
+   * that work happens in the `attributeChangedCallback`. As a general rule,
+   * make property setters very dumb, and if setting a property or attribute
+   * should cause a side effect (like setting a corresponding ARIA attribute)
+   * do that work in the `attributeChangedCallback`. This will avoid having to
+   * manage complex attribute/property reentrancy scenarios.
+   */
+  set expandedHeight(value) {
+    // Properties can be set to all kinds of string values. This makes sure
+    // it’s converted to a proper boolean value using JavaScript’s truthiness
+    // & falsiness principles.
+    // value = Boolean(value);
+    if (value) {
+      this.setAttribute('expandedHeight', value);
+    } else {
+      this.removeAttribute('expandedHeight');
     }
 
-    static props = {
-      duration: props.string,
-      title: props.string,
-    };
+    this.dispatchEvent(
+      new CustomEvent('videoExpandedHeightSet', {
+        detail: { expandedHeight: this.expandedHeight },
+        bubbles: true,
+      }),
+    );
+  }
 
-    get renderRoot() {
-      return this;
-    }
-
-    render() {
-      const separator = this.title && this.duration ? ' | ' : '';
-
-      // 'reveal' allows the metadata to be hidden.
-      // All of its logic is contained here in render(), but it could be updated to be a property that is set
-      // externally (such as when the video has finished fully loading).
-      const reveal = Boolean(this.title || this.duration);
-      return (
-        <div className={`c-${bolt.namespace}-video-meta`}>
-          <style>{metaStyles[0][1]}</style>
-          {reveal ? (
-            <div className={`c-${bolt.namespace}-video-meta__wrapper`}>{this.title}{separator}{this.duration}</div>
-          ) : null}
-        </div>
+  _setMetaTitle(title) {
+    if (this.props.showMeta && this.props.showMetaTitle) {
+      this.querySelector(`${bolt.namespace}-video-meta`).setAttribute(
+        'title',
+        title,
       );
     }
   }
-}
 
-
-export function BoltVideo() {
-  return class BoltVideoClass extends withPreact(withComponent()) {
-
-    static props = {
-      videoId: props.string,
-      accountId: props.string,
-      playerId: props.string,
-      poster: props.object,
-      isBackgroundVideo: props.boolean,
-      onInit: props.string,
-      showMeta: props.boolean,
-      showMetaTitle: props.boolean,
-      closeButtonText: props.string,
-      loop: props.boolean,
-      // onError: null,
-      // onPlay: null,
-      // onPause: null,
-      // onFinish: null,
-      // onProgress: null,
-      // onDuration: null,
-      controls: props.boolean,
-      autoplay: props.boolean,
-      resetOnFinish: props.boolean,
-      directToFullscreen: props.boolean,
-      hideFullScreenButton: props.boolean,
-    }
-
-    constructor(self) {
-      self = super(self);
-
-      index += 1;
-
-      this.onPlay = this.onPlay.bind(this);
-      this.onPause = this.onPause.bind(this);
-      this.onEnded = this.onEnded.bind(this);
-      // this.onProgress = this.onProgress.bind(this);
-      this.onDurationChange = this.onDurationChange.bind(this);
-      this.onSeeked = this.onSeeked.bind(this);
-
-      // This binding is necessary to make `this` work in the callback
-      this.handleClose = this.handleClose.bind(this);
-
-      // BoltVideoClass.globalErrors.forEach(this.props.onError);
-
-      this.defaultProps = {
-        // width: 320,
-        // height: 180,
-        // playerId: "default",
-        // onError: () => { },
-        // onPlay: () => { },
-        // onPause: () => { },
-        // onFinish: () => { },
-        // onProgress: () => { },
-        // onDuration: () => { },
-        loop: false,
-        autoplay: false,
-        hideFullScreenButton: false,
-        directToFullscreen: false,
-        resetOnFinish: false,
-      }
-
-      // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
-      // even if the handler is attached to another element (window in this case)
-      this._onWindowResize = this._onWindowResize.bind(this);
-
-      return self;
-    }
-
-    get renderRoot() {
-      return this;
-    }
-
-
-    get expandedHeight() {
-      return this.getAttribute('expandedHeight');
-    }
-
-    /**
-     * Properties and their corresponding attributes should mirror one another.
-     * To this effect, the property setter for `expanded` handles truthy/falsy
-     * values and reflects those to the state of the attribute. It’s important
-     * to note that there are no side effects taking place in the property
-     * setter. For example, the setter does not set `aria-expanded`. Instead,
-     * that work happens in the `attributeChangedCallback`. As a general rule,
-     * make property setters very dumb, and if setting a property or attribute
-     * should cause a side effect (like setting a corresponding ARIA attribute)
-     * do that work in the `attributeChangedCallback`. This will avoid having to
-     * manage complex attribute/property reentrancy scenarios.
-     */
-    set expandedHeight(value) {
-      // Properties can be set to all kinds of string values. This makes sure
-      // it’s converted to a proper boolean value using JavaScript’s truthiness
-      // & falsiness principles.
-      // value = Boolean(value);
-      if (value) {
-        this.setAttribute('expandedHeight', value);
-      } else {
-        this.removeAttribute('expandedHeight');
-      }
-
-      requestAnimationFrame(() => {
-        this.style.maxHeight = this.expandedHeight + 'px';
-      });
-
-      this.dispatchEvent(
-        new CustomEvent('videoExpandedHeightSet', {
-          detail: {expandedHeight: this.expandedHeight},
-          bubbles: true,
-        }),
+  _setMetaDuration(seconds) {
+    if (this.props.showMeta) {
+      const durationFormatted = formatVideoDuration(seconds);
+      this.querySelector(`${bolt.namespace}-video-meta`).setAttribute(
+        'duration',
+        durationFormatted,
       );
     }
+  }
 
-    // Called to check whether or not the component should call
-    // updated(), much like React's shouldComponentUpdate().
-    // updating(props, state) {
-    //   console.log(props);
-    //   console.log(state);
-    // }
+  _setVideoDimensions(width, height) {
+    this.srcWidth = width;
+    this.srcHeight = height;
+  }
 
-    _setMetaTitle(title) {
-      if (this.props.showMeta && this.props.showMetaTitle) {
-        this.querySelector(`${bolt.namespace}-video-meta`).setAttribute('title', title);
-      }
-    }
+  _setupPlugins(elem, player) {
+    // loop through any enabled plugins added, remove any flagged as being disabled, and apply what's left to the player instance.
+    const enabledPlugins = Array.from(elem.enabledPlugins.split(' '));
+    const disabledPlugins = elem.disabledPlugins
+      ? Array.from(elem.disabledPlugins.split(' '))
+      : [];
+    const allPlugins = [...elem.defaultPlugins, ...enabledPlugins];
 
-    _setMetaDuration(seconds) {
-      if (this.props.showMeta) {
-        const durationFormatted = BoltVideoClass._formatDuration(seconds);
-        this.querySelector(`${bolt.namespace}-video-meta`).setAttribute('duration', durationFormatted);
-      }
-    }
+    // remove duplicates
+    const uniqueAndEnabledPlugins = allPlugins.filter(function(item, index) {
+      const itemName = allPlugins[index];
+      return (
+        allPlugins.indexOf(item) >= index &&
+        disabledPlugins.includes(item) !== true
+      );
+    });
 
-    static _formatDuration(seconds) {
-      const mm = Math.floor(seconds / 60) || 0;
-      const ss = ('0' + Math.floor(seconds % 60)).slice(-2);
-
-      return mm + ':' + ss;
-    }
-
-    _setVideoDimensions(width, height) {
-      this.srcWidth = width;
-      this.srcHeight = height;
-    }
-
-    static handlePlayerReady(context) {
-      const player = this;
-      const elem = context;
-
-      elem.setPlayer(player);
-
-      // If the option to show controls is set to false (meaning, no controls will be shown), make sure the video is also muted.
-      if (elem.controls === false) {
-        elem.player.muted(true);
-      }
-
-      player.on('loadedmetadata', function () {
-        const duration = player.mediainfo.duration;
-        const title = player.mediainfo.name;
-        const width = player.mediainfo.sources[1].width;
-        const height = player.mediainfo.sources[1].height;
-
-        elem._setMetaTitle(title);
-        elem._setMetaDuration(duration);
-        elem._setVideoDimensions(width, height);
-        elem._calculateIdealVideoSize();
-
-        if (this.earlyToggle) {
-          this.earlyToggle = false;
-          this.toggle();
-        } else if (this.earlyPlay) {
-          this.earlyPlay = false;
-          this.play();
-        } else if (this.earlyPause) {
-          this.earlyPause = false;
-          this.pause();
-        }
-      });
-
-      player.on('play', function () {
-        elem.onPlay(player);
-      });
-
-      player.on('pause', function () {
-        elem.onPause(player);
-      });
-
-      player.on('seeked', function () {
-        elem.onSeeked(player);
-      });
-
-      player.on('timeupdate', function () {
-        // elem.onPlay(player);
-      });
-
-      player.on('durationchange', function () {
-        elem.onDurationChange(player);
-      });
-
-      player.on('ended', function () {
-        elem.onEnded(player);
-      });
-
-      // this.contextmenu({ disabled: true });
-    }
-
-    static appendScript(s) {
-      document.body.appendChild(s);
-    }
-
-    static getScriptUrl(accountId, playerId) {
-      return `//players.brightcove.net/${accountId}/${
-        playerId
-        }_default/index.min.js`;
-    }
-
-    static getCurrentTimeMs(player) {
-      return Math.round(player.currentTime() * 1000);
-    }
-
-    static getDurationMs(player) {
-      return Math.round(player.duration() * 1000);
-    }
-
-    // static isBackgroundVideo() {
-    //   return this.props.isBackgroundVideo;
-    // }
-
-    handleClose() {
-      this.close();
-    }
-
-    connectedCallback() {
-      this.state = {
-        id: `${this.props.videoId}-${this.props.accountId}-${index}`,
-        // errors: BoltVideoClass.globalErrors !== undefined  ? [].concat(BoltVideoClass.globalErrors) : [],
-        isPlaying: 'paused',
-        isFinished: false,
-        progress: 0,
-      };
-
-      if (this.defaultProps) {
-        const defaultProps = this.defaultProps;
-        for (const propName in defaultProps) {
-          if (this.props[propName] === undefined) {
-            this.props[propName] = defaultProps[propName];
-          }
+    // check to confirm plugins exist before initializing
+    uniqueAndEnabledPlugins.forEach(pluginName => {
+      if (BoltVideo.availablePlugins) {
+        if (BoltVideo.availablePlugins[pluginName]) {
+          BoltVideo.availablePlugins[pluginName](player, elem);
         }
       }
+    });
+  }
 
-      if (BoltVideoClass.globalErrors !== undefined && BoltVideoClass.globalErrors.length) {
-        // console.log('adding default errors');
-        // console.log(this.state.errors);
-        this.state.errors = [].concat(BoltVideoClass.globalErrors);
-      } else {
-        this.state.errors = [];
-      }
+  static handlePlayerReady(context) {
+    const player = this;
+    const elem = context;
 
-      if (this.state.errors.length) {
-        // console.log(this.state.errors);
-        // console.log('error length');
-        return;
-      }
+    elem._setupOverlay();
+    elem._setupPlugins(elem, player);
 
-      // only ever append script once
-      if (!BoltVideoClass.players || bolt.namespace !== BoltVideoClass.namespace) {
-        BoltVideoClass.players = [];
+    elem.setPlayer(player);
 
-        const s = this.createScript();
-
-        s.onload = () => {
-          BoltVideoClass.players.forEach(function (player) {
-            player.initVideoJS(player.state.id)
-          });
-        };
-
-        // handle script not loading
-        s.onerror = err => {
-          const uriErr = {
-            code: '',
-            message: `The script ${err.target.src} is not accessible.`,
-          };
-
-          BoltVideoClass.globalErrors.push(uriErr);
-
-          this.props.onError(uriErr);
-        };
-
-        BoltVideoClass.appendScript(s);
-      }
-
-      this.init();
-
-      // If onInit event exists on element, run that instead of auto initializing
-      if (this.props.onInit) {
-        if (window[this.props.onInit]) {
-          window[this.props.onInit](this);
-        }
-      }
-
-      window.addEventListener('optimizedResize', this._onWindowResize);
+    // If the option to show controls is set to false (meaning, no controls will be shown), make sure the video is also muted.
+    if (elem.controls === false) {
+      elem.player.muted(true);
     }
 
+    // auto-configure the social overlay config (loaded via the social plugin)
+    if (player.socialOverlay) {
+      player.socialOverlay.options_.description = elem.props.shareDescription;
+    }
 
-    _onWindowResize(event) {
+    player.on('loadedmetadata', function() {
+      const duration = player.mediainfo.duration;
+      const title = player.mediainfo.name;
+      const width = player.mediainfo.sources[1].width;
+      const height = player.mediainfo.sources[1].height;
+
+      elem._setMetaTitle(title);
+      elem._setMetaDuration(duration);
+      elem._setVideoDimensions(width, height);
+
+      if (this.earlyToggle) {
+        this.earlyToggle = false;
+        this.toggle();
+      } else if (this.earlyPlay) {
+        this.earlyPlay = false;
+        this.play();
+      } else if (this.earlyPause) {
+        this.earlyPause = false;
+        this.pause();
+      }
+    });
+
+    player.on('play', function() {
+      elem.onPlay(player);
+    });
+
+    player.on('pause', function() {
+      elem.onPause(player);
+    });
+
+    player.on('seeked', function() {
+      elem.onSeeked(player);
+    });
+
+    player.on('timeupdate', function() {
+      // elem.onPlay(player);
+    });
+
+    player.on('durationchange', function() {
+      elem.onDurationChange(player);
+    });
+
+    player.on('ended', function() {
+      elem.onEnded(player);
+    });
+  }
+
+  static appendScript(s) {
+    document.body.appendChild(s);
+  }
+
+  static getScriptUrl(accountId, playerId) {
+    return `//players.brightcove.net/${accountId}/${playerId}_default/index.min.js`;
+  }
+
+  static getCurrentTimeMs(player) {
+    return Math.round(player.currentTime() * 1000);
+  }
+
+  static getDurationMs(player) {
+    return Math.round(player.duration() * 1000);
+  }
+
+  _setupOverlay() {
+    this.overlayElement = this.querySelector('.vjs-overlay');
+
+    const overlayClasses = classNames({
+      [`vjs-overlay-${this.overlayAlignment}`]: this.props.overlayAlignment,
+      'vjs-overlay-no-background': this.props.overlayBackground !== true,
+      'vjs-overlay-background': this.props.overlayBackground === true,
+    });
+
+    if (this.overlayElement) {
+      // clear out any default overlay bg classes
+      this.overlayElement.classList.remove('vjs-overlay-no-background');
+      this.overlayElement.classList.remove('vjs-overlay-background');
+      this.overlayElement.className += ' ' + overlayClasses;
+    }
+  }
+
+  handleClose() {
+    this.close();
+  }
+
+  connecting() {
+    this.state = {
+      // IDs can't start with numbers so adding the "v" prefix to prevent JS errors
+      id: `v${this.props.videoId}-${this.props.accountId}-${index}`,
+      // errors: BoltVideo.globalErrors !== undefined  ? [].concat(BoltVideo.globalErrors) : [],
+      isPlaying: 'paused',
+      isFinished: false,
+      progress: 0,
+    };
+
+    if (this.props.isBackgroundVideo) {
       this._calculateIdealVideoSize();
     }
 
-    // shouldUpdate(props, state) {
-    //   return true;
-    // }
+    if (BoltVideo.globalErrors !== undefined && BoltVideo.globalErrors.length) {
+      // console.log('adding default errors');
+      // console.log(this.state.errors);
+      this.state.errors = [].concat(BoltVideo.globalErrors);
+    } else {
+      this.state.errors = [];
+    }
 
-    // Called when props have been set regardless of if they've changed.
-    // updating(props) { }
+    if (this.state.errors.length) {
+      // console.log(this.state.errors);
+      // console.log('error length');
+      return;
+    }
 
-    /**
-     * `attributeChangedCallback` processes changes to the `expanded` attribute.
-     */
-    // attributeChangedCallback(attributeName, oldValue, newValue) {
-    //   console.log(attributeName);
-    //   // `expanded` is a boolean attribute it is either set or not set. The
-    //   // actual value is irrelevant.
-    //   // const value = this.hasAttribute('expanded');
-    //   // this._shadowButton.setAttribute('aria-expanded', value);
-    // }
+    // only ever append script once per unique playerId
+    if (!BoltVideo.players) {
+      BoltVideo.players = [];
+    }
 
+    const playerId = this.props.playerId;
 
-    disconnectedCallback() {
-      window.removeEventListener('optimizedResize', this._calculateIdealVideoSize);
+    if (!BoltVideo.players[playerId]) {
+      BoltVideo.players[playerId] = playerId;
 
-      if (this.player) {
-        this.player.dispose();
+      const s = this.createScript();
+
+      s.onload = () => {
+        BoltVideo.players.forEach(function(player) {
+          player.initVideoJS(player.state.id);
+        });
+      };
+
+      // handle script not loading
+      s.onerror = err => {
+        const uriErr = {
+          code: '',
+          message: `The script ${err.target.src} is not accessible.`,
+        };
+
+        BoltVideo.globalErrors.push(uriErr);
+
+        this.props.onError(uriErr);
+      };
+
+      BoltVideo.appendScript(s);
+    }
+
+    this.init();
+
+    // If onInit event exists on element, run that instead of auto initializing
+    if (this.props.onInit) {
+      if (window[this.props.onInit]) {
+        window[this.props.onInit](this);
       }
     }
 
-    onError(player) {
-      this.props.onError(player.error());
+    // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
+    if (this.props.isBackgroundVideo) {
+      window.addEventListener('resize', this._onWindowResize);
+      Mousetrap.bind('esc', this.handleClose, 'keyup');
+      document.addEventListener('click', this.collapseOnClickAway);
+    }
+  }
+
+  _onWindowResize(event) {
+    this._calculateIdealVideoSize();
+  }
+
+  // If we click outside the video wrapper div collapse the video
+  collapseOnClickAway(event) {
+    const videoWrapper = this.querySelector('.c-bolt-video--background');
+    if (!videoWrapper.contains(event.target)) {
+      // @todo: debug why videos don't autoplay when this is enabled
+      // this.close();
+    }
+  }
+
+  disconnecting() {
+    if (this.props.isBackgroundVideo) {
+      window.removeEventListener('optimizedResize', this._onWindowResize);
     }
 
+    if (this.player) {
+      this.player.dispose();
+    }
+  }
 
-    onPlay(player) {
+  onError(player) {
+    this.props.onError(player.error());
+  }
 
-      this.classList.add('is-playing');
-      this.classList.remove('is-finished');
+  hideOverlay() {
+    if (this.overlayElement) {
+      this.overlayElement.classList.add('vjs-overlay--hidden');
+
+      setTimeout(() => {
+        this.overlayElement.classList.add('vjs-hidden');
+      }, 200);
+    }
+  }
+
+  showOverlay() {
+    if (this.overlayElement) {
+      this.overlayElement.classList.remove('vjs-hidden');
+
+      setTimeout(() => {
+        this.overlayElement.classList.remove('vjs-overlay--hidden');
+      }, 50);
+    }
+  }
+
+  onPlay(player) {
+    this.classList.add('is-playing');
+    this.classList.remove('is-finished', 'is-paused');
+
+    // @TODO: implement internal setState method
+    // elem.setState({
+    //   isPlaying: true,
+    //   progress: BoltVideo.getCurrentTimeMs(player),
+    //   isFinished: false
+    // });
+
+    // Dispatch an event that signals a request to expand to the
+    // `<howto-accordion>` element.
+    this.state.isPlaying = true;
+    this.state.progress = BoltVideo.getCurrentTimeMs(player);
+    this.state.isFinished = false;
+
+    this.dispatchEvent(
+      new CustomEvent('playing', {
+        detail: {
+          isBackgroundVideo: this.props.isBackgroundVideo,
+        },
+        bubbles: true,
+      }),
+    );
+  }
+
+  onPause(player) {
+    const progress = BoltVideo.getCurrentTimeMs(player);
+
+    this.classList.add('is-paused');
+    this.classList.remove('is-playing');
+
+    // @TODO: implement internal setState method
+    // this.setState({
+    //   isPlaying: false,
+    //   progress
+    // });
+
+    this.state.isPlaying = false;
+    this.state.progress = progress;
+
+    this.dispatchEvent(
+      new CustomEvent('pause', {
+        detail: {
+          isBackgroundVideo: this.props.isBackgroundVideo,
+        },
+        bubbles: true,
+      }),
+    );
+  }
+
+  onSeeked(player) {
+    const progress = BoltVideo.getCurrentTimeMs(player);
+
+    // @TODO: implement internal setState method
+    // this.setState({
+    //   progress: BoltVideo.getCurrentTimeMs(player),
+    //   isFinished: false
+    // });
+    this.state.isFinished = false;
+    this.state.progress = progress;
+  }
+
+  onDurationChange(player) {
+    const duration = BoltVideo.getDurationMs(player);
+
+    // @TODO: implement internal setState method
+    // this.setState({ duration: BoltVideo.getDurationMs(player) });
+
+    this.state.duration = duration;
+  }
+
+  onEnded() {
+    // calling syncronously here inteferes with player and causes errors to be thrown
+
+    setTimeout(() => {
+      this.state.isFinished = true;
+
+      this.classList.add('is-finished');
       this.classList.remove('is-paused');
 
-      // @TODO: implement internal setState method
-      // elem.setState({
-      //   isPlaying: true,
-      //   progress: BoltVideoClass.getCurrentTimeMs(player),
-      //   isFinished: false
-      // });
+      this.dispatchEvent(
+        new CustomEvent('ended', {
+          detail: {
+            isBackgroundVideo: this.props.isBackgroundVideo,
+          },
+          bubbles: true,
+        }),
+      );
+      // this.setState({ isFinished: true });
+    }, 0);
+  }
 
-      // Dispatch an event that signals a request to expand to the
-      // `<howto-accordion>` element.
-      this.state.isPlaying = true;
-      this.state.progress = BoltVideoClass.getCurrentTimeMs(player);
-      this.state.isFinished = false;
+  _calculateIdealVideoSize() {
+    this.expandedHeight = this.getBoundingClientRect().height;
+  }
+
+  setPlayer(player) {
+    this.player = player;
+  }
+
+  createScript() {
+    const s = document.createElement('script');
+
+    s.src = BoltVideo.getScriptUrl(this.props.accountId, this.props.playerId);
+    s.async = true;
+
+    return s;
+  }
+
+  initVideoJS(id) {
+    const self = this;
+
+    beforeNextRender(this, function() {
+      const player = videojs(id);
+      const handler = BoltVideo.handlePlayerReady.bind(player, self);
+      player.ready(handler);
+    });
+  }
+
+  initVideo(id) {
+    const self = this;
+
+    beforeNextRender(this, function() {
+      bc(self.querySelector(`#${id}`), {
+        controlBar: {
+          fullscreenToggle: !self.props.hideFullScreenButton,
+        },
+      });
+      self.initVideoJS(id);
+    });
+  }
+
+  init() {
+    const self = this;
+
+    beforeNextRender(this, function() {
+      if (window.bc && window.videojs) {
+        self.initVideo(self.state.id);
+      } else {
+        BoltVideo.players.push(self);
+      }
+    });
+  }
+
+  play() {
+    if (this.player) {
+      this.player.play();
+    } else {
+      this.earlyPlay = true;
 
       this.dispatchEvent(
         new CustomEvent('playing', {
@@ -419,165 +555,33 @@ export function BoltVideo() {
         }),
       );
     }
+  }
 
-    onPause(player) {
-      const progress = BoltVideoClass.getCurrentTimeMs(player);
+  close() {
+    this.pause();
 
-      this.classList.add('is-paused');
-      this.classList.remove('is-playing');
-
-      // @TODO: implement internal setState method
-      // this.setState({
-      //   isPlaying: false,
-      //   progress
-      // });
-
-      this.state.isPlaying = false;
-      this.state.progress = progress;
-
-      this.dispatchEvent(
-        new CustomEvent('pause', {
-          detail: {
-            isBackgroundVideo: this.props.isBackgroundVideo,
-          },
-          bubbles: true,
-        }),
-      );
-    }
-
-    onSeeked(player) {
-      const progress = BoltVideoClass.getCurrentTimeMs(player);
-
-      // @TODO: implement internal setState method
-      // this.setState({
-      //   progress: BoltVideoClass.getCurrentTimeMs(player),
-      //   isFinished: false
-      // });
-      this.state.isFinished = false;
-      this.state.progress = progress;
-    }
-
-    onDurationChange(player) {
-      const duration = BoltVideoClass.getDurationMs(player);
-
-      // @TODO: implement internal setState method
-      // this.setState({ duration: BoltVideoClass.getDurationMs(player) });
-
-      this.state.duration = duration;
-    }
-
-    onEnded() {
-      // calling syncronously here inteferes with player and causes errors to be thrown
-
-      setTimeout(() => {
-        this.state.isFinished = true;
-
-        this.classList.add('is-finished');
-        this.classList.remove('is-paused');
-
-        this.dispatchEvent(
-          new CustomEvent('ended', {
-            detail: {
-              isBackgroundVideo: this.props.isBackgroundVideo,
-            },
-            bubbles: true,
-          }),
-        );
-        // this.setState({ isFinished: true });
-      }, 0);
-    }
-
-    _calculateIdealVideoSize() {
-      const srcWidth = this.srcWidth;
-      const srcHeight = this.srcHeight;
-
-      if (this.srcWidth && this.srcHeight) {
-        const maxRatio = .5625; //56.25%
-        const maxWidth = this.querySelector('video').getBoundingClientRect().width;
-        const maxHeightOption1 = maxWidth * maxRatio;
-        const maxHeightOption2 = window.innerHeight * maxRatio;
-
-        const maxHeight = Math.min(maxHeightOption1, maxHeightOption2);
-
-        let ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
-
-        const idealMaxWidth = Math.round(srcWidth * ratio * 100) / 100;
-        const idealMaxHeight = Math.round(srcHeight * ratio * 100) / 100;
-
-        // If maxHeight has already been pre-defined BUT that value is larger than the calculated `ideal` maxHeight, use the ideal maxHeight value instead and ignore the taller user-defined value.
-        // if (this.maxHeight && this.maxHeight > idealMaxHeight) {
-        this.expandedHeight = idealMaxHeight;
-        // }
-      }
-    }
-
-    setPlayer(player) {
-      this.player = player;
-    }
-
-    createScript() {
-      const s = document.createElement('script');
-      // console.log(this.props);
-
-      s.src = BoltVideoClass.getScriptUrl(
-        this.props.accountId,
-        this.props.playerId,
-      );
-      s.async = true;
-
-      return s;
-    }
-
-    initVideoJS(id) {
-      const player = videojs(id);
-      const handler = BoltVideoClass.handlePlayerReady.bind(player, this);
-      // player.on("ready", handler);
-
-      player.ready(handler);
-
-      // player.on("error", this.onError.bind(this, player));
-    }
-
-    initVideo(id) {
-      bc(this.querySelector(`#${id}`), {
-        controlBar: {
-          fullscreenToggle: !this.props.hideFullScreenButton,
+    this.dispatchEvent(
+      new CustomEvent('close', {
+        detail: {
+          isBackgroundVideo: this.props.isBackgroundVideo,
         },
-      });
+        bubbles: true,
+      }),
+    );
+  }
 
-      this.initVideoJS(id);
-    }
-
-    init() {
-      if (window.bc && window.videojs) {
-        this.initVideo(this.state.id);
+  toggle() {
+    if (this.player) {
+      if (this.state.isPlaying === false || this.state.isPlaying === 'paused') {
+        this.play();
       } else {
-        BoltVideoClass.players.push(this);
+        this.pause();
       }
-    }
-
-    play() {
-      if (this.player) {
-        this.player.play();
-      } else {
-        this.earlyPlay = true;
-
-        this.dispatchEvent(
-          new CustomEvent('playing', {
-            detail: {
-              isBackgroundVideo: this.props.isBackgroundVideo,
-            },
-            bubbles: true,
-          }),
-        );
-      }
-    }
-
-    close() {
-      this.pause();
+    } else {
+      this.earlyToggle = true;
 
       this.dispatchEvent(
-        new CustomEvent('close', {
+        new CustomEvent('playing', {
           detail: {
             isBackgroundVideo: this.props.isBackgroundVideo,
           },
@@ -585,85 +589,56 @@ export function BoltVideo() {
         }),
       );
     }
+  }
 
-    toggle() {
-      if (this.player) {
-        if (this.state.isPlaying === false || this.state.isPlaying === 'paused') {
-          this.play();
-        } else {
-          this.pause();
-        }
-      } else {
-        this.earlyToggle = true;
+  pause() {
+    if (this.player) {
+      this.player.pause();
+    } else {
+      this.earlyPause = true;
+    }
+  }
 
-        this.dispatchEvent(
-          new CustomEvent('playing', {
-            detail: {
-              isBackgroundVideo: this.props.isBackgroundVideo,
-            },
-            bubbles: true,
-          }),
-        );
-      }
+  render({ state, props }) {
+    // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
+    // data-email-body="Check out this video from Pega"
+    // data-email-videourl="https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email"
+
+    // const playIconEmoji = () => (
+    //   <span role="img" aria-label="play-video">
+    //     ▶️
+    //   </span>
+    // );
+    /* eslint jsx-a11y/media-has-caption: "off" */
+    // Added a wrapping div as brightcove adds siblings to the video tag
+    const dataAttributes = datasetToObject(this);
+
+    let closeButtonText = null;
+    if (this.props.closeButtonText) {
+      closeButtonText = this.props.closeButtonText;
+    } else {
+      closeButtonText = 'Close';
     }
 
-    pause() {
-      if (this.player) {
-        this.player.pause();
-      } else {
-        this.earlyPause = true;
-      }
-    }
+    const classes = css(
+      `t-bolt-xdark`,
+      `c-${bolt.namespace}-video`,
+      this.props.controls === false
+        ? `c-${bolt.namespace}-video--hide-controls`
+        : '',
+      this.props.isBackgroundVideo
+        ? `c-${bolt.namespace}-video--background`
+        : '',
+    );
 
+    const videoMetaTag = `${bolt.namespace}-video-meta`;
 
-    render({state, props}) {
-      // console.log('render callback');
-      // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
-      // data-email-body="Check out this video from Pega"
-      // data-email-videourl="https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email"
-
-      // const playIconEmoji = () => (
-      //   <span role="img" aria-label="play-video">
-      //     ▶️
-      //   </span>
-      // );
-      /* eslint jsx-a11y/media-has-caption: "off" */
-      // Added a wrapping div as brightcove adds siblings to the video tag
-
-      // Loop through any extra (unknown) data attributes on the main element; copy over to the <video> tag being rendered
-      function datasetToObject(elem) {
-        var data = {};
-        [].forEach.call(elem.attributes, function (attr) {
-          if (/^data-/.test(attr.name)) {
-            data[dasherize(attr.name)] = attr.value;
-          }
-        });
-        return data;
-      }
-
-      const dataAttributes = datasetToObject(this);
-
-      let closeButtonText = null;
-      if (this.props.closeButtonText) {
-        closeButtonText = this.props.closeButtonText;
-      } else {
-        closeButtonText = 'Close';
-      }
-
-      const classes = css(
-        `c-${bolt.namespace}-video`,
-        this.props.controls === false ? `c-${bolt.namespace}-video--hide-controls` : '',
-        this.props.isBackgroundVideo ? `c-${bolt.namespace}-video--background` : '',
-      );
-
-      const videoMetaTag = `${bolt.namespace}-video-meta`;
-
-      return (
-        <span className={classes}>
+    return (
+      <span className={classes}>
         <video
           {...dataAttributes}
           id={this.state.id}
-          {...(this.props.poster ? {poster: this.props.poster.uri} : {})}
+          {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
           data-embed="default"
           data-video-id={this.props.videoId}
           preload="none"
@@ -676,61 +651,37 @@ export function BoltVideo() {
           data-application-id
           loop={this.props.loop}
           className="video-js"
-          controls={this.props.controls}
+          controls={this.props.controls === false ? false : true}
         />
-          {this.props.showMeta &&
-            h(videoMetaTag)
-          }
-          {this.props.isBackgroundVideo &&
-          <a className={ css(
-            `c-${bolt.namespace}-video__close-button`,
-            `c-${bolt.namespace}-video__close-button--icon-to-text`,
-          ) } href="javascript:"
-             onClick={this.handleClose}>
+        {this.props.showMeta && h(videoMetaTag)}
+        {this.props.isBackgroundVideo && (
+          <div
+            onClick={this.handleClose}
+            className={css(
+              `c-${bolt.namespace}-video__close-button`,
+              `c-${bolt.namespace}-video__close-button--icon-to-text`,
+            )}>
             <span className={`c-${bolt.namespace}-video__close-button-icon`}>
-              <div
-                class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
-                <span class="c-bolt-button__icon">
-                  <bolt-icon name="close" size="small"></bolt-icon>
-                </span>
-              </div>
+              <bolt-button
+                icon-only
+                size="xsmall"
+                color="secondary"
+                border-radius="full">
+                <bolt-icon name="close" size="small" slot="after" />
+              </bolt-button>
             </span>
             <span className={`c-${bolt.namespace}-video__close-button-text`}>
-              {closeButtonText}
+              <bolt-button size="small" color="text">
+                {closeButtonText}
+              </bolt-button>
             </span>
-          </a>
-          }
+          </div>
+        )}
       </span>
-      );
-    }
+    );
   }
 }
 
-// BoltVideoClass.globalErrors = [];
-//BoltVideoClass.props = defaults;
+export default BoltVideo;
 
-
-
-
-// won't fire before a previous event is complete.
-// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function () {
-  function throttle(type, name, obj) {
-    obj = obj || window;
-    let running = false;
-
-    function func() {
-      if (running) { return; }
-      running = true;
-      requestAnimationFrame(function () {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    }
-    obj.addEventListener(type, func);
-  }
-
-  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-  // such as scroll.
-  throttle('resize', 'optimizedResize');
-})();
+export { BoltVideo };

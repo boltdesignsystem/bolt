@@ -1,0 +1,23 @@
+{% extends "@bolt/form.twig" %}
+
+{% set children %}
+
+  {# TODO: Add full support for inline fields, then rename this file to remove the leading underscore #}
+  <div style="display: inline-block;">
+    {% include "@pl/form-element-demo-input-element.twig" with {
+      title: "Email Address",
+      inputAttributes: {
+        placeholder: "Enter Email Address",
+        required: true,
+        type: "email"
+      },
+      labelDisplayType: "floating"
+    } only %}
+  </div>
+
+  {% include "@bolt/form-button.twig" with {
+    text: "Sign up now",
+    tag: "submit"
+  } only %}
+
+{% endset %}

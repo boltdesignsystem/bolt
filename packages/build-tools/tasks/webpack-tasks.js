@@ -1,169 +1,120 @@
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
+const express = require('express');
+const browserSync = require('browser-sync');
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const chalk = require('chalk');
+const { handleRequest } = require('@bolt/api');
 const createWebpackConfig = require('../create-webpack-config');
-const formatWebpackMessages = require('../utils/formatWebpackMessages');
-const events = require('../utils/events');
-const log = require('../utils/log');
 const { getConfig } = require('../utils/config-store');
-const ora = require('ora');
-const { promisify } = require('util');
-const fs = require('fs');
-const writeFile = promisify(fs.writeFile);
-const path = require('path');
-const timer = require('../utils/timer');
+const { boltWebpackMessages } = require('../utils/webpack-helpers');
 
-const config = getConfig();
-const webpackConfig = createWebpackConfig(config);
+let boltBuildConfig;
 
-function compile() {
+async function compile(customWebpackConfig) {
+  boltBuildConfig = boltBuildConfig || (await getConfig());
+  const webpackConfig =
+    customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
+
   return new Promise((resolve, reject) => {
-    const webpackSpinner = ora(chalk.blue('Building WebPack bundle...')).start();
-    const startTime = timer.start();
-    const spinFailed = () => webpackSpinner.fail(chalk.red('Building WebPack Failed'));
-    if (config.webpackStats) {
-      webpackConfig.profile = true;
-      webpackConfig.parallelism = 1;
-    }
-    webpack(webpackConfig).run(async (err, stats) => {
+    const compiler = boltWebpackMessages(webpack(webpackConfig));
+    compiler.run((err, stats) => {
       if (err) {
-        spinFailed();
         return reject(err);
+      } else {
+        return resolve();
       }
-      const messages = formatWebpackMessages(stats.toJson({}, true));
-      if (messages.errors.length) {
-        spinFailed();
-        // Only keep the first error. Others are often indicative
-        // of the same problem, but confuse the reader with noise.
-        if (messages.errors.length > 1) {
-          messages.errors.length = 1;
-        }
-        const prettyError = messages.errors.join('\n\n');
-
-        return reject(config.verbosity > 2 ? new Error(prettyError) : prettyError);
-      }
-      webpackSpinner.succeed(chalk.green(`Built WebPack bundle in ${timer.end(startTime)}`));
-      let output;
-      // Stats config options: https://webpack.js.org/configuration/stats/
-      output = stats.toString({
-        chunks: false,  // Makes the build much quieter
-        colors: true,   // Shows colors in the console
-        modules: false, // Hides built modules making output less verbose
-      });
-
-      if (messages.warnings.length) {
-        console.log(chalk.yellow('Compiled with warnings.\n'));
-        console.log(messages.warnings.join('\n\n'));
-        console.log(
-          '\nSearch for the ' +
-          chalk.underline(chalk.yellow('keywords')) +
-          ' to learn more about each warning.',
-        );
-        console.log(
-          'To ignore, add ' +
-          chalk.cyan('// eslint-disable-next-line') +
-          ' to the line before.\n',
-        );
-      }
-
-
-      if (config.verbosity > 2) {
-        console.log('---');
-        console.log(output);
-        console.log('===\n');
-      }
-
-      if (config.webpackStats) {
-        const statsFilePath = path.join(config.buildDir, 'webpack-stats.json');
-        await writeFile(statsFilePath, JSON.stringify(stats.toJson(), null, '  '));
-        log.info(`Wrote WebPack stats json file to "${path.relative(process.cwd(), statsFilePath)}"`);
-      }
-
-      // log.taskDone('build: webpack');
-      return resolve(output);
     });
   });
-
 }
 
 compile.description = 'Compile Webpack';
 compile.displayName = 'webpack:compile';
 
-function watch() {
+async function watch(customConfig) {
+  boltBuildConfig = boltBuildConfig || (await getConfig());
+  const webpackConfig =
+    customConfig || (await createWebpackConfig(boltBuildConfig));
+
   return new Promise((resolve, reject) => {
-    const webpackSpinner = ora(chalk.blue('Watch triggered WebPack re-bundle...'));
-    let startTime;
-    const spinFailed = () => webpackSpinner.fail(chalk.red('Watch triggered WebPack Failed'));
-
-    const compiler = webpack(webpackConfig);
-
-    // Fired when a watch triggers a compile
-    compiler.plugin('compile', () => {
-      webpackSpinner.start();
-      startTime = timer.start();
-    });
+    const compiler = boltWebpackMessages(webpack(webpackConfig));
 
     compiler.watch({
       // https://webpack.js.org/configuration/watch/#watchoptions
       aggregateTimeout: 300,
-    }, (err, stats) => {
-      if (err) {
-        spinFailed();
-        return reject(err);
-      }
-
-      const messages = formatWebpackMessages(stats.toJson({}, true));
-      if (messages.errors.length) {
-        spinFailed();
-        // Only keep the first error. Others are often indicative
-        // of the same problem, but confuse the reader with noise.
-        if (messages.errors.length > 1) {
-          messages.errors.length = 1;
-        }
-        const prettyError = messages.errors.join('\n\n');
-        console.log(config.verbosity > 2 ? new Error(prettyError) : prettyError);
-      } else {
-        // Stats config options: https://webpack.js.org/configuration/stats/
-        const output = stats.toString({
-          chunks: false,  // Makes the build much quieter
-          colors: true,   // Shows colors in the console
-          modules: false, // Hides built modules making output less verbose
-          version: false,
-        });
-
-        webpackSpinner.succeed(chalk.green(`Watch rebuilt WebPack bundle in ${timer.end(startTime)}`));
-        if (config.verbosity > 3) {
-          console.log('---');
-          console.log(output);
-          console.log('===\n');
-        }
-        events.emit('reload');
-      }
-
     });
   });
-
 }
 
 watch.description = 'Watch & fast re-compile Webpack';
 watch.displayName = 'webpack:watch';
 
+async function server(customWebpackConfig) {
+  const boltBuildConfig = await getConfig();
+  const useHotMiddleware =
+    Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1
+      ? false
+      : true;
 
-function server() {
+  const webpackConfig =
+    customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
+
+  const browserSyncFileToWatch = [
+    `${boltBuildConfig.wwwDir}/**/*.css`,
+    `${boltBuildConfig.wwwDir}/**/*.html`,
+  ];
+
+  if (useHotMiddleware === false) {
+    browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
+  }
+
   return new Promise((resolve, reject) => {
+    const compiler = boltWebpackMessages(webpack(webpackConfig));
+    const server = express();
 
-    // Add HMR scripts required to entrypoint
-    if (webpackConfig.devServer.hot && !config.prod) {
-      webpackConfig.entry['bolt-global'].unshift('webpack-dev-server/client?http://localhost:8080/', 'webpack/hot/dev-server');
+    server.use(webpackDevMiddleware(compiler, webpackConfig[0].devServer));
+
+    // Don't use hot middleware when there's more than 1 language setup in the config -- workaround to prevent infinite loops when doing local dev
+    if (useHotMiddleware) {
+      server.use(
+        webpackHotMiddleware(compiler, {
+          log: false,
+          quiet: true,
+          noInfo: true,
+          logLevel: 'silent',
+          reload: true,
+        }),
+      );
+    } else {
+      console.log(
+        chalk.yellow(
+          '\n⚠️  Warning: disabling webpackHotMiddleware (HMR) to avoid infinite loops... falling back to a simple page reload. \n   To re-enable HMR, update your .boltrc config to only compile for one language at a time while doing local dev work.\n',
+        ),
+      );
     }
 
-    new WebpackDevServer(webpack(webpackConfig), webpackConfig.devServer).listen(webpackConfig.devServer.port, 'localhost', function (err) {
-      if (err) {
-        return reject(err);
-      }
-      return resolve();
-    });
+    server.use(express.static(boltBuildConfig.wwwDir));
+    server.use('/api', handleRequest);
 
+    server.listen(boltBuildConfig.port, '0.0.0.0', function onStart(err) {
+      if (err) {
+        console.log(err);
+      }
+
+      browserSync({
+        proxy: 'localhost:' + boltBuildConfig.port,
+        logLevel: 'info',
+        ui: false,
+        notify: false,
+        open: boltBuildConfig.open,
+        logFileChanges: false,
+        reloadOnRestart: true,
+        watchOptions: {
+          ignoreInitial: true,
+        },
+        files: browserSyncFileToWatch,
+      });
+    });
   });
 }
 server.description = 'Webpack Dev Server';

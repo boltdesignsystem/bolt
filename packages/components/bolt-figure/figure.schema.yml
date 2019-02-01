@@ -1,20 +1,32 @@
-$schema: http://json-schema.org/draft-04/schema#
 title: Figure
 type: object
 properties:
-  image:
+  attributes:
     type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
+  media:
+    type: object
+    description: Media accepts either image, icon, video, or table.
     properties:
-      src:
-        type: string
-        description: Source url.
-      lazyLoad:
-        type: boolean
-        description: To speed performace, lazyload will load images as needed.
-        default: true
-        enum:
-          - true
-          - false
+      image:
+        type: object
+        description: A Bolt image object.
+        ref: '@bolt-components-image/image.schema.yml'
+      icon:
+        type: object
+        description: A Bolt icon object.
+        ref: '@bolt-components-icon/icon.schema.yml'
+      video:
+        type: object
+        description: A Bolt video object.
+        ref: '@bolt-components-video/video.schema.yml'
+      table:
+        type: object
+        description: A Bolt table object.
+        ref: '@bolt-components-table/table.schema.yml'
   caption:
-    description: Figure caption.
-    type: string
+    type: [string, object, array]
+    description: Caption for the figure.
+  content:
+    title: DEPRECATED.
+    description: Figure contains no content. Only media and caption.

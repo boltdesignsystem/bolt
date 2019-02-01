@@ -1,0 +1,38 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-action-blocks/action-blocks.twig" with {
+  contentItems: [
+    {
+      text: "Item 1",
+      url: "#!",
+      icon: {
+        name: "icon-name",
+        size: "large",
+        background: "circle"
+      }
+    },
+    {
+      text: "Item 2",
+      url: "#!",
+      icon: {
+        name: "icon-name",
+        size: "large",
+        background: "circle"
+      }
+    },
+    {
+      text: "Item 3",
+      url: "#!",
+      icon: {
+        name: "icon-name",
+        size: "large",
+        background: "circle"
+      }
+    }
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "action-blocks",
+  usage: usage
+} only %}

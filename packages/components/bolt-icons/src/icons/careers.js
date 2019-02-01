@@ -1,12 +1,13 @@
-import { h } from '@bolt/core';
+import { h } from '@bolt/core/renderers';
 
 export const Careers = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
-    <svg width={size} height={size} {...otherProps} viewBox="0 0 32 32">
+    <svg data-name="Layer 1" {...otherProps} viewBox="0 0 32 30">
       <path
-        d="M28 29H4a2 2 0 0 1-2-1.999v-12h28v12A2 2 0 0 1 28 29zM4 7.001h24A2 2 0 0 1 30 9v4H2V9a2 2 0 0 1 2-1.999zm8-3A1 1 0 0 1 13 3h6a1 1 0 0 1 1 1.001V5h-8v-.999zM28 5h-6V2a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v3H4a4 4 0 0 0-4 4v18.001a4 4 0 0 0 4 4h24a4 4 0 0 0 4-4V9a4 4 0 0 0-4-4z"
         fill={bgColor}
         fill-rule="evenodd"
+        d="M28 28H4a2 2 0 0 1-2-2V14h28v12a2 2 0 0 1-2 2zM4 6h24a2 2 0 0 1 2 2v4H2V8a2 2 0 0 1 2-2zm8-3a.94.94 0 0 1 1-1h6a.94.94 0 0 1 1 1v1h-8zm16 1h-6V1a.94.94 0 0 0-1-1H11a.94.94 0 0 0-1 1v3H4a4 4 0 0 0-4 4v18a4 4 0 0 0 4 4h24a4 4 0 0 0 4-4V8a4 4 0 0 0-4-4z"
+        data-name="Fill-1"
       />
     </svg>
   );

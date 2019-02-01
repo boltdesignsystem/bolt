@@ -43,9 +43,6 @@ npm install @bolt/settings-font-sizes
 #### To calculate line-height n pixels: 
 `Pixel line-height = font size in px × unitless line height`
 
-
-> **[Deprecation Notice]:** Coming in from PegaKit? Take note that Bolt’s t-shirt based font size no longer include a  `base` font size in order to standardize how we name things across the board. As a rule of thumb, what was once the default `base`  font size is now  `medium`  and any other sizes medium or larger would need to increase by one shirt size.  
-
 - - - -
 
 ## Getting Started
@@ -107,11 +104,11 @@ By defining our font sizes in REMs and by using unit-less line-heights, Bolt’s
 html {
   font-size: $bolt-font-size--min-px; /* [1] */
 
-  @include respond-to(medium) {
+  @include bolt-mq(medium) {
     font-size: calc(#{$font-size--min-px} + (#{$font-size--max - $font-size--min} * (100vw - #{$breakpoint--min}) / #{strip-unit($breakpoint--max) - strip-unit($breakpoint--min)})); /* [2] */
   }
 
-  @include respond-to(xlarge) {
+  @include bolt-mq(xlarge) {
     font-size: $font-size--max-px; /* [3] */
   }
 }

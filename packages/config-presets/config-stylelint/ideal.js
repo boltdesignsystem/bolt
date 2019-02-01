@@ -7,17 +7,14 @@ module.exports = {
   plugins: [
     'stylelint-order',
     'stylelint-scss',
-    'stylelint-declaration-block-order',
     'stylelint-declaration-use-variable',
     'stylelint-selector-bem-pattern',
     'stylelint-declaration-strict-value',
   ],
   rules: {
     'scale-unlimited/declaration-strict-value': [
-      [
-        '/color/',
-        'font-size',
-      ], {
+      ['/color/', 'font-size'],
+      {
         ignoreKeywords: ['currentColor', 'transparent', 'inherit'],
       },
     ],
@@ -28,33 +25,41 @@ module.exports = {
     //   'font-size',
     //   'font-weight'
     // ],
-    'plugin/declaration-block-order': [
-      'custom-properties',
-      {
-        type: 'at-rule',
-        name: 'include',
-        hasBlock: false,
-      },
-      'declarations',
-      {
-        type: 'at-rule',
-        name: 'include',
-        hasBlock: true,
-      },
-      'rules',
-    ],
+
+    // @todo: replace with another plugin -- this one is deprecated!
+    // 'plugin/declaration-block-order': [
+    //   'custom-properties',
+    //   {
+    //     type: 'at-rule',
+    //     name: 'include',
+    //     hasBlock: false,
+    //   },
+    //   'declarations',
+    //   {
+    //     type: 'at-rule',
+    //     name: 'include',
+    //     hasBlock: true,
+    //   },
+    //   'rules',
+    // ],
 
     'color-hex-case': 'lower',
-    'color-named': ['never', {
-      ignore: ['inside-function'],
-    }],
+    'color-named': [
+      'never',
+      {
+        ignore: ['inside-function'],
+      },
+    ],
     'color-no-invalid-hex': true,
     'color-no-hex': true,
     'selector-max-id': 0,
     'selector-class-pattern': '',
-    'selector-no-qualifying-type': [true, {
-      ignore: ['attribute'],
-    }],
+    'selector-no-qualifying-type': [
+      true,
+      {
+        ignore: ['attribute'],
+      },
+    ],
     'scss/selector-no-redundant-nesting-selector': true,
     'scss/at-extend-no-missing-placeholder': true,
     'scss/dollar-variable-no-missing-interpolation': true,
@@ -62,9 +67,11 @@ module.exports = {
     'selector-max-class': 2,
     'plugin/selector-bem-pattern': {
       preset: 'bem',
-      componentName: '(((o-|c-|u-|t-|s-|is-|has-|no-|_|js-|qa-)(bolt-)[a-z0-9]+(?!-$)-?)+)',
+      componentName:
+        '(((o-|c-|u-|t-|s-|is-|has-|no-|_|js-|qa-)(bolt-)[a-z0-9]+(?!-$)-?)+)',
       componentSelectors: {
-        initial: "\\.{componentName}(((__|--)(([a-z0-9\\[\\]'=]+(?!-$)-?)+))+)?$",
+        initial:
+          "\\.{componentName}(((__|--)(([a-z0-9\\[\\]'=]+(?!-$)-?)+))+)?$",
       },
       // componentSelectors: '^\\.ns-{componentName}(?:-[a-zA-Z]+)?$'
       // ignoreSelectors: [
@@ -73,9 +80,12 @@ module.exports = {
       //   '.*\\.lt-ie.*'
       // ]
     },
-    'scss/dollar-variable-pattern': ['^(bolt-|_bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$', {
-      ignore: ['local'],
-    }],
+    'scss/dollar-variable-pattern': [
+      '^(bolt-|_bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
+      {
+        ignore: ['local'],
+      },
+    ],
     'scss/percent-placeholder-pattern': '^(bolt-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$',
     'scss/at-function-pattern': '^(bolt-|_bolt-)[a-z0-9\\-]+$',
     'scss/at-mixin-pattern': '^(bolt-|_bolt-)[a-z0-9\\-]+$',
@@ -85,17 +95,22 @@ module.exports = {
     //   "filter": "^\\."
     // }],
 
-
-    'at-rule-empty-line-before': ['always', {
-      ignore: ['after-comment', 'blockless-after-blockless', 'inside-block'],
-    }],
+    'at-rule-empty-line-before': [
+      'always',
+      {
+        ignore: ['after-comment', 'blockless-after-blockless', 'inside-block'],
+      },
+    ],
     'no-duplicate-selectors': true,
     'at-rule-name-case': 'lower',
     'at-rule-name-space-after': 'always-single-line',
     'at-rule-semicolon-newline-after': 'always',
-    'block-closing-brace-newline-after': ['always', {
-      ignoreAtRules: ['if', 'else', 'elseif'],
-    }],
+    'block-closing-brace-newline-after': [
+      'always',
+      {
+        ignoreAtRules: ['if', 'else', 'elseif'],
+      },
+    ],
     'block-closing-brace-newline-before': 'always-multi-line',
     'block-closing-brace-space-before': 'always-single-line',
     'block-no-empty': true,
@@ -105,52 +120,178 @@ module.exports = {
     'color-hex-case': 'lower',
     'color-hex-length': 'short',
     'color-no-invalid-hex': true,
-    'comment-empty-line-before': ['always', {
-      except: ['first-nested'],
-      ignore: ['stylelint-commands'],
-    }],
+    'comment-empty-line-before': [
+      'always',
+      {
+        except: ['first-nested'],
+        ignore: ['stylelint-commands'],
+      },
+    ],
     'comment-whitespace-inside': 'always',
     'declaration-bang-space-after': 'never',
     'declaration-bang-space-before': 'always',
     'declaration-block-no-shorthand-property-overrides': true,
     'order/properties-order': [
+      'content',
+
+      // Display
       'display',
+      'flex',
       'flex-basis',
-      'flex-shrink',
+      'flex-direction',
+      'flex-flow',
       'flex-grow',
+      'flex-shrink',
+      'flex-wrap',
+      'justify-content',
+      'align-content',
+      'align-items',
+      'align-self',
+      'place-content',
+      'order',
+      'box-sizing',
+      'appearance',
       'visibility',
+      'opacity',
 
+      // Position
       'position',
-      'z-index',
-
       'top',
       'right',
       'bottom',
       'left',
       'float',
       'clear',
+      'transform',
+      'z-index',
 
+      // Size
       'width',
-      'height',
       'min-width',
-      'min-height',
       'max-width',
+      'height',
+      'min-height',
       'max-height',
-      'overflow-x',
-      'overflow-y',
+      'overflow',
 
+      // Space
       'margin',
+      'margin-top',
+      'margin-right',
+      'margin-bottom',
+      'margin-left',
       'padding',
+      'padding-top',
+      'padding-right',
+      'padding-bottom',
+      'padding-left',
 
-
-      'text-align',
-      'color',
-      'cursor',
+      // Text
       'list-style',
+      'list-style-image',
+      'list-style-position',
+      'list-style-type',
+      'counter-increment',
+      'counter-reset',
+      'color',
+      'line-height',
+      'text-align',
+      'text-indent',
       'text-decoration',
-      'text-shadow',
       'text-transform',
+      'text-shadow',
+      'letter-spacing',
       'vertical-align',
+      'cursor',
+      'pointer-events',
+      'user-select',
+
+      // Font
+      'font',
+      'font-family',
+      'font-style',
+      'font-size',
+      'font-size-adjust',
+      'font-weight',
+      'font-feature-settings',
+      'font-kerning',
+      'font-stretch',
+      'font-synthesis',
+      'font-optical-sizing',
+      'font-language-override',
+      'font-variant',
+      'font-variant-alternates',
+      'font-variant-caps',
+      'font-variant-east-asian',
+      'font-variant-ligatures',
+      'font-variant-numeric',
+      'font-variant-position',
+      'font-variation-settings',
+
+      // Border
+      'border',
+      'border-top',
+      'border-top-color',
+      'border-top-style',
+      'border-top-width',
+      'border-top-right-radius',
+      'border-top-left-radius',
+      'border-right',
+      'border-right-color',
+      'border-right-style',
+      'border-right-width',
+      'border-bottom',
+      'border-bottom-color',
+      'border-bottom-style',
+      'border-bottom-width',
+      'border-bottom-right-radius',
+      'border-bottom-left-radius',
+      'border-left',
+      'border-left-color',
+      'border-left-style',
+      'border-left-width',
+      'border-radius',
+      'border-width',
+      'border-style',
+      'border-color',
+      'border-image',
+      'border-image-outset',
+      'border-image-repeat',
+      'border-image-slice',
+      'border-image-source',
+      'border-image-width',
+      'box-shadow',
+      'outline',
+
+      // Background
+      'background',
+      'background-attachment',
+      'background-clip',
+      'background-color',
+      'background-image',
+      'background-origin',
+      'background-position',
+      'background-position-x',
+      'background-position-y',
+      'background-repeat',
+      'background-size',
+      'backdrop-filter',
+
+      // Advanced
+      'filter',
+      'clip',
+      'backface-visibility',
+      'will-change',
+      'transition',
+      'animation',
+      'animation-delay',
+      'animation-direction',
+      'animation-duration',
+      'animation-fill-mode',
+      'animation-iteration-count',
+      'animation-name',
+      'animation-play-state',
+      'animation-timing-function',
     ],
     'declaration-block-semicolon-newline-after': 'always-multi-line',
     'declaration-block-semicolon-space-after': 'always-single-line',
@@ -172,21 +313,22 @@ module.exports = {
     'function-parentheses-space-inside': 'never-single-line',
     'function-url-quotes': 'always',
     'function-whitespace-after': 'always',
-    indentation: [2, {
-      ignore: ['inside-parens', 'param', 'value'],
-    }],
+    indentation: [
+      2,
+      {
+        ignore: ['inside-parens', 'param', 'value'],
+      },
+    ],
     'keyframe-declaration-no-important': true,
     'length-zero-no-unit': true,
     'max-empty-lines': 4,
-    'max-nesting-depth': [1, {
-      ignore: ['blockless-at-rules'],
-      ignoreAtRules: [
-        'media',
-        'function',
-        'if',
-        'for',
-      ],
-    }],
+    'max-nesting-depth': [
+      1,
+      {
+        ignore: ['blockless-at-rules'],
+        ignoreAtRules: ['media', 'function', 'if', 'for'],
+      },
+    ],
     'media-feature-colon-space-after': 'always',
     'media-feature-colon-space-before': 'never',
     'media-feature-parentheses-space-inside': 'never',
@@ -204,23 +346,32 @@ module.exports = {
     'number-leading-zero': 'always',
     'number-no-trailing-zeros': true,
     'property-case': 'lower',
-    'property-no-vendor-prefix': [true, {
-      ignoreProperties: [
-        'grid-rows',
-        'grid-columns',
-        'grid-column',
-        'grid-column-span',
-        'grid-row',
-        'grid-row-span',
-      ],
-    }],
-    'value-no-vendor-prefix': [true, {
-      ignoreValues: ['grid'],
-    }],
-    'rule-empty-line-before': ['always-multi-line', {
-      except: ['first-nested'],
-      ignore: ['after-comment'],
-    }],
+    'property-no-vendor-prefix': [
+      true,
+      {
+        ignoreProperties: [
+          'grid-rows',
+          'grid-columns',
+          'grid-column',
+          'grid-column-span',
+          'grid-row',
+          'grid-row-span',
+        ],
+      },
+    ],
+    'value-no-vendor-prefix': [
+      true,
+      {
+        ignoreValues: ['grid'],
+      },
+    ],
+    'rule-empty-line-before': [
+      'always-multi-line',
+      {
+        except: ['first-nested'],
+        ignore: ['after-comment'],
+      },
+    ],
     'selector-attribute-brackets-space-inside': 'never',
     'selector-attribute-operator-space-after': 'never',
     'selector-attribute-operator-space-before': 'never',
@@ -236,9 +387,11 @@ module.exports = {
     'selector-pseudo-element-colon-notation': 'single',
     'selector-pseudo-element-no-unknown': true,
     'selector-type-case': 'lower',
-    'selector-type-no-unknown': [true, {
-      ignore: ['custom-elements'],
-    },
+    'selector-type-no-unknown': [
+      true,
+      {
+        ignore: ['custom-elements'],
+      },
     ],
     'shorthand-property-no-redundant-values': true,
     'string-no-newline': null,

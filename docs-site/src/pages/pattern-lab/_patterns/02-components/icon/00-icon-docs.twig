@@ -1,0 +1,12 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "add-open",
+  background: "circle",
+  size: "medium",
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "icon",
+  usage: usage
+} only %}
