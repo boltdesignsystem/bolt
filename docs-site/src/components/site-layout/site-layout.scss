@@ -5,6 +5,19 @@ $bds-sidebar-width: 320px;
 
 .c-bds-layout {
   grid-template-columns: auto 1fr auto;
+  display: grid;
+  min-height: 100vh;
+
+  &--parent:not(.c-bds-layout--has-sidebar) {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    height: auto;
+    min-height: 100vh;
+  }
   
   @include bolt-mq(medium) {
     &.c-bds-layout--has-sidebar {
@@ -20,6 +33,11 @@ $bds-sidebar-width: 320px;
   justify-self: stretch;
   grid-column-start: 1;
   grid-column-end: 1;
+  margin: 0 auto;
+
+  .c-bds-layout__content--has-sidebar & {
+    max-width: 900px;
+  }
 }
 
 .c-bds-layout__title {
@@ -35,6 +53,8 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__header {
+  position: relative;
+  position: sticky;
   grid-column-start: 1;
   grid-column-end: 3;
   z-index: bolt-z-index('modalBG') + 20;
@@ -112,7 +132,7 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__sidebar {
-  @include bolt-padding-top(large);
+  @include bolt-margin-top(large);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -191,8 +211,13 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__content {
+  .c-bds-layout--parent:not(.c-bds-layout--has-sidebar) & {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  /* autoprefixer: ignore next */
   display: grid;
-  overflow: auto;
   grid-column-start: 1;
   grid-column-end: 3;
   grid-template-columns: auto;
@@ -253,8 +278,8 @@ $bds-sidebar-width: 320px;
   }
 
   @include bolt-mq(medium) {
-    -ms-grid-columns: 1fr 80% 20% 1fr; /* [1] */
-    grid-template-columns: 1fr 80% 20% 1fr;
+    -ms-grid-columns: 1fr 75% 25% 1fr; /* [1] */
+    grid-template-columns: 1fr 75% 25% 1fr;
   }
 }
 
@@ -318,6 +343,7 @@ $bds-sidebar-width: 320px;
 }
   
 .c-bds-docs__page-nav {
+  @include bolt-margin-bottom(large);
   -ms-grid-row: 3; /* [1] */
   -ms-grid-row-span: 1; /* [1] */
   grid-row: 3/span 1;
@@ -329,6 +355,8 @@ $bds-sidebar-width: 320px;
   text-align: right;
 
   @include bolt-mq(medium) {
+    @include bolt-padding-right(medium);
+
     -ms-grid-row: 4; /* [1] */
     -ms-grid-row-span: 1; /* [1] */
     grid-row: 4/span 1;

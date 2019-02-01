@@ -5,11 +5,9 @@ export const AuthorTitle = elem => {
   if (slots['author-title'] || props.authorTitle) {
     return html`
       <bolt-text tag="cite" font-size="xsmall" color="theme-headline">
-        ${
-          elem.slots['author-title']
-            ? elem.slot('author-title')
-            : props.authorTitle
-        }
+        ${elem.slots['author-title']
+          ? elem.slot('author-title')
+          : props.authorTitle}
       </bolt-text>
     `;
   }

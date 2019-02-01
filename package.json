@@ -43,57 +43,61 @@
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
     "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
     "test:e2e:full-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
+    "test:e2e:full-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
     "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
-    "test:e2e:full": "./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11 $NOW_URL",
-    "serve": "node server.js",
+    "test:e2e:full": "./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
+    "serve": "cd server && node index.js",
     "postinstall": "yarn run setup:php",
     "postbootstrap": "node scripts/monorepo-tests.js",
-    "commit": "git-cz",
+    "cz": "git-cz",
     "release:rc": "./scripts/release/rc-release.sh",
-    "release": "./scripts/release/release.sh",
-    "_verdaccio": "rm -rf scripts/release/verdaccio && npm run config:verdaccio & npm run start:verdaccio",
-    "_start:verdaccio": "verdaccio --listen 4000 -c scripts/release/verdaccio.yml",
-    "_config:verdaccio": "wait-on http://localhost:4000/ && npx npm-auth-to-token@1.0.0 -u 'bolt' -p 'bolt' -e 'bolt@boltdesignsystem.com' -r http://localhost:4000 && rm -rf scripts/release/verdaccio/storage/@bolt"
-  },
-  "dependencies": {
-    "ci-utils": "^0.5.0",
-    "jest": "^23.6.0",
-    "jest-serializer-html": "^5.0.0",
-    "jsonwebtoken": "^8.4.0",
-    "npm-run-all": "^4.1.5",
-    "sassdoc": "^2.5.0",
-    "sleep-promise": "^8.0.1",
-    "verdaccio": "^3.10.1",
-    "wait-on": "^3.2.0"
+    "release": "./scripts/release/release.sh"
   },
   "husky": {
     "hooks": {
       "pre-push": "yarn run lint",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commitmsg": "commitlint -E $GIT_PARAMS"
     }
   },
   "config": {
     "commitizen": {
-      "path": "cz-lerna-changelog"
+      "path": "./node_modules/@instructure/cz-lerna-changelog"
     }
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "devDependencies": {
-    "@commitlint/cli": "^7.2.1",
-    "@commitlint/config-conventional": "^7.1.2",
-    "@commitlint/config-lerna-scopes": "^7.2.1",
-    "commitizen": "^3.0.4",
-    "cz-lerna-changelog": "^2.0.1",
+    "@commitlint/cli": "^7.4.0",
+    "@commitlint/config-conventional": "^7.3.1",
+    "@instructure/cz-lerna-changelog": "^5.40.0",
+    "commitizen": "^3.0.5",
+    "cz-conventional-changelog": "^2.1.0",
     "editorconfig-checker": "^1.3.3",
-    "express": "^4.16.3",
-    "git-semver-tags": "^2.0.0",
+    "git-semver-tags": "^2.0.2",
     "husky": "^1.3.1",
-    "lerna": "^3.8.4",
-    "nightwatch": "^1.0.8",
-    "node-fetch": "^2.2.0",
+    "inquirer": "^6.2.1",
+    "semantic-release": "^15.13.3"
+  },
+  "dependencies": {
+    "ci-utils": "^0.5.0",
+    "express": "^4.16.4",
+    "jest-serializer-html": "^6.0.0",
+    "jest": "^24.0.0",
+    "jsonwebtoken": "^8.4.0",
+    "lerna": "^3.10.7",
+    "nightwatch": "^1.0.18",
+    "node-fetch": "^2.3.0",
     "now": "latest",
+    "npm-run-all": "^4.1.5",
+    "os-name": "^3.0.0",
     "os": "^0.1.1",
-    "os-name": "^2.0.1",
+    "sassdoc": "^2.5.1",
+    "shelljs": "^0.8.3",
+    "sleep-promise": "^8.0.1",
     "url-exists": "^1.0.3",
     "yaml-lint": "^1.2.4"
   },
@@ -103,6 +107,7 @@
       "docs-site/src/components/*",
       "packages/uikit-workshop",
       "packages/build-tools",
+      "packages/api",
       "packages/build-tools/plugins/*",
       "packages/components/*",
       "packages/drupal-twig-extensions",
