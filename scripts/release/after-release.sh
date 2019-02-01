@@ -8,7 +8,11 @@ CURRENT_VERSION=`git describe --tags --abbrev=0`
 git push origin :refs/tags/$CURRENT_VERSION
 node scripts/release/update-php-package-versions.js
 
-git add .
+find . -name '.incache' -exec rm -rf {} + # clear .incache file when doing a release
+npm run setup
+npm run build # regenerate the whole site so dropdown + cached result is always up to date
+git add . # add to version control
+
 git commit --amend --no-edit
 git tag -fa $CURRENT_VERSION -m $CURRENT_VERSION
 git push --no-verify
