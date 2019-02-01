@@ -17,7 +17,7 @@
 
 ## Background: medium breakpoint
 1. Given I am viewing the URL /pattern-lab/?p=components-navbar-docs
-1. And the viewer is between the medium and large breakpoints (800px - 1000px)
+1. And the viewer is between the medium and large breakpoints (~800px to ~1000px)
 
 ### Scenario: medium initial state
 1. Then I should should see at least one nav link
@@ -35,7 +35,7 @@
 
 ## Background: xxxlarge breakpoint
 1. Given I am viewing the URL /pattern-lab/?p=components-navbar-docs
-1. And the viewer is wider than the xxxlarge breakpoint (1920px)
+1. And the viewer is wider than the xxxlarge breakpoint (~1920px)
 
 ### Scenario: xxxlarge initial state
 1. Then I should should see all the nav links
