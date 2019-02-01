@@ -329,7 +329,7 @@ async function setGithubAppSauceResults(sauceResults) {
                 return {
                   image_url: screenshot,
                   alt: name,
-                  caption: `${i}/${
+                  caption: `${i + 1}/${
                     screenshots.length
                   }: ${testName} - ${browser} ${browserVer} ${os}`,
                 };
