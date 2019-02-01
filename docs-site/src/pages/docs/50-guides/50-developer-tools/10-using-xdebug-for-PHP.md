@@ -54,32 +54,82 @@ Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
    with Zend OPcache v7.2.12, Copyright (c) 1999-2018, by Zend Technologies
 ```
 
-## Part II. Configure Your IDE for Xdebug
+## Part II. Configure and run Xdebug in your IDE
 
 Note: Many IDEs besides PHPStorm and VS Code support Xdebug-- refer to their documentation for specifics, but the steps
 below should still provide helpful high level guidance on what you're doing.
 
 ### PHPStorm
 
-Generic docs can be found at https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html#integrationWithProduct.
-Below are quickstart/Pattern Lab-specific instructions:
+**Step 1.** Configure the PHP executable
 
-**Step 1.** In PHPStorm preferences, go to `Languages & Frameworks` > `PHP`
-
+- In PHPStorm preferences, go to `Languages & Frameworks` > `PHP`
 - In the CLI Interpreter box, point to your system's PHP executable (i.e. the same version of PHP that will be used
   when you compile Pattern Lab). If it doesn't sppear in the dropdown, click the `...` to the right of the form
-  field to manually enter the path, which you can find it in terminal with:
+  field to manually enter the path, which you can find in terminal with:
   ```bash
   which php
   ```
-  ![PHPStorm config](/images/docs/debugging-xdebug-phpstorm-config.png)
 - Confirm that it says "Debugger: Xdebug [version]" and not "Debugger: Not installed" (in which case something went
-  wrong with part I).
+  wrong in part I).
 
-**Step 2.** In PHPStorm preferences, go to `Languages & Frameworks` > `PHP` > `Debug`
+![PHPStorm config](/images/docs/debugging-xdebug-phpstorm-config.png)
 
-- Confirm that the `Debug Port` in the `Xdebug` section is 9000 (or whatever you configured the port to be in part I.
-  Unless you have a good reason, leave it as 9000).
+
+**Step 2.** Create a Run/Debug configuration
+
+- In PHPStorm's `Edit` menu, go to `Edit Configurations...`.
+- Click the plus sign to add a new debug configuration and select `PHP Script` in the dropdown
+  - In the `Name` field, put `Pattern Lab`
+  - In the `File` field, add the absolute path to `docs-site/core/console`
+  - In the `Arguments` field, add `--generate`
+  - In the `Interpreter Options` field, add `-dmemory_limit=4048M -dzend_extension="/path/to/xdebug.so"` (replace the path to xdebug.so)
+  - In the `Custom working directory` field, add the absolute path to the `docs-site` directory
+
+![Xdebug run config](/images/docs/debugging-xdebug-phpstorm-run-config.png)
+
+Explanation: you're effectively setting up a shell command that will build pattern lab when it runs (remember, the PHP
+code in Pattern Lab is only executed at build time-- when you subsequently load pages in your browser, you're just
+viewing the static files that were created from that build process).   The command will look something like this 
+
+```bash
+/usr/local/bin/php -dxdebug.remote_enable=1 -dxdebug.remote_mode=req -dxdebug.remote_port=9000 -dxdebug.remote_host=127.0.0.1 -dmemory_limit=4048M -dzend_extension=/usr/local/lib/php/pecl/20170718/xdebug.so /Users/dentr1/Sites/bolt/docs-site/core/console --generate
+```
+
+**Step 3.** Set a breakpoint
+
+Open the `docs-site/core/console` PHP file in PHPStorm and set a breakpoint by clicking in the left margin:
+
+![Set breakpoint](/images/docs/debugging-xdebug-phpstorm-breakpoint.png)
+
+(Of course, when you start debugging, you'll set breakpoints in the PHP file you actually want to inspect.  We use
+`docs-site/core/console` here because it is guaranteed to be executed at the beginning of every PL compile).
+
+**Step 4.** Execute your Run/Debug configuration
+
+Click the bug icon in PHPStorm to run pattern lab compile using the debug configuration. If you've done it right,
+execution should pause on the breakpoint you set:
+
+![Paused at breakpoint](/images/docs/debugging-xdebug-phpstorm-pause.png)
+
+**Step 5.** Cleanup
+
+Comment out the xdebug lines you previously added to php.ini.  Since PHP options are now being set at runtime by the
+Run/Debug script you set up in Step 2, you don't need them set globally anymore.  Disabling them will disable xdebug
+when you're not actively debugging, which will improve performance significantly. 
+
+```
+[Xdebug]
+; zend_extension="/path/to/xdebug.so"
+; xdebug.remote_enable=1
+; xdebug.remote_autostart=1
+; xdebug.remote_port="9000"
+```
+
+For more information, see:
+
+- [PHPStorm docs for configuring Xdebug](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html#integrationWithProduct)
+
 
 ### VS Code
 
@@ -89,42 +139,7 @@ Below are quickstart/Pattern Lab-specific instructions:
 - Search the Extensions Marketplace for "PHP Debug" ([this one](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug))
 - Install "PHP Debug" and reload Workspace
 
-## Part III. Setup the Pattern lab build command as a script you can debug
-
-### PHPStorm
-
-**Step 1.** In PHPStorm's `Edit` menu, go to `Edit Configurations...`.
-
-**Step 2.** Click the plus sign to add a new debug configuration and select `PHP Script` in the dropdown
-
-- In the `Name` field, put `Pattern Lab`
-- In the `File` field, add the absolute path to `docs-site/core/console`
-- In the `Arguments` field, add `--generate`
-- In the `Custom working directory` field, add the absolute path to the `docs-site` directory
-
-![Xdebug script](/images/docs/debugging-xdebug-script-configuration.png)
-
-Explanation: you're setting up a terminal command that will execute pattern lab build with the appropriate params for xdebug
-
-```bash
-/usr/local/bin/php -dxdebug.remote_enable=1 -dxdebug.remote_mode=req -dxdebug.remote_port=9000 -dxdebug.remote_host=127.0.0.1 /Users/dentr1/Sites/bolt/docs-site/core/console --generate
-```
-
-**Step 3.** Open the `docs-site/core/console` PHP file in PHPStorm and set a breakpoint
-
-Click in the left margin to set a breakpoint. It should look like this:
-
-![Breakpoint in console](/images/docs/debugging-xdebug-breakpoint-in-console.png)
-
-**Step 4.** Click the bug icon in PHPStorm to run pattern lab compile using the debug configuration you set up
-
-If you've done it right, execution should pause on the breakpoint you set.
-
-![Running script](/images/docs/debugging-xdebug-running.png)
-
-### VS Code
-
-**Step 1.** Configure "PHP Debug" in the Debugger
+**Step 2.** Configure "PHP Debug" in the Debugger
 
 - In VS Code, open the "Debug" pane (Shift-Cmd-D).
 - At the top of the "Debug" pane you will see a little gear icon.
@@ -143,14 +158,14 @@ If you've done it right, execution should pause on the breakpoint you set.
 
 ![Launch.json file](/images/docs/debugging-xdebug-vs-launch.png)
 
-**Step 2.** Set a breakpoint
+**Step 3.** Set a breakpoint
 
 - Open the `docs-site/core/console` PHP file in VS Code
 - Click to the left of the line number on line 18 to set a breakpoint.
 
 ![Set breakpoint](/images/docs/debugging-xdebug-vs-breakpoint.png)
 
-**Step 3.** Test the Debugger
+**Step 4.** Test the Debugger
 
 - Back in the "Debug" pane, next to the little gear icon, you will see a menu and a "play" icon
 - Select "Listen for Debug" from the menu and click "play"
