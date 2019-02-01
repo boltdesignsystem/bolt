@@ -15,10 +15,6 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 class BoltNavPriority extends withLitHtml() {
   static is = 'bolt-nav-priority';
 
-  static get observedAttributes() {
-    return ['is-ready'];
-  }
-
   constructor(self) {
     self = super(self);
     this.activeLink = false;
