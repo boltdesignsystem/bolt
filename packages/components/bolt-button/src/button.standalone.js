@@ -77,13 +77,11 @@ class BoltButton extends BoltAction {
 
           return html`
             <span class="${iconClasses}"
-              >${
-                name in this.slots
-                  ? this.slot(name)
-                  : html`
-                      <slot name="${name}" />
-                    `
-              }</span
+              >${name in this.slots
+                ? this.slot(name)
+                : html`
+                    <slot name="${name}" />
+                  `}</span
             >
           `;
         default:
@@ -94,13 +92,11 @@ class BoltButton extends BoltAction {
 
           return html`
             <span class="${itemClasses}"
-              >${
-                name in this.slots
-                  ? this.slot('default')
-                  : html`
-                      <slot />
-                    `
-              }</span
+              >${name in this.slots
+                ? this.slot('default')
+                : html`
+                    <slot />
+                  `}</span
             >
           `;
       }
