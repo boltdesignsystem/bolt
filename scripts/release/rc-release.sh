@@ -18,7 +18,7 @@ elif [[ $CURRENT_BRANCH != 'next/2.x' && $CURRENT_BRANCH != 'next/1.x' ]]; then
 fi
 
 ./scripts/release/before-release.sh #verify everything is good to go before publishing
-npx lerna publish $BUMP --npm-tag next --preid rc --no-commit-hooks --no-git-reset --verify-access --conventional-commits
+npx lerna publish $BUMP --npm-tag next --preid rc
 ./scripts/release/after-release.sh #post-release work
 
 
