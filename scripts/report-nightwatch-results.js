@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const sleep = require('sleep-promise');
 const crypto = require('crypto');
-const fetch = require('node-fetch');
+const fetch = require('@zeit/fetch-retry')(require('node-fetch'));
 const { groupBy } = require('lodash');
 const { setCheckRun } = require('../scripts/check-run');
 
