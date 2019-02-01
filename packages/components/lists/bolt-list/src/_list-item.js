@@ -19,10 +19,12 @@ class BoltListItem extends withContext(withLitHtml()) {
   // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
   static get consumes() {
     return [
-      [
-        ListContext,
-        ['tag', 'spacing', 'inset', 'separator', 'display', 'align'],
-      ],
+      [ListContext, 'spacing'],
+      [ListContext, 'tag'],
+      [ListContext, 'inset'],
+      [ListContext, 'separator'],
+      [ListContext, 'display'],
+      [ListContext, 'align'],
     ];
   }
 
@@ -46,15 +48,13 @@ class BoltListItem extends withContext(withLitHtml()) {
 
     return html`
       ${this.addStyles([styles])}
-      ${
-        tag === 'ul' || tag === 'ol'
-          ? html`
-              <li class="${classes}">${this.slot('default')}</li>
-            `
-          : html`
-              <span class="${classes}">${this.slot('default')} </span>
-            `
-      }
+      ${tag === 'ul' || tag === 'ol'
+        ? html`
+            <li class="${classes}">${this.slot('default')}</li>
+          `
+        : html`
+            <span class="${classes}">${this.slot('default')} </span>
+          `}
     `;
   }
 }

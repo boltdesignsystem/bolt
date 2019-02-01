@@ -68,7 +68,7 @@ class BoltList extends withContext(withLitHtml()) {
 
     // bark at any schema validation errors
     if (!isValid) {
-      console.log(this.validate.errors);
+      // console.log(this.validate.errors);
     }
 
     return validatedData;

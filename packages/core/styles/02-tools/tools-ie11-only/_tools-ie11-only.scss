@@ -1,0 +1,21 @@
+/* ------------------------------------ *\
+   IE11 Only CSS
+\* ------------------------------------ */
+
+////
+/// @group Tools: Utilities
+/// @author Mike Mai
+////
+
+/// Define CSS that only targets Internet Explorer 11.
+/// @example scss
+/// .element {
+///    @include bolt-ie11-only {
+///      display: block;
+///    }
+/// }
+@mixin bolt-ie11-only() {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
