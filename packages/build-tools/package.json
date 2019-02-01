@@ -1,6 +1,6 @@
 {
   "name": "@bolt/build-tools",
-  "version": "2.3.0-rc.0",
+  "version": "2.3.0",
   "license": "MIT",
   "description": "Curated collection of front-end build tools in the Bolt Design System.",
   "main": "index.js",
@@ -21,14 +21,20 @@
     }
   ],
   "peerDependencies": {
-    "@bolt/twig-renderer": "^2.3.0-rc.0"
+    "@bolt/twig-renderer": "^2.3.0"
   },
   "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@bolt/api": "^0.0.0",
+    "@bolt/babel-preset-bolt": "^2.3.0",
+    "@bolt/config-browserlist": "^2.3.0",
+    "@bolt/postcss-themify": "^2.3.0",
+    "@bolt/sass-export-data": "^2.3.0",
+    "@bolt/sassdoc-webpack-plugin": "^2.3.0",
     "@octokit/plugin-throttling": "^2.3.0",
     "@octokit/rest": "^16.13.3",
     "address": "^1.0.3",
     "babel-loader": "^8.0.4",
-    "@babel/core": "^7.2.2",
     "browser-sync": "^2.26.3",
     "camelcase": "^4.1.0",
     "chalk": "^2.4.1",
@@ -85,12 +91,6 @@
     "yaml-loader": "^0.5.0"
   },
   "devDependencies": {
-    "@bolt/api": "^2.3.0-rc.0",
-    "@bolt/babel-preset-bolt": "^2.3.0-rc.0",
-    "@bolt/config-browserlist": "^2.3.0-rc.0",
-    "@bolt/postcss-themify": "^2.3.0-rc.0",
-    "@bolt/sass-export-data": "^2.3.0-rc.0",
-    "@bolt/sassdoc-webpack-plugin": "^2.3.0-rc.0",
     "autoprefixer": "^9.4.3",
     "chokidar": "^2.0.4",
     "commander": "^2.19.0",
@@ -114,5 +114,5 @@
   "schema": "utils/config.schema.yml",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "homepage": "https://boltdesignsystem.com",
-  "gitHead": "b47538629e315eeecbdfcb8d0c22e787b3bcc089"
+  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
 }

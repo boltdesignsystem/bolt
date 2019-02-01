@@ -39,8 +39,9 @@ jobs:
     - stage: Prep
       name: 'Build + Deploy'
       script:
+        # Clear incache file on normal Travis builds
+        - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
-        - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
         - yarn run build
         - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
@@ -49,17 +50,20 @@ jobs:
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
-      addons:
-        sauce_connect: true
+      # addons:
+      #   sauce_connect: true
       script:
         - yarn run setup
         - ./scripts/check-run-in-progress.js 'Nightwatch'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
         - time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - npx nightwatch --config nightwatch.js --env chrome,ie11
-        - sleep 10
+        - yarn run test:e2e:full
+        - sleep 60
         - ./scripts/report-nightwatch-results.js
+      after_success:
+        - ./scripts/deploy-branch-alias.js
+        - ./scripts/deploy-tagged-release.js
 
     - stage: Test Live Site
       name: 'Ensure site is live'
