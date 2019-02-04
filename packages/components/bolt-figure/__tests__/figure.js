@@ -1,5 +1,5 @@
 const { render } = require('@bolt/twig-renderer');
-const { media } = require('./fixtures/figure-data');
+const { media } = require('./figure-data');
 
 describe('figure', async () => {
   Object.keys(media).forEach(async item => {
