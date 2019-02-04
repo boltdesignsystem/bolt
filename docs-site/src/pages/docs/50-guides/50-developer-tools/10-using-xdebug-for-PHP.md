@@ -75,7 +75,6 @@ below should still provide helpful high level guidance on what you're doing.
 
 ![PHPStorm config](/images/docs/debugging-xdebug-phpstorm-config.png)
 
-
 **Step 2.** Create a Run/Debug configuration
 
 - In PHPStorm's `Edit` menu, go to `Edit Configurations...`.
@@ -90,7 +89,7 @@ below should still provide helpful high level guidance on what you're doing.
 
 Explanation: you're effectively setting up a shell command that will build pattern lab when it runs (remember, the PHP
 code in Pattern Lab is only executed at build time-- when you subsequently load pages in your browser, you're just
-viewing the static files that were created from that build process).   The command will look something like this 
+viewing the static files that were created from that build process). The command will look something like this
 
 ```bash
 /usr/local/bin/php -dxdebug.remote_enable=1 -dxdebug.remote_mode=req -dxdebug.remote_port=9000 -dxdebug.remote_host=127.0.0.1 -dmemory_limit=4048M -dzend_extension=/usr/local/lib/php/pecl/20170718/xdebug.so /Users/dentr1/Sites/bolt/docs-site/core/console --generate
@@ -102,7 +101,7 @@ Open the `docs-site/core/console` PHP file in PHPStorm and set a breakpoint by c
 
 ![Set breakpoint](/images/docs/debugging-xdebug-phpstorm-breakpoint.png)
 
-(Of course, when you start debugging, you'll set breakpoints in the PHP file you actually want to inspect.  We use
+(Of course, when you start debugging, you'll set breakpoints in the PHP file you actually want to inspect. We use
 `docs-site/core/console` here because it is guaranteed to be executed at the beginning of every PL compile).
 
 **Step 4.** Execute your Run/Debug configuration
@@ -114,9 +113,9 @@ execution should pause on the breakpoint you set:
 
 **Step 5.** Cleanup
 
-Comment out the xdebug lines you previously added to php.ini.  Since PHP options are now being set at runtime by the
-Run/Debug script you set up in Step 2, you don't need them set globally anymore.  Disabling them will disable xdebug
-when you're not actively debugging, which will improve performance significantly. 
+Comment out the xdebug lines you previously added to php.ini. Since PHP options are now being set at runtime by the
+Run/Debug script you set up in Step 2, you don't need them set globally anymore. Disabling them will disable xdebug
+when you're not actively debugging, which will improve performance significantly.
 
 ```
 [Xdebug]
@@ -129,7 +128,6 @@ when you're not actively debugging, which will improve performance significantly
 For more information, see:
 
 - [PHPStorm docs for configuring Xdebug](https://www.jetbrains.com/help/phpstorm/configuring-xdebug.html#integrationWithProduct)
-
 
 ### VS Code
 
