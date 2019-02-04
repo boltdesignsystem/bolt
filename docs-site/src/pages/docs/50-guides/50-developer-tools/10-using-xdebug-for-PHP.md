@@ -150,7 +150,7 @@ For more information, see:
 
 ![Choose PHP Environment](/images/docs/debugging-xdebug-vscode-environment.png)
 
-- This adds adds a `launch.json` configuration file to your Workspace with two PHP debug modes:
+- This adds a `launch.json` configuration file to your Workspace with two PHP debug modes:
   - "Listen for XDebug"
   - "Launch currently open script"
 
