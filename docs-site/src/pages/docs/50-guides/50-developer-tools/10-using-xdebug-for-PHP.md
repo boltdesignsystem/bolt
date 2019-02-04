@@ -142,26 +142,26 @@ For more information, see:
 - In VS Code, open the "Debug" pane (Shift-Cmd-D).
 - At the top of the "Debug" pane you will see a little gear icon.
 
-![Configure Launch.json](/images/docs/debugging-xdebug-vs-config.png)
+![Configure Launch.json](/images/docs/debugging-xdebug-vscode-config.png)
 
 - Click on the little gear icon to configure `launch.json`
 - You will see a Menu with the placeholder text "Select Environment".
 - Choose "PHP".
 
-![Choose PHP Environment](/images/docs/debugging-xdebug-vs-environment.png)
+![Choose PHP Environment](/images/docs/debugging-xdebug-vscode-environment.png)
 
 - This adds adds a `launch.json` configuration file to your Workspace with two PHP debug modes:
   - "Listen for XDebug"
   - "Launch currently open script"
 
-![Launch.json file](/images/docs/debugging-xdebug-vs-launch.png)
+![Launch.json file](/images/docs/debugging-xdebug-vscode-launch.png)
 
 **Step 3.** Set a breakpoint
 
 - Open the `docs-site/core/console` PHP file in VS Code
 - Click to the left of the line number on line 18 to set a breakpoint.
 
-![Set breakpoint](/images/docs/debugging-xdebug-vs-breakpoint.png)
+![Set breakpoint](/images/docs/debugging-xdebug-vscode-breakpoint.png)
 
 **Step 4.** Test the Debugger
 
@@ -171,7 +171,7 @@ For more information, see:
 
 If you've done it right, execution should pause on the breakpoint you set.
 
-![Paused at breakpoint](/images/docs/debugging-xdebug-vs-pause.png)
+![Paused at breakpoint](/images/docs/debugging-xdebug-vscode-pause.png)
 
 For more information, see:
 
