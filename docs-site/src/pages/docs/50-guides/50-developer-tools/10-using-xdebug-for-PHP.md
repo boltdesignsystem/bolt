@@ -156,6 +156,29 @@ For more information, see:
 
 ![Launch.json file](/images/docs/debugging-xdebug-vscode-launch.png)
 
+- Add a third entry to `launch.json` with the following:
+
+```
+{
+   "name": "Build Pattern Lab",
+   "type": "php",
+   "request": "launch",
+   "program": "${workspaceFolder}/docs-site/core/console",
+   "args": ["--generate"],
+   "cwd": "${workspaceFolder}/docs-site",
+   "port": 9000,
+   "runtimeArgs": [
+      "-dmemory_limit=4048M",
+      "-dzend_extension='/path/to/xdebug.so'",
+      "-dxdebug.remote_enable=1",
+      "-dxdebug.remote_port=9000",
+      "-dxdebug.remote_autostart=1"
+   ]
+}
+```
+
+Note: Be sure to replace `path/to/xdebug.so` with your local path.
+
 **Step 3.** Set a breakpoint
 
 - Open the `docs-site/core/console` PHP file in VS Code
@@ -166,7 +189,7 @@ For more information, see:
 **Step 4.** Test the Debugger
 
 - Back in the "Debug" pane, next to the little gear icon, you will see a menu and a "play" icon
-- Select "Listen for Debug" from the menu and click "play"
+- Select "Build Pattern Lab" from the menu and click "play"
 - Then, start up Pattern Lab by running `npm start`
 
 If you've done it right, execution should pause on the breakpoint you set.
