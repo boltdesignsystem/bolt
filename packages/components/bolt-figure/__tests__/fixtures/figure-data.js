@@ -1,7 +1,7 @@
 module.exports = {
   media: {
     image: {
-      src: '/images/placeholders/landscape-16x9-mountains.jpg',
+      src: '/fixtures/landscape-16x9-mountains.jpg',
       lazyload: false,
     },
     icon: {
