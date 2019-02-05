@@ -144,7 +144,7 @@ For more information, see:
 
 ![Configure Launch.json](/images/docs/debugging-xdebug-vscode-config.png)
 
-- Click on the little gear icon to configure `launch.json`
+- Click on the gear icon to configure `launch.json`
 - You will see a Menu with the placeholder text "Select Environment".
 - Choose "PHP".
 
@@ -188,7 +188,7 @@ Note: Be sure to replace `path/to/xdebug.so` with your local path.
 
 **Step 4.** Test the Debugger
 
-- Back in the "Debug" pane, next to the little gear icon, you will see a menu and a "play" icon
+- Back in the "Debug" pane, next to the gear icon, you will see a menu and a "play" icon
 - Select "Build Pattern Lab" from the menu and click "play"
 - Then, start up Pattern Lab by running `npm start`
 
