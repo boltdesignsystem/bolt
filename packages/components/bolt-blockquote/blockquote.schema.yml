@@ -18,7 +18,6 @@ properties:
       - xlarge
       - xxlarge
   alignItems:
-    name: align-items
     description: Aligns items left, center, or right.
     default: left
     type: string
@@ -39,7 +38,6 @@ properties:
     default: false
     type: boolean
   fullBleed:
-    name: full-bleed
     description: Width of the brower window.
     default: false
     type: boolean
@@ -52,14 +50,11 @@ properties:
     type: object
     properties:
       name:
-        name: author-name
         type: string
         description: Author's name.
       title:
-        name: author-title
         type: string
         description: Author's title.
       image:
-        name: author-image
         type: object
         ref: '@bolt-components-image/image.schema.yml'
