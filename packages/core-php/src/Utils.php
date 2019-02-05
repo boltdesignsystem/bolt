@@ -122,7 +122,7 @@ class Utils {
    * @param array $schema - The schema object for a particular component
    * @return array - An associative array of props
    */
-  public static function build_props_array($items, $schema) {
+  public static function buildPropsArray($items, $schema) {
     $props = array();
 
     // If schema has properties to check against
