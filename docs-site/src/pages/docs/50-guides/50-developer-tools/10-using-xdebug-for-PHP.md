@@ -196,6 +196,20 @@ If you've done it right, execution should pause on the breakpoint you set.
 
 ![Paused at breakpoint](/images/docs/debugging-xdebug-vscode-pause.png)
 
+**Step 5.** Cleanup
+
+Comment out the xdebug lines you previously added to php.ini. Since PHP options are now being set at runtime by the
+Run/Debug script you set up in Step 2, you don't need them set globally anymore. Disabling them will disable xdebug
+when you're not actively debugging, which will improve performance significantly.
+
+```
+[Xdebug]
+; zend_extension="/path/to/xdebug.so"
+; xdebug.remote_enable=1
+; xdebug.remote_autostart=1
+; xdebug.remote_port="9000"
+```
+
 For more information, see:
 
 - [PHP Debug Docs](https://marketplace.visualstudio.com/items?itemName=felixfbecker.php-debug)
