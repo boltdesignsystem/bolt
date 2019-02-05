@@ -56,7 +56,7 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: Image Zoom (desktop)
 
 1. Given I am using a "desktop" browser
-1. And I am viewing the [Image Zoom page](http://localhost:3000/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html)
+1. And I am viewing the [Image Zoom page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html)
 1. Then I should see an image of a tablet
 1. And I should see a "magnifying glass" icon over the tablet
 1. When I mouse over the tablet image
@@ -71,7 +71,7 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: Image Zoom (mobile)
 
 1. Given I am using a "mobile" browser
-1. And I am viewing the [Image Zoom page](http://localhost:3000/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html)
+1. And I am viewing the [Image Zoom page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html)
 1. Then I should see an image of a tablet
 1. And I should see a "magnifying glass" icon over the tablet
 1. When I tap on the tablet image
