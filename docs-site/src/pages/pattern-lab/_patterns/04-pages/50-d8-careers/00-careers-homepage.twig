@@ -70,20 +70,20 @@
     }
   }
 
-  .c-reorderable-form-field--first {
+  .c-pega-careers-reorderable-form-field--first {
     order: 1;
   }
 
-  .c-reorderable-form-field--second {
+  .c-pega-careers-reorderable-form-field--second {
     order: 2;
   }
 
-  .c-reorderable-form-field--third {
+  .c-pega-careers-reorderable-form-field--third {
     order: 3;
   }
 
   @media screen and (min-width: 37.5em) {
-    .c-reorderable-form-field--second\@small {
+    .c-pega-careers-reorderable-form-field--second\@small {
       order: 2;
     }
   }
@@ -109,7 +109,7 @@
 {# Form #}
 {% set form_children %}
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--center" %}
-    {% cell "c-reorderable-form-field c-reorderable-form-field--first u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-flex-grow" %}
+    {% cell "c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--first u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-flex-grow" %}
       {% include "@pl/10-form-element-demo-input-element.twig" with {
         title: "Search",
         inputAttributes: {
@@ -121,7 +121,7 @@
       } only %}
     {% endcell %}
 
-    {% cell "c-reorderable-form-field c-reorderable-form-field--third u-bolt-width-1/1" %}
+    {% cell "c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--third u-bolt-width-1/1" %}
       <div class="gsc-careers-cta">
         {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--center" %}
           {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
@@ -178,7 +178,7 @@
       </div>
     {% endcell %}
 
-    {% cell "u-bolt-flex-grow u-bolt-flex-shrink c-reorderable-form-field c-reorderable-form-field--third c-reorderable-form-field--second@small" %}
+    {% cell "u-bolt-flex-grow u-bolt-flex-shrink c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--third c-pega-careers-reorderable-form-field--second@small" %}
       {% include "@bolt-components-form/form-button.twig" with {
         text: "Search",
         width: "full",
