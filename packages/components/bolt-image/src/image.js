@@ -29,7 +29,7 @@ class BoltImage extends withLitHtml() {
     noLazy: props.boolean,
     srcset: props.string,
     sizes: props.string,
-    noUseAspectRatio: props.boolean,
+    noRatio: props.boolean,
     width: props.string,
     height: props.string,
     zoom: props.boolean,
@@ -93,7 +93,7 @@ class BoltImage extends withLitHtml() {
       noLazy,
       srcset,
       sizes,
-      noUseAspectRatio,
+      noRatio,
       width,
       height,
       zoom,
@@ -101,7 +101,7 @@ class BoltImage extends withLitHtml() {
 
     // negate and rename variables for readability
     const lazyload = !noLazy;
-    const useAspectRatio = !noUseAspectRatio;
+    const useAspectRatio = !noRatio;
 
     const imageExt = path.extname(src);
     const imageData = this.getImageData(src);

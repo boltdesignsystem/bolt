@@ -22,7 +22,7 @@
 
 {% set alt = alt ? alt : null %}
 
-{% if ratio is defined and ratio == false %}
+{% if (ratio is defined and ratio == false) or no_ratio %}
   {% set useAspectRatio = false %}
 {% endif %}
 {% set useAspectRatio = useAspectRatio ?? true %}
@@ -94,7 +94,7 @@
   {% if sizes %}sizes="{{ sizes }}"{% endif %}
   {% if width %}width="{{ width }}"{% endif %}
   {% if height %}height="{{ height }}"{% endif %}
-  {% if useAspectRatio %}use-aspect-ratio{% endif %}
+  {% if not useAspectRatio %}no-ratio{% endif %}
   {% if zoom %}zoom{% endif %}
   {% if not lazyload %}no-lazy{% endif %}
   {% if placeholder_color and ext == "jpg" %} style="background-color: {{ placeholder_color }};" {% endif %}
