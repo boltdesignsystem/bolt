@@ -1,5 +1,8 @@
 {% include "@bolt-components-ul/ul.twig" with {
-  "items" : [
+  attributes: {
+    "data-attr": "some attribute",
+  },
+  items: [
     "Do not include any data or information in your posts that are confidential!",
     "Apply basic practices for collaborative work.",
     include("@bolt-components-link/link.twig", {

@@ -10,6 +10,13 @@ const Octokit = require('@octokit/rest').plugin(
 );
 
 const octokit = new Octokit({
+  auth() {
+    if (process.env.GITHUB_TOKEN) {
+      return `token ${process.env.GITHUB_TOKEN}`;
+    } else {
+      return undefined;
+    }
+  },
   throttle: {
     onRateLimit: (retryAfter, options) => {
       console.warn(
@@ -40,23 +47,12 @@ const octokit = new Octokit({
     },
   },
   debug: false,
-  headers: {
-    Accept: 'application/vnd.github.v3.raw',
-  },
 });
 
 const { getConfig } = require('./config-store');
 const { fileExists } = require('./general');
 const store = new InCache();
 let isUsingOldData = false; // remember if we are using up to date version data or older (stale) data as a fallback
-
-// so we don't go over rate limits
-if (process.env.GITHUB_TOKEN) {
-  octokit.authenticate({
-    type: 'token',
-    token: process.env.GITHUB_TOKEN,
-  });
-}
 
 const urlsToCheck = [];
 

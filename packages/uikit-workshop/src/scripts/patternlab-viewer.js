@@ -14,19 +14,19 @@ import './components/pl-tools-menu/pl-tools-menu';
 import(
   /* webpackChunkName: "pl-viewport-sizes" */
   /* webpackMode: "lazy" */
-  /* webpackPreload: true */
+  /* webpackPrefetch: true */
   './components/pl-viewport-size-list/pl-viewport-size-list');
 
 import(
   /* webpackChunkName: "pl-search" */
   /* webpackMode: "lazy" */
-  /* webpackPreload: true */
+  /* webpackPrefetch: true */
   './components/pl-search/pl-search');
 
 import(
   /* webpackChunkName: "pl-modal-viewer" */
   /* webpackMode: "lazy" */
-  /* webpackPreload: true */
+  /* webpackPrefetch: true */
   './components/modal-viewer');
 
 
