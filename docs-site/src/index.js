@@ -7,8 +7,6 @@ import './pages/pattern-lab/_patterns/02-components/card/__tests__';
 // import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/lazy-lit-test';
 import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration';
 
-import Rellax from 'rellax';
-var rellax = new Rellax('bolt-parallax');
 // here if you need pl only JS
 // document.addEventListener('DOMContentLoaded', () => {
 //   /**
