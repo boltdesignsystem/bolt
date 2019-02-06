@@ -96,7 +96,7 @@
   {% if height %}height="{{ height }}"{% endif %}
   {% if useAspectRatio %}use-aspect-ratio{% endif %}
   {% if zoom %}zoom{% endif %}
-  {% if not lazyload %}no-lazyload{% endif %}
+  {% if not lazyload %}no-lazy{% endif %}
   {% if placeholder_color and ext == "jpg" %} style="background-color: {{ placeholder_color }};" {% endif %}
   >
   {% block image_content %}

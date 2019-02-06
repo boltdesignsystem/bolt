@@ -26,7 +26,7 @@ class BoltImage extends withLitHtml() {
   static props = {
     src: props.string,
     alt: props.string,
-    noLazyload: props.boolean,
+    noLazy: props.boolean,
     srcset: props.string,
     sizes: props.string,
     noUseAspectRatio: props.boolean,
@@ -90,7 +90,7 @@ class BoltImage extends withLitHtml() {
     const {
       src,
       alt,
-      noLazyload,
+      noLazy,
       srcset,
       sizes,
       noUseAspectRatio,
@@ -100,7 +100,7 @@ class BoltImage extends withLitHtml() {
     } = this.validateProps(this.props);
 
     // negate and rename variables for readability
-    const lazyload = !noLazyload;
+    const lazyload = !noLazy;
     const useAspectRatio = !noUseAspectRatio;
 
     const imageExt = path.extname(src);
@@ -125,9 +125,9 @@ class BoltImage extends withLitHtml() {
             class="${classes}"
             src="${lazyload ? placeholderSrc : src}"
             alt="${ifDefined(alt ? alt : undefined)}"
-            srcset="${
-              ifDefined(!lazyload || this.isLoaded ? srcset || src : undefined)
-            }"
+            srcset="${ifDefined(
+              !lazyload || this.isLoaded ? srcset || src : undefined,
+            )}"
             data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
             sizes="${ifDefined(!lazyload || this.isLoaded ? sizes : undefined)}"
             data-sizes="${ifDefined(lazyload ? sizes : undefined)}"
