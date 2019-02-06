@@ -4,12 +4,11 @@
    2. Background video should only be served as a decoration, expect it to be cropped anywhere within its square size.
    3. Background video disappears when the browser size falls below 800px, this is where the white space is diminishing to a point that makes the height of the band longer than width of the band, which could result in the video not covering the entire background.
    4. Background video poster must be provided as a fallback for when video disappears.
-   5. Headline and text should allow soft line breaks if the content editor chooses to use them.
  #}
 
 
 {# Variables that are editable by the content editor #}
-{% set hero_headline = "Powerful software.<br>Powered by you." %}
+{% set hero_headline = "Powerful software. Powered by you." %}
 {% set hero_text = "We are on a mission to change the way the world builds software to create unprecedented business outcomes in customer engagement and operational excellence." %}
 {% set hero_background_video_poster = "/images/placeholders/landscape-16x9-mountains.jpg" %}
 {% set hero_background_video_id = "5759311957001" %}
@@ -247,7 +246,7 @@
 
     {% block band_content %}
       {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small u-bolt-width-8/12@medium u-bolt-width-7/12@large" %}
           {{ headline_and_text }}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
