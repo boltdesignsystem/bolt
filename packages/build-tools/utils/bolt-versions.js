@@ -56,7 +56,7 @@ let isUsingOldData = false; // remember if we are using up to date version data 
 
 const urlsToCheck = [];
 
-async function writeVersionDataToJson(versionData) {
+async function writeBoltVersionUrlsToJson(versionData) {
   const config = await getConfig();
   let versionInfo = versionData;
 
@@ -76,14 +76,9 @@ async function writeVersionDataToJson(versionData) {
   );
 }
 
-async function gatherBoltVersions() {
+async function getBoltTags() {
   const config = await getConfig();
 
-  const versionSpinner = ora(
-    chalk.blue('Gathering data on the latest Bolt Design System releases...'),
-  ).start();
-
-  const tagUrls = [];
   let tags; // grab tags from Github API or via local file cache
 
   // use local cache if available, but not on Travis tagged releases
@@ -137,6 +132,16 @@ async function gatherBoltVersions() {
       }
     }
   }
+
+  return tags;
+}
+
+async function gatherBoltVersionUrls() {
+  const versionSpinner = ora(
+    chalk.blue('Gathering data on the latest Bolt Design System releases...'),
+  ).start();
+  let tags = await getBoltTags();
+  const tagUrls = [];
 
   for (index = 0; index < tags.length; index++) {
     let tag = tags[index].name;
@@ -206,17 +211,18 @@ async function gatherBoltVersions() {
   return tagUrls;
 }
 
-async function getBoltVersions() {
-  const versionsGathered = await gatherBoltVersions();
+async function getBoltVersionUrls() {
+  const versionsGathered = await gatherBoltVersionUrls();
   return versionsGathered;
 }
 
 async function writeBoltVersions() {
-  const versionsFound = await getBoltVersions();
-  await writeVersionDataToJson(versionsFound);
+  const versionsFound = await getBoltVersionUrls();
+  await writeBoltVersionUrlsToJson(versionsFound);
 }
 
 module.exports = {
-  getBoltVersions,
+  getBoltTags,
+  getBoltVersionUrls,
   writeBoltVersions,
 };
