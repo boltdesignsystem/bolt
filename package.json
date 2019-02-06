@@ -40,7 +40,7 @@
     "test": "npm-run-all --parallel test:jest test:php test:monorepo",
     "test:jest": "NODE_ENV='test' jest",
     "test:mocha:update": "CHAI_JEST_SNAPSHOT_UPDATE_ALL=true npm run test:mocha",
-    "test:mocha": "mocha --require esm packages/**/*.mocha.js --timeout=15000 --reporter=spec",
+    "test:mocha": "mocha --require esm packages/**/*.mocha.js --timeout=30000 --reporter=spec",
     "test:monorepo": "node scripts/monorepo-tests.js",
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
     "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
