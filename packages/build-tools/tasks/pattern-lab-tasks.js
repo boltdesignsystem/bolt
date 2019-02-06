@@ -27,7 +27,7 @@ async function asyncConfig() {
     config = Object.assign(
       {
         plConfigFile: 'config/config.yml',
-        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md', 'png'],
+        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md'],
         debounceRate: 1000,
       },
       await getConfig(),
@@ -103,7 +103,83 @@ async function plBuild(errorShouldExit) {
         initialBuild = false;
 
         console.log(error);
-        // reject(error);
+      });
+  });
+}
+
+async function precompile(errorShouldExit = false) {
+  config = config || (await asyncConfig());
+
+  return new Promise(async (resolve, reject) => {
+    let plSpinner;
+    let startTime;
+
+    const startCompilingPlMsg = 'Generating Pattern Lab Data...';
+    const startRecompilingPlMsg = 'Regenerating Pattern Lab Data...';
+
+    const failedCompilingPlMsg =
+      'The initial Pattern Lab data generation failed!';
+    const failedRecompilingPlMsg = 'Failed to regenerate Pattern Lab data!';
+
+    const endCompilingPlMsg = function(startTime) {
+      return `Generated Pattern Lab Data in ${chalk.bold(
+        timer.end(startTime),
+      )}`;
+    };
+
+    const endRecompilingPlMsg = function(startTime) {
+      return `Pattern Lab regenerated data in ${chalk.bold(
+        timer.end(startTime),
+      )}`;
+    };
+
+    if (config.verbosity > 2) {
+      plSpinner = new Ora(
+        chalk.blue(initialBuild ? startCompilingPlMsg : startRecompilingPlMsg),
+      ).start();
+      startTime = timer.start();
+    }
+
+    sh(
+      'php',
+      ['-d', 'memory_limit=4048M', consolePath, '--generate', '--dataonly'],
+      errorShouldExit,
+      false,
+    )
+      .then(output => {
+        if (config.verbosity > 2) {
+          plSpinner.succeed(
+            chalk.green(
+              initialBuild
+                ? endCompilingPlMsg(startTime)
+                : endRecompilingPlMsg(startTime),
+            ),
+          );
+        }
+
+        // initialBuild = false;
+
+        if (config.verbosity > 2) {
+          console.log('---');
+          console.log(output);
+          console.log('===\n');
+        }
+
+        // events.emit('reload');
+        events.emit('pl:precompiled');
+
+        resolve(output);
+      })
+      .catch(error => {
+        if (config.verbosity > 2) {
+          plSpinner.fail(
+            chalk.red(
+              initialBuild ? failedCompilingPlMsg : failedRecompilingPlMsg,
+            ),
+          );
+        }
+
+        console.log(error);
       });
   });
 }
@@ -150,8 +226,13 @@ async function compile() {
 compile.description = 'Compile Pattern Lab';
 compile.displayName = 'pattern-lab:compile';
 
-async function compileWithNoExit() {
+// listen for api prep work to complete before re-generating PL
+events.on('status-board:generated', async () => {
   return await plBuild(false);
+});
+
+async function compileWithNoExit() {
+  await precompile();
 }
 
 compileWithNoExit.displayName = 'pattern-lab:compile';
@@ -165,9 +246,11 @@ async function watch() {
 
   const globPattern = `**/*.{${config.watchedExtensions.join(',')}}`;
   const watchedFiles = [
+    path.join(__dirname, 'api-tasks/**/*.js'),
     dirs.map(dir => path.join(dir, globPattern)),
     path.join(plSource, globPattern),
     path.join(config.dataDir, '**/*'),
+    `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
   ];
 
   // @todo show this when spinners are disabled at this high of verbosity
@@ -197,5 +280,7 @@ watch.displayName = 'pattern-lab:watch';
 
 module.exports = {
   compile,
+  precompile,
+  compileWithNoExit,
   watch,
 };

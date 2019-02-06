@@ -24,6 +24,8 @@ async function getExtraTasks() {
       extraTasks.static = require('./static-tasks');
       break;
     case 'pwa':
+      delete require.cache[require.resolve('./api-tasks')];
+      extraTasks.api = require('./api-tasks');
       extraTasks.patternLab = require('./pattern-lab-tasks');
       extraTasks.static = require('./static-tasks');
       break;
@@ -47,10 +49,9 @@ async function compileBasedOnEnvironment() {
       await extraTasks.static.compile();
       break;
     case 'pwa':
-      return Promise.all([
-        extraTasks.static.compile(),
-        extraTasks.patternLab.compile(),
-      ]);
+      await extraTasks.static.compile();
+      await extraTasks.patternLab.compileWithNoExit();
+      await extraTasks.api.generate();
   }
 }
 
@@ -217,6 +218,7 @@ async function watch() {
         break;
       case 'pwa':
         watchTasks.push(extraTasks.patternLab.watch());
+        watchTasks.push(extraTasks.api.watch());
         watchTasks.push(extraTasks.static.watch());
         break;
     }
