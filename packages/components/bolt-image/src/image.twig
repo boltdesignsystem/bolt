@@ -87,6 +87,7 @@
 {% endset %}
 
 <bolt-image
+  {% if slot %}slot="{{ slot }}"{% endif %}
   {% if src %}src="{{ src }}"{% endif %}
   {% if srcset %}srcset="{{ srcset }}"{% endif %}
   {% if alt %}alt="{{ alt }}"{% endif %}

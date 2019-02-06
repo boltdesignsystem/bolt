@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -29,6 +29,7 @@ let webpackConfigs = [];
 
 async function createWebpackConfig(buildConfig) {
   const config = buildConfig;
+  const fullBuildConfig = await getConfig();
 
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
@@ -80,11 +81,7 @@ async function createWebpackConfig(buildConfig) {
       themifyOptions.fallback.jsonDataExport
     };`,
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
-    `${
-      config.lang && config.lang.length > 1
-        ? `$bolt-lang: ${config.lang};`
-        : '$bolt-lang: null;'
-    }`,
+    `${config.lang ? `$bolt-lang: ${config.lang};` : '$bolt-lang: null;'}`,
   ];
 
   // Default global JS data defined
@@ -160,7 +157,12 @@ async function createWebpackConfig(buildConfig) {
         }
       });
 
-      if (!config.prod && config.webpackDevServer) {
+      const useHotMiddleware =
+        Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1
+          ? false
+          : true;
+
+      if (!config.prod && config.webpackDevServer && useHotMiddleware) {
         entry[globalEntryName].push(
           `webpack-hot-middleware/client?name=${
             config.lang
@@ -510,13 +512,15 @@ module.exports = async function() {
     const promises = [];
 
     // update the array of Webpack configs so each config is assigned to only one language (used in the filename's suffix when bundling language-tailed CSS and JS)
-    if (langs && langs.length > 1) {
+    if (Array.isArray(langs)) {
       for (const lang of langs) {
         /* eslint-disable no-await-in-loop */
         promises.push(await assignLangToWebpackConfig(config, lang));
       }
-    } else {
+    } else if (langs === 'en') {
       promises.push(await assignLangToWebpackConfig(config, null));
+    } else {
+      promises.push(await assignLangToWebpackConfig(config, config.lang));
     }
 
     await Promise.all(promises).then(() => {

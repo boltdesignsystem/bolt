@@ -25,21 +25,21 @@ Retain similar line lengths for headings and descriptions. Use either a bottom C
 Below are some examples of how cards are used across Pega layouts.
 
 <figure>
-<img src="/images/docs/card_in-nav.png" />
+<img src="/images/docs/card_in-nav.jpg" />
 <figcaption>A simple card can be used to feature an item in the main navigation.</figcaption>
 </figure>
 
 <figure>
-<img src="/images/docs/card_resource-band.png" />
+<img src="/images/docs/card_resource-band.jpg" />
 <figcaption>Use alongside a UI list to strongly feature a couple of important resources.</figcaption>
 </figure>
 
 <figure>
-<img src="/images/docs/card_trio-dark.png" />
+<img src="/images/docs/card_trio-dark.jpg" />
 <figcaption>A trio of cards in a `dark` band.</figcaption>
 </figure>
 
 <figure>
-<img src="/images/docs/card_trio-xlight.png" />
+<img src="/images/docs/card_trio-xlight.jpg" />
 <figcaption>A trio of cards in an `xlight` band.</figcaption>
 </figure>
