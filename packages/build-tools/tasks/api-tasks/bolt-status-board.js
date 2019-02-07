@@ -181,9 +181,7 @@ async function generateStatusBoard() {
 
         tableRows.push({
           cells: [
-            html,
-            // isPrivate
-            //     ? '(unreleased)'
+            isPrivate ? `${html} (WIP)` : html,
             //     : '<span class="u-bolt-bg-color-blue u-bolt-color-white u-bolt-inline-block u-bolt-padding-left-xsmall u-bolt-padding-right-xsmall"><strong>v' + pkg.version +
             // '</strong></span>
             hasScss ? '✅' : '',
