@@ -93,12 +93,14 @@
 
 {# Headline and Text #}
 {% set headline_and_text %}
-  {% include "@bolt-components-headline/headline.twig" with {
-    text: hero_headline,
-    size: "xxxlarge",
-    tag: "h1",
-    align: "center",
-  } only %}
+  {% if hero_headline %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: hero_headline,
+      size: "xxxlarge",
+      tag: "h1",
+      align: "center",
+    } only %}
+  {% endif %}
   {% if hero_text %}
     {% include "@bolt-components-headline/text.twig" with {
       text: hero_text,
@@ -242,6 +244,9 @@
       background: {
         opacity: "heavy",
         fill: "color",
+      },
+      attributes: {
+        class: "u-bolt-margin-bottom-large"
       }
     } %}
       {% block band_background %}
@@ -254,6 +259,32 @@
           {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small u-bolt-width-7/12@medium u-bolt-width-6/12@large u-bolt-margin-bottom-large" %}
             {{ headline_and_text }}
           {% endcell %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+            {{ card_with_form }}
+          {% endcell %}
+        {% endgrid %}
+
+        {{ parent() }}
+      {% endblock band_content %}
+    {% endembed %}
+    {% embed "@bolt-components-band/band.twig" with {
+      size: "large",
+      theme: theme,
+      background: {
+        opacity: "heavy",
+        fill: "color",
+      },
+      attributes: {
+        class: "u-bolt-margin-bottom-large"
+      }
+    } %}
+      {% block band_background %}
+        {{ background_video }}
+        {{ parent() }}
+      {% endblock %}
+
+      {% block band_content %}
+        {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
           {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
             {{ card_with_form }}
           {% endcell %}
