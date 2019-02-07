@@ -11,7 +11,7 @@
 {% set hero_headline = "Powerful software. Powered by you." %}
 {% set hero_text = "We are on a mission to change the way the world builds software to create unprecedented business outcomes in customer engagement and operational excellence." %}
 {% set hero_background_video_poster = "/images/placeholders/landscape-16x9-mountains.jpg" %}
-{% set hero_background_video_id = "5759311957001" %}
+{% set hero_background_video_id = "5999324539001" %}
 
 {# Snowflake Styles #}
 <style>
@@ -54,7 +54,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 110%;
+    width: 180%;
     transform: translate(-50%, -50%);
   }
 
@@ -246,7 +246,34 @@
 
     {% block band_content %}
       {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-9/12@small u-bolt-width-8/12@medium u-bolt-width-7/12@large" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small u-bolt-width-7/12@medium u-bolt-width-6/12@large" %}
+          {{ headline_and_text }}
+        {% endcell %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+          {{ card_with_form }}
+        {% endcell %}
+      {% endgrid %}
+
+      {{ parent() }}
+    {% endblock band_content %}
+  {% endembed %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "large",
+    theme: "dark",
+    background: {
+      opacity: "heavy",
+      fill: "color",
+    }
+  } %}
+    {% block band_background %}
+      {{ background_video }}
+      {{ parent() }}
+    {% endblock %}
+
+    {% block band_content %}
+      {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small u-bolt-width-7/12@medium u-bolt-width-6/12@large" %}
           {{ headline_and_text }}
         {% endcell %}
         {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
