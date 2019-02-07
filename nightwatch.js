@@ -49,7 +49,7 @@ module.exports = {
   selenium: {
     start_process: true,
     server_path: seleniumServer.path,
-    log_path: './reports',
+    log_path: 'reports/screenshots/',
     port: 4444,
     cli_args: {
       'webdriver.chrome.driver': chromeDriver.path,
