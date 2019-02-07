@@ -165,7 +165,7 @@ async function generateStatusBoard() {
 
         const formattedPackageName = pkgName
           .replace('@bolt/components-', '')
-          .replace('-', ' ')
+          .replace(/\-/g, ' ')
           .replace(/\b\w/g, function(l) {
             return l.toUpperCase();
           });
