@@ -18,7 +18,7 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     browser
       .url(`${testingUrl}/pattern-lab/?p=components-overview`)
-      .waitForElementVisible('pl-header', 10000)
+      .waitForElementVisible('pl-header', 3000)
       .assert.elementPresent('.js-c-typeahead__input')
       .saveScreenshot(
         `screenshots/pattern-lab/pattern-lab-header--${browser.currentEnv ||
