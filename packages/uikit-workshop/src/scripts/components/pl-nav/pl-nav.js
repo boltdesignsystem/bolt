@@ -491,14 +491,6 @@ class Nav extends BaseComponent {
                 id={item.patternSubtypeUC}
                 className={`pl-c-nav__sublist pl-c-nav__sublist--dropdown pl-js-acc-panel`}
               >
-                {item.patternTypeItems.map((patternSubtype, i) => {
-                  return (
-                    <SubSubList elem={this.elem} category={patternSubtype.patternSubtypeUC}>
-                      {patternSubtype.patternSubtypeItems}
-                    </SubSubList>
-                  );
-                })}
-
                 {patternItems &&
                   patternItems.map((patternItem, i) => {
                     return (
@@ -525,6 +517,14 @@ class Nav extends BaseComponent {
                       </li>
                     );
                   })}
+
+                {item.patternTypeItems.map((patternSubtype, i) => {
+                  return (
+                    <SubSubList elem={this.elem} category={patternSubtype.patternSubtypeUC}>
+                      {patternSubtype.patternSubtypeItems}
+                    </SubSubList>
+                  );
+                })}
               </ol>
             </li>
           );
