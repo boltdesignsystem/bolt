@@ -10,8 +10,68 @@ const events = require('../../utils/events');
 
 const tableRows = [];
 
+let config,
+  boltUrls,
+  filteredBoltPackages,
+  urlsProcessed = 0,
+  packagesProcessed = 0,
+  pendingRequests = [],
+  processedComponents = [],
+  completedRequests = 0;
+
+async function finishRendering(rows) {
+  config = config || (await getConfig());
+
+  renderString(`
+    {% include "@bolt-components-table/table.twig" with {
+      first_col_fixed_width: true,
+      borderless: true,
+      attributes: {
+        class: [
+          "t-bolt-xlight"
+        ]
+      },
+      headers: {
+        top: {
+          cells: [
+            "Component",
+            "Sass",
+            "Twig",
+            "Web Component",
+            "Jest",
+            "Nightwatch",
+            "TESTING.md",
+            "README.md"
+          ]
+        },
+      },
+      rows: ${JSON.stringify(rows)},
+    } only %}
+  `).then(renderedResults => {
+    const formattedTable = prettier.format(renderedResults.html, {
+      parser: 'html',
+    });
+
+    fs.writeFile(
+      path.join(config.buildDir, 'status-board.twig'),
+      formattedTable,
+      'utf8',
+      function(err) {
+        if (err) {
+          console.log('An error occured while writing JSON Object to File.');
+          return console.log(err);
+        }
+
+        // console.log('Dynamic Twig status board has been saved.');
+
+        events.emit('status-board:generated');
+      },
+    );
+  });
+}
+
 async function generateStatusBoard() {
-  const config = await getConfig();
+  config = config || (await getConfig());
 
   const data = require(path.resolve(
     path.join(
@@ -19,13 +79,13 @@ async function generateStatusBoard() {
       'pattern-lab/styleguide/data/patternlab-data-all.js',
     ),
   ));
-  let boltUrls = data.globalData.link;
+  boltUrls = data.globalData.link;
 
-  const boltPackages = JSON.parse(
-    shell.exec('lerna ls --json --all', { silent: true }).stdout,
+  boltPackages = JSON.parse(
+    shell.exec('npx lerna ls --json --all', { silent: true }).stdout,
   );
 
-  const filteredBoltPackages = boltPackages.filter(pkg =>
+  filteredBoltPackages = boltPackages.filter(pkg =>
     pkg.name.includes('@bolt/components'),
   );
 
@@ -37,11 +97,7 @@ async function generateStatusBoard() {
     }
   });
 
-  let pendingRequests = 0;
-  let completedRequests = 0;
-  let inProgressRequests = true;
-  let urlsProcessed = 0;
-  let packagesProcessed = 0;
+ 
 
   filteredBoltPackages.forEach(function(boltPackage, index, boltPackagesArray) {
     const pkgName = boltPackage.name;
@@ -102,8 +158,9 @@ async function generateStatusBoard() {
 
       const normalizedUrl = urlAddress.replace('../../', '/pattern-lab/');
 
-      if (normalizedUrlName === pkgName) {
-        pendingRequests += 1;
+      if (normalizedUrlName === pkgName && !processedComponents.includes(pkgName)) {
+        processedComponents.push(pkgName);
+        pendingRequests.push(pkgName);
 
         const formattedPackageName = pkgName
           .replace('@bolt/components-', '')
@@ -140,83 +197,41 @@ async function generateStatusBoard() {
 
         completedRequests += 1;
         urlsProcessed += 1;
+        pendingRequests.pop();
+
+        if (pendingRequests.length === 0) {
+          checkToSeeIfFinishedPrerendering();
+        }
       } else {
         urlsProcessed += 1;
       }
     });
-
-    // keep track to see if everything has been processed
-    if (
-      Object.keys(boltUrls).length * filteredBoltPackages.length ===
-      urlsProcessed * packagesProcessed
-    ) {
-      // @todo: refactor to use promises
-      const waitForRequestsToFinish = setInterval(async function() {
-        if (pendingRequests !== completedRequests) {
-          // console.log('waiting to finish requests');
-        }
-
-        if (pendingRequests === completedRequests) {
-          // console.log(
-          //   'All done waiting for in-progress Twig-rendering requests to finish.',
-          // );
-          await finishRendering(tableRows);
-          clearInterval(waitForRequestsToFinish);
-        }
-      }, 50);
-    }
   });
+}
 
-  async function finishRendering(rows) {
-    renderString(`
-      {% include "@bolt-components-table/table.twig" with {
-        first_col_fixed_width: true,
-        borderless: true,
-        attributes: {
-          class: [
-            "t-bolt-xlight"
-          ]
-        },
-        headers: {
-          top: {
-            cells: [
-              "Component",
-              "Sass",
-              "Twig",
-              "Web Component",
-              "Jest",
-              "Nightwatch",
-              "TESTING.md",
-              "README.md"
-            ]
-          },
-        },
-        rows: ${JSON.stringify(rows)},
-      } only %}
-    `).then(renderedResults => {
-      const formattedTable = prettier.format(renderedResults.html, {
-        parser: 'html',
-      });
-
-      fs.writeFile(
-        path.join(config.buildDir, 'status-board.twig'),
-        formattedTable,
-        'utf8',
-        function(err) {
-          if (err) {
-            console.log('An error occured while writing JSON Object to File.');
-            return console.log(err);
-          }
-
-          // console.log('Dynamic Twig status board has been saved.');
-
-          events.emit('status-board:generated');
-        },
-      );
-    });
-  }
+function checkToSeeIfFinishedPrerendering() {
+  // Only wait a second or so for re-renders to complete before skipping.
+  let retryAttempts = 3;
+  // @todo: refactor to use promises
+  const waitForRequestsToFinish = setInterval(async function() {
+    if (pendingRequests.length === 0 || retryAttempts === 0) {
+      // console.log(
+      //   'All done waiting for in-progress Twig-rendering requests to finish.',
+      // );
+      // console.log(processedComponents.length);
+      await finishRendering(tableRows);
+      clearInterval(waitForRequestsToFinish);
+    } else if (pendingRequests !== 0) {
+      console.log(`Waiting for ${pendingRequests.length} requests to finish.`);
+      // console.log(tableRows);
+      retryAttempts -= 1;
+    }
+  }, 100);
+  // }
 }
 
 module.exports = {
   generateStatusBoard,
 };
+
+generateStatusBoard();
