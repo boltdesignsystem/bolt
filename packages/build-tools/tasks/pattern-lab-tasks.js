@@ -228,7 +228,7 @@ compile.displayName = 'pattern-lab:compile';
 
 // listen for api prep work to complete before re-generating PL
 events.on('status-board:generated', async () => {
-  return await plBuild(false);
+  await compile();
 });
 
 async function compileWithNoExit() {
