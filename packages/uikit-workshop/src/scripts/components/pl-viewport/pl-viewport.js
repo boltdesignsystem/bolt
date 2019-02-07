@@ -138,7 +138,7 @@ class IFrame extends BaseComponent {
   }
 
   handleResize(){
-    this.updateSizeReading(this.iframe.clientWidth);
+    this.updateSizeReading(this.scrollWidth);
   }
 
   // Update Pixel and Em inputs
