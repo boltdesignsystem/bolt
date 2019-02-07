@@ -9,9 +9,11 @@
 
 {# Variables that are editable by the content editor #}
 {% set hero_headline = "Powerful software. Powered by you." %}
-{% set hero_text = "We are on a mission to change the way the world builds software to create unprecedented business outcomes in customer engagement and operational excellence." %}
+{# {% set hero_text = "We are on a mission to change the way the world builds software to create unprecedented business outcomes in customer engagement and operational excellence." %} #}
 {% set hero_background_video_poster = "/images/placeholders/landscape-16x9-mountains.jpg" %}
 {% set hero_background_video_id = "5999324539001" %}
+{% set themes = ["light", "dark"] %}
+
 
 {# Snowflake Styles #}
 <style>
@@ -97,12 +99,14 @@
     tag: "h1",
     align: "center",
   } only %}
-  {% include "@bolt-components-headline/text.twig" with {
-    text: hero_text,
-    size: "large",
-    tag: "h2",
-    align: "center",
-  } only %}
+  {% if hero_text %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: hero_text,
+      size: "large",
+      tag: "h2",
+      align: "center",
+    } only %}
+  {% endif %}
 {% endset %}
 
 
@@ -231,59 +235,34 @@
 
 <div>
   {# Hero Band #}
-  {% embed "@bolt-components-band/band.twig" with {
-    size: "large",
-    theme: "light",
-    background: {
-      opacity: "heavy",
-      fill: "color",
-    }
-  } %}
-    {% block band_background %}
-      {{ background_video }}
-      {{ parent() }}
-    {% endblock %}
+  {% for theme in themes %}
+    {% embed "@bolt-components-band/band.twig" with {
+      size: "large",
+      theme: theme,
+      background: {
+        opacity: "heavy",
+        fill: "color",
+      }
+    } %}
+      {% block band_background %}
+        {{ background_video }}
+        {{ parent() }}
+      {% endblock %}
 
-    {% block band_content %}
-      {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small u-bolt-width-7/12@medium u-bolt-width-6/12@large" %}
-          {{ headline_and_text }}
-        {% endcell %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
-          {{ card_with_form }}
-        {% endcell %}
-      {% endgrid %}
+      {% block band_content %}
+        {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small u-bolt-width-7/12@medium u-bolt-width-6/12@large u-bolt-margin-bottom-large" %}
+            {{ headline_and_text }}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+            {{ card_with_form }}
+          {% endcell %}
+        {% endgrid %}
 
-      {{ parent() }}
-    {% endblock band_content %}
-  {% endembed %}
-
-  {% embed "@bolt-components-band/band.twig" with {
-    size: "large",
-    theme: "dark",
-    background: {
-      opacity: "heavy",
-      fill: "color",
-    }
-  } %}
-    {% block band_background %}
-      {{ background_video }}
-      {{ parent() }}
-    {% endblock %}
-
-    {% block band_content %}
-      {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small u-bolt-width-7/12@medium u-bolt-width-6/12@large" %}
-          {{ headline_and_text }}
-        {% endcell %}
-        {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
-          {{ card_with_form }}
-        {% endcell %}
-      {% endgrid %}
-
-      {{ parent() }}
-    {% endblock band_content %}
-  {% endembed %}
+        {{ parent() }}
+      {% endblock band_content %}
+    {% endembed %}
+  {% endfor %}
 
 
   {# Rest of the page #}
