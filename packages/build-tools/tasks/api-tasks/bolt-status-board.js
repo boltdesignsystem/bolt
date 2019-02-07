@@ -104,9 +104,17 @@ async function generateStatusBoard() {
 
       if (normalizedUrlName === pkgName) {
         pendingRequests += 1;
+
+        const formattedPackageName = pkgName
+          .replace('@bolt/components-', '')
+          .replace('-', ' ')
+          .replace(/\b\w/g, function(l) {
+            return l.toUpperCase();
+          });
+
         const results = await renderString(`
           {% include "@bolt-components-link/link.twig" with {
-            text: "<strong>${pkgName}</strong>",
+            text: "<strong>${formattedPackageName}</strong>",
             url: "${normalizedUrl}",
             isHeadline: true,
           } %}
