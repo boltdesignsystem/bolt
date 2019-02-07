@@ -14,11 +14,18 @@
       .u-bolt-color-#{$colorName} {
         @include bolt-color($colorName, $colorShade, important);
       }
+
+      .u-bolt-bg-color-#{$colorName} {
+        background-color: bolt-color($colorName, $colorShade) !important;
+      }
     } @else {
       .u-bolt-color-#{$colorName}-#{$colorShade} {
         @include bolt-color($colorName, $colorShade, important);
       }
+      
+      .u-bolt-bg-color-#{$colorName}-#{$colorShade} {
+        background-color: bolt-color($colorName, $colorShade) !important;
+      }
     }
-
   }
 }
