@@ -97,8 +97,6 @@ async function generateStatusBoard() {
     }
   });
 
- 
-
   filteredBoltPackages.forEach(function(boltPackage, index, boltPackagesArray) {
     const pkgName = boltPackage.name;
     const componentPath = boltPackage.location;
@@ -158,7 +156,10 @@ async function generateStatusBoard() {
 
       const normalizedUrl = urlAddress.replace('../../', '/pattern-lab/');
 
-      if (normalizedUrlName === pkgName && !processedComponents.includes(pkgName)) {
+      if (
+        normalizedUrlName === pkgName &&
+        !processedComponents.includes(pkgName)
+      ) {
         processedComponents.push(pkgName);
         pendingRequests.push(pkgName);
 
