@@ -84,9 +84,9 @@ async function generateStatusBoard() {
     // console.log(`Sass: ${hasScss ? '✅' : ''}`);
     // console.log(`Twig: ${hasTwig ? '✅' : ''}`);
     // console.log(`Version: ${!isPrivate ? pkg.version : '(unreleased)'}`);
-    // console.log(`Jest Tests: ${hasjestTests ? '✅' : '️🚫'}`);
-    // console.log(`Nightwatch Tests: ${hasNightwatchTests ? '✅' : '️🚫'}`);
-    // console.log(`Manual Testing Docs: ${hasManualTestingDocs ? '✅' : '️🚫'}`);
+    // console.log(`Jest Tests: ${hasjestTests ? '✅' : '🚫'}`);
+    // console.log(`Nightwatch Tests: ${hasNightwatchTests ? '✅' : '🚫'}`);
+    // console.log(`Manual Testing Docs: ${hasManualTestingDocs ? '✅' : '🚫'}`);
     // console.log(`README Quality: ${docsFound.size >= 300 ? '⚠' : '🚧'}`);
     // console.log(urlAddress);
     // urlsProcessed = 0;
@@ -131,9 +131,9 @@ async function generateStatusBoard() {
             hasScss ? '✅' : '',
             hasTwig ? '✅' : '',
             probablyAWebComponent ? '🌟' : hasJs ? '' : '',
-            hasjestTests ? '✅' : '️🚫',
-            hasNightwatchTests ? '✅' : '️🚫',
-            hasManualTestingDocs ? '✅' : '️🚫',
+            hasjestTests ? '✅' : '🚫',
+            hasNightwatchTests ? '✅' : '🚫',
+            hasManualTestingDocs ? '✅' : '🚫',
             docsFound.size >= 300 ? '✅' : '❓',
           ],
         });
