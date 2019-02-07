@@ -1,5 +1,6 @@
 @import 'scss/01-abstracts/variables';
 @import 'scss/01-abstracts/mixins';
+@import 'scss/01-abstracts/theming';
 
 @keyframes animateIn {
   from {
@@ -30,12 +31,27 @@
   max-width: $pl-space * 25;
   width: calc(90vw - #{$pl-doublespace});
   border-radius: $pl-border-radius;
-  background: rgba($pl-color-black, 0.9);
   transform: translate3d(-50%, -100%, 0px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease 0.5s;
   pointer-events: none;
   opacity: 0;
-  animation: animateIn ease 0.3s forwards;
+  animation: animateIn ease 0.3s forwards 0.5s;
+
+  &--dark {
+    @include pl-theme-dark();
+    background-color: $pl-color-black;
+    background-color: var(--theme-secondary, $pl-color-black);
+    color: $pl-color-gray-20;
+    color: var(--theme-text, $pl-color-gray-20);
+  }
+  
+  &--light {
+    @include pl-theme-light();
+    color: $pl-color-black;
+    color: var(--theme-text, $pl-color-black);
+    background-color: $pl-color-white;
+    background-color: var(--theme-secondary, $pl-color-white);
+  }
 }
 
 .pl-c-loader__content {

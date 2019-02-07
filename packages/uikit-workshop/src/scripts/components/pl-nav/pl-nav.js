@@ -494,29 +494,32 @@ class Nav extends BaseComponent {
                 {patternItems &&
                   patternItems.map((patternItem, i) => {
                     return (
-                      <li class="pl-c-nav__item">
-                        <a
-                          href={`patterns/${patternItem.patternPath}`}
-                          class="pl-c-nav__link pl-c-nav__link--pattern"
-                          onClick={(e) => this.handleClick(e, patternItem.patternPartial)}
-                          data-patternpartial={patternItem.patternPartial}
-                          tabindex="0"
-                        >
-                          {patternItem.patternName === 'View All'
-                            ? patternItem.patternName + ' ' + item.patternTypeUC
-                            : patternItem.patternName}
-                          {patternItem.patternState && (
-                            <span
-                              class={`pl-c-pattern-state pl-c-pattern-state--${
-                                patternItem.patternState
-                              }`}
-                              title={patternItem.patternState}
-                            />
-                          )}
-                        </a>
-                      </li>
+                      patternItem.patternName === 'View All' || !patternItem.patternName.includes('View All') && (
+                        <li class="pl-c-nav__item">
+                          <a
+                            href={`patterns/${patternItem.patternPath}`}
+                            class="pl-c-nav__link pl-c-nav__link--pattern"
+                            onClick={(e) => this.handleClick(e, patternItem.patternPartial)}
+                            data-patternpartial={patternItem.patternPartial}
+                            tabindex="0"
+                          >
+                            {patternItem.patternName === 'View All'
+                              ? patternItem.patternName + ' ' + item.patternTypeUC
+                              : patternItem.patternName}
+                            {patternItem.patternState && (
+                              <span
+                                class={`pl-c-pattern-state pl-c-pattern-state--${
+                                  patternItem.patternState
+                                }`}
+                                title={patternItem.patternState}
+                              />
+                            )}
+                          </a>
+                        </li>
+                      )
                     );
-                  })}
+                  })
+                }
 
                 {item.patternTypeItems.map((patternSubtype, i) => {
                   return (

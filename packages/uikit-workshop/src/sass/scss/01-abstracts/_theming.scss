@@ -1,0 +1,26 @@
+@mixin pl-theme-dark(){
+  --theme-bg: #161b3c;
+  --theme-primary: #464a6d;
+  --theme-secondary: #161f50;
+  --theme-text: white;
+  --theme-text-rgb: 255,255,255;
+  --theme-border: rgba(255, 255, 255, 0.2);
+}
+
+@mixin pl-theme-light(){
+  --theme-bg: white;
+  // --theme-secondary: #EBEBEB;
+  --theme-secondary: white;
+  --theme-text: #262829;
+  --theme-text-rgb: 38, 40, 41;
+  --theme-primary: white;
+  --theme-border: #ddd;
+}
+
+.pl-c-body--theme-light {
+  @include pl-theme-light();
+}
+
+.pl-c-body--theme-dark {
+  @include pl-theme-dark();
+}

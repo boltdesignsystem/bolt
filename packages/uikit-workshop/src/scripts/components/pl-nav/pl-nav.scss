@@ -310,7 +310,7 @@ pl-nav {
 
   @media all and (min-width: $pl-bp-med) {
     height: auto;
-    max-height: calc(100vh - #{$offset-top} - 1rem); /* 1 */
+    max-height: calc(75vh - #{$offset-top} - 1rem); /* 1 */
   }
 
   .pl-c-body--theme-sidebar & {
@@ -424,17 +424,7 @@ pl-nav {
 
   .pl-c-body--theme-light & {
     color: $pl-color-black;
-    color: var(--theme-text);
-  }
-}
-
-.pl-c-nav__list > .pl-c-nav__item:not(:last-child) {
-  @media all and (min-width: $pl-bp-med) {
-    .pl-c-body--theme-sidebar & {
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
-      
-    }
+    color: var(--theme-text, $pl-color-black);
   }
 }
 
