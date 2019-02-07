@@ -4,6 +4,11 @@ type: object
 required:
   - name
 properties:
+  attributes:
+    type: object
+    description: >-
+      A Drupal-style attributes object with extra attributes to append to this
+      component.
   name:
     type: string
     description: Icon name.
