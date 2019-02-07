@@ -6,7 +6,7 @@ index 4c9bc6173..aebbe6c05 100644
  			}
  		}
  		$output .= "var plugins = ".json_encode($packagesInfo).";";
-+		$output .= "module.exports = { config, ishControls, navItems, patternPaths, viewAllPaths, plugins }";
++		//$output .= "module.exports = { config, ishControls, navItems, patternPaths, viewAllPaths, plugins }";
  
  		// write out the data
  		file_put_contents($dataDir."/patternlab-data.js",$output);
