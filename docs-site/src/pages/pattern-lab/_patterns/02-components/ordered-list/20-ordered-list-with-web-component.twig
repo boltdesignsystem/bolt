@@ -9,6 +9,16 @@
   &lt;bolt-li&gt;Item 5&lt;/bolt-li&gt;
 &lt;/bolt-ol&gt;</code></pre>
 
+<h3>Simple usage</h3>
+<bolt-ol>
+  <bolt-li>Item 1</bolt-li>
+  <bolt-li>Item 2</bolt-li>
+  <bolt-li>Item 3</bolt-li>
+  <bolt-li>Item 4</bolt-li>
+  <bolt-li>Item 5</bolt-li>
+</bolt-ol>
+
+<h3>Nesting of lists (ol and ul)</h3>
 <bolt-ol>
   <bolt-li>Item 1</bolt-li>
   <bolt-li>Item 2</bolt-li>
@@ -61,3 +71,17 @@
   </bolt-li>
 </bolt-ul>
 
+<h3>Theme variations</h3>
+{% for theme in ["xlight", "light", "dark", "xdark"] %}
+  <p>Theme: {{ theme }}</p>
+  <bolt-demo class="t-bolt-{{ theme }}">
+    <bolt-ol>
+      <bolt-li>Item 1</bolt-li>
+      <bolt-li>Item 2</bolt-li>
+      <bolt-li>Item 3</bolt-li>
+      <bolt-li>Item 4</bolt-li>
+      <bolt-li>Item 5</bolt-li>
+    </bolt-ol>
+  </bolt-demo>
+  <br>
+{% endfor %}

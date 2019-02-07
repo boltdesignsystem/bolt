@@ -2,6 +2,7 @@ const globby = require('globby');
 const { getGitSha } = require('ci-utils');
 const fetch = require('node-fetch');
 const path = require('path');
+const https = require('https');
 
 const {
   NOW_URL,
@@ -51,7 +52,7 @@ srcFolders = srcFolders.map(function(folder) {
  * @param {function} callback
  * @returns {void}
  */
-function handleNightwatchResults(client, callback) {
+async function handleNightwatchResults(client, callback) {
   const currentTest = client.currentTest;
   const sessionId = client.capabilities['webdriver.remote.sessionid'];
   const { username, accessKey } = client.options;
@@ -68,60 +69,113 @@ function handleNightwatchResults(client, callback) {
 
   if (!client.launch_url.match(/saucelabs/)) {
     console.log('Not saucelabs ...');
-    callback();
-    return;
+    process.exit(1);
   }
 
   if (!username || !accessKey || !sessionId) {
     console.log('No username, accessKey or sessionId');
-    callback();
-    return;
+    console.log(username);
+    console.log(accessKey);
+    console.log(sessionId);
+    process.exit(1);
   }
 
   const passed = results.passed === results.tests - results.skipped;
   console.log(`Passed: ${passed ? 'Yes' : 'No'} - ${name}`);
-  fetch(
-    // https://wiki.saucelabs.com/display/DOCS/Job+Methods
-    `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${sessionId}`,
-    {
-      method: 'PUT',
-      headers: {
-        Authorization: `Basic ${auth}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        passed,
-        build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
-        tags: ['CI'],
-        'custom-data': {
-          TRAVIS_JOB_NUMBER,
-          TRAVIS_BRANCH,
-          TRAVIS_PULL_REQUEST_BRANCH,
-          TRAVIS_PULL_REQUEST,
-          TRAVIS_REPO_SLUG,
-          TRAVIS_TAG,
-          TRAVIS_BUILD_WEB_URL,
-          gitSha,
-          gitShaLong,
+
+  try {
+    const res = await fetch(
+      // https://wiki.saucelabs.com/display/DOCS/Job+Methods
+      `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${sessionId}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Basic ${auth}`,
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-      }),
-    },
-  )
-    .then(res => {
-      if (res.ok) {
-        console.log(`Set SauceLabs details ok`);
-      } else {
-        console.log(`Set SauceLabs details not ok`);
-        throw new Error(`Set SauceLabs details not ok ${res.statusText}`);
-      }
-      return res.json();
-    })
-    .then(() => callback())
-    .catch(err => {
-      console.log(`Error setting SauceLabs details`, err);
-      process.exit(1);
+        body: JSON.stringify({
+          passed,
+          build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
+          tags: ['CI'],
+          'custom-data': {
+            TRAVIS_JOB_NUMBER,
+            TRAVIS_BRANCH,
+            TRAVIS_PULL_REQUEST_BRANCH,
+            TRAVIS_PULL_REQUEST,
+            TRAVIS_REPO_SLUG,
+            TRAVIS_TAG,
+            TRAVIS_BUILD_WEB_URL,
+            gitSha,
+            gitShaLong,
+          },
+        }),
+      },
+    );
+
+    if (res.ok) {
+      // console.log(`Set SauceLabs details ok`);
+    } else {
+      console.log(`Setting SauceLabs details not ok`);
+      throw new Error(`Set SauceLabs details not ok ${res.statusText}`);
+    }
+
+    const data = JSON.stringify({
+      passed,
     });
+
+    const requestPath = `/rest/v1/${username}/jobs/${sessionId}`;
+
+    try {
+      // console.log('Updating Saucelabs', requestPath);
+
+      const req = https.request(
+        {
+          hostname: 'saucelabs.com',
+          path: requestPath,
+          method: 'PUT',
+          auth: `${username}:${accessKey}`,
+          headers: {
+            'Content-Type': 'application/json',
+            'Content-Length': data.length,
+          },
+        },
+        function(res) {
+          let results;
+          res.setEncoding('utf8');
+
+          if (res.statusCode !== 200) {
+            console.log('Failed to updating Saucelabs', requestPath);
+            console.log(
+              'Response: ',
+              res.statusCode,
+              JSON.stringify(res.headers),
+            );
+          }
+          res.on('data', function onData(chunk) {
+            // console.log('BODY: ' + chunk);
+            results = chunk;
+          });
+          res.on('end', function onEnd() {
+            console.info('Finished updating Saucelabs');
+            callback(results);
+          });
+        },
+      );
+
+      req.on('error', function onError(e) {
+        console.log('problem with request: ' + e.message);
+      });
+      req.write(data);
+      req.end();
+    } catch (error) {
+      console.log('Error', error);
+      callback(error);
+    }
+  } catch (err) {
+    console.log(`Error setting SauceLabs details`, err);
+    process.exit(1);
+  }
 }
 
 module.exports = {
@@ -137,9 +191,11 @@ module.exports = {
 
     reporter(results, cb) {
       // Might be used if nightwatch results reporting needs to be consolidated in Github Checks
-      console.log('global reporter called');
-      console.log(results);
-      console.log(results.modules);
+      // console.log('global reporter called');
+      if (results.failed > 0) {
+        console.log(results);
+      }
+      // console.log(results.modules);
       cb();
     },
   },
@@ -155,7 +211,7 @@ module.exports = {
   //   },
   // },
   live_output: false, // set to `true` to see output as it happens; make appear interlaced if ran in parallel
-  test_workers: { enabled: true, workers: 'auto' },
+  test_workers: { enabled: true, workers: '1' },
   test_settings: {
     compatible_testcase_support: true,
     default: {
