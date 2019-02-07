@@ -130,7 +130,7 @@ async function generateStatusBoard() {
             // '</strong></span>
             hasScss ? '✅' : '',
             hasTwig ? '✅' : '',
-            probablyAWebComponent ? '🌟' : hasJs ? '' : '',
+            probablyAWebComponent ? '✅' : hasJs ? '' : '',
             hasjestTests ? '✅' : '🚫',
             hasNightwatchTests ? '✅' : '🚫',
             hasManualTestingDocs ? '✅' : '🚫',
