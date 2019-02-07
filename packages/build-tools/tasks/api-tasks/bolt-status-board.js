@@ -89,6 +89,16 @@ async function generateStatusBoard() {
     pkg.name.includes('@bolt/components'),
   );
 
+  filteredBoltPackages.sort(function(a, b) {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (a.name > b.name) {
+      return 1;
+    }
+    return 0;
+  });
+
   Object.keys(boltUrls).forEach(function(url) {
     if (!url.includes('viewall')) {
       delete boltUrls[url];
