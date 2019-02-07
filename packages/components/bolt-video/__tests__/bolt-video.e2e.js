@@ -32,35 +32,35 @@ module.exports = {
       .saveScreenshot(
         `screenshots/bolt-video/${testName}--${currentBrowser}.png`,
       )
-      .execute(
-        function(data) {
-          return document.querySelector('bolt-video').player.playbackRate();
-        },
-        [],
-        function(result) {
-          browser.assert.ok(
-            result.value === 1.3,
-            `verified that <bolt-video> play rate has sped up to ${
-              result.value
-            }`,
-          );
-        },
-      )
-      .execute(
-        function(data) {
-          return document.querySelector('.vjs-playback-rate-value').textContent;
-        },
-        [],
-        function(result) {
-          browser.assert.ok(
-            result.value === '1.3x',
-            `verified that <bolt-video> play rate text reads 1.3x.`,
-          );
-        },
-      )
-      .saveScreenshot(
-        `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
-      )
+      // .execute(
+      //   function(data) {
+      //     return document.querySelector('bolt-video').player.playbackRate();
+      //   },
+      //   [],
+      //   function(result) {
+      //     browser.assert.ok(
+      //       result.value === 1.3,
+      //       `verified that <bolt-video> play rate has sped up to ${
+      //         result.value
+      //       }`,
+      //     );
+      //   },
+      // )
+      // .execute(
+      //   function(data) {
+      //     return document.querySelector('.vjs-playback-rate-value').textContent;
+      //   },
+      //   [],
+      //   function(result) {
+      //     browser.assert.ok(
+      //       result.value === '1.3x',
+      //       `verified that <bolt-video> play rate text reads 1.3x.`,
+      //     );
+      //   },
+      // )
+      // .saveScreenshot(
+      //   `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
+      // )
       .end();
   },
 
