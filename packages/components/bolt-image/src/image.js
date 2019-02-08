@@ -142,7 +142,7 @@ class BoltImage extends withLitHtml() {
     });
 
     const imageElement = () => {
-      if (src) {
+      if (src || srcset) {
         return html`
           <img
             class="${classes}"
