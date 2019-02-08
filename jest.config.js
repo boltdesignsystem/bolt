@@ -10,6 +10,7 @@ module.exports = {
     'packages/components/bolt-button/__tests__/button-wc.test.js',
     'packages/patternlab-node',
     'packages/components/bolt-video/__tests__/bolt-video.e2e.js',
+    'packages/components/bolt-image/__tests__/bolt-image.e2e.js',
   ],
   testEnvironment: 'node',
   globalSetup: './jest-global-setup.js',
