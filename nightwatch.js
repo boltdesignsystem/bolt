@@ -1,7 +1,5 @@
 const globby = require('globby');
 const path = require('path');
-const seleniumServer = require('selenium-server');
-const chromeDriver = require('chromedriver');
 const { handleNightwatchResults } = require('./nightwatch.handle-results');
 const { NOW_URL } = process.env;
 
@@ -28,11 +26,7 @@ module.exports = {
     testCount: 0,
 
     afterEach(browser, cb) {
-      if (!NOW_URL.includes('localhost')) {
-        handleNightwatchResults(browser, cb);
-      } else {
-        cb();
-      }
+      handleNightwatchResults(browser, cb);
     },
 
     reporter(results, cb) {
@@ -46,20 +40,8 @@ module.exports = {
     },
   },
   persist_globals: true,
-  selenium: {
-    start_process: true,
-    server_path: seleniumServer.path,
-    log_path: 'reports/screenshots/',
-    port: 4444,
-    cli_args: {
-      'webdriver.chrome.driver': chromeDriver.path,
-    },
-  },
   live_output: false, // set to `true` to see output as it happens; make appear interlaced if ran in parallel
-  test_workers: {
-    enabled: true,
-    workers: 'auto',
-  },
+  test_workers: { enabled: true, workers: '1' },
   test_settings: {
     compatible_testcase_support: true,
     default: {
@@ -70,6 +52,12 @@ module.exports = {
         path: 'reports/screenshots/',
       },
       filter: '**/*.e2e.js',
+      launch_url: 'http://ondemand.saucelabs.com:80',
+      selenium_port: 80,
+      selenium_host: 'ondemand.saucelabs.com',
+      silent: true,
+      username: process.env.SAUCE_USERNAME,
+      access_key: process.env.SAUCE_ACCESS_KEY,
     },
     local: {
       screenshots: {
@@ -96,6 +84,9 @@ module.exports = {
         version: '70',
         javascriptEnabled: true,
         acceptSslCerts: true,
+        //         chromeOptions: {
+        //           args: ['headless'],
+        //         },
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,
@@ -121,14 +112,3 @@ module.exports = {
   },
   src_folders: srcFolders,
 };
-
-if (!NOW_URL.includes('localhost')) {
-  const defaultTestSettings = module.exports.test_settings.default;
-
-  defaultTestSettings.launch_url = 'http://ondemand.saucelabs.com:80';
-  defaultTestSettings.selenium_port = 80;
-  defaultTestSettings.selenium_host = 'ondemand.saucelabs.com';
-  defaultTestSettings.silent = true;
-  defaultTestSettings.username = process.env.SAUCE_USERNAME;
-  defaultTestSettings.access_key = process.env.SAUCE_ACCESS_KEY;
-}
