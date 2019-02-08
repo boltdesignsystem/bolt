@@ -55,11 +55,12 @@
         {% for item in contentItems %}
 
           {% set itemAttributes = item.pattern ~ "Attributes" %}
+          {% set ratioKey = item.pattern == "image" ? "useAspectRatio" : "ratio" %}
           {% include pattern_template(item.pattern) with item | merge({
             (itemAttributes): {
               class: ["c-bolt-background__#{item.pattern}"]
             },
-            ratio: false,
+            (ratioKey): false,
             lazyload: item.lazyload ? item.lazyload : true
           }) only %}
         {% endfor %}
