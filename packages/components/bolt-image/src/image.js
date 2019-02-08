@@ -178,7 +178,7 @@ class BoltImage extends withLitHtml() {
         return html`
           <noscript>
             <img
-              class="${classes}"
+              class="${cx('c-bolt-image__image')}"
               src="${src}"
               alt="${ifDefined(alt ? alt : undefined)}"
               srcset="${ifDefined(!lazyload ? srcset || src : undefined)}"
