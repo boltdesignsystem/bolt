@@ -59,7 +59,6 @@ class BoltImage extends withLitHtml() {
   }
 
   lazyloadImage(image) {
-    // console.log('@lazyloadImage');
     if (!this.isLoaded) {
       // Note: This immediately unveils the image. Add intersection observer?
       lazySizes.loader.unveil(image);
