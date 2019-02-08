@@ -29,9 +29,11 @@ class BoltImage extends withLitHtml() {
     noLazy: props.boolean,
     srcset: props.string,
     sizes: props.string,
-    noRatio: props.boolean,
+    ratio: props.string,
     width: props.string,
     height: props.string,
+    placeholderColor: props.string,
+    placeholderImage: props.string,
     zoom: props.boolean,
   };
 
@@ -54,18 +56,6 @@ class BoltImage extends withLitHtml() {
     }
 
     return modifiedSchema;
-  }
-
-  getImageData(imagePath) {
-    // TODO: Get real image data
-    return {
-      height: 480,
-      width: 640,
-      base64:
-        'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==',
-      color: 'hsl(233, 33%, 97%)',
-      isAbsolute: false,
-    };
   }
 
   lazyloadImage(image) {
@@ -93,23 +83,43 @@ class BoltImage extends withLitHtml() {
       noLazy,
       srcset,
       sizes,
-      noRatio,
+      ratio,
       width,
       height,
+      placeholderColor,
+      placeholderImage,
       zoom,
     } = this.validateProps(this.props);
 
     // negate and rename variables for readability
     const lazyload = !noLazy;
-    const useAspectRatio = !noRatio;
+
+    // use ratio by default, still depends upon width and height being set
+    let useRatio = true;
+    let ratioW;
+    let ratioH;
+
+    if (ratio) {
+      switch (ratio) {
+        case 'none':
+          useRatio = false;
+          break;
+        case 'auto':
+          useRatio = true;
+          break;
+        default:
+          useRatio = true;
+          if (ratio.indexOf(':') > -1) {
+            const ratioArr = ratio.split(':');
+            ratioW = ratioArr[0];
+            ratioH = ratioArr[1];
+          }
+      }
+    }
+
+    const canUseRatio = ratioW > 0 && ratioH > 0 && useRatio;
 
     const imageExt = path.extname(src);
-    const imageData = this.getImageData(src);
-    const placeholderColor = imageData.color;
-    const placeholderSrc = imageData.base64;
-    const imageWidth = width || imageData.width;
-    const imageHeight = height || imageData.height;
-    const canUseAspectRatio = imageWidth && imageHeight && useAspectRatio;
 
     const classes = cx('c-bolt-image__image', {
       'c-bolt-image__lazyload': lazyload,
@@ -123,7 +133,7 @@ class BoltImage extends withLitHtml() {
         return html`
           <img
             class="${classes}"
-            src="${lazyload ? placeholderSrc : src}"
+            src="${lazyload ? placeholderImage : src}"
             alt="${ifDefined(alt ? alt : undefined)}"
             srcset="${ifDefined(
               !lazyload || this.isLoaded ? srcset || src : undefined,
@@ -138,11 +148,11 @@ class BoltImage extends withLitHtml() {
     };
 
     const placeholderImageElement = () => {
-      if (useAspectRatio && imageExt === '.jpg') {
+      if (canUseRatio && imageExt === '.jpg') {
         return html`
           <img
             class="${cx('c-bolt-image__image-placeholder')}"
-            src="${placeholderSrc}"
+            src="${placeholderImage}"
             alt="${ifDefined(alt ? alt : undefined)}"
           />
         `;
@@ -173,16 +183,15 @@ class BoltImage extends withLitHtml() {
     const ratioTemplate = children => {
       return html`
         <bolt-ratio
-          attributes=""
-          aspect-ratio-width="${imageWidth * 1}"
-          aspect-ratio-height="${imageHeight * 1}"
+          aspect-ratio-width="${ratioW * 1}"
+          aspect-ratio-height="${ratioH * 1}"
         >
           ${children}
         </bolt-ratio>
       `;
     };
 
-    if (placeholderColor && canUseAspectRatio && imageExt === '.jpg') {
+    if (canUseRatio && imageExt === '.jpg' && placeholderColor) {
       this.style.backgroundColor = placeholderColor;
     }
 

@@ -26,6 +26,14 @@ properties:
     enum:
       - true
       - false
+  placeholder_color:
+    type: string
+    description: A valid CSS background color property shown while image loads.
+    default: hsl(233, 33%, 97%)
+  placeholder_image:
+    type: string
+    description: Image path or image data shown while image loads.
+    default: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
   srcset:
     type: string
     description: A comma seperated string of image urls and image widths, used for optimizing image loading performance.
@@ -40,13 +48,10 @@ properties:
     enum:
       - true
       - false
-  no_ratio:
-    type: boolean
-    description: Override the default useAspectRatio behavior. Used only on the web component, where the presence of a boolean property always equates to `true`.
-    default: false
-    enum:
-      - true
-      - false
+  ratio:
+    type: string
+    description: Set the aspect ratio for the image via colon-separated width and height values, e.g. 4:3. Currently required for aspect ratio to be applied properly. Set to "none" to opt out of aspect ratio. Used only on the web component.
+    default: auto
   width:
     oneOf:
       - type: number

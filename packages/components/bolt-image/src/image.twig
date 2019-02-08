@@ -8,24 +8,26 @@
 {% set image_data_twig = getImageData(src)  %} {# Data from processing image file #}
 
 {% set ext = src|split('.')|last %}
+{% set display = display in display_options ? display : schema.properties.display.default %}
 {% set height = height|default(image_data_twig.height) %}
 {% set width = width|default(image_data_twig.width) %}
 {% set lazyload = lazyload ?? true %}
-{% set placeholder_dummy_src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" %}
-{% set placeholder_color = image_data_twig.color|default('hsl(233, 33%, 97%)') %}
-{% set placeholder_image = image_data_twig.base64|default(placeholder_dummy_src) %}
-{% set sizes = sizes | default("auto") %}
+{% set sizes = sizes|default("auto") %}
 {% set srcset = srcset|default(src) %}
+
 {% if image_data_bolt.srcset %}
   {% set srcset = image_data_bolt.srcset %}
 {% endif %}
 
+{# Set alt to null if missing, prevents empty alt tags #}
 {% set alt = alt ? alt : null %}
 
-{% if (ratio is defined and ratio == false) or no_ratio %}
-  {% set useAspectRatio = false %}
-{% endif %}
+{# Temp: prefix "ph" to preserve original value for web component, better pattern in the works #}
+{% set ph_color = placeholder_color|default(image_data_twig.color|default(schema.properties.placeholder_color.default)) %}
+{% set ph_image = placeholder_image|default(image_data_twig.base64|default(schema.properties.placeholder_image.default)) %}
+
 {% set useAspectRatio = useAspectRatio ?? true %}
+{% set can_use_ratio = width > 0 and height > 0 and useAspectRatio is sameas(true) %}
 
 {#--------------------#}
 {# STOP!!!!!!!!!#}
@@ -66,7 +68,6 @@
   .setAttribute(srcset ? "srcset" : "", srcset ? srcset : null)
 %}
 
-
 {% set image_tag %}
   <img {{ image_attributes }} />
 
@@ -82,7 +83,7 @@
   .removeAttribute("src")
   .removeAttribute("data-sizes")
   .removeAttribute("srcset")
-  .setAttribute("src", placeholder_image)
+  .setAttribute("src", ph_image)
   }} />
 {% endset %}
 
@@ -94,13 +95,15 @@
   {% if sizes %}sizes="{{ sizes }}"{% endif %}
   {% if width %}width="{{ width }}"{% endif %}
   {% if height %}height="{{ height }}"{% endif %}
-  {% if not useAspectRatio %}no-ratio{% endif %}
+  {% if not useAspectRatio %}ratio="none"{% elseif can_use_ratio %}ratio="{{ width }}:{{ height }}"{% endif %}
+  {% if placeholder_color %}placeholder-color="{{ placeholder_color }}"{% endif %}
+  {% if placeholder_image %}placeholder-image="{{ placeholder_image }}"{% endif %}
   {% if zoom %}zoom{% endif %}
   {% if not lazyload %}no-lazy{% endif %}
-  {% if placeholder_color and ext == "jpg" %} style="background-color: {{ placeholder_color }};" {% endif %}
+  {% if can_use_ratio and ext == "jpg" %} style="background-color: {{ ph_color }};" {% endif %}
   >
   {% block image_content %}
-    {% if width > 0 and height > 0 and useAspectRatio == true %}
+    {% if can_use_ratio %}
       {% include "@bolt-components-ratio/ratio.twig" with {
         attributes: attributes,
         aspectRatioHeight: height * 1,
@@ -111,7 +114,6 @@
         ] | join("")
       } only %}
     {% else %}
-      {{ ext == "jpg" ? image_placeholder : "" }}
       {{ image_tag }}
     {% endif %}
   {% endblock %}
