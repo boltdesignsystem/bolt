@@ -75,10 +75,16 @@ class BoltImage extends withLitHtml() {
   }
 
   rendered() {
-    super.rendered() && super.rendered();
-    let lazyImage = this.shadowRoot.querySelector('.js-lazyload');
+    super.rendered && super.rendered();
+
+    const lazyImage = this.shadowRoot
+      ? this.shadowRoot.querySelector('.js-lazyload')
+      : this.querySelector('.js-lazyload');
+
     if (lazyImage) {
-      this.lazyloadImage(lazyImage);
+      setTimeout(() => {
+        this.lazyloadImage(lazyImage);
+      }, 0);
     }
   }
 
