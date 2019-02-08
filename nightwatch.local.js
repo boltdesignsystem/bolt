@@ -25,8 +25,7 @@ module.exports = {
     waitForConditionTimeout: 5000,
     testingUrl,
   },
-  // src_folders: srcFolders,
-  src_folders: ['packages/components/bolt-image/__tests__/'],
+  src_folders: srcFolders,
   selenium: {
     start_process: true,
     server_path: seleniumServer.path,
