@@ -207,17 +207,12 @@ class BoltImage extends withLitHtml() {
       this.style.backgroundColor = placeholderColor;
     }
 
-    let renderedImage = this.slot('default');
+    let renderedImage;
 
-    if (
-      !containsTagName(this.childNodes, 'img') &&
-      !containsTagName(this.childNodes, 'bolt-ratio')
-    ) {
-      if (canUseAspectRatio) {
-        renderedImage = ratioTemplate(imageTemplate);
-      } else {
-        renderedImage = imageTemplate;
-      }
+    if (canUseRatio) {
+      renderedImage = ratioTemplate(imageTemplate);
+    } else {
+      renderedImage = imageTemplate;
     }
 
     return html`
