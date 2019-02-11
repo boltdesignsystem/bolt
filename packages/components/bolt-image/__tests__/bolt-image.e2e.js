@@ -19,8 +19,7 @@ module.exports = {
       })
       .getElementSize('.c-bolt-image__image', function(result) {
         const imageHeight = Math.round(bodyWidth / 1.3333333333);
-        this.assert.equal(typeof result, 'object');
-        this.assert.equal(result.status, 0);
+
         this.assert.equal(result.value.width, bodyWidth);
         this.assert.equal(result.value.height, imageHeight);
       })
@@ -40,10 +39,7 @@ module.exports = {
       .url(
         `${testingUrl}/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html`,
       )
-      .waitForElementVisible('bolt-device-viewer', 1000)
-      .moveToElement('bolt-image-zoom', 50, 200, () => {
-        browser.assert.cssClassPresent('bolt-image-zoom', 'is-mouse-entering');
-      })
+      .waitForElementVisible('.c-bolt-image-zoom__overlay-icon', 1000)
       .saveScreenshot(
         `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
       )
