@@ -1,26 +1,29 @@
-const webpackTasks = require('@bolt/build-tools/tasks/webpack-tasks');
-const createWebpackConfig = require('@bolt/build-tools/create-webpack-config');
-const { buildPrep } = require('@bolt/build-tools/tasks/task-collections');
-const imageTasks = require('@bolt/build-tools/tasks/image-tasks');
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { setup: setupDevServer } = require('jest-dev-server');
+const puppeteer = require('puppeteer');
+const mkdirp = require('mkdirp');
+const path = require('path');
+const fs = require('fs');
+const os = require('os');
 
-module.exports = async function() {
-  try {
-    let config = await getConfig();
-    await buildPrep(); // Generate folders, manifest data, etc needed for Twig renderer
-    await imageTasks.processImages(); // process image fixtures used by any tests
+const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
-    // don't compile anything in Webpack except for the exported JSON data from Bolt's Design Tokens
-    config.components.global = ['./packages/core/styles/index.scss'];
-    config.components.individual = [];
+module.exports = async function globalSetup() {
+  await setupDevServer({
+    command: `node server/testing-server`,
+    launchTimeout: 50000,
+    port: 4444,
+  });
 
-    // Disabling Sourcemaps here technically isn't REQUIRED but this might help speed things along, especially on Travis
-    config.sourceMaps = false;
+  const browser = await puppeteer.launch();
+  // store the browser instance so we can teardown it later
+  // this global is only available in the teardown but not in TestEnvironments
+  global.__BROWSER_GLOBAL__ = browser;
 
-    const customWebpackConfig = await createWebpackConfig(config);
+  global.navigator = {
+    userAgent: 'node.js',
+  };
 
-    await webpackTasks.compile(customWebpackConfig);
-  } catch (error) {
-    console.log(error);
-  }
+  // use the file system to expose the wsEndpoint for TestEnvironments
+  mkdirp.sync(DIR);
+  fs.writeFileSync(path.join(DIR, 'wsEndpoint'), browser.wsEndpoint());
 };

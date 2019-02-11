@@ -35,6 +35,7 @@ imageFixtureDirs.forEach((fixturePath) => {
 });
 
 module.exports = {
+  verbosity: 1,
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
   buildDir: adjustRelativePath(siteConfig.buildDir),
   components: {
@@ -47,4 +48,6 @@ module.exports = {
   images: {
     sets: imageSets,
   },
+  prod: true,
+  enableCache: true,
 };
