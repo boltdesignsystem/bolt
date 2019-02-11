@@ -41,8 +41,9 @@ module.exports = {
         `${testingUrl}/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html`,
       )
       .waitForElementVisible('bolt-device-viewer', 1000)
-      .moveToElement('bolt-image-zoom', 50, 50)
-      .assert.cssClassPresent('bolt-image-zoom', 'is-mouse-entering')
+      .moveToElement('bolt-image-zoom', 50, 200, () => {
+        browser.assert.cssClassPresent('bolt-image-zoom', 'is-mouse-entering');
+      })
       .saveScreenshot(
         `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
       )
