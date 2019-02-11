@@ -43,7 +43,6 @@ jobs:
         - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
         - yarn run build
-        - yarn run test:mocha
         - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
