@@ -29,7 +29,9 @@ describe('button', async () => {
 
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();
-    await page.goto('http://127.0.0.1:4444/');
+    await page.goto('http://127.0.0.1:4444/', {
+      timeout: 0,
+    });
   }, timeout);
 
   test('basic button', async () => {
