@@ -18,7 +18,7 @@ async function renderTwigString(template, data) {
   return await renderString(template, data, true);
 }
 
-const timeout = 30000;
+const timeout = 60000;
 
 describe('button', async () => {
   let page;
