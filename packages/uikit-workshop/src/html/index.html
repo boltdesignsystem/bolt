@@ -10,8 +10,8 @@
     <meta name="theme-color" content="#ababab" />
     <link rel="stylesheet" href="styleguide/css/pattern-lab.css" media="all" />
 
-    <link rel="preload" as="image" href="/images/bolt-logo--dark.svg">
-    <link rel="preload" as="image" href="/images/bolt-logo--light.svg">
+    <link rel="prefetch" as="image" href="/images/bolt-logo--dark.svg">
+    <link rel="prefetch" as="image" href="/images/bolt-logo--light.svg">
   </head>
 
   <body class="pl-c-body">
@@ -28,9 +28,9 @@
     </script>
 
     <!-- load Pattern Lab data -->
-    <script src="styleguide/data/patternlab-data.js" async></script>
-    <script src="annotations/annotations.js" async></script>
-    <script src="styleguide/js/patternlab-viewer.js" async></script>
+    <script src="styleguide/data/patternlab-data.js" defer></script>
+    <script src="annotations/annotations.js" defer></script>
+    <script src="styleguide/js/patternlab-viewer.js" defer></script>
 
     <script>
       // Check that service workers are registered

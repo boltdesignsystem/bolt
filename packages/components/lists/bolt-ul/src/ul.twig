@@ -13,7 +13,7 @@
   {% set items = contentItems %}
 {% endif %}
 
-<bolt-ul>
+<bolt-ul {{ attributes | without("class") }}>
   <replace-with-grandchildren>
     <ul {{ attributes.addClass(classes) }}>
       {% for item in items %}
