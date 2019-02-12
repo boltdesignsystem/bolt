@@ -31,6 +31,8 @@ describe('button', async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
+      waitLoad: true, 
+      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
