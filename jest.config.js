@@ -11,6 +11,7 @@ module.exports = {
     'packages/patternlab-node',
     'packages/components/bolt-video/__tests__/bolt-video.e2e.js',
     'packages/components/bolt-image/__tests__/bolt-image.e2e.js',
+    'packages/components/bolt-figure/__tests__/figure-data.js',
   ],
   testEnvironment: 'node',
   globalSetup: './jest-global-setup.js',
