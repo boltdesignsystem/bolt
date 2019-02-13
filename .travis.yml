@@ -23,6 +23,7 @@ stages:
 #    if: branch = master
 
 jobs:
+  fast_finish: true
   include:
     - stage: Prep
       name: 'Code Quality'
