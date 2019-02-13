@@ -10,8 +10,12 @@
 @include bolt-custom-element('bolt-card', block, medium);
 
 bolt-card {
+  @include bolt-card-border-reset;
   @include bolt-card-content-conditions;
+
   position: relative;
+  border-radius: $bolt-card-border-radius;
+  border-width: $bolt-card-border-width;
 
   &[height='full'] {
     display: flex;
@@ -22,7 +26,6 @@ bolt-card {
 
 // Card container styles
 .c-bolt-card {
-  @include bolt-card-border-reset;
   @include bolt-card-content-conditions;
   @include bolt-margin(0);
   @include bolt-padding(0);
@@ -34,7 +37,6 @@ bolt-card {
   position: relative;
   height: 100%;
   border-radius: $bolt-card-border-radius;
-  border-width: $bolt-card-border-width;
 
   // Non-themed card color settings.
   // Note: when a card is themed, the `t-bolt-` class will define the color and background-color, these settings won't be loaded.
