@@ -10,16 +10,16 @@
   },
   "dependencies": {
     "globby": "^9.0.0",
-    "express": "^4.16.3",
-    "choices.js": "^3.0.4",
-    "iframe-resizer": "^3.6.4"
+    "express": "^4.16.3"
   },
   "workspaces": {
     "packages": [
-      "packages/*",
-      "packages/config-presets/*",
-      "packages/components/*",
-      "packages/components/lists/*"
+      "../packages/api",
+      "../packages/build-tools",
+      "../packages/global",
+      "../packages/twig-renderer",
+      "../packages/components/*",
+      "../packages/components/lists/*"
     ]
   }
 }
