@@ -19,8 +19,7 @@ services:
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
 stages:
-  - Smoke Tests
-  - Build & Deploy
+  - Smoke Tests, Build, & Deploy
   - Post-deploy Tests
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
@@ -28,7 +27,7 @@ stages:
 
 jobs:
   include:
-    - stage: Smoke Tests
+    - stage: Smoke Tests, Build, & Deploy
       name: 'Code Quality'
       before_script:
         # - phpenv config-rm xdebug.ini
@@ -43,7 +42,7 @@ jobs:
       cache:
         yarn: true
 
-    - stage: Smoke Tests
+    - stage: Smoke Tests, Build, & Deploy
       name: 'Unit Tests'
       before_script:
         - yarn run setup:quick
@@ -60,7 +59,7 @@ jobs:
         directories:
           - $HOME/.composer/cache/files
 
-    - stage: Build & Deploy
+    - stage: Smoke Tests, Build, & Deploy
       name: 'Build + Deploy'
       before_script:
         # Clear incache file on normal Travis builds
