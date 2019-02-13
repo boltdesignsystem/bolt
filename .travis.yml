@@ -16,19 +16,19 @@ services:
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
 stages:
-  - Prep
-  - Test Live Site
+  - Smoke Tests
+  - Build & Deploy
+  - Post-deploy Tests
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
 
 jobs:
   include:
-    - stage: Prep
+    - stage: Smoke Tests
       name: 'Code Quality'
       before_script:
-        - phpenv config-rm xdebug.ini
-        - composer global require hirak/prestissimo
+        # - phpenv config-rm xdebug.ini
         - yarn run setup:quick
       script:
         - ./scripts/check-run-queue.js 'Lint'
@@ -43,11 +43,10 @@ jobs:
           - $HOME/.composer/cache/files
           - node_modules
 
-    - stage: Prep
-      name: 'Smoke Tests'
+    - stage: Smoke Tests
+      name: 'Unit Tests'
       before_script:
-        - phpenv config-rm xdebug.ini
-        - composer global require hirak/prestissimo
+        # - phpenv config-rm xdebug.ini
         - yarn run setup:quick
       script:
         - ./scripts/check-run-queue.js 'Unit'
@@ -56,14 +55,21 @@ jobs:
         - ./scripts/check-run-success.js 'Unit'
       after_failure:
          - ./scripts/check-run-failure.js 'Unit'
+      cache:
+        yarn: true
+        directories:
+          - $HOME/.composer/cache/files
+          - node_modules
 
-    - stage: Prep
+    - stage: Build & Deploy
       name: 'Build + Deploy'
-      script:
+      before_script:
         # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
+      script:
         - yarn run build
+      after_success:
         - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
@@ -74,12 +80,11 @@ jobs:
           - $HOME/.composer/cache/files
           - node_modules
 
-    - stage: Test Live Site
+    - stage: Post-deploy Tests
       name: 'Nightwatch End-to-End'
-      # addons:
-      #   sauce_connect: true
-      script:
+      before_script:
         - yarn run setup
+      script:
         - ./scripts/check-run-in-progress.js 'Nightwatch'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
@@ -96,10 +101,11 @@ jobs:
           - $HOME/.composer/cache/files
           - node_modules
 
-    - stage: Test Live Site
+    - stage: Post-deploy Tests
       name: 'Ensure site is live'
-      script:
+      before_script:
         - yarn run setup
+      script:
         - ./scripts/check-run-in-progress.js 'Site is live'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
@@ -114,7 +120,7 @@ jobs:
           - $HOME/.composer/cache/files
           - node_modules
 
-    - stage: Test Live Site
+    - stage: Post-deploy Tests
       name: 'Example master only job'
       if: branch = master
       script:
