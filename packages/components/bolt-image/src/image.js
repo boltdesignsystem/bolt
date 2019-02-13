@@ -108,24 +108,17 @@ class BoltImage extends withLitHtml() {
 
     // use ratio by default, still depends upon width and height being set
     let useRatio = true;
-    let ratioW;
-    let ratioH;
+    let ratioW, ratioH;
 
-    if (ratio) {
-      switch (ratio) {
-        case 'none':
-          useRatio = false;
-          break;
-        case 'auto':
-          useRatio = true;
-          break;
-        default:
-          useRatio = true;
-          if (ratio.indexOf(':') > -1) {
-            const ratioArr = ratio.split(':');
-            ratioW = ratioArr[0];
-            ratioH = ratioArr[1];
-          }
+    if (ratio === 'none') {
+      useRatio = false;
+    } else {
+      if (ratio === 'auto') {
+        // TODO: automatically get image dimensions
+      } else if (ratio.indexOf(':') > -1) {
+        const ratioArr = ratio.split(':');
+        ratioW = ratioArr[0];
+        ratioH = ratioArr[1];
       }
     }
 
