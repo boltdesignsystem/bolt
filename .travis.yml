@@ -42,8 +42,6 @@ jobs:
          - ./scripts/check-run-failure.js 'Lint'
       cache:
         yarn: true
-        directories:
-          - $HOME/.composer/cache/files
 
     - stage: Smoke Tests
       name: 'Unit Tests'
