@@ -46,7 +46,6 @@ jobs:
     - stage: Smoke Tests
       name: 'Unit Tests'
       before_script:
-        # - phpenv config-rm xdebug.ini
         - yarn run setup:quick
         - yarn run setup:php
       script:
