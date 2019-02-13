@@ -22,8 +22,10 @@ stages:
 #  - name: Super Hard Tests
 #    if: branch = master
 
-jobs:
+matrix:
   fast_finish: true
+
+jobs:
   include:
     - stage: Prep
       name: 'Code Quality'
