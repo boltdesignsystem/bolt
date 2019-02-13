@@ -15,10 +15,12 @@ RUN echo "Building git sha: ${GIT_SHA}" && \
 
 RUN if git show-ref --quiet ${GIT_SHA}; then git checkout "${GIT_SHA}"; fi;
 
-RUN rm -rf /app/packages/uikit-workshop package.json example-integrations
+RUN rm -rf /app/packages/uikit-workshop /app/package.json /app/example-integrations /app/docs-site/src/assets
 
 COPY www  /app/www
-COPY packages/twig-renderer/vendor /app/packages/twig-renderer/vendor
+COPY server /app/server
+COPY packages/build-tools/package.json /app/packages/build-tools/package.json
+COPY packages/twig-renderer /app/packages/twig-renderer
 COPY packages/drupal-twig-extensions/vendor /app/packages/drupal-twig-extensions/vendor
 COPY packages/core-php/vendor /app/packages/core-php/vendor
 

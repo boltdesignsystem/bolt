@@ -15,11 +15,14 @@
   "workspaces": {
     "packages": [
       "../packages/api",
-      "../packages/build-tools",
       "../packages/global",
-      "../packages/twig-renderer",
       "../packages/components/*",
-      "../packages/components/lists/*"
+      "../packages/components/lists/*",
+      "../packages/twig-renderer",
+      "../packages/build-tools"
+    ],
+    "nohoist": [
+      "../packages/core/**"
     ]
   }
 }
