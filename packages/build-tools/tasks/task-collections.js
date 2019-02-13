@@ -151,7 +151,15 @@ async function buildPrep() {
   config = config || (await getConfig());
   try {
     await getExtraTasks();
-    config.prod ? await clean() : '';
+    if (
+      config.env === 'pl' ||
+      config.env === 'static' ||
+      config.env === 'pwa'
+    ) {
+      //
+    } else {
+      config.prod ? await clean() : '';
+    }
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
     if (
