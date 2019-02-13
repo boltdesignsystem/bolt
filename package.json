@@ -24,7 +24,7 @@
     "build": "cd docs-site && yarn run build:prod",
     "setup": "yarn && yarn run setup:php",
     "setup:php": "npx lerna exec --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php -- yarn run setup",
-    "setup:quick": "yarn install --production",
+    "setup:quick": "yarn",
     "setup:full": "yarn --force",
     "deploy": "./scripts/deploy.js",
     "deploy:docker": "sh ./scripts/docker.sh",
