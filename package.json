@@ -22,7 +22,7 @@
   "scripts": {
     "start": "cd docs-site && yarn run start",
     "build": "cd docs-site && yarn run build:prod",
-    "setup": "yarn",
+    "setup": "yarn && yarn run setup:php",
     "setup:php": "npx lerna exec --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php -- yarn run setup",
     "setup:quick": "yarn install --production",
     "setup:full": "yarn --force",
@@ -49,7 +49,6 @@
     "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:full": "./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
     "serve": "cd server && node index.js",
-    "postinstall": "yarn run setup:php",
     "postbootstrap": "node scripts/monorepo-tests.js",
     "cz": "git-cz",
     "release:rc": "./scripts/release/rc-release.sh",
