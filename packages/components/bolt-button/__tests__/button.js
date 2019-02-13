@@ -135,6 +135,9 @@ describe('button', async () => {
         .classList.contains('c-bolt-button--primary'),
     ).toBe(true);
 
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot();
+
     expect(renderedHTML).toMatchSnapshot();
   });
 
