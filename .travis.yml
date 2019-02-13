@@ -40,6 +40,11 @@ jobs:
         - ./scripts/check-run-success.js 'Lint'
       after_failure:
          - ./scripts/check-run-failure.js 'Lint'
+      cache:
+        yarn: true
+        directories:
+          - $HOME/.composer/cache/files
+          - node_modules
 
     - stage: Prep
       name: 'Smoke Tests'
@@ -66,6 +71,11 @@ jobs:
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
+      cache:
+        yarn: true
+        directories:
+          - $HOME/.composer/cache/files
+          - node_modules
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
@@ -83,6 +93,11 @@ jobs:
       after_success:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
+      cache:
+        yarn: true
+        directories:
+          - $HOME/.composer/cache/files
+          - node_modules
 
     - stage: Test Live Site
       name: 'Ensure site is live'
@@ -99,6 +114,7 @@ jobs:
       cache:
         yarn: true
         directories:
+          - $HOME/.composer/cache/files
           - node_modules
 
     - stage: Test Live Site
