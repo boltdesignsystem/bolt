@@ -140,7 +140,7 @@ describe('button', async () => {
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot({
       failureThreshold: '0.01',
-      failureThresholdType: 'percent'
+      failureThresholdType: 'percent',
     });
 
     expect(renderedHTML).toMatchSnapshot();
@@ -180,7 +180,7 @@ describe('button', async () => {
 
     expect(image).toMatchImageSnapshot({
       failureThreshold: '0.01',
-      failureThresholdType: 'percent'
+      failureThresholdType: 'percent',
     });
 
     expect(renderedShadowDomHTML).toMatchSnapshot();
