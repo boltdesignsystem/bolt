@@ -4,6 +4,8 @@ const { outputBanner } = require('ci-utils');
 const { gitSha } = require('./utils');
 const { setCheckRun } = require('./check-run');
 
+shell.set('-e'); // exit upon first error
+
 const {
   TRAVIS,
   TRAVIS_PULL_REQUEST,
