@@ -21,7 +21,6 @@ COPY www  /app/www
 COPY packages/twig-renderer/vendor /app/packages/twig-renderer/vendor
 COPY packages/drupal-twig-extensions/vendor /app/packages/drupal-twig-extensions/vendor
 COPY packages/core-php/vendor /app/packages/core-php/vendor
-COPY packages/core-php/vendor /app/packages/core-php/vendor
 
 RUN yarn --cwd server --ignore-optional --ignore-platform --ignore-scripts --ignore-engines --skip-integrity-check --production --modules-folder node_modules
 
