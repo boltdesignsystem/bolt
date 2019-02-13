@@ -67,7 +67,7 @@ class JestScreenshotReporter {
           .then(function(values) {
             console.log(
               chalk.red.bold(
-                `Uploaded image diff(s) to:\n ${values.join('\n')}`,
+                `Uploaded image diff(s) to: \n${values.join('\n')}`,
               ),
             );
             resolveAll(values);
