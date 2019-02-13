@@ -25,16 +25,32 @@ stages:
 jobs:
   include:
     - stage: Prep
-      name: 'Smoke Tests: Install, Lint, Unit'
+      name: 'Code Quality'
       before_script:
         - phpenv config-rm xdebug.ini
         - composer global require hirak/prestissimo
         - yarn run setup:quick
-        - ./scripts/check-run-queue.js 'Lint'
-        - ./scripts/check-run-queue.js 'Unit'
       script:
-        - ./test/lint.js
-        - ./test/unit.js
+        - ./scripts/check-run-queue.js 'Lint'
+        - npm run lint
+      after_success:
+        - ./scripts/check-run-success.js 'Lint'
+      after_failure:
+         - ./scripts/check-run-failure.js 'Lint'
+
+    - stage: Prep
+      name: 'Smoke Tests'
+      before_script:
+        - phpenv config-rm xdebug.ini
+        - composer global require hirak/prestissimo
+        - yarn run setup:quick
+      script:
+        - ./scripts/check-run-queue.js 'Unit'
+        - npm run test
+      after_success:
+        - ./scripts/check-run-success.js 'Unit'
+      after_failure:
+         - ./scripts/check-run-failure.js 'Unit'
 
     - stage: Prep
       name: 'Build + Deploy'
