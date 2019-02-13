@@ -37,7 +37,7 @@ getConfig().then(async boltConfig => {
   // don't compile anything in Webpack except for the exported JSON data from Bolt's Design Tokens + all packages with tests
   config.components.global = [
     './packages/core/styles/index.scss',
-    //'@bolt/global',
+    '@bolt/global',
     // '@bolt/global/styles/06-themes/_themes.all.scss',
     ...allComponentsWithTests,
   ];
