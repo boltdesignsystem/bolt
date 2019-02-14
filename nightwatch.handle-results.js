@@ -35,7 +35,7 @@ const auth = Buffer.from(`${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}`).toString(
  * @returns {void}
  */
 
-async function handleNightwatchResults (client, callback) {
+async function handleNightwatchResults(client, callback) {
   const currentTest = client.currentTest;
   const sessionId = client.capabilities['webdriver.remote.sessionid'];
   const { username, accessKey } = client.options;

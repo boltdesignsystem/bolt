@@ -15,52 +15,19 @@ module.exports = {
       .waitForElementVisible('.video-js', 1000)
       .click('.vjs-big-play-button')
       .assert.elementPresent('.vjs-playback-rate')
-      .execute(
-        function(data) {
-          return document.querySelector('button.vjs-playback-rate').click();
-        },
-        [],
-        function(result) {
-          // browser.assert.ok(
-          //   result.value === 1.3,
-          //   `verified that <bolt-video> play rate has sped up to ${
-          //     result.value
-          //   }`,
-          // );
-        },
-      )
+      .pause(1000)
+      .click('.vjs-playback-rate')
+      .assert.containsText('.vjs-playback-rate-value', '1.3x')
       .saveScreenshot(
-        `screenshots/bolt-video/${testName}--${currentBrowser}.png`,
+        `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
       )
-      // .execute(
-      //   function(data) {
-      //     return document.querySelector('bolt-video').player.playbackRate();
-      //   },
-      //   [],
-      //   function(result) {
-      //     browser.assert.ok(
-      //       result.value === 1.3,
-      //       `verified that <bolt-video> play rate has sped up to ${
-      //         result.value
-      //       }`,
-      //     );
-      //   },
-      // )
-      // .execute(
-      //   function(data) {
-      //     return document.querySelector('.vjs-playback-rate-value').textContent;
-      //   },
-      //   [],
-      //   function(result) {
-      //     browser.assert.ok(
-      //       result.value === '1.3x',
-      //       `verified that <bolt-video> play rate text reads 1.3x.`,
-      //     );
-      //   },
-      // )
-      // .saveScreenshot(
-      //   `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
-      // )
+      .pause(1000)
+      .click('.vjs-playback-rate')
+      .click('.vjs-playback-rate')
+      .assert.containsText('.vjs-playback-rate-value', '2x')
+      .saveScreenshot(
+        `screenshots/bolt-video/${testName}--playback-at-2x--${currentBrowser}.png`,
+      )
       .end();
   },
 
