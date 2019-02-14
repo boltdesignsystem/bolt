@@ -1,7 +1,7 @@
 {% set content %}
   <h3>Deprecated contentItems and other props</h3>
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium" %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-width-4/12@small" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall" %}
       {% set videoUuidDeprecated = "js-bolt-video-uuid--deprecated" %}
       {% include "@bolt-components-card/card.twig" with {
         tag: "article",
@@ -46,7 +46,7 @@
         ]
       } only %}
     {% endcell %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-width-4/12@small" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall" %}
       {% include "@bolt-components-card/card.twig" with {
         url: "https://pega.com",
         attributes: {
@@ -79,7 +79,7 @@
 
   <h3>Deprecated Free-form Content</h3>
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium" %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-width-4/12@small" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall" %}
       <div>
         {% embed "@bolt-components-card/card.twig" with {
           contentItems: [
@@ -103,9 +103,9 @@
         {% endembed %}
       </div>
     {% endcell %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-width-4/12@small" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall" %}
       <div>
-        {% embed "@bolt/card.twig" with {
+        {% embed "@bolt-components-card/card.twig" with {
           custom_media_image: "<img src='/images/placeholders/landscape-16x9-mountains.jpg'>",
           custom_body_eyebrow: "This is an eyebrow",
           custom_body_headline: "This is a headline",
@@ -117,11 +117,11 @@
           {% endblock %}
 
           {% block card_body %}
-            {% include "@bolt/eyebrow.twig" with {
+            {% include "@bolt-components-headline/eyebrow.twig" with {
               text: custom_body_eyebrow,
             } only %}
 
-            {% include "@bolt/headline.twig" with {
+            {% include "@bolt-components-headline/headline.twig" with {
               text: custom_body_headline,
               size: "large",
             } only %}
@@ -130,7 +130,7 @@
           {% endblock %}
 
           {% block card_footer %}
-            {% include "@bolt/button.twig" with {
+            {% include "@bolt-components-button/button.twig" with {
               style: "text",
               width: "full",
               align: "start",
@@ -148,8 +148,8 @@
 
   <h3>Deprecated Card with Teaser or Teaser List</h3>
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium" %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-width-4/12@small" %}
-      {% include "@bolt/card-w-teaser.twig" with {
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall" %}
+      {% include "@bolt-components-card/card-w-teaser.twig" with {
         image: {
           src: "/images/placeholders/1200x660.jpg",
           lazyload: false
@@ -173,8 +173,8 @@
         }
       } only %}
     {% endcell %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall u-bolt-width-4/12@small" %}
-      {% include "@bolt/card-w-teaser-list.twig" with {
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@xsmall" %}
+      {% include "@bolt-components-card/card-w-teaser-list.twig" with {
         teasers: [
           {
             eyebrow: {

@@ -119,7 +119,7 @@
     {% for teaser in teasers %}
 
       {% set teaserItem %}
-        {% include "@bolt/teaser.twig" with teaser only %}
+        {% include "@bolt-components-teaser/teaser.twig" with teaser only %}
       {% endset %}
 
       {% set items = items | merge([teaserItem]) %}
