@@ -70,9 +70,8 @@ jobs:
         - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
       script:
-        - yarn run build
+        - yarn run build && yarn run deploy
       after_success:
-        - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
