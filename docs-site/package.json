@@ -6,7 +6,6 @@
   "license": "MIT",
   "main": "bolt.js",
   "scripts": {
-    "postinstall": "composer run setup",
     "build": "bolt build",
     "build:lang": "bolt build --i18n",
     "build:noisy": "bolt build --verbosity 5",
@@ -18,6 +17,7 @@
     "start:lang": "bolt start --i18n",
     "start:prod": "bolt start --prod",
     "setup": "cd ../ && npm run setup",
+    "setup:php": "composer run setup",
     "clean": "cd ../ && npm run clean",
     "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
     "test": "npm run test:links"
