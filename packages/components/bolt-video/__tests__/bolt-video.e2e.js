@@ -15,15 +15,15 @@ module.exports = {
       .waitForElementVisible('.video-js', 1000)
       .click('.vjs-big-play-button')
       .assert.elementPresent('.vjs-playback-rate')
-      .pause(1000)
       .click('.vjs-playback-rate')
+      .pause(250)
       .assert.containsText('.vjs-playback-rate-value', '1.3x')
       .saveScreenshot(
         `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
       )
-      .pause(1000)
       .click('.vjs-playback-rate')
       .click('.vjs-playback-rate')
+      .pause(250)
       .assert.containsText('.vjs-playback-rate-value', '2x')
       .saveScreenshot(
         `screenshots/bolt-video/${testName}--playback-at-2x--${currentBrowser}.png`,
