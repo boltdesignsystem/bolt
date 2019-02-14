@@ -14,7 +14,7 @@
 {% endset %}
 
 {% set image_demo_responsive %}
-<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" srcset="/images/placeholders/tout-4x3-climber-320.jpg 320w" sizes="auto" alt="A Rock Climber" width=""></bolt-image>
+<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" srcset="/images/placeholders/tout-4x3-climber-320.jpg 320w" sizes="auto" alt="A Rock Climber"></bolt-image>
 {% endset %}
 
 {% set image_demo_ratio %}
@@ -41,7 +41,7 @@
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
           {{ image_demo_basic }}
         {% endcell %}
       {% endgrid %}
@@ -57,7 +57,7 @@
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
           {{ image_demo_responsive }}
         {% endcell %}
       {% endgrid %}
@@ -69,11 +69,11 @@
       Setting the Aspect-ratio
     </bolt-text>
     <bolt-text>
-      Setting the aspect ratio on an image provides a placeholder while the image is loading. To do so, add the <bolt-code-snippet display="inline" lang="html">ratio</bolt-code-snippet> attribute with the image's aspect-ratio as colon-separated values, e.g. "4:3" or "400:300".
+      Setting the aspect ratio on an image provides a placeholder while the image is loading. Do this by adding the <bolt-code-snippet display="inline" lang="html">ratio</bolt-code-snippet> attribute with the image's aspect-ratio as colon-separated values, e.g. "4:3" or "400:300".
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
           {{ image_demo_ratio }}
         {% endcell %}
       {% endgrid %}
@@ -89,7 +89,7 @@
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
           {{ image_demo_lazy }}
         {% endcell %}
       {% endgrid %}
@@ -101,11 +101,11 @@
       Custom Placeholder
     </bolt-text>
     <bolt-text>
-      Placeholder image and color options can be set via the attributes <bolt-code-snippet display="inline" lang="html">placeholder-image</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">placeholder-color</bolt-code-snippet>, where "image" is an image path and "color" is a valid CSS background-color. Note: the <bolt-code-snippet display="inline" lang="html">ratio</bolt-code-snippet> attribute must be provided for placholder image or color to display.
+      Placeholder image and color options can be set via the attributes <bolt-code-snippet display="inline" lang="html">placeholder-image</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">placeholder-color</bolt-code-snippet> where "image" is an image path and "color" is a valid CSS background-color. Note: the <bolt-code-snippet display="inline" lang="html">ratio</bolt-code-snippet> attribute must be provided for placholder image or color to display.
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-        {% cell "u-bolt-width-12/12" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
           {{ image_demo_placeholder }}
         {% endcell %}
       {% endgrid %}
