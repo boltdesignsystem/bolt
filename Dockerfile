@@ -20,9 +20,9 @@ RUN rm -rf /app/packages/uikit-workshop /app/package.json /app/example-integrati
 COPY www  /app/www
 #COPY server /app/server
 #COPY packages/build-tools/package.json /app/packages/build-tools/package.json
-COPY packages/twig-renderer/vendor /app/packages/twig-renderer/vendor
-COPY packages/drupal-twig-extensions/vendor /app/packages/drupal-twig-extensions/vendor
-COPY packages/core-php/vendor /app/packages/core-php/vendor
+COPY packages/twig-renderer /app/packages/twig-renderer
+COPY packages/drupal-twig-extensions /app/packages/drupal-twig-extensions
+COPY packages/core-php /app/packages/core-php
 
 RUN yarn --cwd server --ignore-optional --ignore-platform --ignore-scripts --ignore-engines --skip-integrity-check --production --modules-folder node_modules
 
