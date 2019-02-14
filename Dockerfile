@@ -15,7 +15,19 @@ EXPOSE 3123
 
 #RUN if git show-ref --quiet ${GIT_SHA}; then git checkout "${GIT_SHA}"; fi;
 
-COPY . .
+COPY docs-site /app/docs-site
+COPY packages /app/packages
+COPY www /app/www
+#COPY server/package.json .
+COPY .boltrc.js .
+#COPY yarn.lock .
+COPY server /app/server
+#RUN rm -rf /app/packages/uikit-workshop
+
+RUN cd packages/twig-renderer && yarn run setup
+RUN cd packages/drupal-twig-extensions && yarn run setup 
+RUN cd packages/core-php && yarn run setup
+
 #COPY www  /app/www
 #COPY docs-site /app/docs-site
 #COPY packages /app/packages
