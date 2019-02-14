@@ -4,8 +4,16 @@ type: object
 require:
   - contentItems
 properties:
+  items:
+    type: array
+    description: An array of Chips.
+    items:
+      type: object
+      description: Chip.
+      ref: '@bolt-components-chip/chip.schema.yml'
   contentItems:
     type: array
+    title: 'DEPRECATED'
     description: An array of Chips.
     items:
       type: object
