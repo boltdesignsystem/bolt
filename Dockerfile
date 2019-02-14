@@ -15,10 +15,11 @@ EXPOSE 3123
 
 #RUN if git show-ref --quiet ${GIT_SHA}; then git checkout "${GIT_SHA}"; fi;
 
-COPY www  /app/www
-COPY docs-site /app/docs-site
-COPY packages /app/packages
-COPY server /app/server
+COPY . .
+#COPY www  /app/www
+#COPY docs-site /app/docs-site
+#COPY packages /app/packages
+#COPY server /app/server
 
 RUN rm -rf /app/packages/uikit-workshop /app/docs-site/src/assets
 
