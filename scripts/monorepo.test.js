@@ -12,7 +12,7 @@ function flattenDeep(arr1) {
   );
 }
 
-jest.setTimeout(30000);
+jest.setTimeout(60000);
 
 describe('monorepo', async () => {
   /**
