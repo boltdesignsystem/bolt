@@ -12,7 +12,7 @@ function flattenDeep(arr1) {
   );
 }
 
-jest.setTimeout(60000);
+jest.setTimeout(90000);
 
 describe('monorepo', async () => {
   /**
@@ -31,6 +31,7 @@ describe('monorepo', async () => {
           path.dirname(pkgDir) + '/package.json',
           '!**/node_modules/**',
           '!**/bower_components/**',
+          '!**/vendor/**',
         ]),
       ),
     );
