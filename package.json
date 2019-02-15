@@ -23,7 +23,7 @@
     "start": "cd docs-site && yarn run start",
     "build": "cd docs-site && yarn run build:prod",
     "setup": "npx npm-run-all --parallel setup:php setup:npm",
-    "setup:npm": "yarn --ignore-scripts --network-timeout 100000",
+    "setup:npm": "yarn --network-timeout 100000",
     "setup:php": "npx lerna exec --scope @bolt/twig-renderer --scope @bolt/website --scope @bolt/drupal-twig-extensions --scope @bolt/core-php -- yarn run setup:php",
     "deploy": "./scripts/deploy.js",
     "deploy:docker": "sh ./scripts/docker.sh",
