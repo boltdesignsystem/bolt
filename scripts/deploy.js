@@ -47,7 +47,7 @@ async function init() {
 
     try {
       const deployedUrl = shell.exec(
-        `now deploy --meta gitSha="${gitSha}" --env GIT_SHA=${gitSha} --build-env GIT_SHA=${gitSha} --platform-version=1 --team=boltdesignsystem --token=${NOW_TOKEN}`,
+        `now deploy --no-verify --meta gitSha="${gitSha}" --env GIT_SHA=${gitSha} --build-env GIT_SHA=${gitSha} --platform-version=1 --team=boltdesignsystem --token=${NOW_TOKEN}`,
       ).stdout;
 
       let deployedUrlPretty = deployedUrl.trim();
