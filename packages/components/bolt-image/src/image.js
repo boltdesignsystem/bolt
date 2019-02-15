@@ -124,14 +124,15 @@ class BoltImage extends withLitHtml() {
       }
     }
 
-    const canUseRatio = ratioW > 0 && ratioH > 0 && useRatio;
-
-    const imageExt = path.extname(src);
+    const _isJpg = path.extname(src) === '.jpg';
+    const _canUseRatio = ratioW > 0 && ratioH > 0 && useRatio;
+    // Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder
+    const _canUsePlaceholder = (_canUseRatio || cover) && _isJpg;
 
     const classes = cx('c-bolt-image__image', {
       'c-bolt-image__lazyload': lazyload,
       'c-bolt-image__lazyload--fade': lazyload,
-      'c-bolt-image__lazyload--blur': lazyload && imageExt === '.jpg',
+      'c-bolt-image__lazyload--blur': lazyload && _isJpg,
       'js-lazyload': lazyload,
       'c-bolt-image--cover': cover,
     });
@@ -156,7 +157,7 @@ class BoltImage extends withLitHtml() {
     };
 
     const placeholderImageElement = () => {
-      if (canUseRatio && imageExt === '.jpg') {
+      if (_canUsePlaceholder) {
         return html`
           <img
             class="${cx('c-bolt-image__image-placeholder', {
@@ -201,13 +202,13 @@ class BoltImage extends withLitHtml() {
       `;
     };
 
-    if (canUseRatio && imageExt === '.jpg' && placeholderColor) {
+    if (_canUsePlaceholder && placeholderColor) {
       this.style.backgroundColor = placeholderColor;
     }
 
     let renderedImage;
 
-    if (canUseRatio) {
+    if (_canUseRatio) {
       renderedImage = ratioTemplate(imageTemplate);
     } else {
       renderedImage = imageTemplate;
