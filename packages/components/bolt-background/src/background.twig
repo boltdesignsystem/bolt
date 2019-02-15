@@ -61,7 +61,8 @@
               class: ["c-bolt-background__#{item.pattern}"]
             },
             (ratioKey): false,
-            lazyload: item.lazyload ? item.lazyload : true
+            lazyload: item.lazyload ?? true,
+            cover: true
           }) only %}
         {% endfor %}
       {% endif %}
