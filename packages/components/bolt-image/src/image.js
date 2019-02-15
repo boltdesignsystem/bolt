@@ -82,6 +82,7 @@ class BoltImage extends withLitHtml() {
       : this.querySelector('.js-lazyload');
 
     if (lazyImage) {
+      // lazyload sometimes doesn't work work even though `lazyImage` is there, setTimeout is a workaround
       setTimeout(() => {
         this.lazyloadImage(lazyImage);
       }, 0);
