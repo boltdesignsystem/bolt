@@ -67,6 +67,7 @@ async function init() {
       // await handleNowDeploy(child);
     } catch (error) {
       console.error('Error deploying:');
+      console.log(error);
       console.log(error.stdout, error.stderr);
 
       await setCheckRun({
