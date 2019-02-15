@@ -33,7 +33,6 @@ getConfig().then(async boltConfig => {
   await buildPrep(); // Generate folders, manifest data, etc needed for Twig renderer
   await imageTasks.processImages(); // process image fixtures used by any tests
 
-
   // don't compile anything in Webpack except for the exported JSON data from Bolt's Design Tokens + all packages with tests
   config.components.global = [
     './packages/core/styles/index.scss',
@@ -63,6 +62,8 @@ getConfig().then(async boltConfig => {
   app.use(
     middleware(compiler, {
       serverSideRender: true,
+      writeToDisk: false,
+      lazy: false,
       stats: webpackConfig[0].devServer.stats,
     }),
   );

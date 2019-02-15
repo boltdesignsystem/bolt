@@ -24,10 +24,11 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!(lit-html|@bolt|@open-wc)/)', // add any additional packages in node_modules that need to be transpiled for Jest
     './packages/build-tools',
+    './packages/uikit-workshop',
+    './packages/core-php',
+    './packages/config-presets',
+    './scripts/monorepo.test.js',
     './packages/twig-renderer',
-    './bolt/docs-site',
-    './bolt/example-integrations',
-    './bolt/scripts',
   ],
   globalSetup: './jest-global-setup.js',
   globalTeardown: './jest-global-teardown.js',
