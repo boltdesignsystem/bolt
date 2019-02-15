@@ -90,6 +90,14 @@ if (program.configFile) {
             ? config.webpackStats
             : options.webpackStats;
 
+        config.enableCache =
+          typeof options['nocache'] === 'undefined'
+            ? config.enableCache
+            : false;
+
+        config.enableCache =
+          typeof options['cache'] === 'undefined' ? config.enableCache : true;
+
         config.webpackDevServer =
           typeof options.webpackDevServer === 'undefined'
             ? config.webpackDevServer
@@ -122,6 +130,7 @@ if (program.configFile) {
 
       const config = await configStore.getConfig();
       log.dim(`Verbosity: ${config.verbosity}`);
+      log.dim(`Cache: ${config.enableCache}`);
       log.dim(`Prod: ${config.prod}`);
       log.dim(`i18n: ${config.i18n}`);
       if (config.verbosity > 2) {
@@ -148,12 +157,16 @@ if (program.configFile) {
         '--webpack-stats',
         configSchema.properties.webpackStats.description,
       )
+      .option('--cache', configSchema.properties.enableCache.description)
+      .option(
+        '--nocache',
+        'Opposite of ' + configSchema.properties.enableCache.description,
+      )
       .option('-I, --i18n', configSchema.properties.i18n.description)
       .option('-Q, --quick', configSchema.properties.quick.description)
       .action(async options => {
-        log.info(
-          `Starting build (${options.parallel ? 'parallel' : 'serial'})`,
-        );
+        log.info(`Starting build...`);
+
         await updateConfig(options, program);
         require('./tasks/task-collections').build();
       });
