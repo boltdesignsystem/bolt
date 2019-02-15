@@ -31,7 +31,7 @@ jobs:
       name: 'Code Quality'
       before_script:
         # - phpenv config-rm xdebug.ini
-        - yarn run setup:quick
+        - yarn run setup:npm
       script:
         - ./scripts/check-run-queue.js 'Lint'
         - npm run lint
@@ -46,8 +46,7 @@ jobs:
     - stage: Smoke Tests, Build, & Deploy
       name: 'Unit Tests'
       before_script:
-        - yarn run setup:quick
-        - yarn run setup:php
+        - yarn run setup
       script:
         - ./scripts/check-run-queue.js 'Unit'
         - npm run test
@@ -87,7 +86,7 @@ jobs:
     - stage: Post-deploy Tests
       name: 'Nightwatch End-to-End'
       before_script:
-        - yarn run setup:quick
+        - yarn run setup:npm
       script:
         - ./scripts/check-run-in-progress.js 'Nightwatch'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
@@ -111,7 +110,7 @@ jobs:
     - stage: Post-deploy Tests
       name: 'Ensure site is live'
       before_script:
-        - yarn run setup:quick
+        - yarn run setup:npm
       script:
         - ./scripts/check-run-in-progress.js 'Site is live'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
