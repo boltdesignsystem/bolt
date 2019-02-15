@@ -62,3 +62,10 @@ properties:
       - type: number
       - type: string
     description: Override the default height of the image. If no width is provided, aspect ratio will be maintained.
+  cover:
+    type: boolean
+    description: Set an image to fill its container.
+    default: false
+    enum:
+      - true
+      - false

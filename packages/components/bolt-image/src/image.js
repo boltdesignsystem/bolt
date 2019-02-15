@@ -35,6 +35,7 @@ class BoltImage extends withLitHtml() {
     placeholderColor: props.string,
     placeholderImage: props.string,
     zoom: props.boolean,
+    cover: props.boolean,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -101,6 +102,7 @@ class BoltImage extends withLitHtml() {
       placeholderColor,
       placeholderImage,
       zoom,
+      cover,
     } = this.validateProps(this.props);
 
     // negate and rename variables for readability
@@ -131,6 +133,7 @@ class BoltImage extends withLitHtml() {
       'c-bolt-image__lazyload--fade': lazyload,
       'c-bolt-image__lazyload--blur': lazyload && imageExt === '.jpg',
       'js-lazyload': lazyload,
+      'c-bolt-image--cover': cover,
     });
 
     const imageElement = () => {
@@ -156,7 +159,9 @@ class BoltImage extends withLitHtml() {
       if (canUseRatio && imageExt === '.jpg') {
         return html`
           <img
-            class="${cx('c-bolt-image__image-placeholder')}"
+            class="${cx('c-bolt-image__image-placeholder', {
+              'c-bolt-image--cover': cover,
+            })}"
             src="${placeholderImage}"
             alt="${ifDefined(alt ? alt : undefined)}"
           />

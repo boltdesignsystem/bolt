@@ -36,3 +36,27 @@ bolt-image {
   pointer-events: none;
   transition: opacity 0.2s ease;
 }
+
+.c-bolt-image--cover {
+  @include bolt-margin(auto);
+  position: absolute;
+  top: -9999px;
+  right: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  min-width: 100%;
+  max-width: none; //Required to handle instances where a max-width is previously set.
+  min-height: 100%;
+
+  @supports (object-fit: cover) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .is-expanded & {
+    opacity: bolt-opacity(100);
+    filter: blur(10px);
+  }
+}

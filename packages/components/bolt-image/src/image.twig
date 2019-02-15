@@ -68,6 +68,11 @@
   .setAttribute(srcset ? "srcset" : "", srcset ? srcset : null)
 %}
 
+{% if cover %}
+  {% set image_attributes = image_attributes.addClass("c-bolt-image--cover") %}
+  {% set image_fallback_attributes = image_fallback_attributes.addClass("c-bolt-image--cover") %}
+{% endif %}
+
 {% set image_tag %}
   <img {{ image_attributes }} />
 
@@ -99,6 +104,7 @@
   {% if placeholder_color %}placeholder-color="{{ placeholder_color }}"{% endif %}
   {% if placeholder_image %}placeholder-image="{{ placeholder_image }}"{% endif %}
   {% if zoom %}zoom{% endif %}
+  {% if cover %}cover{% endif %}
   {% if not lazyload %}no-lazy{% endif %}
   {% if can_use_ratio and ext == "jpg" %} style="background-color: {{ ph_color }};" {% endif %}
   >
