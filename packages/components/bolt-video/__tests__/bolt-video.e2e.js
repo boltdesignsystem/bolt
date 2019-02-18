@@ -14,13 +14,24 @@ module.exports = {
       )
       .waitForElementVisible('.video-js', 1000)
       .click('.vjs-big-play-button')
-      .pause(500)
-      .assert.elementPresent('.vjs-playback-rate')
-      .click('button.vjs-playback-rate')
-      .assert.containsText('.vjs-playback-rate-value', '1.3x')
-      .click('button.vjs-playback-rate')
-      .click('button.vjs-playback-rate')
-      .assert.containsText('.vjs-playback-rate-value', '2x')
+      .pause(250)
+      .assert.elementPresent('button.vjs-playback-rate')
+      .click('button.vjs-playback-rate', function() {
+        browser.assert.containsText('.vjs-playback-rate-value', '1.3x');
+      })
+      // .assert.containsText('.vjs-playback-rate-value', '1.3x')
+      .saveScreenshot(
+        `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
+      )
+      .execute(
+        function(data) {
+          return document.querySelector('bolt-video').player.playbackRate(2);
+        },
+        [],
+        function(result) {
+          browser.assert.containsText('.vjs-playback-rate-value', '2x');
+        },
+      )
       .saveScreenshot(
         `screenshots/bolt-video/${testName}--playback-at-2x--${currentBrowser}.png`,
       )
