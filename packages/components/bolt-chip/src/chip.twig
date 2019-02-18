@@ -5,7 +5,7 @@
 {% set tags = ["span", "a"] %} {# Available Chip Tags #}
 
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set baseClass = "c-bolt-chip" %}
+{% set base_class = "c-bolt-chip" %}
 
 {% if url %}
   {% set tag = "a" %}
@@ -14,7 +14,7 @@
 {% endif %}
 
 {% set classes = [
-  baseClass
+  base_class
 ] %}
 
 
@@ -28,7 +28,7 @@
   {% endif %}
   <replace-with-grandchildren>
     <{{ tag }} {{ attributes.addClass(classes) }}>
-      <span class="{{ "#{baseClass}__item-text" }}">{{ text }}</span>
+      <span class="{{ "#{base_class}__item-text" }}">{{ text }}</span>
     </{{ tag }}>
   </replace-with-grandchildren>
 </bolt-chip>

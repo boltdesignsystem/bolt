@@ -1,8 +1,8 @@
 import {
   props,
   define,
-  mapWithDepth,
   hasNativeShadowDomSupport,
+  validateProps,
 } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
@@ -31,29 +31,9 @@ class BoltChip extends withLitHtml() {
     return self;
   }
 
-  validateProps(propData) {
-    var validatedData = propData;
-
-    // remove default strings in prop data so schema validation can fill in the default
-    for (let property in validatedData) {
-      if (validatedData[property] === '') {
-        delete validatedData[property];
-      }
-    }
-
-    let isValid = this.validate(validatedData);
-
-    // bark at any schema validation errors
-    if (!isValid) {
-      console.log(this.validate.errors);
-    }
-
-    return validatedData;
-  }
-
   render() {
-    const { url } = this.validateProps(this.props);
-    let { tag } = this.validateProps(this.props);
+    const { url } = validateProps(this.props, this.validate);
+    let { tag } = validateProps(this.props, this.validate);
 
     const classes = cx('c-bolt-chip');
     const textClasses = cx('c-bolt-chip__item-text');
