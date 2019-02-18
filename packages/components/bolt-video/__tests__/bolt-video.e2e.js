@@ -18,9 +18,6 @@ module.exports = {
       .assert.elementPresent('.vjs-playback-rate')
       .click('button.vjs-playback-rate')
       .assert.containsText('.vjs-playback-rate-value', '1.3x')
-      .saveScreenshot(
-        `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
-      )
       .click('button.vjs-playback-rate')
       .click('button.vjs-playback-rate')
       .assert.containsText('.vjs-playback-rate-value', '2x')
