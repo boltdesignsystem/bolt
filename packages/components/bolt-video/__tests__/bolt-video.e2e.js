@@ -1,4 +1,5 @@
 let currentBrowser;
+// import videojs from 'video';
 
 module.exports = {
   tags: ['component', 'video'],
@@ -7,6 +8,7 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
     let testName = 'bolt-video-playback-rate';
+    // const player = videojs(document.getElementsByClassName('video-js')[0], { inactivityTimeout: 0 });
 
     browser
       .url(
@@ -14,33 +16,49 @@ module.exports = {
       )
       .waitForElementVisible('.video-js', 1000)
       .click('.vjs-big-play-button')
-      .pause(250)
-      .assert.elementPresent('button.vjs-playback-rate')
-      // .click('button.vjs-playback-rate')
-      // .assert.containsText('.vjs-playback-rate-value', '1.3x')
+      .assert.elementPresent('.vjs-playback-rate')
       .execute(
         function(data) {
           return document.querySelector('button.vjs-playback-rate').click();
         },
         [],
         function(result) {
-          browser.assert.containsText('.vjs-playback-rate-value', '1.3x');
+          // browser.assert.ok(
+          //   result.value === 1.3,
+          //   `verified that <bolt-video> play rate has sped up to ${
+          //     result.value
+          //   }`,
+          // );
         },
       )
       .saveScreenshot(
-        `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
+        `screenshots/bolt-video/${testName}--${currentBrowser}.png`,
       )
       .execute(
         function(data) {
-          return document.querySelector('bolt-video').player.playbackRate(2);
+          return document.querySelector('bolt-video').player.playbackRate();
         },
         [],
         function(result) {
-          browser.assert.containsText('.vjs-playback-rate-value', '2x');
+          browser.assert.ok(
+            result.value === 1.3,
+            `verified that <bolt-video> play rate has sped up to ${
+              result.value
+              }`,
+          );
         },
       )
-      .saveScreenshot(
-        `screenshots/bolt-video/${testName}--playback-at-2x--${currentBrowser}.png`,
+      .execute(
+        function(data) {
+          return document.querySelector('.vjs-playback-rate-value').textContent;
+        },
+        [],
+        function(result) {
+          browser.assert.ok(
+            result.value === '1.3x',
+            `verified that <bolt-video> play rate text reads 1.3x.`,
+          );
+        },
       )
       .end();
   },
