@@ -27,7 +27,7 @@ async function asyncConfig() {
     config = Object.assign(
       {
         plConfigFile: 'config/config.yml',
-        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md', 'png'],
+        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md'],
         debounceRate: 1000,
       },
       await getConfig(),
@@ -97,6 +97,11 @@ async function compile(errorShouldExit, dataOnly = false) {
           console.log('===\n');
         }
 
+        if (dataOnly) {
+          events.emit('build-tasks/pattern-lab:compiled-data');
+        } else {
+          events.emit('build-tasks/pattern-lab:compiled');
+        }
         // events.emit('reload');
 
         resolve(output);
@@ -159,7 +164,7 @@ compile.description = 'Compile Pattern Lab';
 compile.displayName = 'pattern-lab:compile';
 
 async function compileWithNoExit() {
-  return await plBuild(false);
+  await compile(true);
 }
 
 compileWithNoExit.displayName = 'pattern-lab:compile';
@@ -176,7 +181,13 @@ async function watch() {
     dirs.map(dir => path.join(dir, globPattern)),
     path.join(plSource, globPattern),
     path.join(config.dataDir, '**/*'),
+    `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
   ];
+
+  // listen for api prep work to complete before re-generating PL
+  events.on('api-tasks/status-board:generated', async () => {
+    await compileWithNoExit();
+  });
 
   // @todo show this when spinners are disabled at this high of verbosity
   // if (config.verbosity > 4) {
@@ -205,5 +216,6 @@ watch.displayName = 'pattern-lab:watch';
 
 module.exports = {
   compile,
+  precompile,
   watch,
 };

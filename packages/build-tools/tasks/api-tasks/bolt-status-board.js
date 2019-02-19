@@ -60,7 +60,7 @@ async function finishRendering(rows) {
         }
 
         // console.log('Dynamic Twig status board has been saved.');
-        events.emit('status-board:generated');
+        events.emit('api-tasks/status-board:generated');
       },
     );
   });
@@ -69,12 +69,15 @@ async function finishRendering(rows) {
 async function generateStatusBoard() {
   config = config || (await getConfig());
 
-  const data = require(path.resolve(
+  const dataFile = path.resolve(
     path.join(
       config.wwwDir,
       'pattern-lab/styleguide/data/patternlab-data-all.js',
     ),
-  ));
+  );
+
+  delete require.cache[dataFile];
+  const data = require(dataFile);
   boltUrls = data.globalData.link;
 
   boltPackages = JSON.parse(
@@ -149,15 +152,10 @@ async function generateStatusBoard() {
 
       const normalizedUrl = urlAddress.replace('../../', '/pattern-lab/');
 
-      // console.log(urlAddress);
-
       if (
         normalizedUrlName === pkgName &&
         !processedComponents.includes(pkgName)
       ) {
-        console.log(pkgName);
-        console.log(normalizedUrl);
-        console.log('\n\n');
         processedComponents.push(pkgName);
         pendingRequests.push(pkgName);
 

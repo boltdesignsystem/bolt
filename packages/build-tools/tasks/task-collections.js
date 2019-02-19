@@ -9,6 +9,7 @@ const iconTasks = require('./icon-tasks');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
 const { writeBoltVersions } = require('./api-tasks/bolt-versions');
+const events = require('../utils/events');
 const extraTasks = [];
 let config;
 
@@ -24,6 +25,8 @@ async function getExtraTasks() {
       extraTasks.static = require('./static-tasks');
       break;
     case 'pwa':
+      delete require.cache[require.resolve('./api-tasks')];
+      extraTasks.api = require('./api-tasks');
       extraTasks.patternLab = require('./pattern-lab-tasks');
       extraTasks.static = require('./static-tasks');
       break;
@@ -49,7 +52,10 @@ async function compileBasedOnEnvironment() {
     case 'pwa':
       return Promise.all([
         extraTasks.static.compile(),
-        extraTasks.patternLab.compile(),
+        extraTasks.api.generate().then(async () => {
+          await extraTasks.patternLab.compile().then(() => {
+          });
+        }),
       ]);
   }
 }
@@ -217,6 +223,7 @@ async function watch() {
         break;
       case 'pwa':
         watchTasks.push(extraTasks.patternLab.watch());
+        watchTasks.push(extraTasks.api.watch());
         watchTasks.push(extraTasks.static.watch());
         break;
     }
@@ -248,8 +255,9 @@ async function start() {
     }
     return Promise.all([
       serve(buildTime, true),
-      await compileBasedOnEnvironment(),
-      await watch(),
+      await compileBasedOnEnvironment().then(async () => {
+        await watch();
+      }),
     ]);
   } catch (error) {
     log.errorAndExit('Start failed', error);
