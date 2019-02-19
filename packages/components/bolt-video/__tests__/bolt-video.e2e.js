@@ -15,20 +15,6 @@ module.exports = {
       .waitForElementVisible('.video-js', 1000)
       .click('.vjs-big-play-button')
       .assert.elementPresent('.vjs-playback-rate')
-      .execute(
-        function(data) {
-          return document.querySelector('button.vjs-playback-rate').click();
-        },
-        [],
-        function(result) {
-          // browser.assert.ok(
-          //   result.value === 1.3,
-          //   `verified that <bolt-video> play rate has sped up to ${
-          //     result.value
-          //   }`,
-          // );
-        },
-      )
       .saveScreenshot(
         `screenshots/bolt-video/${testName}--${currentBrowser}.png`,
       )
@@ -57,6 +43,9 @@ module.exports = {
             `verified that <bolt-video> play rate text reads 1.3x.`,
           );
         },
+      )
+      .saveScreenshot(
+        `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
       )
       .end();
   },
