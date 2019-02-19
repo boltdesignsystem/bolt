@@ -18,6 +18,14 @@ module.exports = {
     ...testFilesToIgnore,
   ],
   testEnvironment: 'node',
+  transform: {
+    '^.+\\.js?$': 'babel-jest',
+  },
+  transformIgnorePatterns: [
+    'node_modules/(?!(lit-html|@bolt|@open-wc)/)', // add any additional packages in node_modules that need to be transpiled for Jest
+    'packages/(?!(components|core)/)', // add any additional packages in node_modules that need to be transpiled for Jest
+    './scripts/monorepo.test.js',
+  ],
   globalSetup: './jest-global-setup.js',
   snapshotSerializers: ['jest-serializer-html'],
   // Notify not working correctly; we want to only get a notification when tests fail, and then get ONE success notificaiton after it passes
