@@ -1,5 +1,4 @@
 let currentBrowser;
-// import videojs from 'video';
 
 module.exports = {
   tags: ['component', 'video'],
@@ -8,7 +7,6 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
     let testName = 'bolt-video-playback-rate';
-    // const player = videojs(document.getElementsByClassName('video-js')[0], { inactivityTimeout: 0 });
 
     browser
       .url(
