@@ -8,7 +8,7 @@ const imageTasks = require('./image-tasks');
 const iconTasks = require('./icon-tasks');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
-const { writeBoltVersions } = require('../utils/bolt-versions');
+const { writeBoltVersions } = require('./api-tasks/bolt-versions');
 const extraTasks = [];
 let config;
 
