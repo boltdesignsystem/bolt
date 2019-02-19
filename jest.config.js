@@ -28,6 +28,7 @@ module.exports = {
   ],
   globalSetup: './jest-global-setup.js',
   globalTeardown: './jest-global-teardown.js',
+  setupFilesAfterEnv: ['./jest-setup-files-after-env.js'],
   snapshotSerializers: ['jest-serializer-html'],
   // Notify not working correctly; we want to only get a notification when tests fail, and then get ONE success notificaiton after it passes
   // notify: true,
