@@ -38,8 +38,8 @@
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
     "test": "npm-run-all --parallel test:js test:php test:monorepo",
-    "test:js": "NODE_ENV='test' jest",
-    "jest:update": "NODE_ENV='test' jest -u",
+    "test:js": "NODE_ENV='test' jest --bail --colors",
+    "test:js:update": "yarn run test:js -u",
     "test:monorepo": "node scripts/monorepo-tests.js",
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
     "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
@@ -111,8 +111,8 @@
     "shelljs": "^0.8.3",
     "sleep-promise": "^8.0.1",
     "url-exists": "^1.0.3",
-    "yaml-lint": "^1.2.4"
-    "now-storage": "^1.3.0",
+    "yaml-lint": "^1.2.4",
+    "now-storage": "^1.3.0"
   },
   "workspaces": {
     "packages": [
