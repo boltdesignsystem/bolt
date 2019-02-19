@@ -42,7 +42,7 @@ module.exports = {
             result.value === 1.3,
             `verified that <bolt-video> play rate has sped up to ${
               result.value
-              }`,
+            }`,
           );
         },
       )
