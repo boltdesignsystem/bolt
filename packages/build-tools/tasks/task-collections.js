@@ -44,18 +44,19 @@ async function compileBasedOnEnvironment() {
 
   switch (config.env) {
     case 'pl':
-      await extraTasks.patternLab.compile();
+      await extraTasks.patternLab.precompile();
       break;
     case 'static':
       await extraTasks.static.compile();
       break;
     case 'pwa':
-      return Promise.all([
-        extraTasks.static.compile(),
-        extraTasks.api.generate().then(async () => {
-          await extraTasks.patternLab.compile().then(() => {});
-        }),
-      ]);
+      await events.on('api-tasks/status-board:generated', async () => {
+        await extraTasks.patternLab.precompile();
+      });
+
+      extraTasks.static.compile();
+      await extraTasks.patternLab.compile(true, true);
+      await extraTasks.api.generate();
   }
 }
 
