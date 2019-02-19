@@ -17,7 +17,7 @@ module.exports = {
     'packages/patternlab-node',
     ...testFilesToIgnore,
   ],
-  testEnvironment: 'node',
+  testEnvironment: './jest-environment-puppeteer-basichtml.js',
   transform: {
     '^.+\\.js?$': 'babel-jest',
   },
