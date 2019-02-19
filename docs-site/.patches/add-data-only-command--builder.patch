@@ -1,0 +1,197 @@
+diff --git a/src/PatternLab/Builder.php b/src/PatternLab/Builder.php
+index acca9de5a..861eb6c1f 100644
+--- a/src/PatternLab/Builder.php
++++ b/src/PatternLab/Builder.php
+@@ -375,7 +375,7 @@ class Builder {
+ 	/**
+ 	* Generates the view all pages
+ 	*/
+-	protected function generateViewAllPages() {
++	protected function generateViewAllPages($dataOnly = false) {
+ 
+ 		// set-up the dispatcher
+ 		$dispatcherInstance = Dispatcher::getInstance();
+@@ -393,100 +393,114 @@ class Builder {
+ 		$stringLoader     = Template::getStringLoader();
+ 		$globalData       = Data::get();
+ 
++		$publicDir = Config::getOption("publicDir");
++
++		// check directories i need
++		if (!is_dir($publicDir."/styleguide/")) {
++			mkdir($publicDir."/styleguide/");
++		}
++
++		if (!is_dir($publicDir."/styleguide/html/")) {
++			mkdir($publicDir."/styleguide/html/");
++		}
++
++		if (!is_dir($publicDir."/styleguide/data/")) {
++			mkdir($publicDir."/styleguide/data/");
++		}
++
+ 		// default var
+ 		$dataDir = Config::getOption("publicDir")."/styleguide/data";
+ 		file_put_contents($dataDir."/patternlab-data-all.js","var globalData = ".json_encode($globalData)."; module.exports = { globalData };");
+ 
+-		// load the pattern loader
+-		$ppdExporter             = new PatternPathSrcExporter();
+-		$patternPathSrc          = $ppdExporter->run();
+-		$options                 = array();
+-		$options["patternPaths"] = $patternPathSrc;
+-		$patternEngineBasePath   = PatternEngine::getInstance()->getBasePath();
+-		$patternLoaderClass      = $patternEngineBasePath."\Loaders\PatternLoader";
+-		$patternLoader           = new $patternLoaderClass($options);
+-
+-		// make sure view all is set
+-		$globalData["viewall"] = true;
++		if ($dataOnly == false){
++			// load the pattern loader
++			$ppdExporter             = new PatternPathSrcExporter();
++			$patternPathSrc          = $ppdExporter->run();
++			$options                 = array();
++			$options["patternPaths"] = $patternPathSrc;
++			$patternEngineBasePath   = PatternEngine::getInstance()->getBasePath();
++			$patternLoaderClass      = $patternEngineBasePath."\Loaders\PatternLoader";
++			$patternLoader           = new $patternLoaderClass($options);
++
++			// make sure view all is set
++			$globalData["viewall"] = true;
++
++			// make sure the pattern dir exists
++			if (!is_dir($patternPublicDir)) {
++				mkdir($patternPublicDir);
++			}
+ 
+-		// make sure the pattern dir exists
+-		if (!is_dir($patternPublicDir)) {
+-			mkdir($patternPublicDir);
+-		}
++			// add view all to each list
++			$store = PatternData::get();
++			foreach ($store as $patternStoreKey => $patternStoreData) {
+ 
+-		// add view all to each list
+-		$store = PatternData::get();
+-		foreach ($store as $patternStoreKey => $patternStoreData) {
++				if ($patternStoreData["category"] == "patternSubtype") {
+ 
+-			if ($patternStoreData["category"] == "patternSubtype") {
++					// grab the partials into a data object for the style guide
++					$ppExporter  = new PatternPartialsExporter();
++					$partials    = $ppExporter->run($patternStoreData["type"],$patternStoreData["name"]);
+ 
+-				// grab the partials into a data object for the style guide
+-				$ppExporter  = new PatternPartialsExporter();
+-				$partials    = $ppExporter->run($patternStoreData["type"],$patternStoreData["name"]);
++					if (!empty($partials["partials"])) {
+ 
+-				if (!empty($partials["partials"])) {
++						// add the pattern data so it can be exported
++						$patternData = array();
++						$patternData["patternPartial"] = "viewall-".$patternStoreData["typeDash"]."-".$patternStoreData["nameDash"];
+ 
+-					// add the pattern data so it can be exported
+-					$patternData = array();
+-					$patternData["patternPartial"] = "viewall-".$patternStoreData["typeDash"]."-".$patternStoreData["nameDash"];
++						$globalData["patternLabHead"] = $stringLoader->render(array("string" => Template::getHTMLHead(), "data" => array("cacheBuster" => $partials["cacheBuster"])));
++						$globalData["patternLabFoot"] = $stringLoader->render(array("string" => Template::getHTMLFoot(), "data" => array("cacheBuster" => $partials["cacheBuster"], "patternData" => json_encode($patternData))));
+ 
+-					$globalData["patternLabHead"] = $stringLoader->render(array("string" => Template::getHTMLHead(), "data" => array("cacheBuster" => $partials["cacheBuster"])));
+-					$globalData["patternLabFoot"] = $stringLoader->render(array("string" => Template::getHTMLFoot(), "data" => array("cacheBuster" => $partials["cacheBuster"], "patternData" => json_encode($patternData))));
++						// render the parts and join them
++						$header      = $patternLoader->render(array("pattern" => $patternHead, "data" => $globalData));
++						$code        = $filesystemLoader->render(array("template" => "viewall", "data" => $partials));
++						$footer      = $patternLoader->render(array("pattern" => $patternFoot, "data" => $globalData));
++						$viewAllPage = $header.$code.$footer;
+ 
+-					// render the parts and join them
+-					$header      = $patternLoader->render(array("pattern" => $patternHead, "data" => $globalData));
+-					$code        = $filesystemLoader->render(array("template" => "viewall", "data" => $partials));
+-					$footer      = $patternLoader->render(array("pattern" => $patternFoot, "data" => $globalData));
+-					$viewAllPage = $header.$code.$footer;
++						// if the pattern directory doesn't exist create it
++						$patternPath = $patternStoreData["pathDash"];
++						if (!is_dir($patternPublicDir."/".$patternPath)) {
++							mkdir($patternPublicDir."/".$patternPath);
++							file_put_contents($patternPublicDir."/".$patternPath."/index.html",$viewAllPage);
++						} else {
++							file_put_contents($patternPublicDir."/".$patternPath."/index.html",$viewAllPage);
++						}
+ 
+-					// if the pattern directory doesn't exist create it
+-					$patternPath = $patternStoreData["pathDash"];
+-					if (!is_dir($patternPublicDir."/".$patternPath)) {
+-						mkdir($patternPublicDir."/".$patternPath);
+-						file_put_contents($patternPublicDir."/".$patternPath."/index.html",$viewAllPage);
+-					} else {
+-						file_put_contents($patternPublicDir."/".$patternPath."/index.html",$viewAllPage);
+ 					}
+ 
+-				}
++				} else if (($patternStoreData["category"] == "patternType") && PatternData::hasPatternSubtype($patternStoreData["nameDash"])) {
+ 
+-			} else if (($patternStoreData["category"] == "patternType") && PatternData::hasPatternSubtype($patternStoreData["nameDash"])) {
++					// grab the partials into a data object for the style guide
++					$ppExporter  = new PatternPartialsExporter();
++					$partials    = $ppExporter->run($patternStoreData["name"]);
+ 
+-				// grab the partials into a data object for the style guide
+-				$ppExporter  = new PatternPartialsExporter();
+-				$partials    = $ppExporter->run($patternStoreData["name"]);
++					if (!empty($partials["partials"])) {
+ 
+-				if (!empty($partials["partials"])) {
++						// add the pattern data so it can be exported
++						$patternData = array();
++						$patternData["patternPartial"] = "viewall-".$patternStoreData["nameDash"]."-all";
+ 
+-					// add the pattern data so it can be exported
+-					$patternData = array();
+-					$patternData["patternPartial"] = "viewall-".$patternStoreData["nameDash"]."-all";
++						// add the pattern lab specific mark-up
++						$globalData["patternLabHead"] = $stringLoader->render(array("string" => $htmlHead, "data" => array("cacheBuster" => $partials["cacheBuster"])));
++						$globalData["patternLabFoot"] = $stringLoader->render(array("string" => $htmlFoot, "data" => array("cacheBuster" => $partials["cacheBuster"], "patternData" => json_encode($patternData))));
+ 
+-					// add the pattern lab specific mark-up
+-					$globalData["patternLabHead"] = $stringLoader->render(array("string" => $htmlHead, "data" => array("cacheBuster" => $partials["cacheBuster"])));
+-					$globalData["patternLabFoot"] = $stringLoader->render(array("string" => $htmlFoot, "data" => array("cacheBuster" => $partials["cacheBuster"], "patternData" => json_encode($patternData))));
++						// render the parts and join them
++						$header      = $patternLoader->render(array("pattern" => $patternHead, "data" => $globalData));
++						$code        = $filesystemLoader->render(array("template" => "viewall", "data" => $partials));
++						$footer      = $patternLoader->render(array("pattern" => $patternFoot, "data" => $globalData));
++						$viewAllPage = $header.$code.$footer;
+ 
+-					// render the parts and join them
+-					$header      = $patternLoader->render(array("pattern" => $patternHead, "data" => $globalData));
+-					$code        = $filesystemLoader->render(array("template" => "viewall", "data" => $partials));
+-					$footer      = $patternLoader->render(array("pattern" => $patternFoot, "data" => $globalData));
+-					$viewAllPage = $header.$code.$footer;
+-
+-					// if the pattern directory doesn't exist create it
+-					$patternPath = $patternStoreData["pathDash"];
+-					if (!is_dir($patternPublicDir."/".$patternPath)) {
+-						mkdir($patternPublicDir."/".$patternPath);
+-						file_put_contents($patternPublicDir."/".$patternPath."/index.html",$viewAllPage);
+-					} else {
+-						file_put_contents($patternPublicDir."/".$patternPath."/index.html",$viewAllPage);
++						// if the pattern directory doesn't exist create it
++						$patternPath = $patternStoreData["pathDash"];
++						if (!is_dir($patternPublicDir."/".$patternPath)) {
++							mkdir($patternPublicDir."/".$patternPath);
++							file_put_contents($patternPublicDir."/".$patternPath."/index.html",$viewAllPage);
++						} else {
++							file_put_contents($patternPublicDir."/".$patternPath."/index.html",$viewAllPage);
++						}
+ 					}
+-
+ 				}
+-
+ 			}
+-
+ 		}
+-
++		
+ 		// note the end of the operation
+ 		$dispatcherInstance->dispatch("builder.generateViewAllPagesEnd");
+ 
