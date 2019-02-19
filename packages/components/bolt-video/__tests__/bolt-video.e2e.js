@@ -15,6 +15,9 @@ module.exports = {
       .waitForElementVisible('.video-js', 1000)
       .click('.vjs-big-play-button')
       .assert.elementPresent('.vjs-playback-rate')
+      .execute(function(data) {
+        return document.querySelector('button.vjs-playback-rate').click();
+      })
       .saveScreenshot(
         `screenshots/bolt-video/${testName}--${currentBrowser}.png`,
       )
