@@ -1,4 +1,10 @@
 // https://facebook.github.io/jest/docs/en/configuration.html
+const globby = require('globby');
+const testFilesToIgnore = globby.sync([
+  './packages/components/**/*/__tests__/*.e2e.js',
+  './packages/components/**/*/__tests__/*.data.js'
+]);
+
 module.exports = {
   testPathIgnorePatterns: [
     'sandbox',
@@ -9,8 +15,7 @@ module.exports = {
     'packages/build-tools/plugins/sass-export-data/tests',
     'packages/components/bolt-button/__tests__/button-wc.test.js',
     'packages/patternlab-node',
-    'packages/components/bolt-video/__tests__/bolt-video.e2e.js',
-    'packages/components/bolt-figure/__tests__/figure-data.js',
+    ...testFilesToIgnore,
   ],
   testEnvironment: 'node',
   globalSetup: './jest-global-setup.js',
