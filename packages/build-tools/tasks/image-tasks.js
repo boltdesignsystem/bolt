@@ -116,7 +116,7 @@ async function processImage(file, set) {
 
   // We add `null` to beginning b/c we want the original file too
   // Filter the list to not include sizes bigger than our file
-  const sizes = [null, ...boltImageSizes].filter(size => width > size);
+  const sizes = [null, ...boltImageSizes].filter(size => width >= size);
 
   // looping through all sizes and resizing
   return Promise.all(
