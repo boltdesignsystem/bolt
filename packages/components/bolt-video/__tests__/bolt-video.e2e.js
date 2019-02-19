@@ -16,8 +16,17 @@ module.exports = {
       .click('.vjs-big-play-button')
       .pause(250)
       .assert.elementPresent('button.vjs-playback-rate')
-      .click('button.vjs-playback-rate')
-      .assert.containsText('.vjs-playback-rate-value', '1.3x')
+      // .click('button.vjs-playback-rate')
+      // .assert.containsText('.vjs-playback-rate-value', '1.3x')
+      .execute(
+        function(data) {
+          return document.querySelector('button.vjs-playback-rate').click();
+        },
+        [],
+        function(result) {
+          browser.assert.containsText('.vjs-playback-rate-value', '1.3x');
+        },
+      )
       .saveScreenshot(
         `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
       )
