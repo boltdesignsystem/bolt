@@ -50,7 +50,8 @@ async function compileBasedOnEnvironment() {
       await extraTasks.static.compile();
       break;
     case 'pwa':
-      await events.on('api-tasks/status-board:generated', async () => {
+      // make sure this event gets auto-removed once it fires
+      await events.once('api-tasks/status-board:generated', async () => {
         await extraTasks.patternLab.precompile();
       });
 
