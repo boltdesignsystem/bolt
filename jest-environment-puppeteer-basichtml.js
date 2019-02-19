@@ -10,6 +10,7 @@ const {
   HTMLUnknownElement,
 } = require('basichtml');
 
+const raf = require('raf');
 const NodeEnvironment = require('jest-environment-node');
 const fs = require('fs');
 const path = require('path');
@@ -37,6 +38,7 @@ class BasicHTMLEnvironment extends NodeEnvironment {
       userAgent: 'node.js',
     };
 
+    this.global.requestAnimationFrame = raf;
     // Ensure that the real global env has the document
     global.document = window.document;
   }

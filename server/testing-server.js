@@ -9,8 +9,8 @@ const port = process.env.PORT || 4444;
 
 const webpack = require('webpack');
 const middleware = require('webpack-dev-middleware');
-
-const { buildPrep } = require('../packages/build-tools/tasks/task-collections');
+const createWebpackConfig = require('../packages/build-tools/create-webpack-config');
+const { getConfig } = require('../packages/build-tools/utils/config-store');
 
 const allComponentsWithTests = globby
   .sync(path.join(__dirname, '../', '/packages/components/**/__tests__'), {
@@ -21,14 +21,8 @@ const allComponentsWithTests = globby
   )
   .map(pkg => pkg.name);
 
-const createWebpackConfig = require('../packages/build-tools/create-webpack-config');
-const { getConfig } = require('../packages/build-tools/utils/config-store');
-const imageTasks = require('../packages/build-tools/tasks/image-tasks');
-
 getConfig().then(async boltConfig => {
   let config = boltConfig;
-  await buildPrep(); // Generate folders, manifest data, etc needed for Twig renderer
-  await imageTasks.processImages(); // process image fixtures used by any tests
 
   // don't compile anything in Webpack except for the exported JSON data from Bolt's Design Tokens + all packages with tests
   config.components.global = [

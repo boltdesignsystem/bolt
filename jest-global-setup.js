@@ -7,7 +7,15 @@ const os = require('os');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
+const { buildPrep } = require('./packages/build-tools/tasks/task-collections');
+const imageTasks = require('./packages/build-tools/tasks/image-tasks');
+const { getConfig } = require('./packages/build-tools/utils/config-store');
+
 module.exports = async function globalSetup() {
+  const config = await getConfig();
+  await buildPrep(); // Generate folders, manifest data, etc needed for Twig renderer
+  await imageTasks.processImages(); // process image fixtures used by any tests
+
   await setupDevServer({
     command: `node server/testing-server`,
     launchTimeout: 50000,
