@@ -43,22 +43,24 @@ async function asyncConfig() {
   }
 }
 
-async function plBuild(errorShouldExit) {
+async function compile(errorShouldExit, dataOnly = false) {
   config = config || (await asyncConfig());
 
-  return new Promise(async (resolve, reject) => {
-    const startCompilingPlMsg = 'Building Pattern Lab for the first time...';
-    const startRecompilingPlMsg = 'Recompiling Pattern Lab...';
+  const plTaskName = dataOnly ? 'Pattern Lab Data' : 'Pattern Lab';
 
-    const failedCompilingPlMsg = 'The initial Pattern Lab compile failed!';
-    const failedRecompilingPlMsg = 'Failed to recompile Pattern Lab!';
+  return new Promise(async (resolve, reject) => {
+    const startCompilingPlMsg = `Building ${plTaskName} for the first time...`;
+    const startRecompilingPlMsg = `Recompiling ${plTaskName}...`;
+
+    const failedCompilingPlMsg = `The initial ${plTaskName} compile failed!`;
+    const failedRecompilingPlMsg = `Failed to recompile ${plTaskName}!`;
 
     const endCompilingPlMsg = function(startTime) {
-      return `Compiled Pattern Lab in ${chalk.bold(timer.end(startTime))}`;
+      return `Compiled ${plTaskName} in ${chalk.bold(timer.end(startTime))}`;
     };
 
     const endRecompilingPlMsg = function(startTime) {
-      return `Pattern Lab recompiled in ${chalk.bold(timer.end(startTime))}`;
+      return `${plTaskName} recompiled in ${chalk.bold(timer.end(startTime))}`;
     };
 
     const plSpinner = new Ora(
@@ -68,7 +70,13 @@ async function plBuild(errorShouldExit) {
 
     sh(
       'php',
-      ['-d', 'memory_limit=4048M', consolePath, '--generate'],
+      [
+        '-d',
+        'memory_limit=4048M',
+        consolePath,
+        '--generate',
+        dataOnly ? '--dataonly' : '',
+      ],
       errorShouldExit,
       false,
     )
@@ -108,7 +116,7 @@ async function plBuild(errorShouldExit) {
   });
 }
 
-async function compile() {
+async function precompile() {
   config = config || (await asyncConfig());
 
   const jsFolderExists = await dirExists(
@@ -126,7 +134,7 @@ async function compile() {
   const isPatternLabAlreadyCompiled =
     jsFolderExists && scssFolderExists && indexHtmlExists;
 
-  await plBuild(true).then(output => {
+  await compile(true).then(output => {
     // check if pattern lab's UIKIt assets exist -- automatically regenerate if the required assets are missing.
     if (!isPatternLabAlreadyCompiled || config.prod === true) {
       chalk.yellow('⚠️ Uh-oh. Pattern Labs UIKit is missing... Regenerating!');
