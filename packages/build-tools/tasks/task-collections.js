@@ -53,8 +53,7 @@ async function compileBasedOnEnvironment() {
       return Promise.all([
         extraTasks.static.compile(),
         extraTasks.api.generate().then(async () => {
-          await extraTasks.patternLab.compile().then(() => {
-          });
+          await extraTasks.patternLab.compile().then(() => {});
         }),
       ]);
   }

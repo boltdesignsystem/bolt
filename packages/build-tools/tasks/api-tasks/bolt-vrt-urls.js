@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
-const { getBoltTags } = require('@bolt/build-tools/utils/bolt-versions');
 const path = require('path');
 const shell = require('shelljs');
+const { getBoltTags } = require('./bolt-versions');
 
 async function generateVrtUrls() {
   const config = await getConfig();
