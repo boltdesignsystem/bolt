@@ -66,9 +66,12 @@ class BoltImage extends withLitHtml() {
   }
 
   connecting() {
-    super.connecting && super.connecting();
-    while (this.firstChild) {
-      this.removeChild(this.firstChild);
+    // IE fires this twice, only let it remove children once
+    if (!this._wasInitiallyRendered) {
+      super.connecting && super.connecting();
+      while (this.firstChild) {
+        this.removeChild(this.firstChild);
+      }
     }
   }
 
