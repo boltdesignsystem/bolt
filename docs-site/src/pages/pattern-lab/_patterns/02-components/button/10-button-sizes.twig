@@ -1,10 +1,12 @@
-{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
 
 {% for size in schema.properties.size.enum %}
-  <p>Button Size Variation: {{ size }}</p>
-
-  {% include "@bolt-components-button/button.twig" with {
-    "size": size,
-    "text": "Example " ~ size ~" Button"
-  } %}
+  <div class="u-bolt-margin-bottom">
+    {% include "@bolt-components-button/button.twig" with {
+      size: size,
+      text: "This is a " ~ size ~" button"
+    } only %}
+  </div>
 {% endfor %}
+
+<p><mark>Note: medium is the default size.</mark></p>

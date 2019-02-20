@@ -10,27 +10,15 @@
   -webkit-appearance: none; // override default [type=submit] button styles coming from Normalize
 }
 
-@mixin bolt-button-raised() {
-  &:not(.c-bolt-button--disabled):not(.c-bolt-button--text):not([disabled]) {
-    &:hover,
-    &.is-hover {
-      @include bolt-shadow('level-20', true);
-    }
+@mixin bolt-button-raised-effect {
+  &:hover,
+  &.is-hover {
+    @include bolt-shadow('level-20', true);
+  }
 
-    &:hover:before,
-    &.is-hover:before {
-      opacity: bolt-opacity(100);
-    }
-
-    &:active,
-    &.is-active {
-      transform: $bolt-button-translate--active;
-    }
-
-    &:active:before,
-    &.is-active:before {
-      opacity: bolt-opacity(0);
-    }
+  &:active,
+  &.is-active {
+    transform: $bolt-button-translate--active;
   }
 }
 
@@ -38,15 +26,10 @@
   @include bolt-button-reset;
   @include bolt-no-select;
   @include bolt-font-weight(semibold);
-  @include bolt-button-raised;
   @include bolt-shadow('level-20');
 
-  /* display: inline-block;
-  display: inline-flex;
-  flex-direction: row;
-  flex-grow: 1;
-  align-items: center; */
-  display: block;
+  display: flex;
+  align-items: center;
   position: relative;
   transform: translate3d(0, 0, 0);
   text-decoration: none;
@@ -76,12 +59,9 @@
   * Button Colors / Types
   */
 @mixin bolt-button-style--primary() {
-  &,
-  &:visited {
-    color: bolt-theme(text-on-primary);
-    border-color: bolt-theme(primary);
-    background-color: bolt-theme(primary);
-  }
+  color: bolt-theme(text-on-primary);
+  border-color: bolt-theme(primary);
+  background-color: bolt-theme(primary);
 
   &:hover,
   &.is-hover {
@@ -106,15 +86,12 @@
 }
 
 @mixin bolt-button-style--secondary() {
-  &,
-  &:visited {
-    color: bolt-theme(text-on-secondary);
-    border-color: bolt-theme(secondary);
-    background-color: bolt-theme(secondary);
-  }
+  color: bolt-theme(text-on-secondary);
+  border-color: bolt-theme(secondary);
+  background-color: bolt-theme(secondary);
 
-  &.is-hover,
-  &:hover {
+  &:hover,
+  &.is-hover {
     color: bolt-theme(text-on-secondary-lighten-5);
     border-color: bolt-theme(secondary-lighten-5);
     background-color: bolt-theme(secondary-lighten-5);
@@ -136,33 +113,27 @@
 }
 
 @mixin bolt-button-style--text() {
+  opacity: bolt-opacity(100);
+  color: bolt-theme(headline-link);
   text-decoration: none;
   border-color: transparent;
   background-color: transparent;
-  $bolt-theme-link-default: bolt-color(indigo, light);
 
   // Removing shadows for text buttons
   &,
   &:before {
-    border-radius: 0;
     box-shadow: none;
   }
 
-  & {
-    opacity: bolt-opacity(100);
-    color: bolt-theme(headline-link);
-  }
-
-  &:visited {
-    opacity: bolt-opacity(100);
-  }
-
-  &:hover:not([disabled]) {
+  &:hover,
+  &.is-hover {
     opacity: $bolt-global-link-hover-opacity;
   }
 
   &:focus:active,
-  &:active {
+  &.is-focus.is-active,
+  &:active,
+  &.is-active {
     opacity: $bolt-global-link-active-opacity;
   }
 }
@@ -173,7 +144,13 @@
   &,
   &:visited,
   &:hover,
-  &:active {
+  &.is-hover,
+  &:active,
+  &.is-active {
+    @include bolt-shadow('level-20');
+
+    opacity: bolt-opacity(100);
+    transform: none;
     color: bolt-theme(text-disabled);
     border-color: bolt-theme(disabled);
     background-color: bolt-theme(disabled);
@@ -181,14 +158,10 @@
 
   &:before,
   &:hover:before,
-  &:active:before {
-    opacity: bolt-opacity(100);
-  }
-
-  &,
-  &:hover,
-  &:active {
-    transform: none;
+  &.is-hover:before,
+  &:active:before,
+  &.is-active:before {
+    display: none;
   }
 }
 

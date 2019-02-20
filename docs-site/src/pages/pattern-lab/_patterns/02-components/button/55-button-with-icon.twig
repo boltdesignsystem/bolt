@@ -1,0 +1,32 @@
+{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+
+
+<h3>Button w/ Icon Position <code>before</code></h3>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Icon position: before",
+    icon: {
+      name: "chevron-left",
+      position: "before"
+    }
+  } only %}
+</div>
+
+<h3>Button w/ Icon Position <code>after</code></h3>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Icon position: after",
+    icon: {
+      name: "chevron-right",
+      position: "after"
+    }
+  } only %}
+</div>
+
+<h3>Button w/ Default Icon Position</h3>
+{% include "@bolt-components-button/button.twig" with {
+  text: "Icon position is after by default",
+  icon: {
+    name: "external-link"
+  }
+} only %}
