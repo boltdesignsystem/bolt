@@ -172,7 +172,8 @@ class BoltImage extends withLitHtml() {
 
     // Include <noscript> for server-side rendered components
     const fallbackImageElement = () => {
-      if (lazyload && src) {
+      // this.is_ssr is undefined at the moment, placeholder for future server-side rendering
+      if (lazyload && src && this.is_ssr) {
         return html`
           <noscript>
             <img
