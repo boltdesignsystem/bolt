@@ -125,7 +125,7 @@ class BoltImage extends withLitHtml() {
     }
 
     const _isJpg = path.extname(src) === '.jpg';
-    const _canUseRatio = ratioW > 0 && ratioH > 0 && useRatio;
+    const _canUseRatio = ratioW > 0 && ratioH > 0 && useRatio && !cover;
     // Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder
     const _canUsePlaceholder = (_canUseRatio || cover) && _isJpg;
 
@@ -177,7 +177,9 @@ class BoltImage extends withLitHtml() {
         return html`
           <noscript>
             <img
-              class="${cx('c-bolt-image__image')}"
+              class="${cx('c-bolt-image__image', {
+                'c-bolt-image--cover': cover,
+              })}"
               src="${src}"
               alt="${ifDefined(alt ? alt : undefined)}"
               srcset="${ifDefined(!lazyload ? srcset || src : undefined)}"

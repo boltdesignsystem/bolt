@@ -27,7 +27,7 @@
 
 {% set is_jpg = src|split('.')|last == "jpg" %}
 {% set useAspectRatio = useAspectRatio ?? true %}
-{% set can_use_ratio = width > 0 and height > 0 and useAspectRatio is sameas(true) %}
+{% set can_use_ratio = width > 0 and height > 0 and useAspectRatio is sameas(true) and object is sameas(false) %}
 {# Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder #}
 {% set can_use_placeholder = can_use_ratio or cover %}
 
