@@ -30,8 +30,6 @@ class BoltImage extends withLitHtml() {
     srcset: props.string,
     sizes: props.string,
     ratio: props.string,
-    width: props.string,
-    height: props.string,
     placeholderColor: props.string,
     placeholderImage: props.string,
     zoom: props.boolean,
@@ -98,8 +96,6 @@ class BoltImage extends withLitHtml() {
       srcset,
       sizes,
       ratio,
-      width,
-      height,
       placeholderColor,
       placeholderImage,
       zoom,
@@ -109,7 +105,7 @@ class BoltImage extends withLitHtml() {
     // negate and rename variables for readability
     const lazyload = !noLazy;
 
-    // use ratio by default, still depends upon width and height being set
+    // use ratio by default, still depends upon aspect-ratio being passed in
     let useRatio = true;
     let ratioW, ratioH;
 
