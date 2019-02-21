@@ -11,8 +11,7 @@ import styles from './ratio.scss';
 function BoltRatio() {
   return class BoltRatioClass extends withLitHtml() {
     static props = {
-      aspectRatioHeight: props.number,
-      aspectRatioWidth: props.number,
+      ratio: props.string,
     };
 
     constructor(self) {
@@ -22,44 +21,41 @@ function BoltRatio() {
       return self;
     }
 
+    updating() {
+      super.updating && super.updating();
+      this._computeRatio();
+    }
+
     /**
      * sets the style so that the height is based on a ratio of width to height
      * @param {Number} aspH - the height component of the ratio
      * @param {Number} aspW - the width component of the ratio
      */
     _computeRatio() {
-      const height =
-        this.props.aspectRatioHeight && this.props.aspectRatioHeight > 0
-          ? this.props.aspectRatioHeight
-          : 1;
+      const height = this.props.ratio ? this.props.ratio.split('/')[1] : 1;
 
-      const width =
-        this.props.aspectRatioWidth && this.props.aspectRatioWidth > 0
-          ? this.props.aspectRatioWidth
-          : 1;
+      const width = this.props.ratio ? this.props.ratio.split('/')[0] : 1;
 
       if (this.useCssVars) {
-        this.style.setProperty('--aspect-ratio-height', height);
-        this.style.setProperty('--aspect-ratio-width', width);
-        this.style.paddingTop = '';
+        this.style.setProperty('--aspect-ratio', `${width}/${height}`);
+        this.style.paddingBottom = '';
       } else {
-        this.style.paddingTop = `${100 * (height / width)}%`;
+        this.style.paddingBottom = `${100 * (height / width)}%`;
+        this.style.removeProperty('--aspect-ratio');
         this.style.removeProperty('--aspect-ratio-height');
         this.style.removeProperty('--aspect-ratio-width');
       }
     }
 
     connecting() {
+      super.connecting && super.connecting();
       this._computeRatio();
     }
 
     // Render out component via Lit-HTML
     render() {
-      const classes = css(`o-${bolt.namespace}-ratio__inner`);
-
       return html`
-        ${this.addStyles([styles])}
-        <div class="${classes}">${this.slot('default')}</div>
+        ${this.addStyles([styles])} ${this.slot('default')}
       `;
     }
   };

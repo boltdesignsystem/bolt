@@ -14,7 +14,11 @@ properties:
     title: 'Aspect Ratio Height'
     description: "The height-portion of the object's aspect ratio. Used to calculate the amount of space the object should take up."
     type: number
+  ratio:
+    title: 'Ratio'
+    description: "Set the aspect ratio for the ratio object via colon-separated width and height values, e.g. 4:3."
+    type: string
   children:
     type: [string, object, array]
     title: 'Children'
-    description: 'Nested content to pass inside the rendered <bolt-ratio> object'
+    description: 'Nested content to pass inside the rendered &lt;bolt-ratio&gt; object'
