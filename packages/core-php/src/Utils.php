@@ -5,6 +5,9 @@ namespace Bolt;
 use Michelf\MarkdownExtra;
 use \Webmozart\PathUtil\Path;
 
+// https://github.com/nabil1337/case-helper
+use CaseHelper\CaseHelperFactory;
+
 class Utils {
 
   const repoRoot = __DIR__ . '/../../../';
