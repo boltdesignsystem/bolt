@@ -8,19 +8,15 @@ bolt-ratio {
   display: block;
   position: relative;
   width: 100%;
+  height: 0;
+  overflow: hidden;
 
   @include bolt-css-vars((
     --aspect-ratio: 1/1,
   ));
 
   @supports (--custom:property) {
-    padding-bottom: 0 !important; // workaround to ensure browsers with CSS custom prop support don't use the inline padding bottom added via Twig before the JS kicks in  
-
-    &:before {
-      content: '';
-      display: block;
-      padding-bottom: calc(100% / (var(--aspect-ratio)));
-    }
+    padding-top: calc(100% / (var(--aspect-ratio)));
   }
 }
 
@@ -34,12 +30,9 @@ bolt-ratio > * {
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   min-width: 100%; // workaround for content w/ hard-coded height & width
   min-height: 100%;
-}
-
-:host {
-  height: auto;
 }
 
 :host ::slotted(*) {
@@ -47,4 +40,7 @@ bolt-ratio > * {
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
+  min-width: 100%; // workaround for content w/ hard-coded height & width
+  min-height: 100%;
 }
