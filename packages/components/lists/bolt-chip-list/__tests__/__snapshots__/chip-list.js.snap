@@ -14,14 +14,18 @@ exports[`<bolt-chip-list> Component basic usage with links 1`] = `
       <bolt-list-item>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip bolt-component>
-              <a href="#!"
-                 class="c-bolt-chip"
-              >
-                <span class="c-bolt-chip__item-text">
-                  Chip link 1
-                </span>
-              </a>
+            <bolt-chip tag="a"
+                       url="#!"
+            >
+              <replace-with-grandchildren>
+                <a href="#!"
+                   class="c-bolt-chip"
+                >
+                  <span class="c-bolt-chip__item-text">
+                    Chip link 1
+                  </span>
+                </a>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -29,14 +33,18 @@ exports[`<bolt-chip-list> Component basic usage with links 1`] = `
       <bolt-list-item>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip bolt-component>
-              <a href="#!"
-                 class="c-bolt-chip"
-              >
-                <span class="c-bolt-chip__item-text">
-                  Chip link 2
-                </span>
-              </a>
+            <bolt-chip tag="a"
+                       url="#!"
+            >
+              <replace-with-grandchildren>
+                <a href="#!"
+                   class="c-bolt-chip"
+                >
+                  <span class="c-bolt-chip__item-text">
+                    Chip link 2
+                  </span>
+                </a>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -44,14 +52,18 @@ exports[`<bolt-chip-list> Component basic usage with links 1`] = `
       <bolt-list-item>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip bolt-component>
-              <a href="#!"
-                 class="c-bolt-chip"
-              >
-                <span class="c-bolt-chip__item-text">
-                  Chip link 3
-                </span>
-              </a>
+            <bolt-chip tag="a"
+                       url="#!"
+            >
+              <replace-with-grandchildren>
+                <a href="#!"
+                   class="c-bolt-chip"
+                >
+                  <span class="c-bolt-chip__item-text">
+                    Chip link 3
+                  </span>
+                </a>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -59,14 +71,18 @@ exports[`<bolt-chip-list> Component basic usage with links 1`] = `
       <bolt-list-item last>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
-            <bolt-chip bolt-component>
-              <a href="#!"
-                 class="c-bolt-chip"
-              >
-                <span class="c-bolt-chip__item-text">
-                  Chip link 4
-                </span>
-              </a>
+            <bolt-chip tag="a"
+                       url="#!"
+            >
+              <replace-with-grandchildren>
+                <a href="#!"
+                   class="c-bolt-chip"
+                >
+                  <span class="c-bolt-chip__item-text">
+                    Chip link 4
+                  </span>
+                </a>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -91,14 +107,18 @@ exports[`<bolt-chip-list> Component basic usage with mixed behavior 1`] = `
       <bolt-list-item>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip bolt-component>
-              <a href="#!"
-                 class="c-bolt-chip"
-              >
-                <span class="c-bolt-chip__item-text">
-                  Chip link 1
-                </span>
-              </a>
+            <bolt-chip tag="a"
+                       url="#!"
+            >
+              <replace-with-grandchildren>
+                <a href="#!"
+                   class="c-bolt-chip"
+                >
+                  <span class="c-bolt-chip__item-text">
+                    Chip link 1
+                  </span>
+                </a>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -106,12 +126,14 @@ exports[`<bolt-chip-list> Component basic usage with mixed behavior 1`] = `
       <bolt-list-item>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip bolt-component>
-              <span class="c-bolt-chip">
-                <span class="c-bolt-chip__item-text">
-                  Chip text 1
+            <bolt-chip tag="span">
+              <replace-with-grandchildren>
+                <span class="c-bolt-chip">
+                  <span class="c-bolt-chip__item-text">
+                    Chip text 1
+                  </span>
                 </span>
-              </span>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -119,14 +141,18 @@ exports[`<bolt-chip-list> Component basic usage with mixed behavior 1`] = `
       <bolt-list-item>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip bolt-component>
-              <a href="#!"
-                 class="c-bolt-chip"
-              >
-                <span class="c-bolt-chip__item-text">
-                  Chip link 3
-                </span>
-              </a>
+            <bolt-chip tag="a"
+                       url="#!"
+            >
+              <replace-with-grandchildren>
+                <a href="#!"
+                   class="c-bolt-chip"
+                >
+                  <span class="c-bolt-chip__item-text">
+                    Chip link 3
+                  </span>
+                </a>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -134,12 +160,14 @@ exports[`<bolt-chip-list> Component basic usage with mixed behavior 1`] = `
       <bolt-list-item last>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
-            <bolt-chip bolt-component>
-              <span class="c-bolt-chip">
-                <span class="c-bolt-chip__item-text">
-                  Chip text 2
+            <bolt-chip tag="span">
+              <replace-with-grandchildren>
+                <span class="c-bolt-chip">
+                  <span class="c-bolt-chip__item-text">
+                    Chip text 2
+                  </span>
                 </span>
-              </span>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -164,12 +192,14 @@ exports[`<bolt-chip-list> Component basic usage without links 1`] = `
       <bolt-list-item>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip bolt-component>
-              <span class="c-bolt-chip">
-                <span class="c-bolt-chip__item-text">
-                  Chip text 1
+            <bolt-chip tag="span">
+              <replace-with-grandchildren>
+                <span class="c-bolt-chip">
+                  <span class="c-bolt-chip__item-text">
+                    Chip text 1
+                  </span>
                 </span>
-              </span>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -177,12 +207,14 @@ exports[`<bolt-chip-list> Component basic usage without links 1`] = `
       <bolt-list-item>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip bolt-component>
-              <span class="c-bolt-chip">
-                <span class="c-bolt-chip__item-text">
-                  Chip text 2
+            <bolt-chip tag="span">
+              <replace-with-grandchildren>
+                <span class="c-bolt-chip">
+                  <span class="c-bolt-chip__item-text">
+                    Chip text 2
+                  </span>
                 </span>
-              </span>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -190,12 +222,14 @@ exports[`<bolt-chip-list> Component basic usage without links 1`] = `
       <bolt-list-item>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
-            <bolt-chip bolt-component>
-              <span class="c-bolt-chip">
-                <span class="c-bolt-chip__item-text">
-                  Chip text 3
+            <bolt-chip tag="span">
+              <replace-with-grandchildren>
+                <span class="c-bolt-chip">
+                  <span class="c-bolt-chip__item-text">
+                    Chip text 3
+                  </span>
                 </span>
-              </span>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
@@ -203,12 +237,14 @@ exports[`<bolt-chip-list> Component basic usage without links 1`] = `
       <bolt-list-item last>
         <replace-with-grandchildren>
           <li class="c-bolt-list-item c-bolt-list-item--display-inline c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
-            <bolt-chip bolt-component>
-              <span class="c-bolt-chip">
-                <span class="c-bolt-chip__item-text">
-                  Chip text 4
+            <bolt-chip tag="span">
+              <replace-with-grandchildren>
+                <span class="c-bolt-chip">
+                  <span class="c-bolt-chip__item-text">
+                    Chip text 4
+                  </span>
                 </span>
-              </span>
+              </replace-with-grandchildren>
             </bolt-chip>
           </li>
         </replace-with-grandchildren>
