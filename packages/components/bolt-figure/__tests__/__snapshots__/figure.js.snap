@@ -24,9 +24,8 @@ exports[`figure figure with image 1`] = `
   <figure class="c-bolt-figure">
     <div class="c-bolt-figure__media">
       <bolt-image style="background-color: hsl(233, 33%, 97%);">
-        <bolt-ratio aspect-ratio-height="638"
-                    aspect-ratio-width="1151"
-                    style="--aspect-ratio-height: 638; --aspect-ratio-width: 1151;"
+        <bolt-ratio ratio="1151/638"
+                    style="padding-bottom: calc(638 / 1151 * 100%); --aspect-ratio: 1151/638"
         >
           <img class="c-bolt-image__image-placeholder"
                sizes="auto"
@@ -158,9 +157,8 @@ exports[`figure figure with video 1`] = `
 <bolt-figure>
   <figure class="c-bolt-figure">
     <div class="c-bolt-figure__media">
-      <bolt-ratio aspect-ratio-height="9"
-                  aspect-ratio-width="16"
-                  style="--aspect-ratio-height: 9; --aspect-ratio-width: 16;"
+      <bolt-ratio ratio="16/9"
+                  style="padding-bottom: calc(9 / 16 * 100%); --aspect-ratio: 16/9"
       >
         <bolt-video class="js-bolt-video-uuid--12345"
                     data-setup="{&quot;techOrder&quot;: [&quot;Html5&quot;], &quot;resizeManager&quot;: false}"

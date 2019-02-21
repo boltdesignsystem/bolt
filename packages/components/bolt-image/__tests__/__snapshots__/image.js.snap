@@ -3,9 +3,8 @@
 exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading disabled compiles 1`] = `
 
 <bolt-image style="background-color: hsl(233, 33%, 97%);">
-  <bolt-ratio aspect-ratio-height="660"
-              aspect-ratio-width="1200"
-              style="--aspect-ratio-height: 660; --aspect-ratio-width: 1200;"
+  <bolt-ratio ratio="1200/660"
+              style="padding-bottom: calc(660 / 1200 * 100%); --aspect-ratio: 1200/660"
   >
     <img class="c-bolt-image__image-placeholder"
          alt="A Rock Climber"
@@ -26,9 +25,8 @@ exports[`<bolt-image> Component <bolt-image> with ratio object and lazyloading d
 exports[`<bolt-image> Component <bolt-image> with ratio object compiles 1`] = `
 
 <bolt-image style="background-color: hsl(233, 33%, 97%);">
-  <bolt-ratio aspect-ratio-height="660"
-              aspect-ratio-width="1200"
-              style="--aspect-ratio-height: 660; --aspect-ratio-width: 1200;"
+  <bolt-ratio ratio="1200/660"
+              style="padding-bottom: calc(660 / 1200 * 100%); --aspect-ratio: 1200/660"
   >
     <img class="c-bolt-image__image-placeholder"
          alt="A Rock Climber"
