@@ -1,25 +1,34 @@
-{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
 
-<p>Icon-only buttons display just an icon + visually hidden text if any text content is defined.</p>
 
-{% set icon_only_options = [
+{% include "@bolt-components-button/button.twig" with {
+  text: "This button's text is still accessible, it's just visually hidden.",
+  border_radius: "full",
+  iconOnly: true,
+  icon: {
+    name: "close"
+  }
+} only %}
+
+{% include "@bolt-components-button/button.twig" with {
+  text: "This button has text and icon.",
+  icon: {
+    name: "close"
+  }
+} only %}
+
+{# {% set icon_only_options = [
   true,
   false
 ] %}
 
 {% for option in icon_only_options %}
-  {% include "@bolt-components-text/text.twig" with {
-    text: "Icon Only? #{option == true ? 'True' : 'False'}",
-    headline: true
-  } %}
-
   {% include "@bolt-components-button/button.twig" with {
-    iconOnly: option == true ? true : false,
-    text: "Icon Only: " ~ option == true ? "True" : "False",
+    iconOnly: option,
+    text: "This button's text is still accessible, it's just visually hidden.",
     border_radius: "full",
-    size: "small",
     icon: {
       name: "close"
     }
   } only %}
-{% endfor %}
+{% endfor %} #}
