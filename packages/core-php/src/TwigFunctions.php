@@ -265,20 +265,10 @@ class TwigFunctions {
     });
   }
 
-  // Custom function for merging Drupal Attribute objects
-  // Gives $source preference, unless a key is set in both arrays and $source value is empty or null
-  public static function merge_attributes() {
-    return new Twig_SimpleFunction('merge_attributes', function($target, $source) {
-      // For each key in $source...
-      foreach ($source as $key => $value) {
-        // If $key is not in $target, or if $key is in $target and $value in $source is empty, add/overwrite $key in $target
-        // NOTE: empty() and is_null() do not work in the second half of this statement. Why is that?
-        if (empty($target[$key]) || (!empty($target[$key]) && $value != "")) {
-          $target[$key] = $value;
-        }
-      }
-
-      return $target;
+  // Loops through _context, returns props that are in schema
+  public static function initialize_props() {
+    return new Twig_SimpleFunction('initialize_props', function($items, $schema) {
+      return Utils::buildPropsArray($items, $schema);
     });
   }
 
