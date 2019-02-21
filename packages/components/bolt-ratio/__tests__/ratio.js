@@ -40,7 +40,7 @@ describe('<bolt-ratio> Component', async () => {
     const renderedRatioHTML = await page.evaluate(() => {
       const ratio = document.createElement('bolt-ratio');
       const img = document.createElement('img');
-      img.setAttribute('src', 'http://127.0.0.1:4444/fixtures/1200x660.jpg');
+      img.setAttribute('src', '/fixtures/1200x660.jpg');
 
       ratio.setAttribute('ratio', '1200/660');
       ratio.appendChild(img);
