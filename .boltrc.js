@@ -39,7 +39,7 @@ module.exports = {
   buildDir: adjustRelativePath(siteConfig.buildDir),
   components: {
     global: globby
-      .sync(path.join(__dirname, './packages/components/*/package.json'))
+      .sync(path.join(__dirname, './packages/components/**/*/package.json'))
       .map(pkgPath => require(pkgPath))
       .map(pkg => pkg.name),
   },
@@ -47,4 +47,7 @@ module.exports = {
   images: {
     sets: imageSets,
   },
+  prod: true,
+  enableCache: true,
+  verbosity: 1,
 };

@@ -17,9 +17,12 @@ $bolt-flag-alignments: (
 .o-bolt-flag {
   // display: table;
   // width: 100%;
-  @include bolt-margin-bottom(medium);
   display: flex;
   align-items: flex-start;
+
+  &:not(:last-child) {
+    @include bolt-margin-bottom(medium);
+  }
 }
 
 .o-bolt-flag__body {

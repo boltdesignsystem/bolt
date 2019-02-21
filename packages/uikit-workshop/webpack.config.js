@@ -249,6 +249,10 @@ module.exports = async function() {
           staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
           // Required - Routes to render.
           routes: [ '/'],
+          postProcess(context) {
+            context.html = context.html.replace(/<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi, ''); 
+            return context;
+          }
         }),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
@@ -270,7 +274,6 @@ module.exports = async function() {
           template: 'src/html/index.html',
           inject: false,
         }),
-        new PreloadWebpackPlugin(),
         new MiniCssExtractPlugin({
           filename: `[name].css`,
           chunkFilename: `[id].css`,
