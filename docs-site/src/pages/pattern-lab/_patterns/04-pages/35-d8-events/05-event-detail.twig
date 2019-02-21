@@ -6,7 +6,7 @@
 
 {% block main_content %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "medium",
     theme: "dark"
   } only %}
@@ -82,7 +82,7 @@
     {% endblock %}
   {% endembed %}
 
- {% embed "@bolt/band.twig" with {
+ {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xlight"
   } only %}
@@ -268,7 +268,7 @@
   {% endembed %}
 
 {# Start Location Details section #}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xlight",
   full_bleed: true
@@ -334,7 +334,7 @@
 {# End Location Details section #}
 
 {# Start Speakers section #}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xlight",
   full_bleed: true
@@ -497,7 +497,7 @@
 {# End Speakers section #}
 
 {# Start 2017 Highlights section #}
-  {% embed "@bolt/band--collection.twig" with {
+  {% embed "@bolt-components-band/band--collection.twig" with {
   "theme": "xlight",
   "size": "large",
   "contentItems": [
@@ -599,7 +599,7 @@
 {# End 2017 Highlights section#}
 
 {# Start Events Sponsors section#}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
   size: "large",
   theme: "light",
   full_bleed: true
@@ -645,7 +645,7 @@
 
 
 {# Start Related Resources section #}
-  {% embed "@bolt/band--collection.twig" with {
+  {% embed "@bolt-components-band/band--collection.twig" with {
   "theme": "dark",
   "size": "large",
   "contentItems": [

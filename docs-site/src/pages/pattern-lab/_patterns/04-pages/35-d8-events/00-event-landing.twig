@@ -6,7 +6,7 @@
 
 {% block main_content %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "medium",
     theme: "xdark",
     full_bleed: true,
@@ -29,7 +29,7 @@
 
     {% block band_content %}
 
-      {% embed "@bolt/band.twig" with {
+      {% embed "@bolt-components-band/band.twig" with {
         size: "medium",
         theme: "none"
       } only %}
@@ -53,7 +53,7 @@
         {% endblock %}
       {% endembed %}
 
-      {% embed "@bolt/band.twig" with {
+      {% embed "@bolt-components-band/band.twig" with {
         size: "medium",
         theme: "none"
       } only %}
@@ -216,7 +216,7 @@
   {% endembed %}
 
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     theme: "xlight",
     size: "medium"
   } %}
@@ -345,7 +345,7 @@
   {% endembed %}
 
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "large",
     theme: "xdark"
   } only %}
