@@ -271,7 +271,7 @@
   {% embed "@bolt/band.twig" with {
   size: "medium",
   theme: "xlight",
-  fullBleed: true
+  full_bleed: true
   } only %}
   {% block band_content %}
 
@@ -337,7 +337,7 @@
   {% embed "@bolt/band.twig" with {
   size: "medium",
   theme: "xlight",
-  fullBleed: true
+  full_bleed: true
   } only %}
     {% block band_content %}
       {% include "@bolt/headline.twig" with {
@@ -497,7 +497,7 @@
 {# End Speakers section #}
 
 {# Start 2017 Highlights section #}
-  {% embed "@bolt/band--collection.twig" with {
+  {% embed "@pl/_band--collection.twig" with {
   "theme": "xlight",
   "size": "large",
   "contentItems": [
@@ -602,7 +602,7 @@
   {% embed "@bolt/band.twig" with {
   size: "large",
   theme: "light",
-  fullBleed: true
+  full_bleed: true
   } only %}
     {% block band_content  %}
       {% include "@bolt/headline.twig" with {
@@ -645,7 +645,7 @@
 
 
 {# Start Related Resources section #}
-  {% embed "@bolt/band--collection.twig" with {
+  {% embed "@pl/_band--collection.twig" with {
   "theme": "dark",
   "size": "large",
   "contentItems": [
