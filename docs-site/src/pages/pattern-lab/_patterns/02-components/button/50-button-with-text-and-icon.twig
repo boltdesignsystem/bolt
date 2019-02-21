@@ -1,10 +1,12 @@
 {% set schema = bolt.data.components["@bolt-components-button"].schema %}
 
+<h3>Icon usage inside buttons</h3>
+<p><mark>Note: when passing icons inside a button, you have to define the icon's position, by default it is set to after, which means the icon will come after the text.</mark></p>
 
-<h3>Button w/ Icon Position <code>before</code></h3>
+<h3>Icon position set to before</h3>
 <div class="u-bolt-margin-bottom-medium">
   {% include "@bolt-components-button/button.twig" with {
-    text: "Icon position: before",
+    text: "This button has text and icon",
     icon: {
       name: "chevron-left",
       position: "before"
@@ -12,21 +14,13 @@
   } only %}
 </div>
 
-<h3>Button w/ Icon Position <code>after</code></h3>
+<h3>Icon position set to after</h3>
 <div class="u-bolt-margin-bottom-medium">
   {% include "@bolt-components-button/button.twig" with {
-    text: "Icon position: after",
+    text: "This button has text and icon",
     icon: {
       name: "chevron-right",
       position: "after"
     }
   } only %}
 </div>
-
-<h3>Button w/ Default Icon Position</h3>
-{% include "@bolt-components-button/button.twig" with {
-  text: "Icon position is after by default",
-  icon: {
-    name: "external-link"
-  }
-} only %}

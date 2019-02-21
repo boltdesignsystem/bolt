@@ -77,7 +77,7 @@ class BoltButton extends BoltAction {
 
           return html`
             <span class="${iconClasses}"
-              ><span class="c-bolt-button__icon-flex"
+              ><span class="c-bolt-button__icon-sizer"
                 >${name in this.slots
                   ? this.slot(name)
                   : html`
@@ -89,7 +89,6 @@ class BoltButton extends BoltAction {
         default:
           const itemClasses = cx('c-bolt-button__text', {
             'is-empty': name in this.slots === false,
-            'u-bolt-visuallyhidden': this.props.iconOnly,
           });
 
           return html`

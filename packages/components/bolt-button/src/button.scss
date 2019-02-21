@@ -57,16 +57,7 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    padding: bolt-spacing(medium);
-  }
-}
-
-.c-bolt-button--xxsmall {
-  @include bolt-padding(xxsmall, squished);
-  @include bolt-font-size(xsmall);
-
-  &.c-bolt-button--icon-only {
-    padding: bolt-spacing(xxsmall);
+    width: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
   }
 }
 
@@ -75,7 +66,7 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    padding: bolt-spacing(xsmall);
+    width: (bolt-v-spacing(xsmall) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
   }
 }
 
@@ -84,7 +75,7 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    padding: bolt-spacing(small);
+    width: (bolt-v-spacing(small) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
   }
 }
 
@@ -93,7 +84,7 @@ bolt-button {
   @include bolt-font-size(medium);
 
   &.c-bolt-button--icon-only {
-    padding: bolt-spacing(medium);
+    width: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--medium * $bolt-font-size--medium);
   }
 }
 
@@ -102,7 +93,7 @@ bolt-button {
   @include bolt-font-size(large);
 
   &.c-bolt-button--icon-only {
-    padding: bolt-spacing(large);
+    width: (bolt-v-spacing(large) * $bolt-spacing-squished * 2) + ($bolt-line-height--large * $bolt-font-size--large);
   }
 }
 
@@ -123,7 +114,7 @@ bolt-button[width='full'],
 // full@small width variations
 bolt-button[width='full@small'],
 .c-bolt-button--full\@small {
-  @include bolt-mq($from: small) {
+  @include bolt-mq($until: small) {
     width: 100%;
   }
 }
@@ -131,7 +122,7 @@ bolt-button[width='full@small'],
 // :host selector for correctly styling the <bolt-button> element inside other components
 // writing this out in a separate selector due to unsupporting browsers throwing out the :host selector
 :host([width='full@small']) {
-  @include bolt-mq($from: small) {
+  @include bolt-mq($until: small) {
     width: 100%;
   }
 }
@@ -164,17 +155,17 @@ bolt-button[width='full@small'],
 }
 
 .c-bolt-button__icon:not(.is-empty) {
-  .c-bolt-button__icon-flex {
+  .c-bolt-button__icon-sizer {
     display: flex; // This fixes the spacing issue caused by bolt-icon defined as inline-block.
   }
 }
 
 .c-bolt-button__text + .c-bolt-button__icon:not(.is-empty) {
-  @include bolt-margin-left(xsmall);
+  @include bolt-margin-left(xxsmall);
 }
 
 .c-bolt-button__icon:not(.is-empty) + .c-bolt-button__text {
-  @include bolt-margin-left(xsmall);
+  @include bolt-margin-left(xxsmall);
 }
 
 
@@ -192,20 +183,57 @@ bolt-button[width='full@small'],
 }
 
 
+// Icon Only Buttons
 .c-bolt-button--icon-only {
+  @include bolt-padding-right(0);
+  @include bolt-padding-left(0);
+
   .c-bolt-button__text,
-  .c-bolt-button__icon {
+  .c-bolt-button__icon:not(.is-empty) {
     @include bolt-margin-left(0);
   }
-}
 
-/* .c-bolt-button__icon {
-  display: inline-block;
-  display: inline-flex;
-  align-self: center;
-  line-height: 1; // workaround so icons can be vertically aligned properly
-  text-align: center; // Horizontally center icons
-  vertical-align: middle;
-  transition: transform $bolt-transition-ease 150ms;
+  .c-bolt-button__text {
+    opacity: 0;
+    width: 0;
+    color: transparent;
+    text-indent: -99999em;
+  }
+
+  .c-bolt-button__icon-sizer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  &.c-bolt-button--xsmall {
+    .c-bolt-button__icon-sizer {
+      font-size: 1em;
+    }
+  }
+
+  &.c-bolt-button--small {
+    .c-bolt-button__icon-sizer {
+      font-size: 1.25em;
+    }
+  }
+
+  &.c-bolt-button--medium {
+    .c-bolt-button__icon-sizer {
+      font-size: 1.5em;
+    }
+  }
+
+  &.c-bolt-button--large {
+    .c-bolt-button__icon-sizer {
+      font-size: 1.75em;
+    }
+  }
+
+  &.c-bolt-button--xlarge {
+    .c-bolt-button__icon-sizer {
+      font-size: 2em;
+    }
+  }
 }
-*/

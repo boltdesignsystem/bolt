@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-button'].schema %}
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
@@ -8,19 +8,19 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set innerAttributes = create_attribute({}) %}
 
-{# DEPRECATED.  Use the prooperty 'align' instead of 'itemAlignment'. #}
+{# DEPRECATED.  Use the prooperty `align` instead of `itemAlignment`. #}
 {% if itemAlignment %}
   {% set align = itemAlignment %}
 {% endif %}
 
-{# DEPRECATED.  Use the values 'start' and 'end' insted of 'left' and 'right'. #}
+{# DEPRECATED.  Use the values `start` and `end` insted of `left` and `right`. #}
 {% if align == "left" %}
  {% set align = "start" %}
 {% elseif align == "right" %}
   {% set align = "end" %}
 {% endif %}
 
-{# DEPRECATED.  Use the property 'border_radius' with a value of 'full' instead. #}
+{# DEPRECATED.  Use the property `border_radius` with a value of `full` instead. #}
 {% if rounded == "rounded" %}
   {% set border_radius = "full" %}
 {% endif %}
@@ -137,19 +137,19 @@ Sort classes passed in via attributes into two groups:
   {% if noShadow %} no-shadow {% endif %}
   {% if border_radius %} border-radius="{{ border_radius }}" {% endif %}
 
-  {% if target or attributes['target'] %} target="{{ target | default(attributes['target']) }}" {% endif %}
+  {% if target or attributes["target"] %} target="{{ target | default(attributes['target']) }}" {% endif %}
 
   {# todo: rename on-click + on-click-target to only allow onClick + onClickTarget to unify the prop syntax; deprecate adding these via attributes #}
-  {% if onClick or attributes['on-click'] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
-  {% if onClickTarget or attributes['on-click-target'] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %}
+  {% if onClick or attributes["on-click"] %} on-click="{{ onClick | default(attributes['on-click']) }}" {% endif %}
+  {% if onClickTarget or attributes["on-click-target"] %} on-click-target="{{ onClickTarget | default(attributes['on-click-target']) }}" {% endif %}
 
-  {{ attributes|without('target')|without('id')|without('on-click') }}
+  {{ attributes|without("target")|without("id")|without("on-click") }}
 >
 
   {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
-  <{{ tag }} {{ innerAttributes|without('on-click')|without('on-click-target') }} is="shadow-root">
-    {{ macros.slottedIcon(icon, iconPosition, 'before') }}
-    <replace-with-children class="c-bolt-button__text {{ iconOnly ? 'u-bolt-visuallyhidden' : '' }}">{{ text }}</replace-with-children>
+  <{{ tag }} {{ innerAttributes|without("on-click")|without("on-click-target") }} is="shadow-root">
+    {{ macros.slottedIcon(icon, iconPosition, "before") }}
+    <replace-with-children class="c-bolt-button__text">{{ text }}</replace-with-children>
     {{ macros.slottedIcon(icon, iconPosition, 'after') }}
   </{{ tag }}>
 </bolt-button>

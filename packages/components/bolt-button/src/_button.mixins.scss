@@ -7,7 +7,8 @@
   @include bolt-padding(0);
   @include bolt-font-family(body);
 
-  -webkit-appearance: none; // override default [type=submit] button styles coming from Normalize
+  appearance: none; // override default [type=submit] button styles coming from Normalize
+  outline: none;
 }
 
 @mixin bolt-button-raised-effect {
@@ -53,6 +54,11 @@
     border-radius: bolt-button-border-radius('regular');
     @include bolt-shadow('level-10', true);
   }
+
+  &:focus:not(:hover),
+  &.is-focus:not(.is-hover) {
+    box-shadow: 0 0 1px bolt-theme(link), 0 0 0.5rem bolt-theme(link);
+  }
 }
 
 /**
@@ -70,8 +76,8 @@
     background-color: bolt-theme(primary-lighten-15);
   }
 
-  &:focus,
-  &.is-focus {
+  &:focus:not([disabled]):not(.c-bolt-button--disabled),
+  &.is-focus:not([disabled]):not(.c-bolt-button--disabled) {
     color: bolt-theme(text-on-primary-darken-15);
     border-color: bolt-theme(primary-darken-15);
     background-color: bolt-theme(primary-darken-15);
@@ -97,8 +103,8 @@
     background-color: bolt-theme(secondary-lighten-5);
   }
 
-  &:focus,
-  &.is-focus {
+  &:focus:not([disabled]):not(.c-bolt-button--disabled),
+  &.is-focus:not([disabled]):not(.c-bolt-button--disabled) {
     color: bolt-theme(text-on-secondary-darken-3);
     border-color: bolt-theme(secondary-darken-3);
     background-color: bolt-theme(secondary-darken-3);
@@ -113,25 +119,31 @@
 }
 
 @mixin bolt-button-style--text() {
+  // Remove box-shadow and background-color completely for text buttons.
+
   opacity: bolt-opacity(100);
   color: bolt-theme(headline-link);
   text-decoration: none;
   border-color: transparent;
-  background-color: transparent;
 
-  // Removing shadows for text buttons
+  &,
+  &[disabled],
+  &.c-bolt-button--disabled {
+    background-color: transparent;
+  }
+
   &,
   &:before {
     box-shadow: none;
   }
 
-  &:hover,
-  &.is-hover {
+  &:hover:not([disabled]):not(.c-bolt-button--disabled),
+  &.is-hover:not([disabled]):not(.c-bolt-button--disabled) {
     opacity: $bolt-global-link-hover-opacity;
   }
 
-  &:focus:active,
-  &.is-focus.is-active,
+  &:focus:active:not([disabled]):not(.c-bolt-button--disabled),
+  &.is-focus.is-active:not([disabled]):not(.c-bolt-button--disabled),
   &:active,
   &.is-active {
     opacity: $bolt-global-link-active-opacity;
@@ -147,11 +159,19 @@
   &.is-hover,
   &:active,
   &.is-active {
+    color: bolt-theme(text-disabled);
+  }
+
+  &:not(.c-bolt-button--text),
+  &:not(.c-bolt-button--text):visited,
+  &:not(.c-bolt-button--text):hover,
+  &:not(.c-bolt-button--text).is-hover,
+  &:not(.c-bolt-button--text):active,
+  &:not(.c-bolt-button--text).is-active {
     @include bolt-shadow('level-20');
 
     opacity: bolt-opacity(100);
     transform: none;
-    color: bolt-theme(text-disabled);
     border-color: bolt-theme(disabled);
     background-color: bolt-theme(disabled);
   }

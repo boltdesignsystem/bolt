@@ -1,0 +1,19 @@
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+
+<h3>Icon buttons</h3>
+<p><mark>Note: this option still has button text, and that text is still accessible through screen readers. It's just visually hidden.</mark></p>
+
+{% for size in schema.properties.size.enum %}
+  <p>
+    {% include "@bolt-components-button/button.twig" with {
+      text: "This button's text is still accessible, it's just visually hidden.",
+      size: size,
+      border_radius: "full",
+      iconOnly: true,
+      icon: {
+        name: "close",
+      }
+    } only %}
+    {{ size|capitalize }} icon-only button
+  </p>
+{% endfor %}

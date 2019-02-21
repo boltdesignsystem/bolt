@@ -27,19 +27,7 @@ properties:
       - lowercase
       - capitalize
       - none
-  icon:
-    type: object
-    description: Icon data as expected by the icon component.  Accepts an additional 'position' parameter that determines placement within the button.
-    ref: '@bolt-components-icon/icon.schema.yml'
-    properties:
-      position:
-        type: string
-        default: after
-        enum:
-          - before
-          - after
   tag:
-    title: 'Semantic tag'
     description: 'What should this element semantically be?'
     type: string
     enum:
@@ -51,7 +39,6 @@ properties:
     default: button
   size:
     type: string
-    title: 'Button Size'
     description: 'How large is this button?'
     default: medium
     enum:
@@ -60,21 +47,8 @@ properties:
       - medium
       - large
       - xlarge
-  itemAlignment:
-    title: 'DEPRECATED'
-    description: 'Use the align parameter instead.'
-  align:
-    title: 'Button Alignment'
-    description: 'How should content be horizontally aligned?  Note: the values <em>left</em> and <em>right</em> are <strong>DEPRECATED</strong>, use <em>start</em> and <em>end</em> instead.'
-    type: string
-    enum:
-      - start
-      - center
-      - end
-    default: center
   style:
     type: string
-    title: 'Button Style'
     description: 'What''s the button style / theme?'
     default: primary
     enum:
@@ -83,26 +57,45 @@ properties:
       - text
   width:
     type: string
-    title: 'Button Width'
     description: 'Should a button be full width, it''s default size, or full width, but only on smaller screens?'
     enum:
       - full
       - full@small
-  rounded:
-    title: 'DEPRECATED'
-    description: 'Use the border_radius parameter instead'
   border_radius:
     type: string
-    title: 'Border Radius'
     description: 'Amount of rounding that the corners of the button should have'
     default: regular
     enum:
       - regular
       - full
+  align:
+    description: 'How should content be horizontally aligned?  Note: the values <em>left</em> and <em>right</em> are <strong>DEPRECATED</strong>, use <em>start</em> and <em>end</em> instead.'
+    type: string
+    enum:
+      - start
+      - center
+      - end
+    default: center
+  icon:
+    type: object
+    description: Icon data as expected by the icon component.  Accepts an additional 'position' parameter that determines placement within the button.
+    ref: '@bolt-components-icon/icon.schema.yml'
+    properties:
+      position:
+        type: string
+        default: after
+        enum:
+          - before
+          - after
   iconOnly:
     type: boolean
-    title: 'Icon Only?'
     description: 'Is this an icon-only button (with visually hidden text)?'
     default: false
     required:
       - icon
+  itemAlignment:
+    title: 'DEPRECATED'
+    description: 'Use the align parameter instead.'
+  rounded:
+    title: 'DEPRECATED'
+    description: 'Use the border_radius parameter instead'
