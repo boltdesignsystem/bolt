@@ -85,107 +85,105 @@
 
 
       {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
-        {% include "@bolt/ui-list.twig" with {
-          contentItems : [
-            {
-              contentItems: [
-                {
-                  pattern: "flag",
-                  valign: "middle",
-                  url: "#!",
-                  figure: {
-                    "icon": {
-                      name: "app-development",
-                      size: "xlarge",
-                      background: "circle",
-                      color: "teal"
-                    }
-                  },
-                  items: [
-                    {
-                      "pattern": "headline",
-                      "size": "large",
-                      "text": "Marketing",
-                      "url": "https://www.google.com",
-                      "icon": {
-                        name: "chevron-right"
-                      }
-                    },
-                    {
-                      "pattern": "text",
-                      "text": "Engage customers with real-time 1:1 marketing on any channel.",
-                      "size": "medium",
-                    }
-                  ]
-                }
-              ]
+        {% set flag_item_1 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
+            figure: {
+              "icon": {
+                name: "app-development",
+                size: "xlarge",
+                background: "circle",
+                color: "teal"
+              }
             },
-            {
-              contentItems: [
-                {
-                  pattern: "flag",
-                  valign: "middle",
-                  url: "#!",
-                  figure: {
-                    "icon": {
-                      name: "sales-automation",
-                      size: "xlarge",
-                      background: "circle",
-                      color: "teal"
-                    }
-                  },
-                  items: [
-                    {
-                      "pattern": "headline",
-                      "size": "large",
-                      "text": "Sales Automation",
-                      "url": "https://www.google.com",
-                      "icon": {
-                        name: "chevron-right"
-                      }
-                    },
-                    {
-                      "pattern": "text",
-                      "text": "Intelligently guide sales professionals and automate the sales process.",
-                      "size": "medium",
-                    }
-                  ]
+            items: [
+              {
+                "pattern": "headline",
+                "size": "large",
+                "text": "Marketing",
+                "url": "https://www.google.com",
+                "icon": {
+                  name: "chevron-right"
                 }
-              ]
+              },
+              {
+                "pattern": "text",
+                "text": "Engage customers with real-time 1:1 marketing on any channel.",
+                "size": "medium",
+              }
+            ]
+          } only %}
+        {% endset %}
+        {% set flag_item_2 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
+            figure: {
+              "icon": {
+                name: "sales-automation",
+                size: "xlarge",
+                background: "circle",
+                color: "teal"
+              }
             },
-            {
-              contentItems: [
-                {
-                  pattern: "flag",
-                  valign: "middle",
-                  url: "#!",
-                  figure: {
-                    "icon": {
-                      name: "customer-service",
-                      size: "xlarge",
-                      background: "circle",
-                      color: "teal"
-                    }
-                  },
-                  items: [
-                    {
-                      "pattern": "headline",
-                      "size": "large",
-                      "text": "Customer Service",
-                      "url": "https://www.google.com",
-                      "icon": {
-                        name: "chevron-right"
-                      }
-                    },
-                    {
-                      "pattern": "text",
-                      "text": "Serve, satisfy and engage every customer with digital customer service.",
-                      "size": "medium",
-                    }
-                  ]
+            items: [
+              {
+                "pattern": "headline",
+                "size": "large",
+                "text": "Sales Automation",
+                "url": "https://www.google.com",
+                "icon": {
+                  name: "chevron-right"
                 }
-              ]
-            }
+              },
+              {
+                "pattern": "text",
+                "text": "Intelligently guide sales professionals and automate the sales process.",
+                "size": "medium",
+              }
+            ]
+          } only %}
+        {% endset %}
+        {% set flag_item_3 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
+            figure: {
+              "icon": {
+                name: "customer-service",
+                size: "xlarge",
+                background: "circle",
+                color: "teal"
+              }
+            },
+            items: [
+              {
+                "pattern": "headline",
+                "size": "large",
+                "text": "Customer Service",
+                "url": "https://www.google.com",
+                "icon": {
+                  name: "chevron-right"
+                }
+              },
+              {
+                "pattern": "text",
+                "text": "Serve, satisfy and engage every customer with digital customer service.",
+                "size": "medium",
+              }
+            ]
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: "block",
+          separator: "solid",
+          spacing: "small",
+          items: [
+            flag_item_1,
+            flag_item_2,
+            flag_item_3,
           ]
         } only %}
       {% endcell %}
