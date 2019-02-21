@@ -16,7 +16,6 @@ function BoltRatio() {
 
     constructor(self) {
       self = super(self);
-      this.useShadow = hasNativeShadowDomSupport;
       this.useCssVars = supportsCSSVars;
       return self;
     }
