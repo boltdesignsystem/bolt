@@ -5,7 +5,7 @@ import { html } from 'lit-html';
 import { store } from '../../store.js'; // connect to redux
 import { BaseLitComponent } from '../base-component.js';
 
-import iFrameResize from 'iframe-resizer/src/iframeResizer.js';
+import iFrameResize from 'iframe-resizer/js/iframeResizer.js';
 iFrameResize({
   checkOrigin: false,
   scrolling: false,

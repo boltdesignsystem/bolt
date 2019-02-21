@@ -5,9 +5,6 @@ namespace Bolt;
 use Michelf\MarkdownExtra;
 use \Webmozart\PathUtil\Path;
 
-// https://github.com/nabil1337/case-helper
-use CaseHelper\CaseHelperFactory;
-
 class Utils {
 
   const repoRoot = __DIR__ . '/../../../';
@@ -118,49 +115,4 @@ class Utils {
     }
     return false;
   }
-
-  /**
-   * Check that schema "type" does not equal "array" or "object", nor does it contain an array with either of those values
-   * @param string|array $type - The schema "type" value, can be passed as string or array
-   * @return boolean - Returns true if "type" is allowed, i.e. no "array" or "object" values
-   */
-  public static function isAllowedSchemaType($type) {
-    if ((is_string($type) && $type !== "array" && $type !== "object") || (is_array($type) && !in_array("array", $type) && !in_array("object", $type))){
-      return true;
-    }
-  }
-
-
-  /**
-   * Build an array of props, filter out any props that are not in the schema
-   * @param array $items - Twig "_context", all the available template variables
-   * @param array $schema - The schema object for a particular component
-   * @return array - An associative array of props
-   */
-  public static function buildPropsArray($items, $schema) {
-    $props = array();
-
-    // If schema has properties to check against
-    if (!empty($schema["properties"])) {
-      foreach ($items as $key => $value) {
-        // If item is in the schema (skip attributes)
-        if (array_key_exists($key, $schema["properties"]) && $key != "attributes"){
-          // Check the schema "type", skip over any that contain the value "array" or "object"
-          if (array_key_exists("type", $schema["properties"][$key]) && self::isAllowedSchemaType($schema["properties"][$key]["type"])){
-            // if (strpos($key, '_')) {
-            //   $ch = CaseHelperFactory::make(CaseHelperFactory::INPUT_TYPE_SNAKE_CASE);
-            // } else {
-            //   $ch = CaseHelperFactory::make(CaseHelperFactory::INPUT_TYPE_CAMEL_CASE);
-            // }
-
-            // $props[$ch->toKebabCase($key)] = $value;
-            $props[$key] = $value;
-          }
-        }
-      }
-    }
-
-    return $props;
-  }
-
 }
