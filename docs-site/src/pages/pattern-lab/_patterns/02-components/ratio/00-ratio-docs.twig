@@ -1,0 +1,11 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-ratio/ratio.twig" with {
+  content: '&lt;img src="https://via.placeholder.com/350x150"&gt;',
+  ratio: "350/150"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "ratio",
+  usage: usage
+} only %}
