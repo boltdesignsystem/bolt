@@ -1,5 +1,8 @@
 title: Image
 type: object
+not:
+  required:
+    - imageAttributes
 anyOf:
   - required:
       - src
@@ -73,3 +76,7 @@ properties:
     enum:
       - true
       - false
+  imageAttributes:
+    title: DEPRECATED
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.

@@ -62,7 +62,7 @@
   lazyload ? "js-lazyload" : ""
 ] %}
 
-{% set image_attributes = create_attribute(image_attributes | default({})).addClass(image_classes, lazyload_classes)
+{% set image_attributes = create_attribute(imageAttributes | default({})).addClass(image_classes, lazyload_classes)
   .setAttribute('alt', alt)
   .setAttribute( (lazyload ? "data-" : null) ~ "srcset", srcset ? srcset : null)
   .setAttribute( (lazyload ? "data-" : null) ~ "sizes", sizes)
