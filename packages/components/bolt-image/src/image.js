@@ -72,7 +72,7 @@ class BoltImage extends withLitHtml() {
       super.connecting && super.connecting();
 
       const image = this.querySelector('.c-bolt-image__image');
-      this.initialClasses = [].slice.call(image.classList);
+      this.initialClasses = image ? [].slice.call(image.classList) : [];
 
       while (this.firstChild) {
         this.removeChild(this.firstChild);
