@@ -42,12 +42,11 @@ describe('<bolt-ratio> Component', async () => {
       const img = document.createElement('img');
       img.setAttribute('src', '/fixtures/1200x660.jpg');
 
+      ratio.setAttribute('no-shadow', '');
       ratio.setAttribute('ratio', '1200/660');
       ratio.appendChild(img);
 
       document.body.appendChild(ratio);
-      ratio.useShadow = false;
-      ratio.updated();
       return ratio.outerHTML;
     });
 
@@ -55,13 +54,47 @@ describe('<bolt-ratio> Component', async () => {
 
     const renderedRatioStyles = await page.evaluate(() => {
       const ratio = document.querySelector('bolt-ratio');
-      return ratio.style.getPropertyValue('--aspect-ratio').trim();
+      const innerRatio = ratio.renderRoot.querySelector('.c-bolt-ratio');
+      return innerRatio.style.getPropertyValue('--aspect-ratio').trim();
     });
 
-    expect(renderedRatioStyles).toMatch('1200/660');
+    expect(renderedRatioStyles).toMatch(parseFloat(1200 / 660).toFixed(5));
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
+      failureThreshold: '0',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedRatioHTML).toMatchSnapshot();
+  });
+
+  test('<bolt-ratio> with HTML5 video renders', async function() {
+    const renderedRatioHTML = await page.evaluate(() => {
+      const ratio = document.createElement('bolt-ratio');
+
+      ratio.innerHTML = `<video controls poster="/fixtures/poster.png">
+        <source src="/fixtures/devstories.webm" type="video/webm;codecs=&quot;vp8, vorbis&quot;">
+        <source src="/fixtures/devstories.mp4" type="video/mp4;codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+        <track src="/fixtures/devstories-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default="">
+      </video>`;
+      ratio.setAttribute('ratio', '640/360');
+      ratio.style.width = '640px';
+      document.body.appendChild(ratio);
+      return ratio.outerHTML;
+    });
+
+    const renderedRatioSize = await page.evaluate(() => {
+      const ratioSize = {
+        width: document.querySelector('bolt-ratio').clientWidth,
+        height: document.querySelector('bolt-ratio').clientHeight,
+      };
+      return ratioSize;
+    });
+
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0',
       failureThresholdType: 'percent',
     });
 
