@@ -61,7 +61,7 @@ describe('<bolt-ratio> Component', async () => {
     expect(renderedRatioStyles).toMatch(parseFloat(1200 / 660).toFixed(5));
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0',
+      failureThreshold: '0.5',
       failureThresholdType: 'percent',
     });
 
@@ -94,7 +94,7 @@ describe('<bolt-ratio> Component', async () => {
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0',
+      failureThreshold: '0.5',
       failureThresholdType: 'percent',
     });
 
