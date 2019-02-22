@@ -116,11 +116,11 @@
   {% if cover %}cover{% endif %}
   {% if not lazyload %}no-lazy{% endif %}
   {% if can_use_placeholder and is_jpg %} style="background-color: {{ ph_color }};" {% endif %}
+  {{ attributes }}
   >
   {% block image_content %}
     {% if can_use_ratio %}
       {% include "@bolt-components-ratio/ratio.twig" with {
-        attributes: attributes,
         aspectRatioHeight: height * 1,
         aspectRatioWidth: width * 1,
         children: [

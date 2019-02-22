@@ -6,6 +6,9 @@ anyOf:
   - required:
       - srcset
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   src:
     type: string
     description: Source url for image.
