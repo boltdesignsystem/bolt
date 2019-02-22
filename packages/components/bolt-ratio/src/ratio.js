@@ -5,6 +5,7 @@ import {
   supportsCSSVars,
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { styleMap } from 'lit-html/directives/style-map.js';
 
 import styles from './ratio.scss';
 
@@ -12,11 +13,16 @@ function BoltRatio() {
   return class BoltRatioClass extends withLitHtml() {
     static props = {
       ratio: props.string,
+      ratioH: props.string,
+      ratioW: props.string,
+      noCssVars: {
+        ...props.boolean,
+        ...{ default: supportsCSSVars ? false : true },
+      },
     };
 
     constructor(self) {
       self = super(self);
-      this.useCssVars = supportsCSSVars;
       return self;
     }
 
@@ -31,19 +37,12 @@ function BoltRatio() {
      * @param {Number} aspW - the width component of the ratio
      */
     _computeRatio() {
-      const height = this.props.ratio ? this.props.ratio.split('/')[1] : 1;
+      this.ratioH = this.props.ratio ? this.props.ratio.split('/')[1] : 1;
+      this.ratioW = this.props.ratio ? this.props.ratio.split('/')[0] : 1;
 
-      const width = this.props.ratio ? this.props.ratio.split('/')[0] : 1;
-
-      if (this.useCssVars) {
-        this.style.setProperty('--aspect-ratio', `${width}/${height}`);
-        this.style.paddingBottom = '';
-      } else {
-        this.style.paddingBottom = `${100 * (height / width)}%`;
-        this.style.removeProperty('--aspect-ratio');
-        this.style.removeProperty('--aspect-ratio-height');
-        this.style.removeProperty('--aspect-ratio-width');
-      }
+      // automatically reduce size of ratio to be below 100% based on CSS calc styles
+      this.ratioH = this.ratioH >= 100 ? this.ratioH / 100 : this.ratioH;
+      this.ratioW = this.ratioW >= 100 ? this.ratioW / 100 : this.ratioW;
     }
 
     connecting() {
@@ -53,8 +52,19 @@ function BoltRatio() {
 
     // Render out component via Lit-HTML
     render() {
+      const inlineStyles = this.noCssVars
+        ? {
+            'padding-bottom': `${100 * (this.ratioH / this.ratioW)}%`,
+          }
+        : {
+            '--aspect-ratio': `${this.ratioW / this.ratioH}`,
+          };
+
       return html`
-        ${this.addStyles([styles])} ${this.slot('default')}
+        ${this.addStyles([styles])}
+        <div class="${css(`c-bolt-ratio`)}" style=${styleMap(inlineStyles)}>
+          ${this.slot('default')}
+        </div>
       `;
     }
   };

@@ -4,17 +4,28 @@
 {% set ratioH = aspectRatioHeight ?? ratio|split("/")[1] ?? "1" %}
 
 {% if ratioH and ratioW %}
-  {% set attributes = attributes.setAttribute("ratio", "#{ratioW}/#{ratioH}") %}
-  {% set existing_styles = attributes.style ?? [] %}
-  {% set attributes = attributes.setAttribute("style", existing_styles | merge([
-    "padding-bottom: calc(#{ratioH} / #{ratioW} * 100%);",
-    "--aspect-ratio: #{ratioW}/#{ratioH}",
-  ])) %}
+  {% set ratioH = ratioH >= 100 ? ratioH / 100 : ratioH %}
+  {% set ratioW = ratioW >= 100 ? ratioW / 100 : ratioW %}
 
+  {% set attributes = attributes.setAttribute("ratio", "#{ratioW}/#{ratioH}") %}
+  {% set inline_styles = [
+    "padding-bottom: calc((#{ratioH} / #{ratioW}) * 100%);",
+    "--aspect-ratio: #{ratioW / ratioH};",
+  ] %}
+{% endif %}
+
+{% if no_shadow %}
+  {% set attributes = attributes.setAttribute("no-shadow", "") %}
+{% endif %}
+
+{% if no_css_vars %}
+  {% set attributes = attributes.setAttribute("no-css-vars", "") %}
 {% endif %}
 
 <bolt-ratio {{ attributes }}>
-  {% block ratio_content %}
-    {{ children }}
-  {% endblock %}
+  <replace-with-children class="c-bolt-ratio" style="{{ inline_styles | join(" ") }}">
+    {% block ratio_content %}
+      {{ children }}
+    {% endblock %}
+  </replace-with-children>
 </bolt-ratio>
