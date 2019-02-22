@@ -18,7 +18,7 @@
 {% endset %}
 
 {% set image_demo_ratio %}
-<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" ratio="4:3"></bolt-image>
+<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" ratio="4/3"></bolt-image>
 {% endset %}
 
 {% set image_demo_lazy %}
@@ -26,7 +26,7 @@
 {% endset %}
 
 {% set image_demo_placeholder %}
-<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" ratio="4:3" placeholder-color="#D3D3D3" placeholder-image="http://placehold.it/400x300"></bolt-image>
+<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" ratio="4/3" placeholder-color="#D3D3D3" placeholder-image="http://placehold.it/400x300"></bolt-image>
 {% endset %}
 
 
@@ -69,7 +69,7 @@
       Setting the Aspect-ratio
     </bolt-text>
     <bolt-text>
-      Setting the aspect ratio on an image provides a placeholder while the image is loading. Do this by adding the <bolt-code-snippet display="inline" lang="html">ratio</bolt-code-snippet> attribute with the image's aspect-ratio as colon-separated values, e.g. "4:3" or "400:300".
+      Setting the aspect ratio on an image provides a placeholder while the image is loading. Do this by adding the <bolt-code-snippet display="inline" lang="html">ratio</bolt-code-snippet> attribute with the image's aspect-ratio as slash-separated values, e.g. "4/3" or "400/300".
     </bolt-text>
     <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
       {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}

@@ -109,7 +109,7 @@
   {% if srcset %}srcset="{{ srcset }}"{% endif %}
   {% if alt %}alt="{{ alt }}"{% endif %}
   {% if sizes %}sizes="{{ sizes }}"{% endif %}
-  {% if ratio_string %}ratio="{{ ratio_string }}"{% elseif not useAspectRatio %}ratio="none"{% elseif can_use_ratio %}ratio="{{ width }}:{{ height }}"{% endif %}
+  {% if ratio_string %}ratio="{{ ratio_string }}"{% elseif not useAspectRatio %}ratio="none"{% elseif can_use_ratio %}ratio="{{ width }}/{{ height }}"{% endif %}
   {% if placeholder_color %}placeholder-color="{{ placeholder_color }}"{% endif %}
   {% if placeholder_image %}placeholder-image="{{ placeholder_image }}"{% endif %}
   {% if zoom %}zoom{% endif %}

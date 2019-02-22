@@ -122,8 +122,8 @@ class BoltImage extends withLitHtml() {
     } else {
       if (ratio === 'auto') {
         // TODO: automatically get image dimensions
-      } else if (ratio.indexOf(':') > -1) {
-        const ratioArr = ratio.split(':');
+      } else if (ratio.includes('/')) {
+        const ratioArr = ratio.split('/');
         ratioW = ratioArr[0];
         ratioH = ratioArr[1];
       }
