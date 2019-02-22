@@ -47,4 +47,7 @@ module.exports = {
   images: {
     sets: imageSets,
   },
+  prod: true,
+  enableCache: true,
+  verbosity: 1,
 };
