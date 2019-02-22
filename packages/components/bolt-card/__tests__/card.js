@@ -233,6 +233,42 @@ describe('<bolt-card> Component', async () => {
     });
   });
 
+  test('add clickable functionality', async () => {
+    const results = await render('@bolt-components-card/card.twig', {
+      url: '#1',
+      contentItems: [
+        {
+          pattern: 'image',
+          src: '/fixtures/landscape-16x9-mountains.jpg',
+          lazyload: false,
+          alt: 'Anthem Video',
+        },
+        {
+          pattern: 'eyebrow',
+          text: 'Video',
+        },
+        {
+          pattern: 'headline',
+          tag: 'h3',
+          size: 'large',
+          text: 'Anthem: Service Desktop',
+        },
+        {
+          pattern: 'text',
+          text:
+            'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
+        },
+        {
+          pattern: 'button',
+          text: 'Get the report',
+          url: '#!',
+        },
+      ],
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   contentTag.enum.forEach(async option => {
     test(`content tag variations: ${option}`, async () => {
       const results = await render('@bolt-components-card/card.twig', {
