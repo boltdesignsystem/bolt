@@ -56,10 +56,16 @@
 
           {% set itemAttributes = item.pattern ~ "Attributes" %}
           {% set ratioKey = item.pattern == "image" ? "useAspectRatio" : "ratio" %}
+
+          {% if item.pattern != "image" %}
+            {% set item = item | merge({
+              (itemAttributes): {
+                class: ["c-bolt-background__#{item.pattern}"]
+              }
+            }) %}
+          {% endif %}
+          
           {% include pattern_template(item.pattern) with item | merge({
-            (itemAttributes): {
-              class: ["c-bolt-background__#{item.pattern}"]
-            },
             (ratioKey): false,
             lazyload: item.lazyload ?? true,
             cover: true
