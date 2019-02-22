@@ -235,7 +235,7 @@ describe('<bolt-card> Component', async () => {
 
   test('add clickable functionality', async () => {
     const results = await render('@bolt-components-card/card.twig', {
-      url: '#1',
+      url: '#!',
       contentItems: [
         {
           pattern: 'image',
