@@ -8,7 +8,8 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import path from 'path';
 
-import classNames from 'classnames/bind';
+// Use 'dedupe' version instead of 'bind' to help merge initial classes with those defined here
+import classNames from 'classnames/dedupe';
 
 import ratioStyles from '@bolt/components-ratio/src/ratio.scss';
 import imageStyles from './image.scss';
@@ -69,6 +70,10 @@ class BoltImage extends withLitHtml() {
     // IE fires this twice, only let it remove children once
     if (!this._wasInitiallyRendered) {
       super.connecting && super.connecting();
+
+      const image = this.querySelector('.c-bolt-image__image');
+      this.initialClasses = [].slice.call(image.classList);
+
       while (this.firstChild) {
         this.removeChild(this.firstChild);
       }
@@ -129,7 +134,7 @@ class BoltImage extends withLitHtml() {
     // Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder
     const _canUsePlaceholder = (_canUseRatio || cover) && _isJpg;
 
-    const classes = cx('c-bolt-image__image', {
+    const classes = cx(...this.initialClasses, 'c-bolt-image__image', {
       'c-bolt-image__lazyload': lazyload,
       'c-bolt-image__lazyload--fade': lazyload,
       'c-bolt-image__lazyload--blur': lazyload && _isJpg,
@@ -160,9 +165,18 @@ class BoltImage extends withLitHtml() {
       if (_canUsePlaceholder) {
         return html`
           <img
-            class="${cx('c-bolt-image__image-placeholder', {
-              'c-bolt-image--cover': cover,
-            })}"
+            class="${cx(
+              ...this.initialClasses,
+              'c-bolt-image__image-placeholder',
+              {
+                'c-bolt-image__image': false,
+                'c-bolt-image__lazyload': false,
+                'c-bolt-image__lazyload--fade': false,
+                'c-bolt-image__lazyload--blur': false,
+                'js-lazyload': false,
+                'c-bolt-image--cover': cover,
+              },
+            )}"
             src="${placeholderImage}"
             alt="${ifDefined(alt ? alt : undefined)}"
           />
