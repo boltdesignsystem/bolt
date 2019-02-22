@@ -62,14 +62,14 @@ class BoltConnectTwigNamespaces extends \Twig_Loader_Filesystem {
           }
         }
 
+        $cache->set(static::CID_TWIG_NAMESPACE_PATH, $paths);
+
       }
       catch (\Exception $exception) {
         $errorMsg = 'Error adding Twig Namespaces from: ' . $filePath;
         $log->error($errorMsg);
         drupal_set_message($errorMsg, 'error');
       }
-
-      $cache->set(static::CID_TWIG_NAMESPACE_PATH, $paths);
     }
 
     foreach ($paths as $namespace => $namespace_paths) {
