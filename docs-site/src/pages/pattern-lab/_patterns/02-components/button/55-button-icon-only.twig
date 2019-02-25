@@ -7,7 +7,6 @@
     {% include "@bolt-components-button/button.twig" with {
       text: "This button's text is still accessible, it's just visually hidden.",
       size: size,
-      border_radius: "full",
       iconOnly: true,
       icon: {
         name: "close",
@@ -16,3 +15,67 @@
     {{ size|capitalize }} icon-only button
   </p>
 {% endfor %}
+
+<h3>Full border radius (circle icon-only button)</h3>
+<p>
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This button's text is still accessible, it's just visually hidden.",
+    border_radius: "full",
+    iconOnly: true,
+    icon: {
+      name: "close",
+    }
+  } only %}
+</p>
+
+<h3>Examples with different icons</h3>
+<p>
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This button's text is still accessible, it's just visually hidden.",
+    border_radius: "full",
+    iconOnly: true,
+    icon: {
+      name: "chevron-up",
+    }
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This button's text is still accessible, it's just visually hidden.",
+    border_radius: "full",
+    iconOnly: true,
+    icon: {
+      name: "chevron-right",
+    }
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This button's text is still accessible, it's just visually hidden.",
+    border_radius: "full",
+    iconOnly: true,
+    icon: {
+      name: "chevron-down",
+    }
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This button's text is still accessible, it's just visually hidden.",
+    border_radius: "full",
+    iconOnly: true,
+    icon: {
+      name: "chevron-left",
+    }
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This button's text is still accessible, it's just visually hidden.",
+    border_radius: "full",
+    iconOnly: true,
+    icon: {
+      name: "check",
+    }
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This button's text is still accessible, it's just visually hidden.",
+    border_radius: "full",
+    iconOnly: true,
+    icon: {
+      name: "email",
+    }
+  } only %}
+</p>
