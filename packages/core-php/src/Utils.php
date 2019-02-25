@@ -147,14 +147,16 @@ class Utils {
         if (array_key_exists($key, $schema["properties"]) && $key != "attributes"){
           // Check the schema "type", skip over any that contain the value "array" or "object"
           if (array_key_exists("type", $schema["properties"][$key]) && self::isAllowedSchemaType($schema["properties"][$key]["type"])){
-            // if (strpos($key, '_')) {
-            //   $ch = CaseHelperFactory::make(CaseHelperFactory::INPUT_TYPE_SNAKE_CASE);
-            // } else {
-            //   $ch = CaseHelperFactory::make(CaseHelperFactory::INPUT_TYPE_CAMEL_CASE);
-            // }
-
-            // $props[$ch->toKebabCase($key)] = $value;
-            $props[$key] = $value;
+            if (strpos($key, '-')) {
+              $props[$key] = $value;
+            } else {
+              if (strpos($key, '_')) {
+                $ch = CaseHelperFactory::make(CaseHelperFactory::INPUT_TYPE_SNAKE_CASE);
+              } else {
+                $ch = CaseHelperFactory::make(CaseHelperFactory::INPUT_TYPE_CAMEL_CASE);
+              }
+              $props[$ch->toKebabCase($key)] = $value;
+            }
           }
         }
       }
