@@ -71,7 +71,6 @@ getConfig().then(async boltConfig => {
             .join('\n')}
         </head>
         <body>
-          Hello world!
           <div id="root"></div>
           ${normalizeAssets(assetsByChunkName['bolt-global'])
             .filter(path => path.endsWith('.js'))
