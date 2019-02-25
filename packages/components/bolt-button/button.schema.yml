@@ -13,14 +13,13 @@ not:
 properties:
   attributes:
     type: object
-    description: A Drupal-style attributes object with extra attributes to append to this component.
+    description: 'A Drupal-style attributes object with extra attributes to append to this component.'
   text:
-    title: 'Button Text'
-    description: 'The text displayed inside a button'
+    description: 'Text inside the button.'
     type: string
   transform:
     type: string
-    description: Text transformation.
+    description: 'Transforms the button text to various cases.'
     default: none
     enum:
       - uppercase
@@ -28,7 +27,7 @@ properties:
       - capitalize
       - none
   tag:
-    description: 'What should this element semantically be?'
+    description: 'Semantic HTML tag for the button.'
     type: string
     enum:
       - a
@@ -39,7 +38,7 @@ properties:
     default: button
   size:
     type: string
-    description: 'How large is this button?'
+    description: 'Size of the button.'
     default: medium
     enum:
       - xsmall
@@ -49,7 +48,7 @@ properties:
       - xlarge
   style:
     type: string
-    description: 'What''s the button style / theme?'
+    description: 'Style of the button determined by information hierarchy.'
     default: primary
     enum:
       - primary
@@ -57,19 +56,21 @@ properties:
       - text
   width:
     type: string
-    description: 'Should a button be full width, it''s default size, or full width, but only on smaller screens?'
+    description: 'Controls the width of the button.'
+    default: auto
     enum:
+      - auto
       - full
       - full@small
   border_radius:
     type: string
-    description: 'Amount of rounding that the corners of the button should have'
+    description: 'Rounds the corners of the button.'
     default: regular
     enum:
       - regular
       - full
   align:
-    description: 'How should content be horizontally aligned?  Note: the values <em>left</em> and <em>right</em> are <strong>DEPRECATED</strong>, use <em>start</em> and <em>end</em> instead.'
+    description: 'Horizontal alignment of items (text and icon) inside the button. Note: the values left and right are deprecated, use start and end instead.'
     type: string
     enum:
       - start
@@ -78,7 +79,7 @@ properties:
     default: center
   icon:
     type: object
-    description: Icon data as expected by the icon component.  Accepts an additional 'position' parameter that determines placement within the button.
+    description: 'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the button.'
     ref: '@bolt-components-icon/icon.schema.yml'
     properties:
       position:
@@ -89,7 +90,7 @@ properties:
           - after
   iconOnly:
     type: boolean
-    description: 'Is this an icon-only button (with visually hidden text)?'
+    description: 'Make the button to display only the icon and hide the text (which is still required). You are required to pass both text and icon data for this option to work.'
     default: false
     required:
       - icon
@@ -98,4 +99,4 @@ properties:
     description: 'Use the align parameter instead.'
   rounded:
     title: 'DEPRECATED'
-    description: 'Use the border_radius parameter instead'
+    description: 'Use the border_radius parameter instead.'

@@ -6,7 +6,7 @@
    Buttons
 \* ------------------------------------ */
 
-// Base Button Styles
+// Base Button
 bolt-button {
   display: inline-flex;
 }
@@ -16,7 +16,7 @@ bolt-button {
 }
 
 
-// Button Style Variations
+// Button Styles
 .c-bolt-button--primary {
   @include bolt-button-style(primary);
   @include bolt-button-raised-effect;
@@ -37,7 +37,7 @@ bolt-button {
 }
 
 
-// Button Text Transform Variations
+// Button Text Transform
 .c-bolt-button--uppercase {
   text-transform: uppercase;
 }
@@ -51,13 +51,14 @@ bolt-button {
 }
 
 
-// Button Size Variations
+// Button Sizes
 .c-bolt-button--medium {
   @include bolt-padding(medium, squished);
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
     width: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
+    height: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
   }
 }
 
@@ -67,6 +68,7 @@ bolt-button {
 
   &.c-bolt-button--icon-only {
     width: (bolt-v-spacing(xsmall) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
+    height: (bolt-v-spacing(xsmall) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
   }
 }
 
@@ -76,6 +78,7 @@ bolt-button {
 
   &.c-bolt-button--icon-only {
     width: (bolt-v-spacing(small) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
+    height: (bolt-v-spacing(small) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
   }
 }
 
@@ -85,6 +88,7 @@ bolt-button {
 
   &.c-bolt-button--icon-only {
     width: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--medium * $bolt-font-size--medium);
+    height: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--medium * $bolt-font-size--medium);
   }
 }
 
@@ -94,11 +98,69 @@ bolt-button {
 
   &.c-bolt-button--icon-only {
     width: (bolt-v-spacing(large) * $bolt-spacing-squished * 2) + ($bolt-line-height--large * $bolt-font-size--large);
+    height: (bolt-v-spacing(large) * $bolt-spacing-squished * 2) + ($bolt-line-height--large * $bolt-font-size--large);
   }
 }
 
 
-// full width variations
+// Icon Only Buttons
+.c-bolt-button--icon-only {
+  @include bolt-padding(0);
+
+  .c-bolt-button__item,
+  .c-bolt-button__icon:not(.is-empty) {
+    @include bolt-margin-left(0);
+  }
+
+  .c-bolt-button__item {
+    opacity: 0;
+    width: 0;
+    color: transparent;
+    text-indent: -99999em;
+    white-space: nowrap;
+  }
+
+  .c-bolt-button__icon-sizer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  // Scale icon only version's icon size based on button size
+  &.c-bolt-button--xsmall {
+    .c-bolt-button__icon-sizer {
+      font-size: 1em;
+    }
+  }
+
+  &.c-bolt-button--small {
+    .c-bolt-button__icon-sizer {
+      font-size: 1.25em;
+    }
+  }
+
+  &.c-bolt-button--medium {
+    .c-bolt-button__icon-sizer {
+      font-size: 1.5em;
+    }
+  }
+
+  &.c-bolt-button--large {
+    .c-bolt-button__icon-sizer {
+      font-size: 1.75em;
+    }
+  }
+
+  &.c-bolt-button--xlarge {
+    .c-bolt-button__icon-sizer {
+      font-size: 2em;
+    }
+  }
+}
+
+
+// Button Width
 bolt-button[width='full'],
 .c-bolt-button--full {
   width: 100%;
@@ -148,7 +210,7 @@ bolt-button[width='full@small'],
   display: flex;
 }
 
-.c-bolt-button__text {
+.c-bolt-button__item {
   display: inline-flex;
   text-align: left;
   text-align: start;
@@ -160,11 +222,11 @@ bolt-button[width='full@small'],
   }
 }
 
-.c-bolt-button__text + .c-bolt-button__icon:not(.is-empty) {
+.c-bolt-button__item + .c-bolt-button__icon:not(.is-empty) {
   @include bolt-margin-left(xxsmall);
 }
 
-.c-bolt-button__icon:not(.is-empty) + .c-bolt-button__text {
+.c-bolt-button__icon:not(.is-empty) + .c-bolt-button__item {
   @include bolt-margin-left(xxsmall);
 }
 
@@ -180,60 +242,4 @@ bolt-button[width='full@small'],
 
 .c-bolt-button--end {
   justify-content: flex-end;
-}
-
-
-// Icon Only Buttons
-.c-bolt-button--icon-only {
-  @include bolt-padding-right(0);
-  @include bolt-padding-left(0);
-
-  .c-bolt-button__text,
-  .c-bolt-button__icon:not(.is-empty) {
-    @include bolt-margin-left(0);
-  }
-
-  .c-bolt-button__text {
-    opacity: 0;
-    width: 0;
-    color: transparent;
-    text-indent: -99999em;
-  }
-
-  .c-bolt-button__icon-sizer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-  }
-
-  &.c-bolt-button--xsmall {
-    .c-bolt-button__icon-sizer {
-      font-size: 1em;
-    }
-  }
-
-  &.c-bolt-button--small {
-    .c-bolt-button__icon-sizer {
-      font-size: 1.25em;
-    }
-  }
-
-  &.c-bolt-button--medium {
-    .c-bolt-button__icon-sizer {
-      font-size: 1.5em;
-    }
-  }
-
-  &.c-bolt-button--large {
-    .c-bolt-button__icon-sizer {
-      font-size: 1.75em;
-    }
-  }
-
-  &.c-bolt-button--xlarge {
-    .c-bolt-button__icon-sizer {
-      font-size: 2em;
-    }
-  }
 }

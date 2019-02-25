@@ -87,7 +87,7 @@ class BoltButton extends BoltAction {
             >
           `;
         default:
-          const itemClasses = cx('c-bolt-button__text', {
+          const itemClasses = cx('c-bolt-button__item', {
             'is-empty': name in this.slots === false,
           });
 

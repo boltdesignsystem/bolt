@@ -1,7 +1,6 @@
 {% set schema = bolt.data.components["@bolt-components-button"].schema %}
 
-<h3>Icon buttons</h3>
-<p><mark>Note: this option still has button text, and that text is still accessible through screen readers. It's just visually hidden.</mark></p>
+<p><mark>Note: an icon-only button still is still required to have text, and that text is accessible through screen readers. It's just visually hidden.</mark></p>
 
 {% for size in schema.properties.size.enum %}
   <p>
