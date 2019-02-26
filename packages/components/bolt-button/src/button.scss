@@ -1,12 +1,13 @@
-@import '@bolt/core';
-@import './button.settings';
-@import './button.mixins';
-
 /* ------------------------------------ *\
-   Buttons
+   Button
 \* ------------------------------------ */
 
-// Base Button
+@import '@bolt/core';
+@import './button-settings-and-tools';
+
+/**
+ * Base Button
+ */
 bolt-button {
   display: inline-flex;
 }
@@ -16,7 +17,9 @@ bolt-button {
 }
 
 
-// Button Styles
+/**
+ * Button Styles
+ */
 .c-bolt-button--primary {
   @include bolt-button-style(primary);
   @include bolt-button-raised-effect;
@@ -37,7 +40,9 @@ bolt-button {
 }
 
 
-// Button Text Transform
+/**
+ * Button Text Transform
+ */
 .c-bolt-button--uppercase {
   text-transform: uppercase;
 }
@@ -51,7 +56,9 @@ bolt-button {
 }
 
 
-// Button Sizes
+/**
+ * Button Sizes
+ */
 .c-bolt-button--medium {
   @include bolt-padding(medium, squished);
   @include bolt-font-size(xsmall);
@@ -103,7 +110,9 @@ bolt-button {
 }
 
 
-// Icon Only Buttons
+/**
+ * Icon Only Buttons
+ */
 .c-bolt-button--icon-only {
   @include bolt-padding(0);
 
@@ -161,7 +170,9 @@ bolt-button {
 }
 
 
-// Button Width
+/**
+ * Button Width
+ */
 bolt-button[width='full'],
 .c-bolt-button--full {
   width: 100%;
@@ -191,7 +202,9 @@ bolt-button[width='full@small'],
 }
 
 
-// Border Radius
+/**
+ * Border Radius
+ */
 @each $radius-name, $radius-value in $bolt-button-border-radii {
   .c-bolt-button--border-radius-#{$radius_name} {
     &,
@@ -202,7 +215,9 @@ bolt-button[width='full@small'],
 }
 
 
-// Icon and text spacing and display
+/**
+ * Icon and text spacing and display
+ */
 .c-bolt-button__icon.is-empty {
   display: none;
 }
@@ -235,7 +250,9 @@ bolt-button[width='full@small'],
 }
 
 
-// Button Alignments
+/**
+ * Button Alignments
+ */
 .c-bolt-button--center {
   justify-content: center;
 }
