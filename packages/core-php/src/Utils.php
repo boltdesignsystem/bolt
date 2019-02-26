@@ -199,8 +199,8 @@ class Utils {
    * @param boolean $isInternal - If true default schema values are included in returned array and keys converted to snake_case
    * @return array - An associative array of props
    */
-  public static function buildPropsArray($items, $schema, $isInternal) {
-    $props = array();
+  public static function buildPropsArray($items, $schema, $isData = false) {
+    $props = array_key_exists("attributes", $items) ? $items["attributes"] : array();
 
     // If schema has properties to check against
     if (!empty($schema["properties"])) {
@@ -210,13 +210,13 @@ class Utils {
           if (array_key_exists($key, $items)){
             // Check the schema "type", skip over any that contain the value "array" or "object"
             if (array_key_exists("type", $schema["properties"][$key]) && self::isAllowedSchemaType($schema["properties"][$key]["type"])){
-              if ($isInternal) {
+              if ($isData) {
                 $props[self::convertToSnakeCase($key, self::checkCaseType($key))] = $items[$key];
               } else {
                 $props[self::convertToKebabCase($key, self::checkCaseType($key))] = $items[$key];
               }
             }
-          } else if ($isInternal && array_key_exists("default", $schema["properties"][$key])) {
+          } else if ($isData && array_key_exists("default", $schema["properties"][$key])) {
             $props[self::convertToSnakeCase($key, self::checkCaseType($key))] = $schema["properties"][$key]["default"];
           }
         }

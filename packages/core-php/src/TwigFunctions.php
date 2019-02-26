@@ -265,10 +265,23 @@ class TwigFunctions {
     });
   }
 
-  // Loops through _context, returns props that are in schema
-  public static function initialize_props() {
-    return new Twig_SimpleFunction('initialize_props', function($items, $schema, $isInternal = false) {
-      return Utils::buildPropsArray($items, $schema, $isInternal);
+  /**
+   * Build an array of Twig props and data
+   * 
+   * array["props"] object - Combines "attributes" and schema-allowed props, wrapped in a Drupal Attribute object for rendering as HTML attributes
+   * array["data"] array - Schema-allowed props plus default prop values for internal use in our Twig templates
+   * 
+   * @param array $items - Twig "_context", all the available template variables
+   * @param array $schema - The schema object for a particular component
+   * @return array - An array of Twig data (See above)
+   */
+
+   public static function initialize() {
+    return new Twig_SimpleFunction('initialize', function($items, $schema) {
+      $twigData = array();
+      $twigData["props"] = new Attribute(Utils::buildPropsArray($items, $schema));
+      $twigData["data"] = Utils::buildPropsArray($items, $schema, true);
+      return $twigData;
     });
   }
 
