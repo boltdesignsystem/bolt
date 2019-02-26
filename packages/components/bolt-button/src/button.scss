@@ -108,8 +108,8 @@ bolt-button {
   @include bolt-padding(0);
 
   .c-bolt-button__item,
-  .c-bolt-button__icon:not(.is-empty) {
-    @include bolt-margin-left(0);
+  .c-bolt-button__icon {
+    @include bolt-margin(0);
   }
 
   .c-bolt-button__item {
@@ -223,12 +223,15 @@ bolt-button[width='full@small'],
   }
 }
 
-.c-bolt-button__item + .c-bolt-button__icon:not(.is-empty) {
-  @include bolt-margin-left(xxsmall);
-}
+// Spacing only applies when there are BOTH text and icon
+.c-bolt-button:not(.c-bolt-button--icon-only) {
+  .c-bolt-button__item + .c-bolt-button__icon:not(.is-empty) {
+    @include bolt-margin-left(xxsmall);
+  }
 
-.c-bolt-button__icon:not(.is-empty) + .c-bolt-button__item {
-  @include bolt-margin-left(xxsmall);
+  .c-bolt-button__icon:not(.is-empty) + .c-bolt-button__item {
+    @include bolt-margin-left(xxsmall);
+  }
 }
 
 
