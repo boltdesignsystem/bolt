@@ -267,8 +267,8 @@ class TwigFunctions {
 
   // Loops through _context, returns props that are in schema
   public static function initialize_props() {
-    return new Twig_SimpleFunction('initialize_props', function($items, $schema) {
-      return Utils::buildPropsArray($items, $schema);
+    return new Twig_SimpleFunction('initialize_props', function($items, $schema, $isInternal = false) {
+      return Utils::buildPropsArray($items, $schema, $isInternal);
     });
   }
 

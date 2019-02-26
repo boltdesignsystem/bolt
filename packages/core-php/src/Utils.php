@@ -182,7 +182,7 @@ class Utils {
   }
 
   /**
-   * Check that schema "type" does not equal "array" or "object", nor does it contain an array with either of those values
+   * Check that schema "type" does not equal "array" or "object", nor does it contain an array with either of those values.
    * @param string|array $type - The schema "type" value, can be passed as string or array
    * @return boolean - Returns true if "type" is allowed, i.e. no "array" or "object" values
    */
@@ -192,33 +192,32 @@ class Utils {
     }
   }
 
-
   /**
-   * Build an array of props, filter out any props that are not in the schema
+   * Build an array of props by checking Twig "_context" against the schema, only returns top-level schema props. By default prop keys are converted to kebab-case.
    * @param array $items - Twig "_context", all the available template variables
    * @param array $schema - The schema object for a particular component
+   * @param boolean $isInternal - If true default schema values are included in returned array and keys converted to snake_case
    * @return array - An associative array of props
    */
-  public static function buildPropsArray($items, $schema) {
+  public static function buildPropsArray($items, $schema, $isInternal) {
     $props = array();
 
     // If schema has properties to check against
     if (!empty($schema["properties"])) {
-      foreach ($items as $key => $value) {
-        // If item is in the schema (skip attributes)
-        if (array_key_exists($key, $schema["properties"]) && $key != "attributes"){
-          // Check the schema "type", skip over any that contain the value "array" or "object"
-          if (array_key_exists("type", $schema["properties"][$key]) && self::isAllowedSchemaType($schema["properties"][$key]["type"])){
-            if (strpos($key, '-')) {
-              $props[$key] = $value;
-            } else {
-              if (strpos($key, '_')) {
-                $ch = CaseHelperFactory::make(CaseHelperFactory::INPUT_TYPE_SNAKE_CASE);
+      foreach ($schema["properties"] as $key => $value) {
+        if ($key != "attributes") {
+          // If schema prop is in the list of items (skip attributes)
+          if (array_key_exists($key, $items)){
+            // Check the schema "type", skip over any that contain the value "array" or "object"
+            if (array_key_exists("type", $schema["properties"][$key]) && self::isAllowedSchemaType($schema["properties"][$key]["type"])){
+              if ($isInternal) {
+                $props[self::convertToSnakeCase($key, self::checkCaseType($key))] = $items[$key];
               } else {
-                $ch = CaseHelperFactory::make(CaseHelperFactory::INPUT_TYPE_CAMEL_CASE);
+                $props[self::convertToKebabCase($key, self::checkCaseType($key))] = $items[$key];
               }
-              $props[$ch->toKebabCase($key)] = $value;
             }
+          } else if ($isInternal && array_key_exists("default", $schema["properties"][$key])) {
+            $props[self::convertToSnakeCase($key, self::checkCaseType($key))] = $schema["properties"][$key]["default"];
           }
         }
       }
@@ -226,5 +225,4 @@ class Utils {
 
     return $props;
   }
-
 }
