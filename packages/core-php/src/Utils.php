@@ -96,6 +96,68 @@ class Utils {
   }
 
   /**
+   * Map input case type to CaseHelper reference name
+   * @param string $type - Exact name of a case type
+   * @return number - Returns a number that refers to a CaseHelper input type
+   */
+  protected static function mapInputCaseType($type) {
+    $types = [
+      'camelcase'          => CaseHelperFactory::INPUT_TYPE_CAMEL_CASE,
+      'kebabcase'          => CaseHelperFactory::INPUT_TYPE_KEBAB_CASE,
+      'snakecase'          => CaseHelperFactory::INPUT_TYPE_SNAKE_CASE,
+
+      // The following case types are available but not currently in use
+      // 'spacecase'          => CaseHelperFactory::INPUT_TYPE_SPACE_CASE,
+      // 'pascalcase'         => CaseHelperFactory::INPUT_TYPE_PASCAL_CASE,
+      // 'screamingsnakecase' => CaseHelperFactory::INPUT_TYPE_SCREAMING_SNAKE_CASE,
+      // 'traincase'          => CaseHelperFactory::INPUT_TYPE_TRAIN_CASE,
+    ];
+
+    if (isset($types[$type])) {
+      return $types[$type];
+    } else {
+      return $types['camelcase'];
+    }
+  }
+
+  /**
+   * Check a string's case type, used when converting case type. Note: can only reliably detect snake and kebab case.
+   * @param string $string - String to be checked
+   * @return string - Returns detected case type name, defaults to camelcase
+   */
+  public static function checkCaseType($string) {
+    if (strpos($string, '_')) {
+      return "snakecase";
+    } elseif (strpos($string, '-')) {
+      return "kebabcase";
+    } else {
+      return "camelcase";
+    }
+  }
+  
+  /**
+   * Convert string to snake_case
+   * @param string $string - String to be converted
+   * @param string $type - Name of current string format
+   * @return string - Returns string formatted in snake_case
+   */
+  public static function convertToSnakeCase($string, $type) {
+    $ch = CaseHelperFactory::make(self::mapInputCaseType($type));
+    return $ch->toSnakeCase($string);
+  }
+
+  /**
+   * Convert string to kebab-case
+   * @param string $string - String to be converted
+   * @param string $type - Name of current string format
+   * @return string - Returns string formatted in kebab-case
+   */
+  public static function convertToKebabCase($string, $type) {
+    $ch = CaseHelperFactory::make(self::mapInputCaseType($type));
+    return $ch->toKebabCase($string);
+  }
+
+  /**
    * Get path to file on GitHub
    * @param string $filePath - Absolute path to a file in repo
    * @return string - URL to file on GitHub
