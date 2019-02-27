@@ -55,7 +55,8 @@
         {% for item in contentItems %}
 
           {% set itemAttributes = item.pattern ~ "Attributes" %}
-          {% set ratioKey = item.pattern == "image" ? "useAspectRatio" : "ratio" %}
+          {# Image expects "ratio" to be passed as string, Video expects boolean #}
+          {% set ratioValue = item.pattern == "image" ? "none" : false %}
 
           {% if item.pattern != "image" %}
             {% set item = item | merge({
@@ -66,7 +67,7 @@
           {% endif %}
           
           {% include pattern_template(item.pattern) with item | merge({
-            (ratioKey): false,
+            ratio: ratioValue,
             lazyload: item.lazyload ?? true,
             cover: true
           }) only %}

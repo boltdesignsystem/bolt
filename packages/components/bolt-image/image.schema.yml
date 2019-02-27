@@ -1,8 +1,15 @@
 title: Image
 type: object
 not:
-  required:
-    - imageAttributes
+  anyOf:
+    - required:
+        - imageAttributes
+    - required:
+        - useAspectRatio
+    - required:
+        - width
+    - required:
+        - height
 anyOf:
   - required:
       - src
@@ -48,6 +55,7 @@ properties:
     description: A list of one or more strings separated by commas indicating a set of source sizes. Each source size consists of a media condition (omitted for the last item), and a source size value.
     default: auto
   useAspectRatio:
+    title: DEPRECATED
     type: boolean
     description: Use the ratio wrapper around the image to maintain a specific image ratio. This ratio is either determined from the image, or by passing in `height` and `width` arguements.
     default: true
@@ -60,11 +68,13 @@ properties:
     description: Set the aspect ratio for the image via slash-separated width and height values, e.g. 4/3. Currently required for aspect ratio to be applied properly. Set to "none" to opt out of aspect ratio. Used only on the web component.
     default: auto
   width:
+    title: DEPRECATED
     oneOf:
       - type: number
       - type: string
     description: Override the default width of the image. If no height is provided, aspect ratio will be maintained.
   height:
+    title: DEPRECATED
     oneOf:
       - type: number
       - type: string
