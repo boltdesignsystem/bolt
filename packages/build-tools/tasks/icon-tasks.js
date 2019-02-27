@@ -140,6 +140,7 @@ const rootDir = path.dirname(
   resolve.sync('@bolt/components-icons/package.json'),
 );
 const buildDir = path.join(rootDir, 'src/icons');
+const globPattern = '**/*.svg';
 
 /**
  * Transpile Icons
@@ -151,7 +152,6 @@ async function transpileIcons(icons) {
 
   return Promise.all(
     icons.map(async icon => {
-      // icons.forEach(async (i) => {
       const svg = await fs.readFile(icon, 'utf-8');
       const id = path
         .basename(icon, '.svg')
@@ -263,6 +263,13 @@ async function transpileIcons(icons) {
 }
 
 function alphabetizeIconList(a, b) {
+  if (a.id === b.id) {
+    const iconDir = a.icon.includes('@bolt/components-icons') ? b.icon : a.icon;
+
+    throw new Error(`SVG filenames must be unique but '${a.id}' is not.
+  Please change filename in location: '${iconDir}'`);
+  }
+
   if (a.id < b.id) return -1;
   if (a.id > b.id) return 1;
   return 0;
@@ -271,7 +278,13 @@ function alphabetizeIconList(a, b) {
 async function build() {
   try {
     const config = await getConfig();
-    const iconPaths = await globby(path.join(rootDir, 'src/svgs/**/*.svg'));
+
+    const extendedIconDirs = config.iconDir ? config.iconDir : [];
+
+    const dirs = [rootDir, ...extendedIconDirs];
+    const allIcons = dirs.map(dir => path.join(dir, globPattern));
+
+    const iconPaths = await globby(allIcons);
 
     iconSpinner = new Ora(
       chalk.blue(
@@ -281,6 +294,7 @@ async function build() {
 
     await fs.remove(path.join(rootDir, 'src/icons')); // Clean folder
     await fs.outputFile(path.join(rootDir, 'src', 'index.js'), '', 'utf-8');
+
     const icons = await transpileIcons(iconPaths);
     const allExports = icons
       .sort(alphabetizeIconList) // we alphabetize the list so multiple compiles on same set doesn't result in a change that git notices
@@ -356,14 +370,13 @@ async function watch() {
   const config = await getConfig();
 
   // for now, only watch the main @bolt/components-icons folder for .svg file changes.
-  // @todo: update to include extra folders specified in the .boltrc config
-  const dirs = [rootDir];
+  const extendedIconDirs = config.iconDir ? config.iconDir : [];
+  const dirs = [rootDir, ...extendedIconDirs];
 
   // Used by watches
   const debouncedCompile = debounce(build, config.debounceRate);
 
-  const globPattern = '**/*.svg';
-  const watchedFiles = [dirs.map(dir => path.join(dir, globPattern))];
+  const watchedFiles = dirs.map(dir => path.join(dir, globPattern));
 
   // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
   const watcher = chokidar.watch(watchedFiles, {
