@@ -88,10 +88,14 @@ class BoltImage extends withLitHtml() {
       : this.querySelector('.js-lazyload');
 
     if (lazyImage) {
-      // lazyload sometimes doesn't work work even though `lazyImage` is there, setTimeout is a workaround
-      setTimeout(() => {
+      // check if placeholder image has loaded; lazySizes will only unveil an image that is "complete"
+      if (lazyImage.complete) {
         this.lazyloadImage(lazyImage);
-      }, 0);
+      } else {
+        lazyImage.onload = () => {
+          this.lazyloadImage(lazyImage);
+        };
+      }
     }
   }
 
