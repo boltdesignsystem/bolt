@@ -51,7 +51,7 @@ class TwigFunctions {
   public static function bolt_ssr($html) {
     $process = new Process(['node', '-r', 'esm', 'server/ssr-server.mjs', $html]);
     $process->setWorkingDirectory('../');
-    $process->wait();
+    $process->run();
     return $process->getOutput();
   }
 
