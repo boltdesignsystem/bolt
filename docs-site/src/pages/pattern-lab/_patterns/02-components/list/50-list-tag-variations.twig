@@ -1,25 +1,18 @@
-{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% extends "@pl/_list-doc-template.twig" %}
 
-<p><mark>Use the semantically correct tag based on the context of your page layout.</mark></p>
+{% block content %}
+  <p><mark>Use the semantically correct tag based on the context of your page layout.</mark></p>
 
-{% for tag in schema.properties.tag.enum %}
-  <h3>{{ tag }}</h3>
-  {% include "@bolt-components-list/list.twig" with {
-    display: "inline",
-    tag: tag,
-    items: [
-      include("@bolt-components-link/link.twig", {
-        text: "Item 1",
-        url: "#!",
-      }),
-      include("@bolt-components-link/link.twig", {
-        text: "Item 2",
-        url: "#!",
-      }),
-      include("@bolt-components-link/link.twig", {
-        text: "Item 3",
-        url: "#!",
-      }),
-    ]
-  } only %}
-{% endfor %}
+  {% for tag in schema.properties.tag.enum %}
+    <h3>{{ tag }}</h3>
+    {% include "@bolt-components-list/list.twig" with {
+      display: "inline",
+      tag: tag,
+      items: [
+        link_1,
+        link_2,
+        link_3,
+      ]
+    } only %}
+  {% endfor %}
+{% endblock %}

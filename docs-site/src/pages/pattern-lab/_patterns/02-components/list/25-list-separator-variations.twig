@@ -1,63 +1,20 @@
-{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% extends "@pl/_list-doc-template.twig" %}
 
-{% for separator in schema.properties.separator.enum %}
-  {% if separator != "none" %}
-    <h3>Inline list with separators ({{ separator }})</h3>
-    {% include "@bolt-components-list/list.twig" with {
-      display: "inline",
-      separator: separator,
-      items: [
-        include("@bolt-components-link/link.twig", {
-          text: "Item 1",
-          url: "#!",
-        }),
-        include("@bolt-components-link/link.twig", {
-          text: "Item 2",
-          url: "#!",
-        }),
-        include("@bolt-components-link/link.twig", {
-          text: "Item 3",
-          url: "#!",
-        }),
-      ]
-    } only %}
-    <h3>Block list with separators ({{ separator }})</h3>
-    {% include "@bolt-components-list/list.twig" with {
-      display: "block",
-      separator: separator,
-      items: [
-        include("@bolt-components-link/link.twig", {
-          text: "Item 1",
-          url: "#!",
-        }),
-        include("@bolt-components-link/link.twig", {
-          text: "Item 2",
-          url: "#!",
-        }),
-        include("@bolt-components-link/link.twig", {
-          text: "Item 3",
-          url: "#!",
-        }),
-      ]
-    } only %}
-    <h3>Flex list with separators ({{ separator }})</h3>
-    {% include "@bolt-components-list/list.twig" with {
-      display: "flex",
-      separator: separator,
-      items: [
-        include("@bolt-components-link/link.twig", {
-          text: "Item 1",
-          url: "#!",
-        }),
-        include("@bolt-components-link/link.twig", {
-          text: "Item 2",
-          url: "#!",
-        }),
-        include("@bolt-components-link/link.twig", {
-          text: "Item 3",
-          url: "#!",
-        }),
-      ]
-    } only %}
-  {% endif %}
-{% endfor %}
+{% block content %}
+  {% for display in regular_display_options %}
+    {% for separator in schema.properties.separator.enum %}
+      {% if separator != "none" %}
+        <h3>{{ display|capitalize }} list with separators ({{ separator }})</h3>
+        {% include "@bolt-components-list/list.twig" with {
+          display: display,
+          separator: separator,
+          items: [
+            link_1,
+            link_2,
+            link_3,
+          ]
+        } only %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endblock %}

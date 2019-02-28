@@ -1,27 +1,20 @@
-{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% extends "@pl/_list-doc-template.twig" %}
 
-<p>
-  <mark>Align prop only works with inline display, it has no effects on block and flex display.</mark>
-</p>
+{% block content %}
+  <p>
+    <mark>Align prop only works with inline display, it has no effects on block and flex display.</mark>
+  </p>
 
-{% for align in schema.properties.align.enum %}
-  <h3>Horizontally align inline items: {{ align }}</h3>
-  {% include "@bolt-components-list/list.twig" with {
-    display: "inline",
-    align: align,
-    items: [
-      include("@bolt-components-placeholder/placeholder.twig", {
-        text: "Placeholder 1",
-        size: "xsmall",
-      }),
-      include("@bolt-components-placeholder/placeholder.twig", {
-        text: "Placeholder 2",
-        size: "xsmall",
-      }),
-      include("@bolt-components-placeholder/placeholder.twig", {
-        text: "Placeholder 3",
-        size: "xsmall",
-      }),
-    ]
-  } only %}
-{% endfor %}
+  {% for align in schema.properties.align.enum %}
+    <h3>Horizontally align inline items: {{ align }}</h3>
+    {% include "@bolt-components-list/list.twig" with {
+      display: "inline",
+      align: align,
+      items: [
+        placeholder_1,
+        placeholder_2,
+        placeholder_3,
+      ]
+    } only %}
+  {% endfor %}
+{% endblock %}

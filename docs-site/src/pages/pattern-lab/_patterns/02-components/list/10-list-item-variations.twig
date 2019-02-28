@@ -1,66 +1,36 @@
-<h3>Inline list of different items</h3>
-{% include "@bolt-components-list/list.twig" with {
-  display: "inline",
-  items: [
-    "Item 1",
-    include("@bolt-components-link/link.twig", {
-      text: "Item 2",
-      url: "#!",
-    }),
-    include("@bolt-components-chip/chip.twig", {
-      text: "Item 3",
-      url: "#!",
-    }),
-    include("@bolt-components-button/button.twig", {
-      text: "Item 4",
-      url: "#!",
-      size: "small",
-    }),
-    "Item 5",
-    "Item 6",
-    "Item 7",
-    "Item 8",
-    "Item 9",
-    "Item 10",
-    "Item 11",
-  ]
-} only %}
-<h3>Inline list of chips</h3>
-{% include "@bolt-components-list/list.twig" with {
-  display: "inline",
-  items: [
-    include("@bolt-components-chip/chip.twig", {
-      text: "Item 1",
-      url: "#!",
-    }),
-    include("@bolt-components-chip/chip.twig", {
-      text: "Item 2",
-      url: "#!",
-    }),
-    include("@bolt-components-chip/chip.twig", {
-      text: "Item 3",
-      url: "#!",
-    }),
-  ]
-} only %}
-<h3>Inline list of buttons</h3>
-{% include "@bolt-components-list/list.twig" with {
-  display: "inline",
-  items: [
-    include("@bolt-components-button/button.twig", {
-      text: "Item 1",
-      url: "#!",
-      style: "primary",
-    }),
-    include("@bolt-components-button/button.twig", {
-      text: "Item 2",
-      url: "#!",
-      style: "secondary",
-    }),
-    include("@bolt-components-button/button.twig", {
-      text: "Item 3",
-      url: "#!",
-      style: "text",
-    }),
-  ]
-} only %}
+{% extends "@pl/_list-doc-template.twig" %}
+
+{% block content %}
+  <h3>Inline list of different items</h3>
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    items: [
+      link_1,
+      chip_2,
+      button_3,
+      "Item 4",
+      "Item 5",
+      "Item 6",
+    ]
+  } only %}
+
+  <h3>Inline list of chips</h3>
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    items: [
+      chip_1,
+      chip_2,
+      chip_3,
+    ]
+  } only %}
+
+  <h3>Inline list of buttons</h3>
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    items: [
+      button_1,
+      button_2,
+      button_3,
+    ]
+  } only %}
+{% endblock %}
