@@ -1,6 +1,6 @@
 <?php
 
-namespace Bolt\Layout;
+namespace Bolt;
 
 class BoltStringLoader {
   private $twig;

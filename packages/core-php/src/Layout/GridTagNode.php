@@ -3,7 +3,7 @@
 namespace Bolt\Layout;
 
 use \Drupal\Core\Template\Attribute;
-use Bolt\Layout\BoltStringLoader;
+use Bolt\BoltStringLoader;
 
 
   // Default attributes and inheritted data all grid components inherit (ex. base CSS class)
