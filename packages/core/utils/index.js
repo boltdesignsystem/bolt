@@ -1,6 +1,7 @@
 export * from './color-contrast';
 export * from './contains-any';
 export * from './css';
+export * from './dataset-to-object';
 export * from './declarative-click-handler';
 export * from './environment';
 export * from './find-parent-tag';

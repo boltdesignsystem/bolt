@@ -1,4 +1,10 @@
-import { beforeNextRender, define, props, css } from '@bolt/core/utils';
+import {
+  beforeNextRender,
+  define,
+  props,
+  css,
+  datasetToObject,
+} from '@bolt/core/utils';
 import { h, withPreact } from '@bolt/core/renderers';
 import Mousetrap from 'mousetrap';
 import classNames from 'classnames';
@@ -9,7 +15,7 @@ import {
   playbackPlugin,
   cuePointsPlugin,
 } from '../plugins/index';
-import { datasetToObject, formatVideoDuration } from '../utils';
+import { formatVideoDuration } from '../utils';
 
 let index = 0;
 @define
