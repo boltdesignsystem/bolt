@@ -20,10 +20,12 @@
     "pattern lab"
   ],
   "scripts": {
+    "ssr": "node -r esm server/ssr-server.mjs",
+    "ssr:button-example": "yarn run ssr -- '<bolt-button color=\"secondary\" url=\"https://boltdesignsystem.com\">Hello World!<bolt-icon name=\"chevron-right\" slot=\"after\"></bolt-icon></bolt-button>'",
     "start": "cd docs-site && yarn run start",
     "build": "cd docs-site && yarn run build:prod",
     "setup": "yarn",
-    "setup:php": "npx lerna exec --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php -- yarn run setup",
+    "setup:php": "npx lerna exec --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php -- composer update && npx lerna exec --scope @bolt/website -- composer update",
     "setup:quick": "yarn install --production",
     "setup:full": "yarn --force",
     "deploy": "./scripts/deploy.js",
@@ -71,7 +73,12 @@
       "@commitlint/config-conventional"
     ]
   },
+  "esm": {
+    "wasm": true,
+    "mode": "strict"
+  },
   "devDependencies": {
+    "esm": "^3.2.7",
     "@babel/core": "^7.2.2",
     "@commitlint/cli": "^7.4.0",
     "@commitlint/config-conventional": "^7.3.1",
@@ -88,6 +95,7 @@
     "semantic-release": "^15.13.3"
   },
   "dependencies": {
+    "cli-highlight": "^2.0.0",
     "babel-jest": "^24.1.0",
     "@open-wc/testing-helpers": "^0.7.12",
     "basichtml": "^0.21.1",

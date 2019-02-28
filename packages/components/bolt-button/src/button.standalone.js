@@ -2,8 +2,8 @@ import { props, define } from '@bolt/core/utils';
 import { html, render } from '@bolt/core/renderers/renderer-lit-html';
 import { BoltAction } from '@bolt/core/elements/bolt-action';
 import { convertInitialTags } from '@bolt/core/decorators';
-
 import classNames from 'classnames/bind';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 import visuallyhiddenUtils from '@bolt/global/styles/07-utilities/_utilities-visuallyhidden.scss';
 import styles from './button.scss';
@@ -75,30 +75,54 @@ class BoltButton extends BoltAction {
             'is-empty': name in this.slots === false,
           });
 
-          return html`
-            <span class="${iconClasses}"
-              >${name in this.slots
-                ? this.slot(name)
-                : html`
-                    <slot name="${name}" />
-                  `}</span
-            >
-          `;
+          return this.isServer
+            ? html`
+                ${name in this.slots
+                  ? html`
+                      <replace-with-children class="${iconClasses}"
+                        >${name in this.slots
+                          ? this.slot(name)
+                          : ''}</replace-with-children
+                      >
+                    `
+                  : ''}
+              `
+            : html`
+                <span class="${iconClasses}"
+                  >${name in this.slots
+                    ? this.slot(name)
+                    : html`
+                        <slot name="${name}" />
+                      `}</span
+                >
+              `;
         default:
           const itemClasses = cx('c-bolt-button__item', {
             'is-empty': name in this.slots === false,
             'u-bolt-visuallyhidden': this.props.iconOnly,
           });
 
-          return html`
-            <span class="${itemClasses}"
-              >${name in this.slots
-                ? this.slot('default')
-                : html`
-                    <slot />
-                  `}</span
-            >
-          `;
+          return this.isServer
+            ? html`
+                ${name in this.slots
+                  ? html`
+                      <replace-with-children class="${itemClasses}"
+                        >${name in this.slots
+                          ? this.slot('default')
+                          : ''}</replace-with-children
+                      >
+                    `
+                  : ''}
+              `
+            : html`
+                <span class="${itemClasses}"
+                  >${name in this.slots
+                    ? this.slot('default')
+                    : html`
+                        <slot />
+                      `}</span
+                >
+              `;
       }
     };
 
@@ -114,13 +138,22 @@ class BoltButton extends BoltAction {
       render(innerSlots, buttonElement);
     } else if (hasUrl) {
       buttonElement = html`
-        <a href="${this.props.url}" class="${classes}" target="${urlTarget}"
+        <a
+          href="${this.props.url}"
+          class="${classes}"
+          target="${urlTarget}"
+          is=${ifDefined(this.isServer ? 'shadow-root' : undefined)}
           >${innerSlots}</a
         >
       `;
     } else {
       buttonElement = html`
-        <button class="${classes}">${innerSlots}</button>
+        <button
+          class="${classes}"
+          is=${ifDefined(this.isServer ? 'shadow-root' : undefined)}
+        >
+          ${innerSlots}
+        </button>
       `;
     }
 

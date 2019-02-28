@@ -7,6 +7,8 @@ use \Twig_SimpleFunction;
 use \Drupal\Core\Template\Attribute;
 use \BasaltInc\TwigTools;
 use \Webmozart\PathUtil\Path;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 // https://github.com/Shudrum/ArrayFinder
 use \Shudrum\Component\ArrayFinder\ArrayFinder;
@@ -39,6 +41,23 @@ class TwigFunctions {
       } catch (\Exception $e) {
         $result = false;
       }
+      return $result;
+    }, [
+      'needs_environment' => true,
+      'needs_context' => true,
+    ]);
+  }
+
+  public static function bolt_ssr($html) {
+    $process = new Process(['node', '-r', 'esm', 'server/ssr-server.mjs', $html]);
+    $process->setWorkingDirectory('../');
+    $process->wait();
+    return $process->getOutput();
+  }
+
+  public static function ssr() {
+    return new Twig_SimpleFunction('bolt_ssr', function(\Twig_Environment $env, $context, $html) {
+      $result = self::bolt_ssr($html);
       return $result;
     }, [
       'needs_environment' => true,
