@@ -2,16 +2,20 @@ const { render, renderString } = require('@bolt/twig-renderer');
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../list.schema.yml'));
-const { display, spacing, separator, inset, align, valign, tag } = schema.properties;
+const {
+  display,
+  spacing,
+  separator,
+  inset,
+  align,
+  valign,
+  tag,
+} = schema.properties;
 
 describe('<bolt-list> Component', async () => {
   test('basic usage', async () => {
     const results = await render('@bolt-components-list/list.twig', {
-      items: [
-        'item 1',
-        'item 2',
-        'item 3',
-      ],
+      items: ['item 1', 'item 2', 'item 3'],
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -21,11 +25,7 @@ describe('<bolt-list> Component', async () => {
     test(`list display: ${displayChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         display: displayChoice,
-        items: [
-          'item 1',
-          'item 2',
-          'item 3',
-        ],
+        items: ['item 1', 'item 2', 'item 3'],
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
@@ -36,11 +36,7 @@ describe('<bolt-list> Component', async () => {
     test(`list spacing: ${spacingChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         spacing: spacingChoice,
-        items: [
-          'item 1',
-          'item 2',
-          'item 3',
-        ],
+        items: ['item 1', 'item 2', 'item 3'],
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
@@ -51,11 +47,7 @@ describe('<bolt-list> Component', async () => {
     test(`list separator: ${separatorChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         separator: separatorChoice,
-        items: [
-          'item 1',
-          'item 2',
-          'item 3',
-        ],
+        items: ['item 1', 'item 2', 'item 3'],
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
@@ -67,11 +59,7 @@ describe('<bolt-list> Component', async () => {
       const results = await render('@bolt-components-list/list.twig', {
         display: 'inline',
         align: alignChoice,
-        items: [
-          'item 1',
-          'item 2',
-          'item 3',
-        ],
+        items: ['item 1', 'item 2', 'item 3'],
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
@@ -83,11 +71,7 @@ describe('<bolt-list> Component', async () => {
       const results = await render('@bolt-components-list/list.twig', {
         display: 'inline',
         valign: valignChoice,
-        items: [
-          'item 1',
-          'item 2',
-          'item 3',
-        ],
+        items: ['item 1', 'item 2', 'item 3'],
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
@@ -98,11 +82,7 @@ describe('<bolt-list> Component', async () => {
     test(`list tag: ${tagChoice}`, async () => {
       const results = await render('@bolt-components-list/list.twig', {
         tag: tagChoice,
-        items: [
-          'item 1',
-          'item 2',
-          'item 3',
-        ],
+        items: ['item 1', 'item 2', 'item 3'],
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
