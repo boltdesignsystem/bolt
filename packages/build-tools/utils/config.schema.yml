@@ -17,6 +17,13 @@
       title: Array of language-specific builds to generate. The 1st langugage specified is the default used for local development.
       default:
         - en
+    mode:
+      type: string
+      title: Switches which context the Bolt build process and component rendering behavior should be compiling for -- either in the browser context (ie. client-side rendering) or in a Node.js server context (server-side rendering). This config is used to toggle server-side rendering functionality on and off.
+      default: client
+      enum:
+        - client
+        - server
     watch:
       type: boolean
       description: Configures internal tasks to watch for changes vs exiting when finished.

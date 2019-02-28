@@ -90,6 +90,9 @@ async function createWebpackConfig(buildConfig) {
       ? JSON.stringify('production')
       : JSON.stringify('development'),
     bolt: {
+      mode: JSON.stringify(config.mode),
+      isClient: config.mode === 'client' ? true : false,
+      isServer: config.mode === 'server' ? true : false,
       namespace: JSON.stringify(config.namespace),
       themingFallbackCSS: JSON.stringify(
         publicPath + themifyOptions.fallback.filename + '.css',
@@ -238,7 +241,10 @@ async function createWebpackConfig(buildConfig) {
     entry: await buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: `[name]${langSuffix}.js`,
+      // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
+      filename: `[name]${langSuffix}${
+        config.mode !== 'client' ? `.${config.mode}` : ''
+      }.js`,
       chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
       publicPath,
     },
