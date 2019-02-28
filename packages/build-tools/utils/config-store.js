@@ -84,11 +84,11 @@ async function getEnvVarsConfig() {
 
 async function isReady() {
   if (!isInitialized) {
-    console.log(
-      chalk.yellow(
-        'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
-      ),
-    );
+    // console.log(
+    //   chalk.yellow(
+    //     'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
+    //   ),
+    // );
     const searchedFor = explorer.searchSync();
     if (searchedFor.config) {
       await init({
