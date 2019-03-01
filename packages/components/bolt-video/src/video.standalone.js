@@ -1,4 +1,6 @@
 import {
+  defineContext,
+  withContext,
   beforeNextRender,
   define,
   props,
@@ -21,9 +23,21 @@ import { formatVideoDuration } from '../utils';
 let cx = classNames.bind(styles);
 
 let index = 0;
+
+// define which specific props to provide to children that subscribe
+export const VideoContext = defineContext({
+  state: {},
+});
+
 @define
-class BoltVideo extends withLitHtml() {
+class BoltVideo extends withContext(withLitHtml()) {
   static is = `${bolt.namespace}-video`;
+
+  // provide context info to children that subscribe
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get provides() {
+    return [VideoContext];
+  }
 
   static props = {
     videoId: props.string,
@@ -428,6 +442,8 @@ class BoltVideo extends withLitHtml() {
         bubbles: true,
       }),
     );
+
+    this.contexts.get(VideoContext).state = this.state;
   }
 
   onPause(player) {
@@ -453,6 +469,8 @@ class BoltVideo extends withLitHtml() {
         bubbles: true,
       }),
     );
+
+    this.contexts.get(VideoContext).state = this.state;
   }
 
   onSeeked(player) {
@@ -465,6 +483,7 @@ class BoltVideo extends withLitHtml() {
     // });
     this.state.isFinished = false;
     this.state.progress = progress;
+    this.contexts.get(VideoContext).state = this.state;
   }
 
   onDurationChange(player) {
@@ -493,7 +512,8 @@ class BoltVideo extends withLitHtml() {
           bubbles: true,
         }),
       );
-      // this.setState({ isFinished: true });
+
+      this.contexts.get(VideoContext).state = this.state;
     }, 0);
   }
 
@@ -620,6 +640,9 @@ class BoltVideo extends withLitHtml() {
     // );
     /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
+
+    this.contexts.get(VideoContext).state = this.state;
+
     const dataAttributes = datasetToObject(this);
 
     let closeButtonText = null;

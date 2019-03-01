@@ -38,6 +38,10 @@ $bolt-video-meta-transition: $bolt-transition;
   transition: opacity $bolt-video-meta-transition;
 }
 
+.c-#{$bolt-namespace}-video-meta__item--hidden {
+  opacity: bolt-opacity(0);
+}
+
 .c-#{$bolt-namespace}-video-meta__item--title {
   @include bolt-font-size(small);
   top: 0;
