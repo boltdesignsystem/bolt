@@ -2,38 +2,38 @@
 
 ## Card renders as expected
 
-1. Server-side rendered custom element `bolt-card`.
+1. The `bolt-card` custom element server-side renders when JS is turned off.
 
-1. `c-bolt-card__media`, `c-bolt-card__body` and `c-bolt-card__footer` are rendered in `bolt-card` element.
+1. Elements with classnames `c-bolt-card__media`, `c-bolt-card__body` and `c-bolt-card__footer` are rendered inside the `bolt-card` element.
 
-1. Component is filling all available space i.e. adapting to parent element.
+1. Card component fills all available space, i.e. adapts to parent element.
 
 ## Responds to prop as expected
 
 Updating `<bolt-link>` props in the browser should trigger the component to re-render, reflecting the new prop value. For example:
 
-1. Change the `tag` prop will change tag with `c-bolt-card` class eg. (div, section, etc.)
-1. Change the `contentTag` prop will change main content tag with `c-bolt-card__body` class eg. (div, section, etc.)
-1. Change the `theme` prop will add correct class to `bolt-card` element
-1. Change the `url` prop will add `url` attribute to `bolt-card`, `data-href` to tag with `c-bolt-card` class and add `a` wrapper around elements inside `c-bolt-card__media` class.
+1. Changing the `tag` prop will change the tag with class `c-bolt-card`, e.g. `div`, `section`, etc.
+1. Changing the `contentTag` prop will change the main content tag with class `c-bolt-card__body`, e.g. `div`, `section`, etc.
+1. Changing the `theme` prop will add the correct theme class to `bolt-card` element.
+1. Changing the `url` prop will add the `url` attribute to `bolt-card`, `data-href` to the tag with class `c-bolt-card`, and an `a` wrapper around elements inside the tag with class `c-bolt-card__media`.
 
 ## Patterns are added as expected
 
-Different patterns must be added to specific element in `bolt-card` component
+Different patterns must be added to specific sections in the `bolt-card` component.
 
-1. Patterns added to `media` section
-    * image
-    * video
-1. Patterns added to `body` section
-    * eyebrow
-    * headline
-    * content
-    * text
-    * teaser
-1. Patterns added to `footer` section
-    * buttons
-    * link
-    * button
+1. Patterns added to `media` section:
+   - image
+   - video
+1. Patterns added to `body` section:
+   - eyebrow
+   - headline
+   - content
+   - text
+   - teaser
+1. Patterns added to `footer` section:
+   - buttons
+   - link
+   - button
 
 ---
 
@@ -43,7 +43,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Feature: Card
 
-    In order to show elements in structured and ordered way in element that looks like card
+    In order to show content in a structured and ordered way in an element that looks like a card
     As a UX designer, developer or content administrator
     I need to ensure the "bolt-card" component renders and functions as expected
 
@@ -52,7 +52,7 @@ Functional testing should be performed manually by the QA team across the standa
 1. Given I am using a "desktop" browser
 1. And I am viewing the [Basic Card page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-card-05-card/02-components-card-05-card.html)
 1. Then I should see card component with image on the top, eyebrow, headline and text elemnts in the middle and button on the bottom
-1. When I click in the button i will be redirected to "pega.com"
+1. When I click in the button I will be redirected to "pega.com"
 
 ## Scenario: Two buttons
 
@@ -61,17 +61,19 @@ Functional testing should be performed manually by the QA team across the standa
 1. And I am looking at the footer section (section with buttons)
 1. Then I should see two buttons next to each other
 
-
 ## Scenario: Card with video
 
 1. Given I am using a "desktop" browser
 1. And I am viewing the [Card with Video page](https://master.boltdesignsystem.com/pattern-lab/patterns/02-components-card-15-card-with-video/02-components-card-15-card-with-video.html)
 1. And I am looking at the media section
-1. Then I should see video player
-1. After click on play button video should start playing
-1. Then I looking at bottom section with button
-1. After click on "Play or Pause" button with should stop playing
-1. After secound click video should start playing again
+1. Then I should see a video player
+1. When I click on the play button
+1. Then the video starts playing
+1. Then I see the "Play or Pause" button below
+1. And I click on that button
+1. Then the video should stop playing
+1. And I click the button a second time
+1. Then the video should start playing again
 
 ## Scenario: Card elements variations
 
