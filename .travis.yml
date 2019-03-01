@@ -33,7 +33,10 @@ jobs:
         - ./scripts/check-run-queue.js 'Lint'
         - ./scripts/check-run-queue.js 'Unit'
       script:
-        - ./test/smoke-tests.sh
+        - set -Eeuo pipefail
+        - ./test/lint.js
+        - ./test/unit.js
+        # - ./test/smoke-tests.sh
 
     - stage: Prep
       name: 'Build + Deploy'
