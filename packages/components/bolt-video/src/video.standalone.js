@@ -2,13 +2,14 @@ import {
   beforeNextRender,
   define,
   props,
-  css,
   datasetToObject,
 } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { ifDefined } from 'lit-html/directives/if-defined';
+import classNames from 'classnames/bind';
+import styles from './video.scss';
+import schema from '../video.schema.yml';
 import Mousetrap from 'mousetrap';
-import classNames from 'classnames';
-
 import {
   socialPlugin,
   emailPlugin,
@@ -17,9 +18,11 @@ import {
 } from '../plugins/index';
 import { formatVideoDuration } from '../utils';
 
+let cx = classNames.bind(styles);
+
 let index = 0;
 @define
-class BoltVideo extends withPreact() {
+class BoltVideo extends withLitHtml() {
   static is = `${bolt.namespace}-video`;
 
   static props = {
@@ -626,65 +629,67 @@ class BoltVideo extends withPreact() {
       closeButtonText = 'Close';
     }
 
-    const classes = css(
-      `t-bolt-xdark`,
-      `c-${bolt.namespace}-video`,
-      this.props.controls === false
-        ? `c-${bolt.namespace}-video--hide-controls`
-        : '',
-      this.props.isBackgroundVideo
-        ? `c-${bolt.namespace}-video--background`
-        : '',
-    );
+    const classes = cx(`t-bolt-xdark`, `c-${bolt.namespace}-video`, {
+      [`c-${bolt.namespace}-video--hide-controls`]:
+        this.props.controls === false,
+      [`c-${bolt.namespace}-video--background`]: this.props.isBackgroundVideo,
+    });
 
     const videoMetaTag = `${bolt.namespace}-video-meta`;
 
-    return (
-      <span className={classes}>
+    // following 'autoplay' can not expected to always work on web
+    // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
+    return html`
+      ${this.addStyles([styles])}
+      <span class=${classes}>
         <video
-          {...dataAttributes}
-          id={this.state.id}
-          {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
-          data-embed="default"
-          data-video-id={this.props.videoId}
+          id=${this.state.id}
+          class="${cx('video-js')}"
           preload="none"
-          data-account={this.props.accountId}
-          data-player={this.props.playerId}
-          // playIcon={playIconEmoji()}
-          // following 'autoplay' can not expected to always work on web
-          // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-          autoPlay={this.props.autoplay}
+          autoplay=${this.props.autoplay}
+          loop=${this.props.loop}
+          controls=${this.props.controls === false ? false : true}
+          poster=${ifDefined(this.props.poster.uri)}
+          data-embed="default"
+          data-video-id=${this.props.videoId}
+          data-account=${this.props.accountId}
+          data-player=${this.props.playerId}
           data-application-id
-          loop={this.props.loop}
-          className="video-js"
-          controls={this.props.controls === false ? false : true}
         />
-        {this.props.showMeta && h(videoMetaTag)}
-        {this.props.isBackgroundVideo && (
-          <div
-            onClick={this.handleClose}
-            className={css(
-              `c-${bolt.namespace}-video__close-button`,
-              `c-${bolt.namespace}-video__close-button--icon-to-text`,
-            )}>
-            <span className={`c-${bolt.namespace}-video__close-button-icon`}>
-              <bolt-button
-                icon-only
-                size="xsmall"
-                color="secondary"
-                border-radius="full">
-                <bolt-icon name="close" size="small" slot="after" />
-              </bolt-button>
-            </span>
-            <span className={`c-${bolt.namespace}-video__close-button-text`}>
-              <bolt-button size="small" color="text">
-                {closeButtonText}
-              </bolt-button>
-            </span>
-          </div>
-        )}
+        ${this.props.showMeta
+          ? html`
+              <bolt-video-meta></bolt-video-meta>
+            `
+          : ''}
+        ${this.props.isBackgroundVideo
+          ? html`
+              <div
+                @click=${this.handleClose}
+                class=${cx(
+                  `c-${bolt.namespace}-video__close-button`,
+                  `c-${bolt.namespace}-video__close-button--icon-to-text`,
+                )}
+              >
+                <span class=${`c-${bolt.namespace}-video__close-button-icon`}>
+                  <bolt-button
+                    icon-only
+                    size="xsmall"
+                    color="secondary"
+                    border-radius="full"
+                  >
+                    <bolt-icon name="close" size="small" slot="after" />
+                  </bolt-button>
+                </span>
+                <span class=${`c-${bolt.namespace}-video__close-button-text`}>
+                  <bolt-button size="small" color="text">
+                    ${closeButtonText}
+                  </bolt-button>
+                </span>
+              </div>
+            `
+          : ''}
       </span>
-    );
+    `;
   }
 }
 
