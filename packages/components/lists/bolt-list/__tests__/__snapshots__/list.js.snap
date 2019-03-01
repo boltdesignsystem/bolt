@@ -344,6 +344,83 @@ exports[`<bolt-list> Component list display: inline@xxsmall 1`] = `
 
 `;
 
+exports[`<bolt-list> Component list inset spacing: false 1`] = `
+
+<bolt-list tag="ul"
+           display="block"
+           spacing="xsmall"
+           separator="none"
+           align="start"
+           valign="center"
+>
+  <replace-with-grandchildren>
+    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center">
+      <bolt-list-item>
+        <replace-with-grandchildren>
+          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+            item 1
+          </li>
+        </replace-with-grandchildren>
+      </bolt-list-item>
+      <bolt-list-item>
+        <replace-with-grandchildren>
+          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start">
+            item 2
+          </li>
+        </replace-with-grandchildren>
+      </bolt-list-item>
+      <bolt-list-item last>
+        <replace-with-grandchildren>
+          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item">
+            item 3
+          </li>
+        </replace-with-grandchildren>
+      </bolt-list-item>
+    </ul>
+  </replace-with-grandchildren>
+</bolt-list>
+
+`;
+
+exports[`<bolt-list> Component list inset spacing: true 1`] = `
+
+<bolt-list tag="ul"
+           display="block"
+           spacing="xsmall"
+           separator="none"
+           align="start"
+           valign="center"
+           inset
+>
+  <replace-with-grandchildren>
+    <ul class="c-bolt-list c-bolt-list--display-block c-bolt-list--spacing-xsmall c-bolt-list--align-start c-bolt-list--valign-center c-bolt-list--inset">
+      <bolt-list-item>
+        <replace-with-grandchildren>
+          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--inset">
+            item 1
+          </li>
+        </replace-with-grandchildren>
+      </bolt-list-item>
+      <bolt-list-item>
+        <replace-with-grandchildren>
+          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--inset">
+            item 2
+          </li>
+        </replace-with-grandchildren>
+      </bolt-list-item>
+      <bolt-list-item last>
+        <replace-with-grandchildren>
+          <li class="c-bolt-list-item c-bolt-list-item--display-block c-bolt-list-item--spacing-xsmall c-bolt-list-item--align-start c-bolt-list-item--last-item c-bolt-list-item--inset">
+            item 3
+          </li>
+        </replace-with-grandchildren>
+      </bolt-list-item>
+    </ul>
+  </replace-with-grandchildren>
+</bolt-list>
+
+`;
+
 exports[`<bolt-list> Component list items horizontal alignment: center 1`] = `
 
 <bolt-list tag="ul"
