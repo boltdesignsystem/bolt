@@ -678,7 +678,7 @@ class BoltVideo extends withContext(withLitHtml()) {
           data-account=${this.props.accountId}
           data-player=${this.props.playerId}
           data-application-id
-        />
+        ></video>
         ${this.props.showMeta
           ? html`
               <bolt-video-meta></bolt-video-meta>
