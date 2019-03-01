@@ -29,7 +29,7 @@ class BoltButton extends BoltAction {
     target: props.string,
     url: props.string,
     onClick: props.string, // Managed by base class
-    onClickTarget: props.string, // Managed by base class
+    onClickTarget: props.string // Managed by base class
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
