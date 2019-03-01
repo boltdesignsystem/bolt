@@ -9,9 +9,9 @@ import {
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
+import Mousetrap from 'mousetrap';
 import styles from './video.scss';
 import schema from '../video.schema.yml';
-import Mousetrap from 'mousetrap';
 import {
   socialPlugin,
   emailPlugin,
