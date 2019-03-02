@@ -9,7 +9,8 @@ const caseFilter = require('../../utils/case-filters.js')();
 const { updateBoltRcConfig } = require('./update-boltrc');
 const { addBoltPackage } = require('./add-bolt-package');
 
-const currentBoltVersion = require('../../../../docs-site/package.json').version;
+const currentBoltVersion = require('../../../../docs-site/package.json')
+  .version;
 
 var validateString = function(input) {
   if (typeof input !== 'string') {
