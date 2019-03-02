@@ -1,0 +1,18 @@
+@import '@bolt/core';
+
+// Local <%= props.names.kebabcase.default %> Variables
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-<%= props.names.kebabcase.default %>', block, medium);
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+.c-bolt-<%= props.names.kebabcase.default %> {
+  //Styles go here. /* [1] */
+}

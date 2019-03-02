@@ -1,0 +1,8 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-<%= props.names.kebabcase.default %>/<%= props.names.kebabcase.default %>.twig' only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "<%= props.names.kebabcase.default %>",
+  usage: usage
+} only %}
