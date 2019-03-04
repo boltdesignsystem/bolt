@@ -18,13 +18,10 @@ getConfig().then(async boltConfig => {
   let config = boltConfig;
 
   config.components.individual = [];
-  config.env = 'pwa';
-  // config.components.global = ['@bolt/components-button'];
   config.prod = true;
   config.enableCache = true;
   config.mode = 'server';
   config.sourceMaps = false;
-  console.log(config);
 
   // config.components.global = config.components.global.filter(
   //   item =>
