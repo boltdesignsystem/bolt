@@ -166,7 +166,9 @@ describe('button', async () => {
     const renderedShadowDomHTML = await html(defaultButtonShadowRoot);
     const renderedHTML = await html(defaultButtonOuter);
 
-    expect(renderedHTML.textContent.trim()).toEqual('Button Test -- Outer HTML');
+    expect(renderedHTML.textContent.trim()).toEqual(
+      'Button Test -- Outer HTML',
+    );
     // expect(
     //   renderedShadowDomHTML
     //     .querySelector('.c-bolt-button')
