@@ -1,0 +1,11 @@
+{% filter bolt_ssr %}
+  <bolt-button>
+    SSR via web component button + Twig-embedded icon
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "chevron-right",
+      attributes: {
+        slot: "after"
+      }
+    } %}
+  </bolt-button>
+{% endfilter %}
