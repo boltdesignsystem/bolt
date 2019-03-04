@@ -34,7 +34,7 @@ imageFixtureDirs.forEach((fixturePath) => {
   });
 });
 
-module.exports = Object.assign(siteConfig, {
+module.exports = {
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
   buildDir: adjustRelativePath(siteConfig.buildDir),
   components: {
@@ -51,4 +51,4 @@ module.exports = Object.assign(siteConfig, {
   prod: true,
   enableCache: true,
   verbosity: 1,
-});
+};
