@@ -3,12 +3,14 @@ import express from 'express';
 import webpack from 'webpack';
 import createWebpackConfig from '@bolt/build-tools/create-webpack-config';
 import * as configStore from '@bolt/build-tools/utils/config-store.js';
+import prettier from 'prettier';
+import highlight from 'cli-highlight';
 import { renderPage } from './ssr-server.puppeteer';
 import { template } from './ssr-server.template';
 const getConfig = configStore.default.getConfig;
 
 const htmlToRender = process.argv[2] || '';
-const port = process.env.PORT || 4444;
+const port = process.env.PORT || 4445;
 const app = express();
 let connections = []; // keep track of # of open connections
 
@@ -21,6 +23,7 @@ getConfig().then(async boltConfig => {
   config.prod = true;
   config.enableCache = true;
   config.mode = 'server';
+  config.env = 'pwa';
   config.sourceMaps = false;
 
   // config.components.global = config.components.global.filter(
@@ -62,7 +65,24 @@ getConfig().then(async boltConfig => {
       res.send(template.render(htmlToRender, webpackStatsGenerated, config));
     });
 
-    await renderPage(port);
+    const htmlResult = await renderPage(port);
+
+    const renderedHTML = prettier.format(htmlResult, {
+      singleQuote: true,
+      trailingComma: 'es5',
+      bracketSpacing: true,
+      jsxBracketSameLine: true,
+      parser: 'html',
+    });
+
+    console.log(
+      highlight.highlight(renderedHTML, {
+        language: 'html',
+        ignoreIllegals: true,
+      }),
+    );
+
+    await shutDownSSRServer();
   });
 });
 

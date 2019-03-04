@@ -1,7 +1,4 @@
 import puppeteer from 'puppeteer';
-import prettier from 'prettier';
-import highlight from 'cli-highlight';
-import { shutDownSSRServer } from './ssr-server';
 
 export async function renderPage(port) {
   const url = `http://localhost:${port}/ssr`;
@@ -33,21 +30,7 @@ export async function renderPage(port) {
     return stripScripts(code).replace(/<!---->/g, '');
   });
 
-  const renderedHTML = prettier.format(html, {
-    singleQuote: true,
-    trailingComma: 'es5',
-    bracketSpacing: true,
-    jsxBracketSameLine: true,
-    parser: 'html',
-  });
-
-  console.log(
-    highlight.highlight(renderedHTML, {
-      language: 'html',
-      ignoreIllegals: true,
-    }),
-  );
-
   await browser.close();
-  await shutDownSSRServer();
+
+  return html;
 }
