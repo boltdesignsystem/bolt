@@ -55,6 +55,8 @@ class TwigFunctions {
     $ssrServerPath = trim($p->getOutput()).'/ssr-server.mjs';
 
     $process = new Process(['node', '-r', 'esm', $ssrServerPath, $html]);
+    $process->setTimeout(3600);
+    $process->setIdleTimeout(120);
     $process->run();
     return $process->getOutput();
   }
