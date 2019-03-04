@@ -5,7 +5,7 @@ New (still in progress) Text component. Part of the Bolt “Components” CSS fr
 ```
 npm install @bolt/components-text
 ```
-
+<!--
 ## Web Component
 
 Bolt Text is a web component, which means you can use the custom tag `bolt-text` to render it.
@@ -266,3 +266,4 @@ By using the `subheadline` boolean attribute, the following attribute defaults a
 ```
 
 To render all sizes of subheadlines, all you have to do is change `font-size` to your desired size.
+ -->

@@ -1,0 +1,16 @@
+{% set schema = bolt.data.components["@bolt-components-text"].schema %}
+
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as text_code %}
+
+{% block content %}
+{% endblock %}
+

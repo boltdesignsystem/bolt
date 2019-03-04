@@ -1,5 +1,32 @@
-{% set schema = bolt.data.components['@bolt-components-text'].schema %}
+{% extends "@pl/_text-doc-template.twig" %}
 
+{% set text_demo %}
+<bolt-text>
+  This is text.
+</bolt-text>
+{% endset %}
+
+{% block content %}
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Text is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> in the markup to make it render.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ text_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include text_code.code_example(text_demo, true) %}
+{% endblock %}
+
+
+
+
+{#
 
 <h3>Typographic Design</h3>
 <p>The following are the official recipes for each piece of our typography. They will cover all common use cases. Only in edge cases, you'd want to break away and create your own recipes.</p>
@@ -152,3 +179,4 @@
   } only %}
 </figure>
 
+ #}
