@@ -20,8 +20,13 @@ let iconSpinner;
 const startBuildingIconsMsg = 'Building Bolt SVG Icons for the first time...';
 const startRebuildingIconsMsg = 'Rebuilding Bolt SVG Icons...';
 
-const finishedBuildingIconsMsg = 'Finished building Bolt SVG Icons!';
-const finishedRebuildingIconsMsg = 'Finished rebuilding Bolt SVG Icons!';
+const finishedBuildingIconsAndSchemaMsg =
+  'Finished building Bolt SVG Icons and schema!';
+const finishedRebuildingIconsAndSchemaMsg =
+  'Finished rebuilding Bolt SVG Icons and schema!';
+
+const finishedBuildingIconsOnlyMsg = 'Finished building Bolt SVG Icons!';
+const finishedRebuildingIconsOnlyMsg = 'Finished rebuilding Bolt SVG Icons!';
 
 const failedBuildingIconsMsg = 'Initial build of the Bolt SVG Icons failed!';
 const failedRebuildingIconsMsg = 'Failed to rebuild Bolt SVG Icons!';
@@ -266,7 +271,7 @@ function alphabetizeIconList(a, b) {
   if (a.id === b.id) {
     const iconDir = a.icon.includes('@bolt/components-icons') ? b.icon : a.icon;
 
-    throw new Error(`SVG filenames must be unique but '${a.id}' is not.
+    throw new TypeError(`SVG filenames must be unique but '${a.id}' is not.
   Please change filename in location: '${iconDir}'`);
   }
 
@@ -275,7 +280,7 @@ function alphabetizeIconList(a, b) {
   return 0;
 }
 
-async function build() {
+async function build(schemaUpdate = true) {
   try {
     const config = await getConfig();
 
@@ -305,7 +310,7 @@ async function build() {
       allExports.join('\n'),
       'utf-8',
     );
-    generateFile(icons);
+    generateFile(icons, schemaUpdate);
 
     if (config.verbosity > 2) {
       log.dim(`Built ${iconPaths.length} icons.`);
@@ -326,31 +331,48 @@ async function build() {
 build.description = 'Minify & convert raw SVG files to browser-friendly icons.';
 build.displayName = 'icons:build';
 
-async function generateFile(icons) {
+async function generateFile(icons, schemaUpdate) {
   try {
     const config = await getConfig();
 
-    const iconComponentDir = path.dirname(
-      resolve.sync('@bolt/components-icon/package.json'),
-    );
-    const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.yml');
-    const names = icons.map(icon => icon.id);
-    const schema = yaml.safeLoad(fs.readFileSync(iconComponentSchema, 'utf8'));
-    schema.properties.name.enum = names;
+    if (schemaUpdate) {
+      const iconComponentDir = path.dirname(
+        resolve.sync('@bolt/components-icon/package.json'),
+      );
+      const iconComponentSchema = path.join(
+        iconComponentDir,
+        'icon.schema.yml',
+      );
+      const names = icons.map(icon => icon.id);
+      const schema = yaml.safeLoad(
+        fs.readFileSync(iconComponentSchema, 'utf8'),
+      );
+      schema.properties.name.enum = names;
 
-    // update bolt-icon schema with newest icons from svgs folder
-    await fs.writeFile(iconComponentSchema, yaml.safeDump(schema));
-    // generate `icons.bolt.json` file with newest icons array
-    await fs.writeFile(
-      path.join(config.dataDir, 'icons.bolt.json'),
-      JSON.stringify(names, null, 4),
-    );
+      // update bolt-icon schema with newest icons from svgs folder
+      await fs.writeFile(iconComponentSchema, yaml.safeDump(schema));
+      // generate `icons.bolt.json` file with newest icons array
+      await fs.writeFile(
+        path.join(config.dataDir, 'icons.bolt.json'),
+        JSON.stringify(names, null, 4),
+      );
 
-    iconSpinner.succeed(
-      chalk.green(
-        initialBuild ? finishedBuildingIconsMsg : finishedRebuildingIconsMsg,
-      ),
-    );
+      iconSpinner.succeed(
+        chalk.green(
+          initialBuild
+            ? finishedBuildingIconsAndSchemaMsg
+            : finishedRebuildingIconsAndSchemaMsg,
+        ),
+      );
+    } else {
+      iconSpinner.succeed(
+        chalk.green(
+          initialBuild
+            ? finishedBuildingIconsOnlyMsg
+            : finishedRebuildingIconsOnlyMsg,
+        ),
+      );
+    }
 
     initialBuild = false;
   } catch (error) {

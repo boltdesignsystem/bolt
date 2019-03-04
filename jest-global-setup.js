@@ -2,6 +2,7 @@ const { setup: setupDevServer } = require('jest-dev-server');
 const puppeteer = require('puppeteer');
 const mkdirp = require('mkdirp');
 const path = require('path');
+const resolve = require('resolve');
 const fs = require('fs');
 const os = require('os');
 
@@ -9,12 +10,26 @@ const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
 const { buildPrep } = require('./packages/build-tools/tasks/task-collections');
 const imageTasks = require('./packages/build-tools/tasks/image-tasks');
+const iconTasks = require('./packages/build-tools/tasks/icon-tasks');
 const { getConfig } = require('./packages/build-tools/utils/config-store');
 
 module.exports = async function globalSetup() {
-  const config = await getConfig();
+  let config = await getConfig();
+
+  const existingIconsDir =
+    typeof config.iconDir !== 'undefined' ? config.iconDir : [];
+
+  config.iconDir = [
+    ...existingIconsDir,
+    path.join(
+      path.dirname(resolve.sync('@bolt/components-icons/package.json')),
+      '__tests__/icons',
+    ),
+  ];
+
   await buildPrep(); // Generate folders, manifest data, etc needed for Twig renderer
   await imageTasks.processImages(); // process image fixtures used by any tests
+  await iconTasks.build(false); // process icons used by any task
 
   await setupDevServer({
     command: `node server/testing-server`,
