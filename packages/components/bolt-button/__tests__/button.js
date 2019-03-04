@@ -188,4 +188,38 @@ describe('button', async () => {
     expect(renderedShadowDomHTML).toMatchSnapshot();
     expect(renderedHTML).toMatchSnapshot();
   });
+
+  test('Twig-integrated server-side rendering can pre-render the <bolt-button> web component', async () => {
+    const results = await renderString(`
+      {% filter bolt_ssr %}
+        <bolt-button>
+          SSR via pure web component!
+          <bolt-icon name="chevron-right"></bolt-icon>
+        </bolt-button>
+      {% endfilter %}
+    `);
+
+    const htmlResults = results.html;
+    const renderedResults = await html(results.html);
+    const buttonInner = renderedResults.querySelector('.c-bolt-button');
+
+    expect(buttonInner.tagName).toBe('button');
+    expect(buttonInner.classList.contains('c-bolt-button--primary')).toBe(true);
+
+    await page.evaluate(htmlResults => {
+      const tempContainer = document.createElement('div');
+      tempContainer.innerHTML = htmlResults;
+
+      while (tempContainer.firstChild) {
+        document.body.appendChild(tempContainer.firstChild);
+      }
+    }, htmlResults);
+
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+  }, 20000);
 });
