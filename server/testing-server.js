@@ -31,6 +31,7 @@ getConfig().then(async boltConfig => {
     ...allComponentsWithTests,
   ];
 
+  config.mode = 'client';
   config.components.individual = [];
   config.prod = true;
   config.sourceMaps = false;

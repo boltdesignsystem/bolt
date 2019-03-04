@@ -6,8 +6,10 @@ const { teardown: teardownDevServer } = require('jest-dev-server');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 module.exports = async function() {
-  // close the browser instance
-  await global.__BROWSER_GLOBAL__.close();
+  // close the browser instance if it exists. workaround to ensure any webpack-dev-servers running are closed first before starting to run any tests
+  if (global.__BROWSER_GLOBAL__){
+    await global.__BROWSER_GLOBAL__.close();
+  }
 
   await teardownDevServer();
 
