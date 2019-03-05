@@ -201,10 +201,16 @@ describe('button', async () => {
 
     const htmlResults = results.html;
     const renderedResults = await html(results.html);
-    const buttonInner = renderedResults.querySelector('.c-bolt-button');
 
-    expect(buttonInner.tagName).toBe('button');
-    expect(buttonInner.classList.contains('c-bolt-button--primary')).toBe(true);
+    expect(renderedResults.querySelector('.c-bolt-button').tagName).toBe(
+      'button',
+    );
+
+    expect(
+      renderedResults
+        .querySelector('.c-bolt-button')
+        .classList.contains('c-bolt-button--primary'),
+    ).toBe(true);
 
     await page.evaluate(htmlResults => {
       const tempContainer = document.createElement('div');
