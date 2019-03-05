@@ -26,25 +26,12 @@ getConfig().then(async boltConfig => {
   config.env = 'pwa';
   config.sourceMaps = false;
 
-  // config.components.global = config.components.global.filter(
-  //   item =>
-  //     !item.includes('bolt-icons') &&
-  //     !item.includes('bolt-critical') &&
-  //     !item.includes('packages/core/index.js'),
-  // );
-
   const webpackConfig = await createWebpackConfig(config);
 
+  // strip out Sass files from Webpack Entry to speed up compile times
   webpackConfig[0].entry['bolt-global'] = webpackConfig[0].entry[
     'bolt-global'
-  ].filter(
-    item => !item.includes('.scss'),
-    // !item.includes('bolt-critical') &&
-    // !item.includes('bolt-icons') &&
-    // !item.includes('bolt-video') &&
-    // !item.includes('packages/core/index.js') &&
-    // !item.includes('packages/global/styles/index.js'),
-  );
+  ].filter(item => !item.includes('.scss'));
 
   const staticDir = path.join(process.cwd(), config.wwwDir);
 
