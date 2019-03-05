@@ -1,12 +1,18 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
 title: Band
 type: object
-# not:
-#   anyOf:
-#     - required:
-#       - fullBleed
-#     - required:
-#       - contentTag
+not:
+  anyOf:
+    - required:
+      - fullBleed
+    - required:
+      - contentTag
+    - required:
+      - items
+    - required:
+      - row_gutter
+    - required:
+      - content_row_start
 properties:
   attributes:
     type: object
