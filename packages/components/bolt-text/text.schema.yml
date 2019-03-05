@@ -39,6 +39,29 @@ properties:
     enum:
       - theme-headline
       - theme-body
+  align:
+    description: Text alignment.
+    type: string
+    default: inherit
+    enum:
+      - inherit
+      - start
+      - center
+      - end
+  opacity:
+    type: number
+    description: Opacity level.
+    default: 100
+    enum:
+      - 100
+      - 80
+      - 60
+      - 40
+      - 20
+  quoted:
+    type: boolean
+    description: Quoted text.
+    default: false
   line-height:
     type: string
     description: Line height in context of the typographic design.
@@ -47,15 +70,6 @@ properties:
       - tight
       - regular
       - loose
-  align:
-    description: Text alignment.
-    type: string
-    default: inherit
-    enum:
-      - inherit
-      - left
-      - center
-      - right
   letter-spacing:
     type: string
     description: Letter spacing in context of the typographic design.
@@ -108,23 +122,6 @@ properties:
     enum:
       - regular
       - italic
-  opacity:
-    type: number
-    description: Opacity level.
-    default: 100
-    enum:
-      - 100
-      - 80
-      - 60
-      - 40
-      - 20
-  quoted:
-    type: boolean
-    description: Quoted text.
-    default: false
-  url:
-    type: string
-    description: If provided, turns headline into a link to given url.
   headline:
     type: boolean
     description: A preset for headlines in context of the typographic design.
@@ -137,6 +134,9 @@ properties:
     type: boolean
     description: A preset for eyebrow in context of the typographic design.
     default: false
+  url:
+    type: string
+    description: If provided, turns headline into a link to given url.
   util:
     type: array
     description: Each item in the array will build a utility class. No need to include `u-bolt-`. **For the web component** use comma separated string.
