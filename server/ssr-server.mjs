@@ -62,12 +62,7 @@ getConfig().then(async boltConfig => {
       parser: 'html',
     });
 
-    console.log(
-      highlight.highlight(renderedHTML, {
-        language: 'html',
-        ignoreIllegals: true,
-      }),
-    );
+    console.log(renderedHTML);
 
     await shutDownSSRServer();
   });

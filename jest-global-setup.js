@@ -16,7 +16,6 @@ module.exports = async function globalSetup() {
   const config = await getConfig();
   await buildPrep(); // Generate folders, manifest data, etc needed for Twig renderer
   await imageTasks.processImages(); // process image fixtures used by any tests
-  await teardown(); // close down any still-open testing servers before spinning up a new one
 
   await setupDevServer({
     command: `node server/testing-server`,
