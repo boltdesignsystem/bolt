@@ -1,7 +1,7 @@
 {% extends "@pl/_default-page-template.twig" %}
 
 {% block global_header %}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "dark",
     attributes: {
@@ -16,7 +16,7 @@
 
 {% block main_content %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xlight"
   } %}
@@ -135,7 +135,7 @@
     {% endblock %}
   {% endembed %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xlight"
   } only %}
@@ -166,7 +166,7 @@
   {% endembed %}
 
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xlight"
   } only %}
@@ -269,7 +269,7 @@
     {% endblock %}
   {% endembed %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "small",
     theme: "xlight",
     attributes: {
@@ -332,7 +332,7 @@
     {% endblock %}
   {% endembed %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     theme: "xdark",
     size: "medium"
   } %}
