@@ -244,6 +244,39 @@ exports[`button Default <bolt-button> with Shadow DOM renders 3`] = `
 </bolt-button>
 `;
 
+exports[`button Twig-integrated server-side rendering can pre-render the <bolt-button> web component 1`] = `
+
+<bolt-button>
+  <button class="c-bolt-button c-bolt-button--center c-bolt-button--primary c-bolt-button--medium c-bolt-button--border-radius-regular">
+    <span class="c-bolt-button__icon is-empty">
+      <slot name="before">
+      </slot>
+    </span>
+    <span class="c-bolt-button__item">
+      SSR via pure web component!
+      <bolt-icon name="chevron-right">
+        <div class="c-bolt-icon c-bolt-icon--chevron-right">
+          <svg class="c-bolt-icon__icon"
+               viewbox="0 0 32 32"
+          >
+            <path fill="var(--bolt-theme-icon, currentColor)"
+                  fill-rule="evenodd"
+                  d="M12.938 7.054a1.34 1.34 0 0 0-1.884 0 1.339 1.339 0 0 0 0 1.884l7.059 7.06-7.059 7.059a1.34 1.34 0 0 0 0 1.884 1.329 1.329 0 0 0 1.883 0l8-8a1.323 1.323 0 0 0 0-1.885l-7.999-8.002z"
+            >
+            </path>
+          </svg>
+        </div>
+      </bolt-icon>
+    </span>
+    <span class="c-bolt-button__icon is-empty">
+      <slot name="after">
+      </slot>
+    </span>
+  </button>
+</bolt-button>
+
+`;
+
 exports[`button basic button 1`] = `
 
 <bolt-button align="center"

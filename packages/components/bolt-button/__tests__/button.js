@@ -190,7 +190,7 @@ describe('button', async () => {
   });
 
   test('Twig-integrated server-side rendering can pre-render the <bolt-button> web component', async () => {
-    const results = await renderString(`
+    const results = await renderTwigString(`
       {% filter bolt_ssr %}
         <bolt-button>
           SSR via pure web component!
@@ -201,6 +201,9 @@ describe('button', async () => {
 
     const htmlResults = results.html;
     const renderedResults = await html(results.html);
+
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
 
     expect(renderedResults.querySelector('.c-bolt-button').tagName).toBe(
       'button',
