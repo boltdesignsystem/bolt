@@ -42,6 +42,13 @@ async function init(keepAlive = false) {
   state = STATES.READY;
 }
 
+/**
+ * Stops any currently running Twig Renderer instances
+ */
+async function stop() {
+  twigRenderer.stop();
+}
+
 async function prep(keepAlive) {
   switch (state) {
     case STATES.READY:
@@ -96,4 +103,5 @@ async function renderString(templateString, data = {}, keepAlive = false) {
 module.exports = {
   render,
   renderString,
+  stop,
 };
