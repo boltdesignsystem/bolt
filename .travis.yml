@@ -12,6 +12,9 @@ before_install:
 
 services:
   - docker
+  
+git:
+  depth: 2
 
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
