@@ -60,9 +60,9 @@ jobs:
       name: 'Build + Deploy'
       before_install: find . -name '.incache' -exec rm -rf {} + # Clear incache file on normal Travis builds
       install: yarn run setup
-      script: yarn run build
-      deploy: yarn run deploy
-      after_deploy:
+      script: 
+        - yarn run build
+        - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
