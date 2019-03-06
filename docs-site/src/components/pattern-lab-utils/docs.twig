@@ -350,3 +350,17 @@
 
   </div>
 </div>
+
+<div class="c-bds-docs__page-examples">
+  {% if schema.examples %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      tag: "h2",
+      text: "Examples"
+    } only %}
+
+    {% for example in schema.examples %}
+      {% include "@bolt-components-#{componentName}/#{componentName}.twig" ignore missing with example only %}
+    {% endfor %}
+  {% endif %}
+</div>
