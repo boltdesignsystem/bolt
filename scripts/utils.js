@@ -23,7 +23,7 @@ function post({ path, requestBody, query, TOKEN }) {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `token ${TOKEN}`,
+        Authorization: `Bearer ${TOKEN || process.env.NOW_TOKEN}`,
       },
     };
 
@@ -63,7 +63,7 @@ function get({ path, query, hostname, TOKEN }) {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `token ${TOKEN}`,
+        Authorization: `Bearer ${TOKEN || process.env.NOW_TOKEN}`,
       },
     };
     const req = http.request(options, res => {
@@ -96,9 +96,13 @@ function getLatestDeploy() {
     get({
       path: '/v4/now/deployments',
       hostname: 'api.zeit.co',
-      TOKEN: process.env.NOW_TOKEN,
       query: {
         teamId: 'team_etXPus2wqbe3W15GcdHsbAs8', // boltdesignsystem
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${process.env.NOW_TOKEN}`,
       },
     })
       .then(results => {
