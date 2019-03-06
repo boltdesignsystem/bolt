@@ -26,7 +26,7 @@ jobs:
   include:
     - stage: Prep
       name: 'Smoke Tests: Linting'
-      install: yarn run setup:quick
+      install: travis_retry yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Lint'
       script: yarn run lint
       after_success: ./scripts/check-run-success.js 'Lint'
@@ -42,7 +42,7 @@ jobs:
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
-      install: yarn run setup:quick
+      install: travis_retry yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Unit'
       script: yarn run test
       after_success: ./scripts/check-run-success.js 'Unit'
@@ -61,9 +61,9 @@ jobs:
       script:
         # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
-        - yarn run setup
+        - travis_retry yarn run setup
         - yarn run build
-        - yarn run deploy
+        - travis_wait 15 yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
@@ -78,7 +78,7 @@ jobs:
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
-      install: yarn run setup
+      install: travis_retry yarn run setup
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
@@ -101,7 +101,7 @@ jobs:
 
     - stage: Test Live Site
       name: 'Ensure site is live'
-      install: yarn run setup
+      install: travis_retry yarn run setup
       before_script: ./scripts/check-run-in-progress.js 'Site is live'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
