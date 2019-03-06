@@ -1,0 +1,137 @@
+diff --git a/src/PatternLab/PatternData.php b/src/PatternLab/PatternData.php
+index 82890fe50..5eab40386 100644
+--- a/src/PatternLab/PatternData.php
++++ b/src/PatternLab/PatternData.php
+@@ -92,7 +92,8 @@ class PatternData {
+ 	* Gather all of the information related to the patterns
+ 	*/
+ 	public static function gather($options = array()) {
+-
++		$dataOnly =  (isset($options["dataOnly"])) ? $options["dataOnly"] : false;
++		
+ 		// set default vars
+ 		$exportClean        = (isset($options["exportClean"])) ? $options["exportClean"] : false;
+ 		$exportFiles        = (isset($options["exportClean"])) ? $options["exportFiles"] : false;
+@@ -193,71 +194,72 @@ class PatternData {
+ 		$dataLinkExporter       = new DataLinkExporter();
+ 		$dataLinkExporter->run();
+ 
+-		// make sure all of the appropriate pattern data is pumped into $this->d for rendering patterns
+-		$dataMergeExporter       = new DataMergeExporter();
+-		$dataMergeExporter->run();
++		if ($dataOnly == false){
++			// make sure all of the appropriate pattern data is pumped into $this->d for rendering patterns
++			$dataMergeExporter       = new DataMergeExporter();
++			$dataMergeExporter->run();
+ 
+-		// dispatch that the raw pattern helper is about to start
+-		$event = new PatternDataEvent($options);
+-		$dispatcherInstance->dispatch("patternData.rawPatternHelperStart",$event);
++			// dispatch that the raw pattern helper is about to start
++			$event = new PatternDataEvent($options);
++			$dispatcherInstance->dispatch("patternData.rawPatternHelperStart",$event);
+ 
+-		// add the lineage info to PatternData::$store
+-		$rawPatternHelper        = new RawPatternHelper();
+-		$rawPatternHelper->run();
++			// add the lineage info to PatternData::$store
++			$rawPatternHelper        = new RawPatternHelper();
++			$rawPatternHelper->run();
+ 
+-		// dispatch that the raw pattern helper is ended
+-		$event = new PatternDataEvent($options);
+-		$dispatcherInstance->dispatch("patternData.rawPatternHelperEnd",$event);
++			// dispatch that the raw pattern helper is ended
++			$event = new PatternDataEvent($options);
++			$dispatcherInstance->dispatch("patternData.rawPatternHelperEnd",$event);
+ 
+-		// dispatch that the lineage helper is about to start
+-		$event = new PatternDataEvent($options);
+-		$dispatcherInstance->dispatch("patternData.lineageHelperStart",$event);
++			// dispatch that the lineage helper is about to start
++			$event = new PatternDataEvent($options);
++			$dispatcherInstance->dispatch("patternData.lineageHelperStart",$event);
+ 
+-		// add the lineage info to PatternData::$store
+-		$lineageHelper           = new LineageHelper();
+-		$lineageHelper->run();
++			// add the lineage info to PatternData::$store
++			$lineageHelper           = new LineageHelper();
++			$lineageHelper->run();
+ 
+-		// dispatch that the lineage helper is ended
+-		$event = new PatternDataEvent($options);
+-		$dispatcherInstance->dispatch("patternData.lineageHelperEnd",$event);
++			// dispatch that the lineage helper is ended
++			$event = new PatternDataEvent($options);
++			$dispatcherInstance->dispatch("patternData.lineageHelperEnd",$event);
+ 
+ 
+-		// dispatch that the pattern state helper is about to start
+-		$event = new PatternDataEvent($options);
+-		$dispatcherInstance->dispatch("patternData.patternStateHelperStart",$event);
++			// dispatch that the pattern state helper is about to start
++			$event = new PatternDataEvent($options);
++			$dispatcherInstance->dispatch("patternData.patternStateHelperStart",$event);
+ 
+-		// using the lineage info update the pattern states on PatternData::$store
+-		$patternStateHelper      = new PatternStateHelper();
+-		$patternStateHelper->run();
++			// using the lineage info update the pattern states on PatternData::$store
++			$patternStateHelper      = new PatternStateHelper();
++			$patternStateHelper->run();
+ 
+-		// dispatch that the pattern state helper is ended
+-		$event = new PatternDataEvent($options);
+-		$dispatcherInstance->dispatch("patternData.patternStateHelperEnd",$event);
+-
+-		// set-up code pattern paths
+-		$ppdExporter             = new PatternPathSrcExporter();
+-		$patternPathSrc          = $ppdExporter->run();
+-		$options                 = array();
+-		$options["patternPaths"] = $patternPathSrc;
++			// dispatch that the pattern state helper is ended
++			$event = new PatternDataEvent($options);
++			$dispatcherInstance->dispatch("patternData.patternStateHelperEnd",$event);
+ 
+-		// dispatch that the code helper is about to start
+-		$event = new PatternDataEvent($options);
+-		$dispatcherInstance->dispatch("patternData.codeHelperStart",$event);
++			// set-up code pattern paths
++			$ppdExporter             = new PatternPathSrcExporter();
++			$patternPathSrc          = $ppdExporter->run();
++			$options                 = array();
++			$options["patternPaths"] = $patternPathSrc;
+ 
+-		// render out all of the patterns and store the generated info in PatternData::$store
+-		$options["exportFiles"]  = $exportFiles;
+-		$options["exportClean"]  = $exportClean;
+-		$patternCodeHelper       = new PatternCodeHelper($options);
+-		$patternCodeHelper->run();
++			// dispatch that the code helper is about to start
++			$event = new PatternDataEvent($options);
++			$dispatcherInstance->dispatch("patternData.codeHelperStart",$event);
+ 
+-		// dispatch that the pattern code helper is ended
+-		$event = new PatternDataEvent($options);
+-		$dispatcherInstance->dispatch("patternData.patternCodeHelperEnd",$event);
++			// render out all of the patterns and store the generated info in PatternData::$store
++			$options["exportFiles"]  = $exportFiles;
++			$options["exportClean"]  = $exportClean;
++			$patternCodeHelper       = new PatternCodeHelper($options);
++			$patternCodeHelper->run();
+ 
+-		// dispatch that the gather has ended
+-		$event = new PatternDataEvent($options);
+-		$dispatcherInstance->dispatch("patternData.gatherEnd",$event);
++			// dispatch that the pattern code helper is ended
++			$event = new PatternDataEvent($options);
++			$dispatcherInstance->dispatch("patternData.patternCodeHelperEnd",$event);
+ 
++			// dispatch that the gather has ended
++			$event = new PatternDataEvent($options);
++			$dispatcherInstance->dispatch("patternData.gatherEnd",$event);
++		}
+ 	}
+ 
+ 	/**
