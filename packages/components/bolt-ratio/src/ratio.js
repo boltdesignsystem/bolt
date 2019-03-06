@@ -5,21 +5,32 @@ import {
   supportsCSSVars,
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { styleMap } from 'lit-html/directives/style-map.js';
 
 import styles from './ratio.scss';
 
 function BoltRatio() {
   return class BoltRatioClass extends withLitHtml() {
     static props = {
-      aspectRatioHeight: props.number,
-      aspectRatioWidth: props.number,
+      ratio: props.string,
+      _ratioW: props.string, // internal only prop for handling the width-specific data from the ratio prop
+      _ratioH: props.string, // internal only prop for handling the height-specific data from the ratio prop
+      aspectRatioHeight: props.number, // deprecated - will be removed in Bolt v3.0
+      aspectRatioWidth: props.number, // deprecated - will be removed in Bolt v3.0
+      noCssVars: {
+        ...props.boolean,
+        ...{ default: supportsCSSVars ? false : true },
+      },
     };
 
     constructor(self) {
       self = super(self);
-      this.useShadow = hasNativeShadowDomSupport;
-      this.useCssVars = supportsCSSVars;
       return self;
+    }
+
+    updating() {
+      super.updating && super.updating();
+      this._computeRatio();
     }
 
     /**
@@ -28,38 +39,35 @@ function BoltRatio() {
      * @param {Number} aspW - the width component of the ratio
      */
     _computeRatio() {
-      const height =
-        this.props.aspectRatioHeight && this.props.aspectRatioHeight > 0
-          ? this.props.aspectRatioHeight
-          : 1;
-
-      const width =
-        this.props.aspectRatioWidth && this.props.aspectRatioWidth > 0
-          ? this.props.aspectRatioWidth
-          : 1;
-
-      if (this.useCssVars) {
-        this.style.setProperty('--aspect-ratio-height', height);
-        this.style.setProperty('--aspect-ratio-width', width);
-        this.style.paddingTop = '';
+      if (this.props.aspectRatioHeight && this.props.aspectRatioWidth) {
+        this._ratioH = this.props.aspectRatioHeight;
+        this._ratioW = this.props.aspectRatioWidth;
       } else {
-        this.style.paddingTop = `${100 * (height / width)}%`;
-        this.style.removeProperty('--aspect-ratio-height');
-        this.style.removeProperty('--aspect-ratio-width');
+        this._ratioH = this.props.ratio ? this.props.ratio.split('/')[1] : 1;
+        this._ratioW = this.props.ratio ? this.props.ratio.split('/')[0] : 1;
       }
     }
 
     connecting() {
+      super.connecting && super.connecting();
       this._computeRatio();
     }
 
     // Render out component via Lit-HTML
     render() {
-      const classes = css(`o-${bolt.namespace}-ratio__inner`);
+      const inlineStyles = this.noCssVars
+        ? {
+            'padding-bottom': `${100 * (this._ratioH / this._ratioW)}%`,
+          }
+        : {
+            '--aspect-ratio': `${this._ratioW / this._ratioH}`,
+          };
 
       return html`
         ${this.addStyles([styles])}
-        <div class="${classes}">${this.slot('default')}</div>
+        <div class="${css(`c-bolt-ratio`)}" style=${styleMap(inlineStyles)}>
+          ${this.slot('default')}
+        </div>
       `;
     }
   };
