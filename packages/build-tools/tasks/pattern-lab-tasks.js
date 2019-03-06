@@ -60,7 +60,9 @@ async function compile(errorShouldExit, dataOnly = false) {
     };
 
     const endRecompilingPlMsg = function(startTime) {
-      return `${plTaskName} recompiled in ${chalk.bold(timer.end(startTime))}`;
+      return `${plTaskName} ${
+        initialBuild ? 'compiled' : 'recompiled'
+      } in ${chalk.bold(timer.end(startTime))}`;
     };
 
     const plSpinner = new Ora(
@@ -89,7 +91,9 @@ async function compile(errorShouldExit, dataOnly = false) {
           ),
         );
 
-        initialBuild = false;
+        if (!dataOnly) {
+          initialBuild = false;
+        }
 
         if (config.verbosity > 2) {
           console.log('---');
@@ -113,10 +117,12 @@ async function compile(errorShouldExit, dataOnly = false) {
           ),
         );
 
-        initialBuild = false;
+        if (!dataOnly) {
+          initialBuild = false;
+        }
 
         console.log(error);
-        // reject(error);
+        reject(error);
       });
   });
 }
@@ -124,39 +130,51 @@ async function compile(errorShouldExit, dataOnly = false) {
 async function precompile() {
   config = config || (await asyncConfig());
 
-  const jsFolderExists = await dirExists(
-    path.join(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/js/'),
-  );
+  return new Promise(async (resolve, reject) => {
+    const jsFolderExists = await dirExists(
+      path.join(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/js/'),
+    );
 
-  const scssFolderExists = await dirExists(
-    path.join(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/css/'),
-  );
+    const scssFolderExists = await dirExists(
+      path.join(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/css/'),
+    );
 
-  const indexHtmlExists = await fileExists(
-    path.join(process.cwd(), config.wwwDir, 'pattern-lab/index.html'),
-  );
+    const indexHtmlExists = await fileExists(
+      path.join(process.cwd(), config.wwwDir, 'pattern-lab/index.html'),
+    );
 
-  const isPatternLabAlreadyCompiled =
-    jsFolderExists && scssFolderExists && indexHtmlExists;
+    const isPatternLabAlreadyCompiled =
+      jsFolderExists && scssFolderExists && indexHtmlExists;
 
-  await compile(true).then(output => {
-    // check if pattern lab's UIKIt assets exist -- automatically regenerate if the required assets are missing.
-    if (!isPatternLabAlreadyCompiled || config.prod === true) {
-      chalk.yellow('⚠️ Uh-oh. Pattern Labs UIKit is missing... Regenerating!');
-      sh(
-        'yarn',
-        [
-          '--cwd',
-          path.join(process.cwd(), '../packages/uikit-workshop'),
-          'run',
-          'build',
-        ],
-        false,
-        true,
-      ).then(output => {
-        // console.log(output);
+    await compile(true)
+      .then(output => {
+        // check if pattern lab's UIKIt assets exist -- automatically regenerate if the required assets are missing.
+        if (!isPatternLabAlreadyCompiled || config.prod === true) {
+          chalk.yellow(
+            '⚠️ Uh-oh. Pattern Labs UIKit is missing... Regenerating!',
+          );
+          sh(
+            'yarn',
+            [
+              '--cwd',
+              path.join(process.cwd(), '../packages/uikit-workshop'),
+              'run',
+              'build',
+            ],
+            false,
+            true,
+          ).then(output => {
+            // console.log(output);
+            resolve();
+          });
+        } else {
+          resolve();
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        reject(error);
       });
-    }
   });
 }
 
