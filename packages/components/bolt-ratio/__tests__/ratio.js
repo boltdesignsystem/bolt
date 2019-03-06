@@ -49,8 +49,13 @@ describe('<bolt-ratio> Component', async () => {
       document.body.appendChild(ratio);
       return ratio.outerHTML;
     });
+    expect(renderedRatioHTML).toMatchSnapshot();
 
     const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
 
     const renderedRatioStyles = await page.evaluate(() => {
       const ratio = document.querySelector('bolt-ratio');
@@ -59,13 +64,6 @@ describe('<bolt-ratio> Component', async () => {
     });
 
     expect(renderedRatioStyles).toMatch(parseFloat(1200 / 660).toFixed(5));
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
-
-    expect(renderedRatioHTML).toMatchSnapshot();
   });
 
   test('<bolt-ratio> with HTML5 video renders', async function() {
