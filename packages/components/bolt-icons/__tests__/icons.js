@@ -4,23 +4,72 @@ import { render, stop as stopTwigRenderer } from '@bolt/twig-renderer';
 const fs = require('fs-extra');
 const path = require('path');
 const resolve = require('resolve');
+const yaml = require('js-yaml');
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
 }
 
+async function collectFileNames(dir, fileList = []) {
+  fs.readdirSync(dir).map(file => {
+    fileList = fs.statSync(path.join(dir, file)).isDirectory()
+      ? walkSync(path.join(dir, file), fileList)
+      : [...fileList, path.parse(file).name];
+  });
+  return fileList;
+}
+
 const timeout = 60000;
+const boltIconsDir = path.dirname(resolve.sync('@bolt/components-icons/package.json'));
+const boltIconDir = path.dirname(resolve.sync('@bolt/components-icon/package.json'));
+const iconsJsFile = path.join(boltIconsDir, 'src/index.js');
+const schemaFile = path.join(boltIconDir, 'icon.schema.yml');
+const schema = yaml.safeLoad(fs.readFileSync(schemaFile, 'utf8'));
 
 describe('<bolt-icon> Component', async () => {
   let page;
 
   afterAll(async () => {
-    fs.remove(
-      path.join(
-        path.dirname(resolve.sync('@bolt/components-icons/package.json')),
-        'src/icons/yeti.js',
-      ),
+    const icons = await collectFileNames(
+      path.join(boltIconsDir, '__tests__/icons/'),
     );
+
+    await icons.map(icon => {
+      fs.remove(path.join(boltIconsDir, `src/icons/${icon}.js`));
+    });
+
+    await fs.readFile(iconsJsFile, { encoding: 'utf-8' }, (err, data) => {
+      if (err) throw error;
+
+      let dataArray = data.split('\n');
+
+      for (const line of icons) {
+        dataArray = dataArray.filter(function(item) {
+          return item !== `export * from './icons/${line}';`;
+        });
+      }
+
+      const updatedData = dataArray.join('\n');
+      fs.writeFile(iconsJsFile, updatedData, 'utf-8');
+    });
+
+    await yaml.safeLoad(
+      fs.readFile(schemaFile, { encoding: 'utf-8' }, (err, data) => {
+        if (err) throw error;
+
+        let schemaIconNames = schema.properties.name.enum;
+
+        for (const icon of icons) {
+          schemaIconNames = schemaIconNames.filter(function(item) {
+            return item !== icon;
+          });
+        }
+
+        schema.properties.name.enum = schemaIconNames;
+        fs.writeFile(schemaFile, yaml.safeDump(schema));
+      }),
+    );
+
     await stopTwigRenderer();
   }, timeout);
 
