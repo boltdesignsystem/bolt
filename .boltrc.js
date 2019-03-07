@@ -29,8 +29,30 @@ const imageSets = [];
 imageFixtureDirs.forEach((fixturePath) => {
   imageSets.push({
     base: fixturePath,
-    glob: '**',
+    glob: '*.{jpg,jpeg,png}',
     dist: path.join(adjustRelativePath(siteConfig.wwwDir), 'fixtures'),
+  });
+});
+
+const nonImageFixtures = globby.sync([
+  './packages/components/**/fixtures/**/*',
+  '!./packages/components/**/fixtures/**/*.{jpg,jpeg,png}',
+]);
+const itemsToCopy = [];
+
+nonImageFixtures.forEach((fixturePath) => {
+  itemsToCopy.push({
+    from: path.join(__dirname, fixturePath),
+    to: path.join(__dirname, adjustRelativePath(siteConfig.wwwDir), 'fixtures/'),
+    flatten: true,
+  });
+});
+
+siteConfig.copy.forEach((item) => {
+  itemsToCopy.push({
+    from: path.join(__dirname, adjustRelativePath(item.from)),
+    to: path.join(__dirname, adjustRelativePath(item.to)),
+    flatten: item.flatten,
   });
 });
 
@@ -51,4 +73,12 @@ module.exports = {
   prod: true,
   enableCache: true,
   verbosity: 1,
+  copy: [
+    ...itemsToCopy,
+    {
+      from: './packages/global/fonts/',
+      to: path.join(__dirname, adjustRelativePath(siteConfig.buildDir), 'fonts/'),
+      flatten: true,
+    }
+  ],
 };

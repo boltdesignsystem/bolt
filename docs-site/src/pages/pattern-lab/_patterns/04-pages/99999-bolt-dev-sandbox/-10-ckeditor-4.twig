@@ -50,12 +50,12 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/balloon/ckeditor.js"></script> #}
 
   {% endset %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "theme": "dark",
     "size": "large",
     "content": header
   } only %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "theme": "xlight",
     "content": article
   } only %}
