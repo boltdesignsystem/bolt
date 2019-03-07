@@ -20,8 +20,12 @@ async function collectFileNames(dir, fileList = []) {
 }
 
 const timeout = 60000;
-const boltIconsDir = path.dirname(resolve.sync('@bolt/components-icons/package.json'));
-const boltIconDir = path.dirname(resolve.sync('@bolt/components-icon/package.json'));
+const boltIconsDir = path.dirname(
+  resolve.sync('@bolt/components-icons/package.json'),
+);
+const boltIconDir = path.dirname(
+  resolve.sync('@bolt/components-icon/package.json'),
+);
 const iconsJsFile = path.join(boltIconsDir, 'src/index.js');
 const schemaFile = path.join(boltIconDir, 'icon.schema.yml');
 const schema = yaml.safeLoad(fs.readFileSync(schemaFile, 'utf8'));
