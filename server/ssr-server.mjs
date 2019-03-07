@@ -1,12 +1,12 @@
 import path from 'path';
 import express from 'express';
-import webpack from 'webpack';
-import createWebpackConfig from '@bolt/build-tools/create-webpack-config';
+import fs from 'fs';
+import * as utils from '@bolt/build-tools/utils/general';
 import * as configStore from '@bolt/build-tools/utils/config-store.js';
 import prettier from 'prettier';
-import highlight from 'cli-highlight';
-import { renderPage } from './ssr-server.puppeteer';
-import { template } from './ssr-server.template';
+// import highlight from 'cli-highlight';
+import { renderPage } from './ssr-server.puppeteer.mjs';
+import { template } from './ssr-server.template.js';
 const getConfig = configStore.default.getConfig;
 
 const htmlToRender = process.argv[2] || '';
@@ -26,12 +26,7 @@ getConfig().then(async boltConfig => {
   config.env = 'pwa';
   config.sourceMaps = false;
 
-  const webpackConfig = await createWebpackConfig(config);
-
-  // strip out Sass files from Webpack Entry to speed up compile times
-  webpackConfig[0].entry['bolt-global'] = webpackConfig[0].entry[
-    'bolt-global'
-  ].filter(item => !item.includes('.scss'));
+  let webpackConfig;
 
   const staticDir = path.join(process.cwd(), config.wwwDir);
 
@@ -41,32 +36,65 @@ getConfig().then(async boltConfig => {
   server = await app.listen(port);
   await setupServer();
 
-  // console.log(`Express listening on http://localhost:${port}`);
-  await webpack(webpackConfig, async (err, webpackStats) => {
-    // @todo: handle webpack errors
-    // if (err || webpackStats.hasErrors()) {}
-    const webpackStatsGenerated = webpackStats.toJson().children[0]
-      .assetsByChunkName;
+  const manifestPath = path.join(
+    config.buildDir,
+    'bolt-webpack-manifest.server.json',
+  );
 
-    app.get('/ssr', function(req, res) {
-      res.send(template.render(htmlToRender, webpackStatsGenerated, config));
+  if (utils.default.fileExists(manifestPath)) {
+    const webpackStatsGenerated = JSON.parse(fs.readFileSync(manifestPath));
+    await ssrRenderHTML(htmlToRender, webpackStatsGenerated, config, port);
+  } else {
+    Promise.all([
+      import('webpack'),
+      import('@bolt/build-tools/create-webpack-config'),
+    ]).then(async modules => {
+      const webpack = modules[0].default;
+      const createWebpackConfig = modules[1].default;
+
+      webpackConfig = await createWebpackConfig(config);
+
+      // strip out Sass files from Webpack Entry to speed up compile times
+      webpackConfig[0].entry['bolt-global'] = webpackConfig[0].entry[
+        'bolt-global'
+      ].filter(item => !item.includes('.scss'));
+
+      await webpack(webpackConfig, async (err, webpackStats) => {
+        // @todo: handle webpack errors
+        // if (err || webpackStats.hasErrors()) {}
+        const webpackStatsGenerated = webpackStats.toJson().children[0]
+          .assetsByChunkName;
+
+        await ssrRenderHTML(htmlToRender, webpackStatsGenerated, config, port);
+      });
     });
-
-    const htmlResult = await renderPage(port);
-
-    const renderedHTML = prettier.format(htmlResult, {
-      singleQuote: true,
-      trailingComma: 'es5',
-      bracketSpacing: true,
-      jsxBracketSameLine: true,
-      parser: 'html',
-    });
-
-    console.log(renderedHTML);
-
-    await shutDownSSRServer();
-  });
+  }
 });
+
+async function ssrRenderHTML(
+  htmlToRender,
+  webpackStatsGenerated,
+  config,
+  port,
+) {
+  app.get('/ssr', function(req, res) {
+    res.send(template.render(htmlToRender, webpackStatsGenerated, config));
+  });
+
+  const htmlResult = await renderPage(port);
+
+  const renderedHTML = prettier.format(htmlResult, {
+    singleQuote: true,
+    trailingComma: 'es5',
+    bracketSpacing: true,
+    jsxBracketSameLine: true,
+    parser: 'html',
+  });
+
+  console.log(renderedHTML);
+
+  await shutDownSSRServer();
+}
 
 async function setupServer() {
   // handle cleaning up + shutting down the server instance
