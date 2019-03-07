@@ -6,7 +6,7 @@ import * as configStore from '@bolt/build-tools/utils/config-store.js';
 import prettier from 'prettier';
 // import highlight from 'cli-highlight';
 import { renderPage } from './ssr-server.puppeteer.mjs';
-import { template } from './ssr-server.template.js';
+import { template } from './ssr-server.template.mjs';
 const getConfig = configStore.default.getConfig;
 
 const htmlToRender = process.argv[2] || '';
