@@ -13,7 +13,8 @@ class Utils {
   const repoRoot = __DIR__ . '/../../../';
 
   /**
-   * Markdown to HTML
+   * Convert markdown to HTML.
+   *
    * @param $string - String of Markdown
    * @return string - HTML from Markdown
    */
@@ -40,9 +41,9 @@ class Utils {
     return $absolutePath;
   }
 
-
-  // Try to resolve an optionally-needed Twig path -- good for lazy and async work (esp local dev work);
-   /**
+  /**
+   * Try to resolve an optionally-needed Twig path -- good for lazy and async work (esp local dev work).
+   *
    * @param {Twig_Environment} $env
    * @param {string} $templateName
    * @return {string} $full_path - Full path to where the Twig file resides
@@ -86,7 +87,8 @@ class Utils {
   }
 
   /**
-   * Dashes to camelCase string converter
+   * Dashes to camelCase string converter.
+   *
    * @param $string - Takes something like `my-cool-string`
    * @return string - Returns `myCoolString`
    */
@@ -96,7 +98,8 @@ class Utils {
   }
 
   /**
-   * Map input case type to CaseHelper reference name
+   * Map input case type to CaseHelper reference name.
+   *
    * @param string $type - Exact name of a case type
    * @return number - Returns a number that refers to a CaseHelper input type
    */
@@ -121,7 +124,8 @@ class Utils {
   }
 
   /**
-   * Check a string's case type, used when converting case type. Note: can only reliably detect snake and kebab case.
+   * Get a string's case type, used when converting case type. Note: can only reliably detect snake and kebab case.
+   *
    * @param string $string - String to be checked
    * @return string - Returns detected case type name, defaults to camelcase
    */
@@ -136,7 +140,8 @@ class Utils {
   }
   
   /**
-   * Convert string to snake_case
+   * Convert string to snake_case.
+   *
    * @param string $string - String to be converted
    * @param string $type - Name of current string format
    * @return string - Returns string formatted in snake_case
@@ -147,7 +152,8 @@ class Utils {
   }
 
   /**
-   * Convert string to kebab-case
+   * Convert string to kebab-case.
+   *
    * @param string $string - String to be converted
    * @param string $type - Name of current string format
    * @return string - Returns string formatted in kebab-case
@@ -158,7 +164,8 @@ class Utils {
   }
 
   /**
-   * Get path to file on GitHub
+   * Get path to file on GitHub.
+   *
    * @param string $filePath - Absolute path to a file in repo
    * @return string - URL to file on GitHub
    */
@@ -183,6 +190,7 @@ class Utils {
 
   /**
    * Check that schema "type" does not equal "array" or "object", nor does it contain an array with either of those values.
+   *
    * @param string|array $type - The schema "type" value, can be passed as string or array
    * @return boolean - Returns true if "type" is allowed, i.e. no "array" or "object" values
    */
@@ -194,6 +202,7 @@ class Utils {
 
   /**
    * Build an array of props by checking Twig "_context" against the schema, only returns top-level schema props. By default prop keys are converted to kebab-case.
+   *
    * @param array $items - Twig "_context", all the available template variables
    * @param array $schema - The schema object for a particular component
    * @param boolean $isInternal - If true default schema values are included in returned array and keys converted to snake_case
