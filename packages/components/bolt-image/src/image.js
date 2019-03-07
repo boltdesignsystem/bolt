@@ -214,10 +214,7 @@ class BoltImage extends withLitHtml() {
 
     const ratioTemplate = children => {
       return html`
-        <bolt-ratio
-          aspect-ratio-width="${ratioW * 1}"
-          aspect-ratio-height="${ratioH * 1}"
-        >
+        <bolt-ratio ratio="${ratioW * 1}/${ratioH * 1}">
           ${children}
         </bolt-ratio>
       `;
