@@ -95,6 +95,9 @@ if (program.configFile) {
             ? config.webpackDevServer
             : options.webpackDevServer;
 
+        config.mode =
+          typeof options.mode === 'undefined' ? config.mode : options.mode;
+
         config.quick =
           typeof options.quick === 'undefined' ? config.quick : options.quick;
 
@@ -124,6 +127,7 @@ if (program.configFile) {
       log.dim(`Verbosity: ${config.verbosity}`);
       log.dim(`Prod: ${config.prod}`);
       log.dim(`i18n: ${config.i18n}`);
+      log.dim(`Rendering Mode: ${config.mode}`);
       if (config.verbosity > 2) {
         log.dim(`Opening browser: ${config.openServerAtStart}`);
         log.dim(`Quick mode: ${config.quick}`);

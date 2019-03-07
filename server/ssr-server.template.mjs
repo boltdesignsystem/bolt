@@ -7,8 +7,13 @@ export const template = {
 
     for (let assetName in webpackAssets) {
       const assetPath = webpackAssets[assetName];
-      if (assetPath.endsWith('.js'))
-        jsAssets.push(path.join(basePath, assetPath));
+      if (assetPath.endsWith('.js') && assetPath.includes('bundle') === false) {
+        if (assetPath.includes(basePath)) {
+          jsAssets.push(assetPath);
+        } else {
+          jsAssets.push('/' + path.join(basePath, assetPath));
+        }
+      }
     }
 
     const html = `
@@ -20,7 +25,7 @@ export const template = {
           ${body}
         </body>
 
-        ${jsAssets.map(path => `<script src="/${path}"></script>`).join('\n')}
+        ${jsAssets.map(path => `<script src="${path}"></script>`).join('\n')}
       </html>
     `;
     return html;

@@ -375,7 +375,9 @@ async function createWebpackConfig(buildConfig) {
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
-        fileName: `bolt-webpack-manifest${langSuffix}.json`,
+        fileName: `bolt-webpack-manifest${langSuffix}${
+          config.mode === 'client' ? '' : `.${config.mode}`
+        }.json`,
         publicPath,
         writeToFileEmit: true,
         seed: {
