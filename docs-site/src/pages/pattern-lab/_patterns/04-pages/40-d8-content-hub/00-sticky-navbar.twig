@@ -7,7 +7,7 @@
 {% block main_content %}
 
   {# hero band #}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "large",
     theme: "dark",
     fullBleed: true,
@@ -30,7 +30,7 @@
 
     {% block band_content  %}
     {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
-      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}    
+      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
         {% include "@bolt/headline.twig" with {
             text: "ROBOTIC AUTOMATION",
             size: "xsmall",
@@ -103,7 +103,7 @@
   {% endblock %}
 {% endembed %}
 
-  
+
   {# End Anchor Band #}
 
 
@@ -118,7 +118,7 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
@@ -128,10 +128,10 @@
             tag: "h2"
             } only %}
             <p>At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture.</p>
-            
+
             <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market."</p>
           {% endcell %}
-      
+
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@medium" %}
             {% include "@bolt-components-card/card.twig" with {
               url: "#!",
@@ -179,7 +179,7 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
             {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
@@ -243,7 +243,7 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
@@ -306,7 +306,7 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
@@ -321,7 +321,7 @@
 
             <p>Pega Workforce Intelligence captures insights at the desktop. It gets you the details of how work gets done. It uses real-time AI to tell you what systems and processes are getting in the way of employee productivity.</p>
 
-            <p>Because once you know the details, you can act. And that makes all the difference.</p>            
+            <p>Because once you know the details, you can act. And that makes all the difference.</p>
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@small" %}
             {% include "@bolt-components-card/card.twig" with {
@@ -370,7 +370,7 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
@@ -433,7 +433,7 @@
     ]
   }
 } %}
-  
+
       {% block band_content  %}
         {% grid "o-bolt-grid--large o-bolt-grid--matrix o-bolt-grid--rev" %}
           {% cell 'u-bolt-width-1/1 u-bolt-width-3/5@medium' %}
@@ -446,7 +446,7 @@
 
             <p>Pega’s enterprise process transformation platform helps orchestrate complex processes, and the Pega Customer Decision Hub supports deterministic rules in addition to advanced adaptive analytics. Rest assured regulatory compliance is maintained across the enterprise.</p>
 
-            <p>Capabilities such as auto self-documentation ensure an audit trail is maintained of all activities so compliance risk is minimized and required reporting is streamlined and automated.</p>      
+            <p>Capabilities such as auto self-documentation ensure an audit trail is maintained of all activities so compliance risk is minimized and required reporting is streamlined and automated.</p>
           {% endcell %}
           {% cell "u-bolt-width-1/1 u-bolt-width-2/5@small u-bolt-margin---small" %}
             {% include "@bolt-components-card/card.twig" with {
@@ -484,7 +484,7 @@
     {% endembed %}
 {# End governance #}
 
-  
+
     {% include '@bolt-components-share/share.twig' with {
       text: 'Custom label',
       sources: [
@@ -507,7 +507,7 @@
       ]
     } only %}
 
-  
+
     {% include '@bolt-components-share/share.twig' with {
       sources: [
         {
@@ -528,6 +528,6 @@
         }
       ]
     } only %}
-    
-  
+
+
 {% endblock %}

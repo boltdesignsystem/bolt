@@ -144,6 +144,11 @@ const config = {
       flatten: true,
     },
     {
+      from: `src/assets/videos`,
+      to: path.join(__dirname, '../www/videos'),
+      flatten: true,
+    },
+    {
       from: `${path.dirname(
         resolve.sync('@bolt/global/package.json'),
       )}/favicons/bolt`,
