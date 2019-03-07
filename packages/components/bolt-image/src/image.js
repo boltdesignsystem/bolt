@@ -1,9 +1,4 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-  containsTagName,
-} from '@bolt/core/utils';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 import extName from 'ext-name';
