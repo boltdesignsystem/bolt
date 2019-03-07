@@ -77,9 +77,7 @@ class BoltImage extends withLitHtml() {
   rendered() {
     super.rendered && super.rendered();
 
-    const lazyImage = this.shadowRoot
-      ? this.shadowRoot.querySelector('.js-lazyload')
-      : this.querySelector('.js-lazyload');
+    const lazyImage = this.renderRoot.querySelector('.js-lazyload');
 
     if (lazyImage) {
       // check if placeholder image has loaded; lazySizes will only unveil an image that is "complete"
