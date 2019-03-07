@@ -50,10 +50,11 @@ class TwigFunctions {
 
   public static function bolt_ssr($html) {
     // locate where the Bolt SSR Server script is physically located so we can call the script + pass along our HTML string to render
-    $p = new Process('npx --quiet lerna ls --json --all | npx --quiet json -a -c "this.name === \'@bolt/server\'" location');
+    $p = new Process('npx --quiet lerna ls --json --all | npx --quiet json -a -c "this.name === \'@bolt/ssr-server\'" location');
     $p->run();
-    $ssrServerPath = trim($p->getOutput()).'/ssr-server.mjs';
+    $ssrServerPath = trim($p->getOutput()).'/index.mjs';
 
+    // $process = new Process(['node', '--experimental-modules', '--no-warnings', $ssrServerPath, $html]);
     $process = new Process(['node', '-r', 'esm', $ssrServerPath, $html]);
     $process->setTimeout(3600);
     $process->setIdleTimeout(240);

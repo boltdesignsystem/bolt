@@ -14,11 +14,11 @@ const teardown = require('./jest-global-teardown.js');
 
 module.exports = async function globalSetup() {
   const config = await getConfig();
-  await buildPrep(); // Generate folders, manifest data, etc needed for Twig renderer
+  await buildPrep({ cleanAll: true }); // clear out all folders before running
   await imageTasks.processImages(); // process image fixtures used by any tests
 
   await setupDevServer({
-    command: `node server/testing-server`,
+    command: `node packages/servers/testing-server`,
     launchTimeout: 50000,
     port: 4444,
   });

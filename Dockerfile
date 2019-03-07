@@ -19,4 +19,4 @@ RUN cd packages/core-php && yarn run setup
 
 RUN yarn --cwd server --ignore-optional --ignore-platform --ignore-scripts --ignore-engines --skip-integrity-check --production --modules-folder node_modules
 
-CMD node server/index.js
+CMD node packages/servers/default-server

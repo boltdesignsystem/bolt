@@ -9,11 +9,11 @@ const port = process.env.PORT || 4444;
 
 const webpack = require('webpack');
 const middleware = require('webpack-dev-middleware');
-const createWebpackConfig = require('../packages/build-tools/create-webpack-config');
-const { getConfig } = require('../packages/build-tools/utils/config-store');
+const createWebpackConfig = require('@bolt/build-tools/create-webpack-config');
+const { getConfig } = require('@bolt/build-tools/utils/config-store');
 
 const allComponentsWithTests = globby
-  .sync(path.join(__dirname, '../', '/packages/components/**/__tests__'), {
+  .sync(path.join(__dirname, '../../', '/packages/components/**/__tests__'), {
     onlyDirectories: true,
   })
   .map(testsDirPath =>
@@ -53,7 +53,33 @@ getConfig().then(async boltConfig => {
     }),
   );
 
-  app.use(express.static(config.wwwDir));
+  app.use(express.static(path.relative(process.cwd(), config.wwwDir)));
+
+  app.use('/index.html', function (req, res, next) {
+    const assetsByChunkName = res.locals.webpackStats.toJson().children[0]
+      .assetsByChunkName;
+
+    // then use `assetsByChunkName` for server-sider rendering
+    // For example, if you have only one main chunk:
+    res.send(
+      `<html class="js-fonts-loaded">
+        <head>
+          <title>Test</title>
+          ${normalizeAssets(assetsByChunkName['bolt-global'])
+            .filter(path => path.endsWith('.css'))
+            .map(path => `<link rel="stylesheet" href="${path}"/>`)
+            .join('\n')}
+        </head>
+        <body>
+          <div id="root"></div>
+          ${normalizeAssets(assetsByChunkName['bolt-global'])
+            .filter(path => path.endsWith('.js'))
+            .map(path => `<script src="${path}"></script>`)
+            .join('\n')}
+        </body>
+      </html>`,
+    );
+  });
 
   // The following middleware would not be invoked until the latest build is finished.
   app.use((req, res) => {
@@ -95,8 +121,6 @@ getConfig().then(async boltConfig => {
   });
 
   app.use('/api', handleRequest);
-
-  app.use(express.static(join(__dirname, '../www')));
 
   app.listen(port, () => {
     console.log(`Express listening on http://localhost:${port}`);

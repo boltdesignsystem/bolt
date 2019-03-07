@@ -5,32 +5,40 @@ import * as utils from '@bolt/build-tools/utils/general';
 import * as configStore from '@bolt/build-tools/utils/config-store.js';
 import prettier from 'prettier';
 // import highlight from 'cli-highlight';
-import { renderPage } from './ssr-server.puppeteer.mjs';
-import { template } from './ssr-server.template.mjs';
+import { renderPage } from './libs/puppeteer';
+import { template } from './libs/template';
 const getConfig = configStore.default.getConfig;
 
 const htmlToRender = process.argv[2] || '';
+
 const port = process.env.PORT || 4445;
 const app = express();
 let connections = []; // keep track of # of open connections
 
 let server; // express server instance
 
-getConfig().then(async boltConfig => {
-  let config = boltConfig;
-
+async function init() {
+  const config = await getConfig();
   config.components.individual = [];
   config.prod = true;
   config.enableCache = true;
   config.mode = 'server';
   config.env = 'pwa';
+  config.dataDir = path.join(
+    path.dirname(config.configFileUsed),
+    config.dataDir,
+  );
+  config.buildDir = path.join(
+    path.dirname(config.configFileUsed),
+    config.buildDir,
+  );
+  config.wwwDir = path.join(path.dirname(config.configFileUsed), config.wwwDir);
   config.sourceMaps = false;
+  config.copy = [];
 
   let webpackConfig;
 
-  const staticDir = path.join(process.cwd(), config.wwwDir);
-
-  app.use(express.static(staticDir));
+  app.use(express.static(path.relative(process.cwd(), config.wwwDir)));
 
   // generate a fresh webpack build + pass along asset data to dynamic HTML template rendered
   server = await app.listen(port);
@@ -55,9 +63,9 @@ getConfig().then(async boltConfig => {
       webpackConfig = await createWebpackConfig(config);
 
       // strip out Sass files from Webpack Entry to speed up compile times
-      webpackConfig[0].entry['bolt-global'] = webpackConfig[0].entry[
-        'bolt-global'
-      ].filter(item => !item.includes('.scss'));
+      // webpackConfig[0].entry['bolt-global'] = webpackConfig[0].entry[
+      //   'bolt-global'
+      // ].filter(item => !item.includes('.scss'));
 
       await webpack(webpackConfig, async (err, webpackStats) => {
         // @todo: handle webpack errors
@@ -69,7 +77,7 @@ getConfig().then(async boltConfig => {
       });
     });
   }
-});
+}
 
 async function ssrRenderHTML(
   htmlToRender,
@@ -128,3 +136,5 @@ export function shutDownSSRServer() {
   connections.forEach(curr => curr.end());
   setTimeout(() => connections.forEach(curr => curr.destroy()), 5000);
 }
+
+init();
