@@ -11,7 +11,6 @@ import extName from 'ext-name';
 // Use 'dedupe' version instead of 'bind' to help merge initial classes with those defined here
 import classNames from 'classnames/dedupe';
 
-import ratioStyles from '@bolt/components-ratio/src/ratio.scss';
 import imageStyles from './image.scss';
 
 import schema from '../image.schema.yml';
@@ -233,7 +232,7 @@ class BoltImage extends withLitHtml() {
     }
 
     return html`
-      ${this.addStyles([imageStyles, ratioStyles])} ${renderedImage}
+      ${this.addStyles([imageStyles])} ${renderedImage}
     `;
   }
 }
