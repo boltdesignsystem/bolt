@@ -41,7 +41,7 @@ getConfig().then(async boltConfig => {
     'bolt-webpack-manifest.server.json',
   );
 
-  if (utils.default.fileExists(manifestPath)) {
+  if (await utils.default.fileExists(manifestPath)) {
     const webpackStatsGenerated = JSON.parse(fs.readFileSync(manifestPath));
     await ssrRenderHTML(htmlToRender, webpackStatsGenerated, config, port);
   } else {
