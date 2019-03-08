@@ -2,7 +2,6 @@ const { setup: setupDevServer } = require('jest-dev-server');
 const puppeteer = require('puppeteer');
 const mkdirp = require('mkdirp');
 const path = require('path');
-const resolve = require('resolve');
 const fs = require('fs');
 const os = require('os');
 
@@ -19,17 +18,11 @@ module.exports = async function globalSetup() {
   const existingIconsDir =
     typeof config.iconDir !== 'undefined' ? config.iconDir : [];
 
-  config.iconDir = [
-    ...existingIconsDir,
-    path.join(
-      path.dirname(resolve.sync('@bolt/components-icons/package.json')),
-      '__tests__/icons',
-    ),
-  ];
+  config.iconDir = [...existingIconsDir, path.join(__dirname, './test/svg')];
 
   await buildPrep(); // Generate folders, manifest data, etc needed for Twig renderer
   await imageTasks.processImages(); // process image fixtures used by any tests
-  await iconTasks.build(false); // process icons used by any task
+  await iconTasks.build(); // process icons used by any task
 
   await setupDevServer({
     command: `node server/testing-server`,

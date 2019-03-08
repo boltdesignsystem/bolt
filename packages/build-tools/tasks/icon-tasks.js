@@ -20,13 +20,9 @@ let iconSpinner;
 const startBuildingIconsMsg = 'Building Bolt SVG Icons for the first time...';
 const startRebuildingIconsMsg = 'Rebuilding Bolt SVG Icons...';
 
-const finishedBuildingIconsAndSchemaMsg =
-  'Finished building Bolt SVG Icons and schema!';
-const finishedRebuildingIconsAndSchemaMsg =
+const finishedBuildingIconsMsg = 'Finished building Bolt SVG Icons and schema!';
+const finishedRebuildingIconsMsg =
   'Finished rebuilding Bolt SVG Icons and schema!';
-
-const finishedBuildingIconsOnlyMsg = 'Finished building Bolt SVG Icons!';
-const finishedRebuildingIconsOnlyMsg = 'Finished rebuilding Bolt SVG Icons!';
 
 const failedBuildingIconsMsg = 'Initial build of the Bolt SVG Icons failed!';
 const failedRebuildingIconsMsg = 'Failed to rebuild Bolt SVG Icons!';
@@ -280,7 +276,7 @@ function alphabetizeIconList(a, b) {
   return 0;
 }
 
-async function build(schemaUpdate = true) {
+async function build() {
   try {
     const config = await getConfig();
 
@@ -305,12 +301,13 @@ async function build(schemaUpdate = true) {
       .sort(alphabetizeIconList) // we alphabetize the list so multiple compiles on same set doesn't result in a change that git notices
       .map(icon => `export * from './icons/${icon.id}';`); // building up `export` lines
     allExports.push(''); // Adding empty item to end of array so file has empty line at bottom to conform to `.editorconfig`
+
+    await generateFile(icons);
     await fs.outputFile(
       path.join(rootDir, 'src', 'index.js'),
       allExports.join('\n'),
       'utf-8',
     );
-    generateFile(icons, schemaUpdate);
 
     if (config.verbosity > 2) {
       log.dim(`Built ${iconPaths.length} icons.`);
@@ -331,48 +328,32 @@ async function build(schemaUpdate = true) {
 build.description = 'Minify & convert raw SVG files to browser-friendly icons.';
 build.displayName = 'icons:build';
 
-async function generateFile(icons, schemaUpdate) {
+async function generateFile(icons) {
   try {
     const config = await getConfig();
+    const iconComponentDir = path.dirname(
+      resolve.sync('@bolt/components-icon/package.json'),
+    );
+    const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.yml');
+    const names = icons.map(icon => icon.id);
+    const schema = yaml.safeLoad(fs.readFileSync(iconComponentSchema, 'utf8'));
+    schema.properties.name.enum = names;
 
-    if (schemaUpdate) {
-      const iconComponentDir = path.dirname(
-        resolve.sync('@bolt/components-icon/package.json'),
-      );
-      const iconComponentSchema = path.join(
-        iconComponentDir,
-        'icon.schema.yml',
-      );
-      const names = icons.map(icon => icon.id);
-      const schema = yaml.safeLoad(
-        fs.readFileSync(iconComponentSchema, 'utf8'),
-      );
-      schema.properties.name.enum = names;
+    // update bolt-icon schema with newest icons from svgs folder
+    await fs.writeFile(iconComponentSchema, yaml.safeDump(schema));
+    // generate `icons.bolt.json` file with newest icons array
+    await fs.writeFile(
+      path.join(config.dataDir, 'icons.bolt.json'),
+      JSON.stringify(names, null, 4),
+    );
 
-      // update bolt-icon schema with newest icons from svgs folder
-      await fs.writeFile(iconComponentSchema, yaml.safeDump(schema));
-      // generate `icons.bolt.json` file with newest icons array
-      await fs.writeFile(
-        path.join(config.dataDir, 'icons.bolt.json'),
-        JSON.stringify(names, null, 4),
-      );
-
-      iconSpinner.succeed(
-        chalk.green(
-          initialBuild
-            ? finishedBuildingIconsAndSchemaMsg
-            : finishedRebuildingIconsAndSchemaMsg,
-        ),
-      );
-    } else {
-      iconSpinner.succeed(
-        chalk.green(
-          initialBuild
-            ? finishedBuildingIconsOnlyMsg
-            : finishedRebuildingIconsOnlyMsg,
-        ),
-      );
-    }
+    iconSpinner.succeed(
+      chalk.green(
+        initialBuild
+          ? finishedBuildingIconsMsg
+          : finishedRebuildingIconsMsg,
+      ),
+    );
 
     initialBuild = false;
   } catch (error) {
