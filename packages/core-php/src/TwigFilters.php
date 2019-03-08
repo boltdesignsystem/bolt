@@ -21,10 +21,13 @@ class TwigFilters {
 
 
   public static function bolt_ssr() {
-    return new Twig_SimpleFilter('bolt_ssr', function ($html) {
-      $result = Bolt\TwigFunctions::bolt_ssr($html);
+    return new Twig_SimpleFilter('bolt_ssr', function(\Twig_Environment $env, $context, $html) {
+      $result = Bolt\TwigFunctions::bolt_ssr($context, $html);
       return $result;
-    });
+    }, [
+      'needs_environment' => true,
+      'needs_context' => true,
+    ]);
   }
 
   public static function without() {

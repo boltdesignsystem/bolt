@@ -48,14 +48,33 @@ class TwigFunctions {
     ]);
   }
 
-  public static function bolt_ssr($html) {
-    // locate where the Bolt SSR Server script is physically located so we can call the script + pass along our HTML string to render
-    $p = new Process('npx --quiet lerna ls --json --all | npx --quiet json -a -c "this.name === \'@bolt/ssr-server\'" location');
-    $p->run();
-    $ssrServerPath = trim($p->getOutput()).'/index.mjs';
+  public static function bolt_ssr($context, $html) {
+    // a better, more dynamic way of finding the ssr-server path is via lerna (but it's more costly to run $$)
+    // $p = new Process('npx --quiet lerna ls --json --all | npx --quiet json -a -c "this.name === \'@bolt/ssr-server\'" location');
+    // $p->run();
+    // $ssrServerPath = trim($p->getOutput()).'/index.mjs';
 
-    // $process = new Process(['node', '--experimental-modules', '--no-warnings', $ssrServerPath, $html]);
-    $process = new Process(['node', '-r', 'esm', $ssrServerPath, $html]);
+    // locate where the Bolt SSR Server script is physically located so we can call the script + pass along our HTML string to render
+    $context = new ArrayFinder($context);
+    $configFileUsed = $context->get('bolt.data.config.configFileUsed');
+    
+    $ssrServerPath = dirname($configFileUsed, 2) . '/node_modules/@bolt/ssr-server/index.mjs';
+    $ssrServerPathAlt = dirname($configFileUsed, 1) . '/node_modules/@bolt/ssr-server/index.mjs';
+    $ssrServerLocation = '';
+
+    // if we found the right SSR server file in one of two places, try to render using it. Otherwise return the original HTML.
+    if (file_exists( $ssrServerPath )){
+      $ssrServerLocation = $ssrServerPath; // SSR file to use for rendering found in the node_modules folder located at the same level as .boltrc config
+    } elseif (file_exists( $ssrServerPathAlt )){
+      $ssrServerLocation = $ssrServerPathAlt; // SSR file to use for rendering found one level higher than the .boltrc config
+    } else {
+      return $html; // if the ssr-server can't be found 
+    }
+
+    // alt way of handling this natively without the esm module
+    // $process = new Process(['node', '--experimental-modules', '--no-warnings', $ssrServerPath, $html]); // without npx lerna: 12.7s, 12.8s
+    $process = new Process(['node', '-r', 'esm', $ssrServerLocation, $html]); // without npx lerna: 12.9s, 12.5s, 15.2s
+
     $process->setTimeout(3600);
     $process->setIdleTimeout(240);
     $process->run();
@@ -64,7 +83,7 @@ class TwigFunctions {
 
   public static function ssr() {
     return new Twig_SimpleFunction('bolt_ssr', function(\Twig_Environment $env, $context, $html) {
-      $result = self::bolt_ssr($html);
+      $result = self::bolt_ssr($context, $html);
       return $result;
     }, [
       'needs_environment' => true,
