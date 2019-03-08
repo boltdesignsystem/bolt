@@ -125,6 +125,7 @@ describe('button', async () => {
       btn.textContent = 'Hello World!';
       document.body.appendChild(btn);
       btn.useShadow = false;
+      btn.updated();
       return btn.outerHTML;
     });
 
@@ -150,6 +151,7 @@ describe('button', async () => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'Button Test -- Shadow Root HTML';
       document.body.appendChild(btn);
+      btn.updated();
       return btn.renderRoot.innerHTML;
     });
 
@@ -157,6 +159,7 @@ describe('button', async () => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'Button Test -- Outer HTML';
       document.body.appendChild(btn);
+      btn.updated();
       return btn.outerHTML;
     });
 

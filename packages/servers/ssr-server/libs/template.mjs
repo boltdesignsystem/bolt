@@ -2,31 +2,37 @@ import path from 'path';
 
 export const template = {
   render(body, webpackAssets, buildConfig) {
-    // const basePath = path.relative(buildConfig.wwwDir, buildConfig.buildDir);
-    // const jsAssets = [];
+    const assetPaths = [];
 
-    // for (let assetName in webpackAssets) {
-    //   const assetPath = webpackAssets[assetName];
-    //   console.log(assetPath);
-    //   if (assetPath.endsWith('.js') && assetPath.includes('bundle') === false) {
-    //     if (assetPath.includes(basePath)) {
-    //       jsAssets.push(assetPath);
-    //     } else {
-    //       jsAssets.push('/' + path.join(basePath, assetPath));
-    //     }
-    //   }
-    // }
+    for (let assetName in webpackAssets) {
+      assetPaths.push(webpackAssets[assetName]);
+    }
+
+    // @todo: keep an eye out if we do end up needing CSS assets for this
+    // ${assetPaths
+    //   .filter(
+    //     path =>
+    //       path.includes('.scss') && path.includes('bundle') === false,
+    //   )
+    //   .map(path => `<link rel="stylesheet" href="${path}" />`)
+    //   .join('\n')}
 
     const html = `
       <!DOCTYPE html>
       <html>
-        <head></head>
-        <link rel="stylesheet" href="/build/bolt-global.server.css"/>
+        <head>
+         
+        </head>
+        
         <body>
           ${body}
+          ${assetPaths
+            .filter(
+              path => path.includes('.js') && path.includes('bundle') === false,
+            )
+            .map(path => `<script src="${path}"></script>`)
+            .join('\n')}
         </body>
-
-        <script src="/build/bolt-global.server.js"></script>
       </html>
     `;
     return html;

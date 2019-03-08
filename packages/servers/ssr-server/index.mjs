@@ -20,21 +20,13 @@ let server; // express server instance
 async function init() {
   const config = await getConfig();
   config.components.individual = [];
-  config.prod = true;
+  config.prod = false;
   config.enableCache = true;
   config.mode = 'server';
   config.env = 'pwa';
-  config.dataDir = path.join(
-    path.dirname(config.configFileUsed),
-    config.dataDir,
-  );
-  config.buildDir = path.join(
-    path.dirname(config.configFileUsed),
-    config.buildDir,
-  );
-  config.wwwDir = path.join(path.dirname(config.configFileUsed), config.wwwDir);
   config.sourceMaps = false;
   config.copy = [];
+  config.webpackDevServer = false;
 
   let webpackConfig;
 
@@ -49,6 +41,7 @@ async function init() {
     'bolt-webpack-manifest.server.json',
   );
 
+  // if we already have a build cached on the filesystem
   if (await utils.default.fileExists(manifestPath)) {
     const webpackStatsGenerated = JSON.parse(fs.readFileSync(manifestPath));
     await ssrRenderHTML(htmlToRender, webpackStatsGenerated, config, port);
@@ -62,17 +55,33 @@ async function init() {
 
       webpackConfig = await createWebpackConfig(config);
 
-      // strip out Sass files from Webpack Entry to speed up compile times
-      // webpackConfig[0].entry['bolt-global'] = webpackConfig[0].entry[
-      //   'bolt-global'
-      // ].filter(item => !item.includes('.scss'));
+      // strip out Sass files + other duplicate / not as necessary package files for server-side rendering (speeds up compile times)
+      webpackConfig[0].entry['bolt-global'] = webpackConfig[0].entry[
+        'bolt-global'
+      ].filter(
+        item =>
+          !item.includes('.scss') &&
+          !item.includes('critical-fonts') &&
+          !item.includes('bolt-critical-css') &&
+          !item.includes('bolt-critical-vars') &&
+          !item.includes('bolt-smooth-scroll') &&
+          !item.includes('bolt-sticky') &&
+          !item.includes('bolt-placeholder') &&
+          !item.includes('bolt-li') &&
+          !item.includes('packages/core') &&
+          !item.includes('bolt-dropdown') &&
+          !item.includes('global/styles/index.js') &&
+          !item.includes('bolt-copy-to-clipboard') &&
+          !item.includes('bolt-icons') &&
+          !item.includes('bolt-video'),
+      );
 
       await webpack(webpackConfig, async (err, webpackStats) => {
         // @todo: handle webpack errors
         // if (err || webpackStats.hasErrors()) {}
-        const webpackStatsGenerated = webpackStats.toJson().children[0]
-          .assetsByChunkName;
 
+        // after the build completes, pass along the webpack manifest data like we do for builds already having been cached
+        const webpackStatsGenerated = JSON.parse(fs.readFileSync(manifestPath));
         await ssrRenderHTML(htmlToRender, webpackStatsGenerated, config, port);
       });
     });
@@ -104,6 +113,7 @@ async function ssrRenderHTML(
   await shutDownSSRServer();
 }
 
+// listen for when we need to auto-shut down + track open server connections
 async function setupServer() {
   // handle cleaning up + shutting down the server instance
   process.on('SIGTERM', shutDownSSRServer);
