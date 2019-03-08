@@ -129,7 +129,7 @@ class Utils {
    * @param string $string - String to be checked
    * @return string - Returns detected case type name, defaults to camelcase
    */
-  public static function checkCaseType($string) {
+  public static function getCaseType($string) {
     if (strpos($string, '_')) {
       return "snakecase";
     } elseif (strpos($string, '-')) {
@@ -214,28 +214,35 @@ class Utils {
    *
    * @param array $items - Twig "_context", all the available template variables
    * @param array $schema - The schema object for a particular component
-   * @param boolean $isInternal - If true default schema values are included in returned array and keys converted to snake_case
-   * @return array - An associative array of props
+   * @param boolean $isData - Whether the return value is intended for use in twig logic.
+   *    If TRUE, default schema values are included in the returned array and keys converted to snake_case.
+   *    If FALSE, defaults are omitted and keys are left as kebab-case.  The resulting array is ready to use as props on a web component.
+   *
+   * @return array - An associative array where key is the name of each prop and the value is the prop value.  For example:
+   *     [
+   *       content     => 'Hello World'
+   *       size        => 'xlarge'
+   *       full-bleed  => true
+   *     ]
    */
-  public static function buildPropsArray($items, $schema, $isData = false) {
-    $props = array_key_exists("attributes", $items) ? $items["attributes"] : array();
+  public static function buildPropsArray($items, $schema, $isData = FALSE) {
+    $props = isset($items["attributes"]) ? $items["attributes"] : [];
 
     // If schema has properties to check against
     if (!empty($schema["properties"])) {
       foreach ($schema["properties"] as $key => $value) {
         if ($key != "attributes") {
           // If schema prop is in the list of items (skip attributes)
-          if (array_key_exists($key, $items)){
+          if (isset($items[$key])) {
             // Check the schema "type", skip over any that contain the value "array" or "object"
-            if (array_key_exists("type", $schema["properties"][$key]) && self::isAllowedSchemaType($schema["properties"][$key]["type"])){
-              if ($isData) {
-                $props[self::convertToSnakeCase($key, self::checkCaseType($key))] = $items[$key];
-              } else {
-                $props[self::convertToKebabCase($key, self::checkCaseType($key))] = $items[$key];
-              }
+            if (isset($schema["properties"][$key]["type"]) && self::isAllowedSchemaType($schema["properties"][$key]["type"])) {
+              $caseType = self::getCaseType($key);
+              $propName = $isData ? self::convertToSnakeCase($key, $caseType) : self::convertToKebabCase($key, $caseType);
+              $props[$propName] = $items[$key];
             }
-          } else if ($isData && array_key_exists("default", $schema["properties"][$key])) {
-            $props[self::convertToSnakeCase($key, self::checkCaseType($key))] = $schema["properties"][$key]["default"];
+          } elseif ($isData && isset($schema["properties"][$key]["default"])) {
+            $propName = self::convertToSnakeCase($key, self::getCaseType($key));
+            $props[$propName] = $schema["properties"][$key]["default"];
           }
         }
       }
