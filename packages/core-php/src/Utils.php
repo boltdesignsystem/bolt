@@ -215,7 +215,7 @@ class Utils {
    * @param array $items - Twig "_context", all the available template variables
    * @param array $schema - The schema object for a particular component
    * @param boolean $isData - Whether the return value is intended for use in twig logic.
-   *    If TRUE, default schema values are included in the returned array and keys converted to snake_case.
+   *    If TRUE, default schema values are included in the returned array and keys are converted to snake_case.
    *    If FALSE, defaults are omitted and keys are left as kebab-case.  The resulting array is ready to use as props on a web component.
    *
    * @return array - An associative array where key is the name of each prop and the value is the prop value.  For example:
@@ -228,21 +228,31 @@ class Utils {
   public static function buildPropsArray($items, $schema, $isData = FALSE) {
     $props = isset($items["attributes"]) ? $items["attributes"] : [];
 
-    // If schema has properties to check against
     if (!empty($schema["properties"])) {
-      foreach ($schema["properties"] as $key => $value) {
-        if ($key != "attributes") {
-          // If schema prop is in the list of items (skip attributes)
-          if (isset($items[$key])) {
-            // Check the schema "type", skip over any that contain the value "array" or "object"
-            if (isset($schema["properties"][$key]["type"]) && self::isAllowedSchemaType($schema["properties"][$key]["type"])) {
-              $caseType = self::getCaseType($key);
-              $propName = $isData ? self::convertToSnakeCase($key, $caseType) : self::convertToKebabCase($key, $caseType);
-              $props[$propName] = $items[$key];
+      foreach ($schema["properties"] as $propName => $propSchema) {
+
+        // The attributes prop is a special case and should be omitted.
+        if ($propName != "attributes") {
+          continue;
+        }
+
+        // Check the prop "type" in the schema and omit it if it is (or might be) an "array" or "object".
+        if (isset($propSchema["type"]) && self::isAllowedSchemaType($propSchema["type"])) {
+          $caseType = self::getCaseType($propName);
+
+          if (isset($items[$propName])) {
+
+            // A value for this prop was found in $items.
+            $convertedPropName = $isData ? self::convertToSnakeCase($propName, $caseType) : self::convertToKebabCase($propName, $caseType);
+            $props[$convertedPropName] = $items[$propName];
+          }
+          elseif (isset($propSchema["default"])) {
+
+            // No value for this prop was found in $items, but a default is defined in the schema.
+            if ($isData) {
+              $convertedPropName = self::convertToSnakeCase($propName, $caseType);
+              $props[$convertedPropName] = $propSchema["default"];
             }
-          } elseif ($isData && isset($schema["properties"][$key]["default"])) {
-            $propName = self::convertToSnakeCase($key, self::getCaseType($key));
-            $props[$propName] = $schema["properties"][$key]["default"];
           }
         }
       }
