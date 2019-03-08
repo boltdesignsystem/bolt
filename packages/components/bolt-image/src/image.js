@@ -1,7 +1,6 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
-import extName from 'ext-name';
 
 // Use 'dedupe' version instead of 'bind' to help merge initial classes with those defined here
 import classNames from 'classnames/dedupe';
@@ -125,7 +124,7 @@ class BoltImage extends withLitHtml() {
       }
     }
 
-    const _isJpg = src && extName(src)[0].ext === 'jpg';
+    const _isJpg = src && src.split('.').pop() === 'jpg';
     const _canUseRatio = ratioW > 0 && ratioH > 0 && useRatio && !cover;
     // Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder
     const _canUsePlaceholder = (_canUseRatio || cover) && _isJpg;
