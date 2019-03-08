@@ -18,7 +18,7 @@ async function renderTwigString(template, data) {
   return await renderString(template, data, true);
 }
 
-const timeout = 60000;
+const timeout = 120000;
 
 describe('button', async () => {
   let page;
@@ -230,5 +230,5 @@ describe('button', async () => {
       failureThreshold: '0.01',
       failureThresholdType: 'percent',
     });
-  }, 20000);
+  }, 60000);
 });
