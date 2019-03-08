@@ -17,7 +17,7 @@ module.exports = {
       .getElementSize('body', function(result) {
         bodyWidth = result.value.width;
       })
-      .getElementSize('.c-bolt-image__image', function(result) {
+      .getElementSize('bolt-image', function(result) {
         const imageHeight = Math.round(bodyWidth / 1.3333333333);
 
         this.assert.equal(result.value.width, bodyWidth);
