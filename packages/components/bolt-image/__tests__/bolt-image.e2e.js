@@ -23,6 +23,18 @@ module.exports = {
         this.assert.equal(result.value.width, bodyWidth);
         this.assert.equal(result.value.height, imageHeight);
       })
+      .execute(
+        function(data) {
+          return document.querySelector('bolt-image')._wasInitiallyRendered;
+        },
+        [],
+        function(result) {
+          browser.assert.ok(
+            result.value === true,
+            `verified the <bolt-image> was rendered via the "_wasInitiallyRendered" property.`,
+          );
+        },
+      )
       .saveScreenshot(
         `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
       )
