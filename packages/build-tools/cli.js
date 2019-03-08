@@ -267,35 +267,31 @@ if (program.configFile) {
         }
       });
 
-    if (config.env === 'pl') {
-      program
-        .command('pattern-lab')
-        .alias('pl')
-        .description('Pattern Lab Compile')
-        .action(async options => {
-          await updateConfig(options, program);
-          try {
-            await require('./tasks/pattern-lab-tasks').compile();
-          } catch (error) {
-            log.errorAndExit('Pattern Lab failed', error);
-          }
-        });
-    }
+    program
+      .command('pattern-lab')
+      .alias('pl')
+      .description('Pattern Lab Compile')
+      .action(async options => {
+        await updateConfig(options, program);
+        try {
+          await require('./tasks/pattern-lab-tasks').compile();
+        } catch (error) {
+          log.errorAndExit('Pattern Lab failed', error);
+        }
+      });
 
-    if (config.env === 'static') {
-      program
-        .command('static')
-        .description('Static Site Compile')
-        .action(async options => {
-          await updateConfig(options, program);
-          try {
-            await require('./tasks/task-collections').buildPrep();
-            await require('./tasks/static-tasks').compile();
-          } catch (error) {
-            log.errorAndExit('Static Site Generation failed', error);
-          }
-        });
-    }
+    program
+      .command('static')
+      .description('Static Site Compile')
+      .action(async options => {
+        await updateConfig(options, program);
+        try {
+          await require('./tasks/task-collections').buildPrep();
+          await require('./tasks/static-tasks').compile();
+        } catch (error) {
+          log.errorAndExit('Static Site Generation failed', error);
+        }
+      });
 
     // This will tell you all that got `require()`-ed
     // We want to only load what we need - that's why not all `require` statements are at top
