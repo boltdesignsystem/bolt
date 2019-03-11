@@ -302,25 +302,16 @@ async function build() {
       .map(icon => `export * from './icons/${icon.id}';`); // building up `export` lines
     allExports.push(''); // Adding empty item to end of array so file has empty line at bottom to conform to `.editorconfig`
 
-    return new Promise(async (resolve, reject) => {
-      await generateFile(icons)
-        .then(output => {
-          fs.outputFile(
-            path.join(rootDir, 'src', 'index.js'),
-            allExports.join('\n'),
-            'utf-8',
-          );
+    await fs.outputFile(
+      path.join(rootDir, 'src', 'index.js'),
+      allExports.join('\n'),
+      'utf-8',
+    );
+    await generateFile(icons);
 
-          if (config.verbosity > 2) {
-            log.dim(`Built ${iconPaths.length} icons.`);
-          }
-
-          resolve(output);
-        })
-        .catch(error => {
-          reject(error);
-        });
-    });
+    if (config.verbosity > 2) {
+      log.dim(`Built ${iconPaths.length} icons.`);
+    }
   } catch (error) {
     iconSpinner.fail(
       chalk.red(

@@ -18,11 +18,11 @@ module.exports = async function globalSetup() {
   const existingIconsDir =
     typeof config.iconDir !== 'undefined' ? config.iconDir : [];
 
-  config.iconDir = [...existingIconsDir, path.join(__dirname, './test/svg')];
+  config.iconDir = [...existingIconsDir, path.join(__dirname, './test/jest-test-svgs')];
 
   await buildPrep(); // Generate folders, manifest data, etc needed for Twig renderer
   await imageTasks.processImages(); // process image fixtures used by any tests
-  await iconTasks.build(); // process icons used by any task
+  await iconTasks.build(); // process icons used by any tests
 
   await setupDevServer({
     command: `node server/testing-server`,

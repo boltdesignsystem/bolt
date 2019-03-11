@@ -1,8 +1,6 @@
 import { fixture as html } from '@open-wc/testing-helpers';
 import { render, stop as stopTwigRenderer } from '@bolt/twig-renderer';
 
-const iconTasks = require('@bolt/build-tools/tasks/icon-tasks');
-
 async function renderTwig(template, data) {
   return await render(template, data, true);
 }
@@ -13,7 +11,6 @@ describe('<bolt-icon> Component', async () => {
   let page;
 
   afterAll(async () => {
-    await iconTasks.build();
     await stopTwigRenderer();
   }, timeout);
 
