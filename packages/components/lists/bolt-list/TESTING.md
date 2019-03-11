@@ -49,16 +49,16 @@ Functional testing should be performed manually by the QA team across the standa
 1. Given I am viewing the [align variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-40-list-align-variations/02-components-list-40-list-align-variations.html).
 2. Make sure the example lists are defined as inline (horizontal).
 3. Start align should show items aligned to the left (start of the list).
-3. Center align should show items aligned to the center.
-3. End align should show items aligned to the right (end of the list).
+4. Center align should show items aligned to the center.
+5. End align should show items aligned to the right (end of the list).
 
 ## Scenario: valign variations
 
 1. Given I am viewing the [valign variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-45-list-valign-variations/02-components-list-45-list-valign-variations.html).
 2. Make sure the example lists are defined as either inline or flex (horizontal).
 3. Start valign should show items aligned to the top (start of the list).
-3. Center valign should show items aligned to the center.
-3. End valign should show items aligned to the bottom (end of the list).
+4. Center valign should show items aligned to the center.
+5. End valign should show items aligned to the bottom (end of the list).
 
 ## Scenario: List with Web Components
 
