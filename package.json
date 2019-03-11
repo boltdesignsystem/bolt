@@ -50,6 +50,7 @@
     "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.local.js --env chrome,firefox,safari",
     "serve": "node packages/servers/default-server",
     "postbootstrap": "node scripts/monorepo-tests.js",
+    "postinstall": "yarn run setup:php",
     "cz": "git-cz",
     "release:rc": "./scripts/release/rc-release.sh",
     "release": "./scripts/release/release.sh"
