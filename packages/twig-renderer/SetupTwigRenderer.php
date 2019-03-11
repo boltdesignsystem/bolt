@@ -1,13 +1,6 @@
 <?php
 
-$default_autoload_path = 'vendor/autoload.php';
-$alt_autoload_path = getcwd() . '/vendor/autoload.php';
-
-if (file_exists($default_autoload_path)){
-  require $default_autoload_path;
-} else {
-  require $alt_autoload_path;
-}
+require_once 'vendor/autoload.php';
 
 function addBoltExtensions(\Twig_Environment &$env, $config) {
   $env->addExtension(new \Bolt\TwigExtensions\BoltCore());
