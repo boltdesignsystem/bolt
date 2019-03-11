@@ -75,7 +75,7 @@ class BoltButton extends BoltAction {
             'is-empty': name in this.slots === false,
           });
 
-          return this.isServer
+          return bolt.isServer
             ? html`
                 ${name in this.slots
                   ? html`
@@ -102,7 +102,7 @@ class BoltButton extends BoltAction {
             'u-bolt-visuallyhidden': this.props.iconOnly,
           });
 
-          return this.isServer
+          return bolt.isServer
             ? html`
                 ${name in this.slots
                   ? html`
@@ -142,7 +142,7 @@ class BoltButton extends BoltAction {
           href="${this.props.url}"
           class="${classes}"
           target="${urlTarget}"
-          is=${ifDefined(this.isServer ? 'shadow-root' : undefined)}
+          is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
           >${innerSlots}</a
         >
       `;
@@ -150,7 +150,7 @@ class BoltButton extends BoltAction {
       buttonElement = html`
         <button
           class="${classes}"
-          is=${ifDefined(this.isServer ? 'shadow-root' : undefined)}
+          is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
         >
           ${innerSlots}
         </button>

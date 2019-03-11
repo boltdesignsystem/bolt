@@ -48,8 +48,7 @@
     "test:e2e:full": "./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.local.js",
     "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config nightwatch.local.js --env chrome,firefox,safari",
-    "serve": "cd server && node index.js",
-    "postinstall": "yarn run setup:php",
+    "serve": "node packages/servers/default-server",
     "postbootstrap": "node scripts/monorepo-tests.js",
     "cz": "git-cz",
     "release:rc": "./scripts/release/rc-release.sh",
@@ -75,7 +74,13 @@
     "wasm": true,
     "mode": "strict"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
+    "document-register-element": "^1.13.1",
+    "postinstall-postinstall": "^2.0.0",
+    "patch-package": "^6.0.5",
     "esm": "^3.2.7",
     "@babel/core": "^7.2.2",
     "@commitlint/cli": "^7.4.0",
@@ -141,7 +146,8 @@
       "packages/core-php",
       "packages/twig-renderer",
       "packages/global"
-    ]
+    ],
+    "nohoist": ["**/ssr-server/**"]
   },
   "version": "0.0.0-development"
 }

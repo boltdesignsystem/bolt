@@ -10,7 +10,6 @@ COPY www /app/www
 COPY server/package.json /app/server/package.json
 COPY .boltrc.js .
 COPY yarn.lock .
-COPY server /app/server
 RUN rm -rf /app/packages/uikit-workshop
 
 RUN cd packages/twig-renderer && yarn run setup

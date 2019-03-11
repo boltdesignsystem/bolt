@@ -58,8 +58,8 @@ class TwigFunctions {
     $context = new ArrayFinder($context);
     $configFileUsed = $context->get('bolt.data.config.configFileUsed');
     
-    $ssrServerPath = dirname($configFileUsed, 2) . '/node_modules/@bolt/ssr-server/index.mjs';
-    $ssrServerPathAlt = dirname($configFileUsed, 1) . '/node_modules/@bolt/ssr-server/index.mjs';
+    $ssrServerPath = dirname($configFileUsed, 2) . '/node_modules/@bolt/ssr-server/cli.js';
+    $ssrServerPathAlt = dirname($configFileUsed, 1) . '/node_modules/@bolt/ssr-server/cli.js';
     $ssrServerLocation = '';
 
     // if we found the right SSR server file in one of two places, try to render using it. Otherwise return the original HTML.
@@ -72,9 +72,7 @@ class TwigFunctions {
     }
 
     // alt way of handling this natively without the esm module
-    // $process = new Process(['node', '--experimental-modules', '--no-warnings', $ssrServerPath, $html]); // without npx lerna: 12.7s, 12.8s
-    $process = new Process(['node', '-r', 'esm', $ssrServerLocation, $html]); // without npx lerna: 12.9s, 12.5s, 15.2s
-
+    $process = new Process(['node', $ssrServerPath, $html]);
     $process->setTimeout(3600);
     $process->setIdleTimeout(240);
     $process->run();
