@@ -8,6 +8,7 @@ COPY docs-site /app/docs-site
 COPY packages /app/packages
 COPY www /app/www
 COPY .boltrc.js .
+COPY package.json .
 COPY yarn.lock .
 RUN rm -rf /app/packages/uikit-workshop
 
