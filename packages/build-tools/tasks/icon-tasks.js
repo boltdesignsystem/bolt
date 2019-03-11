@@ -358,9 +358,7 @@ async function generateFile(icons) {
 
     iconSpinner.succeed(
       chalk.green(
-        initialBuild
-          ? finishedBuildingIconsMsg
-          : finishedRebuildingIconsMsg,
+        initialBuild ? finishedBuildingIconsMsg : finishedRebuildingIconsMsg,
       ),
     );
 
