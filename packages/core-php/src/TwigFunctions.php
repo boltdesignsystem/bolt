@@ -76,7 +76,13 @@ class TwigFunctions {
     $process->setTimeout(3600);
     $process->setIdleTimeout(240);
     $process->run();
-    return $process->getOutput();
+    $result = $process->getOutput();
+
+    if (strlen($result) < 1){
+      return $html;
+    } else {
+      return $result;
+    }
   }
 
   public static function ssr() {

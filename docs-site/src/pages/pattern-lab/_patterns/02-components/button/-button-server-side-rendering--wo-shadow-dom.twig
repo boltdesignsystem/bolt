@@ -1,0 +1,8 @@
+{# test component used for Nightwatch.js test that checks if server-side pre-rendering is working in Twig as expected #}
+
+{% filter bolt_ssr %}
+  <bolt-button no-shadow>
+    SSR via pure web component!
+    <bolt-icon name="chevron-right" no-shadow></bolt-icon>
+  </bolt-button>
+{% endfilter %}

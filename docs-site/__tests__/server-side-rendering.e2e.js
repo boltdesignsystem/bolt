@@ -4,7 +4,7 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-button-70-server-side-rendering--twig-only/02-components-button-70-server-side-rendering--twig-only.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-button--button-server-side-rendering--wo-shadow-dom/02-components-button--button-server-side-rendering--wo-shadow-dom.html`,
       )
       .waitForElementVisible('bolt-button', 3000)
       .assert.elementPresent('.c-bolt-button')

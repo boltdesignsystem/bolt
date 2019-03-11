@@ -7,6 +7,5 @@ renderToString(htmlString).then(htmlRendered => {
   console.log(
     highlight(htmlRendered, { language: 'html', ignoreIllegals: true }),
   );
-  shutDownSSRServer();
   process.exit(0);
 });
