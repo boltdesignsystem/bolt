@@ -35,7 +35,7 @@ class BoltVideoMeta extends withContext(withLitHtml()) {
   }
 
   connectedCallback() {
-    super.connectedCallback();
+    super.connectedCallback && super.connectedCallback();
     this.context = this.contexts.get(VideoContext);
   }
 
