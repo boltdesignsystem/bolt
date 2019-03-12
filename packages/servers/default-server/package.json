@@ -7,13 +7,21 @@
   "scripts": {
     "start": "node index.js"
   },
-  "publishConfig": {
-    "access": "public"
-  },
+  "private": true,
   "dependencies": {
     "@bolt/api": "^0.0.0",
     "@bolt/build-tools": "^2.3.0",
     "globby": "^9.0.0",
     "express": "^4.16.3"
+  },
+  "workspaces": {
+    "packages": [
+      "../../api",
+      "../../global",
+      "../../components/*",
+      "../../components/lists/*",
+      "../../twig-renderer",
+      "../../build-tools"
+    ]
   }
 }
