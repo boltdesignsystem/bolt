@@ -48,11 +48,11 @@ class TwigFunctions {
     ]);
   }
 
-  public static function bolt_ssr($context, $html) {
+  public static function bolt_ssr($context = '', $html) {
     // a better, more dynamic way of finding the ssr-server path is via lerna (but it's more costly to run $$)
     // $p = new Process('npx --quiet lerna ls --json --all | npx --quiet json -a -c "this.name === \'@bolt/ssr-server\'" location');
     // $p->run();
-    // $ssrServerPath = trim($p->getOutput()).'/index.mjs';
+    // $ssrServerPath = trim($p->getOutput()).'/cli.js';
 
     // locate where the Bolt SSR Server script is physically located so we can call the script + pass along our HTML string to render
     $context = new ArrayFinder($context);
@@ -71,8 +71,8 @@ class TwigFunctions {
       return $html; // if the ssr-server can't be found 
     }
 
-    // alt way of handling this natively without the esm module
-    $process = new Process(['node', $ssrServerPath, $html]);
+    // auto-disable syntax highlighting via the 2nd prop
+    $process = new Process(['node', $ssrServerPath, $html, false]);
     $process->setTimeout(3600);
     $process->setIdleTimeout(240);
     $process->run();
