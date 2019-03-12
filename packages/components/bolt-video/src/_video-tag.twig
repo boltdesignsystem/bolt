@@ -34,12 +34,12 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
   {% set attributes = attributes.setAttribute("account-id", accountId) %}
 {% endif %}
 
-{% if showMeta %}
-  {% set attributes = attributes.setAttribute("show-meta", showMeta) %}
+{% if showMeta is sameas(false) %}
+  {% set attributes = attributes.setAttribute("no-meta", true) %}
 {% endif %}
 
-{% if showMetaTitle %}
-  {% set attributes = attributes.setAttribute("show-meta-title", showMetaTitle) %}
+{% if showMetaTitle is sameas(false) %}
+  {% set attributes = attributes.setAttribute("no-meta-title", true) %}
 {% endif %}
 
 {% if playerId %}
@@ -50,8 +50,8 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
   {% set attributes = attributes.setAttribute("autoplay", autoplay) %}
 {% endif %}
 
-{% if controls %}
-  {% set attributes = attributes.setAttribute("controls", controls) %}
+{% if controls is sameas(false) %}
+  {% set attributes = attributes.setAttribute("no-controls", true) %}
 {% endif %}
 
 {% if loop %}
