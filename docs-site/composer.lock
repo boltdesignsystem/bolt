@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9da118e66d4f8578cceedd893e131e36",
+    "content-hash": "46f2c2ead75f9ff3ca9a6e8bbc919f27",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -275,15 +275,15 @@
         },
         {
             "name": "bolt-design-system/twig-renderer",
-            "version": "2.2.1",
+            "version": "2.3.0",
             "dist": {
                 "type": "path",
                 "url": "../packages/twig-renderer",
-                "reference": "950e572688dd197a06620b332a82074fa7971af1",
+                "reference": "487ac9b539b7a1b9a73043635a3b1e3d97f6770e",
                 "shasum": null
             },
             "require": {
-                "bolt-design-system/core-php": "*",
+                "bolt-design-system/core-php": "^2.3.0",
                 "bolt-design-system/drupal-twig-extensions": "*",
                 "symfony/finder": "*",
                 "twig/twig": "^1.0",
@@ -3019,25 +3019,25 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.2.0",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "2b341009ccec76837a7f46f59641b431e4d4c2b0"
+                "reference": "009f8dda80930e89e8344a4e310b08f9ff07dd2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/2b341009ccec76837a7f46f59641b431e4d4c2b0",
-                "reference": "2b341009ccec76837a7f46f59641b431e4d4c2b0",
+                "url": "https://api.github.com/repos/symfony/process/zipball/009f8dda80930e89e8344a4e310b08f9ff07dd2e",
+                "reference": "009f8dda80930e89e8344a4e310b08f9ff07dd2e",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3"
+                "php": "^5.5.9|>=7.0.8"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -3064,7 +3064,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-11-20T16:22:05+00:00"
+            "time": "2019-01-16T13:27:11+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -3223,12 +3223,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "47297c2ae9bbdde1874251e35aea6b150b03859a"
+                "reference": "b0d8cd7788393e5ae0156b97d1c0377644d4a56c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/47297c2ae9bbdde1874251e35aea6b150b03859a",
-                "reference": "47297c2ae9bbdde1874251e35aea6b150b03859a",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/b0d8cd7788393e5ae0156b97d1c0377644d4a56c",
+                "reference": "b0d8cd7788393e5ae0156b97d1c0377644d4a56c",
                 "shasum": ""
             },
             "require": {
@@ -3281,7 +3281,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-03-12T12:43:05+00:00"
+            "time": "2019-03-12T15:43:49+00:00"
         },
         {
             "name": "webmozart/assert",
@@ -3382,14 +3382,7 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [
-        {
-            "alias": "3.4",
-            "alias_normalized": "3.4.0.0",
-            "version": "4.2.0.0",
-            "package": "symfony/process"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": [],
     "prefer-stable": false,
