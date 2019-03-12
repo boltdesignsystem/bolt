@@ -35,9 +35,9 @@ class BoltExtras extends Twig_Extension implements Twig_ExtensionInterface {
     ];
   }
 
-  // public function getTokenParsers() {
-  //   return [
-  //     Bolt\TwigTags::ssr_tag(),
-  //   ];
-  // }
+  public function getTokenParsers() {
+    return [
+      // Bolt\TwigTags::ssr_tag(),
+    ];
+  }
 }
