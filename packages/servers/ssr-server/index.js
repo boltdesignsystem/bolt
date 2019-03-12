@@ -95,14 +95,14 @@ async function ssrRenderHTML(htmlToRender, port, webpackStatsGenerated) {
   return new Promise(async (resolve, reject) => {
     const htmlResult = await render(htmlToRender, port, webpackStatsGenerated);
 
-    // const renderedHTML = prettier.format(htmlResult, {
-    //   singleQuote: true,
-    //   trailingComma: 'es5',
-    //   bracketSpacing: true,
-    //   jsxBracketSameLine: true,
-    //   parser: 'html',
-    // });
-    return resolve(htmlResult);
+    const renderedHTML = prettier.format(htmlResult, {
+      singleQuote: true,
+      trailingComma: 'es5',
+      bracketSpacing: true,
+      jsxBracketSameLine: true,
+      parser: 'html',
+    });
+    return resolve(renderedHTML);
   });
 }
 
