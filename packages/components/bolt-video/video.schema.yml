@@ -21,8 +21,10 @@ properties:
     description: A custom title to use in the share overlay
     default: Share This Video
   ratio:
-    type: boolean
-    description: Maintain video ratio.
+    type: [string, boolean]
+    title: boolean option is DEPRECATED
+    description: Set the aspect ratio for the image via slash-separated width and height values, e.g. 4/3. Currently required for aspect ratio to be applied properly. Set to "none" to opt out of aspect ratio.
+    default: auto
   collapsed:
     type: boolean
     description: Collapse the video on load.
@@ -30,14 +32,26 @@ properties:
     type: boolean
     description: Show the video metadata.
     default: true
+  no_meta:
+    type: boolean
+    description: Do not show the metadata. Web component only.
+    default: false
   showMetaTitle:
     type: boolean
     description: Show the video title.
     default: true
+  no_meta_title:
+    type: boolean
+    description: Do not show the title. Web component only.
+    default: false
   controls:
     type: boolean
     description: Show the video controls.
     default: true
+  no_controls:
+    type: boolean
+    description: Do not show the video conrtols. Web component only.
+    default: false
   autoplay:
     type: boolean
     description: Auto-play the video.
