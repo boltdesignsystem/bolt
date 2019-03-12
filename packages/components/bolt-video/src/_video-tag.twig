@@ -47,7 +47,7 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
 {% endif %}
 
 {% if autoplay %}
-  {% set attributes = attributes.setAttribute("autoplay", autoplay) %}
+  {% set attributes = attributes.setAttribute("autoplay", true) %}
 {% endif %}
 
 {% if controls is sameas(false) %}
