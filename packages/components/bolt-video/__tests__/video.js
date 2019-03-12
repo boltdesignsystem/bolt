@@ -4,7 +4,7 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../video.schema.yml'));
 const { tag } = schema.properties;
 
-describe('<bolt-video> Component', async () => {
+describe('<bolt-video> Component', () => {
   test('<bolt-video> compiles', async () => {
     const results = await render('@bolt-components-video/video.twig', {
       videoId: '3861325118001',

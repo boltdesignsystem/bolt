@@ -6,7 +6,7 @@ const schema = readYamlFileSync(
 );
 const { shapeGroup } = schema.properties;
 
-describe('background shapes', async () => {
+describe('background shapes', () => {
   shapeGroup.enum.forEach(async group => {
     test(`shape group: ${group}`, async () => {
       const results = await render(

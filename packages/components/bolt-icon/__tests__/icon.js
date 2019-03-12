@@ -1,6 +1,6 @@
 const { render } = require('@bolt/twig-renderer');
 
-describe('<bolt-icon> Component', async () => {
+describe('<bolt-icon> Component', () => {
   test('basic usage', async () => {
     const results = await render('@bolt-components-icon/icon.twig', {
       name: 'add-open',

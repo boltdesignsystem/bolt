@@ -20,7 +20,7 @@ async function renderTwigString(template, data) {
 
 const timeout = 120000;
 
-describe('button', async () => {
+describe('button', () => {
   let page;
 
   afterAll(async () => {

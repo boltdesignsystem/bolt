@@ -11,7 +11,7 @@ async function renderTwig(template, data) {
 
 const timeout = 60000;
 
-describe('<bolt-ratio> Component', async () => {
+describe('<bolt-ratio> Component', () => {
   let page;
 
   afterAll(async () => {
