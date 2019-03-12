@@ -1,3 +1,5 @@
+// original puppeteer based SSR implementation prior to porting over to JSDOM
+
 import puppeteer from 'puppeteer';
 
 export async function renderPage(port) {
