@@ -70,12 +70,14 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
   {% set attributes = attributes.setAttribute("disabled-plugins", disabled_plugins) %}
 {% endif %}
 
+{% if share_description %}
+  {% set attributes = attributes.setAttribute("share-description", share_description|t) %}
+{% endif %}
+
 {# don't use the snake_case on-init config if the on-init attribute already exists #}
 {% if on_init and not attributes["on-init"] %}
   {% set attributes = attributes.setAttribute("on-init", on_init) %}
 {% endif %}
-
-{% set attributes = attributes.setAttribute("share-description", share_description|default('Share This Video'|t)) %}
 
 {% if isBackgroundVideo %}
   {% set attributes = attributes.setAttribute("is-background-video", isBackgroundVideo) %}
