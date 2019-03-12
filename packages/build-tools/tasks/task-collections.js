@@ -8,7 +8,8 @@ const imageTasks = require('./image-tasks');
 const iconTasks = require('./icon-tasks');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
-const { writeBoltVersions } = require('../utils/bolt-versions');
+const { writeBoltVersions } = require('./api-tasks/bolt-versions');
+const events = require('../utils/events');
 const extraTasks = [];
 let config;
 
@@ -24,6 +25,8 @@ async function getExtraTasks() {
       extraTasks.static = require('./static-tasks');
       break;
     case 'pwa':
+      delete require.cache[require.resolve('./api-tasks')];
+      extraTasks.api = require('./api-tasks');
       extraTasks.patternLab = require('./pattern-lab-tasks');
       extraTasks.static = require('./static-tasks');
       break;
@@ -39,19 +42,36 @@ async function getExtraTasks() {
 async function compileBasedOnEnvironment() {
   await getExtraTasks();
 
+  const promiseTasks = [];
+
   switch (config.env) {
     case 'pl':
-      await extraTasks.patternLab.compile();
+      promiseTasks.push(await extraTasks.patternLab.precompile());
       break;
     case 'static':
-      await extraTasks.static.compile();
+      promiseTasks.push(await extraTasks.static.compile());
       break;
     case 'pwa':
-      return Promise.all([
-        extraTasks.static.compile(),
-        extraTasks.patternLab.compile(),
-      ]);
+      promiseTasks.push(
+        new Promise(async (resolve, reject) => {
+          await extraTasks.static.compile();
+          resolve();
+        }),
+      );
+
+      promiseTasks.push(
+        new Promise(async (resolve, reject) => {
+          await extraTasks.patternLab.compile(true, true).then(async () => {
+            await extraTasks.api.generate().then(async () => {
+              await extraTasks.patternLab.precompile();
+            });
+            resolve();
+          });
+        }),
+      );
   }
+
+  return promiseTasks;
 }
 
 async function clean() {
@@ -182,9 +202,13 @@ async function build(shouldReturnTime = false) {
     }
 
     config.prod || config.watch === false ? await webpackTasks.compile() : '';
-    await images();
+    await images().catch(error => {
+      console.log(error);
+      // log.errorAndExit('Image task failed', error);
+    });
+
     config.prod || config.watch === false
-      ? await compileBasedOnEnvironment()
+      ? await Promise.all(await compileBasedOnEnvironment())
       : '';
 
     if (shouldReturnTime) {
@@ -217,6 +241,7 @@ async function watch() {
         break;
       case 'pwa':
         watchTasks.push(extraTasks.patternLab.watch());
+        watchTasks.push(extraTasks.api.watch());
         watchTasks.push(extraTasks.static.watch());
         break;
     }
@@ -237,7 +262,6 @@ async function watch() {
 
 async function start() {
   let buildTime;
-  const extraTasks = await getExtraTasks();
   config = config || (await getConfig());
 
   try {
@@ -246,11 +270,10 @@ async function start() {
         shouldReturnTime: true,
       });
     }
-    return Promise.all([
-      serve(buildTime, true),
-      await compileBasedOnEnvironment(),
-      await watch(),
-    ]);
+    await Promise.all(await compileBasedOnEnvironment()).then(async () => {
+      await watch();
+      await serve(buildTime, true);
+    });
   } catch (error) {
     log.errorAndExit('Start failed', error);
   }
