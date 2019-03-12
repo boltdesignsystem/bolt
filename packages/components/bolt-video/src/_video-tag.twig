@@ -58,6 +58,10 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
   {% set attributes = attributes.setAttribute("loop", true) %}
 {% endif %}
 
+{% if can_use_ratio is sameas(false) %}
+  {% set attributes = attributes.setAttribute("ratio", "none") %}
+{% endif %}
+
 {% if enabled_plugins %}
   {% set attributes = attributes.setAttribute("enabled-plugins", enabled_plugins) %}
 {% endif %}

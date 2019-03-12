@@ -2,6 +2,21 @@
   {{ validate_data_schema(bolt.data.components["@bolt-components-video"].schema, _self) | raw }}
 {% endif %}
 
+{# 'ratio' should be a string, but boolean was previously supported. Boolean is now DEPRECATED. #}
+{% if ratio is sameas(false) or ratio is sameas(true) %}
+  {% set ratio_bool = ratio %}
+{% else %}
+  {% set ratio_string = ratio %}
+  {% set ratio_split = ratio_string|split("/") %}
+  {% if ratio_split|length == 2 %}
+    {% set width = ratio_split[0] %}
+    {% set height = ratio_split[1] %}
+  {% endif %}
+{% endif %}
+
+{% set use_ratio = ratio_bool ?? true %}
+{% set can_use_ratio = use_ratio is sameas(true) and ratio_string != "none" %}
+
 {% set videoUuid = videoUuid | default("js-bolt-video-uuid--" ~ (bolt.data.config.env == "test" ? "12345" : random())) %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
@@ -10,7 +25,6 @@
 {% set baseClass = "c-#{bolt.data.config.namespace}-video" %}
 
 {% set collapsed = collapsed | default(true) %}
-{% set ratio = ratio ?? true %}
 
 {% set classes = [
   baseClass,
@@ -18,7 +32,7 @@
 ] %}
 
 {% spaceless %}
-  {% if ratio == true %}
+  {% if can_use_ratio %}
     {# Move utility classes to a separate attributes object so they can be added to the wrapping ratio object instead #}
     {% set ratioAttributes = create_attribute({}) %}
     {% for class in attributes["class"] %}
@@ -33,8 +47,7 @@
     {% endset %}
 
     {% include "@bolt-components-ratio/ratio.twig" with {
-      aspectRatioHeight: aspectRatioHeight ?? 9,
-      aspectRatioWidth: aspectRatioWidth ?? 16,
+      ratio: width|default(16) ~ "/" ~ height|default(9),
       children: innerVideo,
       attributes: ratioAttributes
     } only %}
