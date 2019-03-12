@@ -1,27 +1,41 @@
 const jsdom = require('jsdom');
+const resolve = require('resolve');
 const requestAnimationFrame = require('raf');
 const { JSDOM } = jsdom;
+const fs = require('fs');
 const { template } = require('./libs/template');
 let dom;
 
+const mutationObserverShim = fs.readFileSync(
+  resolve.sync('mutationobserver-shim'),
+  { encoding: 'utf-8' },
+);
+
+/**
+ * contains a 1 line patch workaround that sets the IE8 check to always be false)
+ * via the patch-package NPM library
+ */
+const customElementShim = fs.readFileSync(
+  resolve.sync(
+    'document-register-element/build/document-register-element.max.js',
+  ),
+  { encoding: 'utf-8' },
+);
+
 async function render(html, port, webpackAssets) {
   return new Promise(async (resolve, reject) => {
-    /*
-     ** 1. 1 line patch (workaround that sets the IE8 check to always be false) via patch-package
-     */
     dom = new JSDOM(`${template(html, port, webpackAssets)}`, {
       runScripts: 'dangerously',
       resources: 'usable',
       url: `http://localhost:${port}`,
       beforeParse(window) {
-        global.window = window;
-        global.document = window.document;
-        global.requestAnimationFrame = requestAnimationFrame;
-        require('mutationobserver-shim');
-        require('document-register-element/build/document-register-element.max.js'); /* [1] */
         window.requestAnimationFrame = requestAnimationFrame;
       },
     });
+
+    // add these to our JSOM instance to messing with the global Node.js env
+    dom.window.eval(`${mutationObserverShim}`);
+    dom.window.eval(`${customElementShim}`);
 
     dom.window.document.onload = async () => {
       // @todo: work out a way to get these web component tag names to be dynamically added
