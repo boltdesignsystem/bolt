@@ -60,38 +60,38 @@
   } only %}
 {% endset %}
 
-<h3>Each pinned area (upper and lower) can have 1 or more items, spacing will be evenly distributed</h3>
-<div class="u-bolt-margin-bottom-small">
-  {% include "@bolt-components-band/band.twig" with {
-    size: "large",
-    content: content,
-    pinned_content: {
-      upper: [
-        {
-          content: "upper pinned 1",
-        },
-        {
-          content: "upper pinned 2",
-        },
-        {
-          content: "upper pinned 3",
-        },
-      ],
-      lower: [
-        {
-          content: "lower pinned 1",
-        },
-        {
-          content: "lower pinned 2",
-        },
-        {
-          content: "lower pinned 3",
-        },
-      ]
-    }
-  } only %}
-</div>
-<div class="u-bolt-margin-bottom-medium">
+<div class="u-bolt-margin-bottom-large">
+  <h3>Each pinned area (upper and lower) can have 1 or more items, spacing will be evenly distributed</h3>
+  <div class="u-bolt-margin-bottom-small">
+    {% include "@bolt-components-band/band.twig" with {
+      size: "large",
+      content: content,
+      pinned_content: {
+        upper: [
+          {
+            content: "upper pinned 1",
+          },
+          {
+            content: "upper pinned 2",
+          },
+          {
+            content: "upper pinned 3",
+          },
+        ],
+        lower: [
+          {
+            content: "lower pinned 1",
+          },
+          {
+            content: "lower pinned 2",
+          },
+          {
+            content: "lower pinned 3",
+          },
+        ]
+      }
+    } only %}
+  </div>
   {% include "@bolt-components-band/band.twig" with {
     size: "large",
     content: content,
@@ -108,9 +108,45 @@
   } only %}
 </div>
 
-<h3>When there is only 1 item, you can set the align prop to your liking (start, center, end)</h3>
-{% include "@bolt-components-band/band.twig" with {
-  size: "large",
+<div class="u-bolt-margin-bottom-large">
+  <h3>When there is only 1 item, you can set the align prop to your liking (start, center, end)</h3>
+  {% include "@bolt-components-band/band.twig" with {
+    size: "large",
+    content: content,
+    pinned_content: {
+      upper: [
+        {
+          content: pinned_share,
+          align: "end",
+        },
+      ],
+    }
+  } only %}
+</div>
+
+
+
+{# Deprecated items #}
+{% set items_demo %}
+{% verbatim %}{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  items: [
+    {
+      position: {
+        align: "end",
+        valign: "center",
+        row_start: 1,
+        column_start: 1,
+        column_end: 12,
+      },
+      content: pinned_share,
+    },
+  ]
+} only %}{% endverbatim %}
+{% endset %}
+
+{% set pinned_content_demo %}
+{% verbatim %}{% include "@bolt-components-band/band.twig" with {
   content: content,
   pinned_content: {
     upper: [
@@ -120,4 +156,21 @@
       },
     ],
   }
+} only %}{% endverbatim %}
+{% endset %}
+
+<p><mark>Note: please convert the deprecated items prop to the new pinned_content prop.</mark></p>
+
+<h3>Deprecated items prop usage</h3>
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  display: "block",
+  lang: "twig",
+  content: items_demo
+} only %}
+
+<h3>New pinned_content prop usage</h3>
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  display: "block",
+  lang: "twig",
+  content: pinned_content_demo
 } only %}
