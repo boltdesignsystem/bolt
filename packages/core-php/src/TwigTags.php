@@ -18,7 +18,7 @@ class TwigTags {
     return new GridCellTokenParser();
   }
 
-  public static function ssr_tag() {
-    return new SSRTagTokenParser();
-  }
+  // public static function ssr_tag() {
+  //   return new SSRTagTokenParser();
+  // }
 }

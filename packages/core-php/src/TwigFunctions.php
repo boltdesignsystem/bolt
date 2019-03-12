@@ -29,7 +29,7 @@ class TwigFunctions {
 
 
   public static function fileExists() {
-    return new Twig_SimpleFunction('fileExists', function(\Twig_Environment $env, $context, $path) {
+    return new Twig_SimpleFunction('fileExists', function(\Twig\Environment $env, $context, $path) {
       $result = '';
 
       try {
@@ -86,7 +86,7 @@ class TwigFunctions {
   }
 
   public static function ssr() {
-    return new Twig_SimpleFunction('bolt_ssr', function(\Twig_Environment $env, $context, $html) {
+    return new Twig_SimpleFunction('bolt_ssr', function(\Twig\Environment $env, $context, $html) {
       $result = self::bolt_ssr($context, $html);
       return $result;
     }, [
@@ -149,7 +149,7 @@ class TwigFunctions {
 
   // A combination of base64, bgcolor, ratio, and imageSize
   public static function getImageData() {
-    return new Twig_SimpleFunction('getImageData', function(\Twig_Environment $env, $relativeImagePath) {
+    return new Twig_SimpleFunction('getImageData', function(\Twig\Environment $env, $relativeImagePath) {
       if (!$relativeImagePath) {
         return [];
       }
@@ -170,7 +170,7 @@ class TwigFunctions {
 
   // Same overall idea as https://jmperezperez.com/medium-image-progressive-loading-placeholder/, we just started working on this a few years prior ^_^
   public static function base64() {
-    return new Twig_SimpleFunction('base64', function(\Twig_Environment $env, $relativeImagePath) {
+    return new Twig_SimpleFunction('base64', function(\Twig\Environment $env, $relativeImagePath) {
       $boltData = Utils::getData($env);
       $wwwDir = $boltData['config']['wwwDir'];
       return Images::generate_base64_image_placeholder($relativeImagePath, $wwwDir);
@@ -182,7 +182,7 @@ class TwigFunctions {
 
   // Return the average color of the image path passed in
   public static function bgcolor() {
-    return new Twig_SimpleFunction('bgcolor', function(\Twig_Environment $env, $relativeImagePath) {
+    return new Twig_SimpleFunction('bgcolor', function(\Twig\Environment $env, $relativeImagePath) {
       $boltData = Utils::getData($env);
       $wwwDir = $boltData['config']['wwwDir'];
       return Images::calculate_average_image_color($relativeImagePath, $wwwDir);
@@ -193,7 +193,7 @@ class TwigFunctions {
 
   // Return the aspect ratio of the image passed in
   public static function ratio() {
-    return new Twig_SimpleFunction('ratio', function(\Twig_Environment $env, $relativeImagePath, $heightOrWidthRatio = 'width') {
+    return new Twig_SimpleFunction('ratio', function(\Twig\Environment $env, $relativeImagePath, $heightOrWidthRatio = 'width') {
       $boltData = Utils::getData($env);
       $wwwDir = $boltData['config']['wwwDir'];
       $value = Images::calculate_image_aspect_ratio($relativeImagePath, $heightOrWidthRatio, $wwwDir);
@@ -206,7 +206,7 @@ class TwigFunctions {
 
   // Originally was required...? Keeping for now till full responsive images solution back up and running
   public static function imagesize() {
-    return new Twig_SimpleFunction('imagesize', function(\Twig_Environment $env, $relativeImagePath) {
+    return new Twig_SimpleFunction('imagesize', function(\Twig\Environment $env, $relativeImagePath) {
       $boltData = Utils::getData($env);
       $wwwDir = $boltData['config']['wwwDir'];
       return Images::get_image_dimensions($relativeImagePath, $wwwDir);
@@ -332,7 +332,7 @@ class TwigFunctions {
   }
 
   public static function github_url() {
-    return new Twig_SimpleFunction('github_url', function(\Twig_Environment $env, $twigPath) {
+    return new Twig_SimpleFunction('github_url', function(\Twig\Environment $env, $twigPath) {
       $filePath = TwigTools\Utils::resolveTwigPath($env, $twigPath);
       return Utils::gitHubUrl($filePath);
     }, [

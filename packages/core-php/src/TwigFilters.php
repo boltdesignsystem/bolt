@@ -21,7 +21,7 @@ class TwigFilters {
 
 
   public static function bolt_ssr() {
-    return new Twig_SimpleFilter('bolt_ssr', function(\Twig_Environment $env, $context, $html) {
+    return new Twig_SimpleFilter('bolt_ssr', function(\Twig\Environment $env, $context, $html) {
       $result = Bolt\TwigFunctions::bolt_ssr($context, $html);
       return $result;
     }, [

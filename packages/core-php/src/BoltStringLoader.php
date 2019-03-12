@@ -7,7 +7,7 @@ class BoltStringLoader {
 
   function __construct() {
     $loader = new \Twig_Loader_String();
-    $twig = new \Twig_Environment(($loader), [
+    $twig = new \Twig\Environment(($loader), [
       'debug' => true,
       'autoescape' => false,
     ]);
