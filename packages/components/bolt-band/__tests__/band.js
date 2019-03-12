@@ -25,12 +25,9 @@ describe('<bolt-band> Component', async () => {
 
   // Basic Usage
   test('Basic usage', async () => {
-    const results = await renderTwig(
-      '@bolt-components-band/band.twig',
-      {
-        content: 'This is a band.'
-      },
-    );
+    const results = await renderTwig('@bolt-components-band/band.twig', {
+      content: 'This is a band.',
+    });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
@@ -38,13 +35,10 @@ describe('<bolt-band> Component', async () => {
   // Props
   size.enum.forEach(async sizeChoice => {
     test(`Size of the band: ${sizeChoice}`, async () => {
-      const results = await renderTwig(
-        '@bolt-components-band/band.twig',
-        {
-          size: sizeChoice,
-          content: 'This is a band.'
-        },
-      );
+      const results = await renderTwig('@bolt-components-band/band.twig', {
+        size: sizeChoice,
+        content: 'This is a band.',
+      });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
@@ -52,13 +46,10 @@ describe('<bolt-band> Component', async () => {
 
   theme.enum.forEach(async themeChoice => {
     test(`Theme of the band: ${themeChoice}`, async () => {
-      const results = await renderTwig(
-        '@bolt-components-band/band.twig',
-        {
-          theme: themeChoice,
-          content: 'This is a band.'
-        },
-      );
+      const results = await renderTwig('@bolt-components-band/band.twig', {
+        theme: themeChoice,
+        content: 'This is a band.',
+      });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
