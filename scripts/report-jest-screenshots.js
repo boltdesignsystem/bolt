@@ -36,7 +36,7 @@ class JestScreenshotReporter {
   }
 
   onTestResult(test, testResult, aggregateResults) {
-    if (!process.env.NOW_TOKEN) return false;
+    // if (!process.env.NOW_TOKEN) return false;
     if (
       testResult.numFailingTests &&
       testResult.failureMessage.match(/different from snapshot/)
