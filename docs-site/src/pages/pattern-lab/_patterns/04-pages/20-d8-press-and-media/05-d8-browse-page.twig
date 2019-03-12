@@ -39,10 +39,10 @@
     {% endblock %}
   {% endembed %}
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "large",
     theme: "dark",
-    fullBleed: true,
+    full_bleed: true,
     page_title: page_title|default("Insert Page Title Here"),
     background: {
       shapeGroup: "B"
@@ -174,10 +174,10 @@
   </div>
 
 
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "medium",
     theme: "light",
-    fullBleed: true,
+    full_bleed: true,
   } only %}
 
     {% block band_content  %}

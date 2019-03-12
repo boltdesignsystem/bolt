@@ -20,7 +20,7 @@
     ]
   } only %}
 {% endset %}
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   "size": "xsmall",
   "theme": "light",
   "content": band_content
@@ -36,7 +36,7 @@
     "text": "The above example shows a xsmall band containing the breadcrumbs."
   } only %}
 {% endset %}
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   "theme": "none",
   "content": band_content
 } only %}
@@ -68,7 +68,7 @@
 {% endset %}
 
 {% set stacked_bands %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "size": "small",
     "theme": "none",
     "content": breadcrumb_band_content
@@ -112,7 +112,7 @@
   } only %}
 {% endset %}
 
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   "size": "none",
   "theme": "dark",
   "content": stacked_bands
@@ -135,7 +135,7 @@
     "text": "There is an outer band containing the breadcrumb band and the featured band, background and theme should be set on that outer band."
   } only %}
 {% endset %}
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   "theme": "none",
   "content": band_content
 } only %}
@@ -167,7 +167,7 @@
 {% endset %}
 
 {% set stacked_bands %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "size": "small",
     "theme": "none",
     "content": breadcrumb_band_content
@@ -211,7 +211,7 @@
   } only %}
 {% endset %}
 
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   "teaserPosition": "left",
   "teaserWidth": "2/3",
   "size": "none",
@@ -248,7 +248,7 @@
     "text": "A background image is set on the outer band and the theme is set to dark."
   } only %}
 {% endset %}
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   "theme": "none",
   "content": band_content
 } only %}
@@ -280,7 +280,7 @@
 {% endset %}
 
 {% set stacked_bands %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     "size": "xsmall",
     "theme": "dark",
     "content": breadcrumb_band_content
@@ -324,7 +324,7 @@
   } only %}
 {% endset %}
 
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   "size": "none",
   "theme": "none",
   "content": stacked_bands
@@ -347,7 +347,7 @@
     "text": "No background or theme is set on the outer band in this case because it's not neccessary."
   } only %}
 {% endset %}
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   "theme": "none",
   "content": band_content
 } only %}

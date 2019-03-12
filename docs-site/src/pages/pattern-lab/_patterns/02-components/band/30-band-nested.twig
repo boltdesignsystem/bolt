@@ -3,13 +3,13 @@
     size: "xxxlarge",
     text: "This Band Has 2 Bands Nested Inside",
   } only %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     size: "xsmall",
     theme: "light",
     full_bleed: false,
     content: "Nested band 1",
   } only %}
-  {% include "@bolt/band.twig" with {
+  {% include "@bolt-components-band/band.twig" with {
     size: "large",
     theme: "xlight",
     full_bleed: false,
@@ -18,7 +18,7 @@
 {% endset %}
 
 
-{% include "@bolt/band.twig" with {
+{% include "@bolt-components-band/band.twig" with {
   theme: "xdark",
   background: {
     opacity: "heavy",
