@@ -11,6 +11,10 @@ async function renderTwig(template, data) {
   return await render(template, data, true);
 }
 
+async function renderTwigString(template, data) {
+  return await renderString(template, data, true);
+}
+
 const timeout = 60000;
 
 const viewportSizes = [
@@ -137,7 +141,7 @@ describe('<bolt-navbar> Component', async () => {
     }
 
     await processViewportSizes(viewportSizes);
-  }, 10000);
+  }, 15000);
 
   test('<bolt-navbar> with a linked title', async () => {
     const { html, ok } = await renderTwig(
@@ -190,6 +194,8 @@ describe('<bolt-navbar> Component', async () => {
       document.body.appendChild(div);
     }, html);
 
+    await page.hover('.c-bolt-navbar__title--link');
+
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot();
 
@@ -197,8 +203,7 @@ describe('<bolt-navbar> Component', async () => {
 
     const pageTitle = await page.title();
     expect(pageTitle).toMatch('Bolt Design System');
-
-  }, 20000);
+  }, 15000);
 
   test('<bolt-navbar> with 4 short links', async () => {
     const { html, ok } = await renderTwig(
@@ -291,7 +296,7 @@ describe('<bolt-navbar> Component', async () => {
     }
 
     await processViewportSizes(viewportSizes);
-  }, 10000);
+  }, 15000);
 
   test('<bolt-navbar> centered with 4 short links', async () => {
     const { html, ok } = await renderTwig(
@@ -385,7 +390,7 @@ describe('<bolt-navbar> Component', async () => {
     }
 
     await processViewportSizes(viewportSizes);
-  }, 10000);
+  }, 15000);
 
   test('<bolt-navbar> without links', async () => {
     const { html, ok } = await renderTwig(
@@ -423,68 +428,124 @@ describe('<bolt-navbar> Component', async () => {
       failureThreshold: '0.01',
       failureThresholdType: 'percent',
     });
-  });
+  }, 15000);
 
-  // test('Default <bolt-ratio> w/o Shadow DOM renders', async function() {
-  //   const renderedRatioHTML = await page.evaluate(() => {
-  //     const ratio = document.createElement('bolt-ratio');
-  //     const img = document.createElement('img');
-  //     img.setAttribute('src', '/fixtures/1200x660.jpg');
+  test('<bolt-navbar> without a title', async () => {
+    const { html, ok } = await renderTwig(
+      '@bolt-components-navbar/navbar.twig',
+      {
+        links: [
+          {
+            text: 'Components',
+            url: '/pattern-lab/index.html',
+          },
+          {
+            text: 'Docs',
+            url: '/docs/getting-started/index.html',
+          },
+          {
+            text: 'Releases',
+            url: 'https://github.com/bolt-design-system/bolt/releases',
+            attributes: {
+              target: '_blank',
+            },
+          },
+          {
+            text: 'Github',
+            url: 'https://github.com/bolt-design-system/bolt',
+            attributes: {
+              target: '_blank',
+            },
+            icon: {
+              name: 'github',
+              position: 'after',
+            },
+          },
+        ],
+      },
+    );
+    expect(ok).toBe(true);
+    expect(html).toMatchSnapshot();
 
-  //     ratio.setAttribute('no-shadow', '');
-  //     ratio.setAttribute('ratio', '1200/660');
-  //     ratio.appendChild(img);
+    await page.evaluate(html => {
+      const div = document.createElement('div');
+      div.innerHTML = `${html}`;
+      document.body.appendChild(div);
+    }, html);
+    const largeViewport = await page.screenshot();
 
-  //     document.body.appendChild(ratio);
-  //     return ratio.outerHTML;
-  //   });
-  //   expect(renderedRatioHTML).toMatchSnapshot();
+    expect(largeViewport).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
 
-  //   const image = await page.screenshot();
-  //   expect(image).toMatchImageSnapshot({
-  //     failureThreshold: '0.01',
-  //     failureThresholdType: 'percent',
-  //   });
+    await page.setViewport({ height: 568, width: 320 });
+    const smallViewport = await page.screenshot();
 
-  //   const renderedRatioStyles = await page.evaluate(() => {
-  //     const ratio = document.querySelector('bolt-ratio');
-  //     const innerRatio = ratio.renderRoot.querySelector('.c-bolt-ratio');
-  //     return innerRatio.style.getPropertyValue('--aspect-ratio').trim();
-  //   });
+    expect(smallViewport).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+  }, 15000);
 
-  //   expect(renderedRatioStyles).toMatch(parseFloat(1200 / 660).toFixed(5));
-  // });
+  test('<bolt-navbar> variable width', async () => {
+    const { html, ok } = await renderTwigString(`
+      {% grid "o-bolt-grid--center" %}
+        {% cell "u-bolt-width-2/3 u-bolt-width-1/2@small" %}
+          {% include "@bolt-components-navbar/navbar.twig" with {
+            width: 'auto',
+            links: [
+              {
+                text: 'Components',
+                url: '/pattern-lab/index.html',
+              },
+              {
+                text: 'Docs',
+                url: '/docs/getting-started/index.html',
+              },
+              {
+                text: 'Releases',
+                url: 'https://github.com/bolt-design-system/bolt/releases',
+                attributes: {
+                  target: '_blank',
+                },
+              },
+              {
+                text: 'Github',
+                url: 'https://github.com/bolt-design-system/bolt',
+                attributes: {
+                  target: '_blank',
+                },
+                icon: {
+                  name: 'github',
+                  position: 'after',
+                },
+              },
+            ],
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    `);
+    expect(ok).toBe(true);
+    expect(html).toMatchSnapshot();
 
-  // test('<bolt-ratio> with HTML5 video renders', async function() {
-  //   const renderedRatioHTML = await page.evaluate(() => {
-  //     const ratio = document.createElement('bolt-ratio');
+    await page.evaluate(html => {
+      const div = document.createElement('div');
+      div.innerHTML = `${html}`;
+      document.body.appendChild(div);
+    }, html);
 
-  //     ratio.innerHTML = `<video controls poster="/fixtures/poster.png">
-  //       <source src="/fixtures/devstories.webm" type="video/webm;codecs=&quot;vp8, vorbis&quot;">
-  //       <source src="/fixtures/devstories.mp4" type="video/mp4;codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
-  //       <track src="/fixtures/devstories-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default="">
-  //     </video>`;
-  //     ratio.setAttribute('ratio', '640/360');
-  //     ratio.style.width = '640px';
-  //     document.body.appendChild(ratio);
-  //     return ratio.outerHTML;
-  //   });
+    async function processViewportSizes(viewportSizes) {
+      for (const item of viewportSizes) {
+        const { height, width, size } = item;
+        screenshots[size] = [];
 
-  //   const renderedRatioSize = await page.evaluate(() => {
-  //     const ratioSize = {
-  //       width: document.querySelector('bolt-ratio').clientWidth,
-  //       height: document.querySelector('bolt-ratio').clientHeight,
-  //     };
-  //     return ratioSize;
-  //   });
+        await page.setViewport({ height, width });
+        screenshots[size].default = await page.screenshot();
+        expect(screenshots[size].default).toMatchImageSnapshot();
+      }
+    }
 
-  //   const image = await page.screenshot();
-
-  //   expect(image).toMatchImageSnapshot({
-  //     failureThreshold: '0.01',
-  //     failureThresholdType: 'percent',
-  //   });
-
-  //   expect(renderedRatioHTML).toMatchSnapshot();
-  // });
+    await processViewportSizes(viewportSizes);
+  }, 15000);
 });
