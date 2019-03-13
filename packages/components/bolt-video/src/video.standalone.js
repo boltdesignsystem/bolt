@@ -350,6 +350,15 @@ class BoltVideo extends withContext(withLitHtml()) {
       BoltVideo.players = [];
     }
 
+    // force HTML5 Only Rendering + disable resizeManager in Brightcove to fix ability to click overlapping elements on iOS:
+    // https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747a/src/js/resize-manager.js#L19
+    if (!this.getAttribute('data-setup')) {
+      this.setAttribute(
+        'data-setup',
+        '{"techOrder": ["Html5"], "resizeManager": false}',
+      );
+    }
+
     this._setUuid();
 
     const playerId = this.props.playerId;
