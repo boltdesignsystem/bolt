@@ -1,5 +1,6 @@
 const { setup: setupDevServer } = require('jest-dev-server');
 const puppeteer = require('puppeteer');
+const rimraf = require('rimraf');
 const mkdirp = require('mkdirp');
 const path = require('path');
 const fs = require('fs');
@@ -13,6 +14,8 @@ const { getConfig } = require('./packages/build-tools/utils/config-store');
 
 module.exports = async function globalSetup() {
   const config = await getConfig();
+  // completely remove any existing wwwDir before running any Jest tests
+  rimraf.sync(config.wwwDir);
   await buildPrep(); // Generate folders, manifest data, etc needed for Twig renderer
   await imageTasks.processImages(); // process image fixtures used by any tests
 
