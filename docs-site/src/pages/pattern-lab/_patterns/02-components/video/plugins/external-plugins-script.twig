@@ -1,5 +1,5 @@
 <p>
-  This video has an external plugins script defined through <code>on_init</code>.
+  This video defines an external plugins script by setting <code>on_init</code> to <code>initBrightcovePlugins</code>.
 </p>
 
 {% include "@bolt/_video-inline-script.twig" with {
@@ -21,7 +21,7 @@
 </div>
 
 <p>
-  This video has an external plugins script defined through <code>on_init</code> and <code>enabled_plugins</code> set to certain values.
+  This video defines an external plugins script by setting <code>on_init</code> to <code>initBrightcovePlugins</code> and also enables the "cue", "social", "playback", and "email" plugins by setting <code>enabled_plugins</code> to <code>cue social playback email</code>.
 </p>
 
 {% include "@bolt/video.twig" with {
@@ -29,7 +29,7 @@
   "accountId": "1900410236",
   "playerId": "BkPDeo7VM",
   "on_init": "initBrightcovePlugins",
-  "enabled_plugins": "email playback social cue",
+  "enabled_plugins": "cue social playback email",
   "attributes": {
     "data-email-subject": "Pega - CRM Evolved Atlanta: Customer Engagement in a Digital World",
     "data-email-body": "Check out this video from Pega",

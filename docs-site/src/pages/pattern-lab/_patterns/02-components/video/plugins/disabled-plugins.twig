@@ -1,11 +1,7 @@
 {# @todo: add docs + update schema for the overlay-background config option. Ex. `overlay-background="false"` #}
 
 <p>
-  This video has <code>disabled_plugins</code> set to <code>playback</code>. Therefore disabling the default <code>playback</code> plugin.
-</p>
-
-<p>
-  Accepted plugins: <code>cue</code>, <code>social</code>, <code>playback</code>, and <code>email</code>.
+  This video disables the "playback" plugin by setting <code>disabled_plugins</code> to <code>playback</code>. The following plugins may also be disabled: <code>cue</code>, <code>social</code>, <code>playback</code>, and <code>email</code>.
 </p>
 
 {% include "@bolt/video.twig" with {

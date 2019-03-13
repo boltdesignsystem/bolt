@@ -1,14 +1,11 @@
 <p>
-  This video has <code>showMetaTitle</code> set to <code>false</code> to hide the title from the video player, so you can pass the title to other markup.
+  These videos hide the video title metadata by setting <code>showMetaTitle</code> to <code>false</code> and display the title elsewhere in the markup.
 </p>
-
-
-
 
 {% include "@bolt/headline.twig" with {
   "tag": "h3",
   "size": "large",
-  "text": "Figure and Figcaption"
+  "text": "Figure with Video"
 } only %}
 
 {% set content %}
@@ -17,7 +14,6 @@
       "videoId": "3861325118001",
       "accountId": "1900410236",
       "playerId": "r1CAdLzTW",
-      "showMeta": true,
       "showMetaTitle": false,
       "attributes": {
         "class": "u-bolt-margin-bottom-small"
@@ -41,9 +37,6 @@
   }
 } only %}
 
-
-
-
 {% include "@bolt/headline.twig" with {
   "tag": "h3",
   "size": "large",
@@ -59,7 +52,6 @@
     "videoId": "3861325118001",
     "accountId": "1900410236",
     "playerId": "r1CAdLzTW",
-    "showMeta": true,
     "showMetaTitle": false
   } only %}
 {% endset %}
