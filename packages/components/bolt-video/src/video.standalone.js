@@ -73,6 +73,7 @@ class BoltVideo extends withContext(withLitHtml()) {
 
   constructor(self) {
     self = super(self);
+    // Video is always rendered to light DOM for Brightcove
     self.useShadow = false;
     self.schema = schema;
 
@@ -90,8 +91,6 @@ class BoltVideo extends withContext(withLitHtml()) {
     this.collapseOnClickAway = this.collapseOnClickAway.bind(this);
 
     // BoltVideo.globalErrors.forEach(this.props.onError);
-
-    this.shareDescription = this.shareDescription || 'Share This Video';
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
@@ -187,6 +186,7 @@ class BoltVideo extends withContext(withLitHtml()) {
     uniqueAndEnabledPlugins.forEach(pluginName => {
       if (BoltVideo.availablePlugins) {
         if (BoltVideo.availablePlugins[pluginName]) {
+          // call each available plugin
           BoltVideo.availablePlugins[pluginName](player, elem);
         }
       }
@@ -209,7 +209,8 @@ class BoltVideo extends withContext(withLitHtml()) {
 
     // auto-configure the social overlay config (loaded via the social plugin)
     if (player.socialOverlay) {
-      player.socialOverlay.options_.description = elem.props.shareDescription;
+      player.socialOverlay.options_.description =
+        elem.props.shareDescription || 'Share This Video';
     }
 
     player.on('loadedmetadata', function() {
@@ -698,25 +699,18 @@ class BoltVideo extends withContext(withLitHtml()) {
     const dataAttributes = datasetToObject(this);
     let { useRatio, ratioW, ratioH } = this._getRatio(ratio);
 
-    let closeButtonText = null;
-    if (this.props.closeButtonText) {
-      closeButtonText = this.props.closeButtonText;
-    } else {
-      closeButtonText = 'Close';
-    }
+    let closeButtonText = this.props.closeButtonText || 'Close';
 
     const classes = cx(`t-bolt-xdark`, `c-${bolt.namespace}-video`, {
-      [`c-${bolt.namespace}-video--hide-controls`]:
-        this.props.controls === false,
+      [`c-${bolt.namespace}-video--hide-controls`]: noControls === true,
       [`c-${bolt.namespace}-video--background`]: this.props.isBackgroundVideo,
     });
 
-    const videoMetaTag = `${bolt.namespace}-video-meta`;
     const videoInnerElement = html`
       ${this.addStyles([styles])}
       <span class=${classes}>
         <video
-          id=${this.state.id}
+          id="${this.state.id}"
           class="${cx('video-js')}"
           controls="${ifDefined(!noControls ? true : undefined)}"
           preload="none"
