@@ -43,15 +43,18 @@ class BoltVideo extends withContext(withLitHtml()) {
     videoId: props.string,
     accountId: props.string,
     playerId: props.string,
+    videoUuid: props.string,
     poster: props.object,
+    ratio: props.string,
     isBackgroundVideo: props.boolean,
     onInit: props.string,
-    showMeta: props.boolean,
-    showMetaTitle: props.boolean,
+    noMeta: props.boolean,
+    noMetaTitle: props.boolean,
     closeButtonText: props.string,
     shareDescription: props.string,
     loop: props.boolean,
-    controls: props.boolean,
+    noControls: props.boolean,
+    collapsed: props.boolean,
     autoplay: props.boolean,
     resetOnFinish: props.boolean,
     directToFullscreen: props.boolean,
@@ -71,6 +74,7 @@ class BoltVideo extends withContext(withLitHtml()) {
   constructor(self) {
     self = super(self);
     self.useShadow = false;
+    self.schema = schema;
 
     this.defaultPlugins = ['playback'];
 
@@ -139,7 +143,7 @@ class BoltVideo extends withContext(withLitHtml()) {
   }
 
   _setMetaTitle(title) {
-    if (this.props.showMeta && this.props.showMetaTitle) {
+    if (!this.props.noMeta && !this.props.noMetaTitle) {
       this.querySelector(`${bolt.namespace}-video-meta`).setAttribute(
         'title',
         title,
@@ -148,7 +152,7 @@ class BoltVideo extends withContext(withLitHtml()) {
   }
 
   _setMetaDuration(seconds) {
-    if (this.props.showMeta) {
+    if (!this.props.noMeta) {
       const durationFormatted = formatVideoDuration(seconds);
       this.querySelector(`${bolt.namespace}-video-meta`).setAttribute(
         'duration',
@@ -198,8 +202,8 @@ class BoltVideo extends withContext(withLitHtml()) {
 
     elem.setPlayer(player);
 
-    // If the option to show controls is set to false (meaning, no controls will be shown), make sure the video is also muted.
-    if (elem.controls === false) {
+    // If the option to hide controls is set to true (meaning, no controls will be shown), make sure the video is also muted.
+    if (elem.noControls === true) {
       elem.player.muted(true);
     }
 
@@ -288,6 +292,26 @@ class BoltVideo extends withContext(withLitHtml()) {
     }
   }
 
+  _setUuid() {
+    let hasUuid = false;
+
+    this.classList.forEach(value => {
+      if (value.includes('js-bolt-video-uuid')) {
+        // true if uuid has already been set manually or via Twig
+        hasUuid = true;
+      }
+    });
+
+    if (!hasUuid) {
+      // TODO: replace with check for 'test'
+      const uuid =
+        bolt.config.prod === 'test'
+          ? '12345'
+          : Math.floor(Math.random() * 1000000000);
+      this.classList.add(this.props.videoUuid || `js-bolt-video-uuid--${uuid}`);
+    }
+  }
+
   handleClose() {
     this.close();
   }
@@ -324,6 +348,8 @@ class BoltVideo extends withContext(withLitHtml()) {
     if (!BoltVideo.players) {
       BoltVideo.players = [];
     }
+
+    this._setUuid();
 
     const playerId = this.props.playerId;
 
@@ -628,22 +654,49 @@ class BoltVideo extends withContext(withLitHtml()) {
     }
   }
 
-  render({ state, props }) {
-    // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
-    // data-email-body="Check out this video from Pega"
-    // data-email-videourl="https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email"
+  _getRatio(ratio) {
+    let aspectRatio = {};
 
-    // const playIconEmoji = () => (
-    //   <span role="img" aria-label="play-video">
-    //     ▶️
-    //   </span>
-    // );
-    /* eslint jsx-a11y/media-has-caption: "off" */
-    // Added a wrapping div as brightcove adds siblings to the video tag
+    aspectRatio.useRatio = true;
+
+    if (ratio === 'none') {
+      aspectRatio.useRatio = false;
+    } else {
+      if (ratio === 'auto') {
+        aspectRatio.ratioW = 16;
+        aspectRatio.ratioH = 9;
+      } else if (ratio.includes('/')) {
+        const ratioArr = ratio.split('/');
+        aspectRatio.ratioW = ratioArr[0];
+        aspectRatio.ratioH = ratioArr[1];
+      }
+    }
+
+    return aspectRatio;
+  }
+
+  render() {
+    /**
+     * NOTE:
+     * - `autoplay` can not be expected to work in every browser, see: https://support.brightcove.com/autoplay-considerations
+     * - `controls`, `preload`, and `poster` are Video.js props (https://github.com/videojs/video.js)
+     */
+
+    const {
+      videoId,
+      playerId,
+      accountId,
+      ratio,
+      noMeta,
+      noControls,
+      autoplay,
+      loop,
+    } = this.validateProps(this.props);
 
     this.contexts.get(VideoContext).state = this.state;
 
     const dataAttributes = datasetToObject(this);
+    let { useRatio, ratioW, ratioH } = this._getRatio(ratio);
 
     let closeButtonText = null;
     if (this.props.closeButtonText) {
@@ -659,27 +712,24 @@ class BoltVideo extends withContext(withLitHtml()) {
     });
 
     const videoMetaTag = `${bolt.namespace}-video-meta`;
-
-    // following 'autoplay' can not expected to always work on web
-    // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
-    return html`
+    const videoInnerElement = html`
       ${this.addStyles([styles])}
       <span class=${classes}>
         <video
           id=${this.state.id}
           class="${cx('video-js')}"
+          controls="${ifDefined(!noControls ? true : undefined)}"
           preload="none"
           autoplay=${this.props.autoplay}
           loop=${this.props.loop}
-          controls=${this.props.controls === false ? false : true}
           poster=${ifDefined(this.props.poster.uri)}
           data-embed="default"
-          data-video-id=${this.props.videoId}
-          data-account=${this.props.accountId}
-          data-player=${this.props.playerId}
+          data-video-id="${videoId}"
+          data-player="${playerId}"
+          data-account="${accountId}"
           data-application-id
         ></video>
-        ${this.props.showMeta
+        ${!noMeta
           ? html`
               <bolt-video-meta></bolt-video-meta>
             `
@@ -712,6 +762,16 @@ class BoltVideo extends withContext(withLitHtml()) {
             `
           : ''}
       </span>
+    `;
+
+    return html`
+      ${useRatio && this.parentNode.tagName !== 'BOLT-RATIO'
+        ? html`
+            <bolt-ratio ratio="${ratioW}/${ratioH}"
+              >${videoInnerElement}</bolt-ratio
+            >
+          `
+        : videoInnerElement}
     `;
   }
 }
