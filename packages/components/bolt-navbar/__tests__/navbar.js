@@ -120,27 +120,23 @@ describe('<bolt-navbar> Component', async () => {
       }, selector);
     }
 
-    async function processViewportSizes(viewportSizes) {
-      for (const item of viewportSizes) {
-        const { height, width, size } = item;
-        screenshots[size] = [];
+    for (const item of viewportSizes) {
+      const { height, width, size } = item;
+      screenshots[size] = [];
 
-        await page.setViewport({ height, width });
-        screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot();
+      await page.setViewport({ height, width });
+      screenshots[size].default = await page.screenshot();
+      expect(screenshots[size].default).toMatchImageSnapshot();
 
-        if (await isVisible('.c-bolt-nav-priority__show-more')) {
-          await page.tap('.c-bolt-nav-priority__button');
-          await page.waitFor(500);
-          screenshots[size].navOpened = await page.screenshot();
-          expect(screenshots[size].navOpened).toMatchImageSnapshot();
-          await page.tap('.c-bolt-nav-priority__button');
-          await page.waitFor(500);
-        }
+      if (await isVisible('.c-bolt-nav-priority__show-more')) {
+        await page.tap('.c-bolt-nav-priority__button');
+        await page.waitFor(500);
+        screenshots[size].navOpened = await page.screenshot();
+        expect(screenshots[size].navOpened).toMatchImageSnapshot();
+        await page.tap('.c-bolt-nav-priority__button');
+        await page.waitFor(500);
       }
     }
-
-    await processViewportSizes(viewportSizes);
   }, 15000);
 
   test('<bolt-navbar> with a linked title', async () => {
@@ -275,27 +271,23 @@ describe('<bolt-navbar> Component', async () => {
       }, selector);
     }
 
-    async function processViewportSizes(viewportSizes) {
-      for (const item of viewportSizes) {
-        const { height, width, size } = item;
-        screenshots[size] = [];
+    for (const item of viewportSizes) {
+      const { height, width, size } = item;
+      screenshots[size] = [];
 
-        await page.setViewport({ height, width });
-        screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot();
+      await page.setViewport({ height, width });
+      screenshots[size].default = await page.screenshot();
+      expect(screenshots[size].default).toMatchImageSnapshot();
 
-        if (await isVisible('.c-bolt-nav-priority__show-more')) {
-          await page.tap('.c-bolt-nav-priority__button');
-          await page.waitFor(500);
-          screenshots[size].navOpened = await page.screenshot();
-          expect(screenshots[size].navOpened).toMatchImageSnapshot();
-          await page.tap('.c-bolt-nav-priority__button');
-          await page.waitFor(500);
-        }
+      if (await isVisible('.c-bolt-nav-priority__show-more')) {
+        await page.tap('.c-bolt-nav-priority__button');
+        await page.waitFor(500);
+        screenshots[size].navOpened = await page.screenshot();
+        expect(screenshots[size].navOpened).toMatchImageSnapshot();
+        await page.tap('.c-bolt-nav-priority__button');
+        await page.waitFor(500);
       }
     }
-
-    await processViewportSizes(viewportSizes);
   }, 15000);
 
   test('<bolt-navbar> centered with 4 short links', async () => {
@@ -369,27 +361,23 @@ describe('<bolt-navbar> Component', async () => {
       }, selector);
     }
 
-    async function processViewportSizes(viewportSizes) {
-      for (const item of viewportSizes) {
-        const { height, width, size } = item;
-        screenshots[size] = [];
+    for (const item of viewportSizes) {
+      const { height, width, size } = item;
+      screenshots[size] = [];
 
-        await page.setViewport({ height, width });
-        screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot();
+      await page.setViewport({ height, width });
+      screenshots[size].default = await page.screenshot();
+      expect(screenshots[size].default).toMatchImageSnapshot();
 
-        if (await isVisible('.c-bolt-nav-priority__show-more')) {
-          await page.tap('.c-bolt-nav-priority__button');
-          await page.waitFor(500);
-          screenshots[size].navOpened = await page.screenshot();
-          expect(screenshots[size].navOpened).toMatchImageSnapshot();
-          await page.tap('.c-bolt-nav-priority__button');
-          await page.waitFor(500);
-        }
+      if (await isVisible('.c-bolt-nav-priority__show-more')) {
+        await page.tap('.c-bolt-nav-priority__button');
+        await page.waitFor(500);
+        screenshots[size].navOpened = await page.screenshot();
+        expect(screenshots[size].navOpened).toMatchImageSnapshot();
+        await page.tap('.c-bolt-nav-priority__button');
+        await page.waitFor(500);
       }
     }
-
-    await processViewportSizes(viewportSizes);
   }, 15000);
 
   test('<bolt-navbar> without links', async () => {
@@ -494,6 +482,7 @@ describe('<bolt-navbar> Component', async () => {
         {% cell "u-bolt-width-2/3 u-bolt-width-1/2@small" %}
           {% include "@bolt-components-navbar/navbar.twig" with {
             width: 'auto',
+            center: true,
             links: [
               {
                 text: 'Components',
@@ -535,17 +524,15 @@ describe('<bolt-navbar> Component', async () => {
       document.body.appendChild(div);
     }, html);
 
-    async function processViewportSizes(viewportSizes) {
-      for (const item of viewportSizes) {
-        const { height, width, size } = item;
-        screenshots[size] = [];
+    const screenshots = [];
 
-        await page.setViewport({ height, width });
-        screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot();
-      }
+    for (const item of viewportSizes) {
+      const { height, width, size } = item;
+      screenshots[size] = [];
+
+      await page.setViewport({ height, width });
+      screenshots[size].default = await page.screenshot();
+      expect(screenshots[size].default).toMatchImageSnapshot();
     }
-
-    await processViewportSizes(viewportSizes);
   }, 15000);
 });
