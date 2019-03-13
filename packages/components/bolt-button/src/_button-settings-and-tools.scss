@@ -86,7 +86,12 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 
   &:focus:not(:hover),
   &.is-focus:not(.is-hover) {
-    box-shadow: 0 0 1px bolt-theme(link), 0 0 0.5rem bolt-theme(link);
+    box-shadow:
+      0 -1px 2px bolt-theme(background),
+      0 1px 2px bolt-theme(background),
+      0 0 5px rgb(59, 153, 252),
+      0 -1px 0.65rem rgb(59, 153, 252),
+      0 1px 0.65rem rgb(59, 153, 252); // @todo: This mimmicks the browser default blue. We will update it with our own colors later on.
   }
 }
 

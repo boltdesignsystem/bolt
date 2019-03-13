@@ -36,18 +36,18 @@ describe('button', async () => {
     });
   }, timeout);
 
-  test('basic button', async () => {
+  test('Basic usage', async () => {
     const results = await renderTwig('@bolt-components-button/button.twig', {
-      text: 'Hello World',
+      text: 'This is a button',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
   tag.enum.forEach(async tagChoice => {
-    test(`button tag: ${tagChoice}`, async () => {
+    test(`Button tag: ${tagChoice}`, async () => {
       const results = await renderTwig('@bolt-components-button/button.twig', {
-        text: 'Hello World',
+        text: 'This is a button',
         tag: tagChoice,
       });
       expect(results.ok).toBe(true);
@@ -122,7 +122,7 @@ describe('button', async () => {
   test('Default <bolt-button> w/o Shadow DOM renders', async function() {
     const renderedButtonHTML = await page.evaluate(() => {
       const btn = document.createElement('bolt-button');
-      btn.textContent = 'Hello World!';
+      btn.textContent = 'This is a button';
       document.body.appendChild(btn);
       btn.useShadow = false;
       btn.updated();
