@@ -588,6 +588,10 @@ class BoltVideo extends withContext(withLitHtml()) {
     const self = this;
 
     beforeNextRender(this, function() {
+      const dataAttributes = datasetToObject(this);
+      Object.keys(dataAttributes).forEach(item => {
+        this.querySelector('video').setAttribute(item, dataAttributes[item]);
+      });
       if (window.bc && window.videojs) {
         self.initVideo(self.state.id);
       } else {
@@ -696,7 +700,6 @@ class BoltVideo extends withContext(withLitHtml()) {
 
     this.contexts.get(VideoContext).state = this.state;
 
-    const dataAttributes = datasetToObject(this);
     let { useRatio, ratioW, ratioH } = this._getRatio(ratio);
 
     let closeButtonText = this.props.closeButtonText || 'Close';
