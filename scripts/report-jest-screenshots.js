@@ -56,10 +56,19 @@ class JestScreenshotReporter {
                 `/__image_snapshots__/__diff_output__/${file}`,
               ),
             );
-            uploadImage(file, imageData).then(url => {
-              const urlToDisplay = `https://${url}/${file}`;
-              resolve(urlToDisplay);
-            });
+            if (process.env.NOW_TOKEN) {
+              uploadImage(file, imageData).then(url => {
+                const urlToDisplay = `https://${url}/${file}`;
+                resolve(urlToDisplay);
+              });
+            } else {
+              resolve(
+                `${path.join(
+                  testingDir,
+                  `/__image_snapshots__/__diff_output__/${file}`,
+                )}`,
+              );
+            }
           });
           allImagePromises.push(filePromise);
         });
