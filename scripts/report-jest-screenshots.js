@@ -14,6 +14,8 @@ async function uploadImage(name, content) {
 }
 
 const NOW_TOKEN = process.env.NOW_TOKEN;
+
+const isTravis = process.env.TRAVIS;
 // let filesToUpload = [];
 
 // async function finishUploading() {
@@ -56,13 +58,13 @@ class JestScreenshotReporter {
                 `/__image_snapshots__/__diff_output__/${file}`,
               ),
             );
-            if (process.env.NOW_TOKEN) {
-              uploadImage(file, imageData).then(url => {
+            if (NOW_TOKEN || isTravis) {
+              await uploadImage(file, imageData).then(url => {
                 const urlToDisplay = `https://${url}/${file}`;
                 resolve(urlToDisplay);
               });
             } else {
-              resolve(
+              await resolve(
                 `${path.join(
                   testingDir,
                   `/__image_snapshots__/__diff_output__/${file}`,

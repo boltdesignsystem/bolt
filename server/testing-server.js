@@ -52,7 +52,7 @@ getConfig().then(async boltConfig => {
     }),
   );
 
-  app.use(express.static(config.wwwDir));
+  app.use(express.static(join(__dirname, '../www')));
 
   // The following middleware would not be invoked until the latest build is finished.
   app.use((req, res) => {
@@ -94,8 +94,6 @@ getConfig().then(async boltConfig => {
   });
 
   app.use('/api', handleRequest);
-
-  app.use(express.static(join(__dirname, '../www')));
 
   app.listen(port, () => {
     console.log(`Express listening on http://localhost:${port}`);
