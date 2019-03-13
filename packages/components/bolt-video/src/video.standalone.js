@@ -726,9 +726,9 @@ class BoltVideo extends withContext(withLitHtml()) {
           class="${cx('video-js')}"
           controls="${ifDefined(!noControls ? true : undefined)}"
           preload="none"
-          autoplay=${this.props.autoplay}
-          loop=${this.props.loop}
-          poster=${ifDefined(this.props.poster.uri)}
+          poster="${ifDefined(this.props.poster.uri)}"
+          autoplay="${ifDefined(autoplay ? true : undefined)}"
+          loop="${ifDefined(loop ? true : undefined)}"
           data-embed="default"
           data-video-id="${videoId}"
           data-player="${playerId}"
