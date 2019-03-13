@@ -1,0 +1,130 @@
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as blockquote_demo %}
+
+{% set video_id = "3861325118001" %}
+{% set account_id = "1900410236" %}
+{% set player_id = "r1CAdLzTW" %}
+
+{% set blockquote_demo_simple %}
+<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}"></bolt-video>
+{% endset %}
+
+{% set blockquote_demo_meta %}
+<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" no-meta></bolt-video>
+{% endset %}
+
+{% set blockquote_demo_controls %}
+<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" no-controls></bolt-video>
+{% endset %}
+
+{% set blockquote_demo_playback %}
+<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" autoplay loop></bolt-video>
+{% endset %}
+
+{% set blockquote_demo_external %}
+<bolt-button tag="button" on-click="toggle" on-click-target="js-bolt-video-uuid--{{video_id}}">Play or Pause</bolt-button>
+<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" video-uuid="js-bolt-video-uuid--{{video_id}}"></bolt-video>
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Video is a web component that renders a Brightcove video with Bolt styles. Three props are required to use Bolt Video: <bolt-code-snippet display="inline" lang="html">video-id</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">account-id</bolt-code-snippet>, and <bolt-code-snippet display="inline" lang="html">player-id</bolt-code-snippet>.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ blockquote_demo_simple }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include blockquote_demo.code_example(blockquote_demo_simple, true) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Displaying Video Metadata
+  </bolt-text>
+  <bolt-text>
+    Add the <bolt-code-snippet display="inline" lang="html">no-meta</bolt-code-snippet> prop to hide the title and duration metadata. Add the <bolt-code-snippet display="inline" lang="html">no-title-meta</bolt-code-snippet> prop to hide just the title.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ blockquote_demo_meta }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include blockquote_demo.code_example(blockquote_demo_meta, true) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Video Controls
+  </bolt-text>
+  <bolt-text>
+    Add the <bolt-code-snippet display="inline" lang="html">no-controls</bolt-code-snippet> prop to hide video controls.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ blockquote_demo_controls }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include blockquote_demo.code_example(blockquote_demo_controls, true) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Video Playback
+  </bolt-text>
+  <bolt-text>
+    Add the <bolt-code-snippet display="inline" lang="html">autoplay</bolt-code-snippet> prop to automatically play the video on load. Add the <bolt-code-snippet display="inline" lang="html">loop</bolt-code-snippet> prop to loop the video. Note: <a href="https://support.brightcove.com/autoplay-considerations" target="_blank">some browsers</a> will not autoplay unmuted videos.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ blockquote_demo_playback }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include blockquote_demo.code_example(blockquote_demo_playback, true) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    External Video Controls
+  </bolt-text>
+  <bolt-text>
+    Setup external controls by adding a button with an <bolt-code-snippet display="inline" lang="html">on-click</bolt-code-snippet> prop set to <bolt-code-snippet display="inline" lang="html">toggle</bolt-code-snippet> and an <bolt-code-snippet display="inline" lang="html">on-click-target</bolt-code-snippet> prop that matches the video's <bolt-code-snippet display="inline" lang="html">video-uuid</bolt-code-snippet> prop.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ blockquote_demo_external }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include blockquote_demo.code_example(blockquote_demo_external, true) %}
+  </div>
+</div>
