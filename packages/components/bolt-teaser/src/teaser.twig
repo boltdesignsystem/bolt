@@ -24,7 +24,7 @@
 
     {% if content %}
       {% include "@bolt-components-headline/text.twig" with {
-        text: content | striptags('<a>'),
+        text: content,
         tag: "p"
       } only %}
     {% endif %}

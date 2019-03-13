@@ -1,4 +1,4 @@
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "none",
   theme: "light",
   fullBleed: true,
@@ -12,8 +12,24 @@
   }
 } only %}
   {% block band_content %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-padding-medium" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-padding-top-medium u-bolt-padding-bottom-medium" %}
+      {% if fileExists('@bolt-assets/status-board.twig') %}
+        {% cell "u-bolt-width-1/1" %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h1",
+            text: "Bolt Component Status Board",
+            size: "xlarge",
+            attributes: {
+              class: "u-bolt-margin-bottom-medium"
+            }
+          } only %}
+
+          {# Looking for the Status Board's Twig template / logic? Everything lives here: packages/build-tools/tasks/api-tasks/bolt-status-board.js #}
+          {% include "@bolt-assets/status-board.twig" only %}
+        {% endcell %}
+      {% endif %}
+      
+      {# {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
         {% include "@bolt-components-headline/headline.twig" with {
           tag: "h1",
           text: "Component",
@@ -43,7 +59,7 @@
             "<em>Boltism</em>. a reusable user interface element that has been broken down to its most basic and flexible form, with options to configure (e.g. a band has 4 color themes and various spacing sizes)."
           ]
         } only %}
-      {% endcell %}
+      {% endcell %} #}
     {% endgrid %}
   {% endblock %}
 {% endembed %}
