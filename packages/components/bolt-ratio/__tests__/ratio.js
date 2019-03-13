@@ -28,7 +28,7 @@ describe('<bolt-ratio> Component', async () => {
   }, timeout);
 
   test('<bolt-ratio> compiles', async () => {
-    const results = await render('@bolt-components-ratio/ratio.twig', {
+    const results = await renderTwig('@bolt-components-ratio/ratio.twig', {
       children: '<img src="/fixtures/1200x660.jpg">',
       ratio: '1200/660',
     });
