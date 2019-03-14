@@ -1,8 +1,7 @@
-const { render } = require('@bolt/twig-renderer');
+import { render, renderString } from '@bolt/twig-renderer';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../video.schema.yml'));
-const { tag } = schema.properties;
 
 describe('<bolt-video> Component', () => {
   test('<bolt-video> compiles', async () => {

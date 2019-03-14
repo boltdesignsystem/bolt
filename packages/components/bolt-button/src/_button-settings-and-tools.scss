@@ -1,3 +1,32 @@
+/* ------------------------------------ *\
+   Button settings and tools
+\* ------------------------------------ */
+
+/**
+ * Settings
+ */
+
+$bolt-color-button-text: bolt-color(white);
+$bolt-color-primary: bolt-color(yellow);
+$bolt-color-secondary: bolt-color(indigo, light);
+$bolt-button-shadow: $bolt-shadow--small;
+$bolt-button-shadow--hover: $bolt-shadow--large;
+$bolt-button-border-width: $bolt-border-width;
+$bolt-button-border-style: $bolt-border-style;
+$bolt-button-border-radii: (
+  'regular': $bolt-border-radius,
+  'full': 50em,
+);
+$bolt-button-transition: $bolt-transition;
+$bolt-button-translate--hover: translate3d(0, -1px, 0);
+$bolt-button-translate--active: translate3d(0, 1px, 0);
+
+
+
+/**
+ * Tools
+ */
+
 @function bolt-button-border-radius($name) {
   @return map-get($bolt-button-border-radii, $name);
 }
@@ -7,30 +36,19 @@
   @include bolt-padding(0);
   @include bolt-font-family(body);
 
-  -webkit-appearance: none; // override default [type=submit] button styles coming from Normalize
+  appearance: none; // override default [type=submit] button styles coming from Normalize
+  outline: none;
 }
 
-@mixin bolt-button-raised() {
-  &:not(.c-bolt-button--disabled):not(.c-bolt-button--text):not([disabled]) {
-    &:hover,
-    &.is-hover {
-      @include bolt-shadow('level-20', true);
-    }
+@mixin bolt-button-raised-effect {
+  &:hover,
+  &.is-hover {
+    @include bolt-shadow('level-20', true);
+  }
 
-    &:hover:before,
-    &.is-hover:before {
-      opacity: bolt-opacity(100);
-    }
-
-    &:active,
-    &.is-active {
-      transform: $bolt-button-translate--active;
-    }
-
-    &:active:before,
-    &.is-active:before {
-      opacity: bolt-opacity(0);
-    }
+  &:active,
+  &.is-active {
+    transform: $bolt-button-translate--active;
   }
 }
 
@@ -38,13 +56,9 @@
   @include bolt-button-reset;
   @include bolt-no-select;
   @include bolt-font-weight(semibold);
-  @include bolt-button-raised;
   @include bolt-shadow('level-20');
 
-  display: inline-block;
-  display: inline-flex;
-  flex-direction: row;
-  flex-grow: 1;
+  display: flex;
   align-items: center;
   position: relative;
   transform: translate3d(0, 0, 0);
@@ -69,18 +83,23 @@
     border-radius: bolt-button-border-radius('regular');
     @include bolt-shadow('level-10', true);
   }
+
+  &:focus:not(:hover),
+  &.is-focus:not(.is-hover) {
+    box-shadow:
+      0 -1px 2px bolt-theme(background),
+      0 1px 2px bolt-theme(background),
+      0 0 5px rgb(59, 153, 252),
+      0 -1px 0.65rem rgb(59, 153, 252),
+      0 1px 0.65rem rgb(59, 153, 252); // @todo: This mimmicks the browser default blue. We will update it with our own colors later on.
+  }
 }
 
-/**
-  * Button Colors / Types
-  */
+// Button Colors / Types
 @mixin bolt-button-style--primary() {
-  &,
-  &:visited {
-    color: bolt-theme(text-on-primary);
-    border-color: bolt-theme(primary);
-    background-color: bolt-theme(primary);
-  }
+  color: bolt-theme(text-on-primary);
+  border-color: bolt-theme(primary);
+  background-color: bolt-theme(primary);
 
   &:hover,
   &.is-hover {
@@ -89,8 +108,8 @@
     background-color: bolt-theme(primary-lighten-15);
   }
 
-  &:focus,
-  &.is-focus {
+  &:focus:not([disabled]):not(.c-bolt-button--disabled),
+  &.is-focus:not([disabled]):not(.c-bolt-button--disabled) {
     color: bolt-theme(text-on-primary-darken-15);
     border-color: bolt-theme(primary-darken-15);
     background-color: bolt-theme(primary-darken-15);
@@ -105,22 +124,19 @@
 }
 
 @mixin bolt-button-style--secondary() {
-  &,
-  &:visited {
-    color: bolt-theme(text-on-secondary);
-    border-color: bolt-theme(secondary);
-    background-color: bolt-theme(secondary);
-  }
+  color: bolt-theme(text-on-secondary);
+  border-color: bolt-theme(secondary);
+  background-color: bolt-theme(secondary);
 
-  &.is-hover,
-  &:hover {
+  &:hover,
+  &.is-hover {
     color: bolt-theme(text-on-secondary-lighten-5);
     border-color: bolt-theme(secondary-lighten-5);
     background-color: bolt-theme(secondary-lighten-5);
   }
 
-  &:focus,
-  &.is-focus {
+  &:focus:not([disabled]):not(.c-bolt-button--disabled),
+  &.is-focus:not([disabled]):not(.c-bolt-button--disabled) {
     color: bolt-theme(text-on-secondary-darken-3);
     border-color: bolt-theme(secondary-darken-3);
     background-color: bolt-theme(secondary-darken-3);
@@ -135,33 +151,33 @@
 }
 
 @mixin bolt-button-style--text() {
+  // Remove box-shadow and background-color completely for text buttons.
+
+  opacity: bolt-opacity(100);
+  color: bolt-theme(headline-link);
   text-decoration: none;
   border-color: transparent;
-  background-color: transparent;
-  $bolt-theme-link-default: bolt-color(indigo, light);
 
-  // Removing shadows for text buttons
+  &,
+  &[disabled],
+  &.c-bolt-button--disabled {
+    background-color: transparent;
+  }
+
   &,
   &:before {
-    border-radius: 0;
     box-shadow: none;
   }
 
-  & {
-    opacity: bolt-opacity(100);
-    color: bolt-theme(headline-link);
-  }
-
-  &:visited {
-    opacity: bolt-opacity(100);
-  }
-
-  &:hover:not([disabled]) {
+  &:hover:not([disabled]):not(.c-bolt-button--disabled),
+  &.is-hover:not([disabled]):not(.c-bolt-button--disabled) {
     opacity: $bolt-global-link-hover-opacity;
   }
 
-  &:focus:active,
-  &:active {
+  &:focus:active:not([disabled]):not(.c-bolt-button--disabled),
+  &.is-focus.is-active:not([disabled]):not(.c-bolt-button--disabled),
+  &:active,
+  &.is-active {
     opacity: $bolt-global-link-active-opacity;
   }
 }
@@ -172,22 +188,32 @@
   &,
   &:visited,
   &:hover,
-  &:active {
+  &.is-hover,
+  &:active,
+  &.is-active {
     color: bolt-theme(text-disabled);
+  }
+
+  &:not(.c-bolt-button--text),
+  &:not(.c-bolt-button--text):visited,
+  &:not(.c-bolt-button--text):hover,
+  &:not(.c-bolt-button--text).is-hover,
+  &:not(.c-bolt-button--text):active,
+  &:not(.c-bolt-button--text).is-active {
+    @include bolt-shadow('level-20');
+
+    opacity: bolt-opacity(100);
+    transform: none;
     border-color: bolt-theme(disabled);
     background-color: bolt-theme(disabled);
   }
 
   &:before,
   &:hover:before,
-  &:active:before {
-    opacity: bolt-opacity(100);
-  }
-
-  &,
-  &:hover,
-  &:active {
-    transform: none;
+  &.is-hover:before,
+  &:active:before,
+  &.is-active:before {
+    display: none;
   }
 }
 
