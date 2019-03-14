@@ -106,8 +106,9 @@ class BoltList extends withContext(withLitHtml()) {
 
       this.slots.default.forEach(item => {
         if (item.tagName) {
-          display === 'flex' &&
-            item.setAttribute('class', `c-bolt-list-item--display-${display}`);
+          display === 'flex'
+            ? item.setAttribute('class', `c-bolt-list-item--display-${display}`)
+            : item.removeAttribute('class');
           updatedDefaultSlot.push(item);
         }
       });
