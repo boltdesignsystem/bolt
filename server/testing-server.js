@@ -52,6 +52,8 @@ getConfig().then(async boltConfig => {
     }),
   );
 
+  app.use(express.static(config.wwwDir));
+
   // The following middleware would not be invoked until the latest build is finished.
   app.use((req, res) => {
     const assetsByChunkName = res.locals.webpackStats.toJson().children[0]
@@ -69,7 +71,6 @@ getConfig().then(async boltConfig => {
             .join('\n')}
         </head>
         <body>
-          Hello world!
           <div id="root"></div>
           ${normalizeAssets(assetsByChunkName['bolt-global'])
             .filter(path => path.endsWith('.js'))
