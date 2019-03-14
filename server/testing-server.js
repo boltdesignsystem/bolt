@@ -27,6 +27,7 @@ getConfig().then(async boltConfig => {
   // don't compile anything in Webpack except for the exported JSON data from Bolt's Design Tokens + all packages with tests
   config.components.global = [
     './packages/core/styles/index.scss',
+    '@bolt/components-critical-fonts',
     '@bolt/global',
     ...allComponentsWithTests,
   ];
@@ -52,7 +53,7 @@ getConfig().then(async boltConfig => {
     }),
   );
 
-  app.use(express.static(join(__dirname, '../www')));
+  app.use(express.static(join(process.cwd(), config.wwwDir)));
 
   // The following middleware would not be invoked until the latest build is finished.
   app.use((req, res) => {
@@ -62,7 +63,7 @@ getConfig().then(async boltConfig => {
     // then use `assetsByChunkName` for server-sider rendering
     // For example, if you have only one main chunk:
     res.send(
-      `<html class="js-fonts-loaded2">
+      `<html>
         <head>
           <title>Test</title>
           ${normalizeAssets(assetsByChunkName['bolt-global'])
