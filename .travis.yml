@@ -58,6 +58,21 @@ jobs:
 
     - stage: Prep
       name: 'Build + Deploy'
+      if: branch =~ /(master|release)/
+      script:
+        - export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=false
+        # Clear incache file on normal Travis builds
+        - find . -name '.incache' -exec rm -rf {} +
+        - travis_retry yarn run setup
+        - yarn run build
+        - travis_wait 15 yarn run deploy
+        # need to reset git repo before `update-read-only-git-repos.sh`
+        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+        - ./scripts/release/update-read-only-git-repos.sh
+    
+    - stage: Prep
+      name: 'Build + Deploy'
+      if: branch !=~ /(master|release)/
       script:
         # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
@@ -67,14 +82,6 @@ jobs:
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
