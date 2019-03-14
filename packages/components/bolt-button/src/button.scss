@@ -184,22 +184,27 @@ bolt-button[width='full'],
   width: 100%;
 }
 
+// Responsive width variations
+$bolt-button-width-breakpoints: xxsmall, xsmall, small;
 
-// full@small width variations
-bolt-button[width='full@small'],
-.c-bolt-button--full\@small {
-  @include bolt-mq($until: small) {
-    width: 100%;
+@each $breakpoint in $bolt-button-width-breakpoints {
+  bolt-button[width='auto-to-full@#{$breakpoint}'],
+  .c-bolt-button--auto-to-full\@#{$breakpoint} {
+    @include bolt-mq($until: #{$breakpoint}) {
+      width: 100%;
+    }
+  }
+
+  // :host selector for correctly styling the <bolt-button> element inside other components
+  // writing this out in a separate selector due to unsupporting browsers throwing out the :host selector
+  :host([width='auto-to-full@#{$breakpoint}']) {
+    @include bolt-mq($until: #{$breakpoint}) {
+      width: 100%;
+    }
   }
 }
 
-// :host selector for correctly styling the <bolt-button> element inside other components
-// writing this out in a separate selector due to unsupporting browsers throwing out the :host selector
-:host([width='full@small']) {
-  @include bolt-mq($until: small) {
-    width: 100%;
-  }
-}
+
 
 
 /**

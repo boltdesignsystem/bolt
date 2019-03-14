@@ -18,11 +18,16 @@
   {% set align = itemAlignment %}
 {% endif %}
 
-{# DEPRECATED.  Use the values `start` and `end` insted of `left` and `right`. #}
+{# DEPRECATED.  Use the values `start` and `end` instead of `left` and `right`. #}
 {% if align == "left" %}
  {% set align = "start" %}
 {% elseif align == "right" %}
   {% set align = "end" %}
+{% endif %}
+
+{# DEPRECATED.  Use the value `auto-to-full@small` instead of `full@small. #}
+{% if width == "full@small" %}
+ {% set width = "auto-to-full@small" %}
 {% endif %}
 
 {# DEPRECATED.  Use the property `border_radius` with a value of `full` instead. #}
