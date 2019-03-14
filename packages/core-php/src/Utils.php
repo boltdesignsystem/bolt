@@ -195,7 +195,10 @@ class Utils {
    * @return boolean - Returns true if "type" is allowed, i.e. no "array" or "object" values
    */
   public static function isAllowedSchemaType($type) {
-    if (is_string($type)) {
+    if (empty($type)) {
+      return FALSE;
+    }
+    elseif (is_string($type)) {
       if ($type == "array" || $type == "object") {
         return FALSE;
       }
