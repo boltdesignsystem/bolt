@@ -2,7 +2,7 @@
 title: Bands
 ---
 
-*For all band options and API docs, see the [Band reference in Pattern Lab](/pattern-lab/?p=viewall-components-band).*
+_For all band options and API docs, see the [Band reference in Pattern Lab](/pattern-lab/?p=viewall-components-band)._
 
 A band is a full width container that goes edge to edge on the display. Bands can contain multiple internal components, and help chunk related content together in a section of a page.
 
@@ -12,9 +12,9 @@ All band components can accept any of the color themes: `xdark,` `dark`, `light`
 
 ### Use bands to group related information together
 
-In Gestalt, the principle of common region states that [when objects are contained within the same closed region, they're perceived as belonging together](https://www.usertesting.com/blog/2016/02/24/gestalt-principles/). When putting information within a band, ensure that all the elements within the band relate to each other logically. 
+In Gestalt, the principle of common region states that [when objects are contained within the same closed region, they're perceived as belonging together](https://www.usertesting.com/blog/2016/02/24/gestalt-principles/). When putting information within a band, ensure that all the elements within the band relate to each other logically.
 
-### Avoid "striping" 
+### Avoid "striping"
 
 The goal of a layout is to create a clear visual hierarchy, and to allow users to consume the information in an effective way. Including too many bands on a page interrupts the flow of information and creates a visual stopping point that may reduce further engagement. In fact, evidence from usability testing shows that [long horizontal bands across the page, particularly if they end or begin near the bottom of the "fold," discourage people from scrolling](https://www.cxpartners.co.uk/our-thinking/the_myth_of_the_page_fold_evidence_from_user_testing/).
 
@@ -52,7 +52,7 @@ The action band includes a series of links associated with icons. Use an action 
 
 ### Feature Band
 
-The feature band provides the most flexible options for mixing content, interaction and images. It's best used in cases where you want to display blocks of content side by side, e.g. an image or video next to a teaser, or a list of assets next to a headline and teaser. 
+The feature band provides the most flexible options for mixing content, interaction and images. It's best used in cases where you want to display blocks of content side by side, e.g. an image or video next to a teaser, or a list of assets next to a headline and teaser.
 
 <figure>
 
