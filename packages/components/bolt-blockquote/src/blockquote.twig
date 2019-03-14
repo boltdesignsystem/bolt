@@ -23,11 +23,11 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  this.data.size in schema.properties.size.enum ? base_class ~ "--" ~ this.data.size : "",
-  this.data.align_items in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[this.data.align_items],
-  this.data.border == 'none' ? base_class ~ "--borderless" : base_class ~ "--bordered-" ~ this.data.border,
-  this.data.indent ? base_class ~ "--indented" : "",
-  this.data.full_bleed ? base_class ~ "--full" : ""
+  this.data.size.value in schema.properties.size.enum ? base_class ~ "--" ~ this.data.size.value : "",
+  this.data.align_items.value in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[this.data.align_items.value],
+  this.data.border.value == 'none' ? base_class ~ "--borderless" : base_class ~ "--bordered-" ~ this.data.border.value,
+  this.data.indent.value ? base_class ~ "--indented" : "",
+  this.data.full_bleed.value ? base_class ~ "--full" : ""
 ] %}
 
 {#
@@ -38,7 +38,7 @@
 {% set outer_classes = [] %}
 {% set inner_classes = classes %}
 
-{% for class in this.props["class"] %}
+{% for class in this.props.class %}
   {% if class starts with "is-" or class starts with "has-" %}
     {% set inner_classes = inner_classes|merge([class]) %}
   {% elseif class starts with "c-bolt-" == false %}
@@ -64,7 +64,7 @@
       {% include "@bolt-components-headline/text.twig" with {
         text: content,
         tag: text_tag,
-        size: this.data.size,
+        size: this.data.size.value,
         weight: "semibold"
       } only %}
     </{{quote_tag}}>

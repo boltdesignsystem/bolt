@@ -4,6 +4,7 @@ namespace Bolt;
 
 use Michelf\MarkdownExtra;
 use \Webmozart\PathUtil\Path;
+use \Drupal\Core\Template\Attribute;
 
 // https://github.com/nabil1337/case-helper
 use CaseHelper\CaseHelperFactory;
@@ -230,6 +231,9 @@ class Utils {
    */
   public static function buildPropsArray($items, $schema, $isData = FALSE) {
     $props = isset($items["attributes"]) ? $items["attributes"] : [];
+
+    // Convert props to an attributes object if it's not already one.
+    $props = is_array($props) ? new Attribute($props) : $props;
 
     if (!empty($schema["properties"])) {
       foreach ($schema["properties"] as $propName => $propSchema) {
