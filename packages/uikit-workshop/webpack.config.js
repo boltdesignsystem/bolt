@@ -247,21 +247,6 @@ module.exports = async function() {
           : [],
       },
       plugins: [
-        new PrerenderSPAPlugin({
-          // Required - The path to the webpack-outputted app to prerender.
-          // staticDir: path.join(__dirname, 'dist'),
-          staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
-          // Required - Routes to render.
-          routes: [ '/'],
-          renderer: new Renderer({
-            executablePath: googleChromePath['google-chrome'] || googleChromePath.chromium,
-            args: ['--disable-dev-shm-usage']
-          }),
-          postProcess(context) {
-            context.html = context.html.replace(/<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi, ''); 
-            return context;
-          }
-        }),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
           [
@@ -290,6 +275,26 @@ module.exports = async function() {
         new NoEmitPlugin(['css/pattern-lab.js']),
       ],
     };
+    
+    if (googleChromePath['google-chrome'] !== undefined || googleChromePath.chromium !== undefined) {
+      webpackConfig.plugins.push(
+        new PrerenderSPAPlugin({
+          // Required - The path to the webpack-outputted app to prerender.
+          // staticDir: path.join(__dirname, 'dist'),
+          staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
+          // Required - Routes to render.
+          routes: [ '/'],
+          renderer: new Renderer({
+            executablePath: googleChromePath['google-chrome'] || googleChromePath.chromium,
+            args: ['--disable-dev-shm-usage']
+          }),
+          postProcess(context) {
+            context.html = context.html.replace(/<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi, ''); 
+            return context;
+          }
+        }),
+      );
+    }
 
     webpackConfig.plugins.push(
       new CriticalCssPlugin({
