@@ -35,16 +35,16 @@ class JestScreenshotReporter {
   constructor(globalConfig, options) {
     this._globalConfig = globalConfig;
     this._options = options;
+    this.allImagePromises = [];
   }
 
-  onTestResult(test, testResult, aggregateResults) {
+  async onTestResult(test, testResult, aggregateResults) {
+    const self = this;
     if (
       testResult.numFailingTests &&
       testResult.failureMessage.match(/different from snapshot/)
     ) {
-      return new Promise(async (resolveAll, reject) => {
-        const allImagePromises = [];
-
+      await new Promise(async (resolve, reject) => {
         const testingDir = path.dirname(testResult.testFilePath);
         const filesToProcess = fs.readdirSync(
           path.join(testingDir, '/__image_snapshots__/__diff_output__/'),
@@ -58,13 +58,13 @@ class JestScreenshotReporter {
                 `/__image_snapshots__/__diff_output__/${file}`,
               ),
             );
-            if (NOW_TOKEN || isTravis) {
+            if (NOW_TOKEN) {
               await uploadImage(file, imageData).then(url => {
                 const urlToDisplay = `https://${url}/${file}`;
                 resolve(urlToDisplay);
               });
             } else {
-              await resolve(
+              resolve(
                 `${path.join(
                   testingDir,
                   `/__image_snapshots__/__diff_output__/${file}`,
@@ -72,23 +72,25 @@ class JestScreenshotReporter {
               );
             }
           });
-          allImagePromises.push(filePromise);
+          resolve(self.allImagePromises.push(filePromise));
         });
-        return Promise.all(allImagePromises)
-          .then(function(values) {
-            console.log(
-              chalk.red.bold(
-                `Uploaded image diff(s) to: \n${values.join('\n')}`,
-              ),
-            );
-            resolveAll(values);
-          })
-          .catch(err => {
-            console.log(
-              chalk.red.bold(`Error uploading image diffs to now.sh: ${err}`),
-            );
-          });
       });
+    }
+  }
+
+  onRunComplete(contexts, results) {
+    if (NOW_TOKEN) {
+      return Promise.all(this.allImagePromises)
+        .then(function(values) {
+          console.log(
+            chalk.red.bold(`Uploaded image diff(s) to: \n${values.join('\n')}`),
+          );
+        })
+        .catch(err => {
+          console.log(
+            chalk.red.bold(`Error uploading image diffs to now.sh: ${err}`),
+          );
+        });
     }
   }
 }
