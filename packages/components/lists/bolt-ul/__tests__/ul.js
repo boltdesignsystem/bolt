@@ -12,7 +12,6 @@ async function renderTwigString(template, data) {
   return await renderString(template, data, true);
 }
 
-
 describe('<bolt-ul> Component', async () => {
   afterAll(async () => {
     await stopTwigRenderer();
