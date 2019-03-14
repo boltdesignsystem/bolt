@@ -25,7 +25,7 @@ describe('button', async () => {
 
   afterAll(async () => {
     await stopTwigRenderer();
-  }, timeout);
+  });
 
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();

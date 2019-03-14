@@ -4,9 +4,17 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../card.schema.yml'));
 const { tag, contentTag, theme } = schema.properties;
 
+async function renderTwig(template, data) {
+  return await render(template, data, true);
+}
+
+async function renderTwigString(template, data) {
+  return await renderString(template, data, true);
+}
+
 describe('<bolt-card> Component', async () => {
   test('basic usage', async () => {
-    const results = await render('@bolt-components-card/card.twig', {
+    const results = await renderTwig('@bolt-components-card/card.twig', {
       contentItems: [
         {
           pattern: 'image',
@@ -41,7 +49,7 @@ describe('<bolt-card> Component', async () => {
   });
 
   test('with two buttons in footer', async () => {
-    const results = await render('@bolt-components-card/card.twig', {
+    const results = await renderTwig('@bolt-components-card/card.twig', {
       contentItems: [
         {
           pattern: 'image',
@@ -81,7 +89,7 @@ describe('<bolt-card> Component', async () => {
   });
 
   test('with video in header', async () => {
-    const results = await render('@bolt-components-card/card.twig', {
+    const results = await renderTwig('@bolt-components-card/card.twig', {
       contentItems: [
         {
           pattern: 'video',
@@ -122,7 +130,7 @@ describe('<bolt-card> Component', async () => {
   });
 
   test('without footer', async () => {
-    const results = await render('@bolt-components-card/card.twig', {
+    const results = await renderTwig('@bolt-components-card/card.twig', {
       contentItems: [
         {
           pattern: 'image',
@@ -152,7 +160,7 @@ describe('<bolt-card> Component', async () => {
   });
 
   test('without footer and media', async () => {
-    const results = await render('@bolt-components-card/card.twig', {
+    const results = await renderTwig('@bolt-components-card/card.twig', {
       contentItems: [
         {
           pattern: 'eyebrow',
@@ -176,7 +184,7 @@ describe('<bolt-card> Component', async () => {
   });
 
   test('only text', async () => {
-    const results = await render('@bolt-components-card/card.twig', {
+    const results = await renderTwig('@bolt-components-card/card.twig', {
       contentItems: [
         {
           pattern: 'headline',
@@ -197,7 +205,7 @@ describe('<bolt-card> Component', async () => {
 
   tag.enum.forEach(async option => {
     test(`tag variations: ${option}`, async () => {
-      const results = await render('@bolt-components-card/card.twig', {
+      const results = await renderTwig('@bolt-components-card/card.twig', {
         tag: option,
         contentItems: [
           {
@@ -234,7 +242,7 @@ describe('<bolt-card> Component', async () => {
   });
 
   test('add clickable functionality', async () => {
-    const results = await render('@bolt-components-card/card.twig', {
+    const results = await renderTwig('@bolt-components-card/card.twig', {
       url: '#!',
       contentItems: [
         {
@@ -271,7 +279,7 @@ describe('<bolt-card> Component', async () => {
 
   contentTag.enum.forEach(async option => {
     test(`content tag variations: ${option}`, async () => {
-      const results = await render('@bolt-components-card/card.twig', {
+      const results = await renderTwig('@bolt-components-card/card.twig', {
         contentTag: option,
         contentItems: [
           {
@@ -309,7 +317,7 @@ describe('<bolt-card> Component', async () => {
 
   theme.enum.forEach(async option => {
     test(`theme variations: ${option}`, async () => {
-      const results = await render('@bolt-components-card/card.twig', {
+      const results = await renderTwig('@bolt-components-card/card.twig', {
         theme: option,
         contentItems: [
           {

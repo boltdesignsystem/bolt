@@ -9,6 +9,10 @@ async function renderTwig(template, data) {
   return await render(template, data, true);
 }
 
+async function renderTwigString(template, data) {
+  return await renderString(template, data, true);
+}
+
 const timeout = 60000;
 
 describe('<bolt-ratio> Component', async () => {
@@ -16,7 +20,7 @@ describe('<bolt-ratio> Component', async () => {
 
   afterAll(async () => {
     await stopTwigRenderer();
-  }, timeout);
+  });
 
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();
@@ -28,7 +32,7 @@ describe('<bolt-ratio> Component', async () => {
   }, timeout);
 
   test('<bolt-ratio> compiles', async () => {
-    const results = await render('@bolt-components-ratio/ratio.twig', {
+    const results = await renderTwig('@bolt-components-ratio/ratio.twig', {
       children: '<img src="/fixtures/1200x660.jpg">',
       ratio: '1200/660',
     });

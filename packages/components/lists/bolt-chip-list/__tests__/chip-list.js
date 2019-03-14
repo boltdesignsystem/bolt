@@ -1,8 +1,24 @@
-const { render } = require('@bolt/twig-renderer');
+import {
+  render,
+  renderString,
+  stop as stopTwigRenderer,
+} from '@bolt/twig-renderer';
+
+async function renderTwig(template, data) {
+  return await render(template, data, true);
+}
+
+async function renderTwigString(template, data) {
+  return await renderString(template, data, true);
+}
 
 describe('<bolt-chip-list> Component', async () => {
+  afterAll(async () => {
+    await stopTwigRenderer();
+  });
+
   test('basic usage without links', async () => {
-    const results = await render('@bolt-components-chip-list/chip-list.twig', {
+    const results = await renderTwig('@bolt-components-chip-list/chip-list.twig', {
       items: [
         {
           text: 'Chip text 1',
@@ -23,7 +39,7 @@ describe('<bolt-chip-list> Component', async () => {
   });
 
   test('basic usage with links', async () => {
-    const results = await render('@bolt-components-chip-list/chip-list.twig', {
+    const results = await renderTwig('@bolt-components-chip-list/chip-list.twig', {
       items: [
         {
           text: 'Chip link 1',
@@ -48,7 +64,7 @@ describe('<bolt-chip-list> Component', async () => {
   });
 
   test('basic usage with mixed behavior', async () => {
-    const results = await render('@bolt-components-chip-list/chip-list.twig', {
+    const results = await renderTwig('@bolt-components-chip-list/chip-list.twig', {
       items: [
         {
           text: 'Chip link 1',
