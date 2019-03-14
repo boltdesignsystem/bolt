@@ -20,7 +20,7 @@ describe('<bolt-ratio> Component', async () => {
 
   afterAll(async () => {
     await stopTwigRenderer();
-  });
+  }, 15000);
 
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();

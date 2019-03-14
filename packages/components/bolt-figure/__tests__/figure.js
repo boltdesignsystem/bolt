@@ -16,7 +16,7 @@ async function renderTwigString(template, data) {
 describe('figure', async () => {
   afterAll(async () => {
     await stopTwigRenderer();
-  });
+  }, 15000);
 
   Object.keys(media).forEach(async item => {
     test(`figure with ${item}`, async () => {

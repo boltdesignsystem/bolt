@@ -15,7 +15,7 @@ async function renderTwigString(template, data) {
 describe('<bolt-card> Component', async () => {
   afterAll(async () => {
     await stopTwigRenderer();
-  });
+  }, 15000);
 
   test('basic usage', async () => {
     const results = await renderTwig('@bolt-components-card/card.twig', {

@@ -21,7 +21,7 @@ async function renderTwigString(template, data) {
 describe('background shapes', async () => {
   afterAll(async () => {
     await stopTwigRenderer();
-  });
+  }, 15000);
 
   shapeGroup.enum.forEach(async group => {
     test(`shape group: ${group}`, async () => {

@@ -15,7 +15,7 @@ async function renderTwigString(template, data) {
 describe('<bolt-ul> Component', async () => {
   afterAll(async () => {
     await stopTwigRenderer();
-  });
+  }, 15000);
 
   test('basic usage with attributes', async () => {
     const results = await renderTwig('@bolt-components-ul/ul.twig', {

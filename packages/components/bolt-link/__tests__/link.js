@@ -19,7 +19,7 @@ async function renderTwigString(template, data) {
 describe('link', async () => {
   afterAll(async () => {
     await stopTwigRenderer();
-  });
+  }, 15000);
 
   test('basic link', async () => {
     const results = await renderTwig('@bolt-components-link/link.twig', {

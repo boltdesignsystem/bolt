@@ -15,7 +15,7 @@ async function renderTwigString(template, data) {
 describe('<bolt-chip> Component', async () => {
   afterAll(async () => {
     await stopTwigRenderer();
-  });
+  }, 15000);
 
   test('basic usage with attributes', async () => {
     const results = await renderTwig('@bolt-components-chip/chip.twig', {

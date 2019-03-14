@@ -19,7 +19,7 @@ async function renderTwigString(template, data) {
 describe('<bolt-video> Component', async () => {
   afterAll(async () => {
     await stopTwigRenderer();
-  });
+  }, 15000);
 
   test('<bolt-video> compiles', async () => {
     const results = await renderTwig('@bolt-components-video/video.twig', {

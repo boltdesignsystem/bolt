@@ -18,7 +18,7 @@ async function renderTwigString(template, data) {
 describe('<bolt-image> Component', async () => {
   afterAll(async () => {
     await stopTwigRenderer();
-  });
+  }, 15000);
 
   test('<bolt-image> with ratio object compiles', async () => {
     const results = await renderTwig('@bolt-components-image/image.twig', {
