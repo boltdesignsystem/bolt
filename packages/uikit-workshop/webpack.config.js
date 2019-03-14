@@ -8,8 +8,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const path = require('path');
+const chromePath = require('@moonandyou/chrome-path');
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
@@ -22,6 +24,8 @@ const defaultConfig = {
 };
 
 module.exports = async function() {
+  const googleChromePath = await chromePath();
+
   return new Promise(async (resolve, reject) => {
     let customConfig = defaultConfig;
 
@@ -249,6 +253,10 @@ module.exports = async function() {
           staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
           // Required - Routes to render.
           routes: [ '/'],
+          renderer: new Renderer({
+            executablePath: googleChromePath['google-chrome'] || googleChromePath.chromium,
+            args: ['--disable-dev-shm-usage']
+          }),
           postProcess(context) {
             context.html = context.html.replace(/<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi, ''); 
             return context;

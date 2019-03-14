@@ -1,6 +1,14 @@
 <?php
 
-require_once 'vendor/autoload.php';
+if (file_exists(__DIR__ . '/vendor/autoload.php')) {
+  require(__DIR__ . '/vendor/autoload.php');
+} elseif (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+  require(__DIR__ . '/../vendor/autoload.php');
+} elseif (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
+  require(__DIR__ . '/../../vendor/autoload.php');
+}
+
+use \Bolt\TwigExtensions;
 
 function addBoltExtensions(\Twig\Environment &$env, $config) {
   $env->addExtension(new \Bolt\TwigExtensions\BoltCore());

@@ -1,0 +1,45 @@
+## Configuration Options for Pattern Lab
+
+# pattern lab version
+v: "2.6.0"
+
+# what to do when included config var conflicts, q for question, a for always override, n for never override
+overrideConfig: "q"
+
+# file extensions to ignore when building or watching the source dir, separate with a comma
+ie:
+  - "DS_Store"
+  - "less"
+  - "scss"
+
+# directories and files to ignore when building or watching the source dir, separate with a comma
+id:
+  - "scss"
+  - ".svn"
+  - ".sass-cache"
+
+# whether the public directory should be cleaned when generating your site
+cleanPublic: "true"
+
+# the order of pattern states, css class names
+patternStates:
+  - "inprogress"
+  - "inreview"
+  - "complete"
+
+# the pattern types that shouldn't be included in the style guide, useful if you nest pages/templates
+styleGuideExcludes: ""
+
+# should the cache buster be on, set to false to set the cacheBuster value to 0
+cacheBusterOn: "true"
+
+# project directories
+exportDir: "export"
+publicDir: "public"
+sourceDir: "source"
+
+# defaultPattern to show on load
+defaultPattern: "all"
+
+# show pattern info by default on the "view all" views
+defaultShowPatternInfo: false

@@ -36,8 +36,10 @@ if (!function_exists("json_decode")) {
 $baseDir = __DIR__."/../";
 
 // auto-load classes
-if (file_exists($baseDir."vendor/autoload.php")) {
-	require($baseDir."vendor/autoload.php");
+if (file_exists($baseDir . 'vendor/autoload.php')) {
+  require($baseDir . 'vendor/autoload.php');
+} elseif (file_exists($baseDir . '../vendor/autoload.php')) {
+  require($baseDir . '../vendor/autoload.php');
 } else {
 	print "it doesn't appear that pattern lab has been set-up yet...\n";
 	print "please install pattern lab's dependencies by typing: php core/bin/composer.phar install...\n";

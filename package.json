@@ -23,7 +23,7 @@
     "start": "cd docs-site && yarn run start",
     "build": "cd docs-site && yarn run build:prod",
     "setup": "yarn && yarn run setup:php",
-    "setup:php": "npx lerna exec --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php -- composer update && npx lerna exec --scope @bolt/website -- composer update",
+    "setup:php": "composer install",
     "setup:quick": "yarn install --production && yarn run setup:php",
     "setup:full": "yarn --force && yarn run setup:php",
     "deploy": "./scripts/deploy.js",
@@ -74,6 +74,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@moonandyou/chrome-path": "^0.2.1",
     "document-register-element": "^1.13.1",
     "postinstall-postinstall": "^2.0.0",
     "patch-package": "^6.0.5",
@@ -113,7 +114,6 @@
     "lerna": "^3.13.1",
     "nightwatch": "^1.0.19",
     "node-fetch": "^2.3.0",
-    "now": "latest",
     "npm-run-all": "^4.1.5",
     "os": "^0.1.1",
     "os-name": "^3.0.0",

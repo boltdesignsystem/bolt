@@ -37,7 +37,7 @@ async function asyncConfig() {
     const plRoot = path.join(config.plConfigFile, '../..');
     plSource = path.join(plRoot, plConfig.sourceDir);
     plPublic = path.join(plRoot, plConfig.publicDir);
-    consolePath = path.join(plRoot, 'core/console');
+    consolePath = path.join(plRoot, 'core/console.php');
 
     return config;
   }

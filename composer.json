@@ -1,0 +1,49 @@
+{
+    "name": "bolt-design-system",
+    "description": "Wires up other composer.json files in the Bolt Design System monorepo",
+    "require": {
+        "wikimedia/composer-merge-plugin": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+          "Bolt\\": "packages/core-php/src"
+        }
+      },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/core-php"
+        },
+        {
+            "type": "path",
+            "url": "packages/drupal-twig-extensions"
+        },
+        {
+          "type": "path",
+            "url": "packages/twig-renderer"
+        },
+        {
+            "type": "path",
+            "url": "packages/styleguidekit-twig-default"
+        }
+    ],
+    "extra": {
+        "merge-plugin": {
+            "include": [
+                "docs-site/composer.json",
+                "packages/drupal-twig-extensions/composer.json",
+                "packages/twig-renderer/composer.json",
+                "packages/core-php/composer.json",
+                "packages/styleguidekit-twig-default/composer.json"
+            ],
+            "recurse": true,
+            "replace": false,
+            "ignore-duplicates": true,
+            "merge-dev": true,
+            "merge-extra": true,
+            "merge-extra-deep": true,
+            "merge-scripts": true
+        },
+        "patches-file": "docs-site/composer.patches.json"
+    }
+}

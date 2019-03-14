@@ -1,0 +1,13 @@
+diff --git a/src/PatternLab/Config.php b/src/PatternLab/Config.php
+index c090348f4..ce77db477 100644
+--- a/src/PatternLab/Config.php
++++ b/src/PatternLab/Config.php
+@@ -129,7 +129,7 @@ class Config {
+ 		self::$userConfigDirDash   = self::$options["baseDir"].self::$userConfigDirDash;
+ 		self::$userConfigDir       = (is_dir(self::$userConfigDirDash)) ? self::$userConfigDirDash : self::$userConfigDirClean;
+ 		self::$userConfigPath      = self::$userConfigDir.DIRECTORY_SEPARATOR.self::$userConfig;
+-		self::$plConfigPath        = self::$options["baseDir"]."vendor/pattern-lab/core/".self::$plConfigPath;
++		self::$plConfigPath        = self::$options["baseDir"].self::$plConfigPath;
+ 		
+ 		// can't add __DIR__ above so adding here
+ 		if (!is_dir(self::$userConfigDir)) {

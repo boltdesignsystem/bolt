@@ -42,7 +42,7 @@ ishControlsHide:
     - disco
     - random
 styleguideKit: bolt-design-system/styleguidekit-twig-default
-styleguideKitPath: vendor/bolt-design-system/styleguidekit-twig-default
+styleguideKitPath: ../packages/styleguidekit-twig-default
 lineageMatch: >-
   {%([ ]+)?(?:include|extends|embed)(
   |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
@@ -71,3 +71,4 @@ plugins:
   twigNamespaces:
     enabled: true
     readFromFile: ../www/build/data/twig-namespaces.bolt.json
+regenerateStyleguideKit: false
