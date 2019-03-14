@@ -62,7 +62,7 @@ getConfig().then(async boltConfig => {
     // then use `assetsByChunkName` for server-sider rendering
     // For example, if you have only one main chunk:
     res.send(
-      `<html class="js-fonts-loaded">
+      `<html class="js-fonts-loaded2">
         <head>
           <title>Test</title>
           ${normalizeAssets(assetsByChunkName['bolt-global'])
