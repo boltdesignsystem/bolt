@@ -79,7 +79,7 @@ class JestScreenshotReporter {
   }
 
   onRunComplete(contexts, results) {
-    if (NOW_TOKEN) {
+    if (NOW_TOKEN && this.allImagePromises.length > 0) {
       return Promise.all(this.allImagePromises)
         .then(function(values) {
           console.log(
