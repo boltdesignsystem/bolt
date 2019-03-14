@@ -39,7 +39,7 @@ class BoltList extends withContext(withLitHtml()) {
 
   static props = {
     tag: props.string, // ul | ol | div | span
-    display: props.string, // inline | block | inline@xxsmall | inline@xsmall | inline@small | inline@medium
+    display: props.string, // inline | block | inline@xxsmall | inline@xsmall | inline@small | inline@medium | flex
     spacing: props.string, // none | xsmall | small | medium | large | xlarge
     separator: props.string, // none | solid | dashed
     inset: props.boolean, // true | false
@@ -106,6 +106,8 @@ class BoltList extends withContext(withLitHtml()) {
 
       this.slots.default.forEach(item => {
         if (item.tagName) {
+          display === 'flex' &&
+            item.setAttribute('class', `c-bolt-list-item--display-${display}`);
           updatedDefaultSlot.push(item);
         }
       });
