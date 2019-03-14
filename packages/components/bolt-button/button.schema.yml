@@ -7,9 +7,13 @@ required:
 not:
   anyOf:
     - required:
+      - transform
+    - required:
       - itemAlignment
     - required:
       - rounded
+    - required:
+      - iconOnly
 properties:
   attributes:
     type: object
@@ -17,7 +21,7 @@ properties:
   text:
     description: 'Text inside the button.'
     type: string
-  transform:
+  text_transform:
     type: string
     description: 'Transforms the button text to various cases.'
     default: none
@@ -29,13 +33,13 @@ properties:
   tag:
     description: 'Determines the semantic HTML tag for the button.'
     type: string
+    default: button
     enum:
       - a
       - link
       - button
       - submit
       - reset
-    default: button
   size:
     type: string
     description: 'Size of the button.'
@@ -72,11 +76,11 @@ properties:
   align:
     description: 'Horizontal alignment of items (text and icon) inside the button. Note: the values left and right are deprecated, use start and end instead.'
     type: string
+    default: center
     enum:
       - start
       - center
       - end
-    default: center
   icon:
     type: object
     description: 'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the button.'
@@ -88,15 +92,21 @@ properties:
         enum:
           - before
           - after
-  iconOnly:
+  icon_only:
     type: boolean
     description: 'Make the button to display only the icon and hide the text (which is still required). You are required to pass both text and icon data for this option to work.'
     default: false
     required:
       - icon
+  transform:
+    title: 'DEPRECATED'
+    description: 'Use the text_transform prop instead.'
   itemAlignment:
     title: 'DEPRECATED'
-    description: 'Use the align parameter instead.'
+    description: 'Use the align prop instead.'
   rounded:
     title: 'DEPRECATED'
-    description: 'Use the border_radius parameter instead.'
+    description: 'Use the border_radius prop instead.'
+  iconOnly:
+    title: 'DEPRECATED'
+    description: 'Use the icon_only prop instead.'

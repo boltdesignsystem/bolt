@@ -42,7 +42,7 @@
 {% set button = {text: paragraph.field_text.value} %}
 
 {% set fields = [
-    {transform: paragraph.field_transform.value},
+    {text_transform: paragraph.field_transform.value},
     {tag: paragraph.field_button_tag.value},
     {size: paragraph.field_button_size.value},
     {align: paragraph.field_button_alignment.value},
@@ -50,7 +50,7 @@
     {width: paragraph.field_button_width.value},
     {rounded: paragraph.field_button_rounded_corners.value},
     {url: paragraph.field_url.value},
-    {iconOnly: paragraph.field_icon_only.value == 1 ? true : false},
+    {icon_only: paragraph.field_icon_only.value == 1 ? true : false},
   ]
 %}
 

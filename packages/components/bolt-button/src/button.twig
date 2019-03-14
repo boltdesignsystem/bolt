@@ -8,7 +8,12 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 
-{# DEPRECATED.  Use the prooperty `align` instead of `itemAlignment`. #}
+{# DEPRECATED.  Use the prop `text_transform` instead of `transform`. #}
+{% if transform %}
+  {% set text_transform = transform %}
+{% endif %}
+
+{# DEPRECATED.  Use the prop `align` instead of `itemAlignment`. #}
 {% if itemAlignment %}
   {% set align = itemAlignment %}
 {% endif %}
@@ -25,16 +30,21 @@
   {% set border_radius = "full" %}
 {% endif %}
 
+{# DEPRECATED.  Use the prop `icon_only` instead of `iconOnly`. #}
+{% if iconOnly %}
+  {% set icon_only = iconOnly %}
+{% endif %}
+
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
 {% set size_options = schema.properties.size.enum %}
 {% set style_options = schema.properties.style.enum %}
 {% set width_options = schema.properties.width.enum %}
 {% set border_radius_options = schema.properties.border_radius.enum %}
 {% set align_options = schema.properties.align.enum %}
-{% set transform_options = schema.properties.transform.enum %}
+{% set text_transform_options = schema.properties.text_transform.enum %}
 {% set tag_options = schema.properties.tag.enum %}
 {% set icon_positions = schema.properties.icon.properties.position.enum %}
-{% set iconOnly_options = schema.properties.iconOnly.enum %}
+{% set icon_only_options = schema.properties.icon_only.enum %}
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set size = size in size_options ? size : schema.properties.size.default %}
@@ -42,9 +52,9 @@
 {% set width = width in width_options ? width : schema.properties.width.default %}
 {% set border_radius = border_radius in border_radius_options ? border_radius : schema.properties.border_radius.default %}
 {% set align = align in align_options ? align : schema.properties.align.default %}
-{% set transform = transform in transform_options ? transform : schema.properties.transform.default %}
+{% set text_transform = text_transform in text_transform_options ? text_transform : schema.properties.text_transform.default %}
 {% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
-{% set iconOnly = iconOnly is sameas(true) or iconOnly is sameas(false) ? iconOnly : scheuma.properties.iconOnly.default %}
+{% set icon_only = icon_only is sameas(true) or icon_only is sameas(false) ? icon_only : scheuma.properties.icon_only.default %}
 
 {% if tag == "submit" %}
   {% set tag = "button" %}
@@ -73,8 +83,8 @@
   width != "auto" ? "#{base_class}--#{width}" : "",
   border_radius ? "#{base_class}--border-radius-#{border_radius}" : "",
   align ? "#{base_class}--#{align}" : "",
-  transform != "none" ? "#{base_class}--#{transform}" : "",
-  iconOnly ? "#{base_class}--icon-only",
+  text_transform != "none" ? "#{base_class}--#{text_transform}" : "",
+  icon_only ? "#{base_class}--icon-only",
 ] %}
 
 {% if disabled %}
@@ -133,9 +143,9 @@ Sort classes passed in via attributes into two groups:
   {% if width %} width="{{ width }}" {% endif %}
   {% if border_radius %} border-radius="{{ border_radius }}" {% endif %}
   {% if align %} align="{{ align }}" {% endif %}
-  {% if transform %} transform="{{ transform }}" {% endif %}
+  {% if text_transform %} text-transform="{{ text_transform }}" {% endif %}
   {% if url %} url="{{ url }}" {% endif %}
-  {% if iconOnly %} icon-only {% endif %}
+  {% if icon_only %} icon-only {% endif %}
   {% if disabled == true %} disabled {% endif %}
   {% if noShadow %} no-shadow {% endif %}
 
