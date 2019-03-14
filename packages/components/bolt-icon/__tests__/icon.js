@@ -1,24 +1,8 @@
-import {
-  render,
-  renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
-
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
-
-async function renderTwigString(template, data) {
-  return await renderString(template, data, true);
-}
+import { render } from '@bolt/twig-renderer';
 
 describe('<bolt-icon> Component', async () => {
-  afterAll(async () => {
-    await stopTwigRenderer();
-  });
-
   test('basic usage', async () => {
-    const results = await renderTwig('@bolt-components-icon/icon.twig', {
+    const results = await render('@bolt-components-icon/icon.twig', {
       name: 'add-open',
       background: 'square',
       size: 'medium',
@@ -29,7 +13,7 @@ describe('<bolt-icon> Component', async () => {
   });
 
   test('basic usage with attributes', async () => {
-    const results = await renderTwig('@bolt-components-icon/icon.twig', {
+    const results = await render('@bolt-components-icon/icon.twig', {
       attributes: {
         style: [
           '--bolt-theme-icon-background: #e64b18;',

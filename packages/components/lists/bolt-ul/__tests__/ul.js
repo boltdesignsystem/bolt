@@ -1,24 +1,8 @@
-import {
-  render,
-  renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
-
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
-
-async function renderTwigString(template, data) {
-  return await renderString(template, data, true);
-}
+import { render, renderString } from '@bolt/twig-renderer';
 
 describe('<bolt-ul> Component', async () => {
-  afterAll(async () => {
-    await stopTwigRenderer();
-  });
-
   test('basic usage with attributes', async () => {
-    const results = await renderTwig('@bolt-components-ul/ul.twig', {
+    const results = await render('@bolt-components-ul/ul.twig', {
       attributes: {
         'data-attr': 'some attribute',
         onclick: "location.href='https://pega.com'",
@@ -35,7 +19,7 @@ describe('<bolt-ul> Component', async () => {
   });
 
   test('with nested <bolt-ol> list compiles', async () => {
-    const results = await renderTwigString(`
+    const results = await renderString(`
       {% include '@bolt-components-ul/ul.twig' with {
         items: [
           'Do not include any data or information in your posts that are confidential!',
@@ -61,7 +45,7 @@ describe('<bolt-ul> Component', async () => {
   });
 
   test('with nested <bolt-ul> list compiles', async () => {
-    const results = await renderTwigString(`
+    const results = await renderString(`
       {% include '@bolt-components-ul/ul.twig' with {
         items: [
           'Do not include any data or information in your posts that are confidential!',
