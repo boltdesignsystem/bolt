@@ -1,6 +1,9 @@
 FROM basaltinc/docker-node-php-base:latest
 # @todo replace with `boltdesignsystem/bolt-docker:latest` once that is configured correctly
+RUN php -m
 RUN sudo apt-get install php7.2-gd
+RUN echo "extension=<extension>.so" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+RUN php -m
 
 WORKDIR /app
 COPY . .
