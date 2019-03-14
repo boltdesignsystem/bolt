@@ -8,7 +8,7 @@ const { tag } = schema.properties;
 
 const timeout = 60000;
 
-describe('button', async () => {
+describe('button', () => {
   let page;
 
   beforeEach(async () => {
