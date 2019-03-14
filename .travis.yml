@@ -47,8 +47,10 @@ jobs:
         # - yarn run build
         # - yarn run deploy
         # - sh ./scripts/update-read-only-git-repos.sh @todo: run this only on Bolt releases
+        - php -m
         - docker --log-level error pull boltdesignsystem/bolt || true
         - docker build --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
+        - php -m
         - docker images
         - echo $DOCKER_HUB_PASS | docker login --username $DOCKER_HUB_USER --password-stdin
         - GIT_SHA="$(git rev-parse --short HEAD)"

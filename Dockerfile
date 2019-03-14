@@ -1,5 +1,7 @@
 FROM basaltinc/docker-node-php-base:latest
 # @todo replace with `boltdesignsystem/bolt-docker:latest` once that is configured correctly
+RUN sudo apt-get install php7.2-gd
+
 WORKDIR /app
 COPY . .
 EXPOSE 3123
