@@ -22,6 +22,12 @@ The goal of a layout is to create a clear visual hierarchy, and to allow users t
 
 When putting content in bands, make sure to pay attention to the legibility of the content against the background. Avoid choosing "busy" images that create too much noise in the background, or using an image that's too light for the text on top of it.
 
+### Full-bleed background images
+
+Full-bleed background images grow to fill the available space. On wider screens they scale up. On narrower screens they scale down. Depending upon how much content is inside the container, the image scales further. Therefore, it's hard to know just how much of your image will be visible on each device.
+
+The best practice is to use full-bleed background images as decoration only. They should not contain content that would be confusing or distracting if it were cropped out. You may use an image with an interesting focal point, just be sure it would still make sense visually if only partially visible.
+
 ## Examples
 
 Below are the most commonly used band types with examples.
