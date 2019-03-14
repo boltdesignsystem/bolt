@@ -42,7 +42,7 @@ jobs:
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
-      install: travis_retry yarn run setup:quick
+      install: travis_retry export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=false yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Unit'
       script: yarn run test
       after_success: ./scripts/check-run-success.js 'Unit'
