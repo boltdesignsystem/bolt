@@ -1,4 +1,4 @@
-const { render, renderString } = require('@bolt/twig-renderer');
+import { render, renderString } from '@bolt/twig-renderer';
 
 describe('<bolt-ol> Component', async () => {
   test('basic usage with attributes', async () => {

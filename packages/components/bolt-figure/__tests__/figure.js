@@ -1,4 +1,4 @@
-const { render } = require('@bolt/twig-renderer');
+import { render } from '@bolt/twig-renderer';
 const { media } = require('./figure.data');
 
 describe('figure', async () => {
