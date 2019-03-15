@@ -296,7 +296,7 @@ class BoltVideo extends withContext(withLitHtml()) {
   _setUuid() {
     let hasUuid = false;
 
-    this.classList.forEach(value => {
+    Array.prototype.slice.call(this.classList).forEach(value => {
       if (value.includes('js-bolt-video-uuid')) {
         // true if uuid has already been set manually or via Twig
         hasUuid = true;
