@@ -1,4 +1,5 @@
-* 2.0.x
+
+## Bolt v2.0.x Release
 Date Released:
 Date Integrated:
 
