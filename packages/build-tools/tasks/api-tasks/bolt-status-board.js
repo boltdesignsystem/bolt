@@ -3,6 +3,7 @@ const { render, renderString } = require('@bolt/twig-renderer');
 const shell = require('shelljs');
 const globby = require('globby');
 const path = require('path');
+const arraySort = require('array-sort');
 const prettier = require('prettier');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
 const fs = require('fs');
@@ -16,7 +17,7 @@ let config,
   pendingRequests = [],
   processedComponents = [];
 
-async function finishRendering(rows) {
+async function finishRendering(rows, callback) {
   config = config || (await getConfig());
 
   renderString(`
@@ -26,12 +27,21 @@ async function finishRendering(rows) {
       attributes: {
         class: [
           "t-bolt-xlight"
-        ]
+        ],
+        id: "component-status"
       },
       headers: {
         top: {
           cells: [
-            "Component",
+            {
+              content: "Component",
+              attributes: {
+                class: [
+                  "sort"
+                ],
+                "data-sort": "component"
+              },
+            },
             "Sass",
             "Twig",
             "Web Component",
@@ -42,7 +52,7 @@ async function finishRendering(rows) {
           ]
         },
       },
-      rows: ${JSON.stringify(rows)},
+      rows: ${JSON.stringify(arraySort(rows, 'cells'))},
     } only %}
   `).then(renderedResults => {
     const formattedTable = prettier.format(renderedResults.html, {
@@ -59,7 +69,7 @@ async function finishRendering(rows) {
           return console.log(err);
         }
 
-        // console.log('Dynamic Twig status board has been saved.');
+        callback();
         events.emit('api-tasks/status-board:generated');
       },
     );
@@ -69,146 +79,150 @@ async function finishRendering(rows) {
 async function generateStatusBoard() {
   config = config || (await getConfig());
 
-  const dataFile = path.resolve(
-    path.join(
-      config.wwwDir,
-      'pattern-lab/styleguide/data/patternlab-data-all.js',
-    ),
-  );
-
-  delete require.cache[dataFile];
-  const data = require(dataFile);
-  boltUrls = data.globalData.link;
-
-  boltPackages = JSON.parse(
-    shell.exec('npx lerna ls --json --all', { silent: true }).stdout,
-  );
-
-  filteredBoltPackages = boltPackages.filter(pkg =>
-    pkg.name.includes('@bolt/components'),
-  );
-
-  filteredBoltPackages.sort(function(a, b) {
-    if (a.name < b.name) {
-      return -1;
-    }
-    if (a.name > b.name) {
-      return 1;
-    }
-    return 0;
-  });
-
-  Object.keys(boltUrls).forEach(function(url) {
-    if (!url.includes('viewall')) {
-      delete boltUrls[url];
-    } else if (url.includes('visual-styles') || url.includes('pages-')) {
-      delete boltUrls[url];
-    }
-  });
-
-  filteredBoltPackages.forEach(function(boltPackage) {
-    const pkgName = boltPackage.name;
-    const componentPath = boltPackage.location;
-    const pkg = require(`${boltPackage.location}/package.json`);
-
-    const jsFound = globby.sync([
-      `${componentPath}/**/*.js`,
-      `!${componentPath}/__tests__/**/*.js`,
-    ]);
-
-    const manualTestingDocs = globby.sync([`${componentPath}/**/TESTING.md`]);
-
-    const scssFound = globby.sync([`${componentPath}/**/*.scss`]);
-    const twigFound = globby.sync([`${componentPath}/**/*.twig`]);
-    const jestTestsFound = globby.sync(
-      `${componentPath}/__tests__/__snapshots__/*.js.snap`,
+  return new Promise(async (resolve, reject) => {
+    const dataFile = path.resolve(
+      path.join(
+        config.wwwDir,
+        'pattern-lab/styleguide/data/patternlab-data-all.js',
+      ),
     );
-    const nightwatchTestsFound = globby.sync(
-      `${componentPath}/__tests__/*.e2e.js`,
+
+    delete require.cache[dataFile];
+    const data = require(dataFile);
+    boltUrls = data.globalData.link;
+
+    boltPackages = JSON.parse(
+      shell.exec('npx lerna ls --json --all', { silent: true }).stdout,
     );
-    const hasjestTests = jestTestsFound.length > 0;
-    const hasNightwatchTests = nightwatchTestsFound.length > 0;
-    const hasJs = jsFound.length === 1;
-    const probablyAWebComponent = jsFound.length > 1;
-    const hasScss = scssFound.length > 0;
-    const isPrivate = pkg.private;
-    const hasTwig = twigFound.length > 0;
-    const hasManualTestingDocs = manualTestingDocs.length > 0;
-    const readmeDocs = globby.sync(`${componentPath}/README.md`);
-    let docsFound;
 
-    if (readmeDocs.length > 0) {
-      docsFound = fs.statSync(readmeDocs[0]);
-    } else {
-      docsFound = false;
-    }
+    filteredBoltPackages = boltPackages.filter(pkg =>
+      pkg.name.includes('@bolt/components'),
+    );
 
-    Object.keys(boltUrls).forEach(async function(url, urlIndex, urlArray) {
-      const urlAddress = boltUrls[url];
-      const normalizedUrlName = url.replace(
-        'viewall-components-',
-        '@bolt/components-',
+    filteredBoltPackages.sort(function(a, b) {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    });
+
+    Object.keys(boltUrls).forEach(function(url) {
+      if (!url.includes('viewall')) {
+        delete boltUrls[url];
+      } else if (url.includes('visual-styles') || url.includes('pages-')) {
+        delete boltUrls[url];
+      }
+    });
+
+    filteredBoltPackages.forEach(function(boltPackage) {
+      const pkgName = boltPackage.name;
+      const componentPath = boltPackage.location;
+      const pkg = require(`${boltPackage.location}/package.json`);
+
+      const jsFound = globby.sync([
+        `${componentPath}/**/*.js`,
+        `!${componentPath}/__tests__/**/*.js`,
+      ]);
+
+      const manualTestingDocs = globby.sync([`${componentPath}/**/TESTING.md`]);
+
+      const scssFound = globby.sync([`${componentPath}/**/*.scss`]);
+      const twigFound = globby.sync([`${componentPath}/**/*.twig`]);
+      const jestTestsFound = globby.sync(
+        `${componentPath}/__tests__/__snapshots__/*.js.snap`,
       );
+      const nightwatchTestsFound = globby.sync(
+        `${componentPath}/__tests__/*.e2e.js`,
+      );
+      const hasjestTests = jestTestsFound.length > 0;
+      const hasNightwatchTests = nightwatchTestsFound.length > 0;
+      const hasJs = jsFound.length === 1;
+      const probablyAWebComponent = jsFound.length > 1;
+      const hasScss = scssFound.length > 0;
+      const isPrivate = pkg.private;
+      const hasTwig = twigFound.length > 0;
+      const hasManualTestingDocs = manualTestingDocs.length > 0;
+      const readmeDocs = globby.sync(`${componentPath}/README.md`);
+      let docsFound;
 
-      const normalizedUrl = urlAddress.replace('../../', '/pattern-lab/');
+      if (readmeDocs.length > 0) {
+        docsFound = fs.statSync(readmeDocs[0]);
+      } else {
+        docsFound = false;
+      }
 
-      if (
-        normalizedUrlName === pkgName &&
-        !processedComponents.includes(pkgName)
-      ) {
-        processedComponents.push(pkgName);
-        pendingRequests.push(pkgName);
+      Object.keys(boltUrls).forEach(async function(url, urlIndex, urlArray) {
+        const urlAddress = boltUrls[url];
+        const normalizedUrlName = url.replace(
+          'viewall-components-',
+          '@bolt/components-',
+        );
 
-        const formattedPackageName = pkgName
-          .replace('@bolt/components-', '')
-          .replace(/\-/g, ' ')
-          .replace(/\b\w/g, function(l) {
-            return l.toUpperCase();
+        const normalizedUrl = urlAddress.replace('../../', '/pattern-lab/');
+
+        if (
+          normalizedUrlName === pkgName &&
+          !processedComponents.includes(pkgName)
+        ) {
+          processedComponents.push(pkgName);
+          pendingRequests.push(pkgName);
+
+          const formattedPackageName = pkgName
+            .replace('@bolt/components-', '')
+            .replace(/\-/g, ' ')
+            .replace(/\b\w/g, function(l) {
+              return l.toUpperCase();
+            });
+
+          const results = await renderString(`
+            {% include "@bolt-components-link/link.twig" with {
+              text: "<strong>${formattedPackageName}</strong>",
+              url: "${normalizedUrl}",
+              isHeadline: true,
+            } %}
+          `);
+          const html = results.html;
+
+          tableRows.push({
+            cells: [
+              {
+                content: isPrivate ? `${html} (unreleased)` : html,
+                attributes: {
+                  class: ['component'],
+                },
+              },
+              hasScss ? '✅' : '',
+              hasTwig ? '✅' : '',
+              probablyAWebComponent ? '✅' : hasJs ? '' : '',
+              hasjestTests ? '✅' : '🚫',
+              hasNightwatchTests ? '✅' : '🚫',
+              hasManualTestingDocs ? '✅' : '🚫',
+              docsFound.size >= 300 ? '✅' : '❓',
+            ],
           });
 
-        const results = await renderString(`
-          {% include "@bolt-components-link/link.twig" with {
-            text: "<strong>${formattedPackageName}</strong>",
-            url: "${normalizedUrl}",
-            isHeadline: true,
-          } %}
-        `);
-        const html = results.html;
+          pendingRequests.pop();
 
-        tableRows.push({
-          cells: [
-            isPrivate ? `${html} (unreleased)` : html,
-            hasScss ? '✅' : '',
-            hasTwig ? '✅' : '',
-            probablyAWebComponent ? '✅' : hasJs ? '' : '',
-            hasjestTests ? '✅' : '🚫',
-            hasNightwatchTests ? '✅' : '🚫',
-            hasManualTestingDocs ? '✅' : '🚫',
-            docsFound.size >= 300 ? '✅' : '❓',
-          ],
-        });
-
-        pendingRequests.pop();
-
-        if (pendingRequests.length === 0) {
-          checkToSeeIfFinishedPrerendering();
+          if (pendingRequests.length === 0) {
+            await checkToSeeIfFinishedPrerendering(resolve);
+          }
         }
-      }
+      });
     });
   });
 }
 
-function checkToSeeIfFinishedPrerendering() {
+async function checkToSeeIfFinishedPrerendering(resolve) {
   // Only wait a second or so for re-renders to complete before skipping.
   let retryAttempts = 3;
   // @todo: refactor to use promises
   const waitForRequestsToFinish = setInterval(async function() {
     if (pendingRequests.length === 0 || retryAttempts === 0) {
-      // console.log(
-      //   'All done waiting for in-progress Twig-rendering requests to finish.',
-      // );
       // console.log(processedComponents.length);
-      await finishRendering(tableRows);
+      await finishRendering(tableRows, resolve);
       clearInterval(waitForRequestsToFinish);
     } else if (pendingRequests !== 0) {
       console.log(`Waiting for ${pendingRequests.length} requests to finish.`);
@@ -220,5 +234,3 @@ function checkToSeeIfFinishedPrerendering() {
 module.exports = {
   generateStatusBoard,
 };
-
-generateStatusBoard();

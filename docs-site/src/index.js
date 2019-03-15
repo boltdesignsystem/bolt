@@ -1,4 +1,5 @@
 import './components/version-selector/version-selector';
+import './components/component-status-table/component-status-table.js';
 import './components/schema-form';
 import './components/handle-iframe-height';
 import './pages/pattern-lab/_patterns/02-components/card/__tests__';

@@ -44,10 +44,70 @@
  */
 #}
 <div class="layout-container">
+  {% set navbar %}
+    {% embed "@bolt-components-navbar/navbar.twig" with {
+      theme: "xdark",
+      width: "auto",
+      title: {
+        tag: "h1",
+        text: "Bolt + Drupal Lab",
+        url: "/",
+        icon: {
+          name: "bolt-logo-colored"
+        }
+      },
+      links: [
+        {
+          text: "Components",
+          url: "https://boltdesignsystem.com/pattern-lab/index.html"
+        },
+        {
+          text: "Docs",
+          url: "https://boltdesignsystem.com/docs/getting-started/index.html"
+        },
+        {
+          text: "Releases",
+          url: "https://github.com/bolt-design-system/bolt/releases",
+          attributes: {
+            target: "_blank"
+          },
+        },
+        {
+          text: 'Github',
+          url: "https://github.com/bolt-design-system/bolt",
+          attributes: {
+            target: "_blank"
+          },
+          icon: {
+            name: "github",
+            position: "after"
+          }
+        }
+      ],
+    } only %}
+      {% block navbar_title %}
+        {{ parent() }}
+      {% endblock %}
 
-  <header role="banner">
-    {{ page.header }}
-  </header>
+      {% block navbar_nav %}
+        {{ page.header }}
+      {% endblock %}
+    {% endembed %}
+    {% endset %}
+
+    {% embed "@bolt-components-sticky/sticky.twig" with {
+    attributes: {
+      class: [
+        "c-bds-layout__header"
+      ]
+    }
+    } %}
+    {% block sticky_content %}
+      {% autoescape %}
+        {{ navbar | raw}}
+      {% endautoescape %}
+    {% endblock %}
+    {% endembed %}
 
   {{ page.primary_menu }}
   {{ page.secondary_menu }}
@@ -59,30 +119,63 @@
   {{ page.help }}
 
   <main role="main">
-    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+    {% embed "@bolt/wrapper.twig" %}
+      {% block wrapper_content %}
+        <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-    <div class="layout-content">
-      {% include "@bolt-components-headline/headline.twig" with {
-          text : "Drupal Lab + Bolt Example",
-          tag: "h1",
-          size: "xxxlarge"
-      } only %}
+        <div class="layout-content">
+            
+          {% include "@bolt-components-headline/headline.twig" with {
+            text : "Bolt Headline Component",
+            tag: "h1",
+            size: "xxxlarge"
+          } only %}
 
-      {{ page.content }}
-    </div>{# /.layout-content #}
+          {% include "@bolt-components-headline/subheadline.twig" with {
+            text : "This headline + subheadline combo are both coming from the Bolt Design System!",
+            tag: "p",
+            size: "xxlarge"
+          } only %}
 
-    {% if page.sidebar_first %}
-      <aside class="layout-sidebar-first" role="complementary">
-        {{ page.sidebar_first }}
-      </aside>
-    {% endif %}
+          {% include "@bolt-components-button/button.twig" with {
+            text : "Bolt Docs",
+            url: "https://boltdesignsystem.com",
+            attributes: {
+              target: "_blank",
+            },
+            icon: {
+              name: "documentation"
+            }
+          } only %}
 
-    {% if page.sidebar_second %}
-      <aside class="layout-sidebar-second" role="complementary">
-        {{ page.sidebar_second }}
-      </aside>
-    {% endif %}
+          {% include "@bolt-components-button/button.twig" with {
+            text : "Github Repo",
+            url: "https://github.com/bolt-design-system/bolt",
+            style: "secondary",
+            attributes: {
+              target: "_blank",
+            },
+            icon: {
+              name: "github"
+            }
+          } only %}
 
+          {{ page.content }}
+        </div>{# /.layout-content #}
+
+        {% if page.sidebar_first %}
+          <aside class="layout-sidebar-first" role="complementary">
+            {{ page.sidebar_first }}
+          </aside>
+        {% endif %}
+
+        {% if page.sidebar_second %}
+          <aside class="layout-sidebar-second" role="complementary">
+            {{ page.sidebar_second }}
+          </aside>
+        {% endif %}
+      {% endblock %}
+    {% endembed %}
   </main>
 
   {% if page.footer %}
