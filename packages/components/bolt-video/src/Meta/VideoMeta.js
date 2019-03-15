@@ -6,8 +6,8 @@ import {
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
-import styles from './video-meta.scss';
-import { VideoContext } from './video.standalone';
+import styles from './VideoMeta.scss';
+import { VideoContext } from '../video';
 
 let cx = classNames.bind(styles);
 
