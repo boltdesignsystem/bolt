@@ -12,7 +12,7 @@ import { VideoContext } from '../video';
 let cx = classNames.bind(styles);
 
 @define
-class BoltVideoMeta extends withContext(withLitHtml()) {
+class VideoMeta extends withContext(withLitHtml()) {
   static is = `${bolt.namespace}-video-meta`;
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -94,4 +94,4 @@ class BoltVideoMeta extends withContext(withLitHtml()) {
   }
 }
 
-export { BoltVideoMeta };
+export { VideoMeta };
