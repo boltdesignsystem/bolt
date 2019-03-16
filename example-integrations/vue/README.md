@@ -1,4 +1,4 @@
-# vue-example
+# Bolt + Vue Integration Example
 
 ## Project setup
 ```

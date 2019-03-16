@@ -9,13 +9,20 @@ const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
 const { buildPrep } = require('./packages/build-tools/tasks/task-collections');
 const imageTasks = require('./packages/build-tools/tasks/image-tasks');
+const iconTasks = require('./packages/build-tools/tasks/icon-tasks');
 const { getConfig } = require('./packages/build-tools/utils/config-store');
 const teardown = require('./jest-global-teardown.js');
 
 module.exports = async function globalSetup() {
-  const config = await getConfig();
+  let config = await getConfig();
+  const existingIconsDir =
+    typeof config.iconDir !== 'undefined' ? config.iconDir : [];
+
+  config.iconDir = [...existingIconsDir, path.join(__dirname, './test/jest-test-svgs')];
+
   await buildPrep({ cleanAll: true }); // clear out all folders before running
   await imageTasks.processImages(); // process image fixtures used by any tests
+  await iconTasks.build(); // process icons used by any tests
 
   await setupDevServer({
     command: `node packages/servers/testing-server`,
