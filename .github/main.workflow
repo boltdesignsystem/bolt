@@ -35,14 +35,14 @@ action "build install" {
 }
 
 action "build" {
-  uses = "docker://basaltinc/docker-node-php-base:latest"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   needs = ["build install"]
   runs = "yarn"
   args = "build"
 }
 
 action "deploy" {
-  uses = "docker://basaltinc/docker-node-php-base:latest"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   needs = ["build"]
   runs = "echo"
   args = "I should deploy but I cannot because there are no env vars"
