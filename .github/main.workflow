@@ -4,20 +4,20 @@ workflow "Smoke Tests" {
 }
 
 action "install" {
-  uses = "docker://basaltinc/docker-node-php-base:latest"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   runs = "yarn"
   args = "install"
 }
 
 action "Smoke Tests: Linting" {
-  uses = "docker://basaltinc/docker-node-php-base:latest"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   needs = ["install"]
   runs = "yarn"
   args = "lint"
 }
 
 action "Smoke Tests: Unit Tests (Jest)" {
-  uses = "docker://basaltinc/docker-node-php-base:latest"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   needs = ["install"]
   runs = "yarn"
   args = "test"
@@ -29,7 +29,7 @@ workflow "Build & Deploy" {
 }
 
 action "build install" {
-  uses = "docker://basaltinc/docker-node-php-base:latest"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   runs = "yarn"
   args = "install"
 }
