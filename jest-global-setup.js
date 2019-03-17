@@ -30,7 +30,7 @@ module.exports = async function globalSetup() {
     port: 4444,
   });
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
   // store the browser instance so we can teardown it later
   // this global is only available in the teardown but not in TestEnvironments
   global.__BROWSER_GLOBAL__ = browser;
