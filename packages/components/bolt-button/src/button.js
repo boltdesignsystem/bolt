@@ -20,11 +20,11 @@ class BoltButton extends BoltAction {
     text: props.string,
     size: props.string,
     rounded: props.boolean, // DEPRECATED.  Use border-radius instead of rounded.
-    border_radius: props.string,
-    icon_only: props.boolean,
+    borderRadius: props.string,
+    iconOnly: props.boolean,
     width: props.string,
     align: props.string,
-    text_transform: props.string,
+    textTransform: props.string,
     disabled: props.boolean,
     target: props.string,
     url: props.string,
@@ -47,17 +47,17 @@ class BoltButton extends BoltAction {
       [`c-bolt-button--${this.props.color}`]: this.props.color,
       [`c-bolt-button--${this.props.width}`]:
         this.props.width && this.props.width !== 'auto',
-      'c-bolt-button--border-radius-regular': !this.props.border_radius, // Default border radius
+      'c-bolt-button--border-radius-regular': !this.props.borderRadius, // Default border radius
       'c-bolt-button--border-radius-full':
-        this.props.rounded && !this.props.border_radius, // DEPRECATED.  Use the border-radius property instead of rounded.
-      [`c-bolt-button--border-radius-${this.props.border_radius}`]: this.props
-        .border_radius,
+        this.props.rounded && !this.props.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.
+      [`c-bolt-button--border-radius-${this.props.borderRadius}`]: this.props
+        .borderRadius,
       'c-bolt-button--center': !this.props.align, // Default align
       [`c-bolt-button--${this.props.align}`]: this.props.align,
-      [`c-bolt-button--${this.props.text_transform}`]:
-        this.props.text_transform && this.props.text_transform !== 'none',
+      [`c-bolt-button--${this.props.textTransform}`]:
+        this.props.textTransform && this.props.textTransform !== 'none',
       'c-bolt-button--disabled': this.props.disabled,
-      'c-bolt-button--icon-only': this.props.icon_only,
+      'c-bolt-button--icon-only': this.props.iconOnly,
     });
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
