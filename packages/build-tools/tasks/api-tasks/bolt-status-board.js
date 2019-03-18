@@ -188,12 +188,7 @@ async function generateStatusBoard() {
 
           tableRows.push({
             cells: [
-              {
-                content: isPrivate ? `${html} (unreleased)` : html,
-                attributes: {
-                  class: ['component'],
-                },
-              },
+              isPrivate ? `${html} (unreleased)` : html,
               hasScss ? '✅' : '',
               hasTwig ? '✅' : '',
               probablyAWebComponent ? '✅' : hasJs ? '' : '',
