@@ -1,10 +1,10 @@
 {% set schema = bolt.data.components["@bolt-components-button"].schema %}
 
-{% for radius in schema.properties.border_radius.enum %}
+{% for border_radius in schema.properties.border_radius.enum %}
   <p>
     {% include "@bolt-components-button/button.twig" with {
-      border_radius: radius,
-      text: "This button has " ~ radius ~ " border radius"
+      border_radius: border_radius,
+      text: "This button has " ~ border_radius ~ " border radius"
     } only %}
   </p>
 {% endfor %}

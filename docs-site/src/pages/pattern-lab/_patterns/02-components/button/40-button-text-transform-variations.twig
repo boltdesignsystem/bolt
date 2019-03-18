@@ -1,11 +1,11 @@
 {% set schema = bolt.data.components["@bolt-components-button"].schema %}
 
 
-{% for transform in schema.properties.transform.enum %}
+{% for text_transform in schema.properties.text_transform.enum %}
   <p>
     {% include "@bolt-components-button/button.twig" with {
-      text_transform: transform,
-      text: "This button has text tranform of " ~ transform
+      text_transform: text_transform,
+      text: "This button has text tranform of " ~ text_transform
     } only %}
   </p>
 {% endfor %}
