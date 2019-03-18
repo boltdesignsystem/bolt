@@ -20,13 +20,20 @@ const siteConfig = require(path.join(baseBoltDir, '.boltrc'));
 
 // Paths that are relative to `baseBoltDir` must now be relative to this directory (i.e. `__dirname`)
 const adjustRelativePath = thePath =>
-path.relative(__dirname, path.resolve(baseBoltDir, thePath));
+  path.relative(__dirname, path.resolve(baseBoltDir, thePath));
 
 // Gather directories for any/all image fixtures and consolidate for the image resizing task
-const imageFixtureDirs = globby.sync(path.join(__dirname, './packages/components/**/fixtures/**/*.{jpg,jpeg,png}')).map(file => path.dirname(file));
+const imageFixtureDirs = globby
+  .sync(
+    path.join(
+      __dirname,
+      './packages/components/**/fixtures/**/*.{jpg,jpeg,png}',
+    ),
+  )
+  .map(file => path.dirname(file));
 const imageSets = [];
 
-imageFixtureDirs.forEach((fixturePath) => {
+imageFixtureDirs.forEach(fixturePath => {
   imageSets.push({
     base: fixturePath,
     glob: '*.{jpg,jpeg,png}',
@@ -59,6 +66,7 @@ siteConfig.copy.forEach((item) => {
 module.exports = {
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
   buildDir: adjustRelativePath(siteConfig.buildDir),
+  iconDir: [],
   components: {
     global: globby
       .sync(path.join(__dirname, './packages/components/**/*/package.json'))
