@@ -6,9 +6,9 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../button.schema.yml'));
 const { tag } = schema.properties;
 
-const timeout = 60000;
+const timeout = 90000;
 
-describe('button', async () => {
+describe('button', () => {
   let page;
 
   beforeEach(async () => {

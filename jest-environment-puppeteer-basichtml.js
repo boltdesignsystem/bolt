@@ -27,7 +27,6 @@ class BasicHTMLEnvironment extends NodeEnvironment {
 
     window.customElements = new CustomElementRegistry();
     window.document = new Document(window.customElements);
-    window.document = new Document(window.customElements);
     window.HTMLElement = HTMLElement;
     window.HTMLUnknownElement = HTMLUnknownElement;
     window.Node = Node;
