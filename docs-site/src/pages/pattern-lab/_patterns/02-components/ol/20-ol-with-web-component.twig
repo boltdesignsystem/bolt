@@ -1,0 +1,87 @@
+<h2>Web Component Usage</h2>
+<p>Bolt Ordered List is a web component, you can simply use <code class="language-html">&lt;bolt-ol&gt;</code> in the markup to make it render. Its inner content is comprised of <code class="language-html">&lt;bolt-li&gt;</code>.</p>
+<h3>Example</h3>
+<pre class="c-bolt-code-snippet-syntax--light"><code class="language-html">&lt;bolt-ol&gt;
+  &lt;bolt-li&gt;Item 1&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 2&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 3&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 4&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 5&lt;/bolt-li&gt;
+&lt;/bolt-ol&gt;</code></pre>
+
+<h3>Simple usage</h3>
+<bolt-ol>
+  <bolt-li>Item 1</bolt-li>
+  <bolt-li>Item 2</bolt-li>
+  <bolt-li>Item 3</bolt-li>
+  <bolt-li>Item 4</bolt-li>
+  <bolt-li>Item 5</bolt-li>
+</bolt-ol>
+
+<h3>Nesting of lists (ol and ul)</h3>
+<bolt-ol>
+  <bolt-li>Item 1</bolt-li>
+  <bolt-li>Item 2</bolt-li>
+  <bolt-li>Item 3</bolt-li>
+  <bolt-li>Item 4</bolt-li>
+  <bolt-li>
+    Item 5
+    <bolt-ol>
+      <bolt-li>Sub Item 1</bolt-li>
+      <bolt-li>Sub Item 2</bolt-li>
+      <bolt-li>Sub Item 3</bolt-li>
+      <bolt-li>
+        Sub Item 4
+        <bolt-ul>
+          <bolt-li>Item</bolt-li>
+          <bolt-li>Item</bolt-li>
+          <bolt-li>Item</bolt-li>
+          <bolt-li>Item</bolt-li>
+          <bolt-li>Item</bolt-li>
+        </bolt-ul>
+      </bolt-li>
+      <bolt-li>Sub Item 5</bolt-li>
+    </bolt-ol>
+  </bolt-li>
+</bolt-ol>
+
+<bolt-ul>
+  <bolt-li>Item</bolt-li>
+  <bolt-li>Item</bolt-li>
+  <bolt-li>Item</bolt-li>
+  <bolt-li>Item</bolt-li>
+  <bolt-li>
+    Item
+    <bolt-ol>
+      <bolt-li>Item</bolt-li>
+      <bolt-li>Item</bolt-li>
+      <bolt-li>Item</bolt-li>
+      <bolt-li>Item</bolt-li>
+      <bolt-li>
+        Item
+        <bolt-ul>
+          <bolt-li>Item</bolt-li>
+          <bolt-li>Item</bolt-li>
+          <bolt-li>Item</bolt-li>
+          <bolt-li>Item</bolt-li>
+          <bolt-li>Item</bolt-li>
+        </bolt-ul>
+      </bolt-li>
+    </bolt-ol>
+  </bolt-li>
+</bolt-ul>
+
+<h3>Theme variations</h3>
+{% for theme in ["xlight", "light", "dark", "xdark"] %}
+  <p>Theme: {{ theme }}</p>
+  <bolt-demo class="t-bolt-{{ theme }}">
+    <bolt-ol>
+      <bolt-li>Item 1</bolt-li>
+      <bolt-li>Item 2</bolt-li>
+      <bolt-li>Item 3</bolt-li>
+      <bolt-li>Item 4</bolt-li>
+      <bolt-li>Item 5</bolt-li>
+    </bolt-ol>
+  </bolt-demo>
+  <br>
+{% endfor %}

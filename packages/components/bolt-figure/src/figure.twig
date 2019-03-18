@@ -55,8 +55,10 @@
         {% endif %}
       </div>
     {% endif %}
-    <figcaption class="{{ "#{base_class}__caption" }}">
-      {{ caption }}
-    </figcaption>
+    {% if caption %}
+      <figcaption class="{{ "#{base_class}__caption" }}">
+        {{ caption }}
+      </figcaption>
+    {% endif %}
   </figure>
 </bolt-figure>

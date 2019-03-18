@@ -59,7 +59,7 @@ Subheads and body copy are displayed at Regular weight. For body copy, we defaul
 A teaser is most commonly used in cards and bands. It contains an eyebrow, heading, and a paragraph. In some cases, it will also include an optional subheading.
 
 <figure>
-<img src="/images/docs/type_teaser.png" />
+<img src="/images/docs/type_teaser.jpg" />
 <figcaption>An example of a typical teaser.</figcaption>
 </figure>
 
@@ -73,7 +73,7 @@ A teaser is most commonly used in cards and bands. It contains an eyebrow, headi
 For long form content, page titles always use the XXL Heading. From there, `h2` tags and below are sized appropriately to create a strong hierarchy.
 
 <figure>
-<img src="/images/docs/type_article.png" />
+<img src="/images/docs/type_article.jpg" />
 <figcaption>An example of a typical article</figcaption>
 </figure>
 
@@ -89,7 +89,7 @@ For long form content, page titles always use the XXL Heading. From there, `h2` 
 Unordered lists are styled with standard bullets, and are optimized for all color themes. For all options and API docs, see the [unordered list reference](https://boltdesignsystem.com/pattern-lab/?p=viewall-components-unordered-list) in Pattern Lab.
 
 <figure>
-<img src="/images/docs/type-ul-light.png" />
+<img src="/images/docs/type-ul-light.jpg" />
 <figcaption>An unordered list using the `light` theme. </figcaption>
 </figure>
 
@@ -98,7 +98,7 @@ Unordered lists are styled with standard bullets, and are optimized for all colo
 Ordered lists are also optimized for all color themes. For all options and API docs, see the [ordered list reference](https://boltdesignsystem.com/pattern-lab/?p=viewall-components-ordered-list) in Pattern Lab.
 
 <figure>
-<img src="/images/docs/type-ol-dark.png" />
+<img src="/images/docs/type-ol-dark.jpg" />
 <figcaption>An ordered list in the `dark` theme. </figcaption>
 </figure>
 

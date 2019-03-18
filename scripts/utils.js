@@ -1,5 +1,9 @@
 const http = require('https');
 const qs = require('querystring');
+const execa = require('execa');
+
+// helper function to get gitSha without needing a GITHUB_TOKEN (for local dev);
+const gitSha = execa.sync('git', ['rev-parse', '--short', 'HEAD']).stdout;
 
 /**
  * @param {Object} opt
@@ -19,7 +23,7 @@ function post({ path, requestBody, query, TOKEN }) {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `token ${TOKEN}`,
+        Authorization: `Bearer ${TOKEN || process.env.NOW_TOKEN}`,
       },
     };
 
@@ -42,7 +46,6 @@ function post({ path, requestBody, query, TOKEN }) {
   });
 }
 
-
 /**
  * @param {Object} opt
  * @param {string} opt.path
@@ -60,7 +63,7 @@ function get({ path, query, hostname, TOKEN }) {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `token ${TOKEN}`,
+        Authorization: `Bearer ${TOKEN || process.env.NOW_TOKEN}`,
       },
     };
     const req = http.request(options, res => {
@@ -91,30 +94,58 @@ function getLatestDeploy() {
   }
   return new Promise((resolve, reject) => {
     get({
-      path: '/v2/now/deployments',
+      path: '/v4/now/deployments',
       hostname: 'api.zeit.co',
-      TOKEN: process.env.NOW_TOKEN,
       query: {
         teamId: 'team_etXPus2wqbe3W15GcdHsbAs8', // boltdesignsystem
       },
-    }).then(results => {
-      if (results.error) {
-        process.stderr.write(`Error getting latest now.sh deploy: ${results.error.message}`);
-        process.exit(1);
-      }
-      // If a deployment hasn't finished uploading (is incomplete), the url property will have a value of null.
-      const result = results.deployments.find(d => d.url);
-      if (result) {
-        resolve(`https://${result.url}`);
-      } else {
-        reject(new Error('No deployments found'));
-      }
-    }).catch(error => {
-      reject(error);
-    });
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${process.env.NOW_TOKEN}`,
+      },
+    })
+      .then(results => {
+        if (results.error) {
+          process.stderr.write(
+            `Error getting latest now.sh deploy: ${results.error.message}`,
+          );
+          process.exit(1);
+        }
+
+        // If a deployment hasn't finished uploading (is incomplete), the url property will have a value of null.
+        const resultsWithGitSha = results.deployments.filter(
+          d => d.meta.gitSha === gitSha,
+        );
+
+        const fallbackResultsWithGitSha = results.deployments.filter(d =>
+          gitSha.includes(d.meta.gitSha),
+        );
+
+        const result = resultsWithGitSha.find(d => d.url);
+
+        // if an exact match isn't found, check partial matches and sort by most recent
+        fallbackResultsWithGitSha.sort(function(a, b) {
+          // Turn created unix time strings into dates, and then sort by what happened most recently
+          return new Date(a.created) - new Date(b.created);
+        });
+        const fallbackResults = fallbackResultsWithGitSha.find(d => d.url);
+
+        if (result) {
+          resolve(`https://${result.url}`);
+        } else if (fallbackResults) {
+          resolve(`https://${fallbackResults.url}`);
+        } else {
+          reject(new Error('No deployments found'));
+        }
+      })
+      .catch(error => {
+        reject(error);
+      });
   });
 }
 
 module.exports = {
   getLatestDeploy,
+  gitSha,
 };

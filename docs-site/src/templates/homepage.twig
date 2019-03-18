@@ -1,7 +1,7 @@
 {% extends "@bolt-site/default-redesign.twig" %}
 
 {% set content %}
-  {% embed "@bolt/band.twig" with {
+  {% embed "@bolt-components-band/band.twig" with {
     size: "none",
     theme: "xdark",
     fullBleed: true,
@@ -15,9 +15,6 @@
     },
     attributes: {
       style: [
-        "display: flex;",
-        "align-items: center;",
-        "justify-content: center;",
         "flex-grow: 1;",
         "--criterion: 0;",
         "--multiplier: 4;",

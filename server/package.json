@@ -1,0 +1,28 @@
+{
+  "name": "@bolt/server",
+  "description": "Bolt Design System Website Server",
+  "version": "2.3.0",
+  "private": true,
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node index.js"
+  },
+  "dependencies": {
+    "globby": "^9.0.0",
+    "express": "^4.16.3"
+  },
+  "workspaces": {
+    "packages": [
+      "../packages/api",
+      "../packages/global",
+      "../packages/components/*",
+      "../packages/components/lists/*",
+      "../packages/twig-renderer",
+      "../packages/build-tools"
+    ],
+    "nohoist": [
+      "../packages/core/**"
+    ]
+  }
+}

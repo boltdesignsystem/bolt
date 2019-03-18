@@ -20,26 +20,56 @@ const siteConfig = require(path.join(baseBoltDir, '.boltrc'));
 
 // Paths that are relative to `baseBoltDir` must now be relative to this directory (i.e. `__dirname`)
 const adjustRelativePath = thePath =>
-path.relative(__dirname, path.resolve(baseBoltDir, thePath));
+  path.relative(__dirname, path.resolve(baseBoltDir, thePath));
 
 // Gather directories for any/all image fixtures and consolidate for the image resizing task
-const imageFixtureDirs = globby.sync(path.join(__dirname, './packages/components/**/fixtures/**/*.{jpg,jpeg,png}')).map(file => path.dirname(file));
+const imageFixtureDirs = globby
+  .sync(
+    path.join(
+      __dirname,
+      './packages/components/**/fixtures/**/*.{jpg,jpeg,png}',
+    ),
+  )
+  .map(file => path.dirname(file));
 const imageSets = [];
 
-imageFixtureDirs.forEach((fixturePath) => {
+imageFixtureDirs.forEach(fixturePath => {
   imageSets.push({
     base: fixturePath,
-    glob: '**',
+    glob: '*.{jpg,jpeg,png}',
     dist: path.join(adjustRelativePath(siteConfig.wwwDir), 'fixtures'),
+  });
+});
+
+const nonImageFixtures = globby.sync([
+  './packages/components/**/fixtures/**/*',
+  '!./packages/components/**/fixtures/**/*.{jpg,jpeg,png}',
+]);
+const itemsToCopy = [];
+
+nonImageFixtures.forEach((fixturePath) => {
+  itemsToCopy.push({
+    from: path.join(__dirname, fixturePath),
+    to: path.join(__dirname, adjustRelativePath(siteConfig.wwwDir), 'fixtures/'),
+    flatten: true,
+  });
+});
+
+siteConfig.copy.forEach((item) => {
+  itemsToCopy.push({
+    from: path.join(__dirname, adjustRelativePath(item.from)),
+    to: path.join(__dirname, adjustRelativePath(item.to)),
+    flatten: item.flatten,
   });
 });
 
 module.exports = {
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
   buildDir: adjustRelativePath(siteConfig.buildDir),
+  iconDir: [],
   components: {
     global: globby
-      .sync(path.join(__dirname, './packages/components/*/package.json'))
+      .sync(path.join(__dirname, './packages/components/**/*/package.json'))
       .map(pkgPath => require(pkgPath))
       .map(pkg => pkg.name),
   },
@@ -47,4 +77,15 @@ module.exports = {
   images: {
     sets: imageSets,
   },
+  prod: true,
+  enableCache: true,
+  verbosity: 1,
+  copy: [
+    ...itemsToCopy,
+    {
+      from: './packages/global/fonts/',
+      to: path.join(__dirname, adjustRelativePath(siteConfig.buildDir), 'fonts/'),
+      flatten: true,
+    }
+  ],
 };
