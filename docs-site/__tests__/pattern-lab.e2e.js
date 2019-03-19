@@ -20,20 +20,26 @@ module.exports = {
       .url(`${testingUrl}/pattern-lab/?p=components-overview`)
       .waitForElementVisible('pl-header', 3000)
       .assert.elementPresent('.js-c-typeahead__input')
-      .click('.js-c-typeahead__input') // click on the PL search input
-      .keys('Components-Card') // type "Components-Card" in the input field
+      .click('.js-c-typeahead__input'); // click on the PL search input
+
+    // type "Components-Card" in the input field. Adjust command based on browser support
+    if (browser.sendKeys) {
+      browser.sendKeys('.js-c-typeahead__input', 'Components-Card');
+    } else {
+      browser.keys('Components-Card');
+    }
+
+    browser
+      .waitForElementVisible('.pl-c-typeahead__result--first', 3000) // make sure the "Open in a New Tab" UI is there
       .click('.pl-c-typeahead__result--first') // click on the first result
-      .waitForElementVisible('.pl-js-open-new-window', 3000) // make sure the "Open in a New Tab" UI is there before clicking on it
-      .click('.pl-js-open-new-window')
-      .windowHandles(function(result) {
-        var handle = result.value[1];
-        browser.switchWindow(handle); // switch browser windows to make sure the page we've just opened is in focus
+      .getAttribute('.pl-js-open-new-window', 'href', function(result) {
+        browser.url(result.value);
       })
       .waitForElementVisible('bolt-card', 3000)
       .assert.urlContains('components-card')
       .saveScreenshot(
-        `screenshots/pattern-lab/pattern-lab-search-results-load-new-page--${browser.currentEnv ||
-          'chrome'}.png`,
+        `screenshots/pattern-lab/pattern-lab-search-results-load-new-page--${browser
+          .capabilities.browserName || 'chrome'}.png`,
       )
       .end();
   },
