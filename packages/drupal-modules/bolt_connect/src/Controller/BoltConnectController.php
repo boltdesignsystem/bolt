@@ -8,7 +8,7 @@ use Drupal\Core\StreamWrapper\PublicStream;
 class BoltConnectController extends ControllerBase {
 
   public function customPage() {
-    /** @var \Twig_Environment $twig */
+    /** @var \Twig\Environment $twig */
     $twig = \Drupal::service('twig');
     $boltCoreEnabled = $twig->hasExtension('\Bolt\TwigExtensions\BoltCore');
 

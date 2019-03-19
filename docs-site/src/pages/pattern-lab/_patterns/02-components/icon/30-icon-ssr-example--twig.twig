@@ -1,0 +1,9 @@
+<p>Demo of server-side rendering a Twig-generated  <code>&lt;bolt-icon&gt;</code> web component.</p>
+
+{% filter bolt_ssr %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "add-open",
+    background: "circle",
+    size: "medium"
+  } %}
+{% endfilter %}

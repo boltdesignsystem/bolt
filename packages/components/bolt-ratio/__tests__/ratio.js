@@ -2,7 +2,7 @@ import { render } from '@bolt/twig-renderer';
 
 const timeout = 60000;
 
-describe('<bolt-ratio> Component', async () => {
+describe('<bolt-ratio> Component', () => {
   let page;
 
   beforeEach(async () => {
