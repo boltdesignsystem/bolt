@@ -33,6 +33,7 @@ async function getDefaultConfig() {
       port: ports[0],
       proxyPort: ports[1],
       ip,
+      mode: configSchema.properties.mode.default,
       env: process.env.NODE_ENV,
       enableCache: configSchema.properties.enableCache.default,
       proxyHeader: configSchema.properties.proxyHeader.default,
@@ -84,11 +85,11 @@ async function getEnvVarsConfig() {
 
 async function isReady() {
   if (!isInitialized) {
-    console.log(
-      chalk.yellow(
-        'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
-      ),
-    );
+    // console.log(
+    //   chalk.yellow(
+    //     'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
+    //   ),
+    // );
     const searchedFor = explorer.searchSync();
     if (searchedFor.config) {
       await init({
