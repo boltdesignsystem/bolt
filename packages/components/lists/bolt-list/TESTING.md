@@ -30,7 +30,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 1. Given I am viewing the [spacing variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-20-list-spacing-variations/02-components-list-20-list-spacing-variations.html).
 2. None spacing should show no spacing in between items.
-3. Xsmall to xlarge spacing should show the perspective spacing in between items. Reference the spacing sizes on the [Spacing page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-spacing).
+3. Xsmall to xlarge spacing should show the respective spacing in between items. Reference the spacing sizes on the [Spacing page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-spacing).
 
 ## Scenario: separator variations
 
@@ -42,7 +42,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 1. Given I am viewing the [inset variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-30-list-inset-variations/02-components-list-30-list-inset-variations.html).
 2. Inset spacing should show the spacing surrounding the item in all 4 directions (top, right, bottom, left).
-3. Xsmall to xlarge spacing should show the perspective spacing surrounding each item. Reference the spacing sizes on the [Spacing page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-spacing).
+3. Xsmall to xlarge spacing should show the respective spacing surrounding each item. Reference the spacing sizes on the [Spacing page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-spacing).
 
 ## Scenario: align variations
 
