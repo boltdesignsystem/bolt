@@ -52,7 +52,7 @@
 </bolt-button>
 {% endset %}
 
-{% set button_advanced_no_shadow_demo %}
+{% set button_advanced_ssr_demo %}
 {% filter bolt_ssr %}
 <bolt-button>
   {{ button_text }}
@@ -121,20 +121,17 @@
 
 <div class="u-bolt-margin-bottom-large">
   <bolt-text headline>
-    TODO: Write up something to describe this clearly
+    Server-side Rendered Web Components (Experimental)
   </bolt-text>
   <bolt-text>
-    <bolt-code-snippet display="inline" lang="html">&lt;bolt-button&gt;</bolt-code-snippet>, like any other Bolt Components, can be server-side rendered with Shadow DOM manually disabled by adding <bolt-code-snippet display="inline" lang="html">&lt;no-shadow&gt;</bolt-code-snippet> attribute.
-  </bolt-text>
-  <bolt-text>
-    <mark>Note: this method is not recommended. </mark>
+    The <bolt-code-snippet display="inline" lang="html">&lt;bolt-button&gt;</bolt-code-snippet> component, among many other components in Bolt, will support server-side rendering vanilla web components via the new upcoming <bolt-code-snippet display="inline" lang="twig">{% filter bolt_ssr %}</bolt-code-snippet> Twig filter shipping in Bolt. Check out the docs on <a href="https://master.boltdesignsystem.com/docs/development/server-side-rendering.html">server-side rendering</a> for information! 
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid %}
       {% cell %}
-        {{ button_advanced_no_shadow_demo }}
+        {{ button_advanced_ssr_demo }}
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include button_code.code_example(button_advanced_no_shadow_demo, true) %}
+  {% include button_code.code_example(button_advanced_ssr_demo, true) %}
 </div>
