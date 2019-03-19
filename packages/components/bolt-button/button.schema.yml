@@ -13,34 +13,21 @@ not:
 properties:
   attributes:
     type: object
-    description: A Drupal-style attributes object with extra attributes to append to this component.
+    description: 'A Drupal-style attributes object with extra attributes to append to this component.'
   text:
-    title: 'Button Text'
-    description: 'The text displayed inside a button'
+    description: 'Text inside the button.'
     type: string
   transform:
     type: string
-    description: Text transformation.
+    description: 'Transforms the button text to various cases.'
     default: none
     enum:
       - uppercase
       - lowercase
       - capitalize
       - none
-  icon:
-    type: object
-    description: Icon data as expected by the icon component.  Accepts an additional 'position' parameter that determines placement within the button.
-    ref: '@bolt-components-icon/icon.schema.yml'
-    properties:
-      position:
-        type: string
-        default: after
-        enum:
-          - before
-          - after
   tag:
-    title: 'Semantic tag'
-    description: 'What should this element semantically be?'
+    description: 'Determines the semantic HTML tag for the button.'
     type: string
     enum:
       - a
@@ -51,8 +38,7 @@ properties:
     default: button
   size:
     type: string
-    title: 'Button Size'
-    description: 'How large is this button?'
+    description: 'Size of the button.'
     default: medium
     enum:
       - xsmall
@@ -60,22 +46,9 @@ properties:
       - medium
       - large
       - xlarge
-  itemAlignment:
-    title: 'DEPRECATED'
-    description: 'Use the align parameter instead.'
-  align:
-    title: 'Button Alignment'
-    description: 'How should content be horizontally aligned?  Note: the values <em>left</em> and <em>right</em> are <strong>DEPRECATED</strong>, use <em>start</em> and <em>end</em> instead.'
-    type: string
-    enum:
-      - start
-      - center
-      - end
-    default: center
   style:
     type: string
-    title: 'Button Style'
-    description: 'What''s the button style / theme?'
+    description: 'Style of the button determined by information hierarchy.'
     default: primary
     enum:
       - primary
@@ -83,26 +56,47 @@ properties:
       - text
   width:
     type: string
-    title: 'Button Width'
-    description: 'Should a button be full width, it''s default size, or full width, but only on smaller screens?'
+    description: 'Controls the width of the button.'
+    default: auto
     enum:
+      - auto
       - full
       - full@small
-  rounded:
-    title: 'DEPRECATED'
-    description: 'Use the border_radius parameter instead'
   border_radius:
     type: string
-    title: 'Border Radius'
-    description: 'Amount of rounding that the corners of the button should have'
+    description: 'Rounds the corners of the button.'
     default: regular
     enum:
       - regular
       - full
+  align:
+    description: 'Horizontal alignment of items (text and icon) inside the button. Note: the values left and right are deprecated, use start and end instead.'
+    type: string
+    enum:
+      - start
+      - center
+      - end
+    default: center
+  icon:
+    type: object
+    description: 'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the button.'
+    ref: '@bolt-components-icon/icon.schema.yml'
+    properties:
+      position:
+        type: string
+        default: after
+        enum:
+          - before
+          - after
   iconOnly:
     type: boolean
-    title: 'Icon Only?'
-    description: 'Is this an icon-only button (with visually hidden text)?'
+    description: 'Make the button to display only the icon and hide the text (which is still required). You are required to pass both text and icon data for this option to work.'
     default: false
     required:
       - icon
+  itemAlignment:
+    title: 'DEPRECATED'
+    description: 'Use the align parameter instead.'
+  rounded:
+    title: 'DEPRECATED'
+    description: 'Use the border_radius parameter instead.'

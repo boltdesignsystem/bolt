@@ -1,12 +1,14 @@
 <template>
-  <div 
-    id="app" 
-    class="t-bolt-xdark u-bolt-min-height-screen u-bolt-text-align-center">
-    
+  <div
+    id="app"
+    class="t-bolt-xdark u-bolt-min-height-screen u-bolt-text-align-center"
+  >
     <bolt-image src="./assets/logo.png" />
 
-    <HelloWorld msg="Welcome to Your Bolt-powered Vue.js App"/>
-    <bolt-button color="primary">Hello Vue.js!</bolt-button>
+    <HelloWorld msg="Welcome to Your Bolt-powered Vue.js App" />
+    <bolt-button color="primary">
+      Hello Vue.js!
+    </bolt-button>
   </div>
 </template>
 
