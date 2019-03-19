@@ -1,0 +1,80 @@
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+
+{#
+  This page exists ONLY for creating our demos.
+  DO NOT use "is-hover", "is-focus", or "is-active" classes for implementation.
+  Strictly for demo purposes.
+#}
+
+<p><mark>Note: interactive states only appear when the user interacts with the button, they are not styles that are available for use.</mark></p>
+
+<h3>Regular States</h3>
+{% for style in schema.properties.style.enum %}
+  {% set button %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: style|capitalize ~ " button",
+      style: style
+    } only %}
+  {% endset %}
+  {% set button_disabled %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: style|capitalize ~ " button (disabled)",
+      disabled: true,
+      style: style
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    items: [
+      button,
+      button_disabled,
+    ]
+  } only %}
+{% endfor %}
+
+<h3>Interactive States</h3>
+{% for style in schema.properties.style.enum %}
+  {% set button_hover %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: style|capitalize ~ " button (hover)",
+      attributes: {
+        class: [
+          "is-hover"
+        ]
+      },
+      style: style
+    } only %}
+  {% endset %}
+  {% set button_focus %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: style|capitalize ~ " button (focus)",
+      attributes: {
+        class: [
+          "is-focus"
+        ]
+      },
+      style: style
+    } only %}
+  {% endset %}
+  {% set button_active %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: style|capitalize ~ " button (active)",
+      attributes: {
+        class: [
+          "is-active"
+        ]
+      },
+      style: style
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    items: [
+      button_focus,
+      button_hover,
+      button_active,
+    ]
+  } only %}
+{% endfor %}

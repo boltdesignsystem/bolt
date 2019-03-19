@@ -1,22 +1,9 @@
-import {
-  render,
-  renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
-
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
+import { render } from '@bolt/twig-renderer';
 
 const timeout = 60000;
 
-describe('<bolt-ratio> Component', async () => {
+describe('<bolt-ratio> Component', () => {
   let page;
-
-  afterAll(async () => {
-    await stopTwigRenderer();
-  }, timeout);
 
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();

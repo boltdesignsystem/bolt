@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components['@bolt-components-text'].schema %}
 
-{% for fontSize in schema.properties.fontSize.enum %}
-  {% for fontWeight in schema.properties.fontWeight.enum %}
+{% for fontSize in schema.properties["font-size"].enum %}
+  {% for fontWeight in schema.properties["font-weight"].enum %}
 
     <bolt-text font-weight="{{ fontWeight }}" font-size="{{ fontSize }}">
       This is {{ fontWeight }} {{fontSize}} text
