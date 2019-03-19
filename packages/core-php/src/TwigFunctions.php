@@ -340,4 +340,11 @@ class TwigFunctions {
     ]);
   }
 
+  // Return greatest common denominator of two integers, defaults to 1 
+  public static function gcd() {
+    return new Twig_SimpleFunction('gcd', function($a, $b) {
+      return (is_int($a) && is_int($b)) ? gmp_gcd($a, $b) : 1;
+    });
+  }
+
 }
