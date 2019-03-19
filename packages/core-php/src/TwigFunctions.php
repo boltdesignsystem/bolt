@@ -7,6 +7,8 @@ use \Twig_SimpleFunction;
 use \Drupal\Core\Template\Attribute;
 use \BasaltInc\TwigTools;
 use \Webmozart\PathUtil\Path;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 
 // https://github.com/Shudrum/ArrayFinder
 use \Shudrum\Component\ArrayFinder\ArrayFinder;
@@ -27,7 +29,7 @@ class TwigFunctions {
 
 
   public static function fileExists() {
-    return new Twig_SimpleFunction('fileExists', function(\Twig_Environment $env, $context, $path) {
+    return new Twig_SimpleFunction('fileExists', function(\Twig\Environment $env, $context, $path) {
       $result = '';
 
       try {
@@ -39,6 +41,53 @@ class TwigFunctions {
       } catch (\Exception $e) {
         $result = false;
       }
+      return $result;
+    }, [
+      'needs_environment' => true,
+      'needs_context' => true,
+    ]);
+  }
+
+  public static function bolt_ssr($context = '', $html) {
+    // a better, more dynamic way of finding the ssr-server path is via lerna (but it's more costly to run $$)
+    // $p = new Process('npx --quiet lerna ls --json --all | npx --quiet json -a -c "this.name === \'@bolt/ssr-server\'" location');
+    // $p->run();
+    // $ssrServerPath = trim($p->getOutput()).'/cli.js';
+
+    // locate where the Bolt SSR Server script is physically located so we can call the script + pass along our HTML string to render
+    $context = new ArrayFinder($context);
+    $configFileUsed = $context->get('bolt.data.config.configFileUsed');
+    
+    $ssrServerPath = dirname($configFileUsed, 2) . '/node_modules/@bolt/ssr-server/cli.js';
+    $ssrServerPathAlt = dirname($configFileUsed, 1) . '/node_modules/@bolt/ssr-server/cli.js';
+    $ssrServerLocation = '';
+
+    // if we found the right SSR server file in one of two places, try to render using it. Otherwise return the original HTML.
+    if (file_exists( $ssrServerPath )){
+      $ssrServerLocation = $ssrServerPath; // SSR file to use for rendering found in the node_modules folder located at the same level as .boltrc config
+    } elseif (file_exists( $ssrServerPathAlt )){
+      $ssrServerLocation = $ssrServerPathAlt; // SSR file to use for rendering found one level higher than the .boltrc config
+    } else {
+      return $html; // if the ssr-server can't be found 
+    }
+
+    // auto-disable syntax highlighting via the 2nd prop
+    $process = new Process(['node', $ssrServerPath, $html, false]);
+    $process->setTimeout(3600);
+    $process->setIdleTimeout(240);
+    $process->run();
+    $result = $process->getOutput();
+
+    if (strlen($result) < 1){
+      return $html;
+    } else {
+      return $result;
+    }
+  }
+
+  public static function ssr() {
+    return new Twig_SimpleFunction('bolt_ssr', function(\Twig\Environment $env, $context, $html) {
+      $result = self::bolt_ssr($context, $html);
       return $result;
     }, [
       'needs_environment' => true,
@@ -100,7 +149,7 @@ class TwigFunctions {
 
   // A combination of base64, bgcolor, ratio, and imageSize
   public static function getImageData() {
-    return new Twig_SimpleFunction('getImageData', function(\Twig_Environment $env, $relativeImagePath) {
+    return new Twig_SimpleFunction('getImageData', function(\Twig\Environment $env, $relativeImagePath) {
       if (!$relativeImagePath) {
         return [];
       }
@@ -121,7 +170,7 @@ class TwigFunctions {
 
   // Same overall idea as https://jmperezperez.com/medium-image-progressive-loading-placeholder/, we just started working on this a few years prior ^_^
   public static function base64() {
-    return new Twig_SimpleFunction('base64', function(\Twig_Environment $env, $relativeImagePath) {
+    return new Twig_SimpleFunction('base64', function(\Twig\Environment $env, $relativeImagePath) {
       $boltData = Utils::getData($env);
       $wwwDir = $boltData['config']['wwwDir'];
       return Images::generate_base64_image_placeholder($relativeImagePath, $wwwDir);
@@ -133,7 +182,7 @@ class TwigFunctions {
 
   // Return the average color of the image path passed in
   public static function bgcolor() {
-    return new Twig_SimpleFunction('bgcolor', function(\Twig_Environment $env, $relativeImagePath) {
+    return new Twig_SimpleFunction('bgcolor', function(\Twig\Environment $env, $relativeImagePath) {
       $boltData = Utils::getData($env);
       $wwwDir = $boltData['config']['wwwDir'];
       return Images::calculate_average_image_color($relativeImagePath, $wwwDir);
@@ -144,7 +193,7 @@ class TwigFunctions {
 
   // Return the aspect ratio of the image passed in
   public static function ratio() {
-    return new Twig_SimpleFunction('ratio', function(\Twig_Environment $env, $relativeImagePath, $heightOrWidthRatio = 'width') {
+    return new Twig_SimpleFunction('ratio', function(\Twig\Environment $env, $relativeImagePath, $heightOrWidthRatio = 'width') {
       $boltData = Utils::getData($env);
       $wwwDir = $boltData['config']['wwwDir'];
       $value = Images::calculate_image_aspect_ratio($relativeImagePath, $heightOrWidthRatio, $wwwDir);
@@ -157,7 +206,7 @@ class TwigFunctions {
 
   // Originally was required...? Keeping for now till full responsive images solution back up and running
   public static function imagesize() {
-    return new Twig_SimpleFunction('imagesize', function(\Twig_Environment $env, $relativeImagePath) {
+    return new Twig_SimpleFunction('imagesize', function(\Twig\Environment $env, $relativeImagePath) {
       $boltData = Utils::getData($env);
       $wwwDir = $boltData['config']['wwwDir'];
       return Images::get_image_dimensions($relativeImagePath, $wwwDir);
@@ -283,7 +332,7 @@ class TwigFunctions {
   }
 
   public static function github_url() {
-    return new Twig_SimpleFunction('github_url', function(\Twig_Environment $env, $twigPath) {
+    return new Twig_SimpleFunction('github_url', function(\Twig\Environment $env, $twigPath) {
       $filePath = TwigTools\Utils::resolveTwigPath($env, $twigPath);
       return Utils::gitHubUrl($filePath);
     }, [

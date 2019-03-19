@@ -1,0 +1,9 @@
+{# This demo is also reused for confirming in Nightwatch.js that server-side pre-rendering w/ Twig integration is working as expected #}
+<p>Demo server-side rendering a vanilla <code>&lt;bolt-button&gt;</code> web component with Shadow DOM manually disabled.</p>
+
+{% filter bolt_ssr %}
+  <bolt-button no-shadow>
+    SSR via pure web component!
+    <bolt-icon name="chevron-right" slot="after" no-shadow></bolt-icon>
+  </bolt-button>
+{% endfilter %}

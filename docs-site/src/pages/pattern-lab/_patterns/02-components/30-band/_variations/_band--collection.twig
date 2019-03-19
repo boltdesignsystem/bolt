@@ -1,0 +1,15 @@
+{# This is a private include for legacy demos, don't use this. #}
+{% extends "@bolt-components-band/band.twig" %}
+{% block band_content %}
+
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+    {% for item in contentItems %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {# TODO: get length of items to divide into cells #}
+        {% block collection_content %}
+          {% include pattern_template(pattern ?? item.pattern) with item only %}
+        {% endblock %}
+      {% endcell %}
+    {% endfor %}
+  {% endgrid %}
+{% endblock band_content %}

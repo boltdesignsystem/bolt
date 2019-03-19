@@ -1,0 +1,7 @@
+<p>Demo of server-side rendering a Twig-generated <code>&lt;bolt-button&gt;</code> web component.</p>
+
+{% filter bolt_ssr %}
+   {% include "@bolt-components-button/button.twig" with {
+    text: "SSR via pure Twig"
+  } %}
+{% endfilter %}
