@@ -14,7 +14,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Feature: action-blocks
 
-    In order to present items in a vertical or horizontal action-blocks
+    In order to present items in vertical or horizontal action-blocks
     As a UX designer, developer or content administrator
     I need to ensure the "bolt-action-blocks" component renders and functions as expected
 
@@ -35,9 +35,9 @@ Functional testing should be performed manually by the QA team across the standa
 
 1. Given I am viewing the [theme variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-action-blocks-20-action-blocks-theme-variations/02-components-action-blocks-20-action-blocks-theme-variations.html).
 2. Inside an xlight theme, the Action Blocks should have xlight background.
-3. Inside an light theme, the Action Blocks should have light background.
-4. Inside an dark theme, the Action Blocks should have dark background.
-5. Inside an xdark theme, the Action Blocks should have xdark background.
+3. Inside a light theme, the Action Blocks should have light background.
+4. Inside a dark theme, the Action Blocks should have dark background.
+5. Inside a xdark theme, the Action Blocks should have xdark background.
 
 ## Scenario: max items per row variations
 
