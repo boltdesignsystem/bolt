@@ -9,9 +9,11 @@
 
 {% import _self as button_code %}
 
+{% set button_text = "This is a button" %}
+
 {% set button_demo %}
 <bolt-button url="https://pega.com">
-  This is a button
+  {{ button_text }}
 </bolt-button>
 {% endset %}
 
@@ -19,19 +21,19 @@
 <p>
   <bolt-button>
     <bolt-icon name="chevron-left" slot="before"></bolt-icon>
-    This is a button
+    {{ button_text }}
   </bolt-button>
 </p>
 <p>
   <bolt-button>
     <bolt-icon name="chevron-right" slot="after"></bolt-icon>
-    This is a button
+    {{ button_text }}
   </bolt-button>
 </p>
 <p>
   <bolt-button icon-only>
     <bolt-icon name="close" slot="before"></bolt-icon>
-    This is a button
+    {{ button_text }}
   </bolt-button>
 </p>
 {% endset %}
@@ -46,8 +48,17 @@
   icon-only
 >
   <bolt-icon name="menu" slot="before"></bolt-icon>
-  This is a button
+  {{ button_text }}
 </bolt-button>
+{% endset %}
+
+{% set button_advanced_no_shadow_demo %}
+{% filter bolt_ssr %}
+<bolt-button>
+  {{ button_text }}
+  <bolt-icon name="chevron-right" slot="after"></bolt-icon>
+</bolt-button>
+{% endfilter %}
 {% endset %}
 
 
@@ -106,4 +117,24 @@
     {% endgrid %}
   </div>
   {% include button_code.code_example(button_advanced_demo, true) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    TODO: Write up something to describe this clearly
+  </bolt-text>
+  <bolt-text>
+    <bolt-code-snippet display="inline" lang="html">&lt;bolt-button&gt;</bolt-code-snippet>, like any other Bolt Components, can be server-side rendered with Shadow DOM manually disabled by adding <bolt-code-snippet display="inline" lang="html">&lt;no-shadow&gt;</bolt-code-snippet> attribute.
+  </bolt-text>
+  <bolt-text>
+    <mark>Note: this method is not recommended. </mark>
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell %}
+        {{ button_advanced_no_shadow_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include button_code.code_example(button_advanced_no_shadow_demo, true) %}
 </div>
