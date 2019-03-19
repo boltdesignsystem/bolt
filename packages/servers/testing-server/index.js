@@ -9,28 +9,35 @@ const port = process.env.PORT || 4444;
 
 const webpack = require('webpack');
 const middleware = require('webpack-dev-middleware');
-const createWebpackConfig = require('../packages/build-tools/create-webpack-config');
-const { getConfig } = require('../packages/build-tools/utils/config-store');
+const createWebpackConfig = require('@bolt/build-tools/create-webpack-config');
+const { getConfig } = require('@bolt/build-tools/utils/config-store');
 
-const allComponentsWithTests = globby
-  .sync(path.join(__dirname, '../', '/packages/components/**/__tests__'), {
-    onlyDirectories: true,
-  })
-  .map(testsDirPath =>
-    require(path.join(path.resolve(testsDirPath, '..'), 'package.json')),
-  )
-  .map(pkg => pkg.name);
+let server;
+
+// @todo: re-evaluate if this is worthwhile to re-enable
+// const allComponentsWithTests = globby
+//   .sync(
+//     path.join(__dirname, '../../../', '/packages/components/**/__tests__'),
+//     {
+//       onlyDirectories: true,
+//     },
+//   )
+//   .map(testsDirPath =>
+//     require(path.join(path.resolve(testsDirPath, '..'), 'package.json')),
+//   )
+//   .map(pkg => pkg.name);
 
 getConfig().then(async boltConfig => {
   let config = boltConfig;
 
   // don't compile anything in Webpack except for the exported JSON data from Bolt's Design Tokens + all packages with tests
-  config.components.global = [
-    './packages/core/styles/index.scss',
-    '@bolt/global',
-    ...allComponentsWithTests,
-  ];
+  // config.components.global = [
+  //   './packages/core/styles/index.scss',
+  //   '@bolt/global',
+  //   ...allComponentsWithTests,
+  // ];
 
+  config.mode = 'client';
   config.components.individual = [];
   config.prod = true;
   config.sourceMaps = false;
@@ -46,18 +53,18 @@ getConfig().then(async boltConfig => {
   app.use(
     middleware(compiler, {
       serverSideRender: true,
-      writeToDisk: false,
-      lazy: false,
       stats: webpackConfig[0].devServer.stats,
     }),
   );
 
-  app.use(express.static(config.wwwDir));
+  app.use(express.static(path.relative(process.cwd(), config.wwwDir)));
 
   // The following middleware would not be invoked until the latest build is finished.
   app.use((req, res) => {
     const assetsByChunkName = res.locals.webpackStats.toJson().children[0]
       .assetsByChunkName;
+    const fs = res.locals.fs;
+    const outputPath = res.locals.webpackStats.toJson().children[0].outputPath;
 
     // then use `assetsByChunkName` for server-sider rendering
     // For example, if you have only one main chunk:
@@ -65,10 +72,10 @@ getConfig().then(async boltConfig => {
       `<html class="js-fonts-loaded">
         <head>
           <title>Test</title>
-          ${normalizeAssets(assetsByChunkName['bolt-global'])
+          <style>${normalizeAssets(assetsByChunkName['bolt-global'])
             .filter(path => path.endsWith('.css'))
-            .map(path => `<link rel="stylesheet" href="${path}"/>`)
-            .join('\n')}
+            .map(path => fs.readFileSync(outputPath + '/' + path))
+            .join('\n')}</style>
         </head>
         <body>
           <div id="root"></div>
@@ -95,11 +102,27 @@ getConfig().then(async boltConfig => {
 
   app.use('/api', handleRequest);
 
-  app.use(express.static(join(__dirname, '../www')));
-
-  app.listen(port, () => {
+  server = app.listen(port, () => {
     console.log(`Express listening on http://localhost:${port}`);
   });
 
   app.redirect;
+
+  // handle cleaning up + shutting down the server instance
+  process.on('SIGTERM', shutDownSSRServer);
+  process.on('SIGINT', shutDownSSRServer);
 });
+
+// console.log('Received kill signal, shutting down gracefully');
+function shutDownSSRServer() {
+  server.close(() => {
+    process.exit(0);
+  });
+
+  setTimeout(() => {
+    console.warn(
+      'Could not close connections in time, forcefully shutting down',
+    );
+    process.exit(1);
+  }, 5000);
+}

@@ -1,5 +1,5 @@
 ---
-title: Preparing your environment
+title: Local Dev Enviornment Setup
 ---
 
 ## Install Suggested Apps

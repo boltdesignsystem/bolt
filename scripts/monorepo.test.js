@@ -12,7 +12,7 @@ function flattenDeep(arr1) {
   );
 }
 
-describe('monorepo', async () => {
+describe('monorepo', () => {
   /**
    * Array of object containing the package.json of each monorepo package
    * @var {Object[]}
