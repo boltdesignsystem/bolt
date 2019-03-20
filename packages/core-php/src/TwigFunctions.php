@@ -343,13 +343,13 @@ class TwigFunctions {
   // Return greatest common denominator of two integers
   public static function gcd() {
     return new Twig_SimpleFunction('gcd', function($a, $b) {
-      // If not integer or string that can be converted to integer, return 1
+      // If not an integer or string that can be converted to an integer, return 1
       // Note: gmp_gcd() throws error if passed a floating point number or string that is converted to one
       if(is_int($a) && is_int($b)) {
-        return gmp_gcd($a, $b);
+        return gmp_intval(gmp_gcd($a, $b));
       } elseif (is_string($a) && is_string($b)) {
         if (!strpos($a, '.') && !strpos($b, '.')){
-          return gmp_gcd($a, $b);
+          return gmp_intval(gmp_gcd($a, $b));
         } else {
           return 1;
         }
