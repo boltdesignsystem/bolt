@@ -38,20 +38,19 @@ module.exports = {
     if (browser.capabilities.browserName.includes('explorer')){
       browser.end();
     } else {
-    
-    browser
-      .waitForElementVisible('.pl-c-typeahead__result--first', 3000) // make sure the "Open in a New Tab" UI is there
-      .click('.pl-c-typeahead__result--first') // click on the first result
-      .getAttribute('.pl-js-open-new-window', 'href', function(result) {
-        browser.url(result.value);
-      })
-      .waitForElementVisible('bolt-card', 3000)
-      .assert.urlContains('components-card')
-      .saveScreenshot(
-        `screenshots/pattern-lab/pattern-lab-search-results-load-new-page--${browser
-          .capabilities.browserName || 'chrome'}.png`,
-      )
-      .end();
+      browser
+        .waitForElementVisible('.pl-c-typeahead__result--first', 3000) // make sure the "Open in a New Tab" UI is there
+        .click('.pl-c-typeahead__result--first') // click on the first result
+        .getAttribute('.pl-js-open-new-window', 'href', function(result) {
+          browser.url(result.value);
+        })
+        .waitForElementVisible('bolt-card', 3000)
+        .assert.urlContains('components-card')
+        .saveScreenshot(
+          `screenshots/pattern-lab/pattern-lab-search-results-load-new-page--${browser
+            .capabilities.browserName || 'chrome'}.png`,
+        )
+        .end();
     }
   },
 };
