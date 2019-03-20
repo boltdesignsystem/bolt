@@ -267,7 +267,7 @@ Functional testing should be performed manually by the QA team across the standa
 1. And I am looking at the page section "Button Widths"
 1. Then I should see the button "Example full Button"
 1. And the button should have a "full screen" button width
-1. And I should see the button "Example full@small Button"
+1. And I should see the button "Example full-to-auto@small Button"
 1. And the button should have a "full screen" button width
 
 ## Scenario: Button Widths in mobile browser
@@ -279,7 +279,7 @@ Functional testing should be performed manually by the QA team across the standa
 1. And I am looking at the page section "Button Widths"
 1. Then I should see the button "Example full Button"
 1. And the button should have a "full screen" button width
-1. And I should see the button "Example full@small Button"
+1. And I should see the button "Example full-to-auto@small Button"
 1. And the button should have a "normal" button width
 
 ## Scenario: Button Tags

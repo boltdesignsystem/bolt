@@ -188,8 +188,8 @@ bolt-button[width='full'],
 $bolt-button-width-breakpoints: xxsmall, xsmall, small;
 
 @each $breakpoint in $bolt-button-width-breakpoints {
-  bolt-button[width='auto-to-full@#{$breakpoint}'],
-  .c-bolt-button--auto-to-full\@#{$breakpoint} {
+  bolt-button[width='full-to-auto@#{$breakpoint}'],
+  .c-bolt-button--full-to-auto\@#{$breakpoint} {
     @include bolt-mq($until: #{$breakpoint}) {
       width: 100%;
     }
@@ -197,7 +197,7 @@ $bolt-button-width-breakpoints: xxsmall, xsmall, small;
 
   // :host selector for correctly styling the <bolt-button> element inside other components
   // writing this out in a separate selector due to unsupporting browsers throwing out the :host selector
-  :host([width='auto-to-full@#{$breakpoint}']) {
+  :host([width='full-to-auto@#{$breakpoint}']) {
     @include bolt-mq($until: #{$breakpoint}) {
       width: 100%;
     }
