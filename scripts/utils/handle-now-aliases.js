@@ -2,6 +2,7 @@
 const shell = require('shelljs');
 const { TRAVIS } = require('./travis-vars');
 const { setCheckRun } = require('../check-run');
+const { normalizeUrlAlias } = require('./normalize-url-alias');
 
 let { NOW_TOKEN } = process.env;
 const baseNowArgs = ['--platform-version=1', '--team=boltdesignsystem'];
@@ -12,30 +13,24 @@ async function aliasNowUrl(originalUrl, prefix) {
   console.log(
     'Creating now.sh alias off of the ' + originalUrl + ' deployment URL.',
   );
+
   const deployedUrl = originalUrl.trim();
 
-  let aliasedUrl = `https://boltdesignsystem.com`;
+  let aliasedUrl;
 
-  // passing an empty prefix will deploy to the main boltdesignsystem.com site
   if (prefix) {
-    const normalizedUrlPrefix = prefix
-      .replace(/\//g, '-') // `/` => `-`
-      .replace('--', '-') // `--` => `-` now.sh subdomains can't have `--` for some reason
-      .replace(/\./g, '-'); // `.` => `-`
-    const normalizedUrlFull = `${encodeURIComponent(
-      normalizedUrlPrefix,
-    )}.boltdesignsystem`;
-
-    aliasedUrl = `https://${normalizedUrlFull}.com`;
+    aliasedUrl = normalizeUrlAlias(prefix);
+  } else {
+    aliasedUrl = 'https://boltdesignsystem.com';
   }
 
   console.log(`Attempting to alias ${originalUrl} to ${aliasedUrl}...`);
-  
+
   await setCheckRun({
     status: 'in_progress',
     name: 'Deploy - now.sh (alias)',
   });
-  
+
   const aliasOutput = shell.exec(
     `npx now alias ${deployedUrl} ${aliasedUrl} --platform-version=1 --team=boltdesignsystem --token=${NOW_TOKEN}`,
   );

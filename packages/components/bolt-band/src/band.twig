@@ -88,7 +88,7 @@
 
     {# Items are deprecated but still supported, remove this completely once items are gone for good. #}
     {% if items and pinned_content is empty %}
-      {% include "@bolt-components-band/_items-adapter.twig" %}
+      {% include "@bolt-components-band/_band-items-adapter.twig" %}
     {% endif %}
 
     {# Render pinned content if there is any #}

@@ -2,6 +2,7 @@
 
 namespace Bolt;
 
+use Bolt;
 use \Twig_SimpleFilter;
 
 class TwigFilters {
@@ -16,6 +17,17 @@ class TwigFilters {
     return new Twig_SimpleFilter('json_decode', function ($json) {
       return json_decode($json, true);
     });
+  }
+
+
+  public static function bolt_ssr() {
+    return new Twig_SimpleFilter('bolt_ssr', function(\Twig\Environment $env, $context, $html) {
+      $result = Bolt\TwigFunctions::bolt_ssr($context, $html);
+      return $result;
+    }, [
+      'needs_environment' => true,
+      'needs_context' => true,
+    ]);
   }
 
   public static function without() {

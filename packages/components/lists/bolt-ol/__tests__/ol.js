@@ -1,6 +1,6 @@
 import { render, renderString } from '@bolt/twig-renderer';
 
-describe('<bolt-ol> Component', async () => {
+describe('<bolt-ol> Component', () => {
   test('basic usage with attributes', async () => {
     const results = await render('@bolt-components-ol/ol.twig', {
       attributes: {
