@@ -1,6 +1,6 @@
 module.exports = {
   'Pattern Lab: Confirm Successful Now.sh Deploy - Pattern Lab Inner': function(
-    browser,
+    browser
   ) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
@@ -12,7 +12,7 @@ module.exports = {
   },
 
   'Pattern Lab: Confirm Successful Now.sh Deploy - Pattern Lab Outer': function(
-    browser,
+    browser
   ) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
@@ -21,7 +21,7 @@ module.exports = {
       .waitForElementVisible('pl-header', 3000)
       .assert.elementPresent('.js-c-typeahead__input')
       .click('.js-c-typeahead__input'); // click on the PL search input
-    
+
     // type "Components-Card" in the input field. Adjust command based on browser support
     if (browser.sendKeys) {
       browser.sendKeys('.js-c-typeahead__input', 'Components-Card');
@@ -30,12 +30,12 @@ module.exports = {
     }
 
     browser.saveScreenshot(
-      `screenshots/pattern-lab/pattern-lab-search-input--${browser
-        .capabilities.browserName || 'chrome'}.png`,
+      `screenshots/pattern-lab/pattern-lab-search-input--${browser.capabilities
+        .browserName || 'chrome'}.png`
     );
- 
+
     // end buggy keyboard input test early for IE 11
-    if (browser.capabilities.browserName.includes('explorer')){
+    if (browser.capabilities.browserName.includes('explorer')) {
       browser.end();
     } else {
       browser
@@ -48,9 +48,9 @@ module.exports = {
         .assert.urlContains('components-card')
         .saveScreenshot(
           `screenshots/pattern-lab/pattern-lab-search-results-load-new-page--${browser
-            .capabilities.browserName || 'chrome'}.png`,
+            .capabilities.browserName || 'chrome'}.png`
         )
         .end();
     }
-  },
+  }
 };
