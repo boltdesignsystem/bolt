@@ -1,6 +1,6 @@
 module.exports = {
   'Pattern Lab: Confirm Successful Now.sh Deploy - Pattern Lab Inner': function(
-    browser
+    browser,
   ) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
@@ -12,7 +12,7 @@ module.exports = {
   },
 
   'Pattern Lab: Confirm Successful Now.sh Deploy - Pattern Lab Outer': function(
-    browser
+    browser,
   ) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
@@ -31,7 +31,7 @@ module.exports = {
 
     browser.saveScreenshot(
       `screenshots/pattern-lab/pattern-lab-search-input--${browser.capabilities
-        .browserName || 'chrome'}.png`
+        .browserName || 'chrome'}.png`,
     );
 
     // end buggy keyboard input test early for IE 11
@@ -48,9 +48,9 @@ module.exports = {
         .assert.urlContains('components-card')
         .saveScreenshot(
           `screenshots/pattern-lab/pattern-lab-search-results-load-new-page--${browser
-            .capabilities.browserName || 'chrome'}.png`
+            .capabilities.browserName || 'chrome'}.png`,
         )
         .end();
     }
-  }
+  },
 };
