@@ -50,6 +50,9 @@ module.exports = {
       filter: '**/*.e2e.js',
       desiredCapabilities: {
         browserName: 'chrome',
+        chromeOptions: {
+          args: ['--headless'],
+        },
         javascriptEnabled: true,
         acceptSslCerts: true,
         nativeEvents: true,
@@ -58,6 +61,9 @@ module.exports = {
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
+        chromeOptions: {
+          args: ['--headless'],
+        },
         javascriptEnabled: true,
         acceptSslCerts: true,
         nativeEvents: true,
