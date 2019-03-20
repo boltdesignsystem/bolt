@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components['@bolt-components-pagination'].schema %}
+{% set schema = bolt.data.components["@bolt-components-pagination"].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
@@ -11,8 +11,8 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 
 {# check if the value set to a prop is allowed or defined. if not, default to the default value specified in the component's schema (if one exists) #}
-{% set previousText = previousText | default('Previous'|t) %}
-{% set nextText = nextText | default('Next'|t) %}
+{% set previousText = previousText | default("Previous"|t) %}
+{% set nextText = nextText | default("Next"|t) %}
 
 {#
   Display logic for ellipses and first/last links and ellipses.
