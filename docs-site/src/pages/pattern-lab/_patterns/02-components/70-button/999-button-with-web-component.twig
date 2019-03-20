@@ -52,6 +52,16 @@
 </bolt-button>
 {% endset %}
 
+{# this first button ssr example disables shadow dom for internal testing purposes only. the 2nd code block below is the rendered markup shown in the code snippet (typical usage) #}
+{% set button_advanced_ssr_demo_noshadow %}
+{% filter bolt_ssr %}
+<bolt-button no-shadow>
+  {{ button_text }}
+  <bolt-icon name="chevron-right" slot="after" no-shadow></bolt-icon>
+</bolt-button>
+{% endfilter %}
+{% endset %}
+
 {% set button_advanced_ssr_demo %}
 {% filter bolt_ssr %}
 <bolt-button>
@@ -124,12 +134,12 @@
     Server-side Rendered Web Components (Experimental)
   </bolt-text>
   <bolt-text>
-    The <bolt-code-snippet display="inline" lang="html">&lt;bolt-button&gt;</bolt-code-snippet> component, among many other web components in Bolt, will support server-side rendering via the new upcoming <bolt-code-snippet display="inline" lang="twig">{% filter bolt_ssr %}</bolt-code-snippet> custom Twig filter. Check out the docs on <a href="https://master.boltdesignsystem.com/docs/development/server-side-rendering.html">server-side rendering</a> for information! 
+    The <bolt-code-snippet display="inline" lang="html">&lt;bolt-button&gt;</bolt-code-snippet> component, among many other web components in Bolt, will support server-side rendering via the new upcoming <bolt-code-snippet display="inline" lang="twig">{% verbatim %}{% filter bolt_ssr %}{% endverbatim %}</bolt-code-snippet> custom Twig filter. Check out the docs on <a href="https://master.boltdesignsystem.com/docs/development/server-side-rendering.html">server-side rendering</a> for information! 
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid %}
       {% cell %}
-        {{ button_advanced_ssr_demo }}
+        {{ button_advanced_ssr_demo_noshadow }}
       {% endcell %}
     {% endgrid %}
   </div>
