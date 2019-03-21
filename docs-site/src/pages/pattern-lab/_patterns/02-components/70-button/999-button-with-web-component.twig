@@ -1,0 +1,147 @@
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as button_code %}
+
+{% set button_text = "This is a button" %}
+
+{% set button_demo %}
+<bolt-button url="https://pega.com">
+  {{ button_text }}
+</bolt-button>
+{% endset %}
+
+{% set button_basic_demo %}
+<p>
+  <bolt-button>
+    <bolt-icon name="chevron-left" slot="before"></bolt-icon>
+    {{ button_text }}
+  </bolt-button>
+</p>
+<p>
+  <bolt-button>
+    <bolt-icon name="chevron-right" slot="after"></bolt-icon>
+    {{ button_text }}
+  </bolt-button>
+</p>
+<p>
+  <bolt-button icon-only>
+    <bolt-icon name="close" slot="before"></bolt-icon>
+    {{ button_text }}
+  </bolt-button>
+</p>
+{% endset %}
+
+{% set button_advanced_demo %}
+<bolt-button
+  url="https://pega.com"
+  size="large"
+  color="secondary"
+  border-radius="full"
+  tag="a"
+  icon-only
+>
+  <bolt-icon name="menu" slot="before"></bolt-icon>
+  {{ button_text }}
+</bolt-button>
+{% endset %}
+
+{# this first button ssr example disables shadow dom for internal testing purposes only. the 2nd code block below is the rendered markup shown in the code snippet (typical usage) #}
+{% set button_advanced_ssr_demo_noshadow %}
+{% filter bolt_ssr %}
+<bolt-button no-shadow>
+  {{ button_text }}
+  <bolt-icon name="chevron-right" slot="after" no-shadow></bolt-icon>
+</bolt-button>
+{% endfilter %}
+{% endset %}
+
+{% set button_advanced_ssr_demo %}
+{% filter bolt_ssr %}
+<bolt-button>
+  {{ button_text }}
+  <bolt-icon name="chevron-right" slot="after"></bolt-icon>
+</bolt-button>
+{% endfilter %}
+{% endset %}
+
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Button is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-button&gt;</bolt-code-snippet> in the markup to make it render.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell %}
+        {{ button_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include button_code.code_example(button_demo, true) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Basic Usage
+  </bolt-text>
+  <bolt-text>
+    To use icon in combination with text within the button, you must pass <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> with a <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> attribute defined as either <bolt-code-snippet display="inline" lang="html">before</bolt-code-snippet> or <bolt-code-snippet display="inline" lang="html">after</bolt-code-snippet>.
+  </bolt-text>
+  <bolt-text>
+    <mark>Note: the slot attribute is required in order for the icon to be placed and spaced correctly within the button. Even if icon-only option is turned on, slot is still required.</mark>
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell %}
+        {{ button_basic_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include button_code.code_example(button_basic_demo, true) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Advanced Usage
+  </bolt-text>
+  <bolt-text>
+    The web component has all the options shown in the schema table. You can define each prop within the <bolt-code-snippet display="inline" lang="html">&lt;bolt-button&gt;</bolt-code-snippet> element. Use unique combinations to customize a button to your liking.
+  </bolt-text>
+  <bolt-text>
+    <mark>Note: the style prop is named color instead.</mark>
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell %}
+        {{ button_advanced_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include button_code.code_example(button_advanced_demo, true) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Server-side Rendered Web Components (Experimental)
+  </bolt-text>
+  <bolt-text>
+    The <bolt-code-snippet display="inline" lang="html">&lt;bolt-button&gt;</bolt-code-snippet> component, among many other web components in Bolt, will support server-side rendering via the new upcoming <bolt-code-snippet display="inline" lang="twig">{% verbatim %}{% filter bolt_ssr %}{% endverbatim %}</bolt-code-snippet> custom Twig filter. Check out the docs on <a href="https://master.boltdesignsystem.com/docs/development/server-side-rendering.html">server-side rendering</a> for information! 
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell %}
+        {{ button_advanced_ssr_demo_noshadow }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include button_code.code_example(button_advanced_ssr_demo, true) %}
+</div>

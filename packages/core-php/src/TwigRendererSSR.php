@@ -12,7 +12,7 @@ require 'vendor/autoload.php';
 class TwigRendererSSR
 {
     /**
-     * @var \Twig_Environment
+     * @var \Twig\Environment
      *   The Twig Environment.
      */
     public $twigEnvironment;
@@ -40,10 +40,10 @@ class TwigRendererSSR
      *
      * @param string[] $tag_templates
      *   An associative array mapping tag names to template names.
-     * @param \Twig_Environment $environment
+     * @param \Twig\Environment $environment
      *   A Twig environment, with templates that map to component names.
      */
-    public function __construct($tag_templates, \Twig_Environment $environment)
+    public function __construct($tag_templates, \Twig\Environment $environment)
     {
         $this->twigEnvironment = $environment;
         $this->tagTemplates = $tag_templates;

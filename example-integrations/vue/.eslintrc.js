@@ -7,9 +7,11 @@ module.exports = {
     commonjs: true,
     es6: true
   },
+  plugins: ['prettier'],
   extends: [
     '../../packages/config-presets/config-eslint/index.js',
     'plugin:vue/recommended', // @todo: re-enable when time permits to clean up the Vue CLI's default HelloWorld.vue component
+    'prettier/vue',
   ],
   parserOptions: {
     parser: 'babel-eslint',

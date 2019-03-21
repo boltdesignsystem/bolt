@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-band/band.twig" with {
+  content: "This is a band.",
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "band",
+  usage: usage
+} only %}
