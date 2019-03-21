@@ -325,8 +325,8 @@ class TwigFunctions {
    * @return array - An array of Twig data (See above)
    */
 
-   public static function initialize() {
-    return new Twig_SimpleFunction('initialize', function($items, $schema) {
+   public static function init() {
+    return new Twig_SimpleFunction('init', function($items, $schema) {
       $twigData = array();
       $twigData["props"] = new Attribute(Utils::buildPropsArray($items, $schema));
       $twigData["data"] = Utils::buildPropsArray($items, $schema, true);

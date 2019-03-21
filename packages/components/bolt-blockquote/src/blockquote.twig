@@ -6,7 +6,7 @@
 
 {# Variables #}
 {% set base_class = "c-bolt-blockquote" %}
-{% set this = initialize(_context, schema) %}
+{% set this = init(_context, schema) %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Required by Blockquote to map prop values to strings used in classname #}

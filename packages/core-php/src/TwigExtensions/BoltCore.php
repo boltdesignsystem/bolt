@@ -88,12 +88,12 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
     return [
       TwigTools\TwigFunctions::get_data(),
       TwigTools\TwigFunctions::validate_data_schema(),
+      Bolt\TwigFunctions::init(),
       Bolt\TwigFunctions::publicpath(),
       Bolt\TwigFunctions::base64(),
       Bolt\TwigFunctions::bgcolor(),
       Bolt\TwigFunctions::ratio(),
       Bolt\TwigFunctions::getImageData(),
-      Bolt\TwigFunctions::initialize(),
       Bolt\TwigFunctions::fileExists(),
       Bolt\TwigFunctions::inlineFile(),
     ];
