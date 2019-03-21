@@ -1,0 +1,353 @@
+{# Breadcrumb Component in a Band #}
+{% set band_content %}
+  {% include "@bolt/breadcrumb.twig" with {
+    "contentItems": [
+      include("@bolt/link.twig", {
+        "text": "Home",
+        "url": "#"
+      }),
+      include("@bolt/link.twig", {
+        "text": "Page",
+        "url": "#"
+      }),
+      include("@bolt/link.twig", {
+        "text": "Sub Page",
+        "url": "#",
+        "attributes": {
+          "aria-current": "page"
+        },
+      })
+    ]
+  } only %}
+{% endset %}
+{% include "@bolt-components-band/band.twig" with {
+  "size": "xsmall",
+  "theme": "light",
+  "content": band_content
+} only %}
+
+{# Demo notes #}
+{% set band_content %}
+  {% include "@bolt/headline.twig" with {
+    "size": "xlarge",
+    "text": "Breadcrumb Component in a Band ^"
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    "text": "The above example shows a xsmall band containing the breadcrumbs."
+  } only %}
+{% endset %}
+{% include "@bolt-components-band/band.twig" with {
+  "theme": "none",
+  "content": band_content
+} only %}
+
+
+
+
+{# Breadcrumb Band Stacking On Top of Featured Band #}
+{% set breadcrumb_band_content %}
+  {% include "@bolt/breadcrumb.twig" with {
+    "contentItems": [
+      include("@bolt/link.twig", {
+        "text": "Home",
+        "url": "#"
+      }),
+      include("@bolt/link.twig", {
+        "text": "Page",
+        "url": "#"
+      }),
+      include("@bolt/link.twig", {
+        "text": "Sub Page",
+        "url": "#",
+        "attributes": {
+          "aria-current": "page"
+        },
+      })
+    ]
+  } only %}
+{% endset %}
+
+{% set stacked_bands %}
+  {% include "@bolt-components-band/band.twig" with {
+    "size": "small",
+    "theme": "none",
+    "content": breadcrumb_band_content
+  } only %}
+  {% include "@pl/_band--feature.twig" with {
+    "size": "large",
+    "theme": "none",
+    "primaryTeaser": {
+      "headlines": [
+        {
+          "type": "eyebrow",
+          "text": "Eyebrow",
+          "tag": "span"
+        },
+        {
+          "type": "headline",
+          "text": "Headline",
+          "size": "xxxlarge",
+          "tag": "h1"
+        },
+        {
+          "type": "subheadline",
+          "text": "Subheadline",
+          "size": "xxlarge",
+          "tag": "h2"
+        },
+        {
+          "type": "text",
+          "text": "Body text.",
+          "tag": "p"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Call to Action",
+          "style": "primary",
+          "url": "https://www.pega.com"
+        }
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  "size": "none",
+  "theme": "dark",
+  "content": stacked_bands
+} only %}
+
+{# Demo notes #}
+{% set band_content %}
+  {% include "@bolt/headline.twig" with {
+    "size": "xlarge",
+    "text": "Breadcrumb Band Stacking On Top of Featured Band ^"
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    "text": "The above example shows a small band containing the breadcrumbs and large band containing the content. Both have theme set to none."
+  } only %}
+  {% include "@bolt/headline.twig" with {
+    "size": "large",
+    "text": "Background and Theming"
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    "text": "There is an outer band containing the breadcrumb band and the featured band, background and theme should be set on that outer band."
+  } only %}
+{% endset %}
+{% include "@bolt-components-band/band.twig" with {
+  "theme": "none",
+  "content": band_content
+} only %}
+
+
+
+
+{# Breadcrumb Band Stacking On Top of Featured Band with Outer Background Band #}
+{% set breadcrumb_band_content %}
+  {% include "@bolt/breadcrumb.twig" with {
+    "contentItems": [
+      include("@bolt/link.twig", {
+        "text": "Home",
+        "url": "#"
+      }),
+      include("@bolt/link.twig", {
+        "text": "Why Pega?",
+        "url": "#"
+      }),
+      include("@bolt/link.twig", {
+        "text": "Digital Transformation",
+        "url": "#",
+        "attributes": {
+          "aria-current": "page"
+        },
+      })
+    ]
+  } only %}
+{% endset %}
+
+{% set stacked_bands %}
+  {% include "@bolt-components-band/band.twig" with {
+    "size": "small",
+    "theme": "none",
+    "content": breadcrumb_band_content
+  } only %}
+  {% include "@pl/_band--feature.twig" with {
+    "size": "large",
+    "theme": "none",
+    "primaryTeaser": {
+      "headlines": [
+        {
+          "type": "eyebrow",
+          "text": "Digital Transformation",
+          "tag": "span"
+        },
+        {
+          "type": "headline",
+          "text": "Be Future Empowered",
+          "size": "xxxlarge",
+          "tag": "h1"
+        },
+        {
+          "type": "subheadline",
+          "text": "Start with the outcomes you want.",
+          "size": "xxlarge",
+          "tag": "h2"
+        },
+        {
+          "type": "text",
+          "text": "Digital transformation is more than a slick new mobile app. It demands the hard work of designing for customer outcomes. Pega software gives you the power to truly transform.",
+          "tag": "p"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Get Smart",
+          "style": "primary",
+          "url": "https://www.pega.com"
+        }
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  "teaserPosition": "left",
+  "teaserWidth": "2/3",
+  "size": "none",
+  "theme": "dark",
+  "background": {
+    "opacity": "heavy",
+    "fill": "gradient",
+    "focalPoint": {
+      "vertical": "center",
+      "horizontal": "right"
+    },
+    "contentItems": [{
+      "pattern": "image",
+      "src": "/images/content/backgrounds/background-tall-3.jpg"
+    }]
+  },
+  "content": stacked_bands
+} only %}
+
+{# Demo notes #}
+{% set band_content %}
+  {% include "@bolt/headline.twig" with {
+    "size": "xlarge",
+    "text": "Breadcrumb Band Stacking On Top of Featured Band with Outer Background Band ^"
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    "text": "The above example shows a small band containing the breadcrumbs and large band containing the content. Both have theme set to none."
+  } only %}
+  {% include "@bolt/headline.twig" with {
+    "size": "large",
+    "text": "Background and Theming"
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    "text": "A background image is set on the outer band and the theme is set to dark."
+  } only %}
+{% endset %}
+{% include "@bolt-components-band/band.twig" with {
+  "theme": "none",
+  "content": band_content
+} only %}
+
+
+
+
+{# Breadcrumb Band Stacking On Top of Featured Band #}
+{% set breadcrumb_band_content %}
+  {% include "@bolt/breadcrumb.twig" with {
+    "contentItems": [
+      include("@bolt/link.twig", {
+        "text": "Home",
+        "url": "#"
+      }),
+      include("@bolt/link.twig", {
+        "text": "Why Pega?",
+        "url": "#"
+      }),
+      include("@bolt/link.twig", {
+        "text": "Digital Transformation",
+        "url": "#",
+        "attributes": {
+          "aria-current": "page"
+        },
+      })
+    ]
+  } only %}
+{% endset %}
+
+{% set stacked_bands %}
+  {% include "@bolt-components-band/band.twig" with {
+    "size": "xsmall",
+    "theme": "dark",
+    "content": breadcrumb_band_content
+  } only %}
+  {% include "@pl/_band--feature.twig" with {
+    "size": "large",
+    "theme": "xdark",
+    "primaryTeaser": {
+      "headlines": [
+        {
+          "type": "eyebrow",
+          "text": "Digital Transformation",
+          "tag": "span"
+        },
+        {
+          "type": "headline",
+          "text": "Be Future Empowered",
+          "size": "xxxlarge",
+          "tag": "h1"
+        },
+        {
+          "type": "subheadline",
+          "text": "Start with the outcomes you want.",
+          "size": "xxlarge",
+          "tag": "h2"
+        },
+        {
+          "type": "text",
+          "text": "Digital transformation is more than a slick new mobile app. It demands the hard work of designing for customer outcomes. Pega software gives you the power to truly transform.",
+          "tag": "p"
+        }
+      ],
+      "buttons": [
+        {
+          "text": "Get Smart",
+          "style": "primary",
+          "url": "https://www.pega.com"
+        }
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  "size": "none",
+  "theme": "none",
+  "content": stacked_bands
+} only %}
+
+{# Demo notes #}
+{% set band_content %}
+  {% include "@bolt/headline.twig" with {
+    "size": "xlarge",
+    "text": "Breadcrumb Band Stacking On Top of Featured Band (individually themed)^"
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    "text": "The above example shows a xsmall band containing the breadcrumbs and large band containing the content."
+  } only %}
+  {% include "@bolt/headline.twig" with {
+    "size": "large",
+    "text": "Background and Theming"
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    "text": "No background or theme is set on the outer band in this case because it's not neccessary."
+  } only %}
+{% endset %}
+{% include "@bolt-components-band/band.twig" with {
+  "theme": "none",
+  "content": band_content
+} only %}

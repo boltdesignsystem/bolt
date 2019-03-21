@@ -5,9 +5,10 @@ export const IS_PROD = process.env.NODE_ENV === 'production';
 
 function supportsShadowDom() {
   if (
-    ('attachShadow' in Element.prototype &&
+    bolt.isClient &&
+    (('attachShadow' in Element.prototype &&
       'getRootNode' in Element.prototype) ||
-    window.ShadyDOM
+      window.ShadyDOM)
   ) {
     return true;
   } else {

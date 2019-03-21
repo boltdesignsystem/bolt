@@ -1,0 +1,8 @@
+{% set schema = bolt.data.components["@bolt-components-band"].schema %}
+
+{% for theme in schema.properties.theme.enum %}
+  {% include "@bolt-components-band/band.twig" with {
+    theme: theme,
+    content: "This is a band with theme set to " ~ theme ~ ".",
+  } only %}
+{% endfor %}

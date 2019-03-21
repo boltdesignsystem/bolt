@@ -16,6 +16,14 @@ export function withLitHtml(Base = HTMLElement) {
     static props = {
       onClick: props.string,
       onClickTarget: props.string,
+      isServer: {
+        ...props.boolean,
+        ...{ default: bolt.isServer },
+      },
+      isClient: {
+        ...props.boolean,
+        ...{ default: bolt.isClient },
+      },
     };
 
     constructor(...args) {

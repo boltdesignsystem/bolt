@@ -52,9 +52,10 @@ async function createWebpackConfig(buildConfig) {
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
   let themifyOptions = {
-    watchForChanges: config.watch === true ? true : false,
+    watchForChanges:
+      config.watch === true && config.mode !== 'server' ? true : false,
     classPrefix: 't-bolt-',
-    screwIE11: false,
+    screwIE11: config.mode === 'server' ? true : false,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -90,6 +91,9 @@ async function createWebpackConfig(buildConfig) {
       ? JSON.stringify('production')
       : JSON.stringify('development'),
     bolt: {
+      mode: JSON.stringify(config.mode),
+      isClient: config.mode === 'client' ? true : false,
+      isServer: config.mode === 'server' ? true : false,
       namespace: JSON.stringify(config.namespace),
       themingFallbackCSS: JSON.stringify(
         publicPath + themifyOptions.fallback.filename + '.css',
@@ -239,7 +243,10 @@ async function createWebpackConfig(buildConfig) {
     entry: await buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: `[name]${langSuffix}.js`,
+      // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
+      filename: `[name]${langSuffix}${
+        config.mode !== 'client' ? `.${config.mode}` : ''
+      }.js`,
       chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
       publicPath,
     },
@@ -370,7 +377,9 @@ async function createWebpackConfig(buildConfig) {
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
-        fileName: `bolt-webpack-manifest${langSuffix}.json`,
+        fileName: `bolt-webpack-manifest${langSuffix}${
+          config.mode === 'client' ? '' : `.${config.mode}`
+        }.json`,
         publicPath,
         writeToFileEmit: true,
         seed: {
@@ -380,6 +389,11 @@ async function createWebpackConfig(buildConfig) {
       new webpack.DefinePlugin(globalJsData),
       new webpack.NamedModulesPlugin(),
       new CopyWebpackPlugin(config.copy ? config.copy : []),
+    ],
+  };
+
+  if (config.mode !== 'server') {
+    webpackConfig.plugins.push(
       new SassDocPlugin(
         {
           src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
@@ -389,8 +403,8 @@ async function createWebpackConfig(buildConfig) {
           outputPath: config.buildDir,
         },
       ),
-    ],
-  };
+    );
+  }
 
   if (!config.prod && config.webpackDevServer) {
     webpackConfig.plugins.push(

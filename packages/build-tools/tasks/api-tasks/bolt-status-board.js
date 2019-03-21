@@ -3,6 +3,7 @@ const { render, renderString } = require('@bolt/twig-renderer');
 const shell = require('shelljs');
 const globby = require('globby');
 const path = require('path');
+const arraySort = require('array-sort');
 const prettier = require('prettier');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
 const fs = require('fs');
@@ -26,12 +27,21 @@ async function finishRendering(rows, callback) {
       attributes: {
         class: [
           "t-bolt-xlight"
-        ]
+        ],
+        id: "component-status"
       },
       headers: {
         top: {
           cells: [
-            "Component",
+            {
+              content: "Component",
+              attributes: {
+                class: [
+                  "sort"
+                ],
+                "data-sort": "component"
+              },
+            },
             "Sass",
             "Twig",
             "Web Component",
@@ -42,7 +52,7 @@ async function finishRendering(rows, callback) {
           ]
         },
       },
-      rows: ${JSON.stringify(rows)},
+      rows: ${JSON.stringify(arraySort(rows, 'cells'))},
     } only %}
   `).then(renderedResults => {
     const formattedTable = prettier.format(renderedResults.html, {

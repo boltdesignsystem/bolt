@@ -44,7 +44,7 @@ class Utils {
    * @param {string} $templateName
    * @return {string} $full_path - Full path to where the Twig file resides
    */
-  public static function optionallyResolveTwigPath(\Twig_Environment $env, $templateName) {
+  public static function optionallyResolveTwigPath(\Twig\Environment $env, $templateName) {
     /**
      * @var \Twig_Template $template
      * @url https://twig.symfony.com/api/1.x/Twig_Template.html
@@ -67,11 +67,11 @@ class Utils {
   }
 
   /**
-   * @param \Twig_Environment $env
+   * @param \Twig\Environment $env
    * @return mixed
    * @throws \Twig_Error_Runtime
    */
-  public static function getData(\Twig_Environment $env) {
+  public static function getData(\Twig\Environment $env) {
     $boltCore = $env->getExtension('Bolt\TwigExtensions\BoltCore');
     $boltData = $boltCore->data;
     return $boltData;
