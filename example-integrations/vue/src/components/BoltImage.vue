@@ -1,15 +1,12 @@
 <template>
-  <div 
-    style="max-width: 200px;" 
-    class="u-bolt-width-1/1 u-bolt-inline-block">
-    <bolt-ratio 
-      aspect-ratio-width="1" 
-      aspect-ratio-height="1">
-      <img 
+  <div style="max-width: 200px;" class="u-bolt-width-1/1 u-bolt-inline-block">
+    <bolt-ratio aspect-ratio-width="1" aspect-ratio-height="1">
+      <img
         :data-src="src"
-        alt="Vue logo" 
-        class="js-lazyload c-bolt-image__lazyload c-bolt-image__lazyload--fade" 
-        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+        alt="Vue logo"
+        class="js-lazyload c-bolt-image__lazyload c-bolt-image__lazyload--fade"
+        src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      />
     </bolt-ratio>
   </div>
 </template>

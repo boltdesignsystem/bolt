@@ -17,6 +17,13 @@
       title: Array of language-specific builds to generate. The 1st langugage specified is the default used for local development.
       default:
         - en
+    mode:
+      type: string
+      title: Switches which context the Bolt build process and component rendering behavior should be compiling for -- either in the browser context (ie. client-side rendering) or in a Node.js server context (server-side rendering). This config is used to toggle server-side rendering functionality on and off.
+      default: client
+      enum:
+        - client
+        - server
     watch:
       type: boolean
       description: Configures internal tasks to watch for changes vs exiting when finished.
@@ -71,6 +78,7 @@
       type: string
       title: Environment Type
       description: What is being compiled? Pattern Lab? Drupal? A static site? Or is the new in-progress Progressive Web App (PWA) that combines Pattern Lab + the docs site into one single environment?
+      default: pwa
       enum:
         - pl
         - static
@@ -109,6 +117,9 @@
       type: string
       title: Path to server root
       description: "Where static files are served from. The wwwDir config specifies the public web distribution directory. This directory is commonly the root directory for a server, where all static files can be served. This directory is built and rebuilt directly from the source files. Note: We recommend this directory is not committed to a repository."
+    iconDir:
+      type: array
+      description: The iconDir config specifies from where Bolt will be taking svg for icons creation.
     startPath:
       type: string
       title: Local server start path
