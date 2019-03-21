@@ -320,18 +320,20 @@ class TwigFunctions {
    * array["props"] object - Combines "attributes" and schema-allowed props, wrapped in a Drupal Attribute object for rendering as HTML attributes
    * array["data"] array - Schema-allowed props plus default prop values for internal use in our Twig templates
    * 
-   * @param array $items - Twig "_context", all the available template variables
+   * @param array $context - The current Twig $context, includes all available template variables
    * @param array $schema - The schema object for a particular component
    * @return array - An array of Twig data (See above)
    */
 
    public static function init() {
-    return new Twig_SimpleFunction('init', function($items, $schema) {
+    return new Twig_SimpleFunction('init', function($context, $schema) {
       $twigData = array();
-      $twigData["props"] = new Attribute(Utils::buildPropsArray($items, $schema));
-      $twigData["data"] = Utils::buildPropsArray($items, $schema, true);
+      $twigData["props"] = new Attribute(Utils::buildPropsArray($context, $schema));
+      $twigData["data"] = Utils::buildPropsArray($context, $schema, true);
       return $twigData;
-    });
+    }, [
+      'needs_context' => true,
+    ]);
   }
 
   public static function github_url() {
