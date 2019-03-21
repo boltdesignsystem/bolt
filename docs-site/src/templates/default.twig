@@ -36,43 +36,45 @@
 
     <div class="c-bds-layout__wrapper">
       <main class="c-bds-layout__main {{ currentUrl != 'index.html' ? 't-bolt-xlight' }}">
+        {% set gitBranch = gitBranch ? gitBranch : "master" %}
 
-        {% set content %}
-          <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--small o-bolt-grid--matrix o-bolt-grid--rev o-bolt-grid--bottom u-bolt-margin-bottom-small">
-            <div class="o-bolt-grid__cell u-bolt-text-align-right u-bolt-margin-left-auto">
-              {% include "@bolt-components-link/link.twig" with {
-                url: "https://github.com/bolt-design-system/bolt/blob/" ~ gitBranch ~ "/docs-site/" ~  page.srcPath,
-                text: "Edit",
-                icon: {
-                  name: "pencil"
-                },
-                attributes: {
-                  class: [
-                    "u-bolt-text-decoration-none",
-                  ]
-                }
-              } only %}
-            </div>
+        {% set pinned_content %}
+          {% include "@bolt-components-button/button.twig" with {
+            url: "https://github.com/bolt-design-system/bolt/blob/" ~ gitBranch ~ "/docs-site/" ~  page.srcPath,
+            text: "Edit on Github",
+            style: "text",
+            size: "xsmall",
+            icon: {
+              name: "pencil"
+            }
+          } only %}
+        {% endset %}
 
-            <div class="o-bolt-grid__cell u-bolt-flex-grow">
-              {% include "@bolt-components-headline/headline.twig" with {
-                text: page.meta.title,
-                size: "xxxlarge",
-                tag: "h2"
-              } %}
-            </div>
-          </div>
+        {% set band_content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: page.meta.title,
+            size: "xxxlarge",
+            tag: "h2",
+            longTitle: true,
+          } only %}
 
-          <article>
-            {% block article_content %}
-              {{ page.body|raw }}
-            {% endblock %}
-          </article>
+          {% block article_content %}
+            {{ page.body|raw }}
+          {% endblock %}
         {% endset %}
       
         {% include "@bolt-components-band/band.twig" with {
-          content: content,
+          content: band_content,
+          pinned_content: {
+            upper: [
+              {
+                content: pinned_content,
+                align: "end",
+              },
+            ],
+          },
           full_bleed: false,
+          size: "xsmall",
           theme: currentUrl == 'index.html' ? 'none' : 'xlight'
         } only %}
       </main>

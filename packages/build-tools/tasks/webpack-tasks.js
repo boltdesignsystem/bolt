@@ -85,6 +85,7 @@ async function server(customWebpackConfig) {
             open: boltBuildConfig.open,
             logFileChanges: false,
             reloadOnRestart: true,
+            ghostMode: false,
             watchOptions: {
               ignoreInitial: true,
             },
