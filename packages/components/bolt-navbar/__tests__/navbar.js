@@ -15,6 +15,11 @@ async function renderTwigString(template, data) {
   return await renderString(template, data, true);
 }
 
+const imageVrtConfig = {
+  failureThreshold: '0.01',
+  failureThresholdType: 'percent',
+};
+
 const timeout = 60000;
 
 const viewportSizes = [
@@ -126,13 +131,15 @@ describe('<bolt-navbar> Component', () => {
 
       await page.setViewport({ height, width });
       screenshots[size].default = await page.screenshot();
-      expect(screenshots[size].default).toMatchImageSnapshot();
+      expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
 
       if (await isVisible('.c-bolt-nav-priority__show-more')) {
         await page.tap('.c-bolt-nav-priority__button');
         await page.waitFor(500);
         screenshots[size].navOpened = await page.screenshot();
-        expect(screenshots[size].navOpened).toMatchImageSnapshot();
+        expect(screenshots[size].navOpened).toMatchImageSnapshot(
+          imageVrtConfig,
+        );
         await page.tap('.c-bolt-nav-priority__button');
         await page.waitFor(500);
       }
@@ -193,7 +200,7 @@ describe('<bolt-navbar> Component', () => {
     await page.hover('.c-bolt-navbar__title--link');
 
     const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot();
+    expect(image).toMatchImageSnapshot(imageVrtConfig);
 
     await page.tap('.c-bolt-navbar__title--link');
 
@@ -277,13 +284,15 @@ describe('<bolt-navbar> Component', () => {
 
       await page.setViewport({ height, width });
       screenshots[size].default = await page.screenshot();
-      expect(screenshots[size].default).toMatchImageSnapshot();
+      expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
 
       if (await isVisible('.c-bolt-nav-priority__show-more')) {
         await page.tap('.c-bolt-nav-priority__button');
         await page.waitFor(500);
         screenshots[size].navOpened = await page.screenshot();
-        expect(screenshots[size].navOpened).toMatchImageSnapshot();
+        expect(screenshots[size].navOpened).toMatchImageSnapshot(
+          imageVrtConfig,
+        );
         await page.tap('.c-bolt-nav-priority__button');
         await page.waitFor(500);
       }
@@ -367,13 +376,15 @@ describe('<bolt-navbar> Component', () => {
 
       await page.setViewport({ height, width });
       screenshots[size].default = await page.screenshot();
-      expect(screenshots[size].default).toMatchImageSnapshot();
+      expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
 
       if (await isVisible('.c-bolt-nav-priority__show-more')) {
         await page.tap('.c-bolt-nav-priority__button');
         await page.waitFor(500);
         screenshots[size].navOpened = await page.screenshot();
-        expect(screenshots[size].navOpened).toMatchImageSnapshot();
+        expect(screenshots[size].navOpened).toMatchImageSnapshot(
+          imageVrtConfig,
+        );
         await page.tap('.c-bolt-nav-priority__button');
         await page.waitFor(500);
       }
@@ -404,18 +415,12 @@ describe('<bolt-navbar> Component', () => {
     }, html);
     const largeViewport = await page.screenshot();
 
-    expect(largeViewport).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(largeViewport).toMatchImageSnapshot(imageVrtConfig);
 
     await page.setViewport({ height: 568, width: 320 });
     const smallViewport = await page.screenshot();
 
-    expect(smallViewport).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(smallViewport).toMatchImageSnapshot(imageVrtConfig);
   }, 15000);
 
   test('<bolt-navbar> without a title', async () => {
@@ -462,18 +467,12 @@ describe('<bolt-navbar> Component', () => {
     }, html);
     const largeViewport = await page.screenshot();
 
-    expect(largeViewport).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(largeViewport).toMatchImageSnapshot(imageVrtConfig);
 
     await page.setViewport({ height: 568, width: 320 });
     const smallViewport = await page.screenshot();
 
-    expect(smallViewport).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(smallViewport).toMatchImageSnapshot(imageVrtConfig);
   }, 15000);
 
   test('<bolt-navbar> variable width', async () => {
@@ -532,7 +531,7 @@ describe('<bolt-navbar> Component', () => {
 
       await page.setViewport({ height, width });
       screenshots[size].default = await page.screenshot();
-      expect(screenshots[size].default).toMatchImageSnapshot();
+      expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
     }
   }, 15000);
 });
