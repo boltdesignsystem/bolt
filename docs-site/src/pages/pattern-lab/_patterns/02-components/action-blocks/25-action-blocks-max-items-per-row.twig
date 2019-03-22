@@ -1,18 +1,17 @@
 {% set maxRows = [6,4,3,2] %}
 
 {% for max in maxRows %}
-  <p>Max items per row: {{ max }}</p>
+  <h3>Max items per row: {{ max }}</h3>
+  <div class="u-bolt-margin-bottom-medium">
     {% include "@bolt-components-action-blocks/action-blocks.twig" with {
-      align: "center",
       maxItemsPerRow: max,
       contentItems: [
         {
-          text: "Item 1, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dignissim non dui vel elementum. Cras id lorem tincidunt turpis mollis pretium. ",
+          text: "Item 1",
           url: "#!",
           icon: {
             name: "download",
             size: "large",
-            background: "circle"
           }
         },
         {
@@ -21,7 +20,6 @@
           icon: {
             name: "copy-to-clipboard",
             size: "large",
-            background: "circle"
           }
         },
         {
@@ -30,36 +28,33 @@
           icon: {
             name: "calendar",
             size: "large",
-            background: "circle"
           }
         },
         {
           text: "Item 4",
           url: "#!",
           icon: {
-          name: "copy-to-clipboard",
-          size: "large",
-          background: "circle"
-        }
-        },
-        {
-          text: "Item 5, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dignissim non dui vel elementum. Cras id lorem tincidunt turpis mollis pretium. ",
-          url: "#!",
-          icon: {
-          name: "download",
-          size: "large",
-          background: "circle"
-        }
+            name: "copy-to-clipboard",
+            size: "large",
+          }
         },
         {
           text: "Item 5",
           url: "#!",
           icon: {
-          name: "copy-to-clipboard",
-          size: "large",
-          background: "circle"
-        }
+            name: "download",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 5",
+          url: "#!",
+          icon: {
+            name: "copy-to-clipboard",
+            size: "large",
+          }
         }
       ]
     } only %}
+  </div>
 {% endfor %}
