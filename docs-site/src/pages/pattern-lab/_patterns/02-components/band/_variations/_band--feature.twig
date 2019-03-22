@@ -1,0 +1,19 @@
+{# This is a private include for legacy demos, don't use this. #}
+{% extends "@bolt-components-band/band.twig" %}
+{% block band_content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix" %}
+
+    {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
+      {% if primaryTeaser %}
+        {% block primary_teaser %}
+          {% include pattern_template("teaser") with primaryTeaser only %}
+        {% endblock primary_teaser %}
+      {% endif %}
+    {% endcell %}
+
+
+    {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {{ content }}
+    {% endcell %}
+  {% endgrid %}
+{% endblock band_content %}

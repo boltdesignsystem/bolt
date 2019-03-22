@@ -1,6 +1,6 @@
-const { render } = require('@bolt/twig-renderer');
+import { render } from '@bolt/twig-renderer';
 
-describe('<bolt-chip-list> Component', async () => {
+describe('<bolt-chip-list> Component', () => {
   test('basic usage without links', async () => {
     const results = await render('@bolt-components-chip-list/chip-list.twig', {
       items: [

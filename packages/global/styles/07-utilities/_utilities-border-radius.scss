@@ -1,0 +1,11 @@
+/* ------------------------------------ *\
+   BORDER RADIUS UTILITIES
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+@each $border-radius-name, $border-radius-value in $bolt-border-radius-values {
+  .u-bolt-border-radius-#{$border-radius-name} {
+    border-radius: bolt-border-radius($border-radius-name) !important;
+  }
+}

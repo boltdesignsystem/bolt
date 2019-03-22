@@ -1,0 +1,42 @@
+diff --git a/src/PatternLab/Console/Commands/GenerateCommand.php b/src/PatternLab/Console/Commands/GenerateCommand.php
+index 286567b4b..63552225d 100644
+--- a/src/PatternLab/Console/Commands/GenerateCommand.php
++++ b/src/PatternLab/Console/Commands/GenerateCommand.php
+@@ -27,6 +27,7 @@ class GenerateCommand extends Command {
+ 		
+ 		Console::setCommand($this->command,"Generate Pattern Lab","The generate command generates an entire site a single time. By default it removes old content in <path>public/</path>, compiles the patterns and moves content from <path>source/</path> into <path>public/</path>","g");
+ 		Console::setCommandOption($this->command,"patternsonly","Generate only the patterns. Does NOT clean <path>public/</path>.","To generate only the patterns:","p");
++		Console::setCommandOption($this->command,"dataonly","Generate only the data for viewall pages.","To generate only the data:","d");
+ 		Console::setCommandOption($this->command,"nocache","Set the cacheBuster value to 0.","To turn off the cacheBuster:","n");
+ 		
+ 	}
+@@ -36,14 +37,21 @@ class GenerateCommand extends Command {
+ 		// set-up required vars
+ 		$options                  = array();
+ 		$options["moveStatic"]    = (Console::findCommandOption("p|patternsonly")) ? false : true;
++		$options["dataOnly"]    = (Console::findCommandOption("d|dataonly")) ? false : true;
+ 		$options["noCacheBuster"] = Console::findCommandOption("n|nocache");
+-		
+-		$g = new Generator();
+-		$g->generate($options);
+-		
+-		$s = new Saying();
+-		$s->say();
+-		
++
++		if (Console::findCommandOption("dataonly")){
++			$g = new Generator();
++			$g->generateData($options);
++
++			$s = new Saying();
++			$s->say();
++		} else {
++			$g = new Generator();
++			$g->generate($options);
++
++			$s = new Saying();
++			$s->say();
++		}
+ 	}
+-	
+ }

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main_content %}
-  {% embed "@bolt/band--feature.twig" with {
+  {% embed "@pl/_band--feature.twig" with {
     teaserPosition: "left",
     teaserWidth: "2/3",
     size: "large",
@@ -58,10 +58,10 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "small",
   theme: "dark",
-  fullBleed: true
+  full_bleed: true
 } only %}
   {% block band_content %}
 
@@ -185,10 +185,10 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xlight",
-  fullBleed: true
+  full_bleed: true
 } only %}
   {% block band_content %}
 
@@ -242,10 +242,10 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "light",
-  fullBleed: true
+  full_bleed: true
 } only %}
   {% block band_content %}
 
@@ -298,10 +298,10 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xlight",
-  fullBleed: true
+  full_bleed: true
 } only %}
   {% block band_content %}
 
@@ -354,10 +354,10 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "light",
-  fullBleed: true
+  full_bleed: true
 } only %}
   {% block band_content %}
 
@@ -406,7 +406,7 @@
 
 
 
-{% embed "@bolt/band--collection.twig" with {
+{% embed "@pl/_band--collection.twig" with {
   "theme": "xlight",
   "size": "medium",
   "contentItems": [
@@ -543,10 +543,10 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xdark",
-  fullBleed: true,
+  full_bleed: true,
   background: {
     "opacity": "heavy",
     "fill": "color",
@@ -612,10 +612,10 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "small",
   theme: "xdark",
-  fullBleed: true
+  full_bleed: true
 } only %}
   {% block band_content %}
 

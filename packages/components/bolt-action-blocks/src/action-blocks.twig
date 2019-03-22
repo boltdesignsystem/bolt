@@ -1,42 +1,5 @@
-{# Sample Usage
-  {% include "@bolt/action-blocks.twig" with {
-    maxItemsPerRow: 3,  // Optional [2 ~ 12]. Default is 3.
-    align: "top",       // Optional [top, center, bottom]. Default is top.
-    border: true,       // Optional [show, hide]. Default shows borders, but you can turn them off.
-    contentItems: [
-      {
-        text: "Item 1",
-        url: "http://google.com",
-        icon: {
-          name: "icon-name",
-          size: "large",
-          background: "circle"
-        }
-      },
-      {
-        text: "Item 2",
-        url: "http://google.com",
-        icon: {
-          name: "icon-name",
-          size: "large",
-          background: "circle"
-        }
-      },
-      {
-        text: "Item 3",
-        url: "http://google.com",
-        icon: {
-          name: "icon-name",
-          size: "large",
-          background: "circle"
-        }
-      }
-    ]
-  } only %}
-#}
-
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-action-blocks'].schema, _self) | raw }}
+  {{ validate_data_schema(bolt.data.components["@bolt-components-action-blocks"].schema, _self) | raw }}
 {% endif %}
 
 {% set prefix = "c-bolt-" %}
@@ -78,7 +41,7 @@
     {% else %}
       {% for item in contentItems %}
         <li class="{{ "#{baseClass}__item" }}">
-          {% include "@bolt/action-block.twig" with item only %}
+          {% include "@bolt-components-action-blocks/_action-block.twig" with item only %}
         </li>
       {% endfor %}
     {% endif %}
