@@ -74,6 +74,7 @@ const config = {
     global: [
       '@bolt/global',
       '@bolt/schema-form',
+      '@bolt/analytics-autolink',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
