@@ -18,7 +18,10 @@ module.exports = async function globalSetup() {
   const existingIconsDir =
     typeof config.iconDir !== 'undefined' ? config.iconDir : [];
 
-  config.iconDir = [...existingIconsDir, path.join(__dirname, './test/jest-test-svgs')];
+  config.iconDir = [
+    ...existingIconsDir,
+    path.join(__dirname, './test/jest-test-svgs'),
+  ];
 
   await buildPrep({ cleanAll: true }); // clear out all folders before running
   await imageTasks.processImages(); // process image fixtures used by any tests
