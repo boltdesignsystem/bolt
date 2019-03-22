@@ -38,7 +38,7 @@
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
     "test": "npm-run-all --parallel test:js test:php test:monorepo",
-    "test:js": "NODE_ENV='test' jest --colors",
+    "test:js": "NODE_ENV='test' jest --bail --colors",
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "node scripts/monorepo-tests.js",
     "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
