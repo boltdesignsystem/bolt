@@ -228,11 +228,13 @@ describe('analytics autolinker', () => {
       ),
     });
 
+    await page.waitFor(3000); // wait a few seconds before checking the data we need is available on the page
+
     const config = await page.evaluate(() => {
-      return window.drupalSettings.google_analytics.trackCrossDomains;
+      return window.drupalSettings.google_analytics.trackCrossDomains[0];
     });
 
-    expect(config[0]).toBe('pega.com');
+    expect(config).toBe('pega.com');
   }, 25000);
 
   test('allow Drupal to configure which domains get configured / tracked by autolink.', async function() {
