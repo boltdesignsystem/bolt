@@ -31,7 +31,9 @@ describe('analytics autolinker', () => {
       document.body.appendChild(btn);
     });
 
+    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
+    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga=1234');
@@ -50,7 +52,9 @@ describe('analytics autolinker', () => {
       document.body.appendChild(btn);
     });
 
+    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
+    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
@@ -76,7 +80,9 @@ describe('analytics autolinker', () => {
       return document.body.innerHTML;
     });
 
+    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
+    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
@@ -96,7 +102,9 @@ describe('analytics autolinker', () => {
       document.body.appendChild(btn);
     });
 
+    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
+    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
@@ -116,7 +124,9 @@ describe('analytics autolinker', () => {
       document.body.appendChild(btn);
     });
 
+    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
+    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
@@ -135,7 +145,9 @@ describe('analytics autolinker', () => {
       document.body.appendChild(btn);
     });
 
+    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
+    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).not.toContain('_ga');
@@ -155,7 +167,9 @@ describe('analytics autolinker', () => {
       document.body.appendChild(link);
     });
 
+    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-link');
+    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
@@ -175,7 +189,9 @@ describe('analytics autolinker', () => {
       document.body.appendChild(link);
     });
 
+    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-link');
+    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
@@ -195,7 +211,9 @@ describe('analytics autolinker', () => {
       document.body.appendChild(link);
     });
 
+    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-link');
+    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).not.toContain('_ga');
@@ -234,7 +252,9 @@ describe('analytics autolinker', () => {
       document.body.appendChild(btn);
     });
 
+    const navigationPromise = page.waitForNavigation();
     await page.click('bolt-button');
+    await navigationPromise;
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
