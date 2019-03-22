@@ -1,5 +1,5 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
-  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-<%= props.names.kebabcase.default %>' */ './src/<%= props.names.kebabcase.default %>');
+  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-<%= props.name.kebabCase %>' */ './src/<%= props.name.kebabCase %>');
 });

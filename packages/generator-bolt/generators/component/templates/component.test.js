@@ -8,7 +8,7 @@ import { fixture as html } from '@open-wc/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(
-  join(__dirname, '../<%= props.names.kebabcase.default %>.schema.yml'),
+  join(__dirname, '../<%= props.name.kebabCase %>.schema.yml'),
 );
 const { tag } = schema.properties;
 
@@ -22,7 +22,7 @@ async function renderTwigString(template, data) {
 
 const timeout = 60000;
 
-describe('<%= props.names.kebabcase.default %>', async () => {
+describe('<%= props.name.noCase %>', async () => {
   let page;
 
   afterAll(async () => {
@@ -38,17 +38,17 @@ describe('<%= props.names.kebabcase.default %>', async () => {
     });
   }, timeout);
 
-  test('basic <%= props.names.kebabcase.default %> component renders', async () => {
+  test('basic <%= props.name.kebabCase %> component renders', async () => {
     const results = await renderTwig(
-      '@bolt-components-<%= props.names.kebabcase.default %>/<%= props.names.kebabcase.default %>.twig',
+      '@bolt-components-<%= props.name.kebabCase %>/<%= props.name.kebabCase %>.twig',
     );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
-  test('basic <%= props.names.kebabcase.default %> component with the global `no-shadow` prop added', async () => {
+  test('basic <%= props.name.kebabCase %> component with the global `no-shadow` prop added', async () => {
     const results = await renderTwig(
-      '@bolt-components-<%= props.names.kebabcase.default %>/<%= props.names.kebabcase.default %>.twig',
+      '@bolt-components-<%= props.name.kebabCase %>/<%= props.name.kebabCase %>.twig',
       {
         no_shadow: true,
       },
@@ -57,9 +57,9 @@ describe('<%= props.names.kebabcase.default %>', async () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('<%= props.names.kebabcase.default %> with outer CSS class via Drupal Attributes', async () => {
+  test('<%= props.name.kebabCase %> with outer CSS class via Drupal Attributes', async () => {
     const results = await renderTwig(
-      '@bolt-components-<%= props.names.kebabcase.default %>/<%= props.names.kebabcase.default %>.twig',
+      '@bolt-components-<%= props.name.kebabCase %>/<%= props.name.kebabCase %>.twig',
       {
         attributes: {
           class: ['u-bolt-margin-top-medium'],
@@ -70,12 +70,12 @@ describe('<%= props.names.kebabcase.default %>', async () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-<%= props.names.kebabcase.default %>> w/o Shadow DOM renders', async function() {
+  test('Default <bolt-<%= props.name.kebabCase %>> w/o Shadow DOM renders', async function() {
     const renderedComponentHTML = await page.evaluate(() => {
       const component = document.createElement(
-        'bolt-<%= props.names.kebabcase.default %>',
+        'bolt-<%= props.name.kebabCase %>',
       );
-      btn.textContent = '<%= props.names.kebabcase.default %> Test';
+      btn.textContent = '<%= props.name.kebabCase %> Test';
       document.body.appendChild(btn);
       component.useShadow = false;
       component.updated();
@@ -93,13 +93,13 @@ describe('<%= props.names.kebabcase.default %>', async () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Default <bolt-<%= props.names.kebabcase.default %>> with Shadow DOM renders', async function() {
+  test('Default <bolt-<%= props.name.kebabCase %>> with Shadow DOM renders', async function() {
     const defaultComponentShadowRoot = await page.evaluate(() => {
       const component = document.createElement(
-        'bolt-<%= props.names.kebabcase.default %>',
+        'bolt-<%= props.name.kebabCase %>',
       );
       component.textContent =
-        '<%= props.names.kebabcase.default %> Component Test -- Shadow Root HTML';
+        '<%= props.name.kebabCase %> Component Test -- Shadow Root HTML';
       document.body.appendChild(component);
       component.updated();
       return component.renderRoot.innerHTML;
@@ -107,10 +107,10 @@ describe('<%= props.names.kebabcase.default %>', async () => {
 
     const defaultComponentOuter = await page.evaluate(() => {
       const component = document.createElement(
-        'bolt-<%= props.names.kebabcase.default %>',
+        'bolt-<%= props.name.kebabCase %>',
       );
       component.textContent =
-        '<%= props.names.kebabcase.default %> Component Test -- Outer HTML';
+        '<%= props.name.kebabCase %> Component Test -- Outer HTML';
       document.body.appendChild(component);
       component.updated();
       return component.outerHTML;
@@ -120,7 +120,7 @@ describe('<%= props.names.kebabcase.default %>', async () => {
     const renderedHTML = await html(defaultComponentOuter);
 
     expect(renderedHTML.textContent).toEqual(
-      '<%= props.names.kebabcase.default %> Component Test -- Outer HTML',
+      '<%= props.name.kebabCase %> Component Test -- Outer HTML',
     );
 
     const image = await page.screenshot();

@@ -1,14 +1,14 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
-import styles from './<%= props.names.kebabcase.default %>.scss';
-import schema from '../<%= props.names.kebabcase.default %>.schema.yml';
+import styles from './<%= props.name.kebabCase %>.scss';
+import schema from '../<%= props.name.kebabCase %>.schema.yml';
 
 let cx = classNames.bind(styles);
 
 @define
-class Bolt<%= props.names.capitalcase.default %> extends withLitHtml() {
-  static is = 'bolt-<%= props.names.kebabcase.default %>';
+class Bolt<%= props.name.pascalCase %> extends withLitHtml() {
+  static is = 'bolt-<%= props.name.kebabCase %>';
 
   static props = {
     noShadow: {
@@ -35,8 +35,8 @@ class Bolt<%= props.names.capitalcase.default %> extends withLitHtml() {
       disabled,
     } = this.validateProps(this.props);
 
-    const classes = cx('c-bolt-<%= props.names.kebabcase.default %>', {
-      [`c-bolt-<%= props.names.kebabcase.default %>--disabled`]: disabled,
+    const classes = cx('c-bolt-<%= props.name.kebabCase %>', {
+      [`c-bolt-<%= props.name.kebabCase %>--disabled`]: disabled,
     });
 
     return html`
@@ -48,4 +48,4 @@ class Bolt<%= props.names.capitalcase.default %> extends withLitHtml() {
   }
 }
 
-export { Bolt<%= props.names.capitalcase.default %> };
+export { Bolt<%= props.name.pascalCase %> };

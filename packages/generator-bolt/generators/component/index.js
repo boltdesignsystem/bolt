@@ -4,7 +4,7 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const shelljs = require('shelljs');
-const caseFilter = require('../../utils/case-filters.js')();
+const changeCase = require('change-case');
 
 const { updateBoltRcConfig } = require('./update-boltrc');
 const { addBoltPackage } = require('./add-bolt-package');
@@ -97,58 +97,20 @@ module.exports = class extends Generator {
           return true;
         }.bind(this),
         filter: function(input) {
-          let isPlural = input.slice(-1) === 's';
-          let singular = isPlural ? input.slice(0, input.length - 1) : input;
-          let plural = isPlural ? input : input + 's';
-
-          this.names = {
-            camelcase: {
-              singular: caseFilter.toCamelCase(singular),
-              plural: caseFilter.toCamelCase(plural),
-              default: caseFilter.toCamelCase(input),
-            },
-            pascalcase: {
-              singular: caseFilter.toPascalCase(singular),
-              plural: caseFilter.toPascalCase(plural),
-              default: caseFilter.toPascalCase(input),
-            },
-            kebabcase: {
-              singular: caseFilter.toKebabCase(singular),
-              plural: caseFilter.toKebabCase(plural),
-              default: caseFilter.toKebabCase(input),
-            },
-            lowercase: {
-              singular: caseFilter.toLowerCase(singular),
-              plural: caseFilter.toLowerCase(plural),
-              default: caseFilter.toLowerCase(input),
-            },
-            uppercase: {
-              singular: caseFilter.toUpperCase(singular),
-              plural: caseFilter.toUpperCase(plural),
-              default: caseFilter.toUpperCase(input),
-            },
-            capitalcase: {
-              singular: caseFilter.toCapitalCase(singular),
-              plural: caseFilter.toCapitalCase(plural),
-              default: caseFilter.toCapitalCase(input),
-            },
-            snakecase: {
-              singular: caseFilter.toSnakeCase(singular),
-              plural: caseFilter.toSnakeCase(plural),
-              default: caseFilter.toSnakeCase(input),
-            },
-            attachedcase: {
-              singular: caseFilter.toAttachedCase(singular),
-              plural: caseFilter.toAttachedCase(plural),
-              default: caseFilter.toAttachedCase(input),
-            },
+          this.name = {
+            original: input,
+            camelCase: changeCase.camelCase(input),
+            pascalCase: changeCase.pascalCase(input),
+            snakeCase: changeCase.snakeCase(input),
+            kebabCase: changeCase.paramCase(input),
+            noCase: changeCase.noCase(input),
+            titleCase: changeCase.titleCase(input),
           };
 
           return (
             input.charAt(0).toUpperCase() + input.slice(1).replace(' ', '-')
           );
 
-          this.componentName = this.input;
         }.bind(this),
       },
       {
@@ -159,7 +121,7 @@ module.exports = class extends Generator {
         required: false,
         default: function(answers) {
           return `The ${
-            this.names.kebabcase.default
+            this.name.noCase
           } component -- part of the Bolt Design System.`;
         }.bind(this),
         validate: function(input) {
@@ -173,20 +135,20 @@ module.exports = class extends Generator {
     ]).then(
       function(props) {
         this.props = props;
-        this.props.names = this.names;
+        this.props.name = this.name;
         this.props.gitUrl = this.gitUrl;
         this.props.boltVersion = this.boltVersion;
         this.props.gitInfo = this.gitInfo;
         this.props.packageName = `@bolt/components-${
-          this.names.kebabcase.default
+          this.props.name.kebabCase
         }`;
         this.props.dest = `${this.folders.src}/bolt-${
-          this.props.names.kebabcase.default
+          this.props.name.kebabCase
         }`;
         this.props.gitPath =
           this.gitUrl +
           '/tree/master/packages/components/bolt-' +
-          this.names.lowercase.default;
+          this.props.name.kebabCase;
       }.bind(this),
     );
   }
@@ -196,7 +158,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('component.scss'),
       this.destinationPath(
-        `${this.props.dest}/src/${this.props.names.kebabcase.default}.scss`,
+        `${this.props.dest}/src/${this.props.name.kebabCase}.scss`,
       ),
       { props: this.props },
     );
@@ -211,7 +173,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('component.html.twig'),
       this.destinationPath(
-        `${this.props.dest}/src/${this.props.names.kebabcase.default}.twig`,
+        `${this.props.dest}/src/${this.props.name.kebabCase}.twig`,
       ),
       { props: this.props },
     );
@@ -220,7 +182,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('component.schema.yml'),
       this.destinationPath(
-        `${this.props.dest}/${this.props.names.kebabcase.default}.schema.yml`,
+        `${this.props.dest}/${this.props.name.kebabCase}.schema.yml`,
       ),
       { props: this.props },
     );
@@ -229,7 +191,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('component.js'),
       this.destinationPath(
-        `${this.props.dest}/src/${this.props.names.kebabcase.default}.js`,
+        `${this.props.dest}/src/${this.props.name.kebabCase}.js`,
       ),
       { props: this.props },
     );
@@ -246,7 +208,7 @@ module.exports = class extends Generator {
       this.templatePath('component.test.js'),
       this.destinationPath(
         `${this.folders.src}/bolt-${
-          this.props.names.kebabcase.default
+          this.props.name.kebabCase
         }/__tests__/index.js`,
       ),
       { props: this.props },
@@ -256,9 +218,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath(
-        `${this.folders.src}/bolt-${
-          this.props.names.kebabcase.default
-        }/README.md`,
+        `${this.folders.src}/bolt-${this.props.name.kebabCase}/README.md`,
       ),
       {
         props: this.props,
@@ -270,9 +230,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath(
-        `${this.folders.src}/bolt-${
-          this.props.names.kebabcase.default
-        }/package.json`,
+        `${this.folders.src}/bolt-${this.props.name.kebabCase}/package.json`,
       ),
       {
         props: this.props,
@@ -284,9 +242,9 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('component-docs.twig'),
       this.destinationPath(
-        `${this.folders.patternLabFolder}/${
-          this.props.names.kebabcase.default
-        }/${this.props.names.kebabcase.default}-docs.twig`,
+        `${this.folders.patternLabFolder}/${this.props.name.kebabCase}/00-${
+          this.props.name.kebabCase
+        }-docs.twig`,
       ),
       {
         props: this.props,

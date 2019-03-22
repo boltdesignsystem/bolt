@@ -1,11 +1,11 @@
-{% set schema = bolt.data.components["@bolt-components-<%= props.names.kebabcase.default %>"].schema %}
+{% set schema = bolt.data.components["@bolt-components-<%= props.name.kebabCase %>"].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-<%= props.names.kebabcase.default %>" %}
+{% set base_class = "c-bolt-<%= props.name.kebabCase %>" %}
 {% set props = create_attribute({
 
 }) %}
@@ -32,11 +32,11 @@
   {% endif %}
 {% endfor %}
 
-<bolt-<%= props.names.kebabcase.default %>
+<bolt-<%= props.name.kebabCase %>
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ attributes|without('class') }}
 >
   <div {{ inner_attributes.addClass(inner_classes) }} is="shadow-root">
    
   </div>
-</bolt-<%= props.names.kebabcase.default %>>
+</bolt-<%= props.name.kebabCase %>>

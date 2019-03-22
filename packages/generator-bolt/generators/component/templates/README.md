@@ -2,5 +2,5 @@
 
 ###### Install via NPM
 ```
-npm install @bolt/components-<%= props.names.kebabcase.default %>
+npm install @bolt/components-<%= props.name.kebabCase %>
 ```
