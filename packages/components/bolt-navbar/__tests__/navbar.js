@@ -40,7 +40,7 @@ const viewportSizes = [
   },
 ];
 
-describe('<bolt-navbar> Component', async () => {
+describe('<bolt-navbar> Component', () => {
   let page;
 
   afterAll(async () => {
