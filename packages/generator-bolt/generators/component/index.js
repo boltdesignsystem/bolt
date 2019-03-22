@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*jshint -W097 */
 'use strict';
 const Generator = require('yeoman-generator');
@@ -5,6 +7,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const shelljs = require('shelljs');
 const changeCase = require('change-case');
+const program = require('commander');
 
 const { updateBoltRcConfig } = require('./update-boltrc');
 const { addBoltPackage } = require('./add-bolt-package');
@@ -22,6 +25,15 @@ var validateString = function(input) {
   }
   return true;
 };
+
+program
+  .version(currentBoltVersion)
+  .option('-N, --name [name]', 'button')
+  .option(
+    '-D, --description [description]',
+    'The button component -- part of the Bolt Design System.',
+  )
+  .parse(process.argv);
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -66,7 +78,7 @@ module.exports = class extends Generator {
         message:
           'What is the name of your Bolt component? (for example: `button`, `card`, carousel`, etc)',
         required: true,
-        default: 'component',
+        default: program.name || 'component',
         validate: function(input) {
           if (typeof input !== 'string') {
             this.log(chalk.red('You must pass a valid component name!'));
@@ -110,7 +122,6 @@ module.exports = class extends Generator {
           return (
             input.charAt(0).toUpperCase() + input.slice(1).replace(' ', '-')
           );
-
         }.bind(this),
       },
       {
@@ -120,9 +131,12 @@ module.exports = class extends Generator {
           'Could you write a sentence or two that describes your new Bolt component?',
         required: false,
         default: function(answers) {
-          return `The ${
-            this.name.noCase
-          } component -- part of the Bolt Design System.`;
+          return (
+            program.description ||
+            `The ${
+              this.name.noCase
+            } component -- part of the Bolt Design System.`
+          );
         }.bind(this),
         validate: function(input) {
           if (typeof input !== 'string') {
