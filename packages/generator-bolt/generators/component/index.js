@@ -258,5 +258,17 @@ module.exports = class extends Generator {
     addBoltPackage(this.props.packageName);
 
     shelljs.exec('yarn');
+
+    shelljs.exec(
+      `npx prettier ${this.folders.patternLabFolder}/${
+        this.props.name.kebabCase
+      }/**/*.{js,scss,json} --write`,
+    );
+
+    shelljs.exec(
+      `npx prettier ${this.folders.src}/bolt-${
+        this.props.name.kebabCase
+      }/**/*.{js,scss,json} --write`,
+    );
   }
 };
