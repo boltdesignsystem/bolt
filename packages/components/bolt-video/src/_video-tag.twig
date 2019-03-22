@@ -1,4 +1,8 @@
-{% set attributes = create_attribute(attributes | default({})) %}
+{% set schema = bolt.data.components["@bolt-components-video"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
 
 {# if videoAttributes %}
   {% set attributes = videoAttributes | merge(attributes) %}
@@ -16,49 +20,67 @@
   {% endfor %}
 {% endif #}
 
+{% set attributes = create_attribute(attributes|default({})) %}
+
 {# force HTML5 Only Rendering + disable resizeManager in Brightcove to fix ability to click overlapping elements on iOS:
 https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747a/src/js/resize-manager.js#L19 #}
 {% set attributes = attributes.setAttribute("data-setup", '{"techOrder": ["Html5"], "resizeManager": false}') %}
-{% set showMeta = showMeta is null ? true : showMeta %}
-{% set showMetaTitle = showMeta is null ? false : showMetaTitle %}
 
-{% set controls = controls is null ? true : controls %}
-{% set autoplay = autoplay is null ? false : autoplay %}
-{% set loop = loop is null ? false : loop %}
+{# Map deprecated props to new ones #}
+{% set video_id = video_id|default(videoId) %}
+{% set player_id = player_id|default(playerId) %}
+{% set account_id = account_id|default(accountId) %}
 
-{% if videoId %}
-  {% set attributes = attributes.setAttribute("video-id", videoId) %}
+{# https://twig.symfony.com/doc/2.x/templates.html#other-operators #}
+{# Map deprecated props to new ones, set defaults #}
+{% set meta = meta ?? showMeta ?? schema.properties.meta.default %}
+{% set meta_title = meta_title ?? showMetaTitle ?? schema.properties.meta_title.default %}
+{% set controls = controls ?? schema.properties.controls.default %}
+{% set autoplay = autoplay ?? schema.properties.autoplay.default %}
+{% set loop = loop ?? schema.properties.loop.default %}
+{% set is_background_video = is_background_video ?? isBackgroundVideo ?? schema.properties.is_background_video.default %}
+
+{% if video_id %}
+  {% set attributes = attributes.setAttribute("video-id", video_id) %}
 {% endif %}
 
-{% if accountId %}
-  {% set attributes = attributes.setAttribute("account-id", accountId) %}
+{% if player_id %}
+  {% set attributes = attributes.setAttribute("player-id", player_id) %}
 {% endif %}
 
-{% if showMeta is sameas(false) %}
+{% if account_id %}
+  {% set attributes = attributes.setAttribute("account-id", account_id) %}
+{% endif %}
+
+{% if video_uuid %}
+  {% set attributes = attributes.setAttribute("video-uuid", video_uuid) %}
+{% endif %}
+
+{% if not meta %}
   {% set attributes = attributes.setAttribute("no-meta", true) %}
 {% endif %}
 
-{% if showMetaTitle is sameas(false) %}
+{% if not meta_title %}
   {% set attributes = attributes.setAttribute("no-meta-title", true) %}
 {% endif %}
 
-{% if playerId %}
-  {% set attributes = attributes.setAttribute("player-id", playerId) %}
+{% if not controls %}
+  {% set attributes = attributes.setAttribute("no-controls", true) %}
 {% endif %}
 
 {% if autoplay %}
   {% set attributes = attributes.setAttribute("autoplay", true) %}
 {% endif %}
 
-{% if controls is sameas(false) %}
-  {% set attributes = attributes.setAttribute("no-controls", true) %}
-{% endif %}
-
 {% if loop %}
   {% set attributes = attributes.setAttribute("loop", true) %}
 {% endif %}
 
-{% if can_use_ratio is sameas(false) %}
+{% if is_background_video %}
+  {% set attributes = attributes.setAttribute("is-background-video", is_background_video) %}
+{% endif %}
+
+{% if not can_use_ratio %}
   {% set attributes = attributes.setAttribute("ratio", "none") %}
 {% endif %}
 
@@ -74,19 +96,9 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
   {% set attributes = attributes.setAttribute("share-description", share_description|t) %}
 {% endif %}
 
-{% if videoUuid %}
-  {% set attributes = attributes.setAttribute("video-uuid", videoUuid) %}
-{% endif %}
-
 {# don't use the snake_case on-init config if the on-init attribute already exists #}
 {% if on_init and not attributes["on-init"] %}
   {% set attributes = attributes.setAttribute("on-init", on_init) %}
-{% endif %}
-
-{% if isBackgroundVideo %}
-  {% set attributes = attributes.setAttribute("is-background-video", isBackgroundVideo) %}
-{% else %}
-  {% set attributes = attributes.setAttribute("is-background-video", false) %}
 {% endif %}
 
 {% set customElementName = "#{bolt.data.config.namespace}-video" %}

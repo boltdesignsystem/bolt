@@ -1,19 +1,35 @@
 title: Video
 type: object
+not:
+  anyOf:
+    - required:
+        - videoId
+    - required:
+        - playerId
+    - required:
+        - accountID
+    - required:
+        - videoUuid
+    - required:
+        - showMeta
+    - required:
+        - showMetaTitle
+    - required:
+        - isBackgroundVideo
 properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
-  videoId:
+  video_id:
     type: [string, number]
     description: Brightcove ID for this video.
-  playerId:
+  player_id:
     type: string
     description: Brightcover Player ID.
-  accountID:
+  account_id:
     type: [string, number]
     description: ID of the Brightcove account that owns the video.
-  videoUuid:
+  video_uuid:
     type: string
     description: A unique identifying string, randomly generated if not provided.
   share_description:
@@ -28,7 +44,7 @@ properties:
   collapsed:
     type: boolean
     description: Collapse the video on load.
-  showMeta:
+  meta:
     type: boolean
     description: Show the video metadata.
     default: true
@@ -36,7 +52,7 @@ properties:
     type: boolean
     description: Do not show the metadata. Web component only.
     default: false
-  showMetaTitle:
+  meta_title:
     type: boolean
     description: Show the video title.
     default: true
@@ -60,7 +76,7 @@ properties:
     type: boolean
     description: Loop the video.
     default: false
-  isBackgroundVideo:
+  is_background_video:
     type: boolean
     description: Set to true if the video is a background.
     default: false
@@ -90,3 +106,34 @@ properties:
   disabled_plugins:
     type: string
     description: 'Space-separated list of any built-in `<bolt-video>` plugins for Brightcove to disable. Used to opt-out of any video plugins that are enabled by default (ex. the `playback` plugin). For example: `<bolt-video disabled-plugins="playback">`.'
+  videoId:
+    type: [string, number]
+    title: DEPRECATED
+    description: Use `video_id` instead.
+  playerId:
+    type: string
+    title: DEPRECATED
+    description: Use `player_id` instead.
+  accountID:
+    type: [string, number]
+    title: DEPRECATED
+    description: Use `account_id` instead.
+  videoUuid:
+    type: string
+    title: DEPRECATED
+    description: Use `video_uuid` instead.
+  showMeta:
+    type: boolean
+    title: DEPRECATED
+    description: Use `meta` instead.
+    default: true
+  showMetaTitle:
+    type: boolean
+    title: DEPRECATED
+    description: Use `meta_title` instead.
+    default: true
+  isBackgroundVideo:
+    type: boolean
+    title: DEPRECATED
+    description: Use `is_background_video` instead.
+    default: false
