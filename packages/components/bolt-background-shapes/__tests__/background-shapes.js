@@ -1,4 +1,4 @@
-const { render } = require('@bolt/twig-renderer');
+import { render } from '@bolt/twig-renderer';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(
@@ -6,7 +6,7 @@ const schema = readYamlFileSync(
 );
 const { shapeGroup } = schema.properties;
 
-describe('background shapes', async () => {
+describe('background shapes', () => {
   shapeGroup.enum.forEach(async group => {
     test(`shape group: ${group}`, async () => {
       const results = await render(

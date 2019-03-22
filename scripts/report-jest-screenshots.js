@@ -14,8 +14,6 @@ async function uploadImage(name, content) {
 }
 
 const NOW_TOKEN = process.env.NOW_TOKEN;
-
-const isTravis = process.env.TRAVIS;
 // let filesToUpload = [];
 
 // async function finishUploading() {
@@ -35,16 +33,17 @@ class JestScreenshotReporter {
   constructor(globalConfig, options) {
     this._globalConfig = globalConfig;
     this._options = options;
-    this.allImagePromises = [];
   }
 
-  async onTestResult(test, testResult, aggregateResults) {
-    const self = this;
+  onTestResult(test, testResult, aggregateResults) {
+    // if (!process.env.NOW_TOKEN) return false;
     if (
       testResult.numFailingTests &&
       testResult.failureMessage.match(/different from snapshot/)
     ) {
-      await new Promise(async (resolve, reject) => {
+      return new Promise(async (resolveAll, reject) => {
+        const allImagePromises = [];
+
         const testingDir = path.dirname(testResult.testFilePath);
         const filesToProcess = fs.readdirSync(
           path.join(testingDir, '/__image_snapshots__/__diff_output__/'),
@@ -58,39 +57,28 @@ class JestScreenshotReporter {
                 `/__image_snapshots__/__diff_output__/${file}`,
               ),
             );
-            if (NOW_TOKEN) {
-              await uploadImage(file, imageData).then(url => {
-                const urlToDisplay = `https://${url}/${file}`;
-                resolve(urlToDisplay);
-              });
-            } else {
-              resolve(
-                `${path.join(
-                  testingDir,
-                  `/__image_snapshots__/__diff_output__/${file}`,
-                )}`,
-              );
-            }
+            uploadImage(file, imageData).then(url => {
+              const urlToDisplay = `https://${url}/${file}`;
+              resolve(urlToDisplay);
+            });
           });
-          resolve(self.allImagePromises.push(filePromise));
+          allImagePromises.push(filePromise);
         });
+        return Promise.all(allImagePromises)
+          .then(function(values) {
+            console.log(
+              chalk.red.bold(
+                `Uploaded image diff(s) to: \n${values.join('\n')}`,
+              ),
+            );
+            resolveAll(values);
+          })
+          .catch(err => {
+            console.log(
+              chalk.red.bold(`Error uploading image diffs to now.sh: ${err}`),
+            );
+          });
       });
-    }
-  }
-
-  onRunComplete(contexts, results) {
-    if (NOW_TOKEN && this.allImagePromises.length > 0) {
-      return Promise.all(this.allImagePromises)
-        .then(function(values) {
-          console.log(
-            chalk.red.bold(`Uploaded image diff(s) to: \n${values.join('\n')}`),
-          );
-        })
-        .catch(err => {
-          console.log(
-            chalk.red.bold(`Error uploading image diffs to now.sh: ${err}`),
-          );
-        });
     }
   }
 }

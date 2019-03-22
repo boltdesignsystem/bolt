@@ -8,6 +8,10 @@ class ReplaceWithChildren extends HTMLElement {
   connectedCallback() {
     const parentElement = this.parentElement;
 
+    if (bolt.isServer) {
+      return;
+    }
+
     if (!parentElement) {
       Error(
         'The <replace-with-children> element needs a parent element to append to!',

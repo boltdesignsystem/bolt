@@ -1,0 +1,15 @@
+diff --git a/node_modules/document-register-element/build/document-register-element.max.js b/node_modules/document-register-element/build/document-register-element.max.js
+index e2f9be9..a2c47ff 100644
+--- a/node_modules/document-register-element/build/document-register-element.max.js
++++ b/node_modules/document-register-element/build/document-register-element.max.js
+@@ -619,7 +619,9 @@ PERFORMANCE OF THIS SOFTWARE.
+       window.Node
+     ).prototype,
+       
+-    IE8 = !iPO.call(HTMLElementPrototype, documentElement),
++    // workaround to polyfill JSDOM
++    // IE8 = !iPO.call(HTMLElementPrototype, documentElement),
++    IE8 = false,
+   
+     safeProperty = IE8 ? function (o, k, d) {
+       o[k] = d.value;

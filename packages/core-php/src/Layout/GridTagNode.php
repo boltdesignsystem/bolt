@@ -3,7 +3,7 @@
 namespace Bolt\Layout;
 
 use \Drupal\Core\Template\Attribute;
-use Bolt\Layout\BoltStringLoader;
+use Bolt\BoltStringLoader;
 
 
   // Default attributes and inheritted data all grid components inherit (ex. base CSS class)
@@ -12,7 +12,7 @@ $GLOBALS['grid_attributes'] = array('class' => array('o-bolt-grid'));
 $GLOBALS['counter'] = 0;
 // Expose the D8 and Pattern Lab "create_attribute" function in case this custom Twig Tag gets loaded before the create_attribute Twig extension exists.
 
-class GridTagNode extends \Twig_Node {
+class GridTagNode extends \Twig\Node\Node {
 
   public function __construct($params, $lineno = 0, $tag = null){
     parent::__construct(array ('params' => $params), array (), $lineno, $tag);
@@ -102,7 +102,7 @@ class GridTagNode extends \Twig_Node {
     echo $rendered, PHP_EOL;
   }
 
-  public function compile(\Twig_Compiler $compiler) {
+  public function compile(\Twig\Compiler $compiler) {
     $count = count($this->getNode('params'));
     $compiler->addDebugInfo($this);
 
