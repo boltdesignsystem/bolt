@@ -21,7 +21,7 @@ describe('analytics autolinker', () => {
   test('autolinker does not modify component URLs already containing an _ga query string', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics-config.js'),
+      path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
     await page.evaluate(() => {
@@ -40,7 +40,7 @@ describe('analytics autolinker', () => {
   test('autolinker updates the URLs of a <bolt-button> with an external url (2nd in the config) + rendering to the Shadow DOM', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics-config.js'),
+      path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
     await page.evaluate(() => {
@@ -59,7 +59,7 @@ describe('analytics autolinker', () => {
   test('autolinker tracks the URLs of a <bolt-button> with an external url (2nd in the config) + rendering to the Shadow DOM - even after re-rendering', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics-config.js'),
+      path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
     await page.evaluate(() => {
@@ -86,7 +86,7 @@ describe('analytics autolinker', () => {
   test('autolinker updates the URLs of a <bolt-button> with an external url + rendering to the Shadow DOM', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics-config.js'),
+      path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
     await page.evaluate(() => {
@@ -105,7 +105,7 @@ describe('analytics autolinker', () => {
   test('autolinker updates the URLs of <bolt-button>s with external urls + render to the light DOM', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics-config.js'),
+      path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
     await page.evaluate(() => {
@@ -125,7 +125,7 @@ describe('analytics autolinker', () => {
   test('autolinker does not track <bolt-button>s with urls not containing domains in the config', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics-config.js'),
+      path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
     await page.evaluate(() => {
@@ -144,7 +144,7 @@ describe('analytics autolinker', () => {
   test('autolinker updates the URLs of a <bolt-link> with an external url + rendering to the Shadow DOM', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics-config.js'),
+      path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
     await page.evaluate(() => {
@@ -164,7 +164,7 @@ describe('analytics autolinker', () => {
   test('autolinker updates the URLs of a <bolt-link> with an external url + rendering to the light DOM', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics-config.js'),
+      path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
     await page.evaluate(() => {
@@ -184,7 +184,7 @@ describe('analytics autolinker', () => {
   test('autolinker does not track <bolt-link>s with urls not containing domains in the config', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics-config.js'),
+      path: path.join(__dirname, 'fixtures/test-analytics-config.data.js'),
     });
 
     await page.evaluate(() => {
@@ -204,7 +204,10 @@ describe('analytics autolinker', () => {
   test('the correct inline config for specifying autolink domains inside Drupal exists', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics.drupal-config.js'),
+      path: path.join(
+        __dirname,
+        'fixtures/test-analytics.drupal-config.data.js',
+      ),
     });
 
     const config = await page.evaluate(() => {
@@ -217,7 +220,10 @@ describe('analytics autolinker', () => {
   test('allow Drupal to configure which domains get configured / tracked by autolink.', async function() {
     await page.addScriptTag({
       type: 'module',
-      path: path.join(__dirname, 'fixtures/test-analytics.drupal-config.js'),
+      path: path.join(
+        __dirname,
+        'fixtures/test-analytics.drupal-config.data.js',
+      ),
     });
 
     await page.evaluate(() => {

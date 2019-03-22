@@ -13,4 +13,4 @@ ga('create', TRACKING_ID, 'auto', { allowLinker: true });
 ga('send', 'pageview');
 ga('set', 'transport', 'beacon');
 ga('require', 'linker');
-ga('linker:autoLink', window.bolt.analytics.autolink.domains);
+ga('linker:autoLink', window.bolt.autolink.domains);
