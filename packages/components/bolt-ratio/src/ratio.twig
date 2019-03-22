@@ -2,10 +2,11 @@
 
 {% set ratioW = aspectRatioWidth ?? ratio|split("/")[0] ?? "1" %}
 {% set ratioH = aspectRatioHeight ?? ratio|split("/")[1] ?? "1" %}
+{% set gcd = gcd(ratioW, ratioH) %}
 
 {% if ratioH and ratioW %}
-  {% set ratioH = ratioH >= 100 ? ratioH / 100 : ratioH %}
-  {% set ratioW = ratioW >= 100 ? ratioW / 100 : ratioW %}
+  {% set ratioH = ratioH / gcd %}
+  {% set ratioW = ratioW / gcd %}
 
   {% set attributes = attributes.setAttribute("ratio", "#{ratioW}/#{ratioH}") %}
   {% set inline_styles = [
