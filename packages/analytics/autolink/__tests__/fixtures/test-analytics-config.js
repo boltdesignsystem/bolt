@@ -6,6 +6,7 @@ window.bolt.autolink = {
 // or an inline script
 const TRACKING_ID = 'UA-127403924-1';
 
+// eslint-disable-next-line no-return-assign
 window.ga = window.ga || ((...args) => (ga.q = ga.q || []).push(args));
 
 ga('create', TRACKING_ID, 'auto', { allowLinker: true });

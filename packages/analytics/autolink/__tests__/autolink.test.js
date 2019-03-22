@@ -222,7 +222,8 @@ describe('analytics autolinker', () => {
 
     await page.evaluate(() => {
       const btn = document.createElement('bolt-button');
-      btn.textContent = 'External URL - Normally Untracked But Now Tracked Domain';
+      btn.textContent =
+        'External URL - Normally Untracked But Now Tracked Domain';
       btn.setAttribute('url', 'https://www.pega.com');
       document.body.appendChild(btn);
     });
