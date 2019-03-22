@@ -16,7 +16,7 @@ async function renderTwigString(template, data) {
 }
 
 const imageVrtConfig = {
-  failureThreshold: '0.01',
+  failureThreshold: '0.02',
   failureThresholdType: 'percent',
 };
 
