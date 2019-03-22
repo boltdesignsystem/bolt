@@ -126,9 +126,12 @@ class BoltImageZoom extends withLitHtml() {
   }
 
   connecting() {
-    const driftZoomImageUrl = this.querySelector('img').getAttribute(
-      'data-zoom',
-    );
+    let driftZoomImageUrl;
+    if (this.querySelector('img')) {
+      driftZoomImageUrl = this.querySelector('img').getAttribute('data-zoom');
+    } else if (this.querySelector('bolt-image')) {
+      driftZoomImageUrl = this.querySelector('bolt-image').getAttribute('src');
+    }
     this.setAttribute('data-zoom', driftZoomImageUrl);
     this.addEventListener(
       'mouseenter',
