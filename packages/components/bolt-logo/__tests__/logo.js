@@ -38,22 +38,15 @@ describe('logo', () => {
     const renderedLogoHTML = await page.evaluate(() => {
       const logo = document.createElement('bolt-logo');
 
-      // TODO: Use actual image web component once those changes are merged in
-      logo.innerHTML = `<bolt-image>
-                          <bolt-ratio ratio="124/33">
-                            <img class="c-bolt-image__image"
-                              srcset="/fixtures/logo-paypal.svg"
-                              sizes="auto"
-                              src="/fixtures/logo-paypal.svg">
-                          </bolt-ratio>
-                        </bolt-image>`;
+      // TODO: Use the actual logo web component once converted
+      logo.innerHTML = `<bolt-image src="/fixtures/logo-paypal.svg" alt="Paypal Logo" ratio="124/33"></bolt-image>`;
 
       document.body.appendChild(logo);
 
       return logo.outerHTML;
     });
 
-    // const renderedHTML = await html(renderedLogoHTML);
+    const renderedHTML = await html(renderedLogoHTML);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
@@ -61,8 +54,7 @@ describe('logo', () => {
       failureThresholdType: 'percent',
     });
 
-    // TODO: match snapshot once image is converted to web component, HTML is hardcoded here
-    // expect(renderedHTML).toMatchSnapshot();
+    expect(renderedHTML).toMatchSnapshot();
   });
 
   test('Inverted <bolt-logo> renders as inverted', async function() {
@@ -70,16 +62,8 @@ describe('logo', () => {
       const logo = document.createElement('bolt-logo');
       const wrapper = document.createElement('div');
 
-      // TODO: Use actual image web component once those changes are merged in
-      logo.innerHTML = `<bolt-image>
-                          <bolt-ratio ratio="124/33">
-                            <img class="c-bolt-image__image"
-                              srcset="/fixtures/logo-paypal.svg"
-                              sizes="auto"
-                              src="/fixtures/logo-paypal.svg">
-                          </bolt-ratio>
-                        </bolt-image>`;
-
+      // TODO: Use the actual logo web component once converted
+      logo.innerHTML = `<bolt-image src="/fixtures/logo-paypal.svg" alt="Paypal Logo" ratio="124/33"></bolt-image>`;
       logo.classList.add('c-bolt-logo--invert');
 
       wrapper.classList.add('t-bolt-dark');
@@ -90,7 +74,7 @@ describe('logo', () => {
       return logo.outerHTML;
     });
 
-    // const renderedHTML = await html(renderedLogoHTML);
+    const renderedHTML = await html(renderedLogoHTML);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
@@ -98,7 +82,6 @@ describe('logo', () => {
       failureThresholdType: 'percent',
     });
 
-    // TODO: match snapshot once image is converted to web component, HTML is hardcoded here
-    // expect(renderedHTML).toMatchSnapshot();
+    expect(renderedHTML).toMatchSnapshot();
   });
 });
