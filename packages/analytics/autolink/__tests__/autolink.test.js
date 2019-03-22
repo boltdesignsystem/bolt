@@ -29,6 +29,7 @@ describe('analytics autolinker', () => {
       btn.textContent = 'External URL w/ existing GA Tracking';
       btn.setAttribute('url', 'https://www.google.com/?_ga=1234');
       document.body.appendChild(btn);
+      btn.updated();
     });
 
     await page.click('bolt-button');
@@ -48,6 +49,7 @@ describe('analytics autolinker', () => {
       btn.textContent = 'External URL - Shadow DOM Test';
       btn.setAttribute('url', 'https://www.brightcove.com');
       document.body.appendChild(btn);
+      btn.updated();
     });
 
     await page.click('bolt-button');
@@ -94,6 +96,7 @@ describe('analytics autolinker', () => {
       btn.textContent = 'External URL - Shadow DOM Test';
       btn.setAttribute('url', 'https://www.google.com');
       document.body.appendChild(btn);
+      btn.updated();
     });
 
     await page.click('bolt-button');
@@ -114,6 +117,7 @@ describe('analytics autolinker', () => {
       btn.useShadow = false;
       btn.setAttribute('url', 'https://www.google.com');
       document.body.appendChild(btn);
+      btn.updated();
     });
 
     await page.click('bolt-button');
@@ -133,6 +137,7 @@ describe('analytics autolinker', () => {
       btn.textContent = 'External URL - Untracked Domain';
       btn.setAttribute('url', 'https://www.pega.com');
       document.body.appendChild(btn);
+      btn.updated();
     });
 
     await page.click('bolt-button');
@@ -153,6 +158,7 @@ describe('analytics autolinker', () => {
       link.style.display = 'inline-block'; // for some strange reason, without any :host styles or this, puppeteer can't seem to find this DOM node to click on
       link.setAttribute('url', 'https://www.google.com');
       document.body.appendChild(link);
+      link.updated();
     });
 
     await page.click('bolt-link');
@@ -173,6 +179,7 @@ describe('analytics autolinker', () => {
       link.useShadow = false;
       link.setAttribute('url', 'https://www.google.com');
       document.body.appendChild(link);
+      link.updated();
     });
 
     await page.click('bolt-link');
@@ -193,6 +200,7 @@ describe('analytics autolinker', () => {
       link.style.display = 'inline-block'; // for some strange reason, without any :host styles or this, puppeteer can't seem to find this DOM node to click on
       link.setAttribute('url', 'https://www.pega.com');
       document.body.appendChild(link);
+      link.updated();
     });
 
     await page.click('bolt-link');
@@ -232,6 +240,7 @@ describe('analytics autolinker', () => {
         'External URL - Normally Untracked But Now Tracked Domain';
       btn.setAttribute('url', 'https://www.pega.com');
       document.body.appendChild(btn);
+      btn.updated();
     });
 
     await page.click('bolt-button');
