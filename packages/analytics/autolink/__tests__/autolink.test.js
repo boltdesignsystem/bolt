@@ -36,7 +36,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga=1234');
-  }, 10000);
+  });
 
   test('autolinker updates the URLs of a <bolt-button> with an external url (2nd in the config) + rendering to the Shadow DOM', async function() {
     await page.addScriptTag({
@@ -56,7 +56,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 10000);
+  });
 
   test('autolinker tracks the URLs of a <bolt-button> with an external url (2nd in the config) + rendering to the Shadow DOM - even after re-rendering', async function() {
     await page.addScriptTag({
@@ -83,7 +83,7 @@ describe('analytics autolinker', () => {
 
     expect(currentUrl).toContain('_ga');
     expect(currentUrl).toContain('brightcove.com');
-  }, 10000);
+  });
 
   test('autolinker updates the URLs of a <bolt-button> with an external url + rendering to the Shadow DOM', async function() {
     await page.addScriptTag({
@@ -103,7 +103,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 10000);
+  });
 
   test('autolinker updates the URLs of <bolt-button>s with external urls + render to the light DOM', async function() {
     await page.addScriptTag({
@@ -124,7 +124,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 10000);
+  });
 
   test('autolinker does not track <bolt-button>s with urls not containing domains in the config', async function() {
     await page.addScriptTag({
@@ -165,7 +165,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 10000);
+  });
 
   test('autolinker updates the URLs of a <bolt-link> with an external url + rendering to the light DOM', async function() {
     await page.addScriptTag({
@@ -186,7 +186,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 10000);
+  });
 
   test('autolinker does not track <bolt-link>s with urls not containing domains in the config', async function() {
     await page.addScriptTag({
