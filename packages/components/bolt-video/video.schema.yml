@@ -7,15 +7,7 @@ not:
     - required:
         - playerId
     - required:
-        - accountID
-    - required:
-        - videoUuid
-    - required:
-        - showMeta
-    - required:
-        - showMetaTitle
-    - required:
-        - isBackgroundVideo
+        - accountId
 properties:
   attributes:
     type: object
@@ -114,6 +106,10 @@ properties:
     type: string
     title: DEPRECATED
     description: Use `player_id` instead.
+  accountId:
+    type: [string, number]
+    title: DEPRECATED
+    description: Use `account_id` instead.
   accountID:
     type: [string, number]
     title: DEPRECATED

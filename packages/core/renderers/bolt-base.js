@@ -77,15 +77,7 @@ export function BoltBase(Base = HTMLElement) {
 
       // Skip this if formatted schema data is already stored
       if (this.schema && !this.formattedSchema) {
-        this.formattedSchema = {};
-        Object.assign(this.formattedSchema, this.schema);
-        Object.keys(this.formattedSchema.properties).map(key => {
-          this.formattedSchema.properties = renameKey(
-            key,
-            changeCase.camelCase(key),
-            this.formattedSchema.properties,
-          );
-        });
+        this.formattedSchema = this.formatSchema();
       }
 
       if (this.formattedSchema) {
@@ -98,6 +90,58 @@ export function BoltBase(Base = HTMLElement) {
       }
 
       return validatedData;
+    }
+
+    formatSchema() {
+      let schema = Object.assign({}, this.schema);
+      let deprecatedProps = [];
+
+      // Store deprecated prop names and delete from schema.properties
+      Object.keys(schema.properties).map(key => {
+        let keyTitle = schema.properties[key].title;
+        if (keyTitle && keyTitle.toUpperCase().trim() === 'DEPRECATED') {
+          deprecatedProps.push(key);
+          delete schema.properties[key];
+        }
+      });
+
+      // Convert remaining props to camelCase
+      Object.keys(schema.properties).map(key => {
+        schema.properties = renameKey(
+          key,
+          changeCase.camelCase(key),
+          schema.properties,
+        );
+      });
+
+      // Remove prop names from the schema "not" object that will conflict with our new camelCased props
+      if (schema.not) {
+        // If there is a single deprecated prop this will be the structure
+        if (schema.not.required) {
+          const propName = schema.not.required[0];
+          if (
+            deprecatedProps.includes(propName) &&
+            schema.properties[propName]
+          ) {
+            delete schema.not;
+          }
+        }
+        // If there are multiple deprecated props this will be the structure
+        else if (schema.not.anyOf) {
+          schema.not.anyOf = schema.not.anyOf.filter(item => {
+            const propName = item.required[0];
+            return !(
+              deprecatedProps.includes(propName) && schema.properties[propName]
+            );
+          });
+          // schema.not.anyOf is invalid if it is empty, so remove it
+          if (!schema.not.anyOf.length) {
+            delete schema.not;
+          }
+        }
+      }
+
+      return schema;
     }
 
     addStyles(stylesheet) {
