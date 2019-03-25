@@ -50,7 +50,7 @@ jobs:
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
-        - rm -rf packages/uikit-workshop docs-site example-integrations
+        - rm -rf packages/uikit-workshop example-integrations
         - travis_retry yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Unit'
       script: yarn run test
