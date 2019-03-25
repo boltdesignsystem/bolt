@@ -22,16 +22,22 @@
 {% endset %}
 
 {% set blockquote_demo_controls %}
-<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" no-controls></bolt-video>
+<bolt-button tag="button" on-click="toggle" on-click-target="js-bolt-video-uuid--{{video_id}}">Play or Pause</bolt-button>
+<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" video-uuid="js-bolt-video-uuid--{{video_id}}" no-controls></bolt-video>
 {% endset %}
 
-{% set blockquote_demo_playback %}
-<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" autoplay loop></bolt-video>
+{% set blockquote_additional_options %}
+<!-- Autoplay -->
+<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" autoplay></bolt-video>
+
+<!-- Loop -->
+<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" loop></bolt-video>
+
+<!-- Custom "Share" description -->
+<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" share-description="Share this video"></bolt-video>
 {% endset %}
 
 {% set blockquote_demo_external %}
-<bolt-button tag="button" on-click="toggle" on-click-target="js-bolt-video-uuid--{{video_id}}">Play or Pause</bolt-button>
-<bolt-video video-id="{{video_id}}" account-id="{{account_id}}" player-id="{{player_id}}" video-uuid="js-bolt-video-uuid--{{video_id}}"></bolt-video>
 {% endset %}
 
 <div class="o-bolt-wrapper">
@@ -77,7 +83,7 @@
     Video Controls
   </bolt-text>
   <bolt-text>
-    Add the <bolt-code-snippet display="inline" lang="html">no-controls</bolt-code-snippet> prop to hide video controls.
+    Add the <bolt-code-snippet display="inline" lang="html">no-controls</bolt-code-snippet> prop to hide video controls. The example below uses an external control to play or pause the video.
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
@@ -93,38 +99,12 @@
 
 <div class="o-bolt-wrapper">
   <bolt-text headline>
-    Video Playback
+    Additional Options
   </bolt-text>
   <bolt-text>
-    Add the <bolt-code-snippet display="inline" lang="html">autoplay</bolt-code-snippet> prop to automatically play the video on load. Add the <bolt-code-snippet display="inline" lang="html">loop</bolt-code-snippet> prop to loop the video. Note: <a href="https://support.brightcove.com/autoplay-considerations" target="_blank">some browsers</a> will not autoplay unmuted videos.
+    Additional options can be passed in as props on the <bolt-code-snippet display="inline" lang="html">&lt;bolt-video&gt;</bolt-code-snippet> element as defined in the schema. For example:
   </bolt-text>
-  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12" %}
-        {{ blockquote_demo_playback }}
-      {% endcell %}
-    {% endgrid %}
-  </div>
   <div class="u-bolt-margin-bottom-large">
-    {% include blockquote_demo.code_example(blockquote_demo_playback, true) %}
-  </div>
-</div>
-
-<div class="o-bolt-wrapper">
-  <bolt-text headline>
-    External Video Controls
-  </bolt-text>
-  <bolt-text>
-    Setup external controls by adding a button with an <bolt-code-snippet display="inline" lang="html">on-click</bolt-code-snippet> prop set to <bolt-code-snippet display="inline" lang="html">toggle</bolt-code-snippet> and an <bolt-code-snippet display="inline" lang="html">on-click-target</bolt-code-snippet> prop that matches the video's <bolt-code-snippet display="inline" lang="html">video-uuid</bolt-code-snippet> prop.
-  </bolt-text>
-  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
-      {% cell "u-bolt-width-12/12" %}
-        {{ blockquote_demo_external }}
-      {% endcell %}
-    {% endgrid %}
-  </div>
-  <div class="u-bolt-margin-bottom-large">
-    {% include blockquote_demo.code_example(blockquote_demo_external, true) %}
+    {% include blockquote_demo.code_example(blockquote_additional_options, true) %}
   </div>
 </div>
