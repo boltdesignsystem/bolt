@@ -134,7 +134,7 @@ export function BoltBase(Base = HTMLElement) {
               deprecatedProps.includes(propName) && schema.properties[propName]
             );
           });
-          // schema.not.anyOf is invalid if it is empty, so remove it
+          // schema.not.anyOf is invalid if empty, so remove it
           if (!schema.not.anyOf.length) {
             delete schema.not;
           }
