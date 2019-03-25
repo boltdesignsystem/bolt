@@ -1,32 +1,17 @@
-sudo: false
-
+sudo: required
 dist: trusty
-
 language: php
-
 php:
-  - 7.2
-
-addons:
-  chrome: stable
-
-cache:
-  yarn: true
-  directories:
-    - $HOME/.composer/cache
-
-git:
-  depth: 2
+  - 7.1
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
-  - composer global require hirak/prestissimo
   - nvm install # version lifted from `.nvmrc`
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
   - export PATH="$HOME/.yarn/bin:$PATH"
 
-# services:
-#   - docker
+services:
+  - docker
 
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
@@ -46,16 +31,30 @@ jobs:
       script: yarn run lint
       after_success: ./scripts/check-run-success.js 'Lint'
       after_failure: ./scripts/check-run-failure.js 'Lint'
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/vendor
+          - packages/core-php/vendor
+          - packages/twig-renderer/vendor
+          - packages/drupal-twig-extensions/vendor
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
-      install:
-        - rm -rf packages/uikit-workshop example-integrations
-        - travis_retry yarn run setup:quick
+      install: travis_retry yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Unit'
-      script: travis_retry yarn run test
+      script: yarn run test
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/vendor
+          - packages/core-php/vendor
+          - packages/twig-renderer/vendor
+          - packages/drupal-twig-extensions/vendor
 
     - stage: Prep
       name: 'Build + Deploy'
@@ -68,6 +67,14 @@ jobs:
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/vendor
+          - packages/core-php/vendor
+          - packages/twig-renderer/vendor
+          - packages/drupal-twig-extensions/vendor
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
@@ -83,10 +90,18 @@ jobs:
       after_success:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/vendor
+          - packages/core-php/vendor
+          - packages/twig-renderer/vendor
+          - packages/drupal-twig-extensions/vendor
 
     - stage: Test Live Site
       name: 'Ensure site is live'
-      install: travis_retry yarn run setup:quick
+      install: travis_retry yarn run setup
       before_script: ./scripts/check-run-in-progress.js 'Site is live'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
@@ -96,6 +111,14 @@ jobs:
         - ./scripts/check-run-success.js 'Site is live'
       after_failure:
         - ./scripts/check-run-failure.js 'Site is live'
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/vendor
+          - packages/core-php/vendor
+          - packages/twig-renderer/vendor
+          - packages/drupal-twig-extensions/vendor
 
     - stage: Test Live Site
       name: 'Example master only job'
