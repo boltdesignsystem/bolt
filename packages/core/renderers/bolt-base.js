@@ -77,7 +77,7 @@ export function BoltBase(Base = HTMLElement) {
 
       // Skip this if formatted schema data is already stored
       if (this.schema && !this.formattedSchema) {
-        this.formattedSchema = this.formatSchema();
+        this.formattedSchema = this.getformatSchema();
       }
 
       if (this.formattedSchema) {
@@ -92,7 +92,7 @@ export function BoltBase(Base = HTMLElement) {
       return validatedData;
     }
 
-    formatSchema() {
+    getformatSchema() {
       let schema = Object.assign({}, this.schema);
       let deprecatedProps = [];
 
