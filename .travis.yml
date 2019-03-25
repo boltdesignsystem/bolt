@@ -1,14 +1,25 @@
-sudo: required
-dist: trusty
-language: php
-php:
-  - 7.1
+# sudo: required
+# dist: trusty
+os: osx
+# language: php
+# php:
+#   - 7.1
 
 before_install:
+  - brew install nvm php72 composer imagemagick graphicsmagick yarn
+  - nvm install
+  # - brew install php72
+  # - brew install composer
+  - composer global require hirak/prestissimo
+  # - brew install imagemagick
+  # - brew install graphicsmagick
+  # - brew install yarn
+
+
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
-  - nvm install # version lifted from `.nvmrc`
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
-  - export PATH="$HOME/.yarn/bin:$PATH"
+  # - nvm install # version lifted from `.nvmrc`
+  # - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
+  # - export PATH="$HOME/.yarn/bin:$PATH"
 
 services:
   - docker
@@ -31,14 +42,14 @@ jobs:
       script: yarn run lint
       after_success: ./scripts/check-run-success.js 'Lint'
       after_failure: ./scripts/check-run-failure.js 'Lint'
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
+      # cache:
+      #   yarn: true
+      #   directories:
+      #     - node_modules
+      #     - docs-site/vendor
+      #     - packages/core-php/vendor
+      #     - packages/twig-renderer/vendor
+      #     - packages/drupal-twig-extensions/vendor
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
@@ -56,75 +67,75 @@ jobs:
           - packages/twig-renderer/vendor
           - packages/drupal-twig-extensions/vendor
 
-    - stage: Prep
-      name: 'Build + Deploy'
-      script:
-        # Clear incache file on normal Travis builds
-        - find . -name '.incache' -exec rm -rf {} +
-        - travis_retry yarn run setup
-        - yarn run build
-        - travis_wait 15 yarn run deploy
-        # need to reset git repo before `update-read-only-git-repos.sh`
-        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
-        - ./scripts/release/update-read-only-git-repos.sh
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
+    # - stage: Prep
+    #   name: 'Build + Deploy'
+    #   script:
+    #     # Clear incache file on normal Travis builds
+    #     - find . -name '.incache' -exec rm -rf {} +
+    #     - travis_retry yarn run setup
+    #     - yarn run build
+    #     - travis_wait 15 yarn run deploy
+    #     # need to reset git repo before `update-read-only-git-repos.sh`
+    #     - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+    #     - ./scripts/release/update-read-only-git-repos.sh
+    #   cache:
+    #     yarn: true
+    #     directories:
+    #       - node_modules
+    #       - docs-site/vendor
+    #       - packages/core-php/vendor
+    #       - packages/twig-renderer/vendor
+    #       - packages/drupal-twig-extensions/vendor
 
-    - stage: Test Live Site
-      name: 'Nightwatch End-to-End'
-      install: travis_retry yarn run setup
-      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
-      script:
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - echo "The Now URL is $NOW_URL"
-        - time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - yarn run test:e2e:full
-        - sleep 60
-        - ./scripts/report-nightwatch-results.js
-      after_success:
-        - ./scripts/deploy-branch-alias.js
-        - ./scripts/deploy-tagged-release.js
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
+    # - stage: Test Live Site
+    #   name: 'Nightwatch End-to-End'
+    #   install: travis_retry yarn run setup
+    #   before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
+    #   script:
+    #     - export NOW_URL=$(./scripts/get-latest-deploy.js)
+    #     - echo "The Now URL is $NOW_URL"
+    #     - time curl -sSf "$NOW_URL" > /dev/null # warming up site
+    #     - yarn run test:e2e:full
+    #     - sleep 60
+    #     - ./scripts/report-nightwatch-results.js
+    #   after_success:
+    #     - ./scripts/deploy-branch-alias.js
+    #     - ./scripts/deploy-tagged-release.js
+    #   cache:
+    #     yarn: true
+    #     directories:
+    #       - node_modules
+    #       - docs-site/vendor
+    #       - packages/core-php/vendor
+    #       - packages/twig-renderer/vendor
+    #       - packages/drupal-twig-extensions/vendor
 
-    - stage: Test Live Site
-      name: 'Ensure site is live'
-      install: travis_retry yarn run setup
-      before_script: ./scripts/check-run-in-progress.js 'Site is live'
-      script:
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
-        - time curl -sSf "$NOW_URL" > /dev/null
-      after_success:
-        - ./scripts/check-run-success.js 'Site is live'
-      after_failure:
-        - ./scripts/check-run-failure.js 'Site is live'
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
+    # - stage: Test Live Site
+    #   name: 'Ensure site is live'
+    #   install: travis_retry yarn run setup
+    #   before_script: ./scripts/check-run-in-progress.js 'Site is live'
+    #   script:
+    #     - export NOW_URL=$(./scripts/get-latest-deploy.js)
+    #     - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
+    #     - time curl -sSf "$NOW_URL" > /dev/null
+    #   after_success:
+    #     - ./scripts/check-run-success.js 'Site is live'
+    #   after_failure:
+    #     - ./scripts/check-run-failure.js 'Site is live'
+    #   cache:
+    #     yarn: true
+    #     directories:
+    #       - node_modules
+    #       - docs-site/vendor
+    #       - packages/core-php/vendor
+    #       - packages/twig-renderer/vendor
+    #       - packages/drupal-twig-extensions/vendor
 
-    - stage: Test Live Site
-      name: 'Example master only job'
-      if: branch = master
-      script:
-        - echo "This example only runs on master branch builds"
+    # - stage: Test Live Site
+    #   name: 'Example master only job'
+    #   if: branch = master
+    #   script:
+    #     - echo "This example only runs on master branch builds"
 
 notifications:
   email:
