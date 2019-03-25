@@ -6,11 +6,7 @@ import {
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../share.schema.yml'));
-const {
-  size,
-  opacity,
-  align,
-} = schema.properties;
+const { size, opacity, align } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -32,24 +28,28 @@ describe('<bolt-share> Component', async () => {
       sources: [
         {
           name: 'facebook',
-          url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse'
+          url:
+            'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
         },
         {
           name: 'twitter',
-          url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+          url:
+            'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
         },
         {
           name: 'linkedin',
-          url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
+          url:
+            'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
         },
         {
           name: 'email',
-          url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
-        }
+          url:
+            'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
+        },
       ],
       copy_to_clipboard: {
-        text_to_copy: 'https://boltdesignsystem.com'
-      }
+        text_to_copy: 'https://boltdesignsystem.com',
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -62,20 +62,24 @@ describe('<bolt-share> Component', async () => {
         sources: [
           {
             name: 'facebook',
-            url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse'
+            url:
+              'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
           },
           {
             name: 'twitter',
-            url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+            url:
+              'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
           },
           {
             name: 'linkedin',
-            url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
+            url:
+              'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
           },
           {
             name: 'email',
-            url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
-          }
+            url:
+              'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
+          },
         ],
       });
       expect(results.ok).toBe(true);
@@ -90,20 +94,24 @@ describe('<bolt-share> Component', async () => {
         sources: [
           {
             name: 'facebook',
-            url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse'
+            url:
+              'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
           },
           {
             name: 'twitter',
-            url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+            url:
+              'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
           },
           {
             name: 'linkedin',
-            url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
+            url:
+              'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
           },
           {
             name: 'email',
-            url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
-          }
+            url:
+              'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
+          },
         ],
       });
       expect(results.ok).toBe(true);
@@ -118,20 +126,24 @@ describe('<bolt-share> Component', async () => {
         sources: [
           {
             name: 'facebook',
-            url: 'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse'
+            url:
+              'https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse',
           },
           {
             name: 'twitter',
-            url: 'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!'
+            url:
+              'https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!',
           },
           {
             name: 'linkedin',
-            url: 'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com'
+            url:
+              'https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com',
           },
           {
             name: 'email',
-            url: 'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com'
-          }
+            url:
+              'mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com',
+          },
         ],
       });
       expect(results.ok).toBe(true);
