@@ -1,28 +1,20 @@
 # sudo: required
-# dist: trusty
-os: osx
-# language: php
-# php:
-#   - 7.1
+dist: trusty
+# os: osx
+language: php
+php:
+  - 7.2
+addons:
+  chrome: stable
 
 before_install:
-  - brew install nvm php72 composer imagemagick graphicsmagick yarn
-  - nvm install
-  # - brew install php72
-  # - brew install composer
-  - composer global require hirak/prestissimo
-  # - brew install imagemagick
-  # - brew install graphicsmagick
-  # - brew install yarn
-
-
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
-  # - nvm install # version lifted from `.nvmrc`
-  # - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
-  # - export PATH="$HOME/.yarn/bin:$PATH"
+  - nvm install # version lifted from `.nvmrc`
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.13.0
+  - export PATH="$HOME/.yarn/bin:$PATH"
 
-services:
-  - docker
+# services:
+#   - docker
 
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
@@ -35,13 +27,13 @@ stages:
 
 jobs:
   include:
-    - stage: Prep
-      name: 'Smoke Tests: Linting'
-      install: travis_retry yarn run setup:quick
-      before_script: ./scripts/check-run-queue.js 'Lint'
-      script: yarn run lint
-      after_success: ./scripts/check-run-success.js 'Lint'
-      after_failure: ./scripts/check-run-failure.js 'Lint'
+    # - stage: Prep
+    #   name: 'Smoke Tests: Linting'
+    #   install: travis_retry yarn run setup:quick
+    #   before_script: ./scripts/check-run-queue.js 'Lint'
+    #   script: yarn run lint
+    #   after_success: ./scripts/check-run-success.js 'Lint'
+    #   after_failure: ./scripts/check-run-failure.js 'Lint'
       # cache:
       #   yarn: true
       #   directories:
@@ -53,7 +45,9 @@ jobs:
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
-      install: travis_retry yarn run setup:quick
+      install:
+        # - rm -rf packages/uikit-workshop
+        - travis_retry yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Unit'
       script: yarn run test
       after_success: ./scripts/check-run-success.js 'Unit'
