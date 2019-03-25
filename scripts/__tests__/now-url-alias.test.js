@@ -6,17 +6,18 @@ describe('branch name for url aliases exists', () => {
     expect(branchName).toBeDefined();
   });
 
-  test('url-friendly branch name formatted correctly', async () => {
-    expect(branchName).toEqual(expect.not.stringContaining(' '));
-    expect(branchName).toEqual(expect.not.stringContaining('.'));
-    expect(branchName).toEqual(expect.not.stringContaining('--'));
+  test('url-friendly branch name URL is formatted correctly', async () => {
+    const result = normalizeUrlAlias(branchName);
+
+    expect(result).toEqual(expect.not.stringContaining(' '));
+    expect(result.replace('.boltdesignsystem.com', '')).toEqual(expect.not.stringContaining('.'));
+    expect(result).toEqual(expect.not.stringContaining('--'));
   });
 
   test('now.sh deploy branch alias name', async () => {
     const result = normalizeUrlAlias(branchName);
     const resultWithoutHttps = result.replace('https://', '');
 
-    expect(result).toContain('boltdesignsystem.com');
     expect(result).toContain('boltdesignsystem.com');
     expect(resultWithoutHttps.length <= 62).toEqual(true);
   });
