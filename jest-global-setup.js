@@ -16,6 +16,7 @@ const teardown = require('./jest-global-teardown.js');
 
 module.exports = async function globalSetup() {
   let config = await getConfig();
+  const localChromePath = await chromePath();
   const existingIconsDir =
     typeof config.iconDir !== 'undefined' ? config.iconDir : [];
 
