@@ -25,36 +25,62 @@ stages:
 jobs:
   include:
     - stage: Prep
-      name: 'Smoke Tests: Install, Lint, Unit'
-      before_script:
-        - phpenv config-rm xdebug.ini
-        - composer global require hirak/prestissimo
-        - yarn run setup:quick
-        - ./scripts/check-run-queue.js 'Lint'
-        - ./scripts/check-run-queue.js 'Unit'
-      script:
-        - ./test/lint.js
-        - ./test/unit.js
+      name: 'Smoke Tests: Linting'
+      install: travis_retry yarn run setup:quick
+      before_script: ./scripts/check-run-queue.js 'Lint'
+      script: yarn run lint
+      after_success: ./scripts/check-run-success.js 'Lint'
+      after_failure: ./scripts/check-run-failure.js 'Lint'
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/vendor
+          - packages/core-php/vendor
+          - packages/twig-renderer/vendor
+          - packages/drupal-twig-extensions/vendor
+
+    - stage: Prep
+      name: 'Smoke Tests: Unit Tests (Jest)'
+      install: travis_retry yarn run setup:quick
+      before_script: ./scripts/check-run-queue.js 'Unit'
+      script: yarn run test
+      after_success: ./scripts/check-run-success.js 'Unit'
+      after_failure: ./scripts/check-run-failure.js 'Unit'
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/vendor
+          - packages/core-php/vendor
+          - packages/twig-renderer/vendor
+          - packages/drupal-twig-extensions/vendor
 
     - stage: Prep
       name: 'Build + Deploy'
       script:
         # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
-        - yarn run setup
+        - travis_retry yarn run setup
         - yarn run build
-        - yarn run deploy
+        - travis_wait 15 yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/vendor
+          - packages/core-php/vendor
+          - packages/twig-renderer/vendor
+          - packages/drupal-twig-extensions/vendor
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
-      # addons:
-      #   sauce_connect: true
+      install: travis_retry yarn run setup
+      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
-        - yarn run setup
-        - ./scripts/check-run-in-progress.js 'Nightwatch'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
         - time curl -sSf "$NOW_URL" > /dev/null # warming up site
@@ -64,12 +90,20 @@ jobs:
       after_success:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
+      cache:
+        yarn: true
+        directories:
+          - node_modules
+          - docs-site/vendor
+          - packages/core-php/vendor
+          - packages/twig-renderer/vendor
+          - packages/drupal-twig-extensions/vendor
 
     - stage: Test Live Site
       name: 'Ensure site is live'
+      install: travis_retry yarn run setup
+      before_script: ./scripts/check-run-in-progress.js 'Site is live'
       script:
-        - yarn run setup
-        - ./scripts/check-run-in-progress.js 'Site is live'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
         - time curl -sSf "$NOW_URL" > /dev/null
@@ -81,6 +115,10 @@ jobs:
         yarn: true
         directories:
           - node_modules
+          - docs-site/vendor
+          - packages/core-php/vendor
+          - packages/twig-renderer/vendor
+          - packages/drupal-twig-extensions/vendor
 
     - stage: Test Live Site
       name: 'Example master only job'

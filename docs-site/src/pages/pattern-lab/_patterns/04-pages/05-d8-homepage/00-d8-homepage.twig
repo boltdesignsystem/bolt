@@ -69,7 +69,7 @@
 
 
 
-  {% embed "@bolt/band--feature.twig" with {
+  {% embed "@pl/_band--feature.twig" with {
     teaserPosition: "left",
     teaserWidth: "2/3",
     size: "medium",
@@ -110,10 +110,10 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "small",
   theme: "xdark",
-  fullBleed: true
+  full_bleed: true
 } only %}
   {% block band_content %}
 
@@ -149,7 +149,7 @@
 
 
 
-{% embed "@bolt/band--collection.twig" with {
+{% embed "@pl/_band--collection.twig" with {
   "theme": "light",
   "size": "medium",
   "contentItems": [
@@ -255,10 +255,10 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "xdark",
-  fullBleed: true
+  full_bleed: true
 } only %}
   {% block band_content %}
 
@@ -303,10 +303,10 @@
 
 
 
-{% embed "@bolt/band.twig" with {
+{% embed "@bolt-components-band/band.twig" with {
   size: "medium",
   theme: "dark",
-  fullBleed: true
+  full_bleed: true
 } only %}
   {% block band_content %}
     {% include "@bolt/action-blocks.twig" with {

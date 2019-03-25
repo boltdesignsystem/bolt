@@ -1,0 +1,61 @@
+{% set themes = get_data("@bolt/themes.schema.json") %}
+
+<h3>Add a js- target class for the button to perform something through javascript</h3>
+{% embed "@utils/theme-demo.twig" %}
+  {% block demo_content %}
+    {% include "@bolt-components-button/button.twig" with {
+      theme: "xdark",
+      text: "Toggle theme with javascript",
+      attributes: {
+        class: [
+          "js-button-theme-xdark"
+        ]
+      }
+    } %}
+  {% endblock %}
+{% endembed %}
+
+<script>
+  // Fired every time the custom element has rendered.
+  var buttonElement = document.querySelector('.js-button-theme-xdark');
+  var buttonEventAdded = false;
+  var alreadyExistingButtonEvent = false;
+  var clickEventAdded = false;
+  var innerButtonElement;
+
+  if (buttonElement._wasInitiallyRendered === true){
+    if (innerButtonElement && alreadyExistingButtonEvent){
+      console.log('was already rendered but an event already exists so using that.');
+    } else {
+      alreadyExistingButtonEvent = true;
+      console.log('The button has already been rendered BUT the initially targeted element does not currently exist (likely due to the component re-rendering). Removing old event listener + re-adding an event listener to account for that.');
+      buttonElement.removeEventListener('rendered', setupButtonClickEvent, false);
+      buttonElement.addEventListener('rendered', setupButtonClickEvent, true);
+    }
+  } else {
+    console.log('waiting for button to be initially rendered');
+    alreadyExistingButtonEvent = true;
+    buttonElement.addEventListener('rendered', setupButtonClickEvent);
+  }
+
+  function setupButtonClickEvent(){
+    console.log('handle button click event');
+    innerButtonElement = buttonElement.renderRoot.querySelector('button');
+
+    if (clickEventAdded === true){
+      clickEventAdded = false;
+      console.log('button click event already added -- removing old click event');
+      innerButtonElement.removeEventListener('click', buttonClicked, true);
+    } else {
+      console.log('button click event not yet added -- no need to remove old click event.');
+    }
+
+    clickEventAdded = true;
+    innerButtonElement.addEventListener('click', buttonClicked, true);
+  }
+
+  function buttonClicked(){
+    console.log('the button tag inside the rendered xdark bolt-button was clicked!');
+    document.body.classList.toggle('t-bolt-xdark');
+  }
+</script>

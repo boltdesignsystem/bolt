@@ -2,7 +2,7 @@
 
 require_once 'vendor/autoload.php';
 
-function addBoltExtensions(\Twig_Environment &$env, $config) {
+function addBoltExtensions(\Twig\Environment &$env, $config) {
   $env->addExtension(new \Bolt\TwigExtensions\BoltCore());
   $env->addExtension(new \Bolt\TwigExtensions\BoltExtras());
   $env->addExtension(new \Twig_Extension_Debug());

@@ -14,6 +14,7 @@ const config = {
   srcDir: './src/pages',
   buildDir: '../www/build',
   dataDir: '../www/build/data',
+  iconDir: [],
   wwwDir: '../www',
   startPath: '/',
   plConfigFile: './config/config.yml',
@@ -141,6 +142,11 @@ const config = {
     {
       from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),
+      flatten: true,
+    },
+    {
+      from: `src/assets/videos`,
+      to: path.join(__dirname, '../www/videos'),
       flatten: true,
     },
     {

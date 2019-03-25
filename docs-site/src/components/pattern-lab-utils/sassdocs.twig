@@ -171,16 +171,16 @@
         ]) %}
       {% endfor %}
 
-      {% embed "@bolt-components-dropdown/dropdown.twig" with {
-        title: label|capitalize
-      } %}
-        {% block content %}
-          {% include "@bolt-components-list/list.twig" with {
-            items: children,
-            spacing: small
-          } only %}
-        {% endblock %}
-      {% endembed %}
+      {% set content %}
+        {% include "@bolt-components-list/list.twig" with {
+          items: children,
+          spacing: small
+        } only %}
+      {% endset %}
+      {% include "@bolt-components-dropdown/dropdown.twig" with {
+        title: label|capitalize,
+        content: content
+      } only %}
     {% endfor %}
 
   {% endif %}
@@ -229,15 +229,15 @@
         ]) %}
       {% endfor %}
 
-      {% embed "@bolt-components-dropdown/dropdown.twig" with {
-        title: label|capitalize
-      } %}
-        {% block content %}
-          {% include "@bolt-components-block-list/block-list.twig" with {
-            "items": children
-          } %}
-        {% endblock %}
-      {% endembed %}
+      {% set content %}
+        {% include "@bolt-components-block-list/block-list.twig" with {
+          "items": children
+        } %}
+      {% endset %}
+      {% include "@bolt-components-dropdown/dropdown.twig" with {
+        title: label|capitalize,
+        content: content
+      } only %}
     {% endfor %}
 
   {% endif %}
