@@ -53,6 +53,7 @@ class BoltVideo extends withContext(withLitHtml()) {
     closeButtonText: props.string,
     shareDescription: props.string,
     loop: props.boolean,
+    muted: props.boolean,
     noControls: props.boolean,
     collapsed: props.boolean,
     autoplay: props.boolean,
@@ -705,6 +706,7 @@ class BoltVideo extends withContext(withLitHtml()) {
       noControls,
       autoplay,
       loop,
+      muted,
     } = this.validateProps(this.props);
 
     this.contexts.get(VideoContext).state = this.state;
@@ -725,6 +727,7 @@ class BoltVideo extends withContext(withLitHtml()) {
           id="${this.state.id}"
           class="${cx('video-js')}"
           controls="${ifDefined(!noControls ? true : undefined)}"
+          muted="${ifDefined(muted ? true : undefined)}"
           preload="none"
           poster="${ifDefined(this.props.poster.uri)}"
           autoplay="${ifDefined(autoplay ? true : undefined)}"
