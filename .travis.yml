@@ -58,14 +58,14 @@ jobs:
       script: yarn run test
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
+      # cache:
+      #   yarn: true
+      #   directories:
+      #     - node_modules
+      #     - docs-site/vendor
+      #     - packages/core-php/vendor
+      #     - packages/twig-renderer/vendor
+      #     - packages/drupal-twig-extensions/vendor
 
     # - stage: Prep
     #   name: 'Build + Deploy'
