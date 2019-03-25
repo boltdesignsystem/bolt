@@ -53,7 +53,7 @@ jobs:
         - rm -rf packages/uikit-workshop example-integrations
         - travis_retry yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Unit'
-      script: yarn run test
+      script: travis_retry yarn run test
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
 
