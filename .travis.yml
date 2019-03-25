@@ -49,9 +49,10 @@ jobs:
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
-        - yarn install --production
-        - yarn run setup:php:quick
-        # - rm -rf packages/uikit-workshop
+        - rm -rf packages/uikit-workshop docs-site example-integrations
+        - yarn
+        - cd packages/twig-renderer && composer install --prefer-dist
+        - cd packages/core-php && composer install --prefer-dist
         # - travis_retry yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Unit'
       script: yarn run test
