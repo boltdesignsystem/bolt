@@ -1,0 +1,116 @@
+$schema: http://json-schema.org/draft-04/schema#
+title: Modal
+type: object
+properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
+  cover:
+    type: string
+    description: Controls the area that the overlay and container would cover.
+    default: fullscreen
+    enum:
+      - fullscreen
+      - parent-band
+  overlay:
+    type: boolean
+    description: Controls the overlay that dims the content behind the modal.
+    properties:
+      color:
+        type: string
+        description: Controls the color of the overlay.
+        default: dark
+        enum:
+          - light
+          - dark
+      close_button:
+        type: boolean
+        description: Determines whether the overlay contains a close button for the modal.
+        default: false
+        enum:
+          - true
+          - false
+  container:
+    type: object
+    description: The container for content to be passed into the modal.
+    properties:
+      theme:
+        type: string
+        description: Controls the color theme of the modal container.
+        default: xlight
+        enum:
+          - none
+          - xlight
+          - light
+          - dark
+          - xdark
+      size:
+        type: string
+        description: Controls the width and height of the modal container. Full means the modal container will cover up all available screen space, overlay is not visible in this scenario. Auto means the width and height would be flexible based on content, please note the width in this option does not exceed 10 columns wide, overlay would be visible behind the modal container in this scenario.
+        default: auto
+        enum:
+          - auto
+          - full
+          - full-to-auto@xxsmall
+          - full-to-auto@xsmall
+          - full-to-auto@small
+      header:
+        type: array
+        description: Positioned to the upper section of the modal container. This section is optional.
+        properties:
+          content:
+            type:
+              - string
+              - array
+              - object
+            description: The header can contain 1 or more items, preferrably text and actions (links or buttons).
+          align:
+            type: string
+            description: Horizontal alignment of a single item.
+            enum:
+              - start
+              - center
+              - end
+      body:
+        type: object
+        description: Positioned to the middle section of the modal container. This contains the main content of the modal.
+        properties:
+          spacing:
+            type: string
+            description: Controls the spacing surrounding the content.
+            default: medium
+            enum:
+              - none
+              - small
+              - medium
+              - large
+          scrollable:
+            type: boolean
+            description: Determines whether the body section is scrollable or not.
+            default: false
+            enum:
+              - true
+              - false
+          content:
+            type:
+              - string
+              - array
+              - object
+            description: Main content of the modal.
+      footer:
+        type: array
+        description: Positioned to the lower section of the modal container. This section is optional.
+        properties:
+          content:
+            type:
+              - string
+              - array
+              - object
+            description: The footer can contain 1 or more items, preferrably actions (links or buttons).
+          align:
+            type: string
+            description: Horizontal alignment of a single item.
+            enum:
+              - start
+              - center
+              - end
