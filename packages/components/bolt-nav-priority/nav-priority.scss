@@ -6,6 +6,7 @@
 
 $bolt-navbar-vspacing-small: bolt-v-spacing(small);
 $bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-priority, and bolt-navlink components
+$bolt-navbar-border-radius: bolt-border-radius(small);
 
 bolt-nav-priority {
   display: block;
@@ -137,8 +138,8 @@ bolt-nav-priority {
   min-width: 12rem;
   max-width: 100vw;
   max-height: 0;
-  border-bottom-right-radius: $bolt-border-radius;
-  border-bottom-left-radius: $bolt-border-radius;
+  border-bottom-right-radius: $bolt-navbar-border-radius;
+  border-bottom-left-radius: $bolt-navbar-border-radius;
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
   background-color: bolt-theme(
     (
@@ -205,17 +206,16 @@ bolt-nav-priority {
   }
   position: relative;
   cursor: pointer;
-  border-radius: 3px;
-  border-radius: $bolt-border-radius;
+  border-radius: $bolt-navbar-border-radius;
   // Added border so that &:after,&:focus doesn't change the size of the band
-  // We should consider making this thin dotted style a mixin to share with nav-priority
+  // @todo: We should consider making this thin dotted style a mixin to share with nav-priority
   border-width: thin;
   border-style: solid;
   border-color: transparent;
   background-color: bolt-theme(secondary, 0.05);
   transition: background-color 0.3s ease;
   white-space: nowrap;
-  
+
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     border-left-color: bolt-theme(headline, 0.2);
     border-left-width: 1px;

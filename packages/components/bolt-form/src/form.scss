@@ -100,7 +100,7 @@ $bolt-input-border-color--focus: bolt-color(indigo, light); // TODO: [Mai] This 
 $bolt-input-border-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
 $bolt-input-border-width: $bolt-border-width;
 $bolt-input-border-style: $bolt-border-style;
-$bolt-input-border-radius: $bolt-border-radius;
+$bolt-input-border-radius: bolt-border-radius(small);
 $bolt-input-box-shadow: bolt-color(indigo, light);
 $bolt-input-shadow-level: 'level-20';
 $bolt-input-transition: $bolt-transition;
@@ -283,7 +283,7 @@ $bolt-input-transition: $bolt-transition;
 
 .c-bolt-inline-label--checkbox {
   &:before {
-    border-radius: 2px;
+    border-radius: bolt-border-radius(small);
   }
 
   &:after {
@@ -301,7 +301,7 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-inline-label--radio {
   &:before,
   &:after {
-    border-radius: 1em;
+    border-radius: bolt-border-radius(full);
   }
 
   &:after {

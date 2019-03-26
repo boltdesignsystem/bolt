@@ -15,7 +15,7 @@
 $bolt-video-js-button-text-color: bolt-color(indigo);
 $bolt-video-js-button-background-color: bolt-color(yellow);
 $bolt-video-js-button-transition: $bolt-transition;
-$bolt-video-js-button-border-radius: $bolt-border-radius;
+$bolt-video-js-button-border-radius: bolt-border-radius(small);
 $bolt-video-js-button-shadow-color: bolt-color(black);
 $bolt-video-js-button-shadow-level: 'level-20';
 $bolt-video-js-button-shadow-level-hover: 'level-40';
@@ -299,7 +299,7 @@ $bolt-video-js-button-shadow-level-hover: 'level-40';
     max-width: 100%;
     color: bolt-color(black);
     text-shadow: 0 0 0.25rem bolt-color(white);
-    border-radius: $bolt-border-radius;
+    border-radius: $bolt-video-js-button-border-radius;
     box-shadow: inset 0 0 2rem bolt-color(white), 0 0 0.25rem bolt-color(gray, light);
     background-color: rgba(bolt-color(white), 0.9);
 

@@ -8,6 +8,7 @@ $bolt-blockquote-footer-line-height: $bolt-line-height--tight;
 $bolt-blockquote-image-border-width: $bolt-border-width;
 $bolt-blockquote-image-border-style: $bolt-border-style;
 $bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
+$bolt-blockquote-image-border-radius: bolt-border-radius(full);
 $bolt-blockquote-image-size: 4rem;
 
 // Register Custom Block Element
@@ -97,7 +98,7 @@ $bolt-blockquote-image-size: 4rem;
   height: $bolt-blockquote-image-size;
   overflow: hidden;
   vertical-align: middle;
-  border-radius: 50%;
+  border-radius: $bolt-blockquote-image-border-radius;
   border-width: $bolt-blockquote-image-border-width;
   border-style: $bolt-blockquote-image-border-style;
   border-color: $bolt-blockquote-image-border-color;

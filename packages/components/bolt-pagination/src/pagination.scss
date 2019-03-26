@@ -6,7 +6,7 @@
 
 $bolt-pagination-transition: $bolt-transition;
 $bolt-pagination-item-size: bolt-spacing(medium);
-
+$bolt-pagination-border-radius: bolt-border-radius(full);
 
 
 // Register Custom Block Element
@@ -47,7 +47,7 @@ $bolt-pagination-item-size: bolt-spacing(medium);
   line-height: $bolt-pagination-item-size;
   text-align: center;
   text-decoration: none;
-  border-radius: $bolt-pagination-item-size;
+  border-radius: $bolt-pagination-border-radius;
   background-color: transparent;
   -webkit-backface-visibility: hidden; // Removes the 1px jump with opacity transition
   transition: opacity $bolt-pagination-transition;

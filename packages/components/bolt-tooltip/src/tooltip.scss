@@ -6,6 +6,7 @@
 $bolt-tooltip-bubble-triangle-width: 8px;
 $bolt-tooltip-bubble-border-color: bolt-color(gray, light);
 $bolt-tooltip-transition: $bolt-transition;
+$bolt-tooltip-border-radius: bolt-border-radius(small);
 
 @keyframes bounceDown {
    0% { transform: translate(-50%, -50%) scale(0); }
@@ -411,7 +412,7 @@ $bolt-tooltip-transition: $bolt-transition;
     position: absolute;
     top: 0; // For IE 11
     bottom: 0; // For IE 11
-    left: 50%; // For IE 11 
+    left: 50%; // For IE 11
     transform: translate3d(-50%, -200%, 0);
 
     .is-active & {
@@ -456,7 +457,7 @@ $bolt-tooltip-transition: $bolt-transition;
   position: relative;
   width: 300px;
   border: 1px solid $bolt-tooltip-bubble-border-color;
-  border-radius: $bolt-border-radius;
+  border-radius: $bolt-tooltip-border-radius;
   background-color: bolt-color(white);
 
   &:after,

@@ -13,10 +13,6 @@ $bolt-button-shadow: $bolt-shadow--small;
 $bolt-button-shadow--hover: $bolt-shadow--large;
 $bolt-button-border-width: $bolt-border-width;
 $bolt-button-border-style: $bolt-border-style;
-$bolt-button-border-radii: (
-  'regular': $bolt-border-radius,
-  'full': 50em,
-);
 $bolt-button-transition: $bolt-transition;
 $bolt-button-translate--hover: translate3d(0, -1px, 0);
 $bolt-button-translate--active: translate3d(0, 1px, 0);
@@ -26,10 +22,6 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 /**
  * Tools
  */
-
-@function bolt-button-border-radius($name) {
-  @return map-get($bolt-button-border-radii, $name);
-}
 
 // Lightweight style reset for button and input elements
 @mixin bolt-button-reset {
@@ -65,11 +57,12 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
-  border-radius: bolt-button-border-radius('regular');
   border-width: $bolt-button-border-width;
   border-style: $bolt-button-border-style;
 
   &:before {
+    @include bolt-shadow('level-10', true);
+
     content: '';
     display: block;
     opacity: 0.2;
@@ -80,8 +73,6 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     width: 100%;
     height: 100%;
     pointer-events: none;
-    border-radius: bolt-button-border-radius('regular');
-    @include bolt-shadow('level-10', true);
   }
 
   &:focus:not(:hover),

@@ -1,18 +1,11 @@
+@import '@bolt/core';
+
 /* ------------------------------------ *\
    Chips
 \* ------------------------------------ */
 
-// Sample Usage
-// <bolt-chip bolt-component="">
-//   <span class="c-bolt-chip">
-//     <span class="c-bolt-chip__item-text">This is a chip</span>
-//   </span>
-// </bolt-chip>
-
-@import '@bolt/core';
-
 // Chip Variables
-$bolt-chip-border-radius: 100em;
+$bolt-chip-border-radius: bolt-border-radius(full);
 $bolt-chip-color: bolt-theme(text);
 $bolt-chip-background-color: rgba(bolt-color(gray), 0.22);
 $bolt-chip-background-color--hover: rgba(bolt-color(gray), 0.30);
