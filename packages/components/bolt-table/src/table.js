@@ -66,22 +66,22 @@ class BoltTable extends withLitHtml() {
     }
   }
 
-  convertElements(element, object, parent = 'rows') {
+  convertElements(element, object, parent = 'body') {
     const boltedObject = object !== undefined ? object : {};
 
     element.map(element => {
       switch (element.tagName) {
         case 'thead':
-          this.createProp(boltedObject, 'header', []);
-          this.convertElements(element.children, boltedObject, 'header');
+          this.createProp(boltedObject, 'head', []);
+          this.convertElements(element.children, boltedObject, 'head');
           break;
         case 'tbody':
-          this.createProp(boltedObject, 'rows', []);
-          this.convertElements(element.children, boltedObject, 'rows');
+          this.createProp(boltedObject, 'body', []);
+          this.convertElements(element.children, boltedObject, 'body');
           break;
         case 'tfoot':
-          this.createProp(boltedObject, 'footer', []);
-          this.convertElements(element.children, boltedObject, 'footer');
+          this.createProp(boltedObject, 'foot', []);
+          this.convertElements(element.children, boltedObject, 'foot');
           break;
         case 'tr':
           const elements = element.children.map(child => {
@@ -171,10 +171,10 @@ class BoltTable extends withLitHtml() {
     //   }
     // }
 
-    if (boltTable.header) {
+    if (boltTable.head) {
       boltTableMarkup.push(html`
         <thead class="${headClasses}">
-          ${boltTable.header.map(
+          ${boltTable.head.map(
             row => html`
               ${setRowTag(row)}
             `,
@@ -183,10 +183,10 @@ class BoltTable extends withLitHtml() {
       `);
     }
 
-    if (boltTable.rows) {
+    if (boltTable.body) {
       boltTableMarkup.push(html`
         <tbody class="${bodyClasses}">
-          ${boltTable.rows.map(
+          ${boltTable.body.map(
             row => html`
               ${setRowTag(row)}
             `,
@@ -195,10 +195,10 @@ class BoltTable extends withLitHtml() {
       `);
     }
 
-    if (boltTable.footer) {
+    if (boltTable.foot) {
       boltTableMarkup.push(html`
         <tfoot class="${footClasses}">
-          ${boltTable.footer.map(
+          ${boltTable.foot.map(
             row => html`
               ${setRowTag(row)}
             `,
