@@ -28,12 +28,11 @@ class BoltTable extends withLitHtml() {
     },
   };
 
-  // constructor(self) {
-  //   self = super(self);
-  //   self.useShadow = hasNativeShadowDomSupport;
-  //   self.validate = ajv.compile(schema);
-  //   return self;
-  // }
+  constructor(self) {
+    self = super(self);
+    self.schema = schema;
+    return self;
+  }
 
   removeEmptyNodes(nodes) {
     return nodes.filter(node => {
@@ -108,16 +107,9 @@ class BoltTable extends withLitHtml() {
     return boltedObject;
   }
 
-  // setAttr(element, attribute, value, defaultValue) {
-  //   value === ''
-  //     ? element.setAttribute(attribute, defaultValue)
-  //     : element.setAttribute(attribute, value);
-  // }
-
   render() {
     const parseCode = this.removeWhitespace(parse(this.innerHTML));
     const { format, borderless, firstColFixedWidth } = this.props;
-    console.log(format);
     const tableClasses = cx('c-bolt-table', {
       [`c-bolt-table--format-${format}`]: format !== 'regular',
       [`c-bolt-table--borderless`]: borderless,
