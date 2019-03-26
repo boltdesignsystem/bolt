@@ -1,16 +1,3 @@
-{# Sample Usage
-  {% include "@bolt/action-block.twig" with {
-    text: "Title",
-    url: "http://google.com",
-    icon: {
-      name: "icon-name",
-      size: "large",
-      background: "circle"
-    }
-  } only %}
-#}
-
-
 {% set prefix = "c-bolt-" %}
 
 {% set attributes = create_attribute(attributes|default({})) %}

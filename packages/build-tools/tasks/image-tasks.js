@@ -76,7 +76,8 @@ let boltImageSizes = [
 // don't resize images to all available options on feature-specific branches to speed up build times
 if (
   branchName.includes('feature') === true &&
-  process.env.NODE_ENV !== 'test'
+  process.env.NODE_ENV !== 'test' &&
+  TRAVIS === true
 ) {
   boltImageSizes = [320, 640, 1024, 1920];
 }
@@ -116,7 +117,7 @@ async function processImage(file, set) {
 
   // We add `null` to beginning b/c we want the original file too
   // Filter the list to not include sizes bigger than our file
-  const sizes = [null, ...boltImageSizes].filter(size => width > size);
+  const sizes = [null, ...boltImageSizes].filter(size => width >= size);
 
   // looping through all sizes and resizing
   return Promise.all(
