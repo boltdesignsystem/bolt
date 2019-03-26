@@ -147,29 +147,29 @@ class BoltTable extends withLitHtml() {
       `;
     }
 
-    function setCellTag(item) {
-      if (item.tagName === 'th') {
+    function setCellTag(cell) {
+      if (cell.tagName === 'th') {
         return html`
           <th class="${cellClasses}">
-            ${item.text}
+            ${cell.text}
           </th>
         `;
       } else {
         return html`
           <td class="${cellClasses}">
-            ${item.text}
+            ${cell.text}
           </td>
         `;
       }
     }
 
-    function setAttributes(element, attributes) {
-      if (attributes.length > 0) {
-        return attributes.map(attribute =>
-          element.setAttribute(attribute.key, attribute.value),
-        );
-      }
-    }
+    // function setAttributes(element, attributes) {
+    //   if (attributes.length > 0) {
+    //     return attributes.map(attribute =>
+    //       element.setAttribute(attribute.key, attribute.value),
+    //     );
+    //   }
+    // }
 
     if (boltTable.header) {
       boltTableMarkup.push(html`
