@@ -134,7 +134,7 @@ class BoltTable extends withLitHtml() {
 
     const boltTable = this.convertElements(parseCode);
 
-    function setRowTag(item) {
+    function setCellTag(item) {
       if (item.tagName === 'th') {
         return html`
           <th class="${cellClasses}">
@@ -167,7 +167,7 @@ class BoltTable extends withLitHtml() {
                 ${row.map(
                   item =>
                     html`
-                      ${setRowTag(item)}
+                      ${setCellTag(item)}
                     `,
                 )}
               </tr>
@@ -186,7 +186,7 @@ class BoltTable extends withLitHtml() {
                 ${row.map(
                   item =>
                     html`
-                      ${setRowTag(item)}
+                      ${setCellTag(item)}
                     `,
                 )}
               </tr>
@@ -205,7 +205,7 @@ class BoltTable extends withLitHtml() {
                 ${row.map(
                   item =>
                     html`
-                      ${setRowTag(item)}
+                      ${setCellTag(item)}
                     `,
                 )}
               </tr>
