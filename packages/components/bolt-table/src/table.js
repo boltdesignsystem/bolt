@@ -177,25 +177,27 @@ class BoltTable extends withLitHtml() {
           'c-bolt-table__cell',
           'c-bolt-table__cell--header',
         );
-        const thScope = section === 'head' ? 'col' : 'row';
+
         let scopeAttr;
 
-        switch (section) {
-          case 'head':
-            scopeAttr = 'col';
-            break;
-          case 'body':
-            scopeAttr = 'row';
-            break;
-          default:
-            scopeAttr = '';
-            break;
+        if (section === 'head') {
+          scopeAttr = 'col';
+        } else if (section === 'body') {
+          scopeAttr = 'row';
         }
 
         return html`
-          <th class=${cellClasses} .scope=${scopeAttr}>
-            ${cell.text}
-          </th>
+          ${scopeAttr !== undefined
+            ? html`
+                <th class=${cellClasses} scope=${scopeAttr}>
+                  ${cell.text}
+                </th>
+              `
+            : html`
+                <th className=${cellClasses}>
+                  ${cell.text}
+                </th>
+              `}
         `;
       } else {
         const cellClasses = cx(
@@ -210,14 +212,6 @@ class BoltTable extends withLitHtml() {
         `;
       }
     }
-
-    // function setAttributes(element, attributes) {
-    //   if (attributes.length > 0) {
-    //     return attributes.map(attribute =>
-    //       element.setAttribute(attribute.key, attribute.value),
-    //     );
-    //   }
-    // }
 
     Object.keys(boltTable).map(key => {
       boltTableMarkup.push(html`
