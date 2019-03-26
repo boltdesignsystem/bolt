@@ -2,6 +2,11 @@ import { render } from '@bolt/twig-renderer';
 
 const timeout = 60000;
 
+const imageVrtConfig = {
+  failureThreshold: '0.02',
+  failureThresholdType: 'percent',
+};
+
 describe('<bolt-ratio> Component', () => {
   let page;
 
@@ -39,10 +44,7 @@ describe('<bolt-ratio> Component', () => {
     expect(renderedRatioHTML).toMatchSnapshot();
 
     const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(image).toMatchImageSnapshot(imageVrtConfig);
 
     const renderedRatioStyles = await page.evaluate(() => {
       const ratio = document.querySelector('bolt-ratio');
@@ -78,11 +80,7 @@ describe('<bolt-ratio> Component', () => {
 
     const image = await page.screenshot();
 
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
-
+    expect(image).toMatchImageSnapshot(imageVrtConfig);
     expect(renderedRatioHTML).toMatchSnapshot();
   });
 
@@ -103,10 +101,7 @@ describe('<bolt-ratio> Component', () => {
     }, html);
 
     const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(image).toMatchImageSnapshot(imageVrtConfig);
 
     const renderedRatioStyles = await page.evaluate(() => {
       const ratio = document.querySelector('bolt-ratio');
@@ -130,10 +125,7 @@ describe('<bolt-ratio> Component', () => {
     expect(renderedRatioHTML).toMatchSnapshot();
 
     const image = await page.screenshot();
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(image).toMatchImageSnapshot(imageVrtConfig);
 
     const renderedRatioStyles = await page.evaluate(() => {
       const ratio = document.querySelector('bolt-ratio');

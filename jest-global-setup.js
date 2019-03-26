@@ -7,6 +7,7 @@ const os = require('os');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
+const chromePath = require('@moonandyou/chrome-path');
 const { buildPrep } = require('./packages/build-tools/tasks/task-collections');
 const imageTasks = require('./packages/build-tools/tasks/image-tasks');
 const iconTasks = require('./packages/build-tools/tasks/icon-tasks');
@@ -15,6 +16,7 @@ const teardown = require('./jest-global-teardown.js');
 
 module.exports = async function globalSetup() {
   let config = await getConfig();
+  const localChromePath = await chromePath();
   const existingIconsDir =
     typeof config.iconDir !== 'undefined' ? config.iconDir : [];
 
@@ -31,9 +33,13 @@ module.exports = async function globalSetup() {
     command: `node packages/servers/testing-server`,
     launchTimeout: 50000,
     port: 4444,
+    usedPortAction: 'kill',
   });
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    executablePath: localChromePath['google-chrome'],
+  });
   // store the browser instance so we can teardown it later
   // this global is only available in the teardown but not in TestEnvironments
   global.__BROWSER_GLOBAL__ = browser;
