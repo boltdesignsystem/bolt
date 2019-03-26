@@ -134,6 +134,41 @@ class BoltTable extends withLitHtml() {
 
     const boltTable = this.convertElements(parseCode);
 
+    function setSectionTag(tag) {
+      switch (tag) {
+        case 'head':
+          return html`
+            <thead class="${headClasses}">
+              ${boltTable.head.map(
+                row => html`
+                  ${setRowTag(row)}
+                `,
+              )}
+            </thead>
+          `;
+        case 'foot':
+          return html`
+            <tfoot class="${footClasses}">
+              ${boltTable.foot.map(
+                row => html`
+                  ${setRowTag(row)}
+                `,
+              )}
+            </tfoot>
+          `;
+        default:
+          return html`
+            <tbody class="${bodyClasses}">
+              ${boltTable.body.map(
+                row => html`
+                  ${setRowTag(row)}
+                `,
+              )}
+            </tbody>
+          `;
+      }
+    }
+
     function setRowTag(row) {
       return html`
         <tr class="${rowClasses}">
@@ -173,37 +208,19 @@ class BoltTable extends withLitHtml() {
 
     if (boltTable.head) {
       boltTableMarkup.push(html`
-        <thead class="${headClasses}">
-          ${boltTable.head.map(
-            row => html`
-              ${setRowTag(row)}
-            `,
-          )}
-        </thead>
+        ${setSectionTag('head')}
       `);
     }
 
     if (boltTable.body) {
       boltTableMarkup.push(html`
-        <tbody class="${bodyClasses}">
-          ${boltTable.body.map(
-            row => html`
-              ${setRowTag(row)}
-            `,
-          )}
-        </tbody>
+        ${setSectionTag()}
       `);
     }
 
     if (boltTable.foot) {
       boltTableMarkup.push(html`
-        <tfoot class="${footClasses}">
-          ${boltTable.foot.map(
-            row => html`
-              ${setRowTag(row)}
-            `,
-          )}
-        </tfoot>
+        ${setSectionTag('foot')}
       `);
     }
 
