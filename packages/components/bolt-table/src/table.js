@@ -130,8 +130,6 @@ class BoltTable extends withLitHtml() {
     const cellClasses = cx('c-bolt-table__cell');
     let boltTableMarkup = [];
 
-    this.setAttribute('format', format);
-
     const boltTable = this.convertElements(parseCode);
 
     function setSectionTag(tag) {
@@ -139,7 +137,7 @@ class BoltTable extends withLitHtml() {
         case 'head':
           return html`
             <thead class="${headClasses}">
-              ${boltTable.head.map(
+              ${boltTable[tag].map(
                 row => html`
                   ${setRowTag(row)}
                 `,
@@ -149,7 +147,7 @@ class BoltTable extends withLitHtml() {
         case 'foot':
           return html`
             <tfoot class="${footClasses}">
-              ${boltTable.foot.map(
+              ${boltTable[tag].map(
                 row => html`
                   ${setRowTag(row)}
                 `,
@@ -159,7 +157,7 @@ class BoltTable extends withLitHtml() {
         default:
           return html`
             <tbody class="${bodyClasses}">
-              ${boltTable.body.map(
+              ${boltTable[tag].map(
                 row => html`
                   ${setRowTag(row)}
                 `,
@@ -206,23 +204,11 @@ class BoltTable extends withLitHtml() {
     //   }
     // }
 
-    if (boltTable.head) {
+    Object.keys(boltTable).map(key => {
       boltTableMarkup.push(html`
-        ${setSectionTag('head')}
+        ${setSectionTag(key)}
       `);
-    }
-
-    if (boltTable.body) {
-      boltTableMarkup.push(html`
-        ${setSectionTag()}
-      `);
-    }
-
-    if (boltTable.foot) {
-      boltTableMarkup.push(html`
-        ${setSectionTag('foot')}
-      `);
-    }
+    });
 
     console.log('BT:', boltTable);
     console.log('BTM:', boltTableMarkup);
