@@ -119,7 +119,6 @@ class BoltTable extends withLitHtml() {
     const headClasses = cx('c-bolt-table__head');
     const footClasses = cx('c-bolt-table__foot');
     const rowClasses = cx('c-bolt-table__row');
-    const cellClasses = cx('c-bolt-table__cell');
     let boltTableMarkup = [];
 
     const boltTable = this.convertElements(parseCode);
@@ -128,30 +127,30 @@ class BoltTable extends withLitHtml() {
       switch (tag) {
         case 'head':
           return html`
-            <thead class="${headClasses}">
+            <thead class=${headClasses}>
               ${boltTable[tag].map(
                 row => html`
-                  ${setRowTag(row)}
+                  ${setRowTag(row, tag)}
                 `,
               )}
             </thead>
           `;
         case 'foot':
           return html`
-            <tfoot class="${footClasses}">
+            <tfoot class=${footClasses}>
               ${boltTable[tag].map(
                 row => html`
-                  ${setRowTag(row)}
+                  ${setRowTag(row, tag)}
                 `,
               )}
             </tfoot>
           `;
         default:
           return html`
-            <tbody class="${bodyClasses}">
+            <tbody class=${bodyClasses}>
               ${boltTable[tag].map(
                 row => html`
-                  ${setRowTag(row)}
+                  ${setRowTag(row, tag)}
                 `,
               )}
             </tbody>
@@ -159,29 +158,53 @@ class BoltTable extends withLitHtml() {
       }
     }
 
-    function setRowTag(row) {
+    function setRowTag(row, section) {
       return html`
-        <tr class="${rowClasses}">
+        <tr class=${rowClasses}>
           ${row.map(
             item =>
               html`
-                ${setCellTag(item)}
+                ${setCellTag(item, section)}
               `,
           )}
         </tr>
       `;
     }
 
-    function setCellTag(cell) {
+    function setCellTag(cell, section) {
       if (cell.tagName === 'th') {
+        const cellClasses = cx(
+          'c-bolt-table__cell',
+          'c-bolt-table__cell--header',
+        );
+        const thScope = section === 'head' ? 'col' : 'row';
+        let scopeAttr;
+
+        switch (section) {
+          case 'head':
+            scopeAttr = 'col';
+            break;
+          case 'body':
+            scopeAttr = 'row';
+            break;
+          default:
+            scopeAttr = '';
+            break;
+        }
+
         return html`
-          <th class="${cellClasses}">
+          <th class=${cellClasses} .scope=${scopeAttr}>
             ${cell.text}
           </th>
         `;
       } else {
+        const cellClasses = cx(
+          'c-bolt-table__cell',
+          'c-bolt-table__cell--data',
+        );
+
         return html`
-          <td class="${cellClasses}">
+          <td class=${cellClasses}>
             ${cell.text}
           </td>
         `;
@@ -207,7 +230,7 @@ class BoltTable extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <table class="${tableClasses}">
+      <table class=${tableClasses}>
         ${boltTableMarkup}
       </table>
     `;
