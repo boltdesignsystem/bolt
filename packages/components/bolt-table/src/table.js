@@ -134,6 +134,19 @@ class BoltTable extends withLitHtml() {
 
     const boltTable = this.convertElements(parseCode);
 
+    function setRowTag(row) {
+      return html`
+        <tr class="${rowClasses}">
+          ${row.map(
+            item =>
+              html`
+                ${setCellTag(item)}
+              `,
+          )}
+        </tr>
+      `;
+    }
+
     function setCellTag(item) {
       if (item.tagName === 'th') {
         return html`
@@ -163,14 +176,7 @@ class BoltTable extends withLitHtml() {
         <thead class="${headClasses}">
           ${boltTable.header.map(
             row => html`
-              <tr class="${rowClasses}">
-                ${row.map(
-                  item =>
-                    html`
-                      ${setCellTag(item)}
-                    `,
-                )}
-              </tr>
+              ${setRowTag(row)}
             `,
           )}
         </thead>
@@ -182,14 +188,7 @@ class BoltTable extends withLitHtml() {
         <tbody class="${bodyClasses}">
           ${boltTable.rows.map(
             row => html`
-              <tr class="${rowClasses}">
-                ${row.map(
-                  item =>
-                    html`
-                      ${setCellTag(item)}
-                    `,
-                )}
-              </tr>
+              ${setRowTag(row)}
             `,
           )}
         </tbody>
@@ -201,14 +200,7 @@ class BoltTable extends withLitHtml() {
         <tfoot class="${footClasses}">
           ${boltTable.footer.map(
             row => html`
-              <tr class="${rowClasses}">
-                ${row.map(
-                  item =>
-                    html`
-                      ${setCellTag(item)}
-                    `,
-                )}
-              </tr>
+              ${setRowTag(row)}
             `,
           )}
         </tfoot>
