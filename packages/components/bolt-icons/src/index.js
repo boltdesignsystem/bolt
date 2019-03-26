@@ -113,4 +113,5 @@ export * from './icons/vision';
 export * from './icons/warning';
 export * from './icons/watch';
 export * from './icons/workforce-intelligence';
+export * from './icons/yeti';
 export * from './icons/youtube-solid';
