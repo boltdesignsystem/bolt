@@ -1,6 +1,6 @@
 import { props, define } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import { parse } from 'himalaya';
+import { parse, stringify } from 'himalaya';
 
 import classNames from 'classnames/bind';
 
@@ -83,19 +83,20 @@ class BoltTable extends withLitHtml() {
           this.convertElements(element.children, boltedObject, 'foot');
           break;
         case 'tr':
-          const elements = element.children.map(child => {
-            const { type, children, ...partialObject } = child;
+          const elements = element.children.map(child => child);
+          // {
+          // const { type, children, ...partialObject } = child;
 
-            const correctText =
-              child.children[0] !== undefined ? child.children[0].content : '';
-
-            const updatedChild = {
-              text: correctText,
-              ...partialObject,
-            };
-
-            return updatedChild;
-          });
+          //   const correctText =
+          //     child.children[0] !== undefined ? child.children[0].content : '';
+          //
+          //   const updatedChild = {
+          //     text: correctText,
+          //     ...partialObject,
+          //   };
+          //
+          //   return updatedChild;
+          // });
 
           boltedObject[`${parent}`].push(elements);
           break;
@@ -190,12 +191,12 @@ class BoltTable extends withLitHtml() {
           ${scopeAttr !== undefined
             ? html`
                 <th class=${cellClasses} scope=${scopeAttr}>
-                  ${cell.text}
+                  ${renderCell(cell)}
                 </th>
               `
             : html`
                 <th className=${cellClasses}>
-                  ${cell.text}
+                  ${renderCell(cell)}
                 </th>
               `}
         `;
@@ -207,10 +208,19 @@ class BoltTable extends withLitHtml() {
 
         return html`
           <td class=${cellClasses}>
-            ${cell.text}
+            ${renderCell(cell)}
           </td>
         `;
       }
+    }
+
+    function renderCell(cell) {
+      const content = stringify(cell.children);
+
+      console.log('CONTENT', content);
+      return html`
+        ${unescape(content)}
+      `;
     }
 
     Object.keys(boltTable).map(key => {
