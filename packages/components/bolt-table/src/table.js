@@ -1,5 +1,6 @@
 import { props, define } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
 import { parse, stringify } from 'himalaya';
 
 import classNames from 'classnames/bind';
@@ -84,19 +85,6 @@ class BoltTable extends withLitHtml() {
           break;
         case 'tr':
           const elements = element.children.map(child => child);
-          // {
-          // const { type, children, ...partialObject } = child;
-
-          //   const correctText =
-          //     child.children[0] !== undefined ? child.children[0].content : '';
-          //
-          //   const updatedChild = {
-          //     text: correctText,
-          //     ...partialObject,
-          //   };
-          //
-          //   return updatedChild;
-          // });
 
           boltedObject[`${parent}`].push(elements);
           break;
@@ -214,12 +202,16 @@ class BoltTable extends withLitHtml() {
       }
     }
 
+    function setAttr(attributesArray) {
+
+    }
+
     function renderCell(cell) {
       const content = stringify(cell.children);
 
-      console.log('CONTENT', content);
+      // console.log('CONTENT', content);
       return html`
-        ${unescape(content)}
+        ${unsafeHTML(content)}
       `;
     }
 
