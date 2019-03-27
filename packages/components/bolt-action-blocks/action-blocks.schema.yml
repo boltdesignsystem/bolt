@@ -8,10 +8,24 @@ properties:
   maxItemsPerRow:
     type: number
     description: Number of items to place in a row before beginning a new row.
-    minimum: 2
-    maximum: 12
-    default: 3
-    emun:
+    default: 6
+    enum:
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+  max_items_per_row:
+    type: number
+    description: The max amount of items (action blocks) to be displayed in one row.
+    default: 6
+    enum:
       - 2
       - 3
       - 4
@@ -31,10 +45,25 @@ properties:
       - top
       - center
       - bottom
+  valign:
+    type: string
+    description: Vertical alignment of the content inside each action block.
+    default: start
+    enum:
+      - start
+      - center
+      - end
   border:
     type: boolean
     description: Display a border around the action blocks.
     default: true
+    enum:
+      - true
+      - false
+  borderless:
+    type: boolean
+    description: Removes the border in between each action block.
+    default: false
     enum:
       - true
       - false
