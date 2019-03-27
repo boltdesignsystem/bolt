@@ -18,7 +18,7 @@ async function renderTwigString(template, data) {
 
 const timeout = 60000;
 
-describe('<bolt-action-blocks> Component', async () => {
+describe('<bolt-action-blocks> Component', () => {
   afterAll(async () => {
     await stopTwigRenderer();
   }, timeout);
