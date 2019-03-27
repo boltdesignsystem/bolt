@@ -20,7 +20,7 @@ async function renderTwigString(template, data) {
 
 const timeout = 60000;
 
-describe('modal', async () => {
+describe.skip('modal', async () => {
   let page;
 
   afterAll(async () => {
