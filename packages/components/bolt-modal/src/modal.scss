@@ -47,30 +47,28 @@ dialog[open] {
  * Styling to make the dialog look like a dialog
  * -------------------------------------------------------------------------- */
 
-.c-bolt-modal__overlay {
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.66);
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
+// .c-bolt-modal__overlay {
+//   position: fixed;
+//   top: 0;
+//   z-index: 2;
+//   background-color: rgba(0, 0, 0, 0.66);
+//   left: 0;
+//   bottom: 0;
+//   right: 0;
+// }
 
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.66);
-}
+// dialog::backdrop {
+//   background-color: rgba(0, 0, 0, 0.66);
+// }
 
 .c-bolt-modal__content {
-  background-color: rgb(255, 255, 255);
-  z-index: 3;
   position: fixed;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  z-index: 3;
   margin: 0;
+  background-color: rgb(255, 255, 255);
 }
 
 /* -------------------------------------------------------------------------- *\
@@ -78,13 +76,19 @@ dialog::backdrop {
  * -------------------------------------------------------------------------- */
 
 @keyframes fade-in {
-  from { opacity: 0;  }
-  to { opacity: 1;  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes appear {
-  from { transform: translate(-50%, -40%); opacity: 0; }
-  to { transform: translate(-50%, -50%); opacity: 1; }
+  from {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .c-bolt-modal:not([aria-hidden='true']) > .c-bolt-modal__overlay {
@@ -96,9 +100,9 @@ dialog::backdrop {
 }
 
 .c-bolt-modal__content {
-  padding: 1em;
-  max-width: 90%;
   width: 600px;
+  max-width: 90%;
+  padding: 1em;
   border-radius: 2px;
 }
 
@@ -118,21 +122,21 @@ dialog::backdrop {
 //   font-size: 1.25em;
 // }
 
-.c-bolt-modal__close {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-  border: 0;
-  padding: 0;
-  background-color: transparent;
-  font-weight: bold;
-  font-size: 1.25em;
-  width: 1.2em;
-  height: 1.2em;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.15s;
-}
+// .c-bolt-modal__close {
+//   position: absolute;
+//   top: 0.5em;
+//   right: 0.5em;
+//   border: 0;
+//   padding: 0;
+//   background-color: transparent;
+//   font-weight: bold;
+//   font-size: 1.25em;
+//   width: 1.2em;
+//   height: 1.2em;
+//   text-align: center;
+//   cursor: pointer;
+//   transition: 0.15s;
+// }
 
 @media screen and (min-width: 700px) {
   .c-bolt-modal__close {
