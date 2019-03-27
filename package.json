@@ -20,6 +20,8 @@
     "pattern lab"
   ],
   "scripts": {
+    "create:component": "yo ./packages/generator-bolt/generators/component/index.js",
+    "cc": "yarn create:component",
     "start": "cd docs-site && yarn run start",
     "build": "cd docs-site && yarn run build:prod",
     "setup": "yarn && yarn run setup:php",
@@ -131,6 +133,7 @@
       "docs-site/src/components/*",
       "packages/uikit-workshop",
       "packages/build-tools",
+      "packages/generator-bolt",
       "packages/api",
       "packages/build-tools/plugins/*",
       "packages/components/*",

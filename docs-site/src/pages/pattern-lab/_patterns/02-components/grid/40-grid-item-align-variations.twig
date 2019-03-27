@@ -1,0 +1,96 @@
+<h3>Horizontal item alignment</h3>
+<p>The alignment must be set manually by using column start and column span, that way the user can position the item exactly as intended with the flexibility doing more than the common start, center, and end alignments.</p>
+
+
+{% set item_start %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Column start at 1 and span 4",
+  } only %}
+{% endset %}
+{% set item_center %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Column start at 5 and span 4",
+  } only %}
+{% endset %}
+{% set item_end %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Column start at 9 and span 4",
+  } only %}
+{% endset %}
+
+<h3>Standard alignments</h3>
+<p>To align an item to the start, set column start to 1.</p>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1",
+        column_span: "4",
+        content: item_start,
+      },
+    ]
+  } only %}
+</div>
+<p>To align an item to the center, set column start by using this formula: <strong>(12 - column_span) / 2 + 1</strong>.</p>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "5",
+        column_span: "4",
+        content: item_center,
+      },
+    ]
+  } only %}
+</div>
+<p>To align an item to the end, set column start by using this formula: <strong>(12 - column_span) + 1</strong>.</p>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "9",
+        column_span: "4",
+        content: item_end,
+      },
+    ]
+  } only %}
+</div>
+
+
+{% set item_off_center %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Column start at 4 and span 8",
+  } only %}
+{% endset %}
+
+{% set item_off_by_one %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Column start at 2 and span 2",
+  } only %}
+{% endset %}
+
+<h3>Advanced alignments</h3>
+<p>Offset by 1 column from the center.</p>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "4",
+        column_span: "8",
+        content: item_off_center,
+      },
+    ]
+  } only %}
+</div>
+<p>Offset by 1 column from the start.</p>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "2",
+        column_span: "2",
+        content: item_off_by_one,
+      },
+    ]
+  } only %}
+</div>
