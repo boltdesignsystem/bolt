@@ -12,32 +12,32 @@
         {
           contentItems: [
             {
-              "pattern": "eyebrow",
-              "text": "Customer Retention",
-              "icon": {
+              pattern: "eyebrow",
+              text: "Customer Retention",
+              icon: {
                 name: "product"
               }
             },
             {
-              "pattern": "headline",
-              "text": "Personalized. Not Creepy.",
-              "size": "large",
-              "url": "https://www.google.com"
+              pattern: "headline",
+              text: "Personalized. Not Creepy.",
+              size: "large",
+              url: "https://www.google.com"
             }
           ]
         },
         {
           contentItems: [
             {
-              "pattern": "eyebrow",
-              "text": "Sales Effectiveness"
+              pattern: "eyebrow",
+              text: "Sales Effectiveness"
             },
             {
-              "pattern": "headline",
-              "text": "Create Sales Superstars",
-              "size": "large",
-              "icon": {
-                "name": "chevron-right"
+              pattern: "headline",
+              text: "Create Sales Superstars",
+              size: "large",
+              icon: {
+                name: "chevron-right"
               }
             }
           ]
@@ -45,15 +45,15 @@
         {
           contentItems: [
             {
-              "pattern": "eyebrow",
-              "text": "Operations &amp; IT"
+              pattern: "eyebrow",
+              text: "Operations &amp; IT"
             },
             {
-              "pattern": "headline",
-              "text": "Stop Coding. Start Designing.",
-              "size": "large",
-              "icon": {
-                "name": "chevron-right"
+              pattern: "headline",
+              text: "Stop Coding. Start Designing.",
+              size: "large",
+              icon: {
+                name: "chevron-right"
               }
             }
           ]
@@ -150,90 +150,90 @@
 
 
 {% embed "@pl/_band--collection.twig" with {
-  "theme": "light",
-  "size": "medium",
-  "contentItems": [
+  theme: "light",
+  size: "medium",
+  contentItems: [
     {
-      "pattern": "card",
-      "contentItems": [
+      pattern: "card",
+      contentItems: [
         {
-          "pattern": "image",
-          "src": "/images/placeholders/1200x660.jpg"
+          pattern: "image",
+          src: "/images/placeholders/1200x660.jpg"
         },
         {
-          "pattern": "headline",
-          "text": "2017 Forrester Wave Report",
-          "size": "large",
-          "tag": "h3"
+          pattern: "headline",
+          text: "2017 Forrester Wave Report",
+          size: "large",
+          tag: "h3"
         },
         {
-          "pattern": "text",
-          "text": "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+          pattern: "text",
+          text: "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
         },
         {
-          "pattern": "button",
-          "width": "full",
-          "text": "Get the report",
-          "style": "text"
+          pattern: "button",
+          width: "full",
+          text: "Get the report",
+          style: "text"
         }
       ]
     },
     {
-      "pattern": "card",
-      "image": {
-        "src": "/images/content/promos/promo-16x9-anthem.jpg"
+      pattern: "card",
+      image: {
+        src: "/images/content/promos/promo-16x9-anthem.jpg"
       },
-      "teaser": {
-        "eyebrow": {
+      teaser: {
+        eyebrow: {
           text: "Article"
         },
-        "headlines": [
+        headlines: [
           {
-            "type": "headline",
-            "text": "Headline #2",
-            "size": "large"
+            type: "headline",
+            text: "Headline #2",
+            size: "large"
           }
         ],
-        "content": "Simplify and automate to reduce costs and improve agility.",
-        "buttons": [
+        content: "Simplify and automate to reduce costs and improve agility.",
+        buttons: [
           {
-            "text": "Learn More",
-            "style": "secondary",
-            "url": "www.google.com/pega7",
-            "width": "full"
+            text: "Learn More",
+            style: "secondary",
+            url: "www.google.com/pega7",
+            width: "full"
           },
           {
-            "text": "About Pega",
-            "style": "secondary",
-            "url": "www.google.com/pega7",
-            "width": "full"
+            text: "About Pega",
+            style: "secondary",
+            url: "www.google.com/pega7",
+            width: "full"
           }
         ]
       }
     },
     {
-      "pattern": "card",
-      "contentItems": [
+      pattern: "card",
+      contentItems: [
         {
-          "pattern": "image",
-          "src": "/images/content/promos/promo-16x9-ai.jpg"
+          pattern: "image",
+          src: "/images/content/promos/promo-16x9-ai.jpg"
         },
         {
-          "pattern": "teaser",
-          "headlines": [
+          pattern: "teaser",
+          headlines: [
             {
-              "type": "headline",
-              "text": "Headline #3",
-              "size": "large"
+              type: "headline",
+              text: "Headline #3",
+              size: "large"
             }
           ],
-          "content": "Simplify and automate to reduce costs and improve agility.",
-          "buttons": [
+          content: "Simplify and automate to reduce costs and improve agility.",
+          buttons: [
             {
-              "text": "Learn More About Pega 7",
-              "style": "text",
-              "url": "www.google.com/pega7",
-              "width": "full"
+              text: "Learn More About Pega 7",
+              style: "text",
+              url: "www.google.com/pega7",
+              width: "full"
             }
           ]
         }
@@ -309,57 +309,53 @@
   full_bleed: true
 } only %}
   {% block band_content %}
-    {% include "@bolt/action-blocks.twig" with {
-      attributes: {
-        class: [
-          "c-bolt-action-blocks--max-8"
-        ]
-      },
-  "contentItems": [
-    {
-      text: "Product Information",
-      url: "#!",
-      icon: {
-        name: "product"
-      }
-    },
-    {
-      text: "Industry Solutions",
-      url: "#!",
-      icon: {
-        name: "industries"
-      }
-    },
-    {
-      text: "Training and Certification",
-      url: "#!",
-      icon: {
-        name: "training",
-      }
-    },
-    {
-      text: "Vision and Technology",
-      url: "#!",
-      icon: {
-        name: "vision",
-      }
-    },
-    {
-      text: "Services and Partners",
-      url: "#!",
-      icon: {
-        name: "partners",
-      }
-    },
-    {
-      text: "Career Opportunities",
-      url: "#!",
-      icon: {
-        name: "careers",
-      }
-    }
-  ]
-} only %}
+    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+      max_items_per_row: 8,
+      contentItems: [
+        {
+          text: "Product Information",
+          url: "#!",
+          icon: {
+            name: "product"
+          }
+        },
+        {
+          text: "Industry Solutions",
+          url: "#!",
+          icon: {
+            name: "industries"
+          }
+        },
+        {
+          text: "Training and Certification",
+          url: "#!",
+          icon: {
+            name: "training",
+          }
+        },
+        {
+          text: "Vision and Technology",
+          url: "#!",
+          icon: {
+            name: "vision",
+          }
+        },
+        {
+          text: "Services and Partners",
+          url: "#!",
+          icon: {
+            name: "partners",
+          }
+        },
+        {
+          text: "Career Opportunities",
+          url: "#!",
+          icon: {
+            name: "careers",
+          }
+        }
+      ]
+    } only %}
   {% endblock %}
 {% endembed %}
 

@@ -17,7 +17,7 @@
   height: 100%;
   color: bolt-theme(headline);
   outline: none;
-  transition: color $bolt-action-block-transition-timing cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: color $bolt-action-blocks-transition-timing $bolt-action-blocks-transition-ease;
 
   &:hover,
   &:active,
@@ -36,7 +36,7 @@
     height: 100%;
     pointer-events: none;
     background-color: $bolt-action-block-background;
-    transition: all $bolt-action-block-transition-timing cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all $bolt-action-blocks-transition-timing $bolt-action-blocks-transition-ease;
   }
 
   &:hover, &:focus {

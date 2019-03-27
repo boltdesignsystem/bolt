@@ -9,6 +9,11 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 
+{# DEPRECATED: maxItemsPerRow has been renamed to max_items_per_row #}
+{% if maxItemsPerRow %}
+  {% set max_items_per_row = maxItemsPerRow %}
+{% endif %}
+
 {# DEPRECATED: align has been renamed to valign #}
 {% if align == "top" %}
   {% set valign = "start" %}
@@ -23,11 +28,6 @@
   {% set borderless = false %}
 {% elseif border is sameas(false) %}
   {% set borderless = true %}
-{% endif %}
-
-{# DEPRECATED: maxItemsPerRow has been renamed to max_items_per_row #}
-{% if maxItemsPerRow %}
-  {% set max_items_per_row = maxItemsPerRow %}
 {% endif %}
 
 {# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
@@ -72,10 +72,14 @@
   {{ attributes | without("class") }}
 >
   <ul {{ inner_attributes.addClass(inner_classes) }}>
-    {% for item in contentItems %}
-      <li class="{{ "#{base_class}__item" }}">
-        {% include "@bolt-components-action-blocks/_action-blocks-item.twig" with item only %}
-      </li>
-    {% endfor %}
+    {% if children %}
+      {{ children }}
+    {% else %}
+      {% for item in contentItems %}
+        <li class="{{ "#{base_class}__item" }}">
+          {% include "@bolt-components-action-blocks/_action-blocks-item.twig" with item only %}
+        </li>
+      {% endfor %}
+    {% endif %}
   </ul>
 </bolt-action-blocks>
