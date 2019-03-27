@@ -10,7 +10,7 @@
 {% set inner_attributes = create_attribute({}) %}
 
 {# Deprecated #}
-{% if fullBleed %}
+{% if fullBleed is sameas(true) or fullBleed is sameas(false) %}
   {% set full_bleed = fullBleed %}
 {% endif %}
 {% if contentTag %}

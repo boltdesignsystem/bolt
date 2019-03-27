@@ -151,7 +151,7 @@ const config = {
     },
     {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json'),
+        resolve.sync('@bolt/global/package.json')
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -160,7 +160,7 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json'),
+        resolve.sync('@bolt/twig-renderer/package.json')
       )}/SetupTwigRenderer.php`,
       functions: ['addBoltExtensions'],
     },
