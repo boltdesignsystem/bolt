@@ -73,6 +73,7 @@ const config = {
   components: {
     global: [
       '@bolt/global',
+      '@bolt/docs-search',
       '@bolt/schema-form',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
