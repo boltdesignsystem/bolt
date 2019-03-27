@@ -81,13 +81,13 @@ class BoltModal extends withLitHtml() {
 
     this.dialog = this.renderRoot.querySelector(
       'dialog, [role="dialog"], [role="alertdialog"]',
-      );
-      
-      this.role = this.dialog.getAttribute('role') || 'dialog';
-      this.useDialog =
+    );
+
+    this.role = this.dialog.getAttribute('role') || 'dialog';
+    this.useDialog =
       'show' in document.createElement('dialog') &&
       this.dialog.nodeName === 'DIALOG';
-      
+
     // console.log(this.dialog);
     // Keep a collection of nodes to disable/enable when toggling the dialog
     // this._targets =
@@ -215,6 +215,7 @@ class BoltModal extends withLitHtml() {
     // console.log(this.shown);
 
     if (this.useDialog) {
+      // eslint-disable-next-line no-void
       this.dialog.close(event instanceof Event ? void 0 : event);
     } else {
       // this.dialog.removeAttribute('open');
@@ -346,9 +347,10 @@ class BoltModal extends withLitHtml() {
    * @param {Element} node
    */
   setFocusToFirstItem(node) {
-    console.log(this.getFocusableChildren(this.renderRoot.querySelector('dialog')));
+    console.log(
+      this.getFocusableChildren(this.renderRoot.querySelector('dialog')),
+    );
     console.log(this.getFocusableChildren(this));
-
 
     // if (this.shadowRoot){
     //   this
@@ -509,12 +511,10 @@ class BoltModal extends withLitHtml() {
   // };
 
   open() {
-    // console.log('open');
     this.show();
   }
 
   close() {
-    // console.log('close');
     this.hide();
   }
 
