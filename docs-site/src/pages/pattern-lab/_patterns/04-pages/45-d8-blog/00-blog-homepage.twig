@@ -17,6 +17,15 @@
       size: "xxlarge",
       tag: "h2",
     } only %}
+
+    <bolt-modal>
+      <bolt-button slot="trigger" onclick="this.closest('bolt-modal').open()">Open Modal #1</bolt-button>
+
+      <bolt-text headline>Use Google's location service?</bolt-text>
+      <bolt-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</bolt-text>
+
+      <bolt-button onclick="this.closest('bolt-modal').hide()">Close Modal #1</bolt-button>
+    </bolt-modal>
   {% endset %}
 
   {% set hero_content %}
@@ -672,6 +681,13 @@
             {% endcell %}
           {% endfor %}
         {% endgrid %}
+
+        <bolt-modal>
+          <bolt-button slot="trigger" onclick="this.closest('bolt-modal').open()">Open Modal #2</bolt-button>
+          <bolt-text headline>Testing Modal #2</bolt-text>
+          <bolt-button onclick="this.closest('bolt-modal').hide()">Close Modal #2</bolt-button>
+        </bolt-modal>
+
         {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
           {% cell "u-bolt-width-12/12" %}
             {% include "@bolt-components-pagination/pagination.twig" with {
