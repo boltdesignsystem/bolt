@@ -198,6 +198,11 @@ class BoltVideo extends withContext(withLitHtml()) {
     const player = this;
     const elem = context;
 
+    if (elem.state.isSetup) {
+      // console.log('is already setup');
+      return;
+    }
+
     elem._setupOverlay();
     elem._setupPlugins(elem, player);
 
@@ -259,6 +264,8 @@ class BoltVideo extends withContext(withLitHtml()) {
     player.on('ended', function() {
       elem.onEnded(player);
     });
+
+    elem.state.isSetup = true;
   }
 
   static appendScript(s) {
@@ -325,6 +332,7 @@ class BoltVideo extends withContext(withLitHtml()) {
       // errors: BoltVideo.globalErrors !== undefined  ? [].concat(BoltVideo.globalErrors) : [],
       isPlaying: 'paused',
       isFinished: false,
+      isSetup: false,
       progress: 0,
     };
 
@@ -390,14 +398,14 @@ class BoltVideo extends withContext(withLitHtml()) {
       BoltVideo.appendScript(s);
     }
 
-    this.init();
+    // this.init();
 
-    // If onInit event exists on element, run that instead of auto initializing
-    if (this.props.onInit) {
-      if (window[this.props.onInit]) {
-        window[this.props.onInit](this);
-      }
-    }
+    // // If onInit event exists on element, run that instead of auto initializing
+    // if (this.props.onInit) {
+    //   if (window[this.props.onInit]) {
+    //     window[this.props.onInit](this);
+    //   }
+    // }
 
     // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
     if (this.props.isBackgroundVideo) {
@@ -571,44 +579,44 @@ class BoltVideo extends withContext(withLitHtml()) {
     return s;
   }
 
-  initVideoJS(id) {
-    const self = this;
+  // initVideoJS(id) {
+  //   const self = this;
 
-    beforeNextRender(this, function() {
-      const player = videojs(id);
-      const handler = BoltVideo.handlePlayerReady.bind(player, self);
-      player.ready(handler);
-    });
-  }
+  //   beforeNextRender(this, function() {
+  //     const player = videojs(id);
+  //     const handler = BoltVideo.handlePlayerReady.bind(player, self);
+  //     player.ready(handler);
+  //   });
+  // }
 
-  initVideo(id) {
-    const self = this;
+  // initVideo(id) {
+  //   const self = this;
 
-    beforeNextRender(this, function() {
-      bc(self.querySelector(`#${id}`), {
-        controlBar: {
-          fullscreenToggle: !self.props.hideFullScreenButton,
-        },
-      });
-      self.initVideoJS(id);
-    });
-  }
+  //   beforeNextRender(this, function() {
+  //     bc(self.querySelector(`#${id}`), {
+  //       controlBar: {
+  //         fullscreenToggle: !self.props.hideFullScreenButton,
+  //       },
+  //     });
+  //     self.initVideoJS(id);
+  //   });
+  // }
 
-  init() {
-    const self = this;
+  // init() {
+  //   const self = this;
 
-    beforeNextRender(this, function() {
-      const dataAttributes = datasetToObject(this);
-      Object.keys(dataAttributes).forEach(item => {
-        this.querySelector('video').setAttribute(item, dataAttributes[item]);
-      });
-      if (window.bc && window.videojs) {
-        self.initVideo(self.state.id);
-      } else {
-        BoltVideo.players.push(self);
-      }
-    });
-  }
+  //   beforeNextRender(this, function() {
+  //     const dataAttributes = datasetToObject(this);
+  //     Object.keys(dataAttributes).forEach(item => {
+  //       this.querySelector('video').setAttribute(item, dataAttributes[item]);
+  //     });
+  //     if (window.bc && window.videojs) {
+  //       self.initVideo(self.state.id);
+  //     } else {
+  //       BoltVideo.players.push(self);
+  //     }
+  //   });
+  // }
 
   play() {
     if (this.player) {
@@ -688,6 +696,42 @@ class BoltVideo extends withContext(withLitHtml()) {
     }
 
     return aspectRatio;
+  }
+
+  initVideoJS(id) {
+    // As of Brightcove v6.16 must use getPlayer() to reference player, otherwise may initialize video twice
+    // https://support.brightcove.com/using-bc-and-getplayer-methods
+    const player = videojs.getPlayer(id);
+    const handler = BoltVideo.handlePlayerReady.bind(player, this);
+    if (player) {
+      player.ready(handler);
+
+      // If onInit event exists on element run that now
+      if (this.props.onInit) {
+        if (window[this.props.onInit]) {
+          window[this.props.onInit](this);
+        }
+      }
+    }
+  }
+
+  rendered() {
+    const dataAttributes = datasetToObject(this);
+    const video = this.querySelector('video');
+    Object.keys(dataAttributes).forEach(item => {
+      video.setAttribute(item, dataAttributes[item]);
+    });
+
+    if (window.bc && window.videojs) {
+      bc(this.querySelector(`#${this.state.id}`), {
+        controlBar: {
+          fullscreenToggle: !this.props.hideFullScreenButton,
+        },
+      });
+      this.initVideoJS(id);
+    } else {
+      BoltVideo.players.push(this);
+    }
   }
 
   render() {
