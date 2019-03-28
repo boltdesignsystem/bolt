@@ -264,16 +264,10 @@ class FocusTrap extends withLitHtml() {
     //   : this.removeAttribute('focused');
 
     return html`
-      <div
-        id="start"
-        tabindex="${this.inactive === true ? `-1` : `0`}"
-      ></div>
+      <div id="start" tabindex="${this.inactive === true ? `-1` : `0`}"></div>
       ${this.slot('default')}
       <div id="backup"></div>
-      <div
-        id="end"
-        tabindex="${this.inactive === true ? `-1` : `0`}"
-      ></div>
+      <div id="end" tabindex="${this.inactive === true ? `-1` : `0`}"></div>
     `;
   }
 }

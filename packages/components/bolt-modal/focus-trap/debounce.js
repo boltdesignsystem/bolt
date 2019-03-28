@@ -1,4 +1,4 @@
-let timeouts = new Map;
+let timeouts = new Map();
 
 /**
  * Debounces a callback.
@@ -6,18 +6,19 @@ let timeouts = new Map;
  * @param ms
  * @param id
  */
-export function debounce (cb, ms, id) {
+export function debounce(cb, ms, id) {
+  // Clear current timeout for id
+  const timeout = timeouts.get(id);
+  if (timeout != null) {
+    window.clearTimeout(timeout);
+  }
 
-	// Clear current timeout for id
-	const timeout = timeouts.get(id);
-	if (timeout != null) {
-		window.clearTimeout(timeout);
-	}
-
-	// Set new timeout
-	timeouts.set(id, window.setTimeout(() => {
-		cb();
-		timeouts.delete(id);
-	}, ms));
+  // Set new timeout
+  timeouts.set(
+    id,
+    window.setTimeout(() => {
+      cb();
+      timeouts.delete(id);
+    }, ms),
+  );
 }
-
