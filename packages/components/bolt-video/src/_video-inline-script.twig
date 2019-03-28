@@ -13,25 +13,33 @@
     function initVideoEl(elem) {
       var id = elem.state.id;
 
-      videojs(id).ready(function(){
+      var player = videojs.getPlayer(id);
+
+      if (!player) {
+        return;
+      }
+
+      player.ready(function(){
         var boltVideoPlayer = this;
         var options = {
-          'playbackRates': [1, 1.3, 1.5, 2]
+          'playbackRates': [1, 1.1, 1.5, 2]
         }
-        boltVideoPlayer.social({
-          'url': {{ '"' ~ socialUrl|default('') ~ '"' }},
-          'displayAfterVideo': true,
-          'services': {
-            'facebook': true,
-            'google': false,
-            'twitter': true,
-            'linkedin': true,
-            'pinterest': false,
-            'tumblr': false
-          }
-        });
 
-        boltVideoPlayer.emailSocialShare();
+        // TODO: This seems unnecessary, overrides defaults
+        // boltVideoPlayer.social({
+        //   'url': {{ '"' ~ socialUrl|default('') ~ '"' }},
+        //   'displayAfterVideo': true,
+        //   'services': {
+        //     'facebook': true,
+        //     'google': false,
+        //     'twitter': true,
+        //     'linkedin': true,
+        //     'pinterest': false,
+        //     'tumblr': false
+        //   }
+        // });
+
+        // boltVideoPlayer.emailSocialShare();
 
         if (Array.isArray(options.playbackRates)) {
           if (boltVideoPlayer.controlBar.playbackRateMenuButton) {
