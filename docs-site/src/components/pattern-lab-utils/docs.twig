@@ -205,27 +205,6 @@
     {% endif %}
 
 
-    {% if schema and schema.properties %}
-      {% include "@bolt/headline.twig" with {
-        size: "xxlarge",
-        tag: "h2",
-        url: "#schema",
-        text: "Schema",
-        icon: "none",
-        attributes: {
-          class: [
-            "u-bolt-margin-bottom-xsmall",
-            "c-bds-docs__heading-fragment"
-          ],
-          id: "schema"
-        }
-      } only %}
-
-      <div class="c-bds-schema-table u-bolt-margin-bottom-large">
-        {% include '@utils/schema-docs.twig' with { schema: schema } only %}
-      </div>
-    {% endif %}
-
     {% if links %}
       {% include "@bolt/headline.twig" with {
         size: "xxlarge",
@@ -266,6 +245,29 @@
         {% endfor %}
       </ul>
 
+    {% endif %}
+  </div>
+
+  <div class="c-bds-docs__page-schema">
+    {% if schema and schema.properties %}
+      {% include "@bolt/headline.twig" with {
+        size: "xxlarge",
+        tag: "h2",
+        url: "#schema",
+        text: "Schema",
+        icon: "none",
+        attributes: {
+          class: [
+            "u-bolt-margin-bottom-xsmall",
+            "c-bds-docs__heading-fragment"
+          ],
+          id: "schema"
+        }
+      } only %}
+
+      <div class="c-bds-schema-table u-bolt-margin-bottom-large">
+        {% include '@utils/schema-docs.twig' with { schema: schema } only %}
+      </div>
     {% endif %}
   </div>
 
