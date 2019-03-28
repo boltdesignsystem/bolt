@@ -1,6 +1,7 @@
 import { props, define } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { parse, stringify } from 'himalaya';
 
 import classNames from 'classnames/bind';
@@ -96,6 +97,29 @@ class BoltTable extends withLitHtml() {
     return boltedObject;
   }
 
+  rendered() {
+    const nodesToUpdate = this.renderRoot.querySelectorAll('*[data-bta]');
+    const tdInThead = this.renderRoot.querySelectorAll('thead td');
+
+    [...nodesToUpdate].forEach(node => {
+      let attrsToUpdate = node.getAttribute('data-bta');
+      node.removeAttribute('data-bta');
+
+      const attrArray = attrsToUpdate.split('|');
+
+      attrArray.map(attr => {
+        const attrs = attr.split('=');
+        node.setAttribute(`${attrs[0]}`, `${attrs[1]}`);
+      });
+    });
+
+    [...tdInThead].forEach(td => {
+      if (td.innerHTML.replace(/\s/g, '') === '') {
+        td.innerHTML = '';
+      }
+    });
+  }
+
   render() {
     const parseCode = this.removeWhitespace(parse(this.innerHTML));
     const { format, borderless, firstColFixedWidth } = this.props;
@@ -176,40 +200,41 @@ class BoltTable extends withLitHtml() {
         }
 
         return html`
-          ${scopeAttr !== undefined
-            ? html`
-                <th class=${cellClasses} scope=${scopeAttr}>
-                  ${renderCell(cell)}
-                </th>
-              `
-            : html`
-                <th className=${cellClasses}>
-                  ${renderCell(cell)}
-                </th>
-              `}
+          <th
+            class=${cellClasses}
+            data-bta=${ifDefined(setAttr(cell.attributes))}
+            scope=${ifDefined(scopeAttr)}
+          >
+            ${renderCell(cell)}
+          </th>
         `;
       } else {
-        const cellClasses = cx(
-          'c-bolt-table__cell',
-          'c-bolt-table__cell--data',
-        );
+        const cellClasses = cx('c-bolt-table__cell', {
+          [`c-bolt-table__cell--data`]: section !== 'head',
+        });
 
         return html`
-          <td class=${cellClasses}>
+          <td
+            class=${cellClasses}
+            data-bta=${ifDefined(setAttr(cell.attributes))}
+          >
             ${renderCell(cell)}
           </td>
         `;
       }
     }
 
-    function setAttr(attributesArray) {
-
+    function setAttr(attributes) {
+      if (attributes.length > 0) {
+        return attributes.map((attr, index) => {
+          return `${index > 0 ? '|' : ''}${attr.key}=${attr.value}`;
+        });
+      }
     }
 
     function renderCell(cell) {
       const content = stringify(cell.children);
 
-      // console.log('CONTENT', content);
       return html`
         ${unsafeHTML(content)}
       `;
