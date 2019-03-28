@@ -4,6 +4,60 @@ import classNames from 'classnames/bind';
 import styles from './modal.scss';
 import schema from '../modal.schema.yml';
 
+// var createFocusTrap = require('focus-trap');
+import '../focus-trap';
+
+// function getFocusedElement() {
+//   var activeElement = document.activeElement;
+
+//   if (!activeElement || activeElement === document.body) {
+//     return;
+//   }
+
+//   var getShadowActiveElement = function(element) {
+//     if (element.shadowRoot && element.shadowRoot.activeElement) {
+//       element = getShadowActiveElement(element.shadowRoot.activeElement);
+//     }
+
+//     return element;
+//   };
+
+//   return getShadowActiveElement(activeElement);
+// }
+
+// function getEventPath(evt) {
+//   return evt.path || (evt.composedPath && evt.composedPath()) || composedPath(evt.target);
+// }
+
+// /**
+//  * Equivalent to path/composedPath if not supported natively.
+//  * Note: Slots and shadow roots are detected, but aren't needed as they are virtually invisible anyway...
+//  */
+// function composedPath(el) {
+//   var path = [];
+
+//   while (el) {
+//     if (el.shadowRoot) {
+//       if (el.shadowRoot.activeElement) {
+//         path.push(el.shadowRoot.activeElement);
+//       }
+//       path.push(el.shadowRoot);
+//     }
+
+//     path.push(el);
+
+//     if (el.tagName === 'HTML') {
+//       path.push(document);
+//       path.push(window);
+//       break;
+//     }
+
+//     el = el.parentElement;
+//   }
+
+//   return path;
+// }
+
 const FOCUSABLE_ELEMENTS = [
   'bolt-button:not([inert])',
   'bolt-link:not([inert])',
@@ -25,11 +79,28 @@ let focusedBeforeDialog;
 
 let cx = classNames.bind(styles);
 
+// document.addEventListener('click', function (event) {
+
+// 	if (event.target.closest('bolt-video') === false) {
+//     // Run your code to open a modal
+//     console.log('out bolt modal?');
+// 	}
+
+// 	if (event.target.closest('bolt-video')) {
+//     console.log('inside bolt modal?');
+// 		// Run your code to close a modal
+// 	}
+// }, false);
+
 @define
 class BoltModal extends withLitHtml() {
   static is = 'bolt-modal';
 
   static props = {
+    // isFocusTrapped: {
+    //   ...props.boolean,
+    //   ...{ default: false },
+    // },
     shown: {
       ...props.boolean,
       ...{ default: false },
@@ -47,15 +118,57 @@ class BoltModal extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
+    // self.useShadow = false;
     self.show = self.show.bind(this);
     self.hide = self.hide.bind(this);
-    self.maintainFocus = this.maintainFocus.bind(this);
-    self.bindKeypress = this.bindKeypress.bind(this);
+    self._handleExternalClicks = self._handleExternalClicks.bind(this);
+
+    // if (alreadyHasClickEventHandler === false) {
+    //   BoltModal._handleExternalClicks();
+    //   alreadyHasClickEventHandler = true;
+    // }
+
+    // self.maintainFocus = this.maintainFocus.bind(this);
+    // self.bindKeypress = this.bindKeypress.bind(this);
     return self;
   }
 
+  _handleExternalClicks() {
+    const self = this;
+
+    document.addEventListener('click', e => {
+      if (!self.shown) {
+        return;
+      } else {
+        let el = e.target;
+
+        if (el.hasAttribute('slot') && self.ready === true) {
+          if (el.getAttribute('slot') === 'trigger') {
+            self.hide();
+          }
+        }
+
+        while (el) {
+          if (el === self) {
+            return;
+          }
+          el = el.parentNode;
+        }
+      }
+
+      self.hide();
+    });
+  }
+
+  // updated(){
+  //   super.updated && super.updated();
+  //   // this._handleExternalClicks();
+  // }
+
   connecting() {
     super.connecting && super.connecting();
+
+    this._handleExternalClicks();
 
     // Prebind the functions that will be bound in addEventListener and
     // removeEventListener to avoid losing references
@@ -72,7 +185,45 @@ class BoltModal extends withLitHtml() {
 
   // Initialise everything needed for the dialog to work properly
   rendered() {
+    console.log('rendered');
     super.rendered && super.rendered();
+    const self = this;
+
+    this.focusTrap = this.renderRoot.querySelector('focus-trap');
+
+    // this.focusTrap = createFocusTrap(this, {
+    //   // fallbackFocus: self.renderRoot.querySelector('.js-close-button-fallback'),
+    //   initialFocus: self.renderRoot.querySelector('.js-close-button-fallback'),
+    //   // onActivate() {
+    //   //   // self.isFocusTrapped = true;
+    //   // },
+    //   escapeDeactivates: true,
+    //   clickOutsideDeactivates: false,
+    //   returnFocusOnDeactivate: true,
+    //   onDeactivate() {
+    //     // self.focusedBeforeDialog.focus();
+
+    //         // If there was a focused element before the dialog was opened, restore the
+    //     // focus back to it
+    //     if (self.focusedBeforeDialog) {
+    //       if (self.focusedBeforeDialog.renderRoot) {
+    //         if (self.focusedBeforeDialog.renderRoot.querySelector('button')) {
+    //           self.focusedBeforeDialog.renderRoot.querySelector('button').focus();
+    //         } else if (self.focusedBeforeDialog.renderRoot.querySelector('a')) {
+    //           self.focusedBeforeDialog.renderRoot.querySelector('a').focus();
+    //         } else {
+    //           self.focusedBeforeDialog.focus();
+    //         }
+    //       } else {
+    //         self.focusedBeforeDialog.focus();
+    //       }
+    //     }
+    //     // self.isFocusTrapped = false;
+    //     // containerOne.className = 'trap';
+    //   },
+    // });
+
+    document.addEventListener('keydown', this.bindKeypress);
 
     // const targets = document.querySelector('main');
 
@@ -82,6 +233,10 @@ class BoltModal extends withLitHtml() {
     this.dialog = this.renderRoot.querySelector(
       'dialog, [role="dialog"], [role="alertdialog"]',
     );
+
+    // if (!this.focusTrap) {
+    // var containerOne = document.getElementById('demo-one');
+    // }
 
     this.role = this.dialog.getAttribute('role') || 'dialog';
     this.useDialog =
@@ -111,24 +266,24 @@ class BoltModal extends withLitHtml() {
 
     // Keep a collection of dialog openers, each of which will be bound a click
     // event listener to open the dialog
-    this._openers = this.$$(
-      '[data-a11y-dialog-show="' + this.container.id + '"]',
-    );
-    this._openers.forEach(opener => {
-      opener.addEventListener('click', this.show);
-    });
+    // this._openers = this.$$(
+    //   '[data-a11y-dialog-show="' + this.container.id + '"]',
+    // );
+    // this._openers.forEach(opener => {
+    //   opener.addEventListener('click', this.show);
+    // });
 
     // Keep a collection of dialog closers, each of which will be bound a click
     // event listener to close the dialog
-    this._closers = this.$$('[data-a11y-dialog-hide]', this.container).concat(
-      this.$$('[data-a11y-dialog-hide="' + this.container.id + '"]'),
-    );
+    // this._closers = this.$$('[data-a11y-dialog-hide]', this.container).concat(
+    //   this.$$('[data-a11y-dialog-hide="' + this.container.id + '"]'),
+    // );
 
-    // console.log(this._closers);
-    this._closers.forEach(closer => {
-      // console.log(closer);
-      closer.addEventListener('click', this.hide);
-    });
+    // // console.log(this._closers);
+    // this._closers.forEach(closer => {
+    //   // console.log(closer);
+    //   closer.addEventListener('click', this.hide);
+    // });
 
     // Execute all callbacks registered for the `create` event
     // this._fire('create');
@@ -142,6 +297,13 @@ class BoltModal extends withLitHtml() {
   //   this.dialog = new A11yDialog(el);
   // }
 
+  hideModalWhenClickingOutside(e) {
+    if (!this.shown) return;
+
+    console.log(e);
+    // console.log(this.renderRoot.contains(e.target));
+  }
+
   /**
    * Show the dialog element, disable all the targets (siblings), trap the
    * current focus within it, listen for some specific key presses and fire all
@@ -153,16 +315,27 @@ class BoltModal extends withLitHtml() {
   show(event) {
     // If the dialog is already open, abort
     // if (this.shown) {
-    //   return this;
+    //   document.addEventListener('click', this.hideModalWhenClickingOutside);
     // }
 
+    // Remove the click event listener from all dialog closers
+    // this._closers.forEach(closer => {
+    //   closer.removeEventListener('click', this.hide);
+    // });
+
+    this.focusedBeforeDialog = document.activeElement;
+
+    console.log(this.focusedBeforeDialog);
+
     this.shown = true;
+    // this.querySelector('[slot="trigger"]').setAttribute('tabindex', '-1');
+    // this.querySelector('[slot="trigger"]').setAttribute('aria-hidden', true);
+    // this.maintainFocus();
 
     // console.log(this.shown);
 
     // Keep a reference to the currently focused element to be able to restore
     // it later
-    focusedBeforeDialog = document.activeElement;
 
     // console.log(focusedBeforeDialog);
 
@@ -177,16 +350,23 @@ class BoltModal extends withLitHtml() {
     this._targets.forEach(function(target) {
       target.setAttribute('aria-hidden', 'true');
     });
+
+    this.focusTrap.inactive = false;
+
+    setTimeout(() => {
+      this.renderRoot.querySelector('.js-close-button-fallback').focus();
+      this.ready = true;
+    }, 400);
     // }
 
     // Set the focus to the first focusable child of the dialog element
-    this.setFocusToFirstItem(this);
+    // this.setFocusToFirstItem(this.renderRoot);
+
+    // document.body.addEventListener('focus', this.maintainFocus, true);
 
     // Bind a focus event listener to the body element to make sure the focus
     // stays trapped inside the dialog while open, and start listening for some
     // specific key presses (TAB and ESC)
-    document.body.addEventListener('focus', this.maintainFocus, true);
-    document.addEventListener('keydown', this.bindKeypress);
 
     // Execute all callbacks registered for the `show` event
     // this._fire('show', event);
@@ -210,7 +390,28 @@ class BoltModal extends withLitHtml() {
     //   return this;
     // }
 
+    // this.querySelector('[slot="trigger"]').removeAttribute('tabindex');
+    // this.focusTrap.deactivate();
+    console.log(this.focusTrap.inactive);
+    this.focusTrap.inactive = true;
+    // this.querySelector('[slot="trigger"]').setAttribute('aria-hidden', false);
     this.shown = false;
+    this.ready = false;
+    // this.focusedBeforeDialog.focus();
+
+    if (this.focusedBeforeDialog) {
+      if (this.focusedBeforeDialog.renderRoot) {
+        if (this.focusedBeforeDialog.renderRoot.querySelector('button')) {
+          this.focusedBeforeDialog.renderRoot.querySelector('button').focus();
+        } else if (this.focusedBeforeDialog.renderRoot.querySelector('a')) {
+          this.focusedBeforeDialog.renderRoot.querySelector('a').focus();
+        } else {
+          this.focusedBeforeDialog.focus();
+        }
+      } else {
+        this.focusedBeforeDialog.focus();
+      }
+    }
 
     // console.log(this.shown);
 
@@ -228,25 +429,9 @@ class BoltModal extends withLitHtml() {
       });
     }
 
-    // If there was a focused element before the dialog was opened, restore the
-    // focus back to it
-    if (focusedBeforeDialog) {
-      if (focusedBeforeDialog.renderRoot) {
-        if (focusedBeforeDialog.renderRoot.querySelector('button')) {
-          focusedBeforeDialog.renderRoot.querySelector('button').focus();
-        } else if (focusedBeforeDialog.renderRoot.querySelector('a')) {
-          focusedBeforeDialog.renderRoot.querySelector('a').focus();
-        } else {
-          focusedBeforeDialog.focus();
-        }
-      } else {
-        focusedBeforeDialog.focus();
-      }
-    }
-
     // Remove the focus event listener to the body element and stop listening
     // for specific key presses
-    document.body.removeEventListener('focus', this.maintainFocus, true);
+    // document.body.removeEventListener('focus', this.maintainFocus, true);
     document.removeEventListener('keydown', this.bindKeypress);
 
     // Execute all callbacks registered for the `hide` event
@@ -274,12 +459,6 @@ class BoltModal extends withLitHtml() {
       event.preventDefault();
       this.hide();
     }
-
-    // If the dialog is shown and the TAB key is being pressed, make sure the
-    // focus stays trapped within the dialog element
-    if (this.shown && event.which === TAB_KEY) {
-      this.trapTabKey(this.dialog, event);
-    }
   };
 
   /**
@@ -289,13 +468,27 @@ class BoltModal extends withLitHtml() {
    * @access private
    * @param {Event} event
    */
-  maintainFocus = function(event) {
-    // If the dialog is shown and the focus is not within the dialog element,
-    // move it back to its first focusable child
-    if (this.shown && !this.container.contains(event.target)) {
-      this.setFocusToFirstItem(this);
-    }
-  };
+  // maintainFocus = function(event) {
+  //   console.log(this.renderRoot.contains(event.target));
+
+  //   if (event) {
+  //     event.preventDefault();
+  //   }
+
+  //   console.log(`this contains focused element: ${this.contains(event.target)}`);
+
+  //   // If the dialog is shown and the focus is not within the dialog element,
+  //   // move it back to its first focusable child
+  //   // if (
+  //   //   this.shown &&
+  //   //   (!this.renderRoot.contains(event.target) &&
+  //   //     !this.contains(event.target) &&
+  //   //     !this.shadowRoot.contains(event.target))
+  //   // ) {
+  //   //   // document.activeElement.blur();
+  //   //   // this.setFocusToFirstItem(this.renderRoot);
+  //   // }
+  // };
 
   /**
    * Convert a NodeList into an array
@@ -347,10 +540,10 @@ class BoltModal extends withLitHtml() {
    * @param {Element} node
    */
   setFocusToFirstItem(node) {
-    console.log(
-      this.getFocusableChildren(this.renderRoot.querySelector('dialog')),
-    );
-    console.log(this.getFocusableChildren(this));
+    // console.log(
+    //   this.getFocusableChildren(this.renderRoot.querySelector('dialog')),
+    // );
+    // console.log(this.getFocusableChildren(this));
 
     // if (this.shadowRoot){
     //   this
@@ -362,11 +555,25 @@ class BoltModal extends withLitHtml() {
     // });
 
     var focusableChildren = this.getFocusableChildren(node);
-    var focused = node.querySelector('[autofocus]') || focusableChildren[0];
+    // let focusableChildrenAlt = focusableChildren;
 
-    if (focused) {
-      focused.focus();
-    }
+    // if (altNode) {
+    //   focusableChildrenAlt = this.getFocusableChildren(altNode);
+    // }
+    const childToBeFocused =
+      node.querySelector('[autofocus]') || focusableChildren[0];
+    //  || focusableChildrenAlt[0];
+
+    setTimeout(function() {
+      childToBeFocused.focus();
+    }, 100);
+
+    // focusableChildren[0].focus();
+    // document.activeElement = focusableChildren[0];
+
+    // if (focused) {
+    //   focused.focus();
+    // }
   }
 
   /**
@@ -375,14 +582,24 @@ class BoltModal extends withLitHtml() {
    * @param {Element} node
    * @return {Array<Element>}
    */
-  getFocusableChildren(node) {
+  getFocusableChildren(node, includeTrigger = false) {
     return this.$$(FOCUSABLE_ELEMENTS.join(','), node).filter(function(child) {
       // return !!(
       //   child.offsetWidth ||
       //   child.offsetHeight ||
       //   child.getClientRects().length
       // );
-      return child;
+      if (includeTrigger) {
+        return child;
+      } else {
+        if (child.hasAttribute('slot')) {
+          if ((child.getAttribute('slot') !== 'trigger') === true) {
+            return child;
+          }
+        } else {
+          return child;
+        }
+      }
     });
   }
 
@@ -440,18 +657,19 @@ class BoltModal extends withLitHtml() {
   disconnecting() {
     super.disconnecting && super.disconnecting();
 
+    // document.removeEventListener('click', this.hideModalWhenClickingOutside);
     // Hide the dialog to avoid destroying an open instance
     this.hide();
 
     // Remove the click event listener from all dialog openers
-    this._openers.forEach(opener => {
-      opener.removeEventListener('click', this.show);
-    });
+    // this._openers.forEach(opener => {
+    //   opener.removeEventListener('click', this.show);
+    // });
 
-    // Remove the click event listener from all dialog closers
-    this._closers.forEach(closer => {
-      closer.removeEventListener('click', this.hide);
-    });
+    // // Remove the click event listener from all dialog closers
+    // this._closers.forEach(closer => {
+    //   closer.removeEventListener('click', this.hide);
+    // });
 
     // Execute all callbacks registered for the `destroy` event
     // this._fire('destroy');
@@ -553,39 +771,43 @@ class BoltModal extends withLitHtml() {
           - It doesn’t have to be a '<dialog>' element, it can be a '<div>' element with the 'dialog' or 'alertdialog' role (e.g. '<div role="dialog">').
           - It doesn’t have to have the 'aria-labelledby' attribute however this is recommended. It should match the 'id' of the dialog title.
         -->
-        <dialog
-          aria-hidden=${shown === true ? 'false' : 'true'}
-          aria-labelledby="dialog-title"
-          ?open=${shown}
-          class="c-bolt-modal__content"
-        >
-          <!--
-            Closing button related notes:
-            - It does have to have the 'type="button"' attribute.
-            - It does have to have the 'data-a11y-dialog-hide' attribute.
-            - It does have to have an aria-label attribute if you use an icon as content.
-          -->
-          <button
-            type="button"
-            data-a11y-dialog-hide
-            aria-label="Close this dialog window"
+        <focus-trap>
+          <dialog
+            aria-hidden=${shown === true ? 'false' : 'true'}
+            aria-labelledby="dialog-title"
+            ?open=${shown}
+            class="c-bolt-modal__content"
           >
-            &times;
-          </button>
+            <!--
+              Closing button related notes:
+              - It does have to have the 'type="button"' attribute.
+              - It does have to have the 'data-a11y-dialog-hide' attribute.
+              - It does have to have an aria-label attribute if you use an icon as content.
+            -->
+            <button
+              type="button"
+              class="js-close-button-fallback"
+              data-a11y-dialog-hide
+              aria-label="Close this dialog window"
+              @click=${e => this.hide(e)}
+            >
+              &times;
+            </button>
 
-          <!--
-            Dialog title related notes:
-            - It should have a different content than 'Dialog Title'.
-            - It can have a different id than 'dialog-title'.
-          -->
-          <h1 id="dialog-title">Dialog Title</h1>
+            <!--
+              Dialog title related notes:
+              - It should have a different content than 'Dialog Title'.
+              - It can have a different id than 'dialog-title'.
+            -->
+            <h1 id="dialog-title">Dialog Title</h1>
 
-          ${this.slot('default')}
+            ${this.slot('default')}
 
-          <!--
-            Here lives the main content of the dialog.
-          -->
-        </dialog>
+            <!--
+              Here lives the main content of the dialog.
+            -->
+          </dialog>
+        </focus-trap>
       </div>
     `;
   }
