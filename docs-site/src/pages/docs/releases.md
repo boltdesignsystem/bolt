@@ -10,7 +10,7 @@
 
 ---
 
-# Bolt v2.2.0 
+# Bolt v2.2.x
 Released: Nov 18, 2018
 
 * 🐎 Updated the build tools to now run builds ~900% faster!
@@ -50,12 +50,11 @@ Full release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.1
 Released:
 
 * 🎉 Major overhaul of Bolt’s theming system! 
-    * Through some automation magic, Bolt’s color theming system now works in older browsers that don’t support native CSS custom properties.
+  * Through some automation magic, Bolt’s color theming system now works in older browsers that don’t support native CSS custom properties.
 * 🎉 Added the new CSS Grid-based Grid component
-
 * ✨ Updated the **Share** component to support new `size` and `opacity` options
 * ✨ Updated the **Band** component to use the new **Grid** component internally. 
-	* This adds new “pinned” regions to the Band, allowing for components to be placed before / after the main Band content area.
+  * This adds new “pinned” regions to the Band, allowing for components to be placed before / after the main Band content area.
 * 🔨 Refactored the **Copy To Clipboard** component to greatly improve flexibility & reuse + improve animations.
 * ✨ Updated the **Navbar** component to support nesting additional components next to the main Navbar title.
 * ✨ Updated the **Nav Priority** component’s dropdown to now animate individual items when opening / closing the menu.
@@ -71,34 +70,3 @@ v2.0.0 Docs: https://v2-0-0.boltdesignsystem.com/
 
 Release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.0.0 
 
-
-
-
-* 2.3.x
-Date Released: January 30th, 2019
-Date Integrated: X
-
-* Bolt Link
-  * ✨ <bolt-link> web component added
-  * 📚 Web component docs added.
-* Bolt Video
-  * 🐛 “Share This” text now translatable
-  * ✨ Initial “Cue Points” plug-in released for embedded CTAs
-  * ✨ Added new plugin system to much more easily customize which video player plugins are enabled / disabled
-  * 🚨 Manual testing steps added
-* ✨ Bolt ratio released as standalone component
-  * ✨ Bolt ordered and unordered list releases as a web component
-* <bolt-figure>
-  * ✨ Bolt figure now a web component
-  * ✨ Now supports table, video, icon, and image content
-* 🎉 Critical CSS (async preload) released
-* Build Tools
-  * 🎉 Automatic dependency resolution
-* Bolt Icons: 
-  * ✨ added Star Icon
-* Bolt List: 
-  * ✨ Now supports vertical and horizontal dividers
-  * ✨<bolt-list> web component added
-
-v2.3.0 Docs: https://v2-3-0.boltdesignsystem.com/ 
-Full release Notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.3.0 
