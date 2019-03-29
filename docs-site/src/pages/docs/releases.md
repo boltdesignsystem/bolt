@@ -26,13 +26,13 @@ Released: Nov 18, 2018
 * 📚Updated the onboarding docs for developers.
 * 📚Added docs for the Grid component’s row_gutter and vinset config options
 
-v2.2.0 Docs: https://v2-2-0.boltdesignsystem.com/ 
+v2.2.0 Docs: https://v2-2-0.boltdesignsystem.com/ <br>
 Full release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.2.0 
 
 ---
 
 # Bolt v2.1.x
-Released: 
+Released: October 10th, 2018
 
 * 🎉 Added Jest testing coverage to DevOps
 * 🎉 Component Rendering Service
@@ -40,14 +40,13 @@ Released:
 * 🐛 Better Button Group / Card button rendering
 * 🐛 Bolt List, Video, bug fixes
 
-v2.1.0 Docs: https://v2-1-0.boltdesignsystem.com/ 
-
+v2.1.0 Docs: https://v2-1-0.boltdesignsystem.com/ <br>
 Full release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.1.0 
 
 ---
 
 # Bolt v2.0.x Release
-Released:
+Released: September 27, 2018
 
 * 🎉 Major overhaul of Bolt’s theming system! 
   * Through some automation magic, Bolt’s color theming system now works in older browsers that don’t support native CSS custom properties.
@@ -66,7 +65,6 @@ Released:
 * 💥 Removed `medium` theme due to accessibility issues + need to refactor
 * ✨ Shadow DOM component ~event binding~
 
-v2.0.0 Docs: https://v2-0-0.boltdesignsystem.com/ 
-
+v2.0.0 Docs: https://v2-0-0.boltdesignsystem.com/ <br>
 Release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.0.0 
 
