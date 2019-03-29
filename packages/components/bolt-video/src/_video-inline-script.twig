@@ -15,48 +15,45 @@
 
       var player = videojs.getPlayer(id);
 
-      if (!player) {
-        return;
-      }
-
-      player.ready(function(){
-        var boltVideoPlayer = this;
-        var options = {
-          'playbackRates': [1, 1.1, 1.5, 2]
-        }
-
-        // TODO: This seems unnecessary, overrides defaults
-        // boltVideoPlayer.social({
-        //   'url': {{ '"' ~ socialUrl|default('') ~ '"' }},
-        //   'displayAfterVideo': true,
-        //   'services': {
-        //     'facebook': true,
-        //     'google': false,
-        //     'twitter': true,
-        //     'linkedin': true,
-        //     'pinterest': false,
-        //     'tumblr': false
-        //   }
-        // });
-
-        if (Array.isArray(options.playbackRates)) {
-          if (boltVideoPlayer.controlBar.playbackRateMenuButton) {
-            // Update the existing playback rate menu button in the control bar
-            var playbackControl = boltVideoPlayer.controlBar.playbackRateMenuButton;
-            playbackControl.removeChild(playbackControl.menu);
-            playbackControl.options_.playbackRates = options.playbackRates;
-            playbackControl.addChild(playbackControl.createMenu());
-            playbackControl.updateLabel();
-            playbackControl.updateVisibility();
-          } else {
-            // Add the playback rate menu button to the control bar
-            boltVideoPlayer.controlBar.playbackRateMenuButton = boltVideoPlayer.controlBar.addChild('PlaybackRateMenuButton', {
-              playbackRates: options.playbackRates
-            });
-            boltVideoPlayer.controlBar.playbackRateMenuButton.updateVisibility();
+      if (player) {
+        player.ready(function(){
+          var boltVideoPlayer = this;
+          var options = {
+            'playbackRates': [1, 1.1, 1.5, 2]
           }
-        }
-      });
+
+          boltVideoPlayer.social({
+            'url': {{ '"' ~ socialUrl|default('') ~ '"' }},
+            'displayAfterVideo': true,
+            'services': {
+              'facebook': true,
+              'google': false,
+              'twitter': true,
+              'linkedin': true,
+              'pinterest': false,
+              'tumblr': false
+            }
+          });
+
+          if (Array.isArray(options.playbackRates)) {
+            if (boltVideoPlayer.controlBar.playbackRateMenuButton) {
+              // Update the existing playback rate menu button in the control bar
+              var playbackControl = boltVideoPlayer.controlBar.playbackRateMenuButton;
+              playbackControl.removeChild(playbackControl.menu);
+              playbackControl.options_.playbackRates = options.playbackRates;
+              playbackControl.addChild(playbackControl.createMenu());
+              playbackControl.updateLabel();
+              playbackControl.updateVisibility();
+            } else {
+              // Add the playback rate menu button to the control bar
+              boltVideoPlayer.controlBar.playbackRateMenuButton = boltVideoPlayer.controlBar.addChild('PlaybackRateMenuButton', {
+                playbackRates: options.playbackRates
+              });
+              boltVideoPlayer.controlBar.playbackRateMenuButton.updateVisibility();
+            }
+          }
+        });
+      }
     }
 
     if (window.bc) { // If the brightcove player already loaded up, configure the player instance immediately
