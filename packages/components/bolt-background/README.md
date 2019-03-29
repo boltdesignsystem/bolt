@@ -16,3 +16,5 @@ Background allows Bolt to set an image inside of bands.
 - Can set focus on the right
 - Can set light, medium, or heavy opacity
 - Can set a left, right, or center gradient
+
+We recommend a max-width of `2880px` for full-bleed background images. This recommendation takes into consideration the common HD screen resolution of `1920x1080` and multiplies `1920` by `1.5`.
