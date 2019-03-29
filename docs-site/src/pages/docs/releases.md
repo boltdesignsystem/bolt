@@ -1,30 +1,41 @@
+🎉 Major feature
+✨ Minor feature
+🔨 Refactoring / Maintenance
+🔧 Configuration
+🐛 Bugfix
+🐎 Performance
+📚 Documentation
+✅ Tests
+💥 Major breaking change
 
-## Bolt v2.0.x Release
+
+# Bolt v2.0.x Release
 Date Released:
 Date Integrated:
 
 * 🎉 Major overhaul of Bolt’s theming system! 
     * Through some automation magic, Bolt’s color theming system now works in older browsers that don’t support native CSS custom properties.
 * 🎉 Added the new CSS Grid-based Grid component
-￼
-* ✨ Updated the Share component to support new `size` and `opacity` options
-* ✨ Updated the Band component to use the new Grid component internally. This adds new “pinned” regions to the Band, allowing for components to be placed before / after the main Band content area.
-* 🔨 Refactored the Copy To Clipboard component to greatly improve flexibility & reuse + improve animations.
-* ✨ Updated the Navbar component to support nesting additional components next to the main Navbar title.
-* ✨ Updated the Nav Priority component’s dropdown animation when opening / closing the menu.
-* ✨ Updated the build tools to support hot module reloading + faster build times
-* ✅ Added end-to-end integration tests for the Video component
-* ✨ Updated the Chip, Pagination, and Priority Nav components to now fully support Bolt’s color theming system.
-* ✨ Updated the Button component to use the browser’s native <slot>s and Shadow DOM when supported
-* support
-* ✨ Button component now supports Shadow DOM
-* 🐛 Fixed new Bolt text component’s dynamic HTML tag
+
+* ✨ Updated the **Share** component to support new `size` and `opacity` options
+* ✨ Updated the **Band** component to use the new **Grid** component internally. 
+	* This adds new “pinned” regions to the Band, allowing for components to be placed before / after the main Band content area.
+* 🔨 Refactored the **Copy To Clipboard** component to greatly improve flexibility & reuse + improve animations.
+* ✨ Updated the **Navbar** component to support nesting additional components next to the main Navbar title.
+* ✨ Updated the **Nav Priority** component’s dropdown to now animate individual items when opening / closing the menu.
+* ✨ Updated the Build Tools to support ~hot module reloading~ + faster build times
+* ✅ Added end-to-end integration tests for the **Video** component
+* ✨ Updated the **Chip**, **Pagination**, and **Priority Nav** components to now fully support Bolt’s color ~theming system~.
+* ✨ Updated the **Button** component to use the browser’s ~native <slot>s~ and ~Shadow DOM~ when supported
+* 🐛 Fixed new Bolt **Text** component’s dynamic HTML tag
 * 💥 Removed `medium` theme due to accessibility issues + need to refactor
-* ✨ Shadow DOM component event binding
+* ✨ Shadow DOM component ~event binding~
 
 v2.0.0 Docs: https://v2-0-0.boltdesignsystem.com/ 
+
 Release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.0.0 
 
+---
 
 * 2.1.x
     * 🎉 Added Jest testing coverage
