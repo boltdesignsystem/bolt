@@ -10,7 +10,30 @@
 
 ---
 
+# Bolt v2.2.0 
+Released: Nov 18, 2018
+
+* 🐎 Updated the build tools to now run builds ~900% faster!
+* ✨ Added new `align` option to the `<bolt-share>` component
+* ✨ Updated Bolt’s utility classes to now support opacity 
+* ✨ Added the new version selector to the docs site to help with QA and finding docs relating to  this also lays down the foundation for new upcoming `<bolt-select>` component.
+* ✨ Added support for `contextually aware` behavior in Bolt components (ie. when applied, components nested inside other components can automatically adjust how they work / are configured)
+* 🔨 Switched to using Google’s lit-html JavaScript library to significantly component rendering stability + improved cross-browser support.
+* 🔧 Added support for configuring source maps in the @bolt/build-tools tools
+* 🐛 Misc bug fixes for the Share component, List component, Navbar component, Grid component, Form / Form labels, cross browser polyfills in @bolt/core, and fixed a major cross-browser issue on the docs site impacting the testing / QA process.
+* 🐛 Fixed an icon rendering bug in Safari causing certain icons to not display properly.
+* 📚Updated the Drupal Lab + Bolt integration example; added the Bolt Button component as a reference.
+* 📚Updated the onboarding docs for developers.
+* 📚Added docs for the Grid component’s row_gutter and vinset config options
+
+v2.2.0 Docs: https://v2-2-0.boltdesignsystem.com/ 
+Full release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.2.0 
+
+---
+
 # Bolt v2.1.x
+Released: 
+
 * 🎉 Added Jest testing coverage to DevOps
 * 🎉 Component Rendering Service
 * 🐛 Fix for **Band** component double rendering
@@ -24,8 +47,7 @@ Full release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.1
 ---
 
 # Bolt v2.0.x Release
-Date Released:
-Date Integrated:
+Released:
 
 * 🎉 Major overhaul of Bolt’s theming system! 
     * Through some automation magic, Bolt’s color theming system now works in older browsers that don’t support native CSS custom properties.
@@ -49,47 +71,7 @@ v2.0.0 Docs: https://v2-0-0.boltdesignsystem.com/
 
 Release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.0.0 
 
----
 
-* 2.1.x
-    * 🎉 Added Jest testing coverage
-    * 🎉 Component rendering service
-    * 🐛 Fix for Band component double rendering
-    * 🐛 Better button group / card button rendering
-    * 🐛 Bolt list, video, bug fixes
-
-v2.1.0 Docs: https://v2-1-0.boltdesignsystem.com/ 
-Full release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.1.0 
-
-🎉 Major features 
-✨ Minor features
-🔨 Refactoring / Maintenance
-🔧 Configuration
-🐛 Bugfix
-🐎 Performance
-📚 Documentation
-✅ Tests
-💥 Major breaking change
-
-Bolt v2.2.0
-
-Date Released: Nov 18, 2018
-
-* 🐎 Updated the build tools to now run builds ~900% faster!
-* ✨ Added new `align` option to the `<bolt-share>` component
-* ✨ Updated Bolt’s utility classes to now support opacity 
-* ✨ Added the new version selector to the docs site to help with QA and finding docs relating to  this also lays down the foundation for new upcoming `<bolt-select>` component.
-* ✨ Added support for `contextually aware` behavior in Bolt components (ie. when applied, components nested inside other components can automatically adjust how they work / are configured)
-* 🔨 Switched to using Google’s lit-html JavaScript library to significantly component rendering stability + improved cross-browser support.
-* 🔧 Added support for configuring source maps in the @bolt/build-tools tools
-* 🐛 Misc bug fixes for the Share component, List component, Navbar component, Grid component, Form / Form labels, cross browser polyfills in @bolt/core, and fixed a major cross-browser issue on the docs site impacting the testing / QA process.
-* 🐛 Fixed an icon rendering bug in Safari causing certain icons to not display properly.
-* 📚Updated the Drupal Lab + Bolt integration example; added the Bolt Button component as a reference.
-* 📚Updated the onboarding docs for developers.
-* 📚Added docs for the Grid component’s row_gutter and vinset config options
-
-v2.2.0 Docs: https://v2-2-0.boltdesignsystem.com/ 
-Full release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.2.0 
 
 
 * 2.3.x
