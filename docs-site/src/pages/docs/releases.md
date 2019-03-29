@@ -1,12 +1,12 @@
-🎉 Major feature
-✨ Minor feature
-🔨 Refactoring / Maintenance
-🔧 Configuration
-🐛 Bugfix
-🐎 Performance
-📚 Documentation
-✅ Tests
-💥 Major breaking change
+🎉 Major feature <br>
+✨ Minor feature <br>
+🔨 Refactoring / Maintenance <br>
+🔧 Configuration <br>
+🐛 Bugfix <br>
+🐎 Performance <br>
+📚 Documentation <br>
+✅ Tests <br>
+💥 Major breaking change <br>
 
 
 # Bolt v2.0.x Release
