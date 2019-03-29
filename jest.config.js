@@ -4,6 +4,7 @@ const testFilesToIgnore = globby.sync([
   './packages/components/**/*/__tests__/*.e2e.js',
   './packages/components/**/*/__tests__/**/*.data.js',
   './packages/analytics/**/*/__tests__/**/*.data.js',
+  './packages/generator-bolt/generators/*/templates/**/*.test.js',
 ]);
 
 module.exports = {
