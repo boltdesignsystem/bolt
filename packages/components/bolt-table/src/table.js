@@ -51,7 +51,10 @@ class BoltTable extends withLitHtml() {
       if (node.type === 'element') {
         node.children = this.stripWhitespace(node.children);
       } else {
-        node.content = node.content.trim();
+        node.content =
+          node.content.trim().length === 0
+            ? ''
+            : node.content.replace(/\s{2,}/g, ' ');
       }
       return node;
     });
