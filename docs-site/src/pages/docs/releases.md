@@ -8,6 +8,20 @@
 ✅ Tests <br>
 💥 Major breaking change <br>
 
+---
+
+# Bolt v2.1.x
+* 🎉 Added Jest testing coverage to DevOps
+* 🎉 Component Rendering Service
+* 🐛 Fix for **Band** component double rendering
+* 🐛 Better Button Group / Card button rendering
+* 🐛 Bolt List, Video, bug fixes
+
+v2.1.0 Docs: https://v2-1-0.boltdesignsystem.com/ 
+
+Full release notes: https://github.com/bolt-design-system/bolt/releases/tag/v2.1.0 
+
+---
 
 # Bolt v2.0.x Release
 Date Released:
