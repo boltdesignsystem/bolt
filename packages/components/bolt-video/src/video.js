@@ -398,15 +398,6 @@ class BoltVideo extends withContext(withLitHtml()) {
       BoltVideo.appendScript(s);
     }
 
-    // this.init();
-
-    // // If onInit event exists on element, run that instead of auto initializing
-    // if (this.props.onInit) {
-    //   if (window[this.props.onInit]) {
-    //     window[this.props.onInit](this);
-    //   }
-    // }
-
     // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
     if (this.props.isBackgroundVideo) {
       window.addEventListener('resize', this._onWindowResize);
@@ -578,45 +569,6 @@ class BoltVideo extends withContext(withLitHtml()) {
 
     return s;
   }
-
-  // initVideoJS(id) {
-  //   const self = this;
-
-  //   beforeNextRender(this, function() {
-  //     const player = videojs(id);
-  //     const handler = BoltVideo.handlePlayerReady.bind(player, self);
-  //     player.ready(handler);
-  //   });
-  // }
-
-  // initVideo(id) {
-  //   const self = this;
-
-  //   beforeNextRender(this, function() {
-  //     bc(self.querySelector(`#${id}`), {
-  //       controlBar: {
-  //         fullscreenToggle: !self.props.hideFullScreenButton,
-  //       },
-  //     });
-  //     self.initVideoJS(id);
-  //   });
-  // }
-
-  // init() {
-  //   const self = this;
-
-  //   beforeNextRender(this, function() {
-  //     const dataAttributes = datasetToObject(this);
-  //     Object.keys(dataAttributes).forEach(item => {
-  //       this.querySelector('video').setAttribute(item, dataAttributes[item]);
-  //     });
-  //     if (window.bc && window.videojs) {
-  //       self.initVideo(self.state.id);
-  //     } else {
-  //       BoltVideo.players.push(self);
-  //     }
-  //   });
-  // }
 
   play() {
     if (this.player) {
