@@ -1,7 +1,20 @@
 import Ajv from 'ajv';
-import { withComponent, shadow, props } from 'skatejs';
+import { withComponent, props } from 'skatejs';
 import changeCase from 'change-case';
 import { findParentTag, hasNativeShadowDomSupport, renameKey } from '../utils';
+
+export function shadow(elem) {
+  // eslint-disable-next-line no-return-assign
+  return (
+    elem._shadowRoot ||
+    (elem._shadowRoot =
+      elem.shadowRoot ||
+      elem.attachShadow({
+        mode: 'open',
+        delegatesFocus: elem.delegateFocus || false,
+      }))
+  );
+}
 
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
