@@ -36,9 +36,7 @@ const sassExportData = require('@bolt/sass-export-data')({
 
 const sassLoaderOptions = {
   sourceMap: false,
-  importer: [
-    npmSass.importer,
-  ],
+  importer: [npmSass.importer],
   functions: sassExportData,
   precision: 3,
   data: globalSassData.join('\n'),
@@ -271,7 +269,7 @@ module.exports = {
       {
         enforce: 'pre',
         test: /\.(vue|(j|t)sx?)$/,
-        exclude: [/node_modules/, './node_modules/@vue/cli-service/lib'],
+        exclude: [/node_modules/],
         use: [
           {
             loader: 'eslint-loader',

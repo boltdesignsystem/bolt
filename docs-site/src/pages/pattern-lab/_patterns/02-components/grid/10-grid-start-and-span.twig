@@ -1,0 +1,177 @@
+<mark style="display: block;" class="u-bolt-margin-bottom-large">
+  <div class="u-bolt-padding-small">
+    <p><strong>Support for Internet Explorer:</strong> Due to IE's outdated technology, it is mandatory to define column start and row start if you want the grid to render correctly.</p>
+  </div>
+</mark>
+
+<h3>Column start and column span</h3>
+<p>The Bolt Grid is built on the concept of column start and column span, this allows the user to have full control of the grid layout.</p>
+
+<h3>Common usage</h3>
+
+{% set item_aside %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Aside",
+  } only %}
+{% endset %}
+
+{% set item_main %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Main",
+  } only %}
+{% endset %}
+
+<p>Main content in the center (column start 3 and column span 8) with 2 asides.</p>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1",
+        column_span: "2",
+        content: item_aside,
+      },
+      {
+        column_start: "3",
+        column_span: "8",
+        content: item_main,
+      },
+      {
+        column_start: "11",
+        column_span: "2",
+        content: item_aside,
+      },
+    ]
+  } only %}
+</div>
+
+<p>Main content with an aside (column start 9 and column span 4).</p>
+<div class="u-bolt-margin-bottom-large">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1",
+        column_span: "8",
+        content: item_main,
+      },
+      {
+        column_start: "9",
+        column_span: "4",
+        content: item_aside,
+      },
+    ]
+  } only %}
+</div>
+
+
+<h3>Row start and row span</h3>
+<p>Row start and row span are also available, they are for less common layouts.</p>
+
+{% set item_row %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Row",
+  } only %}
+{% endset %}
+
+<div class="u-bolt-margin-bottom-large">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1",
+        column_span: "4",
+        row_start: "1",
+        content: item_row,
+      },
+      {
+        column_start: "1",
+        column_span: "1",
+        row_start: "2",
+        content: item_row,
+      },
+      {
+        column_start: "1",
+        column_span: "1",
+        row_start: "3",
+        content: item_row,
+      },
+      {
+        column_start: "2",
+        column_span: "3",
+        row_start: "2",
+        row_span: "2",
+        content: "Start at column 2 and row 2 and span 2 rows.",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+          ]
+        },
+      },
+      {
+        column_start: "5",
+        column_span: "9",
+        row_start: "1",
+        content: item_row,
+      },
+      {
+        column_start: "5",
+        column_span: "9",
+        row_start: "2",
+        content: item_row,
+      },
+      {
+        column_start: "5",
+        column_span: "9",
+        row_start: "3",
+        content: item_row,
+      },
+    ]
+  } only %}
+</div>
+
+<h3>All possible start and span options</h3>
+<p>Please refer to the <a href="/pattern-lab/?p=viewall-visual-styles-breakpoints">Bolt Breakpoints</a> for all possible breakpoint names. <code>number@breakpoint-name</code> means starting at that specific breakpoint, change to the number defined. For example: <code>column_span: "6@small"</code> means starting at the small breakpoint, span 6 columns.</p>
+{% include "@bolt-components-table/table.twig" with {
+  first_col_fixed_width: true,
+  headers: {
+    top: {
+      cells: [
+        "Regular Option",
+        "Responsive Option",
+      ]
+    },
+    side: {
+      cells: [
+        "<code>column_start</code>",
+        "<code>column_span</code>",
+        "<code>row_start</code>",
+        "<code>row_span</code>",
+      ]
+    }
+  },
+  rows: [
+    {
+      cells: [
+        "1 to 12",
+        "1@<strong class='u-bolt-color-indigo-light'>breakpoint-name</strong> to 12@<strong class='u-bolt-color-indigo-light'>breakpoint-name</strong>",
+      ]
+    },
+    {
+      cells: [
+        "1 to 12",
+        "1@<strong class='u-bolt-color-indigo-light'>breakpoint-name</strong> to 12@<strong class='u-bolt-color-indigo-light'>breakpoint-name</strong>",
+      ]
+    },
+    {
+      cells: [
+        "1 to 12",
+        "1@<strong class='u-bolt-color-indigo-light'>breakpoint-name</strong> to 12@<strong class='u-bolt-color-indigo-light'>breakpoint-name</strong>",
+      ]
+    },
+    {
+      cells: [
+        "1 to 12",
+        "1@<strong class='u-bolt-color-indigo-light'>breakpoint-name</strong> to 12@<strong class='u-bolt-color-indigo-light'>breakpoint-name</strong>",
+      ]
+    },
+  ],
+} only %}

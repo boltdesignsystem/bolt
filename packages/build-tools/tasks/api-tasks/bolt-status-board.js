@@ -3,6 +3,7 @@ const { render, renderString } = require('@bolt/twig-renderer');
 const shell = require('shelljs');
 const globby = require('globby');
 const path = require('path');
+const arraySort = require('array-sort');
 const prettier = require('prettier');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
 const fs = require('fs');
@@ -26,12 +27,21 @@ async function finishRendering(rows, callback) {
       attributes: {
         class: [
           "t-bolt-xlight"
-        ]
+        ],
+        id: "component-status"
       },
       headers: {
         top: {
           cells: [
-            "Component",
+            {
+              content: "Component",
+              attributes: {
+                class: [
+                  "sort"
+                ],
+                "data-sort": "component"
+              },
+            },
             "Sass",
             "Twig",
             "Web Component",
@@ -42,7 +52,7 @@ async function finishRendering(rows, callback) {
           ]
         },
       },
-      rows: ${JSON.stringify(rows)},
+      rows: ${JSON.stringify(arraySort(rows, 'cells'))},
     } only %}
   `).then(renderedResults => {
     const formattedTable = prettier.format(renderedResults.html, {
@@ -111,6 +121,7 @@ async function generateStatusBoard() {
       const pkgName = boltPackage.name;
       const componentPath = boltPackage.location;
       const pkg = require(`${boltPackage.location}/package.json`);
+      const pkgAlias = pkg['pattern-alias'] || ''; // allows an optional 'pattern-alias' config to be defined in the component's package.json to match up a component's normal name with one or two oddly named component folders in Pattern Lab
 
       const jsFound = globby.sync([
         `${componentPath}/**/*.js`,
@@ -153,9 +164,13 @@ async function generateStatusBoard() {
 
         const normalizedUrl = urlAddress.replace('../../', '/pattern-lab/');
 
+        // if a component's package.json has defined a pattern alias, use that to match up with a PL folder vs using the default pkg name
         if (
-          normalizedUrlName === pkgName &&
-          !processedComponents.includes(pkgName)
+          (pkgAlias !== '' &&
+            normalizedUrlName === pkgAlias &&
+            !processedComponents.includes(pkgName)) ||
+          (normalizedUrlName === pkgName &&
+            !processedComponents.includes(pkgName))
         ) {
           processedComponents.push(pkgName);
           pendingRequests.push(pkgName);

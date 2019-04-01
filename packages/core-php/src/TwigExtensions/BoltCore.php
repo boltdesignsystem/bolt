@@ -24,7 +24,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
     }
   }
 
-  function initRuntime(\Twig_Environment $env) {
+  function initRuntime(\Twig\Environment $env) {
     try {
       $fullManifestPath = TwigTools\Utils::resolveTwigPath($env, '@bolt-data/full-manifest.bolt.json');
       $dataDir = dirname($fullManifestPath);
@@ -88,11 +88,14 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
     return [
       TwigTools\TwigFunctions::get_data(),
       TwigTools\TwigFunctions::validate_data_schema(),
+      Bolt\TwigFunctions::init(),
       Bolt\TwigFunctions::publicpath(),
       Bolt\TwigFunctions::base64(),
       Bolt\TwigFunctions::bgcolor(),
       Bolt\TwigFunctions::ratio(),
       Bolt\TwigFunctions::getImageData(),
+      Bolt\TwigFunctions::fileExists(),
+      Bolt\TwigFunctions::inlineFile(),
     ];
   }
 
