@@ -1,29 +1,29 @@
 {
   "name": "@bolt/website",
-  "description": "Bolt Design System Website",
   "version": "2.3.0",
   "private": true,
+  "description": "Bolt Design System Website",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt"
+  },
   "license": "MIT",
   "main": "bolt.js",
   "scripts": {
     "build": "bolt build",
     "build:lang": "bolt build --i18n",
     "build:noisy": "bolt build --verbosity 5",
-    "build:prod": "bolt build --prod",
     "build:pl": "bolt prep && npx lerna exec --scope @bolt/uikit-workshop --loglevel=silent -- yarn run build",
+    "build:prod": "bolt build --prod",
+    "clean": "cd ../ && npm run clean",
     "serve": "bolt serve",
-    "watch": "bolt watch",
+    "setup": "cd ../ && npm run setup",
     "start": "bolt start",
     "start:lang": "bolt start --i18n",
     "start:prod": "bolt start --prod",
-    "setup": "cd ../ && npm run setup",
-    "clean": "cd ../ && npm run clean",
+    "test": "npm run test:links",
     "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
-    "test": "npm run test:links"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt"
+    "watch": "bolt watch"
   },
   "dependencies": {
     "list.js": "^1.5.0",
