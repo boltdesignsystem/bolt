@@ -6,7 +6,7 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     browser
       .url(`${testingUrl}/pattern-lab/index.html`)
-      .waitForElementVisible('.pl-c-body', 3000)
+      .waitForElementVisible('.pl-c-body', 10000)
       .verify.title('Pattern Lab - components-overview')
       .end();
   },
@@ -18,7 +18,8 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     browser
       .url(`${testingUrl}/pattern-lab/?p=components-overview`)
-      .waitForElementVisible('pl-header', 3000)
+      .waitForElementVisible('.pl-js-open-new-window', 10000)
+      .waitForElementVisible('pl-header', 10000)
       .assert.elementPresent('.js-c-typeahead__input')
       .click('.js-c-typeahead__input'); // click on the PL search input
 
@@ -39,12 +40,12 @@ module.exports = {
       browser.end();
     } else {
       browser
-        .waitForElementVisible('.pl-c-typeahead__result--first', 3000) // make sure the "Open in a New Tab" UI is there
+        .waitForElementVisible('.pl-c-typeahead__result--first', 10000) // make sure the "Open in a New Tab" UI is there
         .click('.pl-c-typeahead__result--first') // click on the first result
         .getAttribute('.pl-js-open-new-window', 'href', function(result) {
           browser.url(result.value);
         })
-        .waitForElementVisible('bolt-card', 3000)
+        .waitForElementVisible('bolt-card', 10000)
         .assert.urlContains('components-card')
         .saveScreenshot(
           `screenshots/pattern-lab/pattern-lab-search-results-load-new-page--${browser

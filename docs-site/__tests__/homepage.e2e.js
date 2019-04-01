@@ -6,7 +6,7 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     browser
       .url(`${testingUrl}`)
-      .waitForElementVisible('.c-bds-layout', 3000)
+      .waitForElementVisible('.c-bds-layout', 10000)
       .assert.containsText('.c-bolt-navbar__title-text', 'Bolt')
       .end();
   },
@@ -17,7 +17,7 @@ module.exports = {
     const { testingUrl } = browser.globals;
     browser
       .url(`${testingUrl}/docs/getting-started/index.html`)
-      .waitForElementVisible('.c-bds-layout__content--has-sidebar', 3000)
+      .waitForElementVisible('.c-bds-layout__content--has-sidebar', 10000)
       .assert.containsText('h2', 'Getting Started')
       .end();
   },
