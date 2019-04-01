@@ -77,7 +77,8 @@ describe('<bolt-card> Component', () => {
       },
       body: {
         headline: 'With link and video',
-        paragraph: 'This card has a link, which makes the whole card clickable, and you can make it play/pause the video. Action button is optional in this case.',
+        paragraph:
+          'This card has a link, which makes the whole card clickable, and you can make it play/pause the video. Action button is optional in this case.',
       },
       actions: [
         {
@@ -86,7 +87,7 @@ describe('<bolt-card> Component', () => {
             'on-click': 'toggle',
             'on-click-target': 'js-bolt-video-uuid',
           },
-        }
+        },
       ],
     });
     expect(results.ok).toBe(true);
@@ -148,7 +149,7 @@ describe('<bolt-card> Component', () => {
     const results = await render('@bolt-components-card/card.twig', {
       link: {
         url: 'https://pega.com',
-        text: 'This entire card is clickable'
+        text: 'This entire card is clickable',
       },
       media: {
         image: {
