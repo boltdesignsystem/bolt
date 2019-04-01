@@ -14,9 +14,9 @@ class FocusTrap extends withLitHtml() {
   static props = {
     readonly: props.boolean,
     focused: props.boolean,
-    inactive: {
+    active: {
       ...props.boolean,
-      ...{ default: true },
+      ...{ default: false },
     },
   };
 
@@ -89,7 +89,7 @@ class FocusTrap extends withLitHtml() {
    * @param {boolean} trapToEnd
    */
   trapFocus(trapToEnd) {
-    if (this.inactive) return;
+    if (!this.active) return;
 
     let focusableChildren = this.getFocusableElements();
 
@@ -125,7 +125,7 @@ class FocusTrap extends withLitHtml() {
    * When the element gains focus this function is called.
    */
   onFocusIn() {
-    if (this.inactive === false) {
+    if (this.active) {
       this.updateFocused(true);
     }
   }
@@ -134,7 +134,7 @@ class FocusTrap extends withLitHtml() {
    * When the element looses its focus this function is called.
    */
   onFocusOut() {
-    if (this.inactive === false) {
+    if (this.active) {
       this.updateFocused(false);
     }
   }
@@ -157,14 +157,14 @@ class FocusTrap extends withLitHtml() {
     return html`
       <div
         id="start"
-        tabindex="${this.inactive === true ? `-1` : `0`}"
+        tabindex="${this.active === true ? `0` : `-1`}"
         @focus=${e => this.focusLastElement(e)}
       ></div>
       ${this.slot('default')}
       <div id="backup"></div>
       <div
         id="end"
-        tabindex="${this.inactive === true ? `-1` : `0`}"
+        tabindex="${this.active === true ? `0` : `-1`}"
         @focus=${e => this.focusFirstElement(e)}
       ></div>
     `;
