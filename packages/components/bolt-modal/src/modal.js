@@ -1,151 +1,63 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+// based originally off of https://github.com/edenspiekermann/a11y-dialog before heavy modifications and customizations
+
+import { props, define } from '@bolt/core/utils';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
-import schema from '../modal.schema.yml';
+// import schema from '../modal.schema.yml';
 
-// var createFocusTrap = require('focus-trap');
+const tabbable = require('tabbable');
 import '../focus-trap';
 
-// function getFocusedElement() {
-//   var activeElement = document.activeElement;
-
-//   if (!activeElement || activeElement === document.body) {
-//     return;
-//   }
-
-//   var getShadowActiveElement = function(element) {
-//     if (element.shadowRoot && element.shadowRoot.activeElement) {
-//       element = getShadowActiveElement(element.shadowRoot.activeElement);
-//     }
-
-//     return element;
-//   };
-
-//   return getShadowActiveElement(activeElement);
-// }
-
-// function getEventPath(evt) {
-//   return evt.path || (evt.composedPath && evt.composedPath()) || composedPath(evt.target);
-// }
-
-// /**
-//  * Equivalent to path/composedPath if not supported natively.
-//  * Note: Slots and shadow roots are detected, but aren't needed as they are virtually invisible anyway...
-//  */
-// function composedPath(el) {
-//   var path = [];
-
-//   while (el) {
-//     if (el.shadowRoot) {
-//       if (el.shadowRoot.activeElement) {
-//         path.push(el.shadowRoot.activeElement);
-//       }
-//       path.push(el.shadowRoot);
-//     }
-
-//     path.push(el);
-
-//     if (el.tagName === 'HTML') {
-//       path.push(document);
-//       path.push(window);
-//       break;
-//     }
-
-//     el = el.parentElement;
-//   }
-
-//   return path;
-// }
-
-const FOCUSABLE_ELEMENTS = [
-  'bolt-button:not([inert])',
-  'bolt-link:not([inert])',
-  'a[href]:not([tabindex^="-"]):not([inert])',
-  'area[href]:not([tabindex^="-"]):not([inert])',
-  'input:not([disabled]):not([inert])',
-  'select:not([disabled]):not([inert])',
-  'textarea:not([disabled]):not([inert])',
-  'button:not([disabled]):not([inert])',
-  'iframe:not([tabindex^="-"]):not([inert])',
-  'audio:not([tabindex^="-"]):not([inert])',
-  'video:not([tabindex^="-"]):not([inert])',
-  '[contenteditable]:not([tabindex^="-"]):not([inert])',
-  '[tabindex]:not([tabindex^="-"]):not([inert])',
-];
-const TAB_KEY = 9;
 const ESCAPE_KEY = 27;
-let focusedBeforeDialog;
-
 let cx = classNames.bind(styles);
-
-// document.addEventListener('click', function (event) {
-
-// 	if (event.target.closest('bolt-video') === false) {
-//     // Run your code to open a modal
-//     console.log('out bolt modal?');
-// 	}
-
-// 	if (event.target.closest('bolt-video')) {
-//     console.log('inside bolt modal?');
-// 		// Run your code to close a modal
-// 	}
-// }, false);
 
 @define
 class BoltModal extends withLitHtml() {
   static is = 'bolt-modal';
 
   static props = {
-    // isFocusTrapped: {
-    //   ...props.boolean,
-    //   ...{ default: false },
-    // },
-    shown: {
+    open: {
       ...props.boolean,
       ...{ default: false },
     },
-    noShadow: {
+    persistent: {
       ...props.boolean,
       ...{ default: false },
     },
-    disabled: {
-      ...props.boolean,
-      ...{ default: false },
-    },
+    // animation
+    // persistent - don't allow users to close the modal once opened if an action is required
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    // self.useShadow = false;
     self.show = self.show.bind(this);
     self.hide = self.hide.bind(this);
     self._handleExternalClicks = self._handleExternalClicks.bind(this);
+    self._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
 
-    // if (alreadyHasClickEventHandler === false) {
-    //   BoltModal._handleExternalClicks();
-    //   alreadyHasClickEventHandler = true;
-    // }
-
-    // self.maintainFocus = this.maintainFocus.bind(this);
-    // self.bindKeypress = this.bindKeypress.bind(this);
     return self;
   }
 
+  // @todo: refactor to handle multiple modals on the same page
   _handleExternalClicks() {
     const self = this;
 
     document.addEventListener('click', e => {
-      if (!self.shown) {
+      let el = e.target;
+      if (self.open === false) {
+        return;
+        // have we rendered yet?
+      } else if (self.ready !== true) {
+        return;
+      } else if (self.persistent === true) {
         return;
       } else {
-        let el = e.target;
-
-        if (el.hasAttribute('slot') && self.ready === true) {
-          if (el.getAttribute('slot') === 'trigger') {
-            self.hide();
-          }
+        // if we are already open + click on the trigger slot, auto-hide the modal
+        if (el.getAttribute('slot') === 'trigger') {
+          console.log('clicked on trigger');
+          self.hide();
         }
 
         while (el) {
@@ -160,149 +72,35 @@ class BoltModal extends withLitHtml() {
     });
   }
 
-  // updated(){
-  //   super.updated && super.updated();
-  //   // this._handleExternalClicks();
-  // }
-
   connecting() {
     super.connecting && super.connecting();
-
+    document.addEventListener('keydown', this._handleKeyPresseskeypress);
     this._handleExternalClicks();
-
-    // Prebind the functions that will be bound in addEventListener and
-    // removeEventListener to avoid losing references
-
-    // Keep an object of listener types mapped to callback functions
-    // this._listeners = {};
-
-    // Set the `shown` property to match the status from the DOM
-    // this.shown = this.dialog.hasAttribute('open');
-    this.shown = false;
-
-    // this.create(targets);
+    this.setAttribute('ready', '');
   }
 
   // Initialise everything needed for the dialog to work properly
   rendered() {
-    console.log('rendered');
     super.rendered && super.rendered();
-    const self = this;
-
-    this.focusTrap = this.renderRoot.querySelector('focus-trap');
-
-    // this.focusTrap = createFocusTrap(this, {
-    //   // fallbackFocus: self.renderRoot.querySelector('.js-close-button-fallback'),
-    //   initialFocus: self.renderRoot.querySelector('.js-close-button-fallback'),
-    //   // onActivate() {
-    //   //   // self.isFocusTrapped = true;
-    //   // },
-    //   escapeDeactivates: true,
-    //   clickOutsideDeactivates: false,
-    //   returnFocusOnDeactivate: true,
-    //   onDeactivate() {
-    //     // self.focusedBeforeDialog.focus();
-
-    //         // If there was a focused element before the dialog was opened, restore the
-    //     // focus back to it
-    //     if (self.focusedBeforeDialog) {
-    //       if (self.focusedBeforeDialog.renderRoot) {
-    //         if (self.focusedBeforeDialog.renderRoot.querySelector('button')) {
-    //           self.focusedBeforeDialog.renderRoot.querySelector('button').focus();
-    //         } else if (self.focusedBeforeDialog.renderRoot.querySelector('a')) {
-    //           self.focusedBeforeDialog.renderRoot.querySelector('a').focus();
-    //         } else {
-    //           self.focusedBeforeDialog.focus();
-    //         }
-    //       } else {
-    //         self.focusedBeforeDialog.focus();
-    //       }
-    //     }
-    //     // self.isFocusTrapped = false;
-    //     // containerOne.className = 'trap';
-    //   },
-    // });
-
-    document.addEventListener('keydown', this.bindKeypress);
-
-    // const targets = document.querySelector('main');
-
-    // Keep a reference of the node and the actual dialog on the instance
-    this.container = this.renderRoot.querySelector('#my-accessible-dialog');
+    this.focusTrap = this.renderRoot.querySelector('focus-trap'); // reference to the focus trap element inside -- handles focus binding when enabled
 
     this.dialog = this.renderRoot.querySelector(
       'dialog, [role="dialog"], [role="alertdialog"]',
     );
 
-    // if (!this.focusTrap) {
-    // var containerOne = document.getElementById('demo-one');
-    // }
-
-    this.role = this.dialog.getAttribute('role') || 'dialog';
     this.useDialog =
       'show' in document.createElement('dialog') &&
       this.dialog.nodeName === 'DIALOG';
-
-    // console.log(this.dialog);
-    // Keep a collection of nodes to disable/enable when toggling the dialog
-    // this._targets =
-    //   this._targets || this.collect(targets) || this.getSiblings(this);
-    this._targets = this._targets || this.getSiblings(this);
-
-    // Despite using a `<dialog>` element, `role="dialog"` is not necessarily
-    // implied by all screen-readers (yet)
-    // See: https://github.com/edenspiekermann/a11y-dialog/commit/6ba711a777aed0dbda0719a18a02f742098c64d9#commitcomment-28694166
-    // this.dialog.setAttribute('role', this.role);
-
-    // if (!this.useDialog) {
-    //   if (this.shown) {
-    //     this.container.removeAttribute('aria-hidden');
-    //   } else {
-    //     this.container.setAttribute('aria-hidden', true);
-    //   }
-    // } else {
-    //   this.container.setAttribute('data-a11y-dialog-native', '');
-    // }
-
-    // Keep a collection of dialog openers, each of which will be bound a click
-    // event listener to open the dialog
-    // this._openers = this.$$(
-    //   '[data-a11y-dialog-show="' + this.container.id + '"]',
-    // );
-    // this._openers.forEach(opener => {
-    //   opener.addEventListener('click', this.show);
-    // });
-
-    // Keep a collection of dialog closers, each of which will be bound a click
-    // event listener to close the dialog
-    // this._closers = this.$$('[data-a11y-dialog-hide]', this.container).concat(
-    //   this.$$('[data-a11y-dialog-hide="' + this.container.id + '"]'),
-    // );
-
-    // // console.log(this._closers);
-    // this._closers.forEach(closer => {
-    //   // console.log(closer);
-    //   closer.addEventListener('click', this.hide);
-    // });
-
-    // Execute all callbacks registered for the `create` event
-    // this._fire('create');
   }
 
-  // rendered() {
-  //   const el = this.renderRoot.querySelector('#my-accessible-dialog');
-  //   // .renderRoot.querySelector('#my-accessible-dialog');
-
-  //   // Instantiate a new A11yDialog module
-  //   this.dialog = new A11yDialog(el);
+  // aliases for the `show` and `hide` methods
+  // open() {
+  //   this.show();
   // }
 
-  hideModalWhenClickingOutside(e) {
-    if (!this.shown) return;
-
-    console.log(e);
-    // console.log(this.renderRoot.contains(e.target));
-  }
+  // close() {
+  //   this.hide();
+  // }
 
   /**
    * Show the dialog element, disable all the targets (siblings), trap the
@@ -314,64 +112,31 @@ class BoltModal extends withLitHtml() {
    */
   show(event) {
     // If the dialog is already open, abort
-    // if (this.shown) {
-    //   document.addEventListener('click', this.hideModalWhenClickingOutside);
-    // }
+    if (this.open) return;
 
-    // Remove the click event listener from all dialog closers
-    // this._closers.forEach(closer => {
-    //   closer.removeEventListener('click', this.hide);
-    // });
-
+    // Keep a reference to the currently focused element to be able to restore it later
     this.focusedBeforeDialog = document.activeElement;
 
-    console.log(this.focusedBeforeDialog);
+    this.open = true;
 
-    this.shown = true;
+    // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
     // this.querySelector('[slot="trigger"]').setAttribute('tabindex', '-1');
-    // this.querySelector('[slot="trigger"]').setAttribute('aria-hidden', true);
-    // this.maintainFocus();
 
-    // console.log(this.shown);
-
-    // Keep a reference to the currently focused element to be able to restore
-    // it later
-
-    // console.log(focusedBeforeDialog);
-
+    // @todo: confirm if we still need to include this default native dialog behavior
     // if (this.useDialog) {
     //   this.dialog.showModal(event instanceof Event ? void 0 : event);
     // } else {
     // this.dialog.setAttribute('open', '');
     // this.container.removeAttribute('aria-hidden');
 
-    // Iterate over the targets to disable them by setting their `aria-hidden`
-    // attribute to `true`
-    this._targets.forEach(function(target) {
-      target.setAttribute('aria-hidden', 'true');
-    });
-
-    this.focusTrap.inactive = false;
+    this.focusTrap.active = true;
 
     setTimeout(() => {
-      this.renderRoot.querySelector('.js-close-button-fallback').focus();
+      this.setFocusToFirstItem(this.renderRoot);
       this.ready = true;
-    }, 400);
-    // }
+    }, 1);
 
-    // Set the focus to the first focusable child of the dialog element
-    // this.setFocusToFirstItem(this.renderRoot);
-
-    // document.body.addEventListener('focus', this.maintainFocus, true);
-
-    // Bind a focus event listener to the body element to make sure the focus
-    // stays trapped inside the dialog while open, and start listening for some
-    // specific key presses (TAB and ESC)
-
-    // Execute all callbacks registered for the `show` event
-    // this._fire('show', event);
-
-    // return this;
+    // @todo: emit custom event when modal is shown
   }
 
   /**
@@ -383,22 +148,15 @@ class BoltModal extends withLitHtml() {
    * @return {this}
    */
   hide(event) {
-    // console.log('hide');
-
     // If the dialog is already closed, abort
-    // if (!this.shown) {
-    //   return this;
-    // }
-
-    // this.querySelector('[slot="trigger"]').removeAttribute('tabindex');
-    // this.focusTrap.deactivate();
-    console.log(this.focusTrap.inactive);
-    this.focusTrap.inactive = true;
-    // this.querySelector('[slot="trigger"]').setAttribute('aria-hidden', false);
-    this.shown = false;
+    if (!this.open) {
+      return this;
+    }
+    this.focusTrap.active = false;
+    this.open = false;
     this.ready = false;
-    // this.focusedBeforeDialog.focus();
 
+    // @todo: refactor this to be more component / element agnostic
     if (this.focusedBeforeDialog) {
       if (this.focusedBeforeDialog.renderRoot) {
         if (this.focusedBeforeDialog.renderRoot.querySelector('button')) {
@@ -413,31 +171,21 @@ class BoltModal extends withLitHtml() {
       }
     }
 
-    // console.log(this.shown);
-
+    // @todo: look into if we still need to include this bit of original "native vs non-native" dialog handling (esp. for accessibility support)
     if (this.useDialog) {
       // eslint-disable-next-line no-void
       this.dialog.close(event instanceof Event ? void 0 : event);
     } else {
       // this.dialog.removeAttribute('open');
       // this.container.setAttribute('aria-hidden', 'true');
-
       // Iterate over the targets to enable them by removing their `aria-hidden`
       // attribute
-      this._targets.forEach(function(target) {
-        target.removeAttribute('aria-hidden');
-      });
+      // this._targets.forEach(function(target) {
+      //   target.removeAttribute('aria-hidden');
+      // });
     }
 
-    // Remove the focus event listener to the body element and stop listening
-    // for specific key presses
-    // document.body.removeEventListener('focus', this.maintainFocus, true);
-    document.removeEventListener('keydown', this.bindKeypress);
-
-    // Execute all callbacks registered for the `hide` event
-    // this._fire('hide', event);
-
-    // return this;
+    // @todo: emit custom event when modal is hidden
   }
 
   /**
@@ -447,91 +195,14 @@ class BoltModal extends withLitHtml() {
    * @access private
    * @param {Event} event
    */
-  bindKeypress = function(event) {
+  _handleKeyPresseskeypress = function(event) {
     // If the dialog is shown and the ESCAPE key is being pressed, prevent any
-    // further effects from the ESCAPE key and hide the dialog, unless its role
-    // is 'alertdialog', which should be modal
-    if (
-      this.shown &&
-      event.which === ESCAPE_KEY &&
-      this.role !== 'alertdialog'
-    ) {
+    // further effects from the ESCAPE key and hide the modal
+    if (this.open && event.which === ESCAPE_KEY) {
       event.preventDefault();
       this.hide();
     }
   };
-
-  /**
-   * Private event handler used when making sure the focus stays within the
-   * currently open dialog
-   *
-   * @access private
-   * @param {Event} event
-   */
-  // maintainFocus = function(event) {
-  //   console.log(this.renderRoot.contains(event.target));
-
-  //   if (event) {
-  //     event.preventDefault();
-  //   }
-
-  //   console.log(`this contains focused element: ${this.contains(event.target)}`);
-
-  //   // If the dialog is shown and the focus is not within the dialog element,
-  //   // move it back to its first focusable child
-  //   // if (
-  //   //   this.shown &&
-  //   //   (!this.renderRoot.contains(event.target) &&
-  //   //     !this.contains(event.target) &&
-  //   //     !this.shadowRoot.contains(event.target))
-  //   // ) {
-  //   //   // document.activeElement.blur();
-  //   //   // this.setFocusToFirstItem(this.renderRoot);
-  //   // }
-  // };
-
-  /**
-   * Convert a NodeList into an array
-   *
-   * @param {NodeList} collection
-   * @return {Array<Element>}
-   */
-  toArray(collection) {
-    return Array.prototype.slice.call(collection);
-  }
-
-  /**
-   * Query the DOM for nodes matching the given selector, scoped to context (or
-   * the whole document)
-   *
-   * @param {String} selector
-   * @param {Element} [context = document]
-   * @return {Array<Element>}
-   */
-  $$(selector, context) {
-    return this.toArray((context || document).querySelectorAll(selector));
-  }
-
-  /**
-   * Return an array of Element based on given argument (NodeList, Element or
-   * string representing a selector)
-   *
-   * @param {(NodeList | Element | string)} target
-   * @return {Array<Element>}
-   */
-  collect(target) {
-    if (NodeList.prototype.isPrototypeOf(target)) {
-      return this.toArray(target);
-    }
-
-    if (Element.prototype.isPrototypeOf(target)) {
-      return [target];
-    }
-
-    if (typeof target === 'string') {
-      return this.$$(target);
-    }
-  }
 
   /**
    * Set the focus to the first element with `autofocus` or the first focusable
@@ -540,40 +211,13 @@ class BoltModal extends withLitHtml() {
    * @param {Element} node
    */
   setFocusToFirstItem(node) {
-    // console.log(
-    //   this.getFocusableChildren(this.renderRoot.querySelector('dialog')),
-    // );
-    // console.log(this.getFocusableChildren(this));
-
-    // if (this.shadowRoot){
-    //   this
-    // }
-    // let slots = this.shadowRoot.querySelectorAll('slot');
-    // slots[1].addEventListener('slotchange', function(e) {
-    //   let nodes = slots[1].assignedNodes();
-    //   console.log('Element in Slot "' + slots[1].name + '" changed to "' + nodes[0].outerHTML + '".');
-    // });
-
-    var focusableChildren = this.getFocusableChildren(node);
-    // let focusableChildrenAlt = focusableChildren;
-
-    // if (altNode) {
-    //   focusableChildrenAlt = this.getFocusableChildren(altNode);
-    // }
+    const focusableChildren = this.getFocusableChildren(node);
     const childToBeFocused =
       node.querySelector('[autofocus]') || focusableChildren[0];
-    //  || focusableChildrenAlt[0];
 
-    setTimeout(function() {
+    if (childToBeFocused) {
       childToBeFocused.focus();
-    }, 100);
-
-    // focusableChildren[0].focus();
-    // document.activeElement = focusableChildren[0];
-
-    // if (focused) {
-    //   focused.focus();
-    // }
+    }
   }
 
   /**
@@ -582,70 +226,8 @@ class BoltModal extends withLitHtml() {
    * @param {Element} node
    * @return {Array<Element>}
    */
-  getFocusableChildren(node, includeTrigger = false) {
-    return this.$$(FOCUSABLE_ELEMENTS.join(','), node).filter(function(child) {
-      // return !!(
-      //   child.offsetWidth ||
-      //   child.offsetHeight ||
-      //   child.getClientRects().length
-      // );
-      if (includeTrigger) {
-        return child;
-      } else {
-        if (child.hasAttribute('slot')) {
-          if ((child.getAttribute('slot') !== 'trigger') === true) {
-            return child;
-          }
-        } else {
-          return child;
-        }
-      }
-    });
-  }
-
-  /**
-   * Trap the focus inside the given element
-   *
-   * @param {Element} node
-   * @param {Event} event
-   */
-  trapTabKey(node, event) {
-    var focusableChildren = this.getFocusableChildren(node);
-    var focusedItemIndex = focusableChildren.indexOf(document.activeElement);
-
-    // If the SHIFT key is being pressed while tabbing (moving backwards) and
-    // the currently focused item is the first one, move the focus to the last
-    // focusable item from the dialog element
-    if (event.shiftKey && focusedItemIndex === 0) {
-      focusableChildren[focusableChildren.length - 1].focus();
-      event.preventDefault();
-      // If the SHIFT key is not being pressed (moving forwards) and the currently
-      // focused item is the last one, move the focus to the first focusable item
-      // from the dialog element
-    } else if (
-      !event.shiftKey &&
-      focusedItemIndex === focusableChildren.length - 1
-    ) {
-      focusableChildren[0].focus();
-      event.preventDefault();
-    }
-  }
-
-  /**
-   * Retrieve siblings from given element
-   *
-   * @param {Element} node
-   * @return {Array<Element>}
-   */
-  getSiblings(node) {
-    var nodes = this.toArray(node.parentNode.childNodes);
-    var siblings = nodes.filter(function(node) {
-      return node.nodeType === 1;
-    });
-
-    siblings.splice(siblings.indexOf(node), 1);
-
-    return siblings;
+  getFocusableChildren(node) {
+    return tabbable(node);
   }
 
   /**
@@ -656,97 +238,47 @@ class BoltModal extends withLitHtml() {
    */
   disconnecting() {
     super.disconnecting && super.disconnecting();
-
-    // document.removeEventListener('click', this.hideModalWhenClickingOutside);
+    // Remove the focus event listener to the body element and stop listening for specific key presses
+    document.removeEventListener('keydown', this._handleKeyPresseskeypress);
+    this.removeAttribute('ready');
     // Hide the dialog to avoid destroying an open instance
-    this.hide();
-
-    // Remove the click event listener from all dialog openers
-    // this._openers.forEach(opener => {
-    //   opener.removeEventListener('click', this.show);
-    // });
-
-    // // Remove the click event listener from all dialog closers
-    // this._closers.forEach(closer => {
-    //   closer.removeEventListener('click', this.hide);
-    // });
-
-    // Execute all callbacks registered for the `destroy` event
-    // this._fire('destroy');
-
-    // Keep an object of listener types mapped to callback functions
-    // this._listeners = {};
-  }
-
-  /**
-   * Register a new callback for the given event type
-   *
-   * @param {string} type
-   * @param {Function} handler
-   */
-  // on = function(type, handler) {
-  //   if (typeof this._listeners[type] === 'undefined') {
-  //     this._listeners[type] = [];
-  //   }
-
-  //   this._listeners[type].push(handler);
-
-  //   return this;
-  // };
-
-  /**
-   * Unregister an existing callback for the given event type
-   *
-   * @param {string} type
-   * @param {Function} handler
-   */
-  // off = function(type, handler) {
-  //   var index = this._listeners[type].indexOf(handler);
-
-  //   if (index > -1) {
-  //     this._listeners[type].splice(index, 1);
-  //   }
-
-  //   return this;
-  // };
-
-  /**
-   * Iterate over all registered handlers for given type and call them all with
-   * the dialog element as first argument, event as second argument (if any).
-   *
-   * @access private
-   * @param {string} type
-   * @param {Event} event
-   */
-  // _fire = function(type, event) {
-  //   var listeners = this._listeners[type] || [];
-
-  //   listeners.forEach(
-  //     function(listener) {
-  //       listener(this.container, event);
-  //     }.bind(this),
-  //   );
-  // };
-
-  open() {
-    this.show();
-  }
-
-  close() {
     this.hide();
   }
 
   render() {
+    // @todo: validate props
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled } = this.validateProps(this.props);
-    const { shown } = this.props;
+    // const { disabled } = this.validateProps(this.props);
+    const { open } = this.props;
 
     const classes = cx('c-bolt-modal', {
-      [`c-bolt-modal--disabled`]: disabled,
+      // [`c-bolt-modal--disabled`]: disabled,
     });
 
-    // console.log(shown);
+    const overlayClasses = cx('c-bolt-modal__overlay', {
+      [`is-visible`]: open,
+    });
 
+    const contentClasses = cx('c-bolt-modal__content', {
+      [`is-open`]: open,
+    });
+
+    const defaultCloseButton = html`
+      <bolt-button
+        class="js-close-button-fallback"
+        aria-label="Close this dialog window"
+        @click=${e => this.hide(e)}
+        color="text"
+        icon-only
+        autofocus
+        tabindex="0"
+      >
+        Close this dialog window
+        <bolt-icon name="close" slot="after"></bolt-icon>
+      </bolt-button>
+    `;
+
+    //
     return html`
       ${this.addStyles([styles])}
       <!--
@@ -755,14 +287,16 @@ class BoltModal extends withLitHtml() {
         - It can have a different id than 'my-accessible-dialog', but it needs an 'id'
         anyway.
       -->
-      <div id="my-accessible-dialog" class="${classes}">
+      <div
+        class="${classes}"
+        aria-hidden=${open === true ? 'false' : 'true'}
+      >
         ${this.slot('trigger')}
         <!--
           Overlay related notes:
           - It has to have the 'tabindex="-1"' attribute.
-          - It doesn’t have to have the 'data-a11y-dialog-hide' attribute, however this is recommended. It hides the dialog when clicking outside of it.
         -->
-        <!-- <div tabindex="-1" data-a11y-dialog-hide class=""></div> -->
+        <div class="${overlayClasses}" tabindex="-1"></div>
 
         <!--
           Dialog window content related notes:
@@ -773,39 +307,58 @@ class BoltModal extends withLitHtml() {
         -->
         <focus-trap>
           <dialog
-            aria-hidden=${shown === true ? 'false' : 'true'}
             aria-labelledby="dialog-title"
-            ?open=${shown}
-            class="c-bolt-modal__content"
+            ?open=${open}
+            aria-hidden=${open === true ? 'false' : 'true'}
+            class="${contentClasses}"
           >
-            <!--
-              Closing button related notes:
-              - It does have to have the 'type="button"' attribute.
-              - It does have to have the 'data-a11y-dialog-hide' attribute.
-              - It does have to have an aria-label attribute if you use an icon as content.
-            -->
-            <button
-              type="button"
-              class="js-close-button-fallback"
-              data-a11y-dialog-hide
-              aria-label="Close this dialog window"
-              @click=${e => this.hide(e)}
-            >
-              &times;
-            </button>
+            <div class="${cx('c-bolt-modal__content-inner')}">
+              <!--
+                Closing button related notes:
+                - It does have to have the 'type="button"' attribute.
+                - It does have to have an aria-label attribute if you use an icon as content.
+              -->
 
-            <!--
-              Dialog title related notes:
-              - It should have a different content than 'Dialog Title'.
-              - It can have a different id than 'dialog-title'.
-            -->
-            <h1 id="dialog-title">Dialog Title</h1>
+              <!-- @todo: do we also need a schema option to hideCloseButton? -->
+              <div class="${cx('c-bolt-modal__close-button')}">
+                ${this.slots.close ? this.slot('close') : defaultCloseButton}
+              </div>
 
-            ${this.slot('default')}
+              <!-- @todo: placeholder slot for slotted header content -->
+              <!-- @todo: work through how we want to handle the default dialog modal title (associated with an ID) vs a customized modal title vs providing a title but hiding it.
+              <header class="c-bolt-modal__header">
+                <!--
+                  Dialog title related notes:
+                  - It should have a different content than 'Dialog Title'.
+                  - It can have a different id than 'dialog-title'.
+                -->
 
-            <!--
-              Here lives the main content of the dialog.
-            -->
+                <!-- @todo: does this need to be a unique id? -->
+                <!-- @todo: do we need an option to hideTitle -->
+                <bolt-text
+                  id="dialog-title"
+                  tag="h1"
+                  font-size="xxlarge"
+                  headline
+                >
+                  Modal Title
+                </bolt-text>
+                ${this.slot('header')}
+              </header>
+
+              <!--
+                Here lives the main content of the dialog.
+              -->
+              <!-- main slotted body content -->
+              <div class="c-bolt-modal__body">
+                ${this.slot('default')}
+              </div>
+
+              <!-- @todo: placeholder slot for slotted footer content -->
+              <div class="c-bolt-modal__footer">
+                ${this.slot('footer')}
+              </div>
+            </div>
           </dialog>
         </focus-trap>
       </div>

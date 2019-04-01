@@ -1,146 +1,98 @@
 @import '@bolt/core';
 
-// Local modal Variables
+// based originally off of https://github.com/edenspiekermann/a11y-dialog before heavy modifications and customizations
+
+$bolt-modal-overlay-bg-color: rgba(bolt-color(black), bolt-opacity(60));
 
 // Register Custom Block Element
-@include bolt-custom-element('bolt-modal', block, medium);
+@include bolt-custom-element('bolt-modal', inline-block, medium);
 
-/**
- * Long-form comment.
- *
- * This spans multiple lines and is also constrained to no longer than 80
- * characters in width.
- *
- * 1. Provide line-comments like this.
- */
-.c-bolt-modal {
-  //Styles go here. /* [1] */
-  display: block;
+// hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
+bolt-modal:not([ready]) {
+  > *:not([slot*='trigger']) {
+    display: none;
+  }
 }
 
-
-/* -------------------------------------------------------------------------- *\
- * Necessary styling for the dialog to work
- * -------------------------------------------------------------------------- */
+.c-bolt-modal {
+  display: inline-block;
+}
 
 /**
  * When `<dialog>` is properly supported, the overlay is implied and can be
  * styled with `::backdrop`, which means the DOM one should be removed.
  */
- [data-a11y-dialog-native] .dialog-overlay {
-  display: none;
-}
-
-/**
- * When `<dialog>` is not supported, its default display is `inline` which can
- * cause layout issues.
- */
-dialog[open] {
-  display: block;
-}
-
-.c-bolt-modal[aria-hidden="true"] {
-  display: none;
-}
-
-/* -------------------------------------------------------------------------- *\
- * Styling to make the dialog look like a dialog
- * -------------------------------------------------------------------------- */
-
-// .c-bolt-modal__overlay {
-//   position: fixed;
-//   top: 0;
-//   z-index: 2;
-//   background-color: rgba(0, 0, 0, 0.66);
-//   left: 0;
-//   bottom: 0;
-//   right: 0;
+// [data-a11y-dialog-native] .dialog-overlay {
+  // @todo: look further into this to see why the natively supported ::backdrop wasn't showing up as expected
+  // display: none;
 // }
 
 // dialog::backdrop {
 //   background-color: rgba(0, 0, 0, 0.66);
 // }
 
+/* -------------------------------------------------------------------------- *\
+ * Styling to make the dialog look like a modal
+ * -------------------------------------------------------------------------- */
+
+.c-bolt-modal__overlay {
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-color: $bolt-modal-overlay-bg-color;
+  transition: opacity 0.3s ease; // @todo: abstract away transition styles
+
+  &.is-visible {
+    opacity: 1;
+    transition: opacity 0.3s ease; // @todo: abstract away transition styles
+  }
+}
+
 .c-bolt-modal__content {
+  @include bolt-border-radius(small);
+  display: block;
+  opacity: 0;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) translateY(100px);
   z-index: 3;
+  width: 600px; // @todo: refactor min / max height and width; placeholder styles for demo
+  max-width: 90%; // @todo: refactor min / max height and width; placeholder styles for demo
+  max-height: 90vh; // @todo: refactor min / max height and width; placeholder styles for demo
+  overflow: auto;
   margin: 0;
-  background-color: rgb(255, 255, 255);
-}
+  padding: 0;
+  border: 0;
+  box-shadow: 0 20px 32px -8px rgba(9, 30, 66, 0.25),
+    0 0 1px rgba(9, 30, 66, 0.31); // @todo: clean up box shadow styles here
+  background-color: bolt-theme(background);
+  transition: 0.3s ease; // @todo: abstract away transition styles
 
-/* -------------------------------------------------------------------------- *\
- * Extra dialog styling to make it shiny
- * -------------------------------------------------------------------------- */
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -40%);
-  }
-  to {
+  &.is-open {
     opacity: 1;
     transform: translate(-50%, -50%);
+    transition: 0.3s ease; // @todo: abstract away transition styles
   }
 }
 
-.c-bolt-modal:not([aria-hidden='true']) > .c-bolt-modal__overlay {
-  animation: fade-in 200ms 1 both;
-}
+.c-bolt-modal__content-inner {
+  @include bolt-padding(small);
+  position: relative;
 
-.c-bolt-modal:not([aria-hidden='true']) > .c-bolt-modal__content {
-  animation: appear 400ms 150ms 1 both;
-}
-
-.c-bolt-modal__content {
-  width: 600px;
-  max-width: 90%;
-  padding: 1em;
-  border-radius: 2px;
-}
-
-
-@media screen and (min-width: 700px) {
-  .c-bolt-modal__content {
-    padding: 2em;
+  @include bolt-mq(medium) {
+    @include bolt-padding(medium);
   }
 }
 
-.c-bolt-modal__overlay {
-  background-color: rgba(43, 46, 56, 0.9);
-}
-
-// .dialog h1 {
-//   margin: 0;
-//   font-size: 1.25em;
-// }
-
-// .c-bolt-modal__close {
-//   position: absolute;
-//   top: 0.5em;
-//   right: 0.5em;
-//   border: 0;
-//   padding: 0;
-//   background-color: transparent;
-//   font-weight: bold;
-//   font-size: 1.25em;
-//   width: 1.2em;
-//   height: 1.2em;
-//   text-align: center;
-//   cursor: pointer;
-//   transition: 0.15s;
-// }
-
-@media screen and (min-width: 700px) {
-  .c-bolt-modal__close {
-    top: 1em;
-    right: 1em;
-  }
+// @todo: make sure the header is setup to carve out space on the right side for the close button
+.c-bolt-modal__close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
