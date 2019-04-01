@@ -56,10 +56,20 @@ class TwigFunctions {
 
     // locate where the Bolt SSR Server script is physically located so we can call the script + pass along our HTML string to render
     $context = new ArrayFinder($context);
-    $configFileUsed = $context->get('bolt.data.config.configFileUsed');
+    $boltConfig = $context->get('bolt.data.config');
+
+    // if the config option used to manually set server-side rendering behavior (enabled, disabled, or auto) doesn't exist, automatically disable and exit early.  
+    if (!isset($boltConfig["enableSSR"])){
+      return $html;
+    }
+
+    // disable server-side rendering web components when manually disabled, or set to auto + running in dev mode
+    if (($boltConfig["enableSSR"] == false && $boltConfig["prod"] == false)){
+      return $html;
+    }
     
-    $ssrServerPath = dirname($configFileUsed, 2) . '/node_modules/@bolt/ssr-server/cli.js';
-    $ssrServerPathAlt = dirname($configFileUsed, 1) . '/node_modules/@bolt/ssr-server/cli.js';
+    $ssrServerPath = dirname($boltConfig["configFileUsed"], 2) . '/node_modules/@bolt/ssr-server/cli.js';
+    $ssrServerPathAlt = dirname($boltConfig["configFileUsed"], 1) . '/node_modules/@bolt/ssr-server/cli.js';
     $ssrServerLocation = '';
 
     // if we found the right SSR server file in one of two places, try to render using it. Otherwise return the original HTML.
