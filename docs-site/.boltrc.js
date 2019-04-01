@@ -14,6 +14,7 @@ const config = {
   srcDir: './src/pages',
   buildDir: '../www/build',
   dataDir: '../www/build/data',
+  iconDir: [],
   wwwDir: '../www',
   startPath: '/',
   plConfigFile: './config/config.yml',
@@ -144,8 +145,13 @@ const config = {
       flatten: true,
     },
     {
+      from: `src/assets/videos`,
+      to: path.join(__dirname, '../www/videos'),
+      flatten: true,
+    },
+    {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json'),
+        resolve.sync('@bolt/global/package.json')
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -154,7 +160,7 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json'),
+        resolve.sync('@bolt/twig-renderer/package.json')
       )}/SetupTwigRenderer.php`,
       functions: ['addBoltExtensions'],
     },

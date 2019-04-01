@@ -1,7 +1,7 @@
-const { render } = require('@bolt/twig-renderer');
-const { media } = require('./figure-data');
+import { render } from '@bolt/twig-renderer';
+const { media } = require('./figure.data');
 
-describe('figure', async () => {
+describe('figure', () => {
   Object.keys(media).forEach(async item => {
     test(`figure with ${item}`, async () => {
       const results = await render('@bolt-components-figure/figure.twig', {

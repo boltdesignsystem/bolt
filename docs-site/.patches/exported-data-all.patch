@@ -1,0 +1,15 @@
+diff --git a/src/PatternLab/Builder.php b/src/PatternLab/Builder.php
+index cebbd408a..89571975d 100644
+--- a/src/PatternLab/Builder.php
++++ b/src/PatternLab/Builder.php
+@@ -393,6 +393,10 @@ class Builder {
+ 		$stringLoader     = Template::getStringLoader();
+ 		$globalData       = Data::get();
+ 
++		// default var
++		$dataDir = Config::getOption("publicDir")."/styleguide/data";
++		file_put_contents($dataDir."/patternlab-data-all.js","var globalData = ".json_encode($globalData)."; module.exports = { globalData };");
++
+ 		// load the pattern loader
+ 		$ppdExporter             = new PatternPathSrcExporter();
+ 		$patternPathSrc          = $ppdExporter->run();

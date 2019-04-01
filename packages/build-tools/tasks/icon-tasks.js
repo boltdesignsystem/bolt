@@ -20,8 +20,9 @@ let iconSpinner;
 const startBuildingIconsMsg = 'Building Bolt SVG Icons for the first time...';
 const startRebuildingIconsMsg = 'Rebuilding Bolt SVG Icons...';
 
-const finishedBuildingIconsMsg = 'Finished building Bolt SVG Icons!';
-const finishedRebuildingIconsMsg = 'Finished rebuilding Bolt SVG Icons!';
+const finishedBuildingIconsMsg = 'Finished building Bolt SVG Icons and schema!';
+const finishedRebuildingIconsMsg =
+  'Finished rebuilding Bolt SVG Icons and schema!';
 
 const failedBuildingIconsMsg = 'Initial build of the Bolt SVG Icons failed!';
 const failedRebuildingIconsMsg = 'Failed to rebuild Bolt SVG Icons!';
@@ -140,6 +141,7 @@ const rootDir = path.dirname(
   resolve.sync('@bolt/components-icons/package.json'),
 );
 const buildDir = path.join(rootDir, 'src/icons');
+const globPattern = '**/*.svg';
 
 /**
  * Transpile Icons
@@ -151,7 +153,6 @@ async function transpileIcons(icons) {
 
   return Promise.all(
     icons.map(async icon => {
-      // icons.forEach(async (i) => {
       const svg = await fs.readFile(icon, 'utf-8');
       const id = path
         .basename(icon, '.svg')
@@ -263,6 +264,13 @@ async function transpileIcons(icons) {
 }
 
 function alphabetizeIconList(a, b) {
+  if (a.id === b.id) {
+    const iconDir = a.icon.includes('@bolt/components-icons') ? b.icon : a.icon;
+
+    throw new TypeError(`SVG filenames must be unique but '${a.id}' is not.
+  Please change filename in location: '${iconDir}'`);
+  }
+
   if (a.id < b.id) return -1;
   if (a.id > b.id) return 1;
   return 0;
@@ -271,7 +279,13 @@ function alphabetizeIconList(a, b) {
 async function build() {
   try {
     const config = await getConfig();
-    const iconPaths = await globby(path.join(rootDir, 'src/svgs/**/*.svg'));
+
+    const extendedIconDirs = config.iconDir ? config.iconDir : [];
+
+    const dirs = [rootDir, ...extendedIconDirs];
+    const allIcons = dirs.map(dir => path.join(dir, globPattern));
+
+    const iconPaths = await globby(allIcons);
 
     iconSpinner = new Ora(
       chalk.blue(
@@ -281,17 +295,19 @@ async function build() {
 
     await fs.remove(path.join(rootDir, 'src/icons')); // Clean folder
     await fs.outputFile(path.join(rootDir, 'src', 'index.js'), '', 'utf-8');
+
     const icons = await transpileIcons(iconPaths);
     const allExports = icons
       .sort(alphabetizeIconList) // we alphabetize the list so multiple compiles on same set doesn't result in a change that git notices
       .map(icon => `export * from './icons/${icon.id}';`); // building up `export` lines
     allExports.push(''); // Adding empty item to end of array so file has empty line at bottom to conform to `.editorconfig`
+
     await fs.outputFile(
       path.join(rootDir, 'src', 'index.js'),
       allExports.join('\n'),
       'utf-8',
     );
-    generateFile(icons);
+    await generateFile(icons);
 
     if (config.verbosity > 2) {
       log.dim(`Built ${iconPaths.length} icons.`);
@@ -315,7 +331,6 @@ build.displayName = 'icons:build';
 async function generateFile(icons) {
   try {
     const config = await getConfig();
-
     const iconComponentDir = path.dirname(
       resolve.sync('@bolt/components-icon/package.json'),
     );
@@ -356,14 +371,13 @@ async function watch() {
   const config = await getConfig();
 
   // for now, only watch the main @bolt/components-icons folder for .svg file changes.
-  // @todo: update to include extra folders specified in the .boltrc config
-  const dirs = [rootDir];
+  const extendedIconDirs = config.iconDir ? config.iconDir : [];
+  const dirs = [rootDir, ...extendedIconDirs];
 
   // Used by watches
   const debouncedCompile = debounce(build, config.debounceRate);
 
-  const globPattern = '**/*.svg';
-  const watchedFiles = [dirs.map(dir => path.join(dir, globPattern))];
+  const watchedFiles = dirs.map(dir => path.join(dir, globPattern));
 
   // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
   const watcher = chokidar.watch(watchedFiles, {
