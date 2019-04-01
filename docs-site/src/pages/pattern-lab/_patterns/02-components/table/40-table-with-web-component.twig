@@ -1,0 +1,181 @@
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as table_example %}
+
+{% set simple_demo %}
+<bolt-table>
+  <table>
+    <tr>
+      <td>1-0</td>
+      <td>2-0</td>
+      <td>3-0</td>
+      <td>4-0</td>
+      <td>5-0</td>
+    </tr>
+    <tr>
+      <td>1-1</td>
+      <td>2-1</td>
+      <td>3-1</td>
+      <td>4-1</td>
+      <td>5-1</td>
+    </tr>
+  </table>
+</bolt-table>
+{% endset %}
+
+{% set advanced_demo %}
+<bolt-table>
+  <table class="new-awesome-class">
+    <thead>
+    <tr>
+      <td></td>
+      <th colspan="3">1-0, 2-0, 3-0</th>
+      <th class="u-bolt-color-indigo-light">4-0</th>
+      <th>5-0</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th>0-1</th>
+      <td>1-1</td>
+      <td colspan="2" rowspan="2" class="u-bolt-color-orange-dark">2-1, 3-1<br>2-2, 3-2</td>
+      <td>4-1</td>
+      <td>5-1</td>
+    </tr>
+    <tr>
+      <th>0-2</th>
+      <td>1-2</td>
+      <td>4-2</td>
+      <td>5-2</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <th>0-3</th>
+      <th class="u-bolt-color-teal">1-3</th>
+      <th>2-3</th>
+      <th>3-3</th>
+      <th colspan="3">4-3, 5-3</th>
+    </tr>
+    </tfoot>
+  </table>
+</bolt-table>
+{% endset %}
+
+{% set components_demo %}
+  <bolt-table>
+    <table>
+      <thead>
+      <tr>
+        <td></td>
+        <th colspan="3">
+          <p>
+            Using semantic tags
+            <strong>2-0</strong>,
+            <em>3-0</em>
+          </p>
+        </th>
+        <th class="u-bolt-color-indigo-light">4-0</th>
+        <th>
+          <code>
+            Using semantic tags like
+          </code>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <th>0-1</th>
+        <td>1-1</td>
+        <td colspan="2" rowspan="2">
+          <bolt-ul>
+            <bolt-li>Item 1</bolt-li>
+            <bolt-li>Item 2</bolt-li>
+            <bolt-li>Item 3</bolt-li>
+          </bolt-ul>
+        </td>
+        <td class="u-bolt-color-orange-dark">4-1</td>
+        <td>5-1</td>
+      </tr>
+      <tr>
+        <th>0-2</th>
+        <td>1-2</td>
+        <td><bolt-chip>
+            Text of the chip
+          </bolt-chip>
+        </td>
+        <td>5-2</td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>0-3</th>
+        <th class="u-bolt-color-teal">1-3</th>
+        <th>2-3</th>
+        <th>
+          <bolt-link>
+            <a href="https://pega.com" target="_blank">This is a link</a>
+          </bolt-link>
+        </th>
+        <th colspan="3">
+          <bolt-list display="inline" separator="solid">
+            <bolt-list-item>Item 1</bolt-list-item>
+            <bolt-list-item>Item 2</bolt-list-item>
+            <bolt-list-item>Item 3</bolt-list-item>
+            <bolt-list-item>Item 4</bolt-list-item>
+            <bolt-list-item>Item 5</bolt-list-item>
+          </bolt-list>
+        </th>
+      </tr>
+      </tfoot>
+    </table>
+  </bolt-table>
+{% endset %}
+
+{% grid with {
+  attributes: {
+    class: [
+      "o-bolt-grid--matrix"
+    ]
+  }
+} %}
+  {% cell "u-bolt-width-12/12" %}
+    <bolt-text headline>Web Component Usage</bolt-text>
+    <bolt-text>
+      Bolt Table is a web component that renders a semantic table with Bolt styles. To make a simple table, wrap a semantic <bolt-code-snippet display="inline" lang="html">&lt;table&gt;</bolt-code-snippet> element with a <bolt-code-snippet display="inline" lang="html">&lt;bolt-table&gt;</bolt-code-snippet> element.
+    </bolt-text>
+    <bolt-text subheadline>
+      Example
+    </bolt-text>
+    {{ simple_demo }}
+    {% include table_example.code_example(simple_demo, true) %}
+  {% endcell %}
+
+  {% cell "u-bolt-width-12/12" %}
+    <bolt-text>
+      More advanced example with attributes and custom classes.
+    </bolt-text>
+    <bolt-text subheadline>
+      Example
+    </bolt-text>
+    {{ advanced_demo }}
+    {% include table_example.code_example(advanced_demo, true) %}
+  {% endcell %}
+  {% cell "u-bolt-width-12/12" %}
+    <bolt-text>
+      Use table with some semantic html code and bolt components.
+    </bolt-text>
+    <bolt-text subheadline>
+      Example
+    </bolt-text>
+    {{ components_demo }}
+    {% include table_example.code_example(components_demo, true) %}
+  {% endcell %}
+{% endgrid %}

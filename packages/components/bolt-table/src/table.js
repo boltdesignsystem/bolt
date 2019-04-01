@@ -101,12 +101,12 @@ class BoltTable extends withLitHtml() {
   }
 
   rendered() {
-    const nodesToUpdate = this.renderRoot.querySelectorAll('*[data-bta]');
+    const nodesToUpdate = this.renderRoot.querySelectorAll('*[data-attrs]');
     const tdInThead = this.renderRoot.querySelectorAll('thead td');
 
     [...nodesToUpdate].forEach(node => {
-      let attrsToUpdate = node.getAttribute('data-bta');
-      node.removeAttribute('data-bta');
+      let attrsToUpdate = node.getAttribute('data-attrs');
+      node.removeAttribute('data-attrs');
 
       const attrArray = attrsToUpdate.split('|');
 
@@ -202,10 +202,11 @@ class BoltTable extends withLitHtml() {
           scopeAttr = 'row';
         }
 
+        injectClasses(cellClasses, cell.attributes);
+
         return html`
           <th
-            class=${cellClasses}
-            data-bta=${ifDefined(setAttr(cell.attributes))}
+            data-attrs=${ifDefined(setAttr(cell.attributes))}
             scope=${ifDefined(scopeAttr)}
           >
             ${renderCell(cell)}
@@ -216,11 +217,10 @@ class BoltTable extends withLitHtml() {
           [`c-bolt-table__cell--data`]: section !== 'head',
         });
 
+        injectClasses(cellClasses, cell.attributes);
+
         return html`
-          <td
-            class=${cellClasses}
-            data-bta=${ifDefined(setAttr(cell.attributes))}
-          >
+          <td data-attrs=${ifDefined(setAttr(cell.attributes))}>
             ${renderCell(cell)}
           </td>
         `;
@@ -232,6 +232,18 @@ class BoltTable extends withLitHtml() {
         return attributes.map((attr, index) => {
           return `${index > 0 ? '|' : ''}${attr.key}=${attr.value}`;
         });
+      }
+    }
+
+    function injectClasses(classes, attributes) {
+      const classIndex = attributes.findIndex(item => item.key === 'class');
+
+      if (classIndex === -1) {
+        attributes.push({ key: 'class', value: classes });
+      } else {
+        attributes[classIndex].value = `${
+          attributes[classIndex].value
+        } ${classes}`;
       }
     }
 
@@ -249,12 +261,11 @@ class BoltTable extends withLitHtml() {
       `);
     });
 
-    console.log('BT:', boltTable);
-    console.log('BTM:', boltTableMarkup);
+    injectClasses(tableClasses, parseCode[0].attributes);
 
     return html`
       ${this.addStyles([styles])}
-      <table class=${tableClasses}>
+      <table data-attrs=${ifDefined(setAttr(parseCode[0].attributes))}>
         ${boltTableMarkup}
       </table>
     `;
