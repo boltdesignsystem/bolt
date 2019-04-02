@@ -142,7 +142,7 @@ describe('<bolt-text> Component', () => {
   });
 
   // Long xxxlarge Headline (Shadow DOM)
-  test('xxxlarge headline using <bolt-text> w/ Shadow DOM renders', async function() {
+  test('Long xxxlarge headline using <bolt-text> w/ Shadow DOM renders', async function() {
     const renderedTextHTML = await page.evaluate(() => {
       const text = document.createElement('bolt-text');
 
@@ -166,7 +166,7 @@ describe('<bolt-text> Component', () => {
   });
 
   // Long xxxlarge Headline (Light DOM)
-  test('xxxlarge headline using <bolt-text> w/o Shadow DOM renders', async function() {
+  test('Long xxxlarge headline using <bolt-text> w/o Shadow DOM renders', async function() {
     const renderedTextHTML = await page.evaluate(() => {
       const text = document.createElement('bolt-text');
 
