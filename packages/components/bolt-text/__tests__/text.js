@@ -1,24 +1,4 @@
-import { render } from '@bolt/twig-renderer';
 import { fixture as html } from '@open-wc/testing-helpers';
-
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
-const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../text.schema.yml'));
-const {
-  tag,
-  display,
-  color,
-  align,
-  opacity,
-  quoted,
-  'line-height': lineHeight,
-  'letter-spacing': letterSpacing,
-  'text-transform': textTransform,
-  'font-family': fontFamily,
-  'font-size': fontSize,
-  'font-style': fontStyle,
-  'font-weight': fontWeight,
-} = schema.properties;
 
 const timeout = 90000;
 
