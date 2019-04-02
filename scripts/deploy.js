@@ -34,41 +34,22 @@ async function init() {
         !branchName.includes('release') &&
         !branchName.includes('next')
       ) {
-        fs.writeFileSync(
-          path.join(process.cwd(), `${config.wwwDir}/now.json`),
-          JSON.stringify({
-            version: 2,
-            scope: 'boltdesignsystem',
-            name: 'boltdesignsystem',
-            builds: [
-              {
-                src: '**/*',
-                use: '@now/static',
-              },
-            ],
-            routes: [
-              { src: '/.*', headers: { 'Access-Control-Allow-Origin': '*' } },
-            ],
-          }),
+        shell.exec(
+          `cp ${path.join(process.cwd(), 'now.v2.json')} ${path.join(
+            process.cwd(),
+            config.wwwDir,
+          )}/now.json`,
         );
-
-        const nowConfigExists = await fileExists(
-          path.join(process.cwd(), 'now.json'),
-        );
-
-        if (nowConfigExists) {
-          shell.exec(`rm ${path.join(process.cwd(), 'now.json')}`);
-        }
 
         deployedUrl = shell.exec(
           `cd ${path.join(
             process.cwd(),
             config.wwwDir,
-          )} && now deploy --meta gitSha="${gitSha}" --scope=boltdesignsystem --token=${NOW_TOKEN}`,
+          )} && now deploy --meta gitSha="${gitSha}" --token=${NOW_TOKEN}`,
         );
       } else {
         deployedUrl = shell.exec(
-          `now deploy --meta gitSha="${gitSha}" --token=${NOW_TOKEN}`,
+          `now deploy --meta gitSha="${gitSha}" --team=boltdesignsystem --token=${NOW_TOKEN}`,
         ).stdout;
       }
 
@@ -86,8 +67,6 @@ async function init() {
             `.trim(),
           },
         });
-
-        await handleNowDeploy(child);
       }
     } catch (error) {
       console.log(error);
