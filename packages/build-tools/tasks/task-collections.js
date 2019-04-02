@@ -110,14 +110,17 @@ async function clean(cleanAll = false) {
         break;
       case 'pwa':
         dirs = [
-          `${path.join(config.wwwDir, 'pattern-lab/patterns')}`, // only delete the PL HTML
+          `${path.join(
+            path.resolve(config.wwwDir, 'pattern-lab/patterns'),
+            '**',
+          )}`,
         ];
         break;
       default:
         dirs = [config.buildDir];
         break;
     }
-    if (cleanAll) {
+    if (cleanAll === true) {
       dirs = [config.wwwDir];
     }
     await internalTasks.clean(dirs);
