@@ -241,9 +241,9 @@ class BoltTable extends withLitHtml() {
       if (classIndex === -1) {
         attributes.push({ key: 'class', value: classes });
       } else {
-        attributes[classIndex].value = `${
-          attributes[classIndex].value
-        } ${classes}`;
+        attributes[classIndex].value = Array.from(
+          new Set(`${attributes[classIndex].value} ${classes}`.split(' ')),
+        ).join(' ');
       }
     }
 
