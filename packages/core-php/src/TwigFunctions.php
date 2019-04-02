@@ -56,10 +56,20 @@ class TwigFunctions {
 
     // locate where the Bolt SSR Server script is physically located so we can call the script + pass along our HTML string to render
     $context = new ArrayFinder($context);
-    $configFileUsed = $context->get('bolt.data.config.configFileUsed');
+    $boltConfig = $context->get('bolt.data.config');
+
+    // if the config option used to manually set server-side rendering behavior (enabled, disabled, or auto) doesn't exist, automatically disable and exit early.  
+    if (!isset($boltConfig["enableSSR"])){
+      return $html;
+    }
+
+    // disable server-side rendering web components when manually disabled, or set to auto + running in dev mode
+    if (($boltConfig["enableSSR"] == false && $boltConfig["prod"] == false)){
+      return $html;
+    }
     
-    $ssrServerPath = dirname($configFileUsed, 2) . '/node_modules/@bolt/ssr-server/cli.js';
-    $ssrServerPathAlt = dirname($configFileUsed, 1) . '/node_modules/@bolt/ssr-server/cli.js';
+    $ssrServerPath = dirname($boltConfig["configFileUsed"], 2) . '/node_modules/@bolt/ssr-server/cli.js';
+    $ssrServerPathAlt = dirname($boltConfig["configFileUsed"], 1) . '/node_modules/@bolt/ssr-server/cli.js';
     $ssrServerLocation = '';
 
     // if we found the right SSR server file in one of two places, try to render using it. Otherwise return the original HTML.
@@ -314,21 +324,26 @@ class TwigFunctions {
     });
   }
 
-  // Custom function for merging Drupal Attribute objects
-  // Gives $source preference, unless a key is set in both arrays and $source value is empty or null
-  public static function merge_attributes() {
-    return new Twig_SimpleFunction('merge_attributes', function($target, $source) {
-      // For each key in $source...
-      foreach ($source as $key => $value) {
-        // If $key is not in $target, or if $key is in $target and $value in $source is empty, add/overwrite $key in $target
-        // NOTE: empty() and is_null() do not work in the second half of this statement. Why is that?
-        if (empty($target[$key]) || (!empty($target[$key]) && $value != "")) {
-          $target[$key] = $value;
-        }
-      }
+  /**
+   * Build an array of Twig props and data
+   * 
+   * array["props"] object - Combines "attributes" and schema-allowed props, wrapped in a Drupal Attribute object for rendering as HTML attributes
+   * array["data"] array - Schema-allowed props plus default prop values for internal use in our Twig templates
+   * 
+   * @param array $context - The current Twig $context, includes all available template variables
+   * @param array $schema - The schema object for a particular component
+   * @return array - An array of Twig data (See above)
+   */
 
-      return $target;
-    });
+   public static function init() {
+    return new Twig_SimpleFunction('init', function($context, $schema) {
+      $twigData = array();
+      $twigData["props"] = new Attribute(Utils::buildPropsArray($context, $schema));
+      $twigData["data"] = Utils::buildPropsArray($context, $schema, true);
+      return $twigData;
+    }, [
+      'needs_context' => true,
+    ]);
   }
 
   public static function github_url() {
@@ -338,6 +353,25 @@ class TwigFunctions {
     }, [
       'needs_environment' => true,
     ]);
+  }
+
+  // Return greatest common denominator of two integers
+  public static function gcd() {
+    return new Twig_SimpleFunction('gcd', function($a, $b) {
+      // If not an integer or string that can be converted to an integer, return 1
+      // Note: gmp_gcd() throws error if passed a floating point number or string that is converted to one
+      if(is_int($a) && is_int($b)) {
+        return gmp_intval(gmp_gcd($a, $b));
+      } elseif (is_string($a) && is_string($b)) {
+        if (!strpos($a, '.') && !strpos($b, '.')){
+          return gmp_intval(gmp_gcd($a, $b));
+        } else {
+          return 1;
+        }
+      } else {
+        return 1;
+      }
+    });
   }
 
 }

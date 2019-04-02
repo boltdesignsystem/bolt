@@ -8,16 +8,22 @@ bolt-ratio {
   display: block;
 }
 
+:host {
+  display: block;
+}
+
 .c-bolt-ratio {
   display: block;
   position: relative;
   width: 100%;
 
-  @include bolt-css-vars((
-    --aspect-ratio: 1/1,
-  ));
+  @include bolt-css-vars(
+    (
+      --aspect-ratio: 1/1,
+    )
+  );
 
-  @supports (--custom:property) {
+  @supports (--custom: property) {
     padding-bottom: calc(100% / (var(--aspect-ratio)));
   }
 }

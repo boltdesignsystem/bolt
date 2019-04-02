@@ -13,6 +13,9 @@ before_install:
 services:
   - docker
 
+addons:
+  chrome: stable
+
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
 stages:

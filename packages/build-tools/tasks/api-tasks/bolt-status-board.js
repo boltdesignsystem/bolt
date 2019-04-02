@@ -121,6 +121,7 @@ async function generateStatusBoard() {
       const pkgName = boltPackage.name;
       const componentPath = boltPackage.location;
       const pkg = require(`${boltPackage.location}/package.json`);
+      const pkgAlias = pkg['pattern-alias'] || ''; // allows an optional 'pattern-alias' config to be defined in the component's package.json to match up a component's normal name with one or two oddly named component folders in Pattern Lab
 
       const jsFound = globby.sync([
         `${componentPath}/**/*.js`,
@@ -163,9 +164,13 @@ async function generateStatusBoard() {
 
         const normalizedUrl = urlAddress.replace('../../', '/pattern-lab/');
 
+        // if a component's package.json has defined a pattern alias, use that to match up with a PL folder vs using the default pkg name
         if (
-          normalizedUrlName === pkgName &&
-          !processedComponents.includes(pkgName)
+          (pkgAlias !== '' &&
+            normalizedUrlName === pkgAlias &&
+            !processedComponents.includes(pkgName)) ||
+          (normalizedUrlName === pkgName &&
+            !processedComponents.includes(pkgName))
         ) {
           processedComponents.push(pkgName);
           pendingRequests.push(pkgName);
