@@ -1,13 +1,3 @@
-# Share component testing steps
-
-## Share component render as expected (functionally and visually)
-
-The server-side pre-rendered `bolt-share` component should look almost identical to the client-side rendered version. To verify:
-
-1. Disable javascript and view the [Share Demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-share-05-share/02-components-share-05-share.html).
-2. Then, enable javascript and watch as the Share re-renders on the client-side.
-3. The layout should not shift, e.g. the spacing in between each share item should be identical before and after the web component re-renders.
-
 # Share component functional testing steps
 
 Functional testing should be performed manually by the QA team across the standard compliment of browsers. In each scenario, browser-type is specified when necessary. If browser type is not specified, the test applies to both "desktop" and "mobile" browsers.
@@ -25,7 +15,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: opacity variations
 
-1. Given I am viewing the [size variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-share-15-share-opacity-variations/02-components-share-15-share-opacity-variations.html).
+1. Given I am viewing the [opacity variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-share-15-share-opacity-variations/02-components-share-15-share-opacity-variations.html).
 2. The share tool should be presented in 5 opacity values: 20, 40, 60, 80, and 100.
 
 ## Scenario: align variations
