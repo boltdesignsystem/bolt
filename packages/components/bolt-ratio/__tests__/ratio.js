@@ -43,6 +43,8 @@ describe('<bolt-ratio> Component', () => {
     });
     expect(renderedRatioHTML).toMatchSnapshot();
 
+    await page.waitFor(1000);
+
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -78,6 +80,8 @@ describe('<bolt-ratio> Component', () => {
       return ratioSize;
     });
 
+    await page.waitFor(1000);
+
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(imageVrtConfig);
@@ -99,6 +103,8 @@ describe('<bolt-ratio> Component', () => {
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
     }, html);
+
+    await page.waitFor(1000);
 
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
@@ -123,6 +129,8 @@ describe('<bolt-ratio> Component', () => {
       return ratio.outerHTML;
     });
     expect(renderedRatioHTML).toMatchSnapshot();
+
+    await page.waitFor(1000);
 
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
