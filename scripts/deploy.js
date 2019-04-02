@@ -60,11 +60,11 @@ async function init() {
           shell.exec(`rm ${path.join(process.cwd(), 'now.json')}`);
         }
 
-        shell.exec(
+        deployedUrl = shell.exec(
           `cd ${path.join(
             process.cwd(),
             config.wwwDir,
-          )} && now deploy --meta gitSha="${gitSha}" --scope=boltdesignsystem`,
+          )} && now deploy --meta gitSha="${gitSha}" --scope=boltdesignsystem --token=${NOW_TOKEN}`,
         );
       } else {
         deployedUrl = shell.exec(
@@ -72,9 +72,9 @@ async function init() {
         ).stdout;
       }
 
-      if (TRAVIS) {
-        deployedUrlPretty = deployedUrl.trim();
+      deployedUrlPretty = deployedUrl.trim();
 
+      if (TRAVIS) {
         await setCheckRun({
           status: 'completed',
           name: 'Deploy - now.sh (basic)',
