@@ -35,13 +35,10 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Lint'
       after_failure: ./scripts/check-run-failure.js 'Lint'
       cache:
-        yarn: true
         directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
@@ -51,13 +48,10 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
       cache:
-        yarn: true
         directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Prep
       name: 'Build + Deploy'
@@ -71,13 +65,10 @@ jobs:
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
       cache:
-        yarn: true
         directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
@@ -94,13 +85,10 @@ jobs:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
       cache:
-        yarn: true
         directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Test Live Site
       name: 'Ensure site is live'
@@ -115,13 +103,10 @@ jobs:
       after_failure:
         - ./scripts/check-run-failure.js 'Site is live'
       cache:
-        yarn: true
         directories:
-          - node_modules
-          - docs-site/vendor
-          - packages/core-php/vendor
-          - packages/twig-renderer/vendor
-          - packages/drupal-twig-extensions/vendor
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Test Live Site
       name: 'Example master only job'
