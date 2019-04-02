@@ -80,7 +80,6 @@ module.exports = {
   images: {
     sets: imageSets,
   },
-  copy: [],
   prod: true,
   enableCache: true,
   verbosity: 1,
