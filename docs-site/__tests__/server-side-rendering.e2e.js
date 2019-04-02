@@ -9,6 +9,7 @@ module.exports = {
         `screenshots/pattern-lab/button-component-docs--${browser.capabilities
           .browserName || 'chrome'}.png`,
       )
+      .waitForElementVisible('.pl-js-open-new-window', 3000)
       .getAttribute('.pl-js-open-new-window', 'href', function(result) {
         browser.url(result.value);
       })
