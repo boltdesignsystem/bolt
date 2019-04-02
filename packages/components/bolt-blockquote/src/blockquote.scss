@@ -10,6 +10,36 @@ $bolt-blockquote-image-border-style: $bolt-border-style;
 $bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
 $bolt-blockquote-image-size: 4rem;
 
+$bolt-blockquote-quotation-mark-l--en: '\201C';
+$bolt-blockquote-quotation-mark-r--en: '\201D';
+$bolt-blockquote-quotation-mark-l--de: '\201E';
+$bolt-blockquote-quotation-mark-r--de: '\201C';
+$bolt-blockquote-quotation-mark-l--fr: '\00AB';
+$bolt-blockquote-quotation-mark-r--fr: '\00BB';
+$bolt-blockquote-quotation-mark-l--ja: '\300C';
+$bolt-blockquote-quotation-mark-r--ja: '\300D';
+
+// /// Bolt's definition of language-specific quoatation marks.
+// /// @type map
+// $bolt-quote-values: (
+//   'en': (
+//     'left': '\201C',
+//     'right': '\201D',
+//   ),
+//   'de': (
+//     'left': '\201E',
+//     'right': '\201C',
+//   ),
+//   'fr': (
+//     'left': '\00AB',
+//     'right': '\00BB',
+//   ),
+//   'ja': (
+//     'left': '\300C',
+//     'right': '\300D',
+//   ),
+// ) !default;
+
 // Register Custom Block Element
 @include bolt-custom-element('bolt-blockquote', block, medium);
 
@@ -56,11 +86,29 @@ $bolt-blockquote-image-size: 4rem;
   }
 
   p:not([slot]):first-child:before {
-    content: '\201C';
+    content: $bolt-blockquote-quotation-mark-l--en;
+    [lang='de'] & {
+      content: $bolt-blockquote-quotation-mark-l--de;
+    }
+    [lang='fr'] & {
+      content: $bolt-blockquote-quotation-mark-l--fr;
+    }
+    [lang='ja'] & {
+      content: $bolt-blockquote-quotation-mark-l--ja;
+    }
   }
 
   p:not([slot]):last-child:after {
-    content: '\201D';
+    content: $bolt-blockquote-quotation-mark-r--en;
+    [lang='de'] & {
+      content: $bolt-blockquote-quotation-mark-r--de;
+    }
+    [lang='fr'] & {
+      content: $bolt-blockquote-quotation-mark-r--fr;
+    }
+    [lang='ja'] & {
+      content: $bolt-blockquote-quotation-mark-r--ja;
+    }
   }
 
   ::slotted(p:first-child),
@@ -76,14 +124,32 @@ $bolt-blockquote-image-size: 4rem;
   ::slotted(p:first-child),
   ::slotted(p.is-first-child) {
     &:before {
-      content: '\201C';
+      content: $bolt-blockquote-quotation-mark-l--en;
+      [lang='de'] & {
+        content: $bolt-blockquote-quotation-mark-l--de;
+      }
+      [lang='fr'] & {
+        content: $bolt-blockquote-quotation-mark-l--fr;
+      }
+      [lang='ja'] & {
+        content: $bolt-blockquote-quotation-mark-l--ja;
+      }
     }
   }
 
   ::slotted(p:last-child),
   ::slotted(p.is-last-child) {
     &:after {
-      content: '\201D';
+      content: $bolt-blockquote-quotation-mark-r--en;
+      [lang='de'] & {
+        content: $bolt-blockquote-quotation-mark-r--de;
+      }
+      [lang='fr'] & {
+        content: $bolt-blockquote-quotation-mark-r--fr;
+      }
+      [lang='ja'] & {
+        content: $bolt-blockquote-quotation-mark-r--ja;
+      }
     }
   }
 }
