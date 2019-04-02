@@ -133,6 +133,7 @@ class BoltBlockquote extends withLitHtml() {
       }
     }
   }
+
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const {
