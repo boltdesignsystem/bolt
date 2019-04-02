@@ -8,6 +8,11 @@ bds-docs-search {
   max-width: 100%;
   margin-left: auto;
   transition: all 250ms;
+
+  ~ bolt-nav-priority:not(.is-ready) {
+    grid-column: 1/span 4;
+    justify-self: center;
+  }
   
   @include bolt-mq($from: small){
     width: 50px;
@@ -88,7 +93,7 @@ bds-docs-search {
 
   .algolia-autocomplete .ds-dropdown-menu {
     @include bolt-mq($until: small){
-      min-width: 200px;
+      min-width: 250px;
       max-width: 95vw;
     }
 
