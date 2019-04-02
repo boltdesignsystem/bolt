@@ -115,6 +115,7 @@ class BoltTooltipTrigger extends withPreact() {
       `${baseClass}--medium`,
       `${baseClass}--secondary`,
       `${baseClass}--center`,
+      `${baseClass}--border-radius`,
       'u-bolt-color-orange',
     ];
 
