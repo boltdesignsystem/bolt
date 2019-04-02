@@ -179,8 +179,7 @@ class BoltText extends withLitHtml() {
       // if (icon !== 'undefined' && icon !== 'false') {
       //   iconName = true;
       // }
-      if (this.innerHTML.length >= 60 && fontSize === 'xxxlarge') {
-        // Is there a better way to get inner dynamic length?
+      if (this.textContent.trim().length >= 60 && fontSize === 'xxxlarge') {
         longText = true;
       }
     }
