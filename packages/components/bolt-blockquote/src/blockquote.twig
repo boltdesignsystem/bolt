@@ -6,18 +6,7 @@
 
 {# Variables #}
 {% set base_class = "c-bolt-blockquote" %}
-{% set props = create_attribute({
-  "size": size,
-  "align-items": alignItems,
-  "border": border,
-  "indent": indent,
-  "full-bleed": fullBleed,
-  "author-name": author.name,
-  "author-title": author.title,
-  "author-title": author.title,
-  "author-image": author.image
-}) %}
-{% set attributes = merge_attributes(create_attribute(attributes|default({})), props) %}
+{% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Required by Blockquote to map prop values to strings used in classname #}
@@ -31,19 +20,14 @@
 {% set quote_tag = "<p>" in content ? "replace-with-grandchildren" : "replace-with-children" %}
 {% set text_tag = "<p>" in content ? "div" : "p" %}
 
-{# Check that the component's current prop values are valid. if not, default to the schema default #}
-{% set size = size in schema.properties.size.enum ? size : schema.properties.size.default %}
-{% set align_items = alignItems in schema.properties.alignItems.enum ? alignItems : schema.properties.alignItems.default %}
-{% set border = border in schema.properties.border.enum ? border : schema.properties.border.default %}
-
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  size in schema.properties.size.enum ? base_class ~ "--" ~ size : "",
-  align_items in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[align_items],
-  border == 'none' ? base_class ~ "--borderless" : base_class ~ "--bordered-" ~ border,
-  indent ? base_class ~ "--indented" : "",
-  fullBleed ? base_class ~ "--full" : ""
+  this.data.size.value in schema.properties.size.enum ? base_class ~ "--" ~ this.data.size.value : "",
+  this.data.align_items.value in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[this.data.align_items.value],
+  this.data.border.value == 'none' ? base_class ~ "--borderless" : base_class ~ "--bordered-" ~ this.data.border.value,
+  this.data.indent.value ? base_class ~ "--indented" : "",
+  this.data.full_bleed.value ? base_class ~ "--full" : ""
 ] %}
 
 {#
@@ -54,7 +38,7 @@
 {% set outer_classes = [] %}
 {% set inner_classes = classes %}
 
-{% for class in attributes["class"] %}
+{% for class in this.props.class %}
   {% if class starts with "is-" or class starts with "has-" %}
     {% set inner_classes = inner_classes|merge([class]) %}
   {% elseif class starts with "c-bolt-" == false %}
@@ -64,7 +48,7 @@
 
 <bolt-blockquote
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ attributes|without('class') }}
+  {{ this.props|without("content")|without("class") }}
 >
   <blockquote {{ inner_attributes.addClass(inner_classes) }} is="shadow-root">
     {% if logo %}
@@ -80,7 +64,7 @@
       {% include "@bolt-components-headline/text.twig" with {
         text: content,
         tag: text_tag,
-        size: size,
+        size: this.data.size.value,
         weight: "semibold"
       } only %}
     </{{quote_tag}}>
