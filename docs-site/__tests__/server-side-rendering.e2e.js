@@ -9,11 +9,11 @@ module.exports = {
         `screenshots/pattern-lab/button-component-docs--${browser.capabilities
           .browserName || 'chrome'}.png`,
       )
-      .waitForElementVisible('.pl-js-open-new-window', 10000)
+      .waitForElementVisible('.pl-js-open-new-window', 3000)
       .getAttribute('.pl-js-open-new-window', 'href', function(result) {
         browser.url(result.value);
       })
-      .waitForElementVisible('bolt-button', 10000)
+      .waitForElementVisible('bolt-button', 3000)
       .assert.elementPresent('.c-bolt-button')
       .saveScreenshot(
         `screenshots/pattern-lab/button-component-docs-in-new-window--${browser
@@ -25,7 +25,7 @@ module.exports = {
       .getAttribute('.pl-js-open-new-window', 'href', function(result) {
         browser.url(result.value);
       })
-      .waitForElementVisible('bolt-button', 10000)
+      .waitForElementVisible('bolt-button', 3000)
       .assert.elementPresent('.c-bolt-button')
       .saveScreenshot(
         `screenshots/pattern-lab/button-component-ssr--${browser.capabilities
