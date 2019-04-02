@@ -8,6 +8,7 @@ const { getConfig } = require('../packages/build-tools/utils/config-store');
 const { fileExists } = require('../packages/build-tools/utils/general');
 
 const { TRAVIS, TRAVIS_TAG } = require('./utils/travis-vars');
+const { NOW_TOKEN } = process.env;
 
 let setCheckRun, outputBanner, deployedUrlPretty, deployedUrl;
 

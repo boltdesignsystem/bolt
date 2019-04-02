@@ -5,7 +5,7 @@ const { normalizeUrlAlias } = require('./normalize-url-alias');
 
 let setCheckRun, outputBanner;
 
-let { NOW_TOKEN } = process.env;
+const { NOW_TOKEN } = process.env;
 
 async function aliasNowUrl(originalUrl, prefix) {
   console.log(
