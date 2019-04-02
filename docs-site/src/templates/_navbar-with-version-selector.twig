@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block navbar_nav %}
-  <bolt-docs-search>
+  <bds-docs-search>
     {% set label %}
       {% include("@bolt-components-form/form-label.twig") with {
         "title": 'Search the Bolt Docs',
@@ -30,6 +30,6 @@
       children: children,
       icon_size: "small"
     } only %}
-  </bolt-docs-search>
+  </bds-docs-search>
   {{ parent() }}
 {% endblock %}

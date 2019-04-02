@@ -6,7 +6,7 @@ import qs from 'querystring';
 
 @define
 class BoltDocsSearch extends withLitHtml() {
-  static is = 'bolt-docs-search';
+  static is = 'bds-docs-search';
 
   static props = {
     apiKey: props.string,
