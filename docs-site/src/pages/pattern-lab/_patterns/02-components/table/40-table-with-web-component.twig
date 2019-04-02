@@ -12,131 +12,165 @@
 {% set simple_demo %}
 <bolt-table>
   <table>
-    <tr>
-      <td>1-0</td>
-      <td>2-0</td>
-      <td>3-0</td>
-      <td>4-0</td>
-      <td>5-0</td>
-    </tr>
-    <tr>
-      <td>1-1</td>
-      <td>2-1</td>
-      <td>3-1</td>
-      <td>4-1</td>
-      <td>5-1</td>
-    </tr>
+    <thead>
+      <tr>
+        <td></td>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Row 1</th>
+        <td>R1C1</td>
+        <td>R1C2</td>
+        <td>R1C3</td>
+      </tr>
+      <tr>
+        <th>Row 2</th>
+        <td>R2C1</td>
+        <td>R2C2</td>
+        <td>R2C3</td>
+      </tr>
+      <tr>
+        <th>Row 3</th>
+        <td>R3C1</td>
+        <td>R3C2</td>
+        <td>R3C3</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Footer</th>
+        <td>FC1</td>
+        <td>FC2</td>
+        <td>FC3</td>
+      </tr>
+    </tfoot>
   </table>
 </bolt-table>
 {% endset %}
 
 {% set advanced_demo %}
 <bolt-table>
-  <table class="new-awesome-class">
+  <table>
     <thead>
-    <tr>
-      <td></td>
-      <th colspan="3">1-0, 2-0, 3-0</th>
-      <th class="u-bolt-color-indigo-light">4-0</th>
-      <th>5-0</th>
-    </tr>
+      <tr>
+        <td></td>
+        <th colspan="2" class="u-bolt-color-indigo-light">
+          This cell spans 2 columns and has an utility class.
+        </th>
+        <th>Column 3</th>
+        <th>Column 4</th>
+      </tr>
     </thead>
     <tbody>
-    <tr>
-      <th>0-1</th>
-      <td>1-1</td>
-      <td colspan="2" rowspan="2" class="u-bolt-color-orange-dark">2-1, 3-1<br>2-2, 3-2</td>
-      <td>4-1</td>
-      <td>5-1</td>
-    </tr>
-    <tr>
-      <th>0-2</th>
-      <td>1-2</td>
-      <td>4-2</td>
-      <td>5-2</td>
-    </tr>
+      <tr>
+        <th>Row 1</th>
+        <td>R1C1</td>
+        <td>R1C2</td>
+        <td colspan="2" class="u-bolt-color-orange-dark">
+          This cell spans 2 columns and has an utility class.
+        </td>
+      </tr>
+      <tr>
+        <th>Row 2</th>
+        <td>R2C1</td>
+        <td>R2C2</td>
+        <td colspan="2" rowspan="2" class="u-bolt-color-orange-dark">
+          This cell spans 2 columns, 2 rows and has an utility class.
+        </td>
+      </tr>
+      <tr>
+        <th>Row 3</th>
+        <td>R3C1</td>
+        <td>R3C2</td>
+      </tr>
     </tbody>
     <tfoot>
-    <tr>
-      <th>0-3</th>
-      <th class="u-bolt-color-teal">1-3</th>
-      <th>2-3</th>
-      <th>3-3</th>
-      <th colspan="3">4-3, 5-3</th>
-    </tr>
+      <tr>
+        <th>Footer</th>
+        <td colspan="2" class="u-bolt-color-teal">
+          This cell spans 2 columns and has an utility class.
+        </td>
+        <td>FC3</td>
+        <td>FC4</td>
+      </tr>
     </tfoot>
   </table>
 </bolt-table>
 {% endset %}
 
 {% set components_demo %}
-  <bolt-table>
-    <table>
-      <thead>
+<bolt-table first-col-fixed-width>
+  <table>
+    <thead>
       <tr>
         <td></td>
-        <th colspan="3">
-          <p>
-            Using semantic tags
-            <strong>2-0</strong>,
-            <em>3-0</em>
-          </p>
-        </th>
-        <th class="u-bolt-color-indigo-light">4-0</th>
+        <th>Item number</th>
+        <th>Description</th>
+        <th>Assemblies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
         <th>
-          <code>
-            Using semantic tags like
-          </code>
+          <bolt-text headline text-transform="uppercase" font-size="small">Build 2.0.1.0 — SR-49969</bolt-text>
         </th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <th>0-1</th>
-        <td>1-1</td>
-        <td colspan="2" rowspan="2">
-          <bolt-ul>
-            <bolt-li>Item 1</bolt-li>
-            <bolt-li>Item 2</bolt-li>
-            <bolt-li>Item 3</bolt-li>
-          </bolt-ul>
+        <td>
+          <bolt-button size="small" url="#!">SR-49941</bolt-button>
         </td>
-        <td class="u-bolt-color-orange-dark">4-1</td>
-        <td>5-1</td>
-      </tr>
-      <tr>
-        <th>0-2</th>
-        <td>1-2</td>
-        <td><bolt-chip>
-            Text of the chip
-          </bolt-chip>
+        <td>
+          This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.
         </td>
-        <td>5-2</td>
+        <td>
+          OpenSpan.UpdaterService.Remoting.dll<br>
+          OpenSpan.Updater.ServerClientInterface.dll<br>
+          OpenSpan.Updater.ScheduledTasks.dll<br>
+          OpenSpan.Updater.PrePostOperation.dll<br>
+          OpenSpan.Updater.Git.dll<br>
+          OpenSpan.VersionFinder.exe<br>
+          OpenSpan.UpdaterService.exe<br>
+          OpenSpan.Updater.X509tool.exe<br>
+          OpenSpan.Updater.UserHelper.exe<br>
+          OpenSpan.Updater.UninstallHelper.exe<br>
+          OpenSpan.Updater.RuntimeLauncher.exe<br>
+          OpenSpan.Updater.InstallHelper.exe<br>
+          OpenSpan.Updater.Initializer.exe
+        </td>
       </tr>
-      </tbody>
-      <tfoot>
       <tr>
-        <th>0-3</th>
-        <th class="u-bolt-color-teal">1-3</th>
-        <th>2-3</th>
-        <th>
-          <bolt-link>
-            <a href="https://pega.com" target="_blank">This is a link</a>
-          </bolt-link>
-        </th>
-        <th colspan="3">
-          <bolt-list display="inline" separator="solid">
-            <bolt-list-item>Item 1</bolt-list-item>
-            <bolt-list-item>Item 2</bolt-list-item>
-            <bolt-list-item>Item 3</bolt-list-item>
-            <bolt-list-item>Item 4</bolt-list-item>
-            <bolt-list-item>Item 5</bolt-list-item>
-          </bolt-list>
-        </th>
+        <th>Build 2.0.1.0 — SR-49969</th>
+        <td>SR-44869</td>
+        <td>
+          <img src="http://fillmurray.com/200/200">
+          UTF-8
+        </td>
+        <td>OpenSpan.Updater.Git.dll</td>
       </tr>
-      </tfoot>
-    </table>
-  </bolt-table>
+      <tr>
+        <th rowspan="2">Build 1.1.360 — SR-44891</th>
+        <td>SR-43163</td>
+        <td>
+          This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.
+        </td>
+        <td>
+          <bolt-image src="/images/placeholders/tout-4x3-climber.jpg" srcset="/images/placeholders/tout-4x3-climber-50.jpg 50w, /images/placeholders/tout-4x3-climber-100.jpg 100w, /images/placeholders/tout-4x3-climber-200.jpg 200w, /images/placeholders/tout-4x3-climber-320.jpg 320w, /images/placeholders/tout-4x3-climber-480.jpg 480w, /images/placeholders/tout-4x3-climber-640.jpg 640w" alt="A Rock Climber" ratio="64/48"></bolt-image>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <bolt-chip tag="a" url="#!">SR-44850</bolt-chip>
+        </td>
+        <td>
+          This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.
+        </td>
+        <td>ManagedOpenSsl.dll</td>
+      </tr>
+    </tbody>
+  </table>
+</bolt-table>
 {% endset %}
 
 {% grid with {
