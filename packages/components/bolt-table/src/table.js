@@ -33,6 +33,7 @@ class BoltTable extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.schema = schema;
+    self.useShadow = false;
     return self;
   }
 
