@@ -127,6 +127,68 @@ describe('<bolt-text> Component', () => {
         .classList.contains('c-bolt-text-v2--font-size-xxxlarge'),
     ).toBe(true);
 
+    expect(
+      renderedHTML
+        .querySelector('.c-bolt-text-v2')
+        .classList.contains('is-long'),
+    ).toBe(false);
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedHTML).toMatchSnapshot();
+  });
+
+  // Long xxxlarge Headline (Shadow DOM)
+  test('xxxlarge headline using <bolt-text> w/ Shadow DOM renders', async function() {
+    const renderedTextHTML = await page.evaluate(() => {
+      const text = document.createElement('bolt-text');
+
+      text.textContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in gravida ex.`;
+      text.setAttribute('headline', true);
+      text.setAttribute('font-size', 'xxxlarge');
+      document.body.appendChild(text);
+
+      return text.outerHTML;
+    });
+
+    const renderedHTML = await html(renderedTextHTML);
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedHTML).toMatchSnapshot();
+  });
+
+  // Long xxxlarge Headline (Light DOM)
+  test('xxxlarge headline using <bolt-text> w/o Shadow DOM renders', async function() {
+    const renderedTextHTML = await page.evaluate(() => {
+      const text = document.createElement('bolt-text');
+
+      text.textContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam in gravida ex.`;
+      text.setAttribute('headline', true);
+      text.setAttribute('font-size', 'xxxlarge');
+      document.body.appendChild(text);
+      text.useShadow = false;
+      text.updated();
+
+      return text.outerHTML;
+    });
+
+    const renderedHTML = await html(renderedTextHTML);
+    const image = await page.screenshot();
+
+    expect(
+      renderedHTML
+        .querySelector('.c-bolt-text-v2')
+        .classList.contains('is-long'),
+    ).toBe(true);
+
     expect(image).toMatchImageSnapshot({
       failureThreshold: '0.01',
       failureThresholdType: 'percent',
