@@ -1,0 +1,49 @@
+{% set item_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 1",
+  } only %}
+{% endset %}
+{% set item_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 2",
+  } only %}
+{% endset %}
+
+<h3>Responsive breakpoint options</h3>
+<p>Use the <code>@breakpoint</code> options to do advanced responsive layouts.</p>
+<ul>
+  <li>
+    <strong>Item 1</strong>
+    <ol>
+      <li>Up to small breakpoint: start at row 2 and span 12 columns</li>
+      <li>Starting at small breakpoint: start at row 1 and span for 4 columns</li>
+      <li>Starting at medium breakpoint: start at row 1 and span for 3 columns</li>
+    </ol>
+    <pre><code>column_start: "1", column_span: "12 3@small 4@medium", row_start: "2 1@small"</code></pre>
+  </li>
+  <li>
+    <strong>Item 2</strong>
+    <ol>
+      <li>Up to small breakpoint: start at row 1 and span 12 columns</li>
+      <li>Starting at small breakpoint: start at row 1 and span for 8 columns</li>
+      <li>Starting at medium breakpoint: start at row 1 and span for 9 columns</li>
+    </ol>
+    <pre><code>column_start: "1 5@small 4@medium", column_span: "12 8@small 9@medium", row_start: "1 1@small"</code></pre>
+  </li>
+</ul>
+{% include "@bolt-components-grid/grid.twig" with {
+  items: [
+    {
+      column_start: "1",
+      column_span: "12 4@small 3@medium",
+      row_start: "2 1@small",
+      content: item_1,
+    },
+    {
+      column_start: "1 5@small 4@medium",
+      column_span: "12 8@small 9@medium",
+      row_start: "1 1@small",
+      content: item_2,
+    },
+  ]
+} only %}
