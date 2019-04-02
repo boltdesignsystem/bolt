@@ -16,7 +16,6 @@
     "build:pl": "bolt prep && npx lerna exec --scope @bolt/uikit-workshop --loglevel=silent -- yarn run build",
     "build:prod": "bolt build --prod",
     "clean": "cd ../ && npm run clean",
-    "postinstall": "composer run setup",
     "serve": "bolt serve",
     "setup": "cd ../ && npm run setup",
     "start": "bolt start",
@@ -27,6 +26,7 @@
     "watch": "bolt watch"
   },
   "dependencies": {
+    "@bolt/analytics-autolink": "^2.3.0",
     "list.js": "^1.5.0",
     "@bolt/build-tools": "^2.3.0",
     "@bolt/components-action-blocks": "^2.3.0",

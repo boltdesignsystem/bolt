@@ -13,6 +13,7 @@ const resolve = require('resolve');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
+const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('./utils/config-store');
 const { boltWebpackProgress } = require('./utils/webpack-helpers');
@@ -237,7 +238,7 @@ async function createWebpackConfig(buildConfig) {
     },
   ];
 
-  const webpackConfig = {
+  let webpackConfig = {
     target: 'web',
     entry: await buildWebpackEntry(),
     output: {
@@ -495,6 +496,23 @@ async function createWebpackConfig(buildConfig) {
       noInfo: true, // webpackTasks.watch handles output info related to success & failure
       publicPath,
     };
+  }
+
+  // Simple Configuration
+  // The easiest way to tweak the Bolt webpack config is by providing an object to the configureWebpack option in the `.boltrc.js` config:
+
+  // // .boltrc.js
+  // module.exports = {
+  //   configureWebpack: {
+  //     plugins: [
+  //       new MyAwesomeWebpackPlugin()
+  //     ]
+  //   }
+  // }
+  // The object will be merged into the final webpack config using webpack-merge.
+
+  if (config.configureWebpack) {
+    webpackConfig = merge(webpackConfig, config.configureWebpack);
   }
 
   return webpackConfig;

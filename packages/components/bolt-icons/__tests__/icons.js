@@ -7,7 +7,7 @@ async function renderTwig(template, data) {
 
 const timeout = 60000;
 
-describe('<bolt-icon> Component', async () => {
+describe('<bolt-icon> Component', () => {
   let page;
 
   afterAll(async () => {

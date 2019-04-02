@@ -18,7 +18,7 @@ async function renderTwigString(template, data) {
 
 const timeout = 60000;
 
-describe('<bolt-pagination> Component', async () => {
+describe('<bolt-pagination> Component', () => {
   afterAll(async () => {
     await stopTwigRenderer();
   }, timeout);
