@@ -43,7 +43,7 @@
     "test:js": "NODE_ENV='test' jest --all --colors",
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "node scripts/monorepo-tests.js",
-    "test:php": "npx lerna exec --scope @bolt/core-php -- composer run test",
+    "test:php": "cd packages/core-php -- composer run test",
     "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env local",
     "test:e2e:full-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:full-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config nightwatch.js --env chrome,firefox,ie11",
@@ -146,7 +146,9 @@
       "packages/twig-renderer",
       "packages/global"
     ],
-    "nohoist": ["**/ssr-server/**"]
+    "nohoist": [
+      "**/ssr-server/**"
+    ]
   },
   "version": "0.0.0-development"
 }

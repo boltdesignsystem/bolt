@@ -85,10 +85,5 @@ module.exports = {
   verbosity: 1,
   copy: [
     ...itemsToCopy,
-    {
-      from: './packages/global/fonts/',
-      to: path.join(__dirname, adjustRelativePath(siteConfig.buildDir), 'fonts/'),
-      flatten: true,
-    }
   ],
 };
