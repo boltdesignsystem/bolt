@@ -184,6 +184,7 @@ describe('<bolt-text> Component', () => {
 
       text.textContent = `This is a quote`;
       text.setAttribute('quoted', true);
+      text.setAttribute('align', 'center');
       text.setAttribute('letter-spacing', 'wide');
       text.setAttribute('text-transform', 'uppercase');
       text.setAttribute('font-size', 'xxlarge');
@@ -211,6 +212,7 @@ describe('<bolt-text> Component', () => {
 
       text.textContent = `This is a quote`;
       text.setAttribute('quoted', true);
+      text.setAttribute('align', 'center');
       text.setAttribute('letter-spacing', 'wide');
       text.setAttribute('text-transform', 'uppercase');
       text.setAttribute('font-size', 'xxlarge');
@@ -230,6 +232,7 @@ describe('<bolt-text> Component', () => {
         .querySelector('.c-bolt-text-v2')
         .classList.contains(
           'c-bolt-text-v2--quoted',
+          'c-bolt-text-v2--align-center',
           'c-bolt-text-v2--letter-spacing-wide',
           'c-bolt-text-v2--text-transform-uppercase',
           'c-bolt-text-v2--font-size-xxlarge',
