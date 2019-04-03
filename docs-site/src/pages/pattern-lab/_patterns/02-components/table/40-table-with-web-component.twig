@@ -116,7 +116,9 @@
     <tbody>
       <tr>
         <th>
-          <bolt-text headline text-transform="uppercase" font-size="small">Build 2.0.1.0 — SR-49969</bolt-text>
+          <bolt-text headline font-size="small" text-transform="uppercase" letter-spacing="wide">
+            Build 2.0.1.0 — SR-49969
+          </bolt-text>
         </th>
         <td>
           <bolt-button size="small" url="#!">SR-49941</bolt-button>
@@ -185,29 +187,22 @@
     <bolt-text>
       Bolt Table is a web component that renders a semantic table with Bolt styles. To make a simple table, wrap a semantic <bolt-code-snippet display="inline" lang="html">&lt;table&gt;</bolt-code-snippet> element with a <bolt-code-snippet display="inline" lang="html">&lt;bolt-table&gt;</bolt-code-snippet> element.
     </bolt-text>
-    <bolt-text subheadline>
-      Example
-    </bolt-text>
     {{ simple_demo }}
     {% include table_example.code_example(simple_demo, true) %}
   {% endcell %}
 
   {% cell "u-bolt-width-12/12" %}
+    <bolt-text headline>Advanced Usage</bolt-text>
     <bolt-text>
-      More advanced example with attributes and custom classes.
-    </bolt-text>
-    <bolt-text subheadline>
-      Example
+      Attributes and utility classes are supported on table headers and cells.
     </bolt-text>
     {{ advanced_demo }}
     {% include table_example.code_example(advanced_demo, true) %}
   {% endcell %}
   {% cell "u-bolt-width-12/12" %}
+    <bolt-text headline>Accepted Data</bolt-text>
     <bolt-text>
-      Use table with some semantic html code and bolt components.
-    </bolt-text>
-    <bolt-text subheadline>
-      Example
+      Each table header or cell can accept any Bolt web components, HTML markup, or just plain text.
     </bolt-text>
     {{ components_demo }}
     {% include table_example.code_example(components_demo, true) %}
