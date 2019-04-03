@@ -27,6 +27,11 @@
 .c-bolt-list--display-flex {
   display: flex;
   flex-flow: row wrap;
+
+  ::slotted(bolt-list-item),
+  bolt-list-item {
+    flex: 1 0 auto;
+  }
 }
 
 @each $breakpoint in $bolt-breakpoints {
