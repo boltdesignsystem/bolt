@@ -20,8 +20,9 @@ const config = {
   plConfigFile: './config/config.yml',
   verbosity: 2,
   schemaErrorReporting: 'cli',
-  enableCache: true,
   webpackDevServer: {
+  sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
+  enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
     enabled: true,
   },
   extraTwigNamespaces: {
@@ -75,6 +76,7 @@ const config = {
       '@bolt/global',
       '@bolt/docs-search',
       '@bolt/schema-form',
+      '@bolt/analytics-autolink',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
