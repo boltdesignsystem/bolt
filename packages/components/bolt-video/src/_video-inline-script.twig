@@ -13,6 +13,8 @@
     function initVideoEl(elem) {
       var id = elem.state.id;
 
+      // As of Brightcove v6.16 must use getPlayer() to reference player, otherwise may initialize video twice
+      // https://support.brightcove.com/using-bc-and-getplayer-methods
       var player = videojs.getPlayer(id);
 
       if (player) {
