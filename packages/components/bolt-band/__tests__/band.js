@@ -6,12 +6,7 @@ import {
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../band.schema.yml'));
-const {
-  size,
-  theme,
-  tag,
-  full_bleed: fullBleed,
-} = schema.properties;
+const { size, theme, tag, full_bleed: fullBleed } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -108,8 +103,8 @@ describe('<bolt-band> Component', () => {
           {
             content: 'lower pinned 3',
           },
-        ]
-      }
+        ],
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
