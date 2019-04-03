@@ -18,6 +18,7 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     browser
       .url(`${testingUrl}/pattern-lab/?p=components-overview`)
+      .waitForElementVisible('.pl-js-open-new-window', 3000)
       .waitForElementVisible('pl-header', 3000)
       .assert.elementPresent('.js-c-typeahead__input')
       .click('.js-c-typeahead__input'); // click on the PL search input
