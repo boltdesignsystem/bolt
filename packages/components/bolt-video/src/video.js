@@ -198,8 +198,8 @@ class BoltVideo extends withContext(withLitHtml()) {
     const player = this;
     const elem = context;
 
+    // player has already passed through this setup
     if (elem.state.isSetup) {
-      // console.log('is already setup');
       return;
     }
 
@@ -326,6 +326,8 @@ class BoltVideo extends withContext(withLitHtml()) {
   }
 
   connecting() {
+    super.connecting && super.connecting();
+
     this.state = {
       // IDs can't start with numbers so adding the "v" prefix to prevent JS errors
       id: `v${this.props.videoId}-${this.props.accountId}-${index}`,
@@ -369,8 +371,8 @@ class BoltVideo extends withContext(withLitHtml()) {
       const s = this.createScript();
 
       s.onload = () => {
-        BoltVideo.players.forEach(function(player) {
-          player.initVideoJS(player.state.id);
+        BoltVideo.players.forEach(function(instance) {
+          instance.initVideoJS();
         });
       };
 
@@ -641,40 +643,58 @@ class BoltVideo extends withContext(withLitHtml()) {
     return aspectRatio;
   }
 
-  initVideoJS(id) {
-    // As of Brightcove v6.16 must use getPlayer() to reference player, otherwise may initialize video twice
-    // https://support.brightcove.com/using-bc-and-getplayer-methods
-    const player = videojs.getPlayer(id);
-    const handler = BoltVideo.handlePlayerReady.bind(player, this);
-    if (player) {
-      player.ready(handler);
+  initVideoJS() {
+    try {
+      /**
+       * NOTE:
+       * We delay initialization of all Brightcove videos following the steps outlined here: https://support.brightcove.com/delaying-player-instantiation
+       * - Don't include 'data-account', 'data-player', and 'data-video-id' attributes on first render of the video-js element or videos will auto-initialize.
+       * - Wait until this function is called to add these attributes.
+       * - Then manually initialize the player here via the bc() method and pass any configuration options.
+       * - This avoids multiple initializations, which has unpredictable results.
+       */
 
+      this.videoElement.setAttribute('data-account', this.accountId);
+      this.videoElement.setAttribute('data-player', this.playerId);
+      this.videoElement.setAttribute('data-video-id', this.videoId);
+
+      // https://support.brightcove.com/player-configuration-guide
+      // You should NOT use data-setup with Brightcove Player!
+      let player = bc(this.videoElement, {
+        // Force HTML5 Only Rendering + disable resizeManager in Brightcove to fix ability to click overlapping elements on iOS:
+        // https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747a/src/js/resize-manager.js#L19
+        techOrder: ['Html5'],
+        resizeManager: false,
+        controlBar: {
+          fullscreenToggle: !this.props.hideFullScreenButton,
+        },
+      });
+
+      BoltVideo.handlePlayerReady.call(player, this);
       // If onInit event exists on element run that now
       if (this.props.onInit) {
         if (window[this.props.onInit]) {
           window[this.props.onInit](this);
         }
       }
+    } catch (error) {
+      console.log(error);
     }
   }
 
   rendered() {
+    super.rendered && super.rendered();
+
     const dataAttributes = datasetToObject(this);
-    const video = this.querySelector('video');
+    this.videoElement = this.querySelector(`#${this.state.id}`);
+
     Object.keys(dataAttributes).forEach(item => {
-      video.setAttribute(item, dataAttributes[item]);
+      this.videoElement.setAttribute(item, dataAttributes[item]);
     });
 
-    if (window.bc && window.videojs) {
-      bc(this.querySelector(`#${this.state.id}`), {
-        controlBar: {
-          fullscreenToggle: !this.props.hideFullScreenButton,
-        },
-      });
-      this.initVideoJS(id);
-    } else {
-      BoltVideo.players.push(this);
-    }
+    window.bc && window.videojs
+      ? this.initVideoJS()
+      : BoltVideo.players.push(this);
   }
 
   render() {
@@ -685,9 +705,6 @@ class BoltVideo extends withContext(withLitHtml()) {
      */
 
     const {
-      videoId,
-      playerId,
-      accountId,
       ratio,
       noMeta,
       noControls,
@@ -710,7 +727,7 @@ class BoltVideo extends withContext(withLitHtml()) {
     const videoInnerElement = html`
       ${this.addStyles([styles])}
       <span class=${classes}>
-        <video
+        <video-js
           id="${this.state.id}"
           class="${cx('video-js')}"
           controls="${ifDefined(!noControls ? true : undefined)}"
@@ -720,11 +737,8 @@ class BoltVideo extends withContext(withLitHtml()) {
           autoplay="${ifDefined(autoplay ? true : undefined)}"
           loop="${ifDefined(loop ? true : undefined)}"
           data-embed="default"
-          data-video-id="${videoId}"
-          data-player="${playerId}"
-          data-account="${accountId}"
           data-application-id
-        ></video>
+        ></video-js>
         ${!noMeta
           ? html`
               <bolt-video-meta></bolt-video-meta>
