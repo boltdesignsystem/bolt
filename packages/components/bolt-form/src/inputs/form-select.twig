@@ -23,7 +23,7 @@
     {% set _icons = ["chevron-down"] %}
 
     <div class="c-bolt-input-icons">
-      {% include "@bolt/form-icons.twig" with {"icons": _icons } only %}
+      {% include "@bolt/form-icons.twig" with {"icons": _icons, icon_size: icon_size } only %}
     </div>
 
   {% endif %}

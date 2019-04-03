@@ -20,8 +20,9 @@ const config = {
   plConfigFile: './config/config.yml',
   verbosity: 2,
   schemaErrorReporting: 'cli',
-  enableCache: true,
   webpackDevServer: {
+  sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
+  enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
     enabled: true,
   },
   extraTwigNamespaces: {
@@ -73,7 +74,9 @@ const config = {
   components: {
     global: [
       '@bolt/global',
+      '@bolt/docs-search',
       '@bolt/schema-form',
+      '@bolt/analytics-autolink',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
@@ -151,7 +154,7 @@ const config = {
     },
     {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json'),
+        resolve.sync('@bolt/global/package.json')
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -160,7 +163,7 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json'),
+        resolve.sync('@bolt/twig-renderer/package.json')
       )}/SetupTwigRenderer.php`,
       functions: ['addBoltExtensions'],
     },
