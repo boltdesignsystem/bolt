@@ -74,6 +74,7 @@ const config = {
   components: {
     global: [
       '@bolt/global',
+      '@bolt/docs-search',
       '@bolt/schema-form',
       '@bolt/analytics-autolink',
       '@bolt/components-placeholder',
