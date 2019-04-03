@@ -89,7 +89,8 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
     // experimental: instead of requiring every branch to do a full docker deployment,
     // enable CORS support on the master branch and only require Docker deploys on that one branch
     const fetchRequestPrefix =
-      window.location.hostname === 'master.boltdesignsystem.com'
+      window.location.hostname === 'master.boltdesignsystem.com' ||
+      window.location.hostname.includes('localhost')
         ? ''
         : 'https://master.boltdesignsystem.com';
 
