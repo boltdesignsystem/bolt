@@ -7,7 +7,6 @@ import { styleMap } from 'lit-html/directives/style-map.js';
 import { guard } from 'lit-html/directives/guard';
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
-
 // define which specific props to provide to children that subscribe
 export const ComponentExplorerContext = defineContext({
   schema: '',
@@ -18,7 +17,6 @@ export const ComponentExplorerContext = defineContext({
 
 import styles from './component-explorer.scss';
 import globalStyles from '@bolt/global/styles/index.scss';
-
 
 @define
 export default class ComponentExplorer extends withContext(withLitHtml()) {
@@ -31,7 +29,7 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
     template: props.string,
     initialLayout: props.any, //PropTypes.oneOf(['vertical', 'horizontal']),
   };
-  
+
   // provide context info to children that subscribe
   // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
   static get provides() {
@@ -54,11 +52,11 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
     super.connecting && super.connecting();
     const jsonNode = document.getElementById(this.props.schemaUuid);
 
-    if (jsonNode){
+    if (jsonNode) {
       const jsonText = jsonNode.textContent;
       this.schema = prepSchema(JSON.parse(jsonText));
     }
-    
+
     this.setState({
       formData: this.props.formData,
       renderedHTML: '',
@@ -70,7 +68,7 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
 
   resetForm() {
     this.contexts.get(ComponentExplorerContext).formData = this.props.formData;
-    if (this.schemaForm){
+    if (this.schemaForm) {
       this.schemaForm.resetForm();
     }
   }
@@ -88,11 +86,16 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
   async requestRender(formData) {
     const self = this;
 
-    // experimental: instead of requiring every branch to do a full docker deployment, 
-    // enable CORS support on the master branch and only require Docker deploys on that one branch 
+    // experimental: instead of requiring every branch to do a full docker deployment,
+    // enable CORS support on the master branch and only require Docker deploys on that one branch
+    const fetchRequestPrefix =
+      window.location.hostname === 'master.boltdesignsystem.com'
+        ? ''
+        : 'https://master.boltdesignsystem.com';
+
     if (formData && formData !== '') {
       const res = await fetch(
-        `https://master.boltdesignsystem.com/api/render?${qs.stringify({
+        `${fetchRequestPrefix}/api/render?${qs.stringify({
           template: this.props.template,
         })}`,
         {
@@ -118,7 +121,7 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
     }
   }
 
-  rendered(){
+  rendered() {
     super.rendered && super.rendered();
     this.schemaForm = this.querySelector('bolt-schema-form');
   }
@@ -129,25 +132,33 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
     const schema = prepSchema(this.props.schema);
 
     this.contexts.get(ComponentExplorerContext).schema = schema;
-    this.contexts.get(ComponentExplorerContext).formData = this.state.formData || formData;
+    this.contexts.get(ComponentExplorerContext).formData =
+      this.state.formData || formData;
 
     return html`
       ${this.addStyles([styles, globalStyles])}
-      <div style="${styleMap({
-        display: 'flex',
-        flexDirection: isHorizontal ? 'row' : 'column',
-        flexWrap: 'wrap',
-        backgroundColor: '#F6F6F9',
-        margin: '0 auto',
-      })}">
-        <div class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-6/10@xsmall"
+      <div
+        style="${styleMap({
+          display: 'flex',
+          flexDirection: isHorizontal ? 'row' : 'column',
+          flexWrap: 'wrap',
+          backgroundColor: '#F6F6F9',
+          margin: '0 auto',
+        })}"
+      >
+        <div
+          class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-6/10@xsmall"
           style="${styleMap({
             backgroundColor: '#FFF',
             border: '1px solid rgba(0, 0, 0, .075)',
             display: 'flex',
             position: 'relative',
-          })}">
-          <div class="u-bolt-padding-medium c-bds-component-explorer__demo-container" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 30px;">
+          })}"
+        >
+          <div
+            class="u-bolt-padding-medium c-bds-component-explorer__demo-container"
+            style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 30px;"
+          >
             ${unsafeHTML(this.state.renderedHTML || '')}
           </div>
         </div>
@@ -158,14 +169,22 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
             overflow: 'visible',
             marginLeft: 'auto',
             position: 'relative',
-          })}">
+          })}"
+        >
           <div
             style="${styleMap({
               minHeight: '320px',
               overflow: 'scroll',
               '-webkit-overflow-scroll': 'touch',
-            })}">
-             ${guard(schema, () => schema === schema ? html`<bolt-schema-form></bolt-schema-form>` : '')}
+            })}"
+          >
+            ${guard(schema, () =>
+              schema === schema
+                ? html`
+                    <bolt-schema-form></bolt-schema-form>
+                  `
+                : '',
+            )}
           </div>
           <bolt-button
             size="xsmall"
@@ -176,7 +195,8 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
               right: 0,
               transform: 'translate3d(0, 100%, 0)',
             })}"
-            @click=${() => this.resetForm()}>
+            @click=${() => this.resetForm()}
+          >
             Reset Component Demo
           </bolt-button>
         </div>

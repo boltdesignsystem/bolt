@@ -46,7 +46,8 @@ the icons wrapping markup, even if there are no icons to show, for the following
 
   <div class="c-bolt-input-icons">
     {% include "@bolt/form-icons.twig" with {
-      "icons": _icons
+      "icons": _icons,
+      icon_size: icon_size,
     } only %}
   </div>
 {% endif %}
