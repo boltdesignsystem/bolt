@@ -79,7 +79,7 @@ describe('<bolt-band> Component', () => {
   });
 
   test('Full bleed usage', async function() {
-    const {html} = await renderString(`
+    const { html } = await renderString(`
       {% include "@bolt-components-band/band.twig" with {
         theme: "dark",
         full_bleed: false,
@@ -146,7 +146,7 @@ describe('<bolt-band> Component', () => {
   });
 
   test('Nested bands usage', async function() {
-    const {html} = await renderString(`
+    const { html } = await renderString(`
       {% set parent_band_content %}
         {% include "@bolt-components-headline/headline.twig" with {
           size: "xxxlarge",
