@@ -3,10 +3,11 @@ import {
   renderString,
   stop as stopTwigRenderer,
 } from '@bolt/twig-renderer';
+import { fixture } from '@open-wc/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../band.schema.yml'));
-const { size, theme, tag, full_bleed: fullBleed } = schema.properties;
+const { size, theme, tag } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -19,6 +20,17 @@ async function renderTwigString(template, data) {
 const timeout = 60000;
 
 describe('<bolt-band> Component', () => {
+  let page;
+
+  beforeEach(async () => {
+    page = await global.__BROWSER__.newPage();
+    await page.goto('http://127.0.0.1:4444/', {
+      timeout: 0,
+      waitLoad: true,
+      waitNetworkIdle: true, // defaults to false
+    });
+  }, timeout);
+
   afterAll(async () => {
     await stopTwigRenderer();
   }, timeout);
@@ -66,18 +78,41 @@ describe('<bolt-band> Component', () => {
     });
   });
 
-  fullBleed.enum.forEach(async fullBleedChoice => {
-    test(`Full bleed: ${fullBleedChoice}`, async () => {
-      const results = await renderTwig('@bolt-components-band/band.twig', {
-        fullBleed: fullBleedChoice,
-        content: 'This is a band.',
-      });
-      expect(results.ok).toBe(true);
-      expect(results.html).toMatchSnapshot();
+  test('Full bleed usage', async function() {
+    const {html} = await renderString(`
+      {% include "@bolt-components-band/band.twig" with {
+        theme: "dark",
+        full_bleed: false,
+        content: "This band is not full bleed.",
+      } only %}
+      {% include "@bolt-components-band/band.twig" with {
+        theme: "xdark",
+        full_bleed: true,
+        content: "This band is full bleed.",
+      } only %}
+    `);
+
+    const renderedBandHTML = await page.evaluate(html => {
+      const div = document.createElement('div');
+      div.style.padding = '40px';
+      div.innerHTML = `${html}`;
+      document.body.appendChild(div);
+      const band = document.querySelector('bolt-band');
+      return band.outerHTML;
+    }, html);
+
+    const renderedHTML = await fixture(renderedBandHTML);
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
     });
+
+    expect(renderedHTML).toMatchSnapshot();
   });
 
-  test(`Pinned content`, async () => {
+  test(`Pinned content usage`, async () => {
     const results = await renderTwig('@bolt-components-band/band.twig', {
       size: 'large',
       content: 'This is a band.',
@@ -108,5 +143,50 @@ describe('<bolt-band> Component', () => {
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
+  });
+
+  test('Nested bands usage', async function() {
+    const {html} = await renderString(`
+      {% set parent_band_content %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xxxlarge",
+          text: "This Band Has 2 Bands Nested Inside",
+        } only %}
+        {% include "@bolt-components-band/band.twig" with {
+          size: "xsmall",
+          theme: "light",
+          full_bleed: false,
+          content: "Nested band 1",
+        } only %}
+        {% include "@bolt-components-band/band.twig" with {
+          size: "large",
+          theme: "xlight",
+          full_bleed: false,
+          content: "Nested band 2",
+        } only %}
+      {% endset %}
+      {% include "@bolt-components-band/band.twig" with {
+        theme: "xdark",
+        content: parent_band_content,
+      } only %}
+    `);
+
+    const renderedBandHTML = await page.evaluate(html => {
+      const div = document.createElement('div');
+      div.innerHTML = `${html}`;
+      document.body.appendChild(div);
+      const band = document.querySelector('bolt-band');
+      return band.outerHTML;
+    }, html);
+
+    const renderedHTML = await fixture(renderedBandHTML);
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedHTML).toMatchSnapshot();
   });
 });

@@ -32,3 +32,31 @@ Functional testing should be performed manually by the QA team across the standa
 4. If set to dark theme, the band should have dark background.
 5. If set to xdark theme, the band should have xdark background.
 6. If set to none theme, the band should have no background.
+
+## Scenario: tag variations
+
+1. Given I am viewing the [tag variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-band-20-band-tag-variations/02-components-band-20-band-tag-variations.html).
+2. For each example, the element with the `c-bolt-band` class should have the HTML specified.
+
+## Scenario: full bleed variations
+
+1. Given I am viewing the [tag variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-band-25-band-full-bleed-variations/02-components-band-25-band-full-bleed-variations.html).
+2. Full bleed should span the full width of the page.
+3. Not full bleed should take up only the available space of its parent container.
+
+## Scenario: nested bands usage
+
+1. Given I am viewing the [nested bands page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-band-40-band-nested/02-components-band-40-band-nested.html).
+2. Two bands (light and xlight) should be shown nested inside a parent band (xdark).
+
+## Scenario: pinned content usage
+
+1. Given I am viewing the [pinned content page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-band-30-band-with-pinned-content/02-components-band-30-band-with-pinned-content.html).
+2. In the first example, "upper pinned 1" should be positioned top left.
+3. "upper pinned 2" should be positioned top center.
+4. "upper pinned 3" should be positioned top right.
+5. "lower pinned 1" should be positioned bottom left.
+6. "lower pinned 2" should be positioned bottom center.
+7. "lower pinned 3" should be positioned bottom right.
+8. In the second example, the breadcrumbs should be positioned top left, and the share tool top right.
+9. In the third example, the share tool should be positioned top right.
