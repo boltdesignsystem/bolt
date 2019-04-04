@@ -18,6 +18,10 @@ const { getConfig } = require('../utils/config-store');
 const { flattenArray } = require('../utils/general');
 let config;
 
+sharp.cache({ items: 10000, files: 10000 });
+sharp.concurrency(16);
+sharp.simd(true);
+
 const {
   TRAVIS,
   TRAVIS_BRANCH,
