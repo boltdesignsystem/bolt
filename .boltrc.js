@@ -80,16 +80,10 @@ module.exports = {
   images: {
     sets: imageSets,
   },
-  copy: [],
   prod: true,
   enableCache: true,
   verbosity: 1,
   copy: [
     ...itemsToCopy,
-    {
-      from: './packages/global/fonts/',
-      to: path.join(__dirname, adjustRelativePath(siteConfig.buildDir), 'fonts/'),
-      flatten: true,
-    }
   ],
 };
