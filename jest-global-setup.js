@@ -25,7 +25,7 @@ module.exports = async function globalSetup() {
     path.join(__dirname, './test/jest-test-svgs'),
   ];
 
-  await buildPrep({ cleanAll: true }); // clear out all folders before running
+  await buildPrep(true); // clear out all folders before running
   await imageTasks.processImages(); // process image fixtures used by any tests
   await iconTasks.build(); // process icons used by any tests
 
