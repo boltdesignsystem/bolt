@@ -86,17 +86,9 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
   async requestRender(formData) {
     const self = this;
 
-    // experimental: instead of requiring every branch to do a full docker deployment,
-    // enable CORS support on the master branch and only require Docker deploys on that one branch
-    const fetchRequestPrefix =
-      window.location.hostname === 'master.boltdesignsystem.com' ||
-      window.location.hostname.includes('localhost')
-        ? ''
-        : 'https://master.boltdesignsystem.com';
-
     if (formData && formData !== '') {
       const res = await fetch(
-        `${fetchRequestPrefix}/api/render?${qs.stringify({
+        `/api/render?${qs.stringify({
           template: this.props.template,
         })}`,
         {
