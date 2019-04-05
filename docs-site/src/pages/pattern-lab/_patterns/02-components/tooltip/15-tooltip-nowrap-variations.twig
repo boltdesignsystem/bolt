@@ -1,22 +1,28 @@
 {% set schema = bolt.data.components["@bolt-components-tooltip"].schema %}
 
-{% if noWrap == true %}
-  {% set no_wrap_option = "true" %}
-{% elseif noWrap == false %}
-  {% set no_wrap_option = "false" %}
-{% endif %}
-
-{% for noWrap in schema.properties.noWrap.enum %}
+<div class="u-bolt-padding-top-large u-bolt-padding-bottom-large">
   {% grid "o-bolt-grid--center u-bolt-margin-bottom-medium" %}
     {% cell "o-bolt-grid__cell" %}
       {% include "@bolt-components-tooltip/tooltip.twig" with {
-        noWrap: noWrap,
+        noWrap: true,
         trigger: {
           type: "text",
-          text: "This tooltip has noWrap set to: " ~ no_wrap_option
+          text: "This tooltip has noWrap set to: true"
         },
         content: "This text should wrap if noWrap is set to false, otherwise it should not wrap."
       } only %}
     {% endcell %}
   {% endgrid %}
-{% endfor %}
+  {% grid "o-bolt-grid--center u-bolt-margin-bottom-medium" %}
+    {% cell "o-bolt-grid__cell" %}
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        noWrap: false,
+        trigger: {
+          type: "text",
+          text: "This tooltip has noWrap set to: false"
+        },
+        content: "This text should wrap if noWrap is set to false, otherwise it should not wrap."
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+</div>
