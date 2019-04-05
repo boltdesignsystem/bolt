@@ -1,12 +1,17 @@
 import { define, props } from '@bolt/core/utils';
 import { h, withPreact } from '@bolt/core/renderers';
+import classNames from 'classnames/bind';
+import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 import button from '@bolt/components-button/src/button.scss';
 import colorUtils from '@bolt/global/styles/07-utilities/_utilities-colors.scss';
 import styles from './tooltip.scss';
 
+let cx = classNames.bind(styles);
+
 @define
-class BoltTooltip extends withPreact() {
+class BoltTooltip extends withLitHtml() {
   static is = 'bolt-tooltip';
 
   static props = {
@@ -14,184 +19,161 @@ class BoltTooltip extends withPreact() {
     triggerType: props.string,
     triggerTransform: props.string,
     triggerIconName: props.string,
-    triggerIconSize: props.string,
+    triggerIconSize: {
+      ...props.string,
+      ...{ default: 'medium' },
+    },
     triggerToggleText: props.string,
     triggerToggleIcon: props.string,
     content: props.any,
     noWrap: props.boolean,
-    spacing: props.string,
-    positionVert: props.string,
+    spacing: {
+      ...props.string,
+      ...{ default: 'small' },
+    },
+    positionVert: {
+      ...props.string,
+      ...{ default: 'up' },
+    },
     count: props.string, // For use ONLY with share
   };
 
   constructor(self) {
     self = super(self);
-    this.useShadow = false; // @todo: Get this working with shadowDOM + slots
+    self.useShadow = false; // @todo: Get this working with shadowDOM + slots
     return self;
   }
 
-  connecting() {
+  connected() {
     this.triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
   }
 
   render() {
-    const data = this.props;
-    const baseClass = 'c-bolt-tooltip';
-    const vert = data.positionVert ? data.positionVert : 'up';
+    const classes = cx('c-bolt-tooltip is-align-center', {
+      [`c-bolt-tooltip${
+        this.triggerType === 'button' ? `--action` : `--help`
+      }`]: this.triggerType,
+      [`is-push-${this.positionVert}`]: this.positionVert,
+      [`c-bolt-tooltip--nowrap`]: this.noWrap,
+      [`c-bolt-tooltip--spacing-${this.spacing}`]: this.spacing,
+    });
 
-    const classes = [baseClass, `is-push-${vert}`, 'is-align-center'];
-
-    if (data.triggerType === 'button') {
-      classes.push(`${baseClass}--action`);
-    } else {
-      classes.push(`${baseClass}--help`);
-    }
-
-    if (data.noWrap) {
-      classes.push(`${baseClass}--nowrap`);
-    }
-    if (data.spacing) {
-      classes.push(`${baseClass}--spacing-${data.spacing}`);
-    } else {
-      classes.push(`${baseClass}--spacing-small`);
-    }
-    // @todo: Conditionally render slot similar to how Lit-HTML is doing it
-    return (
-      <span>
-        {this.useShadow && <style>{styles[0][1]}</style>}
-        <span className={classes.join(' ')}>
-          <tooltip-trigger
-            text={data.triggerText}
-            trigger={data.triggerType}
-            transform={data.triggerTransform}
-            icon={data.triggerIconName}
-            size={data.triggerIconSize}
-            toggle-text={data.triggerToggleText}
-            toggle-icon={data.triggerToggleIcon}
-            trigger-id={this.triggerID}
-          />
-          <BoltTooltipContent
-            trigger={data.triggerType}
-            trigger-id={this.triggerID}
-            count={data.count}>
-            <span dangerouslySetInnerHTML={{ __html: data.content }} />
-          </BoltTooltipContent>
-        </span>
-      </span>
+    const triggerClasses = cx(
+      'c-bolt-button c-bolt-button--rounded c-bolt-button--medium c-bolt-button--secondary c-bolt-button--center u-bolt-color-orange',
+      { [`c-bolt-button--${this.triggerTransform}`]: this.triggerTransform },
     );
-  }
-}
 
-@define
-class BoltTooltipTrigger extends withPreact() {
-  static is = 'tooltip-trigger';
+    const contentClasses = cx('c-bolt-tooltip__content', {
+      [`c-bolt-tooltip__content--${this.trigger}`]: this.trigger,
+      [`c-bolt-tooltip__content--${this.count}`]: this.count,
+    });
 
-  static props = {
-    text: props.string,
-    trigger: props.string,
-    transform: props.string,
-    icon: props.string,
-    size: props.string,
-    toggleText: props.string,
-    toggleIcon: props.string,
-    triggerId: props.string,
-  };
-
-  constructor(self) {
-    self = super(self);
-    this.useShadow = false; // @todo: Get this working with shadowDOM + slots
-    return self;
-  }
-
-  render() {
-    const baseClass = 'c-bolt-button';
-
-    const data = this.props;
-    const size = data.size ? data.size : 'medium';
-
-    const classes = [
-      baseClass,
-      `${baseClass}--rounded`,
-      `${baseClass}--medium`,
-      `${baseClass}--secondary`,
-      `${baseClass}--center`,
-      'u-bolt-color-orange',
-    ];
-
-    if (data.transform) {
-      classes.push(`${baseClass}--${data.transform}`);
-    }
-
-    return (
-      <span>
-        {data.trigger === 'button' && (
-          <span>
-            <style>{button[0][1]}</style>
-            <style>{colorUtils[0][1]}</style>
+    function setIcon(iconName, iconSize, iconText) {
+      if (iconName) {
+        return html`
+          <span class="c-bolt-button__icon">
+            <bolt-icon name="${iconName}" size="${iconSize}" />
           </span>
-        )}
-        <span
-          className="c-bolt-tooltip__trigger"
-          aria-describedby={data.triggerId}
-          onClick={() => {
-            if (data.trigger === 'button') {
-              // Fixes issue with css transitions within re-rendered components
-              this.classList.toggle('is-active');
-            }
-          }}>
-          {data.trigger === 'button' && (
-            <button className={classes.join(' ')}>
-              <div className="toggle--closed">
-                {data.icon && (
-                  <span className="c-bolt-button__icon">
-                    <bolt-icon name={data.icon} size={size} />
-                  </span>
-                )}
-                {data.text}
-              </div>
-              <div className="toggle--open">
-                {data.toggleIcon && (
-                  <span className="c-bolt-button__icon">
-                    <bolt-icon name={data.toggleIcon} size={size} />
-                  </span>
-                )}
-                {data.toggleText}
-              </div>
-            </button>
-          )}
-          {data.trigger === 'text' && (
-            <span>
-              {data.icon && (
-                <span className="c-bolt-button__icon">
-                  <bolt-icon name={data.icon} size={size} />
-                </span>
+          ${iconText}
+        `;
+      }
+    }
+
+    function setTrigger(data) {
+      if (data.triggerType === 'button') {
+        return html`
+          <button class=${triggerClasses}>
+            <div class="toggle--closed">
+              ${setIcon(
+                data.triggerIconName,
+                data.triggerIconSize,
+                data.triggerText,
               )}
-              {data.text}
-            </span>
+            </div>
+            <div class="toggle--open">
+              ${setIcon(
+                data.triggerToggleIcon,
+                data.triggerIconSize,
+                data.triggerToggleText,
+              )}
+            </div>
+          </button>
+        `;
+      } else {
+        return html`
+          ${setIcon(
+            data.triggerIconName,
+            data.triggerIconSize,
+            data.triggerText,
           )}
+        `;
+      }
+    }
+
+    function clickHandler(e) {
+      this.parentNode.parentNode.classList.toggle('is-active');
+    }
+
+    function setClick(data) {
+      if (data.triggerType === 'button') {
+        return html`
+          <span
+            class="c-bolt-tooltip__trigger"
+            aria-describedby=${data.triggerID}
+            @click=${clickHandler}
+          >
+            ${setTrigger(data)}
+          </span>
+        `;
+      } else {
+        return html`
+          <span
+            class="c-bolt-tooltip__trigger"
+            aria-describedby=${data.triggerID}
+          >
+            ${setTrigger(data)}
+          </span>
+        `;
+      }
+    }
+
+    const triggerMarkup = html`
+      <span>
+        ${setClick(this.props)}
+      </span>
+    `;
+
+    const tooltipMarkup = html`
+      <span>
+        <span class=${classes}>
+          <tooltip-trigger
+            text=${this.triggerText}
+            trigger=${this.triggerType}
+            transform=${this.triggerTransform}
+            icon=${this.triggerIconName}
+            size=${this.triggerIconSize}
+            toggle-text=${this.triggerToggleText}
+            toggle-icon=${this.triggerToggleIcon}
+            trigger-id="${this.triggerID}"
+          >
+            ${triggerMarkup}
+          </tooltip-trigger>
+          <span
+            id=${ifDefined(this.triggerID)}
+            class=${contentClasses}
+            role="tooltip"
+            aria-hidden="true"
+          >
+            <span class="c-bolt-tooltip__content-bubble">${this.content}</span>
+          </span>
         </span>
       </span>
-    );
+    `;
+
+    return html`
+      ${this.addStyles([styles])} ${tooltipMarkup}
+    `;
   }
 }
 
-const BoltTooltipContent = props => {
-  const classes = [
-    'c-bolt-tooltip__content',
-    `c-bolt-tooltip__content--${props.trigger}`,
-  ];
-  if (props.count) {
-    classes.push(`c-bolt-tooltip__content--count-${props.count}`);
-  }
-  return (
-    <span
-      id={props['trigger-id']}
-      className={classes.join(' ')}
-      role="tooltip"
-      aria-hidden="true">
-      <span className="c-bolt-tooltip__content-bubble">{props.children}</span>
-    </span>
-  );
-};
-
-export { BoltTooltip, BoltTooltipTrigger, BoltTooltipContent };
+export { BoltTooltip };
