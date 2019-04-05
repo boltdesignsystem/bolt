@@ -25,19 +25,16 @@ describe('<bolt-tooltip> Component', () => {
 
   // Basic Usage
   test('Basic usage', async () => {
-    const results = await renderTwig(
-      '@bolt-components-tooltip/tooltip.twig',
-      {
-        trigger: {
-          type: 'text',
-          text: 'Trigger text',
-          icon: {
-            name: 'info-open',
-          }
+    const results = await renderTwig('@bolt-components-tooltip/tooltip.twig', {
+      trigger: {
+        type: 'text',
+        text: 'Trigger text',
+        icon: {
+          name: 'info-open',
         },
-        content: 'Tooltip content.'
       },
-    );
+      content: 'Tooltip content.',
+    });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
@@ -53,10 +50,10 @@ describe('<bolt-tooltip> Component', () => {
             text: 'Trigger text',
             icon: {
               name: 'info-open',
-            }
+            },
           },
           content: 'Tooltip content.',
-          direction: directionChoice
+          direction: directionChoice,
         },
       );
       expect(results.ok).toBe(true);
@@ -74,10 +71,11 @@ describe('<bolt-tooltip> Component', () => {
             text: 'Trigger text',
             icon: {
               name: 'info-open',
-            }
+            },
           },
-          content: 'Tooltip content. This text should wrap if noWrap is set to false, otherwise it should not wrap.',
-          noWrap: noWrapChoice
+          content:
+            'Tooltip content. This text should wrap if noWrap is set to false, otherwise it should not wrap.',
+          noWrap: noWrapChoice,
         },
       );
       expect(results.ok).toBe(true);
@@ -95,10 +93,10 @@ describe('<bolt-tooltip> Component', () => {
             text: 'Trigger text',
             icon: {
               name: 'info-open',
-            }
+            },
           },
           content: 'Tooltip content.',
-          spacing: spacingChoice
+          spacing: spacingChoice,
         },
       );
       expect(results.ok).toBe(true);
