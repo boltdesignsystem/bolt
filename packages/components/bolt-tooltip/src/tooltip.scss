@@ -379,6 +379,10 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip__trigger {
   display: block;
 
+  > * {
+    display: inline-flex; // @todo: this is a temp fix for the icon display.
+  }
+
   .c-bolt-button {
     overflow: hidden;
     font-weight: 900;
@@ -411,7 +415,7 @@ $bolt-tooltip-transition: $bolt-transition;
     position: absolute;
     top: 0; // For IE 11
     bottom: 0; // For IE 11
-    left: 50%; // For IE 11 
+    left: 50%; // For IE 11
     transform: translate3d(-50%, -200%, 0);
 
     .is-active & {

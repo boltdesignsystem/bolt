@@ -1,0 +1,18 @@
+{% set schema = bolt.data.components["@bolt-components-tooltip"].schema %}
+
+{% for direction in schema.properties.direction.enum %}
+  {% grid "o-bolt-grid--center u-bolt-margin-bottom-medium" %}
+    {% cell "o-bolt-grid__cell" %}
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        direction: direction,
+        spacing: "xsmall",
+        noWrap: true,
+        trigger: {
+          type: "text",
+          text: "This tooltip comes " ~ direction
+        },
+        content: "This is the tooltip content."
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endfor %}
