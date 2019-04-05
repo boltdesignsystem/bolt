@@ -33,6 +33,7 @@ async function getDefaultConfig() {
       port: ports[0],
       proxyPort: ports[1],
       ip,
+      enableSSR: configSchema.properties.enableSSR.default,
       mode: configSchema.properties.mode.default,
       env: process.env.NODE_ENV,
       enableCache: configSchema.properties.enableCache.default,

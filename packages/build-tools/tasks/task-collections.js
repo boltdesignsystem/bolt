@@ -110,17 +110,17 @@ async function clean(cleanAll = false) {
         break;
       case 'pwa':
         dirs = [
-          path.join(path.resolve(config.wwwDir), '**'),
-          `!${path.resolve(config.wwwDir)}`,
-          `!${path.resolve(config.wwwDir, 'pattern-lab')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
-          `!${path.join(path.resolve(config.wwwDir, 'pattern-lab'), '**')}`,
+          `${path.join(
+            path.resolve(config.wwwDir, 'pattern-lab/patterns'),
+            '**',
+          )}`,
         ];
         break;
       default:
         dirs = [config.buildDir];
         break;
     }
-    if (cleanAll) {
+    if (cleanAll === true) {
       dirs = [config.wwwDir];
     }
     await internalTasks.clean(dirs);
