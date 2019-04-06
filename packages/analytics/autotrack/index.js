@@ -68,7 +68,7 @@ const metrics = {
 //  * values on the trackers.
 //  */
 export const init = () => {
-//   // Initialize the command queue in case analytics.js hasn't loaded yet.
+  //   // Initialize the command queue in case analytics.js hasn't loaded yet.
   window.ga = window.ga || ((...args) => (ga.q = ga.q || []).push(args));
   console.log('init analytics');
 
@@ -77,10 +77,8 @@ export const init = () => {
   trackCustomDimensions();
   requireAutotrackPlugins();
 
-//   stateListener.on('change', onStateChange);
+  //   stateListener.on('change', onStateChange);
 };
-
-init();
 
 // // const externalDomainsToTrack = ["on24.com","brightcove.net","brightcove.com","cvent.com", "github.com"];
 
@@ -293,74 +291,77 @@ export const trackError = (err = {}, fieldsObj = {}) => {
   );
 };
 
-// /**
-//  * Creates the trackers and sets the default transport and tracking
-//  * version fields. In non-production environments it also logs hits.
-//  */
+/**
+ * Creates the trackers and sets the default transport and tracking
+ * version fields. In non-production environments it also logs hits.
+ */
 const createTracker = () => {
   ga('create', TRACKING_ID, 'auto', { allowLinker: true });
 
   ga('send', 'pageview');
 
-//   // Ensures all hits are sent via `navigator.sendBeacon()`.
+  //   // Ensures all hits are sent via `navigator.sendBeacon()`.
   ga('set', 'transport', 'beacon');
 
-//   // Loads the Linker plugin
+  //   // Loads the Linker plugin
   ga('require', 'linker');
 
-  ga('linker:autoLink', window.drupalSettings.google_analytics.trackCrossDomains);
+  ga(
+    'linker:autoLink',
+    window.drupalSettings.google_analytics.trackCrossDomains,
+  );
 
-//   // Log hits in non-production environments.
+  //   // Log hits in non-production environments.
   // if (process.env.NODE_ENV !== 'production') {
-//     ga('set', 'sendHitTask', function(model) {
-//       let paramsToIgnore = [
-//         'v',
-//         'did',
-//         't',
-//         'tid',
-//         'ec',
-//         'ea',
-//         'el',
-//         'ev',
-//         'a',
-//         'z',
-//         'ul',
-//         'de',
-//         'sd',
-//         'sr',
-//         'vp',
-//         'je',
-//         'fl',
-//         'jid',
-//       ];
+  //     ga('set', 'sendHitTask', function(model) {
+  //       let paramsToIgnore = [
+  //         'v',
+  //         'did',
+  //         't',
+  //         'tid',
+  //         'ec',
+  //         'ea',
+  //         'el',
+  //         'ev',
+  //         'a',
+  //         'z',
+  //         'ul',
+  //         'de',
+  //         'sd',
+  //         'sr',
+  //         'vp',
+  //         'je',
+  //         'fl',
+  //         'jid',
+  //       ];
 
-//       let hitType = model.get('&t');
-//       let hitPayload = model.get('hitPayload');
-//       let hit = hitPayload
-//         .split('&')
-//         .map(decodeURIComponent)
-//         .filter(item => {
-//           const [param] = item.split('=');
-//           return !(
-//             param.charAt(0) === '_' || paramsToIgnore.indexOf(param) > -1
-//           );
-//         });
+  //       let hitType = model.get('&t');
+  //       let hitPayload = model.get('hitPayload');
+  //       let hit = hitPayload
+  //         .split('&')
+  //         .map(decodeURIComponent)
+  //         .filter(item => {
+  //           const [param] = item.split('=');
+  //           return !(
+  //             param.charAt(0) === '_' || paramsToIgnore.indexOf(param) > -1
+  //           );
+  //         });
 
-//       let parts = [model.get('&tid'), hitType];
-//       if (hitType === 'event') {
-//         parts = [
-//           ...parts,
-//           model.get('&ec'),
-//           model.get('&ea'),
-//           model.get('&el'),
-//         ];
-//         if (model.get('&ev')) parts.push(model.get('&ev'));
-//       }
+  //       let parts = [model.get('&tid'), hitType];
+  //       if (hitType === 'event') {
+  //         parts = [
+  //           ...parts,
+  //           model.get('&ec'),
+  //           model.get('&ea'),
+  //           model.get('&el'),
+  //         ];
+  //         if (model.get('&ev')) parts.push(model.get('&ev'));
+  //       }
 
-//       // eslint-disable-next-line no-console
-//       console.log(...parts, hit);
-//     });
-//   }
+  //       // eslint-disable-next-line no-console
+  //       console.log(...parts, hit);
+  //     });
+  //   }
 };
 
 // /**
@@ -398,19 +399,19 @@ const trackErrors = () => {
   window.addEventListener('error', trackErrorEvent);
 };
 
-// /**
-//  * Sets a default dimension value for all custom dimensions on all trackers.
-//  */
+/**
+ * Sets a default dimension value for all custom dimensions on all trackers.
+ */
 const trackCustomDimensions = () => {
-//   // Sets a default dimension value for all custom dimensions to ensure
-//   // that every dimension in every hit has *some* value. This is necessary
-//   // because Google Analytics will drop rows with empty dimension values
-//   // in your reports.
+  // Sets a default dimension value for all custom dimensions to ensure
+  // that every dimension in every hit has *some* value. This is necessary
+  // because Google Analytics will drop rows with empty dimension values
+  // in your reports.
   Object.keys(dimensions).forEach(key => {
     ga('set', dimensions[key], NULL_VALUE);
   });
 
-//   // Adds tracking of dimensions known at page load time.
+  // Adds tracking of dimensions known at page load time.
   ga(tracker => {
     // const {selectedPage, pinnedDemo} = getState();
     tracker.set({
@@ -424,8 +425,8 @@ const trackCustomDimensions = () => {
     });
   });
 
-//   // Adds tracking to record each the type, time, uuid, and visibility state
-//   // of each hit immediately before it's sent.
+  // Adds tracking to record each the type, time, uuid, and visibility state
+  //   // of each hit immediately before it's sent.
   ga(tracker => {
     const originalBuildHitTask = tracker.get('buildHitTask');
     tracker.set('buildHitTask', model => {
@@ -440,16 +441,16 @@ const trackCustomDimensions = () => {
   });
 };
 
-// /**
-//  * Requires select autotrack plugins and initializes each one with its
-//  * respective configuration options.
-//  */
+/**
+ * Requires select autotrack plugins and initializes each one with its
+ * respective configuration options.
+ */
 const requireAutotrackPlugins = () => {
-//   ga('require', 'cleanUrlTracker', {
-//     stripQuery: true,
-//     queryDimensionIndex: getDefinitionIndex(dimensions.URL_QUERY_PARAMS),
-//     trailingSlash: 'add',
-//   });
+  //   ga('require', 'cleanUrlTracker', {
+  //     stripQuery: true,
+  //     queryDimensionIndex: getDefinitionIndex(dimensions.URL_QUERY_PARAMS),
+  //     trailingSlash: 'add',
+  //   });
   ga('require', 'mediaQueryTracker', {
     definitions: [
       {
@@ -465,9 +466,9 @@ const requireAutotrackPlugins = () => {
       },
     ],
   });
-    ga('require', 'outboundLinkTracker', {
-      linkSelector: '.c-bolt-navlink',
-    });
+  ga('require', 'outboundLinkTracker', {
+    linkSelector: '.c-bolt-navlink',
+  });
 
   ga('require', 'pageVisibilityTracker', {
     sendInitialPageview: true,
@@ -476,23 +477,26 @@ const requireAutotrackPlugins = () => {
     timeZone: 'America/New_York',
     fieldsObj: { [dimensions.HIT_SOURCE]: 'pageVisibilityTracker' },
   });
-// };
+};
 
-// /**
-//  * Accepts a custom dimension or metric and returns it's numerical index.
-//  * @param {string} definition The definition string (e.g. 'dimension1').
-//  * @return {number} The definition index.
-//  */
+/**
+ * Accepts a custom dimension or metric and returns it's numerical index.
+ * @param {string} definition The definition string (e.g. 'dimension1').
+ * @return {number} The definition index.
+ */
 const getDefinitionIndex = definition => +/\d+$/.exec(definition)[0];
 
-// /**
-//  * Generates a UUID.
-//  * https://gist.github.com/jed/982883
-//  * @param {string|undefined=} a
-//  * @return {string}
-//  */
-// const uuid = function b(a) {
-//   return a
-//     ? (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
-//     : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b);
-// };
+/**
+ * Generates a UUID.
+ * https://gist.github.com/jed/982883
+ * @param {string|undefined=} a
+ * @return {string}
+ */
+const uuid = function b(a) {
+  return a
+    ? // eslint-disable-next-line no-bitwise
+      (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
+    : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b);
+};
+
+init();
