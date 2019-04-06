@@ -1,8 +1,8 @@
 // // Import the individual autotrack plugins you want to use.
-// // import 'autotrack/lib/plugins/clean-url-tracker';
-// // // import 'autotrack/lib/plugins/media-query-tracker';
-// // import 'autotrack/lib/plugins/outbound-link-tracker';
-// import 'autotrack/lib/plugins/page-visibility-tracker';
+import 'autotrack/lib/plugins/clean-url-tracker';
+import 'autotrack/lib/plugins/media-query-tracker';
+import 'autotrack/lib/plugins/outbound-link-tracker';
+import 'autotrack/lib/plugins/page-visibility-tracker';
 // import { stateListener } from '@bolt/core/renderers/bolt-base';
 
 // // trackedCrossDomains is an array of external domains that we want to add external GA autolink tracking to.
@@ -19,47 +19,47 @@
 //  * The tracking ID for your Google Analytics property.
 //  * https://support.google.com/analytics/answer/1032385
 //  */
-// const TRACKING_ID = 'UA-127403924-1';
+const TRACKING_ID = 'UA-127403924-1';
 
 // /**
 //  * Bump this when making backwards incompatible changes to the tracking
 //  * implementation. This allows you to create a segment or view filter
 //  * that isolates only data captured with the most recent tracking changes.
 //  */
-// const TRACKING_VERSION = '2';
+const TRACKING_VERSION = '2';
 
 // /**
 //  * A default value for dimensions so unset values always are reported as
 //  * something. This is needed since Google Analytics will drop empty dimension
 //  * values in reports.
 //  */
-// const NULL_VALUE = '(not set)';
+const NULL_VALUE = '(not set)';
 
 // /**
 //  * A mapping between custom dimension names and their indexes.
 //  */
-// const dimensions = {
-//   TRACKING_VERSION: 'dimension1',
-//   CLIENT_ID: 'dimension2',
-//   WINDOW_ID: 'dimension3',
-//   HIT_ID: 'dimension4',
-//   HIT_TIME: 'dimension5',
-//   HIT_TYPE: 'dimension6',
-//   HIT_SOURCE: 'dimension7',
-//   VISIBILITY_STATE: 'dimension8',
-//   URL_QUERY_PARAMS: 'dimension9',
-//   BREAKPOINT: 'dimension10',
-//   SELECTED_PAGE: 'dimension11',
-//   PINNED_DEMO: 'dimension12',
-// };
+const dimensions = {
+  TRACKING_VERSION: 'dimension1',
+  CLIENT_ID: 'dimension2',
+  WINDOW_ID: 'dimension3',
+  HIT_ID: 'dimension4',
+  HIT_TIME: 'dimension5',
+  HIT_TYPE: 'dimension6',
+  HIT_SOURCE: 'dimension7',
+  VISIBILITY_STATE: 'dimension8',
+  URL_QUERY_PARAMS: 'dimension9',
+  BREAKPOINT: 'dimension10',
+  SELECTED_PAGE: 'dimension11',
+  PINNED_DEMO: 'dimension12',
+};
 
 // /**
 //  * A mapping between custom metric names and their indexes.
 //  */
-// const metrics = {
-//   PAGE_LOADS: 'metric1',
-//   PAGE_VISIBLE_TIME: 'metric2',
-// };
+const metrics = {
+  PAGE_LOADS: 'metric1',
+  PAGE_VISIBLE_TIME: 'metric2',
+};
 
 // document.addEventListener('rendered', onComponentRender);
 
@@ -67,18 +67,20 @@
 //  * Initializes all the analytics setup. Creates trackers and sets initial
 //  * values on the trackers.
 //  */
-// export const init = () => {
+export const init = () => {
 //   // Initialize the command queue in case analytics.js hasn't loaded yet.
-//   window.ga = window.ga || ((...args) => (ga.q = ga.q || []).push(args));
-//   // console.log('init analytics');
+  window.ga = window.ga || ((...args) => (ga.q = ga.q || []).push(args));
+  console.log('init analytics');
 
-//   createTracker();
-//   trackErrors();
-//   trackCustomDimensions();
-//   requireAutotrackPlugins();
+  createTracker();
+  trackErrors();
+  trackCustomDimensions();
+  requireAutotrackPlugins();
 
 //   stateListener.on('change', onStateChange);
-// };
+};
+
+init();
 
 // // const externalDomainsToTrack = ["on24.com","brightcove.net","brightcove.com","cvent.com", "github.com"];
 
@@ -275,41 +277,41 @@
 //  * @param {(Error|Object)=} err
 //  * @param {Object=} fieldsObj
 //  */
-// export const trackError = (err = {}, fieldsObj = {}) => {
-//   ga(
-//     'send',
-//     'event',
-//     Object.assign(
-//       {
-//         eventCategory: 'Error',
-//         eventAction: err.name || '(no error name)',
-//         eventLabel: `${err.message}\n${err.stack || '(no stack trace)'}`,
-//         nonInteraction: true,
-//       },
-//       fieldsObj,
-//     ),
-//   );
-// };
+export const trackError = (err = {}, fieldsObj = {}) => {
+  ga(
+    'send',
+    'event',
+    Object.assign(
+      {
+        eventCategory: 'Error',
+        eventAction: err.name || '(no error name)',
+        eventLabel: `${err.message}\n${err.stack || '(no stack trace)'}`,
+        nonInteraction: true,
+      },
+      fieldsObj,
+    ),
+  );
+};
 
 // /**
 //  * Creates the trackers and sets the default transport and tracking
 //  * version fields. In non-production environments it also logs hits.
 //  */
-// const createTracker = () => {
-//   ga('create', TRACKING_ID, 'auto', { allowLinker: true });
+const createTracker = () => {
+  ga('create', TRACKING_ID, 'auto', { allowLinker: true });
 
-//   ga('send', 'pageview');
+  ga('send', 'pageview');
 
 //   // Ensures all hits are sent via `navigator.sendBeacon()`.
-//   ga('set', 'transport', 'beacon');
+  ga('set', 'transport', 'beacon');
 
 //   // Loads the Linker plugin
-//   ga('require', 'linker');
+  ga('require', 'linker');
 
-//   ga('linker:autoLink', ['github.com']);
+  ga('linker:autoLink', window.drupalSettings.google_analytics.trackCrossDomains);
 
 //   // Log hits in non-production environments.
-//   if (process.env.NODE_ENV !== 'production') {
+  // if (process.env.NODE_ENV !== 'production') {
 //     ga('set', 'sendHitTask', function(model) {
 //       let paramsToIgnore = [
 //         'v',
@@ -359,121 +361,121 @@
 //       console.log(...parts, hit);
 //     });
 //   }
-// };
+};
 
 // /**
 //  * Tracks any errors that may have occured on the page prior to analytics being
 //  * initialized, then adds an event handler to track future errors.
 //  */
-// const trackErrors = () => {
-//   // Errors that have occurred prior to this script running are stored on
-//   // `window.__e.q`, as specified in `index.html`.
-//   const loadErrorEvents = (window.__e && window.__e.q) || [];
+const trackErrors = () => {
+  // Errors that have occurred prior to this script running are stored on
+  // `window.__e.q`, as specified in `index.html`.
+  const loadErrorEvents = (window.__e && window.__e.q) || [];
 
-//   const trackErrorEvent = evt => {
-//     // Use a different eventCategory for uncaught errors.
-//     const fieldsObj = { eventCategory: 'Uncaught Error' };
+  const trackErrorEvent = evt => {
+    // Use a different eventCategory for uncaught errors.
+    const fieldsObj = { eventCategory: 'Uncaught Error' };
 
-//     // Ignore the ResizeObserver loop limit exceeded error.
-//     // if (evt.message.includes('ResizeObserver loop limit exceeded')) {
-//     //   return;
-//     // }
+    // Ignore the ResizeObserver loop limit exceeded error.
+    // if (evt.message.includes('ResizeObserver loop limit exceeded')) {
+    //   return;
+    // }
 
-//     // Some browsers don't have an error property, so we fake it.
-//     const err = evt.error || {
-//       message: `${evt.message} (${evt.lineno}:${evt.colno})`,
-//     };
+    // Some browsers don't have an error property, so we fake it.
+    const err = evt.error || {
+      message: `${evt.message} (${evt.lineno}:${evt.colno})`,
+    };
 
-//     trackError(err, fieldsObj);
-//   };
+    trackError(err, fieldsObj);
+  };
 
-//   // Replay any stored load error events.
-//   for (let evt of loadErrorEvents) {
-//     trackErrorEvent(evt);
-//   }
+  // Replay any stored load error events.
+  for (let evt of loadErrorEvents) {
+    trackErrorEvent(evt);
+  }
 
-//   // Add a new listener to track event immediately.
-//   window.addEventListener('error', trackErrorEvent);
-// };
+  // Add a new listener to track event immediately.
+  window.addEventListener('error', trackErrorEvent);
+};
 
 // /**
 //  * Sets a default dimension value for all custom dimensions on all trackers.
 //  */
-// const trackCustomDimensions = () => {
+const trackCustomDimensions = () => {
 //   // Sets a default dimension value for all custom dimensions to ensure
 //   // that every dimension in every hit has *some* value. This is necessary
 //   // because Google Analytics will drop rows with empty dimension values
 //   // in your reports.
-//   Object.keys(dimensions).forEach(key => {
-//     ga('set', dimensions[key], NULL_VALUE);
-//   });
+  Object.keys(dimensions).forEach(key => {
+    ga('set', dimensions[key], NULL_VALUE);
+  });
 
 //   // Adds tracking of dimensions known at page load time.
-//   ga(tracker => {
-//     // const {selectedPage, pinnedDemo} = getState();
-//     tracker.set({
-//       // General dimensions
-//       [dimensions.TRACKING_VERSION]: TRACKING_VERSION,
-//       [dimensions.CLIENT_ID]: tracker.get('clientId'),
-//       [dimensions.WINDOW_ID]: uuid(),
-//       // Demo dimensions
-//       // [dimensions.SELECTED_PAGE]: selectedPage,
-//       // [dimensions.PINNED_DEMO]: pinnedDemo,
-//     });
-//   });
+  ga(tracker => {
+    // const {selectedPage, pinnedDemo} = getState();
+    tracker.set({
+      // General dimensions
+      [dimensions.TRACKING_VERSION]: TRACKING_VERSION,
+      [dimensions.CLIENT_ID]: tracker.get('clientId'),
+      [dimensions.WINDOW_ID]: uuid(),
+      // Demo dimensions
+      // [dimensions.SELECTED_PAGE]: selectedPage,
+      // [dimensions.PINNED_DEMO]: pinnedDemo,
+    });
+  });
 
 //   // Adds tracking to record each the type, time, uuid, and visibility state
 //   // of each hit immediately before it's sent.
-//   ga(tracker => {
-//     const originalBuildHitTask = tracker.get('buildHitTask');
-//     tracker.set('buildHitTask', model => {
-//       const qt = model.get('queueTime') || 0;
-//       model.set(dimensions.HIT_TIME, String(new Date() - qt), true);
-//       model.set(dimensions.HIT_ID, uuid(), true);
-//       model.set(dimensions.HIT_TYPE, model.get('hitType'), true);
-//       model.set(dimensions.VISIBILITY_STATE, document.visibilityState, true);
+  ga(tracker => {
+    const originalBuildHitTask = tracker.get('buildHitTask');
+    tracker.set('buildHitTask', model => {
+      const qt = model.get('queueTime') || 0;
+      model.set(dimensions.HIT_TIME, String(new Date() - qt), true);
+      model.set(dimensions.HIT_ID, uuid(), true);
+      model.set(dimensions.HIT_TYPE, model.get('hitType'), true);
+      model.set(dimensions.VISIBILITY_STATE, document.visibilityState, true);
 
-//       originalBuildHitTask(model);
-//     });
-//   });
-// };
+      originalBuildHitTask(model);
+    });
+  });
+};
 
 // /**
 //  * Requires select autotrack plugins and initializes each one with its
 //  * respective configuration options.
 //  */
-// const requireAutotrackPlugins = () => {
+const requireAutotrackPlugins = () => {
 //   ga('require', 'cleanUrlTracker', {
 //     stripQuery: true,
 //     queryDimensionIndex: getDefinitionIndex(dimensions.URL_QUERY_PARAMS),
 //     trailingSlash: 'add',
 //   });
-//   ga('require', 'mediaQueryTracker', {
-//     definitions: [
-//       {
-//         name: 'Breakpoint',
-//         dimensionIndex: getDefinitionIndex(dimensions.BREAKPOINT),
-//         items: [
-//           { name: 'XS', media: 'all' },
-//           { name: 'SM', media: '(min-width: 24em)' },
-//           { name: 'MD', media: '(min-width: 36em)' },
-//           { name: 'LG', media: '(min-width: 48em)' },
-//           { name: 'XL', media: '(min-width: 60em)' },
-//         ],
-//       },
-//     ],
-//   });
-//   ga('require', 'outboundLinkTracker', {
-//     linkSelector: '.js-track-clicks',
-//   });
+  ga('require', 'mediaQueryTracker', {
+    definitions: [
+      {
+        name: 'Breakpoint',
+        dimensionIndex: getDefinitionIndex(dimensions.BREAKPOINT),
+        items: [
+          { name: 'XS', media: 'all' },
+          { name: 'SM', media: '(min-width: 24em)' },
+          { name: 'MD', media: '(min-width: 36em)' },
+          { name: 'LG', media: '(min-width: 48em)' },
+          { name: 'XL', media: '(min-width: 60em)' },
+        ],
+      },
+    ],
+  });
+    ga('require', 'outboundLinkTracker', {
+      linkSelector: '.c-bolt-navlink',
+    });
 
-//   ga('require', 'pageVisibilityTracker', {
-//     sendInitialPageview: true,
-//     pageLoadsMetricIndex: getDefinitionIndex(metrics.PAGE_LOADS),
-//     visibleMetricIndex: getDefinitionIndex(metrics.PAGE_VISIBLE_TIME),
-//     timeZone: 'America/New_York',
-//     fieldsObj: { [dimensions.HIT_SOURCE]: 'pageVisibilityTracker' },
-//   });
+  ga('require', 'pageVisibilityTracker', {
+    sendInitialPageview: true,
+    pageLoadsMetricIndex: getDefinitionIndex(metrics.PAGE_LOADS),
+    visibleMetricIndex: getDefinitionIndex(metrics.PAGE_VISIBLE_TIME),
+    timeZone: 'America/New_York',
+    fieldsObj: { [dimensions.HIT_SOURCE]: 'pageVisibilityTracker' },
+  });
 // };
 
 // /**
@@ -481,7 +483,7 @@
 //  * @param {string} definition The definition string (e.g. 'dimension1').
 //  * @return {number} The definition index.
 //  */
-// const getDefinitionIndex = definition => +/\d+$/.exec(definition)[0];
+const getDefinitionIndex = definition => +/\d+$/.exec(definition)[0];
 
 // /**
 //  * Generates a UUID.
