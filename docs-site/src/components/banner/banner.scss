@@ -4,6 +4,8 @@
   @include bolt-padding-top(small);
   @include bolt-padding-bottom(small);
   @include bolt-font-size(small);
+  position: relative;
+  z-index: 1000;
   width: 100%;
   margin: 0 auto;
   color: bolt-theme(secondary);
@@ -31,8 +33,4 @@
     -ms-grid-column-span: 3;
     grid-column-end: 4;
   }
-
-  position: relative;
-  z-index: 1000;
-  // 
 }

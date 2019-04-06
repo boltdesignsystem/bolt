@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 // // Import the individual autotrack plugins you want to use.
 import 'autotrack/lib/plugins/clean-url-tracker';
 import 'autotrack/lib/plugins/media-query-tracker';
