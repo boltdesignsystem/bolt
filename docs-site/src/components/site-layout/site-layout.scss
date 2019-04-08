@@ -74,12 +74,14 @@ $bds-sidebar-width: 320px;
 
   .c-bolt-navbar {
     max-width: none;
+
+    @include bolt-mq(medium) {
+      @include bolt-padding-left(medium);
+      @include bolt-padding-right(medium);
+    }
   }
 
   @include bolt-mq(medium) {
-    @include bolt-padding-left(medium);
-    @include bolt-padding-right(medium);
-
     .c-bds-layout--has-sidebar & {
       grid-column-start: 1;
       grid-column-end: 4;
