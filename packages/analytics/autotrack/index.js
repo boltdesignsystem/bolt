@@ -69,10 +69,8 @@ const metrics = {
 //  * values on the trackers.
 //  */
 export const init = () => {
-  //   // Initialize the command queue in case analytics.js hasn't loaded yet.
+  // Initialize the command queue in case analytics.js hasn't loaded yet.
   window.ga = window.ga || ((...args) => (ga.q = ga.q || []).push(args));
-  console.log('init analytics');
-
   createTracker();
   trackErrors();
   trackCustomDimensions();
