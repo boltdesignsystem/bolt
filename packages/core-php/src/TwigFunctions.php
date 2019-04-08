@@ -64,7 +64,7 @@ class TwigFunctions {
     }
 
     // disable server-side rendering web components when manually disabled, or set to auto + running in dev mode
-    if (($boltConfig["enableSSR"] == false && $boltConfig["prod"] == false)){
+    if ($boltConfig["enableSSR"] == false){
       return $html;
     }
     
