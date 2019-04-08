@@ -1,11 +1,10 @@
-
 module.exports = {
   root: true,
   env: {
     node: true,
     browser: true,
     commonjs: true,
-    es6: true
+    es6: true,
   },
   plugins: ['prettier'],
   extends: [
@@ -19,5 +18,5 @@ module.exports = {
   rules: {
     'vue/max-attributes-per-line': 'off',
     'vue/require-default-prop': 'off',
-  }
+  },
 };
