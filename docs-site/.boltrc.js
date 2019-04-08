@@ -77,6 +77,7 @@ const config = {
       '@bolt/docs-search',
       '@bolt/schema-form',
       '@bolt/analytics-autolink',
+      '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
