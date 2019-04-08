@@ -1,11 +1,8 @@
 import { define, props } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
 import classNames from 'classnames/bind';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
-import button from '@bolt/components-button/src/button.scss';
-import colorUtils from '@bolt/global/styles/07-utilities/_utilities-colors.scss';
 import styles from './tooltip.scss';
 
 let cx = classNames.bind(styles);
@@ -15,37 +12,123 @@ class BoltTooltip extends withLitHtml() {
   static is = 'bolt-tooltip';
 
   static props = {
-    triggerText: props.string,
-    triggerType: props.string,
-    triggerTransform: props.string,
-    triggerIconName: props.string,
+    triggerText: {
+      ...props.string,
+      ...{ default: undefined },
+    },
+    triggerType: {
+      ...props.string,
+      ...{ default: undefined },
+    },
+    triggerTransform: {
+      ...props.string,
+      ...{ default: undefined },
+    },
+    triggerIconName: {
+      ...props.string,
+      ...{ default: undefined },
+    },
     triggerIconSize: {
       ...props.string,
       ...{ default: 'medium' },
     },
-    triggerToggleText: props.string,
-    triggerToggleIcon: props.string,
+    triggerToggleText: {
+      ...props.string,
+      ...{ default: undefined },
+    },
+    triggerToggleIcon: {
+      ...props.string,
+      ...{ default: undefined },
+    },
     content: props.any,
     noWrap: props.boolean,
     spacing: {
       ...props.string,
       ...{ default: 'small' },
     },
+    triggerID: props.string,
     positionVert: {
       ...props.string,
       ...{ default: 'up' },
     },
-    count: props.string, // For use ONLY with share
+    count: {
+      ...props.string,
+      ...{ default: undefined },
+    }, // For use ONLY with share
+    active: {
+      ...props.boolean,
+      ...{ default: false },
+    },
   };
 
   constructor(self) {
     self = super(self);
-    self.useShadow = false; // @todo: Get this working with shadowDOM + slots
+    self.clickHandler = self.clickHandler.bind(self);
     return self;
   }
 
   connected() {
     this.triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
+  }
+
+  clickHandler() {
+    this.active = !this.active;
+    this.renderRoot
+      .querySelector('bolt-tooltip-trigger')
+      .classList.toggle('is-active');
+  }
+
+  setClick() {
+    if (this.triggerType === 'button') {
+      return html`
+        <bolt-tooltip-trigger
+          class="c-bolt-tooltip__trigger"
+          aria-describedby=${this.triggerID}
+          @click=${this.clickHandler}
+        >
+          ${this.setTrigger()}
+        </bolt-tooltip-trigger>
+      `;
+    } else {
+      return html`
+        <bolt-tooltip-trigger
+          class="c-bolt-tooltip__trigger"
+          aria-describedby=${this.triggerID}
+        >
+          ${this.setTrigger()}
+        </bolt-tooltip-trigger>
+      `;
+    }
+  }
+
+  setTrigger() {
+    if (this.triggerType === 'button') {
+      return html`
+        <bolt-button
+          color="secondary"
+          transform="${ifDefined(this.triggerTransform)}"
+          ><bolt-icon
+            name="${this.active
+              ? this.triggerToggleIcon
+              : this.triggerIconName}"
+            size="${this.triggerIconSize}"
+            slot="before"
+          ></bolt-icon
+          >${this.active
+            ? this.triggerToggleText
+            : this.triggerText}</bolt-button
+        >
+      `;
+    } else {
+      return html`
+        <bolt-icon
+          name="${this.triggerIconName}"
+          size="${this.triggerIconSize}"
+          slot="before"
+        ></bolt-icon>
+        ${this.triggerText}
+      `;
+    }
   }
 
   render() {
@@ -58,120 +141,24 @@ class BoltTooltip extends withLitHtml() {
       [`c-bolt-tooltip--spacing-${this.spacing}`]: this.spacing,
     });
 
-    const triggerClasses = cx(
-      'c-bolt-button c-bolt-button--rounded c-bolt-button--medium c-bolt-button--secondary c-bolt-button--center u-bolt-color-orange',
-      { [`c-bolt-button--${this.triggerTransform}`]: this.triggerTransform },
-    );
-
     const contentClasses = cx('c-bolt-tooltip__content', {
-      [`c-bolt-tooltip__content--${this.trigger}`]: this.trigger,
+      [`c-bolt-tooltip__content--${this.triggerType}`]: this.triggerType,
       [`c-bolt-tooltip__content--${this.count}`]: this.count,
     });
 
-    function setIcon(iconName, iconSize, iconText) {
-      if (iconName) {
-        return html`
-          <span class="c-bolt-button__icon">
-            <bolt-icon name="${iconName}" size="${iconSize}" />
-          </span>
-          ${iconText}
-        `;
-      }
-    }
-
-    function setTrigger(data) {
-      if (data.triggerType === 'button') {
-        return html`
-          <button class=${triggerClasses}>
-            <div class="toggle--closed">
-              ${setIcon(
-                data.triggerIconName,
-                data.triggerIconSize,
-                data.triggerText,
-              )}
-            </div>
-            <div class="toggle--open">
-              ${setIcon(
-                data.triggerToggleIcon,
-                data.triggerIconSize,
-                data.triggerToggleText,
-              )}
-            </div>
-          </button>
-        `;
-      } else {
-        return html`
-          ${setIcon(
-            data.triggerIconName,
-            data.triggerIconSize,
-            data.triggerText,
-          )}
-        `;
-      }
-    }
-
-    function clickHandler(e) {
-      this.parentNode.parentNode.classList.toggle('is-active');
-    }
-
-    function setClick(data) {
-      if (data.triggerType === 'button') {
-        return html`
-          <span
-            class="c-bolt-tooltip__trigger"
-            aria-describedby=${data.triggerID}
-            @click=${clickHandler}
-          >
-            ${setTrigger(data)}
-          </span>
-        `;
-      } else {
-        return html`
-          <span
-            class="c-bolt-tooltip__trigger"
-            aria-describedby=${data.triggerID}
-          >
-            ${setTrigger(data)}
-          </span>
-        `;
-      }
-    }
-
-    const triggerMarkup = html`
-      <span>
-        ${setClick(this.props)}
-      </span>
-    `;
-
-    const tooltipMarkup = html`
-      <span>
-        <span class=${classes}>
-          <tooltip-trigger
-            text=${this.triggerText}
-            trigger=${this.triggerType}
-            transform=${this.triggerTransform}
-            icon=${this.triggerIconName}
-            size=${this.triggerIconSize}
-            toggle-text=${this.triggerToggleText}
-            toggle-icon=${this.triggerToggleIcon}
-            trigger-id="${this.triggerID}"
-          >
-            ${triggerMarkup}
-          </tooltip-trigger>
-          <span
-            id=${ifDefined(this.triggerID)}
-            class=${contentClasses}
-            role="tooltip"
-            aria-hidden="true"
-          >
-            <span class="c-bolt-tooltip__content-bubble">${this.content}</span>
-          </span>
-        </span>
-      </span>
-    `;
-
     return html`
-      ${this.addStyles([styles])} ${tooltipMarkup}
+      ${this.addStyles([styles])}
+      <span class=${classes}>
+        ${this.setClick()}
+        <bolt-tooltip-content
+          id=${ifDefined(this.triggerID)}
+          class=${contentClasses}
+          role="tooltip"
+          aria-hidden="true"
+        >
+          <span class="c-bolt-tooltip__content-bubble">${this.content}</span>
+        </bolt-tooltip-content>
+      </span>
     `;
   }
 }

@@ -161,7 +161,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
     &.is-push-up {
       .c-bolt-tooltip__content {
-        transform: translate(-50%, -100%);
+        transform: translate(-50%, calc(-100% - #{$bolt-tooltip-bubble-triangle-width}));
 
         &--button {
           transform: translate(-50%, -115%) scale(1);
@@ -208,7 +208,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
     &.is-push-down {
       .c-bolt-tooltip__content {
-        transform: translate(-50%, 0);
+        transform: translate(-50%, #{$bolt-tooltip-bubble-triangle-width});
 
         &--button {
           transform: translate(-50%, 15%) scale(1);
@@ -390,43 +390,6 @@ $bolt-tooltip-transition: $bolt-transition;
 
     &:focus {
       outline: none;
-    }
-  }
-
-  bolt-icon {
-    width: auto; // IE & Firefox fix
-    height: auto; // IE & Firefox fix
-    padding-right: 5px;
-  }
-
-  .c-bolt-button .toggle--closed,
-  .c-bolt-button .toggle--open {
-    display: inline-flex;
-    align-items: center;
-    transition: opacity $bolt-transition;
-  }
-
-  .toggle--open {
-    opacity: bolt-opacity(0);
-    position: absolute;
-    top: 0; // For IE 11
-    bottom: 0; // For IE 11
-    left: 50%; // For IE 11 
-    transform: translate3d(-50%, -200%, 0);
-
-    .is-active & {
-      opacity: bolt-opacity(100);
-      transform: translate3d(-50%, 0, 0);
-    }
-  }
-
-  .toggle--closed {
-    opacity: bolt-opacity(100);
-    transform: translate3d(0, 0, 0);
-
-    .is-active & {
-      opacity: bolt-opacity(0);
-      transform: translate3d(0, 200%, 0);
     }
   }
 }
