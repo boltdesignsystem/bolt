@@ -84,7 +84,7 @@ class TwigFunctions {
     // auto-disable syntax highlighting via the 2nd prop
     $process = new Process(['node', $ssrServerPath, $html, false]);
     $process->setTimeout(3600);
-    $process->setIdleTimeout(240);
+    $process->setIdleTimeout(480);
     $process->run();
     $result = $process->getOutput();
 
