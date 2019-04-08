@@ -1,0 +1,41 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-12/12@only-small u-bolt-flex-grow" %}
+      {% include "@bolt-components-headline/eyebrow.twig" with {
+        text: "This Is a Flag",
+      } only %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "large",
+        text: "With text on the left and CTAs on the right.",
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-12/12@only-small" %}
+      {% set button_1 %}
+        {% include "@bolt-components-button/button.twig" with {
+          size: "small",
+          style: "primary",
+          text: "Primary action",
+        } only %}
+      {% endset %}
+      {% set button_2 %}
+        {% include "@bolt-components-button/button.twig" with {
+          size: "small",
+          style: "secondary",
+          text: "Secondary action",
+        } only %}
+      {% endset %}
+      {% include "@bolt-components-list/list.twig" with {
+        display: "inline",
+        items: [
+          button_1,
+          button_2,
+        ],
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  size: "small",
+  content: content,
+} only %}

@@ -17,12 +17,24 @@ module.exports = {
       .getElementSize('body', function(result) {
         bodyWidth = result.value.width;
       })
-      .getElementSize('.c-bolt-image__image', function(result) {
+      .getElementSize('bolt-image', function(result) {
         const imageHeight = Math.round(bodyWidth / 1.3333333333);
 
         this.assert.equal(result.value.width, bodyWidth);
         this.assert.equal(result.value.height, imageHeight);
       })
+      .execute(
+        function(data) {
+          return document.querySelector('bolt-image')._wasInitiallyRendered;
+        },
+        [],
+        function(result) {
+          browser.assert.ok(
+            result.value === true,
+            `verified the <bolt-image> was rendered via the "_wasInitiallyRendered" property.`,
+          );
+        },
+      )
       .saveScreenshot(
         `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
       )

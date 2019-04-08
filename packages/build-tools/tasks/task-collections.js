@@ -74,7 +74,7 @@ async function compileBasedOnEnvironment() {
   return promiseTasks;
 }
 
-async function clean() {
+async function clean(cleanAll = false) {
   config = config || (await getConfig());
   try {
     let dirs = [];
@@ -110,15 +110,18 @@ async function clean() {
         break;
       case 'pwa':
         dirs = [
-          path.join(path.resolve(config.wwwDir), '**'),
-          `!${path.resolve(config.wwwDir)}`,
-          `!${path.resolve(config.wwwDir, 'pattern-lab')}`, // @todo Remove hard-coded magic string of `pattern-lab` sub folder
-          `!${path.join(path.resolve(config.wwwDir, 'pattern-lab'), '**')}`,
+          `${path.join(
+            path.resolve(config.wwwDir, 'pattern-lab/patterns'),
+            '**',
+          )}`,
         ];
         break;
       default:
         dirs = [config.buildDir];
         break;
+    }
+    if (cleanAll === true) {
+      dirs = [config.wwwDir];
     }
     await internalTasks.clean(dirs);
   } catch (error) {
@@ -167,11 +170,11 @@ async function images() {
   }
 }
 
-async function buildPrep() {
+async function buildPrep(cleanAll = false) {
   config = config || (await getConfig());
   try {
     await getExtraTasks();
-    config.prod ? await clean() : '';
+    config.prod ? await clean(cleanAll) : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
     if (

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
 const program = require('commander');
@@ -54,6 +55,8 @@ if (program.configFile) {
     const { buildBoltManifest } = require('./utils/manifest');
     const log = require('./utils/log');
 
+    // store a copy of the original config before modifying with defaults + auto values. This allows us to point out if a config option was manually vs automatically set.
+    let originalConfig;
     /**
      * Update config with all options flags
      * @param {Object} options
@@ -62,6 +65,8 @@ if (program.configFile) {
      */
     async function updateConfig(options, programInstance) {
       await configStore.updateConfig(config => {
+        originalConfig = config;
+
         config.verbosity =
           typeof program.verbosity === 'undefined'
             ? config.verbosity
@@ -95,6 +100,9 @@ if (program.configFile) {
             ? config.webpackDevServer
             : options.webpackDevServer;
 
+        config.mode =
+          typeof options.mode === 'undefined' ? config.mode : options.mode;
+
         config.quick =
           typeof options.quick === 'undefined' ? config.quick : options.quick;
 
@@ -103,6 +111,15 @@ if (program.configFile) {
 
         config.prod =
           typeof program.prod === 'undefined' ? config.prod : program.prod;
+
+        // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
+        config.enableSSR = config.enableSSR
+          ? config.enableSSR
+          : typeof options.ssr === 'undefined'
+          ? config.prod
+            ? true
+            : false
+          : options.ssr;
 
         config.i18n =
           typeof options.i18n === 'undefined'
@@ -124,6 +141,12 @@ if (program.configFile) {
       log.dim(`Verbosity: ${config.verbosity}`);
       log.dim(`Prod: ${config.prod}`);
       log.dim(`i18n: ${config.i18n}`);
+      log.dim(
+        `enableSSR: ${config.enableSSR} ${
+          originalConfig.enableSSR ? '(manually set)' : '(auto set)'
+        }`,
+      );
+      log.dim(`Rendering Mode: ${config.mode}`);
       if (config.verbosity > 2) {
         log.dim(`Opening browser: ${config.openServerAtStart}`);
         log.dim(`Quick mode: ${config.quick}`);
@@ -139,6 +162,16 @@ if (program.configFile) {
     }
 
     log.intro();
+
+    program
+      .option(
+        '--no-ssr',
+        'Manually disables server side rendering (vs auto enable in prod mode)',
+      )
+      .option(
+        '--ssr',
+        'Manually enabless server side rendering in all enviornments (vs by default only enabling automatically in prod mode)',
+      );
 
     // `bolt build`
     program
@@ -263,35 +296,31 @@ if (program.configFile) {
         }
       });
 
-    if (config.env === 'pl') {
-      program
-        .command('pattern-lab')
-        .alias('pl')
-        .description('Pattern Lab Compile')
-        .action(async options => {
-          await updateConfig(options, program);
-          try {
-            await require('./tasks/pattern-lab-tasks').compile();
-          } catch (error) {
-            log.errorAndExit('Pattern Lab failed', error);
-          }
-        });
-    }
+    program
+      .command('pattern-lab')
+      .alias('pl')
+      .description('Pattern Lab Compile')
+      .action(async options => {
+        await updateConfig(options, program);
+        try {
+          await require('./tasks/pattern-lab-tasks').compile();
+        } catch (error) {
+          log.errorAndExit('Pattern Lab failed', error);
+        }
+      });
 
-    if (config.env === 'static') {
-      program
-        .command('static')
-        .description('Static Site Compile')
-        .action(async options => {
-          await updateConfig(options, program);
-          try {
-            await require('./tasks/task-collections').buildPrep();
-            await require('./tasks/static-tasks').compile();
-          } catch (error) {
-            log.errorAndExit('Static Site Generation failed', error);
-          }
-        });
-    }
+    program
+      .command('static')
+      .description('Static Site Compile')
+      .action(async options => {
+        await updateConfig(options, program);
+        try {
+          await require('./tasks/task-collections').buildPrep();
+          await require('./tasks/static-tasks').compile();
+        } catch (error) {
+          log.errorAndExit('Static Site Generation failed', error);
+        }
+      });
 
     // This will tell you all that got `require()`-ed
     // We want to only load what we need - that's why not all `require` statements are at top

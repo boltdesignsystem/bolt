@@ -6,6 +6,7 @@ $bds-sidebar-width: 320px;
 .c-bds-layout {
   grid-template-columns: auto 1fr auto;
   display: grid;
+  align-content: stretch;
   min-height: 100vh;
 
   &--parent:not(.c-bds-layout--has-sidebar) {
@@ -33,10 +34,22 @@ $bds-sidebar-width: 320px;
   justify-self: stretch;
   grid-column-start: 1;
   grid-column-end: 1;
+  max-width: 100vw;
   margin: 0 auto;
 
   .c-bds-layout__content--has-sidebar & {
+    @include bolt-mq(medium) {
+      max-width: calc(100vw - 320px);
+    }
+  }
+}
+
+.c-bds-layout__main {
+  width: 100%;
+
+  .c-bds-layout__content--has-sidebar & {
     max-width: 900px;
+    margin: 0 auto;
   }
 }
 
@@ -58,6 +71,12 @@ $bds-sidebar-width: 320px;
   grid-column-start: 1;
   grid-column-end: 3;
   z-index: bolt-z-index('modalBG') + 20;
+
+  .c-bolt-navbar {
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+    max-width: none;
+  }
 
   @include bolt-mq(medium) {
     .c-bds-layout--has-sidebar & {
@@ -132,7 +151,6 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__sidebar {
-  @include bolt-margin-top(large);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -140,6 +158,7 @@ $bds-sidebar-width: 320px;
   z-index: bolt-z-index('modal') - 10;
   width: $bds-sidebar-width;
   overflow: auto;
+  margin-top: bolt-v-spacing(large) * 2;
   border-right: 1px solid #e0e2eb;
   background-color: bolt-color(gray, xlight);
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
@@ -218,10 +237,16 @@ $bds-sidebar-width: 320px;
 
   /* autoprefixer: ignore next */
   display: grid;
+  flex-grow: 1;
+  align-self: start;
+  min-height: 100%;
   grid-column-start: 1;
   grid-column-end: 3;
   grid-template-columns: auto;
+  justify-self: start;
   grid-template-rows: auto;
+  overflow: hidden;
+  grid-row-start: 2;
   // display: flex;
   // flex-direction: column;
   // justify-content: space-between;

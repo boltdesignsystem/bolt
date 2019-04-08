@@ -7,16 +7,17 @@ EXPOSE 3123
 COPY docs-site /app/docs-site
 COPY packages /app/packages
 COPY www /app/www
-COPY server/package.json /app/server/package.json
 COPY .boltrc.js .
 COPY yarn.lock .
-COPY server /app/server
+COPY lerna.json .
 RUN rm -rf /app/packages/uikit-workshop
 
-RUN cd packages/twig-renderer && yarn run setup
-RUN cd packages/drupal-twig-extensions && yarn run setup 
-RUN cd packages/core-php && yarn run setup
+RUN yarn --cwd packages/servers/default-server --ignore-optional --ignore-platform --ignore-scripts --ignore-engines --skip-integrity-check --production --modules-folder node_modules
 
-RUN yarn --cwd server --ignore-optional --ignore-platform --ignore-scripts --ignore-engines --skip-integrity-check --production --modules-folder node_modules
+#RUN cd packages/servers/default-server && ./node_modules/.bin/lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php -- composer install --prefer-dist
 
-CMD node server/index.js
+RUN cd packages/twig-renderer && composer install --prefer-dist
+RUN cd packages/drupal-twig-extensions && composer install --prefer-dist
+RUN cd packages/core-php && composer install --prefer-dist
+
+CMD node packages/servers/default-server

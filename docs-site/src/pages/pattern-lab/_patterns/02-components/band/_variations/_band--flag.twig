@@ -1,0 +1,33 @@
+{# This is a private include for legacy demos, don't use this. #}
+{% extends "@bolt-components-band/band.twig" %}
+
+{% set size = size | default("large") %}
+
+{% block band_content %}
+
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-flex-grow" %}
+      {% grid %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+          {% if eyebrow %}
+            {% include "@bolt/eyebrow.twig" with eyebrow only %}
+          {% endif %}
+
+          {% if headline %}
+            {% include "@bolt/headline.twig" with headline only %}
+          {% endif %}
+
+          {{ content }}
+        {% endcell %}
+      {% endgrid %}
+    {% endcell %}
+
+    {# TODO: only allow max of 2 buttons #}
+    {% if buttons %}
+      {% cell "u-bolt-width-1/1@only-small" %}
+        {{ include('@bolt/button-group.twig', { buttons: buttons }, with_context = false) }}
+      {% endcell %}
+    {% endif %}
+  {% endgrid %}
+
+{% endblock band_content %}

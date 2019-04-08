@@ -4,7 +4,7 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../card.schema.yml'));
 const { tag, contentTag, theme } = schema.properties;
 
-describe('<bolt-card> Component', async () => {
+describe('<bolt-card> Component', () => {
   test('basic usage', async () => {
     const results = await render('@bolt-components-card/card.twig', {
       contentItems: [

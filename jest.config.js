@@ -2,7 +2,9 @@
 const globby = require('globby');
 const testFilesToIgnore = globby.sync([
   './packages/components/**/*/__tests__/*.e2e.js',
-  './packages/components/**/*/__tests__/*.data.js'
+  './packages/components/**/*/__tests__/**/*.data.js',
+  './packages/analytics/**/*/__tests__/**/*.data.js',
+  './packages/generator-bolt/generators/*/templates/**/*.test.js',
 ]);
 
 module.exports = {
@@ -23,7 +25,7 @@ module.exports = {
   },
   transformIgnorePatterns: [
     'node_modules/(?!(lit-html|@bolt|@open-wc)/)', // add any additional packages in node_modules that need to be transpiled for Jest
-    'packages/(?!(components|core)/)', // add any additional packages in node_modules that need to be transpiled for Jest
+    'packages/(?!(components|core|analytics)/)', // add any additional packages in node_modules that need to be transpiled for Jest
     './scripts/monorepo.test.js',
   ],
   globalSetup: './jest-global-setup.js',

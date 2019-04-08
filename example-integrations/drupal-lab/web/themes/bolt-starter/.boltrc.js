@@ -3,6 +3,7 @@ module.exports = {
   buildDir: './dist/',
   wwwDir: '../../',
   verbosity: 1,
+  enableCache: true,
   components: {
     global: [
       '@bolt/global',
@@ -10,6 +11,8 @@ module.exports = {
       '@bolt/components-headline',
       '@bolt/components-link',
       '@bolt/components-icon',
+      '@bolt/components-navbar',
+      '@bolt/components-sticky',
     ],
     individual: [
       // example specifying a standalone component's CSS and JS individually

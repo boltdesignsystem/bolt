@@ -1,5 +1,8 @@
 {% set navbar %}
-  {% embed "@bolt-components-navbar/navbar.twig" with {
+  {% include "@bolt-site/banner.twig" with {
+    text: 'These are the docs for the upcoming v2.4.0 release of Bolt. View the docs for <a href="https://v2-3-0.boltdesignsystem.com/">v2.3.0</a>'
+  } only %}
+  {% include "@bolt-site/_navbar-with-version-selector.twig" with {
     theme: "xdark",
     width: "auto",
     title: {
@@ -39,21 +42,14 @@
       }
     ],
   } only %}
-    {% block navbar_title %}
-      {{ parent() }}
-      {% include "@bolt-site/version-selector.twig" only %}
-    {% endblock %}
-  {% endembed %}
 {% endset %}
 
-{% embed "@bolt-components-sticky/sticky.twig" with {
+{% include "@bolt-components-sticky/sticky.twig" with {
   attributes: {
     class: [
       "c-bds-layout__header"
     ]
-  }
+  },
+  content: navbar
 } %}
-  {% block sticky_content %}
-    {{ navbar }}
-  {% endblock %}
-{% endembed %}
+

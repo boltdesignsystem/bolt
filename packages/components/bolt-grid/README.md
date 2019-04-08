@@ -1,4 +1,4 @@
-CSS-Grid powered Grid component. Still in very early develpment so use with caution!
+A flexible 12-column grid with responsive breakpoint options. Part of the Bolt “Components” CSS framework that powers the [Bolt Design System](https://www.boltdesignsystem.com).
 
 ###### Install via NPM
 

@@ -303,8 +303,19 @@ class BoltText extends withLitHtml() {
       }
     }
 
+    const innerHTML = wrapInnerHTML(this.slot('default'));
+
     return html`
-      ${this.addStyles([styles])} ${wrapInnerHTML(this.slot('default'))}
+      ${this.addStyles([styles])}
+      ${this.isServer
+        ? html`
+            <replace-with-grandchildren
+              >${innerHTML}</replace-with-grandchildren
+            >
+          `
+        : html`
+            ${innerHTML}
+          `}
     `;
   }
 }

@@ -26,16 +26,18 @@
   "license": "MIT",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "src/image.scss",
-  "main": "src/image.js",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "next"
   },
   "dependencies": {
     "@bolt/components-ratio": "^2.3.0",
     "@bolt/core": "^2.3.0",
     "lazysizes": "^4.1.4"
   },
+  "style": "index.scss",
+  "main": "index.js",
+  "twig": "src/image.twig",
   "schema": "image.schema.yml",
   "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
 }
