@@ -64,41 +64,45 @@
 
 {% set cardMedia %}
   <bolt-card-media>
-    {% if _body_media is not empty %}
-      {{ _body_media | raw }}
-    {% else %}
-      {% for key, item in _items if item.pattern in _allowedCardHeaderItems %}
-        {% if item.pattern %}
-          {% if item.pattern == "image" and url is not empty %}
-            <a href="{{url}}">
+    <replace-with-children class="c-bolt-card__media">
+      {% if _body_media is not empty %}
+        {{ _body_media | raw }}
+      {% else %}
+        {% for key, item in _items if item.pattern in _allowedCardHeaderItems %}
+          {% if item.pattern %}
+            {% if item.pattern == "image" and url is not empty %}
+              <a href="{{url}}">
+            {% endif %}
+            {% include pattern_template(item.pattern) with item only %}
+            {% if item.pattern == "image" and url is not empty %}
+              </a>
+            {% endif %}
+          {% else %}
+            {{ item }}
           {% endif %}
-          {% include pattern_template(item.pattern) with item only %}
-          {% if item.pattern == "image" and url is not empty %}
-            </a>
-          {% endif %}
-        {% else %}
-          {{ item }}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
+        {% endfor %}
+      {% endif %}
+    </replace-with-children>
   </bolt-card-media>
 {% endset %}
 
 {% set cardBody %}
   <bolt-card-body>
-    {% if _body_block is not empty %}
+    <replace-with-children class="c-bolt-card__body">
+      {% if _body_block is not empty %}
         {{ _body_block | raw }}
-    {% else %}
-      {% for key,item in _items if item.pattern in _allowedCardBodyItems %}
-        {% if item.pattern %}
-          {% include pattern_template(item.pattern) with item only %}
-        {% elseif key != "content" %}
-          {% include pattern_template(key) with item only %}
-        {% else %}
-          {{ item }}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
+      {% else %}
+        {% for key,item in _items if item.pattern in _allowedCardBodyItems %}
+          {% if item.pattern %}
+            {% include pattern_template(item.pattern) with item only %}
+          {% elseif key != "content" %}
+            {% include pattern_template(key) with item only %}
+          {% else %}
+            {{ item }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </replace-with-children>
   </bolt-card-body>
   {% if _footer_block is not empty %}
     <div class="c-bolt-card__footer">

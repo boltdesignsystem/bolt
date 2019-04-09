@@ -7,9 +7,9 @@
 {% set card_body_content = body.content %}
 
 <bolt-card-body>
-  <replace-with-children class="{{ "#{base_class}__body" }}">
+  <replace-with-children class="c-bolt-card__body">
     {% if card_body_content %}
-      {# The replace function is a hack to get around the utf-8 bug. #}
+      {# @todo: The replace function is a hack to get around the utf-8 bug. #}
       {{ card_body_content | join | replace({"UTF-8": ""}) }}
     {% else %}
       {% set card_eyebrow = body.eyebrow %}

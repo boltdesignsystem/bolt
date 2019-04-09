@@ -1,13 +1,11 @@
-{# Create variables for blocks that can be overrided using old card schema. #}
-{% set _body_media = block('card_media') %}
-{% set _body_block = block('card_body') %}
-{% set _footer_block = block('card_footer') %}
+{# Create variables for blocks that can be overridden using old card schema. #}
+{% set _body_media = block("card_media") %}
+{% set _body_block = block("card_body") %}
+{% set _footer_block = block("card_footer") %}
 
 {% if (contentItems) or (teasers) or (teaser) or (_body_media is not empty) or (_body_block is not empty) or (_footer_block is not empty) %}
-  {% include "@bolt-components-card/_old-card-adapter.twig" %}
+  {% include "@bolt-components-card/_card-structure-legacy.twig" %}
 {% else %}
-  {#
-  @TODO In the next major version of Bolt, remove the adaptors and replace the contents of this file (card.twig) with the contents of _new-card.twig
-  #}
-  {% include "@bolt-components-card/_new-card.twig" %}
+  {# @todo: In the next major release of Bolt, remove the `_card-structure-legacy.twig` and replace the content of this file `card.twig` with the content of `_card-structure-current.twig`. #}
+  {% include "@bolt-components-card/_card-structure-current.twig" %}
 {% endif %}
