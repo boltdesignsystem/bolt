@@ -52,6 +52,8 @@ class IFrame extends BaseComponent {
     let patternParam = urlParams.get('p');
 
     if (e.detail.pattern){
+      document.title = 'Pattern Lab - ' + e.detail.pattern;
+
       const addressReplacement =
         window.location.protocol === 'file:'
           ? null
