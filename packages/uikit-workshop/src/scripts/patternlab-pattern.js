@@ -1,5 +1,4 @@
 import './components/modal-styleguide';
-import './components/pl-nav/pl-nav.iframe-helper';
 import './components/pl-search/pl-search.iframe-helper'; // communicates with the main <pl-search> component via the PL iframe
 import './utils/share-inner-iframe-data';
 
