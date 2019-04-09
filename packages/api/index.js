@@ -1,5 +1,5 @@
 const url = require('url');
-const { render } = require('@bolt/twig-renderer');
+const { render, renderString } = require('@bolt/twig-renderer');
 const log = require('@bolt/build-tools/utils/log');
 
 async function getBody(request) {
@@ -54,6 +54,29 @@ async function handleRequest(req, res, next) {
       } catch (error) {
         log.errorAndExit(
           'Error rendering Twig using the Twig rendering service...',
+          error,
+        );
+      }
+      break;
+    case '/renderString':
+      try {
+        if (!query.template) {
+          log.error('The template paramater is missing!');
+        }
+        const body = await getBody(req);
+        const { ok, html, message } = await renderString(
+          query.template,
+          body,
+          true,
+        );
+
+        if (!ok) {
+          log.error(message);
+        }
+        res.end(html);
+      } catch (error) {
+        log.errorAndExit(
+          'Error rendering Twig string using the Twig rendering service...',
           error,
         );
       }

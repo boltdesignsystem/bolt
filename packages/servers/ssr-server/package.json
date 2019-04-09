@@ -9,9 +9,7 @@
     "postinstall": "patch-package --patch-dir .patches",
     "start": "node --experimental-modules --quiet index.mjs"
   },
-  "publishConfig": {
-    "access": "public"
-  },
+  "private": true,
   "dependencies": {
     "cli-highlight": "^2.0.0", 
     "document-register-element": "^1.13.1",

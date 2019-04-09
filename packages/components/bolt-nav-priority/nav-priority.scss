@@ -61,7 +61,6 @@ bolt-nav-priority {
 .c-bolt-nav-priority__show-button {
   display: block;
   width: 100%;
-  height: 100%;
   color: bolt-theme(headline);
   background-color: transparent;
 }
@@ -217,6 +216,7 @@ bolt-nav-priority {
   white-space: nowrap;
   
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
+    height: 100%; // fix for height: 100% causing issues on larger screen sizes
     border-left-color: bolt-theme(headline, 0.2);
     border-left-width: 1px;
     border-radius: 0;
