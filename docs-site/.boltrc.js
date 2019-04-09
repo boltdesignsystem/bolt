@@ -25,6 +25,7 @@ const config = {
   enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
     enabled: true,
   },
+  enableSSR: false, // temp disabld till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -77,6 +78,7 @@ const config = {
       '@bolt/docs-search',
       '@bolt/schema-form',
       '@bolt/analytics-autolink',
+      '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
