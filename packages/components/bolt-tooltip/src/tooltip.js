@@ -107,25 +107,31 @@ class BoltTooltip extends withLitHtml() {
         <bolt-button
           color="secondary"
           transform="${ifDefined(this.triggerTransform)}"
-          ><bolt-icon
-            name="${this.active
-              ? this.triggerToggleIcon
-              : this.triggerIconName}"
-            size="${this.triggerIconSize}"
-            slot="before"
-          ></bolt-icon
-          >${this.active
+          >${this.triggerIconName &&
+            html`
+              <bolt-icon
+                name="${this.active
+                  ? this.triggerToggleIcon
+                  : this.triggerIconName}"
+                size="${this.triggerIconSize}"
+                slot="before"
+              ></bolt-icon>
+            `}
+          ${this.active
             ? this.triggerToggleText
             : this.triggerText}</bolt-button
         >
       `;
     } else {
       return html`
-        <bolt-icon
-          name="${this.triggerIconName}"
-          size="${this.triggerIconSize}"
-          slot="before"
-        ></bolt-icon>
+        ${this.triggerIconName &&
+          html`
+            <bolt-icon
+              name="${this.triggerIconName}"
+              size="${this.triggerIconSize}"
+              slot="before"
+            ></bolt-icon>
+          `}
         ${this.triggerText}
       `;
     }
