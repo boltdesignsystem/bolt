@@ -25,6 +25,7 @@ const config = {
     enableCache: process.env.TRAVIS || argv.prod ? false : true,
     enabled: true,
   },
+  enableSSR: false, // temp disabld till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
