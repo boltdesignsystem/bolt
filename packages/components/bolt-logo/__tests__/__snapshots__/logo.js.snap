@@ -6,13 +6,20 @@ exports[`logo Basic usage 1`] = `
   <bolt-image src="/fixtures/logo-paypal.svg"
               srcset="/fixtures/logo-paypal.svg"
               sizes="auto"
+              ratio="124/33"
               no-lazy
   >
-    <img class="c-bolt-image__image"
-         srcset="/fixtures/logo-paypal.svg"
-         sizes="auto"
-         src="/fixtures/logo-paypal.svg"
-    >
+    <bolt-ratio ratio="124/33">
+      <replace-with-children class="c-bolt-ratio"
+                             style="padding-bottom: calc((33 / 124) * 100%); --aspect-ratio: 3.7575757575758;"
+      >
+        <img class="c-bolt-image__image"
+             srcset="/fixtures/logo-paypal.svg"
+             sizes="auto"
+             src="/fixtures/logo-paypal.svg"
+        >
+      </replace-with-children>
+    </bolt-ratio>
   </bolt-image>
 </bolt-logo>
 
