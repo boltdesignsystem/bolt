@@ -1,0 +1,14 @@
+{% set schema = bolt.data.components["@bolt-components-stack"].schema %}
+
+{% for spacing in schema.properties.spacing.enum %}
+  {% set placeholder %}
+    {% include "@bolt-components-placeholder/placeholder.twig" with {
+      size: "xsmall",
+      text: "This stack has " ~ spacing ~ " spacing."
+    } only %}
+  {% endset %}
+  {% include "@bolt-components-stack/stack.twig" with {
+    content: placeholder,
+    spacing: spacing
+  } only %}
+{% endfor %}
