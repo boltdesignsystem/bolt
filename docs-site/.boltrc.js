@@ -21,8 +21,8 @@ const config = {
   verbosity: 2,
   schemaErrorReporting: 'cli',
   webpackDevServer: {
-  sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
-  enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
+    sourceMaps: process.env.TRAVIS || argv.prod ? false : true,
+    enableCache: process.env.TRAVIS || argv.prod ? false : true,
     enabled: true,
   },
   enableSSR: false, // temp disabld till Travis issue fixed
@@ -74,6 +74,7 @@ const config = {
 
   components: {
     global: [
+      '@bolt/components-stack',
       '@bolt/global',
       '@bolt/docs-search',
       '@bolt/schema-form',
