@@ -1,0 +1,33 @@
+{# @todo: url prop is broken, hidden till that is fixed. #}
+
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% set text_demo %}
+<bolt-text>
+  <bolt-link url="https://pega.com">This is a text link</bolt-link>
+</bolt-text>
+{% endset %}
+
+{% set headline_demo %}
+<bolt-text headline>
+  <bolt-link url="https://pega.com">This is a headline link<bolt-icon name="chevron-right" slot="after"></bolt-icon></bolt-link>
+</bolt-text>
+{% endset %}
+
+{% block content %}
+  <bolt-text headline>
+    Text Link
+  </bolt-text>
+  <bolt-text>
+    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> can be turned into a link a <bolt-code-snippet display="inline" lang="html">&lt;bolt-link&gt;</bolt-code-snippet> is used in place of plain text.
+  </bolt-text>
+  <bolt-text>
+    <mark>Note: this is work in progress, it should not be used right now.</mark>
+  </bolt-text>
+
+  {% include text_code.code_example(text_demo, true) %}
+  {% include text_code.code_example(headline_demo, true) %}
+{% endblock %}
+
+
+
