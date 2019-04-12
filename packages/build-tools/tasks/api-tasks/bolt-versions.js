@@ -8,6 +8,9 @@ const InCache = require('incache');
 const Octokit = require('@octokit/rest').plugin(
   require('@octokit/plugin-throttling'),
 );
+const {
+  branchOrTagName,
+} = require('@bolt/build-tools/utils/branch-or-tag-name');
 
 const octokit = new Octokit({
   auth() {
@@ -63,6 +66,15 @@ async function writeBoltVersionUrlsToJson(versionData) {
   versionInfo.sort(function(a, b) {
     return semver.rcompare(a.label, b.label);
   });
+
+  if (!branchOrTagName.startsWith('v')) {
+    versionInfo.unshift({
+      label: 'Next Release',
+      type: 'option',
+      value: '/',
+      selected: true,
+    });
+  }
 
   fs.writeFile(
     path.join(config.dataDir, '/bolt-releases.bolt.json'),
