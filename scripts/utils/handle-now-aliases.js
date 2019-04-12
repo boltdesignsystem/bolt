@@ -17,7 +17,7 @@ async function aliasNowUrl(originalUrl, prefix) {
     outputBanner = require('ci-utils').outputBanner;
 
     await setCheckRun({
-      name: 'Deploy - now.sh (basic)',
+      name: 'Deploy - now.sh (alias)',
       status: 'in_progress',
     });
     outputBanner('Starting deploy...');
