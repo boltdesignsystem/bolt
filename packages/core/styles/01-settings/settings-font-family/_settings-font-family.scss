@@ -22,11 +22,11 @@ $bolt-font-family--sans-fallback:
 
 /// Default serif font stack. Used within the $bolt-font-families map.
 /// @see $bolt-font-families
-$bolt-font-family--serif: 'Georgia', serif;
+$bolt-font-family--serif: 'Georgia', serif !default;
 
 /// Default monospace fallback font stack. Used within the $bolt-font-families map.
 /// @see $bolt-font-families
-$bolt-font-family--mono-fallback: monospace, monospace;
+$bolt-font-family--mono-fallback: monospace, monospace !default;
 
 
 /*
@@ -44,7 +44,7 @@ $bolt-font-family--sans-subset: 'OpenSansSubset', 'Helvetica Neue', sans-serif !
 
 /// Default monospace font stack. Used within the $bolt-font-families map.
 /// @see $bolt-font-families
-$bolt-font-family--mono:  monospace, monospace;
+$bolt-font-family--mono:  monospace, monospace !default;
 
 
 /*
@@ -77,6 +77,6 @@ $bolt-font-families: (
       loaded-class:  $bolt-fonts--loaded-class
     )
   )
-);
+) !default;
 
 @include export-data('typography/font-families.bolt.#{$bolt-lang}.json', $bolt-font-families);
