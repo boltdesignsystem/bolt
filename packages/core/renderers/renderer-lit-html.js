@@ -6,6 +6,7 @@ import {
   props,
   hasNativeShadowDomSupport,
   findParentTag,
+  stateListener,
 } from '../utils';
 import { BoltBase } from './bolt-base';
 
@@ -63,6 +64,21 @@ export function withLitHtml(Base = HTMLElement) {
           console.log(`The ${name} slot doesn't appear to exist...`);
         }
       }
+    }
+
+    updated(oldProps) {
+      super.updated && super.updated();
+
+      const changedProps = new Set();
+      const newProps = Object.assign({}, oldProps, this.props);
+
+      for (const [key, value] of Object.entries(this.props)) {
+        if (oldProps[key] !== value) {
+          changedProps.add(key);
+        }
+      }
+
+      stateListener.emit('change', oldProps, newProps, changedProps, this);
     }
 
     renderer(root, call) {

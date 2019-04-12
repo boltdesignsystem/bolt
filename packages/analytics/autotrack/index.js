@@ -4,7 +4,7 @@ import 'autotrack/lib/plugins/clean-url-tracker';
 import 'autotrack/lib/plugins/media-query-tracker';
 import 'autotrack/lib/plugins/outbound-link-tracker';
 import 'autotrack/lib/plugins/page-visibility-tracker';
-// import { stateListener } from '@bolt/core/renderers/bolt-base';
+import { stateListener } from '@bolt/core/utils';
 
 // // trackedCrossDomains is an array of external domains that we want to add external GA autolink tracking to.
 // // We use this to check if any components being rendered (or re-rendered) contain external links to one of these domains.
@@ -76,7 +76,7 @@ export const init = () => {
   trackCustomDimensions();
   requireAutotrackPlugins();
 
-  //   stateListener.on('change', onStateChange);
+  stateListener.on('change', onStateChange);
 };
 
 // // const externalDomainsToTrack = ["on24.com","brightcove.net","brightcove.com","cvent.com", "github.com"];
@@ -162,7 +162,17 @@ export const init = () => {
 //   }
 // }
 
-// const onStateChange = (oldState, newState, propsChanged, elem) => {
+const onStateChange = (oldState, newState, propsChanged, elem) => {
+  const componentName = elem.tagName.toLowerCase();
+
+  // ga('send', 'event', {
+  //   eventCategory: 'onStateChange',
+  //   eventAction: componentName,
+  //   eventLabel: JSON.stringify(newState),
+  //   nonInteraction: true,
+  // });
+};
+
 //   // const onStateChange = (oldState, newState, propsChanged, elem) => {
 //   // let destinationLink;
 //   // onComponentRender({
