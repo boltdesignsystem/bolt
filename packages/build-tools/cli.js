@@ -113,13 +113,7 @@ if (program.configFile) {
           typeof program.prod === 'undefined' ? config.prod : program.prod;
 
         // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
-        config.enableSSR = config.enableSSR
-          ? config.enableSSR
-          : typeof options.ssr === 'undefined'
-          ? config.prod
-            ? true
-            : false
-          : options.ssr;
+        config.enableSSR = false;
 
         config.i18n =
           typeof options.i18n === 'undefined'
