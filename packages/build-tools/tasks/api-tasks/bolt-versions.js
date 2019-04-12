@@ -69,7 +69,7 @@ async function writeBoltVersionUrlsToJson(versionData) {
 
   if (!branchOrTagName.startsWith('v')) {
     versionInfo.unshift({
-      label: 'Next Release',
+      label: '...',
       type: 'option',
       value: '/',
       selected: true,
