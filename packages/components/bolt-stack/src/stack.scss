@@ -9,17 +9,17 @@
 
 .c-bolt-stack {
   display: block;
+
+  @at-root bolt-stack:last-child & {
+    @include bolt-margin-bottom(0);
+  }
 }
 
 // Spcaing options
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
 
-  bolt-stack[spacing='#{$spacing-value-name}'] {
+  .c-bolt-stack--#{$spacing-value-name} {
     @include bolt-margin-bottom(#{$spacing-value-name});
   }
-}
-
-bolt-stack:last-child {
-  @include bolt-margin-bottom(0);
 }
