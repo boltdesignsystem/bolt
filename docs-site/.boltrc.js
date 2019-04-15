@@ -115,7 +115,6 @@ const config = {
       '@bolt/components-search-filter',
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
-      '@bolt/components-stack',
       '@bolt/components-sticky',
       '@bolt/components-stack',
       '@bolt/components-table',
