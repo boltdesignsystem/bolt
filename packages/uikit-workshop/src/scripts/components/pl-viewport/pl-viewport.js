@@ -258,7 +258,7 @@ class IFrame extends BaseComponent {
       );
       urlHandler.skipBack = false;
     }
-    this.iframe.contentWindow.location.replace(this.iFramePath);
+    document.querySelector('.pl-js-iframe').contentWindow.location.replace(this.iFramePath);
     this.handleUpdatingCurrentPattern(pattern, false);
   }
 
