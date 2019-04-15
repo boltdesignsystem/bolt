@@ -1,0 +1,22 @@
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% block content %}
+  <bolt-text headline>
+    Font-size Usage
+  </bolt-text>
+  <bolt-text>
+    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet>
+    has font-size options to indicate information hierarchy.
+  </bolt-text>
+  {% for font_size in schema.properties["font-size"].enum %}
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set text_demo %}
+<bolt-text font-size="{{ font_size }}">
+  This text has its font-size prop defined as: {{ font_size }}
+</bolt-text>
+{% endset %}
+
+    {% include text_code.code_example(text_demo, true) %}
+  {% endfor %}
+{% endblock %}

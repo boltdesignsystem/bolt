@@ -1,0 +1,21 @@
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% block content %}
+  <bolt-text headline>
+    Tag Usage
+  </bolt-text>
+  <bolt-text>
+    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> allows for separation of semantics and visual. Using a semantically correct tag will not affect the appearance of the text.
+  </bolt-text>
+  {% for tag in schema.properties.tag.enum %}
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set text_demo %}
+<bolt-text tag="{{ tag }}">
+  This text has its tag prop defined as: {{ tag }}
+</bolt-text>
+{% endset %}
+
+    {% include text_code.code_example(text_demo, true) %}
+  {% endfor %}
+{% endblock %}
