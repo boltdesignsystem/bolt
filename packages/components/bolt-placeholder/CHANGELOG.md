@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-placeholder/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+**Note:** Version bump only for package @bolt/components-placeholder
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-placeholder/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -126,6 +139,3 @@
 ### Features
 
 * adding new placeholder component examples + working component ([e41c3c3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-placeholder/commit/e41c3c3))
-
-
-
