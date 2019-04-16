@@ -20,10 +20,12 @@ const config = {
   plConfigFile: './config/config.yml',
   verbosity: 2,
   schemaErrorReporting: 'cli',
-  enableCache: true,
   webpackDevServer: {
     enabled: true,
   },
+  sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
+  enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
+  enableSSR: false, // temp disabld till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -72,9 +74,11 @@ const config = {
 
   components: {
     global: [
-      '@bolt/components-modal',
       '@bolt/global',
+      '@bolt/docs-search',
       '@bolt/schema-form',
+      '@bolt/analytics-autolink',
+      '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
@@ -99,6 +103,7 @@ const config = {
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-list',
+      '@bolt/components-modal',
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
       '@bolt/components-navbar',

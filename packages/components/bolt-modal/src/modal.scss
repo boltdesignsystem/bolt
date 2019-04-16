@@ -1,13 +1,32 @@
 @import '@bolt/core';
 
-// based originally off of https://github.com/edenspiekermann/a11y-dialog before heavy modifications and customizations
+/* ------------------------------------ *\
+   Modal
+   ---
+   Based originally off of
+   https://github.com/edenspiekermann/a11y-dialog
+   before heavy modifications
+   and customizations
+\* ------------------------------------ */
+
+/**
+ * When `<dialog>` is properly supported, the overlay is implied and can be
+ * styled with `::backdrop`, which means the DOM one should be removed.
+ */
+/*
+[data-a11y-dialog-native] .dialog-overlay {
+  @todo: look further into this to see why the natively supported ::backdrop wasn't showing up as expected
+  display: none;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.66);
+}
+*/
 
 $bolt-modal-overlay-bg-color: rgba(bolt-color(black), bolt-opacity(60));
 
-// Register Custom Block Element
-@include bolt-custom-element('bolt-modal', inline-block, medium);
-
-// hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
+// Hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
 bolt-modal:not([ready]) {
   > *:not([slot*='trigger']) {
     display: none;
@@ -15,25 +34,8 @@ bolt-modal:not([ready]) {
 }
 
 .c-bolt-modal {
-  display: inline-block;
+  display: inline;
 }
-
-/**
- * When `<dialog>` is properly supported, the overlay is implied and can be
- * styled with `::backdrop`, which means the DOM one should be removed.
- */
-// [data-a11y-dialog-native] .dialog-overlay {
-  // @todo: look further into this to see why the natively supported ::backdrop wasn't showing up as expected
-  // display: none;
-// }
-
-// dialog::backdrop {
-//   background-color: rgba(0, 0, 0, 0.66);
-// }
-
-/* -------------------------------------------------------------------------- *\
- * Styling to make the dialog look like a modal
- * -------------------------------------------------------------------------- */
 
 .c-bolt-modal__overlay {
   opacity: 0;
@@ -54,7 +56,6 @@ bolt-modal:not([ready]) {
 }
 
 .c-bolt-modal__content {
-  @include bolt-border-radius(small);
   display: block;
   opacity: 0;
   position: fixed;
@@ -69,6 +70,7 @@ bolt-modal:not([ready]) {
   margin: 0;
   padding: 0;
   border: 0;
+  border-radius: bolt-border-radius(small);
   box-shadow: 0 20px 32px -8px rgba(9, 30, 66, 0.25),
     0 0 1px rgba(9, 30, 66, 0.31); // @todo: clean up box shadow styles here
   background-color: bolt-theme(background);

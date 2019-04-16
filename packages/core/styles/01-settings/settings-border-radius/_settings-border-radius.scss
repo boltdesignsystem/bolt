@@ -12,9 +12,9 @@
 /// Bolt's definition of border-radius scale. Used within 'export-data()' to JSON.
 /// @type Map
 $bolt-border-radius-values: (
-  'small': 3px,
-  'large': 0.75em,
-  'full': 100em,
+  small: 3px,
+  large: 0.75em,
+  full: 100em
 ) !default;
 
 @include bolt-export-data('border-radius.bolt.json', $bolt-border-radius-values);
