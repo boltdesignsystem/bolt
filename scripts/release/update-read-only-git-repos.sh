@@ -29,7 +29,7 @@ if [[ $TRAVIS_TAG ]]; then
   exit;
 
 #@todo: update to support future major releases
-elif [[ $CURRENT_BRANCH != 'release/2.x' && $CURRENT_BRANCH != 'release/1.x' && $CURRENT_BRANCH != 'master' && $CURRENT_BRANCH != 'next/2.x' && $CURRENT_BRANCH != 'next/3.x' ]]; then
+elif [[ $CURRENT_BRANCH != 'release/2.x' && $CURRENT_BRANCH != 'release/1.x' && $CURRENT_BRANCH != 'master' && $CURRENT_BRANCH != 'next' ]]; then
   echo "This is not a tagged git release or a release-related branch -- skipped updating remote repos!";
   exit;
 else
