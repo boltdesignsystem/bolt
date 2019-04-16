@@ -1,20 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-
-### Bug Fixes
-
-* Remove observedAttributes method from nav-priority component ([c748bae](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/commit/c748bae))
-* update nav priority CSS to ensure the button size doesn't cause the parent component to grow out of control on larger screen sizes ([b1a1e8a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/commit/b1a1e8a))
-
-
-
-
-
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -172,3 +155,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * color enhancements for navlink, nav-priority, nav-indicator ([8020837](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/commit/8020837))
 * update nav-indicator, nav-priority, navlink colors and styles ([ac7ff62](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-nav-priority/commit/ac7ff62))
+
+
+

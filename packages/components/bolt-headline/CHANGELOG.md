@@ -1,19 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-
-### Bug Fixes
-
-* Add 'spaceless' around typography template, otherwise outputs extra whitespace causing issues in blockquote ([3817443](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/3817443))
-
-
-
-
-
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -258,3 +242,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * fixing icon fallback ([79d012d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-headline/commit/79d012d))
+
+
+

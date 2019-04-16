@@ -1,34 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-
-### Bug Fixes
-
-* add ajv to core package.json ([74322ea](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/74322ea))
-* ensure all default Sass spacing scale config can be overwritten (ex. lang-specific spacing options like we have with Japanese) ([6c8e59d](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/6c8e59d))
-* revert updating element-closest; fixes IE 11 JavaScript issues that pop up if updated to a later version (relating to smooth scroll) ([a4a5e03](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/a4a5e03))
-
-
-### Features
-
-* add 'shallow' argument to convertInitialTags ([5eb8a29](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/5eb8a29))
-* add helper 'containsTagName' ([941e596](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/941e596))
-* add moveChildrenToRoot option to decorator ([7a218d7](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/7a218d7))
-* **@bolt/website,@bolt/components-chip,@bolt/core:** fixing all issue pointed by Mike and move vali ([51a4142](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/51a4142))
-* add new rendering mode config + expose globally ([4636d67](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/4636d67))
-* add polyfill for string.includes ([772b19c](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/772b19c))
-* convert schema data to camelCase before calling validate ([f7e9e93](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/f7e9e93))
-* wire up server side rendering process to core-php + add logic to the bolt text and button components to handle the differences in rendering ([752c0df](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/752c0df))
-* wire up ssr-server POC for handling SSR requests ([5c24e5a](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/5c24e5a))
-
-
-
-
-
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -411,3 +380,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * fixing JS rendering by adding missing bolt/core utils added in v0.x; adding temp workaround to images not loading + example pegaworld dummy page. ([9bcbdba](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/9bcbdba))
 * fixing video player version number dependencies ([895c000](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/895c000))
 * port over bolt core preact renderer base component update from release/0.x branch -- fixes re-rendering component based on data changes ([705f554](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/705f554))
+
+
+

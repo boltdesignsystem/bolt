@@ -1,31 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-
-### Bug Fixes
-
-* re-add local PHP dependencies to fix broken CI tests ([595c19d](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/595c19d))
-* remove deps not needed ([4d1098c](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/4d1098c))
-* retest docker build ([f4bfa64](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/f4bfa64))
-* revert keep alive config ([42c255f](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/42c255f))
-* revert twig-renderer vendor path updates ([28cacb8](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/28cacb8))
-* update npm scripts to not use postinstall automatically; add postinstall to root of the repo instead ([5dc3496](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/5dc3496))
-
-
-### Features
-
-* **website, twig renderer, component explorer:** update the Twig Renderer to support keepAlive ([470f7af](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/470f7af))
-* wire up button component to include VRT, web component tests, update Twig renderer calls to compile even faster ([4b34184](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/4b34184))
-* wire up server side rendering process to core-php + add logic to the bolt text and button components to handle the differences in rendering ([752c0df](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/752c0df))
-
-
-
-
-
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -101,3 +73,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Performance Improvements
 
 * **twig-renderer:** improving speed of twig-renderer ([0e3b44f](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/0e3b44f))
+
+
+

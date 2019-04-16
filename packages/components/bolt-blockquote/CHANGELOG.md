@@ -1,47 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-
-### Bug Fixes
-
-* Add support for attributes passed in as an object ([b2baa67](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/b2baa67))
-* border classname on blockquote ([84b1371](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/84b1371))
-* move margin to blockquote image, not every footer item ([e52d9c6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/e52d9c6))
-* pass correct variable in alignment validation ([8455c07](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/8455c07))
-* remove unneeded rendered() method ([d1e940d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/d1e940d))
-* remove unused 'content' prop in render ([ce16411](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/ce16411))
-* revert commenting out author footer while testing ([8a47235](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/8a47235))
-* stylelint ([8bddb16](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/8bddb16))
-* tweak the slotted logo styles to work as expected inside a slot ([27fc1a2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/27fc1a2))
-* update incorrect text component version + repo url for uikit ([cfa6fde](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/cfa6fde))
-
-
-### Features
-
-* add initialize_props function, util setProp function, names to schema elements ([18a3cd1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/18a3cd1))
-* add missing features to web component implementation of blockquote ([149695f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/149695f))
-* add slotted styles, remove attribute selectors ([b82338b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/b82338b))
-* add support for content and author to blockquote web component ([0a4f9d9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/0a4f9d9))
-* add support for quotes with and without <p> ([8c2de4f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/8c2de4f))
-* add web component support to blockquote ([a1bb776](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/a1bb776))
-* automatically re-render + re-evaluate slots and classes added when child node mutations are observed ([10f1ec7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/10f1ec7))
-* do not set unnecessary props on twig generated blockquotes ([a9b2bbe](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/a9b2bbe))
-* import missing styles needed for twig templates ([8603947](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/8603947))
-* pass validated size prop ([28131f0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/28131f0))
-* remove 'content' prop from blockquote web component, use validateProps method on base class ([93bad4b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/93bad4b))
-* remove 'name' from schema props ([f89aee4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/f89aee4))
-* remove twig blocks completely ([089cd05](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/089cd05))
-* rework merge_attributes function into initialize_props which uses _context and returns array of allowed props ([dc0ee4e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/dc0ee4e))
-* temporarily set lazyload to false, does not work yet in shadow dom ([7e4e788](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/7e4e788))
-
-
-
-
-
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -284,3 +240,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * moving utils to new _includes folder; removing component demos accidently re-added ([3e8f0c0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/3e8f0c0))
+
+
+

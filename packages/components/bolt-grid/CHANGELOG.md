@@ -1,25 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-grid/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-
-### Bug Fixes
-
-* clarify gutter prop and its related demos ([7ec76be](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-grid/commit/7ec76be))
-* code and organization cleanup ([5c5764d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-grid/commit/5c5764d))
-* gutter correction ([05c2ef7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-grid/commit/05c2ef7))
-* lint styles ([6529faf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-grid/commit/6529faf))
-* lint styles ([a1d11d9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-grid/commit/a1d11d9))
-* mapping grid item to schema props ([70a2215](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-grid/commit/70a2215))
-* update package.json path to fix grid CSS ([e999b33](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-grid/commit/e999b33))
-
-
-
-
-
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-grid/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -84,3 +62,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 * add new example of grid component usage to Pattern Lab; 1st pass building out new styles for CSS-grid based grid component, taking web component usage heavily in mind ([b3aab34](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-grid/commit/b3aab34))
+
+
+

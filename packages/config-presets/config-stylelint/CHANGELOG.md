@@ -1,19 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-stylelint/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-
-### Bug Fixes
-
-* temporarily disable stylelint plugin till a non-deprecated replacement is added ([cd09832](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-stylelint/commit/cd09832))
-
-
-
-
-
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-stylelint/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -159,3 +143,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.0.0-rc.1](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-stylelint/compare/v0.4.1...v1.0.0-rc.1) (2018-02-24)
+
+
+

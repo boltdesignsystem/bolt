@@ -1,23 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-
-### Bug Fixes
-
-* add timeout to async afterAll in Jest tests ([cf335ce](https://github.com/bolt-design-system/bolt/commit/cf335ce))
-* flag and figure bugs ([9893c60](https://github.com/bolt-design-system/bolt/commit/9893c60))
-* move image and JS to fixtures dir ([afc93c8](https://github.com/bolt-design-system/bolt/commit/afc93c8))
-* remove async from the top level Jest test `describe` — addresses deprecation warnings about this breaking in an upcoming version of Jest ([a7f5fec](https://github.com/bolt-design-system/bolt/commit/a7f5fec))
-* update snapshots + update logo tests to use the new bolt-image web component ([b647d3b](https://github.com/bolt-design-system/bolt/commit/b647d3b))
-
-
-
-
-
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -226,3 +206,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.0.0-rc.1](https://github.com/bolt-design-system/bolt/compare/v0.4.1...v1.0.0-rc.1) (2018-02-24)
+
+
+

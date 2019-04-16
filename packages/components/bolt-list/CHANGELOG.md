@@ -1,16 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-**Note:** Version bump only for package @bolt/components-list
-
-
-
-
-
 # [2.2.0](https://github.com/bolt-design-system/bolt/compare/v2.2.0-rc.1...v2.2.0) (2018-11-18)
 
 
@@ -106,3 +93,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * add tag prop ([fa4b11d](https://github.com/bolt-design-system/bolt/commit/fa4b11d))
 * follow value of none conventions ([41c878c](https://github.com/bolt-design-system/bolt/commit/41c878c))
 * removing hr as the separator ([ada7e46](https://github.com/bolt-design-system/bolt/commit/ada7e46))
+
+
+

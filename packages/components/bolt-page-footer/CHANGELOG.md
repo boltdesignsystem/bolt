@@ -1,16 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-**Note:** Version bump only for package @bolt/components-page-footer
-
-
-
-
-
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -171,3 +158,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Bug Fixes
 
 * update references to point to new Bolt footer folder; remove old package.json ([199b5d1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-page-footer/commit/199b5d1))
+
+
+

@@ -1,19 +1,3 @@
-# Change Log
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
-
-
-### Features
-
-* update form component to allow the form input icon size to be optionally adjusted in size ([da0b42a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/commit/da0b42a))
-
-
-
-
-
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -250,3 +234,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 # [1.0.0-rc.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2018-03-06)
+
+
+
