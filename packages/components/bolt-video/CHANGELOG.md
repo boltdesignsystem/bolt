@@ -1,3 +1,29 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* **@bolt/components-video:** cHange test logic ([75f14ad](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/75f14ad))
+* **@bolt/components-video:** fix for IE11 testing ([3ea81a6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/3ea81a6))
+* add timeout to async afterAll in Jest tests ([cf335ce](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/cf335ce))
+* button border-radius default ([e3ffd92](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/e3ffd92))
+* remove async from the top level Jest test `describe` — addresses deprecation warnings about this breaking in an upcoming version of Jest ([a7f5fec](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/a7f5fec))
+* remove reference to specific Bolt version in the <bolt-video> snapshot tests ([40e2351](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/40e2351))
+
+
+### Features
+
+* force icons to be visible at smaller layout sizes ([22f199a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/22f199a))
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -364,6 +390,3 @@
 ### Bug Fixes
 
 * fixing video player version number dependencies ([895c000](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/895c000))
-
-
-
