@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+**Note:** Version bump only for package @bolt/components-site
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -155,6 +168,3 @@
 
 
 # [1.0.0-rc.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-site/compare/v0.4.1...v1.0.0-rc.1) (2018-02-24)
-
-
-
