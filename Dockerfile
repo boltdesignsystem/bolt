@@ -1,4 +1,4 @@
-FROM basaltinc/docker-node-php-base:latest
+FROM boltdesignsystem/bolt-docker:latest
 # @todo replace with `boltdesignsystem/bolt-docker:latest` once that is configured correctly
 RUN php -m
 RUN sudo apt-get install --no-install-recommends -y php7.2-gd

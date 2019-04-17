@@ -1,6 +1,36 @@
 import '../bolt-select/bolt-select';
 
 const boltSelect = document.querySelector('bolt-select');
+const boltSelectTag = boltSelect.querySelector('select');
+const currentVersionText = 'v' + window.bolt.data.fullManifest.version;
+
+const latestOption = document.createElement('optgroup');
+latestOption.setAttribute('label', 'Latest Release');
+latestOption.appendChild(boltSelectTag.options[0]);
+
+const prevOption = document.createElement('optgroup');
+prevOption.setAttribute('label', 'Previous Releases');
+for (var i = 0; i < boltSelectTag.options.length; i++) {
+  prevOption.appendChild(boltSelectTag.options[i]);
+}
+
+boltSelectTag.querySelectorAll('option').forEach(option => option.remove());
+
+boltSelectTag.appendChild(latestOption);
+boltSelectTag.appendChild(prevOption);
+
+if (
+  boltSelectTag.selectedIndex === 0 &&
+  boltSelectTag.options[0].text !== currentVersionText
+) {
+  for (var i = 0; i < boltSelectTag.options.length; i++) {
+    if (boltSelectTag.options[i].text === currentVersionText) {
+      boltSelectTag.selectedIndex = i;
+      break;
+    }
+  }
+}
+
 let shouldOpenInNewWindow = false;
 
 if (boltSelect) {
