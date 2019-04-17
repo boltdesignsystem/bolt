@@ -1,9 +1,49 @@
-<bolt-modal>
-  <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal</bolt-button>
+<p>
+  <bolt-modal>
+    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (default width)</bolt-button>
 
-  <bolt-text headline>Use Google's location service?</bolt-text>
-  <bolt-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</bolt-text>
+    <bolt-list slot="header" display="flex">
+      <bolt-list-item><bolt-link url="https://pega.com">Link 1</bolt-link></bolt-list-item>
+      <bolt-list-item><bolt-link url="https://google.com">Link 2</bolt-link></bolt-list-item>
+      <bolt-list-item><bolt-link url="https://yahoo.com">Link 3</bolt-link></bolt-list-item>
+    </bolt-list>
 
-  <bolt-button onclick="this.closest('bolt-modal').hide()">Close Modal</bolt-button>
-</bolt-modal>
+    <bolt-text headline>Default width</bolt-text>
+    <bolt-text>This modal is 10 columns wide.</bolt-text>
+    <bolt-button onclick="this.closest('bolt-modal').hide()">Close Modal</bolt-button>
+
+    <bolt-list slot="footer" display="flex">
+      <bolt-list-item><bolt-link url="https://pega.com">Link 3</bolt-link></bolt-list-item>
+      <bolt-list-item><bolt-link url="https://google.com">Link 4</bolt-link></bolt-list-item>
+      <bolt-list-item><bolt-link url="https://yahoo.com">Link 5</bolt-link></bolt-list-item>
+    </bolt-list>
+  </bolt-modal>
+</p>
+
+<p>
+  <bolt-modal width="auto">
+    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (auto width)</bolt-button>
+
+    <bolt-text headline>Auto width</bolt-text>
+    <bolt-text>This modal is only as wide as the content.</bolt-text>
+  </bolt-modal>
+</p>
+
+<p>
+  <bolt-modal width="optimal">
+    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (optimal width)</bolt-button>
+
+    <bolt-text headline>Optimal width</bolt-text>
+    <bolt-text>This modal's width is optimal for reading, which is about 75 characters wide.</bolt-text>
+  </bolt-modal>
+</p>
+
+<p>
+  <bolt-modal width="full">
+    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (full width)</bolt-button>
+
+    <bolt-text headline>Full width</bolt-text>
+    <bolt-text>This modal is full width.</bolt-text>
+  </bolt-modal>
+</p>
 

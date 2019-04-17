@@ -6,70 +6,28 @@ properties:
     type: object
     description: A Drupal attributes object. Used to apply with extra HTML attributes to the outer &lt;bolt-modal&gt; tag.
   disabled:
-    title: Disabled
     type: boolean
+    title: Disabled
     description: Default `disabled` prop supported globally by most Bolt components.
+    hidden: true
   no_shadow:
+    type: boolean
     title: 'Disable Shadow DOM (Twig-only)'
     description: 'Manually disables the component from rendering to the Shadow DOM in a Twig template. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.'
     hidden: true
-    type: boolean
   'no-shadow':
+    type: boolean
     title: 'Disable Shadow DOM (Web Component-only)'
     description: 'Manually disables the web component from rendering to the Shadow DOM. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.'
     hidden: true
-    type: boolean
   width:
     type: string
-    default: 'auto'
+    default: auto
     enum:
       - auto
+      - optimal
       - full
   theme:
-    $ref: '#/definitions/themes'
-  persistent:
-    type: boolean
-    default: false
-    description: Configures a modal to remain open until a required action is completed.
-  scrollable:
-    type: boolean
-    description: When set to true, allows the modal's content area to be scrollable while the modal's header and footer areas are fixed in place.
-    default: false
-  animation:
-    type: 'string'
-    description: Pre-defined animations (which vary depending on if the modal is opening or closing) inspired by https://tympanus.net/Development/ModalWindowEffects/
-    default: 'fade-in-scale'
-    enum:
-      - slide-in-bottom
-      - slide-in-top 
-      - sticky-up
-      - sticky-down
-      - blur
-      - fade-in-scale
-  # no-overlay
-  # full-screen
-  overlay-color:
-    type: string
-    description: Controls the color of the overlay.
-    default: dark
-    enum:
-      - dark
-      - light
-      - none # turn off the overlay (visually)
-  slots:
-    type: object
-    description: The slots content can be passed along
-    properties:
-      default: 
-        description: Default slot
-      header:
-        description: Slotted area for content above the main modal content area.
-      footer:
-        description: Footer slot
-  # size:
-  #   description: How large should the modal be in relation to the rest of the page
-definitions:
-  themes:
     type: string
     description: Controls the default color theme of the modal container
     default: xlight
@@ -79,6 +37,47 @@ definitions:
       - light
       - dark
       - xdark
+  persistent:
+    type: boolean
+    default: false
+    description: Configures a modal to remain open until a required action is completed.
+  slots:
+    type: object
+    description: The slots content can be passed along
+    properties:
+      default:
+        description: Default slot
+      header:
+        description: Slotted area for content above the main modal content area.
+      footer:
+        description: Footer slot
+  # scrollable:
+  #   type: boolean
+  #   description: When set to true, allows the modal's content area to be scrollable while the modal's header and footer areas are fixed in place.
+  #   default: false
+  # animation:
+  #   type: 'string'
+  #   description: Pre-defined animations (which vary depending on if the modal is opening or closing) inspired by https://tympanus.net/Development/ModalWindowEffects/
+  #   default: 'fade-in-scale'
+  #   enum:
+  #     - slide-in-bottom
+  #     - slide-in-top
+  #     - sticky-up
+  #     - sticky-down
+  #     - blur
+  #     - fade-in-scale
+  # no-overlay
+  # full-screen
+  # overlay-color:
+  #   type: string
+  #   description: Controls the color of the overlay.
+  #   default: dark
+  #   enum:
+  #     - dark
+  #     - light
+  #     - none # turn off the overlay (visually)
+  # size:
+  #   description: How large should the modal be in relation to the rest of the page
 # definitions:
 #   align:
 #     type: string

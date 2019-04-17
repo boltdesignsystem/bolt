@@ -21,12 +21,19 @@ class BoltModal extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
+    // persistent - if set to true, clicking on overlay would not close the modal.
     persistent: {
       ...props.boolean,
       ...{ default: false },
     },
-    // animation
-    // persistent - don't allow users to close the modal once opened if an action is required
+    width: {
+      ...props.string,
+      ...{ default: 'regular' },
+    },
+    theme: {
+      ...props.string,
+      ...{ default: 'xlight' },
+    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -249,27 +256,33 @@ class BoltModal extends withLitHtml() {
     // @todo: validate props
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     // const { disabled } = this.validateProps(this.props);
-    const { open } = this.props;
+    const { open, width, theme } = this.props;
 
     const classes = cx('c-bolt-modal', {
-      // [`c-bolt-modal--disabled`]: disabled,
+      // [`is-open`]: open,
     });
 
     const overlayClasses = cx('c-bolt-modal__overlay', {
-      [`is-visible`]: open,
+      [`is-open`]: open,
     });
 
     const contentClasses = cx('c-bolt-modal__content', {
       [`is-open`]: open,
+      [`c-bolt-modal__content--width-${width}`]: width && width !== 'auto',
+    });
+
+    const containerClasses = cx('c-bolt-modal__container', {
+      [`t-bolt-${theme}`]: theme && theme !== 'none',
     });
 
     const defaultCloseButton = html`
       <bolt-button
         class="js-close-button-fallback"
-        aria-label="Close this dialog window"
         @click=${e => this.hide(e)}
-        color="text"
+        color="secondary"
+        size="small"
         icon-only
+        border-radius="full"
         autofocus
         tabindex="0"
       >
@@ -312,7 +325,7 @@ class BoltModal extends withLitHtml() {
             aria-hidden=${open === true ? 'false' : 'true'}
             class="${contentClasses}"
           >
-            <div class="${cx('c-bolt-modal__content-inner')}">
+            <article class="${containerClasses}">
               <!--
                 Closing button related notes:
                 - It does have to have the 'type="button"' attribute.
@@ -326,23 +339,18 @@ class BoltModal extends withLitHtml() {
 
               <!-- @todo: placeholder slot for slotted header content -->
               <!-- @todo: work through how we want to handle the default dialog modal title (associated with an ID) vs a customized modal title vs providing a title but hiding it.
-              <header class="c-bolt-modal__header">
+              <header class="c-bolt-modal__container-header">
                 <!--
                   Dialog title related notes:
                   - It should have a different content than 'Dialog Title'.
                   - It can have a different id than 'dialog-title'.
                 -->
 
-                <!-- @todo: does this need to be a unique id? -->
-                <!-- @todo: do we need an option to hideTitle -->
-                <bolt-text
-                  id="dialog-title"
-                  tag="h1"
-                  font-size="xxlarge"
-                  headline
-                >
-                  Modal Title
-                </bolt-text>
+                <!-- @todo: does this need to be a unique id? Mai: Yes. -->
+                <!-- @todo: do we need an option to hideTitle? Mai: Yes. Only user generated content should show up in header and footer. -->
+                <h1 id="dialog-title" class="c-bolt-modal__dialog-title">
+                  Dialog content
+                </h1>
                 ${this.slot('header')}
               </header>
 
@@ -350,15 +358,15 @@ class BoltModal extends withLitHtml() {
                 Here lives the main content of the dialog.
               -->
               <!-- main slotted body content -->
-              <div class="c-bolt-modal__body">
+              <div class="c-bolt-modal__container-body">
                 ${this.slot('default')}
               </div>
 
               <!-- @todo: placeholder slot for slotted footer content -->
-              <div class="c-bolt-modal__footer">
+              <footer class="c-bolt-modal__container-footer">
                 ${this.slot('footer')}
-              </div>
-            </div>
+              </footer>
+            </article>
           </dialog>
         </focus-trap>
       </div>
