@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.2.2...v2.3.1) (2019-04-17)
+
+
+### Bug Fixes
+
+* add full twig namespace include to fix Jest snapshot diff of image component on Travis ([f69005b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/f69005b))
+* button border-radius default ([299ebba](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/299ebba))
+* fix NPM dependency version mis-match across bolt components ([611ceee](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/611ceee))
+* fix prettier issues ([caf0673](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/caf0673))
+* fix schema validation errors ([c4381ec](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/c4381ec))
+* hide the internal available_plugins and default_plugins video player config options from the default Pattern Lab schema table ([0a94bbe](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/0a94bbe))
+* improve video player script loader — now multiple videos with different playerIds can load up side by side on the same page and work as expected ([c02f27b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/c02f27b))
+* remove gitHead from packages before publishing v2.3.0 ([0195558](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/0195558))
+* remove the <bolt-video> component's "v" HTML attribute to prevent false Jest snapshot errors when releasing new versions of Bolt ([f2df029](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/f2df029))
+* resolve merge conflicts + update snapshot tests ([99a938a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/99a938a))
+* selectively porting over Bolt fixes from master to address v2.3.0 issues flagged during QA ([c1d02ed](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/c1d02ed))
+* update jest snapshots for the Bolt video player ([a78110b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/a78110b))
+* update social share plugin check + clean up inline plugin script ([f656740](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/f656740))
+* update stylelint properties order ([9405599](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/9405599))
+* update video component Jest snapshots to not include version info as an HTML attribute ([fc09b62](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/fc09b62))
+* use bolt border radius ([a614aac](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/a614aac))
+
+
+### Features
+
+* 1st pass building out new cue point plugin (add-on) for the <bolt-video> player ([2701c0f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/2701c0f))
+* add new built-in methods for hiding / showing video player overlay ([b4e8d56](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/b4e8d56))
+* add new onLoadStart event to video player (used for new cue point plugin) ([5172188](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/5172188))
+* add new setup work for the video component's overlay UI ([e9f05fa](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/e9f05fa))
+* Add share_description property to bolt-video ([d33c433](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/d33c433))
+* add support for default plugins initialized with every video player instance; add new ability to declaratively enable / disable plugins to ensure the default plugins don't get in the way accidentally ([3e51afb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/3e51afb))
+* auto-pause the video + open in a new tab when interacting with cue point ctas ([383673b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/383673b))
+* disable the video player cue points plugin by default ([307b51a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/307b51a))
+* improve new plugin system by checking to make sure the social and email plugins only get loaded once ([f05966d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/f05966d))
+* Make video share text translatable by default when using twig ([ea1c5d6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/ea1c5d6))
+* Remove hard-coded CSS share text and style replacement ([528e5e1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/528e5e1))
+
+
+
+
+
 # [2.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.3.0-rc.0...v2.3.0) (2019-01-30)
 
 
