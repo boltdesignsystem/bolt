@@ -249,7 +249,7 @@ class BoltSelect extends withLitHtml() {
       shouldSortItems: this.props.shouldSortItems,
       searchPlaceholderValue: this.props.searchPlaceholderValue,
       itemSelectText: this.props.itemSelectText,
-
+      searchEnabled: this.props.searchEnabled,
       // @todo: continue adding additional options below as time + need permits
       // silent: this.props.silent,
       // items: this.props.items,
