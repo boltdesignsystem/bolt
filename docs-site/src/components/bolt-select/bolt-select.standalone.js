@@ -67,7 +67,8 @@ class BoltSelect extends withLitHtml() {
     self.groups = self.querySelectorAll('optgroup');
     self.options = self.querySelectorAll('option');
 
-    if (self.groups) {
+    const optgroupsFound = Array.from(self.groups);
+    if (optgroupsFound.length > 0) {
       self.options = [];
       self.optgroups = [];
       self.groups.forEach(optgroup => {
