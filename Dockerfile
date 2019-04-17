@@ -1,4 +1,4 @@
-FROM basaltinc/docker-node-php-base:latest
+FROM boltdesignsystem/bolt-docker:latest
 # @todo replace with `boltdesignsystem/bolt-docker:latest` once that is configured correctly
 WORKDIR /app
 COPY . .
