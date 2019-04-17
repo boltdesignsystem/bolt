@@ -64,10 +64,22 @@ class BoltSelect extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
+    self.groups = self.querySelectorAll('optgroup');
     self.options = self.querySelectorAll('option');
 
-    if (self.options) {
-      self.options = createSelectOptionData(self.options);
+    if (self.groups) {
+      self.options = [];
+      self.optgroups = [];
+      self.groups.forEach(optgroup => {
+        self.optgroups.push({
+          label: optgroup.label || '',
+          choices: createSelectOptionData(optgroup.querySelectorAll('option')),
+        });
+      });
+    } else {
+      if (self.options) {
+        self.options = createSelectOptionData(self.options);
+      }
     }
     // self.useShadow = hasNativeShadowDomSupport;
     self.useShadow = false;
@@ -294,6 +306,10 @@ class BoltSelect extends withLitHtml() {
       this.renderRoot.querySelector('.js-bolt-select-root'),
       settings,
     );
+
+    if (this.optgroups) {
+      this.choice.setChoices(this.optgroups, 'value', 'label', false);
+    }
 
     this.passedElement = this.choice.passedElement;
   }
