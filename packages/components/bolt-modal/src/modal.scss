@@ -30,6 +30,7 @@ $bolt-modal-border-width: $bolt-border-width;
 $bolt-modal-border-style: $bolt-border-style;
 $bolt-modal-border-color: bolt-theme(text, 0.15);
 $bolt-modal-border-radius: bolt-border-radius(small);
+$bolt-modal-max-height: 90vh;
 
 // Hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
 bolt-modal:not([ready]) {
@@ -42,6 +43,7 @@ bolt-modal:not([ready]) {
   display: inline;
 }
 
+// Dark overlay
 .c-bolt-modal__overlay {
   display: block;
   opacity: 0;
@@ -52,7 +54,7 @@ bolt-modal:not([ready]) {
   left: 0;
   pointer-events: none;
   background-color: $bolt-modal-overlay-bg-color;
-  transition: opacity 0.3s ease;
+  transition: opacity $bolt-transition;
 
   &.is-open {
     @include bolt-z-index(modalBG);
@@ -61,6 +63,7 @@ bolt-modal:not([ready]) {
   }
 }
 
+// Content box
 .c-bolt-modal__content {
   @include bolt-z-index(modal);
 
@@ -72,12 +75,12 @@ bolt-modal:not([ready]) {
   left: 50%;
   transform: translate(-50%, -50%) translateY(100px);
   max-width: calc(100% - #{bolt-spacing(small) * 2});
-  max-height: 90vh; // @todo: refactor min / max height and width; placeholder styles for demo
+  max-height: $bolt-modal-max-height;
   margin: 0;
   padding: 0;
   border: 0;
   background: transparent;
-  transition: 0.3s ease; // @todo: abstract away transition styles
+  transition: $bolt-transition;
 
   @include bolt-mq(xsmall) {
     max-width: calc(100% - #{bolt-spacing(medium) * 2});
@@ -87,10 +90,11 @@ bolt-modal:not([ready]) {
     visibility: visible;
     opacity: 1;
     transform: translate(-50%, -50%);
-    transition: 0.3s ease; // @todo: abstract away transition styles
+    transition: $bolt-transition;
   }
 }
 
+// Content width options
 .c-bolt-modal__content--width-optimal {
   width: 75ch;
 }
@@ -107,10 +111,10 @@ bolt-modal:not([ready]) {
   }
 }
 
+// Container
 .c-bolt-modal__container {
   display: block;
   border-radius: $bolt-modal-border-radius;
-  background-color: bolt-theme(background);
 }
 
 .c-bolt-modal__container-header,
@@ -120,23 +124,8 @@ bolt-modal:not([ready]) {
 }
 
 .c-bolt-modal__container-body {
-  @include bolt-padding(small);
-
-  max-height: calc(90vh - 8rem);
+  max-height: calc(#{$bolt-modal-max-height} - 8rem);
   overflow: auto;
-
-  @include bolt-mq(xsmall) {
-    @include bolt-padding(medium);
-  }
-}
-
-.c-bolt-modal__container-header,
-.c-bolt-modal__container-footer {
-  @include bolt-padding(small, squished);
-
-  @include bolt-mq(xsmall) {
-    @include bolt-padding(medium, squished);
-  }
 }
 
 .c-bolt-modal__container-header {
@@ -147,7 +136,39 @@ bolt-modal:not([ready]) {
   border-top: $bolt-modal-border-width $bolt-modal-border-style $bolt-modal-border-color;
 }
 
+// Container spacing options
+[class*='c-bolt-modal__container--spacing-'] {
+  .c-bolt-modal__container-body {
+    @include bolt-padding(small);
+  }
+
+  .c-bolt-modal__container-header,
+  .c-bolt-modal__container-footer {
+    @include bolt-padding(small, squished);
+  }
+}
+
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  @include bolt-mq(xsmall) {
+    .c-bolt-modal__container--spacing-#{$spacing-value-name} {
+      .c-bolt-modal__container-body {
+        @include bolt-padding(#{$spacing-value-name});
+      }
+
+      .c-bolt-modal__container-header,
+      .c-bolt-modal__container-footer {
+        @include bolt-padding(#{$spacing-value-name}, squished);
+      }
+    }
+  }
+}
+
+// Controls
 .c-bolt-modal__close-button {
+  @include bolt-z-index(modal);
+
   position: absolute;
   top: 0;
   right: 0;

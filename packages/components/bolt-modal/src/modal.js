@@ -30,6 +30,10 @@ class BoltModal extends withLitHtml() {
       ...props.string,
       ...{ default: 'regular' },
     },
+    spacing: {
+      ...props.string,
+      ...{ default: 'medium' },
+    },
     theme: {
       ...props.string,
       ...{ default: 'xlight' },
@@ -256,7 +260,7 @@ class BoltModal extends withLitHtml() {
     // @todo: validate props
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     // const { disabled } = this.validateProps(this.props);
-    const { open, width, theme } = this.props;
+    const { open, width, spacing, theme } = this.props;
 
     const classes = cx('c-bolt-modal', {
       // [`is-open`]: open,
@@ -272,6 +276,7 @@ class BoltModal extends withLitHtml() {
     });
 
     const containerClasses = cx('c-bolt-modal__container', {
+      [`c-bolt-modal__container--spacing-${spacing}`]: spacing && spacing !== 'none',
       [`t-bolt-${theme}`]: theme && theme !== 'none',
     });
 
