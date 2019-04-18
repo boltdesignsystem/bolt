@@ -81,6 +81,7 @@ const config = {
       '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
+      '@bolt/components-banner',
       '@bolt/components-dropdown',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
