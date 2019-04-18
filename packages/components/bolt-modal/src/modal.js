@@ -276,7 +276,8 @@ class BoltModal extends withLitHtml() {
     });
 
     const containerClasses = cx('c-bolt-modal__container', {
-      [`c-bolt-modal__container--spacing-${spacing}`]: spacing && spacing !== 'none',
+      [`c-bolt-modal__container--spacing-${spacing}`]:
+        spacing && spacing !== 'none',
       [`t-bolt-${theme}`]: theme && theme !== 'none',
     });
 
