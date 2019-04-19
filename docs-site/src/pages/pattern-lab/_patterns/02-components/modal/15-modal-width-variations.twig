@@ -1,21 +1,8 @@
 {% set modal_width_regular %}
   <bolt-button onclick="this.nextElementSibling.show()">Open Modal (default width)</bolt-button>
   <bolt-modal>
-    <bolt-list slot="header" display="flex">
-      <bolt-list-item><bolt-link url="https://pega.com">Link 1</bolt-link></bolt-list-item>
-      <bolt-list-item><bolt-link url="https://google.com">Link 2</bolt-link></bolt-list-item>
-      <bolt-list-item><bolt-link url="https://yahoo.com">Link 3</bolt-link></bolt-list-item>
-    </bolt-list>
-
     <bolt-text headline>Default width</bolt-text>
     <bolt-text>This modal is 10 columns wide.</bolt-text>
-    <bolt-button onclick="this.closest('bolt-modal').hide()">Close Modal</bolt-button>
-
-    <bolt-list slot="footer" display="flex">
-      <bolt-list-item><bolt-link url="https://pega.com">Link 3</bolt-link></bolt-list-item>
-      <bolt-list-item><bolt-link url="https://google.com">Link 4</bolt-link></bolt-list-item>
-      <bolt-list-item><bolt-link url="https://yahoo.com">Link 5</bolt-link></bolt-list-item>
-    </bolt-list>
   </bolt-modal>
 {% endset %}
 {% set modal_width_auto %}

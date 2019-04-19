@@ -22,14 +22,25 @@ properties:
     hidden: true
   width:
     type: string
-    default: auto
+    description: Controls the width of the modal container.
+    default: regular
     enum:
+      - regular
       - auto
       - optimal
       - full
+  spacing:
+    type: string
+    description: Controls the spacing around the modal container.
+    default: medium
+    enum:
+      - none
+      - small
+      - medium
+      - large
   theme:
     type: string
-    description: Controls the default color theme of the modal container
+    description: Controls the color theme of the modal container.
     default: xlight
     enum:
       - none

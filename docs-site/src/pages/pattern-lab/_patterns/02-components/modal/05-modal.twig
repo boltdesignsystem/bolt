@@ -1,49 +1,18 @@
-<p>
-  <bolt-button onclick="this.nextElementSibling.show()">Open Modal</bolt-button>
-  <bolt-modal>
-    <bolt-list slot="header" display="flex">
-      <bolt-list-item><bolt-link url="https://pega.com">Link 1</bolt-link></bolt-list-item>
-      <bolt-list-item><bolt-link url="https://google.com">Link 2</bolt-link></bolt-list-item>
-      <bolt-list-item><bolt-link url="https://yahoo.com">Link 3</bolt-link></bolt-list-item>
-    </bolt-list>
+<bolt-button onclick="this.nextElementSibling.show()">Open Modal</bolt-button>
+<bolt-modal>
+  <bolt-list slot="header" display="flex">
+    <bolt-list-item><bolt-link url="https://pega.com">Link 1</bolt-link></bolt-list-item>
+    <bolt-list-item><bolt-link url="https://google.com">Link 2</bolt-link></bolt-list-item>
+    <bolt-list-item><bolt-link url="https://yahoo.com">Link 3</bolt-link></bolt-list-item>
+  </bolt-list>
 
-    <bolt-text headline>Default width</bolt-text>
-    <bolt-text>This modal is 10 columns wide.</bolt-text>
-    <bolt-button onclick="this.closest('bolt-modal').hide()">Close Modal</bolt-button>
+  <bolt-text headline>Default width</bolt-text>
+  <bolt-text>This modal is 10 columns wide.</bolt-text>
+  <bolt-button onclick="this.closest('bolt-modal').hide()">Close Modal</bolt-button>
 
-    <bolt-list slot="footer" display="flex">
-      <bolt-list-item><bolt-link url="https://pega.com">Link 3</bolt-link></bolt-list-item>
-      <bolt-list-item><bolt-link url="https://google.com">Link 4</bolt-link></bolt-list-item>
-      <bolt-list-item><bolt-link url="https://yahoo.com">Link 5</bolt-link></bolt-list-item>
-    </bolt-list>
-  </bolt-modal>
-</p>
-
-<div class="u-bolt-margin-bottom-medium">
-  <bolt-modal width="optimal" spacing="none" theme="none">
-    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (image)</bolt-button>
-
-    {% include '@bolt-components-image/image.twig' with {
-      src: "/images/placeholders/tout-4x3-climber.jpg",
-      alt: "A Rock Climber",
-      lazyload: false,
-    } only %}
-  </bolt-modal>
-</div>
-
-<div class="u-bolt-margin-bottom-medium">
-  <bolt-modal width="optimal" spacing="none" theme="none">
-    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (image zoom)</bolt-button>
-
-    {% include "@bolt-components-device-viewer/device-viewer.twig" with {
-      device: "ipad",
-      orientation: "landscape",
-      color: "silver",
-      image: {
-        src: "/images/content/screenshots/device-screenshot--tablet.jpg",
-        lazyload: false
-      },
-      magnify: true
-    } only %}
-  </bolt-modal>
-</div>
+  <bolt-list slot="footer" display="flex">
+    <bolt-list-item><bolt-link url="https://pega.com">Link 3</bolt-link></bolt-list-item>
+    <bolt-list-item><bolt-link url="https://google.com">Link 4</bolt-link></bolt-list-item>
+    <bolt-list-item><bolt-link url="https://yahoo.com">Link 5</bolt-link></bolt-list-item>
+  </bolt-list>
+</bolt-modal>
