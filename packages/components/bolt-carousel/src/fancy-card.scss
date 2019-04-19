@@ -1,0 +1,38 @@
+bolt-fancy-card {
+  background-image: linear-gradient(180deg, #009999 0%, #06304b 100%);
+  position: relative;
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 0 4rem 0 0;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  flex: 0 0 320px;
+  color: white;
+  // scroll-snap-align: start;
+}
+
+bolt-fancy-card p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1200px) {
+  bolt-fancy-card {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    flex: 0;
+    width: 110px;
+    margin-right: 1rem;
+  }
+  bolt-fancy-card br {
+    display: none;
+  }
+  bolt-fancy-card a::after {
+    display: none;
+  }
+}
+bolt-fancy-card .c-bolt-fancy-card__title {
+  font-size: 1.6rem;
+  margin: 0 0 0.5rem 0;
+}

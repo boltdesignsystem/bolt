@@ -1,0 +1,8 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-carousel/carousel.twig' only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "carousel",
+  usage: usage
+} only %}

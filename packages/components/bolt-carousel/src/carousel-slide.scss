@@ -1,0 +1,286 @@
+@import '@bolt/core';
+
+bolt-carousel-slide {
+  // min-width: 90%;
+  // width: 100%;
+  min-width: calc(100vw - #{bolt-spacing(large)});
+  min-height: 350px;
+  // background: bolt-color(white);
+  // box-shadow: 0 3px 6px rgba(21, 22, 25, 0.16);
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s;
+  // margin: 0;
+  z-index: 1;
+  // flex-grow: 1;
+  // flex-shrink: 0;
+  scroll-snap-align: center;
+  // @include bolt-padding-left(small);
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+
+  // &:first-child {
+  //   @include bolt-padding-left(medium);
+  // }
+
+  // &:last-child {
+  //   @include bolt-padding-right(medium);
+  //   min-width: calc(100vw - #{bolt-spacing(large) - bolt-spacing(large) / 2});
+  // }
+
+  &:only-child {
+    width: 100%;
+  }
+  // padding-left: 1rem;
+  // padding-right: 1rem;
+
+  bolt-carousel:not([stacked]) & {
+    flex-basis: calc(100vw - #{bolt-spacing(large)});
+    flex-shrink: 0;
+    min-width: 160px;
+    max-width: none;
+    // max-width: 300px;
+    // max-width: calc(100vw / 4);
+    // max-width: calc(100% / 6);
+    // width: calc(100% / 6);
+    // max-width: calc(100% / --carousel-slide-count);
+
+    // @include bolt-mq($from: small){
+    //   min-width: calc(100% / 3);
+    // }
+
+    // $minSlides: 2;
+    // $maxSlides: 7;
+
+    // @for $i from 2 to 4 {
+    //   &:nth-last-child(n+#{$i}):nth-last-child(-n+#{$i}):first-child,
+    //   &:nth-last-child(n+#{$i}):nth-last-child(-n+#{$i}):first-child ~ bolt-carousel-card {
+    //     flex-basis: calc(100vw / #{$i});
+    //   }
+    // }
+
+    @for $i from 2 to 6 {
+      @if ($i == 2){
+        &:nth-last-child(n+#{$i}), 
+        &:nth-last-child(n+#{$i}) ~ bolt-carousel-slide {
+          @include bolt-mq($from: xsmall){
+            flex-basis: calc(100vw / #{$i});
+          }
+        }
+      } @else if ($i == 3){
+        &:nth-last-child(n+#{$i}), 
+        &:nth-last-child(n+#{$i}) ~ bolt-carousel-slide {
+          @include bolt-mq($from: medium){
+            flex-basis: calc(100vw / #{$i});
+          }
+        }
+      } @else if ($i == 4){
+        &:nth-last-child(n+#{$i}), 
+        &:nth-last-child(n+#{$i}) ~ bolt-carousel-slide {
+          @include bolt-mq($from: large){
+            flex-basis: calc(100vw / #{$i});
+          }
+        }
+      } @else if ($i > 4){
+        &:nth-last-child(n+#{$i}), 
+        &:nth-last-child(n+#{$i}) ~ bolt-carousel-slide {
+          @include bolt-mq($from: xlarge){
+            flex-basis: calc(100vw / #{$i});
+          }
+        }
+      }
+    }
+
+      // @if ($i == 3){
+      //   @include bolt-mq($from: medium){
+      //     flex-basis: calc(100vw / 3);
+      //   }
+      // }
+
+      // @if ($i == 4){
+      //   @include bolt-mq($from: large){
+      //     flex-basis: calc(100vw / 4);
+      //   }
+      // }
+
+      
+
+      
+      
+      // @if ($i > 4){
+      //   
+      // }
+    
+        // @if ($i == 2){
+        //   @include bolt-mq($from: xsmall){
+        //   }
+        // }
+
+        // @if ($i >= 2 and $i <= 3){
+        //   @include bolt-mq($from: small){
+        //     flex-basis: calc(100vw / #{$i});
+        //   }
+        // }
+
+        
+  
+        // @if ($i >= 4){
+        //   @include bolt-mq($from: large){
+        //     flex-basis: calc(100vw / #{$i});
+        //   }
+        // }
+      
+    
+
+    
+    
+    // &:nth-last-child(n+3),
+    // &:nth-last-child(n+3) ~ bolt-carousel-slide {
+    //   min-width: calc(100vw / 3);
+    // }
+    
+
+
+    //   &:nth-last-child(n+#{$i}),
+    //   &:nth-last-child(n+#{$i}) ~ & {
+        
+    //   }
+    // }
+
+
+    // @include bolt-mq($from: medium){
+    //   min-width: calc(100% / 3);
+    //   // width: calc(100% / 3);
+    // }
+
+    // @include bolt-mq($from: large){
+    //   // min-width: calc(100% / 4);
+    //   width: calc(100% / 4);
+    // }
+
+    // @include bolt-mq($from: large){
+    //   // min-width: calc(100% / 4);
+    //   width: calc(100% / 6);
+    // }
+  }
+
+  
+
+  // @include bolt-mq($from: xsmall){
+  //   min-width: 300px;
+  //   max-width: 300px;
+
+  //   &:not([stacked]){
+  //     min-width: calc(100% / 6);
+  //     max-width: calc(100% / 6);
+  //   }
+  // }
+
+  // @include bolt-mq($from: medium){
+  //   min-width: 300px;
+  //   max-width: 300px;
+
+  //   &:not([stacked]){
+  //     min-width: calc(100% / 6);
+  //     max-width: calc(100% / 6);
+  //   }
+  // }
+
+  // scroll-padding-left: bolt-spacing(small);
+  // scroll-padding-right: bolt-spacing(small);
+
+  // &:not(:last-child){
+    
+  // }
+  // :not([no-scroll-snap]) & {
+  //   scroll-snap-align: start;
+  // }
+
+  // [center]:not([no-scroll-snap]) & {
+  //   -webkit-scroll-snap-coordinate: 50% 50%;
+  //   scroll-snap-coordinate: 50% 50%;
+  //   scroll-snap-align: center;
+  // }
+
+  .c-bolt-card,
+  .c-bolt-card:before,
+  .c-bolt-card:after {
+    // border-radius: 12px;
+    box-shadow: none;
+  }
+
+  bolt-card {
+    flex-grow: 1;
+  }
+  
+  // &:not(:last-child){
+  //   @include bolt-margin-right(medium);
+  // }
+}
+
+// bolt-carousel-slide h2 {
+//   font-size: 20px;
+//   margin: 0.25rem 0 auto 0;
+// }
+bolt-carousel[stacked] > bolt-carousel-slide {
+  // background-color: white;
+  // @include bolt-padding-left(0);
+  // @include bolt-padding-right(0);
+  min-width: 240px;
+
+
+  bolt-card {
+    background-color: bolt-color(white);
+    background-color: bolt-theme(background);
+    border-radius: 12px;
+  }
+  
+  @include bolt-mq($from: small){
+    min-width: 320px;
+  }
+
+  // @include bolt-mq($from: medium){
+  //   margin-left: -130px;
+  // }
+
+  // @media (max-width: 800px) {
+    
+  // }
+
+  // @media (max-width: 1200px) {
+    
+  // }
+
+  &:not(:first-child) {
+    margin-left: -10px;
+    
+    @include bolt-mq($from: small){
+      margin-left: -60px;
+    }
+
+    @include bolt-mq($from: medium){
+      margin-left: -130px;
+    }
+  }
+
+  // &:last-child {
+  //   margin-right: 2rem;
+  // }
+
+  &:focus-within,
+  &:hover {
+    transform: translate(0, -1rem);
+
+    & ~ bolt-carousel-slide {
+      transform: translateX(30px);
+      
+      @include bolt-mq($from: small){
+        transform: translateX(30px);
+      }
+
+      @include bolt-mq($from: medium){
+        transform: translateX(60px);
+      }
+    }
+  }
+}

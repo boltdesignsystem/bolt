@@ -1,0 +1,128 @@
+@import '@bolt/core';
+
+@import 'carousel-band.scss';
+@import 'carousel-slide.scss';
+
+// // Local carousel Variables
+
+// // Register Custom Block Element
+// @include bolt-custom-element('bolt-carousel', block, medium);
+
+bolt-carousel {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  align-items: stretch;
+  @include bolt-margin-bottom(large);
+  // margin-right: bolt-spacing(medium) * -1;
+  // scrollbar-color: #201c29;
+  // scrollbar-width: 10px;
+  // scrollbar-gutter: always;
+  // padding: 3rem;
+  // @include bolt-padding(large);
+  @include bolt-padding(medium 0);
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  &[no-scroll-snap]{
+    scroll-snap-type: none;
+  }
+
+  &[stacked]{
+    @include bolt-padding(large small);
+
+    .c-bolt-card:not(.c-bolt-card--wrapper) {
+      $bolt-global-shadow-depth-large:  0 14px 28px rgba(bolt-color(black), 0.25), 0 10px 10px rgba(bolt-color(black), 0.22);
+      
+      $bolt-global-shadow-depth-xlarge: 0 19px 38px rgba(bolt-color(black), 0.3),  0 15px 12px rgba(bolt-color(black), 0.22);
+      box-shadow: $bolt-global-shadow-depth-xlarge;
+    }
+  }
+
+  // &:not([no-scroll-snap]) {
+  //   -webkit-scroll-snap-type: mandatory;
+  //   scroll-snap-type: x mandatory;
+  //   -webkit-scroll-snap-points-x: repeat(100%);
+  //   scroll-snap-points-x: repeat(100%);
+
+  //   &[center]{
+  //     -webkit-scroll-snap-destination: 50% 50%;
+  //     scroll-snap-destination: 50% 50%;
+  //   }
+  // }
+}
+
+bolt-carousel::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+bolt-carousel::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(63, 63, 68, 0.15) 100%
+  );
+
+  background-image: linear-gradient(
+    to bottom,
+    bolt-theme(primary-lighten-15) 0%,
+    bolt-theme(primary-darken-25) 100%
+  );
+
+  // background-color: bolt-color(white);
+  // background-color: bolt-theme(primary, .5);
+  // box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 0 1px rgba(63,63,68,0.05), 3px 4px 3px rgba(63,63,68,0.15);
+  // box-shadow: inset 2px 2px 2px rgba(255, 255, 255, 0.25),
+  // inset -2px -2px 2px rgba(0, 0, 0, 0.25);
+}
+
+bolt-carousel::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(bolt-color(gray, dark), 0.5);
+  background-color: bolt-theme(secondary, 0.1);
+  border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+  bolt-carousel {
+    overflow-x: visible;
+  }
+}
+
+
+/* .mini-article-subhead {
+  font-size: 14px;
+  margin: 0 0 1rem 0;
+}
+.mini-article-card-header {
+  margin-bottom: auto;
+}
+.mini-article-meta {
+  font-size: 14px;
+}
+.mini-article-meta .author-name {
+  display: block;
+  position: relative;
+}
+.mini-article-meta .author-avatar img {
+  width: 40px;
+  height: 40px;
+}
+.mini-article-meta .author-avatar .half-circle {
+  width: 60px;
+  height: 48px;
+}
+.mini-article-byline {
+  margin: 3rem 0 0 0;
+  display: grid;
+  grid-template-columns: 75px 1fr;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.mini-article-byline .author-avatar,
+.mini-article-byline .author-name-area {
+  grid-area: auto;
+} */

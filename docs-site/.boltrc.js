@@ -23,8 +23,8 @@ const config = {
   webpackDevServer: {
     enabled: true,
   },
-  sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
-  enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
+  sourceMaps: process.env.TRAVIS || argv.prod ? false : true,
+  enableCache: process.env.TRAVIS || argv.prod ? false : true,
   enableSSR: false, // temp disabld till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
@@ -74,6 +74,7 @@ const config = {
 
   components: {
     global: [
+      '@bolt/components-carousel',
       '@bolt/global',
       '@bolt/docs-search',
       '@bolt/schema-form',
