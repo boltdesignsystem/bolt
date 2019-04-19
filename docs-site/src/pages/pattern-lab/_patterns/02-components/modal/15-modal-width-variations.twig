@@ -1,4 +1,4 @@
-<p>
+{% set modal_width_regular %}
   <bolt-button onclick="this.nextElementSibling.show()">Open Modal (default width)</bolt-button>
   <bolt-modal>
     <bolt-list slot="header" display="flex">
@@ -17,69 +17,39 @@
       <bolt-list-item><bolt-link url="https://yahoo.com">Link 5</bolt-link></bolt-list-item>
     </bolt-list>
   </bolt-modal>
-</p>
-
-<p>
+{% endset %}
+{% set modal_width_auto %}
   <bolt-modal width="auto">
     <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (auto width)</bolt-button>
 
     <bolt-text headline>Auto width</bolt-text>
     <bolt-text>This modal is only as wide as the content.</bolt-text>
   </bolt-modal>
-</p>
-
-<p>
+{% endset %}
+{% set modal_width_optimal %}
   <bolt-modal width="optimal">
     <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (optimal width)</bolt-button>
 
     <bolt-text headline>Optimal width</bolt-text>
     <bolt-text>This modal's width is optimal for reading, which is about 75 characters wide.</bolt-text>
   </bolt-modal>
-</p>
-
-<p>
+{% endset %}
+{% set modal_width_full %}
   <bolt-modal width="full">
     <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (full width)</bolt-button>
 
     <bolt-text headline>Full width</bolt-text>
     <bolt-text>This modal is full width.</bolt-text>
   </bolt-modal>
-</p>
+{% endset %}
 
-<p>
-  <bolt-modal theme="none">
-    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (no spacing and no theme)</bolt-button>
-
-    <bolt-text headline><mark>Transparent Modal</mark></bolt-text>
-    <bolt-text><mark>This modal does not have background color or spacing around, best suited for displaying media (image, video, table, etc.) only.</mark></bolt-text>
-  </bolt-modal>
-</p>
-
-<div class="u-bolt-margin-bottom-medium">
-  <bolt-modal width="optimal" spacing="none" theme="none">
-    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (image)</bolt-button>
-
-    {% include '@bolt-components-image/image.twig' with {
-      src: "/images/placeholders/tout-4x3-climber.jpg",
-      alt: "A Rock Climber",
-      lazyload: false,
-    } only %}
-  </bolt-modal>
-</div>
-
-<div class="u-bolt-margin-bottom-medium">
-  <bolt-modal width="optimal" spacing="none" theme="none">
-    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (image zoom)</bolt-button>
-
-    {% include "@bolt-components-device-viewer/device-viewer.twig" with {
-      device: "ipad",
-      orientation: "landscape",
-      color: "silver",
-      image: {
-        src: "/images/content/screenshots/device-screenshot--tablet.jpg",
-        lazyload: false
-      },
-      magnify: true
-    } only %}
-  </bolt-modal>
-</div>
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  spacing: "medium",
+  items: [
+    modal_width_regular,
+    modal_width_auto,
+    modal_width_optimal,
+    modal_width_full,
+  ]
+} only %}

@@ -1,0 +1,34 @@
+{% set modal_theme_none %}
+  <bolt-modal width="auto" theme="none">
+    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (no spacing and no theme)</bolt-button>
+
+    <bolt-text headline><mark>Transparent Modal</mark></bolt-text>
+    <bolt-text><mark>This modal does not have background color or spacing around, best suited for displaying media (image, video, table, etc.) only.</mark></bolt-text>
+  </bolt-modal>
+{% endset %}
+{% set modal_theme_xdark %}
+  <bolt-modal width="auto" theme="xdark">
+    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (xdark theme)</bolt-button>
+
+    <bolt-text headline>Xdark Modal</bolt-text>
+    <bolt-text>This modal's container has xdark theme.</bolt-text>
+  </bolt-modal>
+{% endset %}
+{% set modal_theme_light %}
+  <bolt-modal width="auto" theme="light">
+    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (light theme)</bolt-button>
+
+    <bolt-text headline>Light Modal</bolt-text>
+    <bolt-text>This modal's container has light theme.</bolt-text>
+  </bolt-modal>
+{% endset %}
+
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  spacing: "medium",
+  items: [
+    modal_theme_none,
+    modal_theme_xdark,
+    modal_theme_light,
+  ]
+} only %}
