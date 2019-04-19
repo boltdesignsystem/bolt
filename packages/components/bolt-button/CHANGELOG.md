@@ -1,3 +1,51 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* add timeout to async afterAll in Jest tests ([cf335ce](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/cf335ce))
+* adjust button VRT failure threshold ([34b62f7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/34b62f7))
+* broken js ([abb4007](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/abb4007))
+* button border-radius default ([e3ffd92](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/e3ffd92))
+* button class logics ([587f56f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/587f56f))
+* button focus ([0e263b4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/0e263b4))
+* convert cases to our standards ([dce4b1d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/dce4b1d))
+* copy edits ([76cc46a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/76cc46a))
+* increase max timeout for button Jest tests ([efbb7ee](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/efbb7ee))
+* lint js ([460b88b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/460b88b))
+* lint js ([519b052](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/519b052))
+* lint js ([4c36399](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/4c36399))
+* lint styles ([ff33648](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/ff33648))
+* migrate updated button component JS logic to new button.js component file ([f9ce8e7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/f9ce8e7))
+* missing space ([5f4b86d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/5f4b86d))
+* remove async from the top level Jest test `describe` — addresses deprecation warnings about this breaking in an upcoming version of Jest ([a7f5fec](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/a7f5fec))
+* Replace index() sass function with map-get() ([#1004](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/issues/1004)) ([6e9404e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/6e9404e))
+* snaps ([80a572b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/80a572b))
+* styles and doc cleanup ([209ed0e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/209ed0e))
+* update button component test snapshot + trim HTML used to test component rendering properly ([064034e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/064034e))
+* update button component to support declarative anchor tag updates to URL and target props ([01928a9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/01928a9))
+* update button Jest tests ([ab57265](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/ab57265))
+* update button tests + snapshots ([9725d0f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/9725d0f))
+* update dockerfile config + adjust Jest setup to ensure buildPrep + image task work only have to happen once ([82a4673](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/82a4673))
+
+
+### Features
+
+* Adds manual testing steps for bolt-button on PatternLab in an approximation of Gherkin format ([7ce733a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/7ce733a))
+* Differentiate between developer testing and functional testing ([eaaa3ca](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/eaaa3ca))
+* Simplifies and conslidates functinal testing steps using tables ([875f76b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/875f76b))
+* wire up button component to include VRT, web component tests, update Twig renderer calls to compile even faster ([4b34184](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/4b34184))
+* wire up server side rendering process to core-php + add logic to the bolt text and button components to handle the differences in rendering ([752c0df](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/752c0df))
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -286,6 +334,3 @@
 
 
 # [1.0.0-rc.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2018-03-06)
-
-
-

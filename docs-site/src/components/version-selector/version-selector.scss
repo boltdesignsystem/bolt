@@ -5,6 +5,15 @@
   @include bolt-font-size(small);
 }
 
+.#{$choices-selector}__heading {
+  @include bolt-padding(bolt-v-spacing(small) bolt-spacing(small) 0 bolt-spacing(xsmall));
+  line-height: 1;
+}
+
+.#{$choices-selector}__group ~ .#{$choices-selector}__item {
+  @include bolt-padding(small, squished);
+}
+
 .#{$choices-selector}__input {
   @include bolt-margin-bottom(0);
   font-size: 16px; // prevent input zoom on mobile
@@ -35,7 +44,7 @@
 
   @include bolt-mq(small){
     width: 100%;
-    min-width: 120px;
+    min-width: 140px;
   }
 }
 
