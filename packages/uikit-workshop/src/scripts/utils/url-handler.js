@@ -13,7 +13,6 @@
 export const urlHandler = {
   // set-up some default vars
   skipBack: false,
-  goBack: false,
   iframeElement: document.querySelector('.pl-js-iframe'),
   targetOrigin:
     window.location.protocol === 'file:'
@@ -174,26 +173,11 @@ export const urlHandler = {
         event: 'patternLab.updatePath',
         path: fileName,
       });
-      
+
       document
-      .querySelector('.pl-js-iframe')
-      .contentWindow.postMessage(obj, urlHandler.targetOrigin);
-
-      // if (urlHandler.iframeElement){
-      //   if (urlHandler.iframeElement.contentWindow){
-      //     urlHandler.iframeElement.contentWindow.postMessage(obj, urlHandler.targetOrigin);
-      //   } else {
-      //     urlHandler.iframeElement = document.querySelector('.pl-js-iframe');
-  
-      //     if (urlHandler.iframeElement.contentWindow){
-      //       urlHandler.iframeElement.contentWindow.postMessage(obj, urlHandler.targetOrigin);
-      //     } else {
-      //       console.log('urlHandler pushPattern cannot find the iframeElement...');
-      //     }
-      //   }
-      // }
-
-    } 
+        .querySelector('.pl-js-iframe')
+        .contentWindow.postMessage(obj, urlHandler.targetOrigin);
+    }
   },
 
   /**
@@ -214,7 +198,8 @@ export const urlHandler = {
     let iFramePath = '';
     iFramePath = this.getFileName(patternName);
     if (iFramePath === '') {
-      iFramePath = this.getFileName('components-overview');
+      iFramePath = 'styleguide/html/styleguide.html';
+      // iFramePath = this.getFileName('components-overview'); // @todo: remove if this new approach isn't needed
     }
 
     const obj = JSON.stringify({
@@ -230,6 +215,7 @@ export const urlHandler = {
 /**
  * handle the onpopstate event
  */
+// @todo: remove if no longer needed
 window.onpopstate = function(event) {
   urlHandler.skipBack = true;
 };

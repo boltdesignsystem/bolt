@@ -19,6 +19,7 @@ import {
 
 import { createContext } from 'preact-context';
 
+// <-- Add it here
 export {
   version,
   DOM,
@@ -36,7 +37,7 @@ export {
   PureComponent,
   unstable_renderSubtreeIntoContainer,
   __spread,
-  createContext, // <-- Add it here
+  createContext,
 };
 
 export default {

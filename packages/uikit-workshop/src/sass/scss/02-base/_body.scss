@@ -18,6 +18,7 @@
   display: flex; // Required for IE 11 to display overall PL layout correctly
 }
 
+// @todo: refactor to make colors more generic to PL:
 .pl-c-body--theme-dark,
 :root {
   --theme-bg: #161b3c;
@@ -30,7 +31,6 @@
 
 .pl-c-body--theme-light {
   --theme-bg: white;
-  // --theme-secondary: #EBEBEB;
   --theme-secondary: white;
   --theme-text: #262829;
   --theme-text-rgb: 38, 40, 41;

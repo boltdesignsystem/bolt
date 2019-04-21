@@ -3,7 +3,6 @@
   "version": "2.4.0-beta.0",
   "description": "Front-end assets and templates for the default Pattern Lab workshop view",
   "main": "gulpfile.js",
-  "private": true,
   "scripts": {
     "build": "webpack-cli --config webpack.config.js --display=minimal",
     "watch": "webpack-cli --config webpack.config.js --progress --watch",
@@ -34,6 +33,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
+    "copy-webpack-plugin": "^5.0.2",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-decorators": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
@@ -45,7 +45,6 @@
     "babel-loader": "^8.0.2",
     "clean-css-loader": "^1.0.1",
     "clean-webpack-plugin": "^0.1.19",
-    "copy-webpack-plugin": "^4.5.2",
     "cosmiconfig": "^5.0.6",
     "critical": "^1.3.4",
     "critical-css-webpack-plugin": "^0.2.0",
@@ -67,6 +66,8 @@
     "yargs": "^12.0.1"
   },
   "dependencies": {
+    "@ungap/url-search-params": "^0.1.2",
+    "@babel/plugin-transform-runtime": "^7.4.3",
     "@reach/visually-hidden": "^0.1.2",
     "@skatejs/element-preact": "^0.0.1",
     "@skatejs/renderer-lit-html": "^0.2.2",

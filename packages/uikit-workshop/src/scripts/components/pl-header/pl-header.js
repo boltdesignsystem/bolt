@@ -61,7 +61,7 @@ class Header extends BaseComponent {
           <pl-search max-results="10" placeholder="Find a Pattern" />
           <pl-nav />
         </nav>
-        <pl-controls></pl-controls>
+        <pl-controls />
       </header>
     );
   }

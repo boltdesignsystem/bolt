@@ -74,15 +74,11 @@ pl-search {
 .pl-c-typeahead__hint,
 .pl-c-typeahead__input {
   text-transform: capitalize;
-  background-color: $pl-color-gray-87;
-  color: $pl-color-white;
-  // border-color: darken($pl-color-gray-87, 10%);
-
+  background-color: $pl-color-gray-87; // CSS vars fallback
+  color: $pl-color-white; // CSS vars fallback
   background-color: rgba(var(--theme-text-rgb), 0.1);
   color: rgba(var(--theme-text-rgb), 0.67);
-  // border-color: darken($pl-color-gray-87, 10%);
   border-color: rgba(0, 0, 0, .1);
-
   text-overflow: ellipsis;
   border-width: 1px;
   border-style: solid;
@@ -118,20 +114,16 @@ pl-search {
   }
 
   @media all and (min-width: $pl-bp-med) {
-
     .pl-c-body--theme-sidebar & {
       max-width: none;
     }
   }
 
   .pl-c-body--theme-light & {
-    background-color: $pl-color-gray-07;
+    background-color: $pl-color-gray-07; // CSS vars fallback
     background-color: rgba(var(--theme-text-rgb), 0.1);
-    color: $pl-color-gray-70;
+    color: $pl-color-gray-70; // CSS vars fallback
     color: rgba(var(--theme-text-rgb), 0.67);
-    
-    // border-color: $pl-color-gray-13;
-    // border-color: darken($pl-color-gray-87, 10%);
   }
 
   &::-webkit-input-placeholder,
@@ -143,13 +135,9 @@ pl-search {
   &:hover,
   &:focus {
     color: $pl-color-white;
-    // background-color: darken($pl-color-gray-87, 2%) !important;
-    // background-color: rgba($pl-color-gray-87, .05);
 
     .pl-c-body--theme-light & {
-      color: $pl-color-gray-87 !important;
-      // background-color: $pl-color-gray-13 !important;
-      // border-color: $pl-color-gray-20 !important;
+      color: $pl-color-gray-87 !important; // @todo: are these !importants still needed?
     }
 
     &::-moz-input-placeholder,
@@ -166,10 +154,8 @@ pl-search {
 .pl-c-typeahead__menu {
   @include accordionPanel;
   background-color: $pl-color-gray-87;
-
   background-color: var(--theme-primary);
   color: var(--theme-text);
-
   text-transform: capitalize;
   position: absolute;
   min-width: 100%;

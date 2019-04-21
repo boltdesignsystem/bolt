@@ -15,27 +15,13 @@ import RandomIcon from '../../../icons/random.svg';
 
 import { minViewportWidth, maxViewportWidth, getRandom } from '../../utils';
 
-// function goSmall() {
-//   // killDisco();
-//   // killHay();
-//   // fullMode = false;
-//   sizeiframe(
-//     getRandom(
-//       minViewportWidth,
-//       window.config.ishViewportRange !== undefined
-//         ? parseInt(window.config.ishViewportRange.s[1], 10)
-//         : 500
-//     )
-//   );
-// }
-
-
+// @todo: re-add keyboard shortcuts to these
 @define
 class ViewportSizes extends BaseComponent {
   static is = 'pl-viewport-sizes';
 
   _stateChanged(state) {
-    this.triggerUpdate(); 
+    this.triggerUpdate();
   }
 
   constructor(self) {
@@ -55,9 +41,9 @@ class ViewportSizes extends BaseComponent {
     return true;
   }
 
-  resizeViewport(size){
-    if (this.iframe){
-      switch(size) {
+  resizeViewport(size) {
+    if (this.iframe) {
+      switch (size) {
         case 'small':
           this.iframe.fullMode = false;
           this.iframe.sizeiframe(
@@ -66,7 +52,8 @@ class ViewportSizes extends BaseComponent {
               window.config.ishViewportRange !== undefined
                 ? parseInt(window.config.ishViewportRange.s[1], 10)
                 : 500
-            ), true
+            ),
+            true
           );
           break;
         case 'medium':
@@ -79,7 +66,8 @@ class ViewportSizes extends BaseComponent {
               window.config.ishViewportRange !== undefined
                 ? parseInt(window.config.ishViewportRange.m[1], 10)
                 : 800
-            ), true
+            ),
+            true
           );
           break;
         case 'large':
@@ -90,7 +78,8 @@ class ViewportSizes extends BaseComponent {
                 ? parseInt(window.config.ishViewportRange.l[0], 10)
                 : 800,
               maxViewportWidth
-            ), true
+            ),
+            true
           );
           break;
         case 'full':
@@ -101,16 +90,7 @@ class ViewportSizes extends BaseComponent {
     }
   }
 
-  // handleClick(e) {
-  //   // const elem = e.target.closest('.pl-js-acc-handle');
-  //   // const panel = elem.nextSibling;
-
-  //   // // Activate selected panel
-  //   // elem.classList.toggle('pl-is-active');
-  //   // panel.classList.toggle('pl-is-active');
-  // }
-
-  rendered(){
+  rendered() {
     this.iframe = document.querySelector('pl-iframe');
   }
 
@@ -132,7 +112,7 @@ class ViewportSizes extends BaseComponent {
                     id: 'pl-size-s',
                     ref: triggerRef,
                   })}
-                  onClick={(e) => this.resizeViewport('small')}
+                  onClick={e => this.resizeViewport('small')}
                 >
                   <VisuallyHidden>Resize viewport to small</VisuallyHidden>
                   <PhoneIcon
@@ -161,7 +141,7 @@ class ViewportSizes extends BaseComponent {
                     id: 'pl-size-m',
                     ref: triggerRef,
                   })}
-                  onClick={(e) => this.resizeViewport('medium')}
+                  onClick={e => this.resizeViewport('medium')}
                 >
                   <VisuallyHidden>Resize viewport to medium</VisuallyHidden>
                   <TabletIcon
@@ -190,7 +170,7 @@ class ViewportSizes extends BaseComponent {
                     id: 'pl-size-l',
                     ref: triggerRef,
                   })}
-                  onClick={(e) => this.resizeViewport('large')}
+                  onClick={e => this.resizeViewport('large')}
                 >
                   <VisuallyHidden>Resize viewport to large</VisuallyHidden>
                   <LaptopIcon
@@ -219,7 +199,7 @@ class ViewportSizes extends BaseComponent {
                     id: 'pl-size-full',
                     ref: triggerRef,
                   })}
-                  onClick={(e) => this.resizeViewport('full')}
+                  onClick={e => this.resizeViewport('full')}
                 >
                   <VisuallyHidden>Resize viewport to full</VisuallyHidden>
                   <DesktopIcon
@@ -233,12 +213,9 @@ class ViewportSizes extends BaseComponent {
             </Tooltip>
           </li>
         )}
-        {!this.ishControlsHide.random && (
+        {/* need to add random resize handler before re-enabling */}
+        {/* {!this.ishControlsHide.random && (
           <li class="pl-c-size-list__item">
-            {/* <button class="pl-c-size-list__action" id="pl-size-random">
-              Rand
-            </button> */}
-  
             <Tooltip
               placement="top"
               trigger="hover"
@@ -266,8 +243,9 @@ class ViewportSizes extends BaseComponent {
               )}
             </Tooltip>
           </li>
-        )}
-        {!this.ishControlsHide.disco && (
+        )} */}
+        {/* need to add disco handler to resize logic before re-enabling */}
+        {/* {!this.ishControlsHide.disco && (
           <li class="pl-c-size-list__item">
             <Tooltip
               placement="top"
@@ -297,7 +275,7 @@ class ViewportSizes extends BaseComponent {
               )}
             </Tooltip>
           </li>
-        )}
+        )} */}
         {!this.ishControlsHide.hay && (
           <li class="pl-c-size-list__item">
             <button class="pl-c-size-list__action mode-link" id="pl-size-hay">

@@ -6,7 +6,6 @@ export const Tooltip = function({ tooltip, children, hideArrow, ...props }) {
   return (
     <TooltipTrigger
       {...props}
-      
       tooltip={({
         getTooltipProps,
         getArrowProps,
@@ -36,4 +35,4 @@ export const Tooltip = function({ tooltip, children, hideArrow, ...props }) {
       {children}
     </TooltipTrigger>
   );
-}
+};

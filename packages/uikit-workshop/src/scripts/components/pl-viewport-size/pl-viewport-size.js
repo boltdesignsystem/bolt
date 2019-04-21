@@ -1,6 +1,6 @@
 import { h } from 'preact';
 
-export const ViewportSize = (props) => {
+export const ViewportSize = props => {
   return (
     <form className="pl-c-viewport-size" method="post" action="#">
       <input

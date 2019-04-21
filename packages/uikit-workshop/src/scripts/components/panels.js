@@ -59,8 +59,7 @@ function receiveIframeMessage(event) {
 
   let data = {};
   try {
-    data =
-      typeof event.data !== 'string' ? event.data : JSON.parse(event.data);
+    data = typeof event.data !== 'string' ? event.data : JSON.parse(event.data);
   } catch (e) {
     // @todo: how do we want to handle exceptions here?
   }

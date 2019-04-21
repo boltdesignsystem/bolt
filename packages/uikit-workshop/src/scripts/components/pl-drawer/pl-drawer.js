@@ -80,7 +80,6 @@ export class Drawer extends BaseComponent {
     drawerOpened: props.boolean,
   };
 
-
   render({ drawerOpened, drawerHeight, isViewallPage }) {
     const classes = css(
       'pl-c-drawer',
@@ -90,9 +89,7 @@ export class Drawer extends BaseComponent {
 
     const height =
       drawerOpened && !isViewallPage
-        ? drawerHeight > 20
-          ? drawerHeight
-          : 300
+        ? drawerHeight > 20 ? drawerHeight : 300
         : 0;
 
     return (

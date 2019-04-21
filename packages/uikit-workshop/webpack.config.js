@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 const cosmiconfig = require('cosmiconfig');
@@ -18,8 +18,10 @@ const explorer = cosmiconfig('patternlab');
 // @todo: wire these two ocnfigs up to use cosmicconfig!
 const defaultConfig = {
   buildDir: './dist',
+  publicPath: './styleguide/',
   prod: true, // or false for local dev
   sourceMaps: false,
+  copy: [{ from: './src/images/**', to: 'images', flatten: true }],
 };
 
 module.exports = async function() {
@@ -98,7 +100,7 @@ module.exports = async function() {
       },
       output: {
         path: path.resolve(process.cwd(), `${config.buildDir}/styleguide`),
-        publicPath: '/pattern-lab/styleguide/',
+        publicPath: `${config.publicPath}`,
         filename: '[name].js',
         chunkFilename: `js/[name]-chunk-[chunkhash].js`,
       },
@@ -214,17 +216,6 @@ module.exports = async function() {
         nodeEnv: 'production',
         mergeDuplicateChunks: true,
         concatenateModules: true,
-        // splitChunks: {
-        //   chunks: 'async',
-        //   cacheGroups: {
-        //     vendors: {
-        //       test: /[\\/]node_modules[\\/]/,
-        //       name: 'vendors',
-        //       chunks: 'async',
-        //       reuseExistingChunk: true,
-        //     },
-        //   },
-        // },
         minimizer: config.prod
           ? [
               new UglifyJsPlugin({
@@ -244,16 +235,17 @@ module.exports = async function() {
           : [],
       },
       plugins: [
+        new CopyPlugin(config.copy),
         new PrerenderSPAPlugin({
           // Required - The path to the webpack-outputted app to prerender.
           // staticDir: path.join(__dirname, 'dist'),
           staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
           // Required - Routes to render.
-          routes: [ '/'],
+          routes: ['/'],
           postProcess(context) {
             context.html = context.html.replace(/<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi, ''); 
             return context;
-          }
+          },
         }),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
@@ -298,7 +290,7 @@ module.exports = async function() {
           // caches will be deleted. Together they must be at least 300MB in size
           sizeThreshold: 300 * 1024 * 1024,
         },
-      }),
+      })
     );
 
     webpackConfig.plugins.push(

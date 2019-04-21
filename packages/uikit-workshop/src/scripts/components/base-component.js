@@ -7,10 +7,12 @@ import withLitHtml from '@skatejs/renderer-lit-html';
 
 export class BaseComponent extends withComponent(withPreact()) {
   get renderRoot() {
+    return this;
+    // @todo: re-enable Shadow DOM conditionally after further testing + making sure PL components have inline styles needed
     // if (this.useShadow === true && supportsShadowDom) {
     //   return super.renderRoot || shadow(this);
     // } else {
-    return this;
+    //   return this;
     // }
   }
 

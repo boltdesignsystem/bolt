@@ -25,6 +25,7 @@ class Logo extends BaseComponent {
 
   static props = {
     url: props.string,
+    text: props.string,
     src: props.string,
   };
 
@@ -32,6 +33,9 @@ class Logo extends BaseComponent {
     return (
       <a href={this.props.url} className="pl-c-logo">
         <img src={this.props.src} className="pl-c-logo__img" />
+        {this.props.text && (
+          <span className="pl-c-logo__text">{this.props.text}</span>
+        )}
       </a>
     );
   }

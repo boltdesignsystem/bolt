@@ -1,7 +1,6 @@
 import { define, props } from 'skatejs';
 import { h } from 'preact';
 
-
 import { store } from '../../store.js'; // connect to the Redux store.
 import { updateThemeMode } from '../../actions/app.js'; // redux actions needed
 import { BaseComponent } from '../base-component.js';
@@ -32,18 +31,14 @@ class ThemeToggle extends BaseComponent {
 
   _stateChanged(state) {
     this.themeMode = state.app.themeMode;
-
     this.iframeElement = document.querySelector('.pl-js-iframe');
 
-    if (this.iframeElement){
+    if (this.iframeElement) {
       const obj = JSON.stringify({
         event: 'patternLab.stateChange',
         state,
       });
-      this.iframeElement.contentWindow.postMessage(
-        obj,
-        this.targetOrigin
-      );
+      this.iframeElement.contentWindow.postMessage(obj, this.targetOrigin);
     }
   }
 
@@ -51,7 +46,6 @@ class ThemeToggle extends BaseComponent {
     const toggleThemeMode = this.themeMode !== 'dark' ? 'dark' : 'light';
     return (
       <div class="pl-c-toggle-theme">
-        {/* {this._renderStyles([styles])} */}
         <button
           class="pl-c-tools__action pl-c-toggle-theme__action"
           title="Switch Theme"

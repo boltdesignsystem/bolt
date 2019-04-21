@@ -1,7 +1,6 @@
 let minWidth = 240;
 let maxWidth = 2600;
 
-
 if (window.config !== undefined) {
   //set minimum and maximum viewport based on confg
   if (window.config.ishMinimum !== undefined) {
