@@ -4,8 +4,8 @@ import { BaseComponent } from '../base-component.js';
 import { urlHandler, patternName } from '../../utils';
 import { store } from '../../store'; // redux store
 
-import NewTabIcon from '../../../icons/new-tab.svg';
-import HelpIcon from '../../../icons/help.svg';
+import NewTabIcon from '../../../icons/external-link.svg';
+import HelpIcon from '../../../icons/help-circle.svg';
 import SettingsIcon from '../../../icons/settings.svg';
 
 @define

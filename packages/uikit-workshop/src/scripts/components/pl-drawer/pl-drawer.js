@@ -10,7 +10,7 @@ import {
 import { css } from '../../utils';
 import { BaseComponent } from '../base-component.js';
 import AnimateHeight from 'react-animate-height';
-import CloseIcon from '../../../icons/close.svg';
+import CloseIcon from '../../../icons/x.svg';
 
 @define
 export class Drawer extends BaseComponent {

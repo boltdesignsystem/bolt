@@ -1,8 +1,8 @@
 import { define, props } from 'skatejs';
 import { h } from 'preact';
 
-import ShowIcon from '../../../icons/show.svg';
-import HideIcon from '../../../icons/hide.svg';
+import ShowIcon from '../../../icons/eye.svg';
+import HideIcon from '../../../icons/eye-off.svg';
 
 import { store } from '../../store.js'; // connect to the Redux store.
 import { updateDrawerState } from '../../actions/app.js'; // redux actions
@@ -39,9 +39,9 @@ class InfoToggle extends BaseComponent {
         </span>
         <span class="pl-c-tools__action-icon">
           {_drawerOpened ? (
-            <HideIcon height={20} width={20} fill="currentColor" />
+            <HideIcon height={16} width={16} viewBox="0 0 24 24" fill="currentColor" />
           ) : (
-            <ShowIcon height={20} width={20} fill="currentColor" />
+            <ShowIcon height={16} width={16} viewBox="0 0 24 24" fill="currentColor" />
           )}
         </span>
       </button>

@@ -1,10 +1,11 @@
 import { define, props } from 'skatejs';
-import { h } from 'preact';
-
+import { Component, h } from 'preact';
 const classNames = require('classnames');
 
 import { store } from '../../store.js'; // redux store
-import ArrowIcon from '../../../icons/arrow-down.svg';
+import ArrowIcon from '../../../icons/chevron-down.svg';
+import PlusIcon from '../../../icons/plus.svg';
+import MinusIcon from '../../../icons/minus.svg';
 import { BaseComponent } from '../base-component.js';
 import { scrollTo, scrollIntoView } from 'scroll-js';
 import 'url-search-params-polyfill';
@@ -15,7 +16,7 @@ const SubSubList = props => {
 
   const nonViewAllItems = children.filter(
     item =>
-      item.patternName !== 'View All' && !item.patternName.includes(' Docs')
+      item.patternName !== 'View All' && !item.patternName.includes(' Docs'),
   );
   // const nonViewAllItems = children.filter((item => (item.patternName !== 'View All')));
   const viewAllItems = children.filter(item => item.patternName === 'View All');
@@ -39,8 +40,7 @@ const SubSubList = props => {
               onClick={e =>
                 elem.handleClick(e, patternSubtypeItem.patternPartial)
               }
-              data-patternpartial={patternSubtypeItem.patternPartial}
-            >
+              data-patternpartial={patternSubtypeItem.patternPartial}>
               {patternSubtypeItem.patternName === 'View All'
                 ? `${category}`
                 : patternSubtypeItem.patternName}
@@ -59,8 +59,7 @@ const SubSubList = props => {
                 aria-controls={category}
                 onClick={elem.toggleSpecialNavPanel}
                 isOpen={false}
-                isOpenClass={elem.isOpenClass}
-              >
+                isOpenClass={elem.isOpenClass}>
                 {category}
               </SpecialButton>
             )}
@@ -71,8 +70,7 @@ const SubSubList = props => {
           aria-controls={category}
           onClick={elem.toggleNavPanel}
           isOpen={false}
-          isOpenClass={elem.isOpenClass}
-        >
+          isOpenClass={elem.isOpenClass}>
           {category}
         </Button>
       )}
@@ -81,24 +79,22 @@ const SubSubList = props => {
         viewAllItems.length === 0) && (
         <ol
           id={category}
-          className={`pl-c-nav__subsublist pl-c-nav__subsublist--dropdown pl-js-acc-panel`}
-        >
+          className={`pl-c-nav__subsublist pl-c-nav__subsublist--dropdown pl-js-acc-panel`}>
           {nonViewAllItems.map(patternSubtypeItem => (
             <li class="pl-c-nav__item">
               <a
                 href={`patterns/${patternSubtypeItem.patternPath}`}
                 className={`pl-c-nav__link pl-c-nav__link--sublink
-                      ${
-                        patternSubtypeItem.patternName === 'View All'
-                          ? 'pl-c-nav__link--overview'
-                          : 'pl-c-nav__link--subsublink'
-                      }
-                    `}
+                    ${
+                      patternSubtypeItem.patternName === 'View All'
+                        ? 'pl-c-nav__link--overview'
+                        : 'pl-c-nav__link--subsublink'
+                    }
+                  `}
                 onClick={e =>
                   elem.handleClick(e, patternSubtypeItem.patternPartial)
                 }
-                data-patternpartial={patternSubtypeItem.patternPartial}
-              >
+                data-patternpartial={patternSubtypeItem.patternPartial}>
                 {patternSubtypeItem.patternName === 'View All'
                   ? `${category} Overview`
                   : patternSubtypeItem.patternName}
@@ -126,13 +122,20 @@ const SpecialButton = props => {
         props.isOpen ? props.isOpenClass : ''
       }`}
       role="tab"
-      {...props}
-    >
+      {...props}>
       {props.children}
       <span class="pl-c-nav__link-icon">
-        <ArrowIcon
-          height={24}
-          width={24}
+        <PlusIcon
+          height={14}
+          width={14}
+          className={`pl-c-nav__icon--closed`}
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        />
+        <MinusIcon
+          height={14}
+          width={14}
+          className={`pl-c-nav__icon--opened`}
           viewBox="0 0 24 24"
           fill="currentColor"
         />
@@ -148,17 +151,8 @@ const Button = props => {
         props.isOpen ? props.isOpenClass : ''
       }`}
       role="tab"
-      {...props}
-    >
+      {...props}>
       <span className={`pl-c-nav__link-text`}>{props.children}</span>
-      <span class="pl-c-nav__link-icon">
-        <ArrowIcon
-          height={24}
-          width={24}
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        />
-      </span>
     </button>
   );
 };
@@ -170,8 +164,8 @@ const ButtonTitle = props => {
         props.isOpen ? props.isOpenClass : ''
       }`}
       role="tab"
-      {...props}
-    >
+      {...props}>
+      <span className={`pl-c-nav__link-text`}>{props.children}</span>
       <span class="pl-c-nav__link-icon">
         <ArrowIcon
           height={24}
@@ -180,7 +174,6 @@ const ButtonTitle = props => {
           fill="currentColor"
         />
       </span>
-      <span className={`pl-c-nav__link-text`}>{props.children}</span>
     </button>
   );
 };
@@ -271,7 +264,7 @@ class Nav extends BaseComponent {
     this.navAccordionTriggers = document.querySelectorAll('.pl-js-acc-handle');
     this.navAccordionPanels = document.querySelectorAll('.pl-js-acc-panel');
     this.topLevelTriggers = document.querySelectorAll(
-      '.pl-c-nav__link--title.pl-is-active'
+      '.pl-c-nav__link--title.pl-is-active',
     );
 
     if (topLevelOnly === true) {
@@ -315,7 +308,7 @@ class Nav extends BaseComponent {
 
     const currentPattern = this.currentPattern;
     const activeLink = document.querySelector(
-      `[data-patternpartial="${currentPattern}"]`
+      `[data-patternpartial="${currentPattern}"]`,
     );
     const self = this;
 
@@ -333,7 +326,15 @@ class Nav extends BaseComponent {
       // handle overview links vs nested links
       if (activeLink.classList.contains('pl-js-link-overview')) {
         const childDropdownTrigger = activeLink.nextSibling;
-        const childDropdown = activeLink.parentNode.nextSibling;
+        const childDropdownWrapper = activeLink.parentNode.nextSibling;
+        const childDropdown = childDropdownWrapper.firstChild;
+
+        if (childDropdownWrapper && shouldAutoOpenNav) {
+          if (childDropdownWrapper.tagName) {
+            childDropdownWrapper.classList.add('pl-is-active');
+            this.previousActiveLinks.push(childDropdownWrapper);
+          }
+        }
 
         if (childDropdown && shouldAutoOpenNav) {
           if (childDropdown.tagName) {
@@ -359,19 +360,19 @@ class Nav extends BaseComponent {
 
           if (
             parentDropdown.previousSibling.classList.contains(
-              'pl-c-nav__link--overview-wrapper'
+              'pl-c-nav__link--overview-wrapper',
             ) &&
             shouldAutoOpenNav
           ) {
             this.previousActiveLinks.push(parentDropdown.previousSibling);
             parentDropdown.previousSibling.classList.add('pl-is-active');
             parentDropdownTrigger = parentDropdown.previousSibling.querySelector(
-              '.pl-js-acc-handle'
+              '.pl-js-acc-handle',
             );
           }
 
           const grandparentDropdown = parentDropdown.closest(
-            '.pl-c-nav__sublist--dropdown'
+            '.pl-c-nav__sublist--dropdown',
           );
           const grandparentDropdownTrigger =
             grandparentDropdown.previousSibling;
@@ -386,7 +387,7 @@ class Nav extends BaseComponent {
             if (
               shouldAutoOpenNav === true ||
               parentDropdownTrigger.classList.contains(
-                'pl-c-nav__link--title'
+                'pl-c-nav__link--title',
               ) === false
             ) {
               parentDropdownTrigger.classList.add('pl-is-active');
@@ -430,15 +431,15 @@ class Nav extends BaseComponent {
     const target = e.target;
     const panel = target.parentNode.nextSibling;
     const subnav = panel.parentNode.parentNode.classList.contains(
-      'pl-js-acc-panel'
+      'pl-js-acc-panel',
     );
 
     if (!subnav) {
       const navTriggers = document.querySelectorAll(
-        `.pl-js-acc-handle.pl-is-active`
+        `.pl-js-acc-handle.pl-is-active`,
       );
       const navPanels = document.querySelectorAll(
-        `.pl-js-acc-panel.pl-is-active`
+        `.pl-js-acc-panel.pl-is-active`,
       );
 
       navTriggers.forEach(navTrigger => {
@@ -457,9 +458,11 @@ class Nav extends BaseComponent {
     if (target.classList.contains('pl-is-active')) {
       target.classList.remove('pl-is-active');
       panel.classList.remove('pl-is-active');
+      panel.firstChild.classList.remove('pl-is-active');
     } else {
       target.classList.add('pl-is-active');
       panel.classList.add('pl-is-active');
+      panel.firstChild.classList.add('pl-is-active');
     }
   }
 
@@ -467,7 +470,7 @@ class Nav extends BaseComponent {
     const target = e.target;
     const panel = target.nextSibling;
     const subnav = target.parentNode.parentNode.classList.contains(
-      'pl-js-acc-panel'
+      'pl-js-acc-panel',
     );
 
     if (!subnav) {
@@ -490,9 +493,11 @@ class Nav extends BaseComponent {
     if (target.classList.contains('pl-is-active')) {
       target.classList.remove('pl-is-active');
       panel.classList.remove('pl-is-active');
+      panel.firstChild.classList.remove('pl-is-active');
     } else {
       target.classList.add('pl-is-active');
       panel.classList.add('pl-is-active');
+      panel.firstChild.classList.add('pl-is-active');
     }
   }
 
@@ -525,55 +530,56 @@ class Nav extends BaseComponent {
                 aria-controls={item.patternTypeLC}
                 onClick={this.toggleNavPanel}
                 isOpen={false}
-                isOpenClass={this.isOpenClass}
-              >
+                isOpenClass={this.isOpenClass}>
                 {item.patternTypeUC}
               </ButtonTitle>
 
-              <ol
-                id={item.patternSubtypeUC}
-                className={`pl-c-nav__sublist pl-c-nav__sublist--dropdown pl-js-acc-panel`}
-              >
-                {item.patternTypeItems.map((patternSubtype, i) => {
-                  return (
-                    <SubSubList
-                      elem={this.elem}
-                      category={patternSubtype.patternSubtypeUC}
-                    >
-                      {patternSubtype.patternSubtypeItems}
-                    </SubSubList>
-                  );
-                })}
-
-                {patternItems &&
-                  patternItems.map((patternItem, i) => {
+              <div
+                className={`pl-c-nav__sublist--dropdown-wrapper pl-js-acc-panel`}>
+                <ol
+                  id={item.patternSubtypeUC}
+                  className={`pl-c-nav__sublist pl-c-nav__sublist--dropdown pl-js-acc-panel`}>
+                  {item.patternTypeItems.map((patternSubtype, i) => {
                     return (
-                      <li class="pl-c-nav__item">
-                        <a
-                          href={`patterns/${patternItem.patternPath}`}
-                          class="pl-c-nav__link pl-c-nav__link--pattern"
-                          onClick={e =>
-                            this.handleClick(e, patternItem.patternPartial)
-                          }
-                          data-patternpartial={patternItem.patternPartial}
-                          tabindex="0"
-                        >
-                          {patternItem.patternName === 'View All'
-                            ? patternItem.patternName + ' ' + item.patternTypeUC
-                            : patternItem.patternName}
-                          {patternItem.patternState && (
-                            <span
-                              class={`pl-c-pattern-state pl-c-pattern-state--${
-                                patternItem.patternState
-                              }`}
-                              title={patternItem.patternState}
-                            />
-                          )}
-                        </a>
-                      </li>
+                      <SubSubList
+                        elem={this.elem}
+                        category={patternSubtype.patternSubtypeUC}>
+                        {patternSubtype.patternSubtypeItems}
+                      </SubSubList>
                     );
                   })}
-              </ol>
+
+                  {patternItems &&
+                    patternItems.map((patternItem, i) => {
+                      return (
+                        <li class="pl-c-nav__item">
+                          <a
+                            href={`patterns/${patternItem.patternPath}`}
+                            class="pl-c-nav__link pl-c-nav__link--pattern"
+                            onClick={e =>
+                              this.handleClick(e, patternItem.patternPartial)
+                            }
+                            data-patternpartial={patternItem.patternPartial}
+                            tabindex="0">
+                            {patternItem.patternName === 'View All'
+                              ? patternItem.patternName +
+                                ' ' +
+                                item.patternTypeUC
+                              : patternItem.patternName}
+                            {patternItem.patternState && (
+                              <span
+                                class={`pl-c-pattern-state pl-c-pattern-state--${
+                                  patternItem.patternState
+                                }`}
+                                title={patternItem.patternState}
+                              />
+                            )}
+                          </a>
+                        </li>
+                      );
+                    })}
+                </ol>
+              </div>
             </li>
           );
         })}
