@@ -211,7 +211,12 @@ class Nav extends BaseComponent {
         e.target.closest('pl-header') === null &&
         e.target.closest('svg') === null
       ) {
-        self.cleanupActiveNav();
+        if (
+          window.matchMedia('(min-width: calc(42em))').matches &&
+          self.layoutMode !== 'vertical'
+        ) {
+          self.cleanupActiveNav();
+        }
       }
     });
   }
@@ -355,18 +360,18 @@ class Nav extends BaseComponent {
       let parentDropdownTrigger;
 
       if (parentDropdown) {
-        if (parentDropdown.previousSibling) {
-          parentDropdownTrigger = parentDropdown.previousSibling;
+        if (parentDropdown.parentNode.previousSibling) {
+          parentDropdownTrigger = parentDropdown.parentNode.previousSibling;
 
           if (
-            parentDropdown.previousSibling.classList.contains(
+            parentDropdown.parentNode.previousSibling.classList.contains(
               'pl-c-nav__link--overview-wrapper',
             ) &&
             shouldAutoOpenNav
           ) {
-            this.previousActiveLinks.push(parentDropdown.previousSibling);
-            parentDropdown.previousSibling.classList.add('pl-is-active');
-            parentDropdownTrigger = parentDropdown.previousSibling.querySelector(
+            this.previousActiveLinks.push(parentDropdown.parentNode.previousSibling);
+            parentDropdown.parentNode.previousSibling.classList.add('pl-is-active');
+            parentDropdownTrigger = parentDropdown.parentNode.previousSibling.querySelector(
               '.pl-js-acc-handle',
             );
           }
