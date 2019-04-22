@@ -1,18 +1,74 @@
-<bolt-button onclick="this.nextElementSibling.show()">Open Modal</bolt-button>
-<bolt-modal>
-  <bolt-list slot="header" display="flex">
-    <bolt-list-item><bolt-link url="https://pega.com">Link 1</bolt-link></bolt-list-item>
-    <bolt-list-item><bolt-link url="https://google.com">Link 2</bolt-link></bolt-list-item>
-    <bolt-list-item><bolt-link url="https://yahoo.com">Link 3</bolt-link></bolt-list-item>
-  </bolt-list>
+{% set link_1 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Link 1",
+    url: "https://pega.com",
+  } only %}
+{% endset %}
 
-  <bolt-text headline>Default width</bolt-text>
-  <bolt-text>This modal is 10 columns wide.</bolt-text>
-  <bolt-button onclick="this.closest('bolt-modal').hide()">Close Modal</bolt-button>
+{% set link_2 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Link 2",
+    url: "https://google.com",
+  } only %}
+{% endset %}
 
-  <bolt-list slot="footer" display="flex">
-    <bolt-list-item><bolt-link url="https://pega.com">Link 3</bolt-link></bolt-list-item>
-    <bolt-list-item><bolt-link url="https://google.com">Link 4</bolt-link></bolt-list-item>
-    <bolt-list-item><bolt-link url="https://yahoo.com">Link 5</bolt-link></bolt-list-item>
-  </bolt-list>
-</bolt-modal>
+{% set link_3 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Link 3",
+    url: "https://yahoo.com",
+  } only %}
+{% endset %}
+
+{% set modal_content %}
+  {% include "@bolt-components-list/list.twig" with {
+    display: "flex",
+    items: [
+      link_1,
+      link_2,
+      link_3,
+    ],
+    attributes: {
+      slot: "header"
+    }
+  } only %}
+  <div>
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      text: "Default Width"
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "This modal is 10 columns wide."
+    } only %}
+  </div>
+  {% include "@bolt-components-list/list.twig" with {
+    display: "flex",
+    items: [
+      link_1,
+      link_2,
+      link_3,
+    ],
+    attributes: {
+      slot: "footer"
+    }
+  } only %}
+{% endset %}
+
+<div class="u-bolt-margin-bottom-medium">
+  <bolt-button onclick="this.nextElementSibling.show()">Open Modal</bolt-button>
+  <bolt-modal>
+    {{ modal_content }}
+  </bolt-modal>
+</div>
+
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Open Modal",
+    attributes: {
+      onclick: "this.nextElementSibling.show()",
+    }
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: modal_content,
+  } only %}
+</div>

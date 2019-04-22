@@ -45,6 +45,8 @@ bolt-modal:not([ready]) {
 
 // Dark overlay
 .c-bolt-modal__overlay {
+  @include bolt-z-index(modalBG);
+
   display: block;
   opacity: 0;
   position: fixed;
@@ -57,9 +59,8 @@ bolt-modal:not([ready]) {
   transition: opacity $bolt-transition;
 
   &.is-open {
-    @include bolt-z-index(modalBG);
-
     opacity: 1;
+    pointer-events: auto;
   }
 }
 

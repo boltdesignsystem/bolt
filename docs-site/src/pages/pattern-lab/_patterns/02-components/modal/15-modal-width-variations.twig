@@ -1,42 +1,20 @@
-{% set modal_width_regular %}
-  <bolt-button onclick="this.nextElementSibling.show()">Open Modal (default width)</bolt-button>
-  <bolt-modal>
-    <bolt-text headline>Default width</bolt-text>
-    <bolt-text>This modal is 10 columns wide.</bolt-text>
-  </bolt-modal>
-{% endset %}
-{% set modal_width_auto %}
-  <bolt-modal width="auto">
-    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (auto width)</bolt-button>
+{% set schema = bolt.data.components["@bolt-components-modal"].schema %}
 
-    <bolt-text headline>Auto width</bolt-text>
-    <bolt-text>This modal is only as wide as the content.</bolt-text>
-  </bolt-modal>
-{% endset %}
-{% set modal_width_optimal %}
-  <bolt-modal width="optimal">
-    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (optimal width)</bolt-button>
+<p>The modal container's width can be adjusted by the width prop. The default is set to regular, which is about 10 columns wide.</p>
 
-    <bolt-text headline>Optimal width</bolt-text>
-    <bolt-text>This modal's width is optimal for reading, which is about 75 characters wide.</bolt-text>
-  </bolt-modal>
-{% endset %}
-{% set modal_width_full %}
-  <bolt-modal width="full">
-    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (full width)</bolt-button>
-
-    <bolt-text headline>Full width</bolt-text>
-    <bolt-text>This modal is full width.</bolt-text>
-  </bolt-modal>
-{% endset %}
-
-{% include "@bolt-components-list/list.twig" with {
-  display: "inline",
-  spacing: "medium",
-  items: [
-    modal_width_regular,
-    modal_width_auto,
-    modal_width_optimal,
-    modal_width_full,
-  ]
-} only %}
+{% for width in schema.properties.width.enum %}
+  <div class="u-bolt-margin-bottom-medium">
+    <h3>{{ width|capitalize }} Width</h3>
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Open Modal",
+      size: "small",
+      attributes: {
+        onclick: "this.nextElementSibling.show()",
+      }
+    } only %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      content: "This is a modal set to " ~ width ~ " width.",
+      width: width,
+    } only %}
+  </div>
+{% endfor %}

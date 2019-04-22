@@ -51,17 +51,20 @@ properties:
   persistent:
     type: boolean
     default: false
-    description: Configures a modal to remain open until a required action is completed.
+    description: Configures the modal to remain open until a specific close modal action is completed.
+    enum:
+      - true
+      - false
   slots:
     type: object
-    description: The slots content can be passed along
+    description: There are 3 sections (slots) within the modal container, by assigning the appropirate slot name, content will be passed into the respective section.
     properties:
       default:
-        description: Default slot
+        description: The body section of the modal container.
       header:
-        description: Slotted area for content above the main modal content area.
+        description: The header section of the modal container.
       footer:
-        description: Footer slot
+        description: The footer section of the modal container.
   # scrollable:
   #   type: boolean
   #   description: When set to true, allows the modal's content area to be scrollable while the modal's header and footer areas are fixed in place.

@@ -1,10 +1,10 @@
 {% set schema = bolt.data.components["@bolt-components-modal"].schema %}
 
-<p>The modal container's coloring theme can be adjusted by the theme prop. The default is set to xlight. It can also be set to none to make the container completely transparent.</p>
+<p>The modal container's spacing can be adjusted by the spacing prop. The default is set to medium.</p>
 
-{% for theme in schema.properties.theme.enum %}
+{% for spacing in schema.properties.spacing.enum %}
   <div class="u-bolt-margin-bottom-medium">
-    <h3>{{ theme|capitalize }} Theme</h3>
+    <h3>{{ spacing|capitalize }} Spacing</h3>
     {% include "@bolt-components-button/button.twig" with {
       text: "Open Modal",
       size: "small",
@@ -13,8 +13,8 @@
       }
     } only %}
     {% include "@bolt-components-modal/modal.twig" with {
-      content: "<mark>This is a modal set to " ~ theme ~ " theme.</mark>",
-      theme: theme,
+      content: "This is a modal set to " ~ spacing ~ " spacing.",
+      spacing: spacing,
     } only %}
   </div>
 {% endfor %}

@@ -1,28 +1,61 @@
-{% set modal_persistent %}
-  <bolt-modal persistent>
-    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (persistent)</bolt-button>
+{% set persistent_modal_content %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Open Modal",
+    size: "small",
+    attributes: {
+      onclick: "this.closest('bolt-modal').show()",
+      slot: "trigger",
+    }
+  } only %}
 
-    <bolt-text headline>Persistent Modal</bolt-text>
-    <bolt-text>Clicking outside of modal container will not close the modal, only close buttons will.</bolt-text>
-    <bolt-button onclick="this.closest('bolt-modal').hide()">Close Modal</bolt-button>
-  </bolt-modal>
+  <div>
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      text: "Persistent Modal"
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Clicking outside of modal container will not close the modal, only close buttons will."
+    } only %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Close modal",
+      attributes: {
+        onclick: "this.closest('bolt-modal').hide()"
+      }
+    } only %}
+  </div>
 {% endset %}
 
-{% set modal_not_persistent %}
-  <bolt-modal>
-    <bolt-button slot="trigger" onclick="this.closest('bolt-modal').show()">Open Modal (not persistent)</bolt-button>
+{% set reuglar_modal_content %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Open Modal",
+    size: "small",
+    attributes: {
+      onclick: "this.closest('bolt-modal').show()",
+      slot: "trigger",
+    }
+  } only %}
 
-    <bolt-text headline>Regular Modal</bolt-text>
-    <bolt-text>Clicking outside of modal container or the close button will close the modal.</bolt-text>
-  </bolt-modal>
+  <div>
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      text: "Regular Modal"
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Clicking outside of modal container or the close button will close the modal."
+    } only %}
+  </div>
+{% endset %}
+
+<div class="u-bolt-margin-bottom-medium">
+  <h3>Persistent</h3>
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: persistent_modal_content,
+    persistent: true,
+  } only %}
 </div>
-{% endset %}
-
-{% include "@bolt-components-list/list.twig" with {
-  display: "inline",
-  spacing: "medium",
-  items: [
-    modal_persistent,
-    modal_not_persistent,
-  ]
-} only %}
+<div class="u-bolt-margin-bottom-medium">
+  <h3>Not Persistent</h3>
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: reuglar_modal_content,
+  } only %}
+</div>
