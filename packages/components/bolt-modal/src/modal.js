@@ -34,6 +34,10 @@ class BoltModal extends withLitHtml() {
       ...props.string,
       ...{ default: 'medium' },
     },
+    scroll: {
+      ...props.string,
+      ...{ default: 'container' },
+    },
     theme: {
       ...props.string,
       ...{ default: 'xlight' },
@@ -260,10 +264,11 @@ class BoltModal extends withLitHtml() {
     // @todo: validate props
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     // const { disabled } = this.validateProps(this.props);
-    const { open, width, spacing, theme } = this.props;
+    const { open, width, spacing, scroll, theme } = this.props;
 
     const classes = cx('c-bolt-modal', {
-      // [`is-open`]: open,
+      [`is-open`]: open,
+      [`c-bolt-modal--scroll-${scroll}`]: scroll,
     });
 
     const overlayClasses = cx('c-bolt-modal__overlay', {

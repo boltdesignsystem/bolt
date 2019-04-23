@@ -31,12 +31,11 @@ $bolt-modal-border-style: $bolt-border-style;
 $bolt-modal-border-color: bolt-theme(text, 0.15);
 $bolt-modal-border-radius: bolt-border-radius(small);
 $bolt-modal-max-height: 80vh;
+$bolt-modal-transition: $bolt-transition;
 
 // Hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
 bolt-modal:not([ready]) {
-  > *:not([slot*='trigger']) {
-    display: none;
-  }
+  display: none;
 }
 
 .c-bolt-modal {
@@ -56,7 +55,7 @@ bolt-modal:not([ready]) {
   left: 0;
   pointer-events: none;
   background-color: $bolt-modal-overlay-bg-color;
-  transition: opacity $bolt-transition;
+  transition: opacity $bolt-modal-transition;
 
   &.is-open {
     opacity: 1;
@@ -72,23 +71,67 @@ bolt-modal:not([ready]) {
   visibility: hidden;
   opacity: 0;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) translateY(100px);
+  top: 0;
+  left: 0;
   min-width: 200px;
-  max-width: calc(100% - #{bolt-spacing(xsmall) * 2});
+  max-width: calc(100% - #{bolt-spacing(medium) * 2});
   max-height: $bolt-modal-max-height;
   margin: 0;
   padding: 0;
   border: 0;
   background: transparent;
-  transition: $bolt-transition;
+  transition: $bolt-modal-transition;
+}
+
+// Scroll options
+.c-bolt-modal--scroll-overall {
+  @include bolt-z-index(modalBG);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  pointer-events: none;
 
   &.is-open {
-    visibility: visible;
-    opacity: 1;
-    transform: translate(-50%, -50%);
-    transition: $bolt-transition;
+    pointer-events: auto;
+  }
+
+  .c-bolt-modal__content {
+    @include bolt-margin(0 auto);
+
+    top: 50vh;
+    transform: translate3d(0, -25%, 0);
+
+    &.is-open {
+      visibility: visible;
+      opacity: 1;
+      position: relative;
+      transform: translate3d(0, -50%, 0);
+    }
+  }
+}
+
+.c-bolt-modal--scroll-container {
+  .c-bolt-modal__content {
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -25%, 0);
+
+    &.is-open {
+      visibility: visible;
+      opacity: 1;
+      transform: translate3d(-50%, -50%, 0);
+    }
+  }
+
+  .c-bolt-modal__container-body {
+    max-height: calc(#{$bolt-modal-max-height} - 6rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
@@ -125,12 +168,6 @@ bolt-modal:not([ready]) {
 .c-bolt-modal__container-footer,
 .c-bolt-modal__container-body {
   display: block;
-}
-
-.c-bolt-modal__container-body {
-  max-height: calc(#{$bolt-modal-max-height} - 6rem);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .c-bolt-modal__container-header {
@@ -175,17 +212,9 @@ bolt-modal:not([ready]) {
   @include bolt-z-index(modal);
 
   position: absolute;
-  top: auto;
-  right: 50%;
-  bottom: 0;
-  transform: translate3d(50%, calc(100% + #{bolt-spacing(small)}), 0);
-
-  @include bolt-mq(xsmall) {
-    top: 0;
-    right: 0;
-    bottom: auto;
-    transform: translate3d(50%, -50%, 0);
-  }
+  top: 0;
+  right: 0;
+  transform: translate3d(50%, -50%, 0);
 }
 
 .c-bolt-modal__dialog-title {

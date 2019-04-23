@@ -1,0 +1,43 @@
+{% set modal_content %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/placeholders/tout-4x3-climber.jpg",
+    alt: "A Rock Climber",
+    lazyload: false,
+  } only %}
+{% endset %}
+
+<div class="u-bolt-margin-bottom-medium">
+  <h3>Image Trigger</h3>
+
+  {% grid %}
+    {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+      <bolt-image slot="trigger" onclick="this.nextElementSibling.show()" tabindex="0" style="cursor: zoom-in;" src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" ratio="4/3"></bolt-image>
+
+      {% include "@bolt-components-modal/modal.twig" with {
+        content: modal_content,
+        scroll: "overall",
+        spacing: "none",
+        theme: "none",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+</div>
+
+<div class="u-bolt-margin-bottom-medium">
+  <h3>Button Trigger</h3>
+
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Open Modal",
+    size: "small",
+    attributes: {
+      onclick: "this.nextElementSibling.show()",
+    }
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: modal_content,
+    scroll: "overall",
+    spacing: "none",
+    theme: "none",
+  } only %}
+</div>
