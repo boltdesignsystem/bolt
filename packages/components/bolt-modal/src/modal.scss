@@ -74,7 +74,7 @@ bolt-modal:not([ready]) {
   top: 0;
   left: 0;
   min-width: 200px;
-  max-width: calc(100% - #{bolt-spacing(medium) * 2});
+  max-width: calc(100% - #{bolt-spacing(small) * 2});
   max-height: $bolt-modal-max-height;
   margin: 0;
   padding: 0;
@@ -137,7 +137,7 @@ bolt-modal:not([ready]) {
 
 // Content width options
 [class*='c-bolt-modal__content--width-'] {
-  width: calc(100% - #{bolt-spacing(xsmall) * 2});
+  width: calc(100% - #{bolt-spacing(small) * 2});
 }
 
 @include bolt-mq(xsmall) {
