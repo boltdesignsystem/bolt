@@ -751,7 +751,25 @@
     "@babel/runtime" "^7.0.0"
     "@bolt/config-browserlist" "^2.3.0"
 
-"@bolt/build-tools@2.3.0", "@bolt/build-tools@^2.3.0":
+"@bolt/babel-preset-bolt@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/babel-preset-bolt/-/babel-preset-bolt-2.3.1.tgz#82c708837002f5ee6cb106bcc96ff1120c3f4fe1"
+  integrity sha512-WtPYpGiqlbCPJuI1RDI2cWgnj6+8Rs8Eqq89MV3Bto/UvdmMiA16/bGkHCUuK/qGUdtJaEaAp3TnCsWrH6hBsw==
+  dependencies:
+    "@babel/cli" "^7.0.0"
+    "@babel/core" "^7.0.0"
+    "@babel/plugin-proposal-class-properties" "^7.0.0"
+    "@babel/plugin-proposal-decorators" "^7.0.0"
+    "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
+    "@babel/plugin-syntax-dynamic-import" "^v7.0.0"
+    "@babel/plugin-syntax-jsx" "^7.0.0"
+    "@babel/plugin-transform-react-jsx" "^7.0.0"
+    "@babel/plugin-transform-runtime" "^7.0.0"
+    "@babel/preset-env" "^7.0.0"
+    "@babel/runtime" "^7.0.0"
+    "@bolt/config-browserlist" "^2.3.1"
+
+"@bolt/build-tools@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/build-tools/-/build-tools-2.3.0.tgz#2b197e723bbf467a8832814f22e7d01f885893f4"
   integrity sha512-cYmBNx3zL3AlFck0Za9P+ohiQRV+4oxrYJphxS7TVaS+7AuoRHm6ZQ2hzvJ6QSK57aiydEXsMDk8DEiOW8muow==
@@ -828,102 +846,200 @@
     yaml-loader "^0.5.0"
     yargs "^12.0.5"
 
-"@bolt/components-action-blocks@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-action-blocks/-/components-action-blocks-2.3.0.tgz#15fa097ab30aa9cb3ba38760e53fcb5eb30eb828"
-  integrity sha512-8tHrcVFZdXyK4VYdlzMAtDHlulYcsitCpDE52dywZNgPkYGgMUR027u7JKayhVMjL1ZvvNFkyCevFxJyqv8h3A==
+"@bolt/build-tools@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/build-tools/-/build-tools-2.3.1.tgz#c2b8f48806a1f1632395347ba868d7d0e7c19350"
+  integrity sha512-h+tNbf5t+CUP81fAH2SI6KKjmP4UmbUD5Q9QLdPOEI45OVW/j6VEC7TFUymRIDgaeukYsaLgl+fefoXT3xJevw==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/babel-preset-bolt" "^2.3.1"
+    "@bolt/config-browserlist" "^2.3.1"
+    "@bolt/postcss-themify" "^2.3.1"
+    "@bolt/sass-export-data" "^2.3.1"
+    "@bolt/sassdoc-webpack-plugin" "^2.3.1"
+    "@octokit/plugin-throttling" "^2.3.0"
+    "@octokit/rest" "^16.13.3"
+    address "^1.0.3"
+    autoprefixer "^9.4.3"
+    babel-loader "^8.0.4"
+    browser-sync "^2.26.3"
+    chalk "^2.4.1"
+    check-links "^1.1.4"
+    chokidar "^2.0.4"
+    clean-css-loader "^1.1.0"
+    commander "^2.19.0"
+    convert-hrtime "^2.0.0"
+    copy-webpack-plugin "^4.6.0"
+    cosmiconfig "^5.0.7"
+    css-hot-loader "^1.4.3"
+    css-loader "^2.0.2"
+    deepmerge "^3.0.0"
+    del "^3.0.0"
+    eslint-loader "^2.1.1"
+    execa "^1.0.0"
+    express "^4.16.4"
+    file-loader "^3.0.1"
+    front-matter "^3.0.1"
+    globby "^8.0.1"
+    hard-source-webpack-plugin-patch "^0.13.3"
+    incache "^7.2.1"
+    js-yaml "^3.12.0"
+    json-loader "^0.5.7"
+    jsonschema "^1.2.4"
+    lodash.debounce "^4.0.8"
+    marked "^0.5.2"
+    mini-css-extract-plugin "^0.5.0"
+    mkdirp "^0.5.1"
+    node-cache "^4.2.0"
+    node-fetch "^2.3.0"
+    node-notifier "^5.3.0"
+    node-sass "^4.11.0"
+    npm-sass "^2.3.0"
+    optimize-css-assets-webpack-plugin "^5.0.1"
+    ora "^3.0.0"
+    portfinder "^1.0.20"
+    postcss-discard-duplicates "^4.0.2"
+    postcss-loader "^3.0.0"
+    postcss-scss "^2.0.0"
+    pretty-ms "^4.0.0"
+    resolve "^1.9.0"
+    resolve-url-loader "^3.0.0"
+    sass-loader "^7.1.0"
+    sassdoc "^2.5.1"
+    semver "^5.6.0"
+    sharp "^0.21.3"
+    string-replace-loader "^2.1.1"
+    style-loader "^0.23.1"
+    svgo "^1.1.1"
+    ts-loader "^5.3.2"
+    typescript "^3.2.2"
+    uglifyjs-webpack-plugin "^2.1.0"
+    url-loader "^1.1.2"
+    webpack "4.28.2"
+    webpack-cli "^3.1.2"
+    webpack-dev-middleware "^3.4.0"
+    webpack-hot-middleware "^2.24.3"
+    webpack-manifest-plugin "^2.0.4"
+    write-file-webpack-plugin "^4.5.0"
+    yaml-loader "^0.5.0"
+    yargs "^12.0.5"
 
-"@bolt/components-background-shapes@2.3.0", "@bolt/components-background-shapes@^2.3.0":
+"@bolt/components-action-blocks@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-action-blocks/-/components-action-blocks-2.3.1.tgz#b038ac3d48494ce400d9a960a4ce7db92704ad77"
+  integrity sha512-+/zUoxFO+val1uVWSfzMkdBxKHOxH9Kh/ZtbK0jxSY+QcTcNtuToSCb9VSkFmmTxRHAxKCBnXNpBxTAjS05+lA==
+  dependencies:
+    "@bolt/core" "^2.3.1"
+
+"@bolt/components-background-shapes@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-background-shapes/-/components-background-shapes-2.3.0.tgz#e638826ddea208ccb965c50a584d12f2b2a21e0c"
   integrity sha512-0emKC4kBxtN3ogwy5VYsF+yZcM/WQ23nug4XH22aNzv3u3hHSSfH9FVpQUeHIyWjSYu5x/Ur7wODxk3/hwoO4Q==
   dependencies:
     "@bolt/core" "^2.3.0"
 
-"@bolt/components-background@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-background/-/components-background-2.3.0.tgz#0b296962face4a7dad2d8ca0caf508e16e69213a"
-  integrity sha512-6moMX8YXxC/bg7YWjFE7cm36uJsp5uVrt3qM4iI8eILLAXbrGIcohAI2jHvypefbq209PzHu77hQYyN/DNWXIA==
+"@bolt/components-background-shapes@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-background-shapes/-/components-background-shapes-2.3.1.tgz#1a0291b1f4b6d378096000320fab09ebc5f81218"
+  integrity sha512-Q9N7AVAqwbNxj1ooaBHpil61g1iUYVoIMx1mtld7pWGzNO4Ti5KeHwAoiSZNs0/s3JkGbPH0SYiU8xBxWT2B5Q==
   dependencies:
-    "@bolt/components-background-shapes" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-band@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-band/-/components-band-2.3.0.tgz#09897250008093a0a08107b3f0a5367b3841be84"
-  integrity sha512-rrRzLdKiqPkcU+Dan0WNCdPrtUknnSQP4/+VgPB+bwNRgbCdLx56N3OtPysTKClgzD6Wu6Crn7zw0m/OGjrReA==
+"@bolt/components-background@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-background/-/components-background-2.3.1.tgz#f7fece0c5ccd18a88da92bbca31f98a6a77ec1e4"
+  integrity sha512-4x/sXUlypQpeV4DVr6i4wAqP50RfT4WYRphH+BWAus9NEpwsfrUtvfJELzvZ+rWkYwZVjrg5nD4XDmY8dDYueg==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/components-background-shapes" "^2.3.1"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-block-list@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-block-list/-/components-block-list-2.3.0.tgz#f1bbba2569360ae41897a16778d481d2bea09bae"
-  integrity sha512-akWA0jQMK2t5MeO9WD1oCl4e8A67dVOV8M8sKySEny5oiRDvSMmjkM6E9CekpceWuYfUEJV5zsgcouOFdtH67A==
+"@bolt/components-band@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-band/-/components-band-2.3.1.tgz#6dfc7a08e267f21695b3e1b11febfaf13bb21bef"
+  integrity sha512-wWRruupBLxc1vNluuUgAMzs8P9HoisS/F1GjVw8UWyeaDEY6BT4ZkV1jXvx+c+8/4RiYuVLe8dFI+ZaUwnuaMA==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-blockquote@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-blockquote/-/components-blockquote-2.3.0.tgz#93779d36d6b91b8f8409ed522c1df9c8a48cc1b4"
-  integrity sha512-9TpF9JwguV8V41eO9qo14Onn4gWNQ8UPbKls5+3tv53ezteKNFM4wRMeuom97eT39EdX9BQtP75z+MrinTa2AA==
+"@bolt/components-block-list@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-block-list/-/components-block-list-2.3.1.tgz#4bd4a5dbfa54537187c012daf5e8e4cdc9040a6d"
+  integrity sha512-hCQFEdJH5Guu6IGxe7y75/YUIbXs+P28RSBvTWVX60OLmTDjbtBWdbbM9XhcYuT3swW2uvVkNJiFbRE70yslvA==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-breadcrumb@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-breadcrumb/-/components-breadcrumb-2.3.0.tgz#a52fe17af601de7e8aee7c54749a170aefb7c828"
-  integrity sha512-2xRrbBkkU1Ly13Jtty+4nvsLGxGEPXEBJ2EdnSfkwiRW6dLIcdK9wQDxa957tHmkieolx/G/Zk6Aswr6cD6oGg==
+"@bolt/components-blockquote@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-blockquote/-/components-blockquote-2.3.1.tgz#ce879fb7b1f906bf3ed40b3fd800ef7352432f44"
+  integrity sha512-BPUMWx6p9JoD0/NfKpFVWyMBJhmtPoUF6+a+FwKFYnMHE5eEXaSsabV23ym/SSfPZ/iyJ6k/sVcBvp/NUMniSA==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-button-group@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-button-group/-/components-button-group-2.3.0.tgz#c73f248b5b731cb224ca85e19a0d779005488720"
-  integrity sha512-x+5LFBcxEbwcfnv3AK0YdpuYijZDTjf6Ao0xp1S3gccGunINfD5u7AVyBApV0Noxb1et9sKpzzT1hqWIzK55IA==
+"@bolt/components-breadcrumb@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-breadcrumb/-/components-breadcrumb-2.3.1.tgz#da97bd39dfa30ca1e50609a333f1e264da4ee3f7"
+  integrity sha512-aKkYcxFK+FBkITTgGUFm4Fbmp3YAEXZnExKprHCJcR918GYZDwVwUxxJjs+oP6GulI+gv8UuZZ634JwAzRT7Pw==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-button@2.3.0", "@bolt/components-button@^2.3.0":
+"@bolt/components-button-group@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-button-group/-/components-button-group-2.3.1.tgz#ac9ea78a457f12710a17bae26a30acd42bbc846d"
+  integrity sha512-SDaU74ahKbpaBd3zxfTwepTbmtozawt4inoF1Y2+NYKWPcJcN4zUEMH0FWhM3O9IabBKrkvfeK2zgY48wyN7pA==
+  dependencies:
+    "@bolt/core" "^2.3.1"
+
+"@bolt/components-button@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-button/-/components-button-2.3.0.tgz#982f5564b34e60f0b2abb8c6f29f4f82cfad4361"
   integrity sha512-s83PguwjHUZGmfG1e4FulHz4jd1W2NbFsWPyzB3LZOv57hr0zT/kC9Q3zyINO8Msuxc3bjwzvURpVPQcFOW6kA==
   dependencies:
     "@bolt/core" "^2.3.0"
 
-"@bolt/components-card@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-card/-/components-card-2.3.0.tgz#48ddfb729f0928c220609ff898f528d1a5115386"
-  integrity sha512-mCVjke1HRVuiavuEOoGglrhnnCW58GTtnGAuz+QuaSs9h+AJPxycubmNyQjPuYUz1BWh6TAVjr05shITf0v11w==
+"@bolt/components-button@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-button/-/components-button-2.3.1.tgz#4f107e4b9ec6e2446a80f94d6d58f460a4d5ae1b"
+  integrity sha512-JB1/d+RCp5tEoQac7VZVbKUdx9+FWfuyqur6FMIZCaMel9ZWQ/6Dq9BTLXGs/AvmhU1RAbXFJWXXX0s3AslQOQ==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-chip-list@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-chip-list/-/components-chip-list-2.3.0.tgz#9982818113a580219858ea02f04778c9b5c4c0df"
-  integrity sha512-Kz5r4kS+F1R5qLwIopx4wzLd6BnFgubnzaBH/liN0A1d6c33qyfBsvaUGCEn/gFQviB6XavsLCig28FIr4i4aw==
+"@bolt/components-card@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-card/-/components-card-2.3.1.tgz#f7f2abfc7f12a3367ee65b3e8ab1168645b584a3"
+  integrity sha512-3kIOryjInENmN9aaFCT6h78Bw6s06Iym4R5wNJJailG0R/uOI3vJP9+xd7vJo/4COXZUrzs9j+A1zbN4+E5a7w==
   dependencies:
-    "@bolt/components-chip" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-chip@2.3.0", "@bolt/components-chip@^2.3.0":
+"@bolt/components-chip-list@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-chip-list/-/components-chip-list-2.3.1.tgz#a8e416cdf4acd306bd37279cb14f02c1995f0398"
+  integrity sha512-ePIbXiysCOcn1jd2uJZoHOwJk0jyf45IaZg3FhO9QCFOmFWw4+A0bzl9UG4lzLPVRvoB3yAByFTioaM6j028sg==
+  dependencies:
+    "@bolt/components-chip" "^2.3.1"
+    "@bolt/core" "^2.3.1"
+
+"@bolt/components-chip@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-chip/-/components-chip-2.3.0.tgz#cd43c34b77f24ae9b185d0f6cec6cb6d7e97002c"
   integrity sha512-4PRqPNxnQvlvGIa1xPpL92LHGYND2JJzoxPa17fyfgh5Rzk8/302SCmPnUtq+xB/5af3na9gmE35BE3BpuVINQ==
   dependencies:
     "@bolt/core" "^2.3.0"
 
-"@bolt/components-code-snippet@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-code-snippet/-/components-code-snippet-2.3.0.tgz#46a495dc45325c374bec5c0baf2ba7b5b17b6938"
-  integrity sha512-N4A/5I3zBW9hvK68LnA/m6a5g8FwvcmvUkECptnKJ9DXI6dfeNiqVDrWgefw+dMlLf2fE+tOmAVm+Bn9X8siKw==
+"@bolt/components-chip@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-chip/-/components-chip-2.3.1.tgz#21f913f542699e9c77a467cc8997e0ec56f1a74f"
+  integrity sha512-f4IljtV7EyBCpUWRfpkTPXAaKPWLrEo/b5CjcC3obE1ARK4Il61GMansvUDKJqh6jYh7Q+ffwedtIeCuT1GgxQ==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
+
+"@bolt/components-code-snippet@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-code-snippet/-/components-code-snippet-2.3.1.tgz#09d9c299b09ec0f4a6475d0cae3c01131a3fe39b"
+  integrity sha512-dOZusU+K7tP3j3J4+PkZQdc3YBH5MwfPfqdS2gw6ifin8L6ZM3enyCH1Fqp6zBMxJmblwY5KZ683b3DxNeaMuQ==
+  dependencies:
+    "@bolt/core" "^2.3.1"
     preact-html "^2.0.3"
     prismjs "^1.15.0"
 
-"@bolt/components-copy-to-clipboard@2.3.0", "@bolt/components-copy-to-clipboard@^2.3.0":
+"@bolt/components-copy-to-clipboard@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-copy-to-clipboard/-/components-copy-to-clipboard-2.3.0.tgz#5e23d59639b694dc4377debd6b7961be1b13aa08"
   integrity sha512-slJQ8+X767Szm0dkfCFRL2cMMOuyb3d83wm83X/n+XLonGbiU72jtqn3TlsdzkU1AvR5HyIKyI01d4A8HItttg==
@@ -933,83 +1049,100 @@
     "@bolt/core" "^2.3.0"
     clipboard "^2.0.0"
 
-"@bolt/components-critical-css-vars@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-critical-css-vars/-/components-critical-css-vars-2.3.0.tgz#0ffcf906a53c6a0e01110734d107e5c795a7791b"
-  integrity sha512-JRlGGr0iI0JHDMwIb3VjqkCJuMXlaIQd1U0+1WpOVKi2cde+BcwvdY4xFYNq0eaKt6nJeDdloqjogeZmoTeMFA==
+"@bolt/components-copy-to-clipboard@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-copy-to-clipboard/-/components-copy-to-clipboard-2.3.1.tgz#0a46c10700b55aa29614dd0cd805fe1b0ff85a73"
+  integrity sha512-cgE1dFV5BBD6W3b8XP7RA9qgszaGWlDbLzofwrEojhbmhe3Q0lDOBVhBHvuJmKVhvx4K6xL41cjQzsN+uql/Xg==
   dependencies:
-    "@bolt/build-tools" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/components-icon" "^2.3.1"
+    "@bolt/components-link" "^2.3.1"
+    "@bolt/core" "^2.3.1"
+    clipboard "^2.0.0"
+
+"@bolt/components-critical-css-vars@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-critical-css-vars/-/components-critical-css-vars-2.3.1.tgz#0cc8da2220d1b1ca4bef909d83b12df44110fb46"
+  integrity sha512-1Myz0R8aBhMBzVdmxRyrjpwx9t7Ps2/9JzTzu3biAo5qXoDb6jrusnBg5HBcusLtDRs0pkblM+D298duN5ujUQ==
+  dependencies:
+    "@bolt/build-tools" "^2.3.1"
+    "@bolt/core" "^2.3.1"
     fg-loadcss ">= ^2.1.0"
 
-"@bolt/components-critical-css@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-critical-css/-/components-critical-css-2.3.0.tgz#20289c59535ee4a472eb313d3fe982c6246e385e"
-  integrity sha512-/TmRQbhKlJ1Mtbk0JVz+fqIEK8beadirANlU/KMxxq4EqND73G4wzjfudOwRUrTTOo2HTLpsaW46gZAoIhoK9w==
+"@bolt/components-critical-css@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-critical-css/-/components-critical-css-2.3.1.tgz#9e98a592b2d1bdb73b2491331db4158f941e4140"
+  integrity sha512-rnslN5jGKJBkNey9WoVtODrgZcq0mT0gfT9C5g3e+O3F3QBEIr3mse/0/1rA9f5v8M0PBYFyWHPlgulgdKF0lw==
   dependencies:
-    "@bolt/build-tools" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/build-tools" "^2.3.1"
+    "@bolt/core" "^2.3.1"
     fg-loadcss "^2.1.0"
 
-"@bolt/components-critical-fonts@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-critical-fonts/-/components-critical-fonts-2.3.0.tgz#ae8b38d7ff74d28f75390197b05befd66300d304"
-  integrity sha512-OrNWexqV7KrcM8BjpU7T5HLwtmcB2ZTtAVfXGECZxlZNLPZwUJUlHAhfHemz1Fvzcz8amZxEptEXrRAv+2CDug==
+"@bolt/components-critical-fonts@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-critical-fonts/-/components-critical-fonts-2.3.1.tgz#1d2cc716d3a133ff230cf11ae5892cb168c77e0e"
+  integrity sha512-iYAHapF/2l4gqVbAaUA03yWx8dw86HuTsbMGMZ6M4y3w6DRWrBZcg002WL7yQ+w4kZ5jqbh/xUV3CSRUo3hd7g==
   dependencies:
-    "@bolt/components-headline" "^2.3.0"
-    "@bolt/core" "^2.3.0"
-    "@bolt/global" "^2.3.0"
+    "@bolt/components-headline" "^2.3.1"
+    "@bolt/core" "^2.3.1"
+    "@bolt/global" "^2.3.1"
     fontfaceobserver "^2.0.13"
 
-"@bolt/components-device-viewer@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-device-viewer/-/components-device-viewer-2.3.0.tgz#2ceb026d3123de63be29bacbd8d95e3c1bc23144"
-  integrity sha512-/BKFhYXD5bNxp87FRLrMYgTRDON6YyKxAu0Fumg9a6g60nQ77mGkjsd9+fFw91o4qrgAxfTfouoRLmUzk3VKrQ==
+"@bolt/components-device-viewer@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-device-viewer/-/components-device-viewer-2.3.1.tgz#93d9881d6ce949cf2bc733e51be40dd86a681535"
+  integrity sha512-xe2U/MMdzIbNjzyCXElQMtt2fuvFxGzK27t4qu+CW0tvTrH+QOUlTU1fge+5spxW7QFTk9RQP+CNRjfNMnlCGw==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
     drift-zoom "^1.2.0"
 
-"@bolt/components-dropdown@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-dropdown/-/components-dropdown-2.3.0.tgz#9fb23b6419677dcac659064ab97093b1e924283d"
-  integrity sha512-J898E91xhVzEdmAVqC9mBP0dNKkVEWWuwXN6qjCo1zgZ9n9hbfKsE3w6CxVKzcFbY5LUbxwKjDu6SXxY/fn3oA==
+"@bolt/components-dropdown@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-dropdown/-/components-dropdown-2.3.1.tgz#2510c09c753c32d5bb20c3d09085cbd2af17b703"
+  integrity sha512-0gqy1tOGDF6i/D+8+T86aIdxpCc2HmkwY6do+WaI5wNnFqXBDumCEeF6oq3GUmAluS7uXpUQHCRkfJbaxcsv+Q==
   dependencies:
-    "@bolt/components-icon" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/components-icon" "^2.3.1"
+    "@bolt/core" "^2.3.1"
     classnames "^2.2.5"
     ev-emitter "^1.1.1"
     handorgel "^0.4.5"
 
-"@bolt/components-figure@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-figure/-/components-figure-2.3.0.tgz#0768c939a364169d87b40f47b6fed37b32b1c7de"
-  integrity sha512-5zAxDmAlL1WcEhH9uhteAlK+Aic+1F4lO/xqd6G2c6UcNKCo3RPXG7tQkqdfr0qEjlr+VqSCVQcBzNMnOK27lA==
+"@bolt/components-figure@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-figure/-/components-figure-2.3.1.tgz#bda3c923706becc8c67ba1395f3784ee71be8fe3"
+  integrity sha512-4C/xmgcEL+tcbtGOq0YNKzNtlTbfSKDQ4OCwwdlB5HNmOdMpvu9H5W0nOYw/MJVfEN3qdXCbdxyGOSJG/9mSAQ==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-form@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-form/-/components-form-2.3.0.tgz#a7e6deb81e1d76b75625a490b448f710305a1fb4"
-  integrity sha512-xg+242cPb2sSFobh17KN71H4btEBrSCozUBbIN2Ylf3C9InWqDYOfasKGruGDOzd72yYA0+m8JXuJ+A56wJlMw==
+"@bolt/components-form@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-form/-/components-form-2.3.1.tgz#42a461a01a31d78979f0fa85a941cf7b488386a5"
+  integrity sha512-oMThcBw/BNpFNp2eB7Hj1u521jyPO1IQdNHZ3IQXbhcv2UFy0bKGBRXZOEE/iK/Z1xwFpr8uOk0WVY4uqS7Efg==
   dependencies:
-    "@bolt/components-button" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/components-button" "^2.3.1"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-grid@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-grid/-/components-grid-2.3.0.tgz#081870620583a87f6ac0f7ce5299c3367e124c0a"
-  integrity sha512-a3kxMc39/PQY0hYBkb4ktd3Tx1WCk53QVckVqA/MeU2R091pF8Z8fWnvPDzo4MI4VFnR03HZb7cw4G+OqYSx9w==
+"@bolt/components-grid@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-grid/-/components-grid-2.3.1.tgz#224c23bcdfca90f302c4f787ca4846388b4548ef"
+  integrity sha512-Qcdtu/YxBn7XEi/kdONLbxeZOoPlKcHlbD2Skpyw/0gMCwY1Loan3L94KwtV79F7LeRkyG4GdKgjzyW78INT3Q==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-headline@2.3.0", "@bolt/components-headline@^2.3.0":
+"@bolt/components-headline@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-headline/-/components-headline-2.3.0.tgz#30c2dccd7f3c3b31133465564fe6f1ad0cb8be7a"
   integrity sha512-ZzkN5EpG51SQDvcmZk3KLtzXyFJmmiY1dlq8WgWNwYc5NbkRT0YhxOqbfy8V/Zo4JlRYtiZ0WCXbtfUuSkX8Yg==
   dependencies:
     "@bolt/core" "^2.3.0"
 
-"@bolt/components-icon@2.3.0", "@bolt/components-icon@^2.3.0":
+"@bolt/components-headline@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-headline/-/components-headline-2.3.1.tgz#cd22124d84db46559211ea734d3c943157cb496e"
+  integrity sha512-AHzlQQMbw52engD3f7euDuv2cz178J4KMu9rIt/5mjWgExWa67pgfSdkkbIDIrU2SmuFDzERAOJvxU2kWMOJNw==
+  dependencies:
+    "@bolt/core" "^2.3.1"
+
+"@bolt/components-icon@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-icon/-/components-icon-2.3.0.tgz#72846239f1b9fca1fa7d03dc1e2d1908b2e72867"
   integrity sha512-C4/EcVkr4V/cNg7JuX3PAzaF2Xt2+IaC0+u7x5g9YHRQMdvwMIsCKdYFDs/5k6TVUa5gQ8D4Y6YHLCNtkmyijQ==
@@ -1019,7 +1152,17 @@
     pubsub-js "^1.6.0"
     uppercamelcase "^3.0.0"
 
-"@bolt/components-icons@2.3.0", "@bolt/components-icons@^2.3.0":
+"@bolt/components-icon@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-icon/-/components-icon-2.3.1.tgz#7cf1c599dcde90d9fb71a72420fd0ae5e96e7212"
+  integrity sha512-BgSxMoEeCE/k+c31UwJ8SIj1A1S23yHEMpwwYKx7ltQEsoAN81NM1xsidLCNjSeX4/39t1Z/FNRspcPDQZWOvw==
+  dependencies:
+    "@bolt/components-icons" "^2.3.1"
+    "@bolt/core" "^2.3.1"
+    pubsub-js "^1.6.0"
+    uppercamelcase "^3.0.0"
+
+"@bolt/components-icons@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-icons/-/components-icons-2.3.0.tgz#7e2e78d8812e904659434d9aaf977bb8803f37d4"
   integrity sha512-99nacG14LF86nTh8VUL31/FITua25FMymrTPMKOJ3Yic1r6tKH26Q1B3birRIkiLWFqUABvpq62yNmXmjaaFXw==
@@ -1034,7 +1177,22 @@
     svgo "^1.0.5"
     uppercamelcase "^3.0.0"
 
-"@bolt/components-image@2.3.0", "@bolt/components-image@^2.3.0":
+"@bolt/components-icons@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-icons/-/components-icons-2.3.1.tgz#b32ce4f5d7c3bf9d9f5279c908d89d578f27f33c"
+  integrity sha512-P9pL3s7paoM6nghvE43z0cQ+y8IxH3zBYOJ7TKlsxyfpbkEVQ0of9ZLvkjOyCmk7HOUoi5zx4XBix0d60Lv0nw==
+  dependencies:
+    "@bolt/core" "^2.3.1"
+    camelcase "^4.1.0"
+    cheerio "^1.0.0-rc.2"
+    fs-extra "^5.0.0"
+    globby "^8.0.1"
+    nodemon "^1.15.1"
+    prettier "^1.7.4"
+    svgo "^1.0.5"
+    uppercamelcase "^3.0.0"
+
+"@bolt/components-image@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-image/-/components-image-2.3.0.tgz#5e1280b598cd69a6dde52a6d511e27d0139f0448"
   integrity sha512-pSgPI6m2TrygIpxVFkAYDVk0KlMh2YAyUUDR/fZ18B7b8bXYVSqgH1zDKd0hPFKVka/LS15D+3OKISck8jaNEA==
@@ -1043,14 +1201,30 @@
     "@bolt/core" "^2.3.0"
     lazysizes "^4.1.4"
 
-"@bolt/components-li@2.3.0", "@bolt/components-li@^2.3.0":
+"@bolt/components-image@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-image/-/components-image-2.3.1.tgz#2fe464dcf8974c83102f37916a608f7d47aa3c40"
+  integrity sha512-9vFLJMHiluH8oy2ROixtPQYsAyxjtg9MKzKjQsdmstlngVXvZBdBwaSU5xvCXdI2//IsEeuDfdcIG00cOgSq3g==
+  dependencies:
+    "@bolt/components-ratio" "^2.3.1"
+    "@bolt/core" "^2.3.1"
+    lazysizes "^4.1.4"
+
+"@bolt/components-li@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-li/-/components-li-2.3.0.tgz#a18b516d2e03ebf42fb0b143e67655abe604e48f"
   integrity sha512-I1KR/uuDmoaxfPY2WlGAWiu7wYO90TsH0nHc4wvtkXY9QlkF3Sjjm3N1NgfAObX8ngeA54QwKV8nnWp72z2Jiw==
   dependencies:
     "@bolt/core" "^2.3.0"
 
-"@bolt/components-link@2.3.0", "@bolt/components-link@^2.3.0":
+"@bolt/components-li@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-li/-/components-li-2.3.1.tgz#9c218604c61a0e2c96123ef43b7316b979c36cb1"
+  integrity sha512-s7cw8cbB2O6q5UGutAUDJ9ViiUr0+Z4s7b9ErwUg+h/siYY2hrQg9+vqdWwQOeBft+12vdOHkXLeEVh/AMRo6w==
+  dependencies:
+    "@bolt/core" "^2.3.1"
+
+"@bolt/components-link@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-link/-/components-link-2.3.0.tgz#8227eba0b928a61bd4083cdb232b759992d43c3f"
   integrity sha512-sOi/gwnLajKkmPiZshdJiwRrbE16FglRsDCmMxfSfuEihDVAFTWVoF/CGUQ0TDJ7gVArEwJdUhk2sXs5I3RwNA==
@@ -1058,153 +1232,168 @@
     "@bolt/core" "^2.3.0"
     ajv "^6.5.4"
 
-"@bolt/components-list@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-list/-/components-list-2.3.0.tgz#608f5de9a4812383e115e5f73d5261ff89f9524f"
-  integrity sha512-HDHmX4w1pnu9WrhkPOA85cp7s+zC2IUMEuCWql9U6EZd6Mxtv5COZMYerDQ7WbxmCiKMwoGUvljg0dZdnbv9qQ==
+"@bolt/components-link@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-link/-/components-link-2.3.1.tgz#d1d7f52b5361190b013aa6156c71e3221b503fcc"
+  integrity sha512-EjFJ8yQq3U5iCwzo7OKkbXqTmYB4ontl2tNuN8j3drxutpFXFJ5odhCsvvPaLRlExOzhFJsKQekjow8dRUbM9Q==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
+    ajv "^6.5.4"
 
-"@bolt/components-logo@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-logo/-/components-logo-2.3.0.tgz#9d57156d2c4ced564601fe5d4cacbbdbcab05511"
-  integrity sha512-3vB8N1h6U3t6/+DFNyog0UhWwhXXT83gRl0vsBYzCKnEwI/CX+HAv9AFgsf5rOh4X0XDsWSGTb5mKCmsXvtJHw==
+"@bolt/components-list@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-list/-/components-list-2.3.1.tgz#05ca5c5b6d78b9f66cfb7a5ac559534e64d7ba44"
+  integrity sha512-BxjNewyYPpokQNEni2ZW/y6wiKnVAX/fFQNlMysCINc+GCY3CZ7DIv1xlXRK2sp4nfuoWC+OlEzzkCpTBJJjfA==
   dependencies:
-    "@bolt/components-image" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-nav-indicator@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-nav-indicator/-/components-nav-indicator-2.3.0.tgz#1f70c5d48c83681e782a2cbad705bd24e76ad0be"
-  integrity sha512-QmKF+zOI38m/A5Zzt4g9LAmVFWIolv07UiFz7VpgWcqIQGTuAmnJ5/FPqx3E9mad30fshKnqM/8+O9Q3tAKHdg==
+"@bolt/components-logo@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-logo/-/components-logo-2.3.1.tgz#65ec3ae2cca4d7daf74b774b19a37935d0eed45b"
+  integrity sha512-ZMk+GeZNvKiJZ2jXz0h5qMcu0eDsOxA6q3t+k91JlTibpCBEXKkuQxwllzUWGYOX8vP/EdyGztppFs7qoedUyA==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/components-image" "^2.3.1"
+    "@bolt/core" "^2.3.1"
+
+"@bolt/components-nav-indicator@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-nav-indicator/-/components-nav-indicator-2.3.1.tgz#7590801b1624f2e21068ef3c622bffd2eddd277a"
+  integrity sha512-BsR53YbtoW7xB220MjmwAOSrJLzuEezYP/nWpQ0ZiZ6B0VVH0Ls1kna6EWekawqLW9PvBSjdkWd2/fZRGLobbQ==
+  dependencies:
+    "@bolt/core" "^2.3.1"
     gumshoejs "^3.5.0"
     is-visible "^2.2.0"
 
-"@bolt/components-nav-priority@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-nav-priority/-/components-nav-priority-2.3.0.tgz#1307a1a6b4163ff160c58c3b1c1f77bc4127b3f4"
-  integrity sha512-HiiHe8VUbWOurfn7hqX3WXN+W5+dPApk7gKlony/J1F50+G4fH9YuVF1vBfBcbY/8wmO+QbYfSIHmFQ7x5ViLQ==
+"@bolt/components-nav-priority@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-nav-priority/-/components-nav-priority-2.3.1.tgz#7207d2d3fb57506c4a71001a0c6df97ca42874da"
+  integrity sha512-XZweI+cAKGrre3JBdxn4152WXOr8qKsDudwRWRY7FOClEuG5bKTIVdHLk+hXwPWd0JR/dbHvHcZ2KAeqwZo38Q==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-navbar@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-navbar/-/components-navbar-2.3.0.tgz#8c6277e105fe5c8fd4fb2e2abba5aaf6c1c33469"
-  integrity sha512-uaWtINsvn4YYuWmpHbnPjoS2i7Rndxb79d1hFvVbW/V9dkqj94TxsBbPTAJbp9BxoTG/Mq3E/8AFcpc8pkhIRA==
+"@bolt/components-navbar@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-navbar/-/components-navbar-2.3.1.tgz#814647ff3c22d1d78f148f0e4a51a95a8d478422"
+  integrity sha512-ERmp/Nji/lBuKtsfC1F2+3W4EkAH6jtmzhX7SHPP5sHnVBMCfeLZlf+MULVuTi7lc8NWumCxCaw3QhwJ8vIdDg==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-navlink@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-navlink/-/components-navlink-2.3.0.tgz#dba69c36a8706240f808cc24a521237bd5b68a88"
-  integrity sha512-PfFbUw54E9nDJqI25sOUUwX5Vwy5Z7Oekxu2IbG3nwjvTeOpHalz3u/0uH4ah/garMIbDcD3WiX2DtigXT16yQ==
+"@bolt/components-navlink@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-navlink/-/components-navlink-2.3.1.tgz#25c8350f08b14ee9b3d4087dc384a8b7fc05ae79"
+  integrity sha512-5cf1yDU1wJGijBmJWYRgS8b5UwtYD/vNw4QZNQ3UjGKG18ToQ5qVM/OZLcbY73IYpFjQAyec+rjRaVfxbOR2uQ==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
     is-visible "^2.2.0"
 
-"@bolt/components-ol@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-ol/-/components-ol-2.3.0.tgz#e29a033a6e4e719a89408d94864a5611ceb8ea5e"
-  integrity sha512-pjoKgfyqe2k2uknqtBU02Wjnd38wo+BCEP4EFn9YfL+5NeUTW869aQey1GWiI+OSrqyxviSe28dGi7K/fem6mw==
+"@bolt/components-ol@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-ol/-/components-ol-2.3.1.tgz#fd6be0ded744ad898aeb7c92557ead118fa34cca"
+  integrity sha512-iyIC0hlfZoBVWc+dJ92cEN3+eCRR7AePkR80jobO1VzZ5xpW35jyxHRbGjLWGKklSXVuzbug1uaxHq52K7y75w==
   dependencies:
-    "@bolt/components-li" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/components-li" "^2.3.1"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-pagination@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-pagination/-/components-pagination-2.3.0.tgz#3d6079abaf557a5d579522ebfd358446e44997be"
-  integrity sha512-X8UwsE4sIKoQROSW5DDReVDqsCms0v1eMtvWfC3ipmLwwFPD5eEMP74vVbLoDBQq677rfkkEoxw2WWytv9I0FQ==
+"@bolt/components-pagination@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-pagination/-/components-pagination-2.3.1.tgz#8b4c234468df3e447bf0c4772d686ab91f54a0d5"
+  integrity sha512-LZqnZvQvqsNixQfn7w8KErHEkY6FNUhf4o8sIm3LEE4jqTQh64EWzgy5tyyhlLYkZ6YnyZkbxaxO7M7BQhvkqQ==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-placeholder@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-placeholder/-/components-placeholder-2.3.0.tgz#f171298fc6facab539bd105b831916a53b2abcda"
-  integrity sha512-bJZpUS/kiHlJWJKvjBz12uaXhnw0n1fpxjVKcSNB4t3xnAaWGtq3iUGnNt46O3T0JcGjpU3OON/jHcK6aOnLPQ==
+"@bolt/components-placeholder@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-placeholder/-/components-placeholder-2.3.1.tgz#5459d42e2845cd72d440c32540f681f95376e6ab"
+  integrity sha512-1XPaMOHhUOZuoRsCBeGiaPYgUGQ+FTz/SfifXFaiCzzHalmoxNmGdV6HoNd5Er175mRHC9Lq9hrwQzRM2J3Sbg==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-ratio@2.3.0", "@bolt/components-ratio@^2.3.0":
+"@bolt/components-ratio@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/components-ratio/-/components-ratio-2.3.0.tgz#41137ce7f78e3559ee092fd4c5821f697faa0997"
   integrity sha512-31r4sr0BwikOcWKbOQ8tSs9VnA/6BS7wC6m/4il6LNQ3sTk5Di+pO9E6RSGaNqDZ1aGkwWoS7Vg7BcjNcbivJQ==
   dependencies:
     "@bolt/core" "^2.3.0"
 
-"@bolt/components-share@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-share/-/components-share-2.3.0.tgz#d0a519633bf6a52a5172cff320ad303e8d84cfc1"
-  integrity sha512-ZXTFMpfP4dWZi+H5b+QSa3ihY9uzyGMX5WSOn+UeZpI/hQD3P2Fq0WEoz7tGiGrav5kfusPKvF52vsztPqKehA==
+"@bolt/components-ratio@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-ratio/-/components-ratio-2.3.1.tgz#d760d27acb24d03c62a72a7f1b0478f38d48352b"
+  integrity sha512-wZ0BXnET8uBy5/DlO8X0/StffCWed1j2a7kfvn0bEU76CrfhanDPlo/r4t3iVr6Cvi8ARGYp8sCHtwXcqlMMyA==
   dependencies:
-    "@bolt/components-copy-to-clipboard" "^2.3.0"
-    "@bolt/components-icon" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-site@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-site/-/components-site-2.3.0.tgz#2371c4f0c487ea4ed406c230094e8c5f273b91c1"
-  integrity sha512-6soxm+RDlF+dqPguC39vQOhdb8iAvgnF5Z+6REcEBzMmyV0RmRMIvtqfdWZxbSoYv8mJwoWngko23rGnaXfIxQ==
+"@bolt/components-share@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-share/-/components-share-2.3.1.tgz#311576d6322f233a84e732012556d8c8567d3c1f"
+  integrity sha512-Swf/M1o3Q1Kcv1OvaBTVMYbLee2JLycwo0KXreeYkfrpQeWRWtCQauBMFS1OnhWmKI1TjwzGQ/oCe7w5xsFrlA==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/components-copy-to-clipboard" "^2.3.1"
+    "@bolt/components-icon" "^2.3.1"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-smooth-scroll@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-smooth-scroll/-/components-smooth-scroll-2.3.0.tgz#c5a1263832f9fe77d44048826c10a49dad4a6ea7"
-  integrity sha512-dzZ29p+dsLJUjCyotDfAizLlxMez2ccOlAZqiyV1Sll/0cqXrGkGsvthwGuKSmv7IdanOaPOI1T+qMAPbYdteg==
+"@bolt/components-site@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-site/-/components-site-2.3.1.tgz#9c355d0957eee335ada993e06d1d8d696fe0c30c"
+  integrity sha512-dXAEOwUTyGYFN1TrsUgW3R7dUcY/DlWvsAYJO5X0sCe0Syued6FhdeEB/6CzjyaIm8fljxB9vKGL/xDAjJbwTw==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
+
+"@bolt/components-smooth-scroll@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-smooth-scroll/-/components-smooth-scroll-2.3.1.tgz#c8948b1781f3a57c23fe558f8b28a9ff9c283a32"
+  integrity sha512-WrKi3qcRwzc7jcmkM7D4bf7vmvUcnfeg6RS6DeQyxYqZ498oPfNfe3dB59uI4xCj9BZKgqGQK8AeEGBzu21jpQ==
+  dependencies:
+    "@bolt/core" "^2.3.1"
     smooth-scroll "github:bolt-design-system/smooth-scroll#master"
 
-"@bolt/components-sticky@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-sticky/-/components-sticky-2.3.0.tgz#8595cb367a5c3b03b38b2a8ae32526884452f89d"
-  integrity sha512-f5Cb3lHBrKiazhiZDG4w+6Rs6ndWwmGGwbJOYz9dv/Uw8kuecbXt23G+Nhc044skZAKvL8JdW1CJ0u7FTjQ3Dg==
+"@bolt/components-sticky@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-sticky/-/components-sticky-2.3.1.tgz#9832386d256c7eee384db62afa40e1ec37e0417f"
+  integrity sha512-SUDqGwPoAfuLaF277nRHvk6NxwTGYrurSlxNvadeKVyz+Pb5l6CsOScOz8qr1ohMDIxhfPXP6sg7lX3Bxvc0rA==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
     stickyfilljs "^2.0.3"
 
-"@bolt/components-teaser@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-teaser/-/components-teaser-2.3.0.tgz#9515e5c0466a4863d95c0f2be3e58a7f76ccee07"
-  integrity sha512-mckRCII0bsWIOS2gtbi/Qld2mjJ/9j9vVWp8Ty9xxWPKPyQ7JoyqYV39yjQWdNWEIs7PKHgjT2M0NeutEfRvHA==
+"@bolt/components-teaser@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-teaser/-/components-teaser-2.3.1.tgz#50c1129cb0cde349b3e06c5802b3144bf7136376"
+  integrity sha512-JTNZmtDPEsRk53xHjLaP53G38yf75bATg0M76hzHQfXt85IPEw1/tVSsU96djNTcspHhgCOS6qveD4V5DK77yQ==
   dependencies:
-    "@bolt/core" "^2.3.0"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-text@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-text/-/components-text-2.3.0.tgz#df49f37868831cc6c672efa44681351d60ca3145"
-  integrity sha512-7SPGvSa4LzPiKBWA5+KhaUTFkWunbLnBt2o7EDbcVxL0y40CWpzbEme2P0AOqEERBpjAzHdvqxQFXMpgt5n9eA==
+"@bolt/components-text@^2.3.0":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@bolt/components-text/-/components-text-2.3.2.tgz#76304b8147a83b67384a4afa76981e0fc348fba9"
+  integrity sha512-tjsbrkoFEAnFwALrKScCjKmy2FI8UreSqfYKk+aPSHV7RcchBG7TE50JWTqz4Igj/FsZ56Mh6EwOC3wcIMgdnA==
   dependencies:
     "@bolt/components-link" "^2.3.0"
     "@bolt/core" "^2.3.0"
 
-"@bolt/components-tooltip@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-tooltip/-/components-tooltip-2.3.0.tgz#03095e86a61a9acf6e8b967f68cf73106f1741dc"
-  integrity sha512-J3K5/VKp9TOtqeuVMs9ceKoz0yAKCVwnPuMDCbPztElQaV5O3DRqI+QbJahk4b+rxNuPeJpO9qlhZj490gITbg==
+"@bolt/components-tooltip@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-tooltip/-/components-tooltip-2.3.1.tgz#5a2a33128330a978b3b2e465b5e5ee5df853680d"
+  integrity sha512-P8Yb0voYk7M96jVhF0cnFOpVdtkMvOl9Q/SQkZu7cUOPNKVT71Sukj39RH1WUmR4EOk8v5aHQhP/ugF4Lp2PaA==
   dependencies:
-    "@bolt/components-button" "^2.3.0"
-    "@bolt/core" "^2.3.0"
-    "@bolt/global" "^2.3.0"
+    "@bolt/components-button" "^2.3.1"
+    "@bolt/core" "^2.3.1"
+    "@bolt/global" "^2.3.1"
 
-"@bolt/components-ul@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-ul/-/components-ul-2.3.0.tgz#4130a6c8d3d0d93fe91faee7733fd168585cc4ac"
-  integrity sha512-ZBmHT2HFwY+Kr/iRnf8PSOaoHS3IqJKWk8K48Y0jR5xQdlde5waLRssLtKUe0y/jxi2yt8kd8rLXSHg0kAFwUA==
+"@bolt/components-ul@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-ul/-/components-ul-2.3.1.tgz#1c4842e8bd8a1957e027b18cf809bc8845ec5ed1"
+  integrity sha512-/nwaqxnrxIkhiuTeoz7T3XkQLOFK8FLlKzfwBhx18wdRn8+MkvbCmZfu7YR0Oc3kEjhgl3UPf0J/IYX9oTzl2A==
   dependencies:
-    "@bolt/components-li" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/components-li" "^2.3.1"
+    "@bolt/core" "^2.3.1"
 
-"@bolt/components-video@2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@bolt/components-video/-/components-video-2.3.0.tgz#cbf93ddeebff70bdc95679338a35bc0642d8d2fb"
-  integrity sha512-r5ApayUX+FOl1Ypb7I/th/YAfgVNP3ykv5yd6iWs0AK4XOdVM9WUIdq0xVEnTWTwzOgzMN4FJaHkAg3HmdaJjg==
+"@bolt/components-video@^2.3.0":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/components-video/-/components-video-2.3.1.tgz#ad24038f4a86ba8af36c15fd2e62c809c6a83143"
+  integrity sha512-F7wxfdOXoY5na00qSFvFcjR181rZ71ESVaIG2V4PxTaG0PJpKA+8SCMxnC3quA+2tZvai+57wsmgOyJBhUMYDg==
   dependencies:
-    "@bolt/components-button" "^2.3.0"
-    "@bolt/components-ratio" "^2.3.0"
-    "@bolt/core" "^2.3.0"
+    "@bolt/components-button" "^2.3.1"
+    "@bolt/components-ratio" "^2.3.1"
+    "@bolt/core" "^2.3.1"
     dasherize "^2.0.0"
     lodash.isequal "^4.5.0"
     mousetrap "^1.6.1"
@@ -1214,10 +1403,49 @@
   resolved "https://registry.yarnpkg.com/@bolt/config-browserlist/-/config-browserlist-2.3.0.tgz#394bb56ce4ae1d6197e98b88b90459c220738ccc"
   integrity sha512-hRq7kywVJ/GvNA8UHuo2AM7cvaL7NJKPTW/nfu/XHwlI2m13UpucdwNEo6syV8CczkkS8RVhk0LRjEp3oRcWVA==
 
-"@bolt/core@2.3.0", "@bolt/core@^2.3.0":
+"@bolt/config-browserlist@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/config-browserlist/-/config-browserlist-2.3.1.tgz#efae9e3e846bd05f2b3b4693a7ab68b1a6b6d94b"
+  integrity sha512-NZR2tmGrmxvEHpXa3By1T7tzhpCPHWLbJzrs5rFKQzXGDiWeyJLmaDT8H7hdLtfAQl5+XIKWf59nMHuT6EJnFg==
+
+"@bolt/core@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/core/-/core-2.3.0.tgz#7aae4713ca41b5eeec9e8040cd63dcedcf9588a3"
   integrity sha512-G3WmiPUO5Ef/QPYKNsvA/W4wUp4sDwF70iDndNUQ+L6l9XrxqpJd7C752vU4M7TLC8XJwRsntpD4MQWYGYAqYg==
+  dependencies:
+    "@polymer/lit-element" "0.6.2"
+    "@polymer/polymer" "^3.0.5"
+    "@webcomponents/custom-elements" "^1.2.1"
+    "@webcomponents/shadydom" "^1.2.0"
+    "@webcomponents/template" "^1.4.0"
+    "@webcomponents/webcomponentsjs" "^2.1.3"
+    ajv "^6.5.4"
+    changecase-objects "^1.1.0"
+    classnames "^2.2.6"
+    color "^3.0.0"
+    core-js "^2.5.7"
+    document-register-element "^1.12.0"
+    element-closest "^2.0.2"
+    es6-promise "^4.2.5"
+    get-own-property-symbols "^0.9.2"
+    html-element "^2.2.0"
+    lit-html "1.0.0-rc.1"
+    lodash.merge "^4.6.1"
+    mdn-polyfills "^5.12.0"
+    preact "8.4.2"
+    preact-compat "^3.18.4"
+    pwa-helpers "^0.9.0"
+    raf "^3.4.0"
+    redux "^4.0.1"
+    redux-thunk "^2.3.0"
+    sass-mq "github:bolt-design-system/sass-mq#master"
+    sassy-maps "github:at-import/Sassy-Maps#0.x.x"
+    skatejs "^5.2.4"
+
+"@bolt/core@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/core/-/core-2.3.1.tgz#77f4d07e9440c591f59ffaf140b5a82b65e3ff4e"
+  integrity sha512-aNnH3y6ZIlAw+Q6Az2Tecs6kzQekydKKG0DupKx8xxbbsdjAKuLFOXmyGCcJpn6jYlzuOnrvGQL5GKQwTkpPIg==
   dependencies:
     "@polymer/lit-element" "0.6.2"
     "@polymer/polymer" "^3.0.5"
@@ -1253,7 +1481,7 @@
   resolved "https://registry.yarnpkg.com/@bolt/drupal-twig-extensions/-/drupal-twig-extensions-2.3.0.tgz#4d27744a63f334979072851af3314be4c2691d44"
   integrity sha512-yhs6f3cWwkV8GuMBEOlaErjdLcX674ZTEqL299hGP26LcoKilqsz1ayQEi+1a2A6px8NpQIiJJ5mqZfAjhn+Ew==
 
-"@bolt/global@2.3.0", "@bolt/global@^2.3.0":
+"@bolt/global@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/global/-/global-2.3.0.tgz#30d3dd8556620f7cb71888839fca76c9c2caeea5"
   integrity sha512-YOwYUyY7zWKV0q1WU4RmATdU+CTs2pXe3s33XchnczN1ytPnqaLHEtJpLhcWZdtpivWf8QvcxhpLFbR5MEO69Q==
@@ -1262,12 +1490,33 @@
     "@bolt/core" "^2.3.0"
     normalize-scss "^7.0.1"
 
+"@bolt/global@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/global/-/global-2.3.1.tgz#ad675614ac71cbdb9fbcc2abf46c91498084fdf6"
+  integrity sha512-sXWwyuptLQ2m5zXQPoJMp+SOWtTIIvg1ux5nG9duVusPGc9CesTOIfBfltteTLX4PtyxcUgCp5+xbVpKZ+fNaw==
+  dependencies:
+    "@bolt/components-ratio" "^2.3.1"
+    "@bolt/core" "^2.3.1"
+    normalize-scss "^7.0.1"
+
 "@bolt/postcss-themify@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/postcss-themify/-/postcss-themify-2.3.0.tgz#9924c40a54e9b4849e1eb2015c12b1bf05ccb2ac"
   integrity sha512-6xlJa3k3LfQLCdfm2VH4EjiIPETPIQcHXhi61r7aq296/DKfpjuebVficFzhNNzinrbVlamD0Qq+AjbnJXXIKw==
   dependencies:
     "@bolt/core" "^2.3.0"
+    clean-css "^4.2.1"
+    fs-extra "^5.0.0"
+    hex-to-rgba "^1.0.1"
+    postcss "^7.0.0"
+    rgb2hex "^0.1.9"
+
+"@bolt/postcss-themify@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/postcss-themify/-/postcss-themify-2.3.1.tgz#9e2f980217a17c2bb5609a5bc9a6cbfe08f97db7"
+  integrity sha512-FsIC1IVzQj79Gqu+vk0tZv4RyCwmkGfVfMaGj6+FpROu7ycCkyrUBoXzHH7Q/8pcjEHaLv7Dc+/s4CZfeeIwaA==
+  dependencies:
+    "@bolt/core" "^2.3.1"
     clean-css "^4.2.1"
     fs-extra "^5.0.0"
     hex-to-rgba "^1.0.1"
@@ -1287,10 +1536,32 @@
     mocha "^4.0.1"
     node-sass "^4.5.3"
 
+"@bolt/sass-export-data@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/sass-export-data/-/sass-export-data-2.3.1.tgz#1ebc344ec74ffa8f02721e2aec2925baa6fbb628"
+  integrity sha512-4L6S/aMAYp8kNZwFF/A3O5LBO0rnb1fgq6FvBYISI1EzZ0G33FRm3AOXOzXtQ5K2tVtotAZ4GdAWeuvy4APD8w==
+  dependencies:
+    "@theme-tools/core" "^1.0.0"
+    chai "^4.1.2"
+    chai-fs "^1.0.0"
+    fs-extra "^5.0.0"
+    jsondiffpatch "^0.2.5"
+    mocha "^4.0.1"
+    node-sass "^4.5.3"
+
 "@bolt/sassdoc-webpack-plugin@^2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@bolt/sassdoc-webpack-plugin/-/sassdoc-webpack-plugin-2.3.0.tgz#51474cefb85dbac5df76d107bfbbdd217c5bb331"
   integrity sha512-c4kxDvIx2UL4B6gASiuhnhd3/xkiypAWXi5Ig+yM6X5YDWF2EpdWNtQpuiOlQXqPniOm8PT9dT27jvJxr5j2xw==
+  dependencies:
+    chai "^4.1.2"
+    js-yaml "^3.12.0"
+    sassdoc "^2.5.1"
+
+"@bolt/sassdoc-webpack-plugin@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@bolt/sassdoc-webpack-plugin/-/sassdoc-webpack-plugin-2.3.1.tgz#2c42c4595e7b29f7e531de88d0086beb6688f344"
+  integrity sha512-2FCiujYpe5Odn85+E1hwD50JmDdOXGynl0V5mvItlwpXafjB1z445pOJTRJNxJTZdHkpqk7dxN5ViTWlqL72Hw==
   dependencies:
     chai "^4.1.2"
     js-yaml "^3.12.0"
