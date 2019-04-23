@@ -1,7 +1,7 @@
 const config = {
   // Environmental variable / preset to use
   env: 'drupal',
-  buildDir: '../assets/',
+  buildDir: '../assets/bolt/',
   wwwDir: '../',
   verbosity: 1,
   components: {
