@@ -1,0 +1,24 @@
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% block content %}
+  <bolt-text headline>
+    Line-height Usage
+  </bolt-text>
+  <bolt-text>
+    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> has a few options for leading (line-height). Leading can be adjusted for legibility. The default is regular.
+  </bolt-text>
+  {% for line_height in schema.properties["line-height"].enum %}
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set text_demo %}
+<bolt-text line-height="{{ line_height }}">
+  This text has<br>
+  its line-height<br>
+  prop defined as:<br>
+  {{ line_height }}
+</bolt-text>
+{% endset %}
+
+    {% include text_code.code_example(text_demo, true) %}
+  {% endfor %}
+{% endblock %}
