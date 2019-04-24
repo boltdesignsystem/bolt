@@ -380,7 +380,7 @@ class BoltModal extends withLitHtml() {
               </div>
 
               <!-- @todo: placeholder slot for slotted header content -->
-              <!-- @todo: work through how we want to handle the default dialog modal title (associated with an ID) vs a customized modal title vs providing a title but hiding it.
+              <!-- @todo: work through how we want to handle the default dialog modal title (associated with an ID) vs a customized modal title vs providing a title but hiding it. -->
               <header class="c-bolt-modal__container-header">
                 <!--
                   Dialog title related notes:
