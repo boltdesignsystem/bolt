@@ -9,6 +9,77 @@ properties:
     type: boolean
     description: Allows slides to stack on top of each-other a bit to display a large number of carousel-slides at the same time.
     default: false
+  spacing:
+    type: string
+    description: Adjusts the vertical spacing on the top / bottom of the component
+    default: medium
+    enum:
+      - none
+      - small
+      - medium
+      - large
+  space_between:
+    type: string
+    description: Adjusts the spacing in-between each carousel slide
+    default: medium
+    enum:
+      - none
+      - small
+      - medium
+      - large
+  full_bleed:
+    type: boolean
+    description: Overflow to fill wrapper
+  slides_per_view:
+    type: [string, number]
+    description: Adjusts how many slides are displayed
+    default: 'auto'
+  noJs:
+    type: boolean
+    description: Force swiper.js to be disabled (used for testing purposed)
+  nav_position:
+    type: string
+    description: Positions the next / previous nav buttons inside / outside the carousel container
+    default: inside
+    enum:
+      - inside
+      - outside
+  loop:
+    type: boolean
+    description: Set to true to enable continuous loop mode
+    default: false
+    enum:
+      - true
+      - false
+  autoplay:
+    type: boolean
+    description: Set to true to enable autoplaying (auto-disables when interacted with)
+    default: false
+    enum:
+      - true
+      - false
+  no_nav_buttons:
+    type: boolean
+    description: Optionally disable the left / right nav buttons
+    default: false
+    enum:
+      - true
+      - false
+  no_scrollbar:
+    type: boolean
+    description: Optionally disable the scrollbar UI once JavaScript kicks in
+    default: false
+    enum:
+      - true
+      - false
+  no_pagination:
+    type: boolean
+    description: Optionally disable the pagination UI once JavaScript kicks in
+    default: false
+    enum:
+      - true
+      - false
+
   # disabled:
   #   title: Disabled
   #   type: boolean

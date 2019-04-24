@@ -10,6 +10,18 @@
  */
 bolt-button {
   display: inline-flex;
+
+  [disabled]{
+    outline: none;
+  }
+}
+
+:host {
+  display: inline-flex;
+
+  [disabled]{
+    outline: none;
+  }
 }
 
 .c-bolt-button {
@@ -34,6 +46,7 @@ bolt-button {
   @include bolt-button-style(text);
 }
 
+[aria-disabled="true"] .c-bolt-button,
 .c-bolt-button[disabled],
 .c-bolt-button--disabled {
   @include bolt-button-style(disabled);

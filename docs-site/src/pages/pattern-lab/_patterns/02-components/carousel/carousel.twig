@@ -1,29 +1,7 @@
-{% include "@bolt-components-carousel/carousel.twig" only %}
-
 {% include "@bolt-components-carousel/carousel.twig" with {
-  stacked: true,
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ]
 } only %}
-
-<div class="t-bolt-xlight">
-  {% include "@bolt-components-carousel/carousel.twig" with {
-    stacked: true,
-  } only %}
-</div>
-
-<div class="t-bolt-light">
-  {% include "@bolt-components-carousel/carousel.twig" with {
-    stacked: true,
-  } only %}
-</div>
-
-<div class="t-bolt-dark">
-  {% include "@bolt-components-carousel/carousel.twig" with {
-    stacked: true,
-  } only %}
-</div>
-
-<div class="t-bolt-xdark">
-  {% include "@bolt-components-carousel/carousel.twig" with {
-    stacked: true,
-  } only %}
-</div>

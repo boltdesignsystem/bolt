@@ -21,6 +21,11 @@
   @return map-get($bolt-breakpoints, $name);
 }
 
+// alias for bolt-breakpoint
+@function bolt-bp($name) {
+  @return bolt-breakpoint($name);
+}
+
 /// This provides a wrapper mixin for performing bolt media queries with mq() which allows for the use of:
 /// $from (inclusive min-width boundary), $until (exclusive max-width boundary), $and (additional custom directives), $media-type (media type: screen, print, etc)
 /// @link https://github.com/sass-mq/sass-mq Sass MQ on GitHub

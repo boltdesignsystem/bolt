@@ -1,0 +1,56 @@
+@import '@bolt/core';
+
+bolt-carousel-band {
+  display: flex;
+  box-sizing: content-box;
+  @include bolt-margin-bottom(large);
+  width: calc(100vw - bolt-spacing(large));
+  scroll-snap-align: start;
+  @include bolt-padding-top(large);
+  @include bolt-padding-bottom(large);
+  
+
+  // -webkit-overflow-scrolling: touch;
+  // -ms-scroll-snap-points-x: repeat(250px);
+  // scroll-snap-points-x: repeat(250px);
+  // -ms-scroll-snap-type: mandatory;
+  // scroll-snap-type: mandatory;
+
+  // scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 1200px) {
+    @include bolt-carousel-scrollbar;
+    overflow: auto;
+  }
+    // width: 100%;
+    // padding-left: 0;
+    // overflow-x: scroll;
+    // -webkit-overflow-scrolling: touch;
+    // -ms-scroll-snap-points-x: repeat(250px);
+    // scroll-snap-points-x: repeat(250px);
+    // -ms-scroll-snap-type: mandatory;
+    // scroll-snap-type: mandatory;
+
+    // &::-webkit-scrollbar {
+    //   width: 12px;
+    //   height: 12px;
+    // }
+    // &::-webkit-scrollbar-thumb {
+    //   @include bolt-border-radius(large);
+    //   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+    //   background-color: bolt-color(white);
+    //   background-image: linear-gradient(
+    //     to bottom,
+    //     rgba(255, 255, 255, 1) 0%,
+    //     rgba(63, 63, 68, 0.1) 100%
+    //   );
+    // }
+  
+    // &::-webkit-scrollbar-track {
+    //   @include bolt-border-radius(large);
+    //   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    // }
+  
+  // }
+}
