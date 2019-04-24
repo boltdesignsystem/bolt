@@ -81,6 +81,10 @@ bolt-modal:not([ready]) {
   border: 0;
   background: transparent;
   transition: $bolt-modal-transition;
+
+  @include bolt-mq(xsmall) {
+    max-width: calc(100% - #{bolt-spacing(medium) * 2});
+  }
 }
 
 // Scroll options
@@ -141,10 +145,6 @@ bolt-modal:not([ready]) {
 }
 
 @include bolt-mq(xsmall) {
-  [class*='c-bolt-modal__content--width-'] {
-    max-width: calc(100% - #{bolt-spacing(medium) * 2});
-  }
-
   .c-bolt-modal__content--width-regular {
     width: 100% / 12 * 10;
   }
@@ -217,6 +217,7 @@ bolt-modal:not([ready]) {
   transform: translate3d(50%, -50%, 0);
 }
 
+.c-bolt-modal__close-button--hidden,
 .c-bolt-modal__dialog-title {
   @include bolt-visuallyhidden;
 }

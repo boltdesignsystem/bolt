@@ -42,6 +42,10 @@ class BoltModal extends withLitHtml() {
       ...props.string,
       ...{ default: 'xlight' },
     },
+    hideCloseButton: {
+      ...props.boolean,
+      ...{ default: false },
+    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -264,7 +268,7 @@ class BoltModal extends withLitHtml() {
     // @todo: validate props
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     // const { disabled } = this.validateProps(this.props);
-    const { open, width, spacing, scroll, theme } = this.props;
+    const { open, width, spacing, scroll, theme, hideCloseButton } = this.props;
 
     const classes = cx('c-bolt-modal', {
       [`is-open`]: open,
@@ -284,6 +288,10 @@ class BoltModal extends withLitHtml() {
       [`c-bolt-modal__container--spacing-${spacing}`]:
         spacing && spacing !== 'none',
       [`t-bolt-${theme}`]: theme && theme !== 'none',
+    });
+
+    const closeButtonClasses = cx('c-bolt-modal__close-button', {
+      [`c-bolt-modal__close-button--hidden`]: hideCloseButton,
     });
 
     const defaultCloseButton = html`
@@ -343,8 +351,7 @@ class BoltModal extends withLitHtml() {
                 - It does have to have an aria-label attribute if you use an icon as content.
               -->
 
-              <!-- @todo: do we also need a schema option to hideCloseButton? -->
-              <div class="${cx('c-bolt-modal__close-button')}">
+              <div class="${closeButtonClasses}">
                 ${this.slots.close ? this.slot('close') : defaultCloseButton}
               </div>
 

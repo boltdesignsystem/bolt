@@ -1,31 +1,11 @@
-{% set modal_content %}
-  {% include "@bolt-components-image/image.twig" with {
-    src: "/images/placeholders/tout-4x3-climber.jpg",
-    alt: "A Rock Climber",
-    lazyload: false,
-  } only %}
+{% set image_content %}
+  <bolt-button color="text" size="xsmall" onclick="this.closest('bolt-modal').hide()">
+    <bolt-image src="/images/content/backgrounds/background-robotics-customer-service.jpg" alt="This is an image" style="margin: -0.206rem -0.5rem; cursor: zoom-out"></bolt-image>
+  </bolt-button>
 {% endset %}
 
 <div class="u-bolt-margin-bottom-medium">
-  <h3>Image Trigger</h3>
-
-  {% grid %}
-    {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
-      <bolt-image tabindex=0 onclick="this.nextElementSibling.show()" style="cursor: zoom-in;" src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" ratio="4/3"></bolt-image>
-
-      {% include "@bolt-components-modal/modal.twig" with {
-        content: modal_content,
-        scroll: "overall",
-        spacing: "none",
-        theme: "none",
-      } only %}
-    {% endcell %}
-  {% endgrid %}
-</div>
-
-<div class="u-bolt-margin-bottom-medium">
   <h3>Button Trigger</h3>
-
   {% include "@bolt-components-button/button.twig" with {
     text: "Open Modal",
     size: "small",
@@ -33,11 +13,26 @@
       onclick: "this.nextElementSibling.show()",
     }
   } only %}
-
   {% include "@bolt-components-modal/modal.twig" with {
-    content: modal_content,
-    scroll: "overall",
+    content: image_content,
     spacing: "none",
     theme: "none",
+    scroll: "overall",
+    hide_close_button: true,
+  } only %}
+</div>
+
+<div class="u-bolt-margin-bottom-medium">
+  <h3>Image Trigger (experimental)</h3>
+  <p><mark>Warning: this is experimental and should not be replicated on production sites.</mark></p>
+  <bolt-button color="text" size="xsmall" onclick="this.nextElementSibling.show()">
+    <bolt-image src="/images/content/backgrounds/background-robotics-customer-service.jpg" alt="This is an image" ratio="none" style="margin: -0.206rem -0.5rem; max-width: 200px; cursor: zoom-in;"></bolt-image>
+  </bolt-button>
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: image_content,
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+    hide_close_button: true,
   } only %}
 </div>

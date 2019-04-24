@@ -62,6 +62,21 @@ properties:
     enum:
       - true
       - false
+  hide_close_button:
+    type: boolean
+    default: false
+    description: Controls the visibility of the default close button.
+    enum:
+      - true
+      - false
+  'hide-close-button':
+    type: boolean
+    default: false
+    description: Controls the visibility of the default close button.
+    enum:
+      - true
+      - false
+    hidden: true
   slots:
     type: object
     description: There are 3 sections (slots) within the modal container, by assigning the appropirate slot name, content will be passed into the respective section.
