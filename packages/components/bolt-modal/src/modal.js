@@ -224,6 +224,18 @@ class BoltModal extends withLitHtml() {
   };
 
   /**
+   * Private event handler called when overlay, the semi-transparent background behind the moda, is clicked
+   *
+   * @access private
+   * @param {Event} event
+   */
+  _handleOverlayClick(e) {
+    if (!this.persistent) {
+      this.hide();
+    }
+  }
+
+  /**
    * Set the focus to the first element with `autofocus` or the first focusable
    * child of the given element
    *
@@ -310,7 +322,8 @@ class BoltModal extends withLitHtml() {
       </bolt-button>
     `;
 
-    //
+    const handleOverlayClick = e => this._handleOverlayClick(e);
+
     return html`
       ${this.addStyles([styles])}
       <!--
@@ -328,7 +341,7 @@ class BoltModal extends withLitHtml() {
           Overlay related notes:
           - It has to have the 'tabindex="-1"' attribute.
         -->
-        <div class="${overlayClasses}" tabindex="-1"></div>
+        <div class="${overlayClasses}" @click="${handleOverlayClick}" tabindex="-1"></div>
 
         <!--
           Dialog window content related notes:
