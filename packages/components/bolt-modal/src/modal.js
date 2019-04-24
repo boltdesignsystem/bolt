@@ -343,16 +343,17 @@ class BoltModal extends withLitHtml() {
         - It can have a different id than 'my-accessible-dialog', but it needs an 'id'
         anyway.
       -->
-      <div
-        class="${classes}"
-        aria-hidden=${open === true ? 'false' : 'true'}
-      >
+      <div class="${classes}" aria-hidden=${open === true ? 'false' : 'true'}>
         ${this.slot('trigger')}
         <!--
           Overlay related notes:
           - It has to have the 'tabindex="-1"' attribute.
         -->
-        <div class="${overlayClasses}" @click="${handleOverlayClick}" tabindex="-1"></div>
+        <div
+          class="${overlayClasses}"
+          @click="${handleOverlayClick}"
+          tabindex="-1"
+        ></div>
 
         <!--
           Dialog window content related notes:
