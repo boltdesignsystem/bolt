@@ -1,9 +1,9 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
+import Swiper from 'swiper';
 import styles from './carousel.scss';
 import schema from '../carousel.schema.yml';
-import Swiper from 'swiper';
 
 let cx = classNames.bind(styles);
 
