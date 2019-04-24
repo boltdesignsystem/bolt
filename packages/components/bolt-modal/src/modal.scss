@@ -73,14 +73,14 @@ bolt-modal:not([ready]) {
   position: fixed;
   top: 0;
   left: 0;
-  min-width: 200px;
+  min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
   max-width: calc(100% - #{bolt-spacing(small) * 2});
   max-height: $bolt-modal-max-height;
   margin: 0;
   padding: 0;
   border: 0;
   background: transparent;
-  transition: $bolt-modal-transition;
+  transition: all $bolt-modal-transition;
 
   @include bolt-mq(xsmall) {
     max-width: calc(100% - #{bolt-spacing(medium) * 2});
@@ -108,13 +108,13 @@ bolt-modal:not([ready]) {
     @include bolt-margin(0 auto);
 
     top: 50vh;
-    transform: translate3d(0, -25%, 0);
+    transform: translate3d(0, -50%, 0) scale3d(0.95, 0.95, 0.95);
 
     &.is-open {
       visibility: visible;
       opacity: 1;
       position: relative;
-      transform: translate3d(0, -50%, 0);
+      transform: translate3d(0, -50%, 0) scale3d(1, 1, 1);
     }
   }
 }
@@ -123,12 +123,12 @@ bolt-modal:not([ready]) {
   .c-bolt-modal__content {
     top: 50%;
     left: 50%;
-    transform: translate3d(-50%, -25%, 0);
+    transform: translate3d(-50%, -50%, 0) scale3d(0.95, 0.95, 0.95);
 
     &.is-open {
       visibility: visible;
       opacity: 1;
-      transform: translate3d(-50%, -50%, 0);
+      transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
     }
   }
 
