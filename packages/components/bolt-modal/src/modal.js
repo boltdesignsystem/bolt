@@ -291,6 +291,11 @@ class BoltModal extends withLitHtml() {
       [`is-open`]: open,
     });
 
+    const headerClasses = cx('c-bolt-modal__container-header', {
+      [`c-bolt-modal__container-header--hidden`]:
+        this.slots.header !== undefined,
+    });
+
     const contentClasses = cx('c-bolt-modal__content', {
       [`is-open`]: open,
       [`c-bolt-modal__content--width-${width}`]: width && width !== 'auto',
@@ -382,7 +387,7 @@ class BoltModal extends withLitHtml() {
 
               <!-- @todo: placeholder slot for slotted header content -->
               <!-- @todo: work through how we want to handle the default dialog modal title (associated with an ID) vs a customized modal title vs providing a title but hiding it. -->
-              <header class="c-bolt-modal__container-header">
+              <header class="${headerClasses}">
                 <!--
                   Dialog title related notes:
                   - It should have a different content than 'Dialog Title'.
