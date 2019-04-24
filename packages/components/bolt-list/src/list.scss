@@ -48,7 +48,7 @@
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
 
-  .c-bolt-list--spacing-#{$spacing-value-name} {
+  .c-bolt-list--spacing-#{$spacing-value-name}:not(.c-bolt-list--inset) {
     margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
     margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
 
@@ -58,8 +58,8 @@
   }
 
   .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
-    @include bolt-margin-left(0);
     @include bolt-margin-bottom(0);
+    @include bolt-margin-left(0);
   }
 }
 

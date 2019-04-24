@@ -1,8 +1,10 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
-  import(/* 
+  import(
+    /* 
     webpackMode: 'eager', 
     webpackChunkName: 'bolt-select' 
-  */ './bolt-select.standalone');
+  */ './bolt-select.standalone'
+  );
 });

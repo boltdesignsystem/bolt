@@ -1,3 +1,16 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+**Note:** Version bump only for package @bolt/components-block-list
+
+
+
+
+
 # [2.2.0](https://github.com/bolt-design-system/bolt/compare/v2.2.0-rc.1...v2.2.0) (2018-11-18)
 
 
@@ -168,6 +181,3 @@
 
 
 # [1.0.0-rc.11](https://github.com/bolt-design-system/bolt/compare/v1.0.0-rc.9...v1.0.0-rc.11) (2018-03-30)
-
-
-

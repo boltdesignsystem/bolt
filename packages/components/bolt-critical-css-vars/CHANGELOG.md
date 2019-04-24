@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css-vars/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* remove dependency loop between packages ([b43fc34](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css-vars/commit/b43fc34))
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css-vars/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -68,6 +84,3 @@
 ### Features
 
 * 1st pass wiring up new CSS Vars loader / fallback component ([3873d63](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css-vars/commit/3873d63))
-
-
-

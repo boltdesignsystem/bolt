@@ -123,14 +123,17 @@
   {% if can_use_placeholder and is_jpg %} style="background-color: {{ ph_color }};" {% endif %}
   {{ attributes }}
   >
+
+  {% set children %}
+    {{ is_jpg ? image_placeholder : "" }}
+    {{ image_tag }}
+  {% endset %}
+
   {% block image_content %}
     {% if can_use_ratio %}
       {% include "@bolt-components-ratio/ratio.twig" with {
         ratio: width * 1 ~ "/" ~ height * 1,
-        children: [
-          is_jpg ? image_placeholder : "",
-          image_tag,
-        ] | join("")
+        children: children
       } only %}
     {% else %}
       {% if can_use_placeholder %}
