@@ -262,6 +262,43 @@ class BoltModal extends withLitHtml() {
   }
 
   /**
+   * Automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
+   * @todo: refactor, move into base class
+   */
+  addClassesToSlottedChildren() {
+    if (this.slots) {
+      const applyClasses = slotName => {
+        const currentSlot = [];
+
+        console.log(slotName);
+        this.slots[slotName].forEach(item => {
+          if (item.tagName) {
+            item.classList.remove('is-first-child');
+            item.classList.remove('is-last-child'); // clean up existing classes
+            currentSlot.push(item);
+          }
+        });
+
+        if (currentSlot[0]) {
+          currentSlot[0].classList.add('is-first-child');
+
+          if (currentSlot.length === 1) {
+            currentSlot[0].classList.add('is-last-child');
+          }
+        }
+
+        if (currentSlot[currentSlot.length - 1]) {
+          currentSlot[currentSlot.length - 1].classList.add('is-last-child');
+        }
+      };
+
+      this.slots.default && applyClasses('default');
+      this.slots.header && applyClasses('header');
+      this.slots.footer && applyClasses('footer');
+    }
+  }
+
+  /**
    * Destroy the current instance (after making sure the dialog has been hidden)
    * and remove all associated listeners from dialog openers and closers
    *
@@ -339,6 +376,8 @@ class BoltModal extends withLitHtml() {
         `;
       }
     };
+
+    this.addClassesToSlottedChildren();
 
     return html`
       ${this.addStyles([styles])}

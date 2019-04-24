@@ -170,6 +170,15 @@ bolt-modal:not([ready]) {
   display: block;
 }
 
+.c-bolt-modal__container-header,
+.c-bolt-modal__container-footer,
+.c-bolt-modal__container-body {
+  ::slotted(p:last-child),
+  ::slotted(p.is-last-child) {
+    margin-bottom: 0 !important;
+  }
+}
+
 .c-bolt-modal__container-header {
   border-bottom: $bolt-modal-border-width $bolt-modal-border-style $bolt-modal-border-color;
 }
