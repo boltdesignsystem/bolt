@@ -173,8 +173,8 @@ bolt-modal:not([ready]) {
 .c-bolt-modal__container-header,
 .c-bolt-modal__container-footer,
 .c-bolt-modal__container-body {
-  ::slotted(p:last-child),
-  ::slotted(p.is-last-child) {
+  ::slotted(*:last-child),
+  ::slotted(*.is-last-child) {
     margin-bottom: 0 !important;
   }
 }
