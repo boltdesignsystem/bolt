@@ -1,14 +1,11 @@
 /* Scrollbar */
 .c-bolt-carousel__scrollbar {
-  // border-radius: 10px;
+  @include bolt-margin-top(medium);
   position: relative;
   -ms-touch-action: none;
-  // background: rgba(0,0,0,0.1);
   border-radius: 10px;
   box-shadow: inset 0 0 6px rgba(bolt-color(gray, dark), 0.5);
   background-color: bolt-theme(secondary, 0.1);
-
-  @include bolt-margin-top(medium);
 
   .c-bolt-carousel--horizontal > & {
     position: relative;
@@ -16,29 +13,14 @@
     z-index: 50;
     width: 100%;
     height: 10px;
-    // left: bolt-spacing(xsmall) * -1;
-    // right: bolt-spacing(xsmall) * -1;
-    // --carousel-outer-spacing-bottom: var(--carousel-outer-spacing) * -1; 
-    // bottom: bolt-v-spacing(medium) * -1;
   }
-  // .c-bolt-carousel--vertical > & {
-  //   position: absolute;
-  //   right: 3px;
-  //   top: 1%;
-  //   z-index: 50;
-  //   width: 5px;
-  //   height: 98%;
-  // }
 }
 .c-bolt-carousel__scrollbar-drag {
-  height: 100%;
-  width: 100%;
   position: absolute;
-  // background: rgba(0,0,0,0.5);
-  // border-radius: 10px;
-  left: 0;
   top: 0;
-
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   background-image: linear-gradient(
     to bottom,

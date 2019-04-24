@@ -1,16 +1,13 @@
 bolt-carousel:not(.is-ready) > [slot="previous-btn"],
 bolt-carousel:not(.is-ready) > [slot="next-btn"],
 .c-bolt-carousel__btn {
+  display: flex;
+  opacity: 0;
   position: absolute;
   top: 50%;
-  min-height: 4rem;
-  // width: 27px;
-  // height: 44px;
-  // margin-top: -22px;
   transform: translateY(-50%);
-  display: flex;
   z-index: 10;
-  opacity: 0;
+  min-height: 4rem;
   cursor: pointer;
   transition: all 0.2s ease;
 
@@ -18,10 +15,6 @@ bolt-carousel:not(.is-ready) > [slot="next-btn"],
   &.c-bolt-carousel__btn--disabled:focus {
     outline: none;
   }
-  // transition-delay: 0.1s;
-  // background-size: 27px 44px;
-  // background-position: center;
-  // background-repeat: no-repeat;
 
   bolt-button {
     flex-grow: 1;
@@ -48,14 +41,10 @@ bolt-carousel.is-ready .c-bolt-carousel__btn:not(.c-bolt-carousel__btn--hidden):
   pointer-events: none;
 }
 
-// .c-bolt-carousel__btn--hidden {
-//   visibility: hidden;
-// }
-
 bolt-carousel:not(.is-ready) > [slot="previous-btn"],
 .c-bolt-carousel__btn--previous {
-  left: 0;
   right: auto;
+  left: 0;
 
   &.c-bolt-carousel__btn--outside {
     transform: translateX(-100%) translateX(bolt-spacing(xsmall) * -1) translateY(-50%);
@@ -78,7 +67,3 @@ bolt-carousel:not(.is-ready) > [slot="next-btn"] {
   opacity: 0;
   pointer-events: none;
 }
-
-// .swiper-button-lock {
-//   display: none;
-// }

@@ -120,11 +120,11 @@ class BoltCarousel extends withLitHtml() {
     const nextButton = this.querySelector('[slot="next-btn"]');
     const prevButton = this.querySelector('[slot="previous-btn"]');
 
-    if (nextButton){
+    if (nextButton) {
       nextButton.setAttribute('tabindex', '-1');
     }
 
-    if (prevButton){
+    if (prevButton) {
       prevButton.setAttribute('tabindex', '-1');
     }
   }

@@ -1,7 +1,6 @@
 @import '@bolt/core';
 
 bolt-carousel-slide {
-  // @include bolt-padding-left(xsmall);
   display: flex;
   flex-basis: calc(100vw - #{bolt-spacing(large)} - #{bolt-spacing(medium) / 2});
   flex-direction: column;
@@ -10,16 +9,9 @@ bolt-carousel-slide {
   position: relative;
   z-index: 1;
   min-width: 160px;
-  // min-height: 200px;
+  max-width: none;
   transition: transform 0.2s ease;
   scroll-snap-align: center;
-  max-width: none;
-  // min-width: 160px;
-  // max-width: none;
-
-  // &:first-child:not(.is-ready) {
-  //   @include bolt-margin-right(bolt-spacing(medium) * -1);
-  // }
 
   &:not(.is-ready){
     &:last-of-type {
@@ -39,10 +31,6 @@ bolt-carousel-slide {
       @include bolt-margin-right(small);
       --bolt-carousel-spacing: #{bolt-spacing(small)};
     }
-
-    // bolt-carousel[space-between="medium"] &{
-    //   @include bolt-margin-right(small);
-    // }
 
     bolt-carousel[space-between="none"] &{
       @include bolt-margin-right(0);
