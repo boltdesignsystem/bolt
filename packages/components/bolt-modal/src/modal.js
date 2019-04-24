@@ -270,7 +270,6 @@ class BoltModal extends withLitHtml() {
       const applyClasses = slotName => {
         const currentSlot = [];
 
-        console.log(slotName);
         this.slots[slotName].forEach(item => {
           if (item.tagName) {
             item.classList.remove('is-first-child');
