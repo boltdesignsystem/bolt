@@ -324,6 +324,17 @@ class BoltModal extends withLitHtml() {
 
     const handleOverlayClick = e => this._handleOverlayClick(e);
 
+    // Cannot inline this logic so moved it outside of html template
+    const footerTemplate = () => {
+      if (this.slots.footer) {
+        return html`
+          <footer class="c-bolt-modal__container-footer">
+            ${this.slot('footer')}
+          </footer>
+        `;
+      }
+    };
+
     return html`
       ${this.addStyles([styles])}
       <!--
@@ -394,9 +405,7 @@ class BoltModal extends withLitHtml() {
               </div>
 
               <!-- @todo: placeholder slot for slotted footer content -->
-              <footer class="c-bolt-modal__container-footer">
-                ${this.slot('footer')}
-              </footer>
+              ${footerTemplate()}
             </article>
           </dialog>
         </focus-trap>
