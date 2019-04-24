@@ -330,7 +330,7 @@ class BoltModal extends withLitHtml() {
 
     const headerClasses = cx('c-bolt-modal__container-header', {
       [`c-bolt-modal__container-header--hidden`]:
-        this.slots.header !== undefined,
+        this.slots.header === undefined || !this.slots.header.length,
     });
 
     const contentClasses = cx('c-bolt-modal__content', {
