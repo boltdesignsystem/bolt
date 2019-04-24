@@ -1,3 +1,42 @@
+{# Setting variables for demo purposes #}
+{% set link_1 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Item 1",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set link_2 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Item 2",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set link_3 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Item 3",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set placeholder_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 1",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 2",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 3",
+    size: "xsmall",
+  } only %}
+{% endset %}
+
+{# Start component specific code #}
 <h3>Regular vs inset spacing</h3>
 <p>There are 2 different types of spacing styles and you can use it to your advantage. Different layouts call for different spacing styles, use your best judgment to apply the more applicable style.</p>
 
@@ -10,26 +49,9 @@
     {% include "@bolt-components-list/list.twig" with {
       separator: "solid",
       items: [
-        include("@bolt-components-link/link.twig", {
-          text: "Item 1",
-          url: "#!",
-        }),
-        include("@bolt-components-link/link.twig", {
-          text: "Item 2",
-          url: "#!",
-        }),
-        include("@bolt-components-link/link.twig", {
-          text: "Item 3",
-          url: "#!",
-        }),
-        include("@bolt-components-link/link.twig", {
-          text: "Item 4",
-          url: "#!",
-        }),
-        include("@bolt-components-link/link.twig", {
-          text: "Item 5",
-          url: "#!",
-        }),
+        link_1,
+        link_2,
+        link_3,
       ]
     } only %}
   {% endcell %}
@@ -39,18 +61,9 @@
   {% cell "u-bolt-width-4/12" %}
     {% include "@bolt-components-list/list.twig" with {
       items: [
-        include("@bolt-components-placeholder/placeholder.twig", {
-          text: "Placeholder 1",
-          size: "xsmall",
-        }),
-        include("@bolt-components-placeholder/placeholder.twig", {
-          text: "Placeholder 2",
-          size: "xsmall",
-        }),
-        include("@bolt-components-placeholder/placeholder.twig", {
-          text: "Placeholder 3",
-          size: "xsmall",
-        }),
+        placeholder_1,
+        placeholder_2,
+        placeholder_3,
       ]
     } only %}
   {% endcell %}
@@ -68,21 +81,13 @@
         inset: true,
         separator: "solid",
         items: [
-          include("@bolt-components-placeholder/placeholder.twig", {
-            text: "Placeholder 1",
-            size: "xsmall",
-          }),
-          include("@bolt-components-placeholder/placeholder.twig", {
-            text: "Placeholder 2",
-            size: "xsmall",
-          }),
-          include("@bolt-components-placeholder/placeholder.twig", {
-            text: "Placeholder 3",
-            size: "xsmall",
-          }),
+          placeholder_1,
+          placeholder_2,
+          placeholder_3,
         ]
       } only %}
     </div>
     <p>^ This list is inside a colored box.</p>
   {% endcell %}
 {% endgrid %}
+{# End component specific code #}

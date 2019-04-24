@@ -31,7 +31,7 @@ module.exports = async function globalSetup() {
 
   await setupDevServer({
     command: `node packages/servers/testing-server`,
-    launchTimeout: 50000,
+    launchTimeout: 120000,
     port: 4444,
     usedPortAction: 'kill',
   });
