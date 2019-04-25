@@ -6,6 +6,7 @@
   border-radius: 10px;
   box-shadow: inset 0 0 6px rgba(bolt-color(gray, dark), 0.5);
   background-color: bolt-theme(secondary, 0.1);
+  transition: opacity 0.2s ease;
 
   .c-bolt-carousel--horizontal > & {
     position: relative;
@@ -39,4 +40,9 @@
 }
 .c-bolt-carousel__scrollbar-lock {
   display: none;
+}
+
+// auto-hide the scrollbar  when both buttons are hidden
+.c-bolt-carousel__btn--hidden + .c-bolt-carousel__btn--hidden ~ .c-bolt-carousel__scrollbar {
+  opacity: 0;
 }

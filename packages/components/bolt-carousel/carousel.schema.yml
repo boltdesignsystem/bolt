@@ -30,10 +30,20 @@ properties:
   full_bleed:
     type: boolean
     description: Overflow to fill wrapper
+    default: false
+    enum:
+      - true
+      - false
   slides_per_view:
     type: [string, number]
     description: Adjusts how many slides are displayed
     default: 'auto'
+    enum:
+      - auto
+      - 1
+      - 2
+      - 3
+      - 4
   noJs:
     type: boolean
     description: Force swiper.js to be disabled (used for testing purposed)
@@ -79,7 +89,26 @@ properties:
     enum:
       - true
       - false
-
+  prevSlideMessage:
+    type: string
+    description: Message for screen readers for previous button
+    default: 'Previous slide'
+  nextSlideMessage:
+    type: string
+    description: Message for screen readers for next button
+    default: 'Next slide'
+  firstSlideMessage:
+    type: string
+    description: Message for screen readers for previous button when swiper is on first slide
+    default: 'This is the first slide'
+  lastSlideMessage:
+    type: string
+    description: Message for screen readers for previous button when swiper is on last slide
+    default: 'This is the last slide'
+  paginationBulletMessage:
+    type: string
+    description: Message for screen readers for single pagination bullet
+    default: 'Go to slide {{index}}'
   # disabled:
   #   title: Disabled
   #   type: boolean

@@ -3,7 +3,7 @@
 bolt-carousel-slide {
   display: flex;
   flex-basis: calc(100vw - #{bolt-spacing(large)} - #{bolt-spacing(medium) / 2});
-  flex-direction: column;
+  flex-direction: row; // make sure children fill height of container
   flex-grow: 1;
   flex-shrink: 0;
   position: relative;
