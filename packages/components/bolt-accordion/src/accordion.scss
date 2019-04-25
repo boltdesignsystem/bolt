@@ -87,10 +87,8 @@ bolt-accordion {
 
 .c-bolt-accordion__header-button,
 .c-bolt-accordion__header-label {
-  @include bolt-padding-top(small);
-  @include bolt-padding-bottom(small);
-  @include bolt-padding-right(small);
-  @include bolt-padding-left(small);
+  @include bolt-padding(small);
+  // @include bolt-padding(small, squished);
   @include bolt-font-size(medium);
   @include bolt-font-weight(semibold);
 
@@ -236,20 +234,20 @@ bolt-accordion {
   margin-right: bolt-spacing(small) * -1;
   margin-bottom: bolt-spacing(xsmall) * -1;
 
-  &:before {
-    content: '';
-    opacity: 0.1;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 1px;
-    background-color: bolt-theme(headline-link);
+  // &:before {
+  //   content: '';
+  //   opacity: 0.1;
+  //   position: absolute;
+  //   top: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   width: 1px;
+  //   background-color: bolt-theme(headline-link);
 
-    .c-bolt-accordion__header--center & {
-      display: none;
-    }
-  }
+  //   .c-bolt-accordion__header--center & {
+  //     display: none;
+  //   }
+  // }
 }
 
 .c-bolt-accordion__header-icons-inner {
@@ -328,10 +326,8 @@ bolt-accordion {
 }
 
 .c-bolt-accordion__content-inner {
-  @include bolt-padding-top(small);
-  @include bolt-padding-bottom(small);
-  @include bolt-padding-right(small);
-  @include bolt-padding-left(small);
+  @include bolt-padding(small);
+  // @include bolt-padding(small, squished);
 
   // Required when used with replace-with-children
   display: block;
@@ -466,3 +462,53 @@ bolt-accordion {
     )
   );
 }
+
+// From list
+// [class*='c-bolt-list-item--separator'] {
+//   &:not(.c-bolt-list-item--separator-none) {
+//     &.c-bolt-list-item--display-block {
+//       &:not(.c-bolt-list-item--last-item) {
+//         border-bottom-width: 1px;
+//       }
+//     }
+
+//     &.c-bolt-list-item--display-inline {
+//       &:not(.c-bolt-list-item--last-item) {
+//         border-right-width: 1px;
+//       }
+//     }
+
+//     @each $breakpoint in $bolt-breakpoints {
+//       $breakpoint-name: nth($breakpoint, 1);
+
+//       &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
+//         &:not(.c-bolt-list-item--last-item) {
+//           border-bottom-width: 1px;
+
+//           @include bolt-mq($breakpoint-name) {
+//             border-right-width: 1px;
+//             border-bottom-width: 0;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   &.c-bolt-list-item--display-flex {
+//     margin: {
+//       top: -1px;
+//       right: -1px;
+//     }
+//     border: {
+//       top-width: 1px;
+//       right-width: 1px;
+//     }
+
+//     &[class*='c-bolt-list-item--spacing'] {
+//       &:not(.c-bolt-list-item--inset) {
+//         padding-left: 0;
+//         border-top-width: 0;
+//       }
+//     }
+//   }
+// }
