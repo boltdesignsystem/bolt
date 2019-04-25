@@ -111,7 +111,7 @@ bolt-modal:not([ready]) {
 
     position: relative;
     top: 50vh;
-    transform: translate3d(0, -50%, 0) scale3d(0.95, 0.95, 0.95);
+    transform: translateX(0) translateY(-50%) scale(0.95);
   }
 
   &.is-open {
@@ -120,7 +120,8 @@ bolt-modal:not([ready]) {
     .c-bolt-modal__content {
       visibility: visible;
       opacity: 1;
-      transform: translate3d(0, -50%, 0) scale3d(1, 1, 1);
+      transform: translateX(0) translateY(calc(-50% - 0.5px)) translateZ(0);
+      filter: blur(0);
     }
   }
 }
@@ -129,14 +130,15 @@ bolt-modal:not([ready]) {
   .c-bolt-modal__content {
     top: 50%;
     left: 50%;
-    transform: translate3d(-50%, -50%, 0) scale3d(0.95, 0.95, 0.95);
+    transform: translateX(-50%) translateY(-50%) scale(0.95);
   }
 
   &.is-open {
     .c-bolt-modal__content {
       visibility: visible;
       opacity: 1;
-      transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+      transform: translateX(calc(-50% - 0.5px)) translateY(calc(-50% - 0.5px)) translateZ(0);
+      filter: blur(0);
     }
   }
 
