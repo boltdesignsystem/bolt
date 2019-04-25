@@ -5,12 +5,14 @@
 <bolt-accordion-item {{ uuid ? "uuid" : uuid }}>
   <input class="c-bolt-accordion__state" type="checkbox" id="{{ primary_uuid }}" {% if autoOpen %} checked{% endif %}>
 
-  <replace-with-children class="c-bolt-accordion-item {{ collapse ? "c-bolt-accordion--collapse@small" : "" }}" id="{{ secondary_uuid }}">
+  <replace-with-grandchildren class="c-bolt-accordion-item {{ collapse ? "c-bolt-accordion--collapse@small" : "" }}" id="{{ secondary_uuid }}">
 
-    <h3 class="c-bolt-accordion__header {% if center and center == true %}c-bolt-accordion__header--center{% endif %}" slot="header">
-      <label class="c-bolt-accordion__header-label" for="{{ primary_uuid }}">
-        {{ title | default("Toggle Accordion")}}
-      </label>
+    <div class="c-bolt-accordion__header {% if center and center == true %}c-bolt-accordion__header--center{% endif %}">
+      <replace-with-grandchildren>
+        <label class="c-bolt-accordion__header-label" for="{{ primary_uuid }}">
+          <h3 slot="header">{{ title | default("Toggle Accordion")}}</h3 slot="header">
+        </label>
+      </replace-with-grandchildren>
 
       <a href="#{{ primary_uuid }}" class="c-bolt-accordion__header-link c-bolt-accordion__header-link c-bolt-accordion__header-link--open">
         <span class="c-bolt-accordion__toggle-text">{{ openLabel | default("Open Accordion")}}</span>
@@ -19,12 +21,13 @@
       <a href="#{{ secondary_uuid }}" class="c-bolt-accordion__header-link c-bolt-accordion__header-link--close">
         <span class="c-bolt-accordion__toggle-text">{{ closeLabel | default("Close Accordion")}}</span>
       </a>
-    </h3>
+    </div>
 
-    <replace-with-children class="c-bolt-accordion__content">
-      <replace-with-children class="c-bolt-accordion__content-inner">
+    <replace-with-grandchildren class="c-bolt-accordion__content">
+      <div class="c-bolt-accordion__content-inner">
         {{ content }}
-      </replace-with-children>
-    </replace-with-children>
-  </replace-with-children>
+      </div>
+    </replace-with-grandchildren>
+
+  </replace-with-grandchildren>
 </bolt-accordion-item>
