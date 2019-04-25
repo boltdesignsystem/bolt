@@ -10,10 +10,10 @@ import {
   html,
 } from '@bolt/core/renderers/renderer-lit-html';
 
-import { Accordion } from './_accordion-handorgel';
-
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion.scss';
+
+import { Accordion } from './_accordion-handorgel';
 
 @define
 class BoltAccordion extends withLitHtml() {

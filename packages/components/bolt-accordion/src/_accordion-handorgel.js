@@ -9,7 +9,7 @@ export class Accordion extends Handorgel {
         ? this.options.items
         : this.element.children;
 
-    for (let i = 0, itemsLength = items.length; i < itemsLength; i = i + 2) {
+    for (let i = 0, itemsLength = items.length; i < itemsLength; i += 2) {
       const header = items[i];
       const content = items[i + 1];
 
