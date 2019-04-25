@@ -106,7 +106,7 @@ class BoltCarousel extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = false;
-    self.schema = schema;
+    self.schema = originalSchema;
     self.onSlideChange = self.onSlideChange.bind(self);
     self.conditionallyDisableButtons = self.conditionallyDisableButtons.bind(
       self,
@@ -315,8 +315,6 @@ class BoltCarousel extends withLitHtml() {
         //   : spacingUnit,
       };
     }
-
-    console.log(this.options);
 
     if (!this._wasInitiallyRendered) {
       this.scrollTo({
