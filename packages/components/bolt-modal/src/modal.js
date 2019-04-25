@@ -316,7 +316,15 @@ class BoltModal extends withLitHtml() {
     // @todo: validate props
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     // const { disabled } = this.validateProps(this.props);
-    const { open, persistent, width, spacing, scroll, theme, hideCloseButton } = this.props;
+    const {
+      open,
+      persistent,
+      width,
+      spacing,
+      scroll,
+      theme,
+      hideCloseButton,
+    } = this.props;
 
     const classes = cx('c-bolt-modal', {
       [`is-open`]: open,
