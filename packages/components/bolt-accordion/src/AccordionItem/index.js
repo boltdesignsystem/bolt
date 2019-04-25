@@ -102,13 +102,13 @@ class AccordionItem extends withLitHtml() {
                 <span
                   class="c-bolt-accordion__header-icon c-bolt-accordion__header-icon--open"
                 >
-                  <bolt-icon name="chevron-down"></bolt-icon>
+                  <bolt-icon name="add-open"></bolt-icon>
                 </span>
 
                 <span
                   class="c-bolt-accordion__header-icon c-bolt-accordion__header-icon--close"
                 >
-                  <bolt-icon name="chevron-up"></bolt-icon>
+                  <bolt-icon name="minus-open"></bolt-icon>
                 </span>
               </div>
             </span>
