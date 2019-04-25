@@ -16,13 +16,15 @@ bolt-carousel:not(.is-ready) > [slot="next-btn"],
     outline: none;
   }
 
+  .c-bolt-button {
+    min-height: 100%;
+  }
+}
+
+bolt-carousel {
   bolt-button {
     flex-grow: 1;
     --bolt-button-min-height: 100%;
-  }
-
-  .c-bolt-button {
-    min-height: 100%;
   }
 }
 

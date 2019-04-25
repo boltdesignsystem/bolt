@@ -39,7 +39,7 @@ const viewportSizes = [
 ];
 
 const imageVrtConfig = {
-  failureThreshold: '0.02',
+  failureThreshold: '0.03',
   failureThresholdType: 'percent',
 };
 
@@ -139,6 +139,8 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
+      await page.waitFor(1000);
+
       const screenshots = [];
 
       const renderedHTML = await html(renderedComponentHTML);
@@ -216,6 +218,8 @@ describe('carousel', () => {
         carousel.updated();
         return carousel.outerHTML;
       });
+
+      await page.waitFor(1000);
 
       const screenshots = [];
 
@@ -296,6 +300,8 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
+      await page.waitFor(1000);
+
       const screenshots = [];
 
       const renderedHTML = await html(renderedComponentHTML);
@@ -367,6 +373,8 @@ describe('carousel', () => {
         carousel.updated();
         return carousel.outerHTML;
       });
+
+      await page.waitFor(1000);
 
       const screenshots = [];
 
@@ -478,6 +486,8 @@ describe('carousel', () => {
         carousel.updated();
         return carousel.outerHTML;
       });
+
+      await page.waitFor(1000);
 
       const screenshots = [];
 
