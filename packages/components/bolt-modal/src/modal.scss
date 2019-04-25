@@ -57,11 +57,17 @@ bolt-modal:not([ready]) {
   background-color: $bolt-modal-overlay-bg-color;
   transition: opacity $bolt-modal-transition;
 
-  &.is-open {
+  @at-root .c-bolt-modal.is-open #{&} {
     opacity: 1;
+    cursor: pointer;
     pointer-events: auto;
   }
+
+  @at-root .c-bolt-modal.is-open #{&}--persistent {
+    cursor: auto;
+  }
 }
+
 
 // Content box
 .c-bolt-modal__content {
@@ -100,20 +106,20 @@ bolt-modal:not([ready]) {
   -webkit-overflow-scrolling: touch;
   pointer-events: none;
 
-  &.is-open {
-    pointer-events: auto;
-  }
-
   .c-bolt-modal__content {
     @include bolt-margin(0 auto);
 
+    position: relative;
     top: 50vh;
     transform: translate3d(0, -50%, 0) scale3d(0.95, 0.95, 0.95);
+  }
 
-    &.is-open {
+  &.is-open {
+    pointer-events: auto;
+
+    .c-bolt-modal__content {
       visibility: visible;
       opacity: 1;
-      position: relative;
       transform: translate3d(0, -50%, 0) scale3d(1, 1, 1);
     }
   }
@@ -124,8 +130,10 @@ bolt-modal:not([ready]) {
     top: 50%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0) scale3d(0.95, 0.95, 0.95);
+  }
 
-    &.is-open {
+  &.is-open {
+    .c-bolt-modal__content {
       visibility: visible;
       opacity: 1;
       transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);

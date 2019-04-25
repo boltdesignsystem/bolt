@@ -316,7 +316,7 @@ class BoltModal extends withLitHtml() {
     // @todo: validate props
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     // const { disabled } = this.validateProps(this.props);
-    const { open, width, spacing, scroll, theme, hideCloseButton } = this.props;
+    const { open, persistent, width, spacing, scroll, theme, hideCloseButton } = this.props;
 
     const classes = cx('c-bolt-modal', {
       [`is-open`]: open,
@@ -324,7 +324,7 @@ class BoltModal extends withLitHtml() {
     });
 
     const overlayClasses = cx('c-bolt-modal__overlay', {
-      [`is-open`]: open,
+      [`c-bolt-modal__overlay--persistent`]: persistent,
     });
 
     const headerClasses = cx('c-bolt-modal__container-header', {
@@ -333,7 +333,6 @@ class BoltModal extends withLitHtml() {
     });
 
     const contentClasses = cx('c-bolt-modal__content', {
-      [`is-open`]: open,
       [`c-bolt-modal__content--width-${width}`]: width && width !== 'auto',
     });
 
