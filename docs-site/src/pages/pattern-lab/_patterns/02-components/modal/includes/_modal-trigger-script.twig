@@ -1,0 +1,36 @@
+<script>
+  var setTimedModalParam = function(set){
+    var currentUrl = window.location.href.split('?').shift();
+    var param = '?showModal=true';
+    window.location.href = set ? currentUrl + param : currentUrl;
+  }
+
+  var initTimedModal = function(){
+    var timedModal = document.querySelector('#timed-modal');
+
+    var getUrlParameter = function(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    var canShowModal = getUrlParameter('showModal');
+
+    var setTimedModal = function(el) {
+      if (canShowModal) {
+        setTimeout(function(){
+          el.show();
+        }, 3000)
+      }
+    }
+
+    if (timedModal) {
+      timedModal._wasInitiallyRendered
+        ? setTimedModal(timedModal)
+        : timedModal.addEventListener('rendered', setTimedModal(timedModal));
+    }
+  }
+
+  initTimedModal();
+</script>

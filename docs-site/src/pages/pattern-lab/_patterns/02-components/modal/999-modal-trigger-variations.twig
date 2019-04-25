@@ -36,3 +36,32 @@
     hide_close_button: true,
   } only %}
 </div>
+
+<div class="u-bolt-margin-bottom-medium">
+  <h3>Timed Trigger</h3>
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Trigger Timed Modal",
+    size: "small",
+    attributes: {
+      onclick: "setTimedModalParam(true)",
+    }
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Unset Timed Modal",
+    size: "small",
+    attributes: {
+      onclick: "setTimedModalParam(false)",
+    }
+  } only %}
+  {% set timed_modal_content %}
+    <h2 slot="header">Timed Modal</h2>
+    <p>This modal will open after 3 seconds.</p>
+  {% endset %}
+  {% include "@bolt-components-modal/modal.twig" with {
+    attributes: {
+      id: 'timed-modal'
+    },
+    content: timed_modal_content,
+  } only %}
+  {% include "includes/_modal-trigger-script.twig" %}
+</div>
