@@ -1,0 +1,458 @@
+@import '@bolt/core';
+
+bolt-accordion {
+  display: block;
+
+  @include bolt-css-vars(
+    (
+      --bolt-nav-item-opacity: 0,
+      --bolt-nav-item-transform: translateY(bolt-spacing(large) * -1),
+      --bolt-nav-indicator-opacity: 0,
+    )
+  );
+
+  &[collapse] {
+    @include bolt-mq(small) {
+      @include bolt-css-vars(
+        (
+          --bolt-nav-item-opacity: 1,
+          --bolt-nav-item-transform: none,
+          --bolt-nav-indicator-opacity: 1,
+        )
+      );
+    }
+  }
+}
+
+.c-bolt-accordion {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
+  background-color: bolt-theme(background);
+}
+
+.c-bolt-accordion__header {
+  @include bolt-font-weight(semibold);
+  @include bolt-font-size(
+    medium
+  ); // Normalizes line height so pre and post JS looks the same
+  display: flex;
+  position: relative;
+  z-index: 10;
+  margin: 0;
+  box-shadow: 0 1px 2px 0 rgba(bolt-color(black), 0.1);
+  background-color: bolt-theme(background);
+
+  .c-bolt-accordion--collapse\@small & {
+    @include bolt-mq(small) {
+      display: none;
+    }
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    opacity: bolt-opacity(0);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: transparent;
+    background-color: bolt-theme(headline-link);
+    transition: opacity 0.1s ease;
+  }
+}
+
+.c-bolt-accordion__header:hover:after {
+  opacity: 0.05;
+}
+
+.c-bolt-accordion__header:active:after {
+  opacity: 0.15;
+}
+
+.c-bolt-accordion__header-button,
+.c-bolt-accordion__header-label {
+  @include bolt-padding-top(small);
+  @include bolt-padding-bottom(small);
+  @include bolt-padding-right(small);
+  @include bolt-padding-left(small);
+  @include bolt-font-size(medium);
+  @include bolt-font-weight(semibold);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center; // vertical align
+  -webkit-appearance: none;
+  position: relative;
+  width: 100%;
+
+  margin-bottom: 0;
+  color: bolt-theme(headline-link);
+  text-align: left; // otherwise some accordion menus are center aligned in the Shadow DOM
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font: inherit;
+  border: none;
+  background-color: transparent;
+  background-color: bolt-theme(background);
+
+  outline-offset: -3px;
+  outline-width: 2px;
+
+  &:-moz-focusring {
+    // Firefox specific fix for removing the dotted outline
+    outline: none;
+  }
+
+  .c-bolt-accordion__header--center & {
+    justify-content: center;
+  }
+}
+
+.c-bolt-accordion__header-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  outline-offset: -3px;
+
+  &:focus,
+  &:active {
+    width: auto;
+    height: auto;
+    overflow: visible;
+    margin: 0;
+    clip: auto;
+    white-space: inherit;
+  }
+}
+
+.c-bolt-accordion__toggle--open {
+  display: block;
+}
+
+.c-bolt-accordion__state:target
+  + .c-bolt-accordion
+  .c-bolt-accordion__header-link--open,
+.c-bolt-accordion__state:checked
+  + .c-bolt-accordion
+  .c-bolt-accordion__header-link--open {
+  display: none;
+}
+
+.c-bolt-accordion__header-link--close {
+  display: none;
+}
+
+.c-bolt-accordion__state:target
+  + .c-bolt-accordion
+  .c-bolt-accordion__header-link--close,
+.c-bolt-accordion__state:checked
+  + .c-bolt-accordion
+  .c-bolt-accordion__header-link--close {
+  display: block;
+}
+.c-bolt-accordion__state:target
+  + .c-bolt-accordion
+  .c-bolt-accordion__header-link--close {
+  top: 0;
+  // height: 50px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.c-bolt-accordion__content {
+  display: none;
+  position: relative;
+  left: 0;
+  transform: translateY(-100px);
+  z-index: 1;
+  width: 100%;
+  height: 0;
+  overflow: auto;
+  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
+  transition: all 0.2s cubic-bezier(0, 0, 0.3, 1) 0.1s;
+
+  &[data-open]:not([style*='height']) {
+    visibility: visible;
+    height: auto;
+    transition: none;
+  }
+
+  &:not([role='region']) {
+    display: block;
+    visibility: hidden;
+    height: auto;
+    max-height: 0px; // Height of bar
+  }
+
+  .c-bolt-accordion--collapse\@small & {
+    @include bolt-mq(small) {
+      display: block;
+      visibility: visible;
+      transform: translate3d(0, 0, 0);
+      height: auto;
+      max-height: none;
+    }
+  }
+}
+
+.c-bolt-accordion__header-icons {
+  display: inline-flex;
+  flex-shrink: 0; // for when there is a very long title - adds left/right spacing
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden; // so transformed icons don't spill out
+  margin-top: bolt-spacing(xsmall) * -1;
+  margin-right: bolt-spacing(small) * -1;
+  margin-bottom: bolt-spacing(xsmall) * -1;
+
+  &:before {
+    content: '';
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background-color: bolt-theme(headline-link);
+
+    .c-bolt-accordion__header--center & {
+      display: none;
+    }
+  }
+}
+
+.c-bolt-accordion__header-icons-inner {
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+}
+
+.c-bolt-accordion__header-icon {
+  display: inline-block;
+  position: relative;
+  padding: calc(1.5rem / 2);
+  // height: 3rem;
+  // width: 3rem;
+  line-height: 0; // Workaround to line-height messing up icon alignment
+  vertical-align: middle;
+  font-size: 1.5rem;
+  transition: opacity 0.2s ease;
+  // transform-style: preserve-3d;
+  // transform-origin: center center;
+
+  & ~ * {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(180deg);
+  }
+}
+
+[aria-expanded='false'] {
+  .c-bolt-accordion__header-icons-inner {
+    transform: rotate(0deg);
+  }
+  .c-bolt-accordion__header-icon--open {
+    opacity: bolt-opacity(100);
+  }
+  .c-bolt-accordion__header-icon--close {
+    opacity: bolt-opacity(0);
+  }
+}
+
+[aria-expanded='true'] {
+  .c-bolt-accordion__header-icons-inner {
+    transform: rotate(179.5deg);
+  }
+
+  .c-bolt-accordion__header-icon--open {
+    opacity: bolt-opacity(0);
+    // transform: translate3d(-50%, -50%, 0px) rotate(179deg);
+  }
+
+  .c-bolt-accordion__header-icon--close {
+    opacity: bolt-opacity(100);
+    // transform: translate3d(-50%, -50%, 0px) rotate(360deg);
+  }
+}
+
+.c-bolt-accordion__state:target
+  + .c-bolt-accordion-item
+  .c-bolt-accordion__content,
+.c-bolt-accordion__state:checked
+  + .c-bolt-accordion-item
+  .c-bolt-accordion__content {
+  visibility: visible;
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+  max-height: 250px;
+  transition: all 0.2s cubic-bezier(0, 0, 0.3, 1) 0.1s;
+  transition: transform 300ms ease, height 300ms ease;
+}
+
+.c-bolt-accordion__content--open {
+  display: block;
+  transform: translate3d(0, 0, 0);
+  // overflow: hidden;
+  transition: height 0.2s ease;
+}
+
+.c-bolt-accordion__content-inner {
+  @include bolt-padding-top(small);
+  @include bolt-padding-bottom(small);
+  @include bolt-padding-right(small);
+  @include bolt-padding-left(small);
+
+  // Required when used with replace-with-children
+  display: block;
+
+  opacity: bolt-opacity(0);
+  position: relative;
+  overflow: auto;
+  transition: opacity 0.1s ease;
+  -webkit-overflow-scrolling: touch;
+
+  .c-bolt-accordion--collapse\@small & {
+    @include bolt-mq(small) {
+      opacity: bolt-opacity(100);
+    }
+  }
+  // transition: opacity 0.2s cubic-bezier(0, 0, 0.3, 1) 0.1s;
+
+  &:after {
+    content: '';
+    display: block;
+    opacity: bolt-opacity(100);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-color: transparent;
+    background-color: bolt-theme(background);
+
+    filter: contrast(80%) brightness(110%);
+    transition: opacity 0.1s ease;
+  }
+}
+
+.c-bolt-accordion__state:target
+  + .c-bolt-accordion-item
+  .c-bolt-accordion__content-inner,
+.c-bolt-accordion__state:checked
+  + .c-bolt-accordion-item
+  .c-bolt-accordion__content-inner,
+.c-bolt-accordion__content--opened .c-bolt-accordion__content-inner {
+  opacity: bolt-opacity(100);
+  transition: opacity 0.3s ease;
+}
+
+.c-bolt-accordion__toggle-text {
+  border: 1px solid red;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(0 0 99.9% 99.9%);
+  clip-path: inset(0 0 99.9% 99.9%);
+}
+
+.c-bolt-accordion__state {
+  display: none;
+}
+
+.c-bolt-accordion__content--open {
+  overflow: hidden;
+}
+
+.c-bolt-block-list {
+  display: block;
+}
+
+.c-bolt-block-list__item {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.c-bolt-nav__item {
+  opacity: var(--bolt-nav-item-opacity, 1);
+  transform: var(--bolt-nav-item-transform, none);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
+
+  .c-bolt-accordion--collapse\@small & {
+    @include bolt-mq(small) {
+      opacity: bolt-opacity(100);
+      transform: translateY(0);
+    }
+  }
+}
+
+@for $quantity from 1 through 12 {
+  $time: 0;
+
+  @for $i from $quantity through 1 {
+    $time: $time + 50;
+    .c-bolt-nav__item:nth-last-child(n + #{$quantity}),
+    .c-bolt-nav__item:nth-last-child(n + #{$quantity})
+      ~ .c-bolt-nav__item:nth-child(#{$i}) {
+      transition-delay: $time + ms;
+    }
+  }
+}
+
+.c-bolt-accordion__state:target + .c-bolt-accordion .c-bolt-nav__item,
+.c-bolt-accordion__state:checked + .c-bolt-accordion .c-bolt-nav__item,
+.c-bolt-accordion__content--opened .c-bolt-nav__item {
+  // opacity: bolt-opacity(100);
+  // transform: none;
+  @include bolt-css-vars(
+    (
+      --bolt-nav-item-opacity: 1,
+      --bolt-nav-item-transform: none,
+    )
+  );
+}
+
+.c-bolt-accordion__content--opened {
+  @include bolt-css-vars(
+    (
+      --bolt-nav-item-opacity: 1,
+      --bolt-nav-item-transform: none,
+      --bolt-nav-indicator-opacity: 1,
+    )
+  );
+}
+
+.c-bolt-accordion__content:not(.c-bolt-accordion__content--open):not(.c-bolt-accordion__content--opened) {
+  @include bolt-css-vars(
+    (
+      --bolt-nav-indicator-transform: -100px,
+    )
+  );
+}

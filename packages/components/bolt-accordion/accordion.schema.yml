@@ -1,0 +1,26 @@
+title: Accordion
+type: object
+properties:
+  items:
+    type: array
+    description: All of the items in the accordion. Each item should contain a header and a content.
+    items:
+      type: object
+      properties:
+        header:
+          type: string
+          description: Header text of each accordion item.
+        content:
+          type: [string, object, array]
+          description: Content of each accordion item.
+        uuid:
+          type: string
+          description: Unique ID for each accordion item, randomly generated if not provided.
+  center:
+    type: boolean
+    description: '`True` to center the toggle title'
+    default: false
+  multiple:
+    type: boolean
+    description: Allow multiple items to be open at the same time.
+    default: false

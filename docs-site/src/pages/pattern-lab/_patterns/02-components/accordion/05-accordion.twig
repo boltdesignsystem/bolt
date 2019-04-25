@@ -1,0 +1,57 @@
+{# WIP #}
+
+{% include "@bolt-components-accordion/accordion.twig" with {
+  items: [
+    {
+      title: "Sample accordion title 1",
+      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at."
+    },
+    {
+      title: "Sample accordion title 2",
+      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at."
+    },
+    {
+      title: "Sample accordion title 3",
+      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at."
+    },
+    {
+      title: "Sample accordion title 4",
+      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at."
+    }
+  ]
+} %}
+
+
+<bolt-accordion>
+  <bolt-accordion-item>
+    <h2 slot="header">My accordion item title 1</h2>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <h2 slot="header">My accordion item title 2</h2>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <h2 slot="header">My accordion item title 3</h2>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.
+  </bolt-accordion-item>
+</bolt-accordion>
+
+
+<bolt-accordion no-shadow>
+  <bolt-accordion-item no-shadow>
+    <h2 slot="header">My accordion item title 1</h2>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.
+  </bolt-accordion-item>
+  <bolt-accordion-item no-shadow>
+    <h2 slot="header">My accordion item title 2</h2>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.
+  </bolt-accordion-item>
+  <bolt-accordion-item no-shadow>
+    <h2 slot="header">My accordion item title 3</h2>
+  </bolt-accordion-item>
+  <bolt-accordion-item-dd>
+    <h2 slot="header">My accordion item title 3</h2>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.
+  </bolt-accordion-item>
+</bolt-accordion>

@@ -1,0 +1,15 @@
+{% set usage %}{% verbatim %}
+// Via Twig
+
+TBD
+
+// Via Web Component and Twig
+
+TBD
+
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "accordion",
+  usage: 'usage'
+} only %}

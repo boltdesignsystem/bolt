@@ -1,0 +1,30 @@
+{% set random_uuid = random() %}
+{% set primary_uuid = uuid ? "c-bolt-accordion-item-#{uuid}" : "c-bolt-accordion-item-#{random_uuid}" %}
+{% set secondary_uuid = uuid ? "c-bolt-accordion-item-inner-#{uuid}" : "c-bolt-accordion-item-inner-#{random_uuid}" %}
+
+<bolt-accordion-item {{ uuid ? "uuid" : uuid }}>
+  <input class="c-bolt-accordion__state" type="checkbox" id="{{ primary_uuid }}" {% if autoOpen %} checked{% endif %}>
+
+  <replace-with-children class="c-bolt-accordion-item {{ collapse ? "c-bolt-accordion--collapse@small" : "" }}" id="{{ secondary_uuid }}">
+
+    <h3 class="c-bolt-accordion__header {% if center and center == true %}c-bolt-accordion__header--center{% endif %}" slot="header">
+      <label class="c-bolt-accordion__header-label" for="{{ primary_uuid }}">
+        {{ title | default("Toggle Accordion")}}
+      </label>
+
+      <a href="#{{ primary_uuid }}" class="c-bolt-accordion__header-link c-bolt-accordion__header-link c-bolt-accordion__header-link--open">
+        <span class="c-bolt-accordion__toggle-text">{{ openLabel | default("Open Accordion")}}</span>
+      </a>
+
+      <a href="#{{ secondary_uuid }}" class="c-bolt-accordion__header-link c-bolt-accordion__header-link--close">
+        <span class="c-bolt-accordion__toggle-text">{{ closeLabel | default("Close Accordion")}}</span>
+      </a>
+    </h3>
+
+    <replace-with-children class="c-bolt-accordion__content">
+      <replace-with-children class="c-bolt-accordion__content-inner">
+        {{ content }}
+      </replace-with-children>
+    </replace-with-children>
+  </replace-with-children>
+</bolt-accordion-item>

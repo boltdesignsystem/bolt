@@ -80,6 +80,7 @@ const config = {
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
+      '@bolt/components-accordion',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',
       '@bolt/components-background',
