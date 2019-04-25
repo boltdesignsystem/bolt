@@ -69,6 +69,12 @@ bolt-accordion {
     background-color: bolt-theme(headline-link);
     transition: opacity 0.1s ease;
   }
+
+  // Required for no-js styles to display properly
+  replace-with-grandchildren {
+    display: block;
+    width: 100%;
+  }
 }
 
 .c-bolt-accordion__header:hover:after {
