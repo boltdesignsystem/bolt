@@ -108,9 +108,17 @@ class BoltCarousel extends withLitHtml() {
     self.useShadow = false;
     self.schema = originalSchema;
     self.onSlideChange = self.onSlideChange.bind(self);
+    self.hideArrowsIfAllSlidesAreVisible = self.hideArrowsIfAllSlidesAreVisible.bind(
+      self,
+    );
+    self.disableSwipingIfAllSlidesAreVisible = self.disableSwipingIfAllSlidesAreVisible.bind(
+      self,
+    );
     self.conditionallyDisableButtons = self.conditionallyDisableButtons.bind(
       self,
     );
+    // self.enableNavButtons = self.enableNavButtons.bind(self);
+    self.onReachStartOrEnd = self.onReachStartOrEnd.bind(self);
     return self;
   }
 
@@ -181,6 +189,9 @@ class BoltCarousel extends withLitHtml() {
     ).length;
 
     this.options = {
+      a11y: {
+        notificationClass: 'c-bolt-carousel__notification',
+      },
       initialSlide: this.props.initialSlide ? this.props.initialSlide : 0,
       containerModifierClass: 'c-bolt-carousel--',
       slideClass: 'c-bolt-carousel__slide',
@@ -304,13 +315,48 @@ class BoltCarousel extends withLitHtml() {
         },
       );
 
-      this.disableSwipingIfAllSlidesVisible();
-      this.conditionallyDisableButtons();
+      this.hideArrowsIfAllSlidesAreVisible();
+      this.disableSwipingIfAllSlidesAreVisible();
+      // this.conditionallyDisableButtons();
 
       this.swiper.on('slideChange', this.onSlideChange);
-      this.swiper.on('transitionStart', this.conditionallyDisableButtons);
+      // this.swiper.on('slideChangeTransitionStart', this.enableNavButtons);
+
+      // this.swiper.on('reachStart', this.conditionallyDisableButtons);
+      // this.swiper.on('reachEnd', this.conditionallyDisableButtons);
+      // this.swiper.on('slideChangeTransitionEnd', this.conditionallyDisableButtons);
+      // this.swiper.on('transitionEnd', this.conditionallyDisableButtons);
     }
   }
+
+  onSlideChange() {
+    // this.conditionallyDisableButtons();
+    this.hideArrowsIfAllSlidesAreVisible();
+    this.disableSwipingIfAllSlidesAreVisible();
+  }
+
+  onReachStartOrEnd() {
+    // this.conditionallyDisableButtons();
+    // this.disableSwipingIfAllSlidesAreVisible();
+    // this.hideArrowsIfAllSlidesAreVisible();
+  }
+
+  // enableNavButtons() {
+  //   if (this.options.navigation) {
+  //     const nextButton = this.querySelector('[slot="next-btn"]');
+  //     const prevButton = this.querySelector('[slot="previous-btn"]');
+
+  //     if (prevButton) {
+  //       prevButton.disabled = false;
+  //       prevButton.removeAttribute('disabled');
+  //     }
+
+  //     if (nextButton) {
+  //       nextButton.disabled = false;
+  //       nextButton.removeAttribute('disabled');
+  //     }
+  //   }
+  // }
 
   conditionallyDisableButtons() {
     // console.log(nextButton);
@@ -355,51 +401,37 @@ class BoltCarousel extends withLitHtml() {
     }
   }
 
-  disableSwipingIfAllSlidesVisible() {
+  hideArrowsIfAllSlidesAreVisible() {
+    console.log(this.noNavButtons);
     // this.shouldButtonsBeHidden =
     //   this.swiper.isBeginning === true && this.swiper.isEnd === true;
     this.canNavButtonsBeHidden =
-      this.canNavButtonsBeHidden || this.props.hideNavButtons === false;
+      this.canNavButtonsBeHidden || this.props.noNavButtons === false;
 
-    if (this.swiper.isBeginning === true && this.swiper.isEnd === true) {
-      this.swiper.allowTouchMove = false;
-      this.swiper.grabCursor = false;
-      // this.hideNavButtons = true;
-      this.swiper.unsetGrabCursor();
-
-      // if (this.hideNavButtons === false && this.canNavButtonsBeTempHidden) {
-      //   this.hideNavButtons = true;
-      // }
-    } else {
-      this.swiper.allowTouchMove = true;
-      this.swiper.grabCursor = true;
-      this.swiper.setGrabCursor();
-    }
-
-    // if (this.hideNavButtons === true && this.canNavButtonsBeTempHidden) {
-    //   this.hideNavButtons = false;
+    // if (this.noNavButtons === true && this.canNavButtonsBeTempHidden) {
+    //   this.noNavButtons = false;
     // }
-    // this.hideNavButtons = false;
+    // this.noNavButtons = false;
     if (this._wasManuallyUpdated === true) {
       this._wasManuallyUpdated = false;
     } else {
-      // console.log(this.hideNavButtons === false);
+      // console.log(this.noNavButtons === false);
       if (
         this.swiper.isBeginning === true &&
         this.swiper.isEnd === true &&
         this.canNavButtonsBeHidden === true &&
-        this.hideNavButtons === false
+        this.noNavButtons === false
       ) {
         this._wasManuallyUpdated = true;
-        this.hideNavButtons = true;
+        this.noNavButtons = true;
         this.updated();
       } else if (
         this.canNavButtonsBeHidden &&
-        this.hideNavButtons === true &&
+        this.noNavButtons === true &&
         (this.swiper.isBeginning === false || this.swiper.isEnd === false)
       ) {
         this._wasManuallyUpdated = true;
-        this.hideNavButtons = false;
+        this.noNavButtons = false;
         this.updated();
       } else {
         // console.log(this.swiper.isBeginning === true);
@@ -410,22 +442,17 @@ class BoltCarousel extends withLitHtml() {
     }
   }
 
-  // disableButtonOnSlideChange() {
-  //   console.log(this.swiper);
-  // }
-
-  onSlideChange() {
-    this.disableSwipingIfAllSlidesVisible();
-    // this.disableButtonOnSlideChange();
+  disableSwipingIfAllSlidesAreVisible() {
+    if (this.swiper.isBeginning === true && this.swiper.isEnd === true) {
+      this.swiper.allowTouchMove = false;
+      this.swiper.grabCursor = false;
+      this.swiper.unsetGrabCursor();
+    } else {
+      this.swiper.allowTouchMove = true;
+      this.swiper.grabCursor = true;
+      this.swiper.setGrabCursor();
+    }
   }
-
-  // onNavigationHide() {
-  //   console.log('onNavigationHide');
-  // }
-
-  // navigationShow() {
-  //   console.log('navigationShow');
-  // }
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
@@ -439,7 +466,7 @@ class BoltCarousel extends withLitHtml() {
       'c-bolt-carousel__btn',
       'c-bolt-carousel__btn--previous',
       {
-        [`c-bolt-carousel__btn--hidden`]: this.props.hideNavButtons,
+        [`c-bolt-carousel__btn--hidden`]: this.props.noNavButtons,
         [`c-bolt-carousel__btn--${this.props.navPosition || 'inner'}`]: this
           .props.navPosition,
       },
@@ -449,7 +476,7 @@ class BoltCarousel extends withLitHtml() {
       'c-bolt-carousel__btn',
       'c-bolt-carousel__btn--next',
       {
-        [`c-bolt-carousel__btn--hidden`]: this.props.hideNavButtons,
+        [`c-bolt-carousel__btn--hidden`]: this.props.noNavButtons,
         [`c-bolt-carousel__btn--${this.props.navPosition || 'inner'}`]: this
           .props.navPosition,
       },

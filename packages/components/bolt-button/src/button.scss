@@ -69,38 +69,6 @@ bolt-button {
   text-transform: capitalize;
 }
 
-@function bolt-decimal-round($number, $digits: 0, $mode: round) {
-  $n: 1;
-  // $number must be a number
-  @if type-of($number) != number {
-      @warn '#{ $number } is not a number.';
-      @return $number;
-  }
-  // $digits must be a unitless number
-  @if type-of($digits) != number {
-      @warn '#{ $digits } is not a number.';
-      @return $number;
-  } @else if not unitless($digits) {
-      @warn '#{ $digits } has a unit.';
-      @return $number;
-  }
-  @if $digits > 0 {
-      @for $i from 1 through $digits {
-          $n: $n * 10;
-      }
-  }
-  @if $mode == round {
-      @return round($number * $n) / $n;
-  } @else if $mode == ceil {
-      @return ceil($number * $n) / $n;
-  } @else if $mode == floor {
-      @return floor($number * $n) / $n;
-  } @else {
-      @warn '#{ $mode } is undefined keyword.';
-      @return $number;
-  }
-}
-
 @function bolt-button-icon-only-size($paddingSize, $fontSize: xsmall){
   $line-height: map-get-deep($bolt-font-sizes, 'font-sizes', $fontSize, 'line-height', 'regular');
   $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $fontSize, 'font-size');
@@ -117,7 +85,8 @@ bolt-button {
 
   &.c-bolt-button--icon-only {
     width: bolt-button-icon-only-size(medium);
-    height: bolt-button-icon-only-size(medium);
+    min-height: bolt-button-icon-only-size(medium);
+    min-height: var(--bolt-button-min-height, #{bolt-button-icon-only-size(medium)});
   }
 }
 
@@ -127,7 +96,8 @@ bolt-button {
 
   &.c-bolt-button--icon-only {
     width: bolt-button-icon-only-size(xsmall);
-    height: bolt-button-icon-only-size(xsmall);
+    min-height: bolt-button-icon-only-size(xsmall);
+    min-height: var(--bolt-button-min-height, #{bolt-button-icon-only-size(xsmall)});
   }
 }
 
@@ -137,7 +107,8 @@ bolt-button {
 
   &.c-bolt-button--icon-only {
     width: bolt-button-icon-only-size(small);
-    height: bolt-button-icon-only-size(small);
+    min-height: bolt-button-icon-only-size(small);
+    min-height: var(--bolt-button-min-height, #{bolt-button-icon-only-size(small)});
   }
 }
 
@@ -147,7 +118,8 @@ bolt-button {
 
   &.c-bolt-button--icon-only {
     width: bolt-button-icon-only-size(medium, medium);
-    height: bolt-button-icon-only-size(medium, medium);
+    min-height: bolt-button-icon-only-size(medium, medium);
+    min-height: var(--bolt-button-min-height, #{bolt-button-icon-only-size(medium, medium)});
   }
 }
 
@@ -157,7 +129,8 @@ bolt-button {
 
   &.c-bolt-button--icon-only {
     width: bolt-button-icon-only-size(large, large);
-    height: bolt-button-icon-only-size(large, large);
+    min-height: bolt-button-icon-only-size(large, large);
+    min-height: var(--bolt-button-min-height, #{bolt-button-icon-only-size(large, large)});
   }
 }
 

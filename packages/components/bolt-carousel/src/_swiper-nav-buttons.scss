@@ -1,5 +1,10 @@
-bolt-carousel:not(.is-ready) > [slot="previous-btn"],
-bolt-carousel:not(.is-ready) > [slot="next-btn"],
+bolt-carousel:not(.is-ready) {
+  > [slot="previous-btn"],
+  > [slot="next-btn"] {
+    display: none;
+  }
+}
+// bolt-carousel:not(.is-ready) > [slot="next-btn"],
 .c-bolt-carousel__btn {
   display: flex;
   opacity: 0;
@@ -7,24 +12,17 @@ bolt-carousel:not(.is-ready) > [slot="next-btn"],
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
-  min-height: 4rem;
+  min-height: 5rem;
   cursor: pointer;
   transition: all 0.2s ease;
-
-  // remove focus outline if also disabled
-  &.c-bolt-carousel__btn--disabled:focus {
-    outline: none;
-  }
+  --bolt-button-min-height: 100%; // so the slotted left / right buttons fill the height of the parent container
 
   .c-bolt-button {
     min-height: 100%;
   }
-}
 
-bolt-carousel {
   bolt-button {
     flex-grow: 1;
-    --bolt-button-min-height: 100%;
   }
 }
 

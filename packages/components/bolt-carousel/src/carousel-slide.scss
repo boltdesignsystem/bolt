@@ -15,7 +15,7 @@ bolt-carousel-slide {
 
   &:not(.is-ready){
     &:last-of-type {
-      flex-basis: calc(100vw - #{bolt-spacing(medium) / 2 + bolt-spacing(xsmall)});
+      flex-basis: calc(100vw - #{bolt-spacing(medium) / 2 - bolt-spacing(xsmall)});
     }
   }
 
@@ -43,6 +43,20 @@ bolt-carousel-slide {
     }
   }
 
+  --bolt-carousel-spacing: #{bolt-spacing(medium)};
+
+  bolt-carousel[space-between="small"] &{
+    --bolt-carousel-spacing: #{bolt-spacing(small)};
+  }
+
+  bolt-carousel[space-between="none"] &{
+    --bolt-carousel-spacing: 0rem;
+  }
+
+  bolt-carousel[space-between="large"] &{
+    --bolt-carousel-spacing: #{bolt-spacing(large)};
+  }
+
   &.is-ready:last-of-type {
     margin-right: 0 !important;
   }
@@ -66,7 +80,7 @@ bolt-carousel-slide {
 
             &:last-of-type {
               flex-basis: calc(100% / #{$i} - #{bolt-spacing(medium) / 2 + bolt-spacing(xsmall)});
-              flex-basis: calc(100% / #{$i} - (#{var(--bolt-carousel-spacing, #{bolt-spacing(medium) / 2})} + #{bolt-spacing(xsmall)}));
+              flex-basis: calc(100% / #{$i} - (#{var(--bolt-carousel-spacing, #{bolt-spacing(medium) / 2})} - #{bolt-spacing(xsmall)}));
             }
           }
         }
@@ -79,7 +93,7 @@ bolt-carousel-slide {
 
             &:last-of-type {
               flex-basis: calc(100% / #{$i} - #{bolt-spacing(medium) / 2 + bolt-spacing(xsmall)});
-              flex-basis: calc(100% / #{$i} - (#{var(--bolt-carousel-spacing, #{bolt-spacing(medium) / 2})} + #{bolt-spacing(xsmall)}));
+              flex-basis: calc(100% / #{$i} - (#{var(--bolt-carousel-spacing, #{bolt-spacing(medium) / 2})} - #{bolt-spacing(xsmall)}));
             }
           }
         }
@@ -92,7 +106,7 @@ bolt-carousel-slide {
 
             &:last-of-type {
               flex-basis: calc(100% / #{$i} - #{bolt-spacing(medium) / 2 + bolt-spacing(xsmall)});
-              flex-basis: calc(100% / #{$i} - (#{var(--bolt-carousel-spacing, #{bolt-spacing(medium) / 2})} + #{bolt-spacing(xsmall)}));
+              flex-basis: calc(100% / #{$i} - (#{var(--bolt-carousel-spacing, #{bolt-spacing(medium) / 2})} - #{bolt-spacing(xsmall)}));
             }
           }
         }
@@ -105,7 +119,7 @@ bolt-carousel-slide {
 
             &:last-of-type {
               flex-basis: calc(100% / #{$i} - #{bolt-spacing(medium) / 2 + bolt-spacing(xsmall)});
-              flex-basis: calc(100% / #{$i} - (#{var(--bolt-carousel-spacing, #{bolt-spacing(medium) / 2})} + #{bolt-spacing(xsmall)}));
+              flex-basis: calc(100% / #{$i} - (#{var(--bolt-carousel-spacing, #{bolt-spacing(medium) / 2})} - #{bolt-spacing(xsmall)}));
             }
           }
         }
