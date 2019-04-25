@@ -2,8 +2,6 @@
   {{ validate_data_schema(bolt.data.components['@bolt-components-accordion'].schema, _self) | raw }}
 {% endif %}
 
-{% set multiple = multiple|default(false) %}
-
 <div class="o-bolt-wrapper">
   <div class="u-bolt-margin-bottom-large">
     <bolt-accordion
