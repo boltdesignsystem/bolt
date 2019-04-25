@@ -1,9 +1,15 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import {
+  renameKey,
+  props,
+  define,
+  hasNativeShadowDomSupport,
+} from '@bolt/core/utils';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
+import changeCase from 'change-case';
 import Swiper from 'swiper';
 import styles from './carousel.scss';
-import schema from '../carousel.schema.yml';
+import originalSchema from '../carousel.schema.yml';
 
 let cx = classNames.bind(styles);
 
@@ -18,6 +24,29 @@ const boltBreakpoints = {
   xxlarge: '1400px',
   xxxlarge: '1920px',
 };
+
+const carouselProps = {};
+const schemaPropKeys = Object.keys(originalSchema.properties);
+
+for (const key of schemaPropKeys) {
+  const property = originalSchema.properties[key];
+  const propertyName = changeCase.camelCase(key);
+  const propertyType =
+    typeof property.type === 'object' && property.type.length > 1
+      ? 'string'
+      : property.type;
+
+  if (property.default) {
+    carouselProps[propertyName] = {
+      ...props[propertyType],
+      ...{ default: property.default },
+    };
+  } else {
+    carouselProps[propertyName] = {
+      ...props[propertyType],
+    };
+  }
+}
 
 // const slides = document.querySelectorAll('bolt-carousel-slide');
 
@@ -70,27 +99,7 @@ class BoltCarousel extends withLitHtml() {
   static is = 'bolt-carousel';
 
   static props = {
-    slidesPerView: props.string,
-    spaceBetween: props.string,
-    noShadow: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    disabled: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    stacked: props.boolean,
-    noJs: props.boolean,
-    initialSlide: props.number,
-    noSnap: props.noSnap,
-    noNavButtons: props.boolean,
-    noPagination: props.boolean,
-    noScrollbar: props.boolean,
-    hideNavButtons: props.boolean,
-    navPosition: props.string,
-    loop: props.boolean,
-    autoplay: props.boolean,
+    ...carouselProps,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -104,15 +113,6 @@ class BoltCarousel extends withLitHtml() {
     );
     return self;
   }
-
-  // init() {
-  //   this.swiper = new Swiper('.swiper-container', {
-  //     a11y: {
-  //       prevSlideMessage: 'Previous slide',
-  //       nextSlideMessage: 'Next slide',
-  //     },
-  //   });
-  // }
 
   connecting() {
     super.connecting && super.connecting();
@@ -136,12 +136,6 @@ class BoltCarousel extends withLitHtml() {
 
     const spacingUnit =
       window.getComputedStyle(document.body).fontSize.replace('px', '') * 2;
-    // console.log(spacingUnit);
-
-    const small = boltBreakpoints.small.replace('px', '');
-    const medium = boltBreakpoints.medium.replace('px', '');
-    const large = boltBreakpoints.large.replace('px', '');
-    const xlarge = boltBreakpoints.xlarge.replace('px', '');
 
     const smallOverlap = spacingUnit * -1;
     const mediumOverlap = smallOverlap * 1.5;
@@ -149,7 +143,6 @@ class BoltCarousel extends withLitHtml() {
 
     let overlapSize;
 
-    // const smallBreakpointSize = window.matchMedia(`min-width: ${boltBreakpoints.small}`).matches;
     const isMediumBreakpoint = window.matchMedia(
       `min-width: ${boltBreakpoints.medium}`,
     ).matches;
@@ -165,49 +158,6 @@ class BoltCarousel extends withLitHtml() {
       overlapSize = smallOverlap;
     }
 
-    // const slides = this.querySelectorAll('bolt-carousel-slide');
-
-    // slides.forEach(slide => {
-    //   console.log(slide.scrollLeft);
-    // });
-    // let observers = [];
-    // let slides;
-    // let observer;
-
-    // let firstVisibleChildIndex = '';
-    // let firstVisibleChild = '';
-
-    // function intersectionCallback(entries) {
-    //   entries.forEach(function(entry) {
-    //     let box = entry.target;
-    //     let visiblePct = Math.floor(entry.intersectionRatio * 100);
-
-    //     if (firstVisibleChild === '' && visiblePct >= 80) {
-    //       firstVisibleChildIndex = Array.from(
-    //         entry.target.parentNode.children,
-    //       ).indexOf(entry.target);
-    //       firstVisibleChild = entry.target;
-
-    //       slides.forEach(slide => {
-    //         observers[0].unobserve(slide);
-    //         console.log('stop observing');
-    //         // console.log(slide);
-    //       });
-
-    //       self.scrollLeft = firstVisibleChild.getBoundingClientRect().left;
-    //       console.log(firstVisibleChild.getBoundingClientRect().left);
-    //     }
-
-    //     // console.log(entry.target);
-
-    //     // box.querySelector(".topLeft").innerHTML = visiblePct;
-    //     // box.querySelector(".topRight").innerHTML = visiblePct;
-    //     // box.querySelector(".bottomLeft").innerHTML = visiblePct;
-    //     // box.querySelector(".bottomRight").innerHTML = visiblePct;
-    //   });
-    // }
-
-    // document.scrollingElement.scrollLeft =
     let spaceBetweenConfig;
 
     switch (this.props.spaceBetween) {
@@ -226,9 +176,6 @@ class BoltCarousel extends withLitHtml() {
         break;
     }
 
-    console.log(spaceBetweenConfig);
-    console.log(this.props.spaceBetween);
-
     const numberOfChildren = Array.from(
       this.querySelectorAll('bolt-carousel-slide'),
     ).length;
@@ -239,9 +186,10 @@ class BoltCarousel extends withLitHtml() {
       slideClass: 'c-bolt-carousel__slide',
       slideVisibleClass: 'c-bolt-carousel__slide--visible',
       wrapperClass: 'c-bolt-carousel__wrapper',
+      notificationClass: 'c-bolt-carousel__notification',
       slidesPerView:
         this.props.slidesPerView === 'auto'
-          ? 'auto'
+          ? 1
           : this.props.loop &&
             this.props.slidesPerView &&
             numberOfChildren >= this.props.slidesPerView
@@ -348,8 +296,6 @@ class BoltCarousel extends withLitHtml() {
         slidesPerView:
           this.props.slidesPerView === '1'
             ? 1
-            : this.props.slidesPerView === 'auto'
-            ? 'auto'
             : this.props.slidesPerView && this.props.slidesPerView <= 4
             ? this.props.slidesPerView
             : i === 1 || i === 2
@@ -520,10 +466,10 @@ class BoltCarousel extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled } = this.validateProps(this.props);
+    const props = this.validateProps(this.props);
 
     const classes = cx('c-bolt-carousel', {
-      [`c-bolt-carousel--disabled`]: disabled,
+      [`c-bolt-carousel--disabled`]: props.disabled,
     });
 
     const prevButton = cx(
