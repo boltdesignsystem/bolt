@@ -141,14 +141,14 @@ class BoltCarousel extends withLitHtml() {
     const mediumOverlap = smallOverlap * 1.5;
     const largeOverlap = mediumOverlap * 1.5;
 
-    let overlapSize;
-
     const isMediumBreakpoint = window.matchMedia(
       `min-width: ${boltBreakpoints.medium}`,
     ).matches;
     const isLargeBreakpoint = window.matchMedia(
       `min-width: ${boltBreakpoints.large}`,
     ).matches;
+
+    let overlapSize;
 
     if (isMediumBreakpoint === true) {
       overlapSize = mediumOverlap;
@@ -220,9 +220,6 @@ class BoltCarousel extends withLitHtml() {
         clickableClass: 'c-bolt-carousel__pagination--clickable',
         lockClass: 'c-bolt-carousel__pagination--locked',
       },
-      // spaceBetween: this.props.stacked
-      //   ? overlapSize - spacingUnit * 2
-      //   : spacingUnit,
       spaceBetween: spaceBetweenConfig,
       scrollbar: {
         hide: false,
@@ -235,15 +232,11 @@ class BoltCarousel extends withLitHtml() {
       breakpoints: {},
       grabCursor: true,
       loop: this.props.loop,
-      // loopAdditionalSlides: 4,
-      // loopedSlides: 4,
       autoplay: this.props.autoplay
         ? {
             delay: 5000,
           }
         : false,
-      // loopFillGroupWithBlank: true,
-      // centerInsufficientSlides
       touchEventsTarget: 'wrapper',
       centeredSlides: false,
       centerInsufficientSlides: false,
@@ -253,38 +246,12 @@ class BoltCarousel extends withLitHtml() {
         invert: true,
         releaseOnEdges: false,
         forceToAxis: true,
-        // sensitivity: 1,
       },
       keyboard: {
         enabled: true,
         onlyInViewport: true,
-        // onlyInViewport: false,
       },
-      freeMode: props.noSnap,
-      // freeModeSticky: true,
-      // freeModeMomentumVelocityRatio: 1.2,
-      // freeModeMomentumRatio: 1.2,
-      // freeModeMinimumVelocity: 0.,
-      // slidesOffsetBefore: spacingUnit.replace('px', '') * 2,
-      //   // when window width is <= 320px
-      //   [small]]: {
-      //     slidesPerView: 2,
-      //     // spaceBetween: 10
-      //   },
-      //   // when window width is <= 480px
-      //   `${medium}`: {
-      //     slidesPerView: 3,
-      //     spaceBetween: 20
-      //   },
-      //   // when window width is <= 640px
-      //   large: {
-      //     slidesPerView: 4,
-      //     spaceBetween: 30
-      //   },
-      //   xlarge: {
-      //     slidesPerView: 5,
-      //   }
-      // }
+      // freeMode: props.noSnap, @todo: re-enable when adding free-scroll prop options
     };
 
     for (let i = 1; i < 6; i++) {
@@ -423,7 +390,6 @@ class BoltCarousel extends withLitHtml() {
         this.canNavButtonsBeHidden === true &&
         this.hideNavButtons === false
       ) {
-        console.log('hide nav buttons');
         this._wasManuallyUpdated = true;
         this.hideNavButtons = true;
         this.updated();
@@ -432,7 +398,6 @@ class BoltCarousel extends withLitHtml() {
         this.hideNavButtons === true &&
         (this.swiper.isBeginning === false || this.swiper.isEnd === false)
       ) {
-        console.log('show nav buttons');
         this._wasManuallyUpdated = true;
         this.hideNavButtons = false;
         this.updated();
