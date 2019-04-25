@@ -86,7 +86,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     @include bolt-shadow('level-10', true);
   }
 
-  &:focus:not(:hover):not(.c-bolt-button--disabled),
+  &:focus:not(:hover):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
   &.is-focus:not(.is-hover):not(.is-disabled) {
     box-shadow:
       0 -1px 2px bolt-theme(background),
@@ -110,8 +110,8 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     background-color: bolt-theme(primary-lighten-15);
   }
 
-  &:focus:not([disabled]):not(.c-bolt-button--disabled),
-  &.is-focus:not([disabled]):not(.c-bolt-button--disabled) {
+  &:focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
+  &.is-focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
     color: bolt-theme(text-on-primary-darken-15);
     border-color: bolt-theme(primary-darken-15);
     background-color: bolt-theme(primary-darken-15);
@@ -137,8 +137,8 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     background-color: bolt-theme(secondary-lighten-5);
   }
 
-  &:focus:not([disabled]):not(.c-bolt-button--disabled),
-  &.is-focus:not([disabled]):not(.c-bolt-button--disabled) {
+  &:focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
+  &.is-focus:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
     color: bolt-theme(text-on-secondary-darken-3);
     border-color: bolt-theme(secondary-darken-3);
     background-color: bolt-theme(secondary-darken-3);
@@ -171,13 +171,13 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     box-shadow: none;
   }
 
-  &:hover:not([disabled]):not(.c-bolt-button--disabled),
-  &.is-hover:not([disabled]):not(.c-bolt-button--disabled) {
+  &:hover:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
+  &.is-hover:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert) {
     opacity: $bolt-global-link-hover-opacity;
   }
 
-  &:focus:active:not([disabled]):not(.c-bolt-button--disabled),
-  &.is-focus.is-active:not([disabled]):not(.c-bolt-button--disabled),
+  &:focus:active:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
+  &.is-focus.is-active:not([disabled]):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
   &:active,
   &.is-active {
     opacity: $bolt-global-link-active-opacity;

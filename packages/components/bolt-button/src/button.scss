@@ -5,23 +5,24 @@
 @import '@bolt/core';
 @import './button-settings-and-tools';
 
-/**
- * Base Button
- */
-bolt-button {
+%bolt-button-base-styles {
   display: inline-flex;
-
-  [disabled]{
+  
+  &[disabled],
+  &[disabled]:focus {
     outline: none;
   }
 }
 
-:host {
-  display: inline-flex;
+/**
+ * Base Button
+ */
+bolt-button {
+  @extend %bolt-button-base-styles;
+}
 
-  [disabled]{
-    outline: none;
-  }
+:host {
+  @extend %bolt-button-base-styles;
 }
 
 .c-bolt-button {
@@ -68,6 +69,44 @@ bolt-button {
   text-transform: capitalize;
 }
 
+@function bolt-decimal-round($number, $digits: 0, $mode: round) {
+  $n: 1;
+  // $number must be a number
+  @if type-of($number) != number {
+      @warn '#{ $number } is not a number.';
+      @return $number;
+  }
+  // $digits must be a unitless number
+  @if type-of($digits) != number {
+      @warn '#{ $digits } is not a number.';
+      @return $number;
+  } @else if not unitless($digits) {
+      @warn '#{ $digits } has a unit.';
+      @return $number;
+  }
+  @if $digits > 0 {
+      @for $i from 1 through $digits {
+          $n: $n * 10;
+      }
+  }
+  @if $mode == round {
+      @return round($number * $n) / $n;
+  } @else if $mode == ceil {
+      @return ceil($number * $n) / $n;
+  } @else if $mode == floor {
+      @return floor($number * $n) / $n;
+  } @else {
+      @warn '#{ $mode } is undefined keyword.';
+      @return $number;
+  }
+}
+
+@function bolt-button-icon-only-size($paddingSize, $fontSize: xsmall){
+  $line-height: map-get-deep($bolt-font-sizes, 'font-sizes', $fontSize, 'line-height', 'regular');
+  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $fontSize, 'font-size');
+  @return (bolt-v-spacing($paddingSize) * $bolt-spacing-squished * 2) + ($line-height * $font-size);
+}
+
 
 /**
  * Button Sizes
@@ -77,8 +116,8 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    width: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
-    height: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
+    width: bolt-button-icon-only-size(medium);
+    height: bolt-button-icon-only-size(medium);
   }
 }
 
@@ -87,8 +126,8 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    width: (bolt-v-spacing(xsmall) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
-    height: (bolt-v-spacing(xsmall) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
+    width: bolt-button-icon-only-size(xsmall);
+    height: bolt-button-icon-only-size(xsmall);
   }
 }
 
@@ -97,8 +136,8 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    width: (bolt-v-spacing(small) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
-    height: (bolt-v-spacing(small) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
+    width: bolt-button-icon-only-size(small);
+    height: bolt-button-icon-only-size(small);
   }
 }
 
@@ -107,8 +146,8 @@ bolt-button {
   @include bolt-font-size(medium);
 
   &.c-bolt-button--icon-only {
-    width: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--medium * $bolt-font-size--medium);
-    height: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--medium * $bolt-font-size--medium);
+    width: bolt-button-icon-only-size(medium, medium);
+    height: bolt-button-icon-only-size(medium, medium);
   }
 }
 
@@ -117,8 +156,8 @@ bolt-button {
   @include bolt-font-size(large);
 
   &.c-bolt-button--icon-only {
-    width: (bolt-v-spacing(large) * $bolt-spacing-squished * 2) + ($bolt-line-height--large * $bolt-font-size--large);
-    height: (bolt-v-spacing(large) * $bolt-spacing-squished * 2) + ($bolt-line-height--large * $bolt-font-size--large);
+    width: bolt-button-icon-only-size(large, large);
+    height: bolt-button-icon-only-size(large, large);
   }
 }
 
