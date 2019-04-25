@@ -22,6 +22,7 @@ class BoltAccordion extends withLitHtml() {
   static props = {
     autoOpen: props.boolean,
     collapse: props.boolean,
+    multiple: props.boolean,
     center: props.boolean,
     toggleText: props.string,
     primaryUuid: props.string,
@@ -73,7 +74,7 @@ class BoltAccordion extends withLitHtml() {
         items: this.accordionItems,
 
         // whether multiple folds can be opened at once
-        multiSelectable: true,
+        multiSelectable: this.props.multiple,
         // whether the folds are collapsible
         collapsible: true,
 
