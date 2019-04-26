@@ -358,10 +358,9 @@ class BoltModal extends withLitHtml() {
       <bolt-button
         class="js-close-button-fallback"
         @click=${e => this.hide(e)}
-        color="secondary"
-        size="small"
+        color="text"
+        size="large"
         icon-only
-        border-radius="full"
         autofocus
         tabindex="0"
       >

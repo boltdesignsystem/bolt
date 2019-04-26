@@ -25,7 +25,7 @@ dialog::backdrop {
 }
 */
 
-$bolt-modal-overlay-bg-color: rgba(bolt-color(black), bolt-opacity(80));
+$bolt-modal-overlay-bg-color: rgba(bolt-color(indigo, xdark), bolt-opacity(80));
 $bolt-modal-border-width: $bolt-border-width;
 $bolt-modal-border-style: $bolt-border-style;
 $bolt-modal-border-color: bolt-theme(text, 0.15);
@@ -190,13 +190,15 @@ bolt-modal:not([ready]) {
 }
 
 .c-bolt-modal__container-header {
-  border-bottom: $bolt-modal-border-width $bolt-modal-border-style
-    $bolt-modal-border-color;
+  border-bottom-width: $bolt-modal-border-width;
+  border-bottom-style: $bolt-modal-border-style;
+  border-bottom-color: $bolt-modal-border-color;
 }
 
 .c-bolt-modal__container-footer {
-  border-top: $bolt-modal-border-width $bolt-modal-border-style
-    $bolt-modal-border-color;
+  border-top-width: $bolt-modal-border-width;
+  border-top-style: $bolt-modal-border-style;
+  border-top-color: $bolt-modal-border-color;
 }
 
 // Container spacing options
@@ -235,7 +237,7 @@ bolt-modal:not([ready]) {
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate3d(50%, -50%, 0);
+  transform: translate3d(85%, -85%, 0);
 }
 
 .c-bolt-modal__container-header--hidden,
