@@ -81,7 +81,7 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'chrome',
         platform: 'OS X 10.11',
-        version: '70',
+        version: '73',
         javascriptEnabled: true,
         acceptSslCerts: true,
         //         chromeOptions: {
@@ -104,7 +104,7 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'firefox',
         platform: 'OS X 10.11',
-        version: '62',
+        version: '66',
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,
