@@ -9,6 +9,7 @@ import {
   withLitHtml,
   html,
 } from '@bolt/core/renderers/renderer-lit-html';
+import { ifDefined } from 'lit-html/directives/if-defined';
 
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from '../accordion.scss';

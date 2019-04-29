@@ -2,7 +2,7 @@
 {% set primary_uuid = uuid ? "c-bolt-accordion-item-#{uuid}" : "c-bolt-accordion-item-#{random_uuid}" %}
 {% set secondary_uuid = uuid ? "c-bolt-accordion-item-inner-#{uuid}" : "c-bolt-accordion-item-inner-#{random_uuid}" %}
 
-<bolt-accordion-item {{ uuid ? "uuid" : uuid }}>
+<bolt-accordion-item {{ uuid ? "uuid" : uuid }} {{ auto_open ? "auto-open" : '' }}>
   <input class="c-bolt-accordion__state" type="checkbox" id="{{ primary_uuid }}" {% if autoOpen %} checked{% endif %}>
 
   <replace-with-grandchildren class="c-bolt-accordion-item {{ collapse ? "c-bolt-accordion--collapse@small" : "" }}" id="{{ secondary_uuid }}">

@@ -86,7 +86,7 @@ class BoltAccordion extends withLitHtml() {
         carouselFocus: true,
 
         // attribute for the header or content to open folds at initialization
-        initialOpenAttribute: 'data-open',
+        initialOpenAttribute: 'auto-open',
         // whether to use transition at initial open
         initialOpenTransition: true,
         // delay used to show initial transition
@@ -132,6 +132,12 @@ class BoltAccordion extends withLitHtml() {
       if (root) {
         let header = root.querySelector('.c-bolt-accordion__header');
         let content = root.querySelector('.c-bolt-accordion__content');
+
+        // @todo: can we set this on the AccordionItem component itself?
+        // Needs to be on inner element, running into usual issues conditionally setting attribute with lit-html
+        if (item.autoOpen && header) {
+          header.setAttribute('auto-open', true);
+        }
 
         if (header && content) {
           this.accordionItems = [...this.accordionItems, header, content];

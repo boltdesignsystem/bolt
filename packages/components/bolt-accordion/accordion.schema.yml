@@ -16,6 +16,10 @@ properties:
         uuid:
           type: string
           description: Unique ID for each accordion item, randomly generated if not provided.
+        auto_open:
+          type: boolean
+          description: Open section when accordion initializes
+          default: false
   center:
     type: boolean
     description: '`True` to center the toggle title'
