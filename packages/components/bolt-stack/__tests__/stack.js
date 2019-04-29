@@ -12,14 +12,17 @@ const timeout = 60000;
 
 describe('<bolt-stack> component', () => {
   test('basic usage', async () => {
-    const results = await renderString(`
+    const results = await renderString(
+      `
       {% include "@bolt-components-stack/stack.twig" with {
         content: "This is one stack. A stack spans the full width of its parent container."
       } only %}
       {% include "@bolt-components-stack/stack.twig" with {
         content: "This is another stack."
       } only %}
-    `, {});
+    `,
+      {},
+    );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
@@ -37,7 +40,8 @@ describe('<bolt-stack> component', () => {
 
   spacing.enum.forEach(async spacingChoice => {
     test(`stack spacing: ${spacingChoice}`, async () => {
-      const results = await renderString(`
+      const results = await renderString(
+        `
         {% include "@bolt-components-stack/stack.twig" with {
           spacing: spacingChoice,
           content: "This is one stack. A stack spans the full width of its parent container."
@@ -46,7 +50,9 @@ describe('<bolt-stack> component', () => {
           spacing: spacingChoice,
           content: "This is another stack."
         } only %}
-      `, {});
+      `,
+        {},
+      );
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
