@@ -2,11 +2,6 @@ import { targetOrigin } from '../utils';
 
 // alert the iframe parent that the pattern has loaded assuming this view was loaded in an iframe
 if (window.self !== window.top) {
-  /**
-   * update the current page's drawer / code viewer
-   * @todo: refactor similarly to the new code block below
-   */
-  
   // handle the options that could be sent to the parent window
   //   - all get path
   //   - pattern & view all get a pattern partial, styleguide gets all
@@ -21,6 +16,10 @@ if (window.self !== window.top) {
     }
   };
 
+  // window.patternData = document.getElementById(
+  //   'pl-pattern-data-footer'
+  // ).innerHTML;
+  // window.patternData = JSON.parse(window.patternData);
   options.patternpartial =
     window.patternData.patternPartial !== undefined
       ? window.patternData.patternPartial
@@ -28,10 +27,6 @@ if (window.self !== window.top) {
   if (window.patternData.lineage !== '') {
     options.lineage = window.patternData.lineage;
   }
-  window.parent.postMessage(options, targetOrigin);
 
-  // tell the parent page which pattern has just loaded
-  const currentPattern = { pattern: window.patternData.patternPartial }
-  var event = new CustomEvent('patternPartial', { detail: currentPattern })
-  window.parent.document.dispatchEvent(event);
+  window.parent.postMessage(options, targetOrigin);
 }

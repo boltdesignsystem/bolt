@@ -7,13 +7,11 @@
   "scripts": {
     "start": "node index.js"
   },
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "globby": "^9.0.0",
     "express": "^4.16.3"
-  },
-  "peerDependencies": {
-    "@bolt/build-tools": "^2.3.0",
-    "@bolt/api": "^2.3.0"
   }
 }

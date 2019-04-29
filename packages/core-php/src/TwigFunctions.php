@@ -64,7 +64,7 @@ class TwigFunctions {
     }
 
     // disable server-side rendering web components when manually disabled, or set to auto + running in dev mode
-    if ($boltConfig["enableSSR"] == false){
+    if (($boltConfig["enableSSR"] == false && $boltConfig["prod"] == false)){
       return $html;
     }
     
@@ -84,7 +84,7 @@ class TwigFunctions {
     // auto-disable syntax highlighting via the 2nd prop
     $process = new Process(['node', $ssrServerPath, $html, false]);
     $process->setTimeout(3600);
-    $process->setIdleTimeout(480);
+    $process->setIdleTimeout(240);
     $process->run();
     $result = $process->getOutput();
 

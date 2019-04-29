@@ -21,11 +21,10 @@ const config = {
   verbosity: 2,
   schemaErrorReporting: 'cli',
   webpackDevServer: {
-    enabled: true,
-  },
   sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
   enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
-  enableSSR: false, // temp disabld till Travis issue fixed
+    enabled: true,
+  },
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -78,7 +77,6 @@ const config = {
       '@bolt/docs-search',
       '@bolt/schema-form',
       '@bolt/analytics-autolink',
-      '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
       '@bolt/components-dropdown',

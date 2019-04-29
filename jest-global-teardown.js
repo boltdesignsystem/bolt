@@ -5,7 +5,6 @@ const path = require('path');
 const { teardown: teardownDevServer } = require('jest-dev-server');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
 const iconTasks = require('@bolt/build-tools/tasks/icon-tasks');
-const { buildPrep } = require('./packages/build-tools/tasks/task-collections');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
@@ -23,7 +22,6 @@ module.exports = async function() {
 
   await iconTasks.build(); // cleaning icons after all tests
   await teardownDevServer();
-  await buildPrep(true); // clear out all built www folders when complete
 
   // clean-up the wsEndpoint file
   rimraf.sync(DIR);

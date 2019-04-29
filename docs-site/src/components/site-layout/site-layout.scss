@@ -72,15 +72,6 @@ $bds-sidebar-width: 320px;
   grid-column-end: 3;
   z-index: bolt-z-index('modalBG') + 20;
 
-  .c-bolt-navbar {
-    max-width: none;
-
-    @include bolt-mq(medium) {
-      @include bolt-padding-left(medium);
-      @include bolt-padding-right(medium);
-    }
-  }
-
   @include bolt-mq(medium) {
     .c-bds-layout--has-sidebar & {
       grid-column-start: 1;
@@ -154,6 +145,7 @@ $bds-sidebar-width: 320px;
 }
 
 .c-bds-layout__sidebar {
+  @include bolt-margin-top(large);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -161,7 +153,6 @@ $bds-sidebar-width: 320px;
   z-index: bolt-z-index('modal') - 10;
   width: $bds-sidebar-width;
   overflow: auto;
-  margin-top: bolt-v-spacing(large) * 2;
   border-right: 1px solid #e0e2eb;
   background-color: bolt-color(gray, xlight);
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);

@@ -33,12 +33,12 @@ describe('<bolt-ratio> Component', () => {
       const ratio = document.createElement('bolt-ratio');
       const img = document.createElement('img');
       img.setAttribute('src', '/fixtures/1200x660.jpg');
+
       ratio.setAttribute('no-shadow', '');
       ratio.setAttribute('ratio', '1200/660');
       ratio.appendChild(img);
+
       document.body.appendChild(ratio);
-      ratio.useShadow = false;
-      ratio.updated();
       return ratio.outerHTML;
     });
     expect(renderedRatioHTML).toMatchSnapshot();
@@ -67,7 +67,6 @@ describe('<bolt-ratio> Component', () => {
       ratio.setAttribute('ratio', '640/360');
       ratio.style.width = '640px';
       document.body.appendChild(ratio);
-      ratio.updated();
       return ratio.outerHTML;
     });
 
@@ -99,8 +98,6 @@ describe('<bolt-ratio> Component', () => {
       const div = document.createElement('div');
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
-      const ratio = document.querySelector('bolt-ratio');
-      ratio.updated();
     }, html);
 
     const image = await page.screenshot();
@@ -123,7 +120,6 @@ describe('<bolt-ratio> Component', () => {
       ratio.setAttribute('ratio', '12/8.5');
       ratio.appendChild(img);
       document.body.appendChild(ratio);
-      ratio.updated();
       return ratio.outerHTML;
     });
     expect(renderedRatioHTML).toMatchSnapshot();

@@ -232,4 +232,5 @@ export const urlHandler = {
  */
 window.onpopstate = function(event) {
   urlHandler.skipBack = true;
+  urlHandler.popPattern(event);
 };
