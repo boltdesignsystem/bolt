@@ -26,32 +26,32 @@ async function init() {
       outputBanner('Starting deploy...');
     }
 
-    // for non-master / release / tagged version deploys, speed things up.
     try {
-      if (
-        !TRAVIS_TAG &&
-        !branchName.includes('master') &&
-        !branchName.includes('release') &&
-        !branchName.includes('next')
-      ) {
-        shell.exec(
-          `cp ${path.join(process.cwd(), 'now.v2.json')} ${path.join(
-            process.cwd(),
-            config.wwwDir,
-          )}/now.json`,
-        );
+      // experimental approach for speeding up non-master / release / tagged version deploys
+      // if (
+      //   !TRAVIS_TAG &&
+      //   !branchName.includes('master') &&
+      //   !branchName.includes('release') &&
+      //   !branchName.includes('next')
+      // ) {
+      //   shell.exec(
+      //     `cp ${path.join(process.cwd(), 'now.v2.json')} ${path.join(
+      //       process.cwd(),
+      //       config.wwwDir,
+      //     )}/now.json`,
+      //   );
 
-        deployedUrl = shell.exec(
-          `cd ${path.join(
-            process.cwd(),
-            config.wwwDir,
-          )} && now deploy --meta gitSha="${gitSha}" --token=${NOW_TOKEN}`,
-        );
-      } else {
-        deployedUrl = shell.exec(
-          `now deploy --meta gitSha="${gitSha}" --team=boltdesignsystem --token=${NOW_TOKEN}`,
-        ).stdout;
-      }
+      //   deployedUrl = shell.exec(
+      //     `cd ${path.join(
+      //       process.cwd(),
+      //       config.wwwDir,
+      //     )} && now deploy --meta gitSha="${gitSha}" --token=${NOW_TOKEN} --no-verify`,
+      //   );
+      // } else {
+      // }
+      deployedUrl = shell.exec(
+        `now deploy --meta gitSha="${gitSha}" --team=boltdesignsystem --token=${NOW_TOKEN} --no-verify`,
+      ).stdout;
 
       deployedUrlPretty = deployedUrl.trim();
 

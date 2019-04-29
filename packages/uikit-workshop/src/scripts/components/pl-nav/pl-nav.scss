@@ -205,6 +205,7 @@ pl-nav {
   font-size: 0.8rem;
   line-height: 1.45;
   padding-left: $pl-space + ($pl-space / 2);
+  padding-right: $pl-space + ($pl-space / 2);
 
   &.pl-is-active {
     box-shadow: inset 4px 0 0 #6c79d9;
@@ -310,7 +311,7 @@ pl-nav {
 
   @media all and (min-width: $pl-bp-med) {
     height: auto;
-    max-height: calc(100vh - #{$offset-top} - 1rem); /* 1 */
+    max-height: calc(100vh - #{$offset-top} - 2rem); /* 1 */
   }
 
   .pl-c-body--theme-sidebar & {

@@ -1,8 +1,10 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
-  import(/* 
+  import(
+    /* 
     webpackMode: 'lazy', 
     webpackChunkName: 'editor-integration' 
-  */ './editor-integration');
+  */ './editor-integration'
+  );
 });

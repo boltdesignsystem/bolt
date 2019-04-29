@@ -12,14 +12,14 @@
 
     <div style="position: relative; z-index: 10;">
       {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-padding-top-medium u-bolt-padding-bottom-medium" %}
-        {% cell 'u-bolt-width-1/1 u-bolt-width-7/8@small u-bolt-width-5/7@medium u-bolt-width-4/7@large u-bolt-text-align-center' %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-7/8@small u-bolt-width-6/7@medium u-bolt-width-5/7@large u-bolt-text-align-center' %}
 
           <div class="u-bolt-margin-left-auto u-bolt-margin-right-auto">
             {% include "@bolt-site/animated-logo.twig" %}
           </div>
 
           {% include "@bolt/subheadline.twig" with {
-            text: "The Bolt Design System provides guidelines, reusable UI components, visual styles, tools, and other resources that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope.",
+            text: 'The Bolt Design System provides robust Twig and Web Component-powered <a href="/pattern-lab/?p=components-overview">UI components</a>, reusable <a href="/pattern-lab/?p=viewall-visual-styles-all">visual styles</a>, and <a href="/docs/getting-started/index.html">powerful tooling</a> to help developers, designers, and content authors build, maintain, and scale best of class digital experiences.',
             size: "large",
             tag: "h2",
           } only %}
@@ -34,7 +34,7 @@
                   style: "primary"
                 },
                 {
-                  text: "Getting Started Guide",
+                  text: "Get Started",
                   url: "/docs/getting-started/index.html",
                   width: "full",
                   style: "secondary"
@@ -44,7 +44,7 @@
             } only %}
           </div>
 
-          {% include "@bolt-components-link/link.twig" with {
+          {# {% include "@bolt-components-link/link.twig" with {
             text: "Download Sketch Assets",
             url: "/assets/bolt-sketch.zip",
             icon: {
@@ -54,7 +54,7 @@
             attributes: {
               download: true
             }
-          } only %}
+          } only %} #}
         {% endcell %}
       {% endgrid %}
     </div>
