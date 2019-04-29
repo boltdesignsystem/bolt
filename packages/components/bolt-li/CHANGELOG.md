@@ -3,10 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.3.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.3.0-rc.0...v2.3.0) (2019-01-30)
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
-
-### Bug Fixes
-
-* remove gitHead from packages before publishing v2.3.0 ([0195558](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/0195558))
-* selectively porting over Bolt fixes from master to address v2.3.0 issues flagged during QA ([c1d02ed](https://github.com/bolt-design-system/bolt/tree/master/packages/components/lists/bolt-li/commit/c1d02ed))
+**Note:** Version bump only for package @bolt/components-li

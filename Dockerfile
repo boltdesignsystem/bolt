@@ -1,7 +1,5 @@
-# FROM basaltinc/docker-node-php-base:latest
 FROM boltdesignsystem/bolt-docker:latest
 WORKDIR /app
-
 EXPOSE 3123
 
 COPY docs-site /app/docs-site

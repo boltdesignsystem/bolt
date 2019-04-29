@@ -1,5 +1,25 @@
+{# Setting variables for demo purposes #}
 {% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% set placeholder_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 1",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 2",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 3",
+    size: "xsmall",
+  } only %}
+{% endset %}
 
+{# Start component specific code #}
 <p>
   <mark>Align prop only works with inline display, it has no effects on block and flex display.</mark>
 </p>
@@ -10,18 +30,10 @@
     display: "inline",
     align: align,
     items: [
-      include("@bolt-components-placeholder/placeholder.twig", {
-        text: "Placeholder 1",
-        size: "xsmall",
-      }),
-      include("@bolt-components-placeholder/placeholder.twig", {
-        text: "Placeholder 2",
-        size: "xsmall",
-      }),
-      include("@bolt-components-placeholder/placeholder.twig", {
-        text: "Placeholder 3",
-        size: "xsmall",
-      }),
+      placeholder_1,
+      placeholder_2,
+      placeholder_3,
     ]
   } only %}
 {% endfor %}
+{# End component specific code #}
