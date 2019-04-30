@@ -1,4 +1,5 @@
 import {
+  withContext,
   define,
   props,
   css,
@@ -13,15 +14,28 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from '../accordion.scss';
+import { AccordionContext } from '../accordion';
 
 @define
-class AccordionItem extends withLitHtml() {
+class AccordionItem extends withContext(withLitHtml()) {
   static is = 'bolt-accordion-item';
 
   static props = {
     autoOpen: props.boolean,
     uuid: props.string,
+    first: props.boolean,
+    last: props.boolean,
   };
+
+  // subscribe to specific props that are defined and available on the parent container
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get consumes() {
+    return [
+      [AccordionContext, 'noSeparator'],
+      [AccordionContext, 'shadow'],
+      [AccordionContext, 'spacing'],
+    ];
+  }
 
   constructor(self) {
     self = super(self);
@@ -31,16 +45,23 @@ class AccordionItem extends withLitHtml() {
 
   connecting() {
     const originalInput = this.querySelector('.c-bolt-accordion__state');
-    const originalLinks = this.querySelector('.c-bolt-accordion__header-link');
+    const originalLinks = this.querySelectorAll(
+      '.c-bolt-accordion__header-link',
+    );
 
-    originalInput && originalInput.parentNode.removeChild(originalInput);
-    originalLinks && originalLinks.parentNode.removeChild(originalLinks);
+    originalInput && originalInput.remove;
+    originalLinks.length && originalLinks.forEach(el => el.remove());
 
     window.addEventListener('optimizedResizeHandler', () => {
       this.autoHeight();
     });
 
     this.addEventListener('activateLink', this.close);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.context = this.contexts.get(AccordionContext);
   }
 
   close() {
@@ -59,6 +80,35 @@ class AccordionItem extends withLitHtml() {
         this.contentElem.classList.add('u-bolt-height-auto');
       } else if (this.props.collapse) {
         this.contentElem.classList.remove('u-bolt-height-auto');
+      }
+    }
+  }
+
+  // automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
+  addClassesToSlottedChildren() {
+    if (this.slots) {
+      if (this.slots.default) {
+        const defaultSlot = [];
+
+        this.slots.default.forEach(item => {
+          if (item.tagName) {
+            item.classList.remove('is-first-child');
+            item.classList.remove('is-last-child'); // clean up existing classes
+            defaultSlot.push(item);
+          }
+        });
+
+        if (defaultSlot[0]) {
+          defaultSlot[0].classList.add('is-first-child');
+
+          if (defaultSlot.length === 1) {
+            defaultSlot[0].classList.add('is-last-child');
+          }
+        }
+
+        if (defaultSlot[defaultSlot.length - 1]) {
+          defaultSlot[defaultSlot.length - 1].classList.add('is-last-child');
+        }
       }
     }
   }
@@ -84,6 +134,21 @@ class AccordionItem extends withLitHtml() {
   }
 
   template() {
+    const { noSeparator, shadow, spacing } = this.context;
+    const separator = !noSeparator;
+
+    const accordionClasses = css(
+      'c-bolt-accordion-item',
+      separator ? 'c-bolt-accordion-item--separator' : '',
+      shadow ? 'c-bolt-accordion-item--shadow' : '',
+      this.props.first ? 'c-bolt-accordion-item--first-item' : '',
+      this.props.last ? 'c-bolt-accordion-item--last-item' : '',
+    );
+
+    const spacingClasses = css(
+      spacing ? `c-bolt-accordion-item--spacing-${spacing}` : '',
+    );
+
     const accordionHeaderClasses = css(
       'c-bolt-accordion__header',
       this.props.center ? 'c-bolt-accordion__header--center' : '',
@@ -95,21 +160,22 @@ class AccordionItem extends withLitHtml() {
         : children;
       return html`
         <div class="${accordionHeaderClasses}">
-          <button class="c-bolt-accordion__header-button">
-            ${content}
-
+          <button class="c-bolt-accordion__header-button ${spacingClasses}">
+            <div class="c-bolt-accordion__header-content">
+              ${content}
+            </div>
             <span class="c-bolt-accordion__header-icons">
               <div class="c-bolt-accordion__header-icons-inner">
                 <span
                   class="c-bolt-accordion__header-icon c-bolt-accordion__header-icon--open"
                 >
-                  <bolt-icon name="add-open"></bolt-icon>
+                  <bolt-icon name="chevron-down"></bolt-icon>
                 </span>
 
                 <span
                   class="c-bolt-accordion__header-icon c-bolt-accordion__header-icon--close"
                 >
-                  <bolt-icon name="minus-open"></bolt-icon>
+                  <bolt-icon name="chevron-up"></bolt-icon>
                 </span>
               </div>
             </span>
@@ -120,7 +186,9 @@ class AccordionItem extends withLitHtml() {
     const contentTemplate = children => {
       return html`
         <div class="c-bolt-accordion__content">
-          <div class="c-bolt-accordion__content-inner">${children}</div>
+          <div class="c-bolt-accordion__content-inner ${spacingClasses}">
+            ${children}
+          </div>
         </div>
       `;
     };
@@ -149,27 +217,33 @@ class AccordionItem extends withLitHtml() {
 
     const innerSlots = [slotMarkup('header'), slotMarkup('default')];
 
+    this.addClassesToSlottedChildren();
+
     return html`
-      <div class="c-bolt-accordion-item">${innerSlots}</div>
+      <div class="${accordionClasses}">${innerSlots}</div>
     `;
   }
 
   rendered() {
     super.rendered && super.rendered();
 
+    this.contentElem = this.renderRoot.querySelector(
+      '.c-bolt-accordion__content',
+    );
+
     this.autoHeight();
   }
 
   render() {
+    // const { separator } = this.context;
+
+    // console.log(separator);
+
     this.accordionTemplate = document.createDocumentFragment();
     render(this.template(), this.accordionTemplate);
 
-    this.contentElem = this.accordionTemplate.querySelector(
-      '.c-bolt-accordion__content',
-    );
-
     return html`
-      ${this.addStyles([styles, heightUtils])} ${this.accordionTemplate}
+      ${this.addStyles([styles, heightUtils])} ${this.template()}
     `;
   }
 }

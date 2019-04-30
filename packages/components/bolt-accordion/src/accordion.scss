@@ -1,7 +1,14 @@
 @import '@bolt/core';
 
+@include bolt-custom-element('bolt-accordion', block, medium);
+
 bolt-accordion {
   display: block;
+
+  // Required for no-js styles to display properly
+  replace-with-children {
+    display: block;
+  }
 
   @include bolt-css-vars(
     (
@@ -24,29 +31,28 @@ bolt-accordion {
   }
 }
 
-bolt-accordion {
-  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
-}
-
 .c-bolt-accordion {
   position: relative;
   overflow: hidden;
-  // box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
   background-color: bolt-theme(background);
 }
 
+.c-bolt-accordion--shadow {
+  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
+}
+
 .c-bolt-accordion__header {
-  @include bolt-font-weight(semibold);
-  @include bolt-font-size(
-    medium
-  ); // Normalizes line height so pre and post JS looks the same
+  // @include bolt-font-size(medium);
+  // @include bolt-font-weight(semibold);
   display: flex;
   position: relative;
   z-index: 10;
   margin: 0;
-  box-shadow: 0 1px 2px 0 rgba(bolt-color(black), 0.1);
-  // box-shadow: 0 1px 2px 0 rgba(bolt-color(black), 0.1);
   background-color: bolt-theme(background);
+
+  .c-bolt-accordion-item--shadow & {
+    box-shadow: 0 1px 2px 0 rgba(bolt-color(black), 0.1);
+  }
 
   .c-bolt-accordion--collapse\@small & {
     @include bolt-mq(small) {
@@ -85,12 +91,26 @@ bolt-accordion {
   opacity: 0.15;
 }
 
+.c-bolt-accordion__header-title {
+  // @include bolt-font-weight(semibold);
+  // @include bolt-font-size(
+  //   medium
+  // ); // Normalizes line height so pre and post JS looks the same
+  margin-bottom: 0;
+}
+
 .c-bolt-accordion__header-button,
 .c-bolt-accordion__header-label {
-  @include bolt-padding(small);
-  // @include bolt-padding(small, squished);
-  @include bolt-font-size(medium);
-  @include bolt-font-weight(semibold);
+  color: inherit;
+  // @include bolt-padding(small);
+
+  // @include bolt-font-size(medium);
+  // @include bolt-font-weight(semibold);
+
+  .c-bolt-accordion-item--shadow & {
+    // @include bolt-padding(small);
+    // @include bolt-padding(small, squished);
+  }
 
   display: flex;
   justify-content: space-between;
@@ -100,7 +120,7 @@ bolt-accordion {
   width: 100%;
 
   margin-bottom: 0;
-  color: bolt-theme(headline-link);
+  // color: bolt-theme(headline-link);
   text-align: left; // otherwise some accordion menus are center aligned in the Shadow DOM
   cursor: pointer;
   -webkit-user-select: none;
@@ -181,7 +201,6 @@ bolt-accordion {
   + .c-bolt-accordion
   .c-bolt-accordion__header-link--close {
   top: 0;
-  // height: 50px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -223,6 +242,15 @@ bolt-accordion {
   }
 }
 
+// .c-bolt-accordion__header-content {
+//   display: inline-flex;
+//   flex-shrink: 0; // for when there is a very long title - adds left/right spacing
+//   flex-grow: 1; // for when there is a very long title - adds left/right spacing
+//   // justify-content: center;
+//   align-items: center;
+//   position: relative;
+// }
+
 .c-bolt-accordion__header-icons {
   display: inline-flex;
   flex-shrink: 0; // for when there is a very long title - adds left/right spacing
@@ -234,20 +262,9 @@ bolt-accordion {
   margin-right: bolt-spacing(small) * -1;
   margin-bottom: bolt-spacing(xsmall) * -1;
 
-  // &:before {
-  //   content: '';
-  //   opacity: 0.1;
-  //   position: absolute;
-  //   top: 0;
-  //   bottom: 0;
-  //   left: 0;
-  //   width: 1px;
-  //   background-color: bolt-theme(headline-link);
-
-  //   .c-bolt-accordion__header--center & {
-  //     display: none;
-  //   }
-  // }
+  .c-bolt-accordion-item--shadow & {
+    // margin-right: bolt-spacing(small) * -1;
+  }
 }
 
 .c-bolt-accordion__header-icons-inner {
@@ -264,6 +281,7 @@ bolt-accordion {
   line-height: 0; // Workaround to line-height messing up icon alignment
   vertical-align: middle;
   font-size: 1.5rem;
+  color: bolt-theme(headline-link);
   transition: opacity 0.2s ease;
   // transform-style: preserve-3d;
   // transform-origin: center center;
@@ -313,7 +331,9 @@ bolt-accordion {
   visibility: visible;
   visibility: visible;
   transform: translate3d(0, 0, 0);
-  max-height: 250px;
+  // @todo, needed?
+  // max-height: 250px;
+  max-height: none;
   transition: all 0.2s cubic-bezier(0, 0, 0.3, 1) 0.1s;
   transition: transform 300ms ease, height 300ms ease;
 }
@@ -326,8 +346,12 @@ bolt-accordion {
 }
 
 .c-bolt-accordion__content-inner {
-  @include bolt-padding(small);
-  // @include bolt-padding(small, squished);
+  // @include bolt-padding(small);
+
+  .c-bolt-accordion-item--shadow & {
+    // @include bolt-padding(small);
+    // @include bolt-padding(small, squished);
+  }
 
   // Required when used with replace-with-children
   display: block;
@@ -345,22 +369,29 @@ bolt-accordion {
   }
   // transition: opacity 0.2s cubic-bezier(0, 0, 0.3, 1) 0.1s;
 
-  &:after {
-    content: '';
-    display: block;
-    opacity: bolt-opacity(100);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background-color: transparent;
-    background-color: bolt-theme(background);
+  .c-bolt-accordion-item--shadow & {
+    &:after {
+      content: '';
+      display: block;
+      opacity: bolt-opacity(100);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-color: transparent;
+      background-color: bolt-theme(background);
 
-    filter: contrast(80%) brightness(110%);
-    transition: opacity 0.1s ease;
+      filter: contrast(80%) brightness(110%);
+      transition: opacity 0.1s ease;
+    }
+  }
+
+  ::slotted(p:last-child),
+  ::slotted(p.is-last-child) {
+    margin-bottom: 0 !important;
   }
 }
 
@@ -463,52 +494,55 @@ bolt-accordion {
   );
 }
 
+.c-bolt-accordion-item {
+  overflow: hidden;
+}
+
+bolt-accordion-item {
+  overflow: hidden;
+
+  // Required for no-js styles to display properly
+  replace-with-grandchildren {
+    display: block;
+    width: 100%;
+  }
+}
+
 // From list
-// [class*='c-bolt-list-item--separator'] {
-//   &:not(.c-bolt-list-item--separator-none) {
-//     &.c-bolt-list-item--display-block {
-//       &:not(.c-bolt-list-item--last-item) {
-//         border-bottom-width: 1px;
-//       }
-//     }
+.c-bolt-accordion-item--separator {
+  border-bottom: 1px solid rgba(bolt-color(gray), 0.25);
+  &.c-bolt-accordion-item--first-item {
+    border-top: 1px solid rgba(bolt-color(gray), 0.25);
+  }
+  &.c-bolt-accordion-item--shadow {
+    &.c-bolt-accordion-item--first-item {
+      border-top: none;
+    }
+    &.c-bolt-accordion-item--last-item {
+      border-bottom: none;
+    }
+  }
+  // &:not(.c-bolt-accordion-item--last-item) {
+  //   border-bottom: 1px solid rgba(bolt-color(gray), 0.25);
+  // }
+}
 
-//     &.c-bolt-list-item--display-inline {
-//       &:not(.c-bolt-list-item--last-item) {
-//         border-right-width: 1px;
-//       }
-//     }
+// Spacing Prop
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
 
-//     @each $breakpoint in $bolt-breakpoints {
-//       $breakpoint-name: nth($breakpoint, 1);
+  .c-bolt-accordion-item--spacing-#{$spacing-value-name} {
+    @include bolt-padding(#{$spacing-value-name}, squished);
+    // @include bolt-margin-left(#{$spacing-value-name});
+    // @include bolt-margin-bottom(#{$spacing-value-name});
 
-//       &.c-bolt-list-item--display-inline\@#{$breakpoint-name} {
-//         &:not(.c-bolt-list-item--last-item) {
-//           border-bottom-width: 1px;
-
-//           @include bolt-mq($breakpoint-name) {
-//             border-right-width: 1px;
-//             border-bottom-width: 0;
-//           }
-//         }
-//       }
-//     }
-//   }
-
-//   &.c-bolt-list-item--display-flex {
-//     margin: {
-//       top: -1px;
-//       right: -1px;
-//     }
-//     border: {
-//       top-width: 1px;
-//       right-width: 1px;
-//     }
-
-//     &[class*='c-bolt-list-item--spacing'] {
-//       &:not(.c-bolt-list-item--inset) {
-//         padding-left: 0;
-//         border-top-width: 0;
-//       }
-//     }
-//   }
-// }
+    // &.c-bolt-accordion-item--inset {
+    //   @include bolt-margin-left(0);
+    //   @include bolt-margin-bottom(0);
+    //   @include bolt-padding-top(#{$spacing-value-name});
+    //   @include bolt-padding-right(#{$spacing-value-name});
+    //   @include bolt-padding-bottom(#{$spacing-value-name});
+    //   @include bolt-padding-left(#{$spacing-value-name});
+    // }
+  }
+}

@@ -1,4 +1,6 @@
 import {
+  defineContext,
+  withContext,
   define,
   props,
   css,
@@ -15,18 +17,30 @@ import styles from './accordion.scss';
 
 import { Accordion } from './_accordion-handorgel';
 
+// define which specific props to provide to children that subscribe
+export const AccordionContext = defineContext({
+  noSeparator: false,
+  shadow: false,
+  spacing: 'medium',
+  iconValign: 'top',
+});
+
 @define
-class BoltAccordion extends withLitHtml() {
+class BoltAccordion extends withContext(withLitHtml()) {
   static is = 'bolt-accordion';
 
+  // provide context info to children that subscribe
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get provides() {
+    return [AccordionContext];
+  }
+
   static props = {
-    autoOpen: props.boolean,
-    collapse: props.boolean,
     multiple: props.boolean,
-    center: props.boolean,
-    toggleText: props.string,
-    primaryUuid: props.string,
-    secondaryUuid: props.string,
+    noSeparator: props.boolean,
+    shadow: props.boolean,
+    spacing: props.string,
+    iconValign: props.string,
   };
 
   constructor(self) {
@@ -43,10 +57,100 @@ class BoltAccordion extends withLitHtml() {
     return self;
   }
 
+  setAccordionItemProps(item) {
+    const header = item.renderRoot.querySelector('.c-bolt-accordion__header');
+
+    // Set auto-open prop on header element, plugin dictates that the attribute must be on header or content element
+    if (item.autoOpen && header) {
+      header.setAttribute('auto-open', '');
+    }
+
+    // Set first prop
+    if (this.accordionItemElements.indexOf(item) === 0) {
+      item.setAttribute('first', '');
+    }
+
+    // Set last prop
+    if (
+      this.accordionItemElements.indexOf(item) ===
+      this.accordionItemElements.length - 1
+    ) {
+      item.setAttribute('last', '');
+    }
+  }
+
+  handleAccordionItemReady(item) {
+    const root = item.renderRoot;
+    const header = root.querySelector('.c-bolt-accordion__header');
+    const content = root.querySelector('.c-bolt-accordion__content');
+
+    this.setAccordionItemProps(item);
+
+    if (header && content) {
+      this.accordionItems = [...this.accordionItems, header, content];
+    }
+
+    const index = this.accordionItemElementsCopy.indexOf(item);
+
+    if (index !== -1) {
+      this.accordionItemElementsCopy.splice(index, 1);
+    }
+
+    if (this.accordionItemElementsCopy.length === 0) {
+      this.initAccordion();
+    }
+  }
+
+  initAccordion() {
+    this.accordion = new Accordion(this.accordionElement, {
+      // array of node references, alternating header + content: [header, content, header, content]
+      items: this.accordionItems,
+
+      // whether multiple folds can be opened at once
+      multiSelectable: this.props.multiple,
+      // whether the folds are collapsible
+      collapsible: true,
+
+      // whether ARIA attributes are enabled
+      ariaEnabled: true,
+      // whether W3C keyboard shortcuts are enabled
+      keyboardInteraction: true,
+      // whether to loop header focus (sets focus back to first/last header when end/start reached)
+      carouselFocus: true,
+
+      // attribute for the header or content to open folds at initialization
+      initialOpenAttribute: 'auto-open',
+      // whether to use transition at initial open
+      initialOpenTransition: true,
+      // delay used to show initial transition
+      initialOpenTransitionDelay: 200,
+
+      // header/content class if fold is open
+      headerOpenClass: 'c-bolt-accordion__header--open',
+      contentOpenClass: 'c-bolt-accordion__content--open',
+
+      // header/content class if fold has been opened (transition finished)
+      headerOpenedClass: 'c-bolt-accordion__header--opened',
+      contentOpenedClass: 'c-bolt-accordion__content--opened',
+
+      // header/content class if fold has been focused
+      headerFocusClass: 'c-bolt-accordion__header--focus',
+      contentFocusClass: 'c-bolt-accordion__content--focus',
+
+      // header/content class if fold is disabled
+      headerDisabledClass: 'c-bolt-accordion__header--disabled',
+      contentDisabledClass: 'c-bolt-accordion__content--disabled',
+
+      // header/content class if no transition should be active (applied on resize)
+      headerNoTransitionClass: 'c-bolt-accordion__header--notransition',
+      contentNoTransitionClass: 'c-bolt-accordion__content--notransition',
+    });
+  }
+
   template() {
     const classes = css(
       'c-bolt-accordion',
-      this.props.collapse ? 'c-bolt-accordion--collapse@small' : '',
+      this.props.shadow ? 'c-bolt-accordion--shadow' : '',
     );
 
     return html`
@@ -58,105 +162,32 @@ class BoltAccordion extends withLitHtml() {
 
   rendered() {
     super.rendered && super.rendered();
-    const accordionElement = this.renderRoot.querySelector('.c-bolt-accordion');
-    const accordionRoot = this.useShadow ? this : accordionElement;
-    const accordionItemElements = Array.from(accordionRoot.children).filter(
+
+    // Accordion outer container, accordion plugin will be instantiated on this element
+    this.accordionElement = this.renderRoot.querySelector('.c-bolt-accordion');
+
+    // Root used to find child accordion items
+    this.accordionRoot = this.useShadow ? this : this.accordionElement;
+
+    // Reference to all the accordion items
+    this.accordionItemElements = Array.from(this.accordionRoot.children).filter(
       item => item.tagName === 'BOLT-ACCORDION-ITEM',
     );
 
-    let accordionItemElementsCopy = [...accordionItemElements];
+    // Copy of that reference that will be mutated as we process each accordion item
+    this.accordionItemElementsCopy = [...this.accordionItemElements];
 
+    // Array passed to the Accordion plugin, a series of header/content pairs
     this.accordionItems = [];
 
-    const initAccordion = element => {
-      this.accordion = new Accordion(element, {
-        // array of node references, alternating header + content: [header, content, header, content]
-        items: this.accordionItems,
-
-        // whether multiple folds can be opened at once
-        multiSelectable: this.props.multiple,
-        // whether the folds are collapsible
-        collapsible: true,
-
-        // whether ARIA attributes are enabled
-        ariaEnabled: true,
-        // whether W3C keyboard shortcuts are enabled
-        keyboardInteraction: true,
-        // whether to loop header focus (sets focus back to first/last header when end/start reached)
-        carouselFocus: true,
-
-        // attribute for the header or content to open folds at initialization
-        initialOpenAttribute: 'auto-open',
-        // whether to use transition at initial open
-        initialOpenTransition: true,
-        // delay used to show initial transition
-        initialOpenTransitionDelay: 200,
-
-        // header/content class if fold is open
-        headerOpenClass: 'c-bolt-accordion__header--open',
-        contentOpenClass: 'c-bolt-accordion__content--open',
-
-        // header/content class if fold has been opened (transition finished)
-        headerOpenedClass: 'c-bolt-accordion__header--opened',
-        contentOpenedClass: 'c-bolt-accordion__content--opened',
-
-        // header/content class if fold has been focused
-        headerFocusClass: 'c-bolt-accordion__header--focus',
-        contentFocusClass: 'c-bolt-accordion__content--focus',
-
-        // header/content class if fold is disabled
-        headerDisabledClass: 'c-bolt-accordion__header--disabled',
-        contentDisabledClass: 'c-bolt-accordion__content--disabled',
-
-        // header/content class if no transition should be active (applied on resize)
-        headerNoTransitionClass: 'c-bolt-accordion__header--notransition',
-        contentNoTransitionClass: 'c-bolt-accordion__content--notransition',
-      });
-    };
-
-    const hasLastItemRendered = item => {
-      const index = accordionItemElementsCopy.indexOf(item);
-
-      if (index !== -1) {
-        accordionItemElementsCopy.splice(index, 1);
-      }
-
-      if (accordionItemElementsCopy.length === 0) {
-        return true;
-      }
-    };
-
-    const handleAccordionItemReady = item => {
-      const root = item.renderRoot;
-
-      if (root) {
-        let header = root.querySelector('.c-bolt-accordion__header');
-        let content = root.querySelector('.c-bolt-accordion__content');
-
-        // @todo: can we set this on the AccordionItem component itself?
-        // Needs to be on inner element, running into usual issues conditionally setting attribute with lit-html
-        if (item.autoOpen && header) {
-          header.setAttribute('auto-open', true);
-        }
-
-        if (header && content) {
-          this.accordionItems = [...this.accordionItems, header, content];
-        }
-      }
-
-      if (hasLastItemRendered(item)) {
-        initAccordion(accordionElement);
-      }
-    };
-
-    accordionItemElements.forEach(item => {
+    this.accordionItemElements.forEach(item => {
       const onItemReady = () => {
-        handleAccordionItemReady(item);
+        this.handleAccordionItemReady(item);
         item.removeEventListener('rendered', onItemReady);
       };
 
       if (item._wasInitiallyRendered) {
-        handleAccordionItemReady(item);
+        this.handleAccordionItemReady(item);
       } else {
         item.addEventListener('rendered', onItemReady);
       }
@@ -164,11 +195,17 @@ class BoltAccordion extends withLitHtml() {
   }
 
   render() {
-    this.accordionTemplate = document.createDocumentFragment();
-    render(this.template(), this.accordionTemplate);
+    // @todo: replace with validated props
+    this.contexts.get(AccordionContext).noSeparator =
+      this.props.noSeparator || false;
+    this.contexts.get(AccordionContext).shadow = this.props.shadow || false;
+    this.contexts.get(AccordionContext).spacing =
+      this.props.spacing || 'medium';
+    this.contexts.get(AccordionContext).iconValign =
+      this.props.iconValign || 'top';
 
     return html`
-      ${this.addStyles([styles, heightUtils])} ${this.accordionTemplate}
+      ${this.addStyles([styles, heightUtils])} ${this.template()}
     `;
   }
 }

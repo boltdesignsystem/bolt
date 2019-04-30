@@ -7,24 +7,59 @@ properties:
     items:
       type: object
       properties:
-        header:
-          type: string
-          description: Header text of each accordion item.
+        trigger:
+          type: [string, object, array]
+          description: Trigger content of accordion item.
+          default: Toggle Accordion
         content:
           type: [string, object, array]
-          description: Content of each accordion item.
-        uuid:
-          type: string
-          description: Unique ID for each accordion item, randomly generated if not provided.
+          description: Main content of accordion item.
         auto_open:
           type: boolean
           description: Open section when accordion initializes
           default: false
-  center:
-    type: boolean
-    description: '`True` to center the toggle title'
-    default: false
+        uuid:
+          type: string
+          description: Unique ID for accordion item, randomly generated if not provided.
+        open_label:
+          type: string
+          description: Custom label for screenreaders to open accordion.
+          default: Open Accordion
+        close_label:
+          type: string
+          description: Custom label for screenreaders to close accordion.
+          default: Close Accordion
+  icon_valign:
+    type: string
+    description: Vertically align accordion trigger icon.
+    default: top
+    enum:
+      - top
+      - center
   multiple:
     type: boolean
     description: Allow multiple items to be open at the same time.
     default: false
+  separator:
+    type: boolean
+    description: Displays a border between each accordion item. Twig only.
+    default: true
+  no_separator:
+    type: boolean
+    description: Displays a border between each accordion item. Web Component only.
+    default: false
+  shadow:
+    type: boolean
+    description: Adds a shadow around the accordion.
+    default: false
+  spacing:
+    type: string
+    description: Control the spacing around items.
+    default: medium
+    enum:
+      - none
+      - xsmall
+      - small
+      - medium
+      - large
+      - xlarge
