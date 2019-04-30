@@ -43,6 +43,7 @@ describe('<bolt-ratio> Component', () => {
     });
     expect(renderedRatioHTML).toMatchSnapshot();
 
+    await page.waitFor(1000); // wait a second before testing
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -79,6 +80,7 @@ describe('<bolt-ratio> Component', () => {
       return ratioSize;
     });
 
+    await page.waitFor(1000); // wait a second before testing
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(imageVrtConfig);
@@ -103,6 +105,7 @@ describe('<bolt-ratio> Component', () => {
       ratio.updated();
     }, html);
 
+    await page.waitFor(1000); // wait a second before testing
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -128,6 +131,7 @@ describe('<bolt-ratio> Component', () => {
     });
     expect(renderedRatioHTML).toMatchSnapshot();
 
+    await page.waitFor(1000); // wait a second before testing
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
