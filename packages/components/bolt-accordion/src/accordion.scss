@@ -101,16 +101,6 @@ bolt-accordion {
 
 .c-bolt-accordion__header-button,
 .c-bolt-accordion__header-label {
-  color: inherit;
-  // @include bolt-padding(small);
-
-  // @include bolt-font-size(medium);
-  // @include bolt-font-weight(semibold);
-
-  .c-bolt-accordion-item--shadow & {
-    // @include bolt-padding(small);
-    // @include bolt-padding(small, squished);
-  }
 
   display: flex;
   justify-content: space-between;
@@ -120,6 +110,7 @@ bolt-accordion {
   width: 100%;
 
   margin-bottom: 0;
+  color: inherit;
   // color: bolt-theme(headline-link);
   text-align: left; // otherwise some accordion menus are center aligned in the Shadow DOM
   cursor: pointer;
@@ -134,6 +125,15 @@ bolt-accordion {
 
   outline-offset: -3px;
   outline-width: 2px;
+  // @include bolt-padding(small);
+
+  // @include bolt-font-size(medium);
+  // @include bolt-font-weight(semibold);
+
+  .c-bolt-accordion-item--shadow & {
+    // @include bolt-padding(small);
+    // @include bolt-padding(small, squished);
+  }
 
   &:-moz-focusring {
     // Firefox specific fix for removing the dotted outline
@@ -276,12 +276,12 @@ bolt-accordion {
   display: inline-block;
   position: relative;
   padding: calc(1.5rem / 2);
+  color: bolt-theme(headline-link);
   // height: 3rem;
   // width: 3rem;
   line-height: 0; // Workaround to line-height messing up icon alignment
   vertical-align: middle;
   font-size: 1.5rem;
-  color: bolt-theme(headline-link);
   transition: opacity 0.2s ease;
   // transform-style: preserve-3d;
   // transform-origin: center center;
