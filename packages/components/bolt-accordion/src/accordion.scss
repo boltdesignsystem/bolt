@@ -10,30 +10,30 @@ bolt-accordion {
     display: block;
   }
 
-  @include bolt-css-vars(
-    (
-      --bolt-nav-item-opacity: 0,
-      --bolt-nav-item-transform: translateY(bolt-spacing(large) * -1),
-      --bolt-nav-indicator-opacity: 0,
-    )
-  );
+  // @include bolt-css-vars(
+  //   (
+  //     --bolt-nav-item-opacity: 0,
+  //     --bolt-nav-item-transform: translateY(bolt-spacing(large) * -1),
+  //     --bolt-nav-indicator-opacity: 0,
+  //   )
+  // );
 
-  &[collapse] {
-    @include bolt-mq(small) {
-      @include bolt-css-vars(
-        (
-          --bolt-nav-item-opacity: 1,
-          --bolt-nav-item-transform: none,
-          --bolt-nav-indicator-opacity: 1,
-        )
-      );
-    }
-  }
+  // &[collapse] {
+  //   @include bolt-mq(small) {
+  //     @include bolt-css-vars(
+  //       (
+  //         --bolt-nav-item-opacity: 1,
+  //         --bolt-nav-item-transform: none,
+  //         --bolt-nav-indicator-opacity: 1,
+  //       )
+  //     );
+  //   }
+  // }
 }
 
 .c-bolt-accordion {
   position: relative;
-  overflow: hidden;
+  // overflow: hidden;
   background-color: bolt-theme(background);
 }
 
@@ -46,7 +46,6 @@ bolt-accordion {
   // @include bolt-font-weight(semibold);
   display: flex;
   position: relative;
-  z-index: 10;
   margin: 0;
   background-color: bolt-theme(background);
 
@@ -122,8 +121,9 @@ bolt-accordion {
   background-color: transparent;
   background-color: bolt-theme(background);
 
-  outline-offset: -3px;
-  outline-width: 2px;
+  // outline-offset: -3px;
+  // outline-width: 2px;
+  // outline: none;
   // @include bolt-padding(small);
 
   // @include bolt-font-size(medium);
@@ -210,7 +210,7 @@ bolt-accordion {
   position: relative;
   left: 0;
   transform: translateY(-100px);
-  z-index: 1;
+  // z-index: 1;
   width: 100%;
   height: 0;
   overflow: auto;
@@ -328,7 +328,6 @@ bolt-accordion {
   + .c-bolt-accordion-item
   .c-bolt-accordion__content {
   visibility: visible;
-  visibility: visible;
   transform: translate3d(0, 0, 0);
   // @todo, needed?
   // max-height: 250px;
@@ -405,6 +404,15 @@ bolt-accordion {
   transition: opacity 0.3s ease;
 }
 
+.c-bolt-accordion__state:target
+  + .c-bolt-accordion-item
+  .c-bolt-accordion__header,
+.c-bolt-accordion__state:checked
+  + .c-bolt-accordion-item
+  .c-bolt-accordion__header {
+  z-index: 1;
+}
+
 .c-bolt-accordion__toggle-text {
   position: absolute;
   width: 1px;
@@ -423,82 +431,89 @@ bolt-accordion {
 }
 
 .c-bolt-accordion__content--open {
-  overflow: hidden;
+  // overflow: hidden;
 }
 
-.c-bolt-block-list {
-  display: block;
-}
+// .c-bolt-block-list {
+//   display: block;
+// }
 
-.c-bolt-block-list__item {
-  display: block;
-  position: relative;
-  z-index: 1;
-}
+// .c-bolt-block-list__item {
+//   display: block;
+//   position: relative;
+//   z-index: 1;
+// }
 
-.c-bolt-nav__item {
-  opacity: var(--bolt-nav-item-opacity, 1);
-  transform: var(--bolt-nav-item-transform, none);
-  transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
+// .c-bolt-nav__item {
+//   opacity: var(--bolt-nav-item-opacity, 1);
+//   transform: var(--bolt-nav-item-transform, none);
+//   transition: opacity 0.35s ease-out, transform 0.35s ease-out; // transition:
 
-  .c-bolt-accordion--collapse\@small & {
-    @include bolt-mq(small) {
-      opacity: bolt-opacity(100);
-      transform: translateY(0);
-    }
-  }
-}
+//   .c-bolt-accordion--collapse\@small & {
+//     @include bolt-mq(small) {
+//       opacity: bolt-opacity(100);
+//       transform: translateY(0);
+//     }
+//   }
+// }
 
-@for $quantity from 1 through 12 {
-  $time: 0;
+// @for $quantity from 1 through 12 {
+//   $time: 0;
 
-  @for $i from $quantity through 1 {
-    $time: $time + 50;
-    .c-bolt-nav__item:nth-last-child(n + #{$quantity}),
-    .c-bolt-nav__item:nth-last-child(n + #{$quantity})
-      ~ .c-bolt-nav__item:nth-child(#{$i}) {
-      transition-delay: $time + ms;
-    }
-  }
-}
+//   @for $i from $quantity through 1 {
+//     $time: $time + 50;
+//     .c-bolt-nav__item:nth-last-child(n + #{$quantity}),
+//     .c-bolt-nav__item:nth-last-child(n + #{$quantity})
+//       ~ .c-bolt-nav__item:nth-child(#{$i}) {
+//       transition-delay: $time + ms;
+//     }
+//   }
+// }
 
 .c-bolt-accordion__state:target + .c-bolt-accordion .c-bolt-nav__item,
 .c-bolt-accordion__state:checked + .c-bolt-accordion .c-bolt-nav__item,
 .c-bolt-accordion__content--opened .c-bolt-nav__item {
   // opacity: bolt-opacity(100);
   // transform: none;
-  @include bolt-css-vars(
-    (
-      --bolt-nav-item-opacity: 1,
-      --bolt-nav-item-transform: none,
-    )
-  );
+  // @include bolt-css-vars(
+  //   (
+  //     --bolt-nav-item-opacity: 1,
+  //     --bolt-nav-item-transform: none,
+  //   )
+  // );
+}
+
+.c-bolt-accordion__header--opened {
+  z-index: 1;
 }
 
 .c-bolt-accordion__content--opened {
-  @include bolt-css-vars(
-    (
-      --bolt-nav-item-opacity: 1,
-      --bolt-nav-item-transform: none,
-      --bolt-nav-indicator-opacity: 1,
-    )
-  );
+  // @include bolt-css-vars(
+  //   (
+  //     --bolt-nav-item-opacity: 1,
+  //     --bolt-nav-item-transform: none,
+  //     --bolt-nav-indicator-opacity: 1,
+  //   )
+  // );
 }
 
 .c-bolt-accordion__content:not(.c-bolt-accordion__content--open):not(.c-bolt-accordion__content--opened) {
-  @include bolt-css-vars(
-    (
-      --bolt-nav-indicator-transform: -100px,
-    )
-  );
+  // @include bolt-css-vars(
+  //   (
+  //     --bolt-nav-indicator-transform: -100px,
+  //   )
+  // );
 }
 
 .c-bolt-accordion-item {
-  overflow: hidden;
+  &:focus-within {
+    z-index: 1;
+    position: relative;
+  }
 }
 
 bolt-accordion-item {
-  overflow: hidden;
+  // overflow: hidden;
 
   // Required for no-js styles to display properly
   replace-with-grandchildren {
