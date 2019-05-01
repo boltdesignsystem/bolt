@@ -39,7 +39,7 @@ class BoltList extends withContext(withLitHtml()) {
 
   static props = {
     tag: props.string, // ul | ol | div | span
-    display: props.string, // inline | block | inline@xxsmall | inline@xsmall | inline@small | inline@medium
+    display: props.string, // inline | block | flex | inline@xxsmall | inline@xsmall | inline@small | inline@medium
     spacing: props.string, // none | xsmall | small | medium | large | xlarge
     separator: props.string, // none | solid | dashed
     inset: props.boolean, // true | false

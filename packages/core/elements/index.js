@@ -2,23 +2,29 @@ import { polyfillLoader } from '../polyfills';
 
 polyfillLoader.then(res => {
   if (!window.customElements.get('replace-with-children')) {
-    import(/* 
+    import(
+      /* 
       webpackMode: 'eager', 
       webpackChunkName: 'replace-with-children' 
-    */ './replace-with-children');
+    */ './replace-with-children'
+    );
   }
 
   if (!window.customElements.get('replace-with-grandchildren')) {
-    import(/*
+    import(
+      /*
       webpackMode: 'eager',
       webpackChunkName: 'replace-with-grandchildren'
-    */ './replace-with-grandchildren');
+    */ './replace-with-grandchildren'
+    );
   }
 
   if (!window.customElements.get('bolt-action')) {
-    import(/*
+    import(
+      /*
       webpackMode: 'eager',
       webpackChunkName: 'bolt-action'
-    */ './bolt-action');
+    */ './bolt-action'
+    );
   }
 });
