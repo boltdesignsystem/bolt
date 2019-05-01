@@ -32,6 +32,7 @@ $bolt-modal-border-color: bolt-theme(text, 0.15);
 $bolt-modal-border-radius: bolt-border-radius(small);
 $bolt-modal-max-height: 80vh;
 $bolt-modal-transition: $bolt-transition;
+$bolt-modal-breakpoint: 'small';
 
 // Hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
 bolt-modal:not([ready]) {
@@ -40,121 +41,200 @@ bolt-modal:not([ready]) {
 
 .c-bolt-modal {
   display: inline;
+
+  @include bolt-mq($until: $bolt-modal-breakpoint) {
+    @include bolt-z-index(modalBG);
+
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all $bolt-modal-transition;
+
+    [class*='t-bolt-'] {
+      color: inherit;
+      background-color: transparent;
+    }
+
+    .c-bolt-modal__overlay {
+      display: none;
+    }
+
+    .c-bolt-modal__container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      color: bolt-theme(text);
+      background-color: bolt-theme(background);
+    }
+
+    .c-bolt-modal__container-header,
+    .c-bolt-modal__container-footer {
+      display: flex;
+      align-items: center;
+      min-height: bolt-v-spacing(medium);
+    }
+
+    .c-bolt-modal__container-header {
+      @include bolt-padding(small large small small);
+    }
+
+    .c-bolt-modal__container-body {
+      @include bolt-margin-top(auto);
+      @include bolt-margin-bottom(auto);
+
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .c-bolt-modal__container-footer {
+      @include bolt-padding(small);
+    }
+
+    [class*='c-bolt-modal__container--spacing-'] {
+      .c-bolt-modal__container-body {
+        @include bolt-padding(small);
+      }
+    }
+
+    &.is-open {
+      visibility: visible;
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+    }
+  }
 }
 
 // Dark overlay
 .c-bolt-modal__overlay {
-  @include bolt-z-index(modalBG);
+  @include bolt-mq($bolt-modal-breakpoint) {
+    @include bolt-z-index(modalBG);
 
-  display: block;
-  opacity: 0;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  pointer-events: none;
-  background-color: $bolt-modal-overlay-bg-color;
-  transition: opacity $bolt-modal-transition;
+    display: block;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-color: $bolt-modal-overlay-bg-color;
+    transition: opacity $bolt-modal-transition;
+  }
 
   @at-root .c-bolt-modal.is-open #{&} {
-    opacity: 1;
-    cursor: pointer;
-    pointer-events: auto;
+    @include bolt-mq($bolt-modal-breakpoint) {
+      opacity: 1;
+      cursor: pointer;
+      pointer-events: auto;
+    }
   }
 
   @at-root .c-bolt-modal.is-open #{&}--persistent {
-    cursor: auto;
+    @include bolt-mq($bolt-modal-breakpoint) {
+      cursor: auto;
+    }
   }
 }
 
 
 // Content box
 .c-bolt-modal__content {
-  @include bolt-z-index(modal);
-
   display: block;
-  visibility: hidden;
-  opacity: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
-  max-width: calc(100% - #{bolt-spacing(small) * 2});
-  max-height: $bolt-modal-max-height;
+  width: 100%;
   margin: 0;
   padding: 0;
   border: 0;
   background: transparent;
-  transition: all $bolt-modal-transition;
 
-  @include bolt-mq(xsmall) {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    @include bolt-z-index(modal);
+
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all $bolt-modal-transition;
+
     max-width: calc(100% - #{bolt-spacing(medium) * 2});
+    min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
+    max-height: $bolt-modal-max-height;
+  }
+
+  @at-root .c-bolt-modal.is-open #{&} {
+    @include bolt-mq($bolt-modal-breakpoint) {
+      visibility: visible;
+      opacity: 1;
+      filter: blur(0);
+    }
   }
 }
 
 // Scroll options
-.c-bolt-modal--scroll-overall {
-  @include bolt-z-index(modalBG);
+@include bolt-mq($bolt-modal-breakpoint) {
+  .c-bolt-modal--scroll-overall {
+    @include bolt-z-index(modalBG);
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  pointer-events: none;
-
-  .c-bolt-modal__content {
-    @include bolt-margin(0 auto);
-
-    position: relative;
-    top: 50vh;
-    transform: translateX(0) translateY(-50%) scale(0.95);
-  }
-
-  &.is-open {
-    pointer-events: auto;
-
-    .c-bolt-modal__content {
-      visibility: visible;
-      opacity: 1;
-      transform: translateX(0) translateY(calc(-50% - 0.5px)) translateZ(0);
-      filter: blur(0);
-    }
-  }
-}
-
-.c-bolt-modal--scroll-container {
-  .c-bolt-modal__content {
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%) scale(0.95);
-  }
-
-  &.is-open {
-    .c-bolt-modal__content {
-      visibility: visible;
-      opacity: 1;
-      transform: translateX(calc(-50% - 0.5px)) translateY(calc(-50% - 0.5px)) translateZ(0);
-      filter: blur(0);
-    }
-  }
-
-  .c-bolt-modal__container-body {
-    max-height: calc(#{$bolt-modal-max-height} - 6rem);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    pointer-events: none;
+
+    .c-bolt-modal__content {
+      @include bolt-margin(0 auto);
+
+      position: relative;
+      top: 50vh;
+      transform: translateX(0) translateY(-50%) scale(0.95);
+    }
+
+    &.is-open {
+      pointer-events: auto;
+
+      .c-bolt-modal__content {
+        transform: translateX(0) translateY(calc(-50% - 0.5px)) translateZ(0);
+      }
+    }
+  }
+
+  .c-bolt-modal--scroll-container {
+    .c-bolt-modal__content {
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%) scale(0.95);
+    }
+
+    &.is-open {
+      .c-bolt-modal__content {
+        transform: translateX(calc(-50% - 0.5px)) translateY(calc(-50% - 0.5px)) translateZ(0);
+      }
+    }
+
+    .c-bolt-modal__container-body {
+      max-height: calc(#{$bolt-modal-max-height} - 6rem);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 }
 
 // Content width options
-[class*='c-bolt-modal__content--width-'] {
-  width: calc(100% - #{bolt-spacing(small) * 2});
-}
-
-@include bolt-mq(xsmall) {
+@include bolt-mq($bolt-modal-breakpoint) {
   .c-bolt-modal__content--width-regular {
     width: 100% / 12 * 10;
   }
@@ -171,18 +251,18 @@ bolt-modal:not([ready]) {
 // Container
 .c-bolt-modal__container {
   display: block;
-  border-radius: $bolt-modal-border-radius;
+
+  @include bolt-mq($bolt-modal-breakpoint) {
+    border-radius: $bolt-modal-border-radius;
+  }
 }
 
 .c-bolt-modal__container-header,
 .c-bolt-modal__container-footer,
 .c-bolt-modal__container-body {
   display: block;
-}
 
-.c-bolt-modal__container-header,
-.c-bolt-modal__container-footer,
-.c-bolt-modal__container-body {
+  // @todo [Mai] Normally, block level spacing gets cancelled out if it's the last child, but that does not work with slots. This is an interim solution for it.
   ::slotted(*:last-child),
   ::slotted(*.is-last-child) {
     margin-bottom: 0 !important;
@@ -195,6 +275,14 @@ bolt-modal:not([ready]) {
   border-bottom-width: $bolt-modal-border-width;
 }
 
+.c-bolt-modal__container-header--hidden {
+  border-bottom-width: 0;
+
+  @include bolt-mq($bolt-modal-breakpoint) {
+    @include bolt-visuallyhidden;
+  }
+}
+
 .c-bolt-modal__container-footer {
   border-top-color: $bolt-modal-border-color;
   border-top-style: $bolt-modal-border-style;
@@ -202,21 +290,10 @@ bolt-modal:not([ready]) {
 }
 
 // Container spacing options
-[class*='c-bolt-modal__container--spacing-'] {
-  .c-bolt-modal__container-body {
-    @include bolt-padding(small);
-  }
-
-  .c-bolt-modal__container-header,
-  .c-bolt-modal__container-footer {
-    @include bolt-padding(small, squished);
-  }
-}
-
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
 
-  @include bolt-mq(xsmall) {
+  @include bolt-mq($bolt-modal-breakpoint) {
     .c-bolt-modal__container--spacing-#{$spacing-value-name} {
       .c-bolt-modal__container-body {
         @include bolt-padding(#{$spacing-value-name});
@@ -237,11 +314,18 @@ bolt-modal:not([ready]) {
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate3d(85%, -85%, 0);
+
+  @include bolt-mq($bolt-modal-breakpoint) {
+    transform: translate3d(85%, -85%, 0);
+  }
 }
 
-.c-bolt-modal__container-header--hidden,
-.c-bolt-modal__close-button--hidden,
+.c-bolt-modal__close-button--hidden {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    @include bolt-visuallyhidden;
+  }
+}
+
 .c-bolt-modal__dialog-title {
   @include bolt-visuallyhidden;
 }
