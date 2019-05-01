@@ -1,3 +1,26 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* add timeout to async afterAll in Jest tests ([cf335ce](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/cf335ce))
+* adjust default link line height + icon and text spacing ([806814f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/806814f))
+* link text and icon spacing ([f79f585](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/f79f585))
+* lint styles ([32c932e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/32c932e))
+* lint styles ([d942d44](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/d942d44))
+* linting js ([fd11c79](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/fd11c79))
+* remove async from the top level Jest test `describe` — addresses deprecation warnings about this breaking in an upcoming version of Jest ([a7f5fec](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/a7f5fec))
+* replace 'button' references to 'link' in testing instructions ([fb15ddb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/fb15ddb))
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -203,6 +226,3 @@
 
 
 # [1.0.0-rc.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v0.4.1...v1.0.0-rc.1) (2018-02-24)
-
-
-
