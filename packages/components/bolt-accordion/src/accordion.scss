@@ -101,10 +101,9 @@ bolt-accordion {
 
 .c-bolt-accordion__header-button,
 .c-bolt-accordion__header-label {
-
   display: flex;
   justify-content: space-between;
-  align-items: center; // vertical align
+  align-items: flex-start; // align top by default
   -webkit-appearance: none;
   position: relative;
   width: 100%;
@@ -135,13 +134,13 @@ bolt-accordion {
     // @include bolt-padding(small, squished);
   }
 
+  .c-bolt-accordion-item--icon-valign-center & {
+    align-items: center;
+  }
+
   &:-moz-focusring {
     // Firefox specific fix for removing the dotted outline
     outline: none;
-  }
-
-  .c-bolt-accordion__header--center & {
-    justify-content: center;
   }
 }
 

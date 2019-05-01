@@ -21,6 +21,7 @@
   base_class,
   shadow ? base_class ~ "--shadow" : "",
   separator ? "c-bolt-accordion-item--separator" : "" ,
+  icon_valign and icon_valign != "top" ? "c-bolt-accordion-item--icon-valign-" ~ icon_valign : "" ,
   first ? "c-bolt-accordion-item--first-item" : "" ,
   last ? "c-bolt-accordion-item--last-item" : "" 
 ] %}
