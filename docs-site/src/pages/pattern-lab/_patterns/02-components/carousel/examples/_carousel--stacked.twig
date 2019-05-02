@@ -1,0 +1,109 @@
+{# {% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  stacked: true,
+  noJs: true,
+} only %} #}
+
+
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  stacked: false
+} only %}
+
+<script>
+const carousels = document.querySelectorAll('bolt-carousel');
+
+carousels.forEach(carousel => {
+  const slides = carousel.querySelectorAll('bolt-carousel-slide');
+
+  let observerOptions = {
+    root: carousel,
+    rootMargin: '5px',
+    threshold: [0.6, ],
+  };
+
+  let initialIndex = '';
+
+  const slideObserver = new IntersectionObserver(
+    intersectionCallback,
+    observerOptions,
+  );
+
+  let visibleSlides = [0];
+
+  function intersectionCallback(entries) {
+    entries.forEach(function(entry) {
+
+      let slideIndex = Array.from(
+        carousel.children,
+      ).indexOf(entry.target);
+      // console.log(entry.isIntersecting);
+      if (entry.isIntersecting && !carousel.swiper){
+
+        // firstVisibleChildIndex = Array.from(
+        //   carousel.children,
+        // ).indexOf(entry.target);
+
+        visibleSlides.push(slideIndex);
+
+        // visibleSlides = [...new Set(visibleSlides)];
+
+        // cleanup();
+      } else if (!entry.isIntersecting && !carousel.swiper){
+        visibleSlides = visibleSlides.filter(function(value, index, arr){
+          return value !== slideIndex
+        });
+
+        // visibleSlides = [...new Set(visibleSlides)];
+      }
+    });
+    // console.log(visibleSlides);
+
+    carousel.setAttribute('initial-slide', visibleSlides[0]);
+  }
+
+  function cleanup() {
+    slides.forEach(slide => {
+      // if (self.firstVisibleChild === '') {
+      slideObserver.unobserve(slide);
+    });
+  }
+
+  window.addEventListener("load", cleanup, false);
+
+  slides.forEach(slide => {
+    // if (self.firstVisibleChild === '') {
+    slideObserver.observe(slide);
+    // }
+
+    //   console.log(slide.getBoundingClientRect());
+    //   const slideDimensions = slide.getBoundingClientRect();
+    //   const offsetLeft = slideDimensions.left;
+    //   const slideWidth = slideDimensions.width;
+
+    //   // console.log(offsetLeft >= 0 || Math.abs(offsetLeft) < slideWidth / 2);
+
+    //   if (offsetLeft >= 0 || Math.abs(offsetLeft) < slideWidth / 2) {
+    //     self.firstVisibleChild = slide;
+    //     self.firstVisibleChildIndex = Array.from(
+    //       slide.parentNode.children,
+    //     ).indexOf(slide);
+
+    //     self.firstVisibleChild.scrollIntoView({
+    //       behavior: 'auto',
+    //       block: 'end',
+    //       inline: 'start',
+    //     });
+    //   }
+    // }
+  });
+});
+</script>

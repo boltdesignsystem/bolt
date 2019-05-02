@@ -1,0 +1,30 @@
+<bolt-carousel-band>
+  <bolt-carousel-cta>
+    {% embed "@bolt-components-card/card.twig" with {
+      theme: "xdark"
+    } only %}
+      {% block card_body %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Explore the Developer Knowledge Share",
+          size: "xxlarge",
+          attributes: {
+            class: "u-bolt-margin-top-auto"
+          }
+        } %}
+
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          text: "Pega product experts and top community members are sharing their insights across various technical topics to help you succeed.",
+          size: "large",
+          attributes: {
+            class: "u-bolt-margin-bottom-medium"
+          }
+        } %}
+      {% endblock card_body %}
+    {% endembed %}
+  </bolt-carousel-cta>
+
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    stacked: true,
+  } only %}
+</bolt-carousel-band>
+
