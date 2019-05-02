@@ -10,10 +10,10 @@ import {
   withLitHtml,
   html,
 } from '@bolt/core/renderers/renderer-lit-html';
-import { ifDefined } from 'lit-html/directives/if-defined';
+// import { ifDefined } from 'lit-html/directives/if-defined';
 
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
-import styles from '../accordion.scss';
+import styles from './accordion-item.scss';
 import { AccordionContext } from '../accordion';
 
 @define
@@ -45,9 +45,9 @@ class AccordionItem extends withContext(withLitHtml()) {
   }
 
   connecting() {
-    const originalInput = this.querySelector('.c-bolt-accordion__state');
+    const originalInput = this.querySelector('.c-bolt-accordion-item__state');
     const originalLinks = this.querySelectorAll(
-      '.c-bolt-accordion__header-link',
+      '.c-bolt-accordion-item__trigger-link',
     );
 
     originalInput && originalInput.remove;
@@ -154,8 +154,8 @@ class AccordionItem extends withContext(withLitHtml()) {
     );
 
     const accordionHeaderClasses = css(
-      'c-bolt-accordion__header',
-      this.props.center ? 'c-bolt-accordion__header--center' : '',
+      'c-bolt-accordion-item__trigger',
+      this.props.center ? 'c-bolt-accordion-item__trigger--center' : '',
     );
 
     const headerTemplate = children => {
@@ -164,20 +164,22 @@ class AccordionItem extends withContext(withLitHtml()) {
         : children;
       return html`
         <div class="${accordionHeaderClasses}">
-          <button class="c-bolt-accordion__header-button ${spacingClasses}">
-            <div class="c-bolt-accordion__header-content">
+          <button
+            class="c-bolt-accordion-item__trigger-button ${spacingClasses}"
+          >
+            <div class="c-bolt-accordion-item__trigger-content">
               ${content}
             </div>
-            <span class="c-bolt-accordion__header-icons">
-              <div class="c-bolt-accordion__header-icons-inner">
+            <span class="c-bolt-accordion-item__trigger-icons">
+              <div class="c-bolt-accordion-item__trigger-icons-inner">
                 <span
-                  class="c-bolt-accordion__header-icon c-bolt-accordion__header-icon--open"
+                  class="c-bolt-accordion-item__trigger-icon c-bolt-accordion-item__trigger-icon--open"
                 >
                   <bolt-icon name="chevron-down"></bolt-icon>
                 </span>
 
                 <span
-                  class="c-bolt-accordion__header-icon c-bolt-accordion__header-icon--close"
+                  class="c-bolt-accordion-item__trigger-icon c-bolt-accordion-item__trigger-icon--close"
                 >
                   <bolt-icon name="chevron-up"></bolt-icon>
                 </span>
@@ -189,8 +191,8 @@ class AccordionItem extends withContext(withLitHtml()) {
     };
     const contentTemplate = children => {
       return html`
-        <div class="c-bolt-accordion__content">
-          <div class="c-bolt-accordion__content-inner ${spacingClasses}">
+        <div class="c-bolt-accordion-item__content">
+          <div class="c-bolt-accordion-item__content-inner ${spacingClasses}">
             ${children}
           </div>
         </div>
@@ -232,7 +234,7 @@ class AccordionItem extends withContext(withLitHtml()) {
     super.rendered && super.rendered();
 
     this.contentElem = this.renderRoot.querySelector(
-      '.c-bolt-accordion__content',
+      '.c-bolt-accordion-item__content',
     );
 
     this.autoHeight();

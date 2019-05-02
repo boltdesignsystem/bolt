@@ -58,7 +58,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
   }
 
   setAccordionItemProps(item) {
-    const header = item.renderRoot.querySelector('.c-bolt-accordion__header');
+    const header = item.renderRoot.querySelector('.c-bolt-accordion-item__trigger');
 
     // Set auto-open prop on header element, plugin dictates that the attribute must be on header or content element
     if (item.autoOpen && header) {
@@ -81,8 +81,8 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
   handleAccordionItemReady(item) {
     const root = item.renderRoot;
-    const header = root.querySelector('.c-bolt-accordion__header');
-    const content = root.querySelector('.c-bolt-accordion__content');
+    const header = root.querySelector('.c-bolt-accordion-item__trigger');
+    const content = root.querySelector('.c-bolt-accordion-item__content');
 
     this.setAccordionItemProps(item);
 
@@ -126,24 +126,24 @@ class BoltAccordion extends withContext(withLitHtml()) {
       initialOpenTransitionDelay: 200,
 
       // header/content class if fold is open
-      headerOpenClass: 'c-bolt-accordion__header--open',
-      contentOpenClass: 'c-bolt-accordion__content--open',
+      headerOpenClass: 'c-bolt-accordion-item__trigger--open',
+      contentOpenClass: 'c-bolt-accordion-item__content--open',
 
       // header/content class if fold has been opened (transition finished)
-      headerOpenedClass: 'c-bolt-accordion__header--opened',
-      contentOpenedClass: 'c-bolt-accordion__content--opened',
+      headerOpenedClass: 'c-bolt-accordion-item__trigger--opened',
+      contentOpenedClass: 'c-bolt-accordion-item__content--opened',
 
       // header/content class if fold has been focused
-      headerFocusClass: 'c-bolt-accordion__header--focus',
-      contentFocusClass: 'c-bolt-accordion__content--focus',
+      headerFocusClass: 'c-bolt-accordion-item__trigger--focus',
+      contentFocusClass: 'c-bolt-accordion-item__content--focus',
 
       // header/content class if fold is disabled
-      headerDisabledClass: 'c-bolt-accordion__header--disabled',
-      contentDisabledClass: 'c-bolt-accordion__content--disabled',
+      headerDisabledClass: 'c-bolt-accordion-item__trigger--disabled',
+      contentDisabledClass: 'c-bolt-accordion-item__content--disabled',
 
       // header/content class if no transition should be active (applied on resize)
-      headerNoTransitionClass: 'c-bolt-accordion__header--notransition',
-      contentNoTransitionClass: 'c-bolt-accordion__content--notransition',
+      headerNoTransitionClass: 'c-bolt-accordion-item__trigger--notransition',
+      contentNoTransitionClass: 'c-bolt-accordion-item__content--notransition',
     });
   }
 

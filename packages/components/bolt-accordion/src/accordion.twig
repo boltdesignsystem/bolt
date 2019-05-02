@@ -39,7 +39,7 @@
   {% if items %}
     <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
       {% for item in items %}
-        {% include "@bolt-components-accordion/_accordion-item.twig" with item|merge({
+        {% include "@bolt-components-accordion/AccordionItem/accordion-item.twig" with item|merge({
           first: loop.first,
           last: loop.last,
           separator: this.data.separator.value,

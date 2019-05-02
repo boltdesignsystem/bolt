@@ -10,8 +10,8 @@
 {% set inner_attributes = create_attribute({}) %}
 
 {% set uuid = this.data.uuid|default(random()) %}
-{% set primary_uuid = uuid ? "c-bolt-accordion-item-#{uuid}" : "c-bolt-accordion-item-#{random_uuid}" %}
-{% set secondary_uuid = uuid ? "c-bolt-accordion-item-inner-#{uuid}" : "c-bolt-accordion-item-inner-#{random_uuid}" %}
+{% set primary_uuid = uuid ? base_class ~ "-#{uuid}" : base_class ~ "-#{random_uuid}" %}
+{% set secondary_uuid = uuid ? base_class ~ "-inner-#{uuid}" : base_class ~ "-inner-#{random_uuid}" %}
 
 {# init() will not return 'trigger' value because it is not a tring or boolean #}
 {% set trigger = trigger|default(schema.properties.items.items.trigger.default) %}
@@ -20,10 +20,10 @@
 {% set classes = [
   base_class,
   shadow ? base_class ~ "--shadow" : "",
-  separator ? "c-bolt-accordion-item--separator" : "" ,
-  icon_valign and icon_valign != "top" ? "c-bolt-accordion-item--icon-valign-" ~ icon_valign : "" ,
-  first ? "c-bolt-accordion-item--first-item" : "" ,
-  last ? "c-bolt-accordion-item--last-item" : "" 
+  separator ? base_class ~ "--separator" : "" ,
+  icon_valign and icon_valign != "top" ? base_class ~ "--icon-valign-" ~ icon_valign : "" ,
+  first ? base_class ~ "--first-item" : "" ,
+  last ? base_class ~ "--last-item" : "" 
 ] %}
 
 {% set spacing_class = spacing ? base_class ~ "--spacing-" ~ spacing : "" %}
@@ -47,32 +47,32 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
   >
-  <input class="c-bolt-accordion__state" type="checkbox" id="{{ primary_uuid }}" {% if auto_open %} checked{% endif %}>
+  <input class="c-bolt-accordion-item__state" type="checkbox" id="{{ primary_uuid }}" {% if auto_open %} checked{% endif %}>
 
   <replace-with-grandchildren
     {{ inner_attributes.addClass(inner_classes) }}
     id="{{ secondary_uuid }}">
 
-    <div class="c-bolt-accordion__header">
+    <div class="c-bolt-accordion-item__trigger">
       <replace-with-grandchildren>
-        <label class="c-bolt-accordion__header-label {{ spacing_class }}" for="{{ primary_uuid }}">
-          <replace-with-children class="c-bolt-accordion__header-title">
+        <label class="c-bolt-accordion-item__trigger-label {{ spacing_class }}" for="{{ primary_uuid }}">
+          <replace-with-children class="c-bolt-accordion-item__trigger-content">
             <div slot="header">{{ trigger }}</div>
           </replace-with-children>
         </label>
       </replace-with-grandchildren>
 
-      <a href="#{{ primary_uuid }}" class="c-bolt-accordion__header-link c-bolt-accordion__header-link c-bolt-accordion__header-link--open">
-        <span class="c-bolt-accordion__toggle-text">{{ this.data.open_label.value }}</span>
+      <a href="#{{ primary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--open">
+        <span class="c-bolt-accordion-item__toggle-text">{{ this.data.open_label.value }}</span>
       </a>
 
-      <a href="#{{ secondary_uuid }}" class="c-bolt-accordion__header-link c-bolt-accordion__header-link--close">
-        <span class="c-bolt-accordion__toggle-text">{{ this.data.close_label.value }}</span>
+      <a href="#{{ secondary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--close">
+        <span class="c-bolt-accordion-item__toggle-text">{{ this.data.close_label.value }}</span>
       </a>
     </div>
 
-    <replace-with-grandchildren class="c-bolt-accordion__content">
-      <div class="c-bolt-accordion__content-inner {{ spacing_class }}">
+    <replace-with-grandchildren class="c-bolt-accordion-item__content">
+      <div class="c-bolt-accordion-item__content-inner {{ spacing_class }}">
         {{ content }}
       </div>
     </replace-with-grandchildren>
