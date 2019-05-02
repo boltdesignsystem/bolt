@@ -1,0 +1,116 @@
+@import '@bolt/core';
+
+bolt-carousel {
+  display: flex;
+  align-items: center;
+  align-items: stretch;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  
+  &:not(:last-child){
+    @include bolt-margin-bottom(medium);
+  }
+
+  // adds a small bit of padding before and after the carousel to prevent slides with box-shadows from getting cut off
+  &:before,
+  &:after {
+    content: '';
+    @include bolt-padding-left(small);
+  }
+
+  // add custom scrollbar styling till JS kicks in
+  &:not(.is-ready){
+    @include bolt-carousel-scrollbar;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    @include bolt-mq($until: medium){
+      overflow-x: visible;
+    }
+  }
+
+  &[full-bleed]{
+    @include bolt-margin-left(bolt-spacing(medium) * -1);
+    @include bolt-margin-right(bolt-spacing(medium) * -1);
+    width: auto;
+
+    @include bolt-mq(medium) {
+      @include bolt-margin-left(bolt-spacing(large) * -1);
+      @include bolt-margin-right(bolt-spacing(large) * -1);
+    }
+  }
+
+  &[nav-position="outside"]{
+    @include bolt-padding-left(bolt-spacing(medium) + bolt-spacing(xsmall));
+    @include bolt-padding-right(bolt-spacing(medium) + bolt-spacing(small));
+  }
+
+  &[spacing="none"]{
+    @include bolt-padding-top(0);
+    @include bolt-padding-bottom(0);
+    --carousel-outer-spacing: #{bolt-v-spacing(xsmall)};
+  }
+
+  &[spacing="small"]{
+    @include bolt-padding-top(small);
+    @include bolt-padding-bottom(small);
+    --carousel-outer-spacing: #{bolt-v-spacing(small)};
+  }
+
+  &:not([spacing]),
+  &[spacing="medium"]{
+    @include bolt-padding-top(medium);
+    @include bolt-padding-bottom(medium);
+    --carousel-outer-spacing: #{bolt-v-spacing(medium)};
+  }
+
+  &[spacing="large"]{
+    @include bolt-padding-top(large);
+    @include bolt-padding-bottom(large);
+    --carousel-outer-spacing: #{bolt-v-spacing(large)};
+  }
+
+  // &[no-scroll-snap]{
+  //   scroll-snap-type: none;
+  // }
+}
+
+.c-bolt-carousel {
+  position: relative;
+  z-index: 1; /* Fix of Webkit flickering */
+  width: calc(100% - #{bolt-spacing(medium)});
+  max-width: calc(100% - #{bolt-spacing(medium)});
+  overflow: visible;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.c-bolt-carousel__wrapper {
+  display: flex;
+  box-sizing: content-box;
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  transition-property:transform;
+}
+
+.c-bolt-carousel--invisible-blank {
+  visibility: hidden;
+}
+
+/* IE10 Windows Phone 8 Fixes */
+.c-bolt-carousel--wp8-horizontal {
+  &, & > .c-bolt-carousel__wrapper {
+    touch-action: pan-y;
+  }
+}
+.c-bolt-carousel--wp8-vertical {
+  &, & > .c-bolt-carousel__wrapper {
+    touch-action: pan-x;
+  }
+}
