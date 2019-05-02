@@ -28,7 +28,7 @@ class BoltRadioSwitch extends withLitHtml() {
   onFormChange(value) {
     const changeCaseElements = document.querySelectorAll('bolt-change-case');
 
-    if (value === 'wc'){
+    if (value === 'wc') {
       changeCaseElements.forEach(element => {
         element.setAttribute('mode', 'kebab');
       });

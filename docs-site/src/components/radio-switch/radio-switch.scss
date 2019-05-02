@@ -18,31 +18,33 @@ Descr: A custom radio button with a switch element and two labels
 }
 
 .c-bolt-radio-switch {
-  position: relative;
   display: inline-block; // flexbox fallback
   display: inline-flex;
-  list-style: none;
+  position: relative;
   margin: 0;
+  list-style: none;
 }
 
 .c-bolt-radio-switch__item {
   position: relative;
-  height: var(--radio-switch-height);
   float: left; // flexbox fallback
-  list-style: none;
+  height: var(--radio-switch-height);
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .c-bolt-radio-switch__input {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  width: calc(var(--radio-switch-width) * 0.5);
   opacity: 0;
+  position: relative;
+  transform: scaleX(
+    2
+  ); // scale up the input element so that it covers the entire switch
+  z-index: 2;
+  width: calc(var(--radio-switch-width) * 0.5);
+  height: 100%;
   cursor: pointer;
-  transform: scaleX(2); // scale up the input element so that it covers the entire switch
-  transform-origin: 0 0; 
+  transform-origin: 0 0;
 
   .c-bolt-radio-switch__item:last-of-type & {
     transform-origin: 100% 100%;
@@ -53,14 +55,14 @@ Descr: A custom radio button with a switch element and two labels
   }
 
   &:checked {
-    z-index: -1; // make sure the unchecked input is the only one clickable 
+    z-index: -1; // make sure the unchecked input is the only one clickable
   }
 }
 
 .c-bolt-radio-switch__label {
+  display: block;
   position: relative;
   z-index: 2;
-  display: block;
   @include bolt-no-select;
   @include bolt-font-size(small);
   transition: color var(--radio-switch-animation-duration);
@@ -76,29 +78,30 @@ Descr: A custom radio button with a switch element and two labels
   }
 
   .c-bolt-radio-switch__input:checked ~ & {
-    // color: var(--color-primary);
     color: bolt-theme(primary);
   }
 
-  .c-bolt-radio-switch__input:focus ~ & { // focus effect if :focus-within is not supported
+  .c-bolt-radio-switch__input:focus ~ & {
+    // focus effect if :focus-within is not supported
     outline: 2px solid bolt-theme(primary, 0.2);
     outline-offset: 2px;
   }
-  
+
   :not(*):focus-within,
-  .c-bolt-radio-switch__input:focus ~ & { // reset focus style for browsers supporting :focus-within
+  .c-bolt-radio-switch__input:focus ~ & {
+    // reset focus style for browsers supporting :focus-within
     outline: none;
   }
 }
 
 .c-bolt-radio-switch__toggle {
   position: absolute;
-  z-index: 1;
-  width: var(--radio-switch-width);
-  height: var(--radio-switch-height);
   top: 0;
   left: 0;
   transform: translateX(-50%);
+  z-index: 1;
+  width: var(--radio-switch-width);
+  height: var(--radio-switch-height);
   border-radius: var(--radio-switch-radius);
   box-shadow: 0 0 0 1px bolt-color(gray);
 
@@ -110,17 +113,22 @@ Descr: A custom radio button with a switch element and two labels
 
 .c-bolt-radio-switch__marker {
   position: absolute;
-  z-index: 1;
   top: var(--radio-switch-padding);
   left: var(--radio-switch-padding);
+  z-index: 1;
   width: calc(var(--radio-switch-height) - var(--radio-switch-padding) * 2);
   height: calc(var(--radio-switch-height) - var(--radio-switch-padding) * 2);
   border-radius: 50%;
   background-color: bolt-theme(primary);
-  transition: left var(--radio-switch-animation-duration);
   will-change: left;
+  transition: left var(--radio-switch-animation-duration);
 }
 
-.c-bolt-radio-switch__input:checked ~ .c-bolt-radio-switch__toggle .c-bolt-radio-switch__marker {
-  left: calc(var(--radio-switch-width) - var(--radio-switch-height) + var(--radio-switch-padding));
+.c-bolt-radio-switch__input:checked
+  ~ .c-bolt-radio-switch__toggle
+  .c-bolt-radio-switch__marker {
+  left: calc(
+    var(--radio-switch-width) - var(--radio-switch-height) +
+      var(--radio-switch-padding)
+  );
 }
