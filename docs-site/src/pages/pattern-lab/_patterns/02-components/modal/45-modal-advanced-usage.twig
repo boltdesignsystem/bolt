@@ -1,3 +1,31 @@
+{% set timed_modal_content %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xlarge",
+    text: "Timed Modal",
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This modal will open after 3 seconds."
+  } only %}
+{% endset %}
+
+<h3>Advanced Timed Trigger</h3>
+<p>Write custom javascript to trigger a modal based on time. The below button is for demo purposes, click to activate the custom javascript on this page. After the javascript is activated, a modal would appear within 3 seconds.</p>
+
+{% include "@bolt-components-button/button.twig" with {
+  text: "Activate Timed Modal JS",
+  size: "small",
+  attributes: {
+    onclick: "setTimedModalParam(true)",
+  }
+} only %}
+
+{% include "@bolt-components-modal/modal.twig" with {
+  content: timed_modal_content,
+  attributes: {
+    id: "js-timed-modal"
+  },
+} only %}
+
 <script>
   var setTimedModalParam = function(set){
     var currentUrl = window.location.href.split('?').shift();
@@ -6,7 +34,7 @@
   }
 
   var initTimedModal = function(){
-    var timedModal = document.querySelector('#timed-modal');
+    var timedModal = document.querySelector('#js-timed-modal');
 
     var getUrlParameter = function(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');

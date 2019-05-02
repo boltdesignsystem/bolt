@@ -25,7 +25,8 @@ dialog::backdrop {
 }
 */
 
-$bolt-modal-overlay-bg-color: rgba(bolt-color(indigo, xdark), bolt-opacity(80));
+$bolt-modal-overlay-bg-color-dark: rgba(bolt-color(indigo, xdark), bolt-opacity(80));
+$bolt-modal-overlay-bg-color-light: rgba(bolt-color(white), bolt-opacity(80));
 $bolt-modal-border-width: $bolt-border-width;
 $bolt-modal-border-style: $bolt-border-style;
 $bolt-modal-border-color: bolt-theme(text, 0.15);
@@ -67,6 +68,10 @@ bolt-modal:not([ready]) {
       display: none;
     }
 
+    .c-bolt-modal__content {
+      width: 100%;
+    }
+
     .c-bolt-modal__container {
       display: flex;
       flex-direction: column;
@@ -79,7 +84,7 @@ bolt-modal:not([ready]) {
     .c-bolt-modal__container-footer {
       display: flex;
       align-items: center;
-      min-height: bolt-v-spacing(medium);
+      min-height: 1.16rem; // Magic number to match the height of the close button.
     }
 
     .c-bolt-modal__container-header {
@@ -128,7 +133,7 @@ bolt-modal:not([ready]) {
     bottom: 0;
     left: 0;
     pointer-events: none;
-    background-color: $bolt-modal-overlay-bg-color;
+    background-color: $bolt-modal-overlay-bg-color-dark;
     transition: opacity $bolt-modal-transition;
   }
 
@@ -147,11 +152,15 @@ bolt-modal:not([ready]) {
   }
 }
 
+.c-bolt-modal__overlay--light {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    background-color: $bolt-modal-overlay-bg-color-light;
+  }
+}
 
 // Content box
 .c-bolt-modal__content {
   display: block;
-  width: 100%;
   margin: 0;
   padding: 0;
   border: 0;
@@ -166,7 +175,6 @@ bolt-modal:not([ready]) {
     top: 0;
     left: 0;
     min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
-
     max-width: calc(100% - #{bolt-spacing(medium) * 2});
     max-height: $bolt-modal-max-height;
     transition: all $bolt-modal-transition;
@@ -269,24 +277,45 @@ bolt-modal:not([ready]) {
   }
 }
 
+.c-bolt-modal__container-header,
+.c-bolt-modal__container-footer {
+  position: relative;
+}
+
 .c-bolt-modal__container-header {
-  border-bottom-color: $bolt-modal-border-color;
-  border-bottom-style: $bolt-modal-border-style;
-  border-bottom-width: $bolt-modal-border-width;
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: bolt-v-spacing(xxsmall);
+    pointer-events: none;
+    background-image: linear-gradient(rgba(bolt-color(gray, light), 0.25), transparent);
+    transform: translateY(100%);
+  }
 }
 
 .c-bolt-modal__container-header--hidden {
-  border-bottom-width: 0;
-
   @include bolt-mq($bolt-modal-breakpoint) {
     @include bolt-visuallyhidden;
   }
 }
 
 .c-bolt-modal__container-footer {
-  border-top-color: $bolt-modal-border-color;
-  border-top-style: $bolt-modal-border-style;
-  border-top-width: $bolt-modal-border-width;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: bolt-v-spacing(xxsmall);
+    pointer-events: none;
+    background-image: linear-gradient(transparent, rgba(bolt-color(gray, light), 0.25));
+    transform: translateY(-100%);
+  }
 }
 
 // Container spacing options
@@ -317,6 +346,7 @@ bolt-modal:not([ready]) {
 
   @include bolt-mq($bolt-modal-breakpoint) {
     transform: translate3d(85%, -85%, 0);
+    filter: invert(100%) grayscale(1);
   }
 }
 

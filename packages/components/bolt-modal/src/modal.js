@@ -333,6 +333,7 @@ class BoltModal extends withLitHtml() {
 
     const overlayClasses = cx('c-bolt-modal__overlay', {
       [`c-bolt-modal__overlay--persistent`]: persistent,
+      [`c-bolt-modal__overlay--light`]: theme && (theme === 'dark' || theme === 'xdark'),
     });
 
     const headerClasses = cx('c-bolt-modal__container-header', {
@@ -359,7 +360,6 @@ class BoltModal extends withLitHtml() {
         class="js-close-button-fallback"
         @click=${e => this.hide(e)}
         color="text"
-        size="large"
         icon-only
         autofocus
         tabindex="0"

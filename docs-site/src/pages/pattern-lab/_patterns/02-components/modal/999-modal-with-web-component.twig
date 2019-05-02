@@ -1,10 +1,19 @@
 {% macro code_example(code) %}
-  <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
-    {{ code | replace({
-      '<': '&lt;',
-      '>': '&gt;',
-    }) | trim | raw }}
-  {% endspaceless %}</bolt-code-snippet>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
 {% endmacro %}
 
 {% import _self as modal_code %}
@@ -39,13 +48,34 @@
 </bolt-modal>
 {% endset %}
 
+{% set modal_advanced_demo %}
+<bolt-button onclick="this.nextElementSibling.show()">
+  Open Modal
+</bolt-button>
+<bolt-modal width="optimal" spacing="none" theme="none" scroll="overall">
+  <bolt-image src="/images/content/backgrounds/background-robotics-customer-service.jpg" alt="This is an image"></bolt-image>
+</bolt-modal>
+{% endset %}
+
 {% set modal_ssr_demo_noshadow %}
 {% filter bolt_ssr %}
+<bolt-button onclick="this.nextElementSibling.show()">
+  Open Modal
+</bolt-button>
+<bolt-modal>
+  This is a modal.
+</bolt-modal>
 {% endfilter %}
 {% endset %}
 
 {% set modal_ssr_demo %}
 &lbrace;&percnt; filter bolt_ssr &percnt;&rbrace;
+<bolt-button onclick="this.nextElementSibling.show()">
+  Open Modal
+</bolt-button>
+<bolt-modal>
+  This is a modal.
+</bolt-modal>
 &lbrace;&percnt; endfilter &percnt;&rbrace;
 {% endset %}
 
@@ -57,13 +87,6 @@
   <bolt-text>
     Bolt Modal is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet> in the markup to make it render. For the trigger, you must use <bolt-code-snippet display="inline" lang="html">onclick</bolt-code-snippet> to activate the modal.
   </bolt-text>
-  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell %}
-        {{ modal_demo }}
-      {% endcell %}
-    {% endgrid %}
-  </div>
   {% include modal_code.code_example(modal_demo) %}
 </div>
 
@@ -74,13 +97,6 @@
   <bolt-text>
     The modal container has 3 sections (slots) for passing content, <bolt-code-snippet display="inline" lang="html">header</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">default</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">footer</bolt-code-snippet>. To pass content to either the header or footer, <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> prop must be defined.
   </bolt-text>
-  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell %}
-        {{ modal_basic_demo }}
-      {% endcell %}
-    {% endgrid %}
-  </div>
   {% include modal_code.code_example(modal_basic_demo) %}
 </div>
 
@@ -95,17 +111,10 @@
   <bolt-text>
     When using a close button that's inside a <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet>, set the <bolt-code-snippet display="inline" lang="html">onclick</bolt-code-snippet> to: <bolt-code-snippet display="inline" lang="html">this.closest('bolt-modal').hide()</bolt-code-snippet>
   </bolt-text>
-  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell %}
-        {{ modal_trigger_demo }}
-      {% endcell %}
-    {% endgrid %}
-  </div>
   {% include modal_code.code_example(modal_trigger_demo) %}
 </div>
 
-{#
+
 <div class="u-bolt-margin-bottom-large">
   <bolt-text headline>
     Advanced Usage
@@ -113,13 +122,6 @@
   <bolt-text>
     The web component has all the options shown in the schema table. You can define each prop within the <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet> element. Use unique combinations to customize a modal to your liking.
   </bolt-text>
-  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
-    {% grid %}
-      {% cell %}
-        {{ modal_advanced_demo }}
-      {% endcell %}
-    {% endgrid %}
-  </div>
   {% include modal_code.code_example(modal_advanced_demo) %}
 </div>
 
@@ -132,11 +134,18 @@
   </bolt-text>
   <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
     {% grid %}
-      {% cell %}
-        {{ modal_advanced_ssr_demo_noshadow }}
+      {% cell "u-bolt-width-12/12" %}
+        {{ modal_ssr_demo_noshadow }}
       {% endcell %}
     {% endgrid %}
   </div>
-  {% include modal_code.code_example(modal_advanced_ssr_demo) %}
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ modal_ssr_demo | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
 </div>
- #}
+
