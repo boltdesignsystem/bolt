@@ -5,10 +5,10 @@ properties:
     title: Attributes (Twig-only)
     type: object
     description: A Drupal attributes object. Used to apply with extra HTML attributes to the outer &lt;bolt-carousel&gt; tag.
-  stacked:
-    type: boolean
-    description: Allows slides to stack on top of each-other a bit to display a large number of carousel-slides at the same time.
-    default: false
+  # stacked:
+  #   type: boolean
+  #   description: Allows slides to stack on top of each-other a bit to display a large number of carousel-slides at the same time.
+  #   default: false
   spacing:
     type: string
     description: Adjusts the vertical spacing on the top / bottom of the component
@@ -18,7 +18,7 @@ properties:
       - small
       - medium
       - large
-  space_between:
+  spaceBetween:
     type: string
     description: Adjusts the spacing in-between each carousel slide
     default: medium
@@ -27,27 +27,28 @@ properties:
       - small
       - medium
       - large
-  full_bleed:
+  fullBleed:
     type: boolean
     description: Overflow to fill wrapper
     default: false
     enum:
       - true
       - false
-  slides_per_view:
-    type: [string, number]
-    description: Adjusts how many slides are displayed
+  slidesPerView:
+    type: string
+    description: "Adjusts how many slides are <em>ideally</em> displayed at a particular screen size." 
     default: auto
-    # enum:
-    #   - auto
-    #   - 1
-    #   - 2
-    #   - 3
-    #   - 4
+    enum:
+      - "auto"
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - "5"
   noJs:
     type: boolean
     description: Force swiper.js to be disabled (used for testing purposed)
-  nav_position:
+  navPosition:
     type: string
     description: Positions the next / previous nav buttons inside / outside the carousel container
     default: inside
@@ -68,27 +69,49 @@ properties:
     enum:
       - true
       - false
-  no_nav_buttons:
+  # slideAlign:
+
+  # noPrevNextButtons
+  # slide_align:
+  #   default: left
+  #   enum:
+  #     - left
+  #     - center
+      # - right
+    # centeredSlides
+    # If true, then active slide will be centered, not always on the left side.
+  noPrevNextButtons:
+  # no_nav_buttons:
     type: boolean
     description: Optionally disable the left / right nav buttons
     default: false
     enum:
       - true
       - false
-  no_scrollbar:
+  # fade:
+  #   type: boolean
+  #   description: Fades between transitioning slides instead of moving.
+  freeScroll:
+    type: boolean
+    description: Enables content to be freely scrolled and flicked without aligning cells to an end position.
+  noScrollbar:
     type: boolean
     description: Optionally disable the scrollbar UI once JavaScript kicks in
     default: false
     enum:
       - true
       - false
-  no_pagination:
+  noPagination:
     type: boolean
     description: Optionally disable the pagination UI once JavaScript kicks in
     default: false
     enum:
       - true
       - false
+  maxSlidesPerView:
+    type: number
+    description: Maximum total number of slides to display at any particular screen size (overrides default max)
+    default: 5
   prevSlideMessage:
     type: string
     description: Message for screen readers for previous button
