@@ -92,6 +92,7 @@
 {% set requiredProps = schema.required %}
 
 {% if schema.properties %}
+<bolt-schema-table>
   <div class="c-bds-docs-table">
     <table>
       <thead>
@@ -107,7 +108,7 @@
       <tbody>
         {% for key, prop in schema.properties if not schema.properties[key].hidden %}
           <tr class="c-bds-docs-table__row {{ 'Deprecated' in prop.title ? 'u-bolt-color-gray u-bolt-opacity-80' : '' }}">
-            <td class="c-bds-docs-table__col c-bds-docs-table__col--key">{{ key }}{% if key in requiredProps %}<span class="required-key" title="Required">*</span>{% endif %}</td>
+            <td class="c-bds-docs-table__col c-bds-docs-table__col--key"><bolt-change-case mode="snake">{{ key }}</bolt-change-case>{% if key in requiredProps %}<span class="required-key" title="Required">*</span>{% endif %}</td>
 
             {% set multiples = prop.type is iterable ? prop.type : prop.anyOf|default(prop.oneOf) %}
             {% if multiples is iterable %}
@@ -142,4 +143,6 @@
       </tbody>
     </table>
   </div>
+  {% include "@bolt-components-radio-switch/radio-switch.twig" %}
+</bolt-schema-table>
 {% endif %}

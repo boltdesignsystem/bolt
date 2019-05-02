@@ -85,7 +85,7 @@
         {{ schema | json_encode() | raw }}
       </script>
       <bolt-component-explorer schema-uuid="schema-{{ schemaUUID }}" initial-layout="{{ schemaForm.layout }}" template="{{ schemaForm.template }}" form-data="{{ schemaForm.initialData | json_encode() | escape('html_attr') }}">
-        <replace-with-children style="background-color: #F6F6F9; display: flex; margin: 0 auto; max-width: 1024px; min-height: 320px; -webkit-overflow-scroll': 'touch'">
+        <replace-with-children style="background-color: #F6F6F9; display: flex; margin: 0 auto; max-width: 100%; min-height: 320px; -webkit-overflow-scroll': 'touch'">
           <replace-with-children class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-6/10@xsmall"
             style="background-color: #FFF; border: 1px solid rgba(0, 0, 0, .075); display: flex; position: relative;">
             <replace-with-children class="u-bolt-padding-medium c-bds-component-explorer__demo-container" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 30px;">
