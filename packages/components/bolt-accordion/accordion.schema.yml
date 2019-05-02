@@ -44,10 +44,6 @@ properties:
     type: boolean
     description: Displays a border between each accordion item. Twig only.
     default: true
-  no_separator:
-    type: boolean
-    description: Displays a border between each accordion item. Web Component only.
-    default: false
   shadow:
     type: boolean
     description: Adds a shadow around the accordion.
@@ -63,3 +59,7 @@ properties:
       - medium
       - large
       - xlarge
+  no-separator:
+    type: boolean
+    description: Hides the default border between each accordion item. Web Component only.
+    default: false
