@@ -50,7 +50,7 @@ class AccordionItem extends withContext(withLitHtml()) {
       '.c-bolt-accordion-item__trigger-link',
     );
 
-    originalInput && originalInput.remove;
+    originalInput && originalInput.remove();
     originalLinks.length && originalLinks.forEach(el => el.remove());
 
     window.addEventListener('optimizedResizeHandler', () => {
