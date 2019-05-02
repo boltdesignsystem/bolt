@@ -4,5 +4,164 @@
 
 {% include "@utils/docs.twig" with {
   componentName: "carousel",
-  usage: usage
+  usage: usage,
+  schemaForm: {
+    template: '@bolt-components-carousel/carousel.twig',
+    layout: "horizontal",
+    initialData: {
+      maxSlidesPerView: 3,
+      slides: [
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "http://lorempixel.com/1920/1080/cats/" ~ random(1, 10),
+              lazyload: true,
+              ratio: "1920/1080",
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "http://lorempixel.com/800/600/cats/" ~ random(1, 10),
+              lazyload: true,
+              ratio: "800/600",
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "http://lorempixel.com/800/600/cats/" ~ random(1, 10),
+              lazyload: true,
+              ratio: "800/600",
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "http://lorempixel.com/800/600/cats/" ~ random(1, 10),
+              lazyload: true,
+              ratio: "800/600",
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "http://lorempixel.com/800/600/cats/" ~ random(1, 10),
+              lazyload: true,
+              ratio: "800/600",
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "http://lorempixel.com/800/600/cats/" ~ random(1, 10),
+              lazyload: true,
+              ratio: "800/600",
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+      ]
+    },
+  },
 } only %}
