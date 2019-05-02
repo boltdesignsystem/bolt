@@ -290,10 +290,10 @@ bolt-modal:not([ready]) {
     right: 0;
     bottom: 0;
     left: 0;
+    transform: translateY(100%);
     height: bolt-v-spacing(xxsmall);
     pointer-events: none;
     background-image: linear-gradient(rgba(bolt-color(gray, light), 0.25), transparent);
-    transform: translateY(100%);
   }
 }
 
@@ -311,10 +311,10 @@ bolt-modal:not([ready]) {
     top: 0;
     right: 0;
     left: 0;
+    transform: translateY(-100%);
     height: bolt-v-spacing(xxsmall);
     pointer-events: none;
     background-image: linear-gradient(transparent, rgba(bolt-color(gray, light), 0.25));
-    transform: translateY(-100%);
   }
 }
 

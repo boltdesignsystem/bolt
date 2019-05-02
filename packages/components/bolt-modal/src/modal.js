@@ -333,7 +333,8 @@ class BoltModal extends withLitHtml() {
 
     const overlayClasses = cx('c-bolt-modal__overlay', {
       [`c-bolt-modal__overlay--persistent`]: persistent,
-      [`c-bolt-modal__overlay--light`]: theme && (theme === 'dark' || theme === 'xdark'),
+      [`c-bolt-modal__overlay--light`]:
+        theme && (theme === 'dark' || theme === 'xdark'),
     });
 
     const headerClasses = cx('c-bolt-modal__container-header', {
