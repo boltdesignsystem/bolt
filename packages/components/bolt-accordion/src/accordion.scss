@@ -241,14 +241,9 @@ bolt-accordion {
   }
 }
 
-// .c-bolt-accordion__header-content {
-//   display: inline-flex;
-//   flex-shrink: 0; // for when there is a very long title - adds left/right spacing
-//   flex-grow: 1; // for when there is a very long title - adds left/right spacing
-//   // justify-content: center;
-//   align-items: center;
-//   position: relative;
-// }
+.c-bolt-accordion__header-content {
+  @include bolt-padding-right(small);
+}
 
 .c-bolt-accordion__header-icons {
   display: inline-flex;
@@ -257,9 +252,6 @@ bolt-accordion {
   align-items: center;
   position: relative;
   overflow: hidden; // so transformed icons don't spill out
-  margin-top: bolt-spacing(xsmall) * -1;
-  margin-right: bolt-spacing(small) * -1;
-  margin-bottom: bolt-spacing(xsmall) * -1;
 
   .c-bolt-accordion-item--shadow & {
     // margin-right: bolt-spacing(small) * -1;
@@ -274,7 +266,6 @@ bolt-accordion {
 .c-bolt-accordion__header-icon {
   display: inline-block;
   position: relative;
-  padding: calc(1.5rem / 2);
   color: bolt-theme(headline-link);
   // height: 3rem;
   // width: 3rem;
