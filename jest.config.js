@@ -5,6 +5,7 @@ const testFilesToIgnore = globby.sync([
   './packages/components/**/*/__tests__/**/*.data.js',
   './packages/analytics/**/*/__tests__/**/*.data.js',
   './packages/generator-bolt/generators/*/templates/**/*.test.js',
+  './example-integrations/angular/**/*.ts',
 ]);
 
 module.exports = {
