@@ -8,7 +8,7 @@ module.exports = {
   },
   plugins: ['prettier'],
   extends: [
-    '../../packages/config-presets/config-eslint/index.js',
+    './node_modules/@bolt/config-eslint/index.js',
     'plugin:vue/recommended', // @todo: re-enable when time permits to clean up the Vue CLI's default HelloWorld.vue component
     'prettier/vue',
   ],

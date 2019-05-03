@@ -56,7 +56,7 @@ const scssLoaders = [
     options: {
       sourceMap: false,
       plugins: () => [
-        require('../../packages/build-tools/plugins/postcss-themify')(
+        require('@bolt/build-tools/plugins/postcss-themify')(
           themifyOptions,
         ),
         postcssDiscardDuplicates,
