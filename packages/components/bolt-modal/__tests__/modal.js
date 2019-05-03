@@ -6,13 +6,7 @@ import {
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../modal.schema.yml'));
-const {
-  persistent,
-  width,
-  spacing,
-  theme,
-  scroll,
-} = schema.properties;
+const { persistent, width, spacing, theme, scroll } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
