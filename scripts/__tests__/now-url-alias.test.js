@@ -10,7 +10,9 @@ describe('branch name for url aliases exists', () => {
     const result = normalizeUrlAlias(branchName);
 
     expect(result).toEqual(expect.not.stringContaining(' '));
-    expect(result.replace('.boltdesignsystem.com', '')).toEqual(expect.not.stringContaining('.'));
+    expect(result.replace('.boltdesignsystem.com', '')).toEqual(
+      expect.not.stringContaining('.'),
+    );
     expect(result).toEqual(expect.not.stringContaining('--'));
   });
 

@@ -48,19 +48,23 @@ const nonImageFixtures = globby.sync([
 const itemsToCopy = [];
 
 const allComponentPackages = globby
-.sync(path.join(__dirname, './packages/components/**/*/package.json'))
-.map(pkgPath => require(pkgPath))
-.map(pkg => pkg.name);
+  .sync(path.join(__dirname, './packages/components/**/*/package.json'))
+  .map(pkgPath => require(pkgPath))
+  .map(pkg => pkg.name);
 
-nonImageFixtures.forEach((fixturePath) => {
+nonImageFixtures.forEach(fixturePath => {
   itemsToCopy.push({
     from: path.join(__dirname, fixturePath),
-    to: path.join(__dirname, adjustRelativePath(siteConfig.wwwDir), 'fixtures/'),
+    to: path.join(
+      __dirname,
+      adjustRelativePath(siteConfig.wwwDir),
+      'fixtures/',
+    ),
     flatten: true,
   });
 });
 
-siteConfig.copy.forEach((item) => {
+siteConfig.copy.forEach(item => {
   itemsToCopy.push({
     from: path.join(__dirname, adjustRelativePath(item.from)),
     to: path.join(__dirname, adjustRelativePath(item.to)),
@@ -74,7 +78,6 @@ module.exports = {
   iconDir: [],
   components: {
     global: [...allComponentPackages, '@bolt/analytics-autolink'],
-      
   },
   alterTwigEnv: siteConfig.alterTwigEnv,
   images: {
@@ -83,7 +86,5 @@ module.exports = {
   prod: true,
   enableCache: true,
   verbosity: 1,
-  copy: [
-    ...itemsToCopy,
-  ],
+  copy: [...itemsToCopy],
 };
