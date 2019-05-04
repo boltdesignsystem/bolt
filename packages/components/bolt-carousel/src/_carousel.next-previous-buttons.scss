@@ -47,7 +47,7 @@ bolt-carousel:not(.is-ready) > [slot="previous-btn"],
   left: 0;
 
   &.c-bolt-carousel__btn--outside {
-    transform: translateX(-100%) translateX(bolt-spacing(xsmall) * -1) translateY(-50%);
+    transform: translateX(-100%) translateY(-50%);
   }
 }
 
@@ -57,7 +57,7 @@ bolt-carousel:not(.is-ready) > [slot="next-btn"],
   left: auto;
 
   &.c-bolt-carousel__btn--outside {
-    transform: translateX(100%) translateX(bolt-spacing(xsmall)) translateY(-50%);
+    transform: translateX(100%) translateY(-50%);
   }
 }
 

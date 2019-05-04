@@ -32,12 +32,12 @@
   opacity: 0.2;
   position: relative;
   width: 20px;
-  height: 30px;
+  height: calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)});
 
   &:after {
     content: '';
     width: 8px;
-    height: 8px;
+    height: $bolt-carousel-bullet-height;
     border-radius: 100%;
     background-color: bolt-theme(text);
   }

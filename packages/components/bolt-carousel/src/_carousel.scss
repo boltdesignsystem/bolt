@@ -1,24 +1,20 @@
 @import '@bolt/core';
 
+$bolt-carousel-space-around: bolt-spacing(xsmall);
+
 bolt-carousel {
   display: flex;
   align-items: center;
   align-items: stretch;
   position: relative;
   width: 100%;
+  max-width: 100vw;
   overflow: hidden;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  
+
   &:not(:last-child){
     @include bolt-margin-bottom(medium);
-  }
-
-  // adds a small bit of padding before and after the carousel to prevent slides with box-shadows from getting cut off
-  &:before,
-  &:after {
-    content: '';
-    @include bolt-padding-left(small);
   }
 
   // add custom scrollbar styling till JS kicks in
@@ -26,51 +22,11 @@ bolt-carousel {
     @include bolt-carousel-scrollbar;
     overflow-x: auto;
     overflow-y: hidden;
+    padding-bottom: calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(xsmall)});
 
     @include bolt-mq($until: medium){
       overflow-x: visible;
     }
-  }
-
-  &[full-bleed]{
-    @include bolt-margin-left(bolt-spacing(medium) * -1);
-    @include bolt-margin-right(bolt-spacing(medium) * -1);
-    width: auto;
-
-    @include bolt-mq(medium) {
-      @include bolt-margin-left(bolt-spacing(large) * -1);
-      @include bolt-margin-right(bolt-spacing(large) * -1);
-    }
-  }
-
-  &[nav-position="outside"]{
-    @include bolt-padding-left(bolt-spacing(medium) + bolt-spacing(xsmall));
-    @include bolt-padding-right(bolt-spacing(medium) + bolt-spacing(small));
-  }
-
-  &[spacing="none"]{
-    @include bolt-padding-top(0);
-    @include bolt-padding-bottom(0);
-    --carousel-outer-spacing: #{bolt-v-spacing(xsmall)};
-  }
-
-  &[spacing="small"]{
-    @include bolt-padding-top(small);
-    @include bolt-padding-bottom(small);
-    --carousel-outer-spacing: #{bolt-v-spacing(small)};
-  }
-
-  &:not([spacing]),
-  &[spacing="medium"]{
-    @include bolt-padding-top(medium);
-    @include bolt-padding-bottom(medium);
-    --carousel-outer-spacing: #{bolt-v-spacing(medium)};
-  }
-
-  &[spacing="large"]{
-    @include bolt-padding-top(large);
-    @include bolt-padding-bottom(large);
-    --carousel-outer-spacing: #{bolt-v-spacing(large)};
   }
 
   // &[no-scroll-snap]{
@@ -81,8 +37,8 @@ bolt-carousel {
 .c-bolt-carousel {
   position: relative;
   z-index: 1; /* Fix of Webkit flickering */
-  width: calc(100% - #{bolt-spacing(medium)});
-  max-width: calc(100% - #{bolt-spacing(medium)});
+  width: 100%;
+  max-width: 100%;
   overflow: visible;
   margin: 0 auto;
   padding: 0;
@@ -112,5 +68,62 @@ bolt-carousel {
 .c-bolt-carousel--wp8-vertical {
   &, & > .c-bolt-carousel__wrapper {
     touch-action: pan-x;
+  }
+}
+
+
+// carousel's nav position-specific styles
+bolt-carousel[nav-position="outside"]{
+  @include bolt-padding-left(bolt-spacing(medium));
+  @include bolt-padding-right(bolt-spacing(medium));
+}
+
+bolt-carousel[nav-position="inside"]{
+  @include bolt-padding-left(0);
+  @include bolt-padding-right(0);
+}
+
+
+// carousel space-between slides
+bolt-carousel {
+  &[space-between="none"] {
+    --bolt-carousel-spacing: 0rem;
+  }
+
+  &[space-between="small"] {
+    --bolt-carousel-spacing: #{bolt-spacing(small)};
+  }
+
+  &,
+  &[space-between="medium"] {
+    --bolt-carousel-spacing: #{bolt-spacing(medium)};
+  }
+
+  &[space-between="large"] {
+    --bolt-carousel-spacing: #{bolt-spacing(large)};
+  }
+}
+
+
+// extra space around-specific styles
+bolt-carousel {
+  --bolt-carousel-space-around: 0rem;
+
+  &[extra-space-between] {
+    --bolt-carousel-space-around: #{$bolt-carousel-space-around};
+  }
+
+  &:not(.is-ready) {
+    // adds a small bit of padding before and after the carousel to prevent slides with box-shadows from getting cut off
+    &:before,
+    &:after {
+      content: '';
+      @include bolt-padding-left($bolt-carousel-space-around);
+    }
+  }
+
+  .c-bolt-carousel {
+    @include bolt-padding-left(xxsmall);
+    @include bolt-padding-right(xxsmall);
   }
 }

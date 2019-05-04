@@ -1,9 +1,11 @@
 @import '@bolt/core';
 
+$bolt-carousel-bullet-height: 8px;
+
 @mixin bolt-carousel-scrollbar() {
   &::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: bolt-v-spacing(xsmall);
+    height: bolt-v-spacing(xsmall);
   }
   
   &::-webkit-scrollbar-thumb {
