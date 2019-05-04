@@ -1,42 +1,18 @@
 title: Carousel
+description: Basic Carousel Options
 type: object
 properties:
   attributes:
     title: Attributes (Twig-only)
     type: object
     description: A Drupal attributes object. Used to apply with extra HTML attributes to the outer &lt;bolt-carousel&gt; tag.
-  # stacked:
-  #   type: boolean
-  #   description: Allows slides to stack on top of each-other a bit to display a large number of carousel-slides at the same time.
-  #   default: false
-  spacing:
-    type: string
-    description: Adjusts the vertical spacing on the top / bottom of the component
-    default: medium
-    enum:
-      - none
-      - small
-      - medium
-      - large
-  spaceBetween:
-    type: string
-    description: Adjusts the spacing in-between each carousel slide
-    default: medium
-    enum:
-      - none
-      - small
-      - medium
-      - large
-  fullBleed:
-    type: boolean
-    description: Overflow to fill wrapper
-    default: false
-    enum:
-      - true
-      - false
+  slides:
+    title: Slides (Twig-only)
+    type: array
+    description: "Array of content to include in the carousel. Note: each item gets wrapped with a <code>&lt;bolt-carousel-slide&gt;</code> automatically."
   slidesPerView:
     type: string
-    description: "Adjusts how many slides are <em>ideally</em> displayed at a particular screen size." 
+    description: "Behavior controlling how many slides are <em>ideally</em> displayed at a particular screen size." 
     default: auto
     enum:
       - "auto"
@@ -44,17 +20,39 @@ properties:
       - "2"
       - "3"
       - "4"
-      - "5"
-  noJs:
-    type: boolean
-    description: Force swiper.js to be disabled (used for testing purposed)
+  maxSlidesPerView:
+    type: integer
+    description: Limits the maximum number of slides that can display at any screen size. Combine this with the <code>slidesPerView</code> option to get the benefits of automatically adjusting the number of slides displayed at different screen sizes while putting a max limit of how many slides display at once.
+    default: 4
+    minimum: 1
+    maximum: 4
+  spaceBetween:
+    type: string
+    description: Adjusts the space in-between each <code>&lt;bolt-carousel-slide&gt;</code>
+    default: medium
+    enum:
+      - none
+      - small
+      - medium
+      - large
   navPosition:
     type: string
     description: Positions the next / previous nav buttons inside / outside the carousel container
-    default: inside
+    default: outside
     enum:
       - inside
       - outside
+  extraSpaceBetween:
+    type: boolean
+    description: Adds a tiny amount of extra whitespace in between each of the carousel slides to avoid causing nested content with shadows getting cut off.
+    default: false
+  autoplay:
+    type: boolean
+    description: Allows a carousel to automatically rotate through it's slides until iteracted with.
+    default: false
+    enum:
+      - true
+      - false
   loop:
     type: boolean
     description: Set to true to enable continuous loop mode
@@ -62,87 +60,26 @@ properties:
     enum:
       - true
       - false
-  autoplay:
-    type: boolean
-    description: Set to true to enable autoplaying (auto-disables when interacted with)
-    default: false
-    enum:
-      - true
-      - false
-  # slideAlign:
-
-  # noPrevNextButtons
-  # slide_align:
-  #   default: left
-  #   enum:
-  #     - left
-  #     - center
-      # - right
-    # centeredSlides
-    # If true, then active slide will be centered, not always on the left side.
-  noPrevNextButtons:
-  # no_nav_buttons:
-    type: boolean
-    description: Optionally disable the left / right nav buttons
-    default: false
-    enum:
-      - true
-      - false
-  # fade:
-  #   type: boolean
-  #   description: Fades between transitioning slides instead of moving.
   freeScroll:
     type: boolean
-    description: Enables content to be freely scrolled and flicked without aligning cells to an end position.
-  noScrollbar:
-    type: boolean
-    description: Optionally disable the scrollbar UI once JavaScript kicks in
-    default: false
-    enum:
-      - true
-      - false
-  noPagination:
-    type: boolean
-    description: Optionally disable the pagination UI once JavaScript kicks in
-    default: false
-    enum:
-      - true
-      - false
-  maxSlidesPerView:
-    type: number
-    description: Maximum total number of slides to display at any particular screen size (overrides default max)
-    default: 5
+    description: "Enables content to be freely scrolled and flicked without snapping to an end position. Automatically switches the UI <code>controls</code> to use a scrollbar instead of pagination bullets."
   prevSlideMessage:
     type: string
-    description: Message for screen readers for previous button
+    description: A11y message for screen readers for previous button
     default: 'Previous slide'
   nextSlideMessage:
     type: string
-    description: Message for screen readers for next button
+    description: A11y message for screen readers for next button
     default: 'Next slide'
   firstSlideMessage:
     type: string
-    description: Message for screen readers for previous button when swiper is on first slide
+    description: A11y message for screen readers for the previous button when swiper is on first slide
     default: 'This is the first slide'
   lastSlideMessage:
     type: string
-    description: Message for screen readers for previous button when swiper is on last slide
+    description: A11y message for screen readers for previous button when swiper is on last slide
     default: 'This is the last slide'
   paginationBulletMessage:
     type: string
-    description: Message for screen readers for single pagination bullet
+    description: A11y message for screen readers for a single pagination bullet
     default: 'Go to slide {{index}}'
-  # disabled:
-  #   title: Disabled
-  #   type: boolean
-  #   description: Default `disabled` prop supported globally by most Bolt components.
-  # no_shadow:
-  #   title: 'Disable Shadow DOM (Twig-only)'
-  #   description: 'Manually disables the component from rendering to the Shadow DOM in a Twig template. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.'
-  #   hidden: true
-  #   type: boolean
-  # 'no-shadow':
-  #   title: 'Disable Shadow DOM (Web Component-only)'
-  #   description: 'Manually disables the web component from rendering to the Shadow DOM. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.'
-  #   hidden: true
-  #   type: boolean
