@@ -34,12 +34,14 @@ class BoltRadioSwitch extends withLitHtml() {
       });
     } else {
       changeCaseElements.forEach(element => {
-        element.setAttribute('mode', 'snake');
+        element.setAttribute('mode', 'camel');
       });
     }
   }
 
   render() {
+    this.onFormChange('twig');
+
     return html`
       ${this.addStyles([styles])}
       <ul class="c-bolt-radio-switch">

@@ -17,10 +17,6 @@ class BoltChangeCase extends withLitHtml() {
 
   render() {
     switch (this.props.mode) {
-      case 'camel':
-        return html`
-          ${changeCase.camelCase(this.textContent)}
-        `;
       case 'kebab':
         return html`
           ${changeCase.paramCase(this.textContent)}
@@ -29,10 +25,14 @@ class BoltChangeCase extends withLitHtml() {
         return html`
           ${changeCase.snakeCase(this.textContent)}
         `;
+      case 'camel':
       default:
         return html`
-          ${this.textContent}
+          ${changeCase.camelCase(this.textContent)}
         `;
+      // return html`
+      //   ${this.textContent}
+      // `;
     }
   }
 }

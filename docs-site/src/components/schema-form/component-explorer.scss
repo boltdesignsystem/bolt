@@ -125,7 +125,7 @@ bolt-component-explorer {
     content: '×';
   }
 
-  form{
+  form {
     padding: 0 1.25rem 1.25rem;
   }
 
@@ -145,9 +145,17 @@ bolt-component-explorer {
   }
 
   legend {
-    font-size: 1.75rem;
-    font-weight: bold;
-    display: none;
+    @include bolt-font-size(small);
+    @include bolt-margin-bottom(xsmall);
+    @include bolt-font-weight(bold);
+    color: bolt-color(gray, xdark);
+    border-bottom: 1px solid bolt-color(gray);
+    width: 100%;
+
+    & + .field-description {
+      @include bolt-margin-top(0);
+      display: block;
+    }
   }
 
   article > h2 {
@@ -167,6 +175,7 @@ bolt-component-explorer {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
     align-items: center;
+    flex-flow: row wrap;
 
     &.field-boolean {
       align-self: flex-end;
@@ -210,12 +219,14 @@ bolt-component-explorer {
     font-size: 0.8rem;
     font-weight: 600;
     vertical-align: middle;
-    text-transform: capitalize;
+    // text-transform: capitalize;
     flex-basis: 6rem; // make different lengths of inputs + labels more similar in appearance
     margin-right: 1rem;
   }
 
   .field-description {
+    @include bolt-font-size(xsmall);
+    color: bolt-color(gray);
     margin: 0.5rem 0;
     max-width: 650px;
     display: none;
@@ -384,6 +395,20 @@ bolt-component-explorer {
 
   .control-label ~ .form-control {
     // @include bolt-margin-left(small);
+  }
+
+  input[type="checkbox"]{
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
   }
 
   .checkbox label > span {
@@ -585,3 +610,21 @@ bolt-component-explorer {
 //   -o-user-select: none;
 //   user-select: none;
 // }
+
+.help-block {
+  @include bolt-font-size(xsmall);
+  color: bolt-color(gray, dark);
+}
+
+legend[id="root__title"]{
+  display: none;
+}
+
+.field-range-wrapper {
+  display: flex;
+}
+
+.rjsf input[type="range"].form-control {
+  padding: 0.25rem;
+  border-radius: 25rem;
+}
