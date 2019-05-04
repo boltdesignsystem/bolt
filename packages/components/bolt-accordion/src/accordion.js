@@ -23,6 +23,7 @@ export const AccordionContext = defineContext({
   shadow: false,
   spacing: 'medium',
   iconValign: 'top',
+  useShadow: hasNativeShadowDomSupport,
 });
 
 @define
@@ -179,6 +180,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
       this.props.spacing || 'medium';
     this.contexts.get(AccordionContext).iconValign =
       this.props.iconValign || 'top';
+    this.contexts.get(AccordionContext).useShadow = this.useShadow;
 
     return html`
       ${this.addStyles([styles, heightUtils])} ${this.template()}

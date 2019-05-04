@@ -34,6 +34,7 @@ class AccordionItem extends withContext(withLitHtml()) {
       [AccordionContext, 'shadow'],
       [AccordionContext, 'spacing'],
       [AccordionContext, 'iconValign'],
+      [AccordionContext, 'useShadow'],
     ];
   }
 
@@ -68,6 +69,9 @@ class AccordionItem extends withContext(withLitHtml()) {
   connectedCallback() {
     super.connectedCallback();
     this.context = this.contexts.get(AccordionContext);
+
+    // Inherit useShadow from `bolt-accordion`
+    this.useShadow = this.context.useShadow;
   }
 
   close() {
