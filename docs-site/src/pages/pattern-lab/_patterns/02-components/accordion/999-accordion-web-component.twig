@@ -1,113 +1,172 @@
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as accordion_demo %}
+
+{% set demo_1 %}
 <bolt-accordion>
   <bolt-accordion-item>
     <div slot="header">Trigger 1</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
   <bolt-accordion-item>
     <div slot="header">Trigger 2</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
   <bolt-accordion-item>
     <div slot="header">Trigger 3</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
   <bolt-accordion-item>
     <div slot="header">Trigger 4</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
 </bolt-accordion>
+{% endset %}
 
+{% set demo_2 %}
 <bolt-accordion multiple>
   <bolt-accordion-item>
     <div slot="header">Trigger 1</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
   <bolt-accordion-item>
     <div slot="header">Trigger 2</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
   <bolt-accordion-item>
     <div slot="header">Trigger 3</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
-  </bolt-accordion-item>
-  <bolt-accordion-item>
-    <div slot="header">Trigger 4</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
-  </bolt-accordion-item>
-</bolt-accordion>
-
-<bolt-accordion>
-  <bolt-accordion-item auto-open>
-    <div slot="header">Trigger 1</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
-  </bolt-accordion-item>
-  <bolt-accordion-item>
-    <div slot="header">Trigger 2</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
-  </bolt-accordion-item>
-  <bolt-accordion-item>
-    <div slot="header">Trigger 3</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
-  </bolt-accordion-item>
-  <bolt-accordion-item>
-    <div slot="header">Trigger 4</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
-  </bolt-accordion-item>
-</bolt-accordion>
-
-<bolt-accordion no-separator>
-  <bolt-accordion-item>
-    <div slot="header">Trigger 1</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
-  </bolt-accordion-item>
-  <bolt-accordion-item>
-    <div slot="header">Trigger 2</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
-  </bolt-accordion-item>
-  <bolt-accordion-item>
-    <div slot="header">Trigger 3</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
-  </bolt-accordion-item>
-  <bolt-accordion-item>
-    <div slot="header">Trigger 4</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
 </bolt-accordion>
 
 <bolt-accordion shadow>
   <bolt-accordion-item>
     <div slot="header">Trigger 1</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
   <bolt-accordion-item>
     <div slot="header">Trigger 2</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
   <bolt-accordion-item>
     <div slot="header">Trigger 3</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
-  </bolt-accordion-item>
-  <bolt-accordion-item>
-    <div slot="header">Trigger 4</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
 </bolt-accordion>
 
-<bolt-accordion spacing="xsmall" class="t-bolt-dark">
+<bolt-accordion no-separator spacing="small">
   <bolt-accordion-item>
     <div slot="header">Trigger 1</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
   <bolt-accordion-item>
     <div slot="header">Trigger 2</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
   <bolt-accordion-item>
     <div slot="header">Trigger 3</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+  </bolt-accordion-item>
+</bolt-accordion>
+{% endset %}
+
+
+{% set demo_3 %}
+<bolt-accordion>
+  <bolt-accordion-item auto-open>
+    <div slot="header">Trigger 1</div>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <div slot="header">Trigger 2</div>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <div slot="header">Trigger 3</div>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+  </bolt-accordion-item>
+</bolt-accordion>
+
+<bolt-accordion class="t-bolt-dark">
+  <bolt-accordion-item>
+    <div slot="header">Trigger 1</div>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <div slot="header">Trigger 2</div>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <div slot="header">Trigger 3</div>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
   <bolt-accordion-item>
     <div slot="header">Trigger 4</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
   </bolt-accordion-item>
 </bolt-accordion>
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Accordion is a fully client-side renderable web component. Add the <bolt-code-snippet display="inline" lang="html">bolt-accordion</bolt-code-snippet> element containing any number of <bolt-code-snippet display="inline" lang="html">bolt-accordion-item</bolt-code-snippet> elements to create an accordion. Inside each <bolt-code-snippet display="inline" lang="html">bolt-accordion-item</bolt-code-snippet> mark the "trigger" content with the attribute <bolt-code-snippet display="inline" lang="html">slot="header"</bolt-code-snippet>. Everything else is considered accordion "content".
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ demo_1 }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include accordion_demo.code_example(demo_1, true) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Accordion Options
+  </bolt-text>
+  <bolt-text>
+    Configure the accordion with the properties specified in the schema. One property that is unique to the Web component is <bolt-code-snippet display="inline" lang="html">no-separator</bolt-code-snippet>. Use this prop rather than the <bolt-code-snippet display="inline" lang="html">separator</bolt-code-snippet> prop used in Twig.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ demo_2 }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include accordion_demo.code_example(demo_2, true) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Advanced Options
+  </bolt-text>
+  <bolt-text>
+    Two advanced options are shown below. Automatically show an <bolt-code-snippet display="inline" lang="html">bolt-accordion-item</bolt-code-snippet> by adding the <bolt-code-snippet display="inline" lang="html">auto-show</bolt-code-snippet> prop. Theme the accordion by adding a theme class directly to the <bolt-code-snippet display="inline" lang="html">bolt-accordion</bolt-code-snippet> element.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ demo_3 }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include accordion_demo.code_example(demo_3, true) %}
+  </div>
+</div>
