@@ -1,0 +1,31 @@
+{% for theme in ["xlight", "light", "dark", "xdark"] %}
+  <h3>Accordion with <code>{{ theme }}</code> theme</h3>
+  <div class="u-bolt-margin-bottom-medium">
+    {% embed "@utils/theme-demo.twig" %}
+      {% block demo_content %}
+        {% include "@bolt-components-accordion/accordion.twig" with {
+          items: [
+            {
+              trigger: "Trigger 1",
+              content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+            },
+            {
+              trigger: "Trigger 2",
+              content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+            },
+            {
+              trigger: "Trigger 3",
+              content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+            },
+            {
+              trigger: "Trigger 4",
+              content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+            }
+          ]
+        } %}
+      {% endblock %}
+    {% endembed %}
+  </div>
+{% endfor %}
+
+

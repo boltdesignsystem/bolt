@@ -1,0 +1,54 @@
+{% set content_inner %}
+  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+  <p><b>Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</b></p>
+  <p><bolt-link url="#"><bolt-icon slot="before" name="asset-presentation" size="medium"></bolt-icon>Get the presentation</bolt-link></p>
+  <p><bolt-link url="#"><bolt-icon slot="before" name="asset-video" size="medium"></bolt-icon>Watch video</bolt-link></p>
+{% endset %}
+
+{% set trigger %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    gutter: "small",
+    items: [
+      {
+        column_start: "1",
+        column_span: "4",
+        content: "12:00 PM",
+      },
+      {
+        column_start: "5",
+        column_span: "8",
+        content: "<h3>Lunch & Networking</h3>",
+      },
+    ]
+  } only %}
+{% endset %}
+
+{% set content %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    gutter: "small",
+    items: [
+      {
+        column_start: "5",
+        column_span: "8",
+        content: content_inner,
+      },
+    ]
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-accordion/accordion.twig" with {
+  items: [
+    {
+      trigger: trigger,
+      content: content
+    },
+    {
+      trigger: trigger,
+      content: content
+    },
+    {
+      trigger: trigger,
+      content: content
+    },
+  ]
+} %}
