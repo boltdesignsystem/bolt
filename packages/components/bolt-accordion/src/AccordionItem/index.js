@@ -10,10 +10,11 @@ import {
   withLitHtml,
   html,
 } from '@bolt/core/renderers/renderer-lit-html';
-// import { ifDefined } from 'lit-html/directives/if-defined';
 
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion-item.scss';
+import { AccordionItemHeader } from './AccordionItemHeader';
+import { AccordionItemContent } from './AccordionItemContent';
 import { AccordionContext } from '../accordion';
 
 @define
@@ -23,8 +24,6 @@ class AccordionItem extends withContext(withLitHtml()) {
   static props = {
     autoOpen: props.boolean,
     uuid: props.string,
-    first: props.boolean,
-    last: props.boolean,
   };
 
   // subscribe to specific props that are defined and available on the parent container
@@ -44,6 +43,12 @@ class AccordionItem extends withContext(withLitHtml()) {
     return self;
   }
 
+  get isFirstItem() {
+    return (
+      this === this.parentNode.getElementsByTagName('BOLT-ACCORDION-ITEM')[0]
+    );
+  }
+
   connecting() {
     const originalInput = this.querySelector('.c-bolt-accordion-item__state');
     const originalLinks = this.querySelectorAll(
@@ -53,9 +58,9 @@ class AccordionItem extends withContext(withLitHtml()) {
     originalInput && originalInput.remove();
     originalLinks.length && originalLinks.forEach(el => el.remove());
 
-    window.addEventListener('optimizedResizeHandler', () => {
-      this.autoHeight();
-    });
+    // window.addEventListener('optimizedResizeHandler', () => {
+    //   this.autoHeight();
+    // });
 
     this.addEventListener('activateLink', this.close);
   }
@@ -72,18 +77,18 @@ class AccordionItem extends withContext(withLitHtml()) {
     }, 300);
   }
 
-  autoHeight() {
-    if (this.contentElem) {
-      if (
-        this.props.collapse &&
-        window.matchMedia('(min-width: 600px)').matches
-      ) {
-        this.contentElem.classList.add('u-bolt-height-auto');
-      } else if (this.props.collapse) {
-        this.contentElem.classList.remove('u-bolt-height-auto');
-      }
-    }
-  }
+  // autoHeight() {
+  //   if (this.contentElem) {
+  //     if (
+  //       this.props.collapse &&
+  //       window.matchMedia('(min-width: 600px)').matches
+  //     ) {
+  //       this.contentElem.classList.add('u-bolt-height-auto');
+  //     } else if (this.props.collapse) {
+  //       this.contentElem.classList.remove('u-bolt-height-auto');
+  //     }
+  //   }
+  // }
 
   // automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
   addClassesToSlottedChildren() {
@@ -114,116 +119,42 @@ class AccordionItem extends withContext(withLitHtml()) {
     }
   }
 
-  get open() {
-    return this.state.open;
-    // this.accordion.folds[0].close();
-  }
-
-  // Sets the `active` state for the current custom element
-  set open(value) {
-    /* Properties can be set to all kinds of string values. This
-     * makes sure it’s converted to a proper boolean value using
-     * JavaScript’s truthiness & falsiness principles.
-     */
-
-    if (value && value === true) {
-      this.state.open = true;
-      this.setAttribute('open', 'open');
-    } else {
-      this.removeAttribute('open');
-    }
-  }
-
   template() {
-    const { noSeparator, shadow, spacing, iconValign } = this.context;
-    const separator = !noSeparator;
+    const { noSeparator, shadow, iconValign } = this.context;
 
     const accordionClasses = css(
       'c-bolt-accordion-item',
-      separator ? 'c-bolt-accordion-item--separator' : '',
+      !noSeparator ? 'c-bolt-accordion-item--separator' : '',
       shadow ? 'c-bolt-accordion-item--shadow' : '',
       iconValign && iconValign !== 'top'
         ? `c-bolt-accordion-item--icon-valign-${iconValign}`
         : '',
-      this.props.first ? 'c-bolt-accordion-item--first-item' : '',
-      this.props.last ? 'c-bolt-accordion-item--last-item' : '',
+      this.isFirstItem ? 'c-bolt-accordion-item--first-item' : '',
     );
-
-    const spacingClasses = css(
-      spacing ? `c-bolt-accordion-item--spacing-${spacing}` : '',
-    );
-
-    const accordionHeaderClasses = css(
-      'c-bolt-accordion-item__trigger',
-      this.props.center ? 'c-bolt-accordion-item__trigger--center' : '',
-    );
-
-    const headerTemplate = children => {
-      const content = this.headerLabel
-        ? this.headerLabel.textContent
-        : children;
-      return html`
-        <div class="${accordionHeaderClasses}">
-          <button
-            class="c-bolt-accordion-item__trigger-button ${spacingClasses}"
-          >
-            <div class="c-bolt-accordion-item__trigger-content">
-              ${content}
-            </div>
-            <span class="c-bolt-accordion-item__trigger-icons">
-              <div class="c-bolt-accordion-item__trigger-icons-inner">
-                <span
-                  class="c-bolt-accordion-item__trigger-icon c-bolt-accordion-item__trigger-icon--open"
-                >
-                  <bolt-icon name="chevron-down"></bolt-icon>
-                </span>
-
-                <span
-                  class="c-bolt-accordion-item__trigger-icon c-bolt-accordion-item__trigger-icon--close"
-                >
-                  <bolt-icon name="chevron-up"></bolt-icon>
-                </span>
-              </div>
-            </span>
-          </button>
-        </div>
-      `;
-    };
-    const contentTemplate = children => {
-      return html`
-        <div class="c-bolt-accordion-item__content">
-          <div class="c-bolt-accordion-item__content-inner ${spacingClasses}">
-            ${children}
-          </div>
-        </div>
-      `;
-    };
 
     const slotMarkup = name => {
       switch (name) {
         case 'header':
           return name in this.slots
-            ? html`
-                ${headerTemplate(this.slot(name))}
-              `
+            ? AccordionItemHeader(this.slot(name), this.props, this.context)
             : html`
                 <slot name="${name}" />
               `;
 
         default:
-          return html`
-            ${name in this.slots
-              ? contentTemplate(this.slot('default'))
-              : html`
-                  <slot />
-                `}
-          `;
+          return name in this.slots
+            ? AccordionItemContent(
+                this.slot('default'),
+                this.props,
+                this.context,
+              )
+            : html`
+                <slot />
+              `;
       }
     };
 
     const innerSlots = [slotMarkup('header'), slotMarkup('default')];
-
-    this.addClassesToSlottedChildren();
 
     return html`
       <div class="${accordionClasses}">${innerSlots}</div>
@@ -237,16 +168,13 @@ class AccordionItem extends withContext(withLitHtml()) {
       '.c-bolt-accordion-item__content',
     );
 
-    this.autoHeight();
+    // this.autoHeight();
   }
 
   render() {
-    // const { separator } = this.context;
+    // console.log('@render');
 
-    // console.log(separator);
-
-    this.accordionTemplate = document.createDocumentFragment();
-    render(this.template(), this.accordionTemplate);
+    this.addClassesToSlottedChildren();
 
     return html`
       ${this.addStyles([styles, heightUtils])} ${this.template()}

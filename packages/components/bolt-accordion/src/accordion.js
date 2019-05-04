@@ -48,43 +48,19 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
     this.useShadow = hasNativeShadowDomSupport;
 
-    this.state = {
-      open: this.props.autoOpen ? this.props.autoOpen : false,
-      collapse: this.props.collapse ? this.props.collapse : false,
-    };
+    // this.state = {
+    //   open: this.props.autoOpen ? this.props.autoOpen : false,
+    //   collapse: this.props.collapse ? this.props.collapse : false,
+    // };
 
-    this.uuid = '12345';
+    // this.uuid = '12345';
     return self;
-  }
-
-  setAccordionItemProps(item) {
-    const header = item.renderRoot.querySelector('.c-bolt-accordion-item__trigger');
-
-    // Set auto-open prop on header element, plugin dictates that the attribute must be on header or content element
-    if (item.autoOpen && header) {
-      header.setAttribute('auto-open', '');
-    }
-
-    // Set first prop
-    if (this.accordionItemElements.indexOf(item) === 0) {
-      item.setAttribute('first', '');
-    }
-
-    // Set last prop
-    if (
-      this.accordionItemElements.indexOf(item) ===
-      this.accordionItemElements.length - 1
-    ) {
-      item.setAttribute('last', '');
-    }
   }
 
   handleAccordionItemReady(item) {
     const root = item.renderRoot;
     const header = root.querySelector('.c-bolt-accordion-item__trigger');
     const content = root.querySelector('.c-bolt-accordion-item__content');
-
-    this.setAccordionItemProps(item);
 
     if (header && content) {
       this.accordionItems = [...this.accordionItems, header, content];
@@ -119,7 +95,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
       carouselFocus: true,
 
       // attribute for the header or content to open folds at initialization
-      initialOpenAttribute: 'auto-open',
+      initialOpenAttribute: 'data-open',
       // whether to use transition at initial open
       initialOpenTransition: true,
       // delay used to show initial transition
@@ -154,7 +130,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
     );
 
     return html`
-      <div class="${classes}" id="${this.uuid}">
+      <div class="${classes}">
         ${this.slots.default ? this.slot('default') : ''}
       </div>
     `;
