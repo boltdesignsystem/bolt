@@ -13,8 +13,8 @@ bolt-accordion-item {
 
 .c-bolt-accordion-item {
   &:focus-within {
-    z-index: 1;
     position: relative;
+    z-index: 1;
   }
 }
 
@@ -213,6 +213,7 @@ bolt-accordion-item {
 .c-bolt-accordion-item__trigger-content {
   @include bolt-padding-right(small);
   margin-bottom: 0;
+  flex-grow: 1;
 }
 
 .c-bolt-accordion-item__toggle-text {
@@ -344,10 +345,16 @@ bolt-accordion-item {
 
 // Spacing
 
+.c-bolt-accordion-item--spacing-none {
+  // required to override user agent button padding
+  padding: 0;
+}
+
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
-
-  .c-bolt-accordion-item--spacing-#{$spacing-value-name} {
-    @include bolt-padding(#{$spacing-value-name}, squished);
+  @if ($spacing-value-name != '' and $spacing-value-name != 'xxsmall' and $spacing-value-name != 'xxlarge') {
+    .c-bolt-accordion-item--spacing-#{$spacing-value-name} {
+      @include bolt-padding(#{$spacing-value-name}, squished);
+    }
   }
 }
