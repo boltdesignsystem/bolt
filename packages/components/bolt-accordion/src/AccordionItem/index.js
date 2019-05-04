@@ -40,12 +40,14 @@ class AccordionItem extends withContext(withLitHtml()) {
 
   constructor(self) {
     self = super(self);
+
     this.useShadow = hasNativeShadowDomSupport;
     return self;
   }
 
   get isFirstItem() {
     return (
+      this.parentNode &&
       this === this.parentNode.getElementsByTagName('BOLT-ACCORDION-ITEM')[0]
     );
   }

@@ -74,7 +74,11 @@ class BoltAccordion extends withContext(withLitHtml()) {
     }
 
     if (this.accordionItemElementsCopy.length === 0) {
-      this.initAccordion();
+      if (this.accordion) {
+        this.accordion.update();
+      } else {
+        this.initAccordion();
+      }
     }
   }
 
@@ -122,24 +126,13 @@ class BoltAccordion extends withContext(withLitHtml()) {
       headerNoTransitionClass: 'c-bolt-accordion-item__trigger--notransition',
       contentNoTransitionClass: 'c-bolt-accordion-item__content--notransition',
     });
+
+    this.accordion.on('destroyed', fold => {
+      delete this.accordion;
+    });
   }
 
-  template() {
-    const classes = css(
-      'c-bolt-accordion',
-      this.props.shadow ? 'c-bolt-accordion--shadow' : '',
-    );
-
-    return html`
-      <div class="${classes}">
-        ${this.slots.default ? this.slot('default') : ''}
-      </div>
-    `;
-  }
-
-  rendered() {
-    super.rendered && super.rendered();
-
+  setupAccordion() {
     // Accordion outer container, accordion plugin will be instantiated on this element
     this.accordionElement = this.renderRoot.querySelector('.c-bolt-accordion');
 
@@ -163,12 +156,84 @@ class BoltAccordion extends withContext(withLitHtml()) {
         item.removeEventListener('rendered', onItemReady);
       };
 
-      if (item._wasInitiallyRendered) {
+      if (item._wasInitiallyRendered || this._wasMutated) {
         this.handleAccordionItemReady(item);
+        this._wasMutated = false;
       } else {
         item.addEventListener('rendered', onItemReady);
       }
     });
+  }
+
+  addMutationObserver() {
+    const self = this;
+
+    if (window.MutationObserver) {
+      // Re-generate slots + re-render when mutations are observed
+      const mutationCallback = function(mutationsList, observer) {
+        for (let mutation of mutationsList) {
+          if (mutation.type == 'childList') {
+            // @todo: handle add/remove children
+            // console.log('A child node has been added or removed.');
+            // self.slots = self._checkSlots();
+            // self.triggerUpdate();
+          } else if (mutation.type == 'attributes') {
+            if (mutation.target.tagName === 'BOLT-ACCORDION-ITEM') {
+              const target = mutation.target;
+
+              this._wasMutated = true;
+
+              const resetAccordion = () => {
+                self.accordion.destroy();
+                self.setupAccordion();
+                target.removeEventListener('rendered', resetAccordion);
+              };
+
+              target.addEventListener('rendered', resetAccordion);
+            }
+          }
+        }
+      };
+
+      // Create an observer instance linked to the callback function
+      self.observer = new MutationObserver(mutationCallback);
+
+      // Start observing the target node for configured mutations
+      self.observer.observe(this, {
+        attributes: true,
+        childList: true,
+        subtree: true,
+      });
+    }
+  }
+
+  template() {
+    const classes = css(
+      'c-bolt-accordion',
+      this.props.shadow ? 'c-bolt-accordion--shadow' : '',
+    );
+
+    return html`
+      <div class="${classes}">
+        ${this.slots.default ? this.slot('default') : ''}
+      </div>
+    `;
+  }
+
+  rendered() {
+    super.rendered && super.rendered();
+
+    this.setupAccordion();
+    this.addMutationObserver();
+  }
+
+  disconnected() {
+    super.disconnected && super.disconnected();
+
+    // remove MutationObserver if supported + exists
+    if (window.MutationObserver && this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   render() {
