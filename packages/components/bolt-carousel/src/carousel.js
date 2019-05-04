@@ -12,6 +12,41 @@ import styles from '../index.scss';
 import originalSchema from '../carousel.schema.yml';
 
 let cx = classNames.bind(styles);
+let wasCarouselResizerAdded = false;
+
+function addBoltCarouselResizer() {
+  if (wasCarouselResizerAdded === false) {
+    wasCarouselResizerAdded = true;
+
+    // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
+    // won't fire before a previous event is complete.
+    // This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
+    (function() {
+      function throttle(type, name, obj) {
+        obj = obj || window;
+        let running = false;
+
+        function func() {
+          if (running) {
+            return;
+          }
+          running = true;
+          requestAnimationFrame(function() {
+            obj.dispatchEvent(new CustomEvent(name));
+            running = false;
+          });
+        }
+        obj.addEventListener(type, func);
+      }
+
+      // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
+      // such as scroll.
+      throttle('resize', 'carousel:resize');
+    })();
+  } else {
+    // console.log('carouselResizer already Added');
+  }
+}
 
 // @todo: re-wire to point to actual breakpoint data
 const boltBreakpoints = {
@@ -34,6 +69,8 @@ for (const key of schemaPropKeys) {
   const propertyType =
     typeof property.type === 'object' && property.type.length > 1
       ? 'string'
+      : property.type === 'integer'
+      ? 'number'
       : property.type;
 
   if (property.default) {
@@ -71,11 +108,14 @@ class BoltCarousel extends withLitHtml() {
     self.conditionallyDisableButtons = self.conditionallyDisableButtons.bind(
       self,
     );
+    self.resizeCarousel = self.resizeCarousel.bind(self);
     return self;
   }
 
   connecting() {
     super.connecting && super.connecting();
+    addBoltCarouselResizer();
+    window.addEventListener('carousel:resize', this.resizeCarousel);
 
     const nextButton = this.querySelector('[slot="next-btn"]');
     const prevButton = this.querySelector('[slot="previous-btn"]');
@@ -89,6 +129,105 @@ class BoltCarousel extends withLitHtml() {
     }
   }
 
+  // recalculates the ideal # of slides to display when the overal carousel width changes
+  // @todo: update to only reinitialize when the data for this changes
+  resizeCarousel() {
+    this.options.slidesPerView = this.calculateSlidesPerView(
+      this.props.slidesPerView,
+    );
+    this.calculateSlidesPerViewBreakpoints();
+
+    // track the currently active slide so the new swiper instance
+    const currentlyActiveSlide = this.swiper.activeIndex;
+    this.options.initialSlide = currentlyActiveSlide;
+
+    // destroy the current swiper instance and regenerate with the updated config options
+    this.swiper.destroy(false, true);
+    this.swiper = new Swiper(
+      this.renderRoot.querySelector('.c-bolt-carousel'),
+      {
+        ...this.options,
+      },
+    );
+  }
+
+  findIdealNumberOfSlides(desiredNumberOfSlides) {
+    const availableWidth = this.getBoundingClientRect().width;
+    const spaceBetween = this.spaceBetweenConfig;
+    const minWidth = 240; // @todo: update to pull in this min-width automatically
+    let realisticNumberOfSlides = 'auto';
+
+    // adjust the requested # of slides based on the min / max number set
+    if (this.props.slidesPerView <= this.props.maxSlidesPerView) {
+      desiredNumberOfSlides = this.props.slidesPerView;
+    } else {
+      desiredNumberOfSlides = this.props.maxSlidesPerView;
+    }
+
+    for (
+      let i = 1;
+      i <= desiredNumberOfSlides && i <= this.props.maxSlidesPerView;
+      i++
+    ) {
+      if (i * minWidth + i * spaceBetween <= availableWidth) {
+        realisticNumberOfSlides = i;
+      }
+    }
+
+    return realisticNumberOfSlides;
+  }
+
+  // calculates how many slides per view should get used based on the # of children, the slidesPerView config, whether or not the carousel is looping, and the overall carousel size
+  calculateSlidesPerView(idealNumberOfSlides) {
+    let slidesPerView;
+
+    if (idealNumberOfSlides === 'auto' || idealNumberOfSlides === 1) {
+      slidesPerView = 1;
+    } else if (
+      this.props.loop &&
+      idealNumberOfSlides &&
+      this.numberOfChildren >= idealNumberOfSlides
+    ) {
+      slidesPerView = idealNumberOfSlides;
+    } else if (
+      this.props.loop &&
+      idealNumberOfSlides &&
+      this.numberOfChildren < idealNumberOfSlides
+    ) {
+      slidesPerView = this.numberOfChildren;
+    } else if (idealNumberOfSlides) {
+      slidesPerView = idealNumberOfSlides;
+    } else {
+      slidesPerView = 1;
+    }
+
+    return this.findIdealNumberOfSlides(slidesPerView);
+  }
+
+  calculateSlidesPerViewBreakpoints() {
+    // let slidesPerViewBreakpoints = {};
+    for (let i = 1; i < this.props.maxSlidesPerView; i++) {
+      const bpNumber = boltBreakpoints[Object.keys(boltBreakpoints)[i]].replace(
+        'px',
+        '',
+      );
+      this.options.breakpoints[bpNumber] = {
+        slidesPerView: this.calculateSlidesPerView(i === 1 || i === 2 ? 2 : i),
+        spaceBetween: this.spaceBetweenConfig,
+      };
+
+      // @todo: uncomment or refactor when enabling "stack" mode
+      // spaceBetween: this.props.stacked
+      //   ? i <= 3
+      //     ? smallOverlap + spacingUnit
+      //     : i === 4
+      //     ? mediumOverlap + spacingUnit
+      //     : largeOverlap + spacingUnit
+      //   : spacingUnit,
+      // };
+    }
+  }
+
   rendered() {
     if (this.props.noJs) {
       return;
@@ -97,25 +236,25 @@ class BoltCarousel extends withLitHtml() {
     const spacingUnit =
       window.getComputedStyle(document.body).fontSize.replace('px', '') * 2;
 
-    let spaceBetweenConfig;
+    this.spaceBetweenConfig;
 
     switch (this.props.spaceBetween) {
       case 'large':
-        spaceBetweenConfig = spacingUnit * 2;
+        this.spaceBetweenConfig = spacingUnit * 2;
         break;
       case 'small':
-        spaceBetweenConfig = spacingUnit / 2;
+        this.spaceBetweenConfig = spacingUnit / 2;
         break;
       case 'none':
-        spaceBetweenConfig = 0;
+        this.spaceBetweenConfig = 0;
         break;
       case 'medium':
       default:
-        spaceBetweenConfig = spacingUnit;
+        this.spaceBetweenConfig = spacingUnit;
         break;
     }
 
-    const numberOfChildren = Array.from(
+    this.numberOfChildren = Array.from(
       this.querySelectorAll('bolt-carousel-slide'),
     ).length;
 
@@ -130,25 +269,15 @@ class BoltCarousel extends withLitHtml() {
         notificationClass: 'c-bolt-carousel__notification',
       },
       initialSlide: this.props.initialSlide ? this.props.initialSlide : 0,
+      slideActiveClass: 'c-bolt-carousel__slide--active',
+      slideNextClass: 'c-bolt-carousel__slide--next',
+      slidePrevClass: 'c-bolt-carousel__slide--previous',
       containerModifierClass: 'c-bolt-carousel--',
       slideClass: 'c-bolt-carousel__slide',
       slideVisibleClass: 'c-bolt-carousel__slide--visible',
       wrapperClass: 'c-bolt-carousel__wrapper',
       notificationClass: 'c-bolt-carousel__notification',
-      slidesPerView:
-        this.props.slidesPerView === 'auto'
-          ? 1
-          : this.props.loop &&
-            this.props.slidesPerView &&
-            numberOfChildren >= this.props.slidesPerView
-          ? this.props.slidesPerView
-          : this.props.loop &&
-            this.props.slidesPerView &&
-            numberOfChildren < this.props.slidesPerView
-          ? numberOfChildren
-          : this.props.slidesPerView
-          ? this.props.slidesPerView
-          : 1,
+      // @todo: refactor slidesPerView logic into standalone function
       navigation: {
         nextEl: this.renderRoot.querySelector('.c-bolt-carousel__btn--next'),
         prevEl: this.renderRoot.querySelector(
@@ -168,9 +297,9 @@ class BoltCarousel extends withLitHtml() {
         clickableClass: 'c-bolt-carousel__pagination--clickable',
         lockClass: 'c-bolt-carousel__pagination--locked',
       },
-      spaceBetween: spaceBetweenConfig,
+      spaceBetween: this.spaceBetweenConfig,
       scrollbar: {
-        hide: false,
+        hide: !this.props.freeScroll,
         el: this.renderRoot.querySelector('.c-bolt-carousel__scrollbar'),
         draggable: true,
         lockClass: 'c-bolt-carousel__scrollbar-lock',
@@ -185,59 +314,27 @@ class BoltCarousel extends withLitHtml() {
             delay: 5000,
           }
         : false,
-      touchEventsTarget: 'wrapper',
+      // touchEventsTarget: 'wrapper',
       centeredSlides: false,
       centerInsufficientSlides: false,
+      watchSlidesProgress: true,
       watchSlidesVisibility: true,
-      mousewheel: {
-        invert: true,
-        releaseOnEdges: false,
-        forceToAxis: true,
-      },
+      // mousewheel: {
+      //   invert: true,
+      //   releaseOnEdges: false,
+      //   forceToAxis: true,
+      // },
       keyboard: {
         enabled: true,
         onlyInViewport: true,
       },
       centeredSlides: this.props.slideAlign === 'center' ? true : false,
       effect: this.props.fade ? 'fade' : 'slide',
-      resistanceRatio: 0.9,
-      freeModeMomentumBounceRatio: 0.8,
-      freeModeMomentumRatio: 1.3,
-      freeModeMinimumVelocity: 0.01,
       freeMode: this.props.freeScroll, //@todo: re-enable when adding free-scroll prop options
+      slidesPerView: this.calculateSlidesPerView(this.props.slidesPerView),
     };
 
-    for (let i = 1; i < this.props.maxSlidesPerView; i++) {
-      const bpNumber = boltBreakpoints[Object.keys(boltBreakpoints)[i]].replace(
-        'px',
-        '',
-      );
-
-      this.options.breakpoints[bpNumber] = {
-        slidesPerView:
-          this.props.slidesPerView === '1'
-            ? 1
-            : this.props.slidesPerView && this.props.slidesPerView <= 4
-            ? this.props.slidesPerView
-            : i === 1 || i === 2
-            ? 2
-            : this.props.loop && numberOfChildren >= i
-            ? i
-            : this.props.loop && numberOfChildren < i
-            ? numberOfChildren
-            : i,
-        spaceBetween: spaceBetweenConfig,
-
-        // @todo: uncomment or refactor when enabling "stack" mode
-        // spaceBetween: this.props.stacked
-        //   ? i <= 3
-        //     ? smallOverlap + spacingUnit
-        //     : i === 4
-        //     ? mediumOverlap + spacingUnit
-        //     : largeOverlap + spacingUnit
-        //   : spacingUnit,
-      };
-    }
+    this.calculateSlidesPerViewBreakpoints();
 
     if (!this._wasInitiallyRendered) {
       this.scrollTo({
@@ -266,6 +363,13 @@ class BoltCarousel extends withLitHtml() {
     } else {
       // update swiper if component re-rendered
       this.swiper.update();
+    }
+  }
+
+  // make sure the pagination tracking keeps updating accurately when the component re-renders
+  updating(newProps) {
+    if (this.swiper) {
+      this.swiper.pagination.update();
     }
   }
 
@@ -393,16 +497,16 @@ class BoltCarousel extends withLitHtml() {
                 ${this.slot('next-btn')}
               </div>
             `}
-        ${this.props.noPagination === true
+        ${this.props.freeScroll
           ? ''
           : html`
               <div class="c-bolt-carousel__pagination"></div>
             `}
-        ${this.props.noScrollbar === true || this.props.loop === true
-          ? ''
-          : html`
+        ${this.props.freeScroll
+          ? html`
               <div class="c-bolt-carousel__scrollbar"></div>
-            `}
+            `
+          : ''}
       </div>
     `;
   }
