@@ -1,5 +1,5 @@
-<!-- ---
-title: Carousel Themes
---- -->
+---
+title: Theme Variations
+---
 
-Examples of using the carousel in the different design system color themes
+Examples of using the carousel in the different design system color themes.
