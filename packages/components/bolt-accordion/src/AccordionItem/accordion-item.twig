@@ -49,11 +49,11 @@
   >
   <input class="c-bolt-accordion-item__state" type="checkbox" id="{{ primary_uuid }}" {% if auto_open %} checked{% endif %}>
 
-  <replace-with-grandchildren
+  <replace-with-children
     {{ inner_attributes.addClass(inner_classes) }}
     id="{{ secondary_uuid }}">
 
-    <div class="c-bolt-accordion-item__trigger">
+    <replace-with-children class="c-bolt-accordion-item__trigger">
       <replace-with-grandchildren>
         <label class="c-bolt-accordion-item__trigger-label {{ spacing_class }}" for="{{ primary_uuid }}">
           <replace-with-children class="c-bolt-accordion-item__trigger-content">
@@ -69,7 +69,7 @@
       <a href="#{{ secondary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--close">
         <span class="c-bolt-accordion-item__toggle-text">{{ this.data.close_label.value }}</span>
       </a>
-    </div>
+    </replace-with-children>
 
     <replace-with-grandchildren class="c-bolt-accordion-item__content">
       <div class="c-bolt-accordion-item__content-inner {{ spacing_class }}">
@@ -77,5 +77,5 @@
       </div>
     </replace-with-grandchildren>
 
-  </replace-with-grandchildren>
+  </replace-with-children>
 </bolt-accordion-item>
