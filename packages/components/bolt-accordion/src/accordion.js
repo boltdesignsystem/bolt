@@ -58,32 +58,8 @@ class BoltAccordion extends withContext(withLitHtml()) {
     return self;
   }
 
-  handleAccordionItemReady(item) {
-    const root = item.renderRoot;
-    const header = root.querySelector('.c-bolt-accordion-item__trigger');
-    const content = root.querySelector('.c-bolt-accordion-item__content');
-
-    if (header && content) {
-      this.accordionItems = [...this.accordionItems, header, content];
-    }
-
-    const index = this.accordionItemElementsCopy.indexOf(item);
-
-    if (index !== -1) {
-      this.accordionItemElementsCopy.splice(index, 1);
-    }
-
-    if (this.accordionItemElementsCopy.length === 0) {
-      if (this.accordion) {
-        this.accordion.update();
-      } else {
-        this.initAccordion();
-      }
-    }
-  }
-
-  initAccordion() {
-    this.accordion = new Accordion(this.accordionElement, {
+  get accordionOptions() {
+    return {
       // array of node references, alternating header + content: [header, content, header, content]
       items: this.accordionItems,
 
@@ -125,7 +101,38 @@ class BoltAccordion extends withContext(withLitHtml()) {
       // header/content class if no transition should be active (applied on resize)
       headerNoTransitionClass: 'c-bolt-accordion-item__trigger--notransition',
       contentNoTransitionClass: 'c-bolt-accordion-item__content--notransition',
-    });
+    };
+  }
+
+  handleAccordionItemReady(item) {
+    const root = item.renderRoot;
+    const header = root.querySelector('.c-bolt-accordion-item__trigger');
+    const content = root.querySelector('.c-bolt-accordion-item__content');
+
+    if (header && content) {
+      this.accordionItems = [...this.accordionItems, header, content];
+    }
+
+    const index = this.accordionItemElementsCopy.indexOf(item);
+
+    if (index !== -1) {
+      this.accordionItemElementsCopy.splice(index, 1);
+    }
+
+    if (this.accordionItemElementsCopy.length === 0) {
+      if (this.accordion) {
+        this.accordion.update();
+      } else {
+        this.initAccordion();
+      }
+    }
+  }
+
+  initAccordion() {
+    this.accordion = new Accordion(
+      this.accordionElement,
+      this.accordionOptions,
+    );
 
     this.accordion.on('destroyed', fold => {
       delete this.accordion;
@@ -172,12 +179,12 @@ class BoltAccordion extends withContext(withLitHtml()) {
       // Re-generate slots + re-render when mutations are observed
       const mutationCallback = function(mutationsList, observer) {
         for (let mutation of mutationsList) {
-          if (mutation.type == 'childList') {
+          if (mutation.type === 'childList') {
             // @todo: handle add/remove children
             // console.log('A child node has been added or removed.');
             // self.slots = self._checkSlots();
             // self.triggerUpdate();
-          } else if (mutation.type == 'attributes') {
+          } else if (mutation.type === 'attributes') {
             if (mutation.target.tagName === 'BOLT-ACCORDION-ITEM') {
               const target = mutation.target;
 
@@ -223,8 +230,15 @@ class BoltAccordion extends withContext(withLitHtml()) {
   rendered() {
     super.rendered && super.rendered();
 
-    this.setupAccordion();
-    this.addMutationObserver();
+    if (this.accordion) {
+      // If accordion already exists, update options
+      this.accordion.options = this.accordionOptions;
+    } else {
+      this.setupAccordion();
+    }
+    if (!this.observer) {
+      this.addMutationObserver();
+    }
   }
 
   disconnected() {
