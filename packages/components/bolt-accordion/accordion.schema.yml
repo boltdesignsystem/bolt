@@ -29,13 +29,6 @@ properties:
           type: string
           description: Custom label for screenreaders to close accordion.
           default: Close Accordion
-  icon_valign:
-    type: string
-    description: Vertically align accordion trigger icon.
-    default: top
-    enum:
-      - top
-      - center
   multiple:
     type: boolean
     description: Allow multiple items to be open at the same time.
@@ -59,6 +52,13 @@ properties:
       - medium
       - large
       - xlarge
+  icon_valign:
+    type: string
+    description: Vertically align accordion trigger icon.
+    default: top
+    enum:
+      - top
+      - center
   no-separator:
     type: boolean
     description: Hides the default border between each accordion item. Web Component only.
