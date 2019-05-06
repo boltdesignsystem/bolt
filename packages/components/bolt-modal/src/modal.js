@@ -21,7 +21,7 @@ class BoltModal extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    // persistent - if set to true, clicking on overlay would not close the modal.
+    // @todo: persistent - this is here to set up the future prop, which is commented out in the schema right now. For now, this will always be false until it's introduced. The same applies for all the other persistent logics below.
     persistent: {
       ...props.boolean,
       ...{ default: false },

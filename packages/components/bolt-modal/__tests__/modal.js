@@ -31,17 +31,6 @@ describe('<bolt-modal> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  persistent.enum.forEach(async persistentChoice => {
-    test(`modal persistent: ${persistentChoice}`, async () => {
-      const results = await renderTwig('@bolt-components-modal/modal.twig', {
-        persistent: persistentChoice,
-        content: 'This is a modal',
-      });
-      expect(results.ok).toBe(true);
-      expect(results.html).toMatchSnapshot();
-    });
-  });
-
   width.enum.forEach(async widthChoice => {
     test(`modal width: ${widthChoice}`, async () => {
       const results = await renderTwig('@bolt-components-modal/modal.twig', {

@@ -1,4 +1,28 @@
 <div class="u-bolt-margin-bottom-medium">
+  {% set link_trigger %}
+    {% include "@bolt-components-image/image.twig" with {
+      src: "/images/content/backgrounds/background-robotics-customer-service.jpg",
+      alt: "This is the alt text.",
+    } only %}
+  {% endset %}
+
+  <h3>Link Trigger</h3>
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Open Modal",
+    tag: "button",
+    attributes: {
+      onclick: "this.nextElementSibling.show()",
+    }
+  } only %}
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: link_trigger,
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+  } only %}
+</div>
+
+<div class="u-bolt-margin-bottom-medium">
   {% set button_trigger %}
     {% include "@bolt-components-image/image.twig" with {
       src: "/images/content/backgrounds/background-robotics-customer-service.jpg",
@@ -39,6 +63,5 @@
     spacing: "none",
     theme: "none",
     scroll: "overall",
-    hide_close_button: true,
   } only %}
 </div>
