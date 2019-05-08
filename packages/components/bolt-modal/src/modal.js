@@ -1,6 +1,6 @@
 // based originally off of https://github.com/edenspiekermann/a11y-dialog before heavy modifications and customizations
 
-import { props, define } from '@bolt/core/utils';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
@@ -39,6 +39,7 @@ class BoltModal extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
+    self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
     self.show = self.show.bind(this);
     self.hide = self.hide.bind(this);
@@ -346,6 +347,13 @@ class BoltModal extends withLitHtml() {
       [`c-bolt-modal__close-button--hidden`]: hideCloseButton,
     });
 
+    const onButtonFocus = e => {
+      if (!this.useShadow) {
+        const button = e.target.renderRoot.querySelector('button');
+        button && button.focus();
+      }
+    };
+
     // <button> element is included here to set a required style inside the Shadow DOM.
     // Button's default transition 'all' property delays 'visibility: visible'
     // and thus prevents it from getting focus on 'rendered'.
@@ -354,13 +362,16 @@ class BoltModal extends withLitHtml() {
       <bolt-button
         class="js-close-button-fallback"
         @click=${e => this.hide(e)}
+        @focus=${e => onButtonFocus(e)}
         color="text"
         icon-only
         autofocus
         tabindex="0"
       >
         <button
+          class=""
           style="transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);"
+          is="shadow-root"
         >
           Close this dialog window
           <bolt-icon name="close" slot="after"></bolt-icon>

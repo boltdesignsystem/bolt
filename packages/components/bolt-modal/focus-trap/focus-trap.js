@@ -27,8 +27,10 @@ class FocusTrap extends withLitHtml() {
 
   $end;
 
-  constructor() {
-    super();
+  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  constructor(self) {
+    self = super(self);
+    return self;
   }
 
   connecting() {
@@ -171,4 +173,4 @@ class FocusTrap extends withLitHtml() {
   }
 }
 
-export { withLitHtml };
+export { FocusTrap };
