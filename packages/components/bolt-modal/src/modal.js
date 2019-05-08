@@ -4,7 +4,7 @@ import { props, define } from '@bolt/core/utils';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
-// import schema from '../modal.schema.yml';
+import schema from '../modal.schema.yml';
 
 const tabbable = require('tabbable');
 import '../focus-trap';
@@ -17,30 +17,18 @@ class BoltModal extends withLitHtml() {
   static is = 'bolt-modal';
 
   static props = {
-    open: {
-      ...props.boolean,
-      ...{ default: false },
-    },
+    width: props.string,
+    spacing: props.string,
+    theme: props.string,
+    scroll: props.string,
     // @todo: persistent - this is here to set up the future prop, which is commented out in the schema right now. For now, this will always be false until it's introduced. The same applies for all the other persistent logics below.
     persistent: {
       ...props.boolean,
       ...{ default: false },
     },
-    width: {
-      ...props.string,
-      ...{ default: 'regular' },
-    },
-    spacing: {
-      ...props.string,
-      ...{ default: 'medium' },
-    },
-    scroll: {
-      ...props.string,
-      ...{ default: 'container' },
-    },
-    theme: {
-      ...props.string,
-      ...{ default: 'xlight' },
+    open: {
+      ...props.boolean,
+      ...{ default: false },
     },
     hideCloseButton: {
       ...props.boolean,
@@ -51,6 +39,7 @@ class BoltModal extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
+    self.schema = schema;
     self.show = self.show.bind(this);
     self.hide = self.hide.bind(this);
     self._handleExternalClicks = self._handleExternalClicks.bind(this);
@@ -317,18 +306,15 @@ class BoltModal extends withLitHtml() {
   }
 
   render() {
-    // @todo: validate props
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    // const { disabled } = this.validateProps(this.props);
     const {
-      open,
-      persistent,
       width,
       spacing,
-      scroll,
       theme,
+      scroll,
+      open,
+      persistent,
       hideCloseButton,
-    } = this.props;
+    } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-modal', {
       [`is-open`]: open,
