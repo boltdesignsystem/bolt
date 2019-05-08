@@ -103,6 +103,16 @@ class BoltModal extends withLitHtml() {
     super.rendered && super.rendered();
     this.focusTrap = this.renderRoot.querySelector('focus-trap'); // reference to the focus trap element inside -- handles focus binding when enabled
 
+    if (this.open) {
+      this.focusTrap.active = true;
+      this.setFocusToFirstItem(this.renderRoot);
+
+      // delay "ready" so _handleExternalClicks() doesn't close the modal immediately
+      setTimeout(() => {
+        this.ready = true;
+      }, 1);
+    }
+
     this.dialog = this.renderRoot.querySelector(
       'dialog, [role="dialog"], [role="alertdialog"]',
     );
@@ -136,6 +146,7 @@ class BoltModal extends withLitHtml() {
     // Keep a reference to the currently focused element to be able to restore it later
     this.focusedBeforeDialog = document.activeElement;
 
+    // triggers re-render
     this.open = true;
 
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
@@ -147,13 +158,6 @@ class BoltModal extends withLitHtml() {
     // } else {
     // this.dialog.setAttribute('open', '');
     // this.container.removeAttribute('aria-hidden');
-
-    this.focusTrap.active = true;
-
-    setTimeout(() => {
-      this.setFocusToFirstItem(this.renderRoot);
-      this.ready = true;
-    }, 1);
 
     // @todo: emit custom event when modal is shown
   }
@@ -356,6 +360,10 @@ class BoltModal extends withLitHtml() {
       [`c-bolt-modal__close-button--hidden`]: hideCloseButton,
     });
 
+    // <button> element is included here to set a required style inside the Shadow DOM.
+    // Button's default transition 'all' property delays 'visibility: visible'
+    // and thus prevents it from getting focus on 'rendered'.
+    // @todo: Can we safely fix this from within the button component itself?
     const defaultCloseButton = html`
       <bolt-button
         class="js-close-button-fallback"
@@ -365,8 +373,12 @@ class BoltModal extends withLitHtml() {
         autofocus
         tabindex="0"
       >
-        Close this dialog window
-        <bolt-icon name="close" slot="after"></bolt-icon>
+        <button
+          style="transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);"
+        >
+          Close this dialog window
+          <bolt-icon name="close" slot="after"></bolt-icon>
+        </button>
       </bolt-button>
     `;
 

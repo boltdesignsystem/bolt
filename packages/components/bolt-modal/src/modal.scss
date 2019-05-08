@@ -58,7 +58,7 @@ bolt-modal:not([ready]) {
     transform: scale(0.95);
     width: 100vw;
     height: 100vh;
-    transition: all $bolt-modal-transition;
+    transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 
@@ -180,7 +180,7 @@ bolt-modal:not([ready]) {
     min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
     max-width: calc(100% - #{bolt-spacing(medium) * 2});
     max-height: $bolt-modal-max-height;
-    transition: all $bolt-modal-transition;
+    transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
   }
 
   @at-root .c-bolt-modal.is-open #{&} {
