@@ -46,9 +46,13 @@ class AccordionItem extends withContext(withLitHtml()) {
   }
 
   get isFirstItem() {
+    return this.accordionItems && this === this.accordionItems[0];
+  }
+
+  get isLastItem() {
     return (
-      this.parentNode &&
-      this === this.parentNode.getElementsByTagName('BOLT-ACCORDION-ITEM')[0]
+      this.accordionItems &&
+      this === this.accordionItems[this.accordionItems.length - 1]
     );
   }
 
@@ -60,6 +64,11 @@ class AccordionItem extends withContext(withLitHtml()) {
 
     originalInput && originalInput.remove();
     originalLinks.length && originalLinks.forEach(el => el.remove());
+
+    // @todo: Can we get this from Accordion via context instead?
+    this.accordionItems =
+      this.parentNode &&
+      this.parentNode.getElementsByTagName('BOLT-ACCORDION-ITEM');
 
     // window.addEventListener('optimizedResizeHandler', () => {
     //   this.autoHeight();
@@ -136,6 +145,7 @@ class AccordionItem extends withContext(withLitHtml()) {
         ? `c-bolt-accordion-item--icon-valign-${iconValign}`
         : '',
       this.isFirstItem ? 'c-bolt-accordion-item--first-item' : '',
+      this.isLastItem ? 'c-bolt-accordion-item--last-item' : '',
     );
 
     const slotMarkup = name => {
