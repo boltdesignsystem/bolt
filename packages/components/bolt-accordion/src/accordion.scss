@@ -1,10 +1,14 @@
 @import '@bolt/core';
 
+// @todo: move this to a settings and tools scss file.
+$bolt-accordion-border-width: $bolt-border-width;
+$bolt-accordion-border-style: $bolt-border-style;
+$bolt-accordion-border-color: bolt-theme(text, 0.15);
+$bolt-accordion-border-radius: bolt-border-radius(small);
+
 @include bolt-custom-element('bolt-accordion', block, medium);
 
 bolt-accordion {
-  display: block;
-
   // Required for no-js styles to display properly
   replace-with-children,
   replace-with-grandchildren {
@@ -18,5 +22,10 @@ bolt-accordion {
 }
 
 .c-bolt-accordion--shadow {
-  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
+  @include bolt-shadow('level-20', false, bolt-color(gray, dark));
+  border-radius: $bolt-accordion-border-radius;
+
+  border-width: $bolt-accordion-border-width;
+  border-style: $bolt-accordion-border-style;
+  border-color: $bolt-accordion-border-color;
 }
