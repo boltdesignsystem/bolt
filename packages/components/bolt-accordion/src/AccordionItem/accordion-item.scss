@@ -28,8 +28,33 @@ bolt-accordion-item {
   display: none;
 }
 
-// Trigger
+// Shadow
+.c-bolt-accordion-item--shadow {
+  &.c-bolt-accordion-item--first-item {
+    .c-bolt-accordion-item__trigger,
+    .c-bolt-accordion-item__trigger-button,
+    .c-bolt-accordion-item__trigger-label {
+      border-top-right-radius: $bolt-accordion-border-radius;
+      border-top-left-radius: $bolt-accordion-border-radius;
+    }
+  }
 
+  &.c-bolt-accordion-item--last-item {
+    .c-bolt-accordion-item__trigger:not(.c-bolt-accordion-item__trigger--open),
+    .c-bolt-accordion-item__trigger-button,
+    .c-bolt-accordion-item__trigger-label,
+    .c-bolt-accordion-item__content {
+      border-bottom-right-radius: $bolt-accordion-border-radius;
+      border-bottom-left-radius: $bolt-accordion-border-radius;
+    }
+  }
+
+  .c-bolt-accordion-item__trigger {
+    @include bolt-shadow('level-10', false, bolt-color(gray, dark));
+  }
+}
+
+// Trigger
 .c-bolt-accordion-item__trigger {
   display: flex;
   position: relative;
@@ -46,8 +71,7 @@ bolt-accordion-item {
     left: 0;
     z-index: -1;
     pointer-events: none;
-    background-color: transparent;
-    background-color: bolt-theme(headline-link);
+    background-color: bolt-theme(link);
     transition: opacity 0.1s ease;
   }
 
@@ -57,10 +81,6 @@ bolt-accordion-item {
 
   &:active:after {
     opacity: 0.15;
-  }
-
-  .c-bolt-accordion-item--shadow & {
-    box-shadow: 0 1px 2px 0 rgba(bolt-color(black), 0.1);
   }
 }
 
@@ -81,7 +101,6 @@ bolt-accordion-item {
   user-select: none;
   font: inherit;
   border: none;
-  border-radius: $bolt-accordion-border-radius;
   background-color: bolt-theme(background);
 
   .c-bolt-accordion-item--icon-valign-center & {
@@ -273,10 +292,7 @@ bolt-accordion-item {
       width: 100%;
       height: 100%;
       pointer-events: none;
-      background-color: transparent;
-      background-color: bolt-theme(background);
-
-      filter: contrast(80%) brightness(110%);
+      background-color: rgba(bolt-color(gray, light), 0.1);
       transition: opacity 0.1s ease;
     }
   }
@@ -320,20 +336,9 @@ bolt-accordion-item {
   &.c-bolt-accordion-item--shadow {
     &.c-bolt-accordion-item--first-item {
       border-top: none;
-
-      .c-bolt-accordion-item__trigger {
-        border-top-right-radius: $bolt-accordion-border-radius;
-        border-top-left-radius: $bolt-accordion-border-radius;
-      }
     }
     &.c-bolt-accordion-item--last-item {
       border-bottom: none;
-
-      .c-bolt-accordion-item__trigger:not(.c-bolt-accordion-item__trigger--open),
-      .c-bolt-accordion-item__content {
-        border-bottom-right-radius: $bolt-accordion-border-radius;
-        border-bottom-left-radius: $bolt-accordion-border-radius;
-      }
     }
   }
 }

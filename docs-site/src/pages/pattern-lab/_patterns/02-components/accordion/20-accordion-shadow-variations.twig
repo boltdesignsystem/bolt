@@ -24,6 +24,27 @@
     } only %}
   {% endcell %}
   {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+    <h3>Accordion with shadow without separator</h3>
+    {% include "@bolt-components-accordion/accordion.twig" with {
+      shadow: true,
+      separator: false,
+      items: [
+        {
+          trigger: "Accordion item 1",
+          content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+        },
+        {
+          trigger: "Accordion item 2",
+          content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+        },
+        {
+          trigger: "Accordion item 3",
+          content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+        },
+      ]
+    } only %}
+  {% endcell %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
     <h3>Accordion without shadow</h3>
     {% include "@bolt-components-accordion/accordion.twig" with {
       items: [
