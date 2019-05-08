@@ -60,7 +60,7 @@ bolt-accordion-item {
   position: relative;
   margin: 0;
 
-  &:after {
+/*  &:after {
     content: '';
     display: block;
     opacity: bolt-opacity(0);
@@ -72,7 +72,8 @@ bolt-accordion-item {
     z-index: -1;
     pointer-events: none;
     background-color: bolt-theme(link);
-    transition: opacity 0.1s ease;
+    transition: opacity ($bolt-transition-timing/2) $bolt-transition-ease;
+    will-change: opacity;
   }
 
   &:hover:after {
@@ -81,7 +82,7 @@ bolt-accordion-item {
 
   &:active:after {
     opacity: 0.15;
-  }
+  } */
 }
 
 // Button used with JS
@@ -111,6 +112,29 @@ bolt-accordion-item {
     // Firefox specific fix for removing the dotted outline
     outline: none;
   }
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: bolt-opacity(0);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-color: bolt-theme(primary, 0.15);
+    will-change: opacity;
+    transition: opacity ($bolt-transition-timing/2) $bolt-transition-ease;
+  }
+
+  &:hover:before {
+    opacity: bolt-opacity(20);
+  }
+
+  &:active:before {
+    opacity: bolt-opacity(100);
+  }
 }
 
 .c-bolt-accordion-item__trigger-link {
@@ -120,6 +144,7 @@ bolt-accordion-item {
     position: absolute;
     width: 100%;
     height: 100%;
+    outline-offset: -3px;
   }
 
   &:not(:focus):not(:active) {
@@ -132,10 +157,10 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__state:target
-  + .c-bolt-accordion
+  + .c-bolt-accordion-item
   .c-bolt-accordion-item__trigger-link--open,
 .c-bolt-accordion-item__state:checked
-  + .c-bolt-accordion
+  + .c-bolt-accordion-item
   .c-bolt-accordion-item__trigger-link--open {
   display: none;
 }
@@ -145,15 +170,16 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__state:target
-  + .c-bolt-accordion
+  + .c-bolt-accordion-item
   .c-bolt-accordion-item__trigger-link--close,
 .c-bolt-accordion-item__state:checked
-  + .c-bolt-accordion
+  + .c-bolt-accordion-item
   .c-bolt-accordion-item__trigger-link--close {
   display: block;
 }
+
 .c-bolt-accordion-item__state:target
-  + .c-bolt-accordion
+  + .c-bolt-accordion-item
   .c-bolt-accordion-item__trigger-link--close {
   top: 0;
   left: 0;
@@ -176,7 +202,8 @@ bolt-accordion-item {
 
 .c-bolt-accordion-item__trigger-icons-inner {
   transform: rotate(0deg);
-  transition: transform 0.2s ease;
+  will-change: transform;
+  transition: transform $bolt-transition;
 }
 
 .c-bolt-accordion-item__trigger-icon {
@@ -185,8 +212,9 @@ bolt-accordion-item {
   color: bolt-theme(link);
   line-height: 0; // Workaround to line-height messing up icon alignment
   vertical-align: middle;
-  font-size: 1.5rem;
-  transition: opacity 0.2s ease;
+  font-size: 1.4rem;
+  will-change: opacity;
+  transition: opacity $bolt-transition;
 
   & ~ * {
     position: absolute;
@@ -238,7 +266,7 @@ bolt-accordion-item {
   width: 100%;
   height: 0;
   overflow: auto;
-  transition: all 0.2s cubic-bezier(0, 0, 0.3, 1) 0.1s;
+  transition: all $bolt-transition-timing cubic-bezier(0, 0, 0.3, 1) ($bolt-transition-timing / 2);
 
   &[data-open]:not([style*='height']) {
     visibility: visible;
@@ -263,21 +291,22 @@ bolt-accordion-item {
   visibility: visible;
   transform: translate3d(0, 0, 0);
   max-height: none;
-  transition: all 0.2s cubic-bezier(0, 0, 0.3, 1) 0.1s;
-  transition: transform 300ms ease, height 300ms ease;
+  will-change: transform, height;
+  transition: transform $bolt-transition, height $bolt-transition;
 }
 
 .c-bolt-accordion-item__content--open {
   display: block;
   transform: translate3d(0, 0, 0);
-  transition: height 0.2s ease;
+  transition: height $bolt-transition;
 }
 
 .c-bolt-accordion-item__content-inner {
   opacity: bolt-opacity(0);
   position: relative;
   overflow: auto;
-  transition: opacity 0.1s ease;
+  will-change: opacity;
+  transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
   -webkit-overflow-scrolling: touch;
 
   .c-bolt-accordion-item--shadow & {
@@ -293,7 +322,8 @@ bolt-accordion-item {
       height: 100%;
       pointer-events: none;
       background-color: rgba(bolt-color(gray, light), 0.1);
-      transition: opacity 0.1s ease;
+      will-change: opacity;
+      transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
     }
   }
 
@@ -311,7 +341,8 @@ bolt-accordion-item {
   .c-bolt-accordion-item__content-inner,
 .c-bolt-accordion-item__content--opened .c-bolt-accordion-item__content-inner {
   opacity: bolt-opacity(100);
-  transition: opacity 0.3s ease;
+  will-change: opacity;
+  transition: opacity $bolt-transition;
 }
 
 .c-bolt-accordion-item__state

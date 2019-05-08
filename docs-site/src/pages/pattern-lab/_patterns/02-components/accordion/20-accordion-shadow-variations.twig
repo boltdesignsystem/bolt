@@ -4,7 +4,7 @@
 
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
   {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
-    <h3>Accordion with shadow</h3>
+    <h3>Shadow</h3>
     {% include "@bolt-components-accordion/accordion.twig" with {
       shadow: true,
       items: [
@@ -24,7 +24,7 @@
     } only %}
   {% endcell %}
   {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
-    <h3>Accordion with shadow without separator</h3>
+    <h3>Shadow, no separator</h3>
     {% include "@bolt-components-accordion/accordion.twig" with {
       shadow: true,
       separator: false,
@@ -45,7 +45,7 @@
     } only %}
   {% endcell %}
   {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
-    <h3>Accordion without shadow</h3>
+    <h3>No shadow</h3>
     {% include "@bolt-components-accordion/accordion.twig" with {
       items: [
         {
