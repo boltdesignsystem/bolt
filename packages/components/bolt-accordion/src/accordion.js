@@ -47,7 +47,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
   constructor(self) {
     self = super(self);
 
-    this.useShadow = hasNativeShadowDomSupport;
+    self.useShadow = hasNativeShadowDomSupport;
 
     // this.state = {
     //   open: this.props.autoOpen ? this.props.autoOpen : false,
@@ -177,7 +177,8 @@ class BoltAccordion extends withContext(withLitHtml()) {
   addMutationObserver() {
     const self = this;
 
-    if (window.MutationObserver) {
+    // todo: this.useShadow is a temporary workaround until mutation observer works better with light DOM
+    if (window.MutationObserver && this.useShadow) {
       // Re-generate slots + re-render when mutations are observed
       const mutationCallback = function(mutationsList, observer) {
         for (let mutation of mutationsList) {
