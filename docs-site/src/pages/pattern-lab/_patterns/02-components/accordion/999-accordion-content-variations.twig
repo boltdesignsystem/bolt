@@ -1,42 +1,65 @@
-{% set content_inner %}
-  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-  <p><b>Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</b></p>
-  <p><bolt-link url="#"><bolt-icon slot="before" name="asset-presentation" size="medium"></bolt-icon>Get the presentation</bolt-link></p>
-  <p><bolt-link url="#"><bolt-icon slot="before" name="asset-video" size="medium"></bolt-icon>Watch video</bolt-link></p>
+{% set link_1 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Get the presentation",
+    url: "https://pega.com",
+    icon: {
+      position: "before",
+      name: "asset-presentation",
+    },
+  } only %}
+{% endset %}
+
+{% set link_2 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Watch video",
+    url: "https://pega.com",
+    icon: {
+      position: "before",
+      name: "asset-video",
+    },
+  } only %}
 {% endset %}
 
 {% set trigger %}
-  {% include "@bolt-components-grid/grid.twig" with {
-    gutter: "small",
-    items: [
-      {
-        column_start: "1",
-        column_span: "4",
-        content: "12:00 PM",
-      },
-      {
-        column_start: "5",
-        column_span: "8",
-        content: "<h3>Lunch & Networking</h3>",
-      },
-    ]
-  } only %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-3/12@small" %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "12:00 PM",
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "Lunch & Networking",
+        size: "xlarge",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
 {% endset %}
 
 {% set content %}
-  {% include "@bolt-components-grid/grid.twig" with {
-    gutter: "small",
-    items: [
-      {
-        column_start: "5",
-        column_span: "8",
-        content: content_inner,
-      },
-    ]
-  } only %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--right" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+        weight: "bold",
+      } only %}
+      {% include "@bolt-components-list/list.twig" with {
+        display: "inline",
+        spacing: "small",
+        items: [
+          link_1,
+          link_2,
+        ]
+      } only %}
+    {% endcell %}
+  {% endgrid %}
 {% endset %}
 
 {% include "@bolt-components-accordion/accordion.twig" with {
+  icon_valign: "center",
   items: [
     {
       trigger: trigger,

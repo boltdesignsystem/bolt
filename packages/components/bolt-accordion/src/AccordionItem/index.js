@@ -27,7 +27,7 @@ class AccordionItem extends withContext(withLitHtml()) {
   static get consumes() {
     return [
       [AccordionContext, 'noSeparator'],
-      [AccordionContext, 'shadow'],
+      [AccordionContext, 'boxShadow'],
       [AccordionContext, 'spacing'],
       [AccordionContext, 'iconValign'],
       [AccordionContext, 'useShadow'],
@@ -85,12 +85,12 @@ class AccordionItem extends withContext(withLitHtml()) {
   }
 
   template() {
-    const { noSeparator, shadow, iconValign } = this.context;
+    const { noSeparator, boxShadow, iconValign } = this.context;
 
     const accordionClasses = css(
       'c-bolt-accordion-item',
       !noSeparator ? 'c-bolt-accordion-item--separator' : '',
-      shadow ? 'c-bolt-accordion-item--shadow' : '',
+      boxShadow ? 'c-bolt-accordion-item--box-shadow' : '',
       iconValign && iconValign !== 'top'
         ? `c-bolt-accordion-item--icon-valign-${iconValign}`
         : '',

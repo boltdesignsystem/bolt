@@ -55,9 +55,18 @@ properties:
     enum:
       - true
       - false
-  shadow:
+  box_shadow:
     type: boolean
-    description: Adds a shadow around the accordion.
+    title: Box Shadow (Twig only)
+    description: Box shadow around the accordion.
+    default: false
+    enum:
+      - true
+      - false
+  box-shadow:
+    type: boolean
+    title: Box Shadow (Web component only)
+    description: Box shadow around the accordion.
     default: false
     enum:
       - true

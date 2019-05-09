@@ -3,7 +3,7 @@ import { html } from '@bolt/core/renderers/renderer-lit-html';
 
 export const AccordionItemContent = (children, props, context) => {
   const spacingClasses = css(
-    context.spacing ? `c-bolt-accordion-item--spacing-${context.spacing}` : '',
+    context.spacing ? `c-bolt-accordion-spacing--${context.spacing}` : '',
   );
 
   const contentTemplate = children => {

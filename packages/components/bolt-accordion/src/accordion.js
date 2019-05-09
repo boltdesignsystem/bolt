@@ -20,7 +20,7 @@ import { Accordion } from './_accordion-handorgel';
 // define which specific props to provide to children that subscribe
 export const AccordionContext = defineContext({
   noSeparator: false,
-  shadow: false,
+  boxShadow: false,
   spacing: 'medium',
   iconValign: 'top',
   useShadow: hasNativeShadowDomSupport,
@@ -39,7 +39,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
   static props = {
     multiple: props.boolean,
     noSeparator: props.boolean,
-    shadow: props.boolean,
+    boxShadow: props.boolean,
     spacing: props.string,
     iconValign: props.string,
   };
@@ -213,7 +213,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
   template() {
     const classes = css(
       'c-bolt-accordion',
-      this.props.shadow ? 'c-bolt-accordion--shadow' : '',
+      this.props.boxShadow ? 'c-bolt-accordion--box-shadow' : '',
     );
 
     return html`
@@ -250,7 +250,8 @@ class BoltAccordion extends withContext(withLitHtml()) {
     // @todo: replace with validated props
     this.contexts.get(AccordionContext).noSeparator =
       this.props.noSeparator || false;
-    this.contexts.get(AccordionContext).shadow = this.props.shadow || false;
+    this.contexts.get(AccordionContext).boxShadow =
+      this.props.boxShadow || false;
     this.contexts.get(AccordionContext).spacing =
       this.props.spacing || 'medium';
     this.contexts.get(AccordionContext).iconValign =

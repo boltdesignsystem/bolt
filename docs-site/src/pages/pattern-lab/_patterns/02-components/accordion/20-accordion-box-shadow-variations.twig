@@ -1,12 +1,12 @@
 <p>
-  By setting the <code>shadow</code> prop to <code>true</code>, it will create a shadow box around the accordion.
+  By setting the <code>box_shadow</code> prop to <code>true</code>, it will create a box shadow around the accordion.
 </p>
 
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
   {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
-    <h3>Shadow</h3>
+    <h3>Box shadow</h3>
     {% include "@bolt-components-accordion/accordion.twig" with {
-      shadow: true,
+      box_shadow: true,
       items: [
         {
           trigger: "Accordion item 1",
@@ -24,9 +24,9 @@
     } only %}
   {% endcell %}
   {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
-    <h3>Shadow, no separator</h3>
+    <h3>Box shadow, no separator</h3>
     {% include "@bolt-components-accordion/accordion.twig" with {
-      shadow: true,
+      box_shadow: true,
       no_separator: true,
       items: [
         {
@@ -45,7 +45,7 @@
     } only %}
   {% endcell %}
   {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
-    <h3>No shadow</h3>
+    <h3>No box shadow</h3>
     {% include "@bolt-components-accordion/accordion.twig" with {
       items: [
         {

@@ -8,7 +8,7 @@ export const AccordionItemHeader = (children, props, context) => {
   );
 
   const spacingClasses = css(
-    context.spacing ? `c-bolt-accordion-item--spacing-${context.spacing}` : '',
+    context.spacing ? `c-bolt-accordion-spacing--${context.spacing}` : '',
   );
 
   const headerTemplate = children => {

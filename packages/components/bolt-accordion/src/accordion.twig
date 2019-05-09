@@ -12,7 +12,7 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  this.data.shadow.value ? base_class ~ "--shadow" : ""
+  this.data.box_shadow.value ? base_class ~ "--box-shadow" : ""
 ] %}
 
 {#
@@ -43,7 +43,7 @@
           last: loop.last,
           no_separator: this.data.no_separator.value,
           spacing: this.data.spacing.value,
-          shadow: this.data.shadow.value,
+          box_shadow: this.data.box_shadow.value,
           icon_valign: this.data.icon_valign.value }) only %}
       {% endfor %}
     </replace-with-children>
