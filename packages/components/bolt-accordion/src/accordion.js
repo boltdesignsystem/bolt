@@ -46,15 +46,8 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
   constructor(self) {
     self = super(self);
-
     self.useShadow = hasNativeShadowDomSupport;
 
-    // this.state = {
-    //   open: this.props.autoOpen ? this.props.autoOpen : false,
-    //   collapse: this.props.collapse ? this.props.collapse : false,
-    // };
-
-    // this.uuid = '12345';
     return self;
   }
 

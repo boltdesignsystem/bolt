@@ -5,11 +5,7 @@ import {
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import {
-  render,
-  withLitHtml,
-  html,
-} from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion-item.scss';
@@ -70,10 +66,6 @@ class AccordionItem extends withContext(withLitHtml()) {
       this.parentNode &&
       this.parentNode.getElementsByTagName('BOLT-ACCORDION-ITEM');
 
-    // window.addEventListener('optimizedResizeHandler', () => {
-    //   this.autoHeight();
-    // });
-
     this.addEventListener('activateLink', this.close);
   }
 
@@ -91,19 +83,6 @@ class AccordionItem extends withContext(withLitHtml()) {
       elem.accordion.folds[0].close();
     }, 300);
   }
-
-  // autoHeight() {
-  //   if (this.contentElem) {
-  //     if (
-  //       this.props.collapse &&
-  //       window.matchMedia('(min-width: 600px)').matches
-  //     ) {
-  //       this.contentElem.classList.add('u-bolt-height-auto');
-  //     } else if (this.props.collapse) {
-  //       this.contentElem.classList.remove('u-bolt-height-auto');
-  //     }
-  //   }
-  // }
 
   template() {
     const { noSeparator, shadow, iconValign } = this.context;
@@ -154,13 +133,9 @@ class AccordionItem extends withContext(withLitHtml()) {
     this.contentElem = this.renderRoot.querySelector(
       '.c-bolt-accordion-item__content',
     );
-
-    // this.autoHeight();
   }
 
   render() {
-    // console.log('@render');
-
     this.addClassesToSlottedChildren(['default', 'header']);
 
     return html`
@@ -168,32 +143,5 @@ class AccordionItem extends withContext(withLitHtml()) {
     `;
   }
 }
-
-// @todo - refactor, surface this up to a higher level for reuse
-// Create a custom 'optimizedResizeHandler' event that works just like window.resize but is more performant because it
-// won't fire before a previous event is complete.
-// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function() {
-  function throttle(type, name, obj) {
-    obj = obj || window;
-    let running = false;
-
-    function func() {
-      if (running) {
-        return;
-      }
-      running = true;
-      requestAnimationFrame(function() {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    }
-    obj.addEventListener(type, func);
-  }
-
-  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-  // such as scroll.
-  throttle('resize', 'optimizedResizeHandler');
-})();
 
 export { AccordionItem };
