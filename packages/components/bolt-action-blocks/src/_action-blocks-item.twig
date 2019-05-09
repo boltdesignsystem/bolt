@@ -1,0 +1,25 @@
+{% set action_block_base_class = "c-bolt-action-block" %}
+{% set attributes = create_attribute(attributes|default({})) %}
+
+{% set action_block_classes = [
+  action_block_base_class
+] %}
+
+<bolt-action-block>
+  <a href="{{ url }}" {{ attributes.addClass(action_block_classes | raw) }}>
+    {% if icon %}
+      <div class="{{ "#{action_block_base_class}__item #{action_block_base_class}__icon" }}">
+        {% set icon = icon | merge({
+          size: icon.size | default("xlarge")
+        }) %}
+        {% include "@bolt/icon.twig" with icon only %}
+      </div>
+    {% endif %}
+
+    {% if text %}
+      <div class="{{ "#{action_block_base_class}__item #{action_block_base_class}__text" }}">
+        {{ text }}
+      </div>
+    {% endif %}
+  </a>
+</bolt-action-block>
