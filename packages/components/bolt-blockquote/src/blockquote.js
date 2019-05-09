@@ -4,10 +4,11 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { convertInitialTags } from '@bolt/core/decorators';
 import classNames from 'classnames/bind';
 import styles from './blockquote.scss';
+import textStyles from '@bolt/components-text/index.scss';
 import schema from '../blockquote.schema.yml';
 import { AuthorImage, AuthorName, AuthorTitle } from './Author';
 
-let cx = classNames.bind(styles);
+let cx = classNames.bind([styles, textStyles]);
 
 @define
 @convertInitialTags('blockquote') // The first matching tag will have its attributes converted to component props
@@ -37,7 +38,10 @@ class BoltBlockquote extends withLitHtml() {
     super.rendered && super.rendered();
     const self = this;
 
-    if (window.MutationObserver) {
+    // @todo: I've added this.useShadow here to exclude IE.
+    // In IE-only this mutation callback causes multiple re-renders
+    // and causes component to disappear.
+    if (window.MutationObserver && this.useShadow) {
       // Re-generate slots + re-render when mutations are observed
       const mutationCallback = function(mutationsList, observer) {
         self.slots = self._checkSlots();
@@ -164,8 +168,23 @@ class BoltBlockquote extends withLitHtml() {
 
     this.addClassesToSlottedChildren();
 
+    const textClasses = cx(
+      'c-bolt-text-v2',
+      'c-bolt-text-v2--block',
+      'c-bolt-text-v2--body',
+      'c-bolt-text-v2--font-size-xlarge',
+      'c-bolt-text-v2--font-weight-semibold',
+      'c-bolt-text-v2--font-style-regular',
+      'c-bolt-text-v2--color-theme-headline',
+      'c-bolt-text-v2--letter-spacing-regular',
+      'c-bolt-text-v2--align-inherit',
+      'c-bolt-text-v2--text-transform-regular',
+      'c-bolt-text-v2--line-height-regular',
+      'c-bolt-text-v2--opacity-100',
+    );
+
     return html`
-      ${this.addStyles([styles])}
+      ${this.addStyles([styles, textStyles])}
       <blockquote class="${classes}" is="shadow-root">
         ${this.slots.logo
           ? html`
@@ -175,14 +194,9 @@ class BoltBlockquote extends withLitHtml() {
             `
           : ''}
         <div class="${cx('c-bolt-blockquote__quote')}">
-          <bolt-text
-            tag="div"
-            font-size="${size}"
-            font-weight="semibold"
-            color="theme-headline"
-          >
+          <div class="${textClasses}">
             ${this.slot('default')}
-          </bolt-text>
+          </div>
         </div>
         ${footerItems.length > 0
           ? html`
@@ -203,3 +217,41 @@ class BoltBlockquote extends withLitHtml() {
 }
 
 export { BoltBlockquote };
+
+// @todo: Original return statement - backing this out until `bolt-text` is ready for release
+// return html`
+// ${this.addStyles([styles])}
+// <blockquote class="${classes}" is="shadow-root">
+//   ${this.slots.logo
+//     ? html`
+//         <div class="${cx('c-bolt-blockquote__logo')}">
+//           ${this.slot('logo')}
+//         </div>
+//       `
+//     : ''}
+//   <div class="${cx('c-bolt-blockquote__quote')}">
+//     <bolt-text
+//       tag="div"
+//       font-size="${size}"
+//       font-weight="semibold"
+//       color="theme-headline"
+//     >
+//       ${this.slot('default')}
+//     </bolt-text>
+//   </div>
+//   ${footerItems.length > 0
+//     ? html`
+//         <footer class="${cx('c-bolt-blockquote__footer')}">
+//           ${footerItems.map(
+//             footerItem => html`
+//               <div class="${cx('c-bolt-blockquote__footer-item')}">
+//                 ${footerItem}
+//               </div>
+//             `,
+//           )}
+//         </footer>
+//       `
+//     : ''}
+// </blockquote>
+// `;
+// }
