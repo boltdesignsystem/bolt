@@ -33,8 +33,7 @@
 
 <bolt-accordion
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("content")|without("separator")|without("class") }}
-  {{ separator is sameas(false) ? "no-separator" : '' }}
+  {{ this.props|without("content")|without("class") }}
   >
   {% if items %}
     <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
@@ -42,7 +41,7 @@
         {% include "@bolt-components-accordion/AccordionItem/accordion-item.twig" with item|merge({
           first: loop.first,
           last: loop.last,
-          separator: this.data.separator.value,
+          no_separator: this.data.no_separator.value,
           spacing: this.data.spacing.value,
           shadow: this.data.shadow.value,
           icon_valign: this.data.icon_valign.value }) only %}

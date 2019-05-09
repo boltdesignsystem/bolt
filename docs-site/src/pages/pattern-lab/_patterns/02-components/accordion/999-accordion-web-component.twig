@@ -12,20 +12,16 @@
 {% set basic_usage %}
 <bolt-accordion>
   <bolt-accordion-item>
-    <div slot="header">Accordion item 1</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    <bolt-text slot="header">Accordion item 1</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
   </bolt-accordion-item>
   <bolt-accordion-item>
-    <div slot="header">Accordion item 2</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    <bolt-text slot="header">Accordion item 2</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
   </bolt-accordion-item>
   <bolt-accordion-item>
-    <div slot="header">Accordion item 3</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-  </bolt-accordion-item>
-  <bolt-accordion-item>
-    <div slot="header">Accordion item 4</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    <bolt-text slot="header">Accordion item 3</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
   </bolt-accordion-item>
 </bolt-accordion>
 {% endset %}
@@ -33,16 +29,16 @@
 {% set prop_usage %}
 <bolt-accordion multiple shadow no-separator spacing="small">
   <bolt-accordion-item>
-    <div slot="header">Accordion item 1</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    <bolt-text slot="header">Accordion item 1</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
   </bolt-accordion-item>
   <bolt-accordion-item>
-    <div slot="header">Accordion item 2</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    <bolt-text slot="header">Accordion item 2</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
   </bolt-accordion-item>
   <bolt-accordion-item>
-    <div slot="header">Accordion item 3</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    <bolt-text slot="header">Accordion item 3</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
   </bolt-accordion-item>
 </bolt-accordion>
 {% endset %}
@@ -50,17 +46,17 @@
 
 {% set advanced_usage %}
 <bolt-accordion>
+  <bolt-accordion-item>
+    <bolt-text slot="header">Accordion item 1</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+  </bolt-accordion-item>
   <bolt-accordion-item auto-open>
-    <div slot="header">Accordion item 1</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    <bolt-text slot="header">Accordion item 2</bolt-text>
+    <bolt-text>This item is opened by default. Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
   </bolt-accordion-item>
   <bolt-accordion-item>
-    <div slot="header">Accordion item 2</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
-  </bolt-accordion-item>
-  <bolt-accordion-item>
-    <div slot="header">Accordion item 3</div>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+    <bolt-text slot="header">Accordion item 3</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
   </bolt-accordion-item>
 </bolt-accordion>
 {% endset %}

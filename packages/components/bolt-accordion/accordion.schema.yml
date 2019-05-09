@@ -18,6 +18,9 @@ properties:
           type: boolean
           description: Open section when accordion initializes
           default: false
+          enum:
+            - true
+            - false
         uuid:
           type: string
           description: Unique ID for accordion item, randomly generated if not provided.
@@ -33,14 +36,32 @@ properties:
     type: boolean
     description: Allow multiple items to be open at the same time.
     default: false
-  separator:
+    enum:
+      - true
+      - false
+  no_separator:
     type: boolean
-    description: Displays a border between each accordion item. Twig only.
-    default: true
+    title: No Separator (Twig only)
+    description: Hides the separator in between items.
+    default: false
+    enum:
+      - true
+      - false
+  no-separator:
+    type: boolean
+    title: No Separator (Web component only)
+    description: Hides the separator in between items.
+    default: false
+    enum:
+      - true
+      - false
   shadow:
     type: boolean
     description: Adds a shadow around the accordion.
     default: false
+    enum:
+      - true
+      - false
   spacing:
     type: string
     description: Control the spacing around items.
@@ -51,15 +72,19 @@ properties:
       - small
       - medium
       - large
-      - xlarge
   icon_valign:
     type: string
-    description: Vertically align accordion trigger icon.
+    title: Icon Vertical Alignment (Twig only)
+    description: Vertically align accordion trigger and icon.
     default: top
     enum:
       - top
       - center
-  no-separator:
-    type: boolean
-    description: Hides the default border between each accordion item. Web Component only.
-    default: false
+  icon-valign:
+    type: string
+    title: Icon Vertical Alignment (Web component only)
+    description: Vertically align accordion trigger and icon.
+    default: top
+    enum:
+      - top
+      - center
