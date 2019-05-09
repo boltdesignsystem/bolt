@@ -6,6 +6,8 @@
 
 {# Variables #}
 {% set this = init(schema) %}
+{% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random()) %}
+
 
 {% for class in attributes["class"] %}
   {% if class starts with "c-bolt-" == false %}
@@ -16,6 +18,7 @@
 <bolt-modal
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
+  uuid="{{ uuid }}"
 >
   {{ content }}
 </bolt-modal>

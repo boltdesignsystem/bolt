@@ -21,6 +21,7 @@ class BoltModal extends withLitHtml() {
     spacing: props.string,
     theme: props.string,
     scroll: props.string,
+    uuid: props.string,
     // @todo: persistent - this is here to set up the future prop, which is commented out in the schema right now. For now, this will always be false until it's introduced. The same applies for all the other persistent logics below.
     persistent: {
       ...props.boolean,
@@ -317,6 +318,8 @@ class BoltModal extends withLitHtml() {
       hideCloseButton,
     } = this.validateProps(this.props);
 
+    const uuid = this.props.uuid || Math.floor(10000 + Math.random() * 90000);
+
     const classes = cx('c-bolt-modal', {
       [`is-open`]: open,
       [`c-bolt-modal--scroll-${scroll}`]: scroll,
@@ -423,7 +426,7 @@ class BoltModal extends withLitHtml() {
         -->
         <focus-trap>
           <dialog
-            aria-labelledby="dialog-title"
+            aria-labelledby="dialog-title-${uuid}"
             ?open=${open}
             aria-hidden=${open === true ? 'false' : 'true'}
             class="${contentClasses}"
@@ -450,7 +453,10 @@ class BoltModal extends withLitHtml() {
 
                 <!-- @todo: does this need to be a unique id? Mai: Yes. -->
                 <!-- @todo: do we need an option to hideTitle? Mai: Yes. Only user generated content should show up in header and footer. -->
-                <h1 id="dialog-title" class="c-bolt-modal__dialog-title">
+                <h1
+                  id="dialog-title-${uuid}"
+                  class="c-bolt-modal__dialog-title"
+                >
                   Dialog content
                 </h1>
                 ${this.slot('header')}
