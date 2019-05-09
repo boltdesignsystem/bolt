@@ -46,6 +46,15 @@ class BoltBlockquote extends withLitHtml() {
       const mutationCallback = function(mutationsList, observer) {
         self.slots = self._checkSlots();
         self.triggerUpdate();
+
+        // todo: refactor to check for slotted content, light OR shadow DOM
+        // mutationsList.forEach(mutation => {
+        //   if (mutation.type === 'childList') {
+        //     if (mutation.target.parentNode === self) {
+        //       console.log(mutation.target);
+        //     }
+        //   }
+        // });
       };
 
       // Create an observer instance linked to the callback function

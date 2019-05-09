@@ -8,6 +8,7 @@ let cx = classNames.bind([styles, textStyles]);
 export const AuthorTitle = elem => {
   const { props, slots } = elem;
 
+  // @todo: Temporary workaround until we can use `bolt-text`
   const textClasses = cx(
     'c-bolt-text-v2',
     'c-bolt-text-v2--block',
