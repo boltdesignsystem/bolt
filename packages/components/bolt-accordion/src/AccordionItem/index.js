@@ -105,35 +105,6 @@ class AccordionItem extends withContext(withLitHtml()) {
   //   }
   // }
 
-  // automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
-  addClassesToSlottedChildren() {
-    if (this.slots) {
-      if (this.slots.default) {
-        const defaultSlot = [];
-
-        this.slots.default.forEach(item => {
-          if (item.tagName) {
-            item.classList.remove('is-first-child');
-            item.classList.remove('is-last-child'); // clean up existing classes
-            defaultSlot.push(item);
-          }
-        });
-
-        if (defaultSlot[0]) {
-          defaultSlot[0].classList.add('is-first-child');
-
-          if (defaultSlot.length === 1) {
-            defaultSlot[0].classList.add('is-last-child');
-          }
-        }
-
-        if (defaultSlot[defaultSlot.length - 1]) {
-          defaultSlot[defaultSlot.length - 1].classList.add('is-last-child');
-        }
-      }
-    }
-  }
-
   template() {
     const { noSeparator, shadow, iconValign } = this.context;
 
@@ -190,7 +161,7 @@ class AccordionItem extends withContext(withLitHtml()) {
   render() {
     // console.log('@render');
 
-    this.addClassesToSlottedChildren();
+    this.addClassesToSlottedChildren(['default', 'header']);
 
     return html`
       ${this.addStyles([styles, heightUtils])} ${this.template()}
