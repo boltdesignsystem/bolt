@@ -3,8 +3,8 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import { convertInitialTags } from '@bolt/core/decorators';
 import classNames from 'classnames/bind';
-import styles from './blockquote.scss';
 import textStyles from '@bolt/components-text/index.scss';
+import styles from './blockquote.scss';
 import schema from '../blockquote.schema.yml';
 import { AuthorImage, AuthorName, AuthorTitle } from './Author';
 
