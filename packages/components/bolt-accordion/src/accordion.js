@@ -106,8 +106,10 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
   handleAccordionItemReady(item) {
     const root = item.renderRoot;
-    const header = root.querySelector('.c-bolt-accordion-item__trigger');
-    const content = root.querySelector('.c-bolt-accordion-item__content');
+    const header =
+      root && root.querySelector('.c-bolt-accordion-item__trigger');
+    const content =
+      root && root.querySelector('.c-bolt-accordion-item__content');
 
     if (header && content) {
       this.accordionItems = [...this.accordionItems, header, content];
