@@ -397,33 +397,17 @@ class BoltModal extends withLitHtml() {
 
     this.addClassesToSlottedChildren();
 
+    // @todo: work through how we want to handle the default dialog modal title
+    //  vs a customized modal title vs providing a title but hiding it.
     return html`
       ${this.addStyles([styles])}
-      <!--
-        Dialog container related notes:
-        - It is not the actual dialog window, just the container with which the script interacts.
-        - It can have a different id than 'my-accessible-dialog', but it needs an 'id'
-        anyway.
-      -->
       <div class="${classes}" aria-hidden=${open === true ? 'false' : 'true'}>
         ${this.slot('trigger')}
-        <!--
-          Overlay related notes:
-          - It has to have the 'tabindex="-1"' attribute.
-        -->
         <div
           class="${overlayClasses}"
           @click="${handleOverlayClick}"
           tabindex="-1"
         ></div>
-
-        <!--
-          Dialog window content related notes:
-          - It is the actual visual dialog element.
-          - It may have the 'alertdialog' role to make it behave like a “modal”. See the “Usage as a modal” section of the docs.
-          - It doesn’t have to be a '<dialog>' element, it can be a '<div>' element with the 'dialog' or 'alertdialog' role (e.g. '<div role="dialog">').
-          - It doesn’t have to have the 'aria-labelledby' attribute however this is recommended. It should match the 'id' of the dialog title.
-        -->
         <focus-trap>
           <dialog
             aria-labelledby="dialog-title-${uuid}"
@@ -432,27 +416,10 @@ class BoltModal extends withLitHtml() {
             class="${contentClasses}"
           >
             <article class="${containerClasses}">
-              <!--
-                Closing button related notes:
-                - It does have to have the 'type="button"' attribute.
-                - It does have to have an aria-label attribute if you use an icon as content.
-              -->
-
               <div class="${closeButtonClasses}">
                 ${this.slots.close ? this.slot('close') : defaultCloseButton}
               </div>
-
-              <!-- @todo: placeholder slot for slotted header content -->
-              <!-- @todo: work through how we want to handle the default dialog modal title (associated with an ID) vs a customized modal title vs providing a title but hiding it. -->
               <header class="${headerClasses}">
-                <!--
-                  Dialog title related notes:
-                  - It should have a different content than 'Dialog Title'.
-                  - It can have a different id than 'dialog-title'.
-                -->
-
-                <!-- @todo: does this need to be a unique id? Mai: Yes. -->
-                <!-- @todo: do we need an option to hideTitle? Mai: Yes. Only user generated content should show up in header and footer. -->
                 <h1
                   id="dialog-title-${uuid}"
                   class="c-bolt-modal__dialog-title"
@@ -461,16 +428,9 @@ class BoltModal extends withLitHtml() {
                 </h1>
                 ${this.slot('header')}
               </header>
-
-              <!--
-                Here lives the main content of the dialog.
-              -->
-              <!-- main slotted body content -->
               <div class="c-bolt-modal__container-body">
                 ${this.slot('default')}
               </div>
-
-              <!-- @todo: placeholder slot for slotted footer content -->
               ${footerTemplate()}
             </article>
           </dialog>
