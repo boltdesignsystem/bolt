@@ -11,6 +11,7 @@
     slidesPerView: 1,
     spaceBetween: "none",
     noPagination: true,
+    mode: 'gallery',
     attributes: {
       class: [
         "js-swiper-gallery--demo",
@@ -35,6 +36,7 @@
     noPagination: true,
     noMinWidth: true,
     freeScroll: true,
+    mode: 'gallery-thumbnail',
     slideToClickedSlide: true,
     freeMode: true,
     attributes: {
@@ -66,14 +68,14 @@
       mainCarousel.removeEventListener('rendered', checkIfShouldInitCarouselGallery);
       thumbnailCarousel.removeEventListener('rendered', checkIfShouldInitCarouselGallery);
 
-      mainCarousel.swiper.params.thumbs = {
+      mainCarousel.thumbs = {
         swiper: thumbnailCarousel.swiper,
         slideThumbActiveClass: 'c-bolt-carousel__slide--thumbnail-active',
         thumbsContainerClass: 'c-bolt-carousel--thumbnails t-bolt-xdark',
       }
 
       mainCarousel.options.thumbs = mainCarousel.swiper.params.thumbs;
-      mainCarousel.resizeCarousel();
+      mainCarousel.reInitCarousel();
     }
 
     if (thumbnailCarousel._wasInitiallyRendered === true){

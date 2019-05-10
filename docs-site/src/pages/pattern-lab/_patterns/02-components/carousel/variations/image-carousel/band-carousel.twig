@@ -1,0 +1,15 @@
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_band-carousel--slide-1.twig"),
+    include("_band-carousel--slide-2.twig"),
+    include("_band-carousel--slide-1.twig"),
+  ],
+  slidesPerView: 1,
+  loop: true,
+  autoplay: true,
+  loop: true,
+  spaceBetween: "none",
+  noPagination: false,
+  noNavButtons: true,
+  navButtonPosition: "inside",
+} only %}
