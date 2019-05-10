@@ -131,34 +131,4 @@ describe('button', () => {
 
     expect(renderedHTML).toMatchSnapshot();
   });
-
-  // test('Default <bolt-blockquote> inside a <form> renders, return blockquote innerHTML', async function() {
-  //   const renderedBlockquoteHTML = await page.evaluate(() => {
-  //     const form = document.createElement('form');
-  //     const blockquote = document.createElement('bolt-blockquote');
-  //     blockquote.setAttribute(
-  //       'author-name',
-  //       'Michelangelo di Lodovico Buonarroti Simoni',
-  //     );
-  //     blockquote.setAttribute('author-title', 'Renaissance Artist');
-  //     blockquote.setAttribute('author-image', '/fixtures/500x500.jpg');
-  //     blockquote.innerHTML = `<img slot="logo" src="/fixtures/logo-paypal.svg" alt="PayPal Logo">
-  //       <p>The greater danger for most of us lies not in setting our aim too high and falling short...</p>
-  //       <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>`;
-  //     form.appendChild(blockquote);
-  //     document.body.appendChild(form);
-  //     return blockquote.innerHTML;
-  //   });
-
-  //   const renderedHTML = await html(renderedBlockquoteHTML);
-
-  //   const image = await page.screenshot();
-
-  //   expect(image).toMatchImageSnapshot({
-  //     failureThreshold: '0.01',
-  //     failureThresholdType: 'percent',
-  //   });
-
-  //   expect(renderedHTML).toMatchSnapshot();
-  // });
 });
