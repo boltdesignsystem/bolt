@@ -8,6 +8,10 @@
           <span class="pl-c-pattern-state pl-c-pattern-state--{{ partial.patternState }}" title="{{ partial.patternState }}">{{ partial.patternState }}</span>
         {% endif %}
       </a>
+
+      <button class="pl-c-pattern__extra-toggle pl-js-pattern-extra-toggle" id="pl-pattern-extra-toggle-{{partial.patternPartial}}" data-patternpartial="{{ partial.patternPartial }}" title="View Pattern Info">
+        <span class="pl-c-pattern__toggle-icon">&#9660;</span>
+      </button>
     </h3>
     
     <!-- @todo: why doesn't PL node have breadcrumbs?? keeping in the Twig version -->
@@ -31,16 +35,12 @@
     {% endif %} #}
   </div><!--end pl-c-pattern__header-->
 
-  <div class="pl-js-pattern-example">
-    {{ partial.patternPartialCode | raw }}
+  <div class="pl-c-pattern__extra-wrapper">
+    <div class="pl-c-pattern__extra pl-js-pattern-extra" id="pl-pattern-extra-{{ partial.patternPartial }}"></div>
   </div>
 
-  <div class="pl-c-pattern__extra-wrapper">
-    <button class="pl-c-pattern__extra-toggle pl-js-pattern-extra-toggle" id="pl-pattern-extra-toggle-{{partial.patternPartial}}" data-patternpartial="{{ partial.patternPartial }}" title="View Pattern Info">
-      <span class="pl-c-pattern__toggle-icon">&#9660;</span>
-    </button>
-
-    <div class="pl-c-pattern__extra pl-js-pattern-extra" id="pl-pattern-extra-{{ partial.patternPartial }}"></div>
+  <div class="pl-js-pattern-example">
+    {{ partial.patternPartialCode | raw }}
   </div>
 
   <script type="text/json" id="pl-pattern-data-{{partial.patternPartial}}" class="pl-js-pattern-data">

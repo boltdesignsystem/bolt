@@ -49,6 +49,7 @@ bolt-component-explorer {
   max-width: 100%;
   left: 0 !important;
   right: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 @mixin bolt-input-placeholder($color) {
@@ -73,15 +74,21 @@ bolt-component-explorer {
   }
 }
 
+.range-view {
+  @include bolt-margin-left(xsmall);
+  display: inline-block;
+}
 
 .rjsf {
-  border-color: rgb(216, 216, 218);
-  border-width: 1px;
+  // border-color: rgb(216, 216, 218);
+  // border-width: 1px;
+  border: 0;
   // max-height: 80vh;
   // overflow: auto;
-  border-style: solid;
+  // border-style: solid;
   width: 100%;
   padding: 0.5rem;
+  height: 100%;
 
   // hide submit button -- not needed since we submit automatically
   > .form-group + p {
@@ -152,10 +159,6 @@ bolt-component-explorer {
     border-bottom: 1px solid bolt-color(gray);
     width: 100%;
 
-    & + .field-description {
-      @include bolt-margin-top(0);
-      display: block;
-    }
   }
 
   article > h2 {
@@ -209,6 +212,11 @@ bolt-component-explorer {
     background-clip: padding-box;
     box-sizing: border-box;
     font-size: 0.9rem;
+
+    // prevent zooming on iOS
+    &[select] {
+      font-size: 16px;
+    }
   }
 
   .btn {
@@ -219,6 +227,7 @@ bolt-component-explorer {
     font-size: 0.8rem;
     font-weight: 600;
     vertical-align: middle;
+    flex-grow: 1;
     // text-transform: capitalize;
     flex-basis: 6rem; // make different lengths of inputs + labels more similar in appearance
     margin-right: 1rem;
@@ -313,7 +322,9 @@ bolt-component-explorer {
     @include bolt-input-placeholder($bolt-input-placeholder-color);
 
     display: block;
-    width: 100%;
+    // width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
     color: $bolt-input-text-color;
     line-height: calc(#{$bolt-line-height--xsmall + em} - 2px); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
     font-size: $bolt-font-size--small;
@@ -501,7 +512,11 @@ bolt-component-explorer {
 
 
 
-
+.form-group.field.field-boolean {
+  flex-basis: 50%;
+  display: inline-block;
+  padding-right: 1rem;
+}
 
 
 .react-resizable {
@@ -627,4 +642,10 @@ legend[id="root__title"]{
 .rjsf input[type="range"].form-control {
   padding: 0.25rem;
   border-radius: 25rem;
+}
+
+
+bolt-schema-form {
+  display: block;
+  height: 100%;
 }

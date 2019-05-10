@@ -27,7 +27,7 @@ class BoltRadioSwitch extends withLitHtml() {
 
   onFormChange(value) {
     const changeCaseElements = document.querySelectorAll('bolt-change-case');
-
+    const schemaTable = this.closest('bolt-schema-table');
     if (value === 'wc') {
       changeCaseElements.forEach(element => {
         element.setAttribute('mode', 'kebab');
@@ -36,6 +36,21 @@ class BoltRadioSwitch extends withLitHtml() {
       changeCaseElements.forEach(element => {
         element.setAttribute('mode', 'camel');
       });
+    }
+
+    if (schemaTable) {
+      let docsTypeClassToAdd;
+      let docsTypeClassToRemove;
+      if (value === 'wc') {
+        docsTypeClassToAdd = 'is-wc';
+        docsTypeClassToRemove = 'is-twig';
+      } else {
+        docsTypeClassToAdd = 'is-twig';
+        docsTypeClassToRemove = 'is-wc';
+      }
+
+      schemaTable.classList.add(docsTypeClassToAdd);
+      schemaTable.classList.remove(docsTypeClassToRemove);
     }
   }
 

@@ -31,7 +31,29 @@
   }
 }
 
+.c-bds-docs-table {
+  @include bolt-margin-bottom(small);
+}
 
+bolt-schema-table.is-twig {
+  .c-bds-docs-table__row--twig-only {
+    display: table-row;
+  }
+
+  .c-bds-docs-table__row--web-component-only {
+    display: none;
+  }
+}
+
+bolt-schema-table.is-wc {
+  .c-bds-docs-table__row--twig-only {
+    display: none;
+  }
+
+  .c-bds-docs-table__row--web-component-only {
+    display: table-row;
+  }
+}
 
 // .c-bolt-site {
 //   display: block;
