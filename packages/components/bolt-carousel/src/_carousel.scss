@@ -17,6 +17,10 @@ bolt-carousel {
     @include bolt-margin-bottom(medium);
   }
 
+  &[no-pagination]{
+    @include bolt-margin-bottom(0);
+  }
+
   // add custom scrollbar styling till JS kicks in
   &:not(.is-ready){
     @include bolt-carousel-scrollbar;
@@ -37,12 +41,44 @@ bolt-carousel {
 .c-bolt-carousel {
   position: relative;
   z-index: 1; /* Fix of Webkit flickering */
-  width: 100%;
+  width: auto;
   max-width: 100%;
   overflow: visible;
   margin: 0 auto;
   padding: 0;
   list-style: none;
+  width: 100%;
+  
+  &--overflow {
+    overflow: visible;
+  }
+
+  &--no-overflow {
+    overflow: hidden;
+  }
+
+  &.c-bolt-carousel--offset-before.c-bolt-carousel--offset-after {
+    padding-right: 5px;
+    padding-left: 5px;
+    width: calc(100% + 10px);
+    max-width: calc(100% + 10px);
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+
+  .c-bolt-carousel--offset-before:not(.c-bolt-carousel--offset-after),
+  .c-bolt-carousel--offset-after:not(.c-bolt-carousel--offset-before) {
+    width: calc(100% + 5px);
+    max-width: calc(100% + 5px);
+  }
+
+  .c-bolt-carousel--offset-before:not(.c-bolt-carousel--offset-after) {
+    margin-left: -5px;
+  }
+
+  .c-bolt-carousel--offset-after:not(.c-bolt-carousel--offset-before) {
+    margin-right: -5px;
+  }
 }
 
 .c-bolt-carousel__wrapper {
@@ -73,14 +109,37 @@ bolt-carousel {
 
 
 // carousel's nav position-specific styles
-bolt-carousel[nav-position="outside"]{
+// if nav-position isn't specified, set to default
+bolt-carousel:not([nav-button-position]):not([no-nav-buttons]), 
+bolt-carousel[nav-button-position="outside"]{
   @include bolt-padding-left(bolt-spacing(medium));
   @include bolt-padding-right(bolt-spacing(medium));
+  margin-right: (bolt-spacing(medium)) * -1;
+  margin-left: (bolt-spacing(medium)) * -1;
+  // min-width: calc(100% + #{bolt-spacing(medium) * 2} + #{bolt-spacing(xxsmall) * 2});
+  min-width: calc(100% + #{bolt-spacing(medium) * 2});
 }
 
-bolt-carousel[nav-position="inside"]{
+bolt-carousel[no-nav-buttons],
+bolt-carousel[nav-button-position="inside"]{
   @include bolt-padding-left(0);
   @include bolt-padding-right(0);
+  min-width: 100%;
+
+  &.is-offset-after,
+  &.is-offset-before {
+    min-width: calc(100% + 5px);
+  }
+
+  &.is-offset-both,
+  &.is-offset-before {
+    margin-left: -5px;
+  }
+
+  &.is-offset-both {
+    width: calc(100% + 10px);
+    min-width: calc(100% + 10px);
+  }
 }
 
 
@@ -120,10 +179,5 @@ bolt-carousel {
       content: '';
       @include bolt-padding-left($bolt-carousel-space-around);
     }
-  }
-
-  .c-bolt-carousel {
-    @include bolt-padding-left(xxsmall);
-    @include bolt-padding-right(xxsmall);
   }
 }

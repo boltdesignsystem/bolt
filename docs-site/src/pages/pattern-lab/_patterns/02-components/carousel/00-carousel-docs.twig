@@ -1,10 +1,28 @@
-{% set usage %}{% verbatim %}
+{# {% set usage %}{% verbatim %}
 {% include '@bolt-components-carousel/carousel.twig' only %}
-{% endverbatim %}{% endset %}
+{% endverbatim %}{% endset %} #}
 
 {% include "@utils/docs.twig" with {
   componentName: "carousel",
-  usage: usage,
+  variations: [
+    include("@bolt-components-link/link.twig", {
+      text: "Basic Carousel",
+      url: "#basic-carousel",
+      isHeadline: true,
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Image Carousel",
+      url: "/pattern-lab/?p=components-image-carousel",
+      isHeadline: true,
+    }),
+  ],
+  examples: [
+    include("@bolt-components-link/link.twig", {
+      text: "Space Between",
+      url: "#components-space-between",
+      isHeadline: true,
+    })
+  ],
   schemaForm: {
     template: '@bolt-components-carousel/carousel.twig',
     layout: "horizontal",
@@ -159,3 +177,19 @@
     },
   },
 } only %}
+
+<bolt-figure style="max-width: 1440px; margin: 0 auto;" class="u-bolt-padding-bottom">
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+    ],
+    attributes: {
+      slot: "media"
+    }
+  } only %}
+
+  Demo: <bolt-link url="/pattern-lab/?p=components-basic-carousel" target="_blank">A basic Carousel <bolt-icon name="external-link"></bolt-icon></bolt-link>
+</bolt-figure>
+

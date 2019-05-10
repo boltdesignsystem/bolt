@@ -42,7 +42,17 @@ bolt-carousel-slide {
     width: 100%;
   }
 
+  &:last-of-type {
+    margin-right: 0 !important;
+  }
+
   &:not(.is-ready) {
+    @for $i from 1 to 5 {
+      bolt-carousel[slides-per-view="#{$i}"] & {
+        @include bolt-calculate-slide-width($i);
+      }
+    }
+
     @for $i from 2 to 8 {
       @if ($i == 2) {
         &:nth-last-of-type(n + #{$i}),
@@ -87,5 +97,14 @@ bolt-carousel-slide {
   flex-shrink: 0;
   position: relative;
   width: 100%;
-  transition-property: transform;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  .c-bolt-carousel--thumbnails & {
+    opacity: 0.4;
+    cursor: pointer;
+  }
+
+  &.c-bolt-carousel__slide--thumbnail-active {
+    opacity: 1;
+  }
 }

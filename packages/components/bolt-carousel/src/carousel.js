@@ -12,7 +12,7 @@ import styles from '../index.scss';
 import originalSchema from '../carousel.schema.yml';
 
 let cx = classNames.bind(styles);
-let wasCarouselResizerAdded = false;
+let wasCarouselResizerAdded = true;
 
 function addBoltCarouselResizer() {
   if (wasCarouselResizerAdded === false) {
@@ -63,6 +63,13 @@ const boltBreakpoints = {
 const carouselProps = {};
 const schemaPropKeys = Object.keys(originalSchema.properties);
 
+function setWebComponentProperty(propertyName, propertyType, property) {
+  return {
+    ...props[propertyType],
+    ...{ default: property.default ? property.default : null },
+  };
+}
+
 for (const key of schemaPropKeys) {
   const property = originalSchema.properties[key];
   const propertyName = changeCase.camelCase(key);
@@ -72,17 +79,11 @@ for (const key of schemaPropKeys) {
       : property.type === 'integer'
       ? 'number'
       : property.type;
-
-  if (property.default) {
-    carouselProps[propertyName] = {
-      ...props[propertyType],
-      ...{ default: property.default },
-    };
-  } else {
-    carouselProps[propertyName] = {
-      ...props[propertyType],
-    };
-  }
+  carouselProps[propertyName] = setWebComponentProperty(
+    propertyName,
+    propertyType,
+    property,
+  );
 }
 
 @define
@@ -91,6 +92,8 @@ class BoltCarousel extends withLitHtml() {
 
   static props = {
     ...carouselProps,
+    slideOffsetBefore: props.boolean,
+    slideOffsetAfter: props.boolean,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -112,6 +115,18 @@ class BoltCarousel extends withLitHtml() {
     return self;
   }
 
+  checkForSlideOffset(){
+    const carouselSlides = this.querySelectorAll('bolt-carousel-slide');
+    this.slideOffsetBefore = carouselSlides[0].querySelector('bolt-card')
+      ? true
+      : false;
+    this.slideOffsetAfter = carouselSlides[
+      carouselSlides.length - 1
+    ].querySelector('bolt-card')
+      ? true
+      : false;
+  }
+
   connecting() {
     super.connecting && super.connecting();
     addBoltCarouselResizer();
@@ -127,6 +142,8 @@ class BoltCarousel extends withLitHtml() {
     if (prevButton) {
       prevButton.setAttribute('tabindex', '-1');
     }
+
+    this.checkForSlideOffset();
   }
 
   // recalculates the ideal # of slides to display when the overal carousel width changes
@@ -154,7 +171,7 @@ class BoltCarousel extends withLitHtml() {
   findIdealNumberOfSlides(desiredNumberOfSlides) {
     const availableWidth = this.getBoundingClientRect().width;
     const spaceBetween = this.spaceBetweenConfig;
-    const minWidth = 240; // @todo: update to pull in this min-width automatically
+    const minWidth = this.props.noMinWidth ? 0 : 240; // @todo: update to pull in this min-width automatically
     let realisticNumberOfSlides = 'auto';
 
     // adjust the requested # of slides based on the min / max number set
@@ -228,10 +245,36 @@ class BoltCarousel extends withLitHtml() {
     }
   }
 
+  configureSwiper(swiper) {
+    if (this.props.slidesPerGroup && this.props.slidesPerGroup === 'auto') {
+      swiper.params.slidesPerGroup = parseInt(swiper.params.slidesPerView, 10);
+    } else if (
+      this.props.slidesPerGroup &&
+      this.props.slidesPerGroup !== 'auto'
+    ) {
+      // make sure slidesPerGroup can't be set to a number greater than total # of slides visible
+      const slidesPerGroup = parseInt(this.props.slidesPerGroup, 10);
+      if (slidesPerGroup <= parseInt(swiper.params.slidesPerView, 10)) {
+        swiper.params.slidesPerGroup = slidesPerGroup;
+      } else {
+        swiper.params.slidesPerGroup = parseInt(
+          swiper.params.slidesPerView,
+          10,
+        );
+      }
+    } else {
+      swiper.params.slidesPerGroup = 1;
+    }
+
+    this.options.slidesPerGroup = swiper.params.slidesPerGroup;
+  }
+
   rendered() {
     if (this.props.noJs) {
       return;
     }
+
+    const self = this;
 
     const spacingUnit =
       window.getComputedStyle(document.body).fontSize.replace('px', '') * 2;
@@ -259,6 +302,7 @@ class BoltCarousel extends withLitHtml() {
     ).length;
 
     this.options = {
+      watchOverflow: true,
       a11y: {
         enabled: true,
         prevSlideMessage: this.props.prevSlideMessage,
@@ -279,27 +323,29 @@ class BoltCarousel extends withLitHtml() {
       notificationClass: 'c-bolt-carousel__notification',
       // @todo: refactor slidesPerView logic into standalone function
       navigation: {
-        nextEl: this.renderRoot.querySelector('.c-bolt-carousel__btn--next'),
+        nextEl: this.renderRoot.querySelector('.c-bolt-carousel__button--next'),
         prevEl: this.renderRoot.querySelector(
-          '.c-bolt-carousel__btn--previous',
+          '.c-bolt-carousel__button--previous',
         ),
-        disabledClass: 'c-bolt-carousel__btn--disabled',
-        hiddenClass: 'c-bolt-carousel__btn--hidden',
+        disabledClass: 'c-bolt-carousel__button--disabled',
+        hiddenClass: 'c-bolt-carousel__button--hidden',
       },
-      pagination: {
-        el: this.renderRoot.querySelector('.c-bolt-carousel__pagination'),
-        clickable: true,
-        type: 'bullets',
-        bulletClass: 'c-bolt-carousel__pagination__bullet',
-        bulletActiveClass: 'c-bolt-carousel__pagination__bullet--active',
-        modifierClass: 'c-bolt-carousel__pagination--',
-        hiddenClass: 'c-bolt-carousel__pagination--hidden',
-        clickableClass: 'c-bolt-carousel__pagination--clickable',
-        lockClass: 'c-bolt-carousel__pagination--locked',
-      },
+      pagination: this.props.noPagination
+        ? false
+        : {
+            el: this.renderRoot.querySelector('.c-bolt-carousel__pagination'),
+            clickable: true,
+            type: 'bullets',
+            bulletClass: 'c-bolt-carousel__pagination__bullet',
+            bulletActiveClass: 'c-bolt-carousel__pagination__bullet--active',
+            modifierClass: 'c-bolt-carousel__pagination--',
+            hiddenClass: 'c-bolt-carousel__pagination--hidden',
+            clickableClass: 'c-bolt-carousel__pagination--clickable',
+            lockClass: 'c-bolt-carousel__pagination--locked',
+          },
       spaceBetween: this.spaceBetweenConfig,
       scrollbar: {
-        hide: !this.props.freeScroll,
+        hide: !this.props.freeScroll && this.props.noScrollbar,
         el: this.renderRoot.querySelector('.c-bolt-carousel__scrollbar'),
         draggable: true,
         lockClass: 'c-bolt-carousel__scrollbar-lock',
@@ -319,6 +365,8 @@ class BoltCarousel extends withLitHtml() {
       centerInsufficientSlides: false,
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
+      slideToClickedSlide: this.props.slideToClickedSlide,
+      // preventClicks: false,
       // mousewheel: {
       //   invert: true,
       //   releaseOnEdges: false,
@@ -332,6 +380,14 @@ class BoltCarousel extends withLitHtml() {
       effect: this.props.fade ? 'fade' : 'slide',
       freeMode: this.props.freeScroll, //@todo: re-enable when adding free-scroll prop options
       slidesPerView: this.calculateSlidesPerView(this.props.slidesPerView),
+      on: {
+        init() {
+          console.log('swiper initialized');
+          self.configureSwiper(this);
+          this.update();
+          self.swiper = this;
+        },
+      },
     };
 
     this.calculateSlidesPerViewBreakpoints();
@@ -344,6 +400,10 @@ class BoltCarousel extends withLitHtml() {
       });
 
       this.classList.add('is-ready');
+
+      if (this.slideOffset) {
+        this.classList.add(`is-offset-${this.slideOffset}`);
+      }
 
       for (const slide of this.querySelectorAll('bolt-carousel-slide')) {
         slide.classList.add('c-bolt-carousel__slide');
@@ -361,14 +421,18 @@ class BoltCarousel extends withLitHtml() {
       this.disableSwipingIfAllSlidesAreVisible();
       this.swiper.on('slideChange', this.onSlideChange);
     } else {
-      // update swiper if component re-rendered
-      this.swiper.update();
+      if (this.swiper) {
+        // update swiper if component re-rendered
+        this.swiper.update();
+      }
     }
+
+    super.rendered && super.rendered();
   }
 
   // make sure the pagination tracking keeps updating accurately when the component re-renders
   updating(newProps) {
-    if (this.swiper) {
+    if (this.swiper && !this.props.noPagination) {
       this.swiper.pagination.update();
     }
   }
@@ -384,10 +448,10 @@ class BoltCarousel extends withLitHtml() {
       const prevButton = this.querySelector('[slot="previous-btn"]');
 
       const nextEl = this.renderRoot.querySelector(
-        '.c-bolt-carousel__btn--next',
+        '.c-bolt-carousel__button--next',
       );
       const prevEl = this.renderRoot.querySelector(
-        '.c-bolt-carousel__btn--previous',
+        '.c-bolt-carousel__button--previous',
       );
 
       if (prevButton && prevEl) {
@@ -414,7 +478,7 @@ class BoltCarousel extends withLitHtml() {
 
   hideArrowsIfAllSlidesAreVisible() {
     this.canNavButtonsBeHidden =
-      this.canNavButtonsBeHidden || this.props.noPrevNextButtons === false;
+      this.canNavButtonsBeHidden || this.props.noNavButtons === false;
 
     if (this._wasManuallyUpdated === true) {
       this._wasManuallyUpdated = false;
@@ -423,21 +487,29 @@ class BoltCarousel extends withLitHtml() {
         this.swiper.isBeginning === true &&
         this.swiper.isEnd === true &&
         this.canNavButtonsBeHidden === true &&
-        this.noPrevNextButtons === false
+        this.noNavButtons === false
       ) {
         this._wasManuallyUpdated = true;
-        this.noPrevNextButtons = true;
+        this.noNavButtons = true;
         this.updated();
       } else if (
         this.canNavButtonsBeHidden &&
-        this.noPrevNextButtons === true &&
+        this.noNavButtons === true &&
         (this.swiper.isBeginning === false || this.swiper.isEnd === false)
       ) {
         this._wasManuallyUpdated = true;
-        this.noPrevNextButtons = false;
+        this.noNavButtons = false;
         this.updated();
       }
     }
+  }
+
+  buttonDownHandler() {
+    this.classList.add('is-pressed');
+  }
+
+  buttonUpHandler() {
+    this.classList.remove('is-pressed');
   }
 
   disableSwipingIfAllSlidesAreVisible() {
@@ -456,58 +528,86 @@ class BoltCarousel extends withLitHtml() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const props = this.validateProps(this.props);
 
+    this.checkForSlideOffset();
+
     const classes = cx('c-bolt-carousel', {
+      [`c-bolt-carousel--offset-before`]: props.slideOffsetBefore,
+      [`c-bolt-carousel--offset-after`]: props.slideOffsetAfter,
       [`c-bolt-carousel--disabled`]: props.disabled,
+      [`c-bolt-carousel--overflow`]: this.props.overflow,
+      [`c-bolt-carousel--no-overflow`]: !this.props.overflow,
     });
 
+    const wrapperClasses = cx('c-bolt-carousel__wrapper');
+
     const prevButton = cx(
-      'c-bolt-carousel__btn',
-      'c-bolt-carousel__btn--previous',
+      'c-bolt-carousel__button',
+      'c-bolt-carousel__button--previous',
       {
-        [`c-bolt-carousel__btn--hidden`]: this.props.noPrevNextButtons,
-        [`c-bolt-carousel__btn--${this.props.navPosition || 'inner'}`]: this
-          .props.navPosition,
+        [`c-bolt-carousel__button--hidden`]: this.props.noNavButtons,
+        [`c-bolt-carousel__button--${this.props.navButtonPosition ||
+          'inner'}`]: this.props.navButtonPosition,
       },
     );
 
     const nextButton = cx(
-      'c-bolt-carousel__btn',
-      'c-bolt-carousel__btn--next',
+      'c-bolt-carousel__button',
+      'c-bolt-carousel__button--next',
       {
-        [`c-bolt-carousel__btn--hidden`]: this.props.noPrevNextButtons,
-        [`c-bolt-carousel__btn--${this.props.navPosition || 'inner'}`]: this
-          .props.navPosition,
+        [`c-bolt-carousel__button--hidden`]: this.props.noNavButtons,
+        [`c-bolt-carousel__button--${this.props.navButtonPosition ||
+          'inner'}`]: this.props.navButtonPosition,
       },
     );
+
+    const buttonTemplate = (text, iconName) => html`
+      <bolt-button size="medium" border-radius="full" color="text" icon-only>
+        ${text}
+        <bolt-icon size="large" slot="before" name="${iconName}"></bolt-icon>
+      </bolt-button>
+    `;
 
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}">
-        <div class="c-bolt-carousel__wrapper">
+        <div class="${wrapperClasses}">
           ${this.slot('default')}
         </div>
-
-        ${this.props.noPrevNextButtons === true
-          ? ''
-          : html`
-              <div class="${prevButton}">
-                ${this.slot('previous-btn')}
-              </div>
-              <div class="${nextButton}">
-                ${this.slot('next-btn')}
-              </div>
-            `}
         ${this.props.freeScroll
+          ? this.props.noScrollbar
+            ? ''
+            : html`
+                <div class="c-bolt-carousel__scrollbar"></div>
+              `
+          : this.props.noPagination
           ? ''
           : html`
               <div class="c-bolt-carousel__pagination"></div>
             `}
-        ${this.props.freeScroll
-          ? html`
-              <div class="c-bolt-carousel__scrollbar"></div>
-            `
-          : ''}
       </div>
+
+      ${this.props.noNavButtons === true
+        ? ''
+        : html`
+            <div
+              class="${prevButton}"
+              @mousedown=${this.buttonDownHandler}
+              @mouseup=${this.buttonUpHandler}
+            >
+              ${this.slots['previous-btn']
+                ? this.slot('previous-btn')
+                : buttonTemplate('Previous', 'chevron-left')}
+            </div>
+            <div
+              class="${nextButton}"
+              @mousedown=${this.buttonDownHandler}
+              @mouseup=${this.buttonUpHandler}
+            >
+              ${this.slots['next-btn']
+                ? this.slot('next-btn')
+                : buttonTemplate('Next', 'chevron-right')}
+            </div>
+          `}
     `;
   }
 }

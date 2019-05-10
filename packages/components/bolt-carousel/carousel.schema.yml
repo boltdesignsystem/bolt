@@ -1,5 +1,5 @@
 title: Carousel
-description: Basic Carousel Options
+description: A web-component powered carousel component for cycling through a series of content such as images, text, or cards.
 type: object
 properties:
   attributes:
@@ -12,20 +12,28 @@ properties:
     description: "Array of content to include in the carousel. Note: each item gets wrapped with a <code>&lt;bolt-carousel-slide&gt;</code> automatically."
   slidesPerView:
     type: string
-    description: "Behavior controlling how many slides are <em>ideally</em> displayed at a particular screen size." 
+    description: "Behavior controlling how many slides are <em>ideally</em> displayed at a particular screen size."
+    enum:
+      - 'auto'
+      - '1'
+      - '2'
+      - '3'
+      - '4'
+    default: 'auto'
+  slidesPerGroup:
+    type: string
+    description: "Set numbers of slides to define and enable group sliding. Useful to use with slidesPerView > 1"
     default: auto
     enum:
       - "auto"
       - "1"
-      - "2"
-      - "3"
-      - "4"
   maxSlidesPerView:
     type: integer
     description: Limits the maximum number of slides that can display at any screen size. Combine this with the <code>slidesPerView</code> option to get the benefits of automatically adjusting the number of slides displayed at different screen sizes while putting a max limit of how many slides display at once.
-    default: 4
+    default: 5
     minimum: 1
-    maximum: 4
+    maximum: 6
+    hidden: true
   spaceBetween:
     type: string
     description: Adjusts the space in-between each <code>&lt;bolt-carousel-slide&gt;</code>
@@ -34,18 +42,58 @@ properties:
       - none
       - small
       - medium
-      - large
-  navPosition:
+  slideOffsetBefore:
+    type: boolean
+    description: Controls whether or not the carousel content should be offset by 5px
+    hidden: true
+  slideOffsetAfter:
+    type: boolean
+    description: Controls whether or not carousel content should be offset by 5px
+    hidden: true
+  navButtonPosition:
     type: string
     description: Positions the next / previous nav buttons inside / outside the carousel container
     default: outside
     enum:
       - inside
       - outside
-  extraSpaceBetween:
+  overflow:
     type: boolean
-    description: Adds a tiny amount of extra whitespace in between each of the carousel slides to avoid causing nested content with shadows getting cut off.
+    description: Controls whether or not overflowing carousel slides should be visible or hidden.
     default: false
+    # hidden: true
+  noPagination:
+    type: boolean
+    description: Disables the pagination bullet UI. Not recommended unless being used with an alternative UI to display carousel progress (such as custom thumbnail previews).
+    default: false
+    hidden: true
+  noScrollbar:
+    type: boolean
+    description: Optionally disable the scrollbar UI. Not recommended unless being used with an alternative UI to display carousel progress (such as custom thumbnail previews).
+    default: false
+    hidden: true
+  noMinWidth:
+    type: boolean
+    description: Disables the slide min width logic. Typically not recommended unless being used with an alternative UI to display carousel progress (such as custom thumbnail previews).
+    default: false
+    hidden: true
+  # noAutoInit:
+  #   type: boolean
+  #   description: Disables automatically initializing swiper instance. Rarely used unless when wiring up custom Swiper.js function, such as a carousel gallery.
+  #   default: false
+  noNavButtons:
+    type: boolean
+    description: Disables displaying the left / right nav buttons.
+    default: false
+  slideToClickedSlide:
+    type: boolean
+    description: Set to true and click on any slide will produce transition to this slide.
+    default: false
+    hidden: true
+  # extraSpaceBetween:
+  #   type: boolean
+  #   description: Adds a tiny amount of extra whitespace in between each of the carousel slides to avoid causing nested content with shadows getting cut off.
+  #   default: false
   autoplay:
     type: boolean
     description: Allows a carousel to automatically rotate through it's slides until iteracted with.
@@ -83,3 +131,29 @@ properties:
     type: string
     description: A11y message for screen readers for a single pagination bullet
     default: 'Go to slide {{index}}'
+  # a11y:
+  #   type: object
+  #   title: "Accessibility"
+  #   flatten: true
+  #   description: "Config for screen readers, accessibility support (a11y), etc."
+  #   properties:
+  #     prevSlideMessage:
+  #       type: string
+  #       description: A11y message for screen readers for previous button
+  #       default: 'Previous slide'
+  #     nextSlideMessage:
+  #       type: string
+  #       description: A11y message for screen readers for next button
+  #       default: 'Next slide'
+  #     firstSlideMessage:
+  #       type: string
+  #       description: A11y message for screen readers for the previous button when swiper is on first slide
+  #       default: 'This is the first slide'
+  #     lastSlideMessage:
+  #       type: string
+  #       description: A11y message for screen readers for previous button when swiper is on last slide
+  #       default: 'This is the last slide'
+  #     paginationBulletMessage:
+  #       type: string
+  #       description: A11y message for screen readers for a single pagination bullet
+  #       default: 'Go to slide {{index}}'

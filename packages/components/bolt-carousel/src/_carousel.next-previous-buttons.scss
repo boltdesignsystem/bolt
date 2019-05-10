@@ -1,69 +1,270 @@
 bolt-carousel:not(.is-ready) {
-  > [slot="previous-btn"],
-  > [slot="next-btn"] {
+  > [slot='previous-btn'],
+  > [slot='next-btn'] {
     display: none;
   }
 }
-// bolt-carousel:not(.is-ready) > [slot="next-btn"],
-.c-bolt-carousel__btn {
+
+.c-bolt-carousel__button {
   display: flex;
   opacity: 0;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   z-index: 10;
-  min-height: 5rem;
+  color: bolt-color(white);
+  --bolt-theme-headline-link: 255, 255, 255;
+
+  bolt-carousel[nav-position='outside'] & {
+    color: bolt-color(black);
+    --bolt-theme-headline-link: 0, 0, 0;
+
+    &:before {
+      opacity: 1;
+    }
+  }
+
   cursor: pointer;
+  border-radius: 50px;
   transition: all 0.2s ease;
-  --bolt-button-min-height: 100%; // so the slotted left / right buttons fill the height of the parent container
+
+  bolt-button {
+    pointer-events: none;
+  }
 
   .c-bolt-button {
+    min-width: 100%;
     min-height: 100%;
   }
 
   bolt-button {
     flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    color: bolt-theme(secondary);
   }
 }
 
-.c-bolt-carousel__btn--hidden {
+.c-bolt-carousel__button--hidden {
   opacity: 0;
   transition-delay: 0s;
 }
 
-bolt-carousel.is-ready .c-bolt-carousel__btn:not(.c-bolt-carousel__btn--hidden):not(.c-bolt-carousel__btn--disabled) {
+bolt-carousel.is-ready
+  .c-bolt-carousel__button:not(.c-bolt-carousel__button--hidden):not(.c-bolt-carousel__button--disabled) {
   opacity: 1;
   transition-delay: 0.1s;
 }
 
-.c-bolt-carousel__btn--disabled:not(.c-bolt-carousel__btn--hidden) {
+.c-bolt-carousel__button--disabled:not(.c-bolt-carousel__button--hidden) {
   opacity: 0.35;
   pointer-events: none;
 }
 
-bolt-carousel:not(.is-ready) > [slot="previous-btn"],
-.c-bolt-carousel__btn--previous {
+// bolt-carousel:not(.is-ready) > [slot="previous-btn"],
+.c-bolt-carousel__button--previous {
   right: auto;
-  left: 0;
 
-  &.c-bolt-carousel__btn--outside {
-    transform: translateX(-100%) translateY(-50%);
+  &.c-bolt-carousel__button--inside {
+    left: 0.25rem;
+    // default with pagination bullets
+    transform: translateY(-50%)
+      translateY(
+        calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+      );
+
+    &.is-pressed {
+      transform: translateY(-50%)
+        translateY(
+          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+        )
+        translateY(1px);
+    }
+
+    // default w/o pagination bullets
+    bolt-carousel[no-pagination] & {
+      transform: translateY(-50%);
+
+      &.is-pressed {
+        transform: translateY(-50%) translateY(1px);
+      }
+    }
+  }
+
+  // default with pagination bullets on the outside
+  &.c-bolt-carousel__button--outside {
+    left: bolt-spacing(medium);
+    transform: translateX(-50%) translateY(-50%)
+      translateY(
+        calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+      );
+    color: bolt-color(black);
+    --bolt-theme-headline-link: 0, 0, 0;
+
+    &.is-pressed {
+      transform: translateX(-50%) translateY(-50%)
+        translateY(
+          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+        )
+        translateY(1px);
+    }
+
+    &:before {
+      opacity: 1;
+    }
+
+    // default w/o pagination bullets on the outside
+    bolt-carousel[no-pagination] & {
+      transform: translateX(-50%) translateY(-50%);
+
+      &.is-pressed {
+        transform: translateX(-50%) translateY(-50%) translateY(1px);
+      }
+    }
   }
 }
 
-bolt-carousel:not(.is-ready) > [slot="next-btn"],
-.c-bolt-carousel__btn--next {
-  right: 0;
+.c-bolt-carousel__button--next {
   left: auto;
 
-  &.c-bolt-carousel__btn--outside {
-    transform: translateX(100%) translateY(-50%);
+  &.c-bolt-carousel__button--inside {
+    right: 0.25rem;
+    transform: translateY(-50%)
+      translateY(
+        calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+      );
+
+    &.is-pressed {
+      transform: translateY(-50%)
+        translateY(
+          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+        )
+        translateY(1px);
+    }
+
+    bolt-carousel[no-pagination] & {
+      transform: translateY(-50%);
+
+      &.is-pressed {
+        transform: translateY(-50%) translateY(1px);
+      }
+    }
+  }
+
+  // default with pagination bullets on the outside
+  &.c-bolt-carousel__button--outside {
+    right: bolt-spacing(medium);
+    transform: translateX(50%) translateY(-50%)
+      translateY(
+        calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+      );
+
+    &.is-pressed {
+      transform: translateX(50%) translateY(-50%)
+        translateY(
+          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+        )
+        translateY(1px);
+    }
+
+    // default w/o pagination bullets on the outside
+    bolt-carousel[no-pagination] & {
+      transform: translateX(50%) translateY(-50%);
+
+      &.is-pressed {
+        transform: translateX(50%) translateY(-50%) translateY(1px);
+      }
+    }
   }
 }
 
-bolt-carousel:not(.is-ready) > [slot="previous-btn"],
-bolt-carousel:not(.is-ready) > [slot="next-btn"] {
+bolt-carousel:not(.is-ready) > [slot='previous-btn'],
+bolt-carousel:not(.is-ready) > [slot='next-btn'] {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
+}
+
+.c-bolt-carousel__button {
+  @include bolt-shadow('level-10');
+  color: bolt-color(black);
+  --bolt-theme-headline-link: 0, 0, 0;
+  will-change: box-shadow;
+
+  &:hover,
+  &:focus:hover {
+    @include bolt-shadow('level-20');
+  }
+
+  &:focus {
+    @include bolt-shadow('level-10', false, rgb(59, 153, 252));
+  }
+
+  &.is-pressed,
+  &.is-pressed:focus {
+    @include bolt-shadow('level-10');
+  }
+
+  &.is-pressed:before,
+  &:focus:before,
+  &:hover:before,
+  &:active:before {
+    opacity: 1;
+  }
+
+  &.c-bolt-carousel__button--outside {
+    &:before {
+      opacity: 1;
+    }
+
+    &:hover {
+      &:before {
+        background-color: bolt-theme(secondary-darken-5);
+      }
+    }
+  }
+}
+
+.c-bolt-carousel__button:focus,
+.c-bolt-carousel__button:active,
+.c-bolt-carousel__button:hover {
+  outline: 0;
+}
+
+.c-bolt-carousel__button:focus {
+  outline: 0;
+}
+
+.c-bolt-carousel__button:focus,
+.c-bolt-carousel__button:hover {
+  &:before {
+    opacity: 1;
+  }
+}
+
+.c-bolt-carousel__button {
+  &.is-pressed:before,
+  &:active:before {
+    opacity: 1;
+  }
+}
+
+.c-bolt-carousel__button.is-pressed:before {
+  opacity: 1;
+}
+
+.c-bolt-carousel__button:before {
+  content: '';
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  color: inherit;
+  border-radius: inherit;
+  transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.5, 1),
+    background 0.3s cubic-bezier(0.25, 0.8, 0.5, 1),
+    color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), transform 0.1s ease;
+  width: 100%;
+  border-radius: 50%;
+  background-color: bolt-theme(secondary);
 }
