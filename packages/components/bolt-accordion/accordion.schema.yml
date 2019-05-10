@@ -47,25 +47,9 @@ properties:
     enum:
       - true
       - false
-  no-separator:
-    type: boolean
-    title: No Separator (Web component only)
-    description: Hides the separator in between items.
-    default: false
-    enum:
-      - true
-      - false
   box_shadow:
     type: boolean
     title: Box Shadow (Twig only)
-    description: Box shadow around the accordion.
-    default: false
-    enum:
-      - true
-      - false
-  box-shadow:
-    type: boolean
-    title: Box Shadow (Web component only)
     description: Box shadow around the accordion.
     default: false
     enum:
@@ -84,14 +68,6 @@ properties:
   icon_valign:
     type: string
     title: Icon Vertical Alignment (Twig only)
-    description: Vertically align accordion trigger and icon.
-    default: top
-    enum:
-      - top
-      - center
-  icon-valign:
-    type: string
-    title: Icon Vertical Alignment (Web component only)
     description: Vertically align accordion trigger and icon.
     default: top
     enum:

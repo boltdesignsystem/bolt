@@ -6,6 +6,7 @@ $bolt-accordion-border-style: $bolt-border-style;
 $bolt-accordion-border-color: bolt-theme(text, 0.15);
 $bolt-accordion-border-radius: bolt-border-radius(small);
 $bolt-accordion-icon-size: 1.4rem;
+$bolt-accordion-outline-offset: -4px;
 
 bolt-accordion-item {
   display: block;
@@ -19,9 +20,9 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item {
-  &:focus-within {
-    position: relative;
-    z-index: 1;
+  ::slotted(*:last-child),
+  ::slotted(*.is-last-child) {
+    margin-bottom: 0 !important;
   }
 }
 
@@ -31,6 +32,23 @@ bolt-accordion-item {
 
 // Shadow
 .c-bolt-accordion-item--box-shadow {
+  .c-bolt-accordion-item__content {
+    &:before {
+      content: '';
+      display: block;
+      opacity: bolt-opacity(100);
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(bolt-color(gray), 0.25), rgba(bolt-color(gray, light), 0.1) 5px, rgba(bolt-color(gray, light), 0.1) calc(100% - 5px), rgba(bolt-color(gray), 0.25) 100%);
+      will-change: opacity;
+      transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
+    }
+  }
+
   &.c-bolt-accordion-item--first-item {
     .c-bolt-accordion-item__trigger,
     .c-bolt-accordion-item__trigger-button,
@@ -48,23 +66,9 @@ bolt-accordion-item {
       border-bottom-right-radius: $bolt-accordion-border-radius;
       border-bottom-left-radius: $bolt-accordion-border-radius;
     }
-  }
 
-  .c-bolt-accordion-item__content {
-    &:before {
-      content: '';
-      display: block;
-      opacity: bolt-opacity(100);
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      pointer-events: none;
-      box-shadow: inset 0 1px 6px rgba(bolt-color(gray), 0.25);
-      background-color: rgba(bolt-color(gray, light), 0.1);
-      will-change: opacity;
-      transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
+    .c-bolt-accordion-item__content:before {
+      background: linear-gradient(to bottom, rgba(bolt-color(gray), 0.25), rgba(bolt-color(gray, light), 0.1) 5px, rgba(bolt-color(gray, light), 0.1) 100%);
     }
   }
 }
@@ -95,7 +99,7 @@ bolt-accordion-item {
   text-align: left; // otherwise some accordion menus are center aligned in the Shadow DOM
   cursor: pointer;
   user-select: none;
-  outline-offset: -3px;
+  outline-offset: $bolt-accordion-outline-offset;
   border: none;
   background-color: bolt-theme(background);
 
@@ -133,18 +137,36 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__trigger-link {
-  &:focus,
-  &:active {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $bolt-accordion-icon-size / 4.5;
+  height: 100%;
+  outline-offset: $bolt-accordion-outline-offset;
+
+  &:after {
+    content: '';
     display: block;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    outline-offset: -3px;
+    top: 50%;
+    right: 50%;
+    width: $bolt-accordion-icon-size / 2.25;
+    height: $bolt-accordion-icon-size / 2.25;
+    border-radius: 1px;
+    border-width: 3px 3px 0 0;
+    border-style: solid;
+    border-color: bolt-theme(link);
+    transform-origin: 50% 50%;
   }
+}
 
-  &:not(:focus):not(:active) {
-    @include bolt-visuallyhidden;
-  }
+.c-bolt-accordion-item__trigger-link--open:after {
+  transform: rotate(135deg) translateX(-50%) translateY(50%);
+}
+
+.c-bolt-accordion-item__trigger-link--close:after {
+  transform: rotate(-45deg);
 }
 
 .c-bolt-accordion-item__toggle-text {
@@ -173,15 +195,6 @@ bolt-accordion-item {
   display: block;
 }
 
-.c-bolt-accordion-item__state:target
-  + .c-bolt-accordion-item
-  .c-bolt-accordion-item__trigger-link--close {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .c-bolt-accordion-item__trigger--open {
   z-index: 1;
 }
@@ -202,7 +215,7 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__trigger-icon {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
   color: bolt-theme(link);
   line-height: 0; // Workaround to line-height messing up icon alignment
@@ -302,11 +315,6 @@ bolt-accordion-item {
   will-change: opacity;
   transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
   -webkit-overflow-scrolling: touch;
-
-  ::slotted(*:last-child),
-  ::slotted(*.is-last-child) {
-    margin-bottom: 0 !important;
-  }
 }
 
 .c-bolt-accordion-item__state:target
@@ -329,24 +337,22 @@ bolt-accordion-item {
 
 // Separator
 .c-bolt-accordion-item--separator {
-  .c-bolt-accordion-item__trigger {
-    border-top-color: $bolt-accordion-border-color;
-    border-top-style: $bolt-accordion-border-style;
-    border-top-width: $bolt-accordion-border-width;
-  }
+  border-top-color: $bolt-accordion-border-color;
+  border-top-style: $bolt-accordion-border-style;
+  border-top-width: $bolt-accordion-border-width;
 
-  &.c-bolt-accordion-item--last-item .c-bolt-accordion-item__trigger {
+  &.c-bolt-accordion-item--last-item {
     border-bottom-color: $bolt-accordion-border-color;
     border-bottom-style: $bolt-accordion-border-style;
     border-bottom-width: $bolt-accordion-border-width;
   }
 
   &.c-bolt-accordion-item--box-shadow {
-    &.c-bolt-accordion-item--first-item .c-bolt-accordion-item__trigger {
+    &.c-bolt-accordion-item--first-item {
       border-top: none;
     }
 
-    &.c-bolt-accordion-item--last-item .c-bolt-accordion-item__trigger {
+    &.c-bolt-accordion-item--last-item {
       border-bottom: none;
     }
   }
