@@ -9,7 +9,7 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion-item.scss';
-import { AccordionItemHeader } from './AccordionItemHeader';
+import { AccordionItemTrigger } from './AccordionItemTrigger';
 import { AccordionItemContent } from './AccordionItemContent';
 import { AccordionContext } from '../accordion';
 
@@ -100,9 +100,9 @@ class AccordionItem extends withContext(withLitHtml()) {
 
     const slotMarkup = name => {
       switch (name) {
-        case 'header':
+        case 'trigger':
           return name in this.slots
-            ? AccordionItemHeader(this.slot(name), this.props, this.context)
+            ? AccordionItemTrigger(this.slot(name), this.props, this.context)
             : html`
                 <slot name="${name}" />
               `;
@@ -120,7 +120,7 @@ class AccordionItem extends withContext(withLitHtml()) {
       }
     };
 
-    const innerSlots = [slotMarkup('header'), slotMarkup('default')];
+    const innerSlots = [slotMarkup('trigger'), slotMarkup('default')];
 
     return html`
       <div class="${accordionClasses}">${innerSlots}</div>
@@ -136,7 +136,7 @@ class AccordionItem extends withContext(withLitHtml()) {
   }
 
   render() {
-    this.addClassesToSlottedChildren(['default', 'header']);
+    this.addClassesToSlottedChildren(['default', 'trigger']);
 
     return html`
       ${this.addStyles([styles, heightUtils])} ${this.template()}

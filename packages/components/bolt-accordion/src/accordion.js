@@ -53,7 +53,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
   get accordionOptions() {
     return {
-      // array of node references, alternating header + content: [header, content, header, content]
+      // array of node references, alternating trigger + content: [trigger, content, trigger, content]
       items: this.accordionItems,
 
       // whether multiple folds can be opened at once
@@ -65,47 +65,47 @@ class BoltAccordion extends withContext(withLitHtml()) {
       ariaEnabled: true,
       // whether W3C keyboard shortcuts are enabled
       keyboardInteraction: true,
-      // whether to loop header focus (sets focus back to first/last header when end/start reached)
+      // whether to loop trigger focus (sets focus back to first/last trigger when end/start reached)
       carouselFocus: true,
 
-      // attribute for the header or content to open folds at initialization
+      // attribute for the trigger or content to open folds at initialization
       initialOpenAttribute: 'data-open',
       // whether to use transition at initial open
       initialOpenTransition: true,
       // delay used to show initial transition
       initialOpenTransitionDelay: 200,
 
-      // header/content class if fold is open
-      headerOpenClass: 'c-bolt-accordion-item__trigger--open',
+      // trigger/content class if fold is open
+      triggerOpenClass: 'c-bolt-accordion-item__trigger--open',
       contentOpenClass: 'c-bolt-accordion-item__content--open',
 
-      // header/content class if fold has been opened (transition finished)
-      headerOpenedClass: 'c-bolt-accordion-item__trigger--opened',
+      // trigger/content class if fold has been opened (transition finished)
+      triggerOpenedClass: 'c-bolt-accordion-item__trigger--opened',
       contentOpenedClass: 'c-bolt-accordion-item__content--opened',
 
-      // header/content class if fold has been focused
-      headerFocusClass: 'c-bolt-accordion-item__trigger--focus',
+      // trigger/content class if fold has been focused
+      triggerFocusClass: 'c-bolt-accordion-item__trigger--focus',
       contentFocusClass: 'c-bolt-accordion-item__content--focus',
 
-      // header/content class if fold is disabled
-      headerDisabledClass: 'c-bolt-accordion-item__trigger--disabled',
+      // trigger/content class if fold is disabled
+      triggerDisabledClass: 'c-bolt-accordion-item__trigger--disabled',
       contentDisabledClass: 'c-bolt-accordion-item__content--disabled',
 
-      // header/content class if no transition should be active (applied on resize)
-      headerNoTransitionClass: 'c-bolt-accordion-item__trigger--notransition',
+      // trigger/content class if no transition should be active (applied on resize)
+      triggerNoTransitionClass: 'c-bolt-accordion-item__trigger--notransition',
       contentNoTransitionClass: 'c-bolt-accordion-item__content--notransition',
     };
   }
 
   handleAccordionItemReady(item) {
     const root = item.renderRoot;
-    const header =
+    const trigger =
       root && root.querySelector('.c-bolt-accordion-item__trigger');
     const content =
       root && root.querySelector('.c-bolt-accordion-item__content');
 
-    if (header && content) {
-      this.accordionItems = [...this.accordionItems, header, content];
+    if (trigger && content) {
+      this.accordionItems = [...this.accordionItems, trigger, content];
     }
 
     const index = this.accordionItemElementsCopy.indexOf(item);
@@ -149,7 +149,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
     // Copy of that reference that will be mutated as we process each accordion item
     this.accordionItemElementsCopy = [...this.accordionItemElements];
 
-    // Array passed to the Accordion plugin, a series of header/content pairs
+    // Array passed to the Accordion plugin, a series of trigger/content pairs
     this.accordionItems = [];
 
     this.accordionItemElements.forEach(item => {

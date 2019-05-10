@@ -1,8 +1,8 @@
 import { css } from '@bolt/core/utils';
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 
-export const AccordionItemHeader = (children, props, context) => {
-  const headerClasses = css(
+export const AccordionItemTrigger = (children, props, context) => {
+  const triggerClasses = css(
     'c-bolt-accordion-item__trigger',
     props.center ? 'c-bolt-accordion-item__trigger--center' : '',
   );
@@ -11,21 +11,21 @@ export const AccordionItemHeader = (children, props, context) => {
     context.spacing ? `c-bolt-accordion-spacing--${context.spacing}` : '',
   );
 
-  const headerTemplate = children => {
+  const triggerTemplate = children => {
     return html`
       ${props.autoOpen
         ? html`
-            <div class="${headerClasses}" data-open>
+            <div class="${triggerClasses}" data-open>
               ${children}
             </div>
           `
         : html`
-            <div class="${headerClasses}">${children}</div>
+            <div class="${triggerClasses}">${children}</div>
           `}
     `;
   };
 
-  const innerHeaderTemplate = children => {
+  const innerTriggerTemplate = children => {
     return html`
       <button class="c-bolt-accordion-item__trigger-button ${spacingClasses}">
         <div class="c-bolt-accordion-item__trigger-content">
@@ -50,7 +50,7 @@ export const AccordionItemHeader = (children, props, context) => {
     `;
   };
 
-  const innerHeader = innerHeaderTemplate(children);
+  const innerTrigger = innerTriggerTemplate(children);
 
-  return headerTemplate(innerHeader);
+  return triggerTemplate(innerTrigger);
 };
