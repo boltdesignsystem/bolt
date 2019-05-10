@@ -56,20 +56,19 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   @include bolt-button-reset;
   @include bolt-no-select;
   @include bolt-font-weight(semibold);
-  @include bolt-shadow('level-20');
-
   display: flex;
   align-items: center;
   position: relative;
   transform: translate3d(0, 0, 0);
-  min-height: none;
-  min-height: var(--bolt-button-min-height, none);
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
   border-radius: bolt-button-border-radius('regular');
   border-width: $bolt-button-border-width;
   border-style: $bolt-button-border-style;
+  @include bolt-shadow('level-20');
+  box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20')});
+  will-change: box-shadow;
 
   &:before {
     content: '';
@@ -84,6 +83,8 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
     pointer-events: none;
     border-radius: bolt-button-border-radius('regular');
     @include bolt-shadow('level-10', true);
+    box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-10')});
+    will-change: box-shadow;
   }
 
   &:focus:not(:hover):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
@@ -203,11 +204,12 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   &:not(.c-bolt-button--text):active,
   &:not(.c-bolt-button--text).is-active {
     @include bolt-shadow('level-20');
-
     opacity: bolt-opacity(100);
     transform: none;
     border-color: bolt-theme(disabled);
+    box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20')});
     background-color: bolt-theme(disabled);
+    will-change: box-shadow;
   }
 
   &:before,
