@@ -115,7 +115,7 @@ class BoltCarousel extends withLitHtml() {
     return self;
   }
 
-  checkForSlideOffset(){
+  checkForSlideOffset() {
     const carouselSlides = this.querySelectorAll('bolt-carousel-slide');
     this.slideOffsetBefore = carouselSlides[0].querySelector('bolt-card')
       ? true

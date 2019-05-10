@@ -42,12 +42,12 @@ bolt-carousel {
   position: relative;
   z-index: 1; /* Fix of Webkit flickering */
   width: auto;
+  width: 100%;
   max-width: 100%;
   overflow: visible;
   margin: 0 auto;
   padding: 0;
   list-style: none;
-  width: 100%;
   
   &--overflow {
     overflow: visible;
@@ -58,12 +58,12 @@ bolt-carousel {
   }
 
   &.c-bolt-carousel--offset-before.c-bolt-carousel--offset-after {
-    padding-right: 5px;
-    padding-left: 5px;
     width: calc(100% + 10px);
     max-width: calc(100% + 10px);
-    margin-left: -5px;
     margin-right: -5px;
+    margin-left: -5px;
+    padding-right: 5px;
+    padding-left: 5px;
   }
 
   .c-bolt-carousel--offset-before:not(.c-bolt-carousel--offset-after),
@@ -114,10 +114,10 @@ bolt-carousel:not([nav-button-position]):not([no-nav-buttons]),
 bolt-carousel[nav-button-position="outside"]{
   @include bolt-padding-left(bolt-spacing(medium));
   @include bolt-padding-right(bolt-spacing(medium));
+  min-width: calc(100% + #{bolt-spacing(medium) * 2});
   margin-right: (bolt-spacing(medium)) * -1;
   margin-left: (bolt-spacing(medium)) * -1;
   // min-width: calc(100% + #{bolt-spacing(medium) * 2} + #{bolt-spacing(xxsmall) * 2});
-  min-width: calc(100% + #{bolt-spacing(medium) * 2});
 }
 
 bolt-carousel[no-nav-buttons],
