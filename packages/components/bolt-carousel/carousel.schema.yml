@@ -77,10 +77,15 @@ properties:
     description: Disables the slide min width logic. Typically not recommended unless being used with an alternative UI to display carousel progress (such as custom thumbnail previews).
     default: false
     hidden: true
-  # noAutoInit:
-  #   type: boolean
-  #   description: Disables automatically initializing swiper instance. Rarely used unless when wiring up custom Swiper.js function, such as a carousel gallery.
-  #   default: false
+  mode:
+    type: string
+    description: Switches between the default carousel mode and the image gallery mode. 
+    hidden: true
+    default: 'default'
+    enum:
+      - 'default'
+      - 'gallery'
+      - 'gallery-thumbnail'
   noNavButtons:
     type: boolean
     description: Disables displaying the left / right nav buttons.
