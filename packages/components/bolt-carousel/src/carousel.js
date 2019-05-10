@@ -12,7 +12,7 @@ import styles from '../index.scss';
 import originalSchema from '../carousel.schema.yml';
 
 let cx = classNames.bind(styles);
-let wasCarouselResizerAdded = true;
+let wasCarouselResizerAdded = false;
 
 function addBoltCarouselResizer() {
   if (wasCarouselResizerAdded === false) {
@@ -94,6 +94,10 @@ class BoltCarousel extends withLitHtml() {
     ...carouselProps,
     slideOffsetBefore: props.boolean,
     slideOffsetAfter: props.boolean,
+    thumbs: {
+      ...props.object,
+      ...{ default: false },
+    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -111,7 +115,7 @@ class BoltCarousel extends withLitHtml() {
     self.conditionallyDisableButtons = self.conditionallyDisableButtons.bind(
       self,
     );
-    self.resizeCarousel = self.resizeCarousel.bind(self);
+    self.reInitCarousel = self.reInitCarousel.bind(self);
     return self;
   }
 
@@ -130,7 +134,7 @@ class BoltCarousel extends withLitHtml() {
   connecting() {
     super.connecting && super.connecting();
     addBoltCarouselResizer();
-    window.addEventListener('carousel:resize', this.resizeCarousel);
+    window.addEventListener('carousel:resize', this.reInitCarousel);
 
     const nextButton = this.querySelector('[slot="next-btn"]');
     const prevButton = this.querySelector('[slot="previous-btn"]');
@@ -148,7 +152,7 @@ class BoltCarousel extends withLitHtml() {
 
   // recalculates the ideal # of slides to display when the overal carousel width changes
   // @todo: update to only reinitialize when the data for this changes
-  resizeCarousel() {
+  reInitCarousel() {
     this.options.slidesPerView = this.calculateSlidesPerView(
       this.props.slidesPerView,
     );
@@ -158,8 +162,9 @@ class BoltCarousel extends withLitHtml() {
     const currentlyActiveSlide = this.swiper.activeIndex;
     this.options.initialSlide = currentlyActiveSlide;
 
-    // destroy the current swiper instance and regenerate with the updated config options
     this.swiper.destroy(false, true);
+    this.options.thumbs = this.props.thumbs;
+
     this.swiper = new Swiper(
       this.renderRoot.querySelector('.c-bolt-carousel'),
       {
@@ -245,29 +250,46 @@ class BoltCarousel extends withLitHtml() {
     }
   }
 
-  configureSwiper(swiper) {
+  configureSwiper() {
+    // opt out of the default slidesPerGroup behavior if being used as an image gallery
+    if (this.mode === 'gallery' || this.mode === 'gallery-thumbnail') {
+      console.log(
+        'opting out of reconfiguring Swiper slidesPerGroup while in `gallery` or `gallery-thumbnail` mode.',
+      );
+      return;
+    }
+
     if (this.props.slidesPerGroup && this.props.slidesPerGroup === 'auto') {
-      swiper.params.slidesPerGroup = parseInt(swiper.params.slidesPerView, 10);
+      this.swiper.params.slidesPerGroup = parseInt(
+        this.swiper.params.slidesPerView,
+        10,
+      );
     } else if (
       this.props.slidesPerGroup &&
       this.props.slidesPerGroup !== 'auto'
     ) {
       // make sure slidesPerGroup can't be set to a number greater than total # of slides visible
       const slidesPerGroup = parseInt(this.props.slidesPerGroup, 10);
-      if (slidesPerGroup <= parseInt(swiper.params.slidesPerView, 10)) {
-        swiper.params.slidesPerGroup = slidesPerGroup;
+      if (slidesPerGroup <= parseInt(this.swiper.params.slidesPerView, 10)) {
+        this.swiper.params.slidesPerGroup = slidesPerGroup;
       } else {
-        swiper.params.slidesPerGroup = parseInt(
-          swiper.params.slidesPerView,
+        this.swiper.params.slidesPerGroup = parseInt(
+          this.swiper.params.slidesPerView,
           10,
         );
       }
     } else {
-      swiper.params.slidesPerGroup = 1;
+      this.swiper.params.slidesPerGroup = 1;
     }
 
-    this.options.slidesPerGroup = swiper.params.slidesPerGroup;
+    this.options.slidesPerGroup = this.swiper.params.slidesPerGroup;
   }
+
+  // init() {
+  //   this.props.noAutoInit = false;
+  //   this.rendered();
+  //   this.swiper.init();
+  // }
 
   rendered() {
     if (this.props.noJs) {
@@ -302,6 +324,7 @@ class BoltCarousel extends withLitHtml() {
     ).length;
 
     this.options = {
+      thumbs: this.props.thumbs,
       watchOverflow: true,
       a11y: {
         enabled: true,
@@ -365,13 +388,14 @@ class BoltCarousel extends withLitHtml() {
       centerInsufficientSlides: false,
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
-      slideToClickedSlide: this.props.slideToClickedSlide,
+      slideToClickedSlide: true,
       // preventClicks: false,
       // mousewheel: {
       //   invert: true,
       //   releaseOnEdges: false,
       //   forceToAxis: true,
       // },
+      threshold: 3,
       keyboard: {
         enabled: true,
         onlyInViewport: true,
@@ -380,14 +404,6 @@ class BoltCarousel extends withLitHtml() {
       effect: this.props.fade ? 'fade' : 'slide',
       freeMode: this.props.freeScroll, //@todo: re-enable when adding free-scroll prop options
       slidesPerView: this.calculateSlidesPerView(this.props.slidesPerView),
-      on: {
-        init() {
-          console.log('swiper initialized');
-          self.configureSwiper(this);
-          this.update();
-          self.swiper = this;
-        },
-      },
     };
 
     this.calculateSlidesPerViewBreakpoints();
@@ -401,8 +417,22 @@ class BoltCarousel extends withLitHtml() {
 
       this.classList.add('is-ready');
 
-      if (this.slideOffset) {
-        this.classList.add(`is-offset-${this.slideOffset}`);
+      if (this.slideOffsetBefore && this.slideOffsetAfter) {
+        this.classList.remove(`is-offset-before`);
+        this.classList.remove(`is-offset-after`);
+        this.classList.add(`is-offset-both`);
+      } else if (this.slideOffsetBefore && !this.slideOffsetAfter) {
+        this.classList.remove(`is-offset-both`);
+        this.classList.remove(`is-offset-after`);
+        this.classList.add(`is-offset-before`);
+      } else if (this.slideOffsetAfter && !this.slideOffsetBefore) {
+        this.classList.remove(`is-offset-both`);
+        this.classList.remove(`is-offset-before`);
+        this.classList.add(`is-offset-after`);
+      } else {
+        this.classList.remove(`is-offset-both`);
+        this.classList.remove(`is-offset-before`);
+        this.classList.remove(`is-offset-after`);
       }
 
       for (const slide of this.querySelectorAll('bolt-carousel-slide')) {
@@ -417,6 +447,8 @@ class BoltCarousel extends withLitHtml() {
         },
       );
 
+      // customizes slidesPerGroup
+      this.configureSwiper(this.swiper);
       this.hideArrowsIfAllSlidesAreVisible();
       this.disableSwipingIfAllSlidesAreVisible();
       this.swiper.on('slideChange', this.onSlideChange);
@@ -561,7 +593,12 @@ class BoltCarousel extends withLitHtml() {
     );
 
     const buttonTemplate = (text, iconName) => html`
-      <bolt-button size="medium" border-radius="full" color="text" icon-only>
+      <bolt-button
+        size="medium"
+        border-radius="full"
+        color="secondary"
+        icon-only
+      >
         ${text}
         <bolt-icon size="large" slot="before" name="${iconName}"></bolt-icon>
       </bolt-button>

@@ -23,10 +23,13 @@ bolt-carousel {
 
   // add custom scrollbar styling till JS kicks in
   &:not(.is-ready){
-    @include bolt-carousel-scrollbar;
+    &:not([no-pagination]){
+      @include bolt-carousel-scrollbar;
+      padding-bottom: calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(xsmall)});
+    }
+
     overflow-x: auto;
     overflow-y: hidden;
-    padding-bottom: calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(xsmall)});
 
     @include bolt-mq($until: medium){
       overflow-x: visible;
@@ -55,29 +58,6 @@ bolt-carousel {
 
   &--no-overflow {
     overflow: hidden;
-  }
-
-  &.c-bolt-carousel--offset-before.c-bolt-carousel--offset-after {
-    width: calc(100% + 10px);
-    max-width: calc(100% + 10px);
-    margin-right: -5px;
-    margin-left: -5px;
-    padding-right: 5px;
-    padding-left: 5px;
-  }
-
-  .c-bolt-carousel--offset-before:not(.c-bolt-carousel--offset-after),
-  .c-bolt-carousel--offset-after:not(.c-bolt-carousel--offset-before) {
-    width: calc(100% + 5px);
-    max-width: calc(100% + 5px);
-  }
-
-  .c-bolt-carousel--offset-before:not(.c-bolt-carousel--offset-after) {
-    margin-left: -5px;
-  }
-
-  .c-bolt-carousel--offset-after:not(.c-bolt-carousel--offset-before) {
-    margin-right: -5px;
   }
 }
 
@@ -110,8 +90,8 @@ bolt-carousel {
 
 // carousel's nav position-specific styles
 // if nav-position isn't specified, set to default
-bolt-carousel:not([nav-button-position]):not([no-nav-buttons]), 
-bolt-carousel[nav-button-position="outside"]{
+bolt-carousel:not([nav-button-position]):not([no-nav-buttons]).is-ready, 
+bolt-carousel[nav-button-position="outside"].is-ready {
   @include bolt-padding-left(bolt-spacing(medium));
   @include bolt-padding-right(bolt-spacing(medium));
   min-width: calc(100% + #{bolt-spacing(medium) * 2});
@@ -120,8 +100,8 @@ bolt-carousel[nav-button-position="outside"]{
   // min-width: calc(100% + #{bolt-spacing(medium) * 2} + #{bolt-spacing(xxsmall) * 2});
 }
 
-bolt-carousel[no-nav-buttons],
-bolt-carousel[nav-button-position="inside"]{
+bolt-carousel[no-nav-buttons].is-ready,
+bolt-carousel[nav-button-position="inside"].is-ready {
   @include bolt-padding-left(0);
   @include bolt-padding-right(0);
   min-width: 100%;
@@ -129,6 +109,14 @@ bolt-carousel[nav-button-position="inside"]{
   &.is-offset-after,
   &.is-offset-before {
     min-width: calc(100% + 5px);
+  }
+
+  &.is-offset-before {
+    padding-left: 5px;
+  }
+
+  &.is-offset-after {
+    padding-right: 5px;
   }
 
   &.is-offset-both,
@@ -139,6 +127,8 @@ bolt-carousel[nav-button-position="inside"]{
   &.is-offset-both {
     width: calc(100% + 10px);
     min-width: calc(100% + 10px);
+    padding-right: 5px;
+    padding-left: 5px;
   }
 }
 
@@ -172,12 +162,12 @@ bolt-carousel {
     --bolt-carousel-space-around: #{$bolt-carousel-space-around};
   }
 
-  &:not(.is-ready) {
-    // adds a small bit of padding before and after the carousel to prevent slides with box-shadows from getting cut off
-    &:before,
-    &:after {
-      content: '';
-      @include bolt-padding-left($bolt-carousel-space-around);
-    }
-  }
+  // &:not(.is-ready) {
+  //   // adds a small bit of padding before and after the carousel to prevent slides with box-shadows from getting cut off
+  //   &:before,
+  //   &:after {
+  //     content: '';
+  //     @include bolt-padding-left($bolt-carousel-space-around);
+  //   }
+  // }
 }

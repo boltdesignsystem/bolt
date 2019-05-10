@@ -11,36 +11,12 @@ bolt-carousel:not(.is-ready) {
   position: absolute;
   top: 50%;
   z-index: 10;
-  color: bolt-color(white);
-  --bolt-theme-headline-link: 255, 255, 255;
-
-  bolt-carousel[nav-position='outside'] & {
-    color: bolt-color(black);
-    --bolt-theme-headline-link: 0, 0, 0;
-
-    &:before {
-      opacity: 1;
-    }
-  }
-
   cursor: pointer;
   border-radius: 50px;
   transition: all 0.2s ease;
 
   bolt-button {
     pointer-events: none;
-  }
-
-  .c-bolt-button {
-    min-width: 100%;
-    min-height: 100%;
-  }
-
-  bolt-button {
-    flex-grow: 1;
-    width: 100%;
-    height: 100%;
-    color: bolt-theme(secondary);
   }
 }
 
@@ -52,7 +28,6 @@ bolt-carousel:not(.is-ready) {
 bolt-carousel.is-ready
   .c-bolt-carousel__button:not(.c-bolt-carousel__button--hidden):not(.c-bolt-carousel__button--disabled) {
   opacity: 1;
-  transition-delay: 0.1s;
 }
 
 .c-bolt-carousel__button--disabled:not(.c-bolt-carousel__button--hidden) {
@@ -60,7 +35,6 @@ bolt-carousel.is-ready
   pointer-events: none;
 }
 
-// bolt-carousel:not(.is-ready) > [slot="previous-btn"],
 .c-bolt-carousel__button--previous {
   right: auto;
 
@@ -185,42 +159,30 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
 }
 
 .c-bolt-carousel__button {
-  @include bolt-shadow('level-10');
-  color: bolt-color(black);
-  --bolt-theme-headline-link: 0, 0, 0;
-  will-change: box-shadow;
-
-  &:hover,
-  &:focus:hover {
-    @include bolt-shadow('level-20');
-  }
-
-  &:focus {
-    @include bolt-shadow('level-10', false, rgb(59, 153, 252));
-  }
-
   &.is-pressed,
-  &.is-pressed:focus {
-    @include bolt-shadow('level-10');
+  &.is-pressed:focus,
+  & {
+    --bolt-button-box-shadow: #{bolt-shadow('level-10')};
   }
 
-  &.is-pressed:before,
-  &:focus:before,
-  &:hover:before,
-  &:active:before {
-    opacity: 1;
+  &:hover {
+    --bolt-theme-secondary: var(--bolt-theme-secondary-darken-5);
+    --bolt-button-box-shadow: #{bolt-shadow('level-20')};
   }
 
-  &.c-bolt-carousel__button--outside {
-    &:before {
-      opacity: 1;
-    }
+  &:active,
+  &.is-pressed {
+    --bolt-theme-secondary: var(--bolt-theme-secondary-darken-15);
+  }
 
-    &:hover {
-      &:before {
-        background-color: bolt-theme(secondary-darken-5);
-      }
-    }
+  &:focus:not(.is-pressed),
+  &:focus:not(:hover) {
+    --bolt-button-box-shadow:
+      0 -1px 2px #{bolt-theme(background)},
+      0 1px 2px #{bolt-theme(background)},
+      0 0 5px rgb(59, 153, 252),
+      0 -1px 0.65rem rgb(59, 153, 252),
+      0 1px 0.65rem rgb(59, 153, 252);
   }
 }
 
@@ -250,22 +212,4 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
 
 .c-bolt-carousel__button.is-pressed:before {
   opacity: 1;
-}
-
-.c-bolt-carousel__button:before {
-  content: '';
-  opacity: 0.2;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: inherit;
-  border-radius: 50%;
-  border-radius: inherit;
-  background-color: bolt-theme(secondary);
-  transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.5, 1),
-    background 0.3s cubic-bezier(0.25, 0.8, 0.5, 1),
-    color 0.3s cubic-bezier(0.25, 0.8, 0.5, 1),
-    transform 0.1s ease;
 }
