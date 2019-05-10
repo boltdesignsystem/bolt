@@ -205,6 +205,7 @@ bolt-accordion-item {
   justify-content: center;
   align-items: center;
   position: relative;
+  transform: translateX(bolt-spacing(xxsmall));
   overflow: hidden; // so transformed icons don't spill out
 }
 
@@ -259,7 +260,6 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__trigger-content {
-  @include bolt-padding-right(xsmall);
   flex-grow: 1;
   margin-bottom: 0;
 }
@@ -269,7 +269,7 @@ bolt-accordion-item {
   display: none;
   position: relative;
   left: 0;
-  transform: translateY(-100px);
+  transform: translateY(-1rem);
   width: 100%;
   height: 0;
   will-change: transform;
@@ -366,10 +366,13 @@ bolt-accordion-item {
     .c-bolt-accordion-spacing--#{$spacing-value-name} {
       @include bolt-padding(#{$spacing-value-name}, squished);
 
+      &.c-bolt-accordion-item__content-inner,
+      &.c-bolt-accordion-item__trigger-label {
+        padding-right: calc(#{bolt-spacing($spacing-value-name) + $bolt-accordion-icon-size})
+      }
+
       &.c-bolt-accordion-item__content-inner {
         @include bolt-padding-bottom(#{$spacing-value-name});
-
-        padding-right: calc(#{bolt-spacing(xsmall) + bolt-spacing($spacing-value-name) + $bolt-accordion-icon-size})
       }
     }
   }
