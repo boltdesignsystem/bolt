@@ -197,7 +197,7 @@ module.exports = async function() {
                 // otherwise extract the result and write out a .css file per usual
                 use: [MiniCssExtractPlugin.loader, scssLoaders].reduce(
                   (acc, val) => acc.concat(val),
-                  []
+                  [],
                 ),
               },
             ],
@@ -250,9 +250,12 @@ module.exports = async function() {
           // staticDir: path.join(__dirname, 'dist'),
           staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
           // Required - Routes to render.
-          routes: [ '/'],
+          routes: ['/'],
           postProcess(context) {
-            context.html = context.html.replace(/<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi, ''); 
+            context.html = context.html.replace(
+              /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
+              '',
+            );
             return context;
           },
           renderer: new Renderer({
@@ -277,7 +280,7 @@ module.exports = async function() {
 
             // perform clean just before files are emitted to the output dir
             beforeEmit: true,
-          }
+          },
         ),
         new HtmlWebpackPlugin({
           filename: '../index.html',
@@ -335,7 +338,7 @@ module.exports = async function() {
           renderWaitTime: 1000,
           blockJSRequests: false,
         },
-      })
+      }),
     );
 
     return resolve(webpackConfig);
