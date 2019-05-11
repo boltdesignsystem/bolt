@@ -47,7 +47,8 @@ describe('carousel', () => {
   let page;
 
   beforeEach(async () => {
-    page = await global.__BROWSER__.newPage();
+    const context = await global.__BROWSER__.createIncognitoBrowserContext();
+    page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,
