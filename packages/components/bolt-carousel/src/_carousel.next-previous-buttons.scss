@@ -1,0 +1,215 @@
+bolt-carousel:not(.is-ready) {
+  > [slot='previous-btn'],
+  > [slot='next-btn'] {
+    display: none;
+  }
+}
+
+.c-bolt-carousel__button {
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+
+  bolt-button {
+    pointer-events: none;
+  }
+}
+
+.c-bolt-carousel__button--hidden {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+bolt-carousel.is-ready
+  .c-bolt-carousel__button:not(.c-bolt-carousel__button--hidden):not(.c-bolt-carousel__button--disabled) {
+  opacity: 1;
+}
+
+.c-bolt-carousel__button--disabled:not(.c-bolt-carousel__button--hidden) {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.c-bolt-carousel__button--previous {
+  right: auto;
+
+  &.c-bolt-carousel__button--inside {
+    left: 0.25rem;
+    // default with pagination bullets
+    transform: translateY(-50%)
+      translateY(
+        calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+      );
+
+    &.is-pressed {
+      transform: translateY(-50%)
+        translateY(
+          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+        )
+        translateY(1px);
+    }
+
+    // default w/o pagination bullets
+    bolt-carousel[no-pagination] & {
+      transform: translateY(-50%);
+
+      &.is-pressed {
+        transform: translateY(-50%) translateY(1px);
+      }
+    }
+  }
+
+  // default with pagination bullets on the outside
+  &.c-bolt-carousel__button--outside {
+    left: bolt-spacing(medium);
+    transform: translateX(-50%) translateY(-50%)
+      translateY(
+        calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+      );
+    color: bolt-color(black);
+    --bolt-theme-headline-link: 0, 0, 0;
+
+    &.is-pressed {
+      transform: translateX(-50%) translateY(-50%)
+        translateY(
+          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+        )
+        translateY(1px);
+    }
+
+    &:before {
+      opacity: 1;
+    }
+
+    // default w/o pagination bullets on the outside
+    bolt-carousel[no-pagination] & {
+      transform: translateX(-50%) translateY(-50%);
+
+      &.is-pressed {
+        transform: translateX(-50%) translateY(-50%) translateY(1px);
+      }
+    }
+  }
+}
+
+.c-bolt-carousel__button--next {
+  left: auto;
+
+  &.c-bolt-carousel__button--inside {
+    right: 0.25rem;
+    transform: translateY(-50%)
+      translateY(
+        calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+      );
+
+    &.is-pressed {
+      transform: translateY(-50%)
+        translateY(
+          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+        )
+        translateY(1px);
+    }
+
+    bolt-carousel[no-pagination] & {
+      transform: translateY(-50%);
+
+      &.is-pressed {
+        transform: translateY(-50%) translateY(1px);
+      }
+    }
+  }
+
+  // default with pagination bullets on the outside
+  &.c-bolt-carousel__button--outside {
+    right: bolt-spacing(medium);
+    transform: translateX(50%) translateY(-50%)
+      translateY(
+        calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+      );
+
+    &.is-pressed {
+      transform: translateX(50%) translateY(-50%)
+        translateY(
+          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+        )
+        translateY(1px);
+    }
+
+    // default w/o pagination bullets on the outside
+    bolt-carousel[no-pagination] & {
+      transform: translateX(50%) translateY(-50%);
+
+      &.is-pressed {
+        transform: translateX(50%) translateY(-50%) translateY(1px);
+      }
+    }
+  }
+}
+
+bolt-carousel:not(.is-ready) > [slot='previous-btn'],
+bolt-carousel:not(.is-ready) > [slot='next-btn'] {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.c-bolt-carousel__button {
+  &.is-pressed,
+  &.is-pressed:focus,
+  & {
+    --bolt-button-box-shadow: #{bolt-shadow('level-10')};
+  }
+
+  &:hover {
+    --bolt-theme-secondary: var(--bolt-theme-secondary-darken-5);
+    --bolt-button-box-shadow: #{bolt-shadow('level-20')};
+  }
+
+  &:active,
+  &.is-pressed {
+    --bolt-theme-secondary: var(--bolt-theme-secondary-darken-15);
+  }
+
+  &:focus:not(.is-pressed),
+  &:focus:not(:hover) {
+    --bolt-button-box-shadow:
+      0 -1px 2px #{bolt-theme(background)},
+      0 1px 2px #{bolt-theme(background)},
+      0 0 5px rgb(59, 153, 252),
+      0 -1px 0.65rem rgb(59, 153, 252),
+      0 1px 0.65rem rgb(59, 153, 252);
+  }
+}
+
+.c-bolt-carousel__button:focus,
+.c-bolt-carousel__button:active,
+.c-bolt-carousel__button:hover {
+  outline: 0;
+}
+
+.c-bolt-carousel__button:focus {
+  outline: 0;
+}
+
+.c-bolt-carousel__button:focus,
+.c-bolt-carousel__button:hover {
+  &:before {
+    opacity: 1;
+  }
+}
+
+.c-bolt-carousel__button {
+  &.is-pressed:before,
+  &:active:before {
+    opacity: 1;
+  }
+}
+
+.c-bolt-carousel__button.is-pressed:before {
+  opacity: 1;
+}

@@ -1,0 +1,195 @@
+{# {% set usage %}{% verbatim %}
+{% include '@bolt-components-carousel/carousel.twig' only %}
+{% endverbatim %}{% endset %} #}
+
+{% include "@utils/docs.twig" with {
+  componentName: "carousel",
+  variations: [
+    include("@bolt-components-link/link.twig", {
+      text: "Basic Carousel",
+      url: "#basic-carousel",
+      isHeadline: true,
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Image Carousel",
+      url: "/pattern-lab/?p=components-image-carousel",
+      isHeadline: true,
+    }),
+  ],
+  examples: [
+    include("@bolt-components-link/link.twig", {
+      text: "Space Between",
+      url: "#components-space-between",
+      isHeadline: true,
+    })
+  ],
+  schemaForm: {
+    template: '@bolt-components-carousel/carousel.twig',
+    layout: "horizontal",
+    initialData: {
+      maxSlidesPerView: 3,
+      slides: [
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/content/backgrounds/background-tall-4.jpg",
+              lazyload: true,
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/content/backgrounds/background-tall-4.jpg",
+              lazyload: true,
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/content/backgrounds/background-tall-4.jpg",
+              lazyload: true,
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/content/backgrounds/background-tall-4.jpg",
+              lazyload: true,
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/content/backgrounds/background-tall-4.jpg",
+              lazyload: true,
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+        include("@bolt-components-card/card.twig", {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/content/backgrounds/background-tall-4.jpg",
+              lazyload: true,
+              alt: "Cat Picture"
+            },
+            {
+              pattern: "eyebrow",
+              text: bolt.faker.company()
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: bolt.faker.bs(),
+            },
+            {
+              pattern: "text",
+              text: bolt.faker.text(80),
+            }
+          ]
+        }, with_context = false),
+      ]
+    },
+  },
+} only %}
+
+<bolt-figure style="max-width: 1440px; margin: 0 auto;" class="u-bolt-padding-bottom">
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+    ],
+    attributes: {
+      slot: "media"
+    }
+  } only %}
+
+  Demo: <bolt-link url="/pattern-lab/?p=components-basic-carousel" target="_blank">A basic Carousel <bolt-icon name="external-link"></bolt-icon></bolt-link>
+</bolt-figure>
+

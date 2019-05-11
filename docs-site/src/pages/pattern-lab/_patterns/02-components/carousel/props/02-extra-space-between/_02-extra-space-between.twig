@@ -1,0 +1,44 @@
+<h2>Space between: None</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  spaceBetween: "none",
+  extraSpaceBetween: true,
+} only %}
+
+<h2>Space between: Small</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  spaceBetween: "small",
+  extraSpaceBetween: true,
+} only %}
+
+<h2>Space between: Medium (Default)</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  spaceBetween: "medium",
+  extraSpaceBetween: true,
+} only %}
+
+<h2>Space between: large</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  spaceBetween: "large",
+  extraSpaceBetween: true,
+} only %}
+

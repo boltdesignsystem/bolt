@@ -1,0 +1,25 @@
+<div class="o-bolt-wrapper">
+
+  {% embed "@bolt-components-device-viewer/device-viewer.twig" with {
+    deviceName: "ipad",
+    color: "silver",
+    orientation: "landscape"
+  } only %}
+    {% block device_viewer_image %}
+      {% include "@bolt-components-carousel/carousel.twig" with {
+        slides: [
+          '<bolt-ratio ratio="4/3" style="--aspect-ratio: 4/3; background-size: cover; background-image:url(/images/screenshots/product-screenshot-1.jpg)"></bolt-ratio>',
+          '<bolt-ratio ratio="4/3" style="--aspect-ratio: 4/3; background-size: cover; background-image:url(/images/screenshots/product-screenshot-2.png)"></bolt-ratio>',
+          '<bolt-ratio ratio="4/3" style="--aspect-ratio: 4/3; background-size: cover; background-image:url(/images/screenshots/product-screenshot-3.jpg)"></bolt-ratio>',
+          '<bolt-ratio ratio="4/3" style="--aspect-ratio: 4/3; background-size: cover; background-image:url(/images/screenshots/product-screenshot-4.jpg)"></bolt-ratio>',
+        '<bolt-ratio ratio="4/3" style="--aspect-ratio: 4/3; background-size: cover; background-image:url(/images/screenshots/product-screenshot-1.jpg)"></bolt-ratio>',
+          '<bolt-ratio ratio="4/3" style="--aspect-ratio: 4/3; background-size: cover; background-image:url(/images/screenshots/product-screenshot-2.png)"></bolt-ratio>',
+        ],
+        slidesPerView: 1,
+        spaceBetween: "none",
+        noPagination: true,
+        navButtonPosition: "inside",
+      } only %}
+    {% endblock %}
+  {% endembed %}
+</div>

@@ -1,0 +1,185 @@
+<div class="c-bds-fake-modal">
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-3.jpg)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-4.jpg)"></bolt-ratio>',
+     '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-4.jpg)"></bolt-ratio>',
+    ],
+    slidesPerView: 1,
+    spaceBetween: "small",
+    navButtonPosition: "outside",
+    noPagination: true,
+    attributes: {
+      class: [
+        "js-swiper-gallery--demo",
+      ]
+    }
+  } only %}
+
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-3.jpg)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-4.jpg)"></bolt-ratio>',
+     '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
+    ],
+    slidesPerView: 4,
+    maxSlidesPerView: 4,
+    spaceBetween: "none",
+    noPagination: true,
+    noMinWidth: true,
+    freeScroll: true,
+    noScrollbar: true,
+    noNavButtons: true,
+    slideToClickedSlide: true,
+    freeMode: true,
+    attributes: {
+      class: [
+        "js-swiper-gallery--thumbnails",
+      ]
+    }
+  } only %}
+</div>
+<div class="c-bds-fake-modal__overlay"></div>
+
+<style>
+  .c-bds-fake-modal {
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    margin: 0 auto;
+    max-width: 800px;
+    width: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 10;
+  }
+
+  .c-bds-fake-modal__overlay {
+    background-color: rgba(0, 0, 0, .1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+</style>
+
+<script>
+  // attributes: {
+  //     class: [
+  //       "js-swiper-gallery-demo",
+  //     ]
+  //   }
+    // Fired every time the custom element has rendered.
+  var mainCarousel = document.querySelector('.js-swiper-gallery--demo');
+  var mainCarouselRendered = false;
+  var existingMainCarouselRenderListener = false;
+  
+  var thumbnailCarousel = document.querySelector('.js-swiper-gallery--thumbnails');
+  var thumbnailCarouselRendered = false;
+  var existingThumbnailCarouselRenderListener = false;
+
+  var galleryInit = false;
+
+  // var carouselEventAdded = false;
+  // var alreadyExistingCarouselEvent = false;
+  // var clickEventAdded = false;
+
+  function checkIfShouldInitCarouselGallery(){
+    console.log('checkIfShouldInitCarouselGallery');
+    console.log(thumbnailCarousel._wasInitiallyRendered === true);
+    console.log(mainCarousel._wasInitiallyRendered === true);
+    console.log(galleryInit === false);
+    if (thumbnailCarousel._wasInitiallyRendered === true && mainCarousel._wasInitiallyRendered === true && galleryInit === false){
+      galleryInit = true;
+      initCarouselGallery();
+    }
+  }
+
+  function initCarouselGallery(){
+    mainCarousel.removeEventListener('rendered', checkIfShouldInitCarouselGallery);
+    thumbnailCarousel.removeEventListener('rendered', checkIfShouldInitCarouselGallery);
+    console.log('ready to init carousel gallery');
+
+    mainCarousel.swiper.params.thumbs = {
+      swiper: thumbnailCarousel.swiper,
+      slideThumbActiveClass: 'c-bolt-carousel__slide--thumbnail-active',
+      thumbsContainerClass: 'c-bolt-carousel--thumbnails t-bolt-xdark',
+    }
+
+    mainCarousel.options.thumbs = mainCarousel.swiper.params.thumbs;
+
+    // mainCarousel.swiper.init();
+    // mainCarousel.swiper.update();
+    mainCarousel.resizeCarousel();
+
+    // console.log(mainCarousel.options);
+    // console.log(mainCarousel.swiper);
+  }
+
+  if (thumbnailCarousel._wasInitiallyRendered === true){
+    // if (existingThumbnailCarouselRenderListener){
+    //   console.log('was already rendered but an event already exists so using that.');
+    // } else {
+    //   existingThumbnailCarouselRenderListener = true;
+    //   console.log('The carousel gallery has already been rendered BUT the initially targeted element does not currently exist (likely due to the component re-rendering). Removing old event listener + re-adding an event listener to account for that.');
+    //   thumbnailCarousel.removeEventListener('rendered', setupCarouselGallery, false);
+    //   carouselElement.addEventListener('rendered', setupCarouselGallery, true);
+    // }
+    checkIfShouldInitCarouselGallery();
+  } else {
+    // console.log('waiting for carousel gallery to be initially rendered');
+    // alreadyExistingCarouselEvent = true;
+    thumbnailCarousel.addEventListener('rendered', checkIfShouldInitCarouselGallery);
+  }
+  
+  if (mainCarousel._wasInitiallyRendered === true){
+    // if (existingThumbnailCarouselRenderListener){
+    //   console.log('was already rendered but an event already exists so using that.');
+    // } else {
+    //   existingThumbnailCarouselRenderListener = true;
+    //   console.log('The carousel gallery has already been rendered BUT the initially targeted element does not currently exist (likely due to the component re-rendering). Removing old event listener + re-adding an event listener to account for that.');
+    //   thumbnailCarousel.removeEventListener('rendered', setupCarouselGallery, false);
+    //   carouselElement.addEventListener('rendered', setupCarouselGallery, true);
+    // }
+    checkIfShouldInitCarouselGallery();
+  } else {
+    // console.log('waiting for carousel gallery to be initially rendered');
+    // alreadyExistingCarouselEvent = true;
+    mainCarousel.addEventListener('rendered', checkIfShouldInitCarouselGallery);
+  }
+
+    // function setupCarouselThumbnail(){
+    //   console.log('carousel gallery thumb rendered');
+
+    //   console.log(this);
+
+    //   console.log(this.swiper);
+
+    //   console.log(carouselElement.swiper);
+    //   // if (clickEventAdded === true){
+    //   //   clickEventAdded = false;
+    //   //   console.log('button click event already added -- removing old click event');
+    //   //   innerButtonElement.removeEventListener('click', buttonClicked, true);
+    //   // } else {
+    //   //   console.log('button click event not yet added -- no need to remove old click event.');
+    //   // }
+
+    //   // clickEventAdded = true;
+    //   // innerButtonElement.addEventListener('click', buttonClicked, true);
+    // }
+
+    // function buttonClicked(){
+    //   console.log('the button tag inside the rendered xdark bolt-button was clicked!');
+    //   document.body.classList.toggle('t-bolt-xdark');
+    // }
+</script>

@@ -1,0 +1,39 @@
+{% set schema = bolt.data.components["@bolt-components-carousel"].schema %}
+
+{% if slidesPerView == 1 %}
+  {% set slidesPerView = "1" %}
+{% elseif slidesPerView == 2 %}
+  {% set slidesPerView = "2" %}
+{% elseif slidesPerView == 3 %}
+  {% set slidesPerView = "3" %}
+{% elseif slidesPerView == 4 %}
+  {% set slidesPerView = "4" %}
+{% else %}
+  {% set slidesPerView = "auto" %}
+{% endif %}
+
+{% if enable_json_schema_validation %}
+    {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+
+{% set base_class = "c-bolt-carousel" %}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
+
+<bolt-carousel {{ this.props }}>
+ {% block default_slot %}
+  {% for slide in slides %}
+    {% embed "@bolt-components-carousel/carousel-slide.twig" %}
+      {% block default_slot %}
+        {{ slide }}
+      {% endblock %}
+    {% endembed %}
+  {% endfor %}
+ {% endblock %}
+  
+  {% block controls %}
+    <bolt-button slot="previous-btn" color="secondary" size="medium" border-radius="full" icon-only>Previous <bolt-icon size="large" slot="before" name="chevron-left"></bolt-icon></bolt-button>
+    <bolt-button slot="next-btn" color="secondary" size="medium" border-radius="full" icon-only>Next <bolt-icon size="large" slot="after" name="chevron-right"></bolt-icon></bolt-button>
+  {% endblock %}
+</bolt-carousel>

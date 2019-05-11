@@ -74,6 +74,7 @@ const config = {
 
   components: {
     global: [
+      '@bolt/components-carousel',
       '@bolt/global',
       '@bolt/docs-search',
       '@bolt/schema-form',
