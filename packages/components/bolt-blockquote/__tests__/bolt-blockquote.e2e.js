@@ -16,7 +16,9 @@ module.exports = {
       .assert.elementPresent('img[slot="logo"]')
       .execute(
         function(data) {
-          return document.querySelector('bolt-blockquote cite[slot="author-name"]').textContent;
+          return document.querySelector(
+            'bolt-blockquote cite[slot="author-name"]'
+          ).textContent;
         },
         [],
         function(result) {
