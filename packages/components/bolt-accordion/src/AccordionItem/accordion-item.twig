@@ -9,7 +9,7 @@
 {% set this = init(schema.properties.items.items) %}
 {% set inner_attributes = create_attribute({}) %}
 
-{% set uuid = this.data.uuid|default(random()) %}
+{% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random()) %}
 {% set primary_uuid = uuid ? base_class ~ "-#{uuid}" : base_class ~ "-#{random_uuid}" %}
 {% set secondary_uuid = uuid ? base_class ~ "-inner-#{uuid}" : base_class ~ "-inner-#{random_uuid}" %}
 
