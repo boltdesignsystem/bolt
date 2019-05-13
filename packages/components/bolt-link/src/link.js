@@ -34,6 +34,7 @@ class BoltLink extends BoltAction {
 
   render() {
     // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
+    // 2. Zero Width No-break Space (&#xfeff;) is needed to make the last word always stick with the icon, so the icon will never become an orphan.
 
     // Validate the original prop data passed along -- returns back the validated data w/ added default values
     const { display, valign, url, target, isHeadline } = this.validateProps(
@@ -62,9 +63,10 @@ class BoltLink extends BoltAction {
         case 'after':
           const iconClasses = cx('c-bolt-link__icon');
           // [1]
+          // [2]
           // prettier-ignore
           return name in this.slots
-            ? html`<span class="${iconClasses}">${this.slot(name)}</span>`
+            ? html`<span class="${iconClasses}">&#xfeff;${this.slot(name)}</span>`
             : html`<slot name="${name}" />`;
         default:
           const itemClasses = cx('c-bolt-link__text', {
