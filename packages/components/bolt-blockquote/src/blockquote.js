@@ -228,6 +228,7 @@ class BoltBlockquote extends withLitHtml() {
 export { BoltBlockquote };
 
 // @todo: Original return statement - backing this out until `bolt-text` is ready for release
+// See: https://github.com/bolt-design-system/bolt/pull/1167
 // return html`
 // ${this.addStyles([styles])}
 // <blockquote class="${classes}" is="shadow-root">
