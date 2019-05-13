@@ -29,19 +29,9 @@ module.exports = {
           );
         },
       )
-      .execute(
-        function(data) {
-          return document.querySelector(
-            'bolt-blockquote cite[slot="author-name"]',
-          ).textContent;
-        },
-        [],
-        function(result) {
-          browser.assert.ok(
-            result.value === 'Michelangelo di Lodovico Buonarroti Simoni',
-            `verified that <bolt-blockquote> rendered author text.`,
-          );
-        },
+      .assert.containsText(
+        'bolt-blockquote cite[slot="author-name"]',
+        'Michelangelo di Lodovico Buonarroti Simoni',
       )
       .saveScreenshot(
         `screenshots/bolt-blockquote/${testName}--${currentBrowser}.png`,
