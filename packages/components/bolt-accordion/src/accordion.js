@@ -153,7 +153,8 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.accordionItems = [];
 
     this.accordionItemElements.forEach(item => {
-      const onItemReady = () => {
+      const onItemReady = e => {
+        if (e.detail.name !== 'bolt-accordion-item') return;
         this.handleAccordionItemReady(item);
         item.removeEventListener('rendered', onItemReady);
       };
