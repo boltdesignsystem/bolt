@@ -13,7 +13,22 @@ module.exports = {
         `${testingUrl}/pattern-lab/patterns/02-components-blockquote-10-blockquote-alignItems-variation/02-components-blockquote-10-blockquote-alignItems-variation.html`,
       )
       .waitForElementVisible('bolt-blockquote', 1000)
-      .assert.elementPresent('img[slot="logo"]')
+      .assert.elementPresent('bolt-logo[slot="logo"]')
+      .execute(
+        function(data) {
+          const blockquote = document.querySelector('bolt-blockquote');
+          return blockquote.renderRoot
+            .querySelector('blockquote')
+            .classList.contains('c-bolt-blockquote');
+        },
+        [],
+        function(result) {
+          browser.assert.ok(
+            result.value === true,
+            `verified that <bolt-blockquote> rendered the blockquote element with a class of  c-bolt-blockquote.`,
+          );
+        },
+      )
       .execute(
         function(data) {
           return document.querySelector(
