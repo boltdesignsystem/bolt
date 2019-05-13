@@ -17,7 +17,7 @@ module.exports = {
       .execute(
         function(data) {
           return document.querySelector(
-            'bolt-blockquote cite[slot="author-name"]'
+            'bolt-blockquote cite[slot="author-name"]',
           ).textContent;
         },
         [],
