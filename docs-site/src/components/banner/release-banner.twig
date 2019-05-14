@@ -1,0 +1,72 @@
+{% set currentVersion = "v" ~ bolt.data.fullManifest.version %}
+{% set latestVersion = bolt.data.boltReleases.options[0] %}
+{% set isNotStable = 
+  "alpha" in currentVersion or 
+  "beta" in currentVersion or 
+  "rc" in currentVersion 
+    ? true : false 
+%}
+
+{% set latestStableVersion = "" %}
+{% set previousStableVersion = "" %}
+
+{# is this (the local version of Bolt) also the latest version? #}
+{% if latestVersion.label == currentVersion %}
+  {% set isLocalVersionTheLatest = true %}
+{% else %}
+  {% set isLocalVersionTheLatest = false %}
+{% endif %}
+
+{% for option in bolt.data.boltReleases.options %}
+  {% set v = option.label %}
+  {% set isStable = "alpha" not in v and "beta" not in v and "rc" not in v %}
+
+  {% if v != currentVersion and isStable and previousStableVersion == "" %}
+    {% set previousStableVersion = option %}
+  {% endif %}
+
+  {% if isStable and latestStableVersion == "" %}
+    {% set latestStableVersion = option %}
+  {% endif %}
+{% endfor %}
+
+{% if isLocalVersionTheLatest %}
+  {% set suggestedText = "alpha" not in previousStableVersion.value and "beta" not in previousStableVersion.value and "rc" not in previousStableVersion.value and isNotStable ? 'the latest stable' : 'the previous' %}
+  {% set suggestedLink = previousStableVersion %}
+{% elseif currentVersion != latestStableVersion.label %}
+  {% set suggestedText = "the latest stable" %}
+  {% set suggestedLink = latestStableVersion %}
+{% else %}
+  {% set suggestedText = "alpha" not in latestVersion.value and "beta" not in latestVersion.value and "rc" not in latestVersion.value ? 'the latest' : 'the upcoming' %}
+  {% set suggestedLink = latestVersion %}
+{% endif %}
+
+{% if isNotStable and latestVersion.label == currentVersion %}
+  {% set currentVersionText = "an upcoming " %}
+{% elseif latestStableVersion.label == currentVersion %}
+  {% set currentVersionText = "the latest stable " %}
+{% elseif latestVersion.label == currentVersion %}
+  {% set currentVersionText = "the latest " %}
+{% else %}
+  {% set currentVersionText = "a previous " %}
+{% endif %}
+
+{% set suggestedRenderedLink = include("@bolt-components-link/link.twig", {
+  text: suggestedLink.label,
+  url: suggestedLink.value,
+}) %}
+
+{% set text %}
+  {% spaceless %}
+    These are the docs for {{ currentVersionText }} release of the Bolt Design System. Looking for {{ suggestedText }} release, {{ suggestedRenderedLink }}?
+  {% endspaceless %}
+{% endset %}
+
+{% set bannerText = include("@bolt-components-headline/text.twig", {
+  size: "small",
+  text: text
+}) %}
+
+{% include "@bolt-site/banner.twig" with {
+  text:  bannerText
+} only %}
