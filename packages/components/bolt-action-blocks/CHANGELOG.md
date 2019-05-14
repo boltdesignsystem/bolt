@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-action-blocks/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-action-blocks/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* copy updates ([ff41fa4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-action-blocks/commit/ff41fa4))
+* deprecated obsolete props ([421cf55](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-action-blocks/commit/421cf55))
+* package.json ([53410b9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-action-blocks/commit/53410b9))
+* revert updating action block repository url in package.json ([371ccab](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-action-blocks/commit/371ccab))
+* update Jest tests to not use async on top level `describe` ([772fbb1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-action-blocks/commit/772fbb1))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-action-blocks/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 
