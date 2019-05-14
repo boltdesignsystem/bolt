@@ -6,7 +6,7 @@ import {
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../action-blocks.schema.yml'));
-const { valign, borderless } = schema.properties;
+const { align, border } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -61,12 +61,12 @@ describe('<bolt-action-blocks> Component', () => {
   });
 
   // Props
-  valign.enum.forEach(async valignChoice => {
-    test(`Vertical alignment of each block's content: ${valignChoice}`, async () => {
+  align.enum.forEach(async alignChoice => {
+    test(`Vertical alignment of each block's content: ${alignChoice}`, async () => {
       const results = await renderTwig(
         '@bolt-components-action-blocks/action-blocks.twig',
         {
-          valign: valignChoice,
+          align: alignChoice,
           contentItems: [
             {
               text: 'Item 1',
@@ -101,12 +101,12 @@ describe('<bolt-action-blocks> Component', () => {
     });
   });
 
-  borderless.enum.forEach(async borderlessChoice => {
-    test(`Border in between each block: ${borderlessChoice}`, async () => {
+  border.enum.forEach(async borderChoice => {
+    test(`Border in between each block: ${borderChoice}`, async () => {
       const results = await renderTwig(
         '@bolt-components-action-blocks/action-blocks.twig',
         {
-          borderless: borderlessChoice,
+          border: borderChoice,
           contentItems: [
             {
               text: 'Item 1',
