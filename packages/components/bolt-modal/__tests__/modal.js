@@ -1,3 +1,4 @@
+/* eslint-disable no-await-in-loop */
 import {
   render,
   renderString,
@@ -204,7 +205,6 @@ describe('<bolt-modal> Component', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
-
         await page.tap('.js-modal-trigger--open');
         await page.waitFor(500);
 
