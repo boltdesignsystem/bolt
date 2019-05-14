@@ -1,12 +1,9 @@
-@import '@bolt/core';
+/* ------------------------------------ *\
+   Accordion Items
+\* ------------------------------------ */
 
-// @todo: move this to a settings and tools scss file.
-$bolt-accordion-border-width: $bolt-border-width;
-$bolt-accordion-border-style: $bolt-border-style;
-$bolt-accordion-border-color: bolt-theme(text, 0.15);
-$bolt-accordion-border-radius: bolt-border-radius(small);
-$bolt-accordion-icon-size: 1.4rem;
-$bolt-accordion-outline-offset: -4px;
+@import '@bolt/core';
+@import '../_accordion-settings-and-tools.scss';
 
 bolt-accordion-item {
   display: block;
@@ -96,7 +93,8 @@ bolt-accordion-item {
   margin: 0;
   padding: 0;
   color: inherit;
-  text-align: left; // otherwise some accordion menus are center aligned in the Shadow DOM
+  text-align: left; // Fixes center aligned accordion items in the Shadow DOM.
+  text-align: start; // For internationalization, will fall back to left if start is not supported.
   cursor: pointer;
   user-select: none;
   outline-offset: $bolt-accordion-outline-offset;

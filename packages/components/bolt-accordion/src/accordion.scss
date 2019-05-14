@@ -1,10 +1,9 @@
-@import '@bolt/core';
+/* ------------------------------------ *\
+   Accordion
+\* ------------------------------------ */
 
-// @todo: move this to a settings and tools scss file.
-$bolt-accordion-border-width: $bolt-border-width;
-$bolt-accordion-border-style: $bolt-border-style;
-$bolt-accordion-border-color: bolt-theme(text, 0.15);
-$bolt-accordion-border-radius: bolt-border-radius(small);
+@import '@bolt/core';
+@import '_accordion-settings-and-tools.scss';
 
 @include bolt-custom-element('bolt-accordion', block, medium);
 
