@@ -36,9 +36,7 @@ const sassExportData = require('@bolt/sass-export-data')({
 
 const sassLoaderOptions = {
   sourceMap: false,
-  importer: [
-    npmSass.importer,
-  ],
+  importer: [npmSass.importer],
   functions: sassExportData,
   precision: 3,
   data: globalSassData.join('\n'),
@@ -58,7 +56,7 @@ const scssLoaders = [
     options: {
       sourceMap: false,
       plugins: () => [
-        require('../../packages/build-tools/plugins/postcss-themify')(
+        require('@bolt/build-tools/plugins/postcss-themify')(
           themifyOptions,
         ),
         postcssDiscardDuplicates,
