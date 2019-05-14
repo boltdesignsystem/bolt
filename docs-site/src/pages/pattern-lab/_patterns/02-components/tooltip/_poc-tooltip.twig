@@ -1,0 +1,316 @@
+{# Tooltip is an unpublished component, please only use the HTML here as a reference. This twig file is not usable. #}
+
+<p>
+  You can
+  <span class="c-bolt-tooltip c-bolt-tooltip--action is-align-left is-push-down">
+    <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-1">
+      hover over this
+    </mark>
+    <span id="tooltip-1" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+      <span class="c-bolt-tooltip__content-bubble">
+        {% include "@bolt-components-list/list.twig" with {
+          tag: "span",
+          separator: "solid",
+          spacing: "small",
+          inset: true,
+          items: [
+            include("@bolt-components-link/link.twig", {
+              text: "Item 1",
+              url: "#!",
+            }),
+            include("@bolt-components-link/link.twig", {
+              text: "Item 2",
+              url: "#!",
+            }),
+            include("@bolt-components-link/link.twig", {
+              text: "Item 3",
+              url: "#!",
+            }),
+          ]
+        } only %}
+      </span>
+    </span>
+  </span>
+  to see the tooltip.
+</p>
+<p>
+  Here is a second paragraph of text. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. And then
+  <span class="c-bolt-tooltip c-bolt-tooltip--help c-bolt-tooltip--nowrap is-align-center is-push-down">
+    <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-2">
+      another tooltip
+    </mark>
+    <span id="tooltip-2" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+      <span class="c-bolt-tooltip__content-bubble">
+        <span class="c-bolt-text c-bolt-text--small">Short and sweet, and center</span>
+      </span>
+    </span>
+  </span>.
+  Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus.
+</p>
+<h3>
+  All possible positions
+</h3>
+<div class="u-bolt-margin-bottom-medium">
+  {% grid %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+      <p>
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-push-right is-valign-top">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-right-top">
+            Push Right Top
+          </mark>
+          <span id="tooltip-push-right-top" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push right top. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+      </p>
+    {% endcell %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
+      <p>
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-align-left is-push-down">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-down-left">
+            Push Down Left
+          </mark>
+          <span id="tooltip-push-down-left" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push Down Left. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+        -
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-align-center is-push-down">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-down-center">
+            Push Down Center
+          </mark>
+          <span id="tooltip-push-down-center" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push Down Center. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+        -
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-align-right is-push-down">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-down-right">
+            Push Down Right
+          </mark>
+          <span id="tooltip-push-down-right" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push Down Right. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+      </p>
+    {% endcell %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+      <p>
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-push-left is-valign-top">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-left-top">
+            Push Left Top
+          </mark>
+          <span id="tooltip-push-left-top" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push left top. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+      </p>
+    {% endcell %}
+  {% endgrid %}
+  {% grid %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+      <p>
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-push-right is-valign-center">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-right-center">
+            Push Right Center
+          </mark>
+          <span id="tooltip-push-right-center" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push right center. Class aptent taciti sociosqu.</span>
+            </span>
+          </span>
+        </span>
+      </p>
+    {% endcell %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
+    {% endcell %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+      <p>
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-push-left is-valign-center">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-left-center">
+            Push Left Center
+          </mark>
+          <span id="tooltip-push-left-center" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push left center. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+      </p>
+    {% endcell %}
+  {% endgrid %}
+  {% grid %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+      <p>
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-push-right is-valign-bottom">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-right-bottom">
+            Push Right Bottom
+          </mark>
+          <span id="tooltip-push-right-bottom" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push right bottom. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+      </p>
+    {% endcell %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
+      <p>
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-align-left is-push-up">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-up-left">
+            Push Up Left
+          </mark>
+          <span id="tooltip-push-up-left" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push Up Left. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+        -
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-align-center is-push-up">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-up-center">
+            Push Up Center
+          </mark>
+          <span id="tooltip-push-up-center" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push Up Center. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+        -
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-align-right is-push-up">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-up-right">
+            Push Up Right
+          </mark>
+          <span id="tooltip-push-up-right" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push Up Right. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+      </p>
+    {% endcell %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+      <p>
+        <span class="c-bolt-tooltip c-bolt-tooltip--help is-push-left is-valign-bottom">
+          <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-push-left-bottom">
+            Push Left Bottom
+          </mark>
+          <span id="tooltip-push-left-bottom" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+            <span class="c-bolt-tooltip__content-bubble">
+              <span class="c-bolt-text c-bolt-text--small">Push left bottom. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+            </span>
+          </span>
+        </span>
+      </p>
+    {% endcell %}
+  {% endgrid %}
+</div>
+<h3>
+  Content lengths
+</h3>
+<p>
+  <span class="c-bolt-tooltip c-bolt-tooltip--help c-bolt-tooltip--nowrap is-push-right is-valign-center">
+    <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-short">
+      <strong>Short</strong>
+    </mark>
+    <span id="tooltip-short" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+      <span class="c-bolt-tooltip__content-bubble">
+        <span class="c-bolt-text c-bolt-text--small">Some info text.</span>
+      </span>
+    </span>
+  </span>
+  -
+  <span class="c-bolt-tooltip c-bolt-tooltip--help is-push-right is-valign-center">
+    <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-long">
+      <strong>Loooooong</strong>
+    </mark>
+    <span id="tooltip-long" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+      <span class="c-bolt-tooltip__content-bubble">
+        <span class="c-bolt-text c-bolt-text--small">Some long info text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum.</span>
+      </span>
+    </span>
+  </span>
+</p>
+<h3>
+  Spacing options
+</h3>
+<p>
+  <span class="c-bolt-tooltip c-bolt-tooltip--spacing-xsmall c-bolt-tooltip--action is-push-right is-valign-bottom">
+    <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-action-2">
+      <strong>X-Small</strong>
+    </mark>
+    <span id="tooltip-action-2" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+      <span class="c-bolt-tooltip__content-bubble">
+        <span class="c-bolt-text c-bolt-text--small">X-Small Spacing. Push right top. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+      </span>
+    </span>
+  </span>
+  -
+  <span class="c-bolt-tooltip c-bolt-tooltip--spacing-small c-bolt-tooltip--action is-push-right is-valign-bottom">
+    <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-action-2">
+      <strong>Small</strong>
+    </mark>
+    <span id="tooltip-action-2" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+      <span class="c-bolt-tooltip__content-bubble">
+        <span class="c-bolt-text c-bolt-text--small">Small Spacing. Push right top. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+      </span>
+    </span>
+  </span>
+  -
+  <span class="c-bolt-tooltip c-bolt-tooltip--spacing-medium c-bolt-tooltip--action is-push-right is-valign-bottom">
+    <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-action-2">
+      <strong>Medium</strong>
+    </mark>
+    <span id="tooltip-action-2" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+      <span class="c-bolt-tooltip__content-bubble">
+        <span class="c-bolt-text c-bolt-text--small">Medium Spacing. Push right top. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</span>
+      </span>
+    </span>
+  </span>
+</p>
+<h3>
+  Pass components as tooltip content
+</h3>
+<p>
+  Anything can be passed as the tooltip content, for example, a
+  <span class="c-bolt-tooltip c-bolt-tooltip--spacing-none c-bolt-tooltip--action is-push-up is-align-center">
+    <mark class="c-bolt-tooltip__trigger" aria-describedby="tooltip-action">
+      <strong>block list</strong>
+    </mark>
+    <span id="tooltip-action" class="c-bolt-tooltip__content" role="tooltip" aria-hidden="true">
+      <span class="c-bolt-tooltip__content-bubble">
+        {% include "@bolt-components-list/list.twig" with {
+          tag: "span",
+          separator: "solid",
+          spacing: "small",
+          inset: true,
+          items: [
+            include("@bolt-components-link/link.twig", {
+              text: "Item 1",
+              url: "#!",
+            }),
+            include("@bolt-components-link/link.twig", {
+              text: "Item 2",
+              url: "#!",
+            }),
+            include("@bolt-components-link/link.twig", {
+              text: "Item 3",
+              url: "#!",
+            }),
+          ]
+        } only %}
+      </span>
+    </span>
+  </span>.
+</p>
