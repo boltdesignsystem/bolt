@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<bolt-modal> Component <bolt-modal> rendered by Twig 1`] = `
+
+<bolt-modal uuid="12345">
+  <bolt-text tag="h3"
+             slot="header"
+  >
+    This is the header
+  </bolt-text>
+  <bolt-text>
+    This is the body (default).
+  </bolt-text>
+  <bolt-text slot="footer">
+    This is the footer
+  </bolt-text>
+</bolt-modal>
+
+`;
+
 exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] = `
 <bolt-modal
   ready=""
@@ -104,6 +122,7 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
               class="is-first-child is-last-child"
               slot="header"
               style=""
+              tag="h3"
             >
               This is the header
             </bolt-text>
@@ -190,6 +209,7 @@ exports[`<bolt-modal> Component Default <bolt-modal> with Shadow DOM renders 2`]
   <bolt-text
     slot="header"
     style=""
+    tag="h3"
   >
     This is the header
   </bolt-text>

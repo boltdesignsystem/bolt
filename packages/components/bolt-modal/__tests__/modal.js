@@ -18,7 +18,26 @@ async function renderTwigString(template, data) {
   return await renderString(template, data, true);
 }
 
+const imageVrtConfig = {
+  failureThreshold: '0.02',
+  failureThresholdType: 'percent',
+};
+
 const timeout = 60000;
+
+// Currently, the only important breakpoints to test are 'small' and 'large'
+const viewportSizes = [
+  {
+    size: 'large',
+    width: 1024,
+    height: 768,
+  },
+  {
+    size: 'small',
+    width: 320,
+    height: 568,
+  },
+];
 
 describe('<bolt-modal> Component', () => {
   let page;
@@ -92,7 +111,7 @@ describe('<bolt-modal> Component', () => {
     const renderedModal = await page.evaluate(async () => {
       const modal = document.createElement('bolt-modal');
       modal.setAttribute('uuid', '12345');
-      modal.innerHTML = `<bolt-text slot="header">This is the header</bolt-text>
+      modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
       <bolt-text>This is the body (default).</bolt-text>
       <bolt-text slot="footer">This is the footer</bolt-text>`;
       document.body.appendChild(modal);
@@ -112,10 +131,7 @@ describe('<bolt-modal> Component', () => {
     // console.log(activeTagName);
     // expect(renderedModal.activeTagName === 'BOLT-BUTTON').toBe(true);
 
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(image).toMatchImageSnapshot(imageVrtConfig);
 
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -124,7 +140,7 @@ describe('<bolt-modal> Component', () => {
     const renderedModal = await page.evaluate(() => {
       const modal = document.createElement('bolt-modal');
       modal.setAttribute('uuid', '12345');
-      modal.innerHTML = `<bolt-text slot="header">This is the header</bolt-text>
+      modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
       <bolt-text>This is the body (default).</bolt-text>
       <bolt-text slot="footer">This is the footer</bolt-text>`;
       document.body.appendChild(modal);
@@ -138,11 +154,70 @@ describe('<bolt-modal> Component', () => {
 
     const image = await page.screenshot();
 
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
+    expect(image).toMatchImageSnapshot(imageVrtConfig);
 
     expect(renderedHTML).toMatchSnapshot();
   });
+
+  test(
+    '<bolt-modal> rendered by Twig',
+    async () => {
+      const { html, ok } = await renderTwig(
+        '@bolt-components-modal/modal.twig',
+        {
+          content:
+            '<bolt-text tag="h3" slot="header">This is the header</bolt-text><bolt-text>This is the body (default).</bolt-text><bolt-text slot="footer">This is the footer</bolt-text>',
+        },
+      );
+      expect(ok).toBe(true);
+      expect(html).toMatchSnapshot();
+
+      await page.evaluate(html => {
+        const div = document.createElement('div');
+        const trigger = document.createElement('bolt-button');
+        trigger.textContent = 'Open Modal';
+        trigger.setAttribute('class', 'js-modal-trigger--open');
+        trigger.setAttribute('onclick', 'this.nextElementSibling.show()');
+        div.innerHTML = `${html}`;
+        div.prepend(trigger);
+        document.body.appendChild(div);
+      }, html);
+
+      const screenshots = [];
+
+      async function isVisible(selector) {
+        return await page.evaluate(selector => {
+          const e = document.querySelector(selector);
+          if (!e) return false;
+          const style = window.getComputedStyle(e);
+          return style &&
+            style.display !== 'none' &&
+            style.visibility !== 'hidden' &&
+            style.opacity !== '0'
+            ? true
+            : false;
+        }, selector);
+      }
+
+      for (const item of viewportSizes) {
+        const { height, width, size } = item;
+        screenshots[size] = [];
+
+        await page.setViewport({ height, width });
+
+        await page.tap('.js-modal-trigger--open');
+        await page.waitFor(500);
+
+        if (await isVisible('bolt-modal')) {
+          screenshots[size].modalOpened = await page.screenshot();
+          expect(screenshots[size].modalOpened).toMatchImageSnapshot(
+            imageVrtConfig,
+          );
+          await page.tap('bolt-button'); // closes modal
+          await page.waitFor(500);
+        }
+      }
+    },
+    timeout,
+  );
 });
