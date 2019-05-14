@@ -71,6 +71,7 @@ const config = {
 
   components: {
     global: [
+      '@bolt/analytics-autotrack',
       '@bolt/global',
       '@bolt/schema-form',
       '@bolt/components-placeholder',
