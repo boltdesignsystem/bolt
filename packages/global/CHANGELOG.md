@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* adding important ([4434ad4](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/4434ad4))
+* ensure vanilla <code> elements can scroll horizontally and/or vertically if needed ([9500afc](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/9500afc))
+* flag and figure bugs ([9893c60](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/9893c60))
+
+
+### Features
+
+* add max-width util ([b44eede](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/b44eede))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 
