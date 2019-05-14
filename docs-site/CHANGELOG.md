@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/bolt-design-system/bolt/compare/v2.3.1...v2.3.2) (2019-05-14)
+
+
+### Bug Fixes
+
+* update version selector to only run logic when component exists + fix logic checks to make sure the correct local version is selected ([a4b53fd](https://github.com/bolt-design-system/bolt/commit/a4b53fd))
+
+
+### Features
+
+* backwards port over the release banner from more recent versions of Bolt ([53f245e](https://github.com/bolt-design-system/bolt/commit/53f245e))
+* pull in the more recently released [@bolt](https://github.com/bolt)/analytics-autotrack component for docs site tracking ([99a0e21](https://github.com/bolt-design-system/bolt/commit/99a0e21))
+
+
+
+
+
 ## [2.3.1](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.3.1) (2019-04-17)
 
 

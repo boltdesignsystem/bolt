@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v2.3.1...v2.3.2) (2019-05-14)
+
+
+### Bug Fixes
+
+* orphan icon wrap with text ([6d60346](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/commit/6d60346))
+
+
+
+
+
 ## [2.3.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-link/compare/v2.2.2...v2.3.1) (2019-04-17)
 
 

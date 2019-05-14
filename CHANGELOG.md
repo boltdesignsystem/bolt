@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/bolt-design-system/bolt/compare/v2.3.1...v2.3.2) (2019-05-14)
+
+
+### Bug Fixes
+
+* orphan icon wrap with text ([6d60346](https://github.com/bolt-design-system/bolt/commit/6d60346))
+* Restore flag component ([9c83e7a](https://github.com/bolt-design-system/bolt/commit/9c83e7a))
+* update monorepo tests to temporarily exclude requiring the new [@bolt](https://github.com/bolt)/analytics-autotrack library to be symlinked ([b013333](https://github.com/bolt-design-system/bolt/commit/b013333))
+* update version selector to only run logic when component exists + fix logic checks to make sure the correct local version is selected ([a4b53fd](https://github.com/bolt-design-system/bolt/commit/a4b53fd))
+
+
+### Features
+
+* backwards port over the release banner from more recent versions of Bolt ([53f245e](https://github.com/bolt-design-system/bolt/commit/53f245e))
+* pull in the more recently released [@bolt](https://github.com/bolt)/analytics-autotrack component for docs site tracking ([99a0e21](https://github.com/bolt-design-system/bolt/commit/99a0e21))
+
+
+
+
+
 ## [2.3.1](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.3.1) (2019-04-17)
 
 
