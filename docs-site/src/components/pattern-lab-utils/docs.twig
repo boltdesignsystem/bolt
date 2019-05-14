@@ -32,7 +32,7 @@
     include("@bolt-components-text/text.twig", {
       text: "NPM Package: #{npmLink}",
     }),
-    
+
   ]
 } only %} #}
 
@@ -199,7 +199,7 @@
                 isHeadline: true
               }) : 'No component history...' }}
             </dd>
-            
+
             {% if isPrivate == false %}
               <dt>Install</dt>
               <dd>
@@ -249,7 +249,7 @@
       {% endcell %}
     {% endgrid %}
 
-    
+
 
     {{ componentExplorer }}
   </div>
@@ -403,7 +403,6 @@
           size: "xsmall",
           tag: "h3",
           text: "Props",
-          weight: "semibold",
           attributes: {
             class: examples ? "u-bolt-margin-bottom-xxsmall" : "u-bolt-margin-bottom-none"
           }
@@ -429,7 +428,6 @@
           size: "xsmall",
           tag: "h3",
           text: "Demos",
-          weight: "semibold",
           attributes: {
             class: [
               "u-bolt-margin-bottom-xxsmall"
