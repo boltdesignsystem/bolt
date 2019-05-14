@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/bolt-design-system/bolt/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* lint js ([d2efb33](https://github.com/bolt-design-system/bolt/commit/d2efb33))
+* **@bolt/components-tooltip:** remove unwanded bolt-icon rendering ([b9d1601](https://github.com/bolt-design-system/bolt/commit/b9d1601))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 **Note:** Version bump only for package @bolt/components-tooltip
