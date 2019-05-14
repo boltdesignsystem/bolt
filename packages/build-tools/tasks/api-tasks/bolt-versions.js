@@ -9,6 +9,8 @@ const Octokit = require('@octokit/rest').plugin(
   require('@octokit/plugin-throttling'),
 );
 
+let versionSpinner;
+
 const octokit = new Octokit({
   auth() {
     if (process.env.GITHUB_TOKEN) {
@@ -98,7 +100,7 @@ async function getBoltTags() {
       // handle expired cached data + not having a GITHUB_TOKEN set as an environmental variable
 
       // use old stale data if it exists
-      if (fileExists(path.join(process.cwd(), '.incache'))) {
+      if (fs.existsSync(path.join(process.cwd(), '.incache'))) {
         let staleData = fs.readFileSync(path.join(process.cwd(), '.incache'));
         staleData = JSON.parse(staleData);
         const oldTags = staleData['bolt-tags'].value;
@@ -137,7 +139,7 @@ async function getBoltTags() {
 }
 
 async function gatherBoltVersionUrls() {
-  const versionSpinner = ora(
+  versionSpinner = ora(
     chalk.blue('Gathering data on the latest Bolt Design System releases...'),
   ).start();
   let tags = await getBoltTags();
