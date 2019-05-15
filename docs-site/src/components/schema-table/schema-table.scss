@@ -1,4 +1,8 @@
 .c-bds-schema-table {
+  &:not(:last-child) {
+    @include bolt-margin-bottom(medium);
+  }
+
   ul {
     p {
       display: inline;
@@ -29,10 +33,6 @@
       }
     }
   }
-}
-
-.c-bds-docs-table {
-  @include bolt-margin-bottom(small);
 }
 
 bolt-schema-table.is-twig {
