@@ -250,7 +250,7 @@
   <h3>Basic Usage</h3>
   <p>When using the basic carousel component, it is recommended to pass the same type of content for each slide of the carousel, and make sure each piece of content have similar dimensions.</p>
 
-  <h3>A carousel of call to actions</h3>
+  <h3>A carousel of calls to action</h3>
   {% include "@bolt-components-carousel/carousel.twig" with {
     slidesPerView: 3,
     noNavButtons: true,
@@ -296,7 +296,8 @@
     ]
   } only %}
 
-  <h3>A carousel of videos</h3>
+  {# @todo: This is throwing lots of errors in the console #}
+  {# <h3>A carousel of videos</h3>
   {% include "@bolt-components-carousel/carousel.twig" with {
     loop: true,
     slidesPerView: 1,
@@ -305,6 +306,6 @@
       video_slide_2,
       video_slide_3,
     ]
-  } only %}
+  } only %} #}
 </div>
 {# End component specific code #}
