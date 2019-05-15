@@ -142,17 +142,25 @@
 {% endset %}
 
 {% set image_slide_1 %}
-  {% include "@bolt-components-image/image.twig" with {
-    src: "/images/placeholders/landscape-16x9-mountains.jpg",
-    alt: "A Rock Climber",
-    lazyload: false,
+  {% include "@bolt-components-figure/figure.twig" with {
+    media: {
+      image: {
+        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+        alt: "A Rock Climber",
+      },
+    },
+    caption: "This is caption for image figure slide 1."
   } only %}
 {% endset %}
 {% set image_slide_2 %}
-  {% include "@bolt-components-image/image.twig" with {
-    src: "/images/placeholders/landscape-16x9-skyline.jpg",
-    alt: "A Rock Climber",
-    lazyload: false,
+  {% include "@bolt-components-figure/figure.twig" with {
+    media: {
+      image: {
+        src: "/images/placeholders/landscape-16x9-skyline.jpg",
+        alt: "A Rock Climber",
+      },
+    },
+    caption: "This is caption for image figure slide 2."
   } only %}
 {% endset %}
 
@@ -288,7 +296,6 @@
 
   <h3>A carousel of images</h3>
   {% include "@bolt-components-carousel/carousel.twig" with {
-    loop: true,
     slidesPerView: 1,
     slides: [
       image_slide_1,
