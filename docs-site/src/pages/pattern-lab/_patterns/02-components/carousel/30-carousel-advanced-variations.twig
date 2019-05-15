@@ -16,9 +16,9 @@
         '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/5)"></bolt-ratio>',
         '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/6)"></bolt-ratio>',
       ],
-      slidesPerView: 1,
-      spaceBetween: "none",
-      noPagination: true,
+      slides_per_view: 1,
+      space_between: "none",
+      no_pagination: true,
       mode: 'gallery',
       attributes: {
         class: [
@@ -36,17 +36,17 @@
         '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/5)"></bolt-ratio>',
         '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/6)"></bolt-ratio>',
       ],
-      slidesPerView: 4,
-      maxSlidesPerView: 4,
-      spaceBetween: "none",
-      noScrollbar: true,
-      noNavButtons: true,
-      noPagination: true,
-      noMinWidth: true,
-      freeScroll: true,
+      slides_per_view: 4,
+      maxslides_per_view: 4,
+      space_between: "none",
+      no_scrollbar: true,
+      no_nav_buttons: true,
+      no_pagination: true,
+      no_min_width: true,
+      free_scroll: true,
       mode: 'gallery-thumbnail',
-      slideToClickedSlide: true,
-      freeMode: true,
+      slide_to_clicked_slide: true,
+      free_mode: true,
       attributes: {
         class: [
           "js-swiper-gallery--thumbnails",
@@ -119,7 +119,7 @@
       ]
     } only %}
       {% block card_media %}
-        {# Specific Combination of Props to Card Carousel #}
+        {# Specific Combination of Props to Create Card Carousel #}
         {% include "@bolt-components-carousel/carousel.twig" with {
           slides: [
             '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
@@ -129,10 +129,10 @@
           '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
             '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
           ],
-          slidesPerView: 1,
-          spaceBetween: "small",
-          noPagination: true,
-          navButtonPosition: "inside",
+          slides_per_view: 1,
+          space_between: "small",
+          no_pagination: true,
+          nav_button_position: "inside",
         } only %}
       {% endblock %}
     {% endembed %}
@@ -234,19 +234,20 @@
     {% endset %}
 
     <h3>Hero Band Carousel</h3>
+    {# Specific Combination of Props to Create Hero Band Carousel #}
     {% include "@bolt-components-carousel/carousel.twig" with {
       slides: [
         band_slide_1,
         band_slide_2,
       ],
-      slidesPerView: 1,
+      slides_per_view: 1,
       loop: true,
       autoplay: true,
       loop: true,
-      spaceBetween: "none",
-      noPagination: false,
-      noNavButtons: true,
-      navButtonPosition: "inside",
+      space_between: "none",
+      no_pagination: false,
+      no_nav_buttons: true,
+      nav_button_position: "inside",
     } only %}
   </div>
 </div>

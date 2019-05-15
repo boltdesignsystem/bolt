@@ -55,12 +55,12 @@
   } only %}
 {% endset %}
 
-{# Start component specific code #}
 <div class="o-bolt-wrapper">
-  {% for navButtonPosition in schema.properties.navButtonPosition.enum %}
-    <h3>Nav Button Position: {{ navButtonPosition|capitalize }}</h3>
+  {# Start component specific code #}
+  {% for nav_button_position in schema.properties.nav_button_position.enum %}
+    <h3>Nav Button Position: {{ nav_button_position|capitalize }}</h3>
     {% include "@bolt-components-carousel/carousel.twig" with {
-      navButtonPosition: navButtonPosition,
+      nav_button_position: nav_button_position,
       slides: [
         slide_1,
         slide_2,
@@ -74,5 +74,5 @@
       ]
     } only %}
   {% endfor %}
+  {# End component specific code #}
 </div>
-{# End component specific code #}

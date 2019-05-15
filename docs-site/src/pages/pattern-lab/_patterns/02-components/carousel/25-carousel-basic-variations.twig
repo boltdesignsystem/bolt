@@ -253,15 +253,26 @@
   </div>
 {% endset %}
 
-{# Start component specific code #}
 <div class="o-bolt-wrapper">
+  {# Start component specific code #}
   <h3>Basic Usage</h3>
   <p>When using the basic carousel component, it is recommended to pass the same type of content for each slide of the carousel, and make sure each piece of content have similar dimensions.</p>
 
+  <h3>A carousel of bands</h3>
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    autoplay: true,
+    slides: [
+      band_slide_1,
+      band_slide_2,
+      band_slide_3,
+      band_slide_4,
+    ]
+  } only %}
+
   <h3>A carousel of calls to action</h3>
   {% include "@bolt-components-carousel/carousel.twig" with {
-    slidesPerView: 3,
-    noNavButtons: true,
+    slides_per_view: 3,
+    no_nav_buttons: true,
     slides: [
       call_to_action_slide_1,
       call_to_action_slide_2,
@@ -271,21 +282,9 @@
     ]
   } only %}
 
-  <h3>A carousel of bands</h3>
-  {% include "@bolt-components-carousel/carousel.twig" with {
-    autoplay: true,
-    slidesPerView: 1,
-    slides: [
-      band_slide_1,
-      band_slide_2,
-      band_slide_3,
-      band_slide_4,
-    ]
-  } only %}
-
   <h3>A carousel of cards</h3>
   {% include "@bolt-components-carousel/carousel.twig" with {
-    slidesPerView: 2,
+    slides_per_view: 2,
     slides: [
       card_slide_1,
       card_slide_2,
@@ -296,7 +295,6 @@
 
   <h3>A carousel of images</h3>
   {% include "@bolt-components-carousel/carousel.twig" with {
-    slidesPerView: 1,
     slides: [
       image_slide_1,
       image_slide_2,
@@ -307,12 +305,13 @@
   {# <h3>A carousel of videos</h3>
   {% include "@bolt-components-carousel/carousel.twig" with {
     loop: true,
-    slidesPerView: 1,
+    slides_per_view: 1,
     slides: [
       video_slide_1,
       video_slide_2,
       video_slide_3,
     ]
   } only %} #}
+
+  {# End component specific code #}
 </div>
-{# End component specific code #}

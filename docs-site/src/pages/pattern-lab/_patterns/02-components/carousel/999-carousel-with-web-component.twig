@@ -19,7 +19,7 @@
 {% import _self as carousel_code %}
 
 {% set carousel_demo %}
-<bolt-carousel slides-per-view=1>
+<bolt-carousel>
   <bolt-carousel-slide>
     <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
   </bolt-carousel-slide>
@@ -51,7 +51,7 @@
 
 {% set carousel_ssr_demo_noshadow %}
 {% filter bolt_ssr %}
-<bolt-carousel slides-per-view=1>
+<bolt-carousel>
   <bolt-carousel-slide>
     <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
   </bolt-carousel-slide>
@@ -67,7 +67,7 @@
 
 {% set carousel_ssr_demo %}
 &lbrace;&percnt; filter bolt_ssr &percnt;&rbrace;
-<bolt-carousel slides-per-view=1>
+<bolt-carousel>
   <bolt-carousel-slide>
     <div class="u-bolt-padding-large t-bolt-xdark">Slide 1</div>
   </bolt-carousel-slide>

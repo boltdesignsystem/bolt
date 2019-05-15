@@ -54,12 +54,11 @@
   } only %}
 {% endset %}
 
-{# Start component specific code #}
 <div class="o-bolt-wrapper">
+  {# Start component specific code #}
   <h3>Autoplay: true</h3>
   {% include "@bolt-components-carousel/carousel.twig" with {
     autoplay: true,
-    slidesPerView: 1,
     slides: [
       slide_1,
       slide_2,
@@ -76,7 +75,6 @@
   <h3>Autoplay: false</h3>
   {% include "@bolt-components-carousel/carousel.twig" with {
     autoplay: false,
-    slidesPerView: 1,
     slides: [
       slide_1,
       slide_2,
@@ -89,5 +87,5 @@
       slide_9,
     ]
   } only %}
+  {# End component specific code #}
 </div>
-{# End component specific code #}
