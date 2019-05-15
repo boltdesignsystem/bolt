@@ -52,6 +52,7 @@ $bolt-link-spacing: 'xxsmall';
 .c-bolt-link--display-inline {
   .c-bolt-link__icon {
     display: inline;
+    white-space: nowrap; // Combine this with Zero Width No-break Space (&#xfeff; in the markup), it fixes the orphan icon issue. The last word will always wrap with the icon.
   }
 }
 
