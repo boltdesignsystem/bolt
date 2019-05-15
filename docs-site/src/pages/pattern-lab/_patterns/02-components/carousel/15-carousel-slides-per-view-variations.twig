@@ -55,8 +55,8 @@
   } only %}
 {% endset %}
 
-{# Start component specific code #}
 <div class="o-bolt-wrapper">
+  {# Start component specific code #}
   {% for slides_per_view in schema.properties.slides_per_view.enum %}
     <h3>Slides Per View: {{ slides_per_view|capitalize }}</h3>
     {% include "@bolt-components-carousel/carousel.twig" with {
@@ -74,5 +74,5 @@
       ]
     } only %}
   {% endfor %}
+  {# End component specific code #}
 </div>
-{# End component specific code #}

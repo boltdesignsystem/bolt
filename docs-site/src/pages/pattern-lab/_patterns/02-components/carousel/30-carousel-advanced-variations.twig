@@ -119,7 +119,7 @@
       ]
     } only %}
       {% block card_media %}
-        {# Specific Combination of Props to Card Carousel #}
+        {# Specific Combination of Props to Create Card Carousel #}
         {% include "@bolt-components-carousel/carousel.twig" with {
           slides: [
             '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
@@ -234,6 +234,7 @@
     {% endset %}
 
     <h3>Hero Band Carousel</h3>
+    {# Specific Combination of Props to Create Hero Band Carousel #}
     {% include "@bolt-components-carousel/carousel.twig" with {
       slides: [
         band_slide_1,

@@ -55,8 +55,8 @@
   } only %}
 {% endset %}
 
-{# Start component specific code #}
 <div class="o-bolt-wrapper">
+  {# Start component specific code #}
   {% for nav_button_position in schema.properties.nav_button_position.enum %}
     <h3>Nav Button Position: {{ nav_button_position|capitalize }}</h3>
     {% include "@bolt-components-carousel/carousel.twig" with {
@@ -74,5 +74,5 @@
       ]
     } only %}
   {% endfor %}
+  {# End component specific code #}
 </div>
-{# End component specific code #}
