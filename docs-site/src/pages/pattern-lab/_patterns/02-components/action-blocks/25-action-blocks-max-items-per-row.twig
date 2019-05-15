@@ -1,10 +1,10 @@
-{% set maxRows = [6,4,3,2] %}
+{% set schema = bolt.data.components["@bolt-components-action-blocks"].schema %}
 
-{% for max in maxRows %}
-  <h3>Max items per row: {{ max }}</h3>
+{% for max_items_per_row in schema.properties.max_items_per_row.enum %}
+  <h3>Max items per row: {{ max_items_per_row }}</h3>
   <div class="u-bolt-margin-bottom-medium">
     {% include "@bolt-components-action-blocks/action-blocks.twig" with {
-      maxItemsPerRow: max,
+      max_items_per_row: max_items_per_row,
       contentItems: [
         {
           text: "Item 1",
@@ -47,7 +47,55 @@
           }
         },
         {
-          text: "Item 5",
+          text: "Item 6",
+          url: "#!",
+          icon: {
+            name: "copy-to-clipboard",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 7",
+          url: "#!",
+          icon: {
+            name: "download",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 8",
+          url: "#!",
+          icon: {
+            name: "copy-to-clipboard",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 9",
+          url: "#!",
+          icon: {
+            name: "calendar",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 10",
+          url: "#!",
+          icon: {
+            name: "copy-to-clipboard",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 11",
+          url: "#!",
+          icon: {
+            name: "download",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 12",
           url: "#!",
           icon: {
             name: "copy-to-clipboard",

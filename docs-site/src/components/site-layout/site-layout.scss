@@ -158,14 +158,16 @@ $bds-sidebar-width: 320px;
   top: 0;
   bottom: 0;
   transform: translate3d(-$bds-sidebar-width, 0, 0);
-  z-index: bolt-z-index('modal') - 10;
   width: $bds-sidebar-width;
   overflow: auto;
-  margin-top: bolt-v-spacing(large) * 2;
   border-right: 1px solid #e0e2eb;
   background-color: bolt-color(gray, xlight);
   transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   -webkit-overflow-scrolling: touch;
+
+  @include bolt-mq($until: medium){
+    z-index: bolt-z-index('modal') + 30;
+  }
 
   &:target {
     transform: translate3d(0, 0, 0);
@@ -184,6 +186,7 @@ $bds-sidebar-width: 320px;
   }
 
   @include bolt-mq(medium) {
+    @include bolt-margin-top(bolt-spacing(xlarge) - bolt-spacing(medium));
     transform: translate3d(0, 0, 0);
   
     @include bolt-mq(medium) {
