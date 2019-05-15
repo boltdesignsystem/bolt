@@ -1,5 +1,6 @@
 /* eslint-disable no-return-assign */
 // // Import the individual autotrack plugins you want to use.
+import '@bolt/core/polyfills/symbol-polyfill';
 import 'autotrack/lib/plugins/clean-url-tracker';
 import 'autotrack/lib/plugins/media-query-tracker';
 import 'autotrack/lib/plugins/outbound-link-tracker';
