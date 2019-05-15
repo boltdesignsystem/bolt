@@ -1,33 +1,53 @@
-{# {% set usage %}{% verbatim %}
-{% include '@bolt-components-carousel/carousel.twig' only %}
-{% endverbatim %}{% endset %} #}
-
 {% include "@utils/docs.twig" with {
   componentName: "carousel",
   variations: [
     include("@bolt-components-link/link.twig", {
-      text: "Basic Carousel",
-      url: "#basic-carousel",
+      text: "Nav Button Position",
+      url: "/pattern-lab/?p=components-nav-button-position-variations",
       isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
     }),
     include("@bolt-components-link/link.twig", {
-      text: "Image Carousel",
-      url: "/pattern-lab/?p=components-image-carousel",
+      text: "Slides Per View",
+      url: "/pattern-lab/?p=components-slides-per-view-variations",
       isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Autoplay",
+      url: "/pattern-lab/?p=components-autoplay-variations",
+      isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
     }),
   ],
   examples: [
     include("@bolt-components-link/link.twig", {
-      text: "Space Between",
-      url: "#components-space-between",
+      text: "Basic Carousels",
+      url: "/pattern-lab/?p=components-carousel-basic-variations",
       isHeadline: true,
-    })
+      attributes: {
+        target: "_blank"
+      }
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Advanced Carousels",
+      url: "/pattern-lab/?p=components-carousel-advanced-variations",
+      isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
+    }),
   ],
   schemaForm: {
     template: '@bolt-components-carousel/carousel.twig',
     layout: "horizontal",
     initialData: {
-      maxSlidesPerView: 3,
       slides: [
         include("@bolt-components-card/card.twig", {
           contentItems: [
@@ -35,21 +55,17 @@
               pattern: "image",
               src: "/images/content/backgrounds/background-tall-4.jpg",
               lazyload: true,
-              alt: "Cat Picture"
+              alt: "Image"
             },
             {
               pattern: "eyebrow",
-              text: "Example Eyebrow",
+              text: "slide 1",
             },
             {
               pattern: "headline",
               tag: "h3",
               size: "large",
-              text: "Example headline text",
-            },
-            {
-              pattern: "text",
-              text: "Example text",
+              text: "This is a card",
             }
           ]
         }, with_context = false),
@@ -59,21 +75,17 @@
               pattern: "image",
               src: "/images/content/backgrounds/background-tall-4.jpg",
               lazyload: true,
-              alt: "Cat Picture"
+              alt: "Image"
             },
             {
               pattern: "eyebrow",
-              text: "Example Eyebrow",
+              text: "slide 2",
             },
             {
               pattern: "headline",
               tag: "h3",
               size: "large",
-              text: "Example headline text",
-            },
-            {
-              pattern: "text",
-              text: "Example text",
+              text: "This is a card",
             }
           ]
         }, with_context = false),
@@ -83,21 +95,17 @@
               pattern: "image",
               src: "/images/content/backgrounds/background-tall-4.jpg",
               lazyload: true,
-              alt: "Cat Picture"
+              alt: "Image"
             },
             {
               pattern: "eyebrow",
-              text: "Example Eyebrow",
+              text: "slide 3",
             },
             {
               pattern: "headline",
               tag: "h3",
               size: "large",
-              text: "Example headline text",
-            },
-            {
-              pattern: "text",
-              text: "Example text",
+              text: "This is a card",
             }
           ]
         }, with_context = false),
@@ -107,21 +115,17 @@
               pattern: "image",
               src: "/images/content/backgrounds/background-tall-4.jpg",
               lazyload: true,
-              alt: "Cat Picture"
+              alt: "Image"
             },
             {
               pattern: "eyebrow",
-              text: "Example Eyebrow",
+              text: "slide 4",
             },
             {
               pattern: "headline",
               tag: "h3",
               size: "large",
-              text: "Example headline text",
-            },
-            {
-              pattern: "text",
-              text: "Example text",
+              text: "This is a card",
             }
           ]
         }, with_context = false),
@@ -131,21 +135,17 @@
               pattern: "image",
               src: "/images/content/backgrounds/background-tall-4.jpg",
               lazyload: true,
-              alt: "Cat Picture"
+              alt: "Image"
             },
             {
               pattern: "eyebrow",
-              text: "Example Eyebrow",
+              text: "slide 5",
             },
             {
               pattern: "headline",
               tag: "h3",
               size: "large",
-              text: "Example headline text",
-            },
-            {
-              pattern: "text",
-              text: "Example text",
+              text: "This is a card",
             }
           ]
         }, with_context = false),
@@ -155,21 +155,17 @@
               pattern: "image",
               src: "/images/content/backgrounds/background-tall-4.jpg",
               lazyload: true,
-              alt: "Cat Picture"
+              alt: "Image"
             },
             {
               pattern: "eyebrow",
-              text: "Example Eyebrow",
+              text: "slide 6",
             },
             {
               pattern: "headline",
               tag: "h3",
               size: "large",
-              text: "Example headline text",
-            },
-            {
-              pattern: "text",
-              text: "Example text",
+              text: "This is a card",
             }
           ]
         }, with_context = false),
@@ -177,19 +173,3 @@
     },
   },
 } only %}
-
-<bolt-figure style="max-width: 1440px; margin: 0 auto;" class="u-bolt-padding-bottom">
-  {% include "@bolt-components-carousel/carousel.twig" with {
-    slides: [
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-      include("_carousel-slide-content.twig"),
-    ],
-    attributes: {
-      slot: "media"
-    }
-  } only %}
-
-  Demo: <bolt-link url="/pattern-lab/?p=components-basic-carousel" target="_blank">A basic Carousel <bolt-icon name="external-link"></bolt-icon></bolt-link>
-</bolt-figure>
-
