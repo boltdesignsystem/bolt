@@ -20,7 +20,6 @@ module.exports = {
       .execute(
         function(data) {
           const accordionItem = document.querySelector('bolt-accordion-item');
-          console.log(document.activeElement);
           return accordionItem.renderRoot
             .querySelector('.c-bolt-accordion-item__trigger')
             .classList.contains('handorgel__header--opened');
