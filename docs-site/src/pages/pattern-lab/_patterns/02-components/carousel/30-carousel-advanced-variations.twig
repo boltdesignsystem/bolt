@@ -232,22 +232,22 @@
         content: content_image
       } only %}
     {% endset %}
-
-    <h3>Hero Band Carousel</h3>
-    {# Specific Combination of Props to Create Hero Band Carousel #}
-    {% include "@bolt-components-carousel/carousel.twig" with {
-      slides: [
-        band_slide_1,
-        band_slide_2,
-      ],
-      slides_per_view: 1,
-      loop: true,
-      autoplay: true,
-      loop: true,
-      space_between: "none",
-      no_pagination: false,
-      no_nav_buttons: true,
-      nav_button_position: "inside",
-    } only %}
   </div>
 </div>
+
+<h3>Hero Band Carousel</h3>
+{# Specific Combination of Props to Create Hero Band Carousel #}
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    band_slide_1,
+    band_slide_2,
+  ],
+  slides_per_view: 1,
+  loop: true,
+  autoplay: true,
+  loop: true,
+  space_between: "none",
+  no_pagination: false,
+  no_nav_buttons: true,
+  nav_button_position: "inside",
+} only %}
