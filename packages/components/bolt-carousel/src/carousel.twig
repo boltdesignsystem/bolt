@@ -26,7 +26,7 @@
 <bolt-carousel {{ this.props }}>
   {% block default_slot %}
     {% for slide in slides %}
-      {% embed "@bolt-components-carousel/carousel-slide.twig" %}
+      {% embed "@bolt-components-carousel/_carousel-slide.twig" %}
         {% block default_slot %}
           {{ slide }}
         {% endblock %}
