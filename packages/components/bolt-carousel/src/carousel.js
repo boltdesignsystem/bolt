@@ -66,7 +66,8 @@ const schemaPropKeys = Object.keys(originalSchema.properties);
 function setWebComponentProperty(propertyName, propertyType, property) {
   return {
     ...props[propertyType],
-    ...{ default: property.default ? property.default : null },
+    // Set to '', not null, or validator will not delete empty props
+    ...{ default: property.default ? property.default : '' },
   };
 }
 
