@@ -51,7 +51,7 @@ bolt-carousel {
   margin: 0 auto;
   padding: 0;
   list-style: none;
-  
+
   &--overflow {
     overflow: visible;
   }
@@ -90,7 +90,7 @@ bolt-carousel {
 
 // carousel's nav position-specific styles
 // if nav-position isn't specified, set to default
-bolt-carousel:not([nav-button-position]):not([no-nav-buttons]).is-ready, 
+bolt-carousel[no-nav-buttons].is-ready,
 bolt-carousel[nav-button-position="outside"].is-ready {
   @include bolt-padding-left(bolt-spacing(medium));
   @include bolt-padding-right(bolt-spacing(medium));
@@ -100,7 +100,7 @@ bolt-carousel[nav-button-position="outside"].is-ready {
   // min-width: calc(100% + #{bolt-spacing(medium) * 2} + #{bolt-spacing(xxsmall) * 2});
 }
 
-bolt-carousel[no-nav-buttons].is-ready,
+bolt-carousel:not([nav-button-position]):not([no-nav-buttons]).is-ready,
 bolt-carousel[nav-button-position="inside"].is-ready {
   @include bolt-padding-left(0);
   @include bolt-padding-right(0);
