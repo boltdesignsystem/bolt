@@ -66,7 +66,8 @@ const schemaPropKeys = Object.keys(originalSchema.properties);
 function setWebComponentProperty(propertyName, propertyType, property) {
   return {
     ...props[propertyType],
-    ...{ default: property.default ? property.default : null },
+    // Set to '', not null, or validator will not delete empty props
+    ...{ default: property.default ? property.default : '' },
   };
 }
 
@@ -153,24 +154,32 @@ class BoltCarousel extends withLitHtml() {
   // recalculates the ideal # of slides to display when the overal carousel width changes
   // @todo: update to only reinitialize when the data for this changes
   reInitCarousel() {
-    this.options.slidesPerView = this.calculateSlidesPerView(
+    const calculatedSlidesPerView = this.calculateSlidesPerView(
       this.props.slidesPerView,
     );
-    this.calculateSlidesPerViewBreakpoints();
 
-    // track the currently active slide so the new swiper instance
-    const currentlyActiveSlide = this.swiper.activeIndex;
-    this.options.initialSlide = currentlyActiveSlide;
+    // Only re-initialize if slidesPerView changes
+    if (this.options.slidesPerView === calculatedSlidesPerView) {
+      this.swiper.update();
+    } else {
+      this.options.slidesPerView = calculatedSlidesPerView;
 
-    this.swiper.destroy(false, true);
-    this.options.thumbs = this.props.thumbs;
+      this.calculateSlidesPerViewBreakpoints();
 
-    this.swiper = new Swiper(
-      this.renderRoot.querySelector('.c-bolt-carousel'),
-      {
-        ...this.options,
-      },
-    );
+      // track the currently active slide so the new swiper instance
+      const currentlyActiveSlide = this.swiper.activeIndex;
+      this.options.initialSlide = currentlyActiveSlide;
+
+      this.swiper.destroy(false, true);
+      this.options.thumbs = this.props.thumbs;
+
+      this.swiper = new Swiper(
+        this.renderRoot.querySelector('.c-bolt-carousel'),
+        {
+          ...this.options,
+        },
+      );
+    }
   }
 
   findIdealNumberOfSlides(desiredNumberOfSlides) {
