@@ -44,7 +44,10 @@ async function handleRequest(req, res, next) {
           console.error('The template paramater is missing!');
         }
         const body = await getBody(req);
-        const { ok, html, message } = await render(query.template, body, true);
+        // if the request is sent w/ the header `'Content-Type': 'application/json'`, body is object, if not then it's a string that needs parsing
+        const data = typeof body === 'string' ? JSON.parse(body) : body;
+
+        const { ok, html, message } = await render(query.template, data, true);
 
         if (!ok) {
           console.error(message);
