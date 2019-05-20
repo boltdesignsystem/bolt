@@ -127,11 +127,11 @@ bolt-nav-priority {
 }
 
 .c-bolt-nav-priority__dropdown {
-  @include bolt-z-index(tooltip);
   visibility: hidden;
   position: absolute;
   top: 100%;
   right: 0;
+  z-index: bolt-z-index(tooltip);
   width: calc(100vw - #{bolt-spacing(large)});
   min-width: 12rem;
   max-width: 100vw;
@@ -214,7 +214,7 @@ bolt-nav-priority {
   background-color: bolt-theme(secondary, 0.05);
   transition: background-color 0.3s ease;
   white-space: nowrap;
-  
+
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     height: 100%; // fix for height: 100% causing issues on larger screen sizes
     border-left-color: bolt-theme(headline, 0.2);
