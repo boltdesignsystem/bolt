@@ -77,54 +77,9 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   animation: a-bolt-zoom-in-out 45s ease-in-out infinite both;
 }
 
-.c-bolt-background__video {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: bolt-z-index('backgroundTop');
-  transition: opacity 0.4s ease, min-height 0.4s ease, max-height 0.4s ease;
-
-  .is-ready & {
-    pointer-events: none;
-    background-color: rgba(bolt-color(indigo, dark), 0.8);
-    perspective: 500px;
-    perspective-origin: 50% 150%;
-  }
-
-  .is-collapsed & {
-    visibility: hidden;
-    opacity: bolt-opacity(0);
-    pointer-events: none;
-  }
-
-  .is-expanded & {
-    visibility: visible;
-    opacity: bolt-opacity(100);
-    pointer-events: auto;
-  }
-
-  .video-js {
-    width: 100%;
-    min-width: 0;
-    max-width: 1400px;
-    margin: 0 auto;
-    transition: all 0.4s ease;
-
-    .is-ready & {
-      background-color: transparent;
-    }
-
-    // .is-collapsed & {
-    //   transform: scale(0.95) rotateX(20deg) translateY(20%);
-    // }
-
-    // .is-expanded & {
-    //   transform: scale(1) rotateX(0deg) translateY(0%);
-    //   transition: transform 0.3s cubic-bezier(0.645, 0, 0.355, 1);
-    // }
-  }
-}
+// @todo: This does not apply to bolt-video, the video component has its own css, obsolete css have been removed here. Must refactor .c-bolt-background__video later for true background video.
+// .c-bolt-background__video {
+// }
 
 .c-bolt-background__image {
   top: -9999px;
