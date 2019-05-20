@@ -70,7 +70,7 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       }
 
       // default w/o pagination bullets on the outside
-      bolt-carousel[no-pagination] & {
+      @at-root bolt-carousel[no-pagination] & {
         transform: translateX(-50%) translateY(-50%);
 
         &.is-pressed {
@@ -96,7 +96,7 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       }
 
       // default w/o pagination bullets on the outside
-      bolt-carousel[no-pagination] & {
+      @at-root bolt-carousel[no-pagination] & {
         transform: translateX(50%) translateY(-50%);
 
         &.is-pressed {
@@ -118,6 +118,10 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       width: 3rem;
       height: calc(100% - #{bolt-v-spacing(medium)} - 8px);
       border-radius: 0;
+
+      @at-root bolt-carousel[no-pagination] & {
+        height: 100%;
+      }
     }
 
     &:hover,
