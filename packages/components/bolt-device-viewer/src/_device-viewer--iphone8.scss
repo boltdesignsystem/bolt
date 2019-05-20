@@ -126,7 +126,7 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 .c-bolt-iphone8-viewer__top-bar,
 .c-bolt-iphone8-viewer__bottom-bar {
   right: 0;
-  z-index: bolt-z-index('background') - 5;
+  z-index: -1; // This is relative z-index, negative value is set here so it can go behind the content in .c-bolt-iphone8-viewer__inner:before
   height: 3px;
   background-color: black;
 
@@ -257,7 +257,6 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
   position: absolute;
   top: 28%;
   left: -1.25%;
-  z-index: bolt-z-index('background');
   width: 1.25%;
   height: 10%;
   border-radius: 2px 0 0 2px;
@@ -349,13 +348,9 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 }
 
 .c-bolt-iphone8-viewer__sensor {
-
   position: absolute;
   top: 49px / $bolt-iphone8-viewer-height * 100%;
   left: 134px / $bolt-iphone8-viewer-width * 100%;
-
-  z-index: bolt-z-index('backgroundTop');
-
   width: 16px / $bolt-iphone8-viewer-width * 100%;
   height: 16px / $bolt-iphone8-viewer-height * 100%;
   border-radius: 100%;
@@ -373,12 +368,10 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 
 
 .c-bolt-iphone8-viewer__speaker {
-
   position: absolute;
   top: 54px / $bolt-iphone8-viewer-height * 100%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: bolt-z-index('backgroundTop');
   width: 70px / $bolt-iphone8-viewer-width * 100%;
   height: 6px / $bolt-iphone8-viewer-height * 100%;
   border-radius: 6px;

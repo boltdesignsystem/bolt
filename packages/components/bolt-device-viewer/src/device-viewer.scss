@@ -19,7 +19,6 @@ bolt-device-viewer {
 .c-bolt-device-viewer__inner {
   display: block;
   position: relative;
-  z-index: bolt-z-index('content');
 
   &:before,
   &:after {
@@ -36,7 +35,6 @@ bolt-device-viewer {
   @include bolt-shadow('level-10');
   display: block;
   position: relative;
-  z-index: bolt-z-index('contentTop'); // Must be higher than the z-index of the :before layer on the base component
   width: 100%;
   height: 0;
   overflow: hidden; // Unfortunately zooming + scrolling is very, very tricky. Forcing this for now.
@@ -47,13 +45,11 @@ bolt-device-viewer {
 
 .c-bolt-device-viewer__home {
   position: absolute;
-  z-index: (bolt-z-index('contentTop') + 5);
   border-radius: 50%;
 }
 
 .c-bolt-device-viewer__camera {
   position: absolute;
-  z-index: (bolt-z-index('contentTop') + 10);
   border-radius: 100%;
 }
 
@@ -61,7 +57,7 @@ bolt-device-viewer {
 .c-bolt-device-viewer__bottom-bar {
   display: block;
   position: absolute;
-  z-index: bolt-z-index('background') - 5; // Since we want this layer pushed back behind most, but not all, layers
+  z-index: -1; // This is relative z-index, negative value is set here so it can go behind the content in .c-bolt-device-viewer__inner:before
   width: 100%;
 }
 
@@ -181,7 +177,6 @@ $bolt-magnifier-size: 350px;
   position: absolute;
   top: 0%;
   left: 0%;
-  z-index: bolt-z-index('navFixed');
   width: 100%;
   height: 100%;
   color: bolt-color(white);
@@ -196,7 +191,6 @@ $bolt-magnifier-size: 350px;
     top: 50%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
-    z-index: bolt-z-index('background') - 5;
     width: 200%;
     height: 200%;
     pointer-events: none;
@@ -239,7 +233,6 @@ $bolt-magnifier-size: 350px;
   display: block;
   opacity: bolt-opacity(0);
   position: absolute;
-  z-index: bolt-z-index('content');
   width: 33.33%;
   height: 33.33%;
 
@@ -389,7 +382,6 @@ bolt-image-zoom:hover > .c-bolt-image-zoom__overlay {
   /* This is required because of a bug that causes border-radius to not
   work with child elements in certain cases. */
   transform: translate3d(0, 0, 0);
-  z-index: bolt-z-index('tooltip');
   width: $bolt-magnifier-size;
   height: $bolt-magnifier-size;
 
