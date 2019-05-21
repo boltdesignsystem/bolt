@@ -70,7 +70,6 @@ $bds-sidebar-width: 320px;
   position: sticky;
   grid-column-start: 1;
   grid-column-end: 3;
-  z-index: bolt-z-index(modalBG) + 20;
 
   .c-bolt-navbar {
     max-width: none;
@@ -166,7 +165,7 @@ $bds-sidebar-width: 320px;
   -webkit-overflow-scrolling: touch;
 
   @include bolt-mq($until: medium){
-    z-index: bolt-z-index(modal) + 30;
+    z-index: bolt-z-index(modal);
   }
 
   &:target {
