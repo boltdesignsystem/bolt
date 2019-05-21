@@ -6,38 +6,36 @@
   see `_settings-z-index.scss`
 \* ------------------------------------ */
 
-/// Bolt Z Index mixin
-/// @param {string} $key ["content"]
-/// @param {boolean} $utility [false]
+/// Bolt z-index mixin
+/// @param {string} $name
 /// @example scss - bolt-z-index mixin
 /// .element {
-///    @include bolt-z-index(tooltip);
+///   @include bolt-z-index(tooltip);
 /// }
-@mixin bolt-z-index($key: "content", $utility: false) {
-  $indexes: map-get($bolt-z-indexes, 'sets');
-  $important: '';
+@mixin bolt-z-index($name) {
+  $z-index: index(map-keys($bolt-z-indexes), $name);
 
-  @if $utility {
-    $important: '!important';
-  }
-  @if map-has-key($indexes, $key) {
-    z-index: map-get($indexes, $key) #{$important};
+  @if $z-index {
+    z-index: $z-index;
   } @else {
-    @error 'A value, #{$key}, was passed into @include bolt-z-index() that is not defined in $bolt-z-indexes';
+    @warn 'There is no z-index named "#{$name}". Please refer to the z-index map.';
   }
 }
 
-/// Bolt Z Index function
-/// @param {string} $key
+
+/// Bolt z-index function
+/// @param {string} $name
 /// @example scss - bolt-z-index function
 /// .element {
-///    z-index: bolt-z-index('nav');
+///   z-index: bolt-z-index(tooltip);
 /// }
-@function bolt-z-index($key) {
-  $indexes: map-get($bolt-z-indexes, 'sets');
-  @if map-has-key($indexes, $key) {
-    @return map-get($indexes, $key)
+@function bolt-z-index($name) {
+  $z-index: index(map-keys($bolt-z-indexes), $name);
+
+  @if $z-index {
+    @return $z-index;
   } @else {
-    @error 'A value, #{$key}, was passed into bolt-z-index() that is not defined in $bolt-z-indexes';
+    @warn 'There is no z-index named "#{$name}". Please refer to the z-index map.';
+    @return null;
   }
 }
