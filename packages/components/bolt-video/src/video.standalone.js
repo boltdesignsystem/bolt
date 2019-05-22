@@ -654,7 +654,7 @@ class BoltVideo extends withPreact() {
 
     return (
       <span className={classes}>
-        <video
+        <video-js
           {...dataAttributes}
           id={this.state.id}
           {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
