@@ -572,20 +572,20 @@ class BoltVideo extends withPreact() {
       }
 
       // Setting these attributes will trigger a re-render, hence the 'hasInitialized' check above ^
-      this.videoElement.setAttribute("data-account", this.accountId);
-      this.videoElement.setAttribute("data-player", this.playerId);
-      this.videoElement.setAttribute("data-video-id", this.videoId);
+      this.videoElement.setAttribute('data-account', this.accountId);
+      this.videoElement.setAttribute('data-player', this.playerId);
+      this.videoElement.setAttribute('data-video-id', this.videoId);
 
       // https://support.brightcove.com/player-configuration-guide
       // You should NOT use data-setup with Brightcove Player!
       const player = bc(this.videoElement, {
         // Force HTML5 Only Rendering + disable resizeManager in Brightcove to fix ability to click overlapping elements on iOS:
         // https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747a/src/js/resize-manager.js#L19
-        techOrder: ["Html5"],
+        techOrder: ['Html5'],
         resizeManager: false,
         controlBar: {
-          fullscreenToggle: !this.props.hideFullScreenButton
-        }
+          fullscreenToggle: !this.props.hideFullScreenButton,
+        },
       });
 
       player.ready(() => {
