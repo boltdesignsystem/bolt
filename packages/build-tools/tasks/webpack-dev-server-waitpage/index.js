@@ -63,6 +63,7 @@ const webpackDevServerWaitpage = (server, options) => {
     );
   }
 
+  // eslint-disable-next-line no-return-assign
   Object.keys(options).forEach(key => (data[key] = options[key])); // expend data with options
 
   let wasValid = false;
@@ -75,7 +76,7 @@ const webpackDevServerWaitpage = (server, options) => {
       valid || // already valid
       (options.disableWhenValid && wasValid) || // if after valid state should be disabled
       req.method !== 'GET'
-    ){
+    ) {
       return await next();
     } else {
       res.setHeader('Content-Type', 'text/html');
