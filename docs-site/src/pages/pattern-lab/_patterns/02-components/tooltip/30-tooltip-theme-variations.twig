@@ -1,0 +1,43 @@
+{% for theme in ["xlight", "light", "dark", "xdark"] %}
+  <p>Theme: {{ theme }}</p>
+  {% embed "@utils/theme-demo.twig" %}
+    {% block demo_content %}
+      {% grid "o-bolt-grid--center u-bolt-margin-bottom-large u-bolt-margin-top-large" %}
+        {% cell "o-bolt-grid__cell" %}
+          {% include "@bolt-components-tooltip/tooltip.twig" with {
+            noWrap: true,
+            trigger: {
+              type: "text",
+              text: "Hover this text to show tooltip",
+              icon: {
+                name: "info-open",
+              }
+            },
+            content: "This is the tooltip content."
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+
+      {% grid "o-bolt-grid--center u-bolt-margin-bottom-medium" %}
+        {% cell "o-bolt-grid__cell" %}
+          {% include "@bolt-components-tooltip/tooltip.twig" with {
+            noWrap: true,
+            trigger: {
+              type: "button",
+              text: "Press this button to show tooltip",
+              icon: {
+                name: "info-open",
+              },
+              toggle: {
+                text: "Hide tooltip",
+                name: "close-open"
+              }
+            },
+            content: "This tooltip activates when the trigger is pressed.",
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+  <br>
+{% endfor %}
