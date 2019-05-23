@@ -1,5 +1,6 @@
 const url = require('url');
 const { errorAndExit } = require('@bolt/build-tools/utils/log.js');
+const { toJson } = require('really-relaxed-json');
 const { render, renderString } = require('@bolt/twig-renderer');
 
 async function getBody(request) {
@@ -18,6 +19,15 @@ async function getBody(request) {
       reject(e.message);
     });
   });
+}
+
+// handle incoming template data -- either an empty string, a JSON.parsable string, or JSON
+function checkRequestData(body) {
+  return typeof body === 'string' && body.length > 0
+    ? JSON.parse(body)
+    : JSON.stringify(body) > 0
+    ? body
+    : {};
 }
 
 /**
@@ -45,8 +55,9 @@ async function handleRequest(req, res, next) {
           console.error('The template paramater is missing!');
         }
         const body = await getBody(req);
-        // if the request is sent w/ the header `'Content-Type': 'application/json'`, body is object, if not then it's a string that needs parsing
-        const data = typeof body === 'string' ? JSON.parse(body) : body;
+        const data = query.data
+          ? JSON.parse(toJson(query.data))
+          : checkRequestData(body);
 
         const { ok, html, message } = await render(query.template, data, true);
 
@@ -67,9 +78,12 @@ async function handleRequest(req, res, next) {
           console.error('The template paramater is missing!');
         }
         const body = await getBody(req);
+        const data = query.data
+          ? JSON.parse(toJson(query.data))
+          : checkRequestData(body);
         const { ok, html, message } = await renderString(
           query.template,
-          body,
+          data,
           true,
         );
 
