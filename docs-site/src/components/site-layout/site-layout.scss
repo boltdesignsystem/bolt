@@ -165,7 +165,7 @@ $bds-sidebar-width: 320px;
   -webkit-overflow-scrolling: touch;
 
   @include bolt-mq($until: medium){
-    z-index: bolt-z-index(floating-high);
+    z-index: bolt-z-index(floating-low);
   }
 
   &:target {
@@ -559,4 +559,9 @@ $bds-sidebar-width: 320px;
 .c-bds-docs__page-nav-list {
   position: sticky;
   top: bolt-spacing(large);
+}
+
+.c-bds-homepage-hero-content {
+  position: relative;
+  z-index: bolt-z-index(content);
 }

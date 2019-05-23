@@ -31,7 +31,7 @@ bolt-icon {
   display: block; // required for vertically aligning icons
   box-sizing: border-box;
   position: relative;
-  z-index: 1; // This is relative z-index, it stays within the icon context. No need to use bolt-z-index scale.
+  z-index: 1; // This is self contained z-index, it stays within the icon context. No need to use bolt-z-index scale.
   width: 1em;
   height: 1em;
   color: var(--bolt-theme-icon);
@@ -80,7 +80,7 @@ bolt-icon[size='xlarge'],
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  z-index: 0; // This is relative z-index, it stays within the icon context. No need to use bolt-z-index scale.
+  z-index: 0; // This is self contained z-index, it stays within the icon context. No need to use bolt-z-index scale.
   width: 100%;
   height: 0;
   padding-bottom: 100%;

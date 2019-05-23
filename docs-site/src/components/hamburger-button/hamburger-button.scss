@@ -2,7 +2,7 @@
   position: fixed;
   right: bolt-spacing(xsmall);
   bottom: bolt-spacing(xsmall);
-  z-index: bolt-z-index(floating-low);
+  z-index: bolt-z-index(floating);
 }
 
 .c-bds-hamburger__inner {
@@ -16,7 +16,6 @@
 
 .c-bds-hamburger__button--open {
   opacity: 1;
-  z-index: 1;
 }
 
 .c-bds-hamburger__button--close {
@@ -25,14 +24,12 @@
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 0;
   pointer-events: none;
 }
 
 
 .c-bds-layout__sidebar:target ~ .c-bds-hamburger > .c-bds-hamburger__inner .c-bds-hamburger__button--close {
   opacity: 1;
-  z-index: 1;
   // visibility: visible;
   pointer-events: auto;
 

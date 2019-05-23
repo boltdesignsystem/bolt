@@ -57,7 +57,7 @@ bolt-device-viewer {
 .c-bolt-device-viewer__bottom-bar {
   display: block;
   position: absolute;
-  z-index: -1; // This is relative z-index, negative value is set here so it can go behind the content in .c-bolt-device-viewer__inner:before
+  z-index: -1; // This is self contained z-index, negative value is set here so it can go behind the content in `.c-bolt-device-viewer__inner:before`.
   width: 100%;
 }
 

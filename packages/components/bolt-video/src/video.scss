@@ -15,7 +15,7 @@ $bolt-video-background-max-height: 50.625vw;
     @include bolt-margin-left(auto);
     flex-grow: 1;
     opacity: bolt-opacity(0);
-    z-index: 20;
+    z-index: 1; // This is self contained z-index, which sets the absolute positioned parent container (background component) to have a higher stacking order than the band content container (which has no z-index and relative position).
     min-width: 100%;
     max-width: none;
     max-width: 100vh;
@@ -111,7 +111,6 @@ $bolt-video-background-max-height: 50.625vw;
   position: absolute;
   top: bolt-spacing(xsmall);
   right: bolt-spacing(xsmall);
-  z-index: bolt-z-index(content-high);
   color: bolt-color(orange);
   transition: all 0.3s ease;
   @include bolt-css-vars((--#{$bolt-namespace}-theme-icon: bolt-color(orange)));

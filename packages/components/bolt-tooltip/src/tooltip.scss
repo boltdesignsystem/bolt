@@ -383,7 +383,6 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip__content {
   display: block;
   position: absolute;
-  z-index: bolt-z-index(content-high);
   transition: all $bolt-tooltip-transition;
 
   &--button {
@@ -432,6 +431,7 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
   opacity: bolt-opacity(100);
   pointer-events: auto;
+  z-index: bolt-z-index(content-high);
 }
 
 .c-bolt-tooltip.is-push-up {

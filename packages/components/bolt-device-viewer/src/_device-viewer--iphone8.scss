@@ -126,7 +126,7 @@ $bolt-iphone8-viewer-width: 375px + (24px * 2);
 .c-bolt-iphone8-viewer__top-bar,
 .c-bolt-iphone8-viewer__bottom-bar {
   right: 0;
-  z-index: -1; // This is relative z-index, negative value is set here so it can go behind the content in .c-bolt-iphone8-viewer__inner:before
+  z-index: -1; // This is self contained z-index, negative value is set here so it can go behind the content in `.c-bolt-iphone8-viewer__inner:before`.
   height: 3px;
   background-color: black;
 
