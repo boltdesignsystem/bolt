@@ -140,6 +140,8 @@ class BoltModal extends withLitHtml() {
     // triggers re-render
     this.open = true;
 
+    document.body.classList.add('no-scroll');
+
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
     // this.querySelector('[slot="trigger"]').setAttribute('tabindex', '-1');
 
@@ -169,6 +171,8 @@ class BoltModal extends withLitHtml() {
     this.focusTrap.active = false;
     this.open = false;
     this.ready = false;
+
+    document.body.classList.remove('no-scroll');
 
     // @todo: refactor this to be more component / element agnostic
     if (this.focusedBeforeDialog) {
