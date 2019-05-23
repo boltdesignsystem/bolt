@@ -1,4 +1,5 @@
 const url = require('url');
+const { errorAndExit } = require('@bolt/build-tools/utils/log.js');
 const { render, renderString } = require('@bolt/twig-renderer');
 
 async function getBody(request) {
@@ -54,7 +55,7 @@ async function handleRequest(req, res, next) {
         }
         res.end(html);
       } catch (error) {
-        console.errorAndExit(
+        errorAndExit(
           'Error rendering Twig using the Twig rendering service...',
           error,
         );
@@ -77,7 +78,7 @@ async function handleRequest(req, res, next) {
         }
         res.end(html);
       } catch (error) {
-        console.errorAndExit(
+        errorAndExit(
           'Error rendering Twig string using the Twig rendering service...',
           error,
         );
