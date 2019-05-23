@@ -1,3 +1,5 @@
+@import '@bolt/core';
+
 @keyframes bds-shapes-fade {
   0% {
     opacity: 0;
@@ -23,7 +25,7 @@
   position: fixed;
   top: bolt-v-spacing(medium); // offset the top just a tad
   left: 0;
-  z-index: 1;
+  z-index: bolt-z-index(content-low);
   width: 100vw;
   height: 100vh;
   overflow: hidden;

@@ -10,15 +10,29 @@
 /// @param {string} $name
 /// @example scss - bolt-z-index mixin
 /// .element {
-///   @include bolt-z-index(tooltip);
+///   @include bolt-z-index(@param);
 /// }
 @mixin bolt-z-index($name) {
   $z-index: index(map-keys($bolt-z-indexes), $name);
 
+  // @todo @deprecated: Remove this logic in the next major release.
+  @if index(map-keys($bolt-deprecated-z-indexes), $name) {
+    @if $name == 'modalBG' {
+      $z-index: index(map-keys($bolt-z-indexes), 'modal-overlay');
+    } @else if $name == 'navFixed' {
+      $z-index: index(map-keys($bolt-z-indexes), 'nav');
+    } @else if $name == 'popover' or $name == 'tooltip' or $name == 'contentTop' {
+      $z-index: index(map-keys($bolt-z-indexes), 'content-high');
+    } @else if $name == 'contentBottom' or $name == 'backgroundTop' or $name == 'background' or $name == 'backgroundBottom' {
+      $z-index: index(map-keys($bolt-z-indexes), 'content-low');
+    }
+    @warn 'The z-index `#{$name}` is deprecated. Please update according to the current `$bolt-z-indexes` map in `_settings-z-index.scss` under core styles.';
+  }
+
   @if $z-index {
-    z-index: $z-index;
+    z-index: ($z-index * 5);
   } @else {
-    @warn 'There is no z-index named "#{$name}". Please refer to the z-index map.';
+    @warn '#{$name}` is not an option for the `$bolt-z-index()` function. Please update according to the current `$bolt-z-indexes` map in `_settings-z-index.scss` under core styles.';
   }
 }
 
@@ -27,15 +41,29 @@
 /// @param {string} $name
 /// @example scss - bolt-z-index function
 /// .element {
-///   z-index: bolt-z-index(tooltip);
+///   z-index: bolt-z-index(@param);
 /// }
 @function bolt-z-index($name) {
   $z-index: index(map-keys($bolt-z-indexes), $name);
 
+  // @todo @deprecated: Remove this logic in the next major release.
+  @if index(map-keys($bolt-deprecated-z-indexes), $name) {
+    @if $name == 'modalBG' {
+      $z-index: index(map-keys($bolt-z-indexes), 'modal-overlay');
+    } @else if $name == 'navFixed' {
+      $z-index: index(map-keys($bolt-z-indexes), 'nav');
+    } @else if $name == 'popover' or $name == 'tooltip' or $name == 'contentTop' {
+      $z-index: index(map-keys($bolt-z-indexes), 'content-high');
+    } @else if $name == 'contentBottom' or $name == 'backgroundTop' or $name == 'background' or $name == 'backgroundBottom' {
+      $z-index: index(map-keys($bolt-z-indexes), 'content-low');
+    }
+    @warn 'The z-index `#{$name}` is deprecated. Please update according to the current `$bolt-z-indexes` map in `_settings-z-index.scss` under core styles.';
+  }
+
   @if $z-index {
-    @return $z-index;
+    @return ($z-index * 5);
   } @else {
-    @warn 'There is no z-index named "#{$name}". Please refer to the z-index map.';
+    @warn '`#{$name}` is not an option for the `$bolt-z-index()` function. Please update according to the current `$bolt-z-indexes` map in `_settings-z-index.scss` under core styles.';
     @return null;
   }
 }

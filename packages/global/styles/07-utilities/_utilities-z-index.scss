@@ -5,7 +5,8 @@
 @each $z-index in $bolt-z-indexes {
   $z-index-name: nth($z-index, 1);
 
-  .u-bolt-z-index--#{$z-index-name}, // @todo: DEPRECATED. Utility classes with double dashes will be removed in the next major release.
+  .u-bolt-z-index--#{$z-index-name},
+  // @todo @deprecated: Utility classes with double dashes will be removed in the next major release.
   .u-bolt-z-index-#{$z-index-name} {
     z-index: bolt-z-index($z-index-name) !important;
   }

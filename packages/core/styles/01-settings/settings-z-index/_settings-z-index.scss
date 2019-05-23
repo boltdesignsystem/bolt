@@ -3,8 +3,7 @@
 ////
 
 /* ------------------------------------ *\
-  see `_tools-z-index.scss`
-  see `_utilities-z-index.scss`
+   Z-index Settings
 \* ------------------------------------ */
 
 /// Z-Index Settings
@@ -12,13 +11,29 @@
 /// @see {mixin} bolt-z-index
 /// @see bolt-z-index
 $bolt-z-indexes: (
-  tooltip: (),
+  content-low: (),
+  content: (),
+  content-high: (),
   nav: (),
   overlay: (),
-  fab: (),
-  toast: (),
+  floating-low: (),
+  floating: (),
+  floating-high: (),
   modal-overlay: (),
   modal: (),
+);
+
+// @todo @deprecated: Remove this map in the next major release.
+$bolt-deprecated-z-indexes: (
+  modalBG: (),
+  navFixed: (),
+  popover: (),
+  tooltip: (),
+  contentTop: (),
+  contentBottom: (),
+  backgroundTop: (),
+  background: (),
+  backgroundBottom: (),
 );
 
 @include export-data('z-indexes.bolt.json', $bolt-z-indexes);
