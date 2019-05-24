@@ -1,89 +1,126 @@
-sudo: required
+sudo: false
 dist: trusty
-
-services:
-  - docker
-
-stages:
-  - build-and-deploy # lint code and docs
-
 language: php
 php:
   - 7.1
 
-jobs:
-  include:
-    - stage: build-and-deploy
-      name: 'Smoke Tests'
-      before_script:
-        - phpenv config-rm xdebug.ini
-        - composer global require hirak/prestissimo
-        - yarn run setup:quick
-      script: yarn run test
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - docs-site/cache
+cache:
+  yarn: true
+  directories:
+    - $HOME/.composer/cache
 
-    - stage: build-and-deploy
-      name: 'Linting'
-      before_script: yarn run setup:quick
-      script: 
-        - yarn run lint:scss
-        - yarn run lint:js
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-
-    - stage: build-and-deploy
-      name: 'Build + Deploy'
-      # before_script:
-      #   - phpenv config-rm xdebug.ini
-      #   - composer global require hirak/prestissimo
-      #   - yarn run setup
-      script:
-        # - yarn run build
-        # - yarn run deploy
-        # - sh ./scripts/update-read-only-git-repos.sh @todo: run this only on Bolt releases
-        - docker --log-level error pull boltdesignsystem/bolt || true
-        - docker build --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
-        - docker images
-        - echo $DOCKER_HUB_PASS | docker login --username $DOCKER_HUB_USER --password-stdin
-        - GIT_SHA="$(git rev-parse --short HEAD)"
-        - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
-        - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
-        - docker --log-level error push boltdesignsystem/bolt:latest 
-        - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
-      after_script:
-        - cd scripts && npm install
-        - npm run deploy
-        # need to reset git repo before `update-read-only-git-repos.sh`
-        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
-        - ./scripts/release/update-read-only-git-repos.sh
-      cache:
-        yarn: true
-        directories:
-          - node_modules
-          - docs-site/cache
-          - www/pattern-lab/styleguide/js
-          - www/pattern-lab/styleguide/css
-          - www/pattern-lab/index.html
+addons:
+  chrome: stable
 
 before_install:
+  - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
   - nvm install # version lifted from `.nvmrc`
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
   - export PATH="$HOME/.yarn/bin:$PATH"
 
-# @todo: re-enable and add to a separate Travis Job for handling post-deploy tests
+services:
+  - docker
 
-# addons:
-#   sauce_connect: true
+addons:
+  chrome: stable
 
-# script:
-# - bash ./travis.sh # time command already run inside the travis.sh script
-# - npx nightwatch@0.9.20 --config nightwatch.js --env chrome,ie11
+# see more conditions: https://docs.travis-ci.com/user/conditions-v1
+# Stages run sequentially; the jobs in them run in parallel
+stages:
+  - Prep
+  - Test Live Site
+#  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
+#  - name: Super Hard Tests
+#    if: branch = master
+
+jobs:
+  include:
+    - stage: Prep
+      name: 'Smoke Tests: Linting'
+      install: travis_retry yarn run setup:quick
+      before_script: ./scripts/check-run-queue.js 'Lint'
+      script: yarn run lint
+      after_success: ./scripts/check-run-success.js 'Lint'
+      after_failure: ./scripts/check-run-failure.js 'Lint'
+      cache:
+        directories:
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
+
+    - stage: Prep
+      name: 'Smoke Tests: Unit Tests (Jest)'
+      install: travis_retry yarn run setup:quick
+      before_script: ./scripts/check-run-queue.js 'Unit'
+      script: yarn run test
+      after_success: ./scripts/check-run-success.js 'Unit'
+      after_failure: ./scripts/check-run-failure.js 'Unit'
+      cache:
+        directories:
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
+
+    - stage: Prep
+      name: 'Build + Deploy'
+      script:
+        # Clear incache file on normal Travis builds
+        - find . -name '.incache' -exec rm -rf {} +
+        - travis_retry yarn run setup
+        - yarn run build
+        - travis_wait 15 yarn run deploy
+        # need to reset git repo before `update-read-only-git-repos.sh`
+        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+        - ./scripts/release/update-read-only-git-repos.sh
+      cache:
+        directories:
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
+
+    - stage: Test Live Site
+      name: 'Nightwatch End-to-End'
+      install: travis_retry yarn run setup
+      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
+      script:
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - echo "The Now URL is $NOW_URL"
+        - time curl -sSf "$NOW_URL" > /dev/null # warming up site
+        - yarn run test:e2e:full
+        - sleep 60
+        - ./scripts/report-nightwatch-results.js
+      after_success:
+        - ./scripts/deploy-branch-alias.js
+        - ./scripts/deploy-tagged-release.js
+      cache:
+        directories:
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
+
+    - stage: Test Live Site
+      name: 'Ensure site is live'
+      install: travis_retry yarn run setup
+      before_script: ./scripts/check-run-in-progress.js 'Site is live'
+      script:
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
+        - time curl -sSf "$NOW_URL" > /dev/null
+      after_success:
+        - ./scripts/check-run-success.js 'Site is live'
+      after_failure:
+        - ./scripts/check-run-failure.js 'Site is live'
+      cache:
+        directories:
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
+
+    - stage: Test Live Site
+      name: 'Example master only job'
+      if: branch = master
+      script:
+        - echo "This example only runs on master branch builds"
 
 notifications:
   email:
@@ -91,4 +128,3 @@ notifications:
     on_failure: never # @todo re-enable
   slack:
     secure: cNto+gWAoK1JM9jBNG4i4rMSybv3twMbqlFSCohQFBDMwKFMdlyWqFDX6iYKtHxWEDzrZyRz3qiJ8/S44mgjeKJ/xHbHDtPchp/KL2P1htipvwD2EZXobcBEGl83v2rmtFO1WNJUPB3RIJE2yt1wJsX7NIXpDw82hePmaIvNJmtbLpK/J5uaFqGNHIsctmULgVmGSNSTyK4nYxxjNNLd0EvO37Y6VN8FhsKNu2NHMKeeQxinEvETDUh8XuqXZYNWE3PBvVa4OiDhgnr5K27jsnWX+wEmqg0xY+CMf7mUSTqVN61fA7LnHyM0qcGGmB6YTv4QYLMwPydp+nsjDcm3St9D+KOTsQ4ExOaEAL/6EnAEpl8GtxST+ytdqswhCC4yMCO61Hy+M5AoXgDSGrrXHgZakDMAcEVcJdH38791hRxcuM3ldVmHAlAWFdgRLG5rRMVh3qoXz7jbraoTdjyKMegQIQdKR2SX7O9Dv0EEtLz4lTFN2RENvAjLggUPPU+ESoUHmSbwmPGnt7jy3ra2AI3nnYpfn/0e6Op/A3z7HLbdm3XyuNWoTPhy1mc4Adca+HosJ37UPv7nDRIGds1sKYAeWq94+rEk+/6IQ/oRIDRhSYsQbLLWnU6DH4o7iOj7D+X/ngjqmF75nW2s5+7rtdBHFvNzOJalCKHiDTMfdlQ=
-

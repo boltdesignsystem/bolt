@@ -1,24 +1,43 @@
 {
   "name": "@bolt/components-pagination",
-  "style": "pagination.scss",
-  "description": "Bolt Pagination Component",
+  "description": "Pagination Component in Bolt",
   "keywords": [
     "bolt design system",
     "bolt",
-    "ui toolkit",
-    "design system"
+    "css framework",
+    "design system",
+    "components"
   ],
-  "version": "2.3.1",
+  "version": "2.4.0",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    },
+    {
+      "name": "Mike Mai",
+      "email": "boss@mikemai.net",
+      "web": "http://mikemai.net/"
+    }
+  ],
   "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-pagination",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/"
+  },
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "style": "index.scss",
+  "twig": "src/pagination.twig",
+  "schema": "pagination.schema.yml",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^2.3.1"
+    "@bolt/core": "^2.4.0"
   },
-  "schema": "pagination.schema.yml",
-  "gitHead": "633f6dbd563f707ea4a3a1ce14717fc1cf435f7f"
+  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
 }

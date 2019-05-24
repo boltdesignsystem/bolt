@@ -64,6 +64,10 @@
   {% set longTitle = true %}
 {% endif %}
 
+{% if slot %}
+  {% set attributes = attributes.setAttribute("slot", slot) %}
+{% endif %}
+
 
 {% set classes = [
   baseClass,
@@ -77,7 +81,7 @@
   iconPosition ? baseClass ~ "--icon-position-" ~ iconPosition : ""
 ] %}
 
-<{{ tag }} {{ attributes.addClass(classes) }}>
+<{{ tag }} {{ attributes.addClass(classes) }}>{% spaceless %}
   {% if icon and not url and iconPosition == "before" %}
     <span class="{{ "#{baseClass}__icon" }}">
       {% include "@bolt/icon.twig" with icon only %}
@@ -105,4 +109,4 @@
       {% include "@bolt/icon.twig" with icon only %}
     </span>
   {% endif %}
-</{{ tag }}>
+{% endspaceless %}</{{ tag }}>

@@ -40,6 +40,7 @@
         }
       }
     </script>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
     <title>Bolt Design System</title>
@@ -84,14 +85,18 @@
 
     {# @TODO: wire this up to use Critical CSS #}
     <style>
-      {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
+      {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
+        {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
+      {% endif %}
     </style>
 
     <script>
-      {{ inline( assets["bolt-components-critical-css.js"] | default("") ) }}
-      {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
-      {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
-      
+      {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
+        {{ inline( assets["bolt-components-critical-css.js"] | default("") ) }}
+        {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
+        {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+      {% endif %}
+
       window.bolt = window.bolt || {};
       window.bolt.data = window.bolt.data || {};
       window.bolt.data.fullManifest = window.bolt.data.fullManifest || {};
@@ -106,6 +111,19 @@
       </script>
     {% endif %} #}
 
+    {% if patternLabFoot %}
+      {# {% set pl_data = patternLabFoot | raw | striptags %} #}
+
+      <script>
+        {# var patternLab = JSON.parse({{ pl_data }});
+        delete patternLab.cssEnabled;
+        delete patternLab.extraOutput; #}
+
+        {# console.clear(); // clear previous messages with new page loads in PL #}
+        {# console.log('Pattern / Component Info:'); #}
+        //console.table(patternLab);
+      </script>
+    {% endif %}
   </head>
 
   {% set bodyClasses = [

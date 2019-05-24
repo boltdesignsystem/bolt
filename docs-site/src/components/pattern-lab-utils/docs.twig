@@ -1,6 +1,7 @@
 {% if componentName %}
   {% set schema = bolt.data.components["@bolt-components-#{componentName}"].schema %}
   {% set readmeFile = "@bolt-components-#{componentName}/README.md" %}
+  {% set testingFile = "@bolt-components-#{componentName}/TESTING.md" %}
 {% endif %}
 
 {% set componentExplorer %}
@@ -268,134 +269,98 @@
     {% endif %}
   </div>
 
-  <div class="c-bds-docs__page-nav u-bolt-padding-right-medium@medium">
-    <ul class="o-bolt-ui-list o-bolt-ui-list--xsmall c-bds-docs__page-nav-list">
-      <li class="o-bolt-ui-list__item">
-        <ul class="o-bolt-ui-list o-bolt-ui-list--xxsmall o-bolt-ui-list--borderless">
-          {% if readmeFile %}
-            <li class="o-bolt-ui-list__item">
-              {% include "@bolt/headline.twig" with {
-                size: "xsmall",
-                transform: "capitalize",
-                weight: "regular",
-                tag: "h3",
-                text: include("@bolt/link.twig", {
-                  text: "Getting Started",
-                  url:  "#getting-started",
-                  attributes: {
-                    class: [
-                      "c-bolt-link--headline"
-                    ],
-                    'data-scroll-offset': 70
-                  }
-                }),
-                attributes: {
-                  class: [
-                    "c-bolt-headline--link",
-                    "u-bolt-margin-bottom-none"
-                  ]
-                },
-                icon: "none",
-              } only %}
-            </li>
-          {% endif %}
+  <div class="c-bds-docs__page-nav">
+    {% set upper_list %}
+      {% include "@bolt-components-list/list.twig" with {
+        display: "block",
+        spacing: "xsmall",
+        align: "start",
+        valign: "center",
+        items: [
+          include("@bolt/link.twig", {
+            text: "Getting Started",
+            url:  "#getting-started",
+            isHeadline: true,
+          }),
+          include("@bolt/link.twig", {
+            text: "Usage",
+            url:  "#usage",
+            isHeadline: true,
+          }),
+          include("@bolt/link.twig", {
+            text: "Schema",
+            url:  "#schema",
+            isHeadline: true,
+          }),
+        ]
+      } only %}
+    {% endset %}
 
-          {% if code %}
-            <li class="o-bolt-ui-list__item">
-              {% include "@bolt/headline.twig" with {
-                size: "xsmall",
-                transform: "capitalize",
-                weight: "regular",
-                tag: "h3",
-                text: include("@bolt/link.twig", {
-                  text: "Usage",
-                  url:  "#usage",
-                  attributes: {
-                    class: [
-                      "c-bolt-link--headline"
-                    ],
-                    'data-scroll-offset': 70
-                  }
-                }),
-                attributes: {
-                  class: [
-                    "c-bolt-headline--link",
-                    "u-bolt-margin-bottom-none"
-                  ]
-                },
-                icon: "none",
-              } only %}
-            </li>
-          {% endif %}
+    {% set lower_list %}
+      {% include "@bolt-components-list/list.twig" with {
+        display: "block",
+        spacing: "xsmall",
+        align: "start",
+        valign: "center",
+        items: [
+          fileExists(readmeFile) ? include("@bolt/link.twig", {
+            text: "Edit this page",
+            url: github_url(readmeFile),
+            target: "_blank",
+            display: "flex",
+            isHeadline: true,
+            icon: {
+              position: "after",
+              size: "small",
+              name: "pencil"
+            },
+          }) : '',
+          fileExists(testingFile) ? include("@bolt/link.twig", {
+            text: "Testing Steps",
+            url: github_url(testingFile),
+            target: "_blank",
+            display: "flex",
+            isHeadline: true,
+            icon: {
+              position: "after",
+              size: "small",
+              name: "documentation"
+            }
+          }) : '',
+        ]
+      } only %}
+    {% endset %}
 
+    {% include "@bolt-components-list/list.twig" with {
+      display: "block",
+      spacing: "xsmall",
+      separator: "solid",
+      align: "start",
+      valign: "center",
+      attributes: {
+        style: [
+          "font-size: 0.9em;"
+        ]
+      },
+      items: [
+        upper_list,
+        lower_list
+      ]
+    } only %}
 
-          {% if schema and schema.properties %}
-            <li class="o-bolt-ui-list__item">
-              {% include "@bolt/headline.twig" with {
-                size: "xsmall",
-                transform: "capitalize",
-                weight: "regular",
-                tag: "h3",
-                text: include("@bolt/link.twig", {
-                  text: "Schema",
-                  url:  "#schema",
-                  attributes: {
-                    class: [
-                      "c-bolt-link--headline"
-                    ],
-                    'data-scroll-offset': 70
-                  }
-                }),
-                attributes: {
-                  class: [
-                    "c-bolt-headline--link",
-                    "u-bolt-margin-bottom-none"
-                  ]
-                },
-                icon: "none",
-              } only %}
-            </li>
-          {% endif %}
-
-
-          {% if links %}
-            <li class="o-bolt-ui-list__item">
-              {% include "@bolt/headline.twig" with {
-                size: "xsmall",
-                transform: "capitalize",
-                weight: "regular",
-                tag: "h3",
-                text: include("@bolt/link.twig", {
-                  text: "Helpful Links",
-                  url:  "#helpful-links",
-                  attributes: {
-                    class: [
-                      "c-bolt-link--headline"
-                    ],
-                    'data-scroll-offset': 70
-                  }
-                }),
-                attributes: {
-                  class: [
-                    "c-bolt-headline--link",
-                    "u-bolt-margin-bottom-none"
-                  ]
-                },
-                icon: "none",
-              } only %}
-            </li>
-          {% endif %}
-        </ul>
-      </li>
-
-      {% if readmeFile %}
-        <li class="o-bolt-ui-list__item">
-          <a href="{{ github_url(readmeFile) }}" class="c-bds-docs__page-nav__link" target="_blank">
-            <bolt-icon name="pencil"></bolt-icon>
-            Edit this page
-          </a>
-        </li>
-      {% endif %}
-    </ul>
   </div>
+</div>
+
+<div class="c-bds-docs__page-examples">
+  {% if schema.examples %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      tag: "h2",
+      text: "Examples"
+    } only %}
+
+    {% for example in schema.examples %}
+      {% include "@bolt-components-#{componentName}/#{componentName}.twig" ignore missing with example only %}
+    {% endfor %}
+  {% endif %}
 </div>

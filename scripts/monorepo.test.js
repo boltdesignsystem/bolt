@@ -12,9 +12,7 @@ function flattenDeep(arr1) {
   );
 }
 
-jest.setTimeout(30000);
-
-describe('monorepo', async () => {
+describe('monorepo', () => {
   /**
    * Array of object containing the package.json of each monorepo package
    * @var {Object[]}
@@ -22,23 +20,11 @@ describe('monorepo', async () => {
   let pkgs = [];
 
   beforeAll(async () => {
-    const pkgDirs = await globby(rootPkg.workspaces.packages);
-
-    // Given all the globbed paths, asynchronously walk through everything and find all package.json files to test against
-    let pkgPaths = await Promise.all(
-      pkgDirs.map(async pkgDir =>
-        globby([
-          path.dirname(pkgDir) + '/package.json',
-          '!**/node_modules/**',
-          '!**/bower_components/**',
-        ]),
-      ),
-    );
-
-    pkgPaths = await [...new Set(flattenDeep(pkgPaths))]; // remove duplicates
+    const dirs = rootPkg.workspaces.packages.map(pkg => `${pkg}/package.json`);
+    const pkgDirs = await globby(dirs);
 
     pkgs = await Promise.all(
-      pkgPaths.map(async pkgPath => {
+      pkgDirs.map(async pkgPath => {
         const fileString = await fs.readFile(pkgPath);
         const pkg = JSON.parse(fileString);
         return pkg;

@@ -9,7 +9,7 @@
     "component",
     "image"
   ],
-  "version": "2.3.1",
+  "version": "2.4.0",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -26,16 +26,18 @@
   "license": "MIT",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "src/image.scss",
-  "main": "src/image.js",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "tag": "next"
   },
   "dependencies": {
-    "@bolt/components-ratio": "^2.3.1",
-    "@bolt/core": "^2.3.1",
+    "@bolt/components-ratio": "^2.4.0",
+    "@bolt/core": "^2.4.0",
     "lazysizes": "^4.1.4"
   },
+  "style": "index.scss",
+  "main": "index.js",
+  "twig": "src/image.twig",
   "schema": "image.schema.yml",
-  "gitHead": "633f6dbd563f707ea4a3a1ce14717fc1cf435f7f"
+  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
 }

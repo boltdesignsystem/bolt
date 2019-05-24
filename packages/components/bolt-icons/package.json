@@ -1,14 +1,13 @@
 {
   "name": "@bolt/components-icons",
   "keywords": [
-    "bolt design system",
-    "bolt",
+    "Bolt Design System",
+    "Bolt",
     "SVG Icons",
-    "ui toolkit",
-    "design system"
+    "UI Toolkit",
+    "Design System"
   ],
-  "sourceFilesFrom": "0.10.2",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "author": "Salem Ghoweri",
   "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
@@ -18,22 +17,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^2.3.1",
-    "camelcase": "^4.1.0",
-    "cheerio": "^1.0.0-rc.2",
-    "fs-extra": "^5.0.0",
-    "globby": "^8.0.1",
-    "nodemon": "^1.15.1",
-    "prettier": "^1.7.4",
-    "svgo": "^1.0.5",
-    "uppercamelcase": "^3.0.0"
+    "@bolt/core": "^2.4.0"
   },
-  "main": "src/index.js",
-  "scripts": {
-    "postinstall": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon -e svg --watch src/svgs --exec npm run build",
-    "build": "node ./build-icons.js "
+  "peerDependencies": {
+    "@bolt/build-tools": ">= 2.3.0"
   },
-  "gitHead": "633f6dbd563f707ea4a3a1ce14717fc1cf435f7f"
+  "main": "src/index.js"
 }

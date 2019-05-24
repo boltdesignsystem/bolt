@@ -1,0 +1,21 @@
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% block content %}
+  <bolt-text headline>
+    Color Usage
+  </bolt-text>
+  <bolt-text>
+    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> can be colored accordingly based on theming. It can either take on a particular theme's headline color or body text color.
+  </bolt-text>
+  {% for color in schema.properties.color.enum %}
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set text_demo %}
+<bolt-text color="{{ color }}" font-weight="bold" font-size="large">
+  This text has its color prop defined as: {{ color }}
+</bolt-text>
+{% endset %}
+
+    {% include text_code.code_example(text_demo, true) %}
+  {% endfor %}
+{% endblock %}

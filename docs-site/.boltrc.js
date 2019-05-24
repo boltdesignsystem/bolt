@@ -14,15 +14,18 @@ const config = {
   srcDir: './src/pages',
   buildDir: '../www/build',
   dataDir: '../www/build/data',
+  iconDir: [],
   wwwDir: '../www',
   startPath: '/',
   plConfigFile: './config/config.yml',
   verbosity: 2,
   schemaErrorReporting: 'cli',
-  enableCache: true,
   webpackDevServer: {
     enabled: true,
   },
+  sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
+  enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
+  enableSSR: false, // temp disabld till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -73,9 +76,13 @@ const config = {
     global: [
       '@bolt/analytics-autotrack',
       '@bolt/global',
+      '@bolt/docs-search',
       '@bolt/schema-form',
+      '@bolt/analytics-autolink',
+      '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
+      '@bolt/components-banner',
       '@bolt/components-dropdown',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
@@ -142,6 +149,11 @@ const config = {
     {
       from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),
+      flatten: true,
+    },
+    {
+      from: `src/assets/videos`,
+      to: path.join(__dirname, '../www/videos'),
       flatten: true,
     },
     {

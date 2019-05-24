@@ -1,0 +1,21 @@
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% block content %}
+  <bolt-text headline>
+    Text-transform Usage
+  </bolt-text>
+  <bolt-text>
+    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> has a few options for transforming letter case. It can be adjusted for legibility. The default is regular.
+  </bolt-text>
+  {% for text_transform in schema.properties["text-transform"].enum %}
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set text_demo %}
+<bolt-text text-transform="{{ text_transform }}">
+  This text has its text-transform prop defined as: {{ text_transform }}
+</bolt-text>
+{% endset %}
+
+    {% include text_code.code_example(text_demo, true) %}
+  {% endfor %}
+{% endblock %}

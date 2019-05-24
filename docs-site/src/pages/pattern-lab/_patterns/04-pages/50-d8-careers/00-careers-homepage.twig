@@ -1,0 +1,343 @@
+{# Limitations of this custom solution #}
+{#
+   1. Background video must be square to accommodate all screen sizes and the dynamic height and width of the band.
+   2. Background video should only be served as a decoration, expect it to be cropped anywhere within its square size.
+   3. Background video disappears when the browser size falls below 800px, this is where the white space is diminishing to a point that makes the height of the band longer than width of the band, which could result in the video not covering the entire background.
+   4. Background video poster must be provided as a fallback for when video disappears.
+ #}
+
+
+{# Variables that are editable by the content editor #}
+{% set hero_headline = "Powerful software. Powered by you." %}
+{# {% set hero_text = "We are on a mission to change the way the world builds software to create unprecedented business outcomes in customer engagement and operational excellence." %} #}
+{% set hero_background_video_poster = "/images/placeholders/landscape-16x9-mountains.jpg" %}
+{% set hero_background_video_id = "5999324539001" %}
+{% set themes = ["light", "dark"] %}
+
+
+{# Snowflake Styles #}
+<style>
+  .c-pega-careers-background-video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .c-pega-careers-background-video img {
+    display: block !important;
+  }
+
+  .c-pega-careers-background-video__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180%;
+    transform: translate(-50%, -50%);
+  }
+
+  @media screen and (max-aspect-ratio: 3/4) {
+    .c-pega-careers-background-video__video {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 49.99em) {
+    .c-pega-careers-background-video__video {
+      display: none;
+    }
+  }
+
+  .c-pega-careers-reorderable-form-field--first {
+    order: 1;
+  }
+
+  .c-pega-careers-reorderable-form-field--second {
+    order: 2;
+  }
+
+  .c-pega-careers-reorderable-form-field--third {
+    order: 3;
+  }
+
+  @media screen and (min-width: 37.5em) {
+    .c-pega-careers-reorderable-form-field--second\@small {
+      order: 2;
+    }
+  }
+</style>
+
+{# Headline and Text #}
+{% set headline_and_text %}
+  {% if hero_headline %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: hero_headline,
+      size: "xxxlarge",
+      tag: "h1",
+      align: "center",
+    } only %}
+  {% endif %}
+  {% if hero_text %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: hero_text,
+      size: "large",
+      tag: "h2",
+      align: "center",
+    } only %}
+  {% endif %}
+{% endset %}
+
+
+{# Form #}
+{% set form_children %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--center" %}
+    {% cell "c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--first u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-flex-grow" %}
+      {% include "@pl/10-form-element-demo-input-element.twig" with {
+        title: "Search",
+        inputAttributes: {
+          placeholder: "Search All Jobs",
+          required: false,
+          type: "search"
+        },
+        labelDisplayType: "floating"
+      } only %}
+    {% endcell %}
+
+    {% cell "c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--third u-bolt-width-1/1" %}
+      <div class="gsc-careers-cta">
+        {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--small o-bolt-grid--center" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+            {% include "@pl/40-form-element-demo-select.twig" with {
+              title: "Country",
+              selectAttributes: {
+                required: false
+              },
+              options: [
+                {
+                  type: "option",
+                  value: "",
+                  label: "- Select a Country -"
+                },
+                {
+                  type: "option",
+                  value: "a",
+                  label: "Argentina"
+                },
+                {
+                  type: "option",
+                  value: "b",
+                  label: "Belgium"
+                },
+                {
+                  type: "option",
+                  value: "c",
+                  label: "Croatia"
+                }
+              ]
+            } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+            {% include "@pl/40-form-element-demo-select.twig" with {
+              title: "Categories",
+              selectAttributes: {
+                required: false
+              },
+              options: [
+                {
+                  type: "option",
+                  value: "",
+                  label: "- Select a Category -"
+                },
+                {
+                  type: "option",
+                  value: "sales",
+                  label: "Sales"
+                }
+              ]
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      </div>
+    {% endcell %}
+
+    {% cell "u-bolt-flex-grow u-bolt-flex-shrink c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--third c-pega-careers-reorderable-form-field--second@small" %}
+      {% include "@bolt-components-form/form-button.twig" with {
+        text: "Search",
+        width: "full",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% set form %}
+  {% include "@bolt-components-form/form.twig" with {
+    children: form_children
+  } only %}
+{% endset %}
+
+{% set card_with_form %}
+  {% embed "@bolt-components-card/card.twig" %}
+    {% block card_media %}{% endblock %}
+    {% block card_body %}
+      {{ form }}
+    {% endblock %}
+    {% block card_footer %}{% endblock %}
+  {% endembed %}
+{% endset %}
+
+
+{# Background Video #}
+{% set background_video %}
+  <div class="c-pega-careers-background-video">
+    {% include '@bolt-components-image/image.twig' with {
+      src: hero_background_video_poster,
+      lazyload: false,
+      ratio: false,
+      cover: true
+    } only %}
+    <div class="c-pega-careers-background-video__video">
+      {% include "@bolt-components-video/video.twig" with {
+        videoId: hero_background_video_id,
+        accountId: "1900410236",
+        playerId: "r1CAdLzTW",
+        autoplay: true,
+        loop: true,
+        controls: false,
+      } only %}
+    </div>
+  </div>
+{% endset %}
+
+
+<div>
+  {# Hero Band #}
+  {% for theme in themes %}
+    {% embed "@bolt-components-band/band.twig" with {
+      size: "large",
+      theme: theme,
+      background: {
+        opacity: "heavy",
+        fill: "color",
+      },
+      attributes: {
+        class: "u-bolt-margin-bottom-large"
+      }
+    } %}
+      {% block band_background %}
+        {{ background_video }}
+        {{ parent() }}
+      {% endblock %}
+
+      {% block band_content %}
+        {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small u-bolt-width-7/12@medium u-bolt-width-6/12@large u-bolt-margin-bottom-large" %}
+            {{ headline_and_text }}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+            {{ card_with_form }}
+          {% endcell %}
+        {% endgrid %}
+
+        {{ parent() }}
+      {% endblock band_content %}
+    {% endembed %}
+    {% embed "@bolt-components-band/band.twig" with {
+      size: "large",
+      theme: theme,
+      background: {
+        opacity: "heavy",
+        fill: "color",
+      },
+      attributes: {
+        class: "u-bolt-margin-bottom-large"
+      }
+    } %}
+      {% block band_background %}
+        {{ background_video }}
+        {{ parent() }}
+      {% endblock %}
+
+      {% block band_content %}
+        {% grid "o-bolt-grid--matrix o-bolt-grid--center" %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-9/12@medium u-bolt-width-8/12@large" %}
+            {{ card_with_form }}
+          {% endcell %}
+        {% endgrid %}
+
+        {{ parent() }}
+      {% endblock band_content %}
+    {% endembed %}
+  {% endfor %}
+
+
+  {# Rest of the page #}
+  {% set cards_in_band %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Placeholder for rest of the page",
+      size: "xxlarge",
+      align: "center",
+    } only %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/content/promos/promo-16x9-anthem.jpg",
+              alt: "Anthem Video",
+              lazyload: false,
+            },
+            {
+              pattern: "eyebrow",
+              text: "Eyebrow"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Headline"
+            },
+            {
+              pattern: "button",
+              text: "Button",
+              url: "https://pega.com"
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/content/promos/promo-16x9-anthem.jpg",
+              alt: "Anthem Video",
+              lazyload: false,
+            },
+            {
+              pattern: "headline",
+              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "headline",
+              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+            }
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    content: cards_in_band,
+  } only %}
+</div>

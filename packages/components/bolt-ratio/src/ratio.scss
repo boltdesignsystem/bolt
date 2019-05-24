@@ -4,51 +4,49 @@
 
 @import '@bolt/core';
 
-.o-#{$bolt-namespace}-ratio,
-#{$bolt-namespace}-ratio {
-  display: inline-block;
+bolt-ratio {
+  display: block;
+}
+
+:host {
+  display: block;
+}
+
+.c-bolt-ratio {
+  display: block;
   position: relative;
   width: 100%;
-  height: 0;
-  overflow: hidden; // Hide placeholder blurred images from leaking through
-  vertical-align: middle; // Prevents the average background color from sometimes showing up unexpectedly due to the image being top aligned when it should have been vertically centered.
-  vertical-align: middle;
-  font-size: 0; // Workaround to IE 11 adding extra whitespace
 
-  @include bolt-css-vars((
-    --aspect-ratio-width: 1,
-    --aspect-ratio-height: 1,
-  ));
+  @include bolt-css-vars(
+    (
+      --aspect-ratio: 1/1,
+    )
+  );
 
-  @supports (--custom:property) {
-    padding-top: calc( var(--aspect-ratio-height, 1) / var(--aspect-ratio-width, 1) * 100%);
+  @supports (--custom: property) {
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
   }
 }
 
-
-/**
-  * 1. Fallback selector if JS isn't disabled, but hasn't kicked in yet.
-  * 2. Fallback selector for browsers not supporting ::slotted(*) selector
-  */
-
-#{$bolt-namespace}-ratio > *,
-#{$bolt-namespace}-ratio img,
-.o-#{$bolt-namespace}-ratio__inner {
+// fallback styles if JS hasn't kicked in yet (or is turned off) + if rendering without Shadow DOM
+.c-bolt-ratio > *,
+.c-bolt-ratio > noscript > * {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   min-width: 100%; // workaround for content w/ hard-coded height & width
   height: 100%;
-  min-height: 100%; // workaround for content w/ hard-coded height & width
+  min-height: 100%;
 }
 
-.o-#{$bolt-namespace}-ratio__inner ::slotted(*) {
+// same styles as above but specifically for when rendering with Shadow DOM
+.c-bolt-ratio ::slotted(*) {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   min-width: 100%; // workaround for content w/ hard-coded height & width
   height: 100%;
-  min-height: 100%; // workaround for content w/ hard-coded height & width
+  min-height: 100%;
 }
