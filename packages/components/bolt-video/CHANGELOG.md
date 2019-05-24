@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.4.1...v2.4.2) (2019-05-24)
+
+
+### Bug Fixes
+
+* rework video JS to prevent bugs that result from multiple initializations ([b61c0da](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/b61c0da))
+* update onInit script to follow best practices for referencing and configuring a video ([8ce6db2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/8ce6db2))
+* update video e2e tests + playback plugin to set / check that the video is playing at 1.25x vs 1.3x ([6ae8127](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/6ae8127))
+* use video-js element per Brightcove best practices ([db93b6e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/db93b6e))
+
+
+
+
+
 # [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.3.2...v2.4.0) (2019-05-14)
 
 

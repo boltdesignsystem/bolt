@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/bolt-design-system/bolt/compare/v2.4.1...v2.4.2) (2019-05-24)
+
+
+### Bug Fixes
+
+* backport autotrack fix to update v2.3.2 docs site deployed instance ([4e0deac](https://github.com/bolt-design-system/bolt/commit/4e0deac))
+* update release urls ([d848541](https://github.com/bolt-design-system/bolt/commit/d848541))
+
+
+
+
+
 ## [2.4.1](https://github.com/bolt-design-system/bolt/compare/v2.4.0...v2.4.1) (2019-05-14)
 
 

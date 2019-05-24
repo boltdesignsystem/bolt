@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/bolt-design-system/bolt/compare/v2.4.1...v2.4.2) (2019-05-24)
+
+
+### Bug Fixes
+
+* backport autotrack fix to update v2.3.2 docs site deployed instance ([4e0deac](https://github.com/bolt-design-system/bolt/commit/4e0deac))
+* fix linting issues + reduce the overall Nightwatch test report size by around half to prevent the Github API status report from exceeding the max size allowed ([b3f14d3](https://github.com/bolt-design-system/bolt/commit/b3f14d3))
+* increase Jest max timeout to reduce frequency of errors when testing autotrack link behavior on 3rd party sites ([6880fd0](https://github.com/bolt-design-system/bolt/commit/6880fd0))
+* rework video JS to prevent bugs that result from multiple initializations ([b61c0da](https://github.com/bolt-design-system/bolt/commit/b61c0da))
+* temp workaround to Docker error ([a1d7ea3](https://github.com/bolt-design-system/bolt/commit/a1d7ea3))
+* test adding symbol polyfill to GA autotrack to fix IE 11 issue ([db57715](https://github.com/bolt-design-system/bolt/commit/db57715))
+* test updating nightwatch test reporting logic to troubleshoot travis jobs not fully completing ([b31636c](https://github.com/bolt-design-system/bolt/commit/b31636c))
+* update Jest snapshots based on video player hotfix updates ([a57c71a](https://github.com/bolt-design-system/bolt/commit/a57c71a))
+* update lerna config to not factor in component docs or component tests when determining which packages have changed / need to get published to NPM ([074eaa2](https://github.com/bolt-design-system/bolt/commit/074eaa2))
+* update navbar Jest test to wait until page navigation has finished. fixes inconsistent navbar test ([1caad66](https://github.com/bolt-design-system/bolt/commit/1caad66))
+* update onInit script to follow best practices for referencing and configuring a video ([8ce6db2](https://github.com/bolt-design-system/bolt/commit/8ce6db2))
+* update release urls ([d848541](https://github.com/bolt-design-system/bolt/commit/d848541))
+* update video e2e tests + playback plugin to set / check that the video is playing at 1.25x vs 1.3x ([6ae8127](https://github.com/bolt-design-system/bolt/commit/6ae8127))
+* use video-js element per Brightcove best practices ([db93b6e](https://github.com/bolt-design-system/bolt/commit/db93b6e))
+
+
+
+
+
 ## [2.4.1](https://github.com/bolt-design-system/bolt/compare/v2.4.0...v2.4.1) (2019-05-14)
 
 
