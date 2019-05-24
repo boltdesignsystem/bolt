@@ -415,6 +415,7 @@ ${details}
 async function go() {
   try {
     const build = `build-${TRAVIS_JOB_NUMBER}`;
+    await sleep(15000); // wait 15 seconds first before tryhing to download assets from Sauce Labs
     const sauceResults = await collectSauceLabResults(build);
     const checkRunSubmitResults = await setGithubAppSauceResults(sauceResults);
     console.log(
@@ -422,6 +423,11 @@ async function go() {
     );
   } catch (err) {
     throw new Error(err);
+    // test if we can still try to send our results even if there's a test failure.
+    const checkRunSubmitResults = await setGithubAppSauceResults(sauceResults);
+    console.log(
+      `Submitted Check Run Results: ${checkRunSubmitResults.html_url}`,
+    );
     process.exit(1);
   }
 }
