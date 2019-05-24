@@ -1,4 +1,8 @@
 <script type="text/javascript">
+  // IMPORTANT:
+  // You do not need this script to enable or disable plugins. That can be done entirely via Twig or web component props.
+  // This script is included only to demo backwards compatibility of the onInit prop and some other advanced configuration options.
+
   // @TODO: add whenDefined to critical JS bundle
 
   // https://fokkezb.nl/2016/04/14/how-to-wait-for-a-javascript-variable-to-be-defined/
@@ -13,12 +17,19 @@
     function initVideoEl(elem) {
       var id = elem.state.id;
 
-      videojs(id).ready(function(){
+      // As of Brightcove v6.16 must use getPlayer() to reference player, otherwise may initialize video twice
+      // https://support.brightcove.com/using-bc-and-getplayer-methods
+      var player = videojs.getPlayer(id);
+
+      if (!player) return;
+
+      player.ready(function(){
         var boltVideoPlayer = this;
         var options = {
-          'playbackRates': [1, 1.3, 1.5, 2]
+          'playbackRates': [1, 1.25, 1.5, 2]
         }
         boltVideoPlayer.social({
+          'description': 'Share me!',
           'url': {{ '"' ~ socialUrl|default('') ~ '"' }},
           'displayAfterVideo': true,
           'services': {
@@ -31,7 +42,10 @@
           }
         });
 
-        boltVideoPlayer.emailSocialShare();
+        // Check that emailSocialShre has not already been added or else will add multiple
+        if (boltVideoPlayer.activePlugins_ && !boltVideoPlayer.activePlugins_.emailSocialShare) {
+          boltVideoPlayer.emailSocialShare();
+        }
 
         if (Array.isArray(options.playbackRates)) {
           if (boltVideoPlayer.controlBar.playbackRateMenuButton) {
