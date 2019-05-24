@@ -357,15 +357,15 @@ async function setGithubAppSauceResults(sauceResults) {
 <summary>Screenshots</summary>
 
 ${screenshots
-              .map(
-                (s, i) => `
+  .map(
+    (s, i) => `
 ###### Screenshot ${i}
 
 [![Screenshot ${i}](${s})](${s})
 
 `,
-              )
-              .join('')}
+  )
+  .join('')}
 
 </details>
 
@@ -378,17 +378,6 @@ ${screenshots
       })
       .join('');
 
-    const details = `
-<details>
-  <summary>Full Page Data</summary>
-
-\`\`\`json
-${JSON.stringify(sauceResults, null, '  ')}
-\`\`\`
-  
-</details>  
-    `.trim();
-
     return setCheckRun({
       name: 'Nightwatch',
       status: 'completed',
@@ -397,12 +386,7 @@ ${JSON.stringify(sauceResults, null, '  ')}
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
         summary,
         images: allImages,
-        text: `${text}
-
----
-
-${details}        
-        `,
+        text,
       },
     });
   } catch (error) {
