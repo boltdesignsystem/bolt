@@ -107,7 +107,6 @@
 {{ usage }}
 {% endspaceless %}{% endset %}
 
-
 <div class="c-bds-docs t-bolt-xlight">
   <div class="c-bds-docs__page-intro">
     {% include "@bolt/headline.twig" with {
@@ -155,8 +154,6 @@
     {{ componentExplorer }}
   </div>
 
-
-
   <div class="c-bds-docs__page-content">
     {% if readmeFile %}
       <div class="c-bds-docs__readme">
@@ -203,7 +200,6 @@
         } only %}
       </div>
     {% endif %}
-
 
     {% if schema and schema.properties %}
       {% include "@bolt/headline.twig" with {
@@ -269,6 +265,61 @@
     {% endif %}
   </div>
 
+  {% set upperListItems = [
+    include("@bolt/link.twig", {
+      text: "Getting Started",
+      url:  "#getting-started",
+      isHeadline: true,
+    }),
+    include("@bolt/link.twig", {
+      text: "Usage",
+      url:  "#usage",
+      isHeadline: true,
+    }),
+    include("@bolt/link.twig", {
+      text: "Schema",
+      url:  "#schema",
+      isHeadline: true,
+    }),
+  ] %}
+
+  {% set lowerListItems = [] %}
+
+  {% if fileExists(readmeFile) %}
+    {% set lowerListItems = lowerListItems|merge([include("@bolt/link.twig", {
+        text: "Edit this page",
+        url: github_url(readmeFile),
+        target: "_blank",
+        display: "flex",
+        isHeadline: true,
+        icon: {
+          position: "after",
+          size: "small",
+          name: "pencil"
+        },
+      })
+    ]) %}
+  {% endif %}
+
+  {% if fileExists(testingFile) %}
+    {% set lowerListItems = lowerListItems|merge([
+      include("@bolt/link.twig", {
+        text: "Testing Steps",
+        url: github_url(testingFile),
+        target: "_blank",
+        display: "flex",
+        isHeadline: true,
+        icon: {
+          position: "after",
+          size: "small",
+          name: "documentation"
+        }
+      })
+    ]) %}
+  {% endif %}
+
+  {% set allListItems = upperListItems|merge(lowerListItems) %}
+
   <div class="c-bds-docs__page-nav">
     {% set upper_list %}
       {% include "@bolt-components-list/list.twig" with {
@@ -276,23 +327,7 @@
         spacing: "xsmall",
         align: "start",
         valign: "center",
-        items: [
-          include("@bolt/link.twig", {
-            text: "Getting Started",
-            url:  "#getting-started",
-            isHeadline: true,
-          }),
-          include("@bolt/link.twig", {
-            text: "Usage",
-            url:  "#usage",
-            isHeadline: true,
-          }),
-          include("@bolt/link.twig", {
-            text: "Schema",
-            url:  "#schema",
-            isHeadline: true,
-          }),
-        ]
+        items: upperListItems,
       } only %}
     {% endset %}
 
@@ -302,32 +337,7 @@
         spacing: "xsmall",
         align: "start",
         valign: "center",
-        items: [
-          fileExists(readmeFile) ? include("@bolt/link.twig", {
-            text: "Edit this page",
-            url: github_url(readmeFile),
-            target: "_blank",
-            display: "flex",
-            isHeadline: true,
-            icon: {
-              position: "after",
-              size: "small",
-              name: "pencil"
-            },
-          }) : '',
-          fileExists(testingFile) ? include("@bolt/link.twig", {
-            text: "Testing Steps",
-            url: github_url(testingFile),
-            target: "_blank",
-            display: "flex",
-            isHeadline: true,
-            icon: {
-              position: "after",
-              size: "small",
-              name: "documentation"
-            }
-          }) : '',
-        ]
+        items: lowerListItems,
       } only %}
     {% endset %}
 
@@ -342,12 +352,8 @@
           "font-size: 0.9em;"
         ]
       },
-      items: [
-        upper_list,
-        lower_list
-      ]
+      items: allListItems
     } only %}
-
   </div>
 </div>
 
