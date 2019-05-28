@@ -1,0 +1,26 @@
+{% set schema = bolt.data.components["@bolt-components-accordion"].schema %}
+
+<p>
+  By setting the <code>spacing</code> prop to <code>none</code>, <code>xsmall</code>, <code>small</code>, <code>medium</code>, or <code>large</code>, it applies the appropriate inset spacing for each accordion item. The default is <code>medium</code>.
+</p>
+
+{% for spacing in schema.properties.spacing.enum %}
+  <h3>Spacing: <code>{{ spacing }}</code></h3>
+  {% include "@bolt-components-accordion/accordion.twig" with {
+    spacing: spacing,
+    items: [
+      {
+        trigger: "Accordion item 1",
+        content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+      },
+      {
+        trigger: "Accordion item 2",
+        content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+      },
+      {
+        trigger: "Accordion item 3",
+        content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+      },
+    ]
+  } only %}
+{% endfor %}

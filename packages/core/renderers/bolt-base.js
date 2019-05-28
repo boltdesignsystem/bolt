@@ -109,6 +109,42 @@ export function BoltBase(Base = HTMLElement) {
       }
     }
 
+    /**
+     * Automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
+     * @param {string[]} slotNames an array of slot names as strings
+     */
+    addClassesToSlottedChildren(slotNames = ['default']) {
+      if (this.slots) {
+        const applyClasses = slotName => {
+          if (!(slotName in this.slots)) return;
+
+          const currentSlot = [];
+
+          this.slots[slotName].forEach(item => {
+            if (item.tagName) {
+              item.classList.remove('is-first-child');
+              item.classList.remove('is-last-child'); // clean up existing classes
+              currentSlot.push(item);
+            }
+          });
+
+          if (currentSlot[0]) {
+            currentSlot[0].classList.add('is-first-child');
+
+            if (currentSlot.length === 1) {
+              currentSlot[0].classList.add('is-last-child');
+            }
+          }
+
+          if (currentSlot[currentSlot.length - 1]) {
+            currentSlot[currentSlot.length - 1].classList.add('is-last-child');
+          }
+        };
+
+        slotNames.forEach(name => applyClasses(name));
+      }
+    }
+
     // Inspired by https://codepen.io/jovdb/pen/ddRZKo
     _checkSlots(selector = this.childNodes) {
       const slots = { default: [] };

@@ -83,6 +83,7 @@ const config = {
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
+      '@bolt/components-accordion',
       '@bolt/components-action-blocks',
       '@bolt/components-banner',
       '@bolt/components-dropdown',
