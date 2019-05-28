@@ -28,6 +28,7 @@
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch;
     overflow: auto;
+    max-height: 100%;
   }
 
   code[class*='language-'],
@@ -80,7 +81,7 @@
   pre[class*='language-'] {
     padding: 1em;
     margin: 0.5em 0;
-    overflow: auto;
+    overflow: scroll;
   }
 
   :not(pre) > code[class*='language-'],

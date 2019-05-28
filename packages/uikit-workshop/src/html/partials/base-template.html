@@ -28,7 +28,6 @@
 			<span class="pl-c-pattern-state pl-c-pattern-state--{{ patternState }}" title="{{ patternState }}"></span>
 			{{/ patternState }}
 		</h2><!--end pl-c-pattern-info__title-->
-
 	</div><!--end pl-c-pattern-info__header-->
 	{{/ isPatternView }}
 
@@ -98,7 +97,7 @@
 				{{# panels }}
 				<li class="pl-c-tabs__list-item">
 					<a class="pl-c-tabs__link pl-js-tab-link" href="#pl-{{ patternPartial }}-{{ id }}-panel" id="pl-{{ patternPartial }}-{{ id }}-tab"
-						data-patternpartial="{{ patternPartial }}" data-panelid="{{ id }}">{{ name }}</a>
+						data-patternpartial="{{ patternPartial }}" data-panelid="{{ id }}" no-smooth-scroll>{{ name }}</a>
 				</li><!--end pl-c-tabs__list-item-->
 				{{/ panels }}
 			</ul><!--end pl-c-tabs__list-->

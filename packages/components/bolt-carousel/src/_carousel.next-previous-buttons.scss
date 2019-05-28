@@ -1,0 +1,226 @@
+bolt-carousel:not(.is-ready) {
+  > [slot='previous-btn'],
+  > [slot='next-btn'] {
+    display: none;
+  }
+}
+
+bolt-carousel.is-ready
+  .c-bolt-carousel__button:not(.c-bolt-carousel__button--hidden):not(.c-bolt-carousel__button--disabled) {
+  opacity: 1;
+}
+
+bolt-carousel:not(.is-ready) > [slot='previous-btn'],
+bolt-carousel:not(.is-ready) > [slot='next-btn'] {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.c-bolt-carousel__button {
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+
+  bolt-button {
+    pointer-events: none;
+  }
+
+  &.c-bolt-carousel__button--outside {
+    &:active,
+    &.is-pressed {
+      --bolt-theme-secondary: var(--bolt-theme-secondary-darken-15);
+    }
+
+    &:hover,
+    &:focus {
+      --bolt-theme-secondary: var(--bolt-theme-secondary-darken-5);
+    }
+
+    &:focus:not(:hover) {
+      box-shadow:
+        0 -1px 2px bolt-theme(background),
+        0 1px 2px bolt-theme(background),
+        0 0 5px rgb(59, 153, 252),
+        0 -1px 0.65rem rgb(59, 153, 252),
+        0 1px 0.65rem rgb(59, 153, 252);
+    }
+
+    &.c-bolt-carousel__button--previous {
+      // default with pagination bullets on the outside
+      left: bolt-spacing(medium);
+      transform: translateX(-50%) translateY(-50%)
+        translateY(
+          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+        );
+      color: bolt-color(black);
+      --bolt-theme-headline-link: 0, 0, 0;
+
+      &.is-pressed {
+        transform: translateX(-50%) translateY(-50%)
+          translateY(
+            calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+          )
+          translateY(1px);
+      }
+
+      // default w/o pagination bullets on the outside
+      @at-root bolt-carousel[no-pagination] & {
+        transform: translateX(-50%) translateY(-50%);
+
+        &.is-pressed {
+          transform: translateX(-50%) translateY(-50%) translateY(1px);
+        }
+      }
+    }
+
+    &.c-bolt-carousel__button--next {
+      // default with pagination bullets on the outside
+      right: bolt-spacing(medium);
+      transform: translateX(50%) translateY(-50%)
+        translateY(
+          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+        );
+
+      &.is-pressed {
+        transform: translateX(50%) translateY(-50%)
+          translateY(
+            calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
+          )
+          translateY(1px);
+      }
+
+      // default w/o pagination bullets on the outside
+      @at-root bolt-carousel[no-pagination] & {
+        transform: translateX(50%) translateY(-50%);
+
+        &.is-pressed {
+          transform: translateX(50%) translateY(-50%) translateY(1px);
+        }
+      }
+    }
+  }
+
+  &.c-bolt-carousel__button--inside {
+    &,
+    &:hover,
+    &:active,
+    &:focus,
+    &.is-pressed,
+    &.is-pressed:focus {
+      top: 0;
+      transform: none;
+      width: 3rem;
+      height: calc(100% - #{bolt-v-spacing(medium)} - 8px);
+      border-radius: 0;
+
+      @at-root bolt-carousel[no-pagination] & {
+        height: 100%;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      &:before {
+        opacity: bolt-opacity(80);
+      }
+    }
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: calc(50% - 0.25rem);
+      width: 1rem;
+      height: 1rem;
+      border-style: solid;
+      will-change: opacity;
+      transition: opacity $bolt-transition;
+      transform-origin: 50% 50%;
+    }
+
+    &:before {
+      box-sizing: content-box;
+      opacity: bolt-opacity(20);
+      border-color: bolt-color(black);
+      filter: blur(4px);
+    }
+
+    &:after {
+      border-color: bolt-color(white);
+    }
+
+    &.c-bolt-carousel__button--previous {
+      right: auto;
+      left: 0;
+
+      &:before {
+        left: calc(50% - 0.5rem - 8px);
+        border-width: 7px 0 0 7px;
+      }
+
+      &:after {
+        left: calc(50% - 0.5rem - 4px);
+        border-width: 4px 0 0 4px;
+      }
+
+      &:before,
+      &:after {
+        transform: rotate(-45deg) translateX(50%) translateY(0);
+      }
+    }
+
+    &.c-bolt-carousel__button--next {
+      right: 0;
+      left: auto;
+
+      &:before {
+        right: calc(50% - 0.5rem - 8px);
+        border-width: 7px 7px 0 0;
+      }
+
+      &:after {
+        right: calc(50% - 0.5rem - 4px);
+        border-width: 4px 4px 0 0;
+      }
+
+      &:before,
+      &:after {
+        transform: rotate(45deg) translateX(-50%) translateY(0);
+      }
+    }
+
+    > * {
+      @include bolt-visuallyhidden;
+    }
+  }
+}
+
+.c-bolt-carousel__button--hidden {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+.c-bolt-carousel__button--disabled:not(.c-bolt-carousel__button--hidden) {
+  visibility: hidden;
+}
+
+.c-bolt-carousel__button:focus,
+.c-bolt-carousel__button:active,
+.c-bolt-carousel__button:hover {
+  outline: 0;
+}
+
+.c-bolt-carousel__button:focus {
+  outline: 0;
+}
+
+.c-bolt-carousel__pagination__bullet {
+  outline-offset: -3px;
+}
