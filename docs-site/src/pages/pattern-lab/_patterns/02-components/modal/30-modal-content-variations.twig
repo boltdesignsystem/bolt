@@ -281,34 +281,6 @@
 
 <div class="u-bolt-margin-bottom-medium">
   {% set modal_content %}
-    {% include "@bolt-components-video/video.twig" with {
-      videoId: "3861325118001",
-      accountId: "1900410236",
-      playerId: "r1CAdLzTW",
-      showMeta: true,
-      showMetaTitle: true
-    } only %}
-  {% endset %}
-
-  <h3>Video</h3>
-  {% include "@bolt-components-button/button.twig" with {
-    text: "Open Modal",
-    size: "small",
-    attributes: {
-      onclick: "this.nextElementSibling.show()",
-    }
-  } only %}
-  {% include "@bolt-components-modal/modal.twig" with {
-    content: modal_content,
-    width: "optimal",
-    spacing: "none",
-    theme: "none",
-    scroll: "overall",
-  } only %}
-</div>
-
-<div class="u-bolt-margin-bottom-medium">
-  {% set modal_content %}
     {% include "@bolt-components-image/image.twig" with {
       src: "/images/content/backgrounds/background-robotics-customer-service.jpg",
       alt: "This is the alt text.",

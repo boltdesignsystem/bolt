@@ -111,6 +111,8 @@ class BoltModal extends withLitHtml() {
     this.useDialog =
       'show' in document.createElement('dialog') &&
       this.dialog.nodeName === 'DIALOG';
+
+    this.dispatchEvent(new CustomEvent('ready'));
   }
 
   // aliases for the `show` and `hide` methods
@@ -152,7 +154,7 @@ class BoltModal extends withLitHtml() {
     // this.dialog.setAttribute('open', '');
     // this.container.removeAttribute('aria-hidden');
 
-    // @todo: emit custom event when modal is shown
+    this.dispatchEvent(new CustomEvent('onshow'));
   }
 
   /**
@@ -203,7 +205,7 @@ class BoltModal extends withLitHtml() {
       // });
     }
 
-    // @todo: emit custom event when modal is hidden
+    this.dispatchEvent(new CustomEvent('onhide'));
   }
 
   /**

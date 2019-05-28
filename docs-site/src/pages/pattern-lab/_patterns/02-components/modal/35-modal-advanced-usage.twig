@@ -1,41 +1,91 @@
-{% set timed_modal_content %}
-  {% include "@bolt-components-headline/headline.twig" with {
-    size: "xlarge",
-    text: "Timed Modal",
+<div class="u-bolt-margin-bottom-medium">
+  <h3>Video Modal</h3>
+  <p>Use custom JavaScript to play a video when a modal opens and pause it when the modal closes.</p>
+
+  {% set modal_content %}
+    {% include "@bolt-components-video/video.twig" with {
+      videoId: "3861325118001",
+      accountId: "1900410236",
+      playerId: "r1CAdLzTW",
+      showMeta: true,
+      showMetaTitle: true,
+      attributes: {
+        id: "demo-video"
+      }
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Open Video Modal",
+    size: "small",
+    attributes: {
+      onclick: "this.nextElementSibling.show()",
+    }
   } only %}
-  {% include "@bolt-components-headline/text.twig" with {
-    text: "This modal will open after 3 seconds."
+  {% include "@bolt-components-modal/modal.twig" with {
+    attributes: {
+      id: 'video-modal'
+    },
+    content: modal_content,
+    width: "optimal",
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
   } only %}
-{% endset %}
 
-<h3>Advanced Timed Trigger</h3>
-<p>Write custom javascript to trigger a modal after a time delay. The button below is for demo purposes. Click on the button to activate custom javascript on this page. Once the javascript is activated, a modal will appear after 3 seconds.</p>
+  <script>
+    // Toggle the video state based on modal visibility
+    const videoModal = document.querySelector('#video-modal');
+    const DemoVideo = document.querySelector('#demo-video');
 
-{% include "@bolt-components-button/button.twig" with {
-  text: "Activate Timed Modal JS",
-  size: "small",
-  attributes: {
-    onclick: "setTimedModalParam(true)",
-  }
-} only %}
+    videoModal.addEventListener('onshow', function() {
+      DemoVideo.play();
+    });
 
-{% include "@bolt-components-modal/modal.twig" with {
-  content: timed_modal_content,
-  attributes: {
-    id: "js-timed-modal"
-  },
-} only %}
+    videoModal.addEventListener('onhide', function() {
+      DemoVideo.pause();
+    });
+  </script>
+</div>
 
-<script>
-  var setTimedModalParam = function(set){
-    var currentUrl = window.location.href.split('?').shift();
-    var param = '?showModal=true';
-    window.location.href = set ? currentUrl + param : currentUrl;
-  }
+<div class="u-bolt-margin-bottom-medium">
+  <h3>Auto-open Modal</h3>
+  <p>Use custom JavaScript to automatically open a modal on page load (after a short delay). Click on the button below to see a demo. The page will reload and a modal will open after 3 seconds.</p>
 
-  var initTimedModal = function(){
-    var timedModal = document.querySelector('#js-timed-modal');
+  {% set timed_modal_content %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      text: "Auto-open Modal",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "This modal will open 3 seconds after page load."
+    } only %}
+  {% endset %}
 
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Set Auto-open Modal",
+    size: "small",
+    attributes: {
+      onclick: "setAutoOpenModalParam(true)",
+    }
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: timed_modal_content,
+    attributes: {
+      id: "js-auto-open-modal"
+    },
+  } only %}
+
+  <script>
+    // Add parameter to the URL - demo helper function, not required in production
+    var setAutoOpenModalParam = function(set){
+      var currentUrl = window.location.href.split('?').shift();
+      var param = '?showModal=true';
+      window.location.href = set ? currentUrl + param : currentUrl;
+    }
+
+    // Get parameter to the URL - demo helper function, not required in production
     var getUrlParameter = function(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -43,22 +93,26 @@
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
-    var canShowModal = getUrlParameter('showModal');
+    // Reference to the modal
+    var autoOpenModal = document.querySelector('#js-auto-open-modal');
 
-    var setTimedModal = function(el) {
-      if (canShowModal) {
+    // Calls modal 'show' method after a delay
+    var setAutoOpenModal = function(el) {
+      if (getUrlParameter('showModal')) {
         setTimeout(function(){
           el.show();
         }, 3000)
       }
     }
 
-    if (timedModal) {
-      timedModal._wasInitiallyRendered
-        ? setTimedModal(timedModal)
-        : timedModal.addEventListener('rendered', setTimedModal(timedModal));
+    // Callback on modal 'ready'
+    var onModalReady = function(e) {
+      setAutoOpenModal(autoOpenModal);
+      // IMPORTANT: remove this event listener unless you want it called each time tbe component renders
+      e.target.removeEventListener('ready', onModalReady);
     }
-  }
 
-  initTimedModal();
-</script>
+    // Add 'ready' callback
+    autoOpenModal.addEventListener('ready', onModalReady);
+  </script>
+</div>
