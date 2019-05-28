@@ -2,10 +2,7 @@ import { css } from '@bolt/core/utils';
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 
 export const AccordionItemTrigger = (children, props, context) => {
-  const triggerClasses = css(
-    'c-bolt-accordion-item__trigger',
-    props.center ? 'c-bolt-accordion-item__trigger--center' : '',
-  );
+  const triggerClasses = css('c-bolt-accordion-item__trigger');
 
   const spacingClasses = css(
     context.spacing ? `c-bolt-accordion-spacing--${context.spacing}` : '',
