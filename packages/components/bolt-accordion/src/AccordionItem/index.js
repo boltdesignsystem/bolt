@@ -91,7 +91,7 @@ class AccordionItem extends withContext(withLitHtml()) {
       'c-bolt-accordion-item',
       !noSeparator ? 'c-bolt-accordion-item--separator' : '',
       boxShadow ? 'c-bolt-accordion-item--box-shadow' : '',
-      iconValign && iconValign !== 'top'
+      iconValign && iconValign !== 'center'
         ? `c-bolt-accordion-item--icon-valign-${iconValign}`
         : '',
       this.isFirstItem ? 'c-bolt-accordion-item--first-item' : '',

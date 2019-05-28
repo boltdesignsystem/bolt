@@ -21,7 +21,7 @@
   base_class,
   box_shadow ? base_class ~ "--box-shadow" : "",
   no_separator ? "" : base_class ~ "--separator",
-  icon_valign and icon_valign != "top" ? base_class ~ "--icon-valign-" ~ icon_valign : "",
+  icon_valign and icon_valign != "center" ? base_class ~ "--icon-valign-" ~ icon_valign : "",
   first ? base_class ~ "--first-item" : "",
   last ? base_class ~ "--last-item" : ""
 ] %}

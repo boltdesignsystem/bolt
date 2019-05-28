@@ -86,7 +86,7 @@ bolt-accordion-item {
 
   display: flex;
   justify-content: space-between;
-  align-items: flex-start; // align top by default
+  align-items: center; // align center by default
   appearance: none;
   position: relative;
   width: 100%;
@@ -101,8 +101,8 @@ bolt-accordion-item {
   border: none;
   background-color: bolt-theme(background);
 
-  .c-bolt-accordion-item--icon-valign-center & {
-    align-items: center;
+  .c-bolt-accordion-item--icon-valign-top & {
+    align-items: flex-start;
   }
 
   &:-moz-focusring {
