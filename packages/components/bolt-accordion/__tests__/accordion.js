@@ -7,7 +7,7 @@ import { fixture as html } from '@open-wc/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../accordion.schema.yml'));
-const { multiple, spacing } = schema.properties;
+const { single, spacing } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -59,12 +59,12 @@ describe('<bolt-accordion> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  multiple.enum.forEach(async multipleChoice => {
-    test(`expand multiple items: ${multipleChoice}`, async () => {
+  single.enum.forEach(async singleChoice => {
+    test(`expand single items: ${singleChoice}`, async () => {
       const results = await renderTwig(
         '@bolt-components-accordion/accordion.twig',
         {
-          multiple: multipleChoice,
+          single: singleChoice,
           items: [
             {
               trigger: 'Accordion item 1',

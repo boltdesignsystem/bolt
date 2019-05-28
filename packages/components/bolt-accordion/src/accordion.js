@@ -28,7 +28,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
   static is = 'bolt-accordion';
 
   static props = {
-    multiple: props.boolean,
+    single: props.boolean,
     noSeparator: props.boolean,
     boxShadow: props.boolean,
     spacing: props.string,
@@ -55,7 +55,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
       items: this.accordionItems,
 
       // whether multiple folds can be opened at once
-      multiSelectable: this.props.multiple,
+      multiSelectable: !this.props.single,
       // whether the folds are collapsible
       collapsible: true,
 

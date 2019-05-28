@@ -1,11 +1,12 @@
 <p>
-  By setting the <code>multiple</code> prop to <code>true</code>, it allows for multiple items to be opened at once.
+  By setting the <code>single</code> prop to <code>true</code>, it allows only one item to be opened at a time.
 </p>
 
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
   {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
-    <h3>Single open items</h3>
+    <h3>Single open item</h3>
     {% include "@bolt-components-accordion/accordion.twig" with {
+      single: true,
       items: [
         {
           trigger: "Open one of these",
@@ -23,9 +24,8 @@
     } only %}
   {% endcell %}
   {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
-    <h3>Multiple open items</h3>
+    <h3>Multiple open items (default)</h3>
     {% include "@bolt-components-accordion/accordion.twig" with {
-      multiple: true,
       items: [
         {
           trigger: "Each of these",
