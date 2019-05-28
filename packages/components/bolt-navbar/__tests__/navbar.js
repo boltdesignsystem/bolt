@@ -203,12 +203,14 @@ describe('<bolt-navbar> Component', () => {
         document.body.appendChild(div);
       }, html);
 
+      const navigationPromise = page.waitForNavigation();
       await page.hover('.c-bolt-navbar__title--link');
 
       const image = await page.screenshot();
       expect(image).toMatchImageSnapshot(imageVrtConfig);
 
-      await page.tap('.c-bolt-navbar__title--link');
+      await page.click('.c-bolt-navbar__title--link');
+      await navigationPromise; // wait for page navigation to finish before verifying the navbar link rendered + brought us to the main docs site
 
       const pageTitle = await page.title();
       expect(pageTitle).toMatch('Bolt Design System');
