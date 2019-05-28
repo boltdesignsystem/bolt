@@ -10,27 +10,22 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion.scss';
+import schema from '../accordion.schema.yml';
 
 import { Accordion } from './_accordion-handorgel';
 
 // define which specific props to provide to children that subscribe
 export const AccordionContext = defineContext({
-  noSeparator: false,
-  boxShadow: false,
-  spacing: 'medium',
-  iconValign: 'top',
+  noSeparator: schema.properties.no_separator.default,
+  boxShadow: schema.properties.box_shadow.default,
+  spacing: schema.properties.spacing.default,
+  iconValign: schema.properties.icon_valign.default,
   useShadow: hasNativeShadowDomSupport,
 });
 
 @define
 class BoltAccordion extends withContext(withLitHtml()) {
   static is = 'bolt-accordion';
-
-  // provide context info to children that subscribe
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get provides() {
-    return [AccordionContext];
-  }
 
   static props = {
     multiple: props.boolean,
@@ -43,8 +38,15 @@ class BoltAccordion extends withContext(withLitHtml()) {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
+    self.schema = this.getModifiedSchema(schema);
 
     return self;
+  }
+
+  // provide context info to children that subscribe
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get provides() {
+    return [AccordionContext];
   }
 
   get accordionOptions() {
@@ -91,6 +93,19 @@ class BoltAccordion extends withContext(withLitHtml()) {
       triggerNoTransitionClass: 'c-bolt-accordion-item__trigger--notransition',
       contentNoTransitionClass: 'c-bolt-accordion-item__content--notransition',
     };
+  }
+
+  getModifiedSchema(schema) {
+    var modifiedSchema = schema;
+
+    // Remove "items" from schema, does not apply to web component.
+    for (let property in modifiedSchema.properties) {
+      if (property === 'items') {
+        delete modifiedSchema.properties[property];
+      }
+    }
+
+    return modifiedSchema;
   }
 
   handleAccordionItemReady(item) {
@@ -244,15 +259,14 @@ class BoltAccordion extends withContext(withLitHtml()) {
   }
 
   render() {
-    // @todo: replace with validated props
-    this.contexts.get(AccordionContext).noSeparator =
-      this.props.noSeparator || false;
-    this.contexts.get(AccordionContext).boxShadow =
-      this.props.boxShadow || false;
-    this.contexts.get(AccordionContext).spacing =
-      this.props.spacing || 'medium';
-    this.contexts.get(AccordionContext).iconValign =
-      this.props.iconValign || 'top';
+    const { noSeparator, boxShadow, spacing, iconValign } = this.validateProps(
+      this.props,
+    );
+
+    this.contexts.get(AccordionContext).noSeparator = noSeparator;
+    this.contexts.get(AccordionContext).boxShadow = boxShadow;
+    this.contexts.get(AccordionContext).spacing = spacing;
+    this.contexts.get(AccordionContext).iconValign = iconValign;
     this.contexts.get(AccordionContext).useShadow = this.useShadow;
 
     return html`
