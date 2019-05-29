@@ -262,9 +262,9 @@ class BoltCarousel extends withLitHtml() {
   configureSwiper() {
     // opt out of the default slidesPerGroup behavior if being used as an image gallery
     if (this.mode === 'gallery' || this.mode === 'gallery-thumbnail') {
-      console.log(
-        'opting out of reconfiguring Swiper slidesPerGroup while in `gallery` or `gallery-thumbnail` mode.',
-      );
+      // console.log(
+      //   'opting out of reconfiguring Swiper slidesPerGroup while in `gallery` or `gallery-thumbnail` mode.',
+      // );
       return;
     }
 
