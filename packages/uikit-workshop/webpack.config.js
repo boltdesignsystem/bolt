@@ -10,6 +10,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
@@ -226,23 +227,7 @@ module.exports = async function() {
         //     },
         //   },
         // },
-        minimizer: config.prod
-          ? [
-              new UglifyJsPlugin({
-                sourceMap: false,
-                parallel: true,
-                cache: true,
-                uglifyOptions: {
-                  compress: true,
-                  mangle: true,
-                  output: {
-                    comments: false,
-                    beautify: false,
-                  },
-                },
-              }),
-            ]
-          : [],
+        minimizer: config.prod ? [new TerserPlugin()] : [],
       },
       plugins: [
         new PrerenderSPAPlugin({
@@ -263,7 +248,7 @@ module.exports = async function() {
             injectProperty: '__PRERENDER_INJECTED',
             // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
             inject: {
-              foo: 'bar'
+              foo: 'bar',
             },
           }),
         }),
