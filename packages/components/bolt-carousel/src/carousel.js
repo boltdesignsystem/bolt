@@ -135,7 +135,11 @@ class BoltCarousel extends withLitHtml() {
   connecting() {
     super.connecting && super.connecting();
     addBoltCarouselResizer();
-    window.addEventListener('carousel:resize', this.reInitCarousel);
+
+    if (!this.carouselResizeEventAdded) {
+      this.carouselResizeEventAdded = true;
+      window.addEventListener('carousel:resize', this.reInitCarousel);
+    }
 
     const nextButton = this.querySelector('[slot="next-btn"]');
     const prevButton = this.querySelector('[slot="previous-btn"]');
@@ -444,10 +448,11 @@ class BoltCarousel extends withLitHtml() {
         this.classList.remove(`is-offset-after`);
       }
 
-      for (const slide of this.querySelectorAll('bolt-carousel-slide')) {
+      const slides = Array.from(this.querySelectorAll('bolt-carousel-slide'));
+      slides.forEach(slide => {
         slide.classList.add('c-bolt-carousel__slide');
         slide.classList.add('is-ready');
-      }
+      });
 
       this.swiper = new Swiper(
         this.renderRoot.querySelector('.c-bolt-carousel'),
@@ -469,6 +474,15 @@ class BoltCarousel extends withLitHtml() {
     }
 
     super.rendered && super.rendered();
+  }
+
+  disconnecting() {
+    super.disconnecting && super.disconnecting();
+
+    if (this.carouselResizeEventAdded === true) {
+      this.carouselResizeEventAdded = false;
+      window.removeEventListener('carousel:resize');
+    }
   }
 
   // make sure the pagination tracking keeps updating accurately when the component re-renders
