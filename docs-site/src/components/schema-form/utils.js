@@ -20,6 +20,10 @@ export function prepSchema(schema) {
       delete newSchema.properties[property];
     }
 
+    if (newSchema.properties[property].hidden === true) {
+      delete newSchema.properties[property];
+    }
+
     try {
       if (newSchema.properties[property].ref) {
         delete newSchema.properties[property].ref;

@@ -11,6 +11,7 @@ const selectorImporter = require('node-sass-selector-importer');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const path = require('path');
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
@@ -257,6 +258,14 @@ module.exports = async function() {
             );
             return context;
           },
+          renderer: new Renderer({
+            // Optional - The name of the property to add to the window object with the contents of `inject`.
+            injectProperty: '__PRERENDER_INJECTED',
+            // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
+            inject: {
+              foo: 'bar'
+            },
+          }),
         }),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
