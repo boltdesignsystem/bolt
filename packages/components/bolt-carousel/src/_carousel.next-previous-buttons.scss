@@ -149,7 +149,9 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       box-sizing: content-box;
       opacity: bolt-opacity(20);
       border-color: bolt-color(black);
-      filter: blur(4px);
+      @supports (filter: blur(0px)){
+        filter: blur(4px);
+      }
     }
 
     &:after {
@@ -162,12 +164,18 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
 
       &:before {
         left: calc(50% - 0.5rem - 8px);
-        border-width: 7px 0 0 7px;
+        border-top-width: 7px;
+        border-right-width: 0;
+        border-bottom-width: 0;
+        border-left-width: 7px;
       }
 
       &:after {
         left: calc(50% - 0.5rem - 4px);
-        border-width: 4px 0 0 4px;
+        border-top-width: 4px;
+        border-right-width: 0;
+        border-bottom-width: 0;
+        border-left-width: 4px;
       }
 
       &:before,
@@ -182,12 +190,18 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
 
       &:before {
         right: calc(50% - 0.5rem - 8px);
-        border-width: 7px 7px 0 0;
+        border-top-width: 7px;
+        border-right-width: 7px;
+        border-bottom-width: 0;
+        border-left-width: 0;
       }
 
       &:after {
         right: calc(50% - 0.5rem - 4px);
-        border-width: 4px 4px 0 0;
+        border-top-width: 4px;
+        border-right-width: 4px;
+        border-bottom-width: 0;
+        border-left-width: 0;
       }
 
       &:before,
