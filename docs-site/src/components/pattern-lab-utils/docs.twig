@@ -5,9 +5,9 @@
 {% endif %}
 
 {% set component_explorer %}
-  {% if schema_form and schema %}
+  {% if schemaForm and schema %}
     <bolt-component-demo>
-      {% set schema_form = schema_form|merge({ schema: schema }) %}
+      {% set schemaForm = schemaForm|merge({ schema: schema }) %}
       {% set definitions = {} %}
       {% set properties = {} %}
 
@@ -80,15 +80,15 @@
         }) %}
       {% endif %}
 
-      {% set schema_UUID = random() %}
-      <script id="schema-{{ schema_UUID }}" type="application/json">
+      {% set schema_uuid = random() %}
+      <script id="schema-{{ schema_uuid }}" type="application/json">
         {{ schema | json_encode() | raw }}
       </script>
-      <bolt-component-explorer schema-uuid="schema-{{ schema_UUID }}" initial-layout="{{ schema_form.layout }}" template="{{ schema_form.template }}" form-data="{{ schema_form.initialData | json_encode() | escape('html_attr') }}">
-        <replace-with-children style="background-color: #F6F6F9; display: flex; margin: 0 auto; max-width: 1024px; min-height: 320px; -webkit-overflow-scroll': 'touch'">
+      <bolt-component-explorer schema-uuid="schema-{{ schema_uuid }}" initial-layout="{{ schemaForm.layout }}" template="{{ schemaForm.template }}" form-data="{{ schemaForm.initialData | json_encode() | escape('html_attr') }}">
+        <replace-with-children style="background-color: #f6f6f9; display: flex; margin: 0 auto; max-width: 1024px; min-height: 320px; -webkit-overflow-scroll: touch">
           <replace-with-children class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-6/10@xsmall"
-            style="background-color: #FFF; border: 1px solid rgba(0, 0, 0, .075); display: flex; position: relative;">
-            <replace-with-children class="u-bolt-padding-medium c-bds-component-explorer__demo-container" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 30px;">
+            style="background-color: #fff; border: 1px solid rgba(0, 0, 0, .075); display: flex; position: relative;">
+            <replace-with-children class="u-bolt-padding-medium c-bds-component-explorer__demo-container" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; box-shadow: inset rgba(0, 0, 0, .1) 0 0 30px;">
               Loading...
             </replace-with-children>
           </replace-with-children>
@@ -125,7 +125,7 @@
 
     {% set component_data = get_data("@bolt-components-#{componentName}/package.json") %}
     {% set component_version = component_data.version %}
-    {% set hasJs = component_data.main %}
+    {% set has_js = component_data.main %}
     {% set has_scss = component_data.sass %}
     {% set component_title = component_data.name %}
 
@@ -147,7 +147,7 @@
         include("@bolt-components-text/text.twig", {
           text: "NPM Package: #{npm_link}",
         }),
-        
+
       ]
     } only %}
 
