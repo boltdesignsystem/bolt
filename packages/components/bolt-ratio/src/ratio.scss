@@ -40,8 +40,9 @@ bolt-ratio {
   }
 }
 
-// fallback styles if JS hasn't kicked in yet + if rendering without Shadow DOM
-.c-bolt-ratio > * {
+// fallback styles if JS hasn't kicked in yet (or is turned off) + if rendering without Shadow DOM
+.c-bolt-ratio > *,
+.c-bolt-ratio > noscript > * {
   position: absolute;
   top: 0;
   left: 0;

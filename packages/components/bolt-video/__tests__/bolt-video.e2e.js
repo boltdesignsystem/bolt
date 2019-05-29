@@ -28,7 +28,7 @@ module.exports = {
         [],
         function(result) {
           browser.assert.ok(
-            result.value === 1.3,
+            result.value === 1.25,
             `verified that <bolt-video> play rate has sped up to ${
               result.value
             }`,
@@ -42,13 +42,13 @@ module.exports = {
         [],
         function(result) {
           browser.assert.ok(
-            result.value === '1.3x',
-            `verified that <bolt-video> play rate text reads 1.3x.`,
+            result.value === '1.25x',
+            `verified that <bolt-video> play rate text reads 1.25x.`,
           );
         },
       )
       .saveScreenshot(
-        `screenshots/bolt-video/${testName}--playback-at-1.3x--${currentBrowser}.png`,
+        `screenshots/bolt-video/${testName}--playback-at-1.25x--${currentBrowser}.png`,
       )
       .end();
   },
