@@ -37,21 +37,19 @@ class BoltPathwayPane extends withLitHtml() {
       [`c-bolt-pathway-pane--disabled`]: disabled,
     });
     console.log("Wubba Lubba Dub Dub: this.slot('image')", this.slot('image'));
-    console.log("Wubba Lubba Dub Dub: classes", classes);
+    console.log('Wubba Lubba Dub Dub: classes', classes);
 
-    (function () {
-
-    }());
+    (function() {})();
 
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
-        ${this.slot('image')}
-        ${this.slot('body')}
-        ${this.slot('default')}
+        ${this.slot('image')} ${this.slot('body')} ${this.slot('default')}
       </div>
       <script>
-        document.querySelector('.c-bolt-tooltip .c-bolt-tooltip__trigger').click();
+        document
+          .querySelector('.c-bolt-tooltip .c-bolt-tooltip__trigger')
+          .click();
       </script>
     `;
   }
