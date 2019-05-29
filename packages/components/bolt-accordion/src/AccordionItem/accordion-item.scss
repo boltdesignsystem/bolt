@@ -34,19 +34,34 @@ bolt-accordion-item {
       content: '';
       display: block;
       opacity: bolt-opacity(100);
-      position: fixed;
+      position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
       pointer-events: none;
+      // This gradient is IE proof, created using https://colorzilla.com/gradient-editor/
+      background: -moz-linear-gradient(
+        top,
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 98%,
+        rgba(bolt-color(gray), 0.2) 100%
+      ); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        top,
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 98%,
+        rgba(bolt-color(gray), 0.2) 100%
+      ); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(
         to bottom,
-        rgba(bolt-color(gray), 0.2),
-        rgba(bolt-color(gray, light), 0.1) 5px,
-        rgba(bolt-color(gray, light), 0.1) calc(100% - 5px),
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 98%,
         rgba(bolt-color(gray), 0.2) 100%
-      );
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       will-change: opacity;
       transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
     }
@@ -71,12 +86,25 @@ bolt-accordion-item {
     }
 
     .c-bolt-accordion-item__content:before {
+      // This gradient is IE proof, created using https://colorzilla.com/gradient-editor/
+      background: -moz-linear-gradient(
+        top,
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 100%,
+      ); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        top,
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 100%,
+      ); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(
         to bottom,
-        rgba(bolt-color(gray), 0.2),
-        rgba(bolt-color(gray, light), 0.1) 5px,
-        rgba(bolt-color(gray, light), 0.1) 100%
-      );
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 100%,
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
   }
 }
@@ -209,62 +237,35 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__trigger-icons {
-  display: inline-flex;
+  display: flex;
   flex-shrink: 0; // for when there is a very long title - adds left/right spacing
-  justify-content: center;
-  align-items: center;
   position: relative;
   transform: translateX(bolt-spacing(xxsmall));
   overflow: hidden; // so transformed icons don't spill out
+  color: bolt-theme(link);
+  line-height: 0; // Workaround to line-height messing up icon alignment
+  font-size: $bolt-accordion-icon-size;
 }
 
 .c-bolt-accordion-item__trigger-icons-inner {
+  @include bolt-padding(xxsmall 0); // This is for aligning the icon with the text baseline.
+
+  display: block;
   transform: rotate(0deg);
+  transform-origin: 50% 50%;
   will-change: transform;
   transition: transform $bolt-transition;
-}
-
-.c-bolt-accordion-item__trigger-icon {
-  display: inline-flex;
-  position: relative;
-  color: bolt-theme(link);
-  line-height: 0; // Workaround to line-height messing up icon alignment
-  vertical-align: middle;
-  font-size: $bolt-accordion-icon-size;
-  will-change: opacity;
-  transition: opacity $bolt-transition;
-
-  & ~ * {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%) rotate(180deg);
-  }
 }
 
 [aria-expanded='false'] {
   .c-bolt-accordion-item__trigger-icons-inner {
     transform: rotate(0deg);
   }
-  .c-bolt-accordion-item__trigger-icon--open {
-    opacity: bolt-opacity(100);
-  }
-  .c-bolt-accordion-item__trigger-icon--close {
-    opacity: bolt-opacity(0);
-  }
 }
 
 [aria-expanded='true'] {
   .c-bolt-accordion-item__trigger-icons-inner {
-    transform: rotate(179.5deg);
-  }
-
-  .c-bolt-accordion-item__trigger-icon--open {
-    opacity: bolt-opacity(0);
-  }
-
-  .c-bolt-accordion-item__trigger-icon--close {
-    opacity: bolt-opacity(100);
+    transform: rotate(180deg);
   }
 }
 
@@ -277,7 +278,6 @@ bolt-accordion-item {
 .c-bolt-accordion-item__content {
   display: none;
   position: relative;
-  left: 0;
   transform: translateY(-1rem);
   width: 100%;
   height: 0;

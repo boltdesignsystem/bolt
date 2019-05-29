@@ -30,17 +30,7 @@ export const AccordionItemTrigger = (children, props, context) => {
         </div>
         <span class="c-bolt-accordion-item__trigger-icons">
           <div class="c-bolt-accordion-item__trigger-icons-inner">
-            <span
-              class="c-bolt-accordion-item__trigger-icon c-bolt-accordion-item__trigger-icon--open"
-            >
-              <bolt-icon name="chevron-down"></bolt-icon>
-            </span>
-
-            <span
-              class="c-bolt-accordion-item__trigger-icon c-bolt-accordion-item__trigger-icon--close"
-            >
-              <bolt-icon name="chevron-up"></bolt-icon>
-            </span>
+            <bolt-icon name="chevron-down"></bolt-icon>
           </div>
         </span>
       </button>
