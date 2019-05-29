@@ -7,7 +7,7 @@
 {% set component_explorer %}
   {% if schemaForm and schema %}
     <bolt-component-demo>
-      {% set schemaForm = schemaForm|merge({ schema: schema }) %}
+      {% set schema_form = schemaForm|merge({ schema: schema }) %}
       {% set definitions = {} %}
       {% set properties = {} %}
 
@@ -84,7 +84,7 @@
       <script id="schema-{{ schema_uuid }}" type="application/json">
         {{ schema | json_encode() | raw }}
       </script>
-      <bolt-component-explorer schema-uuid="schema-{{ schema_uuid }}" initial-layout="{{ schemaForm.layout }}" template="{{ schemaForm.template }}" form-data="{{ schemaForm.initialData | json_encode() | escape('html_attr') }}">
+      <bolt-component-explorer schema-uuid="schema-{{ schema_uuid }}" initial-layout="{{ schema_form.layout }}" template="{{ schema_form.template }}" form-data="{{ schema_form.initialData | json_encode() | escape('html_attr') }}">
         <replace-with-children style="background-color: #f6f6f9; display: flex; margin: 0 auto; max-width: 1024px; min-height: 320px; -webkit-overflow-scroll: touch">
           <replace-with-children class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-6/10@xsmall"
             style="background-color: #fff; border: 1px solid rgba(0, 0, 0, .075); display: flex; position: relative;">
