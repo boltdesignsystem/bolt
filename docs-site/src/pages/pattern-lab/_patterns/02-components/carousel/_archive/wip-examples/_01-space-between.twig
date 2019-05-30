@@ -1,0 +1,53 @@
+{# <h2>Space between: None</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  spaceBetween: "none"
+} only %}
+
+<h2>Space between: Small</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  spaceBetween: "small"
+} only %}
+
+<h2>Space between: Medium (Default)</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  spaceBetween: "medium"
+} only %} #}
+
+<h2>Space between: large</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+} only %}
+
+<div class="o-bolt-wrapper">
+  <p>Example test paragraph</p>
+
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+    ],
+  } only %}
+</div>
