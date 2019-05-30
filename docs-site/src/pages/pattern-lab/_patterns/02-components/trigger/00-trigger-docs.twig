@@ -1,0 +1,17 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-trigger/trigger.twig" with {
+  content: "This is a trigger"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "trigger",
+  usage: usage,
+  schemaForm: {
+    template: '@bolt-components-trigger/trigger.twig',
+    layout: "horizontal",
+    initialData: {
+      content: "This is a trigger",
+    },
+  },
+} only %}

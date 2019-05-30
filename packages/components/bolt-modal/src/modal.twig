@@ -7,9 +7,9 @@
 {# Variables #}
 {% set this = init(schema) %}
 {% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random()) %}
+{% set outer_classes = [] %}
 
-
-{% for class in attributes["class"] %}
+{% for class in this.props.class %}
   {% if class starts with "c-bolt-" == false %}
     {% set outer_classes = outer_classes|merge([class]) %}
   {% endif %}

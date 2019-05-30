@@ -1,0 +1,61 @@
+/* ------------------------------------ *\
+   Trigger
+\* ------------------------------------ */
+
+// Dev Notes
+// 1. [Mai] Reset button and input tag browser defaults.
+
+@import '@bolt/core';
+
+// Component variables
+$bolt-trigger-transition: $bolt-transition;
+
+/**
+ * Base Trigger
+ */
+bolt-trigger {
+  display: inline;
+
+  &[display='block'] {
+    display: block;
+  }
+}
+
+// Component styles
+.c-bolt-trigger {
+  @include bolt-padding(0); // [1]
+  @include bolt-margin(0); // [1]
+  @include bolt-font-family(body); // [1]
+  display: inline; // Default to inline
+  appearance: none; // [1]
+  opacity: bolt-opacity(100);
+  color: inherit;
+  cursor: pointer; // Default to pointer
+  border: none; // [1]
+  background: none; // [1]
+  font-size: inherit;
+  text-decoration: initial;
+  text-align: inherit;
+  transition: all $bolt-trigger-transition;
+}
+
+.c-bolt-trigger--display-inline {
+  display: inline;
+}
+
+.c-bolt-trigger--display-block {
+  display: block;
+  width: 100%;
+}
+
+.c-bolt-trigger--cursor-default {
+  cursor: default;
+}
+
+.c-bolt-trigger--cursor-zoom-in {
+  cursor: zoom-in;
+}
+
+.c-bolt-trigger--cursor-zoom-out {
+  cursor: zoom-out;
+}
