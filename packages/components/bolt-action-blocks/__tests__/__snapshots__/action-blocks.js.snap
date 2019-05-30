@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<bolt-action-blocks> Component Basic usage 1`] = `
-
-<bolt-action-blocks bolt-component>
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--vertical-align-start c-bolt-action-blocks--bordered">
+<bolt-action-blocks valign="start"
+                    max-items-per-row="6"
+>
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -22,7 +23,7 @@ exports[`<bolt-action-blocks> Component Basic usage 1`] = `
       </bolt-action-block>
     </li>
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -39,7 +40,7 @@ exports[`<bolt-action-blocks> Component Basic usage 1`] = `
       </bolt-action-block>
     </li>
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -57,15 +58,15 @@ exports[`<bolt-action-blocks> Component Basic usage 1`] = `
     </li>
   </ul>
 </bolt-action-blocks>
-
 `;
 
 exports[`<bolt-action-blocks> Component Border in between each block: false 1`] = `
-
-<bolt-action-blocks bolt-component>
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--vertical-align-start c-bolt-action-blocks--borderless">
+<bolt-action-blocks valign="start"
+                    max-items-per-row="6"
+>
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -82,7 +83,7 @@ exports[`<bolt-action-blocks> Component Border in between each block: false 1`] 
       </bolt-action-block>
     </li>
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -99,7 +100,7 @@ exports[`<bolt-action-blocks> Component Border in between each block: false 1`] 
       </bolt-action-block>
     </li>
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -117,15 +118,16 @@ exports[`<bolt-action-blocks> Component Border in between each block: false 1`] 
     </li>
   </ul>
 </bolt-action-blocks>
-
 `;
 
 exports[`<bolt-action-blocks> Component Border in between each block: true 1`] = `
-
-<bolt-action-blocks bolt-component>
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--vertical-align-start c-bolt-action-blocks--bordered">
+<bolt-action-blocks valign="start"
+                    max-items-per-row="6"
+                    borderless
+>
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--borderless">
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -142,7 +144,7 @@ exports[`<bolt-action-blocks> Component Border in between each block: true 1`] =
       </bolt-action-block>
     </li>
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -159,7 +161,7 @@ exports[`<bolt-action-blocks> Component Border in between each block: true 1`] =
       </bolt-action-block>
     </li>
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -177,75 +179,15 @@ exports[`<bolt-action-blocks> Component Border in between each block: true 1`] =
     </li>
   </ul>
 </bolt-action-blocks>
-
-`;
-
-exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: bottom 1`] = `
-
-<bolt-action-blocks bolt-component>
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--vertical-align-end c-bolt-action-blocks--bordered">
-    <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
-        <a href="#!"
-           class="c-bolt-action-block"
-        >
-          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
-            <bolt-icon name="download"
-                       size="large"
-            >
-            </bolt-icon>
-          </div>
-          <div class="c-bolt-action-block__item c-bolt-action-block__text">
-            Item 1
-          </div>
-        </a>
-      </bolt-action-block>
-    </li>
-    <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
-        <a href="#!"
-           class="c-bolt-action-block"
-        >
-          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
-            <bolt-icon name="copy-to-clipboard"
-                       size="large"
-            >
-            </bolt-icon>
-          </div>
-          <div class="c-bolt-action-block__item c-bolt-action-block__text">
-            Item 2: this item has more text, so it can demonstrate the vertical alignment
-          </div>
-        </a>
-      </bolt-action-block>
-    </li>
-    <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
-        <a href="#!"
-           class="c-bolt-action-block"
-        >
-          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
-            <bolt-icon name="calendar"
-                       size="large"
-            >
-            </bolt-icon>
-          </div>
-          <div class="c-bolt-action-block__item c-bolt-action-block__text">
-            Item 3
-          </div>
-        </a>
-      </bolt-action-block>
-    </li>
-  </ul>
-</bolt-action-blocks>
-
 `;
 
 exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: center 1`] = `
-
-<bolt-action-blocks bolt-component>
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--vertical-align-center c-bolt-action-blocks--bordered">
+<bolt-action-blocks valign="center"
+                    max-items-per-row="6"
+>
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-center c-bolt-action-blocks--item-max-6">
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -262,7 +204,7 @@ exports[`<bolt-action-blocks> Component Vertical alignment of each block's conte
       </bolt-action-block>
     </li>
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -279,7 +221,7 @@ exports[`<bolt-action-blocks> Component Vertical alignment of each block's conte
       </bolt-action-block>
     </li>
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -297,15 +239,15 @@ exports[`<bolt-action-blocks> Component Vertical alignment of each block's conte
     </li>
   </ul>
 </bolt-action-blocks>
-
 `;
 
-exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: top 1`] = `
-
-<bolt-action-blocks bolt-component>
-  <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--vertical-align-start c-bolt-action-blocks--bordered">
+exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: end 1`] = `
+<bolt-action-blocks valign="end"
+                    max-items-per-row="6"
+>
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-end c-bolt-action-blocks--item-max-6">
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -322,7 +264,7 @@ exports[`<bolt-action-blocks> Component Vertical alignment of each block's conte
       </bolt-action-block>
     </li>
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -339,7 +281,7 @@ exports[`<bolt-action-blocks> Component Vertical alignment of each block's conte
       </bolt-action-block>
     </li>
     <li class="c-bolt-action-blocks__item">
-      <bolt-action-block bolt-component>
+      <bolt-action-block>
         <a href="#!"
            class="c-bolt-action-block"
         >
@@ -357,5 +299,64 @@ exports[`<bolt-action-blocks> Component Vertical alignment of each block's conte
     </li>
   </ul>
 </bolt-action-blocks>
+`;
 
+exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: start 1`] = `
+<bolt-action-blocks valign="start"
+                    max-items-per-row="6"
+>
+  <ul class="c-bolt-action-blocks c-bolt-action-blocks--valign-start c-bolt-action-blocks--item-max-6">
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="download"
+                       size="large"
+            >
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 1
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="copy-to-clipboard"
+                       size="large"
+            >
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 2: this item has more text, so it can demonstrate the vertical alignment
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+    <li class="c-bolt-action-blocks__item">
+      <bolt-action-block>
+        <a href="#!"
+           class="c-bolt-action-block"
+        >
+          <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+            <bolt-icon name="calendar"
+                       size="large"
+            >
+            </bolt-icon>
+          </div>
+          <div class="c-bolt-action-block__item c-bolt-action-block__text">
+            Item 3
+          </div>
+        </a>
+      </bolt-action-block>
+    </li>
+  </ul>
+</bolt-action-blocks>
 `;

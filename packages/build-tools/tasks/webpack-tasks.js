@@ -8,6 +8,7 @@ const { handleRequest } = require('@bolt/api');
 const createWebpackConfig = require('../create-webpack-config');
 const { getConfig } = require('../utils/config-store');
 const { boltWebpackMessages } = require('../utils/webpack-helpers');
+const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
 
 let boltBuildConfig;
 let browserSyncIsRunning = false;
@@ -71,32 +72,37 @@ async function server(customWebpackConfig) {
   }
 
   return new Promise((resolve, reject) => {
+    if (!browserSyncIsRunning) {
+      browserSync.init(
+        {
+          proxy: 'localhost:' + boltBuildConfig.port,
+          logLevel: 'info',
+          ui: false,
+          notify: false,
+          open: boltBuildConfig.openServerAtStart,
+          logFileChanges: false,
+          reloadOnRestart: true,
+          watchOptions: {
+            ignoreInitial: true,
+          },
+          files: browserSyncFileToWatch,
+        },
+        function(err, bs) {
+          browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially
+        },
+      );
+    }
+
     const compiler = boltWebpackMessages(webpack(webpackConfig));
 
-    // wait for Webpack to initially finish compiling before spinning up BrowserSync
-    compiler.hooks.done.tap('done', stats => {
-      if (!browserSyncIsRunning) {
-        browserSync.init(
-          {
-            proxy: 'localhost:' + boltBuildConfig.port,
-            logLevel: 'info',
-            ui: false,
-            notify: false,
-            open: boltBuildConfig.open,
-            logFileChanges: false,
-            reloadOnRestart: true,
-            watchOptions: {
-              ignoreInitial: true,
-            },
-            files: browserSyncFileToWatch,
-          },
-          function(err, bs) {
-            browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially
-          },
-        );
-      }
-    });
-
+    app.use(
+      webpackDevServerWaitpage(compiler, {
+        proxyHeader: boltBuildConfig.proxyHeader,
+        redirectPath: `http://localhost:${boltBuildConfig.port}/${
+          boltBuildConfig.startPath !== '/' ? boltBuildConfig.startPath : ''
+        }`,
+      }),
+    );
     app.use(webpackDevMiddleware(compiler, webpackConfig[0].devServer));
 
     // Don't use hot middleware when there's more than 1 language setup in the config -- workaround to prevent infinite loops when doing local dev

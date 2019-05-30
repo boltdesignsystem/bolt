@@ -849,12 +849,8 @@
       align: "center",
       tag: "h3"
     } only %}
-    {% include "@bolt/action-blocks.twig" with {
-      attributes: {
-        class: [
-          "c-bolt-action-blocks--max-8"
-        ]
-      },
+    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+      max_items_per_row: 8,
       contentItems: [
       {
         text: "製品情報",

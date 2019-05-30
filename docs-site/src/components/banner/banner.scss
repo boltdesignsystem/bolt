@@ -1,8 +1,8 @@
 @import '@bolt/core';
 
 .c-bds-banner {
-  @include bolt-padding-top(small);
-  @include bolt-padding-bottom(small);
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-bottom(xsmall);
   @include bolt-font-size(small);
   position: relative;
   z-index: 1000;
@@ -10,27 +10,4 @@
   margin: 0 auto;
   color: bolt-theme(secondary);
   background: linear-gradient(90deg, #0F0664 0%, #751B84 100%);
-
-  -ms-grid-column: 1;
-  grid-column-start: 1;
-  -ms-grid-column-span: 2;
-  grid-column-end: 3;
-
-  grid-row-start: 1;
-
-  // -ms-grid-column: 1;
-  // grid-column-start: 1;
-  // -ms-grid-column-span: 3;
-  // grid-column-end: 4;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-
-  // @include bolt-mq(medium) {
-  .c-bds-layout--has-sidebar & {
-    -ms-grid-column: 1;
-    grid-column-start: 1;
-    -ms-grid-column-span: 3;
-    grid-column-end: 4;
-  }
 }
