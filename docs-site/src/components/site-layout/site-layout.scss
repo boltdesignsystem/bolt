@@ -458,46 +458,49 @@ $bds-sidebar-width: 320px;
     letter-spacing: 0.05rem;
   }
 
-  table {
-    @include bolt-font-size(small);
-    @include bolt-font-family(code);
-    transform: translate3d(0, 0, 0);
-    width: 100%;
-    border: 1px solid bolt-color(gray, light);
-    table-layout: auto;
-  }
+  *:not(bolt-table) {
+    table {
+      @include bolt-font-size(small);
+      @include bolt-font-family(code);
+      transform: translate3d(0, 0, 0);
+      width: 100%;
+      border: 1px solid bolt-color(gray, light);
+      table-layout: auto;
+    }
 
-  thead {
-    border-bottom: 1px solid bolt-color(gray, light);
-  }
+    thead {
+      border-bottom: 1px solid bolt-color(gray, light);
+    }
 
-  tr {
-    transition: background-color 0.1s ease;
-  }
+    tr {
+      transition: background-color 0.1s ease;
+    }
 
-  tr + tr {
-    border-top: 1px solid bolt-color(gray, light);
-  }
+    tr + tr {
+      border-top: 1px solid bolt-color(gray, light);
+    }
 
-  tr:hover {
-    background-color: rgba(bolt-color(gray, xlight), 0.5);
-  }
+    tr:hover {
+      background-color: rgba(bolt-color(gray, xlight), 0.5);
+    }
 
 
-  th {
-    @include bolt-padding(small);
-    @include bolt-font-size(xsmall);
-    @include bolt-font-weight(semibold);
-    color: bolt-color(gray, dark);
-    text-align: left;
-    text-transform: uppercase;
-    vertical-align: bottom;
-    background-color: bolt-color(gray, xlight);
-  }
+    th {
+      @include bolt-padding(small);
+      @include bolt-font-size(xsmall);
+      @include bolt-font-weight(semibold);
+      color: bolt-color(gray, dark);
+      text-align: left;
+      text-transform: uppercase;
+      vertical-align: bottom;
+      background-color: bolt-color(gray, xlight);
+    }
 
-  td {
-    @include bolt-padding(small);
-    vertical-align: top;
+    td {
+      @include bolt-padding(small);
+      vertical-align: top;
+    }
+
   }
 }
 

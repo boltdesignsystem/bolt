@@ -3,10 +3,12 @@
   sassdoc_items: [
     {
       title: "@mixin bolt-z-index",
-      anchor: link["styleguide-sassdoc"] ~ "#mixin-bolt-z-index"
+      anchor: link["styleguide-sassdoc"] ~ "/docs/development/sassdocs.html#mixin-bolt-z-index"
     }
   ]
 } only %}
+  {% set class_prefix = "u-bolt-z-index-" %}
+  {% set z_index_options = bolt.data.zIndexes %}
 
   {% macro recursive_zindex_demo(list) %}
     {% set utility_class = bolt.data.zIndexes["utility-class-prefix"] ~ list|keys|last %}
@@ -18,15 +20,150 @@
     </div>
   {% endmacro %}
 
-  {% set class_prefix = bolt.data.zIndexes["utility-class-prefix"] %}
-
   {% block utility_description %}
-    <p>Add the utility class <code>{{ class_prefix }}xx</code> where xx equals the z index level you wish to apply.</p>
-    <p><strong>For example:</strong> <code>.{{ class_prefix ~ bolt.data.zIndexes.sets|keys|first }}</code></p>
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "The Bolt z-index utilities create the stacking order of multiple positioned elements. Overlapping elements with a larger z-index cover those with a smaller one. ",
+    } only %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Utility Classes",
+      size: "xlarge",
+      tag: "h3",
+      attributes: {
+        class: "u-bolt-margin-bottom-xsmall",
+      }
+    } only %}
+
+    {% set rows = [] %}
+    {% for key, value in z_index_options %}
+      {% set rows = rows|merge(
+        [
+          {
+            cells: [
+              value,
+              class_prefix ~ key,
+            ]
+          }
+        ]
+      ) %}
+    {% endfor %}
+
+    {% include "@bolt-components-table/table.twig" with {
+      headers: {
+        top: {
+          cells: [
+            "z-index",
+            "Name",
+          ]
+        },
+      },
+      rows: rows,
+      first_col_fixed_width: true,
+    } only %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Sass Function",
+      size: "xlarge",
+      tag: "h3",
+      attributes: {
+        class: "u-bolt-margin-bottom-xsmall",
+      }
+    } only %}
+
+    {% set rows = [] %}
+    {% for key, value in z_index_options %}
+      {% set rows = rows|merge(
+        [
+          {
+            cells: [
+              value,
+              "bolt-z-index(" ~ key ~ ")",
+            ]
+          }
+        ]
+      ) %}
+    {% endfor %}
+
+    {% include "@bolt-components-table/table.twig" with {
+      headers: {
+        top: {
+          cells: [
+            "z-index",
+            "Function Usage",
+          ]
+        },
+      },
+      rows: rows,
+      first_col_fixed_width: true,
+    } only %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Usage Guidelines",
+      size: "xxlarge",
+      tag: "h2",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "The usage of z-index is very complicated, do not use it blindly and without context.",
+    } only %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Stacking Order Works as Expected When:",
+      size: "xlarge",
+      tag: "h3",
+      attributes: {
+        class: "u-bolt-margin-bottom-xsmall",
+      }
+    } only %}
+    {% include "@bolt-components-ol/ol.twig" with {
+      items: [
+        "Elements with position set to fixed or sticky.",
+        "Elements with position set to relative or absolute and they are on the same level in the markup.",
+      ]
+    } only %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Stacking Order Does Not Work as Expected When:",
+      size: "xlarge",
+      tag: "h3",
+      attributes: {
+        class: "u-bolt-margin-bottom-xsmall",
+      }
+    } only %}
+    {% include "@bolt-components-ol/ol.twig" with {
+      items: [
+        "Elements with position set to static or undefined (z-index should not be used at all in this case).",
+        "Elements with position set to anything but static and they are not on the same level in the markup.",
+      ]
+    } only %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "When In Doubt, Use This Decision Tree",
+      size: "xlarge",
+      tag: "h3",
+    } only %}
+    {% include "@bolt-components-image/image.twig" with {
+      src: "/images/content/charts/decision-tree-z-index.png",
+      alt: "z-index decision tree",
+    } only %}
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Open image in new tab",
+      url: "/images/content/charts/decision-tree-z-index.png",
+      icon: {
+        name: "external-link",
+      },
+      attributes: {
+        target: "_blank"
+      },
+    } only %}
   {% endblock %}
 
   {% block utility_demo %}
     {{ _self.recursive_zindex_demo(bolt.data.zIndexes.sets) }}
+    {# {% for option in z_index_options|keys %}
+      <div class="c-bds-docs__display-demo">
+        <h4>z-index: {{ option }}</h4>
+      </div>
+    {% endfor %} #}
   {% endblock %}
 
 {% endembed %}

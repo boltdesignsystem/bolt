@@ -10,18 +10,32 @@
 /// @type Map
 /// @see {mixin} bolt-z-index
 /// @see bolt-z-index
-$bolt-z-indexes: (
-  content-low: (),
-  content: (),
-  content-high: (),
-  nav: (),
-  overlay: (),
-  floating-low: (),
-  floating: (),
-  floating-high: (),
-  modal-overlay: (),
-  modal: (),
-);
+$_bolt-z-indexes:
+  content-low,
+  content,
+  content-high,
+  nav,
+  overlay,
+  floating-low,
+  floating,
+  floating-high,
+  modal-overlay,
+  modal,;
+
+@function _bolt-assign-z-indexes($list) {
+  $assigned-z-indexes: ();
+
+  @each $name in $list {
+    $assigned-z-indexes: map-merge($assigned-z-indexes, (#{$name}: index($list, $name) * 5));
+  }
+
+  @return $assigned-z-indexes;
+}
+
+$bolt-z-indexes: _bolt-assign-z-indexes($_bolt-z-indexes);
+
+@include export-data('z-indexes.bolt.json', $bolt-z-indexes);
+
 
 // @todo @deprecated: Remove this map in the next major release.
 $bolt-deprecated-z-indexes: (
@@ -35,5 +49,3 @@ $bolt-deprecated-z-indexes: (
   background: (),
   backgroundBottom: (),
 );
-
-@include export-data('z-indexes.bolt.json', $bolt-z-indexes);

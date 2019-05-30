@@ -30,7 +30,7 @@
   }
 
   @if $z-index {
-    z-index: ($z-index * 5);
+    z-index: $z-index;
   } @else {
     @warn '#{$name}` is not an option for the `$bolt-z-index()` function. Please update according to the current `$bolt-z-indexes` map in `_settings-z-index.scss` under core styles.';
   }
@@ -61,7 +61,7 @@
   }
 
   @if $z-index {
-    @return ($z-index * 5);
+    @return $z-index;
   } @else {
     @warn '`#{$name}` is not an option for the `$bolt-z-index()` function. Please update according to the current `$bolt-z-indexes` map in `_settings-z-index.scss` under core styles.';
     @return null;
