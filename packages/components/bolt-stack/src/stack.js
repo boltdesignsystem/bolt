@@ -1,8 +1,7 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './stack.scss';
-import schema from '../stack.schema.yml';
 
 let cx = classNames.bind(styles);
 
@@ -25,7 +24,6 @@ class BoltStack extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.schema = this.getModifiedSchema(schema);
     return self;
   }
 
