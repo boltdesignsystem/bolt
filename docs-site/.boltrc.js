@@ -8,7 +8,7 @@ const config = {
   // lang: ['en', 'ja'],
 
   renderingService: false, // starts PHP service for rendering Twig templates
-  openServerAtStart: false,
+  openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pwa',
   srcDir: './src/pages',

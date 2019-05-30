@@ -245,7 +245,7 @@ $bds-sidebar-width: 320px;
   display: grid;
   flex-grow: 1;
   align-self: start;
-  min-height: 100%;
+  // min-height: 100%; // causes extra (unnecessary) scrolling on the homepage. can we remove?
   grid-column-start: 1;
   grid-column-end: 3;
   grid-template-columns: auto;

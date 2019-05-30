@@ -1,4 +1,6 @@
 const url = require('url');
+const { errorAndExit } = require('@bolt/build-tools/utils/log.js');
+const { toJson } = require('really-relaxed-json');
 const { render, renderString } = require('@bolt/twig-renderer');
 
 async function getBody(request) {
@@ -17,6 +19,15 @@ async function getBody(request) {
       reject(e.message);
     });
   });
+}
+
+// handle incoming template data -- either an empty string, a JSON.parsable string, or JSON
+function checkRequestData(body) {
+  return typeof body === 'string' && body.length > 0
+    ? JSON.parse(body)
+    : JSON.stringify(body) > 0
+    ? body
+    : {};
 }
 
 /**
@@ -44,14 +55,24 @@ async function handleRequest(req, res, next) {
           console.error('The template paramater is missing!');
         }
         const body = await getBody(req);
-        const { ok, html, message } = await render(query.template, body, true);
+        let data;
+
+        if (req.headers['content-type'] === 'application/json') {
+          data = body;
+        } else {
+          data = query.data
+            ? JSON.parse(toJson(query.data))
+            : checkRequestData(body);
+        }
+
+        const { ok, html, message } = await render(query.template, data, true);
 
         if (!ok) {
           console.error(message);
         }
         res.end(html);
       } catch (error) {
-        console.errorAndExit(
+        errorAndExit(
           'Error rendering Twig using the Twig rendering service...',
           error,
         );
@@ -63,9 +84,17 @@ async function handleRequest(req, res, next) {
           console.error('The template paramater is missing!');
         }
         const body = await getBody(req);
+        let data;
+        if (req.headers['content-type'] === 'application/json') {
+          data = body;
+        } else {
+          data = query.data
+            ? JSON.parse(toJson(query.data))
+            : checkRequestData(body);
+        }
         const { ok, html, message } = await renderString(
           query.template,
-          body,
+          data,
           true,
         );
 
@@ -74,7 +103,7 @@ async function handleRequest(req, res, next) {
         }
         res.end(html);
       } catch (error) {
-        console.errorAndExit(
+        errorAndExit(
           'Error rendering Twig string using the Twig rendering service...',
           error,
         );
