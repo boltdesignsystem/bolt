@@ -1,14 +1,13 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
-import styles from './<%= props.name.kebabCase %>.scss';
-//import schema from '../<%= props.name.kebabCase %>.schema.yml'; //Todo: Uncomment when you will need schema
+import styles from './stack.scss';
 
 let cx = classNames.bind(styles);
 
 @define
-class Bolt<%= props.name.pascalCase %> extends withLitHtml() {
-  static is = 'bolt-<%= props.name.kebabCase %>';
+class BoltStack extends withLitHtml() {
+  static is = 'bolt-stack';
 
   static props = {
     noShadow: {
@@ -30,12 +29,10 @@ class Bolt<%= props.name.pascalCase %> extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const {
-      disabled,
-    } = this.validateProps(this.props);
+    const { disabled } = this.validateProps(this.props);
 
-    const classes = cx('c-bolt-<%= props.name.kebabCase %>', {
-      [`c-bolt-<%= props.name.kebabCase %>--disabled`]: disabled,
+    const classes = cx('c-bolt-stack', {
+      [`c-bolt-stack--disabled`]: disabled,
     });
 
     return html`
@@ -47,4 +44,4 @@ class Bolt<%= props.name.pascalCase %> extends withLitHtml() {
   }
 }
 
-export { Bolt<%= props.name.pascalCase %> };
+export { BoltStack };

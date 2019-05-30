@@ -2,6 +2,10 @@
 
 {% set content %}
   {% set band_content %}
+
+{% include "@bolt-components-stack/stack.twig" with {
+  content: "This is another stack."
+} only %}
     {% include "@bolt-site/animated-shapes.twig" %}
 
     <svg style="display: none;" width="1" height="1" xmlns="http://www.w3.org/2000/svg">
