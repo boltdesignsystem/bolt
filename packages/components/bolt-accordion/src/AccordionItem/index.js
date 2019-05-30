@@ -37,14 +37,11 @@ class AccordionItem extends withContext(withLitHtml()) {
   // @todo: move to BoltBase and/or move into a standalone addon function components can opt into
   ssrHydrationPrep() {
     if (this._ssrHydrationPrep) return;
-    const parentElement = this;
+    const parentElem = this;
     const initialNodesToKeep = Array.from(
       this.querySelectorAll('[ssr-hydrate]'),
     );
-    const nodesToRemove = Array.from(
-      this.querySelectorAll('*:not([ssr-hydrate])'),
-    );
-    const nodesKept = [];
+    const nodesToClean = [];
 
     initialNodesToKeep.forEach(item => {
       const hydrationType = item.getAttribute('ssr-hydrate');
@@ -52,30 +49,33 @@ class AccordionItem extends withContext(withLitHtml()) {
       switch (hydrationType) {
         case 'keep-children':
           while (item.firstChild) {
-            nodesKept.push(item.firstChild);
-            parentElement.appendChild(item.firstChild);
+            parentElem.appendChild(item.firstChild);
           }
           break;
         case 'keep':
         default:
-          nodesKept.push(item);
-          parentElement.appendChild(item);
+          parentElem.appendChild(item);
+          nodesToClean.push(item); // track the [ssr-hydrate] nodes to clean up later
       }
     });
 
-    nodesToRemove.forEach(itemToRemove => {
-      nodesKept.forEach(itemToKeep => {
-        if (itemToRemove !== itemToKeep && !itemToRemove.contains(itemToKeep)) {
-          if (itemToRemove.parentElement) {
-            itemToRemove.parentElement.removeChild(itemToRemove);
-          }
-        }
-      });
+    // grab an array of the pre-rendered DOM nodes to potentially remove
+    const nodesToRemove = Array.from(
+      parentElem.querySelectorAll(
+        '[class*="c-bolt-accordion"]:not([ssr-hydrate])',
+      ),
+    );
+
+    // remove pre-rendered DOM nodes not containing children with [ssr-hydrate] attributes
+    nodesToRemove.forEach(node => {
+      if (!node.closest(['[ssr-hydrate]'])) {
+        node.parentElement.removeChild(node);
+      }
     });
 
-    nodesKept.forEach(item => {
-      if (!item.tagName) return;
-      item.removeAttribute('ssr-hydrate');
+    // cleanup any [ssr-hydrate] nodes afterward
+    nodesToClean.forEach(node => {
+      node.removeAttribute('ssr-hydrate');
     });
 
     this._ssrHydrationPrep = true;
