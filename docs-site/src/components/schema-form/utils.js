@@ -11,8 +11,12 @@ export function prepSchema(schema) {
   }
 
   // temporarily remove the Drupal-specific attributes object -- workaround to form error
-  if (newSchema.properties['attributes']){
-    delete newSchema.properties['attributes'];
+  try {
+    if (newSchema.properties['attributes']) {
+      delete newSchema.properties['attributes'];
+    }
+  } catch (error) {
+    // console.log('attributes does not exist!');
   }
 
   for (let property in newSchema.properties) {
@@ -20,8 +24,12 @@ export function prepSchema(schema) {
       delete newSchema.properties[property];
     }
 
-    if (newSchema.properties[property].hidden === true) {
-      delete newSchema.properties[property];
+    try {
+      if (newSchema.properties[property].hidden === true) {
+        delete newSchema.properties[property];
+      }
+    } catch (error) {
+      // console.log('hidden does not exist!');
     }
 
     try {
