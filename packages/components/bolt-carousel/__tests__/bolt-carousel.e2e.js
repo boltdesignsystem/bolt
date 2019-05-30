@@ -10,7 +10,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-carousel--01-basic-carousel/02-components-carousel--01-basic-carousel.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-carousel-05-carousel/02-components-carousel-05-carousel.html`,
       )
       .waitForElementVisible('bolt-carousel', 1000)
       .assert.elementPresent('.c-bolt-carousel__wrapper')
