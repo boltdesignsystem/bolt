@@ -1,0 +1,109 @@
+{% include "@utils/docs.twig" with {
+  componentName: "carousel",
+  variations: [
+    include("@bolt-components-link/link.twig", {
+      text: "Nav Button Position",
+      url: "/pattern-lab/?p=components-nav-button-position-variations",
+      isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Slides Per View",
+      url: "/pattern-lab/?p=components-slides-per-view-variations",
+      isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Autoplay",
+      url: "/pattern-lab/?p=components-autoplay-variations",
+      isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
+    }),
+  ],
+  examples: [
+    include("@bolt-components-link/link.twig", {
+      text: "Basic Carousels",
+      url: "/pattern-lab/?p=components-carousel-basic-variations",
+      isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Advanced Carousels",
+      url: "/pattern-lab/?p=components-carousel-advanced-variations",
+      isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
+    }),
+  ],
+  schemaForm: {
+    template: '@bolt-components-carousel/carousel.twig',
+    layout: "horizontal",
+    initialData: {
+      slides: [
+        include("@bolt-components-figure/figure.twig", {
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image caption",
+            },
+          },
+          caption: "This is caption for image figure slide 1."
+        }, with_context = false),
+        include("@bolt-components-figure/figure.twig", {
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image caption",
+            },
+          },
+          caption: "This is caption for image figure slide 2."
+        }, with_context = false),
+        include("@bolt-components-figure/figure.twig", {
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image caption",
+            },
+          },
+          caption: "This is caption for image figure slide 3."
+        }, with_context = false),
+        include("@bolt-components-figure/figure.twig", {
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image caption",
+            },
+          },
+          caption: "This is caption for image figure slide 4."
+        }, with_context = false),
+        include("@bolt-components-figure/figure.twig", {
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image caption",
+            },
+          },
+          caption: "This is caption for image figure slide 5."
+        }, with_context = false),
+        include("@bolt-components-figure/figure.twig", {
+          media: {
+            image: {
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              alt: "Image caption",
+            },
+          },
+          caption: "This is caption for image figure slide 6."
+        }, with_context = false),
+      ]
+    },
+  },
+} only %}
