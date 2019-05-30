@@ -49,18 +49,16 @@
   >
   <input class="c-bolt-accordion-item__state" type="checkbox" id="{{ primary_uuid }}" {% if auto_open %} checked{% endif %}>
 
-  <replace-with-children
+  <div
     {{ inner_attributes.addClass(inner_classes) }}
     id="{{ secondary_uuid }}">
 
-    <replace-with-children class="c-bolt-accordion-item__trigger">
-      <replace-with-grandchildren>
-        <label class="c-bolt-accordion-item__trigger-label {{ spacing_class }}" for="{{ primary_uuid }}">
-          <replace-with-children class="c-bolt-accordion-item__trigger-content">
-            <div slot="trigger">{{ trigger }}</div>
-          </replace-with-children>
-        </label>
-      </replace-with-grandchildren>
+    <div class="c-bolt-accordion-item__trigger">
+      <label class="c-bolt-accordion-item__trigger-label {{ spacing_class }}" for="{{ primary_uuid }}">
+        <div class="c-bolt-accordion-item__trigger-content">
+          <div slot="trigger" ssr-hydrate="keep">{{ trigger }}</div>
+        </div>
+      </label>
 
       <a href="#{{ primary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--open {{ spacing_class }}">
         <span class="c-bolt-accordion-item__toggle-text">{{ this.data.open_label.value }}</span>
@@ -69,13 +67,12 @@
       <a href="#{{ secondary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--close {{ spacing_class }}">
         <span class="c-bolt-accordion-item__toggle-text">{{ this.data.close_label.value }}</span>
       </a>
-    </replace-with-children>
+    </div>
 
-    <replace-with-grandchildren class="c-bolt-accordion-item__content">
-      <div class="c-bolt-accordion-item__content-inner {{ spacing_class }}">
+    <div class="c-bolt-accordion-item__content">
+      <div class="c-bolt-accordion-item__content-inner {{ spacing_class }}" ssr-hydrate="keep-children">
         {{ content }}
       </div>
-    </replace-with-grandchildren>
-
-  </replace-with-children>
+    </div>
+  </div>
 </bolt-accordion-item>

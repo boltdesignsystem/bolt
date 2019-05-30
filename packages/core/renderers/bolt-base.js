@@ -51,6 +51,7 @@ export function BoltBase(Base = HTMLElement) {
       // ensure every component instance renders to the light DOM when needed (ex. if nested inside of a form, render to the light DOM)
       // this ensures that things work as expected, even when a component gets removed / re-added to the page
       this.setupShadow();
+      this.ssrHydrationPrep && this.ssrHydrationPrep();
 
       // @todo: add debug flag the build to allow conditionally enabling / disabling this extra slot setup check here.
       if (!this.slots) {
