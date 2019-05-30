@@ -481,7 +481,7 @@ class BoltCarousel extends withLitHtml() {
 
     if (this.carouselResizeEventAdded === true) {
       this.carouselResizeEventAdded = false;
-      window.removeEventListener('carousel:resize');
+      window.removeEventListener('carousel:resize', this.reInitCarousel);
     }
   }
 

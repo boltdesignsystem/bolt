@@ -117,15 +117,15 @@
       {{ schema | json_encode() | raw }}
     </script>
     <bolt-component-explorer schema-uuid="schema-{{ schemaUUID }}" initial-layout="{{ schemaForm.layout }}" template="{{ schemaForm.template }}" form-data="{{ schemaForm.initialData | json_encode() | escape('html_attr') }}">
-      <replace-with-children style="background-color: #F6F6F9; border: 1px solid rgba(0, 0, 0, 0.075); display: flex; margin: 0 auto; max-width: 100%; min-height: 320px; -webkit-overflow-scroll': 'touch'">
-        <replace-with-children class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-6/10@xsmall" style="background-color: #FFF; border: 1px solid rgba(0, 0, 0, .075); display: flex; position: relative;">
-          <replace-with-children class="u-bolt-padding-medium c-bds-component-explorer__demo-container" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #FFF;">
+      <replace-with-children style="background-color: #f6f6f9; border: 1px solid rgba(0, 0, 0, .075); display: flex; margin: 0 auto; max-width: 100%; min-height: 320px; -webkit-overflow-scroll': 'touch'">
+        <replace-with-children class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-6/10@xsmall" style="background-color: #fff; border: 1px solid rgba(0, 0, 0, .075); display: flex; position: relative;">
+          <replace-with-children class="u-bolt-padding-medium c-bds-component-explorer__demo-container" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: #fff;">
             Loading...
           </replace-with-children>
         </replace-with-children>
         <replace-with-children class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-4/10@xsmall" style="flex-basis: 200px; overflow: visible; margin-left: auto; position: relative; display: flex;">
           <replace-with-children
-            style="-webkit-overflow-scroll: touch; padding: 0.5rem; border: 1px solid #d8d8da; width: 100%;">{# <bolt-schema-form></bolt-schema-form> #}
+            style="-webkit-overflow-scroll: touch; padding: .5rem; border: 1px solid #d8d8da; width: 100%;">
           </replace-with-children>
         </replace-with-children>
       </replace-with-children>
@@ -248,8 +248,6 @@
         </div>
       {% endcell %}
     {% endgrid %}
-
-
 
     {{ componentExplorer }}
   </div>
@@ -451,40 +449,57 @@
       {% endif %}
     {% endset %}
 
+    {% set lower_list_items = [] %}
+
+    {% if fileExists(readmeFile) %}
+      {% set lower_list_items = lower_list_items|merge([include("@bolt/link.twig", {
+        text: "Edit this page",
+        url: github_url(readmeFile),
+        target: "_blank",
+        display: "flex",
+        isHeadline: true,
+        icon: {
+          position: "after",
+          size: "small",
+          name: "pencil"
+        },
+      })
+      ]) %}
+    {% endif %}
+
+    {% if fileExists(testingFile) %}
+      {% set lower_list_items = lower_list_items|merge([
+        include("@bolt/link.twig", {
+          text: "Testing Steps",
+          url: github_url(testingFile),
+          target: "_blank",
+          display: "flex",
+          isHeadline: true,
+          icon: {
+            position: "after",
+            size: "small",
+            name: "documentation"
+          }
+        })
+      ]) %}
+    {% endif %}
+
     {% set lower_list %}
     {% include "@bolt-components-list/list.twig" with {
         display: "block",
         spacing: "xsmall",
         align: "start",
         valign: "center",
-        items: [
-          fileExists(readmeFile) ? include("@bolt/link.twig", {
-            text: "Edit this page",
-            url: github_url(readmeFile),
-            target: "_blank",
-            display: "flex",
-            isHeadline: true,
-            icon: {
-              position: "after",
-              size: "small",
-              name: "pencil"
-            },
-          }) : '',
-          fileExists(testingFile) ? include("@bolt/link.twig", {
-            text: "Testing steps",
-            url: github_url(testingFile),
-            target: "_blank",
-            display: "flex",
-            isHeadline: true,
-            icon: {
-              position: "after",
-              size: "small",
-              name: "documentation"
-            }
-          }) : '',
-        ]
+        items: lower_list_items,
       } only %}
     {% endset %}
+
+    {% set all_list_items = [] %}
+    {% if lower_list_items is empty %}
+      {% set all_list_items = [upper_list] %}
+    {% else %}
+      {% set all_list_items = [upper_list, lower_list] %}
+    {% endif %}
 
     {% embed "@bolt-components-sticky/sticky.twig" %}
       {% block sticky_content %}
@@ -501,10 +516,7 @@
               "font-size: 0.9em;"
             ]
           },
-          items: [
-            upper_list,
-            lower_list
-          ]
+          items: all_list_items,
         } only %}
 
       {% endblock %}
