@@ -62,7 +62,7 @@ class AccordionItem extends withContext(withLitHtml()) {
     // grab an array of the pre-rendered DOM nodes to potentially remove
     const nodesToRemove = Array.from(
       parentElem.querySelectorAll(
-        '[class*="c-bolt-accordion"]:not([ssr-hydrate])',
+        '[class*="c-bolt-accordion"]:not([ssr-hydrate]):first-child',
       ),
     );
 
