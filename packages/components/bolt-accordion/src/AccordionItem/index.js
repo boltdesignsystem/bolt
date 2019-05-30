@@ -34,6 +34,53 @@ class AccordionItem extends withContext(withLitHtml()) {
     ];
   }
 
+  // @todo: move to BoltBase and/or move into a standalone addon function components can opt into
+  ssrHydrationPrep() {
+    if (this._ssrHydrationPrep) return;
+    const parentElement = this;
+    const initialNodesToKeep = Array.from(
+      this.querySelectorAll('[ssr-hydrate]'),
+    );
+    const nodesToRemove = Array.from(
+      this.querySelectorAll('*:not([ssr-hydrate])'),
+    );
+    const nodesKept = [];
+
+    initialNodesToKeep.forEach(item => {
+      const hydrationType = item.getAttribute('ssr-hydrate');
+
+      switch (hydrationType) {
+        case 'keep-children':
+          while (item.firstChild) {
+            nodesKept.push(item.firstChild);
+            parentElement.appendChild(item.firstChild);
+          }
+          break;
+        case 'keep':
+        default:
+          nodesKept.push(item);
+          parentElement.appendChild(item);
+      }
+    });
+
+    nodesToRemove.forEach(itemToRemove => {
+      nodesKept.forEach(itemToKeep => {
+        if (itemToRemove !== itemToKeep && !itemToRemove.contains(itemToKeep)) {
+          if (itemToRemove.parentElement) {
+            itemToRemove.parentElement.removeChild(itemToRemove);
+          }
+        }
+      });
+    });
+
+    nodesKept.forEach(item => {
+      if (!item.tagName) return;
+      item.removeAttribute('ssr-hydrate');
+    });
+
+    this._ssrHydrationPrep = true;
+  }
+
   constructor(self) {
     self = super(self);
 
