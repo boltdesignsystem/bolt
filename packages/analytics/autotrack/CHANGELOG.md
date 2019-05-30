@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.2](https://github.com/bolt-design-system/bolt/compare/v2.4.1...v2.4.2) (2019-05-24)
+
+
+### Bug Fixes
+
+* test adding symbol polyfill to GA autotrack to fix IE 11 issue ([db57715](https://github.com/bolt-design-system/bolt/commit/db57715))
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+### Bug Fixes
+
+* revert making autotrack package public till GA info customizable, etc ([58bcd56](https://github.com/bolt-design-system/bolt/commit/58bcd56))
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* fix linting issues ([7d01b58](https://github.com/bolt-design-system/bolt/commit/7d01b58))
+* update analytics tracker JS ([8fdda51](https://github.com/bolt-design-system/bolt/commit/8fdda51))
+
+
+### Features
+
+* add GA autotrack support ([1d7edb2](https://github.com/bolt-design-system/bolt/commit/1d7edb2))
+* add WIP autotrack JS logic ([ebe7128](https://github.com/bolt-design-system/bolt/commit/ebe7128))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 
