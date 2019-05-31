@@ -11,13 +11,6 @@ properties:
       - array
       - object
     description: Main content of the trigger.
-  tag:
-    description: Determines the semantic HTML tag for the trigger.
-    type: string
-    enum:
-      - a
-      - button
-    default: button
   url:
     type: string
     description: Contains a URL that the link points to. This may also be passed as part of `attributes`.

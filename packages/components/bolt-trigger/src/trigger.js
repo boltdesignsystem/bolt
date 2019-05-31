@@ -17,7 +17,6 @@ class BoltTrigger extends BoltAction {
   static is = 'bolt-trigger';
 
   static props = {
-    tag: props.string,
     url: props.string,
     target: props.string,
     cursor: props.string,
@@ -35,7 +34,7 @@ class BoltTrigger extends BoltAction {
   }
 
   render() {
-    const { cursor, display } = this.validateProps(this.props);
+    const { url, target, cursor, display } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-trigger', {
       [`c-bolt-trigger--cursor-${cursor}`]:
@@ -44,33 +43,31 @@ class BoltTrigger extends BoltAction {
         display && display !== this.schema.properties.display.default,
     });
 
-    // Decide on if the rendered trigger tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
-    const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
+    // If a url has been provided the rendered tag will be an <a>
+    const hasUrl = url && url.length;
 
-    // The triggerElement to render, based on the initial HTML passed alone.
-    let triggerElement = null;
-    const self = this;
+    // The triggerElement to render
+    let triggerElement;
 
     if (this.rootElement) {
       triggerElement = this.rootElement.firstChild.cloneNode(true);
       triggerElement.className += ' ' + classes;
 
-      if (this.props.url) {
-        triggerElement.setAttribute('href', this.props.url);
+      if (hasUrl) {
+        triggerElement.setAttribute('href', url);
       }
 
-      if (this.props.target) {
-        triggerElement.setAttribute('target', this.props.target);
+      if (target) {
+        triggerElement.setAttribute('target', target);
       }
+
       render(this.slot('default'), triggerElement);
     } else if (hasUrl) {
       triggerElement = html`
         <a
-          href="${this.props.url}"
+          href="${url}"
           class="${classes}"
-          target="${ifDefined(
-            this.props.target ? this.props.target : undefined,
-          )}"
+          target="${ifDefined(target ? target : undefined)}"
           >${this.slot('default')}</a
         >
       `;

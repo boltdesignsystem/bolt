@@ -9,14 +9,13 @@
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
 
-{% set tag = this.data.tag.value %}
 {% set display = this.data.display.value %}
 {% set cursor = this.data.cursor.value %}
 {% set url = this.data.url.value %}
 {% set target = this.data.target.value %}
 
 {% if url %}
-  {# If url is provided, automatically set tag to "a" #}
+  {# If url is provided, set tag to "a" #}
   {% set tag = "a" %}
   {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
 
@@ -24,9 +23,9 @@
   {% if target %}
     {% set inner_attributes = inner_attributes.setAttribute("target", target) %}
   {% endif %}
-{% endif %}
-
-{% if tag == "button" %}
+{% else %}
+  {# Otherwise, it's a button #}
+  {% set tag = "button" %}
   {% set inner_attributes = inner_attributes.setAttribute("type", "button") %}
 {% endif %}
 
@@ -54,9 +53,6 @@
 {% endfor %}
 
 {% set inner_attributes = inner_attributes.addClass(inner_classes) %}
-
-{# Filter out attributes assigned above #}
-{% set filtered_attributes = attributes | without("url") | without("href") | without("target") | without("class") %}
 
 <bolt-trigger
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
