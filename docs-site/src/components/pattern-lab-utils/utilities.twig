@@ -1,15 +1,16 @@
 <div class="c-bds-docs t-bolt-xlight">
-  <div class="c-bds-docs__page-content">
-    {% if utility_name %}
-      {% include "@bolt/headline.twig" with {
+  {% if utility_name %}
+    <div class="c-bds-docs__page-intro">
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xxxlarge",
         tag: "h1",
         text: utility_name
       } only %}
-    {% endif %}
-
-    <div class="c-bds-docs__readme">
-      {% include "@bolt/headline.twig" with {
+    </div>
+  {% endif %}
+  <div class="c-bds-docs__page-content">
+    <div class="c-bds-docs__readme u-bolt-margin-bottom-large">
+      {% include "@bolt-components-headline/headline.twig" with {
         size: "xxlarge",
         tag: "h2",
         url: "#utility-description",
@@ -23,42 +24,64 @@
           id: "utility-description"
         }
       } only %}
-      <div class="c-bds-docs__lead u-bolt-margin-bottom-large">
+      <div class="c-bds-docs__lead">
         {% block utility_description %}
           <p>Description block empty.</p>
         {% endblock %}
       </div>
     </div>
 
-    <div class="c-bds-docs__utility-demo">
-      {% include "@bolt/headline.twig" with {
-        size: "xlarge",
+    <div class="c-bds-docs__utility-demo u-bolt-margin-bottom-large">
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
         tag: "h2",
         url: "#demo",
         text: "Demo",
         icon: "none",
         attributes: {
           class: [
-            "u-bolt-margin-bottom-medium",
+            "u-bolt-margin-bottom-xsmall",
             "c-bds-docs__heading-fragment"
           ],
           id: "demo"
         }
       } only %}
-      {% block utility_demo %}
-        <p>Demo block empty.</p>
-      {% endblock %}
-    </div>
-
-    {% if sassdoc_items %}
-      <div class="c-bds-docs__sassdoc-reference">
-        <h5>SassDoc references</h5>
-        <ul>
-          {% for item in sassdoc_items %}
-            <li><a target="_blank" href="{{ item.anchor }}">{{ item.title }}</a></li>
-          {% endfor %}
-        </ul>
+      <div class="c-bds-docs__lead">
+        {% block utility_demo %}
+          <p>Demo block empty.</p>
+        {% endblock %}
       </div>
-    {% endif %}
+    </div>
   </div>
+  {% if sassdoc_items %}
+    <div class="c-bds-docs__page-nav">
+      {% set items = [] %}
+      {% for item in sassdoc_items %}
+        {% set items = items|merge(
+          [
+            include("@bolt-components-link/link.twig", {
+              text: item.title,
+              url: item.anchor,
+              target: "_blank",
+            }),
+          ]
+        ) %}
+      {% endfor %}
+
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "SassDocs",
+        size: "small",
+        tag: "h3",
+        attributes: {
+          class: "u-bolt-margin-bottom-small"
+        },
+      } only %}
+      {% include "@bolt-components-list/list.twig" with {
+        display: "block",
+        spacing: "xsmall",
+        separator: "solid",
+        items: items,
+      } only %}
+    </div>
+  {% endif %}
 </div>

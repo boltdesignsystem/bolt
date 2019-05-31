@@ -2,6 +2,10 @@
   utility_name: "Bolt Z-index",
   sassdoc_items: [
     {
+      title: "@function bolt-z-index",
+      anchor: link["styleguide-sassdoc"] ~ "/docs/development/sassdocs.html#function-bolt-z-index"
+    },
+    {
       title: "@mixin bolt-z-index",
       anchor: link["styleguide-sassdoc"] ~ "/docs/development/sassdocs.html#mixin-bolt-z-index"
     }
@@ -10,23 +14,13 @@
   {% set class_prefix = "u-bolt-z-index-" %}
   {% set z_index_options = bolt.data.zIndexes %}
 
-  {% macro recursive_zindex_demo(list) %}
-    {% set utility_class = bolt.data.zIndexes["utility-class-prefix"] ~ list|keys|last %}
-    <div class="c-bds-z-index-demo {{ utility_class }}">
-      {% if list|slice(0, -1)|length  %}
-        {{ _self.recursive_zindex_demo(list|slice(0, -1)) }}
-      {% endif %}
-      <p>Z-Index: <code>{{ list|keys|last }}</code>: {{ list|last }}<br>Utility Class: <code>{{ utility_class }}</code></p>
-    </div>
-  {% endmacro %}
-
   {% block utility_description %}
     {% include "@bolt-components-headline/text.twig" with {
       text: "The Bolt z-index utilities create the stacking order of multiple positioned elements. Overlapping elements with a larger z-index cover those with a smaller one. ",
     } only %}
 
     {% include "@bolt-components-headline/headline.twig" with {
-      text: "Utility Classes",
+      text: "Classes",
       size: "xlarge",
       tag: "h3",
       attributes: {
@@ -158,12 +152,7 @@
   {% endblock %}
 
   {% block utility_demo %}
-    {{ _self.recursive_zindex_demo(bolt.data.zIndexes.sets) }}
-    {# {% for option in z_index_options|keys %}
-      <div class="c-bds-docs__display-demo">
-        <h4>z-index: {{ option }}</h4>
-      </div>
-    {% endfor %} #}
+    <p>Coming soon.</p>
   {% endblock %}
 
 {% endembed %}
