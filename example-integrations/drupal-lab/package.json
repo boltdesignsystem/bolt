@@ -1,0 +1,11 @@
+{
+  "name": "@bolt/drupal-lab",
+  "private": true,
+  "version": "2.4.0",
+  "scripts": {
+    "setup:js": "cd web/themes/bolt-starter && yarn && npm run build",
+    "setup:php": "composer install && composer run build",
+    "setup": "npx npm-run-all --parallel setup:*",
+    "deploy": "now deploy --local-config=now.drupal-lab.json --team boltdesignsystem --no-verify"
+  }
+}
