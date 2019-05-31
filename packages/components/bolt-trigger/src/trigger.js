@@ -21,6 +21,7 @@ class BoltTrigger extends BoltAction {
     target: props.string,
     cursor: props.string,
     display: props.string,
+    noOutline: props.boolean,
     onClick: props.string, // Managed by base class
     onClickTarget: props.string, // Managed by base class
   };
@@ -34,13 +35,16 @@ class BoltTrigger extends BoltAction {
   }
 
   render() {
-    const { url, target, cursor, display } = this.validateProps(this.props);
+    const { url, target, cursor, display, noOutline } = this.validateProps(
+      this.props,
+    );
 
     const classes = cx('c-bolt-trigger', {
       [`c-bolt-trigger--cursor-${cursor}`]:
         cursor && cursor !== this.schema.properties.cursor.default,
       [`c-bolt-trigger--display-${display}`]:
         display && display !== this.schema.properties.display.default,
+      [`c-bolt-trigger--outline-none`]: noOutline,
     });
 
     // If a url has been provided the rendered tag will be an <a>

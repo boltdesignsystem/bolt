@@ -1,12 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`trigger Trigger with "no_outline" 1`] = `
+<bolt-trigger url="http://pega.com"
+              no-outline
+>
+  <a href="http://pega.com"
+     class="c-bolt-trigger c-bolt-trigger--outline-none"
+     is="shadow-root"
+  >
+    Hello World
+  </a>
+</bolt-trigger>
+`;
+
 exports[`trigger Trigger with "url" renders as link 1`] = `
 <bolt-trigger url="http://pega.com">
   <a href="http://pega.com"
      class="c-bolt-trigger"
      is="shadow-root"
   >
-    Trigger with outer classes
+    Hello World
   </a>
 </bolt-trigger>
 `;

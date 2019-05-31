@@ -19,6 +19,10 @@ bolt-trigger {
   &[display='block'] {
     display: block;
   }
+
+  &[no-outline]:focus {
+    outline: none;
+  }
 }
 
 // Component styles
@@ -39,6 +43,7 @@ bolt-trigger {
   transition: all $bolt-trigger-transition;
 }
 
+// Display styles
 .c-bolt-trigger--display-inline {
   display: inline;
 }
@@ -48,6 +53,7 @@ bolt-trigger {
   width: 100%;
 }
 
+// Cursor styles
 .c-bolt-trigger--cursor-default {
   cursor: default;
 }
@@ -58,4 +64,9 @@ bolt-trigger {
 
 .c-bolt-trigger--cursor-zoom-out {
   cursor: zoom-out;
+}
+
+// Outline styles
+.c-bolt-trigger--outline-none:focus {
+  outline: none;
 }

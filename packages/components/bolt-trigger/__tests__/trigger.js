@@ -37,8 +37,18 @@ describe('trigger', () => {
 
   test('Trigger with "url" renders as link', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
-      content: 'Trigger with outer classes',
+      content: 'Hello World',
       url: 'http://pega.com',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('Trigger with "no_outline"', async () => {
+    const results = await render('@bolt-components-trigger/trigger.twig', {
+      content: 'Hello World',
+      url: 'http://pega.com',
+      no_outline: true,
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -68,7 +78,7 @@ describe('trigger', () => {
 
   test('Trigger with c-bolt- class is thrown out', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
-      text: 'Trigger with outer JS-prefixed class',
+      text: 'Trigger with c-bolt- class thrown out',
       attributes: {
         class: ['c-bolt-trigger--test'],
       },
