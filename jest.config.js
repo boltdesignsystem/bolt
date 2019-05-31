@@ -6,6 +6,7 @@ const testFilesToIgnore = globby.sync([
   './packages/analytics/**/*/__tests__/**/*.data.js',
   './packages/generator-bolt/generators/*/templates/**/*.test.js',
   './example-integrations/angular/**/*.ts',
+  './example-integrations/**/*.js',
 ]);
 
 module.exports = {
@@ -13,7 +14,7 @@ module.exports = {
     'sandbox',
     'docs-site',
     'brightcove-player.test.js',
-    'example-integrations/drupal-lab',
+    'example-integrations',
     'packages/uikit-workshop',
     'packages/build-tools/plugins/sass-export-data/tests',
     'packages/components/bolt-button/__tests__/button-wc.test.js',
