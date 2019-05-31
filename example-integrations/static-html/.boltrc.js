@@ -1,8 +1,8 @@
 const config = {
   // Environmental variable / preset to use
-  env: 'drupal',
-  buildDir: '../assets/bolt/',
-  wwwDir: '../',
+  env: 'drupal', // @todo: update when refactoring the confusing `env` config option names 
+  buildDir: './assets/bolt/',
+  wwwDir: './',
   verbosity: 1,
   components: {
     global: [
