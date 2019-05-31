@@ -368,23 +368,17 @@ class BoltModal extends withLitHtml() {
     // and thus prevents it from getting focus on 'rendered'.
     // @todo: Can we safely fix this from within the button component itself?
     const defaultCloseButton = html`
-      <bolt-button
+      <bolt-trigger
         class="js-close-button-fallback"
         @click=${e => this.hide(e)}
         @focus=${e => onButtonFocus(e)}
-        color="text"
-        icon-only
+        display="block"
+        no-outline
         autofocus
         tabindex="0"
       >
-        <button
-          class=""
-          style="transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);"
-          is="shadow-root"
-        >
-          Close this dialog window
-          <bolt-icon name="close" slot="after"></bolt-icon>
-        </button>
+        <span class="${closeButtonClasses}__text">Close this dialog window</span>
+        <span class="${closeButtonClasses}__icon"></span>
       </bolt-button>
     `;
 

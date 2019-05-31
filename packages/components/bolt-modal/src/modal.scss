@@ -345,20 +345,61 @@ bolt-modal:not([ready]) {
 // Controls
 .c-bolt-modal__close-button {
   @include bolt-z-index(modal);
+  @include bolt-border-radius(full);
 
   position: absolute;
   top: 0;
   right: 0;
+  background-color: transparent;
+  transition: background-color $bolt-modal-transition;
 
   @include bolt-mq($bolt-modal-breakpoint) {
-    transform: translate3d(85%, -85%, 0);
-    filter: invert(100%) grayscale(1);
+    transform: translate3d(100%, -100%, 0);
+  }
+
+  &:hover,
+  &:focus-within {
+    background-color: bolt-theme(background, 0.1);
   }
 }
 
 .c-bolt-modal__close-button--hidden {
   @include bolt-mq($bolt-modal-breakpoint) {
     @include bolt-visuallyhidden;
+  }
+}
+
+.c-bolt-modal__close-button__text {
+  @include bolt-visuallyhidden;
+}
+
+.c-bolt-modal__close-button__icon {
+  display: block;
+  position: relative;
+  width: bolt-spacing(medium) - 0.2rem;
+  height: bolt-spacing(medium) - 0.2rem;
+
+  // @todo: change color on small screens
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: bolt-spacing(small);
+    height: 0.1rem;
+    border-radius: $bolt-modal-border-radius;
+    background-color: bolt-theme(background);
+    transform-origin: 50% 50%;
+  }
+
+  &:before {
+    transform: translate3d(-50%, -50%, 0) rotate(45deg);
+  }
+
+  &:after {
+    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
   }
 }
 

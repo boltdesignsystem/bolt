@@ -13,16 +13,37 @@ $bolt-trigger-transition: $bolt-transition;
 /**
  * Base Trigger
  */
-bolt-trigger {
-  display: inline;
 
-  &[display='block'] {
-    display: block;
+// @todo: move this to core and combine with bolt-custom-element() mixin.
+@mixin bolt-custom-element-styles($name, $props: null) {
+  @if $props {
+    @each $prop in $props {
+      #{$name}#{$prop} {
+        @content;
+      }
+      :host(#{$prop}) {
+        @content;
+      }
+    }
+  } @else {
+    #{$name} {
+      @content;
+    }
+    :host {
+      @content;
+    }
   }
+}
 
-  &[no-outline]:focus {
-    outline: none;
-  }
+@include bolt-custom-element-styles(
+  bolt-trigger,
+  (
+    '[no-outline]:active',
+    '[no-outline]:focus',
+    '[no-outline]:focus-within',
+  )
+) {
+  outline: none;
 }
 
 // Component styles
@@ -67,6 +88,7 @@ bolt-trigger {
 }
 
 // Outline styles
+.c-bolt-trigger--outline-none:active,
 .c-bolt-trigger--outline-none:focus {
   outline: none;
 }
