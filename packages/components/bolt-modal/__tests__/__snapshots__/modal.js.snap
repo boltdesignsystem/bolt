@@ -70,29 +70,33 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
             
                 
       
-            <bolt-button
+            <bolt-trigger
               autofocus=""
               class="js-close-button-fallback"
-              color="text"
-              icon-only=""
+              display="block"
+              no-outline=""
               style=""
               tabindex="0"
             >
               
         
-      
-          Close this dialog window
-          
-              <bolt-icon
-                name="close"
-                slot="after"
+              <span
+                class="c-bolt-modal__close-button__text"
+                style=""
+              >
+                Close this dialog window
+              </span>
+              
+        
+              <span
+                class="c-bolt-modal__close-button__icon"
                 style=""
               />
               
-        
-            </bolt-button>
-            
+      
     
+            </bolt-trigger>
+            
               
           </div>
           

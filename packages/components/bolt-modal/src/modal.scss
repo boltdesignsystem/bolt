@@ -87,7 +87,7 @@ bolt-modal:not([ready]) {
     .c-bolt-modal__container-footer {
       display: flex;
       align-items: center;
-      min-height: 1.16rem; // Magic number to match the height of the close button.
+      min-height: bolt-v-spacing(medium); // Magic number to match the height of the close button.
     }
 
     .c-bolt-modal__container-header {
@@ -345,7 +345,6 @@ bolt-modal:not([ready]) {
 // Controls
 .c-bolt-modal__close-button {
   @include bolt-z-index(modal);
-  @include bolt-border-radius(full);
 
   position: absolute;
   top: 0;
@@ -354,12 +353,14 @@ bolt-modal:not([ready]) {
   transition: background-color $bolt-modal-transition;
 
   @include bolt-mq($bolt-modal-breakpoint) {
-    transform: translate3d(100%, -100%, 0);
-  }
+    @include bolt-border-radius(full);
 
-  &:hover,
-  &:focus-within {
-    background-color: bolt-theme(background, 0.1);
+    transform: translate3d(100%, -100%, 0);
+
+    &:hover,
+    &:focus-within {
+      background-color: bolt-theme(background, 0.1);
+    }
   }
 }
 
@@ -376,8 +377,16 @@ bolt-modal:not([ready]) {
 .c-bolt-modal__close-button__icon {
   display: block;
   position: relative;
-  width: bolt-spacing(medium) - 0.2rem;
-  height: bolt-spacing(medium) - 0.2rem;
+  width: bolt-v-spacing(medium); // Matches the line-height in the modal header.
+  height: bolt-v-spacing(medium);
+  margin: bolt-v-spacing(small); // Matches the exact padding on the modal header.
+
+  @include bolt-mq($bolt-modal-breakpoint) {
+    @include bolt-margin(0);
+
+    width: bolt-spacing(medium) - 0.2rem;
+    height: bolt-spacing(medium) - 0.2rem;
+  }
 
   // @todo: change color on small screens
   &:before,
@@ -388,10 +397,15 @@ bolt-modal:not([ready]) {
     top: 50%;
     left: 50%;
     width: bolt-spacing(small);
-    height: 0.1rem;
+    height: 2px;
     border-radius: $bolt-modal-border-radius;
-    background-color: bolt-theme(background);
+    background-color: bolt-theme(link);
     transform-origin: 50% 50%;
+
+    @include bolt-mq($bolt-modal-breakpoint) {
+      height: 0.1rem;
+      background-color: bolt-theme(background);
+    }
   }
 
   &:before {
