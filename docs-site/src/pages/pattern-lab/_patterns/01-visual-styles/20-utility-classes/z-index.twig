@@ -35,42 +35,7 @@
           {
             cells: [
               value,
-              class_prefix ~ key,
-            ]
-          }
-        ]
-      ) %}
-    {% endfor %}
-
-    {% include "@bolt-components-table/table.twig" with {
-      headers: {
-        top: {
-          cells: [
-            "z-index",
-            "Name",
-          ]
-        },
-      },
-      rows: rows,
-      first_col_fixed_width: true,
-    } only %}
-
-    {% include "@bolt-components-headline/headline.twig" with {
-      text: "Sass Function",
-      size: "xlarge",
-      tag: "h3",
-      attributes: {
-        class: "u-bolt-margin-bottom-xsmall",
-      }
-    } only %}
-
-    {% set rows = [] %}
-    {% for key, value in z_index_options %}
-      {% set rows = rows|merge(
-        [
-          {
-            cells: [
-              value,
+              "." ~ class_prefix ~ key,
               "bolt-z-index(" ~ key ~ ")",
             ]
           }
@@ -83,7 +48,8 @@
         top: {
           cells: [
             "z-index",
-            "Function Usage",
+            "Utility Class",
+            "Scss Function",
           ]
         },
       },
@@ -97,7 +63,7 @@
       tag: "h2",
     } only %}
     {% include "@bolt-components-headline/text.twig" with {
-      text: "The usage of z-index is very complicated, do not use it blindly and without context.",
+      text: "The usage of z-index is very complicated, do not use it blindly and without context. Use <code>content-low</code>, <code>content</code>, and <code>content-low</code> to handle general stacking order within a container. Use <code>nav</code>, <code>overlay</code>, <code>floating-low</code>, <code>floating</code>, <code>floating-high</code>, <code>modal-overlay</code>, <code>modal</code> for more specific high level UI components that are fixed or absolute position.",
     } only %}
 
     {% include "@bolt-components-headline/headline.twig" with {
@@ -152,7 +118,11 @@
   {% endblock %}
 
   {% block utility_demo %}
-    <p>Coming soon.</p>
+    <div style="position: relative; background-color: #f4f4f4; width: 100%; padding-bottom: 100%; overflow: auto">
+      {% for key, value in z_index_options|reverse %}
+        <div style="position: absolute; top: {{ value }}0px; left: {{ value }}0px; width: 10rem; color: white; white-space: nowrap; border: 2px dotted; background-color: #545DA6;" class="{{ class_prefix }}{{ key }} u-bolt-padding-top-small u-bolt-padding-bottom-xlarge u-bolt-padding-left-small">{{ key }}</div>
+      {% endfor %}
+    </div>
   {% endblock %}
 
 {% endembed %}
