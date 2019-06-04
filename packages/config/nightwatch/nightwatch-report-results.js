@@ -3,7 +3,7 @@ const sleep = require('sleep-promise');
 const crypto = require('crypto');
 const fetch = require('@zeit/fetch-retry')(require('node-fetch'));
 const { groupBy } = require('lodash');
-const { setCheckRun } = require('../scripts/check-run');
+const { setCheckRun } = require('../../../scripts/check-run');
 
 const {
   SAUCE_USERNAME,
@@ -142,7 +142,7 @@ async function collectSauceLabResults(build) {
           error: { code, message },
         } = await res.json();
         throw new Error(
-          `Error uploading "${filePath}" to Now.sh. Code: ${code}. Message: 
+          `Error uploading "${filePath}" to Now.sh. Code: ${code}. Message:
       ${message}`,
         );
       })
@@ -304,7 +304,7 @@ async function setGithubAppSauceResults(sauceResults) {
     const passed = totalTests === passedTests;
 
     const summary = `
-- ${passedTests} of ${totalTests} passed    
+- ${passedTests} of ${totalTests} passed
     `.trim();
 
     const allImages = [];
@@ -348,7 +348,7 @@ async function setGithubAppSauceResults(sauceResults) {
             }))
 
 <details>
-  
+
 - See video, logs, steps and more at [SauceLabs](${test.sauceLabsPage})
 
 ![Final Screenshot](${finalScreenshot})
@@ -373,7 +373,7 @@ ${screenshots
 `;
           })
           .join('')}
-</details>      
+</details>
 `;
       })
       .join('');

@@ -5,8 +5,6 @@ const testFilesToIgnore = globby.sync([
   'packages/**/*.data.js',
 ]);
 
-console.log(testFilesToIgnore);
-
 module.exports = {
   moduleDirectories: ['node_modules', 'packages/config/jest'],
   testPathIgnorePatterns: [
