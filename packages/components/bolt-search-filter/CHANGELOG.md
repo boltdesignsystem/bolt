@@ -1,3 +1,28 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+**Note:** Version bump only for package @bolt/components-search-filter
+
+
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+**Note:** Version bump only for package @bolt/components-search-filter
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -89,6 +114,3 @@
 * fix remaining "rounded" button schema validation errors ([94381b2](https://github.com/bolt-design-system/bolt/commit/94381b2))
 * fix schema validation errors with rounded button variation ([d26d76e](https://github.com/bolt-design-system/bolt/commit/d26d76e))
 * remove redundancy of search filter panel id ([e55363a](https://github.com/bolt-design-system/bolt/commit/e55363a))
-
-
-

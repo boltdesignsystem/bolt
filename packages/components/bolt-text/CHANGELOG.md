@@ -1,3 +1,58 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* adding enum for boolean props ([67c9e78](https://github.com/bolt-design-system/bolt/commit/67c9e78))
+* check for textContent not innerHTML, bug when rendered to light-dom ([952e711](https://github.com/bolt-design-system/bolt/commit/952e711))
+* force downgrade version of text component prior to publishing ([7f9dbb0](https://github.com/bolt-design-system/bolt/commit/7f9dbb0))
+* proactively load the text component's JS to speed up initial rendering ([d942886](https://github.com/bolt-design-system/bolt/commit/d942886))
+* pull in master ([1c980bf](https://github.com/bolt-design-system/bolt/commit/1c980bf))
+* quote text tests ([5b5d3c3](https://github.com/bolt-design-system/bolt/commit/5b5d3c3))
+* update incorrect text component version + repo url for uikit ([cfa6fde](https://github.com/bolt-design-system/bolt/commit/cfa6fde))
+* update tests ([11734e3](https://github.com/bolt-design-system/bolt/commit/11734e3))
+
+
+### Features
+
+* wire up server side rendering process to core-php + add logic to the bolt text and button components to handle the differences in rendering ([752c0df](https://github.com/bolt-design-system/bolt/commit/752c0df))
+
+
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* adding enum for boolean props ([67c9e78](https://github.com/bolt-design-system/bolt/commit/67c9e78))
+* check for textContent not innerHTML, bug when rendered to light-dom ([952e711](https://github.com/bolt-design-system/bolt/commit/952e711))
+* force downgrade version of text component prior to publishing ([7f9dbb0](https://github.com/bolt-design-system/bolt/commit/7f9dbb0))
+* proactively load the text component's JS to speed up initial rendering ([d942886](https://github.com/bolt-design-system/bolt/commit/d942886))
+* pull in master ([1c980bf](https://github.com/bolt-design-system/bolt/commit/1c980bf))
+* quote text tests ([5b5d3c3](https://github.com/bolt-design-system/bolt/commit/5b5d3c3))
+* update incorrect text component version + repo url for uikit ([cfa6fde](https://github.com/bolt-design-system/bolt/commit/cfa6fde))
+* update tests ([11734e3](https://github.com/bolt-design-system/bolt/commit/11734e3))
+
+
+### Features
+
+* wire up server side rendering process to core-php + add logic to the bolt text and button components to handle the differences in rendering ([752c0df](https://github.com/bolt-design-system/bolt/commit/752c0df))
+
+
+
+
+
 # [2.2.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.2.0) (2019-04-03)
 
 
@@ -142,6 +197,3 @@
 * docs and small design details ([54abbfa](https://github.com/bolt-design-system/bolt/commit/54abbfa))
 * hanging icon vertical alignment pixel pushing ([ef58068](https://github.com/bolt-design-system/bolt/commit/ef58068))
 * temporarily move new bolt text component styling selectors to be nested inside of the custom element till upstream fix in place ([9757921](https://github.com/bolt-design-system/bolt/commit/9757921))
-
-
-

@@ -1,3 +1,39 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-browserlist/compare/v2.4.2...v2.4.3) (2019-05-31)
+
+
+### Bug Fixes
+
+* globally update non-private package.json files with devDependencies and peerDependencies that might not get installed as expected when used / published outside of the Bolt monorepo ([617bd86](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-browserlist/commit/617bd86))
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-browserlist/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-browserlist/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+**Note:** Version bump only for package @bolt/config-browserlist
+
+
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-browserlist/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+**Note:** Version bump only for package @bolt/config-browserlist
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-browserlist/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -123,6 +159,3 @@
 
 
 # [1.0.0-rc.1](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-browserlist/compare/v0.4.1...v1.0.0-rc.1) (2018-02-24)
-
-
-

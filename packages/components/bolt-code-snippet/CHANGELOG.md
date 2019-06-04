@@ -1,3 +1,28 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+**Note:** Version bump only for package @bolt/components-code-snippet
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -129,6 +154,3 @@
 * element styles ([64144bd](https://github.com/bolt-design-system/bolt/commit/64144bd))
 * fix code snippet schema validation (BDS-291) ([67895f2](https://github.com/bolt-design-system/bolt/commit/67895f2))
 * fix duplicate component rendering by fixing the Bolt core BoltBase class to use the right renderer mixin ([d16a9ab](https://github.com/bolt-design-system/bolt/commit/d16a9ab))
-
-
-

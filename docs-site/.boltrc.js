@@ -8,7 +8,7 @@ const config = {
   // lang: ['en', 'ja'],
 
   renderingService: false, // starts PHP service for rendering Twig templates
-  openServerAtStart: false,
+  openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pwa',
   srcDir: './src/pages',
@@ -21,10 +21,11 @@ const config = {
   verbosity: 2,
   schemaErrorReporting: 'cli',
   webpackDevServer: {
-  sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
-  enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
     enabled: true,
   },
+  sourceMaps: process.env.TRAVIS || argv.prod ? false : true,
+  enableCache: process.env.TRAVIS || argv.prod ? false : true,
+  enableSSR: false, // temp disabld till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -73,12 +74,16 @@ const config = {
 
   components: {
     global: [
+      '@bolt/components-radio-switch',
+      '@bolt/components-carousel',
       '@bolt/global',
       '@bolt/docs-search',
       '@bolt/schema-form',
       '@bolt/analytics-autolink',
+      '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
+      '@bolt/components-banner',
       '@bolt/components-dropdown',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
@@ -114,6 +119,7 @@ const config = {
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
+      '@bolt/components-stack',
       '@bolt/components-table',
       '@bolt/components-teaser',
       '@bolt/components-text',
@@ -154,7 +160,7 @@ const config = {
     },
     {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json')
+        resolve.sync('@bolt/global/package.json'),
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -163,7 +169,7 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json')
+        resolve.sync('@bolt/twig-renderer/package.json'),
       )}/SetupTwigRenderer.php`,
       functions: ['addBoltExtensions'],
     },

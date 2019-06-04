@@ -1,6 +1,6 @@
 import { define, props } from 'skatejs';
 import { h } from 'preact';
-
+import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
 import render from 'preact-render-to-string';
 
 import { store } from '../../store.js'; // connect to redux
@@ -12,7 +12,7 @@ import { urlHandler, patternName } from '../../utils';
 
 import styles from '../../../sass/pattern-lab--iframe-loader.scss';
 
-
+let trackingPageChange = false;
 
 @define
 class IFrame extends BaseComponent {
@@ -29,7 +29,9 @@ class IFrame extends BaseComponent {
     window.config.ishFontSize !== undefined
       ? parseInt(window.config.ishFontSize, 10)
       : parseInt(window.getComputedStyle(document.body, null).getPropertyValue('font-size'), 10); //Body size of the document
-    self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
+    self.handlePageChange = self.handlePageChange.bind(self);
+    self.handlePageLoad = self.handlePageLoad.bind(self);
+    // self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
     self.handleResize = self.handleResize.bind(self);
     self.handleMouseDown = self.handleMouseDown.bind(self);
     self.handleIframeLoaded = self.handleIframeLoaded.bind(self);
@@ -43,8 +45,66 @@ class IFrame extends BaseComponent {
     return self;
   }
 
+  // update the currently active nav + add / update the page's query string
+  handlePageLoad(e){
+    var queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let patternParam = urlParams.get('p');
+
+    if (e.detail.pattern){
+      document.title = 'Pattern Lab - ' + e.detail.pattern;
+
+      const addressReplacement =
+        window.location.protocol === 'file:'
+          ? null
+          : window.location.protocol +
+            '//' +
+            window.location.host +
+            window.location.pathname.replace('index.html', '') +
+            '?p=' +
+            e.detail.pattern;
+
+      // first time hitting a PL page -- no query string on the current page
+      if (patternParam === null){
+        window.history.replaceState({
+          currentPattern: e.detail.pattern
+        }, null, addressReplacement);
+      } else {
+        window.history.replaceState({
+          currentPattern: e.detail.pattern
+        }, null, addressReplacement);
+      }
+      
+      const currentUrl = urlHandler.getFileName(e.detail.pattern);
+
+      // don't update state or upddate the URL for non-existent patterns
+      if (currentUrl){
+        store.dispatch(updateCurrentPattern(e.detail.pattern));
+        store.dispatch(updateCurrentUrl(currentUrl));
+      }
+    }
+  }
+
+  // navigate to the new PL page (based on the query string) when the page's pop state changes
+  handlePageChange(e){
+    var queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let patternParam = urlParams.get('p');
+
+    if (patternParam){
+      this.navigateTo(patternParam);
+    }
+  }
+
   connected(){
     const self = this;
+
+    if (trackingPageChange === false){
+      trackingPageChange = true;
+      document.addEventListener('patternPartial', self.handlePageLoad);
+      window.addEventListener('popstate', self.handlePageChange);
+    }
+
     const state = store.getState();
     this.themeMode = state.app.themeMode || 'dark';
     this.isViewallPage = state.app.isViewallPage || false;
@@ -54,11 +114,9 @@ class IFrame extends BaseComponent {
       this.sizeiframe(state.app.viewportPx, false);
     }
 
-    window.addEventListener('message', this.receiveIframeMessage, false);
+    // window.addEventListener('message', this.receiveIframeMessage, false);
     window.addEventListener('resize', this.handleResize);
-    
     this.handleOrientationChange();
-    // this.updateSizeReading(document.body.clientWidth);
   }
 
   //Resize the viewport
@@ -177,21 +235,6 @@ class IFrame extends BaseComponent {
         this.sizeiframe(this.iframe.clientWidth, false);
       }
     }
-  //   // this.store = state;
-  //   // super._stateChanged && super._stateChanged();
-  //   // this.triggerUpdate();
-  //   // if (state.app.currentPattern !== this.currentPattern){
-  //   //   console.log(state.app);
-  //   //   if (this.iframe){
-  //   //     if (this.iframe.iFrameResizer){
-  //   //       this.iframe.iFrameResizer.sendMessage(state);
-  //   //     } else {
-  //   //       this.delaySendingMessage = true;
-  //   //     }
-  //   //   } else {
-  //   //     this.delaySendingMessage = true;
-  //   //   }
-  //   // }
   }
 
   navigateTo(pattern = patternName, rewrite = false) {
@@ -215,7 +258,7 @@ class IFrame extends BaseComponent {
       );
       urlHandler.skipBack = false;
     }
-    this.iframe.contentWindow.location.replace(this.iFramePath);
+    document.querySelector('.pl-js-iframe').contentWindow.location.replace(this.iFramePath);
     this.handleUpdatingCurrentPattern(pattern, false);
   }
 
@@ -278,6 +321,21 @@ class IFrame extends BaseComponent {
   }
 
   render() {
+    // use either the page's query string or the patternPartial data to auto-update the URL
+    var queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let patternParam = urlParams.get('p');
+
+    if (!patternParam){
+      if (window.patternData){
+        patternParam = window.patternData.patternPartial;
+      } else {
+        patternParam = 'components-overview';
+      }
+    }
+
+    const url = urlHandler.getFileName(patternParam);
+
     const IframeInner = () => {
       return (
         <div className={`pl-c-body--theme-${this.themeMode}`}>
@@ -313,7 +371,7 @@ class IFrame extends BaseComponent {
       );
     };
 
-    const initialWidth = store.getState().app.viewportPx ? store.getState().app.viewportPx + 'px;' : '100%;';
+    const initialWidth = store.getState().app.viewportPx && store.getState().app.viewportPx <= this.clientWidth ? store.getState().app.viewportPx + 'px;': this.clientWidth + 'px;';
 
     return (
       <div class="pl-c-viewport pl-js-viewport">
@@ -324,9 +382,8 @@ class IFrame extends BaseComponent {
           <iframe
             className={`pl-c-viewport__iframe pl-js-iframe pl-c-body--theme-${this.themeMode}`}
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
-            srcdoc={render(<IframeInner />)}
-            onLoad={this.handleIframeLoaded}
-            // style={`width: ${initialWidth}`}
+            // srcdoc={render(<IframeInner />)}
+            src={url}
           />
           {
             <div class="pl-c-viewport__resizer pl-js-resize-container">
@@ -370,38 +427,38 @@ class IFrame extends BaseComponent {
   }
 
 
-  receiveIframeMessage(event) {
-    const self = this;
+  // receiveIframeMessage(event) {
+  //   const self = this;
 
-    // does the origin sending the message match the current host? if not dev/null the request
-    if (
-      window.location.protocol !== 'file:' &&
-      event.origin !== window.location.protocol + '//' + window.location.host
-    ) {
-      return;
-    }
+  //   // does the origin sending the message match the current host? if not dev/null the request
+  //   if (
+  //     window.location.protocol !== 'file:' &&
+  //     event.origin !== window.location.protocol + '//' + window.location.host
+  //   ) {
+  //     return;
+  //   }
 
-    let data = {};
-    try {
-      data =
-        typeof event.data !== 'string' ? event.data : JSON.parse(event.data);
-    } catch (e) {
-      // @todo: how do we want to handle exceptions here?
-    }
+  //   let data = {};
+  //   try {
+  //     data =
+  //       typeof event.data !== 'string' ? event.data : JSON.parse(event.data);
+  //   } catch (e) {
+  //     // @todo: how do we want to handle exceptions here?
+  //   }
 
-    if (data.event !== undefined && data.event === 'patternLab.pageLoad') {
-      try {
-        // add a slight delay to make sure the URL params have had a chance to update first before updating the current url 
-        if(self.usingBrowserNav === true){
-          self.handleUpdatingCurrentPattern(event.data.details.patternData.patternPartial, true);
-        }
+  //   if (data.event !== undefined && data.event === 'patternLab.pageLoad') {
+  //     try {
+  //       // add a slight delay to make sure the URL params have had a chance to update first before updating the current url 
+  //       // if(self.usingBrowserNav === true){
+  //       //   self.handleUpdatingCurrentPattern(event.data.details.patternData.patternPartial, true);
+  //       // }
 
-        // check and share the initial iframe width once ready
-      } catch(error){
-        console.log(error);
-      }
-    }
-  }
+  //       // check and share the initial iframe width once ready
+  //     } catch(error){
+  //       console.log(error);
+  //     }
+  //   }
+  // }
 }
 
 export { IFrame };

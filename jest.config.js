@@ -5,6 +5,8 @@ const testFilesToIgnore = globby.sync([
   './packages/components/**/*/__tests__/**/*.data.js',
   './packages/analytics/**/*/__tests__/**/*.data.js',
   './packages/generator-bolt/generators/*/templates/**/*.test.js',
+  './example-integrations/angular/**/*.ts',
+  './example-integrations/**/*.js',
 ]);
 
 module.exports = {
@@ -12,7 +14,7 @@ module.exports = {
     'sandbox',
     'docs-site',
     'brightcove-player.test.js',
-    'example-integrations/drupal-lab',
+    'example-integrations',
     'packages/uikit-workshop',
     'packages/build-tools/plugins/sass-export-data/tests',
     'packages/components/bolt-button/__tests__/button-wc.test.js',
@@ -30,7 +32,10 @@ module.exports = {
   ],
   globalSetup: './jest-global-setup.js',
   globalTeardown: './jest-global-teardown.js',
-  setupFilesAfterEnv: ['./jest-setup-files-after-env.js'],
+  setupFilesAfterEnv: [
+    './jest-setup-files-after-env.js',
+    'jest-expect-message',
+  ],
   snapshotSerializers: ['jest-serializer-html'],
   reporters: ['default', '<rootDir>/scripts/report-jest-screenshots.js'],
   // Notify not working correctly; we want to only get a notification when tests fail, and then get ONE success notificaiton after it passes

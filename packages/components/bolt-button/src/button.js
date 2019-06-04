@@ -31,6 +31,8 @@ class BoltButton extends BoltAction {
     url: props.string,
     onClick: props.string, // Managed by base class
     onClickTarget: props.string, // Managed by base class
+    tabindex: props.number,
+    inert: props.boolean, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -58,6 +60,7 @@ class BoltButton extends BoltAction {
       [`c-bolt-button--${this.props.transform}`]:
         this.props.transform && this.props.transform !== 'none',
       'c-bolt-button--disabled': this.props.disabled,
+      'c-bolt-button--inert': this.props.tabindex === -1 || this.props.inert,
       'c-bolt-button--icon-only': this.props.iconOnly,
     });
 
@@ -140,6 +143,19 @@ class BoltButton extends BoltAction {
     if (this.rootElement) {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
       buttonElement.className += ' ' + classes;
+
+      if (this.props.url) {
+        buttonElement.setAttribute('href', this.props.url);
+      }
+
+      if (this.props.target) {
+        buttonElement.setAttribute('target', this.props.target);
+      }
+
+      if (this.props.tabindex) {
+        buttonElement.setAttribute('target', this.props.tabindex);
+      }
+
       render(innerSlots, buttonElement);
     } else if (hasUrl) {
       buttonElement = html`
@@ -147,6 +163,13 @@ class BoltButton extends BoltAction {
           href="${this.props.url}"
           class="${classes}"
           target="${urlTarget}"
+          tabindex=${ifDefined(
+            this.props.tabindex === -1
+              ? '-1'
+              : this.props.tabindex
+              ? this.props.tabindex
+              : undefined,
+          )}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
           >${innerSlots}</a
         >
@@ -155,6 +178,13 @@ class BoltButton extends BoltAction {
       buttonElement = html`
         <button
           class="${classes}"
+          tabindex=${ifDefined(
+            this.props.tabindex === -1
+              ? '-1'
+              : this.props.tabindex
+              ? this.props.tabindex
+              : undefined,
+          )}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
         >
           ${innerSlots}

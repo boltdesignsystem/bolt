@@ -1,3 +1,43 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## [2.4.1](https://github.com/bolt-design-system/bolt/compare/v2.4.0...v2.4.1) (2019-05-14)
+
+
+### Bug Fixes
+
+* revert premature merge of a handful of v2.5.0 features ([ed4d395](https://github.com/bolt-design-system/bolt/commit/ed4d395))
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* **@bolt/components-list:** remove class based behavior and added parent child behavior for display ([894291c](https://github.com/bolt-design-system/bolt/commit/894291c))
+* remove async from describe ([517bc4c](https://github.com/bolt-design-system/bolt/commit/517bc4c))
+
+
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+**Note:** Version bump only for package @bolt/components-list
+
+
+
+
+
 # [2.2.0](https://github.com/bolt-design-system/bolt/compare/v2.2.0-rc.1...v2.2.0) (2018-11-18)
 
 
@@ -93,6 +133,3 @@
 * add tag prop ([fa4b11d](https://github.com/bolt-design-system/bolt/commit/fa4b11d))
 * follow value of none conventions ([41c878c](https://github.com/bolt-design-system/bolt/commit/41c878c))
 * removing hr as the separator ([ada7e46](https://github.com/bolt-design-system/bolt/commit/ada7e46))
-
-
-

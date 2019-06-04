@@ -32,6 +32,15 @@
 <!DOCTYPE html>
 <html lang="en-US" class="{{ htmlClasses|join(' ') }}">
   <head>
+    <script src="https://www.google-analytics.com/analytics.js" defer></script>
+    <script>
+      window.drupalSettings = {
+        google_analytics: {
+          trackCrossDomains: ['github.com']
+        }
+      }
+    </script>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
     <title>Bolt Design System</title>
@@ -87,6 +96,11 @@
         {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
         {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
       {% endif %}
+
+      window.bolt = window.bolt || {};
+      window.bolt.data = window.bolt.data || {};
+      window.bolt.data.fullManifest = window.bolt.data.fullManifest || {};
+      window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
     </script>
 
     {# <script>console.log('Bolt Global Twig variable. In Twig, you can tap into the `bolt` global var to access all sorts of helpful information about the Bolt Design System, such as colors, spacing, and more. Most is exported from Sass; to add more, add this to any Sass file: `@include export-data("myVariables.bolt.json", $my-variables-in-a-sass-map);`, and then you can access it in Twig via `bolt.data.myVariables`. Here is all the data available to the current templates, including the `bolt` var:');</script> #}

@@ -16,12 +16,11 @@
 
 <bolt-list-item
   {% if last %} last {% endif %}
-  {% if display == "flex" %} class="{{ "#{base_class}--display-#{display}" }}" {% endif %}
 >
   <replace-with-grandchildren>
     <{{ tag }} {{ attributes.addClass(classes) }}>
       {% if item is iterable %}
-        {{ item.content | join }}
+        {{ item.content }}
       {% else %}
         {{ item }}
       {% endif %}

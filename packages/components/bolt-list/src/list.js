@@ -39,7 +39,7 @@ class BoltList extends withContext(withLitHtml()) {
 
   static props = {
     tag: props.string, // ul | ol | div | span
-    display: props.string, // inline | block | inline@xxsmall | inline@xsmall | inline@small | inline@medium
+    display: props.string, // inline | block | flex | inline@xxsmall | inline@xsmall | inline@small | inline@medium
     spacing: props.string, // none | xsmall | small | medium | large | xlarge
     separator: props.string, // none | solid | dashed
     inset: props.boolean, // true | false
@@ -102,22 +102,14 @@ class BoltList extends withContext(withLitHtml()) {
     });
 
     if (this.slots.default) {
-      const updatedDefaultSlot = [];
+      const updatedDefaultSlot = this.slots.default.filter(
+        item => item.tagName,
+      );
+      const updatedSlotsLength = updatedDefaultSlot.length;
+      const lastSlotItem = updatedDefaultSlot[updatedDefaultSlot.length - 1];
 
-      this.slots.default.forEach(item => {
-        if (item.tagName) {
-          updatedDefaultSlot.push(item);
-        }
-      });
-
-      if (
-        updatedDefaultSlot[updatedDefaultSlot.length - 1].attributes.length ===
-        0
-      ) {
-        updatedDefaultSlot[updatedDefaultSlot.length - 1].setAttribute(
-          'last',
-          '',
-        );
+      if (updatedSlotsLength > 0 && !lastSlotItem.attributes.last) {
+        lastSlotItem.setAttribute('last', '');
       }
     }
 

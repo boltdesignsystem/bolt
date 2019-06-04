@@ -1,3 +1,38 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* add testing instructions ([2ec5ce3](https://github.com/bolt-design-system/bolt/commit/2ec5ce3))
+* lint js ([a7dda94](https://github.com/bolt-design-system/bolt/commit/a7dda94))
+* update Jest tests to not use async on top level `describe` ([772fbb1](https://github.com/bolt-design-system/bolt/commit/772fbb1))
+
+
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* add testing instructions ([2ec5ce3](https://github.com/bolt-design-system/bolt/commit/2ec5ce3))
+* lint js ([a7dda94](https://github.com/bolt-design-system/bolt/commit/a7dda94))
+* update Jest tests to not use async on top level `describe` ([772fbb1](https://github.com/bolt-design-system/bolt/commit/772fbb1))
+
+
+
+
+
 # [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
 
 
@@ -104,6 +139,3 @@
 ### Features
 
 * Update pagination schema to move more logic to back-end (BDS-5) ([6f0b793](https://github.com/bolt-design-system/bolt/commit/6f0b793))
-
-
-
