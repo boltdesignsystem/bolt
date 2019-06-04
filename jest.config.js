@@ -6,7 +6,7 @@ const testFilesToIgnore = globby.sync([
 ]);
 
 module.exports = {
-  moduleDirectories: ['node_modules', 'packages/config/jest'],
+  moduleDirectories: ['node_modules', 'packages/testing/testing-jest'],
   testPathIgnorePatterns: [
     'node_modules',
     'vendor',
@@ -21,7 +21,7 @@ module.exports = {
     ...testFilesToIgnore,
   ],
   testEnvironment:
-    './packages/config/jest/jest-environment-puppeteer-basichtml.js',
+    './packages/testing/testing-jest/jest-environment-puppeteer-basichtml.js',
   transform: {
     '^.+\\.js?$': 'babel-jest',
   },
@@ -30,14 +30,14 @@ module.exports = {
     'packages/(?!(components|core|analytics|config|testing-helpers|generators)/)', // add any additional packages in node_modules that need to be transpiled for Jest
     './scripts/monorepo.test.js',
   ],
-  globalSetup: './packages/config/jest/jest-global-setup.js',
-  globalTeardown: './packages/config/jest/jest-global-teardown.js',
+  globalSetup: './packages/testing/testing-jest/jest-global-setup.js',
+  globalTeardown: './packages/testing/testing-jest/jest-global-teardown.js',
   setupFilesAfterEnv: [
-    './packages/config/jest/jest-setup-files-after-env.js',
+    './packages/testing/testing-jest/jest-setup-files-after-env.js',
     'jest-expect-message',
   ],
   snapshotSerializers: ['jest-serializer-html'],
-  reporters: ['default', './packages/config/jest/jest-reporter-vrt.js'],
+  reporters: ['default', './packages/testing/testing-jest/jest-reporter-vrt.js'],
   // Notify not working correctly; we want to only get a notification when tests fail, and then get ONE success notificaiton after it passes
   // notify: true,
   // notifyMode: 'failure-success',

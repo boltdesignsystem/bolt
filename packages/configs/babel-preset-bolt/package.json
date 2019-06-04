@@ -1,7 +1,7 @@
 {
   "name": "@bolt/babel-preset-bolt",
   "version": "2.4.3",
-  "description": "Babel preset shared across the Bolt Design System",
+  "description": "Babel preset configuration shared across the Bolt Design System",
   "keywords": [
     "babel",
     "bolt",
@@ -11,7 +11,7 @@
   ],
   "homepage": "https://boltdesignsystem.com",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/config/babel",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/configs/babel-preset-bolt",
   "license": "MIT",
   "author": {
     "name": "Salem Ghoweri",
@@ -22,6 +22,9 @@
       "bolt"
     ]
   },
+  "browserslist": [
+    "extends @bolt/browserslist-config"
+  ],
   "dependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
@@ -34,7 +37,7 @@
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/runtime": "^7.3.1",
-    "@bolt/config-browserlist": "^2.4.3"
+    "@bolt/browserslist-config": "^2.4.3"
   },
   "publishConfig": {
     "access": "public"

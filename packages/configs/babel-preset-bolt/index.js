@@ -4,9 +4,6 @@ const preset = function(api, opts = {}) {
       [
         '@babel/preset-env',
         {
-          targets: {
-            browsers: require('@bolt/config-browserlist'),
-          },
           modules: false,
           debug: false,
         },

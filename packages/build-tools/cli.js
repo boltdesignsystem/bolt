@@ -50,7 +50,7 @@ if (program.configFile) {
 }
 
 (async () => {
-  await configStore.init(userConfig).then(config => {
+  await configStore.init(userConfig).then(async config => {
     // Now that config is initilized, we can start requiring other things
     const { buildBoltManifest } = require('./utils/manifest');
     const log = require('./utils/log');
@@ -155,7 +155,7 @@ if (program.configFile) {
       return config;
     }
 
-    log.intro();
+    await log.intro();
 
     program
       .option(
