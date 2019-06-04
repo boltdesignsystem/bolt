@@ -26,7 +26,7 @@ describe('<%= props.name.noCase %>', async () => {
   let page;
 
   afterAll(async () => {
-    await stopTwigRenderer();
+    await stopServer();
   }, timeout);
 
   beforeEach(async () => {
