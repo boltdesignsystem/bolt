@@ -5,7 +5,7 @@ const path = require('path');
 const { teardown: teardownDevServer } = require('jest-dev-server');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
 const iconTasks = require('@bolt/build-tools/tasks/icon-tasks');
-const { buildPrep } = require('./packages/build-tools/tasks/task-collections');
+const { buildPrep } = require('@bolt/build-tools/tasks/task-collections.js');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
