@@ -1,5 +1,5 @@
-const path = require('path');
 import { isConnected } from '../../../testing-helpers';
+const path = require('path');
 
 const timeout = 90000;
 
