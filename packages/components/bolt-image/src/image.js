@@ -24,6 +24,7 @@ class BoltImage extends withLitHtml() {
     srcset: props.string,
     sizes: props.string,
     ratio: props.string,
+    maxWidth: props.string,
     placeholderColor: props.string,
     placeholderImage: props.string,
     zoom: props.boolean,
@@ -99,6 +100,7 @@ class BoltImage extends withLitHtml() {
       srcset,
       sizes,
       ratio,
+      maxWidth,
       placeholderColor,
       placeholderImage,
       zoom,
@@ -213,6 +215,14 @@ class BoltImage extends withLitHtml() {
 
     if (_canUsePlaceholder && placeholderColor) {
       this.style.backgroundColor = placeholderColor;
+    }
+
+    if (maxWidth) {
+      this.style.width = maxWidth;
+      // Don't bother setting `max-width` if `width` is also a percentage
+      if (!maxWidth.includes('%')) {
+        this.style.maxWidth = '100%';
+      }
     }
 
     let renderedImage;

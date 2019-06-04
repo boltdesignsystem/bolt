@@ -67,6 +67,9 @@ properties:
     title: boolean option is DEPRECATED
     description: Set the aspect ratio for the image via slash-separated width and height values, e.g. 4/3. Currently required for aspect ratio to be applied properly. Set to "none" to opt out of aspect ratio.
     default: auto
+  max_width:
+    type: string
+    description: Set the max-width of the image as a valid CSS value, e.g. "300px" or "50%".
   width:
     title: DEPRECATED
     oneOf:
