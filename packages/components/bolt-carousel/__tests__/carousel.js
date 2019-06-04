@@ -1,5 +1,11 @@
 /* eslint-disable no-await-in-loop */
-import { fixture as html } from '@open-wc/testing-helpers';
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 
@@ -44,26 +50,29 @@ const imageVrtConfig = {
 };
 
 describe('carousel', () => {
-  let page;
+  let page, context;
+
+  beforeAll(async () => {
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
 
   beforeEach(async () => {
-    const context = await global.__BROWSER__.createIncognitoBrowserContext();
     page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
+      // waitLoad: true,
+      // waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
   // test('basic carousel component renders', async () => {
-  //   const results = await renderTwig('@bolt-components-carousel/carousel.twig');
+  //   const results = await render('@bolt-components-carousel/carousel.twig');
   //   expect(results.ok).toBe(true);
   //   expect(results.html).toMatchSnapshot();
   // });
 
   // test('basic carousel component with the global `no-shadow` prop added', async () => {
-  //   const results = await renderTwig(
+  //   const results = await render(
   //     '@bolt-components-carousel/carousel.twig',
   //     {
   //       no_shadow: true,
@@ -74,7 +83,7 @@ describe('carousel', () => {
   // });
 
   // test('carousel with outer CSS class via Drupal Attributes', async () => {
-  //   const results = await renderTwig(
+  //   const results = await render(
   //     '@bolt-components-carousel/carousel.twig',
   //     {
   //       attributes: {
@@ -140,7 +149,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(1000);
+      await page.waitFor(100);
 
       const screenshots = [];
 
@@ -220,7 +229,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(1000);
+      await page.waitFor(100);
 
       const screenshots = [];
 
@@ -301,7 +310,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(1000);
+      await page.waitFor(100);
 
       const screenshots = [];
 
@@ -375,7 +384,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(1000);
+      await page.waitFor(100);
 
       const screenshots = [];
 
@@ -488,7 +497,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(1000);
+      await page.waitFor(100);
 
       const screenshots = [];
 

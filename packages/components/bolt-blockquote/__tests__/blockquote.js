@@ -1,6 +1,10 @@
-import { render } from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
-
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../blockquote.schema.yml'));
@@ -9,14 +13,20 @@ const { tag } = schema.properties;
 const timeout = 90000;
 
 describe('button', () => {
-  let page;
+  let page, context;
+
+  afterAll(async () => {
+    await stopServer();
+  }, 100);
+
+  beforeAll(async () => {
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
 
   beforeEach(async () => {
-    page = await global.__BROWSER__.newPage();
+    page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
@@ -31,6 +41,7 @@ describe('button', () => {
         content:
           '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
       },
+      true,
     );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
