@@ -364,7 +364,16 @@ class TwigFunctions {
    */
   public static function gcd() {
     return new Twig_SimpleFunction('gcd', function($a, $b) {
-      return is_numeric($a) && is_numeric($b) ? Utils::gcd($a, $b) : 1;
+      if(is_numeric($a) && is_numeric($b)) {
+        // If either value is a float or is a string containing a float, don't try to get GCD
+        if(is_float($a) || is_float($b) || (is_string($a) && strpos($a, '.')) || (is_string($b) && strpos($b, '.'))) {
+          return 1;
+        } else {
+          return Utils::gcd($a, $b);
+        }
+      } else {
+        return 1;
+      }
     });
   }
 
