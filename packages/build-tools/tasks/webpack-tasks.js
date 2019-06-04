@@ -9,6 +9,7 @@ const createWebpackConfig = require('../create-webpack-config');
 const { getConfig } = require('../utils/config-store');
 const { boltWebpackMessages } = require('../utils/webpack-helpers');
 const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
+const events = require('../utils/events');
 
 let boltBuildConfig;
 let browserSyncIsRunning = false;
@@ -94,6 +95,10 @@ async function server(customWebpackConfig) {
     }
 
     const compiler = boltWebpackMessages(webpack(webpackConfig));
+
+    compiler.hooks.done.tap('AfterDonePlugin', (params, callback) => {
+      events.emit('webpack-dev-server:compiled');
+    });
 
     app.use(
       webpackDevServerWaitpage(compiler, {
