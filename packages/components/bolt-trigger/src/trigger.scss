@@ -58,32 +58,30 @@ bolt-trigger {
   color: inherit;
   text-align: inherit;
   text-decoration: initial;
-  cursor: pointer; // Default to pointer
   border: none; // [1]
   background: none; // [1]
 }
 
 // Display styles
-.c-bolt-trigger--display-inline {
-  display: inline;
-}
+$bolt-trigger-display-values: inline block; // These values need to be in sync with the schema.
 
-.c-bolt-trigger--display-block {
-  display: block;
-  width: 100%;
+@each $display in $bolt-trigger-display-values {
+  .c-bolt-trigger--display-#{$display} {
+    display: #{$display};
+
+    @if $display == 'block' {
+      width: 100%;
+    }
+  }
 }
 
 // Cursor styles
-.c-bolt-trigger--cursor-default {
-  cursor: default;
-}
+$bolt-trigger-cursor-values: auto pointer zoom-in zoom-out; // These values need to be in sync with the schema.
 
-.c-bolt-trigger--cursor-zoom-in {
-  cursor: zoom-in;
-}
-
-.c-bolt-trigger--cursor-zoom-out {
-  cursor: zoom-out;
+@each $cursor in $bolt-trigger-cursor-values {
+  .c-bolt-trigger--cursor-#{$cursor} {
+    cursor: #{$cursor};
+  }
 }
 
 // Outline styles
