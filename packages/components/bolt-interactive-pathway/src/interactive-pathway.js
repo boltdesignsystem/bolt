@@ -27,15 +27,12 @@ class BoltInteractivePathway extends withLitHtml() {
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
 
-    self.fooList = ['One', 'Two', 'Three', 'Four', 'Five'];
+    self.fooList = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'];
     self.activeItem = self.fooList[0];
 
     self.clickHandler = self.clickHandler.bind(self);
     self._rerenderPathwayUl = self._rerenderPathwayUl.bind(self);
     self._rerenderPathwayStage = self._rerenderPathwayStage.bind(self);
-    self._TEMPrerenderPathwayTitleHelper = self._TEMPrerenderPathwayTitleHelper.bind(
-      self,
-    );
 
     return self;
   }
@@ -72,13 +69,6 @@ class BoltInteractivePathway extends withLitHtml() {
             : 'inactive';
         item.setAttribute('data-is-active', updatedItemState);
       });
-  }
-
-  _TEMPrerenderPathwayTitleHelper() {
-    // Disable all list items
-    this.renderRoot.querySelector('h1').innerHTML = `Currently Active Item: ${
-      this.activeItem
-    }`;
   }
 
   render() {
