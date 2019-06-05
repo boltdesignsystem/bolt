@@ -5,11 +5,11 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const chalk = require('chalk');
 const { handleRequest } = require('@bolt/api');
-const createWebpackConfig = require('../create-webpack-config');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackMessages } = require('@bolt/build-utils/webpack-helpers');
-const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
 const events = require('@bolt/build-utils/events');
+const createWebpackConfig = require('../create-webpack-config');
+const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
 
 let boltBuildConfig;
 let browserSyncIsRunning = false;
