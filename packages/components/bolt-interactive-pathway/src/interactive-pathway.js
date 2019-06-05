@@ -38,9 +38,12 @@ class BoltInteractivePathway extends withLitHtml() {
   clickHandler(event) {
     console.log('Wubba Lubba Dub Dub: event', event);
     console.log('Wubba Lubba Dub Dub: this.renderRoot', this.renderRoot);
+
+    // Disable all list items
     this.renderRoot
       .querySelectorAll('li')
       .forEach(item => item.setAttribute('data-is-active', 'inactive'));
+    // Enable clicked list item
     event.target.setAttribute('data-is-active', 'active');
   }
 
@@ -71,11 +74,13 @@ class BoltInteractivePathway extends withLitHtml() {
           )}
         </ul>
         <div class="stage">
-          <div>pane 1</div>
-          <div>pane 2</div>
-          <div>pane 3</div>
-          <div>pane 4</div>
-          <div>pane 5</div>
+          ${this.fooList.map(
+            (item, index) => html`
+              <div
+                data-pathway-step="${item}"
+              >pane 2</div>
+            `,
+          )}
         </div>
       </div>
     `;
