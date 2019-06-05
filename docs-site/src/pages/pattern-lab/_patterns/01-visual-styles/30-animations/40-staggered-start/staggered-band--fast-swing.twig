@@ -1,0 +1,139 @@
+<div id="staggered-animation-band--fast-swing">
+{% include "@bolt-components-band/band--collection.twig" with {
+  size: "medium",
+  theme: "xlight",
+  contentItems: [
+    {
+      pattern: "card",
+      contentItems: [
+      {
+        pattern: "image",
+        lazyload: false,
+        src: "/images/placeholders/1200x660.jpg"
+      },
+      {
+        pattern: "headline",
+        text: "2017 Forrester Wave Report",
+        size: "large",
+        tag: "h3"
+      },
+      {
+        pattern: "text",
+        text: "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017.",
+        tag: "p"
+      },
+      {
+        pattern: "button",
+        text: "Get the report",
+        tag: "a",
+        style: "secondary",
+        width: "full"
+      }
+    ]
+    },
+    {
+      pattern: "card-w-teaser",
+      image: {
+      src: "/images/placeholders/1200x660.jpg",
+      lazyload: false,
+    },
+      teaser: {
+      headlines: [
+        {
+          type: "headline",
+          text: "Pega 7 for Operations",
+          size: "large"
+        },
+        {
+          type: "text",
+          text: "Simplify and automate to reduce costs and improve agility.",
+          size: "medium",
+          tag: "p"
+        }
+      ],
+      buttons: [
+        {
+          text: "Learn More About Pega 7",
+          style: "secondary",
+          url: "#!"
+        }
+      ]
+    }
+    },
+    {
+      pattern: "teaser",
+      logo: {
+      src: "/images/content/logos/logo-paypal.svg",
+      lazyload: false,
+    },
+      eyebrow: {
+      text: "Who is Pega?"
+    },
+      headlines: [
+      {
+        text: "Pega is #1 in software for customer engagement and operational excellence.",
+        size: "xlarge",
+        tag: "h3"
+      }
+    ],
+      buttons: [
+      {
+        text: "Example button #1",
+        style: "primary"
+      }
+    ]
+    }
+  ]
+} %}
+</div>
+
+<button id="staggered-animation-band--fast-swing__trigger">Click Me</button>
+<button id="staggered-animation-band--fast-swing__reset">Reset</button>
+
+<script>
+  // Event handler for button to fire demo staggered fade in slide up
+  document
+    .querySelector('#staggered-animation-band--fast-swing__trigger')
+    .addEventListener('click', function() {
+      // Trigger staggered animation
+      document
+        .querySelector('#staggered-animation-band--fast-swing')
+        .dispatchEvent(new Event('anim-trigger'));
+    });
+
+  // Reset Button - Clear out old demo animation trigger data attributes
+  document
+    .querySelector('#staggered-animation-band--fast-swing__reset')
+    .addEventListener('click', function() {
+      document
+        .querySelectorAll('#staggered-animation-band--fast-swing .o-bolt-grid__cell')
+        .forEach(function(element) {
+          element.setAttribute('data-anim-triggered', 'no');
+        });
+    });
+
+  /**
+   * Trigger animations on this element.
+   * Adds data attribute and triggers event handlers
+   * @param {Element} el The element
+   */
+  function triggerAnimation(el) {
+    if (el.getAttribute('data-anim-triggered') !== 'yes') {
+      el.setAttribute('data-anim-triggered', 'yes');
+      // el.trigger('anim-trigger');
+    }
+  }
+
+  // add eventHandlers to staggered anim content
+  document
+    .querySelector('#staggered-animation-band--fast-swing')
+    .addEventListener('anim-trigger', function() {
+      document.querySelectorAll('#staggered-animation-band--fast-swing .o-bolt-grid__cell').forEach(function(element, index) {
+        var delay = 400 * index;
+        setTimeout(function() {
+          triggerAnimation(element);
+        }.bind(element), delay);
+      })
+    })
+</script>
+

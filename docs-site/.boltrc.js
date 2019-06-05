@@ -77,6 +77,7 @@ const config = {
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
+      '@bolt/animations',
       '@bolt/docs-search',
       '@bolt/schema-form',
       '@bolt/analytics-autolink',
