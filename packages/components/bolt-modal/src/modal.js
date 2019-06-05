@@ -377,9 +377,11 @@ class BoltModal extends withLitHtml() {
         autofocus
         tabindex="0"
       >
-        <span class="${closeButtonClasses}__text">Close this dialog window</span>
+        <span class="${closeButtonClasses}__text"
+          >Close this dialog window</span
+        >
         <span class="${closeButtonClasses}__icon"></span>
-      </bolt-button>
+      </bolt-trigger>
     `;
 
     const handleOverlayClick = e => this._handleOverlayClick(e);
