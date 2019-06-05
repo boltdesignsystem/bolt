@@ -50,13 +50,10 @@ const imageVrtConfig = {
 };
 
 describe('carousel', () => {
-  let page, context;
-
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
+  let page;
 
   beforeEach(async () => {
+    const context = await global.__BROWSER__.createIncognitoBrowserContext();
     page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
