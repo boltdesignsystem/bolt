@@ -62,6 +62,11 @@ bolt-modal:not([ready]) {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 
+    [class*='t-bolt-'] {
+      color: bolt-color(black);
+      background-color: bolt-color(white);
+    }
+
     .c-bolt-modal__overlay {
       display: none;
     }
@@ -74,6 +79,8 @@ bolt-modal:not([ready]) {
       display: flex;
       flex-direction: column;
       height: 100vh;
+      color: bolt-color(black);
+      background-color: bolt-color(white);
     }
 
     .c-bolt-modal__container-header {
@@ -251,8 +258,6 @@ bolt-modal:not([ready]) {
 // Container
 .c-bolt-modal__container {
   display: block;
-  color: bolt-theme(text);
-  background-color: bolt-theme(background);
 
   @include bolt-mq($bolt-modal-breakpoint) {
     border-radius: $bolt-modal-border-radius;
@@ -297,10 +302,6 @@ bolt-modal:not([ready]) {
 .c-bolt-modal__container-header--hidden {
   @include bolt-mq($bolt-modal-breakpoint) {
     @include bolt-visuallyhidden;
-  }
-
-  &:after {
-    display: none;
   }
 }
 
@@ -356,10 +357,16 @@ bolt-modal:not([ready]) {
     transform: translate3d(100%, -100%, 0);
 
     &:hover,
-    &:focus-within,
-    &.c-bolt-modal__close-button--focus-within {
+    &:focus-within {
       background-color: bolt-theme(background, 0.1);
     }
+  }
+}
+
+// For IE which doesn't support :focus-within
+.c-bolt-modal__close-button--focus-within {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    background-color: bolt-theme(background, 0.1);
   }
 }
 
@@ -400,7 +407,7 @@ bolt-modal:not([ready]) {
     background-color: bolt-color(indigo, light);
     transform-origin: 50% 50%;
 
-    .t-bolt-light &,
+    /* .t-bolt-light &,
     .t-bolt-xlight & {
       background-color: bolt-color(indigo, light);
     }
@@ -408,10 +415,10 @@ bolt-modal:not([ready]) {
     .t-bolt-dark &,
     .t-bolt-xdark & {
       background-color: bolt-color(white);
-    }
+    } */
 
     @include bolt-mq($bolt-modal-breakpoint) {
-      height: 1px;
+      height: 0.1rem;
       background-color: bolt-color(white);
 
       .t-bolt-light &,

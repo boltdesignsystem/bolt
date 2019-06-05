@@ -2,6 +2,8 @@
 
 <p>The modal container's coloring theme can be adjusted by the <code>theme</code> prop. The default is set to <code>xlight</code>. It can also be set to <code>none</code> to make the container completely transparent.</p>
 
+<p><mark>Note: this prop only applies to viewports equal to or above the small breakpoint (~600px).</mark></p>
+
 {% for theme in schema.properties.theme.enum %}
   <div class="u-bolt-margin-bottom-medium">
     <h3>{{ theme|capitalize }} Theme</h3>
