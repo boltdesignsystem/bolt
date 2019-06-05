@@ -28,23 +28,57 @@ class BoltInteractivePathway extends withLitHtml() {
     self.schema = schema;
 
     self.fooList = ['One', 'Two', 'Three', 'Four', 'Five'];
-    self.activeItemIndex = 0;
+    self.activeItem = self.fooList[0];
 
     self.clickHandler = self.clickHandler.bind(self);
+    self._rerenderPathwayUl = self._rerenderPathwayUl.bind(self);
+    self._rerenderPathwayStage = self._rerenderPathwayStage.bind(self);
+    self._TEMPrerenderPathwayTitleHelper = self._TEMPrerenderPathwayTitleHelper.bind(
+      self,
+    );
 
     return self;
   }
 
   clickHandler(event) {
-    console.log('Wubba Lubba Dub Dub: event', event);
-    console.log('Wubba Lubba Dub Dub: this.renderRoot', this.renderRoot);
+    const clickedPathwayStep = event.target.getAttribute('data-pathway-step');
+    this.activeItem = clickedPathwayStep;
 
+    console.log('Wubba Lubba Dub Dub: this.activeItem', this.activeItem);
+
+    this._rerenderPathwayUl();
+    this._rerenderPathwayStage();
+    this._TEMPrerenderPathwayTitleHelper();
+  }
+
+  _rerenderPathwayUl() {
+    this.renderRoot.querySelectorAll('li').forEach(item => {
+      const updatedItemState =
+        item.getAttribute('data-pathway-step') === this.activeItem
+          ? 'active'
+          : 'inactive';
+      item.setAttribute('data-is-active', updatedItemState);
+    });
+  }
+
+  _rerenderPathwayStage() {
     // Disable all list items
     this.renderRoot
-      .querySelectorAll('li')
-      .forEach(item => item.setAttribute('data-is-active', 'inactive'));
-    // Enable clicked list item
-    event.target.setAttribute('data-is-active', 'active');
+      .querySelectorAll('.c-bolt-interactive-pathway__stage')
+      .forEach(item => {
+        const updatedItemState =
+          item.getAttribute('data-pathway-step') === this.activeItem
+            ? 'active'
+            : 'inactive';
+        item.setAttribute('data-is-active', updatedItemState);
+      });
+  }
+
+  _TEMPrerenderPathwayTitleHelper() {
+    // Disable all list items
+    this.renderRoot
+      .querySelector('h1')
+      .innerHTML = `Currently Active Item: ${this.activeItem}`;
   }
 
   render() {
@@ -55,15 +89,15 @@ class BoltInteractivePathway extends withLitHtml() {
       [`c-bolt-interactive-pathway--disabled`]: disabled,
     });
 
-    console.log('Wubba Lubba Dub Dub: classes', this.fooList);
-
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
+        <h1>Currently Active Item: ${this.activeItem}</h1>
         <ul>
           ${this.fooList.map(
             (item, index) => html`
               <li
+                class="c-bolt-interactive-pathway__stage"
                 data-pathway-step="${item}"
                 data-is-active="${index === 0 ? 'active' : 'inactive'}"
                 @click=${this.clickHandler}
@@ -78,7 +112,10 @@ class BoltInteractivePathway extends withLitHtml() {
             (item, index) => html`
               <div
                 data-pathway-step="${item}"
-              >pane 2</div>
+                data-is-active="${index === 0 ? 'active' : 'inactive'}"
+              >
+                pane ${item}
+              </div>
             `,
           )}
         </div>
