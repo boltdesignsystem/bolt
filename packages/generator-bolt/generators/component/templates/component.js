@@ -1,8 +1,8 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './<%= props.name.kebabCase %>.scss';
-import schema from '../<%= props.name.kebabCase %>.schema.yml';
+//import schema from '../<%= props.name.kebabCase %>.schema.yml'; //Todo: Uncomment when you will need schema
 
 let cx = classNames.bind(styles);
 
@@ -25,7 +25,6 @@ class Bolt<%= props.name.pascalCase %> extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.schema = this.getModifiedSchema(schema);
     return self;
   }
 

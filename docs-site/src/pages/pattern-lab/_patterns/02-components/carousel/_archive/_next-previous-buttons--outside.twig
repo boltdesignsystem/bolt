@@ -1,0 +1,20 @@
+{% embed "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  navButtonPosition: "outside",
+} only %}
+  {% block controls %}
+    <bolt-button slot="previous-btn" color="secondary" icon-only>
+      Previous
+      <bolt-icon slot="before" name="chevron-left"></bolt-icon>
+    </bolt-button>
+
+    <bolt-button slot="next-btn" color="secondary" icon-only>
+      Next
+      <bolt-icon slot="after" name="chevron-right"></bolt-icon>
+    </bolt-button>
+  {% endblock %}
+{% endembed %}

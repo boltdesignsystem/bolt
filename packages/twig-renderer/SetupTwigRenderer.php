@@ -2,9 +2,9 @@
 
 require_once 'vendor/autoload.php';
 
-function addBoltExtensions(\Twig\Environment &$env, $config) {
+function addBoltCoreExtensions(\Twig\Environment &$env, $config) {
   $env->addExtension(new \Bolt\TwigExtensions\BoltCore());
-  $env->addExtension(new \Bolt\TwigExtensions\BoltExtras());
+  $env->addExtension(new \Bolt\TwigExtensions\BoltCoreCompat());
   $env->addExtension(new \Twig_Extension_Debug());
   $env->addExtension(new \BasaltInc\TwigTools\TwigExtensions\BasaltFakerExtension());
 
@@ -13,5 +13,9 @@ function addBoltExtensions(\Twig\Environment &$env, $config) {
   }));
 
   // temporarily disable Twig schema validation for the static site generator till the unknown 500 error being thrown is troubleshooted
-  $env->addGlobal('enable_json_schema_validation', false); 
+  $env->addGlobal('enable_json_schema_validation', false);
+}
+
+function addBoltExtraExtensions(\Twig\Environment &$env, $config) {
+  $env->addExtension(new \Bolt\TwigExtensions\BoltExtras());
 }

@@ -1,0 +1,25 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Stack
+\* ------------------------------------ */
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-stack', block, medium);
+
+.c-bolt-stack {
+  display: block;
+}
+
+// Spcaing options
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  bolt-stack:not(:last-child)[spacing='#{$spacing-value-name}'] {
+    @include bolt-margin-bottom(#{$spacing-value-name});
+  }
+}
+
+bolt-stack[spacing='none'] {
+  @include bolt-margin-bottom(0);
+}

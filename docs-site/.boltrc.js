@@ -23,8 +23,8 @@ const config = {
   webpackDevServer: {
     enabled: true,
   },
-  sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
-  enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
+  sourceMaps: process.env.TRAVIS || argv.prod ? false : true,
+  enableCache: process.env.TRAVIS || argv.prod ? false : true,
   enableSSR: false, // temp disabld till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
@@ -74,7 +74,8 @@ const config = {
 
   components: {
     global: [
-      '@bolt/analytics-autotrack',
+      '@bolt/components-radio-switch',
+      '@bolt/components-carousel',
       '@bolt/global',
       '@bolt/docs-search',
       '@bolt/schema-form',
@@ -118,6 +119,7 @@ const config = {
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
+      '@bolt/components-stack',
       '@bolt/components-table',
       '@bolt/components-teaser',
       '@bolt/components-text',
@@ -169,7 +171,7 @@ const config = {
       file: `${path.dirname(
         resolve.sync('@bolt/twig-renderer/package.json'),
       )}/SetupTwigRenderer.php`,
-      functions: ['addBoltExtensions'],
+      functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },
   ],
 };

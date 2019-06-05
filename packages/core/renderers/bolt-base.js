@@ -66,7 +66,7 @@ export function BoltBase(Base = HTMLElement) {
 
     validateProps(propData) {
       var validatedData = propData;
-      const ajv = new Ajv({ useDefaults: 'shared' });
+      const ajv = new Ajv({ useDefaults: 'shared', coerceTypes: true });
 
       // remove default strings in prop data so schema validation can fill in the default
       for (let property in validatedData) {
