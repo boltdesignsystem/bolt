@@ -24,21 +24,9 @@
     "packages": [
       "docs-site",
       "docs-site/src/components/*",
-      "packages/uikit-workshop",
-      "packages/build-tools",
-      "packages/generator-bolt",
-      "packages/api",
-      "packages/testing/*",
-      "packages/analytics/*",
-      "packages/build-tools/plugins/*",
-      "packages/components/*",
-      "packages/drupal-twig-extensions",
-      "packages/configs/*",
-      "packages/core",
-      "packages/servers/*",
-      "packages/core-php",
-      "packages/twig-renderer",
-      "packages/global"
+      "packages/*",
+      "packages/*/*",
+      "packages/build-tools/plugins/*"
     ]
   },
   "scripts": {
@@ -61,7 +49,7 @@
     "release:beta": "./scripts/release/release-beta.sh",
     "release:rc": "./scripts/release/release-rc.sh",
     "serve": "node packages/servers/default-server",
-    "setup": "yarn && yarn run setup:php",
+    "setup": "npx lerna bootstrap && yarn run setup:php",
     "setup:full": "yarn --force && yarn run setup:php",
     "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist --quiet",
     "setup:quick": "yarn install --production && yarn run setup:php",

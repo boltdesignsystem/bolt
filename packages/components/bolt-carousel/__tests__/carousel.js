@@ -146,7 +146,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(500);
+      await page.waitFor(1000);
 
       const screenshots = [];
 
@@ -226,7 +226,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(500);
+      await page.waitFor(1000);
 
       const screenshots = [];
 
@@ -307,7 +307,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(500);
+      await page.waitFor(1000);
 
       const screenshots = [];
 
@@ -381,7 +381,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(500);
+      await page.waitFor(1000);
 
       const screenshots = [];
 
@@ -494,7 +494,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(500);
+      await page.waitFor(1000);
 
       const screenshots = [];
 

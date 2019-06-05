@@ -43,7 +43,7 @@ describe('check the config for monorepo packages', () => {
    */
   test('non-private @bolt packages have the required publishConfig', async () => {
     pkgs.forEach(pkg => {
-      if (!pkg.private && pkg.private !== true) {
+      if (!pkg.private && pkg.private !== true && pkg.name.includes('@bolt')) {
         assert.ok(
           pkg.publishConfig !== 'undefined',
           `Please add a publishConfig to ${
@@ -68,7 +68,7 @@ describe('check the config for monorepo packages', () => {
 
   test('non-private @bolt packages do not use devDependencies', async () => {
     pkgs.forEach(pkg => {
-      if (!pkg.private) {
+      if (!pkg.private && pkg.name.includes('@bolt')) {
         expect(
           pkg.devDependencies,
           `Please move any of ${
@@ -83,7 +83,7 @@ describe('check the config for monorepo packages', () => {
 
   test('non-private @bolt packages do not use peerDependencies', async () => {
     pkgs.forEach(pkg => {
-      if (!pkg.private) {
+      if (!pkg.private && pkg.name.includes('@bolt')) {
         expect(
           pkg.peerDependencies,
           `Please move any of ${
