@@ -5,7 +5,7 @@ import {
   renderString,
   stopServer,
   html,
-} from '../../../testing-helpers';
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 
@@ -60,8 +60,8 @@ describe('carousel', () => {
     page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      // waitLoad: true,
-      // waitNetworkIdle: true, // defaults to false
+      waitLoad: true,
+      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
@@ -149,7 +149,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(100);
+      await page.waitFor(500);
 
       const screenshots = [];
 
@@ -229,7 +229,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(100);
+      await page.waitFor(500);
 
       const screenshots = [];
 
@@ -310,7 +310,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(100);
+      await page.waitFor(500);
 
       const screenshots = [];
 
@@ -384,7 +384,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(100);
+      await page.waitFor(500);
 
       const screenshots = [];
 
@@ -497,7 +497,7 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(100);
+      await page.waitFor(500);
 
       const screenshots = [];
 

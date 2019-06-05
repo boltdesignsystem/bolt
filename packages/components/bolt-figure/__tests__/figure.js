@@ -4,7 +4,7 @@ import {
   renderString,
   stopServer,
   html,
-} from '../../../testing-helpers';
+} from '../../../testing/testing-helpers';
 const { media } = require('./figure.data');
 
 describe('figure', () => {

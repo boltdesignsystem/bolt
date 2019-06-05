@@ -5,7 +5,7 @@ import {
   renderString,
   stopServer,
   html,
-} from '../../../testing-helpers';
+} from '../../../testing/testing-helpers';
 
 const imageVrtConfig = {
   failureThreshold: '0.02',
@@ -53,6 +53,8 @@ describe('<bolt-navbar> Component', () => {
     page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
+      waitLoad: true,
+      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 

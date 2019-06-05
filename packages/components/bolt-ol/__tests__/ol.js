@@ -1,4 +1,4 @@
-import { render, renderString, stopServer } from '../../../testing-helpers';
+import { render, renderString, stopServer } from '../../../testing/testing-helpers';
 
 describe('<bolt-ol> Component', () => {
   afterAll(async () => {

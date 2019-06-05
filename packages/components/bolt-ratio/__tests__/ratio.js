@@ -4,7 +4,7 @@ import {
   renderString,
   stopServer,
   html,
-} from '../../../testing-helpers';
+} from '../../../testing/testing-helpers';
 
 const timeout = 60000;
 
@@ -28,6 +28,8 @@ describe('<bolt-ratio> Component', () => {
     page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
+      waitLoad: true,
+      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
@@ -55,7 +57,7 @@ describe('<bolt-ratio> Component', () => {
     });
     expect(renderedRatioHTML).toMatchSnapshot();
 
-    await page.waitFor(100); // wait a second before testing
+    await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -92,7 +94,7 @@ describe('<bolt-ratio> Component', () => {
       return ratioSize;
     });
 
-    await page.waitFor(100); // wait a second before testing
+    await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(imageVrtConfig);
@@ -117,7 +119,7 @@ describe('<bolt-ratio> Component', () => {
       ratio.updated();
     }, html);
 
-    await page.waitFor(100); // wait a second before testing
+    await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -143,7 +145,7 @@ describe('<bolt-ratio> Component', () => {
     });
     expect(renderedRatioHTML).toMatchSnapshot();
 
-    await page.waitFor(100); // wait a second before testing
+    await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 

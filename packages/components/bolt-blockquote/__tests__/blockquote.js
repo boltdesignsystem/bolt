@@ -4,7 +4,7 @@ import {
   renderString,
   stopServer,
   html,
-} from '../../../testing-helpers';
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../blockquote.schema.yml'));
@@ -27,6 +27,8 @@ describe('button', () => {
     page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
+      waitLoad: true,
+      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
@@ -66,6 +68,7 @@ describe('button', () => {
 
     const renderedHTML = await html(defaultBlockquoteOuter);
 
+    await page.waitFor(500); // wait half a second before running VRTs
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
@@ -102,6 +105,7 @@ describe('button', () => {
         .classList.contains('c-bolt-blockquote--xlarge'),
     ).toBe(true);
 
+    await page.waitFor(500); // wait half a second before running VRTs
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
@@ -132,7 +136,7 @@ describe('button', () => {
     });
 
     const renderedHTML = await html(renderedBlockquoteHTML);
-
+    await page.waitFor(500); // wait half a second before running VRTs
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
