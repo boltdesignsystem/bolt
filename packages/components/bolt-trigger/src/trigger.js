@@ -40,10 +40,8 @@ class BoltTrigger extends BoltAction {
     );
 
     const classes = cx('c-bolt-trigger', {
-      [`c-bolt-trigger--cursor-${cursor}`]:
-        cursor && cursor !== this.schema.properties.cursor.default,
-      [`c-bolt-trigger--display-${display}`]:
-        display && display !== this.schema.properties.display.default,
+      [`c-bolt-trigger--cursor-${cursor}`]: cursor,
+      [`c-bolt-trigger--display-${display}`]: display,
       [`c-bolt-trigger--outline-none`]: noOutline,
     });
 

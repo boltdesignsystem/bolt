@@ -32,8 +32,8 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  display and display != schema.properties.display.default ? "#{base_class}--display-#{display}" : "",
-  cursor and cursor != schema.properties.cursor.default ? "#{base_class}--cursor-#{cursor}" : "",
+  display ? "#{base_class}--display-#{display}" : "",
+  cursor ? "#{base_class}--cursor-#{cursor}" : "",
   no_outline ? "#{base_class}--outline-none" : "",
 ] %}
 
