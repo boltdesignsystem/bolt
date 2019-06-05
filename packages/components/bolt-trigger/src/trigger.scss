@@ -15,7 +15,7 @@ $bolt-trigger-transition: $bolt-transition;
  */
 
 // @todo: move this to core and combine with bolt-custom-element() mixin.
-@mixin bolt-custom-element-styles($name, $props: null) {
+@mixin bolt-trigger-element-styles($name, $props: null) {
   @if $props {
     @each $prop in $props {
       #{$name}#{$prop} {
@@ -35,7 +35,7 @@ $bolt-trigger-transition: $bolt-transition;
   }
 }
 
-@include bolt-custom-element-styles(
+@include bolt-trigger-element-styles(
   bolt-trigger,
   (
     '[no-outline]:active',
