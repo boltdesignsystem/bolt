@@ -92,25 +92,27 @@ class BoltInteractivePathway extends withLitHtml() {
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
-        <h1>Currently Active Item: ${this.activeItem}</h1>
-        <ul>
+        <ul class="c-bolt-interactive-pathway__nav">
           ${this.fooList.map(
             (item, index) => html`
               <li
-                class="c-bolt-interactive-pathway__stage"
+                 class="c-bolt-interactive-pathway__nav-item"
                 data-pathway-step="${item}"
                 data-is-active="${index === 0 ? 'active' : 'inactive'}"
                 @click=${this.clickHandler}
               >
-                Item ${item}
+                <span class="pathway__nav-item-dot">&#9679;</span>
+                <span class="pathway__nav-item-text">${item}</span>
               </li>
             `,
           )}
         </ul>
-        <div class="stage">
+        <div class="c-bolt-interactive-pathway__body">
+        <h1>Currently Active Item: ${this.activeItem}</h1>
           ${this.fooList.map(
             (item, index) => html`
               <div
+                class="c-bolt-interactive-pathway__step"
                 data-pathway-step="${item}"
                 data-is-active="${index === 0 ? 'active' : 'inactive'}"
               >
