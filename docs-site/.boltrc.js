@@ -169,7 +169,7 @@ const config = {
       file: `${path.dirname(
         resolve.sync('@bolt/twig-renderer/package.json'),
       )}/SetupTwigRenderer.php`,
-      functions: ['addBoltExtensions'],
+      functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },
   ],
 };
