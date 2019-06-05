@@ -76,9 +76,9 @@ class BoltInteractivePathway extends withLitHtml() {
 
   _TEMPrerenderPathwayTitleHelper() {
     // Disable all list items
-    this.renderRoot
-      .querySelector('h1')
-      .innerHTML = `Currently Active Item: ${this.activeItem}`;
+    this.renderRoot.querySelector('h1').innerHTML = `Currently Active Item: ${
+      this.activeItem
+    }`;
   }
 
   render() {
