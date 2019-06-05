@@ -64,7 +64,7 @@ class BoltInteractivePathway extends withLitHtml() {
   _rerenderPathwayStage() {
     // Disable all list items
     this.renderRoot
-      .querySelectorAll('.c-bolt-interactive-pathway__stage')
+      .querySelectorAll('.c-bolt-interactive-pathway__step')
       .forEach(item => {
         const updatedItemState =
           item.getAttribute('data-pathway-step') === this.activeItem
@@ -93,30 +93,111 @@ class BoltInteractivePathway extends withLitHtml() {
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <ul class="c-bolt-interactive-pathway__nav">
-          ${this.fooList.map(
-            (item, index) => html`
-              <li
-                 class="c-bolt-interactive-pathway__nav-item"
-                data-pathway-step="${item}"
-                data-is-active="${index === 0 ? 'active' : 'inactive'}"
-                @click=${this.clickHandler}
-              >
-                <span class="pathway__nav-item-dot">&#9679;</span>
-                <span class="pathway__nav-item-text">${item}</span>
-              </li>
-            `,
-          )}
+          <li
+            class="c-bolt-interactive-pathway__nav-item"
+            data-pathway-step="1"
+            data-is-active="active"
+            @click=${this.clickHandler}
+          >
+            <span class="pathway__nav-item-dot">&#9679;</span>
+            <span class="pathway__nav-item-text">Moment of need</span>
+          </li>
+
+          <li
+            class="c-bolt-interactive-pathway__nav-item"
+            data-pathway-step="2"
+            data-is-active="inactive"
+            @click=${this.clickHandler}
+          >
+            <span class="pathway__nav-item-dot">&#9679;</span>
+            <span class="pathway__nav-item-text">Next best action</span>
+          </li>
+
+          <li
+            class="c-bolt-interactive-pathway__nav-item"
+            data-pathway-step="3"
+            data-is-active="inactive"
+            @click=${this.clickHandler}
+          >
+            <span class="pathway__nav-item-dot">&#9679;</span>
+            <span class="pathway__nav-item-text">Context across channels</span>
+          </li>
+
+          <li
+            class="c-bolt-interactive-pathway__nav-item"
+            data-pathway-step="4"
+            data-is-active="inactive"
+            @click=${this.clickHandler}
+          >
+            <span class="pathway__nav-item-dot">&#9679;</span>
+            <span class="pathway__nav-item-text">Resolve</span>
+          </li>
+
+          <li
+            class="c-bolt-interactive-pathway__nav-item"
+            data-pathway-step="5"
+            data-is-active="inactive"
+            @click=${this.clickHandler}
+          >
+            <span class="pathway__nav-item-dot">&#9679;</span>
+            <span class="pathway__nav-item-text">Outcomes</span>
+          </li>
+
+          <li
+            class="c-bolt-interactive-pathway__nav-item"
+            data-pathway-step="6"
+            data-is-active="inactive"
+            @click=${this.clickHandler}
+          >
+            <span class="pathway__nav-item-dot">&#9679;</span>
+            <span class="pathway__nav-item-text">What's next?</span>
+          </li>
         </ul>
         <div class="c-bolt-interactive-pathway__body">
-        <h1>Currently Active Item: ${this.activeItem}</h1>
           ${this.fooList.map(
             (item, index) => html`
               <div
                 class="c-bolt-interactive-pathway__step"
-                data-pathway-step="${item}"
+                data-pathway-step="${index}"
                 data-is-active="${index === 0 ? 'active' : 'inactive'}"
               >
-                pane ${item}
+                <div
+                  class="c-bolt-interactive-pathway__step-dialogue c-bolt-interactive-pathway__step-dialogue--left"
+                >
+                  <bolt-tooltip>
+                    Lorem ipsum dolor sit amet ${item}, Lorem ipsum dolor sit
+                    amet ${item}, Lorem ipsum dolor sit amet ${item}, Lorem
+                    ipsum dolor sit amet ${item}
+                  </bolt-tooltip>
+                </div>
+                <div
+                  class="c-bolt-interactive-pathway__step-image"
+                  data-animation-type="{{ step.image_entrance_type }}"
+                  data-animation-speed="{{ step.image_entrance_speed }}"
+                  data-animation-delay="{{ step.image_entrance_delay }}"
+                >
+                  <img src="{{ file_url(step.image_url) }}" alt="" />
+                  <img
+                    class="c-bolt-interactive-pathway__step-person-icon c-bolt-interactive-pathway__step-customer--{{ step.customer_disposition }}"
+                    src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png"
+                    alt="Customer is {{ step.customer_disposition }}"
+                  />
+                  <img
+                    class="c-bolt-interactive-pathway__step-person-icon c-bolt-interactive-pathway__step-pega-rep"
+                    src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
+                    alt="Your helpful Pega Rep"
+                  />
+                </div>
+                <div
+                  class="c-bolt-interactive-pathway__step-body"
+                  data-animation-type="{{ step.body_animation_type }}"
+                  data-animation-speed="{{ step.body_animation_speed }}"
+                  data-animation-delay="{{ step.body_animation_delay }}"
+                >
+                  Lorem ipsum dolor sit amet ${item}, Lorem ipsum dolor sit amet
+                  ${item}, Lorem ipsum dolor sit amet ${item}, Lorem ipsum dolor
+                  sit amet ${item}
+                </div>
               </div>
             `,
           )}

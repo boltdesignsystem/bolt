@@ -57,6 +57,8 @@
     list-style: none;
     & > li {
       position: relative;
+      display: flex;
+      align-items: center;
       padding-left: 40px;
       transition: font-size 0.5s ease;
     }
@@ -80,7 +82,7 @@
       display: inline-block;
       position: absolute;
       z-index: 10;
-      margin-left: -40px;
+      margin-left: -38px;
       color: #AAB2F2;
       font-size: 20px;
       transition: color 0.5s ease, transform 0.5s ease;

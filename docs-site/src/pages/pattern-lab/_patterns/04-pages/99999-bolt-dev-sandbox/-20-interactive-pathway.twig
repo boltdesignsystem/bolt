@@ -3,7 +3,7 @@
 {% block main_content %}
   {% set header %}
     {% include "@bolt/headline.twig" with {
-      "text": "CKEditor 4",
+      "text": "Interactive Pathways Playground",
       "size": "xxxlarge",
       "tag": "h1"
     } only %}
@@ -23,6 +23,10 @@
   } only %}
   {% include "@bolt-components-band/band.twig" with {
     "theme": "xlight",
+    "content": article
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    "theme": "dark",
     "content": article
   } only %}
 {% endblock %}
