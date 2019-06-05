@@ -112,7 +112,7 @@ class BoltModal extends withLitHtml() {
       'show' in document.createElement('dialog') &&
       this.dialog.nodeName === 'DIALOG';
 
-    this.dispatchEvent(new CustomEvent('ready'));
+    this.dispatchEvent(new CustomEvent('modal:ready'));
   }
 
   // aliases for the `show` and `hide` methods
