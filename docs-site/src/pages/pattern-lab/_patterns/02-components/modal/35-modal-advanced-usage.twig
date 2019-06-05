@@ -109,10 +109,10 @@
     var onModalReady = function(e) {
       setAutoOpenModal(autoOpenModal);
       // IMPORTANT: remove this event listener unless you want it called each time the modal component renders
-      e.target.removeEventListener('bolt:ready', onModalReady);
+      e.target.removeEventListener('modal:ready', onModalReady);
     }
 
     // Add 'ready' callback
-    autoOpenModal.addEventListener('bolt:ready', onModalReady);
+    autoOpenModal.addEventListener('modal:ready', onModalReady);
   </script>
 </div>
