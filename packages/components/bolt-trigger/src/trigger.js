@@ -34,6 +34,14 @@ class BoltTrigger extends BoltAction {
     return self;
   }
 
+  _handleFocus() {
+    this.dispatchEvent(new CustomEvent('trigger:focus', { bubbles: true }));
+  }
+
+  _handleBlur() {
+    this.dispatchEvent(new CustomEvent('trigger:blur', { bubbles: true }));
+  }
+
   render() {
     const { url, target, cursor, display, noOutline } = this.validateProps(
       this.props,
@@ -63,6 +71,10 @@ class BoltTrigger extends BoltAction {
         triggerElement.setAttribute('target', target);
       }
 
+      // @todo: use of buttons/anchors in the default slot has not been thoroughly tested. Is this even required?
+      // triggerElement.addEventListener('focus', this._handleFocus);
+      // triggerElement.addEventListener('blur', this._handleBlur);
+
       render(this.slot('default'), triggerElement);
     } else if (hasUrl) {
       triggerElement = html`
@@ -70,12 +82,18 @@ class BoltTrigger extends BoltAction {
           href="${url}"
           class="${classes}"
           target="${ifDefined(target ? target : undefined)}"
+          @focus="${e => this._handleFocus(e)}"
+          @blur="${e => this._handleBlur(e)}"
           >${this.slot('default')}</a
         >
       `;
     } else {
       triggerElement = html`
-        <button class="${classes}">
+        <button
+          class="${classes}"
+          @focus="${e => this._handleFocus(e)}"
+          @blur="${e => this._handleBlur(e)}"
+        >
           ${this.slot('default')}
         </button>
       `;

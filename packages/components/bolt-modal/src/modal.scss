@@ -364,6 +364,10 @@ bolt-modal:not([ready]) {
   }
 }
 
+// For IE which doesn't support :focus-within
+.c-bolt-modal__close-button--focus-within {
+}
+
 .c-bolt-modal__close-button--hidden {
   @include bolt-mq($bolt-modal-breakpoint) {
     @include bolt-visuallyhidden;

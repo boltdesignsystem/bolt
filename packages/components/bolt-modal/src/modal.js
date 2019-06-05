@@ -236,6 +236,16 @@ class BoltModal extends withLitHtml() {
     }
   }
 
+  _handleTriggerFocus(e) {
+    const closeButton = e.target.closest('.c-bolt-modal__close-button');
+    closeButton.classList.add('c-bolt-modal__close-button--focus-within');
+  }
+
+  _handleTriggerBlur(e) {
+    const closeButton = e.target.closest('.c-bolt-modal__close-button');
+    closeButton.classList.remove('c-bolt-modal__close-button--focus-within');
+  }
+
   /**
    * Set the focus to the first element with `autofocus` or the first focusable
    * child of the given element
@@ -356,7 +366,7 @@ class BoltModal extends withLitHtml() {
       [`c-bolt-modal__close-button--hidden`]: hideCloseButton,
     });
 
-    const onButtonFocus = e => {
+    const delegateFocus = e => {
       if (!this.useShadow) {
         const button = e.target.renderRoot.querySelector('button');
         button && button.focus();
@@ -371,7 +381,9 @@ class BoltModal extends withLitHtml() {
       <bolt-trigger
         class="js-close-button-fallback"
         @click=${e => this.hide(e)}
-        @focus=${e => onButtonFocus(e)}
+        @focus=${e => delegateFocus(e)}
+        @trigger:focus=${e => this._handleTriggerFocus(e)}
+        @trigger:blur=${e => this._handleTriggerBlur(e)}
         display="block"
         no-outline
         autofocus
