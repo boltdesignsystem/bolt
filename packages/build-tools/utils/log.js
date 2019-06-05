@@ -109,8 +109,8 @@ function intro() {
   const i = chalk.hex('#545DA6'); // indigo, light
   const y = chalk.hex('#ffcc4d'); // yellow, base
   const o = chalk.hex('#E84B17');
-  const t = chalk.hex('#009999')
-  const w = chalk.hex('#FFFFFF')
+  const t = chalk.hex('#009999');
+  const w = chalk.hex('#FFFFFF');
 
   const CLI_TITLE = chalk.bold.underline('Bolt Design System CLI');
   const CLI_USAGE = 'Usage: `bolt <command> [options ...]`';
