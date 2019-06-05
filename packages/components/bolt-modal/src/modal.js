@@ -154,7 +154,7 @@ class BoltModal extends withLitHtml() {
     // this.dialog.setAttribute('open', '');
     // this.container.removeAttribute('aria-hidden');
 
-    this.dispatchEvent(new CustomEvent('onshow'));
+    this.dispatchEvent(new CustomEvent('modal:show'));
   }
 
   /**
@@ -205,7 +205,7 @@ class BoltModal extends withLitHtml() {
       // });
     }
 
-    this.dispatchEvent(new CustomEvent('onhide'));
+    this.dispatchEvent(new CustomEvent('modal:hide'));
   }
 
   /**

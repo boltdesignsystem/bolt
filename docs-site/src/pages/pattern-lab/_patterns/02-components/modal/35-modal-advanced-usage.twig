@@ -38,11 +38,11 @@
     const videoModal = document.querySelector('#video-modal');
     const DemoVideo = document.querySelector('#demo-video');
 
-    videoModal.addEventListener('onshow', function() {
+    videoModal.addEventListener('modal:show', function() {
       DemoVideo.play();
     });
 
-    videoModal.addEventListener('onhide', function() {
+    videoModal.addEventListener('modal:hide', function() {
       DemoVideo.pause();
     });
   </script>
