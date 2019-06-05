@@ -1,5 +1,5 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './interactive-pathways.scss';
 import schema from '../interactive-pathways.schema.yml';
@@ -25,7 +25,7 @@ class BoltInteractivePathways extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.schema = this.getModifiedSchema(schema);
+    self.schema = schema;
     return self;
   }
 

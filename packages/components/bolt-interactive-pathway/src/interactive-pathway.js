@@ -25,7 +25,7 @@ class BoltInteractivePathway extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    // self.schema = this.getModifiedSchema(schema);
+    self.schema = schema;
 
     self.fooList = ['One', 'Two', 'Three', 'Four', 'Five'];
     self.activeItemIndex = 0;
