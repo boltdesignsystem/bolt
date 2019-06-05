@@ -9,7 +9,7 @@ import {
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 
-const timeout = 60000;
+const timeout = 120000;
 
 const viewportSizes = [
   {
