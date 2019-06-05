@@ -1,13 +1,18 @@
 // webpack.config.js
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-// const CriticalCssPlugin = require('critical-css-webpack-plugin');
+const CriticalCssPlugin = require('critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
@@ -15,7 +20,7 @@ const explorer = cosmiconfig('patternlab');
 // @todo: wire these two ocnfigs up to use cosmicconfig!
 const defaultConfig = {
   buildDir: './dist',
-  prod: false, // or false for local dev
+  prod: true, // or false for local dev
   sourceMaps: false,
 };
 
@@ -83,10 +88,13 @@ module.exports = async function() {
         'js/patternlab-viewer': './src/scripts/patternlab-viewer.js',
         'css/pattern-lab': './src/sass/pattern-lab.scss',
       },
+      performance: {
+        hints: false,
+      },
       resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-          react: 'preact-compat',
+          react: path.resolve(__dirname, './src/scripts/utils/preact-compat'),
           'react-dom': 'preact-compat',
         },
       },
@@ -133,6 +141,13 @@ module.exports = async function() {
                   ],
                 ],
                 plugins: [
+                  [
+                    '@babel/plugin-transform-runtime',
+                    {
+                      helpers: false,
+                      regenerator: true,
+                    },
+                  ],
                   ['@babel/plugin-proposal-decorators', { legacy: true }],
                   '@babel/plugin-proposal-class-properties',
                   '@babel/plugin-syntax-dynamic-import',
@@ -149,6 +164,18 @@ module.exports = async function() {
                 ],
               },
             },
+          },
+          {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: '@svgr/webpack',
+              },
+            ],
+          },
+          {
+            test: /\.css$/,
+            use: ['style-loader', 'css-loader'],
           },
           {
             test: /\.scss$/,
@@ -171,7 +198,7 @@ module.exports = async function() {
                 // otherwise extract the result and write out a .css file per usual
                 use: [MiniCssExtractPlugin.loader, scssLoaders].reduce(
                   (acc, val) => acc.concat(val),
-                  []
+                  [],
                 ),
               },
             ],
@@ -181,27 +208,50 @@ module.exports = async function() {
       cache: true,
       mode: config.prod ? 'production' : 'development',
       optimization: {
+        minimize: true,
+        occurrenceOrder: true,
+        namedChunks: true,
+        removeAvailableModules: true,
+        removeEmptyChunks: true,
+        nodeEnv: 'production',
         mergeDuplicateChunks: true,
         concatenateModules: true,
-        minimizer: config.prod
-          ? [
-              new UglifyJsPlugin({
-                sourceMap: true,
-                parallel: true,
-                cache: true,
-                uglifyOptions: {
-                  compress: true,
-                  mangle: true,
-                  output: {
-                    comments: false,
-                    beautify: false,
-                  },
-                },
-              }),
-            ]
-          : [],
+        // splitChunks: {
+        //   chunks: 'async',
+        //   cacheGroups: {
+        //     vendors: {
+        //       test: /[\\/]node_modules[\\/]/,
+        //       name: 'vendors',
+        //       chunks: 'async',
+        //       reuseExistingChunk: true,
+        //     },
+        //   },
+        // },
+        minimizer: config.prod ? [new TerserPlugin()] : [],
       },
       plugins: [
+        new PrerenderSPAPlugin({
+          // Required - The path to the webpack-outputted app to prerender.
+          // staticDir: path.join(__dirname, 'dist'),
+          staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
+          // Required - Routes to render.
+          routes: ['/'],
+          postProcess(context) {
+            context.html = context.html.replace(
+              /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
+              '',
+            );
+            return context;
+          },
+          renderer: new Renderer({
+            // Optional - The name of the property to add to the window object with the contents of `inject`.
+            injectProperty: '__PRERENDER_INJECTED',
+            // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
+            inject: {
+              foo: 'bar',
+            },
+          }),
+        }),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
           [
@@ -215,7 +265,7 @@ module.exports = async function() {
 
             // perform clean just before files are emitted to the output dir
             beforeEmit: true,
-          }
+          },
         ),
         new HtmlWebpackPlugin({
           filename: '../index.html',
@@ -231,35 +281,50 @@ module.exports = async function() {
       ],
     };
 
-    if (config.prod) {
-      webpackConfig.plugins.push(
-        // new CriticalCssPlugin({
-        //   base: path.resolve(__dirname, config.buildDir),
-        //   src: 'index.html',
-        //   dest: 'index.html',
-        //   inline: true,
-        //   minify: true,
-        //   extract: true,
-        //   width: 1300,
-        //   height: 900,
-        //   penthouse: {
-        //     keepLargerMediaQueries: true,
+    webpackConfig.plugins.push(
+      new HardSourceWebpackPlugin({
+        info: {
+          level: 'warn',
+        },
+        // Clean up large, old caches automatically.
+        cachePrune: {
+          // Caches younger than `maxAge` are not considered for deletion. They must
+          // be at least this (default: 2 days) old in milliseconds.
+          maxAge: 2 * 24 * 60 * 60 * 1000,
+          // All caches together must be larger than `sizeThreshold` before any
+          // caches will be deleted. Together they must be at least 300MB in size
+          sizeThreshold: 300 * 1024 * 1024,
+        },
+      }),
+    );
 
-        //     // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
-        //     forceInclude: [
-        //       '.pl-c-body--theme-light',
-        //       '.pl-c-body--theme-sidebar',
-        //       '.pl-c-body--theme-sidebar .pl-c-viewport',
-        //       '.pl-c-body--theme-density-compact',
-        //     ],
-        //     timeout: 30000, // ms; abort critical CSS generation after this timeout
-        //     maxEmbeddedBase64Length: 1000,
-        //     renderWaitTime: 1000,
-        //     blockJSRequests: false,
-        //   },
-        // })
-      );
-    }
+    webpackConfig.plugins.push(
+      new CriticalCssPlugin({
+        base: path.resolve(__dirname, config.buildDir),
+        src: 'index.html',
+        dest: 'index.html',
+        inline: true,
+        minify: true,
+        extract: false,
+        width: 1300,
+        height: 900,
+        penthouse: {
+          keepLargerMediaQueries: true,
+
+          // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
+          forceInclude: [
+            '.pl-c-body--theme-light',
+            '.pl-c-body--theme-sidebar',
+            '.pl-c-body--theme-sidebar .pl-c-viewport',
+            '.pl-c-body--theme-density-compact',
+          ],
+          timeout: 30000, // ms; abort critical CSS generation after this timeout
+          maxEmbeddedBase64Length: 1000,
+          renderWaitTime: 1000,
+          blockJSRequests: false,
+        },
+      }),
+    );
 
     return resolve(webpackConfig);
   });

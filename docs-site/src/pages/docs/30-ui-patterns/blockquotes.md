@@ -21,17 +21,17 @@ Use the following examples as a guide for using quotes throughout your layouts.
 ### In hero areas
 
 <figure>
-<img src="/images/docs/quote_hero_home.png" />
+<img src="/images/docs/quote_hero_home.jpg" />
 <figcaption>Customer quotes can make a dramatic statement in a lockup band.</figcaption>
 </figure>
 
 <figure>
-<img src="/images/docs/quote_hero.png" />
+<img src="/images/docs/quote_hero.jpg" />
 <figcaption>Use a quote alongside a marketing headline to amplify the message.</figcaption>
 </figure>
 
 ### In page interiors
 <figure>
-<img src="/images/docs/quote_band.png" />
+<img src="/images/docs/quote_band.jpg" />
 <figcaption>Add a quote in the middle of the page to support your main message. </figcaption>
 </figure>

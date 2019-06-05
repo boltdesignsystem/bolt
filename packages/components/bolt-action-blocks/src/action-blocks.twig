@@ -1,88 +1,85 @@
-{# Sample Usage
-  {% include "@bolt/action-blocks.twig" with {
-    maxItemsPerRow: 3,  // Optional [2 ~ 12]. Default is 3.
-    align: "top",       // Optional [top, center, bottom]. Default is top.
-    border: true,       // Optional [show, hide]. Default shows borders, but you can turn them off.
-    contentItems: [
-      {
-        text: "Item 1",
-        url: "http://google.com",
-        icon: {
-          name: "icon-name",
-          size: "large",
-          background: "circle"
-        }
-      },
-      {
-        text: "Item 2",
-        url: "http://google.com",
-        icon: {
-          name: "icon-name",
-          size: "large",
-          background: "circle"
-        }
-      },
-      {
-        text: "Item 3",
-        url: "http://google.com",
-        icon: {
-          name: "icon-name",
-          size: "large",
-          background: "circle"
-        }
-      }
-    ]
-  } only %}
-#}
+{% set schema = bolt.data.components["@bolt-components-action-blocks"].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-action-blocks'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set prefix = "c-bolt-" %}
-
-{% set minItems = 2 %}
-{% set maxItems = 12 %}
-{% set defaultItems = 6 %}
-
-{% set alignments = {
-  "top": "start",
-  "center": "center",
-  "bottom": "end"
-} %}
-
+{# Variables #}
+{% set base_class = "c-bolt-action-blocks" %}
 {% set attributes = create_attribute(attributes|default({})) %}
+{% set inner_attributes = create_attribute({}) %}
 
+{# DEPRECATED: maxItemsPerRow has been renamed to max_items_per_row #}
+{% if maxItemsPerRow %}
+  {% set max_items_per_row = maxItemsPerRow %}
+{% endif %}
 
-{% set componentName = "action-blocks" %}
-{% set baseClass = prefix ~ componentName %}
-{% set componentItemName = "action-block" %}
-{% set itemClass = prefix ~ componentItemName %}
-{% set maxItemsPerRow = maxItemsPerRow >= minItems and maxItemsPerRow <= maxItems ? maxItemsPerRow : defaultItems %}
-{% set align = align | default("top") %}
-{% set border = border is sameas(false) ? false : true %}
+{# DEPRECATED: align has been renamed to valign #}
+{% if align == "top" %}
+  {% set valign = "start" %}
+{% elseif align == "bottom" %}
+  {% set valign = "end" %}
+{% elseif align == "center" %}
+  {% set valign = align %}
+{% endif %}
 
+{# DEPRECATED: use borderless instead #}
+{% if border is sameas(true) %}
+  {% set borderless = false %}
+{% elseif border is sameas(false) %}
+  {% set borderless = true %}
+{% endif %}
 
+{# Set up checks to validate that the component's prop values are allowed, based on the component's schema #}
+{% set valign_options = schema.properties.valign.enum %}
+{% set max_items_per_row_options = schema.properties.max_items_per_row.enum %}
+
+{# Check that the component's current prop values are valid. if not, default to the schema default #}
+{% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
+{% set max_items_per_row = max_items_per_row in max_items_per_row_options ? max_items_per_row : schema.properties.max_items_per_row.default %}
+{% set borderless = borderless is sameas(true) or borderless is sameas(false) ? borderless : schema.properties.borderless.default %}
+
+{# Array of classes based on the defined + default props #}
 {% set classes = [
-  baseClass,
-  maxItemsPerRow ? baseClass ~ "--item-max-" ~ maxItemsPerRow : "",
-  align in alignments|keys ? baseClass ~ "--vertical-align-" ~ alignments[align],
-  border ? baseClass ~ "--bordered" : baseClass ~ "--borderless"
+  base_class,
+  valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
+  max_items_per_row in max_items_per_row_options ? "#{base_class}--item-max-#{max_items_per_row}" : "",
+  borderless ? "#{base_class}--borderless" : "",
 ] %}
 
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
 
-<bolt-{{ componentName }} bolt-component>
-  <ul {{ attributes.addClass(classes) }}>
+{% for class in attributes["class"] %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+{# Example component's custom element wrapper #}
+<bolt-action-blocks
+  {% if valign %} valign="{{ valign }}" {% endif %}
+  {% if max_items_per_row %} max-items-per-row="{{ max_items_per_row }}" {% endif %}
+  {% if borderless %} borderless {% endif %}
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ attributes | without("class") }}
+>
+  <ul {{ inner_attributes.addClass(inner_classes) }}>
     {% if children %}
       {{ children }}
     {% else %}
       {% for item in contentItems %}
-        <li class="{{ "#{baseClass}__item" }}">
-          {% include "@bolt/action-block.twig" with item only %}
+        <li class="{{ "#{base_class}__item" }}">
+          {% include "@bolt-components-action-blocks/_action-blocks-item.twig" with item only %}
         </li>
       {% endfor %}
     {% endif %}
   </ul>
-</bolt-{{ componentName }}>
-
-
+</bolt-action-blocks>

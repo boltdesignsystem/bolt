@@ -10,18 +10,16 @@ export const AuthorImage = elem => {
   if (slots['author-image'] || props.authorImage) {
     return html`
       <div class="${cx('c-bolt-blockquote__image')}">
-        ${
-          slots['author-image']
-            ? html`
-                ${elem.slot('author-image')}
-              `
-            : html`
-                <img
-                  src="${props.authorImage}"
-                  alt=${ifDefined(props.authorTitle)}
-                />
-              `
-        }
+        ${slots['author-image']
+          ? html`
+              ${elem.slot('author-image')}
+            `
+          : html`
+              <img
+                src="${props.authorImage}"
+                alt=${ifDefined(props.authorTitle)}
+              />
+            `}
       </div>
     `;
   }

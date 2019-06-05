@@ -1,0 +1,29 @@
+{# Variables #}
+{% set base_class = "c-bolt-list-item" %}
+{% set attributes = create_attribute({}) %}
+{% set tag = item_tag %}
+
+{% set last = loop.last %}
+{% set classes = [
+  base_class,
+  display in display_options ? "#{base_class}--display-#{display}" : "",
+  spacing in spacing_options ? "#{base_class}--spacing-#{spacing}" : "",
+  separator in separator_options ? "#{base_class}--separator-#{separator}" : "",
+  align in align_options ? "#{base_class}--align-#{align}" : "",
+  last ? "#{base_class}--last-item",
+  inset ? "#{base_class}--inset",
+] %}
+
+<bolt-list-item
+  {% if last %} last {% endif %}
+>
+  <replace-with-grandchildren>
+    <{{ tag }} {{ attributes.addClass(classes) }}>
+      {% if item is iterable %}
+        {{ item.content }}
+      {% else %}
+        {{ item }}
+      {% endif %}
+    </{{ tag }}>
+  </replace-with-grandchildren>
+</bolt-list-item>

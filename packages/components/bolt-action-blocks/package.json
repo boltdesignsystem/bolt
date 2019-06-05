@@ -8,8 +8,7 @@
     "design system",
     "components"
   ],
-  "version": "2.3.0-rc.0",
-  "sourceFilesFrom": "0.9.0",
+  "version": "2.4.1",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -24,15 +23,21 @@
   ],
   "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-action-blocks",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "src/action-blocks.scss",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-action-blocks"
+  },
+  "bugs": {
+    "url": "https://github.com/bolt-design-system/bolt/issues"
+  },
+  "style": "index.scss",
+  "twig": "src/action-blocks.twig",
   "schema": "action-blocks.schema.yml",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^2.3.0-rc.0"
+    "@bolt/core": "^2.4.0"
   },
-  "gitHead": "b47538629e315eeecbdfcb8d0c22e787b3bcc089"
+  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
 }

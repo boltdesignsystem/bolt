@@ -8,21 +8,24 @@ const config = {
   // lang: ['en', 'ja'],
 
   renderingService: false, // starts PHP service for rendering Twig templates
-  openServerAtStart: false,
+  openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pwa',
   srcDir: './src/pages',
   buildDir: '../www/build',
   dataDir: '../www/build/data',
+  iconDir: [],
   wwwDir: '../www',
   startPath: '/',
   plConfigFile: './config/config.yml',
   verbosity: 2,
   schemaErrorReporting: 'cli',
-  enableCache: true,
   webpackDevServer: {
     enabled: true,
   },
+  sourceMaps: process.env.TRAVIS || argv.prod ? false : true,
+  enableCache: process.env.TRAVIS || argv.prod ? false : true,
+  enableSSR: false, // temp disabld till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -71,11 +74,17 @@ const config = {
 
   components: {
     global: [
+      '@bolt/components-radio-switch',
+      '@bolt/components-carousel',
       '@bolt/global',
       '@bolt/animations',
+      '@bolt/docs-search',
       '@bolt/schema-form',
+      '@bolt/analytics-autolink',
+      '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
       '@bolt/components-action-blocks',
+      '@bolt/components-banner',
       '@bolt/components-dropdown',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
@@ -111,6 +120,7 @@ const config = {
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
+      '@bolt/components-stack',
       '@bolt/components-table',
       '@bolt/components-teaser',
       '@bolt/components-text',
@@ -145,6 +155,11 @@ const config = {
       flatten: true,
     },
     {
+      from: `src/assets/videos`,
+      to: path.join(__dirname, '../www/videos'),
+      flatten: true,
+    },
+    {
       from: `${path.dirname(
         resolve.sync('@bolt/global/package.json'),
       )}/favicons/bolt`,
@@ -157,7 +172,7 @@ const config = {
       file: `${path.dirname(
         resolve.sync('@bolt/twig-renderer/package.json'),
       )}/SetupTwigRenderer.php`,
-      functions: ['addBoltExtensions'],
+      functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },
   ],
 };

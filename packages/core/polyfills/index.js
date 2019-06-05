@@ -7,10 +7,16 @@ import 'core-js/modules/es6.string.starts-with';
 import 'core-js/modules/es7.array.includes';
 import 'core-js/modules/es6.array.for-each';
 import 'core-js/modules/es6.object.assign';
+import 'core-js/modules/es6.string.includes';
 import './custom-event-polyfill';
 import 'core-js/modules/es6.array.find';
 import './symbol-polyfill';
 import '@webcomponents/template/template.js';
+
+import smoothscroll from 'smoothscroll-polyfill';
+
+// kick off the polyfill!
+smoothscroll.polyfill();
 
 if (window.NodeList && !NodeList.prototype.forEach) {
   NodeList.prototype.forEach = Array.prototype.forEach;

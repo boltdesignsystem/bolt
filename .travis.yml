@@ -1,11 +1,16 @@
-sudo: required
+sudo: false
 dist: trusty
 language: php
 php:
   - 7.1
 
+cache:
+  yarn: true
+  directories:
+    - $HOME/.composer/cache
+
 addons:
-  sauce_connect: true
+  chrome: stable
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
@@ -16,6 +21,10 @@ before_install:
 services:
   - docker
 
+addons:
+  chrome: stable
+
+# see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
 stages:
   - Prep
@@ -27,96 +36,91 @@ stages:
 jobs:
   include:
     - stage: Prep
-      name: 'Smoke Tests: Install, Lint, Unit'
-      before_script:
-        - phpenv config-rm xdebug.ini
-        - composer global require hirak/prestissimo
-        - yarn run setup:quick
-        - ./scripts/check-run-queue.js 'Lint'
-        - ./scripts/check-run-queue.js 'Unit'
-      script:
-        - ./test/lint.js
-        - ./test/unit.js
+      name: 'Smoke Tests: Linting'
+      install: travis_retry yarn run setup:quick
+      before_script: ./scripts/check-run-queue.js 'Lint'
+      script: yarn run lint
+      after_success: ./scripts/check-run-success.js 'Lint'
+      after_failure: ./scripts/check-run-failure.js 'Lint'
       cache:
-        yarn: true
         directories:
-          - node_modules
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
+
+    - stage: Prep
+      name: 'Smoke Tests: Unit Tests (Jest)'
+      install: travis_retry yarn run setup
+      before_script: ./scripts/check-run-queue.js 'Unit'
+      script: yarn run test
+      after_success: ./scripts/check-run-success.js 'Unit'
+      after_failure: ./scripts/check-run-failure.js 'Unit'
+      cache:
+        directories:
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Prep
       name: 'Build + Deploy'
-      # before_script:
-      #   - phpenv config-rm xdebug.ini
-      #   - composer global require hirak/prestissimo
-      #   - yarn run setup
       script:
-        # - yarn run build
-        # - yarn run deploy
-        - docker --log-level error pull boltdesignsystem/bolt || true
-        - docker build --cache-from boltdesignsystem/bolt --tag boltdesignsystem/bolt .
-        - docker images
-        - echo $DOCKER_HUB_PASS | docker login --username $DOCKER_HUB_USER --password-stdin
-        - GIT_SHA="$(git rev-parse --short HEAD)"
-        - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:latest
-        - docker tag boltdesignsystem/bolt boltdesignsystem/bolt:${GIT_SHA}
-        - docker --log-level error push boltdesignsystem/bolt:latest
-        - docker --log-level error push boltdesignsystem/bolt:${GIT_SHA}
-      after_script:
-        - ./scripts/check-run-in-progress.js 'Deploy - now.sh'
-        - cd scripts && npm install
-        - npm run deploy
+        # Clear incache file on normal Travis builds
+        - find . -name '.incache' -exec rm -rf {} +
+        - travis_retry yarn run setup
+        - yarn run build
+        - travis_wait 15 yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
-        - ./release/update-read-only-git-repos.sh
+        - ./scripts/release/update-read-only-git-repos.sh
       cache:
-        yarn: true
         directories:
-          - node_modules
-          - scripts/node_modules
+          - docs-site/node_modules/.cache
           - docs-site/cache
-          - www/pattern-lab/styleguide/js
-          - www/pattern-lab/styleguide/css
-          - www/pattern-lab/index.html
+          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
+      install: travis_retry yarn run setup
+      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
-        - yarn run setup
-        - ./scripts/check-run-in-progress.js 'Nightwatch'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
         - time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - npx nightwatch --config nightwatch.js --env chrome,ie11
-        - sleep 10
+        - yarn run test:e2e:full
+        - sleep 60
         - ./scripts/report-nightwatch-results.js
+      after_success:
+        - ./scripts/deploy-branch-alias.js
+        - ./scripts/deploy-tagged-release.js
       cache:
-        yarn: true
         directories:
-          - node_modules
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Test Live Site
       name: 'Ensure site is live'
+      install: travis_retry yarn run setup
+      before_script: ./scripts/check-run-in-progress.js 'Site is live'
       script:
-        - yarn run setup
-        - ./scripts/check-run-in-progress.js 'Site is live'
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
-#        - time curl -sSf "$NOW_URL" > /dev/null || ./scripts/check-run-failure.js 'Site is live' && exit 1
-#        - ./scripts/check-run-success.js 'Site is live'
         - time curl -sSf "$NOW_URL" > /dev/null
       after_success:
         - ./scripts/check-run-success.js 'Site is live'
       after_failure:
         - ./scripts/check-run-failure.js 'Site is live'
       cache:
-        yarn: true
         directories:
-          - node_modules
+          - docs-site/node_modules/.cache
+          - docs-site/cache
+          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Test Live Site
       name: 'Example master only job'
       if: branch = master
       script:
-        - echo "This only runs on master builds"
+        - echo "This example only runs on master branch builds"
 
 notifications:
   email:

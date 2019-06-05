@@ -1,0 +1,46 @@
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(bolt.data.components['@bolt-components-ul'].schema, _self) | raw }}
+{% endif %}
+
+{% set attributes = create_attribute(attributes|default({})) %}
+{% set base_class = "c-bolt-ul" %}
+
+{% set classes = [
+  base_class
+] %}
+
+{% if contentItems %}
+  {% set items = contentItems %}
+{% endif %}
+
+<bolt-ul {{ attributes | without("class") }}>
+  <replace-with-grandchildren>
+    <ul {{ attributes.addClass(classes) }}>
+      {% for item in items %}
+        {% if item is iterable %}
+          {% for i in item %}
+            {% set nested_item = {
+              type: "ul",
+              children: i,
+              nested: true,
+              index: loop.index,
+              length: loop.length,
+              last: loop.last
+            } %}
+            {% include "@bolt-components-li/li.twig" with nested_item only %}
+          {% endfor %}
+        {% else %}
+          {% set list_item = {
+            type: "ul",
+            children: item,
+            nested: false,
+            index: loop.index,
+            length: loop.length,
+            last: loop.last
+          } %}
+          {% include "@bolt-components-li/li.twig" with list_item only %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </replace-with-grandchildren>
+</bolt-ul>

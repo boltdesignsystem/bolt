@@ -1,6 +1,7 @@
 import Ajv from 'ajv';
 import { withComponent, shadow, props } from 'skatejs';
-import { findParentTag, hasNativeShadowDomSupport } from '../utils';
+import changeCase from 'change-case';
+import { findParentTag, hasNativeShadowDomSupport, renameKey } from '../utils';
 
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
@@ -65,7 +66,7 @@ export function BoltBase(Base = HTMLElement) {
 
     validateProps(propData) {
       var validatedData = propData;
-      const ajv = new Ajv({ useDefaults: 'shared' });
+      const ajv = new Ajv({ useDefaults: 'shared', coerceTypes: true });
 
       // remove default strings in prop data so schema validation can fill in the default
       for (let property in validatedData) {
@@ -74,8 +75,21 @@ export function BoltBase(Base = HTMLElement) {
         }
       }
 
-      if (this.schema) {
-        let isValid = ajv.validate(this.schema, validatedData);
+      // Skip this if formatted schema data is already stored
+      if (this.schema && !this.formattedSchema) {
+        this.formattedSchema = {};
+        Object.assign(this.formattedSchema, this.schema);
+        Object.keys(this.formattedSchema.properties).map(key => {
+          this.formattedSchema.properties = renameKey(
+            key,
+            changeCase.camelCase(key),
+            this.formattedSchema.properties,
+          );
+        });
+      }
+
+      if (this.formattedSchema) {
+        let isValid = ajv.validate(this.formattedSchema, validatedData);
 
         // bark at any schema validation errors
         if (!isValid) {

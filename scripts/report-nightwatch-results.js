@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const sleep = require('sleep-promise');
 const crypto = require('crypto');
-const fetch = require('node-fetch');
+const fetch = require('@zeit/fetch-retry')(require('node-fetch'));
 const { groupBy } = require('lodash');
 const { setCheckRun } = require('../scripts/check-run');
 
@@ -126,13 +126,16 @@ async function collectSauceLabResults(build) {
     )
       .then(async res => {
         const { ok, status, statusText } = res;
+        console.log(status);
+        console.log(statusText);
+        console.log(ok);
         if (ok) {
           filesToDeploy.push({
             sha,
             file: filePath,
             size,
           });
-          // console.log(`Uploaded ${filePath}`);
+          console.log(`Uploaded ${filePath}`);
           return filePath;
         }
         const {
@@ -165,7 +168,7 @@ async function collectSauceLabResults(build) {
             `Problem downloading file from SauceLabs: ${fileName} ${statusText}`,
           );
         }
-        // console.log(`Downloaded ${fileName}`);
+        console.log(`Downloaded ${fileName}`);
         return {
           file: await res.buffer(),
           filePath: `${buildId}/${fileName}`,
@@ -231,8 +234,14 @@ async function collectSauceLabResults(build) {
           }
         });
 
+        const filteredScreenshots = await Promise.all(
+          assetsNames.screenshots.filter(
+            screenshot => !screenshot.includes('0000screenshot.png'),
+          ),
+        );
+
         const screenshots = await Promise.all(
-          assetsNames.screenshots.map(screenshot =>
+          filteredScreenshots.map(screenshot =>
             transferFileFromSauceToNow(screenshot, buildJob.id),
           ),
         );
@@ -257,6 +266,9 @@ async function collectSauceLabResults(build) {
     });
 
     const { id, url, readyState } = await createNowDeployment(filesToDeploy);
+    console.log(readyState);
+    console.log(id);
+    console.log(url);
     if (readyState !== 'READY') {
       await ensureDeployReady(id);
     }
@@ -315,7 +327,7 @@ async function setGithubAppSauceResults(sauceResults) {
               os,
             } = test;
             const { screenshots, finalScreenshot } = assets;
-            
+
             // this adds to the full Check Run grid of images
             allImages.push(
               ...screenshots.map((screenshot, i) => {
@@ -323,13 +335,17 @@ async function setGithubAppSauceResults(sauceResults) {
                 return {
                   image_url: screenshot,
                   alt: name,
-                  caption: `${i}/${screenshots.length}: ${testName} - ${browser} ${browserVer} ${os}`,
+                  caption: `${i + 1}/${
+                    screenshots.length
+                  }: ${testName} - ${browser} ${browserVer} ${os}`,
                 };
               }),
             );
-            
+
             return `
-## ${passed ? ':+1:' : ':-1:'} ${browser} ${browserVer} ${os} ([details](${test.sauceLabsPage}))
+## ${passed ? ':+1:' : ':-1:'} ${browser} ${browserVer} ${os} ([details](${
+              test.sauceLabsPage
+            }))
 
 <details>
   
@@ -341,15 +357,15 @@ async function setGithubAppSauceResults(sauceResults) {
 <summary>Screenshots</summary>
 
 ${screenshots
-              .map(
-                (s, i) => `
+  .map(
+    (s, i) => `
 ###### Screenshot ${i}
 
 [![Screenshot ${i}](${s})](${s})
 
 `,
-              )
-              .join('')}
+  )
+  .join('')}
 
 </details>
 
@@ -362,17 +378,6 @@ ${screenshots
       })
       .join('');
 
-    const details = `
-<details>
-  <summary>Full Page Data</summary>
-
-\`\`\`json
-${JSON.stringify(sauceResults, null, '  ')}
-\`\`\`
-  
-</details>  
-    `.trim();
-
     return setCheckRun({
       name: 'Nightwatch',
       status: 'completed',
@@ -381,12 +386,7 @@ ${JSON.stringify(sauceResults, null, '  ')}
         title: `Nightwatch ${passed ? 'Success' : 'Failed'}`,
         summary,
         images: allImages,
-        text: `${text}
-
----
-
-${details}        
-        `,
+        text,
       },
     });
   } catch (error) {
@@ -399,6 +399,7 @@ ${details}
 async function go() {
   try {
     const build = `build-${TRAVIS_JOB_NUMBER}`;
+    await sleep(15000); // wait 15 seconds first before tryhing to download assets from Sauce Labs
     const sauceResults = await collectSauceLabResults(build);
     const checkRunSubmitResults = await setGithubAppSauceResults(sauceResults);
     console.log(
@@ -406,6 +407,11 @@ async function go() {
     );
   } catch (err) {
     throw new Error(err);
+    // test if we can still try to send our results even if there's a test failure.
+    const checkRunSubmitResults = await setGithubAppSauceResults(sauceResults);
+    console.log(
+      `Submitted Check Run Results: ${checkRunSubmitResults.html_url}`,
+    );
     process.exit(1);
   }
 }

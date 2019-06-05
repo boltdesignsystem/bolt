@@ -35,7 +35,7 @@ class BoltConnectForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state)
   {
-    /** @var \Twig_Environment $twig */
+    /** @var \Twig\Environment $twig */
     $twig = \Drupal::service('twig');
 
     $config = $this->config('bolt_connect.settings');

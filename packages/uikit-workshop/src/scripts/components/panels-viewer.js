@@ -2,13 +2,31 @@
  * Panel Builder - supports building the panels to be included in the modal or styleguide
  */
 
-import $ from 'jquery';
 import Hogan from 'hogan.js';
-import Prism from 'prismjs';
+// import Prism from 'prismjs';
+import Normalizer from 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
 import { Panels } from './panels';
 import { panelsUtil } from './panels-util';
 import { urlHandler, Dispatcher } from '../utils';
-import './copy-to-clipboard';
+import './pl-copy-to-clipboard/pl-copy-to-clipboard';
+import prettier from 'prettier/standalone';
+import prettierHtml from 'prettier/parser-html';
+import { html, render } from 'lit-html';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { PrismLanguages as Prism } from './prism-languages';
+const prettierPlugins = [prettierHtml];
+
+const normalizeWhitespace = new Normalizer({
+  'remove-trailing': true,
+  'remove-indent': true,
+  'left-trim': true,
+  'right-trim': true,
+  'break-lines': 100,
+  'indent': 2,
+  'remove-initial-line-feed': true,
+  'tabs-to-spaces': 2,
+  'spaces-to-tabs': 2
+});
 
 export const panelsViewer = {
   // set up some defaults
@@ -54,7 +72,7 @@ export const panelsViewer = {
     Dispatcher.addListener('checkPanels', panelsViewer.checkPanels);
 
     // set-up defaults
-    let template, templateCompiled, templateRendered;
+    let template, templateCompiled, templateRendered, templateFormatted;
 
     // get the base panels
     const panels = Panels.get();
@@ -88,17 +106,30 @@ export const panelsViewer = {
           /* eslint-disable */
           e.onload = (function(i, panels, patternData, iframeRequest) {
             return function() {
-              const prismedContent = Prism.highlight(
-                this.responseText,
-                Prism.languages.html
+              if (panels[i].name === "HTML"){
+                templateFormatted = prettier.format(this.responseText, { 
+                  parser: 'html', 
+                  plugins: prettierPlugins,
+                  printWidth: 100,
+                });
+              } else {
+                templateFormatted = this.responseText;
+              }
+
+              const templateHighlighted = Prism.highlight(
+                templateFormatted,
+                Prism.languages[panels[i].name.toLowerCase()] || 'markup',
+                // Prism.languages[panels[i].name.toLowerCase()],
               );
-              template = document.getElementById(panels[i].templateID);
-              templateCompiled = Hogan.compile(template.innerHTML);
-              templateRendered = templateCompiled.render({
-                language: 'html',
-                code: prismedContent,
-              });
+              
+              const codeTemplate = (code, language) => html`<pre class="language-markup"><code id="pl-code-fill-${language}" class="language-${language}">${unsafeHTML(code)}</code></pre>`;
+
+              const result = document.createDocumentFragment();
+              render(codeTemplate(templateHighlighted, 'html'), result);
+              const templateRendered = result.children[0].outerHTML;
+
               panels[i].content = templateRendered;
+
               Dispatcher.trigger('checkPanels', [
                 panels,
                 patternData,
@@ -119,7 +150,15 @@ export const panelsViewer = {
           template = document.getElementById(panel.templateID);
           templateCompiled = Hogan.compile(template.innerHTML);
           templateRendered = templateCompiled.render(patternData);
-          panels[i].content = templateRendered;
+          const normalizedCode = normalizeWhitespace.normalize(
+            templateRendered
+          );
+          normalizedCode.replace(/[\r\n]+/g, '\n\n');
+          const highlightedCode = Prism.highlight(
+            normalizedCode,
+            Prism.languages.html
+          );
+          panels[i].content = highlightedCode;
           Dispatcher.trigger('checkPanels', [
             panels,
             patternData,
@@ -274,16 +313,17 @@ export const panelsViewer = {
     }
 
     // find lineage links in the rendered content and add postmessage handlers in case it's in the modal
-    $('.pl-js-lineage-link', templateRendered).on('click', function(e) {
-      e.preventDefault();
-      const obj = JSON.stringify({
-        event: 'patternLab.updatePath',
-        path: urlHandler.getFileName($(this).attr('data-patternpartial')),
-      });
-      document
-        .querySelector('.pl-js-iframe')
-        .contentWindow.postMessage(obj, panelsViewer.targetOrigin);
-    });
+    // @todo: refactor and re-enable
+    // $('.pl-js-lineage-link', templateRendered).on('click', function(e) {
+    //   e.preventDefault();
+    //   const obj = JSON.stringify({
+    //     event: 'patternLab.updatePath',
+    //     path: urlHandler.getFileName($(this).attr('data-patternpartial')),
+    //   });
+    //   document
+    //     .querySelector('.pl-js-iframe')
+    //     .contentWindow.postMessage(obj, panelsViewer.targetOrigin);
+    // });
 
     // gather panels from plugins
     Dispatcher.trigger('insertPanels', [
@@ -307,19 +347,3 @@ export const panelsViewer = {
  * 5) Add mouseup event to the body so that when drag is released, the modal
  * stops resizing and modal cover doesn't display anymore.
  */
-$('.pl-js-modal-resizer').mousedown(function(event) {
-  /* 1 */
-
-  $('.pl-js-modal-cover').css('display', 'block'); /* 2 */
-
-  $('.pl-js-modal-cover').mousemove(function(e) {
-    /* 3 */
-    const panelHeight = window.innerHeight - e.clientY + 32; /* 4 */
-    $('.pl-js-modal').css('height', panelHeight + 'px'); /* 4 */
-  });
-});
-
-$('body').mouseup(function() {
-  $('.pl-js-modal').unbind('mousemove'); /* 5 */
-  $('.pl-js-modal-cover').css('display', 'none'); /* 5 */
-});

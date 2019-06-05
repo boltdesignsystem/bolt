@@ -9,14 +9,26 @@ const chokidar = require('chokidar');
 const chalk = require('chalk');
 const globby = require('globby');
 const ora = require('ora');
-const sharp = require('sharp');
+const sharpImport = require('sharp');
 const SVGO = require('svgo');
 const { spawnSync } = require('child_process');
 const log = require('../utils/log');
 const timer = require('../utils/timer');
 const { getConfig } = require('../utils/config-store');
 const { flattenArray } = require('../utils/general');
-let config;
+let config, sharp;
+
+// https://github.com/lovell/sharp/issues/1593#issuecomment-491171982
+function warmupSharp(sharp) {
+  return sharp(
+    Buffer.from(
+      `<svg xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" /></svg>`,
+      'utf-8',
+    ),
+  )
+    .metadata()
+    .then(() => sharp, () => sharp);
+}
 
 const {
   TRAVIS,
@@ -76,7 +88,8 @@ let boltImageSizes = [
 // don't resize images to all available options on feature-specific branches to speed up build times
 if (
   branchName.includes('feature') === true &&
-  process.env.NODE_ENV !== 'test'
+  process.env.NODE_ENV !== 'test' &&
+  TRAVIS === true
 ) {
   boltImageSizes = [320, 640, 1024, 1920];
 }
@@ -116,7 +129,7 @@ async function processImage(file, set) {
 
   // We add `null` to beginning b/c we want the original file too
   // Filter the list to not include sizes bigger than our file
-  const sizes = [null, ...boltImageSizes].filter(size => width > size);
+  const sizes = [null, ...boltImageSizes].filter(size => width >= size);
 
   // looping through all sizes and resizing
   return Promise.all(
@@ -244,6 +257,7 @@ async function processImage(file, set) {
 
 async function processImages() {
   config = config || (await getConfig());
+  sharp = await warmupSharp(sharpImport);
 
   if (!config.images) {
     return;

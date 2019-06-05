@@ -7,7 +7,6 @@ module.exports = {
   plugins: [
     'stylelint-order',
     'stylelint-scss',
-    'stylelint-declaration-block-order',
     'stylelint-declaration-use-variable',
     'stylelint-selector-bem-pattern',
     'stylelint-declaration-strict-value',
@@ -26,21 +25,23 @@ module.exports = {
     //   'font-size',
     //   'font-weight'
     // ],
-    'plugin/declaration-block-order': [
-      'custom-properties',
-      {
-        type: 'at-rule',
-        name: 'include',
-        hasBlock: false,
-      },
-      'declarations',
-      {
-        type: 'at-rule',
-        name: 'include',
-        hasBlock: true,
-      },
-      'rules',
-    ],
+
+    // @todo: replace with another plugin -- this one is deprecated!
+    // 'plugin/declaration-block-order': [
+    //   'custom-properties',
+    //   {
+    //     type: 'at-rule',
+    //     name: 'include',
+    //     hasBlock: false,
+    //   },
+    //   'declarations',
+    //   {
+    //     type: 'at-rule',
+    //     name: 'include',
+    //     hasBlock: true,
+    //   },
+    //   'rules',
+    // ],
 
     'color-hex-case': 'lower',
     'color-named': [

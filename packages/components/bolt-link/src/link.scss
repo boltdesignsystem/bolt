@@ -10,16 +10,16 @@
 
 // Component variables
 $bolt-link-transition: $bolt-transition;
+$bolt-link-spacing: 'xxsmall';
 
 // Component styles
 .c-bolt-link {
   @include bolt-padding(0); // [1]
   @include bolt-font-family(body); // [1]
-
   display: inline;
   appearance: none; // [1]
   opacity: bolt-opacity(100);
-  margin-left: bolt-spacing(xxsmall) * -1;
+  margin-left: bolt-spacing(#{$bolt-link-spacing}) * -1;
   color: bolt-theme(link);
   text-decoration: underline;
   cursor: pointer;
@@ -52,12 +52,13 @@ $bolt-link-transition: $bolt-transition;
 .c-bolt-link--display-inline {
   .c-bolt-link__icon {
     display: inline;
+    white-space: nowrap; // Combine this with Zero Width No-break Space (&#xfeff; in the markup), it fixes the orphan icon issue. The last word will always wrap with the icon.
   }
 }
 
 .c-bolt-link__icon,
 .c-bolt-link__text {
-  @include bolt-padding-left(xxsmall);
+  @include bolt-padding-left(#{$bolt-link-spacing});
 }
 
 .c-bolt-link__text {
