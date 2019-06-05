@@ -1,0 +1,50 @@
+{% set schema = bolt.data.components["@bolt-components-action-blocks"].schema %}
+
+{% set borderless_options = [
+    {
+      label: "True",
+      value: true
+    },
+    {
+      label: "False",
+      value: false
+    }
+  ]
+%}
+
+{# {% for borderless_option in borderless_options %} #}
+{% for borderless in schema.properties.borderless.enum %}
+  <h3>
+    Borderless: {% if borderless is sameas(true) %}true{% elseif borderless is sameas(false) %}false{% endif %}
+  </h3>
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+      borderless: borderless,
+      contentItems: [
+        {
+          text: "Item 1",
+          icon: {
+            name: "download",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 2",
+          url: "#!",
+          icon: {
+            name: "copy-to-clipboard",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 3",
+          url: "#!",
+          icon: {
+            name: "calendar",
+            size: "large",
+          }
+        }
+      ]
+    } only %}
+  </div>
+{% endfor %}

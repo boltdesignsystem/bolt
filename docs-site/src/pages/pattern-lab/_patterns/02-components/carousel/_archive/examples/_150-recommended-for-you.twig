@@ -1,0 +1,68 @@
+<div class="o-bolt-wrapper">
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "Recommended for you",
+    size: "large"
+  } only %}
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      [
+        include("@bolt-components-headline/eyebrow.twig", {
+          text: "Keynote",
+        }),
+        include("@bolt-components-headline/headline.twig", {
+          text: "Empathetic AI—The Evolution of AI for Business",
+          url: "https://community.pega.com/knowledgebase/articles/configure-platform-authentication-basic-credentials-authentication-service",
+          icon: {
+            name: "chevron-right"
+          }
+        }),
+      ] | join,
+      [
+        include("@bolt-components-headline/eyebrow.twig", {
+          text: "Customer Case Study",
+        }),
+        include("@bolt-components-headline/headline.twig", {
+          text: "Swedbank: Engaging our customers in an omni-channel world",
+          url: "https://www.pega.com/events/pegaworld/agenda/swedbank-engaging-our-customers-omni-channel-world",
+          icon: {
+            name: "chevron-right"
+          }
+        }),
+      ] | join,[
+        include("@bolt-components-headline/eyebrow.twig", {
+          text: "Training",
+        }),
+        include("@bolt-components-headline/headline.twig", {
+          text: "Pega Customer Decision Hub overview",
+          url: "https://www.pega.com/events/pegaworld/agenda/pega-customer-decision-hub-overview",
+          isHeadline: true,
+          icon: {
+            name: "chevron-right"
+          }
+        }),
+      ] | join,[
+        include("@bolt-components-headline/eyebrow.twig", {
+          text: "Customer Case Study",
+        }),
+        include("@bolt-components-headline/headline.twig", {
+          text: "Verizon: Unlocking customer centricity through Next Best Experience",
+          url: "Verizon: Unlocking customer centricity through Next Best Experience",
+          isHeadline: true,
+          icon: {
+            name: "chevron-right"
+          }
+        }),
+      ] | join,
+    ],
+    spaceBetween: "medium",
+    navButtonPosition: "outside",
+    attributes: {
+      style: "padding-left: 4rem;
+        margin-left: -4rem;
+        margin-right: -4rem;
+        padding-right: 4rem;
+        min-width: calc(100% + 8rem);
+      ",
+    }
+  } only %}
+</div>

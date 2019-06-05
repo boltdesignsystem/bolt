@@ -1,0 +1,56 @@
+{# <h2>Example Nav On The Outside</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  navPosition: "outside",
+} only %} #}
+
+
+<h2>Example Carousel with Left / Right Buttons Positioned on the outside</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  navPosition: "outside",
+} only %}
+
+<h2>Example Nav On The Outside + In A Narrower Container -- without Full Bleed</h2>
+<div class="o-bolt-wrapper">
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+    ],
+    navPosition: "outside",
+    fullBleed: false
+  } only %}
+</div>
+
+
+<h2>Example Nav On The Outside + In A Narrower Container -- with full bleed</h2>
+<div class="o-bolt-wrapper">
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+      include("_carousel-slide-content.twig"),
+    ],
+    navPosition: "outside",
+    fullBleed: true
+  } only %}
+</div>
