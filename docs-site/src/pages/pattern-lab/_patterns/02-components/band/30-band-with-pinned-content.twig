@@ -12,21 +12,31 @@
   } only %}
 {% endset %}
 
+{% set breadcrumb_item_1 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Home",
+    url: "#!"
+  } only %}
+{% endset %}
+{% set breadcrumb_item_2 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Landing Page",
+    url: "#!"
+  } only %}
+{% endset %}
+{% set breadcrumb_item_3 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Sub Page",
+    url: "#!"
+  } only %}
+{% endset %}
+
 {% set pinned_breadcrumb %}
   {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
     contentItems: [
-      include("@bolt-components-link/link.twig", {
-        "text": "Home",
-        "url": "#!"
-      }),
-      include("@bolt-components-link/link.twig", {
-        "text": "Landing Page",
-        "url": "#!"
-      }),
-      include("@bolt-components-link/link.twig", {
-        "text": "Sub Page",
-        "url": "#!"
-      }),
+      breadcrumb_item_1,
+      breadcrumb_item_2,
+      breadcrumb_item_3,
       "Current Page"
     ]
   } only %}
