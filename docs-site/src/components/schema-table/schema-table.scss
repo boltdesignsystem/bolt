@@ -1,4 +1,8 @@
 .c-bds-schema-table {
+  &:not(:last-child) {
+    @include bolt-margin-bottom(medium);
+  }
+
   ul {
     p {
       display: inline;
@@ -31,7 +35,25 @@
   }
 }
 
+bolt-schema-table.is-twig {
+  .c-bds-docs-table__row--twig-only {
+    display: table-row;
+  }
 
+  .c-bds-docs-table__row--web-component-only {
+    display: none;
+  }
+}
+
+bolt-schema-table.is-wc {
+  .c-bds-docs-table__row--twig-only {
+    display: none;
+  }
+
+  .c-bds-docs-table__row--web-component-only {
+    display: table-row;
+  }
+}
 
 // .c-bolt-site {
 //   display: block;
@@ -67,8 +89,8 @@
   overflow-y: hidden;
 
   table {
-    @include bolt-font-size(small);
-    @include bolt-font-family(code);
+    @include bolt-font-size(xsmall);
+    @include bolt-font-family(body);
     @include bolt-margin-bottom(0);
     transform: translate3d(0, 0, 0);
     width: 100%;
@@ -82,6 +104,10 @@
 
   tr {
     transition: background-color 0.1s ease;
+
+    &:not(:last-child){
+      border-bottom: 1px solid bolt-color(gray, light);
+    }
   }
 
   tr:hover {
@@ -90,18 +116,17 @@
 
 
   th {
-    @include bolt-padding(small);
+    @include bolt-padding(xsmall);
     @include bolt-font-size(xsmall);
     @include bolt-font-weight(semibold);
     color: bolt-color(gray, dark);
     text-align: left;
-    text-transform: uppercase;
     vertical-align: bottom;
     background-color: bolt-color(gray, xlight);
   }
 
   td {
-    @include bolt-padding(small);
+    @include bolt-padding(xsmall);
     vertical-align: top;
   }
 

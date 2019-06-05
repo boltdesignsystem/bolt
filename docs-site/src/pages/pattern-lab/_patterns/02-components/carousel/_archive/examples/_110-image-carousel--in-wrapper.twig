@@ -1,0 +1,93 @@
+<div class="o-bolt-wrapper">
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/1)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/2)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/3)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/4)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/5)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/6)"></bolt-ratio>',
+    ],
+    slidesPerView: 1,
+    spaceBetween: "none",
+    noPagination: true,
+    mode: 'gallery',
+    attributes: {
+      class: [
+        "js-swiper-gallery--demo",
+      ]
+    }
+  } only %}
+
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/1)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/2)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/3)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/4)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/5)"></bolt-ratio>',
+      '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/6)"></bolt-ratio>',
+    ],
+    slidesPerView: 4,
+    maxSlidesPerView: 4,
+    spaceBetween: "none",
+    noScrollbar: true,
+    noNavButtons: true,
+    noPagination: true,
+    noMinWidth: true,
+    freeScroll: true,
+    mode: 'gallery-thumbnail',
+    slideToClickedSlide: true,
+    freeMode: true,
+    attributes: {
+      class: [
+        "js-swiper-gallery--thumbnails",
+      ]
+    }
+  } only %}
+
+  <script>
+    var mainCarousel = document.querySelector('.js-swiper-gallery--demo');
+    var mainCarouselRendered = false;
+    var existingMainCarouselRenderListener = false;
+    
+    var thumbnailCarousel = document.querySelector('.js-swiper-gallery--thumbnails');
+    var thumbnailCarouselRendered = false;
+    var existingThumbnailCarouselRenderListener = false;
+
+    var galleryInit = false;
+
+    function checkIfShouldInitCarouselGallery(){
+      if (thumbnailCarousel._wasInitiallyRendered === true && mainCarousel._wasInitiallyRendered === true && galleryInit === false){
+        galleryInit = true;
+        initCarouselGallery();
+      }
+    }
+
+    function initCarouselGallery(){
+      mainCarousel.removeEventListener('rendered', checkIfShouldInitCarouselGallery);
+      thumbnailCarousel.removeEventListener('rendered', checkIfShouldInitCarouselGallery);
+
+      mainCarousel.thumbs = {
+        swiper: thumbnailCarousel.swiper,
+        slideThumbActiveClass: 'c-bolt-carousel__slide--thumbnail-active',
+        thumbsContainerClass: 'c-bolt-carousel--thumbnails t-bolt-xdark',
+      }
+
+      mainCarousel.options.thumbs = mainCarousel.swiper.params.thumbs;
+      mainCarousel.reInitCarousel();
+    }
+
+    if (thumbnailCarousel._wasInitiallyRendered === true){
+      checkIfShouldInitCarouselGallery();
+    } else {
+      thumbnailCarousel.addEventListener('rendered', checkIfShouldInitCarouselGallery);
+    }
+    
+    if (mainCarousel._wasInitiallyRendered === true){
+      checkIfShouldInitCarouselGallery();
+    } else {
+      mainCarousel.addEventListener('rendered', checkIfShouldInitCarouselGallery);
+    }
+  </script>
+</div>

@@ -50,7 +50,7 @@ jobs:
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
-      install: travis_retry yarn run setup:quick
+      install: travis_retry yarn run setup
       before_script: ./scripts/check-run-queue.js 'Unit'
       script: yarn run test
       after_success: ./scripts/check-run-success.js 'Unit'
