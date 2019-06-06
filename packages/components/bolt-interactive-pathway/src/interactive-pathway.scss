@@ -54,40 +54,60 @@
   grid-column-gap: 150px;
 
   &__nav {
+    position: relative;
     list-style: none;
-    & > li {
-      display: flex;
-      align-items: center;
-      position: relative;
-      padding-left: 40px;
-      transition: font-size 0.5s ease;
-    }
-    & > li:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 2.5px;
-      z-index: 5;
-      height: 100%;
-      margin-left: 5px;
-      border-left: 2px solid #AAB2F2;
-    }
-    & > li:first-of-type:before {
-      top: 50%;
-    }
-    & > li:last-of-type:before {
-      top: -50%;
-    }
-    & .pathway__nav-item-dot {
-      display: inline-block;
-      position: absolute;
-      z-index: 10;
-      margin-left: -38px;
-      color: #AAB2F2;
-      font-size: 20px;
-      transition: color 0.5s ease, transform 0.5s ease;
-    }
+    //& > li {
+    //  display: flex;
+    //  align-items: center;
+    //  position: relative;
+    //  padding-left: 40px;
+    //  transition: font-size 0.5s ease;
+    //}
+    //& > bolt-interactive-step:before,
+    //& > li:before {
+    //  content: '';
+    //  position: absolute;
+    //  top: 0;
+    //  left: 2.5px;
+    //  z-index: 5;
+    //  height: 100%;
+    //  margin-left: 5px;
+    //  border-left: 2px solid #AAB2F2;
+    //}
+    //& > li:first-of-type:before {
+    //  top: 50%;
+    //}
+    //& > li:last-of-type:before {
+    //  top: -50%;
+    //}
+    //& .pathway__nav-item-dot {
+    //  display: inline-block;
+    //  position: absolute;
+    //  z-index: 10;
+    //  margin-left: -38px;
+    //  color: #AAB2F2;
+    //  font-size: 20px;
+    //  transition: color 0.5s ease, transform 0.5s ease;
+    //}
   }
+
+  //@todo figure out how to get the line through the dots to work with shadow Dom
+  //bolt-interactive-step:before {
+  //    content: '';
+  //    position: absolute;
+  //    top: 0;
+  //    left: 2.5px;
+  //    z-index: 5;
+  //    height: 100%;
+  //    margin-left: 5px;
+  //    border-left: 2px solid #AAB2F2;
+  //  }
+  //bolt-interactive-step:first-of-type:before {
+  //  top: 50%;
+  //}
+  //bolt-interactive-step:last-of-type:before {
+  //  top: -50%;
+  //}
 
   &__nav-item-text {
     display: inline-block;

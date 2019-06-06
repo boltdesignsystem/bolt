@@ -83,65 +83,48 @@ class BoltInteractivePathway extends withLitHtml() {
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <ul class="c-bolt-interactive-pathway__nav">
-          <li
-            class="c-bolt-interactive-pathway__nav-item"
+          <bolt-interactive-step
             data-pathway-step="1"
             data-is-active="active"
             @click=${this.clickHandler}
           >
-            <span class="pathway__nav-item-dot">&#9679;</span>
-            <span class="pathway__nav-item-text">Moment of need</span>
-          </li>
-
-          <li
-            class="c-bolt-interactive-pathway__nav-item"
+            <span slot="title">Moment of Need</span>
+          </bolt-interactive-step>
+          <bolt-interactive-step
             data-pathway-step="2"
             data-is-active="inactive"
             @click=${this.clickHandler}
           >
-            <span class="pathway__nav-item-dot">&#9679;</span>
-            <span class="pathway__nav-item-text">Next best action</span>
-          </li>
-
-          <li
-            class="c-bolt-interactive-pathway__nav-item"
+            <span slot="title">Next best action</span>
+          </bolt-interactive-step>
+          <bolt-interactive-step
             data-pathway-step="3"
             data-is-active="inactive"
             @click=${this.clickHandler}
           >
-            <span class="pathway__nav-item-dot">&#9679;</span>
-            <span class="pathway__nav-item-text">Context across channels</span>
-          </li>
-
-          <li
-            class="c-bolt-interactive-pathway__nav-item"
+            <span slot="title">Context Across Channels</span>
+          </bolt-interactive-step>
+          <bolt-interactive-step
             data-pathway-step="4"
             data-is-active="inactive"
             @click=${this.clickHandler}
           >
-            <span class="pathway__nav-item-dot">&#9679;</span>
-            <span class="pathway__nav-item-text">Resolve</span>
-          </li>
-
-          <li
-            class="c-bolt-interactive-pathway__nav-item"
+            <span slot="title">Resolve</span>
+          </bolt-interactive-step>
+          <bolt-interactive-step
             data-pathway-step="5"
             data-is-active="inactive"
             @click=${this.clickHandler}
           >
-            <span class="pathway__nav-item-dot">&#9679;</span>
-            <span class="pathway__nav-item-text">Outcomes</span>
-          </li>
-
-          <li
-            class="c-bolt-interactive-pathway__nav-item"
+            <span slot="title">Outcomes</span>
+          </bolt-interactive-step>
+          <bolt-interactive-step
             data-pathway-step="6"
             data-is-active="inactive"
             @click=${this.clickHandler}
           >
-            <span class="pathway__nav-item-dot">&#9679;</span>
-            <span class="pathway__nav-item-text">What's next?</span>
-          </li>
+            <span slot="title">What's next?</span>
+          </bolt-interactive-step>
         </ul>
         <div class="c-bolt-interactive-pathway__body">
           ${this.fooList.map(

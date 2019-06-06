@@ -1,0 +1,65 @@
+@import '@bolt/core';
+
+// Local interactive-step Variables
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-interactive-step', block, medium);
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+.c-bolt-interactive-step {
+  //Styles go here. /* [1] */
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 20px 0 20px 40px;
+  text-align: left;
+  cursor: pointer;
+  font-weight: bolder;
+  transition: font-size 0.5s ease;
+
+  //@todo figure out how to get the line through the dots to work with shadow Dom
+  //&:before {
+  //  content: '';
+  //  position: absolute;
+  //  top: -50%;
+  //  left: 2.5px;
+  //  z-index: 5;
+  //  height: 100%;
+  //  margin-left: 5px;
+  //  border-left: 2px solid #AAB2F2;
+  //}
+
+  &__dot {
+    display: inline-block;
+    position: absolute;
+    z-index: 10;
+    margin-left: -38px;
+    color: #AAB2F2;
+    font-size: 20px;
+    transition: color 0.5s ease, transform 0.5s ease;
+  }
+
+  &__title {
+    display: inline-block;
+    transition: color 0.5s ease, transform 0.5s ease;
+  }
+
+  &[data-is-active="active"] {
+    .c-bolt-interactive-step__dot {
+      transform: scale(1.5);
+      color: orange;
+    }
+
+    .c-bolt-interactive-step__title {
+      transform: scale(1.1) translateX(4px);
+      color: orange;
+    }
+  }
+}
