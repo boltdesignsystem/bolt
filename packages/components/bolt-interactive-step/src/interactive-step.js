@@ -19,6 +19,14 @@ class BoltInteractiveStep extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
+    step: {
+      ...props.string,
+      ...{ default: "1" },
+    },
+    active: {
+      ...props.string,
+      ...{ default: "1" },
+    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -29,26 +37,27 @@ class BoltInteractiveStep extends withLitHtml() {
   }
 
   render() {
+    let step = this.step;
+    let active = this.active;
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const { disabled } = this.validateProps(this.props);
 
-    const classes = cx(
-      'c-bolt-interactive-step',
-      {
-        [`c-bolt-interactive-step--disabled`]: disabled,
-      },
-    );
+    const classes = cx('c-bolt-interactive-step', {
+      [`c-bolt-interactive-step--disabled`]: disabled,
+    });
 
     return html`
       ${this.addStyles([styles])}
       <li
         class="${classes}"
         is="shadow-root"
-        data-pathway-step="3"
-        data-is-active="inactive"
+        active="${active}"
+        step="${step}"
       >
         <span class="c-bolt-interactive-step__dot">&#9679;</span>
-        <span class="c-bolt-interactive-step__title">${this.slot('title')}</span>
+        <span class="c-bolt-interactive-step__title"
+          >${this.slot('title')}</span
+        >
       </li>
     `;
   }

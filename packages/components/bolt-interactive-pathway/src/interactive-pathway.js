@@ -38,7 +38,7 @@ class BoltInteractivePathway extends withLitHtml() {
   }
 
   clickHandler(event) {
-    const clickedPathwayStep = event.target.getAttribute('data-pathway-step');
+    const clickedPathwayStep = event.target.getAttribute('step');
     this.activeItem = clickedPathwayStep;
 
     console.log('Wubba Lubba Dub Dub: this.activeItem', this.activeItem);
@@ -49,26 +49,20 @@ class BoltInteractivePathway extends withLitHtml() {
   }
 
   _rerenderPathwayUl() {
-    this.renderRoot.querySelectorAll('li').forEach(item => {
+    this.renderRoot.querySelectorAll('bolt-interactive-step').forEach(item => {
       const updatedItemState =
-        item.getAttribute('data-pathway-step') === this.activeItem
-          ? 'active'
-          : 'inactive';
-      item.setAttribute('data-is-active', updatedItemState);
+        item.getAttribute('step') === this.activeItem ? 'true' : 'false';
+      item.setAttribute('active', updatedItemState);
     });
   }
 
   _rerenderPathwayStage() {
     // Disable all list items
-    this.renderRoot
-      .querySelectorAll('.c-bolt-interactive-pathway__step')
-      .forEach(item => {
-        const updatedItemState =
-          item.getAttribute('data-pathway-step') === this.activeItem
-            ? 'active'
-            : 'inactive';
-        item.setAttribute('data-is-active', updatedItemState);
-      });
+    this.renderRoot.querySelectorAll('bolt-interactive-step').forEach(item => {
+      const updatedItemState =
+        item.getAttribute('step') === this.activeItem ? 'true' : 'false';
+      item.setAttribute('active', updatedItemState);
+    });
   }
 
   render() {
@@ -84,43 +78,43 @@ class BoltInteractivePathway extends withLitHtml() {
       <div class="${classes}" is="shadow-root">
         <ul class="c-bolt-interactive-pathway__nav">
           <bolt-interactive-step
-            data-pathway-step="1"
-            data-is-active="active"
+            step="1"
+            active="true"
             @click=${this.clickHandler}
           >
             <span slot="title">Moment of Need</span>
           </bolt-interactive-step>
           <bolt-interactive-step
-            data-pathway-step="2"
-            data-is-active="inactive"
+            step="2"
+            active="false"
             @click=${this.clickHandler}
           >
             <span slot="title">Next best action</span>
           </bolt-interactive-step>
           <bolt-interactive-step
-            data-pathway-step="3"
-            data-is-active="inactive"
+            step="3"
+            active="false"
             @click=${this.clickHandler}
           >
             <span slot="title">Context Across Channels</span>
           </bolt-interactive-step>
           <bolt-interactive-step
-            data-pathway-step="4"
-            data-is-active="inactive"
+            step="4"
+            active="false"
             @click=${this.clickHandler}
           >
             <span slot="title">Resolve</span>
           </bolt-interactive-step>
           <bolt-interactive-step
-            data-pathway-step="5"
-            data-is-active="inactive"
+            step="5"
+            active="false"
             @click=${this.clickHandler}
           >
             <span slot="title">Outcomes</span>
           </bolt-interactive-step>
           <bolt-interactive-step
-            data-pathway-step="6"
-            data-is-active="inactive"
+            step="6"
+            active="false"
             @click=${this.clickHandler}
           >
             <span slot="title">What's next?</span>
@@ -131,8 +125,8 @@ class BoltInteractivePathway extends withLitHtml() {
             (item, index) => html`
               <div
                 class="c-bolt-interactive-pathway__step"
-                data-pathway-step="${index}"
-                data-is-active="${index === 0 ? 'active' : 'inactive'}"
+                step="${index}"
+                active="${index === 0 ? 'active' : 'inactive'}"
               >
                 <div
                   class="c-bolt-interactive-pathway__step-dialogue c-bolt-interactive-pathway__step-dialogue--left"
