@@ -21,11 +21,11 @@ class BoltInteractiveStep extends withLitHtml() {
     },
     step: {
       ...props.string,
-      ...{ default: "1" },
+      ...{ default: '1' },
     },
     active: {
       ...props.string,
-      ...{ default: "1" },
+      ...{ default: '1' },
     },
   };
 
@@ -51,13 +51,48 @@ class BoltInteractiveStep extends withLitHtml() {
       <li
         class="${classes}"
         is="shadow-root"
-        active="${active}"
-        step="${step}"
+        data-active="${active}"
+        data-step="${step}"
       >
-        <span class="c-bolt-interactive-step__dot">&#9679;</span>
-        <span class="c-bolt-interactive-step__title"
-          >${this.slot('title')}</span
-        >
+        <div class="c-bolt-interactive-step__nav-item-wrapper">
+          <span class="c-bolt-interactive-step__dot">&#9679;</span>
+          <span class="c-bolt-interactive-step__title"
+            >${this.slot('title')}</span
+          >
+        </div>
+        <div class="c-bolt-interactive-step__body" data-active="${active}">
+          <div class="c-bolt-interactive-step__step">
+            <div
+              class="c-bolt-interactive-step__step-dialogue c-bolt-interactive-step__step-dialogue--left"
+            >
+              <bolt-tooltip>
+                ${this.slot('dialogue')}
+              </bolt-tooltip>
+            </div>
+            <div class="c-bolt-interactive-step__step-image">
+              <img
+                style="height: 20px; width: 20px;"
+                src="{{ file_url(step.image_url) }}"
+                alt=""
+              />
+              <img
+                style="height: 20px; width: 20px;"
+                class="c-bolt-interactive-step__step-person-icon c-bolt-interactive-step__step-customer--{{ step.customer_disposition }}"
+                src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png"
+                alt="Customer is {{ step.customer_disposition }}"
+              />
+              <img
+                style="height: 20px; width: 20px;"
+                class="c-bolt-interactive-step__step-person-icon c-bolt-interactive-step__step-pega-rep"
+                src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
+                alt="Your helpful Pega Rep"
+              />
+            </div>
+            <div class="c-bolt-interactive-step__step-body">
+              ${this.slot('body')}
+            </div>
+          </div>
+        </div>
       </li>
     `;
   }

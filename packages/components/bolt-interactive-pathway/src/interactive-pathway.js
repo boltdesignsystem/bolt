@@ -83,6 +83,13 @@ class BoltInteractivePathway extends withLitHtml() {
             @click=${this.clickHandler}
           >
             <span slot="title">Moment of Need</span>
+            <span slot="dialogue">I'm saying something!</span>
+            <span slot="body"
+              >Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus blanditiis consectetur culpa cum, doloremque doloribus
+              ea error ipsa itaque modi nisi non odit officia quod reiciendis
+              rem reprehenderit tempora tempore?</span
+            >
           </bolt-interactive-step>
           <bolt-interactive-step
             step="2"
@@ -120,55 +127,6 @@ class BoltInteractivePathway extends withLitHtml() {
             <span slot="title">What's next?</span>
           </bolt-interactive-step>
         </ul>
-        <div class="c-bolt-interactive-pathway__body">
-          ${this.fooList.map(
-            (item, index) => html`
-              <div
-                class="c-bolt-interactive-pathway__step"
-                step="${index}"
-                active="${index === 0 ? 'active' : 'inactive'}"
-              >
-                <div
-                  class="c-bolt-interactive-pathway__step-dialogue c-bolt-interactive-pathway__step-dialogue--left"
-                >
-                  <bolt-tooltip>
-                    Lorem ipsum dolor sit amet ${item}, Lorem ipsum dolor sit
-                    amet ${item}, Lorem ipsum dolor sit amet ${item}, Lorem
-                    ipsum dolor sit amet ${item}
-                  </bolt-tooltip>
-                </div>
-                <div
-                  class="c-bolt-interactive-pathway__step-image"
-                  data-animation-type="{{ step.image_entrance_type }}"
-                  data-animation-speed="{{ step.image_entrance_speed }}"
-                  data-animation-delay="{{ step.image_entrance_delay }}"
-                >
-                  <img src="{{ file_url(step.image_url) }}" alt="" />
-                  <img
-                    class="c-bolt-interactive-pathway__step-person-icon c-bolt-interactive-pathway__step-customer--{{ step.customer_disposition }}"
-                    src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png"
-                    alt="Customer is {{ step.customer_disposition }}"
-                  />
-                  <img
-                    class="c-bolt-interactive-pathway__step-person-icon c-bolt-interactive-pathway__step-pega-rep"
-                    src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
-                    alt="Your helpful Pega Rep"
-                  />
-                </div>
-                <div
-                  class="c-bolt-interactive-pathway__step-body"
-                  data-animation-type="{{ step.body_animation_type }}"
-                  data-animation-speed="{{ step.body_animation_speed }}"
-                  data-animation-delay="{{ step.body_animation_delay }}"
-                >
-                  Lorem ipsum dolor sit amet ${item}, Lorem ipsum dolor sit amet
-                  ${item}, Lorem ipsum dolor sit amet ${item}, Lorem ipsum dolor
-                  sit amet ${item}
-                </div>
-              </div>
-            `,
-          )}
-        </div>
       </div>
     `;
   }

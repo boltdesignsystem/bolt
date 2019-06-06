@@ -15,8 +15,6 @@
  */
 .c-bolt-interactive-step {
   //Styles go here. /* [1] */
-  display: flex;
-  align-items: center;
   position: relative;
   padding: 20px 0 20px 40px;
   text-align: left;
@@ -36,6 +34,11 @@
   //  border-left: 2px solid #AAB2F2;
   //}
 
+  &__nav-item-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
   &__dot {
     display: inline-block;
     position: absolute;
@@ -51,7 +54,17 @@
     transition: color 0.5s ease, transform 0.5s ease;
   }
 
-  &[active="true"] {
+  &__body {
+    height: 0px;
+    overflow: hidden;
+    transition: height 2s ease-in-out; // @todo, replace with proper animation configurations
+
+    &[data-active="true"] {
+      height: auto;
+    }
+  }
+
+  &[data-active="true"] {
     .c-bolt-interactive-step__dot {
       transform: scale(1.5);
       color: orange;
