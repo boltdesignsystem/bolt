@@ -17,6 +17,7 @@ const path = require('path');
 const globby = require('globby');
 const baseBoltDir = path.join(__dirname, './docs-site');
 const siteConfig = require(path.join(baseBoltDir, '.boltrc'));
+const resolve = require('resolve');
 
 // Paths that are relative to `baseBoltDir` must now be relative to this directory (i.e. `__dirname`)
 const adjustRelativePath = thePath =>
@@ -87,4 +88,12 @@ module.exports = {
   enableCache: true,
   verbosity: 1,
   copy: [...itemsToCopy],
+  alterTwigEnv: [
+    {
+      file: `${path.dirname(
+        resolve.sync('@bolt/twig-renderer/package.json'),
+      )}/SetupTwigRenderer.php`,
+      functions: ['addBoltCoreExtensions'],
+    },
+  ],
 };
