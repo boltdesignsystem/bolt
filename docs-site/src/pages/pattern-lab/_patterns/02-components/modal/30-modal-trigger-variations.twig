@@ -1,5 +1,5 @@
 <div class="u-bolt-margin-bottom-medium">
-  <h3>Button Trigger</h3>
+  <bolt-text headline font-size="xlarge">Button Trigger</bolt-text>
   {% include "@bolt-components-button/button.twig" with {
     text: "Open Modal",
     size: "small",
@@ -8,14 +8,14 @@
     }
   } only %}
   {% include "@bolt-components-modal/modal.twig" with {
-    content: "This is a modal",
+    content: "This modal is triggered by a button.",
   } only %}
 </div>
 
 <div class="u-bolt-margin-bottom-medium" style="max-width: 200px">
-  <h3>Image Trigger</h3>
+  <bolt-text headline font-size="xlarge">Image Trigger</bolt-text>
   {% set image_content %}
-    {% include '@bolt-components-image/image.twig' with {
+    {% include "@bolt-components-image/image.twig" with {
       src: "/images/placeholders/tout-4x3-climber.jpg",
       alt: "A Rock Climber",
     } only %}
@@ -28,7 +28,7 @@
       display: "block",
       attributes: {
         "on-click": "hide",
-        "on-click-target": "js-image-modal-123"
+        "on-click-target": "js-modal-trigger-image"
       }
     } only %}
   {% endset %}
@@ -39,13 +39,13 @@
     display: "block",
     attributes: {
       "on-click": "show",
-      "on-click-target": "js-image-modal-123",
+      "on-click-target": "js-modal-trigger-image",
     }
   } only %}
 
   {% include "@bolt-components-modal/modal.twig" with {
     attributes: {
-      class: ["js-image-modal-123"]
+      class: "js-modal-trigger-image"
     },
     content: modal_content,
     spacing: "none",
@@ -55,8 +55,8 @@
 </div>
 
 <div class="u-bolt-margin-bottom-medium">
-  <h3>Link Trigger</h3>
-  <p><mark>Warning: this is experimental and should not be replicated on production sites.</mark></p>
+  <bolt-text headline font-size="xlarge">Link Trigger</bolt-text>
+  <bolt-text><mark>Warning: this is experimental and should not be replicated on production sites.</mark></bolt-text>
   {% include "@bolt-components-link/link.twig" with {
     text: "Open Modal",
     icon: {
@@ -67,6 +67,6 @@
     }
   } only %}
   {% include "@bolt-components-modal/modal.twig" with {
-    content: "This is a modal",
+    content: "This modal is triggered by a link.",
   } only %}
 </div>

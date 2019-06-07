@@ -1,12 +1,12 @@
 {% set schema = bolt.data.components["@bolt-components-modal"].schema %}
 
-<p>The modal container's width can be adjusted by the <code>width</code> prop. The default is set to <code>optimal</code>, which is about 70 characters wide.</p>
+<bolt-text>The modal container's width can be adjusted by the <code>width</code> prop. The default is set to <code>optimal</code>, which is about 70 characters wide.</bolt-text>
 
-<p><mark>Note: this prop only applies to viewports equal to or above the small breakpoint (~600px).</mark></p>
+<bolt-text><mark>Note: this prop only applies to viewports equal to or above the small breakpoint (~600px).</mark></bolt-text>
 
 {% for width in schema.properties.width.enum %}
   <div class="u-bolt-margin-bottom-medium">
-    <h3>{{ width|capitalize }} Width</h3>
+    <bolt-text headline font-size="xlarge">{{ width|capitalize }} Width</bolt-text>
     {% include "@bolt-components-button/button.twig" with {
       text: "Open Modal",
       size: "small",

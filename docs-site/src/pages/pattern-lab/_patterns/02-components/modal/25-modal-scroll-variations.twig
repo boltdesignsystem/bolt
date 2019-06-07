@@ -8,13 +8,13 @@
   } only %}
 {% endset %}
 
-<p>The scrollable area can be adjusted by using the <code>scroll</code> prop. By default, the modal container is scrollable, but it can be changed to have the overall area to be scrollable.</p>
+<bolt-text>The scrollable area can be adjusted by using the <code>scroll</code> prop. By default, the modal container is scrollable, but it can be changed to have the overall area to be scrollable.</bolt-text>
 
-<p><mark>Note: this prop only applies to viewports equal to or above the small breakpoint (~600px).</mark></p>
+<bolt-text><mark>Note: this prop only applies to viewports equal to or above the small breakpoint (~600px).</mark></bolt-text>
 
 {% for scroll in schema.properties.scroll.enum %}
   <div class="u-bolt-margin-bottom-medium">
-    <h3>Scroll Area: {{ scroll|capitalize }}</h3>
+    <bolt-text headline font-size="xlarge">Scroll Area: {{ scroll|capitalize }}</bolt-text>
     {% include "@bolt-components-button/button.twig" with {
       text: "Open Modal",
       size: "small",

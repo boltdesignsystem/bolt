@@ -1,4 +1,5 @@
 <bolt-text headline font-size="xlarge">Advanced Use Cases</bolt-text>
+<bolt-text>Recipes for various kinds of modal to be used in production.</bolt-text>
 
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set modal_content %}
@@ -102,7 +103,7 @@
     <div class="u-bolt-padding-top-xsmall u-bolt-padding-right-small u-bolt-padding-bottom-small u-bolt-padding-left-small" slot="footer">
       {% include "@bolt-components-headline/text.twig" with {
         text: "This is the caption for the image.",
-        size: "xsmall",
+        size: "small",
       } only %}
     </div>
   {% endset %}
@@ -257,7 +258,7 @@
     } only %}
     {% include "@bolt-components-modal/modal.twig" with {
       attributes: {
-        class: "js-image-modal-advanced-layout-2",
+        class: "js-image-modal-simple-layout",
       },
       content: modal_content,
       spacing: "large",
@@ -292,22 +293,6 @@
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set form_children %}
     {% include "@pl/10-form-element-demo-input-element.twig" with {
-      title: "First Name",
-      inputAttributes: {
-        placeholder: "Enter your first name",
-        required: true
-      },
-      labelDisplayType: "floating"
-    } only %}
-    {% include "@pl/10-form-element-demo-input-element.twig" with {
-      title: "Last Name",
-      inputAttributes: {
-        placeholder: "Enter your last name",
-        required: true
-      },
-      labelDisplayType: "floating"
-    } only %}
-    {% include "@pl/10-form-element-demo-input-element.twig" with {
       title: "Email Address",
       inputAttributes: {
         placeholder: "Enter your email address",
@@ -317,24 +302,22 @@
       labelDisplayType: "floating"
     } only %}
     {% include "@pl/10-form-element-demo-input-element.twig" with {
-      title: "Company Name",
+      title: "Password",
       inputAttributes: {
-        placeholder: "Enter the name of your company",
+        placeholder: "Enter your password",
+        type: "password",
         required: true
       },
       labelDisplayType: "floating"
     } only %}
     {% include "@pl/30-form-element-demo-checkbox.twig" with {
-      labelTitle: "Receive periodic emails on key analyst reports, Pega events, and important news.  You can unsubscribe at any time",
+      labelTitle: "Remember this computer",
       elementId: "checkbox-" ~ random(),
       labelDisplayType: "inline"
     } only %}
-    {% include "@bolt/form-button.twig" with {
-      text: "Download Now",
-      width: "full",
-      icon: {
-        name: "download"
-      }
+    {% include "@bolt-components-form/form-button.twig" with {
+      text: "Sign In",
+      width: "full"
     } only %}
   {% endset %}
   {% set modal_content %}
@@ -357,15 +340,11 @@
       {% endcell %}
       {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
         {% include "@bolt-components-headline/headline.twig" with {
-          text: "Get the Report",
+          text: "Sign in to view PegaWorld live stream",
           size: "xlarge"
         } only %}
-        {% include "@bolt-components-headline/text.twig" with {
-          text: "(all fields are required)",
-          size: "small"
-        } only %}
-        {% include "@bolt/form.twig" with {
-          children: form_children
+        {% include "@bolt-components-form/form.twig" with {
+          children: form_children,
         } only  %}
       {% endcell %}
     {% endgrid %}
@@ -392,6 +371,159 @@
   {% set description %}
     <bolt-text headline font-size="large">Show a complex layout</bolt-text>
     <bolt-text>Create complex layouts with components and layout objects inside the modal content and set the modal width to full to maximize space.</bolt-text>
+  {% endset %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1 1@small",
+        column_span: "12 8@small 9@medium",
+        row_start: "2 1@small",
+        row_span: "1",
+        valign: "center",
+        content: description,
+      },
+      {
+        column_start: "1 10@small 11@medium",
+        column_span: "6 3@small 2@medium",
+        row_start: "1 1@small",
+        row_span: "1",
+        valign: "center",
+        content: trigger,
+      },
+    ]
+  } only %}
+</div>
+
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set form_children %}
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "First Name",
+      inputAttributes: {
+        placeholder: "Enter your first name",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Last Name",
+      inputAttributes: {
+        placeholder: "Enter your last name",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Email Address",
+      inputAttributes: {
+        placeholder: "Enter your email address",
+        type: "email",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Title",
+      inputAttributes: {
+        placeholder: "Enter your current job title",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Company Name",
+      inputAttributes: {
+        placeholder: "Enter the name of your company",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+
+    {% include "@pl/40-form-element-demo-select.twig" with {
+      title: "Country",
+      selectAttributes: {
+        required: true
+      },
+      options: [
+        {
+          type: "option",
+          value: "",
+          label: "- Select a Country -"
+        },
+        {
+          type: "option",
+          value: "a",
+          label: "Argentina"
+        },
+        {
+          type: "option",
+          value: "b",
+          label: "Belgium"
+        },
+        {
+          type: "option",
+          value: "c",
+          label: "Croatia"
+        }
+      ]
+    } only %}
+
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      labelTitle: "Receive periodic emails on key analyst reports, Pega events, and important news.  You can unsubscribe at any time",
+      elementId: "checkbox-" ~ random(),
+      labelDisplayType: "inline"
+    } only %}
+  {% endset %}
+  {% set form_button %}
+    {% include "@bolt-components-form/form-button.twig" with {
+      text: "Download",
+      width: "full",
+      icon: {
+        name: "download"
+      }
+    } only %}
+  {% endset %}
+  {% set modal_content %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Get the report",
+      size: "xlarge"
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "(all fields are required)",
+      size: "small"
+    } only %}
+    {% include "@bolt-components-form/form.twig" with {
+      children: form_children,
+    } only  %}
+    {% include "@bolt-components-form/form.twig" with {
+      children: form_button,
+      attributes: {
+        slot: "footer"
+      },
+    } only  %}
+  {% endset %}
+  {% set trigger %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Show form",
+      size: "small",
+      width: "full",
+      attributes: {
+        onclick: "this.nextElementSibling.show()",
+      }
+    } only %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      attributes: {
+        class: "js-image-modal-advanced-form",
+      },
+      content: modal_content,
+    } only %}
+  {% endset %}
+  {% set description %}
+    <bolt-text headline font-size="large">Form only</bolt-text>
+    <bolt-text>Pass a form into the modal content, and the form button into the modal footer. This way, the form button can be sticky on the bottom regardless how long the form is.</bolt-text>
   {% endset %}
   {% include "@bolt-components-grid/grid.twig" with {
     items: [
