@@ -66,12 +66,29 @@
     }
   }
 
+  &__interaction-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  &__interaction-band {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
   &__avatar {
+    position: absolute;
+    left: 0;
     width: 57px;
     height: 57px;
 
     &--right {
-      float: right;
+      left: unset;
+      right: 0;
     }
   }
 

@@ -68,8 +68,8 @@ class BoltInteractiveStep extends withLitHtml() {
               ${this.slot('dialogue')}
             </bolt-tooltip>
           </div>
-          <div class="c-bolt-interactive-step__step-image">
-            <img src="{{ file_url(step.image_url) }}" alt="" />
+          <div class="c-bolt-interactive-step__interaction-images">
+            <span class="c-bolt-interactive-step__interaction-band">${this.slot('dialogueBand')}</span>
             <img
               class="c-bolt-interactive-step__avatar"
               src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png"
