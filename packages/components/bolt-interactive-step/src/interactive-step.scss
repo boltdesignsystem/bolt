@@ -55,12 +55,21 @@
   }
 
   &__body {
-    height: 0px;
+    height: 0;
     overflow: hidden;
     transition: height 2s ease-in-out; // @todo, replace with proper animation configurations
 
     &[data-active="true"] {
       height: auto;
+    }
+  }
+
+  &__avatar {
+    width: 57px;
+    height: 57px;
+
+    &--right {
+      float: right;
     }
   }
 

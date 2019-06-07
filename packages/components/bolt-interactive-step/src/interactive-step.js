@@ -61,36 +61,28 @@ class BoltInteractiveStep extends withLitHtml() {
           >
         </div>
         <div class="c-bolt-interactive-step__body" data-active="${active}">
-          <div class="c-bolt-interactive-step__step">
-            <div
-              class="c-bolt-interactive-step__step-dialogue c-bolt-interactive-step__step-dialogue--left"
-            >
-              <bolt-tooltip>
-                ${this.slot('dialogue')}
-              </bolt-tooltip>
-            </div>
-            <div class="c-bolt-interactive-step__step-image">
-              <img
-                style="height: 20px; width: 20px;"
-                src="{{ file_url(step.image_url) }}"
-                alt=""
-              />
-              <img
-                style="height: 20px; width: 20px;"
-                class="c-bolt-interactive-step__step-person-icon c-bolt-interactive-step__step-customer--{{ step.customer_disposition }}"
-                src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png"
-                alt="Customer is {{ step.customer_disposition }}"
-              />
-              <img
-                style="height: 20px; width: 20px;"
-                class="c-bolt-interactive-step__step-person-icon c-bolt-interactive-step__step-pega-rep"
-                src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
-                alt="Your helpful Pega Rep"
-              />
-            </div>
-            <div class="c-bolt-interactive-step__step-body">
-              ${this.slot('body')}
-            </div>
+          <div
+            class="c-bolt-interactive-step__step-dialogue c-bolt-interactive-step__step-dialogue--left"
+          >
+            <bolt-tooltip>
+              ${this.slot('dialogue')}
+            </bolt-tooltip>
+          </div>
+          <div class="c-bolt-interactive-step__step-image">
+            <img src="{{ file_url(step.image_url) }}" alt="" />
+            <img
+              class="c-bolt-interactive-step__avatar"
+              src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png"
+              alt="Customer is happy"
+            />
+            <img
+              class="c-bolt-interactive-step__avatar c-bolt-interactive-step__avatar--right"
+              src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
+              alt="Your helpful Pega Rep"
+            />
+          </div>
+          <div class="c-bolt-interactive-step__step-body">
+            ${this.slot('body')}
           </div>
         </div>
       </li>

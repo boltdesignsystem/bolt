@@ -27,38 +27,22 @@ class BoltInteractivePathway extends withLitHtml() {
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
 
-    self.fooList = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six'];
-    self.activeItem = self.fooList[0];
+    self.clickStep = self.clickStep.bind(self);
+    self._updateActiveItemDomState = self._updateActiveItemDomState.bind(self);
 
-    self.clickHandler = self.clickHandler.bind(self);
-    self._rerenderPathwayUl = self._rerenderPathwayUl.bind(self);
-    self._rerenderPathwayStage = self._rerenderPathwayStage.bind(self);
+    self.$steps = self.querySelectorAll('bolt-interactive-step');
 
     return self;
   }
 
-  clickHandler(event) {
+  clickStep(event) {
     const clickedPathwayStep = event.target.getAttribute('step');
     this.activeItem = clickedPathwayStep;
-
-    console.log('Wubba Lubba Dub Dub: this.activeItem', this.activeItem);
-
-    this._rerenderPathwayUl();
-    this._rerenderPathwayStage();
-    this._TEMPrerenderPathwayTitleHelper();
+    this._updateActiveItemDomState();
   }
 
-  _rerenderPathwayUl() {
-    this.renderRoot.querySelectorAll('bolt-interactive-step').forEach(item => {
-      const updatedItemState =
-        item.getAttribute('step') === this.activeItem ? 'true' : 'false';
-      item.setAttribute('active', updatedItemState);
-    });
-  }
-
-  _rerenderPathwayStage() {
-    // Disable all list items
-    this.renderRoot.querySelectorAll('bolt-interactive-step').forEach(item => {
+  _updateActiveItemDomState() {
+    this.$steps.forEach(item => {
       const updatedItemState =
         item.getAttribute('step') === this.activeItem ? 'true' : 'false';
       item.setAttribute('active', updatedItemState);
@@ -73,59 +57,18 @@ class BoltInteractivePathway extends withLitHtml() {
       [`c-bolt-interactive-pathway--disabled`]: disabled,
     });
 
+    // Adds click handler to the pathway steps
+    this.slots.steps.map(node => {
+      node.addEventListener('click', event => {
+        this.clickStep(event);
+      });
+    });
+
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <ul class="c-bolt-interactive-pathway__nav">
-          <bolt-interactive-step
-            step="1"
-            active="true"
-            @click=${this.clickHandler}
-          >
-            <span slot="title">Moment of Need</span>
-            <span slot="dialogue">I'm saying something!</span>
-            <span slot="body"
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Accusamus blanditiis consectetur culpa cum, doloremque doloribus
-              ea error ipsa itaque modi nisi non odit officia quod reiciendis
-              rem reprehenderit tempora tempore?</span
-            >
-          </bolt-interactive-step>
-          <bolt-interactive-step
-            step="2"
-            active="false"
-            @click=${this.clickHandler}
-          >
-            <span slot="title">Next best action</span>
-          </bolt-interactive-step>
-          <bolt-interactive-step
-            step="3"
-            active="false"
-            @click=${this.clickHandler}
-          >
-            <span slot="title">Context Across Channels</span>
-          </bolt-interactive-step>
-          <bolt-interactive-step
-            step="4"
-            active="false"
-            @click=${this.clickHandler}
-          >
-            <span slot="title">Resolve</span>
-          </bolt-interactive-step>
-          <bolt-interactive-step
-            step="5"
-            active="false"
-            @click=${this.clickHandler}
-          >
-            <span slot="title">Outcomes</span>
-          </bolt-interactive-step>
-          <bolt-interactive-step
-            step="6"
-            active="false"
-            @click=${this.clickHandler}
-          >
-            <span slot="title">What's next?</span>
-          </bolt-interactive-step>
+          ${this.slot('steps')}
         </ul>
       </div>
     `;
