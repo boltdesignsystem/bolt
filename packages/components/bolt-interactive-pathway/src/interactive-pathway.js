@@ -29,15 +29,34 @@ class BoltInteractivePathway extends withLitHtml() {
 
     self.clickStep = self.clickStep.bind(self);
     self._updateActiveItemDomState = self._updateActiveItemDomState.bind(self);
+    self._getParentBoltStepNode = self._getParentBoltStepNode.bind(self);
 
     self.$steps = self.querySelectorAll('bolt-interactive-step');
 
     return self;
   }
 
+  /**
+   * Searches up the Shadow Dom until it finds the parent `bolt-interactive-step` node
+   * @todo this could use a refactor for performance
+   * @param node
+   * @private
+   */
+  _getParentBoltStepNode(node) {
+    if (node.tagName === 'BOLT-INTERACTIVE-STEP') {
+      return node;
+    } else {
+      if (node.parentNode) {
+        return this._getParentBoltStepNode(node.parentNode);
+      } else {
+        return null;
+      }
+    }
+  }
+
   clickStep(event) {
-    const clickedPathwayStep = event.target.getAttribute('step');
-    this.activeItem = clickedPathwayStep;
+    const parentBoltInteractiveStepNode = this._getParentBoltStepNode(event.target);
+    this.activeItem = parentBoltInteractiveStepNode.getAttribute('step');
     this._updateActiveItemDomState();
   }
 
@@ -59,9 +78,11 @@ class BoltInteractivePathway extends withLitHtml() {
 
     // Adds click handler to the pathway steps
     this.slots.steps.map(node => {
-      node.addEventListener('click', event => {
-        this.clickStep(event);
-      });
+      node.renderRoot
+        .querySelector('.c-bolt-interactive-step__nav-item-wrapper')
+        .addEventListener('click', event => {
+          this.clickStep(event);
+        });
     });
 
     return html`
