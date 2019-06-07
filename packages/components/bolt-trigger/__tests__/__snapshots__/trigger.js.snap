@@ -5,7 +5,7 @@ exports[`trigger Trigger with "no_outline" 1`] = `
               no-outline
 >
   <a href="http://pega.com"
-     class="c-bolt-trigger c-bolt-trigger--outline-none"
+     class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
      is="shadow-root"
   >
     Hello World
@@ -16,7 +16,7 @@ exports[`trigger Trigger with "no_outline" 1`] = `
 exports[`trigger Trigger with "url" renders as link 1`] = `
 <bolt-trigger url="http://pega.com">
   <a href="http://pega.com"
-     class="c-bolt-trigger"
+     class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
      is="shadow-root"
   >
     Hello World
@@ -27,7 +27,7 @@ exports[`trigger Trigger with "url" renders as link 1`] = `
 exports[`trigger Trigger with an onClick attributes renders properly 1`] = `
 <bolt-trigger on-click="on-click-test">
   <button type="button"
-          class="c-bolt-trigger"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
           is="shadow-root"
   >
   </button>
@@ -37,7 +37,7 @@ exports[`trigger Trigger with an onClick attributes renders properly 1`] = `
 exports[`trigger Trigger with an onClick param renders properly 1`] = `
 <bolt-trigger on-click="on-click-test">
   <button type="button"
-          class="c-bolt-trigger"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
           is="shadow-root"
   >
   </button>
@@ -47,7 +47,7 @@ exports[`trigger Trigger with an onClick param renders properly 1`] = `
 exports[`trigger Trigger with c-bolt- class is thrown out 1`] = `
 <bolt-trigger>
   <button type="button"
-          class="c-bolt-trigger"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
           is="shadow-root"
   >
   </button>
@@ -57,7 +57,7 @@ exports[`trigger Trigger with c-bolt- class is thrown out 1`] = `
 exports[`trigger Trigger with outer JS-class via Drupal Attributes 1`] = `
 <bolt-trigger class="js-click-me">
   <button type="button"
-          class="c-bolt-trigger"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
           is="shadow-root"
   >
   </button>
@@ -67,7 +67,7 @@ exports[`trigger Trigger with outer JS-class via Drupal Attributes 1`] = `
 exports[`trigger Trigger with outer classes via Drupal Attributes 1`] = `
 <bolt-trigger class="u-bolt-padding-medium">
   <button type="button"
-          class="c-bolt-trigger"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
           is="shadow-root"
   >
     Trigger with outer classes
@@ -78,7 +78,7 @@ exports[`trigger Trigger with outer classes via Drupal Attributes 1`] = `
 exports[`trigger basic trigger 1`] = `
 <bolt-trigger>
   <button type="button"
-          class="c-bolt-trigger"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
           is="shadow-root"
   >
     Hello World
@@ -86,10 +86,10 @@ exports[`trigger basic trigger 1`] = `
 </bolt-trigger>
 `;
 
-exports[`trigger trigger cursor: default 1`] = `
-<bolt-trigger cursor="default">
+exports[`trigger trigger cursor: auto 1`] = `
+<bolt-trigger cursor="auto">
   <button type="button"
-          class="c-bolt-trigger c-bolt-trigger--cursor-default"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-auto"
           is="shadow-root"
   >
     Hello World
@@ -100,7 +100,7 @@ exports[`trigger trigger cursor: default 1`] = `
 exports[`trigger trigger cursor: pointer 1`] = `
 <bolt-trigger cursor="pointer">
   <button type="button"
-          class="c-bolt-trigger"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
           is="shadow-root"
   >
     Hello World
@@ -111,7 +111,7 @@ exports[`trigger trigger cursor: pointer 1`] = `
 exports[`trigger trigger cursor: zoom-in 1`] = `
 <bolt-trigger cursor="zoom-in">
   <button type="button"
-          class="c-bolt-trigger c-bolt-trigger--cursor-zoom-in"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-zoom-in"
           is="shadow-root"
   >
     Hello World
@@ -122,7 +122,7 @@ exports[`trigger trigger cursor: zoom-in 1`] = `
 exports[`trigger trigger cursor: zoom-out 1`] = `
 <bolt-trigger cursor="zoom-out">
   <button type="button"
-          class="c-bolt-trigger c-bolt-trigger--cursor-zoom-out"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-zoom-out"
           is="shadow-root"
   >
     Hello World
@@ -133,7 +133,7 @@ exports[`trigger trigger cursor: zoom-out 1`] = `
 exports[`trigger trigger display: block 1`] = `
 <bolt-trigger display="block">
   <button type="button"
-          class="c-bolt-trigger c-bolt-trigger--display-block"
+          class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer"
           is="shadow-root"
   >
     Hello World
@@ -144,7 +144,7 @@ exports[`trigger trigger display: block 1`] = `
 exports[`trigger trigger display: inline 1`] = `
 <bolt-trigger display="inline">
   <button type="button"
-          class="c-bolt-trigger"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
           is="shadow-root"
   >
     Hello World
