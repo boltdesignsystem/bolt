@@ -12,8 +12,8 @@ module.exports = {
       .url(
         `${testingUrl}/pattern-lab/patterns/02-components-trigger-30-trigger-advanced-usage/02-components-trigger-30-trigger-advanced-usage.html`,
       )
-      .waitForElementVisible('bolt-trigger', 1000)
-      .click('bolt-trigger')
+      .waitForElementVisible('bolt-trigger[on-click="show"]', 1000)
+      .click('bolt-trigger[on-click="show"]')
       .pause(1000)
       .execute(
         function(data) {
@@ -30,7 +30,7 @@ module.exports = {
       .saveScreenshot(
         `screenshots/bolt-trigger/${testName}--has-opened-modal--${currentBrowser}.png`,
       )
-      .click('bolt-modal bolt-trigger')
+      .click('bolt-modal > bolt-trigger')
       .pause(1000)
       .execute(
         function(data) {
