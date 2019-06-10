@@ -63,8 +63,8 @@ bolt-modal:not([ready]) {
     -webkit-overflow-scrolling: touch;
 
     [class*='t-bolt-'] {
-      color: inherit;
-      background-color: transparent;
+      color: bolt-color(black);
+      background-color: bolt-color(white);
     }
 
     .c-bolt-modal__overlay {
@@ -79,19 +79,18 @@ bolt-modal:not([ready]) {
       display: flex;
       flex-direction: column;
       height: 100vh;
-      color: bolt-theme(text);
-      background-color: bolt-theme(background);
-    }
-
-    .c-bolt-modal__container-header,
-    .c-bolt-modal__container-footer {
-      display: flex;
-      align-items: center;
-      min-height: 1.16rem; // Magic number to match the height of the close button.
+      color: bolt-color(black);
+      background-color: bolt-color(white);
     }
 
     .c-bolt-modal__container-header {
       @include bolt-padding(small large small small);
+    }
+
+    .c-bolt-modal__container-header--hidden {
+      @include bolt-padding(0);
+
+      height: bolt-v-spacing(medium) + (bolt-v-spacing(small) * 2); // Match close button icon size and margin.
     }
 
     .c-bolt-modal__container-body {
@@ -349,16 +348,97 @@ bolt-modal:not([ready]) {
   position: absolute;
   top: 0;
   right: 0;
+  background-color: transparent;
+  transition: background-color $bolt-modal-transition;
 
   @include bolt-mq($bolt-modal-breakpoint) {
-    transform: translate3d(85%, -85%, 0);
-    filter: invert(100%) grayscale(1);
+    @include bolt-border-radius(full);
+
+    transform: translate3d(100%, -100%, 0);
+
+    &:hover,
+    &:focus-within {
+      background-color: bolt-theme(background, 0.1);
+    }
+  }
+}
+
+// For IE which doesn't support :focus-within
+.c-bolt-modal__close-button--focus-within {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    background-color: bolt-theme(background, 0.1);
   }
 }
 
 .c-bolt-modal__close-button--hidden {
   @include bolt-mq($bolt-modal-breakpoint) {
     @include bolt-visuallyhidden;
+  }
+}
+
+.c-bolt-modal__close-button__text {
+  @include bolt-visuallyhidden;
+}
+
+.c-bolt-modal__close-button__icon {
+  display: block;
+  position: relative;
+  width: bolt-v-spacing(medium);
+  height: bolt-v-spacing(medium);
+  margin: bolt-v-spacing(small);
+
+  @include bolt-mq($bolt-modal-breakpoint) {
+    @include bolt-margin(0);
+
+    width: bolt-spacing(medium) - 0.2rem;
+    height: bolt-spacing(medium) - 0.2rem;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: bolt-spacing(small);
+    height: 2px;
+    border-radius: $bolt-modal-border-radius;
+    background-color: bolt-color(indigo, light);
+    transform-origin: 50% 50%;
+
+    /* .t-bolt-light &,
+    .t-bolt-xlight & {
+      background-color: bolt-color(indigo, light);
+    }
+
+    .t-bolt-dark &,
+    .t-bolt-xdark & {
+      background-color: bolt-color(white);
+    } */
+
+    @include bolt-mq($bolt-modal-breakpoint) {
+      height: 0.1rem;
+      background-color: bolt-color(white);
+
+      .t-bolt-light &,
+      .t-bolt-xlight & {
+        background-color: bolt-color(white);
+      }
+
+      .t-bolt-dark &,
+      .t-bolt-xdark & {
+        background-color: bolt-color(indigo, light);
+      }
+    }
+  }
+
+  &:before {
+    transform: translate3d(-50%, -50%, 0) rotate(45deg);
+  }
+
+  &:after {
+    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
   }
 }
 

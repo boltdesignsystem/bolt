@@ -45,6 +45,19 @@
 {# Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder #}
 {% set can_use_placeholder = can_use_ratio or cover %}
 
+{# Setup inline styles that will be added to the custom element  #}
+{% set inline_bg_color = can_use_placeholder and is_jpg ? "background-color: " ~ ph_color ~ "; " : "" %}
+{% set inline_width = max_width ? "width: " ~ max_width ~ "; " : "" %}
+{% set inline_max_width = max_width and "%" not in max_width ? "max-width: 100%; " : "" %}
+{% set inline_style = inline_bg_color ~ inline_width ~ inline_max_width %}
+
+{% if inline_style|length %}
+  {# Add inline styles to attributes object #}
+  {% set attributes = attributes|default({})|merge({
+    style: attributes.style ~ inline_style|trim
+  }) %}
+{% endif %}
+
 {#--------------------#}
 {# STOP!!!!!!!!!#}
 {# The ONLY thing that can happen below here is creating and building the `attributes`, then calling the template - ALL data must be prepped by this point #}
@@ -113,6 +126,7 @@
   {% if src %}src="{{ src }}"{% endif %}
   {% if srcset %}srcset="{{ srcset }}"{% endif %}
   {% if alt %}alt="{{ alt }}"{% endif %}
+  {% if max_width %}max-width="{{ max_width }}"{% endif %}
   {% if sizes %}sizes="{{ sizes }}"{% endif %}
   {% if ratio_string %}ratio="{{ ratio_string }}"{% elseif not use_ratio %}ratio="none"{% elseif can_use_ratio %}ratio="{{ width * 1 }}/{{ height * 1 }}"{% endif %}
   {% if placeholder_color %}placeholder-color="{{ placeholder_color }}"{% endif %}
@@ -120,7 +134,6 @@
   {% if zoom %}zoom{% endif %}
   {% if cover %}cover{% endif %}
   {% if not lazyload %}no-lazy{% endif %}
-  {% if can_use_placeholder and is_jpg %} style="background-color: {{ ph_color }};" {% endif %}
   {{ attributes }}
   >
 

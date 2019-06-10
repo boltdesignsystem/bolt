@@ -123,6 +123,7 @@ const config = {
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
+      '@bolt/components-trigger',
       '@bolt/components-ul',
       '@bolt/components-ol',
       '@bolt/components-video',

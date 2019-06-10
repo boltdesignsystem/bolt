@@ -112,7 +112,7 @@ class BoltModal extends withLitHtml() {
       'show' in document.createElement('dialog') &&
       this.dialog.nodeName === 'DIALOG';
 
-    this.dispatchEvent(new CustomEvent('ready'));
+    this.dispatchEvent(new CustomEvent('modal:ready'));
   }
 
   // aliases for the `show` and `hide` methods
@@ -154,7 +154,7 @@ class BoltModal extends withLitHtml() {
     // this.dialog.setAttribute('open', '');
     // this.container.removeAttribute('aria-hidden');
 
-    this.dispatchEvent(new CustomEvent('onshow'));
+    this.dispatchEvent(new CustomEvent('modal:show'));
   }
 
   /**
@@ -205,7 +205,7 @@ class BoltModal extends withLitHtml() {
       // });
     }
 
-    this.dispatchEvent(new CustomEvent('onhide'));
+    this.dispatchEvent(new CustomEvent('modal:hide'));
   }
 
   /**
@@ -234,6 +234,16 @@ class BoltModal extends withLitHtml() {
     if (!this.persistent) {
       this.hide();
     }
+  }
+
+  _handleTriggerFocus(e) {
+    const closeButton = e.target.closest('.c-bolt-modal__close-button');
+    closeButton.classList.add('c-bolt-modal__close-button--focus-within');
+  }
+
+  _handleTriggerBlur(e) {
+    const closeButton = e.target.closest('.c-bolt-modal__close-button');
+    closeButton.classList.remove('c-bolt-modal__close-button--focus-within');
   }
 
   /**
@@ -356,7 +366,7 @@ class BoltModal extends withLitHtml() {
       [`c-bolt-modal__close-button--hidden`]: hideCloseButton,
     });
 
-    const onButtonFocus = e => {
+    const delegateFocus = e => {
       if (!this.useShadow) {
         const button = e.target.renderRoot.querySelector('button');
         button && button.focus();
@@ -368,24 +378,22 @@ class BoltModal extends withLitHtml() {
     // and thus prevents it from getting focus on 'rendered'.
     // @todo: Can we safely fix this from within the button component itself?
     const defaultCloseButton = html`
-      <bolt-button
+      <bolt-trigger
         class="js-close-button-fallback"
         @click=${e => this.hide(e)}
-        @focus=${e => onButtonFocus(e)}
-        color="text"
-        icon-only
+        @focus=${e => delegateFocus(e)}
+        @trigger:focus=${e => this._handleTriggerFocus(e)}
+        @trigger:blur=${e => this._handleTriggerBlur(e)}
+        display="block"
+        no-outline
         autofocus
         tabindex="0"
       >
-        <button
-          class=""
-          style="transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);"
-          is="shadow-root"
+        <span class="${closeButtonClasses}__text"
+          >Close this dialog window</span
         >
-          Close this dialog window
-          <bolt-icon name="close" slot="after"></bolt-icon>
-        </button>
-      </bolt-button>
+        <span class="${closeButtonClasses}__icon"></span>
+      </bolt-trigger>
     `;
 
     const handleOverlayClick = e => this._handleOverlayClick(e);
