@@ -49,7 +49,12 @@
 {% set inline_bg_color = can_use_placeholder and is_jpg ? "background-color: " ~ ph_color ~ "; " : "" %}
 {% set inline_width = max_width ? "width: " ~ max_width ~ "; " : "" %}
 {% set inline_max_width = max_width and "%" not in max_width ? "max-width: 100%; " : "" %}
-{% set inline_style = inline_width ~ inline_max_width ~ inline_bg_color %}
+{% set inline_style = inline_bg_color ~ inline_width ~ inline_max_width %}
+
+{# Add inline styles to attributes object #}
+{% set attributes = attributes|default({})|merge({
+  style: attributes.style ~ inline_style|trim
+}) %}
 
 {#--------------------#}
 {# STOP!!!!!!!!!#}
@@ -127,7 +132,6 @@
   {% if zoom %}zoom{% endif %}
   {% if cover %}cover{% endif %}
   {% if not lazyload %}no-lazy{% endif %}
-  {% if inline_style %} style="{{ inline_style|trim }}"{% endif %}  
   {{ attributes }}
   >
 
