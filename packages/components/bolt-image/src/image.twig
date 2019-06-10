@@ -51,10 +51,12 @@
 {% set inline_max_width = max_width and "%" not in max_width ? "max-width: 100%; " : "" %}
 {% set inline_style = inline_bg_color ~ inline_width ~ inline_max_width %}
 
-{# Add inline styles to attributes object #}
-{% set attributes = attributes|default({})|merge({
-  style: attributes.style ~ inline_style|trim
-}) %}
+{% if inline_style|length %}
+  {# Add inline styles to attributes object #}
+  {% set attributes = attributes|default({})|merge({
+    style: attributes.style ~ inline_style|trim
+  }) %}
+{% endif %}
 
 {#--------------------#}
 {# STOP!!!!!!!!!#}
