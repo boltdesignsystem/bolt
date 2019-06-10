@@ -31,6 +31,7 @@ class BoltInteractivePathway extends withLitHtml() {
     self._updateActiveItemDomState = self._updateActiveItemDomState.bind(self);
     self._getParentBoltStepNode = self._getParentBoltStepNode.bind(self);
 
+    /** @type {HTMLElement[]}  */
     self.$steps = self.querySelectorAll('bolt-interactive-step');
 
     return self;
@@ -40,9 +41,8 @@ class BoltInteractivePathway extends withLitHtml() {
    * Searches up the Shadow Dom until it finds the parent `bolt-interactive-step` node
    * @todo this could use a refactor for performance
    * @param node
-   * @private
    */
-  _getParentBoltStepNode(node) {
+   _getParentBoltStepNode(node) {
     if (node.tagName === 'BOLT-INTERACTIVE-STEP') {
       return node;
     } else {

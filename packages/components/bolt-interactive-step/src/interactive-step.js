@@ -64,9 +64,14 @@ class BoltInteractiveStep extends withLitHtml() {
           <div
             class="c-bolt-interactive-step__step-dialogue c-bolt-interactive-step__step-dialogue--left"
           >
-            <bolt-tooltip>
-              ${this.slot('dialogue')}
-            </bolt-tooltip>
+            <bolt-tooltip 
+              trigger-type="button" 
+              trigger-text="" 
+              trigger-icon-name="info-open" 
+              trigger-toggle-text="Hide tooltip" 
+              trigger-toggle-icon="close-open" 
+              content="${this.slot('dialogue')}"
+            ></bolt-tooltip>
           </div>
           <div class="c-bolt-interactive-step__interaction-images">
             <span class="c-bolt-interactive-step__interaction-band">${this.slot('dialogueBand')}</span>

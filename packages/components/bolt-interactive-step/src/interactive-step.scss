@@ -57,6 +57,9 @@
   }
 
   &__body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     height: 0;
     overflow: hidden;
     transition: height 2s ease-in-out; // @todo, replace with proper animation configurations
@@ -71,6 +74,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    max-width: 250px;
   }
 
   &__interaction-band {
@@ -89,6 +93,16 @@
     &--right {
       right: 0;
       left: unset;
+    }
+  }
+
+  &__step-dialogue {
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+
+    bolt-tooltip {
+      visibility: hidden;
     }
   }
 
