@@ -43,4 +43,16 @@ describe('<bolt-image> Component', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
+  test('<bolt-image> with max-width and additional style attribute renders as expected', async () => {
+    const results = await render('@bolt-components-image/image.twig', {
+      src: '/fixtures/1200x660.jpg',
+      alt: 'A Rock Climber',
+      max_width: '200px',
+      attributes: {
+        style: 'display: block;',
+      },
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
 });
