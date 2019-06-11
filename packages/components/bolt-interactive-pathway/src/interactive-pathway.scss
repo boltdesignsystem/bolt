@@ -5,48 +5,22 @@
 // Register Custom Block Element
 @include bolt-custom-element('bolt-interactive-pathway', block, medium);
 
-/**
- * Long-form comment.
- *
- * This spans multiple lines and is also constrained to no longer than 80
- * characters in width.
- *
- * 1. Provide line-comments like this.
- */
 .c-bolt-interactive-pathway {
   //Styles go here. /* [1] */
   display: block;
 }
 
-@import "@bolt/animations/settings/settings-animations";
-
-@import "@bolt/animations/tools/tools-transitions";
-@import "@bolt/animations/tools/tools-animations";
-
-@import "@bolt/animations/utilities/utilities-animation";
-
-
-//.pathways {
-//  &__header {
-//    display: flex;
-//    align-items: center;
-//    flex-direction: column;
-//    margin-bottom: 75px;
-//    img {
-//      width: 120px;
-//      height: 80px;
-//    }
-//  }
+//@import "@bolt/animations/settings/settings-animations";
 //
-//  &__prefix {
-//    font-size: 27px;
-//    margin-bottom: 30px;
-//  }
+//@import "@bolt/animations/tools/tools-transitions";
+//@import "@bolt/animations/tools/tools-animations";
 //
-//  &__main {
-//    min-height: 500px;
-//  }
-//}
+//@import "@bolt/animations/utilities/utilities-animation";
+
+
+:root {
+  position: relative;
+}
 
 .c-bolt-interactive-pathway {
 
@@ -73,91 +47,4 @@
   //bolt-interactive-step:last-of-type:before {
   //  top: -50%;
   //}
-
-  //&__step {
-  //  display: flex;
-  //  flex-direction: column;
-  //  align-items: center;
-  //  opacity: 1;
-  //  position: absolute;
-  //  top: 0;
-  //  transition: opacity 0s ease;
-  //
-  //
-  //  &[data-is-active="inactive"] {
-  //    opacity: 0;
-  //    transition: opacity 0.5s ease, transform 0.5s ease;
-  //  }
-  //
-  //  &-dialogue {
-  //    position: relative;
-  //    width: 432px;
-  //    height: 100px;
-  //
-  //    &--left [trigger-type="button"] {
-  //      position: absolute;
-  //      bottom: -25px;
-  //      left: 5px;
-  //    }
-  //    &--right [trigger-type="button"] {
-  //      position: absolute;
-  //      right: 5px;
-  //      bottom: -25px;
-  //    }
-  //
-  //    button {
-  //      visibility: hidden;
-  //    }
-  //  }
-  //  &-person-icon {
-  //    position: absolute;
-  //    bottom: 0;
-  //    left: 0;
-  //    width: 86px;
-  //    height: 86px;
-  //    transition: opacity;
-  //  }
-  //  &-pega-rep {
-  //    right: 0;
-  //    left: inherit;
-  //  }
-  //  &-image {
-  //    display: flex;
-  //    justify-content: center;
-  //    align-items: center;
-  //    position: relative;
-  //    width: 432px;
-  //    height: 86px;
-  //    overflow: visible;
-  //    margin: 0 0 45px;
-  //
-  //    img:first-child {
-  //      opacity: 0;
-  //      transition: opacity ease, transform ease;
-  //    }
-  //    [data-is-active="active"] & img {
-  //      opacity: 1;
-  //    }
-  //  }
-  //  &-body {
-  //    opacity: 0;
-  //    line-height: 1.3;
-  //    text-align: left;
-  //    font-size: 27px;
-  //    transition: opacity ease, transform ease;
-  //  }
-  //}
-  //
-  //&__body {
-  //  display: flex;
-  //  flex-direction: column;
-  //  justify-content: center;
-  //  align-items: flex-start;
-  //  position: relative;
-  //}
 }
-//
-//// Styling overrides on Tooltip button and triggers
-//.c-bolt-tooltip__content-bubble {
-//  color: black;
-//}
