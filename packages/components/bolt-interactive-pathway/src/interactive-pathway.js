@@ -42,7 +42,7 @@ class BoltInteractivePathway extends withLitHtml() {
    * @todo this could use a refactor for performance
    * @param node
    */
-   _getParentBoltStepNode(node) {
+  _getParentBoltStepNode(node) {
     if (node.tagName === 'BOLT-INTERACTIVE-STEP') {
       return node;
     } else {

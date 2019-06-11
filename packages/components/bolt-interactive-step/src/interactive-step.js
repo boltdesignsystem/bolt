@@ -64,17 +64,19 @@ class BoltInteractiveStep extends withLitHtml() {
           <div
             class="c-bolt-interactive-step__step-dialogue c-bolt-interactive-step__step-dialogue--left"
           >
-            <bolt-tooltip 
-              trigger-type="button" 
-              trigger-text="" 
-              trigger-icon-name="info-open" 
-              trigger-toggle-text="Hide tooltip" 
-              trigger-toggle-icon="close-open" 
+            <bolt-tooltip
+              trigger-type="button"
+              trigger-text=""
+              trigger-icon-name="info-open"
+              trigger-toggle-text="Hide tooltip"
+              trigger-toggle-icon="close-open"
               content="${this.slot('dialogue')}"
             ></bolt-tooltip>
           </div>
           <div class="c-bolt-interactive-step__interaction-images">
-            <span class="c-bolt-interactive-step__interaction-band">${this.slot('dialogueBand')}</span>
+            <span class="c-bolt-interactive-step__interaction-band"
+              >${this.slot('dialogueBand')}</span
+            >
             <img
               class="c-bolt-interactive-step__avatar"
               src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png"
