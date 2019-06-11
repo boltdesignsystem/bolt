@@ -139,7 +139,7 @@
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Enlarge image and show caption</bolt-text>
-    <bolt-text>Create a thumbnail image trigger and pass a figure with image and caption into the modal content.</bolt-text>
+    <bolt-text>Create a thumbnail image trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high res image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
   {% endset %}
 
   {% include "@bolt-components-grid/grid.twig" with {
@@ -210,12 +210,11 @@
       content: modal_content,
       spacing: "none",
       scroll: "overall",
-      width: "full",
     } only %}
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Enlarge image (inside device viewer) and show caption</bolt-text>
-    <bolt-text>Create a device viewer trigger and pass a figure with image and caption into the modal content.</bolt-text>
+    <bolt-text>Create a device viewer trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high res image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
   {% endset %}
 
   {% include "@bolt-components-grid/grid.twig" with {
@@ -342,7 +341,7 @@
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Show a simple layout</bolt-text>
-    <bolt-text>Pass any components inside the modal content to create a simple layout.</bolt-text>
+    <bolt-text>Pass any components inside the modal content to create a simple layout, such as short confirmations, alerts, notifications, etc.</bolt-text>
   {% endset %}
   {% include "@bolt-components-grid/grid.twig" with {
     items: [
@@ -446,7 +445,7 @@
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Show a complex layout</bolt-text>
-    <bolt-text>Create complex layouts with components and layout objects inside the modal content and set the modal width to full to maximize space.</bolt-text>
+    <bolt-text>Create complex layouts with components and layout objects inside the modal content and set the modal width to full to maximize space. For example, you can build a multi-column layout with the grid, band, and card components.</bolt-text>
   {% endset %}
   {% include "@bolt-components-grid/grid.twig" with {
     items: [
@@ -552,8 +551,7 @@
       elementId: "checkbox-" ~ random(),
       labelDisplayType: "inline"
     } only %}
-  {% endset %}
-  {% set form_button %}
+
     {% include "@bolt-components-form/form-button.twig" with {
       text: "Download",
       width: "full",
@@ -574,12 +572,6 @@
     {% include "@bolt-components-form/form.twig" with {
       children: form_children,
     } only  %}
-    {% include "@bolt-components-form/form.twig" with {
-      children: form_button,
-      attributes: {
-        slot: "footer"
-      },
-    } only  %}
   {% endset %}
   {% set trigger %}
     {% include "@bolt-components-button/button.twig" with {
@@ -599,7 +591,7 @@
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Form only</bolt-text>
-    <bolt-text>Pass a form into the modal content, and the form button into the modal footer. This way, the form button can be sticky on the bottom regardless how long the form is.</bolt-text>
+    <bolt-text>Pass some text and a form into the modal content.</bolt-text>
   {% endset %}
   {% include "@bolt-components-grid/grid.twig" with {
     items: [
