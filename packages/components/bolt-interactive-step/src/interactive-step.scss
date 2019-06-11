@@ -5,14 +5,6 @@
 // Register Custom Block Element
 @include bolt-custom-element('bolt-interactive-step', block, medium);
 
-/**
- * Long-form comment.
- *
- * This spans multiple lines and is also constrained to no longer than 80
- * characters in width.
- *
- * 1. Provide line-comments like this.
- */
 .c-bolt-interactive-step {
   //Styles go here. /* [1] */
   position: relative;
@@ -21,6 +13,10 @@
   cursor: pointer;
   font-weight: bolder;
   transition: font-size 0.5s ease;
+
+  @include bolt-mq(small) {
+    position: static;
+  }
 
   //@todo figure out how to get the line through the dots to work with shadow Dom
   //&:before {
@@ -57,12 +53,23 @@
   }
 
   &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 0;
     overflow: hidden;
     transition: height 2s ease-in-out; // @todo, replace with proper animation configurations
 
     &[data-active="true"] {
       height: auto;
+    }
+
+    // Move the step body to the right on desktop
+    @include bolt-mq(small) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: calc(100% - 300px);
     }
   }
 
@@ -71,12 +78,14 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    max-width: 250px;
   }
 
   &__interaction-band {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100px;
     padding: 20px;
   }
 
@@ -92,6 +101,14 @@
     }
   }
 
+  &__dialogue {
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    height: 50px; // @todo Remove once you have resolved the speech bubble issue
+  }
+
+  // Generates the active state styling for the nav list
   &[data-active="true"] {
     .c-bolt-interactive-step__dot {
       transform: scale(1.5);
