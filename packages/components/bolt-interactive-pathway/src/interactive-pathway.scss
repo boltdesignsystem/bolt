@@ -5,11 +5,6 @@
 // Register Custom Block Element
 @include bolt-custom-element('bolt-interactive-pathway', block, medium);
 
-.c-bolt-interactive-pathway {
-  //Styles go here. /* [1] */
-  display: block;
-}
-
 //@import "@bolt/animations/settings/settings-animations";
 //
 //@import "@bolt/animations/tools/tools-transitions";
@@ -17,34 +12,31 @@
 //
 //@import "@bolt/animations/utilities/utilities-animation";
 
-
-:root {
-  position: relative;
-}
-
 .c-bolt-interactive-pathway {
+  display: block;
+  position: relative;
 
   &__nav {
     position: relative;
     padding-left: 0;
     list-style: none;
   }
+}
 
-  //@todo figure out how to get the line through the dots to work with shadow Dom
-  //bolt-interactive-step:before {
-  //    content: '';
-  //    position: absolute;
-  //    top: 0;
-  //    left: 2.5px;
-  //    z-index: 5;
-  //    height: 100%;
-  //    margin-left: 5px;
-  //    border-left: 2px solid #AAB2F2;
-  //  }
-  //bolt-interactive-step:first-of-type:before {
-  //  top: 50%;
-  //}
-  //bolt-interactive-step:last-of-type:before {
-  //  top: -50%;
-  //}
+/**
+ * This builds the vertical strikethrough line on the interactive pathway nav
+ */
+bolt-interactive-pathway {
+  position: relative;
+}
+
+bolt-interactive-pathway:before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 2.5px;
+  z-index: 5;
+  height: calc(100% - 30px);
+  margin-left: 5px;
+  border-left: 2px solid #AAB2F2;
 }
