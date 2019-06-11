@@ -13,6 +13,7 @@
  *
  * 1. Provide line-comments like this.
  */
+
 .c-bolt-interactive-step {
   //Styles go here. /* [1] */
   position: relative;
@@ -21,6 +22,10 @@
   cursor: pointer;
   font-weight: bolder;
   transition: font-size 0.5s ease;
+
+  @include bolt-mq(small) {
+    position: static;
+  }
 
   //@todo figure out how to get the line through the dots to work with shadow Dom
   //&:before {
@@ -66,6 +71,14 @@
 
     &[data-active="true"] {
       height: auto;
+    }
+
+    // Move the step body to the right on desktop
+    @include bolt-mq(small) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: calc(100% - 300px);
     }
   }
 
