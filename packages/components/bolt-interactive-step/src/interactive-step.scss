@@ -5,15 +5,6 @@
 // Register Custom Block Element
 @include bolt-custom-element('bolt-interactive-step', block, medium);
 
-/**
- * Long-form comment.
- *
- * This spans multiple lines and is also constrained to no longer than 80
- * characters in width.
- *
- * 1. Provide line-comments like this.
- */
-
 .c-bolt-interactive-step {
   //Styles go here. /* [1] */
   position: relative;
@@ -94,6 +85,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100px;
     padding: 20px;
   }
 
@@ -109,16 +101,14 @@
     }
   }
 
-  &__step-dialogue {
+  &__dialogue {
     position: relative;
     width: 100%;
     max-width: 250px;
-
-    bolt-tooltip {
-      visibility: hidden;
-    }
+    height: 50px; // @todo Remove once you have resolved the speech bubble issue
   }
 
+  // Generates the active state styling for the nav list
   &[data-active="true"] {
     .c-bolt-interactive-step__dot {
       transform: scale(1.5);
