@@ -31,16 +31,12 @@ class BoltVideoMeta extends withPreact() {
           <div className={`c-${bolt.namespace}-video-meta__wrapper`}>
             {this.title ? (
               <div
-                className={`c-${bolt.namespace}-video-meta__item c-${
-                  bolt.namespace
-                }-video-meta__item--title`}>
+                className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--title`}>
                 {this.title}
               </div>
             ) : null}
             <div
-              className={`c-${bolt.namespace}-video-meta__item c-${
-                bolt.namespace
-              }-video-meta__item--duration`}>
+              className={`c-${bolt.namespace}-video-meta__item c-${bolt.namespace}-video-meta__item--duration`}>
               {this.duration}
             </div>
           </div>

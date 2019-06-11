@@ -79,9 +79,7 @@ async function createWebpackConfig(buildConfig) {
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
-    `$bolt-css-vars-json-data-export: ${
-      themifyOptions.fallback.jsonDataExport
-    };`,
+    `$bolt-css-vars-json-data-export: ${themifyOptions.fallback.jsonDataExport};`,
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
     `${config.lang ? `$bolt-lang: ${config.lang};` : '$bolt-lang: null;'}`,
   ];
@@ -169,9 +167,7 @@ async function createWebpackConfig(buildConfig) {
 
       if (!config.prod && config.webpackDevServer && useHotMiddleware) {
         entry[globalEntryName].push(
-          `webpack-hot-middleware/client?name=${
-            config.lang
-          }&noInfo=true&quiet=true&logLevel=silent&reload=true`,
+          `webpack-hot-middleware/client?name=${config.lang}&noInfo=true&quiet=true&logLevel=silent&reload=true`,
         );
       }
     }
