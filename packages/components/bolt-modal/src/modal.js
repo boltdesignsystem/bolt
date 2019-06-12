@@ -44,48 +44,14 @@ class BoltModal extends withLitHtml() {
     self.schema = schema;
     self.show = self.show.bind(this);
     self.hide = self.hide.bind(this);
-    self._handleExternalClicks = self._handleExternalClicks.bind(this);
     self._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
 
     return self;
   }
 
-  // @todo: refactor to handle multiple modals on the same page
-  _handleExternalClicks() {
-    const self = this;
-
-    document.addEventListener('click', e => {
-      let el = e.target;
-      if (self.open === false) {
-        return;
-        // have we rendered yet?
-      } else if (self.ready !== true) {
-        return;
-      } else if (self.persistent === true) {
-        return;
-      } else {
-        // if we are already open + click on the trigger slot, auto-hide the modal
-        if (el.getAttribute('slot') === 'trigger') {
-          console.log('clicked on trigger');
-          self.hide();
-        }
-
-        while (el) {
-          if (el === self) {
-            return;
-          }
-          el = el.parentNode;
-        }
-      }
-
-      self.hide();
-    });
-  }
-
   connecting() {
     super.connecting && super.connecting();
     document.addEventListener('keydown', this._handleKeyPresseskeypress);
-    this._handleExternalClicks();
     this.setAttribute('ready', '');
   }
 
@@ -97,11 +63,7 @@ class BoltModal extends withLitHtml() {
     if (this.open) {
       this.focusTrap.active = true;
       this.setFocusToFirstItem(this.renderRoot);
-
-      // delay "ready" so _handleExternalClicks() doesn't close the modal immediately
-      setTimeout(() => {
-        this.ready = true;
-      }, 1);
+      this.ready = true;
     }
 
     this.dialog = this.renderRoot.querySelector(
@@ -230,8 +192,13 @@ class BoltModal extends withLitHtml() {
    * @access private
    * @param {Event} event
    */
-  _handleOverlayClick(e) {
-    if (!this.persistent) {
+  _handleModalClick(e) {
+    const modalContent = this.renderRoot.querySelector(
+      '.c-bolt-modal__content',
+    );
+
+    // If event target contains modal content, assume it is an "outside" click and close
+    if (e.target.contains(modalContent) && !this.persistent) {
       this.hide();
     }
   }
@@ -396,7 +363,7 @@ class BoltModal extends withLitHtml() {
       </bolt-trigger>
     `;
 
-    const handleOverlayClick = e => this._handleOverlayClick(e);
+    const handleModalClick = e => this._handleModalClick(e);
 
     // Cannot inline this logic so moved it outside of html template
     const footerTemplate = () => {
@@ -415,13 +382,13 @@ class BoltModal extends withLitHtml() {
     //  vs a customized modal title vs providing a title but hiding it.
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" aria-hidden=${open === true ? 'false' : 'true'}>
+      <div
+        class="${classes}"
+        aria-hidden=${open === true ? 'false' : 'true'}
+        @click="${handleModalClick}"
+      >
         ${this.slot('trigger')}
-        <div
-          class="${overlayClasses}"
-          @click="${handleOverlayClick}"
-          tabindex="-1"
-        ></div>
+        <div class="${overlayClasses}" tabindex="-1"></div>
         <focus-trap>
           <dialog
             aria-labelledby="dialog-title-${uuid}"

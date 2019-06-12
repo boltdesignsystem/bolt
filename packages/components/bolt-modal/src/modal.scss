@@ -44,23 +44,33 @@ bolt-modal:not([ready]) {
 }
 
 .c-bolt-modal {
-  display: inline;
+  @include bolt-z-index(modalBG);
+
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  pointer-events: none;
+
+  &.is-open {
+    pointer-events: auto;
+
+    &:not(.c-bolt-modal--persistent) {
+      @include bolt-mq($bolt-modal-breakpoint) {
+        cursor: pointer;
+      }
+    }
+  }
 
   @include bolt-mq($until: $bolt-modal-breakpoint) {
-    @include bolt-z-index(modalBG);
-
-    display: block;
     visibility: hidden;
     opacity: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
     transform: scale(0.95);
-    width: 100vw;
-    height: 100vh;
     transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
 
     [class*='t-bolt-'] {
       color: bolt-color(black);
@@ -142,14 +152,6 @@ bolt-modal:not([ready]) {
   @at-root .c-bolt-modal.is-open #{&} {
     @include bolt-mq($bolt-modal-breakpoint) {
       opacity: 1;
-      cursor: pointer;
-      pointer-events: auto;
-    }
-  }
-
-  @at-root .c-bolt-modal.is-open #{&}--persistent {
-    @include bolt-mq($bolt-modal-breakpoint) {
-      cursor: auto;
     }
   }
 }
@@ -186,6 +188,7 @@ bolt-modal:not([ready]) {
     @include bolt-mq($bolt-modal-breakpoint) {
       visibility: visible;
       opacity: 1;
+      cursor: auto;
       filter: blur(0);
     }
   }
