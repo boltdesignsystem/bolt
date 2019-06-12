@@ -77,15 +77,6 @@ class BoltModal extends withLitHtml() {
     this.dispatchEvent(new CustomEvent('modal:ready'));
   }
 
-  // aliases for the `show` and `hide` methods
-  // open() {
-  //   this.show();
-  // }
-
-  // close() {
-  //   this.hide();
-  // }
-
   /**
    * Show the dialog element, disable all the targets (siblings), trap the
    * current focus within it, listen for some specific key presses and fire all
@@ -132,6 +123,7 @@ class BoltModal extends withLitHtml() {
     if (!this.open) {
       return this;
     }
+
     this.focusTrap.active = false;
     this.open = false;
     this.ready = false;
