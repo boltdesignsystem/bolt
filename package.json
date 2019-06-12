@@ -28,6 +28,7 @@
     "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist --quiet",
     "setup:quick": "yarn install --production && yarn run setup:php",
     "setup:full": "yarn --force && yarn run setup:php",
+    "dependencies:update": "node -e 'require(\"./scripts/release/update-bolt-dependencies.js\").updateDependencies([\"./example-integrations\"])'",
     "deploy": "./scripts/deploy.js",
     "deploy:docker": "sh ./scripts/docker.sh",
     "clean": "npx npm-run-all --parallel clean:*",
