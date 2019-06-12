@@ -87,22 +87,17 @@ async function updateDependencies(dirs) {
             }),
           )
             .then(() => {
-              jsonFile.writeFile(
-                file,
-                data,
-                { spaces: 2 },
-                error => {
-                  if (error) {
-                    spinner.fail(
-                      chalk.red(
-                        `Error trying to update package.json file. ${error}`,
-                      ),
-                    );
+              jsonFile.writeFile(file, data, { spaces: 2 }, error => {
+                if (error) {
+                  spinner.fail(
+                    chalk.red(
+                      `Error trying to update package.json file. ${error}`,
+                    ),
+                  );
 
-                    process.exitCode = 1;
-                  }
-                },
-              );
+                  process.exitCode = 1;
+                }
+              });
             })
             .catch(error => {
               spinner.fail(
