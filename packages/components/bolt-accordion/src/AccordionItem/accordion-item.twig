@@ -9,9 +9,9 @@
 {% set this = init(schema.properties.items.items) %}
 {% set inner_attributes = create_attribute({}) %}
 
-{% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random()) %}
-{% set primary_uuid = uuid ? base_class ~ "-#{uuid}" : base_class ~ "-#{random_uuid}" %}
-{% set secondary_uuid = uuid ? base_class ~ "-inner-#{uuid}" : base_class ~ "-inner-#{random_uuid}" %}
+{% set _uuid = this.data.uuid.value|default(bolt.data.config.env == "test" ? "12345" : random()) %}
+{% set primary_uuid = base_class ~ "-#{_uuid}" %}
+{% set secondary_uuid = base_class ~ "-inner-#{_uuid}" %}
 
 {# init() will not return 'trigger' value because it is not a tring or boolean #}
 {% set trigger = trigger|default(schema.properties.items.items.trigger.default) %}
