@@ -6,11 +6,7 @@ import {
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../table.schema.yml'));
-const {
-  format,
-  borderless,
-  firstColFixedWidth,
-} = schema.properties;
+const { format, borderless, firstColFixedWidth } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -31,26 +27,14 @@ describe('<bolt-table> Component', () => {
     const results = await renderTwig('@bolt-components-table/table.twig', {
       rows: [
         {
-          cells: [
-            'R1C1',
-            'R1C2',
-            'R1C3',
-          ]
+          cells: ['R1C1', 'R1C2', 'R1C3'],
         },
         {
-          cells: [
-            'R2C1',
-            'R2C2',
-            'R2C3',
-          ]
+          cells: ['R2C1', 'R2C2', 'R2C3'],
         },
         {
-          cells: [
-            'R3C1',
-            'R3C2',
-            'R3C3',
-          ]
-        }
+          cells: ['R3C1', 'R3C2', 'R3C3'],
+        },
       ],
     });
     expect(results.ok).toBe(true);
@@ -61,35 +45,19 @@ describe('<bolt-table> Component', () => {
     const results = await renderTwig('@bolt-components-table/table.twig', {
       headers: {
         top: {
-          cells: [
-            'Column 1',
-            'Column 2',
-            'Column 3',
-          ]
+          cells: ['Column 1', 'Column 2', 'Column 3'],
         },
       },
       rows: [
         {
-          cells: [
-            'R1C1',
-            'R1C2',
-            'R1C3',
-          ]
+          cells: ['R1C1', 'R1C2', 'R1C3'],
         },
         {
-          cells: [
-            'R2C1',
-            'R2C2',
-            'R2C3',
-          ]
+          cells: ['R2C1', 'R2C2', 'R2C3'],
         },
         {
-          cells: [
-            'R3C1',
-            'R3C2',
-            'R3C3',
-          ]
-        }
+          cells: ['R3C1', 'R3C2', 'R3C3'],
+        },
       ],
     });
     expect(results.ok).toBe(true);
@@ -100,36 +68,19 @@ describe('<bolt-table> Component', () => {
     const results = await renderTwig('@bolt-components-table/table.twig', {
       headers: {
         side: {
-          cells: [
-            'Row 1',
-            'Row 2',
-            'Row 3',
-            'Footer',
-          ]
-        }
+          cells: ['Row 1', 'Row 2', 'Row 3', 'Footer'],
+        },
       },
       rows: [
         {
-          cells: [
-            'R1C1',
-            'R1C2',
-            'R1C3',
-          ]
+          cells: ['R1C1', 'R1C2', 'R1C3'],
         },
         {
-          cells: [
-            'R2C1',
-            'R2C2',
-            'R2C3',
-          ]
+          cells: ['R2C1', 'R2C2', 'R2C3'],
         },
         {
-          cells: [
-            'R3C1',
-            'R3C2',
-            'R3C3',
-          ]
-        }
+          cells: ['R3C1', 'R3C2', 'R3C3'],
+        },
       ],
     });
     expect(results.ok).toBe(true);
@@ -140,43 +91,22 @@ describe('<bolt-table> Component', () => {
     const results = await renderTwig('@bolt-components-table/table.twig', {
       headers: {
         top: {
-          cells: [
-            'Column 1',
-            'Column 2',
-            'Column 3',
-          ]
+          cells: ['Column 1', 'Column 2', 'Column 3'],
         },
         side: {
-          cells: [
-            'Row 1',
-            'Row 2',
-            'Row 3',
-            'Footer',
-          ]
-        }
+          cells: ['Row 1', 'Row 2', 'Row 3', 'Footer'],
+        },
       },
       rows: [
         {
-          cells: [
-            'R1C1',
-            'R1C2',
-            'R1C3',
-          ]
+          cells: ['R1C1', 'R1C2', 'R1C3'],
         },
         {
-          cells: [
-            'R2C1',
-            'R2C2',
-            'R2C3',
-          ]
+          cells: ['R2C1', 'R2C2', 'R2C3'],
         },
         {
-          cells: [
-            'R3C1',
-            'R3C2',
-            'R3C3',
-          ]
-        }
+          cells: ['R3C1', 'R3C2', 'R3C3'],
+        },
       ],
     });
     expect(results.ok).toBe(true);
@@ -187,51 +117,26 @@ describe('<bolt-table> Component', () => {
     const results = await renderTwig('@bolt-components-table/table.twig', {
       headers: {
         top: {
-          cells: [
-            'Column 1',
-            'Column 2',
-            'Column 3',
-          ]
+          cells: ['Column 1', 'Column 2', 'Column 3'],
         },
         side: {
-          cells: [
-            'Row 1',
-            'Row 2',
-            'Row 3',
-            'Footer',
-          ]
-        }
+          cells: ['Row 1', 'Row 2', 'Row 3', 'Footer'],
+        },
       },
       rows: [
         {
-          cells: [
-            'R1C1',
-            'R1C2',
-            'R1C3',
-          ]
+          cells: ['R1C1', 'R1C2', 'R1C3'],
         },
         {
-          cells: [
-            'R2C1',
-            'R2C2',
-            'R2C3',
-          ]
+          cells: ['R2C1', 'R2C2', 'R2C3'],
         },
         {
-          cells: [
-            'R3C1',
-            'R3C2',
-            'R3C3',
-          ]
-        }
+          cells: ['R3C1', 'R3C2', 'R3C3'],
+        },
       ],
       footer: {
-        cells: [
-          'FC1',
-          'FC2',
-          'FC3',
-        ]
-      }
+        cells: ['FC1', 'FC2', 'FC3'],
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -243,61 +148,26 @@ describe('<bolt-table> Component', () => {
         format: formatChoice,
         headers: {
           top: {
-            cells: [
-              'Pts',
-              'Reb',
-              'Ast',
-              'Stl',
-              'Blk',
-            ]
+            cells: ['Pts', 'Reb', 'Ast', 'Stl', 'Blk'],
           },
           side: {
-            cells: [
-              'Michael Jordan',
-              'Toni Kukoc',
-              'Steve Kerr',
-              'Total',
-            ]
-          }
+            cells: ['Michael Jordan', 'Toni Kukoc', 'Steve Kerr', 'Total'],
+          },
         },
         rows: [
           {
-            cells: [
-              '70',
-              '10',
-              '2',
-              '5',
-              '1',
-            ]
+            cells: ['70', '10', '2', '5', '1'],
           },
           {
-            cells: [
-              '21',
-              '15',
-              '10',
-              '3',
-              '4',
-            ]
+            cells: ['21', '15', '10', '3', '4'],
           },
           {
-            cells: [
-              '5',
-              '2',
-              '20',
-              '5',
-              '0',
-            ]
-          }
+            cells: ['5', '2', '20', '5', '0'],
+          },
         ],
         footer: {
-          cells: [
-            '91',
-            '27',
-            '32',
-            '13',
-            '5',
-          ]
-        }
+          cells: ['91', '27', '32', '13', '5'],
+        },
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
@@ -310,18 +180,11 @@ describe('<bolt-table> Component', () => {
         borderless: borderlessChoice,
         headers: {
           top: {
-            cells: [
-              'Description',
-              'Team',
-              'Vehical Form',
-            ]
+            cells: ['Description', 'Team', 'Vehical Form'],
           },
           side: {
-            cells: [
-              'Optimus Prime',
-              'Bumblebee',
-            ]
-          }
+            cells: ['Optimus Prime', 'Bumblebee'],
+          },
         },
         rows: [
           {
@@ -329,14 +192,14 @@ describe('<bolt-table> Component', () => {
               'The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.',
               'Autobots',
               'Peterbilt Truck',
-            ]
+            ],
           },
           {
             cells: [
               'One of Optimus Primes most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.',
               'Autobots',
               'VW Beetle',
-            ]
+            ],
           },
         ],
       });
