@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.4](https://github.com/bolt-design-system/bolt/compare/v2.4.3...v2.4.4) (2019-06-05)
+
+
+### Bug Fixes
+
+* check if values are numeric and do not contain float before getting gcd ([921b8fd](https://github.com/bolt-design-system/bolt/commit/921b8fd))
+* replace gmp_gcd with custom gcd function to avoid gmp dependency ([0c165d7](https://github.com/bolt-design-system/bolt/commit/0c165d7))
+* split up the core-php BoltExtra Twig extensions into the ones needed for Drupal compatibility vs any extra Twig extensions used internally for building the docs site. Update Twig renderer configs to use the full set of Twig extensions for the docs site but only BoltCore and BoltCoreCompat when running component tests ([0287e7a](https://github.com/bolt-design-system/bolt/commit/0287e7a))
+
+
+
+
+
+## [2.4.3](https://github.com/bolt-design-system/bolt/compare/v2.4.2...v2.4.3) (2019-05-31)
+
+
+### Bug Fixes
+
+* add smaller Jest config to allow us to quickly run a subset of Jest tests ([7560313](https://github.com/bolt-design-system/bolt/commit/7560313))
+* backport now.sh alias command update to the release/2.x branch ([2fa8ba8](https://github.com/bolt-design-system/bolt/commit/2fa8ba8))
+* globally update non-private package.json files with devDependencies and peerDependencies that might not get installed as expected when used / published outside of the Bolt monorepo ([617bd86](https://github.com/bolt-design-system/bolt/commit/617bd86))
+* partial workaround to Drupal Lab build failing until v2.4.x hotfix released ([3d04280](https://github.com/bolt-design-system/bolt/commit/3d04280))
+
+
+### Features
+
+* add ability to build and deploy drupal lab instance to help with testing to verify that the build tools continue to work as expected + allow for more drupal testing moving forward ([fc6eb81](https://github.com/bolt-design-system/bolt/commit/fc6eb81))
+
+
+
+
+
 ## [2.4.2](https://github.com/bolt-design-system/bolt/compare/v2.4.1...v2.4.2) (2019-05-24)
 
 
