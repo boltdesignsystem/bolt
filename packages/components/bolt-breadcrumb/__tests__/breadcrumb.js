@@ -24,7 +24,7 @@ describe('<bolt-breadcrumb> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('basic usage with contentItems including links and strings', async () => {
+  test('basic usage with contentItems including rendered components and strings', async () => {
     const results = await renderString(`
 {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
   "contentItems": [
