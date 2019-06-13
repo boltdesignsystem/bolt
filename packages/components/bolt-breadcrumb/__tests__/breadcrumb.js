@@ -1,6 +1,4 @@
-// import { render } from '@bolt/twig-renderer';
-const renderer = require('@bolt/twig-renderer');
-const { renderString, render } = renderer;
+import { render, renderString } from '@bolt/twig-renderer';
 
 describe('<bolt-breadcrumb> Component', () => {
   test('basic usage with attributes', async () => {
