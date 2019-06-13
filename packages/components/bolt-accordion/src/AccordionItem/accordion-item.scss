@@ -91,19 +91,19 @@ bolt-accordion-item {
         top,
         rgba(bolt-color(gray), 0.2) 0%,
         rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 100%,
+        rgba(bolt-color(gray, light), 0.1) 100%
       ); /* FF3.6-15 */
       background: -webkit-linear-gradient(
         top,
         rgba(bolt-color(gray), 0.2) 0%,
         rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 100%,
+        rgba(bolt-color(gray, light), 0.1) 100%
       ); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(
         to bottom,
         rgba(bolt-color(gray), 0.2) 0%,
         rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 100%,
+        rgba(bolt-color(gray, light), 0.1) 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
   }
@@ -248,7 +248,9 @@ bolt-accordion-item {
 }
 
 .c-bolt-accordion-item__trigger-icons-inner {
-  @include bolt-padding(xxsmall 0); // This is for aligning the icon with the text baseline.
+  @include bolt-padding(
+    xxsmall 0
+  ); // This is for aligning the icon with the text baseline.
 
   display: block;
   transform: rotate(0deg);
