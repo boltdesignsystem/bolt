@@ -18,7 +18,7 @@ class AccordionItem extends withContext(withLitHtml()) {
   static is = 'bolt-accordion-item';
 
   static props = {
-    autoOpen: props.boolean,
+    open: props.boolean,
     uuid: props.string,
   };
 

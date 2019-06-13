@@ -47,7 +47,7 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
   >
-  <input class="c-bolt-accordion-item__state" type="checkbox" id="{{ primary_uuid }}" {% if auto_open %} checked{% endif %}>
+  <input class="c-bolt-accordion-item__state" type="checkbox" id="{{ primary_uuid }}" {% if open %} checked{% endif %}>
 
   <div
     {{ inner_attributes.addClass(inner_classes) }}

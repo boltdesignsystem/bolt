@@ -10,7 +10,7 @@ export const AccordionItemTrigger = (children, props, context) => {
 
   const triggerTemplate = children => {
     return html`
-      ${props.autoOpen
+      ${props.open
         ? html`
             <div class="${triggerClasses}" data-open>
               ${children}
