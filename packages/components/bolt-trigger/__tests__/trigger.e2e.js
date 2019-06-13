@@ -12,7 +12,7 @@ module.exports = {
       .url(
         `${testingUrl}/pattern-lab/patterns/02-components-trigger-30-trigger-advanced-usage/02-components-trigger-30-trigger-advanced-usage.html`,
       )
-      .waitForElementVisible('bolt-trigger[on-click="show"]', 1000)
+      .waitForElementVisible('bolt-trigger[on-click="show"]', 2000)
       .click('bolt-trigger[on-click="show"]')
       .pause(1000)
       .execute(
