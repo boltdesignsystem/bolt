@@ -13,7 +13,7 @@
 {% set primary_uuid = base_class ~ "-#{_uuid}" %}
 {% set secondary_uuid = base_class ~ "-inner-#{_uuid}" %}
 
-{# init() will not return 'trigger' value because it is not a tring or boolean #}
+{# init() will not return "trigger" because "trigger" can be an object or array #}
 {% set trigger = trigger|default(schema.properties.items.items.trigger.default) %}
 
 {# Array of classes based on the defined + default props #}
