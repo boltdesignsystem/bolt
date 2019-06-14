@@ -27,18 +27,18 @@ describe('<bolt-breadcrumb> Component', () => {
   test('basic usage with contentItems including rendered components and strings', async () => {
     const results = await renderString(`
 {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
-  "contentItems": [
+  contentItems: [
     include("@bolt-components-link/link.twig", {
-      "text": "Home",
-      "url": "#!"
+      text: "Home",
+      url: "#!"
     }),
     include("@bolt-components-link/link.twig", {
-      "text": "Landing Page",
-      "url": "#!"
+      text: "Landing Page",
+      url: "#!"
     }),
     include("@bolt-components-link/link.twig", {
-      "text": "Sub Page",
-      "url": "#!"
+      text: "Sub Page",
+      url: "#!"
     }),
     "Current Page"
   ]
@@ -51,7 +51,7 @@ describe('<bolt-breadcrumb> Component', () => {
   test('current page aria variation', async () => {
     const results = await renderString(`
 {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
-  "contentItems": [
+  contentItems: [
     include("@bolt-components-link/link.twig", {
       text: "Home",
       url: "#!"
