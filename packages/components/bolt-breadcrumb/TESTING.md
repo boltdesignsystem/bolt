@@ -8,7 +8,7 @@ The server-side pre-rendered `bolt-breadcrumb` component should look almost iden
 2. Then, enable javascript and watch the Breadcrumb re-renders on the client-side.
 3. The layout and styling should not change. The spacing in between each breadcrumb segment should be identical before and after enabling javascript.
 
-# List component functional testing steps
+# Breadcrumb component functional testing steps
 
 Functional testing should be performed manually by the QA team across the standard compliment of browsers. In each scenario, browser-type is specified when necessary. If browser type is not specified, the test applies to both "desktop" and "mobile" browsers.
 
