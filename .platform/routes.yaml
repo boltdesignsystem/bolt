@@ -1,0 +1,8 @@
+
+"https://{default}/":
+    type: upstream
+    upstream: "boltdesignsystem:http"
+
+"https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"

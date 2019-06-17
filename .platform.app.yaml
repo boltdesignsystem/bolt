@@ -1,0 +1,33 @@
+name: boltdesignsystem
+type: php:7.3
+
+dependencies:
+  nodejs:
+    pm2: "^2.0.0"
+    yarn: "*"
+
+web:
+  commands:
+    start: "PM2_HOME=$PLATFORM_APP_DIR/run pm2 start packages/servers/default-server/index.js --no-daemon"
+    #in this setup you will find your application stdout and stderr in /app/run/logs
+  locations:
+    "/www":
+      passthru: false
+      root: "www"
+      # Whether to allow files not matching a rule or not.
+      allow: true
+      rules:
+        \.(css|js|gif|jpe?g|png|ttf|eot|woff2?|otf|html|ico|svg?)$:
+          allow: true
+        ^/robots\.txt$:
+          allow: true
+
+mounts:
+  "/run": "shared:files/run"
+
+hooks:
+  build: |
+    yarn run setup
+    # yarn run build
+
+disk: 1024
