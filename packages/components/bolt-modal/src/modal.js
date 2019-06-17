@@ -179,7 +179,7 @@ class BoltModal extends withLitHtml() {
   };
 
   /**
-   * Private event handler called when overlay, the semi-transparent background behind the moda, is clicked
+   * Private event handler called when overlay, the semi-transparent background behind the modal, is clicked
    *
    * @access private
    * @param {Event} event
@@ -298,11 +298,9 @@ class BoltModal extends withLitHtml() {
     const classes = cx('c-bolt-modal', {
       [`is-open`]: open,
       [`c-bolt-modal--scroll-${scroll}`]: scroll,
-    });
-
-    const overlayClasses = cx('c-bolt-modal__overlay', {
-      [`c-bolt-modal__overlay--persistent`]: persistent,
-      [`c-bolt-modal__overlay--light`]:
+      [`c-bolt-modal--overlay-dark`]:
+        theme && (theme === 'light' || theme === 'xlight'),
+      [`c-bolt-modal--overlay-light`]:
         theme && (theme === 'dark' || theme === 'xdark'),
     });
 
@@ -380,7 +378,6 @@ class BoltModal extends withLitHtml() {
         @click="${handleModalClick}"
       >
         ${this.slot('trigger')}
-        <div class="${overlayClasses}" tabindex="-1"></div>
         <focus-trap>
           <dialog
             aria-labelledby="dialog-title-${uuid}"

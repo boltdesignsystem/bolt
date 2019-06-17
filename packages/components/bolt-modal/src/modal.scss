@@ -44,26 +44,26 @@ bolt-modal:not([ready]) {
 }
 
 .c-bolt-modal {
-  @include bolt-z-index(modalBG);
+  @include bolt-z-index(modal);
 
   display: block;
+  opacity: bolt-opacity(0);
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   pointer-events: none;
+  background-color: $bolt-modal-overlay-bg-color-dark;
+  transition: opacity $bolt-modal-transition;
+  overflow-x: hidden;
+  overflow-y: hidden;
 
   &.is-open {
+    opacity: bolt-opacity(100);
     pointer-events: auto;
-
-    &:not(.c-bolt-modal--persistent) {
-      @include bolt-mq($bolt-modal-breakpoint) {
-        cursor: pointer;
-      }
-    }
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   @include bolt-mq($until: $bolt-modal-breakpoint) {
@@ -133,30 +133,13 @@ bolt-modal:not([ready]) {
 }
 
 // Dark overlay
-.c-bolt-modal__overlay {
+.c-bolt-modal--overlay-dark {
   @include bolt-mq($bolt-modal-breakpoint) {
-    @include bolt-z-index(modalBG);
-
-    display: block;
-    opacity: 0;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    pointer-events: none;
     background-color: $bolt-modal-overlay-bg-color-dark;
-    transition: opacity $bolt-modal-transition;
-  }
-
-  @at-root .c-bolt-modal.is-open #{&} {
-    @include bolt-mq($bolt-modal-breakpoint) {
-      opacity: 1;
-    }
   }
 }
 
-.c-bolt-modal__overlay--light {
+.c-bolt-modal--overlay-light {
   @include bolt-mq($bolt-modal-breakpoint) {
     background-color: $bolt-modal-overlay-bg-color-light;
   }
@@ -171,9 +154,7 @@ bolt-modal:not([ready]) {
   background: transparent;
 
   @include bolt-mq($bolt-modal-breakpoint) {
-    @include bolt-z-index(modal);
-
-    visibility: hidden;
+    visibility: hidden; // @todo: once we figure out how to prevent keyboard access to modal content when the modal is closed, we can remove this line.
     opacity: 0;
     position: fixed;
     top: 0;
@@ -186,7 +167,7 @@ bolt-modal:not([ready]) {
 
   @at-root .c-bolt-modal.is-open #{&} {
     @include bolt-mq($bolt-modal-breakpoint) {
-      visibility: visible;
+      visibility: visible; // @todo: once we figure out how to prevent keyboard access to modal content when the modal is closed, we can remove this line.
       opacity: 1;
       cursor: auto;
     }
@@ -196,17 +177,6 @@ bolt-modal:not([ready]) {
 // Scroll options
 @include bolt-mq($bolt-modal-breakpoint) {
   .c-bolt-modal--scroll-overall {
-    @include bolt-z-index(modalBG);
-
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    pointer-events: none;
-
     .c-bolt-modal__content {
       @include bolt-margin(0 auto);
 
@@ -216,10 +186,12 @@ bolt-modal:not([ready]) {
     }
 
     &.is-open {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       pointer-events: auto;
 
       .c-bolt-modal__content {
-        transform: translateX(0) translateY(calc(-50% - 0.5px)) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
+        transform: translateX(0) translateY(-50%) scale(1) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
       }
     }
   }
@@ -233,8 +205,7 @@ bolt-modal:not([ready]) {
 
     &.is-open {
       .c-bolt-modal__content {
-        transform: translateX(calc(-50% - 0.5px)) translateY(calc(-50% - 0.5px))
-          translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
+        transform: translateX(-50%) translateY(-50%) scale(1) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
       }
     }
 
@@ -408,16 +379,6 @@ bolt-modal:not([ready]) {
     border-radius: $bolt-modal-border-radius;
     background-color: bolt-color(indigo, light);
     transform-origin: 50% 50%;
-
-    /* .t-bolt-light &,
-    .t-bolt-xlight & {
-      background-color: bolt-color(indigo, light);
-    }
-
-    .t-bolt-dark &,
-    .t-bolt-xdark & {
-      background-color: bolt-color(white);
-    } */
 
     @include bolt-mq($bolt-modal-breakpoint) {
       height: 0.1rem;
