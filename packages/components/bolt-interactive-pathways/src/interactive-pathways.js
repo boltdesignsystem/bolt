@@ -30,9 +30,12 @@ class BoltInteractivePathways extends withLitHtml() {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
-
-    self.pathways = self.querySelectorAll('bolt-interactive-pathway');
     return self;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.pathways = this.querySelectorAll('bolt-interactive-pathway');
   }
 
   render() {
