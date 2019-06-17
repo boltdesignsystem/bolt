@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<bolt-breadcrumb> Component basic usage with attributes 1`] = `
+<bolt-breadcrumb bolt-component>
+  <nav data-foobar="baz"
+       aria-role="list"
+       class="c-bolt-breadcrumb"
+       aria-label="Breadcrumb"
+       role="navigation"
+  >
+    <ol class="c-bolt-breadcrumb__list">
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link display="inline"
+                   valign="center"
+                   url="#!"
+        >
+          <a href="#!"
+             is="shadow-root"
+             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <replace-with-children class="c-bolt-link__text">
+              Home
+            </replace-with-children>
+          </a>
+        </bolt-link>
+      </li>
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link display="inline"
+                   valign="center"
+                   url="#!"
+        >
+          <a href="#!"
+             is="shadow-root"
+             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <replace-with-children class="c-bolt-link__text">
+              Other Page
+            </replace-with-children>
+          </a>
+        </bolt-link>
+      </li>
+    </ol>
+  </nav>
+</bolt-breadcrumb>
+`;
+
+exports[`<bolt-breadcrumb> Component basic usage with contentItems including rendered components and strings 1`] = `
+<bolt-breadcrumb bolt-component>
+  <nav class="c-bolt-breadcrumb"
+       aria-label="Breadcrumb"
+       role="navigation"
+  >
+    <ol class="c-bolt-breadcrumb__list">
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link display="inline"
+                   valign="center"
+                   url="#!"
+        >
+          <a href="#!"
+             is="shadow-root"
+             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <replace-with-children class="c-bolt-link__text">
+              Home
+            </replace-with-children>
+          </a>
+        </bolt-link>
+      </li>
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link display="inline"
+                   valign="center"
+                   url="#!"
+        >
+          <a href="#!"
+             is="shadow-root"
+             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <replace-with-children class="c-bolt-link__text">
+              Landing Page
+            </replace-with-children>
+          </a>
+        </bolt-link>
+      </li>
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link display="inline"
+                   valign="center"
+                   url="#!"
+        >
+          <a href="#!"
+             is="shadow-root"
+             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <replace-with-children class="c-bolt-link__text">
+              Sub Page
+            </replace-with-children>
+          </a>
+        </bolt-link>
+      </li>
+      <li class="c-bolt-breadcrumb__item">
+        Current Page
+      </li>
+    </ol>
+  </nav>
+</bolt-breadcrumb>
+`;
+
+exports[`<bolt-breadcrumb> Component current page aria variation 1`] = `
+<bolt-breadcrumb bolt-component>
+  <nav class="c-bolt-breadcrumb"
+       aria-label="Breadcrumb"
+       role="navigation"
+  >
+    <ol class="c-bolt-breadcrumb__list">
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link display="inline"
+                   valign="center"
+                   url="#!"
+        >
+          <a href="#!"
+             is="shadow-root"
+             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <replace-with-children class="c-bolt-link__text">
+              Home
+            </replace-with-children>
+          </a>
+        </bolt-link>
+      </li>
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link display="inline"
+                   valign="center"
+                   url="#!"
+        >
+          <a href="#!"
+             is="shadow-root"
+             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <replace-with-children class="c-bolt-link__text">
+              Landing Page
+            </replace-with-children>
+          </a>
+        </bolt-link>
+      </li>
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link display="inline"
+                   valign="center"
+                   url="#!"
+        >
+          <a href="#!"
+             is="shadow-root"
+             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+          >
+            <replace-with-children class="c-bolt-link__text">
+              Sub Page
+            </replace-with-children>
+          </a>
+        </bolt-link>
+      </li>
+      <li class="c-bolt-breadcrumb__item">
+        <bolt-link display="inline"
+                   valign="center"
+                   url="#!"
+                   aria-current
+        >
+          <a href="#!"
+             is="shadow-root"
+             class="c-bolt-link  c-bolt-link--display-inline c-bolt-link--valign-center"
+             aria-current
+          >
+            <replace-with-children class="c-bolt-link__text">
+              Current Page
+            </replace-with-children>
+          </a>
+        </bolt-link>
+      </li>
+    </ol>
+  </nav>
+</bolt-breadcrumb>
+`;
