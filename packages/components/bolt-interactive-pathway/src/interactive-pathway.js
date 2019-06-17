@@ -66,15 +66,15 @@ class BoltInteractivePathway extends withLitHtml() {
     const parentBoltInteractiveStepNode = this._getParentBoltStepNode(
       event.target,
     );
-    this.activeItem = parentBoltInteractiveStepNode.getAttribute('step');
+    this.activeStep = parentBoltInteractiveStepNode.getAttribute('step');
     this._updateActiveItemDomState();
   }
 
   _updateActiveItemDomState() {
     this.steps.forEach(item => {
-      const updatedItemState =
-        item.getAttribute('step') === this.activeItem ? 'true' : 'false';
-      item.setAttribute('active', updatedItemState);
+      item.getAttribute('step') === this.activeStep
+        ? item.setAttribute('active', '')
+        : item.removeAttribute('active');
     });
   }
 

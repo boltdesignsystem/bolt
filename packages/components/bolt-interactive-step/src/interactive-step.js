@@ -24,8 +24,8 @@ class BoltInteractiveStep extends withLitHtml() {
       ...{ default: '1' },
     },
     active: {
-      ...props.string,
-      ...{ default: 'false' }, // Not sure why I'm having trouble handling this as a bool
+      ...props.boolean,
+      ...{ default: false },
     },
   };
 
@@ -38,12 +38,12 @@ class BoltInteractiveStep extends withLitHtml() {
 
   render() {
     let step = this.step;
-    let active = this.active;
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled } = this.validateProps(this.props);
+    const { disabled, active } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-interactive-step', {
       [`c-bolt-interactive-step--disabled`]: disabled,
+      [`c-bolt-interactive-step--active`]: active,
     });
 
     return html`
