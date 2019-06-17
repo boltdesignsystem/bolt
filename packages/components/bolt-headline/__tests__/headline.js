@@ -3,7 +3,7 @@ import { render } from '@bolt/twig-renderer';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../headline.schema.yml'));
-const { tag, sizes } = schema.properties;
+const { tag, size, align, transform } = schema.properties;
 
 describe('<bolt-headline> Component', () => {
   test('basic usage headline', async () => {
@@ -65,19 +65,81 @@ describe('<bolt-headline> Component', () => {
     });
   });
 
-  // sizes.enum.forEach(async sizeChoice => {
-  //   const fontWeight = ['bold', 'italic', 'semibold'];
+  align.enum.forEach(async alignmentChoice => {
+    test(`text alignment: ${alignmentChoice}`, async () => {
+      const results = await render('@bolt-components-headline/headline.twig', {
+        align: alignmentChoice,
+        text: 'Some text',
+      });
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
 
-  //   test(`tag display: ${displayChoice}`, async () => {
-  //     const results = await renderTwig(
-  //       '@bolt-components-headline/headline.twig',
-  //       {
-  //         tag: displayChoice,
-  //         text: 'Some text',
-  //       },
-  //     );
-  //     expect(results.ok).toBe(true);
-  //     expect(results.html).toMatchSnapshot();
-  //   });
-  // });
+  size.enum.forEach(async sizeChoice => {
+    const fontWeight = ['bold', 'regular', 'semibold'];
+
+    fontWeight.forEach(async weightChoice => {
+      test(`Sizes at all varient font weights: ${sizeChoice}, ${weightChoice}`, async () => {
+        const results = await render(
+          '@bolt-components-headline/headline.twig',
+          {
+            size: sizeChoice,
+            weight: weightChoice,
+            text: 'Some text',
+          },
+        );
+        expect(results.ok).toBe(true);
+        expect(results.html).toMatchSnapshot();
+      });
+    });
+  });
+
+  size.enum.forEach(async sizeChoice => {
+    const fontStyle = ['normal', 'italic'];
+
+    fontStyle.forEach(async fontChoice => {
+      test(`Sizes at all varient font styles: ${sizeChoice}, ${fontChoice}`, async () => {
+        const results = await render(
+          '@bolt-components-headline/headline.twig',
+          {
+            size: sizeChoice,
+            style: fontChoice,
+            text: 'Some text',
+          },
+        );
+        expect(results.ok).toBe(true);
+        expect(results.html).toMatchSnapshot();
+      });
+    });
+  });
+
+  transform.enum.forEach(async caseChoice => {
+    test(`text casing: ${caseChoice}`, async () => {
+      const results = await render('@bolt-components-headline/headline.twig', {
+        transform: caseChoice,
+        text: 'Some text',
+      });
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  test('headline with associated link', async () => {
+    const results = await render('@bolt-components-headline/headline.twig', {
+      url: 'www.testurl.com',
+      text: 'this is a headline',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('headline with icon', async () => {
+    const results = await render('@bolt-components-headline/headline.twig', {
+      icon: 'check',
+      text: 'this is a headline',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
 });
