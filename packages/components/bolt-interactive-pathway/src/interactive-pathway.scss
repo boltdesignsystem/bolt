@@ -13,8 +13,12 @@
 //@import "@bolt/animations/utilities/utilities-animation";
 
 .c-bolt-interactive-pathway {
-  display: block;
+  display: none;
   position: relative;
+
+  &--active {
+    display: block;
+  }
 
   &__nav {
     position: relative;

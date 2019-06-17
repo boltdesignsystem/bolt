@@ -30,12 +30,27 @@ class BoltInteractivePathways extends withLitHtml() {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
+
+    self._updateActivePathwayAttributes = self._updateActivePathwayAttributes.bind(
+      self,
+    );
     return self;
   }
 
   connectedCallback() {
     super.connectedCallback();
     this.pathways = this.querySelectorAll('bolt-interactive-pathway');
+    // Make the first pathway the active pathway
+    this.activePathway = this.pathways[0];
+    this._updateActivePathwayAttributes();
+  }
+
+  _updateActivePathwayAttributes() {
+    this.pathways.forEach(pathway => {
+      pathway === this.activePathway
+        ? pathway.setAttribute('active', '')
+        : pathway.removeAttribute('active');
+    });
   }
 
   render() {
@@ -56,6 +71,9 @@ class BoltInteractivePathways extends withLitHtml() {
             src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/interactive-pathways-logo.png"
             alt="Two diamond logo"
           />
+          <div class="c-bolt-interactive-pathways__nav">
+            <span>${this.slot('interactive-pathways-lead-text')} Dropdown</span>
+          </div>
         </div>
 
         ${this.title} ${this.slot('default')}

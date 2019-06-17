@@ -25,7 +25,7 @@ class BoltInteractiveStep extends withLitHtml() {
     },
     active: {
       ...props.string,
-      ...{ default: '1' },
+      ...{ default: 'false' }, // Not sure why I'm having trouble handling this as a bool
     },
   };
 

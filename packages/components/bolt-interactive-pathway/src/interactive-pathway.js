@@ -19,6 +19,10 @@ class BoltInteractivePathway extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
+    active: {
+      ...props.boolean,
+      ...{ default: false },
+    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -76,10 +80,11 @@ class BoltInteractivePathway extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled } = this.validateProps(this.props);
+    const { disabled, active } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-interactive-pathway', {
       [`c-bolt-interactive-pathway--disabled`]: disabled,
+      [`c-bolt-interactive-pathway--active`]: active,
     });
 
     // Adds click handler to the pathway steps
