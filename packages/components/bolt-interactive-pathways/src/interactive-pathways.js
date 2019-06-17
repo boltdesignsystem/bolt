@@ -19,6 +19,10 @@ class BoltInteractivePathways extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
+    title: {
+      ...props.string,
+      ...{ default: '' },
+    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -26,6 +30,8 @@ class BoltInteractivePathways extends withLitHtml() {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
+
+    self.pathways = self.querySelectorAll('bolt-interactive-pathway');
     return self;
   }
 
@@ -37,10 +43,19 @@ class BoltInteractivePathways extends withLitHtml() {
       [`c-bolt-interactive-pathways--disabled`]: disabled,
     });
 
+    console.log('Wubba Lubba Dub Dub: this.pathways', this.pathways);
+
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
-        ${this.slot('default')}
+        <div class="c-bolt-interactive-pathways__header">
+          <img
+            src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/interactive-pathways-logo.png"
+            alt="Two diamond logo"
+          />
+        </div>
+
+        ${this.title} ${this.slot('default')}
       </div>
     `;
   }

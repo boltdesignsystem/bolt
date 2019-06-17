@@ -32,7 +32,7 @@ class BoltInteractivePathway extends withLitHtml() {
     self._getParentBoltStepNode = self._getParentBoltStepNode.bind(self);
 
     /** @type {HTMLElement[]}  */
-    self.$steps = self.querySelectorAll('bolt-interactive-step');
+    self.steps = self.querySelectorAll('bolt-interactive-step');
 
     return self;
   }
@@ -63,7 +63,7 @@ class BoltInteractivePathway extends withLitHtml() {
   }
 
   _updateActiveItemDomState() {
-    this.$steps.forEach(item => {
+    this.steps.forEach(item => {
       const updatedItemState =
         item.getAttribute('step') === this.activeItem ? 'true' : 'false';
       item.setAttribute('active', updatedItemState);

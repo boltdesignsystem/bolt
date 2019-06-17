@@ -9,103 +9,212 @@
     } only %}
   {% endset %}
   {% set article %}
-
-    <h1>Bolt Interactive Pathways</h1>
-    <bolt-interactive-pathway>
-      <bolt-interactive-step
-          step="1"
-          active="true"
-          slot="steps"
+    <bolt-interactive-pathways>
+      <bolt-interactive-pathway
+          id="12345"
       >
-        <span slot="title">Moment of Need</span>
-        <span slot="dialogue">I'm saying something!</span>
-        <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
-        <bolt-text slot="body">
-          Pega enables the business to sense <b>customer context</b> by seeing interactions across channels--calls to customer service about a bill, or visit to pricing web page.
+        <bolt-text
+            slot="pathway-title"
+        >
+          Billing Inquires
         </bolt-text>
-      </bolt-interactive-step>
-      <bolt-interactive-step
-          step="2"
-          active="false"
-          slot="steps"
-      >
-        <span slot="title">Next best action</span>
-        <span slot="dialogue">I'm saying something!</span>
-        <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png" />
-        <bolt-text slot="body">
-          Pega's AI-augmented <b>decisioning engine</b> uses context, predictive analytics, and self-learning adaptive models to guide agents with next best actions to serve the customer.
-        </bolt-text>
-      </bolt-interactive-step>
-      <bolt-interactive-step
-          step="3"
-          active="false"
-          slot="steps"
-      >
-        <span slot="title">Context Across Channels</span>
-        <span slot="dialogue">I'm saying something!</span>
-        <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
-        <bolt-text slot="body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Accusamus blanditiis consectetur culpa cum, doloremque doloribus
-          ea error ipsa itaque modi nisi non odit officia quod reiciendis
-          rem reprehenderit tempora tempore?
-        </bolt-text>
-      </bolt-interactive-step>
-      <bolt-interactive-step
-          step="4"
-          active="false"
-          slot="steps"
-      >
-        <span slot="title">Resolve</span>
-        <span slot="dialogue">I'm saying something!</span>
-        <bolt-text slot="body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Accusamus blanditiis consectetur culpa cum, doloremque doloribus
-          ea error ipsa itaque modi nisi non odit officia quod reiciendis
-          rem reprehenderit tempora tempore?
-        </bolt-text>
-      </bolt-interactive-step>
-      <bolt-interactive-step
-          step="5"
-          active="false"
-          slot="steps"
-      >
-        <span slot="title">Outcomes</span>
-        <span slot="dialogue">I'm saying something!</span>
-        <bolt-text slot="body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Accusamus blanditiis consectetur culpa cum, doloremque doloribus
-          ea error ipsa itaque modi nisi non odit officia quod reiciendis
-          rem reprehenderit tempora tempore?
-        </bolt-text>
-      </bolt-interactive-step>
-      <bolt-interactive-step
-          step="6"
-          active="false"
-          slot="steps"
-      >
-        <span slot="title">What's next?</span>
-        <span slot="dialogue">I'm saying something!</span>
-        <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
-        <div slot="body">
-          <ul>
-            <li>Something</li>
-            <li>Random</li>
-            <li>Here</li>
-          </ul>
-          <details>
-            <summary>Like a list then a details tag</summary>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda atque, aut autem cumque deserunt doloribus eveniet expedita facere facilis hic inventore iste, magni neque pariatur, praesentium reiciendis rerum tempora vitae?</p>
-          </details>
-          <div>
+        <bolt-interactive-step
+            step="1"
+            active="true"
+            slot="steps"
+        >
+          <span slot="title">Moment of Need</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
+          <bolt-text slot="body">
+            Pega enables the business to sense <b>customer context</b> by seeing interactions across channels--calls to customer service about a bill, or visit to pricing web page.
+          </bolt-text>
+        </bolt-interactive-step>
+        <bolt-interactive-step
+            step="2"
+            active="false"
+            slot="steps"
+        >
+          <span slot="title">Next best action</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png" />
+          <bolt-text slot="body">
+            Pega's AI-augmented <b>decisioning engine</b> uses context, predictive analytics, and self-learning adaptive models to guide agents with next best actions to serve the customer.
+          </bolt-text>
+        </bolt-interactive-step>
+        <bolt-interactive-step
+            step="3"
+            active="false"
+            slot="steps"
+        >
+          <span slot="title">Context Across Channels</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
+          <bolt-text slot="body">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Accusamus blanditiis consectetur culpa cum, doloremque doloribus
             ea error ipsa itaque modi nisi non odit officia quod reiciendis
             rem reprehenderit tempora tempore?
+          </bolt-text>
+        </bolt-interactive-step>
+        <bolt-interactive-step
+            step="4"
+            active="false"
+            slot="steps"
+        >
+          <span slot="title">Resolve</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <bolt-text slot="body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Accusamus blanditiis consectetur culpa cum, doloremque doloribus
+            ea error ipsa itaque modi nisi non odit officia quod reiciendis
+            rem reprehenderit tempora tempore?
+          </bolt-text>
+        </bolt-interactive-step>
+        <bolt-interactive-step
+            step="5"
+            active="false"
+            slot="steps"
+        >
+          <span slot="title">Outcomes</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <bolt-text slot="body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Accusamus blanditiis consectetur culpa cum, doloremque doloribus
+            ea error ipsa itaque modi nisi non odit officia quod reiciendis
+            rem reprehenderit tempora tempore?
+          </bolt-text>
+        </bolt-interactive-step>
+        <bolt-interactive-step
+            step="6"
+            active="false"
+            slot="steps"
+        >
+          <span slot="title">What's next?</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
+          <div slot="body">
+            <ul>
+              <li>Something</li>
+              <li>Random</li>
+              <li>Here</li>
+            </ul>
+            <details>
+              <summary>Like a list then a details tag</summary>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda atque, aut autem cumque deserunt doloribus eveniet expedita facere facilis hic inventore iste, magni neque pariatur, praesentium reiciendis rerum tempora vitae?</p>
+            </details>
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus blanditiis consectetur culpa cum, doloremque doloribus
+              ea error ipsa itaque modi nisi non odit officia quod reiciendis
+              rem reprehenderit tempora tempore?
+            </div>
           </div>
-        </div>
-      </bolt-interactive-step>
-    </bolt-interactive-pathway>
+        </bolt-interactive-step>
+        </bolt-interactive-pathway>
+      <bolt-interactive-pathway
+          id="54321"
+      >
+        <bolt-text
+            slot="pathway-title"
+        >
+          Complaints/Disputes
+        </bolt-text>
+        <bolt-interactive-step
+            step="1"
+            active="true"
+            slot="steps"
+        >
+          <span slot="title">Need Moment</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
+          <bolt-text slot="body">
+            Pega enables the business to sense <b>customer context</b> by seeing interactions across channels--calls to customer service about a bill, or visit to pricing web page.
+          </bolt-text>
+        </bolt-interactive-step>
+        <bolt-interactive-step
+            step="2"
+            active="false"
+            slot="steps"
+        >
+          <span slot="title">lorem ipsum</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png" />
+          <bolt-text slot="body">
+            Pega's AI-augmented <b>decisioning engine</b> uses context, predictive analytics, and self-learning adaptive models to guide agents with next best actions to serve the customer.
+          </bolt-text>
+        </bolt-interactive-step>
+        <bolt-interactive-step
+            step="3"
+            active="false"
+            slot="steps"
+        >
+          <span slot="title">lorem ipsum</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
+          <bolt-text slot="body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Accusamus blanditiis consectetur culpa cum, doloremque doloribus
+            ea error ipsa itaque modi nisi non odit officia quod reiciendis
+            rem reprehenderit tempora tempore?
+          </bolt-text>
+        </bolt-interactive-step>
+        <bolt-interactive-step
+            step="4"
+            active="false"
+            slot="steps"
+        >
+          <span slot="title">lorem ipsum</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <bolt-text slot="body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Accusamus blanditiis consectetur culpa cum, doloremque doloribus
+            ea error ipsa itaque modi nisi non odit officia quod reiciendis
+            rem reprehenderit tempora tempore?
+          </bolt-text>
+        </bolt-interactive-step>
+        <bolt-interactive-step
+            step="5"
+            active="false"
+            slot="steps"
+        >
+          <span slot="title">lorem ipsum</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <bolt-text slot="body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Accusamus blanditiis consectetur culpa cum, doloremque doloribus
+            ea error ipsa itaque modi nisi non odit officia quod reiciendis
+            rem reprehenderit tempora tempore?
+          </bolt-text>
+        </bolt-interactive-step>
+        <bolt-interactive-step
+            step="6"
+            active="false"
+            slot="steps"
+        >
+          <span slot="title">What's lorem ipsum?</span>
+          <span slot="dialogue">I'm saying something!</span>
+          <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
+          <div slot="body">
+            <ul>
+              <li>Something</li>
+              <li>Random</li>
+              <li>Here</li>
+            </ul>
+            <details>
+              <summary>Like a list then a details tag</summary>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda atque, aut autem cumque deserunt doloribus eveniet expedita facere facilis hic inventore iste, magni neque pariatur, praesentium reiciendis rerum tempora vitae?</p>
+            </details>
+            <div>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Accusamus blanditiis consectetur culpa cum, doloremque doloribus
+              ea error ipsa itaque modi nisi non odit officia quod reiciendis
+              rem reprehenderit tempora tempore?
+            </div>
+          </div>
+        </bolt-interactive-step>
+      </bolt-interactive-pathway>
+    </bolt-interactive-pathways>
 
   {% endset %}
   {% include "@bolt-components-band/band.twig" with {
