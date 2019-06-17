@@ -1,6 +1,11 @@
 import { render } from '@bolt/twig-renderer';
 
-describe('<bolt-icon> Component', () => {
+const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
+const { join } = require('path');
+const schema = readYamlFileSync(join(__dirname, '../headline.schema.yml'));
+const { tag, sizes } = schema.properties;
+
+describe('<bolt-headline> Component', () => {
   test('basic usage headline', async () => {
     const results = await render('@bolt-components-headline/headline.twig', {
       text: 'this is a headline',
@@ -48,4 +53,31 @@ describe('<bolt-icon> Component', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
+
+  tag.enum.forEach(async displayChoice => {
+    test(`tag display: ${displayChoice}`, async () => {
+      const results = await render('@bolt-components-headline/headline.twig', {
+        tag: displayChoice,
+        text: 'Some text',
+      });
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  // sizes.enum.forEach(async sizeChoice => {
+  //   const fontWeight = ['bold', 'italic', 'semibold'];
+
+  //   test(`tag display: ${displayChoice}`, async () => {
+  //     const results = await renderTwig(
+  //       '@bolt-components-headline/headline.twig',
+  //       {
+  //         tag: displayChoice,
+  //         text: 'Some text',
+  //       },
+  //     );
+  //     expect(results.ok).toBe(true);
+  //     expect(results.html).toMatchSnapshot();
+  //   });
+  // });
 });
