@@ -6,7 +6,7 @@ The server-side pre-rendered `bolt-placeholder` component should look almost ide
 
 1. Disable javascript and view the [Placeholder Demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-placeholder/index.html).
 2. Then, enable javascript and watch as the placeholder re-renders on the client-side.
-3. The layout should not shift, e.g. the spacing in between each list item should be identical before and after the web component re-renders.
+3. The layout should not shift, e.g. the spacing in between each placeholder and any animations should be identical before and after the web component re-renders.
 
 # Placeholder component functional testing steps
 
