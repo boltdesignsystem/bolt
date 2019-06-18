@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+
 import {
   render,
   renderString,
@@ -142,10 +144,10 @@ describe('<bolt-table> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  format.enum.forEach(async choice => {
-    test(`table format: ${choice}`, async () => {
+  format.enum.forEach(async option => {
+    test(`table format: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
-        format: choice,
+        format: option,
         headers: {
           top: {
             cells: ['Pts', 'Reb', 'Ast', 'Stl', 'Blk'],
@@ -174,10 +176,10 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  borderless.enum.forEach(async choice => {
-    test(`borderless table: ${choice}`, async () => {
+  borderless.enum.forEach(async option => {
+    test(`borderless table: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
-        borderless: choice,
+        borderless: option,
         headers: {
           top: {
             cells: ['Description', 'Team', 'Vehicle Form'],
@@ -208,31 +210,42 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  first_col_fixed_width.enum.forEach(async choice => {
-    test(`first column fixed width table: ${choice}`, async () => {
+  first_col_fixed_width.enum.forEach(async option => {
+    test(`first column fixed width table: ${option}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
-        first_col_fixed_width: choice,
+        first_col_fixed_width: option,
         headers: {
           top: {
-            cells: ['Description', 'Team', 'Vehical Form'],
-          },
-          side: {
-            cells: ['Optimus Prime', 'Bumblebee'],
+            cells: ['Prop', 'Description', 'Type'],
           },
         },
         rows: [
           {
             cells: [
-              'The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.',
-              'Autobots',
-              'Peterbilt Truck',
+              'attributes',
+              'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+              '<code>object</code>',
             ],
           },
           {
             cells: [
-              'One of Optimus Primes most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.',
-              'Autobots',
-              'VW Beetle',
+              'headers',
+              'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+              '<code>object</code>',
+            ],
+          },
+          {
+            cells: [
+              'rows',
+              'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+              '<code>array</code>',
+            ],
+          },
+          {
+            cells: [
+              'format',
+              'Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.',
+              '<code>string</code>',
             ],
           },
         ],
