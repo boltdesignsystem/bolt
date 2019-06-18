@@ -4,7 +4,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-const port = process.env.PORT || 3123;
+const platformsh = require('platformsh-config');
+let config = platformsh.config();
+const port =
+  process.env.PORT || process.env.PLATFORM_PROJECT ? config.port : 3123;
 
 async function init() {
   const config = await getConfig();

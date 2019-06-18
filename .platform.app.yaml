@@ -6,6 +6,9 @@ dependencies:
     pm2: "^2.0.0"
     yarn: "*"
 
+relationships:
+  headless: "headless:http"
+
 web:
   commands:
     start: "PM2_HOME=$PLATFORM_APP_DIR/run pm2 start packages/servers/default-server/index.js --no-daemon"
