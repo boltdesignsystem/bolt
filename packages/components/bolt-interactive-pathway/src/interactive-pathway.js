@@ -42,7 +42,7 @@ class BoltInteractivePathway extends withLitHtml() {
     super.connectedCallback();
 
     /** @type {HTMLElement[]}  */
-    this.steps = this.querySelectorAll('bolt-interactive-step');
+    this.steps = Array.from(this.querySelectorAll('bolt-interactive-step'));
   }
 
   /**
@@ -87,7 +87,7 @@ class BoltInteractivePathway extends withLitHtml() {
       [`c-bolt-interactive-pathway--active`]: active,
     });
 
-    // Adds click handler to the pathway steps
+    // Adds click handler to the pathway steps. wait... Shouldn't this be in the connectedCallback?
     this.slots.steps.map(node => {
       node.renderRoot
         .querySelector('.c-bolt-interactive-step__nav-item-wrapper')

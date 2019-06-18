@@ -51,7 +51,6 @@ class BoltInteractiveStep extends withLitHtml() {
       <li
         class="${classes}"
         is="shadow-root"
-        data-active="${active}"
         data-step="${step}"
       >
         <div class="c-bolt-interactive-step__nav-item-wrapper">
