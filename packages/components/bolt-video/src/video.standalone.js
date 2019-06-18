@@ -672,6 +672,7 @@ class BoltVideo extends withPreact() {
           loop={this.props.loop}
           className="video-js"
           controls={this.props.controls === false ? false : true}
+          playsinline
         />
         {this.props.showMeta && h(videoMetaTag)}
         {this.props.isBackgroundVideo && (
