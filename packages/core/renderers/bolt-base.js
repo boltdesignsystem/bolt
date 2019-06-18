@@ -100,6 +100,45 @@ export function BoltBase(Base = HTMLElement) {
       return validatedData;
     }
 
+    /**
+     * Get modified version of schema, removing any properties not wanted on Web Component
+     * @param {object} schema A valid JSON schema
+     * @param {(string|string[])} propsToRemove A prop or list of props to be removed from the schema
+     * @returns {object} returns the modified JSON schema
+     */
+    getModifiedSchema(schema, propsToRemove = 'content') {
+      let modifiedSchema = schema;
+
+      if (typeof propsToRemove === 'string') {
+        propsToRemove = [propsToRemove];
+      }
+
+      try {
+        propsToRemove.forEach(item => {
+          if (modifiedSchema.properties && modifiedSchema.properties[item]) {
+            // Delete property key from schema
+            delete modifiedSchema.properties[item];
+          }
+
+          if (modifiedSchema.required) {
+            const index = modifiedSchema.required.indexOf(item);
+            if (index !== -1) {
+              // Remove from list of required fields
+              modifiedSchema.required.splice(index, 1);
+              if (!modifiedSchema.required.length) {
+                // If no required props remain, just delete the whole key
+                delete modifiedSchema.required;
+              }
+            }
+          }
+        });
+      } catch (e) {
+        console.warn(e.message, e.name);
+      }
+
+      return modifiedSchema;
+    }
+
     addStyles(stylesheet) {
       let styles = Array.from(stylesheet);
       styles = styles.join(' ');

@@ -34,21 +34,11 @@ class BoltImage extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.schema = this.getModifiedSchema(schema);
+    self.schema = this.getModifiedSchema(schema, [
+      'lazyload',
+      'useAspectRatio',
+    ]);
     return self;
-  }
-
-  getModifiedSchema(schema) {
-    var modifiedSchema = schema;
-
-    // Remove "lazyload" and "useAspectRatio" from schema, does not apply to web component.
-    for (let property in modifiedSchema.properties) {
-      if (property === 'lazyload' || property === 'useAspectRatio') {
-        delete modifiedSchema.properties[property];
-      }
-    }
-
-    return modifiedSchema;
   }
 
   lazyloadImage(image) {
