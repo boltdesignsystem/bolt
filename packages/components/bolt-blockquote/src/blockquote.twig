@@ -54,7 +54,7 @@
     {% if logo %}
       <replace-with-children class="{{ "#{base_class}__logo" }}">
         {% include "@bolt/logo.twig" with logo|merge({
-          "lazyload": false, 
+          "lazyload": false,
           slot: "logo",
         }) only %}
       </replace-with-children>

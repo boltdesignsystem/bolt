@@ -20,7 +20,7 @@ exports[`<bolt-table> Component borderless table: false 1`] = `
         <th class="c-bolt-table__cell c-bolt-table__cell--header"
             scope="col"
         >
-          Vehical Form
+          Vehicle Form
         </th>
       </tr>
     </thead>
@@ -67,6 +67,132 @@ exports[`<bolt-table> Component borderless table: true 1`] = `
             borderless
 >
   <table class="c-bolt-table c-bolt-table--borderless">
+    <thead class="c-bolt-table__head">
+      <tr class="c-bolt-table__row">
+        <td class="c-bolt-table__cell">
+        </td>
+        <th class="c-bolt-table__cell c-bolt-table__cell--header"
+            scope="col"
+        >
+          Description
+        </th>
+        <th class="c-bolt-table__cell c-bolt-table__cell--header"
+            scope="col"
+        >
+          Team
+        </th>
+        <th class="c-bolt-table__cell c-bolt-table__cell--header"
+            scope="col"
+        >
+          Vehicle Form
+        </th>
+      </tr>
+    </thead>
+    <tbody class="c-bolt-table__body">
+      <tr class="c-bolt-table__row">
+        <th class="c-bolt-table__cell c-bolt-table__cell--header"
+            scope="row"
+        >
+          Optimus Prime
+        </th>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.
+        </td>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          Autobots
+        </td>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          Peterbilt Truck
+        </td>
+      </tr>
+      <tr class="c-bolt-table__row">
+        <th class="c-bolt-table__cell c-bolt-table__cell--header"
+            scope="row"
+        >
+          Bumblebee
+        </th>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          One of Optimus Primes most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.
+        </td>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          Autobots
+        </td>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          VW Beetle
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</bolt-table>
+`;
+
+exports[`<bolt-table> Component first column fixed width table: false 1`] = `
+<bolt-table format="regular">
+  <table class="c-bolt-table">
+    <thead class="c-bolt-table__head">
+      <tr class="c-bolt-table__row">
+        <td class="c-bolt-table__cell">
+        </td>
+        <th class="c-bolt-table__cell c-bolt-table__cell--header"
+            scope="col"
+        >
+          Description
+        </th>
+        <th class="c-bolt-table__cell c-bolt-table__cell--header"
+            scope="col"
+        >
+          Team
+        </th>
+        <th class="c-bolt-table__cell c-bolt-table__cell--header"
+            scope="col"
+        >
+          Vehical Form
+        </th>
+      </tr>
+    </thead>
+    <tbody class="c-bolt-table__body">
+      <tr class="c-bolt-table__row">
+        <th class="c-bolt-table__cell c-bolt-table__cell--header"
+            scope="row"
+        >
+          Optimus Prime
+        </th>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.
+        </td>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          Autobots
+        </td>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          Peterbilt Truck
+        </td>
+      </tr>
+      <tr class="c-bolt-table__row">
+        <th class="c-bolt-table__cell c-bolt-table__cell--header"
+            scope="row"
+        >
+          Bumblebee
+        </th>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          One of Optimus Primes most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.
+        </td>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          Autobots
+        </td>
+        <td class="c-bolt-table__cell c-bolt-table__cell--data">
+          VW Beetle
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</bolt-table>
+`;
+
+exports[`<bolt-table> Component first column fixed width table: true 1`] = `
+<bolt-table format="regular"
+            first-col-fixed-width
+>
+  <table class="c-bolt-table c-bolt-table--first-col-fixed-width">
     <thead class="c-bolt-table__head">
       <tr class="c-bolt-table__row">
         <td class="c-bolt-table__cell">

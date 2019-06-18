@@ -6,7 +6,7 @@ import {
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../table.schema.yml'));
-const { format, borderless, firstColFixedWidth } = schema.properties;
+const { format, borderless, first_col_fixed_width } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -142,10 +142,10 @@ describe('<bolt-table> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  format.enum.forEach(async formatChoice => {
-    test(`table format: ${formatChoice}`, async () => {
+  format.enum.forEach(async choice => {
+    test(`table format: ${choice}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
-        format: formatChoice,
+        format: choice,
         headers: {
           top: {
             cells: ['Pts', 'Reb', 'Ast', 'Stl', 'Blk'],
@@ -174,10 +174,44 @@ describe('<bolt-table> Component', () => {
     });
   });
 
-  borderless.enum.forEach(async borderlessChoice => {
-    test(`borderless table: ${borderlessChoice}`, async () => {
+  borderless.enum.forEach(async choice => {
+    test(`borderless table: ${choice}`, async () => {
       const results = await renderTwig('@bolt-components-table/table.twig', {
-        borderless: borderlessChoice,
+        borderless: choice,
+        headers: {
+          top: {
+            cells: ['Description', 'Team', 'Vehicle Form'],
+          },
+          side: {
+            cells: ['Optimus Prime', 'Bumblebee'],
+          },
+        },
+        rows: [
+          {
+            cells: [
+              'The awe-inspiring leader of the Autobot forces. Selfless and endlessly courageous, he is the complete opposite of his mortal enemy Megatron.',
+              'Autobots',
+              'Peterbilt Truck',
+            ],
+          },
+          {
+            cells: [
+              'One of Optimus Primes most trusted lieutenants. Although he is not the strongest or most powerful of the Autobots, Bumblebee more than makes up for this with a bottomless well of luck, determination and bravery. He would gladly give his life to protect others and stop the Decepticons.',
+              'Autobots',
+              'VW Beetle',
+            ],
+          },
+        ],
+      });
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  first_col_fixed_width.enum.forEach(async choice => {
+    test(`first column fixed width table: ${choice}`, async () => {
+      const results = await renderTwig('@bolt-components-table/table.twig', {
+        first_col_fixed_width: choice,
         headers: {
           top: {
             cells: ['Description', 'Team', 'Vehical Form'],
