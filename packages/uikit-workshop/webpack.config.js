@@ -244,6 +244,7 @@ module.exports = async function() {
             return context;
           },
           renderer: new Renderer({
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
             // Optional - The name of the property to add to the window object with the contents of `inject`.
             injectProperty: '__PRERENDER_INJECTED',
             // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
