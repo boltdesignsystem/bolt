@@ -6,10 +6,8 @@
 
 {# Variables #}
 {% set base_class = "c-bolt-interactive-pathway" %}
-{% set props = create_attribute({
-
-}) %}
-{% set attributes = merge_attributes(create_attribute(attributes|default({})), props) %}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
@@ -34,9 +32,9 @@
 
 <bolt-interactive-pathway
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ attributes|without('class') }}
+  {{ this.props|without("content")|without("class") }}
 >
   <div {{ inner_attributes.addClass(inner_classes) }} is="shadow-root">
-   
+
   </div>
 </bolt-interactive-pathway>
