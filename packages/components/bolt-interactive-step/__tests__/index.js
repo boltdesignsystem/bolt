@@ -22,7 +22,7 @@ async function renderTwigString(template, data) {
 
 const timeout = 60000;
 
-describe('interactive step', async () => {
+describe('interactive step', () => {
   let page;
 
   afterAll(async () => {
