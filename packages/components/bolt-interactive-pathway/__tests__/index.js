@@ -73,8 +73,8 @@ describe('interactive pathway', async () => {
   test('Default <bolt-interactive-pathway> w/o Shadow DOM renders', async function() {
     const renderedComponentHTML = await page.evaluate(() => {
       const component = document.createElement('bolt-interactive-pathway');
-      btn.textContent = 'interactive-pathway Test';
-      document.body.appendChild(btn);
+      component.textContent = 'interactive-pathway Test';
+      document.body.appendChild(component);
       component.useShadow = false;
       component.updated();
       return component.outerHTML;
