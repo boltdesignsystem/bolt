@@ -155,7 +155,6 @@ bolt-modal:not([ready]) {
 
   @include bolt-mq($bolt-modal-breakpoint) {
     visibility: hidden; // @todo: once we figure out how to prevent keyboard access to modal content when the modal is closed, we can remove this line.
-    opacity: 0;
     position: fixed;
     top: 0;
     left: 0;
@@ -168,7 +167,6 @@ bolt-modal:not([ready]) {
   @at-root .c-bolt-modal.is-open #{&} {
     @include bolt-mq($bolt-modal-breakpoint) {
       visibility: visible; // @todo: once we figure out how to prevent keyboard access to modal content when the modal is closed, we can remove this line.
-      opacity: 1;
       cursor: auto;
     }
   }
@@ -231,6 +229,14 @@ bolt-modal:not([ready]) {
 // Container
 .c-bolt-modal__container {
   display: block;
+  opacity: 0;
+  transform: scale($bolt-modal-animation-scale);
+  transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
+
+  .c-bolt-modal.is-open & {
+    opacity: 1;
+    transform: scale(1);
+  }
 
   @include bolt-mq($bolt-modal-breakpoint) {
     border-radius: $bolt-modal-border-radius;
