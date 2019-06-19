@@ -1,9 +1,15 @@
 /* eslint-disable no-await-in-loop */
-import { fixture as html } from '@open-wc/testing-helpers';
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 
-const timeout = 60000;
+const timeout = 120000;
 
 const viewportSizes = [
   {
@@ -57,13 +63,13 @@ describe('carousel', () => {
   }, timeout);
 
   // test('basic carousel component renders', async () => {
-  //   const results = await renderTwig('@bolt-components-carousel/carousel.twig');
+  //   const results = await render('@bolt-components-carousel/carousel.twig');
   //   expect(results.ok).toBe(true);
   //   expect(results.html).toMatchSnapshot();
   // });
 
   // test('basic carousel component with the global `no-shadow` prop added', async () => {
-  //   const results = await renderTwig(
+  //   const results = await render(
   //     '@bolt-components-carousel/carousel.twig',
   //     {
   //       no_shadow: true,
@@ -74,7 +80,7 @@ describe('carousel', () => {
   // });
 
   // test('carousel with outer CSS class via Drupal Attributes', async () => {
-  //   const results = await renderTwig(
+  //   const results = await render(
   //     '@bolt-components-carousel/carousel.twig',
   //     {
   //       attributes: {

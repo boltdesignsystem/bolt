@@ -1,4 +1,4 @@
-# babel-preset-backpack
+# babel-preset-bolt
 
 This package includes the [Babel](https://babeljs.io) preset used by the [Bolt Design System](https://github.com/bolt-design-system/bolt)
 

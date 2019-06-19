@@ -50,5 +50,5 @@ import(/* webpackMode: 'eager', webpackChunkName: 'bolt-button' */ '@bolt/compon
 
 
 ## JavaScript Coding Standards via [Eslint](https://www.smashingmagazine.com/2015/09/eslint-the-next-generation-javascript-linter/)
-* Bolt’s  [JavaScript coding standards](https://github.com/bolt-design-system/bolt/blob/release/0.x/packages/bolt-config-presets/config-eslint/index.js) use the gold standard of JavaScript linting, AirBnB’s eslint config, as a base and make a few tweaks accordingly.
+* Bolt’s  [JavaScript coding standards](https://github.com/bolt-design-system/bolt/blob/master/packages/configs/eslint-config/index.js) use the gold standard of JavaScript linting, AirBnB’s eslint config, as a base and make a few tweaks accordingly.
 * For reference, the [eslint-config-aribnb](https://www.npmjs.com/package/eslint-config-airbnb)  package has well over 65,000 stars on Github and currently is seeing over 2 million installs from NPM a month.

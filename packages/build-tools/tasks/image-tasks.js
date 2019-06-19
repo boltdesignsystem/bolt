@@ -1,5 +1,5 @@
-const { promisify } = require('util');
 const fs = require('fs');
+const { promisify } = require('util');
 const path = require('path');
 const symlink = promisify(fs.symlink);
 const readFile = promisify(fs.readFile);
@@ -12,10 +12,10 @@ const ora = require('ora');
 const sharpImport = require('sharp');
 const SVGO = require('svgo');
 const { spawnSync } = require('child_process');
-const log = require('../utils/log');
-const timer = require('../utils/timer');
-const { getConfig } = require('../utils/config-store');
-const { flattenArray } = require('../utils/general');
+const log = require('@bolt/build-utils/log');
+const timer = require('@bolt/build-utils/timer');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { flattenArray } = require('@bolt/build-utils/general');
 let config, sharp;
 
 // https://github.com/lovell/sharp/issues/1593#issuecomment-491171982

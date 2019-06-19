@@ -1,6 +1,16 @@
-import { render } from '@bolt/twig-renderer';
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 
 describe('<bolt-chip-list> Component', () => {
+  afterAll(async () => {
+    await stopServer();
+  }, 100);
+
   test('basic usage without links', async () => {
     const results = await render('@bolt-components-chip-list/chip-list.twig', {
       items: [
