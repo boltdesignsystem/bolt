@@ -15,6 +15,7 @@ bolt-carousel-slide {
 
   &:not(.is-ready) {
     flex-basis: calc(100% - var(--bolt-carousel-space-around));
+    flex-direction: column;
   }
 
   &:not(.is-ready):not(:last-of-type) {

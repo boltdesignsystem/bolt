@@ -1,0 +1,10 @@
+{% set schema = bolt.data.components["@bolt-components-trigger"].schema %}
+
+{% for cursor in schema.properties.cursor.enum %}
+  <p>
+    {% include "@bolt-components-trigger/trigger.twig" with {
+      content: "Trigger with cursor <code>" ~ cursor ~ "</code>",
+      cursor: cursor
+    } only %}
+  </p>
+{% endfor %}

@@ -1,6 +1,14 @@
-import { render, renderString } from '@bolt/twig-renderer';
+import {
+  render,
+  renderString,
+  stopServer,
+} from '../../../testing/testing-helpers';
 
 describe('<bolt-ol> Component', () => {
+  afterAll(async () => {
+    await stopServer();
+  }, 100);
+
   test('basic usage with attributes', async () => {
     const results = await render('@bolt-components-ol/ol.twig', {
       attributes: {

@@ -4,8 +4,7 @@
    Text
 \* ------------------------------------ */
 
-// Attribute selectors for parent bolt-text
-bolt-text {
+%bolt-text {
   @include bolt-margin-bottom(medium); // Default vspacing
   @include bolt-font-size(medium); // Default font-size
   display: block;
@@ -29,6 +28,16 @@ bolt-text {
   &:last-child {
     @include bolt-margin-bottom(0);
   }
+}
+
+// Attribute selectors for parent bolt-text
+bolt-text {
+  @extend %bolt-text;
+}
+
+// when fully encapsulated in the Shadow DOM
+:host {
+  @extend %bolt-text;
 }
 
 $bolt-text-v2--minus-letter-spacing: -0.025rem;

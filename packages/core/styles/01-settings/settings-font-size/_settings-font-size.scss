@@ -7,9 +7,9 @@
 @import "../../02-tools/tools-px-to-rem/_tools-px-to-rem.scss";
 
 /// Small breakpoint font-size
-$bolt-font-size--small-bp: bolt-rem(bolt-breakpoint(xxsmall));
+$bolt-font-size--small-bp: bolt-rem(bolt-breakpoint(xxsmall)) !default;
 /// Medium breakpoint font-size
-$bolt-font-size--medium-bp: bolt-rem(bolt-breakpoint(medium));
+$bolt-font-size--medium-bp: bolt-rem(bolt-breakpoint(medium)) !default;
 
 
 /* ------------------------------------ *\
@@ -32,13 +32,13 @@ $bolt-font-size--xlarge: 1.417rem !default;
 $bolt-font-size--large: 1.111rem !default;
 /// Medium font-size. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-font-size--medium: 1rem;
+$bolt-font-size--medium: 1rem !default;
 /// Small font-size. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-font-size--small: 0.9rem;
+$bolt-font-size--small: 0.9rem !default;
 /// X Small font-size. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
-$bolt-font-size--xsmall: 0.8rem;
+$bolt-font-size--xsmall: 0.8rem !default;
 
 /// Default XXX Large line-height. Used within $bolt-font-sizes map.
 /// @see $bolt-font-sizes
@@ -125,4 +125,4 @@ $bolt-font-sizes: (
       )
     )
   )
-);
+) !default;

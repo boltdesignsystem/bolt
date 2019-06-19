@@ -7,18 +7,19 @@ const chokidar = require('chokidar');
 const del = require('del');
 const debounce = require('lodash.debounce');
 const Ora = require('ora');
-const log = require('../utils/log');
-const { getConfig } = require('../utils/config-store');
-const events = require('../utils/events');
-const sh = require('../utils/sh');
-const { readYamlFileSync } = require('../utils/yaml');
-const manifest = require('../utils/manifest');
-const timer = require('../utils/timer');
-const { fileExists, dirExists } = require('../utils/general');
+const log = require('@bolt/build-utils/log');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const events = require('@bolt/build-utils/events');
+const sh = require('@bolt/build-utils/sh');
+const { readYamlFileSync } = require('@bolt/build-utils/yaml');
+const manifest = require('@bolt/build-utils/manifest');
+const timer = require('@bolt/build-utils/timer');
+const { fileExists, dirExists } = require('@bolt/build-utils/general');
 
 let plSource, plPublic, consolePath;
 let config;
 let initialBuild = true;
+let isWatching = false;
 
 async function asyncConfig() {
   if (config) {
@@ -202,30 +203,47 @@ async function watch() {
     `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
   ];
 
-  // listen for api prep work to complete before re-generating PL
-  events.on('api-tasks/status-board:generated', async () => {
-    await compileWithNoExit();
-  });
-
   // @todo show this when spinners are disabled at this high of verbosity
   // if (config.verbosity > 4) {
   //   log.info('Pattern Lab is Watching:');
   //   console.log(watchedFiles);
   // }
 
-  // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
-  const watcher = chokidar.watch(watchedFiles, {
-    ignoreInitial: true,
-    cwd: process.cwd(),
-    ignored: ['**/node_modules/**', '**/vendor/**'],
+  let compileWhenReady = false;
+
+  // listen for api prep work to complete before re-generating PL
+  events.on('api-tasks/status-board:generated', async () => {
+    if (isWatching === true) {
+      await compileWithNoExit();
+    } else {
+      compileWhenReady = true;
+    }
   });
 
-  // list of all events: https://www.npmjs.com/package/chokidar#methods--events
-  watcher.on('all', (event, path) => {
-    if (config.verbosity > 3) {
-      console.log('Pattern Lab watch event: ', event, path);
+  // auto-regenerate when pattern lab data emitted
+  events.on('webpack-dev-server:compiled', async () => {
+    if (isWatching === false) {
+      isWatching = true;
     }
-    debouncedCompile();
+
+    if (compileWhenReady) {
+      compileWhenReady = false;
+      await compileWithNoExit();
+    }
+
+    const watcher = chokidar.watch(watchedFiles, {
+      ignoreInitial: true,
+      cwd: process.cwd(),
+      ignored: ['**/node_modules/**', '**/vendor/**'],
+    });
+
+    // list of all events: https://www.npmjs.com/package/chokidar#methods--events
+    watcher.on('all', (event, path) => {
+      if (config.verbosity > 3) {
+        console.log('Pattern Lab watch event: ', event, path);
+      }
+      debouncedCompile();
+    });
   });
 }
 

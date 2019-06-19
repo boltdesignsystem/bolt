@@ -31,7 +31,7 @@ As a general rule of thumb, Bolt supports the last 3 major versions of desktop a
   </tr>
 </table>
 
-More specifically, we use [Browserslist](https://github.com/ai/browserslist) along with shipping a [codified version of the browser support stats](https://github.com/bolt-design-system/bolt/blob/refactor/browserslist-updates/packages/bolt-config-presets/browserslist-config-bolt/index.js) mentioned above with our front-end development environment and tooling (ex. Autoprefixer, Babel, Eslint, and PostCSS). 
+More specifically, we use [Browserslist](https://github.com/ai/browserslist) along with shipping a [codified version of the browser support stats](https://github.com/bolt-design-system/bolt/blob/master/packages/configs/browserslist-config/index.js) mentioned above with our front-end development environment and tooling (ex. Autoprefixer, Babel, Eslint, and PostCSS). 
 
 This allows us to automatically include or omit code based on how the latest browser stats change over time.
 

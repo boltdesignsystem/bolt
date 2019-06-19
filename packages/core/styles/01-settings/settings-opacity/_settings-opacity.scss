@@ -18,6 +18,6 @@ $bolt-opacities: (
   60: .6,
   80: .8,
   100: 1
-);
+) !default;
 
 @include export-data('opacity.bolt.json', $bolt-opacities);

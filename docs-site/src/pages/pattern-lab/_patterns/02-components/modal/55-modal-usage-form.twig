@@ -1,0 +1,148 @@
+<bolt-text headline font-size="xlarge">Form Modal Usage</bolt-text>
+<bolt-text>Form modals are best suited for presenting a paywall, signup/login, or content restrictions.</bolt-text>
+
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set form_children %}
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "First Name",
+      inputAttributes: {
+        placeholder: "Enter your first name",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Last Name",
+      inputAttributes: {
+        placeholder: "Enter your last name",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Email Address",
+      inputAttributes: {
+        placeholder: "Enter your email address",
+        type: "email",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Title",
+      inputAttributes: {
+        placeholder: "Enter your current job title",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Company Name",
+      inputAttributes: {
+        placeholder: "Enter the name of your company",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+
+    {% include "@pl/40-form-element-demo-select.twig" with {
+      title: "Country",
+      selectAttributes: {
+        required: true
+      },
+      options: [
+        {
+          type: "option",
+          value: "",
+          label: "- Select a Country -"
+        },
+        {
+          type: "option",
+          value: "a",
+          label: "Argentina"
+        },
+        {
+          type: "option",
+          value: "b",
+          label: "Belgium"
+        },
+        {
+          type: "option",
+          value: "c",
+          label: "Croatia"
+        }
+      ]
+    } only %}
+
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      labelTitle: "Receive periodic emails on key analyst reports, Pega events, and important news.  You can unsubscribe at any time",
+      elementId: "checkbox-" ~ random(),
+      labelDisplayType: "inline"
+    } only %}
+
+    {% include "@bolt-components-form/form-button.twig" with {
+      text: "Download",
+      width: "full",
+      icon: {
+        name: "download"
+      }
+    } only %}
+  {% endset %}
+  {% set modal_content %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Get the report",
+      size: "xlarge"
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "(all fields are required)",
+      size: "small"
+    } only %}
+    {% include "@bolt-components-form/form.twig" with {
+      children: form_children,
+    } only  %}
+  {% endset %}
+  {% set trigger %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Show form",
+      size: "small",
+      width: "full",
+      attributes: {
+        onclick: "this.nextElementSibling.show()",
+      }
+    } only %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      attributes: {
+        class: "js-image-modal-advanced-form",
+      },
+      content: modal_content,
+    } only %}
+  {% endset %}
+  {% set description %}
+    <bolt-text headline font-size="large">Form only</bolt-text>
+    <bolt-text>Pass some text and a form into the modal content.</bolt-text>
+  {% endset %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1 1@small",
+        column_span: "12 8@small 9@medium",
+        row_start: "2 1@small",
+        row_span: "1",
+        valign: "center",
+        content: description,
+      },
+      {
+        column_start: "1 10@small 11@medium",
+        column_span: "6 3@small 2@medium",
+        row_start: "1 1@small",
+        row_span: "1",
+        valign: "center",
+        content: trigger,
+      },
+    ]
+  } only %}
+</div>

@@ -1,0 +1,61 @@
+{% set javascript %}
+<script>
+  // Toggle the video state based on modal visibility
+  const modal = document.querySelector('#js-modal');
+  const video = document.querySelector('#js-modal-video');
+
+  modal.addEventListener('modal:show', function() {
+    video.play();
+  });
+
+  modal.addEventListener('modal:hide', function() {
+    video.pause();
+  });
+</script>
+{% endset %}
+
+<bolt-text headline font-size="xlarge">Video Modal Usage</bolt-text>
+<bolt-text>Custom javascript is needed to play the video when the modal opens and pause the video the modal closes.</bolt-text>
+
+<bolt-text headline font-size="large">Demo</bolt-text>
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set modal_content %}
+    {% include "@bolt-components-video/video.twig" with {
+      videoId: "3861325118001",
+      accountId: "1900410236",
+      playerId: "r1CAdLzTW",
+      showMeta: true,
+      showMetaTitle: true,
+      attributes: {
+        id: "js-modal-video"
+      }
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Play the video",
+    attributes: {
+      onclick: "this.nextElementSibling.show()",
+    }
+  } only %}
+  {% include "@bolt-components-modal/modal.twig" with {
+    attributes: {
+      id: "js-modal"
+    },
+    content: modal_content,
+    width: "optimal",
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+  } only %}
+
+  {{ javascript }}
+</div>
+
+<bolt-text headline font-size="large">Custom Javascript</bolt-text>
+<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+  {{ javascript | replace({
+    '<': '&lt;',
+    '>': '&gt;',
+  }) | trim | raw }}
+{% endspaceless %}</bolt-code-snippet>

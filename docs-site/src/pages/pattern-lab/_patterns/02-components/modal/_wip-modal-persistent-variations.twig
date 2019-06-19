@@ -1,0 +1,54 @@
+{% set modal_trigger %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Open Modal",
+    size: "small",
+    attributes: {
+      onclick: "this.nextElementSibling.show()",
+      slot: "trigger",
+    }
+  } only %}
+{% endset %}
+
+{% set persistent_modal_content %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xlarge",
+    text: "Persistent Modal"
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "Clicking outside of modal container will not close the modal, only close buttons will."
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Cancel and close modal",
+    attributes: {
+      onclick: "this.closest('bolt-modal').hide()"
+    }
+  } only %}
+{% endset %}
+
+{% set reuglar_modal_content %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xlarge",
+    text: "Regular Modal"
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "Clicking outside of modal container or the close button will close the modal."
+  } only %}
+{% endset %}
+
+<p>The requirements of how to close a modal can be adjusted by the persistent prop. By default, clicking on the close button(s) or the overlay will close a modal, but you can turn on persistent and make it so that only clicking on the close button(s) would close the modal, while clicking on the overlay would not perform any actions.</p>
+
+<div class="u-bolt-margin-bottom-medium">
+  <h3>Regular Modal (not persistent)</h3>
+  {{ modal_trigger }}
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: reuglar_modal_content,
+  } only %}
+</div>
+<div class="u-bolt-margin-bottom-medium">
+  <h3>Persistent Modal</h3>
+  {{ modal_trigger }}
+  {% include "@bolt-components-modal/modal.twig" with {
+    content: persistent_modal_content,
+    persistent: true,
+  } only %}
+</div>

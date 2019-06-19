@@ -24,6 +24,7 @@ class BoltImage extends withLitHtml() {
     srcset: props.string,
     sizes: props.string,
     ratio: props.string,
+    maxWidth: props.string,
     placeholderColor: props.string,
     placeholderImage: props.string,
     zoom: props.boolean,
@@ -34,21 +35,11 @@ class BoltImage extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.schema = this.getModifiedSchema(schema);
+    self.schema = this.getModifiedSchema(schema, [
+      'lazyload',
+      'useAspectRatio',
+    ]);
     return self;
-  }
-
-  getModifiedSchema(schema) {
-    var modifiedSchema = schema;
-
-    // Remove "lazyload" and "useAspectRatio" from schema, does not apply to web component.
-    for (let property in modifiedSchema.properties) {
-      if (property === 'lazyload' || property === 'useAspectRatio') {
-        delete modifiedSchema.properties[property];
-      }
-    }
-
-    return modifiedSchema;
   }
 
   lazyloadImage(image) {
@@ -99,6 +90,7 @@ class BoltImage extends withLitHtml() {
       srcset,
       sizes,
       ratio,
+      maxWidth,
       placeholderColor,
       placeholderImage,
       zoom,
@@ -213,6 +205,14 @@ class BoltImage extends withLitHtml() {
 
     if (_canUsePlaceholder && placeholderColor) {
       this.style.backgroundColor = placeholderColor;
+    }
+
+    if (maxWidth) {
+      this.style.width = maxWidth;
+      // Don't bother setting `max-width` if `width` is also a percentage
+      if (!maxWidth.includes('%')) {
+        this.style.maxWidth = '100%';
+      }
     }
 
     let renderedImage;
