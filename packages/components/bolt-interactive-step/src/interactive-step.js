@@ -27,6 +27,14 @@ class BoltInteractiveStep extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
+    hideInteractionAnimations: {
+      ...props.boolean,
+      ...{ default: false },
+    },
+    customerDisposition: {
+      ...props.string,
+      ...{ default: 'happy' },
+    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -37,7 +45,11 @@ class BoltInteractiveStep extends withLitHtml() {
   }
 
   render() {
-    let step = this.step;
+    const {
+      step,
+      hideInteractionAnimations,
+      customerDisposition,
+    } = this;
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const { disabled, active } = this.validateProps(this.props);
 
@@ -56,24 +68,28 @@ class BoltInteractiveStep extends withLitHtml() {
           >
         </div>
         <div class="c-bolt-interactive-step__body" data-active="${active}">
-          <div
-            class="c-bolt-interactive-step__dialogue c-bolt-interactive-step__dialogue--left"
-          ></div>
-          <div class="c-bolt-interactive-step__interaction-images">
-            <span class="c-bolt-interactive-step__interaction-band"
-              >${this.slot('dialogueBand')}</span
-            >
-            <img
-              class="c-bolt-interactive-step__avatar"
-              src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png"
-              alt="Customer is happy"
-            />
-            <img
-              class="c-bolt-interactive-step__avatar c-bolt-interactive-step__avatar--right"
-              src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
-              alt="Your helpful Pega Rep"
-            />
-          </div>
+          ${hideInteractionAnimations
+            ? ''
+            : html`
+                <div
+                  class="c-bolt-interactive-step__dialogue c-bolt-interactive-step__dialogue--left"
+                ></div>
+                <div class="c-bolt-interactive-step__interaction-images">
+                  <span class="c-bolt-interactive-step__interaction-band"
+                    >${this.slot('dialogueBand')}</span
+                  >
+                  <img
+                    class="c-bolt-interactive-step__avatar"
+                    src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-${customerDisposition}.png"
+                    alt="Customer is ${customerDisposition}"
+                  />
+                  <img
+                    class="c-bolt-interactive-step__avatar c-bolt-interactive-step__avatar--right"
+                    src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
+                    alt="Your helpful Pega Rep"
+                  />
+                </div>
+              `}
           <div class="c-bolt-interactive-step__step-body">
             ${this.slot('body')}
           </div>
