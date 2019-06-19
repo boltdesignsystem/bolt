@@ -1,8 +1,10 @@
 import {
+  isConnected,
   render,
   renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../stack.schema.yml'));
@@ -11,6 +13,10 @@ const { spacing } = schema.properties;
 const timeout = 60000;
 
 describe('<bolt-stack> component', () => {
+  afterAll(async () => {
+    await stopServer();
+  }, 100);
+
   test('basic usage', async () => {
     const results = await renderString(
       `

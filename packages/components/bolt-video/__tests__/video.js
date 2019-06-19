@@ -1,9 +1,19 @@
-import { render, renderString } from '@bolt/twig-renderer';
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../video.schema.yml'));
 
 describe('<bolt-video> Component', () => {
+  afterAll(async () => {
+    await stopServer();
+  }, 100);
+
   test('<bolt-video> compiles', async () => {
     const results = await render('@bolt-components-video/video.twig', {
       videoId: '3861325118001',

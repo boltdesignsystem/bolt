@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs');
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { getConfig } = require('@bolt/build-utils/config-store');
 const path = require('path');
 const shell = require('shelljs');
 const { getBoltTags } = require('./bolt-versions');
