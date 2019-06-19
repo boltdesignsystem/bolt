@@ -37,20 +37,6 @@
   alt: "Bill Murray",
 } only %}
 
-<h4>Srcset only that won't be found in <code>bolt.data.images</code> and not lazy loaded</h4>
-{% include '@bolt-components-image/image.twig' with {
-  srcset: "/images/placeholders/500x500-320.jpg 1w",
-  alt: "Bill Murray",
-  lazyload: false,
-} only %}
-
-<h4>Srcset only that won't be found in <code>bolt.data.images</code> and lazy loaded</h4>
-{% include '@bolt-components-image/image.twig' with {
-  srcset: "/images/placeholders/500x500-320.jpg 1w",
-  alt: "Bill Murray",
-  lazyload: true,
-} only %}
-
 <h4>Absolute src - not lazy loaded</h4>
 {% include '@bolt-components-image/image.twig' with {
   src: "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg",
