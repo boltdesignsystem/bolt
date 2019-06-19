@@ -29,7 +29,9 @@ module.exports = {
         function(result) {
           browser.assert.ok(
             result.value === 1.25,
-            `verified that <bolt-video> play rate has sped up to ${result.value}`,
+            `verified that <bolt-video> play rate has sped up to ${
+              result.value
+            }`,
           );
         },
       )
@@ -87,7 +89,9 @@ module.exports = {
         function(result) {
           browser.assert.ok(
             result.value > 1,
-            `<bolt-video> starts playing when <bolt-button> is clicked -- verified since the current video's play time is ${result.value} seconds`,
+            `<bolt-video> starts playing when <bolt-button> is clicked -- verified since the current video's play time is ${
+              result.value
+            } seconds`,
           );
         },
       )

@@ -5,9 +5,9 @@ const globby = require('globby');
 const path = require('path');
 const arraySort = require('array-sort');
 const prettier = require('prettier');
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { getConfig } = require('@bolt/build-utils/config-store');
 const fs = require('fs');
-const events = require('../../utils/events');
+const events = require('@bolt/build-utils/events');
 
 const tableRows = [];
 

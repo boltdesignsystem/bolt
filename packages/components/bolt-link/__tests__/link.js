@@ -1,10 +1,20 @@
-import { render } from '@bolt/twig-renderer';
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../link.schema.yml'));
 const { display, valign } = schema.properties;
 
 describe('link', () => {
+  afterAll(async () => {
+    await stopServer();
+  }, 100);
+
   test('basic link', async () => {
     const results = await render('@bolt-components-link/link.twig', {
       text: 'Hello World',

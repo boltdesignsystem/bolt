@@ -22,7 +22,7 @@ async function renderTwigString(template, data) {
 
 const timeout = 60000;
 
-describe('interactive step', async () => {
+describe('interactive step', () => {
   let page;
 
   afterAll(async () => {
@@ -73,8 +73,8 @@ describe('interactive step', async () => {
   test('Default <bolt-interactive-step> w/o Shadow DOM renders', async function() {
     const renderedComponentHTML = await page.evaluate(() => {
       const component = document.createElement('bolt-interactive-step');
-      btn.textContent = 'interactive-step Test';
-      document.body.appendChild(btn);
+      component.textContent = 'interactive-step Test';
+      document.body.appendChild(component);
       component.useShadow = false;
       component.updated();
       return component.outerHTML;

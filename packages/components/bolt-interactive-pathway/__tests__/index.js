@@ -22,7 +22,7 @@ async function renderTwigString(template, data) {
 
 const timeout = 60000;
 
-describe('interactive pathway', async () => {
+describe('interactive pathway', () => {
   let page;
 
   afterAll(async () => {
@@ -70,11 +70,11 @@ describe('interactive pathway', async () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-interactive-pathway> w/o Shadow DOM renders', async function() {
+  test.skip('Default <bolt-interactive-pathway> w/o Shadow DOM renders', async function() {
     const renderedComponentHTML = await page.evaluate(() => {
       const component = document.createElement('bolt-interactive-pathway');
-      btn.textContent = 'interactive-pathway Test';
-      document.body.appendChild(btn);
+      component.textContent = 'interactive-pathway Test';
+      document.body.appendChild(component);
       component.useShadow = false;
       component.updated();
       return component.outerHTML;
@@ -91,7 +91,7 @@ describe('interactive pathway', async () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Default <bolt-interactive-pathway> with Shadow DOM renders', async function() {
+  test.skip('Default <bolt-interactive-pathway> with Shadow DOM renders', async function() {
     const defaultComponentShadowRoot = await page.evaluate(() => {
       const component = document.createElement('bolt-interactive-pathway');
       component.textContent =

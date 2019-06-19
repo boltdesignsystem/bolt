@@ -5,9 +5,10 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const chalk = require('chalk');
 const { handleRequest } = require('@bolt/api');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { boltWebpackMessages } = require('@bolt/build-utils/webpack-helpers');
+const events = require('@bolt/build-utils/events');
 const createWebpackConfig = require('../create-webpack-config');
-const { getConfig } = require('../utils/config-store');
-const { boltWebpackMessages } = require('../utils/webpack-helpers');
 const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
 
 let boltBuildConfig;
@@ -94,6 +95,10 @@ async function server(customWebpackConfig) {
     }
 
     const compiler = boltWebpackMessages(webpack(webpackConfig));
+
+    compiler.hooks.done.tap('AfterDonePlugin', (params, callback) => {
+      events.emit('webpack-dev-server:compiled');
+    });
 
     app.use(
       webpackDevServerWaitpage(compiler, {

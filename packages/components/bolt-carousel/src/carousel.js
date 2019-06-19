@@ -466,6 +466,7 @@ class BoltCarousel extends withLitHtml() {
       this.hideArrowsIfAllSlidesAreVisible();
       this.disableSwipingIfAllSlidesAreVisible();
       this.swiper.on('slideChange', this.onSlideChange);
+      this.reInitCarousel(); // this fires when the props on the component changes HOWEVER it also needs to fire once the component has finished rendering for the very first time so that the appropriate slidesPerGroup value is automatically set for the initial state
     } else {
       if (this.swiper) {
         // update swiper if component re-rendered

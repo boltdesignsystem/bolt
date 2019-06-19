@@ -1,19 +1,11 @@
 /* eslint-disable no-await-in-loop */
 import {
+  isConnected,
   render,
   renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
-import { join } from 'path';
-
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
-
-async function renderTwigString(template, data) {
-  return await renderString(template, data, true);
-}
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 
 const imageVrtConfig = {
   failureThreshold: '0.02',
@@ -46,14 +38,19 @@ const viewportSizes = [
 ];
 
 describe('<bolt-navbar> Component', () => {
-  let page;
+  let page, isOnline, context;
+
+  beforeAll(async () => {
+    isOnline = await isConnected();
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
 
   afterAll(async () => {
-    await stopTwigRenderer();
-  }, timeout);
+    await stopServer();
+  }, 100);
 
   beforeEach(async () => {
-    page = await global.__BROWSER__.newPage();
+    page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,
@@ -64,44 +61,41 @@ describe('<bolt-navbar> Component', () => {
   test(
     '<bolt-navbar> with 6 lengthy links',
     async () => {
-      const { html, ok } = await renderTwig(
-        '@bolt-components-navbar/navbar.twig',
-        {
-          title: {
-            tag: 'h2',
-            text: 'Navbar with links',
-            icon: {
-              name: 'marketing-gray',
-            },
+      const { html, ok } = await render('@bolt-components-navbar/navbar.twig', {
+        title: {
+          tag: 'h2',
+          text: 'Navbar with links',
+          icon: {
+            name: 'marketing-gray',
           },
-          links: [
-            {
-              text: 'Real-Time AI',
-              url: '#!',
-            },
-            {
-              text: 'End-to-end Automation',
-              url: '#!',
-            },
-            {
-              text: 'Journey-centric Delivery',
-              url: '#!',
-            },
-            {
-              text: 'Low Code',
-              url: '#!',
-            },
-            {
-              text: 'Multi-dimensional Power',
-              url: '#!',
-            },
-            {
-              text: 'Cloud Choice',
-              url: '#!',
-            },
-          ],
         },
-      );
+        links: [
+          {
+            text: 'Real-Time AI',
+            url: '#!',
+          },
+          {
+            text: 'End-to-end Automation',
+            url: '#!',
+          },
+          {
+            text: 'Journey-centric Delivery',
+            url: '#!',
+          },
+          {
+            text: 'Low Code',
+            url: '#!',
+          },
+          {
+            text: 'Multi-dimensional Power',
+            url: '#!',
+          },
+          {
+            text: 'Cloud Choice',
+            url: '#!',
+          },
+        ],
+      });
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
@@ -153,47 +147,44 @@ describe('<bolt-navbar> Component', () => {
   test(
     '<bolt-navbar> with a linked title',
     async () => {
-      const { html, ok } = await renderTwig(
-        '@bolt-components-navbar/navbar.twig',
-        {
-          theme: 'light',
-          width: 'full',
-          title: {
-            tag: 'h1',
-            text: 'Bolt Design System',
-            url: 'https://www.boltdesignsystem.com',
-            icon: {
-              name: 'bolt-logo-colored',
-            },
+      const { html, ok } = await render('@bolt-components-navbar/navbar.twig', {
+        theme: 'light',
+        width: 'full',
+        title: {
+          tag: 'h1',
+          text: 'Bolt Design System',
+          url: 'https://www.boltdesignsystem.com',
+          icon: {
+            name: 'bolt-logo-colored',
           },
-          links: [
-            {
-              text: 'Real-Time AI',
-              url: '#!',
-            },
-            {
-              text: 'End-to-end Automation',
-              url: '#!',
-            },
-            {
-              text: 'Journey-centric Delivery',
-              url: '#!',
-            },
-            {
-              text: 'Low Code',
-              url: '#!',
-            },
-            {
-              text: 'Multi-dimensional Power',
-              url: '#!',
-            },
-            {
-              text: 'Cloud Choice',
-              url: '#!',
-            },
-          ],
         },
-      );
+        links: [
+          {
+            text: 'Real-Time AI',
+            url: '#!',
+          },
+          {
+            text: 'End-to-end Automation',
+            url: '#!',
+          },
+          {
+            text: 'Journey-centric Delivery',
+            url: '#!',
+          },
+          {
+            text: 'Low Code',
+            url: '#!',
+          },
+          {
+            text: 'Multi-dimensional Power',
+            url: '#!',
+          },
+          {
+            text: 'Cloud Choice',
+            url: '#!',
+          },
+        ],
+      });
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
@@ -209,11 +200,13 @@ describe('<bolt-navbar> Component', () => {
       const image = await page.screenshot();
       expect(image).toMatchImageSnapshot(imageVrtConfig);
 
-      await page.click('.c-bolt-navbar__title--link');
-      await navigationPromise; // wait for page navigation to finish before verifying the navbar link rendered + brought us to the main docs site
+      if (isOnline) {
+        await page.click('.c-bolt-navbar__title--link');
+        await navigationPromise; // wait for page navigation to finish before verifying the navbar link rendered + brought us to the main docs site
 
-      const pageTitle = await page.title();
-      expect(pageTitle).toMatch('Bolt Design System');
+        const pageTitle = await page.title();
+        expect(pageTitle).toMatch('Bolt Design System');
+      }
     },
     timeout,
   );
@@ -221,50 +214,47 @@ describe('<bolt-navbar> Component', () => {
   test(
     '<bolt-navbar> with 4 short links',
     async () => {
-      const { html, ok } = await renderTwig(
-        '@bolt-components-navbar/navbar.twig',
-        {
-          theme: 'xdark',
-          width: 'auto',
-          title: {
-            tag: 'h1',
-            text:
-              'Bolt<span class="u-bolt-hidden u-bolt-inline@xlarge"> Design System</span></span>',
-            url: '/',
-            icon: {
-              name: 'bolt-logo-colored',
+      const { html, ok } = await render('@bolt-components-navbar/navbar.twig', {
+        theme: 'xdark',
+        width: 'auto',
+        title: {
+          tag: 'h1',
+          text:
+            'Bolt<span class="u-bolt-hidden u-bolt-inline@xlarge"> Design System</span></span>',
+          url: '/',
+          icon: {
+            name: 'bolt-logo-colored',
+          },
+        },
+        links: [
+          {
+            text: 'Components',
+            url: '/pattern-lab/index.html',
+          },
+          {
+            text: 'Docs',
+            url: '/docs/getting-started/index.html',
+          },
+          {
+            text: 'Releases',
+            url: 'https://github.com/bolt-design-system/bolt/releases',
+            attributes: {
+              target: '_blank',
             },
           },
-          links: [
-            {
-              text: 'Components',
-              url: '/pattern-lab/index.html',
+          {
+            text: 'Github',
+            url: 'https://github.com/bolt-design-system/bolt',
+            attributes: {
+              target: '_blank',
             },
-            {
-              text: 'Docs',
-              url: '/docs/getting-started/index.html',
+            icon: {
+              name: 'github',
+              position: 'after',
             },
-            {
-              text: 'Releases',
-              url: 'https://github.com/bolt-design-system/bolt/releases',
-              attributes: {
-                target: '_blank',
-              },
-            },
-            {
-              text: 'Github',
-              url: 'https://github.com/bolt-design-system/bolt',
-              attributes: {
-                target: '_blank',
-              },
-              icon: {
-                name: 'github',
-                position: 'after',
-              },
-            },
-          ],
-        },
-      );
+          },
+        ],
+      });
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
@@ -316,51 +306,48 @@ describe('<bolt-navbar> Component', () => {
   test(
     '<bolt-navbar> centered with 4 short links',
     async () => {
-      const { html, ok } = await renderTwig(
-        '@bolt-components-navbar/navbar.twig',
-        {
-          theme: 'xdark',
-          width: 'auto',
-          center: true,
-          title: {
-            tag: 'h1',
-            text:
-              'Bolt<span class="u-bolt-hidden u-bolt-inline@xlarge"> Design System</span></span>',
-            url: '/',
-            icon: {
-              name: 'bolt-logo-colored',
+      const { html, ok } = await render('@bolt-components-navbar/navbar.twig', {
+        theme: 'xdark',
+        width: 'auto',
+        center: true,
+        title: {
+          tag: 'h1',
+          text:
+            'Bolt<span class="u-bolt-hidden u-bolt-inline@xlarge"> Design System</span></span>',
+          url: '/',
+          icon: {
+            name: 'bolt-logo-colored',
+          },
+        },
+        links: [
+          {
+            text: 'Components',
+            url: '/pattern-lab/index.html',
+          },
+          {
+            text: 'Docs',
+            url: '/docs/getting-started/index.html',
+          },
+          {
+            text: 'Releases',
+            url: 'https://github.com/bolt-design-system/bolt/releases',
+            attributes: {
+              target: '_blank',
             },
           },
-          links: [
-            {
-              text: 'Components',
-              url: '/pattern-lab/index.html',
+          {
+            text: 'Github',
+            url: 'https://github.com/bolt-design-system/bolt',
+            attributes: {
+              target: '_blank',
             },
-            {
-              text: 'Docs',
-              url: '/docs/getting-started/index.html',
+            icon: {
+              name: 'github',
+              position: 'after',
             },
-            {
-              text: 'Releases',
-              url: 'https://github.com/bolt-design-system/bolt/releases',
-              attributes: {
-                target: '_blank',
-              },
-            },
-            {
-              text: 'Github',
-              url: 'https://github.com/bolt-design-system/bolt',
-              attributes: {
-                target: '_blank',
-              },
-              icon: {
-                name: 'github',
-                position: 'after',
-              },
-            },
-          ],
-        },
-      );
+          },
+        ],
+      });
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
@@ -412,19 +399,16 @@ describe('<bolt-navbar> Component', () => {
   test(
     '<bolt-navbar> without links',
     async () => {
-      const { html, ok } = await renderTwig(
-        '@bolt-components-navbar/navbar.twig',
-        {
-          title: {
-            tag: 'h2',
-            text: 'Navbar without links',
-            icon: {
-              name: 'marketing-gray',
-            },
+      const { html, ok } = await render('@bolt-components-navbar/navbar.twig', {
+        title: {
+          tag: 'h2',
+          text: 'Navbar without links',
+          icon: {
+            name: 'marketing-gray',
           },
-          links: [],
         },
-      );
+        links: [],
+      });
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
@@ -448,39 +432,36 @@ describe('<bolt-navbar> Component', () => {
   test(
     '<bolt-navbar> without a title',
     async () => {
-      const { html, ok } = await renderTwig(
-        '@bolt-components-navbar/navbar.twig',
-        {
-          links: [
-            {
-              text: 'Components',
-              url: '/pattern-lab/index.html',
+      const { html, ok } = await render('@bolt-components-navbar/navbar.twig', {
+        links: [
+          {
+            text: 'Components',
+            url: '/pattern-lab/index.html',
+          },
+          {
+            text: 'Docs',
+            url: '/docs/getting-started/index.html',
+          },
+          {
+            text: 'Releases',
+            url: 'https://github.com/bolt-design-system/bolt/releases',
+            attributes: {
+              target: '_blank',
             },
-            {
-              text: 'Docs',
-              url: '/docs/getting-started/index.html',
+          },
+          {
+            text: 'Github',
+            url: 'https://github.com/bolt-design-system/bolt',
+            attributes: {
+              target: '_blank',
             },
-            {
-              text: 'Releases',
-              url: 'https://github.com/bolt-design-system/bolt/releases',
-              attributes: {
-                target: '_blank',
-              },
+            icon: {
+              name: 'github',
+              position: 'after',
             },
-            {
-              text: 'Github',
-              url: 'https://github.com/bolt-design-system/bolt',
-              attributes: {
-                target: '_blank',
-              },
-              icon: {
-                name: 'github',
-                position: 'after',
-              },
-            },
-          ],
-        },
-      );
+          },
+        ],
+      });
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
@@ -504,7 +485,7 @@ describe('<bolt-navbar> Component', () => {
   test(
     '<bolt-navbar> variable width',
     async () => {
-      const { html, ok } = await renderTwigString(`
+      const { html, ok } = await renderString(`
       {% grid "o-bolt-grid--center" %}
         {% cell "u-bolt-width-2/3 u-bolt-width-1/2@small" %}
           {% include "@bolt-components-navbar/navbar.twig" with {
