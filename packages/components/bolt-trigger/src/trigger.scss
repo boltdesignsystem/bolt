@@ -1,0 +1,91 @@
+/* ------------------------------------ *\
+   Trigger
+\* ------------------------------------ */
+
+// Dev Notes
+// 1. [Mai] Reset button and input tag browser defaults.
+// 2. [Morse] Bolt-trigger is inline and sometimes contains an inline <a> or <button>, which can cause unwanted whitespace. Zero-out and reset font-size to avoid this issue.
+// 3. [Morse] Bolt-trigger delegates focus to inner element.
+
+@import '@bolt/core';
+
+/**
+ * Base Trigger
+ */
+
+bolt-trigger {
+  font-size: 0; // [2]
+  outline: none; // [3]
+}
+
+// @todo: move this to core and combine with bolt-custom-element() mixin.
+@mixin bolt-trigger-element-styles($name, $props: null) {
+  @if $props {
+    @each $prop in $props {
+      #{$name}#{$prop} {
+        @content;
+      }
+      :host(#{$prop}) {
+        @content;
+      }
+    }
+  } @else {
+    #{$name} {
+      @content;
+    }
+    :host {
+      @content;
+    }
+  }
+}
+
+@include bolt-trigger-element-styles(
+  bolt-trigger,
+  ('[no-outline]:active', '[no-outline]:focus', '[no-outline]:focus-within')
+) {
+  outline: none;
+}
+
+// Component styles
+.c-bolt-trigger {
+  @include bolt-padding(0); // [1]
+  @include bolt-margin(0); // [1]
+  @include bolt-font-family(body); // [1]
+  @include bolt-font-size(medium); // [2]
+  display: inline; // Default to inline
+  appearance: none; // [1]
+  opacity: bolt-opacity(100);
+  color: inherit;
+  text-align: inherit;
+  text-decoration: initial;
+  border: none; // [1]
+  background: none; // [1]
+}
+
+// Display styles
+$bolt-trigger-display-values: inline block; // These values need to be in sync with the schema.
+
+@each $display in $bolt-trigger-display-values {
+  .c-bolt-trigger--display-#{$display} {
+    display: #{$display};
+
+    @if $display == 'block' {
+      width: 100%;
+    }
+  }
+}
+
+// Cursor styles
+$bolt-trigger-cursor-values: auto pointer zoom-in zoom-out; // These values need to be in sync with the schema.
+
+@each $cursor in $bolt-trigger-cursor-values {
+  .c-bolt-trigger--cursor-#{$cursor} {
+    cursor: #{$cursor};
+  }
+}
+
+// Outline styles
+.c-bolt-trigger--outline-none:active,
+.c-bolt-trigger--outline-none:focus {
+  outline: none;
+}

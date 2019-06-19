@@ -1,0 +1,22 @@
+{% set schema = bolt.data.components["@bolt-components-modal"].schema %}
+
+<bolt-text>The modal container's coloring theme can be adjusted by the <code>theme</code> prop. The default is set to <code>xlight</code>. It can also be set to <code>none</code> to make the container completely transparent.</bolt-text>
+
+<bolt-text><mark>Note: this prop only applies to viewports equal to or above the small breakpoint (~600px).</mark></bolt-text>
+
+{% for theme in schema.properties.theme.enum %}
+  <div class="u-bolt-margin-bottom-medium">
+    <bolt-text headline font-size="xlarge">{{ theme|capitalize }} Theme</bolt-text>
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Open Modal",
+      size: "small",
+      attributes: {
+        onclick: "this.nextElementSibling.show()",
+      }
+    } only %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      content: "<mark>This is a modal set to " ~ theme ~ " theme.</mark>",
+      theme: theme,
+    } only %}
+  </div>
+{% endfor %}

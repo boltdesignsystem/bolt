@@ -1,0 +1,50 @@
+<h3>Trigger Image</h3>
+<p>Click on the thumbnail to open a modal with an enlarged image.</p>
+
+<div class="u-bolt-margin-bottom-medium">
+  {% set thumbnail_content %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: "/images/placeholders/tout-4x3-climber.jpg",
+      alt: "A Rock Climber",
+      max_width: "200px"
+    } only %}
+  {% endset %}
+
+  {% set image_content %}
+    {% include '@bolt-components-image/image.twig' with {
+      src: "/images/placeholders/tout-4x3-climber.jpg",
+      alt: "A Rock Climber",
+    } only %}
+  {% endset %}
+
+  {% set modal_content %}
+    {% include "@bolt-components-trigger/trigger.twig" with {
+      content: image_content,
+      cursor: "zoom-out",
+      display: "block",
+      attributes: {
+        "on-click": "hide",
+        "on-click-target": "js-image-modal-123"
+      }
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-trigger/trigger.twig" with {
+    content: thumbnail_content,
+    cursor: "zoom-in",
+    attributes: {
+      "on-click": "show",
+      "on-click-target": "js-image-modal-123",
+    }
+  } only %}
+
+  {% include "@bolt-components-modal/modal.twig" with {
+    attributes: {
+      class: ["js-image-modal-123"]
+    },
+    content: modal_content,
+    spacing: "none",
+    theme: "none",
+    scroll: "overall",
+  } only %}
+</div>
