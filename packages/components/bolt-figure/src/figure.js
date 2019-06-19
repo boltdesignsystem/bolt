@@ -13,7 +13,6 @@ import styles from './figure.scss';
 let cx = classNames.bind(styles);
 
 @define
-@convertInitialTags('figure') // The first matching tag will have its attributes converted to component props
 class BoltFigure extends withLitHtml() {
   static is = 'bolt-figure';
 
@@ -25,8 +24,6 @@ class BoltFigure extends withLitHtml() {
 
   render() {
     const classes = cx('c-bolt-figure');
-
-    let renderedFigure;
 
     const slotMarkup = name => {
       switch (name) {
@@ -57,15 +54,9 @@ class BoltFigure extends withLitHtml() {
 
     const innerSlots = [slotMarkup('media'), slotMarkup('default')];
 
-    if (this.rootElement) {
-      renderedFigure = this.rootElement.firstChild.cloneNode(true);
-      renderedFigure.className += ' ' + classes;
-      render(this.slot('default'), renderedFigure);
-    } else {
-      renderedFigure = html`
-        <figure class="${classes}">${innerSlots}</figure>
-      `;
-    }
+    let renderedFigure = html`
+      <figure class="${classes}">${innerSlots}</figure>
+    `;
 
     return html`
       ${this.addStyles([styles])} ${renderedFigure}
