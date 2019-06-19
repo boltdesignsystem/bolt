@@ -37,7 +37,7 @@ $bolt-modal-border-radius: bolt-border-radius(small);
 $bolt-modal-max-height: 80vh;
 $bolt-modal-transition: $bolt-transition;
 $bolt-modal-breakpoint: 'small';
-$bolt-modal-animation-scale: 0.8;
+$bolt-modal-animation-scale: 0.95;
 
 // Hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
 bolt-modal:not([ready]) {
@@ -55,7 +55,6 @@ bolt-modal:not([ready]) {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  background-color: $bolt-modal-overlay-bg-color-dark;
   transition: opacity $bolt-modal-transition;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -70,8 +69,7 @@ bolt-modal:not([ready]) {
   @include bolt-mq($until: $bolt-modal-breakpoint) {
     visibility: hidden;
     opacity: 0;
-    transform: scale(0.95);
-    transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
+    transition: opacity $bolt-modal-transition;
 
     [class*='t-bolt-'] {
       color: bolt-color(black);
@@ -127,13 +125,12 @@ bolt-modal:not([ready]) {
     &.is-open {
       visibility: visible;
       opacity: 1;
-      transform: scale(1);
-      filter: blur(0);
     }
   }
 }
 
-// Dark overlay
+// Overlay color options
+.c-bolt-modal,
 .c-bolt-modal--overlay-dark {
   @include bolt-mq($bolt-modal-breakpoint) {
     background-color: $bolt-modal-overlay-bg-color-dark;
@@ -190,7 +187,7 @@ bolt-modal:not([ready]) {
       pointer-events: auto;
 
       .c-bolt-modal__content {
-        transform: translateX(0) translateY(-50%) scale(1) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
+        transform: translateX(0) translateY(-50%) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
       }
     }
   }
@@ -204,7 +201,7 @@ bolt-modal:not([ready]) {
 
     &.is-open {
       .c-bolt-modal__content {
-        transform: translateX(-50%) translateY(-50%) scale(1) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
+        transform: translateX(-50%) translateY(-50%) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
       }
     }
 
@@ -230,12 +227,12 @@ bolt-modal:not([ready]) {
 // Container
 .c-bolt-modal__container {
   display: block;
-  opacity: 0;
+  opacity: bolt-opacity(0);
   transform: scale($bolt-modal-animation-scale);
   transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
 
-  .c-bolt-modal.is-open & {
-    opacity: 1;
+  @at-root .c-bolt-modal.is-open #{&} {
+    opacity: bolt-opacity(100);
     transform: scale(1);
   }
 
