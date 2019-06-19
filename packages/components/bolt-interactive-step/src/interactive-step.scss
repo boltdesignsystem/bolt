@@ -5,6 +5,10 @@
 // Register Custom Block Element
 @include bolt-custom-element('bolt-interactive-step', block, medium);
 
+$bolt-tooltip-bubble-triangle-width: 8px;
+$bolt-tooltip-bubble-border-color: bolt-color(gray, light);
+$bolt-tooltip-transition: $bolt-transition;
+
 .c-bolt-interactive-step {
   //Styles go here. /* [1] */
   position: relative;
@@ -62,6 +66,7 @@
 
     &[data-active="true"] {
       height: auto;
+      overflow: visible;
     }
 
     // Move the step body to the right on desktop
@@ -105,7 +110,7 @@
   &__dialogue {
     position: relative;
     width: 100%;
-    max-width: 250px;
+    max-width: 190px;
     height: 50px; // @todo Remove once you have resolved the speech bubble issue
   }
 
@@ -120,5 +125,68 @@
       transform: scale(1.1) translateX(4px);
       color: orange;
     }
+  }
+}
+
+.c-bolt-tooltip__content {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: bolt-z-index('tooltip');
+  transition: all $bolt-tooltip-transition;
+
+
+  &--button {
+    opacity: 0 !important; // We need this to override the hover functionality
+    pointer-events: none;
+
+    .is-active+& {
+      opacity: bolt-opacity(100) !important; // Brings us back only when active
+      pointer-events: auto !important; // Brings back the ability to click links within the tooltip only when active
+    }
+  }
+}
+
+.c-bolt-tooltip__content-bubble {
+  @include bolt-padding(xsmall, squished);
+  @include bolt-shadow('level-20');
+
+  display: block;
+  position: relative;
+  //width: 300px;
+  color: bolt-color(black);
+  border: 1px solid $bolt-tooltip-bubble-border-color;
+  border-radius: $bolt-border-radius;
+  background-color: bolt-color(white);
+
+  &:after,
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    border-top: $bolt-tooltip-bubble-triangle-width solid;
+    border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
+    border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
+    border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
+  }
+
+  &:before {
+    top: auto;
+    bottom: 0;
+    border-top-color: $bolt-tooltip-bubble-border-color;
+    border-bottom-color: transparent;
+  }
+
+  &:after {
+    top: auto;
+    bottom: 1px;
+    border-top-color: white;
+    border-bottom-color: transparent;
   }
 }

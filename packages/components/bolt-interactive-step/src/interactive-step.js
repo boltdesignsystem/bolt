@@ -45,11 +45,7 @@ class BoltInteractiveStep extends withLitHtml() {
   }
 
   render() {
-    const {
-      step,
-      hideInteractionAnimations,
-      customerDisposition,
-    } = this;
+    const { step, hideInteractionAnimations, customerDisposition } = this;
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const { disabled, active } = this.validateProps(this.props);
 
@@ -73,7 +69,18 @@ class BoltInteractiveStep extends withLitHtml() {
             : html`
                 <div
                   class="c-bolt-interactive-step__dialogue c-bolt-interactive-step__dialogue--left"
-                ></div>
+                >
+                  <bolt-tooltip-content
+                    role="tooltip"
+                    aria-hidden="false"
+                    id="bolt-tooltip-id-11"
+                    class="c-bolt-tooltip__content c-bolt-tooltip__content--text"
+                  >
+                    <span class="c-bolt-tooltip__content-bubble"
+                      >This is a dialogue bubble.</span
+                    >
+                  </bolt-tooltip-content>
+                </div>
                 <div class="c-bolt-interactive-step__interaction-images">
                   <span class="c-bolt-interactive-step__interaction-band"
                     >${this.slot('dialogueBand')}</span
