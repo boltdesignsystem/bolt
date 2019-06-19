@@ -1,10 +1,20 @@
-const { render } = require('@bolt/twig-renderer');
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../card.schema.yml'));
 const { tag, contentTag, theme } = schema.properties;
 
 describe('<bolt-card> Component', () => {
+  afterAll(async () => {
+    await stopServer();
+  }, 100);
+
   test('basic usage', async () => {
     const results = await render('@bolt-components-card/card.twig', {
       contentItems: [

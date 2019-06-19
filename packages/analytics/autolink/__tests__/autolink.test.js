@@ -3,10 +3,14 @@ const path = require('path');
 const timeout = 90000;
 
 describe('analytics autolinker', () => {
-  let page;
+  let page, context;
+
+  beforeAll(async () => {
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
 
   beforeEach(async () => {
-    page = await global.__BROWSER__.newPage();
+    page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,

@@ -2,10 +2,10 @@ const browserSync = require('browser-sync');
 const path = require('path');
 const resolve = require('resolve');
 const { handleRequest } = require('@bolt/api');
-const events = require('../utils/events');
-const { getConfig } = require('../utils/config-store');
-const log = require('../utils/log');
-const sh = require('../utils/sh');
+const events = require('@bolt/build-utils/events');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const log = require('@bolt/build-utils/log');
+const sh = require('@bolt/build-utils/sh');
 const server = browserSync.create();
 let config;
 

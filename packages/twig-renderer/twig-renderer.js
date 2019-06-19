@@ -1,7 +1,7 @@
 const TwigRenderer = require('@basalt/twig-renderer');
 const sleep = require('sleep-promise');
-const { getTwigNamespaceConfig } = require('@bolt/build-tools/utils/manifest');
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { getTwigNamespaceConfig } = require('@bolt/build-utils/manifest');
+const { getConfig } = require('@bolt/build-utils/config-store');
 const path = require('path');
 
 let twigNamespaces;

@@ -1,5 +1,5 @@
-const { promisify } = require('util');
 const fs = require('fs');
+const { promisify } = require('util');
 const path = require('path');
 const symlink = promisify(fs.symlink);
 const readFile = promisify(fs.readFile);
@@ -9,18 +9,26 @@ const chokidar = require('chokidar');
 const chalk = require('chalk');
 const globby = require('globby');
 const ora = require('ora');
-const sharp = require('sharp');
+const sharpImport = require('sharp');
 const SVGO = require('svgo');
 const { spawnSync } = require('child_process');
-const log = require('../utils/log');
-const timer = require('../utils/timer');
-const { getConfig } = require('../utils/config-store');
-const { flattenArray } = require('../utils/general');
-let config;
+const log = require('@bolt/build-utils/log');
+const timer = require('@bolt/build-utils/timer');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { flattenArray } = require('@bolt/build-utils/general');
+let config, sharp;
 
-sharp.cache({ items: 10000, files: 10000 });
-sharp.concurrency(16);
-sharp.simd(true);
+// https://github.com/lovell/sharp/issues/1593#issuecomment-491171982
+function warmupSharp(sharp) {
+  return sharp(
+    Buffer.from(
+      `<svg xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" /></svg>`,
+      'utf-8',
+    ),
+  )
+    .metadata()
+    .then(() => sharp, () => sharp);
+}
 
 const {
   TRAVIS,
@@ -249,6 +257,7 @@ async function processImage(file, set) {
 
 async function processImages() {
   config = config || (await getConfig());
+  sharp = await warmupSharp(sharpImport);
 
   if (!config.images) {
     return;

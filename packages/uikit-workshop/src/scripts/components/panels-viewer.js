@@ -3,20 +3,29 @@
  */
 
 import Hogan from 'hogan.js';
-import Prism from 'prismjs';
+// import Prism from 'prismjs';
 import Normalizer from 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
 import { Panels } from './panels';
 import { panelsUtil } from './panels-util';
 import { urlHandler, Dispatcher } from '../utils';
 import './pl-copy-to-clipboard/pl-copy-to-clipboard';
+import prettier from 'prettier/standalone';
+import prettierHtml from 'prettier/parser-html';
+import { html, render } from 'lit-html';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { PrismLanguages as Prism } from './prism-languages';
+const prettierPlugins = [prettierHtml];
 
 const normalizeWhitespace = new Normalizer({
   'remove-trailing': true,
   'remove-indent': true,
   'left-trim': true,
   'right-trim': true,
-  'break-lines': 80,
+  'break-lines': 100,
+  'indent': 2,
+  'remove-initial-line-feed': true,
   'tabs-to-spaces': 2,
+  'spaces-to-tabs': 2
 });
 
 export const panelsViewer = {
@@ -63,7 +72,7 @@ export const panelsViewer = {
     Dispatcher.addListener('checkPanels', panelsViewer.checkPanels);
 
     // set-up defaults
-    let template, templateCompiled, templateRendered;
+    let template, templateCompiled, templateRendered, templateFormatted;
 
     // get the base panels
     const panels = Panels.get();
@@ -97,23 +106,30 @@ export const panelsViewer = {
           /* eslint-disable */
           e.onload = (function(i, panels, patternData, iframeRequest) {
             return function() {
-              let normalizedCode = normalizeWhitespace.normalize(
-                this.responseText
+              if (panels[i].name === "HTML"){
+                templateFormatted = prettier.format(this.responseText, { 
+                  parser: 'html', 
+                  plugins: prettierPlugins,
+                  printWidth: 100,
+                });
+              } else {
+                templateFormatted = this.responseText;
+              }
+
+              const templateHighlighted = Prism.highlight(
+                templateFormatted,
+                Prism.languages[panels[i].name.toLowerCase()] || 'markup',
+                // Prism.languages[panels[i].name.toLowerCase()],
               );
-              const prismedContent = Prism.highlight(
-                normalizedCode,
-                Prism.languages.html
-              );
-              template = document.getElementById(panels[i].templateID);
-              templateCompiled = Hogan.compile(template.innerHTML);
-              templateRendered = templateCompiled.render({
-                language: 'html',
-                code: prismedContent,
-              });
-              templateRendered = normalizeWhitespace.normalize(
-                templateRendered
-              );
+              
+              const codeTemplate = (code, language) => html`<pre class="language-markup"><code id="pl-code-fill-${language}" class="language-${language}">${unsafeHTML(code)}</code></pre>`;
+
+              const result = document.createDocumentFragment();
+              render(codeTemplate(templateHighlighted, 'html'), result);
+              const templateRendered = result.children[0].outerHTML;
+
               panels[i].content = templateRendered;
+
               Dispatcher.trigger('checkPanels', [
                 panels,
                 patternData,

@@ -64,6 +64,7 @@ export function BoltBase(Base = HTMLElement) {
       // ensure every component instance renders to the light DOM when needed (ex. if nested inside of a form, render to the light DOM)
       // this ensures that things work as expected, even when a component gets removed / re-added to the page
       this.setupShadow();
+      this.ssrHydrationPrep && this.ssrHydrationPrep();
 
       // @todo: add debug flag the build to allow conditionally enabling / disabling this extra slot setup check here.
       if (!this.slots) {
@@ -79,7 +80,7 @@ export function BoltBase(Base = HTMLElement) {
 
     validateProps(propData) {
       var validatedData = propData;
-      const ajv = new Ajv({ useDefaults: 'shared' });
+      const ajv = new Ajv({ useDefaults: 'shared', coerceTypes: true });
 
       // remove default strings in prop data so schema validation can fill in the default
       for (let property in validatedData) {
@@ -119,6 +120,42 @@ export function BoltBase(Base = HTMLElement) {
 
       if (this.useShadow && this.renderStyles) {
         return this.renderStyles(styles);
+      }
+    }
+
+    /**
+     * Automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
+     * @param {string[]} slotNames an array of slot names as strings
+     */
+    addClassesToSlottedChildren(slotNames = ['default']) {
+      if (this.slots) {
+        const applyClasses = slotName => {
+          if (!(slotName in this.slots)) return;
+
+          const currentSlot = [];
+
+          this.slots[slotName].forEach(item => {
+            if (item.tagName) {
+              item.classList.remove('is-first-child');
+              item.classList.remove('is-last-child'); // clean up existing classes
+              currentSlot.push(item);
+            }
+          });
+
+          if (currentSlot[0]) {
+            currentSlot[0].classList.add('is-first-child');
+
+            if (currentSlot.length === 1) {
+              currentSlot[0].classList.add('is-last-child');
+            }
+          }
+
+          if (currentSlot[currentSlot.length - 1]) {
+            currentSlot[currentSlot.length - 1].classList.add('is-last-child');
+          }
+        };
+
+        slotNames.forEach(name => applyClasses(name));
       }
     }
 

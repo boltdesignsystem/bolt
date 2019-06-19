@@ -1,0 +1,30 @@
+{% set schema = bolt.data.components["@bolt-components-accordion"].schema %}
+
+<p>
+  By setting the <code>icon_valign</code> prop to <code>top</code> or <code>center</code>, it will vertically align the trigger and the icon accordingly.
+</p>
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+  {% for icon_valign in schema.properties.icon_valign.enum %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+      <h3>Icon Valign: {{ icon_valign }}</h3>
+      {% include "@bolt-components-accordion/accordion.twig" with {
+        icon_valign: icon_valign,
+        items: [
+          {
+            trigger: "Accordion item 1 with a lot of text in the trigger, which could wrap to multiple lines, and this trigger and the icon are vertically aligned " ~ icon_valign,
+            content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+          },
+          {
+            trigger: "Accordion item 2",
+            content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+          },
+          {
+            trigger: "Accordion item 3",
+            content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+          },
+        ]
+      } only %}
+    {% endcell %}
+  {% endfor %}
+{% endgrid %}

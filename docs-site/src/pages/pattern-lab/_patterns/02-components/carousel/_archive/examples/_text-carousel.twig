@@ -1,0 +1,37 @@
+<div class="o-bolt-wrapper">
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      include("@bolt-components-link/link.twig", {
+        text: "Configure platform authentication with the basic credentials authentication service type (8.2)",
+        url: "https://community.pega.com/knowledgebase/articles/configure-platform-authentication-basic-credentials-authentication-service",
+        isHeadline: true,
+      }),
+      include("@bolt-components-link/link.twig", {
+        text: "System Administration",
+        url: "https://community.pega.com/knowledgebase/articles/system-administration-8",
+        isHeadline: true,
+      }),
+      include("@bolt-components-link/link.twig", {
+        text: "Eliminate manual tasks with the improved import experience",
+        url: "https://community.pega.com/knowledgebase/articles/eliminate-manual-tasks-improved-import-experience",
+        isHeadline: true,
+      }),
+      include("@bolt-components-link/link.twig", {
+        text: "Enhance keystore maintenance by using dynamic data",
+        url: "https://community.pega.com/knowledgebase/articles/enhance-keystore-maintenance-using-dynamic-data",
+        isHeadline: true,
+      }),
+      include("@bolt-components-headline/headline.twig", {
+        text: "Improve your system security by regenerating the master key",
+        url: "https://community.pega.com/knowledgebase/articles/improve-your-system-security-regenerating-master-key",
+        size: "medium",
+      }),
+    ],
+    slidesPerView: 2,
+    loop: true,
+    spaceBetween: "small",
+    noMinWidth: true,
+    noPagination: true,
+    navButtonPosition: "outside",
+  } only %}
+</div>

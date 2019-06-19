@@ -1,0 +1,22 @@
+{
+  "name": "@bolt/drupal-lab-example",
+  "private": true,
+  "version": "2.4.0",
+  "contributors": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "url": "https://github.com/sghoweri"
+    },
+    {
+      "name": "Evan Lovely",
+      "email": "evanlovely@gmail.com"
+    }
+  ],
+  "scripts": {
+    "setup:js": "cd web/themes/bolt-starter && yarn && npm run build",
+    "setup:php": "composer install && composer run build",
+    "setup": "npx npm-run-all --serial setup:*",
+    "deploy": "now deploy --local-config=now.drupal-lab.json --team boltdesignsystem --no-verify"
+  }
+}

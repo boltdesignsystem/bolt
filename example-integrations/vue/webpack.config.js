@@ -61,7 +61,6 @@ const scssLoaders = [
         ),
         postcssDiscardDuplicates,
         autoprefixer({
-          browsers: require('@bolt/config-browserlist'),
           grid: true,
         }),
       ],

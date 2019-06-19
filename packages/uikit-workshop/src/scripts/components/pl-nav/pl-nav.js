@@ -6,7 +6,6 @@ const classNames = require('classnames');
 import { store } from '../../store.js'; // redux store
 import ArrowIcon from '../../../icons/arrow-down.svg';
 import { BaseComponent } from '../base-component.js';
-import { scrollTo, scrollIntoView } from 'scroll-js';
 import 'url-search-params-polyfill';
 
 const SubSubList = (props) => {

@@ -1,7 +1,7 @@
 const chokidar = require('chokidar');
 const path = require('path');
-const events = require('../../utils/events');
-const { getConfig } = require('../../utils/config-store');
+const events = require('@bolt/build-utils/events');
+const { getConfig } = require('@bolt/build-utils/config-store');
 let config;
 
 async function generate() {

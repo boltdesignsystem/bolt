@@ -1,14 +1,9 @@
 {
   "lerna": "3.10.7",
-  "version": "2.4.2",
+  "version": "2.4.4",
   "command": {
     "publish": {
-      "allowBranch": [
-        "master",
-        "next",
-        "next/*",
-        "release/*"
-      ],
+      "allowBranch": ["master", "next", "next/*", "release/*"],
       "conventionalCommits": true,
       "gitReset": true,
       "includeMergedTags": true,
@@ -26,6 +21,5 @@
     "**/__snapshots__/**"
   ],
   "npmClient": "yarn",
-  "npmClientArgs": ["--production", "--no-optional"],
   "useWorkspaces": true
 }

@@ -7,7 +7,7 @@ const boltPackages = JSON.parse(
   shell.exec('lerna ls --json', { silent: true }).stdout,
 );
 
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { getConfig } = require('@bolt/build-utils/config-store');
 
 const processedPackages = [];
 const totalNumberOfPackages = boltPackages.length; // # of packages found
