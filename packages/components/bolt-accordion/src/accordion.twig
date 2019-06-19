@@ -1,0 +1,51 @@
+{% set schema = bolt.data.components["@bolt-components-accordion"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set base_class = "c-bolt-accordion" %}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  base_class,
+  this.data.box_shadow.value ? base_class ~ "--box-shadow" : ""
+] %}
+
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+<bolt-accordion
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ this.props|without("content")|without("class") }}
+  >
+  {% if items %}
+    <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
+      {% for item in items %}
+        {% include "@bolt-components-accordion/AccordionItem/accordion-item.twig" with item|merge({
+          first: loop.first,
+          last: loop.last,
+          no_separator: this.data.no_separator.value,
+          spacing: this.data.spacing.value,
+          box_shadow: this.data.box_shadow.value,
+          icon_valign: this.data.icon_valign.value }) only %}
+      {% endfor %}
+    </replace-with-children>
+  {% endif %}
+</bolt-accordion>

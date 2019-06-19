@@ -44,7 +44,16 @@
                     {{ macros.titleAndDescription(property.title, property.description, prop.minimum, prop.maximum) }}
                     {% if property.type %}
                       <ul class="c-bds-docs-list__child c-bds-docs-list__child--level-3">
-                        <li>Type: <code>{{ property.type }}</code></li>
+                        <li>
+                          Type: 
+                          {% if property.type is iterable %}
+                            {% for type in property.type %}
+                              <code>{{ type }}</code> {% if not loop.last %} OR {% endif %}
+                            {% endfor %}
+                          {% else %}
+                            <code>{{ property.type }}</code>
+                          {% endif %}
+                          </li>
                         {% if property.type == "object" and property.properties %}
                           <li>Properties:</li>
                           {{ macros.object(property.properties) }}
