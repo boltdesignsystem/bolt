@@ -70,7 +70,7 @@ describe('interactive pathway', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-interactive-pathway> w/o Shadow DOM renders', async function() {
+  test.skip('Default <bolt-interactive-pathway> w/o Shadow DOM renders', async function() {
     const renderedComponentHTML = await page.evaluate(() => {
       const component = document.createElement('bolt-interactive-pathway');
       component.textContent = 'interactive-pathway Test';
@@ -91,7 +91,7 @@ describe('interactive pathway', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Default <bolt-interactive-pathway> with Shadow DOM renders', async function() {
+  test.skip('Default <bolt-interactive-pathway> with Shadow DOM renders', async function() {
     const defaultComponentShadowRoot = await page.evaluate(() => {
       const component = document.createElement('bolt-interactive-pathway');
       component.textContent =
