@@ -37,6 +37,7 @@ $bolt-modal-border-radius: bolt-border-radius(small);
 $bolt-modal-max-height: 80vh;
 $bolt-modal-transition: $bolt-transition;
 $bolt-modal-breakpoint: 'small';
+$bolt-modal-animation-scale: 0.8;
 
 // Hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
 bolt-modal:not([ready]) {
@@ -154,20 +155,21 @@ bolt-modal:not([ready]) {
   background: transparent;
 
   @include bolt-mq($bolt-modal-breakpoint) {
-    visibility: hidden; // @todo: once we figure out how to prevent keyboard access to modal content when the modal is closed, we can remove this line.
+    visibility: hidden;
     position: fixed;
     top: 0;
     left: 0;
     min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
     max-width: calc(100% - #{bolt-spacing(medium) * 2});
     max-height: $bolt-modal-max-height;
-    transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
+    transition: visibility $bolt-transition-timing $bolt-transition-ease $bolt-transition-timing;
   }
 
   @at-root .c-bolt-modal.is-open #{&} {
     @include bolt-mq($bolt-modal-breakpoint) {
       visibility: visible; // @todo: once we figure out how to prevent keyboard access to modal content when the modal is closed, we can remove this line.
       cursor: auto;
+      transition: visibility 0s $bolt-transition-ease 0s;
     }
   }
 }
@@ -177,10 +179,9 @@ bolt-modal:not([ready]) {
   .c-bolt-modal--scroll-overall {
     .c-bolt-modal__content {
       @include bolt-margin(0 auto);
-
       position: relative;
       top: 50vh;
-      transform: translateX(0) translateY(-50%) scale(0.95);
+      transform: translateX(0) translateY(-50%);
     }
 
     &.is-open {
@@ -198,7 +199,7 @@ bolt-modal:not([ready]) {
     .c-bolt-modal__content {
       top: 50%;
       left: 50%;
-      transform: translateX(-50%) translateY(-50%) scale(0.95);
+      transform: translateX(-50%) translateY(-50%);
     }
 
     &.is-open {
