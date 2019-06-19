@@ -48,11 +48,7 @@ class BoltInteractiveStep extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <li
-        class="${classes}"
-        is="shadow-root"
-        data-step="${step}"
-      >
+      <li class="${classes}" is="shadow-root" data-step="${step}">
         <div class="c-bolt-interactive-step__nav-item-wrapper">
           <span class="c-bolt-interactive-step__dot">&#9679;</span>
           <span class="c-bolt-interactive-step__title"
