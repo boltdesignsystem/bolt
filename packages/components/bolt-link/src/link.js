@@ -109,7 +109,7 @@ class BoltLink extends BoltAction {
 
     // [1]
     // prettier-ignore
-    return html`${this.addStyles([styles])} ${renderedLink}`;
+    return html`${this.addStyles([styles])}${renderedLink}`;
   }
 }
 
