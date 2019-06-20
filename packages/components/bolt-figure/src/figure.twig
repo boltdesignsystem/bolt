@@ -36,29 +36,35 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ attributes|without('class') }}
 >
-  <figure {{ inner_attributes.addClass(inner_classes) }}>
-    {% if media %}
-      <div class="{{ "#{base_class}__media" }}">
-        {% set image = media.image %}
-        {% set icon = media.icon %}
-        {% set video = media.video %}
-        {% set table = media.table %}
+  <replace-with-grandchildren>
+    <figure {{ inner_attributes.addClass(inner_classes) }}>
+      {% if media %}
+        <replace-with-children class="{{ "#{base_class}__media" }}">
+          <div slot="media">
+            {% set image = media.image %}
+            {% set icon = media.icon %}
+            {% set video = media.video %}
+            {% set table = media.table %}
 
-        {% if image %}
-          {% include "@bolt-components-image/image.twig" with image only %}
-        {% elseif icon %}
-          {% include "@bolt-components-icon/icon.twig" with icon only %}
-        {% elseif video %}
-          {% include "@bolt-components-video/video.twig" with video only %}
-        {% elseif table %}
-          {% include "@bolt-components-table/table.twig" with table only %}
-        {% endif %}
-      </div>
-    {% endif %}
-    {% if caption %}
-      <figcaption class="{{ "#{base_class}__caption" }}">
-        {{ caption }}
-      </figcaption>
-    {% endif %}
-  </figure>
+            {% if image %}
+              {% include "@bolt-components-image/image.twig" with image only %}
+            {% elseif icon %}
+              {% include "@bolt-components-icon/icon.twig" with icon only %}
+            {% elseif video %}
+              {% include "@bolt-components-video/video.twig" with video only %}
+            {% elseif table %}
+              {% include "@bolt-components-table/table.twig" with table only %}
+            {% endif %}
+          </div>
+        </replace-with-children>
+      {% endif %}
+      {% if caption %}
+        <replace-with-grandchildren>
+          <figcaption class="{{ "#{base_class}__caption" }}">
+            {{ caption }}
+          </figcaption>
+        </replace-with-grandchildren>
+      {% endif %}
+    </figure>
+  </replace-with-grandchildren>
 </bolt-figure>
