@@ -30,10 +30,12 @@ Functional testing should be performed manually by the QA team across the standa
 3. Small size, gray bar with dash-line border that spans the horizontal length of the screen view.
 4. Medium size, gray bar with dash-line border that spans the horizontal length of the screen view.
 5. Large size, gray bar with dash-line border that spans the horizontal length of the screen view.
-6. Extra large size, gray bar with dash-line border that spans the horizontal length of the screen view. 
+6. Extra large size, gray bar with dash-line border that spans the horizontal length of the screen view.
+7. There should be medium spacing for padding. Reference the spacing sizes on the [Spacing page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-spacing).
 
 ## Scenario: stacking variations
 
 1. Given I am viewing the [stacking components page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-placeholder-placeholder-component--stacked/02-components-placeholder-placeholder-component--stacked.html).
 2. Two, vertically arranged, gray bars that span the horizontal length of the screen view.
 3. Both with animated, dash-line borders moving clockwise around their edge.
+4. There should be medium spacing for padding. Reference the spacing sizes on the [Spacing page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-spacing).
