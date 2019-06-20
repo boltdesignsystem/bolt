@@ -74,9 +74,9 @@ class BoltInteractiveStep extends withLitHtml() {
                     role="tooltip"
                     aria-hidden="false"
                     id="bolt-tooltip-id-11"
-                    class="c-bolt-tooltip__content c-bolt-tooltip__content--text"
+                    class="c-bolt-interactive-step__speech c-bolt-interactive-step__speech--left"
                   >
-                    <span class="c-bolt-tooltip__content-bubble"
+                    <span class="c-bolt-interactive-step__speech-bubble"
                       >This is a dialogue bubble.</span
                     >
                   </bolt-tooltip-content>

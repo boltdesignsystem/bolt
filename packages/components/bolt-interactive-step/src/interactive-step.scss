@@ -111,7 +111,7 @@ $bolt-tooltip-transition: $bolt-transition;
     position: relative;
     width: 100%;
     max-width: 190px;
-    height: 50px; // @todo Remove once you have resolved the speech bubble issue
+    height: 75px;
   }
 
   // Generates the active state styling for the nav list
@@ -128,27 +128,23 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 }
 
-.c-bolt-tooltip__content {
+.c-bolt-interactive-step__speech {
   display: block;
   position: absolute;
   bottom: 0;
-  transform: translateX(-50%);
   z-index: bolt-z-index('tooltip');
   transition: all $bolt-tooltip-transition;
 
+  &--left {
+    transform: translateX(-50%);
+  }
 
-  &--button {
-    opacity: 0 !important; // We need this to override the hover functionality
-    pointer-events: none;
-
-    .is-active+& {
-      opacity: bolt-opacity(100) !important; // Brings us back only when active
-      pointer-events: auto !important; // Brings back the ability to click links within the tooltip only when active
-    }
+  &--right {
+    transform: translateX(50%);
   }
 }
 
-.c-bolt-tooltip__content-bubble {
+.c-bolt-interactive-step__speech-bubble {
   @include bolt-padding(xsmall, squished);
   @include bolt-shadow('level-20');
 
