@@ -6,7 +6,7 @@ The server-side pre-rendered `bolt-code-snippet` component should look almost id
 
 1. Disable javascript and view the [Code Snippet Demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-code-snippet-15-code-snippet-language-variation/02-components-code-snippet-15-code-snippet-language-variation.html).
 2. Then, enable javascript and watch as the Code Snippet re-renders on the client-side.
-3. The layout should not shift, e.g. the spacing in between each code snippet should be identical before and after the web component re-renders.
+3. The layout should not shift, e.g. the format of each code snippet should be identical before and after the web component re-renders.
 
 # Code Snippet component functional testing steps
 
