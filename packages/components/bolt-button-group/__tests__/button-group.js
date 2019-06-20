@@ -121,7 +121,6 @@ describe('<bolt-button-group> Component', () => {
             text: 'Learn More',
             style: 'primary',
           },
-
           {
             text: 'Learn More',
             style: 'primary',
