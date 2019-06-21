@@ -178,7 +178,7 @@ class BoltBlockquote extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles, textStyles])}
-      <blockquote class="${classes}" is="shadow-root">
+      <blockquote class="${classes}">
         ${this.slots.logo
           ? html`
               <div class="${cx('c-bolt-blockquote__logo')}">
