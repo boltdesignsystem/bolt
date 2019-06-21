@@ -2,7 +2,7 @@
 
 {% block article_content %}
   {% set sassdocs = bolt.data.sassdoc %}
-  
+
   {% if sassdocs %}
     {% include "@utils/sassdocs.twig" with {
       title: "Sass Docs",

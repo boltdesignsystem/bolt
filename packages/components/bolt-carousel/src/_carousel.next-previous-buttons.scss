@@ -18,11 +18,11 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
 }
 
 .c-bolt-carousel__button {
+  @include bolt-z-index(contentTop);
+
   display: flex;
   opacity: 0;
   position: absolute;
-  top: 50%;
-  z-index: 10;
   cursor: pointer;
   border-radius: 50px;
   transition: all 0.2s ease;
@@ -32,6 +32,12 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
   }
 
   &.c-bolt-carousel__button--outside {
+    top: calc(50% - #{bolt-v-spacing(medium)} + #{$bolt-carousel-bullet-height});
+
+    @at-root bolt-carousel[no-pagination] & {
+      top: 50%;
+    }
+
     &:active,
     &.is-pressed {
       --bolt-theme-secondary: var(--bolt-theme-secondary-darken-15);
@@ -52,56 +58,20 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
     }
 
     &.c-bolt-carousel__button--previous {
-      // default with pagination bullets on the outside
       left: bolt-spacing(medium);
-      transform: translateX(-50%) translateY(-50%)
-        translateY(
-          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
-        );
-      color: bolt-color(black);
-      --bolt-theme-headline-link: 0, 0, 0;
+      transform: translateX(-50%) translateY(-50%);
 
       &.is-pressed {
-        transform: translateX(-50%) translateY(-50%)
-          translateY(
-            calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
-          )
-          translateY(1px);
-      }
-
-      // default w/o pagination bullets on the outside
-      @at-root bolt-carousel[no-pagination] & {
-        transform: translateX(-50%) translateY(-50%);
-
-        &.is-pressed {
-          transform: translateX(-50%) translateY(-50%) translateY(1px);
-        }
+        transform: translateX(-50%) translateY(-50%) translateY(1px);
       }
     }
 
     &.c-bolt-carousel__button--next {
-      // default with pagination bullets on the outside
       right: bolt-spacing(medium);
-      transform: translateX(50%) translateY(-50%)
-        translateY(
-          calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
-        );
+      transform: translateX(50%) translateY(-50%);
 
       &.is-pressed {
-        transform: translateX(50%) translateY(-50%)
-          translateY(
-            calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)} * -1)
-          )
-          translateY(1px);
-      }
-
-      // default w/o pagination bullets on the outside
-      @at-root bolt-carousel[no-pagination] & {
-        transform: translateX(50%) translateY(-50%);
-
-        &.is-pressed {
-          transform: translateX(50%) translateY(-50%) translateY(1px);
-        }
+        transform: translateX(50%) translateY(-50%) translateY(1px);
       }
     }
   }

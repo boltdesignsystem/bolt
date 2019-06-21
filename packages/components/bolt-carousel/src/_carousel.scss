@@ -17,10 +17,6 @@ bolt-carousel {
     @include bolt-margin-bottom(medium);
   }
 
-  &[no-pagination]{
-    @include bolt-margin-bottom(0);
-  }
-
   // add custom scrollbar styling till JS kicks in
   &:not(.is-ready){
     &:not([no-pagination]){
@@ -42,8 +38,9 @@ bolt-carousel {
 }
 
 .c-bolt-carousel {
+  @include bolt-z-index(content); /* Fix of Webkit flickering */
+
   position: relative;
-  z-index: 1; /* Fix of Webkit flickering */
   width: auto;
   width: 100%;
   max-width: 100%;
@@ -65,7 +62,6 @@ bolt-carousel {
   display: flex;
   box-sizing: content-box;
   transform: translate3d(0, 0, 0);
-  z-index: 1;
   width: 100%;
   height: auto;
   transition-property:transform;
