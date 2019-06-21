@@ -73,18 +73,23 @@ function setWebComponentProperty(propertyName, propertyType, property) {
 
 for (const key of schemaPropKeys) {
   const property = originalSchema.properties[key];
-  const propertyName = changeCase.camelCase(key);
-  const propertyType =
-    typeof property.type === 'object' && property.type.length > 1
-      ? 'string'
-      : property.type === 'integer'
-      ? 'number'
-      : property.type;
-  carouselProps[propertyName] = setWebComponentProperty(
-    propertyName,
-    propertyType,
-    property,
-  );
+
+  // Skip props with type "object" and "array". They are Twig-only. Breaking IE11.
+  if (property.type !== 'object' && property.type !== 'array') {
+    const propertyName = changeCase.camelCase(key);
+    const propertyType =
+      typeof property.type === 'object' && property.type.length > 1
+        ? 'string'
+        : property.type === 'integer'
+        ? 'number'
+        : property.type;
+
+    carouselProps[propertyName] = setWebComponentProperty(
+      propertyName,
+      propertyType,
+      property,
+    );
+  }
 }
 
 @define
