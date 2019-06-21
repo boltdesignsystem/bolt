@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/bolt-design-system/bolt/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* add potentially missing deps to testing server package ([b6ccf83](https://github.com/bolt-design-system/bolt/commit/b6ccf83))
+* globally update non-private package.json files with devDependencies and peerDependencies that might not get installed as expected when used / published outside of the Bolt monorepo ([efb0a04](https://github.com/bolt-design-system/bolt/commit/efb0a04))
+* split build tools utilities to avoid infinite dependency loop-related issues ([b83d03b](https://github.com/bolt-design-system/bolt/commit/b83d03b))
+
+
+
+
+
 ## [2.4.3](https://github.com/bolt-design-system/bolt/compare/v2.4.2...v2.4.3) (2019-05-31)
 
 

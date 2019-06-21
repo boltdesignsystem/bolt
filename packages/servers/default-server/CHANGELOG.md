@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/bolt-design-system/bolt/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* globally update non-private package.json files with devDependencies and peerDependencies that might not get installed as expected when used / published outside of the Bolt monorepo ([efb0a04](https://github.com/bolt-design-system/bolt/commit/efb0a04))
+* temp workaround to Docker error ([978e358](https://github.com/bolt-design-system/bolt/commit/978e358))
+* update default server to automatically try to wire up workspaces for packages copied over ([ef55771](https://github.com/bolt-design-system/bolt/commit/ef55771))
+* update older [@bolt](https://github.com/bolt) package dependencies + update docker container config to add and link missing folders within the monorepo ([41d5674](https://github.com/bolt-design-system/bolt/commit/41d5674))
+
+
+
+
+
 ## [2.4.3](https://github.com/bolt-design-system/bolt/compare/v2.4.2...v2.4.3) (2019-05-31)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* re-apply upcoming v2.5.0 changes reverted on the release/2.x branch for the v2.4.0 and v2.4.1 release ([ef00c0e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/ef00c0e))
+* Treat cell.content as renderable in table component ([ad2c0f3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/ad2c0f3))
+
+
+
+
+
 ## [2.4.1](https://github.com/bolt-design-system/bolt/compare/v2.4.0...v2.4.1) (2019-05-14)
 
 

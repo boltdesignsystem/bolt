@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* re-add network timeout to jest tests ([e227628](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/e227628))
+* re-update jest + jest-serializer-html packages to the latest versions + remove extra whitespace from snapshots based on jest-serializer-html pkg updates ([3af88ca](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/3af88ca))
+* remove is shadow-root from JS rendered blockquote HTML ([db97dcc](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/db97dcc))
+* update blockquote snapshot ([c72d45f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/c72d45f))
+
+
+### Features
+
+* move getModifiedSchema to base, refactor how schema gets updated ([ba52b40](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/ba52b40))
+
+
+
+
+
 # [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.3.2...v2.4.0) (2019-05-14)
 
 

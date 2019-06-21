@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* fix eslint issues ([cb576da](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/cb576da))
+* fix eslint issues ([924f81f](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/924f81f))
+* misc fixes + updating CLI logo ([fff0e78](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/fff0e78))
+* split build tools utilities to avoid infinite dependency loop-related issues ([b83d03b](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/b83d03b))
+* update eslint config path + fix lint issues ([fb02b22](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/fb02b22))
+* update lerna config + image build task to try and improve install + build stability ([826c6e2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/826c6e2))
+* update package.json post-merge from master ([35528a0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/35528a0))
+
+
+### Features
+
+* add new and improved waitpage that works with webpack-dev-server ([513754f](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/513754f))
+* migrate over remaininig carousel-related docs site and component updates not included in the original component-only PR ([afc75c0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/afc75c0))
+* update NPM dependencies + address some quirky install bugs and warnings ([5f7f132](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/5f7f132))
+
+
+
+
+
 ## [2.4.4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.4.3...v2.4.4) (2019-06-05)
 
 **Note:** Version bump only for package @bolt/build-tools
