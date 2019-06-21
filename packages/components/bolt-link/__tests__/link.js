@@ -10,10 +10,28 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../link.schema.yml'));
 const { display, valign } = schema.properties;
 
+const timeout = 90000;
+
 describe('link', () => {
+  let page, isOnline, context;
+
+  beforeAll(async () => {
+    isOnline = await isConnected();
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
+
   afterAll(async () => {
     await stopServer();
-  }, 100);
+  });
+
+  beforeEach(async () => {
+    page = await context.newPage();
+    await page.goto('http://127.0.0.1:4444/', {
+      timeout: 0,
+      waitLoad: true,
+      waitNetworkIdle: true, // defaults to false
+    });
+  }, timeout);
 
   test('basic link', async () => {
     const results = await render('@bolt-components-link/link.twig', {
@@ -107,5 +125,99 @@ describe('link', () => {
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
+  });
+
+  test('Default <bolt-link> w/o Shadow DOM renders', async function() {
+    const renderedLinkHTML = await page.evaluate(() => {
+      const link = document.createElement('bolt-link');
+      link.textContent = 'This is a link';
+      link.setAttribute('url', 'http://pega.com');
+      document.body.appendChild(link);
+      link.useShadow = false;
+      link.updated();
+      return link.outerHTML;
+    });
+    expect(renderedLinkHTML).toMatchSnapshot();
+
+    const renderedHTML = await html('<div></div>');
+    renderedHTML.innerHTML = renderedLinkHTML;
+
+    expect(
+      renderedHTML
+        .querySelector('.c-bolt-link')
+        .classList.contains('c-bolt-link--display-inline'),
+    ).toBe(true);
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedHTML).toMatchSnapshot();
+  });
+
+  test('Default <bolt-link> with Shadow DOM renders', async function() {
+    const defaultLinkShadowRoot = await page.evaluate(() => {
+      const link = document.createElement('bolt-link');
+      link.textContent = 'Link Test -- Shadow Root HTML';
+      link.setAttribute('url', 'http://pega.com');
+      document.body.appendChild(link);
+      link.updated();
+      return link.renderRoot.innerHTML;
+    });
+    expect(defaultLinkShadowRoot).toMatchSnapshot();
+
+    const defaultLinkOuter = await page.evaluate(() => {
+      const link = document.createElement('bolt-link');
+      link.setAttribute('url', 'http://pega.com');
+      link.textContent = 'Link Test -- Outer HTML';
+      document.body.appendChild(link);
+      link.updated();
+      return link.outerHTML;
+    });
+    expect(defaultLinkOuter).toMatchSnapshot();
+
+    const renderedHTML = await html(defaultLinkOuter);
+    expect(renderedHTML.textContent).toEqual('Link Test -- Outer HTML');
+
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+  });
+
+  test('Default <bolt-link> with Shadow DOM renders with no extra whitespace', async function() {
+    const defaultLinkOuter = await page.evaluate(() => {
+      const link = document.createElement('bolt-link');
+      link.setAttribute('url', 'http://pega.com');
+      link.textContent = 'Link Test -- No extra whitespace';
+
+      const linkWrapper = document.createElement('div');
+      linkWrapper.innerHTML += '(';
+      linkWrapper.append(link);
+      linkWrapper.innerHTML += ')';
+      document.body.appendChild(linkWrapper);
+      link.updated();
+      return linkWrapper.outerHTML;
+    });
+    expect(defaultLinkOuter).toMatchSnapshot();
+
+    const renderedHTML = await html(defaultLinkOuter);
+
+    expect(renderedHTML.querySelector('bolt-link').textContent).toEqual(
+      'Link Test -- No extra whitespace',
+    );
+
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedHTML).toMatchSnapshot();
   });
 });
