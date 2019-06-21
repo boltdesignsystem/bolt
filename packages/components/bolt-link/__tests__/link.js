@@ -138,14 +138,15 @@ describe('link', () => {
       return link.outerHTML;
     });
 
-    const renderedHTML = await html(renderedLinkHTML);
+    const renderedHTML = await html('<div></div>');
+    renderedHTML.innerHTML = renderedLinkHTML;
 
     // @todo: this should work but renderedHTML is not returning any child nodes, race condition?
-    // expect(
-    //   renderedHTML
-    //     .querySelector('.c-bolt-link')
-    //     .classList.contains('c-bolt-link--display-inline'),
-    // ).toBe(true);
+    expect(
+      renderedHTML
+        .querySelector('.c-bolt-link')
+        .classList.contains('c-bolt-link--display-inline'),
+    ).toBe(true);
 
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot({
