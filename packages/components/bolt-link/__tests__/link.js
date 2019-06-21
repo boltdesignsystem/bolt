@@ -137,6 +137,7 @@ describe('link', () => {
       link.updated();
       return link.outerHTML;
     });
+    expect(renderedLinkHTML).toMatchSnapshot();
 
     const renderedHTML = await html('<div></div>');
     renderedHTML.innerHTML = renderedLinkHTML;
@@ -165,6 +166,7 @@ describe('link', () => {
       link.updated();
       return link.renderRoot.innerHTML;
     });
+    expect(defaultLinkShadowRoot).toMatchSnapshot();
 
     const defaultLinkOuter = await page.evaluate(() => {
       const link = document.createElement('bolt-link');
@@ -174,10 +176,9 @@ describe('link', () => {
       link.updated();
       return link.outerHTML;
     });
+    expect(defaultLinkOuter).toMatchSnapshot();
 
-    const renderedShadowDomHTML = await html(defaultLinkShadowRoot);
     const renderedHTML = await html(defaultLinkOuter);
-
     expect(renderedHTML.textContent).toEqual('Link Test -- Outer HTML');
 
     const image = await page.screenshot();
@@ -186,9 +187,6 @@ describe('link', () => {
       failureThreshold: '0.01',
       failureThresholdType: 'percent',
     });
-
-    expect(renderedShadowDomHTML).toMatchSnapshot();
-    expect(renderedHTML).toMatchSnapshot();
   });
 
   test('Default <bolt-link> with Shadow DOM renders with no extra whitespace', async function() {
@@ -205,6 +203,7 @@ describe('link', () => {
       link.updated();
       return linkWrapper.outerHTML;
     });
+    expect(defaultLinkOuter).toMatchSnapshot();
 
     const renderedHTML = await html(defaultLinkOuter);
 
