@@ -141,7 +141,6 @@ describe('link', () => {
     const renderedHTML = await html('<div></div>');
     renderedHTML.innerHTML = renderedLinkHTML;
 
-    // @todo: this should work but renderedHTML is not returning any child nodes, race condition?
     expect(
       renderedHTML
         .querySelector('.c-bolt-link')
@@ -154,8 +153,7 @@ describe('link', () => {
       failureThresholdType: 'percent',
     });
 
-    // @todo: this snapshot is returning empty lit-html comments, should contain full light-dom rendered component
-    // expect(renderedHTML).toMatchSnapshot();
+    expect(renderedHTML).toMatchSnapshot();
   });
 
   test('Default <bolt-link> with Shadow DOM renders', async function() {
@@ -189,9 +187,8 @@ describe('link', () => {
       failureThresholdType: 'percent',
     });
 
-    // @todo: check these tests, make sure they're returning the right HTML before adding
-    // expect(renderedShadowDomHTML).toMatchSnapshot();
-    // expect(renderedHTML).toMatchSnapshot();
+    expect(renderedShadowDomHTML).toMatchSnapshot();
+    expect(renderedHTML).toMatchSnapshot();
   });
 
   test('Default <bolt-link> with Shadow DOM renders with no extra whitespace', async function() {
