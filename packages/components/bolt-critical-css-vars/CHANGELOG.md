@@ -3,23 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css-vars/compare/v2.4.4...v2.5.0) (2019-06-21)
-
-
-### Bug Fixes
-
-* add publicConfig ([2692f94](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css-vars/commit/2692f94))
-* globally update non-private package.json files with devDependencies and peerDependencies that might not get installed as expected when used / published outside of the Bolt monorepo ([efb0a04](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css-vars/commit/efb0a04))
-
-
-### Features
-
-* update NPM dependencies + address some quirky install bugs and warnings ([5f7f132](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css-vars/commit/5f7f132))
-
-
-
-
-
 ## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-critical-css-vars/compare/v2.4.2...v2.4.3) (2019-05-31)
 
 

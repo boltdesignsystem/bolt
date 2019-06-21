@@ -3,26 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.5.0](https://github.com/bolt-design-system/bolt/compare/v2.4.4...v2.5.0) (2019-06-21)
-
-
-### Bug Fixes
-
-* add publicConfig ([2692f94](https://github.com/bolt-design-system/bolt/commit/2692f94))
-* re-add network timeout to jest tests ([e227628](https://github.com/bolt-design-system/bolt/commit/e227628))
-* re-apply upcoming v2.5.0 changes reverted on the release/2.x branch for the v2.4.0 and v2.4.1 release ([ef00c0e](https://github.com/bolt-design-system/bolt/commit/ef00c0e))
-* re-update jest + jest-serializer-html packages to the latest versions + remove extra whitespace from snapshots based on jest-serializer-html pkg updates ([3af88ca](https://github.com/bolt-design-system/bolt/commit/3af88ca))
-* Treat cell.content as renderable in list component ([a89bc53](https://github.com/bolt-design-system/bolt/commit/a89bc53))
-
-
-### Features
-
-* migrate over remaininig carousel-related docs site and component updates not included in the original component-only PR ([afc75c0](https://github.com/bolt-design-system/bolt/commit/afc75c0))
-
-
-
-
-
 ## [2.4.1](https://github.com/bolt-design-system/bolt/compare/v2.4.0...v2.4.1) (2019-05-14)
 
 
