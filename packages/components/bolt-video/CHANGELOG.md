@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* add publicConfig ([2692f94](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/2692f94))
+* re-add network timeout to jest tests ([e227628](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/e227628))
+* re-update jest + jest-serializer-html packages to the latest versions + remove extra whitespace from snapshots based on jest-serializer-html pkg updates ([3af88ca](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/3af88ca))
+* rework video JS to prevent bugs that result from multiple initializations ([45bbf07](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/45bbf07))
+* selectively hide less essential controls for smaller screens ([d5ab71d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/d5ab71d))
+* update onInit script to follow best practices for referencing and configuring a video ([c719283](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/c719283))
+* use video-js element per Brightcove best practices ([e96d776](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/e96d776))
+
+
+
+
+
 ## [2.4.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.4.1...v2.4.2) (2019-05-24)
 
 

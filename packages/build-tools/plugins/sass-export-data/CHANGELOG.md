@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/basaltinc/theme-tools/tree/master/packages/sass-export-data/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* add publicConfig ([2692f94](https://github.com/basaltinc/theme-tools/tree/master/packages/sass-export-data/commit/2692f94))
+
+
+### Features
+
+* migrate over remaininig carousel-related docs site and component updates not included in the original component-only PR ([afc75c0](https://github.com/basaltinc/theme-tools/tree/master/packages/sass-export-data/commit/afc75c0))
+
+
+
+
+
 # [2.4.0](https://github.com/basaltinc/theme-tools/tree/master/packages/sass-export-data/compare/v2.3.2...v2.4.0) (2019-05-14)
 
 

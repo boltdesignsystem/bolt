@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* add publicConfig ([2692f94](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/2692f94))
+* re-add network timeout to jest tests ([e227628](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/e227628))
+* re-update jest + jest-serializer-html packages to the latest versions + remove extra whitespace from snapshots based on jest-serializer-html pkg updates ([3af88ca](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/3af88ca))
+* update navbar Jest test to wait until page navigation has finished. fixes inconsistent navbar test ([89ab34c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/89ab34c))
+
+
+
+
+
 ## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.4.2...v2.4.3) (2019-05-31)
 
 **Note:** Version bump only for package @bolt/components-navbar

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* add publicConfig ([2692f94](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser/commit/2692f94))
+
+
+
+
+
 # [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-teaser/compare/v2.3.2...v2.4.0) (2019-05-14)
 
 

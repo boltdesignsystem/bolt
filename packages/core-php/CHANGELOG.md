@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* add publicConfig ([2692f94](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/2692f94))
+* check if values are numeric and do not contain float before getting gcd ([db8d074](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/db8d074))
+* replace gmp_gcd with custom gcd function to avoid gmp dependency ([b5487a1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/b5487a1))
+* split up the core-php BoltExtra Twig extensions into the ones needed for Drupal compatibility vs any extra Twig extensions used internally for building the docs site. Update Twig renderer configs to use the full set of Twig extensions for the docs site but only BoltCore and BoltCoreCompat when running component tests ([fbc1a4e](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/fbc1a4e))
+
+
+### Features
+
+* migrate over remaininig carousel-related docs site and component updates not included in the original component-only PR ([afc75c0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/afc75c0))
+
+
+
+
+
 # [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.3.2...v2.4.0) (2019-05-14)
 
 

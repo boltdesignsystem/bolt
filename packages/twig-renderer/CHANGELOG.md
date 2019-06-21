@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.4.4...v2.5.0) (2019-06-21)
+
+
+### Bug Fixes
+
+* add publicConfig ([2692f94](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/2692f94))
+* split build tools utilities to avoid infinite dependency loop-related issues ([b83d03b](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/b83d03b))
+* split up the core-php BoltExtra Twig extensions into the ones needed for Drupal compatibility vs any extra Twig extensions used internally for building the docs site. Update Twig renderer configs to use the full set of Twig extensions for the docs site but only BoltCore and BoltCoreCompat when running component tests ([fbc1a4e](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/fbc1a4e))
+
+
+
+
+
 ## [2.4.4](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.4.3...v2.4.4) (2019-06-05)
 
 
