@@ -390,7 +390,8 @@ class BoltCarousel extends withLitHtml() {
       breakpointsInverse: true,
       breakpoints: {},
       grabCursor: true,
-      loop: this.props.loop,
+      loop: false,
+      // loop: this.props.loop, // @todo: re-enable once related re-rendering bugs addressed
       autoplay: this.props.autoplay
         ? {
             delay: 5000,
