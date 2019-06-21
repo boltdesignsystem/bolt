@@ -107,6 +107,56 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
   }
 
   &.c-bolt-carousel__button--inside {
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: calc(50% - 0.5rem);
+      width: 4px;
+      height: 1rem;
+      border-radius: 1px;
+      box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.025), 3px 1px 3px 0px rgba(bolt-color(black), 0.025);
+      background-color: bolt-color(white);
+      will-change: box-shadow;
+      transition: box-shadow $bolt-transition;
+      transform-origin: 50% 50%;
+
+      @include bolt-ie11-only {
+        border: 1px solid bolt-color(white);
+      }
+    }
+
+    &.c-bolt-carousel__button--previous {
+      right: auto;
+      left: 0;
+
+      &:before {
+        left: calc(50% - 0.5rem);
+        transform: rotate(135deg) translateX(150%) translateY(0%) translateZ(0) perspective(1px);
+      }
+
+      &:after {
+        left: calc(50% - 0.5rem);
+        transform: rotate(-135deg) translateX(150%) translateY(0%) translateZ(0) perspective(1px);
+      }
+    }
+
+    &.c-bolt-carousel__button--next {
+      right: 0;
+      left: auto;
+
+      &:before {
+        right: calc(50% - 0.5rem);
+        transform: rotate(45deg) translateX(150%) translateY(0%) translateZ(0) perspective(1px);
+      }
+
+      &:after {
+        right: calc(50% - 0.5rem);
+        transform: rotate(-45deg) translateX(150%) translateY(0%) translateZ(0) perspective(1px);
+      }
+    }
+
     &,
     &:hover,
     &:active,
@@ -115,7 +165,7 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
     &.is-pressed:focus {
       top: 0;
       transform: none;
-      width: 3rem;
+      width: 3.5rem;
       height: calc(100% - #{bolt-v-spacing(medium)} - 8px);
       border-radius: 0;
 
@@ -126,87 +176,9 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
 
     &:hover,
     &:focus {
-      &:before {
-        opacity: bolt-opacity(80);
-      }
-    }
-
-    &:before,
-    &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: calc(50% - 0.25rem);
-      width: 1rem;
-      height: 1rem;
-      border-style: solid;
-      will-change: opacity;
-      transition: opacity $bolt-transition;
-      transform-origin: 50% 50%;
-    }
-
-    &:before {
-      box-sizing: content-box;
-      opacity: bolt-opacity(20);
-      border-color: bolt-color(black);
-      @supports (filter: blur(0px)){
-        filter: blur(4px);
-      }
-    }
-
-    &:after {
-      border-color: bolt-color(white);
-    }
-
-    &.c-bolt-carousel__button--previous {
-      right: auto;
-      left: 0;
-
-      &:before {
-        left: calc(50% - 0.5rem - 8px);
-        border-top-width: 7px;
-        border-right-width: 0;
-        border-bottom-width: 0;
-        border-left-width: 7px;
-      }
-
-      &:after {
-        left: calc(50% - 0.5rem - 4px);
-        border-top-width: 4px;
-        border-right-width: 0;
-        border-bottom-width: 0;
-        border-left-width: 4px;
-      }
-
       &:before,
       &:after {
-        transform: rotate(-45deg) translateX(50%) translateY(0);
-      }
-    }
-
-    &.c-bolt-carousel__button--next {
-      right: 0;
-      left: auto;
-
-      &:before {
-        right: calc(50% - 0.5rem - 8px);
-        border-top-width: 7px;
-        border-right-width: 7px;
-        border-bottom-width: 0;
-        border-left-width: 0;
-      }
-
-      &:after {
-        right: calc(50% - 0.5rem - 4px);
-        border-top-width: 4px;
-        border-right-width: 4px;
-        border-bottom-width: 0;
-        border-left-width: 0;
-      }
-
-      &:before,
-      &:after {
-        transform: rotate(45deg) translateX(-50%) translateY(0);
+        box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.1), 3px 1px 3px 0px rgba(bolt-color(black), 0.1);
       }
     }
 
