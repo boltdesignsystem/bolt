@@ -3,28 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.4.4...v2.5.0) (2019-06-21)
-
-
-### Bug Fixes
-
-* downgrade element.closest polyfill as a workaround to address an IE 11 issue with the more recent version ([b9b036a](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/b9b036a))
-* no js focus ([3ef9626](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/3ef9626))
-* polyfill 'remove()' to fix IE11 errors in accordion ([c856491](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/c856491))
-* remove line-breaks in lit-html renderer, space in link.js to prevent extra whitespace ([c5b4e88](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/c5b4e88))
-
-
-### Features
-
-* migrate over remaininig carousel-related docs site and component updates not included in the original component-only PR ([afc75c0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/afc75c0))
-* move addClassesToSlottedChildren to base class, pass slot names as param ([41017fe](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/41017fe))
-* move getModifiedSchema to base, refactor how schema gets updated ([ba52b40](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/ba52b40))
-* update NPM dependencies + address some quirky install bugs and warnings ([5f7f132](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/5f7f132))
-
-
-
-
-
 # [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.3.2...v2.4.0) (2019-05-14)
 
 

@@ -3,17 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/browserslist-config/compare/v2.4.4...v2.5.0) (2019-06-21)
-
-
-### Bug Fixes
-
-* misc fixes + updating CLI logo ([fff0e78](https://github.com/bolt-design-system/bolt/tree/master/packages/configs/browserslist-config/commit/fff0e78))
-
-
-
-
-
 ## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/config-presets/config-browserlist/compare/v2.4.2...v2.4.3) (2019-05-31)
 
 

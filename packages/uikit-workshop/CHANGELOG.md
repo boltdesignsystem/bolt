@@ -3,27 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.5.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.4.4...v2.5.0) (2019-06-21)
-
-
-### Bug Fixes
-
-* add DIY lit-html renderer to uikit to remove lit-html version warnings from the NPM package ([47749da](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/47749da))
-* install all deps when running full suite of jest tests ([4c07439](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/4c07439))
-* misc fixes + updating CLI logo ([fff0e78](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/fff0e78))
-* revert to using a slightly packages in PL UIKit as a workaround to the recent JS errors getting thrown by the React tooltip library used internally ([8eb5f99](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/8eb5f99))
-* update uikit packages to fix build errors ([eed7dc0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/eed7dc0))
-
-
-### Features
-
-* migrate over remaininig carousel-related docs site and component updates not included in the original component-only PR ([afc75c0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/afc75c0))
-* update NPM dependencies + address some quirky install bugs and warnings ([5f7f132](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/5f7f132))
-
-
-
-
-
 ## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.4.2...v2.4.3) (2019-05-31)
 
 

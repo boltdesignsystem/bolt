@@ -3,22 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.5.0](https://github.com/bolt-design-system/bolt/compare/v2.4.4...v2.5.0) (2019-06-21)
-
-
-### Bug Fixes
-
-* wrap attributes and hidden checks in a try and catch ([7498f81](https://github.com/bolt-design-system/bolt/commit/7498f81))
-
-
-### Features
-
-* migrate over remaininig carousel-related docs site and component updates not included in the original component-only PR ([afc75c0](https://github.com/bolt-design-system/bolt/commit/afc75c0))
-
-
-
-
-
 # [2.4.0](https://github.com/bolt-design-system/bolt/compare/v2.3.2...v2.4.0) (2019-05-14)
 
 
