@@ -17,7 +17,8 @@ class BoltButton extends BoltAction {
   static is = 'bolt-button';
 
   static props = {
-    color: props.string,
+    variation: props.string, // replacement for the `color` prop (which doesn't make sense with the `text` prop option)
+    color: props.string, // DEPRECATED. Use variation prop instead
     text: props.string,
     size: props.string,
     rounded: props.boolean, // DEPRECATED.  Use border-radius instead of rounded.
@@ -47,8 +48,10 @@ class BoltButton extends BoltAction {
     const classes = cx('c-bolt-button', {
       'c-bolt-button--medium': !this.props.size, // Default size
       [`c-bolt-button--${this.props.size}`]: this.props.size,
-      'c-bolt-button--primary': !this.props.color, // Default color
-      [`c-bolt-button--${this.props.color}`]: this.props.color,
+      'c-bolt-button--primary': !this.props.variation && !this.props.color, // Default variation
+      [`c-bolt-button--${
+        this.props.variation ? this.props.variation : this.props.color
+      }`]: this.props.color || this.props.variation, // Backwards support for using the `color` prop
       [`c-bolt-button--${this.props.width}`]:
         this.props.width && this.props.width !== 'auto',
       'c-bolt-button--border-radius-regular': !this.props.borderRadius, // Default border radius

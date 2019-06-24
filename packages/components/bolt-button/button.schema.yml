@@ -48,7 +48,7 @@ properties:
       - xlarge
   variation:
     type: string
-    description: 'The type of the button style / appearance, based on the information hierarchy.'
+    description: 'The button style / appearance, based on the information hierarchy.'
     default: primary
     enum:
       - primary
@@ -94,6 +94,12 @@ properties:
     default: false
     required:
       - icon
+  style:
+    title: 'DEPRECATED'
+    description: 'Use the <code>variation</code> prop instead.'
+  color:
+    title: 'DEPRECATED'
+    description: 'Use the <code>variation</code> prop instead.'
   itemAlignment:
     title: 'DEPRECATED'
     description: 'Use the align parameter instead.'

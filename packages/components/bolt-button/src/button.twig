@@ -8,13 +8,16 @@
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set inner_attributes = create_attribute({}) %}
 
-{# DEPRECATED.  Use the prooperty `align` instead of `itemAlignment`. #}
+{# DEPRECATED.  Use the `align` prop instead of `itemAlignment`. #}
 {% if itemAlignment %}
   {% set align = itemAlignment %}
 {% endif %}
 
+{# DEPRECATED.  Use the `variation` prop instead of `color` or `style` #}
 {% if style %}
   {% set variation = style %}
+{% elseif color %}
+  {% set variation = color %}
 {% endif %}
 
 {# DEPRECATED.  Use the values `start` and `end` insted of `left` and `right`. #}
