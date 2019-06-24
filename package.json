@@ -65,7 +65,7 @@
     "pretest:js": "npm run setup:php",
     "test:js": "NODE_ENV='test' jest --all --colors",
     "test:js:update": "yarn run test:js -u",
-    "test:monorepo": "jest __tests__/monorepo.test.js -c jest.config.quick.js",
+    "test:monorepo": "jest ./__tests__/*.test.js -c jest.config.quick.js",
     "test:php": "cd packages/core-php -- composer run test"
   },
   "husky": {
@@ -98,6 +98,7 @@
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
+    "find-up": "^4.1.0",
     "globby": "^9.2.0",
     "haunted": "^4.4.0",
     "husky": "^2.3.0",
