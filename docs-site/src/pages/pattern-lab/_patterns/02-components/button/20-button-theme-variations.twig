@@ -6,10 +6,10 @@
   <div class="u-bolt-margin-bottom-medium">
     {% embed "@utils/theme-demo.twig" %}
       {% block demo_content %}
-        {% for style in schema.properties.style.enum %}
+        {% for color in schema.properties.color.enum %}
           {% include "@bolt-components-button/button.twig" with {
-            text: style|capitalize ~ " button",
-            style: style
+            text: color|capitalize ~ " button",
+            color: color
           } only %}
         {% endfor %}
       {% endblock %}
