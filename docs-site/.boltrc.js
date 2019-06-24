@@ -23,9 +23,10 @@ const config = {
   webpackDevServer: {
     enabled: true,
   },
-  sourceMaps: process.env.TRAVIS || argv.prod ? false : true,
-  enableCache: process.env.TRAVIS || argv.prod ? false : true,
-  enableSSR: false, // temp disabld till Travis issue fixed
+  proxyPort: 5000,
+  sourceMaps: !(process.env.TRAVIS || argv.prod),
+  enableCache: !(process.env.TRAVIS || argv.prod),
+  enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,

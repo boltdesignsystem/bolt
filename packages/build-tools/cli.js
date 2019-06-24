@@ -67,6 +67,8 @@ if (program.configFile) {
       await configStore.updateConfig(config => {
         originalConfig = config;
 
+        console.log(config);
+
         config.verbosity =
           typeof program.verbosity === 'undefined'
             ? config.verbosity

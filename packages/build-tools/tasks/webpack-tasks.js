@@ -55,10 +55,9 @@ watch.displayName = 'webpack:watch';
 
 async function server(customWebpackConfig) {
   const boltBuildConfig = await getConfig();
-  const useHotMiddleware =
+  const useHotMiddleware = !(
     Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1
-      ? false
-      : true;
+  );
 
   const webpackConfig =
     customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
@@ -72,11 +71,19 @@ async function server(customWebpackConfig) {
     browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
   }
 
+  console.log('Host:', boltBuildConfig.proxyHostname);
+  console.log('Header:', boltBuildConfig.proxyHeader);
+  console.log('Port:', boltBuildConfig.proxyPort);
+  console.log('-----------------------');
+  console.log('Sync Files:', boltBuildConfig.wwwDir);
+
   return new Promise((resolve, reject) => {
     if (!browserSyncIsRunning) {
       browserSync.init(
         {
-          proxy: 'localhost:' + boltBuildConfig.port,
+          proxy: `${boltBuildConfig.proxyHostname}:${
+            boltBuildConfig.proxyPort
+          }`,
           logLevel: 'info',
           ui: false,
           notify: false,
@@ -103,7 +110,9 @@ async function server(customWebpackConfig) {
     app.use(
       webpackDevServerWaitpage(compiler, {
         proxyHeader: boltBuildConfig.proxyHeader,
-        redirectPath: `http://localhost:${boltBuildConfig.port}/${
+        redirectPath: `${boltBuildConfig.proxyHostname}:${
+          boltBuildConfig.proxyPort
+        }/${
           boltBuildConfig.startPath !== '/' ? boltBuildConfig.startPath : ''
         }`,
       }),

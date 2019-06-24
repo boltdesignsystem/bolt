@@ -27,17 +27,18 @@ const ip = address.ip();
 async function getDefaultConfig() {
   return Promise.all([
     await getPort(configSchema.properties.port.default),
-    await getPort(configSchema.properties.proxyPort.default),
+    // await getPort(configSchema.properties.proxyPort.default),
   ]).then(function(ports) {
     return {
       port: ports[0],
       proxyPort: ports[1],
+      proxyHostname: configSchema.properties.proxyHostname.default,
+      proxyHeader: configSchema.properties.proxyHeader.default,
       ip,
       enableSSR: configSchema.properties.enableSSR.default,
       mode: configSchema.properties.mode.default,
       env: process.env.NODE_ENV,
       enableCache: configSchema.properties.enableCache.default,
-      proxyHeader: configSchema.properties.proxyHeader.default,
       watch: configSchema.properties.watch.default,
       sourceMaps: configSchema.properties.sourceMaps.default,
       i18n: configSchema.properties.i18n.default,
