@@ -1,4 +1,3 @@
-#! /usr/bin/env node
 const execa = require('execa');
 const { join, dirname } = require('path');
 const { readFileSync, readJSONSync } = require('fs-extra');
