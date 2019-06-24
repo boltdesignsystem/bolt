@@ -12,7 +12,7 @@ This Node.js CLI currently accepts two arguments:
     2. Boolean to conditionally enable/disable syntax highlighting (which defaults to `true` when using the CLI directly, `false` when being used for PHP rendering)
 
 ```
-$ node packages/servers/ssr-server/cli.js '<bolt-button color="secondary">SSR Test</bolt-button>'
+$ node packages/servers/ssr-server/cli.js '<bolt-button variation="secondary">SSR Test</bolt-button>'
 ```
 
 This returns back the pre-rendered, hydration-friendly markup (with or without syntax highlighting)

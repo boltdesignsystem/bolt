@@ -255,7 +255,7 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
           </div>
           <bolt-button
             size="xsmall"
-            color="text"
+            variation="text"
             style="${styleMap({
               position: 'absolute',
               bottom: 0,

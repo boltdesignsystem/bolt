@@ -7,7 +7,7 @@
   {% set items = items | default([]) | merge([image]) %}
 {% endif %}
 
-  
+
 {% block card_body %}
   {% if teaser %}
     {% set cardBodyContent = teaser %}
@@ -26,7 +26,7 @@
     {% set buttons = [] %}
     {% for button in teaser.buttons %}
       {% set button = button | merge({
-        style: "text"
+        variation: "text"
       }) %}
       {% set buttons = buttons | merge([button]) %}
     {% endfor %}

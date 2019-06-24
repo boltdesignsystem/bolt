@@ -6,7 +6,7 @@
     <bolt-image src="./assets/logo.png" />
 
     <HelloWorld msg="Welcome to Your Bolt-powered Vue.js App" />
-    <bolt-button color="primary">
+    <bolt-button variation="primary">
       Hello Vue.js!
     </bolt-button>
   </div>

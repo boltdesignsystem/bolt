@@ -105,7 +105,7 @@ class BoltTooltip extends withLitHtml() {
     if (this.triggerType === 'button') {
       return html`
         <bolt-button
-          color="secondary"
+          variation="secondary"
           transform="${ifDefined(this.triggerTransform)}"
           >${this.triggerIconName &&
             html`
