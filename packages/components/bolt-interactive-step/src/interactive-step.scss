@@ -1,4 +1,5 @@
 @import '@bolt/core';
+@import '@bolt/animations';
 
 // Local interactive-step Variables
 
@@ -147,6 +148,12 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-interactive-step__speech-bubble {
   @include bolt-padding(xsmall, squished);
   @include bolt-shadow('level-20');
+  @include bolt-transition--fade-in($base: true);
+
+  // animation effect on active step
+  .c-bolt-interactive-step--active & {
+    @include bolt-transition--fade-in($active: true);
+  }
 
   display: block;
   position: relative;
@@ -187,6 +194,10 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 }
 
-bolt-text {
-  margin-bottom: 0;
+//bolt-text {
+//  margin-bottom: 0;
+//}
+
+.c-bolt-interactive-step--active .c-bolt-interactive-step__speech-bubble {
+
 }
