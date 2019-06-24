@@ -35,6 +35,10 @@ class BoltInteractiveStep extends withLitHtml() {
       ...props.string,
       ...{ default: 'happy' },
     },
+    speakerPosition: {
+      ...props.string,
+      ...{ default: 'left' },
+    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -45,9 +49,14 @@ class BoltInteractiveStep extends withLitHtml() {
   }
 
   render() {
-    const { step, hideInteractionAnimations, customerDisposition } = this;
+    const { step, customerDisposition } = this;
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled, active } = this.validateProps(this.props);
+    const {
+      disabled,
+      active,
+      hideInteractionAnimations,
+      speakerPosition,
+    } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-interactive-step', {
       [`c-bolt-interactive-step--disabled`]: disabled,
@@ -67,17 +76,15 @@ class BoltInteractiveStep extends withLitHtml() {
           ${hideInteractionAnimations
             ? ''
             : html`
-                <div
-                  class="c-bolt-interactive-step__dialogue c-bolt-interactive-step__dialogue--left"
-                >
+                <div class="c-bolt-interactive-step__dialogue">
                   <bolt-tooltip-content
                     role="tooltip"
                     aria-hidden="false"
                     id="bolt-tooltip-id-11"
-                    class="c-bolt-interactive-step__speech c-bolt-interactive-step__speech--left"
+                    class="c-bolt-interactive-step__speech c-bolt-interactive-step__speech--${speakerPosition}"
                   >
                     <span class="c-bolt-interactive-step__speech-bubble"
-                      >This is a dialogue bubble.</span
+                      >${this.slot('dialogue')}</span
                     >
                   </bolt-tooltip-content>
                 </div>

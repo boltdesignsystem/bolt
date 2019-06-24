@@ -91,6 +91,7 @@ class BoltInteractivePathway extends withLitHtml() {
       [`c-bolt-interactive-pathway--active`]: active,
     });
 
+    // @todo refactor this with lithtml event handlers
     // Adds click handler to the pathway steps. wait... Shouldn't this be in the connectedCallback?
     this.slots.steps.map(node => {
       node.renderRoot
