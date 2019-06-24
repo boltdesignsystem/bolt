@@ -47,7 +47,7 @@ describe('Test the Bolt Twig Renderer API', () => {
   test('renders the secondary button correctly', async () => {
     const result = await render(buttonTemplate, {
       text: 'Secondary Button!',
-      style: 'secondary',
+      variation: 'secondary',
     });
 
     expect(result.html).toMatchSnapshot();

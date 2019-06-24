@@ -33,9 +33,27 @@ describe('button', () => {
     });
   }, timeout);
 
-  test('Basic usage', async () => {
+  test('Basic Primary Button', async () => {
     const results = await render('@bolt-components-button/button.twig', {
-      text: 'This is a button',
+      text: 'This is a primary button',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('Basic Secondary Button', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a secondary button',
+      variation: 'secondary',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('Basic Text Button', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a text button',
+      variation: 'text',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();

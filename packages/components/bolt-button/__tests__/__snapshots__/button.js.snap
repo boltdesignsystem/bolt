@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`button Basic usage 1`] = `
+exports[`button Basic Primary Button 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -14,7 +14,51 @@ exports[`button Basic usage 1`] = `
     <replace-with-children class="c-bolt-button__icon is-empty">
     </replace-with-children>
     <replace-with-children class="c-bolt-button__item">
-      This is a button
+      This is a primary button
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+  </button>
+</bolt-button>
+`;
+
+exports[`button Basic Secondary Button 1`] = `
+<bolt-button size="medium"
+             variation="secondary"
+             width="auto"
+             border-radius="regular"
+             align="center"
+             transform="none"
+>
+  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--secondary c-bolt-button--border-radius-regular c-bolt-button--center"
+          is="shadow-root"
+  >
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__item">
+      This is a secondary button
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+  </button>
+</bolt-button>
+`;
+
+exports[`button Basic Text Button 1`] = `
+<bolt-button size="medium"
+             variation="text"
+             width="auto"
+             border-radius="regular"
+             align="center"
+             transform="none"
+>
+  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--border-radius-regular c-bolt-button--center"
+          is="shadow-root"
+  >
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__item">
+      This is a text button
     </replace-with-children>
     <replace-with-children class="c-bolt-button__icon is-empty">
     </replace-with-children>
@@ -24,7 +68,7 @@ exports[`button Basic usage 1`] = `
 
 exports[`button Button tag: a 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -46,7 +90,7 @@ exports[`button Button tag: a 1`] = `
 
 exports[`button Button tag: button 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -68,7 +112,7 @@ exports[`button Button tag: button 1`] = `
 
 exports[`button Button tag: link 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -90,7 +134,7 @@ exports[`button Button tag: link 1`] = `
 
 exports[`button Button tag: reset 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -113,7 +157,7 @@ exports[`button Button tag: reset 1`] = `
 
 exports[`button Button tag: submit 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -136,7 +180,7 @@ exports[`button Button tag: submit 1`] = `
 
 exports[`button Button with an onClick attributes renders properly 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -159,7 +203,7 @@ exports[`button Button with an onClick attributes renders properly 1`] = `
 
 exports[`button Button with an onClick param renders properly 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -182,7 +226,7 @@ exports[`button Button with an onClick param renders properly 1`] = `
 
 exports[`button Button with c-bolt- class is thrown out 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -204,7 +248,7 @@ exports[`button Button with c-bolt- class is thrown out 1`] = `
 
 exports[`button Button with inner classes via Drupal Attributes 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -226,7 +270,7 @@ exports[`button Button with inner classes via Drupal Attributes 1`] = `
 
 exports[`button Button with outer JS-class via Drupal Attributes 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"
@@ -249,7 +293,7 @@ exports[`button Button with outer JS-class via Drupal Attributes 1`] = `
 
 exports[`button Button with outer classes via Drupal Attributes 1`] = `
 <bolt-button size="medium"
-             color="primary"
+             variation="primary"
              width="auto"
              border-radius="regular"
              align="center"

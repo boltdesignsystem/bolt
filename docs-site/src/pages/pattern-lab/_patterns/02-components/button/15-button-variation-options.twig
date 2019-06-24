@@ -6,21 +6,21 @@
   Strictly for demo purposes.
 #}
 
-<p><mark>Note: interactive states only appear when the user interacts with the button, they are not styles that are available for use.</mark></p>
+<p><mark>Note: interactive states only appear when the user interacts with the button, they are not variations that are available for use.</mark></p>
 
-<h3>Regular States</h3>
-{% for style in schema.properties.style.enum %}
+<h3>Regular Variations</h3>
+{% for variation in schema.properties.variation.enum %}
   {% set button %}
     {% include "@bolt-components-button/button.twig" with {
-      text: style|capitalize ~ " button",
-      style: style
+      text: variation|capitalize ~ " button",
+      variation: variation
     } only %}
   {% endset %}
   {% set button_disabled %}
     {% include "@bolt-components-button/button.twig" with {
-      text: style|capitalize ~ " button (disabled)",
+      text: variation|capitalize ~ " button (disabled)",
       disabled: true,
-      style: style
+      variation: variation
     } only %}
   {% endset %}
 
@@ -34,38 +34,38 @@
 {% endfor %}
 
 <h3>Interactive States</h3>
-{% for style in schema.properties.style.enum %}
+{% for variation in schema.properties.variation.enum %}
   {% set button_hover %}
     {% include "@bolt-components-button/button.twig" with {
-      text: style|capitalize ~ " button (hover)",
+      text: variation|capitalize ~ " button (hover)",
       attributes: {
         class: [
           "is-hover"
         ]
       },
-      style: style
+      variation: variation
     } only %}
   {% endset %}
   {% set button_focus %}
     {% include "@bolt-components-button/button.twig" with {
-      text: style|capitalize ~ " button (focus)",
+      text: variation|capitalize ~ " button (focus)",
       attributes: {
         class: [
           "is-focus"
         ]
       },
-      style: style
+      variation: variation
     } only %}
   {% endset %}
   {% set button_active %}
     {% include "@bolt-components-button/button.twig" with {
-      text: style|capitalize ~ " button (active)",
+      text: variation|capitalize ~ " button (active)",
       attributes: {
         class: [
           "is-active"
         ]
       },
-      style: style
+      variation: variation
     } only %}
   {% endset %}
 

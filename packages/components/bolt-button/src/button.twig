@@ -73,7 +73,7 @@
   base_class,
   disabled ? "#{base_class}--disabled" : "",
   size ? "#{base_class}--#{size}" : "",
-  color ? "#{base_class}--#{color}" : "",
+  variation ? "#{base_class}--#{variation}" : "",
   width != "auto" ? "#{base_class}--#{width}" : "",
   border_radius ? "#{base_class}--border-radius-#{border_radius}" : "",
   align ? "#{base_class}--#{align}" : "",
@@ -133,7 +133,7 @@ Sort classes passed in via attributes into two groups:
 {# Set up the custom element's prop values based on the params passed into the Twig template - used to hydrate the component's initial state and appearance once the Button Component's JavaScript kicks in #}
 <bolt-button
   {% if size %} size="{{ size }}" {% endif %}
-  {% if color %} color="{{ color }}" {% endif %}
+  {% if variation %} variation="{{ variation }}" {% endif %}
   {% if width %} width="{{ width }}" {% endif %}
   {% if border_radius %} border-radius="{{ border_radius }}" {% endif %}
   {% if align %} align="{{ align }}" {% endif %}
