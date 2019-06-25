@@ -4,8 +4,8 @@ const path = require('path');
 const program = require('commander');
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('bolt');
-const configStore = require('@bolt/build-utils/config-store');
-const { readYamlFileSync } = require('@bolt/build-utils/yaml');
+const configStore = require('./utils/config-store');
+const { readYamlFileSync } = require('./utils/yaml');
 const configSchema = readYamlFileSync(
   path.join(__dirname, './utils/config.schema.yml'),
 );
@@ -52,8 +52,8 @@ if (program.configFile) {
 (async () => {
   await configStore.init(userConfig).then(async config => {
     // Now that config is initilized, we can start requiring other things
-    const { buildBoltManifest } = require('@bolt/build-utils/manifest');
-    const log = require('@bolt/build-utils/log');
+    const { buildBoltManifest } = require('./utils/manifest');
+    const log = require('./utils/log');
 
     // store a copy of the original config before modifying with defaults + auto values. This allows us to point out if a config option was manually vs automatically set.
     let originalConfig;
