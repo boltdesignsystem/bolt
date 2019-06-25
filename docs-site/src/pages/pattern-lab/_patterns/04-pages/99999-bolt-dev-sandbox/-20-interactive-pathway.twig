@@ -9,7 +9,11 @@
     } only %}
   {% endset %}
   {% set article %}
-    <bolt-interactive-pathways>
+    <div class="temp-loading-pladeholder" style="height: 500px;">
+      {#This is a temporary placeholder for loading until SSR is addressed#}
+
+    </div>
+    <bolt-interactive-pathways style="display: none; opacity: 0; transition: opacity ease 0.3s;">
       <bolt-text slot="interactive-pathways-lead-text" display="inline">How Pega technology resolves</bolt-text>
       <bolt-interactive-pathway
           id="12345"
@@ -27,7 +31,7 @@
             customer-disposition="sad"
         >
           <span slot="title">Moment of Need</span>
-          <span tag="p" slot="dialogue">Why is my bill so high?</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">Why is my bill so high?</bolt-text>
           <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
           <bolt-text slot="body">
             Pega enables the business to sense <b>customer context</b> by seeing interactions across channels--calls to customer service about a bill, or visit to pricing web page.
@@ -41,7 +45,7 @@
             customer-disposition="neutral"
         >
           <span slot="title">Next best action</span>
-          <span tag="p" slot="dialogue">How can we best service this customer?</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">How can we best service this customer?</bolt-text>
           <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png" />
           <bolt-text slot="body">
             Pega's AI-augmented <b>decisioning engine</b> uses context, predictive analytics, and self-learning adaptive models to guide agents with next best actions to serve the customer.
@@ -55,7 +59,7 @@
             customer-disposition="neutral"
         >
           <span slot="title">Context Across Channels</span>
-          <span tag="p" slot="dialogue">I have another question about my bill.</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">I have another question about my bill.</bolt-text>
           <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-triple-ltr.png" />
           <bolt-text slot="body">
             Pega’s <b>real-time omni-channel AI</b> ensures that customer context is never lost, even on other channels.
@@ -69,7 +73,7 @@
             customer-disposition="happy"
         >
           <span slot="title">Resolve</span>
-          <span tag="p" slot="dialogue">Let's get this resolved quickly.</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">Let's get this resolved quickly.</bolt-text>
           <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-neutral.png" />
           <bolt-text slot="body">
             Pega's <b>case management</b> connects all the people, systems, and processes required to resolve each customer inquiry.
@@ -83,7 +87,7 @@
             customer-disposition="happy"
         >
           <span slot="title">Outcomes</span>
-          <span tag="p" slot="dialogue">Thanks, I got my issue resolved.</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">Thanks, I got my issue resolved.</bolt-text>
           <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png" />
           <bolt-text slot="body">
             Customer issue is resolved quickly, resulting in higher customer satisfaction and lower <b>average handle time (AHT)</b> for the business.
@@ -96,7 +100,7 @@
             hide-interaction-animations
         >
           <span slot="title">What's next?</span>
-          <span tag="p" slot="dialogue">I'm saying something!</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">I'm saying something!</bolt-text>
           <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
           <div slot="body">
             <details>
@@ -130,7 +134,7 @@
             slot="steps"
         >
           <span slot="title">Need Moment</span>
-          <span tag="p" slot="dialogue">I'm saying something!</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">I'm saying something!</bolt-text>
           <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
           <bolt-text slot="body">
             Pega enables the business to sense <b>customer context</b> by seeing interactions across channels--calls to customer service about a bill, or visit to pricing web page.
@@ -141,7 +145,7 @@
             slot="steps"
         >
           <span slot="title">lorem ipsum</span>
-          <span tag="p" slot="dialogue">I'm saying something!</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">I'm saying something!</bolt-text>
           <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png" />
           <bolt-text slot="body">
             Pega's AI-augmented <b>decisioning engine</b> uses context, predictive analytics, and self-learning adaptive models to guide agents with next best actions to serve the customer.
@@ -152,7 +156,7 @@
             slot="steps"
         >
           <span slot="title">lorem ipsum</span>
-          <span tag="p" slot="dialogue">I'm saying something!</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">I'm saying something!</bolt-text>
           <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
           <bolt-text slot="body">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -166,7 +170,7 @@
             slot="steps"
         >
           <span slot="title">lorem ipsum</span>
-          <span tag="p" slot="dialogue">I'm saying something!</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">I'm saying something!</bolt-text>
           <bolt-text slot="body">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Accusamus blanditiis consectetur culpa cum, doloremque doloribus
@@ -179,7 +183,7 @@
             slot="steps"
         >
           <span slot="title">lorem ipsum</span>
-          <span tag="p" slot="dialogue">I'm saying something!</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">I'm saying something!</bolt-text>
           <bolt-text slot="body">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Accusamus blanditiis consectetur culpa cum, doloremque doloribus
@@ -192,7 +196,7 @@
             slot="steps"
         >
           <span slot="title">What's lorem ipsum?</span>
-          <span tag="p" slot="dialogue">I'm saying something!</span>
+          <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue">I'm saying something!</bolt-text>
           <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
           <div slot="body">
             <ul>

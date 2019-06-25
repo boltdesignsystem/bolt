@@ -46,6 +46,15 @@ class BoltInteractivePathways extends withLitHtml() {
     // Make the first pathway the active pathway
     this.activePathway = this.pathways[0];
     this._updateActivePathwayAttributes();
+
+    // @todo remove this temporary fix once SSR rendering/load performance has been addressed
+    window.setTimeout(() => {
+      this.style.display = 'block';
+      this.style.opacity = '1';
+      document.querySelectorAll('.temp-loading-pladeholder').forEach(node => {
+        node.style.display = 'none';
+      });
+    }, 600);
   }
 
   _updateActivePathwayAttributes() {
