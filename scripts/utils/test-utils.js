@@ -131,6 +131,79 @@ function getFilesPkg(file) {
   return pkg ? pkg.name : '';
 }
 
+/**
+ * @param {Object} opt
+ * @param {string} [opt.from] - git commit id to compare from (i.e. current PR branch). defaults to current commit id
+ * @param {string} [opt.to='master'] - git commit id to compare to (i.e. the base branch your PR is pointed to)
+ * @param {string} [opt.inDir] - directory to filter by
+ * @return {string[]} list of files changed
+ */
+function getFilesChanged({ from = gitSha, to = 'master', inDir } = {}) {
+  const cmds = ['git', 'diff', '--name-only', `${to}...${from}`];
+  if (inDir) cmds.push(inDir);
+  try {
+    const results = execa.shellSync(cmds.join(' '), {
+      cwd: repoRoot,
+    });
+    const files = results.stdout.split('\n');
+    if (!files) return [];
+    return files.map(file => join(repoRoot, file));
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+}
+
+/**
+ * @returns {string[]}
+ * @todo extract out all exclude functions into testable single functions
+ */
+function getPkgsChanged({ from = gitSha, to = 'master' }) {
+  const filesChanged = getFilesChanged({ from, to });
+  if (!filesChanged) return [];
+
+  const foldersToExclude = ['__tests__', '__snapshots__'];
+  const filesToExclude = ['CHANGELOG.md', 'package.json'];
+  const pkgsToExclude = [
+    'bolt', // monorepo
+    '@bolt/website',
+    'generator-bolt',
+    '@bolt/drupal-twig-extensions',
+    '@bolt/uikit-workshop',
+  ];
+
+  // will contain package names and keep them unique
+  const pkgs = new Set();
+
+  filesChanged.forEach(filePath => {
+    // @todo exclude if in foldersToExclude
+    // if (isInBadFolder) {
+    //   console.log(filePath);
+    //   return;
+    // }
+
+    // @todo exclude if in filesToExclude
+    // if (isBadFile) {
+    //   console.log(filePath);
+    //   return;
+    // }
+
+    const pkgName = getFilesPkg(filePath);
+    pkgs.add(pkgName);
+  });
+
+  const pkgsChanged = [...pkgs].filter(p => !pkgsToExclude.includes(p));
+
+  return pkgsChanged.map(name => {
+    const absPath = getPkgPathFromName(name);
+    return {
+      name,
+      absPath,
+      relPath: relative(process.cwd(), absPath),
+    };
+  });
+}
+
 module.exports = {
   getPkgDependencies,
   getPkgNameFromPath,
@@ -140,4 +213,5 @@ module.exports = {
   getPkgList,
   getPkgFiles,
   getFilesPkg,
+  getFilesChanged,
 };
