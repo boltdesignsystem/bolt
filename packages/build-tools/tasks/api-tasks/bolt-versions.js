@@ -5,51 +5,54 @@ const ora = require('ora');
 const chalk = require('chalk');
 const checkLinks = require('check-links');
 const InCache = require('incache');
+
 const Octokit = require('@octokit/rest').plugin(
-  require('@octokit/plugin-throttling'),
+  process.env.GITHUB_TOKEN
+    ? require('@octokit/plugin-throttling')
+    : function() {},
 );
 
 let versionSpinner;
 
-const octokit = new Octokit({
-  auth() {
-    if (process.env.GITHUB_TOKEN) {
-      return `token ${process.env.GITHUB_TOKEN}`;
-    } else {
-      return undefined;
-    }
-  },
-  throttle: {
-    onRateLimit: (retryAfter, options) => {
-      console.warn(
-        `Github API Request quota exhausted for request ${options.method} ${
-          options.url
-        }`,
-      );
+const octokit = new Octokit(
+  process.env.GITHUB_TOKEN
+    ? {
+        auth() {
+          if (process.env.GITHUB_TOKEN) {
+            return `token ${process.env.GITHUB_TOKEN}`;
+          } else {
+            return undefined;
+          }
+        },
+        throttle: {
+          onRateLimit: (retryAfter, options) => {
+            console.warn(
+              `Github API Request quota exhausted for request ${options.method} ${options.url}`,
+            );
 
-      // only retry if wait is 15 seconds or less
-      if (options.request.retryCount === 0 && retryAfter <= 15) {
-        // only retries once
-        console.log(`Retrying after ${retryAfter} seconds!`);
-        return true;
-      } else {
-        console.log(
-          `Skipping auto-retry since we don't want to wait ${retryAfter} seconds!`,
-        );
-        return false;
+            // only retry if wait is 15 seconds or less
+            if (options.request.retryCount === 0 && retryAfter <= 15) {
+              // only retries once
+              console.log(`Retrying after ${retryAfter} seconds!`);
+              return true;
+            } else {
+              console.log(
+                `Skipping auto-retry since we don't want to wait ${retryAfter} seconds!`,
+              );
+              return false;
+            }
+          },
+          onAbuseLimit: (retryAfter, options) => {
+            // does not retry, only logs a warning
+            console.warn(
+              `Github API abuse detected for request ${options.method} ${options.url}`,
+            );
+          },
+        },
+        debug: false,
       }
-    },
-    onAbuseLimit: (retryAfter, options) => {
-      // does not retry, only logs a warning
-      console.warn(
-        `Github API abuse detected for request ${options.method} ${
-          options.url
-        }`,
-      );
-    },
-  },
-  debug: false,
-});
+    : {},
+);
 
 const { getConfig } = require('../../utils/config-store');
 const { fileExists } = require('../../utils/general');
@@ -100,7 +103,8 @@ async function getBoltTags() {
       // handle expired cached data + not having a GITHUB_TOKEN set as an environmental variable
 
       // use old stale data if it exists
-      if (fs.existsSync(path.join(process.cwd(), '.incache'))) {
+      try {
+        await fs.promises.access(path.resolve(process.cwd(), '.incache'));
         let staleData = fs.readFileSync(path.join(process.cwd(), '.incache'));
         staleData = JSON.parse(staleData);
         const oldTags = staleData['bolt-tags'].value;
@@ -116,8 +120,8 @@ async function getBoltTags() {
 
         tags = oldTags;
         isUsingOldData = true; // remember this is old stale data for later
-      } else {
         // otherwise just use a static version of the dropdown menu so the docs site doesn't break
+      } catch (error) {
         versionSpinner.warn(
           chalk.yellow(
             'Could not generate the list of the latest releases of Bolt due to a missing GITHUB_TOKEN auth token + not finding an old version to fall back on. Skipping for now...',
