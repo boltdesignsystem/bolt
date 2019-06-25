@@ -17,7 +17,9 @@
   //Styles go here. /* [1] */
   display: block;
 
-  height: 500px; // @todo Remove this once SSR is in place. Temp fix for layout and no SSR rendering.
+  @include bolt-mq(small) {
+    height: 500px; // @todo Remove this once SSR is in place. Temp fix for layout and no SSR rendering.
+  }
 
   &__header {
     display: flex;
@@ -27,7 +29,13 @@
 
   &__nav {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    padding-top: 1.65rem;
+
+    @include bolt-mq(small) {
+      position: static;
+    }
 
     bolt-dropdown {
       z-index: 1;

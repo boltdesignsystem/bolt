@@ -116,6 +116,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
   &__dialogue {
     position: relative;
+    z-index: 0;
     width: 100%;
     max-width: 190px;
     height: 75px;
@@ -171,7 +172,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
   display: block;
   position: relative;
-  //width: 300px;
+  z-index: 0;
   color: bolt-color(black);
   border: 1px solid $bolt-tooltip-bubble-border-color;
   border-radius: $bolt-border-radius;
