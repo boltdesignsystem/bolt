@@ -63,7 +63,7 @@ jobs:
         - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
 
     - stage: Prep
-      name: 'Build + Deploy'
+      name: 'Build + Deploy Website'
       script:
         # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
