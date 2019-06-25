@@ -50,6 +50,34 @@ describe('<bolt-text> Component', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
+  // Multiple text elements (Shadow DOM)
+  test('Multiple <bolt-text> elements w/ Shadow DOM render', async function() {
+    const renderedTextHTML = await page.evaluate(() => {
+      const wrapper = document.createElement('div');
+      const text1 = document.createElement('bolt-text');
+      const text2 = document.createElement('bolt-text');
+
+      text1.textContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`;
+      text2.textContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`;
+
+      wrapper.appendChild(text1);
+      wrapper.appendChild(text2);
+      document.body.appendChild(wrapper);
+
+      return wrapper.outerHTML;
+    });
+
+    const renderedHTML = await html(renderedTextHTML);
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedHTML).toMatchSnapshot();
+  });
+
   // Code text (Shadow DOM)
   test('Code text using <bolt-text> w/ Shadow DOM renders', async function() {
     const renderedTextHTML = await page.evaluate(() => {
