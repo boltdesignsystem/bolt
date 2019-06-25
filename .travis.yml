@@ -50,15 +50,15 @@ jobs:
       script: yarn run test
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
-    
+
     - stage: Prep
       name: 'Build Drupal Lab'
       script:
         - cd example-integrations/drupal-lab
         - composer install
         - cd web/themes/bolt-starter && yarn
-        - cd web/themes/bolt-starter && yarn run build
-        - composer run build
+        - yarn run build
+        - cd ../../../ && composer run build
 
     - stage: Prep
       name: 'Build + Deploy'
