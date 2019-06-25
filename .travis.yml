@@ -57,7 +57,7 @@ jobs:
         - cd example-integrations/drupal-lab
         - composer install
         - cd web/themes/bolt-starter && yarn
-        - web/themes/bolt-starter && yarn run build
+        - cd web/themes/bolt-starter && yarn run build
         - composer run build
 
     - stage: Prep
