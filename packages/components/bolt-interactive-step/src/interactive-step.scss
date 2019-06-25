@@ -94,6 +94,11 @@ $bolt-tooltip-transition: $bolt-transition;
     align-items: center;
     height: 80px;
     padding: 0 20px;
+    @include bolt-transition--fade-in($base: true, $delay: $bolt-delay--medium);
+
+    .c-bolt-interactive-step--active & {
+      @include bolt-transition--fade-in($active: true);
+    }
   }
 
   &__avatar {
@@ -113,6 +118,14 @@ $bolt-tooltip-transition: $bolt-transition;
     width: 100%;
     max-width: 190px;
     height: 75px;
+  }
+
+  &__step-dialogue {
+    @include bolt-transition--fade-in-slide-up($base: true);
+
+    .c-bolt-interactive-step--active & {
+      @include bolt-transition--fade-in-slide-up($base: true);
+    }
   }
 
   // Generates the active state styling for the nav list
@@ -192,12 +205,4 @@ $bolt-tooltip-transition: $bolt-transition;
     border-top-color: white;
     border-bottom-color: transparent;
   }
-}
-
-//bolt-text {
-//  margin-bottom: 0;
-//}
-
-.c-bolt-interactive-step--active .c-bolt-interactive-step__speech-bubble {
-
 }
