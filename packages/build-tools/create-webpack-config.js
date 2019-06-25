@@ -150,7 +150,7 @@ async function createWebpackConfig(buildConfig) {
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
-      entry[globalEntryName] = [];
+      entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
 
       components.global.forEach(component => {
         if (component.assets.style) {
