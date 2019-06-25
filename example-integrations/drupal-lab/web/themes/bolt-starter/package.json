@@ -9,7 +9,6 @@
   "scripts": {
     "build": "bolt build --prod",
     "start": "bolt start",
-    "postinstall": "patch-package",
     "test": "jest __tests__/index.js"
   },
   "dependencies": {
@@ -21,8 +20,6 @@
     "@bolt/components-link": "latest",
     "@bolt/components-navbar": "latest",
     "@bolt/components-sticky": "latest",
-    "@bolt/global": "latest",
-    "patch-package": "^6.1.2",
-    "postinstall-postinstall": "^2.0.0"
+    "@bolt/global": "latest"
   }
 }
