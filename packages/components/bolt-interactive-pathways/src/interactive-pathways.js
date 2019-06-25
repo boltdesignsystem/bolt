@@ -64,6 +64,7 @@ class BoltInteractivePathways extends withLitHtml() {
         ? pathway.setAttribute('active', '')
         : pathway.removeAttribute('active');
     });
+    // Update the title of the dropdown
   }
 
   /**
@@ -80,6 +81,17 @@ class BoltInteractivePathways extends withLitHtml() {
     this.activePathway = Array.from(this.pathways).find(
       pathway => pathway.getAttribute('id') === newActivePathwayId,
     );
+
+    // Get the dropdownMenu once
+    if (!this.dropdownMenu) {
+      this.dropdownMenu = this.renderRoot.querySelector('bolt-dropdown');
+    }
+    // Reset the dropdown menu title to currently selected pathway
+    this.dropdownMenu.setAttribute(
+      'title',
+      this.activePathway.slots['pathway-title'][0].innerHTML,
+    );
+
     this._updateActivePathwayAttributes();
   }
 

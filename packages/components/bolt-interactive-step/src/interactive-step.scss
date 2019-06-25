@@ -61,6 +61,7 @@ $bolt-tooltip-transition: $bolt-transition;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 0;
     height: 0;
     overflow: hidden;
     transition: height 2s ease-in-out; // @todo, replace with proper animation configurations
@@ -84,7 +85,7 @@ $bolt-tooltip-transition: $bolt-transition;
     justify-content: center;
     align-items: center;
     position: relative;
-    max-width: 250px;
+    width: 250px;
     margin-bottom: 1.65rem;
   }
 
@@ -205,4 +206,8 @@ $bolt-tooltip-transition: $bolt-transition;
     border-top-color: white;
     border-bottom-color: transparent;
   }
+}
+
+bolt-text[slot="dialogue"] {
+  color: black;
 }

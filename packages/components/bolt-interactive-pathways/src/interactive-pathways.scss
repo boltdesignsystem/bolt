@@ -28,6 +28,12 @@
   &__nav {
     display: flex;
     align-items: center;
+
+    bolt-dropdown {
+      z-index: 1;
+      height: 56.83px; // Temp fix for the dropdown menu pushing content down. @todo resolve this better
+      overflow: visible;
+    }
   }
 
   &__menu-item {
