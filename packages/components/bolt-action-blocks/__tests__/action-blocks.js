@@ -54,6 +54,23 @@ describe('<bolt-action-blocks> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  // Subcomponent
+  test('Subcomponent renders as expected', async () => {
+    const results = await render(
+      '@bolt-components-action-blocks/_action-blocks-item.twig',
+      {
+        text: 'Item 1',
+        url: '#!',
+        icon: {
+          name: 'download',
+          size: 'large',
+        },
+      },
+    );
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   // Props
   valign.enum.forEach(async valignChoice => {
     test(`Vertical alignment of each block's content: ${valignChoice}`, async () => {

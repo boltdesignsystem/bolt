@@ -181,6 +181,24 @@ exports[`<bolt-action-blocks> Component Border in between each block: true 1`] =
 </bolt-action-blocks>
 `;
 
+exports[`<bolt-action-blocks> Component Subcomponent renders as expected 1`] = `
+<bolt-action-block>
+  <a href="#!"
+     class="c-bolt-action-block"
+  >
+    <div class="c-bolt-action-block__item c-bolt-action-block__icon">
+      <bolt-icon name="download"
+                 size="large"
+      >
+      </bolt-icon>
+    </div>
+    <div class="c-bolt-action-block__item c-bolt-action-block__text">
+      Item 1
+    </div>
+  </a>
+</bolt-action-block>
+`;
+
 exports[`<bolt-action-blocks> Component Vertical alignment of each block's content: center 1`] = `
 <bolt-action-blocks valign="center"
                     max-items-per-row="6"
