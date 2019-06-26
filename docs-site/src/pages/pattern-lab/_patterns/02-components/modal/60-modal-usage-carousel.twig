@@ -61,16 +61,136 @@
     } only %}
     {% include "@bolt-components-modal/modal.twig" with {
       content: modal_content,
+      width: "full",
       spacing: "none",
       scroll: "overall",
       attributes: {
-        class: "js-image-modal-advanced-carousel",
+        class: "js-image-modal-advanced-image-carousel",
       },
     } only %}
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Image and caption carousel in a modal</bolt-text>
-    <bolt-text>Simply pass the carousel component (with each item as a figure with caption) into the modal content.</bolt-text>
+    <bolt-text>Simply pass the carousel component (with each item as a figure with caption) into the modal content, and set the nav button position to outside.</bolt-text>
+  {% endset %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1 1@small",
+        column_span: "12 8@small 9@medium",
+        row_start: "2 1@small",
+        row_span: "1",
+        valign: "center",
+        content: description,
+      },
+      {
+        column_start: "1 10@small 11@medium",
+        column_span: "6 3@small 2@medium",
+        row_start: "1 1@small",
+        row_span: "1",
+        valign: "center",
+        content: trigger,
+      },
+    ]
+  } only %}
+</div>
+
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set portrait %}
+    {% include "@bolt-components-image/image.twig" with {
+      src: "/images/placeholders/500x500.jpg",
+      alt: "Bill Murray",
+      attributes: {
+        class: "u-bolt-margin-bottom-small"
+      },
+    } only %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      text: "Kerim Akgonul",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "small",
+      text: "Senior Vice President of Products, Pegasystems",
+    } only %}
+  {% endset %}
+  {% set bio %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Kerim Akgonul is Senior Vice President of Products, responsible for the company’s suite of Customer Relationship Management (CRM) applications, including Pega Customer Service, Pega Marketing and Pega Sales Automation, as well as our Case Management, Decisioning, Mobile, and BPM software.",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Kerim began his career at Pega developing applications for customers in financial services and insurance, and he put his customer-centric perspective to work in establishing the company’s product management function. Early in the company’s history, Kerim recognized the power of connecting back-end operations to front-end, customer-facing applications and has focused the product management team on applications that allow business visionaries to innovate how their organizations interact with customers.",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Kerim is focused on leveraging technologies such as mobile, cloud, social, IOT and analytics to support business users. He is an advocate for building software that makes the underlying technology transparent and serves the needs of the business. This focus on business impact has contributed significantly to the company being recognized as leaders in CRM, Case Management and BPM.",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "In addition to leading the Product Management function, Kerim also established the company’s eLearning Platform, PegaAcademy.com, which provides the courses and training necessary to become a Pega Certified Professional. To date, Pega Academy has delivered more than 1.5 million lessons to more than 36,000 students around the world.",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Kerim holds a BS in Mathematics and Computer Science from Indiana University of Pennsylvania.",
+    } only %}
+  {% endset %}
+  {% set portrait_and_bio %}
+    {% include "@bolt-components-grid/grid.twig" with {
+      items: [
+        {
+          column_start: "1 1@small",
+          column_span: "6 3@small",
+          row_start: "1 1@small",
+          row_span: "1",
+          content: portrait,
+        },
+        {
+          column_start: "1 4@small",
+          column_span: "12 9@small",
+          row_start: "2 1@small",
+          row_span: "1",
+          content: bio,
+        },
+      ]
+    } only %}
+  {% endset %}
+  {% set content_slide_1 %}
+    {% include "@bolt-components-band/band.twig" with {
+      theme: "none",
+      full_bleed: false,
+      content: portrait_and_bio,
+    } only %}
+  {% endset %}
+  {% set content_slide_2 %}
+  {% endset %}
+  {% set modal_content %}
+    {% include "@bolt-components-carousel/carousel.twig" with {
+      slides: [
+        content_slide_1,
+        content_slide_2,
+      ],
+      nav_button_position: "outside",
+      space_between: "none",
+    } only %}
+  {% endset %}
+  {% set trigger %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Show carousel",
+      size: "small",
+      width: "full",
+      attributes: {
+        onclick: "this.nextElementSibling.show()",
+      }
+    } only %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      content: modal_content,
+      spacing: "none",
+      width: "full",
+      scroll: "overall",
+      attributes: {
+        class: "js-image-modal-advanced-content-carousel",
+      },
+    } only %}
+  {% endset %}
+  {% set description %}
+    <bolt-text headline font-size="large">Content carousel in a modal</bolt-text>
+    <bolt-text>Pass the carousel component (with each item as a band of simple layout or complex layout) into the modal content, and set the nav button position to outside.</bolt-text>
   {% endset %}
   {% include "@bolt-components-grid/grid.twig" with {
     items: [
