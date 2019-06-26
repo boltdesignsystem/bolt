@@ -64,7 +64,6 @@ $bolt-tooltip-transition: $bolt-transition;
     z-index: 0;
     height: 0;
     overflow: hidden;
-    transition: height 2s ease-in-out; // @todo, replace with proper animation configurations
 
     &[data-active="true"] {
       height: auto;
@@ -77,6 +76,14 @@ $bolt-tooltip-transition: $bolt-transition;
       top: 0;
       right: 0;
       width: calc(100% - 300px);
+    }
+  }
+
+  &__step-body {
+    @include bolt-transition--fade-in($base: true, $delay: 1.2s);
+
+    .c-bolt-interactive-step--active & {
+      @include bolt-transition--fade-in($active: true);
     }
   }
 
