@@ -208,7 +208,6 @@ async function createWebpackConfig(buildConfig) {
           require('@bolt/postcss-themify')(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer({
-            browsers: require('@bolt/config-browserlist'),
             grid: true,
           }),
         ],

@@ -1,4 +1,10 @@
-import { render } from '@bolt/twig-renderer';
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 
 const timeout = 60000;
 
@@ -8,10 +14,18 @@ const imageVrtConfig = {
 };
 
 describe('<bolt-ratio> Component', () => {
-  let page;
+  let page, context;
+
+  afterAll(async () => {
+    await stopServer();
+  });
+
+  beforeAll(async () => {
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
 
   beforeEach(async () => {
-    page = await global.__BROWSER__.newPage();
+    page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,
@@ -43,7 +57,7 @@ describe('<bolt-ratio> Component', () => {
     });
     expect(renderedRatioHTML).toMatchSnapshot();
 
-    await page.waitFor(1000); // wait a second before testing
+    await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -80,7 +94,7 @@ describe('<bolt-ratio> Component', () => {
       return ratioSize;
     });
 
-    await page.waitFor(1000); // wait a second before testing
+    await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(imageVrtConfig);
@@ -105,7 +119,7 @@ describe('<bolt-ratio> Component', () => {
       ratio.updated();
     }, html);
 
-    await page.waitFor(1000); // wait a second before testing
+    await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -131,7 +145,7 @@ describe('<bolt-ratio> Component', () => {
     });
     expect(renderedRatioHTML).toMatchSnapshot();
 
-    await page.waitFor(1000); // wait a second before testing
+    await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
