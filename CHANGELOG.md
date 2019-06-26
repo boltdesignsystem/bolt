@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/bolt-design-system/bolt/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+
+### Bug Fixes
+
+* address eslint / prettier problems flagged with the latest upstream dependencies + update yarn.lock ([c5e0253](https://github.com/bolt-design-system/bolt/commit/c5e0253))
+* fix typo ([38e85ad](https://github.com/bolt-design-system/bolt/commit/38e85ad))
+* update drupal lab package.json dependency versions to use the latest from NPM + apply patches if necessary ([bafea06](https://github.com/bolt-design-system/bolt/commit/bafea06))
+* update local @bolt/build-util references in the build tools ([35ea609](https://github.com/bolt-design-system/bolt/commit/35ea609))
+* update travis build steps to check for Drupal Lab ([bc01081](https://github.com/bolt-design-system/bolt/commit/bc01081))
+* update Travis job label ([d839d01](https://github.com/bolt-design-system/bolt/commit/d839d01))
+
+
+
+
+
 ## [2.5.1](https://github.com/bolt-design-system/bolt/compare/v2.5.0...v2.5.1) (2019-06-21)
 
 **Note:** Version bump only for package bolt
