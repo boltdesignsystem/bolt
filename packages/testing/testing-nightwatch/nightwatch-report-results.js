@@ -215,9 +215,7 @@ async function collectSauceLabResults(build) {
         /** @type {{ 'sauce-log': string, 'video': string, 'selenium-log': string, screenshots: string[], 'video.mp4': string  }} */
         const assetsNames = await fetch(
           // https://wiki.saucelabs.com/display/DOCS/Job+Methods
-          `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${
-            buildJob.id
-          }/assets`,
+          `https://saucelabs.com/rest/v1/${SAUCE_USERNAME}/jobs/${buildJob.id}/assets`,
           sauceFetchOptions,
         ).then(async res => {
           const { ok, status, statusText } = res;
