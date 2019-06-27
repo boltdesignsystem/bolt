@@ -14,7 +14,7 @@
 // (function(w) {
 //   let sw = document.body.clientWidth; //Viewport Width
 
-  
+
 
   // const viewportResizeHandleWidth = 14; //Width of the viewport drag-to-resize handle
   // const $sgIframe = $('.pl-js-iframe'); //Viewport element
@@ -295,19 +295,19 @@
   //     } else {
   //       theSize = size;
   //     }
-  
+
   //     //Conditionally remove CSS animation class from viewport
   //     if (animate === false) {
   //       $('.pl-js-vp-iframe-container, .pl-js-iframe').removeClass('vp-animate'); //If aninate is set to false, remove animate class from viewport
   //     } else {
   //       $('.pl-js-vp-iframe-container, .pl-js-iframe').addClass('vp-animate');
   //     }
-  
+
   //     $('.pl-js-vp-iframe-container').width(theSize + viewportResizeHandleWidth); //Resize viewport wrapper to desired size + size of drag resize handler
   //     $sgIframe.width(theSize); //Resize viewport to desired size
   //     const state = store.getState();
   //     const isViewallPage = state.app.isViewallPage;
-  
+
   //     const targetOrigin =
   //       window.location.protocol === 'file:'
   //         ? '*'
@@ -319,7 +319,7 @@
   //     document
   //       .querySelector('.pl-js-iframe')
   //       .contentWindow.postMessage(obj, targetOrigin);
-  
+
   //     updateSizeReading(theSize); //Update values in toolbar
   //     saveSize(theSize); //Save current viewport to cookie
   //   }
@@ -495,7 +495,7 @@
 
         // // reset the defaults
         // urlHandler.skipBack = false;
-        
+
       } else if (data.event === 'patternLab.keyPress') {
         if (data.keyPress === 'ctrl+shift+s') {
           goSmall();
@@ -532,4 +532,4 @@
     }
   }
   window.addEventListener('message', receiveIframeMessage, false);
-})(this);
+// })(this);
