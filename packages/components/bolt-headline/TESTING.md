@@ -49,4 +49,4 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: quoted variations
 
 1. Given I am viewing the [quoted variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-headline-35-headline-quoted-variation/02-components-headline-35-headline-quoted-variation.html).
-2. A single headline.
+2. There should be a single headline with quotes.
