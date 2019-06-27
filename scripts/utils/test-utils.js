@@ -43,7 +43,7 @@ function getPkgList({ includePrivatePkgs = false } = {}) {
  * Get a package's recursive dependencies
  * @param {string} pkgName - name of package, i.e. '@bolt/components-band'
  * @returns {string[]} list of local packages that are dependencies, recursively
- * @see getPkgDependents
+ * @see {getPkgDependents}
  */
 function getPkgDependencies(pkgName) {
   const cmds = [
@@ -59,7 +59,7 @@ function getPkgDependencies(pkgName) {
  * Get a package's recursive dependents
  * @param {string} pkgName - name of package, i.e. '@bolt/components-band'
  * @returns {string[]} list of local packages that are dependents, recursively
- * @see getPkgDependencies
+ * @see {getPkgDependencies}
  */
 function getPkgDependents(pkgName) {
   const cmds = [
