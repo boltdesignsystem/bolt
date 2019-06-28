@@ -81,9 +81,7 @@ async function server(customWebpackConfig) {
     if (!browserSyncIsRunning) {
       browserSync.init(
         {
-          proxy: `${boltBuildConfig.proxyHostname}:${
-            boltBuildConfig.proxyPort
-          }`,
+          proxy: `${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`,
           logLevel: 'info',
           ui: false,
           notify: false,
