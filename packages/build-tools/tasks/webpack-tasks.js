@@ -71,12 +71,6 @@ async function server(customWebpackConfig) {
     browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
   }
 
-  console.log('Host:', boltBuildConfig.proxyHostname);
-  console.log('Header:', boltBuildConfig.proxyHeader);
-  console.log('Port:', boltBuildConfig.proxyPort);
-  console.log('-----------------------');
-  console.log('Sync Files:', boltBuildConfig.wwwDir);
-
   return new Promise((resolve, reject) => {
     if (!browserSyncIsRunning) {
       browserSync.init(
