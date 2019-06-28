@@ -23,7 +23,7 @@ const config = {
   webpackDevServer: {
     enabled: true,
   },
-  proxyPort: 5000,
+  proxyPort: 3000,
   sourceMaps: !(process.env.TRAVIS || argv.prod),
   enableCache: !(process.env.TRAVIS || argv.prod),
   enableSSR: false, // temp disabled till Travis issue fixed
