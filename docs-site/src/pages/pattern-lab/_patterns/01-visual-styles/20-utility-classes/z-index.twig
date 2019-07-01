@@ -63,7 +63,7 @@
       tag: "h2",
     } only %}
     {% include "@bolt-components-headline/text.twig" with {
-      text: "The usage of z-index is very complicated, do not use it blindly and without context. Use <code>content-low</code>, <code>content</code>, and <code>content-low</code> to handle general stacking order within a container. Use <code>nav</code>, <code>overlay</code>, <code>floating-low</code>, <code>floating</code>, <code>floating-high</code>, <code>modal-overlay</code>, <code>modal</code> for more specific high level UI components that are fixed or absolute position.",
+      text: "The usage of z-index is very complicated, do not use it blindly and without context. Use <code>content-low</code>, <code>content</code>, and <code>content-high</code> to handle general stacking order within a container (assuming this container's position is set to anything but static). Use <code>nav</code>, <code>overlay</code>, <code>floating-low</code>, <code>floating</code>, <code>floating-high</code>, <code>modal-overlay</code>, <code>modal</code> for more specific high level UI components that are fixed or absolute position.",
     } only %}
 
     {% include "@bolt-components-headline/headline.twig" with {

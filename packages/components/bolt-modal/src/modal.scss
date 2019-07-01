@@ -320,11 +320,12 @@ bolt-modal:not([ready]) {
 
 // Controls
 .c-bolt-modal__close-button {
-  @include bolt-z-index(modal);
+  @include bolt-z-index(content-high);
 
   position: absolute;
   top: 0;
   right: 0;
+  z-index: 1; // This is self contained z-index. It moves the button to the top of the stacking order within c-bolt-modal__container.
   background-color: transparent;
   transition: background-color $bolt-modal-transition;
 
