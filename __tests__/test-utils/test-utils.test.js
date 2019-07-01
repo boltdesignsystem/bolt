@@ -1,7 +1,7 @@
 const { join } = require('path');
-const tu = require('../scripts/utils/test-utils');
+const tu = require('../../scripts/utils/test-utils');
 
-const repoRoot = join(__dirname, '..');
+const repoRoot = join(__dirname, '../..');
 
 describe('test-utils', () => {
   test('getPkgNameFromPath', () => {
