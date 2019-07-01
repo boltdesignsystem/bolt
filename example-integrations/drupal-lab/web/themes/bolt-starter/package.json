@@ -7,7 +7,8 @@
     "access": "public"
   },
   "scripts": {
-    "build": "bolt build --prod",
+    "build": "bolt build",
+    "build:ja": "bolt --config-file .boltrc--ja.js build",
     "start": "bolt start"
   },
   "dependencies": {
