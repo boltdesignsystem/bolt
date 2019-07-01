@@ -13,6 +13,23 @@ import './_image-lazy-sizes';
 
 let cx = classNames.bind(imageStyles);
 
+let passiveIfSupported = false;
+
+// https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
+try {
+  window.addEventListener(
+    'test',
+    null,
+    Object.defineProperty({}, 'passive', {
+      // eslint-disable-next-line getter-return
+      get() {
+        // @ts-ignore
+        passiveIfSupported = { passive: true };
+      },
+    }),
+  );
+} catch (err) {}
+
 @define
 class BoltImage extends withLitHtml() {
   static is = 'bolt-image';
@@ -34,12 +51,18 @@ class BoltImage extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
+    self.onResize = self.onResize.bind(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema, [
       'lazyload',
       'useAspectRatio',
     ]);
     return self;
+  }
+
+  disconnecting() {
+    super.disconnecting && super.disconnecting();
+    window.removeEventListener('resize', this.onResize);
   }
 
   lazyloadImage(image) {
@@ -61,6 +84,17 @@ class BoltImage extends withLitHtml() {
       while (this.firstChild) {
         this.removeChild(this.firstChild);
       }
+    }
+
+    window.addEventListener('resize', this.onResize, passiveIfSupported);
+  }
+
+  onResize() {
+    if (
+      this.isLoaded &&
+      (this.getAttribute('sizes') === 'auto' || !this.getAttribute('sizes'))
+    ) {
+      this.sizes = `${this.offsetWidth}px`;
     }
   }
 
