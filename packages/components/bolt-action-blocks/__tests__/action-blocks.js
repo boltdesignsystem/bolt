@@ -57,7 +57,7 @@ describe('<bolt-action-blocks> Component', () => {
   // Subcomponent
   test('Subcomponent renders as expected', async () => {
     const results = await render(
-      '@bolt-components-action-blocks/_action-blocks-item.twig',
+      '@bolt-components-action-blocks/action-block.twig',
       {
         text: 'Item 1',
         url: '#!',
