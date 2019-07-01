@@ -28,7 +28,7 @@ Functional testing should be performed manually by the QA team across the standa
 6. When the text is clicked a spinner circle. loading animation will start followed by the confirmation message 'copied!'.
 7. If one item is clicked on after the other the url copied in clipboard will be replaced by most recent copy link url.
 
-## Scenario: spacing variations
+## Scenario: customization variations
 
 1. Given I am viewing the [custom content variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-copy-to-clipboard-15-copy-to-clipboard-custom-content/02-components-copy-to-clipboard-15-copy-to-clipboard-custom-content.html).
 2. There is a vertical list of four copy link items.
