@@ -1,0 +1,111 @@
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as trigger_code %}
+
+{% set trigger_text = "This is a trigger" %}
+
+{% set trigger_demo %}
+<bolt-trigger onclick="alert('Trigger clicked')">
+  {{ trigger_text }}
+</bolt-trigger>
+{% endset %}
+
+{% set trigger_basic_demo %}
+<bolt-trigger url="http://pega.com">
+  {{ trigger_text }}
+</bolt-trigger>
+{% endset %}
+
+{% set trigger_additional_demo %}
+<bolt-trigger cursor="zoom-in">
+  {{ trigger_text }}
+</bolt-trigger>
+{% endset %}
+
+{% set trigger_advanced_demo %}
+<bolt-trigger on-click="show" on-click-target="js-image-modal-456" cursor="zoom-in" display="block">
+  <bolt-image src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" ratio="640/480"></bolt-image>
+</bolt-trigger>
+<bolt-modal class="js-image-modal-456" spacing="none" theme="none" scroll="overall">
+  <bolt-trigger on-click="hide" on-click-target="js-image-modal-456" cursor="zoom-out" display="block">
+    <bolt-image src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" sizes="auto" ratio="640/480"></bolt-image>
+  </bolt-trigger>
+</bolt-modal>
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Web Component Usage
+    </bolt-text>
+    <bolt-text>
+      Bolt Trigger is a web component. You can use it by simply including the <bolt-code-snippet display="inline" lang="html">&lt;bolt-trigger&gt;</bolt-code-snippet> element in the markup.
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid %}
+        {% cell %}
+          {{ trigger_demo }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include trigger_code.code_example(trigger_demo, true) %}
+  </div>
+
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Basic Usage
+    </bolt-text>
+    <bolt-text>
+      By default Bolt Trigger renders a semantic <bolt-code-snippet display="inline" lang="html">button</bolt-code-snippet> tag. Set the <bolt-code-snippet display="inline" lang="html">url</bolt-code-snippet> prop to render a semantic <bolt-code-snippet display="inline" lang="html">a</bolt-code-snippet> tag.
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid %}
+        {% cell %}
+          {{ trigger_basic_demo }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include trigger_code.code_example(trigger_basic_demo, true) %}
+  </div>
+
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Additional Options
+    </bolt-text>
+    <bolt-text>
+      Customize the cursor style by setting the <bolt-code-snippet display="inline" lang="html">cursor</bolt-code-snippet> prop.
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid %}
+        {% cell %}
+          {{ trigger_additional_demo }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include trigger_code.code_example(trigger_additional_demo, true) %}
+  </div>
+
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Advanced Usage
+    </bolt-text>
+    <bolt-text>
+      Use the <bolt-code-snippet display="inline" lang="html">on-click</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">on-click-target</bolt-code-snippet> props to call a method on another component. See schema for more info.
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid %}
+        {% cell "u-bolt-width-1/2 u-bolt-width-1/4@medium" %}
+          {{ trigger_advanced_demo }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include trigger_code.code_example(trigger_advanced_demo, true) %}
+  </div>
+</div>

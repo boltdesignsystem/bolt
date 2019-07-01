@@ -71,7 +71,7 @@ $bolt-themes: (
   xdark: (
     background: bolt-color(indigo, dark),
   ),
-);
+) !default;
 
 // combine the two sets of theming system data and calculate the dynamic values
 @each $themeName, $themeProps in $bolt-themes {

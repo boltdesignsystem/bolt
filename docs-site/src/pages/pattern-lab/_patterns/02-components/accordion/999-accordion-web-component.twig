@@ -1,0 +1,119 @@
+{% macro code_example(code) %}
+  <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as accordion_demo %}
+
+{% set basic_usage %}
+<bolt-accordion>
+  <bolt-accordion-item>
+    <bolt-text slot="trigger">Accordion item 1</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <bolt-text slot="trigger">Accordion item 2</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <bolt-text slot="trigger">Accordion item 3</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+  </bolt-accordion-item>
+</bolt-accordion>
+{% endset %}
+
+{% set prop_usage %}
+<bolt-accordion spacing="small" icon-valign="top" box-shadow no-separator multiple>
+  <bolt-accordion-item>
+    <bolt-text slot="trigger">Accordion item 1 with a lot of text in the trigger, which could wrap to multiple lines, and this trigger and the icon are vertically aligned center</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <bolt-text slot="trigger">Accordion item 2</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <bolt-text slot="trigger">Accordion item 3</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+  </bolt-accordion-item>
+</bolt-accordion>
+{% endset %}
+
+
+{% set advanced_usage %}
+<bolt-accordion>
+  <bolt-accordion-item>
+    <bolt-text slot="trigger">Accordion item 1</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item auto-open>
+    <bolt-text slot="trigger">Accordion item 2</bolt-text>
+    <bolt-text>This item is opened by default. Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <bolt-text slot="trigger">Accordion item 3</bolt-text>
+    <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+  </bolt-accordion-item>
+</bolt-accordion>
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Accordion is a fully client-side renderable web component. Add the <bolt-code-snippet display="inline" lang="html">bolt-accordion</bolt-code-snippet> element containing any number of <bolt-code-snippet display="inline" lang="html">bolt-accordion-item</bolt-code-snippet> elements to create an accordion. Inside each <bolt-code-snippet display="inline" lang="html">bolt-accordion-item</bolt-code-snippet> mark the "trigger" content with the attribute <bolt-code-snippet display="inline" lang="html">slot="trigger"</bolt-code-snippet>. Everything else is considered accordion "content".
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ basic_usage }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include accordion_demo.code_example(basic_usage) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Prop Usage
+  </bolt-text>
+  <bolt-text>
+    Configure the accordion with the properties specified in the schema. One property that is unique to the Web component is <bolt-code-snippet display="inline" lang="html">no-separator</bolt-code-snippet>. Use this prop rather than the <bolt-code-snippet display="inline" lang="html">separator</bolt-code-snippet> prop used in Twig.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ prop_usage }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include accordion_demo.code_example(prop_usage) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Advanced Usage
+  </bolt-text>
+  <bolt-text>
+    Two advanced options are shown below. Automatically show an <bolt-code-snippet display="inline" lang="html">bolt-accordion-item</bolt-code-snippet> by adding the <bolt-code-snippet display="inline" lang="html">auto-open</bolt-code-snippet> prop.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ advanced_usage }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include accordion_demo.code_example(advanced_usage) %}
+  </div>
+</div>

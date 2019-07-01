@@ -1,11 +1,12 @@
 @import '@bolt/core';
 
 .c-bolt-carousel__pagination {
+  @include bolt-z-index(contentTop);
+
   display: flex;
   justify-content: center;
   position: relative;
   transform: translate3d(0, 0, 0);
-  z-index: 10;
   width: 100%;
   text-align: center;
   transition: 300ms opacity;

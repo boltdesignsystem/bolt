@@ -6,8 +6,15 @@
     transform: translate3d(0, 0, 0) rotate(calc(var(--rotate) * 2));
   }
   10% {
-    opacity: 0;
     transform: translate3d(0, 0, 0) rotate(calc(var(--rotate) * 2));
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
@@ -15,13 +22,14 @@
   0% {
     transform: translate3d(100vw, 0, 0);
   }
+
   to {
     transform: translate3d(-30vw, 0, 0);
   }
 }
 
 .c-bds-shapes {
-  opacity: 1;
+  opacity: 0;
   position: fixed;
   top: bolt-v-spacing(medium); // offset the top just a tad
   left: 0;
@@ -30,7 +38,10 @@
   height: 100vh;
   overflow: hidden;
   pointer-events: none;
-  animation: bds-shapes-fade 0.5s ease-out;
+
+  .is-ready & {
+    animation: bds-shapes-fade 0.8s ease-out forwards;
+  }
 }
 
 .c-bds-shapes__shape-inner {
@@ -40,10 +51,6 @@
   height: var(--size);
   will-change: transform;
 }
-
-
-
-
 
 .c-bds-shapes__animation {
   position: absolute;
