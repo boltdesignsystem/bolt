@@ -84,7 +84,7 @@ bolt-carousel:not(.is-ready) > [slot='next-btn'] {
       position: absolute;
       top: calc(50% - 0.5rem);
       width: 4px;
-      height: 0.9rem;
+      height: 0.9rem; // This is a magik number for fixing the subpixel issue with the CSS chevron. Don't change this unless you have a completely different method for drawing the chevron.
       border-radius: 1px;
       box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.025), 3px 1px 3px 0px rgba(bolt-color(black), 0.025);
       background-color: bolt-color(white);
