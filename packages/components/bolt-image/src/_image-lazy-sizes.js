@@ -11,8 +11,7 @@ Object.assign(lazySizes.cfg, {
   preloadClass: 'js-lazypreload',
   loadingClass: 'is-lazyloading',
   loadedClass: 'is-lazyloaded',
-  preloadAfterLoad: true,
-  // preloadAfterLoad: false,
+  preloadAfterLoad: false,
   getElements(selector) {
     let elements = Array.from(document.querySelectorAll('bolt-image')).map(
       elem => elem.renderRoot.querySelector(selector),
