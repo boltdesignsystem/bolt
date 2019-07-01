@@ -22,7 +22,7 @@ Functional testing should be performed manually by the QA team across the standa
 
 1. Given I am viewing the [additional content page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-sticky--15-sticky-with-content-example/02-components-sticky--15-sticky-with-content-example.html).
 2. There should be a webpage for "Pega for Governement: Healthcare & Social Programs".
-3. As the page is scrolled the header will attach itself to the top of the viewport.
-4. In the header a yellow indicator will move to underline each header link as it's reached on the page.
-4. After reaching the end of "Section 2" a light gray header bar will attach itself to the top of the viewport and replace the previous header.
-5. In the header a blue in dicator will move to underline each header link as it's reached on the page.
+3. As the page is scrolled the nav element will attach itself to the top of the viewport.
+4. In the nav element a yellow indicator will move to underline each nav element link as it's reached on the page.
+5. After reaching the end of "Section 2" a light gray nav element will attach itself to the top of the viewport and replace the previous nav element.
+6. In the nav element a blue indicator will move to underline each nav element link as it's reached on the page.
