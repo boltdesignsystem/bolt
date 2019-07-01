@@ -157,8 +157,8 @@ class BoltImage extends withLitHtml() {
 
     const classes = cx(...this.initialClasses, 'c-bolt-image__image', {
       'c-bolt-image__lazyload': lazyload,
-      'c-bolt-image__lazyload--fade': lazyload,
-      'c-bolt-image__lazyload--blur': lazyload && _isJpg,
+      'c-bolt-image__lazyload--fade': lazyload && !this.isLoaded,
+      'c-bolt-image__lazyload--blur': lazyload && _isJpg && !this.isLoaded,
       'js-lazyload': lazyload,
       'c-bolt-image--cover': cover,
     });
