@@ -175,7 +175,9 @@ class BoltImage extends withLitHtml() {
             )}"
             data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
             sizes="${ifDefined(!lazyload || this.isLoaded ? sizes : undefined)}"
-            data-sizes="${ifDefined(lazyload ? sizes : undefined)}"
+            data-sizes="${ifDefined(
+              lazyload && this.sizes === 'auto' ? 'auto' : undefined,
+            )}"
             data-zoom="${ifDefined(zoom ? src : undefined)}"
           />
         `;
