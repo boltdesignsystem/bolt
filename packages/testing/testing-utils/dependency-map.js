@@ -26,7 +26,7 @@ const twigNamespaces = readJSONSync(twigNamespacesManifestPath);
 
 /**
  * @param {string} templateName i.e. `@bolt/button.twig`
- * @returns {string} file path to template file
+ * @returns {Promise<string>} file path to template file
  */
 async function getTwigFilePath(templateName) {
   let [namespace, ...paths] = templateName.split('/');
@@ -49,13 +49,13 @@ async function getTwigFilePath(templateName) {
   if (files.length > 1) {
     console.log({ templateName, files });
     throw new Error(
-      `More than 1 possible Twig file found when looking for "${templatePath}".`,
+      `More than 1 possible Twig file found when looking for "${templateName}".`,
     );
   }
 
   if (files.length === 0) {
     console.log({ templateName, globPatterns });
-    throw new Error(`No Twig files found when looking for "${templatePath}".`);
+    throw new Error(`No Twig files found when looking for "${templateName}".`);
   }
 
   return files[0];
@@ -63,7 +63,7 @@ async function getTwigFilePath(templateName) {
 
 /**
  * @param {string} twigFilePath i.e. `path/to/file.twig`
- * @returns {string[]} list of other Twig files used in it via `include`, `embed`, or `extend`. i.e. `['@bolt/button.twig']`
+ * @returns {Promise<string[]>} list of other Twig files used in it via `include`, `embed`, or `extend`. i.e. `['@bolt/button.twig']`
  * @see {getTwigFilePath}
  */
 async function findTwigFilesUsedInFile(twigFilePath) {

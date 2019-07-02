@@ -160,7 +160,6 @@ function getFilesChanged({ from = gitSha, to = 'master', inDir } = {}) {
 }
 
 /**
- * @returns {string[]}
  * @todo extract out all exclude functions into testable single functions
  */
 function getPkgsChanged({ from = gitSha, to = 'master' }) {
