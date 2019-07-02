@@ -20,20 +20,25 @@ Functional testing should be performed manually by the QA team across the standa
 
 ## Scenario: format variations
 
-1. Given I am viewing the [format variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-table-10-table-format-variations/02-components-table-10-table-format-variations.html).
-2. Regular format align all text to the start (left).
-3. Numeric format aligns side headers text to the end (right), while text in other cells are center aligned.
+1. Given I am on the [format variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-table-10-table-format-variations/02-components-table-10-table-format-variations.html)
+2. When I view the table titled "Regular format"
+3. Then I see all text is aligned to the start (left)
+4. When I view the table titled "Numeric format"
+5. Then I see the first-column headers aligned to the end (right), while text in other cells are center aligned
 
 ## Scenario: borderless table
 
-1. Given I am viewing the [borderless demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-table-15-table-borderless/02-components-table-15-table-borderless.html).
-2. There should be no vertical dividers in between cells (excluding side headers).
+1. Given I am on the [borderless demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-table-15-table-borderless/02-components-table-15-table-borderless.html)
+2. When I view the table titled "Remove the vertical border in between cells"
+3. Then I see no vertical dividers in between cells (excluding first column)
 
 ## Scenario: first column fixed width table
 
-1. Given I am viewing the [first column fixed width demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-table-20-table-first-column-fixed-width/02-components-table-20-table-first-column-fixed-width.html).
-2. If first column is not set to fixed width, the column widths should be distributed evenly (first example).
-3. If first column is set to fixed width, the first column is as wide as the longest text in that particular column (second example).
+1. Given I am on the [first column fixed width demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-table-20-table-first-column-fixed-width/02-components-table-20-table-first-column-fixed-width.html)
+2. When I view the table titled "Set column widths to be flexible", where the first column _is not_ set to fixed width
+3. Then I see the column widths are evenly distributed
+4. When I view the table titled "Set the width of the first column to be as wide as the longest text", where the first column _is_ set to fixed width
+5. Then I see the first column is as wide as the longest text in that particular column
 
 ## Scenario: table with web components
 
