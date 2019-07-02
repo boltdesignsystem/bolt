@@ -26,7 +26,7 @@ const ip = address.ip();
 async function getDefaultConfig() {
   return {
     port: configSchema.properties.port.default,
-    proxyPort: configSchema.properties.proxyPort.default,
+    hostname: configSchema.properties.hostname.default,
     proxyHostname: configSchema.properties.proxyHostname.default,
     proxyHeader: configSchema.properties.proxyHeader.default,
     ip,

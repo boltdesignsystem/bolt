@@ -75,7 +75,10 @@ async function server(customWebpackConfig) {
     if (!browserSyncIsRunning) {
       browserSync.init(
         {
-          proxy: `${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`,
+          proxy:
+            typeof boltBuildConfig.proxyPort === 'undefined'
+              ? `${boltBuildConfig.hostname}:${boltBuildConfig.port}`
+              : `${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`,
           logLevel: 'info',
           ui: false,
           notify: false,
@@ -133,7 +136,9 @@ async function server(customWebpackConfig) {
     app.use(express.static(boltBuildConfig.wwwDir));
     app.use('/api', handleRequest);
 
-    app.listen(boltBuildConfig.port, '0.0.0.0', function onStart(err) {
+    app.listen(boltBuildConfig.port, boltBuildConfig.hostname, function onStart(
+      err,
+    ) {
       if (err) {
         console.log(err);
       }
