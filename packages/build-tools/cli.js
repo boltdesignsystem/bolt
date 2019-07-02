@@ -12,15 +12,7 @@ const configSchema = readYamlFileSync(
 );
 const packageJson = require('./package.json');
 
-const searchedFor = explorer.searchSync();
-if (!searchedFor.config) {
-  log.errorAndExit('Could not find config in a .boltrc file');
-}
-
-let userConfig = {
-  ...searchedFor.config,
-  configFileUsed: searchedFor.filepath,
-};
+let userConfig;
 
 // global `bolt` cli options & meta
 program
@@ -48,6 +40,16 @@ if (program.configFile) {
     ...configFile,
     configFileUsed: configFilePath,
   };
+} else {
+  try {
+    const searchedFor = explorer.searchSync();
+    userConfig = {
+      ...searchedFor.config,
+      configFileUsed: searchedFor.filepath,
+    };
+  } catch (error) {
+    log.errorAndExit('Could not find config in a .boltrc file', error);
+  }
 }
 
 (async () => {
