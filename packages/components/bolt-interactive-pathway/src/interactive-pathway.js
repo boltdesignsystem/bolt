@@ -45,8 +45,14 @@ class BoltInteractivePathway extends withLitHtml() {
     this.steps = Array.from(this.querySelectorAll('bolt-interactive-step'));
     // Load the first step as the active step when switch between pathways or initial load
     // this.activeStep = this.steps[0] ? this.step[0].getAttribute('step') : '1';
-    this.activeStep = this.steps[0].getAttribute('step');
-    this._updateActiveItemDomState();
+    // this.activeStep = this.steps[0].getAttribute('step');
+    // this._updateActiveItemDomState();
+
+    // This creates the initial onLoad animation effect for the first step
+    window.setTimeout(() => {
+      this.activeStep = this.steps[0].getAttribute('step');
+      this._updateActiveItemDomState();
+    }, 2500); // @todo replace this with a nice onScroll/inView trigger
   }
 
   /**

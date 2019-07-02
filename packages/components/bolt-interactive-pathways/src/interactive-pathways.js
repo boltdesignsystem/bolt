@@ -133,12 +133,6 @@ class BoltInteractivePathways extends withLitHtml() {
             class="c-bolt-interactive-pathways__menu-item"
             >Complaints/ Disputes</bolt-text
           >
-          <bolt-text
-            @click=${event => this._clickNavMenuItem(event)}
-            data-associated-pathway-id="32154"
-            class="c-bolt-interactive-pathways__menu-item"
-            >Warrenty Management</bolt-text
-          >
         </bolt-block-list>
       </bolt-dropdown>
     `;

@@ -35,12 +35,17 @@
 
     @include bolt-mq(small) {
       position: static;
+      flex-direction: row;
     }
 
     bolt-dropdown {
       z-index: 1;
       height: 56.83px; // Temp fix for the dropdown menu pushing content down. @todo resolve this better
       overflow: visible;
+
+      @include bolt-mq(small) {
+        margin-left: 5px;
+      }
     }
   }
 

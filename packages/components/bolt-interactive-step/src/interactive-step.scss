@@ -80,10 +80,10 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   &__step-body {
-    @include bolt-transition--fade-in($base: true, $delay: 1.2s);
+    @include bolt-transition--fade-in-slide-up($base: true, $delay: 1.2s);
 
     .c-bolt-interactive-step--active & {
-      @include bolt-transition--fade-in($active: true);
+      @include bolt-transition--fade-in-slide-up($active: true);
     }
   }
 
