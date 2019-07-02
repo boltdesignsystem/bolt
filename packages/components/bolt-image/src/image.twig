@@ -22,9 +22,9 @@
 {% set alt = alt ? alt : null %}
 
 {# Temp: prefix "ph" to preserve original value for web component, better pattern in the works #}
-{% set ph_color = placeholder_color|default(image_data_twig.color|default(schema.properties.placeholder_color.default)) %}
+{% set ph_color = placeholder_color|default(image_data_bolt.color|default(schema.properties.placeholder_color.default)) %}
 {# Note: image-specific base64 data is only generated in production mode, default data is used for local development #}
-{% set ph_image = placeholder_image|default(image_data_twig.base64|default(schema.properties.placeholder_image.default)) %}
+{% set ph_image = placeholder_image|default(image_data_bolt.base64|default(schema.properties.placeholder_image.default)) %}
 
 {% set is_jpg = src|split('.')|last == "jpg" %}
 
