@@ -1,13 +1,26 @@
-import { render } from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 
 const timeout = 90000;
 
 describe('logo', () => {
-  let page;
+  let page, context;
+
+  afterAll(async () => {
+    await stopServer();
+  }, 100);
+
+  beforeAll(async () => {
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
 
   beforeEach(async () => {
-    page = await global.__BROWSER__.newPage();
+    page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,

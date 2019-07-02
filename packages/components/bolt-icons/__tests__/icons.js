@@ -1,21 +1,26 @@
-import { fixture as html } from '@open-wc/testing-helpers';
-import { render, stop as stopTwigRenderer } from '@bolt/twig-renderer';
-
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 
 const timeout = 60000;
 
 describe('<bolt-icon> Component', () => {
-  let page;
+  let page, context;
 
   afterAll(async () => {
-    await stopTwigRenderer();
-  }, timeout);
+    await stopServer();
+  }, 100);
+
+  beforeAll(async () => {
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
 
   beforeEach(async () => {
-    page = await global.__BROWSER__.newPage();
+    page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,
@@ -24,7 +29,7 @@ describe('<bolt-icon> Component', () => {
   }, timeout);
 
   test('basic usage', async () => {
-    const results = await renderTwig('@bolt-components-icon/icon.twig', {
+    const results = await render('@bolt-components-icon/icon.twig', {
       name: 'add-open',
       background: 'square',
       size: 'medium',

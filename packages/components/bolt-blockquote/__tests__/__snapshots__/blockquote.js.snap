@@ -1,0 +1,426 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`button Basic usage 1`] = `
+<bolt-blockquote>
+  <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
+              is="shadow-root"
+  >
+    <replace-with-grandchildren class="c-bolt-blockquote__quote">
+      <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
+        <p>
+          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
+        </p>
+      </div>
+    </replace-with-grandchildren>
+    <replace-with-grandchildren>
+      <footer class="c-bolt-blockquote__footer">
+        <replace-with-children class="c-bolt-blockquote__footer-item">
+          <cite slot="author-name"
+                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
+          >
+            Michelangelo di Lodovico Buonarroti Simoni
+          </cite>
+        </replace-with-children>
+        <replace-with-children class="c-bolt-blockquote__footer-item">
+          <cite slot="author-title"
+                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
+          >
+            Renaissance Artist
+          </cite>
+        </replace-with-children>
+      </footer>
+    </replace-with-grandchildren>
+  </blockquote>
+</bolt-blockquote>
+`;
+
+exports[`button Default <bolt-blockquote> inside a <form> renders 2`] = `
+<blockquote
+  class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
+  style=""
+>
+  
+        
+              
+  <div
+    class="c-bolt-blockquote__logo"
+    style=""
+  >
+    
+                
+    <!---->
+    <!---->
+    <img
+      alt="PayPal Logo"
+      slot="logo"
+      src="/fixtures/logo-paypal.svg"
+      style=""
+    >
+      <!---->
+      <!---->
+      
+              
+    </img>
+  </div>
+  
+            
+        
+  <div
+    class="c-bolt-blockquote__quote"
+    style=""
+  >
+    
+          
+    <div
+      class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xlarge c-bolt-text-v2--font-weight-semibold c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
+      style=""
+    >
+      
+            
+      <!---->
+      <!---->
+      
+        
+      <!---->
+      <p
+        class="is-first-child"
+        style=""
+      >
+        The greater danger for most of us lies not in setting our aim too high and falling short...
+      </p>
+      <!---->
+      
+        
+      <!---->
+      <p
+        class="is-last-child"
+        style=""
+      >
+        In fact, the greater danger is setting our aim too low and achieving our mark.
+      </p>
+      <!---->
+      <!---->
+      
+          
+    </div>
+    
+        
+  </div>
+  
+        
+              
+  <footer
+    class="c-bolt-blockquote__footer"
+    style=""
+  >
+    
+                
+    <!---->
+    
+                    
+    <div
+      class="c-bolt-blockquote__footer-item"
+      style=""
+    >
+      
+                      
+      
+      <div
+        class="c-bolt-blockquote__image"
+        style=""
+      >
+        
+        
+              
+        <img
+          alt="Renaissance Artist"
+          src="/fixtures/500x500.jpg"
+          style=""
+        >
+          
+            
+      
+        </img>
+      </div>
+      
+    
+                    
+    </div>
+    
+                  
+    <!---->
+    
+                    
+    <div
+      class="c-bolt-blockquote__footer-item"
+      style=""
+    >
+      
+                      
+      
+      <cite
+        class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xsmall c-bolt-text-v2--font-weight-bold c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
+        style=""
+      >
+        
+        Michelangelo di Lodovico Buonarroti Simoni
+      
+      </cite>
+      
+    
+                    
+    </div>
+    
+                  
+    <!---->
+    
+                    
+    <div
+      class="c-bolt-blockquote__footer-item"
+      style=""
+    >
+      
+                      
+      
+      <cite
+        class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xsmall c-bolt-text-v2--font-weight-regular c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
+        style=""
+      >
+        
+        Renaissance Artist
+      
+      </cite>
+      
+    
+                    
+    </div>
+    
+                  
+    <!---->
+    
+              
+  </footer>
+  
+            
+      
+</blockquote>
+`;
+
+exports[`button Default <bolt-blockquote> w/o Shadow DOM renders 2`] = `
+<bolt-blockquote
+  author-image="/fixtures/500x500.jpg"
+  author-name="Michelangelo di Lodovico Buonarroti Simoni"
+  author-title="Renaissance Artist"
+  style=""
+>
+  <!---->
+  
+      
+      
+  <blockquote
+    class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
+    style=""
+  >
+    
+        
+              
+    <div
+      class="c-bolt-blockquote__logo"
+      style=""
+    >
+      
+                
+      <!---->
+      <!---->
+      <img
+        alt="PayPal Logo"
+        slot="logo"
+        src="/fixtures/logo-paypal.svg"
+        style=""
+      >
+        <!---->
+        <!---->
+        
+              
+      </img>
+    </div>
+    
+            
+        
+    <div
+      class="c-bolt-blockquote__quote"
+      style=""
+    >
+      
+          
+      <div
+        class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xlarge c-bolt-text-v2--font-weight-semibold c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
+        style=""
+      >
+        
+            
+        <!---->
+        <!---->
+        
+        
+        <!---->
+        <p
+          class="is-first-child"
+          style=""
+        >
+          The greater danger for most of us lies not in setting our aim too high and falling short...
+        </p>
+        <!---->
+        
+        
+        <!---->
+        <p
+          class="is-last-child"
+          style=""
+        >
+          In fact, the greater danger is setting our aim too low and achieving our mark.
+        </p>
+        <!---->
+        <!---->
+        
+          
+      </div>
+      
+        
+    </div>
+    
+        
+              
+    <footer
+      class="c-bolt-blockquote__footer"
+      style=""
+    >
+      
+                
+      <!---->
+      
+                    
+      <div
+        class="c-bolt-blockquote__footer-item"
+        style=""
+      >
+        
+                      
+      
+        <div
+          class="c-bolt-blockquote__image"
+          style=""
+        >
+          
+        
+              
+          <img
+            alt="Renaissance Artist"
+            src="/fixtures/500x500.jpg"
+            style=""
+          >
+            
+            
+      
+          </img>
+        </div>
+        
+    
+                    
+      </div>
+      
+                  
+      <!---->
+      
+                    
+      <div
+        class="c-bolt-blockquote__footer-item"
+        style=""
+      >
+        
+                      
+      
+        <cite
+          class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xsmall c-bolt-text-v2--font-weight-bold c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
+          style=""
+        >
+          
+        Michelangelo di Lodovico Buonarroti Simoni
+      
+        </cite>
+        
+    
+                    
+      </div>
+      
+                  
+      <!---->
+      
+                    
+      <div
+        class="c-bolt-blockquote__footer-item"
+        style=""
+      >
+        
+                      
+      
+        <cite
+          class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xsmall c-bolt-text-v2--font-weight-regular c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
+          style=""
+        >
+          
+        Renaissance Artist
+      
+        </cite>
+        
+    
+                    
+      </div>
+      
+                  
+      <!---->
+      
+              
+    </footer>
+    
+            
+      
+  </blockquote>
+  
+    
+  <!---->
+</bolt-blockquote>
+`;
+
+exports[`button Default <bolt-blockquote> with Shadow DOM renders 2`] = `
+<bolt-blockquote
+  author-image="/fixtures/500x500.jpg"
+  author-name="Michelangelo di Lodovico Buonarroti Simoni"
+  author-title="Renaissance Artist"
+  style=""
+>
+  <img
+    alt="PayPal Logo"
+    slot="logo"
+    src="/fixtures/logo-paypal.svg"
+    style=""
+  >
+    
+        
+  </img>
+  <p
+    class="is-first-child"
+    style=""
+  >
+    The greater danger for most of us lies not in setting our aim too high and falling short...
+  </p>
+  
+        
+  <p
+    class="is-last-child"
+    style=""
+  >
+    In fact, the greater danger is setting our aim too low and achieving our mark.
+  </p>
+</bolt-blockquote>
+`;

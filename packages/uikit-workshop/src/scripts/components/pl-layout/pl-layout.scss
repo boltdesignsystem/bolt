@@ -9,10 +9,11 @@ pl-layout {
   // background-color: $pl-color-gray-13;
   // background-color: var(--theme-secondary, $pl-color-gray-13);
   background-color: $pl-color-white;
+  overflow: initial !important;
 
   // Prevent extra scrollbars in just IE 11
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    overflow: hidden;
+    overflow: hidden !important;
   }
 
   .pl-c-layout {

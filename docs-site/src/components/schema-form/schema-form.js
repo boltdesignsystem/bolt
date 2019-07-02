@@ -76,10 +76,48 @@ export default class SchemaForm extends withContext(withPreact()) {
     const { initialLayout } = this.props;
     const isHorizontal = initialLayout === 'horizontal';
 
+    const uiSchema = {
+      layout: {
+        navPosition: {
+          "ui:help": "Position of the next/prev buttons",
+          "ui:widget": "radio",
+          "ui:options": {
+            inline: true
+          }
+        },
+      },
+      controls: {
+        navPosition: {
+          "ui:help": "Position of the next/prev buttons",
+          "ui:widget": "radio",
+          "ui:options": {
+            inline: true
+          }
+        },
+      },
+      slideConfig: {
+        maxSlidesPerView: {
+          "ui:help": "Max # of slides to display.",
+          "ui:widget": "range",
+          "ui:options": {
+            inline: true
+          }
+        },
+      },
+      maxSlidesPerView: {
+        "ui:help": "Max # of slides to display.",
+        "ui:widget": "range",
+        "ui:options": {
+          inline: true
+        }
+      },
+    }
+
     return (
       <Form
         schema={this.state.schema}
         formData={this.state.formData}
+        uiSchema={uiSchema}
         // widgets={customWidgets} 
         onChange={data => this.onFormChange(data)}
         onError={(data) => console.error('Error in Schema Form', formData)}>

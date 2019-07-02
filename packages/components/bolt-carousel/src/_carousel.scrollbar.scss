@@ -1,0 +1,48 @@
+/* Scrollbar */
+.c-bolt-carousel__scrollbar {
+  @include bolt-margin-top(small);
+  position: relative;
+  -ms-touch-action: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px bolt-theme(text, 0.2);
+  transition: opacity 0.2s ease;
+
+  .c-bolt-carousel--horizontal > & {
+    @include bolt-z-index(contentTop);
+
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: bolt-v-spacing(xsmall);
+  }
+}
+.c-bolt-carousel__scrollbar-drag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(63, 63, 68, 0.15) 100%
+  );
+
+  background-image: linear-gradient(
+    to bottom,
+    bolt-theme(primary, 0.8) 0%,
+    bolt-theme(primary-darken-25, 0.8) 100%,
+  );
+}
+.c-bolt-carousel__scrollbar-cursor-drag {
+  cursor: move;
+}
+.c-bolt-carousel__scrollbar-lock {
+  display: none;
+}
+
+// auto-hide the scrollbar  when both buttons are hidden
+.c-bolt-carousel__btn--hidden + .c-bolt-carousel__btn--hidden ~ .c-bolt-carousel__scrollbar {
+  opacity: 0;
+}

@@ -16,12 +16,8 @@
     {% endfor %}
   {% endset %}
 
-  {% include "@bolt/action-blocks.twig" with {
-    attributes: {
-      class: [
-        "c-bolt-action-blocks--max-3"
-      ]
-    },
-    "children": actionBlockItems
+  {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+    max_items_per_row: 3,
+    children: actionBlockItems
   } only %}
 </div>

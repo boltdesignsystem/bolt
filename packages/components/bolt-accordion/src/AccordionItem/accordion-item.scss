@@ -1,0 +1,402 @@
+/* ------------------------------------ *\
+   Accordion Items
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import '../_accordion-settings-and-tools.scss';
+
+bolt-accordion-item {
+  display: block;
+
+  // Required for no-JS styles to display properly
+  replace-with-children,
+  replace-with-grandchildren {
+    display: block;
+    flex-grow: 1;
+  }
+}
+
+.c-bolt-accordion-item {
+  ::slotted(*:last-child),
+  ::slotted(*.is-last-child) {
+    margin-bottom: 0 !important;
+  }
+}
+
+.c-bolt-accordion-item__state {
+  display: none;
+}
+
+// Shadow
+.c-bolt-accordion-item--box-shadow {
+  .c-bolt-accordion-item__content {
+    &:before {
+      content: '';
+      display: block;
+      opacity: bolt-opacity(100);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      pointer-events: none;
+      // This gradient is IE proof, created using https://colorzilla.com/gradient-editor/
+      background: -moz-linear-gradient(
+        top,
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 98%,
+        rgba(bolt-color(gray), 0.2) 100%
+      ); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        top,
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 98%,
+        rgba(bolt-color(gray), 0.2) 100%
+      ); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(
+        to bottom,
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 98%,
+        rgba(bolt-color(gray), 0.2) 100%
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      will-change: opacity;
+      transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
+    }
+  }
+
+  &.c-bolt-accordion-item--first-item {
+    .c-bolt-accordion-item__trigger,
+    .c-bolt-accordion-item__trigger-button,
+    .c-bolt-accordion-item__trigger-label {
+      border-top-right-radius: $bolt-accordion-border-radius;
+      border-top-left-radius: $bolt-accordion-border-radius;
+    }
+  }
+
+  &.c-bolt-accordion-item--last-item {
+    .c-bolt-accordion-item__trigger:not(.c-bolt-accordion-item__trigger--open),
+    .c-bolt-accordion-item__trigger-button,
+    .c-bolt-accordion-item__trigger-label,
+    .c-bolt-accordion-item__content {
+      border-bottom-right-radius: $bolt-accordion-border-radius;
+      border-bottom-left-radius: $bolt-accordion-border-radius;
+    }
+
+    .c-bolt-accordion-item__content:before {
+      // This gradient is IE proof, created using https://colorzilla.com/gradient-editor/
+      background: -moz-linear-gradient(
+        top,
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 100%
+      ); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        top,
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 100%
+      ); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(
+        to bottom,
+        rgba(bolt-color(gray), 0.2) 0%,
+        rgba(bolt-color(gray, light), 0.1) 2%,
+        rgba(bolt-color(gray, light), 0.1) 100%
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+  }
+}
+
+// Trigger
+.c-bolt-accordion-item__trigger {
+  display: flex;
+  position: relative;
+  margin: 0;
+}
+
+// Button used with JS
+.c-bolt-accordion-item__trigger-button,
+// Label used with no-JS
+.c-bolt-accordion-item__trigger-label {
+  @include bolt-font-family(heading);
+  @include bolt-font-size(medium);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center; // align center by default
+  appearance: none;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  text-align: left; // Fixes center aligned accordion items in the Shadow DOM.
+  text-align: start; // For internationalization, will fall back to left if start is not supported.
+  cursor: pointer;
+  user-select: none;
+  outline-offset: $bolt-accordion-outline-offset;
+  border: none;
+  background-color: bolt-theme(background);
+
+  .c-bolt-accordion-item--icon-valign-top & {
+    align-items: flex-start;
+  }
+
+  &:-moz-focusring {
+    // Firefox specific fix for removing the dotted outline
+    outline: none;
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: bolt-opacity(0);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-color: bolt-theme(primary, 0.15);
+    will-change: opacity;
+    transition: opacity ($bolt-transition-timing/2) $bolt-transition-ease;
+  }
+
+  &:hover:before {
+    opacity: bolt-opacity(20);
+  }
+
+  &:active:before {
+    opacity: bolt-opacity(100);
+  }
+}
+
+.c-bolt-accordion-item__trigger-link {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $bolt-accordion-icon-size / 4.5;
+  height: 100%;
+  outline-offset: $bolt-accordion-outline-offset;
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: $bolt-accordion-icon-size / 2.25;
+    height: $bolt-accordion-icon-size / 2.25;
+    border-radius: 1px;
+    border-width: 3px 3px 0 0;
+    border-style: solid;
+    border-color: bolt-theme(link);
+    transform-origin: 50% 50%;
+  }
+}
+
+.c-bolt-accordion-item__trigger-link--open:after {
+  transform: rotate(135deg) translateX(-50%) translateY(50%);
+}
+
+.c-bolt-accordion-item__trigger-link--close:after {
+  transform: rotate(-45deg);
+}
+
+.c-bolt-accordion-item__toggle-text {
+  @include bolt-visuallyhidden;
+}
+
+.c-bolt-accordion-item__state:target
+  + .c-bolt-accordion-item
+  .c-bolt-accordion-item__trigger-link--open,
+.c-bolt-accordion-item__state:checked
+  + .c-bolt-accordion-item
+  .c-bolt-accordion-item__trigger-link--open {
+  display: none;
+}
+
+.c-bolt-accordion-item__trigger-link--close {
+  display: none;
+}
+
+.c-bolt-accordion-item__state:target
+  + .c-bolt-accordion-item
+  .c-bolt-accordion-item__trigger-link--close,
+.c-bolt-accordion-item__state:checked
+  + .c-bolt-accordion-item
+  .c-bolt-accordion-item__trigger-link--close {
+  display: block;
+}
+
+.c-bolt-accordion-item__trigger--open {
+  z-index: 1;
+}
+
+.c-bolt-accordion-item__trigger-icons {
+  display: flex;
+  flex-shrink: 0; // for when there is a very long title - adds left/right spacing
+  position: relative;
+  transform: translateX(bolt-spacing(xxsmall));
+  overflow: hidden; // so transformed icons don't spill out
+  color: bolt-theme(link);
+  line-height: 0; // Workaround to line-height messing up icon alignment
+  font-size: $bolt-accordion-icon-size;
+}
+
+.c-bolt-accordion-item__trigger-icons-inner {
+  @include bolt-padding(
+    xxsmall 0
+  ); // This is for aligning the icon with the text baseline.
+
+  display: block;
+  transform: rotate(0deg);
+  transform-origin: 50% 50%;
+  will-change: transform;
+  transition: transform $bolt-transition;
+}
+
+[aria-expanded='false'] {
+  .c-bolt-accordion-item__trigger-icons-inner {
+    transform: rotate(0deg);
+  }
+}
+
+[aria-expanded='true'] {
+  .c-bolt-accordion-item__trigger-icons-inner {
+    transform: rotate(180deg);
+  }
+}
+
+.c-bolt-accordion-item__trigger-content {
+  flex-grow: 1;
+  margin-bottom: 0;
+}
+
+// Content
+.c-bolt-accordion-item__content {
+  display: none;
+  position: relative;
+  transform: translateY(-1rem);
+  width: 100%;
+  height: 0;
+  will-change: transform;
+  transition: transform $bolt-transition-timing cubic-bezier(0, 0, 0.3, 1)
+    ($bolt-transition-timing / 2);
+
+  &[data-open]:not([style*='height']) {
+    visibility: visible;
+    height: auto;
+    transition: none;
+  }
+
+  &:not([role='region']) {
+    display: block;
+    visibility: hidden;
+    height: auto;
+    max-height: 0px; // Height of bar
+  }
+}
+
+.c-bolt-accordion-item__state:target
+  + .c-bolt-accordion-item
+  .c-bolt-accordion-item__content,
+.c-bolt-accordion-item__state:checked
+  + .c-bolt-accordion-item
+  .c-bolt-accordion-item__content {
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+  max-height: none;
+  will-change: transform, height;
+  transition: transform $bolt-transition, height $bolt-transition;
+}
+
+.c-bolt-accordion-item__content--open {
+  display: block;
+  transform: translate3d(0, 0, 0);
+  transition: height $bolt-transition;
+}
+
+.c-bolt-accordion-item__content-inner {
+  opacity: bolt-opacity(0);
+  position: relative;
+  overflow: auto;
+  will-change: opacity;
+  transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
+  -webkit-overflow-scrolling: touch;
+}
+
+.c-bolt-accordion-item__state:target
+  + .c-bolt-accordion-item
+  .c-bolt-accordion-item__content-inner,
+.c-bolt-accordion-item__state:checked
+  + .c-bolt-accordion-item
+  .c-bolt-accordion-item__content-inner,
+.c-bolt-accordion-item__content--opened .c-bolt-accordion-item__content-inner {
+  opacity: bolt-opacity(100);
+  will-change: opacity;
+  transition: opacity $bolt-transition;
+}
+
+.c-bolt-accordion-item__state
+  + .c-bolt-accordion-item
+  .c-bolt-accordion-item__trigger {
+  z-index: 1;
+}
+
+// Separator
+.c-bolt-accordion-item--separator {
+  border-top-color: $bolt-accordion-border-color;
+  border-top-style: $bolt-accordion-border-style;
+  border-top-width: $bolt-accordion-border-width;
+
+  &.c-bolt-accordion-item--last-item {
+    border-bottom-color: $bolt-accordion-border-color;
+    border-bottom-style: $bolt-accordion-border-style;
+    border-bottom-width: $bolt-accordion-border-width;
+  }
+
+  &.c-bolt-accordion-item--box-shadow {
+    &.c-bolt-accordion-item--first-item {
+      border-top: none;
+    }
+
+    &.c-bolt-accordion-item--last-item {
+      border-bottom: none;
+    }
+  }
+}
+
+// Spacing
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  @if (
+    $spacing-value-name !=
+      '' and
+      $spacing-value-name !=
+      'xxsmall' and
+      $spacing-value-name !=
+      'xlarge' and
+      $spacing-value-name !=
+      'xxlarge'
+  ) {
+    .c-bolt-accordion-spacing--#{$spacing-value-name} {
+      @include bolt-padding(#{$spacing-value-name}, squished);
+
+      &.c-bolt-accordion-item__content-inner,
+      &.c-bolt-accordion-item__trigger-label {
+        padding-right: calc(
+          #{bolt-spacing($spacing-value-name) + $bolt-accordion-icon-size}
+        );
+      }
+
+      &.c-bolt-accordion-item__content-inner {
+        @include bolt-padding-bottom(#{$spacing-value-name});
+      }
+    }
+  }
+}

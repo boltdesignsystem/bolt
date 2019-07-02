@@ -2,13 +2,14 @@
 
 namespace Bolt\TwigExtensions;
 
-use Bolt;
 use BasaltInc\TwigTools;
+use Bolt;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use \Webmozart\PathUtil\Path; // https://github.com/webmozart/path-util
 use \Shudrum\Component\ArrayFinder\ArrayFinder; // https://github.com/Shudrum/ArrayFinder
 
+require_once 'Faker.php';
 
 class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInterface {
 
@@ -79,6 +80,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
     return [
       'bolt' => [
         'data' => $this->data,
+        'faker' => new Bolt\TwigExtensions\TwigFaker(),
       ],
       'enable_json_schema_validation' => true,
     ];
@@ -96,6 +98,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
       Bolt\TwigFunctions::getImageData(),
       Bolt\TwigFunctions::fileExists(),
       Bolt\TwigFunctions::inlineFile(),
+      Bolt\TwigFunctions::gcd(),
     ];
   }
 

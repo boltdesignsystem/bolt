@@ -1,0 +1,69 @@
+@import '@bolt/core';
+@import './action-blocks-settings-and-tools';
+
+/* ------------------------------------ *\
+   Action Blocks Item
+\* ------------------------------------ */
+
+// Individual Action Block Styles
+.c-bolt-action-block {
+  @include bolt-padding(medium, stretched);
+
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: bolt-theme(headline);
+  outline: none;
+  transition: color $bolt-action-blocks-transition-timing $bolt-action-blocks-transition-ease;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: bolt-theme(secondary);
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: bolt-opacity(0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-color: $bolt-action-block-background;
+    transition: all $bolt-action-blocks-transition-timing $bolt-action-blocks-transition-ease;
+  }
+
+  &:hover, &:focus {
+    &:before {
+      opacity: bolt-opacity(100);
+    }
+  }
+
+  &:active {
+    &:before {
+      opacity: .8;
+    }
+  }
+}
+
+.c-bolt-action-block__item {
+  @include bolt-margin(0 auto small auto);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(bold);
+
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: $bolt-action-block-item-max-width;
+  text-align: center;
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
+  }
+}

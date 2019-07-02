@@ -1,7 +1,7 @@
 // Initially inspired by https://github.com/adidas/choicesjs-stencil/blob/master/src/components/choicesjs-stencil/choicesjs-stencil.tsx
 
 import { props, define } from '@bolt/core/utils';
-import Choices from 'choices.js/assets/scripts/dist/choices.js';
+import Choices from 'choices.js';
 import {
   withLitHtml,
   html,

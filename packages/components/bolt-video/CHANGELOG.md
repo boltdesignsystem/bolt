@@ -3,6 +3,64 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+
+### Bug Fixes
+
+* address eslint / prettier problems flagged with the latest upstream dependencies + update yarn.lock ([c5e0253](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/c5e0253))
+
+
+
+
+
+## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.5.0...v2.5.1) (2019-06-21)
+
+**Note:** Version bump only for package @bolt/components-video
+
+
+
+
+
+## [2.4.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.4.1...v2.4.2) (2019-05-24)
+
+
+### Bug Fixes
+
+* rework video JS to prevent bugs that result from multiple initializations ([b61c0da](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/b61c0da))
+* update onInit script to follow best practices for referencing and configuring a video ([8ce6db2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/8ce6db2))
+* update video e2e tests + playback plugin to set / check that the video is playing at 1.25x vs 1.3x ([6ae8127](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/6ae8127))
+* use video-js element per Brightcove best practices ([db93b6e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/db93b6e))
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* **@bolt/components-video:** cHange test logic ([75f14ad](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/75f14ad))
+* **@bolt/components-video:** fix for IE11 testing ([3ea81a6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/3ea81a6))
+* add timeout to async afterAll in Jest tests ([cf335ce](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/cf335ce))
+* button border-radius default ([e3ffd92](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/e3ffd92))
+* remove async from the top level Jest test `describe` — addresses deprecation warnings about this breaking in an upcoming version of Jest ([a7f5fec](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/a7f5fec))
+* remove reference to specific Bolt version in the <bolt-video> snapshot tests ([40e2351](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/40e2351))
+
+
+### Features
+
+* force icons to be visible at smaller layout sizes ([22f199a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/commit/22f199a))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-video/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 

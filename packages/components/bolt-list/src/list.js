@@ -102,22 +102,14 @@ class BoltList extends withContext(withLitHtml()) {
     });
 
     if (this.slots.default) {
-      const updatedDefaultSlot = [];
+      const updatedDefaultSlot = this.slots.default.filter(
+        item => item.tagName,
+      );
+      const updatedSlotsLength = updatedDefaultSlot.length;
+      const lastSlotItem = updatedDefaultSlot[updatedDefaultSlot.length - 1];
 
-      this.slots.default.forEach(item => {
-        if (item.tagName) {
-          updatedDefaultSlot.push(item);
-        }
-      });
-
-      if (
-        updatedDefaultSlot[updatedDefaultSlot.length - 1].attributes.length ===
-        0
-      ) {
-        updatedDefaultSlot[updatedDefaultSlot.length - 1].setAttribute(
-          'last',
-          '',
-        );
+      if (updatedSlotsLength > 0 && !lastSlotItem.attributes.last) {
+        lastSlotItem.setAttribute('last', '');
       }
     }
 

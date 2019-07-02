@@ -3,6 +3,53 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+**Note:** Version bump only for package @bolt/components-table
+
+
+
+
+
+## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.5.0...v2.5.1) (2019-06-21)
+
+**Note:** Version bump only for package @bolt/components-table
+
+
+
+
+
+## [2.4.1](https://github.com/bolt-design-system/bolt/compare/v2.4.0...v2.4.1) (2019-05-14)
+
+
+### Bug Fixes
+
+* revert premature merge of a handful of v2.5.0 features ([ed4d395](https://github.com/bolt-design-system/bolt/commit/ed4d395))
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* **@bolt/components-table:** remove duplicated classes ([8b08cf2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/8b08cf2))
+
+
+### Performance Improvements
+
+* **@bolt/components-table:** update dependencies ([41bc8f9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/41bc8f9))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 **Note:** Version bump only for package @bolt/components-table

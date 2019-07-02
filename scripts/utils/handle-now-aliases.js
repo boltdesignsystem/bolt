@@ -43,7 +43,7 @@ async function aliasNowUrl(originalUrl, prefix) {
   }
 
   const aliasOutput = shell.exec(
-    `npx now alias ${deployedUrl} ${aliasedUrl} --team=boltdesignsystem --token=${NOW_TOKEN}`,
+    `npx now alias ${deployedUrl} ${aliasedUrl} --team=boltdesignsystem --token=${NOW_TOKEN} --no-verify`,
   );
 
   if (aliasOutput.code !== 0) {

@@ -3,6 +3,78 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.5.0...v2.5.1) (2019-06-21)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* add 'is_ssr' flag to noscript, wait until SSR is in place before using ([2049a70](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/2049a70))
+* add backwards compatibility for 'ratio' prop as boolean ([25c3c90](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/25c3c90))
+* add timeout to async afterAll in Jest tests ([cf335ce](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/cf335ce))
+* check for not 'cover' rather than sameas ([0be7f5d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/0be7f5d))
+* check if component was initially rendered before removing children, IE runs twice on background component and empties the rendered HTML ([4006913](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/4006913))
+* JS error when image class is not found ([a3c733a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/a3c733a))
+* make images display "block" by default to avoid whitespace issues inside custom-element ([dd2b5fd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/dd2b5fd))
+* only add main bolt image class to fallback ([c1292f9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/c1292f9))
+* re-add support for 'imageAttributes' for backwards compatibility, but deprecate it ([fa78212](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/fa78212))
+* remove 'web component only' from ratio description ([84738e1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/84738e1))
+* remove async from the top level Jest test `describe` — addresses deprecation warnings about this breaking in an upcoming version of Jest ([a7f5fec](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/a7f5fec))
+* remove setTimeout, check that image is loaded before calling 'unveil' ([d9d5489](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/d9d5489))
+* remove unused 'get' import ([7abb7e9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/7abb7e9))
+* replace localhost path in docs ([9be0abd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/9be0abd))
+* return if src or srcset ([072fef0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/072fef0))
+* typo in testing instructions ([4ba775a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/4ba775a))
+* update broken placeholder variable name ([80c9902](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/80c9902))
+* update image JS to keep any initial classes found on image tag, backwards compatibility for 'imageAttributes' ([ea980a6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/ea980a6))
+* update snapshots + update logo tests to use the new bolt-image web component ([b647d3b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/b647d3b))
+* use 'src' not 'placeholderSrc' in placeholder noscript image ([20c8661](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/20c8661))
+
+
+### Features
+
+* add support for 'attributes', remove 'attributes' from ratio include ([6878f1d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/6878f1d))
+* add support for 'cover' prop ([a4c49a9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/a4c49a9))
+* add timeout to workaround lazyload render race condition, wip ([71796b0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/71796b0))
+* begin to convert image to web component, wip ([7cd8a33](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/7cd8a33))
+* change ratio prop to use slash-separated values ([0b739b1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/0b739b1))
+* deprecate 'useAspectRatio', 'width', and 'height'; update instances to use 'ratio' ([5a4b34a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/5a4b34a))
+* fully support "ratio" prop in image Twig template ([f1b2e6c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/f1b2e6c))
+* pass placeholder values, ratio data via web component props ([ad560ad](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/ad560ad))
+* remove bolt-image children on connect ([57df829](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/57df829))
+* remove height and width props from image web component ([ba7dfd6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/ba7dfd6))
+* rename noUseAspectRatio to no_ratio, update logic ([9b7191b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/9b7191b))
+* render image template every time, do not keep initial HTML ([101e177](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/101e177))
+* show image fallback if lazyload is true ([5e3c3bd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/5e3c3bd))
+* skip ratio if 'cover' attribute is true ([d03a9c7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/d03a9c7))
+* testing lazySizes options, commented out ([5467c4d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/5467c4d))
+* update image JS to match latest component patterns, testing basic use cases, WIP ([5327f3d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/5327f3d))
+* update image schema with noLazyload for web component ([31fb142](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/31fb142))
+* update placeholder logic to include 'cover' ([0da2c6e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/0da2c6e))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 

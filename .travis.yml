@@ -37,70 +37,62 @@ jobs:
   include:
     - stage: Prep
       name: 'Smoke Tests: Linting'
-      install: travis_retry yarn run setup:quick
+      install: yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Lint'
       script: yarn run lint
       after_success: ./scripts/check-run-success.js 'Lint'
       after_failure: ./scripts/check-run-failure.js 'Lint'
-      cache:
-        directories:
-          - docs-site/node_modules/.cache
-          - docs-site/cache
-          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
-      install: travis_retry yarn run setup:quick
+      install: yarn run setup
       before_script: ./scripts/check-run-queue.js 'Unit'
       script: yarn run test
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
-      cache:
-        directories:
-          - docs-site/node_modules/.cache
-          - docs-site/cache
-          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Prep
-      name: 'Build + Deploy'
+      name: 'Build Drupal Lab'
+      script:
+        - composer global require hirak/prestissimo
+        - cd example-integrations/drupal-lab
+        - composer install --prefer-dist --no-dev
+        - cd web/themes/bolt-starter && yarn
+        - yarn run build
+        - yarn run test # run Jest tests on the FE build that just compiled
+        - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
+
+    - stage: Prep
+      name: 'Build + Deploy Website'
       script:
         # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
-        - travis_retry yarn run setup
+        - yarn run setup
         - yarn run build
-        - travis_wait 15 yarn run deploy
+        - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
-      cache:
-        directories:
-          - docs-site/node_modules/.cache
-          - docs-site/cache
-          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
-      install: travis_retry yarn run setup
+      install: yarn run setup
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
         - time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - yarn run test:e2e:full
         - sleep 60
-        - ./scripts/report-nightwatch-results.js
+        - travis_wait yarn run test:e2e:full
+        - sleep 60
+        - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_success:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
-      cache:
-        directories:
-          - docs-site/node_modules/.cache
-          - docs-site/cache
-          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Test Live Site
       name: 'Ensure site is live'
-      install: travis_retry yarn run setup
+      install: yarn run setup
       before_script: ./scripts/check-run-in-progress.js 'Site is live'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
@@ -110,11 +102,6 @@ jobs:
         - ./scripts/check-run-success.js 'Site is live'
       after_failure:
         - ./scripts/check-run-failure.js 'Site is live'
-      cache:
-        directories:
-          - docs-site/node_modules/.cache
-          - docs-site/cache
-          - packages/uikit-workshop/node_modules/.cache
 
     - stage: Test Live Site
       name: 'Example master only job'

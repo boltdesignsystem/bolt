@@ -3,6 +3,57 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+**Note:** Version bump only for package @bolt/components-navbar
+
+
+
+
+
+## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.5.0...v2.5.1) (2019-06-21)
+
+**Note:** Version bump only for package @bolt/components-navbar
+
+
+
+
+
+## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.4.2...v2.4.3) (2019-05-31)
+
+**Note:** Version bump only for package @bolt/components-navbar
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* add missing navbar-related dependencies to the <bolt-navbar> component ([c612909](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/c612909))
+* slightly increase the max VRT difference allowed before failing ([f3c6203](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/f3c6203))
+* update jest tests that are still using async on the top level function ([add1f2f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/add1f2f))
+* update max timeout for navbar component VRT tests ([9955610](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/9955610))
+* update navbar jest VRT tests to all use the same image snapshot config ([1615ffa](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/1615ffa))
+* update ratio test + update navbar snapshots ([6a4a586](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/6a4a586))
+
+
+### Features
+
+* add initial set of navbar tests, including visual regression testing coverage, responsive behavior across multiple screen sizes, and tests for interaction (open and close navigation + linkable titles) ([67406c9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/67406c9))
+* add testing support for variable width navbars + add visual regression testing screenshots ([00ef7ff](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/00ef7ff))
+* add tests for responsive <bolt-navbar> width in a variable width grid cell ([d3066cc](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/commit/d3066cc))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-navbar/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 

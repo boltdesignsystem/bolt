@@ -1,19 +1,18 @@
 {
   "name": "@bolt/testing-server",
-  "description": "Bolt Design System Testing Server",
-  "version": "2.4.0-beta.0",
+  "description": "Webpack and express-powered Node server used for testing out web components and Javascript-powered UI in the Bolt Design System.",
+  "version": "2.5.2",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "private": true,
-  "dependencies": {
-    "express": "^4.16.3",
-    "globby": "^9.2.0"
+  "publishConfig": {
+    "access": "public"
   },
-  "peerDependencies": {
-    "@bolt/api": "^2.3.0",
-    "@bolt/build-tools": "^2.3.0"
+  "dependencies": {
+    "@bolt/api": "^2.5.2",
+    "@bolt/build-tools": "^2.5.2",
+    "globby": "^9.2.0"
   }
 }

@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.5.0...v2.5.1) (2019-06-21)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.4.2...v2.4.3) (2019-05-31)
+
+
+### Bug Fixes
+
+* globally update non-private package.json files with devDependencies and peerDependencies that might not get installed as expected when used / published outside of the Bolt monorepo ([617bd86](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/617bd86))
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+### Bug Fixes
+
+* update button and icons snapshots to include auto-updated browserslist styles (now includes some webpack-prefixed transition styles) ([caba902](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/caba902))
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* Fix path issue ([a760987](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/a760987))
+* Fix prettier issues ([dde96dd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/dde96dd))
+* Generate icons correct with prretier config ([1529fe2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/1529fe2))
+* Pretter issue ([e3308eb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/e3308eb))
+* remove dependency loop between packages ([b43fc34](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/b43fc34))
+* Remove issue with paths on non-local machine ([32b527f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/32b527f))
+* moving additional icon for test to folder outside the component root ([95caa3f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/95caa3f))
+* **@bolt/build-tools,@bolt/components-icons:** move clean icon task to be run after all the tests ([863f91d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/863f91d))
+* test updating the SVG Icon build script to include the build prep task ([8b14814](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/8b14814))
+* Update icons prettier config to that it would be like the main config ([4a9471e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/4a9471e))
+* update Jest tests to not use async on top level `describe` ([772fbb1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/772fbb1))
+
+
+### Features
+
+* Generating a JSON file in www/build/data/ directory for Drupal team ([a36c5f2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/a36c5f2))
+* Give posibility to generate schema for new added icons ([577d9f3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/577d9f3))
+* **@bolt/components-icons:** cleaning code ([28d2e00](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/28d2e00))
+* **@bolt/components-icons:** cleaning files after test are done ([478ba17](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/478ba17))
+* **@bolt/website,@bolt/build-tools,@bolt/components-icons:** updating configuration and fix issue w ([82a5686](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/82a5686))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 

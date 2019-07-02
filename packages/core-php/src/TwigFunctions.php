@@ -355,18 +355,21 @@ class TwigFunctions {
     ]);
   }
 
-  // Return greatest common denominator of two integers
+  /**
+   * Return greatest common denominator of two numbers
+   *
+   * @param integer|string $a - First numeric value
+   * @param integer|string $b - Second numeric value
+   * @return integer - Returns greatest common denominator
+   */
   public static function gcd() {
     return new Twig_SimpleFunction('gcd', function($a, $b) {
-      // If not an integer or string that can be converted to an integer, return 1
-      // Note: gmp_gcd() throws error if passed a floating point number or string that is converted to one
-      if(is_int($a) && is_int($b)) {
-        return gmp_intval(gmp_gcd($a, $b));
-      } elseif (is_string($a) && is_string($b)) {
-        if (!strpos($a, '.') && !strpos($b, '.')){
-          return gmp_intval(gmp_gcd($a, $b));
-        } else {
+      if(is_numeric($a) && is_numeric($b)) {
+        // If either value is a float or is a string containing a float, don't try to get GCD
+        if(is_float($a) || is_float($b) || (is_string($a) && strpos($a, '.')) || (is_string($b) && strpos($b, '.'))) {
           return 1;
+        } else {
+          return Utils::gcd($a, $b);
         }
       } else {
         return 1;

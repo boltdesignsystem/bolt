@@ -1,7 +1,5 @@
 {% set navbar %}
-  {% include "@bolt-site/banner.twig" with {
-    text: 'These are the docs for the upcoming v2.4.0 release of Bolt. View the docs for <a href="https://v2-3-0.boltdesignsystem.com/">v2.3.0</a>'
-  } only %}
+  {% include "@bolt-site/release-banner.twig" only %}
   {% include "@bolt-site/_navbar-with-version-selector.twig" with {
     theme: "xdark",
     width: "auto",

@@ -1,0 +1,65 @@
+@import '@bolt/core';
+
+bolt-carousel-slide {
+  display: flex;
+  flex-basis: auto;
+  flex-direction: row; // make sure children fill height of container
+  flex-grow: 1;
+  flex-shrink: 0;
+  position: relative;
+  max-width: none;
+  transition: transform 0.2s ease;
+  // scroll-snap-align: center;
+  scroll-snap-align: start;
+
+  &:not(.is-ready) {
+    flex-basis: calc(100% - var(--bolt-carousel-space-around));
+    flex-direction: column;
+  }
+
+  &:not(.is-ready):not(:last-of-type) {
+    @include bolt-margin-right(medium);
+
+    bolt-carousel[space-between='small'] & {
+      @include bolt-margin-right(small);
+    }
+
+    bolt-carousel[space-between='none'] & {
+      @include bolt-margin-right(0);
+    }
+
+    bolt-carousel[space-between='large'] & {
+      @include bolt-margin-right(large);
+    }
+  }
+
+  &:only-child {
+    width: 100%;
+  }
+
+  &:last-of-type {
+    margin-right: 0 !important;
+  }
+
+  bolt-card {
+    flex-grow: 1;
+  }
+}
+
+.c-bolt-carousel-slide,
+.c-bolt-carousel__slide {
+  flex-grow: 1;
+  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  .c-bolt-carousel--thumbnails & {
+    opacity: 0.4;
+    cursor: pointer;
+  }
+
+  &.c-bolt-carousel__slide--thumbnail-active {
+    opacity: 1;
+  }
+}

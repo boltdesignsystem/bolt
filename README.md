@@ -14,7 +14,7 @@ npm run setup
 npm start
 ```
 
-> *Don't already have Homebrew, Yarn, Composer and NPM setup on your local machine? Need a little help getting started? Check out our [in-depth getting started guide](https://boltdesignsystem.com/docs/guides/preparing-your-environment.html) to help get you up and running in no time!*
+> *Don't already have Homebrew, Yarn, Composer and NPM setup on your local machine? Need a little help getting started? Check out our [in-depth getting started guide](https://boltdesignsystem.com/docs/development/local-dev-environment-setup.html) to help get you up and running in no time!*
 
 
 ### Huge Thanks!

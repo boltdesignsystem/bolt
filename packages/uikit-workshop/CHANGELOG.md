@@ -3,6 +3,62 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.5.0...v2.5.1) (2019-06-21)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.4.2...v2.4.3) (2019-05-31)
+
+
+### Bug Fixes
+
+* globally update non-private package.json files with devDependencies and peerDependencies that might not get installed as expected when used / published outside of the Bolt monorepo ([617bd86](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/617bd86))
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* add missing polyfiills needed for IE 11 ([0cac28f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/0cac28f))
+* adjust breakpoint for hiding viewport resizer controls ([2b792bd](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/2b792bd))
+* adjust default link line height + icon and text spacing ([806814f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/806814f))
+* enable prod mode + disable sourcemaps to improve loading performance ([7dd8a15](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/7dd8a15))
+* ensure code viewer works consistently when async loading modal-viewer JS; fix width of code displaying in drawer ([bbb9f95](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/bbb9f95))
+* fix for the PL nav incorrectly auto-closing in certain situations ([9ff9fc8](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/9ff9fc8))
+* fix issues with nav opening / closing when expected based on screen size + layout mode ([e4d2750](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/e4d2750))
+* misc docs site related UI fixes ([5ef9667](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/5ef9667))
+* relocate chrome path dependency ([5bb6342](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/5bb6342))
+* testing working for async PL data not always being available when needed ([56fece6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/56fece6))
+* update broken path import with iframe-resizer library ([e07b687](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/e07b687))
+* update incorrect text component version + repo url for uikit ([cfa6fde](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/cfa6fde))
+* update logic to auto-update the page title ([1a0fecc](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/1a0fecc))
+* update max height for uikit dropdown menu + fix JS error when page navigation changes ([740e472](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/740e472))
+* update nav links to handle the content / icon variations ([d5d0e10](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/d5d0e10))
+* update pattern lab to fix header / layout issue in IE 11 ([4a5aba3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/4a5aba3))
+* update so certain PL assets are prefetched vs preloaded ([904ae87](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/904ae87))
+* update Twig rendering service API when running on master + add / update caching layers to speed up subsequent builds on Travis ([a8ed82f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/a8ed82f))
+
+
+### Features
+
+* clean up nav UI to make it easier to see which links have two actions vs only one ([6325574](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/6325574))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 

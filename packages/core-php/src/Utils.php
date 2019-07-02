@@ -262,4 +262,16 @@ class Utils {
 
     return $props;
   }
+
+  /**
+   * Return greatest common denominator of two numbers
+   * https://www.php.net/manual/en/function.gmp-gcd.php#69189
+   *
+   * @param integer|string $a - First numeric value
+   * @param integer|string $b - Second numeric value
+   * @return integer - Returns greatest common denominator
+   */
+  public static function gcd($a, $b) {
+    return ($a % $b) ? self::gcd($b, $a % $b) : $b;
+  }
 }

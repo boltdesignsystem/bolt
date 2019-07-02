@@ -1,0 +1,24 @@
+{% set schema = bolt.data.components["@bolt-components-modal"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema) %}
+{% set uuid = this.data.uuid|default(bolt.data.config.env == "test" ? "12345" : random()) %}
+{% set outer_classes = [] %}
+
+{% for class in this.props.class %}
+  {% if class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+<bolt-modal
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ this.props|without("content")|without("class") }}
+  uuid="{{ uuid }}"
+>
+  {{ content }}
+</bolt-modal>

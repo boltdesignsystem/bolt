@@ -1,7 +1,7 @@
 {
   "name": "@bolt/default-server",
-  "description": "Bolt Design System Default Website Server",
-  "version": "2.4.0-beta.0",
+  "description": "Simple express server used by the Bolt Design System.",
+  "version": "2.5.2",
   "license": "MIT",
   "main": "index.js",
   "scripts": {
@@ -9,25 +9,19 @@
   },
   "private": true,
   "dependencies": {
+    "@bolt/api": "^2.5.2",
+    "@bolt/build-tools": "^2.5.2",
     "express": "^4.16.3",
     "globby": "^9.2.0",
     "lerna": "^3.13.1"
   },
-  "peerDependencies": {
-    "@bolt/api": "^2.3.0",
-    "@bolt/build-tools": "^2.3.0"
+  "publishConfig": {
+    "access": "public"
   },
   "workspaces": {
     "packages": [
-      "../../analytics/*",
-      "../../api",
-      "../../global",
-      "../../components/*",
-      "../../core-php",
-      "../../drupal-twig-extensions",
-      "../../components/lists/*",
-      "../../twig-renderer",
-      "../../build-tools"
+      "../../*",
+      "../../*/*"
     ]
   }
 }

@@ -8,7 +8,7 @@ const config = {
   // lang: ['en', 'ja'],
 
   renderingService: false, // starts PHP service for rendering Twig templates
-  openServerAtStart: false,
+  openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pwa',
   srcDir: './src/pages',
@@ -23,8 +23,8 @@ const config = {
   webpackDevServer: {
     enabled: true,
   },
-  sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
-  enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
+  sourceMaps: process.env.TRAVIS || argv.prod ? false : true,
+  enableCache: process.env.TRAVIS || argv.prod ? false : true,
   enableSSR: false, // temp disabld till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
@@ -74,13 +74,17 @@ const config = {
 
   components: {
     global: [
+      '@bolt/components-radio-switch',
+      '@bolt/components-carousel',
       '@bolt/global',
       '@bolt/docs-search',
       '@bolt/schema-form',
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
+      '@bolt/components-accordion',
       '@bolt/components-action-blocks',
+      '@bolt/components-banner',
       '@bolt/components-dropdown',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
@@ -103,6 +107,7 @@ const config = {
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-list',
+      '@bolt/components-modal',
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
       '@bolt/components-navbar',
@@ -116,10 +121,12 @@ const config = {
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
+      '@bolt/components-stack',
       '@bolt/components-table',
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
+      '@bolt/components-trigger',
       '@bolt/components-ul',
       '@bolt/components-ol',
       '@bolt/components-video',
@@ -156,7 +163,7 @@ const config = {
     },
     {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json')
+        resolve.sync('@bolt/global/package.json'),
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -165,9 +172,9 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json')
+        resolve.sync('@bolt/twig-renderer/package.json'),
       )}/SetupTwigRenderer.php`,
-      functions: ['addBoltExtensions'],
+      functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },
   ],
 };

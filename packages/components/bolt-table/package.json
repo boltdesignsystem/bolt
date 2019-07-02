@@ -8,7 +8,7 @@
     "design system",
     "components"
   ],
-  "version": "2.4.0-beta.0",
+  "version": "2.5.2",
   "homepage": "https://boltdesignsystem.com",
   "maintainers": [
     {
@@ -23,21 +23,18 @@
     }
   ],
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bolt-design-system/bolt/"
-  },
-  "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
-  },
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "style": "index.scss",
+  "main": "index.js",
   "twig": "src/table.twig",
   "schema": "table.schema.yml",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^2.4.0-beta.0"
+    "@bolt/core": "^2.5.2",
+    "himalaya": "^1.1.0"
   },
   "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
 }

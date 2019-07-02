@@ -10,7 +10,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
 const PrerenderSPAPlugin = require('prerender-spa-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
+const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
@@ -49,16 +51,7 @@ module.exports = async function() {
         options: {
           sourceMap: config.sourceMaps,
           plugins: () => [
-            autoprefixer({
-              browsers: [
-                'last 2 version',
-                'safari 5',
-                'ie 8',
-                'ie 9',
-                'opera 12.1',
-                'android 4',
-              ],
-            }),
+            autoprefixer(),
           ],
         },
       },
@@ -130,9 +123,6 @@ module.exports = async function() {
                   [
                     '@babel/preset-env',
                     {
-                      targets: {
-                        browsers: ['>0.25%', 'ie 11'],
-                      },
                       modules: false,
                       debug: false,
                     },
@@ -196,7 +186,7 @@ module.exports = async function() {
                 // otherwise extract the result and write out a .css file per usual
                 use: [MiniCssExtractPlugin.loader, scssLoaders].reduce(
                   (acc, val) => acc.concat(val),
-                  []
+                  [],
                 ),
               },
             ],
@@ -225,23 +215,7 @@ module.exports = async function() {
         //     },
         //   },
         // },
-        minimizer: config.prod
-          ? [
-              new UglifyJsPlugin({
-                sourceMap: false,
-                parallel: true,
-                cache: true,
-                uglifyOptions: {
-                  compress: true,
-                  mangle: true,
-                  output: {
-                    comments: false,
-                    beautify: false,
-                  },
-                },
-              }),
-            ]
-          : [],
+        minimizer: config.prod ? [new TerserPlugin()] : [],
       },
       plugins: [
         new PrerenderSPAPlugin({
@@ -249,11 +223,22 @@ module.exports = async function() {
           // staticDir: path.join(__dirname, 'dist'),
           staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
           // Required - Routes to render.
-          routes: [ '/'],
+          routes: ['/'],
           postProcess(context) {
-            context.html = context.html.replace(/<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi, ''); 
+            context.html = context.html.replace(
+              /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
+              '',
+            );
             return context;
-          }
+          },
+          renderer: new Renderer({
+            // Optional - The name of the property to add to the window object with the contents of `inject`.
+            injectProperty: '__PRERENDER_INJECTED',
+            // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
+            inject: {
+              foo: 'bar',
+            },
+          }),
         }),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
@@ -268,7 +253,7 @@ module.exports = async function() {
 
             // perform clean just before files are emitted to the output dir
             beforeEmit: true,
-          }
+          },
         ),
         new HtmlWebpackPlugin({
           filename: '../index.html',
@@ -326,7 +311,7 @@ module.exports = async function() {
           renderWaitTime: 1000,
           blockJSRequests: false,
         },
-      })
+      }),
     );
 
     return resolve(webpackConfig);

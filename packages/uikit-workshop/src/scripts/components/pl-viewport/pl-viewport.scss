@@ -68,21 +68,24 @@ pl-iframe {
 .pl-c-viewport__iframe-wrapper {
   display: flex;
   flex-direction: column;
-  max-width: 100vw;
-  width: 100%; // bug fix for Safari and Firefox getting stuck calculating a width of 0px when the JS first kicks in
+  width: 100vw;
+  // width: 100%; // bug fix for Safari and Firefox getting stuck calculating a width of 0px when the JS first kicks in
   position: relative;
   margin: 0 auto;
   flex-grow: 1;
   -webkit-overflow-scrolling: touch;
+  min-width: 240px;
+  max-width: 100vw;
 
   &.hay-mode {
     transition: all 40s linear;
   }
-  width: 100%; // bug fix for Safari and Firefox getting stuck calculating a width of 0px when the JS first kicks in
+  // width: 100%; // bug fix for Safari and Firefox getting stuck calculating a width of 0px when the JS first kicks in
 
   .pl-c-body--theme-sidebar & {
     @media all and (min-width: $pl-bp-med) {
       max-width: calc(100vw - #{$pl-sidebar-width});
+      width: calc(100vw - #{$pl-sidebar-width});
     }
   }
 }
@@ -112,6 +115,7 @@ pl-iframe {
 
   .pl-c-body--theme-sidebar & {
     @media all and (min-width: $pl-bp-med) {
+      width: 100%;
       max-width: calc(100vw - #{$pl-sidebar-width});
     }
   }

@@ -1,0 +1,13 @@
+<div class="u-bolt-padding-top-large u-bolt-padding-bottom-large">
+  {% grid "o-bolt-grid--center" %}
+    {% cell "o-bolt-grid__cell" %}
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        trigger: {
+          type: "text",
+          text: "This is the tooltip trigger"
+        },
+        content: "This is the tooltip content."
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+</div>

@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`trigger Trigger with "no_outline" 1`] = `
+<bolt-trigger url="http://pega.com"
+              no-outline
+>
+  <a href="http://pega.com"
+     class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer c-bolt-trigger--outline-none"
+     is="shadow-root"
+  >
+    Hello World
+  </a>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with "url" renders as link 1`] = `
+<bolt-trigger url="http://pega.com">
+  <a href="http://pega.com"
+     class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+     is="shadow-root"
+  >
+    Hello World
+  </a>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with an onClick attributes renders properly 1`] = `
+<bolt-trigger on-click="on-click-test">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with an onClick param renders properly 1`] = `
+<bolt-trigger on-click="on-click-test">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with c-bolt- class is thrown out 1`] = `
+<bolt-trigger>
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with outer JS-class via Drupal Attributes 1`] = `
+<bolt-trigger class="js-click-me">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with outer classes via Drupal Attributes 1`] = `
+<bolt-trigger class="u-bolt-padding-medium">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+    Trigger with outer classes
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger basic trigger 1`] = `
+<bolt-trigger>
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+    Hello World
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger trigger cursor: auto 1`] = `
+<bolt-trigger cursor="auto">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-auto"
+          is="shadow-root"
+  >
+    Hello World
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger trigger cursor: pointer 1`] = `
+<bolt-trigger cursor="pointer">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+    Hello World
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger trigger cursor: zoom-in 1`] = `
+<bolt-trigger cursor="zoom-in">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-zoom-in"
+          is="shadow-root"
+  >
+    Hello World
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger trigger cursor: zoom-out 1`] = `
+<bolt-trigger cursor="zoom-out">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-zoom-out"
+          is="shadow-root"
+  >
+    Hello World
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger trigger display: block 1`] = `
+<bolt-trigger display="block">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-block c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+    Hello World
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger trigger display: inline 1`] = `
+<bolt-trigger display="inline">
+  <button type="button"
+          class="c-bolt-trigger c-bolt-trigger--display-inline c-bolt-trigger--cursor-pointer"
+          is="shadow-root"
+  >
+    Hello World
+  </button>
+</bolt-trigger>
+`;

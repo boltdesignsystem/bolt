@@ -15,12 +15,12 @@ const debounce = require('lodash.debounce');
 const fm = require('front-matter');
 const ora = require('ora');
 const marked = require('marked');
-const timer = require('../utils/timer');
-const manifest = require('../utils/manifest');
-const { getConfig } = require('../utils/config-store');
-const log = require('../utils/log');
-const events = require('../utils/events');
-const sh = require('../utils/sh');
+const timer = require('@bolt/build-utils/timer');
+const manifest = require('@bolt/build-utils/manifest');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const log = require('@bolt/build-utils/log');
+const events = require('@bolt/build-utils/events');
+const sh = require('@bolt/build-utils/sh');
 let config;
 
 async function asyncConfig() {

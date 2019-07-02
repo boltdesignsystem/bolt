@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-background/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+**Note:** Version bump only for package @bolt/components-background
+
+
+
+
+
+## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-background/compare/v2.5.0...v2.5.1) (2019-06-21)
+
+**Note:** Version bump only for package @bolt/components-background
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-background/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-background/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* 'ratio' prop conflicts with prop set from background template, update name in background template ([fc6d598](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-background/commit/fc6d598))
+* skip 'imageAttributes' in background component if using image pattern ([9dd9f18](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-background/commit/9dd9f18))
+* update background component to pass 'cover' prop instead of classname to image, fix lazyloading logic in background ([9bf7b9e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-background/commit/9bf7b9e))
+
+
+### Features
+
+* deprecate 'useAspectRatio', 'width', and 'height'; update instances to use 'ratio' ([5a4b34a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-background/commit/5a4b34a))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-background/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 

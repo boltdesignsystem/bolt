@@ -3,6 +3,109 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+
+### Bug Fixes
+
+* address eslint / prettier problems flagged with the latest upstream dependencies + update yarn.lock ([c5e0253](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/c5e0253))
+* update local @bolt/build-util references in the build tools ([35ea609](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/35ea609))
+
+
+
+
+
+## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.5.0...v2.5.1) (2019-06-21)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
+## [2.4.4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.4.3...v2.4.4) (2019-06-05)
+
+**Note:** Version bump only for package @bolt/build-tools
+
+
+
+
+
+## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.4.2...v2.4.3) (2019-05-31)
+
+
+### Bug Fixes
+
+* globally update non-private package.json files with devDependencies and peerDependencies that might not get installed as expected when used / published outside of the Bolt monorepo ([617bd86](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/617bd86))
+
+
+
+
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+### Bug Fixes
+
+* update .incache data + workaround to try to more consistently grab the latest Bolt Github release info. also includes a minor CSS fix for the docs site layout navigation. ([ba812b8](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/ba812b8))
+* version bump globby + semantic version packages to resolve node-glob yarn install errors being periodically encountered ([99d54e8](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/99d54e8))
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* add missing dependency to prevent install warnings ([c9231cd](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/c9231cd))
+* add missing dependency to twig renderer ([20778d0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/20778d0))
+* add missing webpack-merge dependency to the build tools package ([889f0fd](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/889f0fd))
+* add renderer mode config default ([1201419](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/1201419))
+* bypass cache when doing a full tagged release + fix deploy script to not update the main docs site url when doing pre-releases ([9faa0f4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/9faa0f4))
+* disable browsersync ghost syncing as a workaround to ensure local Nightwatch.js browser tests don't have clicks / interactions triggered by other browsers. ([ec55a2d](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/ec55a2d))
+* disable console log output with UIKit regeneration ([0f2e2b6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/0f2e2b6))
+* disable SSR ([a9670dd](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/a9670dd))
+* fix lint / prettier issues ([aefbf12](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/aefbf12))
+* fix prettier errors ([f55babd](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f55babd))
+* fix task collection event sequence ([eaed5ce](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/eaed5ce))
+* image data filter, change to greater than or equal to, was filtering out exact matches ([863cfa4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/863cfa4))
+* misc docs site related UI fixes ([5ef9667](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/5ef9667))
+* move around webpack loader plugins needed for running the full test suite ([e7cb37e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e7cb37e))
+* remove dependency loop between packages ([b43fc34](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/b43fc34))
+* swap order of watch vs serve tasks ([a68f465](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/a68f465))
+* update @bolt/build-tools to ensure @bolt/api is a peer dependency ([1c19f90](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/1c19f90))
+* update bolt-version data logic to handle API throttle limits + attempt to use old (stale) data if expired ([f456778](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f456778))
+* update bolt-version script to address deprecation error ([b1035c4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/b1035c4))
+* update bolt-versions Github check to use the new octokit API call ([21cf7a4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/21cf7a4))
+* update clean task to not wipe the entire www folder every time ([b8cfb67](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/b8cfb67))
+* update CLI to allow the static site generator and/or Pattern Lab to get run manually (especially for testing purposes) ([7f82175](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/7f82175))
+* update event emitter to only fire once ([7e454b5](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/7e454b5))
+* update event emitter to only fire once ([341aabe](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/341aabe))
+* **@bolt/build-tools:** fix for filing test on first run ([226e96e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/226e96e))
+* update snapshots + update logo tests to use the new bolt-image web component ([b647d3b](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/b647d3b))
+* update to only wait to retry requests that are within 15 seconds before calling it quits and using the fallback ([1875bea](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/1875bea))
+* update Twig rendering service API when running on master + add / update caching layers to speed up subsequent builds on Travis ([a8ed82f](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/a8ed82f))
+* update Webpack build and server config to better account for situations where lang can be defined as a string, an array with one item, and an array with multiple items ([bbeee23](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/bbeee23))
+* **@bolt/build-tools:** fix js issues ([c501be3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/c501be3))
+* **@bolt/build-tools:** updateting configutration for testing ([f3333b7](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f3333b7))
+* **@bolt/build-tools,@bolt/components-icons:** move clean icon task to be run after all the tests ([863f91d](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/863f91d))
+
+
+### Features
+
+* add new api-specific build tasks that handle generating the status board, generate visual regression testing URLs, and can find all available versions of the Bolt packages published to NPM ([9cdc962](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/9cdc962))
+* **@bolt/website,@bolt/build-tools:** add posibility to add external icons to be rendered by icon t ([89a7061](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/89a7061))
+* add new rendering mode config + expose globally ([4636d67](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/4636d67))
+* **@bolt/website,@bolt/build-tools,@bolt/components-icons:** updating configuration and fix issue w ([82a5686](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/82a5686))
+* **website, twig renderer, component explorer:** update the Twig Renderer to support keepAlive ([470f7af](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/470f7af))
+* add support for an optional "pattern -alias" config to help match up oddly named folders in PL with a component's default package.json file name. ([f11db1a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f11db1a))
+* addd ability to manually enable / disable server-side rendering + automatically toggle based on dev environment ([861a14e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/861a14e))
+* update Bolt build config to add support for extending / modifying the default Webpack config generated ([b283134](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/b283134))
+
+
+
+
+
 # [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
 
 
