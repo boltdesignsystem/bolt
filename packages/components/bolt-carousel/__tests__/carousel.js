@@ -61,10 +61,12 @@ describe('carousel', () => {
   beforeAll(async () => {
     imageTwig = await render('@bolt-components-image/image.twig', {
       src: '/fixtures/landscape-16x9-skyline.jpg',
+      lazyload: false,
     });
 
     imageTwigAlt = await render('@bolt-components-image/image.twig', {
       src: '/fixtures/landscape-16x9-mountains.jpg',
+      lazyload: false,
     });
   }, timeout);
 
