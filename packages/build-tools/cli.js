@@ -8,7 +8,7 @@ const configStore = require('@bolt/build-utils/config-store');
 const log = require('@bolt/build-utils/log');
 const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const configSchema = readYamlFileSync(
-  path.join(__dirname, '@bolt/build-utils/config.schema.yml'),
+  path.join(__dirname, './utils/config.schema.yml'),
 );
 const packageJson = require('./package.json');
 
