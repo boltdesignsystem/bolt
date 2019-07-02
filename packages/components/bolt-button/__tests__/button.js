@@ -160,7 +160,9 @@ describe('button', () => {
       return btn.outerHTML;
     });
 
-    const renderedShadowDomHTML = await html(defaultButtonShadowRoot);
+    const renderedShadowDomHTML = await html('<div></div>');
+    renderedShadowDomHTML.innerHTML = defaultButtonShadowRoot;
+
     const renderedHTML = await html(defaultButtonOuter);
 
     expect(renderedHTML.textContent).toEqual('Button Test -- Outer HTML');
