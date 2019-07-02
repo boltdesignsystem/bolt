@@ -16,6 +16,9 @@ const log = require('@bolt/build-utils/log');
 const timer = require('@bolt/build-utils/timer');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { flattenArray } = require('@bolt/build-utils/general');
+const palette = require('image-palette');
+const pixels = require('image-pixels');
+
 let config, sharp;
 
 // https://github.com/lovell/sharp/issues/1593#issuecomment-491171982
@@ -238,8 +241,28 @@ async function processImage(file, set) {
         };
       }
     }),
-  ).then(resizedImagePaths => {
+  ).then(async resizedImagePaths => {
     // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
+
+    const getColor = async function(file) {
+      const { colors } = palette(
+        await pixels(path.join(config.wwwDir, file), { cache: true }),
+      );
+
+      return `rgb(${colors[0][0]}, ${colors[0][1]}, ${colors[0][2]})`;
+    };
+
+    async function getBase64(file) {
+      const resizedImageBuf = await sharp(path.join(config.wwwDir, file))
+        .resize(24)
+        .jpeg({
+          quality: 40,
+        })
+        .toBuffer();
+
+      return `data:image/jpeg;base64,${resizedImageBuf.toString('base64')}`;
+    }
+
     const sets = resizedImagePaths.filter(resizedImagePath => resizedImagePath);
     const imageMeta = {
       original: file,
@@ -250,6 +273,16 @@ async function processImage(file, set) {
       sizePaths: sets,
       srcset: sets.map(set => `${set.path} ${set.size}w`).join(', '),
     };
+
+    // use the smallest image cut generated when calculating the base64 + average image color to reduce the overhead of calculating thisspeed up the build process
+    if (pathInfo.ext === '.jpg' || pathInfo.ext === '.jpeg') {
+      // choose the image that's ~640px wide (the 6th item in the array) if there's enough cuts. Otherwise pick the closest size that's available.
+      const imageToProcess =
+        sets.length >= 5 ? sets[4].path : sets[sets.length - 1].path;
+
+      imageMeta.color = await getColor(imageToProcess);
+      imageMeta.base64 = await getBase64(imageToProcess);
+    }
 
     return imageMeta;
   });
