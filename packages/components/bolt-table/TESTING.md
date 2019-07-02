@@ -22,15 +22,15 @@ Functional testing should be performed manually by the QA team across the standa
 
 1. Given I am on the [format variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-table-10-table-format-variations/02-components-table-10-table-format-variations.html)
 2. When I view the table titled "Regular format"
-3. Then I see all text is aligned to the start (left)
+3. Then I see all text is aligned to the left
 4. When I view the table titled "Numeric format"
-5. Then I see the first-column headers aligned to the end (right), while text in other cells are center aligned
+5. Then I see the side headers are aligned to the right, while text in other cells are center aligned
 
 ## Scenario: borderless table
 
 1. Given I am on the [borderless demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-table-15-table-borderless/02-components-table-15-table-borderless.html)
 2. When I view the table titled "Remove the vertical border in between cells"
-3. Then I see no vertical dividers in between cells (excluding first column)
+3. Then I see no vertical dividers in between cells (excluding side headers)
 
 ## Scenario: first column fixed width table
 
