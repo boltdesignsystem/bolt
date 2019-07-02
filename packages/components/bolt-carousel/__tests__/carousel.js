@@ -49,8 +49,24 @@ const imageVrtConfig = {
   failureThresholdType: 'percent',
 };
 
+let imageTwig, imageTwigAlt;
+
 describe('carousel', () => {
   let page;
+
+  afterAll(async () => {
+    await stopServer();
+  }, 100);
+
+  beforeAll(async () => {
+    imageTwig = await render('@bolt-components-image/image.twig', {
+      src: '/fixtures/landscape-16x9-skyline.jpg',
+    });
+
+    imageTwigAlt = await render('@bolt-components-image/image.twig', {
+      src: '/fixtures/landscape-16x9-mountains.jpg',
+    });
+  }, timeout);
 
   beforeEach(async () => {
     const context = await global.__BROWSER__.createIncognitoBrowserContext();
@@ -95,24 +111,18 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders',
     async function() {
-      const renderedComponentHTML = await page.evaluate(() => {
+      const imageHTML = imageTwigAlt.html;
+
+      const renderedComponentHTML = await page.evaluate(imageHTML => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
 
-        const image1 = document.createElement('bolt-image');
-        image1.setAttribute('src', '/fixtures/1200x660.jpg');
-        image1.setAttribute(
-          'srcset',
-          '/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w',
-        );
-        image1.setAttribute('sizes', 'auto');
-        image1.setAttribute('ratio', '1200/660');
-        image1.setAttribute('alt', 'A Rock Climber');
-        image1.setAttribute('no-lazy', '');
-        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
+        const image = document.createElement('div');
+        image.innerHTML = imageHTML;
 
+        const image1 = image.firstChild;
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
 
@@ -144,7 +154,7 @@ describe('carousel', () => {
         document.body.appendChild(carousel);
         carousel.updated();
         return carousel.outerHTML;
-      });
+      }, imageHTML);
 
       await page.waitFor(1000);
 
@@ -168,24 +178,18 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls',
     async function() {
-      const renderedComponentHTML = await page.evaluate(() => {
+      const imageHTML = imageTwig.html;
+
+      const renderedComponentHTML = await page.evaluate(imageHTML => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
 
-        const image1 = document.createElement('bolt-image');
-        image1.setAttribute('src', '/fixtures/1200x660.jpg');
-        image1.setAttribute(
-          'srcset',
-          '/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w',
-        );
-        image1.setAttribute('sizes', 'auto');
-        image1.setAttribute('ratio', '1200/660');
-        image1.setAttribute('alt', 'A Rock Climber');
-        image1.setAttribute('no-lazy', '');
-        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
+        const image = document.createElement('div');
+        image.innerHTML = imageHTML;
 
+        const image1 = image.firstChild;
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
 
@@ -224,7 +228,7 @@ describe('carousel', () => {
         document.body.appendChild(carousel);
         carousel.updated();
         return carousel.outerHTML;
-      });
+      }, imageHTML);
 
       await page.waitFor(1000);
 
@@ -248,25 +252,19 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls',
     async function() {
-      const renderedComponentHTML = await page.evaluate(() => {
+      const imageHTML = imageTwigAlt.html;
+
+      const renderedComponentHTML = await page.evaluate(imageHTML => {
         const carousel = document.createElement('bolt-carousel');
         carousel.setAttribute('nav-position', 'outside');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
 
-        const image1 = document.createElement('bolt-image');
-        image1.setAttribute('src', '/fixtures/1200x660.jpg');
-        image1.setAttribute(
-          'srcset',
-          '/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w',
-        );
-        image1.setAttribute('sizes', 'auto');
-        image1.setAttribute('ratio', '1200/660');
-        image1.setAttribute('alt', 'A Rock Climber');
-        image1.setAttribute('no-lazy', '');
-        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
+        const image = document.createElement('div');
+        image.innerHTML = imageHTML;
 
+        const image1 = image.firstChild;
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
 
@@ -305,7 +303,7 @@ describe('carousel', () => {
         document.body.appendChild(carousel);
         carousel.updated();
         return carousel.outerHTML;
-      });
+      }, imageHTML);
 
       await page.waitFor(1000);
 
@@ -329,25 +327,19 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ 1 Slide Per View',
     async function() {
-      const renderedComponentHTML = await page.evaluate(() => {
+      const imageHTML = imageTwig.html;
+
+      const renderedComponentHTML = await page.evaluate(imageHTML => {
         const carousel = document.createElement('bolt-carousel');
         carousel.setAttribute('slides-per-view', 1);
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
 
-        const image1 = document.createElement('bolt-image');
-        image1.setAttribute('src', '/fixtures/1200x660.jpg');
-        image1.setAttribute(
-          'srcset',
-          '/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w',
-        );
-        image1.setAttribute('sizes', 'auto');
-        image1.setAttribute('ratio', '1200/660');
-        image1.setAttribute('alt', 'A Rock Climber');
-        image1.setAttribute('no-lazy', '');
-        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
+        const image = document.createElement('div');
+        image.innerHTML = imageHTML;
 
+        const image1 = image.firstChild;
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
 
@@ -379,7 +371,7 @@ describe('carousel', () => {
         document.body.appendChild(carousel);
         carousel.updated();
         return carousel.outerHTML;
-      });
+      }, imageHTML);
 
       await page.waitFor(1000);
 
@@ -403,7 +395,9 @@ describe('carousel', () => {
   test(
     'Basic 7 Slide <bolt-carousel> Renders',
     async function() {
-      const renderedComponentHTML = await page.evaluate(() => {
+      const imageHTML = imageTwig.html;
+
+      const renderedComponentHTML = await page.evaluate(imageHTML => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
@@ -413,17 +407,9 @@ describe('carousel', () => {
         const carouselSlide6 = document.createElement('bolt-carousel-slide');
         const carouselSlide7 = document.createElement('bolt-carousel-slide');
 
-        const image1 = document.createElement('bolt-image');
-        image1.setAttribute('src', '/fixtures/1200x660.jpg');
-        image1.setAttribute(
-          'srcset',
-          '/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w',
-        );
-        image1.setAttribute('sizes', 'auto');
-        image1.setAttribute('ratio', '1200/660');
-        image1.setAttribute('alt', 'A Rock Climber');
-        image1.setAttribute('no-lazy', '');
-        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
+        const image = document.createElement('div');
+        image.innerHTML = imageHTML;
+        const image1 = image.firstChild;
 
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
@@ -492,7 +478,7 @@ describe('carousel', () => {
         document.body.appendChild(carousel);
         carousel.updated();
         return carousel.outerHTML;
-      });
+      }, imageHTML);
 
       await page.waitFor(1000);
 
