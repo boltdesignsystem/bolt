@@ -7,7 +7,9 @@
     "access": "public"
   },
   "scripts": {
-    "build": "bolt build --prod",
+    "build": "FORCE_COLOR=1 npx npm-run-all --parallel --aggregate-output build:*",
+    "build:en": "bolt build --prod",
+    "build:ja": "bolt build --prod --config-file .boltrc--ja.js",
     "start": "bolt start",
     "test": "jest __tests__/index.js",
     "postinstall": "patch-package"

@@ -31,4 +31,41 @@ describe('Check that the bolt-starter build has compiled as expected', () => {
     expect(colorData.indigo.xdark).toBe('rgb(6, 9, 35)');
     expect(colorData.yellow.base).toBe('rgb(255, 204, 77)');
   });
+
+  test('Check that a separate lang-specific build compiles as expected', async () => {
+    const getColorData = async function(){
+      try {
+        await fs.promises.access(path.resolve(__dirname, "../dist--ja/data/colors/brand.bolt.json"));
+        const colorData = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../dist--ja/data/colors/brand.bolt.json")));
+        return colorData;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    const colorData = await getColorData();
+
+    expect(colorData.indigo.xdark).toBe('rgb(6, 9, 35)');
+    expect(colorData.yellow.base).toBe('rgb(255, 204, 77)');
+  });
+
+  test('Check that the JA-specific CSS contains the correct font', async () => {
+    const getCSSData = async function(){
+      try {
+        const cssData = fs.readFileSync(path.resolve(__dirname, '../dist--ja/bolt-global-ja.css')).toString();
+        return cssData;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    const cssFile = await getCSSData();
+
+    const japaneseFontRule = 'font-family:-apple-system,BlinkMacSystemFont,"ヒラギノ角ゴ ProN","Hiragino Kaku Gothic ProN","游ゴシック","游ゴシック体",YuGothic,"Yu Gothic","メイリオ",Meiryo,"ＭＳ ゴシック","MS Gothic",HiraKakuProN-W3,"TakaoExゴシック",TakaoExGothic,MotoyaLCedar,"Droid Sans Japanese",sans-serif;';
+
+    const englishFontFamilyRule = 'font-family:"Open Sans","Helvetica Neue",sans-serif;font-family:var(--bolt-font-family-heading)';
+
+    expect(cssFile).toEqual(expect.stringContaining(japaneseFontRule));
+    expect(cssFile).toEqual(expect.not.stringContaining(englishFontFamilyRule));
+  });
 });
