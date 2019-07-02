@@ -28,41 +28,41 @@ $bolt-fonts--loaded-class: 'js-fonts-loaded' !default;
 // @todo Salem, we should probably deprecate these so there is only one way to do shadows
 // Shadows
 /// Bolt shadow color
-$bolt-shadow-color: bolt-color(black);
+$bolt-shadow-color: bolt-color(black) !default;
 /// Bolt small shadow
-$bolt-shadow--small: 0 2px 0.15rem rgba($bolt-shadow-color, 0.3);
+$bolt-shadow--small: 0 2px 0.15rem rgba($bolt-shadow-color, 0.3) !default;
 /// Bolt medium shadow
-$bolt-shadow--medium: 0 0.15rem 0.3rem rgba($bolt-shadow-color, 0.35);
+$bolt-shadow--medium: 0 0.15rem 0.3rem rgba($bolt-shadow-color, 0.35) !default;
 /// Bolt large shadow
-$bolt-shadow--large: 0 0.35rem 0.6rem rgba($bolt-shadow-color, 0.18);
+$bolt-shadow--large: 0 0.35rem 0.6rem rgba($bolt-shadow-color, 0.18) !default;
 
 // Border
 /// Bolt border width
-$bolt-border-width: 1px;
+$bolt-border-width: 1px !default;
 /// Bolt border style
-$bolt-border-style: solid;
+$bolt-border-style: solid !default;
 /// Bolt border color
-$bolt-border-color: rgba(bolt-color(gray), 0.2);
+$bolt-border-color: rgba(bolt-color(gray), 0.2) !default;
 /// Bolt border radius
-$bolt-border-radius: 3px;
+$bolt-border-radius: 3px !default;
 
 // Transition
 /// Bolt transition
-$bolt-transition: ease-in-out 200ms;
+$bolt-transition: ease-in-out 200ms !default;
 /// Bolt transition ease
-$bolt-transition-ease: ease-in-out;
+$bolt-transition-ease: ease-in-out !default;
 /// Bolt transition timing
-$bolt-transition-timing: 200ms;
+$bolt-transition-timing: 200ms !default;
 
 // Effects
 /// Bolt translate none effect
-$bolt-translate-none: translate3d(0, 0, 0);
+$bolt-translate-none: translate3d(0, 0, 0) !default;
 /// Bolt translate raised small effect
-$bolt-translate-raised--small: translate3d(0, -1px, 0);
+$bolt-translate-raised--small: translate3d(0, -1px, 0) !default;
 /// Bolt translate raised medium effect
-$bolt-translate-raised--medium: translate3d(0, -0.125rem, 0);
+$bolt-translate-raised--medium: translate3d(0, -0.125rem, 0) !default;
 /// Bolt translate raised large effect
-$bolt-translate-raised--large: translate3d(0, -0.25rem, 0);
+$bolt-translate-raised--large: translate3d(0, -0.25rem, 0) !default;
 
 
 // Global theming defaults -- TODO: move to standalone setting
@@ -74,7 +74,7 @@ $bolt-global-link-active-opacity: bolt-opacity(60) !default;
 /// Bolt default global border opacity
 $bolt-global-border-opacity: bolt-opacity(20) !default;
 /// Bolt default global border color
-$bolt-global-border-color: bolt-color(gray);
+$bolt-global-border-color: bolt-color(gray) !default;
 
 /// Bolt default global button hover mix %
 $bolt-global-button-hover-mix: 15% !default;
@@ -103,7 +103,7 @@ $bolt-block-elements-list: 'p',
   'details',
   'summary',
   'hr',
-  'address';
+  'address' !default;
 
 $bolt-unquoted-block-elements-list: ();
 
@@ -125,7 +125,7 @@ $bolt-heading-elements-list: 'h1',
   'h3',
   'h4',
   'h5',
-  'h6';
+  'h6' !default;
 
 $bolt-unquoted-heading-elements-list: ();
 

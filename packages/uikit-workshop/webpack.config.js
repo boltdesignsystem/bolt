@@ -51,16 +51,7 @@ module.exports = async function() {
         options: {
           sourceMap: config.sourceMaps,
           plugins: () => [
-            autoprefixer({
-              browsers: [
-                'last 2 version',
-                'safari 5',
-                'ie 8',
-                'ie 9',
-                'opera 12.1',
-                'android 4',
-              ],
-            }),
+            autoprefixer(),
           ],
         },
       },
@@ -132,9 +123,6 @@ module.exports = async function() {
                   [
                     '@babel/preset-env',
                     {
-                      targets: {
-                        browsers: ['>0.25%', 'ie 11'],
-                      },
                       modules: false,
                       debug: false,
                     },

@@ -78,22 +78,6 @@ class BoltBlockquote extends withLitHtml() {
     }
   }
 
-  getModifiedSchema(schema) {
-    var modifiedSchema = schema;
-
-    // Remove "content" from schema, does not apply to web component.
-    for (let property in modifiedSchema.properties) {
-      if (property === 'content') {
-        delete modifiedSchema.properties[property];
-      }
-    }
-
-    const index = modifiedSchema.required.indexOf('content');
-    modifiedSchema.required.splice(index, 1);
-
-    return modifiedSchema;
-  }
-
   getAlignItemsOption(prop) {
     switch (prop) {
       case 'right':
@@ -194,7 +178,7 @@ class BoltBlockquote extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles, textStyles])}
-      <blockquote class="${classes}" is="shadow-root">
+      <blockquote class="${classes}">
         ${this.slots.logo
           ? html`
               <div class="${cx('c-bolt-blockquote__logo')}">

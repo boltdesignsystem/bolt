@@ -98,6 +98,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
       Bolt\TwigFunctions::getImageData(),
       Bolt\TwigFunctions::fileExists(),
       Bolt\TwigFunctions::inlineFile(),
+      Bolt\TwigFunctions::gcd(),
     ];
   }
 
