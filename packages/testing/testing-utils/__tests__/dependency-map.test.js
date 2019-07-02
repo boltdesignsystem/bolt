@@ -1,7 +1,7 @@
 const { join } = require('path');
-const dm = require('../../scripts/utils/dependency-map');
+const dm = require('../dependency-map');
 
-const repoRoot = join(__dirname, '../..');
+const repoRoot = join(__dirname, '../../../..');
 
 describe('dependency mapper', () => {
   test('findTwigFilesUsedInFile', async () => {

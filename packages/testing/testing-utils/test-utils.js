@@ -5,9 +5,14 @@ const { join, dirname, relative } = require('path');
 const { readFileSync, readJSONSync } = require('fs-extra');
 const globby = require('globby');
 const findPkg = require('find-pkg');
-const { gitSha } = require('../utils');
 
-const repoRoot = join(__dirname, '../..');
+/**
+ * helper function to get gitSha without needing a GITHUB_TOKEN (for local dev);
+ * @returns {string} git sha of last commit
+ */
+const gitSha = execa.sync('git', ['rev-parse', '--short', 'HEAD']).stdout;
+
+const repoRoot = join(__dirname, '../../..');
 const lernaCli = join(repoRoot, 'node_modules/.bin/lerna');
 
 /**
@@ -205,7 +210,6 @@ function getPkgsChanged({ from = gitSha, to = 'master' }) {
 }
 
 module.exports = {
-  getPkgDependencies,
   getPkgNameFromPath,
   getPkgPathFromName,
   getPkgDependents,

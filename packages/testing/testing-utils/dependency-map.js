@@ -2,7 +2,7 @@ const globby = require('globby');
 const { readFile, readJSON, readJSONSync, existsSync } = require('fs-extra');
 const { join } = require('path');
 
-const repoRoot = join(__dirname, '../..');
+const repoRoot = join(__dirname, '../../..');
 
 const twigNamespacesManifestPath = join(
   repoRoot,
