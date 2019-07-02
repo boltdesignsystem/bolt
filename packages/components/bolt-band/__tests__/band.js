@@ -13,7 +13,7 @@ const { size, theme, tag } = schema.properties;
 const timeout = 60000;
 
 describe('<bolt-band> Component', () => {
-    let page;
+  let page;
 
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();
