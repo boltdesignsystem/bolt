@@ -19,6 +19,10 @@ const { flattenArray } = require('@bolt/build-utils/general');
 const palette = require('image-palette');
 const pixels = require('image-pixels');
 
+const imagemin = require('imagemin');
+const imageminMozjpeg = require('imagemin-mozjpeg');
+const imageminOptipng = require('imagemin-optipng');
+
 let config, sharp;
 
 // https://github.com/lovell/sharp/issues/1593#issuecomment-491171982
@@ -162,16 +166,6 @@ async function processImage(file, set) {
           ) {
             await sharp(originalFileBuffer)
               .resize(size)
-              .jpeg({
-                quality: 50,
-                progressive: true,
-                optimiseScans: true,
-                force: false,
-              })
-              .png({
-                progressive: true,
-                force: false,
-              })
               .toFile(newSizedPath);
           } else if (pathInfo.ext === '.svg') {
             const result = await svgo.optimize(originalFileBuffer);
@@ -179,16 +173,6 @@ async function processImage(file, set) {
             await writeFile(newSizedPath, optimizedSVG);
           } else {
             await sharp(originalFileBuffer)
-              .jpeg({
-                quality: 50,
-                progressive: true,
-                optimiseScans: true,
-                force: false,
-              })
-              .png({
-                progressive: true,
-                force: false,
-              })
               .toFile(newSizedPath);
           }
         } else {
@@ -200,16 +184,6 @@ async function processImage(file, set) {
           ) {
             await sharp(originalFileBuffer)
               .resize(size)
-              .jpeg({
-                quality: 50,
-                progressive: true,
-                optimiseScans: true,
-                force: false,
-              })
-              .png({
-                progressive: true,
-                force: false,
-              })
               .toFile(newSizedPath);
           } else {
             await sharp(originalFileBuffer)
@@ -255,9 +229,6 @@ async function processImage(file, set) {
     async function getBase64(file) {
       const resizedImageBuf = await sharp(path.join(config.wwwDir, file))
         .resize(24)
-        .jpeg({
-          quality: 40,
-        })
         .toBuffer();
 
       return `data:image/jpeg;base64,${resizedImageBuf.toString('base64')}`;
@@ -318,6 +289,34 @@ async function processImages() {
     imageMetas.forEach(imageMeta => {
       imageManifest[imageMeta.src] = imageMeta;
     });
+
+    const imagesToProcess = [];
+
+    Object.keys(imageManifest).forEach(key => {
+      const image = imageManifest[key];
+      imagesToProcess.push(path.join(config.wwwDir, image.src));
+      image.sizePaths.map(item =>
+        imagesToProcess.push(path.join(config.wwwDir, item.path)),
+      );
+    });
+
+    const finalImagePaths = Array.from(new Set(imagesToProcess));
+
+    finalImagePaths.map(async image => {
+      // @ts-ignore
+      await imagemin([image], {
+        destination: path.dirname(image),
+        plugins: [
+          imageminMozjpeg({
+            quality: 50,
+          }),
+          imageminOptipng({
+            optimizationLevel: 5,
+          }),
+        ],
+      });
+    });
+
     await writeImageManifest(imageManifest);
 
     const endMessage = chalk.green(
