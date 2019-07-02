@@ -17,7 +17,10 @@ const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
-const { webpackStats, statsPreset } = require('@bolt/build-utils/webpack-verbosity');
+const {
+  webpackStats,
+  statsPreset,
+} = require('@bolt/build-utils/webpack-verbosity');
 
 const {
   getBoltManifest,

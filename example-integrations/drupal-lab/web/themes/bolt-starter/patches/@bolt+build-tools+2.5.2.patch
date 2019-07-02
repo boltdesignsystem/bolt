@@ -71,10 +71,10 @@ index b50f5eb..f7f1af9 100755
  
  (async () => {
 diff --git a/node_modules/@bolt/build-tools/create-webpack-config.js b/node_modules/@bolt/build-tools/create-webpack-config.js
-index 1f44ee2..03de6e5 100644
+index 1f44ee2..53e95ca 100644
 --- a/node_modules/@bolt/build-tools/create-webpack-config.js
 +++ b/node_modules/@bolt/build-tools/create-webpack-config.js
-@@ -15,15 +15,15 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
+@@ -15,15 +15,18 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
  const npmSass = require('npm-sass');
  const merge = require('webpack-merge');
  const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
@@ -83,7 +83,10 @@ index 1f44ee2..03de6e5 100644
 -const { webpackStats, statsPreset } = require('./utils/webpack-verbosity');
 +const { getConfig } = require('@bolt/build-utils/config-store');
 +const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
-+const { webpackStats, statsPreset } = require('@bolt/build-utils/webpack-verbosity');
++const {
++  webpackStats,
++  statsPreset,
++} = require('@bolt/build-utils/webpack-verbosity');
  
  const {
    getBoltManifest,
