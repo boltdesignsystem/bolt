@@ -172,8 +172,7 @@ async function processImage(file, set) {
             const optimizedSVG = result.data;
             await writeFile(newSizedPath, optimizedSVG);
           } else {
-            await sharp(originalFileBuffer)
-              .toFile(newSizedPath);
+            await sharp(originalFileBuffer).toFile(newSizedPath);
           }
         } else {
           // http://sharp.pixelplumbing.com/en/stable/
