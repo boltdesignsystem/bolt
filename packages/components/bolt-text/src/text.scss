@@ -4,7 +4,8 @@
    Text
 \* ------------------------------------ */
 
-%bolt-text {
+// Attribute selectors for parent bolt-text
+bolt-text {
   @include bolt-margin-bottom(medium); // Default vspacing
   @include bolt-font-size(medium); // Default font-size
   display: block;
@@ -30,14 +31,33 @@
   }
 }
 
-// Attribute selectors for parent bolt-text
-bolt-text {
-  @extend %bolt-text;
-}
-
 // when fully encapsulated in the Shadow DOM
 :host {
-  @extend %bolt-text;
+  @include bolt-margin-bottom(medium); // Default vspacing
+  @include bolt-font-size(medium); // Default font-size
+  display: block;
+}
+
+:host([display='inline']) {
+  display: inline;
+}
+
+:host([display='block']) {
+  display: block;
+}
+
+// Adding vspacing here so that we can remove vspacing on last-child
+:host([headline]),
+:host([eyebrow]) {
+  @include bolt-margin-bottom(xxsmall);
+}
+
+:host([subheadline]) {
+  @include bolt-margin-bottom(xsmall);
+}
+
+:host(:last-child) {
+  @include bolt-margin-bottom(0);
 }
 
 $bolt-text-v2--minus-letter-spacing: -0.025rem;
