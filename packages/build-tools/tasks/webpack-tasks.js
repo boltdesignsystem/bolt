@@ -88,6 +88,7 @@ async function server(customWebpackConfig) {
           watchOptions: {
             ignoreInitial: true,
           },
+          port: boltBuildConfig.port,
           files: browserSyncFileToWatch,
         },
         function(err, bs) {
