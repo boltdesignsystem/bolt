@@ -67,7 +67,11 @@ async function server(customWebpackConfig) {
     `${boltBuildConfig.wwwDir}/**/*.html`,
   ];
 
-  if (useHotMiddleware === false) {
+  const isUsingInternalServer =
+    typeof boltBuildConfig.proxyHostname === 'undefined' &&
+    typeof boltBuildConfig.proxyPort === 'undefined';
+
+  if (useHotMiddleware === false || isUsingInternalServer) {
     browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
   }
 
@@ -75,10 +79,9 @@ async function server(customWebpackConfig) {
     if (!browserSyncIsRunning) {
       browserSync.init(
         {
-          proxy:
-            typeof boltBuildConfig.proxyPort === 'undefined'
-              ? `${boltBuildConfig.hostname}:${boltBuildConfig.port}`
-              : `${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`,
+          proxy: !isUsingInternalServer
+            ? `${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`
+            : `${boltBuildConfig.hostname}:${boltBuildConfig.port}`,
           logLevel: 'info',
           ui: false,
           notify: false,
@@ -93,6 +96,18 @@ async function server(customWebpackConfig) {
         },
         function(err, bs) {
           browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially
+
+          if (!isUsingInternalServer) {
+            console.log(
+              chalk.green(
+                `\n  Browsersync is now proxying ${chalk.underline(
+                  `http://${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`,
+                )}. Open ${chalk.underline(
+                  `http://${boltBuildConfig.hostname}:${boltBuildConfig.port}`,
+                )} to have your locally served pages automatically reload when HTML, CSS, and Javascript files are updated. \n`,
+              ),
+            );
+          }
         },
       );
     }
