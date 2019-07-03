@@ -138,7 +138,7 @@
   >
 
   {% set children %}
-    {{ is_jpg ? image_placeholder : "" }}
+    {{ is_jpg and can_use_placeholder ? image_placeholder : "" }}
     {{ image_tag }}
   {% endset %}
 
