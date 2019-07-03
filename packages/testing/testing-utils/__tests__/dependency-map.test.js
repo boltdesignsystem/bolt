@@ -11,11 +11,36 @@ describe('dependency mapper', () => {
 
     expect(results).toStrictEqual([
       '@x/button.twig',
+      '@x/button/button.twig',
+      '@x/icon/icon.twig',
+      'button.twig',
+    ]);
+  });
+
+  test('findTwigFilesUsedInString', () => {
+    const twigString = `
+<div class="card">
+  <h2>{{ title }}</h2>
+  <footer>
+    {% include "@x/button.twig" %}
+    <div>{% include "@x/button.twig" %}</div>
+    {% include '@x/button/button.twig' %}
+    {% include '@x/icon/icon.twig' %}
+    {% include "button.twig" %}
+    {% include "@x/button.twig" with {
+      text: "Hi",
+    } %}
+  </footer>
+</div>
+    `;
+
+    const results = dm.findTwigFilesUsedInString(twigString);
+
+    expect(results).toStrictEqual([
       '@x/button.twig',
       '@x/button/button.twig',
       '@x/icon/icon.twig',
       'button.twig',
-      '@x/button.twig',
     ]);
   });
 
@@ -27,5 +52,12 @@ describe('dependency mapper', () => {
     expect(filePath).toBe(
       join(repoRoot, 'packages/components/bolt-button/src/button.twig'),
     );
+  });
+
+  test('getFilesPkg', async () => {
+    const pkgName = await dm.getFilesPkg(
+      join(repoRoot, 'packages/components/bolt-band/src/band.js'),
+    );
+    expect(pkgName).toEqual('@bolt/components-band');
   });
 });

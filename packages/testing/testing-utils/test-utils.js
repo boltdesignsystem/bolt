@@ -33,10 +33,18 @@ function runLernaCmd(cmd) {
 }
 
 /**
+ * @typedef {Object} BoltPkg
+ * @prop {string} name
+ * @prop {string} version
+ * @prop {string} location
+ * @prop {boolean} private
+ */
+
+/**
  * Get all Bolt packages known by Lerna
  * @param {Object} opt
  * @param {boolean} [opt.includePrivatePkgs=false] - include any packages with `"private": true` in their `package.json`
- * @returns {{ name: string, version: string, location: string, private: boolean }[]} - boltPkgs
+ * @returns {BoltPkg[]} - boltPkgs
  */
 function getPkgList({ includePrivatePkgs = false } = {}) {
   const cmds = ['list'];
@@ -92,23 +100,6 @@ function getPkgPathFromName(pkgName) {
 }
 
 /**
- * Get a package's name from a path to it's directory
- * @param {string} pkgPath - path to folder of package with 'package.json' in it
- * @returns {string} name of package, i.e. '@bolt/components-band'
- * @deprecated use `getFilesPkg`
- */
-function getPkgNameFromPath(pkgPath) {
-  try {
-    const pkgJsonPath = join(pkgPath, 'package.json');
-    const pkg = readJSONSync(pkgJsonPath);
-    return pkg.name;
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
-  }
-}
-
-/**
  * Get a list of all files in a package
  * @param {string} pkgName - name of package, i.e. `@bolt/components-band`
  * @returns {string[]} list of file paths in that package
@@ -125,7 +116,7 @@ function getPkgFiles(pkgName) {
  * @param {string} file
  * @return {string} name of package, i.e. '@bolt/components-band'
  */
-function getFilesPkg(file) {
+function getFilesPkgSync(file) {
   const pkgPath = findPkg.sync(file);
   let pkg = readJSONSync(pkgPath);
   // grab parent package of package.json that are used by Yeoman `generator-*`s
@@ -192,7 +183,7 @@ function getPkgsChanged({ from = gitSha, to = 'master' }) {
     //   return;
     // }
 
-    const pkgName = getFilesPkg(filePath);
+    const pkgName = getFilesPkgSync(filePath);
     pkgs.add(pkgName);
   });
 
@@ -209,12 +200,11 @@ function getPkgsChanged({ from = gitSha, to = 'master' }) {
 }
 
 module.exports = {
-  getPkgNameFromPath,
   getPkgPathFromName,
   getPkgDependents,
   getPkgDependencies,
   getPkgList,
   getPkgFiles,
-  getFilesPkg,
+  getFilesPkgSync,
   getFilesChanged,
 };

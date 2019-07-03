@@ -4,13 +4,6 @@ const tu = require('../test-utils');
 const repoRoot = join(__dirname, '../../../..');
 
 describe('test-utils', () => {
-  test('getPkgNameFromPath', () => {
-    const name = tu.getPkgNameFromPath(
-      join(repoRoot, 'packages/components/bolt-band'),
-    );
-    expect(name).toBe('@bolt/components-band');
-  });
-
   test('getPkgPathFromName', () => {
     const path = tu.getPkgPathFromName('@bolt/components-band');
     expect(path).toBe(join(repoRoot, 'packages/components/bolt-band'));
@@ -27,8 +20,8 @@ describe('test-utils', () => {
     expect(dependents).toEqual(['@bolt/components-band']);
   });
 
-  test('getFilesPkg', () => {
-    const pkgName = tu.getFilesPkg(
+  test('getFilesPkgSync', () => {
+    const pkgName = tu.getFilesPkgSync(
       join(repoRoot, 'packages/components/bolt-band/src/band.js'),
     );
     expect(pkgName).toEqual('@bolt/components-band');

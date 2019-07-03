@@ -1,12 +1,59 @@
-const path = require('path');
+const { join, resolve } = require('path');
 const fs = require('fs-extra');
 const globby = require('globby');
-const rootPkg = require(path.join(__dirname, '../package.json'));
+const {
+  getPkgPathFromName,
+  getPkgDependents,
+  getPkgDependencies,
+  getPkgList,
+  getPkgFiles,
+  getFilesPkgSync,
+  getFilesChanged,
+  findTwigFilesUsedInFile,
+  getFilesPkg,
+  getTwigFilePath,
+} = require('@bolt/testing-utils');
+const rootPkg = require(join(__dirname, '../package.json'));
 const assert = require('assert');
 const chalk = require('chalk');
 const { promisify } = require('util');
 const readdir = promisify(fs.readdir);
 const lstat = promisify(fs.lstat);
+
+/**
+ * @param {string} pkgName
+ * @param {string[]} deps
+ */
+function pkgToHaveDependenciesOn(pkgName, deps) {
+  const listedDeps = getPkgDependencies(pkgName);
+  const missingDeps = [];
+  deps.forEach(dep => {
+    if (!listedDeps.some(d => d === dep)) {
+      if (dep !== pkgName) {
+        if (dep !== '@bolt/global') {
+          missingDeps.push(dep);
+        }
+      }
+    }
+  });
+
+  const pass = missingDeps.length === 0;
+
+  return pass
+    ? {
+        pass,
+        message: () => `${pkgName} has all dependencies listed correctly`,
+      }
+    : {
+        pass,
+        message: () =>
+          `${pkgName} is missing these dependencies in package.json: ${missingDeps.join(
+            ', ',
+          )}`,
+      };
+}
+
+expect.extend({ pkgToHaveDependenciesOn });
 
 function flattenDeep(arr1) {
   return arr1.reduce(
@@ -15,6 +62,9 @@ function flattenDeep(arr1) {
     [],
   );
 }
+
+/** @type {BoltPkg[]} */
+const boltPkgs = getPkgList();
 
 describe('check the config for monorepo packages', () => {
   /**
@@ -97,13 +147,13 @@ describe('check the config for monorepo packages', () => {
   });
 
   test('`@bolt` dependencies are symlinked to the packages folder', async () => {
-    const baseDir = path.resolve(__dirname, '../node_modules/@bolt');
+    const baseDir = resolve(__dirname, '../node_modules/@bolt');
     readdir(baseDir)
       .then(dirNames =>
         Promise.all(
           dirNames.map(dirName => {
             const item = {
-              path: path.join(baseDir, dirName),
+              path: join(baseDir, dirName),
             };
             return new Promise((resolve, reject) => {
               lstat(item.path)
@@ -130,5 +180,56 @@ describe('check the config for monorepo packages', () => {
           }
         });
       });
+  });
+
+  describe('Bolt Components declare dependencies in package.json if used in Twig files', () => {
+    const excludedPkgs = ['generator-bolt'];
+
+    boltPkgs
+      .filter(boltPkg => !excludedPkgs.includes(boltPkg.name))
+      .forEach(
+        /** @type {BoltPkg} */
+        boltPkg => {
+          test(`pkg: ${boltPkg.name}`, async () => {
+            const twigFilePaths = await globby(
+              [join(boltPkg.location, '**/*.twig')],
+              {
+                gitignore: true,
+                ignore: ['**/__tests__/**'],
+              },
+            );
+
+            if (twigFilePaths.length === 0) {
+              expect(true).toBe(true);
+            } else {
+              /** @type {Set<string>} */
+              const twigDeps = new Set();
+              /** @type {Set<string>} */
+              const twigDepPkgs = new Set();
+
+              await Promise.all(
+                twigFilePaths.map(async twigFilePath => {
+                  const theseTwigDeps = await findTwigFilesUsedInFile(
+                    twigFilePath,
+                  );
+                  theseTwigDeps.forEach(x => twigDeps.add(x));
+                }),
+              );
+
+              await Promise.all(
+                [...twigDeps].map(twigDep => {
+                  return getTwigFilePath(twigDep)
+                    .then(getFilesPkg)
+                    .then(pkgName => twigDepPkgs.add(pkgName));
+                }),
+              );
+
+              twigDepPkgs.delete(boltPkg.name);
+
+              expect(boltPkg.name).pkgToHaveDependenciesOn([...twigDepPkgs]);
+            }
+          });
+        },
+      );
   });
 });

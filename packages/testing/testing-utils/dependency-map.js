@@ -1,6 +1,7 @@
 const globby = require('globby');
+const findPkg = require('find-pkg');
 const { readFile, readJSON, readJSONSync, existsSync } = require('fs-extra');
-const { join } = require('path');
+const { join, dirname } = require('path');
 
 const repoRoot = join(__dirname, '../../..');
 
@@ -29,6 +30,11 @@ const twigNamespaces = readJSONSync(twigNamespacesManifestPath);
  * @returns {Promise<string>} file path to template file
  */
 async function getTwigFilePath(templateName) {
+  if (!templateName.startsWith('@')) {
+    throw new Error(
+      `This function only resolves Twig files using namespaces (i.e. starts with "@" or "@bolt") and instead this (probably a file path) was passed in: ${templateName}`,
+    );
+  }
   let [namespace, ...paths] = templateName.split('/');
   namespace = namespace.replace('@', '');
   const relPath = paths.join('/');
@@ -62,31 +68,72 @@ async function getTwigFilePath(templateName) {
 }
 
 /**
- * @param {string} twigFilePath i.e. `path/to/file.twig`
- * @returns {Promise<string[]>} list of other Twig files used in it via `include`, `embed`, or `extend`. i.e. `['@bolt/button.twig']`
- * @see {getTwigFilePath}
+ * @param {string} twigString - Twig code as a string to parse
+ * @param {Object} [opt]
+ * @param {boolean} [opt.unique=true]
+ * @returns {string[]} list of other Twig files used in it via `include`, `embed`, or `extend`. i.e. `['@bolt/button.twig']`
+ * @see {findTwigFilesUsedInFile}
  */
-async function findTwigFilesUsedInFile(twigFilePath) {
-  const twigString = await readFile(twigFilePath, {
-    encoding: 'utf8',
-  });
-
+function findTwigFilesUsedInString(twigString, { unique = true } = {}) {
   /* eslint-disable prettier/prettier */
   const twigRegex = new RegExp(
     "(?<=" + // begin lookahead assertion; these patterns must appear before and will not be included in result
-      "[include|extends|embed] " + // any of these words and then a space
-      "[\"|']" + // either `"` or `'`
+    "[include|extends|embed] " + // any of these words and then a space
+    "[\"|']" + // either `"` or `'`
     ")" + // end lookahead assertion
     "(.*\.twig)" // this will be captured as result. any character `.` infinite times `*` followed by a literal period `\.` and then `twig`
     , 'g'); // Regex flags - `g`: global
   /* eslint-enable prettier/prettier */
 
-  const results = twigString.match(twigRegex);
+  let results = twigString.match(twigRegex);
   // if nothing found, results `null` and we want to consistently return same types, in this case, an array
-  return results || [];
+  results = results || [];
+  if (unique) {
+    results = [...new Set(results)];
+  }
+  return (
+    results
+    // don't include any Yeoman generator files
+      .filter(r => !r.includes('<%='))
+      // don't include any dynamic file includes
+      .filter(r => !r.includes('~'))
+  );
+}
+
+/**
+ * @param {string} twigFilePath i.e. `path/to/file.twig`
+ * @param {Object} [opt]
+ * @param {boolean} [opt.unique=true]
+ * @returns {Promise<string[]>} list of other Twig files used in it via `include`, `embed`, or `extend`. i.e. `['@bolt/button.twig']`
+ * @see {findTwigFilesUsedInString}
+ */
+async function findTwigFilesUsedInFile(twigFilePath, { unique = true } = {}) {
+  const twigString = await readFile(twigFilePath, {
+    encoding: 'utf8',
+  });
+
+  return findTwigFilesUsedInString(twigString, { unique });
+}
+
+/**
+ * Get a package's name from a path to any file in the package
+ * @param {string} file
+ * @return {Promise<string>} name of package, i.e. '@bolt/components-band'
+ */
+async function getFilesPkg(file) {
+  const pkgPath = await findPkg(dirname(file));
+  let pkg = await readJSON(pkgPath);
+  // grab parent package of package.json that are used by Yeoman `generator-*`s
+  if (pkg.name.includes('<%=')) {
+    const pkgPath2 = findPkg(dirname(join(pkgPath, '..')));
+    pkg = await readJSON(pkgPath2);
+  }
+  return pkg ? pkg.name : '';
 }
 
 module.exports = {
   findTwigFilesUsedInFile,
+  findTwigFilesUsedInString,
   getTwigFilePath,
+  getFilesPkg,
 };
