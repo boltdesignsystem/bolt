@@ -16,13 +16,6 @@ const log = require('@bolt/build-utils/log');
 const timer = require('@bolt/build-utils/timer');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { flattenArray } = require('@bolt/build-utils/general');
-const palette = require('image-palette');
-const pixels = require('image-pixels');
-
-const imagemin = require('imagemin');
-const imageminMozjpeg = require('imagemin-mozjpeg');
-const imageminOptipng = require('imagemin-optipng');
-
 let config, sharp;
 
 // https://github.com/lovell/sharp/issues/1593#issuecomment-491171982
@@ -166,13 +159,34 @@ async function processImage(file, set) {
           ) {
             await sharp(originalFileBuffer)
               .resize(size)
+              .jpeg({
+                quality: 50,
+                progressive: true,
+                optimiseScans: true,
+                force: false,
+              })
+              .png({
+                progressive: true,
+                force: false,
+              })
               .toFile(newSizedPath);
           } else if (pathInfo.ext === '.svg') {
             const result = await svgo.optimize(originalFileBuffer);
             const optimizedSVG = result.data;
             await writeFile(newSizedPath, optimizedSVG);
           } else {
-            await sharp(originalFileBuffer).toFile(newSizedPath);
+            await sharp(originalFileBuffer)
+              .jpeg({
+                quality: 50,
+                progressive: true,
+                optimiseScans: true,
+                force: false,
+              })
+              .png({
+                progressive: true,
+                force: false,
+              })
+              .toFile(newSizedPath);
           }
         } else {
           // http://sharp.pixelplumbing.com/en/stable/
@@ -183,6 +197,16 @@ async function processImage(file, set) {
           ) {
             await sharp(originalFileBuffer)
               .resize(size)
+              .jpeg({
+                quality: 50,
+                progressive: true,
+                optimiseScans: true,
+                force: false,
+              })
+              .png({
+                progressive: true,
+                force: false,
+              })
               .toFile(newSizedPath);
           } else {
             await sharp(originalFileBuffer)
@@ -214,25 +238,8 @@ async function processImage(file, set) {
         };
       }
     }),
-  ).then(async resizedImagePaths => {
+  ).then(resizedImagePaths => {
     // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
-
-    const getColor = async function(file) {
-      const { colors } = palette(
-        await pixels(path.join(config.wwwDir, file), { cache: true }),
-      );
-
-      return `rgb(${colors[0][0]}, ${colors[0][1]}, ${colors[0][2]})`;
-    };
-
-    async function getBase64(file) {
-      const resizedImageBuf = await sharp(path.join(config.wwwDir, file))
-        .resize(24)
-        .toBuffer();
-
-      return `data:image/jpeg;base64,${resizedImageBuf.toString('base64')}`;
-    }
-
     const sets = resizedImagePaths.filter(resizedImagePath => resizedImagePath);
     const imageMeta = {
       original: file,
@@ -243,16 +250,6 @@ async function processImage(file, set) {
       sizePaths: sets,
       srcset: sets.map(set => `${set.path} ${set.size}w`).join(', '),
     };
-
-    // use the smallest image cut generated when calculating the base64 + average image color to reduce the overhead of calculating thisspeed up the build process
-    if (pathInfo.ext === '.jpg' || pathInfo.ext === '.jpeg') {
-      // choose the image that's ~640px wide (the 6th item in the array) if there's enough cuts. Otherwise pick the closest size that's available.
-      const imageToProcess =
-        sets.length >= 5 ? sets[4].path : sets[sets.length - 1].path;
-
-      imageMeta.color = await getColor(imageToProcess);
-      imageMeta.base64 = await getBase64(imageToProcess);
-    }
 
     return imageMeta;
   });
@@ -288,34 +285,6 @@ async function processImages() {
     imageMetas.forEach(imageMeta => {
       imageManifest[imageMeta.src] = imageMeta;
     });
-
-    const imagesToProcess = [];
-
-    Object.keys(imageManifest).forEach(key => {
-      const image = imageManifest[key];
-      imagesToProcess.push(path.join(config.wwwDir, image.src));
-      image.sizePaths.map(item =>
-        imagesToProcess.push(path.join(config.wwwDir, item.path)),
-      );
-    });
-
-    const finalImagePaths = Array.from(new Set(imagesToProcess));
-
-    finalImagePaths.map(async image => {
-      // @ts-ignore
-      await imagemin([image], {
-        destination: path.dirname(image),
-        plugins: [
-          imageminMozjpeg({
-            quality: 50,
-          }),
-          imageminOptipng({
-            optimizationLevel: 5,
-          }),
-        ],
-      });
-    });
-
     await writeImageManifest(imageManifest);
 
     const endMessage = chalk.green(
