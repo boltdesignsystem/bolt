@@ -47,8 +47,8 @@ const octokit = new Octokit({
   debug: false,
 });
 
-const { getConfig } = require('../../utils/config-store');
-const { fileExists } = require('../../utils/general');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { fileExists } = require('@bolt/build-utils/general');
 const store = new InCache();
 let isUsingOldData = false; // remember if we are using up to date version data or older (stale) data as a fallback
 
