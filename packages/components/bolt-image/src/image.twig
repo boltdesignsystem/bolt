@@ -43,7 +43,7 @@
 {% set use_ratio = useAspectRatio or ratio_bool ?? true %}
 {% set can_use_ratio = use_ratio is sameas(true) and ratio_string != "none" and width > 0 and height > 0 and not cover %}
 {# Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder #}
-{% set can_use_placeholder = can_use_ratio or cover %}
+{% set can_use_placeholder = (can_use_ratio or cover) and is_jpg and lazyload %}
 
 {# Setup inline styles that will be added to the custom element  #}
 {% set inline_bg_color = can_use_placeholder and is_jpg and lazyload ? "background-color: " ~ ph_color ~ "; " : "" %}
