@@ -22,6 +22,7 @@ const pixels = require('image-pixels');
 const imagemin = require('imagemin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
 const imageminOptipng = require('imagemin-optipng');
+const Jimp = require('jimp');
 
 let config, sharp;
 
@@ -226,11 +227,23 @@ async function processImage(file, set) {
     };
 
     async function getBase64(file) {
-      const resizedImageBuf = await sharp(path.join(config.wwwDir, file))
-        .resize(24)
-        .toBuffer();
+      const resizedImageBuf = await Jimp.read(file)
+        .then(async image => {
+          image.resize(24, Jimp.AUTO);
+          return await image.getBufferAsync(Jimp.AUTO);
+        })
+        .catch(err => {
+          console.log(err);
+        });
 
-      return `data:image/jpeg;base64,${resizedImageBuf.toString('base64')}`;
+      const image = await imagemin.buffer(resizedImageBuf, {
+        plugins: [imageminMozjpeg()],
+      });
+
+      const buff = Buffer.alloc(image.length, image);
+      const base64data = buff.toString('base64');
+
+      return `data:image/jpeg;base64,${base64data}`;
     }
 
     const sets = resizedImagePaths.filter(resizedImagePath => resizedImagePath);
@@ -251,7 +264,7 @@ async function processImage(file, set) {
         sets.length >= 5 ? sets[4].path : sets[sets.length - 1].path;
 
       imageMeta.color = await getColor(imageToProcess);
-      imageMeta.base64 = await getBase64(imageToProcess);
+      imageMeta.base64 = await getBase64(file);
     }
 
     return imageMeta;
