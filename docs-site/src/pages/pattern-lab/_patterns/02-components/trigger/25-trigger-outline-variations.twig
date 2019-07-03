@@ -1,0 +1,18 @@
+<p>
+  {% include "@bolt-components-trigger/trigger.twig" with {
+    content: "This &lt;button&gt; has no outline on focus",
+    no_outline: true,
+    attributes: {
+      "onclick": "alert('Trigger clicked')"
+    }
+  } only %}
+</p>
+
+<p>
+  {% include "@bolt-components-trigger/trigger.twig" with {
+    content: "This &lt;a&gt; has no outline on focus",
+    no_outline: true,
+    url: "http://pega.com",
+    target: "_blank"
+  } only %}
+</p>

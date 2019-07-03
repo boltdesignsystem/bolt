@@ -7,6 +7,7 @@ cd ../../
 CURRENT_VERSION=`git describe --tags --abbrev=0`
 git push origin :refs/tags/$CURRENT_VERSION
 node scripts/release/update-php-package-versions.js
+npm run dependencies:update
 
 find . -name '.incache' -exec rm -rf {} + # clear .incache file when doing a release
 npm run setup

@@ -33,9 +33,9 @@ yarn add @bolt/components-carousel
     <bolt-code-snippet markdown="0" lang="twig">
       <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light"><code is="shadow-root">{% include "@bolt-components-carousel/carousel.twig" with {
   slides: [
-    Slide 1,
-    Slide 2,
-    Slide 3,
+    'Slide 1',
+    'Slide 2',
+    'Slide 3',
   ]
 } only %}</code></pre>
     </bolt-code-snippet>
