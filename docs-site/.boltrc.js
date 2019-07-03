@@ -131,6 +131,7 @@ const config = {
       '@bolt/components-ol',
       '@bolt/components-video',
       '@bolt/components-grid',
+      '@bolt/editor',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
