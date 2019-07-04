@@ -52,7 +52,7 @@ if (program.configFile) {
 }
 
 (async () => {
-  await configStore.init(userConfig).then(async config => {
+  await configStore.init(userConfig).then(async () => {
     // Now that config is initilized, we can start requiring other things
     const { buildBoltManifest } = require('@bolt/build-utils/manifest');
     const log = require('@bolt/build-utils/log');

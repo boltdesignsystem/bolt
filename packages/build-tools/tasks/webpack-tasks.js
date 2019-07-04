@@ -100,9 +100,9 @@ async function server(customWebpackConfig) {
           if (!isUsingInternalServer) {
             console.log(
               chalk.green(
-                `\n  Browsersync is now proxying ${chalk.underline(
+                `\nBrowsersync is now proxying ${chalk.underline(
                   `http://${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`,
-                )}. Open ${chalk.underline(
+                )}.\nOpen ${chalk.underline(
                   `http://${boltBuildConfig.hostname}:${boltBuildConfig.port}`,
                 )} to have your locally served pages automatically reload when HTML, CSS, and Javascript files are updated. \n`,
               ),
