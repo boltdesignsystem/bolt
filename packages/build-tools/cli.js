@@ -5,12 +5,14 @@ const program = require('commander');
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('bolt');
 const configStore = require('@bolt/build-utils/config-store');
+const log = require('@bolt/build-utils/log');
 const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const { getPort } = require('@bolt/build-utils/get-port');
 const configSchema = readYamlFileSync(
   path.join(__dirname, './utils/config.schema.yml'),
 );
 const packageJson = require('./package.json');
+
 let userConfig;
 
 // global `bolt` cli options & meta
@@ -40,15 +42,15 @@ if (program.configFile) {
     configFileUsed: configFilePath,
   };
 } else {
-  const searchedFor = explorer.searchSync();
-  if (!searchedFor) {
-    log.errorAndExit('Could not find config in a .boltrc file');
+  try {
+    const searchedFor = explorer.searchSync();
+    userConfig = {
+      ...searchedFor.config,
+      configFileUsed: searchedFor.filepath,
+    };
+  } catch (error) {
+    log.errorAndExit('Could not find config in a .boltrc file', error);
   }
-
-  userConfig = {
-    ...searchedFor.config,
-    configFileUsed: searchedFor.filepath,
-  };
 }
 
 (async () => {
