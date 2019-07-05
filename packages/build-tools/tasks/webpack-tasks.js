@@ -150,7 +150,7 @@ async function server(customWebpackConfig) {
     }
 
     app.use(express.static(boltBuildConfig.wwwDir));
-    app.use('/api', handleRequest);
+    // app.use('/api', handleRequest); // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
 
     app.listen(boltBuildConfig.port, boltBuildConfig.hostname, function onStart(
       err,
