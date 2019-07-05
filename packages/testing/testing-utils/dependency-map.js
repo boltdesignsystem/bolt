@@ -93,7 +93,7 @@ function findTwigFilesUsedInString(twigString, { unique = true } = {}) {
   }
   return (
     results
-    // don't include any Yeoman generator files
+      // don't include any Yeoman generator files
       .filter(r => !r.includes('<%='))
       // don't include any dynamic file includes
       .filter(r => !r.includes('~'))
