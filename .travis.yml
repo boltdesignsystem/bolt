@@ -69,6 +69,7 @@ jobs:
         - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
         - yarn run build
+        - yarn run test:deps # requires `build` so that's why it's not in the earlier test stage
         - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
