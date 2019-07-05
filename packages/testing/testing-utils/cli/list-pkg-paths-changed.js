@@ -1,7 +1,25 @@
 #! /usr/bin/env node
 const { getPkgsChanged, gitSha } = require('../test-utils');
 
-const pkgs = getPkgsChanged({ from: gitSha, base: 'master' });
+let base = 'master';
+
+if (process.env.TRAVIS === 'true') {
+  const {
+    // for push builds, or builds not triggered by a pull request, this is the name of the branch.
+    // for builds triggered by a pull request this is the name of the branch targeted by the pull request.
+    // for builds triggered by a tag, this is the same as the name of the tag(TRAVIS_TAG).
+    TRAVIS_BRANCH,
+    // The pull request number if the current job is a pull request, “false” if it’s not a pull request.
+    TRAVIS_PULL_REQUEST,
+  } = process.env;
+
+  const isPr = TRAVIS_PULL_REQUEST !== 'false';
+  if (isPr) {
+    base = TRAVIS_BRANCH;
+  }
+}
+
+const pkgs = getPkgsChanged({ from: gitSha, base });
 
 // This provides a regex for test files to the `jest` cli
 // https://jestjs.io/docs/en/cli#jest-regexfortestfiles
@@ -12,7 +30,12 @@ const pkgs = getPkgsChanged({ from: gitSha, base: 'master' });
 // use `stderr` to communicate to user, this will not be passed to jest
 // use `stdout` to provide a command line argument to `jest`, this will not be seen by user
 
-process.stderr.write(`These packages have changed, filtering tests to just these directories:\n`);
+process.stderr.write(
+  `Comparing this commit "${gitSha}" to base of "${base}":\n`,
+);
+process.stderr.write(
+  `These packages have changed, filtering tests to just these directories:\n`,
+);
 
 pkgs.forEach(pkg => {
   process.stderr.write(`- ${pkg.name} : ${pkg.relPath} \n`);
