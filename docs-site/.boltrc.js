@@ -78,7 +78,7 @@ const config = {
       '@bolt/components-carousel',
       '@bolt/global',
       '@bolt/docs-search',
-      '@bolt/schema-form',
+      // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
