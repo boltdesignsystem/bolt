@@ -4,7 +4,7 @@ const prettier = require('prettier');
 
 const boltRcConfigPath = path.resolve(
   __dirname,
-  '../../../../docs-site/.boltrc.js',
+  '../../../../../docs-site/.boltrc.js',
 );
 const boltRcConfig = require(boltRcConfigPath);
 

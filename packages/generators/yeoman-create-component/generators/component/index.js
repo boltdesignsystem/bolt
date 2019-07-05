@@ -12,7 +12,7 @@ const program = require('commander');
 const { updateBoltRcConfig } = require('./update-boltrc');
 const { addBoltPackage } = require('./add-bolt-package');
 
-const currentBoltVersion = require('../../../../docs-site/package.json')
+const currentBoltVersion = require('../../../../../docs-site/package.json')
   .version;
 
 var validateString = function(input) {
@@ -78,7 +78,7 @@ module.exports = class extends Generator {
         message:
           'What is the name of your Bolt component? (for example: `button`, `card`, carousel`, etc)',
         required: true,
-        default: program.name || 'component',
+        default: typeof program.name === 'string' ? program.name : ``,
         validate: function(input) {
           if (typeof input !== 'string') {
             this.log(chalk.red('You must pass a valid component name!'));
@@ -131,12 +131,7 @@ module.exports = class extends Generator {
           'Could you write a sentence or two that describes your new Bolt component?',
         required: false,
         default: function(answers) {
-          return (
-            program.description ||
-            `The ${
-              this.name.noCase
-            } component -- part of the Bolt Design System.`
-          );
+          return `The ${this.name.noCase} component - part of the Bolt Design System.`;
         }.bind(this),
         validate: function(input) {
           if (typeof input !== 'string') {
@@ -153,12 +148,8 @@ module.exports = class extends Generator {
         this.props.gitUrl = this.gitUrl;
         this.props.boltVersion = this.boltVersion;
         this.props.gitInfo = this.gitInfo;
-        this.props.packageName = `@bolt/components-${
-          this.props.name.kebabCase
-        }`;
-        this.props.dest = `${this.folders.src}/bolt-${
-          this.props.name.kebabCase
-        }`;
+        this.props.packageName = `@bolt/components-${this.props.name.kebabCase}`;
+        this.props.dest = `${this.folders.src}/bolt-${this.props.name.kebabCase}`;
         this.props.gitPath =
           this.gitUrl +
           '/tree/master/packages/components/bolt-' +
@@ -221,9 +212,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('component.test.js'),
       this.destinationPath(
-        `${this.folders.src}/bolt-${
-          this.props.name.kebabCase
-        }/__tests__/index.js`,
+        `${this.folders.src}/bolt-${this.props.name.kebabCase}/__tests__/index.js`,
       ),
       { props: this.props },
     );
@@ -256,9 +245,7 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('component-docs.twig'),
       this.destinationPath(
-        `${this.folders.patternLabFolder}/${this.props.name.kebabCase}/00-${
-          this.props.name.kebabCase
-        }-docs.twig`,
+        `${this.folders.patternLabFolder}/${this.props.name.kebabCase}/00-${this.props.name.kebabCase}-docs.twig`,
       ),
       {
         props: this.props,
@@ -274,15 +261,11 @@ module.exports = class extends Generator {
     shelljs.exec('yarn');
 
     shelljs.exec(
-      `npx prettier ${this.folders.patternLabFolder}/${
-        this.props.name.kebabCase
-      }/**/*.{js,scss,json} --write`,
+      `npx prettier ${this.folders.patternLabFolder}/${this.props.name.kebabCase}/**/*.{js,scss,json} --write`,
     );
 
     shelljs.exec(
-      `npx prettier ${this.folders.src}/bolt-${
-        this.props.name.kebabCase
-      }/**/*.{js,scss,json} --write`,
+      `npx prettier ${this.folders.src}/bolt-${this.props.name.kebabCase}/**/*.{js,scss,json} --write`,
     );
   }
 };
