@@ -1,7 +1,7 @@
 // IMPORTANT: NO ASYNC
 // Only synchronous functions. Tests runners don't take well to waiting, or `await`-ing :) Jest needs to know the name of every test at bootstrap and you can't run any async at beginning (i.e. before a global `beforeAll()` than can be async). CLI tools can miss the `stdout` sometimes if async isn't done totally right. It all makes it way more resiliant to just synchronous.
 const execa = require('execa');
-const { join, dirname, relative } = require('path');
+const { join, dirname, relative, parse } = require('path');
 const { readFileSync, readJSONSync } = require('fs-extra');
 const globby = require('globby');
 const findPkg = require('find-pkg');
@@ -130,12 +130,12 @@ function getFilesPkgSync(file) {
 /**
  * @param {Object} opt
  * @param {string} [opt.from] - git commit id to compare from (i.e. current PR branch). defaults to current commit id
- * @param {string} [opt.to='master'] - git commit id to compare to (i.e. the base branch your PR is pointed to)
+ * @param {string} [opt.base='master'] - git commit id to compare to (i.e. the base branch your PR is pointed to)
  * @param {string} [opt.inDir] - directory to filter by
  * @return {string[]} list of files changed
  */
-function getFilesChanged({ from = gitSha, to = 'master', inDir } = {}) {
-  const cmds = ['git', 'diff', '--name-only', `${to}...${from}`];
+function getFilesChanged({ from = gitSha, base = 'master', inDir } = {}) {
+  const cmds = ['git', 'diff', '--name-only', `${base}...${from}`];
   if (inDir) cmds.push(inDir);
   try {
     const results = execa.shellSync(cmds.join(' '), {
@@ -151,10 +151,13 @@ function getFilesChanged({ from = gitSha, to = 'master', inDir } = {}) {
 }
 
 /**
- * @todo extract out all exclude functions into testable single functions
+ * @param {Object} opt
+ * @param {string} [opt.from] - git commit id to compare from (i.e. current PR branch). defaults to current commit id
+ * @param {string} [opt.base='master'] - git commit id to compare to (i.e. the base branch your PR is pointed to)
+ * @returns {{ name: string, absPath: string, relPath: string }[]}
  */
-function getPkgsChanged({ from = gitSha, to = 'master' }) {
-  const filesChanged = getFilesChanged({ from, to });
+function getPkgsChanged({ from = gitSha, base = 'master' } = {}) {
+  const filesChanged = getFilesChanged({ from, base });
   if (!filesChanged) return [];
 
   const foldersToExclude = ['__tests__', '__snapshots__'];
@@ -171,30 +174,33 @@ function getPkgsChanged({ from = gitSha, to = 'master' }) {
   const pkgs = new Set();
 
   filesChanged.forEach(filePath => {
-    // @todo exclude if in foldersToExclude
-    // if (isInBadFolder) {
-    //   console.log(filePath);
-    //   return;
-    // }
+    const { base: filename, dir } = parse(filePath);
+    const dirs = dir.split('/');
+    // exclude if in foldersToExclude
+    if (dirs.some(d => foldersToExclude.includes(d))) {
+      return;
+    }
 
-    // @todo exclude if in filesToExclude
-    // if (isBadFile) {
-    //   console.log(filePath);
-    //   return;
-    // }
+    // exclude if in filesToExclude
+    if (filesToExclude.includes(filename)) {
+      return;
+    }
 
     const pkgName = getFilesPkgSync(filePath);
+
+    // exclude if in pkgsToExclude
+    if (pkgsToExclude.includes(pkgName)) {
+      return;
+    }
     pkgs.add(pkgName);
   });
 
-  const pkgsChanged = [...pkgs].filter(p => !pkgsToExclude.includes(p));
-
-  return pkgsChanged.map(name => {
+  return [...pkgs].map(name => {
     const absPath = getPkgPathFromName(name);
     return {
       name,
       absPath,
-      relPath: relative(process.cwd(), absPath),
+      relPath: relative(repoRoot, absPath),
     };
   });
 }
@@ -207,4 +213,5 @@ module.exports = {
   getPkgFiles,
   getFilesPkgSync,
   getFilesChanged,
+  getPkgsChanged,
 };

@@ -11,7 +11,12 @@ describe('test-utils', () => {
 
   test('getPkgDependencies', () => {
     const deps = tu.getPkgDependencies('@bolt/components-band');
-    const expected = ['@bolt/core', '@bolt/components-grid'].sort();
+    const expected = [
+      '@bolt/core',
+      '@bolt/components-grid',
+      '@bolt/components-background',
+      '@bolt/components-background-shapes',
+    ].sort();
     expect(deps.sort()).toEqual(expected);
   });
 
@@ -46,5 +51,65 @@ describe('test-utils', () => {
       version: expect.any(String),
       location: expect.any(String),
     });
+  });
+
+  test('getFilesChanged', () => {
+    const files = tu.getFilesChanged({
+      from: 'v2.4.4',
+      base: 'v2.4.3',
+    });
+
+    const expected = [
+      '.boltrc.js',
+      'CHANGELOG.md',
+      'docs-site/.boltrc.js',
+      'docs-site/.incache',
+      'docs-site/CHANGELOG.md',
+      'docs-site/config/config.yml',
+      'docs-site/package.json',
+      'lerna.json',
+      'package.json',
+      'packages/api/CHANGELOG.md',
+      'packages/api/package.json',
+      'packages/build-tools/CHANGELOG.md',
+      'packages/build-tools/package.json',
+      'packages/components/bolt-action-blocks/CHANGELOG.md',
+      'packages/components/bolt-action-blocks/package.json',
+      'packages/components/bolt-action-blocks/src/action-block.twig',
+      'packages/core-php/composer.json',
+      'packages/core-php/composer.lock',
+      'packages/core-php/package.json',
+      'packages/core-php/readme.md',
+      'packages/core-php/src/TwigExtensions/BoltCore.php',
+      'packages/core-php/src/TwigExtensions/BoltCoreCompat.php',
+      'packages/core-php/src/TwigExtensions/BoltExtras.php',
+      'packages/core-php/src/TwigFunctions.php',
+      'packages/core-php/src/Utils.php',
+      'packages/drupal-modules/bolt_connect/bolt_connect.info.yml',
+      'packages/drupal-modules/bolt_connect/composer.json',
+      'packages/twig-renderer/CHANGELOG.md',
+      'packages/twig-renderer/SetupTwigRenderer.php',
+      'packages/twig-renderer/package.json',
+      'yarn.lock',
+    ].map(x => join(repoRoot, x));
+
+    expect(files.sort()).toStrictEqual(expected.sort());
+  });
+
+  test('getFilesChanged', () => {
+    const pkgs = tu
+      .getPkgsChanged({
+        from: 'v2.4.4',
+        base: 'v2.4.3',
+      })
+      .map(p => p.name);
+
+    const expected = [
+      '@bolt/components-action-blocks',
+      '@bolt/core-php',
+      '@bolt/twig-renderer',
+    ];
+
+    expect(pkgs.sort()).toStrictEqual(expected.sort());
   });
 });
