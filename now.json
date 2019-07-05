@@ -1,14 +1,12 @@
 {
-  "version": 1,
+  "version": 2,
+  "scope": "boltdesignsystem",
   "name": "boltdesignsystem",
-  "type": "docker",
-  "scale": {
-    "sfo1": {
-      "min": 0,
-      "max": 1
-    }
-  },
-  "features": {
-    "cloud": "v1"
-  }
+  "builds": [
+    { "src": "www/**", "use": "@now/static" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "www/$1" },
+    { "src": "/.*", "headers": { "Access-Control-Allow-Origin": "*" } }
+  ]
 }
