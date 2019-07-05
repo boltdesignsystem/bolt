@@ -18,7 +18,7 @@ function updateBoltRcConfig(newPackageName) {
     const updatedBoltRcContent = fs
       .readFileSync(boltRcConfigPath)
       .toString()
-      .replace(/global: \[/, `global: ['${newPackageName}',`);
+      .replace(/global: \[/, `global: [\n      '${newPackageName}',`);
 
     const updatedPrettyBoltRcContent = prettier.format(updatedBoltRcContent, {
       singleQuote: true,
