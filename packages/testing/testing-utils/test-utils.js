@@ -2,7 +2,7 @@
 // Only synchronous functions. Tests runners don't take well to waiting, or `await`-ing :) Jest needs to know the name of every test at bootstrap and you can't run any async at beginning (i.e. before a global `beforeAll()` than can be async). CLI tools can miss the `stdout` sometimes if async isn't done totally right. It all makes it way more resiliant to just synchronous.
 const execa = require('execa');
 const { join, dirname, relative, parse } = require('path');
-const { readFileSync, readJSONSync } = require('fs-extra');
+const { readJSONSync } = require('fs-extra');
 const globby = require('globby');
 const findPkg = require('find-pkg');
 
@@ -214,4 +214,5 @@ module.exports = {
   getFilesPkgSync,
   getFilesChanged,
   getPkgsChanged,
+  gitSha,
 };
