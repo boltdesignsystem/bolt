@@ -250,7 +250,7 @@
     {% endgrid %}
     {# Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2 #}
     {# {{ component_explorer }} #}
-    {% if component_explorer %}
+    {% if schemaForm and schema %}
       {% include "@bolt-site/gearbox.twig" with {
         text: "Bolt's Component Explorer is being upgraded. It'll return in a future release!"
       } only %}
