@@ -153,10 +153,9 @@ PrerenderSPAPlugin.prototype.apply = function(compiler) {
                     processedRoute.html.trim(),
                     err => {
                       if (err)
+                        // eslint-disable-next-line prefer-promise-reject-errors
                         reject(
-                          `[prerender-spa-plugin] Unable to write rendered route to file "${
-                            processedRoute.outputPath
-                          }" \n ${err}.`,
+                          `[prerender-spa-plugin] Unable to write rendered route to file "${processedRoute.outputPath}" \n ${err}.`,
                         );
                       else resolve();
                     },

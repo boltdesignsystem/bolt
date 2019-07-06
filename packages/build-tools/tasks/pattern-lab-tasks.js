@@ -157,7 +157,10 @@ async function precompile() {
           );
 
           const result = shell.exec(
-            `yarn --cwd ${path.join(process.cwd(), '../packages/uikit-workshop')} run build`,
+            `yarn --cwd ${path.join(
+              process.cwd(),
+              '../packages/uikit-workshop',
+            )} run build`,
           ).stdout;
 
           // return result;
