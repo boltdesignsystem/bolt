@@ -15,6 +15,7 @@ const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const manifest = require('@bolt/build-utils/manifest');
 const timer = require('@bolt/build-utils/timer');
 const { fileExists, dirExists } = require('@bolt/build-utils/general');
+const shell = require('shelljs');
 
 let plSource, plPublic, consolePath;
 let config;
@@ -154,20 +155,28 @@ async function precompile() {
           chalk.yellow(
             '⚠️ Uh-oh. Pattern Labs UIKit is missing... Regenerating!',
           );
-          sh(
-            'yarn',
-            [
-              '--cwd',
-              path.join(process.cwd(), '../packages/uikit-workshop'),
-              'run',
-              'build',
-            ],
-            false,
-            true,
-          ).then(output => {
-            // console.log(output);
-            resolve();
-          });
+
+          const result = shell.exec(
+            `yarn --cwd ${path.join(process.cwd(), '../packages/uikit-workshop')} run build`,
+          ).stdout;
+
+          // return result;
+
+          resolve(result);
+          // sh(
+          //   'yarn',
+          //   [
+          //     '',
+          //     ,
+          //     'run',
+          //     'build',
+          //   ],
+          //   false,
+          //   true,
+          // ).then(output => {
+          //   // console.log(output);
+
+          // });
         } else {
           resolve();
         }

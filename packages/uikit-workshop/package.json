@@ -13,6 +13,7 @@
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop",
   "license": "MIT",
   "scripts": {
+    "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",
     "build": "webpack-cli --config webpack.config.js --display=minimal",
     "test": "npm run build -- --bail",
     "watch": "webpack-cli --config webpack.config.js --progress --watch"
@@ -23,6 +24,10 @@
     "> 0.25%"
   ],
   "dependencies": {
+    "puppeteer-core": "^1.18.1",
+    "local-chrome": "^0.1.0",
+    "@bolt/uikit-prerenderer": "*",
+    "@bolt/critical-css-webpack-plugin": "*",
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-decorators": "^7.4.4",
@@ -47,8 +52,7 @@
     "copy-webpack-plugin": "^4.5.2",
     "core-js": "^3.1.3",
     "cosmiconfig": "^5.2.1",
-    "critical": "^1.3.4",
-    "critical-css-webpack-plugin": "^0.2.0",
+    "critical": "^2.0.0-19",
     "css-loader": "^2.1.1",
     "deepmerge": "^3.2.0",
     "document-register-element": "^1.13.2",

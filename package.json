@@ -23,12 +23,23 @@
   "workspaces": {
     "packages": [
       "docs-site",
-      "packages/*",
-      "packages/*/*",
-      "packages/build-tools/plugins/*",
-      "docs-site/src/components/radio-switch",
       "docs-site/src/components/docs-search",
-      "docs-site/src/components/banner"
+      "docs-site/src/components/radio-switch",
+      "docs-site/src/components/banner",
+      "packages/analytics/*",
+      "packages/api",
+      "packages/build-tools",
+      "packages/build-tools/utils",
+      "packages/build-tools/plugins/*",
+      "packages/components/*",
+      "packages/configs/*",
+      "packages/core",
+      "packages/generators/*",
+      "packages/global",
+      "packages/twig-renderer",
+      "packages/uikit-*",
+      "packages/testing/*",
+      "packages/servers/testing-server"
     ]
   },
   "scripts": {
@@ -82,6 +93,7 @@
     ]
   },
   "config": {
+    "puppeteer_skip_chromium_download": true,
     "commitizen": {
       "path": "./node_modules/@instructure/cz-lerna-changelog"
     }
