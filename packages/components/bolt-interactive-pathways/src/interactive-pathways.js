@@ -31,10 +31,8 @@ class BoltInteractivePathways extends withLitHtml() {
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
 
-    self._updateActivePathwayAttributes = self._updateActivePathwayAttributes.bind(
-      self,
-    );
-    self._clickNavMenuItem = self._clickNavMenuItem.bind(self);
+    self._updateActivePathwayAttributes = self._updateActivePathwayAttributes.bind(self);
+    self._handleMenuItemClick = self._handleMenuItemClick.bind(self);
 
     return self;
   }
@@ -47,11 +45,12 @@ class BoltInteractivePathways extends withLitHtml() {
     this.activePathway = this.pathways[0];
     this._updateActivePathwayAttributes();
 
+    // Remove timeout and see if it works.
     // @todo remove this temporary fix once SSR rendering/load performance has been addressed
     window.setTimeout(() => {
       this.style.display = 'block';
       this.style.opacity = '1';
-      document.querySelectorAll('.temp-loading-pladeholder').forEach(node => {
+      document.querySelectorAll('.temp-loading-placeholder').forEach(node => {
         node.style.display = 'none';
       });
     }, 600);
@@ -61,7 +60,7 @@ class BoltInteractivePathways extends withLitHtml() {
     /** @type {HTMLElement[]}  */
     Array.from(this.pathways).forEach(pathway => {
       pathway === this.activePathway
-        ? pathway.setAttribute('active', '')
+        ? pathway.setAttribute('active', 1)
         : pathway.removeAttribute('active');
     });
     // Update the title of the dropdown
@@ -71,16 +70,14 @@ class BoltInteractivePathways extends withLitHtml() {
    * When a nav item is clicked, updates the active pathway
    * @private
    */
-  _clickNavMenuItem(event) {
+  _handleMenuItemClick(event) {
+    console.log('event', event.target);
     // Get the menu-item associated pathway id from which the event originated
-    const newActivePathwayId = event.path
-      .find(node => node.className === 'c-bolt-interactive-pathways__menu-item')
-      .getAttribute('data-associated-pathway-id');
-    console.log('Wubba Lubba Dub Dub: newActivePathwayId', newActivePathwayId);
+    // const newActivePathwayId = event.path
+    //   .find(node => node.className === 'c-bolt-interactive-pathways__menu-item')
+    //   .getAttribute('data-associated-pathway-id');
     // Update the activePathway
-    this.activePathway = Array.from(this.pathways).find(
-      pathway => pathway.getAttribute('id') === newActivePathwayId,
-    );
+    this.activePathway = event.target;
 
     // Get the dropdownMenu once
     if (!this.dropdownMenu) {
@@ -92,7 +89,38 @@ class BoltInteractivePathways extends withLitHtml() {
       this.activePathway.slots['pathway-title'][0].innerHTML,
     );
 
-    this._updateActivePathwayAttributes();
+    Array.from(this.pathways).forEach(pathway => {
+      pathway === this.activePathway
+        ? pathway.setAttribute('active', 1)
+        : pathway.removeAttribute('active');
+    });
+  }
+
+  _getPathwaysDropdownMenuItems() {
+    return Array.from(this.pathways).map((item, i) => {
+      return html`
+        <bolt-text
+          data-associated-pathway-id="${i}"
+          class="c-bolt-interactive-pathways__menu-item"
+        >
+          ${item.querySelector('[slot="pathway-title"]').innerText}
+        </bolt-text>
+      `;
+    });
+  }
+
+  _getPathwaysDropdownMenu() {
+    return html`
+      <bolt-dropdown
+        center
+        title="${this.activePathway.querySelector('[slot="pathway-title"]').innerText}"
+        @click=${this._handleMenuItemClick}
+      >
+        <bolt-block-list>
+          ${this._getPathwaysDropdownMenuItems()}
+        </bolt-block-list>
+      </bolt-dropdown>
+    `;
   }
 
   render() {
@@ -103,50 +131,18 @@ class BoltInteractivePathways extends withLitHtml() {
       [`c-bolt-interactive-pathways--disabled`]: disabled,
     });
 
-    // We'll need this to dynamically generate the dropdown menu content, but its giving me trouble. Can't seem to get it to render as html and not a string
-    // const dropDownMenuItems = html`
-    //   ${Array.from(this.pathways).reduce((accumulator, pathway) => {
-    //     return accumulator.concat(
-    //       `<bolt-text class="c-bolt-interactive-pathways__menu-tiem">${
-    //         pathway.querySelector('[slot="pathway-title"]').innerHTML
-    //       }</bolt-text>`,
-    //     );
-    //   }, '')}
-    // `;
-
-    const dropDownMenu = html`
-      <bolt-dropdown
-        center
-        title="${this.activePathway.querySelector('[slot="pathway-title"]')
-          .innerHTML}"
-      >
-        <bolt-block-list>
-          <bolt-text
-            @click=${event => this._clickNavMenuItem(event)}
-            data-associated-pathway-id="12345"
-            class="c-bolt-interactive-pathways__menu-item"
-            >Billing Disputes</bolt-text
-          >
-          <bolt-text
-            @click=${event => this._clickNavMenuItem(event)}
-            data-associated-pathway-id="54321"
-            class="c-bolt-interactive-pathways__menu-item"
-            >Complaints/ Disputes</bolt-text
-          >
-        </bolt-block-list>
-      </bolt-dropdown>
-    `;
-
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <div class="c-bolt-interactive-pathways__header">
+        <!-- @TODO make the source a real boy.-->
           <img
             src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/interactive-pathways-logo.png"
             alt="Two diamond logo"
           />
           <div class="c-bolt-interactive-pathways__nav">
-            ${this.slot('interactive-pathways-lead-text')} ${dropDownMenu}
+            ${this.slot('interactive-pathways-lead-text')}
+            ${this._getPathwaysDropdownMenu()}
           </div>
         </div>
 
