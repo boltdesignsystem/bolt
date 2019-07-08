@@ -23,10 +23,12 @@
   "workspaces": {
     "packages": [
       "docs-site",
-      "docs-site/src/components/*",
       "packages/*",
       "packages/*/*",
-      "packages/build-tools/plugins/*"
+      "packages/build-tools/plugins/*",
+      "docs-site/src/components/radio-switch",
+      "docs-site/src/components/docs-search",
+      "docs-site/src/components/banner"
     ]
   },
   "scripts": {
@@ -41,7 +43,6 @@
     "create:component": "yo ./packages/generators/yeoman-create-component/generators/component/index.js",
     "cz": "git-cz",
     "deploy": "./scripts/deploy.js",
-    "deploy:docker": "sh ./scripts/docker.sh",
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
