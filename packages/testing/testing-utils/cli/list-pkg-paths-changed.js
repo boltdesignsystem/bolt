@@ -22,7 +22,12 @@ if (process.env.TRAVIS === 'true') {
   [
     {
       label: 'Setting git config',
-      cmd: ['git', 'config', 'remote.origin.fetch', '"+refs/heads/*:refs/remotes/origin/*"'],
+      cmd: [
+        'git',
+        'config',
+        'remote.origin.fetch',
+        '"+refs/heads/*:refs/remotes/origin/*"',
+      ],
     },
     {
       label: 'Git Fetch',
@@ -53,9 +58,7 @@ const pkgs = getPkgsChanged({ from: 'HEAD', base: `origin/${base}` });
 // use `stderr` to communicate to user, this will not be passed to jest
 // use `stdout` to provide a command line argument to `jest`, this will not be seen by user
 
-process.stderr.write(
-  `Comparing this commit "HEAD" to base of "${base}":\n`,
-);
+process.stderr.write(`Comparing this commit "HEAD" to base of "${base}":\n`);
 process.stderr.write(
   `These packages have changed, filtering tests to just these directories:\n`,
 );

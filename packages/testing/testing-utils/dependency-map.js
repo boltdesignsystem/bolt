@@ -16,10 +16,7 @@ if (!existsSync(twigNamespacesManifestPath)) {
   process.exit(1);
 }
 
-const fullConfigPath = join(
-  repoRoot,
-  'www/build/data/config.bolt.json',
-);
+const fullConfigPath = join(repoRoot, 'www/build/data/config.bolt.json');
 if (!existsSync(fullConfigPath)) {
   console.log(
     `Please do a build first, need to get this file: ${fullConfigPath}`,
