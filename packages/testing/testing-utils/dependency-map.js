@@ -53,14 +53,12 @@ async function getTwigFilePath(templateName) {
   const files = await globby(globPatterns);
 
   if (files.length > 1) {
-    console.log({ templateName, files });
     throw new Error(
       `More than 1 possible Twig file found when looking for "${templateName}".`,
     );
   }
 
   if (files.length === 0) {
-    console.log({ templateName, globPatterns });
     throw new Error(`No Twig files found when looking for "${templateName}".`);
   }
 
