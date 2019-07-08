@@ -47,7 +47,7 @@ async function getTwigFilePath(templateName) {
 
   const globPatterns = namespaceConfig.paths.map(path => {
     const suffix = namespaceConfig.recursive ? join('**', relPath) : relPath;
-    return join(repoRoot, path, suffix);
+    return join(repoRoot, 'docs-site', path, suffix);
   });
 
   const files = await globby(globPatterns);
