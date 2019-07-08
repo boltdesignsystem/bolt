@@ -16,6 +16,17 @@ if (!existsSync(twigNamespacesManifestPath)) {
   process.exit(1);
 }
 
+const fullConfigPath = join(
+  repoRoot,
+  'www/build/data/config.bolt.json',
+);
+if (!existsSync(fullConfigPath)) {
+  console.log(
+    `Please do a build first, need to get this file: ${fullConfigPath}`,
+  );
+  process.exit(1);
+}
+
 /**
  * @typedef {Object} TwigNamespace
  * @prop {boolean} recursive
@@ -24,6 +35,8 @@ if (!existsSync(twigNamespacesManifestPath)) {
 
 /** @type {{ [key: string]: TwigNamespace }} */
 const twigNamespaces = readJSONSync(twigNamespacesManifestPath);
+const { configFileUsed } = readJSONSync(fullConfigPath);
+const twigNamespaceRoot = dirname(configFileUsed);
 
 /**
  * @param {string} templateName i.e. `@bolt/button.twig`
@@ -47,7 +60,7 @@ async function getTwigFilePath(templateName) {
 
   const globPatterns = namespaceConfig.paths.map(path => {
     const suffix = namespaceConfig.recursive ? join('**', relPath) : relPath;
-    return join(repoRoot, 'docs-site', path, suffix);
+    return join(twigNamespaceRoot, path, suffix);
   });
 
   const files = await globby(globPatterns);
