@@ -135,6 +135,7 @@ const config = {
       '@bolt/components-grid',
       '@bolt/components-interactive-pathways',
       '@bolt/components-interactive-pathway',
+      '@bolt/editor',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
