@@ -28,8 +28,6 @@ describe('<bolt-form> Component', () => {
     },
   ];
 
-  const display = ['before', 'after'];
-
   const options = [
     {
       type: 'option',
