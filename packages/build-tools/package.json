@@ -1,34 +1,33 @@
 {
   "name": "@bolt/build-tools",
-  "version": "2.4.4",
-  "license": "MIT",
+  "version": "2.5.2",
   "description": "Curated collection of front-end build tools in the Bolt Design System.",
-  "main": "index.js",
-  "bin": {
-    "bolt": "index.js"
-  },
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools",
   "keywords": [
     "bolt",
     "bolt design system",
     "build tools"
   ],
-  "maintainers": [
-    {
-      "name": "Salem Ghoweri",
-      "email": "me@salemghoweri.com",
-      "web": "https://github.com/sghoweri"
-    }
+  "homepage": "https://boltdesignsystem.com",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "bolt": "index.js"
+  },
+  "browserslist": [
+    "extends @bolt/browserslist-config"
   ],
   "dependencies": {
     "@babel/core": "^7.4.5",
-    "@bolt/api": "^2.4.4",
-    "@bolt/babel-preset-bolt": "^2.4.3",
-    "@bolt/config-browserlist": "^2.4.3",
-    "@bolt/postcss-themify": "^2.4.0",
-    "@bolt/sass-export-data": "^2.4.0",
-    "@bolt/sassdoc-webpack-plugin": "^2.4.0",
-    "@bolt/twig-renderer": "^2.4.4",
+    "@bolt/api": "^2.5.2",
+    "@bolt/babel-preset-bolt": "^2.5.1",
+    "@bolt/browserslist-config": "^2.5.1",
+    "@bolt/build-utils": "^2.5.2",
+    "@bolt/postcss-themify": "^2.5.2",
+    "@bolt/sass-export-data": "^2.5.1",
+    "@bolt/sassdoc-webpack-plugin": "^2.5.1",
+    "@bolt/twig-renderer": "^2.5.2",
     "@octokit/plugin-throttling": "^2.6.0",
     "@octokit/rest": "^16.27.3",
     "address": "^1.1.0",
@@ -43,18 +42,15 @@
     "chokidar": "^3.0.0",
     "clean-css-loader": "^2.0.0",
     "commander": "^2.20.0",
-    "convert-hrtime": "^3.0.0",
     "copy-webpack-plugin": "^5.0.3",
     "cosmiconfig": "^5.2.1",
     "css-hot-loader": "^1.4.4",
     "css-loader": "^2.1.1",
     "cssnano": "^4.1.10",
     "deepmerge": "^3.2.0",
-    "del": "^4.1.1",
     "ejs": "^2.6.1",
-    "eslint-loader": "^2.1.2",
     "eslint": "^5.16.0",
-    "execa": "^1.0.0",
+    "eslint-loader": "^2.1.2",
     "express": "^4.17.1",
     "file-loader": "^3.0.1",
     "front-matter": "^3.0.2",
@@ -62,16 +58,13 @@
     "globby": "^9.2.0",
     "hard-source-webpack-plugin-patch": "^0.13.3",
     "incache": "^7.2.1",
-    "js-yaml": "^3.13.1",
     "json-loader": "^0.5.7",
-    "jsonschema": "^1.2.4",
     "lodash.debounce": "^4.0.8",
     "marked": "^0.6.2",
     "mini-css-extract-plugin": "^0.7.0",
     "mkdirp": "^0.5.1",
     "node-cache": "^4.2.0",
     "node-fetch": "^2.6.0",
-    "node-notifier": "^5.4.0",
     "node-sass": "^4.12.0",
     "npm-sass": "^2.3.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
@@ -81,12 +74,10 @@
     "postcss-loader": "^3.0.0",
     "postcss-scss": "^2.0.0",
     "prettier": "^1.17.1",
-    "pretty-ms": "^5.0.0",
     "resolve-url-loader": "^3.1.0",
-    "resolve": "^1.11.0",
     "sass-loader": "^7.1.0",
-    "sassdoc-theme-default": "^2.8.2",
     "sassdoc": "^2.7.0",
+    "sassdoc-theme-default": "^2.8.2",
     "semver": "^6.1.1",
     "sharp": "^0.22.1",
     "string-replace-loader": "^2.1.1",
@@ -97,12 +88,12 @@
     "uglifyjs-webpack-plugin": "^2.1.3",
     "uppercamelcase": "^3.0.0",
     "url-loader": "^1.1.2",
+    "webpack": "4.32.2",
     "webpack-cli": "^3.3.2",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-manifest-plugin": "^2.0.4",
     "webpack-merge": "^4.2.1",
-    "webpack": "4.32.2",
     "write-file-webpack-plugin": "^4.5.0",
     "yaml-loader": "^0.5.0",
     "yargs": "^13.2.4"
@@ -110,8 +101,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "schema": "utils/config.schema.yml",
-  "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "homepage": "https://boltdesignsystem.com",
-  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
+  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    }
+  ],
+  "schema": "utils/config.schema.yml"
 }

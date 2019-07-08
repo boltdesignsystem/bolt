@@ -1,0 +1,30 @@
+{% set modal_content %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This modal doesn't have the default close button.",
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "Close modal",
+    attributes: {
+      slot: "footer",
+      onclick: "this.closest('bolt-modal').hide()",
+    }
+  } only %}
+{% endset %}
+
+<p>The visibility of the default close button can be adjusted by the hide_close_button prop, setting it to true will hide the button visually while it is still accessible through screen readers. When hiding the default close button, it's recommended to pass in your own close button either in the modal container's header or footer.</p>
+
+<p><mark>Note: this prop only applies to viewports equal to or above the small breakpoint (~600px).</mark></p>
+
+<h3>Hide Default Close Button</h3>
+{% include "@bolt-components-button/button.twig" with {
+  text: "Open Modal",
+  size: "small",
+  attributes: {
+    onclick: "this.nextElementSibling.show()",
+  }
+} only %}
+{% include "@bolt-components-modal/modal.twig" with {
+  content: modal_content,
+  width: "optimal",
+  hide_close_button: true,
+} only %}

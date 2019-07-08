@@ -73,18 +73,23 @@ function setWebComponentProperty(propertyName, propertyType, property) {
 
 for (const key of schemaPropKeys) {
   const property = originalSchema.properties[key];
-  const propertyName = changeCase.camelCase(key);
-  const propertyType =
-    typeof property.type === 'object' && property.type.length > 1
-      ? 'string'
-      : property.type === 'integer'
-      ? 'number'
-      : property.type;
-  carouselProps[propertyName] = setWebComponentProperty(
-    propertyName,
-    propertyType,
-    property,
-  );
+
+  // Skip props with type "object" and "array". They are Twig-only. Breaking IE11.
+  if (property.type !== 'object' && property.type !== 'array') {
+    const propertyName = changeCase.camelCase(key);
+    const propertyType =
+      typeof property.type === 'object' && property.type.length > 1
+        ? 'string'
+        : property.type === 'integer'
+        ? 'number'
+        : property.type;
+
+    carouselProps[propertyName] = setWebComponentProperty(
+      propertyName,
+      propertyType,
+      property,
+    );
+  }
 }
 
 @define
@@ -390,7 +395,8 @@ class BoltCarousel extends withLitHtml() {
       breakpointsInverse: true,
       breakpoints: {},
       grabCursor: true,
-      loop: this.props.loop,
+      loop: false,
+      // loop: this.props.loop, // @todo: re-enable once related re-rendering bugs addressed
       autoplay: this.props.autoplay
         ? {
             delay: 5000,
@@ -466,6 +472,7 @@ class BoltCarousel extends withLitHtml() {
       this.hideArrowsIfAllSlidesAreVisible();
       this.disableSwipingIfAllSlidesAreVisible();
       this.swiper.on('slideChange', this.onSlideChange);
+      this.reInitCarousel(); // this fires when the props on the component changes HOWEVER it also needs to fire once the component has finished rendering for the very first time so that the appropriate slidesPerGroup value is automatically set for the initial state
     } else {
       if (this.swiper) {
         // update swiper if component re-rendered

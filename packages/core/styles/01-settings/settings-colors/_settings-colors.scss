@@ -54,7 +54,7 @@ $bolt-brand-colors: (
   'white': (
     'base': hsl(0, 0%, 100%),
   ),
-);
+) !default;
 
 /// Bolt Status Colors - merged into $bolt-colors map
 /// @type map
@@ -79,7 +79,7 @@ $bolt-status-colors: (
     'base': hsl(51, 80%, 55%),
     'light': hsl(51, 80%, 90%),
   ),
-);
+) !default;
 
 /// Bolt Social Colors - merged into $bolt-colors map
 /// @type map
@@ -89,7 +89,7 @@ $bolt-social-colors: (
     'twitter': hsl(196, 100%, 46%),
     'linkedin': hsl(201, 96%, 36%),
   ),
-);
+) !default;
 
 /// All Bolt Colors - used within bolt-color @mixin and @function
 /// @type map
@@ -98,7 +98,7 @@ $bolt-social-colors: (
 $bolt-colors: map-merge(
   map-merge($bolt-brand-colors, $bolt-status-colors),
   $bolt-social-colors
-);
+) !default;
 
 @include bolt-export-data('colors/all.bolt.json', $bolt-colors);
 @include bolt-export-data('colors/status.bolt.json', $bolt-status-colors);

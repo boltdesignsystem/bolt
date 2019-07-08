@@ -92,12 +92,20 @@ async function isReady() {
     //   ),
     // );
     const searchedFor = explorer.searchSync();
-    if (searchedFor.config) {
-      await init({
-        ...searchedFor.config,
-        configFileUsed: searchedFor.filepath,
-      });
-      return true;
+    if (searchedFor) {
+      if (searchedFor.config) {
+        await init({
+          ...searchedFor.config,
+          configFileUsed: searchedFor.filepath,
+        });
+        return true;
+      } else {
+        console.log(
+          chalk.red(
+            '.boltrc config not found -- you must initialize config before trying to get or update it.',
+          ),
+        );
+      }
     } else {
       console.log(
         chalk.red(

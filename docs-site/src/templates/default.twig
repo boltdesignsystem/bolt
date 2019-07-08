@@ -31,7 +31,7 @@
 
     <a href="#" class="c-bds-layout__sidebar__overlay"></a>
   {% endif %}
-  
+
   <div class="c-bds-layout__content c-bolt-site__content {% if hasSidebar %} c-bds-layout__content--has-sidebar{% endif %} {% if currentUrl == 'index.html' %}c-bolt-site__content--middle {% endif %}">
 
     <div class="c-bds-layout__wrapper">
@@ -62,7 +62,7 @@
             {{ page.body|raw }}
           {% endblock %}
         {% endset %}
-      
+
         {% include "@bolt-components-band/band.twig" with {
           content: band_content,
           pinned_content: {

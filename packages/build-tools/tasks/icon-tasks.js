@@ -6,13 +6,13 @@ const cheerio = require('cheerio');
 const prettier = require('prettier');
 const SVGO = require('svgo');
 const yaml = require('js-yaml');
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
 const resolve = require('resolve');
 const debounce = require('lodash.debounce');
 const chokidar = require('chokidar');
 const Ora = require('ora');
 const chalk = require('chalk');
-const log = require('../utils/log');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const log = require('@bolt/build-utils/log');
 
 let initialBuild = true;
 let iconSpinner;
