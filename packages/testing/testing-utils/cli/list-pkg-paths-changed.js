@@ -22,20 +22,16 @@ if (process.env.TRAVIS === 'true') {
   [
     {
       label: 'Setting git config',
-      cmd: [
-        'git',
-        'config',
-        'remote.origin.fetch',
-        '"+refs/heads/*:refs/remotes/origin/*"',
-      ],
+      cmd:
+        'git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"',
     },
     {
       label: 'Git Fetch',
-      cmd: ['git', 'fetch'],
+      cmd: 'git fetch',
     },
   ].forEach(step => {
     console.log(step.label);
-    const results = execa.sync(step.cmd);
+    const results = execa.shellSync(step.cmd);
     if (results.failed) {
       console.error(`Uh oh, this Travis git step failed:`);
       console.log(results.stderr);
