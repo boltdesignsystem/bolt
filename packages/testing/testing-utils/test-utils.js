@@ -134,7 +134,7 @@ function getFilesPkgSync(file) {
  * @param {string} [opt.inDir] - directory to filter by
  * @return {string[]} list of files changed
  */
-function getFilesChanged({ from = gitSha, base = 'master', inDir } = {}) {
+function getFilesChanged({ from = 'HEAD', base = 'master', inDir } = {}) {
   const cmds = ['git', 'diff', '--name-only', `${base}...${from}`];
   if (inDir) cmds.push(inDir);
   try {
@@ -156,7 +156,7 @@ function getFilesChanged({ from = gitSha, base = 'master', inDir } = {}) {
  * @param {string} [opt.base='master'] - git commit id to compare to (i.e. the base branch your PR is pointed to)
  * @returns {{ name: string, absPath: string, relPath: string }[]}
  */
-function getPkgsChanged({ from = gitSha, base = 'master' } = {}) {
+function getPkgsChanged({ from = 'HEAD', base = 'master' } = {}) {
   const filesChanged = getFilesChanged({ from, base });
   if (!filesChanged) return [];
 

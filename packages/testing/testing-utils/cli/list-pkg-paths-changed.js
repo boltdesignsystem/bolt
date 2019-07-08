@@ -1,5 +1,6 @@
 #! /usr/bin/env node
-const { getPkgsChanged, gitSha } = require('../test-utils');
+const execa = require('execa');
+const { getPkgsChanged } = require('../test-utils');
 
 let base = 'master';
 
@@ -17,9 +18,31 @@ if (process.env.TRAVIS === 'true') {
   if (isPr) {
     base = TRAVIS_BRANCH;
   }
+  // https://github.com/travis-ci/travis-ci/issues/6069#issuecomment-319710346
+  [
+    {
+      label: 'Setting git config',
+      cmd: ['git', 'config', 'remote.origin.fetch', '"+refs/heads/*:refs/remotes/origin/*"'],
+    },
+    {
+      label: 'Git Fetch',
+      cmd: ['git', 'fetch'],
+    },
+  ].forEach(step => {
+    console.log(step.label);
+    const results = execa.shellSync(step.cmd);
+    if (results.failed) {
+      console.error(`Uh oh, this Travis git step failed:`);
+      console.log(results.stderr);
+      console.log(results.stdout);
+      process.exit(1);
+      return;
+    }
+    console.log('Ran OK');
+  });
 }
 
-const pkgs = getPkgsChanged({ from: gitSha, base });
+const pkgs = getPkgsChanged({ from: 'HEAD', base: `origin/${base}` });
 
 // This provides a regex for test files to the `jest` cli
 // https://jestjs.io/docs/en/cli#jest-regexfortestfiles
@@ -31,7 +54,7 @@ const pkgs = getPkgsChanged({ from: gitSha, base });
 // use `stdout` to provide a command line argument to `jest`, this will not be seen by user
 
 process.stderr.write(
-  `Comparing this commit "${gitSha}" to base of "${base}":\n`,
+  `Comparing this commit "HEAD" to base of "${base}":\n`,
 );
 process.stderr.write(
   `These packages have changed, filtering tests to just these directories:\n`,
