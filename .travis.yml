@@ -47,7 +47,10 @@ jobs:
       name: 'Smoke Tests: Unit Tests (Jest)'
       install: yarn run setup
       before_script: ./scripts/check-run-queue.js 'Unit'
-      script: yarn run test
+      script: 
+        - yarn test:monorepo --runInBand
+        - yarn test:php
+        - yarn test:js --runInBand
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
 
