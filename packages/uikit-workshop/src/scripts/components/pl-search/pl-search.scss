@@ -19,7 +19,7 @@ pl-search {
   padding: 0.4rem 0.5rem;
   display: inline-block;
   align-self: stretch;
-  
+
   @media screen and (min-width: $pl-bp-med) {
     margin-left: 1rem;
     flex-direction: row;
@@ -31,7 +31,6 @@ pl-search {
       flex-direction: column;
       margin-left: 0;
       width: 100%;
-      padding-top: 1rem;
     }
   }
 }
@@ -98,7 +97,7 @@ pl-search {
   @media all and (min-width: 900px) {
     font-size: inherit;
   }
-  
+
   // Remove the native <input> clear button in IE 11 in lieu of JS-controlled clear button
   &::-ms-clear {
     display: none;
@@ -129,7 +128,7 @@ pl-search {
     background-color: rgba(var(--theme-text-rgb), 0.1);
     color: $pl-color-gray-70;
     color: rgba(var(--theme-text-rgb), 0.67);
-    
+
     // border-color: $pl-color-gray-13;
     // border-color: darken($pl-color-gray-87, 10%);
   }
