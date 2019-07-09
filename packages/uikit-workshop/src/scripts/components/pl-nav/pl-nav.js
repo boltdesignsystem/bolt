@@ -11,11 +11,11 @@ import 'url-search-params-polyfill';
 const SubSubList = (props) => {
   const { children, category, elem } = props;
   const reorderedChildren = [];
-  
+
   const nonViewAllItems = children.filter((item => (item.patternName !== 'View All' && !item.patternName.includes(' Docs'))));
   // const nonViewAllItems = children.filter((item => (item.patternName !== 'View All')));
   const viewAllItems = children.filter((item => item.patternName === 'View All'));
-  
+
   reorderedChildren.push(...viewAllItems, ...nonViewAllItems);
 
   return (
@@ -35,10 +35,10 @@ const SubSubList = (props) => {
                 `}
                 onClick={(e) => elem.handleClick(e, patternSubtypeItem.patternPartial)}
                 data-patternpartial={patternSubtypeItem.patternPartial}>
-                  { 
-                    patternSubtypeItem.patternName === 'View All' ? 
-                    `${category}` : 
-                    patternSubtypeItem.patternName  
+                  {
+                    patternSubtypeItem.patternName === 'View All' ?
+                    `${category}` :
+                    patternSubtypeItem.patternName
                   }
                   { patternSubtypeItem.patternState && (
                     <span
@@ -50,7 +50,7 @@ const SubSubList = (props) => {
                   )}
                 </a>
 
-                {
+                {/* {
                   nonViewAllItems.length > 1 && (
                     <SpecialButton
                       aria-controls={category}
@@ -61,7 +61,7 @@ const SubSubList = (props) => {
                       {category}
                     </SpecialButton>
                   )
-                }
+                } */}
           </div>) :
             (<Button
               aria-controls={category}
@@ -86,10 +86,10 @@ const SubSubList = (props) => {
                     `}
                     onClick={(e) => elem.handleClick(e, patternSubtypeItem.patternPartial)}
                     data-patternpartial={patternSubtypeItem.patternPartial}>
-                      { 
-                        patternSubtypeItem.patternName === 'View All' ? 
-                        `${category} Overview` : 
-                        patternSubtypeItem.patternName  
+                      {
+                        patternSubtypeItem.patternName === 'View All' ?
+                        `${category} Overview` :
+                        patternSubtypeItem.patternName
                       }
                       { patternSubtypeItem.patternState && (
                         <span
@@ -140,14 +140,14 @@ const Button = props => {
       <span className={`pl-c-nav__link-text`}>
         {props.children}
       </span>
-      <span class="pl-c-nav__link-icon">
+      {/* <span class="pl-c-nav__link-icon">
         <ArrowIcon
           height={24}
           width={24}
           viewBox="0 0 24 24"
           fill="currentColor"
         />
-      </span>
+      </span> */}
     </button>
   );
 };
@@ -157,9 +157,10 @@ const ButtonTitle = props => {
     <button
       className={`pl-c-nav__link pl-c-nav__link--title pl-js-acc-handle ${props.isOpen ? props.isOpenClass : ''}`}
       role="tab"
+      style={`${props.layoutMode === 'vertical' ? 'pointer-events: none; font-weight: 700; cursor: pointer;' : ''}`}
       {...props}
     >
-      <span class="pl-c-nav__link-icon">
+      <span class="pl-c-nav__link-icon" style={`${props.layoutMode === 'vertical' ? 'display: none;' : ''}`}>
         <ArrowIcon
           height={24}
           width={16}
@@ -190,7 +191,7 @@ class Nav extends BaseComponent {
     self.useShadow = false;
     return self;
   }
-  
+
   connected() {
     this.isOpenClass = 'pl-is-active';
     const self = this;
@@ -201,7 +202,7 @@ class Nav extends BaseComponent {
     this.previousActiveLinks = [];
     this.iframeElem = document.querySelector('pl-iframe');
     window.addEventListener('message', this.receiveIframeMessage, false);
-    
+
     document.body.addEventListener('click', function(e){
       if (
         e.target.closest('pl-header') === null &&
@@ -214,7 +215,7 @@ class Nav extends BaseComponent {
 
   _stateChanged(state) {
     this.layoutMode = state.app.layoutMode || '';
-    
+
     if (this.currentPattern !== state.app.currentPattern){
       this.currentPattern = state.app.currentPattern;
     }
@@ -247,6 +248,7 @@ class Nav extends BaseComponent {
           self.cleanupActiveNav();
         }
       } catch(error){
+
         console.log(error);
       }
     }
@@ -289,20 +291,20 @@ class Nav extends BaseComponent {
       this.handleURLChangeOnRender = true;
       return;
     }
-  
+
     const shouldAutoOpenNav = window.matchMedia("(min-width: calc(42em))").matches && this.layoutMode === 'vertical';
 
     const currentPattern = this.currentPattern;
     const activeLink = document.querySelector(`[data-patternpartial="${currentPattern}"]`);
     const self = this;
-    
+
     if (this.previousActiveLinks){
       this.previousActiveLinks.forEach(function(link, index){
         self.previousActiveLinks[index].classList.remove('pl-is-active');
       });
     }
     this.previousActiveLinks = [];
-    
+
     if (activeLink){
       activeLink.classList.add('pl-is-active');
       this.previousActiveLinks.push(activeLink);
@@ -347,15 +349,15 @@ class Nav extends BaseComponent {
             parentDropdown.classList.add('pl-is-active');
             this.previousActiveLinks.push(parentDropdown);
           }
-          
-          // don't auto-open 
+
+          // don't auto-open
           if (parentDropdownTrigger){
             if (shouldAutoOpenNav === true || parentDropdownTrigger.classList.contains('pl-c-nav__link--title') === false) {
               parentDropdownTrigger.classList.add('pl-is-active');
               this.previousActiveLinks.push(parentDropdownTrigger);
             }
           }
-          
+
           if (grandparentDropdown && shouldAutoOpenNav){
             if (shouldAutoOpenNav){
               grandparentDropdown.classList.add('pl-is-active');
@@ -441,7 +443,7 @@ class Nav extends BaseComponent {
         }
       });
     }
-    
+
     if (target.classList.contains('pl-is-active')){
       target.classList.remove('pl-is-active');
       panel.classList.remove('pl-is-active');
@@ -464,6 +466,7 @@ class Nav extends BaseComponent {
 
   render({ layoutMode }) {
     const patternTypes = window.navItems.patternTypes;
+    const self = this;
 
     return (
       <ol class="pl-c-nav__list pl-js-pattern-nav-target">
@@ -482,6 +485,7 @@ class Nav extends BaseComponent {
                 onClick={this.toggleNavPanel}
                 isOpen={false}
                 isOpenClass={this.isOpenClass}
+                layoutMode={this.layoutMode}
               >
                 {item.patternTypeUC}
               </ButtonTitle>
@@ -489,6 +493,7 @@ class Nav extends BaseComponent {
               <ol
                 id={item.patternSubtypeUC}
                 className={`pl-c-nav__sublist pl-c-nav__sublist--dropdown pl-js-acc-panel`}
+                style={`${self.layoutMode === 'vertical' ? 'visibility: visible; max-height: 9999px;' : ''}`}
               >
                 {item.patternTypeItems.map((patternSubtype, i) => {
                   return (
