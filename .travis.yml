@@ -50,7 +50,7 @@ jobs:
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
-        - time yarn test:js:quick # running both `test:js` as comparison; remove or comment out this or other one eventually
+        - time yarn test:js:quick --detectOpenHandles # running both `test:js` as comparison; remove or comment out this or other one eventually
         - yarn run test
         - time yarn test:js
       after_success: ./scripts/check-run-success.js 'Unit'
