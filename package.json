@@ -68,7 +68,7 @@
     "test:js": "NODE_ENV='test' jest --all --colors",
     "test:js:quick": "NODE_ENV='test' jest --all --colors \"$(bolt-list-pkg-paths-changed)\" ",
     "test:js:update": "yarn run test:js -u",
-    "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js",
+    "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
     "test:types": "tsc"
