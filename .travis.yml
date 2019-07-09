@@ -28,14 +28,14 @@ addons:
 # Stages run sequentially; the jobs in them run in parallel
 stages:
   - Prep
-# @todo re-enable  - Test Live Site
+  - Test Live Site
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
 
 jobs:
   include:
-    - stage: XPrep # @todo re-enable
+    - stage: Prep
       name: 'Smoke Tests: Linting'
       install: yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Lint'
@@ -50,16 +50,16 @@ jobs:
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
-        - time yarn test:js --runInBand --detectOpenHandles
-        - time yarn test:js:quick --runInBand --detectOpenHandles # running both `test:js` as comparison; remove or comment out this or other one eventually
+        - yarn test:js
+        - yarn test:js:quick # running both `test:js` as comparison; remove or comment out this or other one eventually
         #- yarn run test
         - yarn test:php
-        - yarn test:monorepo --runInBand
+        - yarn test:monorepo
         - yarn test:pkgs
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
 
-    - stage: XPrep# @todo re-enable
+    - stage: Prep
       name: 'Build Drupal Lab'
       script:
         - composer global require hirak/prestissimo
@@ -70,7 +70,7 @@ jobs:
         - yarn run test # run Jest tests on the FE build that just compiled
         - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
 
-    - stage: XPrep# @todo re-enable
+    - stage: Prep
       name: 'Build + Deploy Website'
       script:
         # Clear incache file on normal Travis builds
