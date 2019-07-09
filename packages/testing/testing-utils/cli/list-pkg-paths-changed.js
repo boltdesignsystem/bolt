@@ -30,16 +30,16 @@ if (process.env.TRAVIS === 'true') {
       cmd: 'git fetch',
     },
   ].forEach(step => {
-    console.log(step.label);
+    process.stderr.write(`${step.label}\n`);
     const results = execa.shellSync(step.cmd);
     if (results.failed) {
-      console.error(`Uh oh, this Travis git step failed:`);
-      console.log(results.stderr);
-      console.log(results.stdout);
+      process.stderr.write(`Uh oh, this Travis git step failed:\n`);
+      process.stderr.write(`${results.stderr}\n`);
+      process.stderr.write(`${results.stdout}\n`);
       process.exit(1);
       return;
     }
-    console.log('Ran OK');
+    process.stderr.write('Ran OK\n');
   });
 }
 
