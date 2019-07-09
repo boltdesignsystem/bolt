@@ -50,8 +50,8 @@ const SubSubList = (props) => {
                   )}
                 </a>
 
-                {/* {
-                  nonViewAllItems.length > 1 && (
+                {
+                  nonViewAllItems.length > 1 && elem.layoutMode && (
                     <SpecialButton
                       aria-controls={category}
                       onClick={elem.toggleSpecialNavPanel}
@@ -61,7 +61,7 @@ const SubSubList = (props) => {
                       {category}
                     </SpecialButton>
                   )
-                } */}
+                }
           </div>) :
             (<Button
               aria-controls={category}
@@ -140,14 +140,14 @@ const Button = props => {
       <span className={`pl-c-nav__link-text`}>
         {props.children}
       </span>
-      {/* <span class="pl-c-nav__link-icon">
+      <span class="pl-c-nav__link-icon">
         <ArrowIcon
           height={24}
           width={24}
           viewBox="0 0 24 24"
           fill="currentColor"
         />
-      </span> */}
+      </span>
     </button>
   );
 };
