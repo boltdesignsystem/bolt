@@ -5,24 +5,25 @@
 @import '@bolt/core';
 @import './button-settings-and-tools';
 
-%bolt-button-base-styles {
+/**
+ * Base Button
+ */
+bolt-button {
   display: inline-flex;
-  
+
   &[disabled],
   &[disabled]:focus {
     outline: none;
   }
 }
 
-/**
- * Base Button
- */
-bolt-button {
-  @extend %bolt-button-base-styles;
+:host {
+  display: inline-flex;
 }
 
-:host {
-  @extend %bolt-button-base-styles;
+:host([disabled]),
+:host([disabled]):focus {
+  outline: none;
 }
 
 .c-bolt-button {
