@@ -3,6 +3,7 @@ const globby = require('globby');
 const testFilesToIgnore = globby.sync([
   'packages/components/**/*.e2e.js',
   'packages/**/*.data.js',
+  '__tests__/**/*.js',
 ]);
 
 module.exports = {
