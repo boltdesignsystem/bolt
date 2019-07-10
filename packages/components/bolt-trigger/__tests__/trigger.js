@@ -54,6 +54,25 @@ describe('trigger', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  test('Trigger with "disabled" adds attr to <button>', async () => {
+    const results = await render('@bolt-components-trigger/trigger.twig', {
+      content: 'Hello World',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('Trigger with "disabled" does not add attr to <a>', async () => {
+    const results = await render('@bolt-components-trigger/trigger.twig', {
+      content: 'Hello World',
+      url: 'http://pega.com',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   test('Trigger with outer classes via Drupal Attributes', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
       content: 'Trigger with outer classes',

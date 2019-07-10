@@ -1,5 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`trigger Trigger with "disabled" adds attr to <button> 1`] = `
+<bolt-trigger disabled>
+  <button type="button"
+          disabled
+          class="c-bolt-trigger c-bolt-trigger--display-inline"
+          is="shadow-root"
+  >
+    Hello World
+  </button>
+</bolt-trigger>
+`;
+
+exports[`trigger Trigger with "disabled" does not add attr to <a> 1`] = `
+<bolt-trigger url="http://pega.com"
+              disabled
+>
+  <a href="http://pega.com"
+     class="c-bolt-trigger c-bolt-trigger--display-inline"
+     is="shadow-root"
+  >
+    Hello World
+  </a>
+</bolt-trigger>
+`;
+
 exports[`trigger Trigger with "no_outline" 1`] = `
 <bolt-trigger url="http://pega.com"
               no-outline
