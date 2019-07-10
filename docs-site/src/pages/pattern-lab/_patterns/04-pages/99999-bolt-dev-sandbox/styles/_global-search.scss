@@ -1,0 +1,67 @@
+/* ------------------------------------ *\
+   Global Search
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+@mixin bolt-global-search-input-placeholder($color) {
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $color;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $color;
+  }
+
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $color;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $color;
+  }
+}
+
+$bolt-global-search-input-placeholder-color: bolt-theme(text, 0.4);
+$bolt-global-search-input-shadow-color: bolt-theme(text);
+
+
+.c-bolt-global-search-bar {
+  @include bolt-shadow($key: 'level-10', $base-color: $bolt-global-search-input-shadow-color);
+
+  display: flex;
+  flex-wrap: nowrap;
+  color: bolt-theme(text);
+  border-radius: bolt-border-radius(small);
+  background-color: bolt-theme(text, 0.05);
+
+  &:focus-within {
+    background-color: bolt-theme(text, 0.1);
+  }
+}
+
+.c-bolt-global-search-bar__label {
+  @include bolt-visuallyhidden;
+}
+
+.c-bolt-global-search-bar__button {
+  order: 0;
+}
+
+.c-bolt-global-search-bar__input {
+  @include bolt-padding(medium, squished);
+  @include bolt-padding-right(small);
+  @include bolt-padding-left(xxsmall);
+  @include bolt-global-search-input-placeholder($bolt-global-search-input-placeholder-color);
+
+  flex: 1;
+  order: 1;
+  appearance: none;
+  opacity: bolt-opacity(100);
+  color: bolt-theme(text);
+  /* outline: none; */
+  border: none;
+  border-radius: 0;
+  border-radius: bolt-border-radius(small);
+  background-color: transparent;
+}

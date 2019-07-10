@@ -128,10 +128,37 @@
       </bolt-list-item>
     </bolt-list>
   </bolt-list-item>
+
+  {% set search_bar %}
+    <label class="c-bolt-global-search-bar">
+      <span class="c-bolt-global-search-bar__label">Search the Pegasystems website</span>
+      <input class="c-bolt-global-search-bar__input" type="search" name="search-bar" placeholder="Enter to search">
+      <bolt-button class="c-bolt-global-search-bar__button" color="text" icon-only>
+        <bolt-icon name="search" slot="before"></bolt-icon>
+      </bolt-button>
+    </label>
+  {% endset %}
+
   <bolt-list-item class="t-bolt-dark">
     <bolt-list display="inline" spacing="small" align="center" inset>
       <bolt-list-item>
-        Search bar
+        {{ search_bar }}
+      </bolt-list-item>
+    </bolt-list>
+  </bolt-list-item>
+  <bolt-list-item>
+    <bolt-list display="flex" spacing="medium" align="center" inset>
+      <bolt-list-item class="t-bolt-xlight">
+        {{ search_bar }}
+      </bolt-list-item>
+      <bolt-list-item class="t-bolt-light">
+        {{ search_bar }}
+      </bolt-list-item>
+      <bolt-list-item class="t-bolt-dark">
+        {{ search_bar }}
+      </bolt-list-item>
+      <bolt-list-item class="t-bolt-xdark">
+        {{ search_bar }}
       </bolt-list-item>
     </bolt-list>
   </bolt-list-item>
