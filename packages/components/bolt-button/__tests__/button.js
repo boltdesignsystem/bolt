@@ -52,6 +52,15 @@ describe('button', () => {
     });
   });
 
+  test('Button with "disabled" adds attr to <button>', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a button',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   test('Button with outer classes via Drupal Attributes', async () => {
     const results = await render('@bolt-components-button/button.twig', {
       text: 'Button with outer classes',
