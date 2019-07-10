@@ -15,14 +15,7 @@ class BoltInteractivePathway extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    disabled: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    active: {
-      ...props.boolean,
-      ...{ default: false },
-    },
+    activePathwayId: props.number,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -30,10 +23,6 @@ class BoltInteractivePathway extends withLitHtml() {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
-
-    self.clickStep = self.clickStep.bind(self);
-    self._updateActiveItemDomState = self._updateActiveItemDomState.bind(self);
-    self._getParentBoltStepNode = self._getParentBoltStepNode.bind(self);
 
     return self;
   }
@@ -43,10 +32,6 @@ class BoltInteractivePathway extends withLitHtml() {
 
     /** @type {HTMLElement[]}  */
     this.steps = Array.from(this.querySelectorAll('bolt-interactive-step'));
-    // Load the first step as the active step when switch between pathways or initial load
-    // this.activeStep = this.steps[0] ? this.step[0].getAttribute('step') : '1';
-    // this.activeStep = this.steps[0].getAttribute('step');
-    // this._updateActiveItemDomState();
 
     // This creates the initial onLoad animation effect for the first step
     window.setTimeout(() => {
@@ -56,45 +41,46 @@ class BoltInteractivePathway extends withLitHtml() {
   }
 
   /**
-   * Searches up the Shadow Dom until it finds the parent `bolt-interactive-step` node
-   * @todo this could use a refactor for performance
+   * Searches up the Shadow Dom until it finds the parent node with matching tagName or null.
    * @param node
+   * @param nodeParentTagName
    */
-  _getParentBoltStepNode(node) {
-    if (node.tagName === 'BOLT-INTERACTIVE-STEP') {
+  _getParentBoltStepNode = (node, nodeParentTagName) => {
+    if (node.tagName === nodeParentTagName) {
       return node;
     } else {
       if (node.parentNode) {
-        return this._getParentBoltStepNode(node.parentNode);
+        return this._getParentBoltStepNode(node.parentNode, nodeParentTagName);
       } else {
         return null;
       }
     }
-  }
+  };
 
-  clickStep(event) {
+  handleClickStep = event => {
     const parentBoltInteractiveStepNode = this._getParentBoltStepNode(
       event.target,
+      'BOLT-INTERACTIVE-STEP',
     );
     this.activeStep = parentBoltInteractiveStepNode.getAttribute('step');
     this._updateActiveItemDomState();
-  }
+  };
 
-  _updateActiveItemDomState() {
+  _updateActiveItemDomState = () => {
     this.steps.forEach(item => {
       item.getAttribute('step') === this.activeStep
         ? item.setAttribute('active', '')
         : item.removeAttribute('active');
     });
-  }
+  };
 
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled, active } = this.validateProps(this.props);
+    const isActive =
+      `${this.getAttribute('pathwayid')}` === `${this.activePathwayId}`;
 
     const classes = cx('c-bolt-interactive-pathway', {
-      [`c-bolt-interactive-pathway--disabled`]: disabled,
-      [`c-bolt-interactive-pathway--active`]: active,
+      [`c-bolt-interactive-pathway--disabled`]: !isActive,
+      [`c-bolt-interactive-pathway--active`]: isActive,
     });
 
     // @todo refactor this with lithtml event handlers
@@ -103,7 +89,7 @@ class BoltInteractivePathway extends withLitHtml() {
       node.renderRoot
         .querySelector('.c-bolt-interactive-step__nav-item-wrapper')
         .addEventListener('click', event => {
-          this.clickStep(event);
+          this.handleClickStep(event);
         });
     });
 

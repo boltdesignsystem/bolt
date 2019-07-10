@@ -10,9 +10,7 @@
   {% endset %}
 
   {% set pathwayOne %}
-    <bolt-interactive-pathway
-        id="12345"
-    >
+    <bolt-interactive-pathway pathwayId="0">
       <bolt-text
           slot="pathway-title"
       >
@@ -119,9 +117,7 @@
   {% endset %}
 
   {% set pathwayTwo %}
-    <bolt-interactive-pathway
-        id="54321"
-    >
+    <bolt-interactive-pathway pathwayId="1">
       <bolt-text
           slot="pathway-title"
       >
@@ -228,13 +224,11 @@
   {% endset %}
 
   {% set pathwayThree %}
-    <bolt-interactive-pathway
-        id="32154"
-    >
+    <bolt-interactive-pathway pathwayId="2">
       <bolt-text
           slot="pathway-title"
       >
-        Warrenty Management
+        Warranty Management
       </bolt-text>
 
       <bolt-interactive-step
@@ -243,8 +237,8 @@
           speaker-position="left"
           customer-disposition="sad"
       >
-        <span slot="title">Warrenty Expires</span>
-        <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue"><span style="color: black;">I have no idea my warrenty expired.</span></bolt-text>
+        <span slot="title">Warranty Expires</span>
+        <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue"><span style="color: black;">I have no idea my warranty expired.</span></bolt-text>
         <span slot="dialogueBand"></span>
         <bolt-text slot="body">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem incidunt mollitia natus nemo perferendis quas quasi sed similique ullam, voluptate? Animi expedita molestias nisi pariatur quae quos veritatis! Aliquid, quibusdam.
@@ -258,7 +252,7 @@
           customer-disposition="neutral"
       >
         <span slot="title">Rapid Response Time</span>
-        <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue"><span style="color: black;">Did you know your warrenty expired?</span></bolt-text>
+        <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue"><span style="color: black;">Did you know your warranty expired?</span></bolt-text>
         <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png" />
         <bolt-text slot="body">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et fugiat nemo obcaecati perferendis provident quas sed tempore. At blanditiis delectus fuga inventore, ipsa libero, porro quis quos temporibus, voluptate voluptates.
@@ -311,7 +305,7 @@
   {% endset %}
 
   {% set article %}
-    <div class="temp-loading-pladeholder" style="height: 500px;">
+    <div class="temp-loading-placeholder" style="height: 500px;">
       {#This is a temporary placeholder for loading until SSR is addressed#}
 
     </div>

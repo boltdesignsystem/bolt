@@ -15,13 +15,9 @@ class BoltInteractivePathways extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    disabled: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    title: {
-      ...props.string,
-      ...{ default: '' },
+    activePathwayId: {
+      ...props.number,
+      ...{ default: 0 },
     },
   };
 
@@ -31,122 +27,129 @@ class BoltInteractivePathways extends withLitHtml() {
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
 
-    self._updateActivePathwayAttributes = self._updateActivePathwayAttributes.bind(self);
-    self._handleMenuItemClick = self._handleMenuItemClick.bind(self);
-
     return self;
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.pathways = this.querySelectorAll('bolt-interactive-pathway');
 
-    // Make the first pathway the active pathway
-    this.activePathway = this.pathways[0];
-    this._updateActivePathwayAttributes();
+    this.dropdownMenu = this.renderRoot.querySelector('bolt-dropdown');
 
-    // Remove timeout and see if it works.
-    // @todo remove this temporary fix once SSR rendering/load performance has been addressed
-    window.setTimeout(() => {
-      this.style.display = 'block';
-      this.style.opacity = '1';
-      document.querySelectorAll('.temp-loading-placeholder').forEach(node => {
-        node.style.display = 'none';
-      });
-    }, 600);
-  }
-
-  _updateActivePathwayAttributes() {
-    /** @type {HTMLElement[]}  */
-    Array.from(this.pathways).forEach(pathway => {
-      pathway === this.activePathway
-        ? pathway.setAttribute('active', 1)
-        : pathway.removeAttribute('active');
+    this.style.display = 'block';
+    this.style.opacity = '1';
+    document.querySelectorAll('.temp-loading-placeholder').forEach(node => {
+      node.style.display = 'none';
     });
-    // Update the title of the dropdown
   }
 
   /**
-   * When a nav item is clicked, updates the active pathway
+   * Respond to a dropdown click. Only react to clicks on a menu item. Update the active
+   * status of all the child pathways if active pathway is changed.
+   *
+   * @param event
+   */
+  handleMenuItemClick = event => {
+    if (event.target.tagName !== 'BOLT-TEXT') {
+      return;
+    }
+    const { activePathwayId: oldActivePathwayId } = this;
+    const newActivePathwayId = event.target.getAttribute('assocPathwayId');
+
+    if (oldActivePathwayId === newActivePathwayId) {
+      return;
+    }
+
+    this.activePathwayId = newActivePathwayId;
+
+    // Trigger update in child pathways.
+    this._getPathways().forEach(pathway => {
+      pathway.activePathwayId = newActivePathwayId;
+    });
+  };
+
+  /**
+   * Gets all the HTML bolt-interactive-pathway's on the page
+   *
+   * @returns {HTMLElement[]}
    * @private
    */
-  _handleMenuItemClick(event) {
-    console.log('event', event.target);
-    // Get the menu-item associated pathway id from which the event originated
-    // const newActivePathwayId = event.path
-    //   .find(node => node.className === 'c-bolt-interactive-pathways__menu-item')
-    //   .getAttribute('data-associated-pathway-id');
-    // Update the activePathway
-    this.activePathway = event.target;
+  _getPathways = () => {
+    return Array.from(this.querySelectorAll('bolt-interactive-pathway'));
+  };
 
-    // Get the dropdownMenu once
-    if (!this.dropdownMenu) {
-      this.dropdownMenu = this.renderRoot.querySelector('bolt-dropdown');
-    }
-    // Reset the dropdown menu title to currently selected pathway
-    this.dropdownMenu.setAttribute(
-      'title',
-      this.activePathway.slots['pathway-title'][0].innerHTML,
+  /**
+   *
+   * @param {int} id the pathwayId of the pathway to return
+   * @returns {HTMLElement}
+   * @private
+   */
+  _getActivePathwayById = (id = null) => {
+    // This pattern is because (id = this.state.activePathwayId) triggers undef func error.
+    id = id === null ? this.activePathwayId : id;
+    return this._getPathways().find(
+      el => el.getAttribute('pathwayId') === `${id}`,
     );
+  };
 
-    Array.from(this.pathways).forEach(pathway => {
-      pathway === this.activePathway
-        ? pathway.setAttribute('active', 1)
-        : pathway.removeAttribute('active');
-    });
-  }
-
-  _getPathwaysDropdownMenuItems() {
-    return Array.from(this.pathways).map((item, i) => {
+  /**
+   * gets the litHTML for the dropdown menu items.
+   * @returns {TemplateResult[]}
+   * @private
+   */
+  _renderPathwaysDropdownMenuItems = () => {
+    return Array.from(this._getPathways()).map((item, i) => {
+      const pathwayId = item.getAttribute('pathwayId');
       return html`
         <bolt-text
-          data-associated-pathway-id="${i}"
+          assocPathwayId="${pathwayId}"
           class="c-bolt-interactive-pathways__menu-item"
+          ?active=${pathwayId === this.activePathwayId}
         >
           ${item.querySelector('[slot="pathway-title"]').innerText}
         </bolt-text>
       `;
     });
-  }
+  };
 
-  _getPathwaysDropdownMenu() {
+  /**
+   * Gets the litHTML for the dropdown menu
+   *
+   * @return {TemplateResult}
+   */
+  _renderPathwaysDropdownMenu = () => {
     return html`
       <bolt-dropdown
         center
-        title="${this.activePathway.querySelector('[slot="pathway-title"]').innerText}"
-        @click=${this._handleMenuItemClick}
+        title="${this._getActivePathwayById().querySelector(
+          '[slot="pathway-title"]',
+        ).innerText}"
+        @click=${this.handleMenuItemClick}
       >
         <bolt-block-list>
-          ${this._getPathwaysDropdownMenuItems()}
+          ${this._renderPathwaysDropdownMenuItems()}
         </bolt-block-list>
       </bolt-dropdown>
     `;
-  }
+  };
 
   render() {
-    // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled } = this.validateProps(this.props);
-
-    const classes = cx('c-bolt-interactive-pathways', {
-      [`c-bolt-interactive-pathways--disabled`]: disabled,
-    });
+    const classes = cx('c-bolt-interactive-pathways');
 
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <div class="c-bolt-interactive-pathways__header">
-        <!-- @TODO make the source a real boy.-->
           <img
             src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/interactive-pathways-logo.png"
             alt="Two diamond logo"
           />
           <div class="c-bolt-interactive-pathways__nav">
             ${this.slot('interactive-pathways-lead-text')}
-            ${this._getPathwaysDropdownMenu()}
+            ${this._renderPathwaysDropdownMenu()}
           </div>
         </div>
 
-        ${this.title} ${this.slot('default')}
+        ${this.slot('default')}
       </div>
     `;
   }
