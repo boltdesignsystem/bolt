@@ -1,0 +1,15 @@
+<p>
+  {% include "@bolt-components-trigger/trigger.twig" with {
+    content: "This &lt;button&gt; is disabled",
+    disabled: true
+  } only %}
+</p>
+
+<p>
+  {% include "@bolt-components-trigger/trigger.twig" with {
+    content: "This &lt;a&gt; in unchanged by <code>disabled</code> prop",
+    disabled: true,
+    url: "http://pega.com",
+    target: "_blank"
+  } only %}
+</p>
