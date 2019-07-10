@@ -22,6 +22,7 @@ class BoltTrigger extends BoltAction {
     cursor: props.string,
     display: props.string,
     noOutline: props.boolean,
+    disabled: props.boolean,
     onClick: props.string, // Managed by base class
     onClickTarget: props.string, // Managed by base class
   };
@@ -43,12 +44,17 @@ class BoltTrigger extends BoltAction {
   }
 
   render() {
-    const { url, target, cursor, display, noOutline } = this.validateProps(
-      this.props,
-    );
+    const {
+      url,
+      target,
+      cursor,
+      display,
+      noOutline,
+      disabled,
+    } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-trigger', {
-      [`c-bolt-trigger--cursor-${cursor}`]: cursor,
+      [`c-bolt-trigger--cursor-${cursor}`]: cursor && !disabled,
       [`c-bolt-trigger--display-${display}`]: display,
       [`c-bolt-trigger--outline-none`]: noOutline,
     });
@@ -63,12 +69,18 @@ class BoltTrigger extends BoltAction {
       triggerElement = this.rootElement.firstChild.cloneNode(true);
       triggerElement.className += ' ' + classes;
 
-      if (hasUrl) {
-        triggerElement.setAttribute('href', url);
-      }
+      if (triggerElement.tagName === 'A') {
+        if (hasUrl) {
+          triggerElement.setAttribute('href', url);
+        }
 
-      if (target) {
-        triggerElement.setAttribute('target', target);
+        if (target) {
+          triggerElement.setAttribute('target', target);
+        }
+      } else {
+        if (disabled) {
+          triggerElement.setAttribute('disabled', true);
+        }
       }
 
       // @todo: use of buttons/anchors in the default slot has not been thoroughly tested. Is this even required?
@@ -91,6 +103,7 @@ class BoltTrigger extends BoltAction {
       triggerElement = html`
         <button
           class="${classes}"
+          disabled=${ifDefined(disabled || undefined)}
           @focus="${e => this._handleFocus(e)}"
           @blur="${e => this._handleBlur(e)}"
         >
