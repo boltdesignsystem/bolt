@@ -6,6 +6,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm run build",
     "build": "babel index.es6.js --out-file index.js",
     "prepublishOnly": "npm run build"
   },
@@ -55,6 +56,8 @@
     "email": "chrisvfritz@gmail.com"
   },
   "dependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.4",
     "@prerenderer/prerenderer": "^0.7.2",
     "@bolt/uikit-prerenderer": "*",
     "html-minifier": "^4.0.0"
