@@ -2,7 +2,7 @@ const globby = require('globby');
 const path = require('path');
 const seleniumServer = require('selenium-server');
 const chromeDriver = require('chromedriver');
-const geckoDriver = require('geckodriver');
+// const geckoDriver = require('geckodriver');
 const { NOW_URL } = process.env;
 
 const testingUrl = NOW_URL ? NOW_URL : 'http://localhost:3000';
@@ -32,7 +32,7 @@ module.exports = {
     port: 4444, // Standard selenium port
     cli_args: {
       'webdriver.chrome.driver': chromeDriver.path,
-      'webdriver.gecko.driver': geckoDriver.path,
+      // 'webdriver.gecko.driver': geckoDriver.path,
     },
   },
   test_workers: {
@@ -69,14 +69,14 @@ module.exports = {
         nativeEvents: true,
       },
     },
-    firefox: {
-      desiredCapabilities: {
-        browserName: 'firefox',
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        nativeEvents: true,
-      },
-    },
+    // firefox: {
+    //   desiredCapabilities: {
+    //     browserName: 'firefox',
+    //     javascriptEnabled: true,
+    //     acceptSslCerts: true,
+    //     nativeEvents: true,
+    //   },
+    // },
     safari: {
       desiredCapabilities: {
         browserName: 'safari',
