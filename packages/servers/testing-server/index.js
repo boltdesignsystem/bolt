@@ -1,14 +1,15 @@
 const { handleRequest } = require('@bolt/api');
-const express = require('express');
+const {
+  devMiddleware,
+  webpack,
+  express,
+} = require('@bolt/build-tools/webpack-dev-server');
 const { join } = require('path');
 const globby = require('globby');
 const app = express();
 const path = require('path');
 
 const port = process.env.PORT || 4444;
-
-const webpack = require('webpack');
-const middleware = require('webpack-dev-middleware');
 const createWebpackConfig = require('@bolt/build-tools/create-webpack-config');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
 
@@ -51,7 +52,7 @@ getConfig().then(async boltConfig => {
   }
 
   app.use(
-    middleware(compiler, {
+    devMiddleware(compiler, {
       serverSideRender: true,
       stats: webpackConfig[0].devServer.stats,
     }),

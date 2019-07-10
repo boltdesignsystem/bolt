@@ -4,22 +4,15 @@ const path = require('path');
 const program = require('commander');
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('bolt');
-const packageJson = require('./package.json');
-const configStore = require('./utils/config-store');
-const { readYamlFileSync } = require('./utils/yaml');
+const configStore = require('@bolt/build-utils/config-store');
+const log = require('@bolt/build-utils/log');
+const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const configSchema = readYamlFileSync(
   path.join(__dirname, './utils/config.schema.yml'),
 );
+const packageJson = require('./package.json');
 
-const searchedFor = explorer.searchSync();
-if (!searchedFor.config) {
-  log.errorAndExit('Could not find config in a .boltrc file');
-}
-
-let userConfig = {
-  ...searchedFor.config,
-  configFileUsed: searchedFor.filepath,
-};
+let userConfig;
 
 // global `bolt` cli options & meta
 program
@@ -47,13 +40,23 @@ if (program.configFile) {
     ...configFile,
     configFileUsed: configFilePath,
   };
+} else {
+  try {
+    const searchedFor = explorer.searchSync();
+    userConfig = {
+      ...searchedFor.config,
+      configFileUsed: searchedFor.filepath,
+    };
+  } catch (error) {
+    log.errorAndExit('Could not find config in a .boltrc file', error);
+  }
 }
 
 (async () => {
-  await configStore.init(userConfig).then(config => {
+  await configStore.init(userConfig).then(async config => {
     // Now that config is initilized, we can start requiring other things
-    const { buildBoltManifest } = require('./utils/manifest');
-    const log = require('./utils/log');
+    const { buildBoltManifest } = require('@bolt/build-utils/manifest');
+    const log = require('@bolt/build-utils/log');
 
     // store a copy of the original config before modifying with defaults + auto values. This allows us to point out if a config option was manually vs automatically set.
     let originalConfig;
@@ -155,7 +158,7 @@ if (program.configFile) {
       return config;
     }
 
-    log.intro();
+    await log.intro();
 
     program
       .option(

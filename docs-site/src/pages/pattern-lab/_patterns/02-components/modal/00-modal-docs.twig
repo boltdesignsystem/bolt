@@ -1,0 +1,8 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-modal/modal.twig" only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "modal",
+  usage: usage
+} only %}

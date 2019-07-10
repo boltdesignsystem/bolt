@@ -1,6 +1,10 @@
-import { render } from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
-
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../button.schema.yml'));
@@ -9,10 +13,19 @@ const { tag } = schema.properties;
 const timeout = 90000;
 
 describe('button', () => {
-  let page;
+  let page, isOnline, context;
+
+  beforeAll(async () => {
+    isOnline = await isConnected();
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
+
+  afterAll(async () => {
+    await stopServer();
+  });
 
   beforeEach(async () => {
-    page = await global.__BROWSER__.newPage();
+    page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,
@@ -169,5 +182,29 @@ describe('button', () => {
 
     expect(renderedShadowDomHTML).toMatchSnapshot();
     expect(renderedHTML).toMatchSnapshot();
+  });
+
+  test('Inline button inside a container with defined text alignment.', async () => {
+    const results = await renderString(`
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-right" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align right"
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-center" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align center"
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-left" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align left"
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    `);
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
   });
 });

@@ -1,0 +1,10 @@
+{% set schema = bolt.data.components["@bolt-components-trigger"].schema %}
+
+{% for display in schema.properties.display.enum %}
+  <p>
+    {% include "@bolt-components-trigger/trigger.twig" with {
+      content: "Trigger with display <code>" ~ display ~ "</code>",
+      display: display
+    } only %}
+  </p>
+{% endfor %}

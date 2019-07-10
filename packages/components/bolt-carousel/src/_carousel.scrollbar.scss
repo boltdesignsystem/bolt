@@ -8,9 +8,10 @@
   transition: opacity 0.2s ease;
 
   .c-bolt-carousel--horizontal > & {
+    @include bolt-z-index(contentTop);
+
     position: relative;
     bottom: 0;
-    z-index: 50;
     width: 100%;
     height: bolt-v-spacing(xsmall);
   }
