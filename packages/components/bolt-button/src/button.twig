@@ -79,6 +79,9 @@
 
 {% if disabled %}
   {% set attributes = attributes.setAttribute("disabled", true) %}
+  {% if tag == "button" %}
+    {% set inner_attributes = inner_attributes.setAttribute("disabled", true) %}
+  {% endif %}
 {% endif %}
 
 {% if icon %}

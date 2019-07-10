@@ -157,6 +157,10 @@ class BoltButton extends BoltAction {
         buttonElement.setAttribute('target', this.props.tabindex);
       }
 
+      if (this.props.disabled) {
+        buttonElement.setAttribute('disabled', true);
+      }
+
       render(innerSlots, buttonElement);
     } else if (hasUrl) {
       buttonElement = html`
@@ -186,6 +190,7 @@ class BoltButton extends BoltAction {
               ? this.props.tabindex
               : undefined,
           )}
+          disabled=${ifDefined(this.props.disabled || undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
         >
           ${innerSlots}
