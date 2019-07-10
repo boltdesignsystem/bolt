@@ -2,28 +2,20 @@
    Button
 \* ------------------------------------ */
 
+// Dev Notes
+// 1. [Morse] This mixin outputs a separate ruleset for each selector to prevent IE from failing on unrecognized selectors like `:host`. It is not a substitute for comma-separated selectors.
+// 2. [Morse] Bolt-link delegates focus to inner element.
+
 @import '@bolt/core';
 @import './button-settings-and-tools';
 
 /**
  * Base Button
  */
-bolt-button {
+@include bolt-repeat-rule(('bolt-button', ':host')) {
+  // [1]
   display: inline-flex;
-
-  &[disabled],
-  &[disabled]:focus {
-    outline: none;
-  }
-}
-
-:host {
-  display: inline-flex;
-}
-
-:host([disabled]),
-:host([disabled]):focus {
-  outline: none;
+  outline: none; // [2]
 }
 
 .c-bolt-button {
