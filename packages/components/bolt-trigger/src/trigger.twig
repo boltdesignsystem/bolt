@@ -18,9 +18,11 @@
 {% if url %}
   {# If url is provided, set tag to "a" #}
   {% set tag = "a" %}
-  {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
-
-  {# only set target if url is provided #}
+  {% if disabled %}
+    {% set inner_attributes = inner_attributes.setAttribute("aria-disabled", "true") %}
+  {% else %}
+    {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
+  {% endif %}
   {% if target %}
     {% set inner_attributes = inner_attributes.setAttribute("target", target) %}
   {% endif %}

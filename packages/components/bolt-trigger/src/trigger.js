@@ -70,8 +70,17 @@ class BoltTrigger extends BoltAction {
       triggerElement.className += ' ' + classes;
 
       if (triggerElement.tagName === 'A') {
-        if (hasUrl) {
-          triggerElement.setAttribute('href', url);
+        const url = this.props.url || this.originalUrl;
+
+        if (disabled) {
+          this.originalUrl = buttonElement.getAttribute('href');
+          triggerElement.setAttribute('aria-disabled', 'true');
+          triggerElement.removeAttribute('href');
+        } else {
+          triggerElement.removeAttribute('aria-disabled');
+          if (url) {
+            triggerElement.setAttribute('href', url);
+          }
         }
 
         if (target) {
@@ -80,6 +89,8 @@ class BoltTrigger extends BoltAction {
       } else {
         if (disabled) {
           triggerElement.setAttribute('disabled', true);
+        } else {
+          triggerElement.removeAttribute('disabled');
         }
       }
 
@@ -91,9 +102,10 @@ class BoltTrigger extends BoltAction {
     } else if (hasUrl) {
       triggerElement = html`
         <a
-          href="${url}"
+          href="${ifDefined(url && !disabled ? url : undefined)}"
           class="${classes}"
           target="${ifDefined(target ? target : undefined)}"
+          aria-disabled=${ifDefined(disabled ? 'true' : undefined)}
           @focus="${e => this._handleFocus(e)}"
           @blur="${e => this._handleBlur(e)}"
           >${this.slot('default')}</a
