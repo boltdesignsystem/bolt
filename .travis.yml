@@ -61,7 +61,7 @@ jobs:
 
     - stage: Prep
       name: 'Smoke Tests: Build Tools'
-      install: 'yarn --production --ignore-scripts'
+      install: 'yarn --production'
       before_script: ./scripts/check-run-queue.js 'Build Tools'
       script: yarn run test:build-tools
       after_success: ./scripts/check-run-success.js 'Build Tools'
