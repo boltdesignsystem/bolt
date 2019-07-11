@@ -172,7 +172,7 @@ class BoltButton extends BoltAction {
       }
 
       if (this.props.tabindex) {
-        buttonElement.setAttribute('target', this.props.tabindex);
+        buttonElement.setAttribute('tabindex', this.props.tabindex);
       }
 
       render(innerSlots, buttonElement);
