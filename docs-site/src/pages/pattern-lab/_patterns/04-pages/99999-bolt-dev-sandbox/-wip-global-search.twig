@@ -2,7 +2,7 @@
   <bolt-list-item class="t-bolt-light">
     <bolt-list display="flex" inset>
       <bolt-list-item>
-        <bolt-list display="inline">
+        <bolt-list display="inline@xsmall">
           <bolt-list-item>
             <bolt-text font-size="xsmall">
               <bolt-link url="#">
@@ -130,24 +130,92 @@
   </bolt-list-item>
 
   {% set search_bar %}
-    <label class="c-bolt-global-search-bar">
-      <span class="c-bolt-global-search-bar__label">Search the Pegasystems website</span>
-      <input class="c-bolt-global-search-bar__input" type="search" name="search-bar" placeholder="Enter to search">
-      <bolt-button class="c-bolt-global-search-bar__button" color="text" icon-only>
-        <bolt-icon name="search" slot="before"></bolt-icon>
-      </bolt-button>
-    </label>
+    <form>
+      <label class="c-bolt-global-search-bar">
+        <span class="c-bolt-global-search-bar__label">Search the Pegasystems website</span>
+        <input class="c-bolt-global-search-bar__input" type="search" name="search-bar" placeholder="Enter to search" required>
+        <div class="c-bolt-global-search-bar__button">
+          <bolt-button color="text" tag="submit" icon-only>
+            <bolt-icon name="search" slot="before"></bolt-icon>
+          </bolt-button>
+        </div>
+        <div class="c-bolt-global-search-bar__button c-bolt-global-search-bar__button--reset">
+          <bolt-button color="text" tag="reset" icon-only>
+            <bolt-icon name="close-solid" slot="before"></bolt-icon>
+          </bolt-button>
+        </div>
+      </label>
+    </form>
   {% endset %}
 
-  <bolt-list-item class="t-bolt-dark">
-    <bolt-list display="inline" spacing="small" align="center" inset>
+  {% set search_bar_themed %}
+    <form>
+      <label class="c-bolt-global-search-bar t-bolt-xlight">
+        <span class="c-bolt-global-search-bar__label">Search the Pegasystems website</span>
+        <input class="c-bolt-global-search-bar__input" type="search" name="search-bar" placeholder="Enter to search" required>
+        <div class="c-bolt-global-search-bar__button">
+          <bolt-button color="text" tag="submit" icon-only>
+            <bolt-icon name="search" slot="before"></bolt-icon>
+          </bolt-button>
+        </div>
+        <div class="c-bolt-global-search-bar__button c-bolt-global-search-bar__button--reset">
+          <bolt-button color="text" tag="reset" icon-only>
+            <bolt-icon name="close-solid" slot="before"></bolt-icon>
+          </bolt-button>
+        </div>
+      </label>
+    </form>
+  {% endset %}
+
+  <bolt-list-item>
+    <div class="t-bolt-dark u-bolt-padding-top-small u-bolt-padding-right-medium u-bolt-padding-bottom-small u-bolt-padding-left-medium">
+      {% grid "o-bolt-grid--center" %}
+        {% cell "u-bolt-width-12/12 u-bolt-width-6/12@large" %}
+          {{ search_bar_themed }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+  </bolt-list-item>
+
+  <bolt-list-item>
+    <bolt-list spacing="large" inset>
       <bolt-list-item>
-        {{ search_bar }}
+        <bolt-text headline font-size="xxxlarge" align="center">
+          Theme-able Search Bar
+        </bolt-text>
       </bolt-list-item>
     </bolt-list>
   </bolt-list-item>
+
   <bolt-list-item>
-    <bolt-list display="flex" spacing="medium" align="center" inset>
+    <bolt-list display="inline" spacing="medium" align="center" inset>
+      <bolt-list-item>
+        <bolt-text headline>
+          Individually themed
+        </bolt-text>
+      </bolt-list-item>
+      <bolt-list-item class="t-bolt-xlight">
+        {{ search_bar_themed }}
+      </bolt-list-item>
+      <bolt-list-item class="t-bolt-light">
+        {{ search_bar_themed }}
+      </bolt-list-item>
+      <bolt-list-item class="t-bolt-dark">
+        {{ search_bar_themed }}
+      </bolt-list-item>
+      <bolt-list-item class="t-bolt-xdark">
+        {{ search_bar_themed }}
+      </bolt-list-item>
+    </bolt-list>
+  </bolt-list-item>
+
+  <bolt-list-item>
+    <bolt-list display="inline" spacing="medium" align="center" inset>
+      <bolt-list-item>
+        <bolt-text headline>
+          Inside a themed container
+        </bolt-text>
+      </bolt-list-item>
       <bolt-list-item class="t-bolt-xlight">
         {{ search_bar }}
       </bolt-list-item>
