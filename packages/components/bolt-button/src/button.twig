@@ -51,8 +51,12 @@
   {% set inner_attributes = inner_attributes.setAttribute("type", "submit") %}
 {% elseif tag == "link" or tag == "a" or url != null %}
   {% set tag = "a" %}
-  {% if url %}
-    {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
+  {% if disabled %}
+    {% set inner_attributes = inner_attributes.setAttribute("aria-disabled", "true") %}
+  {% else %}
+    {% if url %}
+      {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
+    {% endif %}
   {% endif %}
 {% elseif tag == "reset" %}
   {% set tag = "button" %}

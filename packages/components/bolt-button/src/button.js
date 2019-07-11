@@ -145,27 +145,43 @@ class BoltButton extends BoltAction {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
       buttonElement.className += ' ' + classes;
 
-      if (this.props.url) {
-        buttonElement.setAttribute('href', this.props.url);
-      }
+      if (buttonElement.tagName === 'A') {
+        const url = this.props.url || this.originalUrl;
 
-      if (this.props.target) {
-        buttonElement.setAttribute('target', this.props.target);
+        if (this.props.disabled) {
+          this.originalUrl = buttonElement.getAttribute('href');
+          buttonElement.setAttribute('aria-disabled', 'true');
+          buttonElement.removeAttribute('href');
+        } else {
+          buttonElement.removeAttribute('aria-disabled');
+
+          if (url) {
+            buttonElement.setAttribute('href', url);
+          }
+        }
+
+        if (this.props.target) {
+          buttonElement.setAttribute('target', this.props.target);
+        }
+      } else {
+        if (this.props.disabled) {
+          buttonElement.setAttribute('disabled', true);
+        } else {
+          buttonElement.removeAttribute('disabled');
+        }
       }
 
       if (this.props.tabindex) {
         buttonElement.setAttribute('target', this.props.tabindex);
       }
 
-      if (this.props.disabled) {
-        buttonElement.setAttribute('disabled', true);
-      }
-
       render(innerSlots, buttonElement);
     } else if (hasUrl) {
       buttonElement = html`
         <a
-          href="${this.props.url}"
+          href="${ifDefined(
+            this.props.url && !this.props.disabled ? this.props.url : undefined,
+          )}"
           class="${classes}"
           target="${urlTarget}"
           tabindex=${ifDefined(
@@ -175,6 +191,7 @@ class BoltButton extends BoltAction {
               ? this.props.tabindex
               : undefined,
           )}
+          aria-disabled=${ifDefined(this.props.disabled ? 'true' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
           >${innerSlots}</a
         >
