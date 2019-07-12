@@ -188,45 +188,61 @@
   </bolt-list-item>
 
   <bolt-list-item>
-    <bolt-list display="inline" spacing="medium" align="center" inset>
+    <bolt-list spacing="large" inset>
       <bolt-list-item>
-        <bolt-text headline>
-          Individually themed
-        </bolt-text>
-      </bolt-list-item>
-      <bolt-list-item class="t-bolt-xlight">
-        {{ search_bar_themed }}
-      </bolt-list-item>
-      <bolt-list-item class="t-bolt-light">
-        {{ search_bar_themed }}
-      </bolt-list-item>
-      <bolt-list-item class="t-bolt-dark">
-        {{ search_bar_themed }}
-      </bolt-list-item>
-      <bolt-list-item class="t-bolt-xdark">
-        {{ search_bar_themed }}
+        <bolt-list>
+          <bolt-list-item>
+            <bolt-text headline>
+              Individually themed
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-list display="flex" spacing="medium" align="center" inset>
+              <bolt-list-item class="t-bolt-xdark">
+                {{ search_bar_themed }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-dark">
+                {{ search_bar_themed }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-light">
+                {{ search_bar_themed }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-xlight">
+                {{ search_bar_themed }}
+              </bolt-list-item>
+            </bolt-list>
+          </bolt-list-item>
+        </bolt-list>
       </bolt-list-item>
     </bolt-list>
   </bolt-list-item>
 
   <bolt-list-item>
-    <bolt-list display="inline" spacing="medium" align="center" inset>
+    <bolt-list spacing="large" inset>
       <bolt-list-item>
-        <bolt-text headline>
-          Inside a themed container
-        </bolt-text>
-      </bolt-list-item>
-      <bolt-list-item class="t-bolt-xlight">
-        {{ search_bar }}
-      </bolt-list-item>
-      <bolt-list-item class="t-bolt-light">
-        {{ search_bar }}
-      </bolt-list-item>
-      <bolt-list-item class="t-bolt-dark">
-        {{ search_bar }}
-      </bolt-list-item>
-      <bolt-list-item class="t-bolt-xdark">
-        {{ search_bar }}
+        <bolt-list>
+          <bolt-list-item>
+            <bolt-text headline>
+              Inside a themed container
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-list display="flex" spacing="medium" align="center" inset>
+              <bolt-list-item class="t-bolt-xdark">
+                {{ search_bar }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-dark">
+                {{ search_bar }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-light">
+                {{ search_bar }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-xlight">
+                {{ search_bar }}
+              </bolt-list-item>
+            </bolt-list>
+          </bolt-list-item>
+        </bolt-list>
       </bolt-list-item>
     </bolt-list>
   </bolt-list-item>
