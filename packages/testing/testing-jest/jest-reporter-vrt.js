@@ -4,6 +4,10 @@ const fs = require('fs');
 const path = require('path');
 const { upload } = require('now-storage');
 const { promisify } = require('util');
+const boxen = require('boxen');
+const terminalLink = require('terminal-link');
+
+const vrtScreenshots = [];
 
 async function uploadImage(name, content) {
   const { url } = await upload(process.env.NOW_TOKEN, {
@@ -35,8 +39,49 @@ class JestScreenshotReporter {
     this._options = options;
   }
 
+  onRunComplete(contexts, results) {
+    const pathsToFailingTests = [];
+    let summaryOfFailingTests = ``;
+    let summaryOfVrtResults = ``;
+
+    results.testResults.forEach(result => {
+      if (result.numFailingTests >= 1) {
+        pathsToFailingTests.push(
+          `• ${path.relative(process.cwd(), result.testFilePath)}`,
+        );
+      }
+    });
+
+    const testSummary = `${chalk.bold('Jest Test Summary:')}
+• Tests # of tests passing: ${chalk.green(results.numPassedTests)}
+• Total # of tests failing: ${chalk.red.bold(results.numFailedTests)}
+• Total # of tests:         ${chalk.bold(results.numTotalTests)}
+    `;
+
+    if (pathsToFailingTests.length >= 1) {
+      summaryOfFailingTests = `
+${chalk.bold('These are the paths to the Jest tests that are failing:')}
+${pathsToFailingTests.join('\n')}
+    `;
+    }
+
+    if (vrtScreenshots.length >= 1) {
+      summaryOfVrtResults = `
+${chalk.bold('These are the VRT diff screenshots for tests that are failing:')}
+${vrtScreenshots.join('\n')}
+      `;
+    }
+
+    console.log(
+      boxen(testSummary + summaryOfFailingTests + summaryOfVrtResults, {
+        padding: 1,
+        margin: 1,
+        borderStyle: 'double',
+      }),
+    );
+  }
+
   onTestResult(test, testResult, aggregateResults) {
-    // if (!process.env.NOW_TOKEN) return false;
     if (
       testResult.numFailingTests &&
       testResult.failureMessage.match(/different from snapshot/)
@@ -57,27 +102,82 @@ class JestScreenshotReporter {
                 `/__image_snapshots__/__diff_output__/${file}`,
               ),
             );
-            uploadImage(file, imageData).then(url => {
-              const urlToDisplay = `https://${url}/${file}`;
+
+            // exit early so local Jest tests without the necessary now.sh token exit when a failure occurs
+            if (!NOW_TOKEN) {
+              const urlToDisplay = path.relative(
+                process.cwd(),
+                path.join(
+                  testingDir,
+                  `/__image_snapshots__/__diff_output__/${file}`,
+                ),
+              );
               resolve(urlToDisplay);
-            });
+            } else {
+              uploadImage(file, imageData).then(url => {
+                const urlToDisplay = `https://${url}/${file}`;
+                resolve(urlToDisplay);
+              });
+            }
           });
           allImagePromises.push(filePromise);
         });
-        return Promise.all(allImagePromises)
-          .then(function(values) {
-            console.log(
-              chalk.red.bold(
-                `Uploaded image diff(s) to: \n${values.join('\n')}`,
-              ),
-            );
-            resolveAll(values);
-          })
-          .catch(err => {
-            console.log(
-              chalk.red.bold(`Error uploading image diffs to now.sh: ${err}`),
-            );
-          });
+
+        if (NOW_TOKEN) {
+          return Promise.all(allImagePromises)
+            .then(function(screenshotDiffs) {
+              screenshotDiffs.forEach(screenshot => {
+                vrtScreenshots.push(
+                  `• ${terminalLink(
+                    screenshot.substring(
+                      screenshot.lastIndexOf('/') + 1,
+                      screenshot.length,
+                    ),
+                    screenshot,
+                  )}`,
+                );
+              });
+              console.log(
+                chalk.red.bold(
+                  `Uploaded VRT image diff(s) to: \n${screenshotDiffs.join(
+                    '\n',
+                  )}`,
+                ),
+              );
+              resolveAll(values);
+            })
+            .catch(err => {
+              console.log(
+                chalk.red.bold(
+                  `Error uploading image diff(s) to now.sh: ${err}`,
+                ),
+              );
+            });
+        } else {
+          return Promise.all(allImagePromises)
+            .then(function(screenshotDiffs) {
+              screenshotDiffs.forEach(screenshot => {
+                vrtScreenshots.push(
+                  `• ${terminalLink(
+                    screenshot.substring(
+                      screenshot.lastIndexOf('/') + 1,
+                      screenshot.length,
+                    ),
+                    screenshot,
+                  )}`,
+                );
+              });
+
+              resolveAll(screenshotDiffs);
+            })
+            .catch(err => {
+              console.log(
+                chalk.red.bold(
+                  `Error encountered when processing local image VRT diff(s): ${err}`,
+                ),
+              );
+            });
+        }
       });
     }
   }
