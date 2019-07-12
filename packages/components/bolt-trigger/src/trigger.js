@@ -73,7 +73,7 @@ class BoltTrigger extends BoltAction {
         const url = this.props.url || this.originalUrl;
 
         if (disabled) {
-          this.originalUrl = buttonElement.getAttribute('href');
+          this.originalUrl = triggerElement.getAttribute('href');
           triggerElement.setAttribute('aria-disabled', 'true');
           triggerElement.removeAttribute('href');
         } else {
