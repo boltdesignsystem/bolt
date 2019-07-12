@@ -93,7 +93,7 @@ class BoltImage extends withLitHtml() {
   rendered() {
     super.rendered && super.rendered();
 
-    // @todo: update to not keep querySelecting if element already found OR lazyloading is disabled 
+    // @todo: update to not keep querySelecting if element already found OR lazyloading is disabled
     const lazyImage = this.renderRoot.querySelector('.js-lazyload');
 
     if (lazyImage) {
