@@ -88,7 +88,7 @@ class BoltTrigger extends BoltAction {
         }
       } else {
         if (disabled) {
-          triggerElement.setAttribute('disabled', true);
+          triggerElement.setAttribute('disabled', '');
         } else {
           triggerElement.removeAttribute('disabled');
         }
@@ -115,7 +115,7 @@ class BoltTrigger extends BoltAction {
       triggerElement = html`
         <button
           class="${classes}"
-          disabled=${ifDefined(disabled || undefined)}
+          disabled=${ifDefined(disabled ? '' : undefined)}
           @focus="${e => this._handleFocus(e)}"
           @blur="${e => this._handleBlur(e)}"
         >
