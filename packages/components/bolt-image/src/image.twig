@@ -46,7 +46,7 @@
 {% set can_use_placeholder = can_use_ratio or cover %}
 
 {# Setup inline styles that will be added to the custom element  #}
-{% set inline_bg_color = can_use_placeholder and is_jpg and lazyload ? "background-color: " ~ ph_color ~ "; " : "" %}
+{% set inline_bg_color = can_use_placeholder and is_jpg ? "background-color: " ~ ph_color ~ "; " : "" %}
 {% set inline_width = max_width ? "width: " ~ max_width ~ "; " : "" %}
 {% set inline_max_width = max_width and "%" not in max_width ? "max-width: 100%; " : "" %}
 {% set inline_style = inline_bg_color ~ inline_width ~ inline_max_width %}
@@ -129,8 +129,8 @@
   {% if max_width %}max-width="{{ max_width }}"{% endif %}
   {% if sizes %}sizes="{{ sizes }}"{% endif %}
   {% if ratio_string %}ratio="{{ ratio_string }}"{% elseif not use_ratio %}ratio="none"{% elseif can_use_ratio %}ratio="{{ width * 1 }}/{{ height * 1 }}"{% endif %}
-  {% if (placeholder_color or ph_color) and lazyload %}placeholder-color="{{ placeholder_color | default(ph_color) }}"{% endif %}
-  {% if (placeholder_image or ph_image) and lazyload %}placeholder-image="{{ placeholder_image | default(ph_image) }}"{% endif %}
+  {% if (placeholder_color or ph_color) %}placeholder-color="{{ placeholder_color | default(ph_color) }}"{% endif %}
+  {% if (placeholder_image or ph_image) %}placeholder-image="{{ placeholder_image | default(ph_image) }}"{% endif %}
   {% if zoom %}zoom{% endif %}
   {% if cover %}cover{% endif %}
   {% if not lazyload %}no-lazy{% endif %}

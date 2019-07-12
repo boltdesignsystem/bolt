@@ -65,12 +65,6 @@ class BoltImage extends withLitHtml() {
     window.removeEventListener('resize', this.onResize);
   }
 
-  lazyloadImage(image) {
-    if (!this.isLoaded) {
-      this.isLoaded = true;
-    }
-  }
-
   connecting() {
     // IE fires this twice, only let it remove children once
     if (!this._wasInitiallyRendered) {
@@ -99,16 +93,13 @@ class BoltImage extends withLitHtml() {
   rendered() {
     super.rendered && super.rendered();
 
+    // @todo: update to not keep querySelecting if element already found OR lazyloading is disabled 
     const lazyImage = this.renderRoot.querySelector('.js-lazyload');
 
     if (lazyImage) {
       // check if placeholder image has loaded; lazySizes will only unveil an image that is "complete"
-      if (lazyImage.complete) {
-        this.lazyloadImage(lazyImage);
-      } else {
-        lazyImage.onload = () => {
-          this.lazyloadImage(lazyImage);
-        };
+      if (!this.isLoaded) {
+        this.isLoaded = true;
       }
     }
   }
