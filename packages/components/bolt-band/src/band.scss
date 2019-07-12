@@ -13,6 +13,10 @@ bolt-band {
   max-height: none;
   will-change: height, min-height;
   transition: min-height $bolt-transition;
+
+  &.is-expanded {
+    min-height: 56.25vh;
+  }
 }
 
 // Component styles
@@ -26,8 +30,10 @@ bolt-band {
   min-height: 0;
   transition: min-height $bolt-transition; // Do not transition band widths
 
-  .is-expanded & {
-    min-height: 56.25vh;
+  @include bolt-ie11-only {
+    .is-expanded & {
+      min-height: 56.25vh;
+    }
   }
 }
 
