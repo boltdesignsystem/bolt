@@ -1,15 +1,24 @@
-{% macro code_example(code, copy) %}
-  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+{% macro code_example(code) %}
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
       {{ code | replace({
         '<': '&lt;',
         '>': '&gt;',
       }) | trim | raw }}
     {% endspaceless %}</bolt-code-snippet>
+  </div>
 {% endmacro %}
 
 {% import _self as table_example %}
 
-{% set simple_demo %}
+{% set table_demo %}
 <bolt-table>
   <table>
     <thead>
@@ -52,7 +61,60 @@
 </bolt-table>
 {% endset %}
 
-{% set advanced_demo %}
+{% set table_prop_demo %}
+<bolt-table format="numeric" borderless>
+  <table>
+    <thead>
+      <tr>
+        <td></td>
+        <td>Pts</td>
+        <td>Reb</td>
+        <td>Ast</td>
+        <td>Stl</td>
+        <td>Blk</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Michael Jordan</th>
+        <td>70</td>
+        <td>10</td>
+        <td>2</td>
+        <td>5</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th>Toni Kukoc</th>
+        <td>21</td>
+        <td>15</td>
+        <td>10</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th>Steve Kerr</th>
+        <td>5</td>
+        <td>2</td>
+        <td>20</td>
+        <td>5</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <td>91</td>
+        <td>27</td>
+        <td>32</td>
+        <td>13</td>
+        <td>5</td>
+      </tr>
+    </tfoot>
+  </table>
+</bolt-table>
+{% endset %}
+
+{% set table_advanced_demo %}
 <bolt-table>
   <table>
     <thead>
@@ -102,7 +164,7 @@
 </bolt-table>
 {% endset %}
 
-{% set components_demo %}
+{% set table_data_demo %}
 <bolt-table first-col-fixed-width>
   <table>
     <thead>
@@ -147,7 +209,6 @@
         <td>SR-44869</td>
         <td>
           <img src="http://fillmurray.com/200/200">
-          UTF-8
         </td>
         <td>OpenSpan.Updater.Git.dll</td>
       </tr>
@@ -175,36 +236,27 @@
 </bolt-table>
 {% endset %}
 
-{% grid with {
-  attributes: {
-    class: [
-      "o-bolt-grid--matrix"
-    ]
-  }
-} %}
-  {% cell "u-bolt-width-12/12" %}
-    <bolt-text headline>Web Component Usage</bolt-text>
-    <bolt-text>
-      Bolt Table is a web component that renders a semantic table with Bolt styles. To make a simple table, wrap a semantic <bolt-code-snippet display="inline" lang="html">&lt;table&gt;</bolt-code-snippet> element with a <bolt-code-snippet display="inline" lang="html">&lt;bolt-table&gt;</bolt-code-snippet> element.
-    </bolt-text>
-    {{ simple_demo }}
-    {% include table_example.code_example(simple_demo, true) %}
-  {% endcell %}
 
-  {% cell "u-bolt-width-12/12" %}
-    <bolt-text headline>Advanced Usage</bolt-text>
-    <bolt-text>
-      Attributes and utility classes are supported on table headers and cells.
-    </bolt-text>
-    {{ advanced_demo }}
-    {% include table_example.code_example(advanced_demo, true) %}
-  {% endcell %}
-  {% cell "u-bolt-width-12/12" %}
-    <bolt-text headline>Accepted Data</bolt-text>
-    <bolt-text>
-      Each table header or cell can accept any Bolt web components, HTML markup, or just plain text.
-    </bolt-text>
-    {{ components_demo }}
-    {% include table_example.code_example(components_demo, true) %}
-  {% endcell %}
-{% endgrid %}
+<bolt-text headline>Web Component Usage</bolt-text>
+<bolt-text>
+  Bolt Table is a web component that renders a semantic table with Bolt styles. To make a simple table, wrap a semantic <bolt-code-snippet display="inline" lang="html">&lt;table&gt;</bolt-code-snippet> element with a <bolt-code-snippet display="inline" lang="html">&lt;bolt-table&gt;</bolt-code-snippet> element.
+</bolt-text>
+{% include table_example.code_example(table_demo) %}
+
+<bolt-text headline>Prop Usage</bolt-text>
+<bolt-text>
+  Configure the table with the properties specified in the schema.
+</bolt-text>
+{% include table_example.code_example(table_prop_demo) %}
+
+<bolt-text headline>Advanced Usage</bolt-text>
+<bolt-text>
+  Attributes and utility classes are supported on table headers and cells.
+</bolt-text>
+{% include table_example.code_example(table_advanced_demo) %}
+
+<bolt-text headline>Accepted Data</bolt-text>
+<bolt-text>
+  Each table header or cell can accept any Bolt web components, HTML markup, or just plain text.
+</bolt-text>
+{% include table_example.code_example(table_data_demo) %}
