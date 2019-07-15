@@ -1,7 +1,7 @@
-const path = require('path');
+const { join, resolve } = require('path');
 const fs = require('fs-extra');
 const globby = require('globby');
-const rootPkg = require(path.join(__dirname, '../package.json'));
+const rootPkg = require(join(__dirname, '../package.json'));
 const assert = require('assert');
 const chalk = require('chalk');
 const { promisify } = require('util');
@@ -97,13 +97,13 @@ describe('check the config for monorepo packages', () => {
   });
 
   test('`@bolt` dependencies are symlinked to the packages folder', async () => {
-    const baseDir = path.resolve(__dirname, '../node_modules/@bolt');
+    const baseDir = resolve(__dirname, '../node_modules/@bolt');
     readdir(baseDir)
       .then(dirNames =>
         Promise.all(
           dirNames.map(dirName => {
             const item = {
-              path: path.join(baseDir, dirName),
+              path: join(baseDir, dirName),
             };
             return new Promise((resolve, reject) => {
               lstat(item.path)

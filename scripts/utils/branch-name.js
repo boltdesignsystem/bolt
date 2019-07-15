@@ -27,7 +27,7 @@ if (TRAVIS === 'true') {
   }
 }
 
-console.log(`Branch Name: ${branchName}`);
+// console.log(`Branch Name: ${branchName}`);
 
 module.exports = {
   branchName,

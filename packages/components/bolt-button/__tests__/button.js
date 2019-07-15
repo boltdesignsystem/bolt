@@ -41,6 +41,18 @@ describe('button', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  test('Button adds target if passed via attributes', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a button',
+      url: 'http://pega.com',
+      attributes: {
+        target: '_blank',
+      },
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   tag.enum.forEach(async tagChoice => {
     test(`Button tag: ${tagChoice}`, async () => {
       const results = await render('@bolt-components-button/button.twig', {
@@ -182,5 +194,29 @@ describe('button', () => {
 
     expect(renderedShadowDomHTML).toMatchSnapshot();
     expect(renderedHTML).toMatchSnapshot();
+  });
+
+  test('Inline button inside a container with defined text alignment.', async () => {
+    const results = await renderString(`
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-right" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align right"
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-center" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align center"
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-left" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align left"
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    `);
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
   });
 });

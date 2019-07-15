@@ -7,6 +7,7 @@ const explorer = cosmiconfig('bolt');
 const configStore = require('@bolt/build-utils/config-store');
 const log = require('@bolt/build-utils/log');
 const { readYamlFileSync } = require('@bolt/build-utils/yaml');
+const { getPort } = require('@bolt/build-utils/get-port');
 const configSchema = readYamlFileSync(
   path.join(__dirname, './utils/config.schema.yml'),
 );
@@ -53,7 +54,7 @@ if (program.configFile) {
 }
 
 (async () => {
-  await configStore.init(userConfig).then(async config => {
+  await configStore.init(userConfig).then(async () => {
     // Now that config is initilized, we can start requiring other things
     const { buildBoltManifest } = require('@bolt/build-utils/manifest');
     const log = require('@bolt/build-utils/log');
@@ -67,7 +68,7 @@ if (program.configFile) {
      * @returns {Object} config - Final updated config
      */
     async function updateConfig(options, programInstance) {
-      await configStore.updateConfig(config => {
+      await configStore.updateConfig(async config => {
         originalConfig = config;
 
         config.verbosity =
@@ -92,6 +93,9 @@ if (program.configFile) {
           : typeof options.env === 'undefined'
           ? config.env
           : options.env;
+
+        //check port not only when setting defaults but in boltrc.js too
+        config.port = await getPort(config.port);
 
         config.webpackStats =
           typeof options.webpackStats === 'undefined'
@@ -119,11 +123,7 @@ if (program.configFile) {
         config.enableSSR = false;
 
         config.i18n =
-          typeof options.i18n === 'undefined'
-            ? config.prod
-              ? true
-              : false
-            : options.i18n;
+          typeof options.i18n === 'undefined' ? !config.prod : options.i18n;
 
         // If i18n is disabled, ignore and remove lang config settings
         if (config.lang && config.i18n === false) {
@@ -135,6 +135,7 @@ if (program.configFile) {
       });
 
       const config = await configStore.getConfig();
+
       log.dim(`Verbosity: ${config.verbosity}`);
       log.dim(`Prod: ${config.prod}`);
       log.dim(`i18n: ${config.i18n}`);
