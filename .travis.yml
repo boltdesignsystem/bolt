@@ -15,7 +15,7 @@ addons:
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
   - nvm install # version lifted from `.nvmrc`
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.16.0
   - export PATH="$HOME/.yarn/bin:$PATH"
 
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
@@ -39,9 +39,17 @@ jobs:
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
-      install: yarn run setup
+      install:
+        - yarn run setup
+        - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
-      script: yarn run test
+      script:
+        - yarn test:js --maxWorkers=2
+        - yarn test:js:quick --maxWorkers=2 # running both `test:js` as comparison; remove or comment out this or other one eventually
+        #- yarn run test
+        - yarn test:php
+        - yarn test:monorepo --maxWorkers=2
+        - yarn test:pkgs
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
 
