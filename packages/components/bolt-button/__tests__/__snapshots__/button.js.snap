@@ -22,6 +22,32 @@ exports[`button Basic usage 1`] = `
 </bolt-button>
 `;
 
+exports[`button Button adds target if passed via attributes 1`] = `
+<bolt-button size="medium"
+             color="primary"
+             width="auto"
+             border-radius="regular"
+             align="center"
+             transform="none"
+             url="http://pega.com"
+             target="_blank"
+>
+  <a href="http://pega.com"
+     target="_blank"
+     class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
+     is="shadow-root"
+  >
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__item">
+      This is a button
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+  </a>
+</bolt-button>
+`;
+
 exports[`button Button tag: a 1`] = `
 <bolt-button size="medium"
              color="primary"
