@@ -15,15 +15,18 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
 const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
-const { getConfig } = require('./utils/config-store');
-const { boltWebpackProgress } = require('./utils/webpack-helpers');
-const { webpackStats, statsPreset } = require('./utils/webpack-verbosity');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
+const {
+  webpackStats,
+  statsPreset,
+} = require('@bolt/build-utils/webpack-verbosity');
 
 const {
   getBoltManifest,
   mapComponentNameToTwigNamespace,
-} = require('./utils/manifest');
-const log = require('./utils/log');
+} = require('@bolt/build-utils/manifest');
+const log = require('@bolt/build-utils/log');
 
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
@@ -79,9 +82,7 @@ async function createWebpackConfig(buildConfig) {
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
-    `$bolt-css-vars-json-data-export: ${
-      themifyOptions.fallback.jsonDataExport
-    };`,
+    `$bolt-css-vars-json-data-export: ${themifyOptions.fallback.jsonDataExport};`,
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
     `${config.lang ? `$bolt-lang: ${config.lang};` : '$bolt-lang: null;'}`,
   ];
@@ -101,7 +102,8 @@ async function createWebpackConfig(buildConfig) {
       ),
       config: {
         prod: config.prod ? true : false,
-        lang: config.lang,
+        lang: JSON.stringify(config.lang),
+        env: JSON.stringify(config.env),
       },
     },
   };
@@ -150,7 +152,7 @@ async function createWebpackConfig(buildConfig) {
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
-      entry[globalEntryName] = [];
+      entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
 
       components.global.forEach(component => {
         if (component.assets.style) {
@@ -169,9 +171,7 @@ async function createWebpackConfig(buildConfig) {
 
       if (!config.prod && config.webpackDevServer && useHotMiddleware) {
         entry[globalEntryName].push(
-          `webpack-hot-middleware/client?name=${
-            config.lang
-          }&noInfo=true&quiet=true&logLevel=silent&reload=true`,
+          `webpack-hot-middleware/client?name=${config.lang}&noInfo=true&quiet=true&logLevel=silent&reload=true`,
         );
       }
     }

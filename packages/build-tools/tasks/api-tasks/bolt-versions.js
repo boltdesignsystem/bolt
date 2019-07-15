@@ -22,9 +22,7 @@ const octokit = new Octokit({
   throttle: {
     onRateLimit: (retryAfter, options) => {
       console.warn(
-        `Github API Request quota exhausted for request ${options.method} ${
-          options.url
-        }`,
+        `Github API Request quota exhausted for request ${options.method} ${options.url}`,
       );
 
       // only retry if wait is 15 seconds or less
@@ -42,17 +40,15 @@ const octokit = new Octokit({
     onAbuseLimit: (retryAfter, options) => {
       // does not retry, only logs a warning
       console.warn(
-        `Github API abuse detected for request ${options.method} ${
-          options.url
-        }`,
+        `Github API abuse detected for request ${options.method} ${options.url}`,
       );
     },
   },
   debug: false,
 });
 
-const { getConfig } = require('../../utils/config-store');
-const { fileExists } = require('../../utils/general');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { fileExists } = require('@bolt/build-utils/general');
 const store = new InCache();
 let isUsingOldData = false; // remember if we are using up to date version data or older (stale) data as a fallback
 

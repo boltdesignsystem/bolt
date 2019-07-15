@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.5.2...v2.5.3) (2019-07-12)
+
+
+### Bug Fixes
+
+* cherry pick the main lang-specific config fix + webpack `lang` config fix when building multiple languages at the same time via https://github.com/bolt-design-system/bolt/pull/1265 ([318c9f9](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/318c9f9))
+
+
+
+
+
+## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+
+### Bug Fixes
+
+* address eslint / prettier problems flagged with the latest upstream dependencies + update yarn.lock ([c5e0253](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/c5e0253))
+* update local @bolt/build-util references in the build tools ([35ea609](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/35ea609))
+
+
+
+
+
 ## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.5.0...v2.5.1) (2019-06-21)
 
 **Note:** Version bump only for package @bolt/build-tools

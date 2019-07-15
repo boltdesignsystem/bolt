@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.4](https://github.com/bolt-design-system/bolt/compare/v2.5.3...v2.5.4) (2019-07-15)
+
+
+### Bug Fixes
+
+* cherry pick v2.6.0 update that adds missing trigger dependency to modal ([e2c9aff](https://github.com/bolt-design-system/bolt/commit/e2c9aff))
+
+
+
+
+
+## [2.5.3](https://github.com/bolt-design-system/bolt/compare/v2.5.2...v2.5.3) (2019-07-12)
+
+
+### Bug Fixes
+
+* add test for aligning inline button ([603cfc6](https://github.com/bolt-design-system/bolt/commit/603cfc6))
+* cherry pick the main lang-specific config fix + webpack `lang` config fix when building multiple languages at the same time via https://github.com/bolt-design-system/bolt/pull/1265 ([318c9f9](https://github.com/bolt-design-system/bolt/commit/318c9f9))
+* remove overriding the image sizes prop when used in device viewer ([676e5df](https://github.com/bolt-design-system/bolt/commit/676e5df))
+* update band component hotfix to only apply to IE11 ([80b0e43](https://github.com/bolt-design-system/bolt/commit/80b0e43))
+
+
+
+
+
+## [2.5.2](https://github.com/bolt-design-system/bolt/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+
+### Bug Fixes
+
+* address eslint / prettier problems flagged with the latest upstream dependencies + update yarn.lock ([c5e0253](https://github.com/bolt-design-system/bolt/commit/c5e0253))
+* fix typo ([38e85ad](https://github.com/bolt-design-system/bolt/commit/38e85ad))
+* update drupal lab package.json dependency versions to use the latest from NPM + apply patches if necessary ([bafea06](https://github.com/bolt-design-system/bolt/commit/bafea06))
+* update local @bolt/build-util references in the build tools ([35ea609](https://github.com/bolt-design-system/bolt/commit/35ea609))
+* update travis build steps to check for Drupal Lab ([bc01081](https://github.com/bolt-design-system/bolt/commit/bc01081))
+* update Travis job label ([d839d01](https://github.com/bolt-design-system/bolt/commit/d839d01))
+
+
+
+
+
 ## [2.5.1](https://github.com/bolt-design-system/bolt/compare/v2.5.0...v2.5.1) (2019-06-21)
 
 **Note:** Version bump only for package bolt

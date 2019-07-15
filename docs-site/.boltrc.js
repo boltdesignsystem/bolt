@@ -23,9 +23,9 @@ const config = {
   webpackDevServer: {
     enabled: true,
   },
-  sourceMaps: process.env.TRAVIS || argv.prod ? false : true,
-  enableCache: process.env.TRAVIS || argv.prod ? false : true,
-  enableSSR: false, // temp disabld till Travis issue fixed
+  sourceMaps: !(process.env.TRAVIS || argv.prod),
+  enableCache: !(process.env.TRAVIS || argv.prod),
+  enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -78,7 +78,7 @@ const config = {
       '@bolt/components-carousel',
       '@bolt/global',
       '@bolt/docs-search',
-      '@bolt/schema-form',
+      // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',

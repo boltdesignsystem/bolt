@@ -2,6 +2,9 @@
 /// @group Settings: Typography
 ////
 
+// so the recursive map merge used below works as expected
+@import '../../02-tools/tools-map-recursive-merge/tools-map-recursive-merge';
+
 /* ------------------------------------ *\
    Japanese Specific Typography Styles
 \* ------------------------------------ */
@@ -52,5 +55,12 @@
     'large':   1.4,
     'xlarge':  2.8,
     'xxlarge': 5.6
+  ) !global;
+
+  // reference back to the "medium" size value (whatever it's currently set to)
+  // NOTE: this is how "sizeless" utility classes like `u-bolt-margin-bottom` get generated
+  $bolt-spacing-values: bolt-recursive-map-merge(
+    $bolt-spacing-values,
+    ('': map-get($bolt-spacing-values, 'medium'))
   ) !global;
 }
