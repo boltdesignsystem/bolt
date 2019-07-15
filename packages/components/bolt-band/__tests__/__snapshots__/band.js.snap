@@ -21,6 +21,517 @@ exports[`<bolt-band> Component Basic usage 1`] = `
 </bolt-band>
 `;
 
+exports[`<bolt-band> Component Full bleed usage 2`] = `
+<bolt-band
+  class="is-ready"
+  size="medium"
+  style=""
+  tag="div"
+  theme="dark"
+>
+  
+  
+  <div
+    class="c-bolt-band c-bolt-band--medium t-bolt-dark"
+    style=""
+  >
+    
+                      
+            
+        
+        
+                
+    <div
+      class="c-bolt-band__content"
+      style=""
+    >
+      
+        
+
+
+
+
+
+
+
+  
+      <bolt-wrapper
+        bolt-object=""
+        full="true"
+        size="xxlarge"
+        style=""
+      >
+        
+    
+        <div
+          class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full"
+          style=""
+        >
+          
+                                  This band is not full bleed.
+          
+          
+        </div>
+        
+  
+      </bolt-wrapper>
+            
+    </div>
+    
+    
+      
+  </div>
+  
+
+</bolt-band>
+`;
+
+exports[`<bolt-band> Component Nested bands usage 2`] = `
+<bolt-band
+  class="is-ready"
+  full-bleed=""
+  size="medium"
+  style=""
+  tag="div"
+  theme="xdark"
+>
+  
+  
+  <div
+    class="c-bolt-band c-bolt-band--medium t-bolt-xdark c-bolt-band--full-bleed"
+    style=""
+  >
+    
+                      
+            
+        
+        
+                
+    <div
+      class="c-bolt-band__content"
+      style=""
+    >
+      
+        
+
+
+
+
+
+
+
+  
+      <bolt-wrapper
+        bolt-object=""
+        full="true"
+        size="xxlarge"
+        style=""
+      >
+        
+    
+        <div
+          class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full"
+          style=""
+        >
+          
+                                          
+
+
+ 
+  
+
+
+
+
+  
+
+  
+
+
+
+
+
+
+
+          <h2
+            class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xxxlarge"
+            style=""
+          >
+            This Band Has 2 Bands Nested Inside
+          </h2>
+          
+        
+
+
+
+
+
+
+
+
+
+          <bolt-band
+            class="is-ready"
+            size="xsmall"
+            style=""
+            tag="div"
+            theme="light"
+          >
+            
+  
+            <div
+              class="c-bolt-band c-bolt-band--xsmall t-bolt-light"
+              style=""
+            >
+              
+                      
+            
+        
+        
+                
+              <div
+                class="c-bolt-band__content"
+                style=""
+              >
+                
+        
+
+
+
+
+
+
+
+  
+                <bolt-wrapper
+                  bolt-object=""
+                  full="true"
+                  size="xxlarge"
+                  style=""
+                >
+                  
+    
+                  <div
+                    class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full"
+                    style=""
+                  >
+                    
+                                  Nested band 1
+          
+          
+                  </div>
+                  
+  
+                </bolt-wrapper>
+                      
+              </div>
+              
+    
+      
+            </div>
+            
+
+          </bolt-band>
+          
+        
+
+
+
+
+
+
+
+
+
+          <bolt-band
+            class="is-ready"
+            size="large"
+            style=""
+            tag="div"
+            theme="xlight"
+          >
+            
+  
+            <div
+              class="c-bolt-band c-bolt-band--large t-bolt-xlight"
+              style=""
+            >
+              
+                      
+            
+        
+        
+                
+              <div
+                class="c-bolt-band__content"
+                style=""
+              >
+                
+        
+
+
+
+
+
+
+
+  
+                <bolt-wrapper
+                  bolt-object=""
+                  full="true"
+                  size="xxlarge"
+                  style=""
+                >
+                  
+    
+                  <div
+                    class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full"
+                    style=""
+                  >
+                    
+                                  Nested band 2
+          
+          
+                  </div>
+                  
+  
+                </bolt-wrapper>
+                      
+              </div>
+              
+    
+      
+            </div>
+            
+
+          </bolt-band>
+          
+      
+          
+          
+        </div>
+        
+  
+      </bolt-wrapper>
+            
+    </div>
+    
+    
+      
+  </div>
+  
+
+</bolt-band>
+`;
+
+exports[`<bolt-band> Component Pinned content usage 1`] = `
+<bolt-band tag="div"
+           size="large"
+           theme="dark"
+           full-bleed
+>
+  <div class="c-bolt-band c-bolt-band--large t-bolt-dark c-bolt-band--full-bleed">
+    <div class="c-bolt-band__content c-bolt-band__content--pinned c-bolt-band__content--pinned-upper">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          <div class="c-bolt-band__pinned-items">
+            <div class="c-bolt-band__pinned-item">
+              upper pinned 1
+            </div>
+            <div class="c-bolt-band__pinned-item">
+              upper pinned 2
+            </div>
+            <div class="c-bolt-band__pinned-item">
+              upper pinned 3
+            </div>
+          </div>
+        </div>
+      </bolt-wrapper>
+    </div>
+    <div class="c-bolt-band__content">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          This is a band.
+        </div>
+      </bolt-wrapper>
+    </div>
+    <div class="c-bolt-band__content c-bolt-band__content--pinned c-bolt-band__content--pinned-lower">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          <div class="c-bolt-band__pinned-items">
+            <div class="c-bolt-band__pinned-item c-bolt-band__pinned-item--">
+              lower pinned 1
+            </div>
+            <div class="c-bolt-band__pinned-item c-bolt-band__pinned-item--">
+              lower pinned 2
+            </div>
+            <div class="c-bolt-band__pinned-item c-bolt-band__pinned-item--">
+              lower pinned 3
+            </div>
+          </div>
+        </div>
+      </bolt-wrapper>
+    </div>
+  </div>
+</bolt-band>
+`;
+
+exports[`<bolt-band> Component Semantic tag usage: article 1`] = `
+<bolt-band tag="article"
+           size="medium"
+           theme="dark"
+           full-bleed
+>
+  <article class="c-bolt-band c-bolt-band--medium t-bolt-dark c-bolt-band--full-bleed">
+    <div class="c-bolt-band__content">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          This is a band.
+        </div>
+      </bolt-wrapper>
+    </div>
+  </article>
+</bolt-band>
+`;
+
+exports[`<bolt-band> Component Semantic tag usage: div 1`] = `
+<bolt-band tag="div"
+           size="medium"
+           theme="dark"
+           full-bleed
+>
+  <div class="c-bolt-band c-bolt-band--medium t-bolt-dark c-bolt-band--full-bleed">
+    <div class="c-bolt-band__content">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          This is a band.
+        </div>
+      </bolt-wrapper>
+    </div>
+  </div>
+</bolt-band>
+`;
+
+exports[`<bolt-band> Component Semantic tag usage: figure 1`] = `
+<bolt-band tag="figure"
+           size="medium"
+           theme="dark"
+           full-bleed
+>
+  <figure class="c-bolt-band c-bolt-band--medium t-bolt-dark c-bolt-band--full-bleed">
+    <div class="c-bolt-band__content">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          This is a band.
+        </div>
+      </bolt-wrapper>
+    </div>
+  </figure>
+</bolt-band>
+`;
+
+exports[`<bolt-band> Component Semantic tag usage: footer 1`] = `
+<bolt-band tag="footer"
+           size="medium"
+           theme="dark"
+           full-bleed
+>
+  <footer class="c-bolt-band c-bolt-band--medium t-bolt-dark c-bolt-band--full-bleed">
+    <div class="c-bolt-band__content">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          This is a band.
+        </div>
+      </bolt-wrapper>
+    </div>
+  </footer>
+</bolt-band>
+`;
+
+exports[`<bolt-band> Component Semantic tag usage: header 1`] = `
+<bolt-band tag="header"
+           size="medium"
+           theme="dark"
+           full-bleed
+>
+  <header class="c-bolt-band c-bolt-band--medium t-bolt-dark c-bolt-band--full-bleed">
+    <div class="c-bolt-band__content">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          This is a band.
+        </div>
+      </bolt-wrapper>
+    </div>
+  </header>
+</bolt-band>
+`;
+
+exports[`<bolt-band> Component Semantic tag usage: nav 1`] = `
+<bolt-band tag="nav"
+           size="medium"
+           theme="dark"
+           full-bleed
+>
+  <nav class="c-bolt-band c-bolt-band--medium t-bolt-dark c-bolt-band--full-bleed">
+    <div class="c-bolt-band__content">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          This is a band.
+        </div>
+      </bolt-wrapper>
+    </div>
+  </nav>
+</bolt-band>
+`;
+
+exports[`<bolt-band> Component Semantic tag usage: section 1`] = `
+<bolt-band tag="section"
+           size="medium"
+           theme="dark"
+           full-bleed
+>
+  <section class="c-bolt-band c-bolt-band--medium t-bolt-dark c-bolt-band--full-bleed">
+    <div class="c-bolt-band__content">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          This is a band.
+        </div>
+      </bolt-wrapper>
+    </div>
+  </section>
+</bolt-band>
+`;
+
 exports[`<bolt-band> Component Size of the band: large 1`] = `
 <bolt-band tag="div"
            size="large"
