@@ -163,23 +163,7 @@ async function precompile() {
             )} run build`,
           ).stdout;
 
-          // return result;
-
           resolve(result);
-          // sh(
-          //   'yarn',
-          //   [
-          //     '',
-          //     ,
-          //     'run',
-          //     'build',
-          //   ],
-          //   false,
-          //   true,
-          // ).then(output => {
-          //   // console.log(output);
-
-          // });
         } else {
           resolve();
         }
