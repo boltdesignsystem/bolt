@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.4](https://github.com/bolt-design-system/bolt/compare/v2.5.3...v2.5.4) (2019-07-15)
+
+
+### Bug Fixes
+
+* cherry pick v2.6.0 update that adds missing trigger dependency to modal ([e2c9aff](https://github.com/bolt-design-system/bolt/commit/e2c9aff))
+
+
+
+
+
 ## [2.5.3](https://github.com/bolt-design-system/bolt/compare/v2.5.2...v2.5.3) (2019-07-12)
 
 
