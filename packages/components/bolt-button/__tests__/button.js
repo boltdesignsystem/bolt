@@ -44,7 +44,7 @@ describe('button', () => {
   test('Basic Secondary Button', async () => {
     const results = await render('@bolt-components-button/button.twig', {
       text: 'This is a secondary button',
-      variation: 'secondary',
+      variant: 'secondary',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -53,7 +53,7 @@ describe('button', () => {
   test('Basic Text Button', async () => {
     const results = await render('@bolt-components-button/button.twig', {
       text: 'This is a text button',
-      variation: 'text',
+      variant: 'text',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();

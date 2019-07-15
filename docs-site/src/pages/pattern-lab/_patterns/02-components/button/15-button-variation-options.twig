@@ -9,18 +9,18 @@
 <p><mark>Note: interactive states only appear when the user interacts with the button, they are not variations that are available for use.</mark></p>
 
 <h3>Regular Variations</h3>
-{% for variation in schema.properties.variation.enum %}
+{% for variation in schema.properties.variant.enum %}
   {% set button %}
     {% include "@bolt-components-button/button.twig" with {
       text: variation|capitalize ~ " button",
-      variation: variation
+      variant: variation
     } only %}
   {% endset %}
   {% set button_disabled %}
     {% include "@bolt-components-button/button.twig" with {
       text: variation|capitalize ~ " button (disabled)",
       disabled: true,
-      variation: variation
+      variant: variation
     } only %}
   {% endset %}
 
@@ -34,7 +34,7 @@
 {% endfor %}
 
 <h3>Interactive States</h3>
-{% for variation in schema.properties.variation.enum %}
+{% for variation in schema.properties.variant.enum %}
   {% set button_hover %}
     {% include "@bolt-components-button/button.twig" with {
       text: variation|capitalize ~ " button (hover)",
@@ -43,7 +43,7 @@
           "is-hover"
         ]
       },
-      variation: variation
+      variant: variation
     } only %}
   {% endset %}
   {% set button_focus %}
@@ -54,7 +54,7 @@
           "is-focus"
         ]
       },
-      variation: variation
+      variant: variation
     } only %}
   {% endset %}
   {% set button_active %}
@@ -65,7 +65,7 @@
           "is-active"
         ]
       },
-      variation: variation
+      variant: variation
     } only %}
   {% endset %}
 

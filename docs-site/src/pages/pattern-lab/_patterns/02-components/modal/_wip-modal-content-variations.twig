@@ -7,7 +7,7 @@
   {% set secondary %}
     {% include "@bolt-components-button/button.twig" with {
       text: "Secondary",
-      variation: "secondary",
+      variant: "secondary",
     } only %}
   {% endset %}
   {% set modal_content %}
@@ -191,14 +191,14 @@
         {% set button_1 %}
           {% include "@bolt-components-button/button.twig" with {
             size: "small",
-            variation: "primary",
+            variant: "primary",
             text: "Primary action",
           } only %}
         {% endset %}
         {% set button_2 %}
           {% include "@bolt-components-button/button.twig" with {
             size: "small",
-            variation: "secondary",
+            variant: "secondary",
             text: "Secondary action",
           } only %}
         {% endset %}

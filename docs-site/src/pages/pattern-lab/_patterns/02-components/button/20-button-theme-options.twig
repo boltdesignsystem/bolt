@@ -6,10 +6,10 @@
   <div class="u-bolt-margin-bottom-medium">
     {% embed "@utils/theme-demo.twig" %}
       {% block demo_content %}
-        {% for variation in schema.properties.variation.enum %}
+        {% for variation in schema.properties.variant.enum %}
           {% include "@bolt-components-button/button.twig" with {
             text: variation|capitalize ~ " button",
-            variation: variation
+            variant: variation
           } only %}
         {% endfor %}
       {% endblock %}

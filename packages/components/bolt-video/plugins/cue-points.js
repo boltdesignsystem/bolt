@@ -6,7 +6,7 @@ import { getSubArray } from '../utils';
 
 export const VideoOverlayContent = props => {
   return (
-    <bolt-button variation="primary" url={props.url} target={props.target}>
+    <bolt-button variant="primary" url={props.url} target={props.target}>
       {props.text}
     </bolt-button>
   );

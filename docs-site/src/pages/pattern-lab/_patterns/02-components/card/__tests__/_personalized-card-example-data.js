@@ -32,7 +32,7 @@ const clientRenderedExample = [
             <bolt-button-group bolt-component>
               <ul class="c-bolt-button-group">
                 <li class="c-bolt-button-group__item">
-                  <bolt-button align="center" variation="text" size="medium" url="/events/customer-engagement/amsterdam" transform="none">
+                  <bolt-button align="center" variant="text" size="medium" url="/events/customer-engagement/amsterdam" transform="none">
                     View highlights
                     <bolt-icon slot="after" name="chevron-right"></bolt-icon>
                   </bolt-button>
@@ -78,7 +78,7 @@ const clientRenderedExample = [
             <bolt-button-group bolt-component>
               <ul class="c-bolt-button-group">
                 <li class="c-bolt-button-group__item">
-                  <bolt-button align="center" variation="text" size="medium" url="/events/customer-engagement/amsterdam" transform="none">
+                  <bolt-button align="center" variant="text" size="medium" url="/events/customer-engagement/amsterdam" transform="none">
                     View highlights
                     <bolt-icon slot="after" name="chevron-right"></bolt-icon>
                   </bolt-button>
@@ -125,7 +125,7 @@ const serverRenderedExample = [
             <bolt-button-group bolt-component>
               <ul class="c-bolt-button-group">
                 <li class="c-bolt-button-group__item">
-                  <bolt-button align="center" variation="text" size="medium" url="/events/customer-engagement/amsterdam" transform="none"
+                  <bolt-button align="center" variant="text" size="medium" url="/events/customer-engagement/amsterdam" transform="none"
                     href="/events/customer-engagement/amsterdam"><a id="p-ee4b3b3f-915d-4c00-9f95-90069f302a56" href="/events/customer-engagement/amsterdam"
                       class="c-bolt-button  c-bolt-button--medium c-bolt-button--text  c-bolt-button--center" is="shadow-root">
                       <replace-with-children class="c-bolt-button__icon is-empty"></replace-with-children>
@@ -173,7 +173,7 @@ const serverRenderedExample = [
             <bolt-button-group bolt-component>
               <ul class="c-bolt-button-group">
                 <li class="c-bolt-button-group__item">
-                  <bolt-button align="center" variation="text" size="medium" url="/events/customer-engagement/amsterdam" transform="none"
+                  <bolt-button align="center" variant="text" size="medium" url="/events/customer-engagement/amsterdam" transform="none"
                     href="/events/customer-engagement/amsterdam"><a id="p-ee4b3b3f-915d-4c00-9f95-90069f302a56" href="/events/customer-engagement/amsterdam"
                       class="c-bolt-button  c-bolt-button--medium c-bolt-button--text  c-bolt-button--center" is="shadow-root">
                       <replace-with-children class="c-bolt-button__icon is-empty"></replace-with-children>

@@ -685,13 +685,13 @@ class BoltVideo extends withPreact() {
               <bolt-button
                 icon-only
                 size="xsmall"
-                variation="secondary"
+                variant="secondary"
                 border-radius="full">
                 <bolt-icon name="close" size="small" slot="after" />
               </bolt-button>
             </span>
             <span className={`c-${bolt.namespace}-video__close-button-text`}>
-              <bolt-button size="small" variation="text">
+              <bolt-button size="small" variant="text">
                 {closeButtonText}
               </bolt-button>
             </span>

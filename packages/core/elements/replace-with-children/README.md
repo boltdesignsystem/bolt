@@ -5,7 +5,7 @@ A "helper" `custom element` in the Bolt Design System to easily remove a Web Com
 A great use case of this is with the `<bolt-button>` component which might output some initial HTML similar to this (when serverside-rendered):
 
 ```html
-<bolt-button align="center" variation="primary" size="medium">
+<bolt-button align="center" variant="primary" size="medium">
   <button class="c-bolt-button  c-bolt-button--medium  c-bolt-button--primary c-bolt-button--center" is="shadow-root">
     <replace-with-children class="c-bolt-button__item">Button w/ Icon `after` Text</replace-with-children>
     <replace-with-children class="c-bolt-button__icon">
@@ -19,7 +19,7 @@ The thing is, most of this HTML isn't technically needed to render our Web Compo
 
 ```html
 <!-- This totally works if we wanted to customize the data or attributes on the semantic `<button>` tag that lives in our custom element -->
-<bolt-button align="center" variation="primary" size="medium">
+<bolt-button align="center" variant="primary" size="medium">
   <button is="shadow-root" type="submit" data-uuid="foo">
     Button w/ Icon `after` Text
     <bolt-icon name="chevron-right" slot="after"></bolt-icon>
@@ -27,7 +27,7 @@ The thing is, most of this HTML isn't technically needed to render our Web Compo
 </bolt-button>
 
 <!-- But if not, this also works! -->
-<bolt-button align="center" variation="primary" size="medium">
+<bolt-button align="center" variant="primary" size="medium">
   Button w/ Icon `after` Text
   <bolt-icon name="chevron-right" slot="after"></bolt-icon>
 </bolt-button>

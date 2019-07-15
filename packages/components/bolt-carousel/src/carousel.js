@@ -626,7 +626,7 @@ class BoltCarousel extends withLitHtml() {
       <bolt-button
         size="medium"
         border-radius="full"
-        variation="secondary"
+        variant="secondary"
         icon-only
       >
         ${text}
