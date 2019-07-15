@@ -250,7 +250,7 @@ describe('carousel', () => {
     async function() {
       const renderedComponentHTML = await page.evaluate(() => {
         const carousel = document.createElement('bolt-carousel');
-        carousel.setAttribute('nav-position', 'outside');
+        carousel.setAttribute('nav-button-position', 'outside');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
