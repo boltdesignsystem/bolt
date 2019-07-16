@@ -1,9 +1,13 @@
 const config = {
   // Environmental variable / preset to use
-  env: 'drupal', // @todo: update when refactoring the confusing `env` config option names 
-  buildDir: './assets/bolt/',
-  wwwDir: './',
+  env: 'drupal', // @todo: update when refactoring the confusing `env` config option names
+  buildDir: '../assets/bolt/',
+  dataDir: '../assets/bolt/data/',
+  wwwDir: '../',
   verbosity: 1,
+  webpackDevServer: {
+    enabled: true,
+  },
   components: {
     global: [
       '@bolt/global',

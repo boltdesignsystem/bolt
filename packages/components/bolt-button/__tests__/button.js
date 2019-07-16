@@ -41,6 +41,18 @@ describe('button', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  test('Button adds target if passed via attributes', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a button',
+      url: 'http://pega.com',
+      attributes: {
+        target: '_blank',
+      },
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   tag.enum.forEach(async tagChoice => {
     test(`Button tag: ${tagChoice}`, async () => {
       const results = await render('@bolt-components-button/button.twig', {

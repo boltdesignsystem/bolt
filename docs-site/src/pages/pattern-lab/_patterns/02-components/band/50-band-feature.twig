@@ -21,22 +21,32 @@
       } only %}
     {% endcell %}
     {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {% set block_list_item_1 %}
+        {% include "@bolt-components-link/link.twig" with {
+          text: "Block List Item 1",
+          url: "#!",
+        } only %}
+      {% endset %}
+      {% set block_list_item_2 %}
+        {% include "@bolt-components-link/link.twig" with {
+          text: "Block List Item 2",
+          url: "#!",
+        } only %}
+      {% endset %}
+      {% set block_list_item_3 %}
+        {% include "@bolt-components-link/link.twig" with {
+          text: "Block List Item 3",
+          url: "#!",
+        } only %}
+      {% endset %}
+
       {% include "@bolt-components-list/list.twig" with {
         separator: "solid",
         spacing: "medium",
         items: [
-          include("@bolt-components-link/link.twig", {
-            text: "Block List Item 1",
-            url: "#!",
-          }),
-          include("@bolt-components-link/link.twig", {
-            text: "Block List Item 2",
-            url: "#!",
-          }),
-          include("@bolt-components-link/link.twig", {
-            text: "Block List Item 3",
-            url: "#!",
-          }),
+          block_list_item_1,
+          block_list_item_2,
+          block_list_item_3,
         ]
       } only %}
     {% endcell %}
