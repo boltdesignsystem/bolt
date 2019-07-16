@@ -63,10 +63,20 @@ class BoltInteractiveStep extends withLitHtml() {
       [`c-bolt-interactive-step--active`]: active,
     });
 
+    const eventChangeActiveStep = new CustomEvent('change-active-step', {
+      bubbles: true,
+      detail: {
+        stepId: this.props.step,
+      },
+    });
+
     return html`
       ${this.addStyles([styles])}
       <li class="${classes}" is="shadow-root" data-step="${step}">
-        <div class="c-bolt-interactive-step__nav-item-wrapper">
+        <div
+          class="c-bolt-interactive-step__nav-item-wrapper"
+          @click=${e => e.target.dispatchEvent(eventChangeActiveStep)}
+        >
           <span class="c-bolt-interactive-step__dot">&#9679;</span>
           <span class="c-bolt-interactive-step__title"
             >${this.slot('title')}</span

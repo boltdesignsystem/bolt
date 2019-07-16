@@ -19,11 +19,20 @@ class BoltInteractivePathway extends withLitHtml() {
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  // @ts-ignore
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
-
+    self.addEventListener('change-active-step', ({ detail: { stepId } }) => {
+      if (!stepId) {
+        console.error(
+          `uh oh, received change-active-step event with no "stepId" payload`,
+        );
+        return;
+      }
+      this.setActiveStep(stepId);
+    });
     return self;
   }
 
@@ -35,43 +44,32 @@ class BoltInteractivePathway extends withLitHtml() {
 
     // This creates the initial onLoad animation effect for the first step
     window.setTimeout(() => {
-      this.activeStep = this.steps[0].getAttribute('step');
-      this._updateActiveItemDomState();
+      const stepId = this.steps[0].getAttribute('step');
+      this.setActiveStep(stepId);
     }, 2500); // @todo replace this with a nice onScroll/inView trigger
   }
 
   /**
-   * Searches up the Shadow Dom until it finds the parent node with matching tagName or null.
-   * @param node
-   * @param nodeParentTagName
+   * Set the active tab panel step
+   * @param {string | number} stepId
+   * @return {void}
    */
-  _getParentBoltStepNode = (node, nodeParentTagName) => {
-    if (node.tagName === nodeParentTagName) {
-      return node;
-    } else {
-      if (node.parentNode) {
-        return this._getParentBoltStepNode(node.parentNode, nodeParentTagName);
-      } else {
-        return null;
-      }
-    }
-  };
-
-  handleClickStep = event => {
-    const parentBoltInteractiveStepNode = this._getParentBoltStepNode(
-      event.target,
-      'BOLT-INTERACTIVE-STEP',
+  setActiveStep = stepId => {
+    stepId = typeof stepId === 'number' ? stepId.toString() : stepId;
+    const newActiveStep = this.steps.find(
+      s => s.getAttribute('step') === stepId,
     );
-    this.activeStep = parentBoltInteractiveStepNode.getAttribute('step');
-    this._updateActiveItemDomState();
-  };
-
-  _updateActiveItemDomState = () => {
-    this.steps.forEach(item => {
-      item.getAttribute('step') === this.activeStep
-        ? item.setAttribute('active', '')
-        : item.removeAttribute('active');
-    });
+    if (!newActiveStep) {
+      console.error(
+        `uh oh setActiveStep fired with stepId "${stepId}" but could not find one`,
+      );
+      return;
+    }
+    this.steps
+      .filter(s => s.getAttribute('step') !== stepId)
+      .map(s => s.removeAttribute('active'));
+    newActiveStep.setAttribute('active', '');
+    this.activeStep = stepId;
   };
 
   render() {
@@ -81,16 +79,6 @@ class BoltInteractivePathway extends withLitHtml() {
     const classes = cx('c-bolt-interactive-pathway', {
       [`c-bolt-interactive-pathway--disabled`]: !isActive,
       [`c-bolt-interactive-pathway--active`]: isActive,
-    });
-
-    // @todo refactor this with lithtml event handlers
-    // Adds click handler to the pathway steps. wait... Shouldn't this be in the connectedCallback?
-    this.slots.steps.map(node => {
-      node.renderRoot
-        .querySelector('.c-bolt-interactive-step__nav-item-wrapper')
-        .addEventListener('click', event => {
-          this.handleClickStep(event);
-        });
     });
 
     return html`
