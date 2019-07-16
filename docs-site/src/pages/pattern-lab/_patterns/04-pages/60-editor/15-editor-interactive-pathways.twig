@@ -1,0 +1,48 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+  {% set header %}
+    {% include "@bolt/headline.twig" with {
+      "text": "Interactive Pathways Playground",
+      "size": "xxxlarge",
+      "tag": "h1"
+    } only %}
+  {% endset %}
+
+  {% set full_pathways %}
+    <div class="js-pega-editor">
+      <button class="js-pega-editor__trigger">Edit</button>
+      <div class="js-pega-editor__space">
+        {% include "_pathways.twig" %}
+      </div>
+    </div>
+  {% endset %}
+
+  {% set single_pathway %}
+    <div class="js-pega-editor">
+      <button class="js-pega-editor__trigger">Edit</button>
+      <div class="js-pega-editor__space">
+        {% include "_pathwayOne.twig" %}
+      </div>
+    </div>
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    "theme": "dark",
+    "size": "large",
+    "content": header
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    "theme": "xlight",
+    "content": full_pathways
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    "theme": "xlight",
+    "content": single_pathway
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    "theme": "dark",
+    "content": full_pathways
+  } only %}
+{% endblock %}
+

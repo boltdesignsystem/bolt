@@ -2,12 +2,12 @@
   <h3>Advanced Usage</h3>
   <p>Use specific combination of props to create different kinds of advanced carousel.</p>
 
-  <div class="u-bolt-margin-bottom-large">
+  {#<div class="u-bolt-margin-bottom-large">
     <h3>Image Gallery</h3>
     <p><mark>Note: extra javascript is needed for this.</mark></p>
     {# Specific Combination of Props to Create Image Gallery #}
     {# Main Content #}
-    {% include "@bolt-components-carousel/carousel.twig" with {
+    {# {% include "@bolt-components-carousel/carousel.twig" with {
       slides: [
         '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/1)"></bolt-ratio>',
         '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/2)"></bolt-ratio>',
@@ -23,11 +23,13 @@
       attributes: {
         class: [
           "js-swiper-gallery--demo",
+          "u-bolt-margin-bottom-none"
         ]
       }
-    } only %}
+    } only %} #}
     {# Thumbnails #}
-    {% include "@bolt-components-carousel/carousel.twig" with {
+    {# Note: the carousel + thumbnail combo needs a bit more work so disabling this temporarily #}
+    {# {% include "@bolt-components-carousel/carousel.twig" with {
       slides: [
         '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/1)"></bolt-ratio>',
         '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/2)"></bolt-ratio>',
@@ -51,10 +53,10 @@
           "js-swiper-gallery--thumbnails",
         ]
       }
-    } only %}
+    } only %} #}
 
     {# Custom JS for Image Gallery #}
-    <script>
+    {#<script>
       var mainCarousel = document.querySelector('.js-swiper-gallery--demo');
       var mainCarouselRendered = false;
       var existingMainCarouselRenderListener = false;
@@ -98,7 +100,7 @@
         mainCarousel.addEventListener('rendered', checkIfShouldInitCarouselGallery);
       }
     </script>
-  </div>
+  </div>#}
 
   <div class="u-bolt-margin-bottom-large">
     <h3>Card Carousel</h3>

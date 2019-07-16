@@ -1,0 +1,30 @@
+/* ------------------------------------ *\
+   Accordion
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import '_accordion-settings-and-tools.scss';
+
+@include bolt-custom-element('bolt-accordion', block, medium);
+
+bolt-accordion {
+  // Required for no-js styles to display properly
+  replace-with-children,
+  replace-with-grandchildren {
+    display: block;
+  }
+}
+
+.c-bolt-accordion {
+  position: relative;
+  background-color: bolt-theme(background);
+}
+
+.c-bolt-accordion--box-shadow {
+  @include bolt-shadow('level-20', false, bolt-color(gray, dark));
+  border-radius: $bolt-accordion-border-radius;
+
+  border-width: $bolt-accordion-border-width;
+  border-style: $bolt-accordion-border-style;
+  border-color: $bolt-accordion-border-color;
+}

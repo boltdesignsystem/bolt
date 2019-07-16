@@ -1,0 +1,345 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<bolt-modal> Component <bolt-modal> rendered by Twig 1`] = `
+<bolt-modal uuid="12345">
+  <bolt-text tag="h3"
+             slot="header"
+  >
+    This is the header
+  </bolt-text>
+  <bolt-text>
+    This is the body (default).
+  </bolt-text>
+  <bolt-text slot="footer">
+    This is the footer
+  </bolt-text>
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] = `
+<bolt-modal
+  ready=""
+  style=""
+  uuid="12345"
+>
+  <!---->
+  
+      
+      
+  <div
+    aria-hidden="true"
+    class="c-bolt-modal c-bolt-modal--scroll-container c-bolt-modal--overlay-dark"
+    style=""
+  >
+    
+        
+    <!---->
+    <!---->
+    
+        
+    <focus-trap
+      style=""
+    >
+      
+          
+      <dialog
+        aria-hidden="true"
+        aria-labelledby="dialog-title-12345"
+        class="c-bolt-modal__content c-bolt-modal__content--width-optimal"
+        style=""
+      >
+        
+            
+        <article
+          class="c-bolt-modal__container c-bolt-modal__container--spacing-medium t-bolt-xlight"
+          style=""
+        >
+          
+              
+          <div
+            class="c-bolt-modal__close-button"
+            style=""
+          >
+            
+                
+      
+            <bolt-trigger
+              autofocus=""
+              class="js-close-button-fallback"
+              display="block"
+              no-outline=""
+              style=""
+              tabindex="0"
+            >
+              
+        
+              <span
+                class="c-bolt-modal__close-button__text"
+                style=""
+              >
+                Close this dialog window
+              </span>
+              
+        
+              <span
+                class="c-bolt-modal__close-button__icon"
+                style=""
+              />
+              
+      
+            </bolt-trigger>
+            
+    
+              
+          </div>
+          
+              
+          <header
+            class="c-bolt-modal__container-header"
+            style=""
+          >
+            
+                
+            <h1
+              class="c-bolt-modal__dialog-title"
+              id="dialog-title-12345"
+              style=""
+            >
+              
+                  Dialog content
+                
+            </h1>
+            
+                
+            <!---->
+            <!---->
+            <bolt-text
+              class="is-first-child is-last-child"
+              slot="header"
+              style=""
+              tag="h3"
+            >
+              This is the header
+            </bolt-text>
+            <!---->
+            <!---->
+            
+              
+          </header>
+          
+              
+          <div
+            class="c-bolt-modal__container-body"
+            style=""
+          >
+            
+                
+            <!---->
+            <!---->
+            
+      
+            <!---->
+            <bolt-text
+              class="is-first-child is-last-child"
+              style=""
+            >
+              This is the body (default).
+            </bolt-text>
+            <!---->
+            
+      
+            <!---->
+            <!---->
+            
+              
+          </div>
+          
+              
+          
+          <footer
+            class="c-bolt-modal__container-footer"
+            style=""
+          >
+            
+            
+            <!---->
+            <!---->
+            <bolt-text
+              class="is-first-child is-last-child"
+              slot="footer"
+              style=""
+            >
+              This is the footer
+            </bolt-text>
+            <!---->
+            <!---->
+            
+          
+          </footer>
+          
+        
+            
+        </article>
+        
+          
+      </dialog>
+      
+        
+    </focus-trap>
+    
+      
+  </div>
+  
+    
+  <!---->
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component Default <bolt-modal> with Shadow DOM renders 2`] = `
+<bolt-modal
+  ready=""
+  style=""
+  uuid="12345"
+>
+  <bolt-text
+    slot="header"
+    style=""
+    tag="h3"
+  >
+    This is the header
+  </bolt-text>
+  
+      
+  <bolt-text
+    style=""
+  >
+    This is the body (default).
+  </bolt-text>
+  
+      
+  <bolt-text
+    slot="footer"
+    style=""
+  >
+    This is the footer
+  </bolt-text>
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component basic usage 1`] = `
+<bolt-modal uuid="12345">
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal scroll: container 1`] = `
+<bolt-modal scroll="container"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal scroll: overall 1`] = `
+<bolt-modal scroll="overall"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal spacing: large 1`] = `
+<bolt-modal spacing="large"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal spacing: medium 1`] = `
+<bolt-modal spacing="medium"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal spacing: none 1`] = `
+<bolt-modal spacing="none"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal spacing: small 1`] = `
+<bolt-modal spacing="small"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal theme: dark 1`] = `
+<bolt-modal theme="dark"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal theme: light 1`] = `
+<bolt-modal theme="light"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal theme: none 1`] = `
+<bolt-modal theme="none"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal theme: xdark 1`] = `
+<bolt-modal theme="xdark"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal theme: xlight 1`] = `
+<bolt-modal theme="xlight"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal width: auto 1`] = `
+<bolt-modal width="auto"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal width: full 1`] = `
+<bolt-modal width="full"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal width: optimal 1`] = `
+<bolt-modal width="optimal"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;

@@ -1,0 +1,58 @@
+{% set themes = get_data("@bolt/themes.schema.json") %}
+
+<h3>Accordion inside various themes</h3>
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium" %}
+  {% for theme in themes.properties.colors.enum %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+      {% embed "@utils/theme-demo.twig" %}
+        {% block demo_content %}
+          {% include "@bolt-components-accordion/accordion.twig" with {
+            items: [
+              {
+                trigger: "Accordion item 1",
+                content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+              },
+              {
+                trigger: "Accordion item 2",
+                content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+              },
+              {
+                trigger: "Accordion item 3",
+                content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+              },
+            ]
+          } only %}
+        {% endblock %}
+      {% endembed %}
+    {% endcell %}
+  {% endfor %}
+{% endgrid %}
+
+<h3>Accordion with shadow inside various themes</h3>
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+  {% for theme in themes.properties.colors.enum %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+      {% embed "@utils/theme-demo.twig" %}
+        {% block demo_content %}
+          {% include "@bolt-components-accordion/accordion.twig" with {
+            box_shadow: true,
+            items: [
+              {
+                trigger: "Accordion item 1",
+                content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+              },
+              {
+                trigger: "Accordion item 2",
+                content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+              },
+              {
+                trigger: "Accordion item 3",
+                content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+              },
+            ]
+          } only %}
+        {% endblock %}
+      {% endembed %}
+    {% endcell %}
+  {% endfor %}
+{% endgrid %}

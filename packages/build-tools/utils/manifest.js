@@ -51,7 +51,7 @@ try {
   ).version;
 } catch (error) {
   boltManifest.version = JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../package.json'), 'utf8'),
+    fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8'),
   ).version;
 }
 

@@ -183,4 +183,28 @@ describe('button', () => {
     expect(renderedShadowDomHTML).toMatchSnapshot();
     expect(renderedHTML).toMatchSnapshot();
   });
+
+  test('Inline button inside a container with defined text alignment.', async () => {
+    const results = await renderString(`
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-right" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align right"
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-center" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align center"
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-left" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align left"
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    `);
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
 });

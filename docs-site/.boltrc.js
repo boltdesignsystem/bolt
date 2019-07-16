@@ -80,10 +80,11 @@ const config = {
       '@bolt/global',
       '@bolt/animations',
       '@bolt/docs-search',
-      '@bolt/schema-form',
+      // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
+      '@bolt/components-accordion',
       '@bolt/components-action-blocks',
       '@bolt/components-banner',
       '@bolt/components-dropdown',
@@ -108,6 +109,7 @@ const config = {
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-list',
+      '@bolt/components-modal',
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
       '@bolt/components-navbar',
@@ -126,12 +128,14 @@ const config = {
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
+      '@bolt/components-trigger',
       '@bolt/components-ul',
       '@bolt/components-ol',
       '@bolt/components-video',
       '@bolt/components-grid',
       '@bolt/components-interactive-pathways',
       '@bolt/components-interactive-pathway',
+      '@bolt/editor',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
