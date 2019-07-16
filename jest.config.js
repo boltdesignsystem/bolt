@@ -15,6 +15,7 @@ module.exports = {
     'example-integrations',
     'packages/uikit-workshop',
     'packages/build-tools/plugins/sass-export-data/tests',
+    'packages/build-tools/__tests__/*',
     'packages/components/bolt-button/__tests__/button-wc.test.js',
     'example-integrations/drupal-lab/web/themes/bolt-starter/__tests__/index.js', // tested separately after the Drupal Lab build
     'packages/patternlab-node',
