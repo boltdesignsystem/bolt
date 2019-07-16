@@ -60,6 +60,14 @@ jobs:
       after_failure: ./scripts/check-run-failure.js 'Unit'
 
     - stage: Prep
+      name: 'Smoke Tests: Build Tools'
+      install: 'npm run setup'
+      before_script: ./scripts/check-run-queue.js 'Build Tools'
+      script: yarn run test:build-tools
+      after_success: ./scripts/check-run-success.js 'Build Tools'
+      after_failure: ./scripts/check-run-failure.js 'Build Tools'
+
+    - stage: Prep
       name: 'Build Drupal Lab'
       script:
         - composer global require hirak/prestissimo
