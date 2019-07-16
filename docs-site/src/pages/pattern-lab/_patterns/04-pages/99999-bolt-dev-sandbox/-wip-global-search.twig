@@ -1,4 +1,5 @@
 <bolt-list separator="solid" spacing="none">
+  {# Mega nav placeholder #}
   <bolt-list-item class="t-bolt-light">
     <bolt-list display="flex" inset>
       <bolt-list-item>
@@ -107,27 +108,21 @@
       <bolt-list-item>
         <bolt-list display="inline" align="end" spacing="small" separator="solid">
           <bolt-list-item>
-            <bolt-link url="#">
-              <bolt-icon name="search" size="medium"></bolt-icon>
-            </bolt-link>
+            <div class="c-bolt-global-search-trigger">
+              <bolt-link url="#">
+                <bolt-icon name="search" size="medium"></bolt-icon>
+              </bolt-link>
+            </div>
           </bolt-list-item>
           <bolt-list-item>
-            <bolt-list display="inline" align="end">
-              <bolt-list-item>
-                <bolt-button color="secondary" size="small">
-                  Log In
-                </bolt-button>
-              </bolt-list-item>
-              <bolt-list-item>
-                <bolt-button color="primary" size="small">
-                  Sign Up
-                </bolt-button>
-              </bolt-list-item>
-            </bolt-list>
+            <bolt-button color="primary" size="small">
+              Try Pega
+            </bolt-button>
           </bolt-list-item>
       </bolt-list-item>
     </bolt-list>
   </bolt-list-item>
+  {# Mega nav placeholder #}
 
   {% set search_bar %}
     <form>
@@ -150,7 +145,7 @@
 
   {% set search_bar_themed %}
     <form>
-      <label class="c-bolt-global-search-bar t-bolt-xlight">
+      <label class="c-bolt-global-search-bar t-bolt-xlight" for="">
         <span class="c-bolt-global-search-bar__label">Search the Pegasystems website</span>
         <input class="c-bolt-global-search-bar__input" type="search" name="search-bar" placeholder="Enter to search" required>
         <div class="c-bolt-global-search-bar__button">

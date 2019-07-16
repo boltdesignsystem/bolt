@@ -96,3 +96,48 @@ $bolt-global-search-icon-only-button-width: bolt-spacing(medium) + 1rem;
     display: none;
   }
 }
+
+.c-bolt-gloval-search-dropdown {
+  position: relative;
+}
+
+.c-bolt-gloval-search-dropdown__overlay {
+  z-index: 0;
+}
+
+.c-bolt-gloval-search-dropdown__content {
+  z-index: 1;
+}
+
+.c-bolt-gloval-search-dropdown__overlay,
+.c-bolt-gloval-search-dropdown__content {
+  position: relative;
+}
+
+.c-bolt-overlay {
+  opacity: bolt-opacity(20);
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: bolt-color(indigo, xdark);
+}
+
+
+.c-bolt-mega-nav--global-search-active {
+  .c-bolt-global-search-trigger {
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) translateY(calc(16px + 0.5rem)) rotate(45deg);
+      width: 1rem;
+      height: 1rem;
+      background-color: red;
+    }
+  }
+}
