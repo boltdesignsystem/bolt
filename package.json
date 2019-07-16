@@ -25,7 +25,9 @@
       "docs-site",
       "packages/*",
       "packages/*/*",
+      "scripts",
       "packages/build-tools/plugins/*",
+      "packages/build-tools/__tests__/*",
       "docs-site/src/components/radio-switch",
       "docs-site/src/components/docs-search",
       "docs-site/src/components/banner"
@@ -55,7 +57,7 @@
     "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist --quiet",
     "setup:quick": "yarn install --production && yarn run setup:php",
     "start": "cd docs-site && yarn run start",
-    "test": "npm-run-all --parallel test:js test:php test:monorepo",
+    "test": "npm-run-all --parallel test:js test:php test:monorepo test:pkgs",
     "test:e2e:full": "./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:full-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,firefox,safari",
@@ -64,10 +66,13 @@
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "pretest:js": "npm run setup:php",
-    "test:js": "NODE_ENV='test' jest --all --colors",
+    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' ",
+    "test:js:quick": "NODE_ENV='test' jest --all --colors \"$(bolt-list-pkg-paths-changed)\" ",
     "test:js:update": "yarn run test:js -u",
-    "test:monorepo": "jest __tests__/monorepo.test.js -c jest.config.quick.js",
+    "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
+    "test:build-tools": "cd packages/build-tools && npm run test",
     "test:php": "cd packages/core-php -- composer run test",
+    "test:pkgs": "lerna run test",
     "test:types": "tsc"
   },
   "husky": {
@@ -90,6 +95,7 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
+    "@bolt/testing-utils": "^2.5.2",
     "@commitlint/cli": "^7.6.1",
     "@commitlint/config-conventional": "^7.6.0",
     "@instructure/cz-lerna-changelog": "^6.2.0",
@@ -100,6 +106,7 @@
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
+    "find-pkg": "^2.0.0",
     "globby": "^9.2.0",
     "haunted": "^4.4.0",
     "husky": "^2.3.0",
@@ -117,5 +124,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15"
   }
 }

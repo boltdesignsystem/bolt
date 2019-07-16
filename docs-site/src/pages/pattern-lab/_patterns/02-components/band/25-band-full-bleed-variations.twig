@@ -1,0 +1,20 @@
+{% set schema = bolt.data.components["@bolt-components-band"].schema %}
+
+<p><mark>Note: turn off full bleed option if you don't want the band to span the full width of the page.</mark></p>
+{% for full_bleed in schema.properties.full_bleed.enum %}
+  {% if full_bleed == true %}
+    <h3>Full bleed</h3>
+    <p>This band spans the full width of the page, it ignores the spacing of its parent container.</p>
+  {% elseif full_bleed == false %}
+    <h3>Not full bleed</h3>
+    <p>This band only takes up the available space within its parent container, it accounts for the spacing of its parent container.</p>
+  {% endif %}
+  <div class="u-bolt-padding-large u-bolt-margin-bottom-medium t-bolt-light">
+    <div class="u-bolt-margin-bottom-medium">
+      {% include "@bolt-components-band/band.twig" with {
+        full_bleed: full_bleed,
+        content: "This is a band.",
+      } only %}
+    </div>
+  </div>
+{% endfor %}
