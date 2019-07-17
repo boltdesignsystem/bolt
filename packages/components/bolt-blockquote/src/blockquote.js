@@ -21,6 +21,7 @@ class BoltBlockquote extends withLitHtml() {
     border: props.string,
     indent: props.boolean,
     fullBleed: props.boolean,
+    noQuotes: props.boolean,
     authorName: props.string,
     authorTitle: props.string,
     authorImage: props.string,
@@ -139,6 +140,7 @@ class BoltBlockquote extends withLitHtml() {
       border,
       indent,
       fullBleed,
+      noQuotes,
       authorName,
       authorTitle,
       authorImage,
@@ -154,6 +156,7 @@ class BoltBlockquote extends withLitHtml() {
       )}`]: this.getBorderOption(border),
       [`c-bolt-blockquote--indented`]: indent,
       [`c-bolt-blockquote--full`]: fullBleed,
+      [`c-bolt-blockquote--no-quotes`]: noQuotes,
     });
 
     let footerItems = [];
