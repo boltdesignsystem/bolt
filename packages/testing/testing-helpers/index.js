@@ -16,6 +16,11 @@ export async function renderString(template, data) {
 
 export { stopServer };
 
+export const vrtDefaultConfig = {
+  failureThreshold: '0.001',
+  failureThresholdType: 'percent',
+};
+
 // import {
 //   // isConnected,
 //   // render,

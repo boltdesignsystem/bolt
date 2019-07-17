@@ -5,6 +5,7 @@ import {
   renderString,
   stopServer,
   html,
+  vrtDefaultConfig,
 } from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
@@ -43,11 +44,6 @@ const viewportSizes = [
     height: 568,
   },
 ];
-
-const imageVrtConfig = {
-  failureThreshold: '0.03',
-  failureThresholdType: 'percent',
-};
 
 describe('carousel', () => {
   let page;
@@ -159,7 +155,9 @@ describe('carousel', () => {
 
         await page.setViewport({ height, width });
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -239,7 +237,9 @@ describe('carousel', () => {
 
         await page.setViewport({ height, width });
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -320,7 +320,9 @@ describe('carousel', () => {
 
         await page.setViewport({ height, width });
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -394,7 +396,9 @@ describe('carousel', () => {
 
         await page.setViewport({ height, width });
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -507,7 +511,9 @@ describe('carousel', () => {
 
         await page.setViewport({ height, width });
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
