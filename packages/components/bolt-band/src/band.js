@@ -30,6 +30,8 @@ class BoltBand extends withLitHtml() {
       ready: false,
     };
 
+    this.innerBand = this.querySelector('.c-bolt-band');
+
     // Clone the shadow DOM template.
     if (this.state.ready === false) {
       this.state.ready = true;
@@ -105,7 +107,7 @@ class BoltBand extends withLitHtml() {
     this.lastRAF && cancelAnimationFrame(this.lastRAF);
     this.lastRAF = requestAnimationFrame(() => {
       this.lastRAF = requestAnimationFrame(() => {
-        this.style.minHeight = `${endingHeight}px`;
+        this.innerBand.style.minHeight = `${endingHeight}px`;
         this.lastRAF = null;
       });
     });
@@ -114,7 +116,8 @@ class BoltBand extends withLitHtml() {
 
     // clean up inline CSS after waiting just a bit
     setTimeout(function() {
-      elem.removeAttribute('style', 'minHeight');
+      console.log('@collapse');
+      elem.innerBand.removeAttribute('style', 'minHeight');
     }, 100);
   }
 
@@ -122,7 +125,7 @@ class BoltBand extends withLitHtml() {
     this.lastRAF && cancelAnimationFrame(this.lastRAF);
     this.lastRAF = requestAnimationFrame(() => {
       this.lastRAF = requestAnimationFrame(() => {
-        this.style.minHeight = this.expandedHeight;
+        this.innerBand.style.minHeight = this.expandedHeight;
         this.lastRAF = null;
       });
     });
@@ -151,7 +154,7 @@ class BoltBand extends withLitHtml() {
         this.lastRAF && cancelAnimationFrame(this.lastRAF);
         this.lastRAF = requestAnimationFrame(() => {
           this.lastRAF = requestAnimationFrame(() => {
-            this.style.minHeight = this.expandedHeight;
+            this.innerBand.style.minHeight = this.expandedHeight;
             this.lastRAF = null;
           });
         });
