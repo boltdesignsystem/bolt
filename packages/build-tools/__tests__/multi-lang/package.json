@@ -6,8 +6,8 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "pretest": "npm run build",
-    "build": "bolt build --prod --config-file .boltrc.multi-lang.js",
+    "pretest": "yarn run build",
+    "build": "bolt build --prod --i18n --config-file .boltrc.multi-lang.js",
     "test": "npx jest index.js",
     "posttest": "rm -rf dist-lang/"
   },
