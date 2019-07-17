@@ -142,7 +142,24 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(1000);
+      await page.evaluate(async () => {
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
 
       const screenshots = [];
 
@@ -224,7 +241,24 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(1000);
+      await page.evaluate(async () => {
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
 
       const screenshots = [];
 
@@ -307,7 +341,24 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(1000);
+      await page.evaluate(async () => {
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
 
       const screenshots = [];
 
@@ -383,7 +434,24 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(1000);
+      await page.evaluate(async () => {
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
 
       const screenshots = [];
 
@@ -498,7 +566,24 @@ describe('carousel', () => {
         return carousel.outerHTML;
       });
 
-      await page.waitFor(1000);
+      await page.evaluate(async () => {
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
 
       const screenshots = [];
 

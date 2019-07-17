@@ -9,7 +9,7 @@ import {
 const timeout = 60000;
 
 const imageVrtConfig = {
-  failureThreshold: '0.02',
+  failureThreshold: '0.005',
   failureThresholdType: 'percent',
 };
 
@@ -57,7 +57,19 @@ describe('<bolt-ratio> Component', () => {
     });
     expect(renderedRatioHTML).toMatchSnapshot();
 
-    await page.waitFor(500); // wait a second before testing
+    await page.evaluate(async () => {
+      const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
+      await Promise.all(
+        selectors.map(ratio => {
+          if (ratio._wasInitiallyRendered) return;
+          return new Promise((resolve, reject) => {
+            ratio.addEventListener('ready', resolve);
+            ratio.addEventListener('error', reject);
+          });
+        }),
+      );
+    });
+
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -86,15 +98,43 @@ describe('<bolt-ratio> Component', () => {
       return ratio.outerHTML;
     });
 
-    const renderedRatioSize = await page.evaluate(() => {
-      const ratioSize = {
-        width: document.querySelector('bolt-ratio').clientWidth,
-        height: document.querySelector('bolt-ratio').clientHeight,
-      };
-      return ratioSize;
+    // await page.waitFor(2000); // wait a second before testing
+
+    await page.evaluate(async () => {
+      const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
+      await Promise.all(
+        selectors.map(ratio => {
+          if (ratio._wasInitiallyRendered) return;
+          return new Promise((resolve, reject) => {
+            ratio.addEventListener('ready', resolve);
+            ratio.addEventListener('error', reject);
+          });
+        }),
+      );
     });
 
-    await page.waitFor(500); // wait a second before testing
+    await page.evaluate(async () => {
+      const selectors = Array.from(document.querySelector('bolt-ratio'));
+      await Promise.all(
+        selectors.map(ratio => {
+          const video = ratio.renderRoot.querySelector('video');
+          if (video.readyState >= 2) return;
+          return new Promise((resolve, reject) => {
+            video.addEventListener('canplay', resolve);
+            video.addEventListener('error', reject);
+          });
+        }),
+      );
+    });
+
+    // const renderedRatioSize = await page.evaluate(() => {
+    //   const ratioSize = {
+    //     width: document.querySelector('bolt-ratio').clientWidth,
+    //     height: document.querySelector('bolt-ratio').clientHeight,
+    //   };
+    //   return ratioSize;
+    // });
+
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(imageVrtConfig);
@@ -119,7 +159,20 @@ describe('<bolt-ratio> Component', () => {
       ratio.updated();
     }, html);
 
-    await page.waitFor(500); // wait a second before testing
+    await page.evaluate(async () => {
+      const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
+      await Promise.all(
+        selectors.map(ratio => {
+          if (ratio._wasInitiallyRendered) return;
+          return new Promise((resolve, reject) => {
+            ratio.addEventListener('ready', resolve);
+            ratio.addEventListener('error', reject);
+          });
+        }),
+      );
+    });
+
+    // await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -145,7 +198,19 @@ describe('<bolt-ratio> Component', () => {
     });
     expect(renderedRatioHTML).toMatchSnapshot();
 
-    await page.waitFor(500); // wait a second before testing
+    await page.evaluate(async () => {
+      const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
+      await Promise.all(
+        selectors.map(ratio => {
+          if (ratio._wasInitiallyRendered) return;
+          return new Promise((resolve, reject) => {
+            ratio.addEventListener('ready', resolve);
+            ratio.addEventListener('error', reject);
+          });
+        }),
+      );
+    });
+
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
