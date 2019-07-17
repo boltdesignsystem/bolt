@@ -46,10 +46,13 @@ const viewportSizes = [
 ];
 
 describe('carousel', () => {
-  let page;
+  let page, context;
+
+  beforeAll(async () => {
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
 
   beforeEach(async () => {
-    const context = await global.__BROWSER__.createIncognitoBrowserContext();
     page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
@@ -150,7 +153,7 @@ describe('carousel', () => {
           document.querySelectorAll('bolt-carousel-item'),
         );
         const allElements = [...carousels, ...carouselItems];
-        await Promise.all(
+        return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
@@ -249,12 +252,25 @@ describe('carousel', () => {
           document.querySelectorAll('bolt-carousel-item'),
         );
         const allElements = [...carousels, ...carouselItems];
-        await Promise.all(
+        return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
               element.addEventListener('ready', resolve);
               element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
+
+      await page.evaluate(async () => {
+        const images = Array.from(document.querySelectorAll('bolt-image'));
+        return await Promise.all(
+          images.map(image => {
+            if (image._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              image.addEventListener('ready', resolve);
+              image.addEventListener('error', reject);
             });
           }),
         );
@@ -349,7 +365,7 @@ describe('carousel', () => {
           document.querySelectorAll('bolt-carousel-item'),
         );
         const allElements = [...carousels, ...carouselItems];
-        await Promise.all(
+        return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
@@ -442,7 +458,7 @@ describe('carousel', () => {
           document.querySelectorAll('bolt-carousel-item'),
         );
         const allElements = [...carousels, ...carouselItems];
-        await Promise.all(
+        return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
@@ -574,7 +590,7 @@ describe('carousel', () => {
           document.querySelectorAll('bolt-carousel-item'),
         );
         const allElements = [...carousels, ...carouselItems];
-        await Promise.all(
+        return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
