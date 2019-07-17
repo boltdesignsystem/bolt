@@ -23,13 +23,14 @@
   "workspaces": {
     "packages": [
       "docs-site",
+      "docs-site/src/components/banner",
+      "docs-site/src/components/docs-search",
+      "docs-site/src/components/radio-switch",
       "packages/*",
       "packages/*/*",
-      "scripts",
+      "packages/build-tools/__tests__/*",
       "packages/build-tools/plugins/*",
-      "docs-site/src/components/radio-switch",
-      "docs-site/src/components/docs-search",
-      "docs-site/src/components/banner"
+      "scripts"
     ]
   },
   "scripts": {
@@ -59,16 +60,17 @@
     "test": "npm-run-all --parallel test:js test:php test:monorepo test:pkgs",
     "test:e2e:full": "./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:full-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
-    "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,firefox,safari",
+    "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,safari",
     "test:e2e:full-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
     "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "pretest:js": "npm run setup:php",
-    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' ",
-    "test:js:quick": "NODE_ENV='test' jest --all --colors \"$(bolt-list-pkg-paths-changed)\" ",
+    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests",
+    "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
+    "test:build-tools": "cd packages/build-tools && yarn run test",
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
     "test:types": "tsc"
@@ -85,6 +87,7 @@
     ]
   },
   "config": {
+    "puppeteer_skip_chromium_download": true,
     "commitizen": {
       "path": "./node_modules/@instructure/cz-lerna-changelog"
     }
@@ -93,32 +96,32 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
-    "@bolt/testing-utils": "^2.5.2",
-    "@commitlint/cli": "^7.6.1",
-    "@commitlint/config-conventional": "^7.6.0",
-    "@instructure/cz-lerna-changelog": "^6.2.0",
-    "@open-wc/testing-helpers": "^0.9.4",
-    "ci-utils": "^0.5.0",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "@instructure/cz-lerna-changelog": "^6.6.0",
+    "@open-wc/testing-helpers": "^1.0.10",
+    "ci-utils": "^0.6.0",
     "commitizen": "^3.1.1",
     "conventional-changelog-cli": "^2.0.21",
     "cz-conventional-changelog": "^2.1.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-react": "^7.13.0",
+    "eslint": "^6.0.1",
+    "eslint-plugin-react": "^7.14.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "globby": "^10.0.1",
+    "@bolt/testing-utils": "^2.5.2",
     "find-pkg": "^2.0.0",
-    "globby": "^9.2.0",
     "haunted": "^4.4.0",
-    "husky": "^2.3.0",
+    "husky": "^3.0.0",
     "jest": "^24.8.0",
-    "jsonwebtoken": "^8.4.0",
-    "lerna": "^3.14.1",
-    "lit-element": "^2.1.0",
-    "lit-html": "^1.1.0",
-    "now": "15.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "lerna": "^3.15.0",
+    "lit-element": "^2.2.0",
+    "lit-html": "^1.1.1",
     "npm-run-all": "^4.1.5",
     "proxy-polyfill": "^0.3.0",
-    "release-it": "^12.2.2",
-    "semantic-release": "^15.13.12",
-    "typescript": "^3.5.2"
+    "release-it": "^12.3.2",
+    "semantic-release": "^15.13.18",
+    "typescript": "^3.5.3"
   },
   "publishConfig": {
     "access": "public"
