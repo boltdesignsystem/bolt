@@ -168,6 +168,7 @@ function getPkgsChanged({ from = 'HEAD', base = 'master' } = {}) {
     'generator-bolt',
     '@bolt/drupal-twig-extensions',
     '@bolt/uikit-workshop',
+    '@bolt/bolt-starter',
   ];
 
   // will contain package names and keep them unique

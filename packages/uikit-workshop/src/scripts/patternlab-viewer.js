@@ -10,6 +10,7 @@ import './components/pl-toggle-info/pl-toggle-info';
 import './components/pl-toggle-layout/pl-toggle-layout';
 import './components/pl-toggle-theme/pl-toggle-theme';
 import './components/pl-tools-menu/pl-tools-menu';
+import './components/pl-search/pl-search';
 
 import(
   /* webpackChunkName: "pl-viewport-sizes" */
@@ -17,11 +18,6 @@ import(
   /* webpackPrefetch: true */
   './components/pl-viewport-size-list/pl-viewport-size-list');
 
-import(
-  /* webpackChunkName: "pl-search" */
-  /* webpackMode: "lazy" */
-  /* webpackPrefetch: true */
-  './components/pl-search/pl-search');
 
 import(
   /* webpackChunkName: "pl-modal-viewer" */
