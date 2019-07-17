@@ -74,7 +74,7 @@
     teaserWidth: "2/3",
     size: "medium",
     full: true,
-    theme: "dark",
+    theme: "light",
     primaryTeaser: {
       eyebrow: {
         text: "Customer Service"
@@ -110,47 +110,8 @@
 
 
 
-{% embed "@bolt-components-band/band.twig" with {
-  size: "small",
-  theme: "xdark",
-  full_bleed: true
-} only %}
-  {% block band_content %}
-
-    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow" %}
-
-        {% grid %}
-          {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
-            {% include "@bolt-components-headline/text.twig" with {
-              text: "Pega is #1 in software for customer engagement and operational excellence.",
-              size: "large",
-              weight: "regular"
-            } only %}
-          {% endcell %}
-        {% endgrid %}
-      {% endcell %}
-
-
-      {% cell "u-bolt-width-1/1@only-small" %}
-        {% include "@bolt/button.twig" with {
-          text: "Learn More",
-          width: "full",
-          size: "medium"
-        } only %}
-      {% endcell %}
-
-    {% endgrid %}
-
-
-  {% endblock %}
-{% endembed %}
-
-
-
 {% embed "@pl/_band--collection.twig" with {
-  theme: "light",
+  theme: "xlight",
   size: "medium",
   contentItems: [
     {

@@ -531,25 +531,30 @@
           <ul class="o-bolt-bare-list c-header-buttons js-mega-nav__header-buttons">
             <li class="c-header-buttons__item">
               <div class="c-bolt-global-search-trigger">
-                <a class="c-global-search__panel-trigger js-global-search__open-trigger" aria-label="Search Pega.com" role="button" aria-controls="global-search" aria-haspopup="true" data-google-analytics-et-processed="true">
-                  <bolt-icon class="c-global-search__search-icon" name="search" size="medium"></bolt-icon>
-                </a>
+                <div class="c-bolt-global-search-trigger__open">
+                  <bolt-button color="text" icon-only aria-controls="global-search" aria-haspopup="true">
+                    <bolt-icon name="search" slot="before"></bolt-icon>
+                    Search Pega.com
+                  </bolt-button>
+                </div>
+                <div class="c-bolt-global-search-trigger__close">
+                  <bolt-button color="text" icon-only aria-controls="global-search" aria-haspopup="true">
+                    <bolt-icon name="close" slot="before"></bolt-icon>
+                    Close search
+                  </bolt-button>
+                </div>
               </div>
             </li>
             <li class="c-header-buttons__item">
               <div class="c-hamburger">
-                <div class="c-hamburger__inner">
-                  <a href="#navbar" role="button" class="c-hamburger__button c-hamburger__button--open js-mega-nav__trigger js-mega-nav__trigger--open noZensmooth "> <span class="u-bolt-visuallyhidden">Open menu</span> <span class="c-hamburger__icons">
-                          <span class="c-hamburger__icon"></span> <span class="c-hamburger__icon"></span> <span class="c-hamburger__icon"></span> </span>
-                  </a>
-                  <a href="#!" role="button" class="c-hamburger__button c-hamburger__button--close js-mega-nav__trigger js-mega-nav__trigger--close noZensmooth "> <span class="u-bolt-visuallyhidden">Close menu</span> <span class="c-hamburger__icons">
-                          <span class="c-hamburger__icon"></span> <span class="c-hamburger__icon"></span> <span class="c-hamburger__icon"></span> </span>
-                  </a>
-                </div>
+                <bolt-button color="text" icon-only aria-controls="global-search" aria-haspopup="true">
+                  <bolt-icon name="menu" slot="before"></bolt-icon>
+                  Open menu
+                </bolt-button>
               </div>
             </li>
           </ul>
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none !important;">
+          {# <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none !important;">
             <symbol id="close" viewBox="0 0 14 14">
               <title>close</title>
               <path d="M14 1.4L12.6 0 7 5.6 1.4 0 0 1.4 5.6 7 0 12.6 1.4 14 7 8.4l5.6 5.6 1.4-1.4L8.4 7z"></path>
@@ -558,7 +563,7 @@
               <title>Search</title>
               <path d="M5.943 0a5.943 5.943 0 0 1 4.513 9.81l.248.247h.725L16 14.63 14.629 16l-4.572-4.571v-.725l-.248-.248A5.943 5.943 0 1 1 5.942 0zm0 1.829a4.114 4.114 0 1 0 0 8.228 4.114 4.114 0 0 0 0-8.228z" fill-rule="nonzero" /> </symbol>
           </svg>
-          <aside class="c-global-search js-search-toggle js-search-panel" role="search" id="global-search">
+          <aside class="c-bolt-global-search c-global-search js-search-toggle js-search-panel" role="search" id="global-search">
             <input type="checkbox" class="c-global-search__panel-input js-global-search__panel-toggle" aria-hidden="true">
             <div class="c-global-search__panel" id="global-search-panel">
               <form class="c-global-search__form" action="/" method="post" id="pega-ch-search-form" accept-charset="UTF-8">
@@ -582,7 +587,7 @@
                 </div>
               </form>
             </div>
-          </aside>
+          </aside> #}
         </div>
         <div class="c-page-header__contact t-bolt-xlight">
           <div>
@@ -596,6 +601,44 @@
       </div>
       <div class="c-mega-nav__mobile-contact u-hide@large">
         <a href="internal:/contact-us" title="Contact" class="c-mega-nav__mobile-contact-link"> <span class="c-button__text">Contact</span> </a>
+      </div>
+      <div class="c-bolt-global-search c-bolt-global-search--floating">
+        <bolt-trigger cursor="pointer" display="block" class="c-bolt-global-search__overlay">
+          Close search
+        </bolt-trigger>
+        <div class="c-bolt-global-search__content t-bolt-dark">
+          <div class="o-bolt-wrapper">
+            {% grid "o-bolt-grid--center" %}
+              {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large" %}
+                <bolt-list>
+                  <bolt-list-item>
+                    <form>
+                      <label class="c-bolt-global-search-bar t-bolt-xlight" for="">
+                        <span class="c-bolt-global-search-bar__label">Search the Pegasystems website</span>
+                        <input class="c-bolt-global-search-bar__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
+                        <div class="c-bolt-global-search-bar__button">
+                          <bolt-button color="text" tag="submit" icon-only>
+                            <bolt-icon name="search" slot="before"></bolt-icon>
+                          </bolt-button>
+                        </div>
+                        <div class="c-bolt-global-search-bar__button c-bolt-global-search-bar__button--reset">
+                          <bolt-button color="text" tag="reset" icon-only>
+                            <bolt-icon name="close-solid" slot="before"></bolt-icon>
+                          </bolt-button>
+                        </div>
+                      </label>
+                    </form>
+                  </bolt-list-item>
+                  <bolt-list-item>
+                    <bolt-text font-size="xsmall" align="center">
+                      We couldn't find any results. Did you mean <bolt-link>this</bolt-link> or <bolt-link>that</bolt-link>?
+                    </bolt-text>
+                  </bolt-list-item>
+                </bolt-list>
+              {% endcell %}
+            {% endgrid %}
+          </div>
+        </div>
       </div>
     </div>
   </div>
