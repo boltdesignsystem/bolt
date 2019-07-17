@@ -5,10 +5,21 @@ import {
   renderString,
   stopServer,
   html,
-  vrtDefaultConfig,
+  //vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
+
+const vrtDefaultConfig = {
+  failureThreshold: '0.0028',
+  failureThresholdType: 'percent',
+  customDiffConfig: {
+    threshold: '0.1',
+    includeAA: true,
+  },
+};
+
+
 
 const timeout = 120000;
 
