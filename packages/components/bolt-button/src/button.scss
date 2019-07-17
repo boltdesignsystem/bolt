@@ -22,7 +22,6 @@
   @include bolt-button;
 }
 
-
 /**
  * Button Styles
  */
@@ -40,12 +39,11 @@
   @include bolt-button-style(text);
 }
 
-[aria-disabled="true"] .c-bolt-button,
+[aria-disabled='true'] .c-bolt-button,
 .c-bolt-button[disabled],
 .c-bolt-button--disabled {
   @include bolt-button-style(disabled);
 }
-
 
 /**
  * Button Text Transform
@@ -62,12 +60,23 @@
   text-transform: capitalize;
 }
 
-@function bolt-button-icon-only-size($paddingSize, $fontSize: xsmall){
-  $line-height: map-get-deep($bolt-font-sizes, 'font-sizes', $fontSize, 'line-height', 'regular');
-  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $fontSize, 'font-size');
-  @return (bolt-v-spacing($paddingSize) * $bolt-spacing-squished * 2) + ($line-height * $font-size);
+@function bolt-button-icon-only-size($paddingSize, $fontSize: xsmall) {
+  $line-height: map-get-deep(
+    $bolt-font-sizes,
+    'font-sizes',
+    $fontSize,
+    'line-height',
+    'regular'
+  );
+  $font-size: map-get-deep(
+    $bolt-font-sizes,
+    'font-sizes',
+    $fontSize,
+    'font-size'
+  );
+  @return (bolt-v-spacing($paddingSize) * $bolt-spacing-squished * 2) +
+    ($line-height * $font-size);
 }
-
 
 /**
  * Button Sizes
@@ -121,7 +130,6 @@
     min-height: bolt-button-icon-only-size(large, large);
   }
 }
-
 
 /**
  * Icon Only Buttons
@@ -182,7 +190,6 @@
   }
 }
 
-
 /**
  * Button Width
  */
@@ -196,7 +203,6 @@ bolt-button[width='full'],
 :host([width='full']) {
   width: 100%;
 }
-
 
 // full@small width variations
 bolt-button[width='full@small'],
@@ -214,7 +220,6 @@ bolt-button[width='full@small'],
   }
 }
 
-
 /**
  * Border Radius
  */
@@ -226,11 +231,10 @@ bolt-button[width='full@small'],
     }
   }
 
-  bolt-button[border-radius="#{$radius_name}"] {
+  bolt-button[border-radius='#{$radius_name}'] {
     border-radius: $radius-value;
   }
 }
-
 
 /**
  * Icon and text spacing and display
@@ -265,7 +269,6 @@ bolt-button[width='full@small'],
     @include bolt-margin-left(xxsmall);
   }
 }
-
 
 /**
  * Button Alignments
