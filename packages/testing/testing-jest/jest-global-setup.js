@@ -1,5 +1,5 @@
 const { setup: setupDevServer } = require('jest-dev-server');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const mkdirp = require('mkdirp');
 const path = require('path');
 const fs = require('fs');

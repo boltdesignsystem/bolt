@@ -80,7 +80,6 @@ module.exports = {
   components: {
     global: [...allComponentPackages, '@bolt/analytics-autolink'],
   },
-  alterTwigEnv: siteConfig.alterTwigEnv,
   images: {
     sets: imageSets,
   },

@@ -25,9 +25,8 @@
 {% set componentName = deviceName ~ "-viewer" %}
 {% set baseClass = prefix ~ componentName %}
 
-{% if image %}
+{% if image and magnify == true %}
   {% set image = image | merge({
-    sizes: "(min-width: 600px) 150vw, 100vw",
     zoom: true
   }) %}
 {% endif %}
