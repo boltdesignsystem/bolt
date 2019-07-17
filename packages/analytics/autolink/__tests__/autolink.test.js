@@ -239,7 +239,7 @@ describe('analytics autolinker', () => {
     });
 
     expect(config).toBe('pega.com');
-  }, 120000;
+  }, 120000);
 
   test('allow Drupal to configure which domains get configured / tracked by autolink.', async function() {
     await page.addScriptTag({
