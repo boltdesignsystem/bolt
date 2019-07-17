@@ -4,6 +4,7 @@ import {
   renderString,
   stopServer,
   html,
+  vrtDefaultConfig,
 } from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
@@ -143,6 +144,33 @@ describe('button', () => {
       failureThreshold: '0.03',
       failureThresholdType: 'percent',
     });
+
+    expect(renderedHTML).toMatchSnapshot();
+  });
+
+  test('<bolt-blockquote> with No Quotes renders', async function() {
+    const defaultBlockquoteOuter = await page.evaluate(() => {
+      const blockquote = document.createElement('bolt-blockquote');
+      blockquote.setAttribute(
+        'author-name',
+        'Michelangelo di Lodovico Buonarroti Simoni',
+      );
+      blockquote.setAttribute('author-title', 'Renaissance Artist');
+      blockquote.setAttribute('no-quotes', '');
+      blockquote.innerHTML = `
+        <p>The greater danger for most of us lies not in setting our aim too high and falling short...</p>
+        <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>`;
+      document.body.appendChild(blockquote);
+      blockquote.updated();
+      return blockquote.outerHTML;
+    });
+
+    const renderedHTML = await html(defaultBlockquoteOuter);
+
+    await page.waitFor(500); // wait half a second before running VRTs
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
 
     expect(renderedHTML).toMatchSnapshot();
   });
