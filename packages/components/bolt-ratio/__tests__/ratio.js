@@ -104,7 +104,8 @@ describe('<bolt-ratio> Component', () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
       return await Promise.all(
         selectors.map(ratio => {
-          if (ratio._wasInitiallyRendered === true) return '_wasInitiallyRendered';
+          if (ratio._wasInitiallyRendered === true)
+            return '_wasInitiallyRendered';
           return new Promise((resolve, reject) => {
             ratio.addEventListener('ready', resolve('ready'));
             ratio.addEventListener('error', reject);
