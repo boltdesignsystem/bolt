@@ -11,14 +11,6 @@ const timeout = 90000;
 describe('logo', () => {
   let page, context;
 
-  afterAll(async () => {
-    await stopServer();
-  }, 100);
-
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
-
   beforeEach(async () => {
     page = await context.newPage();
     await page.goto('http://127.0.0.1:4444/', {
@@ -27,6 +19,19 @@ describe('logo', () => {
       waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
+
+  afterEach(async () => {
+    await page.close();
+  });
+
+  beforeAll(async () => {
+    context = await global.__BROWSER__.createIncognitoBrowserContext();
+  });
+
+  afterAll(async function() {
+    await context.close();
+    await stopServer();
+  });
 
   test('Basic usage', async () => {
     const results = await render('@bolt-components-logo/logo.twig', {
@@ -85,6 +90,20 @@ describe('logo', () => {
       document.body.appendChild(wrapper);
 
       return logo.outerHTML;
+    });
+
+    await page.evaluate(async () => {
+      const selectors = Array.from(document.querySelectorAll('bolt-logo'));
+      await Promise.all(
+        selectors.map(logo => {
+          const logoImage = logo.querySelector('bolt-image');
+          if (logoImage._wasInitiallyRendered === true) return;
+          return new Promise((resolve, reject) => {
+            logoImage.addEventListener('ready', resolve);
+            logoImage.addEventListener('error', reject);
+          });
+        }),
+      );
     });
 
     const renderedHTML = await html(renderedLogoHTML);
