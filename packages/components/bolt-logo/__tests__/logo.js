@@ -9,10 +9,10 @@ import {
 const timeout = 90000;
 
 describe('logo', () => {
-  let page, context;
+  let page;
 
   beforeEach(async () => {
-    page = await context.newPage();
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,
@@ -24,12 +24,7 @@ describe('logo', () => {
     await page.close();
   });
 
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
-
   afterAll(async function() {
-    await context.close();
     await stopServer();
   });
 
@@ -65,6 +60,7 @@ describe('logo', () => {
     });
 
     const renderedHTML = await html(renderedLogoHTML);
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
@@ -107,6 +103,7 @@ describe('logo', () => {
     });
 
     const renderedHTML = await html(renderedLogoHTML);
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({

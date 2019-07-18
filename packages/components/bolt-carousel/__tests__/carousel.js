@@ -55,14 +55,10 @@ const viewportSizes = [
 ];
 
 describe('carousel', () => {
-  let page, context;
-
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
+  let page;
 
   beforeEach(async () => {
-    page = await context.newPage();
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,
@@ -183,6 +179,7 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
         expect(screenshots[size].default).toMatchImageSnapshot(
           vrtDefaultConfig,
@@ -295,6 +292,7 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
         expect(screenshots[size].default).toMatchImageSnapshot(
           vrtDefaultConfig,
@@ -395,6 +393,7 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
         expect(screenshots[size].default).toMatchImageSnapshot(
           vrtDefaultConfig,
@@ -488,6 +487,7 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
         expect(screenshots[size].default).toMatchImageSnapshot(
           vrtDefaultConfig,
@@ -620,6 +620,7 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
         expect(screenshots[size].default).toMatchImageSnapshot(
           vrtDefaultConfig,

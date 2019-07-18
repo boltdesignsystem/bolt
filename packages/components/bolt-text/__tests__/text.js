@@ -9,18 +9,14 @@ import {
 const timeout = 90000;
 
 describe('<bolt-text> Component', () => {
-  let page, context;
+  let page;
 
   afterAll(async () => {
     await stopServer();
   }, 100);
 
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
-
   beforeEach(async () => {
-    page = await context.newPage();
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,

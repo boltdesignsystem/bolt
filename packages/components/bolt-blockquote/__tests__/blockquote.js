@@ -18,18 +18,14 @@ const vrtDefaultConfig = Object.assign(vrtConfig, {
 const timeout = 90000;
 
 describe('button', () => {
-  let page, context;
+  let page;
 
   afterAll(async () => {
     await stopServer();
   }, 100);
 
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
-
   beforeEach(async () => {
-    page = await context.newPage();
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,
@@ -85,6 +81,7 @@ describe('button', () => {
 
     const renderedHTML = await html(defaultBlockquoteOuter);
 
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(vrtDefaultConfig);
@@ -136,6 +133,7 @@ describe('button', () => {
       );
     });
 
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(vrtDefaultConfig);
@@ -179,6 +177,7 @@ describe('button', () => {
     });
 
     const renderedHTML = await html(renderedBlockquoteHTML);
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(vrtDefaultConfig);

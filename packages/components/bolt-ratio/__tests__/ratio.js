@@ -14,10 +14,10 @@ const imageVrtConfig = {
 };
 
 describe('<bolt-ratio> Component', () => {
-  let page, context;
+  let page;
 
   beforeEach(async () => {
-    page = await context.newPage();
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
       waitLoad: true,
@@ -26,12 +26,7 @@ describe('<bolt-ratio> Component', () => {
     });
   }, timeout);
 
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
-
   afterAll(async function() {
-    await context.close();
     await stopServer();
   });
 
@@ -72,6 +67,7 @@ describe('<bolt-ratio> Component', () => {
       );
     });
 
+    await page.waitFor(500);
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -136,6 +132,7 @@ describe('<bolt-ratio> Component', () => {
     //   return ratioSize;
     // });
 
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(imageVrtConfig);
@@ -190,6 +187,7 @@ describe('<bolt-ratio> Component', () => {
     });
 
     // await page.waitFor(500); // wait a second before testing
+    await page.waitFor(500);
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -228,6 +226,7 @@ describe('<bolt-ratio> Component', () => {
       );
     });
 
+    await page.waitFor(500);
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
