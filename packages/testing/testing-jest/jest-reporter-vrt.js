@@ -144,7 +144,7 @@ ${vrtScreenshots.join('\n')}
                   )}`,
                 ),
               );
-              resolveAll(values);
+              resolveAll(screenshotDiffs);
             })
             .catch(err => {
               console.log(
