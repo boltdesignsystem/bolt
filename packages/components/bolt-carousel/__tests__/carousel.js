@@ -19,8 +19,6 @@ const vrtDefaultConfig = {
   },
 };
 
-
-
 const timeout = 120000;
 
 const viewportSizes = [
