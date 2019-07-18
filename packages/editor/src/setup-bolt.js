@@ -89,6 +89,7 @@ export function setupBolt(editor) {
    * @param {boolean | string} [opt.draggable=true] Indicates if it's possible to drag the component inside others. Can use CSS selectors
    * @param {boolean | string} [opt.droppable=false] Indicates if it's possible to drop other components inside. Can use CSS selectors
    * @param {boolean} [opt.editable=true] Allow to edit the content of the component (used on Text components).
+   * @param {boolean} [opt.highlightable=true]
    * @param {boolean} [opt.registerBlock=true] Register as a GrapesJS Block in addition to Component? If so, allows the user to add it from menu.
    * @param {string[]} [opt.propsToTraits=[]] Json Schema properties keys to auto-add to traits via `convertSchemaPropToTrait`
    * @param {GrapeTrait[]} [opt.extraTraits=[]] Full Trait objects that need more custom attention than `propsToTraits`
@@ -103,6 +104,7 @@ export function setupBolt(editor) {
     draggable = true,
     droppable = false,
     editable = true,
+    highlightable = true,
     registerBlock = true,
     propsToTraits = [],
     extraTraits = [],
@@ -137,7 +139,7 @@ export function setupBolt(editor) {
           draggable,
           droppable,
           editable,
-          highlightable: true,
+          highlightable,
           traits: [...traitsFromProps, ...extraTraits],
         },
       },
@@ -249,6 +251,67 @@ export function setupBolt(editor) {
         label: 'Ratio',
         type: 'text',
         default: '4/3',
+      },
+    ],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-interactive-step',
+    draggable: false,
+    droppable: '[slot]',
+    editable: false,
+    highlightable: false,
+    registerBlock: false,
+    extraTraits: [
+      // {
+      //   name: 'speaker-position',
+      //   label: 'Speaker Position',
+      //   type: 'select',
+      //   default: 'left',
+      //   options: ['left', 'right'],
+      // },
+      // {
+      //   name: 'customer-disposition',
+      //   label: 'Customer Disposition',
+      //   type: 'select',
+      //   default: 'happy',
+      //   options: ['happy', 'neutral', 'sad'],
+      // },
+    ],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-interactive-pathways',
+    draggable: false,
+    droppable: false,
+    editable: false,
+    highlightable: false,
+    registerBlock: false,
+  });
+
+  registerBoltComponent({
+    name: 'bolt-interactive-pathway',
+    draggable: false,
+    droppable: false,
+    editable: false,
+    highlightable: false,
+    registerBlock: false,
+  });
+
+  registerBoltComponent({
+    name: 'bolt-animation-wrapper',
+    draggable: false,
+    droppable: true,
+    editable: true,
+    highlightable: true,
+    registerBlock: false,
+    extraTraits: [
+      {
+        name: 'fade-in',
+        label: 'Fade In',
+        type: 'select',
+        default: 'none',
+        options: ['none', 'slow', 'fast'],
       },
     ],
   });
