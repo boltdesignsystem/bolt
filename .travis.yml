@@ -66,7 +66,7 @@ jobs:
         - composer global require hirak/prestissimo
         - cd example-integrations/drupal-lab
         - composer install --prefer-dist --no-dev
-        - cd web/themes/bolt-starter && yarn
+        - cd web/themes/bolt-starter && yarn --force
         - yarn run build
         - yarn run test # run Jest tests on the FE build that just compiled
         - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
