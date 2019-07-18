@@ -31,9 +31,7 @@ class BoltTwoCharacterChat extends withLitHtml() {
   }
 
   render() {
-    const {
-      connectionUrl,
-    } = this.validateProps(this.props);
+    const { connectionUrl } = this.validateProps(this.props);
     const classes = cx('c-bolt-connection');
 
     return html`

@@ -96,12 +96,18 @@ function init() {
     const config = Object.assign({}, defaultConfig, userConfig);
 
     if (!config.styles || config.styles.length === 0) {
-      console.error('Bolt Editor Config requires "styles" an array of paths to CSS files. Current config is: ', config);
+      console.error(
+        'Bolt Editor Config requires "styles" an array of paths to CSS files. Current config is: ',
+        config,
+      );
       return;
     }
 
     if (!config.scripts || config.scripts.length === 0) {
-      console.error('Bolt Editor Config requires "scripts" an array of paths to JS files. Current config is: ', config);
+      console.error(
+        'Bolt Editor Config requires "scripts" an array of paths to JS files. Current config is: ',
+        config,
+      );
       return;
     }
 
