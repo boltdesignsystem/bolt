@@ -576,6 +576,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
     <!---->
     <!---->
     <bolt-button
+      border-radius="full"
       color="secondary"
       icon-only=""
       slot="previous-btn"
@@ -609,6 +610,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
     <!---->
     <!---->
     <bolt-button
+      border-radius="full"
       color="secondary"
       icon-only=""
       slot="next-btn"
@@ -637,7 +639,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
 exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`] = `
 <bolt-carousel
   class="is-ready"
-  nav-position="outside"
+  nav-button-position="outside"
   style=""
 >
   <!---->
@@ -780,7 +782,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
   <div
     aria-disabled="true"
     aria-label="Previous slide"
-    class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--inside c-bolt-carousel__button--disabled"
+    class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--outside c-bolt-carousel__button--disabled"
     role="button"
     style=""
     tabindex="0"
@@ -790,6 +792,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
     <!---->
     <!---->
     <bolt-button
+      border-radius="full"
       color="secondary"
       icon-only=""
       slot="previous-btn"
@@ -813,7 +816,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
   <div
     aria-disabled="false"
     aria-label="Next slide"
-    class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
+    class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--outside"
     role="button"
     style=""
     tabindex="0"
@@ -823,6 +826,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
     <!---->
     <!---->
     <bolt-button
+      border-radius="full"
       color="secondary"
       icon-only=""
       slot="next-btn"

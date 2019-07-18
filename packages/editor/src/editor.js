@@ -18,13 +18,15 @@ function addGrapesCssToPage() {
 }
 
 /**
- * @param {HTMLElement} space
- * @param {HTMLElement} uiWrapper
+ * @param {Object} opt
+ * @param {HTMLElement} opt.space
+ * @param {HTMLElement} opt.uiWrapper
+ * @param {BoltEditorConfig} opt.config
  * @return {grapesjs.Editor}
  */
-export function enableEditor(space, uiWrapper) {
+export function enableEditor({ space, uiWrapper, config }) {
   addGrapesCssToPage();
-  /** @type {{[key: string]: HTMLElement}} */
+  /** @type {{ [key: string]: HTMLElement }} */
   const editorSlots = {
     buttons: uiWrapper.querySelector('.pega-editor-ui__slot--buttons'),
     layers: uiWrapper.querySelector('.pega-editor-ui__slot--layers'),
@@ -33,40 +35,12 @@ export function enableEditor(space, uiWrapper) {
   };
 
   const stylePrefix = 'pega-editor-';
-  /**
-   * CSS files to add to editor iframe
-   * @type {string[]}
-   */
-  const styles = [];
-
-  /**
-   * JS files to add to editor iframe
-   * @type {string[]}
-   */
-  const scripts = [];
-
-  for (let i = 0; i < document.styleSheets.length; i++) {
-    const styleSheet = document.styleSheets[i];
-    if (styleSheet.ownerNode instanceof window.HTMLLinkElement) {
-      // eslint-disable-next-line
-      const ownerNode = /** @type {HTMLLinkElement} */ (styleSheet.ownerNode);
-
-      const isLink = ownerNode.tagName === 'LINK';
-      if (isLink) {
-        styles.push(ownerNode.href);
-      }
-    }
-  }
-
-  for (let i = 0; i < document.scripts.length; i++) {
-    const script = document.scripts[i];
-    scripts.push(script.src);
-  }
 
   /** @type {grapesjs.EditorConfig} */
   const editorConfig = {
     container: space,
     fromElement: true,
+    autorender: false,
     // height: '100vh',
     // width: 'auto',
     plugins: [setupBolt, setupComponents, setupPanels, setupBlocks],
@@ -196,12 +170,22 @@ export function enableEditor(space, uiWrapper) {
     canvas: {
       // assigning this overrides the default of `cv-` which prevents the layout styles from hitting it
       stylePrefix: `${stylePrefix}canvas-`,
-      styles,
-      scripts,
+      styles: config.styles,
     },
   };
 
   const editor = grapesjs.init(editorConfig);
+
+  editor.render();
+  const canvasDoc = editor.Canvas.getDocument();
+  const canvasWindow = editor.Canvas.getWindow();
+
+  config.scripts.forEach(script => {
+    const scriptEl = canvasDoc.createElement('script');
+    scriptEl.src = script;
+    canvasDoc.body.appendChild(scriptEl);
+  });
+  // console.log({ canvasDoc, canvasWindow });
 
   // const { BlockManager, Panels, DomComponents } = editor;
 

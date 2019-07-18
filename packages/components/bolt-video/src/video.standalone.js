@@ -628,7 +628,6 @@ class BoltVideo extends withPreact() {
     //     ▶️
     //   </span>
     // );
-    /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
     const dataAttributes = datasetToObject(this);
 
