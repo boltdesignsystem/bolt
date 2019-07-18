@@ -44,7 +44,7 @@ jobs:
         - yarn workspace @bolt/website prep # creates data and manifest files
       # before_script: ./scripts/check-run-queue.js 'Unit'
       script:
-        - yarn test:js --maxWorkers=1
+        - yarn test:js --maxWorkers=6
         # - yarn test:js:quick --maxWorkers=2 # running both `test:js` as comparison; remove or comment out this or other one eventually
         #- yarn run test
         # - yarn test:php
