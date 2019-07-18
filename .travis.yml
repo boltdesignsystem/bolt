@@ -85,19 +85,17 @@ jobs:
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
-      install: yarn run setup
-      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
+      install: travis_retry yarn run setup
+      before_script: travis_retry ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - travis_retry export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
-        - time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - sleep 60
-        - travis_wait yarn run test:e2e:full
-        - sleep 60
-        - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+        - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
+        - travis_retry travis_wait travis yarn run test:e2e:full
+        - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_success:
-        - ./scripts/deploy-branch-alias.js
-        - ./scripts/deploy-tagged-release.js
+        - travis_retry ./scripts/deploy-branch-alias.js
+        - travis_retry ./scripts/deploy-tagged-release.js
 
     - stage: Test Live Site
       name: 'Ensure site is live'
