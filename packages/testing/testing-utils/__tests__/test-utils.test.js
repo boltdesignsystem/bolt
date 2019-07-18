@@ -53,7 +53,7 @@ describe('test-utils', () => {
     });
   });
 
-  test('getFilesChanged', () => {
+  test.skip('getFilesChanged', () => {
     const files = tu.getFilesChanged({
       from: 'v2.4.4',
       base: 'v2.4.3',
