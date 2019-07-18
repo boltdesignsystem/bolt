@@ -12,21 +12,10 @@ const schema = readYamlFileSync(join(__dirname, '../blockquote.schema.yml'));
 const { tag } = schema.properties;
 
 const vrtDefaultConfig = Object.assign(vrtConfig, {
-  failureThreshold: '0.01',
+  failureThreshold: '0.02',
 });
 
 const timeout = 90000;
-
-async function clipScreenshot(boundingBox, page) {
-  return {
-    clip: {
-      x: boundingBox.x,
-      y: boundingBox.y,
-      width: Math.min(boundingBox.width, await page.viewport().width),
-      height: Math.min(boundingBox.height, await page.viewport().height),
-    },
-  };
-}
 
 describe('button', () => {
   let page, context;
@@ -73,8 +62,8 @@ describe('button', () => {
       blockquote.innerHTML = `
         <p>Java is to JavaScript what Car is to Carpet.</p>
       `;
-      document.getElementById('root').appendChild(blockquote);
-      document.getElementById('root').classList.add('u-bolt-padding-medium');
+      document.body.appendChild(blockquote);
+      document.body.classList.add('u-bolt-padding-medium');
       blockquote.updated();
       return blockquote.outerHTML;
     });
@@ -96,10 +85,7 @@ describe('button', () => {
 
     const renderedHTML = await html(defaultBlockquoteOuter);
 
-    const root = await page.$('#root');
-    const image = await page.screenshot(
-      await clipScreenshot(await root.boundingBox(), page),
-    );
+    const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(vrtDefaultConfig);
 
@@ -120,8 +106,8 @@ describe('button', () => {
         <p>Bolt Blockquote w/ Shadow DOM Manually Disabled</p>
         <p>Press any key to continue or any other key to quit.</p>
       `;
-      document.getElementById('root').appendChild(blockquote);
-      document.getElementById('root').classList.add('u-bolt-padding-medium');
+      document.body.appendChild(blockquote);
+      document.body.classList.add('u-bolt-padding-medium');
       blockquote.useShadow = false;
       blockquote.updated();
       return blockquote.outerHTML;
@@ -150,10 +136,7 @@ describe('button', () => {
       );
     });
 
-    const root = await page.$('#root');
-    const image = await page.screenshot(
-      await clipScreenshot(await root.boundingBox(), page),
-    );
+    const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(vrtDefaultConfig);
 
@@ -173,8 +156,8 @@ describe('button', () => {
         <p>Bolt Blockquote w/ Shadow DOM auto-disabled</p>
         <p>Yeah, but it works on my machine...</p>
       `;
-      document.getElementById('root').appendChild(form);
-      document.getElementById('root').classList.add('u-bolt-padding-medium');
+      document.body.appendChild(form);
+      document.body.classList.add('u-bolt-padding-medium');
       form.appendChild(blockquote);
       blockquote.updated();
       return blockquote.innerHTML;
@@ -196,10 +179,7 @@ describe('button', () => {
     });
 
     const renderedHTML = await html(renderedBlockquoteHTML);
-    const root = await page.$('#root');
-    const image = await page.screenshot(
-      await clipScreenshot(await root.boundingBox(), page),
-    );
+    const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(vrtDefaultConfig);
 
