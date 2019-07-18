@@ -306,10 +306,12 @@ const createTracker = () => {
   //   // Loads the Linker plugin
   ga('require', 'linker');
 
-  ga(
-    'linker:autoLink',
-    window.drupalSettings.google_analytics.trackCrossDomains,
-  );
+  if (window.drupalSettings && window.drupalSettings.google_analytics) {
+    ga(
+      'linker:autoLink',
+      window.drupalSettings.google_analytics.trackCrossDomains,
+    );
+  }
 
   //   // Log hits in non-production environments.
   // if (process.env.NODE_ENV !== 'production') {
@@ -484,7 +486,7 @@ const requireAutotrackPlugins = () => {
  * @param {string} definition The definition string (e.g. 'dimension1').
  * @return {number} The definition index.
  */
-const getDefinitionIndex = definition => +/\d+$/.exec(definition)[0];
+const getDefinitionIndex = definition => +/\d+$/.exec(definition)[ 0 ];
 
 /**
  * Generates a UUID.
@@ -495,8 +497,8 @@ const getDefinitionIndex = definition => +/\d+$/.exec(definition)[0];
 const uuid = function b(a) {
   return a
     ? // eslint-disable-next-line no-bitwise
-      (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
-    : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b);
+    (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
+    : ([ 1e7 ] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b);
 };
 
 init();
