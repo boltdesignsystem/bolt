@@ -16,15 +16,24 @@ class BoltTwoCharacterChat extends withLitHtml() {
     },
     characterLeftUrl: {
       ...props.string,
-      ...{ default: 'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png' },
+      ...{
+        default:
+          'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png',
+      },
     },
     characterRightUrl: {
       ...props.string,
-      ...{ default: 'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png' },
+      ...{
+        default:
+          'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png',
+      },
     },
     connectionUrl: {
       ...props.string,
-      ...{ default: 'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png' },
+      ...{
+        default:
+          'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png',
+      },
     },
   };
 
@@ -36,7 +45,11 @@ class BoltTwoCharacterChat extends withLitHtml() {
   }
 
   render() {
-    const { characterLeftUrl, characterRightUrl, connectionUrl } = this.validateProps(this.props);
+    const {
+      characterLeftUrl,
+      characterRightUrl,
+      connectionUrl,
+    } = this.validateProps(this.props);
     const classes = cx('c-bolt-two-character-chat');
 
     // const eventChangeActiveStep = new CustomEvent('change-active-step', {
