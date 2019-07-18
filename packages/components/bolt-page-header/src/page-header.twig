@@ -1,5 +1,4 @@
-<header class="c-bolt-mega-nav--global-search-active c-page-header qa-page-header js-global-header cd-main-header is-fixed headroom is-top is-not-bottom">
-  <div class="c-page-header__wrapper">
+<header class="c-bolt-mega-nav c-bolt-mega-nav--global-search-active c-page-header qa-page-header js-global-header cd-main-header is-fixed headroom is-top is-not-bottom">  <div class="c-page-header__wrapper">
     <div class="c-page-header__background"></div>
     <div class="c-page-header__content"> <span id="!"></span>
       <div class="c-page-header__utility-nav">
@@ -530,19 +529,20 @@
           </nav>
           <ul class="o-bolt-bare-list c-header-buttons js-mega-nav__header-buttons">
             <li class="c-header-buttons__item">
-              <div class="c-bolt-global-search-trigger">
-                <div class="c-bolt-global-search-trigger__open">
+              <div class="c-bolt-global-search-panel-trigger">
+                <div class="c-bolt-global-search-panel-trigger__open-button">
                   <bolt-button color="text" icon-only aria-controls="global-search" aria-haspopup="true">
                     <bolt-icon name="search" slot="before"></bolt-icon>
                     Search Pega.com
                   </bolt-button>
                 </div>
-                <div class="c-bolt-global-search-trigger__close">
+                <div class="c-bolt-global-search-panel-trigger__close-button">
                   <bolt-button color="text" icon-only aria-controls="global-search" aria-haspopup="true">
                     <bolt-icon name="close" slot="before"></bolt-icon>
                     Close search
                   </bolt-button>
                 </div>
+                <span class="c-bolt-global-search-panel-trigger__panle-tip t-bolt-dark"></span>
               </div>
             </li>
             <li class="c-header-buttons__item">
@@ -554,40 +554,6 @@
               </div>
             </li>
           </ul>
-          {# <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none !important;">
-            <symbol id="close" viewBox="0 0 14 14">
-              <title>close</title>
-              <path d="M14 1.4L12.6 0 7 5.6 1.4 0 0 1.4 5.6 7 0 12.6 1.4 14 7 8.4l5.6 5.6 1.4-1.4L8.4 7z"></path>
-            </symbol>
-            <symbol id="search" viewBox="0 0 16 16">
-              <title>Search</title>
-              <path d="M5.943 0a5.943 5.943 0 0 1 4.513 9.81l.248.247h.725L16 14.63 14.629 16l-4.572-4.571v-.725l-.248-.248A5.943 5.943 0 1 1 5.942 0zm0 1.829a4.114 4.114 0 1 0 0 8.228 4.114 4.114 0 0 0 0-8.228z" fill-rule="nonzero" /> </symbol>
-          </svg>
-          <aside class="c-bolt-global-search c-global-search js-search-toggle js-search-panel" role="search" id="global-search">
-            <input type="checkbox" class="c-global-search__panel-input js-global-search__panel-toggle" aria-hidden="true">
-            <div class="c-global-search__panel" id="global-search-panel">
-              <form class="c-global-search__form" action="/" method="post" id="pega-ch-search-form" accept-charset="UTF-8">
-                <div>
-                  <div class="c-global-search__input-wrapper js-search-clear">
-                    <input placeholder="Search here" class="js-search-clear__target c-global-search__search-input c-input--clearable js-global-search__input form-text" type="text" id="edit-keys--2" name="_search_query" value="" size="60" maxlength="128">
-                    <button class="c-global-search__submit" type="submit"> <span class="u-bolt-visuallyhidden">Search Pegasystems</span>
-                      <svg class="c-global-search__search-icon o-icon" viewBox="0 0 24 24">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search"></use>
-                      </svg>
-                    </button>
-                    <button style="display: none" type="submit" id="edit-submit--3" name="op" value="" class="btn form-submit"> </button>
-                    <button class="c-global-search__close-input js-global-search__close-trigger c-input__close-button" type="button" aria-label="Close search"> <span class="c-global-search__close-inner">
-                      <span class="u-bolt-visuallyhidden">Close search</span>
-                      <svg class="c-global-search__close-icon o-icon" viewBox="0 0 24 24">
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close"></use>
-                      </svg>
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </aside> #}
         </div>
         <div class="c-page-header__contact t-bolt-xlight">
           <div>
@@ -602,44 +568,45 @@
       <div class="c-mega-nav__mobile-contact u-hide@large">
         <a href="internal:/contact-us" title="Contact" class="c-mega-nav__mobile-contact-link"> <span class="c-button__text">Contact</span> </a>
       </div>
-      <div class="c-bolt-global-search c-bolt-global-search--floating">
-        <bolt-trigger cursor="pointer" display="block" class="c-bolt-global-search__overlay">
-          Close search
-        </bolt-trigger>
-        <div class="c-bolt-global-search__content t-bolt-dark">
-          <div class="o-bolt-wrapper">
-            {% grid "o-bolt-grid--center" %}
-              {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large" %}
-                <bolt-list>
-                  <bolt-list-item>
-                    <form>
-                      <label class="c-bolt-global-search-bar t-bolt-xlight" for="">
-                        <span class="c-bolt-global-search-bar__label">Search the Pegasystems website</span>
-                        <input class="c-bolt-global-search-bar__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
-                        <div class="c-bolt-global-search-bar__button">
-                          <bolt-button color="text" tag="submit" icon-only>
-                            <bolt-icon name="search" slot="before"></bolt-icon>
-                          </bolt-button>
-                        </div>
-                        <div class="c-bolt-global-search-bar__button c-bolt-global-search-bar__button--reset">
-                          <bolt-button color="text" tag="reset" icon-only>
-                            <bolt-icon name="close-solid" slot="before"></bolt-icon>
-                          </bolt-button>
-                        </div>
-                      </label>
-                    </form>
-                  </bolt-list-item>
-                  <bolt-list-item>
-                    <bolt-text font-size="xsmall" align="center">
-                      We couldn't find any results. Did you mean <bolt-link>this</bolt-link> or <bolt-link>that</bolt-link>?
-                    </bolt-text>
-                  </bolt-list-item>
-                </bolt-list>
-              {% endcell %}
-            {% endgrid %}
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </header>
+
+<div class="c-bolt-global-search-panel c-bolt-global-search-panel--floating">
+  <div class="c-bolt-global-search-panel__content t-bolt-dark">
+    <div class="o-bolt-wrapper">
+      {% grid "o-bolt-grid--center c-bolt-global-search-animated" %}
+        {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large" %}
+          <bolt-list>
+            <bolt-list-item>
+              <form>
+                <label class="c-bolt-search-field t-bolt-xlight" for="">
+                  <span class="c-bolt-search-field__label">Search the Pegasystems website</span>
+                  <input class="c-bolt-search-field__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
+                  <div class="c-bolt-search-field__button">
+                    <bolt-button color="text" tag="submit" icon-only>
+                      <bolt-icon name="search" slot="before"></bolt-icon>
+                    </bolt-button>
+                  </div>
+                  <div class="c-bolt-search-field__button c-bolt-search-field__button--reset">
+                    <bolt-button color="text" tag="reset" icon-only>
+                      <bolt-icon name="close-solid" slot="before"></bolt-icon>
+                    </bolt-button>
+                  </div>
+                </label>
+              </form>
+            </bolt-list-item>
+            <bolt-list-item>
+              <bolt-text font-size="xsmall" align="center">
+                We couldn't find any results. Did you mean <bolt-link>this</bolt-link> or <bolt-link>that</bolt-link>?
+              </bolt-text>
+            </bolt-list-item>
+          </bolt-list>
+        {% endcell %}
+      {% endgrid %}
+    </div>
+  </div>
+  <bolt-trigger cursor="pointer" display="block" class="c-bolt-global-search-panel__overlay">
+    Close search
+  </bolt-trigger>
+</div>

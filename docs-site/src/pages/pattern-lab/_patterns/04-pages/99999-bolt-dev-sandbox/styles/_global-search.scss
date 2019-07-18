@@ -4,13 +4,18 @@
 
 @import '@bolt/core';
 
-$bolt-global-search-input-placeholder-color: bolt-theme(text, 0.4);
-$bolt-global-search-input-border-width: $bolt-border-width;
-$bolt-global-search-input-border-style: $bolt-border-style;
-$bolt-global-search-icon-only-button-width: bolt-spacing(medium) + 1rem;
+
+/**
+ * Search Field
+ */
+
+$bolt-search-field-placeholder-color: bolt-theme(text, 0.4);
+$bolt-search-field-border-width: $bolt-border-width;
+$bolt-search-field-border-style: $bolt-border-style;
+$bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
 
 
-.c-bolt-global-search-bar {
+.c-bolt-search-field {
   @include bolt-shadow('level-10');
 
   display: flex;
@@ -23,11 +28,11 @@ $bolt-global-search-icon-only-button-width: bolt-spacing(medium) + 1rem;
   }
 }
 
-.c-bolt-global-search-bar__label {
+.c-bolt-search-field__label {
   @include bolt-visuallyhidden;
 }
 
-.c-bolt-global-search-bar__input {
+.c-bolt-search-field__input {
   @include bolt-padding(medium, squished);
   @include bolt-padding-right(small);
 
@@ -35,15 +40,15 @@ $bolt-global-search-icon-only-button-width: bolt-spacing(medium) + 1rem;
   order: 1;
   appearance: none;
   opacity: bolt-opacity(100);
-  padding-left: $bolt-global-search-icon-only-button-width;
+  padding-left: $bolt-search-field-icon-only-button-width;
   color: bolt-theme(text);
   border-radius: bolt-border-radius(small);
-  border-width: $bolt-global-search-input-border-width;
-  border-style: $bolt-global-search-input-border-style;
+  border-width: $bolt-search-field-border-width;
+  border-style: $bolt-search-field-border-style;
   outline: none;
   transition: all $bolt-transition;
 
-  @at-root .c-bolt-global-search-bar[class*='t-bolt'] #{&} {
+  @at-root .c-bolt-search-field[class*='t-bolt'] #{&} {
     border-color: bolt-theme(link, 0.2);
     background-color: bolt-theme(background);
 
@@ -53,7 +58,7 @@ $bolt-global-search-icon-only-button-width: bolt-spacing(medium) + 1rem;
     }
   }
 
-  @at-root .c-bolt-global-search-bar:not([class*='t-bolt']) #{&} {
+  @at-root .c-bolt-search-field:not([class*='t-bolt']) #{&} {
     border-color: bolt-theme(link, 0.2);
     background-color: rgba(bolt-color(white), 0.1);
 
@@ -64,131 +69,168 @@ $bolt-global-search-icon-only-button-width: bolt-spacing(medium) + 1rem;
   }
 
   &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: $bolt-global-search-input-placeholder-color;
+    color: $bolt-search-field-placeholder-color;
   }
 
   &::-moz-placeholder { /* Firefox 19+ */
-    color: $bolt-global-search-input-placeholder-color;
+    color: $bolt-search-field-placeholder-color;
   }
 
   &:-ms-input-placeholder { /* IE 10+ */
-    color: $bolt-global-search-input-placeholder-color;
+    color: $bolt-search-field-placeholder-color;
   }
 
   &:-moz-placeholder { /* Firefox 18- */
-    color: $bolt-global-search-input-placeholder-color;
+    color: $bolt-search-field-placeholder-color;
   }
 
   &:valid {
-    padding-right: $bolt-global-search-icon-only-button-width;
+    padding-right: $bolt-search-field-icon-only-button-width;
   }
 }
 
-.c-bolt-global-search-bar__button {
+.c-bolt-search-field__button {
   order: 0;
   width: 0;
 }
 
-.c-bolt-global-search-bar__button--reset {
+.c-bolt-search-field__button--reset {
   order: 2;
-  transform: translateX($bolt-global-search-icon-only-button-width * -1);
+  transform: translate3d(($bolt-search-field-icon-only-button-width * -1), 0, 0);
 
-  @at-root .c-bolt-global-search-bar__input:not(:valid) ~ #{&} {
+  @at-root .c-bolt-search-field__input:not(:valid) ~ #{&} {
     display: none;
   }
 }
 
-.c-bolt-gloval-search-dropdown {
-  position: relative;
-}
 
-.c-bolt-gloval-search-dropdown__overlay {
-  z-index: 0;
-}
+/**
+ * Global Search Panel
+ */
 
-.c-bolt-gloval-search-dropdown__content {
-  z-index: 1;
-}
-
-.c-bolt-gloval-search-dropdown__overlay,
-.c-bolt-gloval-search-dropdown__content {
-  position: relative;
-}
-
-.c-bolt-global-search {
+.c-bolt-global-search-panel {
   display: block;
 }
 
-.c-bolt-global-search--floating {
-  display: none;
-  position: relative;
+.c-bolt-global-search-panel--floating {
+  @include bolt-z-index(nav);
+  @include bolt-shadow('level-40');
+  opacity: bolt-opacity(0);
+
+  position: absolute;
   width: 100%;
+  max-height: 0;
+  pointer-events: none;
+  transition: all $bolt-transition;
+
+  @at-root .c-bolt-mega-nav--global-search-active ~ #{&} {
+    opacity: bolt-opacity(100);
+    max-height: 100%;
+    pointer-events: auto;
+  }
 }
 
-.c-bolt-global-search__content {
+.c-bolt-global-search-panel__overlay {
+  display: flex;
+  opacity: bolt-opacity(0);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1; // This is self contained z-index within the search panel. Its only purpose is to define stacking order of elements in this specific container.
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-indent: 99999px; // This hides trigger text.
+  pointer-events: none;
+  background-color: bolt-color(indigo, xdark);
+
+  @at-root .c-bolt-mega-nav--global-search-active ~ .c-bolt-global-search-panel--floating #{&} {
+    opacity: bolt-opacity(20);
+    pointer-events: auto;
+  }
+}
+
+.c-bolt-global-search-panel__content {
   @include bolt-padding(small 0);
+
+  opacity: bolt-opacity(0);
+  position: relative;
+  transition: all $bolt-transition;
+
+  @at-root .c-bolt-mega-nav--global-search-active ~ .c-bolt-global-search-panel--floating #{&} {
+    opacity: bolt-opacity(100);
+    z-index: 2; // This is self contained z-index within the search panel. Its only purpose is to define stacking order of elements in this specific container.
+  }
 }
 
-.c-bolt-global-search-trigger__open {
+.c-bolt-global-search-panel-trigger__open-button {
   display: block;
+
+  @at-root .c-bolt-mega-nav--global-search-active #{&} {
+    display: none;
+  }
 }
 
-.c-bolt-global-search-trigger__close {
+.c-bolt-global-search-panel-trigger__close-button {
   display: none;
+
+  @at-root .c-bolt-mega-nav--global-search-active #{&} {
+    display: block;
+  }
+}
+
+.c-bolt-global-search-panel-trigger {
+  position: relative;
+}
+
+.c-bolt-global-search-panel-trigger__panle-tip {
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 100%, 0) rotate(45deg) scale(0);
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  background-color: transparent;
+  transition: all $bolt-transition;
+
+  @at-root .c-bolt-mega-nav--global-search-active #{&} {
+    transform: translate3d(-50%, 0, 0) rotate(45deg) scale(1);
+    background-color: bolt-theme(background);
+
+    @include bolt-mq(large) {
+      transform: translate3d(-50%, calc(18px - 0.2vw), 0) rotate(45deg) scale(1); // This is a magic number to position the triangle.
+    }
+  }
+}
+
+.c-bolt-global-search-animated {
+  opacity: bolt-opacity(0);
+  transform: translate3d(0, -20%, 0) scale3d(0.99, 0.8, 1);
+  transition: all $bolt-transition;
+
+  @at-root .c-bolt-mega-nav--global-search-active ~ .c-bolt-global-search-panel--floating #{&} {
+    opacity: bolt-opacity(100);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transition-delay: $bolt-transition-timing / 1.5;
+  }
+}
+
+
+/**
+ * Mega Nav
+ */
+
+.c-bolt-mega-nav {
+  /* @include bolt-z-index(nav);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; */
+  transition: all $bolt-transition;
 }
 
 .c-bolt-mega-nav--global-search-active {
-  border-bottom: none;
-
-  .c-bolt-global-search-trigger {
-    position: relative;
-
-    &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%) translateY(0) rotate(45deg);
-      width: 1rem;
-      height: 1rem;
-      background-color: bolt-color(indigo, dark);
-
-      @include bolt-mq(large) {
-        transform: translateX(-50%) translateY(calc(18px - 0.2vw)) rotate(45deg); // This is a magic number to position the triangle.
-      }
-    }
-  }
-
-  .c-bolt-global-search-trigger__open {
-    display: none;
-  }
-
-  .c-bolt-global-search-trigger__close {
-    display: block;
-  }
-
-  .c-bolt-global-search--floating {
-    display: block;
-    position: relative;
-    z-index: 2; // This is relative z-index. The mega nav's utility has a z-index of 1, this makes sure global search covers it.
-  }
-
-  .c-bolt-global-search__overlay {
-    display: flex;
-    opacity: bolt-opacity(20);
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    text-indent: 99999px;
-    background-color: bolt-color(indigo, xdark);
-  }
-
-  .c-bolt-global-search__content {
-    position: relative;
-    z-index: 2;
-  }
+  border-bottom-width: 0;
 }
