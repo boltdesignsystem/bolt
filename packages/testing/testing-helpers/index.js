@@ -16,6 +16,15 @@ export async function renderString(template, data) {
 
 export { stopServer };
 
+export const vrtDefaultConfig = {
+  failureThreshold: '0.001',
+  failureThresholdType: 'percent',
+  customDiffConfig: {
+    threshold: '0.025',
+    includeAA: true,
+  },
+};
+
 // import {
 //   // isConnected,
 //   // render,
