@@ -1,11 +1,11 @@
 {% set javascript %}
 <script>
-  // Toggle the video state based on modal visibility
+  // Open modal when video plays, pause video on modal hide
   const modal = document.querySelector('.js-modal-123');
   const video = document.querySelector('.js-modal-video-123');
 
-  modal.addEventListener('modal:show', function() {
-    video.play();
+  video.addEventListener('playing', function() {
+    modal.show();
   });
 
   modal.addEventListener('modal:hide', function() {
@@ -14,8 +14,8 @@
 </script>
 {% endset %}
 
-<bolt-text headline font-size="xlarge">Video Modal Usage: Modal Triggers Video</bolt-text>
-<bolt-text>Custom javascript is needed to play the video when the modal opens and pause the video the modal closes.</bolt-text>
+<bolt-text headline font-size="xlarge">Video Modal Usage: Video Triggers Modal</bolt-text>
+<bolt-text>Custom javascript is needed to open the modal when the video plays and to pause the video when the modal closes.</bolt-text>
 
 <bolt-text headline font-size="large">Demo</bolt-text>
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
@@ -35,8 +35,8 @@
   {% include "@bolt-components-button/button.twig" with {
     text: "Play the video",
     attributes: {
-      "on-click": "show",
-      "on-click-target": "js-modal-123"
+      "on-click": "toggle",
+      "on-click-target": "js-modal-video-123"
     }
   } only %}
 
