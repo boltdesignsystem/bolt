@@ -1,5 +1,10 @@
 declare module '*.yml';
 
+interface BoltEditorConfig {
+  styles?: string[];
+  scripts?: string[];
+}
+
 interface Window {
   HTMLLinkElement: typeof HTMLLinkElement;
 }
@@ -26,6 +31,8 @@ declare module 'grapesjs' {
     components?: string;
     style?: string;
     fromElement?: boolean;
+    /** renders editor on init */
+    autorender?: boolean;
     /** Show an alert before unload the page with unsaved changes */
     noticeOnUnload?: boolean;
     showOffsets?: boolean;
@@ -86,13 +93,30 @@ declare module 'grapesjs' {
     BlockManager: BlockManager;
     Panels: Panels;
     Modal: Modal;
+    Canvas: Canvas;
     getHtml(): string;
+    getJs(): string;
     destroy(): void;
     /** Total unsaved changes */
     getDirtyCount(): number;
     getContainer(): HTMLElement;
     getComponents(): Array<object>;
     on(event: GrapesEvent, callback: Function): Editor;
+    once(event: GrapesEvent, callback: Function): Editor;
+    /** Returns editor element */
+    render(): HTMLElement;
+    /** Returns editor element */
+    getEl(): HTMLElement;
+
+    /**
+     * Update editor dimensions and refresh data useful for positioning of tools
+     *
+     * This method could be useful when you update, for example, some position
+     * of the editor element (eg. canvas, panels, etc.) with CSS, where without
+     * refresh you'll get misleading position of tools (eg. rich text editor,
+     * component highlighter, etc.)
+     */
+    refresh(): void;
   }
 
   interface Panels {
@@ -167,6 +191,7 @@ declare module 'grapesjs' {
         };
       },
     ): void;
+
     getType(type: string): any;
   }
 
@@ -181,7 +206,7 @@ declare module 'grapesjs' {
     attributes?: object;
     // https://grapesjs.com/docs/modules/Blocks.html#custom-render
     render?: ({
-      model: { },
+      model: {},
       className: string,
       el: HTMLElement,
     }) => string | void;
@@ -195,7 +220,7 @@ declare module 'grapesjs' {
     id?: string;
     autosave?: boolean;
     autoload?: boolean;
-    type?: "local" | "remote" | "null";
+    type?: 'local' | 'remote' | 'null';
     stepsBeforeSave?: number;
     storeComponents?: boolean;
     storeStyles?: boolean;
@@ -335,6 +360,19 @@ declare module 'grapesjs' {
     getTitle(): string;
     setContent(content: HTMLElement | string): Modal;
     getContent(): string;
+  }
+
+  interface Canvas {
+    getConfig(): CanvasConfig | object;
+    getElement(): HTMLElement;
+    getFrameEl(): HTMLIFrameElement;
+    getWindow(): Window;
+    getDocument(): HTMLDocument;
+    getBody(): HTMLBodyElement;
+    getWrapperEl(): HTMLElement;
+    setCustomBadgeLabel(f: Function): void;
+    hasFocus(): boolean;
+    // scrollTo(el: HTMLElement | object, opts?: boolean | GrapesScrollIntoViewOptions): void;
   }
 
   interface TraitManagerConfig {
