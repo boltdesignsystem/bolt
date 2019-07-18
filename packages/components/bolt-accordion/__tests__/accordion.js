@@ -25,9 +25,7 @@ describe('<bolt-accordion> Component', () => {
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
+      waitUntil: 'networkidle0',
     });
   }, timeout);
 
@@ -141,6 +139,7 @@ describe('<bolt-accordion> Component', () => {
 
     const renderedShadowDomHTML = await html(defaultAccordionShadowRoot);
 
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
@@ -182,6 +181,7 @@ describe('<bolt-accordion> Component', () => {
 
     const renderedShadowDomHTML = await html(defaultAccordionShadowRoot);
 
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
