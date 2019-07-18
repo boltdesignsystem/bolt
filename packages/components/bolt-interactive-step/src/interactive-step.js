@@ -36,13 +36,49 @@ class BoltInteractiveStep extends withLitHtml() {
     return self;
   }
 
+  /**
+   * @param {Event} event
+   */
+  handleAnimationEnd(event) {
+    console.log('bolt:transitionend', event);
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.addEventListener('bolt:transitionend', this.handleAnimationEnd);
+  }
+
+  disconnectedCallback() {
+    this.removeEventListener('bolt:transitionend', this.handleAnimationEnd);
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    super.attributeChangedCallback(name, oldValue, newValue);
+    switch (name) {
+      case 'active':
+        // console.log('attributeChangedCallback', { name, oldValue, newValue });
+        const isActive = typeof newValue === 'string';
+        if (!this.slots) return;
+        const allSlots = Object.values(this.slots);
+        if (!allSlots) return;
+        allSlots.forEach(slot => {
+          slot.forEach(
+            /** @type {HTMLElement} */
+            slotElement => {
+              if (slotElement.tagName === 'BOLT-ANIMATION-WRAPPER') {
+                slotElement.animTriggered = isActive;
+              }
+            },
+          );
+        });
+        break;
+    }
+  }
+
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const {
-      disabled,
-      active,
-      step,
-    } = this.validateProps(this.props);
+    const { disabled, active, step } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-interactive-step', {
       [`c-bolt-interactive-step--disabled`]: disabled,
@@ -64,16 +100,20 @@ class BoltInteractiveStep extends withLitHtml() {
           @click=${e => e.target.dispatchEvent(eventChangeActiveStep)}
         >
           <span class="c-bolt-interactive-step__dot">&#9679;</span>
-          <span class="c-bolt-interactive-step__title"
-            >${this.slot('title')}</span
-          >
+          <span class="c-bolt-interactive-step__title">
+            ${this.slot('title')}
+          </span>
         </div>
         <div class="c-bolt-interactive-step__body" data-active="${active}">
-          <div class="c-bolt-interactive-step__step-top">
+          <div
+            class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--top"
+          >
             ${this.slot('top')}
           </div>
-          <div class="c-bolt-interactive-step__step-body">
-            ${this.slot('body')}
+          <div
+            class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--bottom"
+          >
+            ${this.slot('bottom')}
           </div>
         </div>
       </li>

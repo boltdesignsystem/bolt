@@ -10,16 +10,15 @@
   <bolt-interactive-step
       step="1"
       slot="steps"
-      speaker-position="left"
-      customer-disposition="sad"
   >
     <span slot="title">Moment of Need</span>
-    <span slot="top">
+
+    <bolt-animation-wrapper slot="top" fade-in="fast">
       <bolt-two-character-chat
         character-left-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-neutral.png"
         character-right-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
       >
-        <span slot="connection">
+        <div slot="connection">
           <bolt-connection
             connection-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
           >
@@ -30,87 +29,84 @@
               <bolt-text>Bottom slot</bolt-text>
             </span>
           </bolt-connection>
-        </span>
+        </div>
       </bolt-two-character-chat>
-    </span>
-    <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue"><span style="color: black;">Why is my bill so high?</span></bolt-text>
-    <bolt-text slot="body">
-      Pega enables the business to sense <b>customer context</b> by seeing interactions across channels--calls to customer service about a bill, or visit to pricing web page.
-    </bolt-text>
+    </bolt-animation-wrapper>
+
+    <bolt-animation-wrapper slot="bottom" fade-in="slow">
+      <bolt-text>
+        Pega enables the business to sense <b>customer context</b> by seeing interactions across channels--calls to customer service about a bill, or visit to pricing web page.
+      </bolt-text>
+    </bolt-animation-wrapper>
   </bolt-interactive-step>
 
   <bolt-interactive-step
       step="2"
       slot="steps"
-      speaker-position="right"
-      customer-disposition="neutral"
   >
-    <span slot="top">
+    <span slot="title">Next best action</span>
+
+    <bolt-animation-wrapper slot="top" fade-in="fast">
       <bolt-two-character-chat
           character-left-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png"
           character-right-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
       >
       </bolt-two-character-chat>
-    </span>
-    <span slot="title">Next best action</span>
-    <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue"><span style="color: black;">How can we best service this customer?</span></bolt-text>
-    <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png" />
-    <bolt-text slot="body">
-      Pega's AI-augmented <b>decisioning engine</b> uses context, predictive analytics, and self-learning adaptive models to guide agents with next best actions to serve the customer.
-    </bolt-text>
+    </bolt-animation-wrapper>
+
+    <bolt-animation-wrapper slot="bottom" fade-in="slow">
+      <bolt-text>
+        Pega's AI-augmented <b>decisioning engine</b> uses context, predictive analytics, and self-learning adaptive models to guide agents with next best actions to serve the customer.
+      </bolt-text>
+    </bolt-animation-wrapper>
   </bolt-interactive-step>
 
   <bolt-interactive-step
       step="3"
       slot="steps"
-      speaker-position="left"
-      customer-disposition="neutral"
   >
     <span slot="title">Context Across Channels</span>
-    <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue"><span style="color: black;">I have another question about my bill.</span></bolt-text>
-    <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-triple-ltr.png" />
-    <bolt-text slot="body">
-      Pega’s <b>real-time omni-channel AI</b> ensures that customer context is never lost, even on other channels.
-    </bolt-text>
+
+    <bolt-animation-wrapper slot="bottom" fade-in="slow">
+      <bolt-text>
+        Pega’s <b>real-time omni-channel AI</b> ensures that customer context is never lost, even on other channels.
+      </bolt-text>
+    </bolt-animation-wrapper>
   </bolt-interactive-step>
 
   <bolt-interactive-step
       step="4"
       slot="steps"
-      speaker-position="right"
-      customer-disposition="happy"
   >
     <span slot="title">Resolve</span>
-    <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue"><span style="color: black;">Let's get this resolved quickly.</span></bolt-text>
-    <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-neutral.png" />
-    <bolt-text slot="body">
-      Pega's <b>case management</b> connects all the people, systems, and processes required to resolve each customer inquiry.
-    </bolt-text>
+
+    <bolt-animation-wrapper slot="bottom" fade-in="slow">
+      <bolt-text>
+        Pega's <b>case management</b> connects all the people, systems, and processes required to resolve each customer inquiry.
+      </bolt-text>
+    </bolt-animation-wrapper>
   </bolt-interactive-step>
 
   <bolt-interactive-step
       step="5"
       slot="steps"
-      speaker-position="left"
-      customer-disposition="happy"
   >
     <span slot="title">Outcomes</span>
-    <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue"><span style="color: black;">Thanks, I got my issue resolved.</span></bolt-text>
-    <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png" />
-    <bolt-text slot="body">
-      Customer issue is resolved quickly, resulting in higher customer satisfaction and lower <b>average handle time (AHT)</b> for the business.
-    </bolt-text>
+
+    <bolt-animation-wrapper slot="bottom" fade-in="slow">
+      <bolt-text>
+        Customer issue is resolved quickly, resulting in higher customer satisfaction and lower <b>average handle time (AHT)</b> for the business.
+      </bolt-text>
+    </bolt-animation-wrapper>
   </bolt-interactive-step>
 
   <bolt-interactive-step
       step="6"
       slot="steps"
-      hide-interaction-animations
   >
     <span slot="title">What's next?</span>
-    <bolt-text tag="p" style="margin-bottom: 0;" slot="dialogue"><span style="color: black;">I'm saying something!</span></bolt-text>
-    <img slot="dialogueBand" src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png" />
-    <div slot="body">
+
+    <bolt-animation-wrapper slot="bottom" fade-in="slow">
       <details>
         <summary>A details tag</summary>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda atque, aut autem cumque deserunt doloribus eveniet expedita facere facilis hic inventore iste, magni neque pariatur, praesentium reiciendis rerum tempora vitae?</p>
@@ -125,7 +121,7 @@
       <hr>
       <h2>Transform your customer experience</h2>
       See how Pega can transform your customer experiences with next-generation software applications and solutions.
-    </div>
+    </bolt-animation-wrapper>
   </bolt-interactive-step>
 
 </bolt-interactive-pathway>
