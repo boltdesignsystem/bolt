@@ -1,0 +1,90 @@
+diff --git a/node_modules/@basalt/twig-renderer/.DS_Store b/node_modules/@basalt/twig-renderer/.DS_Store
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/@basalt/twig-renderer/dist/.DS_Store b/node_modules/@basalt/twig-renderer/dist/.DS_Store
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/@basalt/twig-renderer/dist/twig-renderer.js b/node_modules/@basalt/twig-renderer/dist/twig-renderer.js
+index 8e8b725..29080cd 100644
+--- a/node_modules/@basalt/twig-renderer/dist/twig-renderer.js
++++ b/node_modules/@basalt/twig-renderer/dist/twig-renderer.js
+@@ -11,6 +11,8 @@ var Ajv = _interopDefault(require('ajv'));
+ var path = require('path');
+ var path__default = _interopDefault(path);
+ var fs = _interopDefault(require('fs-extra'));
++const getPort = require('get-port');
++const assignedPorts = [];
+ 
+ /**
+  * Formats Schema validation errors for using with `console.error`
+@@ -350,6 +352,24 @@ class TwigRenderer {
+     });
+   }
+ 
++  async getOpenPort() {
++    let portSelected = await getPort({
++      host: '127.0.0.1', // --> important! this ensures the host being checked matches the PHP server being spun up
++    });
++
++    // the first port selected should skip over, otherwise this should pick another port just in case
++    while (assignedPorts.includes(portSelected)) {
++      portSelected = await getPort({
++        host: '127.0.0.1', // --> important! this ensures the host being checked matches the PHP server being spun up
++      });
++    }
++
++    // remember which ports have been assigned to avoid giving out the same port twice
++    assignedPorts.push(portSelected);
++
++    return portSelected;
++  }
++
+   async init() {
+     if (this.serverState === serverStates.STARTING) {
+       // console.log('No need to re-init');
+@@ -365,17 +385,13 @@ class TwigRenderer {
+ 
+     if (this.config.verbose) ;
+ 
+-    this.serverState = serverStates.STARTING; // @todo improve method of selecting a port to try
+-    // Just because a port is available now, doesn't mean it wont be taken in 5ms :P
+-
+-    const portAttempt = getRandomInt(10000, 65000);
+-    const [port] = await fp(portAttempt);
+-    this.phpServerPort = port;
+-    this.phpServerUrl = `http://127.0.0.1:${port}`; // @todo Pass config to PHP server a better way than writing JSON file, then reading in PHP
++    this.serverState = serverStates.STARTING;
++    this.phpServerPort = await this.getOpenPort();;
++    this.phpServerUrl = `http://127.0.0.1:${this.phpServerPort}`; // @todo Pass config to PHP server a better way than writing JSON file, then reading in PHP
+ 
+-    const sharedConfigPath = path__default.join(__dirname, `shared-config--${port}.json`);
++    const sharedConfigPath = path__default.join(__dirname, `shared-config--${this.phpServerPort}.json`);
+     await fs.writeFile(sharedConfigPath, JSON.stringify(this.config, null, '  '));
+-    const params = [path__default.join(__dirname, 'server--async.php'), port, sharedConfigPath];
++    const params = [path__default.join(__dirname, 'server--async.php'), this.phpServerPort, sharedConfigPath];
+     this.phpServer = execa('php', params, {
+       cleanup: true,
+       detached: false
+@@ -458,7 +474,7 @@ class TwigRenderer {
+       // console.log(`checkServerWhileStarting: ${this.serverState}`);
+       await this.checkIfServerIsReady(); // eslint-disable-line no-await-in-loop
+ 
+-      await sleep(100); // eslint-disable-line no-await-in-loop
++      await sleep(5); // eslint-disable-line no-await-in-loop
+     }
+ 
+     return this.serverState;
+diff --git a/node_modules/@basalt/twig-renderer/package.json b/node_modules/@basalt/twig-renderer/package.json
+index c1724c1..00587ae 100644
+--- a/node_modules/@basalt/twig-renderer/package.json
++++ b/node_modules/@basalt/twig-renderer/package.json
+@@ -26,7 +26,8 @@
+     "find-free-port": "^2.0.0",
+     "fs-extra": "^7.0.1",
+     "node-fetch": "^2.1.2",
+-    "sleep-promise": "^8.0.1"
++    "sleep-promise": "^8.0.1",
++    "get-port": "^5.0.0"
+   },
+   "devDependencies": {
+     "@babel/plugin-transform-modules-commonjs": "^7.2.0",
