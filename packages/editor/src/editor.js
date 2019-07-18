@@ -137,9 +137,9 @@ export function enableEditor({ space, uiWrapper, config }) {
       ],
     },
     storageManager: { type: null },
-    // layerManager: {
-    //   appendTo: editorSlots.layers,
-    // },
+    layerManager: {
+      appendTo: editorSlots.layers,
+    },
     traitManager: {
       appendTo: editorSlots.traits,
     },

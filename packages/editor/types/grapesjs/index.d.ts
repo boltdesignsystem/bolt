@@ -82,6 +82,9 @@ declare module 'grapesjs' {
       appendTo?: HTMLElement | string;
       blocks: BlockOptions[];
     }
+    layerManager?: {
+      appendTo?: HTMLElement;
+    };
     traitManager?: TraitManagerConfig | object;
     textViewCode?: string;
     keepUnusedStyles?: boolean;

@@ -10,6 +10,9 @@ function createEditorUiHtml(appendTo = document.body) {
   const uiMarkup = `
     <div class="pega-editor-ui__slot pega-editor-ui__slot--buttons"></div>
     <div class="pega-editor-ui__slot pega-editor-ui__slot--blocks"></div>
+    <div class="pega-editor-ui__slot pega-editor-ui__slot--layers">
+      <h5>Layers</h5>
+    </div>
     <div class="pega-editor-ui__slot pega-editor-ui__slot--traits">
       <h5>Properties</h5>
     </div>
