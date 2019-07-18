@@ -40,7 +40,7 @@ jobs:
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
-        - yarn run setup
+        - travis_retry yarn run setup:full
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
