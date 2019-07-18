@@ -1,10 +1,10 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './interactive-step.scss';
 //import schema from '../interactive-step.schema.yml'; //Todo: Uncomment when you will need schema
 
-let cx = classNames.bind(styles);
+const cx = classNames.bind(styles);
 
 @define
 class BoltInteractiveStep extends withLitHtml() {

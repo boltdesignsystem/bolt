@@ -1,5 +1,5 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './interactive-pathway.scss';
 import schema from '../interactive-pathway.schema.yml';
