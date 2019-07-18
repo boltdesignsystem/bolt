@@ -83,37 +83,9 @@ class BoltInteractiveStep extends withLitHtml() {
           >
         </div>
         <div class="c-bolt-interactive-step__body" data-active="${active}">
-          ${hideInteractionAnimations
-            ? ''
-            : html`
-                <div class="c-bolt-interactive-step__dialogue">
-                  <bolt-tooltip-content
-                    role="tooltip"
-                    aria-hidden="false"
-                    id="bolt-tooltip-id-11"
-                    class="c-bolt-interactive-step__speech c-bolt-interactive-step__speech--${speakerPosition}"
-                  >
-                    <span class="c-bolt-interactive-step__speech-bubble"
-                      >${this.slot('dialogue')}</span
-                    >
-                  </bolt-tooltip-content>
-                </div>
-                <div class="c-bolt-interactive-step__interaction-images">
-                  <span class="c-bolt-interactive-step__interaction-band"
-                    >${this.slot('dialogueBand')}</span
-                  >
-                  <img
-                    class="c-bolt-interactive-step__avatar"
-                    src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-${customerDisposition}.png"
-                    alt="Customer is ${customerDisposition}"
-                  />
-                  <img
-                    class="c-bolt-interactive-step__avatar c-bolt-interactive-step__avatar--right"
-                    src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
-                    alt="Your helpful Pega Rep"
-                  />
-                </div>
-              `}
+          <div class="c-bolt-interactive-step__step-top">
+            ${this.slot('top')}
+          </div>
           <div class="c-bolt-interactive-step__step-body">
             ${this.slot('body')}
           </div>

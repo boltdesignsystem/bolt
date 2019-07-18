@@ -23,18 +23,6 @@ $bolt-tooltip-transition: $bolt-transition;
     position: static;
   }
 
-  //@todo figure out how to get the line through the dots to work with shadow Dom
-  //&:before {
-  //  content: '';
-  //  position: absolute;
-  //  top: -50%;
-  //  left: 2.5px;
-  //  z-index: 5;
-  //  height: 100%;
-  //  margin-left: 5px;
-  //  border-left: 2px solid #AAB2F2;
-  //}
-
   &__nav-item-wrapper {
     display: flex;
     align-items: center;
@@ -80,62 +68,29 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   &__step-body {
-    @include bolt-transition--fade-in-slide-up($base: true, $delay: 1.2s);
-
-    .c-bolt-interactive-step--active & {
-      @include bolt-transition--fade-in-slide-up($active: true);
-    }
+    //@todo this is being replaced with the bolt-animation web component
+    //@include bolt-transition--fade-in-slide-up($base: true, $delay: 1.2s);
+    //
+    //.c-bolt-interactive-step--active & {
+    //  @include bolt-transition--fade-in-slide-up($active: true);
+    //}
   }
 
-  &__interaction-images {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 250px;
-    margin-bottom: 1.65rem;
-  }
-
-  &__interaction-band {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
-    padding: 0 20px;
-    @include bolt-transition--fade-in($base: true, $delay: $bolt-delay--medium);
-
-    .c-bolt-interactive-step--active & {
-      @include bolt-transition--fade-in($active: true);
-    }
-  }
-
-  &__avatar {
-    position: absolute;
-    left: 0;
-    width: 57px;
-    height: 57px;
-
-    &--right {
-      right: 0;
-      left: unset;
-    }
-  }
-
-  &__dialogue {
-    position: relative;
-    z-index: 0;
-    width: 100%;
-    max-width: 190px;
-    height: 75px;
-  }
-
-  &__step-dialogue {
-    @include bolt-transition--fade-in-slide-up($base: true);
-
-    .c-bolt-interactive-step--active & {
-      @include bolt-transition--fade-in-slide-up($base: true);
-    }
-  }
+  //&__dialogue {
+  //  position: relative;
+  //  z-index: 0;
+  //  width: 100%;
+  //  max-width: 190px;
+  //  height: 75px;
+  //}
+  //
+  //&__step-dialogue {
+  //  @include bolt-transition--fade-in-slide-up($base: true);
+  //
+  //  .c-bolt-interactive-step--active & {
+  //    @include bolt-transition--fade-in-slide-up($base: true);
+  //  }
+  //}
 
   // Generates the active state styling for the nav list
   &--active {
@@ -151,71 +106,71 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 }
 
-.c-bolt-interactive-step__speech {
-  display: block;
-  position: absolute;
-  bottom: 0;
-  z-index: bolt-z-index('tooltip');
-  transition: all $bolt-tooltip-transition;
-
-  &--left {
-    transform: translateX(-50%);
-  }
-
-  &--right {
-    transform: translateX(50%);
-  }
-}
-
-.c-bolt-interactive-step__speech-bubble {
-  @include bolt-padding(xsmall, squished);
-  @include bolt-shadow('level-20');
-  @include bolt-transition--fade-in($base: true);
-
-  // animation effect on active step
-  .c-bolt-interactive-step--active & {
-    @include bolt-transition--fade-in($active: true);
-  }
-
-  display: block;
-  position: relative;
-  z-index: 0;
-  color: bolt-color(black);
-  border: 1px solid $bolt-tooltip-bubble-border-color;
-  border-radius: $bolt-border-radius;
-  background-color: bolt-color(white);
-
-  &:after,
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 100%);
-    width: 0;
-    height: 0;
-    pointer-events: none;
-    border-top: $bolt-tooltip-bubble-triangle-width solid;
-    border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-    border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-    border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-  }
-
-  &:before {
-    top: auto;
-    bottom: 0;
-    border-top-color: $bolt-tooltip-bubble-border-color;
-    border-bottom-color: transparent;
-  }
-
-  &:after {
-    top: auto;
-    bottom: 1px;
-    border-top-color: white;
-    border-bottom-color: transparent;
-  }
-}
-
-bolt-text[slot="dialogue"] {
-  color: black;
-}
+//.c-bolt-interactive-step__speech {
+//  display: block;
+//  position: absolute;
+//  bottom: 0;
+//  z-index: bolt-z-index('tooltip');
+//  transition: all $bolt-tooltip-transition;
+//
+//  &--left {
+//    transform: translateX(-50%);
+//  }
+//
+//  &--right {
+//    transform: translateX(50%);
+//  }
+//}
+//
+//.c-bolt-interactive-step__speech-bubble {
+//  @include bolt-padding(xsmall, squished);
+//  @include bolt-shadow('level-20');
+//  @include bolt-transition--fade-in($base: true);
+//
+//  // animation effect on active step
+//  .c-bolt-interactive-step--active & {
+//    @include bolt-transition--fade-in($active: true);
+//  }
+//
+//  display: block;
+//  position: relative;
+//  z-index: 0;
+//  color: bolt-color(black);
+//  border: 1px solid $bolt-tooltip-bubble-border-color;
+//  border-radius: $bolt-border-radius;
+//  background-color: bolt-color(white);
+//
+//  &:after,
+//  &:before {
+//    content: '';
+//    display: block;
+//    position: absolute;
+//    left: 50%;
+//    transform: translate(-50%, 100%);
+//    width: 0;
+//    height: 0;
+//    pointer-events: none;
+//    border-top: $bolt-tooltip-bubble-triangle-width solid;
+//    border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
+//    border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
+//    border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
+//  }
+//
+//  &:before {
+//    top: auto;
+//    bottom: 0;
+//    border-top-color: $bolt-tooltip-bubble-border-color;
+//    border-bottom-color: transparent;
+//  }
+//
+//  &:after {
+//    top: auto;
+//    bottom: 1px;
+//    border-top-color: white;
+//    border-bottom-color: transparent;
+//  }
+//}
+//
+//bolt-text[slot="dialogue"] {
+//  color: black;
+//}
