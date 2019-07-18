@@ -24,7 +24,7 @@ const imageVrtConfig = {
   failureThresholdType: 'percent',
 };
 
-const timeout = 60000;
+const timeout = 120000;
 
 // Currently, the only important breakpoints to test are 'small' and 'large'
 const viewportSizes = [

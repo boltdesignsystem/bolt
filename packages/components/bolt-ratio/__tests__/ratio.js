@@ -6,7 +6,7 @@ import {
   html,
 } from '../../../testing/testing-helpers';
 
-const timeout = 60000;
+const timeout = 120000;
 
 const imageVrtConfig = {
   failureThreshold: '0.005',

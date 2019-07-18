@@ -17,7 +17,7 @@ async function renderTwigString(template, data) {
   return await renderString(template, data, true);
 }
 
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<bolt-accordion> Component', () => {
   let page;

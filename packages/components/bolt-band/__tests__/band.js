@@ -10,7 +10,7 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../band.schema.yml'));
 const { size, theme, tag } = schema.properties;
 
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<bolt-band> Component', () => {
   let page;
