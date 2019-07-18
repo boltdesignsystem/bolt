@@ -22,102 +22,102 @@ before_install:
 # Stages run sequentially; the jobs in them run in parallel
 stages:
   - Prep
-  - Test Live Site
+  # - Test Live Site
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
 
 jobs:
   include:
-    - stage: Prep
-      name: 'Smoke Tests: Linting'
-      install: yarn run setup:quick
-      before_script: ./scripts/check-run-queue.js 'Lint'
-      script: yarn run lint
-      after_success: ./scripts/check-run-success.js 'Lint'
-      after_failure: ./scripts/check-run-failure.js 'Lint'
+    # - stage: Prep
+    #   name: 'Smoke Tests: Linting'
+    #   install: yarn run setup:quick
+    #   before_script: ./scripts/check-run-queue.js 'Lint'
+    #   script: yarn run lint
+    #   after_success: ./scripts/check-run-success.js 'Lint'
+    #   after_failure: ./scripts/check-run-failure.js 'Lint'
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
         - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
-      before_script: ./scripts/check-run-queue.js 'Unit'
+      # before_script: ./scripts/check-run-queue.js 'Unit'
       script:
-        - yarn test:js --maxWorkers=2
-        - yarn test:js:quick --maxWorkers=2 # running both `test:js` as comparison; remove or comment out this or other one eventually
+        - yarn test:js --maxWorkers=1
+        # - yarn test:js:quick --maxWorkers=2 # running both `test:js` as comparison; remove or comment out this or other one eventually
         #- yarn run test
-        - yarn test:php
-        - yarn test:monorepo --maxWorkers=2
-        - yarn test:pkgs
-      after_success: ./scripts/check-run-success.js 'Unit'
-      after_failure: ./scripts/check-run-failure.js 'Unit'
+        # - yarn test:php
+        # - yarn test:monorepo --maxWorkers=2
+        # - yarn test:pkgs
+      # after_success: ./scripts/check-run-success.js 'Unit'
+      # after_failure: ./scripts/check-run-failure.js 'Unit'
 
-    - stage: Prep
-      name: 'Smoke Tests: Build Tools'
-      install: 'npm run setup'
-      before_script: ./scripts/check-run-queue.js 'Build Tools'
-      script: yarn run test:build-tools
-      after_success: ./scripts/check-run-success.js 'Build Tools'
-      after_failure: ./scripts/check-run-failure.js 'Build Tools'
+    # - stage: Prep
+    #   name: 'Smoke Tests: Build Tools'
+    #   install: 'npm run setup'
+    #   before_script: ./scripts/check-run-queue.js 'Build Tools'
+    #   script: yarn run test:build-tools
+    #   after_success: ./scripts/check-run-success.js 'Build Tools'
+    #   after_failure: ./scripts/check-run-failure.js 'Build Tools'
 
-    - stage: Prep
-      name: 'Build Drupal Lab'
-      script:
-        - composer global require hirak/prestissimo
-        - cd example-integrations/drupal-lab
-        - composer install --prefer-dist --no-dev
-        - cd web/themes/bolt-starter && yarn
-        - yarn run build
-        - yarn run test # run Jest tests on the FE build that just compiled
-        - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
+    # - stage: Prep
+    #   name: 'Build Drupal Lab'
+    #   script:
+    #     - composer global require hirak/prestissimo
+    #     - cd example-integrations/drupal-lab
+    #     - composer install --prefer-dist --no-dev
+    #     - cd web/themes/bolt-starter && yarn
+    #     - yarn run build
+    #     - yarn run test # run Jest tests on the FE build that just compiled
+    #     - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
 
-    - stage: Prep
-      name: 'Build + Deploy Website'
-      script:
-        # Clear incache file on normal Travis builds
-        - find . -name '.incache' -exec rm -rf {} +
-        - yarn run setup
-        - yarn run build
-        - yarn run deploy
-        # need to reset git repo before `update-read-only-git-repos.sh`
-        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
-        - ./scripts/release/update-read-only-git-repos.sh
+    # - stage: Prep
+    #   name: 'Build + Deploy Website'
+    #   script:
+    #     # Clear incache file on normal Travis builds
+    #     - find . -name '.incache' -exec rm -rf {} +
+    #     - yarn run setup
+    #     - yarn run build
+    #     - yarn run deploy
+    #     # need to reset git repo before `update-read-only-git-repos.sh`
+    #     - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+    #     - ./scripts/release/update-read-only-git-repos.sh
 
-    - stage: Test Live Site
-      name: 'Nightwatch End-to-End'
-      install: yarn run setup
-      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
-      script:
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - echo "The Now URL is $NOW_URL"
-        - time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - sleep 60
-        - travis_wait yarn run test:e2e:full
-        - sleep 60
-        - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
-      after_success:
-        - ./scripts/deploy-branch-alias.js
-        - ./scripts/deploy-tagged-release.js
+    # - stage: Test Live Site
+    #   name: 'Nightwatch End-to-End'
+    #   install: yarn run setup
+    #   before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
+    #   script:
+    #     - export NOW_URL=$(./scripts/get-latest-deploy.js)
+    #     - echo "The Now URL is $NOW_URL"
+    #     - time curl -sSf "$NOW_URL" > /dev/null # warming up site
+    #     - sleep 60
+    #     - travis_wait yarn run test:e2e:full
+    #     - sleep 60
+    #     - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+    #   after_success:
+    #     - ./scripts/deploy-branch-alias.js
+    #     - ./scripts/deploy-tagged-release.js
 
-    - stage: Test Live Site
-      name: 'Ensure site is live'
-      install: yarn run setup
-      before_script: ./scripts/check-run-in-progress.js 'Site is live'
-      script:
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
-        - time curl -sSf "$NOW_URL" > /dev/null
-      after_success:
-        - ./scripts/check-run-success.js 'Site is live'
-      after_failure:
-        - ./scripts/check-run-failure.js 'Site is live'
+    # - stage: Test Live Site
+    #   name: 'Ensure site is live'
+    #   install: yarn run setup
+    #   before_script: ./scripts/check-run-in-progress.js 'Site is live'
+    #   script:
+    #     - export NOW_URL=$(./scripts/get-latest-deploy.js)
+    #     - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
+    #     - time curl -sSf "$NOW_URL" > /dev/null
+    #   after_success:
+    #     - ./scripts/check-run-success.js 'Site is live'
+    #   after_failure:
+    #     - ./scripts/check-run-failure.js 'Site is live'
 
-    - stage: Test Live Site
-      name: 'Example master only job'
-      if: branch = master
-      script:
-        - echo "This example only runs on master branch builds"
+    # - stage: Test Live Site
+    #   name: 'Example master only job'
+    #   if: branch = master
+    #   script:
+    #     - echo "This example only runs on master branch builds"
 
 notifications:
   email:
