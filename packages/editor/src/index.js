@@ -1,5 +1,7 @@
 import { query } from './utils';
 
+const defaultConfig = {};
+
 /**
  * @param {HTMLElement} [appendTo] - HTMLElement to append to
  * @returns {{ el: HTMLElement, destroy: function(): void }} cleanup function to remove HTML
@@ -31,6 +33,7 @@ function init() {
     },
     trigger: '.js-pega-editor__trigger',
     space: '.js-pega-editor__space',
+    config: '.js-pega-editor__config',
   };
 
   const EDITOR_STATES = {
@@ -71,6 +74,37 @@ function init() {
       return;
     }
 
+    const [configEl] = query(selectors.config, pegaEditor);
+
+    if (!configEl) {
+      console.error(
+        `Pega editor found no "config" selector "${selectors.config}"`,
+        { pegaEditor },
+      );
+      return;
+    }
+
+    let userConfig;
+    try {
+      userConfig = JSON.parse(configEl.innerHTML);
+    } catch (err) {
+      console.error('Error parsing user config from this tag', configEl);
+      return;
+    }
+
+    /** @type {BoltEditorConfig} */
+    const config = Object.assign({}, defaultConfig, userConfig);
+
+    if (!config.styles || config.styles.length === 0) {
+      console.error('Bolt Editor Config requires "styles" an array of paths to CSS files. Current config is: ', config);
+      return;
+    }
+
+    if (!config.scripts || config.scripts.length === 0) {
+      console.error('Bolt Editor Config requires "scripts" an array of paths to JS files. Current config is: ', config);
+      return;
+    }
+
     /** @type {import('grapesjs').Editor} */
     let editor;
 
@@ -104,7 +138,7 @@ function init() {
           uiWrapper = createEditorUiHtml();
 
           // eslint-disable-next-line no-unused-vars
-          editor = enableEditor(space, uiWrapper.el);
+          editor = enableEditor({ space, uiWrapper: uiWrapper.el, config });
           trigger.innerText = 'Save & Close';
           editorState = EDITOR_STATES.OPEN;
           break;
