@@ -22,7 +22,7 @@ export const vrtDefaultConfig = {
   customDiffConfig: {
     // Please note the threshold set in the customDiffConfig is the per pixel sensitivity threshold. For example with a source pixel colour of #ffffff (white) and a comparison pixel colour of #fcfcfc (really light grey) if you set the threshold to 0 then it would trigger a failure on that pixel. However if you were to use say 0.5 then it wouldn't, the colour difference would need to be much more extreme to trigger a failure on that pixel, say #000000 (black)
     threshold: '0.1',
-    includeAA: true, // If true, disables detecting and ignoring anti-aliased pixels. false by default.
+    includeAA: false, // If true, disables detecting and ignoring anti-aliased pixels. false by default.
   },
 };
 
