@@ -74,7 +74,8 @@
     "test:build-tools": "cd packages/build-tools && yarn run test",
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
-    "test:types": "tsc"
+    "test:types": "tsc",
+    "postinstall": "patch-package"
   },
   "husky": {
     "hooks": {
@@ -97,6 +98,8 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
+    "patch-package": "^6.1.2",
+    "postinstall-postinstall": "^2.0.0",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@instructure/cz-lerna-changelog": "^6.6.0",
