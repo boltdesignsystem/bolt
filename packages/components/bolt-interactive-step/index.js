@@ -7,4 +7,7 @@ polyfillLoader.then(res => {
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-two-character-chat' */ './src/two-character-chat'
   );
+  import(
+      /* webpackMode: 'eager', webpackChunkName: 'bolt-connection' */ './src/connection'
+      );
 });

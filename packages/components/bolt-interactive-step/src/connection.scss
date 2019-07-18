@@ -1,0 +1,21 @@
+.c-bolt-connection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+
+  &__main-image {
+    //@todo Height will probably need to be exposed as an adjustable field to match the various sizes of the character elements
+    width: 350px;
+    height: 60px;
+  }
+
+  &__top-slot {
+    margin-bottom: 10px;
+  }
+
+  &__bottom-slot {
+    margin-top: 10px;
+  }
+}

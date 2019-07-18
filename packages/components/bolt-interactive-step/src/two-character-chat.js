@@ -68,11 +68,7 @@ class BoltTwoCharacterChat extends withLitHtml() {
             src="${characterLeftUrl}"
             alt="Character on the left"
           />
-          <img
-            class="c-bolt-two-character-chat__connection"
-            src="${connectionUrl}"
-            alt="Connection Band"
-          />
+          ${this.slot('connection')}
           <img
             class="c-bolt-two-character-chat__character c-bolt-two-character-chat__character--right"
             src="${characterRightUrl}"

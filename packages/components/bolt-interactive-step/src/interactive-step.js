@@ -27,18 +27,6 @@ class BoltInteractiveStep extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    hideInteractionAnimations: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    customerDisposition: {
-      ...props.string,
-      ...{ default: 'happy' },
-    },
-    speakerPosition: {
-      ...props.string,
-      ...{ default: 'left' },
-    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -49,13 +37,11 @@ class BoltInteractiveStep extends withLitHtml() {
   }
 
   render() {
-    const { step, customerDisposition } = this;
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const {
       disabled,
       active,
-      hideInteractionAnimations,
-      speakerPosition,
+      step,
     } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-interactive-step', {
