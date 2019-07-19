@@ -48,7 +48,7 @@ jobs:
         # - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
-        - yarn test:js --bail --maxWorkers=1
+        - travis_retry yarn test:js --bail --maxWorkers=1
         # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
         - yarn test:php
         - yarn test:monorepo --maxWorkers=1
@@ -102,7 +102,7 @@ jobs:
         - travis_retry export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
         - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - travis_wait travis yarn run test:e2e:full
+        - travis_wait yarn run test:e2e:full
         - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
 
     - stage: Post-deploy tests

@@ -96,7 +96,7 @@ describe('test-utils', () => {
     expect(files.sort()).toStrictEqual(expected.sort());
   });
 
-  test('getFilesChanged', () => {
+  test.skip('getFilesChanged', () => {
     const pkgs = tu
       .getPkgsChanged({
         from: 'v2.4.4',
