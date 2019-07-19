@@ -43,9 +43,9 @@ jobs:
     - stage: Build, Test, & Deploy
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
-        - npx json -I -f package.json -e 'this.workspaces.packages =  ["docs-site", "docs-site/src/components/*", "scripts", "packages/configs/*", "packages/build-tools", "packages/build-tools/__tests__/*", "packages/build-tools/plugins/*", "packages/components/*", "packages/analytics/*", "packages/testing/testing-jest", "packages/testing/testing-utils", "packages/servers/testing-server"]'
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["docs-site", "docs-site/src/components/*", "scripts", "packages/configs/*", "packages/build-tools", "packages/build-tools/plugins/*", "packages/build-tools/__tests__/*", "packages/build-tools/utils", "packages/components/*", "packages/analytics/*", "packages/twig-renderer", "packages/core-php", "packages/testing/testing-jest", "packages/testing/testing-utils", "packages/servers/testing-server"]'
         - yarn run setup
-        - yarn workspace @bolt/website prep # creates data and manifest files
+        # - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
         - yarn test:js --bail --maxWorkers=1
@@ -59,7 +59,7 @@ jobs:
     - stage: Build, Test, & Deploy
       name: 'Smoke Tests: Build Tools'
       install:
-        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "packages/build-tools", "packages/build-tools/__tests__/*", "packages/testing/testing-utils", "packages/build-tools/plugins/*"]'
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "packages/build-tools", "packages/build-tools/plugins/*", "packages/build-tools/__tests__/*", "packages/build-tools/utils", "packages/testing/testing-utils"]'
         - yarn
       before_script: ./scripts/check-run-queue.js 'Build Tools'
       script: yarn run test:build-tools
