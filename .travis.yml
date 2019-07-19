@@ -91,7 +91,7 @@ jobs:
         - travis_retry export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
         - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - travis_wait travis yarn run test:e2e:full
+        - travis_wait yarn run test:e2e:full
         - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_success:
         - travis_retry ./scripts/deploy-branch-alias.js
