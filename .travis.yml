@@ -21,26 +21,29 @@ before_install:
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
 stages:
-  - Prep
-  - Test Live Site
+  - Build, Test, & Deploy
+  - Post-deploy
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
 
 jobs:
   include:
-    - stage: Prep
+    - stage: Build, Test, & Deploy
       name: 'Smoke Tests: Linting'
-      install: yarn run setup:quick
+      install:
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "docs-site", "docs-site/src/components/*", "packages/configs/*", "packages/build-tools", "packages/components/*", "packages/analytics/*", "packages/testing/*", "packages/servers/*"]'
+        - yarn
       before_script: ./scripts/check-run-queue.js 'Lint'
       script: yarn run lint
       after_success: ./scripts/check-run-success.js 'Lint'
       after_failure: ./scripts/check-run-failure.js 'Lint'
 
-    - stage: Prep
+    - stage: Build, Test, & Deploy
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
-        - travis_retry yarn run setup:full
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["docs-site", "scripts", "packages/configs/*", "packages/build-tools", "packages/build-tools/__tests__/*", "packages/build-tools/plugins/*", "packages/components/*", "packages/analytics/*", "packages/testing/testing-jest", "packages/servers/testing-server"]'
+        - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
@@ -52,15 +55,17 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
 
-    - stage: Prep
+    - stage: Build, Test, & Deploy
       name: 'Smoke Tests: Build Tools'
-      install: 'npm run setup'
+      install:
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "packages/build-tools", "packages/build-tools/__tests__/*", "packages/build-tools/plugins/*"]'
+        - yarn
       before_script: ./scripts/check-run-queue.js 'Build Tools'
       script: yarn run test:build-tools
       after_success: ./scripts/check-run-success.js 'Build Tools'
       after_failure: ./scripts/check-run-failure.js 'Build Tools'
 
-    - stage: Prep
+    - stage: Build, Test, & Deploy
       name: 'Build Drupal Lab'
       script:
         - composer global require hirak/prestissimo
@@ -71,7 +76,7 @@ jobs:
         - yarn run test # run Jest tests on the FE build that just compiled
         - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
 
-    - stage: Prep
+    - stage: Build, Test, & Deploy
       name: 'Build + Deploy Website'
       script:
         # Clear incache file on normal Travis builds
@@ -83,23 +88,13 @@ jobs:
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
 
-    - stage: Test Live Site
-      name: 'Nightwatch End-to-End'
-      install: travis_retry yarn run setup
-      before_script: travis_retry ./scripts/check-run-in-progress.js 'Nightwatch'
-      script:
-        - travis_retry export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - echo "The Now URL is $NOW_URL"
-        - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - travis_wait travis yarn run test:e2e:full
-        - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
-      after_success:
-        - travis_retry ./scripts/deploy-branch-alias.js
-        - travis_retry ./scripts/deploy-tagged-release.js
-
-    - stage: Test Live Site
+    - stage: Build, Test, & Deploy
       name: 'Ensure site is live'
-      install: yarn run setup
+      install:
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts"]'
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - yarn
       before_script: ./scripts/check-run-in-progress.js 'Site is live'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
@@ -110,11 +105,37 @@ jobs:
       after_failure:
         - ./scripts/check-run-failure.js 'Site is live'
 
-    - stage: Test Live Site
-      name: 'Example master only job'
-      if: branch = master
+    - stage: Post-deploy
+      name: 'Nightwatch End-to-End'
+      install:
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "packages/testing/testing-nightwatch-tools"]'
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - yarn
+      before_script: travis_retry ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
-        - echo "This example only runs on master branch builds"
+        - travis_retry export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - echo "The Now URL is $NOW_URL"
+        - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
+        - travis_wait travis yarn run test:e2e:full
+        - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+
+    - stage: Post-deploy
+      name: 'Alias Deploy Urls'
+      install:
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts"]'
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - yarn
+      script:
+        - travis_retry ./scripts/deploy-branch-alias.js
+        - travis_retry ./scripts/deploy-tagged-release.js
+
+    # - stage: Deploy
+    #   name: 'Example master only job'
+    #   if: branch = master
+    #   script:
+    #     - echo "This example only runs on master branch builds"
 
 notifications:
   email:
