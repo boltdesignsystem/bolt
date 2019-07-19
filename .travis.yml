@@ -43,7 +43,7 @@ jobs:
     - stage: Build, Test, & Deploy
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
-        - npx json -I -f package.json -e 'this.workspaces.packages =  ["docs-site", "scripts", "packages/configs/*", "packages/build-tools", "packages/build-tools/__tests__/*", "packages/build-tools/plugins/*", "packages/components/*", "packages/analytics/*", "packages/testing/testing-jest", "packages/testing/testing-utils", "packages/servers/testing-server"]'
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["docs-site", "docs-site/src/components/*", "scripts", "packages/configs/*", "packages/build-tools", "packages/build-tools/__tests__/*", "packages/build-tools/plugins/*", "packages/components/*", "packages/analytics/*", "packages/testing/testing-jest", "packages/testing/testing-utils", "packages/servers/testing-server"]'
         - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
@@ -81,7 +81,7 @@ jobs:
       name: 'Build + Deploy Website'
       script:
         # Clear incache file on normal Travis builds
-        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "docs-site", "docs-site/src/components/*", "packages/configs/*", "packages/core", "packages/global", "packages/build-tools", "packages/components/*", "packages/analytics/*"]'
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "docs-site", "docs-site/src/components/*", "packages/uikit-*", "packages/configs/*", "packages/core", "packages/global", "packages/build-tools", "packages/components/*", "packages/analytics/*"]'
         - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
         - yarn run build
