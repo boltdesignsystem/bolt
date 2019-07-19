@@ -81,6 +81,7 @@ jobs:
       name: 'Build + Deploy Website'
       script:
         # Clear incache file on normal Travis builds
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "docs-site", "docs-site/src/components/*", "packages/configs/*", "packages/core", "packages/global", "packages/build-tools", "packages/components/*", "packages/analytics/*"]'
         - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
         - yarn run build
