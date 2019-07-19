@@ -5,10 +5,19 @@ import {
   renderString,
   stopServer,
   html,
-  vrtDefaultConfig,
+  //vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
+
+const vrtDefaultConfig = {
+  failureThreshold: '0.0028',
+  failureThresholdType: 'percent',
+  customDiffConfig: {
+    threshold: '0.1',
+    includeAA: true,
+  },
+};
 
 const timeout = 120000;
 
@@ -49,12 +58,10 @@ describe('carousel', () => {
   let page;
 
   beforeEach(async () => {
-    const context = await global.__BROWSER__.createIncognitoBrowserContext();
-    page = await context.newPage();
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
+      waitUntil: 'networkidle0',
     });
   }, timeout);
 
@@ -150,7 +157,7 @@ describe('carousel', () => {
           document.querySelectorAll('bolt-carousel-item'),
         );
         const allElements = [...carousels, ...carouselItems];
-        await Promise.all(
+        return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
@@ -171,6 +178,7 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
         expect(screenshots[size].default).toMatchImageSnapshot(
           vrtDefaultConfig,
@@ -249,12 +257,25 @@ describe('carousel', () => {
           document.querySelectorAll('bolt-carousel-item'),
         );
         const allElements = [...carousels, ...carouselItems];
-        await Promise.all(
+        return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
               element.addEventListener('ready', resolve);
               element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
+
+      await page.evaluate(async () => {
+        const images = Array.from(document.querySelectorAll('bolt-image'));
+        return await Promise.all(
+          images.map(image => {
+            if (image._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              image.addEventListener('ready', resolve);
+              image.addEventListener('error', reject);
             });
           }),
         );
@@ -270,6 +291,7 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
         expect(screenshots[size].default).toMatchImageSnapshot(
           vrtDefaultConfig,
@@ -349,7 +371,7 @@ describe('carousel', () => {
           document.querySelectorAll('bolt-carousel-item'),
         );
         const allElements = [...carousels, ...carouselItems];
-        await Promise.all(
+        return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
@@ -370,6 +392,7 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
         expect(screenshots[size].default).toMatchImageSnapshot(
           vrtDefaultConfig,
@@ -442,7 +465,7 @@ describe('carousel', () => {
           document.querySelectorAll('bolt-carousel-item'),
         );
         const allElements = [...carousels, ...carouselItems];
-        await Promise.all(
+        return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
@@ -463,6 +486,7 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
         expect(screenshots[size].default).toMatchImageSnapshot(
           vrtDefaultConfig,
@@ -574,7 +598,7 @@ describe('carousel', () => {
           document.querySelectorAll('bolt-carousel-item'),
         );
         const allElements = [...carousels, ...carouselItems];
-        await Promise.all(
+        return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
             return new Promise((resolve, reject) => {
@@ -595,6 +619,7 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
         expect(screenshots[size].default).toMatchImageSnapshot(
           vrtDefaultConfig,

@@ -18,7 +18,7 @@ const {
   tag,
 } = schema.properties;
 
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<bolt-list> Component', () => {
   afterAll(async () => {
