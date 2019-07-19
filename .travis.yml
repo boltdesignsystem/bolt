@@ -22,7 +22,8 @@ before_install:
 # Stages run sequentially; the jobs in them run in parallel
 stages:
   - Build, Test, & Deploy
-  - Post-deploy
+  - Post-deploy tests
+  - Update Live Site
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
@@ -32,7 +33,7 @@ jobs:
     - stage: Build, Test, & Deploy
       name: 'Smoke Tests: Linting'
       install:
-        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "docs-site", "docs-site/src/components/*", "packages/configs/*", "packages/build-tools", "packages/components/*", "packages/analytics/*", "packages/testing/*", "packages/servers/*"]'
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "docs-site", "docs-site/src/components/*", "packages/configs/*", "packages/core", "packages/build-tools", "packages/components/*", "packages/analytics/*", "packages/testing/*", "packages/servers/*"]'
         - yarn
       before_script: ./scripts/check-run-queue.js 'Lint'
       script: yarn run lint
@@ -42,7 +43,7 @@ jobs:
     - stage: Build, Test, & Deploy
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
-        - npx json -I -f package.json -e 'this.workspaces.packages =  ["docs-site", "scripts", "packages/configs/*", "packages/build-tools", "packages/build-tools/__tests__/*", "packages/build-tools/plugins/*", "packages/components/*", "packages/analytics/*", "packages/testing/testing-jest", "packages/servers/testing-server"]'
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["docs-site", "scripts", "packages/configs/*", "packages/build-tools", "packages/build-tools/__tests__/*", "packages/build-tools/plugins/*", "packages/components/*", "packages/analytics/*", "packages/testing/testing-jest", "packages/testing/testing-utils", "packages/servers/testing-server"]'
         - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
@@ -58,7 +59,7 @@ jobs:
     - stage: Build, Test, & Deploy
       name: 'Smoke Tests: Build Tools'
       install:
-        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "packages/build-tools", "packages/build-tools/__tests__/*", "packages/build-tools/plugins/*"]'
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "packages/build-tools", "packages/build-tools/__tests__/*", "packages/testing/testing-utils", "packages/build-tools/plugins/*"]'
         - yarn
       before_script: ./scripts/check-run-queue.js 'Build Tools'
       script: yarn run test:build-tools
@@ -88,7 +89,22 @@ jobs:
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
 
-    - stage: Build, Test, & Deploy
+    - stage: Post-deploy tests
+      name: 'Nightwatch End-to-End'
+      install:
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "packages/testing/testing-nightwatch"]'
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - yarn
+      before_script: travis_retry ./scripts/check-run-in-progress.js 'Nightwatch'
+      script:
+        - travis_retry export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - echo "The Now URL is $NOW_URL"
+        - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
+        - travis_wait travis yarn run test:e2e:full
+        - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+
+    - stage: Post-deploy tests
       name: 'Ensure site is live'
       install:
         - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts"]'
@@ -105,23 +121,8 @@ jobs:
       after_failure:
         - ./scripts/check-run-failure.js 'Site is live'
 
-    - stage: Post-deploy
-      name: 'Nightwatch End-to-End'
-      install:
-        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "packages/testing/testing-nightwatch-tools"]'
-        - npx json -I -f package.json -e 'delete this.dependencies'
-        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
-        - yarn
-      before_script: travis_retry ./scripts/check-run-in-progress.js 'Nightwatch'
-      script:
-        - travis_retry export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - echo "The Now URL is $NOW_URL"
-        - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - travis_wait travis yarn run test:e2e:full
-        - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
-
-    - stage: Post-deploy
-      name: 'Alias Deploy Urls'
+    - stage: Update Live Site
+      name: 'Alias Deployment Urls'
       install:
         - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts"]'
         - npx json -I -f package.json -e 'delete this.dependencies'
@@ -130,7 +131,6 @@ jobs:
       script:
         - travis_retry ./scripts/deploy-branch-alias.js
         - travis_retry ./scripts/deploy-tagged-release.js
-
     # - stage: Deploy
     #   name: 'Example master only job'
     #   if: branch = master
