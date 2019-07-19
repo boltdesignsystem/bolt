@@ -79,9 +79,9 @@ getConfig().then(async boltConfig => {
             .join('\n')}</style>
 
             ${normalizeAssets(assetsByChunkName['bolt-global'])
-            .filter(path => path.endsWith('.js'))
-            .map(path => `<script src="${path}"></script>`)
-            .join('\n')}
+              .filter(path => path.endsWith('.js'))
+              .map(path => `<script src="${path}"></script>`)
+              .join('\n')}
         </head>
         <body>
           <!-- set #root to inline-block so VRT screenshots are only as wide as the component vs are always full width -->
