@@ -77,14 +77,15 @@ getConfig().then(async boltConfig => {
             .filter(path => path.endsWith('.css'))
             .map(path => fs.readFileSync(outputPath + '/' + path))
             .join('\n')}</style>
+
+            ${normalizeAssets(assetsByChunkName['bolt-global'])
+            .filter(path => path.endsWith('.js'))
+            .map(path => `<script src="${path}"></script>`)
+            .join('\n')}
         </head>
         <body>
           <!-- set #root to inline-block so VRT screenshots are only as wide as the component vs are always full width -->
           <div id="root" style="display: inline-block"></div>
-          ${normalizeAssets(assetsByChunkName['bolt-global'])
-            .filter(path => path.endsWith('.js'))
-            .map(path => `<script src="${path}"></script>`)
-            .join('\n')}
         </body>
       </html>`,
     );

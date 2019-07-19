@@ -12,18 +12,21 @@ describe('logo', () => {
   let page;
 
   beforeEach(async () => {
-    page = await global.__BROWSER__.newPage();
-    await page.goto('http://127.0.0.1:4444/', {
-      waitUntil: 'networkidle0',
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
     });
   }, timeout);
 
-  afterEach(async () => {
-    await page.close();
-  });
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
+    await page.goto('http://127.0.0.1:4444/', {
+      timeout: 0,
+    });
+  }, timeout);
 
   afterAll(async function() {
     await stopServer();
+    await page.close();
   });
 
   test('Basic usage', async () => {
