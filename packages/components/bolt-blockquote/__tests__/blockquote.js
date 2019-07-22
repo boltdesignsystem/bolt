@@ -170,11 +170,12 @@ describe('button', () => {
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.001',
+      failureThreshold: '0.002',
       failureThresholdType: 'percent',
       customDiffConfig: {
-        threshold: '0.025',
-        includeAA: true,
+        // Please note the threshold set in the customDiffConfig is the per pixel sensitivity threshold. For example with a source pixel colour of #ffffff (white) and a comparison pixel colour of #fcfcfc (really light grey) if you set the threshold to 0 then it would trigger a failure on that pixel. However if you were to use say 0.5 then it wouldn't, the colour difference would need to be much more extreme to trigger a failure on that pixel, say #000000 (black)
+        threshold: '0.1',
+        includeAA: false, // If true, disables detecting and ignoring anti-aliased pixels. false by default.
       },
     });
 
