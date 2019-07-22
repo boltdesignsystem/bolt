@@ -45,7 +45,10 @@ module.exports = {
         },
         [],
         function(result) {
-          browser.assert.ok(result.value === true, `verified that "bolt-copy-to-clipboard" instantiated Clipboard.js and stored value from Dom after click.`);
+          browser.assert.ok(
+            result.value === true,
+            `verified that "bolt-copy-to-clipboard" instantiated Clipboard.js and stored value from Dom after click.`,
+          );
         },
       )
       .saveScreenshot(
