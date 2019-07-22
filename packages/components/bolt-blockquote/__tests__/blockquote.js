@@ -206,14 +206,7 @@ describe('button', () => {
     await page.waitFor(500); // wait half a second before running VRTs
     const image = await page.screenshot();
 
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.001',
-      failureThresholdType: 'percent',
-      customDiffConfig: {
-        threshold: '0.025',
-        includeAA: true,
-      },
-    });
+    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
 
     expect(renderedHTML).toMatchSnapshot();
   });
