@@ -19,15 +19,19 @@ class BoltAnimationWrapper extends withLitHtml() {
     },
     boltAnimationName: {
       ...props.string,
+      ...{ default: 'none' },
     },
     boltAnimationDuration: {
       ...props.number,
+      ...{ default: 500 },
     },
     boltAnimationDelay: {
       ...props.number,
+      ...{ default: 0 },
     },
     boltAnimationFunction: {
       ...props.string,
+      ...{ default: 'ease-in' },
     },
   };
 
@@ -53,10 +57,10 @@ class BoltAnimationWrapper extends withLitHtml() {
   render() {
     const {
       animTriggered,
-      boltAnimationName = 'none',
-      boltAnimationDuration = 500,
-      boltAnimationDelay = 0,
-      boltAnimationFunction = 'linear',
+      boltAnimationName,
+      boltAnimationDuration,
+      boltAnimationDelay,
+      boltAnimationFunction,
     } = this.props;
 
     /** @type {CSSStyleDeclaration} */
@@ -79,7 +83,6 @@ class BoltAnimationWrapper extends withLitHtml() {
     return html`
       ${this.addStyles([styles])}
       <div
-        id="${this.styleId}"
         class="${classMap(classes)}"
         is="shadow-root"
         data-anim-triggered=${animTriggered ? 'yes' : 'no'}
