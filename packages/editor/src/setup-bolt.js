@@ -5,6 +5,7 @@ import iconSchema from '@bolt/components-icon/icon.schema.yml';
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 import chipSchema from '@bolt/components-chip/chip.schema.yml';
 import imageSchema from '@bolt/components-image/image.schema.yml';
+import { animationNames } from '@bolt/components-interactive-step/src/animation-meta';
 import kebabCase from 'param-case';
 
 class SchemaPropToTraitError extends Error {}
@@ -307,11 +308,46 @@ export function setupBolt(editor) {
     registerBlock: false,
     extraTraits: [
       {
-        name: 'fade-in',
-        label: 'Fade In',
+        name: 'bolt-animation-name',
+        label: 'Animation Name',
         type: 'select',
         default: 'none',
-        options: ['none', 'slow', 'fast'],
+        options: ['none', ...animationNames],
+      },
+      {
+        name: 'bolt-animation-duration',
+        label: 'Animation Duration',
+        type: 'number',
+        default: 500,
+      },
+      {
+        name: 'bolt-animation-delay',
+        label: 'Animation Delay',
+        type: 'number',
+        default: 0,
+      },
+      {
+        name: 'bolt-animation-function',
+        label: 'Animation Function',
+        type: 'select',
+        options: [
+          {
+            name: 'Linear',
+            value: 'linear',
+          },
+          {
+            value: 'ease-in',
+            name: 'Ease In',
+          },
+          {
+            value: 'ease-out',
+            name: 'Ease Out',
+          },
+          {
+            value: 'ease-in-out',
+            name: 'Ease In Out',
+          },
+        ],
       },
     ],
   });
