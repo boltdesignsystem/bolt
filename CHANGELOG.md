@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.5](https://github.com/bolt-design-system/bolt/compare/v2.5.4...v2.5.5) (2019-07-22)
+
+
+### Bug Fixes
+
+* reduce max # of workers to temporarily address failing Jest tests in the release/2.x branch ([97e52bd](https://github.com/bolt-design-system/bolt/commit/97e52bd))
+* set minHeight on inner element not outer element squash extra space in IE ([27f5c95](https://github.com/bolt-design-system/bolt/commit/27f5c95))
+
+
+### Features
+
+* add 'no_quotes' prop to turn off quotes ([6c27e1b](https://github.com/bolt-design-system/bolt/commit/6c27e1b))
+
+
+
+
+
 ## [2.5.4](https://github.com/bolt-design-system/bolt/compare/v2.5.3...v2.5.4) (2019-07-15)
 
 

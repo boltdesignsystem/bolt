@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.5](https://github.com/bolt-design-system/bolt/compare/v2.5.4...v2.5.5) (2019-07-22)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 ## [2.5.4](https://github.com/bolt-design-system/bolt/compare/v2.5.3...v2.5.4) (2019-07-15)
 
 **Note:** Version bump only for package @bolt/website
