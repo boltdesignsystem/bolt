@@ -107,7 +107,7 @@ async function writeImageManifest(imgManifest) {
   );
 }
 
-async function processImage(file, set, skipOptimization) {
+async function processImage(file, set, skipOptimization = false) {
   config = config || (await getConfig());
 
   if (config.verbosity > 3) {
@@ -150,7 +150,7 @@ async function processImage(file, set, skipOptimization) {
       const newSizedPath = path.format(thisPathInfo);
       const newSizeWebPath = makeWebPath(newSizedPath);
 
-      if (config.prod && !skipOptimization) {
+      if (config.prod && skipOptimization === false) {
         if (isOrig) {
           if (
             pathInfo.ext === '.jpeg' ||
@@ -255,14 +255,15 @@ async function processImage(file, set, skipOptimization) {
             await writeFile(newSizedPath, optimizedSVG);
           }
         }
-
-        if (!isOrig) {
-          return {
-            path: newSizeWebPath,
-            size,
-          };
-        }
       }
+
+      if (!isOrig) {
+        return {
+          path: newSizeWebPath,
+          size,
+        };
+      }
+
     }),
   ).then(resizedImagePaths => {
     // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
@@ -281,7 +282,7 @@ async function processImage(file, set, skipOptimization) {
   });
 }
 
-async function processImages(skipOptimization) {
+async function processImages(skipOptimization = false) {
   config = config || (await getConfig());
   sharp = await warmupSharp(sharpImport);
 
