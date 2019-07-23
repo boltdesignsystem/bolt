@@ -13,7 +13,7 @@ describe('<bolt-device-viewer> Component', () => {
         orientation: 'portrait',
         color: 'white',
         image: {
-          src: '/images/sample/product-device-screenshot--phone.jpg',
+          src: '/fixtures/device-screenshot--phone.jpg',
         },
       },
     );
@@ -66,11 +66,11 @@ describe('<bolt-device-viewer> Component', () => {
     const results = await render(
       '@bolt-components-device-viewer/device-viewer.twig',
       {
-        device: 'iphone8',
+        device: 'ipad',
         orientation: 'portrait',
         color: 'white',
         image: {
-          src: '/images/sample/product-device-screenshot--phone.jpg',
+          src: '/fixtures/device-screenshot--tablet-portrait.jpg',
         },
         magnify: true,
       },
