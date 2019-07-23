@@ -30,7 +30,7 @@
 ] %}
 
 <!DOCTYPE html>
-<html lang="en-US" class="{{ htmlClasses|join(' ') }}">
+<html lang="en-US" class="js-fonts-loaded {{ htmlClasses|join(' ') }}">
   <head>
     <script src="https://www.google-analytics.com/analytics.js" defer></script>
     <script>
@@ -84,17 +84,10 @@
     </noscript>
 
     {# @TODO: wire this up to use Critical CSS #}
-    <style>
-      {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
-        {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
-      {% endif %}
-    </style>
-
     <script>
       {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
         {{ inline( assets["bolt-components-critical-css.js"] | default("") ) }}
         {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
-        {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
       {% endif %}
 
       window.bolt = window.bolt || {};
