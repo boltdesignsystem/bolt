@@ -5,9 +5,19 @@ import {
   renderString,
   stopServer,
   html,
+  //vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
+
+const vrtDefaultConfig = {
+  failureThreshold: '0.0028',
+  failureThresholdType: 'percent',
+  customDiffConfig: {
+    threshold: '0.1',
+    includeAA: true,
+  },
+};
 
 const timeout = 120000;
 
@@ -44,44 +54,14 @@ const viewportSizes = [
   },
 ];
 
-const imageVrtConfig = {
-  failureThreshold: '0.03',
-  failureThresholdType: 'percent',
-  customDiffConfig: {
-    // Please note the threshold set in the customDiffConfig is the per pixel sensitivity threshold. For example with a source pixel colour of #ffffff (white) and a comparison pixel colour of #fcfcfc (really light grey) if you set the threshold to 0 then it would trigger a failure on that pixel. However if you were to use say 0.5 then it wouldn't, the colour difference would need to be much more extreme to trigger a failure on that pixel, say #000000 (black)
-    threshold: '0.1',
-    includeAA: true, // If true, disables detecting and ignoring anti-aliased pixels. false by default.
-  },
-};
-
-let imageTwig, imageTwigAlt;
-
 describe('carousel', () => {
   let page;
 
-  afterAll(async () => {
-    await stopServer();
-  }, 100);
-
-  beforeAll(async () => {
-    imageTwig = await render('@bolt-components-image/image.twig', {
-      src: '/fixtures/landscape-16x9-skyline.jpg',
-      lazyload: false,
-    });
-
-    imageTwigAlt = await render('@bolt-components-image/image.twig', {
-      src: '/fixtures/landscape-16x9-mountains.jpg',
-      lazyload: false,
-    });
-  }, timeout);
-
   beforeEach(async () => {
-    const context = await global.__BROWSER__.createIncognitoBrowserContext();
-    page = await context.newPage();
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
+      waitUntil: 'networkidle0',
     });
   }, timeout);
 
@@ -118,18 +98,24 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders',
     async function() {
-      const imageHTML = imageTwigAlt.html;
-
-      const renderedComponentHTML = await page.evaluate(imageHTML => {
+      const renderedComponentHTML = await page.evaluate(() => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
 
-        const image = document.createElement('div');
-        image.innerHTML = imageHTML;
+        const image1 = document.createElement('bolt-image');
+        image1.setAttribute('src', '/fixtures/1200x660.jpg');
+        image1.setAttribute(
+          'srcset',
+          '/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w',
+        );
+        image1.setAttribute('sizes', 'auto');
+        image1.setAttribute('ratio', '1200/660');
+        image1.setAttribute('alt', 'A Rock Climber');
+        image1.setAttribute('no-lazy', '');
+        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
 
-        const image1 = image.firstChild;
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
 
@@ -161,9 +147,26 @@ describe('carousel', () => {
         document.body.appendChild(carousel);
         carousel.updated();
         return carousel.outerHTML;
-      }, imageHTML);
+      });
 
-      await page.waitFor(1000);
+      await page.evaluate(async () => {
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
 
       const screenshots = [];
 
@@ -175,8 +178,11 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -185,18 +191,24 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls',
     async function() {
-      const imageHTML = imageTwig.html;
-
-      const renderedComponentHTML = await page.evaluate(imageHTML => {
+      const renderedComponentHTML = await page.evaluate(() => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
 
-        const image = document.createElement('div');
-        image.innerHTML = imageHTML;
+        const image1 = document.createElement('bolt-image');
+        image1.setAttribute('src', '/fixtures/1200x660.jpg');
+        image1.setAttribute(
+          'srcset',
+          '/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w',
+        );
+        image1.setAttribute('sizes', 'auto');
+        image1.setAttribute('ratio', '1200/660');
+        image1.setAttribute('alt', 'A Rock Climber');
+        image1.setAttribute('no-lazy', '');
+        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
 
-        const image1 = image.firstChild;
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
 
@@ -213,8 +225,8 @@ describe('carousel', () => {
         text3.textContent = 'Slide 3';
 
         const buttonControls = `
-        <bolt-button slot="previous-btn" color="secondary" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
-        <bolt-button slot="next-btn" color="secondary" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
+        <bolt-button slot="previous-btn" color="secondary" border-radius="full" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
+        <bolt-button slot="next-btn" color="secondary" border-radius="full" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
       `;
 
         carousel.innerHTML = buttonControls;
@@ -235,9 +247,39 @@ describe('carousel', () => {
         document.body.appendChild(carousel);
         carousel.updated();
         return carousel.outerHTML;
-      }, imageHTML);
+      });
 
-      await page.waitFor(1000);
+      await page.evaluate(async () => {
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
+
+      await page.evaluate(async () => {
+        const images = Array.from(document.querySelectorAll('bolt-image'));
+        return await Promise.all(
+          images.map(image => {
+            if (image._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              image.addEventListener('ready', resolve);
+              image.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
 
       const screenshots = [];
 
@@ -249,8 +291,11 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -259,19 +304,25 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls',
     async function() {
-      const imageHTML = imageTwigAlt.html;
-
-      const renderedComponentHTML = await page.evaluate(imageHTML => {
+      const renderedComponentHTML = await page.evaluate(() => {
         const carousel = document.createElement('bolt-carousel');
-        carousel.setAttribute('nav-position', 'outside');
+        carousel.setAttribute('nav-button-position', 'outside');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
 
-        const image = document.createElement('div');
-        image.innerHTML = imageHTML;
+        const image1 = document.createElement('bolt-image');
+        image1.setAttribute('src', '/fixtures/1200x660.jpg');
+        image1.setAttribute(
+          'srcset',
+          '/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w',
+        );
+        image1.setAttribute('sizes', 'auto');
+        image1.setAttribute('ratio', '1200/660');
+        image1.setAttribute('alt', 'A Rock Climber');
+        image1.setAttribute('no-lazy', '');
+        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
 
-        const image1 = image.firstChild;
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
 
@@ -288,8 +339,8 @@ describe('carousel', () => {
         text3.textContent = 'Slide 3';
 
         const buttonControls = `
-        <bolt-button slot="previous-btn" color="secondary" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
-        <bolt-button slot="next-btn" color="secondary" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
+        <bolt-button slot="previous-btn" color="secondary" border-radius="full" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
+        <bolt-button slot="next-btn" color="secondary" border-radius="full" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
       `;
 
         carousel.innerHTML = buttonControls;
@@ -310,9 +361,26 @@ describe('carousel', () => {
         document.body.appendChild(carousel);
         carousel.updated();
         return carousel.outerHTML;
-      }, imageHTML);
+      });
 
-      await page.waitFor(1000);
+      await page.evaluate(async () => {
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
 
       const screenshots = [];
 
@@ -324,8 +392,11 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -334,19 +405,25 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ 1 Slide Per View',
     async function() {
-      const imageHTML = imageTwig.html;
-
-      const renderedComponentHTML = await page.evaluate(imageHTML => {
+      const renderedComponentHTML = await page.evaluate(() => {
         const carousel = document.createElement('bolt-carousel');
         carousel.setAttribute('slides-per-view', 1);
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
 
-        const image = document.createElement('div');
-        image.innerHTML = imageHTML;
+        const image1 = document.createElement('bolt-image');
+        image1.setAttribute('src', '/fixtures/1200x660.jpg');
+        image1.setAttribute(
+          'srcset',
+          '/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w',
+        );
+        image1.setAttribute('sizes', 'auto');
+        image1.setAttribute('ratio', '1200/660');
+        image1.setAttribute('alt', 'A Rock Climber');
+        image1.setAttribute('no-lazy', '');
+        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
 
-        const image1 = image.firstChild;
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
 
@@ -378,9 +455,26 @@ describe('carousel', () => {
         document.body.appendChild(carousel);
         carousel.updated();
         return carousel.outerHTML;
-      }, imageHTML);
+      });
 
-      await page.waitFor(1000);
+      await page.evaluate(async () => {
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
 
       const screenshots = [];
 
@@ -392,8 +486,11 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -402,9 +499,7 @@ describe('carousel', () => {
   test(
     'Basic 7 Slide <bolt-carousel> Renders',
     async function() {
-      const imageHTML = imageTwig.html;
-
-      const renderedComponentHTML = await page.evaluate(imageHTML => {
+      const renderedComponentHTML = await page.evaluate(() => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
@@ -414,9 +509,17 @@ describe('carousel', () => {
         const carouselSlide6 = document.createElement('bolt-carousel-slide');
         const carouselSlide7 = document.createElement('bolt-carousel-slide');
 
-        const image = document.createElement('div');
-        image.innerHTML = imageHTML;
-        const image1 = image.firstChild;
+        const image1 = document.createElement('bolt-image');
+        image1.setAttribute('src', '/fixtures/1200x660.jpg');
+        image1.setAttribute(
+          'srcset',
+          '/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w',
+        );
+        image1.setAttribute('sizes', 'auto');
+        image1.setAttribute('ratio', '1200/660');
+        image1.setAttribute('alt', 'A Rock Climber');
+        image1.setAttribute('no-lazy', '');
+        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
 
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
@@ -485,9 +588,26 @@ describe('carousel', () => {
         document.body.appendChild(carousel);
         carousel.updated();
         return carousel.outerHTML;
-      }, imageHTML);
+      });
 
-      await page.waitFor(1000);
+      await page.evaluate(async () => {
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        );
+      });
 
       const screenshots = [];
 
@@ -499,8 +619,11 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,

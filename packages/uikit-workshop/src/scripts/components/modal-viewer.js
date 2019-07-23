@@ -111,7 +111,7 @@ export const modalViewer = {
           obj,
           modalViewer.targetOrigin
         );
-    
+
         const obj2 = JSON.stringify({
           event: 'patternLab.annotationsHighlightHide',
         });
@@ -121,7 +121,7 @@ export const modalViewer = {
         );
       } else {
         modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
-        
+
         if (modalViewer.iframeElement.contentWindow){
           modalViewer.close();
         } else {
@@ -153,7 +153,7 @@ export const modalViewer = {
         );
       } else {
         modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
-      
+
         if (modalViewer.iframeElement.contentWindow){
           modalViewer.insert(templateRendered, patternPartial, iframePassback);
         } else {
@@ -290,7 +290,7 @@ export const modalViewer = {
     if (data.event !== undefined && data.event === 'patternLab.pageLoad') {
 
       // @todo: refactor to better handle async iframe loading
-      // extra check to make sure the PL drawer will always render even if the iframe gets async loaded / rendered. 
+      // extra check to make sure the PL drawer will always render even if the iframe gets async loaded / rendered.
       if (modalViewer.delayCheckingModalViewer){
         modalViewer._handleInitialModalViewerState();
       }
