@@ -5,21 +5,33 @@ import {
   define,
   hasNativeShadowDomSupport,
 } from '@bolt/core';
-import classNames from 'classnames/bind';
+import { styleMap } from 'lit-html/directives/style-map.js';
+import { classMap } from 'lit-html/directives/class-map.js';
 import styles from './animation-wrapper.scss';
-
-const cx = classNames.bind(styles);
 
 @define
 class BoltAnimationWrapper extends withLitHtml() {
   static is = 'bolt-animation-wrapper';
 
   static props = {
-    fadeIn: {
-      ...props.string,
-    },
     animTriggered: {
       ...props.boolean,
+    },
+    boltAnimationName: {
+      ...props.string,
+      ...{ default: 'none' },
+    },
+    boltAnimationDuration: {
+      ...props.number,
+      ...{ default: 500 },
+    },
+    boltAnimationDelay: {
+      ...props.number,
+      ...{ default: 0 },
+    },
+    boltAnimationFunction: {
+      ...props.string,
+      ...{ default: 'ease-in' },
     },
   };
 
@@ -43,20 +55,39 @@ class BoltAnimationWrapper extends withLitHtml() {
   }
 
   render() {
-    const { fadeIn, animTriggered } = this.props;
-    //
-    const classes = cx('c-bolt-animation-wrapper', {
-      // [`c-bolt-animation-wrapper--awesome`]: animTriggered
-    });
+    const {
+      animTriggered,
+      boltAnimationName,
+      boltAnimationDuration,
+      boltAnimationDelay,
+      boltAnimationFunction,
+    } = this.props;
+
+    /** @type {CSSStyleDeclaration} */
+    let style = {};
+
+    const classes = {
+      'c-bolt-animation-wrapper': true,
+    };
+
+    if (animTriggered && boltAnimationName !== 'none') {
+      style = Object.assign({}, style, {
+        animationName: boltAnimationName,
+        animationDuration: `${boltAnimationDuration}ms`,
+        animationDelay: `${boltAnimationDelay}ms`,
+        animationTimingFunction: boltAnimationFunction,
+        animationFillMode: 'forwards',
+      });
+    }
 
     return html`
       ${this.addStyles([styles])}
       <div
-        class="${classes}"
+        class="${classMap(classes)}"
         is="shadow-root"
-        data-fade-in=${fadeIn}
         data-anim-triggered=${animTriggered ? 'yes' : 'no'}
-        @transitionend=${event => this.emitTransitionEnd(event)}
+        @animationend=${event => this.emitTransitionEnd(event)}
+        style=${styleMap(style)}
       >
         ${this.slot('default')}
       </div>

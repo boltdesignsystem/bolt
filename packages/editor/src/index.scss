@@ -44,6 +44,22 @@
       width: 20%;
     }
   }
+
+  .gjs-trt-trait {
+    display: block;
+    .gjs-label {
+      width: 100%;
+    }
+    .gjs-field {
+      width: 100%;
+    }
+  }
+
+  .gjs-block {
+    width: auto;
+    height: auto;
+    min-height: auto;
+  }
 }
 
 .gjs-pega-editor-panels-buttons {
@@ -65,157 +81,4 @@
       cursor: pointer;
     }
   }
-}
-
-.site {
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.box {
-  width: 100%;
-  height: 350px;
-  background-color: #ccc;
-}
-
-.space {
-  padding: 5px;
-  border: dotted 1px #ccc;
-
-  &__panel {
-    &--top {
-      display: flex;
-      justify-content: space-between;
-      position: initial;
-      width: 100%;
-      padding: 0;
-    }
-  }
-
-  &__actions {
-    &--basic {
-      position: initial;
-    }
-  }
-
-  &__editor {
-    // flex-grow: 1;
-    // background-image: linear-gradient(45deg, rgb(230, 230, 230) 25%, transparent 25%), linear-gradient(-45deg, rgb(230, 230, 230) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgb(230, 230, 230) 75%), linear-gradient(-45deg, transparent 75%, rgb(230, 230, 230) 75%);
-
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: stretch;
-    height: 300px;
-
-    &-canvas {
-      flex-grow: 1;
-
-      &-inner {}
-    }
-
-    &__panel {
-      flex-basis: 230px;
-      position: relative;
-      overflow-y: auto;
-
-      text-align: left;
-    }
-  }
-
-  &__blocks {}
-}
-
-// .gjs-cv-canvas {
-//   top: 0;
-//   width: 100%;
-//   height: 100%;
-// }
-
-// .gjs-block {
-//   width: auto;
-//   height: auto;
-//   min-height: auto;
-// }
-
-// .space__editor {}
-
-// .editor-canvas {}
-
-// .panel__right {
-//   flex-basis: 230px;
-//   position: relative;
-//   overflow-y: auto;
-// }
-
-// /* Let's highlight canvas boundaries */
-// #gjs {
-//   border: 3px solid #444;
-// }
-
-// /* Reset some default styling */
-// .gjs-cv-canvas {
-//   top: 0;
-//   width: 100%;
-//   height: 100%;
-// }
-
-// Needed to properly style block buttons
-.gjs-block.gjs-block {
-  width: auto;
-  height: auto;
-  min-height: auto;
-}
-
-// .u-row {
-//   width: 100%;
-//   display: flex;
-//   justify-content: space-between;
-//   flex-wrap: wrap;
-// }
-
-// .panel__switcher {
-//   position: initial;
-// }
-
-// .editor-row {
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: stretch;
-//   flex-wrap: nowrap;
-//   height: 300px;
-// }
-
-// .editor-canvas {
-//   flex-grow: 1;
-// }
-
-.space__editor__panel.space__editor__panel {
-  flex-basis: 230px;
-  position: relative;
-  overflow-y: auto;
-}
-
-// .panel__top {
-//   padding: 0;
-//   width: 100%;
-//   display: flex;
-//   position: initial;
-//   justify-content: center;
-//   justify-content: space-between;
-// }
-
-// .panel__basic-actions {
-//   position: initial;
-// }
-
-// .panel__right {
-//   //width: 100%;
-// }
-
-///////!!
-// Shame code, remove this before production
-///////!!
-bolt-band {
-  height: unset;
 }
