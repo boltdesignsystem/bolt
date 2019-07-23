@@ -21,7 +21,9 @@
       contentItems: [{
         pattern: "image",
         src: "/images/content/backgrounds/background-tall-3.jpg",
-        lazyload: false
+        lazyload: false,
+        placeholder_color: "hsl(10, 14%, 8%)",
+        valign: "30%"
       }]
     },
     primaryTeaser: {
@@ -228,19 +230,15 @@
           color: "black",
           image: {
             src: "/images/content/screenshots/device-screenshot--tablet.jpg",
-            lazyload: false
+            lazyload: false,
+            sizes: "(min-width: 1400px) calc(40.64285714% * 1400px), (min-width: 600px) 41vw, 72.5vw",
+            placeholder_color: "#ececec"
           }
         } only %}
       {% endcell %}
-
     {% endgrid %}
-
-
   {% endblock %}
 {% endembed %}
-
-
-
 
 {% embed "@bolt-components-band/band.twig" with {
   size: "medium",
@@ -258,7 +256,7 @@
           color: "black",
           image: {
             src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
-            lazyload: false
+            placeholder_color: "#1c1c1c"
           }
         } only %}
       {% endcell %}
@@ -340,7 +338,7 @@
           color: "black",
           image: {
             src: "/images/content/screenshots/device-screenshot--phone.jpg",
-            lazyload: false
+            placeholder_color: "#1c1c1c"
           }
         } only %}
       {% endcell %}
@@ -396,7 +394,7 @@
           color: "black",
           image: {
             src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-            lazyload: false
+            placeholder_color: "#ececec"
           }
         } only %}
       {% endcell %}
@@ -414,7 +412,7 @@
       "pattern": "card",
       "image": {
         "src": "/images/content/promos/promo-16x9-anthem.jpg",
-        "lazyload": false
+        placeholder_color: "#8d9598"
       },
       "teaser": {
         "eyebrow": {
@@ -422,7 +420,6 @@
         },
         "logo": {
           src: "/images/content/logos/logo-paypal.svg",
-          "lazyload": false
         },
         "headlines": [
           {
@@ -446,7 +443,7 @@
       "pattern": "card",
       "image": {
         "src": "/images/content/promos/promo-16x9-anthem.jpg",
-        "lazyload": false
+        placeholder_color: "#8d9598"
       },
       "teaser": {
         "eyebrow": {
@@ -474,7 +471,7 @@
       "pattern": "card",
       "image": {
         "src": "/images/content/promos/promo-16x9-anthem.jpg",
-        "lazyload": false
+        placeholder_color: "#8d9598"
       },
       "teaser": {
         "eyebrow": {
@@ -558,7 +555,6 @@
       {
         "pattern": "image",
         "src": "/images/content/backgrounds/background-tall-4.jpg",
-        "lazyload": false
       }
     ]
   }
@@ -577,12 +573,11 @@
           logo: {
             src: "/images/content/logos/logo-paypal.svg",
             invert: true,
-            lazyload: false
           },
           author: {
             image: {
               src: "/images/placeholders/500x500.jpg",
-              lazyload: false
+              placeholder_color: "#405d78"
             },
             name: "Jessica Cuthbertson",
             title: "CEO, RBS"
