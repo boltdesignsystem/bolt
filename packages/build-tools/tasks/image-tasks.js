@@ -263,7 +263,6 @@ async function processImage(file, set, skipOptimization = false) {
           size,
         };
       }
-
     }),
   ).then(resizedImagePaths => {
     // removes `undefined` & other non-truthy values (mainly original images & non processed file types like SVG or GIF)
