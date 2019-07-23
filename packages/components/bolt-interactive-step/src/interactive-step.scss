@@ -35,8 +35,8 @@ bolt-interactive-step {
   }
 
   &:first-of-type::before {
-    height: calc(100% - 1em);
     top: 1em;
+    height: calc(100% - 1em);
   }
 
   &:last-of-type {
@@ -55,11 +55,11 @@ bolt-interactive-step {
 .c-bolt-interactive-step {
   //Styles go here. /* [1] */
   position: relative;
+  padding-left: $bolt-interactive-step-left-padding;
   text-align: left;
   cursor: pointer;
   font-weight: bolder;
   transition: font-size 0.5s ease;
-  padding-left: $bolt-interactive-step-left-padding;
 
   @include bolt-mq(small) {
     position: static;
@@ -74,19 +74,19 @@ bolt-interactive-step {
     display: inline-block;
     position: absolute;
     z-index: 10;
+    margin-bottom: 1.65rem;
     margin-left: -38px;
     color: #AAB2F2;
     cursor: pointer;
     font-size: 20px;
     transition: color 0.5s ease, transform 0.5s ease;
-    margin-bottom: 1.65rem;
   }
 
   &__title {
     display: inline-block;
+    margin-bottom: 1.65rem;
     cursor: pointer;
     transition: color 0.5s ease, transform 0.5s ease;
-    margin-bottom: 1.65rem;
   }
 
   &__body {
