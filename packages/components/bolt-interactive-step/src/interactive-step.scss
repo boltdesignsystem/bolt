@@ -44,12 +44,12 @@ bolt-interactive-step:last-of-type {
 
   &__line {
     position: absolute;
-    border-left: 2px solid #AAB2F2;
-    width: 1px;
-    height: calc(100% + #{$bolt-interactive-step-bottom-padding});
     top: 0;
     left: $bolt-interactive-step-line-left-pos;
+    width: 1px;
+    height: calc(100% + #{$bolt-interactive-step-bottom-padding});
     margin-left: 5px;
+    border-left: 2px solid #AAB2F2;
   }
 
   &--first &__line {
