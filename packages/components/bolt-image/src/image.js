@@ -46,6 +46,7 @@ class BoltImage extends withLitHtml() {
     placeholderImage: props.string,
     zoom: props.boolean,
     cover: props.boolean,
+    valign: props.string,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -118,6 +119,7 @@ class BoltImage extends withLitHtml() {
       placeholderImage,
       zoom,
       cover,
+      valign,
     } = this.validateProps(this.props);
 
     // negate and rename variables for readability
@@ -172,6 +174,9 @@ class BoltImage extends withLitHtml() {
               lazyload && this.sizes === 'auto' ? 'auto' : undefined,
             )}"
             data-zoom="${ifDefined(zoom ? src : undefined)}"
+            style="${ifDefined(
+              valign ? `object-position: center ${valign};` : undefined,
+            )}"
           />
         `;
       }
