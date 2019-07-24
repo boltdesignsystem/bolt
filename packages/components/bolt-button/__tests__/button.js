@@ -25,17 +25,27 @@ describe('button', () => {
   });
 
   beforeEach(async () => {
-    page = await context.newPage();
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
+      waitUntil: 'networkidle0',
     });
   }, timeout);
 
   test('Basic usage', async () => {
     const results = await render('@bolt-components-button/button.twig', {
       text: 'This is a button',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('Button adds target if passed via attributes', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a button',
+      url: 'http://pega.com',
+      attributes: {
+        target: '_blank',
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();

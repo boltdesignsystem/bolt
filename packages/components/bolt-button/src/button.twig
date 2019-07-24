@@ -54,6 +54,9 @@
   {% if url %}
     {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
   {% endif %}
+  {% if attributes.target %}
+    {% set inner_attributes = inner_attributes.setAttribute("target", attributes.target) %}
+  {% endif %}
 {% elseif tag == "reset" %}
   {% set tag = "button" %}
   {% set inner_attributes = inner_attributes.setAttribute("type", "reset") %}
