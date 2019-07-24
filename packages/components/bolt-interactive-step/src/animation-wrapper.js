@@ -76,7 +76,11 @@ class BoltAnimationWrapper extends withLitHtml() {
         animationDuration: `${boltAnimationDuration}ms`,
         animationDelay: `${boltAnimationDelay}ms`,
         animationTimingFunction: boltAnimationFunction,
-        animationFillMode: 'forwards',
+        animationFillMode: 'both',
+      });
+    } else {
+      style = Object.assign({}, style, {
+        animationName: '',
       });
     }
 
