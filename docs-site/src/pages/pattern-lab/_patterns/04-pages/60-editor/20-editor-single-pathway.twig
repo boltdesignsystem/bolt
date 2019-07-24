@@ -9,7 +9,7 @@
     } only %}
   {% endset %}
 
-  {% set full_pathways %}
+  {% set single_pathway %}
     <div class="js-pega-editor">
       <script class="js-pega-editor__config" type="application/json">
         {
@@ -19,7 +19,7 @@
       </script>
       <button class="js-pega-editor__trigger">Edit</button>
       <div class="js-pega-editor__space">
-        {% include "_pathways.twig" %}
+        {% include "_pathwayOne.twig" %}
       </div>
     </div>
   {% endset %}
@@ -31,11 +31,7 @@
   } only %}
   {% include "@bolt-components-band/band.twig" with {
     "theme": "xlight",
-    "content": full_pathways
-  } only %}
-  {% include "@bolt-components-band/band.twig" with {
-    "theme": "dark",
-    "content": full_pathways
+    "content": single_pathway
   } only %}
 {% endblock %}
 
