@@ -5,7 +5,11 @@ export const AccordionItemTrigger = (children, props, context) => {
   const triggerClasses = css('c-bolt-accordion-item__trigger');
 
   const spacingClasses = css(
-    context.spacing ? `c-bolt-accordion-spacing--${context.spacing}` : '',
+    context.spacing || props.spacing
+      ? `c-bolt-accordion-spacing--${props.spacing ||
+          props.triggerSpacing ||
+          context.spacing}`
+      : '',
   );
 
   const triggerTemplate = children => {
