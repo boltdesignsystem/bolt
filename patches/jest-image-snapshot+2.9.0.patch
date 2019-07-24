@@ -1,0 +1,20 @@
+diff --git a/node_modules/jest-image-snapshot/src/diff-snapshot.js b/node_modules/jest-image-snapshot/src/diff-snapshot.js
+index 4e44533..568dec4 100644
+--- a/node_modules/jest-image-snapshot/src/diff-snapshot.js
++++ b/node_modules/jest-image-snapshot/src/diff-snapshot.js
+@@ -156,10 +156,11 @@ function diffImageToSnapshot(options) {
+       const totalPixels = imageWidth * imageHeight;
+       diffRatio = diffPixelCount / totalPixels;
+       // Always fail test on image size mismatch
+-      if (hasSizeMismatch) {
+-        pass = false;
+-        diffSize = true;
+-      } else if (failureThresholdType === 'pixel') {
++      // if (hasSizeMismatch) {
++      //   pass = false;
++      //   diffSize = true;
++      // } else
++      if (failureThresholdType === 'pixel') {
+         pass = diffPixelCount <= failureThreshold;
+       } else if (failureThresholdType === 'percent') {
+         pass = diffRatio <= failureThreshold;

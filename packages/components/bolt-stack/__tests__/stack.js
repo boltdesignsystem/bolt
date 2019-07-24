@@ -10,7 +10,7 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../stack.schema.yml'));
 const { spacing } = schema.properties;
 
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<bolt-stack> component', () => {
   afterAll(async () => {

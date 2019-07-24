@@ -68,4 +68,32 @@ describe('Check that the bolt-starter build has compiled as expected', () => {
     expect(cssFile).toEqual(expect.stringContaining(japaneseFontRule));
     expect(cssFile).toEqual(expect.not.stringContaining(englishFontFamilyRule));
   });
+
+  test('Check that the JA-specific CSS contains the utility class styles for the older u-bolt-margin-bottom syntax', async () => {
+    const getCSSData = async function(){
+      try {
+        const cssData = fs.readFileSync(path.resolve(__dirname, '../dist--ja/bolt-global-ja.css')).toString();
+        return cssData;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    const cssFile = await getCSSData();
+    expect(cssFile).toEqual(expect.stringContaining('.u-bolt-margin-bottom{margin-bottom:1.155rem!important}'));
+  });
+
+  test('Check that the non default bolt-global.css build contains the correct utility class styles for the older u-bolt-margin-bottom syntax', async () => {
+    const getCSSData = async function(){
+      try {
+        const cssData = fs.readFileSync(path.resolve(__dirname, '../dist/bolt-global.css')).toString();
+        return cssData;
+      } catch (error) {
+        return false;
+      }
+    }
+
+    const cssFile = await getCSSData();
+    expect(cssFile).toEqual(expect.stringContaining('.u-bolt-margin-bottom{margin-bottom:1.65rem!important}'));
+  });
 });
