@@ -10,7 +10,7 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../pagination.schema.yml'));
 const { align } = schema.properties;
 
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<bolt-pagination> Component', () => {
   afterAll(async () => {

@@ -24,7 +24,7 @@ const imageVrtConfig = {
   failureThresholdType: 'percent',
 };
 
-const timeout = 60000;
+const timeout = 120000;
 
 // Currently, the only important breakpoints to test are 'small' and 'large'
 const viewportSizes = [
@@ -46,9 +46,7 @@ describe('<bolt-modal> Component', () => {
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
+      waitUntil: 'networkidle0',
     });
   }, timeout);
 
