@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "./" }
+    },
+    { "src": "index.php", "use": "@now/php", "config": { "maxLambdaSize": "50mb" } }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/" },
+    { "src": "/(.*)", "dest": "/" }
+  ]
+}
