@@ -32,6 +32,14 @@ properties:
           type: string
           description: Accessible label for the close trigger to collapse an item.
           default: Close Accordion
+        trigger_spacing:
+          type: string
+          hidden: true
+          description: Overrides the default trigger spacing (by default, inherited from the parent bolt-accordion)
+        content_spacing:
+          type: string
+          hidden: true
+          description: Overrides the default content spacing (by default, inherited from the parent bolt-accordion)
   single:
     type: boolean
     description: Allow only one section to open at a time.
