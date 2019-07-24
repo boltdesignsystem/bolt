@@ -54,14 +54,23 @@ const pkgs = getPkgsChanged({ from: 'HEAD', base: `origin/${base}` });
 // use `stderr` to communicate to user, this will not be passed to jest
 // use `stdout` to provide a command line argument to `jest`, this will not be seen by user
 
-process.stderr.write(`Comparing this commit "HEAD" to base of "${base}":\n`);
-process.stderr.write(
-  `These packages have changed, filtering tests to just these directories:\n`,
-);
+// account for situations where no pkgs have recently changed
+if (pkgs.length >= 1) {
+  process.stderr.write(`Comparing this commit "HEAD" to base of "${base}":\n`);
+  process.stderr.write(
+    `These packages were found to have had recent changes:
+      ${pkgs.map(pkg => pkg.name).join('\n')}
 
-pkgs.forEach(pkg => {
-  process.stderr.write(`- ${pkg.name} : ${pkg.relPath} \n`);
-});
+      Filtering tests to only run on these packages.\n`,
+  );
 
-const filteredList = pkgs.map(pkg => pkg.relPath).join('|');
-process.stdout.write(filteredList);
+  pkgs.forEach(pkg => {
+    process.stderr.write(`- ${pkg.name} : ${pkg.relPath} \n`);
+  });
+
+  const filteredList = pkgs.map(pkg => pkg.relPath).join('|');
+  process.stdout.write(filteredList || './fake-test-path'); // dummy path to Jest so we can exit early
+} else {
+  process.stderr.write(`No packages have recently changed! Exiting early...`);
+  process.stdout.write('./fake-test-path'); // dummy path to Jest so we can exit early
+}

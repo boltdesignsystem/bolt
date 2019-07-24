@@ -6,6 +6,11 @@ const updatedConfig =  Object.assign(config, {
   dataDir: './dist--ja/data',
   wwwDir: './dist--ja',
   publicPath: '/themes/bolt-starter/dist--ja/',
+  globalData: {
+    scss: [
+      './fix-missing-ja-spacing-value.patch.scss', // @todo: remove after Bolt hotfix for JA spacing scale released
+    ],
+  },
 });
 
 module.exports = updatedConfig;

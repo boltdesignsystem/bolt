@@ -1,5 +1,5 @@
 const { setup: setupDevServer } = require('jest-dev-server');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const mkdirp = require('mkdirp');
 const path = require('path');
 const fs = require('fs');
@@ -25,7 +25,7 @@ module.exports = async function globalSetup() {
   ];
 
   await buildPrep(true); // clear out all folders before running
-  await imageTasks.processImages(); // process image fixtures used by any tests
+  await imageTasks.processImages(true); // process image fixtures used by any tests, but don't optimize
   await iconTasks.build(); // process icons used by any tests
 
   await setupDevServer({

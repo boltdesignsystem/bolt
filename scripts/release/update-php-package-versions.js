@@ -3,8 +3,15 @@
 // We want to update php dependencies versions as well.
 const path = require('path');
 const fs = require('fs');
+const argv = require('yargs').argv;
 const yaml = require('js-yaml');
-const lernaVersion = require(path.join(__dirname, '../../lerna.json')).version;
+let lernaVersion;
+
+if (argv.v) {
+  lernaVersion = argv.v;
+} else {
+  lernaVersion = require(path.join(__dirname, '../../lerna.json')).version;
+}
 
 const corePhpPath = path.join(__dirname, '../../packages/core-php/composer.json');
 const corePhp = require(corePhpPath);
