@@ -1,0 +1,11 @@
+@import '@bolt/core';
+
+// temporary patch to make sure JA-specific builds include all of the utility classes that get auto-generated
+@if $bolt-lang == 'ja' {
+  $bolt-spacing-values: bolt-recursive-map-merge(
+    $bolt-spacing-values,
+    ('': map-get($bolt-spacing-values, 'medium'))
+  ) !global;
+
+  $bolt-lang: false !global; // temp workaround to prevent the default $bolt-lang: 'ja'; value from resetting these updated spacing sizes.
+}

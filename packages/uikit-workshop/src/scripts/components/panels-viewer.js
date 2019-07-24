@@ -5,16 +5,14 @@
 import Hogan from 'hogan.js';
 // import Prism from 'prismjs';
 import Normalizer from 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
+import pretty from 'pretty';
+import { html, render } from 'lit-html';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import { Panels } from './panels';
 import { panelsUtil } from './panels-util';
 import { urlHandler, Dispatcher } from '../utils';
 import './pl-copy-to-clipboard/pl-copy-to-clipboard';
-import prettier from 'prettier/standalone';
-import prettierHtml from 'prettier/parser-html';
-import { html, render } from 'lit-html';
-import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import { PrismLanguages as Prism } from './prism-languages';
-const prettierPlugins = [prettierHtml];
 
 const normalizeWhitespace = new Normalizer({
   'remove-trailing': true,
@@ -89,6 +87,10 @@ export const panelsViewer = {
       }
 
       // if httpRequestReplace has not been set, use the extension. this is likely for the raw template
+      if (panel.httpRequestReplace === undefined) {
+        panel.httpRequestReplace = '';
+      }
+
       if (panel.httpRequestReplace === '') {
         panel.httpRequestReplace =
           panel.httpRequestReplace + '.' + patternData.patternExtension;
@@ -106,12 +108,10 @@ export const panelsViewer = {
           /* eslint-disable */
           e.onload = (function(i, panels, patternData, iframeRequest) {
             return function() {
-              if (panels[i].name === "HTML"){
-                templateFormatted = prettier.format(this.responseText, { 
-                  parser: 'html', 
-                  plugins: prettierPlugins,
-                  printWidth: 100,
-                });
+
+              // use pretty to format HTML
+              if (panels[i].name === "HTML") {
+                templateFormatted = pretty(this.responseText, {ocd: true});
               } else {
                 templateFormatted = this.responseText;
               }
@@ -121,14 +121,22 @@ export const panelsViewer = {
                 Prism.languages[panels[i].name.toLowerCase()] || 'markup',
                 // Prism.languages[panels[i].name.toLowerCase()],
               );
-              
+
               const codeTemplate = (code, language) => html`<pre class="language-markup"><code id="pl-code-fill-${language}" class="language-${language}">${unsafeHTML(code)}</code></pre>`;
 
               const result = document.createDocumentFragment();
-              render(codeTemplate(templateHighlighted, 'html'), result);
-              const templateRendered = result.children[0].outerHTML;
+              const fallBackResult = document.createDocumentFragment();
 
-              panels[i].content = templateRendered;
+              render(codeTemplate(templateHighlighted, 'html'), result);
+              render(codeTemplate(templateFormatted, 'html'), fallBackResult);
+
+              if (result.children){
+                panels[i].content = result.children[0].outerHTML;
+              } else  if (fallBackResult.children){
+                  panels[i].content = fallBackResult.children[0].outerHTML;
+              } else {
+                panels[i].content = '<pre class="language-markup"><code id="pl-code-fill-html" class="language-html">' + templateFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></pre>';
+              }
 
               Dispatcher.trigger('checkPanels', [
                 panels,

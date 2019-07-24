@@ -1,7 +1,7 @@
 // const penthouse = require('penthouse');
 // const fs = require('fs');
 // const path = require('path');
-// const { getConfig } = require('../utils/config-store');
+// const { getConfig } = require('@bolt/build-utils/config-store');
 // let config;
 
 // async function build() {

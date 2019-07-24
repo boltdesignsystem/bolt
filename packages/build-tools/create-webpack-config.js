@@ -15,15 +15,18 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
 const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
-const { getConfig } = require('./utils/config-store');
-const { boltWebpackProgress } = require('./utils/webpack-helpers');
-const { webpackStats, statsPreset } = require('./utils/webpack-verbosity');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
+const {
+  webpackStats,
+  statsPreset,
+} = require('@bolt/build-utils/webpack-verbosity');
 
 const {
   getBoltManifest,
   mapComponentNameToTwigNamespace,
-} = require('./utils/manifest');
-const log = require('./utils/log');
+} = require('@bolt/build-utils/manifest');
+const log = require('@bolt/build-utils/log');
 
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
@@ -99,7 +102,8 @@ async function createWebpackConfig(buildConfig) {
       ),
       config: {
         prod: config.prod ? true : false,
-        lang: config.lang,
+        lang: JSON.stringify(config.lang),
+        env: JSON.stringify(config.env),
       },
     },
   };
