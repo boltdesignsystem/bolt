@@ -19,6 +19,9 @@ class AccordionItem extends withContext(withLitHtml()) {
 
   static props = {
     open: props.boolean,
+    contentSpacing: props.string,
+    triggerSpacing: props.string,
+    spacing: props.string,
     uuid: props.string,
   };
 
