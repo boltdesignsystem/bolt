@@ -22,7 +22,7 @@ async function renderTwigString(template, data) {
 const timeout = 120000;
 
 const vrtDefaultConfig = {
-  failureThreshold: '0.0012',
+  failureThreshold: '0.02',
   failureThresholdType: 'percent',
   customDiffConfig: {
     threshold: '0.1',
