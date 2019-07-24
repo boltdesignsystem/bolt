@@ -1,0 +1,33 @@
+<p>
+  By setting the <code>contentSpacing</code> or <code>triggerSpacing</code> prop to a <code>&lt;bolt-accordion-item&gt;</code>, the default spacing value inheritted from the parent <code>&lt;bolt-accordion&gt;</code> can be optionally overwritten.
+</p>
+
+<aside class="c-bds-callout c-bds-callout--notice">
+  <p>
+    This can be particularly helpful if you have an accordion with nested content that already includes it's own spacing.
+  </p>
+</aside>
+
+
+{% set accordionTable %}
+  {% include '_accordion-table-example.twig' %}
+{% endset %}
+
+{% include "@bolt-components-accordion/accordion.twig" with {
+  spacing: "medium",
+  items: [
+    {
+      trigger: "Content Spacing None (Overrides Medium default)",
+      content_spacing: "none",
+      content: accordionTable,
+    },
+    {
+      trigger: "Accordion item 2",
+      content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+    },
+    {
+      trigger: "Accordion item 3",
+      content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+    },
+  ]
+} only %}
