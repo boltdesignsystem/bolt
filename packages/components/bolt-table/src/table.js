@@ -119,6 +119,8 @@ class BoltTable extends withLitHtml() {
   }
 
   rendered() {
+    super.rendered && super.rendered();
+
     const nodesToUpdate = this.renderRoot.querySelectorAll('*[data-attrs]');
     const tdInThead = this.renderRoot.querySelectorAll('thead td');
 
