@@ -18,8 +18,8 @@ $bolt-button-border-radii: (
   'full': 50em,
 );
 $bolt-button-transition: $bolt-transition;
-$bolt-button-translate--hover: translate3d(0, -1px, 0);
-$bolt-button-translate--active: translate3d(0, 1px, 0);
+$bolt-button-translate--hover: translate3d(0, -2px, 0);
+$bolt-button-translate--active: translate3d(0, 2px, 0);
 
 
 
@@ -43,7 +43,12 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 @mixin bolt-button-raised-effect {
   &:hover,
   &.is-hover {
-    @include bolt-shadow('level-20', true);
+    transform: $bolt-button-translate--hover;
+  }
+
+  &:hover:before,
+  &.is-hover:before {
+    opacity: 1;
   }
 
   &:active,
@@ -68,23 +73,24 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   border-style: $bolt-button-border-style;
   @include bolt-shadow('level-20');
   box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20')});
-  will-change: box-shadow;
+  will-change: transform;
 
   &:before {
     content: '';
     display: block;
-    opacity: 0.2;
+    opacity: 0;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -1px; // since the border on the parent creates a 1px offset
+    left: -1px; // since the border on the parent creates a 1px offset
     z-index: bolt-z-index('background') - 5;
-    width: 100%;
-    height: 100%;
+    width: calc(100% + 2px); // since the border on the parent creates a 1px offset
+    height: calc(100% + 2px); // since the border on the parent creates a 1px offset
     pointer-events: none;
     border-radius: bolt-button-border-radius('regular');
-    @include bolt-shadow('level-10', true);
-    box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-10')});
-    will-change: box-shadow;
+    box-shadow: bolt-shadow('level-20', false, false, 'raised');
+    box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20', false, false, 'raised')});
+    will-change: opacity;
+    transition: $bolt-button-transition;
   }
 
   &:focus:not(:hover):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
