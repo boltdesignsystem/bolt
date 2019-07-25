@@ -39,7 +39,7 @@
   }
 }
 
-@function bolt-shadow($key: 'G', $base-color: false, $utility: false) {
+@function bolt-shadow($key: 'G', $base-color: false, $utility: false, $type: 'base') {
   $shadows: map-get(bolt-get-shadows-map(), 'sets');
   @if $base-color {
     $shadows: map-get(bolt-get-shadows-map($base-color), 'sets');
@@ -52,6 +52,6 @@
   @if not(map-has-key($shadows, $key)) {
     @error 'A value, #{$key}, was passed into @include bolt-shadow() that is not defined in $bolt-shadows';
   } @else {
-    @return unquote(map-get(map-get($shadows, $key), 'base')) #{$important};
+    @return unquote(map-get(map-get($shadows, $key), $type)) #{$important};
   }
 }
