@@ -9,6 +9,7 @@
     "pretest": "yarn run build",
     "build": "bolt build --prod --i18n --config-file .boltrc.multi-lang.js",
     "test": "npx jest index.js",
+    "test:update": "npx jest index.js -u",
     "posttest": "rm -rf dist-lang/"
   },
   "dependencies": {
