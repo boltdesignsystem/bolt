@@ -1,0 +1,23 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-tabs/tabs.twig" with {
+  items: [
+    {
+      label: "Tab label 1",
+      content: "This is the tab content.",
+    },
+    {
+      label: "Tab label 2",
+      content: "This is the tab content.",
+    },
+    {
+      label: "Tab label 3",
+      content: "This is the tab content.",
+    }
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "tabs",
+  usage: usage
+} only %}

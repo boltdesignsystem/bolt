@@ -1,0 +1,54 @@
+title: Tabs
+type: object
+properties:
+  items:
+    type: array
+    description: All of the items in the tabs. Each item should contain a label and content.
+    items:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Tab navigation item label. Twig only.
+          default: 'Tab'
+        content:
+          type: [string, object, array]
+          description: Tab panel content.
+        selected:
+          type: boolean
+          description: Set active state on tab. Only one active tab allowed at a time. Defaults to first.
+          default: false
+  align:
+    description: Horizontal alignment of tab labels
+    type: string
+    enum:
+      - start
+      - center
+      - end
+    default: start
+  spacing:
+    type: string
+    description: Controls the inset spacing of each item.
+    default: medium
+    enum:
+      - none
+      - xsmall
+      - small
+      - medium
+      - large
+  variant:
+    type: string
+    description: Controls the tab label style.
+    default: underline
+    enum:
+      - underline
+      - pill
+    hidden: true
+  uuid:
+    type: string
+    description: Group identifier for tabs. Must be unique. Used to generate label and panel `id`s.
+  selected_tab:
+    type: integer
+    description: Index of selected tab. *This* index is 1-based (i.e. first tab is `1` not `0`), as opposed to the Web Component API which is 0-based.
+    default: 1
+    minimum: 1

@@ -1,0 +1,133 @@
+{% macro code_example(code) %}
+  <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as tabs_demo %}
+
+{% set basic_usage %}
+<bolt-tabs>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 1</bolt-text>
+    <bolt-text>Tab panel 1. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. In turpis. Sed fringilla mauris sit amet nibh. Nunc nonummy metus. Curabitur nisi.</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 2</bolt-text>
+    <bolt-text>Tab panel 2. Proin pretium, leo ac pellentesque mollis, felis nunc ultrices eros, sed gravida augue augue mollis justo. Aenean ut eros et nisl sagittis vestibulum. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Praesent adipiscing. Nam eget dui.</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 3</bolt-text>
+    <bolt-text>Tab panel 3. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Etiam vitae tortor. Phasellus consectetuer vestibulum elit. Praesent turpis. Quisque malesuada placerat nisl.</bolt-text>
+  </bolt-tab-panel>
+</bolt-tabs>
+{% endset %}
+
+{% set prop_usage %}
+<bolt-tabs spacing="small" align="center">
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 1</bolt-text>
+    <bolt-text>Tab panel 1. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. In turpis. Sed fringilla mauris sit amet nibh. Nunc nonummy metus. Curabitur nisi.</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 2</bolt-text>
+    <bolt-text>Tab panel 2. Proin pretium, leo ac pellentesque mollis, felis nunc ultrices eros, sed gravida augue augue mollis justo. Aenean ut eros et nisl sagittis vestibulum. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Praesent adipiscing. Nam eget dui.</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 3</bolt-text>
+    <bolt-text>Tab panel 3. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Etiam vitae tortor. Phasellus consectetuer vestibulum elit. Praesent turpis. Quisque malesuada placerat nisl.</bolt-text>
+  </bolt-tab-panel>
+</bolt-tabs>
+{% endset %}
+
+
+{% set advanced_usage %}
+<bolt-tabs>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 1</bolt-text>
+    <bolt-text>Tab panel 1. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. In turpis. Sed fringilla mauris sit amet nibh. Nunc nonummy metus. Curabitur nisi.</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel selected>
+    <bolt-text slot="label">Tabs item 2</bolt-text>
+    <bolt-text>Tab panel 2. Proin pretium, leo ac pellentesque mollis, felis nunc ultrices eros, sed gravida augue augue mollis justo. Aenean ut eros et nisl sagittis vestibulum. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Praesent adipiscing. Nam eget dui.</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 3</bolt-text>
+    <bolt-text>Tab panel 3. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Etiam vitae tortor. Phasellus consectetuer vestibulum elit. Praesent turpis. Quisque malesuada placerat nisl.</bolt-text>
+  </bolt-tab-panel>
+</bolt-tabs>
+<bolt-tabs selected-tab="3">
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 1</bolt-text>
+    <bolt-text>Tab panel 1. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. In turpis. Sed fringilla mauris sit amet nibh. Nunc nonummy metus. Curabitur nisi.</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 2</bolt-text>
+    <bolt-text>Tab panel 2. Proin pretium, leo ac pellentesque mollis, felis nunc ultrices eros, sed gravida augue augue mollis justo. Aenean ut eros et nisl sagittis vestibulum. Sed augue ipsum, egestas nec, vestibulum et, malesuada adipiscing, dui. Praesent adipiscing. Nam eget dui.</bolt-text>
+  </bolt-tab-panel>
+  <bolt-tab-panel>
+    <bolt-text slot="label">Tabs item 3</bolt-text>
+    <bolt-text>Tab panel 3. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Etiam vitae tortor. Phasellus consectetuer vestibulum elit. Praesent turpis. Quisque malesuada placerat nisl.</bolt-text>
+  </bolt-tab-panel>
+</bolt-tabs>
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Tabs is a fully client-side renderable web component. Add the <bolt-code-snippet display="inline" lang="html">bolt-tabs</bolt-code-snippet> element containing any number of <bolt-code-snippet display="inline" lang="html">bolt-tabs-panel</bolt-code-snippet> elements to create an tabs. Inside each <bolt-code-snippet display="inline" lang="html">bolt-tab-panel</bolt-code-snippet> mark the "label" content with the attribute <bolt-code-snippet display="inline" lang="html">slot="label"</bolt-code-snippet>. Everything else is considered tabs "content".
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ basic_usage }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include tabs_demo.code_example(basic_usage) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Prop Usage
+  </bolt-text>
+  <bolt-text>
+    Configure the tabs with the properties specified in the schema.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ prop_usage }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include tabs_demo.code_example(prop_usage) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Advanced Usage
+  </bolt-text>
+  <bolt-text>
+    Two advanced options are shown below. Automatically show a <bolt-code-snippet display="inline" lang="html">bolt-tab-panel</bolt-code-snippet> by adding the <bolt-code-snippet display="inline" lang="html">selected</bolt-code-snippet> prop to the <bolt-code-snippet display="inline" lang="html">bolt-tab-panel</bolt-code-snippet> element or by setting the <bolt-code-snippet display="inline" lang="html">selected-tab</bolt-code-snippet> prop to the <bolt-code-snippet display="inline" lang="html">bolt-tabs</bolt-code-snippet> element.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ advanced_usage }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include tabs_demo.code_example(advanced_usage) %}
+  </div>
+</div>

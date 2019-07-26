@@ -1,0 +1,212 @@
+/* ------------------------------------ *\
+   Tabs
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import '_tabs-settings-and-tools.scss';
+
+@include bolt-custom-element('bolt-tabs', block, medium);
+
+bolt-tabs {
+  text-align: initial; // unset user-agent styles targeting `align` prop
+}
+
+// @include bolt-repeat-rule(('.c-bolt-tabs', ':host')) {
+// }
+
+.c-bolt-tabs {
+  // For no-js styles
+  @at-root bolt-tabs:not([ready]) & {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.c-bolt-tabs__label {
+  // @todo: copied from navlink, refactor into shared styles
+  @include bolt-font-size(small);
+  @include bolt-font-weight(semibold);
+
+  display: flex;
+  flex-shrink: 0;
+
+  opacity: 0.9;
+
+  position: relative;
+  color: bolt-theme(headline-link);
+  text-decoration: none;
+  border-radius: 3px;
+  // Added so that &:focus:not(:active) doesn't change the size of the band
+  // @todo: we should consider making &:focus:not(:active) with thin dotted style a mixin
+  // to share with nav-priority
+  border-width: thin;
+  border-style: dotted;
+  border-color: transparent;
+  transition: opacity $bolt-tabs-text-transition;
+  transition: all 0.1s ease;
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale3d(0, 0, 0);
+    z-index: bolt-z-index('background');
+    width: 100%;
+    height: 100%;
+    border-radius: $bolt-tabs-bg-border-radius;
+    background-color: currentColor;
+    transition: all 0.1s ease;
+  }
+
+  &:not([aria-selected='true']) {
+    &:hover {
+      &:before {
+        animation: a-bolt-tabs-bg-hover $bolt-tabs-bg-transition-timing both;
+      }
+    }
+    &:active {
+      opacity: bolt-opacity(100);
+      color: bolt-theme(headline-link);
+      border-color: transparent;
+      &:before {
+        opacity: 0.2;
+        transform: scale3d(1, 1, 1);
+        animation: none;
+      }
+    }
+  }
+
+  // works in chrome only
+  &:focus:not(:active) {
+    border-color: bolt-theme(primary);
+    outline: none;
+  }
+
+  &:after {
+    content: '';
+    opacity: bolt-opacity(0);
+    position: absolute;
+    bottom: 0;
+    left: 0; // required so animated position is correct in IE11
+    width: 100%;
+    height: ($bolt-selected-tab-border-size);
+    background-color: bolt-theme(primary);
+    will-change: opacity;
+    transition: all $bolt-selected-tab-border-transition-timing
+        $bolt-selected-tab-border-transition-ease,
+      opacity 0.35s ease-out;
+  }
+
+  &[aria-selected='true'] {
+    &:after {
+      opacity: bolt-opacity(100);
+    }
+  }
+
+  @at-root .c-bolt-tabs__input:not(:checked) + & {
+    cursor: pointer;
+  }
+
+  @at-root .c-bolt-tabs__input:checked + & {
+    &:hover,
+    &:active {
+      &:before {
+        display: none;
+      }
+    }
+
+    &:after {
+      opacity: bolt-opacity(100);
+    }
+  }
+}
+
+.c-bolt-tabs__label-inner {
+  display: block;
+  position: relative; // required for z-index layering
+}
+
+// Spacing
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  @if (
+    $spacing-value-name !=
+      '' and
+      $spacing-value-name !=
+      'xxsmall' and
+      $spacing-value-name !=
+      'xlarge' and
+      $spacing-value-name !=
+      'xxlarge'
+  ) {
+    .c-bolt-tabs--spacing-#{$spacing-value-name} {
+      .c-bolt-tabs__label {
+        .c-bolt-tabs__label-inner {
+          @include bolt-padding(#{$spacing-value-name}, squished);
+        }
+      }
+    }
+  }
+}
+
+.c-bolt-tabs__nav {
+  @include bolt-margin-bottom(0);
+  display: flex;
+  flex-flow: row nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @at-root .c-bolt-tabs--align-center #{&} {
+    justify-content: center;
+  }
+  @at-root .c-bolt-tabs--align-start #{&} {
+    justify-content: flex-start;
+  }
+  @at-root .c-bolt-tabs--align-end #{&} {
+    justify-content: flex-end;
+  }
+}
+
+// For no-js styles
+.c-bolt-tabs__input {
+  opacity: 0;
+  position: absolute;
+
+  &:checked
+    + .c-bolt-tabs__label
+    + .c-bolt-tab-panel__outer
+    .c-bolt-tab-panel__content {
+    display: block;
+  }
+}
+
+// @todo: copied from navlink, refactor into shared animation
+@keyframes a-bolt-tabs-bg-hover {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  40% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  60% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 0.99, 0.99);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}

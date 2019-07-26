@@ -1,0 +1,50 @@
+// /* ------------------------------------ *\
+//    Tabs Items
+// \* ------------------------------------ */
+
+@import '@bolt/core';
+// @import '../_tabs-settings-and-tools.scss';
+
+bolt-tab-panel {
+  display: block;
+
+  [slot='label'] {
+    display: none;
+  }
+}
+
+.c-bolt-tab-panel__content {
+  display: none;
+
+  &[aria-expanded='true'] {
+    display: block;
+  }
+}
+
+// For no-js styles
+.c-bolt-tab-panel__outer {
+  order: 99;
+  width: 100%;
+}
+
+// Spacing
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  @if (
+    $spacing-value-name !=
+      '' and
+      $spacing-value-name !=
+      'xxsmall' and
+      $spacing-value-name !=
+      'xlarge' and
+      $spacing-value-name !=
+      'xxlarge'
+  ) {
+    .c-bolt-tab-panel--spacing-#{$spacing-value-name} {
+      .c-bolt-tab-panel__content {
+        @include bolt-padding(#{$spacing-value-name}, squished);
+      }
+    }
+  }
+}
