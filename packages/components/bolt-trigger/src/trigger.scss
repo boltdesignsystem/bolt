@@ -81,6 +81,12 @@ $bolt-trigger-cursor-values: auto pointer zoom-in zoom-out; // These values need
 @each $cursor in $bolt-trigger-cursor-values {
   .c-bolt-trigger--cursor-#{$cursor} {
     cursor: #{$cursor};
+
+    @if $cursor == zoom-in or $cursor == zoom-out {
+      @include bolt-ie11-only {
+        cursor: pointer;
+      }
+    }
   }
 }
 
