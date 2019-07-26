@@ -215,6 +215,10 @@ bolt-modal:not([ready]) {
 
 // Content width options
 @include bolt-mq($bolt-modal-breakpoint) {
+  .c-bolt-modal__content--width-regular {
+    width: 100% / 12 * 10;
+  }
+
   .c-bolt-modal__content--width-optimal {
     width: 75ch;
   }
