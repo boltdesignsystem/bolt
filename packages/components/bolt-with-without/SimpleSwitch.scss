@@ -9,6 +9,7 @@ $simple-switch_size: 155px !default;
 $simple-switch_switch-speed: 250ms !default;
 $simple-switch_tray-color: bolt-color('white') !default;
 
+// sass-lint:disable-all
 
 // Hide the checkbox, but keep it in the DOM so it is visible to screen readers
 ._simple-switch-checkbox {
@@ -21,7 +22,6 @@ $simple-switch_tray-color: bolt-color('white') !default;
 ._simple-switch-track {
     --simple-switch_size: #{$simple-switch_size};
 
-    font-size: inherit;
     display: inline-block;
     position: relative;
     vertical-align: baseline;

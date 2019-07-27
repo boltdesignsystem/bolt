@@ -19,24 +19,24 @@ $pega-wwo--content-max-mobile-width: 550px;
 }
 
 .c-pega-wwo {
+  min-height: 100vh;
+  height: 100%;
   color: bolt-color(white);
   background-color: bolt-color(black);
   line-height: 1.4;
-  min-height: 100vh;
-  height: 100%;
 
   &__wrapper {
     display: none;
     position: relative;
     //max-width: $pega-wwo--max-width;
     width: 100%;
-    margin: 0 auto;
-    background-size: $pega-wwo--max-width auto;
-    background-repeat: no-repeat;
-    // Scale bg image by width Padding is relative to width. So this is an aspect ratio hack.
-    padding-bottom: 174.15%;
     height: 0;
     overflow: visible;
+    margin: 0 auto;
+    // Scale bg image by width Padding is relative to width. So this is an aspect ratio hack.
+    padding-bottom: 174.15%;
+    background-repeat: no-repeat;
+    background-size: $pega-wwo--max-width auto;
 
     @include bolt-mq($from: large) {
       padding-bottom: 59.222%;
@@ -45,6 +45,7 @@ $pega-wwo--content-max-mobile-width: 550px;
 
   &__inner {
     padding: 0 bolt-spacing(medium) bolt-spacing(medium) bolt-spacing(medium);
+
     @include bolt-mq($from: large) {
       padding: 0;
     }
@@ -102,19 +103,19 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-wo {
+      top: 30.5%;
       left: 23.7%;
-      top: 30.5%
     }
 
     &-w {
+      top: 30.5%;
       left: 19.7%;
-      top: 30.5%
     }
   }
 
   &__dashed-circle {
-    height: 100%;
     width: 100%;
+    height: 100%;
   }
 
   &__sm-circle {
@@ -159,11 +160,11 @@ $pega-wwo--content-max-mobile-width: 550px;
   }
 
   &__toggle {
-    margin-top: bolt-spacing(medium);
     position: relative;
-    text-align: center;
     height: $simple-switch_height;
+    margin-top: bolt-spacing(medium);
     margin-bottom: bolt-spacing(large);
+    text-align: center;
 
     &-input {
       opacity: 0;
@@ -171,8 +172,8 @@ $pega-wwo--content-max-mobile-width: 550px;
 
     button {
       display: inline;
-      cursor: pointer;
       height: $simple-switch_height;
+      cursor: pointer;
       background-color: bolt-color(white);
 
       .handle {
@@ -188,19 +189,19 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-labels {
-      position: absolute;
       display: flex;
-      pointer-events: none;
+      position: absolute;
       top: 50%;
       left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9;
       width: $simple-switch_size * 2 + 85px;
       margin-right: -50%;
-      transform: translate(-50%, -50%);
-      color: bolt-color('black');
-      text-decoration: none;
-      z-index: 9;
       padding-bottom: 1px;
       padding-left: 5px;
+      color: bolt-color('black');
+      pointer-events: none;
+      text-decoration: none;
     }
 
     &-label {
@@ -217,8 +218,8 @@ $pega-wwo--content-max-mobile-width: 550px;
   }
 
   &__content-wrapper {
-    margin: 0 auto;
     max-width: $pega-wwo--content-max-mobile-width;
+    margin: 0 auto;
 
     @include bolt-mq($from: large) {
       max-width: none;
@@ -237,8 +238,8 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-body {
-      font-size: 13px;
       margin-bottom: .5rem;
+      font-size: 13px;
     }
 
     &-ul {
@@ -266,8 +267,8 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-number {
-      font-weight: 800;
       font-size: 30px;
+      font-weight: 800;
     }
 
     &-number-label {
@@ -300,6 +301,7 @@ $pega-wwo--content-max-mobile-width: 550px;
       .c-pega-wwo__block-body,
       .c-pega-wwo__block-action {
         display: none;
+
         @include bolt-mq($from: large) {
           display: block;
         }
@@ -315,6 +317,7 @@ $pega-wwo--content-max-mobile-width: 550px;
       .c-pega-wwo__block-body,
       .c-pega-wwo__block-action {
         display: none;
+
         @include bolt-mq($from: large) {
           display: block;
         }
@@ -329,10 +332,10 @@ $pega-wwo--content-max-mobile-width: 550px;
 
     &-block-conversion-w {
       display: none;
-      flex: 1 0 100%;
 
       @include bolt-mq($from: large) {
         display: block;
+        flex: 1 0 100%;
       }
     }
 
@@ -343,6 +346,7 @@ $pega-wwo--content-max-mobile-width: 550px;
       }
       .c-pega-wwo__block-body {
         display: none;
+
         @include bolt-mq($from: large) {
           display: block;
         }
@@ -374,6 +378,7 @@ $pega-wwo--content-max-mobile-width: 550px;
 
       .c-pega-wwo__block-body {
         display: none;
+
         @include bolt-mq($from: large) {
           display: block;
         }
@@ -418,8 +423,8 @@ $pega-wwo--content-max-mobile-width: 550px;
 
   &__region {
     &-blocks {
-      padding-left: bolt-spacing(medium);
       position: relative;
+      padding-left: bolt-spacing(medium);
 
       @include bolt-mq($from: large) {
         position: static;
@@ -449,16 +454,16 @@ $pega-wwo--content-max-mobile-width: 550px;
         position: absolute;
         top: 45.5%;
         left: $pega-wwo--result-left-pos;
-        max-width: 29%;
         min-width: 350px;
+        max-width: 29%;
       }
     }
   }
   &__result {
     &-label {
       text-transform: uppercase;
-      font-size: .85rem;
       letter-spacing: 0;
+      font-size: .85rem;
 
       &-wo {
         color: bolt-color(teal);
@@ -468,10 +473,12 @@ $pega-wwo--content-max-mobile-width: 550px;
         color: bolt-color(yellow);
       }
     }
+
     &-title {
-      font-size: 2.15rem;
       line-height: 1.05;
+      font-size: 2.15rem;
     }
+
     &-blocks {
       display: flex;
       flex-wrap: wrap;
