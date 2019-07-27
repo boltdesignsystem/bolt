@@ -6,5 +6,5 @@ polyfillLoader.then(res => {
     webpackMode: 'eager',
     webpackChunkName: 'with-without'
   */ './js/with-without'
-    );
+  );
 });
