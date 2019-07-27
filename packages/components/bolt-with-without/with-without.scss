@@ -1,0 +1,494 @@
+@import '@bolt/core';
+
+@import "./SimpleSwitch.scss";
+
+$simple-switch_height: 40px;
+$pega-wwo--block-width-basis: 6%; // ~100px at full site width.
+$pega-wwo--max-width: 100%;
+$pega-wwo--sm-circle-size: 10px;
+$pega-wwo--dashed-circle-size: 28.35%;
+$pega-wwo--content-max-mobile-width: 550px;
+
+:root {
+  --theme-bg: #161b3c;
+  --theme-primary: #464a6d;
+  --theme-secondary: #161f50;
+  --theme-text: white;
+  --theme-text-rgb: 255,255,255;
+  --theme-border: rgba(255, 255, 255, 0.2);
+}
+
+.c-pega-wwo {
+  color: bolt-color(white);
+  background-color: bolt-color(black);
+  line-height: 1.4;
+  min-height: 100vh;
+  height: 100%;
+
+  &__wrapper {
+    display: none;
+    position: relative;
+    //max-width: $pega-wwo--max-width;
+    width: 100%;
+    margin: 0 auto;
+    background-size: $pega-wwo--max-width auto;
+    background-repeat: no-repeat;
+    // Scale bg image by width Padding is relative to width. So this is an aspect ratio hack.
+    padding-bottom: 174.15%;
+    height: 0;
+    overflow: visible;
+
+    @include bolt-mq($from: large) {
+      padding-bottom: 59.222%;
+    }
+  }
+
+  &__inner {
+    padding: 0 bolt-spacing(medium) bolt-spacing(medium) bolt-spacing(medium);
+    @include bolt-mq($from: large) {
+      padding: 0;
+    }
+  }
+
+  &__active-wo {
+    display: block;
+    background-image: url("./img/BG_withoutPega_mobile.jpg");
+
+    @include bolt-mq($from: large) {
+      background-image: url("./img/BG_without_desktop.jpg");
+    }
+
+    .c-pega-wwo__content-w {
+      display: none;
+    }
+
+    .c-pega-wwo__content-wo {
+      display: block;
+    }
+  }
+
+  &__active-w {
+    display: block;
+    background-image: url("./img/BG_withPega_mobile.jpg");
+
+    @include bolt-mq($from: large) {
+      background-image: url("./img/BG_withPega_desktop.jpg");
+    }
+
+    .c-pega-wwo__content-wo {
+      display: none;
+    }
+
+    .c-pega-wwo__content-w {
+      display: block;
+    }
+  }
+
+  &__title {
+    padding-top: bolt-spacing('large');
+    text-align: center;
+    font-size: 28px;
+    font-weight: normal;
+  }
+
+  &__circles {
+    display: none;
+
+    @include bolt-mq($from: large) {
+      display: block;
+      position: absolute;
+      width: $pega-wwo--dashed-circle-size;
+      min-height: $pega-wwo--dashed-circle-size;
+    }
+
+    &-wo {
+      left: 23.7%;
+      top: 30.5%
+    }
+
+    &-w {
+      left: 19.7%;
+      top: 30.5%
+    }
+  }
+
+  &__dashed-circle {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__sm-circle {
+    display: none;
+
+    @include bolt-mq($from: large) {
+      display: block;
+      position: absolute;
+      width: $pega-wwo--sm-circle-size;
+      height: $pega-wwo--sm-circle-size;
+      border-radius: 50%;
+      background-color: bolt-color(white);
+    }
+
+    &-wo-1 {
+
+    }
+
+    &-wo-2 {
+
+    }
+
+    &-wo-3 {
+
+    }
+
+    &-w-1 {
+
+    }
+
+    &-w-2 {
+
+    }
+
+    &-w-3 {
+
+    }
+
+    &-w-4 {
+
+    }
+  }
+
+  &__toggle {
+    margin-top: bolt-spacing(medium);
+    position: relative;
+    text-align: center;
+    height: $simple-switch_height;
+    margin-bottom: bolt-spacing(large);
+
+    &-input {
+      opacity: 0;
+    }
+
+    button {
+      display: inline;
+      cursor: pointer;
+      height: $simple-switch_height;
+      background-color: bolt-color(white);
+
+      .handle {
+        width: $simple-switch_size + 40px;
+        height: $simple-switch_height - ($simple-switch_outline-size * 2);
+        // @TODO replace with animation design token. Also in simple switch.
+        transition: background-color 50ms linear;
+      }
+
+      &.on .handle {
+        background-color: bolt-color(yellow);
+      }
+    }
+
+    &-labels {
+      position: absolute;
+      display: flex;
+      pointer-events: none;
+      top: 50%;
+      left: 50%;
+      width: $simple-switch_size * 2 + 85px;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      color: bolt-color('black');
+      text-decoration: none;
+      z-index: 9;
+      padding-bottom: 1px;
+      padding-left: 5px;
+    }
+
+    &-label {
+      flex-grow: 1;
+
+      &-w {
+        flex: 0 0 50%;
+      }
+
+      &-wo {
+        flex: 0 0 50%;
+      }
+    }
+  }
+
+  &__content-wrapper {
+    margin: 0 auto;
+    max-width: $pega-wwo--content-max-mobile-width;
+
+    @include bolt-mq($from: large) {
+      max-width: none;
+    }
+  }
+
+  &__block {
+    margin-bottom: 2rem;
+
+    @include bolt-mq($from: large) {
+      width: calc(#{$pega-wwo--block-width-basis} + 100px);
+    }
+
+    &-title {
+
+    }
+
+    &-body {
+      font-size: 13px;
+      margin-bottom: .5rem;
+    }
+
+    &-ul {
+      margin-left: 1rem;
+    }
+
+    &-li {
+      line-height: 1.65;
+    }
+
+    &-number-label {
+      font-size: 13px;
+    }
+
+    &-numbers-wrapper {
+      display: none;
+
+      @include bolt-mq($from: large) {
+        display: flex;
+      }
+    }
+
+    &-number-wrapper {
+      flex: 1 1 50%;
+    }
+
+    &-number {
+      font-weight: 800;
+      font-size: 30px;
+    }
+
+    &-number-label {
+
+    }
+
+    &-action {
+      &-link {
+        font-weight: 600;
+      }
+    }
+
+    &-block-credit-wo {
+
+      @include bolt-mq($from: large) {
+        position: absolute;
+        top: 24%;
+        left: 10%;
+        width: calc(#{$pega-wwo--block-width-basis} + 110px);
+      }
+    }
+
+    &-block-frustration-wo {
+      @include bolt-mq($from: large) {
+        top: 57%;
+        left: 10%;
+        width: calc(#{$pega-wwo--block-width-basis} + 110px);
+      }
+
+      .c-pega-wwo__block-body,
+      .c-pega-wwo__block-action {
+        display: none;
+        @include bolt-mq($from: large) {
+          display: block;
+        }
+      }
+    }
+    &-block-business-wo {
+      @include bolt-mq($from: large) {
+        top: 82.5%;
+        left: 29%;
+        width: calc(#{$pega-wwo--block-width-basis} + 70px);
+      }
+
+      .c-pega-wwo__block-body,
+      .c-pega-wwo__block-action {
+        display: none;
+        @include bolt-mq($from: large) {
+          display: block;
+        }
+      }
+    }
+    // Result region blocks
+    &-block-outcome-customer-wo {
+    }
+
+    &-block-outcome-business-wo {
+    }
+
+    &-block-conversion-w {
+      display: none;
+      flex: 1 0 100%;
+
+      @include bolt-mq($from: large) {
+        display: block;
+      }
+    }
+
+    &-block-credit-w {
+      @include bolt-mq($from: large) {
+        top: 22%;
+        left: 9%;
+      }
+      .c-pega-wwo__block-body {
+        display: none;
+        @include bolt-mq($from: large) {
+          display: block;
+        }
+      }
+    }
+    &-block-signals-w {
+      .c-pega-wwo__block-title {
+        color: bolt-color(yellow);
+      }
+
+      @include bolt-mq($from: large) {
+        top: 44%;
+        left: 4.3%;
+        width: calc(#{$pega-wwo--block-width-basis} + 110px);
+      }
+    }
+
+    &-block-respond-w {
+      @include bolt-mq($from: large) {
+        display: block;
+        top: 70.5%;
+        left: 7%;
+        width: calc(#{$pega-wwo--block-width-basis} + 170px);
+      }
+
+      .c-pega-wwo__block-title {
+        color: bolt-color(yellow);
+      }
+
+      .c-pega-wwo__block-body {
+        display: none;
+        @include bolt-mq($from: large) {
+          display: block;
+        }
+
+      }
+    }
+
+    &-block-relationship-w {
+      top: 78%;
+      left: 39%;
+      width: calc(#{$pega-wwo--block-width-basis} + 200px);
+
+      .c-pega-wwo__block-body {
+        display: none;
+        @include bolt-mq($from: large) {
+          display: block;
+        }
+      }
+    }
+  }
+  &__icon {
+    &-credit-card {
+
+    }
+    &-eye {
+
+    }
+    &-sad-face {
+
+    }
+    &-happy-face {
+
+    }
+    &-graph {
+
+    }
+  }
+  &__arrow {
+    position: relative;
+    top: .05em;
+  }
+
+  &__region {
+    &-blocks {
+      padding-left: bolt-spacing(medium);
+      position: relative;
+
+      @include bolt-mq($from: large) {
+        position: static;
+        padding: 0;
+      }
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 2em;
+        left: 0;
+        height: calc(100% - 3em);
+        border-left: 2px dashed bolt-color(white);
+      }
+      .c-pega-wwo__block {
+        @include bolt-mq($from: large) {
+          position: absolute;
+        }
+      }
+    }
+    &-result {
+      $pega-wwo--result-left-pos: 63%;
+      max-width: $pega-wwo--content-max-mobile-width;
+
+      @include bolt-mq($from: large) {
+        position: absolute;
+        top: 45.5%;
+        left: $pega-wwo--result-left-pos;
+        max-width: 29%;
+        min-width: 350px;
+      }
+    }
+  }
+  &__result {
+    &-label {
+      text-transform: uppercase;
+      font-size: .85rem;
+      letter-spacing: 0;
+
+      &-wo {
+        color: bolt-color(teal);
+      }
+
+      &-w {
+        color: bolt-color(yellow);
+      }
+    }
+    &-title {
+      font-size: 2.15rem;
+      line-height: 1.05;
+    }
+    &-blocks {
+      display: flex;
+      flex-wrap: wrap;
+
+      .c-pega-wwo__block {
+        flex: 1 1 50%;
+      }
+
+      .c-pega-wwo__block-block-conversion-w {
+        flex: 1 0 100%;
+      }
+    }
+  }
+  &__wo {
+
+  }
+  &__w {
+
+  }
+}

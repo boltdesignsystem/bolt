@@ -130,6 +130,7 @@ const config = {
       '@bolt/components-ul',
       '@bolt/components-ol',
       '@bolt/components-video',
+      '@bolt/components-with-without',
       '@bolt/components-grid',
       /**
        * note: resolving these paths isn't typically required when
