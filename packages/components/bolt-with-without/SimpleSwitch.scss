@@ -13,35 +13,35 @@ $simple-switch_tray-color: bolt-color('white') !default;
 
 // Hide the checkbox, but keep it in the DOM so it is visible to screen readers
 ._simple-switch-checkbox {
-    height: 0px;
-    width: 0px;
-    overflow: hidden;
     opacity: 0;
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
 }
 
 ._simple-switch-track {
     --simple-switch_size: #{$simple-switch_size};
 
     display: inline-block;
+    box-sizing: padding-box;
     position: relative;
-    vertical-align: baseline;
-    background: $simple-switch_tray-color;
-    border-radius: $simple-switch_size;
     padding: 0 calc((#{$simple-switch_size} * 1.25) - #{$simple-switch_outline-size * 2}) 0 0;
+    vertical-align: baseline;
     border: #{$simple-switch_outline-size} solid $simple-switch_tray-color;
+    border-radius: $simple-switch_size;
+    outline: none;
+    background: $simple-switch_tray-color;
     transition: background $simple-switch_switch-speed ease-out,
                 border $simple-switch_switch-speed ease-out;
-    outline: none;
-    box-sizing: padding-box;
 
     @supports(--foobar: false) {
-        border-radius: var(--simple-switch_size);
         padding: 0 calc((var(--simple-switch_size) * 1.25) - #{$simple-switch_outline-size * 2}) 0 0;
+        border-radius: var(--simple-switch_size);
     }
 
     &.on {
-        background: $simple-switch_color;
         border: #{$simple-switch_outline-size} solid $simple-switch_color;
+        background: $simple-switch_color;
 
         .handle {
             transform: translateX(calc((#{$simple-switch_size} * 1.25) - #{$simple-switch_outline-size * 2}));
@@ -57,15 +57,15 @@ $simple-switch_tray-color: bolt-color('white') !default;
     }
 
     .handle {
+        display: block;
         position: relative;
+        z-index: 2;
         width: calc(#{$simple-switch_size - ($simple-switch_outline-size * 2)});
         height: calc(#{$simple-switch_size - ($simple-switch_outline-size * 2)});
         border-radius: $simple-switch_size;
         background: $simple-switch_handle-color;
-        display: block;
-        transition: transform $simple-switch_switch-speed ease-out;
         will-change: transition;
-        z-index: 2;
+        transition: transform $simple-switch_switch-speed ease-out;
 
         @supports(--foobar: false) {
             width: calc(var(--simple-switch_size) - #{$simple-switch_outline-size * 2});
@@ -76,16 +76,16 @@ $simple-switch_tray-color: bolt-color('white') !default;
 
     // Material mode (makes the Switch match the material.io spec)
     &._material {
-        padding: 0;
-        margin: $simple-switch_outline-size 0;
-        height: #{$simple-switch_size - $simple-switch_outline-size};
         width: #{$simple-switch_size * 1.5};
-        border: none;
+        height: #{$simple-switch_size - $simple-switch_outline-size};
+        margin: $simple-switch_outline-size 0;
+        padding: 0;
         vertical-align: top;
+        border: none;
 
         @supports(--foobar: false) {
-            height: calc(var(--simple-switch_size) - #{$simple-switch_outline-size});
             width: calc(var(--simple-switch_size) * 1.5);
+            height: calc(var(--simple-switch_size) - #{$simple-switch_outline-size});
         }
 
         &.on {
@@ -100,8 +100,8 @@ $simple-switch_tray-color: bolt-color('white') !default;
             }
 
             .handle {
-                background: darken($simple-switch_color, 15%);
                 transform: translateX(#{$simple-switch_size - $simple-switch_outline-size});
+                background: darken($simple-switch_color, 15%);
 
                 @supports(--foobar: false) {
                     transform: translateX(calc(var(--simple-switch_size) - #{$simple-switch_outline-size}));
@@ -114,15 +114,15 @@ $simple-switch_tray-color: bolt-color('white') !default;
             $_extra: $simple-switch_focus-ring-size;
 
             content: "";
+            opacity: 0;
             position: absolute;
             top: #{(-0.75 * $simple-switch_outline-size) - $_extra};
             left: #{(-1 * $simple-switch_outline-size) - $_extra};
+            z-index: 1;
             width: ($simple-switch_size + ($_extra * 2));
             height: ($simple-switch_size + ($_extra * 2));
-            z-index: 1;
-            background: rgba(0, 0, 0, 0.125);
             border-radius: ($simple-switch_size + ($_extra * 2));
-            opacity: 0;
+            background: rgba(0, 0, 0, 0.125);
             will-change: opacity;
             transition: opacity $simple-switch_switch-speed ease-out,
                         transform $simple-switch_switch-speed ease-out;
