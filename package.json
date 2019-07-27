@@ -98,24 +98,22 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
-    "conf": "^5.0.0",
-    "get-port": "^5.0.0",
-    "patch-package": "^6.1.2",
-    "postinstall-postinstall": "^2.0.0",
+    "@bolt/testing-utils": "^2.5.2",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@instructure/cz-lerna-changelog": "^6.6.0",
     "@open-wc/testing-helpers": "^1.0.10",
     "ci-utils": "^0.6.0",
     "commitizen": "^3.1.1",
+    "conf": "^5.0.0",
     "conventional-changelog-cli": "^2.0.21",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^6.0.1",
-    "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-prettier": "^3.1.0",
-    "globby": "^10.0.1",
-    "@bolt/testing-utils": "^2.5.2",
+    "eslint-plugin-react": "^7.14.2",
     "find-pkg": "^2.0.0",
+    "get-port": "^5.0.0",
+    "globby": "^10.0.1",
     "haunted": "^4.4.0",
     "husky": "^3.0.0",
     "jest": "^24.8.0",
@@ -124,6 +122,8 @@
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.1",
     "npm-run-all": "^4.1.5",
+    "patch-package": "^6.1.2",
+    "postinstall-postinstall": "^2.0.0",
     "proxy-polyfill": "^0.3.0",
     "release-it": "^12.3.2",
     "semantic-release": "^15.13.18",
@@ -133,6 +133,9 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.15"
+    "@types/jest": "^24.0.15",
+    "stylelint": "^10.1.0",
+    "stylelint-order": "^3.0.1",
+    "stylelint-scss": "^3.9.2"
   }
 }

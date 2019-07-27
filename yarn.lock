@@ -12416,6 +12416,11 @@ lodash@4.x, lodash@>=3.10.0, "lodash@>=3.5 <5", lodash@^4.0.0, lodash@^4.11.1, l
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.13.tgz#0bdc3a6adc873d2f4e0c4bac285df91b64fc7b93"
   integrity sha512-vm3/XWXfWtRua0FkUyEHBZy8kCPjErNBT9fJx8Zvs+U6zjqPbTUOpkaoum3O5uiA8sm+yNMHXfYkTUHFoMxFNA==
 
+lodash@^4.17.14:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+
 log-symbols@2.2.0, log-symbols@^2.0.0, log-symbols@^2.1.0, log-symbols@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/log-symbols/-/log-symbols-2.2.0.tgz#5740e1c5d6f0dfda4ad9323b5332107ef6b4c40a"
@@ -15640,6 +15645,14 @@ postcss-sorting@^5.0.0:
     lodash "^4.17.11"
     postcss "^7.0.14"
 
+postcss-sorting@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-sorting/-/postcss-sorting-5.0.1.tgz#10d5d0059eea8334dacc820c0121864035bc3f11"
+  integrity sha512-Y9fUFkIhfrm6i0Ta3n+89j56EFqaNRdUKqXyRp6kvTcSXnmgEjaVowCXH+JBe9+YKWqd4nc28r2sgwnzJalccA==
+  dependencies:
+    lodash "^4.17.14"
+    postcss "^7.0.17"
+
 postcss-svgo@^4.0.2:
   version "4.0.2"
   resolved "https://registry.npmjs.org/postcss-svgo/-/postcss-svgo-4.0.2.tgz#17b997bc711b333bab143aaed3b8d3d6e3d38258"
@@ -18726,10 +18739,30 @@ stylelint-order@^3.0.0:
     postcss "^7.0.14"
     postcss-sorting "^5.0.0"
 
+stylelint-order@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/stylelint-order/-/stylelint-order-3.0.1.tgz#f1dd5e39345d04b684a6f04f1133cafa28606175"
+  integrity sha512-isVEJ1oUoVB7bb5pYop96KYOac4c+tLOqa5dPtAEwAwQUVSbi7OPFbfaCclcTjOlXicymasLpwhRirhFWh93yw==
+  dependencies:
+    lodash "^4.17.14"
+    postcss "^7.0.17"
+    postcss-sorting "^5.0.1"
+
 stylelint-scss@^3.6.1:
   version "3.9.1"
   resolved "https://registry.npmjs.org/stylelint-scss/-/stylelint-scss-3.9.1.tgz#c34a41f2587cce85e0769b025377ece44db13724"
   integrity sha512-Z+q3z12QpkWEJsoWm/QLGvu3VJXpZbZYaEXdU4EIo3o6lVgXIwMj+ntW81Jj2bk9f6+aMVmtzfJVhdS7Sz5orA==
+  dependencies:
+    lodash "^4.17.11"
+    postcss-media-query-parser "^0.2.3"
+    postcss-resolve-nested-selector "^0.1.1"
+    postcss-selector-parser "^6.0.2"
+    postcss-value-parser "^4.0.0"
+
+stylelint-scss@^3.9.2:
+  version "3.9.2"
+  resolved "https://registry.yarnpkg.com/stylelint-scss/-/stylelint-scss-3.9.2.tgz#5435174a57696ee52eae40146778a4e62f7ed3a3"
+  integrity sha512-VUh173p3T1qJf016P7yeJ6nxkUpqF5qQ+VSDw3J8P6wEJbA1loaNgBHR3k3skHvUkF+9brLO1ibCHA00pjW3cw==
   dependencies:
     lodash "^4.17.11"
     postcss-media-query-parser "^0.2.3"
@@ -18747,7 +18780,7 @@ stylelint-selector-bem-pattern@^2.1.0:
     postcss-bem-linter "^3.0.0"
     stylelint ">=3.0.2"
 
-stylelint@>=3.0.2, stylelint@^10.0.1:
+stylelint@>=3.0.2, stylelint@^10.0.1, stylelint@^10.1.0:
   version "10.1.0"
   resolved "https://registry.npmjs.org/stylelint/-/stylelint-10.1.0.tgz#1bc4c4ce878107e7c396b19226d91ba28268911a"
   integrity sha512-OmlUXrgzEMLQYj1JPTpyZPR9G4bl0StidfHnGJEMpdiQ0JyTq0MPg1xkHk1/xVJ2rTPESyJCDWjG8Kbpoo7Kuw==
