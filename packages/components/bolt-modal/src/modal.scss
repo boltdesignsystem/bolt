@@ -412,3 +412,13 @@ bolt-modal:not([ready]) {
 .c-bolt-modal__dialog-title {
   @include bolt-visuallyhidden;
 }
+
+// https://davidwalsh.name/detect-scrollbar-width
+// @todo: refactor into core JS/CSS
+.c-bolt-modal__scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 100px;
+  height: 100px;
+  overflow: scroll;
+}

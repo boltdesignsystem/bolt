@@ -1,6 +1,11 @@
 // based originally off of https://github.com/edenspiekermann/a11y-dialog before heavy modifications and customizations
 
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import {
+  props,
+  define,
+  hasNativeShadowDomSupport,
+  getTransitionDuration,
+} from '@bolt/core/utils';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
@@ -53,6 +58,7 @@ class BoltModal extends withLitHtml() {
     super.connecting && super.connecting();
     document.addEventListener('keydown', this._handleKeyPresseskeypress);
     this.setAttribute('ready', '');
+    this.scrollbarWidth = this._getScrollbarWidth();
   }
 
   // Initialise everything needed for the dialog to work properly
@@ -95,7 +101,7 @@ class BoltModal extends withLitHtml() {
     // triggers re-render
     this.open = true;
 
-    document.body.classList.add('u-bolt-overflow-hidden');
+    this._setScrollbar();
 
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
     // this.querySelector('[slot="trigger"]').setAttribute('tabindex', '-1');
@@ -127,8 +133,14 @@ class BoltModal extends withLitHtml() {
     this.focusTrap.active = false;
     this.open = false;
     this.ready = false;
+    this.transitionDuration = getTransitionDuration(
+      this.renderRoot.querySelector('.c-bolt-modal'),
+    );
 
-    document.body.classList.remove('u-bolt-overflow-hidden');
+    // Wait until after transition or modal will shift
+    setTimeout(() => {
+      this._resetScrollbar();
+    }, this.transitionDuration);
 
     // @todo: refactor this to be more component / element agnostic
     if (this.focusedBeforeDialog) {
@@ -160,6 +172,11 @@ class BoltModal extends withLitHtml() {
     }
 
     this.dispatchEvent(new CustomEvent('modal:hide'));
+  }
+
+  get _bodyHasScrollbar() {
+    const bodyRect = document.body.getBoundingClientRect();
+    return bodyRect.left + bodyRect.right < window.innerWidth;
   }
 
   /**
@@ -203,6 +220,52 @@ class BoltModal extends withLitHtml() {
   _handleTriggerBlur(e) {
     const closeButton = e.target.closest('.c-bolt-modal__close-button');
     closeButton.classList.remove('c-bolt-modal__close-button--focus-within');
+  }
+
+  _setScrollbar() {
+    // Technique inspired by Bootstrap Modal: https://github.com/twbs/bootstrap/blob/master/js/src/modal/modal.js
+
+    if (this._bodyHasScrollbar) {
+      const originalPadding = document.body.style.paddingRight;
+      const calculatedPadding = window.getComputedStyle(document.body)[
+        'padding-right'
+      ];
+
+      // Save original padding value for later
+      document.body.setAttribute('data-padding-right', originalPadding);
+      document.body.style.paddingRight = `${parseFloat(calculatedPadding) +
+        this.scrollbarWidth}px`;
+    }
+
+    document.body.classList.add('u-bolt-overflow-hidden');
+  }
+
+  _resetScrollbar() {
+    const padding = document.body.getAttribute('data-padding-right');
+
+    document.body.style.paddingRight = '';
+
+    if (typeof padding === 'undefined') {
+      document.body.style.paddingRight = '';
+    } else {
+      document.body.removeAttribute('data-padding-right');
+      // Restore original padding value
+      document.body.style.paddingRight = padding;
+    }
+
+    document.body.classList.remove('u-bolt-overflow-hidden');
+  }
+
+  // @todo: refactor into core JS/CSS
+  _getScrollbarWidth() {
+    // https://davidwalsh.name/detect-scrollbar-width
+    const scrollDiv = document.createElement('div');
+    scrollDiv.className = 'c-bolt-modal__scrollbar-measure';
+    document.body.appendChild(scrollDiv);
+    const scrollbarWidth =
+      scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
+    document.body.removeChild(scrollDiv);
+    return scrollbarWidth;
   }
 
   /**
