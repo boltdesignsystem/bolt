@@ -88,8 +88,7 @@ $bolt-trigger-cursor-values: auto pointer zoom-in zoom-out; // These values need
       }
     } @else if $cursor == zoom-out {
       @include bolt-ie11-only {
-        cursor: url('~@bolt/components-trigger/src/cursor-zoom-out.cur'),
-          pointer;
+        cursor: url('~@bolt/components-trigger/src/cursor-zoom-out.cur'), pointer;
       }
     }
   }
