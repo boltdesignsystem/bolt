@@ -2,6 +2,7 @@ import './components/version-selector/version-selector';
 // import './components/schema-form'; // Component Explorer is temporarily disabled until we're done migrating our Twig Rendering Service to Now.sh v2
 import './components/handle-iframe-height';
 import './pages/pattern-lab/_patterns/02-components/card/__tests__';
+import './pages/pattern-lab/_patterns/01-visual-styles/30-animations';
 // import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-preact-test';
 // import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-lit-test';
 // import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/lazy-lit-test';

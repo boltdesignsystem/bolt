@@ -1,0 +1,90 @@
+<h2>Animation/Transition Settings</h2>
+<p>Animation/Transition Settings are the core values that define animations and transitions within the Bolt design system. These settings include values such as animation duration, timing functions, and delays.</p>
+
+<div style="padding: 2rem">
+  <h2>Durations: <button id="durations-demo-trigger">Trigger</button></h2>
+  <p>Duration is how long an animation or transition takes from beginning to end.</p>
+  <div id="durations-demo">
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--duration-xfast"><strong>Extra Fast: 0.2s</strong> (Hover or Trigger)</div>
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--duration-fast"><strong>Fast: 0.5s</strong> (Hover or Trigger)</div>
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--duration-medium"><strong>Medium: 1s</strong> (Hover or Trigger)</div>
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--duration-slow"><strong>Slow: 1.5s</strong> (Hover or Trigger)</div>
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--duration-xslow"><strong>Extra Slow: 2.3s</strong> (Hover or Trigger)</div>
+  </div>
+{{ '```scss
+$bolt-duration--xfast: 0.2s;
+$bolt-duration--fast: 0.5s;
+$bolt-duration--medium: 1s;
+$bolt-duration--slow: 1.5s;
+$bolt-duration--xslow: 2.3s;
+```' | markdown }}
+</div>
+
+<div style="padding: 2rem">
+  <h2>Timing Functions: <button id="timings-demo-trigger">Trigger</button></h2>
+  <p>Timing functions the rate of change over time for any given animation or transition.</p>
+  <div id="timings-demo">
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--timing-linear"><strong>Linear</strong> (Hover or Trigger)</div>
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--timing-ease-out"><strong>Ease out</strong> (Hover or Trigger)</div>
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--timing-ease-in"><strong>Ease In</strong> (Hover or Trigger)</div>
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--timing-ease-in-out"><strong>East In Out</strong> (Hover or Trigger)</div>
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--timing-swing-in-out"><strong>Swing In Out</strong> (Hover or Trigger)</div>
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--timing-burst"><strong>Burst</strong> (Hover or Trigger)</div>
+    <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--timing-snap"><strong>Snap</strong> (Hover or Trigger)</div>
+  </div>
+{{ '```scss
+$bolt-timing--linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+$bolt-timing--ease-out: cubic-bezier(0, 0, 0.1, 1);
+$bolt-timing--ease-in: cubic-bezier(0.9, 0, 1, 1);
+$bolt-timing--ease-in-out: cubic-bezier(0.5, 0, 0.5, 1);
+$bolt-timing--swing-in-out: cubic-bezier(1, -0.5, 0, 1.5);
+$bolt-timing--burst: cubic-bezier(0, 1, 0, 1);
+$bolt-timing--snap: cubic-bezier(1, 0, 1, 0);
+```' | markdown }}
+</div>
+
+<div style="padding: 2rem">
+  <h2>Delays: <button id="delays-demo-trigger">Trigger</button></h2>
+  <p>Delay is the time between the trigger and the start of animation or transition.</p>
+  <div id="delays-demo">
+  <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--delay-xsmall"><strong>Extra Small: 0.05s</strong> (Hover or Trigger)</div>
+  <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--delay-small"><strong>Small: 0.2s</strong> (Hover or Trigger)</div>
+  <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--delay-medium"><strong>Medium: 0.5s</strong> (Hover or Trigger)</div>
+  <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--delay-long"><strong>Long: 1s</strong> (Hover or Trigger)</div>
+  <div class="demo-animated-bar demo-animated-bar--with-slider demo-animated-bar--delay-xlong"><strong>Extra Long: 1.5s</strong> (Hover or Trigger)</div>
+  </div>
+{{ '```scss
+$bolt-delay--xsmall: 0.05s;
+$bolt-delay--small: 0.2s;
+$bolt-delay--medium: 0.5s;
+$bolt-delay--long: 1s;
+$bolt-delay--xlong: 1.5s;
+```' | markdown }}
+</div>
+
+
+<script>
+  // Durations Demo
+  document.querySelector('#durations-demo-trigger').addEventListener('click', function() {
+    document.querySelectorAll('#durations-demo .demo-animated-bar').forEach(function(el) {el.setAttribute('data-anim-triggered', 'yes')});
+    setTimeout(function() {
+      document.querySelectorAll('#durations-demo .demo-animated-bar').forEach(function(el) {el.setAttribute('data-anim-triggered', 'no')});
+    }, 2500);
+  });
+
+  // Delays Demo
+  document.querySelector('#delays-demo-trigger').addEventListener('click', function() {
+    document.querySelectorAll('#delays-demo .demo-animated-bar').forEach(function(el) {el.setAttribute('data-anim-triggered', 'yes')});
+    setTimeout(function() {
+      document.querySelectorAll('#delays-demo .demo-animated-bar').forEach(function(el) {el.setAttribute('data-anim-triggered', 'no')});
+    }, 2000);
+  });
+
+  // Timing Functions Demo
+  document.querySelector('#timings-demo-trigger').addEventListener('click', function() {
+    document.querySelectorAll('#timings-demo .demo-animated-bar').forEach(function(el) {el.setAttribute('data-anim-triggered', 'yes')});
+    setTimeout(function() {
+      document.querySelectorAll('#timings-demo .demo-animated-bar').forEach(function(el) {el.setAttribute('data-anim-triggered', 'no')});
+    }, 4000);
+  });
+</script>
