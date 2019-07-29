@@ -84,15 +84,12 @@ $bolt-trigger-cursor-values: auto pointer zoom-in zoom-out; // These values need
 
     @if $cursor == zoom-in {
       @include bolt-ie11-only {
-        // @todo: fix webpack errors file path
-        /* cursor: url('~@bolt/components-trigger/src/cursor-zoom-in.cur'), pointer; */
+        cursor: url('~@bolt/components-trigger/src/cursor-zoom-in.cur'), pointer;
       }
-    }
-
-    @else if $cursor == zoom-out {
+    } @else if $cursor == zoom-out {
       @include bolt-ie11-only {
-        // @todo: fix webpack errors file path
-        /* cursor: url('~@bolt/components-trigger/src/cursor-zoom-out.cur'), pointer; */
+        cursor: url('~@bolt/components-trigger/src/cursor-zoom-out.cur'),
+          pointer;
       }
     }
   }
