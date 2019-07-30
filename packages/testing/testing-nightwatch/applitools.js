@@ -8,7 +8,6 @@ class Applitools {
   constructor() {
     this.eyes = new Eyes();
     this.eyes.setApiKey(process.env.BOLT_APPLITOOLS_API_KEY);
-    this.eyes.setHostApp('Bolt Design System');
     this.eyes.setLogHandler(new ConsoleLogHandler(false));
     this.screenshotDir = 'screenshots';
     this.vrtTest = this.vrtTest.bind(this);
@@ -56,6 +55,14 @@ class Applitools {
         // Load screenshot to Applitools
         // https://applitools.com/docs/api/eyes-sdk/classes-gen/class_eyes/method-eyes-open-selenium-javascript.html
         this.eyes.setHostOS(hostOs);
+        this.eyes.setHostApp(currentBrowser);
+        this.eyes.setBatch(
+          process.env.TRAVIS_JOB_ID
+            ? 'Bolt Testing Batch - Travis'
+            : 'Bolt Testing Batch - Local',
+          browser.globals.applitoolsBatchId,
+          0,
+        ); // https://applitools.com/docs/topics/working-with-test-batches/batching-tests-in-a-distributed-environment.html
         await this.eyes.open('image comparison', testName);
         await this.eyes.checkImage(screenshot, testName);
         try {

@@ -2,6 +2,7 @@ const globby = require('globby');
 const path = require('path');
 const { handleNightwatchResults } = require('./nightwatch.handle-results');
 const { NOW_URL } = process.env;
+const uuidv1 = require('uuid/v1');
 
 const testingUrl = NOW_URL ? NOW_URL : 'https://boltdesignsystem.com';
 
@@ -24,6 +25,7 @@ module.exports = {
     testingUrl,
     results: [],
     testCount: 0,
+    applitoolsBatchId: process.env.TRAVIS_JOB_ID || uuidv1(),
 
     afterEach(browser, cb) {
       handleNightwatchResults(browser, cb);

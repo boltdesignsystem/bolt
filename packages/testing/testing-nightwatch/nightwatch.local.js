@@ -3,6 +3,7 @@ const path = require('path');
 const seleniumServer = require('selenium-server');
 const chromeDriver = require('chromedriver');
 // const geckoDriver = require('geckodriver'); // temporarily disabling FF testing till self-signed cert issue (when installing geckodriver) is debugged
+const uuidv1 = require('uuid/v1');
 const { NOW_URL } = process.env;
 
 const testingUrl = NOW_URL ? NOW_URL : 'http://localhost:3000';
@@ -24,6 +25,7 @@ module.exports = {
   globals: {
     waitForConditionTimeout: 5000,
     testingUrl,
+    applitoolsBatchId: process.env.TRAVIS_JOB_ID || "1-2-3-4-local-id", // @todo figure out how to set a uuid that persists across multiple tests. Nightwatch reboots per .e2e.js file
   },
   src_folders: srcFolders,
   selenium: {

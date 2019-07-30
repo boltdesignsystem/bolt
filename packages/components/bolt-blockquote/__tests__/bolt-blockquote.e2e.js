@@ -1,3 +1,5 @@
+const applitools = require('@bolt/nightwatch-config/applitools');
+
 let currentBrowser;
 
 module.exports = {
@@ -37,5 +39,13 @@ module.exports = {
         `screenshots/bolt-blockquote/${testName}--${currentBrowser}.png`,
       )
       .end();
+  },
+  Applitool(browser) {
+    applitools.vrtTest({
+      browser,
+      testName: 'bolt-blockquote',
+      testingPath:
+        '/pattern-lab/patterns/02-components-blockquote-10-blockquote-alignItems-variation/02-components-blockquote-10-blockquote-alignItems-variation.html',
+    });
   },
 };
