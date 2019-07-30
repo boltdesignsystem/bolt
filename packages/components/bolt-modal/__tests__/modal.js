@@ -20,7 +20,7 @@ async function renderTwigString(template, data) {
 }
 
 const imageVrtConfig = {
-  failureThreshold: '0.005',
+  failureThreshold: '0.02',
   failureThresholdType: 'percent',
   customDiffConfig: {
     threshold: '0.1',
@@ -174,7 +174,7 @@ describe('<bolt-modal> Component', () => {
         '@bolt-components-modal/modal.twig',
         {
           content:
-            '<bolt-text tag="h3" slot="header">This is the header xyz</bolt-text><bolt-text>This is the body (default).</bolt-text><bolt-text slot="footer">This is the footer</bolt-text>',
+            '<bolt-text tag="h3" slot="header">This is the header</bolt-text><bolt-text>This is the body (default).</bolt-text><bolt-text slot="footer">This is the footer</bolt-text>',
         },
       );
       expect(ok).toBe(true);
