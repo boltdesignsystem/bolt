@@ -1,8 +1,8 @@
 const globby = require('globby');
 const path = require('path');
+const uuidv1 = require('uuid/v1');
 const { handleNightwatchResults } = require('./nightwatch.handle-results');
 const { NOW_URL } = process.env;
-const uuidv1 = require('uuid/v1');
 
 const testingUrl = NOW_URL ? NOW_URL : 'https://boltdesignsystem.com';
 
