@@ -66,8 +66,9 @@ class BoltInteractiveStep extends withLitHtml() {
           slot.forEach(
             /** @type {HTMLElement} */
             slotElement => {
-              if (slotElement.tagName === 'BOLT-ANIMATION-WRAPPER') {
-                slotElement.animTriggered = isActive;
+              if (slotElement.tagName === 'BOLT-ANIMATE') {
+                // @todo improve trigger out, this logic previously only supported triggering build in
+                slotElement.setAttribute('trigger', isActive ? 'in' : 'out');
               }
             },
           );

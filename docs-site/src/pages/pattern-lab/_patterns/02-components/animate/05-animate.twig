@@ -1,0 +1,35 @@
+<div class="demo-animate">
+
+  <button onclick="trigger('in')">Trigger Build In</button>
+  <button onclick="trigger('out')">Trigger Build Out</button>
+  <div class="demo-animate__items">
+    <bolt-animate
+      initial-appearance="hidden"
+      in="fade-in-slide-left"
+      in-duration="1000"
+      in-easing="ease-out"
+      idle="pulse"
+      idle-delay="500"
+      out="fade-out-slide-right"
+    >
+      <h2>Hi!</h2>
+    </bolt-animate>
+  </div>
+
+
+  <script type="application/javascript">
+    const els = document.querySelectorAll('.demo-animate__items bolt-animate');
+    els.forEach(el => {
+      el.addEventListener('bolt-animate:end', event => {
+        console.log('pl bolt-animate:end', event);
+      });
+    });
+
+    function trigger(type) {
+      els.forEach(el => {
+        el.setAttribute('trigger', type);
+      });
+    }
+  </script>
+
+</div>

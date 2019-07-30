@@ -10,7 +10,4 @@ polyfillLoader.then(res => {
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-connection' */ './src/connection'
   );
-  import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-animation-wrapper' */ './src/animation-wrapper'
-  );
 });
