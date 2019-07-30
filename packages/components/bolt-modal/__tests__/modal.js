@@ -20,8 +20,12 @@ async function renderTwigString(template, data) {
 }
 
 const imageVrtConfig = {
-  failureThreshold: '0.02',
+  failureThreshold: '0.0028',
   failureThresholdType: 'percent',
+  customDiffConfig: {
+    threshold: '0.1',
+    includeAA: true,
+  },
 };
 
 const timeout = 60000;
@@ -116,6 +120,7 @@ describe('<bolt-modal> Component', () => {
       <bolt-text>This is the body (default).</bolt-text>
       <bolt-text slot="footer">This is the footer</bolt-text>`;
       document.body.appendChild(modal);
+      modal.updated();
       modal.show();
       return modal.outerHTML;
     });
