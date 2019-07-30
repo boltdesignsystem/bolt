@@ -1,0 +1,38 @@
+{% set schema = bolt.data.components["@bolt-components-animate"].schema %}
+
+<script>
+  /**
+   *
+   * @param {HTMLElement} toggle
+   */
+  function toggleAnim(toggle) {
+    const wrapEl = toggle.closest('.demo-anim-els');
+    if (!wrapEl) return;
+    wrapEl.querySelectorAll('bolt-animate').forEach(animEl => {
+      if (animEl.getAttribute('trigger')) {
+        animEl.removeAttribute('trigger');
+      } else {
+        animEl.setAttribute('trigger', 'in');
+      }
+    });
+  }
+</script>
+
+<div class="demo-anim-els">
+  <button onclick="toggleAnim(this)">trigger</button>
+
+    {% for buildIn in schema.properties.in.enum %}
+
+    <div><code>in="{{ buildIn }}"</code></div>
+      <bolt-animate
+        in="{{ buildIn }}"
+        initial-appearance="hidden"
+      >
+        <h2>{{ buildIn }}</h2>
+      </bolt-animate>
+    <hr />
+    {% endfor %}
+
+</div>
+
+
