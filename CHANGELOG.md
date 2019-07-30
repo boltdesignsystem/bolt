@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.6](https://github.com/bolt-design-system/bolt/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+
+### Bug Fixes
+
+* add custom cursor files ([1e964d4](https://github.com/bolt-design-system/bolt/commit/1e964d4))
+* add pointer as fallback for zoom-in and zoom-out in IE11 ([fe02759](https://github.com/bolt-design-system/bolt/commit/fe02759))
+* backport Blockquote test fix from master ([7dbbb32](https://github.com/bolt-design-system/bolt/commit/7dbbb32))
+* cursor size ([1b1ca18](https://github.com/bolt-design-system/bolt/commit/1b1ca18))
+* focus-trap IE JS error ([08b9d33](https://github.com/bolt-design-system/bolt/commit/08b9d33))
+* restore regular modal width ([d4840af](https://github.com/bolt-design-system/bolt/commit/d4840af))
+* update modal transform styles to fix IE 11 rendering issue ([0f507d4](https://github.com/bolt-design-system/bolt/commit/0f507d4))
+
+
+### Features
+
+* set padding on body when scrollbars are present to prevent content shift ([6f7098b](https://github.com/bolt-design-system/bolt/commit/6f7098b))
+* update Webpack to handle .cur files (cursor file fallback when needed) ([7df793b](https://github.com/bolt-design-system/bolt/commit/7df793b))
+
+
+
+
+
 ## [2.5.5](https://github.com/bolt-design-system/bolt/compare/v2.5.4...v2.5.5) (2019-07-22)
 
 
