@@ -39,7 +39,7 @@ module.exports = {
       )
       .end();
   },
-  'Applitool': function(browser) {
+  Applitool(browser) {
     applitools.vrtTest({
       browser,
       testName: 'bolt-accordion',

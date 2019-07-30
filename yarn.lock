@@ -7,6 +7,35 @@
   resolved "https://registry.npmjs.org/@a11y/focus-trap/-/focus-trap-1.0.2.tgz#2b5deed2b0f975ddef69c7b401933f67ca05093f"
   integrity sha512-5/Wp7UwuUxi5/3nNB+V8bj76BWsxfl9D4Y5+k8SQk/279Yrd0omxHdiU4DMhfnNowPMKWVmWnDD6b7NMqrKf4w==
 
+"@applitools/eyes-common@^3.8.1", "@applitools/eyes-common@^3.8.2":
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/@applitools/eyes-common/-/eyes-common-3.8.2.tgz#4896273260a505acb5b230f8f0f83a578cf60a6d"
+  integrity sha512-KVgaPExww2i1OkFC09XyxI7fSEmQ5X3kEbMdLUbxv2JfIjiRZrOou/LjMqQzoUj/B0KfDLng2GeKR+Pr1Uhimg==
+  dependencies:
+    cosmiconfig "^5.2.1"
+    dateformat "^3.0.3"
+    debug "^4.1.1"
+    deepmerge "^4.0.0"
+    png-async "^0.9.4"
+    stack-trace "^0.0.10"
+
+"@applitools/eyes-images@^4.12.2":
+  version "4.12.3"
+  resolved "https://registry.yarnpkg.com/@applitools/eyes-images/-/eyes-images-4.12.3.tgz#5ed0d179dce5b2906d162351c8ba581e6bd3ad14"
+  integrity sha512-cIIuWTGx+Sby9zhp1POtSSnVlNFZpVUznOEqqFQvIfwx4Zes/8O0Sv45fOArmekftjCS98XmSz9XiPvO2cRb/g==
+  dependencies:
+    "@applitools/eyes-common" "^3.8.2"
+    "@applitools/eyes-sdk-core" "^5.12.2"
+
+"@applitools/eyes-sdk-core@^5.12.2":
+  version "5.12.2"
+  resolved "https://registry.yarnpkg.com/@applitools/eyes-sdk-core/-/eyes-sdk-core-5.12.2.tgz#861385566fd376ce733dbedad512ff1c549e3388"
+  integrity sha512-gKkO7IYgDIppGPmDsj0rFIdmg1B1H6xhZpSGpWSJLwcmmOiJIw4OSo4ZaqA0DEBFDYhuY28vXMaLNxUrqdhthA==
+  dependencies:
+    "@applitools/eyes-common" "^3.8.2"
+    axios "^0.19.0"
+    es6-promise-pool "^2.5.0"
+
 "@babel/cli@^7.5.0":
   version "7.5.0"
   resolved "https://registry.npmjs.org/@babel/cli/-/cli-7.5.0.tgz#f403c930692e28ecfa3bf02a9e7562b474f38271"
@@ -3380,7 +3409,7 @@ aws4@^1.8.0:
   resolved "https://registry.npmjs.org/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
 
-axios@0.19.0:
+axios@0.19.0, axios@^0.19.0:
   version "0.19.0"
   resolved "https://registry.npmjs.org/axios/-/axios-0.19.0.tgz#8e09bff3d9122e133f7b8101c8fbdd00ed3d2ab8"
   integrity sha512-1uvKqKQta3KBxIz14F2v06AEHZ/dIoeKfbTRkK1E5oqjDnuEerLmYTgJB5AiQZHJcljpg1TuRzdjDR06qNk0DQ==
@@ -6906,6 +6935,11 @@ es6-iterator@2.0.3, es6-iterator@~2.0.3:
     d "1"
     es5-ext "^0.10.35"
     es6-symbol "^3.1.1"
+
+es6-promise-pool@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/es6-promise-pool/-/es6-promise-pool-2.5.0.tgz#147c612b36b47f105027f9d2bf54a598a99d9ccb"
+  integrity sha1-FHxhKza0fxBQJ/nSv1SlmKmdnMs=
 
 es6-promise@^3.0.2:
   version "3.3.1"
@@ -15163,6 +15197,11 @@ pn@^1.1.0:
   resolved "https://registry.npmjs.org/pn/-/pn-1.1.0.tgz#e2f4cef0e219f463c179ab37463e4e1ecdccbafb"
   integrity sha512-2qHaIQr2VLRFoxe2nASzsV6ef4yOOH+Fi9FBOVH6cqeSgUnoyySPZkxzLuzd+RYOQTRpROA0ztTMqxROKSb/nA==
 
+png-async@^0.9.4:
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/png-async/-/png-async-0.9.4.tgz#0638817508fcf4e732706b2f82c74c947cb83f78"
+  integrity sha512-B//AXX9TkneKfgtOpT1mdUnnhk2BImGD+a98vImsMU8uo1dBeHyW/kM2erWZ/CsYteTPU/xKG+t6T62heHkC3A==
+
 pngjs@^3.0.0, pngjs@^3.3.3:
   version "3.4.0"
   resolved "https://registry.npmjs.org/pngjs/-/pngjs-3.4.0.tgz#99ca7d725965fb655814eaf65f38f12bbdbf555f"
@@ -17241,7 +17280,7 @@ router-ips@^1.0.0:
   resolved "https://registry.npmjs.org/router-ips/-/router-ips-1.0.0.tgz#44e00858ebebc0133d58e40b2cd8a1fbb04203f5"
   integrity sha1-ROAIWOvrwBM9WOQLLNih+7BCA/U=
 
-rsvp@^4.8.4:
+rsvp@^4.8.4, rsvp@^4.8.5:
   version "4.8.5"
   resolved "https://registry.npmjs.org/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"
   integrity sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==
@@ -18345,6 +18384,11 @@ stable@^0.1.8:
   version "0.1.8"
   resolved "https://registry.npmjs.org/stable/-/stable-0.1.8.tgz#836eb3c8382fe2936feaf544631017ce7d47a3cf"
   integrity sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==
+
+stack-trace@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/stack-trace/-/stack-trace-0.0.10.tgz#547c70b347e8d32b4e108ea1a2a159e5fdde19c0"
+  integrity sha1-VHxws0fo0ytOEI6hoqFZ5f3eGcA=
 
 stack-utils@^1.0.1:
   version "1.0.2"
