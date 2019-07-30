@@ -1,3 +1,5 @@
+const applitools = require('@bolt/nightwatch-config/applitools');
+
 let currentBrowser;
 
 module.exports = {
@@ -36,5 +38,13 @@ module.exports = {
         `screenshots/bolt-accordion/${testName}--${currentBrowser}.png`,
       )
       .end();
+  },
+  'Applitool': function(browser) {
+    applitools.vrtTest({
+      browser,
+      testName: 'bolt-accordion',
+      testingPath:
+        '/pattern-lab/patterns/02-components-accordion-40-accordion-content-variations/02-components-accordion-40-accordion-content-variations.html',
+    });
   },
 };
