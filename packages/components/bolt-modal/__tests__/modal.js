@@ -131,6 +131,7 @@ describe('<bolt-modal> Component', () => {
 
     const renderedHTML = await html(renderedModal);
 
+    await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
 
     // @todo: Fix this, returns 'BOLT-MODAL', expected 'BOLT-BUTTON'.
@@ -158,6 +159,7 @@ describe('<bolt-modal> Component', () => {
 
     const renderedHTML = await html(renderedModal);
 
+    await page.waitFor(500); // wait a second before testing
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(imageVrtConfig);
