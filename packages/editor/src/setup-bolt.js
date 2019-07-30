@@ -5,7 +5,10 @@ import iconSchema from '@bolt/components-icon/icon.schema.yml';
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 import chipSchema from '@bolt/components-chip/chip.schema.yml';
 import imageSchema from '@bolt/components-image/image.schema.yml';
-import { animationNames } from '@bolt/components-interactive-step/src/animation-meta';
+import animate from '@bolt/components-animate';
+import animateMeta from '@bolt/components-animate/animate.meta';
+import animateSchema from '@bolt/components-animate/animate.schema';
+// import { animationNames } from '@bolt/components-animate/animation-meta';
 import kebabCase from 'param-case';
 
 class SchemaPropToTraitError extends Error {}
@@ -17,7 +20,7 @@ class EditorRegisterBoltError extends Error {}
  * @prop {string} [title]
  * @prop {string} [description]
  * @prop {string[]} [enum] all the `<option>`s for the `<select>`, requires `type: 'string'`
- * @prop {string} [default]
+ * @prop {any} [default]
  */
 
 /**
@@ -300,55 +303,13 @@ export function setupBolt(editor) {
   });
 
   registerBoltComponent({
-    name: 'bolt-animation-wrapper',
+    name: 'bolt-animate',
+    schema: animateSchema,
+    propsToTraits: Object.keys(animateSchema.properties),
     draggable: false,
     droppable: true,
     editable: true,
     highlightable: true,
     registerBlock: false,
-    extraTraits: [
-      {
-        name: 'bolt-animation-name',
-        label: 'Animation Name',
-        type: 'select',
-        default: 'none',
-        options: ['none', ...animationNames],
-      },
-      {
-        name: 'bolt-animation-duration',
-        label: 'Animation Duration',
-        type: 'number',
-        default: 500,
-      },
-      {
-        name: 'bolt-animation-delay',
-        label: 'Animation Delay',
-        type: 'number',
-        default: 0,
-      },
-      {
-        name: 'bolt-animation-function',
-        label: 'Animation Function',
-        type: 'select',
-        options: [
-          {
-            name: 'Linear',
-            value: 'linear',
-          },
-          {
-            value: 'ease-in',
-            name: 'Ease In',
-          },
-          {
-            value: 'ease-out',
-            name: 'Ease Out',
-          },
-          {
-            value: 'ease-in-out',
-            name: 'Ease In Out',
-          },
-        ],
-      },
-    ],
   });
 }

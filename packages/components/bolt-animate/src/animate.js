@@ -239,7 +239,7 @@ class BoltAnimationWrapper extends withLitHtml() {
     // console.debug('render', this.props);
 
     const classes = {
-      'c-bolt-animation-wrapper': true,
+      'c-bolt-animate': true,
     };
 
     return html`

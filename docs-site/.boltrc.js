@@ -74,11 +74,11 @@ const config = {
 
   components: {
     global: [
-      '@bolt/components-interactive-step',
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
       '@bolt/animations',
+      '@bolt/components-animate',
       '@bolt/docs-search',
       // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/analytics-autolink',
@@ -135,6 +135,7 @@ const config = {
       '@bolt/components-grid',
       '@bolt/components-interactive-pathways',
       '@bolt/components-interactive-pathway',
+      '@bolt/components-interactive-step',
       '@bolt/editor',
       /**
        * note: resolving these paths isn't typically required when
