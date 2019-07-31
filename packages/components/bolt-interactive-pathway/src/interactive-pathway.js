@@ -54,10 +54,13 @@ class BoltInteractivePathway extends withLitHtml() {
    * @param {string | number} stepId
    * @return {void}
    */
-  setActiveStep = stepId => {
+  setActiveStep = async stepId => {
     stepId = typeof stepId === 'number' ? stepId.toString() : stepId;
     const newActiveStep = this.steps.find(
       s => s.getAttribute('step') === stepId,
+    );
+    const currentActiveStep = this.steps.find(
+      s => typeof s.getAttribute('active') === 'string',
     );
     if (!newActiveStep) {
       console.error(
@@ -65,9 +68,10 @@ class BoltInteractivePathway extends withLitHtml() {
       );
       return;
     }
-    this.steps
-      .filter(s => s.getAttribute('step') !== stepId)
-      .map(s => s.removeAttribute('active'));
+    if (currentActiveStep) {
+      await currentActiveStep.triggerAnimOuts();
+      currentActiveStep.removeAttribute('active');
+    }
     newActiveStep.setAttribute('active', '');
     this.activeStep = stepId;
   };

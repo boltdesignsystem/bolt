@@ -53,6 +53,38 @@ class BoltInteractiveStep extends withLitHtml() {
     this.removeEventListener('bolt:transitionend', this.handleAnimationEnd);
   }
 
+  async triggerAnimOuts() {
+    if (!this.slots) return;
+    const els = [];
+
+    const allSlots = Object.values(this.slots);
+    if (!allSlots) return;
+    allSlots.forEach(slot => {
+      slot.forEach(
+        /** @type {HTMLElement} */
+        slotElement => {
+          if (slotElement.tagName === 'BOLT-ANIMATE') {
+            if (slotElement.hasAnimOut) {
+              els.push(slotElement);
+            }
+          }
+        },
+      );
+    });
+
+    return Promise.all(
+      els.map(
+        el =>
+          new Promise((resolve, reject) => {
+            el.addEventListener('bolt-animate:end:out', () => {
+              resolve();
+            });
+            el.triggerAnimOut();
+          }),
+      ),
+    ).catch(console.log.bind(console));
+  }
+
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
     switch (name) {
@@ -67,8 +99,13 @@ class BoltInteractiveStep extends withLitHtml() {
             /** @type {HTMLElement} */
             slotElement => {
               if (slotElement.tagName === 'BOLT-ANIMATE') {
+                if (isActive) {
+                  slotElement.triggerAnimIn();
+                } else {
+                  slotElement.triggerAnimOut();
+                }
                 // @todo improve trigger out, this logic previously only supported triggering build in
-                slotElement.setAttribute('trigger', isActive ? 'in' : 'out');
+                // slotElement.setAttribute('trigger', isActive ? 'in' : 'out');
               }
             },
           );
