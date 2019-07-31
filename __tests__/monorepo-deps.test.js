@@ -24,7 +24,7 @@ function pkgToHaveDependenciesOn(pkgName, deps) {
   deps.forEach(dep => {
     if (!listedDeps.some(d => d === dep)) {
       if (dep !== pkgName) {
-        if (dep !== '@bolt/global') {
+        if (dep !== '@bolt/global' && dep !== '@bolt/generator-bolt') {
           missingDeps.push(dep);
         }
       }
