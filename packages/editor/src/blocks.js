@@ -12,67 +12,67 @@ export function setupBlocks(editor) {
     /** @type {grapesjs.BlockManager} */
     BlockManager,
   } = editor;
-//
-//   BlockManager.add('bolt-action-blocks', {
-//     label: 'Bolt Action Blocks',
-//     category: 'Bolt Components',
-//     content: `
-// <bolt-action-blocks bolt-component="">
-//   <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--vertical-align-start c-bolt-action-blocks--bordered">
-//     <li class="c-bolt-action-blocks__item">
-//       <bolt-action-block bolt-component="">
-//         <a href="/products" id="p-79be2f13-6868-447f-9a96-7e06e2a6a724" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
-//           <bolt-icon name="product" size="xlarge" background="none">
-//           </bolt-icon>
-//         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">
-//           Product Info
-//         </div></a>
-//       </bolt-action-block>
-//     </li>
-//     <li class="c-bolt-action-blocks__item">
-//       <bolt-action-block bolt-component="">
-//         <a href="/industries" id="p-3a1b7d87-28ba-4812-8be1-f619e92b266f" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
-//           <bolt-icon name="industries" size="xlarge" background="none">
-//           </bolt-icon>
-//         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">
-//           Industry Solutions
-//         </div></a>
-//       </bolt-action-block>
-//     </li>
-//     <li class="c-bolt-action-blocks__item">
-//       <bolt-action-block bolt-component="">
-//         <a href="https://academy.pega.com" id="p-ade4ed2a-e1ed-41ff-9c6e-2a062fb2f237" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
-//           <bolt-icon name="training" size="xlarge" background="none">
-//           </bolt-icon>
-//         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">
-//           Training and Certification
-//         </div></a>
-//       </bolt-action-block>
-//     </li>
-//     <li class="c-bolt-action-blocks__item">
-//       <bolt-action-block bolt-component="">
-//         <a href="/technology/vision-and-technology" id="p-ab68c135-8d42-44af-a6e2-112fc15d3369" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
-//           <bolt-icon name="vision" size="xlarge" background="none">
-//           </bolt-icon>
-//         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">
-//           Vision and Technology
-//         </div></a>
-//       </bolt-action-block>
-//     </li>
-//     <li class="c-bolt-action-blocks__item">
-//       <bolt-action-block bolt-component="">
-//         <a href="/services" id="p-354bf286-be11-4492-bc8e-14379b65d027" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
-//           <bolt-icon name="partners" size="xlarge" background="none">
-//           </bolt-icon>
-//         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">
-//           Services and Partners
-//         </div></a>
-//       </bolt-action-block>
-//     </li>
-//   </ul>
-// </bolt-action-blocks>
-//     `,
-//   });
+  //
+  //   BlockManager.add('bolt-action-blocks', {
+  //     label: 'Bolt Action Blocks',
+  //     category: 'Bolt Components',
+  //     content: `
+  // <bolt-action-blocks bolt-component="">
+  //   <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--vertical-align-start c-bolt-action-blocks--bordered">
+  //     <li class="c-bolt-action-blocks__item">
+  //       <bolt-action-block bolt-component="">
+  //         <a href="/products" id="p-79be2f13-6868-447f-9a96-7e06e2a6a724" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
+  //           <bolt-icon name="product" size="xlarge" background="none">
+  //           </bolt-icon>
+  //         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">
+  //           Product Info
+  //         </div></a>
+  //       </bolt-action-block>
+  //     </li>
+  //     <li class="c-bolt-action-blocks__item">
+  //       <bolt-action-block bolt-component="">
+  //         <a href="/industries" id="p-3a1b7d87-28ba-4812-8be1-f619e92b266f" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
+  //           <bolt-icon name="industries" size="xlarge" background="none">
+  //           </bolt-icon>
+  //         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">
+  //           Industry Solutions
+  //         </div></a>
+  //       </bolt-action-block>
+  //     </li>
+  //     <li class="c-bolt-action-blocks__item">
+  //       <bolt-action-block bolt-component="">
+  //         <a href="https://academy.pega.com" id="p-ade4ed2a-e1ed-41ff-9c6e-2a062fb2f237" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
+  //           <bolt-icon name="training" size="xlarge" background="none">
+  //           </bolt-icon>
+  //         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">
+  //           Training and Certification
+  //         </div></a>
+  //       </bolt-action-block>
+  //     </li>
+  //     <li class="c-bolt-action-blocks__item">
+  //       <bolt-action-block bolt-component="">
+  //         <a href="/technology/vision-and-technology" id="p-ab68c135-8d42-44af-a6e2-112fc15d3369" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
+  //           <bolt-icon name="vision" size="xlarge" background="none">
+  //           </bolt-icon>
+  //         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">
+  //           Vision and Technology
+  //         </div></a>
+  //       </bolt-action-block>
+  //     </li>
+  //     <li class="c-bolt-action-blocks__item">
+  //       <bolt-action-block bolt-component="">
+  //         <a href="/services" id="p-354bf286-be11-4492-bc8e-14379b65d027" data-google-analytics-et-processed="true" class="c-bolt-action-block"><div class="c-bolt-action-block__item c-bolt-action-block__icon">
+  //           <bolt-icon name="partners" size="xlarge" background="none">
+  //           </bolt-icon>
+  //         </div><div class="c-bolt-action-block__item c-bolt-action-block__text">
+  //           Services and Partners
+  //         </div></a>
+  //       </bolt-action-block>
+  //     </li>
+  //   </ul>
+  // </bolt-action-blocks>
+  //     `,
+  //   });
 
   // @todo prevent link clicks from changing page
   // BlockManager.add('bolt-link', {
