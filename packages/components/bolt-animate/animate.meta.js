@@ -27,6 +27,10 @@ const buildIns = [
 
 const idles = [
   {
+    value: 'none',
+    name: 'None',
+  },
+  {
     value: 'pulse',
     name: 'Pulse',
   },
@@ -41,6 +45,10 @@ const idles = [
 ];
 
 const buildOuts = [
+  {
+    value: 'none',
+    name: 'None',
+  },
   {
     value: 'fade-out',
     name: 'Fade Out',
