@@ -40,16 +40,15 @@ jobs:
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
-        - yarn run setup
+        - travis_retry yarn run setup:full
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
-        - yarn test:js --maxWorkers=2
-        - yarn test:js:quick --maxWorkers=2 # running both `test:js` as comparison; remove or comment out this or other one eventually
-        #- yarn run test
+        - travis_retry yarn test:js --bail --maxWorkers=1
+        # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
         - yarn test:php
-        - yarn test:monorepo --maxWorkers=2
-        - yarn test:pkgs
+        - yarn test:monorepo --maxWorkers=1
+        - yarn test:pkgs --ignore=@bolt/uikit-workshop --ignore=@bolt/build-tools --ignore=@bolt/build-tools--test-multi-lang
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
 
@@ -67,7 +66,7 @@ jobs:
         - composer global require hirak/prestissimo
         - cd example-integrations/drupal-lab
         - composer install --prefer-dist --no-dev
-        - cd web/themes/bolt-starter && yarn
+        - cd web/themes/bolt-starter && yarn --force
         - yarn run build
         - yarn run test # run Jest tests on the FE build that just compiled
         - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
@@ -86,19 +85,17 @@ jobs:
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
-      install: yarn run setup
-      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
+      install: travis_retry yarn run setup
+      before_script: travis_retry ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - travis_retry export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
-        - time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - sleep 60
+        - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
         - travis_wait yarn run test:e2e:full
-        - sleep 60
-        - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+        - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_success:
-        - ./scripts/deploy-branch-alias.js
-        - ./scripts/deploy-tagged-release.js
+        - travis_retry ./scripts/deploy-branch-alias.js
+        - travis_retry ./scripts/deploy-tagged-release.js
 
     - stage: Test Live Site
       name: 'Ensure site is live'
