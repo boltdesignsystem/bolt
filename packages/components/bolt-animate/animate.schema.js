@@ -79,10 +79,5 @@ module.exports = {
       enum: easings.map(e => e.value),
       default: 'ease',
     },
-
-    trigger: {
-      type: 'string',
-      enum: ['in', 'out'],
-    },
   },
 };

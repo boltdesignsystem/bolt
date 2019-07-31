@@ -25,11 +25,9 @@ export const EVENTS = {
 
 export const ANIM_STAGES = {
   INITIAL: 'INITIAL',
-  COMING: 'COMING',
+  IN: 'IN',
   IDLE: 'IDLE',
-  IDLING: 'IDLING',
-  GOING: 'GOING',
-  GONE: 'GONE',
+  OUT: 'OUT',
 };
 
 const myProps = {};
@@ -48,7 +46,7 @@ Object.keys(schema.properties).forEach(prop => {
 });
 
 @define
-class BoltAnimationWrapper extends withLitHtml() {
+class BoltAnimate extends withLitHtml() {
   static is = 'bolt-animate';
 
   static props = {
@@ -59,86 +57,120 @@ class BoltAnimationWrapper extends withLitHtml() {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     this.schema = schema;
-    this.animStage = ANIM_STAGES.INITIAL;
-    this.setAttribute('meta-stage', this.animStage);
+    this._animStage = ANIM_STAGES.INITIAL;
     /** @type {CSSStyleDeclaration} */
-    this.animStyle = {};
-    /**
-     * Number of build in animations
-     * @type {number}
-     */
-    this.totalIns = 0;
-    /**
-     * Number of idle animations
-     * @type {number}
-     */
-    this.totalIdles = 0;
-    /**
-     * Number of build out animations
-     * @type {number}
-     */
-    this.totalOuts = 0;
+    this._animStyle = {};
+    this.hasAnimIn = false;
+    this.hasAnimIdle = false;
+    this.hasAnimOut = false;
 
     return self;
   }
 
+  _processProps() {
+    const { in: inAnim, idle, out } = this.props;
+    this.hasAnimIn = typeof inAnim === 'string' && inAnim !== 'none';
+    this.hasAnimIdle = typeof idle === 'string' && idle !== 'none';
+    this.hasAnimOut = typeof out === 'string' && out !== 'none';
+  }
+
   connectedCallback() {
-    this.triggerAnimReset();
     super.connectedCallback();
+    this._processProps();
+
+    if (this.hasAnimIn) {
+      this._animStyle = {
+        animationName: null,
+        opacity: this.props.initialAppearance === 'hidden' ? '0' : null,
+      };
+    } else {
+      if (this.hasAnimIdle) {
+        this._triggerAnimIdle();
+      }
+    }
+  }
+
+  _triggerAnim(id) {
+    let isTriggered = false;
+    switch (id) {
+      case ANIM_STAGES.IN:
+        if (this.hasAnimIn) {
+          this._applyAnim({
+            animationName: this.props.in,
+            animationDuration: this.props.inDuration,
+            animationDelay: this.props.inDelay,
+            animationTimingFunction: this.props.inEasing,
+          });
+          isTriggered = true;
+        }
+        break;
+      case ANIM_STAGES.IDLE:
+        if (this.hasAnimIdle) {
+          this._applyAnim({
+            animationName: this.props.idle,
+            animationDuration: this.props.idleDuration,
+            animationDelay: this.props.idleDelay,
+            animationTimingFunction: this.props.idleEasing,
+            animationFillMode: 'none',
+            animationIterationCount: 'infinite',
+          });
+          isTriggered = true;
+        }
+        break;
+      case ANIM_STAGES.OUT:
+        if (this.hasAnimOut) {
+          this._applyAnim({
+            animationName: this.props.out,
+            animationDuration: this.props.outDuration,
+            animationDelay: this.props.outDelay,
+            animationTimingFunction: this.props.outEasing,
+          });
+          isTriggered = true;
+        }
+        break;
+    }
+
+    if (isTriggered) {
+      this._animStage = ANIM_STAGES[id];
+      this.triggerUpdate();
+    }
+    return isTriggered;
+  }
+
+  _applyAnim({
+    animationName,
+    animationDuration,
+    animationDelay,
+    animationFillMode = 'both',
+    animationTimingFunction,
+    animationIterationCount = '1',
+  }) {
+    this._animStyle = {
+      animationName,
+      animationDuration: `${animationDuration}ms`,
+      animationDelay: `${animationDelay}ms`,
+      animationFillMode,
+      animationTimingFunction,
+      animationIterationCount,
+    };
   }
 
   triggerAnimIn() {
-    if (!this.totalIns) {
-      this.triggerAnimIdle();
-      return;
-    }
-    this.animStyle = {
-      animationName: this.props.in,
-      animationDuration: `${this.props.inDuration}ms`,
-      animationDelay: `${this.props.inDelay}ms`,
-      animationFillMode: 'both',
-      animationTimingFunction: this.props.inEasing,
-    };
-  }
-
-  triggerAnimIdle() {
-    if (!this.totalIdles) {
-      return;
-    }
-    this.animStyle = {
-      animationName: this.props.idle,
-      animationDuration: `${this.props.idleDuration}ms`,
-      animationDelay: `${this.props.idleDelay}ms`,
-      animationIterationCount: 'infinite',
-    };
-    this.triggerUpdate();
+    const hadAnim = this._triggerAnim(ANIM_STAGES.IN);
+    // console.log(`triggered in`, { hadAnim });
+    return hadAnim;
   }
 
   triggerAnimOut() {
-    if (!this.totalOuts) {
-      return;
-    }
-    this.animStyle = {
-      animationName: this.props.out,
-      animationDuration: `${this.props.outDuration}ms`,
-      animationDelay: `${this.props.outDelay}ms`,
-      animationFillMode: 'both',
-      animationTimingFunction: this.props.outEasing,
-    };
+    const hadAnim = this._triggerAnim(ANIM_STAGES.OUT);
+    // console.log(`triggered out`, { hadAnim });
+    return hadAnim;
   }
 
-  triggerAnimReset() {
-    this.animStyle = {
-      animationName: null,
-      opacity: this.props.initialAppearance === 'hidden' ? '0' : null,
-    };
-  }
-
-  /**
-   * @return {string} one of the strings in `ANIM_STAGES`
-   */
-  getAnimStage() {
-    return this.animStage;
+  _triggerAnimIdle() {
+    const hadAnim = this._triggerAnim(ANIM_STAGES.IDLE);
+    // console.log(`triggered idle`, { hadAnim });
+    return hadAnim;
   }
 
   /**
@@ -148,7 +180,7 @@ class BoltAnimationWrapper extends withLitHtml() {
    * @fires bolt-animate:end:in
    * @fires bolt-animate:end:out
    */
-  emitEvent(eventName, detail = {}) {
+  _emitEvent(eventName, detail = {}) {
     const myEvent = new CustomEvent(eventName, {
       bubbles: true,
       composed: true,
@@ -158,98 +190,58 @@ class BoltAnimationWrapper extends withLitHtml() {
     this.dispatchEvent(myEvent);
   }
 
-  handleEvent(event) {
-    const { animationName, type } = event;
+  _handleAnimEndEvent(event) {
+    const { animationName } = event;
     const isAnimIn = this.props.in === animationName;
     const isAnimIdle = this.props.idle === animationName;
     const isAnimOut = this.props.out === animationName;
-    // console.debug('handleEvent', {
-    //   animationName,
-    //   type,
-    //   isAnimIdle,
-    //   isAnimIn,
-    //   isAnimOut,
-    // });
-    switch (type) {
-      case 'animationstart':
-        if (isAnimIn) {
-          this.animStage = ANIM_STAGES.COMING;
-        } else if (isAnimIdle) {
-          this.animStage = ANIM_STAGES.IDLING;
-        } else if (isAnimOut) {
-          this.animStage = ANIM_STAGES.GOING;
-        } else {
-          console.error('Unknown animation started!', {
-            event,
-          });
-        }
-        break;
-      case 'animationend':
-        if (isAnimIn) {
-          this.emitEvent(EVENTS.END_IN);
-          this.animStage = ANIM_STAGES.IDLE;
-          this.triggerAnimIdle();
-        } else if (isAnimIdle) {
-          // don't care
-        } else if (isAnimOut) {
-          this.emitEvent(EVENTS.END_OUT);
-          this.animStage = ANIM_STAGES.GONE;
-        } else {
-          console.error('Unknown animation started!', {
-            event,
-          });
-        }
-        break;
-    }
 
-    this.setAttribute('meta-stage', this.animStage);
+    if (isAnimIn) {
+      this._emitEvent(EVENTS.END_IN);
+      this._triggerAnimIdle();
+    } else if (isAnimIdle) {
+      // don't care
+    } else if (isAnimOut) {
+      this._emitEvent(EVENTS.END_OUT);
+    } else {
+      console.error('Unknown animation ended!', {
+        event,
+      });
+    }
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     // console.debug('attributeChangedCallback', { name, oldValue, newValue });
-    switch (name) {
-      case 'trigger':
-        if (newValue === 'in') {
-          this.triggerAnimIn();
-        } else if (newValue === 'out') {
-          this.triggerAnimOut();
-        } else {
-          this.triggerAnimReset();
-        }
-        break;
-      case 'in':
-        this.totalIns =
-          typeof newValue === 'string' ? newValue.split(',').length : 0;
-        break;
-      case 'idle':
-        this.totalIdles =
-          typeof newValue === 'string' ? newValue.split(',').length : 0;
-        break;
-      case 'out':
-        this.totalOuts =
-          typeof newValue === 'string' ? newValue.split(',').length : 0;
-        break;
-    }
-
     // can trigger re-render
     super.attributeChangedCallback(name, oldValue, newValue);
+    this._processProps();
+    switch (this._animStage) {
+      case ANIM_STAGES.IN:
+        this.triggerAnimIn();
+        break;
+      case ANIM_STAGES.IDLE:
+        this._triggerAnimIdle();
+        break;
+      case ANIM_STAGES.OUT:
+        this.triggerAnimOut();
+        break;
+    }
   }
 
   render() {
-    // console.debug('render', this.props);
-
     const classes = {
       'c-bolt-animate': true,
     };
+
+    this.setAttribute('meta-stage', this._animStage);
 
     return html`
       ${this.addStyles([styles])}
       <div
         class="${classMap(classes)}"
         is="shadow-root"
-        @animationstart=${event => this.handleEvent(event)}
-        @animationend=${event => this.handleEvent(event)}
-        style=${styleMap(this.animStyle)}
+        @animationend=${e => this._handleAnimEndEvent(e)}
+        style=${styleMap(this._animStyle)}
       >
         ${this.slot('default')}
       </div>
@@ -257,4 +249,4 @@ class BoltAnimationWrapper extends withLitHtml() {
   }
 }
 
-export { BoltAnimationWrapper };
+export { BoltAnimate };
