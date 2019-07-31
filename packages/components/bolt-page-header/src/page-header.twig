@@ -1,4 +1,4 @@
-<header class="c-bolt-mega-nav c-bolt-mega-nav--global-search-active c-page-header qa-page-header js-global-header cd-main-header is-fixed headroom is-top is-not-bottom">  <div class="c-page-header__wrapper">
+<header class="c-page-header c-page-header--global-search-active qa-page-header js-global-header cd-main-header is-fixed headroom is-top is-not-bottom">  <div class="c-page-header__wrapper">
     <div class="c-page-header__background"></div>
     <div class="c-page-header__content"> <span id="!"></span>
       <div class="c-page-header__utility-nav">
@@ -529,25 +529,25 @@
           </nav>
           <ul class="o-bolt-bare-list c-header-buttons js-mega-nav__header-buttons">
             <li class="c-header-buttons__item">
-              <div class="c-bolt-global-search-panel-trigger">
-                <div class="c-bolt-global-search-panel-trigger__open-button">
+              <div class="c-global-search-panel-trigger">
+                <div class="c-global-search-panel-trigger__open-button">
                   <bolt-button color="text" icon-only aria-controls="global-search" aria-haspopup="true">
                     <bolt-icon name="search" slot="before"></bolt-icon>
                     Search Pega.com
                   </bolt-button>
                 </div>
-                <div class="c-bolt-global-search-panel-trigger__close-button">
+                <div class="c-global-search-panel-trigger__close-button">
                   <bolt-button color="text" icon-only aria-controls="global-search" aria-haspopup="true">
                     <bolt-icon name="close" slot="before"></bolt-icon>
                     Close search
                   </bolt-button>
                 </div>
-                <span class="c-bolt-global-search-panel-trigger__panle-tip t-bolt-dark"></span>
+                <span class="c-global-search-panel-trigger__panle-tip t-bolt-dark"></span>
               </div>
             </li>
             <li class="c-header-buttons__item">
               <div class="c-hamburger">
-                <bolt-button color="text" icon-only aria-controls="global-search" aria-haspopup="true">
+                <bolt-button color="text" icon-only>
                   <bolt-icon name="menu" slot="before"></bolt-icon>
                   Open menu
                 </bolt-button>
@@ -570,17 +570,14 @@
       </div>
     </div>
   </div>
-</header>
-
-<div class="c-bolt-global-search-panel c-bolt-global-search-panel--floating">
-  <div class="c-bolt-global-search-panel__content t-bolt-dark">
-    <div class="o-bolt-wrapper">
-      {% grid "o-bolt-grid--center c-bolt-global-search-animated" %}
-        {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large" %}
-          <bolt-list>
-            <bolt-list-item>
+  <div class="c-global-search-panel c-global-search-panel--floating">
+    <div class="c-global-search-panel__content t-bolt-dark">
+      <div class="o-bolt-wrapper">
+        {% grid "o-bolt-grid--center c-global-search-panel__content__transition" %}
+          {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large" %}
+            <div class="u-bolt-margin-bottom-small">
               <form>
-                <label class="c-bolt-search-field t-bolt-xlight" for="">
+                <label class="c-bolt-search-field t-bolt-xlight" for="search-bar">
                   <span class="c-bolt-search-field__label">Search the Pegasystems website</span>
                   <input class="c-bolt-search-field__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
                   <div class="c-bolt-search-field__button">
@@ -595,18 +592,20 @@
                   </div>
                 </label>
               </form>
-            </bolt-list-item>
-            <bolt-list-item>
-              <bolt-text font-size="xsmall" align="center">
-                We couldn't find any results. Did you mean <bolt-link>this</bolt-link> or <bolt-link>that</bolt-link>?
-              </bolt-text>
-            </bolt-list-item>
-          </bolt-list>
-        {% endcell %}
-      {% endgrid %}
+            </div>
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "Placeholder for helper text and did-you-mean text.",
+              size: "xsmall",
+              align: "center",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      </div>
     </div>
+    <bolt-trigger cursor="pointer" display="block" class="c-global-search-panel__overlay">
+      Close search
+    </bolt-trigger>
   </div>
-  <bolt-trigger cursor="pointer" display="block" class="c-bolt-global-search-panel__overlay">
-    Close search
-  </bolt-trigger>
-</div>
+</header>
+
+
