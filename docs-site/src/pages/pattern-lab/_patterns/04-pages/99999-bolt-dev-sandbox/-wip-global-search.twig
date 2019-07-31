@@ -126,15 +126,15 @@
 
   {% set search_bar %}
     <form>
-      <label class="c-bolt-global-search-bar">
-        <span class="c-bolt-global-search-bar__label">Search the Pegasystems website</span>
-        <input class="c-bolt-global-search-bar__input" type="search" name="search-bar" placeholder="Enter to search" required>
-        <div class="c-bolt-global-search-bar__button">
+      <label class="c-bolt-search-field">
+        <span class="c-bolt-search-field__label">Search the Pegasystems website</span>
+        <input class="c-bolt-search-field__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
+        <div class="c-bolt-search-field__button">
           <bolt-button color="text" tag="submit" icon-only>
             <bolt-icon name="search" slot="before"></bolt-icon>
           </bolt-button>
         </div>
-        <div class="c-bolt-global-search-bar__button c-bolt-global-search-bar__button--reset">
+        <div class="c-bolt-search-field__button c-bolt-search-field__button--reset">
           <bolt-button color="text" tag="reset" icon-only>
             <bolt-icon name="close-solid" slot="before"></bolt-icon>
           </bolt-button>
@@ -145,15 +145,15 @@
 
   {% set search_bar_themed %}
     <form>
-      <label class="c-bolt-global-search-bar t-bolt-xlight" for="">
-        <span class="c-bolt-global-search-bar__label">Search the Pegasystems website</span>
-        <input class="c-bolt-global-search-bar__input" type="search" name="search-bar" placeholder="Enter to search" required>
-        <div class="c-bolt-global-search-bar__button">
+      <label class="c-bolt-search-field t-bolt-xlight">
+        <span class="c-bolt-search-field__label">Search the Pegasystems website</span>
+        <input class="c-bolt-search-field__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
+        <div class="c-bolt-search-field__button">
           <bolt-button color="text" tag="submit" icon-only>
             <bolt-icon name="search" slot="before"></bolt-icon>
           </bolt-button>
         </div>
-        <div class="c-bolt-global-search-bar__button c-bolt-global-search-bar__button--reset">
+        <div class="c-bolt-search-field__button c-bolt-search-field__button--reset">
           <bolt-button color="text" tag="reset" icon-only>
             <bolt-icon name="close-solid" slot="before"></bolt-icon>
           </bolt-button>
