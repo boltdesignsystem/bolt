@@ -180,6 +180,8 @@ export function enableEditor({ space, uiWrapper, config }) {
   const canvasDoc = editor.Canvas.getDocument();
   const canvasWindow = editor.Canvas.getWindow();
 
+  canvasDoc.body.classList.add('in-editor');
+
   config.scripts.forEach(script => {
     const scriptEl = canvasDoc.createElement('script');
     scriptEl.src = script;
