@@ -110,7 +110,7 @@ class BoltAnimate extends withLitHtml() {
             animationName: this.props.idle,
             animationDuration: this.props.idleDuration,
             animationDelay: this.props.idleDelay,
-            animationTimingFunction: this.props.idleEasing,
+            animationTimingFunction: 'linear',
             animationFillMode: 'none',
             animationIterationCount: 'infinite',
           });
