@@ -1,0 +1,16 @@
+<div class="js-pega-editor">
+  <script class="js-pega-editor__config" type="application/json">
+    {
+      "styles": ["/build/bolt-global.css"],
+      "scripts": ["/build/bolt-global.js"]
+    }
+  </script>
+  <button class="js-pega-editor__trigger">Edit</button>
+  <div class="js-pega-editor__space">
+    {% block content %}
+      <bolt-placeholder>
+        Content to be edited goes here.
+      </bolt-placeholder>
+    {% endblock %}
+  </div>
+</div>

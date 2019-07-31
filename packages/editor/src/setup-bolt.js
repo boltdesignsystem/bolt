@@ -182,6 +182,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-button',
     schema: buttonSchema,
+    droppable: 'bolt-connection [slot]',
     initialContent: `<span>Button</span>`,
     propsToTraits: ['size', 'width', 'border_radius'],
     extraTraits: [colorTrait],
@@ -310,6 +311,15 @@ export function setupBolt(editor) {
     droppable: true,
     editable: true,
     highlightable: true,
+    registerBlock: false,
+  });
+
+  registerBoltComponent({
+    name: 'bolt-connection',
+    draggable: false,
+    droppable: false,
+    editable: false,
+    highlightable: false,
     registerBlock: false,
   });
 }
