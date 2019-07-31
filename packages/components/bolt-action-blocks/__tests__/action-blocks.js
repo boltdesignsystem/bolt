@@ -10,7 +10,7 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../action-blocks.schema.yml'));
 const { valign, borderless } = schema.properties;
 
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<bolt-action-blocks> Component', () => {
   afterAll(async () => {

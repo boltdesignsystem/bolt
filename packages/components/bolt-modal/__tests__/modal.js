@@ -22,9 +22,13 @@ async function renderTwigString(template, data) {
 const imageVrtConfig = {
   failureThreshold: '0.02',
   failureThresholdType: 'percent',
+  customDiffConfig: {
+    threshold: '0.1',
+    includeAA: true,
+  },
 };
 
-const timeout = 60000;
+const timeout = 120000;
 
 // Currently, the only important breakpoints to test are 'small' and 'large'
 const viewportSizes = [
@@ -46,9 +50,7 @@ describe('<bolt-modal> Component', () => {
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
+      waitUntil: 'networkidle0',
     });
   }, timeout);
 
@@ -116,6 +118,7 @@ describe('<bolt-modal> Component', () => {
       <bolt-text>This is the body (default).</bolt-text>
       <bolt-text slot="footer">This is the footer</bolt-text>`;
       document.body.appendChild(modal);
+      modal.updated();
       modal.show();
       return modal.outerHTML;
     });
@@ -126,6 +129,7 @@ describe('<bolt-modal> Component', () => {
 
     const renderedHTML = await html(renderedModal);
 
+    await page.waitFor(1000); // wait a second before testing
     const image = await page.screenshot();
 
     // @todo: Fix this, returns 'BOLT-MODAL', expected 'BOLT-BUTTON'.
@@ -153,6 +157,7 @@ describe('<bolt-modal> Component', () => {
 
     const renderedHTML = await html(renderedModal);
 
+    await page.waitFor(1000); // wait a second before testing
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(imageVrtConfig);

@@ -102,7 +102,8 @@ async function createWebpackConfig(buildConfig) {
       ),
       config: {
         prod: config.prod ? true : false,
-        lang: config.lang,
+        lang: JSON.stringify(config.lang),
+        env: JSON.stringify(config.env),
       },
     },
   };
@@ -312,7 +313,7 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.svg$/,
+          test: /\.(cur|svg)$/,
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
