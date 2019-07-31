@@ -83,6 +83,16 @@ class BoltModal extends withLitHtml() {
     this.dispatchEvent(new CustomEvent('modal:ready'));
   }
 
+  get _toggleEventOptions() {
+    return {
+      detail: {
+        hasScrollbar: this._bodyHasScrollbar,
+        scrollbarWidth: this.scrollbarWidth,
+      },
+      bubbles: true,
+    };
+  }
+
   /**
    * Show the dialog element, disable all the targets (siblings), trap the
    * current focus within it, listen for some specific key presses and fire all
@@ -101,6 +111,8 @@ class BoltModal extends withLitHtml() {
     // triggers re-render
     this.open = true;
 
+    this.dispatchEvent(new CustomEvent('modal:show', this._toggleEventOptions));
+
     this._setScrollbar();
 
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
@@ -113,7 +125,9 @@ class BoltModal extends withLitHtml() {
     // this.dialog.setAttribute('open', '');
     // this.container.removeAttribute('aria-hidden');
 
-    this.dispatchEvent(new CustomEvent('modal:show'));
+    this.dispatchEvent(
+      new CustomEvent('modal:shown', this._toggleEventOptions),
+    );
   }
 
   /**
@@ -133,6 +147,9 @@ class BoltModal extends withLitHtml() {
     this.focusTrap.active = false;
     this.open = false;
     this.ready = false;
+
+    this.dispatchEvent(new CustomEvent('modal:hide', this._toggleEventOptions));
+
     this.transitionDuration = getTransitionDuration(
       this.renderRoot.querySelector('.c-bolt-modal'),
     );
@@ -140,6 +157,9 @@ class BoltModal extends withLitHtml() {
     // Wait until after transition or modal will shift
     setTimeout(() => {
       this._resetScrollbar();
+      this.dispatchEvent(
+        new CustomEvent('modal:hidden', this._toggleEventOptions),
+      );
     }, this.transitionDuration);
 
     // @todo: refactor this to be more component / element agnostic
@@ -170,8 +190,6 @@ class BoltModal extends withLitHtml() {
       //   target.removeAttribute('aria-hidden');
       // });
     }
-
-    this.dispatchEvent(new CustomEvent('modal:hide'));
   }
 
   get _bodyHasScrollbar() {
