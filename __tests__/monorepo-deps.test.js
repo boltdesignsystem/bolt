@@ -24,7 +24,7 @@ function pkgToHaveDependenciesOn(pkgName, deps) {
   deps.forEach(dep => {
     if (!listedDeps.some(d => d === dep)) {
       if (dep !== pkgName) {
-        if (dep !== '@bolt/global' && dep !== '@bolt/generator-bolt') {
+        if (dep !== '@bolt/global') {
           missingDeps.push(dep);
         }
       }
@@ -53,7 +53,7 @@ expect.extend({ pkgToHaveDependenciesOn });
 const boltPkgs = getPkgList();
 
 describe('Bolt Components declare dependencies in package.json if used in Twig files', () => {
-  const excludedPkgs = ['generator-bolt'];
+  const excludedPkgs = ['@bolt/generator-bolt'];
 
   boltPkgs
     .filter(boltPkg => !excludedPkgs.includes(boltPkg.name))
