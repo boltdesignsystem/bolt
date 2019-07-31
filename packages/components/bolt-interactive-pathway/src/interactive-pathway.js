@@ -39,7 +39,7 @@ class BoltInteractivePathway extends withLitHtml() {
   connectedCallback() {
     super.connectedCallback();
 
-    /** @type {HTMLElement[]}  */
+    /** @type {BoltInteractiveStep[]}  */
     this.steps = Array.from(this.querySelectorAll('bolt-interactive-step'));
 
     // This creates the initial onLoad animation effect for the first step
@@ -52,7 +52,7 @@ class BoltInteractivePathway extends withLitHtml() {
   /**
    * Set the active tab panel step
    * @param {string | number} stepId
-   * @return {void}
+   * @return {Promise<void>}
    */
   setActiveStep = async stepId => {
     stepId = typeof stepId === 'number' ? stepId.toString() : stepId;
@@ -74,6 +74,7 @@ class BoltInteractivePathway extends withLitHtml() {
     }
     newActiveStep.setAttribute('active', '');
     this.activeStep = stepId;
+    await newActiveStep.triggerAnimIns();
   };
 
   render() {
