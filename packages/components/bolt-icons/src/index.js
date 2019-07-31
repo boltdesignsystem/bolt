@@ -29,6 +29,7 @@ export * from './icons/chevron-right';
 export * from './icons/chevron-up';
 export * from './icons/circle-dashed';
 export * from './icons/close';
+export * from './icons/close-circled';
 export * from './icons/close-open';
 export * from './icons/close-solid';
 export * from './icons/cloud';
