@@ -1,0 +1,90 @@
+.pega-editor-ui {
+  display: flex;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 30vh;
+
+  &__slot {
+    overflow: scroll;
+    border-right: 3px solid rgba(0, 0, 0, 0.1);
+
+    &:last-child {
+      border-right: 0;
+    }
+
+    &:empty {
+      display: none;
+    }
+
+    &--buttons {
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: 75px;
+    }
+
+    // &--layers {
+    //   width: 15%;
+    // }
+
+    &--blocks {
+      flex: 1 0;
+      flex-basis: 50%;
+    }
+
+    &--layers {
+      width: 25%;
+      line-height: 1;
+    }
+
+    &--traits {
+      width: 20%;
+    }
+  }
+
+  .gjs-trt-trait {
+    display: block;
+    .gjs-label {
+      width: 100%;
+    }
+    .gjs-field {
+      width: 100%;
+    }
+  }
+
+  .gjs-block {
+    width: auto;
+    height: auto;
+    min-height: auto;
+  }
+}
+
+.gjs-pega-editor-panels-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  // justify-content: space-around;
+
+  >.gjs-pega-editor-panels-btn {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.in-editor [slot] {
+  min-width: 25px;
+  min-height: 25px;
+  outline: 1px dashed lightgray;
+}

@@ -42,6 +42,15 @@
   }
 }
 
+@keyframes bolt-animation--fade-in {
+  from {
+    @include bolt-transition--fade-in($base: true);
+  }
+  to {
+    @include bolt-transition--fade-in($active: true);
+  }
+}
+
 /// Fade out
 /// @param {Bool} $base [false] - Base styling preps an element for transition
 /// @param {Bool} $active [false] - Triggers transition
@@ -107,5 +116,143 @@
   @if $active {
     opacity: 1;
     transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes bolt-animation--fade-in-slide-up {
+  from {
+    @include bolt-transition--fade-in-slide-up($base: true);
+  }
+  to {
+    @include bolt-transition--fade-in-slide-up($active: true);
+  }
+}
+
+/// Fade in and Slide down
+/// @param {Bool} $base [false] - Base styling preps an element for transition
+/// @param {Bool} $active [false] - Triggers transition
+/// @param {String} $duration [$bolt-duration--medium] - Duration of animation
+/// @param {String} $timing-function [$bolt-timing--ease-in-out] - Timing/easing function
+/// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
+/// @param {String} $slide-down-distance [$bolt-spacing-gutter] - Delay before transition
+/// @example Fade-in and slide-down on hover
+/// .class {
+///   @include bolt-transition--fade-in($base: true);
+///   &:hover {
+///     @include bolt-transition--fade-in($active: true);
+///   }
+/// }
+@mixin bolt-transition--fade-in-slide-down(
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--ease-in-out,
+  $delay: $bolt-delay--xsmall,
+  $slide-down-distance: 20px
+) {
+  @if $base {
+    opacity: 0;
+    transform: translateY(-1 * $slide-down-distance) translateZ(0);
+    will-change: opacity;
+    transition: opacity $duration $timing-function $delay, transform $duration $timing-function $delay;
+  }
+  @if $active {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes bolt-animation--fade-in-slide-down {
+  from {
+    @include bolt-transition--fade-in-slide-down($base: true);
+  }
+  to {
+    @include bolt-transition--fade-in-slide-down($active: true);
+  }
+}
+
+/// Fade in and Slide left
+/// @param {Bool} $base [false] - Base styling preps an element for transition
+/// @param {Bool} $active [false] - Triggers transition
+/// @param {String} $duration [$bolt-duration--medium] - Duration of animation
+/// @param {String} $timing-function [$bolt-timing--ease-in-out] - Timing/easing function
+/// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
+/// @param {String} $slide-left-distance [$bolt-spacing-gutter] - Distance to slide
+/// @example Fade-in and slide-up on hover
+/// .class {
+///   @include bolt-transition--fade-in-slide-left($base: true);
+///   &:hover {
+///     @include bolt-transition--fade-in-slide-left($active: true);
+///   }
+/// }
+@mixin bolt-transition--fade-in-slide-left (
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--ease-in-out,
+  $delay: $bolt-delay--xsmall,
+  $slide-up-distance: 20px
+) {
+  @if $base {
+    opacity: 0;
+    transform: translateX($slide-up-distance) translateZ(0);
+    will-change: opacity;
+    transition: opacity $duration $timing-function $delay, transform $duration $timing-function $delay;
+  }
+  @if $active {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes bolt-animation--fade-in-slide-left {
+  from {
+    @include bolt-transition--fade-in-slide-left($base: true);
+  }
+  to {
+    @include bolt-transition--fade-in-slide-left($active: true);
+  }
+}
+
+/// Fade in and Slide right
+/// @param {Bool} $base [false] - Base styling preps an element for transition
+/// @param {Bool} $active [false] - Triggers transition
+/// @param {String} $duration [$bolt-duration--medium] - Duration of animation
+/// @param {String} $timing-function [$bolt-timing--ease-in-out] - Timing/easing function
+/// @param {String} $delay [$bolt-delay--xsmall] - Delay before transition
+/// @param {String} $slide-right-distance [$bolt-spacing-gutter] - Distance to slide
+/// @example Fade-in and slide-up on hover
+/// .class {
+///   @include bolt-transition--fade-in-slide-right($base: true);
+///   &:hover {
+///     @include bolt-transition--fade-in-slide-right($active: true);
+///   }
+/// }
+@mixin bolt-transition--fade-in-slide-right (
+  $base: false,
+  $active: false,
+  $duration: $bolt-duration--medium,
+  $timing-function: $bolt-timing--ease-in-out,
+  $delay: $bolt-delay--xsmall,
+  $slide-up-distance: 20px
+) {
+  @if $base {
+    opacity: 0;
+    transform: translateX(- $slide-up-distance) translateZ(0);
+    will-change: opacity;
+    transition: opacity $duration $timing-function $delay, transform $duration $timing-function $delay;
+  }
+  @if $active {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+@keyframes bolt-animation--fade-in-slide-right {
+  from {
+    @include bolt-transition--fade-in-slide-right($base: true);
+  }
+  to {
+    @include bolt-transition--fade-in-slide-right($active: true);
   }
 }

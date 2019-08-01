@@ -306,10 +306,12 @@ const createTracker = () => {
   //   // Loads the Linker plugin
   ga('require', 'linker');
 
-  ga(
-    'linker:autoLink',
-    window.drupalSettings.google_analytics.trackCrossDomains,
-  );
+  if (window.drupalSettings && window.drupalSettings.google_analytics) {
+    ga(
+      'linker:autoLink',
+      window.drupalSettings.google_analytics.trackCrossDomains,
+    );
+  }
 
   //   // Log hits in non-production environments.
   // if (process.env.NODE_ENV !== 'production') {

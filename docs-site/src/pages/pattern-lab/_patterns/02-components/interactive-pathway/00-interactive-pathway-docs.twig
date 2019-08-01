@@ -1,0 +1,8 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-interactive-pathway/interactive-pathway.twig' only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "interactive-pathway",
+  usage: usage
+} only %}

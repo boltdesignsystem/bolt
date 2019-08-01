@@ -1,0 +1,47 @@
+@import '@bolt/core';
+
+// Local interactive-pathway Variables
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-interactive-pathway', block, medium);
+
+//@import "@bolt/animations/settings/settings-animations";
+//
+//@import "@bolt/animations/tools/tools-transitions";
+//@import "@bolt/animations/tools/tools-animations";
+//
+//@import "@bolt/animations/utilities/utilities-animation";
+
+.c-bolt-interactive-pathway {
+  display: none;
+  position: relative;
+
+  &--active {
+    display: block;
+  }
+
+  &__nav {
+    position: relative;
+    padding-left: 0;
+    list-style: none;
+  }
+}
+
+/**
+ * This builds the vertical strikethrough line on the interactive pathway nav
+ */
+bolt-interactive-pathway {
+  position: relative;
+  margin-bottom: 0 !important; // override the global vertical spacing rhythm, as only one is visible in any list
+}
+
+bolt-interactive-pathway:before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 2.5px;
+  z-index: 5;
+  height: calc(100% - 30px);
+  margin-left: 5px;
+  border-left: 2px solid #AAB2F2;
+}

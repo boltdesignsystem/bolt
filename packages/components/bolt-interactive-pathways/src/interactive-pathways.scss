@@ -1,0 +1,66 @@
+@import '@bolt/core';
+
+// Local interactive-pathways Variables
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-interactive-pathways', block, medium);
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+.c-bolt-interactive-pathways {
+  //Styles go here. /* [1] */
+  display: block;
+
+  @include bolt-mq(small) {
+    height: 500px; // @todo Remove this once SSR is in place. Temp fix for layout and no SSR rendering.
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.65rem;
+
+    @include bolt-mq(small) {
+      flex-direction: row;
+      position: static;
+    }
+
+    bolt-dropdown {
+      z-index: 1;
+      height: 56.83px; // Temp fix for the dropdown menu pushing content down. @todo resolve this better
+      overflow: visible;
+
+      @include bolt-mq(small) {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &__menu-item {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    padding: 0.825rem 1rem;
+
+    //&:hover {
+    //  cursor: pointer;
+    //}
+  }
+}
+
+bolt-text[slot="interactive-pathways-lead-text"] {
+  margin-bottom: 0;
+}
