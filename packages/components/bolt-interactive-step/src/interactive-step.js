@@ -1,5 +1,6 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
+import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
 import styles from './interactive-step.scss';
 //import schema from '../interactive-step.schema.yml'; //Todo: Uncomment when you will need schema
@@ -54,64 +55,17 @@ class BoltInteractiveStep extends withLitHtml() {
   }
 
   async triggerAnimOuts() {
-    if (!this.slots) return;
-    const els = [];
+    const anims = Array.from(this.querySelectorAll('bolt-animate'));
+    return triggerAnims({ animEls: anims, stage: 'OUT' });
+  }
 
-    const allSlots = Object.values(this.slots);
-    if (!allSlots) return;
-    allSlots.forEach(slot => {
-      slot.forEach(
-        /** @type {HTMLElement} */
-        slotElement => {
-          if (slotElement.tagName === 'BOLT-ANIMATE') {
-            if (slotElement.hasAnimOut) {
-              els.push(slotElement);
-            }
-          }
-        },
-      );
-    });
-
-    return Promise.all(
-      els.map(
-        el =>
-          new Promise((resolve, reject) => {
-            el.addEventListener('bolt-animate:end:out', () => {
-              resolve();
-            });
-            el.triggerAnimOut();
-          }),
-      ),
-    ).catch(console.log.bind(console));
+  async triggerAnimIns() {
+    const anims = Array.from(this.querySelectorAll('bolt-animate'));
+    return triggerAnims({ animEls: anims, stage: 'IN' });
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
-    switch (name) {
-      case 'active':
-        // console.log('attributeChangedCallback', { name, oldValue, newValue });
-        const isActive = typeof newValue === 'string';
-        if (!this.slots) return;
-        const allSlots = Object.values(this.slots);
-        if (!allSlots) return;
-        allSlots.forEach(slot => {
-          slot.forEach(
-            /** @type {HTMLElement} */
-            slotElement => {
-              if (slotElement.tagName === 'BOLT-ANIMATE') {
-                if (isActive) {
-                  slotElement.triggerAnimIn();
-                } else {
-                  slotElement.triggerAnimOut();
-                }
-                // @todo improve trigger out, this logic previously only supported triggering build in
-                // slotElement.setAttribute('trigger', isActive ? 'in' : 'out');
-              }
-            },
-          );
-        });
-        break;
-    }
   }
 
   render() {
