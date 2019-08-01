@@ -216,6 +216,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-icon',
     schema: iconSchema,
+    draggable: '[slot]',
     initialContent: `<span></span>`,
     propsToTraits: ['size', 'name', 'background', 'color'],
   });

@@ -1,0 +1,42 @@
+.c-bolt-character {
+  display: inline-block;
+  position: relative;
+
+  &__slot {
+    &--top {
+      position: absolute;
+      bottom: calc(100% + 20px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &--bottom {
+      position: absolute;
+      top: calc(100% + 20px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    &--left {
+      position: absolute;
+      top: 50%;
+      right: calc(100% + 20px);
+      transform: translateY(-50%);
+    }
+    &--right {
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 20px);
+      transform: translateY(-50%);
+    }
+    &--behind {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+    }
+  }
+}
