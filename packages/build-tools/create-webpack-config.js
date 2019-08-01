@@ -301,6 +301,7 @@ async function createWebpackConfig(buildConfig) {
             loader: 'babel-loader',
             options: {
               // sourceType: 'unambiguous',
+              sourceType: 'unambiguous',
               babelrc: false,
               cacheDirectory: true,
               // highlightCode: true,
