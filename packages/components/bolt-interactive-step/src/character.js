@@ -21,6 +21,12 @@ class BoltCharacter extends withLitHtml() {
           'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png',
       },
     },
+    size: {
+      ...props.string,
+      ...{
+        default: 'small',
+      },
+    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -31,8 +37,8 @@ class BoltCharacter extends withLitHtml() {
   }
 
   render() {
-    const { characterUrl } = this.validateProps(this.props);
-    const classes = cx('c-bolt-character');
+    const { characterUrl, size } = this.validateProps(this.props);
+    const classes = cx('c-bolt-character', `c-bolt-character--${size}`);
 
     return html`
       ${this.addStyles([styles])}
@@ -48,9 +54,6 @@ class BoltCharacter extends withLitHtml() {
         </span>
         <span class="c-bolt-character__slot--right">
           ${this.slot('right')}
-        </span>
-        <span class="c-bolt-character__slot--behind">
-          ${this.slot('behind')}
         </span>
         <img
           class="c-bolt-character__main-image"
