@@ -55,11 +55,13 @@ class BoltCharacter extends withLitHtml() {
         <span class="c-bolt-character__slot--right">
           ${this.slot('right')}
         </span>
-        <img
-          class="c-bolt-character__main-image"
-          src="${characterUrl}"
-          alt="Character Image"
-        />
+        <div class="c-bolt-character__main-image-wrapper">
+          <img
+            class="c-bolt-character__main-image"
+            src="${characterUrl}"
+            alt="Character Image"
+          />
+        </div>
       </div>
     `;
   }
