@@ -1,4 +1,4 @@
-import { polyfillLoader } from '@bolt/core';
+import { polyfillLoader } from '@bolt/core/polyfills/index';
 
 polyfillLoader.then(() => {
   import(
