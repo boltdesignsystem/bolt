@@ -69,6 +69,8 @@ describe('button', () => {
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
+
+    // @todo: also test rendered HTML for `disabled` attribute
   });
 
   test('Button with "disabled" adds attr to <a>', async () => {
@@ -79,6 +81,8 @@ describe('button', () => {
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
+
+    // @todo: also test rendered HTML for `disabled` attribute
   });
 
   test('Button with outer classes via Drupal Attributes', async () => {

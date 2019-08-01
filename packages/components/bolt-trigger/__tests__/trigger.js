@@ -61,6 +61,8 @@ describe('trigger', () => {
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
+
+    // @todo: also test rendered HTML for `disabled` attribute
   });
 
   test('Trigger with "disabled" does not add attr to <a>', async () => {
@@ -71,6 +73,8 @@ describe('trigger', () => {
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
+
+    // @todo: also test rendered HTML for `disabled` attribute
   });
 
   test('Trigger with outer classes via Drupal Attributes', async () => {

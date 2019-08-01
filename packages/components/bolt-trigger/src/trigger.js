@@ -69,6 +69,7 @@ class BoltTrigger extends BoltAction {
       triggerElement = this.rootElement.firstChild.cloneNode(true);
       triggerElement.className += ' ' + classes;
 
+      // @todo: find automatic way to dissolve original HTML elements into their respective props + custom attributes
       if (triggerElement.tagName === 'A') {
         const url = this.props.url || this.originalUrl;
 

@@ -145,6 +145,7 @@ class BoltButton extends BoltAction {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
       buttonElement.className += ' ' + classes;
 
+      // @todo: find automatic way to dissolve original HTML elements into their respective props + custom attributes
       if (buttonElement.tagName === 'A') {
         const url = this.props.url || this.originalUrl;
 
