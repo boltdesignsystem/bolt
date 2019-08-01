@@ -33,10 +33,12 @@
       "scripts"
     ],
     "nohoist": [
-      "**/sassdoc",
-      "**/babel-runtime/core-js",
-      "**/fbjs",
-      "**/wait-on"
+      "**/sassdoc/**",
+      "**/babel-runtime/**",
+      "**/babel-polyfill/**",
+      "**/fbjs/**",
+      "**/wait-on/**",
+      "**/@commitlint/**"
     ]
   },
   "scripts": {
@@ -104,6 +106,7 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
+    "core-js": "^3.1.4",
     "conf": "^5.0.0",
     "get-port": "^5.0.0",
     "patch-package": "^6.1.2",
