@@ -35,6 +35,10 @@ module.exports = {
       enum: easings.map(e => e.value),
       default: 'ease',
     },
+    inOrder: {
+      type: 'number',
+      default: 1,
+    },
 
     idle: {
       type: 'string',
@@ -78,6 +82,10 @@ module.exports = {
       title: 'Build Out Easing',
       enum: easings.map(e => e.value),
       default: 'ease',
+    },
+    outOrder: {
+      type: 'number',
+      default: 1,
     },
   },
 };
