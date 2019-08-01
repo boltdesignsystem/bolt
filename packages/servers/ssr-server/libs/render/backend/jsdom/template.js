@@ -1,4 +1,4 @@
-function template(html, port, webpackAssets) {
+function template(webpackAssets) {
   const assetPaths = [];
 
   for (let assetName in webpackAssets) {
@@ -21,13 +21,12 @@ function template(html, port, webpackAssets) {
         </head>
         
         <body>
-          ${html}
           ${assetPaths
             .filter(
               path => path.includes('.js') && path.includes('bundle') === false,
             )
             .map(
-              path => `<script src="http://localhost:${port}${path}"></script>`,
+              path => `<script src="${path}"></script>`,
             )
             .join('\n')}
         </body>
