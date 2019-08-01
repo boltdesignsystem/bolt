@@ -1,28 +1,40 @@
 .c-bolt-character {
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 
-  &--small {
+  &--small,
+  &--small &__main-image-wrapper,
+  &--small bolt-icon {
     width: 60px;
     height: 60px;
   }
-  &--medium {
+  &--medium,
+  &--medium &__main-image-wrapper,
+  &--medium bolt-icon {
     width: 80px;
     height: 80px;
   }
-  &--large {
+  &--large,
+  &--large &__main-image-wrapper,
+  &--large bolt-icon {
     width: 120px;
     height: 120px;
   }
 
   &__main-image-wrapper {
-    border: 4px solid white;  // todo make this theme aware
-    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
+    border-radius: 50%;
   }
 
   &__main-image {
+    box-sizing: border-box;
     width: 100%;
+    border: 4px solid white;  // todo make this theme aware
   }
 
   &__slot {
@@ -49,17 +61,6 @@
       top: 50%;
       left: calc(100% + 20px);
       transform: translateY(-50%);
-    }
-    &--behind {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 120px;
-      height: 120px;
     }
   }
 }

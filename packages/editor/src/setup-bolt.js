@@ -333,6 +333,6 @@ export function setupBolt(editor) {
     editable: false,
     highlightable: false,
     registerBlock: false,
-    propsToTraits: ['size', 'characterUrl'],
+    propsToTraits: ['size', 'characterUrl', 'useIcon'],
   });
 }

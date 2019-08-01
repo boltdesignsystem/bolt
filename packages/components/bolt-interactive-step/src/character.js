@@ -27,6 +27,12 @@ class BoltCharacter extends withLitHtml() {
         default: 'small',
       },
     },
+    useIcon: {
+      ...props.boolean,
+      ...{
+        default: false,
+      },
+    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -37,7 +43,7 @@ class BoltCharacter extends withLitHtml() {
   }
 
   render() {
-    const { characterUrl, size } = this.validateProps(this.props);
+    const { characterUrl, size, useIcon } = this.validateProps(this.props);
     const classes = cx('c-bolt-character', `c-bolt-character--${size}`);
 
     return html`
@@ -56,11 +62,19 @@ class BoltCharacter extends withLitHtml() {
           ${this.slot('right')}
         </span>
         <div class="c-bolt-character__main-image-wrapper">
-          <img
-            class="c-bolt-character__main-image"
-            src="${characterUrl}"
-            alt="Character Image"
-          />
+          ${useIcon
+            ? html`
+                <span class="c-bolt-character__slot--icon">
+                  ${this.slot('icon')}
+                </span>
+              `
+            : html`
+                <img
+                  class="c-bolt-character__main-image"
+                  src="${characterUrl}"
+                  alt="Character Image"
+                />
+              `}
         </div>
       </div>
     `;
