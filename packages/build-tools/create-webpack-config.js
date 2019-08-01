@@ -17,6 +17,8 @@ const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
+const TerserPlugin = require('terser-webpack-plugin');
+
 const {
   webpackStats,
   statsPreset,
@@ -298,8 +300,10 @@ async function createWebpackConfig(buildConfig) {
           use: {
             loader: 'babel-loader',
             options: {
+              // sourceType: 'unambiguous',
               babelrc: false,
               cacheDirectory: true,
+              // highlightCode: true,
               presets: ['@bolt/babel-preset-bolt'],
             },
           },
@@ -326,41 +330,18 @@ async function createWebpackConfig(buildConfig) {
       ],
     },
     mode: config.prod ? 'production' : 'development',
-    // optimization: {
-    //   mergeDuplicateChunks: true,
-    // },
+    devtool: config.sourceMaps ? 'source-map' : 'none',
     optimization: {
-      minimize: true,
-      occurrenceOrder: true,
-      namedChunks: true,
-      removeAvailableModules: true,
-      removeEmptyChunks: true,
-      nodeEnv: 'production',
-      mergeDuplicateChunks: true,
-      concatenateModules: true,
-      splitChunks: {
-        chunks: 'async',
-        cacheGroups: {
-          vendors: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'async',
-            reuseExistingChunk: true,
-          },
-        },
-      },
       minimizer: config.prod
         ? [
-            new UglifyJsPlugin({
-              sourceMap: true,
+            new TerserPlugin({
+              test: /\.m?js(\?.*)?$/i,
+              sourceMap: config.sourceMaps ? true : false,
               parallel: true,
-              cache: true,
-              uglifyOptions: {
-                compress: true,
-                mangle: true,
+              terserOptions: {
+                safari10: true,
                 output: {
                   comments: false,
-                  beautify: false,
                 },
               },
             }),
@@ -434,20 +415,6 @@ async function createWebpackConfig(buildConfig) {
   }
 
   if (config.prod) {
-    // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
-    // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
-    webpackConfig.plugins.push(
-      new UglifyJsPlugin({
-        sourceMap: config.sourceMaps,
-        parallel: true,
-        cache: true,
-        uglifyOptions: {
-          compress: true,
-          mangle: true,
-        },
-      }),
-    );
-
     // https://webpack.js.org/plugins/module-concatenation-plugin/
     webpackConfig.plugins.push(
       new webpack.optimize.ModuleConcatenationPlugin(),
@@ -471,15 +438,6 @@ async function createWebpackConfig(buildConfig) {
         },
       }),
     );
-
-    // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
-    webpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'hidden-source-map';
-  } else {
-    // not prod
-    // @todo fix source maps
-    webpackConfig.devtool =
-      config.sourceMaps === false ? '' : 'eval-source-map';
   }
 
   if (config.wwwDir) {

@@ -10,6 +10,7 @@ const { boltWebpackMessages } = require('@bolt/build-utils/webpack-helpers');
 const events = require('@bolt/build-utils/events');
 const createWebpackConfig = require('../create-webpack-config');
 const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
+const opn = require('better-opn');
 
 let boltBuildConfig;
 let browserSyncIsRunning = false;
@@ -85,7 +86,7 @@ async function server(customWebpackConfig) {
           logLevel: 'info',
           ui: false,
           notify: false,
-          open: boltBuildConfig.openServerAtStart,
+          open: false,
           logFileChanges: false,
           reloadOnRestart: true,
           watchOptions: {
@@ -96,6 +97,10 @@ async function server(customWebpackConfig) {
         },
         function(err, bs) {
           browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially
+
+          if (boltBuildConfig.openServerAtStart){
+            opn(`http://${boltBuildConfig.hostname}:${boltBuildConfig.port}`);
+          }
 
           if (!isUsingInternalServer) {
             console.log(

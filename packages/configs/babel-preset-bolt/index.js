@@ -5,7 +5,12 @@ const preset = function(api, opts = {}) {
         '@babel/preset-env',
         {
           modules: false,
-          debug: false,
+          loose: true,
+          corejs: {
+            version: 3,
+            proposals: true,
+          },
+          useBuiltIns: 'usage',
         },
       ],
     ],
@@ -15,6 +20,10 @@ const preset = function(api, opts = {}) {
         {
           helpers: false,
           regenerator: true,
+          corejs: {
+            version: 3,
+            proposals: true,
+          },
         },
       ],
 
