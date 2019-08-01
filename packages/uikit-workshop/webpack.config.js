@@ -220,20 +220,13 @@ module.exports = async function() {
       },
       plugins: [
         // clear out the buildDir on every fresh Webpack build
-        new CleanWebpackPlugin(
-          [
+        new CleanWebpackPlugin({
+          cleanOnceBeforeBuildPatterns: [
             `${config.buildDir}/index.html`,
             `${config.buildDir}/styleguide/css`,
             `${config.buildDir}/styleguide/js`,
-          ],
-          {
-            allowExternal: true,
-            verbose: false,
-
-            // perform clean just before files are emitted to the output dir
-            beforeEmit: true,
-          },
-        ),
+          ]
+        }),
         new HtmlWebpackPlugin({
           filename: '../index.html',
           template: 'src/html/index.html',
