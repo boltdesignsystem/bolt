@@ -6,7 +6,7 @@ import styles from './connection.scss';
 let cx = classNames.bind(styles);
 
 @define
-class BoltTwoCharacterChat extends withLitHtml() {
+class BoltConnection extends withLitHtml() {
   static is = 'bolt-connection';
 
   static props = {
@@ -37,7 +37,7 @@ class BoltTwoCharacterChat extends withLitHtml() {
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
-        <span class="c-bolt-connection__top-slot">
+        <span class="c-bolt-connection__slot--top">
           ${this.slot('top')}
         </span>
         <img
@@ -45,7 +45,7 @@ class BoltTwoCharacterChat extends withLitHtml() {
           src="${connectionUrl}"
           alt="Connection Band"
         />
-        <span class="c-bolt-connection__bottom-slot">
+        <span class="c-bolt-connection__slot--bottom">
           ${this.slot('bottom')}
         </span>
       </div>
@@ -53,4 +53,4 @@ class BoltTwoCharacterChat extends withLitHtml() {
   }
 }
 
-export { BoltTwoCharacterChat };
+export { BoltConnection };

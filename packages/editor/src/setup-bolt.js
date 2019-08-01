@@ -2,6 +2,7 @@ import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 import buttonSchema from '@bolt/components-button/button.schema.yml';
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.yml';
+import characterSchema from '@bolt/components-interactive-step/src/character.schema.yml';
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 import chipSchema from '@bolt/components-chip/chip.schema.yml';
 import imageSchema from '@bolt/components-image/image.schema.yml';
@@ -216,6 +217,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-icon',
     schema: iconSchema,
+    draggable: '[slot]',
     initialContent: `<span></span>`,
     propsToTraits: ['size', 'name', 'background', 'color'],
   });
@@ -321,5 +323,16 @@ export function setupBolt(editor) {
     editable: false,
     highlightable: false,
     registerBlock: false,
+  });
+
+  registerBoltComponent({
+    name: 'bolt-character',
+    schema: characterSchema,
+    draggable: false,
+    droppable: true, // @todo more specific rules here around what can be added to the slots, namely status bar, dialogue, etc
+    editable: false,
+    highlightable: false,
+    registerBlock: false,
+    propsToTraits: ['size', 'characterUrl'],
   });
 }

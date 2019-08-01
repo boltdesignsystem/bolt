@@ -1,0 +1,53 @@
+{#todo the style hack demo adds spacing around the charater for demo purposes (due to absolute positioned slots)#}
+{#todo however, the styles are ripped by save of the editor, so a better solution is needed here#}
+<style>
+  .u-demo-padding {
+    padding: 100px;
+  }
+</style>
+<div class="u-demo-padding">
+  <bolt-character
+      characterUrl="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+      size="small"
+  >
+    <bolt-animate slot="top" idle="pulse">
+    </bolt-animate>
+    <bolt-animate slot="left" idle="pulse">
+    </bolt-animate>
+    <bolt-animate slot="right" idle="pulse">
+    </bolt-animate>
+    <bolt-animate slot="bottom" idle="pulse">
+    </bolt-animate>
+  </bolt-character>
+</div>
+<div class="u-demo-padding">
+  <bolt-character
+      characterUrl="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+      size="medium"
+  >
+    <bolt-animate slot="top" idle="pulse">
+    </bolt-animate>
+    <bolt-animate slot="left" idle="pulse">
+    </bolt-animate>
+    <bolt-animate slot="right" idle="pulse">
+    </bolt-animate>
+    <bolt-animate slot="bottom" idle="pulse">
+    </bolt-animate>
+  </bolt-character>
+</div>
+<div class="u-demo-padding">
+  <bolt-character
+      characterUrl="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+      size="large"
+  >
+    <bolt-animate slot="top" idle="pulse">
+    </bolt-animate>
+    <bolt-animate slot="left" idle="pulse">
+    </bolt-animate>
+    <bolt-animate slot="right" idle="pulse">
+    </bolt-animate>
+    <bolt-animate slot="bottom" idle="pulse">
+    </bolt-animate>
+  </bolt-character>
+</div>
+
