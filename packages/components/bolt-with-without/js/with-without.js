@@ -7,7 +7,7 @@ const SimpleSwitch = require('a-simple-switch');
  *
  * @return {void}
  */
-const setActiveRegion = (checked) => {
+const setActiveRegion = checked => {
   setTimeout(() => {
     const activeWoClass = 'c-pega-wwo__active-wo';
     const activeWClass = 'c-pega-wwo__active-w';
