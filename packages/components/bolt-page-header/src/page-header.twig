@@ -593,11 +593,9 @@
                 </label>
               </form>
             </div>
-            {% include "@bolt-components-headline/text.twig" with {
-              text: "Placeholder for helper text and did-you-mean text.",
-              size: "xsmall",
-              align: "center",
-            } only %}
+            <bolt-text font-size="xsmall" align="center">
+              Placeholder for helper text and did-you-mean text.
+            </bolt-text>
           {% endcell %}
         {% endgrid %}
       </div>
