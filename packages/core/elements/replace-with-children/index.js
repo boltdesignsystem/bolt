@@ -1,5 +1,4 @@
 import { define } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 @define
 class ReplaceWithChildren extends HTMLElement {
