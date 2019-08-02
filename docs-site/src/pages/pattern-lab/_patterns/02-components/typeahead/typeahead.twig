@@ -1,0 +1,51 @@
+<div style="min-height: 300px">
+
+  <script>
+    window.patternPaths = {
+      pages: {
+        'blog-homepage': "04-pages-45-d8-blog-00-blog-homepage",
+        'blog-post': "04-pages-45-d8-blog-05-blog-post",
+        'careers-homepage': "04-pages-50-d8-careers-00-careers-homepage"
+      }
+    }
+  </script>
+
+  {% include "@bolt-components-typeahead/typeahead.twig" with {
+    attributes: {
+      class: [
+        "js-typeahead-hook"
+      ]
+    }
+  } %}
+
+    <script>
+      const typeahead = document.querySelector('.js-typeahead-hook');
+
+      function customOnChangeHandler() {
+        typeahead.on('onSelected', function (element, event, suggestion) {
+
+          const itemSelected = element.items.filter(item => item.label === suggestion.suggestionValue)[0];
+
+          if (itemSelected) {
+            if (itemSelected.label) {
+              const win = window.open(`http://localhost:3000/pattern-lab/?p=${
+                  itemSelected.label
+                }`, '_blank');
+              win.focus();
+            }
+          }
+        });
+      }
+
+      if (typeahead._wasInitiallyRendered) {
+        customOnChangeHandler();
+      } else {
+        typeahead.addEventListener('ready', function () {
+          customOnChangeHandler();
+        });
+      }
+    </script>
+
+    </div>
+  </div>
+
