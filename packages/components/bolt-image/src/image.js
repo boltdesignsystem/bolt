@@ -139,7 +139,9 @@ class BoltImage extends withLitHtml() {
         return html`
           <img
             class="${classes}"
-            src="${lazyload ? placeholderImage : src}"
+            src="${lazyload
+              ? placeholderImage || this.schema.properties.placeholder_image.default
+              : src}"
             alt="${ifDefined(alt ? alt : undefined)}"
             srcset="${ifDefined(
               !lazyload || this.isLoaded ? srcset || src : undefined,
@@ -169,7 +171,7 @@ class BoltImage extends withLitHtml() {
                 'c-bolt-image--cover': cover,
               },
             )}"
-            src="${placeholderImage}"
+            src="${placeholderImage || this.schema.properties.placeholder_image.default}"
             alt="${ifDefined(alt ? alt : undefined)}"
           />
         `;
@@ -208,8 +210,8 @@ class BoltImage extends withLitHtml() {
       `;
     };
 
-    if (_canUsePlaceholder && placeholderColor) {
-      this.style.backgroundColor = placeholderColor;
+    if (_canUsePlaceholder) {
+      this.style.backgroundColor = placeholderColor || this.schema.properties.placeholder_color.default;
     }
 
     if (maxWidth) {
