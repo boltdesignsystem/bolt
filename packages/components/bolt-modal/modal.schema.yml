@@ -58,7 +58,10 @@ properties:
   uuid:
     type: string
     description: Unique ID for modal, randomly generated if not provided.
-
+  prevent_body_scroll:
+    type: boolean
+    description: Prevent background page content from scrolling when modal is open
+    hidden: true
   # @todo: persistent and hide close button props are not ready.
   # persistent:
   #   type: boolean

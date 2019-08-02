@@ -5,6 +5,10 @@ import {
   define,
   hasNativeShadowDomSupport,
   getTransitionDuration,
+  bodyHasScrollbar,
+  getScrollbarWidth,
+  setScrollbarPadding,
+  resetScrollbarPadding,
 } from '@bolt/core/utils';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
@@ -40,6 +44,7 @@ class BoltModal extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
+    preventBodyScroll: props.boolean,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -54,11 +59,16 @@ class BoltModal extends withLitHtml() {
     return self;
   }
 
+  static scrollbarWidth = getScrollbarWidth();
+
+  static get bodyHasScrollbar() {
+    return bodyHasScrollbar();
+  }
+
   connecting() {
     super.connecting && super.connecting();
     document.addEventListener('keydown', this._handleKeyPresseskeypress);
     this.setAttribute('ready', '');
-    this.scrollbarWidth = this._getScrollbarWidth();
   }
 
   // Initialise everything needed for the dialog to work properly
@@ -84,13 +94,15 @@ class BoltModal extends withLitHtml() {
   }
 
   get _toggleEventOptions() {
-    return {
-      detail: {
-        hasScrollbar: this._bodyHasScrollbar,
-        scrollbarWidth: this.scrollbarWidth,
-      },
-      bubbles: true,
-    };
+    return this.props.preventBodyScroll
+      ? {
+          detail: {
+            hasScrollbar: BoltModal.bodyHasScrollbar,
+            scrollbarWidth: BoltModal.scrollbarWidth,
+          },
+          bubbles: true,
+        }
+      : {};
   }
 
   /**
@@ -113,7 +125,7 @@ class BoltModal extends withLitHtml() {
 
     this.dispatchEvent(new CustomEvent('modal:show', this._toggleEventOptions));
 
-    this._setScrollbar();
+    this.props.preventBodyScroll && this._setScrollbar();
 
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
     // this.querySelector('[slot="trigger"]').setAttribute('tabindex', '-1');
@@ -156,7 +168,7 @@ class BoltModal extends withLitHtml() {
 
     // Wait until after transition or modal will shift
     setTimeout(() => {
-      this._resetScrollbar();
+      this.props.preventBodyScroll && this._resetScrollbar();
       this.dispatchEvent(
         new CustomEvent('modal:hidden', this._toggleEventOptions),
       );
@@ -190,11 +202,6 @@ class BoltModal extends withLitHtml() {
       //   target.removeAttribute('aria-hidden');
       // });
     }
-  }
-
-  get _bodyHasScrollbar() {
-    const bodyRect = document.body.getBoundingClientRect();
-    return bodyRect.left + bodyRect.right < window.innerWidth;
   }
 
   /**
@@ -241,49 +248,16 @@ class BoltModal extends withLitHtml() {
   }
 
   _setScrollbar() {
-    // Technique inspired by Bootstrap Modal: https://github.com/twbs/bootstrap/blob/master/js/src/modal/modal.js
-
-    if (this._bodyHasScrollbar) {
-      const originalPadding = document.body.style.paddingRight;
-      const calculatedPadding = window.getComputedStyle(document.body)[
-        'padding-right'
-      ];
-
-      // Save original padding value for later
-      document.body.setAttribute('data-padding-right', originalPadding);
-      document.body.style.paddingRight = `${parseFloat(calculatedPadding) +
-        this.scrollbarWidth}px`;
-    }
+    BoltModal.bodyHasScrollbar &&
+      setScrollbarPadding(document.body, BoltModal.scrollbarWidth);
 
     document.body.classList.add('u-bolt-overflow-hidden');
   }
 
   _resetScrollbar() {
-    const padding = document.body.getAttribute('data-padding-right');
-
-    document.body.style.paddingRight = '';
-
-    if (typeof padding === 'undefined') {
-      document.body.style.paddingRight = '';
-    } else {
-      document.body.removeAttribute('data-padding-right');
-      // Restore original padding value
-      document.body.style.paddingRight = padding;
-    }
+    resetScrollbarPadding(document.body);
 
     document.body.classList.remove('u-bolt-overflow-hidden');
-  }
-
-  // @todo: refactor into core JS/CSS
-  _getScrollbarWidth() {
-    // https://davidwalsh.name/detect-scrollbar-width
-    const scrollDiv = document.createElement('div');
-    scrollDiv.className = 'c-bolt-modal__scrollbar-measure';
-    document.body.appendChild(scrollDiv);
-    const scrollbarWidth =
-      scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
-    document.body.removeChild(scrollDiv);
-    return scrollbarWidth;
   }
 
   /**
