@@ -14,7 +14,6 @@ export const bodyHasScrollbar = () => {
  */
 export const getScrollbarWidth = () => {
   const scrollDiv = document.createElement('div');
-  scrollDiv.className = 'c-bolt-modal__scrollbar-measure';
   scrollDiv.style.cssText =
     'position: absolute; top: -9999px; width: 100px; height: 100px; overflow: scroll;';
   document.body.appendChild(scrollDiv);
