@@ -330,9 +330,11 @@ class BoltNavIndicator extends withLitHtml() {
       this._initializeGumshoe();
       this._upgradeProperty('offset');
 
-      this.addEventListener('navlink:active', this._onActivateLink);
-      window.addEventListener('optimizedResize', this._onWindowResize);
-      this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
+      setTimeout(() => {
+        this.addEventListener('navlink:active', this._onActivateLink);
+        window.addEventListener('optimizedResize', this._onWindowResize);
+        this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
+      }, 0);
     });
   }
 
