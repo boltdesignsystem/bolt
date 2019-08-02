@@ -213,11 +213,12 @@ async function transpileIcons(icons) {
 
   export const ${uppercamelcase(
     id,
-  )} = ({ bgColor, fgColor, size, ...otherProps }) => {
+  )} = ({ bgColor, fgColor, size, title, ...otherProps }) => {
       return (
         ${
           fileName.includes('-color')
             ? $(optimizedSVG)
+                .prepend('<title>{ title }</title>')
                 .toString()
                 .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
                 .replace('d="M0 0h24v24H0z"', '')
@@ -225,6 +226,7 @@ async function transpileIcons(icons) {
                 .replace(/height=".*?"/, 'height={size}')
                 .replace('otherProps="..."', '{...otherProps}')
             : $(optimizedSVG)
+                .prepend('<title>{ title }</title>')
                 .toString()
                 .replace('fill="#FFF"', 'fill={fgColor}')
                 .replace('stroke="#FFF"', 'stroke={fgColor}')
