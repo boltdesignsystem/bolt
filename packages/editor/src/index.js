@@ -30,6 +30,27 @@ function createEditorUiHtml(appendTo = document.body) {
   };
 }
 
+/**
+ * @return {Promise<void>}
+ */
+function addGrapesCssToPage() {
+  return new Promise((resolve, reject) => {
+    // @todo either lock to current installed grapesjs version or load from local `node_modules`
+    const href = '//unpkg.com/grapesjs/dist/css/grapes.min.css';
+    if (document.querySelector(`link[href="${href}"]`)) {
+      resolve();
+    } else {
+      const link = document.createElement('link');
+      link.href = href;
+      link.type = 'text/css';
+      link.rel = 'stylesheet';
+      link.media = 'screen';
+      link.addEventListener('load', () => resolve(), { once: true });
+      document.head.appendChild(link);
+    }
+  });
+}
+
 function init() {
   const selectors = {
     editor: {
@@ -142,6 +163,8 @@ function init() {
         }
         case EDITOR_STATES.CLOSED: {
           console.log('editor launching...');
+          trigger.innerText = 'Loading...';
+          await addGrapesCssToPage();
           const { enableEditor } = await import(
             /* webpackChunkName: "pega-editor" */ './editor'
           );

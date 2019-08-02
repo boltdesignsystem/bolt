@@ -4,19 +4,6 @@ import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
 import { setupBolt } from './setup-bolt';
 
-function addGrapesCssToPage() {
-  const href = '//unpkg.com/grapesjs/dist/css/grapes.min.css';
-  if (document.querySelector(`link[href="${href}"]`)) {
-    return;
-  }
-  const link = document.createElement('link');
-  link.href = href;
-  link.type = 'text/css';
-  link.rel = 'stylesheet';
-  link.media = 'screen';
-  document.head.appendChild(link);
-}
-
 /**
  * @param {Object} opt
  * @param {HTMLElement} opt.space
@@ -25,7 +12,6 @@ function addGrapesCssToPage() {
  * @return {grapesjs.Editor}
  */
 export function enableEditor({ space, uiWrapper, config }) {
-  addGrapesCssToPage();
   /** @type {{ [key: string]: HTMLElement }} */
   const editorSlots = {
     buttons: uiWrapper.querySelector('.pega-editor-ui__buttons'),
