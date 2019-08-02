@@ -1,4 +1,5 @@
 import * as grapesjs from 'grapesjs';
+import { query } from './utils';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
@@ -176,6 +177,42 @@ export function enableEditor({ space, uiWrapper, config }) {
   // const { BlockManager, Panels, DomComponents } = editor;
 
   window['editor'] = editor; // eslint-disable-line dot-notation
+
+  let dropzoneSelector = '';
+
+  function addDropzoneHighlights() {
+    const dropzones = query(dropzoneSelector, canvasDoc);
+    if (!dropzones) return;
+    dropzones.forEach(el => {
+      const isEmpty = el.children.length === 0;
+      el.style.outline = 'dotted green 2px';
+    });
+  }
+
+  function removeDropzoneHighlights() {
+    const dropzones = query(dropzoneSelector, canvasDoc);
+    if (!dropzones) return;
+    dropzones.forEach(el => {
+      el.style.outline = '';
+    });
+    dropzoneSelector = '';
+  }
+
+  editor.on('block:drag:start', (block, a, b) => {
+    const { id } = block;
+    const component = editor.DomComponents.getType(id);
+    const { droppable, draggable } = component.model.prototype.defaults;
+    if (typeof droppable === 'string') {
+      dropzoneSelector = droppable;
+      addDropzoneHighlights();
+    }
+  });
+
+  editor.on('block:drag:stop', (componentModel, blockModel) => {
+    if (dropzoneSelector) {
+      removeDropzoneHighlights();
+    }
+  });
 
   // Global hooks
   // editor.on(`component:create`, model =>
