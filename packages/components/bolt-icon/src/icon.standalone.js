@@ -87,7 +87,7 @@ class BoltIcon extends withPreact() {
   }
 
   render() {
-    const { size, name, color, background } = this.props;
+    const { size, name, color, background, title } = this.props;
     const { primaryColor, secondaryColor } = this.state;
 
     const classes = css(
@@ -123,6 +123,7 @@ class BoltIcon extends withPreact() {
           size={iconSize}
           bgColor={primaryColor}
           fgColor={secondaryColor}
+          title={title || name}
         />
         {background && size === 'xlarge' && (
           <span className={backgroundClasses} />

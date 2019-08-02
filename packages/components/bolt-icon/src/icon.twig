@@ -9,6 +9,15 @@
   .setAttribute("background", background)
   .setAttribute("size", size)
   .setAttribute("color", color)
+  .setAttribute("title", title)
 %}
 
-<bolt-icon {{ attributes }}></bolt-icon>
+<bolt-icon {{ attributes }}>
+  {% if fallback %}
+    {% set svgIcon %}
+      {% include "@bolt-components-icons/#{name}.svg" %}
+    {% endset %}
+
+    {{ svgIcon | replace({'<svg ': '<svg ' ~ 'class="' ~ attributes.class ~ '"'}) }}
+  {% endif %}
+</bolt-icon>
