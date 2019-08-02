@@ -51,13 +51,14 @@ class BoltImage extends withLitHtml() {
   }
 
   connecting() {
+    super.connecting && super.connecting();
+
+    const image = this.querySelector('.c-bolt-image__image');
+    this.initialClasses =
+      this.initialClasses || image ? [].slice.call(image.classList) : [];
+
     // IE fires this twice, only let it remove children once
     if (!this._wasInitiallyRendered) {
-      super.connecting && super.connecting();
-
-      const image = this.querySelector('.c-bolt-image__image');
-      this.initialClasses = image ? [].slice.call(image.classList) : [];
-
       while (this.firstChild) {
         this.removeChild(this.firstChild);
       }
