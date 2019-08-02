@@ -1,0 +1,168 @@
+//------------------------------------
+//    #TWITTER TYPEAHEAD
+//------------------------------------
+
+@import '@bolt/core/styles/index.scss';
+
+$bolt-clear-button-size: 1.7rem;
+$bolt-clear-button-size-at-med: 1.4rem;
+
+bolt-typeahead {
+  display: inline-block;
+  align-self: stretch;
+  text-align: start;
+}
+
+.c-bolt-typeahead {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  color: bolt-theme(text);
+  background-color: inherit;
+}
+
+.c-bolt-typeahead__input {
+  box-sizing: border-box; // needed when rendered to the Shadow DOM
+  -webkit-appearance: none; // removes default styling (ex. heavy box shadow) in Safari
+  width: 100%;
+  max-width: 100%;
+  padding-top: 0.4rem;
+  padding-right: $bolt-clear-button-size;
+  padding-bottom: 0.4rem;
+  padding-left: 0.5rem;
+  text-transform: capitalize;
+  font-size: 16px; // prevent zooming in on mobile
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(bolt-color(black), .1);
+  text-overflow: ellipsis;
+  transition: all 0.1s ease;
+  outline-offset: -3px;
+  outline-width: 2px;
+
+  @media all and (min-width: bolt-bp(medium)) {
+    padding-right: $bolt-clear-button-size-at-med;
+  }
+
+  @include bolt-mq(medium){
+    font-size: inherit;
+  }
+
+  // Remove the native <input> clear button in IE 11 in lieu of JS-controlled clear button
+  &::-ms-clear {
+    display: none;
+  }
+
+  &::-webkit-input-placeholder,
+  &::-moz-input-placeholder {
+    transition: all 0.1s ease;
+  }
+}
+
+.c-bolt-typeahead__menu {
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  min-width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  color: bolt-theme(text-on-secondary);
+  text-transform: capitalize;
+  background-color: bolt-theme(secondary);
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    max-height: 120rem;
+    max-height: calc(var(--viewport-height) - 4rem);
+  }
+
+  @media all and (max-width: bolt-bp(medium) - 1) {
+    position: relative !important;
+  }
+}
+
+.c-bolt-typeahead__results {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-color: bolt-theme(border);//darken($pl-color-gray-87, 5%);
+  background-color: inherit;
+
+  &:empty {
+    max-height: 0;
+    border-width: 0;
+  }
+}
+
+.c-bolt-typeahead__result {
+  overflow: hidden;
+  padding: 0.5rem 0.75rem;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.8rem;
+  background-color: inherit;
+  transition: all 0.3s ease;
+
+  &.has-cursor,
+  &:hover {
+    background-color: bolt-theme(primary, 0.15);
+  }
+
+  &:active,
+  &:focus {
+    background-color: rgba(255, 255, 255, 0.18);
+  }
+}
+
+.c-bolt-typeahead__input-wrapper {
+  flex-shrink: 0;
+  position: relative; // used for positioning search clear button in relation to the <input>
+}
+
+
+.c-bolt-typeahead__clear-button {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  right: 0.25rem;
+  transform: translateY(-50%);
+  z-index: 100;
+  width: $bolt-clear-button-size;
+  height: $bolt-clear-button-size;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0;
+  border-radius: 20rem;
+  transition: opacity 0.1s ease;
+
+  @media all and (min-width: bolt-bp(medium)) {
+    width: $bolt-clear-button-size-at-med;
+    height: $bolt-clear-button-size-at-med;
+  }
+}
+
+.c-bolt-typeahead__clear-icon {
+  fill: currentColor;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  width: 1rem; // needed for icon SSR rendering
+  font-size: 1rem; // needed for icon SSR rendering
+}
+
+.c-bolt-typeahead__input:valid ~ .c-bolt-typeahead__clear-button,
+.c-bolt-typeahead__clear-button.is-visible {
+  visibility: visible;
+  opacity: 1;
+}
