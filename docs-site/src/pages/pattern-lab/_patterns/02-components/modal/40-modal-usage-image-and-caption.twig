@@ -78,12 +78,10 @@
 
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set image_content %}
-    {% include "@bolt-components-device-viewer/device-viewer.twig" with {
-      device: "macbook",
-      image: {
-        src: "/images/content/screenshots/device-screenshot--desktop.jpg",
-        lazyload: false
-      },
+    {% include "@bolt-components-image/image.twig" with {
+      src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+      alt: "Image description.",
+      ratio: "none",
     } only %}
   {% endset %}
   {% set caption %}
@@ -115,6 +113,15 @@
         "on-click-target": "js-image-modal-advanced-device-viewer",
       }
     } only %}
+  {% endset %}
+  {% set device_viewer %}
+    {% embed "@bolt-components-device-viewer/device-viewer.twig" with {
+      device: "macbook",
+    } %}
+      {% block device_viewer_image %}
+        {{ trigger }}
+      {% endblock %}
+    {% endembed %}
     {% include "@bolt-components-modal/modal.twig" with {
       attributes: {
         class: "js-image-modal-advanced-device-viewer",
@@ -122,8 +129,10 @@
       content: modal_content,
       spacing: "none",
       scroll: "overall",
+      width: "full",
     } only %}
   {% endset %}
+
   {% set description %}
     <bolt-text headline font-size="large">Enlarge image (inside device viewer) and show caption</bolt-text>
     <bolt-text>Create a device viewer trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high res image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
@@ -146,7 +155,7 @@
         row_start: "1 1@small",
         row_span: "1",
         valign: "center",
-        content: trigger,
+        content: device_viewer,
       },
     ]
   } only %}
