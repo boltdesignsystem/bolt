@@ -297,6 +297,9 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(js|tsx|mjs)$/,
           exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+          exclude: [
+            /^(?!.*(@bolt\/components|@bolt\/core|@bolt\/global|@webcomponents|lit-html|@polymer|swiper|dom7|uppercamelcase|skatejs|handorgel|preact-html|preact|preact-compat|preact-context|preact-transition-group|preact-render-to-string|prismjs)).*node_modules.*$/,
+          ],
           use: {
             loader: 'babel-loader',
             options: {
