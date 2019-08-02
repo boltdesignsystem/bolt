@@ -1,0 +1,26 @@
+@import '@bolt/core';
+
+$bolt-tooltip-bubble-border-color: bolt-color(gray, light);
+
+.c-bolt-status-dialogue-bar {
+  display: flex;
+  align-items: center;
+  width: 300px;
+  color: bolt-color(black);
+  border: 1px solid bolt-color(gray, light);
+  border-radius: $bolt-border-radius;
+  background-color: bolt-color(white);
+  @include bolt-padding(small);
+
+  &--alert {
+    color: bolt-color(white);
+    background-color: bolt-color(error);
+  }
+
+  &__slot {
+    &--icon{
+      @include bolt-padding-right(small);
+    }
+  }
+}
+

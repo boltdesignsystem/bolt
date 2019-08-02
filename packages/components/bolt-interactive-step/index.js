@@ -13,4 +13,7 @@ polyfillLoader.then(res => {
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-character' */ './src/character'
   );
+  import(
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-character' */ './src/status-dialogue-bar'
+  );
 });
