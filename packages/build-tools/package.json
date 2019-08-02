@@ -22,6 +22,7 @@
     "test": "FORCE_COLOR=1 npx lerna exec --scope @bolt/build-tools--test* --concurrency 1 -- npm run test"
   },
   "dependencies": {
+    "postcss-modules": "^1.4.1",
     "@babel/core": "^7.4.5",
     "@bolt/api": "^2.5.3",
     "@bolt/babel-preset-bolt": "^2.5.1",
@@ -48,7 +49,7 @@
     "copy-webpack-plugin": "^5.0.3",
     "cosmiconfig": "^5.2.1",
     "css-hot-loader": "^1.4.4",
-    "css-loader": "^2.1.1",
+    "css-loader": "^3.1.0",
     "cssnano": "^4.1.10",
     "deepmerge": "^3.2.0",
     "ejs": "^2.6.1",
