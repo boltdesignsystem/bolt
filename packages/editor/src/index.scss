@@ -1,5 +1,4 @@
 .pega-editor-ui {
-  display: flex;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -7,6 +6,14 @@
   z-index: 1000;
   width: 100vw;
   height: 30vh;
+
+  &__buttons {
+
+  }
+
+  &__slots {
+    display: flex;
+  }
 
   &__slot {
     overflow: scroll;
@@ -18,12 +25,6 @@
 
     &:empty {
       display: none;
-    }
-
-    &--buttons {
-      flex-grow: 0;
-      flex-shrink: 0;
-      width: 75px;
     }
 
     &--blocks {
@@ -62,19 +63,19 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  // justify-content: space-around;
+  padding: 2px;
 
   >.gjs-pega-editor-panels-btn {
     display: inline-block;
-    width: 30px;
-    height: 30px;
     margin: 3px;
-    line-height: 30px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.1);
+    padding: 3px;
+    font-size: 80%;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.3);
 
     &:hover {
       cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.5);
     }
   }
 }
