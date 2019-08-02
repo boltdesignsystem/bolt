@@ -17,6 +17,8 @@ const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
+const crypto = require('crypto');
+
 const {
   webpackStats,
   statsPreset,
@@ -192,51 +194,80 @@ async function createWebpackConfig(buildConfig) {
     return entry;
   }
 
-  const scssLoaders = [
-    {
-      loader: 'css-loader',
-      options: {
-        sourceMap: config.sourceMaps,
-        modules: false, // needed for JS referencing classNames directly, such as critical fonts
+  const scssLoaders = function(isJsFile = false) {
+    return [
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: config.sourceMaps,
+          modules: {
+            // localsConvention: 'camelCase',
+            getLocalIdent: (context, localIdentName, localName, options) => {
+              if (isJsFile === true && context.resourcePath.includes('.scoped')){
+                return `${localName}--${crypto.createHash('md5').update(localName).digest('hex').substring(0, 8)}`;
+              } else {
+                return localName;
+              }
+            },
+          },
+        },
       },
-    },
-    {
-      loader: 'postcss-loader',
-      options: {
-        sourceMap: config.sourceMaps,
-        plugins: () => [
-          require('@bolt/postcss-themify')(themifyOptions),
-          postcssDiscardDuplicates,
-          autoprefixer({
-            grid: true,
-          }),
-        ],
+      {
+        loader: 'postcss-loader',
+        options: {
+          sourceMap: config.sourceMaps,
+          plugins: () => [
+            require('@bolt/postcss-themify')(themifyOptions),
+            postcssDiscardDuplicates,
+            autoprefixer({
+              grid: true,
+            }),
+            require('postcss-modules')({
+              // camelCase: true, // disabling camelCase versions of CSS classes till we look into changing the
+              generateScopedName: function(name, filename, css) {
+                if (filename.includes('.scoped') && isJsFile === false){
+                  const i = css.indexOf(`.${name}`);
+                  return `${name}--${crypto.createHash('md5').update(name).digest('hex').substring(0, 8)}`;
+                } else {
+                  return name;
+                }
+              },
+              getJSON: function(cssFileName, json, outputFileName) {
+                if (cssFileName.includes('.scoped') && isJsFile === false){
+                  var jsonFileName = path.resolve(`${cssFileName.replace('.scss', '')}.json`);
+                  fs.writeFileSync(jsonFileName, JSON.stringify(json));
+                } else {
+                  return;
+                }
+              }
+            })
+          ],
+        },
       },
-    },
-    {
-      loader: 'clean-css-loader',
-      options: {
-        level: config.prod ? 2 : 0,
-        format: config.prod ? false : 'beautify',
-        inline: ['remote'],
+      {
+        loader: 'clean-css-loader',
+        options: {
+          level: config.prod ? 2 : 0,
+          format: config.prod ? false : 'beautify',
+          inline: ['remote'],
+        },
       },
-    },
-    {
-      loader: 'resolve-url-loader',
-    },
-
-    {
-      loader: 'sass-loader',
-      options: {
-        sourceMap: config.sourceMaps,
-        importer: [npmSass.importer],
-        functions: sassExportData,
-        precision: 3,
-        data: globalSassData.join('\n'),
-        outputStyle: 'nested',
+      {
+        loader: 'resolve-url-loader',
       },
-    },
-  ];
+      {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: config.sourceMaps,
+          importer: [npmSass.importer],
+          functions: sassExportData,
+          precision: 3,
+          data: globalSassData.join('\n'),
+          outputStyle: 'nested',
+        },
+      },
+    ];
+  }
 
   let webpackConfig = {
     target: 'web',
@@ -277,18 +308,20 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.scss$/,
+          test: /\.(scss)$/,
           oneOf: [
             {
               issuer: /\.js$/,
-              use: [scssLoaders].reduce((acc, val) => acc.concat(val), []),
+              use: [
+                scssLoaders(true),
+              ].reduce((acc, val) => acc.concat(val), []),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: [
                 // 'css-hot-loader',
                 MiniCssExtractPlugin.loader,
-                scssLoaders,
+                scssLoaders(false),
               ].reduce((acc, val) => acc.concat(val), []),
             },
           ],
@@ -409,9 +442,25 @@ async function createWebpackConfig(buildConfig) {
           maxAge: 2 * 24 * 60 * 60 * 1000,
           // All caches together must be larger than `sizeThreshold` before any
           // caches will be deleted. Together they must be at least 300MB in size
-          sizeThreshold: 300 * 1024 * 1024,
+          sizeThreshold: 3000 * 1024 * 1024,
+        },
+        environmentHash: {
+          root: process.cwd(),
+          directories: [],
+          files: ['package-lock.json', 'yarn.lock'],
         },
       }),
+
+      new HardSourceWebpackPlugin.ExcludeModulePlugin([
+        {
+          // HardSource works with mini-css-extract-plugin but due to how
+          // mini-css emits assets, assets are not emitted on repeated builds with
+          // mini-css and hard-source together. Ignoring the mini-css loader
+          // modules, but not the other css loader modules, excludes the modules
+          // that mini-css needs rebuilt to output assets every time.
+          test: /(mini-css-extract-plugin[\\/]dist[\\/]loader|postcss-modules)/,
+        },
+      ]),
     );
   }
 
