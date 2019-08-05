@@ -14,16 +14,22 @@ class BoltStatusDialogueBar extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    hasIcon: {
-      ...props.boolean,
+    iconName: {
+      ...props.string,
       ...{
-        default: false,
+        default: '',
       },
     },
     isAlertMessage: {
       ...props.boolean,
       ...{
         default: false,
+      },
+    },
+    dialogueArrowDirection: {
+      ...props.string,
+      ...{
+        default: 'none',
       },
     },
   };
@@ -36,24 +42,28 @@ class BoltStatusDialogueBar extends withLitHtml() {
   }
 
   render() {
-    const { hasIcon, isAlertMessage } = this.validateProps(this.props);
+    const {
+      iconName,
+      isAlertMessage,
+      dialogueArrowDirection,
+    } = this.validateProps(this.props);
     const classes = cx('c-bolt-status-dialogue-bar', {
       [`c-bolt-status-dialogue-bar--alert`]: isAlertMessage,
-      't-bolt-dark': isAlertMessage,
+      [`c-bolt-status-dialogue-bar--include-${dialogueArrowDirection}-arrow`]: !!(
+        dialogueArrowDirection && dialogueArrowDirection !== 'none'
+      ),
     });
-
-    console.log("Hey super smart dev, check this out -> ", { isAlertMessage });
-
-    console.log("Hey super smart dev, check this out -> ", { hasIcon });
 
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
-        ${hasIcon
+        ${iconName
           ? html`
-              <span class="c-bolt-status-dialogue-bar__slot--icon">
-                ${this.slot('icon')}
-              </span>
+              <bolt-icon
+                size="medium"
+                name="${iconName}"
+                class="c-bolt-status-dialogue-bar__icon"
+              />
             `
           : ''}
         <span class="c-bolt-status-dialogue-bar__slot--text">

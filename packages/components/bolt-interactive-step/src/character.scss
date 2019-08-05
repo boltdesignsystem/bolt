@@ -38,23 +38,29 @@
   }
 
   &__slot {
+    &--cardinal {
+      width: 140px; // @todo Fix issue with slot forcing content to break instead of getting width from content
+    }
     &--top {
       position: absolute;
       bottom: calc(100% + 20px);
       left: 50%;
       transform: translateX(-50%);
+      text-align: center;
     }
     &--bottom {
       position: absolute;
       top: calc(100% + 20px);
       left: 50%;
       transform: translateX(-50%);
+      text-align: center;
     }
     &--left {
       position: absolute;
       top: 50%;
       right: calc(100% + 20px);
       transform: translateY(-50%);
+      text-align: right;
     }
     &--right {
       position: absolute;
