@@ -2,16 +2,16 @@ diff --git a/node_modules/get-own-property-symbols/build/get-own-property-symbol
 index 02ddd12..04c8d32 100644
 --- a/node_modules/get-own-property-symbols/build/get-own-property-symbols.max.js
 +++ b/node_modules/get-own-property-symbols/build/get-own-property-symbols.max.js
-@@ -154,6 +154,21 @@ THE SOFTWARE.
+@@ -153,7 +153,21 @@ THE SOFTWARE.
+   descriptor.value = $getOwnPropertySymbols;
    defineProperty(Object, GOPS, descriptor);
- 
+
++  /**
++   * @see https://github.com/aurelia/polyfills/pull/52/files
++   */
++  var cachedWindowNames = typeof window === 'object' ? Object.getOwnPropertyNames(window) : [];
++  var originalObjectGetOwnPropertyNames = Object.getOwnPropertyNames;
    descriptor.value = function getOwnPropertyNames(o) {
-+    /**
-+    * @see https://github.com/aurelia/polyfills/pull/52/files
-+    */
-+      var cachedWindowNames = typeof window === 'object' ? Object.getOwnPropertyNames(window) : [];
-+      var originalObjectGetOwnPropertyNames = Object.getOwnPropertyNames;
-+      descriptor.value = function getOwnPropertyNames(o) {
 +    if (toString.call(o) === '[object Window]') {
 +      try {
 +        return originalObjectGetOwnPropertyNames(o);
