@@ -29,6 +29,10 @@
       "docs-site/src/components/radio-switch",
       "docs-site/src/components/docs-search",
       "docs-site/src/components/banner"
+    ],
+    "nohoist": [
+      "get-own-property-symbols",
+      "**/get-own-property-symbols"
     ]
   },
   "scripts": {
@@ -114,10 +118,6 @@
     "release-it": "^12.2.2",
     "semantic-release": "^15.13.12"
   },
-  "nohoist": [
-    "get-own-property-symbols",
-    "**/get-own-property-symbols"
-  ],
   "publishConfig": {
     "access": "public"
   }
