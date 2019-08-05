@@ -60,7 +60,6 @@ $pega-wwo--content-max-mobile-width: 550px;
   background-color: bolt-color(black);
 
   &__wrapper {
-    display: none;
     position: relative;
     width: 100%;
     height: 0;
@@ -84,6 +83,17 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
   }
 
+  &__modal-bg {
+    background-color: bolt-color(black);
+    z-index: 33;
+    width: 100vw;
+    height: calc(100vh + 2000px);
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
   &__active-wo {
     display: block;
     background-image: url("./img/BG_withoutPega_mobile.jpg");
@@ -93,11 +103,13 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     .c-pega-wwo__content-w {
-      @include bolt-visuallyhidden;
+      //@include bolt-visuallyhidden;
+      display: none;
     }
 
     .c-pega-wwo__content-wo {
-      @include bolt-visuallyshown;
+      //@include bolt-visuallyshown;
+      display: block;
     }
   }
 
@@ -110,11 +122,13 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     .c-pega-wwo__content-wo {
-      @include bolt-visuallyhidden;
+      //@include bolt-visuallyhidden;
+      display: none;
     }
 
     .c-pega-wwo__content-w {
-      @include bolt-visuallyshown;
+      //@include bolt-visuallyshown;
+      display: block;
     }
   }
 
@@ -319,7 +333,6 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-labels {
-      display: flex;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -327,23 +340,39 @@ $pega-wwo--content-max-mobile-width: 550px;
       z-index: 9;
       width: 100%;
       margin-right: -50%;
-      padding-bottom: 1px;
-      padding-left: 5px;
+      padding-bottom: 4px;
+      padding-left: 3px;
       color: bolt-color('black');
       text-decoration: none;
       pointer-events: none;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      line-height: 1;
+
+      &-animation {
+        width: inherit;
+      }
+
+      &-inner {
+        display: flex;
+        width: inherit;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+      }
     }
 
     &-label {
-      flex-grow: 1;
+      flex: 1 0 50%;
+      width: 50%;
 
       &-w {
-        flex: 0 0 50%;
+        //margin-left: 50px;
       }
-
-      &-wo {
-        flex: 0 0 50%;
-      }
+      //
+      //&-wo {
+      //  flex: 0 0 50%;
+      //}
     }
   }
 
