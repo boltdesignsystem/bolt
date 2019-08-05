@@ -44,7 +44,6 @@ class BoltModal extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    noBodyScroll: props.boolean,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -55,6 +54,7 @@ class BoltModal extends withLitHtml() {
     self.show = self.show.bind(this);
     self.hide = self.hide.bind(this);
     self._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
+    self._noBodyScroll = false; // Internal switch to enable 'no-body-scroll' feature which is not ready for release
 
     return self;
   }
@@ -94,7 +94,7 @@ class BoltModal extends withLitHtml() {
   }
 
   get _toggleEventOptions() {
-    return this.props.noBodyScroll
+    return this._noBodyScroll
       ? {
           detail: {
             hasScrollbar: BoltModal.bodyHasScrollbar,
@@ -125,7 +125,7 @@ class BoltModal extends withLitHtml() {
 
     this.dispatchEvent(new CustomEvent('modal:show', this._toggleEventOptions));
 
-    this.props.noBodyScroll && this._setScrollbar();
+    this._noBodyScroll && this._setScrollbar();
 
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
     // this.querySelector('[slot="trigger"]').setAttribute('tabindex', '-1');
@@ -168,7 +168,7 @@ class BoltModal extends withLitHtml() {
 
     // Wait until after transition or modal will shift
     setTimeout(() => {
-      this.props.noBodyScroll && this._resetScrollbar();
+      this._noBodyScroll && this._resetScrollbar();
       this.dispatchEvent(
         new CustomEvent('modal:hidden', this._toggleEventOptions),
       );
