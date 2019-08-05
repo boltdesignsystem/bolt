@@ -160,6 +160,55 @@ exports[`button Button tag: submit 1`] = `
 </bolt-button>
 `;
 
+exports[`button Button with "disabled" adds attr to <a> 1`] = `
+<bolt-button size="medium"
+             color="primary"
+             width="auto"
+             border-radius="regular"
+             align="center"
+             transform="none"
+             url="http://pega.com"
+             disabled
+>
+  <a aria-disabled="true"
+     class="c-bolt-button c-bolt-button--disabled c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
+     is="shadow-root"
+  >
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__item">
+      This is a button
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+  </a>
+</bolt-button>
+`;
+
+exports[`button Button with "disabled" adds attr to <button> 1`] = `
+<bolt-button size="medium"
+             color="primary"
+             width="auto"
+             border-radius="regular"
+             align="center"
+             transform="none"
+             disabled
+>
+  <button disabled
+          class="c-bolt-button c-bolt-button--disabled c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
+          is="shadow-root"
+  >
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__item">
+      This is a button
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+  </button>
+</bolt-button>
+`;
+
 exports[`button Button with an onClick attributes renders properly 1`] = `
 <bolt-button size="medium"
              color="primary"
