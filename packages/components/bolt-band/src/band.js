@@ -88,6 +88,7 @@ class BoltBand extends withLitHtml() {
   }
 
   playHandler(event) {
+    // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
     if (event.detail.isBackgroundVideo && this.expanded === false) {
       this.expand();
 
