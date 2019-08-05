@@ -26,6 +26,8 @@
     "lit-html": "^1.1.0",
     "lodash.merge": "^4.6.1",
     "mdn-polyfills": "^5.16.3",
+    "patch-package": "^6.1.2",
+    "postinstall-postinstall": "^2.0.0",
     "preact": "8.4.2",
     "preact-compat": "^3.18.5",
     "pwa-helpers": "^0.9.1",
@@ -36,6 +38,9 @@
     "sassy-maps": "github:at-import/Sassy-Maps#0.x.x",
     "skatejs": "^5.2.4",
     "smoothscroll-polyfill": "^0.4.4"
+  },
+  "scripts": {
+    "postinstall": "patch-package"
   },
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "homepage": "https://boltdesignsystem.com",
