@@ -4,11 +4,13 @@ const http2 = require('http2');
 const { fileExists } = require('@bolt/build-tools/utils/general');
 const { getConfig } = require('@bolt/build-tools/utils/config-store.js');
 const prettier = require('prettier');
-const { JsDomRenderBackend } = require('./libs/render/backend/jsdom')
-const { WebComponentRenderer } = require('./libs/render/renderer/WebComponentRenderer')
+const { JsDomRenderBackend } = require('./libs/render/backend/jsdom');
+const {
+  WebComponentRenderer,
+} = require('./libs/render/renderer/WebComponentRenderer');
 
 async function run() {
-  let config = await getConfig()
+  let config = await getConfig();
 
   config.components.individual = [];
   config.prod = true;
@@ -23,37 +25,35 @@ async function run() {
 
   const webpackStatsGenerated = await setupWebpack(config);
 
-  console.log('starting renderer...')
-  const rendererBackend = new JsDomRenderBackend(config, webpackStatsGenerated)
+  console.log('starting renderer...');
+  const rendererBackend = new JsDomRenderBackend(config, webpackStatsGenerated);
 
   const renderer = new WebComponentRenderer(rendererBackend, [
     'bolt-button',
     'bolt-text',
     'bolt-icon',
-  ])
-  await renderer.start()
-  console.log('renderer ready...')
+  ]);
+  await renderer.start();
+  console.log('renderer ready...');
 
-  const options = {}
+  const options = {};
   const server = http2.createServer(options);
 
   server.on('stream', (stream, headers) => {
-    if (headers[':path'] != '/') {
+    if (headers[':path'] !== '/') {
       stream.respond({ ':status': 404 });
       stream.end();
-    }
-    else if (headers[':method'].toLowerCase() != 'post') {
+    } else if (headers[':method'].toLowerCase() !== 'post') {
       stream.respond({ ':status': 405 });
       stream.end();
-    }
-    else {
+    } else {
       const chunks = [];
-      stream.on('data', (chunk) => {
+      stream.on('data', chunk => {
         chunks.push(chunk);
-      })
+      });
       stream.on('end', async () => {
         try {
-          const rendered = await renderer.render(chunks.join())
+          const rendered = await renderer.render(chunks.join());
 
           const prettierHtml = prettier.format(rendered, {
             singleQuote: true,
@@ -63,33 +63,32 @@ async function run() {
             parser: 'html',
           });
 
-          stream.respond({ ':status': 200 })
-          stream.end(prettierHtml)
+          stream.respond({ ':status': 200 });
+          stream.end(prettierHtml);
+        } catch (e) {
+          console.log(e);
+          stream.respond({ ':status': 500 });
+          stream.end();
         }
-        catch (e) {
-          console.log(e)
-          stream.respond({ ':status': 500 })
-          stream.end()
-        }
-      })
+      });
     }
   });
- 
+
   server.listen(80);
 
-  console.log('listening on port 80...')
-  console.log('')
-  console.log('Test the server by running:')
-  console.log('')
-  console.log('curl http://localhost -v --http2-prior-knowledge -X POST -d "<bolt-button>hello world</bolt-button><bolt-icon name=\'close\'></bolt-icon>"')
+  console.log('listening on port 80...');
+  console.log('');
+  console.log('Test the server by running:');
+  console.log('');
+  console.log(
+    'curl http://localhost -v --http2-prior-knowledge -X POST -d "<bolt-button>hello world</bolt-button><bolt-icon name=\'close\'></bolt-icon>"',
+  );
 }
 
 async function setupWebpack(config) {
   console.log('compiling webpack...');
 
-  let webpackConfig,
-    manifestPath,
-    webpackStatsGenerated
+  let webpackConfig, manifestPath, webpackStatsGenerated;
 
   return new Promise(async (resolve, reject) => {
     manifestPath =
@@ -140,8 +139,8 @@ async function setupWebpack(config) {
     }
   });
 
-  console.log('webpack ready...')
-  return webpackStatsGenerated
+  console.log('webpack ready...');
+  return webpackStatsGenerated;
 }
 
 run();

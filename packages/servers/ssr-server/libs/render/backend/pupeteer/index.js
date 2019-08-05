@@ -1,5 +1,5 @@
-const { PupeteerRenderBackend } = require('./PupeteerRenderBackend')
+const { PupeteerRenderBackend } = require('./PupeteerRenderBackend');
 
 module.exports = {
   PupeteerRenderBackend,
-}
+};
