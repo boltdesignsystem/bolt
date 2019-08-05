@@ -26,6 +26,7 @@
 {% set cacheBuster = bolt.data.config.prod ? "?v=" ~ bolt.data.fullManifest.version : "" %}
 
 {% set htmlClasses = [
+  'js-fonts-loaded',
   currentUrl == 'index.html' ? 'u-bolt-min-height-screen u-bolt-flex' : ''
 ] %}
 
@@ -76,25 +77,23 @@
     <meta name="twitter:site" content="@pega" />
 
     <!-- async load PL's CSS -->
-    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
-
-    <noscript>
-      <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
-    </noscript>
+    <link rel="stylesheet" href="/pattern-lab/styleguide/css/pattern-lab.css" media="all" />
 
     {# @TODO: wire this up to use Critical CSS #}
-    <style>
+    {#<style>
       {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
         {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
       {% endif %}
-    </style>
+    </style>#}
 
     <script>
       {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
+        // @todo: add criticalCSS .boltrc config option to omit inline critical css JS to avoid duplicate logic
         {{ inline( assets["bolt-components-critical-css.js"] | default("") ) }}
         {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
-        {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+        // test homepage's web performance with vs without critical JS scripts
+        {# inline( assets["bolt-components-critical-fonts.js"] | default("") ) #}
       {% endif %}
 
       window.bolt = window.bolt || {};
@@ -103,27 +102,10 @@
       window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
     </script>
 
-    {# <script>console.log('Bolt Global Twig variable. In Twig, you can tap into the `bolt` global var to access all sorts of helpful information about the Bolt Design System, such as colors, spacing, and more. Most is exported from Sass; to add more, add this to any Sass file: `@include export-data("myVariables.bolt.json", $my-variables-in-a-sass-map);`, and then you can access it in Twig via `bolt.data.myVariables`. Here is all the data available to the current templates, including the `bolt` var:');</script> #}
-
-    {# {% if inline_global_data %}
-      <script>
-        window.bolt = JSON.parse('{{ bolt.data|json_encode|e('js') }}');
-      </script>
-    {% endif %} #}
-
-    {% if patternLabFoot %}
-      {# {% set pl_data = patternLabFoot | raw | striptags %} #}
-
-      <script>
-        {# var patternLab = JSON.parse({{ pl_data }});
-        delete patternLab.cssEnabled;
-        delete patternLab.extraOutput; #}
-
-        {# console.clear(); // clear previous messages with new page loads in PL #}
-        {# console.log('Pattern / Component Info:'); #}
-        //console.table(patternLab);
-      </script>
-    {% endif %}
+    {# automatically pre-fetch async loaded scripts #}
+    {% for assetName, assetPath in assets if '.js' in assetPath %}
+      <link rel="preload" href="{{ assetPath }}" as="script" />
+    {% endfor %}
   </head>
 
   {% set bodyClasses = [
