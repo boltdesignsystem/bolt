@@ -142,8 +142,6 @@ async function build(url, cssFile, outputPath) {
     absolute: true,
   });
 
-  console.log(htmlFiles);
-
   // walk through every HTML file being parsed and find every <link> tag to async,
   // update the HTML with unique, HTML-specific CSS generated via Penthouse
   const start = async () => {
