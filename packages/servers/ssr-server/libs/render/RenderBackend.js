@@ -1,16 +1,13 @@
+/* eslint-disable no-empty-function */
+
 class RenderBackend {
+  async start() {}
 
-  async start() {
-  }
+  async stop() {}
 
-  async stop() {
-  }
-
-  async getWindow() {
-  }
-
+  async getWindow() {}
 }
 
 module.exports = {
   RenderBackend,
-}
+};

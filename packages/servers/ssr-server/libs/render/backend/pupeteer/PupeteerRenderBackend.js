@@ -2,12 +2,12 @@
 
 import puppeteer from 'puppeteer';
 
-const { RenderBackend } = require('../../RenderBackend')
+const { RenderBackend } = require('../../RenderBackend');
 
 class PupeteerRenderBackend extends RenderBackend {
-
   constructor(port) {
-    this.port = port
+    super();
+    this.port = port;
   }
 
   async start() {
@@ -48,4 +48,4 @@ class PupeteerRenderBackend extends RenderBackend {
 
 module.exports = {
   PupeteerRenderBackend,
-}
+};

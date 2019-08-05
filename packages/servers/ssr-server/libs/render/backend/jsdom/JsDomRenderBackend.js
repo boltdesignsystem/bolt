@@ -4,17 +4,17 @@ const resolve = require('resolve');
 const requestAnimationFrame = require('raf');
 const { JSDOM } = jsdom;
 const { template } = require('./template');
-const { RenderBackend } = require('../../RenderBackend')
-const { FilesystemResourceLoader } = require('./FilesystemResourceLoader')
+const { RenderBackend } = require('../../RenderBackend');
+const { FilesystemResourceLoader } = require('./FilesystemResourceLoader');
 
 class JsDomRenderBackend extends RenderBackend {
-
   constructor(config, assets, resourceLoader) {
-    super()
-    this.config = config
-    this.assets = assets
-    this.dom = null
-    this.resourceLoader = resourceLoader || new FilesystemResourceLoader(config)
+    super();
+    this.config = config;
+    this.assets = assets;
+    this.dom = null;
+    this.resourceLoader =
+      resourceLoader || new FilesystemResourceLoader(config);
   }
 
   async start() {
@@ -46,15 +46,14 @@ class JsDomRenderBackend extends RenderBackend {
     dom.window.eval(`${mutationObserverShim}`);
     dom.window.eval(`${customElementShim}`);
 
-    this.dom = dom
+    this.dom = dom;
   }
 
   async getWindow() {
-    return this.dom.window
+    return this.dom.window;
   }
-
 }
 
 module.exports = {
-  JsDomRenderBackend 
-}
+  JsDomRenderBackend,
+};
