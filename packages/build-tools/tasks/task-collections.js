@@ -5,7 +5,7 @@ const timer = require('@bolt/build-utils/timer');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const events = require('@bolt/build-utils/events');
 const webpackTasks = require('./webpack-tasks');
-// const criticalcssTasks = require('./criticalcss-tasks');
+const criticalcssTasks = require('./critical-css-task');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
 const iconTasks = require('./icon-tasks');
@@ -153,15 +153,15 @@ async function serve(buildTime = timer.start()) {
   }
 }
 
-// async function criticalcss() {
-//   try {
-//     const criticalTasks = [];
-//     criticalTasks.push(criticalcssTasks.build());
-//     return Promise.all(criticalTasks);
-//   } catch (error) {
-//     log.errorAndExit('Critical CSS failed', error);
-//   }
-// }
+async function criticalcss() {
+  try {
+    const criticalTasks = [];
+    criticalTasks.push(criticalcssTasks.build());
+    return Promise.all(criticalTasks);
+  } catch (error) {
+    log.errorAndExit('Critical CSS failed', error);
+  }
+}
 
 async function images() {
   try {
@@ -291,5 +291,5 @@ module.exports = {
   buildPrep,
   watch,
   clean,
-  // criticalcss,
+  criticalcss,
 };

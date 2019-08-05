@@ -177,6 +177,27 @@ const config = {
       functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },
   ],
+  criticalCss: {
+    urls: [
+      // '**/*.html',
+      'index.html', // homepage
+      'pattern-lab/patterns/02-components-00-overview/02-components-00-overview.html', // pl overview
+      '!**/*.markup-only.html', // skip processing PL markup
+    ],
+    forceInclude: [
+      '.c-bolt-nav-priority__dropdown',
+      '.choices__list--dropdown',
+      '.choices__input.is-hidden',
+      '.c-bolt-nav-priority .is-hidden'
+    ],
+    propertiesToRemove: [
+      '(.*)transition(.*)',
+      'cursor',
+      'pointer-events',
+      '(-webkit-)?tap-highlight-color',
+      '(.*)user-select',
+    ],
+  },
 };
 
 module.exports = config;

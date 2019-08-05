@@ -243,6 +243,18 @@
     configFileUsed:
       type: string
       description: The filepath to the `.boltrc` file used to load config. Programatically added to config.
+    criticalCss:
+      type: object
+      properties:
+        urls:
+          type: array
+          description: Array of URLs to generate critical CSS against
+        propertiesToRemove:
+          type: array
+          description: Array of CSS properties that Penthouse should omit
+        forceInclude:
+          type: array
+          description: Array of CSS selectors to force Penthouse to include
 
   definitions:
     components:
