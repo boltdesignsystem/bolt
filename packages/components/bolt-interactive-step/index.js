@@ -14,6 +14,9 @@ polyfillLoader.then(res => {
     /* webpackMode: 'eager', webpackChunkName: 'bolt-character' */ './src/character'
   );
   import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-character' */ './src/status-dialogue-bar'
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-status-dialogue-bar' */ './src/status-dialogue-bar'
   );
+  import(
+      /* webpackMode: 'eager', webpackChunkName: 'bolt-icon-group' */ './src/icon-group'
+    );
 });

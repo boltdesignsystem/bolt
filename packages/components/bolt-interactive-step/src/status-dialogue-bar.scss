@@ -15,7 +15,11 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
   &--alert {
     color: bolt-color(white);
-    background-color: bolt-color(error);
+    background-color: bolt-color(orange);
+    slot[name="text"] {
+      color: bolt-color(white);
+      --foobar: 20px;
+    }
   }
 
   &__icon{
