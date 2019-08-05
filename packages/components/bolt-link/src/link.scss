@@ -5,12 +5,20 @@
 // Dev Notes
 // 1. [Mai] Reset button and input tag browser defaults.
 // 2. [Mai] All the theming stuff is an interim fix until the bolt-text is refactored, which will cover all the text link styles as well.
+// 3. [Morse] This mixin outputs a separate ruleset for each selector to prevent IE from failing on unrecognized selectors like `:host`. It is not a substitute for comma-separated selectors.
+// 4. [Morse] Bolt-link delegates focus to inner element.
 
 @import '@bolt/core';
 
 // Component variables
 $bolt-link-transition: $bolt-transition;
 $bolt-link-spacing: 'xxsmall';
+
+// Custom element styles
+@include bolt-repeat-rule(('bolt-link', ':host')) {
+  // [3]
+  outline: none; // [4]
+}
 
 // Component styles
 .c-bolt-link {
@@ -64,7 +72,6 @@ $bolt-link-spacing: 'xxsmall';
 .c-bolt-link__text {
   display: inline;
 }
-
 
 // Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.
 .c-bolt-link--headline {

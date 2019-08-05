@@ -1,7 +1,9 @@
+const argv = require('yargs').argv;
+
 module.exports = {
   env: 'drupal',
   verbosity: 1,
-  enableCache: true,
+  enableCache: argv.prod ? false : true, // workaround to Bolt's JSON data not always getting output from Webpack
   port: 8888,
   webpackDevServer: {
     enabled: true,

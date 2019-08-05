@@ -7,18 +7,24 @@
     "access": "public"
   },
   "scripts": {
-    "build": "bolt build --prod",
+    "build": "FORCE_COLOR=1 npx npm-run-all --serial build:*",
+    "build:en": "bolt build --prod",
+    "build:ja": "bolt build --prod --config-file .boltrc--ja.js",
     "start": "bolt start",
     "test": "jest __tests__/index.js"
   },
   "dependencies": {
-    "@bolt/build-tools": "2.4.4",
-    "@bolt/components-button": "^2.4.0",
-    "@bolt/components-sticky": "^2.4.0",
-    "@bolt/components-navbar": "^2.4.3",
-    "@bolt/components-headline": "^2.4.0",
-    "@bolt/components-icon": "^2.4.3",
-    "@bolt/components-link": "^2.4.0",
-    "@bolt/global": "^2.4.0"
+    "yargs": "^13.2.4",
+    "jest": "^24.8.0",
+    "patch-package": "^6.1.2",
+    "postinstall-postinstall": "^2.0.0",
+    "@bolt/build-tools": "latest",
+    "@bolt/components-button": "latest",
+    "@bolt/components-headline": "latest",
+    "@bolt/components-icon": "latest",
+    "@bolt/components-link": "latest",
+    "@bolt/components-navbar": "latest",
+    "@bolt/components-sticky": "latest",
+    "@bolt/global": "latest"
   }
 }

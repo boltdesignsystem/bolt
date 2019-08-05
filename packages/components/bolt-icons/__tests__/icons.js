@@ -9,22 +9,23 @@ import {
 const timeout = 60000;
 
 describe('<bolt-icon> Component', () => {
-  let page, context;
+  let page;
 
   afterAll(async () => {
     await stopServer();
-  }, 100);
-
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
+    await page.close();
   });
 
   beforeEach(async () => {
-    page = await context.newPage();
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 

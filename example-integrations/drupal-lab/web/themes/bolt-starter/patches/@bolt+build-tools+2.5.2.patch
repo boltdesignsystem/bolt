@@ -1,0 +1,155 @@
+diff --git a/node_modules/@bolt/build-tools/LICENSE b/node_modules/@bolt/build-tools/LICENSE
+deleted file mode 100644
+index 0946736..0000000
+--- a/node_modules/@bolt/build-tools/LICENSE
++++ /dev/null
+@@ -1,21 +0,0 @@
+-MIT License
+-
+-Copyright (c) 2019 Pegasystems
+-
+-Permission is hereby granted, free of charge, to any person obtaining a copy
+-of this software and associated documentation files (the "Software"), to deal
+-in the Software without restriction, including without limitation the rights
+-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-copies of the Software, and to permit persons to whom the Software is
+-furnished to do so, subject to the following conditions:
+-
+-The above copyright notice and this permission notice shall be included in all
+-copies or substantial portions of the Software.
+-
+-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+-SOFTWARE.
+diff --git a/node_modules/@bolt/build-tools/cli.js b/node_modules/@bolt/build-tools/cli.js
+index b50f5eb..f7f1af9 100755
+--- a/node_modules/@bolt/build-tools/cli.js
++++ b/node_modules/@bolt/build-tools/cli.js
+@@ -5,21 +5,14 @@ const program = require('commander');
+ const cosmiconfig = require('cosmiconfig');
+ const explorer = cosmiconfig('bolt');
+ const configStore = require('@bolt/build-utils/config-store');
++const log = require('@bolt/build-utils/log');
+ const { readYamlFileSync } = require('@bolt/build-utils/yaml');
+ const configSchema = readYamlFileSync(
+   path.join(__dirname, './utils/config.schema.yml'),
+ );
+ const packageJson = require('./package.json');
+ 
+-const searchedFor = explorer.searchSync();
+-if (!searchedFor.config) {
+-  log.errorAndExit('Could not find config in a .boltrc file');
+-}
+-
+-let userConfig = {
+-  ...searchedFor.config,
+-  configFileUsed: searchedFor.filepath,
+-};
++let userConfig;
+ 
+ // global `bolt` cli options & meta
+ program
+@@ -47,6 +40,16 @@ if (program.configFile) {
+     ...configFile,
+     configFileUsed: configFilePath,
+   };
++} else {
++  try {
++    const searchedFor = explorer.searchSync();
++    userConfig = {
++      ...searchedFor.config,
++      configFileUsed: searchedFor.filepath,
++    };
++  } catch (error) {
++    log.errorAndExit('Could not find config in a .boltrc file', error);
++  }
+ }
+ 
+ (async () => {
+diff --git a/node_modules/@bolt/build-tools/create-webpack-config.js b/node_modules/@bolt/build-tools/create-webpack-config.js
+index 1f44ee2..53e95ca 100644
+--- a/node_modules/@bolt/build-tools/create-webpack-config.js
++++ b/node_modules/@bolt/build-tools/create-webpack-config.js
+@@ -15,15 +15,18 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
+ const npmSass = require('npm-sass');
+ const merge = require('webpack-merge');
+ const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
+-const { getConfig } = require('./utils/config-store');
+-const { boltWebpackProgress } = require('./utils/webpack-helpers');
+-const { webpackStats, statsPreset } = require('./utils/webpack-verbosity');
++const { getConfig } = require('@bolt/build-utils/config-store');
++const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
++const {
++  webpackStats,
++  statsPreset,
++} = require('@bolt/build-utils/webpack-verbosity');
+ 
+ const {
+   getBoltManifest,
+   mapComponentNameToTwigNamespace,
+-} = require('./utils/manifest');
+-const log = require('./utils/log');
++} = require('@bolt/build-utils/manifest');
++const log = require('@bolt/build-utils/log');
+ 
+ // Store set of webpack configs used in multiple builds
+ let webpackConfigs = [];
+diff --git a/node_modules/@bolt/build-tools/plugins/postcss-themify/LICENSE b/node_modules/@bolt/build-tools/plugins/postcss-themify/LICENSE
+deleted file mode 100644
+index 0946736..0000000
+--- a/node_modules/@bolt/build-tools/plugins/postcss-themify/LICENSE
++++ /dev/null
+@@ -1,21 +0,0 @@
+-MIT License
+-
+-Copyright (c) 2019 Pegasystems
+-
+-Permission is hereby granted, free of charge, to any person obtaining a copy
+-of this software and associated documentation files (the "Software"), to deal
+-in the Software without restriction, including without limitation the rights
+-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-copies of the Software, and to permit persons to whom the Software is
+-furnished to do so, subject to the following conditions:
+-
+-The above copyright notice and this permission notice shall be included in all
+-copies or substantial portions of the Software.
+-
+-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+-SOFTWARE.
+diff --git a/node_modules/@bolt/build-tools/tasks/api-tasks/bolt-versions.js b/node_modules/@bolt/build-tools/tasks/api-tasks/bolt-versions.js
+index d84190f..e9b1b45 100644
+--- a/node_modules/@bolt/build-tools/tasks/api-tasks/bolt-versions.js
++++ b/node_modules/@bolt/build-tools/tasks/api-tasks/bolt-versions.js
+@@ -47,8 +47,8 @@ const octokit = new Octokit({
+   debug: false,
+ });
+ 
+-const { getConfig } = require('../../utils/config-store');
+-const { fileExists } = require('../../utils/general');
++const { getConfig } = require('@bolt/build-utils/config-store');
++const { fileExists } = require('@bolt/build-utils/general');
+ const store = new InCache();
+ let isUsingOldData = false; // remember if we are using up to date version data or older (stale) data as a fallback
+ 
+diff --git a/node_modules/@bolt/build-tools/tasks/criticalcss-tasks.js b/node_modules/@bolt/build-tools/tasks/criticalcss-tasks.js
+index a1e7fc7..db98faf 100644
+--- a/node_modules/@bolt/build-tools/tasks/criticalcss-tasks.js
++++ b/node_modules/@bolt/build-tools/tasks/criticalcss-tasks.js
+@@ -1,7 +1,7 @@
+ // const penthouse = require('penthouse');
+ // const fs = require('fs');
+ // const path = require('path');
+-// const { getConfig } = require('../utils/config-store');
++// const { getConfig } = require('@bolt/build-utils/config-store');
+ // let config;
+ 
+ // async function build() {
