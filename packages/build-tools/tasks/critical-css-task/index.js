@@ -18,7 +18,7 @@ async function runPenthouse(url, sheet) {
   config = config || (await getConfig());
 
   if (localChrome) {
-    const browserPromise = puppeteer.launch({
+    const browserPromise = await puppeteer.launch({
       executablePath: localChrome,
       ignoreHTTPSErrors: true,
       args: ['--disable-setuid-sandbox', '--no-sandbox'],
@@ -59,6 +59,7 @@ async function runPenthouse(url, sheet) {
     return criticalCSS;
   } else {
     console.log(chalk.red('Warning! Google Chrome not downloaded... abort generating Critical CSS!'));
+    return '';
   }
 }
 
@@ -148,7 +149,6 @@ async function build(url, cssFile, outputPath) {
     await Promise.all(
       htmlFiles.map(async htmlFile => {
         const html = await fs.readFileSync(htmlFile, 'utf8');
-        console.log(html);
         const document = createDocument(html);
 
         const externalSheets = document.querySelectorAll(
@@ -188,6 +188,8 @@ async function build(url, cssFile, outputPath) {
       }),
     );
     console.log('Finished generating Critical CSS');
+
+    return;
   };
 
   start();
