@@ -49,22 +49,32 @@ class BoltCharacter extends withLitHtml() {
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
-        <span class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--top">
+        <span
+          class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--top"
+        >
           ${this.slot('top')}
         </span>
-        <span class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--left">
+        <span
+          class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--left"
+        >
           ${this.slot('left')}
         </span>
-        <span class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--bottom">
+        <span
+          class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--bottom"
+        >
           ${this.slot('bottom')}
         </span>
-        <span class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--right">
+        <span
+          class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--right"
+        >
           ${this.slot('right')}
         </span>
         <div class="c-bolt-character__main-image-wrapper">
           ${useIcon
             ? html`
-                <span class="c-bolt-character__slot c-bolt-character__slot--icon">
+                <span
+                  class="c-bolt-character__slot c-bolt-character__slot--icon"
+                >
                   ${this.slot('icon')}
                 </span>
               `
