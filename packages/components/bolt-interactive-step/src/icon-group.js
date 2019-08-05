@@ -63,9 +63,24 @@ class BoltIconGroup extends withLitHtml() {
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <bolt-stack>
-          <bolt-icon background="circle" size="xlarge" name="${iconOneName}" style="${iconStyles}"></bolt-icon>
-          <bolt-icon background="circle" size="xlarge" name="${iconTwoName}" style="${iconStyles}"></bolt-icon>
-          <bolt-icon background="circle" size="xlarge" name="${iconThreeName}" style="${iconStyles}"></bolt-icon>
+          <bolt-icon
+            background="circle"
+            size="xlarge"
+            name="${iconOneName}"
+            style="${iconStyles}"
+          ></bolt-icon>
+          <bolt-icon
+            background="circle"
+            size="xlarge"
+            name="${iconTwoName}"
+            style="${iconStyles}"
+          ></bolt-icon>
+          <bolt-icon
+            background="circle"
+            size="xlarge"
+            name="${iconThreeName}"
+            style="${iconStyles}"
+          ></bolt-icon>
         </bolt-stack>
       </div>
     `;

@@ -17,6 +17,6 @@ polyfillLoader.then(res => {
     /* webpackMode: 'eager', webpackChunkName: 'bolt-status-dialogue-bar' */ './src/status-dialogue-bar'
   );
   import(
-      /* webpackMode: 'eager', webpackChunkName: 'bolt-icon-group' */ './src/icon-group'
-    );
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-icon-group' */ './src/icon-group'
+  );
 });
