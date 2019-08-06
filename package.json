@@ -66,14 +66,16 @@
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "pretest:js": "npm run setup:php",
-    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests",
+    "jest": "jest --maxWorkers=3 --all --colors",
+    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
     "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
     "test:build-tools": "cd packages/build-tools && yarn run test",
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
-    "test:types": "tsc"
+    "test:types": "tsc",
+    "postinstall": "patch-package"
   },
   "husky": {
     "hooks": {
@@ -96,6 +98,10 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
+    "conf": "^5.0.0",
+    "get-port": "^5.0.0",
+    "patch-package": "^6.1.2",
+    "postinstall-postinstall": "^2.0.0",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@instructure/cz-lerna-changelog": "^6.6.0",

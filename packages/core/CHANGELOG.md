@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+
+### Features
+
+* set padding on body when scrollbars are present to prevent content shift ([6f7098b](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/6f7098b))
+
+
+
+
+
 ## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.5.2...v2.5.3) (2019-07-12)
 
 

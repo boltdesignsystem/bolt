@@ -6,7 +6,7 @@ import {
   html,
 } from '../../../testing/testing-helpers';
 
-const timeout = 60000;
+const timeout = 120000;
 
 const imageVrtConfig = {
   failureThreshold: '0.005',
@@ -14,24 +14,25 @@ const imageVrtConfig = {
 };
 
 describe('<bolt-ratio> Component', () => {
-  let page, context;
+  let page;
+
+  beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
+    await page.goto('http://127.0.0.1:4444/', {
+      timeout: 0,
+    });
+  }, timeout);
 
   afterAll(async () => {
     await stopServer();
+    await page.close();
   });
-
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
-
-  beforeEach(async () => {
-    page = await context.newPage();
-    await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
-    });
-  }, timeout);
 
   test('<bolt-ratio> compiles', async () => {
     const results = await render('@bolt-components-ratio/ratio.twig', {
@@ -59,7 +60,7 @@ describe('<bolt-ratio> Component', () => {
 
     await page.evaluate(async () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
-      await Promise.all(
+      return await Promise.all(
         selectors.map(ratio => {
           if (ratio._wasInitiallyRendered) return;
           return new Promise((resolve, reject) => {
@@ -70,6 +71,7 @@ describe('<bolt-ratio> Component', () => {
       );
     });
 
+    await page.waitFor(500);
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -86,10 +88,10 @@ describe('<bolt-ratio> Component', () => {
     const renderedRatioHTML = await page.evaluate(() => {
       const ratio = document.createElement('bolt-ratio');
 
-      ratio.innerHTML = `<video controls poster="/fixtures/poster.png">
-        <source src="/fixtures/devstories.webm" type="video/webm;codecs=&quot;vp8, vorbis&quot;">
-        <source src="/fixtures/devstories.mp4" type="video/mp4;codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
-        <track src="/fixtures/devstories-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default="">
+      ratio.innerHTML = `<video controls poster="/fixtures/videos/poster.png">
+        <source src="/fixtures/videos/devstories.webm" type="video/webm;codecs=&quot;vp8, vorbis&quot;">
+        <source src="/fixtures/videos/devstories.mp4" type="video/mp4;codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+        <track src="/fixtures/videos/devstories-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default="">
       </video>`;
       ratio.setAttribute('ratio', '640/360');
       ratio.style.width = '640px';
@@ -98,15 +100,14 @@ describe('<bolt-ratio> Component', () => {
       return ratio.outerHTML;
     });
 
-    // await page.waitFor(2000); // wait a second before testing
-
     await page.evaluate(async () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
-      await Promise.all(
+      return await Promise.all(
         selectors.map(ratio => {
-          if (ratio._wasInitiallyRendered) return;
+          if (ratio._wasInitiallyRendered === true)
+            return '_wasInitiallyRendered';
           return new Promise((resolve, reject) => {
-            ratio.addEventListener('ready', resolve);
+            ratio.addEventListener('ready', resolve('ready'));
             ratio.addEventListener('error', reject);
           });
         }),
@@ -114,13 +115,13 @@ describe('<bolt-ratio> Component', () => {
     });
 
     await page.evaluate(async () => {
-      const selectors = Array.from(document.querySelector('bolt-ratio'));
-      await Promise.all(
+      const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
+      return await Promise.all(
         selectors.map(ratio => {
-          const video = ratio.renderRoot.querySelector('video');
-          if (video.readyState >= 2) return;
+          const video = ratio.querySelector('video');
+          if (video.readyState === 4) return;
           return new Promise((resolve, reject) => {
-            video.addEventListener('canplay', resolve);
+            video.addEventListener('canplaythrough', resolve);
             video.addEventListener('error', reject);
           });
         }),
@@ -135,6 +136,7 @@ describe('<bolt-ratio> Component', () => {
     //   return ratioSize;
     // });
 
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(imageVrtConfig);
@@ -163,7 +165,7 @@ describe('<bolt-ratio> Component', () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
       await Promise.all(
         selectors.map(ratio => {
-          if (ratio._wasInitiallyRendered) return;
+          if (ratio._wasInitiallyRendered === true) return;
           return new Promise((resolve, reject) => {
             ratio.addEventListener('ready', resolve);
             ratio.addEventListener('error', reject);
@@ -172,7 +174,24 @@ describe('<bolt-ratio> Component', () => {
       );
     });
 
+    await page.evaluate(async () => {
+      const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
+      return await Promise.all(
+        selectors.map(ratio => {
+          const image = ratio.querySelector('img');
+          if (image.complete) {
+            return;
+          }
+          return new Promise((resolve, reject) => {
+            image.addEventListener('load', resolve);
+            image.addEventListener('error', reject);
+          });
+        }),
+      );
+    });
+
     // await page.waitFor(500); // wait a second before testing
+    await page.waitFor(500);
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 
@@ -202,7 +221,7 @@ describe('<bolt-ratio> Component', () => {
       const selectors = Array.from(document.querySelectorAll('bolt-ratio'));
       await Promise.all(
         selectors.map(ratio => {
-          if (ratio._wasInitiallyRendered) return;
+          if (ratio._wasInitiallyRendered === true) return;
           return new Promise((resolve, reject) => {
             ratio.addEventListener('ready', resolve);
             ratio.addEventListener('error', reject);
@@ -211,6 +230,7 @@ describe('<bolt-ratio> Component', () => {
       );
     });
 
+    await page.waitFor(500);
     const image = await page.screenshot();
     expect(image).toMatchImageSnapshot(imageVrtConfig);
 

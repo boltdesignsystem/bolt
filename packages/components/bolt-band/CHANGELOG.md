@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+**Note:** Version bump only for package @bolt/components-band
+
+
+
+
+
+## [2.5.5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.5.4...v2.5.5) (2019-07-22)
+
+
+### Bug Fixes
+
+* set minHeight on inner element not outer element squash extra space in IE ([27f5c95](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/27f5c95))
+
+
+
+
+
 ## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.5.2...v2.5.3) (2019-07-12)
 
 

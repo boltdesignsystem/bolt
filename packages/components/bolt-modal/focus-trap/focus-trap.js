@@ -59,8 +59,10 @@ class FocusTrap extends withLitHtml() {
    */
   disconnecting() {
     super.disconnecting && super.disconnecting();
-    this.$start.removeEventListener('focus', this.focusLastElement);
-    this.$end.removeEventListener('focus', this.focusFirstElement);
+    // Check that $start and $end are defined. In IE, disconnecting() can be called while $start and $end are still undefined, which throws an error.
+    this.$start &&
+      this.$start.removeEventListener('focus', this.focusLastElement);
+    this.$end && this.$end.removeEventListener('focus', this.focusFirstElement);
     this.removeEventListener('focusin', this.onFocusIn);
     this.removeEventListener('focusout', this.onFocusOut);
   }
