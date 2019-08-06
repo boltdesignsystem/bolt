@@ -215,7 +215,7 @@ async function build(shouldReturnTime = false) {
       ? await Promise.all(await compileBasedOnEnvironment())
       : '';
 
-    await criticalcssTasks.build();
+    await criticalcss();
 
     if (shouldReturnTime) {
       return startTime;

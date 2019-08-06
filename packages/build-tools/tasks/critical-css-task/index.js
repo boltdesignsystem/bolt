@@ -2,13 +2,12 @@ const penthouse = require('penthouse');
 const path = require('path');
 const globby = require('globby');
 const fs = require('fs');
-const { getConfig } = require('../../utils/config-store');
-const { createDocument, serializeDocument } = require('./dom');
 const localChrome = require('local-chrome');
 const chalk = require('chalk');
 const puppeteer = require('puppeteer-core');
-// const fs.readFileSync = promisify(fs.fs.readFileSync);
-// const fs.writeFileSync = promisify(fs.fs.writeFileSync);
+const Ora = require('ora');
+const { getConfig } = require('../../utils/config-store');
+const { createDocument, serializeDocument } = require('./dom');
 
 let config;
 
@@ -47,18 +46,29 @@ async function runPenthouse(url, sheet) {
       strict: false,
       puppeteer: {
         executablePath: localChrome,
-        getBrowser: () => browserPromise
-      }
+        getBrowser: () => browserPromise,
+      },
     })
       .then(criticalCss => {
         return criticalCss;
       })
       .catch(err => {
         console.log(err); // handle any errors thrown
+
+        spinner.fail(
+          chalk.red(
+            'Failed to generate Critical CSS!'
+          ),
+        );
+
       });
     return criticalCSS;
   } else {
-    console.log(chalk.red('Warning! Google Chrome not downloaded... abort generating Critical CSS!'));
+    spinner.fail(
+      chalk.red(
+        'Warning! Google Chrome not downloaded... abort generating Critical CSS!'
+      ),
+    );
     return '';
   }
 }
@@ -130,12 +140,14 @@ async function build(url, cssFile, outputPath) {
     return;
   }
 
+  const spinner = new Ora(chalk.blue('Generating Critical CSS...')).start();
+
   // @todo: refactor to share this with Webpack
   const publicPath = config.publicPath
     ? config.publicPath
     : config.wwwDir
-      ? `/${path.relative(config.wwwDir, config.buildDir)}/`
-      : config.buildDir;
+    ? `/${path.relative(config.wwwDir, config.buildDir)}/`
+    : config.buildDir;
 
   // Aggregate all the HTML files that need to be parsed and transformed
   const htmlFiles = await globby(config.criticalCss.urls, {
@@ -146,7 +158,7 @@ async function build(url, cssFile, outputPath) {
   // walk through every HTML file being parsed and find every <link> tag to async,
   // update the HTML with unique, HTML-specific CSS generated via Penthouse
   const start = async () => {
-    await Promise.all(
+    return await Promise.all(
       htmlFiles.map(async htmlFile => {
         const html = await fs.readFileSync(htmlFile, 'utf8');
         const document = createDocument(html);
@@ -183,16 +195,18 @@ async function build(url, cssFile, outputPath) {
           );
 
           const newHTML = serializeDocument(document);
-          return await fs.writeFileSync(htmlFile, newHTML);
+          await fs.writeFileSync(htmlFile, newHTML);
         }
       }),
-    );
-    console.log('Finished generating Critical CSS');
+    ).then(() => {
+      spinner.succeed(
+        chalk.green('Finished generating Critical CSS!'),
+      );
+    });
 
-    return;
   };
 
-  start();
+  await start();
 }
 
 module.exports = {

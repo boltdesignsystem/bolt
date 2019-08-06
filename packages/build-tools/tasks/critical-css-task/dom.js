@@ -222,8 +222,8 @@ function getElementsByTagName(tagName) {
   return Array.prototype.concat.apply(
     // Add current element if it matches tag
     tagName === '*' ||
-    (this.tagName &&
-      (this.tagName === tagName || this.nodeName === tagName.toUpperCase()))
+      (this.tagName &&
+        (this.tagName === tagName || this.nodeName === tagName.toUpperCase()))
       ? [this]
       : [],
     // Check children recursively
