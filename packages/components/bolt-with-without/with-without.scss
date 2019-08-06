@@ -48,14 +48,14 @@ $pega-wwo--content-max-mobile-width: 550px;
   }
 
   &__modal-bg {
-    background-color: bolt-color(black);
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 33;
     width: 100vw;
     height: 100%;
     pointer-events: none;
-    position: absolute;
-    top: 0;
-    left: 0;
+    background-color: bolt-color(black);
   }
 
   &__active-wo {
@@ -104,10 +104,10 @@ $pega-wwo--content-max-mobile-width: 550px;
   }
 
   &__circles {
+    display: none;
     position: relative;
     width: 100%;
     height: 100%;
-    display: none;
 
     @include bolt-mq($from: xlarge) {
       display: block;
@@ -126,8 +126,8 @@ $pega-wwo--content-max-mobile-width: 550px;
       }
 
     .c-pega-wwo__shadow-height-inherit {
-        height: 100%;
         width: 100%;
+        height: 100%;
       }
 
       &-wo {
@@ -207,11 +207,11 @@ $pega-wwo--content-max-mobile-width: 550px;
       }
 
       .c-pega-wwo__block-expanded & {
-        background-color: bolt-color(yellow, light);
-        border: 1px bolt-color(white) solid;
+        right: 0;
         width: $pega-wwo--sm-circle-size + 1px;
         height: $pega-wwo--sm-circle-size + 1px;
-        right: 0;
+        border: 1px bolt-color(white) solid;
+        background-color: bolt-color(yellow, light);
 
         &:before {
           content: '';
@@ -337,6 +337,9 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-labels {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-around;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -347,12 +350,9 @@ $pega-wwo--content-max-mobile-width: 550px;
       padding-bottom: 6px;
       padding-left: 3px;
       color: bolt-color('black');
+      line-height: 1;
       text-decoration: none;
       pointer-events: none;
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-around;
-      line-height: 1;
 
       &-animation {
         width: inherit;
@@ -360,9 +360,9 @@ $pega-wwo--content-max-mobile-width: 550px;
 
       &-inner {
         display: flex;
-        width: inherit;
         flex-wrap: nowrap;
         justify-content: space-around;
+        width: inherit;
       }
     }
 
@@ -634,9 +634,9 @@ $pega-wwo--content-max-mobile-width: 550px;
 
         bolt-animate[type="circles"] {
           position: absolute;
-          left: -1.95rem;
           // .5 height of h2 + icon height
           top: .55rem;
+          left: -1.95rem;
           transform: translate(-50%, 0);
 
           @include bolt-mq($from: xlarge) {
