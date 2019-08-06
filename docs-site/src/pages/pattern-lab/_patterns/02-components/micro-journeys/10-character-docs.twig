@@ -1,5 +1,15 @@
 <h2>Character Docs</h2>
-<pre><code>{{ '<bolt-character size="small"></bolt-character>' | e }}</code></pre>
+<h3>Usage</h3>
+{% set code %}
+<bolt-character size="small"></bolt-character>
+{% endset %}
 
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  display: "block",
+  lang: "html",
+  content: code,
+} only %}
+
+<h3>Schema</h3>
 {% set schema = bolt.data.components["@bolt-micro-journeys"].schema.character %}
 {% include '@utils/schema-docs.twig' with { schema: schema } only %}
