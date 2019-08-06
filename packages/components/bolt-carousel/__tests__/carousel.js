@@ -58,12 +58,22 @@ describe('carousel', () => {
   let page;
 
   beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+    await page.setViewport({ width: 800, height: 600 });
+  }, timeout);
+
+  beforeAll(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitUntil: 'networkidle0',
     });
   }, timeout);
+
+  afterAll(async () => {
+    await page.close();
+  }, 100);
 
   // test('basic carousel component renders', async () => {
   //   const results = await render('@bolt-components-carousel/carousel.twig');

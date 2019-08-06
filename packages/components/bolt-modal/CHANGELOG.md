@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.6](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+
+### Bug Fixes
+
+* focus-trap IE JS error ([08b9d33](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/08b9d33))
+* restore regular modal width ([d4840af](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/d4840af))
+* update modal transform styles to fix IE 11 rendering issue ([0f507d4](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/0f507d4))
+
+
+### Features
+
+* set padding on body when scrollbars are present to prevent content shift ([6f7098b](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/6f7098b))
+
+
+
+
+
 ## [2.5.4](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.5.3...v2.5.4) (2019-07-15)
 
 

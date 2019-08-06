@@ -22,15 +22,21 @@ describe('<bolt-ratio> Component', () => {
   let page;
 
   beforeEach(async () => {
-    page = await global.__BROWSER__.newPage();
-    await page.goto('http://127.0.0.1:4444/', {
-      timeout: 0,
-      waitUntil: 'networkidle0',
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
     });
   }, timeout);
 
-  afterAll(async function() {
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
+    await page.goto('http://127.0.0.1:4444/', {
+      timeout: 0,
+    });
+  }, timeout);
+
+  afterAll(async () => {
     await stopServer();
+    await page.close();
   });
 
   test('<bolt-ratio> compiles', async () => {
