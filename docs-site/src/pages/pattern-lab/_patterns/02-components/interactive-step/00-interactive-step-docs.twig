@@ -1,8 +1,0 @@
-{% set usage %}{% verbatim %}
-{% include '@bolt-components-interactive-step/interactive-step.twig' only %}
-{% endverbatim %}{% endset %}
-
-{% include "@utils/docs.twig" with {
-  componentName: "interactive-step",
-  usage: usage
-} only %}

@@ -1,0 +1,20 @@
+{% extends "./_editor-wrapper.twig" %}
+
+{% block content %}
+  <div class="u-bolt-padding-large">
+    <bolt-character
+        characterUrl="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+    >
+      <bolt-animate slot="top" idle="pulse">
+      </bolt-animate>
+      <bolt-animate slot="left" idle="pulse">
+      </bolt-animate>
+      <bolt-animate slot="right" idle="pulse">
+      </bolt-animate>
+      <bolt-animate slot="bottom" idle="pulse">
+      </bolt-animate>
+      <bolt-icon slot="icon" idle="none">
+      </bolt-icon>
+    </bolt-character>
+  </div>
+{% endblock %}

@@ -134,9 +134,9 @@ const config = {
       '@bolt/components-video',
       '@bolt/components-grid',
       '@bolt/micro-journeys',
-      '@bolt/components-interactive-pathways',
-      '@bolt/components-interactive-pathway',
-      '@bolt/components-interactive-step',
+      // '@bolt/components-interactive-pathways',
+      // '@bolt/components-interactive-pathway',
+      // '@bolt/components-interactive-step',
       '@bolt/editor',
       /**
        * note: resolving these paths isn't typically required when

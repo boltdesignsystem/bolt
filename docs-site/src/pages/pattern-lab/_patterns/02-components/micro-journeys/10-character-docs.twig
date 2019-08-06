@@ -1,0 +1,5 @@
+<h2>Character Docs</h2>
+<pre><code>{{ '<bolt-character size="small"></bolt-character>' | e }}</code></pre>
+
+{% set schema = bolt.data.components["@bolt-micro-journeys"].schema.character %}
+{% include '@utils/schema-docs.twig' with { schema: schema } only %}
