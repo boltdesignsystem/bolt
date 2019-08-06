@@ -8,6 +8,26 @@ const setActiveRegionClass = (inactiveToRemove, activeToSet) => {
   mainWrapper.classList.remove(`${activeWoClass}${inactiveToRemove}`);
 };
 
+const setFullHeightEls = mainWrapper => {
+  const elsToSetFullHeight = Array.from(
+    mainWrapper.querySelectorAll('.c-pega-wwo__shadow-height-inherit'),
+  );
+  elsToSetFullHeight.forEach(el => {
+    const shadowChild = Array.from(el.shadowRoot.children).find(el =>
+      el.classList.contains('c-bolt-animate'),
+    );
+    shadowChild.style.height = 'inherit';
+  });
+};
+
+/*
+ * Filter els by likely invisibility.
+ * Triggering animations on els with display: none parents breaks all subsequent animations. Based on @https://davidwalsh.name/offsetheight-visibility
+ */
+const filterInvisibles = els => {
+  return els.filter(el => el.offsetHeight > 0);
+};
+
 /**
  * Controls the animation in/out of active with/without (w/wo) region.
  *
@@ -50,7 +70,8 @@ const handleActiveRegionChange = (checked, init = false) => {
 
     if (init) {
       triggerAnims({ animEls: animInitOutEls, stage: 'OUT' });
-
+      setFullHeightEls(mainWrapper);
+      console.log('animInitEls', animInitEls);
       await triggerAnims({ animEls: animInitEls, stage: 'IN' });
     } else {
       console.log('animout', animOutEls);
@@ -58,16 +79,50 @@ const handleActiveRegionChange = (checked, init = false) => {
       setActiveRegionClass(outGroupAttrVal, inGroupAttrVal);
     }
     // TODO set up phpstorm debugger to figure out why this is not working
-    console.log('animInEls', animInEls);
-    triggerAnims({ animEls: animInEls, stage: 'IN' });
+    console.log('WATCHNOW', animInEls);
+    triggerAnims({ animEls: filterInvisibles(animInEls), stage: 'IN' });
   }, 0);
 };
 
 const toggleInputClass = '#c-pega-wwo__toggle-input';
 SimpleSwitch.init();
-handleActiveRegionChange(document.querySelector(toggleInputClass).checked, true);
+handleActiveRegionChange(
+  document.querySelector(toggleInputClass).checked,
+  true,
+);
 document
   .querySelector('#c-pega-wwo__toggle-input')
   .addEventListener('change', e => {
     handleActiveRegionChange(e.target.checked);
   });
+
+const handleBlockTitleMobileAccordionClick = e => {
+  console.log(e.target);
+  const expandedClass = 'c-pega-wwo__block-expanded';
+
+  const targetIsIcon = e.target.nodeName === 'BOLT-ICON';
+  const targetIsTitle = e.target.classList.contains('c-pega-wwo__block-title');
+  const targetIsToggler = targetIsIcon || targetIsTitle;
+  const isMobile = window.matchMedia('(max-width: 1200px)').matches;
+
+  if (!targetIsToggler || !isMobile) {
+    return;
+  }
+
+  // @TODO remove tight coupling between markup and this.
+  const parentBlock = e.target.parentElement.parentElement;
+  const isExpanded = parentBlock.classList.contains(expandedClass);
+  const animEls = [parentBlock.querySelector('.c-pega-wwo__block-contents')];
+  if (isExpanded) {
+    parentBlock.classList.remove(expandedClass);
+  } else {
+    parentBlock.classList.add(expandedClass);
+  }
+
+  console.log('triggering: ', isExpanded ? 'OUT' : 'IN');
+  triggerAnims({animEls, stage: isExpanded ? 'OUT' : 'IN'})
+};
+
+document.querySelector(
+  '.c-pega-wwo__region-blocks',
+).addEventListener('click', handleBlockTitleMobileAccordionClick);

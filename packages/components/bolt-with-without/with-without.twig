@@ -28,13 +28,15 @@
         {# wo stands for "without" #}
           <div class="c-pega-wwo__content c-pega-wwo__content-wo">
           <div class="c-pega-wwo__circles-wrapper c-pega-wwo__circles-wrapper-wo">
-            <bolt-animate group="wo" out="fade-out-slide-left" out-order="30" out-delay="100">
+            <bolt-animate class="c-pega-wwo__shadow-height-inherit" group="wo"  out="fade-out-slide-left" out-order="30" out-delay="100">
               <div class="c-pega-wwo__circles c-pega-wwo__circles-wo">
                 <div class="c-pega-wwo__dashed-circle"></div>
-              <bolt-animate group="wo" in="fade-in" in-order="30">
+              <bolt-animate group="wo" type="circle" in="fade-in" in-order="30">
                 <div class="c-pega-wwo__sm-circle c-pega-wwo__sm-circle-wo-1"></div>
               </bolt-animate>
-              <div class="c-pega-wwo__sm-circle c-pega-wwo__sm-circle-wo-2"></div>
+                <bolt-animate group="wo" in="fade-in" in-order="30">
+                  <div class="c-pega-wwo__sm-circle c-pega-wwo__sm-circle-wo-2"></div>
+                </bolt-animate>
               <div class="c-pega-wwo__sm-circle c-pega-wwo__sm-circle-wo-3"></div>
             </div>
             </bolt-animate>
@@ -42,52 +44,65 @@
           <div class="c-pega-wwo__region c-pega-wwo__region-blocks c-pega-wwo__region-blocks-wo">
             <bolt-animate group="wo" out="fade-out-slide-left" out-order="30">
               <div class="c-pega-wwo__region-inner c-pega-wwo__region-inner-wo">
-              <div class="c-pega-wwo__block c-pega-wwo__block-block-credit-wo">
-                <bolt-animate group="wo" in="fade-in-slide-right" in-order="50">
-                  <div class="c-pega-wwo__icon c-pega-wwo__icon-credit-card">
-                    {% include "@bolt-components-icon/icon.twig" with {
-                      name: "credit-card",
-                      size: "medium",
-                    } only %}
-                  </div>
-                  <h4 class="c-pega-wwo__block-title">Problem: High credit card fees</h4>
-                  <p class="c-pega-wwo__block-body">Frank has a high-interest card and is accruing lots of additional fees.</p>
-                  <div class="c-pega-wwo__block-numbers-wrapper">
-                    <div class="c-pega-wwo__block-number-wrapper">
-                      <div class="c-pega-wwo__block-number">$96</div>
-                      <div class="c-pega-wwo__block-number-label">Annual Fee</div>
+                <div class="c-pega-wwo__block c-pega-wwo__block-block-credit-wo">
+                  <bolt-animate in-order="10" in="fade-in" group="wo" type="circles">
+                    <div class="c-pega-wwo__sm-circle-mobile c-pega-wwo__sm-circle-outlined"></div>
+                  </bolt-animate>
+                  <bolt-animate group="wo" in="fade-in-slide-right" in-order="50">
+                    <div class="c-pega-wwo__icon c-pega-wwo__icon-credit-card">
+                      {% include "@bolt-components-icon/icon.twig" with {
+                        name: "credit-card",
+                        size: "medium",
+                      } only %}
                     </div>
-                    <div class="c-pega-wwo__block-number-wrapper">
-                      <div class="c-pega-wwo__block-number">29%</div>
-                      <div class="c-pega-wwo__block-number-label">APR</div>
+                    <h4 class="c-pega-wwo__block-title">Problem: High credit card fees</h4>
+                    <bolt-animate in="slide-down" out=slide-up class="c-pega-wwo__block-contents" initial-appearance="default">
+                        <p class="c-pega-wwo__block-body">Frank has a high-interest card and is accruing lots of additional fees.</p>
+                        <div class="c-pega-wwo__block-numbers-wrapper">
+                          <div class="c-pega-wwo__block-number-wrapper">
+                            <div class="c-pega-wwo__block-number">$96</div>
+                            <div class="c-pega-wwo__block-number-label">Annual Fee</div>
+                          </div>
+                          <div class="c-pega-wwo__block-number-wrapper">
+                            <div class="c-pega-wwo__block-number">29%</div>
+                            <div class="c-pega-wwo__block-number-label">APR</div>
+                          </div>
+                        </div>
+                    </bolt-animate>
+                  </bolt-animate>
+                </div>
+                <div class="c-pega-wwo__block c-pega-wwo__block-block-frustration-wo">
+                  <bolt-animate in-order="20" in="fade-in" group="wo" type="circles">
+                    <div class="c-pega-wwo__sm-circle-mobile"></div>
+                  </bolt-animate>
+                  <bolt-animate group="wo" in="fade-in-slide-right" in-order="60">
+                    <div class="c-pega-wwo__icon c-pega-wwo__icon-sad-face">
+                      {% include "@bolt-components-icon/icon.twig" with {
+                        name: "face-sad",
+                        size: "medium",
+                      } only %}
                     </div>
-                  </div>
-                </bolt-animate>
-              </div>
-              <div class="c-pega-wwo__block c-pega-wwo__block-block-frustration-wo">
-                <bolt-animate group="wo"  in="fade-in-slide-right" in-order="60">
-                  <div class="c-pega-wwo__icon c-pega-wwo__icon-sad-face">
-                    {% include "@bolt-components-icon/icon.twig" with {
-                      name: "face-sad",
-                      size: "medium",
-                    } only %}
-                  </div>
-                  <h4 class="c-pega-wwo__block-title">Rising frustration</h4>
-                  <p class="c-pega-wwo__block-body">Frank begins to be frustrated by being hit with high interest and fees, and starts to explore other card options from other banks.</p>
-                  <div class="c-pega-wwo__block-action">
-                    <span class="c-pega-wwo__action-wrapper">
+                    <h4 class="c-pega-wwo__block-title">Rising frustration</h4>
+                    <bolt-animate in="slide-down" out=slide-up class="c-pega-wwo__block-contents" initial-appearance="default">
+                      <p class="c-pega-wwo__block-body">Frank begins to be frustrated by being hit with high interest and fees, and starts to explore other card options from other banks.</p>
                       <div class="c-pega-wwo__block-action">
-                        <a class="c-pega-wwo__block-action-link" href="#">
-                          <span class="c-pega-wwo__icon c-pega-wwo__icon-eye">
-                            {% include "@bolt-components-with-without/svg/eye-contrast.twig" with {} only %}
-                          </span>See it in action <span class="c-pega-wwo__arrow">&gt;</span></a>
+                        <span class="c-pega-wwo__action-wrapper">
+                          <div class="c-pega-wwo__block-action">
+                            <a class="c-pega-wwo__block-action-link" href="#">
+                              <span class="c-pega-wwo__icon c-pega-wwo__icon-eye">
+                                {% include "@bolt-components-with-without/svg/eye-contrast.twig" with {} only %}
+                              </span>See it in action <span class="c-pega-wwo__arrow">&gt;</span></a>
+                          </div>
+                        </span>
                       </div>
-                    </span>
-                  </div>
-                </bolt-animate>
-              </div>
-              <div class="c-pega-wwo__block c-pega-wwo__block-block-business-wo">
-                <bolt-animate group="wo" in="fade-in-slide-right" in-order="70">
+                    </bolt-animate>
+                  </bolt-animate>
+                </div>
+                <div class="c-pega-wwo__block c-pega-wwo__block-block-business-wo">
+                  <bolt-animate in-order="30" in="fade-in" group="wo" type="circles">
+                    <div class="c-pega-wwo__sm-circle-mobile"></div>
+                  </bolt-animate>
+                  <bolt-animate group="wo" in="fade-in-slide-right" in-order="70">
                   <div class="c-pega-wwo__icon c-pega-wwo__icon-x">
                     {% include "@bolt-components-icon/icon.twig" with {
                       name: "close-circled",
@@ -99,7 +114,9 @@
                     } only %}
                   </div>
                   <h4 class="c-pega-wwo__block-title">Lost Business</h4>
-                  <p class="c-pega-wwo__block-body">Frank calls customer service to cancel his card.</p>
+                    <bolt-animate  in="slide-down" out=slide-up class="c-pega-wwo__block-contents" initial-appearance="default">
+                      <p class="c-pega-wwo__block-body">Frank calls customer service to cancel his card.</p>
+                    </bolt-animate>
                 </bolt-animate>
               </div>
             </div>
@@ -167,7 +184,7 @@
         {# w stands for "with" #}
           <div class="c-pega-wwo__content c-pega-wwo__content-w">
           <div class="c-pega-wwo__circles-wrapper c-pega-wwo__circles-wrapper-w">
-            <bolt-animate group="w" out="fade-out-slide-left" out-order="30">
+            <bolt-animate class="c-pega-wwo__shadow-height-inherit" group="w" out="fade-out-slide-left" out-order="30">
               <div class="c-pega-wwo__circles c-pega-wwo__circles-w">
               <div class="c-pega-wwo__dashed-circle"></div>
               <div class="c-pega-wwo__sm-circle c-pega-wwo__sm-circle-w-1"></div>
@@ -180,6 +197,9 @@
           <bolt-animate group="w" out="fade-out-slide-left" out-order="30">
             <div class="c-pega-wwo__region-blocks c-pega-wwo__region-blocks-wo">
             <div class="c-pega-wwo__block c-pega-wwo__block-block-credit-w">
+              <bolt-animate in-order="10" in="fade-in" group="w" type="circles">
+                <div class="c-pega-wwo__sm-circle-mobile "></div>
+              </bolt-animate>
               <bolt-animate group="w" in="fade-in-slide-right" in-order="30">
                 <div class="c-pega-wwo__icon c-pega-wwo__icon-credit-card">
                   {% include "@bolt-components-icon/icon.twig" with {
@@ -188,28 +208,38 @@
                   } only %}
                 </div>
                 <h4 class="c-pega-wwo__block-title">Problem: High credit card fees</h4>
-                <p class="c-pega-wwo__block-body">Frank has a high-interest card and is accruing lots of additional fees.</p>
+                <bolt-animate  in="slide-down" out=slide-up class="c-pega-wwo__block-contents" initial-appearance="default">
+                   <p class="c-pega-wwo__block-body">Frank has a high-interest card and is accruing lots of additional fees.</p>
+                </bolt-animate>
               </bolt-animate>
             </div>
             <div class="c-pega-wwo__block c-pega-wwo__block-block-signals-w">
+              <bolt-animate in-order="20" in="fade-in" group="w" type="circles">
+                <div class="c-pega-wwo__sm-circle-mobile c-pega-wwo__sm-circle-lit-mobile"></div>
+              </bolt-animate>
               <bolt-animate group="w" in="fade-in-slide-right" in-order="40">
-              <div class="c-pega-wwo__icon c-pega-wwo__icon-open-book">
+                <div class="c-pega-wwo__icon c-pega-wwo__icon-open-book">
                 {% include "@bolt-components-with-without/svg/book.twig" with {} only %}
               </div>
                   <h4 class="c-pega-wwo__block-title">Recognize the signals</h4>
+                <bolt-animate in="slide-down" out=slide-up class="c-pega-wwo__block-contents" initial-appearance="default">
                   <p class="c-pega-wwo__block-body">Business uses propensity modeling to understand likelihood of Frank canceling his credit card, based on intent signals and payment patterns.</p>
                   <div class="c-pega-wwo__block-action c-pega-wwo__block-action-w">
-                  <div class="c-pega-wwo__action-wrapper">
-                    <div class="c-pega-wwo__block-action">
-                      <a class="c-pega-wwo__block-action-link-w" href="#">
-                        <span class="c-pega-wwo__icon c-pega-wwo__icon-eye">{% include "@bolt-components-with-without/svg/eye-contrast.twig" with {} only %}</span>See it in action <span class="c-pega-wwo__arrow">&gt;</span>
-                      </a>
+                    <div class="c-pega-wwo__action-wrapper">
+                      <div class="c-pega-wwo__block-action">
+                        <a class="c-pega-wwo__block-action-link-w" href="#">
+                          <span class="c-pega-wwo__icon c-pega-wwo__icon-eye">{% include "@bolt-components-with-without/svg/eye-contrast.twig" with {} only %}</span>See it in action <span class="c-pega-wwo__arrow">&gt;</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
-                  </div>
+                </bolt-animate>
               </bolt-animate>
             </div>
             <div class="c-pega-wwo__block c-pega-wwo__block-block-respond-w">
+              <bolt-animate in-order="30" in="fade-in" group="w" type="circles">
+                <div class="c-pega-wwo__sm-circle-mobile c-pega-wwo__sm-circle-lit-mobile"></div>
+              </bolt-animate>
               <bolt-animate group="w" in="fade-in-slide-right" in-order="60">
                 <div class="c-pega-wwo__icon c-pega-wwo__icon-credit-card">
                   {% include "@bolt-components-icon/icon.twig" with {
@@ -218,20 +248,25 @@
                   } only %}
                 </div>
                 <h4 class="c-pega-wwo__block-title">Respond in real time</h4>
-                <p class="c-pega-wwo__block-body">To avoid Frank canceling his card, business presents offer of a card with a lower rate that better fits his needs (lower APR).</p>
-                <div class="c-pega-wwo__block-numbers-wrapper">
-                  <div class="c-pega-wwo__block-number-wrapper">
-                    <div class="c-pega-wwo__block-number">$0</div>
-                    <div class="c-pega-wwo__block-number-label">Annual Fee</div>
+                <bolt-animate in="slide-down" out=slide-up" class="c-pega-wwo__block-contents" initial-appearance="default">
+                  <p class="c-pega-wwo__block-body">To avoid Frank canceling his card, business presents offer of a card with a lower rate that better fits his needs (lower APR).</p>
+                  <div class="c-pega-wwo__block-numbers-wrapper">
+                    <div class="c-pega-wwo__block-number-wrapper">
+                      <div class="c-pega-wwo__block-number">$0</div>
+                      <div class="c-pega-wwo__block-number-label">Annual Fee</div>
+                    </div>
+                    <div class="c-pega-wwo__block-number-wrapper">
+                      <div class="c-pega-wwo__block-number">14.7%</div>
+                      <div class="c-pega-wwo__block-number-label">APR</div>
+                    </div>
                   </div>
-                  <div class="c-pega-wwo__block-number-wrapper">
-                    <div class="c-pega-wwo__block-number">14.7%</div>
-                    <div class="c-pega-wwo__block-number-label">APR</div>
-                  </div>
-                </div>
+                </bolt-animate>
               </bolt-animate>
             </div>
             <div class="c-pega-wwo__block c-pega-wwo__block-block-relationship-w">
+              <bolt-animate in-order="40" in="fade-in" group="w" type="circles">
+                <div class="c-pega-wwo__sm-circle-mobile"></div>
+              </bolt-animate>
               <bolt-animate group="w" in="fade-in-slide-right" in-order="70">
                 <div class="c-pega-wwo__icon c-pega-wwo__icon-happy-face">
                   {% include "@bolt-components-icon/icon.twig" with {
@@ -240,7 +275,9 @@
                   } only %}
                 </div>
                 <h4 class="c-pega-wwo__block-title">Retain a valuable relationship</h4>
-                <p class="c-pega-wwo__block-body">Frank accepts the new offer and feels better about his financial situation. He's more likely to stay a customer long-term.</p>
+                <bolt-animate in="slide-down" out=slide-up class="c-pega-wwo__block-contents" initial-appearance="default">
+                  <p class="c-pega-wwo__block-body">Frank accepts the new offer and feels better about his financial situation. He's more likely to stay a customer long-term.</p>
+                </bolt-animate>
               </bolt-animate>
             </div>
           </div>

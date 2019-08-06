@@ -12,65 +12,29 @@ $pega-wwo--sm-circle-size: 10px;
 $pega-wwo--dashed-circle-height: 48.05%;
 $pega-wwo--content-max-mobile-width: 550px;
 
-@mixin bolt-visuallyshown($important: null) {
-  @if $important == important {
-    $important: !important;
-  }
-  position: static $important;
-  width: unset $important;
-  height: unset $important;
-  overflow: visible $important;
-  margin: 0 $important;
-  padding: 0 $important;
-  border: 0 $important;
-  clip: auto $important;
-  clip-path: none $important;
-  white-space: normal $important;
-}
-
-@mixin bolt--circle-on-line( $outlined: false ) {
-  &:before {
-    content: '';
-    display:  block;
-    position: relative;
-    top: 1.35rem;
-    left: -2.35rem;
-    z-index: 1;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: bolt-color(white);
-    @if $outlined {
-      width: 13px;
-      height: 13px;
-      border: 1px solid bolt-color(white);
-      background-color: bolt-color(black);
-    }
-
-    @include bolt-mq($from: xlarge) {
-      display: none;
-    }
-  }
-}
-
 .c-pega-wwo {
   height: 100%;
   min-height: 100vh;
   line-height: 1.4;
   background-color: bolt-color(black);
 
+  bolt-animate {
+    min-width: 1px;
+    min-height: 1px;
+  }
+
   &__wrapper {
     position: relative;
     width: 100%;
-    height: 0;
     overflow: visible;
     margin: 0 auto;
-    // Scale bg image by width Padding is relative to width. So this is an aspect ratio hack.
-    padding-bottom: 174.15%;
+
     background-repeat: no-repeat;
     background-size: $pega-wwo--max-width auto;
 
     @include bolt-mq($from: xlarge) {
+      height: 0;
+      // Scale bg image by width Padding is relative to width. So this is an aspect ratio hack.
       padding-bottom: $pega-wwo--desktop-ratio;
     }
   }
@@ -87,7 +51,7 @@ $pega-wwo--content-max-mobile-width: 550px;
     background-color: bolt-color(black);
     z-index: 33;
     width: 100vw;
-    height: calc(100vh + 2000px);
+    height: 100%;
     pointer-events: none;
     position: absolute;
     top: 0;
@@ -143,6 +107,11 @@ $pega-wwo--content-max-mobile-width: 550px;
     position: relative;
     width: 100%;
     height: 100%;
+    display: none;
+
+    @include bolt-mq($from: xlarge) {
+      display: block;
+    }
 
     &-wrapper {
       $pega-wwo--circles-top-padding: 18%;
@@ -154,6 +123,11 @@ $pega-wwo--content-max-mobile-width: 550px;
         position: absolute;
         width: calc(#{$pega-wwo--dashed-circle-height} * #{$pega-wwo--desktop-ratio-decimal});
         height: calc(#{$pega-wwo--dashed-circle-height} + calc(#{$pega-wwo--circles-top-padding} / #{$pega-wwo--desktop-ratio-decimal}));
+      }
+
+    .c-pega-wwo__shadow-height-inherit {
+        height: 100%;
+        width: 100%;
       }
 
       &-wo {
@@ -188,18 +162,9 @@ $pega-wwo--content-max-mobile-width: 550px;
 
   &__sm-circle {
     display: none;
-    .c-pega-wwo__active-w c-pega-wwo__content-w & {
-      @include bolt-transition--fade-in($active: true);
-    }
-
-    .c-pega-wwo__active-wo .c-pega-wwo__content-wo & {
-      @include bolt-transition--fade-in($active: true);
-    }
-
 
     @include bolt-mq($from: xlarge) {
       display: block;
-      opacity: 0;
       position: absolute;
       width: $pega-wwo--sm-circle-size;
       height: $pega-wwo--sm-circle-size;
@@ -218,56 +183,95 @@ $pega-wwo--content-max-mobile-width: 550px;
         content: '';
         opacity: .3;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: -10px;
+        left: -10px;
         width: $pega-wwo--sm-circle-size + 20px;
         height: $pega-wwo--sm-circle-size + 20px;
         border-radius: 50%;
         background-color: bolt-color(yellow, light);
+        @include bolt-animation--pulse($base: true, $duration: $bolt-duration--xslow, $active: true);
       }
+    }
+
+    &-mobile {
+      display: block;
+      width: $pega-wwo--sm-circle-size;
+      height: $pega-wwo--sm-circle-size;
+      border-radius: 50%;
+      background-color: bolt-color(white);
+      transition: background-color 1000ms linear;
+
+      &.c-pega-wwo__sm-circle-outlined {
+        position: relative;
+        right: -1px;
+      }
+
+      .c-pega-wwo__block-expanded & {
+        background-color: bolt-color(yellow, light);
+        border: 1px bolt-color(white) solid;
+        width: $pega-wwo--sm-circle-size + 1px;
+        height: $pega-wwo--sm-circle-size + 1px;
+        right: 0;
+
+        &:before {
+          content: '';
+          opacity: .3;
+          position: absolute;
+          top: -$pega-wwo--sm-circle-size;
+          left: -$pega-wwo--sm-circle-size;
+          width: $pega-wwo--sm-circle-size + 20px;
+          height: $pega-wwo--sm-circle-size + 20px;
+          border-radius: 50%;
+          background-color: bolt-color(yellow, light);
+          @include bolt-animation--pulse($base: true, $duration: $bolt-duration--xslow, $active: true);
+        }
+      }
+
+      @include bolt-mq($from: xlarge) {
+        display: none;
+      }
+    }
+
+    &-outlined {
+      width: 15px;
+      height: 15px;
+      border: 3px solid bolt-color(white);
+      background-color: bolt-color(black);
     }
 
     &-wo-1 {
       top: 9%;
       left: 19%;
-      @include bolt-transition--fade-in($base: true, $delay: 1s);
     }
 
     &-wo-2 {
       top: 58%;
       left: 0%;
-      @include bolt-transition--fade-in($base: true, $delay: 2s);
     }
 
     &-wo-3 {
       top: 96%;
       left: 33%;
-      @include bolt-transition--fade-in($base: true, $delay: 3s);
     }
 
     &-w-1 {
       top: 12%;
       left: 16%;
-      @include bolt-transition--fade-in($base: true, $delay: 1s);
     }
 
     &-w-2 {
       top: 45%;
       left: -.5%;
-      @include bolt-transition--fade-in($base: true, $delay: 2s);
     }
 
     &-w-3 {
       top: 89.4%;
       left: 20%;
-      @include bolt-transition--fade-in($base: true, $delay: 3s);
     }
 
     &-w-4 {
       top: 95%;
       left: 68%;
-      @include bolt-transition--fade-in($base: true, $delay: 4s);
     }
   }
 
@@ -340,7 +344,7 @@ $pega-wwo--content-max-mobile-width: 550px;
       z-index: 9;
       width: 100%;
       margin-right: -50%;
-      padding-bottom: 4px;
+      padding-bottom: 6px;
       padding-left: 3px;
       color: bolt-color('black');
       text-decoration: none;
@@ -393,7 +397,11 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-title {
+      display: inline-block;
 
+      @include bolt-mq($from: xlarge) {
+        display: block;
+      }
     }
 
     &-body {
@@ -414,11 +422,7 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-numbers-wrapper {
-      display: none;
-
-      @include bolt-mq($from: xlarge) {
-        display: flex;
-      }
+      display: flex;
     }
 
     &-number-wrapper {
@@ -448,8 +452,6 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-block-credit-wo {
-      @include bolt--circle-on-line($outlined: true);
-
       @include bolt-mq($from: xlarge) {
         position: absolute;
         top: 0;
@@ -460,39 +462,19 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-block-frustration-wo {
-      @include bolt--circle-on-line;
       @include bolt-mq($from: xlarge) {
         top: 0;
         left: 10%;
         width: calc(#{$pega-wwo--block-width-basis} + 110px);
         padding-top: 33.75%;
       }
-
-      .c-pega-wwo__block-body,
-      .c-pega-wwo__block-action {
-        display: none;
-
-        @include bolt-mq($from: xlarge) {
-          display: block;
-        }
-      }
     }
     &-block-business-wo {
-      @include bolt--circle-on-line;
       @include bolt-mq($from: xlarge) {
         top: 0;
         left: 29%;
         width: calc(#{$pega-wwo--block-width-basis} + 70px);
         padding-top: 48.8%;
-      }
-
-      .c-pega-wwo__block-body,
-      .c-pega-wwo__block-action {
-        display: none;
-
-        @include bolt-mq($from: xlarge) {
-          display: block;
-        }
       }
     }
     // Result region blocks
@@ -505,26 +487,20 @@ $pega-wwo--content-max-mobile-width: 550px;
     &-block-conversion-w {
       display: block;
       flex: 1 0 100%;
+
+      .c-pega-wwo__block-body {
+        margin-bottom: bolt-spacing(small);
+      }
     }
 
     &-block-credit-w {
-      @include bolt--circle-on-line;
       @include bolt-mq($from: xlarge) {
         top: 0;
         left: 9%;
         padding-top: 13%;
       }
-      .c-pega-wwo__block-body {
-        display: none;
-
-        @include bolt-mq($from: xlarge) {
-          display: block;
-        }
-      }
     }
     &-block-signals-w {
-      @include bolt--circle-on-line;
-
       .c-pega-wwo__block-title {
         color: bolt-color(yellow);
       }
@@ -538,8 +514,6 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-block-respond-w {
-      @include bolt--circle-on-line;
-
       @include bolt-mq($from: xlarge) {
         display: block;
         top: 0;
@@ -551,32 +525,19 @@ $pega-wwo--content-max-mobile-width: 550px;
       .c-pega-wwo__block-title {
         color: bolt-color(yellow);
       }
-
-      .c-pega-wwo__block-body {
-        display: none;
-
-        @include bolt-mq($from: xlarge) {
-          display: block;
-        }
-
-      }
     }
 
     &-block-relationship-w {
-      @include bolt--circle-on-line;
-
       @include bolt-mq($from: xlarge) {
         top: 0;
         left: 39%;
         width: calc(#{$pega-wwo--block-width-basis} + 200px);
         padding-top: 46.1%;
       }
-      .c-pega-wwo__block-body {
-        display: none;
-      }
     }
   }
   &__icon {
+
     &-open-book {
       width: 50px;
     }
@@ -603,13 +564,30 @@ $pega-wwo--content-max-mobile-width: 550px;
         padding: 0;
       }
 
+      .c-pega-wwo__block-title {
+        display: inline-block;
+
+        @include bolt-mq($from: xlarge) {
+          display: block;
+        }
+      }
+
+      .c-pega-wwo__icon {
+        display: inline-block;
+        margin-right: bolt-spacing(xsmall);
+
+        @include bolt-mq($from: xlarge) {
+          display: block;
+        }
+      }
+
       &:before {
         content: '';
         display: block;
         position: absolute;
-        top: 2em;
+        top: 1.5rem;
         left: 0;
-        height: calc(100% - 3em);
+        height: calc(100% - 6rem);
         border-left: 2px dashed bolt-color(white);
 
         @include bolt-mq($from: xlarge) {
@@ -617,8 +595,53 @@ $pega-wwo--content-max-mobile-width: 550px;
         }
       }
       .c-pega-wwo__block {
+        position: relative;
+
         @include bolt-mq($from: xlarge) {
           position: absolute;
+        }
+
+        .c-pega-wwo__block-title,
+        .c-pega-wwo__icon {
+          &:hover {
+            cursor: pointer;
+            @include bolt-mq($from: xlarge) {
+              cursor: auto;
+            }
+          }
+        }
+
+        .c-pega-wwo__block-contents {
+          overflow: hidden;
+
+          &[meta-stage="INITIAL"] {
+            max-height: 0;
+          }
+          @include bolt-mq($from: xlarge) {
+            max-height: unset;
+            overflow: visible;
+          }
+        }
+
+        &.c-pega-wwo__block-expanded .c-pega-wwo__block-contents {
+          //@include bolt-animation--slide-down($active: true);
+          //border: 1px solid red;
+          //
+          //@include bolt-mq($from: xlarge) {
+          //  max-height: unset;
+          //}
+        }
+
+        bolt-animate[type="circles"] {
+          position: absolute;
+          left: -1.95rem;
+          // .5 height of h2 + icon height
+          top: .55rem;
+          transform: translate(-50%, 0);
+
+          @include bolt-mq($from: xlarge) {
+            display: none;
+          }
         }
       }
     }

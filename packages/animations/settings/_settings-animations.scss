@@ -96,3 +96,17 @@ $bolt-timing--snap: cubic-bezier(1, 0, 1, 0);
     transform: scale(1);
   }
 }
+
+@keyframes bolt-animation--pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
