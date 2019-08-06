@@ -50,7 +50,6 @@
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
-    "postinstall": "patch-package",
     "release": "./scripts/release/release.sh",
     "release:beta": "./scripts/release/release-beta.sh",
     "release:rc": "./scripts/release/release-rc.sh",
