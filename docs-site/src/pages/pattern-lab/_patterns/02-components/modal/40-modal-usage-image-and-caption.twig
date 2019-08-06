@@ -23,6 +23,7 @@
         image: {
           src: "/images/placeholders/tout-4x3-climber.jpg",
           alt: "Image description.",
+          max_width: "1000px",
         },
       },
       caption: caption,
@@ -45,13 +46,13 @@
       content: modal_content,
       spacing: "none",
       scroll: "overall",
-      width: "full",
+      width: "auto",
     } only %}
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Enlarge image and show caption</bolt-text>
     <bolt-text>Create a thumbnail image trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high res image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
-    <bolt-text>Modal width is set to full.</bolt-text>
+    <bolt-text>Modal width is set to auto and image max-width is set to 1000px.</bolt-text>
   {% endset %}
 
   {% include "@bolt-components-grid/grid.twig" with {
@@ -103,6 +104,7 @@
       caption: caption,
     } only %}
   {% endset %}
+
   {% set trigger %}
     {% include "@bolt-components-trigger/trigger.twig" with {
       content: image_content,
@@ -114,6 +116,7 @@
       }
     } only %}
   {% endset %}
+
   {% set device_viewer %}
     {% embed "@bolt-components-device-viewer/device-viewer.twig" with {
       device: "macbook",
@@ -129,7 +132,7 @@
       content: modal_content,
       spacing: "none",
       scroll: "overall",
-      width: "full",
+      width: "optimal",
     } only %}
   {% endset %}
 
