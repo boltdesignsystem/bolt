@@ -133,6 +133,7 @@ const config = {
       '@bolt/components-ol',
       '@bolt/components-video',
       '@bolt/components-grid',
+      '@bolt/micro-journeys',
       '@bolt/components-interactive-pathways',
       '@bolt/components-interactive-pathway',
       '@bolt/components-interactive-step',
