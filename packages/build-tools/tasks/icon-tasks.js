@@ -334,13 +334,13 @@ async function generateFile(icons) {
     const iconComponentDir = path.dirname(
       resolve.sync('@bolt/components-icon/package.json'),
     );
-    const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.yml');
+    const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.json');
     const names = icons.map(icon => icon.id);
-    const schema = yaml.safeLoad(fs.readFileSync(iconComponentSchema, 'utf8'));
+    const schema = await fs.readJson(iconComponentSchema);
     schema.properties.name.enum = names;
 
     // update bolt-icon schema with newest icons from svgs folder
-    await fs.writeFile(iconComponentSchema, yaml.safeDump(schema));
+    await fs.writeJson(iconComponentSchema, schema, { spaces: 2 });
     // generate `icons.bolt.json` file with newest icons array
     await fs.writeFile(
       path.join(config.dataDir, 'icons.bolt.json'),
