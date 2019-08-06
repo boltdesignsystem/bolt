@@ -1,4 +1,4 @@
-import iconSchema from '@bolt/components-icon/icon.schema.yml';
+import iconSchema from '@bolt/components-icon/icon.schema.json';
 
 export default {
   $schema: 'http://json-schema.org/draft-04/schema#',

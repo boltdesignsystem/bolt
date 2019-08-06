@@ -1,6 +1,6 @@
-import iconSchema from '@bolt/components-icon/icon.schema.yml';
+const iconSchema = require('@bolt/components-icon/icon.schema.json');
 
-export default {
+module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Micro Journy Status Dialogue Bar',
   type: 'object',

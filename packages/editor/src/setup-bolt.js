@@ -1,7 +1,7 @@
 import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 import buttonSchema from '@bolt/components-button/button.schema.yml';
 import textSchema from '@bolt/components-text/text.schema.yml';
-import iconSchema from '@bolt/components-icon/icon.schema.yml';
+import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/components-interactive-step/src/character.schema.yml';
 import statusDialogueBarSchema from '@bolt/components-interactive-step/src/status-dialogue-bar.schema';
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
