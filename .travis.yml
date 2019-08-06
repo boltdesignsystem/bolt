@@ -44,6 +44,7 @@ jobs:
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
+        - lsof -t -i:4444 # kill any currently running tasks on port 4444 to try and recover from a Jest test retry
         - travis_retry yarn test:js --bail --maxWorkers=1
         # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
         - yarn test:php

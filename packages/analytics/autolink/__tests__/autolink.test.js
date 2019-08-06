@@ -9,12 +9,17 @@ describe('analytics autolinker', () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       waitUntil: 'networkidle0',
+      timeout: 0,
     });
 
     await page.addScriptTag({
       url: 'https://www.google-analytics.com/analytics.js',
     });
   }, timeout);
+
+  afterEach(async () => {
+    await page.close();
+  });
 
   test('autolinker does not modify component URLs already containing an _ga query string', async function() {
     await page.addScriptTag({
