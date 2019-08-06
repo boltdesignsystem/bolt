@@ -125,6 +125,7 @@ function init() {
       console.error(
         'Bolt Editor Config requires "styles" an array of paths to CSS files. Current config is: ',
         config,
+        pegaEditor,
       );
       return;
     }
@@ -133,6 +134,7 @@ function init() {
       console.error(
         'Bolt Editor Config requires "scripts" an array of paths to JS files. Current config is: ',
         config,
+        pegaEditor,
       );
       return;
     }

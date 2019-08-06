@@ -49,6 +49,9 @@
     }
     .gjs-field {
       width: 100%;
+      &.gjs-field-checkbox {
+        max-width: 17px; // core Grapejs styles for checkboxes use `!important` on `width` and so I'm side-stepping that with `max-width`. checkboxes were 100% width x 17px height and it looked bad
+      }
     }
   }
 
