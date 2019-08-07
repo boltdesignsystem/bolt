@@ -18,7 +18,8 @@ module.exports = {
     characterUrl: {
       type: 'string',
       description: 'URL of the character image.',
-      default: 'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png',
+      default:
+        'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png',
     },
     useIcon: {
       type: 'boolean',

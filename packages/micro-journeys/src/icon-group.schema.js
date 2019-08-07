@@ -9,7 +9,7 @@ module.exports = {
     attributes: {
       type: 'object',
       description:
-          'A Drupal-style attributes object with extra attributes to append to this component.',
+        'A Drupal-style attributes object with extra attributes to append to this component.',
     },
     iconOneName: {
       type: 'string',
