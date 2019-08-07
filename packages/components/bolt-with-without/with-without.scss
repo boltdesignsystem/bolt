@@ -161,9 +161,20 @@ $pega-wwo--content-max-mobile-width: 550px;
   }
 
   &__sm-circle {
-    display: none;
+    //display: none;
+    &:hover {
 
-    @include bolt-mq($from: xlarge) {
+    }
+    @include bolt-transition--fade-in($base: true, $delay: 1s);
+
+    .c-pega-wwo__active-w .c-pega-wwo__content-w & {
+      @include bolt-transition--fade-in($active: true);
+    }
+    .c-pega-wwo__active-wo .c-pega-wwo__content-wo & {
+      @include bolt-transition--fade-in($active: true);
+    }
+
+    @include bolt-mq($from: large) {
       display: block;
       position: absolute;
       width: $pega-wwo--sm-circle-size;
@@ -418,8 +429,8 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
 
     &-ul {
-      margin-left: 1rem;
       margin-bottom: 0;
+      margin-left: 1rem;
     }
 
     &-li {
@@ -645,8 +656,8 @@ $pega-wwo--content-max-mobile-width: 550px;
         }
 
         .c-pega-wwo__block-contents {
-          overflow: hidden;
           display: block;
+          overflow: hidden;
 
           &[meta-stage="INITIAL"] {
             max-height: 0;
