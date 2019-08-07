@@ -1,0 +1,33 @@
+<bolt-interactive-step
+    step="1"
+    slot="steps"
+    active
+>
+  <span slot="title">Moment of Need</span>
+
+  <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
+    <bolt-two-character-layout
+        character-left-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-neutral.png"
+        character-right-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/pega-rep.png"
+    >
+      <div slot="connection">
+        <bolt-connection
+            connection-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+        >
+            <span slot="top">
+              <bolt-text>Top2 slot</bolt-text>
+            </span>
+          <span slot="bottom">
+              <bolt-text>Bottom slot</bolt-text>
+            </span>
+        </bolt-connection>
+      </div>
+    </bolt-two-character-layout>
+  </bolt-animate>
+
+  <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
+    <bolt-text>
+      Pega enables the business to sense <b>customer context</b> by seeing interactions across channels--calls to customer service about a bill, or visit to pricing web page.
+    </bolt-text>
+  </bolt-animate>
+</bolt-interactive-step>

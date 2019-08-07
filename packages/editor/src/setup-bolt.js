@@ -1,11 +1,16 @@
 import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 import buttonSchema from '@bolt/components-button/button.schema.yml';
 import textSchema from '@bolt/components-text/text.schema.yml';
-import iconSchema from '@bolt/components-icon/icon.schema.yml';
+import iconSchema from '@bolt/components-icon/icon.schema.json';
+import characterSchema from '@bolt/micro-journeys/src/character.schema';
+import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 import chipSchema from '@bolt/components-chip/chip.schema.yml';
 import imageSchema from '@bolt/components-image/image.schema.yml';
-import { animationNames } from '@bolt/components-interactive-step/src/animation-meta';
+import animate from '@bolt/components-animate';
+import animateMeta from '@bolt/components-animate/animate.meta';
+import animateSchema from '@bolt/components-animate/animate.schema';
+// import { animationNames } from '@bolt/components-animate/animation-meta';
 import kebabCase from 'param-case';
 
 class SchemaPropToTraitError extends Error {}
@@ -17,7 +22,7 @@ class EditorRegisterBoltError extends Error {}
  * @prop {string} [title]
  * @prop {string} [description]
  * @prop {string[]} [enum] all the `<option>`s for the `<select>`, requires `type: 'string'`
- * @prop {string} [default]
+ * @prop {any} [default]
  */
 
 /**
@@ -101,7 +106,7 @@ export function setupBolt(editor) {
     name,
     schema = { properties: {} },
     initialContent = '<span>Hello World</span>',
-    category = 'Bolt Component',
+    category = 'Bolt Components',
     draggable = true,
     droppable = false,
     editable = true,
@@ -179,6 +184,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-button',
     schema: buttonSchema,
+    droppable: 'bolt-connection [slot]',
     initialContent: `<span>Button</span>`,
     propsToTraits: ['size', 'width', 'border_radius'],
     extraTraits: [colorTrait],
@@ -212,6 +218,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-icon',
     schema: iconSchema,
+    draggable: '[slot]',
     initialContent: `<span></span>`,
     propsToTraits: ['size', 'name', 'background', 'color'],
   });
@@ -300,55 +307,44 @@ export function setupBolt(editor) {
   });
 
   registerBoltComponent({
-    name: 'bolt-animation-wrapper',
+    name: 'bolt-animate',
+    schema: animateSchema,
+    propsToTraits: Object.keys(animateSchema.properties),
     draggable: false,
     droppable: true,
     editable: true,
     highlightable: true,
     registerBlock: false,
-    extraTraits: [
-      {
-        name: 'bolt-animation-name',
-        label: 'Animation Name',
-        type: 'select',
-        default: 'none',
-        options: ['none', ...animationNames],
-      },
-      {
-        name: 'bolt-animation-duration',
-        label: 'Animation Duration',
-        type: 'number',
-        default: 500,
-      },
-      {
-        name: 'bolt-animation-delay',
-        label: 'Animation Delay',
-        type: 'number',
-        default: 0,
-      },
-      {
-        name: 'bolt-animation-function',
-        label: 'Animation Function',
-        type: 'select',
-        options: [
-          {
-            name: 'Linear',
-            value: 'linear',
-          },
-          {
-            value: 'ease-in',
-            name: 'Ease In',
-          },
-          {
-            value: 'ease-out',
-            name: 'Ease Out',
-          },
-          {
-            value: 'ease-in-out',
-            name: 'Ease In Out',
-          },
-        ],
-      },
-    ],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-connection',
+    draggable: false,
+    droppable: false,
+    editable: false,
+    highlightable: false,
+    registerBlock: false,
+  });
+
+  registerBoltComponent({
+    name: 'bolt-character',
+    schema: characterSchema,
+    draggable: false,
+    droppable: true, // @todo more specific rules here around what can be added to the slots, namely status bar, dialogue, etc
+    editable: false,
+    highlightable: false,
+    registerBlock: false,
+    propsToTraits: ['size', 'characterUrl', 'useIcon'],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-status-dialogue-bar',
+    schema: statusDialogueBarSchema,
+    initialContent: `<bolt-text size="xsmall" slot="text">Insert Text Here</bolt-text>`,
+    draggable: true,
+    droppable: false, // @todo more specific rules here around what can be added to the slots, namely status bar, dialogue, etc
+    editable: false,
+    highlightable: false,
+    propsToTraits: ['iconName', 'isAlertMessage', 'dialogueArrowDirection'],
   });
 }

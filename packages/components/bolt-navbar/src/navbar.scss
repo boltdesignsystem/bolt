@@ -43,6 +43,10 @@ bolt-navbar {
   @include bolt-padding-left(small);
   @include bolt-padding-right(small);
 
+  > *:not(:last-child){
+    @include bolt-margin-right(small);
+  }
+
   @include bolt-mq($bolt-navbar-xsmall-bp){
     @include bolt-padding-left(medium);
     @include bolt-padding-right(medium);
@@ -118,9 +122,9 @@ bolt-navbar {
     }
   }
 
-  // Don't include these inner "full-bleed" styles till Navbar is updated to support theming classes internally, 
+  // Don't include these inner "full-bleed" styles till Navbar is updated to support theming classes internally,
   // otherwise full bleed + center styling combos are broken
-  // @todo: uncomment once the [width*="full"] updates from above ^ are addressed 
+  // @todo: uncomment once the [width*="full"] updates from above ^ are addressed
   // &--full {
   //   @include bolt-full-bleed;
   // }
@@ -148,13 +152,14 @@ bolt-navbar {
   color: bolt-theme(headline);
   white-space: nowrap;
 
+  > *:not(:last-child){
+    @include bolt-margin-right(small);
+  }
+
   @supports (--css: variables) {
     padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
   }
 
-  @include bolt-mq(medium){
-    @include bolt-margin-right(medium); // Maintain space between items
-  }
 
   &:only-child {
     @include bolt-margin-right(auto);

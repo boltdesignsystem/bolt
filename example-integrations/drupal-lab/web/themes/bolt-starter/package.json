@@ -7,7 +7,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "FORCE_COLOR=1 npx npm-run-all --parallel --aggregate-output build:*",
+    "build": "FORCE_COLOR=1 npx npm-run-all --serial build:*",
     "build:en": "bolt build --prod",
     "build:ja": "bolt build --prod --config-file .boltrc--ja.js",
     "start": "bolt start",

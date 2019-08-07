@@ -70,12 +70,12 @@ properties:
     description: Bolt icon. Accepts either 1) an icon name as a string 2) an icon object as expected by `@bolt-components-icon` or 3) the string "none" to explicitly remove default icons
     anyOf:
       - type: object
-        ref: '@bolt-components-icon/icon.schema.yml'
+        ref: '@bolt-components-icon/icon.schema.json'
       - type: string
         enum:
           - none
       - type: string
-        ref: '@bolt-components-icon/icon.schema.yml#/properties/name'
+        ref: '@bolt-components-icon/icon.schema.json#/properties/name'
   quoted:
     type: boolean
     description: Adds quoted styling to text.
