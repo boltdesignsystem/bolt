@@ -43,7 +43,7 @@ module.exports = {
         .waitForElementVisible('.pl-c-typeahead__result--first', 3000) // make sure the "Open in a New Tab" UI is there
         .click('.pl-c-typeahead__result--first') // click on the first result
         .getAttribute('.pl-js-open-new-window', 'href', function(result) {
-          browser.url(result.value);
+          browser.url(`${testingUrl}/pattern-lab/${result.value}`);
         })
         .waitForElementVisible('bolt-card', 3000)
         .assert.urlContains('components-card')
