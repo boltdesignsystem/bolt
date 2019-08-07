@@ -59,7 +59,7 @@ const handleBlockTitleMobileAccordionClick = e => {
   } else {
     parentBlock.classList.add(expandedClass);
   }
-  triggerAnims({animEls, stage: isExpanded ? 'OUT' : 'IN'})
+  triggerAnims({ animEls, stage: isExpanded ? 'OUT' : 'IN' });
 };
 
 /**
@@ -130,6 +130,6 @@ document
     handleActiveRegionChange(e.target.checked);
   });
 
-document.querySelector(
-  '.c-pega-wwo__region-blocks',
-).addEventListener('click', handleBlockTitleMobileAccordionClick);
+document
+  .querySelector('.c-pega-wwo__region-blocks')
+  .addEventListener('click', handleBlockTitleMobileAccordionClick);
