@@ -1,20 +1,24 @@
-{% extends "./_editor-wrapper.twig" %}
-
-{% block content %}
-  <div class="u-bolt-padding-large">
+{% set content %}
+  <div class="u-bolt-padding-xlarge">
     <bolt-character
         characterUrl="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
     >
-      <bolt-animate slot="top" idle="pulse">
+      <bolt-animate slot="top" idle="none">
+        Slot: top
       </bolt-animate>
-      <bolt-animate slot="left" idle="pulse">
+      <bolt-animate slot="left" idle="none">
+        Slot: left
       </bolt-animate>
-      <bolt-animate slot="right" idle="pulse">
+      <bolt-animate slot="right" idle="none">
+        Slot: right
       </bolt-animate>
-      <bolt-animate slot="bottom" idle="pulse">
+      <bolt-animate slot="bottom" idle="none">
+        Slot: bottom
       </bolt-animate>
-      <bolt-icon slot="icon" idle="none">
-      </bolt-icon>
     </bolt-character>
   </div>
-{% endblock %}
+{% endset %}
+
+{% include '@bolt-components-editor/editor-in-pl.twig' with {
+  content: content,
+} only %}

@@ -1,6 +1,4 @@
-{% extends "./_editor-wrapper.twig" %}
-
-{% block content %}
+{% set content %}
   <div class="u-bolt-padding-large">
     <bolt-status-dialogue-bar>
       <bolt-text size="xsmall" slot="text">
@@ -8,4 +6,8 @@
       </bolt-text>
     </bolt-status-dialogue-bar>
   </div>
-{% endblock %}
+{% endset %}
+
+{% include '@bolt-components-editor/editor-in-pl.twig' with {
+  content: content,
+} only %}

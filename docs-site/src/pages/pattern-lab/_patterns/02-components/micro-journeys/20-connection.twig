@@ -1,6 +1,4 @@
-{% extends "./_editor-wrapper.twig" %}
-
-{% block content %}
+{% set content %}
   <div class="u-bolt-padding-large">
     <bolt-connection
         connection-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
@@ -13,4 +11,8 @@
       </bolt-animate>
     </bolt-connection>
   </div>
-{% endblock %}
+{% endset %}
+
+{% include '@bolt-components-editor/editor-in-pl.twig' with {
+  content: content,
+} only %}

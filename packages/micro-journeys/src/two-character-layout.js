@@ -1,13 +1,13 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames/bind';
-import styles from './two-character-chat.scss';
+import styles from './two-character-layout.scss';
 
 let cx = classNames.bind(styles);
 
 @define
-class BoltTwoCharacterChat extends withLitHtml() {
-  static is = 'bolt-two-character-chat';
+class BoltTwoCharacterLayout extends withLitHtml() {
+  static is = 'bolt-two-character-layout';
 
   static props = {
     noShadow: {
@@ -50,7 +50,7 @@ class BoltTwoCharacterChat extends withLitHtml() {
       characterRightUrl,
       connectionUrl,
     } = this.validateProps(this.props);
-    const classes = cx('c-bolt-two-character-chat');
+    const classes = cx('c-bolt-two-character-layout');
 
     // const eventChangeActiveStep = new CustomEvent('change-active-step', {
     //   bubbles: true,
@@ -62,15 +62,15 @@ class BoltTwoCharacterChat extends withLitHtml() {
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
-        <div class="c-bolt-two-character-chat__character-row">
+        <div class="c-bolt-two-character-layout__character-row">
           <img
-            class="c-bolt-two-character-chat__character c-bolt-two-character-chat__character--left"
+            class="c-bolt-two-character-layout__character c-bolt-two-character-layout__character--left"
             src="${characterLeftUrl}"
             alt="Character on the left"
           />
           ${this.slot('connection')}
           <img
-            class="c-bolt-two-character-chat__character c-bolt-two-character-chat__character--right"
+            class="c-bolt-two-character-layout__character c-bolt-two-character-layout__character--right"
             src="${characterRightUrl}"
             alt="Character on the right"
           />
@@ -80,4 +80,4 @@ class BoltTwoCharacterChat extends withLitHtml() {
   }
 }
 
-export { BoltTwoCharacterChat };
+export { BoltTwoCharacterLayout };

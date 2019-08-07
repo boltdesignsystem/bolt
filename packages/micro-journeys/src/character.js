@@ -58,7 +58,7 @@ class BoltCharacter extends withLitHtml() {
                 <span
                   class="c-bolt-character__slot c-bolt-character__slot--icon"
                 >
-                  ${this.slot('icon')}
+                  <bolt-icon></bolt-icon>
                 </span>
               `
             : html`

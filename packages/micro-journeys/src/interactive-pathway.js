@@ -2,7 +2,7 @@ import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './interactive-pathway.scss';
-import schema from '../interactive-pathway.schema.yml';
+// import schema from '../interactive-pathway.schema.yml';
 
 let cx = classNames.bind(styles);
 
@@ -23,7 +23,7 @@ class BoltInteractivePathway extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.schema = schema;
+    // self.schema = schema;
     self.addEventListener('change-active-step', ({ detail: { stepId } }) => {
       if (!stepId) {
         console.error(
