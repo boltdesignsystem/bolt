@@ -45,7 +45,7 @@ jobs:
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
         - travis_retry yarn test:js --bail --maxWorkers=1
-        # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
+        - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
         - yarn test:php
         - yarn test:monorepo --maxWorkers=1
         - yarn test:pkgs --ignore=@bolt/uikit-workshop --ignore=@bolt/build-tools --ignore=@bolt/build-tools--test-multi-lang
