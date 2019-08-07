@@ -199,7 +199,7 @@ async function watch() {
     `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
     `!${path.join(config.dataDir, 'components.bolt.json')}`,
     `!${path.join(config.dataDir, 'full-manifest.bolt.json')}`,
-    `!${path.join(config.dataDir, 'config.bolt.json')}`
+    `!${path.join(config.dataDir, 'config.bolt.json')}`,
   ];
 
   // @todo show this when spinners are disabled at this high of verbosity
