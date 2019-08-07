@@ -1,3 +1,5 @@
+const applitools = require('@bolt/nightwatch-config/applitools');
+
 let currentBrowser;
 
 module.exports = {
@@ -56,5 +58,14 @@ module.exports = {
         `screenshots/bolt-image/${testName}--${currentBrowser}.png`,
       )
       .end();
+  },
+
+  Applitool(browser) {
+    applitools.vrtTest({
+      browser,
+      testName: 'bolt-image',
+      testingPath:
+        '/pattern-lab/patterns/02-components-image-05-image/02-components-image-05-image.html',
+    });
   },
 };
