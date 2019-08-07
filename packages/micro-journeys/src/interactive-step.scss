@@ -9,23 +9,50 @@
 $bolt-tooltip-bubble-triangle-width: 8px;
 $bolt-tooltip-bubble-border-color: bolt-color(gray, light);
 $bolt-tooltip-transition: $bolt-transition;
-$bolt-interactive-step-left-padding: 40px;
+$bolt-interactive-step-left-padding: 42px;
 $bolt-interactive-step-bottom-padding: 1.65rem;
-$bolt-interactive-step-line-left-pos: 2.5px;
+$bolt-interactive-step-line-left-pos: 6.5px;
 
 bolt-interactive-step {
+  position: relative;
+  padding-bottom: $bolt-interactive-step-bottom-padding;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: $bolt-interactive-step-line-left-pos;
+    z-index: 5;
+    height: 100%;
+    margin-left: 5px;
+    border-left: 2px solid #AAB2F2;
+  }
+
   // Override generic styles from _generic-shared.scss
   &:not(:last-child) {
     margin-bottom: 0;
-    padding-bottom: $bolt-interactive-step-bottom-padding;
+  }
+
+  &:first-of-type::before {
+    top: 1em;
+    height: calc(100% - 1em);
+  }
+
+  &:last-of-type {
+    &::before {
+      height: calc(#{$bolt-interactive-step-bottom-padding} / 2);
+    }
+
+    bolt-animation-wrapper {
+      position: relative;
+      left: -$bolt-interactive-step-left-padding + $bolt-interactive-step-line-left-pos;
+
+    }
   }
 }
 
-bolt-interactive-step:last-of-type {
-  clear:both;
-}
-
 .c-bolt-interactive-step {
+  //Styles go here. /* [1] */
   position: relative;
   padding-left: $bolt-interactive-step-left-padding;
   text-align: left;
@@ -42,31 +69,12 @@ bolt-interactive-step:last-of-type {
     align-items: center;
   }
 
-  &__line {
+  &__dot {
     position: absolute;
     top: 0;
-    left: $bolt-interactive-step-line-left-pos;
-    width: 1px;
-    height: calc(100% + #{$bolt-interactive-step-bottom-padding});
-    margin-left: 5px;
-    border-left: 2px solid #AAB2F2;
-  }
-
-  &--first &__line {
-    top: 1em;
-    height: calc(calc(100% + #{$bolt-interactive-step-bottom-padding}) - 1em);
-  }
-
-  &--last &__line {
-    height: 1em;
-  }
-
-  &__dot {
-    display: inline-block;
-    position: absolute;
+    left: 4px;
     z-index: 10;
     margin-bottom: 1.65rem;
-    margin-left: -$bolt-interactive-step-left-padding + $bolt-interactive-step-line-left-pos;
     color: #AAB2F2;
     cursor: pointer;
     font-size: 20px;
@@ -76,6 +84,7 @@ bolt-interactive-step:last-of-type {
   &__title {
     display: inline-block;
     margin-bottom: 1.65rem;
+    padding-top: .2em;
     cursor: pointer;
     transition: color 0.5s ease, transform 0.5s ease;
   }
@@ -93,16 +102,6 @@ bolt-interactive-step:last-of-type {
       overflow: visible;
     }
 
-    .c-bolt-interactive-step--last & {
-      position: relative;
-      left: -$bolt-interactive-step-left-padding;
-
-      @include bolt-mq(small) {
-        position: absolute;
-        left: unset;
-      }
-    }
-
     // Move the step body to the right on desktop
     @include bolt-mq(small) {
       position: absolute;
@@ -111,31 +110,6 @@ bolt-interactive-step:last-of-type {
       width: calc(100% - 300px);
     }
   }
-
-  &__step-body {
-    //@todo this is being replaced with the bolt-animation web component
-    //@include bolt-transition--fade-in-slide-up($base: true, $delay: 1.2s);
-    //
-    //.c-bolt-interactive-step--active & {
-    //  @include bolt-transition--fade-in-slide-up($active: true);
-    //}
-  }
-
-  //&__dialogue {
-  //  position: relative;
-  //  z-index: 0;
-  //  width: 100%;
-  //  max-width: 190px;
-  //  height: 75px;
-  //}
-  //
-  //&__step-dialogue {
-  //  @include bolt-transition--fade-in-slide-up($base: true);
-  //
-  //  .c-bolt-interactive-step--active & {
-  //    @include bolt-transition--fade-in-slide-up($base: true);
-  //  }
-  //}
 
   // Generates the active state styling for the nav list
   &--active {
@@ -150,72 +124,3 @@ bolt-interactive-step:last-of-type {
     }
   }
 }
-
-//.c-bolt-interactive-step__speech {
-//  display: block;
-//  position: absolute;
-//  bottom: 0;
-//  z-index: bolt-z-index('tooltip');
-//  transition: all $bolt-tooltip-transition;
-//
-//  &--left {
-//    transform: translateX(-50%);
-//  }
-//
-//  &--right {
-//    transform: translateX(50%);
-//  }
-//}
-//
-//.c-bolt-interactive-step__speech-bubble {
-//  @include bolt-padding(xsmall, squished);
-//  @include bolt-shadow('level-20');
-//  @include bolt-transition--fade-in($base: true);
-//
-//  // animation effect on active step
-//  .c-bolt-interactive-step--active & {
-//    @include bolt-transition--fade-in($active: true);
-//  }
-//
-//  display: block;
-//  position: relative;
-//  z-index: 0;
-//  color: bolt-color(black);
-//  border: 1px solid $bolt-tooltip-bubble-border-color;
-//  border-radius: $bolt-border-radius;
-//  background-color: bolt-color(white);
-//
-//  &:after,
-//  &:before {
-//    content: '';
-//    display: block;
-//    position: absolute;
-//    left: 50%;
-//    transform: translate(-50%, 100%);
-//    width: 0;
-//    height: 0;
-//    pointer-events: none;
-//    border-top: $bolt-tooltip-bubble-triangle-width solid;
-//    border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-//    border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-//    border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-//  }
-//
-//  &:before {
-//    top: auto;
-//    bottom: 0;
-//    border-top-color: $bolt-tooltip-bubble-border-color;
-//    border-bottom-color: transparent;
-//  }
-//
-//  &:after {
-//    top: auto;
-//    bottom: 1px;
-//    border-top-color: white;
-//    border-bottom-color: transparent;
-//  }
-//}
-//
-//bolt-text[slot="dialogue"] {
-//  color: black;
-//}

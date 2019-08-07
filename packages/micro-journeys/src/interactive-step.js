@@ -94,7 +94,6 @@ class BoltInteractiveStep extends withLitHtml() {
           class="c-bolt-interactive-step__nav-item-wrapper"
           @click=${e => e.target.dispatchEvent(eventChangeActiveStep)}
         >
-          <span class="c-bolt-interactive-step__line"></span>
           <span class="c-bolt-interactive-step__dot">&#9679;</span>
           <span class="c-bolt-interactive-step__title">
             ${this.slot('title')}
