@@ -21,6 +21,7 @@ class BoltNavLink extends withLitHtml() {
   constructor(self) {
     self = super(self);
     this.activeClass = 'is-active';
+    this.useShadow = false; // just-in-case workaround given that the current <bolt-navlink> doesn't actually render any HTML...
     this.dropdownLinkClass = 'is-dropdown-link';
     return self;
   }
