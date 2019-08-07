@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "setup": "yarn",
-    "postinstall": "yarn run build",
+    "postinstall": "yarn run build && patch-package --patch-dir .patches/",
     "build": "bolt build --prod",
     "start": "bolt start",
     "serve": "serve"
@@ -14,7 +14,6 @@
   "author": "Adam Szałapski",
   "license": "MIT",
   "dependencies": {
-    "serve": "^11.0.0",
     "@bolt/build-tools": "^2.4.4",
     "@bolt/components-action-blocks": "^2.4.4",
     "@bolt/components-background": "^2.4.0",
@@ -65,6 +64,9 @@
     "@bolt/components-video": "^2.4.2",
     "@bolt/core": "^2.4.0",
     "@bolt/global": "^2.4.0",
-    "@bolt/twig-renderer": "^2.4.4"
+    "@bolt/twig-renderer": "^2.4.4",
+    "patch-package": "^6.1.2",
+    "postinstall-postinstall": "^2.0.0",
+    "serve": "^11.0.0"
   }
 }

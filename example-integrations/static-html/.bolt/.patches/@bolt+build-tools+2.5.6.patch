@@ -1,0 +1,12 @@
+diff --git a/node_modules/@bolt/build-tools/tasks/webpack-tasks.js b/node_modules/@bolt/build-tools/tasks/webpack-tasks.js
+index e2b9ec9..19a34a3 100644
+--- a/node_modules/@bolt/build-tools/tasks/webpack-tasks.js
++++ b/node_modules/@bolt/build-tools/tasks/webpack-tasks.js
+@@ -66,6 +66,7 @@ async function server(customWebpackConfig) {
+   const browserSyncFileToWatch = [
+     `${boltBuildConfig.wwwDir}/**/*.css`,
+     `${boltBuildConfig.wwwDir}/**/*.html`,
++    `!**/node_modules/**/*`,
+   ];
+ 
+   if (useHotMiddleware === false) {
