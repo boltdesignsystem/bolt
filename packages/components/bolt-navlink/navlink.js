@@ -36,44 +36,41 @@ class BoltNavLink extends withLitHtml() {
   }
 
   onClick(event) {
-    // prevent browser default if we're smooth scrolling to a navlink. this ensures a smoother, less jumpy animation in browsers (like Safari)
-    const customScrollElemTarget = this._shadowLink.getAttribute('href');
-    const matchedScrollTarget = document.querySelectorAll(
-      customScrollElemTarget,
-    );
-    let shouldSmoothScroll = true;
+    /**
+     * 1. prevent browser default if we're smooth scrolling to a navlink.
+     * this ensures a smoother, less jumpy animation in browsers (like Safari)
+     */
 
-    // if no ids match up with the smooth scrollable element, don't try to smooth scroll.
-    // workaround to smooth scroll js error `Cannot read property 'smoothScroll' of null`
-    if (
-      customScrollElemTarget.indexOf('#') !== -1 &&
-      matchedScrollTarget.length === 0
-    ) {
-      shouldSmoothScroll = false;
-    }
+    try {
+      const customScrollElemTarget = this._shadowLink.getAttribute('href');
 
-    if (shouldSmoothScroll !== false) {
-      event.preventDefault();
-
-      // Don't add the :focus state to the link in this scenario.  The focus state is about to get removed anyway as
-      // we move down the page, and a flash of the focused state just adds confusion.
-      document.activeElement.blur();
-    }
-
-    // manually add smooth scroll to dropdown links since these are added to the page AFTER smooth scroll event bindings would hae been added.
-    if (
-      !this.props.active &&
-      this.props.isDropdownLink &&
-      shouldSmoothScroll !== false
-    ) {
-      const scrollTarget = getScrollTarget(this._shadowLink);
-      if (scrollTarget) {
-        smoothScroll.animateScroll(
-          scrollTarget,
-          this._shadowLink,
-          scrollOptions,
+      if (customScrollElemTarget && customScrollElemTarget.indexOf('#') === 0) {
+        const matchedScrollTarget = document.querySelector(
+          customScrollElemTarget,
         );
+
+        if (matchedScrollTarget) {
+          event.preventDefault();
+
+          // Don't add the :focus state to the link in this scenario.  The focus state is about to get removed anyway as
+          // we move down the page, and a flash of the focused state just adds confusion.
+          document.activeElement.blur();
+
+          // manually add smooth scroll to dropdown links since these are added to the page AFTER smooth scroll event bindings would hae been added.
+          if (!this.props.active && this.props.isDropdownLink) {
+            const scrollTarget = getScrollTarget(this._shadowLink);
+            if (scrollTarget) {
+              smoothScroll.animateScroll(
+                scrollTarget,
+                this._shadowLink,
+                scrollOptions,
+              );
+            }
+          }
+        }
       }
+    } catch (err) {
+      console.log(err);
     }
 
     this.dispatchEvent(
