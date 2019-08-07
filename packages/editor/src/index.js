@@ -155,6 +155,8 @@ function init() {
       if (uiWrapper) {
         uiWrapper.destroy();
       }
+      space.style.width = '';
+      space.style.height = '';
     }
 
     trigger.addEventListener('click', async () => {
