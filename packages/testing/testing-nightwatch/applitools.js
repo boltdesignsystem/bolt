@@ -28,7 +28,9 @@ class Applitools {
       return;
     }
     const { testingUrl } = browser.globals;
-    const currentBrowser = browser.capabilities && browser.capabilities.browserName || 'Unknown Browser';
+    const currentBrowser =
+      (browser.capabilities && browser.capabilities.browserName) ||
+      'Unknown Browser';
     const hostOs = browser.capabilities.platform || 'Mac OS X';
     const screenshotPath = path.resolve(
       process.cwd(),
