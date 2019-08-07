@@ -106,7 +106,7 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'firefox',
         platform: 'OS X 10.11',
-        version: '66',
+        version: '68',
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,
