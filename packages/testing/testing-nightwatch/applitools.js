@@ -18,9 +18,10 @@ class Applitools {
    * @param {Object} opt.browser - browser Webdriver object provided from Nightwatch.js
    * @param {string} opt.testingPath - path to page that you want to screenshot
    * @param {string} opt.testName - name of the test
+   * @param {string} [opt.testMatchLevel='Exact'] - Applitools match level, see https://applitools.com/docs/api/eyes-sdk/classes-gen/class_eyes/method-eyes-setmatchlevel-selenium-javascript.html
    * @returns {Promise<void>}
    */
-  async vrtTest({ browser, testName, testingPath }) {
+  async vrtTest({ browser, testName, testingPath, testMatchLevel = 'Exact' }) {
     if (!browser || !browser.globals || !browser.capabilities) {
       console.error(
         'Error with Applitools VRT, improper browser object, check your nightwatch test',
@@ -58,6 +59,7 @@ class Applitools {
         // https://applitools.com/docs/api/eyes-sdk/classes-gen/class_eyes/method-eyes-open-selenium-javascript.html
         this.eyes.setHostOS(hostOs);
         this.eyes.setHostApp(currentBrowser);
+        this.eyes.setMatchLevel(testMatchLevel);
         this.eyes.setBatch(
           process.env.TRAVIS_JOB_ID
             ? 'Bolt Testing Batch - Travis'
