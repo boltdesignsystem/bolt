@@ -223,4 +223,3 @@ class BoltButton extends BoltAction {
 }
 
 export { BoltButton };
-
