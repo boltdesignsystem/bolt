@@ -133,6 +133,7 @@ class BoltNavLink extends withLitHtml() {
   }
 
   connecting() {
+    super.connecting && super.connecting();
     this.addEventListener('click', this.onClick);
 
     this._shadowLink = this.querySelector('a');
@@ -149,6 +150,7 @@ class BoltNavLink extends withLitHtml() {
   }
 
   disconnecting() {
+    super.disconnecting && super.disconnecting();
     this.removeEventListener('click', this.onClick);
   }
 }
