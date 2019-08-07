@@ -1,4 +1,6 @@
 .pega-editor-ui {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -13,10 +15,12 @@
 
   &__slots {
     display: flex;
+    min-height: 1px;
   }
 
   &__slot {
     overflow: scroll;
+    padding-bottom: 20px;
     border-right: 3px solid rgba(0, 0, 0, 0.1);
 
     &:last-child {
