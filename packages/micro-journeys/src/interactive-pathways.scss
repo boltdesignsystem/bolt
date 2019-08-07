@@ -18,10 +18,6 @@
   display: block;
   overflow: auto;
 
-  @include bolt-mq(small) {
-    height: 500px; // @todo Remove this once SSR is in place. Temp fix for layout and no SSR rendering.
-  }
-
   &__header {
     display: flex;
     flex-direction: column;

@@ -14,24 +14,52 @@ $bolt-interactive-step-bottom-padding: 1.65rem;
 $bolt-interactive-step-line-left-pos: 2.5px;
 
 bolt-interactive-step {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: $bolt-interactive-step-bottom-padding;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: $bolt-interactive-step-line-left-pos;
+    z-index: 5;
+    height: 100%;
+    margin-left: 5px;
+    border-left: 2px solid #AAB2F2;
+  }
+
   // Override generic styles from _generic-shared.scss
   &:not(:last-child) {
     margin-bottom: 0;
-    padding-bottom: $bolt-interactive-step-bottom-padding;
+  }
+
+  &:first-of-type::before {
+    height: calc(100% - 1em);
+    top: 1em;
+  }
+
+  &:last-of-type {
+    &::before {
+      height: calc(#{$bolt-interactive-step-bottom-padding} / 2);
+    }
+
+    bolt-animation-wrapper {
+      position: relative;
+      left: -$bolt-interactive-step-left-padding + $bolt-interactive-step-line-left-pos;
+
+    }
   }
 }
 
-bolt-interactive-step:last-of-type {
-  clear:both;
-}
-
 .c-bolt-interactive-step {
+  //Styles go here. /* [1] */
   position: relative;
-  padding-left: $bolt-interactive-step-left-padding;
   text-align: left;
   cursor: pointer;
   font-weight: bolder;
   transition: font-size 0.5s ease;
+  padding-left: $bolt-interactive-step-left-padding;
 
   @include bolt-mq(small) {
     position: static;
@@ -42,42 +70,23 @@ bolt-interactive-step:last-of-type {
     align-items: center;
   }
 
-  &__line {
-    position: absolute;
-    top: 0;
-    left: $bolt-interactive-step-line-left-pos;
-    width: 1px;
-    height: calc(100% + #{$bolt-interactive-step-bottom-padding});
-    margin-left: 5px;
-    border-left: 2px solid #AAB2F2;
-  }
-
-  &--first &__line {
-    top: 1em;
-    height: calc(calc(100% + #{$bolt-interactive-step-bottom-padding}) - 1em);
-  }
-
-  &--last &__line {
-    height: 1em;
-  }
-
   &__dot {
     display: inline-block;
     position: absolute;
     z-index: 10;
-    margin-bottom: 1.65rem;
-    margin-left: -$bolt-interactive-step-left-padding + $bolt-interactive-step-line-left-pos;
+    margin-left: -38px;
     color: #AAB2F2;
     cursor: pointer;
     font-size: 20px;
     transition: color 0.5s ease, transform 0.5s ease;
+    margin-bottom: 1.65rem;
   }
 
   &__title {
     display: inline-block;
-    margin-bottom: 1.65rem;
     cursor: pointer;
     transition: color 0.5s ease, transform 0.5s ease;
+    margin-bottom: 1.65rem;
   }
 
   &__body {
@@ -91,16 +100,6 @@ bolt-interactive-step:last-of-type {
     &[data-active="true"] {
       height: auto;
       overflow: visible;
-    }
-
-    .c-bolt-interactive-step--last & {
-      position: relative;
-      left: -$bolt-interactive-step-left-padding;
-
-      @include bolt-mq(small) {
-        position: absolute;
-        left: unset;
-      }
     }
 
     // Move the step body to the right on desktop
