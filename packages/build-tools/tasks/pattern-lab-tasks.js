@@ -197,6 +197,9 @@ async function watch() {
     path.join(plSource, globPattern),
     path.join(config.dataDir, '**/*'),
     `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
+    `!${path.join(config.dataDir, 'components.bolt.json')}`,
+    `!${path.join(config.dataDir, 'full-manifest.bolt.json')}`,
+    `!${path.join(config.dataDir, 'config.bolt.json')}`
   ];
 
   // @todo show this when spinners are disabled at this high of verbosity
@@ -225,6 +228,10 @@ async function watch() {
     if (compileWhenReady) {
       compileWhenReady = false;
       await compileWithNoExit();
+    }
+
+    if (isWatching) {
+      await manifest.writeBoltManifest();
     }
 
     const watcher = chokidar.watch(watchedFiles, {
