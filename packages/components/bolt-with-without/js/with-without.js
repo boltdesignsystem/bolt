@@ -29,6 +29,40 @@ const filterInvisibles = els => {
 };
 
 /**
+ * Event handler for click on block region, only fires
+ * on icon or title click. Expands the block content.
+ * Only works on mobile. To configure this, adjust mediaQuery.
+ *
+ * @param e {Event}
+ */
+const handleBlockTitleMobileAccordionClick = e => {
+  // @TODO replace with theme token.
+  console.log('Cleek', e);
+  const mediaQuery = '(max-width: 1200px)';
+  const expandedClass = 'c-pega-wwo__block-expanded';
+  const targetIsIcon = e.target.nodeName === 'BOLT-ICON';
+  const targetIsTitle = e.target.classList.contains('c-pega-wwo__block-title');
+  const targetIsToggler = targetIsIcon || targetIsTitle;
+  const isMobile = window.matchMedia(mediaQuery).matches;
+
+  if (!targetIsToggler || !isMobile) {
+    return;
+  }
+
+  // @TODO remove tight coupling between markup and this.
+  const parentBlock = e.target.parentElement.parentElement;
+  const isExpanded = parentBlock.classList.contains(expandedClass);
+  const animEls = [parentBlock.querySelector('.c-pega-wwo__block-contents')];
+
+  if (isExpanded) {
+    parentBlock.classList.remove(expandedClass);
+  } else {
+    parentBlock.classList.add(expandedClass);
+  }
+  triggerAnims({animEls, stage: isExpanded ? 'OUT' : 'IN'})
+};
+
+/**
  * Controls the animation in/out of active with/without (w/wo) region.
  *
  * @param {boolean} checked
@@ -95,33 +129,6 @@ document
   .addEventListener('change', e => {
     handleActiveRegionChange(e.target.checked);
   });
-
-const handleBlockTitleMobileAccordionClick = e => {
-  console.log(e.target);
-  const expandedClass = 'c-pega-wwo__block-expanded';
-
-  const targetIsIcon = e.target.nodeName === 'BOLT-ICON';
-  const targetIsTitle = e.target.classList.contains('c-pega-wwo__block-title');
-  const targetIsToggler = targetIsIcon || targetIsTitle;
-  const isMobile = window.matchMedia('(max-width: 1200px)').matches;
-
-  if (!targetIsToggler || !isMobile) {
-    return;
-  }
-
-  // @TODO remove tight coupling between markup and this.
-  const parentBlock = e.target.parentElement.parentElement;
-  const isExpanded = parentBlock.classList.contains(expandedClass);
-  const animEls = [parentBlock.querySelector('.c-pega-wwo__block-contents')];
-  if (isExpanded) {
-    parentBlock.classList.remove(expandedClass);
-  } else {
-    parentBlock.classList.add(expandedClass);
-  }
-
-  console.log('triggering: ', isExpanded ? 'OUT' : 'IN');
-  triggerAnims({animEls, stage: isExpanded ? 'OUT' : 'IN'})
-};
 
 document.querySelector(
   '.c-pega-wwo__region-blocks',

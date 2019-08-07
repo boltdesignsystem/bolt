@@ -16,7 +16,7 @@ $pega-wwo--content-max-mobile-width: 550px;
   height: 100%;
   min-height: 100vh;
   line-height: 1.4;
-  background-color: bolt-color(black);
+  background-color: black;
 
   bolt-animate {
     min-width: 1px;
@@ -347,7 +347,7 @@ $pega-wwo--content-max-mobile-width: 550px;
       z-index: 9;
       width: 100%;
       margin-right: -50%;
-      padding-bottom: 6px;
+      padding-bottom: 7px;
       padding-left: 3px;
       color: bolt-color('black');
       line-height: 1;
@@ -407,10 +407,19 @@ $pega-wwo--content-max-mobile-width: 550px;
     &-body {
       margin-bottom: .5rem;
       font-size: 13px;
+
+      @include bolt-mq($from: xlarge) {
+        font-size: 12px;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        font-size: 13px;
+      }
     }
 
     &-ul {
       margin-left: 1rem;
+      margin-bottom: 0;
     }
 
     &-li {
@@ -479,6 +488,7 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
     // Result region blocks
     &-block-outcome-customer-wo {
+      margin-right: bolt-spacing(small);
     }
 
     &-block-outcome-business-wo {
@@ -490,6 +500,15 @@ $pega-wwo--content-max-mobile-width: 550px;
 
       .c-pega-wwo__block-body {
         margin-bottom: bolt-spacing(small);
+
+        @include bolt-mq($from: xlarge) {
+          margin-bottom: 0;
+        }
+
+        @include bolt-mq($from: xxlarge) {
+          margin-bottom: bolt-spacing(small);
+        }
+
       }
     }
 
@@ -503,13 +522,27 @@ $pega-wwo--content-max-mobile-width: 550px;
     &-block-signals-w {
       .c-pega-wwo__block-title {
         color: bolt-color(yellow);
+
+        @include bolt-mq($from: xlarge) {
+          white-space: nowrap;
+        }
+
+        @include bolt-mq($from: xlarge) {
+          white-space: normal;
+        }
       }
 
       @include bolt-mq($from: xlarge) {
         top: 0;
+        left: 1.5%;
+        width: calc(#{$pega-wwo--block-width-basis} + 130px);
+        padding-top: 24%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        top: 0;
         left: 4.3%;
         width: calc(#{$pega-wwo--block-width-basis} + 110px);
-        padding-top: 26%;
       }
     }
 
@@ -613,6 +646,7 @@ $pega-wwo--content-max-mobile-width: 550px;
 
         .c-pega-wwo__block-contents {
           overflow: hidden;
+          display: block;
 
           &[meta-stage="INITIAL"] {
             max-height: 0;
@@ -658,7 +692,11 @@ $pega-wwo--content-max-mobile-width: 550px;
         padding-top: 15%;
       }
 
-      @include bolt-mq($from: xxlarge) {
+      @include bolt-mq($from: xlarge) {
+        padding-top: 18.5%;
+      }
+
+      @include bolt-mq($from: xxxlarge) {
         padding-top: 27%;
       }
     }
@@ -686,13 +724,29 @@ $pega-wwo--content-max-mobile-width: 550px;
     &-blocks {
       display: flex;
       flex-wrap: wrap;
+      margin-top: bolt-spacing(medium);
+
+      @include bolt-mq(xxxlarge) {
+        margin-top: bolt-spacing(large);
+      }
 
       .c-pega-wwo__block {
-        flex: 1 1 50%;
+        flex: 1 1 auto;
       }
 
       .c-pega-wwo__block-block-conversion-w {
         flex: 1 0 100%;
+
+        @include bolt-mq(xxlarge) {
+          margin-top: bolt-spacing(small);
+        }
+
+        .c-pega-wwo__block-body {
+          margin-bottom: bolt-spacing(small);
+          @include bolt-mq($from: xlarge) {
+            font-size: 16px;
+          }
+        }
       }
     }
   }
