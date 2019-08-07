@@ -88,7 +88,6 @@ export async function triggerAnims({ animEls, stage = 'IN' }) {
 
   for (const order of animOrders) {
     // eslint-disable-next-line no-await-in-loop
-    console.log('triggering', animEls.filter(a => a[orderProp] === order));
     await triggerAnimOnEls({
       animEls: animEls.filter(a => a[orderProp] === order),
       stage,
