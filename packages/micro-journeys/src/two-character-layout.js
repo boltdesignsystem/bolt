@@ -38,11 +38,15 @@ class BoltTwoCharacterLayout extends withLitHtml() {
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <div class="c-bolt-two-character-layout__character-row">
-          <span class="c-bolt-two-character-layout__character c-bolt-two-character-layout__character--left">
+          <span
+            class="c-bolt-two-character-layout__character c-bolt-two-character-layout__character--left"
+          >
             ${this.slot('character--left')}
           </span>
           ${this.slot('connection')}
-          <span class="c-bolt-two-character-layout__character c-bolt-two-character-layout__character--right">
+          <span
+            class="c-bolt-two-character-layout__character c-bolt-two-character-layout__character--right"
+          >
             ${this.slot('character--right')}
           </span>
         </div>
