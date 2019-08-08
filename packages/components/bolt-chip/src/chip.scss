@@ -1,74 +1,77 @@
+@import '@bolt/core';
+
 /* ------------------------------------ *\
    Chips
 \* ------------------------------------ */
 
-// Sample Usage
-// <bolt-chip bolt-component="">
-//   <span class="c-bolt-chip">
-//     <span class="c-bolt-chip__item-text">This is a chip</span>
-//   </span>
-// </bolt-chip>
-
-@import '@bolt/core';
-
 // Chip Variables
-$bolt-chip-border-radius: 100em;
+$bolt-chip-border-radius: bolt-border-radius(full);
 $bolt-chip-color: bolt-theme(text);
-$bolt-chip-background-color: rgba(bolt-color(gray), 0.22);
-$bolt-chip-background-color--hover: rgba(bolt-color(gray), 0.30);
+$bolt-chip-color-link: bolt-theme(link);
+$bolt-chip-background-color: rgba(bolt-color(gray), 0.15);
+$bolt-chip-background-color-hover: rgba(bolt-color(gray), 0.2);
+$bolt-chip-background-color-active: rgba(bolt-color(gray), 0.4);
 $bolt-chip-transition: $bolt-transition;
+$bolt-chip-item-spacing: bolt-spacing(xxsmall) / 2;
 
-
-// Base Chip Styles
+// Custom element styles
 bolt-chip {
   display: inline-block;
 }
 
-.c-bolt-chip {
-  @include bolt-padding(small, squished);
-  @include bolt-font-size(xsmall);
+@include bolt-repeat-rule(('bolt-chip', ':host')) {
+  outline: none;
+}
 
-  display: inline-block;
-  display: inline-flex;
-  transform: scale(1);
+// Base Chip Styles
+.c-bolt-chip {
+  @include bolt-font-family(body);
+  @include bolt-font-size(xsmall, tight);
+  @include bolt-font-weight(regular);
+
+  display: flex;
+  align-items: center;
   color: $bolt-chip-color;
   text-decoration: none;
   border-radius: $bolt-chip-border-radius;
   background-color: $bolt-chip-background-color;
-  transition: all $bolt-chip-transition;
-
-  &:hover, &:focus {
-    background-color: $bolt-chip-background-color--hover;
-  }
-
-  &:active {
-    transform: scale(0.98);
-  }
+  will-change: background-color, transform;
+  transition: background-color $bolt-chip-transition;
 }
 
+$bolt-chip-sizes: (
+  xsmall,
+  small,
+  medium,
+);
 
-// Chip items
-.c-bolt-chip__item {
-  display: inline-block;
-  display: inline-flex;
-  align-self: center;
-}
+@each $size in $bolt-chip-sizes {
+  .c-bolt-chip--spacing-#{$size} {
+    @include bolt-padding(#{$size}, squished);
 
-.c-bolt-chip__item-text + .c-bolt-chip__item-icon {
-  @include bolt-margin-left(xsmall);
-}
-
-.c-bolt-chip__item-icon {
-  width: 1em;
-  height: 1em;
-
-  svg {
-    width: 1em;
-    height: auto;
-    fill: currentColor;
+    padding-right: bolt-spacing(#{$size}) - $bolt-chip-item-spacing;
+    padding-left: bolt-spacing(#{$size}) - $bolt-chip-item-spacing;
   }
 }
 
-.c-bolt-chip__item-icon + .c-bolt-chip__item-text {
-  @include bolt-margin-left(xsmall);
+.c-bolt-chip--link {
+  color: $bolt-chip-color-link;
+
+  &:hover,
+  &:focus {
+    background-color: $bolt-chip-background-color-hover;
+  }
+
+  &:active,
+  &:focus:active {
+    background-color: $bolt-chip-background-color-active;
+  }
+}
+
+
+.c-bolt-chip__text,
+.c-bolt-chip__icon {
+  @include bolt-padding(0 $bolt-chip-item-spacing);
+
+  display: inline;
 }
