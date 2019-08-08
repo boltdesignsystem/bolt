@@ -52,7 +52,7 @@ bolt-modal:not([ready]) {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%; // Use % instead of vh or modal scrollbar is hidden behind bold scrollbar in IE11
   height: 100vh;
   pointer-events: none;
   transition: opacity $bolt-modal-transition;
@@ -430,14 +430,4 @@ bolt-modal:not([ready]) {
 
 .c-bolt-modal__dialog-title {
   @include bolt-visuallyhidden;
-}
-
-// https://davidwalsh.name/detect-scrollbar-width
-// @todo: refactor into core JS/CSS
-.c-bolt-modal__scrollbar-measure {
-  position: absolute;
-  top: -9999px;
-  width: 100px;
-  height: 100px;
-  overflow: scroll;
 }
