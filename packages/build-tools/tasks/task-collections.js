@@ -212,10 +212,10 @@ async function build(shouldReturnTime = false) {
     });
 
     config.prod || config.watch === false
-      ? await Promise.all(await compileBasedOnEnvironment())
+      ? await Promise.all(await compileBasedOnEnvironment()).then(async () => {
+        return await criticalcssTasks.build();
+      })
       : '';
-
-    await criticalcss();
 
     if (shouldReturnTime) {
       return startTime;

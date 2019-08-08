@@ -198,7 +198,9 @@ async function build(url, cssFile, outputPath) {
     });
   };
 
-  await start();
+  return await start().then(() => {
+    process.exit(0);
+  });
 }
 
 module.exports = {
