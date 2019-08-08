@@ -105,7 +105,7 @@ jobs:
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
-        - yarn run test:e2e:full
+        - travis_wait yarn run test:e2e:full
       after_success:
         - ./scripts/check-run-success.js 'Nightwatch'
         - ./scripts/deploy-branch-alias.js
@@ -124,7 +124,7 @@ jobs:
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
-        - yarn run test:e2e:full
+        - travis_wait yarn run test:e2e:full
         - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_success:
         - ./scripts/check-run-success.js 'Nightwatch'
