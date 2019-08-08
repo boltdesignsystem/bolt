@@ -97,6 +97,8 @@ jobs:
       after_success:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
+      after_success: ./scripts/check-run-success.js 'Nightwatch'
+      after_failure: ./scripts/check-run-failure.js 'Nightwatch'
 
     - stage: Post-Deploy
       if: branch = master
