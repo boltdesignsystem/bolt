@@ -87,6 +87,22 @@ jobs:
 
     - stage: Post-Deploy
       name: 'Nightwatch End-to-End'
+      if: branch =~ /(feat|fix|bug|fix|hotfix|chore|feature|experimental|test|epic)/
+      install: yarn install --ignore-scripts --ignore-optional --prod
+      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
+      script:
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - echo "The Now URL is $NOW_URL"
+        - yarn run test:e2e:full
+      after_success:
+        - ./scripts/check-run-success.js 'Nightwatch'
+        - ./scripts/deploy-branch-alias.js
+        - ./scripts/deploy-tagged-release.js
+      after_failure: ./scripts/check-run-failure.js 'Nightwatch'
+
+    - stage: Post-Deploy
+      name: 'Nightwatch End-to-End'
+      if: tag =~ ^v OR branch =~ /(master|release)/
       install: yarn install --ignore-scripts --ignore-optional --prod
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
@@ -95,10 +111,9 @@ jobs:
         - yarn run test:e2e:full
         - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_success:
+        - ./scripts/check-run-success.js 'Nightwatch'
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
-      after_success: ./scripts/check-run-success.js 'Nightwatch'
-      after_failure: ./scripts/check-run-failure.js 'Nightwatch'
 
     - stage: Post-Deploy
       if: branch = master
