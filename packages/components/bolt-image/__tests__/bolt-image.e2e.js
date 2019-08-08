@@ -18,11 +18,10 @@ module.exports = {
         bodyWidth = result.value.width;
       })
       .getElementSize('bolt-image', function(result) {
-        const imageHeight = Math.round(bodyWidth / 1.3333333333);
+        const imageHeight = Math.round(bodyWidth / 1.3);
 
         this.assert.equal(result.value.width, bodyWidth);
-        this.assert.equal(result.value.height, imageHeight) ||
-          this.assert.equal(result.value.height, imageHeight + 1); // try to account for rounding difference in Firefox
+        this.assert.equal(result.value.height, imageHeight);
       })
       .execute(
         function(data) {
