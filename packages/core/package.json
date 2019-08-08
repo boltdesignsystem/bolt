@@ -22,6 +22,8 @@
     "es6-promise": "^4.2.8",
     "get-own-property-symbols": "^0.9.3",
     "html-element": "^2.3.0",
+    "patch-package": "^6.1.2",
+    "postinstall-postinstall": "^2.0.0",
     "lit-element": "^2.2.0",
     "lit-html": "^1.1.1",
     "lodash.merge": "^4.6.2",
@@ -36,6 +38,9 @@
     "sassy-maps": "github:at-import/Sassy-Maps#0.x.x",
     "skatejs": "^5.2.4",
     "smoothscroll-polyfill": "^0.4.4"
+  },
+  "scripts": {
+    "postinstall": "patch-package --patch-dir .patches/"
   },
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "homepage": "https://boltdesignsystem.com",
