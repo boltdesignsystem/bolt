@@ -46,6 +46,7 @@ describe('<bolt-navbar> Component', () => {
 
   afterAll(async () => {
     await stopServer();
+    await page.close();
   });
 
   afterEach(async () => {

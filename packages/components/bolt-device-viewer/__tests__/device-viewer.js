@@ -1,10 +1,18 @@
-import { render } from '../../../testing/testing-helpers';
+import {
+  render,
+  renderString,
+  stopServer,
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../device-viewer.schema.yml'));
 const { deviceName, color, orientation } = schema.properties;
 
 describe('<bolt-device-viewer> Component', () => {
+  afterAll(async () => {
+    await stopServer();
+  });
+
   test('basic usage', async () => {
     const results = await render(
       '@bolt-components-device-viewer/device-viewer.twig',

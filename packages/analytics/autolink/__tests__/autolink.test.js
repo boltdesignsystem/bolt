@@ -72,7 +72,7 @@ describe('analytics autolinker', () => {
     await page.evaluate(() => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'External URL - Shadow DOM Test';
-      btn.setAttribute('url', 'https://www.pega.com');
+      btn.setAttribute('url', 'https://developer.mozilla.org');
       document.body.appendChild(btn);
     });
 
@@ -144,7 +144,7 @@ describe('analytics autolinker', () => {
     await page.evaluate(() => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'External URL - Untracked Domain';
-      btn.setAttribute('url', 'https://www.pega.com');
+      btn.setAttribute('url', 'https://developer.mozilla.org');
       document.body.appendChild(btn);
     });
 
@@ -210,7 +210,7 @@ describe('analytics autolinker', () => {
       const link = document.createElement('bolt-link');
       link.textContent = 'External URL - Untracked Domain';
       link.style.display = 'inline-block'; // for some strange reason, without any :host styles or this, puppeteer can't seem to find this DOM node to click on
-      link.setAttribute('url', 'https://www.pega.com');
+      link.setAttribute('url', 'https://developer.mozilla.org');
       document.body.appendChild(link);
     });
 
@@ -237,7 +237,7 @@ describe('analytics autolinker', () => {
       return window.drupalSettings.google_analytics.trackCrossDomains[0];
     });
 
-    expect(config).toBe('pega.com');
+    expect(config).toBe('developer.mozilla.org');
   }, 120000);
 
   test('allow Drupal to configure which domains get configured / tracked by autolink.', async function() {
@@ -253,7 +253,7 @@ describe('analytics autolinker', () => {
       const btn = document.createElement('bolt-button');
       btn.textContent =
         'External URL - Normally Untracked But Now Tracked Domain';
-      btn.setAttribute('url', 'https://www.pega.com');
+      btn.setAttribute('url', 'https://developer.mozilla.org');
       document.body.appendChild(btn);
     });
 
