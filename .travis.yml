@@ -21,15 +21,15 @@ before_install:
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
 stages:
-  - Prep
-  - Test Live Site
+  - Pre-Deploy
+  - Post-Deploy
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
 
 jobs:
   include:
-    - stage: Prep
+    - stage: Pre-Deploy
       name: 'Smoke Tests: Linting'
       install: yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Lint'
@@ -37,14 +37,14 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Lint'
       after_failure: ./scripts/check-run-failure.js 'Lint'
 
-    - stage: Prep
+    - stage: Pre-Deploy
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
         - travis_retry yarn run setup:full
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
-        - travis_retry yarn test:js --bail --maxWorkers=1
+        - travis_retry yarn test:js --bail --maxWorkers=2
         # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
         - yarn test:php
         - yarn test:monorepo --maxWorkers=1
@@ -52,16 +52,18 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
 
-    - stage: Prep
+    - stage: Post-Deploy
       name: 'Smoke Tests: Build Tools'
-      install: 'npm run setup'
+      if: branch = master
+      install: 'npm run setup:quick'
       before_script: ./scripts/check-run-queue.js 'Build Tools'
       script: yarn run test:build-tools
       after_success: ./scripts/check-run-success.js 'Build Tools'
       after_failure: ./scripts/check-run-failure.js 'Build Tools'
 
-    - stage: Prep
+    - stage: Post-Deploy
       name: 'Build Drupal Lab'
+      if: branch = master
       script:
         - composer global require hirak/prestissimo
         - cd example-integrations/drupal-lab
@@ -71,7 +73,7 @@ jobs:
         - yarn run test # run Jest tests on the FE build that just compiled
         - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
 
-    - stage: Prep
+    - stage: Pre-Deploy
       name: 'Build + Deploy Website'
       script:
         # Clear incache file on normal Travis builds
@@ -83,21 +85,22 @@ jobs:
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
 
-    - stage: Test Live Site
+    - stage: Post-Deploy
       name: 'Nightwatch End-to-End'
-      install: travis_retry yarn run setup
-      before_script: travis_retry ./scripts/check-run-in-progress.js 'Nightwatch'
+      install: yarn run setup:quick
+      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
-        - travis_retry export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
-        - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - travis_wait yarn run test:e2e:full
-        - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+        - time curl -sSf "$NOW_URL" > /dev/null # warming up site
+        - yarn run test:e2e:full
+        - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_success:
-        - travis_retry ./scripts/deploy-branch-alias.js
-        - travis_retry ./scripts/deploy-tagged-release.js
+        - ./scripts/deploy-branch-alias.js
+        - ./scripts/deploy-tagged-release.js
 
-    - stage: Test Live Site
+    - stage: Post-Deploy
+      if: branch = master
       name: 'Ensure site is live'
       install: yarn run setup
       before_script: ./scripts/check-run-in-progress.js 'Site is live'
@@ -109,12 +112,6 @@ jobs:
         - ./scripts/check-run-success.js 'Site is live'
       after_failure:
         - ./scripts/check-run-failure.js 'Site is live'
-
-    - stage: Test Live Site
-      name: 'Example master only job'
-      if: branch = master
-      script:
-        - echo "This example only runs on master branch builds"
 
 notifications:
   email:
