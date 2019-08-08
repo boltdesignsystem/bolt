@@ -2,32 +2,40 @@
   By setting the <code>contentSpacing</code> or <code>triggerSpacing</code> prop to a <code>&lt;bolt-accordion-item&gt;</code>, the default spacing value inheritted from the parent <code>&lt;bolt-accordion&gt;</code> can be optionally overwritten.
 </p>
 
-<aside class="c-bds-callout c-bds-callout--notice">
+<aside class="c-bds-callout c-bds-callout--notice u-bolt-margin-bottom-large">
   <p>
     This can be particularly helpful if you have an accordion with nested content that already includes it's own spacing.
   </p>
 </aside>
 
+{% set default_accordion_item %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Default content spacing inherited from the parent <code>&lt;bolt-accordion&gt;</code>",
+  } %}
+{% endset %}
 
-{% set accordionTable %}
-  {% include '_accordion-table-example.twig' %}
+{% set customized_accordion_item %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Content spacing removed by setting this item's <code>content_spacing</code> prop to <code>none</code>.",
+  } %}
 {% endset %}
 
 {% include "@bolt-components-accordion/accordion.twig" with {
   spacing: "medium",
+  single: false,
+  box_shadow: true,
+  no_separator: true,
   items: [
     {
-      trigger: "Content Spacing None (Overrides Medium default)",
+      trigger: "Default Accordion Item",
+      content: default_accordion_item,
+      open: true,
+    },
+    {
+      trigger: "Customized Accordion Item",
       content_spacing: "none",
-      content: accordionTable,
-    },
-    {
-      trigger: "Accordion item 2",
-      content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
-    },
-    {
-      trigger: "Accordion item 3",
-      content: "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.</p>",
+      content: customized_accordion_item,
+      open: true,
     },
   ]
 } only %}
