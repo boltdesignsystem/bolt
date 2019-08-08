@@ -24,7 +24,7 @@ import { triggerAnims } from '@bolt/components-animate/utils';
     const stage = triggeredIn ? 'OUT' : 'IN';
     console.log({ stage });
     triggerAnims({ animEls, stage }).then(() => {
-      console.log('all done')
+      console.log('all done');
     });
     trigger.innerText = `Trigger Animations ${triggeredIn ? 'IN' : 'OUT'}`;
     triggeredIn = !triggeredIn;
