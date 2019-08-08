@@ -13,23 +13,23 @@ const { display, valign } = schema.properties;
 const timeout = 90000;
 
 describe('link', () => {
-  let page, isOnline, context;
-
-  beforeAll(async () => {
-    isOnline = await isConnected();
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
+  let page;
 
   afterAll(async () => {
     await stopServer();
+    await page.close();
   });
 
   beforeEach(async () => {
-    page = await context.newPage();
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 

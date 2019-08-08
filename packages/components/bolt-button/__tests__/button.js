@@ -13,29 +13,41 @@ const { tag } = schema.properties;
 const timeout = 90000;
 
 describe('button', () => {
-  let page, isOnline, context;
-
-  beforeAll(async () => {
-    isOnline = await isConnected();
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
+  let page;
 
   afterAll(async () => {
     await stopServer();
+    await page.close();
   });
 
   beforeEach(async () => {
-    page = await context.newPage();
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
   test('Basic usage', async () => {
     const results = await render('@bolt-components-button/button.twig', {
       text: 'This is a button',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('Button adds target if passed via attributes', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a button',
+      url: 'http://pega.com',
+      attributes: {
+        target: '_blank',
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -50,6 +62,29 @@ describe('button', () => {
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
+  });
+
+  test('Button with "disabled" adds attr to <button>', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a button',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    // @todo: also test rendered HTML for `disabled` attribute
+  });
+
+  test('Button with "disabled" adds attr to <a>', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a button',
+      url: 'http://pega.com',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    // @todo: also test rendered HTML for `disabled` attribute
   });
 
   test('Button with outer classes via Drupal Attributes', async () => {

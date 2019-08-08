@@ -16,12 +16,12 @@
     "build:pl": "bolt prep && npx lerna exec --scope @bolt/uikit-workshop --loglevel=silent -- yarn run build",
     "build:prod": "bolt build --prod --no-ssr",
     "clean": "cd ../ && npm run clean",
+    "prep": "bolt prep",
     "serve": "bolt serve",
     "setup": "cd ../ && npm run setup",
     "start": "bolt start",
     "start:lang": "bolt start --i18n",
     "start:prod": "bolt start --prod",
-    "test": "npm run test:links",
     "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
     "watch": "bolt watch"
   },

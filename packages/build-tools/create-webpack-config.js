@@ -103,6 +103,7 @@ async function createWebpackConfig(buildConfig) {
       config: {
         prod: config.prod ? true : false,
         lang: JSON.stringify(config.lang),
+        env: JSON.stringify(config.env),
       },
     },
   };
