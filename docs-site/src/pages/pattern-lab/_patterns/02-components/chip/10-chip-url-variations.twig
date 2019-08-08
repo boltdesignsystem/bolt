@@ -3,13 +3,30 @@
 <bolt-list display="inline">
   <bolt-list-item>
     {% include "@bolt-components-chip/chip.twig" with {
-      text: "Regular chip",
+      text: "No URL",
     } only %}
   </bolt-list-item>
   <bolt-list-item>
     {% include "@bolt-components-chip/chip.twig" with {
-      text: "Linked chip",
-      url: "#!"
+      text: "Has URL",
+      url: "#!",
+    } only %}
+  </bolt-list-item>
+</bolt-list>
+
+<bolt-text headline>Target</bolt-text>
+<bolt-list display="inline">
+  <bolt-list-item>
+    {% include "@bolt-components-chip/chip.twig" with {
+      text: "Open link in current tab",
+      url: "https://pega.com",
+    } only %}
+  </bolt-list-item>
+  <bolt-list-item>
+    {% include "@bolt-components-chip/chip.twig" with {
+      text: "Open link in new tab",
+      url: "https://pega.com",
+      target: "_blank",
     } only %}
   </bolt-list-item>
 </bolt-list>
