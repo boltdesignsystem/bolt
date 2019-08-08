@@ -55,18 +55,13 @@ async function runPenthouse(url, sheet) {
       .catch(err => {
         console.log(err); // handle any errors thrown
 
-        spinner.fail(
-          chalk.red(
-            'Failed to generate Critical CSS!'
-          ),
-        );
-
+        spinner.fail(chalk.red('Failed to generate Critical CSS!'));
       });
     return criticalCSS;
   } else {
     spinner.fail(
       chalk.red(
-        'Warning! Google Chrome not downloaded... abort generating Critical CSS!'
+        'Warning! Google Chrome not downloaded... abort generating Critical CSS!',
       ),
     );
     return '';
@@ -199,11 +194,8 @@ async function build(url, cssFile, outputPath) {
         }
       }),
     ).then(() => {
-      spinner.succeed(
-        chalk.green('Finished generating Critical CSS!'),
-      );
+      spinner.succeed(chalk.green('Finished generating Critical CSS!'));
     });
-
   };
 
   await start();
