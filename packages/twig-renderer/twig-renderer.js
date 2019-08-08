@@ -36,7 +36,7 @@ async function init(keepAlive = false) {
     debug: true,
     alterTwigEnv: config.alterTwigEnv,
     hasExtraInfoInResponses: false, // Will add `info` onto results with a lot of info about Twig Env
-    maxConcurrency: 10,
+    maxConcurrency: 30,
     keepAlive, // only set this to be true when doing in-browser requests to avoid issues with this process not exiting when complete
   });
   state = STATES.READY;
