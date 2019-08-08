@@ -31,7 +31,7 @@ jobs:
   include:
     - stage: Pre-Deploy
       name: 'Smoke Tests: Linting'
-      install: yarn run setup:quick
+      install: yarn install --ignore-scripts --ignore-optional --prod
       before_script: ./scripts/check-run-queue.js 'Lint'
       script: yarn run lint
       after_success: ./scripts/check-run-success.js 'Lint'
@@ -87,7 +87,7 @@ jobs:
 
     - stage: Post-Deploy
       name: 'Nightwatch End-to-End'
-      install: yarn run setup:quick
+      install: yarn install --ignore-scripts --ignore-optional --prod
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
