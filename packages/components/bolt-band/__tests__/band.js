@@ -16,14 +16,21 @@ describe('<bolt-band> Component', () => {
   let page;
 
   beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
-      waitUntil: 'networkidle0',
+      timeout: 0,
     });
   }, timeout);
 
   afterAll(async () => {
     await stopServer();
+    await page.close();
   }, 100);
 
   // Basic Usage

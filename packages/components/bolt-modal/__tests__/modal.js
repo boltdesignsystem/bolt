@@ -22,6 +22,10 @@ async function renderTwigString(template, data) {
 const imageVrtConfig = {
   failureThreshold: '0.02',
   failureThresholdType: 'percent',
+  customDiffConfig: {
+    threshold: '0.1',
+    includeAA: true,
+  },
 };
 
 const timeout = 120000;
@@ -44,15 +48,22 @@ describe('<bolt-modal> Component', () => {
   let page;
 
   beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
-      waitUntil: 'networkidle0',
+      timeout: 0,
     });
   }, timeout);
 
   afterAll(async () => {
     await stopTwigRenderer();
-  }, timeout);
+    await page.close();
+  });
 
   test('basic usage', async () => {
     const results = await renderTwig('@bolt-components-modal/modal.twig', {
@@ -114,6 +125,7 @@ describe('<bolt-modal> Component', () => {
       <bolt-text>This is the body (default).</bolt-text>
       <bolt-text slot="footer">This is the footer</bolt-text>`;
       document.body.appendChild(modal);
+      modal.updated();
       modal.show();
       return modal.outerHTML;
     });
@@ -124,6 +136,7 @@ describe('<bolt-modal> Component', () => {
 
     const renderedHTML = await html(renderedModal);
 
+    await page.waitFor(1000); // wait a second before testing
     const image = await page.screenshot();
 
     // @todo: Fix this, returns 'BOLT-MODAL', expected 'BOLT-BUTTON'.
@@ -151,6 +164,7 @@ describe('<bolt-modal> Component', () => {
 
     const renderedHTML = await html(renderedModal);
 
+    await page.waitFor(1000); // wait a second before testing
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot(imageVrtConfig);
