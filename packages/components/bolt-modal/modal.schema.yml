@@ -26,6 +26,7 @@ properties:
     default: optimal
     enum:
       - auto
+      - regular
       - optimal
       - full
   spacing:
@@ -57,7 +58,6 @@ properties:
   uuid:
     type: string
     description: Unique ID for modal, randomly generated if not provided.
-
   # @todo: persistent and hide close button props are not ready.
   # persistent:
   #   type: boolean
