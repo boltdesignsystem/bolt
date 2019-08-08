@@ -24,27 +24,11 @@ $pega-wwo--content-max-mobile-width: 550px;
   }
 
   &__wrapper {
-    position: relative;
-    width: 100%;
-    overflow: visible;
-    margin: 0 auto;
 
-    background-repeat: no-repeat;
-    background-size: $pega-wwo--max-width auto;
-
-    @include bolt-mq($from: xlarge) {
-      height: 0;
-      // Scale bg image by width Padding is relative to width. So this is an aspect ratio hack.
-      padding-bottom: $pega-wwo--desktop-ratio;
-    }
   }
 
   &__inner {
-    padding: 0 bolt-spacing(medium) bolt-spacing(medium) bolt-spacing(medium);
 
-    @include bolt-mq($from: xlarge) {
-      padding: 0;
-    }
   }
 
   &__modal-bg {
@@ -58,45 +42,92 @@ $pega-wwo--content-max-mobile-width: 550px;
     background-color: bolt-color(black);
   }
 
-  &__active-wo {
-    display: block;
-    background-image: url("./img/BG_withoutPega_mobile.jpg");
-
-    @include bolt-mq($from: xlarge) {
-      background-image: url("./img/BG_without_desktop.jpg");
-    }
-
-    .c-pega-wwo__content-w {
-      //@include bolt-visuallyhidden;
-      display: none;
-    }
-
-    .c-pega-wwo__content-wo {
-      //@include bolt-visuallyshown;
-      display: block;
+  &__swiper-container {
+    width: 100vw;
+    overflow: hidden;
+    @include bolt-mq(xlarge) {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   }
 
-  &__active-w {
-    display: block;
+  //&__active-wo {
+  //  display: block;
+  //  background-image: url("./img/BG_withoutPega_mobile.jpg");
+  //
+  //  @include bolt-mq($from: xlarge) {
+  //    background-image: url("./img/BG_without_desktop.jpg");
+  //  }
+  //
+  //}
+
+  &__content-wrapper {
+    width: 200vw;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  &__swiper-slide {
+
+  }
+
+  &__content {
+    position: relative;
+    flex: 1 0 100vw;
+    width: 100vw;
+    overflow: visible;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-size: $pega-wwo--max-width auto;
+
+    @include bolt-mq($from: xlarge) {
+      height: 0;
+      // Scale bg image by width Padding is relative to width. So this is an aspect ratio hack.
+      padding-bottom: $pega-wwo--desktop-ratio;
+    }
+
+
+  }
+
+  &__content-w {
     background-image: url("./img/BG_withPega_mobile.jpg");
 
     @include bolt-mq($from: xlarge) {
       background-image: url("./img/BG_withPega_desktop.jpg");
     }
+  }
+
+  &__content-wo {
+    background-image: url("./img/BG_withoutPega_mobile.jpg");
+
+    @include bolt-mq($from: xlarge) {
+      background-image: url("./img/BG_without_desktop.jpg");
+    }
+  }
+
+  &__active-w {
+    display: block;
+
 
     .c-pega-wwo__content-wo {
       //@include bolt-visuallyhidden;
-      display: none;
+      //display: none;
     }
 
     .c-pega-wwo__content-w {
       //@include bolt-visuallyshown;
-      display: block;
+      //display: block;
     }
   }
 
   &__title {
+    span {
+      z-index: 12;
+      display: block;
+    }
+    z-index: 12;
     padding-top: bolt-spacing(large);
     text-align: center;
     font-size: 28px;
