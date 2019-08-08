@@ -91,7 +91,7 @@ Sort classes passed in via attributes into two groups:
     {% if target %} target="{{ target }}" {% endif %}
     is="shadow-root"
     class="{{ inner_classes|join(' ') }}"
-    {{ filtered_attributes }}
+    {{ filtered_attributes|without('id') }}
   >
     {{ macros.slotted_icon(icon, icon_position, "before") }}
     <replace-with-children class="{{ "#{base_class}__text" }}">
