@@ -28,7 +28,7 @@ const imageVrtConfig = {
   },
 };
 
-const timeout = 60000;
+const timeout = 120000;
 
 // Currently, the only important breakpoints to test are 'small' and 'large'
 const viewportSizes = [
@@ -48,17 +48,22 @@ describe('<bolt-modal> Component', () => {
   let page;
 
   beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
   afterAll(async () => {
     await stopTwigRenderer();
-  }, timeout);
+    await page.close();
+  });
 
   test('basic usage', async () => {
     const results = await renderTwig('@bolt-components-modal/modal.twig', {

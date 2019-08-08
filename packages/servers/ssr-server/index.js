@@ -1,45 +1,94 @@
 const path = require('path');
-const express = require('express');
 const fs = require('fs');
+const http2 = require('http2');
 const { fileExists } = require('@bolt/build-tools/utils/general');
 const { getConfig } = require('@bolt/build-tools/utils/config-store.js');
 const prettier = require('prettier');
-const { render } = require('./renderer');
-const { template } = require('./libs/template');
+const { JsDomRenderBackend } = require('./libs/render/backend/jsdom');
+const {
+  WebComponentRenderer,
+} = require('./libs/render/renderer/WebComponentRenderer');
 
-const port = process.env.PORT || 4445;
-const app = express();
-let connections = []; // keep track of # of open connections
-let webpackStatsGenerated;
+async function run() {
+  let config = await getConfig();
 
-let server = ''; // express server instance
-let config;
-let webpackConfig;
-let manifestPath;
-let html;
+  config.components.individual = [];
+  config.prod = true;
+  config.enableCache = true;
+  config.mode = 'server';
+  config.env = 'pwa';
+  config.sourceMaps = false;
+  config.copy = [];
+  config.webpackDevServer = false;
+  config.buildDir = path.join(config.wwwDir, 'build-ssr');
+  config.dataDir = path.join(config.wwwDir, 'build-ssr', 'data');
 
-async function renderToString(htmlToRender) {
-  html = htmlToRender;
-  config = config || (await getConfig());
-  return new Promise(async (resolve, reject) => {
-    // is the server already running? if so, use that instead of spinning up a new server
-    await setupServer();
-    await setupWebpack();
+  const webpackStatsGenerated = await setupWebpack(config);
 
-    webpackStatsGenerated = await JSON.parse(fs.readFileSync(manifestPath));
-    // return await ssrRenderHTML(htmlToRender, webpackStatsGenerated, config, port);
-    const results = await ssrRenderHTML(
-      htmlToRender,
-      port,
-      webpackStatsGenerated,
-    );
+  console.log('starting renderer...');
+  const rendererBackend = new JsDomRenderBackend(config, webpackStatsGenerated);
 
-    return resolve(results);
+  const renderer = new WebComponentRenderer(rendererBackend, [
+    'bolt-button',
+    'bolt-text',
+    'bolt-icon',
+  ]);
+  await renderer.start();
+  console.log('renderer ready...');
+
+  const options = {};
+  const server = http2.createServer(options);
+
+  server.on('stream', (stream, headers) => {
+    if (headers[':path'] !== '/') {
+      stream.respond({ ':status': 404 });
+      stream.end();
+    } else if (headers[':method'].toLowerCase() !== 'post') {
+      stream.respond({ ':status': 405 });
+      stream.end();
+    } else {
+      const chunks = [];
+      stream.on('data', chunk => {
+        chunks.push(chunk);
+      });
+      stream.on('end', async () => {
+        try {
+          const rendered = await renderer.render(chunks.join());
+
+          const prettierHtml = prettier.format(rendered, {
+            singleQuote: true,
+            trailingComma: 'es5',
+            bracketSpacing: true,
+            jsxBracketSameLine: true,
+            parser: 'html',
+          });
+
+          stream.respond({ ':status': 200 });
+          stream.end(prettierHtml);
+        } catch (e) {
+          console.log(e);
+          stream.respond({ ':status': 500 });
+          stream.end();
+        }
+      });
+    }
   });
+
+  server.listen(80);
+
+  console.log('listening on port 80...');
+  console.log('');
+  console.log('Test the server by running:');
+  console.log('');
+  console.log(
+    'curl http://localhost -v --http2-prior-knowledge -X POST -d "<bolt-button>hello world</bolt-button><bolt-icon name=\'close\'></bolt-icon>"',
+  );
 }
 
-async function setupWebpack() {
-  config = config || (await getConfig());
+async function setupWebpack(config) {
+  console.log('compiling webpack...');
+
+  let webpackConfig, manifestPath, webpackStatsGenerated;
 
   return new Promise(async (resolve, reject) => {
     manifestPath =
@@ -89,85 +138,9 @@ async function setupWebpack() {
       });
     }
   });
+
+  console.log('webpack ready...');
+  return webpackStatsGenerated;
 }
 
-async function ssrRenderHTML(htmlToRender, port, webpackStatsGenerated) {
-  return new Promise(async (resolve, reject) => {
-    const htmlResult = await render(htmlToRender, port, webpackStatsGenerated);
-
-    const renderedHTML = prettier.format(htmlResult, {
-      singleQuote: true,
-      trailingComma: 'es5',
-      bracketSpacing: true,
-      jsxBracketSameLine: true,
-      parser: 'html',
-    });
-    return resolve(renderedHTML);
-  });
-}
-
-// listen for when we need to auto-shut down + track open server connections
-async function setupServer() {
-  return new Promise(async (resolve, reject) => {
-    config = config || (await getConfig());
-    config.components.individual = [];
-    config.prod = true;
-    config.enableCache = true;
-    config.mode = 'server';
-    config.env = 'pwa';
-    config.sourceMaps = false;
-    config.copy = [];
-    config.webpackDevServer = false;
-    config.buildDir = path.join(config.wwwDir, 'build-ssr');
-    config.dataDir = path.join(config.wwwDir, 'build-ssr', 'data');
-
-    app.use(express.static(path.relative(process.cwd(), config.wwwDir)));
-
-    // generate a fresh webpack build + pass along asset data to dynamic HTML template rendered
-    server = await app.listen(port);
-
-    app.get('/ssr', function(req, res) {
-      res.send(template(html || '', port, webpackStatsGenerated || []));
-    });
-
-    // handle cleaning up + shutting down the server instance
-    process.on('SIGTERM', shutDownSSRServer);
-    process.on('SIGINT', shutDownSSRServer);
-
-    server.on('connection', connection => {
-      connections.push(connection);
-      connection.on(
-        'close',
-        // eslint-disable-next-line no-return-assign
-        () => (connections = connections.filter(curr => curr !== connection)),
-      );
-    });
-
-    resolve();
-  });
-}
-
-async function shutDownSSRServer() {
-  return new Promise(async (resolve, reject) => {
-    if (!server) {
-      process.exit(0);
-    }
-    // console.log('Received kill signal, shutting down gracefully');
-    resolve(await server.close());
-
-    setTimeout(() => {
-      console.error(
-        'Could not close connections in time, forcefully shutting down',
-      );
-      process.exit(1);
-    }, 20000);
-
-    connections.forEach(curr => curr.end());
-    setTimeout(() => connections.forEach(curr => curr.destroy()), 20000);
-  });
-}
-
-module.exports = {
-  shutDownSSRServer,
-  renderToString,
-};
+run();

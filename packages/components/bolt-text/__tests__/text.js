@@ -9,22 +9,23 @@ import {
 const timeout = 90000;
 
 describe('<bolt-text> Component', () => {
-  let page, context;
+  let page;
 
   afterAll(async () => {
     await stopServer();
+    await page.close();
   }, 100);
 
-  beforeAll(async () => {
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
-
   beforeEach(async () => {
-    page = await context.newPage();
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
@@ -44,6 +45,34 @@ describe('<bolt-text> Component', () => {
 
     expect(image).toMatchImageSnapshot({
       failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedHTML).toMatchSnapshot();
+  });
+
+  // Multiple text elements (Shadow DOM)
+  test('Multiple <bolt-text> elements w/ Shadow DOM render', async function() {
+    const renderedTextHTML = await page.evaluate(() => {
+      const wrapper = document.createElement('div');
+      const text1 = document.createElement('bolt-text');
+      const text2 = document.createElement('bolt-text');
+
+      text1.textContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`;
+      text2.textContent = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`;
+
+      wrapper.appendChild(text1);
+      wrapper.appendChild(text2);
+      document.body.appendChild(wrapper);
+
+      return wrapper.outerHTML;
+    });
+
+    const renderedHTML = await html(renderedTextHTML);
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.03',
       failureThresholdType: 'percent',
     });
 

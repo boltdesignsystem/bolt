@@ -7,7 +7,7 @@ pl-header {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 4;
+  z-index: 100;
   display: flex; /* 2 */
   width: 100%;
   background-color: $pl-color-black;
@@ -22,6 +22,7 @@ pl-header {
   border-right-color: var(--theme-border, $pl-color-gray-20);
   border-bottom-color: $pl-color-gray-20;
   border-bottom-color: var(--theme-border, $pl-color-gray-20);
+  box-shadow: 0 8px 15px 1px rgba(6, 10, 36, 0.1),0 18px 24px 1px rgba(6, 10, 36, 0.12);
 
   .pl-c-body--theme-light & {
     color: $pl-color-black;

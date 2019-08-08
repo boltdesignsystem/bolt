@@ -1,0 +1,262 @@
+{% macro code_example(code) %}
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+{% endmacro %}
+
+{% import _self as table_example %}
+
+{% set table_demo %}
+<bolt-table>
+  <table>
+    <thead>
+      <tr>
+        <td></td>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Row 1</th>
+        <td>R1C1</td>
+        <td>R1C2</td>
+        <td>R1C3</td>
+      </tr>
+      <tr>
+        <th>Row 2</th>
+        <td>R2C1</td>
+        <td>R2C2</td>
+        <td>R2C3</td>
+      </tr>
+      <tr>
+        <th>Row 3</th>
+        <td>R3C1</td>
+        <td>R3C2</td>
+        <td>R3C3</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Footer</th>
+        <td>FC1</td>
+        <td>FC2</td>
+        <td>FC3</td>
+      </tr>
+    </tfoot>
+  </table>
+</bolt-table>
+{% endset %}
+
+{% set table_prop_demo %}
+<bolt-table format="numeric" borderless>
+  <table>
+    <thead>
+      <tr>
+        <td></td>
+        <td>Pts</td>
+        <td>Reb</td>
+        <td>Ast</td>
+        <td>Stl</td>
+        <td>Blk</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Michael Jordan</th>
+        <td>70</td>
+        <td>10</td>
+        <td>2</td>
+        <td>5</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <th>Toni Kukoc</th>
+        <td>21</td>
+        <td>15</td>
+        <td>10</td>
+        <td>3</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <th>Steve Kerr</th>
+        <td>5</td>
+        <td>2</td>
+        <td>20</td>
+        <td>5</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Total</th>
+        <td>91</td>
+        <td>27</td>
+        <td>32</td>
+        <td>13</td>
+        <td>5</td>
+      </tr>
+    </tfoot>
+  </table>
+</bolt-table>
+{% endset %}
+
+{% set table_advanced_demo %}
+<bolt-table>
+  <table>
+    <thead>
+      <tr>
+        <td></td>
+        <th colspan="2" class="u-bolt-color-indigo-light">
+          This cell spans 2 columns and has an utility class.
+        </th>
+        <th>Column 3</th>
+        <th>Column 4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Row 1</th>
+        <td>R1C1</td>
+        <td>R1C2</td>
+        <td colspan="2" class="u-bolt-color-orange-dark">
+          This cell spans 2 columns and has an utility class.
+        </td>
+      </tr>
+      <tr>
+        <th>Row 2</th>
+        <td>R2C1</td>
+        <td>R2C2</td>
+        <td colspan="2" rowspan="2" class="u-bolt-color-orange-dark">
+          This cell spans 2 columns, 2 rows and has an utility class.
+        </td>
+      </tr>
+      <tr>
+        <th>Row 3</th>
+        <td>R3C1</td>
+        <td>R3C2</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Footer</th>
+        <td colspan="2" class="u-bolt-color-teal">
+          This cell spans 2 columns and has an utility class.
+        </td>
+        <td>FC3</td>
+        <td>FC4</td>
+      </tr>
+    </tfoot>
+  </table>
+</bolt-table>
+{% endset %}
+
+{% set table_data_demo %}
+<bolt-table first-col-fixed-width>
+  <table>
+    <thead>
+      <tr>
+        <td></td>
+        <th>Item number</th>
+        <th>Description</th>
+        <th>Assemblies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>
+          <bolt-text headline font-size="small" text-transform="uppercase" letter-spacing="wide">
+            Build 2.0.1.0 — SR-49969
+          </bolt-text>
+        </th>
+        <td>
+          <bolt-button size="small" url="#!">SR-49941</bolt-button>
+        </td>
+        <td>
+          This hotfix changes Updater requirements for .NET. If you are using Updater with 7.1 or 8.0 Robotic Automation Runtime clients, you now need to have both .NET 4.0 and .NET 3.5 installed.
+        </td>
+        <td>
+          OpenSpan.UpdaterService.Remoting.dll<br>
+          OpenSpan.Updater.ServerClientInterface.dll<br>
+          OpenSpan.Updater.ScheduledTasks.dll<br>
+          OpenSpan.Updater.PrePostOperation.dll<br>
+          OpenSpan.Updater.Git.dll<br>
+          OpenSpan.VersionFinder.exe<br>
+          OpenSpan.UpdaterService.exe<br>
+          OpenSpan.Updater.X509tool.exe<br>
+          OpenSpan.Updater.UserHelper.exe<br>
+          OpenSpan.Updater.UninstallHelper.exe<br>
+          OpenSpan.Updater.RuntimeLauncher.exe<br>
+          OpenSpan.Updater.InstallHelper.exe<br>
+          OpenSpan.Updater.Initializer.exe
+        </td>
+      </tr>
+      <tr>
+        <th>Build 2.0.1.0 — SR-49969</th>
+        <td>SR-44869</td>
+        <td>
+          <img src="http://fillmurray.com/200/200">
+        </td>
+        <td>OpenSpan.Updater.Git.dll</td>
+      </tr>
+      <tr>
+        <th rowspan="2">Build 1.1.360 — SR-44891</th>
+        <td>SR-43163</td>
+        <td>
+          This hotfix adds a list of post-update tasks to the <span>RuntimeConfig.xml </span>file. These tasks are run after files that match a pattern you specify are updated.
+        </td>
+        <td>
+          <bolt-image src="/images/placeholders/tout-4x3-climber.jpg" srcset="/images/placeholders/tout-4x3-climber-50.jpg 50w, /images/placeholders/tout-4x3-climber-100.jpg 100w, /images/placeholders/tout-4x3-climber-200.jpg 200w, /images/placeholders/tout-4x3-climber-320.jpg 320w, /images/placeholders/tout-4x3-climber-480.jpg 480w, /images/placeholders/tout-4x3-climber-640.jpg 640w" alt="A Rock Climber" ratio="64/48"></bolt-image>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <bolt-chip tag="a" url="#!">SR-44850</bolt-chip>
+        </td>
+        <td>
+          This hotfix changes Updater to avoid an exception that could prevent it from correctly populating branches.
+        </td>
+        <td>ManagedOpenSsl.dll</td>
+      </tr>
+    </tbody>
+  </table>
+</bolt-table>
+{% endset %}
+
+
+<bolt-text headline>Web Component Usage</bolt-text>
+<bolt-text>
+  Bolt Table is a web component that renders a semantic table with Bolt styles. To make a simple table, wrap a semantic <bolt-code-snippet display="inline" lang="html">&lt;table&gt;</bolt-code-snippet> element with a <bolt-code-snippet display="inline" lang="html">&lt;bolt-table&gt;</bolt-code-snippet> element.
+</bolt-text>
+{% include table_example.code_example(table_demo) %}
+
+<bolt-text headline>Prop Usage</bolt-text>
+<bolt-text>
+  Configure the table with the properties specified in the schema.
+</bolt-text>
+{% include table_example.code_example(table_prop_demo) %}
+
+<bolt-text headline>Advanced Usage</bolt-text>
+<bolt-text>
+  Attributes and utility classes are supported on table headers and cells.
+</bolt-text>
+{% include table_example.code_example(table_advanced_demo) %}
+
+<bolt-text headline>Accepted Data</bolt-text>
+<bolt-text>
+  Each table header or cell can accept any Bolt web components, HTML markup, or just plain text.
+</bolt-text>
+{% include table_example.code_example(table_data_demo) %}

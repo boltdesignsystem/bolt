@@ -62,7 +62,7 @@ exports[`button Basic usage 1`] = `
 
 exports[`button Default <bolt-blockquote> inside a <form> renders 2`] = `
 <blockquote
-  class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
+  class="c-bolt-blockquote c-bolt-blockquote--xxlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-horizontal"
   style=""
 >
   
@@ -77,10 +77,10 @@ exports[`button Default <bolt-blockquote> inside a <form> renders 2`] = `
     <!---->
     <!---->
     <img
-      alt="PayPal Logo"
+      alt="Bolt Design System Logo"
       slot="logo"
-      src="/fixtures/logo-paypal.svg"
-      style=""
+      src="/fixtures/bolt-logo.svg"
+      style="max-width:200px;"
     >
       <!---->
       <!---->
@@ -108,11 +108,14 @@ exports[`button Default <bolt-blockquote> inside a <form> renders 2`] = `
       
         
       <!---->
+      
+        
+      <!---->
       <p
         class="is-first-child"
         style=""
       >
-        The greater danger for most of us lies not in setting our aim too high and falling short...
+        Bolt Blockquote w/ Shadow DOM auto-disabled
       </p>
       <!---->
       
@@ -122,8 +125,11 @@ exports[`button Default <bolt-blockquote> inside a <form> renders 2`] = `
         class="is-last-child"
         style=""
       >
-        In fact, the greater danger is setting our aim too low and achieving our mark.
+        Yeah, but it works on my machine...
       </p>
+      <!---->
+      
+      
       <!---->
       <!---->
       
@@ -150,26 +156,6 @@ exports[`button Default <bolt-blockquote> inside a <form> renders 2`] = `
     >
       
                       
-      
-      <div
-        class="c-bolt-blockquote__image"
-        style=""
-      >
-        
-        
-              
-        <img
-          alt="Renaissance Artist"
-          src="/fixtures/500x500.jpg"
-          style=""
-        >
-          
-            
-      
-        </img>
-      </div>
-      
-    
                     
     </div>
     
@@ -189,7 +175,7 @@ exports[`button Default <bolt-blockquote> inside a <form> renders 2`] = `
         style=""
       >
         
-        Michelangelo di Lodovico Buonarroti Simoni
+        Every Developer, Ever.
       
       </cite>
       
@@ -213,7 +199,7 @@ exports[`button Default <bolt-blockquote> inside a <form> renders 2`] = `
         style=""
       >
         
-        Renaissance Artist
+        Web Developer
       
       </cite>
       
@@ -234,6 +220,7 @@ exports[`button Default <bolt-blockquote> inside a <form> renders 2`] = `
 
 exports[`button Default <bolt-blockquote> w/o Shadow DOM renders 2`] = `
 <bolt-blockquote
+  align-items="center"
   author-image="/fixtures/500x500.jpg"
   author-name="Michelangelo di Lodovico Buonarroti Simoni"
   author-title="Renaissance Artist"
@@ -244,7 +231,7 @@ exports[`button Default <bolt-blockquote> w/o Shadow DOM renders 2`] = `
       
       
   <blockquote
-    class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
+    class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-center c-bolt-blockquote--bordered-vertical"
     style=""
   >
     
@@ -261,7 +248,7 @@ exports[`button Default <bolt-blockquote> w/o Shadow DOM renders 2`] = `
       <img
         alt="PayPal Logo"
         slot="logo"
-        src="/fixtures/logo-paypal.svg"
+        src="/fixtures/paypal-logo.svg"
         style=""
       >
         <!---->
@@ -294,7 +281,7 @@ exports[`button Default <bolt-blockquote> w/o Shadow DOM renders 2`] = `
           class="is-first-child"
           style=""
         >
-          The greater danger for most of us lies not in setting our aim too high and falling short...
+          Bolt Blockquote w/ Shadow DOM Manually Disabled
         </p>
         <!---->
         
@@ -304,8 +291,11 @@ exports[`button Default <bolt-blockquote> w/o Shadow DOM renders 2`] = `
           class="is-last-child"
           style=""
         >
-          In fact, the greater danger is setting our aim too low and achieving our mark.
+          Press any key to continue or any other key to quit.
         </p>
+        <!---->
+        
+      
         <!---->
         <!---->
         
@@ -420,33 +410,19 @@ exports[`button Default <bolt-blockquote> w/o Shadow DOM renders 2`] = `
 
 exports[`button Default <bolt-blockquote> with Shadow DOM renders 2`] = `
 <bolt-blockquote
-  author-image="/fixtures/500x500.jpg"
-  author-name="Michelangelo di Lodovico Buonarroti Simoni"
-  author-title="Renaissance Artist"
+  author-name="Chris Heilmann"
+  author-title="Developer Evangelist"
   style=""
 >
-  <img
-    alt="PayPal Logo"
-    slot="logo"
-    src="/fixtures/logo-paypal.svg"
-    style=""
-  >
-    
-        
-  </img>
-  <p
-    class="is-first-child"
-    style=""
-  >
-    The greater danger for most of us lies not in setting our aim too high and falling short...
-  </p>
   
         
   <p
-    class="is-last-child"
+    class="is-first-child is-last-child"
     style=""
   >
-    In fact, the greater danger is setting our aim too low and achieving our mark.
+    Java is to JavaScript what Car is to Carpet.
   </p>
+  
+      
 </bolt-blockquote>
 `;

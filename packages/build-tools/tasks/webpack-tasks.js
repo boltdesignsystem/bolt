@@ -55,10 +55,9 @@ watch.displayName = 'webpack:watch';
 
 async function server(customWebpackConfig) {
   const boltBuildConfig = await getConfig();
-  const useHotMiddleware =
+  const useHotMiddleware = !(
     Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1
-      ? false
-      : true;
+  );
 
   const webpackConfig =
     customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
@@ -68,7 +67,11 @@ async function server(customWebpackConfig) {
     `${boltBuildConfig.wwwDir}/**/*.html`,
   ];
 
-  if (useHotMiddleware === false) {
+  const isUsingInternalServer =
+    typeof boltBuildConfig.proxyHostname === 'undefined' &&
+    typeof boltBuildConfig.proxyPort === 'undefined';
+
+  if (useHotMiddleware === false || isUsingInternalServer) {
     browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
   }
 
@@ -76,7 +79,9 @@ async function server(customWebpackConfig) {
     if (!browserSyncIsRunning) {
       browserSync.init(
         {
-          proxy: 'localhost:' + boltBuildConfig.port,
+          proxy: !isUsingInternalServer
+            ? `${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`
+            : `${boltBuildConfig.hostname}:${boltBuildConfig.port}`,
           logLevel: 'info',
           ui: false,
           notify: false,
@@ -86,10 +91,23 @@ async function server(customWebpackConfig) {
           watchOptions: {
             ignoreInitial: true,
           },
+          port: boltBuildConfig.port,
           files: browserSyncFileToWatch,
         },
         function(err, bs) {
           browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially
+
+          if (!isUsingInternalServer) {
+            console.log(
+              chalk.green(
+                `\nBrowsersync is now proxying ${chalk.underline(
+                  `http://${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`,
+                )}.\nOpen ${chalk.underline(
+                  `http://${boltBuildConfig.hostname}:${boltBuildConfig.port}`,
+                )} to have your locally served pages automatically reload when HTML, CSS, and Javascript files are updated. \n`,
+              ),
+            );
+          }
         },
       );
     }
@@ -103,7 +121,9 @@ async function server(customWebpackConfig) {
     app.use(
       webpackDevServerWaitpage(compiler, {
         proxyHeader: boltBuildConfig.proxyHeader,
-        redirectPath: `http://localhost:${boltBuildConfig.port}/${
+        redirectPath: `${boltBuildConfig.proxyHostname}:${
+          boltBuildConfig.proxyPort
+        }/${
           boltBuildConfig.startPath !== '/' ? boltBuildConfig.startPath : ''
         }`,
       }),
@@ -132,7 +152,9 @@ async function server(customWebpackConfig) {
     app.use(express.static(boltBuildConfig.wwwDir));
     // app.use('/api', handleRequest); // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
 
-    app.listen(boltBuildConfig.port, '0.0.0.0', function onStart(err) {
+    app.listen(boltBuildConfig.port, boltBuildConfig.hostname, function onStart(
+      err,
+    ) {
       if (err) {
         console.log(err);
       }
