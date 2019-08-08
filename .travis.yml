@@ -92,7 +92,6 @@ jobs:
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - echo "The Now URL is $NOW_URL"
-        - time curl -sSf "$NOW_URL" > /dev/null # warming up site
         - yarn run test:e2e:full
         - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_success:
