@@ -1,0 +1,16 @@
+{# Start component specific code #}
+<bolt-text headline>URL</bolt-text>
+<bolt-list display="inline">
+  <bolt-list-item>
+    {% include "@bolt-components-chip/chip.twig" with {
+      text: "Regular chip",
+    } only %}
+  </bolt-list-item>
+  <bolt-list-item>
+    {% include "@bolt-components-chip/chip.twig" with {
+      text: "Linked chip",
+      url: "#!"
+    } only %}
+  </bolt-list-item>
+</bolt-list>
+{# End component specific code #}
