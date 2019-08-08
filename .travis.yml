@@ -31,7 +31,10 @@ jobs:
   include:
     - stage: Pre-Deploy
       name: 'Smoke Tests: Linting'
-      install: yarn install --ignore-scripts --ignore-optional --prod
+      install:
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - yarn install --ignore-scripts --ignore-optional --prod
       before_script: ./scripts/check-run-queue.js 'Lint'
       script: yarn run lint
       after_success: ./scripts/check-run-success.js 'Lint'
@@ -40,6 +43,10 @@ jobs:
     - stage: Pre-Deploy
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - npx json -I -f package.json -e 'this.workspaces.packages =  this.workspaces.packages.filter(pkg => !pkg.includes("docs"))'
+        - yarn install --ignore-scripts --ignore-optional --prod
         - travis_retry yarn run setup:full
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
@@ -78,6 +85,8 @@ jobs:
       script:
         # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
+        - rm -rf packages/testing packages/servers packages/generators
+        - npx json -I -f package.json -e 'delete this.dependencies'
         - yarn run setup
         - yarn run build
         - yarn run deploy
@@ -88,7 +97,11 @@ jobs:
     - stage: Post-Deploy
       name: 'Nightwatch End-to-End'
       if: branch =~ /(feat|fix|bug|fix|hotfix|chore|feature|experimental|test|epic)/
-      install: yarn install --ignore-scripts --ignore-optional --prod
+      install:
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "packages/testing/testing-nightwatch"]'
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - yarn install --ignore-scripts --ignore-optional --prod
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
@@ -103,7 +116,11 @@ jobs:
     - stage: Post-Deploy
       name: 'Nightwatch End-to-End'
       if: tag =~ ^v OR branch =~ /(master|release)/
-      install: yarn install --ignore-scripts --ignore-optional --prod
+      install:
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts", "packages/testing/testing-nightwatch"]'
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - yarn install --ignore-scripts --ignore-optional --prod
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
@@ -119,7 +136,9 @@ jobs:
     - stage: Post-Deploy
       if: branch = master
       name: 'Ensure site is live'
-      install: yarn run setup
+      install:
+        - npx json -I -f package.json -e 'this.workspaces.packages =  ["scripts"]'
+        - yarn install --ignore-scripts --ignore-optional --prod
       before_script: ./scripts/check-run-in-progress.js 'Site is live'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
