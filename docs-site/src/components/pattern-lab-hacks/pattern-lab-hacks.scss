@@ -1,8 +1,11 @@
 @import '@bolt/core';
 
 .pl-c-main {
-  @include bolt-padding-left(small);
-  @include bolt-padding-right(small);
+  @include bolt-padding-left(medium);
+  @include bolt-padding-right(medium);
+  max-width: 1000px; // @todo: get this updated to 1000px once component side-effects are fixed
+  overflow: auto;
+  margin: 0 auto;
 }
 
 .sg-main {
@@ -44,8 +47,8 @@
 }
 
 .pl-c-category,
-.pl-c-category__title, 
-.pl-c-pattern[id*=-docs] > .pl-c-pattern__header, 
+.pl-c-category__title,
+.pl-c-pattern[id*=-docs] > .pl-c-pattern__header,
 .pl-c-pattern[id*=-docs] > .pl-c-pattern__extra {
   display: none;
 }
