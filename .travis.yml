@@ -114,6 +114,7 @@ jobs:
         - ./scripts/check-run-success.js 'Nightwatch'
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
+      after_failure: ./scripts/check-run-failure.js 'Nightwatch'
 
     - stage: Post-Deploy
       if: branch = master
