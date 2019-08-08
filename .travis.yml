@@ -46,9 +46,7 @@ jobs:
         - npx json -I -f package.json -e 'delete this.dependencies'
         - npx json -I -f package.json -e 'delete this.scripts.postinstall'
         - npx json -I -f package.json -e 'this.workspaces.packages =  this.workspaces.packages.filter(pkg => !pkg.includes("docs"))'
-        - yarn install --ignore-scripts --ignore-optional --prod
         - travis_retry yarn run setup:full
-        - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
         - travis_retry yarn test:js --bail --maxWorkers=2
