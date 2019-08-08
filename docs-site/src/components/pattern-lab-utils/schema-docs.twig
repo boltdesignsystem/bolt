@@ -9,14 +9,17 @@
   {%- if description %}{{ description | markdown }}{% endif -%}
 {% endmacro %}
 
+{% macro loopThroughEnums(prop) %}
+  {% for x in prop.enum %}
+    <code>{% if prop.type == "boolean" %}{{ x ? "true" : "false" }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
+    {%- if not loop.last %}{{ prop.enum|length == 2 ? " or" : "," }}{% endif -%}
+  {% endfor %}
+{% endmacro %}
 
 {% macro schemaProps(prop) %}
   {% import _self as macros %}
   {% set enum %}
-    {% for x in prop.enum %}
-      <code>{% if prop.type == "boolean" %}{{ x ? "true" : "false" }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
-      {%- if not loop.last %}{{ prop.enum|length == 2 ? " or" : "," }}{% endif -%}
-    {% endfor %}
+    {{ macros.loopThroughEnums(prop) }}
   {% endset %}
   <ul class="c-bds-docs-list">
     <li>
@@ -45,7 +48,7 @@
                     {% if property.type %}
                       <ul class="c-bds-docs-list__child c-bds-docs-list__child--level-3">
                         <li>
-                          Type: 
+                          Type:
                           {% if property.type is iterable %}
                             {% for type in property.type %}
                               <code>{{ type }}</code> {% if not loop.last %} OR {% endif %}
@@ -53,7 +56,13 @@
                           {% else %}
                             <code>{{ property.type }}</code>
                           {% endif %}
-                          </li>
+                        </li>
+                        {% if property.enum %}
+                        <li>
+                          Enum:
+                          {{ macros.loopThroughEnums(property) }}
+                        </li>
+                        {% endif %}
                         {% if property.type == "object" and property.properties %}
                           <li>Properties:</li>
                           {{ macros.object(property.properties) }}
