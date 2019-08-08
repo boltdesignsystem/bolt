@@ -67,31 +67,6 @@ $bolt-tooltip-transition: $bolt-transition;
     }
   }
 
-  &__step-body {
-    //@todo this is being replaced with the bolt-animation web component
-    //@include bolt-transition--fade-in-slide-up($base: true, $delay: 1.2s);
-    //
-    //.c-bolt-interactive-step--active & {
-    //  @include bolt-transition--fade-in-slide-up($active: true);
-    //}
-  }
-
-  //&__dialogue {
-  //  position: relative;
-  //  z-index: 0;
-  //  width: 100%;
-  //  max-width: 190px;
-  //  height: 75px;
-  //}
-  //
-  //&__step-dialogue {
-  //  @include bolt-transition--fade-in-slide-up($base: true);
-  //
-  //  .c-bolt-interactive-step--active & {
-  //    @include bolt-transition--fade-in-slide-up($base: true);
-  //  }
-  //}
-
   // Generates the active state styling for the nav list
   &--active {
     .c-bolt-interactive-step__dot {
@@ -105,72 +80,3 @@ $bolt-tooltip-transition: $bolt-transition;
     }
   }
 }
-
-//.c-bolt-interactive-step__speech {
-//  display: block;
-//  position: absolute;
-//  bottom: 0;
-//  z-index: bolt-z-index('tooltip');
-//  transition: all $bolt-tooltip-transition;
-//
-//  &--left {
-//    transform: translateX(-50%);
-//  }
-//
-//  &--right {
-//    transform: translateX(50%);
-//  }
-//}
-//
-//.c-bolt-interactive-step__speech-bubble {
-//  @include bolt-padding(xsmall, squished);
-//  @include bolt-shadow('level-20');
-//  @include bolt-transition--fade-in($base: true);
-//
-//  // animation effect on active step
-//  .c-bolt-interactive-step--active & {
-//    @include bolt-transition--fade-in($active: true);
-//  }
-//
-//  display: block;
-//  position: relative;
-//  z-index: 0;
-//  color: bolt-color(black);
-//  border: 1px solid $bolt-tooltip-bubble-border-color;
-//  border-radius: $bolt-border-radius;
-//  background-color: bolt-color(white);
-//
-//  &:after,
-//  &:before {
-//    content: '';
-//    display: block;
-//    position: absolute;
-//    left: 50%;
-//    transform: translate(-50%, 100%);
-//    width: 0;
-//    height: 0;
-//    pointer-events: none;
-//    border-top: $bolt-tooltip-bubble-triangle-width solid;
-//    border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-//    border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-//    border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-//  }
-//
-//  &:before {
-//    top: auto;
-//    bottom: 0;
-//    border-top-color: $bolt-tooltip-bubble-border-color;
-//    border-bottom-color: transparent;
-//  }
-//
-//  &:after {
-//    top: auto;
-//    bottom: 1px;
-//    border-top-color: white;
-//    border-bottom-color: transparent;
-//  }
-//}
-//
-//bolt-text[slot="dialogue"] {
-//  color: black;
-//}
