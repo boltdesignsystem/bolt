@@ -72,7 +72,7 @@ class BoltInteractiveStep extends withLitHtml() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const { disabled, active, step } = this.validateProps(this.props);
     const totalSteps = this.parentElement.getAttribute('total-steps');
-
+    console.log(this.parentElement);
     const classes = cx('c-bolt-interactive-step', {
       [`c-bolt-interactive-step--disabled`]: disabled,
       [`c-bolt-interactive-step--active`]: active,
@@ -94,6 +94,7 @@ class BoltInteractiveStep extends withLitHtml() {
           class="c-bolt-interactive-step__nav-item-wrapper"
           @click=${e => e.target.dispatchEvent(eventChangeActiveStep)}
         >
+          <div class="c-bolt-interactive-step__line"></div>
           <span class="c-bolt-interactive-step__dot">&#9679;</span>
           <span class="c-bolt-interactive-step__title">
             ${this.slot('title')}

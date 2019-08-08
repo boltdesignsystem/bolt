@@ -10,51 +10,26 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 $bolt-tooltip-bubble-border-color: bolt-color(gray, light);
 $bolt-tooltip-transition: $bolt-transition;
 $bolt-interactive-step-left-padding: 42px;
-$bolt-interactive-step-bottom-padding: 1.65rem;
-$bolt-interactive-step-line-left-pos: 6.5px;
+$bolt-interactive-step-bottom-padding: bolt-spacing(small);
+$bolt-interactive-step-line-left-pos: 4.5px;
+$bolt-interactive-step--dot-size: 1.2rem;
 
 bolt-interactive-step {
-  position: relative;
-  padding-bottom: $bolt-interactive-step-bottom-padding;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: $bolt-interactive-step-line-left-pos;
-    z-index: 5;
-    height: 100%;
-    margin-left: 5px;
-    border-left: 2px solid #AAB2F2;
-  }
-
   // Override generic styles from _generic-shared.scss
   &:not(:last-child) {
     margin-bottom: 0;
   }
 
-  &:first-of-type::before {
-    top: 1em;
-    height: calc(100% - 1em);
-  }
-
   &:last-of-type {
-    &::before {
-      height: calc(#{$bolt-interactive-step-bottom-padding} / 2);
-    }
-
     bolt-animation-wrapper {
       position: relative;
       left: -$bolt-interactive-step-left-padding + $bolt-interactive-step-line-left-pos;
-
     }
   }
 }
 
 .c-bolt-interactive-step {
   //Styles go here. /* [1] */
-  position: relative;
-  padding-left: $bolt-interactive-step-left-padding;
   text-align: left;
   cursor: pointer;
   font-weight: bolder;
@@ -67,6 +42,29 @@ bolt-interactive-step {
   &__nav-item-wrapper {
     display: flex;
     align-items: center;
+    position: relative;
+    padding-bottom: $bolt-interactive-step-bottom-padding;
+    top: 0;
+  }
+
+  &__line {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: $bolt-interactive-step-line-left-pos;
+    z-index: 5;
+    height: 100%;
+    margin-left: 5px;
+    border-left: 2px solid #AAB2F2;
+
+    .c-bolt-interactive-step--first & {
+      top: 1em;
+      height: calc(100% - 1em);
+    }
+
+    .c-bolt-interactive-step--last & {
+      height: calc(#{$bolt-interactive-step--dot-size});
+    }
   }
 
   &__dot {
@@ -77,7 +75,7 @@ bolt-interactive-step {
     margin-bottom: 1.65rem;
     color: #AAB2F2;
     cursor: pointer;
-    font-size: 20px;
+    font-size: $bolt-interactive-step--dot-size;
     transition: color 0.5s ease, transform 0.5s ease;
   }
 
@@ -87,6 +85,7 @@ bolt-interactive-step {
     padding-top: .2em;
     cursor: pointer;
     transition: color 0.5s ease, transform 0.5s ease;
+    padding-left: $bolt-interactive-step-left-padding;
   }
 
   &__body {
