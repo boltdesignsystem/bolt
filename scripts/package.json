@@ -5,8 +5,7 @@
   "description": "Deps for CI scripts",
   "main": "deploy.js",
   "scripts": {
-    "deploy": "./deploy.js",
-    "nightwatch": "nightwatch --config ../nightwatch.js --env chrome,ie11"
+    "deploy": "./deploy.js"
   },
   "dependencies": {
     "@zeit/fetch-retry": "^3.0.0",
@@ -16,7 +15,6 @@
     "jsonwebtoken": "^8.4.0",
     "ci-utils": "^0.5.0",
     "git-semver-tags": "^2.0.2",
-    "nightwatch": "0.9.20",
     "node-fetch": "^2.3.0",
     "now": "latest"
   },

@@ -85,6 +85,7 @@ jobs:
         - find . -name '.incache' -exec rm -rf {} +
         - rm -rf packages/testing packages/servers packages/generators
         - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
         - yarn run setup
         - yarn run build
         - yarn run deploy
