@@ -103,7 +103,10 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
 
     expect(prettyCss).toEqual(
       expect.stringContaining(
-        await prettier.format('.u-bolt-margin-bottom{margin-bottom:1.155rem!important}', prettierConfig),
+        await prettier.format(
+          '.u-bolt-margin-bottom{margin-bottom:1.155rem!important}',
+          prettierConfig,
+        ),
       ),
     );
   });
@@ -126,7 +129,12 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
     const prettyCss = await prettier.format(cssFile, prettierConfig);
 
     expect(prettyCss).toEqual(
-      expect.stringContaining(await prettier.format(`.u-bolt-margin-bottom {margin-bottom: 1.65rem !important;}`, prettierConfig)),
+      expect.stringContaining(
+        await prettier.format(
+          `.u-bolt-margin-bottom {margin-bottom: 1.65rem !important;}`,
+          prettierConfig,
+        ),
+      ),
     );
 
     expect(prettyCss).toMatchSnapshot();
