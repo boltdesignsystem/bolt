@@ -33,6 +33,7 @@ program
     '-D, --description [description]',
     'The button component -- part of the Bolt Design System.',
   )
+  // .option('-A, --accept', 'Accept all defaults')
   .parse(process.argv);
 
 module.exports = class extends Generator {
