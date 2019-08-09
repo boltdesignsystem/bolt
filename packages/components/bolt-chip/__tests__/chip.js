@@ -17,7 +17,7 @@ describe('chip', () => {
     const results = await render('@bolt-components-chip/chip.twig', {
       text: 'Has URL',
       url: 'https://pega.com',
-      target: '_blank'
+      target: '_blank',
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -28,8 +28,8 @@ describe('chip', () => {
       text: 'Icon before',
       icon: {
         name: 'check',
-        position: 'before'
-      }
+        position: 'before',
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
