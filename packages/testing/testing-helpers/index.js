@@ -6,6 +6,8 @@ import {
 } from '@bolt/twig-renderer';
 export { fixture as html } from '@open-wc/testing-helpers';
 
+export $RefParser from "json-schema-ref-parser";
+
 export async function render(template, data) {
   return await renderServer(template, data, true);
 }
