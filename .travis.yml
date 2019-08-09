@@ -38,14 +38,30 @@ jobs:
       after_failure: ./scripts/check-run-failure.js 'Lint'
 
     - stage: Prep
-      name: 'Smoke Tests: Unit Tests (Jest)'
+      name: 'Smoke Tests: Some Unit Tests (Jest)'
+      if: branch != master
+      install:
+        - travis_retry yarn run setup:full
+        - yarn workspace @bolt/website prep # creates data and manifest files
+      before_script: ./scripts/check-run-queue.js 'Unit'
+      script:
+#        - travis_retry yarn test:js --bail --maxWorkers=1
+        - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
+        - yarn test:php
+        - yarn test:monorepo --maxWorkers=1
+        - yarn test:pkgs --ignore=@bolt/uikit-workshop --ignore=@bolt/build-tools --ignore=@bolt/build-tools--test-multi-lang
+      after_success: ./scripts/check-run-success.js 'Unit'
+      after_failure: ./scripts/check-run-failure.js 'Unit'
+
+    - stage: Prep
+      name: 'Smoke Tests: All Unit Tests (Jest)'
+      if: branch = master
       install:
         - travis_retry yarn run setup:full
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Unit'
       script:
         - travis_retry yarn test:js --bail --maxWorkers=1
-        # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
         - yarn test:php
         - yarn test:monorepo --maxWorkers=1
         - yarn test:pkgs --ignore=@bolt/uikit-workshop --ignore=@bolt/build-tools --ignore=@bolt/build-tools--test-multi-lang
