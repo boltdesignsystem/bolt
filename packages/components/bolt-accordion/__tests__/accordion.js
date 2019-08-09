@@ -1,26 +1,18 @@
 import {
   render,
   renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
-const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
+  stopServer,
+  html,
+  vrtDefaultConfig as vrtConfig,
+  $RefParser,
+} from '../../../testing/testing-helpers';
 const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../accordion.schema.yml'));
-const { single, spacing } = schema.properties;
-
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
-
-async function renderTwigString(template, data) {
-  return await renderString(template, data, true);
-}
+const schemaFilePath = join(__dirname, '../accordion.schema.yml');
 
 const timeout = 120000;
 
 describe('<bolt-accordion> Component', () => {
-  let page;
+  let page, schema, props;
 
   beforeEach(async () => {
     await page.evaluate(() => {
@@ -29,6 +21,8 @@ describe('<bolt-accordion> Component', () => {
   }, timeout);
 
   beforeAll(async () => {
+    schema = await $RefParser.dereference(schemaFilePath);
+    props = schema.properties;
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
@@ -36,37 +30,34 @@ describe('<bolt-accordion> Component', () => {
   }, timeout);
 
   afterAll(async () => {
-    await stopTwigRenderer();
+    await stopServer();
     await page.close();
   }, timeout);
 
   test('basic usage', async () => {
-    const results = await renderTwig(
-      '@bolt-components-accordion/accordion.twig',
-      {
-        items: [
-          {
-            trigger: 'Accordion item 1',
-            content: 'This is the accordion content.',
-          },
-          {
-            trigger: 'Accordion item 2',
-            content: 'This is the accordion content.',
-          },
-          {
-            trigger: 'Accordion item 3',
-            content: 'This is the accordion content.',
-          },
-        ],
-      },
-    );
+    const results = await render('@bolt-components-accordion/accordion.twig', {
+      items: [
+        {
+          trigger: 'Accordion item 1',
+          content: 'This is the accordion content.',
+        },
+        {
+          trigger: 'Accordion item 2',
+          content: 'This is the accordion content.',
+        },
+        {
+          trigger: 'Accordion item 3',
+          content: 'This is the accordion content.',
+        },
+      ],
+    });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
-  single.enum.forEach(async singleChoice => {
+  props.single.enum.forEach(async singleChoice => {
     test(`expand single items: ${singleChoice}`, async () => {
-      const results = await renderTwig(
+      const results = await render(
         '@bolt-components-accordion/accordion.twig',
         {
           single: singleChoice,
@@ -91,9 +82,9 @@ describe('<bolt-accordion> Component', () => {
     });
   });
 
-  spacing.enum.forEach(async spacingChoice => {
+  props.spacing.enum.forEach(async spacingChoice => {
     test(`spacing: ${spacingChoice}`, async () => {
-      const results = await renderTwig(
+      const results = await render(
         '@bolt-components-accordion/accordion.twig',
         {
           spacing: spacingChoice,
