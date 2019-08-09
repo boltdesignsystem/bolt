@@ -1,28 +1,93 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<bolt-chip> Component basic usage with attributes 1`] = `
-<bolt-chip data-attr="some attribute">
+exports[`chip basic usage 1`] = `
+<bolt-chip>
   <replace-with-grandchildren>
     <span class="c-bolt-chip c-bolt-chip--spacing-xsmall"
           is="shadow-root"
     >
       <replace-with-children class="c-bolt-chip__text">
-        This is a chip
+        Hello World
       </replace-with-children>
     </span>
   </replace-with-grandchildren>
 </bolt-chip>
 `;
 
-exports[`<bolt-chip> Component with link 1`] = `
-<bolt-chip url="!#">
+exports[`chip chip spacing: medium 1`] = `
+<bolt-chip spacing="medium">
   <replace-with-grandchildren>
-    <a href="!#"
+    <span class="c-bolt-chip c-bolt-chip--spacing-medium"
+          is="shadow-root"
+    >
+      <replace-with-children class="c-bolt-chip__text">
+        Chip spacing
+      </replace-with-children>
+    </span>
+  </replace-with-grandchildren>
+</bolt-chip>
+`;
+
+exports[`chip chip spacing: small 1`] = `
+<bolt-chip spacing="small">
+  <replace-with-grandchildren>
+    <span class="c-bolt-chip c-bolt-chip--spacing-small"
+          is="shadow-root"
+    >
+      <replace-with-children class="c-bolt-chip__text">
+        Chip spacing
+      </replace-with-children>
+    </span>
+  </replace-with-grandchildren>
+</bolt-chip>
+`;
+
+exports[`chip chip spacing: xsmall 1`] = `
+<bolt-chip spacing="xsmall">
+  <replace-with-grandchildren>
+    <span class="c-bolt-chip c-bolt-chip--spacing-xsmall"
+          is="shadow-root"
+    >
+      <replace-with-children class="c-bolt-chip__text">
+        Chip spacing
+      </replace-with-children>
+    </span>
+  </replace-with-grandchildren>
+</bolt-chip>
+`;
+
+exports[`chip icon usage 1`] = `
+<bolt-chip>
+  <replace-with-grandchildren>
+    <span class="c-bolt-chip c-bolt-chip--spacing-xsmall"
+          is="shadow-root"
+    >
+      <replace-with-children class="c-bolt-chip__icon">
+        <bolt-icon slot="before"
+                   name="check"
+        >
+        </bolt-icon>
+      </replace-with-children>
+      <replace-with-children class="c-bolt-chip__text">
+        Icon before
+      </replace-with-children>
+    </span>
+  </replace-with-grandchildren>
+</bolt-chip>
+`;
+
+exports[`chip url usage 1`] = `
+<bolt-chip url="https://pega.com"
+           target="_blank"
+>
+  <replace-with-grandchildren>
+    <a href="https://pega.com"
+       target="_blank"
        class="c-bolt-chip c-bolt-chip--link c-bolt-chip--spacing-xsmall"
        is="shadow-root"
     >
       <replace-with-children class="c-bolt-chip__text">
-        This is a chip with link
+        Has URL
       </replace-with-children>
     </a>
   </replace-with-grandchildren>
