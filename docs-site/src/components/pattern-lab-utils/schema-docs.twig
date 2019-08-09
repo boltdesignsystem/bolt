@@ -15,7 +15,7 @@
   {% set enum %}
     {% for x in prop.enum %}
       <code>{% if prop.type == "boolean" %}{{ x ? "true" : "false" }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
-      {%- if not loop.last %}{{ prop.enum|length == 2 ? " or" : "," }}{% endif -%}
+      {%- if not loop.last %}, {% endif -%}
     {% endfor %}
   {% endset %}
   <ul class="c-bds-docs-list">
@@ -48,7 +48,7 @@
                           Type:
                           {% if property.type is iterable %}
                             {% for type in property.type %}
-                              <code>{{ type }}</code> {% if not loop.last %} OR {% endif %}
+                              <code>{{ type }}</code> {% if not loop.last %}, {% endif %}
                             {% endfor %}
                           {% else %}
                             <code>{{ property.type }}</code>
@@ -103,7 +103,7 @@
     <td class="c-bds-docs-table__col">
       {% for multiple in multiples %}
         {% set type = multiple is iterable ? multiple.type : multiple %}
-        <code>{{ type }}</code> {% if not loop.last %} or {% endif %}
+        <code>{{ type }}</code> {% if not loop.last %}, {% endif %}
       {% endfor %}
     </td>
     {% else %}
@@ -138,7 +138,7 @@
       <li>
         <code>{{ key }}</code>
         {{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}
-        {% if isRef %}<br />Type: {{ prop.type is iterable ? prop.type|join(" OR ") : prop.type }} {% endif %}
+        {% if isRef %}<br />Type: {{ prop.type is iterable ? prop.type|join(", ") : prop.type }} {% endif %}
         {{ macros.schemaProps(prop) }}
       </li>
     {% endfor %}
@@ -206,7 +206,7 @@
                     <td class="c-bds-docs-table__col">
                       {% for multiple in multiples %}
                         {% set type = multiple is iterable ? multiple.type : multiple %}
-                        <code>{{ type }}</code> {% if not loop.last %} or {% endif %}
+                        <code>{{ type }}</code> {% if not loop.last %}, {% endif %}
                       {% endfor %}
                     </td>
                   {% else %}
@@ -262,7 +262,7 @@
                       <td class="c-bds-docs-table__col">
                         {% for multiple in multiples %}
                           {% set type = multiple is iterable ? multiple.type : multiple %}
-                          <code>{{ type }}</code> {% if not loop.last %} or {% endif %}
+                          <code>{{ type }}</code> {% if not loop.last %}, {% endif %}
                         {% endfor %}
                       </td>
                     {% else %}
