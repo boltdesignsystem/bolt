@@ -19,7 +19,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
+  "devDependencies": {
     "rollup": "^1.19.4",
     "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-terser": "^5.1.1"
@@ -29,7 +29,7 @@
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "prepublish": "npm run build",
-    "postinstall": "npm run build" 
+    "postbootstrap": "npm run build"
   },
   "files": [
     "dist"
