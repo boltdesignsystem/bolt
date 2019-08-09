@@ -78,7 +78,7 @@ module.exports = class extends Generator {
         message:
           'What is the name of your Bolt component? (for example: `button`, `card`, carousel`, etc)',
         required: true,
-        default: typeof program.name === 'string' ? program.name : ``,
+        default: typeof program.name === 'string' ? program.name : '',
         validate: function(input) {
           if (typeof input !== 'string') {
             this.log(chalk.red('You must pass a valid component name!'));
@@ -130,9 +130,12 @@ module.exports = class extends Generator {
         message:
           'Could you write a sentence or two that describes your new Bolt component?',
         required: false,
-        default: function(answers) {
-          return `The ${this.name.noCase} component - part of the Bolt Design System.`;
-        }.bind(this),
+        default:
+          typeof program.description === 'string'
+            ? program.description
+            : function(answers) {
+                return `The ${this.name.noCase} component - part of the Bolt Design System.`;
+              }.bind(this),
         validate: function(input) {
           if (typeof input !== 'string') {
             this.log(chalk.red('You must pass a valid string !'));
