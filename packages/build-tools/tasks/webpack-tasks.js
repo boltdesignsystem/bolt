@@ -100,7 +100,7 @@ async function server(customWebpackConfig) {
         function(err, bs) {
           browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially
 
-          if (boltBuildConfig.openServerAtStart){
+          if (boltBuildConfig.openServerAtStart) {
             opn(`http://${boltBuildConfig.hostname}:${boltBuildConfig.port}`);
           }
 
