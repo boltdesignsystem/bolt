@@ -265,11 +265,6 @@
                   </tr>
                 {% endfor %}
               {% endfor %}
-
-              {% set show_advanced = false %}
-              {% for key, prop in schema.properties if schema.properties[key].hidden %}
-                {% set show_advanced = true %}
-              {% endfor %}
             </tbody>
           </table>
         </bolt-table>
@@ -323,7 +318,7 @@
           {% endfor %}
         {% endset %}
 
-        {% if advanced_table %}
+        {% if advanced_table|trim %}
           {% include "@bolt-components-accordion/accordion.twig" with {
             no_separator: true,
             spacing: "small",
