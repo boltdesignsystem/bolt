@@ -40,6 +40,7 @@ class BoltButton extends BoltAction {
     self = super(self);
     self.schema = schema;
     self.delegateFocus = true;
+    console.log('this is a simple change that should be deleted later');
     return self;
   }
 
