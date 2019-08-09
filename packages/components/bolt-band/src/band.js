@@ -19,6 +19,7 @@ class BoltBand extends withLitHtml() {
   constructor(self) {
     self = super(self);
     this.useShadow = hasNativeShadowDomSupport;
+    console.log('simple band change that should not be commited to master');
     return self;
   }
 
