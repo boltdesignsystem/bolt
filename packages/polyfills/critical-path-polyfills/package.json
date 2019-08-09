@@ -26,9 +26,8 @@
   },
   "homepage": "https://boltdesignsystem.com",
   "scripts": {
-    "postinstall": "npm run build",
     "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "watch": "rollup -c -w",
     "prepublish": "npm run build"
   },
   "files": [
