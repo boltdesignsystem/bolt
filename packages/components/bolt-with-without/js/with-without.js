@@ -22,6 +22,15 @@ const setFullHeightEls = mainWrapper => {
       shadowChild.style.height = 'inherit';
     });
 
+    mainWrapper
+      .querySelectorAll('.c-pega-wwo__shadow-height-full')
+      .forEach(el => {
+        const shadowChild = Array.from(el.shadowRoot.children).find(el =>
+          el.classList.contains('c-bolt-animate'),
+        );
+        shadowChild.style.height = '100%';
+      });
+
     // @TODO fix this. Demo coming. Serious hack.
     mainWrapper
       .querySelectorAll('.c-pega-wwo__title bolt-animate')
@@ -75,7 +84,7 @@ const handleBlockTitleMobileAccordionClick = e => {
   triggerAnims({ animEls, stage: isExpanded ? 'OUT' : 'IN' });
 };
 
-const getCurriedInitialAnimation = (withIsBecomingActive, mainWrapper) => {
+const getCurriedPageLoadAnimation = (withIsBecomingActive, mainWrapper) => {
   return () => {
     console.debug('triggered:InitialAnimation');
     const animInitOutEls = Array.from(
@@ -110,6 +119,20 @@ const getCurriedBeforeSlideAnimation = (
   };
 };
 
+const restorePrevSlideInactiveContentAfterSlideAnimation = async (
+  outGroupAttrVal,
+  inGroupAttrVal,
+  mainWrapper,
+) => {
+  console.debug('triggered:RestoreInactiveContentAfterSlideAnimation');
+  const animOutEls = Array.from(
+    mainWrapper.querySelectorAll(
+      `bolt-animate[group="${outGroupAttrVal}"][type="out-effect-only"]`,
+    ),
+  );
+  await triggerAnims({ animEls: filterInvisibles(animOutEls), stage: 'OUT' });
+};
+
 const getCurriedAfterSlideAnimation = (
   outGroupAttrVal,
   inGroupAttrVal,
@@ -122,7 +145,14 @@ const getCurriedAfterSlideAnimation = (
         `bolt-animate[group="${inGroupAttrVal}"][in]`,
       ),
     );
-    setActiveRegionClass(outGroupAttrVal, inGroupAttrVal);
+    console.log('animInEls', animInEls);
+    console.log('WATCHNOW');
+
+    restorePrevSlideInactiveContentAfterSlideAnimation(
+      outGroupAttrVal,
+      inGroupAttrVal,
+      mainWrapper,
+    );
     await triggerAnims({ animEls: filterInvisibles(animInEls), stage: 'IN' });
   };
 };
@@ -147,15 +177,17 @@ const handleActiveRegionChange = async (checked, init = false) => {
   if (init) {
     setFullHeightEls(mainWrapper);
     if (withIsBecomingActive) {
-      // In this case the checked button is with pega, so transition to that slide first.
+      // In this case the checked button is With Pega, so transition to that slide first.
       wwoSwiper.on(
         'slideChangeEnd',
-        getCurriedInitialAnimation(withIsBecomingActive, mainWrapper),
+        getCurriedPageLoadAnimation(withIsBecomingActive, mainWrapper),
       );
       wwoSwiper.slideNext();
     } else {
+      // Uncomment for debugging, to display all animations.
+      // Array.from(document.querySelectorAll('bolt-animate[in]')).forEach((el) => {el.triggerAnimIn()});
       // Otherwise just fire the initial animation.
-      getCurriedInitialAnimation(withIsBecomingActive, mainWrapper)();
+      getCurriedPageLoadAnimation(withIsBecomingActive, mainWrapper)();
     }
     // Fire the content initialization animations.
     getCurriedAfterSlideAnimation(
@@ -164,10 +196,6 @@ const handleActiveRegionChange = async (checked, init = false) => {
       mainWrapper,
     )();
   } else {
-    // wwoSwiper.on(
-    //   'slideChange',
-    //
-    // );
     wwoSwiper.on(
       'slideChangeTransitionEnd',
       getCurriedAfterSlideAnimation(
@@ -194,7 +222,7 @@ const toggleInputClass = '#c-pega-wwo__toggle-input';
 SimpleSwitch.init();
 
 const wwoSwiper = new Swiper('.c-pega-wwo__swiper-container', {
-  speed: 400,
+  speed: 500,
   spaceBetween: 0,
 });
 

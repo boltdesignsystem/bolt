@@ -1,16 +1,20 @@
 @import '@bolt/core';
 @import '@bolt/animations';
-@import "./SimpleSwitch.scss";
+@import './SimpleSwitch';
+@import './swiper';
 
 $simple-switch_height: 40px;
 $simple-switch_size_mobile: 130px;
 $pega-wwo--block-width-basis: 6%; // ~100px at full site width.
+$pega-wwo--block-bottom-margin: 2rem;
 $pega-wwo--max-width: 100%;
 $pega-wwo--desktop-ratio: 59.222%;
 $pega-wwo--desktop-ratio-decimal: .59222;
 $pega-wwo--sm-circle-size: 10px;
 $pega-wwo--dashed-circle-height: 48.05%;
 $pega-wwo--content-max-mobile-width: 550px;
+$bolt-medium-icon-half-size: 12px;
+$pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-wwo--sm-circle-size / 2);
 
 .c-pega-wwo {
   height: 100%;
@@ -42,9 +46,7 @@ $pega-wwo--content-max-mobile-width: 550px;
     background-color: bolt-color(black);
   }
 
-  &__swiper-container {
-    width: 100vw;
-    overflow: hidden;
+  &__swiper-container-wrapper {
     @include bolt-mq(xlarge) {
       position: absolute;
       top: 0;
@@ -52,58 +54,76 @@ $pega-wwo--content-max-mobile-width: 550px;
     }
   }
 
-  //&__active-wo {
-  //  display: block;
-  //  background-image: url("./img/BG_withoutPega_mobile.jpg");
-  //
-  //  @include bolt-mq($from: xlarge) {
-  //    background-image: url("./img/BG_without_desktop.jpg");
-  //  }
-  //
-  //}
+  &__swiper-container {
+    width: 100vw;
+  }
 
-  &__content-wrapper {
-    width: 200vw;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: hidden;
+  &__swiper-wrapper {
+    width: 100%;
+    height: 100%;
   }
 
   &__swiper-slide {
-
+    flex: 0 0 auto;
   }
 
   &__content {
-    position: relative;
-    flex: 1 0 100vw;
-    width: 100vw;
-    overflow: visible;
-    margin: 0 auto;
-    background-repeat: no-repeat;
-    background-size: $pega-wwo--max-width auto;
+    width: 100%;
 
     @include bolt-mq($from: xlarge) {
+      position: relative;
       height: 0;
       // Scale bg image by width Padding is relative to width. So this is an aspect ratio hack.
       padding-bottom: $pega-wwo--desktop-ratio;
     }
-
-
   }
 
-  &__content-w {
-    background-image: url("./img/BG_withPega_mobile.jpg");
+  &__content--inner {
+    display: flex;
+    // Scale bg image by width Padding is relative to width. So this is an aspect ratio hack.
+    position: relative;
+    z-index: 1;
+    max-width: $pega-wwo--content-max-mobile-width;
+    margin: 0 auto;
 
-    @include bolt-mq($from: xlarge) {
-      background-image: url("./img/BG_withPega_desktop.jpg");
+    @include bolt-mq(xlarge) {
+      max-width: unset;
     }
   }
 
-  &__content-wo {
-    background-image: url("./img/BG_withoutPega_mobile.jpg");
+  &__content-w {
 
-    @include bolt-mq($from: xlarge) {
-      background-image: url("./img/BG_without_desktop.jpg");
+  }
+
+  &__content-wo {
+
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: $pega-wwo--max-width auto;
+
+    &-wo {
+      background-image: url("./img/BG_withoutPega_mobile.jpg");
+
+      @include bolt-mq($from: xlarge) {
+        background-image: url("./img/BG_without_desktop.jpg");
+      }
+    }
+
+    &-w {
+      background-image: url("./img/BG_withPega_mobile.jpg");
+
+      @include bolt-mq($from: xlarge) {
+        background-image: url("./img/BG_withPega_desktop.jpg");
+      }
     }
   }
 
@@ -124,8 +144,8 @@ $pega-wwo--content-max-mobile-width: 550px;
 
   &__title {
     span {
-      z-index: 12;
       display: block;
+      z-index: 12;
     }
     z-index: 12;
     padding-top: bolt-spacing(large);
@@ -192,10 +212,6 @@ $pega-wwo--content-max-mobile-width: 550px;
   }
 
   &__sm-circle {
-    //display: none;
-    &:hover {
-
-    }
     @include bolt-transition--fade-in($base: true, $delay: 1s);
 
     .c-pega-wwo__active-w .c-pega-wwo__content-w & {
@@ -235,23 +251,32 @@ $pega-wwo--content-max-mobile-width: 550px;
       }
     }
 
+    &-mobile--wrapper {
+      flex: 0 0 15px;
+      margin-right: 1rem;
+    }
+
     &-mobile {
       display: block;
+      position: relative;
+      top: $pega-wwo--sm-circle-top-margin--mobile;
+      left: (-$pega-wwo--sm-circle-size / 2) + 1.5px;
       width: $pega-wwo--sm-circle-size;
       height: $pega-wwo--sm-circle-size;
+      margin-right: 2px;
       border-radius: 50%;
       background-color: bolt-color(white);
       transition: background-color 1000ms linear;
 
       &.c-pega-wwo__sm-circle-outlined {
-        position: relative;
-        right: -1px;
+        left: (-$pega-wwo--sm-circle-size / 2) - .5px;
       }
 
       .c-pega-wwo__block-expanded & {
         right: 0;
         width: $pega-wwo--sm-circle-size + 1px;
         height: $pega-wwo--sm-circle-size + 1px;
+        margin-right: 0;
         border: 1px bolt-color(white) solid;
         background-color: bolt-color(yellow, light);
 
@@ -277,6 +302,7 @@ $pega-wwo--content-max-mobile-width: 550px;
     &-outlined {
       width: 15px;
       height: 15px;
+      margin-right: 0;
       border: 3px solid bolt-color(white);
       background-color: bolt-color(black);
     }
@@ -411,28 +437,14 @@ $pega-wwo--content-max-mobile-width: 550px;
     &-label {
       flex: 1 0 50%;
       width: 50%;
-
-      &-w {
-        //margin-left: 50px;
-      }
-      //
-      //&-wo {
-      //  flex: 0 0 50%;
-      //}
     }
   }
 
   &__content-wrapper {
-    max-width: $pega-wwo--content-max-mobile-width;
-    margin: 0 auto;
-
-    @include bolt-mq($from: xlarge) {
-      max-width: none;
-    }
   }
 
   &__block {
-    margin-bottom: 2rem;
+    margin-bottom: $pega-wwo--block-bottom-margin;
 
     @include bolt-mq($from: xlarge) {
       width: calc(#{$pega-wwo--block-width-basis} + 100px);
@@ -639,6 +651,15 @@ $pega-wwo--content-max-mobile-width: 550px;
         padding: 0;
       }
 
+      .c-pega-wwo__block {
+        display: flex;
+        flex-wrap: nowrap;
+
+        @include bolt-mq($from: xlarge) {
+          display: block;
+        }
+      }
+
       .c-pega-wwo__block-title {
         display: inline-block;
 
@@ -650,25 +671,34 @@ $pega-wwo--content-max-mobile-width: 550px;
       .c-pega-wwo__icon {
         display: inline-block;
         margin-right: bolt-spacing(xsmall);
+        //margin-left: bolt-spacing(medium);
 
         @include bolt-mq($from: xlarge) {
           display: block;
+          //margin-left: 0;
         }
       }
 
-      &:before {
-        content: '';
-        display: block;
+      &-line-wrapper {
+        display: flex;
+        align-items: flex-start;
         position: absolute;
-        top: 1.5rem;
+        top: $pega-wwo--sm-circle-top-margin--mobile;
         left: 0;
-        height: calc(100% - 6rem);
+        width: 2px;
+        height: calc(calc(calc(100% + #{$pega-wwo--block-bottom-margin}) - #{$pega-wwo--sm-circle-top-margin--mobile}) + #{$pega-wwo--sm-circle-size / 2});
+        --bolt-animate--slide-up-max-height: 80px;
+      }
+
+      &-line {
+        height: 100%;
         border-left: 2px dashed bolt-color(white);
 
         @include bolt-mq($from: xlarge) {
           display: none;
         }
       }
+
       .c-pega-wwo__block {
         position: relative;
 
@@ -700,24 +730,6 @@ $pega-wwo--content-max-mobile-width: 550px;
         }
 
         &.c-pega-wwo__block-expanded .c-pega-wwo__block-contents {
-          //@include bolt-animation--slide-down($active: true);
-          //border: 1px solid red;
-          //
-          //@include bolt-mq($from: xlarge) {
-          //  max-height: unset;
-          //}
-        }
-
-        bolt-animate[type="circles"] {
-          position: absolute;
-          // .5 height of h2 + icon height
-          top: .55rem;
-          left: -1.95rem;
-          transform: translate(-50%, 0);
-
-          @include bolt-mq($from: xlarge) {
-            display: none;
-          }
         }
       }
     }

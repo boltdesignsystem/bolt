@@ -160,27 +160,28 @@ $bolt-animate-slide-amount: 20px;
 
 @keyframes slide-down {
   from {
-    opacity: 0;
     max-height: 0;
     overflow: hidden;
   }
 
-  100% {
-    opacity: 1;
-    max-height: var(--bolt-animate--slide-down-max-height, 500px);
-    overflow: hidden;
-  }
-}
-
-@keyframes slide-up {
-  from {
-    opacity: 1;
+  99% {
     max-height: var(--bolt-animate--slide-up-max-height, 500px);
     overflow: hidden;
   }
 
   100% {
-    opacity: 0;
+    max-height: unset;
+    overflow: visible;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    max-height: var(--bolt-animate--slide-up-max-height, 500px);
+    overflow: hidden;
+  }
+
+  100% {
     max-height: 0;
     overflow: hidden;
   }

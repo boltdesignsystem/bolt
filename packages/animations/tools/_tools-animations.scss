@@ -232,9 +232,10 @@
     animation-delay: $delay;
     animation-duration: $duration;
     animation-iteration-count: 1;
-    animation-name: bolt-animation--slide-down;
+    animation-name: slide-down;
     animation-play-state: paused;
     animation-timing-function: $timing-function;
+    transition-property: all;
   }
   @if $active {
     animation-play-state: running;
@@ -252,9 +253,10 @@
     animation-delay: $delay;
     animation-duration: $duration;
     animation-iteration-count: 1;
-    animation-name: bolt-animation--slide-up;
+    animation-name: slide-up;
     animation-play-state: paused;
     animation-timing-function: $timing-function;
+    transition-property: all;
   }
   @if $active {
     animation-play-state: running;
