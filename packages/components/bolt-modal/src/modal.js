@@ -205,6 +205,20 @@ class BoltModal extends withLitHtml() {
   }
 
   /**
+   * Toggle the dialog element. If dialog is open, close it. If closed, open it.
+   *
+   * @param {Event} event
+   * @return {this}
+   */
+  toggle() {
+    if (this.open) {
+      this.hide();
+    } else {
+      this.show();
+    }
+  }
+
+  /**
    * Private event handler used when listening to some specific key presses
    * (namely ESCAPE and TAB)
    *
