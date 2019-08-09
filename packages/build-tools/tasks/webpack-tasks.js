@@ -65,6 +65,8 @@ async function server(customWebpackConfig) {
   const browserSyncFileToWatch = [
     `${boltBuildConfig.wwwDir}/**/*.css`,
     `${boltBuildConfig.wwwDir}/**/*.html`,
+    `!**/node_modules/**/*`,
+    `!**/vendor/**/*`,
   ];
 
   const isUsingInternalServer =
