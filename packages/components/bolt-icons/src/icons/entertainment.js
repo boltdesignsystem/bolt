@@ -6,13 +6,13 @@ export const Entertainment = ({ bgColor, fgColor, size, ...otherProps }) => {
       <path
         fill={bgColor}
         fill-rule="evenodd"
-        d="M24.5 24h-17a1 1 0 0 0 0 2h17a1 1 0 0 0 0-2"
+        d="M24.5 24h-17a1 1 0 000 2h17a1 1 0 000-2"
         data-name="Fill-4"
       />
       <path
         fill={bgColor}
         fill-rule="evenodd"
-        d="M2 3a.94.94 0 0 1 1-1h26a.94.94 0 0 1 1 1v17H2zm28-3H2a2 2 0 0 0-2 2v19a2 2 0 0 0 2 2h28a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
+        d="M2 3a.94.94 0 011-1h26a.94.94 0 011 1v17H2zm28-3H2a2 2 0 00-2 2v19a2 2 0 002 2h28a2 2 0 002-2V2a2 2 0 00-2-2z"
         data-name="Fill-1"
       />
     </svg>
