@@ -81,7 +81,7 @@
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
     "test:types": "tsc",
-    "postinstall": "patch-package && npx lerna bootstrap"
+    "postinstall": "patch-package && npx lerna run postbootstrap"
   },
   "husky": {
     "hooks": {
