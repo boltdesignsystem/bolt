@@ -32,8 +32,9 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
   }
 
   &__inner {
-
+    position: relative;
   }
+
 
   &__modal-bg {
     position: absolute;
@@ -46,12 +47,113 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     background-color: bolt-color(black);
   }
 
-  &__swiper-container-wrapper {
-    @include bolt-mq(xlarge) {
-      position: absolute;
-      top: 0;
-      left: 0;
+  &__title-and-toggle--wrapper {
+    padding-bottom: bolt-spacing(large);
+  }
+
+  &__toggle {
+    position: relative;
+    z-index: 12;
+
+    width: $simple-switch-size_mobile * 2;
+    height: $simple-switch_height;
+    margin: bolt-spacing(medium) auto 0 auto;
+    text-align: center;
+
+    @include bolt-mq($from: xsmall) {
+      width: $simple-switch_size * 2;
     }
+
+    &-input {
+      opacity: 0;
+      position: absolute;
+    }
+
+    ._simple-switch-track {
+      display: inline;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: $simple-switch-size_mobile * 2;
+      height: $simple-switch_height;
+      padding: 0 calc((#{$simple-switch-size_mobile} * 2) - 8px) 0 0;
+      cursor: pointer;
+      background-color: bolt-color(white);
+
+
+      @include bolt-mq($from: xsmall) {
+        padding: 0 calc((#{$simple-switch-size} * 2) - 8px) 0 0;
+      }
+
+      &.on .handle{
+        transform: translateX(calc((#{$simple-switch-size_mobile}) - 8px));
+      }
+
+      @include bolt-mq($from: xsmall) {
+        &.on .handle {
+          transform: translateX(calc((#{$simple-switch-size}) - 8px));
+        }
+      }
+
+      .handle {
+        width: $simple-switch-size_mobile;
+        height: $simple-switch_height - ($simple-switch_outline-size * 2);
+        // @TODO replace with animation design token. Also in simple switch.
+        transition: background-color 20ms linear;
+
+        @include bolt-mq($from: xsmall) {
+          width: $simple-switch-size;
+        }
+      }
+
+      &.on .handle {
+        background-color: bolt-color(yellow);
+      }
+    }
+
+    &-labels {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9;
+      width: 100%;
+      margin-right: -50%;
+      padding-bottom: 7px;
+      padding-left: 3px;
+      color: bolt-color('black');
+      line-height: 1;
+      text-decoration: none;
+      pointer-events: none;
+
+      &-animation {
+        width: inherit;
+      }
+
+      &-inner {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        width: inherit;
+      }
+    }
+
+    &-label {
+      flex: 1 0 50%;
+      width: 50%;
+    }
+  }
+
+
+  &__swiper-container-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
   }
 
   &__swiper-container {
@@ -63,9 +165,9 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     height: 100%;
   }
 
-  &__swiper-slide {
-    flex: 0 0 auto;
-  }
+  //&__swiper-slide {
+  //  flex: 0 0 auto;
+  //}
 
   &__content {
     width: 100%;
@@ -87,7 +189,12 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     margin: 0 auto;
 
     @include bolt-mq(xlarge) {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
       max-width: unset;
+      height: 100%;
     }
   }
 
@@ -340,103 +447,6 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     &-w-4 {
       top: 95%;
       left: 68%;
-    }
-  }
-
-  &__toggle {
-    position: relative;
-    z-index: 12;
-
-    width: $simple-switch-size_mobile * 2;
-    height: $simple-switch_height;
-    margin: bolt-spacing(medium) auto bolt-spacing(large) auto;
-    text-align: center;
-
-    @include bolt-mq($from: xsmall) {
-      width: $simple-switch_size * 2;
-    }
-
-    &-input {
-      opacity: 0;
-      position: absolute;
-    }
-
-    ._simple-switch-track {
-      display: inline;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: $simple-switch-size_mobile * 2;
-      height: $simple-switch_height;
-      padding: 0 calc((#{$simple-switch-size_mobile} * 2) - 8px) 0 0;
-      cursor: pointer;
-      background-color: bolt-color(white);
-
-
-      @include bolt-mq($from: xsmall) {
-        padding: 0 calc((#{$simple-switch-size} * 2) - 8px) 0 0;
-      }
-
-      &.on .handle{
-        transform: translateX(calc((#{$simple-switch-size_mobile}) - 8px));
-      }
-
-      @include bolt-mq($from: xsmall) {
-        &.on .handle {
-          transform: translateX(calc((#{$simple-switch-size}) - 8px));
-        }
-      }
-
-      .handle {
-        width: $simple-switch-size_mobile;
-        height: $simple-switch_height - ($simple-switch_outline-size * 2);
-        // @TODO replace with animation design token. Also in simple switch.
-        transition: background-color 20ms linear;
-
-        @include bolt-mq($from: xsmall) {
-          width: $simple-switch-size;
-        }
-      }
-
-      &.on .handle {
-        background-color: bolt-color(yellow);
-      }
-    }
-
-    &-labels {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-around;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 9;
-      width: 100%;
-      margin-right: -50%;
-      padding-bottom: 7px;
-      padding-left: 3px;
-      color: bolt-color('black');
-      line-height: 1;
-      text-decoration: none;
-      pointer-events: none;
-
-      &-animation {
-        width: inherit;
-      }
-
-      &-inner {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-around;
-        width: inherit;
-      }
-    }
-
-    &-label {
-      flex: 1 0 50%;
-      width: 50%;
     }
   }
 
@@ -736,6 +746,7 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     &-result {
       $pega-wwo--result-left-pos: 63%;
       max-width: $pega-wwo--content-max-mobile-width;
+      padding: 0 bolt-spacing(medium);
 
       @include bolt-mq($from: xlarge) {
         position: absolute;
@@ -744,6 +755,8 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
         min-width: 350px;
         max-width: 29%;
         padding-top: 15%;
+        padding-right: 0;
+        padding-left: 0;
       }
 
       @include bolt-mq($from: xlarge) {
