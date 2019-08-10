@@ -154,9 +154,14 @@ function getFilesChanged({ from = 'HEAD', base = 'master', inDir } = {}) {
  * @param {Object} opt
  * @param {string} [opt.from] - git commit id to compare from (i.e. current PR branch). defaults to current commit id
  * @param {string} [opt.base='master'] - git commit id to compare to (i.e. the base branch your PR is pointed to)
+ * @param {boolean} [opt.includeDeps=false] - if recursive dependencies of changed packages should be included
  * @returns {{ name: string, absPath: string, relPath: string }[]}
  */
-function getPkgsChanged({ from = 'HEAD', base = 'master' } = {}) {
+function getPkgsChanged({
+  from = 'HEAD',
+  base = 'master',
+  includeDeps = false,
+} = {}) {
   const filesChanged = getFilesChanged({ from, base });
   if (!filesChanged) return [];
 
@@ -195,6 +200,12 @@ function getPkgsChanged({ from = 'HEAD', base = 'master' } = {}) {
     }
     pkgs.add(pkgName);
   });
+
+  if (includeDeps) {
+    pkgs.forEach(pkgName => {
+      getPkgDependencies(pkgName).forEach(depName => pkgs.add(depName));
+    });
+  }
 
   return [...pkgs].map(name => {
     const absPath = getPkgPathFromName(name);
