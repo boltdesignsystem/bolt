@@ -43,7 +43,11 @@ if (process.env.TRAVIS === 'true') {
   });
 }
 
-const pkgs = getPkgsChanged({ from: 'HEAD', base: `origin/${base}` });
+const pkgs = getPkgsChanged({
+  from: 'HEAD',
+  base: `origin/${base}`,
+  includeDeps: true,
+});
 
 // This provides a regex for test files to the `jest` cli
 // https://jestjs.io/docs/en/cli#jest-regexfortestfiles
