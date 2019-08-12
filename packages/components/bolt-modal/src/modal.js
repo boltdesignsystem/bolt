@@ -205,6 +205,20 @@ class BoltModal extends withLitHtml() {
   }
 
   /**
+   * Toggle the dialog element. If dialog is open, close it. If closed, open it.
+   *
+   * @param {Event} event
+   * @return {this}
+   */
+  toggle() {
+    if (this.open) {
+      this.hide();
+    } else {
+      this.show();
+    }
+  }
+
+  /**
    * Private event handler used when listening to some specific key presses
    * (namely ESCAPE and TAB)
    *
@@ -376,6 +390,10 @@ class BoltModal extends withLitHtml() {
 
     const closeButtonClasses = cx('c-bolt-modal__close-button', {
       [`c-bolt-modal__close-button--hidden`]: hideCloseButton,
+      [`c-bolt-modal__close-button--dark`]:
+        theme && (theme === 'dark' || theme === 'xdark'),
+      [`c-bolt-modal__close-button--light`]:
+        theme && (theme === 'light' || theme === 'xlight'),
     });
 
     const delegateFocus = e => {
@@ -401,10 +419,10 @@ class BoltModal extends withLitHtml() {
         autofocus
         tabindex="0"
       >
-        <span class="${closeButtonClasses}__text"
+        <span class="c-bolt-modal__close-button__text"
           >Close this dialog window</span
         >
-        <span class="${closeButtonClasses}__icon"></span>
+        <span class="c-bolt-modal__close-button__icon"></span>
       </bolt-trigger>
     `;
 
