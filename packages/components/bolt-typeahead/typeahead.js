@@ -4,13 +4,13 @@ import { h, withPreact } from '@bolt/core/renderers';
 
 import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
-import classnames from './classnames';
 import Mousetrap from 'mousetrap';
 import VisuallyHidden from '@reach/visually-hidden';
 import Autosuggest from 'react-autosuggest';
+import { bind } from './classnames';
 
 import styles from './typeahead.scoped.scss';
-const cx = classnames.bind(styles);
+const cx = bind(styles);
 
 @define
 class BoltTypeahead extends withPreact() {
@@ -24,7 +24,6 @@ class BoltTypeahead extends withPreact() {
       ...props.string,
       ...{ default: 10 },
     },
-
   };
 
   // @ts-ignore
@@ -126,7 +125,7 @@ class BoltTypeahead extends withPreact() {
     let value = e.target.value;
 
     this.setState({
-      value: value,
+      value,
     });
 
     // skip default onInput behavior if external listeners have hooked in
@@ -248,9 +247,9 @@ class BoltTypeahead extends withPreact() {
     this.setState({ value: newValue });
 
     // skip default onChange behavior if external listeners have hooked in
-    if (this._listeners['onChange']) {
-      return;
-    }
+    // if (this._listeners['onChange']) {
+    //   // return;
+    // }
   };
 
   // Autosuggest calls this every time you need to update suggestions.
@@ -290,10 +289,11 @@ class BoltTypeahead extends withPreact() {
               this.clearSearch();
             }}>
             <VisuallyHidden>{clearButtonText}</VisuallyHidden>
-            <bolt-icon name="close"
+            <bolt-icon
+              name="close"
               className={cx('c-bolt-typeahead__clear-icon')}
               title={clearButtonText}
-            ></bolt-icon>
+            />
           </button>
         )}
       </div>
@@ -320,9 +320,9 @@ class BoltTypeahead extends withPreact() {
     this.closeSearch();
 
     // skip default onChange behavior if external listeners have hooked in
-    if (this._listeners['onSelected']) {
-      return;
-    }
+    // if (this._listeners['onSelected']) {
+    //   return;
+    // }
   }
 
   render() {
