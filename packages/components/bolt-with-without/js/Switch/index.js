@@ -6,13 +6,14 @@ export { Switch };
 
 // Takes care of finding Switches within the site code.
 export var init = function() {
-  var x,
+  const x,
     _switch,
     switches = document.querySelectorAll("[data-type='simple-switch']");
 
   for (x = 0; x < switches.length; x++) {
     _switch = switches[x];
 
+    /* eslint-disable no-new */
     new Switch({
       element: _switch,
     });
