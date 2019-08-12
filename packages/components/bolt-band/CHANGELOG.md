@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* apply .is-expanded rule to .c-bolt-band to fix background video bug in ie ([d2394df](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/d2394df))
+* correctly add all dependencies ([d9de9c0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/d9de9c0))
+* globally update max timeout in Jest ([f1e6f95](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/f1e6f95))
+* lint js ([3c96888](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/3c96888))
+* lint js ([9b6c152](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/9b6c152))
+* lint js ([a9a6cd8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/a9a6cd8))
+* tests ([12578d9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/12578d9))
+* update tests ([0a580d1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/commit/0a580d1))
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+**Note:** Version bump only for package @bolt/components-band
+
+
+
+
+
 ## [2.5.5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-band/compare/v2.5.4...v2.5.5) (2019-07-22)
 
 

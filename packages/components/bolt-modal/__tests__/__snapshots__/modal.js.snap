@@ -57,7 +57,7 @@ exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] 
           
               
           <div
-            class="c-bolt-modal__close-button"
+            class="c-bolt-modal__close-button c-bolt-modal__close-button--light"
             style=""
           >
             
@@ -202,6 +202,7 @@ exports[`<bolt-modal> Component Default <bolt-modal> with Shadow DOM renders 2`]
   uuid="12345"
 >
   <bolt-text
+    class="is-first-child is-last-child"
     slot="header"
     style=""
     tag="h3"
@@ -211,6 +212,7 @@ exports[`<bolt-modal> Component Default <bolt-modal> with Shadow DOM renders 2`]
   
       
   <bolt-text
+    class="is-first-child is-last-child"
     style=""
   >
     This is the body (default).
@@ -218,6 +220,7 @@ exports[`<bolt-modal> Component Default <bolt-modal> with Shadow DOM renders 2`]
   
       
   <bolt-text
+    class="is-first-child is-last-child"
     slot="footer"
     style=""
   >
@@ -338,6 +341,14 @@ exports[`<bolt-modal> Component modal width: full 1`] = `
 
 exports[`<bolt-modal> Component modal width: optimal 1`] = `
 <bolt-modal width="optimal"
+            uuid="12345"
+>
+  This is a modal
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component modal width: regular 1`] = `
+<bolt-modal width="regular"
             uuid="12345"
 >
   This is a modal

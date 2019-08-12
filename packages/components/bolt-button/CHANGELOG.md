@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* accidentally set 'target' attr instead of 'tabindex' ([845a472](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/845a472))
+* add 'disabled' attr to button component ([d5081f1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/d5081f1))
+* add 'target' in twig if passed via attributes ([6b0317e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/6b0317e))
+* remove outline from button and link custom-elements to fix double-focus ([5454d1f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/5454d1f))
+
+
+### Features
+
+* add 'disabled' state to button link ([4943355](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/4943355))
+* output `display` instead of `display="true"` for consistency ([aa28e34](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/aa28e34))
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
 ## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.5.2...v2.5.3) (2019-07-12)
 
 
