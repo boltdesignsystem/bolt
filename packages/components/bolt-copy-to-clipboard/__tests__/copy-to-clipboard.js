@@ -1,6 +1,14 @@
-import { render, renderString } from '@bolt/twig-renderer';
+import {
+  render,
+  renderString,
+  stopServer,
+} from '../../../testing/testing-helpers';
 
 describe('<bolt-copy-to-clipboard> Component', () => {
+  afterAll(async () => {
+    await stopServer();
+  });
+
   test('basic usage with attributes', async () => {
     const results = await render(
       '@bolt-components-copy-to-clipboard/copy-to-clipboard.twig',
