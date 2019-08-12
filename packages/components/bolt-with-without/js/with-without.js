@@ -1,4 +1,4 @@
-import * as SimpleSwitch from 'a-simple-switch';
+import * as SimpleSwitch from './Switch';
 import Swiper from 'swiper';
 import handleBlockTitleMobileAccordionClick from './accordion';
 import handleResize from './handleResize';
