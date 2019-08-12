@@ -33,7 +33,7 @@ program
     '-D, --description [description]',
     'The button component -- part of the Bolt Design System.',
   )
-  // .option('-A, --accept', 'Accept all defaults')
+  .option('-T, --test', 'Test path for yeoman')
   .parse(process.argv);
 
 module.exports = class extends Generator {
@@ -51,6 +51,18 @@ module.exports = class extends Generator {
         'docs-site/src/pages/pattern-lab/_patterns/02-components',
       test: '__tests__',
     };
+
+    if (program.test) {
+      this.testData = {
+        componentName: program.name,
+        description: program.description,
+        tmpPath:
+          'packages/generators/yeoman-create-component/generators/component/tmp',
+      };
+
+      this.folders.src = `${this.testData.tmpPath}/${this.folders.src}`;
+      this.folders.patternLabFolder = `${this.testData.tmpPath}/${this.folders.patternLabFolder}`;
+    }
 
     this.boltVersion = currentBoltVersion;
 
@@ -71,6 +83,18 @@ module.exports = class extends Generator {
     this.log(yosay('Generating a new Bolt Design System component!'));
   }
 
+  updateComponentName(value) {
+    return {
+      original: value,
+      camelCase: changeCase.camelCase(value),
+      pascalCase: changeCase.pascalCase(value),
+      snakeCase: changeCase.snakeCase(value),
+      kebabCase: changeCase.paramCase(value),
+      noCase: changeCase.noCase(value),
+      titleCase: changeCase.titleCase(value),
+    };
+  }
+
   prompting() {
     return this.prompt([
       {
@@ -80,7 +104,8 @@ module.exports = class extends Generator {
           'What is the name of your Bolt component? (for example: `button`, `card`, carousel`, etc)',
         required: true,
         default: typeof program.name === 'string' ? program.name : '',
-        validate: function(input) {
+        when: !program.test,
+        validate: input => {
           if (typeof input !== 'string') {
             this.log(chalk.red('You must pass a valid component name!'));
             return false;
@@ -108,22 +133,14 @@ module.exports = class extends Generator {
             return false;
           }
           return true;
-        }.bind(this),
-        filter: function(input) {
-          this.name = {
-            original: input,
-            camelCase: changeCase.camelCase(input),
-            pascalCase: changeCase.pascalCase(input),
-            snakeCase: changeCase.snakeCase(input),
-            kebabCase: changeCase.paramCase(input),
-            noCase: changeCase.noCase(input),
-            titleCase: changeCase.titleCase(input),
-          };
+        },
+        filter: input => {
+          this.name = updateComponentName(input);
 
           return (
             input.charAt(0).toUpperCase() + input.slice(1).replace(' ', '-')
           );
-        }.bind(this),
+        },
       },
       {
         type: 'input',
@@ -134,32 +151,33 @@ module.exports = class extends Generator {
         default:
           typeof program.description === 'string'
             ? program.description
-            : function(answers) {
+            : () => {
                 return `The ${this.name.noCase} component - part of the Bolt Design System.`;
-              }.bind(this),
-        validate: function(input) {
+              },
+        when: !program.test,
+        validate: input => {
           if (typeof input !== 'string') {
             this.log(chalk.red('You must pass a valid string !'));
             return false;
           }
           return true;
-        }.bind(this),
+        },
       },
-    ]).then(
-      function(props) {
-        this.props = props;
-        this.props.name = this.name;
-        this.props.gitUrl = this.gitUrl;
-        this.props.boltVersion = this.boltVersion;
-        this.props.gitInfo = this.gitInfo;
-        this.props.packageName = `@bolt/components-${this.props.name.kebabCase}`;
-        this.props.dest = `${this.folders.src}/bolt-${this.props.name.kebabCase}`;
-        this.props.gitPath =
-          this.gitUrl +
-          '/tree/master/packages/components/bolt-' +
-          this.props.name.kebabCase;
-      }.bind(this),
-    );
+    ]).then(props => {
+      this.props = !program.test ? props : this.testData;
+      this.props.name = !program.test
+        ? this.name
+        : this.updateComponentName(this.testData.componentName);
+      this.props.gitUrl = this.gitUrl;
+      this.props.boltVersion = this.boltVersion;
+      this.props.gitInfo = this.gitInfo;
+      this.props.packageName = `@bolt/components-${this.props.name.kebabCase}`;
+      this.props.dest = `${this.folders.src}/bolt-${this.props.name.kebabCase}`;
+      this.props.gitPath =
+        this.gitUrl +
+        '/tree/master/packages/components/bolt-' +
+        this.props.name.kebabCase;
+    });
   }
 
   writing() {
@@ -259,10 +277,15 @@ module.exports = class extends Generator {
   }
 
   install() {
-    updateBoltRcConfig(this.props.packageName);
-    addBoltPackage(this.props.packageName);
+    if (program.test) {
+      updateBoltRcConfig(this.props.packageName, this.testData.tmpPath);
+      addBoltPackage(this.props.packageName, this.testData.tmpPath);
+    } else {
+      updateBoltRcConfig(this.props.packageName);
+      addBoltPackage(this.props.packageName);
 
-    shelljs.exec('yarn');
+      shelljs.exec('yarn');
+    }
 
     shelljs.exec(
       `npx prettier ${this.folders.patternLabFolder}/${this.props.name.kebabCase}/**/*.{js,scss,json} --write`,
