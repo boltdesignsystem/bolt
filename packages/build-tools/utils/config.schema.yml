@@ -39,10 +39,16 @@
       type: number
       title: Desired port for Browsersync server
       default: 3000
+    hostname:
+      type: string
+      title: Desired host for Browsersync Proxy
+      default: localhost
     proxyPort:
       type: number
       title: Desired port for Webpack Proxy
-      default: 8080
+    proxyHostname:
+      type: string
+      title: Desired host for Webpack Proxy
     proxyHeader:
       type: string
       description: Special request header when proxying Webpack's dev server

@@ -9,7 +9,7 @@ const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../tooltip.schema.yml'));
 const { direction, noWrap, spacing } = schema.properties;
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<bolt-tooltip> Component', () => {
   afterAll(async () => {

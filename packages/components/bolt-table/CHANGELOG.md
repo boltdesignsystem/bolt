@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* escape linting ([2212614](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/2212614))
+* globally update max timeout in Jest ([f1e6f95](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/f1e6f95))
+* lint js ([7193a3b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/7193a3b))
+* remove obsolete snapshots ([feba331](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/feba331))
+* snaps ([26b5fcc](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/26b5fcc))
+* test and typo ([8aa43b3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/8aa43b3))
+* update jest tests ([78cb2c7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/78cb2c7))
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+**Note:** Version bump only for package @bolt/components-table
+
+
+
+
+
+## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.5.2...v2.5.3) (2019-07-12)
+
+**Note:** Version bump only for package @bolt/components-table
+
+
+
+
+
 ## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.5.1...v2.5.2) (2019-06-25)
 
 **Note:** Version bump only for package @bolt/components-table

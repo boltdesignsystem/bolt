@@ -23,9 +23,9 @@ const config = {
   webpackDevServer: {
     enabled: true,
   },
-  sourceMaps: process.env.TRAVIS || argv.prod ? false : true,
-  enableCache: process.env.TRAVIS || argv.prod ? false : true,
-  enableSSR: false, // temp disabld till Travis issue fixed
+  sourceMaps: !(process.env.TRAVIS || argv.prod),
+  enableCache: !(process.env.TRAVIS || argv.prod),
+  enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -151,6 +151,10 @@ const config = {
     ],
   },
   copy: [
+    {
+      from: require.resolve(`@bolt/critical-path-polyfills`),
+      to: path.join(__dirname, '../www/build'),
+    },
     {
       from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),

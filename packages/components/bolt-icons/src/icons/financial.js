@@ -6,7 +6,7 @@ export const Financial = ({ bgColor, fgColor, size, ...otherProps }) => {
       <path
         fill={bgColor}
         fill-rule="evenodd"
-        d="M2 30h22V2H2zM24 0H2a2 2 0 0 0-2 2v28a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"
+        d="M2 30h22V2H2zM24 0H2a2 2 0 00-2 2v28a2 2 0 002 2h22a2 2 0 002-2V2a2 2 0 00-2-2z"
         data-name="Fill-1"
       />
       <path
