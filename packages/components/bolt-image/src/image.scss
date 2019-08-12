@@ -34,6 +34,7 @@ bolt-image {
 
 .c-bolt-image__image-placeholder {
   pointer-events: none;
+  filter: blur(20px); // low quality image placeholders should always be blurred
   transition: opacity 0.2s ease;
 }
 

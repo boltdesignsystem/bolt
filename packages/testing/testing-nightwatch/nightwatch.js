@@ -41,7 +41,7 @@ module.exports = {
   },
   persist_globals: true,
   live_output: false, // set to `true` to see output as it happens; make appear interlaced if ran in parallel
-  test_workers: { enabled: true, workers: '1' },
+  // test_workers: { enabled: true, workers: '1' },
   test_settings: {
     compatible_testcase_support: true,
     default: {
@@ -74,19 +74,21 @@ module.exports = {
         browserName: 'chrome',
         chromeOptions: {
           args: ['headless'],
+          w3c: false,
         },
       },
     },
     chrome: {
       desiredCapabilities: {
         browserName: 'chrome',
-        platform: 'OS X 10.11',
-        version: '73',
+        platform: 'macOS 10.14',
+        version: '76',
         javascriptEnabled: true,
         acceptSslCerts: true,
-        //         chromeOptions: {
-        //           args: ['headless'],
-        //         },
+        chromeOptions: {
+          // args: ['headless'],
+          w3c: false,
+        },
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,
@@ -103,7 +105,7 @@ module.exports = {
     firefox: {
       desiredCapabilities: {
         browserName: 'firefox',
-        platform: 'OS X 10.11',
+        platform: 'macOS 10.14',
         version: '68',
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,

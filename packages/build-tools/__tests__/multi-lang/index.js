@@ -1,5 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
+const prettier = require('prettier');
+const prettierConfig = { semi: false, parser: 'css' };
 
 const buildDir = require('./.boltrc.multi-lang.js').buildDir;
 
@@ -69,8 +71,6 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
 
     const cssFile = await getCSSData();
 
-    expect(cssFile).toMatchSnapshot();
-
     const japaneseFontRule =
       'font-family:-apple-system,BlinkMacSystemFont,ヒラギノ角ゴ ProN,Hiragino Kaku Gothic ProN,游ゴシック,游ゴシック体,YuGothic,Yu Gothic,メイリオ,Meiryo,ＭＳ ゴシック,MS Gothic,HiraKakuProN-W3,TakaoExゴシック,TakaoExGothic,MotoyaLCedar,Droid Sans Japanese,sans-serif;';
 
@@ -79,6 +79,9 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
 
     expect(cssFile).toEqual(expect.stringContaining(japaneseFontRule));
     expect(cssFile).toEqual(expect.not.stringContaining(englishFontFamilyRule));
+
+    const prettyCss = await prettier.format(cssFile, prettierConfig);
+    expect(prettyCss).toMatchSnapshot();
   });
 
   test('Check that the Japanese-specific bolt-global-ja.css file built contains the correct utility class styles for the older u-bolt-margin-bottom syntax.', async () => {
@@ -96,9 +99,14 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
     };
 
     const cssFile = await getCSSData();
-    expect(cssFile).toEqual(
+    const prettyCss = await prettier.format(cssFile, prettierConfig);
+
+    expect(prettyCss).toEqual(
       expect.stringContaining(
-        '.u-bolt-margin-bottom{margin-bottom:1.155rem!important}',
+        await prettier.format(
+          '.u-bolt-margin-bottom{margin-bottom:1.155rem!important}',
+          prettierConfig,
+        ),
       ),
     );
   });
@@ -118,12 +126,17 @@ describe('Tests to confirm that the latest upcoming release of the @bolt/build-t
     };
 
     const cssFile = await getCSSData();
-    expect(cssFile).toEqual(
+    const prettyCss = await prettier.format(cssFile, prettierConfig);
+
+    expect(prettyCss).toEqual(
       expect.stringContaining(
-        '.u-bolt-margin-bottom{margin-bottom:1.65rem!important}',
+        await prettier.format(
+          `.u-bolt-margin-bottom {margin-bottom: 1.65rem !important;}`,
+          prettierConfig,
+        ),
       ),
     );
 
-    expect(cssFile).toMatchSnapshot();
+    expect(prettyCss).toMatchSnapshot();
   });
 });
