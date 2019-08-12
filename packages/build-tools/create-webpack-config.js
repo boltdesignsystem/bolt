@@ -203,8 +203,15 @@ async function createWebpackConfig(buildConfig) {
           modules: {
             // localsConvention: 'camelCase',
             getLocalIdent: (context, localIdentName, localName, options) => {
-              if (isJsFile === true && context.resourcePath.includes('.scoped')){
-                return `${localName}--${crypto.createHash('md5').update(localName).digest('hex').substring(0, 8)}`;
+              if (
+                isJsFile === true &&
+                context.resourcePath.includes('.scoped')
+              ) {
+                return `${localName}--${crypto
+                  .createHash('md5')
+                  .update(localName)
+                  .digest('hex')
+                  .substring(0, 8)}`;
               } else {
                 return localName;
               }
@@ -224,23 +231,27 @@ async function createWebpackConfig(buildConfig) {
             }),
             require('postcss-modules')({
               // camelCase: true, // disabling camelCase versions of CSS classes till we look into changing the
-              generateScopedName: function(name, filename, css) {
-                if (filename.includes('.scoped') && isJsFile === false){
+              generateScopedName(name, filename, css) {
+                if (filename.includes('.scoped') && isJsFile === false) {
                   const i = css.indexOf(`.${name}`);
-                  return `${name}--${crypto.createHash('md5').update(name).digest('hex').substring(0, 8)}`;
+                  return `${name}--${crypto
+                    .createHash('md5')
+                    .update(name)
+                    .digest('hex')
+                    .substring(0, 8)}`;
                 } else {
                   return name;
                 }
               },
-              getJSON: function(cssFileName, json, outputFileName) {
-                if (cssFileName.includes('.scoped') && isJsFile === false){
-                  var jsonFileName = path.resolve(`${cssFileName.replace('.scss', '')}.json`);
+              getJSON(cssFileName, json, outputFileName) {
+                if (cssFileName.includes('.scoped') && isJsFile === false) {
+                  var jsonFileName = path.resolve(
+                    `${cssFileName.replace('.scss', '')}.json`,
+                  );
                   fs.writeFileSync(jsonFileName, JSON.stringify(json));
-                } else {
-                  return;
                 }
-              }
-            })
+              },
+            }),
           ],
         },
       },
@@ -267,7 +278,7 @@ async function createWebpackConfig(buildConfig) {
         },
       },
     ];
-  }
+  };
 
   let webpackConfig = {
     target: 'web',
@@ -312,9 +323,10 @@ async function createWebpackConfig(buildConfig) {
           oneOf: [
             {
               issuer: /\.js$/,
-              use: [
-                scssLoaders(true),
-              ].reduce((acc, val) => acc.concat(val), []),
+              use: [scssLoaders(true)].reduce(
+                (acc, val) => acc.concat(val),
+                [],
+              ),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
