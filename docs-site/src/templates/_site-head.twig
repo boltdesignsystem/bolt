@@ -32,6 +32,10 @@
 <!DOCTYPE html>
 <html lang="en-US" class="{{ htmlClasses|join(' ') }}">
   <head>
+    {% if fileExists("@bolt-assets/bolt-critical-path-polyfills.cjs.js") %}
+    <script>{{ inline(assets["bolt-critical-path-polyfills.cjs.js"] | default("")) }}</script>
+    {% endif %}
+
     <script src="https://www.google-analytics.com/analytics.js" defer></script>
     <script>
       window.drupalSettings = {
