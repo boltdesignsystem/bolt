@@ -153,6 +153,10 @@ const config = {
   },
   copy: [
     {
+      from: require.resolve(`@bolt/critical-path-polyfills`),
+      to: path.join(__dirname, '../www/build'),
+    },
+    {
       from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),
       flatten: true,
