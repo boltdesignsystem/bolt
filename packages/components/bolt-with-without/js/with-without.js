@@ -1,5 +1,5 @@
-import * as SimpleSwitch from './Switch';
 import Swiper from 'swiper';
+import * as SimpleSwitch from './Switch';
 import handleBlockTitleMobileAccordionClick from './accordion';
 import handleResize from './handleResize';
 import handleActiveRegionChange from './handleActiveRegionChange';
