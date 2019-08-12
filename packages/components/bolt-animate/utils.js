@@ -35,7 +35,6 @@ async function triggerAnimOnEls({ animEls, stage }) {
             },
           );
 
-          console.log('yolo', { stage, animEl });
           let triggered = false;
           switch (stage) {
             case 'IN':
