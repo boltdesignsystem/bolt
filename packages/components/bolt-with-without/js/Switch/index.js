@@ -5,8 +5,8 @@ import { Switch } from './Switch.js';
 export { Switch };
 
 // Takes care of finding Switches within the site code.
-export var init = function() {
-  const x,
+export const init = function() {
+  let x,
     _switch,
     switches = document.querySelectorAll("[data-type='simple-switch']");
 
