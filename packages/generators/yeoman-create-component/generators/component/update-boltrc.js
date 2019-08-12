@@ -8,7 +8,7 @@ const boltRcConfigPath = path.resolve(
 );
 const boltRcConfig = require(boltRcConfigPath);
 
-function updateBoltRcConfig(newPackageName) {
+function updateBoltRcConfig(newPackageName, testingPath) {
   // check if this component has already been added to the .boltrc config and if so, exit early
   if (boltRcConfig.components.global.includes(newPackageName)) {
     console.warn(
@@ -28,7 +28,11 @@ function updateBoltRcConfig(newPackageName) {
       parser: 'flow',
     });
 
-    fs.writeFileSync(boltRcConfigPath, updatedPrettyBoltRcContent);
+    if (testingPath) {
+      fs.writeFileSync(`${testingPath}/.boltrc.js`, updatedPrettyBoltRcContent);
+    } else {
+      fs.writeFileSync(boltRcConfigPath, updatedPrettyBoltRcContent);
+    }
   }
 }
 

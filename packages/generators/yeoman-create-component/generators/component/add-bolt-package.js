@@ -9,7 +9,7 @@ const boltPackageJsonPath = path.resolve(
 );
 const boltPackageJson = require(boltPackageJsonPath);
 
-function addBoltPackage(newPackageName) {
+function addBoltPackage(newPackageName, testingPath) {
   let deleteExisting = false;
   // check if this component has already been added to the .boltrc config and if so, exit early
   if (Object.keys(boltPackageJson.dependencies).includes(newPackageName)) {
@@ -40,7 +40,14 @@ function addBoltPackage(newPackageName) {
     },
   );
 
-  fs.writeFileSync(boltPackageJsonPath, updatedPrettyBoltPackageJson);
+  if (testingPath) {
+    fs.writeFileSync(
+      `${testingPath}/package.json`,
+      updatedPrettyBoltPackageJson,
+    );
+  } else {
+    fs.writeFileSync(boltPackageJsonPath, updatedPrettyBoltPackageJson);
+  }
 }
 
 module.exports = {
