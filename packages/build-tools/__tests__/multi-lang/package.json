@@ -1,0 +1,20 @@
+{
+  "name": "@bolt/build-tools--test-multi-lang",
+  "version": "2.6.0-beta.1",
+  "private": true,
+  "description": "Tests for @bolt/build-tools multilingal support",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "yarn run build",
+    "build": "bolt build --prod --i18n --config-file .boltrc.multi-lang.js",
+    "test": "npx jest index.js",
+    "posttest": "rm -rf dist-lang/"
+  },
+  "dependencies": {
+    "@bolt/build-tools": "^2.6.0-beta.1",
+    "@bolt/components-button": "^2.6.0-beta.1",
+    "@bolt/core": "^2.6.0-beta.1",
+    "@bolt/global": "^2.6.0-beta.1"
+  }
+}

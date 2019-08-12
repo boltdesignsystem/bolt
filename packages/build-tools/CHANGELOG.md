@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* add missing log dependency to cli.js ([63ee6e3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/63ee6e3))
+* add new option to the image task to optionally disable image compression; used when making / running VRTs ([6cd2d9a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/6cd2d9a))
+* address prettier issue ([226dec3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/226dec3))
+* bump dependency versions used in build tool tests ([ee425c0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/ee425c0))
+* cherry pick build tools updates from https://github.com/bolt-design-system/bolt/pull/1323 ([0676e3a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/0676e3a))
+* fix eslint errors ([6d7f6a4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/6d7f6a4))
+* fix eslint issue + update Drupal Lab patch ([0082e19](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/0082e19))
+* fix image task to properly generate srcsets in prod mode ([332ffda](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/332ffda))
+* fix webpack prettier issue ([d784e7d](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/d784e7d))
+* make sure config schema path can be resolved in the build tools CLI ([239e4cc](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/239e4cc))
+* make sure the config-file CLI args work together with the default cosmic config behavior ([8a303b8](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/8a303b8))
+* prettify CSS result from the @bolt/build-tools before doing snapshot diff ([a50ffa5](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/a50ffa5))
+* quote the `lang` global JS data to fix JS error getting thrown ([ce3ee2c](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/ce3ee2c))
+* update build tool tests to format CSS before comparing results ([90cefe0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/90cefe0))
+* update internal @bolt/build-tools references to utils to globally use the NPM namespaced version so the config store matches across the board ([200bb63](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/200bb63))
+* update Jest snapshot for the build tools ([a324904](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/a324904))
+* update Jest snapshot for the build tools ([acac6a6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/acac6a6))
+* update Jest snapshots for build tools ([4bc99cb](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/4bc99cb))
+
+
+### Features
+
+* add 'env' to global JS, wrap 'env' and 'lang' in JSON.stringify ([99f1a11](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/99f1a11))
+* cherry pick a build tools update to reuse the same browser tab you already had open when starting up / restarting the @bolt/build-tools ([b0a29f8](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/b0a29f8))
+* update Webpack to handle .cur files (cursor file fallback when needed) ([01602ac](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/01602ac))
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+
+### Features
+
+* update Webpack to handle .cur files (cursor file fallback when needed) ([7df793b](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/7df793b))
+
+
+
+
+
+## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.5.2...v2.5.3) (2019-07-12)
+
+
+### Bug Fixes
+
+* cherry pick the main lang-specific config fix + webpack `lang` config fix when building multiple languages at the same time via https://github.com/bolt-design-system/bolt/pull/1265 ([318c9f9](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/318c9f9))
+
+
+
+
+
 ## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.5.1...v2.5.2) (2019-06-25)
 
 

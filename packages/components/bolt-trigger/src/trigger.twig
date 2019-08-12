@@ -13,13 +13,16 @@
 {% set cursor = this.data.cursor.value %}
 {% set url = this.data.url.value %}
 {% set target = this.data.target.value %}
+{% set disabled = this.data.disabled.value %}
 
 {% if url %}
   {# If url is provided, set tag to "a" #}
   {% set tag = "a" %}
-  {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
-
-  {# only set target if url is provided #}
+  {% if disabled %}
+    {% set inner_attributes = inner_attributes.setAttribute("aria-disabled", "true") %}
+  {% else %}
+    {% set inner_attributes = inner_attributes.setAttribute("href", url) %}
+  {% endif %}
   {% if target %}
     {% set inner_attributes = inner_attributes.setAttribute("target", target) %}
   {% endif %}
@@ -27,13 +30,16 @@
   {# Otherwise, it's a button #}
   {% set tag = "button" %}
   {% set inner_attributes = inner_attributes.setAttribute("type", "button") %}
+  {% if disabled %}
+    {% set inner_attributes = inner_attributes.setAttribute("disabled", true) %}
+  {% endif %}
 {% endif %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
   display ? "#{base_class}--display-#{display}" : "",
-  cursor ? "#{base_class}--cursor-#{cursor}" : "",
+  cursor and not disabled is sameas(true) ? "#{base_class}--cursor-#{cursor}" : "",
   no_outline ? "#{base_class}--outline-none" : "",
 ] %}
 

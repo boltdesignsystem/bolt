@@ -9,7 +9,7 @@
     "component",
     "image"
   ],
-  "version": "2.5.2",
+  "version": "2.6.0-beta.1",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -30,14 +30,19 @@
     "access": "public",
     "tag": "next"
   },
+  "scripts": {
+    "postinstall": "patch-package"
+  },
   "dependencies": {
-    "@bolt/components-ratio": "^2.5.2",
-    "@bolt/core": "^2.5.2",
-    "lazysizes": "^4.1.4"
+    "@bolt/components-ratio": "^2.6.0-beta.1",
+    "@bolt/core": "^2.6.0-beta.1",
+    "lazysizes": "5.1.0",
+    "patch-package": "^6.1.2",
+    "postinstall-postinstall": "^2.0.0"
   },
   "style": "index.scss",
   "main": "index.js",
   "twig": "src/image.twig",
   "schema": "image.schema.yml",
-  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
 }

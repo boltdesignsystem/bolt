@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* correctly add all dependencies ([d9de9c0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/commit/d9de9c0))
+* make sure Jest tests using the Twig Renderer stop the server when finished ([5e880f5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/commit/5e880f5))
+* update device viewer Jest snapshot to reflect updated image component + update yarn.lock ([3c6deff](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/commit/3c6deff))
+* update jest tests ([78cb2c7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/commit/78cb2c7))
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+**Note:** Version bump only for package @bolt/components-device-viewer
+
+
+
+
+
+## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/compare/v2.5.2...v2.5.3) (2019-07-12)
+
+
+### Bug Fixes
+
+* remove overriding the image sizes prop when used in device viewer ([676e5df](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/commit/676e5df))
+
+
+
+
+
 ## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-device-viewer/compare/v2.5.1...v2.5.2) (2019-06-25)
 
 **Note:** Version bump only for package @bolt/components-device-viewer

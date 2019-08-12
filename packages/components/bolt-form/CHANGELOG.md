@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* correctly add all dependencies ([d9de9c0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/commit/d9de9c0))
+* tighten up Twig RegEx parsing ([8d7b76b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/commit/8d7b76b))
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+**Note:** Version bump only for package @bolt/components-form
+
+
+
+
+
+## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/compare/v2.5.2...v2.5.3) (2019-07-12)
+
+**Note:** Version bump only for package @bolt/components-form
+
+
+
+
+
 ## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-form/compare/v2.5.1...v2.5.2) (2019-06-25)
 
 **Note:** Version bump only for package @bolt/components-form

@@ -11,7 +11,7 @@ module.exports = {
       )
       .waitForElementVisible('.pl-js-open-new-window', 3000)
       .getAttribute('.pl-js-open-new-window', 'href', function(result) {
-        browser.url(result.value);
+        browser.url(`${result.value}`);
       })
       .waitForElementVisible('bolt-button', 3000)
       .assert.elementPresent('.c-bolt-button')
@@ -23,7 +23,7 @@ module.exports = {
         `${testingUrl}/pattern-lab/?p=components-button-ssr--web-component-wo-shadow-dom`,
       )
       .getAttribute('.pl-js-open-new-window', 'href', function(result) {
-        browser.url(result.value);
+        browser.url(`${result.value}`);
       })
       .waitForElementVisible('bolt-button', 3000)
       .assert.elementPresent('.c-bolt-button')
