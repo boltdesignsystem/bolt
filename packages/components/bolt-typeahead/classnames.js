@@ -18,6 +18,7 @@ export function classNames(...args) {
 
   for (var i = 0; i < args.length; i++) {
     var arg = args[i];
+    // eslint-disable-next-line no-continue
     if (!arg) continue;
 
     var argType = typeof arg;
