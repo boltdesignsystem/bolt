@@ -52,7 +52,7 @@ bolt-modal:not([ready]) {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%; // Use % instead of vh or modal scrollbar is hidden behind bold scrollbar in IE11
   height: 100vh;
   pointer-events: none;
   transition: opacity $bolt-modal-transition;
@@ -394,16 +394,6 @@ bolt-modal:not([ready]) {
     @include bolt-mq($bolt-modal-breakpoint) {
       height: 0.1rem;
       background-color: bolt-color(white);
-
-      .t-bolt-light &,
-      .t-bolt-xlight & {
-        background-color: bolt-color(white);
-      }
-
-      .t-bolt-dark &,
-      .t-bolt-xdark & {
-        background-color: bolt-color(indigo, light);
-      }
     }
   }
 
@@ -416,16 +406,28 @@ bolt-modal:not([ready]) {
   }
 }
 
-.c-bolt-modal__dialog-title {
-  @include bolt-visuallyhidden;
+.c-bolt-modal__close-button--dark {
+  .c-bolt-modal__close-button__icon {
+    &:before,
+    &:after {
+      @include bolt-mq($bolt-modal-breakpoint) {
+        background-color: bolt-color(indigo, light);
+      }
+    }
+  }
 }
 
-// https://davidwalsh.name/detect-scrollbar-width
-// @todo: refactor into core JS/CSS
-.c-bolt-modal__scrollbar-measure {
-  position: absolute;
-  top: -9999px;
-  width: 100px;
-  height: 100px;
-  overflow: scroll;
+.c-bolt-modal__close-button--light {
+  .c-bolt-modal__close-button__icon {
+    &:before,
+    &:after {
+      @include bolt-mq($bolt-modal-breakpoint) {
+        background-color: bolt-color(white);
+      }
+    }
+  }
+}
+
+.c-bolt-modal__dialog-title {
+  @include bolt-visuallyhidden;
 }
