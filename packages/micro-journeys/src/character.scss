@@ -1,0 +1,76 @@
+@import '@bolt/core';
+
+.c-bolt-character {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &--small,
+  &--small &__main-image-wrapper,
+  &--small bolt-icon {
+    width: 60px;
+    height: 60px;
+  }
+  &--medium,
+  &--medium &__main-image-wrapper,
+  &--medium bolt-icon {
+    width: 80px;
+    height: 80px;
+  }
+  &--large,
+  &--large &__main-image-wrapper,
+  &--large bolt-icon {
+    width: 120px;
+    height: 120px;
+  }
+
+  &__main-image-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+    @include bolt-shadow('level-20');
+  }
+
+  &__main-image {
+    box-sizing: border-box;
+    width: 100%;
+    border: 4px solid white;  // todo make this theme aware
+    border-radius: 50%;
+  }
+
+  &__slot {
+    &--cardinal {
+      width: 275px; // @todo Fix issue with slot forcing content to break instead of getting width from content
+    }
+    &--top {
+      position: absolute;
+      bottom: calc(100% + 20px);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+    &--bottom {
+      position: absolute;
+      top: calc(100% + 20px);
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+    &--left {
+      position: absolute;
+      top: 50%;
+      right: calc(100% + 20px);
+      transform: translateY(-50%);
+      text-align: right;
+    }
+    &--right {
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 20px);
+      transform: translateY(-50%);
+    }
+  }
+}

@@ -35,6 +35,7 @@ async function triggerAnimOnEls({ animEls, stage }) {
             },
           );
 
+          console.log('yolo', { stage, animEl });
           let triggered = false;
           switch (stage) {
             case 'IN':
@@ -68,12 +69,15 @@ async function triggerAnimOnEls({ animEls, stage }) {
  */
 export async function triggerAnims({ animEls, stage = 'IN' }) {
   let orderProp;
+  let hasAnimProp;
   switch (stage) {
     case 'IN':
       orderProp = 'inOrder';
+      hasAnimProp = 'hasAnimIn';
       break;
     case 'OUT':
       orderProp = 'outOrder';
+      hasAnimProp = 'hasAnimOut';
       break;
   }
   if (!orderProp) throw new Error(`Incorrect stage name passed: ${stage}`);
@@ -89,7 +93,9 @@ export async function triggerAnims({ animEls, stage = 'IN' }) {
   for (const order of animOrders) {
     // eslint-disable-next-line no-await-in-loop
     await triggerAnimOnEls({
-      animEls: animEls.filter(a => a[orderProp] === order),
+      animEls: animEls
+        .filter(a => a[hasAnimProp])
+        .filter(a => a[orderProp] === order),
       stage,
     });
   }

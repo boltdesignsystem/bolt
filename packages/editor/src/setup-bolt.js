@@ -1,8 +1,9 @@
 import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
 import buttonSchema from '@bolt/components-button/button.schema.yml';
 import textSchema from '@bolt/components-text/text.schema.yml';
-import iconSchema from '@bolt/components-icon/icon.schema.yml';
-import characterSchema from '@bolt/components-interactive-step/src/character.schema.yml';
+import iconSchema from '@bolt/components-icon/icon.schema.json';
+import characterSchema from '@bolt/micro-journeys/src/character.schema';
+import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 import chipSchema from '@bolt/components-chip/chip.schema.yml';
 import imageSchema from '@bolt/components-image/image.schema.yml';
@@ -105,7 +106,7 @@ export function setupBolt(editor) {
     name,
     schema = { properties: {} },
     initialContent = '<span>Hello World</span>',
-    category = 'Bolt Component',
+    category = 'Bolt Components',
     draggable = true,
     droppable = false,
     editable = true,
@@ -333,6 +334,17 @@ export function setupBolt(editor) {
     editable: false,
     highlightable: false,
     registerBlock: false,
-    propsToTraits: ['size', 'characterUrl'],
+    propsToTraits: ['size', 'characterUrl', 'useIcon'],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-status-dialogue-bar',
+    schema: statusDialogueBarSchema,
+    initialContent: `<bolt-text size="xsmall" slot="text">Insert Text Here</bolt-text>`,
+    draggable: true,
+    droppable: false, // @todo more specific rules here around what can be added to the slots, namely status bar, dialogue, etc
+    editable: false,
+    highlightable: false,
+    propsToTraits: ['iconName', 'isAlertMessage', 'dialogueArrowDirection'],
   });
 }

@@ -8,13 +8,15 @@ const defaultConfig = {};
  */
 function createEditorUiHtml(appendTo = document.body) {
   const uiMarkup = `
-    <div class="pega-editor-ui__slot pega-editor-ui__slot--buttons"></div>
-    <div class="pega-editor-ui__slot pega-editor-ui__slot--blocks"></div>
-    <div class="pega-editor-ui__slot pega-editor-ui__slot--layers">
-      <h5>Layers</h5>
-    </div>
-    <div class="pega-editor-ui__slot pega-editor-ui__slot--traits">
-      <h5>Properties</h5>
+    <div class="pega-editor-ui__buttons"></div>
+    <div class="pega-editor-ui__slots">
+      <div class="pega-editor-ui__slot pega-editor-ui__slot--blocks"></div>
+      <div class="pega-editor-ui__slot pega-editor-ui__slot--layers">
+        <h5>Layers</h5>
+      </div>
+      <div class="pega-editor-ui__slot pega-editor-ui__slot--traits">
+        <h5>Properties</h5>
+      </div>
     </div>
   `;
 
@@ -26,6 +28,27 @@ function createEditorUiHtml(appendTo = document.body) {
     el: uiWrapper,
     destroy: () => uiWrapper.remove(),
   };
+}
+
+/**
+ * @return {Promise<void>}
+ */
+function addGrapesCssToPage() {
+  return new Promise((resolve, reject) => {
+    // @todo either lock to current installed grapesjs version or load from local `node_modules`
+    const href = '//unpkg.com/grapesjs/dist/css/grapes.min.css';
+    if (document.querySelector(`link[href="${href}"]`)) {
+      resolve();
+    } else {
+      const link = document.createElement('link');
+      link.href = href;
+      link.type = 'text/css';
+      link.rel = 'stylesheet';
+      link.media = 'screen';
+      link.addEventListener('load', () => resolve(), { once: true });
+      document.head.appendChild(link);
+    }
+  });
 }
 
 function init() {
@@ -102,6 +125,7 @@ function init() {
       console.error(
         'Bolt Editor Config requires "styles" an array of paths to CSS files. Current config is: ',
         config,
+        pegaEditor,
       );
       return;
     }
@@ -110,6 +134,7 @@ function init() {
       console.error(
         'Bolt Editor Config requires "scripts" an array of paths to JS files. Current config is: ',
         config,
+        pegaEditor,
       );
       return;
     }
@@ -130,6 +155,8 @@ function init() {
       if (uiWrapper) {
         uiWrapper.destroy();
       }
+      space.style.width = '';
+      space.style.height = '';
     }
 
     trigger.addEventListener('click', async () => {
@@ -140,6 +167,8 @@ function init() {
         }
         case EDITOR_STATES.CLOSED: {
           console.log('editor launching...');
+          trigger.innerText = 'Loading...';
+          await addGrapesCssToPage();
           const { enableEditor } = await import(
             /* webpackChunkName: "pega-editor" */ './editor'
           );

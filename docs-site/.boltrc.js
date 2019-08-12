@@ -134,10 +134,8 @@ const config = {
       '@bolt/components-video',
       '@bolt/components-with-without',
       '@bolt/components-grid',
-      '@bolt/components-interactive-pathways',
-      '@bolt/components-interactive-pathway',
-      '@bolt/components-interactive-step',
-      '@bolt/editor',
+      '@bolt/micro-journeys',
+      '@bolt/components-editor',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
