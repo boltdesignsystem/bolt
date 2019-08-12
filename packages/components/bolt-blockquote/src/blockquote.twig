@@ -55,7 +55,6 @@
     {% if logo %}
       <replace-with-children class="{{ "#{base_class}__logo" }}">
         {% include "@bolt/logo.twig" with logo|merge({
-          "lazyload": false,
           slot: "logo",
         }) only %}
       </replace-with-children>
@@ -76,7 +75,7 @@
             {% if author.image %}
               <replace-with-grandchildren class="{{ "#{base_class}__footer-item" }}">
                 <div class="{{ "#{base_class}__image" }}">
-                  {% include "@bolt/image.twig" with author.image|merge({"lazyload": false, slot:"author-image"}) only %}
+                  {% include "@bolt/image.twig" with author.image|merge({ slot:"author-image"}) only %}
                 </div>
               </replace-with-grandchildren>
             {% endif %}

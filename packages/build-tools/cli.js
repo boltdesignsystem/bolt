@@ -271,6 +271,7 @@ if (program.configFile) {
 
     program
       .command('img')
+      .alias('images')
       .description('Image process')
       .action(async options => {
         await updateConfig(options, program);

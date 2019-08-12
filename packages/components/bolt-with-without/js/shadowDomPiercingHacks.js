@@ -5,7 +5,7 @@ const pierceShadowDomEls = mainWrapper => {
       mainWrapper.querySelectorAll('.c-pega-wwo__shadow-height-inherit'),
     );
     elsToSetFullHeight.forEach(el => {
-      const shadowChild = Array.from(el.shadowRoot.children).find(el =>
+      const shadowChild = Array.from(el.renderRoot.children).find(el =>
         el.classList.contains('c-bolt-animate'),
       );
       shadowChild.style.height = 'inherit';
@@ -14,7 +14,7 @@ const pierceShadowDomEls = mainWrapper => {
     mainWrapper
       .querySelectorAll('.c-pega-wwo__shadow-height-full')
       .forEach(el => {
-        const shadowChild = Array.from(el.shadowRoot.children).find(el =>
+        const shadowChild = Array.from(el.renderRoot.children).find(el =>
           el.classList.contains('c-bolt-animate'),
         );
         shadowChild.style.height = '100%';
@@ -24,7 +24,7 @@ const pierceShadowDomEls = mainWrapper => {
     mainWrapper
       .querySelectorAll('.c-pega-wwo__title bolt-animate')
       .forEach(el => {
-        const shadowChild = Array.from(el.shadowRoot.children).find(el =>
+        const shadowChild = Array.from(el.renderRoot.children).find(el =>
           el.classList.contains('c-bolt-animate'),
         );
         shadowChild.style.zIndex = 12;
