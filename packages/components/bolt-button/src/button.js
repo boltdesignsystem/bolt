@@ -145,23 +145,44 @@ class BoltButton extends BoltAction {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
       buttonElement.className += ' ' + classes;
 
-      if (this.props.url) {
-        buttonElement.setAttribute('href', this.props.url);
-      }
+      // @todo: find automatic way to dissolve original HTML elements into their respective props + custom attributes
+      if (buttonElement.tagName === 'A') {
+        const url = this.props.url || this.originalUrl;
 
-      if (this.props.target) {
-        buttonElement.setAttribute('target', this.props.target);
+        if (this.props.disabled) {
+          this.originalUrl = buttonElement.getAttribute('href');
+          buttonElement.setAttribute('aria-disabled', 'true');
+          buttonElement.removeAttribute('href');
+        } else {
+          buttonElement.removeAttribute('aria-disabled');
+
+          if (url) {
+            buttonElement.setAttribute('href', url);
+          }
+        }
+
+        if (this.props.target) {
+          buttonElement.setAttribute('target', this.props.target);
+        }
+      } else {
+        if (this.props.disabled) {
+          buttonElement.setAttribute('disabled', '');
+        } else {
+          buttonElement.removeAttribute('disabled');
+        }
       }
 
       if (this.props.tabindex) {
-        buttonElement.setAttribute('target', this.props.tabindex);
+        buttonElement.setAttribute('tabindex', this.props.tabindex);
       }
 
       render(innerSlots, buttonElement);
     } else if (hasUrl) {
       buttonElement = html`
         <a
-          href="${this.props.url}"
+          href="${ifDefined(
+            this.props.url && !this.props.disabled ? this.props.url : undefined,
+          )}"
           class="${classes}"
           target="${urlTarget}"
           tabindex=${ifDefined(
@@ -171,6 +192,7 @@ class BoltButton extends BoltAction {
               ? this.props.tabindex
               : undefined,
           )}
+          aria-disabled=${ifDefined(this.props.disabled ? 'true' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
           >${innerSlots}</a
         >
@@ -186,6 +208,7 @@ class BoltButton extends BoltAction {
               ? this.props.tabindex
               : undefined,
           )}
+          disabled=${ifDefined(this.props.disabled ? '' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
         >
           ${innerSlots}

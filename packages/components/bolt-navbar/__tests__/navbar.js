@@ -38,21 +38,25 @@ const viewportSizes = [
 ];
 
 describe('<bolt-navbar> Component', () => {
-  let page, isOnline, context;
+  let page, isOnline;
 
   beforeAll(async () => {
     isOnline = await isConnected();
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
   });
 
   afterAll(async () => {
     await stopServer();
-  }, 100);
+    await page.close();
+  });
+
+  afterEach(async () => {
+    await page.close();
+  });
 
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
-      waitUntil: 'networkidle0',
+      timeout: 0,
     });
   }, timeout);
 
