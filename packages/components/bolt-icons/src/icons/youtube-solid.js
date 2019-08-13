@@ -1,8 +1,15 @@
 import { h } from '@bolt/core/renderers';
 
-export const YoutubeSolid = ({ bgColor, fgColor, size, ...otherProps }) => {
+export const YoutubeSolid = ({
+  bgColor,
+  fgColor,
+  size,
+  title,
+  ...otherProps
+}) => {
   return (
     <svg data-name="Layer 1" {...otherProps} viewBox="0 0 32 32">
+      <title>{title}</title>
       <path fill="none" d="M0 0h32v32H0z" />
       <path
         fill={bgColor}
