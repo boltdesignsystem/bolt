@@ -39,7 +39,7 @@
   <replace-with-grandchildren {{ inner_attributes.addClass(inner_classes) }}>
     {#
       1. `title` will go into "title" slot. This pattern may be used for any slotted content, can be renamed depending upon your needs.
-      2. `content` will go into default slot. Depending upon component, may be named something else, e.g. `text`, `items`, etc.
+      2. `content` will go into "default" slot. Depending upon component, may be named something else, e.g. `text`, `items`, etc.
     #}
     {% if title %}
       <div class="c-bolt-example__title">
