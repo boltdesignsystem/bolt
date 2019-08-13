@@ -1,8 +1,9 @@
 import { h } from '@bolt/core/renderers';
 
-export const RoboAuto = ({ bgColor, fgColor, size, ...otherProps }) => {
+export const RoboAuto = ({ bgColor, fgColor, size, title, ...otherProps }) => {
   return (
     <svg data-name="Layer 1" {...otherProps} viewBox="0 0 32.1 32.2">
+      <title>{title}</title>
       <path
         fill={bgColor}
         fill-rule="evenodd"

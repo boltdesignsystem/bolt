@@ -1,8 +1,9 @@
 import { h } from '@bolt/core/renderers';
 
-export const ArrowLeft = ({ bgColor, fgColor, size, ...otherProps }) => {
+export const ArrowLeft = ({ bgColor, fgColor, size, title, ...otherProps }) => {
   return (
     <svg {...otherProps} viewBox="0 0 18 14">
+      <title>{title}</title>
       <path
         fill={bgColor}
         fill-rule="nonzero"
