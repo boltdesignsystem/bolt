@@ -41,20 +41,6 @@ module.exports = class extends Generator {
       test: '__tests__',
     };
 
-    if (program.test) {
-      this.testData = {
-        componentName: program.name,
-        description: program.description,
-        tmpPath:
-          'packages/generators/yeoman-create-component/generators/component/tmp',
-      };
-
-      this.folders.src = `${this.testData.tmpPath}/${this.folders.src}`;
-      this.folders.patternLabFolder = `${this.testData.tmpPath}/${this.folders.patternLabFolder}`;
-    }
-
-    this.boltVersion = currentBoltVersion;
-
     this.gitInfo = {
       name: shelljs
         .exec('git config user.name', { silent: true })
@@ -66,6 +52,24 @@ module.exports = class extends Generator {
         .exec('git config github.user', { silent: true })
         .stdout.replace(/\n/g, ''),
     };
+
+    this.boltVersion = currentBoltVersion;
+
+    if (program.test) {
+      this.testData = {
+        componentName: program.name,
+        description: program.description,
+        tmpPath:
+          'packages/generators/yeoman-create-component/generators/component/tmp',
+      };
+
+      this.folders.src = `${this.testData.tmpPath}/${this.folders.src}`;
+      this.folders.patternLabFolder = `${this.testData.tmpPath}/${this.folders.patternLabFolder}`;
+      this.gitInfo.name = 'Test User';
+      this.gitInfo.email = 'test@example.org';
+      this.gitInfo.github = '';
+      this.boltVersion = '0.0.0';
+    }
   }
 
   initializing() {
@@ -274,10 +278,10 @@ module.exports = class extends Generator {
       addBoltPackage(this.props.packageName);
 
       shelljs.exec('yarn');
-    }
 
-    shelljs.exec(
-      `npx prettier ${this.folders.src}/bolt-${this.props.name.kebabCase}/**/*.{js,scss,json} --write`,
-    );
+      shelljs.exec(
+        `npx prettier ${this.folders.src}/bolt-${this.props.name.kebabCase}/**/*.{js,scss,json} --write`,
+      );
+    }
   }
 };

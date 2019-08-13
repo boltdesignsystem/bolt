@@ -31,9 +31,7 @@ class Bolt<%= props.name.pascalCase %> extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const {
-      disabled,
-    } = this.validateProps(this.props);
+    const { disabled } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-<%= props.name.kebabCase %>', {
       [`c-bolt-<%= props.name.kebabCase %>--disabled`]: disabled,

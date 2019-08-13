@@ -110,13 +110,13 @@ exports[`Yeoman component generator index SCSS file exist 1`] = `
 exports[`Yeoman component generator package.json file exist 1`] = `
 "{
   \\"name\\": \\"@bolt/components-test\\",
-  \\"version\\": \\"2.6.0-beta.1\\",
+  \\"version\\": \\"0.0.0\\",
   \\"description\\": \\"Test Description\\",
   \\"repository\\": {
     \\"type\\": \\"git\\",
     \\"url\\": \\"git+https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-test\\"
   },
-  \\"author\\": \\"Adam Szałapski <adam.szalapski@pega.com>\\",
+  \\"author\\": \\"Test User <test@example.org>\\",
   \\"license\\": \\"MIT\\",
   \\"bugs\\": {
     \\"url\\": \\"https://github.com/bolt-design-system/bolt/issues\\"
@@ -125,7 +125,7 @@ exports[`Yeoman component generator package.json file exist 1`] = `
     \\"bolt design system\\"
   ],
   \\"dependencies\\": {
-    \\"@bolt/core\\": \\"^2.6.0-beta.1\\"
+    \\"@bolt/core\\": \\"^0.0.0\\"
   },
   \\"publishConfig\\": {
     \\"access\\": \\"public\\"
@@ -194,7 +194,9 @@ import { fixture as html } from '@open-wc/testing-helpers';
 
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
-const schema = readYamlFileSync(join(__dirname, '../test.schema.yml'));
+const schema = readYamlFileSync(
+  join(__dirname, '../test.schema.yml'),
+);
 const { tag } = schema.properties;
 
 async function renderTwig(template, data) {
@@ -223,32 +225,42 @@ describe('test', async () => {
   }, timeout);
 
   test('basic test component renders', async () => {
-    const results = await renderTwig('@bolt-components-test/test.twig');
+    const results = await renderTwig(
+      '@bolt-components-test/test.twig',
+    );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
   test('basic test component with the global \`no-shadow\` prop added', async () => {
-    const results = await renderTwig('@bolt-components-test/test.twig', {
-      no_shadow: true,
-    });
+    const results = await renderTwig(
+      '@bolt-components-test/test.twig',
+      {
+        no_shadow: true,
+      },
+    );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
   test('test with outer CSS class via Drupal Attributes', async () => {
-    const results = await renderTwig('@bolt-components-test/test.twig', {
-      attributes: {
-        class: ['u-bolt-margin-top-medium'],
+    const results = await renderTwig(
+      '@bolt-components-test/test.twig',
+      {
+        attributes: {
+          class: ['u-bolt-margin-top-medium'],
+        },
       },
-    });
+    );
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
   test('Default <bolt-test> w/o Shadow DOM renders', async function() {
     const renderedComponentHTML = await page.evaluate(() => {
-      const component = document.createElement('bolt-test');
+      const component = document.createElement(
+        'bolt-test',
+      );
       btn.textContent = 'test Test';
       document.body.appendChild(btn);
       component.useShadow = false;
@@ -269,16 +281,22 @@ describe('test', async () => {
 
   test('Default <bolt-test> with Shadow DOM renders', async function() {
     const defaultComponentShadowRoot = await page.evaluate(() => {
-      const component = document.createElement('bolt-test');
-      component.textContent = 'test Component Test -- Shadow Root HTML';
+      const component = document.createElement(
+        'bolt-test',
+      );
+      component.textContent =
+        'test Component Test -- Shadow Root HTML';
       document.body.appendChild(component);
       component.updated();
       return component.renderRoot.innerHTML;
     });
 
     const defaultComponentOuter = await page.evaluate(() => {
-      const component = document.createElement('bolt-test');
-      component.textContent = 'test Component Test -- Outer HTML';
+      const component = document.createElement(
+        'bolt-test',
+      );
+      component.textContent =
+        'test Component Test -- Outer HTML';
       document.body.appendChild(component);
       component.updated();
       return component.outerHTML;
