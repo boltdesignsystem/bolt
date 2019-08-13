@@ -1,8 +1,9 @@
 import { h } from '@bolt/core/renderers';
 
-export const Close = ({ bgColor, fgColor, size, ...otherProps }) => {
+export const Close = ({ bgColor, fgColor, size, title, ...otherProps }) => {
   return (
     <svg {...otherProps} viewBox="0 0 24 24">
+      <title>{title}</title>
       <path
         fill={bgColor}
         fill-rule="evenodd"

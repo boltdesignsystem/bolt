@@ -1,8 +1,15 @@
 import { h } from '@bolt/core/renderers';
 
-export const ExitFullScreen = ({ bgColor, fgColor, size, ...otherProps }) => {
+export const ExitFullScreen = ({
+  bgColor,
+  fgColor,
+  size,
+  title,
+  ...otherProps
+}) => {
   return (
     <svg {...otherProps} viewBox="0 0 24 24">
+      <title>{title}</title>
       <g fill="none" fill-rule="evenodd">
         <path />
         <path
