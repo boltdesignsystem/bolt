@@ -5,12 +5,8 @@ import {
 } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import Ajv from 'ajv';
-
 import styles from './svg-animations.scss';
 import schema from '../svg-animations.schema.yml';
-
-const ajv = new Ajv({ useDefaults: 'shared' });
 
 //let cx = classNames.bind(styles);
 
@@ -44,12 +40,12 @@ class SvgAnimations extends withLitHtml() {
 
   constructor(self) {
     self = super(self);
-    //self.validate = ajv.compile(schema);
+    self.schema = schema;
     return self;
   }
 
   animateCircle(dashSize = 4, speed = 20) { //todo set default at props level, no need here?  
-    const animatedCircle = this._drawCircle(dashSize, speed);
+    const animateCircle = this._drawCircle(dashSize, speed);
     console.log(`fired function animateCircle`);
     return animateCircle;
   }
@@ -60,7 +56,7 @@ class SvgAnimations extends withLitHtml() {
 
     //const classes = cx('c-bolt-chip');
     //const textClasses = cx('c-bolt-chip__item-text');
-    console.log('render self drawing circle')
+    console.log('render self drawing')
     function _drawTimer(ms) {
       return new Promise(res => setTimeout(res, ms));
     }
@@ -88,11 +84,11 @@ class SvgAnimations extends withLitHtml() {
     }
 
     return html`
-      <div id="bolt-self-drawing-circle-container" class="bolt-self-drawing-circle-container" >
-        <svg viewBox="-100 -100 200 200">
-          <circle id="bolt-self-drawing-circle-outline" class="bolt-self-drawing-circle-outline" r="80" stroke-dasharray="4 1000" />
-        </svg>
-      </div>
+    <div id="bolt-self-drawing-circle-container" class="bolt-self-drawing-circle-container" >
+      <svg viewBox="-100 -100 200 200">
+        <circle id="bolt-self-drawing-circle-outline" class="bolt-self-drawing-circle-outline" r="80" stroke-dasharray="4 1000" />
+      </svg>
+    </div>
     `;
   }
 }
