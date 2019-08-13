@@ -1,0 +1,49 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Example
+\* ------------------------------------ */
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-example', block, medium);
+
+.c-bolt-example {
+  display: block;
+  border: 1px solid bolt-theme(primary);
+}
+
+.c-bolt-example__title {
+  display: block;
+}
+
+.c-bolt-example__content {
+  @include bolt-padding-top(xsmall);
+  @include bolt-font-size(xsmall);
+
+  display: block;
+}
+
+// Spacing
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  @if (
+    $spacing-value-name !=
+      '' and
+      $spacing-value-name !=
+      'xxsmall' and
+      $spacing-value-name !=
+      'xlarge' and
+      $spacing-value-name !=
+      'xxlarge'
+  ) {
+    .c-bolt-example--spacing-#{$spacing-value-name} {
+      @include bolt-padding(#{$spacing-value-name}, squished);
+    }
+  }
+}
+
+// Border
+.c-bolt-example--borderless {
+  border: none;
+}

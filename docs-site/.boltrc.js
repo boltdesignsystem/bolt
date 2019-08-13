@@ -100,6 +100,7 @@ const config = {
       '@bolt/components-code-snippet',
       '@bolt/components-copy-to-clipboard',
       '@bolt/components-device-viewer',
+      '@bolt/components-example',
       '@bolt/components-figure',
       '@bolt/components-form',
       '@bolt/components-headline',

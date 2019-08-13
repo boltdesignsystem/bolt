@@ -1,0 +1,36 @@
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as example_demo %}
+
+{% set example_web_component_demo %}
+<bolt-example>
+  <bolt-text slot="title">Example title</bolt-text>
+  Curabitur vestibulum aliquam leo. Curabitur vestibulum aliquam leo. Praesent congue erat at massa. Fusce neque. Nunc egestas, augue at pellentesque laoreet, felis eros vehicula leo, at malesuada velit leo quis pede.
+</bolt-example>
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Example is a web component. Use the custom element <bolt-code-snippet display="inline" lang="html">&lt;bolt-example&gt;</bolt-code-snippet> to wrap your example title and content.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+        {{ example_web_component_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include example_demo.code_example(example_web_component_demo, true) %}
+  </div>
+</div>

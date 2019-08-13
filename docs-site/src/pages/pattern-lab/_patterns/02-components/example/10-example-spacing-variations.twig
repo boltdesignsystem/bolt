@@ -1,0 +1,18 @@
+<h3>Spacing Example</h3>
+
+{% set schema = bolt.data.components["@bolt-components-example"].schema %}
+
+<p>
+  By setting the <code>spacing</code> prop to <code>none</code>, <code>xsmall</code>, <code>small</code>, <code>medium</code>, or <code>large</code>, it applies the appropriate inset spacing for each example item. The default is <code>medium</code>.
+</p>
+
+{% for spacing in schema.properties.spacing.enum %}
+  <h3>Spacing: <code>{{ spacing }}</code></h3>
+  {% include "@bolt-components-example/example.twig" with {
+    title: "Example Title",
+    content: "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce id purus. Nulla consequat massa quis enim. Phasellus tempus. Fusce a quam. Proin magna.",
+    spacing: spacing
+  } only %}
+
+{% endfor %}
+

@@ -1,0 +1,11 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-example/example.twig" with {
+  title: "Example Title",
+  content: "<p>Example content</p>"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "example",
+  usage: usage
+} only %}

@@ -1,0 +1,26 @@
+title: Example
+type: object
+properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
+  content:
+    type: [string, object, array]
+    description: Main content.
+  title:
+    type: string
+    description: Title of the example.
+  spacing:
+    type: string
+    description: Controls the spacing of each example.
+    default: medium
+    enum:
+      - none
+      - xsmall
+      - small
+      - medium
+      - large
+  borderless:
+    type: boolean
+    description: Removes the border around the example.
+    default: false
