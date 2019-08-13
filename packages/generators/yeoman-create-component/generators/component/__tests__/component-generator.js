@@ -1,7 +1,7 @@
 const shell = require('shelljs');
 const fs = require('fs');
 const internalTasks = require('@bolt/build-tools/tasks/internal-tasks');
-const dirTree = require('directory-tree');
+const dir = require('node-dir');
 
 const dirs = {
   global:
@@ -100,9 +100,8 @@ describe('Yeoman component generator', () => {
   });
 
   test('folder structure of component package is correct', async () => {
-    const results = dirTree(dirs.global);
-    const stringifyResult = JSON.stringify(results);
+    const results = await dir.files(dirs.global, { sync: true });
 
-    expect(stringifyResult).toMatchSnapshot();
+    expect(results).toMatchSnapshot();
   });
 });
