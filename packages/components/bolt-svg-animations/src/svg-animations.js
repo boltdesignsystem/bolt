@@ -2,6 +2,7 @@ import {
   props,
   define,
   validateProps,
+  hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
@@ -41,10 +42,12 @@ class SvgAnimations extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.schema = schema;
+    this.useShadow = hasNativeShadowDomSupport;
     return self;
   }
 
-  animateCircle(dashSize = 4, speed = 20) { //todo set default at props level, no need here?  
+  animateCircle(dashSize = 4, speed = 20) {
+    //todo set default at props level, no need here?
     const animateCircle = this._drawCircle(dashSize, speed);
     console.log(`fired function animateCircle`);
     return animateCircle;
@@ -56,25 +59,26 @@ class SvgAnimations extends withLitHtml() {
 
     //const classes = cx('c-bolt-chip');
     //const textClasses = cx('c-bolt-chip__item-text');
-    console.log('render self drawing')
+    console.log('render self drawing');
     function _drawTimer(ms) {
       return new Promise(res => setTimeout(res, ms));
     }
 
     async function _drawCircle(dashSize, speed) {
-    
-      const outline = document.getElementById('bolt-self-drawing-circle-outline');
-    
+      const outline = document.getElementById(
+        'bolt-self-drawing-circle-outline',
+      );
+
       const threshold = Math.ceil(245 / dashSize);
-    
+
       for (var i = 0; i <= threshold; i++) {
         outline.setAttribute(
           'stroke-dasharray',
           `${dashSize} ${dashSize} ${outline.getAttribute('stroke-dasharray')}`,
         );
-    
+
         await this._drawTimer(speed); //eslint-disable-line no-await-in-loop
-    
+
         if (i === threshold) {
           document
             .getElementById('bolt-self-drawing-circle-container')
@@ -84,11 +88,19 @@ class SvgAnimations extends withLitHtml() {
     }
 
     return html`
-    <div id="bolt-self-drawing-circle-container" class="bolt-self-drawing-circle-container" >
-      <svg viewBox="-100 -100 200 200">
-        <circle id="bolt-self-drawing-circle-outline" class="bolt-self-drawing-circle-outline" r="80" stroke-dasharray="4 1000" />
-      </svg>
-    </div>
+      <div
+        id="bolt-self-drawing-circle-container"
+        class="bolt-self-drawing-circle-container"
+      >
+        <svg viewBox="-100 -100 200 200">
+          <circle
+            id="bolt-self-drawing-circle-outline"
+            class="bolt-self-drawing-circle-outline"
+            r="80"
+            stroke-dasharray="4 1000"
+          />
+        </svg>
+      </div>
     `;
   }
 }

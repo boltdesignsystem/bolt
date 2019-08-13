@@ -1,8 +1,4 @@
-{% set schema = bolt.data.components["@bolt-components-svg-animations"].schema %}
 
-{% if enable_json_schema_validation %}
-  {{ validate_data_schema(schema, _self) | raw }}
-{% endif %}
 
 {% if dashSize %}
   {% set attributes = attributes.setAttribute("dashSize", dashSize) %}
