@@ -15,17 +15,6 @@ const { addBoltPackage } = require('./add-bolt-package');
 const currentBoltVersion = require('../../../../../docs-site/package.json')
   .version;
 
-var validateString = function(input) {
-  if (typeof input !== 'string') {
-    this.log(chalk.red('You must pass a valid string !'));
-    return false;
-  } else if (input.length === 0) {
-    this.log(chalk.red('Tss Tss Tss, Write something !'));
-    return false;
-  }
-  return true;
-};
-
 program
   .version(currentBoltVersion)
   .option('-N, --name [name]', 'button')
@@ -286,10 +275,6 @@ module.exports = class extends Generator {
 
       shelljs.exec('yarn');
     }
-
-    shelljs.exec(
-      `npx prettier ${this.folders.patternLabFolder}/${this.props.name.kebabCase}/**/*.{js,scss,json} --write`,
-    );
 
     shelljs.exec(
       `npx prettier ${this.folders.src}/bolt-${this.props.name.kebabCase}/**/*.{js,scss,json} --write`,
