@@ -5,6 +5,6 @@ polyfillLoader.then(res => {
     /*
     webpackMode: 'eager',
     webpackChunkName: 'svg-animations'
-  */ './js/svg-animations'
+  */ './src/svg-animations'
   );
 });

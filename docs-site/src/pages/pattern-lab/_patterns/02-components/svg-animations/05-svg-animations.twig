@@ -1,0 +1,15 @@
+{% set schema = bolt.data.components["@bolt-components-svg-animations"].schema %}
+
+<h3>Self-drawing Circle</h3>
+
+<div style="background: #000000; height: 562px; padding: 40px; width: 100%;" >
+
+  {% include "@bolt-components-svg-animations/svg-animations.twig" with {
+      dashSize: "8",
+      speed: "1000"
+  } only %}
+
+</div>
+
+<script type="application/javascript">
+</script>
