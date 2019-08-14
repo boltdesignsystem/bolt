@@ -164,13 +164,8 @@ Functional testing should be performed manually by the QA team across the standa
 16. On click of checkbox a checkmark icon will appear to indicate it's checked state.
 17. At the bottom of the form layout is a button with the download icon and text.
 18. On hover of the button it's color will lighten and the button will lift slightly of the page.
-19. On click the form will open a warning modal for any unfilled inputs.
+19. On click the form will open inline validation bubbles for any invalid inputs.
 
 ## Scenario: form cards: theme variations
 
-1. Given I am viewing the [theme variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-form-70-form-card-theme-variations/02-components-form-70-form-card-theme-variations.html).
-2. A horizonal list of three form cards each with a different color theme.
-3. The first card features the 'xlight' theme with the campaign landing layout.
-4. The second card features the 'light' theme with the campaign landing layout.
-5. The third card features the 'dark' theme with the campaign landing layout.
-6. At the bottom of the third card is warning text indicating that the 'dark' theme is not fully supported yet.
+`// This is a purely visual test, use VRT`
