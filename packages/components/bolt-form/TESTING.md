@@ -64,7 +64,7 @@ Functional testing should be performed manually by the QA team across the standa
 6. On focus text can be typed into the input.
 7. On the far right of the element is a Lastpass Icon.
 
-## Scenario: form input element: search element variation 
+## Scenario: form input element: search element variation
 
 1. Given I am viewing the [search element variation page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-form-10-form-element-demo-input-element-search/02-components-form-10-form-element-demo-input-element-search.html).
 2. An input element that spans the entire horizontal screen view.
@@ -119,9 +119,9 @@ Functional testing should be performed manually by the QA team across the standa
 2. A header at the top far left that reads 'SELECT TOPPINGS'.
 3. Red text beneath header indicating the position of server errors if there were any.
 4. Text line beneath red text indicating that two or more checkboxes may be selected.
-3. A vertical list of four checkboxes.
-4. On hover over each element the cursor will become a pointer cursor and the checkbox will have a box-shadow.
-5. On click the checkbox will be checked and have a checkmark icon to indicate it's checked state.
+5. A vertical list of four checkboxes.
+6. On hover over each element the cursor will become a pointer cursor and the checkbox will have a box-shadow.
+7. On click the checkbox will be checked and have a checkmark icon to indicate it's checked state.
 
 ## Scenario: form selection list element
 
