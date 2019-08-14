@@ -78,7 +78,11 @@ const getCurriedAfterSlideAnimation = (
     );
     console.log('filterInvisibles(animInitEls)', filterInvisibles(animInEls));
 
-    await triggerAnims({ animEls: filterInvisibles(animInEls), stage: 'IN', debug: true });
+    await triggerAnims({
+      animEls: filterInvisibles(animInEls),
+      stage: 'IN',
+      debug: true,
+    });
     restorePrevSlideInactiveContentAfterSlideAnimation(
       outGroupAttrVal,
       inGroupAttrVal,

@@ -16,6 +16,7 @@ SimpleSwitch.init();
 const wwoSwiper = new Swiper('.c-pega-wwo__swiper-container', {
   speed: 500,
   spaceBetween: 0,
+  noSwiping: true,
 });
 
 // Initialize the page.
@@ -36,4 +37,3 @@ document
 document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
   el.addEventListener('click', handleBlockTitleMobileAccordionClick);
 });
-
