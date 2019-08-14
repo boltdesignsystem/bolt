@@ -61,5 +61,5 @@ export function withEvents(Base = HTMLElement) {
         }.bind(this),
       );
     }
-  }
+  };
 }
