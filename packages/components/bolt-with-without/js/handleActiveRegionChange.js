@@ -107,19 +107,18 @@ const handleActiveRegionChange = async (checked, wwoSwiper, init = false) => {
 
   if (init) {
     pierceShadowDomEls(mainWrapper);
+
+    getCurriedPageLoadAnimation(withIsBecomingActive, mainWrapper)();
+
     if (withIsBecomingActive) {
       // In this case the checked button is With Pega, so transition to that slide first.
-      wwoSwiper.on(
+      wwoSwiper.once(
         'slideChangeEnd',
         getCurriedPageLoadAnimation(withIsBecomingActive, mainWrapper),
       );
       wwoSwiper.slideNext();
-    } else {
-      // Uncomment for debugging, to display all animations.
-      // Array.from(document.querySelectorAll('bolt-animate[in]')).forEach((el) => {el.triggerAnimIn()});
-      // Otherwise just fire the initial animation.
-      getCurriedPageLoadAnimation(withIsBecomingActive, mainWrapper)();
     }
+
     // Fire the content initialization animations.
     getCurriedAfterSlideAnimation(
       outGroupAttrVal,
@@ -127,7 +126,7 @@ const handleActiveRegionChange = async (checked, wwoSwiper, init = false) => {
       mainWrapper,
     )();
   } else {
-    wwoSwiper.on(
+    wwoSwiper.once(
       'slideChangeTransitionEnd',
       getCurriedAfterSlideAnimation(
         outGroupAttrVal,

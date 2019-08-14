@@ -47,7 +47,7 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
               break;
           }
           if (debug) {
-            console.debug(`triggering:animation:${stage}`, animEl);
+            console.debug(`${eventName}`, animEl);
           }
           if (!triggered) {
             console.error({ animEl });
@@ -75,12 +75,15 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
 export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
   let orderProp;
   let hasAnimProp;
+  let eventName;
   switch (stage) {
     case 'IN':
+      eventName = 'bolt-animate:end:out';
       orderProp = 'inOrder';
       hasAnimProp = 'hasAnimIn';
       break;
     case 'OUT':
+      eventName = 'bolt-animate:end:out';
       orderProp = 'outOrder';
       hasAnimProp = 'hasAnimOut';
       break;
@@ -100,7 +103,7 @@ export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
       .filter(a => a[hasAnimProp])
       .filter(a => a[orderProp] === order);
     if (debug) {
-      console.debug(`triggering:animations:order:${order} `, animElsToTrigger);
+      console.debug(`${eventName}: order:${order}`, animElsToTrigger);
     }
     // eslint-disable-next-line no-await-in-loop
     await triggerAnimOnEls({
