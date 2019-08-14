@@ -6,7 +6,7 @@
 
 $bolt-clear-button-size: 1.7rem;
 $bolt-clear-button-size-at-med: 1.4rem;
-$bolt-typeahead-button-width: bolt-spacing(medium) + .5rem;
+$bolt-typeahead-button-width: bolt-spacing(medium) + .75rem;
 
 $bolt-typeahead-border-width: $bolt-border-width;
 $bolt-typeahead-border-style: $bolt-border-style;
@@ -208,7 +208,7 @@ bolt-typeahead {
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
-  width: $bolt-typeahead-button-width;
+  // width: $bolt-typeahead-button-width;
   // height: $bolt-typeahead-button-width;
   cursor: pointer;
   border: 0;
@@ -227,6 +227,7 @@ bolt-typeahead {
 
 .c-bolt-typeahead__icon {
   line-height: 1;
+  font-size: 1.5rem;
   // font-size: 27px;
 }
 

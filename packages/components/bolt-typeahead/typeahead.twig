@@ -52,46 +52,46 @@
         required
         name="q"
       />
-      {% include "@bolt-components-button/button.twig" with {
-        text: text.clearInput,
-        iconOnly: true,
-        color: "text",
-        icon: {
-          title: text.clearInput,
-          name: "close",
-          fallback: true,
+      <div class="{{ classNames.clearButton | join(' ') }}">
+        {% include "@bolt-components-button/button.twig" with {
+          text: text.clearInput,
+          iconOnly: true,
+          color: "text",
+          icon: {
+            title: text.clearInput,
+            name: "close",
+            fallback: true,
+            attributes: {
+              class: [
+                classNames.icon
+              ]
+            }
+          },
           attributes: {
-            class: [
-              classNames.icon
-            ]
-          }
-        },
-        attributes: {
-          onclick: "this.previousElementSibling.focus()",
-          class: classNames.clearButton
-        },
-        type: "reset"
-      } only %}
+            onclick: "this.previousElementSibling.focus()",
+          },
+          type: "reset"
+        } only %}
+      </div>
 
-      {% include "@bolt-components-button/button.twig" with {
-        text: text.submit,
-        iconOnly: true,
-        color: "text",
-        icon: {
-          title: text.submit,
-          name: "search",
-          fallback: true,
-          attributes: {
-            class: [
-              classNames.icon
-            ]
-          }
-        },
-        attributes: {
-          class: classNames.submitButton
-        },
-        type: "submit"
-      } only %}
+      <div class="{{ classNames.submitButton | join(' ') }}">
+        {% include "@bolt-components-button/button.twig" with {
+          text: text.submit,
+          iconOnly: true,
+          color: "text",
+          icon: {
+            title: text.submit,
+            name: "search",
+            fallback: true,
+            attributes: {
+              class: [
+                classNames.icon
+              ]
+            }
+          },
+          type: "submit"
+        } only %}
+      </div>
     </form>
   </div>
 </bolt-typeahead>
