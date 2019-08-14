@@ -249,6 +249,7 @@ describe('link', () => {
     renderedHTML.innerHTML = renderedLinkHTML;
 
     // Loop though all elements with any ID to see if there are duplicates.
+    // todo: `querySelectorAll('#my-id')` does not return multiple elements when there are dupes. It does in Chrome. See if upgrading basichtml from "0.22.1" to "1.1.1" adds that feature.
     const elemsWithAnyId = renderedHTML.querySelectorAll('[id]');
     let allIds = [];
     let dupIds = [];
