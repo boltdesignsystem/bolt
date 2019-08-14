@@ -26,16 +26,12 @@ properties:
       - lowercase
       - capitalize
       - none
-  tag:
-    description: 'Determines the semantic HTML tag for the button.'
+  type:
+    description: 'Determines the button tag type for semantic buttons'
     type: string
     enum:
-      - a
-      - link
-      - button
       - submit
       - reset
-    default: button
   size:
     type: string
     description: 'Size of the button.'
@@ -46,7 +42,7 @@ properties:
       - medium
       - large
       - xlarge
-  style:
+  color:
     type: string
     description: 'Style of the button determined by information hierarchy.'
     default: primary
@@ -100,3 +96,22 @@ properties:
   rounded:
     title: 'DEPRECATED'
     description: 'Use the border_radius parameter instead.'
+  tag:
+    title: 'DEPRECATED'
+    description: 'Switch to using the new type prop instead.'
+    type: string
+    enum:
+      - a
+      - link
+      - button
+      - submit
+      - reset
+    default: button
+  style:
+    title: 'DEPRECATED'
+    description: 'Temporarily renamed to `color` -- will be renamed to `variant` in v3.0'
+    default: primary
+    enum:
+      - primary
+      - secondary
+      - text
