@@ -1,3 +1,5 @@
+import { triggerAnimateInOnInOnlyContent } from './handleActiveRegionChange';
+
 const handleResize = () => {
   // @TODO replace with theme token.
   const isMobile = window.matchMedia('(max-width: 1200px)').matches;
@@ -5,6 +7,14 @@ const handleResize = () => {
     document.querySelectorAll('.c-pega-wwo__content--inner'),
   );
   const container = document.querySelector('.c-pega-wwo__wrapper');
+
+  const activeSlideString = container.classList.contains(
+    'c-pega-wwo__active-wo',
+  )
+    ? 'wo'
+    : 'w';
+  console.log(container);
+  triggerAnimateInOnInOnlyContent(activeSlideString);
 
   if (isMobile) {
     const toggleRegionHeight = window.getComputedStyle(

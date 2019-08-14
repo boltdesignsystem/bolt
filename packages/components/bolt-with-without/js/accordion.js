@@ -22,7 +22,7 @@ const handleBlockTitleMobileAccordionClick = async e => {
   }
 
   // @TODO remove tight coupling between markup structure and this.
-  const parentBlock = e.target.parentElement.parentElement;
+  const parentBlock = e.target.parentElement.parentElement.parentElement;
   const targetIsExpanded = parentBlock.classList.contains(expandedClass);
   if (targetIsExpanded) {
     parentBlock.classList.remove(expandedClass);

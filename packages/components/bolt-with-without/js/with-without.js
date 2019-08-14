@@ -1,4 +1,5 @@
 import Swiper from 'swiper';
+import _debounce from 'lodash/debounce';
 import * as SimpleSwitch from './Switch';
 import handleBlockTitleMobileAccordionClick from './accordion';
 import handleResize from './handleResize';
@@ -27,11 +28,22 @@ handleActiveRegionChange(
 );
 
 // Wire up the toggler to the event region switcher.
-document
-  .querySelector('#c-pega-wwo__toggle-input')
-  .addEventListener('change', e => {
-    handleActiveRegionChange(e.target.checked, wwoSwiper);
-  });
+document.querySelector('#c-pega-wwo__toggle-input').addEventListener(
+  'change',
+  // e => {
+  //   handleActiveRegionChange(e.target.checked, wwoSwiper);
+  // },
+  _debounce(
+    e => {
+      handleActiveRegionChange(e.target.checked, wwoSwiper);
+    },
+    5000,
+    {
+      leading: true,
+      trailing: false,
+    },
+  ),
+);
 
 // Initialize the accordion.
 document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
