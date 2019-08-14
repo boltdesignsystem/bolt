@@ -4,6 +4,10 @@ import handleBlockTitleMobileAccordionClick from './accordion';
 import handleResize from './handleResize';
 import handleActiveRegionChange from './handleActiveRegionChange';
 
+// Set up the resize listener which helps with some of the abs. pos. stuff.
+handleResize();
+window.addEventListener('resize', handleResize);
+
 // Initialize the with/without slide-toggle.
 const toggleInputClass = '#c-pega-wwo__toggle-input';
 SimpleSwitch.init();
@@ -33,6 +37,3 @@ document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
   el.addEventListener('click', handleBlockTitleMobileAccordionClick);
 });
 
-// Set up the resize listener which helps with some of the abs. pos. stuff.
-handleResize();
-window.addEventListener('resize', handleResize);

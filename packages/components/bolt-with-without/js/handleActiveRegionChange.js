@@ -25,7 +25,6 @@ const getCurriedPageLoadAnimation = (withIsBecomingActive, mainWrapper) => {
     const animInitEls = Array.from(
       mainWrapper.querySelectorAll('bolt-animate[group="initial"][in]'),
     );
-    // @TODO fix problem where BG is transitions too quickly
     triggerAnims({ animEls: animInitOutEls, stage: 'OUT' });
     // Here we filter display:none bolt-animates b/c they break all subsequent.
     return triggerAnims({
@@ -77,13 +76,14 @@ const getCurriedAfterSlideAnimation = (
         `bolt-animate[group="${inGroupAttrVal}"][in]`,
       ),
     );
+    console.log('filterInvisibles(animInitEls)', filterInvisibles(animInEls));
 
+    await triggerAnims({ animEls: filterInvisibles(animInEls), stage: 'IN', debug: true });
     restorePrevSlideInactiveContentAfterSlideAnimation(
       outGroupAttrVal,
       inGroupAttrVal,
       mainWrapper,
     );
-    await triggerAnims({ animEls: filterInvisibles(animInEls), stage: 'IN' });
   };
 };
 

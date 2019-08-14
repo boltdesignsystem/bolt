@@ -4,27 +4,29 @@ const handleResize = () => {
   const slideContentInner = Array.from(
     document.querySelectorAll('.c-pega-wwo__content--inner'),
   );
-  const slidesContainer = document.querySelector(
-    '.c-pega-wwo__swiper-container-wrapper',
-  );
+  const container = document.querySelector('.c-pega-wwo__wrapper');
 
   if (isMobile) {
     const toggleRegionHeight = window.getComputedStyle(
       document.querySelector('.c-pega-wwo__title-and-toggle--wrapper'),
     ).height;
-    const contentHeight = window.getComputedStyle(
-      document.querySelector('.c-pega-wwo__content'),
-    ).height;
+
+    const contents = document.querySelectorAll('.c-pega-wwo__content');
+    let greatestHeight = 0;
+    contents.forEach(el => {
+      const height = parseInt(window.getComputedStyle(el).height, 10);
+      greatestHeight = height > greatestHeight ? height : greatestHeight;
+    });
+    container.style.height = `${greatestHeight +
+      parseInt(toggleRegionHeight, 10)}px`;
     slideContentInner.forEach(el => {
       el.style.paddingTop = toggleRegionHeight;
     });
-    slidesContainer.style.height = `${parseInt(contentHeight, 10) +
-      parseInt(toggleRegionHeight, 10)}px`;
   } else {
     slideContentInner.forEach(el => {
       el.style.paddingTop = 0;
     });
-    slidesContainer.style.height = '100%';
+    container.style.height = '100%';
   }
 };
 
