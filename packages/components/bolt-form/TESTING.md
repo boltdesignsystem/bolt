@@ -62,7 +62,7 @@ Functional testing should be performed manually by the QA team across the standa
 4. On hover over the element the cursor will become a text cursor and the element will have a bottom box-shadow.
 5. On focus the border will darken and the overhead text 'Password' will appear.
 6. On focus text can be typed into the input.
-7. On the far right of the element is a Lastpass Icon.
+7. On the far right of the element is a Lastpass Icon (if Lastpass is enabled).
 
 ## Scenario: form input element: search element variation
 
