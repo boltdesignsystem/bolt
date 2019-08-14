@@ -28,6 +28,7 @@ class BoltButton extends BoltAction {
     transform: props.string,
     disabled: props.boolean,
     target: props.string,
+    type: props.string,
     url: props.string,
     onClick: props.string, // Managed by base class
     onClickTarget: props.string, // Managed by base class
@@ -208,6 +209,7 @@ class BoltButton extends BoltAction {
               ? this.props.tabindex
               : undefined,
           )}
+          type=${ifDefined(this.props.type ? this.props.type : undefined)}
           disabled=${ifDefined(this.props.disabled ? '' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
         >
