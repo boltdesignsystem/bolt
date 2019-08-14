@@ -6,20 +6,34 @@
 
 $bolt-clear-button-size: 1.7rem;
 $bolt-clear-button-size-at-med: 1.4rem;
+$bolt-typeahead-button-width: bolt-spacing(medium) + .5rem;
+
+$bolt-typeahead-border-width: $bolt-border-width;
+$bolt-typeahead-border-style: $bolt-border-style;
+$bolt-typeahead-border-radius: 6px;
+$bolt-typeahead-placeholder-color: bolt-theme(text, 0.4);
+
+$bolt-typeahead-result-highlight-color: #F5F5FA;
 
 bolt-typeahead {
-  display: inline-block;
+  display: flex;
   align-self: stretch;
   text-align: start;
 }
 
 .c-bolt-typeahead {
+  // @include bolt-shadow('level-10');
   display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
   color: bolt-theme(text);
+  border-radius: $bolt-typeahead-border-radius;
   background-color: inherit;
+}
+
+.c-bolt-typeahead__label {
+  position: relative;
 }
 
 .c-bolt-typeahead__input {
@@ -27,17 +41,19 @@ bolt-typeahead {
   -webkit-appearance: none; // removes default styling (ex. heavy box shadow) in Safari
   width: 100%;
   max-width: 100%;
-  padding-top: 0.4rem;
-  padding-right: $bolt-clear-button-size;
-  padding-bottom: 0.4rem;
-  padding-left: 0.5rem;
+  @include bolt-padding(medium, squished);
+  padding-right: $bolt-typeahead-button-width;
+  padding-left: $bolt-typeahead-button-width;
+  color: bolt-theme(text);
   text-transform: capitalize;
   font-size: 16px; // prevent zooming in on mobile
-  border-width: 1px;
-  border-style: solid;
-  border-color: rgba(bolt-color(black), .1);
+  border-radius: $bolt-typeahead-border-radius;
+  border-width: $bolt-typeahead-border-width;
+  border-style: $bolt-typeahead-border-style;
+  border-color: bolt-theme(link);
+  background-color: bolt-theme(background);
   text-overflow: ellipsis;
-  transition: all 0.1s ease;
+  transition: all $bolt-transition;
   outline-offset: -3px;
   outline-width: 2px;
 
@@ -45,8 +61,13 @@ bolt-typeahead {
     padding-right: $bolt-clear-button-size-at-med;
   }
 
-  @include bolt-mq(medium){
+  @include bolt-mq(medium) {
     font-size: inherit;
+  }
+
+  &:focus {
+    border-color: bolt-theme(link, 0.8);
+    box-shadow: 0 0 0 3px bolt-theme(link, 0.2);
   }
 
   // Remove the native <input> clear button in IE 11 in lieu of JS-controlled clear button
@@ -58,27 +79,59 @@ bolt-typeahead {
   &::-moz-input-placeholder {
     transition: all 0.1s ease;
   }
+
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $bolt-typeahead-placeholder-color;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $bolt-typeahead-placeholder-color;
+  }
+
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $bolt-typeahead-placeholder-color;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $bolt-typeahead-placeholder-color;
+  }
 }
 
 .c-bolt-typeahead__menu {
+  // @include bolt-shadow(
+  //   $key: 'level-20',
+  //   $base-color: bolt-color(indigo, light)
+  // );
   display: block;
   opacity: 0;
   position: absolute;
   top: 100%;
   right: 0;
+  z-index: 10;
   width: 100%;
   min-width: 100%;
   max-height: 0;
   overflow: hidden;
   color: bolt-theme(text-on-secondary);
   text-transform: capitalize;
+  border-bottom-right-radius: $bolt-typeahead-border-radius;
+  border-bottom-left-radius: $bolt-typeahead-border-radius;
+  box-shadow: rgba(26, 26, 29, 0.3) 0px 15px 46px -10px;
+  // -webkit-overflow-scrolling: touch;
   background-color: bolt-theme(secondary);
-  transition: max-height 0.3s ease, opacity 0.3s ease;
+  // transition: max-height 0.3s ease, opacity 0.3s ease;
+  transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1);
+
+
+
+
+  // border-color: bolt-color(indigo, light);
 
   &.is-open {
     opacity: 1;
-    max-height: 120rem;
-    max-height: calc(var(--viewport-height) - 4rem);
+    overflow-y: auto;
+    max-height: calc(100vh - #{$bolt-typeahead-button-width});
+    max-height: calc(100vh - var(--typeahead-height) );
   }
 
   @media all and (max-width: bolt-bp(medium) - 1) {
@@ -91,11 +144,20 @@ bolt-typeahead {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-width: 1px;
-  border-style: solid;
-  border-color: transparent;
-  border-color: bolt-theme(border);//darken($pl-color-gray-87, 5%);
+  border-bottom-right-radius: $bolt-typeahead-border-radius;
+  border-bottom-left-radius: $bolt-typeahead-border-radius;
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-bottom(xsmall);
+  // border-width: 1px;
+  // border-style: solid;
+  // border-color: transparent;
+  // border-color: bolt-theme(border);//darken($pl-color-gray-87, 5%);
   background-color: inherit;
+  // border-color: bolt-color(indigo, light);
+  // @include bolt-shadow(
+  //   $key: 'level-20',
+  //   $base-color: bolt-color(indigo, light)
+  // );
 
   &:empty {
     max-height: 0;
@@ -105,22 +167,35 @@ bolt-typeahead {
 
 .c-bolt-typeahead__result {
   overflow: hidden;
-  padding: 0.5rem 0.75rem;
   color: inherit;
-  cursor: pointer;
-  font-size: 0.8rem;
   background-color: inherit;
-  transition: all 0.3s ease;
+  transition: background-color 0.1s ease;
 
-  &.has-cursor,
-  &:hover {
-    background-color: bolt-theme(primary, 0.15);
+  &.has-cursor {
+    background-color: $bolt-typeahead-result-highlight-color;
   }
 
   &:active,
   &:focus {
-    background-color: rgba(255, 255, 255, 0.18);
+    background-color: rgba(bolt-color(indigo, xlight), .5);
   }
+}
+
+.c-bolt-typeahead__result-highlight {
+  @include bolt-font-weight(bold);
+}
+
+.c-bolt-typeahead__result-text {
+  @include bolt-padding(medium, squished);
+  display: block;
+  padding-left: $bolt-typeahead-button-width;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.c-bolt-typeahead__wrapper {
+  width: 100%;
 }
 
 .c-bolt-typeahead__input-wrapper {
@@ -128,41 +203,51 @@ bolt-typeahead {
   position: relative; // used for positioning search clear button in relation to the <input>
 }
 
-
-.c-bolt-typeahead__clear-button {
-  visibility: hidden;
-  opacity: 0;
+.c-bolt-typeahead__button {
   position: absolute;
   top: 50%;
-  right: 0.25rem;
   transform: translateY(-50%);
-  z-index: 100;
-  width: $bolt-clear-button-size;
-  height: $bolt-clear-button-size;
-  overflow: hidden;
+  z-index: 1;
+  width: $bolt-typeahead-button-width;
+  // height: $bolt-typeahead-button-width;
   cursor: pointer;
   border: 0;
-  border-radius: 20rem;
   transition: opacity 0.1s ease;
-
-  @media all and (min-width: bolt-bp(medium)) {
-    width: $bolt-clear-button-size-at-med;
-    height: $bolt-clear-button-size-at-med;
-  }
 }
 
-.c-bolt-typeahead__clear-icon {
+.c-bolt-typeahead__button--clear {
+  visibility: hidden;
+  opacity: 0;
+  right: 0;
+}
+
+.c-bolt-typeahead__button--submit {
+  left: 0;
+}
+
+.c-bolt-typeahead__icon {
+  line-height: 1;
+  // font-size: 27px;
+}
+
+.c-bolt-typeahead__icon--clear {
   fill: currentColor;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
+  z-index: 1;
   width: 1rem; // needed for icon SSR rendering
   font-size: 1rem; // needed for icon SSR rendering
 }
 
-.c-bolt-typeahead__input:valid ~ .c-bolt-typeahead__clear-button,
-.c-bolt-typeahead__clear-button.is-visible {
+.c-bolt-typeahead__input:valid ~ .c-bolt-typeahead__button--clear,
+.c-bolt-typeahead__button--clear.is-visible {
   visibility: visible;
+  opacity: 1;
+}
+
+// .c-bolt-typeahead__input: ~ .c-bolt-typeahead__button--submit
+.c-bolt-typeahead__input--with-clear-button ~ .c-bolt-typeahead__button--submit {
   opacity: 1;
 }
