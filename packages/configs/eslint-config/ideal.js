@@ -8,6 +8,7 @@ module.exports = {
     ecmaVersion: 2017,
     ecmaFeatures: {
       // experimentalObjectRestSpread: true,
+      classPrivateMethods: true,
       experimentalDecorators: true,
       jsx: true,
     },

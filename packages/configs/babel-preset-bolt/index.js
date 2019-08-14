@@ -37,8 +37,10 @@ const preset = function(api, opts = {}) {
       // ex. class { handleThing = () => { } }
       ['@babel/plugin-proposal-class-properties', { loose: true }],
 
+      ['@babel/plugin-proposal-private-methods', { loose: true }],
+
       // Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
-      '@babel/plugin-syntax-dynamic-import' /* [2] */,
+      '@babel/plugin-syntax-dynamic-import',
 
       '@babel/plugin-proposal-object-rest-spread',
     ],
