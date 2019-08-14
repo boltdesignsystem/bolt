@@ -4,7 +4,15 @@
 
 @import '@bolt/core';
 
-@include bolt-custom-element('bolt-list', block, medium);
+@include bolt-repeat-rule(('bolt-list', ':host')) {
+  @include bolt-margin-bottom(medium);
+
+  display: block;
+
+  &:last-child {
+    @include bolt-margin-bottom(0);
+  }
+}
 
 .c-bolt-list {
   @include bolt-margin(0);
@@ -27,11 +35,10 @@
 .c-bolt-list--display-flex {
   display: flex;
   flex-flow: row wrap;
+}
 
-  ::slotted(bolt-list-item),
-  bolt-list-item {
-    flex: 1 0 auto;
-  }
+@include bolt-repeat-rule(('.c-bolt-list--display-flex bolt-list-item', '.c-bolt-list--display-flex ::slotted(bolt-list-item)')) {
+  flex: 1 0 auto;
 }
 
 @each $breakpoint in $bolt-breakpoints {
@@ -60,6 +67,13 @@
     &.c-bolt-list--display-inline {
       width: calc(100% + #{bolt-spacing($spacing-value-name)} + 1px); // The inline here is talking about the items inside, the List component itself is still a block level element that would fill up the space of any container.
     }
+
+    &[class*='c-bolt-list--separator'] {
+      &.c-bolt-list--display-flex {
+        margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * 2 * -1;
+        margin-left: bolt-spacing(#{$spacing-value-name}) * 2 * -1;
+      }
+    }
   }
 
   .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
@@ -69,21 +83,32 @@
 }
 
 // Separator Prop
-$bolt-list-separator-styles: solid, dashed;
-
-@each $separator-style in $bolt-list-separator-styles {
-  .c-bolt-list--separator-#{$separator-style} {
-    border: {
-      width: 0;
-      color: rgba(bolt-color(gray), 0.25);
-      style: #{$separator-style};
-    }
-  }
+@include bolt-repeat-rule(("bolt-list[display='flex'][separator='solid']", ":host[display='flex'][separator='solid']", "bolt-list[display='flex'][separator='dashed']", ":host[display='flex'][separator='dashed']")) {
+  overflow: hidden; // This is neccessary for separators to work correctly, and the overflow must happen on the outer most container.
 }
 
-[class*='c-bolt-list--separator'] {
-  &.c-bolt-list--display-flex {
-    overflow: hidden;
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  @include bolt-repeat-rule((
+    "bolt-list[spacing='#{$spacing-value-name}'][display='flex'][separator='solid']:not([inset])",
+    ":host[spacing='#{$spacing-value-name}'][display='flex'][separator='solid']:not([inset])",
+    "bolt-list[spacing='#{$spacing-value-name}'][display='flex'][separator='dashed']:not([inset])",
+    ":host[spacing='#{$spacing-value-name}'][display='flex'][separator='dashed']:not([inset])"))
+  {
+    @include bolt-padding-top(#{$spacing-value-name}); // This is to counter the overflow hidden a little bit, so when elements that do overflow (button and card shadows) get passed into an item, the chopping is less noticable.
+    @include bolt-padding-right(#{$spacing-value-name});
+    @include bolt-padding-bottom(#{$spacing-value-name});
+    @include bolt-padding-left(#{$spacing-value-name});
+
+    margin-top: bolt-v-spacing(#{$spacing-value-name}) * -1;
+    margin-right: bolt-spacing(#{$spacing-value-name}) * -1;
+    margin-bottom: (bolt-v-spacing(#{$spacing-value-name}) * -1) + bolt-v-spacing(medium);
+    margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
+
+    &:last-child {
+      margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
+    }
   }
 }
 
