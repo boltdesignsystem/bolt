@@ -9,18 +9,21 @@
   {% include "@bolt-components-button/button.twig" with {
     text: "Item 1",
     url: "#!",
+    width: "full",
   } only %}
 {% endset %}
 {% set button_2 %}
   {% include "@bolt-components-button/button.twig" with {
     text: "Item 2",
     url: "#!",
+    width: "full",
   } only %}
 {% endset %}
 {% set button_3 %}
   {% include "@bolt-components-button/button.twig" with {
     text: "Item 3",
     url: "#!",
+    width: "full",
   } only %}
 {% endset %}
 {% set chip_1 %}
@@ -76,3 +79,77 @@
   ]
 } only %}
 {# End component specific code #}
+
+
+
+{# <h3>Test</h3>
+<div class="t-bolt-light u-bolt-padding-small">
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    separator: "solid",
+    items: [
+      button_1,
+      button_2,
+      button_3,
+    ]
+  } only %}
+</div>
+
+<h3>Test</h3>
+<div class="t-bolt-light u-bolt-padding-small">
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    separator: "solid",
+    inset: true,
+    items: [
+      button_1,
+      button_2,
+      button_3,
+    ]
+  } only %}
+</div>
+
+<h3>Test</h3>
+<div class="t-bolt-light u-bolt-padding-small">
+  {% include "@bolt-components-list/list.twig" with {
+    display: "flex",
+    items: [
+      button_1,
+      button_2,
+      button_3,
+    ]
+  } only %}
+</div>
+
+<h3>Test</h3>
+<div class="t-bolt-light u-bolt-padding-small">
+  {% include "@bolt-components-list/list.twig" with {
+    display: "flex",
+    separator: "solid",
+    items: [
+      button_1,
+      button_2,
+      button_3,
+      button_1,
+      button_2,
+      button_3,
+    ]
+  } only %}
+</div>
+
+<h3>Test</h3>
+<div class="t-bolt-light u-bolt-padding-small">
+  {% include "@bolt-components-list/list.twig" with {
+    display: "flex",
+    separator: "solid",
+    inset: true,
+    items: [
+      button_1,
+      button_2,
+      button_3,
+      button_1,
+      button_2,
+      button_3,
+    ]
+  } only %}
+</div> #}
