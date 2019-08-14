@@ -534,24 +534,24 @@ async function createWebpackConfig(buildConfig) {
     );
 
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
-    // webpackConfig.plugins.push(
-    //   new OptimizeCssAssetsPlugin({
-    //     canPrint: config.verbosity > 2,
-    //     cssProcessor: require('cssnano'),
-    //     // @ts-ignore
-    //     cssProcessorPluginOptions: {
-    //       preset: [
-    //         'default',
-    //         {
-    //           discardComments: { removeAll: true },
-    //           mergeLonghand: false, // don't merge longhand values -- required for CSS Vars theming, etc.
-    //           zindex: false, // don't alter `z-index` values
-    //           mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
-    //         },
-    //       ],
-    //     },
-    //   }),
-    // );
+    webpackConfig.plugins.push(
+      new OptimizeCssAssetsPlugin({
+        canPrint: config.verbosity > 2,
+        cssProcessor: require('cssnano'),
+        // @ts-ignore
+        cssProcessorPluginOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true },
+              mergeLonghand: false, // don't merge longhand values -- required for CSS Vars theming, etc.
+              zindex: false, // don't alter `z-index` values
+              mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+            },
+          ],
+        },
+      }),
+    );
 
     // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
     webpackConfig.devtool =
