@@ -4,7 +4,7 @@ polyfillLoader.then(res => {
   import(
     /*
     webpackMode: 'eager',
-    webpackChunkName: 'svg-animations'
+    webpackChunkName: 'bolt-svg-animations'
   */ './src/svg-animations'
   );
 });

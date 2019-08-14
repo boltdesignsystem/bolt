@@ -1,5 +1,7 @@
+{% set schema = bolt.data.components["@bolt-components-svg-animations"].schema %}
 
-
+{% set attributes = create_attribute(attributes | default({})) %}
+  
 {% if dashSize %}
   {% set attributes = attributes.setAttribute("dashSize", dashSize) %}
 {% endif %}
@@ -8,4 +10,6 @@
   {% set attributes = attributes.setAttribute("speed", speed) %}
 {% endif %}
 
-<svg-animations {{ attributes }}></svg-animations>
+{% set attributes = attributes.setAttribute("animType", "self-drawing-circle") %}
+
+<bolt-svg-animations {{ attributes }}></bolt-svg-animations>

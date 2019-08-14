@@ -2,15 +2,23 @@
 
 <h3>Self-drawing Circle</h3>
 
-<div style="background: #000000; height: 562px; padding: 40px; width: 100%;" >
+<button id="animTrigger" style="margin-bottom: 20px; padding: 4px 8px;">Trigger Animation</button>
+
+<div class="svg-animations-container" style="background: #000000; height: 562px; padding: 40px; width: 100%;" >
 
   {% include "@bolt-components-svg-animations/svg-animations.twig" with {
-      dashSize: "8",
-      speed: "1000"
+      animType: "self-drawing-circle",
+      speed: "20",
+      dashSize: "8"
   } only %}
 
 </div>
 
 <script type="application/javascript">
-  //Call this.animateCircle() here, attached to onload or button click?
+
+  document.getElementById('animTrigger').addEventListener('click', function() {
+    const circle = document.querySelector('bolt-svg-animations');
+    circle.triggerAnimIn(4, 20)
+  });
+
 </script>

@@ -1,12 +1,13 @@
 @import '@bolt/core';
 
-.bolt-self-drawing-circle-container {
+.bolt-self-drawing-circle {
   display: inline-block;
   width: 100%;
+  max-height: 502px;
   max-width: 502px;
 
   &.rotate {
-    animation: 15000ms linear infinite spin;
+    animation: 10000ms linear infinite spin;
   }
 }
 
@@ -14,7 +15,7 @@
   fill: transparent;
   stroke: bolt-color(white);
   stroke-width: 1;
-  transform: rotate(90deg) scaleX(-1);
+  transform: rotate(70deg) scaleX(-1);
 }
 
 @keyframes spin {
