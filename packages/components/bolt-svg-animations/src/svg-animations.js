@@ -1,8 +1,4 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './svg-animations.scss';
@@ -13,9 +9,8 @@ class SvgAnimations extends withLitHtml() {
   static is = 'bolt-svg-animations';
 
   static props = {
-    animType: props.string,
+    dashSize: props.integer,
     speed: props.integer,
-    dashSize: props.integer
   };
 
   constructor(self) {
@@ -35,7 +30,6 @@ class SvgAnimations extends withLitHtml() {
   }
 
   async _drawCircle(dashSize, speed) {
-
     const outline = this.shadowRoot.querySelector('circle');
 
     const threshold = Math.ceil(245 / dashSize);
@@ -43,14 +37,17 @@ class SvgAnimations extends withLitHtml() {
     for (var i = 0; i <= threshold; i++) {
       outline.setAttribute(
         'stroke-dasharray',
-        (i === 0)  ? `${dashSize} 1000` : `${dashSize} ${dashSize} ${outline.getAttribute('stroke-dasharray')}`,
+        i === 0
+          ? `${dashSize} 1000`
+          : `${dashSize} ${dashSize} ${outline.getAttribute(
+              'stroke-dasharray',
+            )}`,
       );
 
       await this._drawTimer(speed); //eslint-disable-line no-await-in-loop
 
       if (i === threshold) {
-        this
-          .shadowRoot
+        this.shadowRoot
           .querySelector('.bolt-self-drawing-circle')
           .classList.add('rotate');
       }
@@ -58,19 +55,11 @@ class SvgAnimations extends withLitHtml() {
   }
 
   render() {
-    const { animType } = this.props;
-    console.log(this.props)
-
-    //const classes = cx('c-bolt-chip');
-    //const textClasses = cx('c-bolt-chip__item-text');
-
-    //svg switch based on props 
     return html`
       ${this.addStyles([styles])}
-      
       <div
-        id="bolt-${animType}"
-        class="bolt-${animType}"
+        id="bolt-self-drawing-circle"
+        class="bolt-self-drawing-circle"
         is="shadow-root"
       >
         <svg viewBox="-100 -100 200 200">
