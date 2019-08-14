@@ -248,11 +248,11 @@ describe('link', () => {
     const renderedHTML = await html('<div></div>');
     renderedHTML.innerHTML = renderedLinkHTML;
 
-    // Loop though all elements to see if any two have the same ID.
-    const allElements = renderedHTML.getElementsByTagName('*');
+    // Loop though all elements with any ID to see if there are duplicates.
+    const elemsWithAnyId = renderedHTML.querySelectorAll('[id]');
     let allIds = [];
     let dupIds = [];
-    allElements.forEach(el => {
+    elemsWithAnyId.forEach(el => {
       if (el.id) {
         if (allIds.includes(el.id)) {
           dupIds.push(el.id);
