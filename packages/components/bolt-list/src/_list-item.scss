@@ -43,8 +43,8 @@ $bolt-list-separator-styles: solid, dashed;
   .c-bolt-list-item--separator-#{$separator-style}.c-bolt-list-item--display-flex:before,
   .c-bolt-list-item--separator-#{$separator-style}.c-bolt-list-item--display-flex:after {
     border-width: 0;
-    border-color: $bolt-list-item-border-color;
     border-style: #{$separator-style};
+    border-color: $bolt-list-item-border-color;
   }
 }
 
@@ -116,8 +116,8 @@ $bolt-list-separator-styles: solid, dashed;
     &.c-bolt-list-item--spacing-#{$spacing-value-name} {
       &:not(.c-bolt-list-item--inset) {
         &.c-bolt-list-item--display-flex {
-          margin-left: bolt-spacing(#{$spacing-value-name}) * 2;
           margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * 2;
+          margin-left: bolt-spacing(#{$spacing-value-name}) * 2;
 
           &:before {
             left: bolt-spacing(#{$spacing-value-name}) * -1;
