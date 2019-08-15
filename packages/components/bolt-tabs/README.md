@@ -1,4 +1,4 @@
-The Tabs component provides navigation for viewing multiple panels of content one at a time.
+The Tabs component provides a menu for displaying multiple panels of content one at a time.
 
 ###### Install via NPM
 
