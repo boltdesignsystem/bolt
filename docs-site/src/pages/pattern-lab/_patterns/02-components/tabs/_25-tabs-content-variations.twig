@@ -20,24 +20,50 @@
   } only %}
 {% endset %}
 
-{% set content %}
+{% set content_bottom %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+    weight: "bold",
+  } only %}
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    spacing: "small",
+    items: [
+      link_1,
+      link_2,
+    ]
+  } only %}
+{% endset %}
+
+{% set content_1 %}
   {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
       {% include "@bolt-components-headline/text.twig" with {
-        text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+        text: "Tab panel 1. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
       } only %}
+      {{ content_bottom }}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% set content_2 %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
       {% include "@bolt-components-headline/text.twig" with {
-        text: "Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
-        weight: "bold",
+        text: "Tab panel 2. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
       } only %}
-      {% include "@bolt-components-list/list.twig" with {
-        display: "inline",
-        spacing: "small",
-        items: [
-          link_1,
-          link_2,
-        ]
+      {{ content_bottom }}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% set content_3 %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Tab panel 3. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
       } only %}
+      {{ content_bottom }}
     {% endcell %}
   {% endgrid %}
 {% endset %}
@@ -48,15 +74,15 @@
   items: [
     {
       label: "Tab label 1",
-      content: content
+      content: content_1
     },
     {
       label: "Tab label 2",
-      content: content
+      content: content_2
     },
     {
       label: "Tab label 3",
-      content: content
+      content: content_3
     },
   ]
 } only %}
