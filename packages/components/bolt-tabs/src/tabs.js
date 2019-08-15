@@ -53,17 +53,6 @@ class BoltTabs extends withContext(withLitHtml()) {
     return [TabsContext];
   }
 
-  connecting() {
-    super.connecting && super.connecting();
-
-    // Remove any remaining HTML left over from no-JS tabs solution
-    Array.from(this.children).forEach(e => {
-      if (e.tagName !== 'BOLT-TAB-PANEL') {
-        e.remove();
-      }
-    });
-  }
-
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
 
@@ -89,13 +78,15 @@ class BoltTabs extends withContext(withLitHtml()) {
 
     this.setSelectedTab(initialSelectedTab);
 
-    this.addEventListener('tabs:setSelectedTab', e => {
-      if (Array.from(panels).includes(e.target)) {
-        this.setSelectedTab(e.detail.selectedIndex);
-      }
-    });
-
-    this.setAttribute('ready', '');
+    // @todo: Only need this if we want to listen for `selected` attribute changes on children. For now, just do a one-time check on setup.
+    // this.addEventListener('tabs:setSelectedTab', e => {
+    //   const newIndex = e.detail.selectedIndex;
+    //   if (this.selectedIndex !== newIndex) {
+    //     if (Array.from(panels).includes(e.target)) {
+    //       this.setSelectedTab(newIndex);
+    //     }
+    //   }
+    // });
   }
 
   // @todo: move to BoltBase and/or move into a standalone addon function components can opt into
@@ -125,9 +116,7 @@ class BoltTabs extends withContext(withLitHtml()) {
 
     // grab an array of the pre-rendered DOM nodes to potentially remove
     const nodesToRemove = Array.from(
-      parentElem.querySelectorAll(
-        '[class*="c-bolt-tabs"]:not([ssr-hydrate]):first-child',
-      ),
+      parentElem.querySelectorAll('[class*="c-bolt-tabs"]:not([ssr-hydrate])'),
     );
 
     // remove pre-rendered DOM nodes not containing children with [ssr-hydrate] attributes
@@ -149,6 +138,10 @@ class BoltTabs extends withContext(withLitHtml()) {
     return this.getElementsByTagName('bolt-tab-panel');
   }
 
+  get tabLabels() {
+    return this.renderRoot.querySelectorAll('.c-bolt-tabs__label');
+  }
+
   validateIndex(index) {
     const panels = this.tabPanels;
 
@@ -161,7 +154,7 @@ class BoltTabs extends withContext(withLitHtml()) {
     // todo: this.useShadow is a temporary workaround until mutation observer works better with light DOM
     if (window.MutationObserver && this.useShadow) {
       // Re-generate slots + re-render when mutations are observed
-      const mutationCallback = function(mutationsList, observer) {
+      const mutationCallback = (mutationsList, observer) => {
         for (let mutation of mutationsList) {
           if (mutation.type === 'childList') {
             // @todo: add, remove, reorder
@@ -195,6 +188,30 @@ class BoltTabs extends withContext(withLitHtml()) {
 
       this.setAttribute('selected-tab', newIndex + 1); // Convert `selectedTab` back to 1-based scale
       this.contexts.get(TabsContext).selectedIndex = newIndex; // Keep context 0-based
+
+      this.scrollToSelectedTab();
+    }
+  }
+
+  scrollToSelectedTab() {
+    const selectedLabel = this.tabLabels[this.selectedIndex];
+
+    selectedLabel &&
+      selectedLabel.scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+      });
+  }
+
+  handleOnKeydown(e) {
+    switch (e.keyCode) {
+      case 35: // end key
+      case 36: // home key
+      case 37: // left arrow
+      case 39: // right arrow
+        // Prevent default horizontal scrollbar from shifting before `this.scrollIntoView()` kicks in
+        e.preventDefault();
+        break;
     }
   }
 
@@ -222,8 +239,8 @@ class BoltTabs extends withContext(withLitHtml()) {
 
     // If any of the above keys were pressed, update selected tab and set focus
     if (newIndex !== undefined) {
-      this.setSelectedTab(newIndex);
       this.renderRoot.querySelectorAll('[role="tab"]')[newIndex].focus();
+      this.setSelectedTab(newIndex);
     }
   }
 
@@ -260,6 +277,7 @@ class BoltTabs extends withContext(withLitHtml()) {
             id="${labelId}"
             tabindex="${isSelected ? -1 : 0}"
             @click=${e => this.setSelectedTab(index)}
+            @keydown=${e => this.handleOnKeydown(e)}
             @keyup=${e => this.handleOnKeyup(e)}
           >
             <span class="${labelInnerClasses}">${labelText}</span>
@@ -291,7 +309,15 @@ class BoltTabs extends withContext(withLitHtml()) {
       this.addMutationObserver();
     }
 
-    this.dispatchEvent(new CustomEvent('tabs:ready'));
+    if (!this.ready) {
+      this.setAttribute('ready', '');
+      this.dispatchEvent(new CustomEvent('tabs:ready'));
+
+      // On first render, if last item is selected, needs timeout to get acurate scroll position
+      setTimeout(() => {
+        this.scrollToSelectedTab();
+      }, 0);
+    }
   }
 
   disconnected() {

@@ -60,14 +60,15 @@ class TabPanel extends withContext(withLitHtml()) {
       }
     });
 
-    this.dispatchEvent(
-      new CustomEvent('tabs:setSelectedTab', {
-        detail: {
-          selectedIndex: this.panelIndex,
-        },
-        bubbles: true,
-      }),
-    );
+    // @todo: Do we need this? For now, let data flow always from parent.
+    // this.dispatchEvent(
+    //   new CustomEvent('tabs:setSelectedTab', {
+    //     detail: {
+    //       selectedIndex: this.panelIndex,
+    //     },
+    //     bubbles: true,
+    //   }),
+    // );
   }
 
   template() {
@@ -128,6 +129,7 @@ class TabPanel extends withContext(withLitHtml()) {
 
     const { selected } = this.validateProps(this.props);
 
+    // Keep selected attr in sync with context, triggers re-render
     if (!selected && this.panelIndex === this.context.selectedIndex) {
       this.setSelectedTab();
     }
