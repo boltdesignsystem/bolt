@@ -1,9 +1,10 @@
+@import '@bolt/core';
+
 /* ------------------------------------ *\
    List
 \* ------------------------------------ */
 
-@import '@bolt/core';
-
+// Custom element display and built-in spacing
 @include bolt-repeat-rule(('bolt-list', ':host')) {
   @include bolt-margin-bottom(medium);
 
@@ -14,11 +15,20 @@
   }
 }
 
+// List base styles
+//
+// 1. Reset typography so it doesn't inherit from a higher level container.
+// 2. Reset text-align so it doesn't conflict with the align prop which handles the horizontal alignment of inline items in a list, not the text-align within.
 .c-bolt-list {
   @include bolt-margin(0);
   @include bolt-padding(0);
+  @include bolt-font-family(body); // [1]
+  @include bolt-font-size(medium); // [1]
+  @include bolt-font-weight(regular); // [1]
 
   list-style: none;
+  text-align: left; // [2]
+  text-align: start; // [2]
 }
 
 // Display Prop
@@ -37,7 +47,10 @@
   flex-flow: row wrap;
 }
 
-@include bolt-repeat-rule(('.c-bolt-list--display-flex bolt-list-item', '.c-bolt-list--display-flex ::slotted(bolt-list-item)')) {
+@include bolt-repeat-rule((
+  '.c-bolt-list--display-flex bolt-list-item',
+  '.c-bolt-list--display-flex ::slotted(bolt-list-item)'
+)) {
   flex: 1 0 auto;
 }
 
@@ -83,8 +96,18 @@
 }
 
 // Separator Prop
-@include bolt-repeat-rule(("bolt-list[display='flex'][separator='solid']", ":host[display='flex'][separator='solid']", "bolt-list[display='flex'][separator='dashed']", ":host[display='flex'][separator='dashed']")) {
-  overflow: hidden; // This is neccessary for separators to work correctly, and the overflow must happen on the outer most container.
+//
+// Hiding overflow on the custom element is a trick to get the separators to display correctly with Flex List:
+// 1. This will hide the separators on the far left and far top.
+// 2. This is to counter the overflow hidden a little bit, so when elements that do overflow (button and card shadows) get passed into an item, the chopping is less noticable.
+// 3. This does a little extra to counter the built-in spacing.
+@include bolt-repeat-rule((
+  "bolt-list[display='flex'][separator='solid']",
+  ":host[display='flex'][separator='solid']",
+  "bolt-list[display='flex'][separator='dashed']",
+  ":host[display='flex'][separator='dashed']"
+)) {
+  overflow: hidden; // [1]
 }
 
 @each $spacing-value in $bolt-spacing-values {
@@ -94,20 +117,20 @@
     "bolt-list[spacing='#{$spacing-value-name}'][display='flex'][separator='solid']:not([inset])",
     ":host[spacing='#{$spacing-value-name}'][display='flex'][separator='solid']:not([inset])",
     "bolt-list[spacing='#{$spacing-value-name}'][display='flex'][separator='dashed']:not([inset])",
-    ":host[spacing='#{$spacing-value-name}'][display='flex'][separator='dashed']:not([inset])"))
-  {
-    @include bolt-padding-top(#{$spacing-value-name}); // This is to counter the overflow hidden a little bit, so when elements that do overflow (button and card shadows) get passed into an item, the chopping is less noticable.
-    @include bolt-padding-right(#{$spacing-value-name});
-    @include bolt-padding-bottom(#{$spacing-value-name});
-    @include bolt-padding-left(#{$spacing-value-name});
+    ":host[spacing='#{$spacing-value-name}'][display='flex'][separator='dashed']:not([inset])"
+  )) {
+    @include bolt-padding-top(#{$spacing-value-name}); // [2]
+    @include bolt-padding-right(#{$spacing-value-name}); // [2]
+    @include bolt-padding-bottom(#{$spacing-value-name}); // [2]
+    @include bolt-padding-left(#{$spacing-value-name}); // [2]
 
-    margin-top: bolt-v-spacing(#{$spacing-value-name}) * -1;
-    margin-right: bolt-spacing(#{$spacing-value-name}) * -1;
-    margin-bottom: (bolt-v-spacing(#{$spacing-value-name}) * -1) + bolt-v-spacing(medium);
-    margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
+    margin-top: bolt-v-spacing(#{$spacing-value-name}) * -1; // [2]
+    margin-right: bolt-spacing(#{$spacing-value-name}) * -1; // [2]
+    margin-bottom: (bolt-v-spacing(#{$spacing-value-name}) * -1) + bolt-v-spacing(medium); // [3]
+    margin-left: bolt-spacing(#{$spacing-value-name}) * -1; // [2]
 
     &:last-child {
-      margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
+      margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1; // [3]
     }
   }
 }

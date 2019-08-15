@@ -61,6 +61,7 @@ $bolt-list-separator-styles: solid, dashed;
     }
   }
 
+  // A different method is required to build separators for Flex List to work around not using margin and padding. Specific styles are requited on the `bolt-list` custom element to accommodate the following. See `list.scss`.
   &.c-bolt-list-item--display-flex {
     position: relative;
 
@@ -68,13 +69,13 @@ $bolt-list-separator-styles: solid, dashed;
     &:after {
       content: '';
       position: absolute;
+      top: 0;
+      left: 0;
       background-color: transparent;
     }
 
     &:before {
-      top: 0;
       bottom: 0;
-      left: 0;
       transform: translate3d(-100%, 0, 0);
       width: $bolt-list-item-border-width;
       height: 100%;
@@ -82,9 +83,7 @@ $bolt-list-separator-styles: solid, dashed;
     }
 
     &:after {
-      top: 0;
       right: 0;
-      left: 0;
       transform: translate3d(0, -100%, 0);
       width: 100%;
       height: $bolt-list-item-border-width;
@@ -114,7 +113,19 @@ $bolt-list-separator-styles: solid, dashed;
     $spacing-value-name: nth($spacing-value, 1);
 
     &.c-bolt-list-item--spacing-#{$spacing-value-name} {
-      &:not(.c-bolt-list-item--inset) {
+      &:not(.c-bolt-list-item--last-item) {
+        &.c-bolt-list-item--display-block {
+          @include bolt-padding-bottom(#{$spacing-value-name});
+        }
+
+        &.c-bolt-list-item--display-inline {
+          @include bolt-padding-right(#{$spacing-value-name});
+        }
+      }
+    }
+
+    &:not(.c-bolt-list-item--inset) {
+      &.c-bolt-list-item--spacing-#{$spacing-value-name} {
         &.c-bolt-list-item--display-flex {
           margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * 2;
           margin-left: bolt-spacing(#{$spacing-value-name}) * 2;
@@ -129,18 +140,6 @@ $bolt-list-separator-styles: solid, dashed;
         }
       }
 
-      &:not(.c-bolt-list-item--last-item) {
-        &.c-bolt-list-item--display-block {
-          @include bolt-padding-bottom(#{$spacing-value-name});
-        }
-
-        &.c-bolt-list-item--display-inline {
-          @include bolt-padding-right(#{$spacing-value-name});
-        }
-      }
-    }
-
-    &:not(.c-bolt-list-item--inset) {
       @each $breakpoint in $bolt-breakpoints {
         $breakpoint-name: nth($breakpoint, 1);
 

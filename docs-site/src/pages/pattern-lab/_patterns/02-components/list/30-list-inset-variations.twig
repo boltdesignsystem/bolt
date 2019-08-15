@@ -25,39 +25,34 @@
 {% endset %}
 
 {# Start component specific code #}
-<p><mark>Inset spacing is best suited for block and flex lists, even though you can apply to inline list as well.</mark></p>
 {% for display in regular_display_options %}
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-large" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
       <h3>{{ display|capitalize }} list with regular spacing</h3>
-      <div class="t-bolt-light u-bolt-padding-medium">
-        {% include "@bolt-components-list/list.twig" with {
-          display: display,
-          spacing: "small",
-          separator: "solid",
-          items: [
-            placeholder_1,
-            placeholder_2,
-            placeholder_3,
-          ]
-        } only %}
-      </div>
+      {% include "@bolt-components-list/list.twig" with {
+        display: display,
+        spacing: "small",
+        separator: "solid",
+        items: [
+          placeholder_1,
+          placeholder_2,
+          placeholder_3,
+        ]
+      } only %}
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
       <h3>{{ display|capitalize }} list with inset spacing</h3>
-      <div class="t-bolt-light u-bolt-padding-medium">
-        {% include "@bolt-components-list/list.twig" with {
-          display: display,
-          spacing: "small",
-          separator: "solid",
-          inset: true,
-          items: [
-            placeholder_1,
-            placeholder_2,
-            placeholder_3,
-          ]
-        } only %}
-      </div>
+      {% include "@bolt-components-list/list.twig" with {
+        display: display,
+        spacing: "small",
+        separator: "solid",
+        inset: true,
+        items: [
+          placeholder_1,
+          placeholder_2,
+          placeholder_3,
+        ]
+      } only %}
     {% endcell %}
   {% endgrid %}
 {% endfor %}
