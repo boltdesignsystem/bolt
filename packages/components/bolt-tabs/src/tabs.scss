@@ -33,6 +33,7 @@ bolt-tabs {
   opacity: 0.9;
 
   position: relative;
+  overflow: hidden; // required so that animation doesn't cause items to shift
   color: bolt-theme(headline-link);
   text-decoration: none;
   border-radius: 3px;
@@ -44,7 +45,6 @@ bolt-tabs {
   border-color: transparent;
   // transition: opacity $bolt-tabs-text-transition;
   transition: all 0.1s ease;
-  overflow: hidden; // required so that animation doesn't cause items to shift
 
   &:before {
     content: '';
