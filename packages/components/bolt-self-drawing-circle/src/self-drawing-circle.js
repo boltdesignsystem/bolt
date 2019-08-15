@@ -24,8 +24,21 @@ class SvgAnimations extends withLitHtml() {
     return animateCircle;
   }
 
+  triggerAnimOut() {
+    const resetCircle = this._resetCircle();
+    return resetCircle;
+  }
+
   _drawTimer(ms) {
     return new Promise(res => setTimeout(res, ms));
+  }
+
+  _resetCircle() {
+    const outline = this.shadowRoot.querySelector('circle');
+    outline.setAttribute('stroke-dasharray', `0 1000`);
+    this.shadowRoot
+      .querySelector('.bolt-self-drawing-circle')
+      .classList.remove('rotate');
   }
 
   async _drawCircle(dashSize, speed) {
