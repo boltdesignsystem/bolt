@@ -1,11 +1,14 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { h, withPreact } from '@bolt/core/renderers';
 import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './svg-animations.scss';
 import schema from '../svg-animations.schema.yml';
+import * as SVGAnimations from './svg/';
+import Automation from './svg/automation';
 
 @define
-class SvgAnimations extends withLitHtml() {
+class SvgAnimations extends withPreact() {
   static is = 'bolt-svg-animations';
 
   static props = {
@@ -55,23 +58,15 @@ class SvgAnimations extends withLitHtml() {
   }
 
   render() {
-    return html`
-      ${this.addStyles([styles])}
-      <div
-        id="bolt-self-drawing-circle"
-        class="bolt-self-drawing-circle"
-        is="shadow-root"
-      >
-        <svg viewBox="-100 -100 200 200">
-          <circle
-            id="bolt-self-drawing-circle-outline"
-            class="bolt-self-drawing-circle-outline"
-            r="80"
-            stroke-dasharray="0 1000"
-          />
-        </svg>
+    
+    const SVGTag = SVGAnimations[`Automation`];
+
+    return (
+      <div>
+        {this.useShadow && <style>{styles[0][1]}</style>}
+        <SVGTag />
       </div>
-    `;
+    )
   }
 }
 
