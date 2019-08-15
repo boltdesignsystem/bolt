@@ -4,7 +4,7 @@ polyfillLoader.then(res => {
   import(
     /*
     webpackMode: 'eager',
-    webpackChunkName: 'bolt-svg-animations'
-  */ './src/svg-animations'
+    webpackChunkName: 'bolt-self-drawing-circle'
+  */ './src/self-drawing-circle'
   );
 });

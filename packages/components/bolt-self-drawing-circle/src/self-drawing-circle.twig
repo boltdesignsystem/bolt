@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components["@bolt-components-svg-animations"].schema %}
+{% set schema = bolt.data.components["@bolt-components-self-drawing-circle"].schema %}
 
 {% set attributes = create_attribute(attributes | default({})) %}
   
@@ -13,4 +13,4 @@
 {% set attributes = attributes.setAttribute("animType", "self-drawing-circle") %}
 
 
-<bolt-svg-animations {{ attributes }}></bolt-svg-animations>
+<bolt-self-drawing-circle {{ attributes }}></bolt-self-drawing-circle>

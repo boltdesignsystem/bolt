@@ -1,12 +1,11 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import classNames from 'classnames/bind';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import styles from './svg-animations.scss';
-import schema from '../svg-animations.schema.yml';
+import styles from './self-drawing-circle.scss';
+import schema from '../self-drawing-circle.schema.yml';
 
 @define
 class SvgAnimations extends withLitHtml() {
-  static is = 'bolt-svg-animations';
+  static is = 'bolt-self-drawing-circle';
 
   static props = {
     dashSize: props.integer,
