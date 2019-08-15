@@ -3,7 +3,7 @@
 <h3>Tabs inside various themes</h3>
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium" %}
   {% for theme in themes.properties.colors.enum %}
-    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+    {% cell "u-bolt-width-1/1" %}
       {% embed "@utils/theme-demo.twig" %}
         {% block demo_content %}
           {% include "@bolt-components-tabs/tabs.twig" with {
