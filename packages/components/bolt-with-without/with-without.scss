@@ -270,21 +270,6 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     }
   }
 
-  &__active-w {
-    display: block;
-
-
-    .c-pega-wwo__content-wo {
-      //@include bolt-visuallyhidden;
-      //display: none;
-    }
-
-    .c-pega-wwo__content-w {
-      //@include bolt-visuallyshown;
-      //display: block;
-    }
-  }
-
   &__title {
     z-index: 12;
     padding: bolt-spacing(large) bolt-spacing(small) 0 bolt-spacing(small);
@@ -296,6 +281,11 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
       display: block;
       z-index: 12;
     }
+  }
+
+  &__circles-and-blocks--animator[meta-stage="OUT"] {
+    // There was a flash of a badly-styled circle right after animate.
+    margin-left: -9999999px;
   }
 
   &__circles {

@@ -1,11 +1,9 @@
 import { triggerAnims } from '@bolt/components-animate/utils';
 import pierceShadowDomEls from './shadowDomPiercingHacks';
 
-const setActiveRegionClass = (inactiveToRemove, activeToSet) => {
-  const mainWrapper = document.querySelector('.c-pega-wwo__wrapper');
-  const activeWoClass = 'c-pega-wwo__active-';
-  mainWrapper.classList.add(`${activeWoClass}${activeToSet}`);
-  mainWrapper.classList.remove(`${activeWoClass}${inactiveToRemove}`);
+const setActiveRegionAttr = (inactiveToRemove, activeToSet) => {
+  const mainWrapper = document.querySelector('#c-pega-wwo__wrapper');
+  mainWrapper.setAttribute('active', activeToSet);
 };
 
 /*
@@ -16,7 +14,7 @@ const filterInvisibles = els => {
   return els.filter(el => el.offsetHeight > 0);
 };
 
-const getCurriedPageLoadAnimation = (withIsBecomingActive, mainWrapper) => {
+const getCurriedPageLoadAnimation = mainWrapper => {
   return () => {
     console.debug('triggered:InitialAnimation');
     const animInitOutEls = Array.from(
@@ -46,17 +44,12 @@ const getCurriedAnimateContentOut = (
         `bolt-animate[group="${outGroupAttrVal}"][out]:not([type="in-effect-only"])`,
       ),
     );
-    console.log('getCurriedAnimateContentOut', filterInvisibles(animOutEls));
+    // console.log('getCurriedAnimateContentOut', filterInvisibles(animOutEls));
     await triggerAnims({
       animEls: filterInvisibles(animOutEls),
       stage: 'OUT',
-      debug: true,
+      // debug: true,
     });
-    triggerAnimateOutOnInOnlyContent(
-      outGroupAttrVal,
-      inGroupAttrVal,
-      mainWrapper,
-    );
   };
 };
 
@@ -66,31 +59,23 @@ const getCurriedAnimateContentOut = (
  * There is a class of animations "in-effect-only" which do not animate out visible.
  * Instead, these must be animated out manually so they can be animated back in.
  *
- * @param outGroupAttrVal
- * @param inGroupAttrVal
+ * @param groupAttrVal
  * @param mainWrapper
  * @returns {void}
  */
-const triggerAnimateOutOnInOnlyContent = async (
-  outGroupAttrVal,
-  inGroupAttrVal,
-  mainWrapper,
-) => {
+const triggerAnimateOutOnInOnlyContent = async (groupAttrVal, mainWrapper) => {
   console.debug('triggered:triggerAnimateOutOnInOnlyContent');
   const animOutEls = Array.from(
     mainWrapper.querySelectorAll(
-      `bolt-animate[group="${outGroupAttrVal}"][type="in-effect-only"]`,
+      `bolt-animate[group="${groupAttrVal}"][type="in-effect-only"]`,
     ),
   );
-  // mainWrapper.querySelectorAll(
-  //   `bolt-animate[group="${outGroupAttrVal}"][type="in-effect-only"]`,
-  // );
 
-  console.log('triggerAnimateOutOnInOnlyContent animInEls', animOutEls);
+  // console.log('triggerAnimateOutOnInOnlyContent animInEls', animOutEls);
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'OUT',
-    debug: true,
+    // debug: true,
   });
 };
 
@@ -106,7 +91,7 @@ const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'IN',
-    debug: true,
+    // debug: true,
   });
 };
 
@@ -118,34 +103,23 @@ const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
  * visible again before we slide into that content and/or attempt to trigger
  * a different animation within a potentially faded-out area.
  *
- * @param outGroupAttrVal
- * @param inGroupAttrVal
+ * @param groupAttrVal
  * @param mainWrapper
  * @returns {void}
  */
-const triggerAnimateInOnOutOnlyContent = async (
-  outGroupAttrVal,
-  inGroupAttrVal,
-  mainWrapper,
-) => {
-  console.debug('triggered:RestoreInactiveContentAfterSlideAnimation');
+const triggerAnimateInOnOutOnlyContent = async (groupAttrVal, mainWrapper) => {
+  console.debug('triggerAnimateInOnOutOnlyContent');
   const animOutEls = Array.from(
     mainWrapper.querySelectorAll(
-      `bolt-animate[group="${outGroupAttrVal}"][type="out-effect-only"]`,
+      `bolt-animate[group="${groupAttrVal}"][type="out-effect-only"]`,
     ),
   );
-  // mainWrapper.querySelectorAll(
-  //   `bolt-animate[group="${outGroupAttrVal}"][type="in-effect-only"]`,
-  // );
 
-  console.log(
-    ' restorePrevSlideInactiveContentAfterSlideAnimation animOutEls',
-    animOutEls,
-  );
+  // console.log(' triggerAnimateInOnOutOnlyContent animOutEls', animOutEls);
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'IN',
-    debug: true,
+    // debug: true,
   });
 };
 
@@ -155,54 +129,69 @@ const getCurriedAnimateContentIn = (
   mainWrapper,
 ) => {
   return async () => {
-    console.debug('triggered:AfterSlideAnimation');
-    triggerAnimateInOnOutOnlyContent(
-      outGroupAttrVal,
-      inGroupAttrVal,
-      mainWrapper,
-    );
+    console.debug('triggered:AnimateContentIn ');
+
     const animInEls = Array.from(
       mainWrapper.querySelectorAll(
         `bolt-animate[group="${inGroupAttrVal}"][in]:not([type="out-effect-only"])`,
       ),
     );
 
+    // console.log('AnimateContentIn', animInEls);
+
     await triggerAnims({
       animEls: filterInvisibles(animInEls),
       stage: 'IN',
       debug: true,
     });
+
+    console.log('about to dispatch animateEnd', mainWrapper);
+    mainWrapper.dispatchEvent(
+      new CustomEvent('animateEnd', {
+        bubbles: false,
+      }),
+    );
   };
+};
+
+const restoreContentBeforeSlideIn = async (inGroupAttrVal, mainWrapper) => {
+  await triggerAnimateInOnOutOnlyContent(inGroupAttrVal, mainWrapper);
+  await triggerAnimateOutOnInOnlyContent(inGroupAttrVal, mainWrapper);
+  return true;
 };
 
 /**
  * Controls the animation in/out of active with/without (w/wo) region.
  *
- * @param {boolean} checked: Whether or not the input is checked.
+ * @param {boolean} checked: whether or not the input is checked.
  * @param {Swiper} wwoSwiper: Initialized instance of a Swiper.
  * @param {boolean} init: Whether or not this is the initial, i.e. page load animation.
  *
  * @return {void}
  */
-const handleActiveRegionChange = async (checked, wwoSwiper, init = false) => {
-  const mainWrapper = document.querySelector('.c-pega-wwo__wrapper');
-
+const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
+  const mainWrapper = document.querySelector('#c-pega-wwo__wrapper');
+  mainWrapper.dispatchEvent(
+    new CustomEvent('animateStart', {
+      bubbles: false,
+    }),
+  );
   const withIsBecomingActive = checked;
   // w stands for with, wo stands for without
   const inGroupAttrVal = withIsBecomingActive ? 'w' : 'wo';
   const outGroupAttrVal = withIsBecomingActive ? 'wo' : 'w';
-  setActiveRegionClass(outGroupAttrVal, inGroupAttrVal);
+  setActiveRegionAttr(outGroupAttrVal, inGroupAttrVal);
 
   if (init) {
     pierceShadowDomEls(mainWrapper);
 
-    getCurriedPageLoadAnimation(withIsBecomingActive, mainWrapper)();
+    getCurriedPageLoadAnimation(mainWrapper)();
 
     if (withIsBecomingActive) {
       // In this case the checked button is With Pega, so transition to that slide first.
       wwoSwiper.once(
         'slideChangeEnd',
-        getCurriedPageLoadAnimation(withIsBecomingActive, mainWrapper),
+        getCurriedPageLoadAnimation(mainWrapper),
       );
       wwoSwiper.slideNext();
     }
@@ -210,23 +199,40 @@ const handleActiveRegionChange = async (checked, wwoSwiper, init = false) => {
     // Fire the content initialization animations.
     getCurriedAnimateContentIn(outGroupAttrVal, inGroupAttrVal, mainWrapper)();
   } else {
-    wwoSwiper.once(
-      'slideChangeTransitionEnd',
-      getCurriedAnimateContentIn(outGroupAttrVal, inGroupAttrVal, mainWrapper),
-    );
     // The event handler for swiper doesn't respect await, so trigger here directly.
+
+    await restoreContentBeforeSlideIn(inGroupAttrVal, mainWrapper);
     await getCurriedAnimateContentOut(
       outGroupAttrVal,
       inGroupAttrVal,
       mainWrapper,
     )();
+
+    wwoSwiper.once(
+      'slideChangeTransitionEnd',
+      getCurriedAnimateContentIn(outGroupAttrVal, inGroupAttrVal, mainWrapper),
+    );
     if (withIsBecomingActive) {
       wwoSwiper.slideNext();
     } else {
       wwoSwiper.slidePrev();
     }
   }
+  return true;
 };
 
-export default handleActiveRegionChange;
-export { triggerAnimateInOnInOnlyContent };
+const handleActiveRegionChangeRequest = (checked, wwoSwiper) => {
+  const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
+  const animIsInProgress = !!animControllerEl.getAttribute('anim-in-progress');
+
+  if (animIsInProgress) {
+    return;
+  }
+  triggerActiveRegionChange(checked, wwoSwiper);
+};
+
+export {
+  triggerAnimateInOnInOnlyContent,
+  triggerActiveRegionChange,
+  handleActiveRegionChangeRequest,
+};

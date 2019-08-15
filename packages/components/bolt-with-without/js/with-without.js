@@ -3,7 +3,10 @@ import _debounce from 'lodash/debounce';
 import * as SimpleSwitch from './Switch';
 import handleBlockTitleMobileAccordionClick from './accordion';
 import handleResize from './handleResize';
-import handleActiveRegionChange from './handleActiveRegionChange';
+import {
+  triggerActiveRegionChange,
+  handleActiveRegionChangeRequest,
+} from './handleActiveRegionChange';
 
 // Set up the resize listener which helps with some of the abs. pos. stuff.
 handleResize();
@@ -21,29 +24,33 @@ const wwoSwiper = new Swiper('.c-pega-wwo__swiper-container', {
 });
 
 // Initialize the page.
-handleActiveRegionChange(
+triggerActiveRegionChange(
   document.querySelector(toggleInputClass).checked,
   wwoSwiper,
   true,
 );
 
 // Wire up the toggler to the event region switcher.
-document.querySelector('#c-pega-wwo__toggle-input').addEventListener(
-  'change',
-  // e => {
-  //   handleActiveRegionChange(e.target.checked, wwoSwiper);
-  // },
-  _debounce(
-    e => {
-      handleActiveRegionChange(e.target.checked, wwoSwiper);
-    },
-    5000,
-    {
-      leading: true,
-      trailing: false,
-    },
-  ),
-);
+document
+  .querySelector('#c-pega-wwo__toggle-input')
+  .addEventListener('change', e => {
+    handleActiveRegionChangeRequest(e.target.checked, wwoSwiper);
+  });
+
+// Add animation start and end event listeners to keep event from firing while in progress.
+const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
+animControllerEl.addEventListener('animateStart', e => {
+  e.target.setAttribute('anim-in-progress', 1);
+});
+animControllerEl.addEventListener('animateEnd', e => {
+  e.target.removeAttribute('anim-in-progress');
+  const activeAttr = animControllerEl.getAttribute('active');
+  const checkedStateOfAnimation = activeAttr === 'w';
+  const input = document.querySelector('#c-pega-wwo__toggle-input');
+  if (input.checked !== checkedStateOfAnimation) {
+    handleActiveRegionChangeRequest(input.checked, wwoSwiper);
+  }
+});
 
 // Initialize the accordion.
 document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
