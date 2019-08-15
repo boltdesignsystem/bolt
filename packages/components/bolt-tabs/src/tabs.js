@@ -189,7 +189,8 @@ class BoltTabs extends withContext(withLitHtml()) {
       this.setAttribute('selected-tab', newIndex + 1); // Convert `selectedTab` back to 1-based scale
       this.contexts.get(TabsContext).selectedIndex = newIndex; // Keep context 0-based
 
-      this.scrollToSelectedTab();
+      // @todo: disable for now, not working as expected, scrolling whole page!
+      // this.scrollToSelectedTab();
     }
   }
 
@@ -314,9 +315,9 @@ class BoltTabs extends withContext(withLitHtml()) {
       this.dispatchEvent(new CustomEvent('tabs:ready'));
 
       // On first render, if last item is selected, needs timeout to get acurate scroll position
-      setTimeout(() => {
-        this.scrollToSelectedTab();
-      }, 0);
+      // setTimeout(() => {
+      //   this.scrollToSelectedTab();
+      // }, 0);
     }
   }
 
