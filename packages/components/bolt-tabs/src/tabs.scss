@@ -42,8 +42,9 @@ bolt-tabs {
   border-width: thin;
   border-style: dotted;
   border-color: transparent;
-  transition: opacity $bolt-tabs-text-transition;
+  // transition: opacity $bolt-tabs-text-transition;
   transition: all 0.1s ease;
+  overflow: hidden; // required so that animation doesn't cause items to shift
 
   &:before {
     content: '';
