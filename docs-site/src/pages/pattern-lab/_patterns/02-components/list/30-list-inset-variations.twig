@@ -28,7 +28,7 @@
 {% for display in regular_display_options %}
   {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-large" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
-      <h3>{{ display|capitalize }} list with regular spacing</h3>
+      <h3>Regular spacing in a {{ display }} list</h3>
       {% include "@bolt-components-list/list.twig" with {
         display: display,
         spacing: "small",
@@ -41,7 +41,7 @@
       } only %}
     {% endcell %}
     {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
-      <h3>{{ display|capitalize }} list with inset spacing</h3>
+      <h3>Inset spacing in a {{ display }} list</h3>
       {% include "@bolt-components-list/list.twig" with {
         display: display,
         spacing: "small",
