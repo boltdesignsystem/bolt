@@ -1,5 +1,4 @@
 import Swiper from 'swiper';
-import _debounce from 'lodash/debounce';
 import * as SimpleSwitch from './Switch';
 import handleBlockTitleMobileAccordionClick from './accordion';
 import handleResize from './handleResize';
