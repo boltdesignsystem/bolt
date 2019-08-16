@@ -1,0 +1,20 @@
+{% for valign in ["center", "top", "bottom", "25%"] %}
+  <p>valign: {{ valign }}</p>
+  {% include "./_00-background-band-demo.twig" with {
+    background: {
+      fill: "color",
+      opacity: "medium",
+      focalPoint: {
+        vertical: "center",
+        horizontal: "center"
+      },
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/images/content/backgrounds/background-tall-2.jpg",
+          valign: valign
+        }
+      ]
+    }
+  } %}
+{% endfor %}
