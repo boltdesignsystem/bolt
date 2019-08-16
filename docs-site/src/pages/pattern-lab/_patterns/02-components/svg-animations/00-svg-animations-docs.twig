@@ -1,0 +1,11 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-self-drawing-circle/self-drawing-circle.twig" with {
+    dashSize: "8",
+    speed: "1000"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "self-drawing-circle",
+  usage: usage
+} only %}

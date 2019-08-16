@@ -1,0 +1,28 @@
+{% set schema = bolt.data.components["@bolt-components-self-drawing-circle"].schema %}
+
+<h3>Self-drawing Circle</h3>
+
+<div style="margin-bottom: 20px">
+  <button id="animTrigger" style="padding: 4px 8px;">Trigger Animation</button>
+  <button id="animReset" style="padding: 4px 8px;">Reset Animation</button>
+</div>
+
+<div class="self-drawing-circle-container" style="background: #000000; height: 562px; padding: 40px; width: 100%;" >
+
+  {% include "@bolt-components-self-drawing-circle/self-drawing-circle.twig" %}
+
+</div>
+
+<script type="application/javascript">
+  
+  const circle = document.querySelector('bolt-self-drawing-circle');
+
+  document.getElementById('animTrigger').addEventListener('click', function() {
+    circle.triggerAnimIn(4, 20)
+  });
+
+  document.getElementById('animReset').addEventListener('click', function() {
+    circle.triggerAnimOut()
+  });
+
+</script>
