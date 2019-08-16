@@ -66,7 +66,7 @@ class BoltTypeahead extends withEvents(withPreact()) {
   // @ts-ignore
   constructor(self) {
     self = super(self);
-
+    // self.useShadow = false;
     // Autosuggest is a controlled component.
     // This means that you need to provide an input value
     // and an onChange handler that updates this value (see below).
@@ -178,8 +178,6 @@ class BoltTypeahead extends withEvents(withPreact()) {
   getSuggestions(value) {
     this._fire('getSuggestions', value);
 
-    console.log(this._listeners['getSuggestions']);
-
     // skip default onChange behavior if external listeners have hooked in
     if (!this._listeners['getSuggestions']) {
       const fuseOptions = {
@@ -238,7 +236,6 @@ class BoltTypeahead extends withEvents(withPreact()) {
   // Autosuggest calls this every time you need to clear suggestions.
   onSuggestionsClearRequested = () => {
     this._fire('onSuggestionsClearRequested');
-    // console.log('onSuggestionsClearRequested');
     this._setState({
       suggestions: [],
       isOpen: false,
