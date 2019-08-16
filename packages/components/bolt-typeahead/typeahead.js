@@ -305,7 +305,7 @@ class BoltTypeahead extends withEvents(withPreact()) {
             }}>
             {clearButtonText}
             <bolt-icon
-              name="close"
+              name="close-solid"
               slot="before"
               className={cx('c-bolt-typeahead__icon')}
               title={clearButtonText}
