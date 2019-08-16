@@ -11,7 +11,7 @@ $bolt-typeahead-button-width: bolt-spacing(medium) + .75rem;
 $bolt-typeahead-border-width: $bolt-border-width;
 $bolt-typeahead-border-style: $bolt-border-style;
 $bolt-typeahead-border-radius: 6px;
-$bolt-typeahead-placeholder-color: bolt-theme(text, 0.4);
+$bolt-typeahead-placeholder-color: bolt-theme(text-on-secondary, 0.4);
 
 $bolt-typeahead-result-highlight-color: #F5F5FA;
 
@@ -30,6 +30,7 @@ bolt-typeahead {
   color: bolt-theme(text);
   border-radius: $bolt-typeahead-border-radius;
   background-color: inherit;
+  --bolt-theme-background: 255, 255, 255;
 }
 
 .c-bolt-typeahead__label {
@@ -44,16 +45,16 @@ bolt-typeahead {
   @include bolt-padding(medium, squished);
   padding-right: $bolt-typeahead-button-width;
   padding-left: $bolt-typeahead-button-width;
-  color: bolt-theme(text);
+  color: bolt-theme(text-on-secondary);
   text-transform: capitalize;
   font-size: 16px; // prevent zooming in on mobile
   border-radius: $bolt-typeahead-border-radius;
   border-width: $bolt-typeahead-border-width;
   border-style: $bolt-typeahead-border-style;
-  border-color: bolt-theme(link);
-  background-color: bolt-theme(background);
+  border-color: bolt-theme(link, .5);
+  background-color: bolt-theme(secondary, 1);
   text-overflow: ellipsis;
-  transition: all $bolt-transition;
+  transition: all 0.1s ease;
   outline-offset: -3px;
   outline-width: 2px;
 
@@ -68,6 +69,11 @@ bolt-typeahead {
   &:focus {
     border-color: bolt-theme(link, 0.8);
     box-shadow: 0 0 0 3px bolt-theme(link, 0.2);
+  }
+
+  &--open {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   // Remove the native <input> clear button in IE 11 in lieu of JS-controlled clear button
@@ -116,16 +122,20 @@ bolt-typeahead {
   text-transform: capitalize;
   border-bottom-right-radius: $bolt-typeahead-border-radius;
   border-bottom-left-radius: $bolt-typeahead-border-radius;
-  box-shadow: rgba(26, 26, 29, 0.3) 0px 15px 46px -10px;
-  // -webkit-overflow-scrolling: touch;
-  background-color: bolt-theme(secondary);
+  box-shadow: rgba(bolt-color(gray, dark), 0.3) 0px 15px 46px -10px;
+
+  background-color: bolt-theme(
+    (
+      xdark: brand-darken-5,
+      dark: brand-lighten-20,
+      light: secondary,
+      xlight: secondary,
+    )
+  );
+  background-color: var(--bolt-typeahead-menu-background, rgba(var(--bolt-theme-secondary), 1));
+
   // transition: max-height 0.3s ease, opacity 0.3s ease;
   transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1);
-
-
-
-
-  // border-color: bolt-color(indigo, light);
 
   &.is-open {
     opacity: 1;
@@ -134,9 +144,6 @@ bolt-typeahead {
     max-height: calc(100vh - var(--typeahead-height) );
   }
 
-  @media all and (max-width: bolt-bp(medium) - 1) {
-    position: relative !important;
-  }
 }
 
 .c-bolt-typeahead__results {
@@ -148,16 +155,6 @@ bolt-typeahead {
   border-bottom-left-radius: $bolt-typeahead-border-radius;
   @include bolt-padding-top(xsmall);
   @include bolt-padding-bottom(xsmall);
-  // border-width: 1px;
-  // border-style: solid;
-  // border-color: transparent;
-  // border-color: bolt-theme(border);//darken($pl-color-gray-87, 5%);
-  background-color: inherit;
-  // border-color: bolt-color(indigo, light);
-  // @include bolt-shadow(
-  //   $key: 'level-20',
-  //   $base-color: bolt-color(indigo, light)
-  // );
 
   &:empty {
     max-height: 0;
@@ -168,7 +165,6 @@ bolt-typeahead {
 .c-bolt-typeahead__result {
   overflow: hidden;
   color: inherit;
-  background-color: inherit;
   transition: background-color 0.1s ease;
 
   &.has-cursor {
@@ -226,9 +222,9 @@ bolt-typeahead {
 }
 
 .c-bolt-typeahead__icon {
+  color: bolt-color(indigo, light);
   line-height: 1;
   font-size: 1.5rem;
-  // font-size: 27px;
 }
 
 .c-bolt-typeahead__icon--clear {
@@ -248,7 +244,6 @@ bolt-typeahead {
   opacity: 1;
 }
 
-// .c-bolt-typeahead__input: ~ .c-bolt-typeahead__button--submit
 .c-bolt-typeahead__input--with-clear-button ~ .c-bolt-typeahead__button--submit {
   opacity: 1;
 }

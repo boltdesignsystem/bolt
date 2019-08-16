@@ -30,7 +30,6 @@
   left: 0;
   z-index: bolt-z-index('nav');
   width: 100%;
-  overflow: hidden;
   border-bottom: 1px solid #f5f5fa;
 }
 
@@ -830,11 +829,18 @@
   color: #005A8B;
   -ms-flex-item-align: center;
   white-space: nowrap;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .c-header-buttons .c-header-buttons__item {
   display: inline-block;
   vertical-align: middle;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .c-hamburger {

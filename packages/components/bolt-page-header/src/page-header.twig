@@ -1,4 +1,4 @@
-<header class="c-page-header c-page-header--global-search-active qa-page-header js-global-header cd-main-header is-fixed headroom is-top is-not-bottom">  <div class="c-page-header__wrapper">
+<header class="c-page-header qa-page-header js-global-header cd-main-header is-fixed headroom is-top is-not-bottom">  <div class="c-page-header__wrapper">
     <div class="c-page-header__background"></div>
     <div class="c-page-header__content"> <span id="!"></span>
       <div class="c-page-header__utility-nav">
@@ -530,39 +530,73 @@
           <ul class="o-bolt-bare-list c-header-buttons js-mega-nav__header-buttons">
             <li class="c-header-buttons__item">
               <div class="c-global-search-panel-trigger">
-                <div class="c-global-search-panel-trigger__open-button">
-                  <bolt-button color="text" icon-only aria-controls="global-search" aria-haspopup="true">
-                    <bolt-icon name="search" slot="before"></bolt-icon>
-                    Search Pega.com
-                  </bolt-button>
-                </div>
-                <div class="c-global-search-panel-trigger__close-button">
-                  <bolt-button color="text" icon-only aria-controls="global-search" aria-haspopup="true">
-                    <bolt-icon name="close" slot="before"></bolt-icon>
-                    Close search
-                  </bolt-button>
-                </div>
-                <span class="c-global-search-panel-trigger__panle-tip t-bolt-dark"></span>
+                {% include "@bolt-components-button/button.twig" with {
+                  text: "Search Pega.com",
+                  iconOnly: true,
+                  color: "text",
+                  icon: {
+                    title: "Search Pega.com",
+                    name: "search",
+                    slot: "before",
+                    fallback: true,
+                    attributes: {
+                      class: "c-global-search-panel-trigger__icon"
+                    }
+                  },
+                  attributes: {
+                    "aria-controls": "global-search",
+                    "aria-haspopup": true,
+                    "onclick": "this.closest('.js-global-header').classList.add('c-page-header--global-search-active')",
+                    "class": "c-global-search-panel-trigger__open-button"
+                  }
+                } only %}
+                {% include "@bolt-components-button/button.twig" with {
+                  text: "Close search",
+                  iconOnly: true,
+                  color: "text",
+                  icon: {
+                    title: "Close search",
+                    name: "close",
+                    slot: "before",
+                    fallback: true,
+                    attributes: {
+                      class: "c-global-search-panel-trigger__icon"
+                    }
+                  },
+                  attributes: {
+                    "aria-controls": "global-search",
+                    "aria-haspopup": true,
+                    "onclick": "this.closest('.js-global-header').classList.remove('c-page-header--global-search-active')",
+                    "class": "c-global-search-panel-trigger__close-button"
+                  }
+                } only %}
+                <span class="c-global-search-panel-trigger__panel-tip t-bolt-dark"></span>
               </div>
             </li>
             <li class="c-header-buttons__item">
               <div class="c-hamburger">
-                <bolt-button color="text" icon-only>
-                  <bolt-icon name="menu" slot="before"></bolt-icon>
-                  Open menu
-                </bolt-button>
+                {% include "@bolt-components-button/button.twig" with {
+                  text: "Open menu",
+                  color: "text",
+                  iconOnly: true,
+                  icon: {
+                    title: "Open Menu",
+                    name: "menu",
+                    slot: "before",
+                    fallback: true,
+                  },
+                } only %}
               </div>
             </li>
           </ul>
         </div>
         <div class="c-page-header__contact t-bolt-xlight">
-          <div>
-            <div>
-              <bolt-button size="small" bolt-component>
-                <a id="p-858e42d3-db5b-424b-a12b-b24aedd1169e" class="_c-bolt-button--theme-override c-bolt-button c-bolt-button--small c-bolt-button--primary c-bolt-button--item-align-center" href="https://www.pega.com/contact-us"> <span class="c-bolt-button__item c-bolt-button__item-text">Try Pega</span> </a>
-              </bolt-button>
-            </div>
-          </div>
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Try Pega",
+            color: "primary",
+            size: "small",
+            url: "https://www.pega.com/contact-us"
+          } only %}
         </div>
       </div>
       <div class="c-mega-nav__mobile-contact u-hide@large">
@@ -576,22 +610,7 @@
         {% grid "o-bolt-grid--center c-global-search-panel__content__transition" %}
           {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large" %}
             <div class="u-bolt-margin-bottom-small">
-              <form>
-                <label class="c-bolt-search-field t-bolt-xlight" for="search-bar">
-                  <span class="c-bolt-search-field__label">Search the Pegasystems website</span>
-                  <input class="c-bolt-search-field__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
-                  <div class="c-bolt-search-field__button">
-                    <bolt-button color="text" tag="submit" icon-only>
-                      <bolt-icon name="search" slot="before"></bolt-icon>
-                    </bolt-button>
-                  </div>
-                  <div class="c-bolt-search-field__button c-bolt-search-field__button--reset">
-                    <bolt-button color="text" tag="reset" icon-only>
-                      <bolt-icon name="close-solid" slot="before"></bolt-icon>
-                    </bolt-button>
-                  </div>
-                </label>
-              </form>
+              {% include "@pl/typeahead-with-js-hook.twig" only %}
             </div>
             <bolt-text font-size="xsmall" align="center">
               Placeholder for helper text and did-you-mean text.
@@ -600,10 +619,10 @@
         {% endgrid %}
       </div>
     </div>
-    <bolt-trigger cursor="pointer" display="block" class="c-global-search-panel__overlay">
-      Close search
-    </bolt-trigger>
   </div>
+  <bolt-trigger cursor="pointer" display="block" class="c-global-search-panel__overlay" onclick="this.closest('.js-global-header').classList.remove('c-page-header--global-search-active')">
+    Close search
+  </bolt-trigger>
 </header>
 
 
