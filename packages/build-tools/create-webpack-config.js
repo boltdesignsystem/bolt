@@ -207,11 +207,15 @@ async function createWebpackConfig(buildConfig) {
                 isJsFile === true &&
                 context.resourcePath.includes('.scoped')
               ) {
-                return `${localName}--${crypto
-                  .createHash('md5')
-                  .update(localName)
-                  .digest('hex')
-                  .substring(0, 8)}`;
+                if (localName.includes('t-bolt')){
+                  return localName;
+                } else {
+                  return `${localName}--${crypto
+                    .createHash('md5')
+                    .update(localName)
+                    .digest('hex')
+                    .substring(0, 8)}`;
+                }
               } else {
                 return localName;
               }
@@ -234,11 +238,16 @@ async function createWebpackConfig(buildConfig) {
               generateScopedName(name, filename, css) {
                 if (filename.includes('.scoped') && isJsFile === false) {
                   const i = css.indexOf(`.${name}`);
-                  return `${name}--${crypto
-                    .createHash('md5')
-                    .update(name)
-                    .digest('hex')
-                    .substring(0, 8)}`;
+
+                  if (name.includes('t-bolt')){
+                    return name;
+                  } else {
+                    return `${name}--${crypto
+                      .createHash('md5')
+                      .update(name)
+                      .digest('hex')
+                      .substring(0, 8)}`;
+                  }
                 } else {
                   return name;
                 }
