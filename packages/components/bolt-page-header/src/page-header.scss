@@ -814,7 +814,8 @@
 }
 
 .c-header-buttons {
-  display: inline-block;
+  display: flex;
+  align-items: center;
   align-self: center;
   visibility: visible;
   opacity: 1;
@@ -826,21 +827,18 @@
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: bolt-z-index('nav');
+  height: 100%;
+  overflow: hidden;
   color: #005A8B;
   -ms-flex-item-align: center;
   white-space: nowrap;
-  overflow: hidden;
-  height: 100%;
-  display: flex;
-  align-items: center;
 }
 
 .c-header-buttons .c-header-buttons__item {
-  display: inline-block;
-  vertical-align: middle;
-  height: 100%;
   display: flex;
   align-items: center;
+  height: 100%;
+  vertical-align: middle;
 }
 
 .c-hamburger {

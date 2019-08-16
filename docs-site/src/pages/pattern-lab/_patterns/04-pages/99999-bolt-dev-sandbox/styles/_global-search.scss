@@ -123,14 +123,14 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
 .c-global-search-panel--floating {
   @include bolt-shadow('level-40');
 
+  position: absolute;
+  top: calc(100% - 1px);
+  right: 0;
+  left: 0;
   width: 100%;
   max-height: 0;
   pointer-events: none;
   transition: all $bolt-transition;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(100% - 1px);
 
   @at-root .c-page-header--global-search-active #{&} {
     pointer-events: auto;
@@ -167,16 +167,16 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
 
   @at-root .c-global-search-panel--floating #{&} {
     opacity: bolt-opacity(0);
-    transition: all $bolt-transition;
+    opacity: 0;
     transform: translate3d(0, 0, 0) scale3d(1, .5, 1);
+    transition: all $bolt-transition;
     @include bolt-shadow('level-40');
     transform-origin: 0 0;
-    opacity: 0;
 
     > * {
       opacity: 0;
-      transition: opacity ease-in-out 200ms 200ms, transform ease-in-out 200ms;
       transform: translate3d(0, 0px, 0) scale3d(0.99, 0.8, 1);
+      transition: opacity ease-in-out 200ms 200ms, transform ease-in-out 200ms;
       transition-delay: 133.333ms;
 
       .c-page-header--global-search-active & {
@@ -189,8 +189,8 @@ $bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
 
   @at-root .c-page-header--global-search-active .c-global-search-panel--floating #{&} {
     opacity: bolt-opacity(100);
-    z-index: 2; // This is self contained z-index within the search panel. Its only purpose is to define stacking order of elements in this specific container.
     transform: translate3d(0, 0, 0);
+    z-index: 2; // This is self contained z-index within the search panel. Its only purpose is to define stacking order of elements in this specific container.
   }
 }
 
