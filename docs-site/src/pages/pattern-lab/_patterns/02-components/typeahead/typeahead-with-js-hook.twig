@@ -1,10 +1,10 @@
 {% include "@bolt-components-typeahead/typeahead.twig" with {
-    attributes: {
-      class: [
-        "js-typeahead-hook"
-      ]
-    }
-  } %}
+  attributes: {
+    class: [
+      "js-typeahead-hook"
+    ]
+  }
+} %}
 
 <script>
   const typeahead = document.querySelector('.js-typeahead-hook');
@@ -69,18 +69,4 @@
       });
     }
   });
-
-  // function customOnChangeHandler() {
-  // }
-  // if (typeahead._wasInitiallyRendered) {
-  // if (!typeahead._listeners['onSelected']) {
-  //     customOnChangeHandler();
-  // }
-  // } else {
-  // typeahead.addEventListener('ready', function (e) {
-  //     if (e.detail.name === 'bolt-typeahead'){
-  //       customOnChangeHandler();
-  //     }
-  // });
-  // }
 </script>
