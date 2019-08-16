@@ -434,7 +434,11 @@
                               <div class="c-pega-wwo__block-button c-pega-wwo__block-button-learn">
                                 {% include "@bolt-components-button/button.twig" with {
                                   text: "Learn More",
-                                  size: "small"
+                                  size: "small",
+                                  attributes: {
+                                    "on-click": "show",
+                                    "on-click-target": "c-pega-www__modal--learn-more"
+                                  }
                                 } only %}
                               </div>
                               <div class="c-pega-wwo__block-button c-pega-wwo__block-button-demo">
@@ -461,5 +465,27 @@
     <bolt-animate class="c-pega-wwo__modal-bg--wrapper" group="initial" out="fade-out" out-duration="2000">
       <div class="c-pega-wwo__modal-bg"></div>
     </bolt-animate>
+    {% set video_content %}
+      {% include "@bolt-components-video/video.twig" with {
+        videoId: "3861325118001",
+        accountId: "1900410236",
+        playerId: "r1CAdLzTW",
+        showMeta: true,
+        showMetaTitle: true,
+        attributes: {
+          class: "c-pega-www__video--learn-more"
+        }
+      } only %}
+    {% endset %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      attributes: {
+        class: "c-pega-www__modal--learn-more"
+      },
+      content: video_content,
+      width: "optimal",
+      spacing: "none",
+      theme: "none",
+      scroll: "overall",
+    } only %}
   </div>
 </div>

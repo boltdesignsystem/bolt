@@ -55,3 +55,14 @@ animControllerEl.addEventListener('animateEnd', e => {
 document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
   el.addEventListener('click', handleBlockTitleMobileAccordionClick);
 });
+
+const learnMoreModal = document.querySelector('.c-pega-www__modal--learn-more');
+const learnMoreVideo = document.querySelector('.c-pega-www__video--learn-more');
+
+learnMoreModal.addEventListener('modal:show', function() {
+  learnMoreVideo.play();
+});
+
+learnMoreModal.addEventListener('modal:hide', function() {
+  learnMoreVideo.pause();
+});
