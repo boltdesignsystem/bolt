@@ -1,7 +1,7 @@
 {
   "name": "@bolt/core",
   "description": "Core dependencies, utils, etc.",
-  "version": "2.5.3",
+  "version": "2.6.0-beta.1",
   "license": "MIT",
   "main": "index.js",
   "style": "styles/index.scss",
@@ -26,6 +26,8 @@
     "lit-html": "^1.1.1",
     "lodash.merge": "^4.6.2",
     "mdn-polyfills": "^5.17.1",
+    "patch-package": "^6.1.2",
+    "postinstall-postinstall": "^2.0.0",
     "preact": "8.4.2",
     "preact-compat": "^3.19.0",
     "pwa-helpers": "^0.9.1",
@@ -37,10 +39,13 @@
     "skatejs": "^5.2.4",
     "smoothscroll-polyfill": "^0.4.4"
   },
+  "scripts": {
+    "postinstall": "patch-package --patch-dir .patches/"
+  },
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "homepage": "https://boltdesignsystem.com",
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
 }

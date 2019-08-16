@@ -1,6 +1,15 @@
 // based originally off of https://github.com/edenspiekermann/a11y-dialog before heavy modifications and customizations
 
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import {
+  props,
+  define,
+  hasNativeShadowDomSupport,
+  getTransitionDuration,
+  bodyHasScrollbar,
+  getScrollbarWidth,
+  setScrollbarPadding,
+  resetScrollbarPadding,
+} from '@bolt/core/utils';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
@@ -45,8 +54,15 @@ class BoltModal extends withLitHtml() {
     self.show = self.show.bind(this);
     self.hide = self.hide.bind(this);
     self._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
+    self._noBodyScroll = false; // Internal switch to enable 'no-body-scroll' feature which is not ready for release
 
     return self;
+  }
+
+  static scrollbarWidth = getScrollbarWidth();
+
+  static get bodyHasScrollbar() {
+    return bodyHasScrollbar();
   }
 
   connecting() {
@@ -77,6 +93,18 @@ class BoltModal extends withLitHtml() {
     this.dispatchEvent(new CustomEvent('modal:ready'));
   }
 
+  get _toggleEventOptions() {
+    return this._noBodyScroll
+      ? {
+          detail: {
+            hasScrollbar: BoltModal.bodyHasScrollbar,
+            scrollbarWidth: BoltModal.scrollbarWidth,
+          },
+          bubbles: true,
+        }
+      : {};
+  }
+
   /**
    * Show the dialog element, disable all the targets (siblings), trap the
    * current focus within it, listen for some specific key presses and fire all
@@ -95,7 +123,9 @@ class BoltModal extends withLitHtml() {
     // triggers re-render
     this.open = true;
 
-    document.body.classList.add('u-bolt-overflow-hidden');
+    this.dispatchEvent(new CustomEvent('modal:show', this._toggleEventOptions));
+
+    this._noBodyScroll && this._setScrollbar();
 
     // @todo: re-evaluate if the trigger element used needs to have it's tabindex messed with
     // this.querySelector('[slot="trigger"]').setAttribute('tabindex', '-1');
@@ -107,7 +137,9 @@ class BoltModal extends withLitHtml() {
     // this.dialog.setAttribute('open', '');
     // this.container.removeAttribute('aria-hidden');
 
-    this.dispatchEvent(new CustomEvent('modal:show'));
+    this.dispatchEvent(
+      new CustomEvent('modal:shown', this._toggleEventOptions),
+    );
   }
 
   /**
@@ -128,7 +160,19 @@ class BoltModal extends withLitHtml() {
     this.open = false;
     this.ready = false;
 
-    document.body.classList.remove('u-bolt-overflow-hidden');
+    this.dispatchEvent(new CustomEvent('modal:hide', this._toggleEventOptions));
+
+    this.transitionDuration = getTransitionDuration(
+      this.renderRoot.querySelector('.c-bolt-modal'),
+    );
+
+    // Wait until after transition or modal will shift
+    setTimeout(() => {
+      this._noBodyScroll && this._resetScrollbar();
+      this.dispatchEvent(
+        new CustomEvent('modal:hidden', this._toggleEventOptions),
+      );
+    }, this.transitionDuration);
 
     // @todo: refactor this to be more component / element agnostic
     if (this.focusedBeforeDialog) {
@@ -158,8 +202,20 @@ class BoltModal extends withLitHtml() {
       //   target.removeAttribute('aria-hidden');
       // });
     }
+  }
 
-    this.dispatchEvent(new CustomEvent('modal:hide'));
+  /**
+   * Toggle the dialog element. If dialog is open, close it. If closed, open it.
+   *
+   * @param {Event} event
+   * @return {this}
+   */
+  toggle() {
+    if (this.open) {
+      this.hide();
+    } else {
+      this.show();
+    }
   }
 
   /**
@@ -203,6 +259,19 @@ class BoltModal extends withLitHtml() {
   _handleTriggerBlur(e) {
     const closeButton = e.target.closest('.c-bolt-modal__close-button');
     closeButton.classList.remove('c-bolt-modal__close-button--focus-within');
+  }
+
+  _setScrollbar() {
+    BoltModal.bodyHasScrollbar &&
+      setScrollbarPadding(document.body, BoltModal.scrollbarWidth);
+
+    document.body.classList.add('u-bolt-overflow-hidden');
+  }
+
+  _resetScrollbar() {
+    resetScrollbarPadding(document.body);
+
+    document.body.classList.remove('u-bolt-overflow-hidden');
   }
 
   /**
@@ -321,6 +390,10 @@ class BoltModal extends withLitHtml() {
 
     const closeButtonClasses = cx('c-bolt-modal__close-button', {
       [`c-bolt-modal__close-button--hidden`]: hideCloseButton,
+      [`c-bolt-modal__close-button--dark`]:
+        theme && (theme === 'dark' || theme === 'xdark'),
+      [`c-bolt-modal__close-button--light`]:
+        theme && (theme === 'light' || theme === 'xlight'),
     });
 
     const delegateFocus = e => {
@@ -346,10 +419,10 @@ class BoltModal extends withLitHtml() {
         autofocus
         tabindex="0"
       >
-        <span class="${closeButtonClasses}__text"
+        <span class="c-bolt-modal__close-button__text"
           >Close this dialog window</span
         >
-        <span class="${closeButtonClasses}__icon"></span>
+        <span class="c-bolt-modal__close-button__icon"></span>
       </bolt-trigger>
     `;
 
