@@ -74,7 +74,7 @@ class SvgAnimations extends withLitHtml() {
         class="bolt-self-drawing-circle"
         is="shadow-root"
       >
-        <svg viewBox="-100 -100 200 200">
+        <svg viewBox="-80 -80 160 160">
           <circle
             id="bolt-self-drawing-circle-outline"
             class="bolt-self-drawing-circle-outline"

@@ -327,21 +327,14 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     }
   }
 
-  &__dashed-circle {
+  &__self-drawing-circle {
+    display: block;
+    transform:rotate(-20deg);
     width: 100%;
     height: 100%;
-    border: 2px dashed bolt-color(white);
-    border-radius: 50%;
 
-    @include bolt-animation--spin(
-      $base: true,
-      $duration: $bolt-duration--xslow,
-      $active: true,
-      $timing-function: $bolt-timing--linear
-    );
-
-    &-wrapper {
-
+    &[group="w"] {
+      transform:rotate(-25deg);
     }
   }
 
@@ -450,37 +443,37 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     }
 
     &-wo-1 {
-      top: 9%;
+      top: 9.2%;
       left: 19%;
     }
 
     &-wo-2 {
       top: 58%;
-      left: 0%;
+      left: -.2%;
     }
 
     &-wo-3 {
-      top: 96%;
+      top: 96.5%;
       left: 33%;
     }
 
     &-w-1 {
-      top: 11.6%;
+      top: 11.7%;
       left: 16%;
     }
 
     &-w-2 {
       top: 45%;
-      left: -.5%;
+      left: -.6%;
     }
 
     &-w-3 {
-      top: 89.4%;
-      left: 20%;
+      top: 89.6%;
+      left: 19.7%;
     }
 
     &-w-4 {
-      top: 95%;
+      top: 95.3%;
       left: 68%;
     }
   }

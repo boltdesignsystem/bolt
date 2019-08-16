@@ -70,6 +70,9 @@ const triggerAnimateOutOnInOnlyContent = async (groupAttrVal, mainWrapper) => {
       `bolt-animate[group="${groupAttrVal}"][type="in-effect-only"]`,
     ),
   );
+  document
+    .querySelector(`#c-pega-wwo__self-drawing-circle[group="${groupAttrVal}"]`)
+    .triggerAnimOut();
 
   // console.log('triggerAnimateOutOnInOnlyContent animInEls', animOutEls);
   await triggerAnims({
@@ -123,11 +126,7 @@ const triggerAnimateInOnOutOnlyContent = async (groupAttrVal, mainWrapper) => {
   });
 };
 
-const getCurriedAnimateContentIn = (
-  outGroupAttrVal,
-  inGroupAttrVal,
-  mainWrapper,
-) => {
+const getCurriedAnimateContentIn = (inGroupAttrVal, mainWrapper) => {
   return async () => {
     console.debug('triggered:AnimateContentIn ');
 
@@ -137,6 +136,13 @@ const getCurriedAnimateContentIn = (
       ),
     );
 
+    setTimeout(() => {
+      document
+        .querySelector(
+          `#c-pega-wwo__self-drawing-circle[group="${inGroupAttrVal}"]`,
+        )
+        .triggerAnimIn();
+    }, 1200);
     // console.log('AnimateContentIn', animInEls);
 
     await triggerAnims({
@@ -197,7 +203,7 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
     }
 
     // Fire the content initialization animations.
-    getCurriedAnimateContentIn(outGroupAttrVal, inGroupAttrVal, mainWrapper)();
+    getCurriedAnimateContentIn(inGroupAttrVal, mainWrapper)();
   } else {
     // The event handler for swiper doesn't respect await, so trigger here directly.
 
@@ -210,7 +216,7 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
 
     wwoSwiper.once(
       'slideChangeTransitionEnd',
-      getCurriedAnimateContentIn(outGroupAttrVal, inGroupAttrVal, mainWrapper),
+      getCurriedAnimateContentIn(inGroupAttrVal, mainWrapper),
     );
     if (withIsBecomingActive) {
       wwoSwiper.slideNext();
