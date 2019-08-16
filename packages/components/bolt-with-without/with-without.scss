@@ -288,6 +288,36 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     margin-left: -9999999px;
   }
 
+  &__circles-wrapper {
+    $pega-wwo--circles-top-padding: 18%;
+    // For some reason, the calculation was off, and the circle wobbled.
+    $pega-wwo--circles-top-padding--height-calculation: 17.98225%;
+    display: none;
+    top: 0;
+
+    @include bolt-mq($from: xlarge) {
+      display: block;
+      position: absolute;
+      width: calc(#{$pega-wwo--dashed-circle-height} * #{$pega-wwo--desktop-ratio-decimal});
+      height: calc(#{$pega-wwo--dashed-circle-height} + calc(#{$pega-wwo--circles-top-padding--height-calculation} / #{$pega-wwo--desktop-ratio-decimal}));
+    }
+
+    .c-pega-wwo__shadow-height-inherit {
+      width: 100%;
+      height: 100%;
+    }
+
+    &-wo {
+      left: 23.7%;
+      padding-top: $pega-wwo--circles-top-padding;
+    }
+
+    &-w {
+      left: 19.7%;
+      padding-top: $pega-wwo--circles-top-padding;
+    }
+  }
+
   &__circles {
     display: none;
     position: relative;
@@ -296,34 +326,6 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
 
     @include bolt-mq($from: xlarge) {
       display: block;
-    }
-
-    &-wrapper {
-      $pega-wwo--circles-top-padding: 18%;
-      display: none;
-      top: 0;
-
-      @include bolt-mq($from: xlarge) {
-        display: block;
-        position: absolute;
-        width: calc(#{$pega-wwo--dashed-circle-height} * #{$pega-wwo--desktop-ratio-decimal});
-        height: calc(#{$pega-wwo--dashed-circle-height} + calc(#{$pega-wwo--circles-top-padding} / #{$pega-wwo--desktop-ratio-decimal}));
-      }
-
-    .c-pega-wwo__shadow-height-inherit {
-        width: 100%;
-        height: 100%;
-      }
-
-      &-wo {
-        left: 23.7%;
-        padding-top: $pega-wwo--circles-top-padding;
-      }
-
-      &-w {
-        left: 19.7%;
-        padding-top: $pega-wwo--circles-top-padding;
-      }
     }
   }
 
@@ -443,37 +445,37 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     }
 
     &-wo-1 {
-      top: 9.2%;
+      top: 9.3%;
       left: 19%;
     }
 
     &-wo-2 {
       top: 58%;
-      left: -.2%;
+      left: .4%;
     }
 
     &-wo-3 {
-      top: 96.5%;
+      top: 95.8%;
       left: 33%;
     }
 
     &-w-1 {
-      top: 11.7%;
-      left: 16%;
+      top: 12%;
+      left: 16.2%;
     }
 
     &-w-2 {
       top: 45%;
-      left: -.6%;
+      left: -.3%;
     }
 
     &-w-3 {
-      top: 89.6%;
+      top: 88.8%;
       left: 19.7%;
     }
 
     &-w-4 {
-      top: 95.3%;
+      top: 94.5%;
       left: 68%;
     }
   }

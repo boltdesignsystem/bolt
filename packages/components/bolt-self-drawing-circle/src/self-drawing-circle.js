@@ -78,7 +78,7 @@ class SvgAnimations extends withLitHtml() {
           <circle
             id="bolt-self-drawing-circle-outline"
             class="bolt-self-drawing-circle-outline"
-            r="80"
+            r="79"
             stroke-dasharray="0 1000"
           />
         </svg>
