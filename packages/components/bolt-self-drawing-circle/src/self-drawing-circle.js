@@ -34,15 +34,15 @@ class SvgAnimations extends withLitHtml() {
   }
 
   _resetCircle() {
-    const outline = this.shadowRoot.querySelector('circle');
+    const outline = this.renderRoot.querySelector('circle');
     outline.setAttribute('stroke-dasharray', `0 1000`);
-    this.shadowRoot
+    this.renderRoot
       .querySelector('.bolt-self-drawing-circle')
       .classList.remove('rotate');
   }
 
   async _drawCircle(dashSize, speed) {
-    const outline = this.shadowRoot.querySelector('circle');
+    const outline = this.renderRoot.querySelector('circle');
 
     const threshold = Math.ceil(245 / dashSize);
 
@@ -59,7 +59,7 @@ class SvgAnimations extends withLitHtml() {
       await this._drawTimer(speed); //eslint-disable-line no-await-in-loop
 
       if (i === threshold) {
-        this.shadowRoot
+        this.renderRoot
           .querySelector('.bolt-self-drawing-circle')
           .classList.add('rotate');
       }
