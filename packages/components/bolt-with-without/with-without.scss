@@ -1,10 +1,8 @@
 @import '@bolt/core';
 @import '@bolt/animations';
-@import './SimpleSwitch';
+@import './bolt-toggle/bolt-toggle';
 @import './swiper';
 
-$simple-switch_height: 40px;
-$simple-switch_size_mobile: 130px;
 $pega-wwo--block-width-basis: 6%; // ~100px at full site width.
 $pega-wwo--block-bottom-margin: 2rem;
 $pega-wwo--max-width: 100%;
@@ -107,102 +105,10 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
   &__toggle {
     position: relative;
     z-index: 12;
-
-    width: $simple-switch-size_mobile * 2;
-    height: $simple-switch_height;
+    width: 100%;
     margin: bolt-spacing(medium) auto 0 auto;
     text-align: center;
-
-    @include bolt-mq($from: xsmall) {
-      width: $simple-switch_size * 2;
-    }
-
-    &-input {
-      opacity: 0;
-      position: absolute;
-    }
-
-    // This simple switch css is bad. The switch looked good at first blush but is an ugly component and hard to theme.
-    ._simple-switch-track {
-      display: inline;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: $simple-switch-size_mobile * 2;
-      height: $simple-switch_height;
-      padding: 0 calc((#{$simple-switch-size_mobile} * 2) - 8px) 0 0;
-      cursor: pointer;
-      background-color: bolt-color(white);
-
-
-      @include bolt-mq($from: xsmall) {
-        padding: 0 calc((#{$simple-switch-size} * 2) - 8px) 0 0;
-      }
-
-      &.on .handle{
-        transform: translateX(calc((#{$simple-switch-size_mobile}) - 8px));
-      }
-
-      @include bolt-mq($from: xsmall) {
-        &.on .handle {
-          transform: translateX(calc((#{$simple-switch-size}) - 8px));
-        }
-      }
-
-      .handle {
-        width: $simple-switch-size_mobile;
-        height: $simple-switch_height - ($simple-switch_outline-size * 2);
-        // @TODO replace with animation design token. Also in simple switch.
-        transition: background-color 20ms linear;
-
-        @include bolt-mq($from: xsmall) {
-          width: $simple-switch-size;
-        }
-      }
-
-      &.on .handle {
-        background-color: bolt-color(yellow);
-      }
-    }
-
-    // Labels are abs pos over switch.
-    &-labels {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-around;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 9;
-      width: 100%;
-      margin-right: -50%;
-      padding-bottom: 7px;
-      padding-left: 3px;
-      color: bolt-color('black');
-      line-height: 1;
-      text-decoration: none;
-      pointer-events: none;
-
-      &-animation {
-        width: inherit;
-      }
-
-      &-inner {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-around;
-        width: inherit;
-      }
-    }
-
-    &-label {
-      flex: 1 0 50%;
-      width: 50%;
-    }
   }
-
   // see handleResize. Height on mobile is used to set height of slide c-pega-wwo__swiper-container-wrapper
   &__content {
     width: 100%;
@@ -305,6 +211,10 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     .c-pega-wwo__shadow-height-inherit {
       width: 100%;
       height: 100%;
+
+      > * {
+        height: inherit;
+      }
     }
 
     &-wo {

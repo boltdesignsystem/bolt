@@ -1,5 +1,4 @@
 import Swiper from 'swiper';
-import * as SimpleSwitch from './Switch';
 import handleBlockTitleMobileAccordionClick from './accordion';
 import handleResize from './handleResize';
 import {
@@ -12,8 +11,7 @@ handleResize();
 window.addEventListener('resize', handleResize);
 
 // Initialize the with/without slide-toggle.
-const toggleInputClass = '#c-pega-wwo__toggle-input';
-SimpleSwitch.init();
+const toggleInputClass = '#c-pega-wwo__toggle';
 
 // Initialize the swiper for sliding between with and without.
 const wwoSwiper = new Swiper('.c-pega-wwo__swiper-container', {
@@ -22,19 +20,20 @@ const wwoSwiper = new Swiper('.c-pega-wwo__swiper-container', {
   noSwiping: true,
 });
 
-// Initialize the page.
-triggerActiveRegionChange(
-  document.querySelector(toggleInputClass).checked,
-  wwoSwiper,
-  true,
-);
+// Pushed to bottom of call stack b/c w/o shadowdom enabled it breaks if not.
+setTimeout(() => {
+  // Initialize the page.
+  triggerActiveRegionChange(
+    document.querySelector(toggleInputClass).checked,
+    wwoSwiper,
+    true,
+  );
+}, 0);
 
 // Wire up the toggler to the event region switcher.
-document
-  .querySelector('#c-pega-wwo__toggle-input')
-  .addEventListener('change', e => {
-    handleActiveRegionChangeRequest(e.target.checked, wwoSwiper);
-  });
+document.querySelector(toggleInputClass).addEventListener('change', e => {
+  handleActiveRegionChangeRequest(e.target.checked, wwoSwiper);
+});
 
 // Add animation start and end event listeners to keep event from firing while in progress.
 const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
@@ -45,7 +44,7 @@ animControllerEl.addEventListener('animateEnd', e => {
   e.target.removeAttribute('anim-in-progress');
   const activeAttr = animControllerEl.getAttribute('active');
   const checkedStateOfAnimation = activeAttr === 'w';
-  const input = document.querySelector('#c-pega-wwo__toggle-input');
+  const input = document.querySelector(toggleInputClass);
   if (input.checked !== checkedStateOfAnimation) {
     handleActiveRegionChangeRequest(input.checked, wwoSwiper);
   }

@@ -10,15 +10,27 @@
         </h2>
         <div class="c-pega-wwo__toggle">
           <bolt-animate group="initial" in="fade-in-slide-up" in-order="5">
-            <input type="checkbox" id="c-pega-wwo__toggle-input" class="c-pega-wwo__toggle-input" data-type="simple-switch"/>
+            <ul class="bolt-toggle">
+              <li class="bolt-toggle__item">
+                <input class="bolt-toggle__input reset" type="radio" name="radioSwitch2" id="radio1" checked>
+                <label class="bolt-toggle__label" for="radio1">Without Pega</label>
+              </li>
+
+              <li class="bolt-toggle__item">
+                <input id="c-pega-wwo__toggle" class="bolt-toggle__input reset" type="radio" name="radioSwitch2" id="radio2">
+                <label class="bolt-toggle__label" for="radio2">With Pega</label>
+                <div aria-hidden="true" class="bolt-toggle__toggle"><span class="bolt-toggle__marker"></span></div>
+              </li>
+            </ul>
+
           </bolt-animate>
           <div class="c-pega-wwo__toggle-labels">
-            <bolt-animate class="c-pega-wwo__toggle-labels-animation" group="initial" in="fade-in-slide-up" in-order="5">
-              <div class="c-pega-wwo__toggle-labels-inner">
-                <span class="c-pega-wwo__toggle-label c-pega-wwo__toggle-label-wo">Without Pega</span>
-                <span class="c-pega-wwo__toggle-label c-pega-wwo__toggle-label-w">With Pega</span>
-              </div>
-            </bolt-animate>
+{#            <bolt-animate class="c-pega-wwo__toggle-labels-animation" group="initial" in="fade-in-slide-up" in-order="5">#}
+{#              <div class="c-pega-wwo__toggle-labels-inner">#}
+{#                <span class="c-pega-wwo__toggle-label c-pega-wwo__toggle-label-wo">Without Pega</span>#}
+{#                <span class="c-pega-wwo__toggle-label c-pega-wwo__toggle-label-w">With Pega</span>#}
+{#              </div>#}
+{#            </bolt-animate>#}
           </div>
         </div>
       </div>
