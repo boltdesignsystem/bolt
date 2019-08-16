@@ -123,7 +123,7 @@ class BoltIcon extends withPreact() {
           size={iconSize}
           bgColor={primaryColor}
           fgColor={secondaryColor}
-          title={title || name}
+          title={title || name + ' icon'}
         />
         {background && size === 'xlarge' && (
           <span className={backgroundClasses} />
