@@ -194,20 +194,21 @@ async function createWebpackConfig(buildConfig) {
     return entry;
   }
 
-  const scssLoaders = function(isJsFile = false) {
+  const scssLoaders = function(isJsFile = false, isScoped = false) {
     return [
       {
         loader: 'css-loader',
         options: {
           sourceMap: config.sourceMaps,
-          modules: {
+          importLoaders: 4,
+          modules: isJsFile === true && isScoped === true ? {
             // localsConvention: 'camelCase',
             getLocalIdent: (context, localIdentName, localName, options) => {
               if (
                 isJsFile === true &&
                 context.resourcePath.includes('.scoped')
               ) {
-                if (localName.includes('t-bolt')){
+                if (localName.includes('t-bolt')) {
                   return localName;
                 } else {
                   return `${localName}--${crypto
@@ -220,14 +221,14 @@ async function createWebpackConfig(buildConfig) {
                 return localName;
               }
             },
-          },
+          } : false,
         },
       },
       {
         loader: 'postcss-loader',
         options: {
           sourceMap: config.sourceMaps,
-          plugins: () => [
+          plugins: () => isJsFile && isScoped ? [
             require('@bolt/postcss-themify')(themifyOptions),
             postcssDiscardDuplicates,
             autoprefixer({
@@ -239,7 +240,7 @@ async function createWebpackConfig(buildConfig) {
                 if (filename.includes('.scoped') && isJsFile === false) {
                   const i = css.indexOf(`.${name}`);
 
-                  if (name.includes('t-bolt')){
+                  if (name.includes('t-bolt')) {
                     return name;
                   } else {
                     return `${name}--${crypto
@@ -260,8 +261,14 @@ async function createWebpackConfig(buildConfig) {
                   fs.writeFileSync(jsonFileName, JSON.stringify(json));
                 }
               },
+            })
+          ] : [
+            require('@bolt/postcss-themify')(themifyOptions),
+            postcssDiscardDuplicates,
+            autoprefixer({
+              grid: true,
             }),
-          ],
+          ]
         },
       },
       {
@@ -328,11 +335,11 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.(scss)$/,
+          test: /\.(scoped.scss)$/,
           oneOf: [
             {
               issuer: /\.js$/,
-              use: [scssLoaders(true)].reduce(
+              use: [scssLoaders(true, true)].reduce(
                 (acc, val) => acc.concat(val),
                 [],
               ),
@@ -342,7 +349,28 @@ async function createWebpackConfig(buildConfig) {
               use: [
                 // 'css-hot-loader',
                 MiniCssExtractPlugin.loader,
-                scssLoaders(false),
+                scssLoaders(false, true),
+              ].reduce((acc, val) => acc.concat(val), []),
+            },
+          ],
+        },
+        {
+          test: /\.(scss)$/,
+          exclude: /\.scoped.scss/,
+          oneOf: [
+            {
+              issuer: /\.js$/,
+              use: [scssLoaders(true, false)].reduce(
+                (acc, val) => acc.concat(val),
+                [],
+              ),
+            },
+            {
+              // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
+              use: [
+                // 'css-hot-loader',
+                MiniCssExtractPlugin.loader,
+                scssLoaders(false, false),
               ].reduce((acc, val) => acc.concat(val), []),
             },
           ],
@@ -506,23 +534,24 @@ async function createWebpackConfig(buildConfig) {
     );
 
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
-    webpackConfig.plugins.push(
-      new OptimizeCssAssetsPlugin({
-        canPrint: config.verbosity > 2,
-        cssProcessor: require('cssnano'),
-        cssProcessorPluginOptions: {
-          preset: [
-            'default',
-            {
-              discardComments: { removeAll: true },
-              mergeLonghand: false, // don't merge longhand values -- required for CSS Vars theming, etc.
-              zindex: false, // don't alter `z-index` values
-              mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
-            },
-          ],
-        },
-      }),
-    );
+    // webpackConfig.plugins.push(
+    //   new OptimizeCssAssetsPlugin({
+    //     canPrint: config.verbosity > 2,
+    //     cssProcessor: require('cssnano'),
+    //     // @ts-ignore
+    //     cssProcessorPluginOptions: {
+    //       preset: [
+    //         'default',
+    //         {
+    //           discardComments: { removeAll: true },
+    //           mergeLonghand: false, // don't merge longhand values -- required for CSS Vars theming, etc.
+    //           zindex: false, // don't alter `z-index` values
+    //           mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+    //         },
+    //       ],
+    //     },
+    //   }),
+    // );
 
     // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
     webpackConfig.devtool =
