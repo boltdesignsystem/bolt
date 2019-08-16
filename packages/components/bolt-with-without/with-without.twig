@@ -15,30 +15,20 @@
                 <input class="bolt-toggle__input reset" type="radio" name="radioSwitch2" id="radio1" checked>
                 <label class="bolt-toggle__label" for="radio1">Without Pega</label>
               </li>
-
               <li class="bolt-toggle__item">
                 <input id="c-pega-wwo__toggle" class="bolt-toggle__input reset" type="radio" name="radioSwitch2" id="radio2">
                 <label class="bolt-toggle__label" for="radio2">With Pega</label>
                 <div aria-hidden="true" class="bolt-toggle__toggle"><span class="bolt-toggle__marker"></span></div>
               </li>
             </ul>
-
           </bolt-animate>
-          <div class="c-pega-wwo__toggle-labels">
-{#            <bolt-animate class="c-pega-wwo__toggle-labels-animation" group="initial" in="fade-in-slide-up" in-order="5">#}
-{#              <div class="c-pega-wwo__toggle-labels-inner">#}
-{#                <span class="c-pega-wwo__toggle-label c-pega-wwo__toggle-label-wo">Without Pega</span>#}
-{#                <span class="c-pega-wwo__toggle-label c-pega-wwo__toggle-label-w">With Pega</span>#}
-{#              </div>#}
-{#            </bolt-animate>#}
-          </div>
         </div>
       </div>
       <div class="c-pega-wwo__swiper-container-wrapper">
         <div class="c-pega-wwo__swiper-container">
-          <article class="c-pega-wwo__swiper-wrapper swiper-wrapper">
+          <article class="c-pega-wwo__swiper-wrapper swiper-wrapper swiper-no-swiping">
             {# wo stands for "without" #}
-            <div class="c-pega-wwo__swiper-slide c-pega-wwo__swiper-slide-wo swiper-slide">
+            <div class="c-pega-wwo__swiper-slide c-pega-wwo__swiper-slide-wo swiper-no-swiping swiper-slide">
               <div class="c-pega-wwo__content c-pega-wwo__content-wo">
                 <div class="c-pega-wwo__content--inner c-pega-wwo__content--inner-wo">
                   <bolt-animate class="c-pega-wwo__shadow-height-inherit c-pega-wwo__circles-and-blocks--animator" group="wo" type="out-effect-only" out="fade-out-slide-left" out-order="30" out-delay="100" in="fade-in" out-duration="0" initial-appearance="default">

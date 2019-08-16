@@ -36,7 +36,7 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
   }
 
   // This is for icon colors wrong w/o shadow dom.
-  &__wrapper[active="wo"] {
+  &__content-wo {
     .c-pega-wwo__result-blocks {
       .c-pega-wwo__icon svg path {
         fill: bolt-color(teal);
@@ -50,7 +50,7 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     }
   }
 
-  &__wrapper[active="w"] {
+  &__content-w {
     .c-pega-wwo__region-blocks {
       .c-pega-wwo__icon:not(.c-pega-wwo__icon-eye) svg path {
         fill: bolt-color(white);
@@ -255,8 +255,8 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     display: none;
     position: relative;
     width: 100%;
-    max-width: 502px;
     height: 100%;
+    max-width: 502px;
     max-height: 502px;
 
     @include bolt-mq($from: xlarge) {
