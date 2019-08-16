@@ -201,74 +201,88 @@ async function createWebpackConfig(buildConfig) {
         options: {
           sourceMap: config.sourceMaps,
           importLoaders: 4,
-          modules: isJsFile === true && isScoped === true ? {
-            // localsConvention: 'camelCase',
-            getLocalIdent: (context, localIdentName, localName, options) => {
-              if (
-                isJsFile === true &&
-                context.resourcePath.includes('.scoped')
-              ) {
-                if (localName.includes('t-bolt')) {
-                  return localName;
-                } else {
-                  return `${localName}--${crypto
-                    .createHash('md5')
-                    .update(localName)
-                    .digest('hex')
-                    .substring(0, 8)}`;
+          modules:
+            isJsFile === true && isScoped === true
+              ? {
+                  // localsConvention: 'camelCase',
+                  getLocalIdent: (
+                    context,
+                    localIdentName,
+                    localName,
+                    options,
+                  ) => {
+                    if (
+                      isJsFile === true &&
+                      context.resourcePath.includes('.scoped')
+                    ) {
+                      if (localName.includes('t-bolt')) {
+                        return localName;
+                      } else {
+                        return `${localName}--${crypto
+                          .createHash('md5')
+                          .update(localName)
+                          .digest('hex')
+                          .substring(0, 8)}`;
+                      }
+                    } else {
+                      return localName;
+                    }
+                  },
                 }
-              } else {
-                return localName;
-              }
-            },
-          } : false,
+              : false,
         },
       },
       {
         loader: 'postcss-loader',
         options: {
           sourceMap: config.sourceMaps,
-          plugins: () => isJsFile && isScoped ? [
-            require('@bolt/postcss-themify')(themifyOptions),
-            postcssDiscardDuplicates,
-            autoprefixer({
-              grid: true,
-            }),
-            require('postcss-modules')({
-              // camelCase: true, // disabling camelCase versions of CSS classes till we look into changing the
-              generateScopedName(name, filename, css) {
-                if (filename.includes('.scoped') && isJsFile === false) {
-                  const i = css.indexOf(`.${name}`);
+          plugins: () =>
+            isJsFile && isScoped
+              ? [
+                  require('@bolt/postcss-themify')(themifyOptions),
+                  postcssDiscardDuplicates,
+                  autoprefixer({
+                    grid: true,
+                  }),
+                  require('postcss-modules')({
+                    // camelCase: true, // disabling camelCase versions of CSS classes till we look into changing the
+                    generateScopedName(name, filename, css) {
+                      if (filename.includes('.scoped') && isJsFile === false) {
+                        const i = css.indexOf(`.${name}`);
 
-                  if (name.includes('t-bolt')) {
-                    return name;
-                  } else {
-                    return `${name}--${crypto
-                      .createHash('md5')
-                      .update(name)
-                      .digest('hex')
-                      .substring(0, 8)}`;
-                  }
-                } else {
-                  return name;
-                }
-              },
-              getJSON(cssFileName, json, outputFileName) {
-                if (cssFileName.includes('.scoped') && isJsFile === false) {
-                  var jsonFileName = path.resolve(
-                    `${cssFileName.replace('.scss', '')}.json`,
-                  );
-                  fs.writeFileSync(jsonFileName, JSON.stringify(json));
-                }
-              },
-            })
-          ] : [
-            require('@bolt/postcss-themify')(themifyOptions),
-            postcssDiscardDuplicates,
-            autoprefixer({
-              grid: true,
-            }),
-          ]
+                        if (name.includes('t-bolt')) {
+                          return name;
+                        } else {
+                          return `${name}--${crypto
+                            .createHash('md5')
+                            .update(name)
+                            .digest('hex')
+                            .substring(0, 8)}`;
+                        }
+                      } else {
+                        return name;
+                      }
+                    },
+                    getJSON(cssFileName, json, outputFileName) {
+                      if (
+                        cssFileName.includes('.scoped') &&
+                        isJsFile === false
+                      ) {
+                        var jsonFileName = path.resolve(
+                          `${cssFileName.replace('.scss', '')}.json`,
+                        );
+                        fs.writeFileSync(jsonFileName, JSON.stringify(json));
+                      }
+                    },
+                  }),
+                ]
+              : [
+                  require('@bolt/postcss-themify')(themifyOptions),
+                  postcssDiscardDuplicates,
+                  autoprefixer({
+                    grid: true,
+                  }),
+                ],
         },
       },
       {
