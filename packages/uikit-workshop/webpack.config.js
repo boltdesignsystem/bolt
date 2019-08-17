@@ -1,6 +1,7 @@
 // webpack.config.js
-const localChrome = require('local-chrome');
-console.log(localChrome);
+const localChrome = false;
+// require('local-chrome');
+// console.log(localChrome);
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
