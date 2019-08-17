@@ -10,7 +10,6 @@ const CriticalCssPlugin = require('@bolt/critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
-const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
 // const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
@@ -250,6 +249,7 @@ module.exports = async function() {
     };
 
     if (localChrome) {
+      const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
       webpackConfig.plugins.unshift(
         new PrerenderSPAPlugin({
           // Required - The path to the webpack-outputted app to prerender.
