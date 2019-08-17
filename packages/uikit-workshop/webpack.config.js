@@ -1,4 +1,6 @@
 // webpack.config.js
+const localChrome = require('local-chrome');
+console.log(localChrome);
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -9,7 +11,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
 const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
-const localChrome = require('local-chrome');
 // const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
