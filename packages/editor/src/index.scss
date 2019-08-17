@@ -1,5 +1,6 @@
 .pega-editor-ui {
   display: flex;
+  flex-direction: column;
   position: fixed;
   right: 0;
   bottom: 0;
@@ -8,8 +9,18 @@
   width: 100vw;
   height: 30vh;
 
+  &__buttons {
+
+  }
+
+  &__slots {
+    display: flex;
+    min-height: 1px;
+  }
+
   &__slot {
     overflow: scroll;
+    padding-bottom: 20px;
     border-right: 3px solid rgba(0, 0, 0, 0.1);
 
     &:last-child {
@@ -19,16 +30,6 @@
     &:empty {
       display: none;
     }
-
-    &--buttons {
-      flex-grow: 0;
-      flex-shrink: 0;
-      width: 75px;
-    }
-
-    // &--layers {
-    //   width: 15%;
-    // }
 
     &--blocks {
       flex: 1 0;
@@ -52,6 +53,9 @@
     }
     .gjs-field {
       width: 100%;
+      &.gjs-field-checkbox {
+        max-width: 17px; // core Grapejs styles for checkboxes use `!important` on `width` and so I'm side-stepping that with `max-width`. checkboxes were 100% width x 17px height and it looked bad
+      }
     }
   }
 
@@ -66,19 +70,19 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  // justify-content: space-around;
+  padding: 2px;
 
   >.gjs-pega-editor-panels-btn {
     display: inline-block;
-    width: 30px;
-    height: 30px;
     margin: 3px;
-    line-height: 30px;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.1);
+    padding: 3px;
+    font-size: 80%;
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.3);
 
     &:hover {
       cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.5);
     }
   }
 }

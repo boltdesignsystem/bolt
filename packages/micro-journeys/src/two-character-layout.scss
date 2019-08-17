@@ -1,0 +1,23 @@
+.c-bolt-two-character-layout {
+  &__character-row {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 80px; // This margin is needed to accommodate speech bubbles that are absolute positioned around characters
+  }
+
+  &__character {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--left {
+      transform: translateX(50%);
+      z-index: 1;
+    }
+
+    &--right {
+      transform: translateX(-50%);
+    }
+  }
+}

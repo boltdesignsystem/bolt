@@ -4,6 +4,7 @@ import {
   props,
   define,
   hasNativeShadowDomSupport,
+  convertSchemaToProps,
 } from '@bolt/core';
 import { styleMap } from 'lit-html/directives/style-map.js';
 import { classMap } from 'lit-html/directives/class-map.js';
@@ -30,28 +31,11 @@ export const ANIM_STAGES = {
   OUT: 'OUT',
 };
 
-const myProps = {};
-
-Object.keys(schema.properties).forEach(prop => {
-  const info = schema.properties[prop];
-  switch (info.type) {
-    case 'number':
-    case 'string':
-      const type = props[info.type];
-      myProps[prop] = Object.assign({}, type, {
-        default: info.default,
-      });
-      break;
-  }
-});
-
 @define
 class BoltAnimate extends withLitHtml() {
   static is = 'bolt-animate';
 
-  static props = {
-    ...myProps,
-  };
+  static props = convertSchemaToProps(schema);
 
   constructor(self) {
     self = super(self);

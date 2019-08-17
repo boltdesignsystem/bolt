@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* add calculated placeholder image / placeholder color to the image component Twig template's <bolt-image> wrapper if a custom version isn't specified ([c41696b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/c41696b))
+* add CSS fix to make sure low quality image placeholders get the blur effect while the main image is lazyloaded ([3815a57](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/3815a57))
+* don't re-blur the image component once it has already loaded the first time. fixes a lazy-loaded related rendering issue when updating the src / srcset props after the image component has already loaded up ([e95ada7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/e95ada7))
+* fix lint issue ([03a1bb3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/03a1bb3))
+* initially add the current image component width to the `sizes` prop when the prop is set to `auto` ([87adbcb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/87adbcb))
+* lazily automatically calculate the correct image sizes prop if set to auto and the image component's window gets resized ([87217e3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/87217e3))
+* only add the `data-sizes` prop to the image component when lazyloading ([4c9f463](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/4c9f463))
+* only output placeholder color / placeholder image when lazyloading ([283ce71](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/283ce71))
+* pass the <bolt-image> web component the correct prop data for any base64 low quality placeholder + average image color options that exists. This fixes a visible flash that had been occurring when the web component initially boots up and renders ([cd96387](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/cd96387))
+* restore component snapshots to have background color / image props added (regardless on if they are being lazyloaded or not) ([b4857b9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/b4857b9))
+* temporarily auto-patch the lazysizes JS to allow the internal element selector to be specified if a new `getElements` method is defined in the lazysizes config + update yarn.lock ([ec9b628](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/ec9b628))
+* update image component's Twig to always output placeholders when available + retest preloading ([20dfeaf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/20dfeaf))
+* update snapshots based on image component fixes ([0d9590f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/0d9590f))
+* update the value getting assigned to the main `<img>` tag’s `src` attribute in the <bolt-image> Twig template. Previously this had been using the base64 encoded version of the image (when getting lazy loaded) but this was just adding extra HTML data without actually doing what it was supposed to be doing. Now this has been updated to specifically use the 1x1 placeholder pixel instead. ([4ec7db3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/4ec7db3))
+
+
+### Features
+
+* add ability to optionally align background images vertically ([a9ecfe4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/a9ecfe4))
+* update lazysizes default lazyloading config to be more conservative with preloading by default ([d393652](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/d393652))
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
 ## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.5.2...v2.5.3) (2019-07-12)
 
 **Note:** Version bump only for package @bolt/components-image

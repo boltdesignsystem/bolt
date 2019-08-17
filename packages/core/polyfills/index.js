@@ -9,7 +9,7 @@ import 'core-js/modules/es.array.for-each';
 import 'core-js/modules/es.object.assign';
 import 'core-js/modules/es.string.includes';
 import 'core-js/modules/es.string.repeat';
-import './custom-event-polyfill';
+import 'custom-event-polyfill';
 import 'core-js/modules/es.array.find';
 import './symbol-polyfill';
 import './remove-polyfill';

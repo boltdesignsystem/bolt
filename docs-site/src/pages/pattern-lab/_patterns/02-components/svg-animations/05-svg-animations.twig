@@ -1,20 +1,17 @@
 {% set schema = bolt.data.components["@bolt-components-svg-animations"].schema %}
 
-<h3>Self-drawing Circle</h3>
+<h3>SVG Animations</h3>
 
-<button id="animTrigger" style="margin-bottom: 20px; padding: 4px 8px;">Trigger Animation</button>
+<h4>Orbit</h4>
 
-<div class="svg-animations-container" style="background: #888; height: 562px; padding: 40px; width: 100%;" >
+{% include "@bolt-components-svg-animations/svg-animations.twig" with {
+  speed: 4000,
+  animType: "Orbit"
+} only %}
 
-  {% include "@bolt-components-svg-animations/svg-animations.twig" %}
+<h4>Automation</h4>
 
-</div>
-
-<script type="application/javascript">
-
-  document.getElementById('animTrigger').addEventListener('click', function() {
-    const circle = document.querySelector('bolt-svg-animations');
-    circle.triggerAnimIn(4, 20)
-  });
-
-</script>
+{% include "@bolt-components-svg-animations/svg-animations.twig" with {
+  speed: 2000,
+  animType: "Automation"
+} only %}

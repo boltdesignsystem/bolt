@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* address eslint issues ([e330908](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/e330908))
+* major cross browser fixes + polyfill updates ([50b4214](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/50b4214))
+* remove unused classname ([5904236](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/5904236))
+* revert bolt/core dependency updates + temporarily remove yarn.lock to ensure a fresh install on Travis ([20c8386](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/20c8386))
+* revert patch change ([856d137](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/856d137))
+* update patch path + commit ref ([e1b468d](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/e1b468d))
+
+
+### Features
+
+* add repeat-rule mixin ([e8d24c7](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/e8d24c7))
+* move scrollbar helpers to core, scrollbar calc functions to Class, add 'preventBodyScroll' as prop ([5a731b0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/5a731b0))
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+
+### Features
+
+* set padding on body when scrollbars are present to prevent content shift ([6f7098b](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/6f7098b))
+
+
+
+
+
 ## [2.5.3](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.5.2...v2.5.3) (2019-07-12)
 
 

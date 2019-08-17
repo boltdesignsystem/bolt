@@ -124,6 +124,7 @@ const config = {
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
       '@bolt/components-stack',
+      '@bolt/components-self-drawing-circle',
       '@bolt/components-svg-animations',
       '@bolt/components-table',
       '@bolt/components-teaser',
@@ -135,10 +136,8 @@ const config = {
       '@bolt/components-video',
       '@bolt/components-with-without',
       '@bolt/components-grid',
-      '@bolt/components-interactive-pathways',
-      '@bolt/components-interactive-pathway',
-      '@bolt/components-interactive-step',
-      '@bolt/editor',
+      '@bolt/micro-journeys',
+      '@bolt/components-editor',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
@@ -159,6 +158,10 @@ const config = {
     ],
   },
   copy: [
+    {
+      from: require.resolve(`@bolt/critical-path-polyfills`),
+      to: path.join(__dirname, '../www/build'),
+    },
     {
       from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),

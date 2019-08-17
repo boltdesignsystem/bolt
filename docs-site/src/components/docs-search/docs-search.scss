@@ -3,7 +3,6 @@
 
 // temporary style overrides to the default form input until we're done refactoring to support additional input sizes + icon placement
 bds-docs-search {
-  @include bolt-padding-right(xsmall);
   flex-shrink: 1;
   max-width: 100%;
   margin-left: auto;
@@ -13,7 +12,7 @@ bds-docs-search {
     grid-column: 1/span 4;
     justify-self: center;
   }
-  
+
   @include bolt-mq($from: small){
     width: 50px;
     min-width: 100px;
@@ -23,7 +22,7 @@ bds-docs-search {
     width: auto;
     min-width: none;
   }
-  
+
   &:focus-within {
     width: 200px;
     transition: all 250ms;
@@ -68,7 +67,7 @@ bds-docs-search {
     pointer-events: none;
     border-radius: 50rem;
     background-color: transparent;
-    
+
 
     &:before {
       display: none;
@@ -81,7 +80,7 @@ bds-docs-search {
 
   .o-bolt-inline-list__item:first-child {
     display: none;
-    
+
     &:last-child {
       display: inline-block;
     }

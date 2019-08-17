@@ -1,0 +1,82 @@
+@import '@bolt/core';
+@import '@bolt/animations';
+
+// Local interactive-step Variables
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-interactive-step', block, medium);
+
+$bolt-tooltip-bubble-triangle-width: 8px;
+$bolt-tooltip-bubble-border-color: bolt-color(gray, light);
+$bolt-tooltip-transition: $bolt-transition;
+
+.c-bolt-interactive-step {
+  //Styles go here. /* [1] */
+  position: relative;
+  padding-left: 40px;
+  text-align: left;
+  cursor: pointer;
+  font-weight: bolder;
+  transition: font-size 0.5s ease;
+
+  @include bolt-mq(small) {
+    position: static;
+  }
+
+  &__nav-item-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__dot {
+    display: inline-block;
+    position: absolute;
+    z-index: 10;
+    margin-left: -38px;
+    color: #AAB2F2;
+    cursor: pointer;
+    font-size: 20px;
+    transition: color 0.5s ease, transform 0.5s ease;
+  }
+
+  &__title {
+    display: inline-block;
+    cursor: pointer;
+    transition: color 0.5s ease, transform 0.5s ease;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 0;
+    height: 0;
+    overflow: hidden;
+
+    &[data-active="true"] {
+      height: auto;
+      overflow: visible;
+    }
+
+    // Move the step body to the right on desktop
+    @include bolt-mq(small) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: calc(100% - 300px);
+    }
+  }
+
+  // Generates the active state styling for the nav list
+  &--active {
+    .c-bolt-interactive-step__dot {
+      transform: scale(1.5);
+      color: orange;
+    }
+
+    .c-bolt-interactive-step__title {
+      transform: scale(1.1) translateX(4px);
+      color: orange;
+    }
+  }
+}

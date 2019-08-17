@@ -1,21 +1,9 @@
 import * as grapesjs from 'grapesjs';
+import { query } from './utils';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
 import { setupBolt } from './setup-bolt';
-
-function addGrapesCssToPage() {
-  const href = '//unpkg.com/grapesjs/dist/css/grapes.min.css';
-  if (document.querySelector(`link[href="${href}"]`)) {
-    return;
-  }
-  const link = document.createElement('link');
-  link.href = href;
-  link.type = 'text/css';
-  link.rel = 'stylesheet';
-  link.media = 'screen';
-  document.head.appendChild(link);
-}
 
 /**
  * @param {Object} opt
@@ -25,10 +13,9 @@ function addGrapesCssToPage() {
  * @return {grapesjs.Editor}
  */
 export function enableEditor({ space, uiWrapper, config }) {
-  addGrapesCssToPage();
   /** @type {{ [key: string]: HTMLElement }} */
   const editorSlots = {
-    buttons: uiWrapper.querySelector('.pega-editor-ui__slot--buttons'),
+    buttons: uiWrapper.querySelector('.pega-editor-ui__buttons'),
     layers: uiWrapper.querySelector('.pega-editor-ui__slot--layers'),
     traits: uiWrapper.querySelector('.pega-editor-ui__slot--traits'),
     blocks: uiWrapper.querySelector('.pega-editor-ui__slot--blocks'),
@@ -71,47 +58,45 @@ export function enableEditor({ space, uiWrapper, config }) {
             {
               command: 'core:undo',
               id: 'undo',
-              className: 'fa fa-undo',
-              attributes: { title: 'Undo' },
+              label: 'Undo',
+              // className: 'fa fa-undo',
+              // attributes: { title: 'Undo' },
             },
             {
               command: 'core:redo',
               id: 'redo',
-              className: 'fa fa-repeat',
-              attributes: { title: 'Redo' },
+              label: 'Redo',
+              // className: 'fa fa-repeat',
+              // attributes: { title: 'Redo' },
             },
             {
               id: 'fullscreen',
-              label: 'F',
+              label: 'Full Screen',
               command: 'core:fullscreen',
               attributes: { title: 'Full Screen' },
             },
             {
               id: 'visibility',
               active: true, // active by default
-              className: 'btn-toggle-borders',
-              label: 'B',
+              label: 'Toggle Borders',
               command: 'sw-visibility', // Built-in command
-              attributes: { title: 'Toggle Borders' },
             },
             {
               id: 'export',
               className: 'btn-open-export',
-              label: 'E',
+              label: 'Export Template',
               command: 'export-template',
-              attributes: { title: 'Export Template' },
             },
             {
               command: 'core:canvas-clear',
               id: 'canvas-clear',
-              className: 'fa fa-remove',
-              attributes: { title: 'Clear Canvas' },
+              label: 'Clear Canvas',
             },
             {
               id: 'show-json',
               className: 'btn-show-json',
-              label: 'J',
-              attributes: { title: 'Show JSON' },
+              label: 'Show JSON',
+              // attributes: { title: 'Show JSON' },
               command(editor) {
                 editor.Modal.setTitle('Components JSON')
                   .setContent(
@@ -192,6 +177,42 @@ export function enableEditor({ space, uiWrapper, config }) {
   // const { BlockManager, Panels, DomComponents } = editor;
 
   window['editor'] = editor; // eslint-disable-line dot-notation
+
+  let dropzoneSelector = '';
+
+  function addDropzoneHighlights() {
+    const dropzones = query(dropzoneSelector, canvasDoc);
+    if (!dropzones) return;
+    dropzones.forEach(el => {
+      const isEmpty = el.children.length === 0;
+      el.style.outline = 'dotted green 2px';
+    });
+  }
+
+  function removeDropzoneHighlights() {
+    const dropzones = query(dropzoneSelector, canvasDoc);
+    if (!dropzones) return;
+    dropzones.forEach(el => {
+      el.style.outline = '';
+    });
+    dropzoneSelector = '';
+  }
+
+  editor.on('block:drag:start', (block, a, b) => {
+    const { id } = block;
+    const component = editor.DomComponents.getType(id);
+    const { droppable, draggable } = component.model.prototype.defaults;
+    if (typeof droppable === 'string') {
+      dropzoneSelector = droppable;
+      addDropzoneHighlights();
+    }
+  });
+
+  editor.on('block:drag:stop', (componentModel, blockModel) => {
+    if (dropzoneSelector) {
+      removeDropzoneHighlights();
+    }
+  });
 
   // Global hooks
   // editor.on(`component:create`, model =>
