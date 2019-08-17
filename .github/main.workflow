@@ -11,31 +11,32 @@ workflow "Install" {
 }
 
 action "install:yarn" {
-  uses = "Borales/actions-yarn@master"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   args = "install"
 }
 
 action "install:php:website" {
-  uses = "MilesChou/composer-action@master"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   args = "install --working-dir docs-site"
 }
 
 action "install:php:core-php" {
-  uses = "MilesChou/composer-action@master"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   args = "install --working-dir packages/core-php"
 }
 
 action "install:php:twig-renderer" {
-  uses = "MilesChou/composer-action@master"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   args = "install --working-dir packages/twig-renderer"
 }
 
 action "install:php:twig-extensions" {
-  uses = "MilesChou/composer-action@master"
+  uses = "docker://boltdesignsystem/bolt-docker:latest"
   args = "install --working-dir packages/drupal-twig-extensions"
 }
 
 action "build" {
+#   uses = "docker://boltdesignsystem/bolt-docker:latest"
   uses = "docker://boltdesignsystem/bolt-docker:latest"
   needs = [
     "install:yarn",
