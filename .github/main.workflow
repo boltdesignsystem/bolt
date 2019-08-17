@@ -17,22 +17,22 @@ action "install:yarn" {
 
 action "install:php:website" {
   uses = "pxgamer/composer-action@v1.0.1"
-  args = "cd docs-site && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist"
+  runs = "cd docs-site && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist"
 }
 
 action "install:php:core-php" {
   uses = "pxgamer/composer-action@v1.0.1"
-  args = "cd packages/core-php && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist"
+  runs = "cd packages/core-php && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist"
 }
 
 action "install:php:twig-renderer" {
   uses = "pxgamer/composer-action@v1.0.1"
-  args = "cd packages/twig-renderer && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist"
+  runs = "cd packages/twig-renderer && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist"
 }
 
 action "install:php:twig-extensions" {
   uses = "pxgamer/composer-action@v1.0.1"
-  args = "cd packages/drupal-twig-extensions && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist"
+  runs = "cd packages/drupal-twig-extensions && composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist"
 }
 
 action "build" {
