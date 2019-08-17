@@ -14,7 +14,7 @@ const selectorImporter = require('node-sass-selector-importer');
 // const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
-const Renderer = require('@bolt/uikit-prerenderer');
+// const Renderer = require('@bolt/uikit-prerenderer');
 const puppeteer = require('puppeteer-core');
 
 const cosmiconfig = require('cosmiconfig');
