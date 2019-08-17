@@ -16,27 +16,23 @@ action "install:yarn" {
 }
 
 action "install:php:website" {
-  uses = "pxgamer/composer-action@v1.0.1"
-  runs = "install"
-  args = "--working-dir docs-site"
+  uses = "MilesChou/composer-action@master"
+  args = "install --working-dir docs-site"
 }
 
 action "install:php:core-php" {
-  uses = "pxgamer/composer-action@v1.0.1"
-  runs = "install"
-  args = "--working-dir packages/core-php"
+  uses = "MilesChou/composer-action@master"
+  args = "install --working-dir packages/core-php"
 }
 
 action "install:php:twig-renderer" {
-  uses = "pxgamer/composer-action@v1.0.1"
-  runs = "install"
-  args = "--working-dir packages/twig-renderer"
+  uses = "MilesChou/composer-action@master"
+  args = "install --working-dir packages/twig-renderer"
 }
 
 action "install:php:twig-extensions" {
-  uses = "pxgamer/composer-action@v1.0.1"
-  runs = "install"
-  args = "--working-dir packages/drupal-twig-extensions"
+  uses = "MilesChou/composer-action@master"
+  args = "install --working-dir packages/drupal-twig-extensions"
 }
 
 action "build" {
