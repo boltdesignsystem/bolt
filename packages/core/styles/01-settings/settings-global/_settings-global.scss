@@ -9,9 +9,9 @@
 @import '../settings-opacity/settings-opacity';
 @import '../../02-tools/tools-opacity/tools-opacity';
 
-/* ------------------------------------ *\
-   Global Settings
-\* ------------------------------------ */
+// ------------------------------------
+// Global Settings
+// ------------------------------------
 
 // Global Min / Max Base Font Size
 /// Global Default Min Base Font Size
@@ -86,9 +86,9 @@ $bolt-global-button-active-mix: 25% !default;
 $bolt-global-button-active-color: bolt-color(black) !default;
 
 
-/* ------------------------------------ *\
-   All block elements
-\* ------------------------------------ */
+// ------------------------------------
+// All block elements
+// ------------------------------------
 
 /// Bolt's definition of block level elements.
 $bolt-block-elements-list: 'p',
@@ -115,9 +115,9 @@ $bolt-unquoted-block-elements-list: ();
 $bolt-all-block-elements: $bolt-unquoted-block-elements-list;
 
 
-/* ------------------------------------ *\
-   All heading elements
-\* ------------------------------------ */
+// ------------------------------------
+// All heading elements
+// ------------------------------------
 
 /// Bolt's definition of heading elements.
 $bolt-heading-elements-list: 'h1',
@@ -137,11 +137,11 @@ $bolt-unquoted-heading-elements-list: ();
 $bolt-all-heading-elements: $bolt-unquoted-heading-elements-list;
 
 
-/* ------------------------------------ *\
-   Custom Element Global Settings
-   used to collection names of custom
-   elements.
-\* ------------------------------------ */
+// ------------------------------------
+// Custom Element Global Settings
+// used to collection names of custom
+// elements.
+// ------------------------------------
 
 /// Quoted custom block elements used to globally collect group generic styles. Elements registered via @mixin bolt-register-element.
 /// @see {mixin} bolt-register-element

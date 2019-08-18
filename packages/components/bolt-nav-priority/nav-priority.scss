@@ -1,6 +1,6 @@
-/* ------------------------------------ *\
-   Nav
-\* ------------------------------------ */
+// ------------------------------------
+// Nav
+// ------------------------------------
 
 @import '@bolt/core';
 
@@ -214,7 +214,7 @@ bolt-nav-priority {
   background-color: bolt-theme(secondary, 0.05);
   transition: background-color 0.3s ease;
   white-space: nowrap;
-  
+
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     height: 100%; // fix for height: 100% causing issues on larger screen sizes
     border-left-color: bolt-theme(headline, 0.2);

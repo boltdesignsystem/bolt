@@ -1,6 +1,6 @@
-/* ------------------------------------ *\
-  Body and heading declaration
-\* ------------------------------------ */
+// ------------------------------------
+// Body and heading declaration
+// ------------------------------------
 
 $bolt-base-font-sizes: (
   bolt-breakpoint(xxsmall): 14px,
@@ -17,8 +17,8 @@ html {
 body {
   @include bolt-font-family(body);
   @include bolt-font-size(medium);
-  
-  // help ensure short pages (those not using `.c-bolt-site`) are tall enough.  Super important when dealing with components with 
+
+  // help ensure short pages (those not using `.c-bolt-site`) are tall enough.  Super important when dealing with components with
   // click event handlers on the body (and the body isn't automatically tall enough based on the content contained inside
   width: 100%;
   margin: 0;
