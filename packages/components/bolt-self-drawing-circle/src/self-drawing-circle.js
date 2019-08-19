@@ -19,7 +19,7 @@ class SvgAnimations extends withLitHtml() {
     return self;
   }
 
-  triggerAnimIn(dashSize = 4, speed = 20) {
+  triggerAnimIn(dashSize = 6, speed = 20) {
     const animateCircle = this._drawCircle(dashSize, speed);
     return animateCircle;
   }
@@ -44,7 +44,7 @@ class SvgAnimations extends withLitHtml() {
   async _drawCircle(dashSize, speed) {
     const outline = this.renderRoot.querySelector('circle');
 
-    const threshold = Math.ceil(245 / dashSize);
+    const threshold = Math.ceil(500 / dashSize);
 
     for (var i = 0; i <= threshold; i++) {
       outline.setAttribute(
@@ -74,11 +74,11 @@ class SvgAnimations extends withLitHtml() {
         class="bolt-self-drawing-circle"
         is="shadow-root"
       >
-        <svg viewBox="-80 -80 160 160">
+        <svg viewBox="-160 -160 320 320">
           <circle
             id="bolt-self-drawing-circle-outline"
             class="bolt-self-drawing-circle-outline"
-            r="79"
+            r="159"
             stroke-dasharray="0 1000"
           />
         </svg>
