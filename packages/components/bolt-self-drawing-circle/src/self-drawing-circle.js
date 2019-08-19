@@ -44,7 +44,7 @@ class SvgAnimations extends withLitHtml() {
   async _drawCircle(dashSize, speed) {
     const outline = this.renderRoot.querySelector('circle');
 
-    const threshold = Math.ceil(500 / dashSize);
+    const threshold = Math.ceil(494 / dashSize);
 
     for (var i = 0; i <= threshold; i++) {
       outline.setAttribute(
