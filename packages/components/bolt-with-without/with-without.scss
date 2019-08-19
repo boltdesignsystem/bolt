@@ -153,6 +153,14 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
       max-width: unset;
       height: 100%;
     }
+
+    //@include bolt-mq(xxlarge) {
+    //  max-width: bolt-breakpoint(xxlarge);
+    //  max-height: calc(#{bolt-breakpoint(xxlarge)} * #{$pega-wwo--desktop-ratio-decimal});
+    //  top: 35%;
+    //  left: 50%;
+    //  transform: translate(-50%, -50%);
+    //}
   }
 
   &__content-w {
@@ -256,8 +264,6 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     position: relative;
     width: 100%;
     height: 100%;
-    max-width: 502px;
-    max-height: 502px;
 
     @include bolt-mq($from: xlarge) {
       display: block;
@@ -400,7 +406,7 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     }
 
     &-w-2 {
-      top: 45%;
+      top: 44.5%;
       left: -.55%;
     }
 
@@ -647,6 +653,14 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
 
         @include bolt-mq($from: xlarge) {
           display: block;
+        }
+      }
+
+      .c-pega-wwo__block-body {
+        margin-top: bolt-spacing(xsmall);
+
+        @include bolt-mq($from: xlarge) {
+          margin-top: 0;
         }
       }
 
