@@ -31,8 +31,6 @@ bolt-interactive-step {
 .c-bolt-interactive-step {
   //Styles go here. /* [1] */
   text-align: left;
-  cursor: pointer;
-  font-weight: bolder;
   transition: font-size 0.5s ease;
 
   @include bolt-mq(small) {
@@ -55,7 +53,7 @@ bolt-interactive-step {
     z-index: 5;
     height: 100%;
     margin-left: 5px;
-    border-left: 2px solid #AAB2F2;
+    border-left: 1px solid #AAB2F2;
 
     .c-bolt-interactive-step--first & {
       top: 1em;
@@ -112,6 +110,8 @@ bolt-interactive-step {
 
   // Generates the active state styling for the nav list
   &--active {
+    font-weight: bolder;
+
     .c-bolt-interactive-step__dot {
       transform: scale(1.5);
       color: orange;

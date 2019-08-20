@@ -45,7 +45,6 @@ async function triggerAnimOnEls({ animEls, stage }) {
               break;
           }
           if (!triggered) {
-            console.error({ animEl });
             reject(
               new Error(
                 `Attempted to trigger animation when there was no animation`,

@@ -1,3 +1,5 @@
+@import '@bolt/core';
+
 .c-bolt-character {
   display: inline-flex;
   justify-content: center;
@@ -29,12 +31,14 @@
     align-items: center;
     overflow: hidden;
     border-radius: 50%;
+    @include bolt-shadow('level-20');
   }
 
   &__main-image {
     box-sizing: border-box;
     width: 100%;
     border: 4px solid white;  // todo make this theme aware
+    border-radius: 50%;
   }
 
   &__slot {

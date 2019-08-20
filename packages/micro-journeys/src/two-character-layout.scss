@@ -1,15 +1,15 @@
 .c-bolt-two-character-layout {
   &__character-row {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    margin: 40px; // This margin is needed to accommodate speech bubbles that are absolute positioned around characters
+    margin: 80px; // This margin is needed to accommodate speech bubbles that are absolute positioned around characters
   }
 
   &__character {
-    //@todo Design specs call for the characters to be either small, medium, or large with fixed width, refactor below once character is its own component
-    width: 80px;
-    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &--left {
       transform: translateX(50%);

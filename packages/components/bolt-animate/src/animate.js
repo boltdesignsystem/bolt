@@ -217,8 +217,6 @@ class BoltAnimate extends withLitHtml() {
       'c-bolt-animate': true,
     };
 
-    this.setAttribute('meta-stage', this._animStage);
-
     return html`
       ${this.addStyles([styles])}
       <div

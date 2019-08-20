@@ -198,7 +198,7 @@ export function enableEditor({ space, uiWrapper, config }) {
     dropzoneSelector = '';
   }
 
-  editor.on('block:drag:start', (block, a, b) => {
+  editor.on('block:drag:start', block => {
     const { id } = block;
     const component = editor.DomComponents.getType(id);
     const { droppable, draggable } = component.model.prototype.defaults;
