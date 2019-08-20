@@ -16,10 +16,7 @@
 .c-bolt-interactive-pathways {
   //Styles go here. /* [1] */
   display: block;
-
-  @include bolt-mq(small) {
-    height: 500px; // @todo Remove this once SSR is in place. Temp fix for layout and no SSR rendering.
-  }
+  overflow: auto;
 
   &__header {
     display: flex;
