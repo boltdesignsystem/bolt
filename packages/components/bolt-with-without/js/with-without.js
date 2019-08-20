@@ -54,7 +54,10 @@ animControllerEl.addEventListener('animateEnd', e => {
     document.querySelectorAll(toggleInputClass),
   ).find(input => input.checked);
   if (checkedRadio.id !== activeAttr) {
-    handleActiveRegionChangeRequest(input.id === checkedValue, wwoSwiper);
+    handleActiveRegionChangeRequest(
+      checkedRadio.id === checkedValue,
+      wwoSwiper,
+    );
   }
 });
 

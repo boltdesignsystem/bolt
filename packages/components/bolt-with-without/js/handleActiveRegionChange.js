@@ -229,7 +229,6 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
 };
 
 const handleActiveRegionChangeRequest = (checked, wwoSwiper) => {
-  console.log('handleActiveRegionChangeRequest', checked);
   const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
   const animIsInProgress = !!animControllerEl.getAttribute('anim-in-progress');
 
