@@ -8,7 +8,8 @@ const setActiveRegionAttr = (inactiveToRemove, activeToSet) => {
 
 /*
  * Filter els by likely invisibility.
- * Triggering animations on els with display: none parents breaks all subsequent animations. Based on @https://davidwalsh.name/offsetheight-visibility
+ * Triggering animations on els with display: none parents breaks all subsequent animations.
+ * Based on @https://davidwalsh.name/offsetheight-visibility
  */
 const filterInvisibles = els => {
   return els.filter(el => el.offsetHeight > 0);
@@ -142,7 +143,7 @@ const getCurriedAnimateContentIn = (inGroupAttrVal, mainWrapper) => {
           `#c-pega-wwo__self-drawing-circle[group="${inGroupAttrVal}"]`,
         )
         .triggerAnimIn();
-    }, 1200);
+    }, 0);
     // console.log('AnimateContentIn', animInEls);
 
     await triggerAnims({
@@ -228,6 +229,7 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
 };
 
 const handleActiveRegionChangeRequest = (checked, wwoSwiper) => {
+  console.log('handleActiveRegionChangeRequest', checked);
   const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
   const animIsInProgress = !!animControllerEl.getAttribute('anim-in-progress');
 

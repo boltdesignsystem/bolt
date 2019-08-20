@@ -11,7 +11,9 @@ handleResize();
 window.addEventListener('resize', handleResize);
 
 // Initialize the with/without slide-toggle.
-const toggleInputClass = '#c-pega-wwo__toggle';
+const toggleInputClass = '.c-pega-www__toggle-input';
+// This was moved from a checkbox to a radio.
+const checkedValue = 'w';
 
 // Initialize the swiper for sliding between with and without.
 const wwoSwiper = new Swiper('.c-pega-wwo__swiper-container', {
@@ -24,29 +26,35 @@ const wwoSwiper = new Swiper('.c-pega-wwo__swiper-container', {
 setTimeout(() => {
   // Initialize the page.
   triggerActiveRegionChange(
-    document.querySelector(toggleInputClass).checked,
+    document.querySelector(toggleInputClass).id === checkedValue,
     wwoSwiper,
     true,
   );
 }, 0);
 
 // Wire up the toggler to the event region switcher.
-document.querySelector(toggleInputClass).addEventListener('change', e => {
-  handleActiveRegionChangeRequest(e.target.checked, wwoSwiper);
+Array.from(document.querySelectorAll(toggleInputClass)).forEach(el => {
+  el.addEventListener('change', e => {
+    handleActiveRegionChangeRequest(e.target.id === 'w', wwoSwiper);
+  });
 });
 
 // Add animation start and end event listeners to keep event from firing while in progress.
 const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
+
 animControllerEl.addEventListener('animateStart', e => {
   e.target.setAttribute('anim-in-progress', 1);
 });
+
 animControllerEl.addEventListener('animateEnd', e => {
   e.target.removeAttribute('anim-in-progress');
+  // If the animation state doesn't match the state of the toggle, transition.
   const activeAttr = animControllerEl.getAttribute('active');
-  const checkedStateOfAnimation = activeAttr === 'w';
-  const input = document.querySelector(toggleInputClass);
-  if (input.checked !== checkedStateOfAnimation) {
-    handleActiveRegionChangeRequest(input.checked, wwoSwiper);
+  const checkedRadio = Array.from(
+    document.querySelectorAll(toggleInputClass),
+  ).find(input => input.checked);
+  if (checkedRadio.id !== activeAttr) {
+    handleActiveRegionChangeRequest(input.id === checkedValue, wwoSwiper);
   }
 });
 

@@ -13,7 +13,7 @@ const handleResize = () => {
   )
     ? 'wo'
     : 'w';
-  console.log(container);
+
   triggerAnimateInOnInOnlyContent(activeSlideString);
 
   if (isMobile) {
