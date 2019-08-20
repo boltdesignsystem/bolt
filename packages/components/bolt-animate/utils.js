@@ -35,7 +35,6 @@ async function triggerAnimOnEls({ animEls, stage }) {
             },
           );
 
-          console.log('yolo', { stage, animEl });
           let triggered = false;
           switch (stage) {
             case 'IN':
@@ -46,7 +45,6 @@ async function triggerAnimOnEls({ animEls, stage }) {
               break;
           }
           if (!triggered) {
-            console.error({ animEl });
             reject(
               new Error(
                 `Attempted to trigger animation when there was no animation`,
