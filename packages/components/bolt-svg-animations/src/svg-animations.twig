@@ -10,4 +10,8 @@
   {% set attributes = attributes.setAttribute("animType", animType) %}
 {% endif %}
 
+{% if theme %}
+  {% set attributes = attributes.setAttribute("theme", theme) %}
+{% endif %}
+
 <bolt-svg-animations {{ attributes }}></bolt-svg-animations>

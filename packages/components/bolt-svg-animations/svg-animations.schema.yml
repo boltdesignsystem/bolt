@@ -10,5 +10,9 @@ properties:
     description: speed of the animation, typically rotation.
   animType:
     type: [string]
-    enum: [orbit, automation]
+    enum: [orbit, automation, radar]
     description: type of SVG animation to include
+  theme:
+    type: [string]
+    enum: [dark, light]
+    description: control color scheme of component, depending on animType

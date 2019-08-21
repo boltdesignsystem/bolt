@@ -2,15 +2,26 @@
 
 <h3>SVG Animations</h3>
 
-<h4>Orbit</h4>
+<h4>Radar</h4>
+{% include "@bolt-components-svg-animations/svg-animations.twig" with {
+  speed: 4000,
+  animType: "Radar",
+  theme: "dark"
+} only %}
 
+{% include "@bolt-components-svg-animations/svg-animations.twig" with {
+  speed: 4000,
+  animType: "Radar",
+  theme: "light"
+} only %}
+
+<h4>Orbit</h4>
 {% include "@bolt-components-svg-animations/svg-animations.twig" with {
   speed: 4000,
   animType: "Orbit"
 } only %}
 
 <h4>Automation</h4>
-
 {% include "@bolt-components-svg-animations/svg-animations.twig" with {
   speed: 2000,
   animType: "Automation"
