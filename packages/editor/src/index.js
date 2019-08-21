@@ -1,4 +1,4 @@
-import { query } from './utils';
+import { query } from '@bolt/core';
 
 const defaultConfig = {};
 
