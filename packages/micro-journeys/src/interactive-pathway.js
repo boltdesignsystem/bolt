@@ -16,6 +16,7 @@ class BoltInteractivePathway extends withLitHtml() {
       ...{ default: false },
     },
     activePathwayId: props.number,
+    totalSteps: props.string,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -33,6 +34,9 @@ class BoltInteractivePathway extends withLitHtml() {
       }
       this.setActiveStep(stepId);
     });
+    if (!this.getAttribute('total-steps')) {
+      console.error('The attribute "total-steps" is missing.');
+    }
     return self;
   }
 
