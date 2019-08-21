@@ -1,6 +1,7 @@
 {% set schema = bolt.data.components["@bolt-components-animate"].schema %}
 
 <script>
+
   /**
    *
    * @param {HTMLElement} toggle
@@ -8,7 +9,8 @@
   function toggleAnim(toggle) {
     const wrapEl = toggle.closest('.demo-anim-els');
     if (!wrapEl) return;
-    wrapEl.querySelectorAll('bolt-animate').forEach(animEl => {
+    wrapEl.querySelectorAll('bolt-animate').forEach(function(animEl) {
+      console.log('animEl', animEl);
       if (animEl.getAttribute('trigger')) {
         animEl.removeAttribute('trigger');
       } else {

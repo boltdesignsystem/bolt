@@ -80,18 +80,14 @@
   </style>
 
   <script type="application/javascript">
-    const els = document.querySelectorAll('.demo-animate__items bolt-animate');
-    els.forEach(el => {
-      el.addEventListener('bolt-animate:end:in', event => {
-        console.log('pl bolt-animate:end:in', event);
-      });
-      el.addEventListener('bolt-animate:end:out', event => {
-        console.log('pl bolt-animate:end:out', event);
-      });
-    });
+    (function() {
+      if (typeof NodeList.prototype.forEach === 'function') return false;
+      NodeList.prototype.forEach = Array.prototype.forEach;
+    })();
 
     function trigger(type) {
-      els.forEach(el => {
+      const els = document.querySelectorAll('.demo-animate__items bolt-animate');
+      els.forEach(function(el) {
         if (type === 'in') {
           el.triggerAnimIn();
         }
