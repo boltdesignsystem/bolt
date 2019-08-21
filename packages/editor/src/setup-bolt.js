@@ -7,8 +7,6 @@ import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-ba
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 import chipSchema from '@bolt/components-chip/chip.schema.yml';
 import imageSchema from '@bolt/components-image/image.schema.yml';
-import animate from '@bolt/components-animate';
-import animateMeta from '@bolt/components-animate/animate.meta';
 import animateSchema from '@bolt/components-animate/animate.schema';
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import kebabCase from 'param-case';
@@ -75,6 +73,16 @@ function convertSchemaPropToTrait({ name, prop }) {
 }
 
 /**
+ * Is this a child of that parent element?
+ * @param {HTMLElement} el
+ * @param {string} tagName
+ * @returns {boolean}
+ */
+function isChildOfEl(el, tagName) {
+  return el.parentElement && el.parentElement.tagName === tagName.toUpperCase();
+}
+
+/**
  * @param {grapesjs.Editor} editor
  * @returns {void}
  */
@@ -86,41 +94,58 @@ export function setupBolt(editor) {
     BlockManager,
   } = editor;
 
+  DomComponents.addType('div', {
+    isComponent: el => el.tagName === 'DIV',
+    model: {
+      defaults: {
+        tagName: 'div',
+        type: 'div',
+        draggable: false,
+        droppable: false,
+        traits: [],
+      },
+    },
+  });
+
   /**
    * @param {Object} opt
    * @param {string} opt.name i.e. `bolt-button`
    * @param {JsonSchema} [opt.schema]
    * @param {string} [opt.initialContent] HTML for when block is added
-   * @param {string} [opt.category='Bolt Component']
+   * @param {string} [opt.extend] name of GrapesJS Component to extend
+   * @param {string} [opt.category='Bolt Components']
    * @param {boolean | string} [opt.draggable=true] Indicates if it's possible to drag the component inside others. Can use CSS selectors
-   * @param {boolean | string} [opt.droppable=false] Indicates if it's possible to drop other components inside. Can use CSS selectors
    * @param {boolean} [opt.editable=true] Allow to edit the content of the component (used on Text components).
    * @param {boolean} [opt.highlightable=true]
+   * @param {boolean} [opt.badgable=true] Set to false if you don't want to see the badge (with the name) over the component. Default: `true`
+   * @param {boolean} [opt.layerable=true] Set to `false` if you need to hide the component inside Layers. Default: `true`
+   * @param {boolean} [opt.selectable=true] Allow component to be selected when clicked. Default: `true`
    * @param {boolean} [opt.registerBlock=true] Register as a GrapesJS Block in addition to Component? If so, allows the user to add it from menu.
    * @param {string[]} [opt.propsToTraits=[]] Json Schema properties keys to auto-add to traits via `convertSchemaPropToTrait`
    * @param {GrapeTrait[]} [opt.extraTraits=[]] Full Trait objects that need more custom attention than `propsToTraits`
+   * @param {(el: HTMLElement) => boolean} [opt.isComponent] - function to determine if an HTMLElement is this component. Defaults to seeing if tag name is component name
+   * @param {Object.<string, boolean|string>} [opt.slots={ default: true }] - Which slots are available and what can go in them. For example `{ default: true, top: 'bolt-text, bolt-button' }` would let any element be placed as a direct child (the `default` slot) and the `top` slot would only accept `<bolt-text>` or `<bolt-button>`. Those values are passed right to Grape JS's `droppable`.
    * @returns {{ component: Object, block: Object }} instances from registering @todo fill out types
    * @see {convertSchemaPropToTrait}
    */
   function registerBoltComponent({
     name,
+    extend,
     schema = { properties: {} },
-    initialContent = '<span>Hello World</span>',
+    initialContent = 'Hello World',
     category = 'Bolt Components',
     draggable = true,
-    droppable = false,
-    editable = true,
-    highlightable = true,
+    editable = false,
+    highlightable = false,
     registerBlock = true,
+    badgable = true,
+    layerable = true,
+    selectable = true,
     propsToTraits = [],
     extraTraits = [],
+    isComponent,
+    slots = { default: false },
   }) {
-    // if (!schema && !schema.properties) {
-    //   throw new EditorRegisterBoltError(
-    //     `Registering "${name} failed due to missing schema`,
-    //   );
-    // }
-
     const { title, description, properties } = schema;
 
     const traitsFromProps = propsToTraits.map(propName => {
@@ -136,16 +161,67 @@ export function setupBolt(editor) {
       return convertSchemaPropToTrait({ prop, name: propName });
     });
 
+    // Registering slots as Components so we can declare them as dropzones
+    Object.keys(slots).forEach(slotName => {
+      if (slotName === 'default') return;
+      const droppable = slots[slotName];
+      const slotComponentName = `${name}__slot--${slotName}`;
+      // These are the components that can be slots, we use `null` to indicate that any HTML element with a `slot` attribute
+      const extendableComponents = [null, 'bolt-animate'];
+
+      extendableComponents.forEach(extendableComponent => {
+        const slotId = extendableComponent
+          ? `${slotComponentName}--${extendableComponent}`
+          : slotComponentName;
+
+        DomComponents.addType(slotId, {
+          extend: extendableComponent,
+          isComponent: el => {
+            if (!el.getAttribute) return false;
+            const assignedSlot = el.getAttribute('slot');
+            if (!isChildOfEl(el, name)) return false;
+            if (assignedSlot === slotName) {
+              if (extendableComponent) {
+                return el.tagName === extendableComponent.toUpperCase();
+              }
+              return true;
+            }
+          },
+          model: {
+            defaults: {
+              draggable: false,
+              droppable,
+              removable: false,
+              copyable: false,
+              selectable: true,
+              editable: true,
+              layerable: true,
+              hoverable: true,
+              badgable: true,
+              //traits: [],
+              icon: `<bolt-icon name="download" title="Slot Dropzone"></bolt-icon>`,
+            },
+          },
+        });
+      });
+    });
+
     const component = DomComponents.addType(name, {
-      isComponent: el => el.tagName === name.toUpperCase(),
+      isComponent: isComponent
+        ? isComponent
+        : el => el.tagName === name.toUpperCase(),
+      extend,
       model: {
         defaults: {
           type: name,
           tagName: name,
           draggable,
-          droppable,
+          droppable: slots.default,
           editable,
           highlightable,
+          badgable,
+          selectable,
+          layerable,
           traits: [...traitsFromProps, ...extraTraits],
         },
       },
@@ -184,8 +260,8 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-button',
     schema: buttonSchema,
-    droppable: 'bolt-connection [slot]',
-    initialContent: `<span>Button</span>`,
+    extend: 'text',
+    initialContent: 'Button',
     propsToTraits: ['size', 'width', 'border_radius'],
     extraTraits: [colorTrait],
   });
@@ -193,7 +269,10 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-text',
     schema: textSchema,
-    initialContent: `<span>Text</span>`,
+    extend: 'text',
+    editable: true,
+    highlightable: true,
+    initialContent: 'Some Text',
     propsToTraits: [
       'align',
       'color',
@@ -218,7 +297,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-icon',
     schema: iconSchema,
-    draggable: '[slot]',
+    // draggable: '[slot]',
     initialContent: `<span></span>`,
     propsToTraits: ['size', 'name', 'background', 'color'],
   });
@@ -226,8 +305,11 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-blockquote',
     schema: blockquoteSchema,
-    droppable: true,
     initialContent: `<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
+    slots: {
+      default: true,
+      logo: true,
+    },
     propsToTraits: ['size', 'alignItems', 'border', 'indent', 'fullBleed'],
     extraTraits: [
       convertSchemaPropToTrait({
@@ -266,44 +348,36 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-interactive-step',
     draggable: false,
-    droppable: '[slot]',
     editable: false,
     highlightable: false,
     registerBlock: false,
-    extraTraits: [
-      // {
-      //   name: 'speaker-position',
-      //   label: 'Speaker Position',
-      //   type: 'select',
-      //   default: 'left',
-      //   options: ['left', 'right'],
-      // },
-      // {
-      //   name: 'customer-disposition',
-      //   label: 'Customer Disposition',
-      //   type: 'select',
-      //   default: 'happy',
-      //   options: ['happy', 'neutral', 'sad'],
-      // },
-    ],
+    slots: {
+      title: true,
+      top: true,
+      bottom: true,
+    },
   });
 
   registerBoltComponent({
     name: 'bolt-interactive-pathways',
     draggable: false,
-    droppable: false,
     editable: false,
     highlightable: false,
     registerBlock: false,
+    slots: {
+      default: true,
+    },
   });
 
   registerBoltComponent({
     name: 'bolt-interactive-pathway',
     draggable: false,
-    droppable: false,
     editable: false,
     highlightable: false,
     registerBlock: false,
+    slots: {
+      steps: true,
+    },
   });
 
   registerBoltComponent({
@@ -311,30 +385,41 @@ export function setupBolt(editor) {
     schema: animateSchema,
     propsToTraits: Object.keys(animateSchema.properties),
     draggable: false,
-    droppable: true,
     editable: true,
     highlightable: true,
     registerBlock: false,
+    slots: {
+      default: true,
+    },
   });
 
   registerBoltComponent({
     name: 'bolt-connection',
     draggable: false,
-    droppable: false,
     editable: false,
     highlightable: false,
     registerBlock: false,
+    slots: {
+      top: true,
+      bottom: true,
+    },
   });
 
   registerBoltComponent({
     name: 'bolt-character',
     schema: characterSchema,
     draggable: false,
-    droppable: true, // @todo more specific rules here around what can be added to the slots, namely status bar, dialogue, etc
     editable: false,
     highlightable: false,
     registerBlock: false,
     propsToTraits: ['size', 'characterUrl', 'useIcon'],
+    slots: {
+      default: false,
+      top: true,
+      left: true,
+      right: true,
+      bottom: true,
+    },
   });
 
   registerBoltComponent({
@@ -342,9 +427,13 @@ export function setupBolt(editor) {
     schema: statusDialogueBarSchema,
     initialContent: `<bolt-text size="xsmall" slot="text">Insert Text Here</bolt-text>`,
     draggable: true,
-    droppable: false, // @todo more specific rules here around what can be added to the slots, namely status bar, dialogue, etc
     editable: false,
     highlightable: false,
     propsToTraits: ['iconName', 'isAlertMessage', 'dialogueArrowDirection'],
+    slots: {
+      default: false,
+      // @todo consider changing `text` to `default`
+      text: true,
+    },
   });
 }
