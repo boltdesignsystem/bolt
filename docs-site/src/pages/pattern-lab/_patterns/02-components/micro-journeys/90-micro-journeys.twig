@@ -1,17 +1,23 @@
 {% set content %}
 <bolt-interactive-pathways>
-  <bolt-text slot="interactive-pathways-lead-text" display="inline">How Pega technology resolves</bolt-text>
+  <p slot="interactive-pathways-lead-text">How Pega technology resolves</p>
   <bolt-interactive-pathway>
     <p slot="pathway-title">Billing Inquires</p>
     {% include "./billing-micro-journey-fragments/_step-one.twig" %}
     {% include "./billing-micro-journey-fragments/_step-two.twig" %}
     {% include "./billing-micro-journey-fragments/_step-three.twig" %}
+    {% include "./billing-micro-journey-fragments/_step-four.twig" %}
+    {% include "./billing-micro-journey-fragments/_step-five.twig" %}
+    {% include "./billing-micro-journey-fragments/_step-six.twig" %}
   </bolt-interactive-pathway>
 
   <bolt-interactive-pathway>
     <p slot="pathway-title">Another Story</p>
     {% include "./billing-micro-journey-fragments/_step-four.twig" %}
+    {% include "./billing-micro-journey-fragments/_step-one.twig" %}
     {% include "./billing-micro-journey-fragments/_step-five.twig" %}
+    {% include "./billing-micro-journey-fragments/_step-two.twig" %}
+    {% include "./billing-micro-journey-fragments/_step-three.twig" %}
     {% include "./billing-micro-journey-fragments/_step-six.twig" %}
   </bolt-interactive-pathway>
 
