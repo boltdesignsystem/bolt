@@ -9,7 +9,9 @@ import {
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-// import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
+// Add `scrollIntoViewIfNeeded` support via `compute-scroll-into-view` not `scroll-into-view-if-needed` as the latter lacks shadow DOM support
+import computeScrollIntoView from 'compute-scroll-into-view';
+
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';
 import schema from '../tabs.schema.yml';
@@ -189,19 +191,24 @@ class BoltTabs extends withContext(withLitHtml()) {
       this.setAttribute('selected-tab', newIndex + 1); // Convert `selectedTab` back to 1-based scale
       this.contexts.get(TabsContext).selectedIndex = newIndex; // Keep context 0-based
 
-      // @todo: disable for now, not working as expected, scrolling whole page!
-      // this.scrollToSelectedTab();
+      this.scrollToSelectedTab();
     }
   }
 
   scrollToSelectedTab() {
     const selectedLabel = this.tabLabels[this.selectedIndex];
 
-    selectedLabel &&
-      selectedLabel.scrollIntoView({
-        behavior: 'smooth',
+    if (selectedLabel) {
+      // https://www.npmjs.com/package/compute-scroll-into-view#usage
+      const actions = computeScrollIntoView(selectedLabel, {
+        scrollMode: 'if-needed',
         inline: 'center',
       });
+
+      actions.forEach(({ el, top, left }) => {
+        el.scroll({ top, left });
+      });
+    }
   }
 
   handleOnKeydown(e) {
@@ -311,13 +318,14 @@ class BoltTabs extends withContext(withLitHtml()) {
     }
 
     if (!this.ready) {
+      this.ready = true;
       this.setAttribute('ready', '');
       this.dispatchEvent(new CustomEvent('tabs:ready'));
 
       // On first render, if last item is selected, needs timeout to get acurate scroll position
-      // setTimeout(() => {
-      //   this.scrollToSelectedTab();
-      // }, 0);
+      setTimeout(() => {
+        this.scrollToSelectedTab();
+      }, 0);
     }
   }
 

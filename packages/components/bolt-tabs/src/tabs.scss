@@ -29,9 +29,7 @@ bolt-tabs {
 
   display: flex;
   flex-shrink: 0;
-
   opacity: 0.9;
-
   position: relative;
   overflow: hidden; // required so that animation doesn't cause items to shift
   color: bolt-theme(headline-link);
@@ -160,6 +158,7 @@ bolt-tabs {
   flex-flow: row nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 
   @at-root .c-bolt-tabs--align-center #{&} {
     justify-content: center;
@@ -169,6 +168,9 @@ bolt-tabs {
   }
   @at-root .c-bolt-tabs--align-end #{&} {
     justify-content: flex-end;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
   }
 }
 
