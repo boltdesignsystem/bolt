@@ -2,7 +2,7 @@
 const globby = require('globby');
 const testFilesToIgnore = globby.sync([
   'packages/components/**/*.e2e.js',
-  'packages/components/**/*.no2e.js', // workaround to disable a few e2e tests
+  'packages/components/**/*.no2e.js', // workaround to disable a few e2e tests 
   'packages/**/*.data.js',
 ]);
 
