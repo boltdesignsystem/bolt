@@ -29,4 +29,4 @@ export {
   afterNextRender,
 } from '@polymer/polymer/lib/utils/render-status.js';
 
-export { shadow, withComponent, props, define } from 'skatejs/dist/esnext';
+export { shadow, withComponent, props, define } from 'skatejs';
