@@ -1,6 +1,6 @@
 import { html, render } from 'lit-html';
-import { BoltConstructableStylesheetElement } from './constructable-stylesheets';
 import { css, unsafeCSS } from 'lit-element';
+import { BoltConstructableStylesheetElement } from './constructable-stylesheets';
 
 import {
   withComponent,

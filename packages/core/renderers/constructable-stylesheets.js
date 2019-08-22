@@ -1,6 +1,5 @@
-import { supportsAdoptingStyleSheets } from 'lit-element';
+import { supportsAdoptingStyleSheets, css, unsafeCSS } from 'lit-element';
 import { BoltBase } from './bolt-base';
-import { css, unsafeCSS } from 'lit-element';
 
 /**
  * Minimal implementation of Array.prototype.flat
