@@ -12,8 +12,19 @@ const program = require('commander');
 const { updateBoltRcConfig } = require('./update-boltrc');
 const { addBoltPackage } = require('./add-bolt-package');
 
-const currentBoltVersion = require('../../../../../docs-site/package.json')
+const currentBoltVersion = require('../../../../docs-site/package.json')
   .version;
+
+var validateString = function(input) {
+  if (typeof input !== 'string') {
+    this.log(chalk.red('You must pass a valid string !'));
+    return false;
+  } else if (input.length === 0) {
+    this.log(chalk.red('Tss Tss Tss, Write something !'));
+    return false;
+  }
+  return true;
+};
 
 program
   .version(currentBoltVersion)
@@ -22,7 +33,6 @@ program
     '-D, --description [description]',
     'The button component -- part of the Bolt Design System.',
   )
-  .option('-T, --test', 'Test path for yeoman')
   .parse(process.argv);
 
 module.exports = class extends Generator {
@@ -41,6 +51,8 @@ module.exports = class extends Generator {
       test: '__tests__',
     };
 
+    this.boltVersion = currentBoltVersion;
+
     this.gitInfo = {
       name: shelljs
         .exec('git config user.name', { silent: true })
@@ -52,40 +64,10 @@ module.exports = class extends Generator {
         .exec('git config github.user', { silent: true })
         .stdout.replace(/\n/g, ''),
     };
-
-    this.boltVersion = currentBoltVersion;
-
-    if (program.test) {
-      this.testData = {
-        componentName: program.name,
-        description: program.description,
-        tmpPath:
-          'packages/generators/yeoman-create-component/generators/component/tmp',
-      };
-
-      this.folders.src = `${this.testData.tmpPath}/${this.folders.src}`;
-      this.folders.patternLabFolder = `${this.testData.tmpPath}/${this.folders.patternLabFolder}`;
-      this.gitInfo.name = 'Test User';
-      this.gitInfo.email = 'test@example.org';
-      this.gitInfo.github = '';
-      this.boltVersion = '0.0.0';
-    }
   }
 
   initializing() {
     this.log(yosay('Generating a new Bolt Design System component!'));
-  }
-
-  updateComponentName(value) {
-    return {
-      original: value,
-      camelCase: changeCase.camelCase(value),
-      pascalCase: changeCase.pascalCase(value),
-      snakeCase: changeCase.snakeCase(value),
-      kebabCase: changeCase.paramCase(value),
-      noCase: changeCase.noCase(value),
-      titleCase: changeCase.titleCase(value),
-    };
   }
 
   prompting() {
@@ -96,9 +78,8 @@ module.exports = class extends Generator {
         message:
           'What is the name of your Bolt component? (for example: `button`, `card`, carousel`, etc)',
         required: true,
-        default: typeof program.name === 'string' ? program.name : '',
-        when: !program.test,
-        validate: input => {
+        default: program.name || 'component',
+        validate: function(input) {
           if (typeof input !== 'string') {
             this.log(chalk.red('You must pass a valid component name!'));
             return false;
@@ -126,14 +107,22 @@ module.exports = class extends Generator {
             return false;
           }
           return true;
-        },
-        filter: input => {
-          this.name = updateComponentName(input);
+        }.bind(this),
+        filter: function(input) {
+          this.name = {
+            original: input,
+            camelCase: changeCase.camelCase(input),
+            pascalCase: changeCase.pascalCase(input),
+            snakeCase: changeCase.snakeCase(input),
+            kebabCase: changeCase.paramCase(input),
+            noCase: changeCase.noCase(input),
+            titleCase: changeCase.titleCase(input),
+          };
 
           return (
             input.charAt(0).toUpperCase() + input.slice(1).replace(' ', '-')
           );
-        },
+        }.bind(this),
       },
       {
         type: 'input',
@@ -141,36 +130,41 @@ module.exports = class extends Generator {
         message:
           'Could you write a sentence or two that describes your new Bolt component?',
         required: false,
-        default:
-          typeof program.description === 'string'
-            ? program.description
-            : () => {
-                return `The ${this.name.noCase} component - part of the Bolt Design System.`;
-              },
-        when: !program.test,
-        validate: input => {
+        default: function(answers) {
+          return (
+            program.description ||
+            `The ${
+              this.name.noCase
+            } component -- part of the Bolt Design System.`
+          );
+        }.bind(this),
+        validate: function(input) {
           if (typeof input !== 'string') {
             this.log(chalk.red('You must pass a valid string !'));
             return false;
           }
           return true;
-        },
+        }.bind(this),
       },
-    ]).then(props => {
-      this.props = !program.test ? props : this.testData;
-      this.props.name = !program.test
-        ? this.name
-        : this.updateComponentName(this.testData.componentName);
-      this.props.gitUrl = this.gitUrl;
-      this.props.boltVersion = this.boltVersion;
-      this.props.gitInfo = this.gitInfo;
-      this.props.packageName = `@bolt/components-${this.props.name.kebabCase}`;
-      this.props.dest = `${this.folders.src}/bolt-${this.props.name.kebabCase}`;
-      this.props.gitPath =
-        this.gitUrl +
-        '/tree/master/packages/components/bolt-' +
-        this.props.name.kebabCase;
-    });
+    ]).then(
+      function(props) {
+        this.props = props;
+        this.props.name = this.name;
+        this.props.gitUrl = this.gitUrl;
+        this.props.boltVersion = this.boltVersion;
+        this.props.gitInfo = this.gitInfo;
+        this.props.packageName = `@bolt/components-${
+          this.props.name.kebabCase
+        }`;
+        this.props.dest = `${this.folders.src}/bolt-${
+          this.props.name.kebabCase
+        }`;
+        this.props.gitPath =
+          this.gitUrl +
+          '/tree/master/packages/components/bolt-' +
+          this.props.name.kebabCase;
+      }.bind(this),
+    );
   }
 
   writing() {
@@ -227,7 +221,9 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('component.test.js'),
       this.destinationPath(
-        `${this.folders.src}/bolt-${this.props.name.kebabCase}/__tests__/index.js`,
+        `${this.folders.src}/bolt-${
+          this.props.name.kebabCase
+        }/__tests__/index.js`,
       ),
       { props: this.props },
     );
@@ -260,7 +256,9 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('component-docs.twig'),
       this.destinationPath(
-        `${this.folders.patternLabFolder}/${this.props.name.kebabCase}/00-${this.props.name.kebabCase}-docs.twig`,
+        `${this.folders.patternLabFolder}/${this.props.name.kebabCase}/00-${
+          this.props.name.kebabCase
+        }-docs.twig`,
       ),
       {
         props: this.props,
@@ -270,18 +268,21 @@ module.exports = class extends Generator {
   }
 
   install() {
-    if (program.test) {
-      updateBoltRcConfig(this.props.packageName, this.testData.tmpPath);
-      addBoltPackage(this.props.packageName, this.testData.tmpPath);
-    } else {
-      updateBoltRcConfig(this.props.packageName);
-      addBoltPackage(this.props.packageName);
+    updateBoltRcConfig(this.props.packageName);
+    addBoltPackage(this.props.packageName);
 
-      shelljs.exec('yarn');
+    shelljs.exec('yarn');
 
-      shelljs.exec(
-        `npx prettier ${this.folders.src}/bolt-${this.props.name.kebabCase}/**/*.{js,scss,json} --write`,
-      );
-    }
+    shelljs.exec(
+      `npx prettier ${this.folders.patternLabFolder}/${
+        this.props.name.kebabCase
+      }/**/*.{js,scss,json} --write`,
+    );
+
+    shelljs.exec(
+      `npx prettier ${this.folders.src}/bolt-${
+        this.props.name.kebabCase
+      }/**/*.{js,scss,json} --write`,
+    );
   }
 };
