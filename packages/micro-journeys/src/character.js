@@ -26,7 +26,9 @@ class BoltCharacter extends withLitHtml() {
   }
 
   render() {
-    const { characterUrl, size, useIcon, animtype } = this.validateProps(this.props);
+    const { characterUrl, size, useIcon, animtype } = this.validateProps(
+      this.props,
+    );
     const classes = cx('c-bolt-character', `c-bolt-character--${size}`);
 
     return html`
@@ -69,7 +71,12 @@ class BoltCharacter extends withLitHtml() {
                 />
               `}
         </div>
-        <bolt-svg-animations class="c-bolt-character__background" speed="4000" animtype="${animtype}" theme="dark"></bolt-svg-animations>
+        <bolt-svg-animations
+          class="c-bolt-character__background"
+          speed="4000"
+          animtype="${animtype}"
+          theme="dark"
+        ></bolt-svg-animations>
       </div>
     `;
   }
