@@ -12,7 +12,6 @@
     {% set assets = get_data(manifestConfigFile) %}
   {% endif %}
 
-  <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
 
   {{ patternLabFoot | raw }}
 
