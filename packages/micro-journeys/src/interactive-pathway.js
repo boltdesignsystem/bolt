@@ -52,6 +52,7 @@ class BoltInteractivePathway extends withLitHtml() {
 
   setActive(isActive = true) {
     this.isActivePathway = isActive;
+    this.setActiveStep(0);
     this.triggerUpdate();
   }
 
@@ -66,16 +67,6 @@ class BoltInteractivePathway extends withLitHtml() {
 
   connectedCallback() {
     super.connectedCallback();
-    if (this.getAttribute('total-steps')) {
-      console.error(
-        'The attribute "total-steps" is present and should not be.',
-      );
-    }
-
-    // If we fire `this.setActiveStep(0)` here it won't work since parents are connected before children, so we place it in `setTimeout` to put it at bottom of call stack
-    setTimeout(() => {
-      this.setActiveStep(0);
-    }, 0); // @todo replace this with a nice onScroll/inView trigger
   }
 
   /**

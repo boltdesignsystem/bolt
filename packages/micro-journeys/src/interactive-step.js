@@ -44,10 +44,6 @@ class BoltInteractiveStep extends withLitHtml() {
 
   connectedCallback() {
     super.connectedCallback();
-    if (this.getAttribute('step')) {
-      console.error('The attribute "step" is present and should not be.');
-    }
-
     this.addEventListener('bolt:transitionend', this.handleAnimationEnd);
   }
 
