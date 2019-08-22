@@ -15,6 +15,7 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
 const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
 const {
@@ -330,23 +331,7 @@ async function createWebpackConfig(buildConfig) {
     //   mergeDuplicateChunks: true,
     // },
     optimization: {
-      minimizer: config.prod
-        ? [
-            new UglifyJsPlugin({
-              sourceMap: true,
-              parallel: true,
-              cache: true,
-              uglifyOptions: {
-                compress: true,
-                mangle: true,
-                output: {
-                  comments: false,
-                  beautify: false,
-                },
-              },
-            }),
-          ]
-        : [],
+      minimizer: config.prod ? [new TerserPlugin()] : [],
     },
     plugins: [
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
@@ -417,17 +402,6 @@ async function createWebpackConfig(buildConfig) {
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
-    webpackConfig.plugins.push(
-      new UglifyJsPlugin({
-        sourceMap: config.sourceMaps,
-        parallel: true,
-        cache: true,
-        uglifyOptions: {
-          compress: true,
-          mangle: true,
-        },
-      }),
-    );
 
     // https://webpack.js.org/plugins/module-concatenation-plugin/
     webpackConfig.plugins.push(

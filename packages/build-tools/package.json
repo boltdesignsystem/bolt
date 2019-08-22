@@ -22,6 +22,7 @@
     "test": "FORCE_COLOR=1 npx lerna exec --scope @bolt/build-tools--test* --concurrency 1 -- npm run test"
   },
   "dependencies": {
+    "terser-webpack-plugin": "^1.4.1",
     "@babel/core": "^7.4.5",
     "@bolt/api": "^2.6.0-beta.1",
     "@bolt/babel-preset-bolt": "^2.6.0-beta.1",
