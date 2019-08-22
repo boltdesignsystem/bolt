@@ -43,6 +43,10 @@ class BoltButton extends BoltAction {
     return self;
   }
 
+  get styles() {
+    return [styles];
+  }
+
   render() {
     const classes = cx('c-bolt-button', {
       'c-bolt-button--medium': !this.props.size, // Default size
@@ -217,7 +221,7 @@ class BoltButton extends BoltAction {
     }
 
     return html`
-      ${this.addStyles([styles])} ${buttonElement}
+      ${buttonElement}
     `;
   }
 }

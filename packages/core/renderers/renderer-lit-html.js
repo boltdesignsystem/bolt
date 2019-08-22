@@ -1,4 +1,6 @@
 import { html, render } from 'lit-html';
+import { BoltConstructableStylesheetElement } from './constructable-stylesheets';
+import { css, unsafeCSS } from 'lit-element';
 
 import {
   withComponent,
@@ -11,7 +13,7 @@ import { BoltBase } from './bolt-base';
 
 export { html, render } from 'lit-html';
 
-class _withLitHtml extends BoltBase {
+class _withLitHtml extends BoltConstructableStylesheetElement {
   // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
 
   static props = {
