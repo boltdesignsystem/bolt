@@ -136,6 +136,14 @@ bolt-nav-priority {
   min-width: 12rem;
   max-width: 100vw;
   max-height: 0;
+  color: bolt-theme(
+    (
+      xdark: text-on-brand-darken-5,
+      dark: text-on-brand-lighten-20,
+      light: text-on-secondary,
+      xlight: text-on-secondary,
+    )
+  );
   border-bottom-right-radius: $bolt-border-radius;
   border-bottom-left-radius: $bolt-border-radius;
   box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);

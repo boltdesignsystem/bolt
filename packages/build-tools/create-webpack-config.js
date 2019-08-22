@@ -58,9 +58,9 @@ async function createWebpackConfig(buildConfig, isModern) {
 
   let themifyOptions = {
     watchForChanges:
-      config.watch === true && config.mode !== 'server' ? true : false,
+      config.watch === true && config.mode !== 'server' && isModern === false ? true : false,
     classPrefix: 't-bolt-',
-    screwIE11: config.mode === 'server' ? true : false,
+    screwIE11: config.mode === 'server' || isModern === true ? true : false,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -156,7 +156,7 @@ async function createWebpackConfig(buildConfig, isModern) {
       entry[globalEntryName] = [
         '@bolt/core/styles/index.scss',
         '@bolt/global/styles/index.scss',
-        '@bolt/global/styles/index.utils.scss',
+        // '@bolt/global/styles/index.utils.scss',
       ];
 
       components.global.forEach(component => {
@@ -171,17 +171,18 @@ async function createWebpackConfig(buildConfig, isModern) {
         }
       });
 
-      const useHotMiddleware =
-        Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1
-          ? false
-          : true;
+      // const useHotMiddleware =
+      //   Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1
+      //     ? false
+      //     : true;
 
-      if (!config.prod && config.webpackDevServer && useHotMiddleware) {
-        entry[globalEntryName].push(
-          `webpack-hot-middleware/client?name=${config.lang}&noInfo=true&quiet=true&logLevel=silent&reload=true`,
-        );
-      }
+      // if (!config.prod && config.webpackDevServer && useHotMiddleware) {
+      //   entry[globalEntryName].push(
+      //     `webpack-hot-middleware/client?name=${config.lang}&noInfo=true&quiet=true&logLevel=silent&reload=true`,
+      //   );
+      // }
     }
+
     if (components.individual) {
       components.individual.forEach(component => {
         const files = [];
@@ -393,12 +394,12 @@ async function createWebpackConfig(buildConfig, isModern) {
     );
   }
 
-  if (!config.prod && config.webpackDevServer) {
-    webpackConfig.plugins.push(
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin(),
-    );
-  }
+  // if (!config.prod && config.webpackDevServer) {
+  //   webpackConfig.plugins.push(
+  //     // new webpack.HotModuleReplacementPlugin(),
+  //     // new webpack.NoEmitOnErrorsPlugin(),
+  //   );
+  // }
 
   // Enable new experimental cache mode to significantly speed up the initial build times
   // if (config.enableCache && !config.prod) {
@@ -468,7 +469,8 @@ async function createWebpackConfig(buildConfig, isModern) {
       quiet: true,
       clientLogLevel: 'none',
       stats: statsPreset(webpackStats[config.verbosity]),
-      hot: config.prod ? false : true,
+      hot: false,
+      // hot: config.prod ? false : true,
       noInfo: true, // webpackTasks.watch handles output info related to success & failure
       publicPath,
     };

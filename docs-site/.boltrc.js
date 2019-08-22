@@ -143,7 +143,6 @@ const config = {
        */
       // Keeping PL specific assets here so we can remove an extra JS + CSS request from the site
       resolve.sync('./src/index.scss'),
-      resolve.sync('./src/index.js'),
     ],
     individual: [
       '@bolt/components-critical-fonts',
