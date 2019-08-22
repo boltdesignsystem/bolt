@@ -1,16 +1,14 @@
+/* eslint-disable prettier/prettier */
 import {
   define,
   props,
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import html from 'preact-html';
 import Prism from 'prismjs/components/prism-core';
-
-import styles from './code-snippet.scss';
-
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-twig';
 import 'prismjs/components/prism-clike';
@@ -22,8 +20,10 @@ import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-markdown';
 import 'prismjs/components/prism-yaml';
 
+import styles from './code-snippet.scss';
+
 @define
-class BoltCodeSnippetClass extends withPreact() {
+class BoltCodeSnippetClass extends withLitHtml {
   static is = 'bolt-code-snippet';
 
   static props = {
@@ -84,21 +84,17 @@ class BoltCodeSnippetClass extends withPreact() {
     );
 
     if (display === 'inline') {
-      return (
-        <code className={codeClasses}>
-          {this.addStyles([styles])}
-          {html(highlightedCode)}
-        </code>
-      );
+      return html`
+        ${this.addStyles([styles])}
+        <code class="${codeClasses}">${unsafeHTML(highlightedCode)}</code>
+      `;
     } else {
-      return (
-        <pre className={preClasses}>
-          <code className={codeClasses}>
-            {this.addStyles([styles])}
-            {html(highlightedCode)}
-          </code>
-        </pre>
-      );
+      return html`
+        ${this.addStyles([styles])}
+        <pre class="${preClasses}">
+        <code class="${codeClasses}">${unsafeHTML(highlightedCode)}</code>
+      </pre>
+      `;
     }
   }
 }
