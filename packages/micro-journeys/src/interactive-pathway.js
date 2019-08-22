@@ -29,6 +29,7 @@ class BoltInteractivePathway extends withLitHtml() {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     // self.schema = schema;
+    self.isActivePathway = false;
     self.activeStep = 0;
     self.addEventListener('change-active-step', event => {
       const steps = this.getSteps();
@@ -47,6 +48,20 @@ class BoltInteractivePathway extends withLitHtml() {
       'bolt-interactive-step',
       this,
     ));
+  }
+
+  setActive(isActive = true) {
+    this.isActivePathway = isActive;
+    this.triggerUpdate();
+  }
+
+  /**
+   * @return {string}
+   */
+  getTitle() {
+    /** @type {HTMLElement} */
+    const pathwayTitleEl = this.querySelector('[slot="pathway-title"');
+    return pathwayTitleEl ? pathwayTitleEl.innerText : '';
   }
 
   connectedCallback() {
@@ -93,19 +108,16 @@ class BoltInteractivePathway extends withLitHtml() {
   };
 
   render() {
-    const isActive =
-      `${this.getAttribute('pathwayid')}` === `${this.activePathwayId}`;
-
     const classes = cx('c-bolt-interactive-pathway', {
-      [`c-bolt-interactive-pathway--disabled`]: !isActive,
-      [`c-bolt-interactive-pathway--active`]: isActive,
+      [`c-bolt-interactive-pathway--disabled`]: !this.isActivePathway,
+      [`c-bolt-interactive-pathway--active`]: this.isActivePathway,
     });
 
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <ul class="c-bolt-interactive-pathway__nav">
-          ${this.slot('steps')}
+          ${this.slot('default')}
         </ul>
       </div>
     `;
