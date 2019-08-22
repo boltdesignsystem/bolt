@@ -8,7 +8,7 @@ import { ListContext } from './list';
 let cx = classNames.bind(styles);
 
 @define
-class BoltListItem extends withContext(withLitHtml()) {
+class BoltListItem extends withContext(withLitHtml) {
   static is = 'bolt-list-item';
 
   static props = {

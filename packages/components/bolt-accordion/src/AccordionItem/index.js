@@ -14,7 +14,7 @@ import { AccordionItemContent } from './AccordionItemContent';
 import { AccordionContext } from '../accordion';
 
 @define
-class AccordionItem extends withContext(withLitHtml()) {
+class AccordionItem extends withContext(withLitHtml) {
   static is = 'bolt-accordion-item';
 
   static props = {

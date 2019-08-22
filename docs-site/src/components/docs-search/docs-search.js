@@ -5,7 +5,7 @@ import docsearch from 'docsearch.js/dist/npm/src/lib/main.js';
 import qs from 'querystring';
 
 @define
-class BoltDocsSearch extends withLitHtml() {
+class BoltDocsSearch extends withLitHtml {
   static is = 'bds-docs-search';
 
   static props = {

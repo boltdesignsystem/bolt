@@ -16,7 +16,7 @@ import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss
 import styles from './dropdown.scss';
 
 @define
-class BoltDropdown extends withLitHtml() {
+class BoltDropdown extends withLitHtml {
   static is = 'bolt-dropdown';
 
   static props = {

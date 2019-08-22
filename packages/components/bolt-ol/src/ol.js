@@ -18,7 +18,7 @@ function addNestedLevelProps(childNode, level) {
 }
 
 @define
-class BoltOrderedList extends withLitHtml() {
+class BoltOrderedList extends withLitHtml {
   static is = 'bolt-ol';
 
   static props = {

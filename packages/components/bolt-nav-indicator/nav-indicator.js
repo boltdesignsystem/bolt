@@ -149,7 +149,7 @@ let gumshoeStateModule = (function() {
 })();
 
 @define
-class BoltNavIndicator extends withLitHtml() {
+class BoltNavIndicator extends withLitHtml {
   static is = 'bolt-nav-indicator';
 
   // Behavior for `<bolt-nav>` parent container

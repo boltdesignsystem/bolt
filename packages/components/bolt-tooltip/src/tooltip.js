@@ -8,7 +8,7 @@ import styles from './tooltip.scss';
 let cx = classNames.bind(styles);
 
 @define
-class BoltTooltip extends withLitHtml() {
+class BoltTooltip extends withLitHtml {
   static is = 'bolt-tooltip';
 
   static props = {

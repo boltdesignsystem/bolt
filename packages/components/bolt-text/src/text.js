@@ -10,7 +10,7 @@ import styles from './text.scss';
 import schema from '../text.schema.yml';
 
 @define
-class BoltText extends withLitHtml() {
+class BoltText extends withLitHtml {
   static is = 'bolt-text';
 
   static props = {

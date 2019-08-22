@@ -16,7 +16,7 @@ const ajv = new Ajv({ useDefaults: 'shared' });
 let cx = classNames.bind(styles);
 
 @define
-class BoltChip extends withLitHtml() {
+class BoltChip extends withLitHtml {
   static is = 'bolt-chip';
 
   static props = {

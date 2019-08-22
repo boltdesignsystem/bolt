@@ -20,7 +20,7 @@ const backgroundStyles = ['circle', 'square'];
 const colors = ['teal', 'blue'];
 
 @define
-class BoltIcon extends withPreact() {
+class BoltIcon extends withPreact {
   static is = 'bolt-icon';
 
   static props = {

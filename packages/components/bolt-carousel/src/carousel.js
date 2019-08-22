@@ -93,7 +93,7 @@ for (const key of schemaPropKeys) {
 }
 
 @define
-class BoltCarousel extends withLitHtml() {
+class BoltCarousel extends withLitHtml {
   static is = 'bolt-carousel';
 
   static props = {
@@ -680,7 +680,7 @@ class BoltCarousel extends withLitHtml() {
 }
 
 @define
-class BoltCarouselSlide extends withLitHtml() {
+class BoltCarouselSlide extends withLitHtml {
   static is = 'bolt-carousel-slide';
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context

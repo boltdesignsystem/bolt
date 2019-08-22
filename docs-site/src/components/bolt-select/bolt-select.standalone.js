@@ -12,7 +12,7 @@ import { filterObject, isDefined, createSelectOptionData } from './utils';
 import styles from './bolt-select.scss';
 
 @define
-class BoltSelect extends withLitHtml() {
+class BoltSelect extends withLitHtml {
   static is = 'bolt-select';
 
   static props = {

@@ -31,7 +31,7 @@ function whichAnimationEvent() {
 const animationEvent = whichAnimationEvent();
 
 @define
-class BoltDeviceViewer extends withLitHtml() {
+class BoltDeviceViewer extends withLitHtml {
   static is = 'bolt-device-viewer';
 
   static props = {
@@ -66,7 +66,7 @@ class BoltDeviceViewer extends withLitHtml() {
 }
 
 @define
-class BoltImageZoom extends withLitHtml() {
+class BoltImageZoom extends withLitHtml {
   static is = 'bolt-image-zoom';
 
   static props = {

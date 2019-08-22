@@ -28,7 +28,7 @@ export const ListContext = defineContext({
 });
 
 @define
-class BoltList extends withContext(withLitHtml()) {
+class BoltList extends withContext(withLitHtml) {
   static is = 'bolt-list';
 
   // provide context info to children that subscribe

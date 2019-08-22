@@ -22,7 +22,7 @@ const ESCAPE_KEY = 27;
 let cx = classNames.bind(styles);
 
 @define
-class BoltModal extends withLitHtml() {
+class BoltModal extends withLitHtml {
   static is = 'bolt-modal';
 
   static props = {

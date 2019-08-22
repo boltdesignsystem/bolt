@@ -24,7 +24,7 @@ export const AccordionContext = defineContext({
 });
 
 @define
-class BoltAccordion extends withContext(withLitHtml()) {
+class BoltAccordion extends withContext(withLitHtml) {
   static is = 'bolt-accordion';
 
   static props = {

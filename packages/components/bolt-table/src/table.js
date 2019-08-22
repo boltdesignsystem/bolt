@@ -12,7 +12,7 @@ import schema from '../table.schema.yml';
 let cx = classNames.bind(styles);
 
 @define
-class BoltTable extends withLitHtml() {
+class BoltTable extends withLitHtml {
   static is = 'bolt-table';
 
   static props = {

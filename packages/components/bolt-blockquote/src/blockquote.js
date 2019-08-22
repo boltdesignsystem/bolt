@@ -12,7 +12,7 @@ let cx = classNames.bind([styles, textStyles]);
 
 @define
 @convertInitialTags('blockquote') // The first matching tag will have its attributes converted to component props
-class BoltBlockquote extends withLitHtml() {
+class BoltBlockquote extends withLitHtml {
   static is = 'bolt-blockquote';
 
   static props = {

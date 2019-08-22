@@ -10,7 +10,7 @@ import {
 } from '@bolt/components-smooth-scroll';
 
 @define
-class BoltNavLink extends withLitHtml() {
+class BoltNavLink extends withLitHtml {
   static is = 'bolt-navlink';
 
   static props = {

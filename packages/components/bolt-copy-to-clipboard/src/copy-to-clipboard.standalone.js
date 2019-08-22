@@ -4,7 +4,7 @@ import { props, define } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 @define
-class BoltCopyToClipboard extends withLitHtml() {
+class BoltCopyToClipboard extends withLitHtml {
   static is = 'bolt-copy-to-clipboard';
 
   constructor(self) {

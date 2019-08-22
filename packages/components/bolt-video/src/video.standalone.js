@@ -13,7 +13,7 @@ import { datasetToObject, formatVideoDuration } from '../utils';
 
 let index = 0;
 @define
-class BoltVideo extends withPreact() {
+class BoltVideo extends withPreact {
   static is = `${bolt.namespace}-video`;
 
   static props = {

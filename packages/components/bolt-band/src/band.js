@@ -9,7 +9,7 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 // ShadyCSS will rename classes as needed to ensure style scoping.
 
 @define
-class BoltBand extends withLitHtml() {
+class BoltBand extends withLitHtml {
   static is = 'bolt-band';
 
   static get observedAttributes() {

@@ -9,7 +9,7 @@ import {
 import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 
 @define
-class BoltAction extends withLitHtml() {
+class BoltAction extends withLitHtml {
   static props = {
     url: props.string,
     target: props.string,

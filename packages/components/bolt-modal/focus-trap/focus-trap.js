@@ -8,7 +8,7 @@ import { queryShadowRoot } from './shadow';
  * @slot - Default content.
  */
 @define
-class FocusTrap extends withLitHtml() {
+class FocusTrap extends withLitHtml {
   static is = 'focus-trap';
 
   static props = {

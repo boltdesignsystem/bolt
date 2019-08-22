@@ -13,7 +13,7 @@ import styles from './figure.scss';
 let cx = classNames.bind(styles);
 
 @define
-class BoltFigure extends withLitHtml() {
+class BoltFigure extends withLitHtml {
   static is = 'bolt-figure';
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context

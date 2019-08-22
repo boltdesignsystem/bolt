@@ -6,7 +6,7 @@ import styles from './stack.scss';
 let cx = classNames.bind(styles);
 
 @define
-class BoltStack extends withLitHtml() {
+class BoltStack extends withLitHtml {
   static is = 'bolt-stack';
 
   static props = {

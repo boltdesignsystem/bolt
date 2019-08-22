@@ -5,7 +5,7 @@ import styles from './radio-switch.scss';
 // let cx = classNames.bind(styles);
 
 @define
-class BoltRadioSwitch extends withLitHtml() {
+class BoltRadioSwitch extends withLitHtml {
   static is = 'bolt-radio-switch';
 
   // static props = {

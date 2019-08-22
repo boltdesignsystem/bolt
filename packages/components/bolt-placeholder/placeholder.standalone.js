@@ -9,7 +9,7 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import placeholderStyles from './placeholder.scss';
 
 @define
-class BoltPlaceholder extends withLitHtml() {
+class BoltPlaceholder extends withLitHtml {
   static is = 'bolt-placeholder';
 
   static props = {

@@ -3,7 +3,7 @@ import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 const changeCase = require('change-case');
 
 @define
-class BoltChangeCase extends withLitHtml() {
+class BoltChangeCase extends withLitHtml {
   static is = 'bolt-change-case';
 
   static props = {

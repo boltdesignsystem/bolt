@@ -31,7 +31,7 @@ try {
 } catch (err) {}
 
 @define
-class BoltImage extends withLitHtml() {
+class BoltImage extends withLitHtml {
   static is = 'bolt-image';
 
   static props = {

@@ -1,13 +1,13 @@
 import { define, props, mapWithDepth } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { withComponent, withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import styles from './li.scss';
 
 let cx = classNames.bind(styles);
 
 @define
-class BoltListItem extends withLitHtml() {
+class BoltListItem extends withLitHtml {
   static is = 'bolt-li';
 
   static props = {

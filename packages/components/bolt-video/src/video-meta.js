@@ -2,7 +2,7 @@ import { define, props } from '@bolt/core/utils';
 import { h, withPreact } from '@bolt/core/renderers';
 
 @define
-class BoltVideoMeta extends withPreact() {
+class BoltVideoMeta extends withPreact {
   static is = `${bolt.namespace}-video-meta`;
 
   constructor(self) {

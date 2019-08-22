@@ -12,7 +12,7 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 */
 
 @define
-class BoltNavPriority extends withLitHtml() {
+class BoltNavPriority extends withLitHtml {
   static is = 'bolt-nav-priority';
 
   constructor(self) {
