@@ -25,4 +25,7 @@ polyfillLoader.then(res => {
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-two-character-layout' */ './src/two-character-layout'
   );
+  import(
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-one-character-layout' */ './src/one-character-layout'
+  );
 });
