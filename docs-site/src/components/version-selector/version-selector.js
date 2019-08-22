@@ -1,4 +1,3 @@
-import '../bolt-select/bolt-select';
 const boltSelect = document.querySelector('bolt-select');
 let shouldOpenInNewWindow = false;
 
