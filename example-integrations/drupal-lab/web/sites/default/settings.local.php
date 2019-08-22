@@ -117,7 +117,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  * using these parameters in a request to rebuild.php.
  */
 $settings['rebuild_access'] = TRUE;
-
+$settings['tome_static_directory'] = '../../../www/integrations/drupal-lab';
 /**
  * Skip file system permissions hardening.
  *
