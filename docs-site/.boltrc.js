@@ -111,6 +111,7 @@ const config = {
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
       '@bolt/components-navbar',
+      '@bolt/components-version-selector',
       '@bolt/components-navlink',
       '@bolt/components-logo',
       '@bolt/components-page-footer',
