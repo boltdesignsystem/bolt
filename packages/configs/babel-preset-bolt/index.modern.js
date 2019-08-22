@@ -6,21 +6,14 @@ const preset = function(api, opts = {}) {
         {
           modules: false,
           debug: false,
+          useBuiltIns: 'usage',
           targets: {
-            browsers: require('@bolt/browserslist-config/index.js'),
+            browsers: require('@bolt/browserslist-config/index.modern.js'),
           },
         },
       ],
     ],
     plugins: [
-      [
-        '@babel/plugin-transform-runtime',
-        {
-          helpers: false,
-          regenerator: true,
-        },
-      ],
-
       /**
        * 1. Helps with our Web Component Preact renderer
        */
@@ -38,12 +31,10 @@ const preset = function(api, opts = {}) {
       ['@babel/plugin-proposal-decorators', { legacy: true }],
 
       // ex. class { handleThing = () => { } }
-      ['@babel/plugin-proposal-class-properties', { loose: true }],
+      '@babel/plugin-proposal-class-properties',
 
       // Allows us to dynamically import JS via Webpack. ex. import('button.standalone.js')
       '@babel/plugin-syntax-dynamic-import' /* [2] */,
-
-      '@babel/plugin-proposal-object-rest-spread',
     ],
   };
 };

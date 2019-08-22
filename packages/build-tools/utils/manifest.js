@@ -138,6 +138,10 @@ async function getPkgInfo(pkgName) {
       info.assets.main = path.join(dir, pkg.main);
       ensureFileExists(info.assets.main);
     }
+    if (pkg.module) {
+      info.assets.module = path.join(dir, pkg.module);
+      ensureFileExists(info.assets.module);
+    }
     if (pkg.schema) {
       if (typeof pkg.schema === 'object') {
         if (info.schema === undefined) {

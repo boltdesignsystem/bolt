@@ -32,7 +32,7 @@ const log = require('@bolt/build-utils/log');
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
 
-async function createWebpackConfig(buildConfig) {
+async function createWebpackConfig(buildConfig, isModern) {
   const config = buildConfig;
   const fullBuildConfig = await getConfig();
 
@@ -153,14 +153,20 @@ async function createWebpackConfig(buildConfig) {
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
-      entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
+      entry[globalEntryName] = [
+        '@bolt/core/styles/index.scss',
+        '@bolt/global/styles/index.scss',
+        '@bolt/global/styles/index.utils.scss',
+      ];
 
       components.global.forEach(component => {
         if (component.assets.style) {
           entry[globalEntryName].push(component.assets.style);
         }
 
-        if (component.assets.main) {
+        if (component.assets.module !== undefined && isModern === true) {
+          entry[globalEntryName].push(component.assets.module);
+        } else if (component.assets.main) {
           entry[globalEntryName].push(component.assets.main);
         }
       });
@@ -179,8 +185,18 @@ async function createWebpackConfig(buildConfig) {
     if (components.individual) {
       components.individual.forEach(component => {
         const files = [];
-        if (component.assets.style) files.push(component.assets.style);
-        if (component.assets.main) files.push(component.assets.main);
+        files.push('@bolt/core/styles/index.with-json-export.scss');
+
+        if (component.assets.style) {
+          files.push(component.assets.style);
+        }
+
+        if (component.assets.module !== undefined && isModern === true) {
+          files.push(component.assets.module);
+        } else if (component.assets.main) {
+          files.push(component.assets.main);
+        }
+
         if (files) {
           entry[component.basicName] = files;
         }
@@ -246,8 +262,10 @@ async function createWebpackConfig(buildConfig) {
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${
         config.mode !== 'client' ? `.${config.mode}` : ''
-      }.js`,
-      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
+      }.${isModern ? 'mjs' : 'js'}`,
+      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].${
+        isModern ? 'mjs' : 'js'
+      }`,
       publicPath,
     },
     resolve: {
@@ -280,7 +298,7 @@ async function createWebpackConfig(buildConfig) {
           test: /\.scss$/,
           oneOf: [
             {
-              issuer: /\.js$/,
+              issuer: /(\.js|\.mjs)$/,
               use: [scssLoaders].reduce((acc, val) => acc.concat(val), []),
             },
             {
@@ -294,14 +312,18 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.(js|tsx|mjs)$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+          test: /\.m?js$/,
+          exclude: isModern
+            ? /node_modules/
+            : /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: {
             loader: 'babel-loader',
             options: {
               babelrc: false,
               cacheDirectory: true,
-              presets: ['@bolt/babel-preset-bolt'],
+              presets: [
+                `@bolt/babel-preset-bolt${isModern ? '/index.modern.js' : ''}`,
+              ],
             },
           },
         },
@@ -473,14 +495,17 @@ async function createWebpackConfig(buildConfig) {
 }
 
 // Helper function to associate each unique language in the build config with a separate Webpack build instance (making filenames, etc unique);
-async function assignLangToWebpackConfig(config, lang) {
+async function assignLangToWebpackConfig(config, lang, isModern) {
   let langSpecificConfig = config;
 
   if (lang) {
     langSpecificConfig.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
   }
 
-  let langSpecificWebpackConfig = await createWebpackConfig(langSpecificConfig);
+  let langSpecificWebpackConfig = await createWebpackConfig(
+    langSpecificConfig,
+    isModern,
+  );
 
   if (langSpecificConfig.webpackStats) {
     langSpecificWebpackConfig.profile = true;
@@ -501,12 +526,21 @@ module.exports = async function() {
     if (Array.isArray(langs)) {
       for (const lang of langs) {
         /* eslint-disable no-await-in-loop */
-        promises.push(await assignLangToWebpackConfig(config, lang));
+        promises.push(
+          await assignLangToWebpackConfig(config, lang, true),
+          await assignLangToWebpackConfig(config, lang, false),
+        );
       }
     } else if (langs === 'en') {
-      promises.push(await assignLangToWebpackConfig(config, null));
+      promises.push(
+        await assignLangToWebpackConfig(config, null, true),
+        await assignLangToWebpackConfig(config, null, false),
+      );
     } else {
-      promises.push(await assignLangToWebpackConfig(config, config.lang));
+      promises.push(
+        await assignLangToWebpackConfig(config, config.lang, true),
+        await assignLangToWebpackConfig(config, config.lang, false),
+      );
     }
 
     await Promise.all(promises).then(() => {
