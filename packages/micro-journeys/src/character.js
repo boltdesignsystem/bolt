@@ -30,6 +30,7 @@ class BoltCharacter extends withLitHtml() {
       this.props,
     );
     const classes = cx('c-bolt-character', `c-bolt-character--${size}`);
+    const hasSvgAnim = animtype && animtype !== 'none';
 
     return html`
       ${this.addStyles([styles])}
@@ -71,12 +72,16 @@ class BoltCharacter extends withLitHtml() {
                 />
               `}
         </div>
-        <bolt-svg-animations
-          class="c-bolt-character__background"
-          speed="4000"
-          animtype="${animtype}"
-          theme="dark"
-        ></bolt-svg-animations>
+        ${hasSvgAnim
+          ? html`
+              <bolt-svg-animations
+                class="c-bolt-character__background"
+                speed="4000"
+                animtype="${animtype}"
+                theme="dark"
+              ></bolt-svg-animations>
+            `
+          : ''}
       </div>
     `;
   }

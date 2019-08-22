@@ -1,6 +1,6 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { classMap } from 'lit-html/directives/class-map.js';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core';
 import * as SVGs from './svg';
 import schema from '../svg-animations.schema.yml';
 import styles from './svg-animations.scss';
@@ -47,9 +47,6 @@ class SVGAnimations extends withLitHtml() {
     const speed = this.getAttribute('speed');
     const theme = this.getAttribute('theme');
     const SVGTag = SVGs[`${animType}`];
-
-    console.log(this.slot('default'));
-    console.log(`${animType}`, SVGTag({ speed, theme }));
 
     return html`
       ${this.addStyles([styles])}
