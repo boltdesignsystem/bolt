@@ -1,41 +1,3 @@
-\{% set animated_step_top %}
-  <bolt-two-character-layout>
-    <bolt-animate slot="character--left" in-order="1" in="fade-in-slide-up" out="fade-out" out-order="10">
-      <bolt-character size="medium">
-        <bolt-animate in="fade-in-slide-up" in-order="3" out="fade-out" slot="top" out-order="5">
-          <bolt-status-dialogue-bar is-alert-message>
-            <p slot="text">
-              Wow! That's a large bill!
-            </p>
-          </bolt-status-dialogue-bar>
-        </bolt-animate>
-        <span slot="left" idle="none">
-        </span>
-        <span slot="bottom" idle="none">
-        </span>
-      </bolt-character>
-    </bolt-animate>
-    <bolt-animate slot="connection" in="fade-in-slide-up" in-order="5" out="fade-out" out-order="1">
-      <bolt-connection></bolt-connection>
-    </bolt-animate>
-    <bolt-animate slot="character--right" in="fade-in-slide-up" in-order="10" out="fade-out" idle="pulse" idle-duration="2000" out-order="10">
-      <bolt-character size="medium">
-        <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
-          <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud">
-            <p slot="text">
-              Here to Help!
-            </p>
-          </bolt-status-dialogue-bar>
-        </bolt-animate>
-        <span slot="right" idle="none">
-        </span>
-        <span slot="bottom" idle="none">
-        </span>
-      </bolt-character>
-    </bolt-animate>
-  </bolt-two-character-layout>
-{% endset %}
-
 {% set content %}
   <bolt-interactive-pathway
       pathwayId="1"
@@ -53,63 +15,11 @@
 
     {% include "./billing-micro-journey-fragments/_step-three.twig" %}
 
-    <bolt-interactive-step
-        step="4"
-        slot="steps"
-    >
-      <span slot="title">Resolve</span>
+    {% include "./billing-micro-journey-fragments/_step-four.twig" %}
 
-      <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
-        {{ animated_step_top }}
-      </bolt-animate>
+    {% include "./billing-micro-journey-fragments/_step-five.twig" %}
 
-      <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-        <bolt-text>
-          Pega's <b>case management</b> connects all the people, systems, and processes required to resolve each customer inquiry.
-        </bolt-text>
-      </bolt-animate>
-    </bolt-interactive-step>
-
-    <bolt-interactive-step
-        step="5"
-        slot="steps"
-    >
-      <span slot="title">Outcomes</span>
-
-      <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
-        {{ animated_step_top }}
-      </bolt-animate>
-
-      <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-        <bolt-text>
-          Customer issue is resolved quickly, resulting in higher customer satisfaction and lower <b>average handle time (AHT)</b> for the business.
-        </bolt-text>
-      </bolt-animate>
-    </bolt-interactive-step>
-
-    <bolt-interactive-step
-        step="6"
-        slot="steps"
-    >
-      <span slot="title">What's next?</span>
-
-      <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-        <details>
-          <summary>A details tag</summary>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda atque, aut autem cumque deserunt doloribus eveniet expedita facere facilis hic inventore iste, magni neque pariatur, praesentium reiciendis rerum tempora vitae?</p>
-        </details>
-        <hr>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Accusamus blanditiis consectetur culpa cum, doloremque doloribus
-          ea error ipsa itaque modi nisi non odit officia quod reiciendis
-          rem reprehenderit tempora tempore?
-        </div>
-        <hr>
-        <h2>Transform your customer experience</h2>
-        See how Pega can transform your customer experiences with next-generation software applications and solutions.
-      </bolt-animate>
-    </bolt-interactive-step>
+    {% include "./billing-micro-journey-fragments/_step-six.twig" %}
 
   </bolt-interactive-pathway>
 {% endset %}
@@ -123,7 +33,6 @@
   {{ content }}
 </bolt-interactive-pathways>
 {% endset %}
-
 
 {% include '@bolt-components-editor/editor-in-pl.twig' with {
   content: pathways,
