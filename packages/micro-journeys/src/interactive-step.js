@@ -20,32 +20,33 @@ class BoltInteractiveStep extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    step: {
-      ...props.string,
-      ...{ default: '1' },
-    },
-    active: {
-      ...props.boolean,
-      ...{ default: false },
-    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
+    self._isActiveStep = false;
     return self;
+  }
+
+  setActive(isActive = true) {
+    this._isActiveStep = isActive;
+    this.triggerUpdate();
   }
 
   /**
    * @param {Event} event
    */
   handleAnimationEnd(event) {
-    console.log('bolt:transitionend', event);
+    console.debug('bolt:transitionend', event);
   }
 
   connectedCallback() {
     super.connectedCallback();
+    if (this.getAttribute('step')) {
+      console.error('The attribute "step" is present and should not be.');
+    }
 
     this.addEventListener('bolt:transitionend', this.handleAnimationEnd);
   }
@@ -68,31 +69,40 @@ class BoltInteractiveStep extends withLitHtml() {
     super.attributeChangedCallback(name, oldValue, newValue);
   }
 
+  triggerStepChange() {
+    this.dispatchEvent(
+      new CustomEvent('change-active-step', {
+        bubbles: true,
+      }),
+    );
+  }
+
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled, active, step } = this.validateProps(this.props);
-    const totalSteps = this.parentElement.getAttribute('total-steps');
-    console.log(this.parentElement);
+    const { disabled } = this.validateProps(this.props);
+    const isLastStep = !(
+      this.nextElementSibling &&
+      this.nextElementSibling.tagName.toLowerCase() === 'bolt-interactive-step'
+    );
+    const isFirstStep = !(
+      this.previousElementSibling &&
+      this.previousElementSibling.tagName.toLowerCase() ===
+        'bolt-interactive-step'
+    );
+
     const classes = cx('c-bolt-interactive-step', {
       [`c-bolt-interactive-step--disabled`]: disabled,
-      [`c-bolt-interactive-step--active`]: active,
-      [`c-bolt-interactive-step--first`]: step === '1',
-      [`c-bolt-interactive-step--last`]: step === totalSteps,
-    });
-
-    const eventChangeActiveStep = new CustomEvent('change-active-step', {
-      bubbles: true,
-      detail: {
-        stepId: this.props.step,
-      },
+      [`c-bolt-interactive-step--active`]: this._isActiveStep,
+      [`c-bolt-interactive-step--first`]: isFirstStep,
+      [`c-bolt-interactive-step--last`]: isLastStep,
     });
 
     return html`
       ${this.addStyles([styles])}
-      <li class="${classes}" is="shadow-root" data-step="${step}">
+      <li class="${classes}" is="shadow-root">
         <div
           class="c-bolt-interactive-step__nav-item-wrapper"
-          @click=${e => e.target.dispatchEvent(eventChangeActiveStep)}
+          @click=${() => this.triggerStepChange()}
         >
           <div class="c-bolt-interactive-step__line"></div>
           <span class="c-bolt-interactive-step__dot">&#9679;</span>
@@ -100,7 +110,7 @@ class BoltInteractiveStep extends withLitHtml() {
             ${this.slot('title')}
           </span>
         </div>
-        <div class="c-bolt-interactive-step__body" data-active="${active}">
+        <div class="c-bolt-interactive-step__body">
           <div
             class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--top"
           >
