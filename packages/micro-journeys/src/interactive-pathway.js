@@ -1,4 +1,9 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import {
+  props,
+  define,
+  hasNativeShadowDomSupport,
+  query,
+} from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './interactive-pathway.scss';
@@ -16,7 +21,6 @@ class BoltInteractivePathway extends withLitHtml() {
       ...{ default: false },
     },
     activePathwayId: props.number,
-    totalSteps: props.string,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -25,32 +29,53 @@ class BoltInteractivePathway extends withLitHtml() {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     // self.schema = schema;
-    self.addEventListener('change-active-step', ({ detail: { stepId } }) => {
-      if (!stepId) {
-        console.error(
-          `uh oh, received change-active-step event with no "stepId" payload`,
-        );
-        return;
-      }
+    self.isActivePathway = false;
+    self.activeStep = 0;
+    self.addEventListener('change-active-step', event => {
+      const steps = this.getSteps();
+      const stepId = steps.findIndex(el => el === event.target);
       this.setActiveStep(stepId);
     });
-    if (!this.getAttribute('total-steps')) {
-      console.error('The attribute "total-steps" is missing.');
-    }
+
     return self;
+  }
+
+  /**
+   * @return {BoltInteractiveStep[]}
+   */
+  getSteps() {
+    return /** @type {BoltInteractiveStep[]} */ (query(
+      'bolt-interactive-step',
+      this,
+    ));
+  }
+
+  setActive(isActive = true) {
+    this.isActivePathway = isActive;
+    this.triggerUpdate();
+  }
+
+  /**
+   * @return {string}
+   */
+  getTitle() {
+    /** @type {HTMLElement} */
+    const pathwayTitleEl = this.querySelector('[slot="pathway-title"');
+    return pathwayTitleEl ? pathwayTitleEl.innerText : '';
   }
 
   connectedCallback() {
     super.connectedCallback();
+    if (this.getAttribute('total-steps')) {
+      console.error(
+        'The attribute "total-steps" is present and should not be.',
+      );
+    }
 
-    /** @type {BoltInteractiveStep[]}  */
-    this.steps = Array.from(this.querySelectorAll('bolt-interactive-step'));
-
-    // This creates the initial onLoad animation effect for the first step
-    window.setTimeout(() => {
-      const stepId = this.steps[0].getAttribute('step');
-      this.setActiveStep(stepId);
-    }, 2500); // @todo replace this with a nice onScroll/inView trigger
+    // If we fire `this.setActiveStep(0)` here it won't work since parents are connected before children, so we place it in `setTimeout` to put it at bottom of call stack
+    setTimeout(() => {
+      this.setActiveStep(0);
+    }, 0); // @todo replace this with a nice onScroll/inView trigger
   }
 
   /**
@@ -60,12 +85,13 @@ class BoltInteractivePathway extends withLitHtml() {
    */
   setActiveStep = async stepId => {
     stepId = typeof stepId === 'number' ? stepId.toString() : stepId;
-    const newActiveStep = this.steps.find(
-      s => s.getAttribute('step') === stepId,
-    );
-    const currentActiveStep = this.steps.find(
-      s => typeof s.getAttribute('active') === 'string',
-    );
+    const steps = this.getSteps();
+    if (!steps) {
+      console.error('No steps inside, so cannot setActiveStep', this);
+      return;
+    }
+    const newActiveStep = steps[stepId];
+    const currentActiveStep = steps[this.activeStep];
     if (!newActiveStep) {
       console.error(
         `uh oh setActiveStep fired with stepId "${stepId}" but could not find one`,
@@ -74,27 +100,24 @@ class BoltInteractivePathway extends withLitHtml() {
     }
     if (currentActiveStep) {
       await currentActiveStep.triggerAnimOuts();
-      currentActiveStep.removeAttribute('active');
+      currentActiveStep.setActive(false);
     }
-    newActiveStep.setAttribute('active', '');
+    newActiveStep.setActive(true);
     this.activeStep = stepId;
     await newActiveStep.triggerAnimIns();
   };
 
   render() {
-    const isActive =
-      `${this.getAttribute('pathwayid')}` === `${this.activePathwayId}`;
-
     const classes = cx('c-bolt-interactive-pathway', {
-      [`c-bolt-interactive-pathway--disabled`]: !isActive,
-      [`c-bolt-interactive-pathway--active`]: isActive,
+      [`c-bolt-interactive-pathway--disabled`]: !this.isActivePathway,
+      [`c-bolt-interactive-pathway--active`]: this.isActivePathway,
     });
 
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <ul class="c-bolt-interactive-pathway__nav">
-          ${this.slot('steps')}
+          ${this.slot('default')}
         </ul>
       </div>
     `;

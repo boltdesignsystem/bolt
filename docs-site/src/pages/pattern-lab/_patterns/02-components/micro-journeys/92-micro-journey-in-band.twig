@@ -1,50 +1,9 @@
-{% set content %}
-  <bolt-interactive-pathway
-      pathwayId="0"
-      total-steps="6"
-  >
-    <bolt-text
-        slot="pathway-title"
-    >
-      Billing Inquires
-    </bolt-text>
-
-    {% include "./billing-micro-journey-fragments/_step-one.twig" %}
-
-    {% include "./billing-micro-journey-fragments/_step-two.twig" %}
-
-    {% include "./billing-micro-journey-fragments/_step-three.twig" %}
-
-    {% include "./billing-micro-journey-fragments/_step-four.twig" %}
-
-    {% include "./billing-micro-journey-fragments/_step-five.twig" %}
-
-    {% include "./billing-micro-journey-fragments/_step-six.twig" %}
-{% endset %}
-
-{% set pathways %}
-  <div class="temp-loading-placeholder" style="height: 500px;">
-    {#This is a temporary placeholder for loading until SSR is addressed#}
-  </div>
-  <bolt-interactive-pathways style="display: none; opacity: 0; transition: opacity ease 0.3s;">
-    <bolt-text slot="interactive-pathways-lead-text" display="inline">How Pega technology resolves</bolt-text>
-    {{ content }}
-  </bolt-interactive-pathways>
-{% endset %}
-
-{% set content_in_editor %}
-{% include '@bolt-components-editor/editor-in-pl.twig' with {
-  content: pathways,
-} only %}
-{% endset %}
-
-
 {% include "@bolt-components-band/band.twig" with {
-  content: content_in_editor,
+  content: include('@pl/90-micro-journeys.twig'),
   theme: 'light'
 } only %}
 
 {% include "@bolt-components-band/band.twig" with {
-  content: content_in_editor,
+  content: include('@pl/90-micro-journeys.twig'),
   theme: 'dark'
 } only %}

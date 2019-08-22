@@ -1,39 +1,23 @@
 {% set content %}
-  <bolt-interactive-pathway
-      pathwayId="1"
-      total-steps="6"
-  >
-    <bolt-text
-        slot="pathway-title"
-    >
-      Billing Inquires
-    </bolt-text>
-
-    {% include "./billing-micro-journey-fragments/_step-one.twig" %}
-
-    {% include "./billing-micro-journey-fragments/_step-two.twig" %}
-
-    {% include "./billing-micro-journey-fragments/_step-three.twig" %}
-
-    {% include "./billing-micro-journey-fragments/_step-four.twig" %}
-
-    {% include "./billing-micro-journey-fragments/_step-five.twig" %}
-
-    {% include "./billing-micro-journey-fragments/_step-six.twig" %}
-
-  </bolt-interactive-pathway>
-{% endset %}
-
-{% set pathways %}
-<div class="temp-loading-placeholder" style="height: 500px;">
-  {#This is a temporary placeholder for loading until SSR is addressed#}
-</div>
-<bolt-interactive-pathways style="display: none; opacity: 0; transition: opacity ease 0.3s;">
+<bolt-interactive-pathways>
   <bolt-text slot="interactive-pathways-lead-text" display="inline">How Pega technology resolves</bolt-text>
-  {{ content }}
+  <bolt-interactive-pathway>
+    <p slot="pathway-title">Billing Inquires</p>
+    {% include "./billing-micro-journey-fragments/_step-one.twig" %}
+    {% include "./billing-micro-journey-fragments/_step-two.twig" %}
+    {% include "./billing-micro-journey-fragments/_step-three.twig" %}
+  </bolt-interactive-pathway>
+
+  <bolt-interactive-pathway>
+    <p slot="pathway-title">Another Story</p>
+    {% include "./billing-micro-journey-fragments/_step-four.twig" %}
+    {% include "./billing-micro-journey-fragments/_step-five.twig" %}
+    {% include "./billing-micro-journey-fragments/_step-six.twig" %}
+  </bolt-interactive-pathway>
+
 </bolt-interactive-pathways>
 {% endset %}
 
 {% include '@bolt-components-editor/editor-in-pl.twig' with {
-  content: pathways,
+  content: content,
 } only %}
