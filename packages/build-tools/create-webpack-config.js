@@ -186,7 +186,7 @@ async function createWebpackConfig(buildConfig, isModern) {
     if (components.individual) {
       components.individual.forEach(component => {
         const files = [];
-        files.push('@bolt/core/styles/index.with-json-export.scss');
+        // files.push('@bolt/core/styles/index.with-json-export.scss');
 
         if (component.assets.style) {
           files.push(component.assets.style);
