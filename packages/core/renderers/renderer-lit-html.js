@@ -11,43 +11,43 @@ import { BoltBase } from './bolt-base';
 
 export { html, render } from 'lit-html';
 
-export function withLitHtml(Base = HTMLElement) {
-  return class extends withComponent(BoltBase(Base)) {
-    // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
+class _withLitHtml extends BoltBase {
+  // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
 
-    static props = {
-      onClick: props.string,
-      onClickTarget: props.string,
-      isServer: {
-        ...props.boolean,
-        ...{ default: bolt.isServer },
-      },
-      isClient: {
-        ...props.boolean,
-        ...{ default: bolt.isClient },
-      },
-    };
+  static props = {
+    onClick: props.string,
+    onClickTarget: props.string,
+    isServer: {
+      ...props.boolean,
+      ...{ default: bolt.isServer },
+    },
+    isClient: {
+      ...props.boolean,
+      ...{ default: bolt.isClient },
+    },
+  };
 
-    constructor(...args) {
-      super(...args);
-    }
+  constructor() {
+    super();
+    this.html = html;
+  }
 
-    renderStyles(styles) {
-      if (styles) {
-        // [1]
-        // prettier-ignore
-        return html`<style>${styles}</style>`;
-      }
-    }
-
-    slot(name) {
-      if (typeof this.slots[name] === 'undefined') {
-        this.slots[name] = [];
-      }
-
+  renderStyles(styles) {
+    if (styles) {
       // [1]
       // prettier-ignore
-      if (this.useShadow && hasNativeShadowDomSupport) {
+      return html`<style>${styles}</style>`;
+    }
+  }
+
+  slot(name) {
+    if (typeof this.slots[name] === 'undefined') {
+      this.slots[name] = [];
+    }
+
+    // [1]
+    // prettier-ignore
+    if (this.useShadow && hasNativeShadowDomSupport) {
         if (name === 'default') {
           return html`<slot />`;
         } else {
@@ -63,10 +63,12 @@ export function withLitHtml(Base = HTMLElement) {
           console.log(`The ${name} slot doesn't appear to exist...`);
         }
       }
-    }
+  }
 
-    renderer(root, call) {
-      render(call(), root);
-    }
-  };
+  renderer(root, call) {
+    super.renderer && super.renderer();
+    render(call(), root);
+  }
 }
+
+export class withLitHtml extends withComponent(_withLitHtml) {}

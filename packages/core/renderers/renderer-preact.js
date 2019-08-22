@@ -36,88 +36,84 @@ function teardownPreact() {
 
 export { h } from 'preact';
 
-export function withPreact(Base = HTMLElement) {
-  return class extends withComponent(BoltBase(Base)) {
-    get props() {
-      // We override props so that we can satisfy most use
-      // cases for children by using a slot.
-      return {
-        ...super.props,
-        isServer: {
-          ...props.boolean,
-          ...{ default: bolt.isServer },
-        },
-        isClient: {
-          ...props.boolean,
-          ...{ default: bolt.isClient },
-        },
-      };
+class _withPreact extends BoltBase {
+  get props() {
+    // We override props so that we can satisfy most use
+    // cases for children by using a slot.
+    return {
+      ...super.props,
+      isServer: {
+        ...props.boolean,
+        ...{ default: bolt.isServer },
+      },
+      isClient: {
+        ...props.boolean,
+        ...{ default: bolt.isClient },
+      },
+    };
+  }
+
+  constructor(...args) {
+    super(...args);
+  }
+
+  renderStyles(styles) {
+    if (styles) {
+      return this.useShadow && <style>{styles}</style>;
     }
+  }
 
-    constructor(...args) {
-      super(...args);
-    }
+  // WIP slot function working in Preact
+  // slot(name) {
+  //   if (this.useShadow && hasNativeShadowDomSupport) {
+  //     if (name === 'default') {
+  //       return (
+  //         <slot />
+  //       )
+  //     } else {
+  //       // return this.html(`
+  //       //   <slot name="${name}" />
+  //       // `);
+  //       return (
+  //         <slot name={name} />
+  //       )
+  //     }
+  //   } else {
+  //     if (this.slots[name]) {
+  //       // return this.slots[name];
+  //       const slotItems = this.slots[name];
 
-    renderStyles(styles) {
-      if (styles) {
-        return this.useShadow && <style>{styles}</style>;
-      }
-    }
+  //       var frag = document.createDocumentFragment();
+  //       var rootNode = document.createElement('div');
 
-    // WIP slot function working in Preact
-    // slot(name) {
-    //   if (this.useShadow && hasNativeShadowDomSupport) {
-    //     if (name === 'default') {
-    //       return (
-    //         <slot />
-    //       )
-    //     } else {
-    //       // return this.html(`
-    //       //   <slot name="${name}" />
-    //       // `);
-    //       return (
-    //         <slot name={name} />
-    //       )
-    //     }
-    //   } else {
-    //     if (this.slots[name]) {
-    //       // return this.slots[name];
-    //       const slotItems = this.slots[name];
+  //       for (var i = 0; i < slotItems.length; ++i) {
+  //         frag.appendChild(slotItems[i]);
+  //       }
 
-    //       var frag = document.createDocumentFragment();
-    //       var rootNode = document.createElement('div');
+  //       rootNode.appendChild(frag);
+  //       rootNode.replaceWith(rootNode.firstChild);
 
-    //       for (var i = 0; i < slotItems.length; ++i) {
-    //         frag.appendChild(slotItems[i]);
-    //       }
+  //       return rootNode;
+  //     }
+  //     else {
+  //       console.log(`The ${name} slot doesn't appear to exist...`);
+  //     }
+  //   }
+  // }
 
-    //       rootNode.appendChild(frag);
-    //       rootNode.replaceWith(rootNode.firstChild);
+  renderer(root, call) {
+    setupPreact();
+    this._renderRoot = root;
+    this._preactDom = render(call(), root, this._preactDom || root.children[0]);
+    teardownPreact();
+  }
 
-    //       return rootNode;
-    //     }
-    //     else {
-    //       console.log(`The ${name} slot doesn't appear to exist...`);
-    //     }
-    //   }
-    // }
-
-    renderer(root, call) {
-      setupPreact();
-      this._renderRoot = root;
-      this._preactDom = render(
-        call(),
-        root,
-        this._preactDom || root.children[0],
-      );
-      teardownPreact();
-    }
-
-    disconnectedCallback() {
-      super.disconnectedCallback && super.disconnectedCallback();
-      // Render null to unmount. See https://github.com/skatejs/skatejs/pull/1432#discussion_r183381359
-      this._preactDom = render(null, this._renderRoot, this._preactDom);
-      this._renderRoot = null;
-    }
-  };
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+    // Render null to unmount. See https://github.com/skatejs/skatejs/pull/1432#discussion_r183381359
+    this._preactDom = render(null, this._renderRoot, this._preactDom);
+    this._renderRoot = null;
+  }
 }
+
+export class withPreact extends withComponent(_withPreact) {}
