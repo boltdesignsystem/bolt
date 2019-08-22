@@ -110,6 +110,8 @@ declare module 'grapesjs' {
     render(): HTMLElement;
     /** Returns editor element */
     getEl(): HTMLElement;
+    /** Returns the last selected component, if there is one */
+    getSelected(): Component;
 
     /**
      * Update editor dimensions and refresh data useful for positioning of tools
@@ -120,6 +122,33 @@ declare module 'grapesjs' {
      * component highlighter, etc.)
      */
     refresh(): void;
+  }
+
+  /**
+   * @link https://grapesjs.com/docs/api/component.html
+   * @link https://github.com/artf/grapesjs/blob/master/src/dom_components/model/Component.js
+   */
+  interface Component {
+    getEl(): HTMLElement;
+    getName(): string;
+    getId(): string;
+    getView(): ComponentView;
+    remove(): this;
+    /** check component's type */
+    is(type: string): boolean;
+    props(): {};
+    /** Update the Traits of the component. Overwrites all */
+    setAttributes(attrs: {}): this;
+    /** Update the Traits of the component. Merges with current */
+    addAttributes(attrs: {}): this;
+    getAttributes(): {};
+    getTrait(id: string): {
+      setTargetValue(value: string): void;
+    };
+  }
+
+  interface ComponentView {
+
   }
 
   interface Panels {
@@ -144,9 +173,17 @@ declare module 'grapesjs' {
     editable?: boolean;
     // can copy/paste; default `true`
     copyable?: boolean;
+    /** When true the component is removable from the canvas, default: true */
+    removable?: boolean;
     // Content of the component (not escaped) which will be appended before children rendering. Default: ''
     // If the badge is visible when the component is selected
     badgable?: boolean;
+    /** Allow component to be selected when clicked. Default: `true` */
+    selectable?: boolean;
+    /** Set to `false` if you need to hide the component inside Layers. Default: `true` */
+    layerable?: boolean;
+    /** Shows a highlight outline when hovering on the element if `true`. Default: `true` */
+    hoverable?: boolean;
     content?: string;
     script?: string | Function;
     // https://grapesjs.com/docs/modules/Traits.html
@@ -155,6 +192,8 @@ declare module 'grapesjs' {
     attributes?: {};
     // Set an array of items to show up inside the toolbar when the component is selected (move, clone, delete). Eg. toolbar: [ { attributes: {class: 'fa fa-arrows'}, command: 'tlb-move' }, ... ]. By default, when toolbar property is falsy the editor will add automatically commands like move, delete, etc. based on its properties.
     toolbar?: {}[];
+    /** Component's icon, this string will be inserted before the name (in Layers and badge), eg. it can be an HTML string */
+    icon?: string;
     components?: Array<ComponentObject | string>;
   }
 
@@ -196,6 +235,8 @@ declare module 'grapesjs' {
     ): void;
 
     getType(type: string): any;
+    getTypes(): any;
+    removeType(type: string): any;
   }
 
   interface BlockOptions {

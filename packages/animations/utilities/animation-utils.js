@@ -1,3 +1,4 @@
+import { query } from '@bolt/core/utils';
 import debounce from 'lodash.debounce';
 
 /**
@@ -5,16 +6,6 @@ import debounce from 'lodash.debounce';
  */
 export function inIframe() {
   return window.location !== window.parent.location;
-}
-
-/**
- * Get array of HTMLElements from CSS selector
- * Fires `document.querySelectorAll` but returns an Array instead of a NodeList
- * @param {string} selector
- * @return {HTMLElement[]}
- */
-export function query(selector) {
-  return [].slice.call(document.querySelectorAll(selector));
 }
 
 /**

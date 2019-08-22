@@ -1,5 +1,5 @@
 import * as grapesjs from 'grapesjs';
-import { query } from './utils';
+import { query } from '@bolt/core/utils';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
