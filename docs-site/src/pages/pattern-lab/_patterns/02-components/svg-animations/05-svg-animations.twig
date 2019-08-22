@@ -3,26 +3,46 @@
 <h3>SVG Animations</h3>
 
 <h4>Radar</h4>
-{% include "@bolt-components-svg-animations/svg-animations.twig" with {
-  speed: 4000,
-  animType: "Radar",
-  theme: "dark"
-} only %}
+{#{% include "@bolt-components-svg-animations/svg-animations.twig" with {#}
+{#  speed: 4000,#}
+{#  animType: "Radar",#}
+{#  theme: "dark",#}
+{#} only %}#}
+
+{% set content = '<bolt-character
+      characterUrl="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+      size="medium">'
+%}
+
+{% set contentSm = '<bolt-character
+      characterUrl="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+      size="small">'
+%}
 
 {% include "@bolt-components-svg-animations/svg-animations.twig" with {
   speed: 4000,
   animType: "Radar",
-  theme: "light"
+  theme: "light",
+  content: contentSm
+} only %}
+
+{% include "@bolt-components-svg-animations/svg-animations.twig" with {
+  speed: 2000,
+  animType: "Radar",
+  theme: "dark",
+  content: contentSm
 } only %}
 
 <h4>Orbit</h4>
 {% include "@bolt-components-svg-animations/svg-animations.twig" with {
   speed: 4000,
-  animType: "Orbit"
+  animType: "Orbit",
+  content: content
 } only %}
 
 <h4>Automation</h4>
 {% include "@bolt-components-svg-animations/svg-animations.twig" with {
   speed: 2000,
-  animType: "Automation"
+  animType: "Automation",
+  content: content
 } only %}
