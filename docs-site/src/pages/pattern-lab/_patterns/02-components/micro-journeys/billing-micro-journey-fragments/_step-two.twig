@@ -1,0 +1,29 @@
+<bolt-interactive-step
+    step="2"
+    slot="steps"
+>
+  <span slot="title">Customer-facing insights</span>
+
+  <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
+    <bolt-one-character-layout>
+      <bolt-character size="medium" character-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/u-comm-plus.png" class="">
+        <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
+          <bolt-status-dialogue-bar icon-name="mobility" dialogue-arrow-direction="down">
+            <bolt-text slot="text" align="start" font-size="xsmall">
+              Why is my bill so high? Let me check.
+            </bolt-text>
+          </bolt-status-dialogue-bar>
+        </bolt-animate>
+        <span slot="left"></span>
+        <span slot="right"></span>
+        <span slot="bottom"><bolt-text font-size="xsmall">Customer billing view</bolt-text></span>
+      </bolt-character>
+    </bolt-one-character-layout>
+  </bolt-animate>
+
+  <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
+    <bolt-text>
+      If the billing issue is due to new fees and charges, the customer can log in and easily see what’s changed, thanks to Pega’s customer self-service view.
+    </bolt-text>
+  </bolt-animate>
+</bolt-interactive-step>

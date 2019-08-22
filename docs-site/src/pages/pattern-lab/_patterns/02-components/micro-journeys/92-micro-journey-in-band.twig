@@ -49,39 +49,9 @@
 
     {% include "./billing-micro-journey-fragments/_step-one.twig" %}
 
-    <bolt-interactive-step
-        step="2"
-        slot="steps"
-    >
-      <span slot="title">Next best action</span>
+    {% include "./billing-micro-journey-fragments/_step-two.twig" %}
 
-      <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
-        {{ animated_step_top }}
-      </bolt-animate>
-
-      <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-        <bolt-text>
-          Pega's AI-augmented decisioning engine uses context, predictive analytics, and self-learning adaptive models to guide agents with next best actions to serve the customer.
-        </bolt-text>
-      </bolt-animate>
-    </bolt-interactive-step>
-
-    <bolt-interactive-step
-        step="3"
-        slot="steps"
-    >
-      <span slot="title">Context Across Channels</span>
-
-      <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
-        {{ animated_step_top }}
-      </bolt-animate>
-
-      <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-        <bolt-text>
-          Pega’s real-time omni-channel AI ensures that customer context is never lost, even on other channels.
-        </bolt-text>
-      </bolt-animate>
-    </bolt-interactive-step>
+    {% include "./billing-micro-journey-fragments/_step-three.twig" %}
 
     <bolt-interactive-step
         step="4"
