@@ -31,6 +31,7 @@ class BoltInteractivePathways extends withLitHtml() {
     super.connectedCallback();
     // wait till children are mounted before trying to find them
     setTimeout(() => {
+      this.style.opacity = 1;
       this.showPathway(0);
     });
   }

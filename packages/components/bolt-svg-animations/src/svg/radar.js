@@ -71,8 +71,6 @@ export const Radar = ({ speed, theme }) => {
           ></g>
         `;
 
-  console.log('gradientPNG', gradientPNG);
-
   return html`
     <svg
       version="1.1"
