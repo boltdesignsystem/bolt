@@ -47,23 +47,7 @@
       Billing Inquires
     </bolt-text>
 
-    <bolt-interactive-step
-        step="1"
-        slot="steps"
-        active
-    >
-      <span slot="title">Moment of Need</span>
-
-      <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
-        {{ animated_step_top }}
-      </bolt-animate>
-
-      <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-        <bolt-text>
-          Pega enables the business to sense customer context by seeing interactions across channels--calls to customer service about a bill, or visit to pricing web page.
-        </bolt-text>
-      </bolt-animate>
-    </bolt-interactive-step>
+    {% include "./billing-micro-journey-fragments/_step-one.twig" %}
 
     <bolt-interactive-step
         step="2"
