@@ -59,9 +59,9 @@ async function server(customWebpackConfig) {
   const webpackConfig =
     customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
 
-  const useHotMiddleware = !(
-    Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1
-  ) && webpackConfig.length === 1;
+  const useHotMiddleware =
+    !(Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1) &&
+    webpackConfig.length === 1;
 
   const browserSyncFileToWatch = [
     `${boltBuildConfig.wwwDir}/**/*.css`,
@@ -151,7 +151,7 @@ async function server(customWebpackConfig) {
     } else {
       console.log(
         chalk.yellow(
-          '\n⚠️  Head\'s up! We had to automatically disable Webpack\'s Hot Module Reloading (HMR) to avoid infinite loops... falling back to a simple page reload. \n',
+          "\n⚠️  Head's up! We had to automatically disable Webpack's Hot Module Reloading (HMR) to avoid infinite loops... falling back to a simple page reload. \n",
           // @todo: re-add message if we end up doing a modernOnly build for local dev
           //To re-enable HMR, update your .boltrc config to only compile for one language at a time while doing local dev work.
         ),

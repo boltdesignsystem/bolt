@@ -58,7 +58,9 @@ async function createWebpackConfig(buildConfig, isModern) {
 
   let themifyOptions = {
     watchForChanges:
-      config.watch === true && config.mode !== 'server' && isModern === false ? true : false,
+      config.watch === true && config.mode !== 'server' && isModern === false
+        ? true
+        : false,
     classPrefix: 't-bolt-',
     screwIE11: config.mode === 'server' || isModern === true ? true : false,
     fallback: {

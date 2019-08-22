@@ -23,7 +23,6 @@ class BoltRatio extends withLitHtml {
     },
   };
 
-
   updating() {
     super.updating && super.updating();
     this._computeRatio();

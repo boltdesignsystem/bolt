@@ -1,6 +1,9 @@
 import { define, props, mapWithDepth } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
-import { withComponent, withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import {
+  withLitHtml,
+  html,
+} from '@bolt/core/renderers/renderer-lit-html';
 
 import styles from './li.scss';
 

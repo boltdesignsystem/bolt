@@ -37,4 +37,4 @@ export function convertInitialTags(tags, moveChildrenToRoot = true) {
       }
     };
   };
-};
+}
