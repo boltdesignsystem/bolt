@@ -1,0 +1,127 @@
+<p>
+  By setting the <code>content_spacing</code> or <code>trigger_spacing</code> prop to a <code>&lt;bolt-accordion-item&gt;</code>, the default spacing value inherited from the parent <code>&lt;bolt-accordion&gt;</code> can be optionally overwritten.
+</p>
+
+{% set spacing_item %}
+  <div class="t-bolt-xlight">
+    This entire accordion has the <code>spacing</code> prop defined.
+  </div>
+{% endset %}
+
+{% set content_spacing_item %}
+  <div class="t-bolt-xlight">
+    This item has the <code>content_spacing</code> prop defined.
+  </div>
+{% endset %}
+
+{% set trigger_spacing_item %}
+  This item has the <code>trigger_spacing</code> prop defined.
+{% endset %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+    <h3>Basic usage: spacing</h3>
+    <p>
+      Using <code>spacing</code> will uniformly set the same spacing on both the trigger and the content.
+    </p>
+    <div class="t-bolt-light u-bolt-padding-small">
+      {% include "@bolt-components-accordion/accordion.twig" with {
+        spacing: "none",
+        items: [
+          {
+            trigger: "<div class='t-bolt-xlight'>Spacing: none</div>",
+            content: spacing_item,
+            open: true,
+          },
+        ]
+      } only %}
+    </div>
+    <div class="t-bolt-light u-bolt-padding-small">
+      {% include "@bolt-components-accordion/accordion.twig" with {
+        spacing: "small",
+        items: [
+          {
+            trigger: "<div class='t-bolt-xlight'>Spacing: small</div>",
+            content: spacing_item,
+            open: true,
+          },
+        ]
+      } only %}
+    </div>
+    <div class="t-bolt-light u-bolt-padding-small">
+      {% include "@bolt-components-accordion/accordion.twig" with {
+        spacing: "medium",
+        items: [
+          {
+            trigger: "<div class='t-bolt-xlight'>Spacing: medium</div>",
+            content: spacing_item,
+            open: true,
+          },
+        ]
+      } only %}
+    </div>
+  {% endcell %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+    {# Empty white space #}
+  {% endcell %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+    <h3>Advanced usage: content spacing</h3>
+    <p>
+      Using <code>content_spacing</code> will only set the spacing on the content container. This should only be used if you don't want the same spacing on both the trigger and the content.
+    </p>
+    <div class="t-bolt-light u-bolt-padding-small">
+      {% include "@bolt-components-accordion/accordion.twig" with {
+        items: [
+          {
+            trigger: "Content spacing: none",
+            content_spacing: "none",
+            content: content_spacing_item,
+            open: true,
+          },
+          {
+            trigger: "Content spacing: small",
+            content_spacing: "small",
+            content: content_spacing_item,
+            open: true,
+          },
+          {
+            trigger: "Content spacing: medium",
+            content_spacing: "medium",
+            content: content_spacing_item,
+            open: true,
+          },
+        ]
+      } only %}
+    </div>
+  {% endcell %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+    <h3>Advanced usage: trigger spacing</h3>
+    <p>
+      Using <code>trigger_spacing</code> will only set the spacing on the trigger container. This should only be used if you don't want the same spacing on both the trigger and the content.
+    </p>
+    <div class="t-bolt-light u-bolt-padding-small">
+      {% include "@bolt-components-accordion/accordion.twig" with {
+        items: [
+          {
+            trigger: "<div class='t-bolt-xlight'>Trigger spacing: none</div>",
+            trigger_spacing: "none",
+            content: trigger_spacing_item,
+            open: true,
+          },
+          {
+            trigger: "<div class='t-bolt-xlight'>Trigger spacing: small</div>",
+            trigger_spacing: "small",
+            content: trigger_spacing_item,
+            open: true,
+          },
+          {
+            trigger: "<div class='t-bolt-xlight'>Trigger spacing: medium</div>",
+            trigger_spacing: "medium",
+            content: trigger_spacing_item,
+            open: true,
+          },
+        ]
+      } only %}
+    </div>
+  {% endcell %}
+{% endgrid %}
