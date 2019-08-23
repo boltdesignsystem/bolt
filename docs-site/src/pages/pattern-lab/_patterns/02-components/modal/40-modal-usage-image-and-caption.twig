@@ -1,5 +1,5 @@
 <bolt-text headline font-size="xlarge">Image Modal Usage</bolt-text>
-<bolt-text><bolt-code-snippet display="inline" lang="html">bolt-trigger</bolt-code-snippet> is needed to create an image modal that gets triggered from either the image component or the device viewer component. The following are examples of how you can assemble the necessary pieces together. Please note that you should use the width prop on <bolt-code-snippet display="inline" lang="html">bolt-modal</bolt-code-snippet> to accommodate your needs, optimal width is about 70 characters wide, full width will take up the width of the page.</bolt-text>
+<bolt-text><bolt-code-snippet display="inline" lang="html">&lt;bolt-trigger&gt;</bolt-code-snippet> is needed to create an image modal that gets triggered from either the Image component or the Device Viewer component. The following are examples of how you can assemble the necessary pieces together. Please note that you should use the <bolt-code-snippet display="inline" lang="html">width</bolt-code-snippet> prop on <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet> to accommodate your needs, <bolt-code-snippet display="inline" lang="html">optimal</bolt-code-snippet> width is about 70 characters wide, <bolt-code-snippet display="inline" lang="html">full</bolt-code-snippet> width will take up the width of the page.</bolt-text>
 
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set image_content %}
@@ -51,8 +51,8 @@
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Enlarge image and show caption</bolt-text>
-    <bolt-text>Create a thumbnail image trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high res image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
-    <bolt-text>Modal width is set to auto and image max-width is set to 1000px.</bolt-text>
+    <bolt-text>Create a thumbnail image trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high-resolution image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
+    <bolt-text>Modal <bolt-code-snippet display="inline" lang="html">width</bolt-code-snippet>  is set to <bolt-code-snippet display="inline" lang="html">auto</bolt-code-snippet>  and image <bolt-code-snippet display="inline" lang="html">max-width</bolt-code-snippet>  is set to <bolt-code-snippet display="inline" lang="html">1000px</bolt-code-snippet>.</bolt-text>
   {% endset %}
 
   {% include "@bolt-components-grid/grid.twig" with {
@@ -138,8 +138,8 @@
 
   {% set description %}
     <bolt-text headline font-size="large">Enlarge image (inside device viewer) and show caption</bolt-text>
-    <bolt-text>Create a device viewer trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high res image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
-    <bolt-text>Modal width is set to optimal.</bolt-text>
+    <bolt-text>Create a device viewer trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high-resolution image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
+    <bolt-text>Modal <bolt-code-snippet display="inline" lang="html">width</bolt-code-snippet>  is set to <bolt-code-snippet display="inline" lang="html">optimal</bolt-code-snippet> .</bolt-text>
   {% endset %}
 
   {% include "@bolt-components-grid/grid.twig" with {
