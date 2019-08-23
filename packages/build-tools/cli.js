@@ -15,6 +15,8 @@ const packageJson = require('./package.json');
 
 let userConfig;
 
+const parseIntWithRadix = string => parseInt(string, 10);
+
 // global `bolt` cli options & meta
 program
   .version(packageJson.version)
@@ -26,7 +28,7 @@ program
   .option(
     '-v, --verbosity <amount>',
     configSchema.properties.verbosity.description,
-    parseInt,
+    parseIntWithRadix,
   )
   .parse(process.argv);
 
