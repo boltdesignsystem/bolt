@@ -1,14 +1,10 @@
 {% set schema = bolt.data.components["@bolt-components-tabs"].schema %}
 
-<p>
-  By setting the <code>align</code> prop to <code>start</code>, <code>center</code>, or <code>end</code>, it will horizontally align the labels accordingly.
-</p>
-
-{% for align in schema.properties.align.enum %}
-  <h3>Align: {{ align }}</h3>
+{% for spacing in schema.properties.spacing.enum %}
+  <h3>Spacing: <code>{{ spacing }}</code></h3>
   {% include "@bolt-components-tabs/tabs.twig" with {
-    align: align,
-    items: [
+    spacing: spacing,
+    panels: [
       {
         label: "Tab label 1",
         content: "<p>Tab panel 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porta ut tortor id luctus. Cras fermentum pretium ipsum sit amet tempus. Sed lobortis dui ante, feugiat pharetra turpis dapibus sit amet. Donec hendrerit diam vel ante hendrerit ornare. Donec non aliquam nisi. Praesent malesuada mollis dui quis imperdiet. Donec dictum quam purus, ut viverra est gravida at. Mauris eu magna et sem euismod elementum quis in nisi. Morbi vitae leo et ante sagittis sodales ac a elit. Integer sed pulvinar libero. Ut non elementum ante. Pellentesque hendrerit arcu in ipsum volutpat porta.</p>",
@@ -24,4 +20,3 @@
     ]
   } only %}
 {% endfor %}
-

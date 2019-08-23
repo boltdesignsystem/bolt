@@ -9,14 +9,14 @@ properties:
       properties:
         label:
           type: string
-          description: Tab navigation item label. Twig only.
+          description: Tab label used in the navigation. Twig only.
           default: 'Tab'
         content:
           type: [string, object, array]
           description: Tab panel content.
         selected:
           type: boolean
-          description: Set active state on tab. Only one active tab allowed at a time. Defaults to first.
+          description: Set active state on tab. Only one active tab allowed at a time. Defaults to first tab.
           default: false
   align:
     description: Horizontal alignment of tab labels
@@ -38,7 +38,7 @@ properties:
       - large
   variant:
     type: string
-    description: Controls the tab label style.
+    description: Controls the tab label style (WIP).
     default: underline
     enum:
       - underline
@@ -49,6 +49,6 @@ properties:
     description: Group identifier for tabs. Must be unique. Used to generate label and panel `id`s.
   selected_tab:
     type: integer
-    description: Index of selected tab. *This* index is 1-based (i.e. first tab is `1` not `0`), as opposed to the Web Component API which is 0-based.
+    description: Set selected tab by index. *This* index is 1-based (i.e. first tab is `1` not `0`), as opposed to the Web Component API which is 0-based.
     default: 1
     minimum: 1

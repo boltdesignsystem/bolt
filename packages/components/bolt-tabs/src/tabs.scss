@@ -11,9 +11,6 @@ bolt-tabs {
   text-align: initial; // unset user-agent styles targeting `align` prop
 }
 
-// @include bolt-repeat-rule(('.c-bolt-tabs', ':host')) {
-// }
-
 .c-bolt-tabs {
   // For no-js styles
   @at-root bolt-tabs:not([ready]) & {
@@ -35,14 +32,11 @@ bolt-tabs {
   color: bolt-theme(headline-link);
   text-decoration: none;
   border-radius: 3px;
-  // Added so that &:focus:not(:active) doesn't change the size of the band
-  // @todo: we should consider making &:focus:not(:active) with thin dotted style a mixin
-  // to share with nav-priority
   border-width: thin;
   border-style: dotted;
   border-color: transparent;
-  // transition: opacity $bolt-tabs-text-transition;
-  transition: all 0.1s ease;
+  transition: opacity $bolt-tabs-text-transition;
+  // transition: all 0.1s ease;
 
   &:before {
     content: '';

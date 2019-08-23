@@ -1,14 +1,10 @@
 {% set schema = bolt.data.components["@bolt-components-tabs"].schema %}
 
-<p>
-  By setting the <code>spacing</code> prop to <code>none</code>, <code>xsmall</code>, <code>small</code>, <code>medium</code>, or <code>large</code>, it applies the appropriate inset spacing for each tab panel and label. The default is <code>medium</code>.
-</p>
-
-{% for spacing in schema.properties.spacing.enum %}
-  <h3>Spacing: <code>{{ spacing }}</code></h3>
+{% for align in schema.properties.align.enum %}
+  <h3>Align: {{ align }}</h3>
   {% include "@bolt-components-tabs/tabs.twig" with {
-    spacing: spacing,
-    items: [
+    align: align,
+    panels: [
       {
         label: "Tab label 1",
         content: "<p>Tab panel 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porta ut tortor id luctus. Cras fermentum pretium ipsum sit amet tempus. Sed lobortis dui ante, feugiat pharetra turpis dapibus sit amet. Donec hendrerit diam vel ante hendrerit ornare. Donec non aliquam nisi. Praesent malesuada mollis dui quis imperdiet. Donec dictum quam purus, ut viverra est gravida at. Mauris eu magna et sem euismod elementum quis in nisi. Morbi vitae leo et ante sagittis sodales ac a elit. Integer sed pulvinar libero. Ut non elementum ante. Pellentesque hendrerit arcu in ipsum volutpat porta.</p>",
@@ -24,3 +20,4 @@
     ]
   } only %}
 {% endfor %}
+

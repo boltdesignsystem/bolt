@@ -1,4 +1,4 @@
-The Tabs component provides a menu for displaying multiple panels of content one at a time.
+Tabs organize multiple panels of related content, allowing users to view one panel at a time.
 
 ###### Install via NPM
 
