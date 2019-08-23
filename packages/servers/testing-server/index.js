@@ -79,8 +79,8 @@ getConfig().then(async boltConfig => {
             .join('\n')}</style>
 
             ${normalizeAssets(assetsByChunkName['bolt-global'])
-              .filter(path => path.endsWith('.js'))
-              .map(path => `<script src="${path}"></script>`)
+              .filter(path => path.endsWith('.mjs'))
+              .map(path => `<script type="module" src="${path}"></script>`)
               .join('\n')}
         </head>
         <body>
