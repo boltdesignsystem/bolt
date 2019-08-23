@@ -107,15 +107,17 @@ class BoltInteractiveStep extends withLitHtml() {
           </span>
         </div>
         <div class="c-bolt-interactive-step__body">
-          <div
-            class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--top"
-          >
-            ${this.slot('top')}
-          </div>
-          <div
-            class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--bottom"
-          >
-            ${this.slot('bottom')}
+          <div class="c-bolt-interactive-step__body-inner">
+            <div
+              class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--top"
+            >
+              ${this.slot('top')}
+            </div>
+            <div
+              class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--bottom"
+            >
+              ${this.slot('bottom')}
+            </div>
           </div>
         </div>
       </li>

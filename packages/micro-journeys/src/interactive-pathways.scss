@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 1.65rem;
+    padding: 1.65rem 0;
 
     @include bolt-mq(small) {
       flex-direction: row;
@@ -44,6 +44,10 @@
         margin-left: 5px;
       }
     }
+  }
+
+  &__nav-text {
+    margin-top: 1.65rem; // To balance the 1.65 rem vertical rhythm spacing
   }
 
   &__menu-item {

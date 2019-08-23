@@ -88,7 +88,10 @@ class BoltInteractivePathways extends withLitHtml() {
             alt="Two diamond logo"
           />
           <div class="c-bolt-interactive-pathways__nav">
-            ${this.slot('interactive-pathways-lead-text')} ${menu}
+            <span class="c-bolt-interactive-pathways__nav-text"
+              >${this.slot('interactive-pathways-lead-text')}</span
+            >
+            ${menu}
           </div>
         </div>
 

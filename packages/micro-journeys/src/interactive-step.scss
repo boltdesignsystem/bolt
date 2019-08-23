@@ -34,7 +34,7 @@ bolt-interactive-step {
   text-align: left;
   transition: font-size 0.5s ease;
 
-  @include bolt-mq(small) {
+  @include bolt-mq(medium) {
     position: static;
   }
 
@@ -101,11 +101,21 @@ bolt-interactive-step {
     }
 
     // Move the step body to the right on desktop
-    @include bolt-mq(small) {
+    @include bolt-mq(medium) {
       position: absolute;
       top: 0;
       right: 0;
       width: calc(100% - 300px);
+    }
+  }
+
+  &__body-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @include bolt-mq(medium) {
+      max-width: 700px;
     }
   }
 
