@@ -76,7 +76,7 @@ async function compile(errorShouldExit, dataOnly = false) {
       'php',
       [
         '-d',
-        'memory_limit=4048M',
+        'memory_limit=5072M',
         consolePath,
         '--generate',
         dataOnly ? '--dataonly' : '',
