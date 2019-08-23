@@ -38,12 +38,12 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
   >
-  {% if items %}
+  {% if panels %}
     <replace-with-grandchildren
       {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
     >
-    {% for item in items %}
-      {% include "@bolt-components-tabs/TabPanel/tab-panel.twig" with item|merge({
+    {% for panel in panels %}
+      {% include "@bolt-components-tabs/TabPanel/tab-panel.twig" with panel|merge({
         index: loop.index,
         uuid: uuid,
         spacing: this.data.spacing.value,
