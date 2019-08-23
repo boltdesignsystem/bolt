@@ -19,17 +19,10 @@ bolt-interactive-step {
   &:not(:last-child) {
     margin-bottom: 0;
   }
-
-  // @todo why was this here? since `bolt-animation-wrapper` became `bolt-animate` these styles haven't been applying for awhile, but might of been fixing something that is broken again
-  //&:last-of-type {
-  //  bolt-animation-wrapper {
-  //    position: relative;
-  //    left: -$bolt-interactive-step-left-padding + $bolt-interactive-step-line-left-pos;
-  //  }
-  //}
 }
 
 .c-bolt-interactive-step {
+  position: relative;
   //Styles go here. /* [1] */
   text-align: left;
   transition: font-size 0.5s ease;
@@ -41,9 +34,12 @@ bolt-interactive-step {
   &__nav-item-wrapper {
     display: flex;
     align-items: center;
-    position: relative;
-    top: 0;
     padding-bottom: $bolt-interactive-step-bottom-padding;
+
+    @include bolt-mq(medium) {
+      position: relative;
+      top: 0;
+    }
   }
 
   &__line {
@@ -98,6 +94,11 @@ bolt-interactive-step {
     .c-bolt-interactive-step--active & {
       height: auto;
       overflow: visible;
+      padding-left: $bolt-interactive-step-left-padding;
+
+      @include bolt-mq(medium) {
+        margin-left: 0;
+      }
     }
 
     // Move the step body to the right on desktop
@@ -114,6 +115,7 @@ bolt-interactive-step {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 100%;
     @include bolt-mq(medium) {
       max-width: 700px;
     }
