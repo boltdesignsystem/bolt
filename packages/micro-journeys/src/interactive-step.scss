@@ -10,9 +10,10 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 $bolt-tooltip-bubble-border-color: bolt-color(gray, light);
 $bolt-tooltip-transition: $bolt-transition;
 $bolt-interactive-step-left-padding: 42px;
-$bolt-interactive-step-bottom-padding: bolt-spacing(small);
 $bolt-interactive-step-line-left-pos: 4.5px;
 $bolt-interactive-step--dot-size: 1.2rem;
+$bolt-interactive-step-bottom-padding: 5rem;
+
 
 bolt-interactive-step {
   // Override generic styles from _generic-shared.scss
@@ -35,6 +36,14 @@ bolt-interactive-step {
     display: flex;
     align-items: center;
     padding-bottom: $bolt-interactive-step-bottom-padding;
+
+    .c-bolt-interactive-step--active & {
+      padding-bottom: 1.65rem;
+
+      @include bolt-mq(medium) {
+        padding-bottom: 0;
+      }
+    }
 
     @include bolt-mq(medium) {
       position: relative;
@@ -76,7 +85,6 @@ bolt-interactive-step {
 
   &__title {
     display: inline-block;
-    margin-bottom: 1.65rem;
     padding-top: .2em;
     padding-left: $bolt-interactive-step-left-padding;
     cursor: pointer;
@@ -94,11 +102,17 @@ bolt-interactive-step {
     .c-bolt-interactive-step--active & {
       height: auto;
       overflow: visible;
+      padding-bottom: $bolt-interactive-step-bottom-padding;
       padding-left: $bolt-interactive-step-left-padding;
 
       @include bolt-mq(medium) {
         margin-left: 0;
+        padding-bottom: 0;
       }
+    }
+
+    .c-bolt-interactive-step--last & {
+      padding-left: .75rem; // This puts it aligned with the line, relative to dot width.
     }
 
     // Move the step body to the right on desktop
