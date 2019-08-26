@@ -16,7 +16,7 @@
   "scripts": {
     "copy": "cp -fr drupal-lab/web/themes/bolt-starter/dist/vendors-bundle-*.js www/integrations/drupal-lab/themes/bolt-starter/dist",
     "deploy": "now deploy --local-config=now.drupal-lab.json --team boltdesignsystem --no-verify",
-    "generate": "yarn run setup:php && yarn run drupal-lab:static && yarn run drupal-lab:copy",
+    "generate": "yarn run setup:php && yarn run static && yarn run copy",
     "setup": "npx npm-run-all --serial setup:*",
     "setup:js": "cd web/themes/bolt-starter && yarn && npm run build",
     "setup:php": "composer install && composer run build",
