@@ -68,6 +68,21 @@ $bolt-animate-slide-amount: 20px;
   }
 }
 
+@keyframes fade-in-fade-out {
+  from {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @keyframes fade-out-slide-up {
   from {
     opacity: 1;
