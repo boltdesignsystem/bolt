@@ -5,11 +5,11 @@ import {
   query,
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
-import classNames from 'classnames/bind';
-import styles from './interactive-pathway.scss';
+import cx from 'classnames';
+// import styles from './interactive-pathway.scss';
 // import schema from '../interactive-pathway.schema.yml';
 
-let cx = classNames.bind(styles);
+// let cx = classNames.bind(styles);
 
 @define
 class BoltInteractivePathway extends withLitHtml() {
@@ -31,9 +31,10 @@ class BoltInteractivePathway extends withLitHtml() {
     // self.schema = schema;
     self.isActivePathway = false;
     self.activeStep = 0;
+    self.steps = [];
     self.addEventListener('change-active-step', event => {
       const steps = this.getSteps();
-      const stepId = steps.findIndex(el => el === event.target);
+      const stepId = steps.findIndex(step => step.el === event.target);
       this.setActiveStep(stepId);
     });
 
@@ -41,13 +42,18 @@ class BoltInteractivePathway extends withLitHtml() {
   }
 
   /**
-   * @return {BoltInteractiveStep[]}
+   * @return {{ el: BoltInteractiveStep, title: string }[]}
    */
   getSteps() {
-    return /** @type {BoltInteractiveStep[]} */ (query(
+    const els = /** @type {BoltInteractiveStep[]} */ (query(
       'bolt-interactive-step',
       this,
     ));
+
+    return els.map(el => ({
+      el,
+      title: el.getTitle(),
+    }));
   }
 
   setActive(isActive = true) {
@@ -61,41 +67,45 @@ class BoltInteractivePathway extends withLitHtml() {
    */
   getTitle() {
     /** @type {HTMLElement} */
-    const pathwayTitleEl = this.querySelector('[slot="pathway-title"');
+    const pathwayTitleEl = this.querySelector('[slot="pathway-title"]');
     return pathwayTitleEl ? pathwayTitleEl.innerText : '';
   }
 
   connectedCallback() {
     super.connectedCallback();
+    // let children render before trying to access
+    setTimeout(() => {
+      this.steps = this.getSteps();
+      this.triggerUpdate();
+    }, 0);
   }
 
   /**
    * Set the active tab panel step
-   * @param {string | number} stepId
+   * @param {number} stepIndex
    * @return {Promise<void>}
    */
-  setActiveStep = async stepId => {
-    stepId = typeof stepId === 'number' ? stepId.toString() : stepId;
+  setActiveStep = async stepIndex => {
     const steps = this.getSteps();
     if (!steps) {
       console.error('No steps inside, so cannot setActiveStep', this);
       return;
     }
-    const newActiveStep = steps[stepId];
+    const newActiveStep = steps[stepIndex];
     const currentActiveStep = steps[this.activeStep];
     if (!newActiveStep) {
       console.error(
-        `uh oh setActiveStep fired with stepId "${stepId}" but could not find one`,
+        `uh oh setActiveStep fired with stepIndex "${stepIndex}" but could not find one`,
       );
       return;
     }
     if (currentActiveStep) {
-      await currentActiveStep.triggerAnimOuts();
-      currentActiveStep.setActive(false);
+      await currentActiveStep.el.triggerAnimOuts();
+      currentActiveStep.el.setActive(false);
     }
-    newActiveStep.setActive(true);
-    this.activeStep = stepId;
-    await newActiveStep.triggerAnimIns();
+    newActiveStep.el.setActive(true);
+    this.activeStep = stepIndex;
+    await newActiveStep.el.triggerAnimIns();
   };
 
   render() {
@@ -104,6 +114,27 @@ class BoltInteractivePathway extends withLitHtml() {
       [`c-bolt-interactive-pathway--active`]: this.isActivePathway,
     });
 
+    // new approach
+    return html`
+      <section class="${classes}">
+        <nav>
+          ${this.steps.map((step, stepIndex) => {
+            const isActiveItem = this.activeStep === stepIndex;
+            return html`
+              <div
+                @click=${() => this.setActiveStep(stepIndex)}
+                style="font-weight: ${isActiveItem ? 'bold' : 'normal'}"
+              >
+                ${step.title}
+              </div>
+            `;
+          })}
+        </nav>
+        ${this.slot('default')}
+      </section>
+    `;
+
+    // old approach
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">

@@ -1,11 +1,11 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
-import classNames from 'classnames/bind';
-import styles from './interactive-step.scss';
+import cx from 'classnames/bind';
+// import styles from './interactive-step.scss';
 //import schema from '../interactive-step.schema.yml'; //Todo: Uncomment when you will need schema
 
-const cx = classNames.bind(styles);
+// const cx = classNames.bind(styles);
 
 @define
 class BoltInteractiveStep extends withLitHtml() {
@@ -15,6 +15,10 @@ class BoltInteractiveStep extends withLitHtml() {
     noShadow: {
       ...props.boolean,
       ...{ default: false },
+    },
+    tabTitle: {
+      ...props.string,
+      ...{ default: 'The Title' },
     },
     disabled: {
       ...props.boolean,
@@ -65,6 +69,21 @@ class BoltInteractiveStep extends withLitHtml() {
     super.attributeChangedCallback(name, oldValue, newValue);
   }
 
+  /**
+   * @return {string}
+   */
+  getTitle() {
+    // /** @type {HTMLElement} */
+    // const pathwayTitleEl = this.querySelector('[slot="title"]');
+    // return pathwayTitleEl ? pathwayTitleEl.innerText : '';
+    return this.props.tabTitle;
+  }
+
+  /**
+   * Request that this step becomes the new active step
+   * @event change-active-step
+   * @return {void}
+   */
   triggerStepChange() {
     this.dispatchEvent(
       new CustomEvent('change-active-step', {
@@ -75,7 +94,7 @@ class BoltInteractiveStep extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled } = this.validateProps(this.props);
+    const { disabled, tabTitle } = this.validateProps(this.props);
     const isLastStep = !(
       this.nextElementSibling &&
       this.nextElementSibling.tagName.toLowerCase() === 'bolt-interactive-step'
@@ -93,6 +112,20 @@ class BoltInteractiveStep extends withLitHtml() {
       [`c-bolt-interactive-step--last`]: isLastStep,
     });
 
+    // new approach
+    return html`
+      <article class="${classes}">
+        <header
+          @click=${() => this.triggerStepChange()}
+          style="font-weight: ${this._isActiveStep ? 'bold' : 'normal'}"
+        >
+          ${tabTitle}
+        </header>
+        ${this.slot('top')} ${this.slot('bottom')}
+      </article>
+    `;
+
+    // old approach
     return html`
       ${this.addStyles([styles])}
       <li class="${classes}" is="shadow-root">
