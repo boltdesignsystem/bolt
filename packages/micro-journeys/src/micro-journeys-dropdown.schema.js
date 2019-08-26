@@ -20,7 +20,8 @@ module.exports = {
     },
     content: {
       type: 'any',
-      description: '**All of the items in the dropdown** -- generally works by including `@bolt-components-nav/nav.twig` with `links` array of objects containing `text` & `url`',
+      description:
+        '**All of the items in the dropdown** -- generally works by including `@bolt-components-nav/nav.twig` with `links` array of objects containing `text` & `url`',
     },
     iconBackgroundColor: {
       type: 'string',
