@@ -1,11 +1,11 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
-import cx from 'classnames/bind';
-// import styles from './interactive-step.scss';
+import classNames from 'classnames/bind';
+import styles from './interactive-step.scss';
 //import schema from '../interactive-step.schema.yml'; //Todo: Uncomment when you will need schema
 
-// const cx = classNames.bind(styles);
+const cx = classNames.bind(styles);
 
 @define
 class BoltInteractiveStep extends withLitHtml() {
@@ -112,21 +112,33 @@ class BoltInteractiveStep extends withLitHtml() {
       [`c-bolt-interactive-step--last`]: isLastStep,
     });
 
+    const titleClasses = cx('c-bolt-interactive-step__title');
     // new approach
     return html`
+      ${this.addStyles([styles])}
       <article class="${classes}">
         <header
+          class="${titleClasses}"
           @click=${() => this.triggerStepChange()}
           style="font-weight: ${this._isActiveStep ? 'bold' : 'normal'}"
         >
           ${tabTitle}
         </header>
-        ${this.slot('top')} ${this.slot('bottom')}
+        <div class="c-bolt-interactive-step__body">
+          <div class="c-bolt-interactive-step__body-inner">
+            <div class="c-bolt-interactive-step__top-slot">
+              ${this.slot('top')}
+            </div>
+            <div class="c-bolt-interactive-step__bottom-slot">
+              ${this.slot('bottom')}
+            </div>
+          </div>
+        </div>
       </article>
     `;
 
     // old approach
-    return html`
+    const old =html`
       ${this.addStyles([styles])}
       <li class="${classes}" is="shadow-root">
         <div
