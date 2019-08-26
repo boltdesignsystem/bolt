@@ -24,6 +24,7 @@ bolt-interactive-step {
 
 .c-bolt-interactive-step {
   position: relative;
+  overflow: hidden;
   //Styles go here. /* [1] */
   text-align: left;
   transition: font-size 0.5s ease;
@@ -36,14 +37,6 @@ bolt-interactive-step {
     display: flex;
     align-items: center;
     padding-bottom: $bolt-interactive-step-bottom-padding;
-
-    .c-bolt-interactive-step--active & {
-      padding-bottom: 1.65rem;
-
-      @include bolt-mq(medium) {
-        padding-bottom: 0;
-      }
-    }
 
     @include bolt-mq(medium) {
       position: relative;
