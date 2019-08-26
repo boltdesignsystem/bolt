@@ -2,7 +2,11 @@
 
 ## Button component render as expected (functionally and visually)
 
-The `bolt-button` component requires JS to function. Perform all tests with JS on.
+The server-side pre-rendered Button component should look almost identical to the client-side rendered version. To verify:
+
+1. Disable javascript and view the [Button Demo page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-button-05-button/02-components-button-05-button.html).
+2. Then, enable javascript and watch as the Button re-renders on the client-side.
+3. The spacing, color, and shadow of the button should be identical before and after the web component re-renders.
 
 # Button component functional testing steps
 
