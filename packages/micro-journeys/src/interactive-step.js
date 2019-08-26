@@ -138,7 +138,7 @@ class BoltInteractiveStep extends withLitHtml() {
     `;
 
     // old approach
-    const old =html`
+    const old = html`
       ${this.addStyles([styles])}
       <li class="${classes}" is="shadow-root">
         <div

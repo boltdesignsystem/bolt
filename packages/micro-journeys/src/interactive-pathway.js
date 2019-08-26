@@ -122,13 +122,13 @@ class BoltInteractivePathway extends withLitHtml() {
     const itemClasses = cx('c-bolt-interactive-pathway__items');
     // new approach
     return html`
-    ${this.addStyles([styles])}
+      ${this.addStyles([styles])}
       <section class="${classes}">
         <nav class="${navClasses}">
           ${this.steps.map((step, stepIndex) => {
             const isActiveItem = this.activeStep === stepIndex;
             const navItemClasses = cx('c-bolt-interactive-pathway__nav-item', {
-'c-bolt-interactive-pathway__nav-item--active': isActiveItem,              
+              'c-bolt-interactive-pathway__nav-item--active': isActiveItem,
             });
             return html`
               <div
@@ -147,7 +147,7 @@ class BoltInteractivePathway extends withLitHtml() {
     `;
 
     // old approach
-    const old= html`
+    const old = html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <ul class="c-bolt-interactive-pathway__nav">
