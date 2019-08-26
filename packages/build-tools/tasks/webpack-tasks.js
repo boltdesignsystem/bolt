@@ -11,10 +11,17 @@ const { boltWebpackMessages } = require('@bolt/build-utils/webpack-helpers');
 const events = require('@bolt/build-utils/events');
 const createWebpackConfig = require('../create-webpack-config');
 const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
+const fs = require('fs');
 
 let boltBuildConfig;
 let browserSyncIsRunning = false;
 const app = express();
+
+const getDirectories = source =>
+  fs
+    .readdirSync(source, { withFileTypes: true })
+    .filter(dir => dir.isDirectory())
+    .map(dir => dir.name);
 
 async function compile(customWebpackConfig) {
   boltBuildConfig = boltBuildConfig || (await getConfig());
@@ -158,6 +165,33 @@ async function server(customWebpackConfig) {
 
     app.use(express.static(boltBuildConfig.wwwDir));
     // app.use('/api', handleRequest); // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
+
+    if (fs.existsSync(`${boltBuildConfig.wwwDir}/integrations`)) {
+      app.use(
+        express.static(`${boltBuildConfig.wwwDir}/integrations/drupal-lab/`),
+      );
+
+      const integrationDirs = getDirectories(
+        `${boltBuildConfig.wwwDir}/integrations`,
+      );
+
+      app.get(['/integrations'], (req, res) => {
+        const generateList = integrationDirs.map(
+          item => `<li><a href="${item}">${item}</a></li>`,
+        );
+
+        res.send(`
+          <h2>Integrations:</h2>
+          <ul>
+            ${generateList}
+          </ul>  
+        `);
+      });
+
+      app.get(['/integrations/drupal-lab'], (req, res) => {
+        res.sendFile('index.html');
+      });
+    }
 
     app.listen(boltBuildConfig.port, boltBuildConfig.hostname, function onStart(
       err,
