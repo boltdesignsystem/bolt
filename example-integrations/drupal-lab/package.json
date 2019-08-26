@@ -20,6 +20,6 @@
     "setup": "npx npm-run-all --serial setup:*",
     "setup:js": "cd web/themes/bolt-starter && yarn && npm run build",
     "setup:php": "composer install && composer run build",
-    "static": "cd example-integrations/drupal-lab && ./vendor/bin/drush tome:static"
+    "static": "./vendor/bin/drush tome:static"
   }
 }
