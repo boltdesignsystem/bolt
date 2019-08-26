@@ -70,6 +70,7 @@ jobs:
         - yarn run build
         - yarn run test # run Jest tests on the FE build that just compiled
         - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
+        - yarn run generate # generate static version of Drupal Lab in the integration folder
 
     - stage: Prep
       name: 'Build + Deploy Website'
