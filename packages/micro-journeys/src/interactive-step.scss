@@ -10,26 +10,21 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 $bolt-tooltip-bubble-border-color: bolt-color(gray, light);
 $bolt-tooltip-transition: $bolt-transition;
 $bolt-interactive-step-left-padding: 42px;
-$bolt-interactive-step-bottom-padding: bolt-spacing(small);
 $bolt-interactive-step-line-left-pos: 4.5px;
 $bolt-interactive-step--dot-size: 1.2rem;
+$bolt-interactive-step-bottom-padding: 5rem;
+
 
 bolt-interactive-step {
   // Override generic styles from _generic-shared.scss
   &:not(:last-child) {
     margin-bottom: 0;
   }
-
-  // @todo why was this here? since `bolt-animation-wrapper` became `bolt-animate` these styles haven't been applying for awhile, but might of been fixing something that is broken again
-  //&:last-of-type {
-  //  bolt-animation-wrapper {
-  //    position: relative;
-  //    left: -$bolt-interactive-step-left-padding + $bolt-interactive-step-line-left-pos;
-  //  }
-  //}
 }
 
 .c-bolt-interactive-step {
+  position: relative;
+  overflow: hidden;
   //Styles go here. /* [1] */
   text-align: left;
 
@@ -44,9 +39,12 @@ bolt-interactive-step {
   &__nav-item-wrapper {
     display: flex;
     align-items: center;
-    position: relative;
-    top: 0;
     padding-bottom: $bolt-interactive-step-bottom-padding;
+
+    @include bolt-mq(medium) {
+      position: relative;
+      top: 0;
+    }
   }
 
   &__line {
@@ -82,6 +80,7 @@ bolt-interactive-step {
   }
 
   &__title {
+    display: inline-block;
     margin-bottom: 1.65rem;
     padding-top: .2em;
     padding-left: $bolt-interactive-step-left-padding;
@@ -93,25 +92,22 @@ bolt-interactive-step {
     display: flex;
     flex-direction: column;
     align-items: center;
-    //z-index: 0;
-    //height: 0;
-    //overflow: hidden;
     position: absolute;
     left: -9999px;
 
     .c-bolt-interactive-step--active & {
       position: static;
-      //height: auto;
-      //overflow: visible;
+
+
+      //@include bolt-mq(medium) {
+      //  margin-left: 0;
+      //  padding-bottom: 0;
+      //}
     }
 
-    // Move the step body to the right on desktop
-    //@include bolt-mq(medium) {
-    //  position: absolute;
-    //  top: 0;
-    //  right: 0;
-    //  width: calc(100% - 300px);
-    //}
+    .c-bolt-interactive-step--last & {
+      padding-left: .75rem; // This puts it aligned with the line, relative to dot width.
+    }
   }
 
   &__body-inner {
@@ -119,6 +115,7 @@ bolt-interactive-step {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 100%;
     @include bolt-mq(medium) {
       max-width: 700px;
     }
@@ -128,6 +125,7 @@ bolt-interactive-step {
   &--active {
     font-weight: bolder;
     .c-bolt-interactive-step__dot {
+      left: 4.5px;
       transform: scale(1.5);
       color: orange;
     }
