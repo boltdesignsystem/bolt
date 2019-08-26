@@ -23,6 +23,10 @@ const buildIns = [
     value: 'fade-in-slide-right',
     name: 'Fade In, Slide Right',
   },
+  {
+    value: 'fade-in-fade-out',
+    name: 'Fade In, Fade Out',
+  },
 ];
 
 const idles = [
