@@ -74,9 +74,12 @@ class BoltInteractivePathways extends withLitHtml() {
     });
 
     const menu = html`
-      <bolt-dropdown center title="${titles[this.activePathwayIndex]}">
+      <bolt-micro-journeys-dropdown
+        center
+        title="${titles[this.activePathwayIndex]}"
+      >
         ${menuItems}
-      </bolt-dropdown>
+      </bolt-micro-journeys-dropdown>
     `;
 
     return html`
