@@ -27,10 +27,13 @@ bolt-interactive-step {
   overflow: hidden;
   //Styles go here. /* [1] */
   text-align: left;
-  transition: font-size 0.5s ease;
+
+  //transition: font-size 0.5s ease;
 
   @include bolt-mq(medium) {
-    position: static;
+    &__title {
+      display: none;
+    }
   }
 
   &__nav-item-wrapper {
@@ -78,6 +81,7 @@ bolt-interactive-step {
 
   &__title {
     display: inline-block;
+    margin-bottom: 1.65rem;
     padding-top: .2em;
     padding-left: $bolt-interactive-step-left-padding;
     cursor: pointer;
@@ -88,32 +92,21 @@ bolt-interactive-step {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 0;
-    height: 0;
-    overflow: hidden;
+    position: absolute;
+    left: -9999px;
 
     .c-bolt-interactive-step--active & {
-      height: auto;
-      overflow: visible;
-      padding-bottom: $bolt-interactive-step-bottom-padding;
-      padding-left: $bolt-interactive-step-left-padding;
+      position: static;
 
-      @include bolt-mq(medium) {
-        margin-left: 0;
-        padding-bottom: 0;
-      }
+
+      //@include bolt-mq(medium) {
+      //  margin-left: 0;
+      //  padding-bottom: 0;
+      //}
     }
 
     .c-bolt-interactive-step--last & {
       padding-left: .75rem; // This puts it aligned with the line, relative to dot width.
-    }
-
-    // Move the step body to the right on desktop
-    @include bolt-mq(medium) {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: calc(100% - 300px);
     }
   }
 
@@ -131,7 +124,6 @@ bolt-interactive-step {
   // Generates the active state styling for the nav list
   &--active {
     font-weight: bolder;
-
     .c-bolt-interactive-step__dot {
       left: 4.5px;
       transform: scale(1.5);
