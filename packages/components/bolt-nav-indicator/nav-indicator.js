@@ -300,6 +300,12 @@ class BoltNavIndicator extends withLitHtml() {
 
   // `<bolt-nav-link>` emits a custom event when the link is active
   connecting() {
+    super.connecting && super.connecting();
+
+    this.addEventListener('navlink:active', this._onActivateLink);
+    window.addEventListener('optimizedResize', this._onWindowResize);
+    this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
+
     Promise.all([
       customElements.whenDefined('bolt-nav-priority'),
       customElements.whenDefined('bolt-navlink'),
@@ -329,12 +335,6 @@ class BoltNavIndicator extends withLitHtml() {
 
       this._initializeGumshoe();
       this._upgradeProperty('offset');
-
-      setTimeout(() => {
-        this.addEventListener('navlink:active', this._onActivateLink);
-        window.addEventListener('optimizedResize', this._onWindowResize);
-        this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
-      }, 0);
     });
   }
 
@@ -354,8 +354,11 @@ class BoltNavIndicator extends withLitHtml() {
 
   // Clean up event listeners when being removed from the page
   disconnecting() {
+    super.disconnecting && super.disconnecting();
+
     this.removeEventListener('navlink:active', this._onActivateLink);
     window.removeEventListener('optimizedResize', this._onWindowResize);
+    this.removeEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
   }
 }
 
