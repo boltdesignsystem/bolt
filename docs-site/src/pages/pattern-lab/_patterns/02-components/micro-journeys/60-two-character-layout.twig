@@ -4,37 +4,47 @@
 {% set content %}
   <bolt-two-character-layout>
     <bolt-animate slot="character--left" in-order="1" in="fade-in-slide-up" out="fade-out" out-order="10">
-      <bolt-character size="medium">
+      <div is="shadow-root">
+       <bolt-character size="medium">
         <bolt-animate in="fade-in-slide-up" in-order="3" out="fade-out" slot="top" out-order="5">
-          <bolt-status-dialogue-bar is-alert-message>
-            <p slot="text">
-              Wow! That's a large bill!
-            </p>
-          </bolt-status-dialogue-bar>
+          <div is="shadow-root">
+            <bolt-status-dialogue-bar is-alert-message>
+              <p slot="text">
+                Wow! That's a large bill!
+              </p>
+            </bolt-status-dialogue-bar>
+          </div>
         </bolt-animate>
         <span slot="left" idle="none">
         </span>
         <span slot="bottom" idle="none">
         </span>
       </bolt-character>
+      </div>
     </bolt-animate>
     <bolt-animate slot="connection" in="fade-in-slide-up" in-order="5" out="fade-out" out-order="1">
-      <bolt-connection></bolt-connection>
+      <div is="shadow-root">
+        <bolt-connection></bolt-connection>
+      </div>
     </bolt-animate>
     <bolt-animate slot="character--right" in="fade-in-slide-up" in-order="10" out="fade-out" idle="pulse" idle-duration="2000" out-order="10">
-      <bolt-character size="medium">
+      <div is="shadow-root">
+       <bolt-character size="medium">
         <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
-          <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud">
-            <p slot="text">
-              Here to Help!
-            </p>
-          </bolt-status-dialogue-bar>
+          <div is="shadow-root">
+            <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud">
+              <p slot="text">
+                Here to Help!
+              </p>
+            </bolt-status-dialogue-bar>
+          </div>
         </bolt-animate>
         <span slot="right" idle="none">
         </span>
         <span slot="bottom" idle="none">
         </span>
       </bolt-character>
+      </div>
     </bolt-animate>
   </bolt-two-character-layout>
 {% endset %}

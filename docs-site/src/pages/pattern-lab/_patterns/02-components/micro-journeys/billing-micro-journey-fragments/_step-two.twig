@@ -1,34 +1,39 @@
-<bolt-interactive-step tab-title="Customer-facing insights">
-{#  <span slot="title">Customer-facing insights</span>#}
-
+<bolt-interactive-step tab-title="Proactive service">
+  {#  <span slot="title">Proactive service</span>#}
   <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
-    <bolt-one-character-layout>
-      <bolt-character size="medium"  character-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-sad.png">
-        <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
-          <bolt-status-dialogue-bar icon-name="mobility" dialogue-arrow-direction="down">
-            <bolt-text slot="text" align="start" font-size="xsmall">
-              Why is my bill so high? Let me check.
-            </bolt-text>
-          </bolt-status-dialogue-bar>
-        </bolt-animate>
-        <span slot="left"></span>
-        <span slot="right"></span>
-        <span slot="bottom">
-          <bolt-cta>
-            <bolt-icon slot="icon" name="eye"></bolt-icon>
-            <bolt-text font-size="xsmall" slot="link" display="inline">
-              Customer billing view
-              <bolt-icon name="chevron-right"></bolt-icon>
-            </bolt-text>
-          </bolt-cta>
-        </span>
-      </bolt-character>
-    </bolt-one-character-layout>
+    <div is="shadow-root">
+      <bolt-one-character-layout>
+        <bolt-character size="medium"  character-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-sad.png">
+          <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
+            <div is="shadow-root">
+              <bolt-status-dialogue-bar icon-name="mobility" dialogue-arrow-direction="down">
+              <bolt-text slot="text" align="start" font-size="xsmall">
+                Why is my bill so high? Let me check.
+              </bolt-text>
+            </bolt-status-dialogue-bar>
+            </div>
+          </bolt-animate>
+          <span slot="left"></span>
+          <span slot="right"></span>
+          <span slot="bottom">
+            <bolt-cta>
+              <bolt-icon slot="icon" name="eye"></bolt-icon>
+              <bolt-text font-size="xsmall" slot="link" display="inline">
+                Customer billing view
+                <bolt-icon name="chevron-right"></bolt-icon>
+              </bolt-text>
+            </bolt-cta>
+          </span>
+        </bolt-character>
+      </bolt-one-character-layout>
+    </div>
   </bolt-animate>
 
   <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-    <bolt-text>
-      If the billing issue is due to new fees and charges, the customer can log in and easily see what’s changed, thanks to Pega’s customer self-service view.
-    </bolt-text>
+    <div is="shadow-root">
+      <bolt-text>
+        If the billing issue is due to new fees and charges, the customer can log in and easily see what’s changed, thanks to Pega’s customer self-service view.
+      </bolt-text>
+    </div>
   </bolt-animate>
 </bolt-interactive-step>

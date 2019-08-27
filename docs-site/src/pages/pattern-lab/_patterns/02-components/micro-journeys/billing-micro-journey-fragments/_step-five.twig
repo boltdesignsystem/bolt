@@ -1,50 +1,61 @@
 <bolt-interactive-step tab-title="Fewer calls">
 {#  <span slot="title">Fewer calls</span>#}
-
   <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
     <bolt-two-character-layout>
       <bolt-animate slot="character--left" in-order="1" in="fade-in-slide-up" out="fade-out" out-order="10">
-        <bolt-character size="medium" character-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/u-comm-plus.png">
-          <bolt-animate in="fade-in-slide-up" in-order="20" out="fade-out" slot="top" out-order="5">
-            <bolt-status-dialogue-bar  dialogue-arrow-direction="down">
-              <bolt-text slot="text" align="start" font-size="xsmall">
-                Thanks for being a valued customer!
-              </bolt-text>
-            </bolt-status-dialogue-bar>
-          </bolt-animate>
-          <span slot="left"></span>
-          <span slot="bottom"></span>
-        </bolt-character>
+        <div is="shadow-root">
+          <bolt-character size="medium" character-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/u-comm-plus.png">
+            <bolt-animate in="fade-in-slide-up" in-order="20" out="fade-out" slot="top" out-order="5">
+              <div is="shadow-root">
+                <bolt-status-dialogue-bar  dialogue-arrow-direction="down">
+                  <bolt-text slot="text" align="start" font-size="xsmall">
+                    Thanks for being a valued customer!
+                  </bolt-text>
+                </bolt-status-dialogue-bar>
+              </div>
+            </bolt-animate>
+            <span slot="left"></span>
+            <span slot="bottom"></span>
+          </bolt-character>
+        </div>
       </bolt-animate>
       <bolt-animate slot="connection" in="fade-in-slide-up" in-order="5" out="fade-out" out-order="1">
-        <bolt-connection connection-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png"></bolt-connection>
+        <div is="shadow-root">
+          <bolt-connection connection-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-rtl.png"></bolt-connection>
+        </div>
       </bolt-animate>
       <bolt-animate slot="character--right" in="fade-in-slide-up" in-order="10" out="fade-out" out-order="10">
-        <bolt-character size="medium" character-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png">
-          <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
-            <bolt-status-dialogue-bar dialogue-arrow-direction="down">
-              <bolt-text slot="text" align="start" font-size="xsmall">
-                Thanks so much for waiving my late fee!
-              </bolt-text>
-            </bolt-status-dialogue-bar>
-          </bolt-animate>
-          <span slot="right" idle="none"></span>
-          <span slot="bottom" idle="none"></span>
-        </bolt-character>
+        <div is="shadow-root">
+          <bolt-character size="medium" character-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png">
+            <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
+              <div is="shadow-root">
+                <bolt-status-dialogue-bar dialogue-arrow-direction="down">
+                  <bolt-text slot="text" align="start" font-size="xsmall">
+                    Thanks so much for waiving my late fee!
+                  </bolt-text>
+                </bolt-status-dialogue-bar>
+              </div>
+            </bolt-animate>
+            <span slot="right" idle="none"></span>
+            <span slot="bottom" idle="none"></span>
+          </bolt-character>
+        </div>
       </bolt-animate>
     </bolt-two-character-layout>
   </bolt-animate>
 
   <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-    <bolt-text>
-      When your customers’ billing issues are resolved quickly, you see results. Think higher customer satisfaction, fewer repeat calls, and lower average handle time (AHT).
-    </bolt-text>
-    <bolt-cta>
-      <bolt-text font-size="xsmall" slot="link" display="inline">
-        Find out how Cisco cut AHT in half
-        <bolt-icon name="chevron-right"></bolt-icon>
+    <div is="shadow-root">
+      <bolt-text>
+        When your customers’ billing issues are resolved quickly, you see results. Think higher customer satisfaction, fewer repeat calls, and lower average handle time (AHT).
       </bolt-text>
-    </bolt-cta>
+      <bolt-cta>
+        <bolt-text font-size="xsmall" slot="link" display="inline">
+          Find out how Cisco cut AHT in half
+          <bolt-icon name="chevron-right"></bolt-icon>
+        </bolt-text>
+      </bolt-cta>
+    </div>
   </bolt-animate>
 </bolt-interactive-step>
 
