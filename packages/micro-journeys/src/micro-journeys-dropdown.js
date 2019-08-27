@@ -1,25 +1,16 @@
+import { define } from '@bolt/core/utils';
+import { html } from '@bolt/core';
 import { BoltDropdown } from '@bolt/components-dropdown/dropdown';
-import { hasNativeShadowDomSupport } from '@bolt/core';
+import styles from '@bolt/micro-journeys/src/micro-journeys-dropdown.scss';
 
+@define
 class MicroJourneysDropdown extends BoltDropdown {
   static is = 'bolt-micro-journeys-dropdown';
 
-  constructor(self) {
-    self = super(self);
-
-    console.log('in DropDownMicroJourneys');
-    console.log(this);
-    console.log(self);
-
-    this.useShadow = hasNativeShadowDomSupport;
-
-    this.state = {
-      open: this.props.autoOpen ? this.props.autoOpen : false,
-      collapse: this.props.collapse ? this.props.collapse : false,
-    };
-
-    this.uuid = '12345';
-    return self;
+  render() {
+    return html`
+      ${super.render()}${this.addStyles([styles])}
+    `;
   }
 }
 

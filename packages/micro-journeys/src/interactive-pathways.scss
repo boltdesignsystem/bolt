@@ -25,15 +25,35 @@
   }
 
   &__nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 6rem;
     padding: 1.65rem 0;
 
-    @include bolt-mq(small) {
-      flex-direction: row;
-      position: static;
+    @include bolt-mq(medium) {
+      height: 4rem;
     }
+
+    &--inner {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+      // Abs b/c nav dropdown is flexbox and needs to take up 0 height.
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%);
+      z-index: 999999;
+      max-width: 100%;
+      white-space: nowrap;
+
+      @include bolt-mq(medium) {
+        flex-direction: row;
+        align-items: baseline;
+        height: 4rem;
+      }
+    }
+
 
     bolt-dropdown {
       z-index: 1;
@@ -44,10 +64,6 @@
         margin-left: 5px;
       }
     }
-  }
-
-  &__nav-text {
-    margin-top: 1.65rem; // To balance the 1.65 rem vertical rhythm spacing
   }
 
   &__menu-item {

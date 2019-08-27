@@ -1,3 +1,15 @@
 .c-bolt-dropdown {
-  border: 1px solid red !important;
+  box-shadow: none;
+
+  &__header-button {
+    display: block;
+    margin-left: .65rem;
+    padding: 0;
+    line-height: 1.31;
+    line-height: 1.65;
+    font-size: 1.75rem;
+    // @TODO replace this with the theme accent color.
+    border-bottom: 1px solid rgba(var(--bolt-theme-headline), 1);
+  }
 }
+
