@@ -167,13 +167,15 @@ async function server(customWebpackConfig) {
     // app.use('/api', handleRequest); // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
 
     if (fs.existsSync(`${boltBuildConfig.wwwDir}/integrations`)) {
-      app.use(
-        express.static(`${boltBuildConfig.wwwDir}/integrations/drupal-lab/`),
-      );
-
       const integrationDirs = getDirectories(
         `${boltBuildConfig.wwwDir}/integrations`,
       );
+
+      integrationDirs.map(item => {
+        app.use(
+          express.static(`${boltBuildConfig.wwwDir}/integrations/${item}`),
+        );
+      });
 
       app.get(['/integrations'], (req, res) => {
         const generateList = integrationDirs.map(
