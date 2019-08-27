@@ -233,6 +233,7 @@ async function createWebpackConfig(buildConfig) {
         functions: sassExportData,
         precision: 3,
         data: globalSassData.join('\n'),
+        outputStyle: 'compact'
       },
     },
   ];
