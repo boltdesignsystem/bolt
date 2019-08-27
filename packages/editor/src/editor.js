@@ -1,15 +1,17 @@
 import * as grapesjs from 'grapesjs';
+import { html, render } from '@bolt/core';
 import { query } from '@bolt/core/utils';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
 import { setupBolt } from './setup-bolt';
+import { addThemeContextClasses } from './utils';
 
 /**
  * @param {Object} opt
  * @param {HTMLElement} opt.space
  * @param {HTMLElement} opt.uiWrapper
- * @param {BoltEditorConfig} opt.config
+ * @param {grapesjs.BoltEditorConfig} opt.config
  * @return {grapesjs.Editor}
  */
 export function enableEditor({ space, uiWrapper, config }) {
@@ -17,7 +19,9 @@ export function enableEditor({ space, uiWrapper, config }) {
   const editorSlots = {
     buttons: uiWrapper.querySelector('.pega-editor-ui__buttons'),
     layers: uiWrapper.querySelector('.pega-editor-ui__slot--layers'),
-    traits: uiWrapper.querySelector('.pega-editor-ui__slot--traits'),
+    traits: uiWrapper.querySelector('.pega-editor-ui__traits'),
+    componentMeta: uiWrapper.querySelector('.pega-editor-ui__component-meta'),
+    slotControls: uiWrapper.querySelector('.pega-editor-ui__slot-controls'),
     blocks: uiWrapper.querySelector('.pega-editor-ui__slot--blocks'),
   };
 
@@ -77,7 +81,7 @@ export function enableEditor({ space, uiWrapper, config }) {
             },
             {
               id: 'visibility',
-              active: true, // active by default
+              active: false,
               label: 'Toggle Borders',
               command: 'sw-visibility', // Built-in command
             },
@@ -91,6 +95,11 @@ export function enableEditor({ space, uiWrapper, config }) {
               command: 'core:canvas-clear',
               id: 'canvas-clear',
               label: 'Clear Canvas',
+            },
+            {
+              command: 'core:component-delete',
+              id: 'component-delete',
+              label: 'Delete',
             },
             {
               id: 'show-json',
@@ -161,9 +170,87 @@ export function enableEditor({ space, uiWrapper, config }) {
 
   const editor = grapesjs.init(editorConfig);
 
+  /**
+   * @param {Object} opt
+   * @param {string} opt.slotName
+   * @param {grapesjs.ComponentObject} opt.data
+   * @return {grapesjs.Component}
+   */
+  function addComponentToSelectedComponentsSlot({ slotName, data }) {
+    const selected = editor.getSelected();
+    const components = selected.components();
+    const slots = selected.find('[slot]');
+    const [slot] = selected.find(`[slot="${slotName}"]`);
+    if (slot) {
+      const slotComponents = slot.components();
+      return slotComponents.add(data);
+    } else {
+      const [newSlot] = selected.append(
+        `<bolt-animate slot="${slotName}"></div>`,
+      );
+      const slotComponents = newSlot.components();
+      return slotComponents.add(data);
+    }
+  }
+
+  /**
+   * @param {Object} opt
+   * @param {grapesjs.SlotControl[]} opt.slotControls
+   */
+  function renderSlotControls({ slotControls }) {
+    if (!slotControls) {
+      render(html``, editorSlots.slotControls);
+      return;
+    }
+
+    const slotControlMarkup = slotControls.map(({ slotName, components }) => {
+      return html`
+        <h4>${slotName}</h4>
+        <select
+          @change=${event => {
+            const { value } = event.target;
+            if (value === 'none') return;
+            const component = components.find(c => c.id === value);
+            const newComponent = addComponentToSelectedComponentsSlot({
+              slotName,
+              data: component.data,
+            });
+            event.target.value = 'none';
+          }}
+        >
+          <option value="none">(Add component to slot)</option>
+          ${components.map(
+            component => html`
+              <option value="${component.id}">${component.title}</option>
+            `,
+          )}
+        </select>
+      `;
+    });
+
+    const content = html`
+      <h2>Slots</h2>
+      ${slotControlMarkup}
+    `;
+    render(content, editorSlots.slotControls);
+  }
+
+  editor.on('component:selected', (/** @type {grapesjs.Component} */ model) => {
+    const name = model.getName().toLowerCase();
+    const slotControls = model.getSlotControls && model.getSlotControls();
+    renderSlotControls({ slotControls });
+  });
+
+  editor.on('component:deselected', model => {
+    render(html``, editorSlots.slotControls);
+  });
+
   editor.render();
   const canvasDoc = editor.Canvas.getDocument();
   const canvasWindow = editor.Canvas.getWindow();
+  const canvasWrapper = editor.Canvas.getWrapperEl();
+
+  addThemeContextClasses({ space, canvasWrapper });
 
   canvasDoc.body.classList.add('in-editor');
 
@@ -172,9 +259,6 @@ export function enableEditor({ space, uiWrapper, config }) {
     scriptEl.src = script;
     canvasDoc.body.appendChild(scriptEl);
   });
-  // console.log({ canvasDoc, canvasWindow });
-
-  // const { BlockManager, Panels, DomComponents } = editor;
 
   window['editor'] = editor; // eslint-disable-line dot-notation
 

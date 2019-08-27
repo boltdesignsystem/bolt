@@ -32,8 +32,8 @@
     }
 
     &--blocks {
-      flex: 1 0;
-      flex-basis: 45%;
+      //flex: 1 0;
+      width: 45%;
     }
 
     &--layers {
@@ -41,7 +41,7 @@
       line-height: 1;
     }
 
-    &--traits {
+    &--selected {
       width: 20%;
     }
   }
@@ -49,6 +49,9 @@
   .gjs-trt-trait {
     display: block;
     .gjs-label {
+      width: 100%;
+    }
+    .gjs-label-wrp {
       width: 100%;
     }
     .gjs-field {
