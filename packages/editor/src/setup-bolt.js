@@ -82,7 +82,13 @@ const icon = {
   },
 };
 
-const basicSlottableComponents = [statusBar, statusBarAlert, icon, smallButton, basicText];
+const basicSlottableComponents = [
+  statusBar,
+  statusBarAlert,
+  icon,
+  smallButton,
+  basicText,
+];
 
 /**
  * @param {grapesjs.Editor} editor
