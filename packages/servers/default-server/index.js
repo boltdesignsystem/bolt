@@ -49,10 +49,7 @@ async function init() {
 
   app.use(express.static(path.relative(process.cwd(), config.wwwDir)));
 
-  console.log(fs.existsSync(`${config.wwwDir}/integrations`));
-
   if (fs.existsSync(`${config.wwwDir}/integrations`)) {
-    console.log('IN');
     const integrationDirs = getDirectories(`${config.wwwDir}/integrations`);
 
     integrationDirs.map(item => {
