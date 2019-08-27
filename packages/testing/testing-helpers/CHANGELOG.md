@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.5.7](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-helpers/compare/v2.5.6...v2.5.7) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/testing-helpers
+
+
+
+
+
 ## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-helpers/compare/v2.5.5...v2.5.6) (2019-07-30)
 
 **Note:** Version bump only for package @bolt/testing-helpers
