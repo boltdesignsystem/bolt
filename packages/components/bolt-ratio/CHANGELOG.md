@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/components-ratio
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* fix prettier issue ([80b456e](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/commit/80b456e))
+* globally update max timeout in Jest ([f1e6f95](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/commit/f1e6f95))
+* update <bolt-ratio> styles to prevent lazyloaded / blurred images from leaking out of the container ([6a032f4](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/commit/6a032f4))
+* update ratio VRT snapshot with version not as pixelated ([13d498e](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/commit/13d498e))
+
+
+
+
+
 ## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/ui/objects/bolt-ratio/compare/v2.5.5...v2.5.6) (2019-07-30)
 
 **Note:** Version bump only for package @bolt/components-ratio
