@@ -18,20 +18,24 @@
 
 {% import _self as modal_code %}
 
+
+      "on-click": "show",
+      "on-click-target": "js-modal-123"
+
 {% set modal_demo %}
-<bolt-button onclick="this.nextElementSibling.show()">
+<bolt-button on-click="show" on-click-target="js-bolt-modal-demo">
   Open Modal
 </bolt-button>
-<bolt-modal>
+<bolt-modal class="js-bolt-modal-demo">
   This is a modal.
 </bolt-modal>
 {% endset %}
 
 {% set modal_basic_demo %}
-<bolt-button onclick="this.nextElementSibling.show()">
+<bolt-button on-click="show" on-click-target="js-bolt-modal-basic-demo">
   Open Modal
 </bolt-button>
-<bolt-modal>
+<bolt-modal class="js-bolt-modal-basic-demo">
   <bolt-text slot="header">This is the header</bolt-text>
   <bolt-text>This is the body (default).</bolt-text>
   <bolt-text slot="footer">This is the footer</bolt-text>
@@ -39,30 +43,30 @@
 {% endset %}
 
 {% set modal_trigger_demo %}
-<bolt-button onclick="this.nextElementSibling.show()">
+<bolt-button on-click="show" on-click-target="js-bolt-modal-trigger-demo">
   Open Modal
 </bolt-button>
-<bolt-modal>
+<bolt-modal class="js-bolt-modal-trigger-demo">
   <bolt-text>This modal has a close button along with the content.</bolt-text>
-  <bolt-button onclick="this.closest('bolt-modal').hide()">Close Modal</bolt-button>
+  <bolt-button on-click="hide">Close Modal</bolt-button>
 </bolt-modal>
 {% endset %}
 
 {% set modal_advanced_demo %}
-<bolt-button onclick="this.nextElementSibling.show()">
+<bolt-button on-click="show" on-click-target="js-bolt-modal-advanced-demo">
   Open Modal
 </bolt-button>
-<bolt-modal width="optimal" spacing="none" theme="none" scroll="overall">
+<bolt-modal width="optimal" spacing="none" theme="none" scroll="overall" class="js-bolt-modal-advanced-demo">
   <bolt-image src="/images/content/backgrounds/background-robotics-customer-service.jpg" alt="This is an image"></bolt-image>
 </bolt-modal>
 {% endset %}
 
 {% set modal_ssr_demo_noshadow %}
 {% filter bolt_ssr %}
-<bolt-button onclick="this.nextElementSibling.show()">
+<bolt-button on-click="show" on-click-target="js-bolt-modal-ssr-demo-noshadow">
   Open Modal
 </bolt-button>
-<bolt-modal>
+<bolt-modal class="js-bolt-modal-ssr-demo-noshadow">
   This is a modal.
 </bolt-modal>
 {% endfilter %}
@@ -70,10 +74,10 @@
 
 {% set modal_ssr_demo %}
 &lbrace;&percnt; filter bolt_ssr &percnt;&rbrace;
-<bolt-button onclick="this.nextElementSibling.show()">
+<bolt-button on-click="show" on-click-target="js-bolt-modal-ssr-demo">
   Open Modal
 </bolt-button>
-<bolt-modal>
+<bolt-modal class="js-bolt-modal-ssr-demo">
   This is a modal.
 </bolt-modal>
 &lbrace;&percnt; endfilter &percnt;&rbrace;
