@@ -237,7 +237,7 @@ async function createWebpackConfig(buildConfig) {
         options: {
           sourceMap: config.sourceMaps,
           plugins: () =>
-            isJsFile && isScoped
+            !isJsFile && isScoped
               ? [
                   require('@bolt/postcss-themify')(themifyOptions),
                   postcssDiscardDuplicates,
@@ -247,9 +247,8 @@ async function createWebpackConfig(buildConfig) {
                   require('postcss-modules')({
                     // camelCase: true, // disabling camelCase versions of CSS classes till we look into changing the
                     generateScopedName(name, filename, css) {
-                      if (filename.includes('.scoped') && isJsFile === false) {
+                      if (filename.includes('.scoped')) {
                         const i = css.indexOf(`.${name}`);
-
                         if (name.includes('t-bolt')) {
                           return name;
                         } else {
