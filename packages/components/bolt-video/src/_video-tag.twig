@@ -70,6 +70,7 @@
 
 {% set attributes = attributes.setAttribute("share-description", share_description|default('Share This Video'|t)) %}
 
+{# @todo: `isBackgroundVideo` will be removed with Bolt v3.0 #}
 {% if isBackgroundVideo %}
   {% set attributes = attributes.setAttribute("is-background-video", isBackgroundVideo) %}
 {% else %}
