@@ -2,7 +2,7 @@ sudo: false
 dist: trusty
 language: php
 php:
-  - 7.1
+  - 7.3
 
 cache:
   yarn: true
@@ -61,23 +61,15 @@ jobs:
       after_failure: ./scripts/check-run-failure.js 'Build Tools'
 
     - stage: Prep
-      name: 'Build Drupal Lab'
-      script:
-        - composer global require hirak/prestissimo
-        - cd example-integrations/drupal-lab
-        - composer install --prefer-dist --no-dev
-        - cd web/themes/bolt-starter && yarn --force
-        - yarn run build
-        - yarn run test # run Jest tests on the FE build that just compiled
-        - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
-        - yarn run generate # generate static version of Drupal Lab in the integration folder
-
-    - stage: Prep
-      name: 'Build + Deploy Website'
+      name: 'Integrations + Build + Deploy Website'
       script:
         # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
+        - composer global require hirak/prestissimo
         - yarn run setup
+        - cd example-integrations/drupal-lab
+        - yarn run generate # generate static version of Drupal Lab in the integration folder
+        - cd ../../
         - yarn run build
         - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
