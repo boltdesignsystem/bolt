@@ -6,9 +6,9 @@
     { "src": "www/**", "use": "@now/static" }
   ],
   "routes": [
-    { "src": "/core/(.*)", "dest": "www/integrations/drupal-lab/core/$1" },
-    { "src": "/themes/(.*)", "dest": "www/integrations/drupal-lab/themes/$1" },
-    { "src": "/drupal-lab/(.*)", "dest": "www/integrations/drupal-lab/$1" },
-    { "src": "/(.*)", "dest": "www/$1" }
+    { "src": "/core/(.*)", "dest": "/www/integrations/drupal-lab/core/$1" },
+    { "src": "/themes/(.*)", "dest": "/www/integrations/drupal-lab/themes/$1" },
+    { "src": "/drupal-lab/(.*)", "dest": "/www/integrations/drupal-lab/$1" },
+    { "src": "/(.*)", "dest": "/www/$1" }
   ]
 }
