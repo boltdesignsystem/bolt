@@ -122,8 +122,13 @@ if (program.configFile) {
         // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
         config.enableSSR = false;
 
+        // automatically enable i18n in production builds if undefined
         config.i18n =
-          typeof options.i18n === 'undefined' ? !config.prod : options.i18n;
+          typeof options.i18n !== 'undefined'
+            ? options.i18n
+            : config.prod
+            ? true
+            : false;
 
         // If i18n is disabled, ignore and remove lang config settings
         if (config.lang && config.i18n === false) {
@@ -271,6 +276,7 @@ if (program.configFile) {
 
     program
       .command('img')
+      .alias('images')
       .description('Image process')
       .action(async options => {
         await updateConfig(options, program);
