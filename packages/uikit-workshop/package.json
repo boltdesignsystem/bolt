@@ -1,6 +1,6 @@
 {
   "name": "@bolt/uikit-workshop",
-  "version": "2.5.1",
+  "version": "2.6.0-beta.2",
   "description": "Next-gen Pattern Lab UI used by the Bolt Design System. Pattern Lab PHP and Pattern Lab Node-friendly!",
   "keywords": [
     "bolt design system",
@@ -24,10 +24,6 @@
     "> 0.25%"
   ],
   "dependencies": {
-    "puppeteer-core": "^1.18.1",
-    "local-chrome": "^0.1.0",
-    "@bolt/uikit-prerenderer": "*",
-    "@bolt/critical-css-webpack-plugin": "*",
     "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.5.0",
     "@babel/plugin-proposal-decorators": "^7.4.4",
@@ -36,6 +32,8 @@
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/plugin-transform-runtime": "^7.5.0",
     "@babel/preset-env": "^7.5.4",
+    "@bolt/critical-css-webpack-plugin": "^2.6.0-beta.2",
+    "@bolt/uikit-prerenderer": "^2.6.0-beta.2",
     "@moonandyou/chrome-path": "^0.2.1",
     "@reach/visually-hidden": "^0.1.4",
     "@skatejs/renderer-preact": "^0.3.3",
@@ -69,6 +67,7 @@
     "html-webpack-plugin": "github:jantimon/html-webpack-plugin#webpack-4",
     "iframe-resizer": "^4.1.1",
     "lit-html": "^1.1.1",
+    "local-chrome": "^0.1.0",
     "mini-css-extract-plugin": "^0.7.0",
     "mousetrap": "^1.6.3",
     "no-emit-webpack-plugin": "^2.0.1",
@@ -82,7 +81,9 @@
     "preact-render-to-string": "^4.1.0",
     "preload-webpack-plugin": "^2.3.0",
     "prerender-spa-plugin": "^3.4.0",
+    "pretty": "^2.0.0",
     "prismjs": "^1.16.0",
+    "puppeteer-core": "^1.18.1",
     "pwa-helpers": "^0.9.1",
     "raw-loader": "^3.0.0",
     "react": "^16.8.6",
@@ -107,8 +108,7 @@
     "whendefined": "^0.0.1",
     "wolfy87-eventemitter": "^5.2.6",
     "workbox-build": "^4.3.1",
-    "yargs": "^13.2.4",
-    "pretty": "^2.0.0"
+    "yargs": "^13.2.4"
   },
   "publishConfig": {
     "access": "public"
