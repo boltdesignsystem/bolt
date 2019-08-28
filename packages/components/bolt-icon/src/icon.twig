@@ -12,10 +12,10 @@
   .setAttribute("title", title)
 %}
 
-<bolt-icon {{ attributes }}>
+<bolt-icon {{ attributes }}>{% spaceless %}
   {% if fallback %}
     {% set svgIcon %}
-      {% include "@bolt-components-icons/#{name}.svg" %}
+      {% include "@bolt-components-icons/#{name}.min.svg" %}
     {% endset %}
 
     {{ svgIcon
@@ -25,6 +25,10 @@
       | replace('/<!--(.*)-->/Uis', '')
       | replace('/height="([^"]+)"/', '')
       | replace('/width="([^"]+)"/', '')
+      | replace('/<desc>([^<]+)/', '')
+      | replace('</desc>', '')
+      | replace('<defs></defs>', '')
+      | replace('<path d="M0 0h24v24H0z"/>', '')
     }}
   {% endif %}
-</bolt-icon>
+{% endspaceless %}</bolt-icon>
