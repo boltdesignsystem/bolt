@@ -9,7 +9,7 @@ import imageStyles from './image.scss';
 
 import schema from '../image.schema.yml';
 
-import './_image-lazy-sizes';
+import { lazySizes } from './_image-lazy-sizes';
 
 let cx = classNames.bind(imageStyles);
 
@@ -101,6 +101,12 @@ class BoltImage extends withLitHtml() {
       // check if placeholder image has loaded; lazySizes will only unveil an image that is "complete"
       if (!this.isLoaded) {
         this.isLoaded = true;
+
+        // give a hint to lazysizes about any new images injected / added
+        lazySizes.elements.push(
+          this.renderRoot.querySelector(`.${lazySizes.cfg.lazyClass}`),
+        );
+        // lazySizes.autoSizer.checkElems(); force rechecks -- probably not needed
       }
     }
   }
