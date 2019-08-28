@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* allow for images passed into the blockquote component to be lazyloaded ([e3b3b39](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/e3b3b39))
+* correctly add all dependencies ([d9de9c0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/d9de9c0))
+* retest Jest after making blockquote test adjustments ([670df4d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/670df4d))
+* test and typo ([8aa43b3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/8aa43b3))
+* update blockquote test config ([ab577a8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/ab577a8))
+* update blockquote VRT snapshot ([b44721b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/b44721b))
+
+
+### Reverts
+
+* revert clipping Jest snapshots due to OS-level screenshot differences ([fc3e438](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/fc3e438))
+
+
+
+
+
 ## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.5.5...v2.5.6) (2019-07-30)
 
 

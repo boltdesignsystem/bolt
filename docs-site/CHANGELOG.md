@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+
+### Features
+
+* deprecate `isBackgroundVideo`, remove from demos, add todos where prop is used ([ce9a25d](https://github.com/bolt-design-system/bolt/commit/ce9a25d))
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* fix stylelint error ([3abbb7b](https://github.com/bolt-design-system/bolt/commit/3abbb7b))
+* only display component explorer message on docs pages where previous getting used ([a112aa9](https://github.com/bolt-design-system/bolt/commit/a112aa9))
+* pattern lab override, position 'relative' causing modal choppiness on scroll ([29b622f](https://github.com/bolt-design-system/bolt/commit/29b622f))
+* remove copy from doc page ([5dd5eff](https://github.com/bolt-design-system/bolt/commit/5dd5eff))
+* remove inline includes ([b1df1a2](https://github.com/bolt-design-system/bolt/commit/b1df1a2))
+* remove remaining schema form JS import ([7813dcf](https://github.com/bolt-design-system/bolt/commit/7813dcf))
+* revert adding Japanese-specific .boltrc config ([1663b31](https://github.com/bolt-design-system/bolt/commit/1663b31))
+* test and typo ([8aa43b3](https://github.com/bolt-design-system/bolt/commit/8aa43b3))
+* typo ([e8a3250](https://github.com/bolt-design-system/bolt/commit/e8a3250))
+* web component usage doc ([02c6459](https://github.com/bolt-design-system/bolt/commit/02c6459))
+
+
+### Features
+
+* add 'disabled' state to trigger link, update demo ([a538ac9](https://github.com/bolt-design-system/bolt/commit/a538ac9))
+* add cli to run Jest only on packages that changed ([4c14818](https://github.com/bolt-design-system/bolt/commit/4c14818))
+* add demo of modal triggered by video 'toggle' ([42b9784](https://github.com/bolt-design-system/bolt/commit/42b9784))
+* add demo page for trigger 'disabled' option ([11637e7](https://github.com/bolt-design-system/bolt/commit/11637e7))
+* add functional test of bolt sticky ([c74043c](https://github.com/bolt-design-system/bolt/commit/c74043c))
+* combine video modal demos into a single page ([95d8ec7](https://github.com/bolt-design-system/bolt/commit/95d8ec7))
+* wire up new critical polyfill package as a reference + prep to wire it up to Drupal Lab ([ed7e73f](https://github.com/bolt-design-system/bolt/commit/ed7e73f))
+
+
+
+
+
 ## [2.5.6](https://github.com/bolt-design-system/bolt/compare/v2.5.5...v2.5.6) (2019-07-30)
 
 **Note:** Version bump only for package @bolt/website

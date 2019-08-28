@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/ssr-server
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* fix eslint errors ([6d7f6a4](https://github.com/bolt-design-system/bolt/commit/6d7f6a4))
+* update code for SSR server updates to fix eslint and prettier issues ([bf46bfd](https://github.com/bolt-design-system/bolt/commit/bf46bfd))
+
+
+
+
+
 ## [2.5.6](https://github.com/bolt-design-system/bolt/compare/v2.5.5...v2.5.6) (2019-07-30)
 
 **Note:** Version bump only for package @bolt/ssr-server
