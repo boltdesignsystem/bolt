@@ -56,21 +56,12 @@ async function init() {
       app.use(express.static(`${config.wwwDir}/integrations/${item}`));
     });
 
-    app.get(['/integrations'], (req, res) => {
-      const generateList = integrationDirs.map(
-        item => `<li><a href="${item}">${item}</a></li>`,
-      );
+    app.get(['/drupal-lab'], (req, res) => {
+      const options = {
+        root: `${config.wwwDir}/integrations/drupal-lab`,
+      };
 
-      res.send(`
-          <h2>Integrations:</h2>
-          <ul>
-            ${generateList}
-          </ul>  
-        `);
-    });
-
-    app.get(['/integrations/drupal-lab'], (req, res) => {
-      res.sendFile('index.html');
+      res.sendFile('index.html', options);
     });
   }
 
