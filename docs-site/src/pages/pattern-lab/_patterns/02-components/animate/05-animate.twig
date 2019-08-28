@@ -1,7 +1,7 @@
 <div class="demo-animate">
 
-  <button onclick="trigger('in')">Trigger Build In</button>
-  <button onclick="trigger('out')">Trigger Build Out</button>
+  <button class="demo-animate__trigger" onclick="trigger('in')">Trigger Build In</button>
+  <button class="demo-animate__trigger" onclick="trigger('out')">Trigger Build Out</button>
   <div class="demo-animate__items">
     <div class="demo-animate__item">
       <bolt-animate
@@ -80,10 +80,7 @@
   </style>
 
   <script type="application/javascript">
-    (function() {
-      if (typeof NodeList.prototype.forEach === 'function') return false;
-      NodeList.prototype.forEach = Array.prototype.forEach;
-    })();
+    // This is untranspiled IE 11 code, so polyfill foreach.
 
     function trigger(type) {
       const els = document.querySelectorAll('.demo-animate__items bolt-animate');
@@ -97,6 +94,7 @@
         // el.setAttribute('trigger', type);
       });
     }
+
   </script>
 
 </div>
