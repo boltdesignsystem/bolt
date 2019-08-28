@@ -3,6 +3,263 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+
+### Bug Fixes
+
+* add missing `yeoman-doctor` dependency ([d2dfe0c](https://github.com/bolt-design-system/bolt/commit/d2dfe0c))
+* make sure lerna bootstrap runs for local dev installs + devDeps install on Travis ([24b5cb2](https://github.com/bolt-design-system/bolt/commit/24b5cb2))
+* update build tools Jest snapshot ([ab073c2](https://github.com/bolt-design-system/bolt/commit/ab073c2))
+* update icon snapshot to reflect minor SVG compression changes ([5b9c569](https://github.com/bolt-design-system/bolt/commit/5b9c569))
+* update root NPM scripts to automatically pre-build the new `@bolt/critical-path-polyfills` package when doing local development ([3fe3e98](https://github.com/bolt-design-system/bolt/commit/3fe3e98))
+
+
+### Features
+
+* deprecate `isBackgroundVideo`, remove from demos, add todos where prop is used ([ce9a25d](https://github.com/bolt-design-system/bolt/commit/ce9a25d))
+
+
+### Reverts
+
+* hook into postbootstrap for building new pkg ([dc83aaf](https://github.com/bolt-design-system/bolt/commit/dc83aaf))
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* accidentally set 'target' attr instead of 'tabindex' ([845a472](https://github.com/bolt-design-system/bolt/commit/845a472))
+* add 'disabled' attr to button component ([d5081f1](https://github.com/bolt-design-system/bolt/commit/d5081f1))
+* add 'disabled' attr to trigger component ([5d53cd2](https://github.com/bolt-design-system/bolt/commit/5d53cd2))
+* add 'target' in twig if passed via attributes ([6b0317e](https://github.com/bolt-design-system/bolt/commit/6b0317e))
+* add @bolt/core fix to a handful of utility classes missing on Japanese-specific lang builds ([e03abf1](https://github.com/bolt-design-system/bolt/commit/e03abf1))
+* add calculated placeholder image / placeholder color to the image component Twig template's <bolt-image> wrapper if a custom version isn't specified ([c41696b](https://github.com/bolt-design-system/bolt/commit/c41696b))
+* add comments ([545fde2](https://github.com/bolt-design-system/bolt/commit/545fde2))
+* add CSS fix to make sure low quality image placeholders get the blur effect while the main image is lazyloaded ([3815a57](https://github.com/bolt-design-system/bolt/commit/3815a57))
+* add custom cursor files ([1fdc43c](https://github.com/bolt-design-system/bolt/commit/1fdc43c))
+* add install command to travis for build tools tests + update yarn.lock ([5a3f3df](https://github.com/bolt-design-system/bolt/commit/5a3f3df))
+* add missing calls to super in navlink JS ([9f3bd31](https://github.com/bolt-design-system/bolt/commit/9f3bd31))
+* add missing config to disable Shadow DOM in the Navlink component (temp workaround to component not currently rendering HTML) ([f1ac0c1](https://github.com/bolt-design-system/bolt/commit/f1ac0c1))
+* add missing log dependency to cli.js ([63ee6e3](https://github.com/bolt-design-system/bolt/commit/63ee6e3))
+* add new CLI flags for jest to reduce total # of concurrent workers allowed ([6445b5f](https://github.com/bolt-design-system/bolt/commit/6445b5f))
+* add new option to the image task to optionally disable image compression; used when making / running VRTs ([6cd2d9a](https://github.com/bolt-design-system/bolt/commit/6cd2d9a))
+* add pointer as fallback for zoom-in and zoom-out in IE11 ([c31d2de](https://github.com/bolt-design-system/bolt/commit/c31d2de))
+* add temporary patch to @basalt/twig-renderer to try and prevent unavailable ports from getting assigned + temporarily add get-port package until this patch is no longer needed ([2625bd2](https://github.com/bolt-design-system/bolt/commit/2625bd2))
+* add trigger as dependency for modal ([e14e2f7](https://github.com/bolt-design-system/bolt/commit/e14e2f7))
+* address eslint issues ([e330908](https://github.com/bolt-design-system/bolt/commit/e330908))
+* address prettier issue ([226dec3](https://github.com/bolt-design-system/bolt/commit/226dec3))
+* adjust Japanese-specific CSS build test ([16d1d23](https://github.com/bolt-design-system/bolt/commit/16d1d23))
+* adjust test filter cli to work on Travis ([0835ff7](https://github.com/bolt-design-system/bolt/commit/0835ff7))
+* allow for images passed into the blockquote component to be lazyloaded ([e3b3b39](https://github.com/bolt-design-system/bolt/commit/e3b3b39))
+* apply .is-expanded rule to .c-bolt-band to fix background video bug in ie ([d2394df](https://github.com/bolt-design-system/bolt/commit/d2394df))
+* bump dependency versions used in build tool tests ([ee425c0](https://github.com/bolt-design-system/bolt/commit/ee425c0))
+* carousel chevron subpixel render ([dc91245](https://github.com/bolt-design-system/bolt/commit/dc91245))
+* change when monorepo tests ([c906697](https://github.com/bolt-design-system/bolt/commit/c906697))
+* cherry pick build tools updates from https://github.com/bolt-design-system/bolt/pull/1323 ([0676e3a](https://github.com/bolt-design-system/bolt/commit/0676e3a))
+* correctly add all dependencies ([d9de9c0](https://github.com/bolt-design-system/bolt/commit/d9de9c0))
+* correctly ignore monorepo tests in main tests ([fba3cc0](https://github.com/bolt-design-system/bolt/commit/fba3cc0))
+* cursor size ([c8e9c68](https://github.com/bolt-design-system/bolt/commit/c8e9c68))
+* dependency map twig namespaces path ([6c1fb1a](https://github.com/bolt-design-system/bolt/commit/6c1fb1a))
+* don't re-blur the image component once it has already loaded the first time. fixes a lazy-loaded related rendering issue when updating the src / srcset props after the image component has already loaded up ([e95ada7](https://github.com/bolt-design-system/bolt/commit/e95ada7))
+* ensure dep tester paths are more resiliant ([7c2abb8](https://github.com/bolt-design-system/bolt/commit/7c2abb8))
+* escape linting ([2212614](https://github.com/bolt-design-system/bolt/commit/2212614))
+* exclude Yeoman component generator from monorepo / Twig dependency checks ([df3dbdd](https://github.com/bolt-design-system/bolt/commit/df3dbdd))
+* execa usage ([8836d22](https://github.com/bolt-design-system/bolt/commit/8836d22))
+* execa usage ([044059b](https://github.com/bolt-design-system/bolt/commit/044059b))
+* fix eslint errors ([6d7f6a4](https://github.com/bolt-design-system/bolt/commit/6d7f6a4))
+* fix eslint issue ([4af8f2e](https://github.com/bolt-design-system/bolt/commit/4af8f2e))
+* fix eslint issue + update Drupal Lab patch ([0082e19](https://github.com/bolt-design-system/bolt/commit/0082e19))
+* fix image task to properly generate srcsets in prod mode ([332ffda](https://github.com/bolt-design-system/bolt/commit/332ffda))
+* fix lint issue ([03a1bb3](https://github.com/bolt-design-system/bolt/commit/03a1bb3))
+* fix lint issue ([9e82e93](https://github.com/bolt-design-system/bolt/commit/9e82e93))
+* fix nav scrollbar in IE 11 + fix dependency-related JS error getting thrown in IE 11 ([e777ca2](https://github.com/bolt-design-system/bolt/commit/e777ca2))
+* fix prettier issue ([80b456e](https://github.com/bolt-design-system/bolt/commit/80b456e))
+* fix prettier issue ([787c3de](https://github.com/bolt-design-system/bolt/commit/787c3de))
+* fix prettier issue ([15b2563](https://github.com/bolt-design-system/bolt/commit/15b2563))
+* fix stylelint error ([3abbb7b](https://github.com/bolt-design-system/bolt/commit/3abbb7b))
+* fix typo in VRT reporting for Travis ([69f1d6e](https://github.com/bolt-design-system/bolt/commit/69f1d6e))
+* fix webpack prettier issue ([d784e7d](https://github.com/bolt-design-system/bolt/commit/d784e7d))
+* globally update max timeout in Jest ([f1e6f95](https://github.com/bolt-design-system/bolt/commit/f1e6f95))
+* ignore Drupal Lab package.json from getting picked up by testing utils ([5c38668](https://github.com/bolt-design-system/bolt/commit/5c38668))
+* ignore skipped e2e tests in Jest ([65d4e75](https://github.com/bolt-design-system/bolt/commit/65d4e75))
+* immediately load up the pl-search component vs defer loading ([3a49603](https://github.com/bolt-design-system/bolt/commit/3a49603))
+* initially add the current image component width to the `sizes` prop when the prop is set to `auto` ([87adbcb](https://github.com/bolt-design-system/bolt/commit/87adbcb))
+* jest exclusion ([bd69a85](https://github.com/bolt-design-system/bolt/commit/bd69a85))
+* lazily automatically calculate the correct image sizes prop if set to auto and the image component's window gets resized ([87217e3](https://github.com/bolt-design-system/bolt/commit/87217e3))
+* limit now.sh deployment to just the www folder ([de7172a](https://github.com/bolt-design-system/bolt/commit/de7172a))
+* lint js ([7193a3b](https://github.com/bolt-design-system/bolt/commit/7193a3b))
+* lint js ([9b6c152](https://github.com/bolt-design-system/bolt/commit/9b6c152))
+* lint js ([a9a6cd8](https://github.com/bolt-design-system/bolt/commit/a9a6cd8))
+* lint js ([3c96888](https://github.com/bolt-design-system/bolt/commit/3c96888))
+* logging out stderr instead of stdout ([406e168](https://github.com/bolt-design-system/bolt/commit/406e168))
+* major cross browser fixes + polyfill updates ([50b4214](https://github.com/bolt-design-system/bolt/commit/50b4214))
+* make sure build tools test install runs postinstall scripts ([007d1ce](https://github.com/bolt-design-system/bolt/commit/007d1ce))
+* make sure config schema path can be resolved in the build tools CLI ([239e4cc](https://github.com/bolt-design-system/bolt/commit/239e4cc))
+* make sure Jest tests using the Twig Renderer stop the server when finished ([5e880f5](https://github.com/bolt-design-system/bolt/commit/5e880f5))
+* make sure the config-file CLI args work together with the default cosmic config behavior ([8a303b8](https://github.com/bolt-design-system/bolt/commit/8a303b8))
+* mark as private for now ([f7eb881](https://github.com/bolt-design-system/bolt/commit/f7eb881))
+* move the yarn workspaces' nohoist config under workspaces ([973be0f](https://github.com/bolt-design-system/bolt/commit/973be0f))
+* only add the `data-sizes` prop to the image component when lazyloading ([4c9f463](https://github.com/bolt-design-system/bolt/commit/4c9f463))
+* only display component explorer message on docs pages where previous getting used ([a112aa9](https://github.com/bolt-design-system/bolt/commit/a112aa9))
+* only output placeholder color / placeholder image when lazyloading ([283ce71](https://github.com/bolt-design-system/bolt/commit/283ce71))
+* pass the <bolt-image> web component the correct prop data for any base64 low quality placeholder + average image color options that exists. This fixes a visible flash that had been occurring when the web component initially boots up and renders ([cd96387](https://github.com/bolt-design-system/bolt/commit/cd96387))
+* pattern lab override, position 'relative' causing modal choppiness on scroll ([29b622f](https://github.com/bolt-design-system/bolt/commit/29b622f))
+* prettify CSS result from the @bolt/build-tools before doing snapshot diff ([a50ffa5](https://github.com/bolt-design-system/bolt/commit/a50ffa5))
+* prevent globbing into gitignore folders ([58b7043](https://github.com/bolt-design-system/bolt/commit/58b7043))
+* quote the `lang` global JS data to fix JS error getting thrown ([ce3ee2c](https://github.com/bolt-design-system/bolt/commit/ce3ee2c))
+* re-test build tool Travis tests ([fcc7467](https://github.com/bolt-design-system/bolt/commit/fcc7467))
+* remove --no-verify arg ([6cd4200](https://github.com/bolt-design-system/bolt/commit/6cd4200))
+* remove 'noBodyScroll' prop in favor of private variable ([702200a](https://github.com/bolt-design-system/bolt/commit/702200a))
+* remove copy from doc page ([5dd5eff](https://github.com/bolt-design-system/bolt/commit/5dd5eff))
+* remove default sizes attribute from getting added to the device viewer component ([280a306](https://github.com/bolt-design-system/bolt/commit/280a306))
+* remove duplicate pkg ([e52396a](https://github.com/bolt-design-system/bolt/commit/e52396a))
+* remove eslint comment being picked up ([ff4c14d](https://github.com/bolt-design-system/bolt/commit/ff4c14d))
+* remove inline includes ([b1df1a2](https://github.com/bolt-design-system/bolt/commit/b1df1a2))
+* remove obsolete snapshots ([feba331](https://github.com/bolt-design-system/bolt/commit/feba331))
+* remove outline from button and link custom-elements to fix double-focus ([5454d1f](https://github.com/bolt-design-system/bolt/commit/5454d1f))
+* remove postinstall + rename dev npm script ([e431212](https://github.com/bolt-design-system/bolt/commit/e431212))
+* remove remaining schema form JS import ([7813dcf](https://github.com/bolt-design-system/bolt/commit/7813dcf))
+* remove travis command typo ([84ba7ae](https://github.com/bolt-design-system/bolt/commit/84ba7ae))
+* remove travis_retry when running Nightwatch e2e tests ([b1c5b63](https://github.com/bolt-design-system/bolt/commit/b1c5b63))
+* remove unused classname ([5904236](https://github.com/bolt-design-system/bolt/commit/5904236))
+* Remove unwanted behaviour when JS is disabled ([6d2033d](https://github.com/bolt-design-system/bolt/commit/6d2033d))
+* remove yeti icon ([488af87](https://github.com/bolt-design-system/bolt/commit/488af87))
+* rename 'preventBodyScroll' to 'noBodyScroll' ([5b6ab74](https://github.com/bolt-design-system/bolt/commit/5b6ab74))
+* rename nav-button-position prop in jest test, update snapshot ([713af90](https://github.com/bolt-design-system/bolt/commit/713af90))
+* replace %extends with separate element and :host selectors to fix IE bug ([ff75848](https://github.com/bolt-design-system/bolt/commit/ff75848))
+* restore component snapshots to have background color / image props added (regardless on if they are being lazyloaded or not) ([b4857b9](https://github.com/bolt-design-system/bolt/commit/b4857b9))
+* restore regular modal width ([36b0157](https://github.com/bolt-design-system/bolt/commit/36b0157))
+* retest build after removing Babel-related dependencies hoisted when installing ([733cf0d](https://github.com/bolt-design-system/bolt/commit/733cf0d))
+* retest Jest after making blockquote test adjustments ([670df4d](https://github.com/bolt-design-system/bolt/commit/670df4d))
+* revert adding command to kill open ports ([e214ff7](https://github.com/bolt-design-system/bolt/commit/e214ff7))
+* revert adding Japanese-specific .boltrc config ([1663b31](https://github.com/bolt-design-system/bolt/commit/1663b31))
+* revert bolt/core dependency updates + temporarily remove yarn.lock to ensure a fresh install on Travis ([20c8386](https://github.com/bolt-design-system/bolt/commit/20c8386))
+* revert patch change ([856d137](https://github.com/bolt-design-system/bolt/commit/856d137))
+* rollback uikit dependency updates while debugging IE 11 ([9e67b83](https://github.com/bolt-design-system/bolt/commit/9e67b83))
+* skip 2nd testing utils test causing errors ([86f6cc1](https://github.com/bolt-design-system/bolt/commit/86f6cc1))
+* snaps ([27a2f3c](https://github.com/bolt-design-system/bolt/commit/27a2f3c))
+* snaps ([26b5fcc](https://github.com/bolt-design-system/bolt/commit/26b5fcc))
+* temporarily auto-patch the lazysizes JS to allow the internal element selector to be specified if a new `getElements` method is defined in the lazysizes config + update yarn.lock ([ec9b628](https://github.com/bolt-design-system/bolt/commit/ec9b628))
+* temporarily disable carousel Jest test images from lazyloading ([af77e6f](https://github.com/bolt-design-system/bolt/commit/af77e6f))
+* temporarily mark as private ([d2d0a7c](https://github.com/bolt-design-system/bolt/commit/d2d0a7c))
+* temporarily mark as private ([1673619](https://github.com/bolt-design-system/bolt/commit/1673619))
+* temporarily patch Drupal Lab build tools so Jest tests continue to pass until hotfix released ([874c679](https://github.com/bolt-design-system/bolt/commit/874c679))
+* test and typo ([8aa43b3](https://github.com/bolt-design-system/bolt/commit/8aa43b3))
+* tests ([12578d9](https://github.com/bolt-design-system/bolt/commit/12578d9))
+* tighten up Twig RegEx parsing ([8d7b76b](https://github.com/bolt-design-system/bolt/commit/8d7b76b))
+* typo ([dea7a00](https://github.com/bolt-design-system/bolt/commit/dea7a00))
+* typo ([e8a3250](https://github.com/bolt-design-system/bolt/commit/e8a3250))
+* update @bolt/analytics-autolink to catch errors thrown if a Google Analytics `analytics.js` script tag doesn't exist on the page. ([41bd669](https://github.com/bolt-design-system/bolt/commit/41bd669))
+* update @bolt/analytics-autotrack package to catch a JS error thrown if `window.drupalSettings.google_analytics.trackCrossDomains` isn't defined ([5919c48](https://github.com/bolt-design-system/bolt/commit/5919c48))
+* update <bolt-ratio> styles to prevent lazyloaded / blurred images from leaking out of the container ([6a032f4](https://github.com/bolt-design-system/bolt/commit/6a032f4))
+* Update and simplify twig variables ([7cfe1dd](https://github.com/bolt-design-system/bolt/commit/7cfe1dd))
+* update blockquote test config ([ab577a8](https://github.com/bolt-design-system/bolt/commit/ab577a8))
+* update blockquote VRT snapshot ([b44721b](https://github.com/bolt-design-system/bolt/commit/b44721b))
+* update build tool tests to format CSS before comparing results ([90cefe0](https://github.com/bolt-design-system/bolt/commit/90cefe0))
+* update carousel snapshots + image screenshots to now incorporate lazyload-related fixes ([c42b5a4](https://github.com/bolt-design-system/bolt/commit/c42b5a4))
+* update carousel VRT tests to render more consistently ([6ce545f](https://github.com/bolt-design-system/bolt/commit/6ce545f))
+* update code for SSR server updates to fix eslint and prettier issues ([bf46bfd](https://github.com/bolt-design-system/bolt/commit/bf46bfd))
+* update deps ([7fedea2](https://github.com/bolt-design-system/bolt/commit/7fedea2))
+* update device viewer Jest snapshot to reflect updated image component + update yarn.lock ([3c6deff](https://github.com/bolt-design-system/bolt/commit/3c6deff))
+* update eslint rules to temporarily ignore new uikit-related packages ([9a2eb46](https://github.com/bolt-design-system/bolt/commit/9a2eb46))
+* update headline component Jest test to not use async forEach ([e9ed7cf](https://github.com/bolt-design-system/bolt/commit/e9ed7cf))
+* update image component's Twig to always output placeholders when available + retest preloading ([20dfeaf](https://github.com/bolt-design-system/bolt/commit/20dfeaf))
+* update internal @bolt/build-tools references to utils to globally use the NPM namespaced version so the config store matches across the board ([200bb63](https://github.com/bolt-design-system/bolt/commit/200bb63))
+* update Jest CLI args + new testing utils CLI to handle instances when no packages have been updated ([114907b](https://github.com/bolt-design-system/bolt/commit/114907b))
+* update Jest snapshot for the build tools ([acac6a6](https://github.com/bolt-design-system/bolt/commit/acac6a6))
+* update Jest snapshot for the build tools ([a324904](https://github.com/bolt-design-system/bolt/commit/a324904))
+* update Jest snapshots for build tools ([4bc99cb](https://github.com/bolt-design-system/bolt/commit/4bc99cb))
+* update jest tests ([78cb2c7](https://github.com/bolt-design-system/bolt/commit/78cb2c7))
+* update nightwatch config to fix chrome driver issues ([3ae6a7c](https://github.com/bolt-design-system/bolt/commit/3ae6a7c))
+* update Nightwatch version + bump version of FF running on Sauce Labs ([f00bf6f](https://github.com/bolt-design-system/bolt/commit/f00bf6f))
+* update now.sh config to make sure the www folder is the server root ([f096fc7](https://github.com/bolt-design-system/bolt/commit/f096fc7))
+* update npm run test script to avoid spinning up duplicate Jest test instances ([40b33ed](https://github.com/bolt-design-system/bolt/commit/40b33ed))
+* update patch path + commit ref ([e1b468d](https://github.com/bolt-design-system/bolt/commit/e1b468d))
+* update path to action-block subcomponent, add test to confirm subcomponent renders ([17bd150](https://github.com/bolt-design-system/bolt/commit/17bd150))
+* update ratio VRT snapshot with version not as pixelated ([13d498e](https://github.com/bolt-design-system/bolt/commit/13d498e))
+* update snapshots based on image component fixes ([0d9590f](https://github.com/bolt-design-system/bolt/commit/0d9590f))
+* update tests ([0a580d1](https://github.com/bolt-design-system/bolt/commit/0a580d1))
+* update the monorepo Twig dependency test to exclude the renamed Yeoman generator ([53ae600](https://github.com/bolt-design-system/bolt/commit/53ae600))
+* update the value getting assigned to the main `<img>` tag’s `src` attribute in the <bolt-image> Twig template. Previously this had been using the base64 encoded version of the image (when getting lazy loaded) but this was just adding extra HTML data without actually doing what it was supposed to be doing. Now this has been updated to specifically use the 1x1 placeholder pixel instead. ([4ec7db3](https://github.com/bolt-design-system/bolt/commit/4ec7db3))
+* update theme logic in js to apply to close button ([b78f017](https://github.com/bolt-design-system/bolt/commit/b78f017))
+* update travis CLI command to kill anything running on port 4444 ([adeb16e](https://github.com/bolt-design-system/bolt/commit/adeb16e))
+* web component usage doc ([02c6459](https://github.com/bolt-design-system/bolt/commit/02c6459))
+* wire up + add tests for Japanese-specific lang build fix in Drupal Lab ([093dcb2](https://github.com/bolt-design-system/bolt/commit/093dcb2))
+* workaround to re-enable testing utils Jest tests ([c76012e](https://github.com/bolt-design-system/bolt/commit/c76012e))
+* wrapping up pkg diff list utils ([17462cf](https://github.com/bolt-design-system/bolt/commit/17462cf))
+* wrong variable name in trigger JS ([bad2ccc](https://github.com/bolt-design-system/bolt/commit/bad2ccc))
+
+
+### Features
+
+* add 'disabled' state to button link ([4943355](https://github.com/bolt-design-system/bolt/commit/4943355))
+* add 'disabled' state to trigger link, update demo ([a538ac9](https://github.com/bolt-design-system/bolt/commit/a538ac9))
+* add 'env' to global JS, wrap 'env' and 'lang' in JSON.stringify ([99f1a11](https://github.com/bolt-design-system/bolt/commit/99f1a11))
+* add 'vrtDefaultConfig' export to testing-helpers, use in carousel test ([f3a7147](https://github.com/bolt-design-system/bolt/commit/f3a7147))
+* add a nightwatch test for copy to clipboard ([4537e1b](https://github.com/bolt-design-system/bolt/commit/4537e1b))
+* add ability to optionally align background images vertically ([a9ecfe4](https://github.com/bolt-design-system/bolt/commit/a9ecfe4))
+* add cli to run Jest only on packages that changed ([4c14818](https://github.com/bolt-design-system/bolt/commit/4c14818))
+* add demo of modal triggered by video 'toggle' ([42b9784](https://github.com/bolt-design-system/bolt/commit/42b9784))
+* add demo page for trigger 'disabled' option ([11637e7](https://github.com/bolt-design-system/bolt/commit/11637e7))
+* add dependency map tests ([b422ffa](https://github.com/bolt-design-system/bolt/commit/b422ffa))
+* add dependency mapper ([d0dbb8b](https://github.com/bolt-design-system/bolt/commit/d0dbb8b))
+* add functional test of bolt sticky ([c74043c](https://github.com/bolt-design-system/bolt/commit/c74043c))
+* add new critical polyfill package + docs ([d15c6d0](https://github.com/bolt-design-system/bolt/commit/d15c6d0))
+* add new inline polyfills package ([9a7e6bd](https://github.com/bolt-design-system/bolt/commit/9a7e6bd))
+* add patch to allow VRTs images of different sizes to be tested ([013c28c](https://github.com/bolt-design-system/bolt/commit/013c28c))
+* add repeat-rule mixin ([e8d24c7](https://github.com/bolt-design-system/bolt/commit/e8d24c7))
+* adding git change details ([f9afde9](https://github.com/bolt-design-system/bolt/commit/f9afde9))
+* cherry pick a build tools update to reuse the same browser tab you already had open when starting up / restarting the @bolt/build-tools ([b0a29f8](https://github.com/bolt-design-system/bolt/commit/b0a29f8))
+* combine video modal demos into a single page ([95d8ec7](https://github.com/bolt-design-system/bolt/commit/95d8ec7))
+* improve how we handle VRT errors from Jest locally when the now.sh token expected for Travis CI builds doesn't exist + add formatted summary of results + links when completed ([ba98929](https://github.com/bolt-design-system/bolt/commit/ba98929))
+* move scrollbar helpers to core, scrollbar calc functions to Class, add 'preventBodyScroll' as prop ([5a731b0](https://github.com/bolt-design-system/bolt/commit/5a731b0))
+* output `display` instead of `display="true"` for consistency ([aa28e34](https://github.com/bolt-design-system/bolt/commit/aa28e34))
+* tweak the internal spacing for the Navbar so extra elements nested inside the main title section will automatically get spacing in between each item + eliminate the need for items themselves adding their own space ([8cbcf08](https://github.com/bolt-design-system/bolt/commit/8cbcf08))
+* update custom events to bubble and include details about body scrollbar ([2584e00](https://github.com/bolt-design-system/bolt/commit/2584e00))
+* update lazysizes default lazyloading config to be more conservative with preloading by default ([d393652](https://github.com/bolt-design-system/bolt/commit/d393652))
+* update Webpack to handle .cur files (cursor file fallback when needed) ([01602ac](https://github.com/bolt-design-system/bolt/commit/01602ac))
+* upgrade to now.sh v2 for handling the static site deployments ([8db7b15](https://github.com/bolt-design-system/bolt/commit/8db7b15))
+* wire up new critical polyfill package as a reference + prep to wire it up to Drupal Lab ([ed7e73f](https://github.com/bolt-design-system/bolt/commit/ed7e73f))
+
+
+### Reverts
+
+* re-add yarn.lock ([044d063](https://github.com/bolt-design-system/bolt/commit/044d063))
+* revert clipping Jest snapshots due to OS-level screenshot differences ([fc3e438](https://github.com/bolt-design-system/bolt/commit/fc3e438))
+* revert disabling Travis CI jobs; update maxWorkers on Travis to 1 + local development to 3 ([87c4a4d](https://github.com/bolt-design-system/bolt/commit/87c4a4d))
+
+
+
+
+
+## [2.5.6](https://github.com/bolt-design-system/bolt/compare/v2.5.5...v2.5.6) (2019-07-30)
+
+
+### Bug Fixes
+
+* add custom cursor files ([1e964d4](https://github.com/bolt-design-system/bolt/commit/1e964d4))
+* add pointer as fallback for zoom-in and zoom-out in IE11 ([fe02759](https://github.com/bolt-design-system/bolt/commit/fe02759))
+* backport Blockquote test fix from master ([7dbbb32](https://github.com/bolt-design-system/bolt/commit/7dbbb32))
+* cursor size ([1b1ca18](https://github.com/bolt-design-system/bolt/commit/1b1ca18))
+* focus-trap IE JS error ([08b9d33](https://github.com/bolt-design-system/bolt/commit/08b9d33))
+* restore regular modal width ([d4840af](https://github.com/bolt-design-system/bolt/commit/d4840af))
+* update modal transform styles to fix IE 11 rendering issue ([0f507d4](https://github.com/bolt-design-system/bolt/commit/0f507d4))
+
+
+### Features
+
+* set padding on body when scrollbars are present to prevent content shift ([6f7098b](https://github.com/bolt-design-system/bolt/commit/6f7098b))
+* update Webpack to handle .cur files (cursor file fallback when needed) ([7df793b](https://github.com/bolt-design-system/bolt/commit/7df793b))
+
+
+
+
+
 ## [2.5.5](https://github.com/bolt-design-system/bolt/compare/v2.5.4...v2.5.5) (2019-07-22)
 
 

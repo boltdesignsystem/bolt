@@ -4,6 +4,7 @@ const browserSync = require('browser-sync').create();
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const chalk = require('chalk');
+const opn = require('better-opn');
 const { handleRequest } = require('@bolt/api');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackMessages } = require('@bolt/build-utils/webpack-helpers');
@@ -65,6 +66,8 @@ async function server(customWebpackConfig) {
   const browserSyncFileToWatch = [
     `${boltBuildConfig.wwwDir}/**/*.css`,
     `${boltBuildConfig.wwwDir}/**/*.html`,
+    `!**/node_modules/**/*`,
+    `!**/vendor/**/*`,
   ];
 
   const isUsingInternalServer =
@@ -85,7 +88,7 @@ async function server(customWebpackConfig) {
           logLevel: 'info',
           ui: false,
           notify: false,
-          open: boltBuildConfig.openServerAtStart,
+          open: false,
           logFileChanges: false,
           reloadOnRestart: true,
           watchOptions: {
@@ -96,6 +99,10 @@ async function server(customWebpackConfig) {
         },
         function(err, bs) {
           browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially
+
+          if (boltBuildConfig.openServerAtStart) {
+            opn(`http://${boltBuildConfig.hostname}:${boltBuildConfig.port}`);
+          }
 
           if (!isUsingInternalServer) {
             console.log(
