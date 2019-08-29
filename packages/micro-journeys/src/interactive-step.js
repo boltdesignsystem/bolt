@@ -92,9 +92,7 @@ class BoltInteractiveStep extends withLitHtml() {
     );
   }
 
-  getThemeFromParent() {
-
-  }
+  getThemeFromParent() {}
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
