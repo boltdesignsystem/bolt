@@ -126,6 +126,7 @@ export const Automation = ({ speed }) => {
     backwards; }
   `;
 
+  // This one requireds the 'html' template literal
   return html`
     <style>
       ${authoredStyle}
