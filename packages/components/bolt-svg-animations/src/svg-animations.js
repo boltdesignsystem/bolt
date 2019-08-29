@@ -32,9 +32,6 @@ class SVGAnimations extends withLitHtml() {
     const theme = this.getAttribute('theme');
     const SVGTag = SVGs[`${animType}`];
 
-    console.log(this.slot('default'));
-    console.log(`${animType}`, SVGTag({ speed, theme }));
-
     return html`
       ${this.addStyles([styles])}
       <div class="${classMap(classes)}" is="shadow-root">
