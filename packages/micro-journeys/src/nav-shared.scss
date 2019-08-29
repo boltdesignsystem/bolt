@@ -8,24 +8,24 @@ $header-text-line-height: 1.65;
 ) {
   @if $active {
     $border-size: 2px;
-    background-color: bolt-theme(secondary);
     width: $nav-circle-size--active;
     height: $nav-circle-size--active;
     margin-left: -$nav-circle-size--active / 2 - $border-size;
-    // @TODO only add this border on dark themes.
     border: $border-size solid bolt-theme(primary);
+    // @TODO there's no good way to match the comps here given we can't know what theme we're in b/c shadow dom.
+    background-color: bolt-theme(secondary);
   }
 
   @else {
     content: '';
     display: inline-block;
-    border-radius: 50%;
-    background-color: bolt-theme(primary);
+    z-index: 1;
     width: $nav-circle-size;
     height: $nav-circle-size;
-    margin-left: -$nav-circle-size / 2;
     margin-right: bolt-spacing(small);
-    z-index: 1;
+    margin-left: -$nav-circle-size / 2;
+    border-radius: 50%;
+    background-color: bolt-theme(primary);
   }
 }
 
@@ -44,18 +44,18 @@ $header-text-line-height: 1.65;
 
 @mixin bolt-micro-journeys-nav-title($active: false) {
   @if $active {
-    font-weight: bolder;
     color: bolt-theme(primary);
     cursor: default;
+    font-weight: bolder;
   }
   @else {
-    white-space: nowrap;
-    font-size: $header-text-size;
-    line-height: $header-text-line-height;
     display: flex;
     align-items: center;
     padding-bottom: 1.65rem;
+    white-space: nowrap;
+    line-height: $header-text-line-height;
     cursor: pointer;
+    font-size: $header-text-size;
     transition: color 0.5s ease, transform 0.5s ease;
   }
 }
