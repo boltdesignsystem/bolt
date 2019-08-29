@@ -1,76 +1,34 @@
-import {  html } from '@bolt/core/renderers/renderer-lit-html';
+import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
 export const Orbit = ({ speed }) => {
   const authoredStyle = html`
-    #el_4FVBcL2d5 {
-        overflow: visible
-    }
-    
-    @-webkit-keyframes kf_el_3_mf5AZNVo_an_9jFWXwODG {
-        0% {
-            -webkit-transform: translate(75px, 75px) rotate(0deg) translate(-75px, -75px);
-            transform: translate(75px, 75px) rotate(0deg) translate(-75px, -75px);
-        }
-        100% {
-            -webkit-transform: translate(75px, 75px) rotate(360deg) translate(-75px, -75px);
-            transform: translate(75px, 75px) rotate(360deg) translate(-75px, -75px);
-        }
-    }
-    
-    @keyframes kf_el_3_mf5AZNVo_an_9jFWXwODG {
-        0% {
-            -webkit-transform: translate(75px, 75px) rotate(0deg) translate(-75px, -75px);
-            transform: translate(75px, 75px) rotate(0deg) translate(-75px, -75px);
-        }
-        100% {
-            -webkit-transform: translate(75px, 75px) rotate(360deg) translate(-75px, -75px);
-            transform: translate(75px, 75px) rotate(360deg) translate(-75px, -75px);
-        }
-    }
-    
-    #el_4FVBcL2d5 * {
-        -webkit-animation-duration: ${speed}ms;
-        animation-duration: ${speed}ms;
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
-        -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 1);
-        animation-timing-function: cubic-bezier(0, 0, 1, 1);
-    }
-    
-    #el_3_mf5AZNVo {
-        stroke: none;
-        stroke-width: 1;
-        fill: none;
-    }
-    
-    #el_Kq0Ppgd0n6 {
-        stroke: #535DA6;
-        stroke-width: 0.914634146;
-    }
-    
-    #el_XZMv5KV-BQ {
-        fill: #009999;
-    }
-    
-    #el_D9rhYqcKss {
-        fill: #009999;
-    }
-    
-    #el_GmGtSmeZzg {
-        fill: #009999;
-    }
-    
-    #el_3_mf5AZNVo_an_9jFWXwODG {
-        -webkit-animation-fill-mode: backwards;
-        animation-fill-mode: backwards;
-        -webkit-transform: translate(75px, 75px) rotate(0deg) translate(-75px, -75px);
-        transform: translate(75px, 75px) rotate(0deg) translate(-75px, -75px);
-        -webkit-animation-name: kf_el_3_mf5AZNVo_an_9jFWXwODG;
-        animation-name: kf_el_3_mf5AZNVo_an_9jFWXwODG;
-        -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 1);
-        animation-timing-function: cubic-bezier(0, 0, 1, 1);
-    }
+    #el_4FVBcL2d5 { overflow: visible } @-webkit-keyframes
+    kf_el_3_mf5AZNVo_an_9jFWXwODG { 0% { -webkit-transform: translate(75px,
+    75px) rotate(0deg) translate(-75px, -75px); transform: translate(75px, 75px)
+    rotate(0deg) translate(-75px, -75px); } 100% { -webkit-transform:
+    translate(75px, 75px) rotate(360deg) translate(-75px, -75px); transform:
+    translate(75px, 75px) rotate(360deg) translate(-75px, -75px); } } @keyframes
+    kf_el_3_mf5AZNVo_an_9jFWXwODG { 0% { -webkit-transform: translate(75px,
+    75px) rotate(0deg) translate(-75px, -75px); transform: translate(75px, 75px)
+    rotate(0deg) translate(-75px, -75px); } 100% { -webkit-transform:
+    translate(75px, 75px) rotate(360deg) translate(-75px, -75px); transform:
+    translate(75px, 75px) rotate(360deg) translate(-75px, -75px); } }
+    #el_4FVBcL2d5 * { -webkit-animation-duration: ${speed}ms;
+    animation-duration: ${speed}ms; -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite; -webkit-animation-timing-function:
+    cubic-bezier(0, 0, 1, 1); animation-timing-function: cubic-bezier(0, 0, 1,
+    1); } #el_3_mf5AZNVo { stroke: none; stroke-width: 1; fill: none; }
+    #el_Kq0Ppgd0n6 { stroke: #535DA6; stroke-width: 0.914634146; }
+    #el_XZMv5KV-BQ { fill: #009999; } #el_D9rhYqcKss { fill: #009999; }
+    #el_GmGtSmeZzg { fill: #009999; } #el_3_mf5AZNVo_an_9jFWXwODG {
+    -webkit-animation-fill-mode: backwards; animation-fill-mode: backwards;
+    -webkit-transform: translate(75px, 75px) rotate(0deg) translate(-75px,
+    -75px); transform: translate(75px, 75px) rotate(0deg) translate(-75px,
+    -75px); -webkit-animation-name: kf_el_3_mf5AZNVo_an_9jFWXwODG;
+    animation-name: kf_el_3_mf5AZNVo_an_9jFWXwODG;
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 1);
+    animation-timing-function: cubic-bezier(0, 0, 1, 1); }
   `;
 
   return svg`
