@@ -1,5 +1,4 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
-import { svg } from 'lit-html';
 
 export const Automation = ({ speed }) => {
   const authoredStyle = html`
@@ -127,7 +126,8 @@ export const Automation = ({ speed }) => {
     backwards; }
   `;
 
-  return svg`
+  // This one requireds the 'html' template literal
+  return html`
     <style>${authoredStyle}</style>
     <div id="bolt-automation-container">
       <svg

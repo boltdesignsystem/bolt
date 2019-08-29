@@ -23,22 +23,6 @@ class SVGAnimations extends withLitHtml() {
     return self;
   }
 
-  rendered() {
-    // This is an evil hack because lit-html replaces `image` tag with `img`.
-    // const animType = this.getAttribute('animType');
-    // if (animType === 'Radar') {
-    //   const theme = this.getAttribute('theme');
-    //   const SVGTag = SVGs[`${animType}`];
-    //   if (theme === 'dark') {
-    //     this.renderRoot.getElementById('el_tbKqO34v2S').innerHTML =
-    //       SVGTag.darkImage;
-    //   } else {
-    //     this.renderRoot.getElementById('el_tbKqO34v2S').innerHTML =
-    //       SVGTag.lightImage;
-    //   }
-    // }
-  }
-
   render() {
     const classes = {
       'c-bolt-svg-animations': true,
