@@ -1,0 +1,61 @@
+$header-text-size: 1rem;
+$header-text-line-height: 1.65;
+
+@mixin bolt-micro-journeys-nav-dot(
+  $nav-circle-size: 12px,
+  $nav-circle-size--active: 14px,
+  $active: false
+) {
+  @if $active {
+    $border-size: 2px;
+    background-color: bolt-theme(secondary);
+    width: $nav-circle-size--active;
+    height: $nav-circle-size--active;
+    margin-left: -$nav-circle-size--active / 2 - $border-size;
+    // @TODO only add this border on dark themes.
+    border: $border-size solid bolt-theme(primary);
+  }
+
+  @else {
+    content: '';
+    display: inline-block;
+    border-radius: 50%;
+    background-color: bolt-theme(primary);
+    width: $nav-circle-size;
+    height: $nav-circle-size;
+    margin-left: -$nav-circle-size / 2;
+    margin-right: bolt-spacing(small);
+    z-index: 1;
+  }
+}
+
+@mixin bolt-micro-journeys-nav-line() {
+  $top: $header-text-size * $header-text-line-height / 2;
+  $line-width: 1px;
+  content: '';
+  display: block;
+  position: absolute;
+  top: $top;
+  left: -$line-width / 2;
+  width: $line-width;
+  height: 100%;
+  background-color: bolt-theme(primary);
+}
+
+@mixin bolt-micro-journeys-nav-title($active: false) {
+  @if $active {
+    font-weight: bolder;
+    color: bolt-theme(primary);
+    cursor: default;
+  }
+  @else {
+    white-space: nowrap;
+    font-size: $header-text-size;
+    line-height: $header-text-line-height;
+    display: flex;
+    align-items: center;
+    padding-bottom: 1.65rem;
+    cursor: pointer;
+    transition: color 0.5s ease, transform 0.5s ease;
+  }
+}

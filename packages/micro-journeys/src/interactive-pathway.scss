@@ -1,4 +1,5 @@
 @import '@bolt/core';
+@import './nav-shared';
 
 // Local interactive-pathway Variables
 
@@ -13,6 +14,9 @@
 //@import "@bolt/animations/utilities/utilities-animation";
 $bolt-interactive-step--dot-size: 1.2rem;
 .c-bolt-interactive-pathway {
+  $nav-circle-size: 12px;
+  $nav-circle-size--active: 14px;
+
   display: none;
   position: relative;
 
@@ -26,43 +30,41 @@ $bolt-interactive-step--dot-size: 1.2rem;
   @include bolt-mq(medium) {
     flex-wrap: nowrap;
     justify-content: space-between;
+
     &__nav {
       display: block;
-      flex-grow: 0;
-      flex-shrink: 0;
-      width: 300px;
-      padding-left: 20px;
+      flex: 0 1;
+      position: relative;
+      margin-right: bolt-spacing(large);
     }
+
     &__nav-item {
       position: relative;
-      cursor: pointer;
+      @include bolt-micro-journeys-nav-title;
 
       &:before {
-        content: '';
-        display: inline-block;
-        position: absolute;
-        top: 0;
-        left: 4px;
-        z-index: 10;
-        margin-bottom: 1.65rem;
-        color: #AAB2F2;
-        font-size: $bolt-interactive-step--dot-size;
-        transition: color 0.5s ease, transform 0.5s ease;
+        @include bolt-micro-journeys-nav-dot($nav-circle-size, $nav-circle-size--active);
       }
+
+      &:after {
+        @include bolt-micro-journeys-nav-line;
+      }
+
       &--active {
-        transform: scale(1.1) translateX(4px);
-        color: orange;
-        cursor: default;
+        @include bolt-micro-journeys-nav-title($active: true);
+
         &:before {
-          transform: scale(1.5);
-          color: orange;
+          @include bolt-micro-journeys-nav-dot($nav-circle-size, $nav-circle-size--active, $active: true);
         }
       }
+
+      &:last-of-type:after {
+        display: none;
+      }
     }
+
     &__items {
-      flex-grow: 0;
-      flex-shrink: 0;
-      width: calc(100% - 301px);
+      flex: 1 1;
     }
   }
 }
@@ -75,3 +77,6 @@ bolt-interactive-pathway {
   margin-bottom: 0 !important; // override the global vertical spacing rhythm, as only one is visible in any list
 }
 
+.c-bolt-interactive-pathway__nav-item:last-of-type {
+
+}
