@@ -11,10 +11,10 @@ $bolt-tooltip-bubble-triangle-width: 8px;
   display: flex;
   align-items: center;
   max-width: 300px;
+  padding: bolt-spacing(xsmall) bolt-spacing(small);
   color: bolt-color(black);
   border-radius: $bolt-border-radius;
   background-color: bolt-color(white);
-  @include bolt-padding(xsmall);
   @include bolt-shadow('level-20', true);
 
   &--alert {
@@ -32,7 +32,11 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
   &__slot {
     &--text {
-      font-size: $bolt-font-size--xsmall;
+      color: bolt-color(black);
+      line-height: ($bolt-line-height--xsmall + 0.2);
+      text-align: left;
+      @include bolt-font-weight(regular);
+      @include bolt-font-size(xsmall);
     }
   }
 
