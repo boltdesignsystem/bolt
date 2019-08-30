@@ -24,3 +24,5 @@ Object.assign(lazySizes.cfg, {
     return elements;
   },
 });
+
+export { lazySizes };
