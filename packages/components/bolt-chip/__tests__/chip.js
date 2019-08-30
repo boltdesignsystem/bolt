@@ -2,7 +2,7 @@ import { render } from '@bolt/twig-renderer';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../chip.schema.yml'));
-const { url, target, icon, spacing } = schema.properties;
+const { url, target, icon, size } = schema.properties;
 
 describe('chip', () => {
   test('basic usage', async () => {
@@ -35,11 +35,11 @@ describe('chip', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  spacing.enum.forEach(async option => {
-    test(`chip spacing: ${option}`, async () => {
+  size.enum.forEach(async option => {
+    test(`chip size: ${option}`, async () => {
       const results = await render('@bolt-components-chip/chip.twig', {
-        text: 'Chip spacing',
-        spacing: option,
+        text: 'Chip size',
+        size: option,
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
