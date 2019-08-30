@@ -13,9 +13,14 @@ import chipSchema from '@bolt/components-chip/chip.schema.yml';
 // @ts-ignore
 import imageSchema from '@bolt/components-image/image.schema.yml';
 import animateSchema from '@bolt/components-animate/animate.schema';
+// @ts-ignore
+import linkSchema from '../../components/bolt-link/link.schema.yml'; // @todo figure out why the @bolt module name does not resolve for this
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import { isChildOfEl, convertSchemaPropToTrait } from './utils';
 
+console.log('Hey super smart developer, you probably want this info -> ', {
+  linkSchema
+});
 class EditorRegisterBoltError extends Error {}
 
 const smallButton = {
@@ -73,8 +78,7 @@ const cta = {
   title: 'CTA',
   data: {
     type: 'bolt-cta',
-    attributes: {
-    },
+    attributes: {},
     content: `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>
       <bolt-text font-size="xsmall" slot="link" display="inline">
         Replace this text
@@ -97,6 +101,19 @@ const icon = {
   },
 };
 
+const link = {
+  id: 'bolt-link',
+  title: 'Link',
+  data: {
+    type: 'bolt-link',
+    content: 'Im a link',
+    attributes: {
+      display: 'inline',
+      valign: 'start',
+    },
+  },
+};
+
 const basicSlottableComponents = [
   statusBar,
   statusBarAlert,
@@ -104,6 +121,7 @@ const basicSlottableComponents = [
   smallButton,
   basicText,
   cta,
+  // link,
 ];
 
 /**
@@ -472,6 +490,18 @@ export function setupBolt(editor) {
         <bolt-icon name="chevron-right"></bolt-icon>
       </bolt-text>`,
     extraTraits: [],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-link',
+    schema: linkSchema,
+    registerBlock: true,
+    draggable: true,
+    propsToTraits: ['display', 'valign', 'url', 'isHeadline'],
+    slots: {
+      default: true,
+    },
+    initialContent: `I'm a link`,
   });
 
   registerBoltComponent({
