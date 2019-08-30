@@ -37,17 +37,17 @@
     } only %}
 {% endset %}
 
-<p>
+<bolt-text>
   By setting the <code>panel_spacing</code> or <code>label_spacing</code> prop on a Tab Panel, the default spacing value inherited from the parent Tabs can be optionally overridden.
-</p>
+</bolt-text>
 
 {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
 
   {% cell "u-bolt-width-12/12" %}
     <bolt-text headline>Basic usage: <code>spacing</code></bolt-text>
-    <p>
+    <bolt-text>
       Using <code>spacing</code> will uniformly set the same spacing on both the label and the panel.
-    </p>
+    </bolt-text>
   {% endcell %}
 
   {% cell "u-bolt-width-12/12" %}
@@ -79,9 +79,9 @@
 
   {% cell "u-bolt-width-12/12" %}
     <bolt-text headline>Advanced usage: <code>panel_spacing</code></bolt-text>
-    <p>
+    <bolt-text>
       Using <code>panel_spacing</code> will only set the spacing on the panel. This should only be used if you don't want the same spacing on both the label and the panel.
-    </p>
+    </bolt-text>
   {% endcell %}
 
   {% for spacing in schema.properties.spacing.enum %}
@@ -140,9 +140,9 @@
 
   {% cell "u-bolt-width-12/12" %}
     <bolt-text headline font-size="xlarge">Advanced usage: <code>label_spacing</code></bolt-text>
-    <p>
+    <bolt-text>
       Using <code>label_spacing</code> will only set the spacing on the label. This should only be used if you don't want the same spacing on both the label and the panel.
-    </p>
+    </bolt-text>
   {% endcell %}
 
   {% for spacing in schema.properties.spacing.enum %}
