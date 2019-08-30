@@ -13,6 +13,7 @@ class SVGAnimations extends withLitHtml() {
     speed: props.integer,
     animType: props.string,
     theme: props.string,
+    direction: props.string,
     content: props.string,
   };
 
@@ -30,6 +31,7 @@ class SVGAnimations extends withLitHtml() {
     const animType = this.getAttribute('animType');
     const speed = this.getAttribute('speed');
     const theme = this.getAttribute('theme');
+    const direction = this.getAttribute('direction');
     const SVGTag = SVGs[`${animType}`];
 
     return html`
@@ -38,7 +40,7 @@ class SVGAnimations extends withLitHtml() {
         <div class="c-bolt-svg-animations__content">
           ${this.slot('default')}
         </div>
-        ${SVGTag({ speed, theme })}
+        ${SVGTag({ speed, theme, direction })}
       </div>
     `;
   }
