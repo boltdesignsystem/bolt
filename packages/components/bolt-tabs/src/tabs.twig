@@ -15,7 +15,7 @@
 {% set classes = [
   "c-bolt-tabs",
   this.data.align.value ? "c-bolt-tabs--align-" ~ this.data.align.value : "",
-  this.data.spacing.value ? "c-bolt-tabs--spacing-" ~ this.data.spacing.value : ""
+  this.data.inset.value ? "c-bolt-tabs--inset" : ""
 ] %}
 
 {#
@@ -43,10 +43,12 @@
       {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
     >
     {% for panel in panels %}
+      {# Note: when passing boolean values, provide your own default. Currently returns empty string instead of `false`, which is against its schema type. #}
       {% include "@bolt-components-tabs/TabPanel/tab-panel.twig" with panel|merge({
         index: loop.index,
         uuid: uuid,
         spacing: this.data.spacing.value,
+        inset: this.data.inset.value|default(false),
         selected_tab: this.data.selected_tab.value,
       }) only %}
     {% endfor %}

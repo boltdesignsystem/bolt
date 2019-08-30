@@ -14,19 +14,14 @@ bolt-tab-panel {
 
 .c-bolt-tab-panel__content {
   display: none;
+  flex-grow: 1; // sits inside flex container, always want full-width
 
   &[aria-expanded='true'] {
     display: block;
   }
 }
 
-// For no-js styles
-.c-bolt-tab-panel__outer {
-  order: 99;
-  width: 100%;
-}
-
-// Spacing
+// Panel spacing
 @each $spacing-value in $bolt-spacing-values {
   $spacing-value-name: nth($spacing-value, 1);
 
@@ -42,8 +37,22 @@ bolt-tab-panel {
   ) {
     .c-bolt-tab-panel--spacing-#{$spacing-value-name} {
       .c-bolt-tab-panel__content {
-        @include bolt-padding(#{$spacing-value-name}, squished);
+        @include bolt-padding(#{$spacing-value-name});
+      }
+
+      &:not(.c-bolt-tab-panel--inset) {
+        .c-bolt-tab-panel__content {
+          @include bolt-padding-left(0);
+          @include bolt-padding-right(0);
+          @include bolt-padding-bottom(0);
+        }
       }
     }
   }
+}
+
+// No-js styles
+.c-bolt-tab-panel__outer {
+  order: 99;
+  width: 100%; // required for no-JS panel alignment
 }

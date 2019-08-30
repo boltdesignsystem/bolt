@@ -19,6 +19,7 @@ import schema from '../tabs.schema.yml';
 // define which specific props to provide to children that subscribe
 export const TabsContext = defineContext({
   spacing: '',
+  inset: false,
   name: '',
   selectedIndex: 0,
   useShadow: hasNativeShadowDomSupport,
@@ -33,6 +34,7 @@ class BoltTabs extends withContext(withLitHtml()) {
   static props = {
     align: props.string,
     spacing: props.string,
+    inset: props.boolean,
     variant: props.string,
     name: props.string,
     selectedTab: {
@@ -58,7 +60,7 @@ class BoltTabs extends withContext(withLitHtml()) {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
 
-    const { uuid, selectedTab, spacing } = this.validateProps(this.props);
+    const { uuid, selectedTab } = this.validateProps(this.props);
 
     const panels = this.tabPanels;
 
@@ -253,14 +255,15 @@ class BoltTabs extends withContext(withLitHtml()) {
   }
 
   template() {
-    const { align, spacing } = this.validateProps(this.props);
+    const { align, spacing, inset } = this.validateProps(this.props);
 
     const classes = cx('c-bolt-tabs', {
       [`c-bolt-tabs--align-${align}`]: align,
       [`c-bolt-tabs--spacing-${spacing}`]: spacing,
+      [`c-bolt-tabs--inset`]: inset,
     });
-    const labelClasses = cx('c-bolt-tabs__label');
     const labelInnerClasses = cx('c-bolt-tabs__label-inner');
+    const labelTextClasses = cx('c-bolt-tabs__label-text');
     const listClasses = cx('c-bolt-tabs__nav', {});
     const panelsClasses = cx('c-bolt-tabs__panels-container');
 
@@ -270,6 +273,10 @@ class BoltTabs extends withContext(withLitHtml()) {
       Array.from(this.tabPanels).forEach((item, index) => {
         const isSelected = index === this.selectedIndex;
         const label = item.querySelector('[slot="label"]');
+        const spacingOption = item.getAttribute('label-spacing') || spacing;
+        const labelClasses = cx('c-bolt-tabs__label', {
+          [`c-bolt-tabs__label--spacing-${spacingOption}`]: spacingOption,
+        });
         const labelText = label ? label.textContent : `Tab label ${index + 1}`; // @todo: add icon support? how to handle missing labels?
         const labelId = `tab-${this.tabsId}-${index + 1}`; // Use 1-based Id's
         const panelId = `tab-panel-${this.tabsId}-${index + 1}`; // Use 1-based Id's
@@ -288,7 +295,9 @@ class BoltTabs extends withContext(withLitHtml()) {
             @keydown=${e => this.handleOnKeydown(e)}
             @keyup=${e => this.handleOnKeyup(e)}
           >
-            <span class="${labelInnerClasses}">${labelText}</span>
+            <span class="${labelInnerClasses}"
+              ><span class="${labelTextClasses}">${labelText}</span></span
+            >
           </bolt-trigger>
         `;
 
@@ -339,12 +348,15 @@ class BoltTabs extends withContext(withLitHtml()) {
   }
 
   render() {
-    const { spacing, uuid, selectedTab } = this.validateProps(this.props);
+    const { spacing, inset, uuid, selectedTab } = this.validateProps(
+      this.props,
+    );
 
     this.tabsId = uuid || this.uniqueId;
     this.selectedIndex = this.validateIndex(selectedTab - 1);
 
     this.contexts.get(TabsContext).spacing = spacing;
+    this.contexts.get(TabsContext).inset = inset;
     this.contexts.get(TabsContext).uuid = this.tabsId;
     this.contexts.get(TabsContext).selectedIndex = this.selectedIndex;
     this.contexts.get(TabsContext).tabPanels = this.tabPanels;

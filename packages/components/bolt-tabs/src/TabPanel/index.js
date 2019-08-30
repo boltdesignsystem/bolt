@@ -17,6 +17,7 @@ class TabPanel extends withContext(withLitHtml()) {
 
   static props = {
     selected: props.boolean,
+    panelSpacing: props.string,
   };
 
   // subscribe to specific props that are defined and available on the parent container
@@ -24,6 +25,7 @@ class TabPanel extends withContext(withLitHtml()) {
   static get consumes() {
     return [
       [TabsContext, 'spacing'],
+      [TabsContext, 'inset'],
       [TabsContext, 'uuid'],
       [TabsContext, 'selectedIndex'],
       [TabsContext, 'tabPanels'],
@@ -72,7 +74,9 @@ class TabPanel extends withContext(withLitHtml()) {
   }
 
   template() {
-    const { uuid, selectedIndex, spacing } = this.context;
+    const { uuid, selectedIndex, spacing, inset } = this.context;
+    const { panelSpacing } = this.validateProps(this.props);
+
     const index = this.panelIndex;
 
     // Selected prop overrides selectedTab state set on parent
@@ -82,8 +86,11 @@ class TabPanel extends withContext(withLitHtml()) {
     const labelledById = `tab-label-${uuid}-${index + 1}`;
     const panelId = `tab-panel-${uuid}-${index + 1}`;
 
+    // Give preference to `panelSpacing`, fallback to `spacing`
+    const spacingOption = panelSpacing || spacing;
     const classes = cx('c-bolt-tab-panel', {
-      [`c-bolt-tab-panel--spacing-${spacing}`]: spacing,
+      [`c-bolt-tab-panel--spacing-${spacingOption}`]: spacingOption,
+      [`c-bolt-tab-panel--inset`]: inset,
     });
 
     const contentClasses = cx('c-bolt-tab-panel__content');

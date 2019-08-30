@@ -7,12 +7,21 @@
 {# Variables #}
 {% set this = init(schema.properties.panels.items) %}
 {% set inner_attributes = create_attribute({}) %}
+{% set label_attributes = create_attribute({}) %}
+{% set panel_spacing = this.data.panel_spacing.value|default(spacing) %}
+{% set label_spacing = this.data.label_spacing.value|default(spacing) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   "c-bolt-tab-panel",
   this.data.align.value ? "c-bolt-tabs--align-" ~ this.data.align.value : "",
-  spacing ? "c-bolt-tab-panel--spacing-" ~ spacing : ""
+  panel_spacing ? "c-bolt-tab-panel--spacing-" ~ panel_spacing : "",
+  inset ? "c-bolt-tab-panel--inset" : ""
+] %}
+
+{% set label_classes = [
+  "c-bolt-tabs__label",
+  label_spacing ? "c-bolt-tabs__label--spacing-" ~ label_spacing : "",
 ] %}
 
 {#
@@ -36,9 +45,11 @@
 {% set selected_tab = selected_tab ?? 1 %}
 
 <input type="radio" name="{{ panel_name }}" id="{{ panel_id }}" class="c-bolt-tabs__input" {% if index == selected_tab %}checked{% endif %} />
-<label for="{{ panel_id }}" class="c-bolt-tabs__label">
+<label for="{{ panel_id }}" {{ inner_attributes.addClass(label_classes) }}>
   <span class="c-bolt-tabs__label-inner">
-    {{ label }}
+    <span class="c-bolt-tabs__label-text">
+      {{ label }}
+    </span>
   </span>
 </label>
 <replace-with-children class="c-bolt-tab-panel__outer">
