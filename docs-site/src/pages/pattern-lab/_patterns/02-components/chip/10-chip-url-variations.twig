@@ -1,33 +1,39 @@
-{# Start component specific code #}
 <bolt-text headline>URL</bolt-text>
 <bolt-list display="inline">
   <bolt-list-item>
+    {# Start component specific code #}
     {% include "@bolt-components-chip/chip.twig" with {
       text: "No URL",
     } only %}
+    {# End component specific code #}
   </bolt-list-item>
   <bolt-list-item>
+    {# Start component specific code #}
     {% include "@bolt-components-chip/chip.twig" with {
       text: "Has URL",
       url: "https://pega.com",
     } only %}
+    {# End component specific code #}
   </bolt-list-item>
 </bolt-list>
 
 <bolt-text headline>Target</bolt-text>
 <bolt-list display="inline">
   <bolt-list-item>
+    {# Start component specific code #}
     {% include "@bolt-components-chip/chip.twig" with {
       text: "Open link in current tab",
       url: "https://pega.com",
     } only %}
+    {# End component specific code #}
   </bolt-list-item>
   <bolt-list-item>
+    {# Start component specific code #}
     {% include "@bolt-components-chip/chip.twig" with {
       text: "Open link in new tab",
       url: "https://pega.com",
       target: "_blank",
     } only %}
+    {# End component specific code #}
   </bolt-list-item>
 </bolt-list>
-{# End component specific code #}

@@ -1,7 +1,7 @@
-{# Start component specific code #}
 <bolt-text headline>Icon</bolt-text>
 <bolt-list display="inline">
   <bolt-list-item>
+    {# Start component specific code #}
     {% include "@bolt-components-chip/chip.twig" with {
       text: "Icon before",
       icon: {
@@ -9,8 +9,10 @@
         position: "before",
       },
     } only %}
+    {# End component specific code #}
   </bolt-list-item>
   <bolt-list-item>
+    {# Start component specific code #}
     {% include "@bolt-components-chip/chip.twig" with {
       text: "Icon after",
       icon: {
@@ -18,6 +20,6 @@
         position: "after",
       },
     } only %}
+    {# End component specific code #}
   </bolt-list-item>
 </bolt-list>
-{# End component specific code #}

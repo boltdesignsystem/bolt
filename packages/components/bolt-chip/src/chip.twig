@@ -11,7 +11,7 @@
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
 
-{% set spacing = this.data.spacing.value %}
+{% set size = this.data.size.value %}
 
 {% set icon_positions = schema.properties.icon.properties.position.enum %}
 
@@ -35,7 +35,7 @@
 {% set classes = [
   base_class,
   url ? "#{base_class}--link" : "",
-  spacing ? "#{base_class}--spacing-#{spacing}" : "",
+  size ? "#{base_class}--size-#{size}" : "",
 ] %}
 
 {#
