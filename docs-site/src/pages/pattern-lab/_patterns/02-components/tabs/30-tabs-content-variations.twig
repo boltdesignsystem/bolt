@@ -1,0 +1,105 @@
+{% set image_content %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/placeholders/tout-4x3-climber.jpg",
+    alt: "A Rock Climber",
+  } only %}
+{% endset %}
+
+{% set table_content %}
+  {% include "@bolt-components-table/table.twig" with {
+    headers: {
+      top: {
+        cells: [
+          "Column 1",
+          "Column 2",
+          "Column 3",
+        ]
+      },
+      side: {
+        cells: [
+          "Row 1",
+          "Row 2",
+          "Row 3",
+          "Footer",
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          "R1C1",
+          "R1C2",
+          "R1C3",
+        ]
+      },
+      {
+        cells: [
+          "R2C1",
+          "R2C2",
+          "R2C3",
+        ]
+      },
+      {
+        cells: [
+          "R3C1",
+          "R3C2",
+          "R3C3",
+        ]
+      }
+    ],
+    footer: {
+      cells: [
+        "FC1",
+        "FC2",
+        "FC3",
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set teaser_content %}
+  {% include "@bolt-components-teaser/teaser.twig" with {
+    content: "Body text. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    headlines: [
+      {
+        text: "This is a headline."
+      }
+    ],
+    eyebrow: {
+      text: "Eyebrow"
+    },
+    buttons: [
+      {
+        pattern: "button",
+        style: "primary",
+        text: "CTA 1"
+      },
+      {
+        pattern: "button",
+        style: "secondary",
+        text: "CTA 2"
+      }
+    ]
+  } only %}
+{% endset %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
+    {% include "@bolt-components-tabs/tabs.twig" with {
+      panels: [
+        {
+          label: "An image",
+          content: image_content
+        },
+        {
+          label: "A table",
+          content: table_content
+        },
+        {
+          label: "A teaser",
+          content: teaser_content
+        },
+      ]
+    } only %}
+  {% endcell %}
+{% endgrid %}

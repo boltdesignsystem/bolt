@@ -19,10 +19,10 @@
     } only %}
 {% endset %}
 
-{% for spacing in schema.properties.spacing.enum %}
-  <bolt-text headline font-size="large">Spacing: <code>{{ spacing }}</code></bolt-text>
+{% for align in schema.properties.align.enum %}
+  <bolt-text headline font-size="large">Align: {{ align }}</bolt-text>
   {% include "@bolt-components-tabs/tabs.twig" with {
-    spacing: spacing,
+    align: align,
     panels: [
       {
         label: "Tab label 1",
@@ -39,3 +39,4 @@
     ]
   } only %}
 {% endfor %}
+
