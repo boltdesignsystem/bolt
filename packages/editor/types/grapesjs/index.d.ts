@@ -1,4 +1,10 @@
-declare module '*.yml';
+import { ComponentObject } from 'grapesjs';
+
+// declare module '*.yml';
+// declare module "*.yml" {
+//   const content: any;
+//   export default content;
+// }
 
 interface BoltEditorConfig {
   styles?: string[];
@@ -18,6 +24,17 @@ interface GrapeTrait {
     value: string;
     name: string;
   }>;
+}
+
+interface SlottableComponent {
+  id: string;
+  title: string;
+  data: ComponentObject;
+}
+
+interface SlotControl {
+  slotName: string;
+  components: SlottableComponent[];
 }
 
 declare module 'grapesjs' {

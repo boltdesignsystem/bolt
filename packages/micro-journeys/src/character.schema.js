@@ -25,11 +25,5 @@ module.exports = {
       type: 'boolean',
       description: 'Use a bolt-icon in place of an image Url.',
     },
-    animtype: {
-      type: 'string',
-      description: 'Use a bolt-icon in place of an image Url.',
-      default: 'none',
-      enum: ['none', 'Radar', 'Orbit', 'Automation'],
-    },
   },
 };

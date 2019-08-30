@@ -5,7 +5,7 @@ import {
   query,
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
-import classNames from 'classnames/bind';
+import classNames from 'classnames';
 import styles from './interactive-pathway.scss';
 // import schema from '../interactive-pathway.schema.yml';
 
@@ -20,7 +20,6 @@ class BoltInteractivePathway extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    activePathwayId: props.number,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -30,24 +29,29 @@ class BoltInteractivePathway extends withLitHtml() {
     self.useShadow = hasNativeShadowDomSupport;
     // self.schema = schema;
     self.isActivePathway = false;
-    self.activeStep = 0;
+    self.activeStep = -1;
+    self.steps = [];
     self.addEventListener('change-active-step', event => {
       const steps = this.getSteps();
-      const stepId = steps.findIndex(el => el === event.target);
+      const stepId = steps.findIndex(step => step.el === event.target);
       this.setActiveStep(stepId);
     });
-
     return self;
   }
 
   /**
-   * @return {BoltInteractiveStep[]}
+   * @return {{ el: BoltInteractiveStep, title: string }[]}
    */
   getSteps() {
-    return /** @type {BoltInteractiveStep[]} */ (query(
+    const els = /** @type {BoltInteractiveStep[]} */ (query(
       'bolt-interactive-step',
       this,
     ));
+
+    return els.map(el => ({
+      el,
+      title: el.getTitle(),
+    }));
   }
 
   setActive(isActive = true) {
@@ -61,41 +65,51 @@ class BoltInteractivePathway extends withLitHtml() {
    */
   getTitle() {
     /** @type {HTMLElement} */
-    const pathwayTitleEl = this.querySelector('[slot="pathway-title"');
+    const pathwayTitleEl = this.querySelector('[slot="pathway-title"]');
     return pathwayTitleEl ? pathwayTitleEl.innerText : '';
   }
 
   connectedCallback() {
     super.connectedCallback();
+    // let children render before trying to access
+    setTimeout(() => {
+      this.steps = this.getSteps();
+      this.triggerUpdate();
+    }, 0);
   }
 
   /**
    * Set the active tab panel step
-   * @param {string | number} stepId
+   * @param {number} stepIndex
    * @return {Promise<void>}
    */
-  setActiveStep = async stepId => {
-    stepId = typeof stepId === 'number' ? stepId.toString() : stepId;
+  setActiveStep = async stepIndex => {
+    if (stepIndex === this.activeStep) {
+      // @todo first one initially set twice, causes double animation in
+      console.warn('current step already active');
+      return;
+    }
     const steps = this.getSteps();
     if (!steps) {
       console.error('No steps inside, so cannot setActiveStep', this);
       return;
     }
-    const newActiveStep = steps[stepId];
+    const newActiveStep = steps[stepIndex];
     const currentActiveStep = steps[this.activeStep];
     if (!newActiveStep) {
       console.error(
-        `uh oh setActiveStep fired with stepId "${stepId}" but could not find one`,
+        `uh oh setActiveStep fired with stepIndex "${stepIndex}" but could not find one`,
       );
       return;
     }
     if (currentActiveStep) {
-      await currentActiveStep.triggerAnimOuts();
-      currentActiveStep.setActive(false);
+      await currentActiveStep.el.triggerAnimOuts();
+      currentActiveStep.el.setActive(false);
     }
-    newActiveStep.setActive(true);
-    this.activeStep = stepId;
-    await newActiveStep.triggerAnimIns();
+    newActiveStep.el.setActive(true);
+    this.activeStep = stepIndex;
+    await newActiveStep.el.triggerAnimIns();
+    this.triggerUpdate();
   };
 
   render() {
@@ -104,7 +118,36 @@ class BoltInteractivePathway extends withLitHtml() {
       [`c-bolt-interactive-pathway--active`]: this.isActivePathway,
     });
 
+    const navClasses = cx('c-bolt-interactive-pathway__nav');
+    const itemClasses = cx('c-bolt-interactive-pathway__items');
+    // new approach
     return html`
+      ${this.addStyles([styles])}
+      <section class="${classes}">
+        <nav class="${navClasses}">
+          ${this.steps.map((step, stepIndex) => {
+            const isActiveItem = this.activeStep === stepIndex;
+            const navItemClasses = cx('c-bolt-interactive-pathway__nav-item', {
+              'c-bolt-interactive-pathway__nav-item--active': isActiveItem,
+            });
+            return html`
+              <div
+                class="${navItemClasses}"
+                @click=${() => this.setActiveStep(stepIndex)}
+              >
+                ${step.title}
+              </div>
+            `;
+          })}
+        </nav>
+        <div class="${itemClasses}">
+          ${this.slot('default')}
+        </div>
+      </section>
+    `;
+
+    // old approach
+    const old = html`
       ${this.addStyles([styles])}
       <div class="${classes}" is="shadow-root">
         <ul class="c-bolt-interactive-pathway__nav">

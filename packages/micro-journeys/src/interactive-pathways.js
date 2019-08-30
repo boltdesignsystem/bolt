@@ -33,7 +33,7 @@ class BoltInteractivePathways extends withLitHtml() {
     setTimeout(() => {
       this.style.opacity = 1;
       this.showPathway(0);
-    });
+    }, 0);
   }
 
   /**

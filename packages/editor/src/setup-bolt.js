@@ -1,86 +1,94 @@
 import * as grapesjs from 'grapesjs'; // eslint-disable-line no-unused-vars
+// @ts-ignore
 import buttonSchema from '@bolt/components-button/button.schema.yml';
+// @ts-ignore
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
+// @ts-ignore
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
+// @ts-ignore
 import chipSchema from '@bolt/components-chip/chip.schema.yml';
+// @ts-ignore
 import imageSchema from '@bolt/components-image/image.schema.yml';
 import animateSchema from '@bolt/components-animate/animate.schema';
 // import { animationNames } from '@bolt/components-animate/animation-meta';
-import kebabCase from 'param-case';
+import { isChildOfEl, convertSchemaPropToTrait } from './utils';
 
-class SchemaPropToTraitError extends Error {}
 class EditorRegisterBoltError extends Error {}
 
-/**
- * @typedef {Object} SchemaProp - JSON schema individual property
- * @prop {string} type one of 'boolean' or 'string' (if `enum` then select else text field)
- * @prop {string} [title]
- * @prop {string} [description]
- * @prop {string[]} [enum] all the `<option>`s for the `<select>`, requires `type: 'string'`
- * @prop {any} [default]
- */
+const smallButton = {
+  id: 'bolt-button--small',
+  title: 'Button',
+  data: {
+    type: 'bolt-button',
+    content: 'Button',
+    attributes: {
+      size: 'small',
+    },
+  },
+};
 
-/**
- * @typedef {Object} JsonSchema
- * @prop {string} [title]
- * @prop {string} [description]
- * @prop {string[]} [required]
- * @prop {{ [key: string]: SchemaProp }} properties
- */
+const basicText = {
+  id: 'bolt-text',
+  title: 'Text',
+  data: {
+    type: 'bolt-text',
+    attributes: {
+      'font-size': 'xsmall',
+    },
+    content: `Hello!`,
+  },
+};
 
-/**
- * @param {Object} opt
- * @param {SchemaProp} opt.prop JSON Schema Prop
- * @param {string} [opt.name] machine name of value, will be passed to web components as HTML attributes; will be kebab-cased
- * @returns {GrapeTrait}
- * @throws {SchemaPropToTraitError}
- */
-function convertSchemaPropToTrait({ name, prop }) {
-  /** @type {GrapeTrait} */
-  const trait = {
-    label: prop.title || name,
-    name: kebabCase(name),
-    type: 'text',
-  };
+const statusBar = {
+  id: 'bolt-status-dialogue-bar',
+  title: 'Dialogue Bar',
+  data: {
+    type: 'bolt-status-dialogue-bar',
+    attributes: {
+      'icon-name': 'cloud',
+    },
+    content: `<p slot="text"> I'm a large character </p>`,
+  },
+};
 
-  if (prop.default) trait.default = prop.default;
+const statusBarAlert = {
+  id: 'bolt-status-dialogue-bar--alert',
+  title: 'Dialogue Bar: alert',
+  data: {
+    type: 'bolt-status-dialogue-bar',
+    attributes: {
+      'dialogue-arrow-direction': 'none',
+      'is-alert-message': true,
+      'icon-name': 'exclamation', // @todo change to exclamation mark after icon is added
+    },
+    content: `<p slot="text"> Uh oh! </p>`,
+  },
+};
 
-  switch (prop.type) {
-    case 'string':
-      if (prop.enum) {
-        trait.type = 'select';
-        trait.options = prop.enum;
-      } else {
-        trait.type = 'text';
-      }
-      break;
-    case 'boolean':
-      trait.type = 'checkbox';
-      break;
-    case 'number':
-      trait.type = 'number';
-      break;
-    default:
-      console.error({ prop, name });
-      throw new SchemaPropToTraitError(
-        `Cannot convert schema prop "${trait.label}" of type "${prop.type}" to trait`,
-      );
-  }
-  return trait;
-}
+const icon = {
+  id: 'bolt-icon',
+  title: 'Icon',
+  data: {
+    type: 'bolt-icon',
+    attributes: {
+      size: 'xlarge',
+      name: 'customer-onboarding',
+      background: 'circle',
+      color: 'blue',
+    },
+  },
+};
 
-/**
- * Is this a child of that parent element?
- * @param {HTMLElement} el
- * @param {string} tagName
- * @returns {boolean}
- */
-function isChildOfEl(el, tagName) {
-  return el.parentElement && el.parentElement.tagName === tagName.toUpperCase();
-}
+const basicSlottableComponents = [
+  statusBar,
+  statusBarAlert,
+  icon,
+  smallButton,
+  basicText,
+];
 
 /**
  * @param {grapesjs.Editor} editor
@@ -110,7 +118,7 @@ export function setupBolt(editor) {
   /**
    * @param {Object} opt
    * @param {string} opt.name i.e. `bolt-button`
-   * @param {JsonSchema} [opt.schema]
+   * @param {import('./utils').JsonSchema} [opt.schema]
    * @param {string} [opt.initialContent] HTML for when block is added
    * @param {string} [opt.extend] name of GrapesJS Component to extend
    * @param {string} [opt.category='Bolt Components']
@@ -122,9 +130,10 @@ export function setupBolt(editor) {
    * @param {boolean} [opt.selectable=true] Allow component to be selected when clicked. Default: `true`
    * @param {boolean} [opt.registerBlock=true] Register as a GrapesJS Block in addition to Component? If so, allows the user to add it from menu.
    * @param {string[]} [opt.propsToTraits=[]] Json Schema properties keys to auto-add to traits via `convertSchemaPropToTrait`
-   * @param {GrapeTrait[]} [opt.extraTraits=[]] Full Trait objects that need more custom attention than `propsToTraits`
+   * @param {grapesjs.GrapeTrait[]} [opt.extraTraits=[]] Full Trait objects that need more custom attention than `propsToTraits`
    * @param {(el: HTMLElement) => boolean} [opt.isComponent] - function to determine if an HTMLElement is this component. Defaults to seeing if tag name is component name
    * @param {Object.<string, boolean|string>} [opt.slots={ default: true }] - Which slots are available and what can go in them. For example `{ default: true, top: 'bolt-text, bolt-button' }` would let any element be placed as a direct child (the `default` slot) and the `top` slot would only accept `<bolt-text>` or `<bolt-button>`. Those values are passed right to Grape JS's `droppable`.
+   * @param {grapesjs.SlotControl[]} [opt.slotControls]
    * @returns {{ component: Object, block: Object }} instances from registering @todo fill out types
    * @see {convertSchemaPropToTrait}
    */
@@ -145,6 +154,7 @@ export function setupBolt(editor) {
     extraTraits = [],
     isComponent,
     slots = { default: false },
+    slotControls,
   }) {
     const { title, description, properties } = schema;
 
@@ -223,6 +233,9 @@ export function setupBolt(editor) {
           selectable,
           layerable,
           traits: [...traitsFromProps, ...extraTraits],
+        },
+        getSlotControls() {
+          return slotControls;
         },
       },
     });
@@ -351,8 +364,9 @@ export function setupBolt(editor) {
     editable: false,
     highlightable: false,
     registerBlock: false,
+    extraTraits: ['tab-title'],
     slots: {
-      title: true,
+      // title: true,
       top: true,
       bottom: true,
     },
@@ -362,7 +376,7 @@ export function setupBolt(editor) {
     name: 'bolt-interactive-pathways',
     draggable: false,
     editable: false,
-    highlightable: false,
+    highlightable: true,
     registerBlock: false,
     slots: {
       default: true,
@@ -397,20 +411,24 @@ export function setupBolt(editor) {
     name: 'bolt-connection',
     draggable: false,
     editable: false,
-    highlightable: false,
+    highlightable: true,
     registerBlock: false,
     slots: {
       top: true,
       bottom: true,
     },
+    slotControls: ['top', 'bottom'].map(slotName => ({
+      slotName,
+      components: basicSlottableComponents,
+    })),
   });
 
   registerBoltComponent({
     name: 'bolt-character',
     schema: characterSchema,
     draggable: false,
-    editable: false,
-    highlightable: false,
+    editable: true,
+    highlightable: true,
     registerBlock: false,
     propsToTraits: ['size', 'characterUrl', 'useIcon'],
     slots: {
@@ -420,6 +438,10 @@ export function setupBolt(editor) {
       right: true,
       bottom: true,
     },
+    slotControls: ['top', 'right', 'bottom', 'left'].map(slotName => ({
+      slotName,
+      components: basicSlottableComponents,
+    })),
   });
 
   registerBoltComponent({
@@ -427,8 +449,8 @@ export function setupBolt(editor) {
     schema: statusDialogueBarSchema,
     initialContent: `<bolt-text size="xsmall" slot="text">Insert Text Here</bolt-text>`,
     draggable: true,
-    editable: false,
-    highlightable: false,
+    editable: true,
+    highlightable: true,
     propsToTraits: ['iconName', 'isAlertMessage', 'dialogueArrowDirection'],
     slots: {
       default: false,

@@ -11,19 +11,59 @@
 //@import "@bolt/animations/tools/tools-animations";
 //
 //@import "@bolt/animations/utilities/utilities-animation";
-
+$bolt-interactive-step--dot-size: 1.2rem;
 .c-bolt-interactive-pathway {
   display: none;
   position: relative;
 
   &--active {
-    display: block;
+    display: flex;
   }
 
   &__nav {
-    position: relative;
-    padding-left: 0;
-    list-style: none;
+    display: none;
+  }
+  @include bolt-mq(medium) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    &__nav {
+      display: block;
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: 300px;
+      padding-left: 20px;
+    }
+    &__nav-item {
+      position: relative;
+      cursor: pointer;
+
+      &:before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 4px;
+        z-index: 10;
+        margin-bottom: 1.65rem;
+        color: #AAB2F2;
+        font-size: $bolt-interactive-step--dot-size;
+        transition: color 0.5s ease, transform 0.5s ease;
+      }
+      &--active {
+        transform: scale(1.1) translateX(4px);
+        color: orange;
+        cursor: default;
+        &:before {
+          transform: scale(1.5);
+          color: orange;
+        }
+      }
+    }
+    &__items {
+      flex-grow: 0;
+      flex-shrink: 0;
+      width: calc(100% - 301px);
+    }
   }
 }
 
