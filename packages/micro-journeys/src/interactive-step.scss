@@ -1,91 +1,50 @@
 @import '@bolt/core';
 @import '@bolt/animations';
-
-// Local interactive-step Variables
-
-// Register Custom Block Element
-@include bolt-custom-element('bolt-interactive-step', block, medium);
-
-$bolt-tooltip-bubble-triangle-width: 8px;
-$bolt-tooltip-bubble-border-color: bolt-color(gray, light);
-$bolt-tooltip-transition: $bolt-transition;
-$bolt-interactive-step-left-padding: 42px;
-$bolt-interactive-step-line-left-pos: 4.5px;
-$bolt-interactive-step--dot-size: 1.2rem;
-$bolt-interactive-step-bottom-padding: 5rem;
-
+@import './nav-shared';
 
 bolt-interactive-step {
   // Override generic styles from _generic-shared.scss
-  &:not(:last-child) {
-    margin-bottom: 0;
-  }
+  margin-bottom: 0 !important;
 }
 
+
 .c-bolt-interactive-step {
+  $nav-circle-size: 12px;
+  $nav-circle-size--active: 14px;
+
   position: relative;
-  overflow: hidden;
-  //Styles go here. /* [1] */
   text-align: left;
 
-  //transition: font-size 0.5s ease;
+  &__title {
 
-  @include bolt-mq(medium) {
-    &__title {
+    @include bolt-micro-journeys-nav-title;
+    @include bolt-mq(medium) {
       display: none;
     }
-  }
 
-  &__nav-item-wrapper {
-    display: flex;
-    align-items: center;
-    padding-bottom: $bolt-interactive-step-bottom-padding;
-
-    @include bolt-mq(medium) {
-      position: relative;
-      top: 0;
-    }
-  }
-
-  &__line {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: $bolt-interactive-step-line-left-pos;
-    z-index: 5;
-    height: 100%;
-    margin-left: 5px;
-    border-left: 1px solid #AAB2F2;
-
-    .c-bolt-interactive-step--first & {
-      top: 1em;
-      height: calc(100% - 1em);
+    .c-bolt-interactive-step--active & {
+      @include bolt-micro-journeys-nav-title($active: true);
     }
 
-    .c-bolt-interactive-step--last & {
-      height: calc(#{$bolt-interactive-step--dot-size});
+    // The nav dot on mobile
+    &:before {
+      @include bolt-micro-journeys-nav-dot;
+
+      .c-bolt-interactive-step--active & {
+        @include bolt-micro-journeys-nav-dot($active: true);
+      }
     }
-  }
 
-  &__dot {
-    position: absolute;
-    top: 0;
-    left: 4px;
-    z-index: 10;
-    margin-bottom: 1.65rem;
-    color: #AAB2F2;
-    cursor: pointer;
-    font-size: $bolt-interactive-step--dot-size;
-    transition: color 0.5s ease, transform 0.5s ease;
-  }
+    //c-bolt-interactive-pathway__nav-item c-bolt-interactive-pathway__nav-item--active
 
-  &__title {
-    display: inline-block;
-    margin-bottom: 1.65rem;
-    padding-top: .2em;
-    padding-left: $bolt-interactive-step-left-padding;
-    cursor: pointer;
-    transition: color 0.5s ease, transform 0.5s ease;
+    // The nav line on mobile
+    &:after {
+      @include bolt-micro-journeys-nav-line;
+
+      .c-bolt-interactive-step--last & {
+        display: none;
+      }
+    }
   }
 
   &__body {
@@ -94,19 +53,17 @@ bolt-interactive-step {
     align-items: center;
     position: absolute;
     left: -9999px;
+    padding-bottom: bolt-spacing(medium);
+    padding-left: bolt-spacing(medium);
 
     .c-bolt-interactive-step--active & {
       position: static;
-
-
-      //@include bolt-mq(medium) {
-      //  margin-left: 0;
-      //  padding-bottom: 0;
-      //}
     }
 
     .c-bolt-interactive-step--last & {
-      padding-left: .75rem; // This puts it aligned with the line, relative to dot width.
+      width: calc(100% + #{$nav-circle-size / 2});
+      margin-left: -$nav-circle-size / 2;
+      padding-left: 0;
     }
   }
 
@@ -116,23 +73,13 @@ bolt-interactive-step {
     justify-content: center;
     align-items: center;
     max-width: 100%;
+    overflow: hidden;
+
     @include bolt-mq(medium) {
       max-width: 700px;
     }
   }
-
-  // Generates the active state styling for the nav list
-  &--active {
-    font-weight: bolder;
-    .c-bolt-interactive-step__dot {
-      left: 4.5px;
-      transform: scale(1.5);
-      color: orange;
-    }
-
-    .c-bolt-interactive-step__title {
-      transform: scale(1.1) translateX(4px);
-      color: orange;
-    }
-  }
 }
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-interactive-step', block, medium);
