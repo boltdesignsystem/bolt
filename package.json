@@ -22,15 +22,9 @@
   "author": "Salem Ghoweri",
   "workspaces": {
     "packages": [
-      "docs-site",
-      "docs-site/src/components/banner",
-      "docs-site/src/components/docs-search",
-      "docs-site/src/components/radio-switch",
       "packages/*",
       "packages/*/*",
-      "packages/build-tools/__tests__/*",
-      "packages/build-tools/plugins/*",
-      "scripts"
+      "packages/build-tools/plugins/*"
     ],
     "nohoist": [
       "lazysizes",
@@ -40,105 +34,74 @@
     ]
   },
   "scripts": {
-    "build": "cd docs-site && yarn run build:prod",
-    "cc": "yarn create:component",
-    "clean": "npx npm-run-all --parallel clean:*",
-    "clean:cache": "find . -name 'cache' -type d -exec rm -rf {} +",
-    "clean:composer": "find . -name 'vendor' -type d -exec rm -rf {} +",
-    "clean:empty": "find . -empty -type d -delete",
-    "clean:npm": "find . -name 'node_modules' -type d -exec rm -rf {} +",
-    "clean:www": "find . -name 'www' -type d -exec rm -rf {} +",
-    "create:component": "yo ./packages/generator-bolt/generators/component/index.js",
-    "cz": "git-cz",
-    "deploy": "./scripts/deploy.js",
-    "lint": "npm-run-all --parallel lint:*",
-    "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
-    "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
-    "release": "./scripts/release/release.sh",
-    "release:beta": "./scripts/release/release-beta.sh",
-    "release:rc": "./scripts/release/release-rc.sh",
-    "serve": "node packages/servers/default-server",
-    "setup": "yarn && yarn run setup:php",
-    "setup:full": "yarn --force && yarn run setup:php",
-    "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist --quiet",
-    "setup:quick": "yarn && yarn run setup:php",
-    "start": "cd docs-site && yarn run start",
-    "test": "npm-run-all --parallel --aggregate-output test:js test:php test:monorepo test:build-tools",
-    "test:e2e:full": "./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
-    "test:e2e:full-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
-    "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,safari",
-    "test:e2e:full-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
-    "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
-    "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
-    "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
-    "pretest:js": "npm run setup:php",
-    "jest": "jest --maxWorkers=3 --all --colors",
-    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
-    "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
-    "test:js:update": "yarn run test:js -u",
-    "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
-    "test:build-tools": "cd packages/build-tools && yarn run test",
-    "test:php": "cd packages/core-php -- composer run test",
-    "test:pkgs": "lerna run test",
-    "test:types": "tsc",
-    "postinstall": "patch-package && npx lerna run postbootstrap"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn run lint && npm run test:monorepo",
-      "commitmsg": "commitlint -E $GIT_PARAMS"
-    }
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "config": {
-    "puppeteer_skip_chromium_download": true,
-    "commitizen": {
-      "path": "./node_modules/@instructure/cz-lerna-changelog"
-    }
+    "setup": "yarn",
+
+    "start": "bolt start",
+    "start:sass-import-test": "bolt start --config-file .boltrc--sass-import-test.js",
+    
+    "build": "bolt build --prod --no-ssr",
+    "build:sass-import-test": "bolt build --prod --no-ssr"
   },
   "browserslist": [
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
-    "conf": "^5.0.0",
-    "get-port": "^5.0.0",
-    "patch-package": "^6.1.2",
-    "postinstall-postinstall": "^2.0.0",
-    "@commitlint/cli": "^8.0.0",
-    "@commitlint/config-conventional": "^8.0.0",
-    "@instructure/cz-lerna-changelog": "^6.6.0",
-    "@open-wc/testing-helpers": "^1.0.10",
-    "ci-utils": "^0.6.0",
-    "commitizen": "^3.1.1",
-    "conventional-changelog-cli": "^2.0.21",
-    "cz-conventional-changelog": "^2.1.0",
-    "eslint": "^6.0.1",
-    "eslint-plugin-react": "^7.14.2",
-    "eslint-plugin-prettier": "^3.1.0",
-    "globby": "^10.0.1",
-    "@bolt/testing-utils": "^2.6.0-beta.1",
-    "find-pkg": "^2.0.0",
-    "haunted": "^4.4.0",
-    "husky": "^3.0.0",
-    "jest": "^24.8.0",
-    "jsonwebtoken": "^8.5.1",
-    "lerna": "^3.15.0",
-    "lit-element": "^2.2.0",
-    "lit-html": "^1.1.1",
-    "npm-run-all": "^4.1.5",
-    "proxy-polyfill": "^0.3.0",
-    "release-it": "^12.3.2",
-    "semantic-release": "^15.13.18",
-    "typescript": "^3.5.3"
+    "@bolt/analytics-autolink": "^2.6.0-beta.2",
+    "@bolt/analytics-autotrack": "^2.6.0-beta.2",
+    "@bolt/build-tools": "^2.6.0-beta.2",
+    "@bolt/components-accordion": "^2.6.0-beta.2",
+    "@bolt/components-action-blocks": "^2.6.0-beta.2",
+    "@bolt/components-background": "^2.6.0-beta.2",
+    "@bolt/components-background-shapes": "^2.6.0-beta.2",
+    "@bolt/components-band": "^2.6.0-beta.2",
+    "@bolt/components-block-list": "^2.6.0-beta.2",
+    "@bolt/components-blockquote": "^2.6.0-beta.2",
+    "@bolt/components-breadcrumb": "^2.6.0-beta.2",
+    "@bolt/components-button": "^2.6.0-beta.2",
+    "@bolt/components-button-group": "^2.6.0-beta.2",
+    "@bolt/components-card": "^2.6.0-beta.2",
+    "@bolt/components-chip": "^2.6.0-beta.2",
+    "@bolt/components-chip-list": "^2.6.0-beta.2",
+    "@bolt/components-copy-to-clipboard": "^2.6.0-beta.2",
+    "@bolt/components-critical-css-vars": "^2.6.0-beta.2",
+    "@bolt/components-critical-fonts": "^2.6.0-beta.2",
+    "@bolt/components-device-viewer": "^2.6.0-beta.2",
+    "@bolt/components-figure": "^2.6.0-beta.2",
+    "@bolt/components-form": "^2.6.0-beta.2",
+    "@bolt/components-grid": "^2.6.0-beta.2",
+    "@bolt/components-headline": "^2.6.0-beta.2",
+    "@bolt/components-icon": "^2.6.0-beta.2",
+    "@bolt/components-image": "^2.6.0-beta.2",
+    "@bolt/components-link": "^2.6.0-beta.2",
+    "@bolt/components-list": "^2.6.0-beta.2",
+    "@bolt/components-logo": "^2.6.0-beta.2",
+    "@bolt/components-modal": "^2.6.0-beta.2",
+    "@bolt/components-nav-indicator": "^2.6.0-beta.2",
+    "@bolt/components-nav-priority": "^2.6.0-beta.2",
+    "@bolt/components-navbar": "^2.6.0-beta.2",
+    "@bolt/components-navlink": "^2.6.0-beta.2",
+    "@bolt/components-ol": "^2.6.0-beta.2",
+    "@bolt/components-page-header": "^2.6.0-beta.2",
+    "@bolt/components-pagination": "^2.6.0-beta.2",
+    "@bolt/components-placeholder": "^2.6.0-beta.2",
+    "@bolt/components-search-filter": "^2.6.0-beta.2",
+    "@bolt/components-share": "^2.6.0-beta.2",
+    "@bolt/components-site": "^2.6.0-beta.2",
+    "@bolt/components-smooth-scroll": "^2.6.0-beta.2",
+    "@bolt/components-stack": "^2.6.0-beta.2",
+    "@bolt/components-sticky": "^2.6.0-beta.2",
+    "@bolt/components-teaser": "^2.6.0-beta.2",
+    "@bolt/components-text": "^2.6.0-beta.2",
+    "@bolt/components-tooltip": "^2.6.0-beta.2",
+    "@bolt/components-ul": "^2.6.0-beta.2",
+    "@bolt/components-video": "^2.6.0-beta.2",
+    "@bolt/core": "^2.6.0-beta.2",
+    "@bolt/critical-path-polyfills": "^2.6.0-beta.2",
+    "@bolt/global": "^2.6.0-beta.2",
+    "@bolt/twig-renderer": "^2.6.0-beta.2",
+    "choices.js": "^7.0.0"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "@types/jest": "^24.0.15"
   }
 }

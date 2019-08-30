@@ -5,20 +5,34 @@
 
 **Check out our new [Bolt Docs site!](https://boltdesignsystem.com)**
 
-## ~60 Second Quick Start Guide
+## Quick Start Guide~60 Second Quick Start Guide
 
 ```bash
 git clone https://github.com/bolt-design-system/bolt.git ~/sites/bolt
 cd ~/sites/bolt
-npm run setup
-npm start
+yarn
 ```
 
-> *Don't already have Homebrew, Yarn, Composer and NPM setup on your local machine? Need a little help getting started? Check out our [in-depth getting started guide](https://boltdesignsystem.com/docs/development/local-dev-environment-setup.html) to help get you up and running in no time!*
+> Make sure you have Node.js and Yarn installed!
+> 
+
+## Sass Compiling w/ An Array of Files Passed to Webpack (Slow)
+```
+# Run Webpack Dev Server (~25.806s for first compile)
+yarn run start
 
 
-### Huge Thanks!
+# Production Build
+yarn run build
+```
 
-Cross-browser Testing Platform and Open Source ❤️ Provided by [Sauce Labs][homepage]
 
-[homepage]: https://saucelabs.com
+## Sass Compiling via 1 Sass File w/ Imports Passed to Webpack (Very Slow)
+```
+# Run Webpack Dev Server
+yarn run start:sass-import-test
+
+
+# Production Build
+yarn run build:sass-import-test
+```

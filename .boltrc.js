@@ -1,92 +1,267 @@
-/**
- * Demo for testing out Bolt config updates that fall back to
- * using https://github.com/davidtheclark/cosmiconfig if a .boltrc
- * config file isn't already specified or initialized.
- *
- * This means that a .boltrc config in a parent folder would
- * automatically get used if a more local one can't be found --
- *
- * For example, we can now use Webpack's vanilla CLI as-is!
- *
- * ```bash
- *   cd packages/build-tools
- *   npx webpack-cli --config="create-webpack-config.js" --progress
- * ```
- */
 const path = require('path');
-const globby = require('globby');
-const baseBoltDir = path.join(__dirname, './docs-site');
-const siteConfig = require(path.join(baseBoltDir, '.boltrc'));
-const resolve = require('resolve');
 
-// Paths that are relative to `baseBoltDir` must now be relative to this directory (i.e. `__dirname`)
-const adjustRelativePath = thePath =>
-  path.relative(__dirname, path.resolve(baseBoltDir, thePath));
+const config = {
+  openServerAtStart: true,
+  env: 'drupal',
+  buildDir: './www/build',
+  dataDir: './www/build/data',
+  wwwDir: './www',
+  startPath: '/',
+  verbosity: 2,
+  webpackDevServer: {
+    enabled: true,
+  },
+  sourceMaps: false,
+  enableCache: false,
+  components: {
+    global: [
+      {
+        name: 'global',
+        scss: require.resolve('@bolt/global/styles/index.scss'),
+      },
+      {
+        name: 'core',
+        scss: require.resolve('@bolt/core/styles/index.scss'),
+      },
+      {
+        name: 'icon',
+        scss: require.resolve('@bolt/components-icon/src/icon.scss'),
+      },
+      {
+        name: 'text',
+        scss: require.resolve('@bolt/components-text/index.scss'),
+      },
+      {
+        name: 'dropdown',
+        scss: require.resolve('@bolt/components-dropdown/dropdown.scss'),
+      },
+      {
+        name: 'page',
+        scss: require.resolve('@bolt/components-page-footer/page-footer.scss'),
+      },
+      {
+        name: 'image',
+        scss: require.resolve('@bolt/components-image/index.scss'),
+      },
+      {
+        name: 'trigger',
+        scss: require.resolve('@bolt/components-trigger/index.scss'),
+      },
+      {
+        name: 'grid',
+        scss: require.resolve('@bolt/components-grid/index.scss'),
+      },
+      {
+        name: 'tooltip',
+        scss: require.resolve('@bolt/components-tooltip/index.scss'),
+      },
+      {
+        name: 'figure',
+        scss: require.resolve('@bolt/components-figure/index.scss'),
+      },
+      {
+        name: 'logo',
+        scss: require.resolve('@bolt/components-logo/src/logo.scss'),
+      },
+      { name: 'ol', scss: require.resolve('@bolt/components-ol/index.scss') },
+      {
+        name: 'link',
+        scss: require.resolve('@bolt/components-link/index.scss'),
+      },
+      {
+        name: 'sticky',
+        scss: require.resolve('@bolt/components-sticky/src/sticky.scss'),
+      },
+      {
+        name: 'carousel',
+        scss: require.resolve('@bolt/components-carousel/index.scss'),
+      },
+      {
+        name: 'pagination',
+        scss: require.resolve('@bolt/components-pagination/index.scss'),
+      },
+      {
+        name: 'site',
+        scss: require.resolve('@bolt/components-site/site.scss'),
+      },
+      {
+        name: 'navbar',
+        scss: require.resolve('@bolt/components-navbar/src/navbar.scss'),
+      },
+      {
+        name: 'video',
+        scss: require.resolve('@bolt/components-video/index.scss'),
+      },
+      {
+        name: 'background',
+        scss: require.resolve(
+          '@bolt/components-background/src/background.scss',
+        ),
+      },
+      {
+        name: 'list',
+        scss: require.resolve('@bolt/components-list/index.scss'),
+      },
+      {
+        name: 'headline',
+        scss: require.resolve('@bolt/components-headline/src/headline.scss'),
+      },
+      {
+        name: 'band',
+        scss: require.resolve('@bolt/components-band/index.scss'),
+      },
+      {
+        name: 'accordion',
+        scss: require.resolve('@bolt/components-accordion/index.scss'),
+      },
+      {
+        name: 'chip',
+        scss: require.resolve('@bolt/components-chip/index.scss'),
+      },
+      { name: 'ul', scss: require.resolve('@bolt/components-ul/index.scss') },
+      {
+        name: 'share',
+        scss: require.resolve('@bolt/components-share/index.scss'),
+      },
+      {
+        name: 'breadcrumb',
+        scss: require.resolve(
+          '@bolt/components-breadcrumb/src/breadcrumb.scss',
+        ),
+      },
+      {
+        name: 'stack',
+        scss: require.resolve('@bolt/components-stack/index.scss'),
+      },
+      {
+        name: 'modal',
+        scss: require.resolve('@bolt/components-modal/index.scss'),
+      },
+      {
+        name: 'teaser',
+        scss: require.resolve('@bolt/components-teaser/src/teaser.scss'),
+      },
+      {
+        name: 'form',
+        scss: require.resolve('@bolt/components-form/src/form.scss'),
+      },
+      { name: 'li', scss: require.resolve('@bolt/components-li/index.scss') },
+      {
+        name: 'blockquote',
+        scss: require.resolve('@bolt/components-blockquote/index.scss'),
+      },
+      {
+        name: 'navlink',
+        scss: require.resolve('@bolt/components-navlink/navlink.scss'),
+      },
+      {
+        name: 'placeholder',
+        scss: require.resolve('@bolt/components-placeholder/placeholder.scss'),
+      },
+      {
+        name: 'button',
+        scss: require.resolve('@bolt/components-button/index.scss'),
+      },
+      {
+        name: 'card',
+        scss: require.resolve('@bolt/components-card/src/card.scss'),
+      },
+      {
+        name: 'table',
+        scss: require.resolve('@bolt/components-table/index.scss'),
+      },
+      {
+        name: 'ratio',
+        scss: require.resolve('@bolt/components-ratio/index.scss'),
+      },
+      {
+        name: 'search-filter',
+        scss: require.resolve(
+          '@bolt/components-search-filter/search-filter.scss',
+        ),
+      },
+      {
+        name: 'device-viewer',
+        scss: require.resolve(
+          '@bolt/components-device-viewer/src/device-viewer.scss',
+        ),
+      },
+      {
+        name: 'button-group',
+        scss: require.resolve(
+          '@bolt/components-button-group/src/button-group.scss',
+        ),
+      },
+      {
+        name: 'nav-priority',
+        scss: require.resolve(
+          '@bolt/components-nav-priority/nav-priority.scss',
+        ),
+      },
+      {
+        name: 'block-list',
+        scss: require.resolve(
+          '@bolt/components-block-list/src/block-list.scss',
+        ),
+      },
+      {
+        name: 'code-snippet',
+        scss: require.resolve(
+          '@bolt/components-code-snippet/src/code-snippet.scss',
+        ),
+      },
+      {
+        name: 'copy-to',
+        scss: require.resolve(
+          '@bolt/components-copy-to-clipboard/src/copy-to-clipboard.scss',
+        ),
+      },
+      {
+        name: 'nav-indicator',
+        scss: require.resolve(
+          '@bolt/components-nav-indicator/nav-indicator.scss',
+        ),
+      },
+      {
+        name: 'background-shapes',
+        scss: require.resolve(
+          '@bolt/components-background-shapes/src/background-shapes.scss',
+        ),
+      },
+      {
+        name: 'critical-fonts',
+        scss: require.resolve(
+          '@bolt/components-critical-fonts/src/critical-fonts.scss',
+        ),
+      },
+      {
+        name: 'page-header',
+        scss: require.resolve(
+          '@bolt/components-page-header/src/page-header.scss',
+        ),
+      },
+      {
+        name: 'action-blocks',
+        scss: require.resolve('@bolt/components-action-blocks/index.scss'),
+      },
+      {
+        name: 'docs-site',
+        scss: require.resolve('./docs-site/src/index.scss'),
+      }
+    ],
+    individual: [],
+  }
+};
 
-// Gather directories for any/all image fixtures and consolidate for the image resizing task
-const imageFixtureDirs = globby
-  .sync(
-    path.join(
-      __dirname,
-      './packages/components/**/fixtures/**/*.{jpg,jpeg,png,svg}',
-    ),
-  )
-  .map(file => path.dirname(file));
-const imageSets = [];
-
-imageFixtureDirs.forEach(fixturePath => {
-  imageSets.push({
-    base: fixturePath,
-    glob: '*.{jpg,jpeg,png,svg}',
-    dist: path.join(adjustRelativePath(siteConfig.wwwDir), 'fixtures'),
-  });
-});
-
-const nonImageFixtures = globby.sync([
-  './packages/components/**/fixtures/**/*',
-  '!./packages/components/**/fixtures/**/*.{jpg,jpeg,png}',
-  './packages/components/**/fixtures/videos/**/*',
-]);
-const itemsToCopy = [];
-
-const allComponentPackages = globby
-  .sync(path.join(__dirname, './packages/components/*/package.json'))
-  .map(pkgPath => require(pkgPath))
-  .map(pkg => pkg.name);
-
-nonImageFixtures.forEach(fixturePath => {
-  itemsToCopy.push({
-    from: path.join(__dirname, fixturePath),
+config.copy = [
+  {
+    from: path.join(__dirname, 'public/index.html'),
     to: path.join(
       __dirname,
-      adjustRelativePath(siteConfig.wwwDir),
-      'fixtures/videos',
+      config.wwwDir,
     ),
     flatten: true,
-  });
-});
+  }
+];
 
-
-module.exports = {
-  wwwDir: adjustRelativePath(siteConfig.wwwDir),
-  buildDir: adjustRelativePath(siteConfig.buildDir),
-  iconDir: [],
-  components: {
-    global: [...allComponentPackages, '@bolt/analytics-autolink'],
-  },
-  images: {
-    sets: imageSets,
-  },
-  prod: true,
-  enableCache: true,
-  verbosity: 1,
-  copy: [...itemsToCopy],
-  alterTwigEnv: [
-    {
-      file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json'),
-      )}/SetupTwigRenderer.php`,
-      functions: ['addBoltCoreExtensions'],
-    },
-  ],
-};
+module.exports = config;

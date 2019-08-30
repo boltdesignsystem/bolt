@@ -3,14 +3,14 @@ const log = require('@bolt/build-utils/log');
 const manifest = require('@bolt/build-utils/manifest');
 const timer = require('@bolt/build-utils/timer');
 const { getConfig } = require('@bolt/build-utils/config-store');
-const events = require('@bolt/build-utils/events');
 const webpackTasks = require('./webpack-tasks');
-// const criticalcssTasks = require('./criticalcss-tasks');
 const internalTasks = require('./internal-tasks');
-const imageTasks = require('./image-tasks');
-const iconTasks = require('./icon-tasks');
+// const events = require('@bolt/build-utils/events');
+// const criticalcssTasks = require('./criticalcss-tasks');
+// const imageTasks = require('./image-tasks');
+// const iconTasks = require('./icon-tasks');
 
-const { writeBoltVersions } = require('./api-tasks/bolt-versions');
+// const { writeBoltVersions } = require('./api-tasks/bolt-versions');
 const extraTasks = [];
 let config;
 
@@ -18,20 +18,20 @@ let config;
 async function getExtraTasks() {
   config = config || (await getConfig());
 
-  switch (config.env) {
-    case 'pl':
-      extraTasks.patternLab = require('./pattern-lab-tasks');
-      break;
-    case 'static':
-      extraTasks.static = require('./static-tasks');
-      break;
-    case 'pwa':
-      delete require.cache[require.resolve('./api-tasks')];
-      extraTasks.api = require('./api-tasks');
-      extraTasks.patternLab = require('./pattern-lab-tasks');
-      extraTasks.static = require('./static-tasks');
-      break;
-  }
+  // switch (config.env) {
+  //   case 'pl':
+  //     extraTasks.patternLab = require('./pattern-lab-tasks');
+  //     break;
+  //   case 'static':
+  //     extraTasks.static = require('./static-tasks');
+  //     break;
+  //   case 'pwa':
+  //     delete require.cache[require.resolve('./api-tasks')];
+  //     extraTasks.api = require('./api-tasks');
+  //     extraTasks.patternLab = require('./pattern-lab-tasks');
+  //     extraTasks.static = require('./static-tasks');
+  //     break;
+  // }
 
   if (config.wwwDir) {
     extraTasks.server = require('./server-tasks');
@@ -40,40 +40,40 @@ async function getExtraTasks() {
   return extraTasks;
 }
 
-async function compileBasedOnEnvironment() {
-  await getExtraTasks();
+// async function compileBasedOnEnvironment() {
+//   await getExtraTasks();
 
-  const promiseTasks = [];
+//   const promiseTasks = [];
 
-  switch (config.env) {
-    case 'pl':
-      promiseTasks.push(await extraTasks.patternLab.precompile());
-      break;
-    case 'static':
-      promiseTasks.push(await extraTasks.static.compile());
-      break;
-    case 'pwa':
-      promiseTasks.push(
-        new Promise(async (resolve, reject) => {
-          await extraTasks.static.compile();
-          resolve();
-        }),
-      );
+//   switch (config.env) {
+//     case 'pl':
+//       promiseTasks.push(await extraTasks.patternLab.precompile());
+//       break;
+//     case 'static':
+//       promiseTasks.push(await extraTasks.static.compile());
+//       break;
+//     case 'pwa':
+//       promiseTasks.push(
+//         new Promise(async (resolve, reject) => {
+//           await extraTasks.static.compile();
+//           resolve();
+//         }),
+//       );
 
-      promiseTasks.push(
-        new Promise(async (resolve, reject) => {
-          await extraTasks.patternLab.compile(true, true).then(async () => {
-            await extraTasks.api.generate().then(async () => {
-              await extraTasks.patternLab.precompile();
-            });
-            resolve();
-          });
-        }),
-      );
-  }
+//       promiseTasks.push(
+//         new Promise(async (resolve, reject) => {
+//           await extraTasks.patternLab.compile(true, true).then(async () => {
+//             await extraTasks.api.generate().then(async () => {
+//               await extraTasks.patternLab.precompile();
+//             });
+//             resolve();
+//           });
+//         }),
+//       );
+//   }
 
-  return promiseTasks;
-}
+//   return promiseTasks;
+// }
 
 async function clean(cleanAll = false) {
   config = config || (await getConfig());
@@ -178,14 +178,14 @@ async function buildPrep(cleanAll = false) {
     config.prod ? await clean(cleanAll) : '';
     await internalTasks.mkDirs();
     await manifest.writeBoltManifest();
-    if (
-      config.env === 'pl' ||
-      config.env === 'static' ||
-      config.env === 'pwa'
-    ) {
-      await writeBoltVersions();
-    }
-    await manifest.writeTwigNamespaceFile();
+    // if (
+    //   config.env === 'pl' ||
+    //   config.env === 'static' ||
+    //   config.env === 'pwa'
+    // ) {
+    //   await writeBoltVersions();
+    // }
+    // await manifest.writeTwigNamespaceFile();
   } catch (error) {
     log.errorAndExit('Build failed', error);
   }
@@ -198,22 +198,22 @@ async function build(shouldReturnTime = false) {
     await buildPrep(startTime);
 
     // don't try to process / convert SVG icons if the `@bolt/components-icon` package isn't part of the build
-    if (
-      config.components.global.includes('@bolt/components-icon') ||
-      config.components.individual.includes('@bolt/components-icon')
-    ) {
-      await iconTasks.build();
-    }
+    // if (
+    //   config.components.global.includes('@bolt/components-icon') ||
+    //   config.components.individual.includes('@bolt/components-icon')
+    // ) {
+    //   await iconTasks.build();
+    // }
 
     config.prod || config.watch === false ? await webpackTasks.compile() : '';
-    await images().catch(error => {
-      console.log(error);
-      // log.errorAndExit('Image task failed', error);
-    });
+    // await images().catch(error => {
+    //   console.log(error);
+    //   // log.errorAndExit('Image task failed', error);
+    // });
 
-    config.prod || config.watch === false
-      ? await Promise.all(await compileBasedOnEnvironment())
-      : '';
+    // config.prod || config.watch === false
+    //   ? await Promise.all(await compileBasedOnEnvironment())
+    //   : '';
 
     if (shouldReturnTime) {
       return startTime;
@@ -236,27 +236,27 @@ async function watch() {
       watchTasks.push(webpackTasks.watch());
     }
 
-    switch (config.env) {
-      case 'pl':
-        watchTasks.push(extraTasks.patternLab.watch());
-        break;
-      case 'static':
-        watchTasks.push(extraTasks.static.watch());
-        break;
-      case 'pwa':
-        watchTasks.push(extraTasks.patternLab.watch());
-        watchTasks.push(extraTasks.api.watch());
-        watchTasks.push(extraTasks.static.watch());
-        break;
-    }
+    // switch (config.env) {
+    //   case 'pl':
+    //     watchTasks.push(extraTasks.patternLab.watch());
+    //     break;
+    //   case 'static':
+    //     watchTasks.push(extraTasks.static.watch());
+    //     break;
+    //   case 'pwa':
+    //     watchTasks.push(extraTasks.patternLab.watch());
+    //     watchTasks.push(extraTasks.api.watch());
+    //     watchTasks.push(extraTasks.static.watch());
+    //     break;
+    // }
 
     // don't watch for SVG icon changes if the `@bolt/components-icon` package isn't part of the build
-    if (
-      config.components.global.includes('@bolt/components-icon') ||
-      config.components.individual.includes('@bolt/components-icon')
-    ) {
-      watchTasks.push(iconTasks.watch());
-    }
+    // if (
+    //   config.components.global.includes('@bolt/components-icon') ||
+    //   config.components.individual.includes('@bolt/components-icon')
+    // ) {
+    //   watchTasks.push(iconTasks.watch());
+    // }
 
     return Promise.all(watchTasks);
   } catch (error) {
@@ -274,10 +274,10 @@ async function start() {
         shouldReturnTime: true,
       });
     }
-    await Promise.all(await compileBasedOnEnvironment()).then(async () => {
-      await watch();
-      await serve(buildTime, true);
-    });
+    // await Promise.all(await compileBasedOnEnvironment()).then(async () => {
+    await watch();
+    await serve(buildTime, true);
+    // });
   } catch (error) {
     log.errorAndExit('Start failed', error);
   }
