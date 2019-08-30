@@ -69,6 +69,21 @@ const statusBarAlert = {
   },
 };
 
+const cta = {
+  id: 'bolt-cta',
+  title: 'CTA',
+  data: {
+    type: 'bolt-cta',
+    attributes: {
+    },
+    content: `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>
+      <bolt-text font-size="xsmall" slot="link" display="inline">
+        Replace this text
+        <bolt-icon name="chevron-right"></bolt-icon>
+      </bolt-text>`,
+  },
+};
+
 const icon = {
   id: 'bolt-icon',
   title: 'Icon',
@@ -89,6 +104,7 @@ const basicSlottableComponents = [
   icon,
   smallButton,
   basicText,
+  cta,
 ];
 
 /**
@@ -445,6 +461,20 @@ export function setupBolt(editor) {
       slotName,
       components: basicSlottableComponents,
     })),
+  });
+
+  registerBoltComponent({
+    name: 'bolt-cta',
+    registerBlock: true,
+    slots: {
+      default: true,
+    },
+    initialContent: `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>
+      <bolt-text font-size="xsmall" slot="link" display="inline">
+        Replace this text
+        <bolt-icon name="chevron-right"></bolt-icon>
+      </bolt-text>`,
+    extraTraits: [],
   });
 
   registerBoltComponent({
