@@ -1,16 +1,11 @@
 // @ts-nocheck
 import { define, props } from 'skatejs';
-// import { store } from '../../store.js'; // connect to redux
 import { h, withPreact } from '@bolt/core/renderers';
-import { withEvents } from '@bolt/core/renderers/with-events';
 import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
 import Mousetrap from 'mousetrap';
-import VisuallyHidden from '@reach/visually-hidden';
 import Autosuggest from 'react-autosuggest';
 import { bind } from './classnames';
-// import { TypeaheadContext } from './typeahead';
-// import { withContext } from '@bolt/core/utils';
 
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
@@ -78,9 +73,6 @@ class BoltAutosuggest extends withPreact() {
     },
   };
 
-
-
-
   connecting() {
     super.connecting && super.connecting();
     // Keep an object of listener types mapped to callback functions
@@ -100,7 +92,9 @@ class BoltAutosuggest extends withPreact() {
    * @param {Function} handler
    */
   on(type, handler) {
-    if (typeof this.closest('bolt-typeahead')._listeners[type] === 'undefined') {
+    if (
+      typeof this.closest('bolt-typeahead')._listeners[type] === 'undefined'
+    ) {
       this.closest('bolt-typeahead')._listeners[type] = [];
     }
 
@@ -116,7 +110,9 @@ class BoltAutosuggest extends withPreact() {
    * @param {Function} handler
    */
   off(type, handler) {
-    var index = this.closest('bolt-typeahead')._listeners[type].indexOf(handler);
+    var index = this.closest('bolt-typeahead')._listeners[type].indexOf(
+      handler,
+    );
 
     if (index > -1) {
       this.closest('bolt-typeahead')._listeners[type].splice(index, 1);
