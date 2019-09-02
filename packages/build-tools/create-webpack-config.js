@@ -15,7 +15,6 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
 const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
-const svgoConfig = require('./svgo-config');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
 const {
@@ -28,6 +27,7 @@ const {
   mapComponentNameToTwigNamespace,
 } = require('@bolt/build-utils/manifest');
 const log = require('@bolt/build-utils/log');
+const svgoConfig = require('./svgo-config');
 
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
@@ -288,7 +288,12 @@ async function createWebpackConfig(buildConfig) {
             {
               loader: 'file-loader',
               options: {
-                name: path.join(path.dirname(require.resolve('@bolt/components-icons/package.json')), 'dist/[name].min.[ext]',)
+                name: path.join(
+                  path.dirname(
+                    require.resolve('@bolt/components-icons/package.json'),
+                  ),
+                  'dist/[name].min.[ext]',
+                ),
               },
             },
             {

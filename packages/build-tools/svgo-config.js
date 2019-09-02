@@ -106,6 +106,6 @@ const svgoConfig = {
       removeDimensions: true,
     },
   ],
-}
+};
 
 module.exports = { svgoConfig };
