@@ -34,7 +34,6 @@
 } %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
-
 {% set fallback_form = {
   method: 'get',
   action: 'https://www.pega.com/search',
@@ -42,7 +41,8 @@
 } %}
 
 {% spaceless %}
-<bolt-typeahead {{ attributes }} placeholder="{{ text.inputPlaceholder }}">
+<bolt-typeahead no-shadow {{ attributes }} placeholder="{{ text.inputPlaceholder }}" fallback-method="{{ fallback_form.method }}" fallback-action="{{ fallback_form.action }}"
+ fallback-target="{{ fallback_form.target }}">
   <div class="{{ classNames.typeahead }}">
     <form class="{{ classNames.inputWrapper }}" method="{{ fallback_form.method }}" action="{{ fallback_form.action }}" target="{{ fallback_form.target }}">
       <label for="{{ data.uuid }}" class="{{ classNames.label }}">
@@ -59,27 +59,28 @@
         required
         name="q"
       />
-      <div class="{{ classNames.clearButton | join(' ') }}">
-        {% include "@bolt-components-button/button.twig" with {
-          text: text.clearInput,
-          iconOnly: true,
-          color: "text",
-          icon: {
-            title: text.clearInput,
-            name: "close-solid",
-            fallback: true,
-            attributes: {
-              class: [
-                classNames.icon
-              ]
-            }
-          },
+      {% include "@bolt-components-button/button.twig" with {
+        text: text.clearInput,
+        iconOnly: true,
+        color: "text",
+        icon: {
+          title: text.clearInput,
+          name: "close-solid",
+          fallback: true,
           attributes: {
-            onclick: "this.previousElementSibling.focus()",
-          },
-          type: "reset"
-        } only %}
-      </div>
+            class: [
+              classNames.icon
+            ]
+          }
+        },
+        attributes: {
+          onclick: "this.previousElementSibling.focus()",
+          class: [
+            classNames.clearButton | join(' ')
+          ],
+        },
+        type: "reset"
+      } only %}
 
       <div class="{{ classNames.submitButton | join(' ') }}">
         {% include "@bolt-components-button/button.twig" with {
