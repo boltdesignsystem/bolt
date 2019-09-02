@@ -2,16 +2,16 @@
 {% include "@bolt-components-typeahead/typeahead.twig" with {
 attributes: {
   class: [
-    "js-typeahead-hook"
+    "js-typeahead-hook-2"
   ]
 },
 initialValue: "Artificial"
 } %}
 
 <script>
-  const typeahead = document.querySelector('.js-typeahead-hook');
+  const typeahead2 = document.querySelector('.js-typeahead-hook-2');
 
-  const items = [
+  const items2 = [
   {
     label: 'AI and improving the customer experience',
     description:
@@ -28,38 +28,32 @@ initialValue: "Artificial"
   }
 ];
 
-  typeahead.addEventListener('ready', function (e) {
+  typeahead2.addEventListener('ready', function (e) {
     if (e.detail.name === 'bolt-typeahead'){
-      typeahead.items = items;
-      typeahead.on('onSelected', (element, event, suggestion) => {
-        const itemSelected = element.items.filter(item => item.label === suggestion.suggestionValue)[0];
+      typeahead2.items = items2;
 
-        if (itemSelected) {
-          if (itemSelected.label) {
-            if ( window.location !== window.parent.location ) {
-              // const win = window.open(`${itemSelected.url}`, '_blank');
-              const win = window.open(`https://www.pega.com/search?q=${itemSelected.label}`, '_blank');
-              win.focus();
-            } else {
-              window.location = `https://www.pega.com/search?q=${itemSelected.label}`;
-            }
+      typeahead2.on('onSelected', (element, event, suggestion) => {
+        const exactMatch = element.items.filter(item => item.label === suggestion.suggestionValue)[0];
+
+        function navigateTo(url){
+          if ( window.location !== window.parent.location ) {
+            const win = window.open(url, '_blank');
+            win.focus();
+          } else {
+            window.location = url;
           }
+        }
+
+        if (exactMatch && exactMatch.url) {
+          if (exactMatch.url) {
+            navigateTo(exactMatch.url);
+          } else {
+            navigateTo(`https://www.pega.com/search?q=${itemSelected.label}`);
+          }
+        } else if (suggestion.suggestionValue !== ''){
+          navigateTo(`https://www.pega.com/search?q=${suggestion.suggestionValue}`);
         }
       });
     }
   });
-
-  // function customOnChangeHandler() {
-  // }
-  // if (typeahead._wasInitiallyRendered) {
-  //   if (!typeahead._listeners['onSelected']) {
-  //     customOnChangeHandler();
-  //   }
-  // } else {
-  //   typeahead.addEventListener('ready', function (e) {
-  //     if (e.detail.name === 'bolt-typeahead'){
-  //       customOnChangeHandler();
-  //     }
-  //   });
-  // }
 </script>
