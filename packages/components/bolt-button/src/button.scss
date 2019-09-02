@@ -16,6 +16,12 @@
   // [1]
   display: inline-flex;
   outline: none; // [2]
+
+  &[type="button"],
+  &[type="reset"],
+  &[type="submit"] {
+    -webkit-appearance: none;
+  }
 }
 
 .c-bolt-button {
