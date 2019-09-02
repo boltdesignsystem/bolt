@@ -94,19 +94,24 @@ class BoltImage extends withLitHtml() {
   rendered() {
     super.rendered && super.rendered();
 
-    // @todo: update to not keep querySelecting if element already found OR lazyloading is disabled
-    const lazyImage = this.renderRoot.querySelector('.js-lazyload');
+    const { noLazy } = this.validateProps(this.props);
 
-    if (lazyImage) {
-      // check if placeholder image has loaded; lazySizes will only unveil an image that is "complete"
-      if (!this.isLoaded) {
+    // if image should lazyload
+    if (!noLazy) {
+      const lazyImage = this.renderRoot.querySelector(
+        `.${lazySizes.cfg.lazyClass}`,
+      );
+
+      // if component contains a lazy image that is rendering for the first time
+      if (lazyImage && !this.isLoaded) {
+        // set a flag so that image is not lazyloaded on subsequent re-renders
         this.isLoaded = true;
 
-        // give a hint to lazysizes about any new images injected / added
-        lazySizes.elements.push(
-          this.renderRoot.querySelector(`.${lazySizes.cfg.lazyClass}`),
-        );
-        // lazySizes.autoSizer.checkElems(); force rechecks -- probably not needed
+        // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
+        lazySizes.elements && lazySizes.elements.push(lazyImage);
+
+        // force rechecks -- probably not needed. @todo: can we remove?
+        // lazySizes.autoSizer.checkElems();
       }
     }
   }
