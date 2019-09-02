@@ -53,10 +53,20 @@ bolt-button {
   display: inline-flex;
   outline: 0;
 }
+bolt-button[type=\\"button\\"],
+bolt-button[type=\\"reset\\"],
+bolt-button[type=\\"submit\\"] {
+  -webkit-appearance: none;
+}
 :host {
   display: -webkit-inline-box;
   display: inline-flex;
   outline: 0;
+}
+:host[type=\\"button\\"],
+:host[type=\\"reset\\"],
+:host[type=\\"submit\\"] {
+  -webkit-appearance: none;
 }
 .c-bolt-button {
   padding: 0;
@@ -13788,10 +13798,20 @@ exports[`Tests to confirm that the latest upcoming release of the @bolt/build-to
   display: inline-flex;
   outline: 0;
 }
+bolt-button[type=\\"button\\"],
+bolt-button[type=\\"reset\\"],
+bolt-button[type=\\"submit\\"] {
+  -webkit-appearance: none;
+}
 :host {
   display: -webkit-inline-box;
   display: inline-flex;
   outline: 0;
+}
+:host[type=\\"button\\"],
+:host[type=\\"reset\\"],
+:host[type=\\"submit\\"] {
+  -webkit-appearance: none;
 }
 .c-bolt-button {
   padding: 0;
