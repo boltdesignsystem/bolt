@@ -13,6 +13,13 @@ import { h, withPreact } from '@bolt/core/renderers';
 import PubSub from 'pubsub-js';
 import upperCamelCase from 'uppercamelcase';
 import * as Icons from '@bolt/components-icons';
+
+// automatically pull in all icons to minify for Twig-based SSR
+const icons = require.context(
+  '@bolt/components-icons/src/svgs',
+  true,
+  /\.svg$/,
+);
 import styles from './icon.scss';
 
 const backgroundStyles = ['circle', 'square'];
