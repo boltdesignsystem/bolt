@@ -285,9 +285,9 @@ async function build() {
     const extendedIconDirs = config.iconDir ? config.iconDir : [];
 
     const dirs = [rootDir, ...extendedIconDirs];
-    const allIcons = dirs.map(dir => path.join(dir, globPattern));
-
-    const iconPaths = await globby(allIcons);
+    const iconsToProcess = dirs.map(dir => path.join(dir, globPattern));
+    const allIcons = [...iconsToProcess, '!**/*.min.svg'];
+    const iconPaths = await globby.sync(allIcons);
 
     iconSpinner = new Ora(
       chalk.blue(
@@ -315,13 +315,17 @@ async function build() {
       log.dim(`Built ${iconPaths.length} icons.`);
     }
   } catch (error) {
-    iconSpinner.fail(
-      chalk.red(
-        initialBuild
-          ? `${failedBuildingIconsMsg} : ${error}`
-          : `${failedRebuildingIconsMsg} : ${error}`,
-      ),
-    );
+    if (iconSpinner && iconSpinner.fail) {
+      iconSpinner.fail(
+        chalk.red(
+          initialBuild
+            ? `${failedBuildingIconsMsg} : ${error}`
+            : `${failedRebuildingIconsMsg} : ${error}`,
+        ),
+      );
+    } else {
+      console.log(error);
+    }
 
     process.exitCode = 1;
   }
@@ -374,7 +378,7 @@ async function watch() {
 
   // for now, only watch the main @bolt/components-icons folder for .svg file changes.
   const extendedIconDirs = config.iconDir ? config.iconDir : [];
-  const dirs = [rootDir, ...extendedIconDirs];
+  const dirs = [path.join(rootDir, 'src/icons'), ...extendedIconDirs];
 
   // Used by watches
   const debouncedCompile = debounce(build, config.debounceRate);
@@ -382,10 +386,17 @@ async function watch() {
   const watchedFiles = dirs.map(dir => path.join(dir, globPattern));
 
   // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
-  const watcher = chokidar.watch(watchedFiles, {
+  const watcher = chokidar.watch([...watchedFiles], {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignored: ['**/node_modules/**', '**/vendor/**'],
+    ignored: [
+      '**/node_modules/**',
+      '**/vendor/**',
+      path.join(
+        path.dirname(require.resolve('@bolt/components-icons/package.json')),
+        'dist/**/*',
+      ),
+    ],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events
