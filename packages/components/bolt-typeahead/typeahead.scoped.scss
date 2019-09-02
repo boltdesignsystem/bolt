@@ -19,6 +19,15 @@ bolt-typeahead {
   display: flex;
   align-self: stretch;
   text-align: start;
+  position: relative;
+}
+
+:host {
+  position: relative;
+}
+
+bolt-autosuggest {
+  width: 100%;
 }
 
 .c-bolt-typeahead {
@@ -238,7 +247,7 @@ bolt-typeahead {
   font-size: 1rem; // needed for icon SSR rendering
 }
 
-.c-bolt-typeahead__input:valid ~ .c-bolt-typeahead__button--clear,
+.c-bolt-typeahead__input[required]:valid ~ .c-bolt-typeahead__button--clear,
 .c-bolt-typeahead__button--clear.is-visible {
   visibility: visible;
   opacity: 1;
