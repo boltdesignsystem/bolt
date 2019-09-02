@@ -15,6 +15,7 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
 const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
+const svgoConfig = require('./svgo-config');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
 const crypto = require('crypto');
@@ -340,6 +341,35 @@ async function createWebpackConfig(buildConfig) {
     },
     module: {
       rules: [
+        // @todo: uncomment once future updates to handle SVG icon spritesheet in place
+        // {
+        //   test: /\.svg$/,
+        //   include: path.dirname(require.resolve('@bolt/components-icons/package.json')),
+        //   use: [
+        //     'svg-sprite-loader',
+        //     'svgo-loader'
+        //   ]
+        // },
+
+        // minify non spritesheet SVGs icons
+        {
+          test: /\.svg$/,
+          // exclude: ,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: path.join(path.dirname(require.resolve('@bolt/components-icons/package.json')), 'dist/[name].min.[ext]',)
+              },
+            },
+            {
+              loader: 'svgo-loader',
+              options: {
+                plugins: svgoConfig,
+              },
+            },
+          ],
+        },
         {
           test: /\.(ts|tsx)$/,
           loader: 'ts-loader',
@@ -409,7 +439,7 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.(cur|svg)$/,
+          test: /\.(cur)$/,
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
