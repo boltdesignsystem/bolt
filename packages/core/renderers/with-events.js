@@ -57,7 +57,7 @@ export function withEvents(Base = HTMLElement) {
 
       listeners.forEach(
         function(listener) {
-          listener(this, ...props);
+          listener(this, props);
         }.bind(this),
       );
     }
