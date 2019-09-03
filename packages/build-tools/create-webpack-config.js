@@ -283,7 +283,9 @@ async function createWebpackConfig(buildConfig) {
         // minify non spritesheet SVGs icons
         {
           test: /\.svg$/,
-          // exclude: ,
+          include: path.dirname(
+            require.resolve('@bolt/components-icons/package.json'),
+          ),
           use: [
             {
               loader: 'file-loader',
@@ -299,7 +301,27 @@ async function createWebpackConfig(buildConfig) {
             {
               loader: 'svgo-loader',
               options: {
-                plugins: svgoConfig,
+                plugins: svgoConfig.plugins,
+              },
+            },
+          ],
+        },
+        {
+          test: /\.svg$/,
+          exclude: path.dirname(
+            require.resolve('@bolt/components-icons/package.json'),
+          ),
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+              },
+            },
+            {
+              loader: 'svgo-loader',
+              options: {
+                plugins: svgoConfig.plugins,
               },
             },
           ],
