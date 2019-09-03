@@ -43,7 +43,7 @@ class BoltIconGroup extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         <bolt-stack>
           <bolt-icon
             background="circle"

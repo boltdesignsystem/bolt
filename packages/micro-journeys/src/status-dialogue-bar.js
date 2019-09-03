@@ -56,7 +56,7 @@ class BoltStatusDialogueBar extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         ${iconName
           ? html`
               <bolt-icon

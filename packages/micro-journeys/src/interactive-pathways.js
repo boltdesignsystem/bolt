@@ -81,7 +81,7 @@ class BoltInteractivePathways extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         <div class="c-bolt-interactive-pathways__header">
           <img
             src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/interactive-pathways-logo.png"
