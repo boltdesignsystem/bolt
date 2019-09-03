@@ -45,7 +45,15 @@ function handleClickTracking(e, elem) {
   } else {
     link = e.target;
   }
-  const trackers = ga.getAll();
+
+  // account for ga.getAll not existing on the page
+  let trackers;
+  try {
+    trackers = ga.getAll();
+  } catch (err) {
+    console.warn(err);
+    return;
+  }
 
   try {
     window.bolt.autolink.domains =
