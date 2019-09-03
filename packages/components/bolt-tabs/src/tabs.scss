@@ -37,6 +37,8 @@ bolt-tabs {
   }
 
   &[aria-selected='true'] {
+    color: bolt-theme(headline);
+
     .c-bolt-tabs__label-text:after {
       opacity: bolt-opacity(100);
     }
@@ -150,6 +152,8 @@ bolt-tabs:not([ready]) {
 }
 
 .c-bolt-tabs__input:checked + .c-bolt-tabs__label {
+  color: bolt-theme(headline);
+
   &:hover,
   &:focus {
     &:before {
