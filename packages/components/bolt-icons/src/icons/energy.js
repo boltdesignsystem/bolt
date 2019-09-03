@@ -1,9 +1,8 @@
 import { h } from '@bolt/core/renderers';
 
-export const Energy = ({ bgColor, fgColor, size, title, ...otherProps }) => {
+export const Energy = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg data-name="Layer 1" {...otherProps} viewBox="0 0 26.08 32.1">
-      <title>{title}</title>
       <path
         fill={bgColor}
         fill-rule="evenodd"

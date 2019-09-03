@@ -1,9 +1,8 @@
 import { h } from '@bolt/core/renderers';
 
-export const Watch = ({ bgColor, fgColor, size, title, ...otherProps }) => {
+export const Watch = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg {...otherProps} viewBox="0 0 24 24">
-      <title>{title}</title>
       <g fill="none" fill-rule="evenodd">
         <path />
         <g fill={bgColor} fill-rule="nonzero">

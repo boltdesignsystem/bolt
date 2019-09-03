@@ -1,12 +1,11 @@
 import { h } from '@bolt/core/renderers';
 
-export const AssetText = ({ bgColor, fgColor, size, title, ...otherProps }) => {
+export const AssetText = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg
       xmlns:xlink="http://www.w3.org/1999/xlink"
       {...otherProps}
       viewBox="0 0 24 24">
-      <title>{title}</title>
       <defs>
         <path id="a" d="M0 1V0h20v2H0V1z" />
       </defs>
