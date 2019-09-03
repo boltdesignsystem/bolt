@@ -290,7 +290,7 @@ class BoltTabs extends withContext(withLitHtml()) {
             aria-selected="${isSelected}"
             aria-controls="${panelId}"
             id="${labelId}"
-            tabindex="${isSelected ? -1 : 0}"
+            tabindex="${isSelected ? 0 : -1}"
             @click=${e => this.setSelectedTab(index)}
             @keydown=${e => this.handleOnKeydown(e)}
             @keyup=${e => this.handleOnKeyup(e)}
