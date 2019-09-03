@@ -22,6 +22,7 @@ bolt-tabs {
   position: relative;
   color: bolt-theme(headline-link);
   text-decoration: none;
+  cursor: pointer;
   border-color: transparent;
   transition: opacity $bolt-tabs-text-transition;
 
@@ -145,10 +146,6 @@ bolt-tabs:not([ready]) {
   .c-bolt-tabs--align-end {
     justify-content: flex-end;
   }
-}
-
-.c-bolt-tabs__input:not(:checked) + .c-bolt-tabs__label {
-  cursor: pointer;
 }
 
 .c-bolt-tabs__input:checked + .c-bolt-tabs__label {

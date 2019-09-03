@@ -44,8 +44,8 @@
 {% set panel_id = "tabs-#{uuid}-#{index}" %}
 {% set selected_tab = selected_tab ?? 1 %}
 
-<input type="radio" name="{{ panel_name }}" id="{{ panel_id }}" class="c-bolt-tabs__input" {% if index == selected_tab %}checked{% endif %} />
-<label for="{{ panel_id }}" {{ inner_attributes.addClass(label_classes) }}>
+<input type="radio" name="{{ panel_name }}" id="{{ panel_id }}" class="c-bolt-tabs__input" {% if index == selected_tab %} checked {% endif %}/>
+<label for="{{ panel_id }}" {{ label_attributes.addClass(label_classes) }}>
   <span class="c-bolt-tabs__label-inner">
     <span class="c-bolt-tabs__label-text">
       {{ label }}

@@ -285,7 +285,6 @@ class BoltTabs extends withContext(withLitHtml()) {
           <bolt-trigger
             class="${labelClasses}"
             no-outline
-            cursor="${isSelected ? 'auto' : 'pointer'}"
             role="tab"
             aria-selected="${isSelected}"
             aria-controls="${panelId}"
