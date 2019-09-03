@@ -24,6 +24,14 @@
 </bolt-interactive-pathways>
 {% endset %}
 
-{% include '@bolt-components-editor/editor-in-pl.twig' with {
-  content: content,
-} only %}
+<form>
+  <h1>Below has Shadow DOM disabled</h1>
+  <hr>
+  {{ content }}
+</form>
+<hr>
+<h1>Below has Shadow DOM enabled</h1>
+<hr>
+  {% include '@bolt-components-editor/editor-in-pl.twig' with {
+    content: content,
+  } only %}
