@@ -53,11 +53,7 @@
   </span>
 </label>
 <replace-with-children class="c-bolt-tab-panel__outer">
-  <bolt-tab-panel 
-    {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-    {{ this.props|without("label")|without("content")|without("class") }}
-    ssr-hydrate="keep"
-  >
+  <bolt-tab-panel {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %} {{ this.props|without("label")|without("content")|without("class") }} ssr-hydrate="keep">
     <div slot="label">{{ label }}</div>
     <replace-with-grandchildren {{ inner_attributes.addClass(inner_classes) }}>
       <div role="tabpanel" class="c-bolt-tab-panel__content">
