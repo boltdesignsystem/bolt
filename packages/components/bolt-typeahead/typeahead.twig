@@ -1,4 +1,18 @@
-{% set selectors = get_data("@bolt-components-typeahead/typeahead.scoped.json") %}
+{% set scopedClasses = get_data("@bolt-components-typeahead/typeahead.scoped.json") %}
+
+{% set unscopedClasses = {} %}
+{% for key, value in scopedClasses %}
+  {% set unscopedClasses = unscopedClasses|merge({(key):key}) %}
+{% endfor %}
+
+{# todo: comment out / disable next line once CSS Module-related work merged in #}
+{% set disableCssModules = true %}
+
+{% if disableCssModules %}
+  {% set selectors = unscopedClasses %}
+{% else %}
+  {% set selectors = scopedClasses %}
+{% endif %}
 
 {% set classNames = {
   icon: selectors["c-bolt-typeahead__icon"],
