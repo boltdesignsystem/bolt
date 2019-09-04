@@ -42,11 +42,10 @@ class BoltChip extends BoltAction {
     });
 
     // Decide on if the rendered tag should be a <span> or <a> tag, based on if a URL exists
-    const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
+    const hasUrl = url && url.length > 0;
 
     // Assign default target attribute value if one isn't specified
-    const anchorTarget =
-      this.props.target && hasUrl ? this.props.target : '_self';
+    const anchorTarget = target && hasUrl ? target : '_self';
 
     // The chipElement to render, based on the initial HTML passed alone.
     let renderedChip;
