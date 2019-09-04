@@ -1,0 +1,49 @@
+{% set content %}
+<bolt-interactive-pathways>
+  <p slot="interactive-pathways-lead-text">How Pega technology resolves</p>
+  <bolt-interactive-pathway>
+    <p slot="pathway-title">Simple Steps</p>
+    <bolt-interactive-step tab-title="Step 1">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 2">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-skyline.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 3">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 4">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-skyline.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 5">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 6">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-skyline.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+  </bolt-interactive-pathway>
+
+</bolt-interactive-pathways>
+{% endset %}
+
+{% include '@pl/_shadow-dom-demo.twig' with {
+  content: content,
+  enableEditor: true,
+} only %}
