@@ -1,15 +1,26 @@
+{% if addAnimateButtons %}
+  {% set content %}
+    <div class="demo-animate">
+      <button class="demo-animate__trigger">Trigger Animations In</button>
+      <div class="demo-animate__wrapper">
+        {{ content }}
+      </div>
+    </div>
+  {% endset %}
+{% endif %}
+
 {% if enableEditor %}
   {# Editors can only be used when Shadow DOM is present #}
   {% include '@bolt-components-editor/editor-in-pl.twig' with {
     content: content,
   } only %}
-  {% else %}
+{% else %}
   {{ content }}
 {% endif %}
 <hr>
 <h2>Shadow DOM – yes:☝️ no:👇</h2>
 <hr>
 {# When Bolt Web Components are wrapped in a `<form>` element all children have Shadow DOM disabled automatically #}
-<form>
-{{ content }}
+<form onsubmit="event.preventDefault()">
+  {{ content }}
 </form>
