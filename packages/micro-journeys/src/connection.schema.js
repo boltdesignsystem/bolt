@@ -3,12 +3,23 @@ module.exports = {
   title: 'Micro Journey Connection',
   type: 'object',
   properties: {
-    connectionUrl: {
+    speed: {
       type: 'string',
+      description: 'Speed of the animation, typically rotation.',
+      default: '1000',
+    },
+    animType: {
+      type: 'string',
+      description: 'Type of predefined animated SVG to use.',
+      enum: ['ConnectionBand'],
+      default: 'ConnectionBand',
+    },
+    direction: {
+      type: 'string',
+      default: 'left',
+      enum: ['left', 'right'],
       description:
-        'A string to the url for the svg that makes up the connection image.',
-      default:
-        'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png',
+        'Direction of animation, currently only available on Connection Band',
     },
   },
 };
