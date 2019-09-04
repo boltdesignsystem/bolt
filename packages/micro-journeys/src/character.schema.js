@@ -15,7 +15,13 @@ module.exports = {
       default: 'small',
       enum: ['small', 'medium', 'large'],
     },
-    characterUrl: {
+    characterImage: {
+      type: 'string',
+      description: 'URL of the character image.',
+      default:
+          'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png',
+    },
+    characterCustomUrl: {
       type: 'string',
       description: 'URL of the character image.',
       default:

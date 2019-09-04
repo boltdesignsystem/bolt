@@ -430,7 +430,7 @@ export function setupBolt(editor) {
     editable: true,
     highlightable: true,
     registerBlock: false,
-    propsToTraits: ['size', 'characterUrl', 'useIcon'],
+    propsToTraits: ['size', 'characterImage', 'characterCustomUrl', 'useIcon'],
     slots: {
       default: false,
       top: true,
