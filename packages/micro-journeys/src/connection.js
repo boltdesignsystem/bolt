@@ -3,11 +3,6 @@ import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './connection.scss';
 import schema from './connection.schema';
-import x from './x.svg';
-
-const y = window.btoa(x);
-
-console.log({ x, y });
 
 let cx = classNames.bind(styles);
 
