@@ -192,6 +192,7 @@ class BoltAnimate extends withLitHtml() {
         event,
       });
     }
+    event.stopPropagation();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

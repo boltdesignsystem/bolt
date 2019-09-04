@@ -33,7 +33,7 @@ class BoltCharacter extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         <span
           class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--top"
         >

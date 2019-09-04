@@ -149,7 +149,7 @@ class BoltInteractivePathway extends withLitHtml() {
     // old approach
     const old = html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         <ul class="c-bolt-interactive-pathway__nav">
           ${this.slot('default')}
         </ul>

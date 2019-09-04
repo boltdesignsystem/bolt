@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/analytics-autotrack
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/analytics-autotrack
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* update @bolt/analytics-autotrack package to catch a JS error thrown if `window.drupalSettings.google_analytics.trackCrossDomains` isn't defined ([5919c48](https://github.com/bolt-design-system/bolt/commit/5919c48))
+
+
+
+
+
 ## [2.4.2](https://github.com/bolt-design-system/bolt/compare/v2.4.1...v2.4.2) (2019-05-24)
 
 

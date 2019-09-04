@@ -31,7 +31,7 @@ class BoltConnection extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         <span class="c-bolt-connection__slot--top">
           ${this.slot('top')}
         </span>

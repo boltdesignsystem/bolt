@@ -29,7 +29,7 @@ class BoltCta extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         <span class="c-bolt-cta__icon">
           ${this.slot('icon')}
         </span>
