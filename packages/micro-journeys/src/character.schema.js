@@ -17,15 +17,16 @@ module.exports = {
     },
     characterImage: {
       type: 'string',
-      description: 'URL of the character image.',
-      default:
-          'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png',
+      description: 'Pre-defined package image.',
+      enum: ['customer-happy', 'customer-neutral', 'customer-sad', 'customer-surprise', 'pega-rep', 'u-comm-plus', 'custom'],
+      default: 'customer-happy',
+      enumName: ['Customer Happy', 'Customer Neutral', 'Customer Sad', 'Customer Surprise', 'Pega Rep', 'U-comm Plus', 'Custom Url (use custom url field)']
     },
     characterCustomUrl: {
       type: 'string',
-      description: 'URL of the character image.',
+      description: 'URL of a custom image.',
       default:
-        'https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-happy.png',
+        'https://www.fillmurray.com/g/200/200',
     },
     useIcon: {
       type: 'boolean',
