@@ -12,9 +12,9 @@ import uCommPlus from './images/u-comm-plus.png';
 
 let cx = classNames.bind(styles);
 
-const resolveCharacterImage = (characterImage) => {
+const resolveCharacterImage = characterImage => {
   console.log('Hey super smart developer, you probably want this info -> ', {
-    characterImage
+    characterImage,
   });
   switch (characterImage) {
     case 'customer-neutral':
@@ -31,7 +31,7 @@ const resolveCharacterImage = (characterImage) => {
     case 'customer-happy':
       return customerHappy;
   }
-}
+};
 
 @define
 class BoltCharacter extends withLitHtml() {
@@ -53,15 +53,21 @@ class BoltCharacter extends withLitHtml() {
   }
 
   render() {
-    const { characterImage, characterCustomUrl, size, useIcon, animtype } = this.validateProps(
-      this.props,
-    );
+    const {
+      characterImage,
+      characterCustomUrl,
+      size,
+      useIcon,
+    } = this.validateProps(this.props);
     const classes = cx('c-bolt-character', `c-bolt-character--${size}`);
 
-    const image = characterImage === 'custom' ? characterCustomUrl : resolveCharacterImage(characterImage);
+    const image =
+      characterImage === 'custom'
+        ? characterCustomUrl
+        : resolveCharacterImage(characterImage);
 
     console.log('Hey super smart developer, you probably want this info -> ', {
-      image
+      image,
     });
 
     return html`
