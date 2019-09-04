@@ -26,7 +26,7 @@ class BoltCharacter extends withLitHtml() {
   }
 
   render() {
-    const { characterUrl, size, useIcon, animtype } = this.validateProps(
+    const { characterCustomUrl, size, useIcon, animtype } = this.validateProps(
       this.props,
     );
     const classes = cx('c-bolt-character', `c-bolt-character--${size}`);
@@ -66,7 +66,7 @@ class BoltCharacter extends withLitHtml() {
             : html`
                 <img
                   class="c-bolt-character__main-image"
-                  src="${characterUrl}"
+                  src="${characterCustomUrl}"
                   alt="Character Image"
                 />
               `}
