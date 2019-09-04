@@ -5,6 +5,7 @@ import buttonSchema from '@bolt/components-button/button.schema.yml';
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
+import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
 // @ts-ignore
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
@@ -409,6 +410,8 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-connection',
+    schema: connectionSchema,
+    propsToTraits: ['animType', 'direction'],
     draggable: false,
     editable: false,
     highlightable: true,

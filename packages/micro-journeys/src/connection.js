@@ -3,6 +3,11 @@ import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './connection.scss';
 import schema from './connection.schema';
+import x from './x.svg';
+
+const y = window.btoa(x);
+
+console.log({ x, y });
 
 let cx = classNames.bind(styles);
 
@@ -26,8 +31,12 @@ class BoltConnection extends withLitHtml() {
   }
 
   render() {
-    const { connectionUrl } = this.validateProps(this.props);
+    const { direction, animType, speed } = this.validateProps(this.props);
     const classes = cx('c-bolt-connection');
+
+    console.log('Hey super smart developer, you probably want this info -> ', {
+      props: this.props,
+    });
 
     return html`
       ${this.addStyles([styles])}
@@ -35,10 +44,11 @@ class BoltConnection extends withLitHtml() {
         <span class="c-bolt-connection__slot--top">
           ${this.slot('top')}
         </span>
-        <img
+        <bolt-svg-animations
           class="c-bolt-connection__main-image"
-          src="${connectionUrl}"
-          alt="Connection Band"
+          speed="${speed}"
+          animType="${animType}"
+          direction="${direction}"
         />
         <span class="c-bolt-connection__slot--bottom">
           ${this.slot('bottom')}
