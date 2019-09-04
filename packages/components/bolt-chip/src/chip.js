@@ -24,7 +24,7 @@ class BoltChip extends BoltAction {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    self.schema = schema;
+    self.schema = this.getModifiedSchema(schema, ['text']); // remove `text` prop from schema, Twig only
     self.delegateFocus = true;
     return self;
   }
