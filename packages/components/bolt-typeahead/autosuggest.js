@@ -85,6 +85,15 @@ class BoltAutosuggest extends withPreact() {
     this._listeners = {};
   }
 
+  // return the parent that's rendering <bolt-autosuggest> based on Shadow DOM usage
+  get getParent(){
+    if (this.shadowRoot && this.shadowRoot.host) {
+      return this.shadowRoot.host;
+    } else {
+      return this.closest('bolt-typeahead');
+    }
+  }
+
   /**
    * Register a new callback for the given event type
    *
@@ -92,13 +101,11 @@ class BoltAutosuggest extends withPreact() {
    * @param {Function} handler
    */
   on(type, handler) {
-    if (
-      typeof this.closest('bolt-typeahead')._listeners[type] === 'undefined'
-    ) {
-      this.closest('bolt-typeahead')._listeners[type] = [];
+    if (typeof this.getParent._listeners[type] === 'undefined') {
+      this.getParent._listeners[type] = [];
     }
 
-    this.closest('bolt-typeahead')._listeners[type].push(handler);
+    this.getParent._listeners[type].push(handler);
 
     return this;
   }
@@ -110,12 +117,10 @@ class BoltAutosuggest extends withPreact() {
    * @param {Function} handler
    */
   off(type, handler) {
-    var index = this.closest('bolt-typeahead')._listeners[type].indexOf(
-      handler,
-    );
+    var index = this.getParent._listeners[type].indexOf(handler);
 
     if (index > -1) {
-      this.closest('bolt-typeahead')._listeners[type].splice(index, 1);
+      this.getParent._listeners[type].splice(index, 1);
     }
 
     return this;
@@ -130,7 +135,7 @@ class BoltAutosuggest extends withPreact() {
    * @param {Event} event
    */
   _fire(type, ...props) {
-    var listeners = this.closest('bolt-typeahead')._listeners[type] || [];
+    var listeners = this.getParent._listeners[type] || [];
 
     listeners.forEach(
       function(listener) {
@@ -167,7 +172,7 @@ class BoltAutosuggest extends withPreact() {
     // this.context = this.contexts.get(TypeaheadContext);
 
     // Inherit items from `bolt-typeahead`
-    // this.items = this.closest('bolt-typeahead').items || this.items || [];
+    // this.items = this.getParent.items || this.items || [];
   }
 
   connected() {
@@ -256,7 +261,7 @@ class BoltAutosuggest extends withPreact() {
   getSuggestions(value) {
     this._fire('getSuggestions', value);
 
-    const items = this.closest('bolt-typeahead').items;
+    const items = this.getParent.items;
     this.items = items;
     // console.log(this.context.items);
 
