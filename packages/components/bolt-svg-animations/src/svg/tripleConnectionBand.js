@@ -1,9 +1,9 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
-export const TripleConnectionBand = ({ speed, direction, theme }) => {
+export const tripleConnectionBand = ({ speed, direction, theme }) => {
   return svg`
-	<svg version="1.1" width="250px" id="bolt-triple-connection-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 348 126" style="enable-background:new 0 0 348 126;" xml:space="preserve">
+	<svg version="1.1" width="100%" id="bolt-triple-connection-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 348 126" style="enable-background:new 0 0 348 126;" xml:space="preserve">
 	
 	<style>
 
