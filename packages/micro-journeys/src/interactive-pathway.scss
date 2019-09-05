@@ -24,6 +24,7 @@ $bolt-interactive-step--dot-size: 1.2rem;
   &__nav {
     display: none;
   }
+
   @include bolt-mq(medium) {
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -33,6 +34,7 @@ $bolt-interactive-step--dot-size: 1.2rem;
       flex: 0 1;
       position: relative;
       margin-right: bolt-spacing(large);
+      @include bolt-micro-journeys-nav-items-wrapper;
     }
 
     &__nav-item {
