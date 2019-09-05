@@ -246,6 +246,7 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @param {string} opt.content - HTML to add
    * @param {boolean} [opt.shouldCreateAnimatableSlotIfNotPresent=true]
    * @param {boolean} [opt.selectAfterAdd=true]
+   * @param {boolean} [opt.triggerAnimsAfterAdd=true]
    * @return {grapesjs.Component}
    */
   function addComponentToSelectedComponentsSlot({
