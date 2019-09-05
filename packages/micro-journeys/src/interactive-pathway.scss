@@ -14,9 +14,6 @@
 //@import "@bolt/animations/utilities/utilities-animation";
 $bolt-interactive-step--dot-size: 1.2rem;
 .c-bolt-interactive-pathway {
-  $nav-circle-size: 12px;
-  $nav-circle-size--active: 14px;
-
   display: none;
   position: relative;
 
@@ -43,7 +40,7 @@ $bolt-interactive-step--dot-size: 1.2rem;
       @include bolt-micro-journeys-nav-title;
 
       &:before {
-        @include bolt-micro-journeys-nav-dot($nav-circle-size, $nav-circle-size--active);
+        @include bolt-micro-journeys-nav-dot;
       }
 
       &:after {
@@ -54,7 +51,7 @@ $bolt-interactive-step--dot-size: 1.2rem;
         @include bolt-micro-journeys-nav-title($active: true);
 
         &:before {
-          @include bolt-micro-journeys-nav-dot($nav-circle-size, $nav-circle-size--active, $active: true);
+          @include bolt-micro-journeys-nav-dot($active: true);
         }
       }
 
