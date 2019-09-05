@@ -1,8 +1,7 @@
 {% set content %}
 <bolt-interactive-pathways>
   <p slot="interactive-pathways-lead-text">How Pega technology resolves</p>
-  <bolt-interactive-pathway>
-    <p slot="pathway-title">Billing Inquires</p>
+  <bolt-interactive-pathway pathway-title="Billing Inquires">
     <bolt-interactive-step tab-title="Proactive service">
       {% include "./billing-micro-journey-fragments/_step-one.twig" %}
     </bolt-interactive-step>
@@ -28,8 +27,7 @@
     </bolt-interactive-step>
   </bolt-interactive-pathway>
 
-  <bolt-interactive-pathway>
-    <p slot="pathway-title">Another Story</p>
+  <bolt-interactive-pathway pathway-title="Another Story">
     <bolt-interactive-step tab-title="Empowered agents">
       {% include "./billing-micro-journey-fragments/_step-four.twig" %}
     </bolt-interactive-step>
