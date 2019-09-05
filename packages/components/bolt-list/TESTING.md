@@ -46,11 +46,9 @@ Note: Reference the spacing sizes on the [Spacing page](https://boltdesignsystem
 
 ## Scenario: separator variations
 
-1. Given I am viewing the [separator variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-25-list-separator-variations/02-components-list-25-list-separator-variations.html).
-2. When I am viewing each of the "Solid separators" sections.
-3. Then I should see a solid separator in between the items of the list.
-4. When I am viewing each of the "Dashed separators" sections.
-5. Then I should see a dashed separator in between the items of the list.
+[Separator variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-25-list-separator-variations/02-components-list-25-list-separator-variations.html).
+
+`// This is a purely visual test, use VRT`
 
 ## Scenario: inset variations
 
@@ -64,15 +62,15 @@ Note: Reference the spacing sizes on the [Spacing page](https://boltdesignsystem
 
 ## Scenario: align variations
 
-1. Given I am viewing the [align variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-40-list-align-variations/02-components-list-40-list-align-variations.html).
-2. When I am viewing each of the "Horizontally align" sections.
-3. Then I should see items horizontally aligned to the specified option: start (left), center, end (right).
+[Align variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-40-list-align-variations/02-components-list-40-list-align-variations.html).
+
+`// This is a purely visual test, use VRT`
 
 ## Scenario: valign variations
 
-1. Given I am viewing the [valign variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-45-list-valign-variations/02-components-list-45-list-valign-variations.html).
-2. When I am viewing each of the "Vertically align" sections.
-3. Then I should see items vertically aligned to the specified option: start (top), center, end (bottom).
+[Valign variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-45-list-valign-variations/02-components-list-45-list-valign-variations.html).
+
+`// This is a purely visual test, use VRT`
 
 ## Scenario: List with Web Components
 
