@@ -29,7 +29,7 @@ interface GrapeTrait {
 interface SlottableComponent {
   id: string;
   title: string;
-  data: ComponentObject;
+  content: string;
 }
 
 interface SlotControl {

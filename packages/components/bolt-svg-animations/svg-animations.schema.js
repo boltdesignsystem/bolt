@@ -1,17 +1,16 @@
 module.exports = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Micro Journey Connection',
   type: 'object',
   properties: {
     speed: {
       type: 'string',
       description: 'Speed of the animation, typically rotation.',
-      default: '1000',
+      default: '4000',
     },
     animType: {
       type: 'string',
       description: 'Type of predefined animated SVG to use.',
-      enum: ['connectionBand'],
+      enum: ['connectionBand', 'orbit', 'radar', 'automation'],
       default: 'connectionBand',
     },
     direction: {
@@ -20,6 +19,12 @@ module.exports = {
       enum: ['left', 'right'],
       description:
         'Direction of animation, currently only available on Connection Band',
+    },
+    theme: {
+      type: 'string',
+      enum: ['light', 'dark'],
+      description:
+        'control color scheme of component, not applicable to all animTypes',
     },
   },
 };

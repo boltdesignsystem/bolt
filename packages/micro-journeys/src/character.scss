@@ -29,10 +29,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 75px;
+    max-height: 75px;
     overflow: hidden;
     border-radius: 50%;
     background-color: white;
     @include bolt-shadow('level-20');
+
+    @include bolt-mq(xsmall) {
+      max-width: unset;
+      max-height: unset;
+    }
   }
 
   &__main-image {
@@ -52,7 +59,15 @@
 
   &__slot {
     &--cardinal {
-      width: 275px; // @todo Fix issue with slot forcing content to break instead of getting width from content
+      min-width: 180px; // @todo Fix issue with slot forcing content to break instead of getting width from content
+
+      @include bolt-mq(xsmall) {
+        min-width: 250px;
+      }
+
+      @include bolt-mq(small) {
+        min-width: 275px;
+      }
     }
     &--top {
       position: absolute;

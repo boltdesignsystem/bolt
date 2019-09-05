@@ -5,6 +5,7 @@
 bolt-interactive-step {
   // Override generic styles from _generic-shared.scss
   margin-bottom: 0 !important;
+  padding-left: $nav-circle-size--active / 2 + $nav-circle-border-size;
 }
 
 
@@ -73,7 +74,6 @@ bolt-interactive-step {
     justify-content: center;
     align-items: center;
     max-width: 100%;
-    overflow: hidden;
 
     @include bolt-mq(medium) {
       max-width: 700px;
