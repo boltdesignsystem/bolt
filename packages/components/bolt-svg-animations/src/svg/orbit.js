@@ -1,7 +1,7 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
-export const Orbit = ({ speed }) => {
+export const orbit = ({ speed }) => {
   const authoredStyle = html`
     #el_4FVBcL2d5 { overflow: visible; transform: translateZ(0);}
     @-webkit-keyframes kf_el_3_mf5AZNVo_an_9jFWXwODG { 0% { -webkit-transform:
