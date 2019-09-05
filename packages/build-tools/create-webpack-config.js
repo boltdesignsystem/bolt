@@ -361,12 +361,7 @@ async function createWebpackConfig(buildConfig) {
             {
               loader: 'file-loader',
               options: {
-                name: path.join(
-                  path.dirname(
-                    require.resolve('@bolt/components-icons/package.json'),
-                  ),
-                  'dist/[name].min.[ext]',
-                ),
+                name: 'icons/[name].min.[ext]',
               },
             },
             {
