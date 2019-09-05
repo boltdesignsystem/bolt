@@ -3,6 +3,17 @@
 {% endif %}
 
 {% set attributes = create_attribute(attributes | default({})) %}
+{% set inner_attributes = create_attribute({
+  class: [
+    "c-bolt-icon",
+    "c-bolt-icon--" ~ size
+  ]
+}) %}
+{% set svg_attributes = create_attribute({
+  class: [
+    "c-bolt-icon__icon"
+  ]
+}) %}
 
 {% set attributes = attributes
   .setAttribute("name", name)
@@ -29,20 +40,20 @@
       {% include "@bolt-icon-assets/#{name}.min.svg" ignore missing %}
     {% endset %}
 
-    {{ svgIcon
-      | replace('fill="#FFF"', 'filter="url(#invert)" fill="currentColor"')
-      | replace('fill="none"', '_fill="none"')
-      | replace('/ fill="((?!(var(--bolt-theme-icon|none)).*$)[^"]+)"/', ' fill="currentColor"')
-      | replace('_fill="', 'fill="')
-      | replace('<svg ', '<svg ' ~ 'class="' ~ attributes.class ~ '"')
-      | replace('/<!--(.*)-->/Uis', '')
-      | replace('/height="([^"]+)"/', '')
-      | replace('/width="([^"]+)"/', '')
-      | replace('/<desc>([^<]+)/', '')
-      | replace('</svg>', icon_filters ~ '</svg>')
-      | replace('</desc>', '')
-      | replace('<defs></defs>', '')
-      | replace('<path d="M0 0h24v24H0z"/>', '')
-    }}
+    <div {{ inner_attributes }}>
+      {% if 'colored' in name %}
+        {{ svgIcon  | replace('<svg ', '<svg ' ~ svg_attributes) }}
+      {% else %}
+        {{ svgIcon
+          | replace('fill="#FFF"', 'filter="url(#invert)" fill="currentColor"')
+          | replace('fill="none"', '_fill="none"')
+          | replace('/ fill="((?!(var(--bolt-theme-icon|none)).*$)[^"]+)"/', ' fill="currentColor"')
+          | replace('_fill="', 'fill="')
+          | replace('<svg ', '<svg ' ~ svg_attributes)
+          | replace('</svg>', icon_filters ~ '</svg>')
+          | replace('<path d="M0 0h24v24H0z"/>', '')
+        }}
+      {% endif %}
+    </div>
   {% endif %}
 {% endspaceless %}</bolt-icon>
