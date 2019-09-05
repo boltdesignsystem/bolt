@@ -194,7 +194,7 @@ export function setupBolt(editor) {
    */
   function registerBoltComponent({
     name,
-    extend,
+    extend = 'text',
     schema = { properties: {} },
     initialContent = ['Hello World'],
     category = 'Bolt Components',
