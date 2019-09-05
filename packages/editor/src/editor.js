@@ -243,9 +243,14 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @param {Object} opt
    * @param {string} opt.slotName
    * @param {grapesjs.ComponentObject} opt.data
+   * @param {boolean} [opt.shouldCreateAnimatableSlotIfNotPresent=true]
    * @return {grapesjs.Component}
    */
-  function addComponentToSelectedComponentsSlot({ slotName, data }) {
+  function addComponentToSelectedComponentsSlot({
+    slotName,
+    data,
+    shouldCreateAnimatableSlotIfNotPresent = true,
+  }) {
     const selected = editor.getSelected();
     const components = selected.components();
     const slots = selected.find('[slot]');
@@ -255,7 +260,9 @@ export function enableEditor({ space, uiWrapper, config }) {
       return slotComponents.add(data);
     } else {
       const [newSlot] = selected.append(
-        `<bolt-animate slot="${slotName}"></div>`,
+        shouldCreateAnimatableSlotIfNotPresent
+          ? `<bolt-animate slot="${slotName}"></bolt-animate>`
+          : `<div slot="${slotName}"></div>`,
       );
       const slotComponents = newSlot.components();
       return slotComponents.add(data);
