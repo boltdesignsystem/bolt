@@ -1,13 +1,16 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
-export const TripleConnectionBand = ({ speed, theme }) => {
-
-return svg`
-	<svg version="1.1" width="250px" id="el_pdKL5703A" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 348 126" style="enable-background:new 0 0 348 126;" xml:space="preserve">
+export const TripleConnectionBand = ({ speed, direction, theme }) => {
+  return svg`
+	<svg version="1.1" width="250px" id="bolt-triple-connection-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 348 126" style="enable-background:new 0 0 348 126;" xml:space="preserve">
 	
 	<style>
 
+	#bolt-triple-connection-svg { transform: ${
+    direction === 'right' ? 'scaleX(-1)' : 'scaleX(1)'
+  };}
+	
 	@keyframes background_highlight {
 		0% {
 			fill-opacity: 1;
@@ -21,7 +24,7 @@ return svg`
 			fill-opacity: 0;
 		}
 
-		% {
+		90% {
 			fill-opacity: 0;
 		}
 
@@ -108,7 +111,7 @@ return svg`
 			}
 	}
 
-	#el_pdKL5703A * {
+	#bolt-triple-connection-svg * {
 	
 		animation-duration: 3s;
 		animation-iteration-count: infinite;
@@ -247,5 +250,5 @@ return svg`
 	<path id="el_BGTV_SIFCz" fill="#FFFFFF" d="M182.8,92.8c-1.3,0-2.6,0-4,0c2.9,5.5,5.8,11,8.7,16.5c-2.9,5.6-5.8,11.1-8.7,16.7c1.3,0,2.6,0,4,0&#xA;&#9;&#9;c2.9-5.6,5.8-11.1,8.7-16.7C188.6,103.8,185.7,98.3,182.8,92.8"/>
 	<path id="el_70ksXSP-Vt" fill="#FFFFFF" d="M193.4,92.7c-1.3,0-2.6,0-4,0c2.9,5.5,5.8,10.9,8.7,16.3c-2.9,5.6-5.8,11.1-8.7,16.7&#xA;&#9;&#9;c1.3,0,2.6-0.1,4-0.1c2.9-5.6,5.8-11.2,8.7-16.7C199.3,103.6,196.3,98.2,193.4,92.7"/>
 </g></g></g>
-</svg>`
-}
+</svg>`;
+};
