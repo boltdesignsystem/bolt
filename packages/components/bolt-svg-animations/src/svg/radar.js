@@ -1,7 +1,7 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
-export const Radar = ({ speed, theme }) => {
+export const radar = ({ speed, theme }) => {
   const primaryColor = theme === 'dark' ? '#535DA6' : '#FFFFFF';
 
   const themedStyles =

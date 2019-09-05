@@ -8,16 +8,20 @@
           </p>
         </bolt-status-dialogue-bar>
       </bolt-animate>
-      <span slot="left"></span>
-      <span slot="bottom">
-            <bolt-cta>
-              <bolt-icon slot="icon" name="eye"></bolt-icon>
-              <bolt-text font-size="xsmall" slot="link" display="inline">
-                Agent view of billing charges
-                <bolt-icon name="chevron-right"></bolt-icon>
-              </bolt-text>
-            </bolt-cta>
-          </span>
+      <bolt-animate slot="left"></bolt-animate>
+      <bolt-animate slot="bottom">
+        <bolt-cta>
+          <bolt-animate slot="icon">
+            <bolt-icon name="eye"></bolt-icon>
+          </bolt-animate>
+          <bolt-animate slot="link">
+            <bolt-text font-size="xsmall" display="inline">
+              Agent view of billing charges
+              <bolt-icon name="chevron-right"></bolt-icon>
+            </bolt-text>
+          </bolt-animate>
+        </bolt-cta>
+      </bolt-animate>
     </bolt-character>
   </bolt-animate>
   <bolt-animate slot="connection" in="fade-in-slide-up" in-order="5" out="fade-out" out-order="1">
@@ -32,8 +36,8 @@
           </p>
         </bolt-status-dialogue-bar>
       </bolt-animate>
-      <span slot="right" idle="none"></span>
-      <span slot="bottom" idle="none"></span>
+      <bolt-animate slot="right" idle="none"></bolt-animate>
+      <bolt-animate slot="bottom" idle="none"></bolt-animate>
     </bolt-character>
   </bolt-animate>
 </bolt-two-character-layout>

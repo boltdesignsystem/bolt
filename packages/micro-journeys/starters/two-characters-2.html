@@ -7,14 +7,13 @@
             Customer is 79% likely to call<br>about their bill.
           </p>
         </bolt-status-dialogue-bar>
-        <p slot="text">
       </bolt-animate>
-      <span slot="left"></span>
-      <span slot="bottom"><bolt-text font-size="xsmall">Company</bolt-text></span>
+      <bolt-animate slot="left"></bolt-animate>
+      <bolt-animate slot="bottom"><bolt-text font-size="xsmall">Company</bolt-text></bolt-animate>
       <bolt-svg-animations
         slot="background"
         speed="4000"
-        animtype="Orbit"
+        anim-type="orbit"
       ></bolt-svg-animations>
     </bolt-character>
   </bolt-animate>
@@ -30,8 +29,8 @@
           </p>
         </bolt-status-dialogue-bar>
       </bolt-animate>
-      <span slot="right" idle="none"></span>
-      <span slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></span>
+      <bolt-animate slot="right" idle="none"></bolt-animate>
+      <bolt-animate slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></bolt-animate>
     </bolt-character>
   </bolt-animate>
 </bolt-two-character-layout>

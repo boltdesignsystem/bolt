@@ -16,6 +16,10 @@ class BoltInteractivePathway extends withLitHtml() {
   static is = 'bolt-interactive-pathway';
 
   static props = {
+    pathwayTitle: {
+      ...props.string,
+      ...{ default: '' },
+    },
     noShadow: {
       ...props.boolean,
       ...{ default: false },
@@ -64,11 +68,7 @@ class BoltInteractivePathway extends withLitHtml() {
    * @return {string}
    */
   getTitle() {
-    /** @type {HTMLElement} */
-    const pathwayTitleEl = this.renderRoot.querySelector(
-      '.c-bolt-interactive-pathway__nav-item--active',
-    );
-    return pathwayTitleEl ? pathwayTitleEl.innerText : '';
+    return this.props.pathwayTitle;
   }
 
   connectedCallback() {

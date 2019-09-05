@@ -1,6 +1,7 @@
 import * as grapesjs from 'grapesjs';
 import { html, render } from '@bolt/core';
 import { query } from '@bolt/core/utils';
+import { triggerAnimsInEl } from '@bolt/components-animate/utils';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
@@ -242,24 +243,53 @@ export function enableEditor({ space, uiWrapper, config }) {
   /**
    * @param {Object} opt
    * @param {string} opt.slotName
-   * @param {grapesjs.ComponentObject} opt.data
+   * @param {string} opt.content - HTML to add
+   * @param {boolean} [opt.shouldCreateAnimatableSlotIfNotPresent=true]
+   * @param {boolean} [opt.selectAfterAdd=true]
    * @return {grapesjs.Component}
    */
-  function addComponentToSelectedComponentsSlot({ slotName, data }) {
+  function addComponentToSelectedComponentsSlot({
+    slotName,
+    content,
+    shouldCreateAnimatableSlotIfNotPresent = true,
+    selectAfterAdd = true,
+    triggerAnimsAfterAdd = true,
+  }) {
     const selected = editor.getSelected();
     const components = selected.components();
-    const slots = selected.find('[slot]');
-    const [slot] = selected.find(`[slot="${slotName}"]`);
-    if (slot) {
-      const slotComponents = slot.components();
-      return slotComponents.add(data);
+    /** @type {grapesjs.ComponentObject} */
+    const data = {
+      type: 'div', // temp tag, will remove after
+      content: '',
+    };
+
+    let tempComponent;
+    if (slotName === 'default') {
+      tempComponent = components.add(data);
     } else {
-      const [newSlot] = selected.append(
-        `<bolt-animate slot="${slotName}"></div>`,
-      );
-      const slotComponents = newSlot.components();
-      return slotComponents.add(data);
+      const slots = selected.find('[slot]');
+      const [slot] = selected.find(`[slot="${slotName}"]`);
+      if (slot) {
+        const slotComponents = slot.components();
+        tempComponent = slotComponents.add(data);
+      } else {
+        const [newSlot] = selected.append(
+          shouldCreateAnimatableSlotIfNotPresent
+            ? `<bolt-animate slot="${slotName}"></bolt-animate>`
+            : `<div slot="${slotName}"></div>`,
+        );
+        const slotComponents = newSlot.components();
+        tempComponent = slotComponents.add(data);
+      }
     }
+
+    const newComponent = tempComponent.replaceWith(content);
+    if (selectAfterAdd) editor.select(newComponent);
+    if (triggerAnimsAfterAdd) {
+      const newEl = newComponent.getEl();
+      triggerAnimsInEl(newEl);
+    }
+    return newComponent;
   }
 
   /**
@@ -282,7 +312,7 @@ export function enableEditor({ space, uiWrapper, config }) {
             const component = components.find(c => c.id === value);
             const newComponent = addComponentToSelectedComponentsSlot({
               slotName,
-              data: component.data,
+              content: component.content,
             });
             event.target.value = 'none';
           }}
@@ -307,7 +337,6 @@ export function enableEditor({ space, uiWrapper, config }) {
   editor.on('component:selected', (/** @type {grapesjs.Component} */ model) => {
     const name = model.getName().toLowerCase();
     const slotControls = model.getSlotControls && model.getSlotControls();
-    window.x = model;
     renderSlotControls({ slotControls });
   });
 

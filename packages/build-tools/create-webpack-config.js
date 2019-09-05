@@ -324,6 +324,10 @@ async function createWebpackConfig(buildConfig) {
           test: [/\.yml$/, /\.yaml$/],
           use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
         },
+        {
+          test: [/\.html$/],
+          loader: 'raw-loader', // file as string
+        },
       ],
     },
     mode: config.prod ? 'production' : 'development',

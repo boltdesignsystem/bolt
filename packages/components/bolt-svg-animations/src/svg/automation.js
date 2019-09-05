@@ -1,6 +1,6 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 
-export const Automation = ({ speed }) => {
+export const automation = ({ speed }) => {
   const authoredStyle = html`
     #bolt-automation-container { max-height: 400px; max-width: 400px; }
     bolt-automation-svg { transform: translateZ(0);} @keyframes kf_line1 { 0%
