@@ -65,9 +65,10 @@ class BoltInteractivePathways extends withLitHtml() {
       return html`
         <bolt-text
           class="c-bolt-interactive-pathways__menu-item"
-          font-weight="${isActiveItem ? 'bold' : 'regular'}"
+          font-weight="semi-bold"
           @click=${() => this.showPathway(i)}
         >
+          ${isActiveItem ? html`<bolt-icon name="check"></bolt-icon>` : ''}
           ${title}
         </bolt-text>
       `;
