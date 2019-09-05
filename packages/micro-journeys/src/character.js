@@ -13,9 +13,6 @@ import uCommPlus from './images/u-comm-plus.png';
 let cx = classNames.bind(styles);
 
 const resolveCharacterImage = characterImage => {
-  console.log('Hey super smart developer, you probably want this info -> ', {
-    characterImage,
-  });
   switch (characterImage) {
     case 'customer-neutral':
       return customerNeutral;
