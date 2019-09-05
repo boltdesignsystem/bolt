@@ -6,10 +6,10 @@
 {% set navbar_title %}
   {% if icon %}
     <div class="c-bolt-navbar__title-icon">
-      {% include "@bolt/icon.twig" with {
-        "name": icon.name,
-        "size": "large"
-      } only %}
+      {% set iconOptions = icon | merge({
+        size: "large"
+      }) %}
+      {% include "@bolt-components-icon/icon.twig" with iconOptions only %}
     </div>
   {% endif %}
   <{{ tag }} class="c-bolt-navbar__title-text">
