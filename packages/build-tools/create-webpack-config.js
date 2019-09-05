@@ -29,7 +29,7 @@ const {
   mapComponentNameToTwigNamespace,
 } = require('@bolt/build-utils/manifest');
 const log = require('@bolt/build-utils/log');
-const svgoConfig = require('./svgo-config');
+const { svgoConfig } = require('./svgo-config');
 
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
