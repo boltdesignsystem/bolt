@@ -82,7 +82,8 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
 
   render(data) {
     return html`
-      <bolt-autosuggest
+      ${this.addStyles([styles])}
+      <bolt-autosuggest no-shadow
         .value=${data.inputValue}
         .items=${data.items}
         .placeholder=${data.placeholder}
