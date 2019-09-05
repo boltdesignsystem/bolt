@@ -476,10 +476,16 @@ export function setupBolt(editor) {
       right: true,
       bottom: true,
     },
-    slotControls: ['top', 'right', 'bottom', 'left'].map(slotName => ({
-      slotName,
-      components: basicSlottableComponents,
-    })),
+    slotControls: [
+      ...['top', 'right', 'bottom', 'left'].map(slotName => ({
+        slotName,
+        components: basicSlottableComponents,
+      })),
+      {
+        slotName: 'background',
+        components: basicSlottableComponents,
+      },
+    ],
   });
 
   registerBoltComponent({
@@ -501,6 +507,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-link',
     schema: linkSchema,
+
     editable: true,
     extend: 'link',
     registerBlock: true,
@@ -527,5 +534,19 @@ export function setupBolt(editor) {
       // @todo consider changing `text` to `default`
       text: true,
     },
+  });
+
+  registerBoltComponent({
+    name: 'bolt-link',
+    schema: linkSchema,
+    editable: true,
+    extend: 'link',
+    registerBlock: true,
+    draggable: true,
+    propsToTraits: ['display', 'valign', 'url', 'isHeadline'],
+    slots: {
+      default: true,
+    },
+    initialContent: [`I'm a link`],
   });
 }
