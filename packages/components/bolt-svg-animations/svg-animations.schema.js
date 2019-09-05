@@ -20,5 +20,11 @@ module.exports = {
       description:
         'Direction of animation, currently only available on Connection Band',
     },
+    theme: {
+      type: 'string',
+      enum: ['light', 'dark'],
+      description:
+        'control color scheme of component, not applicable to all animTypes',
+    },
   },
 };

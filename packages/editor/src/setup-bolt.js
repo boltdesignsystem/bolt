@@ -556,6 +556,6 @@ export function setupBolt(editor) {
     name: 'bolt-svg-animations',
     schema: svgAnimationsSchema,
     registerBlock: false,
-    propsToTraits: ['animType', 'direction'],
+    propsToTraits: ['animType', 'direction', 'speed', 'theme'],
   });
 }
