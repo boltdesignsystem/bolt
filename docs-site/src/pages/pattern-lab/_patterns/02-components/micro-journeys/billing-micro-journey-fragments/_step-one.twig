@@ -1,48 +1,8 @@
 
   <bolt-animate slot="top" in-order="1" in="fade-in" out="fade-out-slide-down" out-order="2">
-    <bolt-two-character-layout>
-      <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="10">
-        <bolt-character size="medium" character-image="u-comm-plus">
-          <span slot="top"></span>
-          <span slot="left"></span>
-          <span slot="bottom"><bolt-text font-size="xsmall">Company</bolt-text></span>
-          <bolt-animate slot="background" in="fade-in-fade-out" in-order="2" in-duration="4000">
-            <bolt-svg-animations
-                speed="4000"
-                animtype="Radar"
-                theme="dark"
-            ></bolt-svg-animations>
-          </bolt-animate>
-        </bolt-character>
-      </bolt-animate>
-      <bolt-animate slot="connection" in="fade-in" in-order="2" in-delay="3500" out="fade-out" out-order="1">
-        <bolt-connection></bolt-connection>
-      </bolt-animate>
-      <bolt-animate slot="character--right" in="fade-in-slide-up" in-order="10" out="fade-out" out-order="10">
-        <bolt-character size="medium" character-image="customer-surprise">
-          <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
-            <bolt-status-dialogue-bar icon-name="mobility">
-              <p slot="text">
-                You are about to reach <br>your monthly data limit...
-              </p>
-            </bolt-status-dialogue-bar>
-          </bolt-animate>
-          <span slot="right" idle="none"></span>
-          <span slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></span>
-        </bolt-character>
-      </bolt-animate>
-    </bolt-two-character-layout>
+    {{ source('@bolt-micro-journeys/starters/two-characters.html') }}
   </bolt-animate>
 
   <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-    <bolt-text>
-      To avoid costly calls to your service center (and keep customers happy), you need to stay one step ahead. That’s why Pega’s real-time monitoring and pattern detection lets you sense a potential billing issue, then send your customer a proactive notification.
-    </bolt-text>
-    <bolt-cta>
-      <bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>
-      <bolt-text font-size="xsmall" slot="link" display="inline">
-        It’s not mind-reading. It’s signals
-        <bolt-icon name="chevron-right"></bolt-icon>
-      </bolt-text>
-    </bolt-cta>
+    {{ source('@bolt-micro-journeys/starters/cta-text-1.html') }}
   </bolt-animate>

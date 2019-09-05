@@ -1,48 +1,10 @@
 {#  <span slot="title">Fewer calls</span>#}
 
   <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
-    <bolt-two-character-layout>
-      <bolt-animate slot="character--left" in-order="1" in="fade-in-slide-up" out="fade-out" out-order="10">
-        <bolt-character size="medium" character-image="u-comm-plus">
-          <bolt-animate in="fade-in-slide-up" in-order="20" out="fade-out" slot="top" out-order="5">
-            <bolt-status-dialogue-bar  dialogue-arrow-direction="down">
-              <p slot="text">
-                Thanks for being a valued customer!
-              </p>
-            </bolt-status-dialogue-bar>
-          </bolt-animate>
-          <span slot="left"></span>
-          <span slot="bottom"></span>
-        </bolt-character>
-      </bolt-animate>
-      <bolt-animate slot="connection" in="fade-in-slide-up" in-order="5" out="fade-out" out-order="1">
-        <bolt-connection></bolt-connection>
-      </bolt-animate>
-      <bolt-animate slot="character--right" in="fade-in-slide-up" in-order="10" out="fade-out" out-order="10">
-        <bolt-character size="medium" character-image="customer-happy">
-          <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
-            <bolt-status-dialogue-bar dialogue-arrow-direction="down">
-              <p slot="text">
-                Thanks so much for waiving my late fee!
-              </p>
-            </bolt-status-dialogue-bar>
-          </bolt-animate>
-          <span slot="right" idle="none"></span>
-          <span slot="bottom" idle="none"></span>
-        </bolt-character>
-      </bolt-animate>
-    </bolt-two-character-layout>
+    {{ source('@bolt-micro-journeys/starters/two-characters-4.html') }}
   </bolt-animate>
 
   <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-    <bolt-text>
-      When your customers’ billing issues are resolved quickly, you see results. Think higher customer satisfaction, fewer repeat calls, and lower average handle time (AHT).
-    </bolt-text>
-    <bolt-cta>
-      <bolt-text font-size="xsmall" slot="link" display="inline">
-        Find out how Cisco cut AHT in half
-        <bolt-icon name="chevron-right"></bolt-icon>
-      </bolt-text>
-    </bolt-cta>
+    {{ source('@bolt-micro-journeys/starters/cta-text-4.html') }}
   </bolt-animate>
 
