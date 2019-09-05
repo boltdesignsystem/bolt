@@ -1,10 +1,12 @@
 {
   "name": "@bolt/uikit-prerenderer",
-  "version": "2.6.0-beta.1",
-  "description": "A renderer for @prerenderer/prerenderer that uses puppeteer to prerender the Pattern Lab UIKit.",
+  "version": "2.6.0",
+  "description": "Bolt Design System fork of @prerenderer/prerenderer -- uses puppeteer core to prerender the Pattern Lab UIKit.",
   "license": "MIT",
   "main": "index.js",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "postinstall": "npm run build",
     "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",

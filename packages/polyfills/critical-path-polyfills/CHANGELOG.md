@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/polyfills/critical-path-polyfills/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/critical-path-polyfills
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/polyfills/critical-path-polyfills/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+
+### Bug Fixes
+
+* make sure lerna bootstrap runs for local dev installs + devDeps install on Travis ([24b5cb2](https://github.com/bolt-design-system/bolt/tree/master/packages/polyfills/critical-path-polyfills/commit/24b5cb2))
+
+
+### Reverts
+
+* hook into postbootstrap for building new pkg ([dc83aaf](https://github.com/bolt-design-system/bolt/tree/master/packages/polyfills/critical-path-polyfills/commit/dc83aaf))
+
+
+
+
+
 # [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/polyfills/critical-path-polyfills/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
 
 

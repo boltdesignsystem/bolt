@@ -3,6 +3,48 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.6.0](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+
+### Bug Fixes
+
+* check that `lazySizes.elements` is defined before pushing to it ([1704cec](https://github.com/bolt-design-system/bolt/commit/1704cec))
+* doc copy ([b8cece8](https://github.com/bolt-design-system/bolt/commit/b8cece8))
+* make sure text styles are not inherited from external container and correct cursor type on overlay ([7bc8444](https://github.com/bolt-design-system/bolt/commit/7bc8444))
+* move event listeners outside of promise to fix IE11 race condition ([e5fbc1f](https://github.com/bolt-design-system/bolt/commit/e5fbc1f))
+* prevent id attribute from being duplicated inside link component ([6a63a50](https://github.com/bolt-design-system/bolt/commit/6a63a50))
+* typo on testing instructions ([660c30a](https://github.com/bolt-design-system/bolt/commit/660c30a))
+* update JS on/off testing instruction ([73202d6](https://github.com/bolt-design-system/bolt/commit/73202d6))
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+
+### Bug Fixes
+
+* add missing `yeoman-doctor` dependency ([d2dfe0c](https://github.com/bolt-design-system/bolt/commit/d2dfe0c))
+* make sure lerna bootstrap runs for local dev installs + devDeps install on Travis ([24b5cb2](https://github.com/bolt-design-system/bolt/commit/24b5cb2))
+* update build tools Jest snapshot ([ab073c2](https://github.com/bolt-design-system/bolt/commit/ab073c2))
+* update icon snapshot to reflect minor SVG compression changes ([5b9c569](https://github.com/bolt-design-system/bolt/commit/5b9c569))
+* update root NPM scripts to automatically pre-build the new `@bolt/critical-path-polyfills` package when doing local development ([3fe3e98](https://github.com/bolt-design-system/bolt/commit/3fe3e98))
+
+
+### Features
+
+* deprecate `isBackgroundVideo`, remove from demos, add todos where prop is used ([ce9a25d](https://github.com/bolt-design-system/bolt/commit/ce9a25d))
+
+
+### Reverts
+
+* hook into postbootstrap for building new pkg ([dc83aaf](https://github.com/bolt-design-system/bolt/commit/dc83aaf))
+
+
+
+
+
 # [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
 
 
