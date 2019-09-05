@@ -41,7 +41,7 @@
 } %}
 
 {% spaceless %}
-<bolt-typeahead no-shadow {{ attributes }} placeholder="{{ text.inputPlaceholder }}" fallback-method="{{ fallback_form.method }}" fallback-action="{{ fallback_form.action }}"
+<bolt-typeahead {{ attributes }} placeholder="{{ text.inputPlaceholder }}" fallback-method="{{ fallback_form.method }}" fallback-action="{{ fallback_form.action }}"
  fallback-target="{{ fallback_form.target }}">
   <div class="{{ classNames.typeahead }}">
     <form class="{{ classNames.inputWrapper }}" method="{{ fallback_form.method }}" action="{{ fallback_form.action }}" target="{{ fallback_form.target }}">
