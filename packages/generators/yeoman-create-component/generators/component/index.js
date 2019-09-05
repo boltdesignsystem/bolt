@@ -128,7 +128,7 @@ module.exports = class extends Generator {
           return true;
         },
         filter: input => {
-          this.name = updateComponentName(input);
+          this.name = this.updateComponentName(input);
 
           return (
             input.charAt(0).toUpperCase() + input.slice(1).replace(' ', '-')
