@@ -192,6 +192,7 @@ class BoltAnimate extends withLitHtml() {
         event,
       });
     }
+    event.stopPropagation();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -221,7 +222,6 @@ class BoltAnimate extends withLitHtml() {
       ${this.addStyles([styles])}
       <div
         class="${classMap(classes)}"
-        is="shadow-root"
         @animationend=${e => this._handleAnimEndEvent(e)}
         style=${styleMap(this._animStyle)}
       >

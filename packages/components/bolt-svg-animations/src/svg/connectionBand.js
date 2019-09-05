@@ -21,7 +21,7 @@ export const ConnectionBand = ({ direction }) => {
   `;
 
   return svg`
-    <svg width="250px" viewBox="0 0 249 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="animatedConnectionBand">
+    <svg width="100%" viewBox="0 0 249 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="animatedConnectionBand">
       <style>
       ${authoredStyle}
       </style>

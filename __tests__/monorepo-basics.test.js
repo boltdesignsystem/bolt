@@ -66,9 +66,13 @@ describe('check the config for monorepo packages', () => {
     });
   });
 
-  test('non-private @bolt packages do not use devDependencies', async () => {
+  test('non-private @bolt packages (generally) do not use devDependencies', async () => {
     pkgs.forEach(pkg => {
-      if (!pkg.private && pkg.name.includes('@bolt')) {
+      if (
+        !pkg.private &&
+        pkg.name.includes('@bolt') &&
+        !pkg.name.includes('@bolt/critical-path-polyfills') // only currently exception to this rule
+      ) {
         expect(
           pkg.devDependencies,
           `Please move any of ${

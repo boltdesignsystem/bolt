@@ -5,6 +5,7 @@ import buttonSchema from '@bolt/components-button/button.schema.yml';
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
+import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
 // @ts-ignore
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
@@ -13,6 +14,9 @@ import chipSchema from '@bolt/components-chip/chip.schema.yml';
 // @ts-ignore
 import imageSchema from '@bolt/components-image/image.schema.yml';
 import animateSchema from '@bolt/components-animate/animate.schema';
+import * as starters from '@bolt/micro-journeys/starters';
+// @ts-ignore
+import linkSchema from '../../components/bolt-link/link.schema.yml'; // @todo figure out why the @bolt module name does not resolve for this
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import { isChildOfEl, convertSchemaPropToTrait } from './utils';
 
@@ -68,6 +72,22 @@ const statusBarAlert = {
   },
 };
 
+const cta = {
+  id: 'bolt-cta',
+  title: 'CTA',
+  data: {
+    type: 'bolt-cta',
+    attributes: {},
+    content: [
+      `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>`,
+      `<bolt-text font-size="xsmall" slot="link" display="inline">
+        CTA Text
+        <bolt-icon name="chevron-right"></bolt-icon>
+      </bolt-text>`,
+    ],
+  },
+};
+
 const icon = {
   id: 'bolt-icon',
   title: 'Icon',
@@ -82,13 +102,48 @@ const icon = {
   },
 };
 
+const link = {
+  id: 'bolt-link',
+  title: 'Link',
+  data: {
+    type: 'bolt-link',
+    content: 'Im a link',
+    attributes: {
+      display: 'inline',
+      valign: 'start',
+    },
+  },
+};
+
 const basicSlottableComponents = [
   statusBar,
   statusBarAlert,
   icon,
   smallButton,
   basicText,
+  cta,
+  link,
 ];
+
+const characterSlottableComponents = [];
+const ctaTextSlottableComponents = [];
+
+Object.keys(starters).map(id => {
+  const content = starters[id];
+  const component = {
+    id,
+    title: id,
+    data: {
+      content,
+    },
+  };
+  if (id.startsWith('cta')) {
+    ctaTextSlottableComponents.push(component);
+  }
+  if (id.includes('Character')) {
+    characterSlottableComponents.push(component);
+  }
+});
 
 /**
  * @param {grapesjs.Editor} editor
@@ -119,7 +174,7 @@ export function setupBolt(editor) {
    * @param {Object} opt
    * @param {string} opt.name i.e. `bolt-button`
    * @param {import('./utils').JsonSchema} [opt.schema]
-   * @param {string} [opt.initialContent] HTML for when block is added
+   * @param {string[]} [opt.initialContent] HTML for when block is added
    * @param {string} [opt.extend] name of GrapesJS Component to extend
    * @param {string} [opt.category='Bolt Components']
    * @param {boolean | string} [opt.draggable=true] Indicates if it's possible to drag the component inside others. Can use CSS selectors
@@ -139,9 +194,9 @@ export function setupBolt(editor) {
    */
   function registerBoltComponent({
     name,
-    extend,
+    extend = 'text',
     schema = { properties: {} },
-    initialContent = 'Hello World',
+    initialContent = ['Hello World'],
     category = 'Bolt Components',
     draggable = true,
     editable = false,
@@ -247,7 +302,7 @@ export function setupBolt(editor) {
         select: true,
         content: {
           type: name,
-          components: [initialContent],
+          components: initialContent,
         },
       });
 
@@ -274,7 +329,7 @@ export function setupBolt(editor) {
     name: 'bolt-button',
     schema: buttonSchema,
     extend: 'text',
-    initialContent: 'Button',
+    initialContent: ['Button'],
     propsToTraits: ['size', 'width', 'border_radius'],
     extraTraits: [colorTrait],
   });
@@ -285,7 +340,7 @@ export function setupBolt(editor) {
     extend: 'text',
     editable: true,
     highlightable: true,
-    initialContent: 'Some Text',
+    initialContent: ['Some Text'],
     propsToTraits: [
       'align',
       'color',
@@ -311,14 +366,16 @@ export function setupBolt(editor) {
     name: 'bolt-icon',
     schema: iconSchema,
     // draggable: '[slot]',
-    initialContent: `<span></span>`,
+    initialContent: [`<span></span>`],
     propsToTraits: ['size', 'name', 'background', 'color'],
   });
 
   registerBoltComponent({
     name: 'bolt-blockquote',
     schema: blockquoteSchema,
-    initialContent: `<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
+    initialContent: [
+      `<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
+    ],
     slots: {
       default: true,
       logo: true,
@@ -339,14 +396,14 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-chip',
     schema: chipSchema,
-    initialContent: `<span>Placeholder</span>`,
+    initialContent: [`<span>Placeholder</span>`],
     propsToTraits: ['url'],
   });
 
   registerBoltComponent({
     name: 'bolt-image',
     schema: imageSchema,
-    initialContent: `<span>Placeholder</span>`, // @todo set
+    initialContent: [`<span>Placeholder</span>`], // @todo set
     propsToTraits: ['src', 'alt', 'no_lazy', 'cover'],
     extraTraits: [
       {
@@ -370,6 +427,16 @@ export function setupBolt(editor) {
       top: true,
       bottom: true,
     },
+    slotControls: [
+      {
+        slotName: 'top',
+        components: characterSlottableComponents,
+      },
+      {
+        slotName: 'bottom',
+        components: ctaTextSlottableComponents,
+      },
+    ],
   });
 
   registerBoltComponent({
@@ -409,6 +476,8 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-connection',
+    schema: connectionSchema,
+    propsToTraits: ['animType', 'direction'],
     draggable: false,
     editable: false,
     highlightable: true,
@@ -430,7 +499,7 @@ export function setupBolt(editor) {
     editable: true,
     highlightable: true,
     registerBlock: false,
-    propsToTraits: ['size', 'characterUrl', 'useIcon'],
+    propsToTraits: ['size', 'characterImage', 'characterCustomUrl', 'useIcon'],
     slots: {
       default: false,
       top: true,
@@ -445,9 +514,41 @@ export function setupBolt(editor) {
   });
 
   registerBoltComponent({
+    name: 'bolt-cta',
+    registerBlock: true,
+    slots: {
+      default: true,
+    },
+    initialContent: [
+      `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>`,
+      `<bolt-text font-size="xsmall" slot="link" display="inline">
+        CTA Text
+        <bolt-icon name="chevron-right"></bolt-icon>
+      </bolt-text>`,
+    ],
+    extraTraits: [],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-link',
+    schema: linkSchema,
+    editable: true,
+    extend: 'link',
+    registerBlock: true,
+    draggable: true,
+    propsToTraits: ['display', 'valign', 'url', 'isHeadline'],
+    slots: {
+      default: true,
+    },
+    initialContent: [`I'm a link`],
+  });
+
+  registerBoltComponent({
     name: 'bolt-status-dialogue-bar',
     schema: statusDialogueBarSchema,
-    initialContent: `<bolt-text size="xsmall" slot="text">Insert Text Here</bolt-text>`,
+    initialContent: [
+      `<bolt-text size="xsmall" slot="text">Insert Text Here</bolt-text>`,
+    ],
     draggable: true,
     editable: true,
     highlightable: true,

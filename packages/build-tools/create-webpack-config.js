@@ -233,6 +233,7 @@ async function createWebpackConfig(buildConfig) {
         functions: sassExportData,
         precision: 3,
         data: globalSassData.join('\n'),
+        outputStyle: 'nested',
       },
     },
   ];
@@ -313,7 +314,7 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.(cur|svg)$/,
+          test: /\.(cur|svg|png)$/,
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
@@ -323,6 +324,10 @@ async function createWebpackConfig(buildConfig) {
           test: [/\.yml$/, /\.yaml$/],
           use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
         },
+        {
+          test: [/\.html$/],
+          loader: 'raw-loader', // file as string
+        },
       ],
     },
     mode: config.prod ? 'production' : 'development',
@@ -330,25 +335,6 @@ async function createWebpackConfig(buildConfig) {
     //   mergeDuplicateChunks: true,
     // },
     optimization: {
-      minimize: true,
-      occurrenceOrder: true,
-      namedChunks: true,
-      removeAvailableModules: true,
-      removeEmptyChunks: true,
-      nodeEnv: 'production',
-      mergeDuplicateChunks: true,
-      concatenateModules: true,
-      splitChunks: {
-        chunks: 'async',
-        cacheGroups: {
-          vendors: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'async',
-            reuseExistingChunk: true,
-          },
-        },
-      },
       minimizer: config.prod
         ? [
             new UglifyJsPlugin({

@@ -36,10 +36,7 @@ class SVGAnimations extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classMap(classes)}" is="shadow-root">
-        <div class="c-bolt-svg-animations__content">
-          ${this.slot('default')}
-        </div>
+      <div class="${classMap(classes)}">
         ${SVGTag({ speed, theme, direction })}
       </div>
     `;

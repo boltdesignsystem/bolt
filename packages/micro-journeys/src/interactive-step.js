@@ -141,7 +141,7 @@ class BoltInteractiveStep extends withLitHtml() {
     // old approach
     const old = html`
       ${this.addStyles([styles])}
-      <li class="${classes}" is="shadow-root">
+      <li class="${classes}">
         <div
           class="c-bolt-interactive-step__nav-item-wrapper"
           @click=${() => this.triggerStepChange()}

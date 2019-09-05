@@ -46,6 +46,9 @@ bolt-modal:not([ready]) {
 
 .c-bolt-modal {
   @include bolt-z-index(modal);
+  @include bolt-font-family(body);
+  @include bolt-font-size(medium);
+  @include bolt-font-weight(regular);
 
   display: block;
   opacity: bolt-opacity(0);
@@ -61,6 +64,7 @@ bolt-modal:not([ready]) {
 
   &.is-open {
     opacity: bolt-opacity(100);
+    cursor: pointer;
     pointer-events: auto;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -163,9 +167,10 @@ bolt-modal:not([ready]) {
   }
 
   @at-root .c-bolt-modal.is-open #{&} {
+    cursor: auto;
+
     @include bolt-mq($bolt-modal-breakpoint) {
       visibility: visible;
-      cursor: auto;
       transition: visibility 0s $bolt-transition-ease 0s;
     }
   }
@@ -394,16 +399,6 @@ bolt-modal:not([ready]) {
     @include bolt-mq($bolt-modal-breakpoint) {
       height: 0.1rem;
       background-color: bolt-color(white);
-
-      .t-bolt-light &,
-      .t-bolt-xlight & {
-        background-color: bolt-color(white);
-      }
-
-      .t-bolt-dark &,
-      .t-bolt-xdark & {
-        background-color: bolt-color(indigo, light);
-      }
     }
   }
 
@@ -413,6 +408,28 @@ bolt-modal:not([ready]) {
 
   &:after {
     transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+  }
+}
+
+.c-bolt-modal__close-button--dark {
+  .c-bolt-modal__close-button__icon {
+    &:before,
+    &:after {
+      @include bolt-mq($bolt-modal-breakpoint) {
+        background-color: bolt-color(indigo, light);
+      }
+    }
+  }
+}
+
+.c-bolt-modal__close-button--light {
+  .c-bolt-modal__close-button__icon {
+    &:before,
+    &:after {
+      @include bolt-mq($bolt-modal-breakpoint) {
+        background-color: bolt-color(white);
+      }
+    }
   }
 }
 

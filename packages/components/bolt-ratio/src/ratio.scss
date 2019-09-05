@@ -7,6 +7,7 @@
 bolt-ratio {
   display: block;
   width: 100%;
+  overflow: hidden; // Hide placeholder blurred images from leaking through
 
   &:not(:defined){
     @supports (--custom: property) {
@@ -22,6 +23,7 @@ bolt-ratio {
 
 :host {
   display: block;
+  overflow: hidden; // Hide placeholder blurred images from leaking through
 }
 
 .c-bolt-ratio {
