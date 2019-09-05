@@ -26,7 +26,7 @@
 <bolt-icon {{ attributes }}>{% spaceless %}
   {% if fallback %}
     {% set svgIcon %}
-      {% include "@bolt-components-icons/#{name}.min.svg" %}
+      {% include "@bolt-icon-assets/#{name}.min.svg" ignore missing %}
     {% endset %}
 
     {{ svgIcon
