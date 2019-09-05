@@ -14,6 +14,7 @@ import chipSchema from '@bolt/components-chip/chip.schema.yml';
 // @ts-ignore
 import imageSchema from '@bolt/components-image/image.schema.yml';
 import animateSchema from '@bolt/components-animate/animate.schema';
+import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore
 import linkSchema from '../../components/bolt-link/link.schema.yml'; // @todo figure out why the @bolt module name does not resolve for this
 // import { animationNames } from '@bolt/components-animate/animation-meta';
@@ -124,6 +125,26 @@ const basicSlottableComponents = [
   link,
 ];
 
+const characterSlottableComponents = [];
+const ctaTextSlottableComponents = [];
+
+Object.keys(starters).map(id => {
+  const content = starters[id];
+  const component = {
+    id,
+    title: id,
+    data: {
+      content,
+    },
+  };
+  if (id.startsWith('cta')) {
+    ctaTextSlottableComponents.push(component);
+  }
+  if (id.includes('Character')) {
+    characterSlottableComponents.push(component);
+  }
+});
+
 /**
  * @param {grapesjs.Editor} editor
  * @returns {void}
@@ -173,7 +194,7 @@ export function setupBolt(editor) {
    */
   function registerBoltComponent({
     name,
-    extend,
+    extend = 'text',
     schema = { properties: {} },
     initialContent = ['Hello World'],
     category = 'Bolt Components',
@@ -406,6 +427,16 @@ export function setupBolt(editor) {
       top: true,
       bottom: true,
     },
+    slotControls: [
+      {
+        slotName: 'top',
+        components: characterSlottableComponents,
+      },
+      {
+        slotName: 'bottom',
+        components: ctaTextSlottableComponents,
+      },
+    ],
   });
 
   registerBoltComponent({
