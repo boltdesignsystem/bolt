@@ -86,7 +86,7 @@ class BoltAutosuggest extends withPreact() {
   }
 
   // return the parent that's rendering <bolt-autosuggest> based on Shadow DOM usage
-  get getParent(){
+  get getParent() {
     if (this.shadowRoot && this.shadowRoot.host) {
       return this.shadowRoot.host;
     } else {
