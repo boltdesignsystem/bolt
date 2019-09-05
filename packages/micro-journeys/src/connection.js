@@ -29,10 +29,7 @@ class BoltConnection extends withLitHtml() {
     const { direction, animType, speed } = this.validateProps(this.props);
     const classes = cx('c-bolt-connection');
 
-    console.log('Hey super smart developer, you probably want this info -> ', {
-      props: this.props,
-    });
-
+    // @TODO hide top slot if there's no content
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}">
