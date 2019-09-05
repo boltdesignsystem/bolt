@@ -63,10 +63,6 @@ class BoltCharacter extends withLitHtml() {
         ? characterCustomUrl
         : resolveCharacterImage(characterImage);
 
-    console.log('Hey super smart developer, you probably want this info -> ', {
-      image,
-    });
-
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}">
