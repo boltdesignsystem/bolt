@@ -21,10 +21,6 @@ import linkSchema from '../../components/bolt-link/link.schema.yml'; // @todo fi
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import { isChildOfEl, convertSchemaPropToTrait } from './utils';
 
-console.log('Hey super smart developer, you probably want this info -> ', {
-  svgAnimationsSchema
-});
-
 class EditorRegisterBoltError extends Error {}
 
 const smallButton = {
