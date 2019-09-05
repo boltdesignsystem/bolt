@@ -1,7 +1,7 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
-export const ConnectionBand = ({ direction }) => {
+export const connectionBand = ({ direction }) => {
   const authoredStyle = html`
     @keyframes connectionArrowScroll { 0% { transform:
     translate(82.3648681640625px, 0px) translate(-82.3648681640625px, 0px)

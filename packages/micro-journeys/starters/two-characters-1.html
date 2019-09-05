@@ -1,13 +1,13 @@
 <bolt-two-character-layout>
   <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="10">
     <bolt-character size="medium" character-image="u-comm-plus">
-      <span slot="top"></span>
-      <span slot="left"></span>
-      <span slot="bottom"><bolt-text font-size="xsmall">Company</bolt-text></span>
+      <bolt-animate slot="top"></bolt-animate>
+      <bolt-animate slot="left"></bolt-animate>
+      <bolt-animate slot="bottom"><bolt-text font-size="xsmall">Company</bolt-text></bolt-animate>
       <bolt-animate slot="background" in="fade-in-fade-out" in-order="2" in-duration="4000">
         <bolt-svg-animations
           speed="4000"
-          animtype="Radar"
+          anim-type="radar"
           theme="dark"
         ></bolt-svg-animations>
       </bolt-animate>
@@ -25,8 +25,8 @@
           </p>
         </bolt-status-dialogue-bar>
       </bolt-animate>
-      <span slot="right" idle="none"></span>
-      <span slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></span>
+      <bolt-animate slot="right" idle="none"></bolt-animate>
+      <bolt-animate slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></bolt-animate>
     </bolt-character>
   </bolt-animate>
 </bolt-two-character-layout>

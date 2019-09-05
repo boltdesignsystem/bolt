@@ -7,16 +7,20 @@
         </p>
       </bolt-status-dialogue-bar>
     </bolt-animate>
-    <span slot="left"></span>
-    <span slot="right"></span>
-    <span slot="bottom">
+    <bolt-animate slot="left"></bolt-animate>
+    <bolt-animate slot="right"></bolt-animate>
+    <bolt-animate slot="bottom">
           <bolt-cta>
-            <bolt-icon slot="icon" name="eye"></bolt-icon>
-            <bolt-text font-size="xsmall" slot="link" display="inline">
-              Customer billing view
-              <bolt-icon name="chevron-right"></bolt-icon>
-            </bolt-text>
+            <bolt-animate slot="icon">
+              <bolt-icon name="eye"></bolt-icon>
+            </bolt-animate>
+            <bolt-animate slot="link">
+              <bolt-text font-size="xsmall" display="inline">
+                Customer billing view
+                <bolt-icon name="chevron-right"></bolt-icon>
+              </bolt-text>
+            </bolt-animate>
           </bolt-cta>
-        </span>
+        </bolt-animate>
   </bolt-character>
 </bolt-one-character-layout>
