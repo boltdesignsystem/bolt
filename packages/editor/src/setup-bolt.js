@@ -7,6 +7,7 @@ import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
+import svgAnimationsSchema from '@bolt/components-svg-animations/svg-animations.schema';
 // @ts-ignore
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 // @ts-ignore
@@ -19,6 +20,10 @@ import * as starters from '@bolt/micro-journeys/starters';
 import linkSchema from '../../components/bolt-link/link.schema.yml'; // @todo figure out why the @bolt module name does not resolve for this
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import { isChildOfEl, convertSchemaPropToTrait } from './utils';
+
+console.log('Hey super smart developer, you probably want this info -> ', {
+  svgAnimationsSchema
+});
 
 class EditorRegisterBoltError extends Error {}
 
@@ -78,6 +83,12 @@ const link = {
   id: 'bolt-link',
   title: 'Link',
   content: `<bolt-link display="inline" valign="start">I'm a link</bolt-link>`,
+};
+
+const svgAnimations = {
+  id: 'bolt-svg-animations',
+  title: 'Svg Animtions',
+  content: `<bolt-svg-animations anim-type="orbit"></bolt-svg-animations>`,
 };
 
 const basicSlottableComponents = [
@@ -483,6 +494,7 @@ export function setupBolt(editor) {
       left: true,
       right: true,
       bottom: true,
+      background: true,
     },
     slotControls: [
       ...['top', 'right', 'bottom', 'left'].map(slotName => ({
@@ -491,7 +503,7 @@ export function setupBolt(editor) {
       })),
       {
         slotName: 'background',
-        components: basicSlottableComponents,
+        components: [svgAnimations],
       },
     ],
   });
@@ -545,16 +557,9 @@ export function setupBolt(editor) {
   });
 
   registerBoltComponent({
-    name: 'bolt-link',
-    schema: linkSchema,
-    editable: true,
-    extend: 'link',
-    registerBlock: true,
-    draggable: true,
-    propsToTraits: ['display', 'valign', 'url', 'isHeadline'],
-    slots: {
-      default: true,
-    },
-    initialContent: [`I'm a link`],
+    name: 'bolt-svg-animations',
+    schema: svgAnimationsSchema,
+    registerBlock: false,
+    propsToTraits: ['animType', 'direction'],
   });
 }

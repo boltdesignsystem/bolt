@@ -5,12 +5,12 @@ module.exports = {
     speed: {
       type: 'string',
       description: 'Speed of the animation, typically rotation.',
-      default: '1000',
+      default: '4000',
     },
     animType: {
       type: 'string',
       description: 'Type of predefined animated SVG to use.',
-      enum: ['connectionBand'],
+      enum: ['connectionBand', 'orbit', 'radar', 'automation'],
       default: 'connectionBand',
     },
     direction: {
