@@ -1,5 +1,4 @@
 module.exports = {
-  $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Micro Journey Connection',
   type: 'object',
   properties: {
