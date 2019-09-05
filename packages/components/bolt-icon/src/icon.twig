@@ -35,7 +35,7 @@
 {% endset %}
 
 <bolt-icon {{ attributes }}>{% spaceless %}
-  {% if fallback %}
+  {% if preload %}
     {% set svgIcon %}
       {% include "@bolt-icon-assets/#{name}.min.svg" ignore missing %}
     {% endset %}
