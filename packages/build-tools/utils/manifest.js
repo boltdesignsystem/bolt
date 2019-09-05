@@ -357,6 +357,14 @@ async function getTwigNamespaceConfig(relativeFrom, extraNamespaces = {}) {
         recursive: true,
         paths: [config.dataDir],
       },
+      'bolt-icon-assets': {
+        recursive: true,
+        paths: [`${config.buildDir}/icons`],
+      },
+      'bolt-assets': {
+        recursive: true,
+        paths: [config.buildDir],
+      },
     },
     namespaces,
   );

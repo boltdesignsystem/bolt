@@ -21,6 +21,7 @@ async function mkDirs() {
       config.wwwDir ? mkdirp(config.wwwDir) : null,
       config.dataDir ? mkdirp(config.dataDir) : null,
       config.buildDir ? mkdirp(config.buildDir) : null,
+      config.buildDir ? mkdirp(`${config.buildDir}/icons`) : null,
     ]);
   } catch (error) {
     log.errorAndExit('Could not make all directories necessary.', error);
