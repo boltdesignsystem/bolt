@@ -65,7 +65,9 @@ class BoltInteractivePathway extends withLitHtml() {
    */
   getTitle() {
     /** @type {HTMLElement} */
-    const pathwayTitleEl = this.renderRoot.querySelector('.c-bolt-interactive-pathway__nav-item--active');
+    const pathwayTitleEl = this.renderRoot.querySelector(
+      '.c-bolt-interactive-pathway__nav-item--active',
+    );
     return pathwayTitleEl ? pathwayTitleEl.innerText : '';
   }
 
