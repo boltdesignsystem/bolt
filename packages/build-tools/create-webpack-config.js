@@ -35,6 +35,8 @@ async function createWebpackConfig(buildConfig) {
   const config = buildConfig;
   const fullBuildConfig = await getConfig();
 
+  // console.log('DIR', __dirname);
+  // console.log('CONFIG', config);
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
   // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
@@ -194,6 +196,12 @@ async function createWebpackConfig(buildConfig) {
 
   const scssLoaders = [
     {
+      loader: 'cache-loader',
+      options: {
+        cacheDirectory: './.webpack-cache',
+      },
+    },
+    {
       loader: 'css-loader',
       options: {
         sourceMap: config.sourceMaps,
@@ -271,13 +279,25 @@ async function createWebpackConfig(buildConfig) {
       rules: [
         {
           test: /\.(ts|tsx)$/,
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
+          use: [
+            {
+              loader: 'cache-loader',
+              options: {
+                cacheDirectory: './.webpack-cache',
+              },
+            },
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+              },
+            },
+          ],
         },
         {
           test: /\.scss$/,
+          // include: path.resolve(__dirname, '../'),
           oneOf: [
             {
               issuer: /\.js$/,
@@ -296,33 +316,73 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(js|tsx|mjs)$/,
           exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              babelrc: false,
-              cacheDirectory: true,
-              presets: ['@bolt/babel-preset-bolt'],
+          use: [
+            {
+              loader: 'cache-loader',
+              options: {
+                cacheDirectory: './.webpack-cache',
+              },
             },
-          },
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                cacheDirectory: true,
+                presets: ['@bolt/babel-preset-bolt'],
+              },
+            },
+          ],
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 500,
-            name: 'fonts/[name].[ext]',
-          },
+          // include: path.resolve(config.wwwDir, '../packages'),
+          use: [
+            {
+              loader: 'cache-loader',
+              options: {
+                cacheDirectory: './.webpack-cache',
+              },
+            },
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 500,
+                name: 'fonts/[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: /\.(cur|svg)$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
+          // include: path.resolve(config.wwwDir, '../packages'),
+          use: [
+            {
+              loader: 'cache-loader',
+              options: {
+                cacheDirectory: './.webpack-cache',
+              },
+            },
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+          // include: path.resolve(config.wwwDir, '../packages'),
+          use: [
+            {
+              loader: 'cache-loader',
+              options: {
+                cacheDirectory: './.webpack-cache',
+              },
+            },
+            'json-loader',
+            'yaml-loader',
+          ],
         },
       ],
     },
