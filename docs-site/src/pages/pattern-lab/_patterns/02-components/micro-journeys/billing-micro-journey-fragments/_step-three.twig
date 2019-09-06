@@ -1,56 +1,7 @@
-<bolt-interactive-step tab-title="Smart offers">
-{#  <span slot="title">Smart offers</span>#}
-
   <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
-    <bolt-two-character-layout>
-      <bolt-animate slot="character--left" in-order="1" in="fade-in-slide-up" out="fade-out" out-order="10">
-        <bolt-character size="medium" character-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/u-comm-plus.png">
-          <bolt-animate in="fade-in-slide-up" in-order="2" out="fade-out" slot="top" out-order="5">
-            <bolt-status-dialogue-bar>
-              <bolt-text slot="text" align="start" font-size="xsmall">
-                Customer is 79% likely to call<br>about their bill.
-              </bolt-text>
-            </bolt-status-dialogue-bar>
-          </bolt-animate>
-          <span slot="left"></span>
-          <span slot="bottom"><bolt-text font-size="xsmall">Company</bolt-text></span>
-          <bolt-svg-animations
-              slot="background"
-              speed="4000"
-              animtype="Orbit"
-          ></bolt-svg-animations>
-        </bolt-character>
-      </bolt-animate>
-      <bolt-animate slot="connection" in="fade-in-slide-up" in-order="5" out="fade-out" out-order="1">
-        <bolt-connection></bolt-connection>
-      </bolt-animate>
-      <bolt-animate slot="character--right" in="fade-in-slide-up" in-order="10" out="fade-out" out-order="10">
-        <bolt-character size="medium" character-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/customer-neutral.png">
-          <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
-            <bolt-status-dialogue-bar icon-name="email">
-              <bolt-text slot="text" align="start" font-size="xsmall">
-                Offer to waive late fee.
-              </bolt-text>
-            </bolt-status-dialogue-bar>
-          </bolt-animate>
-          <span slot="right" idle="none"></span>
-          <span slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></span>
-        </bolt-character>
-      </bolt-animate>
-    </bolt-two-character-layout>
+    {{ source('@bolt-micro-journeys/starters/two-characters-2.html') }}
   </bolt-animate>
 
   <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
-    <bolt-text>
-      Use Pega’s AI-powered propensity modeling to determine the appropriate offer that gives your customer resolution she needs – without having to call your service center.
-    </bolt-text>
-    <bolt-cta>
-      <bolt-icon slot="icon" name="asset-presentation"></bolt-icon>
-      <bolt-text font-size="xsmall" slot="link" display="inline">
-        See this in action
-        <bolt-icon name="chevron-right"></bolt-icon>
-      </bolt-text>
-    </bolt-cta>
+    {{ source('@bolt-micro-journeys/starters/cta-text-2.html') }}
   </bolt-animate>
-</bolt-interactive-step>
-

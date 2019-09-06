@@ -52,6 +52,7 @@ module.exports = {
         browserName: 'chrome',
         chromeOptions: {
           args: ['--headless'],
+          w3c: false,
         },
         javascriptEnabled: true,
         acceptSslCerts: true,
@@ -63,6 +64,7 @@ module.exports = {
         browserName: 'chrome',
         chromeOptions: {
           args: ['--headless'],
+          w3c: false,
         },
         javascriptEnabled: true,
         acceptSslCerts: true,

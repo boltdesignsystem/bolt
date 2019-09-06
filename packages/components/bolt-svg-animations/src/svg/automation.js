@@ -1,9 +1,10 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 
-export const Automation = ({ speed }) => {
+export const automation = ({ speed }) => {
   const authoredStyle = html`
     #bolt-automation-container { max-height: 400px; max-width: 400px; }
-    @keyframes kf_line1 { 0% {transform: translate(70.80000305175781px, 0px)
+    bolt-automation-svg { transform: translateZ(0);} @keyframes kf_line1 { 0%
+    {transform: translate(70.80000305175781px, 0px)
     translate(-70.80000305175781px, 0px) translate(0px, 37px);} 16.67%
     {transform: translate(70.80000305175781px, 0px)
     translate(-70.80000305175781px, 0px) translate(0px, -30px);} 50% {transform:
@@ -126,6 +127,7 @@ export const Automation = ({ speed }) => {
     backwards; }
   `;
 
+  // This one requireds the 'html' template literal
   return html`
     <style>
       ${authoredStyle}

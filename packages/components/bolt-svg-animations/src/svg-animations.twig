@@ -14,5 +14,8 @@
   {% set attributes = attributes.setAttribute("theme", theme) %}
 {% endif %}
 
+{% if direction %}
+  {% set attributes = attributes.setAttribute("direction", direction) %}
+{% endif %}
 
 <bolt-svg-animations {{ attributes }}><slot>{{ content }}</slot></bolt-svg-animations>

@@ -28,7 +28,7 @@ class BoltOneCharacterLayout extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         ${this.slot('default')}
       </div>
     `;

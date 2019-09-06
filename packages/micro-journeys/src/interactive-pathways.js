@@ -29,11 +29,14 @@ class BoltInteractivePathways extends withLitHtml() {
 
   connectedCallback() {
     super.connectedCallback();
-    // wait till children are mounted before trying to find them
+    // @todo remove
     setTimeout(() => {
-      this.style.opacity = 1;
-      this.showPathway(0);
-    }, 0);
+      // wait till children are mounted before trying to find them
+      setTimeout(() => {
+        this.style.opacity = 1;
+        this.showPathway(0);
+      }, 0);
+    });
   }
 
   /**
@@ -98,7 +101,7 @@ class BoltInteractivePathways extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         <div class="c-bolt-interactive-pathways__header">
           <img
             src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/interactive-pathways-logo.png"

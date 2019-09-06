@@ -92,6 +92,8 @@ class BoltInteractiveStep extends withLitHtml() {
     );
   }
 
+  getThemeFromParent() {}
+
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const { disabled, tabTitle } = this.validateProps(this.props);
@@ -120,7 +122,6 @@ class BoltInteractiveStep extends withLitHtml() {
         <header
           class="${titleClasses}"
           @click=${() => this.triggerStepChange()}
-          style="font-weight: ${this._isActiveStep ? 'bold' : 'normal'}"
         >
           ${tabTitle}
         </header>
@@ -140,7 +141,7 @@ class BoltInteractiveStep extends withLitHtml() {
     // old approach
     const old = html`
       ${this.addStyles([styles])}
-      <li class="${classes}" is="shadow-root">
+      <li class="${classes}">
         <div
           class="c-bolt-interactive-step__nav-item-wrapper"
           @click=${() => this.triggerStepChange()}

@@ -5,7 +5,9 @@ import buttonSchema from '@bolt/components-button/button.schema.yml';
 import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
+import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
+import svgAnimationsSchema from '@bolt/components-svg-animations/svg-animations.schema';
 // @ts-ignore
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 // @ts-ignore
@@ -13,6 +15,9 @@ import chipSchema from '@bolt/components-chip/chip.schema.yml';
 // @ts-ignore
 import imageSchema from '@bolt/components-image/image.schema.yml';
 import animateSchema from '@bolt/components-animate/animate.schema';
+import * as starters from '@bolt/micro-journeys/starters';
+// @ts-ignore
+import linkSchema from '../../components/bolt-link/link.schema.yml'; // @todo figure out why the @bolt module name does not resolve for this
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import { isChildOfEl, convertSchemaPropToTrait } from './utils';
 
@@ -21,65 +26,65 @@ class EditorRegisterBoltError extends Error {}
 const smallButton = {
   id: 'bolt-button--small',
   title: 'Button',
-  data: {
-    type: 'bolt-button',
-    content: 'Button',
-    attributes: {
-      size: 'small',
-    },
-  },
+  content: `<bolt-button size="small">Button</bolt-button>`,
 };
 
 const basicText = {
   id: 'bolt-text',
   title: 'Text',
-  data: {
-    type: 'bolt-text',
-    attributes: {
-      'font-size': 'xsmall',
-    },
-    content: `Hello!`,
-  },
+  content: `<bolt-text font-size="xsmall">Hello!</bolt-text>`,
 };
 
 const statusBar = {
   id: 'bolt-status-dialogue-bar',
   title: 'Dialogue Bar',
-  data: {
-    type: 'bolt-status-dialogue-bar',
-    attributes: {
-      'icon-name': 'cloud',
-    },
-    content: `<p slot="text"> I'm a large character </p>`,
-  },
+  content: `
+    <bolt-status-dialogue-bar icon-name="cloud">
+      <p slot="text"> I'm a large character </p>
+    </bolt-status-dialogue-bar>
+    `,
 };
 
 const statusBarAlert = {
   id: 'bolt-status-dialogue-bar--alert',
   title: 'Dialogue Bar: alert',
-  data: {
-    type: 'bolt-status-dialogue-bar',
-    attributes: {
-      'dialogue-arrow-direction': 'none',
-      'is-alert-message': true,
-      'icon-name': 'exclamation', // @todo change to exclamation mark after icon is added
-    },
-    content: `<p slot="text"> Uh oh! </p>`,
-  },
+  content: `
+    <bolt-status-dialogue-bar dialogue-arrow-direction="none" is-alert-message icon-name="exclamation">
+      <p slot="text"> Uh oh! </p>
+    </bolt-status-dialogue-bar>
+  `,
+};
+
+const cta = {
+  id: 'bolt-cta',
+  title: 'CTA',
+  content: `
+      <bolt-cta>
+        <bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>
+        <bolt-text font-size="xsmall" slot="link" display="inline">
+          CTA Text
+          <bolt-icon name="chevron-right"></bolt-icon>
+        </bolt-text>
+      </bolt-cta>
+      `,
 };
 
 const icon = {
   id: 'bolt-icon',
   title: 'Icon',
-  data: {
-    type: 'bolt-icon',
-    attributes: {
-      size: 'xlarge',
-      name: 'customer-onboarding',
-      background: 'circle',
-      color: 'blue',
-    },
-  },
+  content: `<bolt-icon size="xlarge" name="customer-onboarding" background="circle" color="blue"></bolt-icon>`,
+};
+
+const link = {
+  id: 'bolt-link',
+  title: 'Link',
+  content: `<bolt-link display="inline" valign="start">I'm a link</bolt-link>`,
+};
+
+const svgAnimations = {
+  id: 'bolt-svg-animations',
+  title: 'Svg Animtions',
+  content: `<bolt-svg-animations anim-type="orbit"></bolt-svg-animations>`,
 };
 
 const basicSlottableComponents = [
@@ -88,7 +93,27 @@ const basicSlottableComponents = [
   icon,
   smallButton,
   basicText,
+  cta,
+  link,
 ];
+
+const characterSlottableComponents = [];
+const ctaTextSlottableComponents = [];
+
+Object.keys(starters).map(id => {
+  const content = starters[id];
+  const component = {
+    id,
+    title: id,
+    content,
+  };
+  if (id.startsWith('cta')) {
+    ctaTextSlottableComponents.push(component);
+  }
+  if (id.includes('Character')) {
+    characterSlottableComponents.push(component);
+  }
+});
 
 /**
  * @param {grapesjs.Editor} editor
@@ -116,11 +141,18 @@ export function setupBolt(editor) {
   });
 
   /**
+   * @typedef SlotControl
+   * @prop {string} slotName
+   * @prop {{ id: string, title: string, content: string}[]} components
+   */
+
+  /**
    * @param {Object} opt
    * @param {string} opt.name i.e. `bolt-button`
+   * @param {string} [opt.blockTitle] only used if `registerBlock` is `true`
    * @param {import('./utils').JsonSchema} [opt.schema]
-   * @param {string} [opt.initialContent] HTML for when block is added
-   * @param {string} [opt.extend] name of GrapesJS Component to extend
+   * @param {string[]} [opt.initialContent] HTML for when block is added
+   * @param {string} [opt.extend='text'] name of GrapesJS Component to extend
    * @param {string} [opt.category='Bolt Components']
    * @param {boolean | string} [opt.draggable=true] Indicates if it's possible to drag the component inside others. Can use CSS selectors
    * @param {boolean} [opt.editable=true] Allow to edit the content of the component (used on Text components).
@@ -133,20 +165,21 @@ export function setupBolt(editor) {
    * @param {grapesjs.GrapeTrait[]} [opt.extraTraits=[]] Full Trait objects that need more custom attention than `propsToTraits`
    * @param {(el: HTMLElement) => boolean} [opt.isComponent] - function to determine if an HTMLElement is this component. Defaults to seeing if tag name is component name
    * @param {Object.<string, boolean|string>} [opt.slots={ default: true }] - Which slots are available and what can go in them. For example `{ default: true, top: 'bolt-text, bolt-button' }` would let any element be placed as a direct child (the `default` slot) and the `top` slot would only accept `<bolt-text>` or `<bolt-button>`. Those values are passed right to Grape JS's `droppable`.
-   * @param {grapesjs.SlotControl[]} [opt.slotControls]
+   * @param {SlotControl[]} [opt.slotControls]
    * @returns {{ component: Object, block: Object }} instances from registering @todo fill out types
    * @see {convertSchemaPropToTrait}
    */
   function registerBoltComponent({
     name,
-    extend,
+    blockTitle,
+    extend = 'text',
     schema = { properties: {} },
-    initialContent = 'Hello World',
+    initialContent = [],
     category = 'Bolt Components',
     draggable = true,
     editable = false,
     highlightable = false,
-    registerBlock = true,
+    registerBlock = false,
     badgable = true,
     layerable = true,
     selectable = true,
@@ -242,12 +275,12 @@ export function setupBolt(editor) {
 
     if (registerBlock) {
       const block = BlockManager.add(name, {
-        label: `<span title="${description}">${title || name}</span>`,
+        label: `<span title="${description}">${blockTitle || name}</span>`,
         category,
         select: true,
         content: {
           type: name,
-          components: [initialContent],
+          components: initialContent,
         },
       });
 
@@ -274,7 +307,7 @@ export function setupBolt(editor) {
     name: 'bolt-button',
     schema: buttonSchema,
     extend: 'text',
-    initialContent: 'Button',
+    initialContent: ['Button'],
     propsToTraits: ['size', 'width', 'border_radius'],
     extraTraits: [colorTrait],
   });
@@ -285,7 +318,7 @@ export function setupBolt(editor) {
     extend: 'text',
     editable: true,
     highlightable: true,
-    initialContent: 'Some Text',
+    initialContent: ['Some Text'],
     propsToTraits: [
       'align',
       'color',
@@ -311,14 +344,16 @@ export function setupBolt(editor) {
     name: 'bolt-icon',
     schema: iconSchema,
     // draggable: '[slot]',
-    initialContent: `<span></span>`,
+    initialContent: [`<span></span>`],
     propsToTraits: ['size', 'name', 'background', 'color'],
   });
 
   registerBoltComponent({
     name: 'bolt-blockquote',
     schema: blockquoteSchema,
-    initialContent: `<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
+    initialContent: [
+      `<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
+    ],
     slots: {
       default: true,
       logo: true,
@@ -339,14 +374,14 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-chip',
     schema: chipSchema,
-    initialContent: `<span>Placeholder</span>`,
+    initialContent: [`<span>Placeholder</span>`],
     propsToTraits: ['url'],
   });
 
   registerBoltComponent({
     name: 'bolt-image',
     schema: imageSchema,
-    initialContent: `<span>Placeholder</span>`, // @todo set
+    initialContent: [`<span>Placeholder</span>`], // @todo set
     propsToTraits: ['src', 'alt', 'no_lazy', 'cover'],
     extraTraits: [
       {
@@ -360,38 +395,84 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-interactive-step',
-    draggable: false,
+    draggable: 'bolt-interactive-pathway',
     editable: false,
     highlightable: false,
-    registerBlock: false,
     extraTraits: ['tab-title'],
     slots: {
-      // title: true,
       top: true,
       bottom: true,
     },
+    slotControls: [
+      {
+        slotName: 'top',
+        components: characterSlottableComponents,
+      },
+      {
+        slotName: 'bottom',
+        components: ctaTextSlottableComponents,
+      },
+    ],
   });
 
   registerBoltComponent({
     name: 'bolt-interactive-pathways',
-    draggable: false,
+    blockTitle: 'Pathways',
+    draggable: true,
     editable: false,
-    highlightable: true,
-    registerBlock: false,
+    highlightable: false,
+    registerBlock: true,
     slots: {
-      default: true,
+      default: 'bolt-interactive-pathway',
     },
+    initialContent: [
+      `<p slot="interactive-pathways-lead-text">How Pega technology resolves</p>`,
+      `<bolt-interactive-pathway pathway-title="This Pathway">
+        <bolt-interactive-step tab-title="Step 1">
+          <bolt-animate slot="top">
+            ${starters.twoCharacters1}
+          </bolt-animate>
+        </bolt-interactive-step>
+      </bolt-interactive-pathway>`,
+    ],
+    slotControls: [
+      {
+        slotName: 'default',
+        components: [
+          {
+            id: 'pathway',
+            title: 'Pathway',
+            content: `
+              <bolt-interactive-pathway pathway-title="A Title">
+              </bolt-interactive-pathway>
+            `,
+          },
+        ],
+      },
+    ],
   });
 
   registerBoltComponent({
     name: 'bolt-interactive-pathway',
-    draggable: false,
+    draggable: 'bolt-interactive-pathways',
     editable: false,
-    highlightable: false,
-    registerBlock: false,
+    highlightable: true,
+    extraTraits: ['pathway-title'],
     slots: {
-      steps: true,
+      default: true,
     },
+    slotControls: [
+      {
+        slotName: 'default',
+        components: [
+          {
+            id: 'step',
+            title: 'Step',
+            content: `<bolt-interactive-step></bolt-interactive-step>`,
+          },
+        ],
+      },
+    ],
   });
 
   registerBoltComponent({
@@ -401,7 +482,6 @@ export function setupBolt(editor) {
     draggable: false,
     editable: true,
     highlightable: true,
-    registerBlock: false,
     slots: {
       default: true,
     },
@@ -409,10 +489,11 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-connection',
+    schema: connectionSchema,
+    propsToTraits: ['animType', 'direction'],
     draggable: false,
     editable: false,
     highlightable: true,
-    registerBlock: false,
     slots: {
       top: true,
       bottom: true,
@@ -429,25 +510,64 @@ export function setupBolt(editor) {
     draggable: false,
     editable: true,
     highlightable: true,
-    registerBlock: false,
-    propsToTraits: ['size', 'characterUrl', 'useIcon'],
+    propsToTraits: ['size', 'characterImage', 'characterCustomUrl', 'useIcon'],
     slots: {
       default: false,
       top: true,
       left: true,
       right: true,
       bottom: true,
+      background: true,
     },
-    slotControls: ['top', 'right', 'bottom', 'left'].map(slotName => ({
-      slotName,
-      components: basicSlottableComponents,
-    })),
+    slotControls: [
+      ...['top', 'right', 'bottom', 'left'].map(slotName => ({
+        slotName,
+        components: basicSlottableComponents,
+      })),
+      {
+        slotName: 'background',
+        components: [svgAnimations],
+      },
+    ],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-cta',
+    registerBlock: true,
+    slots: {
+      default: true,
+    },
+    initialContent: [
+      `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>`,
+      `<bolt-text font-size="xsmall" slot="link" display="inline">
+        CTA Text
+        <bolt-icon name="chevron-right"></bolt-icon>
+      </bolt-text>`,
+    ],
+    extraTraits: [],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-link',
+    schema: linkSchema,
+
+    editable: true,
+    extend: 'link',
+    registerBlock: true,
+    draggable: true,
+    propsToTraits: ['display', 'valign', 'url', 'isHeadline'],
+    slots: {
+      default: true,
+    },
+    initialContent: [`I'm a link`],
   });
 
   registerBoltComponent({
     name: 'bolt-status-dialogue-bar',
     schema: statusDialogueBarSchema,
-    initialContent: `<bolt-text size="xsmall" slot="text">Insert Text Here</bolt-text>`,
+    initialContent: [
+      `<bolt-text size="xsmall" slot="text">Insert Text Here</bolt-text>`,
+    ],
     draggable: true,
     editable: true,
     highlightable: true,
@@ -457,5 +577,12 @@ export function setupBolt(editor) {
       // @todo consider changing `text` to `default`
       text: true,
     },
+  });
+
+  registerBoltComponent({
+    name: 'bolt-svg-animations',
+    schema: svgAnimationsSchema,
+    registerBlock: false,
+    propsToTraits: ['animType', 'direction', 'speed', 'theme'],
   });
 }

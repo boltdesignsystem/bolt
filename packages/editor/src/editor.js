@@ -1,6 +1,7 @@
 import * as grapesjs from 'grapesjs';
 import { html, render } from '@bolt/core';
 import { query } from '@bolt/core/utils';
+import { triggerAnimsInEl } from '@bolt/components-animate/utils';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
@@ -101,6 +102,53 @@ export function enableEditor({ space, uiWrapper, config }) {
               id: 'component-delete',
               label: 'Delete',
             },
+            // @todo why no work?
+            // {
+            //   command: 'core:component-prev',
+            //   id: 'component-prev',
+            //   label: 'Prev',
+            // },
+
+            {
+              id: 'device-mobile',
+              label: 'Mobile',
+              togglable: true,
+              command: {
+                run: editor => editor.setDevice('Mobile'),
+                stop: editor => editor.setDevice('Full'),
+              },
+            },
+            {
+              id: 'device-tablet',
+              label: 'Tablet',
+              togglable: true,
+              command: {
+                run: editor => editor.setDevice('Tablet'),
+                stop: editor => editor.setDevice('Full'),
+              },
+            },
+            {
+              id: 'device-desktop',
+              label: 'Desktop',
+              togglable: true,
+              command: {
+                run: editor => editor.setDevice('Desktop'),
+                stop: editor => editor.setDevice('Full'),
+              },
+            },
+            {
+              id: 'trigger-anim-in',
+              label: 'Trigger Anim In',
+              command: {
+                run: editor => {
+                  const component = editor.getSelected();
+                  if (component.is('bolt-animate')) {
+                    const el = component.getEl();
+                    el.triggerAnimIn();
+                  }
+                },
+              },
+            },
             {
               id: 'show-json',
               className: 'btn-show-json',
@@ -141,6 +189,14 @@ export function enableEditor({ space, uiWrapper, config }) {
       appendTo: editorSlots.blocks,
       blocks: [],
     },
+    deviceManager: {
+      devices: [
+        { name: 'Mobile', width: '400px' },
+        { name: 'Tablet', width: '700px' },
+        { name: 'Desktop', width: '1100px' },
+        { name: 'Full', width: '100%' },
+      ],
+    },
     styleManager: { type: null },
     assetManager: {
       assets: [
@@ -166,38 +222,74 @@ export function enableEditor({ space, uiWrapper, config }) {
       stylePrefix: `${stylePrefix}canvas-`,
       styles: config.styles,
     },
+    // rte: {
+    //   actions: false,
+    // },
   };
 
   const editor = grapesjs.init(editorConfig);
 
   /**
    * @param {Object} opt
+   * @param {string} name - tag name
    * @param {string} opt.slotName
-   * @param {grapesjs.ComponentObject} opt.data
+   * @param {string} opt.content - HTML to add
+   * @param {boolean} [opt.shouldCreateAnimatableSlotIfNotPresent=true]
+   * @param {boolean} [opt.selectAfterAdd=true]
+   * @param {boolean} [opt.triggerAnimsAfterAdd=true]
    * @return {grapesjs.Component}
    */
-  function addComponentToSelectedComponentsSlot({ slotName, data }) {
+  function addComponentToSelectedComponentsSlot({
+    name,
+    slotName,
+    content,
+    shouldCreateAnimatableSlotIfNotPresent = true,
+    selectAfterAdd = true,
+    triggerAnimsAfterAdd = true,
+  }) {
     const selected = editor.getSelected();
     const components = selected.components();
-    const slots = selected.find('[slot]');
-    const [slot] = selected.find(`[slot="${slotName}"]`);
-    if (slot) {
-      const slotComponents = slot.components();
-      return slotComponents.add(data);
+    /** @type {grapesjs.ComponentObject} */
+    const data = {
+      type: 'div', // temp tag, will remove after
+      content: '',
+    };
+
+    let tempComponent;
+    if (slotName === 'default') {
+      tempComponent = components.add(data);
     } else {
-      const [newSlot] = selected.append(
-        `<bolt-animate slot="${slotName}"></div>`,
-      );
-      const slotComponents = newSlot.components();
-      return slotComponents.add(data);
+      const slots = selected.find('[slot]');
+      const [slot] = selected.find(`${name} > [slot="${slotName}"]`);
+      if (slot) {
+        const slotComponents = slot.components();
+        tempComponent = slotComponents.add(data);
+      } else {
+        const [newSlot] = selected.append(
+          shouldCreateAnimatableSlotIfNotPresent
+            ? `<bolt-animate slot="${slotName}"></bolt-animate>`
+            : `<div slot="${slotName}"></div>`,
+        );
+        const slotComponents = newSlot.components();
+        tempComponent = slotComponents.add(data);
+      }
     }
+
+    const newComponent = tempComponent.replaceWith(content);
+    if (selectAfterAdd) editor.select(newComponent);
+    if (triggerAnimsAfterAdd) {
+      const newEl = newComponent.getEl();
+      triggerAnimsInEl(newEl);
+    }
+    return newComponent;
   }
 
   /**
    * @param {Object} opt
    * @param {grapesjs.SlotControl[]} opt.slotControls
+   * @param {string} opt.name - tag name
    */
-  function renderSlotControls({ slotControls }) {
+  function renderSlotControls({ slotControls, name }) {
     if (!slotControls) {
       render(html``, editorSlots.slotControls);
       return;
@@ -213,7 +305,8 @@ export function enableEditor({ space, uiWrapper, config }) {
             const component = components.find(c => c.id === value);
             const newComponent = addComponentToSelectedComponentsSlot({
               slotName,
-              data: component.data,
+              content: component.content,
+              name,
             });
             event.target.value = 'none';
           }}
@@ -238,7 +331,7 @@ export function enableEditor({ space, uiWrapper, config }) {
   editor.on('component:selected', (/** @type {grapesjs.Component} */ model) => {
     const name = model.getName().toLowerCase();
     const slotControls = model.getSlotControls && model.getSlotControls();
-    renderSlotControls({ slotControls });
+    renderSlotControls({ slotControls, name });
   });
 
   editor.on('component:deselected', model => {
@@ -257,9 +350,11 @@ export function enableEditor({ space, uiWrapper, config }) {
   config.scripts.forEach(script => {
     const scriptEl = canvasDoc.createElement('script');
     scriptEl.src = script;
+    scriptEl.async = true;
     canvasDoc.body.appendChild(scriptEl);
   });
 
+  // helpful to access current editor instance in console with `editor`
   window['editor'] = editor; // eslint-disable-line dot-notation
 
   let dropzoneSelector = '';
@@ -269,7 +364,7 @@ export function enableEditor({ space, uiWrapper, config }) {
     if (!dropzones) return;
     dropzones.forEach(el => {
       const isEmpty = el.children.length === 0;
-      el.style.outline = 'dotted green 2px';
+      el.style.outline = 'dotted green 1px';
     });
   }
 

@@ -26,17 +26,6 @@ interface GrapeTrait {
   }>;
 }
 
-interface SlottableComponent {
-  id: string;
-  title: string;
-  data: ComponentObject;
-}
-
-interface SlotControl {
-  slotName: string;
-  components: SlottableComponent[];
-}
-
 declare module 'grapesjs' {
   export function init(config: EditorConfig): Editor;
 
