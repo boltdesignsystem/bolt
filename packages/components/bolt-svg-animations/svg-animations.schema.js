@@ -10,7 +10,13 @@ module.exports = {
     animType: {
       type: 'string',
       description: 'Type of predefined animated SVG to use.',
-      enum: ['connectionBand', 'orbit', 'radar', 'automation'],
+      enum: [
+        'connectionBand',
+        'tripleConnectionBand',
+        'orbit',
+        'radar',
+        'automation',
+      ],
       default: 'connectionBand',
     },
     direction: {
