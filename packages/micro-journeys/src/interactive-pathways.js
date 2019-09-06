@@ -79,8 +79,21 @@ class BoltInteractivePathways extends withLitHtml() {
         center
         title="${titles[this.activePathwayIndex]}"
       >
-        ${menuItems}
+        <div class="c-bolt-interactive-pathways__menu-container">
+          ${menuItems}
+        </div>
       </bolt-micro-journeys-dropdown>
+    `;
+
+    const singleTitle = html`
+      <bolt-text
+        class="c-bolt-interactive-pathways__single-title"
+        font-weight="semibold"
+        font-size="xxlarge"
+        @click=${() => this.showPathway(i)}
+      >
+        ${pathways[0].getTitle()}
+      </bolt-text>
     `;
 
     return html`
@@ -96,7 +109,7 @@ class BoltInteractivePathways extends withLitHtml() {
               <span class="c-bolt-interactive-pathways__nav-text"
                 >${this.slot('interactive-pathways-lead-text')}</span
               >
-              ${menu}
+              ${pathways.length > 1 ? menu : singleTitle}
             </div>
           </div>
         </div>

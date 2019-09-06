@@ -55,22 +55,46 @@
     }
 
 
-    bolt-dropdown {
-      z-index: 1;
+    //Todo:  is this necessary?  currently seems ineffetual 
+      bolt-dropdown {   
       height: 56.83px; // Temp fix for the dropdown menu pushing content down. @todo resolve this better
       overflow: visible;
-
+      z-index: 1;
+      
       @include bolt-mq(small) {
         margin-left: 5px;
       }
     }
   }
 
+  &__single-title {
+    display: block;
+    margin-left: .65rem;
+  }
+
+  &__menu-container {
+    background: bolt-color(gray, light);
+    border: 1px solid bolt-color(gray, dark);
+    border-radius: .35rem;
+    box-shadow: .5rem .5rem .5rem rgba(0,0,0,.25);
+  }
+
   &__menu-item {
-    display: flex;
     align-items: center;
+    display: flex;
+    flex-direction: column;
     justify-items: center;
-    padding: 0.825rem 1rem;
+    margin-bottom: 0;
+    padding: bolt-spacing(small);
+
+    & + & {
+      border-top: 1px solid bolt-color(gray, dark);
+    }
+    
+    p {
+      color: bolt-color(black);
+      font-weight: 600;
+    }
 
     //&:hover {
     //  cursor: pointer;

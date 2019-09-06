@@ -1,8 +1,16 @@
 @import '@bolt/core';
 
 .c-bolt-dropdown {
+  background: transparent;
   box-shadow: none;
 
+  &__header {
+    box-shadow: none;
+    
+    &:after {
+      display: none;
+    }
+  }
 
   &__header-button {
     display: block;
@@ -15,8 +23,15 @@
     border-bottom: 1px solid bolt_theme(text);
   }
 
-  &__content-inner:hover {
-    cursor: pointer;
+  &__content-inner {
+
+    &:after {
+      display: none;
+    }
+    
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 
