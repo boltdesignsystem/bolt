@@ -71,7 +71,11 @@ class BoltInteractivePathways extends withLitHtml() {
           font-weight="semi-bold"
           @click=${() => this.showPathway(i)}
         >
-          ${isActiveItem ? html`<bolt-icon name="check"></bolt-icon>` : ''}
+          ${isActiveItem
+            ? html`
+                <bolt-icon name="check"></bolt-icon>
+              `
+            : ''}
           ${title}
         </bolt-text>
       `;
@@ -94,7 +98,7 @@ class BoltInteractivePathways extends withLitHtml() {
         font-weight="semibold"
         font-size="xxlarge"
       >
-        ${pathways.length > 0 ? pathways[0].getTitle() : ""}
+        ${pathways.length > 0 ? pathways[0].getTitle() : ''}
       </bolt-text>
     `;
 
