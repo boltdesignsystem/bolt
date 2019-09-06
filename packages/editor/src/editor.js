@@ -229,19 +229,9 @@ export function enableEditor({ space, uiWrapper, config }) {
 
   const editor = grapesjs.init(editorConfig);
 
-  editor.TraitManager.addType('drupal-media-manager', {
-    createInput({ trait }) {
-      const el = document.createElement('div');
-      el.innerHTML = `
-<button>Upload to Drupal Media Manager</button>
-    `;
-
-      return el;
-    },
-  });
-
   /**
    * @param {Object} opt
+   * @param {string} name - tag name
    * @param {string} opt.slotName
    * @param {string} opt.content - HTML to add
    * @param {boolean} [opt.shouldCreateAnimatableSlotIfNotPresent=true]
@@ -250,6 +240,7 @@ export function enableEditor({ space, uiWrapper, config }) {
    * @return {grapesjs.Component}
    */
   function addComponentToSelectedComponentsSlot({
+    name,
     slotName,
     content,
     shouldCreateAnimatableSlotIfNotPresent = true,
@@ -269,7 +260,7 @@ export function enableEditor({ space, uiWrapper, config }) {
       tempComponent = components.add(data);
     } else {
       const slots = selected.find('[slot]');
-      const [slot] = selected.find(`[slot="${slotName}"]`);
+      const [slot] = selected.find(`${name} > [slot="${slotName}"]`);
       if (slot) {
         const slotComponents = slot.components();
         tempComponent = slotComponents.add(data);
@@ -296,8 +287,9 @@ export function enableEditor({ space, uiWrapper, config }) {
   /**
    * @param {Object} opt
    * @param {grapesjs.SlotControl[]} opt.slotControls
+   * @param {string} opt.name - tag name
    */
-  function renderSlotControls({ slotControls }) {
+  function renderSlotControls({ slotControls, name }) {
     if (!slotControls) {
       render(html``, editorSlots.slotControls);
       return;
@@ -314,6 +306,7 @@ export function enableEditor({ space, uiWrapper, config }) {
             const newComponent = addComponentToSelectedComponentsSlot({
               slotName,
               content: component.content,
+              name,
             });
             event.target.value = 'none';
           }}
@@ -338,7 +331,7 @@ export function enableEditor({ space, uiWrapper, config }) {
   editor.on('component:selected', (/** @type {grapesjs.Component} */ model) => {
     const name = model.getName().toLowerCase();
     const slotControls = model.getSlotControls && model.getSlotControls();
-    renderSlotControls({ slotControls });
+    renderSlotControls({ slotControls, name });
   });
 
   editor.on('component:deselected', model => {
