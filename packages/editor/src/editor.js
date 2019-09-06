@@ -75,22 +75,19 @@ export function enableEditor({ space, uiWrapper, config }) {
               // attributes: { title: 'Redo' },
             },
             {
-              id: 'fullscreen',
-              label: 'Full Screen',
-              command: 'core:fullscreen',
-              attributes: { title: 'Full Screen' },
+              id: 'duplicate',
+              label: 'Duplicate',
+              command: {
+                run: editor => {
+                  editor.runCommand('core:copy');
+                  editor.runCommand('core:paste');
+                },
+              },
             },
             {
-              id: 'visibility',
-              active: false,
-              label: 'Toggle Borders',
-              command: 'sw-visibility', // Built-in command
-            },
-            {
-              id: 'export',
-              className: 'btn-open-export',
-              label: 'Export Template',
-              command: 'export-template',
+              command: 'core:component-delete',
+              id: 'component-delete',
+              label: 'Delete',
             },
             {
               command: 'core:canvas-clear',
@@ -98,20 +95,26 @@ export function enableEditor({ space, uiWrapper, config }) {
               label: 'Clear Canvas',
             },
             {
-              command: 'core:component-delete',
-              id: 'component-delete',
-              label: 'Delete',
+              id: 'visibility',
+              active: true,
+              label: 'Toggle Borders',
+              command: 'sw-visibility',
             },
-            // @todo why no work?
-            // {
-            //   command: 'core:component-prev',
-            //   id: 'component-prev',
-            //   label: 'Prev',
-            // },
-
+            {
+              id: 'fullscreen',
+              label: 'Full Screen',
+              command: 'core:fullscreen',
+              attributes: { title: 'Full Screen' },
+            },
+            {
+              id: 'export',
+              className: 'btn-open-export',
+              label: 'Export HTML',
+              command: 'export-template',
+            },
             {
               id: 'device-mobile',
-              label: 'Mobile',
+              label: 'Resize: Mobile',
               togglable: true,
               command: {
                 run: editor => editor.setDevice('Mobile'),
@@ -120,7 +123,7 @@ export function enableEditor({ space, uiWrapper, config }) {
             },
             {
               id: 'device-tablet',
-              label: 'Tablet',
+              label: 'Resize: Tablet',
               togglable: true,
               command: {
                 run: editor => editor.setDevice('Tablet'),
@@ -129,39 +132,11 @@ export function enableEditor({ space, uiWrapper, config }) {
             },
             {
               id: 'device-desktop',
-              label: 'Desktop',
+              label: 'Resize: Desktop',
               togglable: true,
               command: {
                 run: editor => editor.setDevice('Desktop'),
                 stop: editor => editor.setDevice('Full'),
-              },
-            },
-            {
-              id: 'trigger-anim-in',
-              label: 'Trigger Anim In',
-              command: {
-                run: editor => {
-                  const component = editor.getSelected();
-                  if (component.is('bolt-animate')) {
-                    const el = component.getEl();
-                    el.triggerAnimIn();
-                  }
-                },
-              },
-            },
-            {
-              id: 'show-json',
-              className: 'btn-show-json',
-              label: 'Show JSON',
-              // attributes: { title: 'Show JSON' },
-              command(editor) {
-                editor.Modal.setTitle('Components JSON')
-                  .setContent(
-                    `<textarea style="width:100%; height: 250px;">
-                      ${JSON.stringify(editor.getComponents(), null, '  ')}
-                    </textarea>`,
-                  )
-                  .open();
               },
             },
           ],
@@ -346,6 +321,9 @@ export function enableEditor({ space, uiWrapper, config }) {
   addThemeContextClasses({ space, canvasWrapper });
 
   canvasDoc.body.classList.add('in-editor');
+
+  // prevents `overflow: hidden` from cutting off child elements that break out of their box
+  canvasWrapper.style.padding = '20px';
 
   config.scripts.forEach(script => {
     const scriptEl = canvasDoc.createElement('script');

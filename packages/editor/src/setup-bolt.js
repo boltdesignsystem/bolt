@@ -175,7 +175,7 @@ export function setupBolt(editor) {
     extend = 'text',
     schema = { properties: {} },
     initialContent = [],
-    category = 'Bolt Components',
+    category = 'Components',
     draggable = true,
     editable = false,
     highlightable = false,
@@ -305,6 +305,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-button',
+    registerBlock: true,
     schema: buttonSchema,
     extend: 'text',
     initialContent: ['Button'],
@@ -314,6 +315,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-text',
+    registerBlock: true,
     schema: textSchema,
     extend: 'text',
     editable: true,
@@ -342,6 +344,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-icon',
+    registerBlock: true,
     schema: iconSchema,
     // draggable: '[slot]',
     initialContent: [`<span></span>`],
@@ -350,6 +353,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-blockquote',
+    registerBlock: true,
     schema: blockquoteSchema,
     initialContent: [
       `<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
@@ -417,6 +421,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-interactive-pathways',
+    category: 'Starters',
     blockTitle: 'Pathways',
     draggable: true,
     editable: false,
@@ -550,7 +555,6 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-link',
     schema: linkSchema,
-
     editable: true,
     extend: 'link',
     registerBlock: true,
