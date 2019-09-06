@@ -1,4 +1,4 @@
-import {css, define} from '@bolt/core/utils';
+import { css, define } from '@bolt/core/utils';
 import { html } from '@bolt/core';
 import { BoltDropdown } from '@bolt/components-dropdown/dropdown';
 import microJourneyStyles from '@bolt/micro-journeys/src/micro-journeys-dropdown.scss';
@@ -9,7 +9,6 @@ import styles from '@bolt/components-dropdown/dropdown.scss';
 class MicroJourneysDropdown extends BoltDropdown {
   static is = 'bolt-micro-journeys-dropdown';
 
-
   render() {
     const classes = css(
       'c-bolt-dropdown',
@@ -19,8 +18,8 @@ class MicroJourneysDropdown extends BoltDropdown {
     const dropdownChildren = this.slots.default
       ? this.slot('default')
       : this.props.children
-        ? this.props.children
-        : '';
+      ? this.props.children
+      : '';
 
     return html`
       ${this.addStyles([styles, heightUtils, microJourneyStyles])}
