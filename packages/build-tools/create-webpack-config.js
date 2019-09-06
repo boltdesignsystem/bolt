@@ -35,8 +35,6 @@ async function createWebpackConfig(buildConfig) {
   const config = buildConfig;
   const fullBuildConfig = await getConfig();
 
-  // console.log('DIR', __dirname);
-  // console.log('CONFIG', config);
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
   // conditional is temp workaround for when servers are disabled via absence of `config.wwwDir`
@@ -297,7 +295,6 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.scss$/,
-          // include: path.resolve(__dirname, '../'),
           oneOf: [
             {
               issuer: /\.js$/,
@@ -335,7 +332,6 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(woff|woff2)$/,
-          // include: path.resolve(config.wwwDir, '../packages'),
           use: [
             {
               loader: 'cache-loader',
@@ -354,7 +350,6 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(cur|svg)$/,
-          // include: path.resolve(config.wwwDir, '../packages'),
           use: [
             {
               loader: 'cache-loader',
@@ -372,7 +367,6 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          // include: path.resolve(config.wwwDir, '../packages'),
           use: [
             {
               loader: 'cache-loader',
@@ -387,9 +381,6 @@ async function createWebpackConfig(buildConfig) {
       ],
     },
     mode: config.prod ? 'production' : 'development',
-    // optimization: {
-    //   mergeDuplicateChunks: true,
-    // },
     optimization: {
       minimizer: config.prod
         ? [
