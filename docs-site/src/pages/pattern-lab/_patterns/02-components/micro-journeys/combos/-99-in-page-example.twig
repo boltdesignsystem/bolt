@@ -60,7 +60,7 @@
 
   {% embed "@bolt-components-band/band.twig" with {
     size: "small",
-    theme: "dark",
+    theme: "light",
     full_bleed: true
   } only %}
     {% block band_content %}
@@ -181,13 +181,9 @@
     {% endblock %}
   {% endembed %}
 
-
-
-
-
   {% embed "@bolt-components-band/band.twig" with {
     size: "medium",
-    theme: "xlight",
+    theme: "dark",
     full_bleed: true
   } only %}
     {% block band_content %}
@@ -239,14 +235,20 @@
     {% endblock %}
   {% endembed %}
 
-
-{% include '@pl/90-micro-journeys.twig' with {
-
+  {% set microJourney1Editor %}
+    {% include '@bolt-components-editor/editor-in-pl.twig' with {
+      content: include('@pl/_micro-journey-demo-1.twig'),
     } only %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    content: microJourney1Editor,
+    theme: 'light'
+  } only %}
 
   {% embed "@bolt-components-band/band.twig" with {
     size: "medium",
-    theme: "light",
+    theme: "dark",
     full_bleed: true
   } only %}
     {% block band_content %}
@@ -298,8 +300,9 @@
     {% endblock %}
   {% endembed %}
 
-  {% include '@pl/90-micro-journeys.twig' with {
-
+  {% include "@bolt-components-band/band.twig" with {
+    content: microJourney1Editor,
+    theme: 'light'
   } only %}
 
   {% embed "@bolt-components-band/band.twig" with {
@@ -355,10 +358,6 @@
     {% endblock %}
   {% endembed %}
 
-  {% include '@pl/90-micro-journeys.twig' with {
-
-  } only %}
-  
   {% embed "@bolt-components-band/band.twig" with {
     size: "medium",
     theme: "light",

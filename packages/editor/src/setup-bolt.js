@@ -175,7 +175,7 @@ export function setupBolt(editor) {
     extend = 'text',
     schema = { properties: {} },
     initialContent = [],
-    category = 'Bolt Components',
+    category = 'Components',
     draggable = true,
     editable = false,
     highlightable = false,
@@ -305,6 +305,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-button',
+    registerBlock: true,
     schema: buttonSchema,
     extend: 'text',
     initialContent: ['Button'],
@@ -314,6 +315,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-text',
+    registerBlock: true,
     schema: textSchema,
     extend: 'text',
     editable: true,
@@ -342,6 +344,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-icon',
+    registerBlock: true,
     schema: iconSchema,
     // draggable: '[slot]',
     initialContent: [`<span></span>`],
@@ -350,6 +353,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-blockquote',
+    registerBlock: true,
     schema: blockquoteSchema,
     initialContent: [
       `<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>`,
@@ -417,6 +421,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-interactive-pathways',
+    category: 'Starters',
     blockTitle: 'Pathways',
     draggable: true,
     editable: false,
@@ -427,12 +432,9 @@ export function setupBolt(editor) {
     },
     initialContent: [
       `<p slot="interactive-pathways-lead-text">How Pega technology resolves</p>`,
-      `<bolt-interactive-pathway pathway-title="This Pathway">
-        <bolt-interactive-step tab-title="Step 1">
-          <bolt-animate slot="top">
-            ${starters.twoCharacters1}
-          </bolt-animate>
-        </bolt-interactive-step>
+      `<bolt-interactive-pathway pathway-title="New Title">
+        ${starters.stepOneCharacterLorem}        
+        ${starters.stepTwoCharacterLorem}
       </bolt-interactive-pathway>`,
     ],
     slotControls: [
@@ -442,10 +444,7 @@ export function setupBolt(editor) {
           {
             id: 'pathway',
             title: 'Pathway',
-            content: `
-              <bolt-interactive-pathway pathway-title="A Title">
-              </bolt-interactive-pathway>
-            `,
+            content: starters.pathwayLorem,
           },
         ],
       },
@@ -466,9 +465,14 @@ export function setupBolt(editor) {
         slotName: 'default',
         components: [
           {
-            id: 'step',
-            title: 'Step',
-            content: `<bolt-interactive-step></bolt-interactive-step>`,
+            id: 'stepOneCharacterLorem',
+            title: 'Step - One Character Lorem',
+            content: starters.stepOneCharacterLorem,
+          },
+          {
+            id: 'stepTwoCharacterLorem',
+            title: 'Step - Two Character Lorem',
+            content: starters.stepTwoCharacterLorem,
           },
         ],
       },
@@ -550,7 +554,6 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-link',
     schema: linkSchema,
-
     editable: true,
     extend: 'link',
     registerBlock: true,

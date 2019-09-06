@@ -10,12 +10,16 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 .c-bolt-status-dialogue-bar {
   display: flex;
   align-items: center;
-  max-width: 300px;
+  max-width: 110px;
   padding: bolt-spacing(xsmall) bolt-spacing(small);
   color: bolt-color(black);
   border-radius: $bolt-border-radius;
   background-color: bolt-color(white);
   @include bolt-shadow('level-20', true);
+
+  @include bolt-mq(small) {
+    max-width: 300px;
+  }
 
   &--alert {
     color: bolt-color(white);
