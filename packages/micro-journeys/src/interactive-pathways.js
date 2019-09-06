@@ -93,9 +93,8 @@ class BoltInteractivePathways extends withLitHtml() {
         class="c-bolt-interactive-pathways__single-title"
         font-weight="semibold"
         font-size="xxlarge"
-        @click=${() => this.showPathway(i)}
       >
-        ${pathways[0].getTitle()}
+        ${pathways.length > 0 ? pathways[0].getTitle() : ""}
       </bolt-text>
     `;
 

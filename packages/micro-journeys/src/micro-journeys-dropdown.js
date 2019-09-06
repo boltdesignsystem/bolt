@@ -8,6 +8,9 @@ class MicroJourneysDropdown extends BoltDropdown {
   static is = 'bolt-micro-journeys-dropdown';
 
   render() {
+    /*TODO:  the use of super.render() seems to be crashing the browser, this pattern isn't used
+      in otherareas where a bolt component is extended.  
+    */
     return html`
       ${super.render()}${this.addStyles([styles])}
     `;
