@@ -7,6 +7,7 @@ import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
+import svgAnimationsSchema from '@bolt/components-svg-animations/svg-animations.schema';
 // @ts-ignore
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 // @ts-ignore
@@ -78,6 +79,12 @@ const link = {
   id: 'bolt-link',
   title: 'Link',
   content: `<bolt-link display="inline" valign="start">I'm a link</bolt-link>`,
+};
+
+const svgAnimations = {
+  id: 'bolt-svg-animations',
+  title: 'Svg Animtions',
+  content: `<bolt-svg-animations anim-type="orbit"></bolt-svg-animations>`,
 };
 
 const basicSlottableComponents = [
@@ -510,11 +517,18 @@ export function setupBolt(editor) {
       left: true,
       right: true,
       bottom: true,
+      background: true,
     },
-    slotControls: ['top', 'right', 'bottom', 'left'].map(slotName => ({
-      slotName,
-      components: basicSlottableComponents,
-    })),
+    slotControls: [
+      ...['top', 'right', 'bottom', 'left'].map(slotName => ({
+        slotName,
+        components: basicSlottableComponents,
+      })),
+      {
+        slotName: 'background',
+        components: [svgAnimations],
+      },
+    ],
   });
 
   registerBoltComponent({
@@ -536,6 +550,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-link',
     schema: linkSchema,
+
     editable: true,
     extend: 'link',
     registerBlock: true,
@@ -562,5 +577,12 @@ export function setupBolt(editor) {
       // @todo consider changing `text` to `default`
       text: true,
     },
+  });
+
+  registerBoltComponent({
+    name: 'bolt-svg-animations',
+    schema: svgAnimationsSchema,
+    registerBlock: false,
+    propsToTraits: ['animType', 'direction', 'speed', 'theme'],
   });
 }

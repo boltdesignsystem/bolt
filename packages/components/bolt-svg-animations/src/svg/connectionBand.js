@@ -1,24 +1,23 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
-export const ConnectionBand = ({ direction }) => {
+export const connectionBand = ({ direction }) => {
   const authoredStyle = html`
     @keyframes connectionArrowScroll { 0% { transform:
     translate(82.3648681640625px, 0px) translate(-82.3648681640625px, 0px)
     translate(0px, 0px); } 83.33% { transform: translate(82.3648681640625px,
     0px) translate(-82.3648681640625px, 0px) translate(297px, 0px); } 100% {
     transform: translate(82.3648681640625px, 0px) translate(-82.3648681640625px,
-    0px) translate(297px, 0px); } } #animatedConnectionBand * {
-    animation-duration: 1s; animation-iteration-count: infinite;
-    animation-timing-function: cubic-bezier(0, 0, 1, 1); } #connectionGradientBG
-    { transform: translate(-28px, 0px); fill: url(#connectionGradient); }
-    #connectionDirectionAnchor { transform:
-    ${direction === 'right'
-      ? 'translate(380px) scaleX(-1)'
-      : 'translate(-140px)'}
-    translateZ(0); } #connectionArrows { animation-fill-mode: backwards;
-    animation-name: connectionArrowScroll; animation-timing-function:
-    cubic-bezier(0, 0, 1, 1); }
+    0px) translate(297px, 0px); } } #animatedConnectionBand { transform:
+    ${direction === 'right' ? 'scaleX(-1)' : 'scaleX(1)'};}
+    #animatedConnectionBand * { animation-duration: 1s;
+    animation-iteration-count: infinite; animation-timing-function:
+    cubic-bezier(0, 0, 1, 1); } #connectionGradientBG { transform:
+    translate(-28px, 0px); fill: url(#connectionGradient); }
+    #connectionDirectionAnchor { transform: translate(-140px) translateZ(0); }
+    #connectionArrows { animation-fill-mode: backwards; animation-name:
+    connectionArrowScroll; animation-timing-function: cubic-bezier(0, 0, 1, 1);
+    }
   `;
 
   return svg`

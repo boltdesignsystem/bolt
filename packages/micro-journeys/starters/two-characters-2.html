@@ -7,19 +7,17 @@
             Customer is 79% likely to call<br>about their bill.
           </p>
         </bolt-status-dialogue-bar>
-        <p slot="text">
       </bolt-animate>
-      <span slot="left"></span>
-      <span slot="bottom"><bolt-text font-size="xsmall">Company</bolt-text></span>
+      <bolt-animate slot="bottom"><bolt-text font-size="xsmall">Company</bolt-text></bolt-animate>
       <bolt-svg-animations
         slot="background"
         speed="4000"
-        animtype="Orbit"
+        anim-type="orbit"
       ></bolt-svg-animations>
     </bolt-character>
   </bolt-animate>
   <bolt-animate slot="connection" in="fade-in-slide-up" in-order="5" out="fade-out" out-order="1">
-    <bolt-connection></bolt-connection>
+    <bolt-connection anim-type="tripleConnectionBand"></bolt-connection>
   </bolt-animate>
   <bolt-animate slot="character--right" in="fade-in-slide-up" in-order="10" out="fade-out" out-order="10">
     <bolt-character size="medium" character-image="customer-neutral">
@@ -30,8 +28,7 @@
           </p>
         </bolt-status-dialogue-bar>
       </bolt-animate>
-      <span slot="right" idle="none"></span>
-      <span slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></span>
+      <bolt-animate slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></bolt-animate>
     </bolt-character>
   </bolt-animate>
 </bolt-two-character-layout>
