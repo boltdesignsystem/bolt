@@ -134,8 +134,15 @@ export function setupBolt(editor) {
   });
 
   /**
+   * @typedef SlotControl
+   * @prop {string} slotName
+   * @prop {{ id: string, title: string, content: string}[]} components
+   */
+
+  /**
    * @param {Object} opt
    * @param {string} opt.name i.e. `bolt-button`
+   * @param {string} [opt.blockTitle] only used if `registerBlock` is `true`
    * @param {import('./utils').JsonSchema} [opt.schema]
    * @param {string[]} [opt.initialContent] HTML for when block is added
    * @param {string} [opt.extend='text'] name of GrapesJS Component to extend
@@ -151,20 +158,21 @@ export function setupBolt(editor) {
    * @param {grapesjs.GrapeTrait[]} [opt.extraTraits=[]] Full Trait objects that need more custom attention than `propsToTraits`
    * @param {(el: HTMLElement) => boolean} [opt.isComponent] - function to determine if an HTMLElement is this component. Defaults to seeing if tag name is component name
    * @param {Object.<string, boolean|string>} [opt.slots={ default: true }] - Which slots are available and what can go in them. For example `{ default: true, top: 'bolt-text, bolt-button' }` would let any element be placed as a direct child (the `default` slot) and the `top` slot would only accept `<bolt-text>` or `<bolt-button>`. Those values are passed right to Grape JS's `droppable`.
-   * @param {grapesjs.SlotControl[]} [opt.slotControls]
+   * @param {SlotControl[]} [opt.slotControls]
    * @returns {{ component: Object, block: Object }} instances from registering @todo fill out types
    * @see {convertSchemaPropToTrait}
    */
   function registerBoltComponent({
     name,
+    blockTitle,
     extend = 'text',
     schema = { properties: {} },
-    initialContent = ['Hello World'],
+    initialContent = [],
     category = 'Bolt Components',
     draggable = true,
     editable = false,
     highlightable = false,
-    registerBlock = true,
+    registerBlock = false,
     badgable = true,
     layerable = true,
     selectable = true,
@@ -260,7 +268,7 @@ export function setupBolt(editor) {
 
     if (registerBlock) {
       const block = BlockManager.add(name, {
-        label: `<span title="${description}">${title || name}</span>`,
+        label: `<span title="${description}">${blockTitle || name}</span>`,
         category,
         select: true,
         content: {
@@ -383,10 +391,8 @@ export function setupBolt(editor) {
     draggable: 'bolt-interactive-pathway',
     editable: false,
     highlightable: false,
-    registerBlock: false,
     extraTraits: ['tab-title'],
     slots: {
-      // title: true,
       top: true,
       bottom: true,
     },
@@ -404,21 +410,47 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-interactive-pathways',
-    draggable: false,
+    blockTitle: 'Pathways',
+    draggable: true,
     editable: false,
     highlightable: false,
-    registerBlock: false,
+    registerBlock: true,
     slots: {
-      default: 'bolt-interactive-step',
+      default: 'bolt-interactive-pathway',
     },
+    initialContent: [
+      `<p slot="interactive-pathways-lead-text">How Pega technology resolves</p>`,
+      `<bolt-interactive-pathway pathway-title="This Pathway">
+        <bolt-interactive-step tab-title="Step 1">
+          <bolt-animate slot="top">
+            ${starters.twoCharacters1}
+          </bolt-animate>
+        </bolt-interactive-step>
+      </bolt-interactive-pathway>`,
+    ],
+    slotControls: [
+      {
+        slotName: 'default',
+        components: [
+          {
+            id: 'pathway',
+            title: 'Pathway',
+            content: `
+              <bolt-interactive-pathway pathway-title="A Title">
+              </bolt-interactive-pathway>
+            `,
+          },
+        ],
+      },
+    ],
   });
 
   registerBoltComponent({
     name: 'bolt-interactive-pathway',
-    draggable: true,
+    draggable: 'bolt-interactive-pathways',
     editable: false,
     highlightable: true,
-    registerBlock: false,
+    extraTraits: ['pathway-title'],
     slots: {
       default: true,
     },
@@ -429,9 +461,7 @@ export function setupBolt(editor) {
           {
             id: 'step',
             title: 'Step',
-            data: {
-              type: 'bolt-interactive-step',
-            },
+            content: `<bolt-interactive-step></bolt-interactive-step>`,
           },
         ],
       },
@@ -445,7 +475,6 @@ export function setupBolt(editor) {
     draggable: false,
     editable: true,
     highlightable: true,
-    registerBlock: false,
     slots: {
       default: true,
     },
@@ -458,7 +487,6 @@ export function setupBolt(editor) {
     draggable: false,
     editable: false,
     highlightable: true,
-    registerBlock: false,
     slots: {
       top: true,
       bottom: true,
@@ -475,7 +503,6 @@ export function setupBolt(editor) {
     draggable: false,
     editable: true,
     highlightable: true,
-    registerBlock: false,
     propsToTraits: ['size', 'characterImage', 'characterCustomUrl', 'useIcon'],
     slots: {
       default: false,
