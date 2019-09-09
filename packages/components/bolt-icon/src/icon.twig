@@ -35,25 +35,27 @@
 {% endset %}
 
 <bolt-icon {{ attributes }}>{% spaceless %}
-  {% if preload %}
-    {% set svgIcon %}
-      {% include "@bolt-icon-assets/#{name}.min.svg" ignore missing %}
-    {% endset %}
+  {% block icon_inner %}
+    {% if preload %}
+      {% set svgIcon %}
+        {% include "@bolt-icon-assets/#{name}.min.svg" ignore missing %}
+      {% endset %}
 
-    <div {{ inner_attributes }}>
-      {% if 'colored' in name %}
-        {{ svgIcon  | replace('<svg ', '<svg ' ~ svg_attributes) }}
-      {% else %}
-        {{ svgIcon
-          | replace('fill="#FFF"', 'filter="url(#invert)" fill="currentColor"')
-          | replace('fill="none"', '_fill="none"')
-          | replace('/ fill="((?!(var(--bolt-theme-icon|none)).*$)[^"]+)"/', ' fill="currentColor"')
-          | replace('_fill="', 'fill="')
-          | replace('<svg ', '<svg ' ~ svg_attributes)
-          | replace('</svg>', icon_filters ~ '</svg>')
-          | replace('<path d="M0 0h24v24H0z"/>', '')
-        }}
-      {% endif %}
-    </div>
-  {% endif %}
+      <div {{ inner_attributes }}>
+        {% if 'colored' in name %}
+          {{ svgIcon  | replace('<svg ', '<svg ' ~ svg_attributes) }}
+        {% else %}
+          {{ svgIcon
+            | replace('fill="#FFF"', 'filter="url(#invert)" fill="currentColor"')
+            | replace('fill="none"', '_fill="none"')
+            | replace('/ fill="((?!(var(--bolt-theme-icon|none)).*$)[^"]+)"/', ' fill="currentColor"')
+            | replace('_fill="', 'fill="')
+            | replace('<svg ', '<svg ' ~ svg_attributes)
+            | replace('</svg>', icon_filters ~ '</svg>')
+            | replace('<path d="M0 0h24v24H0z"/>', '')
+          }}
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endblock %}
 {% endspaceless %}</bolt-icon>
