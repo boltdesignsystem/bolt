@@ -1,0 +1,30 @@
+{% include "@utils/docs.twig" with {
+  componentName: "typeahead",
+  variations: [
+  ],
+  examples: [
+    include("@bolt-components-link/link.twig", {
+      text: "Navigate to Search Results Page",
+      url: "/pattern-lab/?p=components-typeahead--navigate-to-search-results",
+      isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Navigate to Exact Result",
+      url: "/pattern-lab/?p=components-typeahead--navigate-to-exact-result",
+      isHeadline: true,
+      attributes: {
+        target: "_blank"
+      }
+    }),
+  ],
+  schemaForm: {
+    template: '@bolt-components-typeahead/typeahead.twig',
+    layout: "horizontal",
+    initialData: {
+
+    },
+  },
+} only %}
