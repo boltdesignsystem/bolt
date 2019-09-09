@@ -61,7 +61,6 @@ bolt-button[type=\\"submit\\"] {
 :host {
   display: -webkit-inline-box;
   display: inline-flex;
-  outline: 0;
 }
 :host[type=\\"button\\"],
 :host[type=\\"reset\\"],
@@ -70,11 +69,10 @@ bolt-button[type=\\"submit\\"] {
 }
 .c-bolt-button {
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-body);
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -90,8 +88,8 @@ bolt-button[type=\\"submit\\"] {
   -webkit-box-align: center;
   align-items: center;
   position: relative;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
@@ -110,11 +108,10 @@ bolt-button[type=\\"submit\\"] {
   will-change: box-shadow;
 }
 .js-fonts-loaded .c-bolt-button {
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-body);
 }
 .c-bolt-button:before {
@@ -456,9 +453,8 @@ bolt-button[border-radius=\\"full\\"] {
   -webkit-box-pack: end;
   justify-content: flex-end;
 }
-@charset \\"UTF-8\\";
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 400;
   src: url(/build/fonts/opensans-regular.woff2) format(\\"woff2\\"),
@@ -466,7 +462,7 @@ bolt-button[border-radius=\\"full\\"] {
   font-display: swap;
 }
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: italic;
   font-weight: 400;
   src: url(/build/fonts/opensans-italic.woff2) format(\\"woff2\\"),
@@ -474,7 +470,7 @@ bolt-button[border-radius=\\"full\\"] {
   font-display: swap;
 }
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 600;
   src: url(/build/fonts/opensans-semibold.woff2) format(\\"woff2\\"),
@@ -482,7 +478,7 @@ bolt-button[border-radius=\\"full\\"] {
   font-display: swap;
 }
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: italic;
   font-weight: 600;
   src: url(/build/fonts/opensans-semibolditalic.woff2) format(\\"woff2\\"),
@@ -490,7 +486,7 @@ bolt-button[border-radius=\\"full\\"] {
   font-display: swap;
 }
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 800;
   src: url(/build/fonts/opensans-extrabold.woff2) format(\\"woff2\\"),
@@ -498,7 +494,7 @@ bolt-button[border-radius=\\"full\\"] {
   font-display: swap;
 }
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: italic;
   font-weight: 800;
   src: url(/build/fonts/opensans-extrabolditalic.woff2) format(\\"woff2\\"),
@@ -516,7 +512,7 @@ bolt-button[border-radius=\\"full\\"] {
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-} /*! normalize-scss | MIT/GPLv2 License | bit.ly/normalize-scss */
+}
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -629,7 +625,7 @@ button::-moz-focus-inner {
 [type=\\"reset\\"]:-moz-focusring,
 [type=\\"submit\\"]:-moz-focusring,
 button:-moz-focusring {
-  outline: ButtonText dotted 1px;
+  outline: 1px dotted ButtonText;
 }
 [type=\\"checkbox\\"],
 [type=\\"radio\\"] {
@@ -786,11 +782,10 @@ h4,
 h5,
 h6 {
   margin-bottom: 0.412rem;
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-heading);
   font-size: 1.125rem;
   line-height: 1.595;
@@ -802,11 +797,10 @@ h6 {
 .js-fonts-loaded h4,
 .js-fonts-loaded h5,
 .js-fonts-loaded h6 {
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-heading);
 }
 h1:last-child,
@@ -845,11 +839,10 @@ details:hover {
 }
 html {
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-body);
   --bolt-font-family-body: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
     Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
@@ -903,18 +896,16 @@ html.js-fonts-loaded {
     HiraKakuProN-W3, TakaoExゴシック, TakaoExGothic, MotoyaLCedar,
     Droid Sans Japanese, sans-serif;
   --bolt-font-family-code: monospace, monospace;
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-body);
   font-size: 1rem;
   line-height: 1.815;
@@ -923,11 +914,10 @@ body {
   color: #060923;
 }
 .js-fonts-loaded body {
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-body);
 }
 p:last-child {
@@ -948,21 +938,19 @@ th {
 }
 tfoot td,
 thead th {
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-heading);
   font-weight: 700;
 }
 .js-fonts-loaded tfoot td,
 .js-fonts-loaded thead th {
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-heading);
 }
 td {
@@ -1250,51 +1238,6 @@ bolt-inline-list:not(:last-child) {
 }
 .o-bolt-island--large {
   padding: 2.31rem 2.8rem;
-}
-bolt-ratio {
-  display: block;
-  width: 100%;
-  overflow: hidden;
-}
-:host {
-  display: block;
-  overflow: hidden;
-}
-.c-bolt-ratio {
-  display: block;
-  position: relative;
-  width: 100%;
-  --aspect-ratio: 1;
-}
-@supports (--custom: property) {
-  bolt-ratio:not(:defined):before {
-    content: \\"\\";
-    display: block;
-    width: 100%;
-    padding-bottom: calc(100% / (var(--aspect-ratio)));
-  }
-  .c-bolt-ratio {
-    padding-bottom: calc(100% / (var(--aspect-ratio)));
-  }
-}
-.c-bolt-ratio > *,
-.c-bolt-ratio > noscript > * {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
-}
-.c-bolt-ratio ::slotted(*) {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
 }
 .o-bolt-ui-list {
   margin: 0;
@@ -13526,8 +13469,8 @@ bolt-ratio {
 }
 bolt-icon {
   display: inline-block;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   width: 1em;
   height: 1em;
   vertical-align: middle;
@@ -13603,8 +13546,8 @@ bolt-icon[size=\\"xlarge\\"] {
 }
 .c-bolt-icon--teal {
   color: #fff;
-  --bolt-theme-icon: white;
-  --bolt-theme-icon-background: #009999;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #099;
   --bolt-theme-icon-background-opacity: 1;
 }
 .c-bolt-icon--teal .c-bolt-icon__background-shape {
@@ -13630,7 +13573,7 @@ bolt-icon[size=\\"xlarge\\"] {
 .c-bolt-icon--blue {
   color: #0074b3;
   --bolt-theme-icon: #0074b3;
-  --bolt-theme-icon-background: white;
+  --bolt-theme-icon-background: #fff;
   --bolt-theme-icon-background-opacity: 1;
 }
 .c-bolt-icon--blue .c-bolt-icon__background-shape {
@@ -13670,7 +13613,6 @@ bolt-figure:not(:last-child) {
   line-height: 1.595;
   display: block;
 }
-@charset \\"UTF-8\\";
 bolt-link {
   outline: 0;
 }
@@ -13679,11 +13621,10 @@ bolt-link {
 }
 .c-bolt-link {
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-body);
   display: inline;
   -webkit-appearance: none;
@@ -13700,11 +13641,10 @@ bolt-link {
   transition: 0.2s ease-in-out;
 }
 .js-fonts-loaded .c-bolt-link {
-  font-family: -apple-system, BlinkMacSystemFont, \\"ヒラギノ角ゴ ProN\\",
-    \\"Hiragino Kaku Gothic ProN\\", \\"游ゴシック\\", \\"游ゴシック体\\", YuGothic,
-    \\"Yu Gothic\\", \\"メイリオ\\", Meiryo, \\"ＭＳ ゴシック\\", \\"MS Gothic\\",
-    HiraKakuProN-W3, \\"TakaoExゴシック\\", TakaoExGothic, MotoyaLCedar,
-    \\"Droid Sans Japanese\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, ヒラギノ角ゴ ProN,
+    Hiragino Kaku Gothic ProN, 游ゴシック, 游ゴシック体, YuGothic, Yu Gothic,
+    メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
+    TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-body);
 }
 .c-bolt-link:hover {
@@ -13764,10 +13704,10 @@ bolt-ratio {
     content: \\"\\";
     display: block;
     width: 100%;
-    padding-bottom: calc(100% / (var(--aspect-ratio)));
+    padding-bottom: calc(100% / var(--aspect-ratio));
   }
   .c-bolt-ratio {
-    padding-bottom: calc(100% / (var(--aspect-ratio)));
+    padding-bottom: calc(100% / var(--aspect-ratio));
   }
 }
 .c-bolt-ratio > *,
@@ -13806,7 +13746,6 @@ bolt-button[type=\\"submit\\"] {
 :host {
   display: -webkit-inline-box;
   display: inline-flex;
-  outline: 0;
 }
 :host[type=\\"button\\"],
 :host[type=\\"reset\\"],
@@ -13815,8 +13754,8 @@ bolt-button[type=\\"submit\\"] {
 }
 .c-bolt-button {
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Oxygen,
-    Ubuntu, Cantarell, \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-body);
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -13832,8 +13771,8 @@ bolt-button[type=\\"submit\\"] {
   -webkit-box-align: center;
   align-items: center;
   position: relative;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
@@ -13852,7 +13791,7 @@ bolt-button[type=\\"submit\\"] {
   will-change: box-shadow;
 }
 .js-fonts-loaded .c-bolt-button {
-  font-family: \\"Open Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: Open Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-body);
 }
 .c-bolt-button:before {
@@ -14194,9 +14133,8 @@ bolt-button[border-radius=\\"full\\"] {
   -webkit-box-pack: end;
   justify-content: flex-end;
 }
-@charset \\"UTF-8\\";
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 400;
   src: url(/build/fonts/opensans-regular.woff2) format(\\"woff2\\"),
@@ -14204,7 +14142,7 @@ bolt-button[border-radius=\\"full\\"] {
   font-display: swap;
 }
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: italic;
   font-weight: 400;
   src: url(/build/fonts/opensans-italic.woff2) format(\\"woff2\\"),
@@ -14212,7 +14150,7 @@ bolt-button[border-radius=\\"full\\"] {
   font-display: swap;
 }
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 600;
   src: url(/build/fonts/opensans-semibold.woff2) format(\\"woff2\\"),
@@ -14220,7 +14158,7 @@ bolt-button[border-radius=\\"full\\"] {
   font-display: swap;
 }
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: italic;
   font-weight: 600;
   src: url(/build/fonts/opensans-semibolditalic.woff2) format(\\"woff2\\"),
@@ -14228,7 +14166,7 @@ bolt-button[border-radius=\\"full\\"] {
   font-display: swap;
 }
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: normal;
   font-weight: 800;
   src: url(/build/fonts/opensans-extrabold.woff2) format(\\"woff2\\"),
@@ -14236,7 +14174,7 @@ bolt-button[border-radius=\\"full\\"] {
   font-display: swap;
 }
 @font-face {
-  font-family: \\"Open Sans\\";
+  font-family: Open Sans;
   font-style: italic;
   font-weight: 800;
   src: url(/build/fonts/opensans-extrabolditalic.woff2) format(\\"woff2\\"),
@@ -14254,7 +14192,7 @@ bolt-button[border-radius=\\"full\\"] {
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-} /*! normalize-scss | MIT/GPLv2 License | bit.ly/normalize-scss */
+}
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -14367,7 +14305,7 @@ button::-moz-focus-inner {
 [type=\\"reset\\"]:-moz-focusring,
 [type=\\"submit\\"]:-moz-focusring,
 button:-moz-focusring {
-  outline: ButtonText dotted 1px;
+  outline: 1px dotted ButtonText;
 }
 [type=\\"checkbox\\"],
 [type=\\"radio\\"] {
@@ -14524,8 +14462,8 @@ h4,
 h5,
 h6 {
   margin-bottom: 0.412rem;
-  font-family: -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Oxygen,
-    Ubuntu, Cantarell, \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-heading);
   font-size: 1.111rem;
   line-height: 1.45;
@@ -14537,7 +14475,7 @@ h6 {
 .js-fonts-loaded h4,
 .js-fonts-loaded h5,
 .js-fonts-loaded h6 {
-  font-family: \\"Open Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: Open Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-heading);
 }
 h1:last-child,
@@ -14576,8 +14514,8 @@ details:hover {
 }
 html {
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Oxygen,
-    Ubuntu, Cantarell, \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-body);
   --bolt-font-family-body: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -14614,11 +14552,11 @@ html.js-fonts-loaded {
   --bolt-font-family-bodySubset: OpenSansSubset, Helvetica Neue, sans-serif;
   --bolt-font-family-heading: Open Sans, Helvetica Neue, sans-serif;
   --bolt-font-family-code: monospace, monospace;
-  font-family: \\"Open Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: Open Sans, Helvetica Neue, sans-serif;
 }
 body {
-  font-family: -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Oxygen,
-    Ubuntu, Cantarell, \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-body);
   font-size: 1rem;
   line-height: 1.65;
@@ -14627,7 +14565,7 @@ body {
   color: #060923;
 }
 .js-fonts-loaded body {
-  font-family: \\"Open Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: Open Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-body);
 }
 p:last-child {
@@ -14648,14 +14586,14 @@ th {
 }
 tfoot td,
 thead th {
-  font-family: -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Oxygen,
-    Ubuntu, Cantarell, \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-heading);
   font-weight: 800;
 }
 .js-fonts-loaded tfoot td,
 .js-fonts-loaded thead th {
-  font-family: \\"Open Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: Open Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-heading);
 }
 td {
@@ -14943,51 +14881,6 @@ bolt-inline-list:not(:last-child) {
 }
 .o-bolt-island--large {
   padding: 3.3rem 4rem;
-}
-bolt-ratio {
-  display: block;
-  width: 100%;
-  overflow: hidden;
-}
-:host {
-  display: block;
-  overflow: hidden;
-}
-.c-bolt-ratio {
-  display: block;
-  position: relative;
-  width: 100%;
-  --aspect-ratio: 1;
-}
-@supports (--custom: property) {
-  bolt-ratio:not(:defined):before {
-    content: \\"\\";
-    display: block;
-    width: 100%;
-    padding-bottom: calc(100% / (var(--aspect-ratio)));
-  }
-  .c-bolt-ratio {
-    padding-bottom: calc(100% / (var(--aspect-ratio)));
-  }
-}
-.c-bolt-ratio > *,
-.c-bolt-ratio > noscript > * {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
-}
-.c-bolt-ratio ::slotted(*) {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 100%;
-  height: 100%;
-  min-height: 100%;
 }
 .o-bolt-ui-list {
   margin: 0;
@@ -27219,8 +27112,8 @@ bolt-ratio {
 }
 bolt-icon {
   display: inline-block;
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   width: 1em;
   height: 1em;
   vertical-align: middle;
@@ -27296,8 +27189,8 @@ bolt-icon[size=\\"xlarge\\"] {
 }
 .c-bolt-icon--teal {
   color: #fff;
-  --bolt-theme-icon: white;
-  --bolt-theme-icon-background: #009999;
+  --bolt-theme-icon: #fff;
+  --bolt-theme-icon-background: #099;
   --bolt-theme-icon-background-opacity: 1;
 }
 .c-bolt-icon--teal .c-bolt-icon__background-shape {
@@ -27323,7 +27216,7 @@ bolt-icon[size=\\"xlarge\\"] {
 .c-bolt-icon--blue {
   color: #0074b3;
   --bolt-theme-icon: #0074b3;
-  --bolt-theme-icon-background: white;
+  --bolt-theme-icon-background: #fff;
   --bolt-theme-icon-background-opacity: 1;
 }
 .c-bolt-icon--blue .c-bolt-icon__background-shape {
@@ -27371,8 +27264,8 @@ bolt-link {
 }
 .c-bolt-link {
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, \\"Segoe UI\\", Roboto, Oxygen,
-    Ubuntu, Cantarell, \\"Fira Sans\\", \\"Droid Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-body);
   display: inline;
   -webkit-appearance: none;
@@ -27389,7 +27282,7 @@ bolt-link {
   transition: 0.2s ease-in-out;
 }
 .js-fonts-loaded .c-bolt-link {
-  font-family: \\"Open Sans\\", \\"Helvetica Neue\\", sans-serif;
+  font-family: Open Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-body);
 }
 .c-bolt-link:hover {
@@ -27449,10 +27342,10 @@ bolt-ratio {
     content: \\"\\";
     display: block;
     width: 100%;
-    padding-bottom: calc(100% / (var(--aspect-ratio)));
+    padding-bottom: calc(100% / var(--aspect-ratio));
   }
   .c-bolt-ratio {
-    padding-bottom: calc(100% / (var(--aspect-ratio)));
+    padding-bottom: calc(100% / var(--aspect-ratio));
   }
 }
 .c-bolt-ratio > *,
