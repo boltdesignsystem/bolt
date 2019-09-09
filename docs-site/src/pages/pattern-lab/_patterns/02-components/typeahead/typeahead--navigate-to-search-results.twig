@@ -1,12 +1,25 @@
+{% set typeahead_markdown_docs %}
+### Typeahead: Navigate To Search Results
+
+Demos populating the `<bolt-typeahead>` component with a larger batch of results + customizing the `onSelected` behavior to always go to the search results page when selecting an item.
+
+Unlike the other demo, only perfect matches will allow you to submit (via the submit button) / select a result.
+
+For example, manually selecting / entering `Case Management` in the input field will allow you to submit via hitting enter / clicking on the search icon however entering in `Case Management2` instead would _not_ submit.
+
+{% endset %}
+
+{{ typeahead_markdown_docs | markdown }}
+
 {% include "@bolt-components-typeahead/typeahead.twig" with {
   attributes: {
     class: [
       "js-typeahead-hook"
     ]
-  },
-  fallback_form_action: "https://www.pega.com/search"
+  }
 } %}
 
+{% set typeahead_example_js %}
 <script>
   const typeahead = document.querySelector('.js-typeahead-hook');
 
@@ -71,3 +84,19 @@
     }
   });
 </script>
+{% endset %}
+
+{{ typeahead_example_js }}
+
+<bolt-code-snippet syntax="light" lang="html" class="u-bolt-block u-bolt-margin-top-medium">
+  {% spaceless %}
+    <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
+<code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight" is="shadow-root">
+{{ typeahead_example_js | replace({
+'<': '&lt;',
+'>': '&gt;',
+}) | trim | raw }}
+</code>
+</pre>
+  {% endspaceless %}
+</bolt-code-snippet>
