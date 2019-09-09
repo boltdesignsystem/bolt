@@ -24,7 +24,6 @@ npm install @bolt/bolt-typeahead
 
 
 # API
-<br>
 
 ### JavaScript Properties/Attributes
 
