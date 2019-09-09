@@ -6,30 +6,6 @@ use Bolt;
 use \Twig_SimpleFilter;
 
 class TwigFilters {
-  // ported over from https://github.com/craftcms/cms/blob/develop/src/web/twig/Extension.php#L459
-  /**
-   * Replaces Twig's |replace filter, adding support for passing in separate
-   * search and replace arrays.
-   *
-   * @param mixed $str
-   * @param mixed $search
-   * @param mixed $replace
-   * @return mixed
-   */
-  public static function replaceFilter() {
-    return new Twig_SimpleFilter('replace', function($str, $search, $replace = null) {
-      // Are they using the standard Twig syntax?
-      if (is_array($search) && $replace === null) {
-        return strtr($str, $search);
-      }
-      // Is this a regular expression?
-      if (preg_match('/^\/.+\/[a-zA-Z]*$/', $search)) {
-        return preg_replace($search, $replace, $str);
-      }
-      // Otherwise use str_replace
-      return str_replace($search, $replace, $str);
-    });
-  }
 
   public static function markdown() {
     return new Twig_SimpleFilter('markdown', function($string) {

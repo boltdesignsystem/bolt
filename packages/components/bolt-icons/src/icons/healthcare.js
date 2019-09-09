@@ -1,15 +1,8 @@
 import { h } from '@bolt/core/renderers';
 
-export const Healthcare = ({
-  bgColor,
-  fgColor,
-  size,
-  title,
-  ...otherProps
-}) => {
+export const Healthcare = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg data-name="Layer 1" {...otherProps} viewBox="0 0 30 30">
-      <title>{title}</title>
       <path
         fill={bgColor}
         fill-rule="evenodd"

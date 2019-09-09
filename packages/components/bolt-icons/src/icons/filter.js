@@ -1,9 +1,8 @@
 import { h } from '@bolt/core/renderers';
 
-export const Filter = ({ bgColor, fgColor, size, title, ...otherProps }) => {
+export const Filter = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg {...otherProps} viewBox="0 0 32 32">
-      <title>{title}</title>
       <path
         fill={bgColor}
         fill-rule="nonzero"

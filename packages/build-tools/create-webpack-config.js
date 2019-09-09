@@ -17,8 +17,6 @@ const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
-const crypto = require('crypto');
-
 const {
   webpackStats,
   statsPreset,
@@ -29,7 +27,6 @@ const {
   mapComponentNameToTwigNamespace,
 } = require('@bolt/build-utils/manifest');
 const log = require('@bolt/build-utils/log');
-const { svgoConfig } = require('./svgo-config');
 
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
@@ -195,120 +192,51 @@ async function createWebpackConfig(buildConfig) {
     return entry;
   }
 
-  const scssLoaders = function(isJsFile = false, isScoped = false) {
-    return [
-      {
-        loader: 'css-loader',
-        options: {
-          sourceMap: config.sourceMaps,
-          importLoaders: 4,
-          modules:
-            isJsFile === true && isScoped === true
-              ? {
-                  // localsConvention: 'camelCase',
-                  getLocalIdent: (
-                    context,
-                    localIdentName,
-                    localName,
-                    options,
-                  ) => {
-                    if (
-                      isJsFile === true &&
-                      context.resourcePath.includes('.scoped')
-                    ) {
-                      if (localName.includes('t-bolt')) {
-                        return localName;
-                      } else {
-                        return `${localName}--${crypto
-                          .createHash('md5')
-                          .update(localName)
-                          .digest('hex')
-                          .substring(0, 8)}`;
-                      }
-                    } else {
-                      return localName;
-                    }
-                  },
-                }
-              : false,
-        },
+  const scssLoaders = [
+    {
+      loader: 'css-loader',
+      options: {
+        sourceMap: config.sourceMaps,
+        modules: false, // needed for JS referencing classNames directly, such as critical fonts
       },
-      {
-        loader: 'postcss-loader',
-        options: {
-          sourceMap: config.sourceMaps,
-          plugins: () =>
-            !isJsFile && isScoped
-              ? [
-                  require('@bolt/postcss-themify')(themifyOptions),
-                  postcssDiscardDuplicates,
-                  autoprefixer({
-                    grid: true,
-                  }),
-                  require('postcss-modules')({
-                    // camelCase: true, // disabling camelCase versions of CSS classes till we look into changing the
-                    generateScopedName(name, filename, css) {
-                      if (filename.includes('.scoped')) {
-                        const i = css.indexOf(`.${name}`);
-                        if (name.includes('t-bolt')) {
-                          return name;
-                        } else {
-                          return `${name}--${crypto
-                            .createHash('md5')
-                            .update(name)
-                            .digest('hex')
-                            .substring(0, 8)}`;
-                        }
-                      } else {
-                        return name;
-                      }
-                    },
-                    getJSON(cssFileName, json, outputFileName) {
-                      if (
-                        cssFileName.includes('.scoped') &&
-                        isJsFile === false
-                      ) {
-                        var jsonFileName = path.resolve(
-                          `${cssFileName.replace('.scss', '')}.json`,
-                        );
-                        fs.writeFileSync(jsonFileName, JSON.stringify(json));
-                      }
-                    },
-                  }),
-                ]
-              : [
-                  require('@bolt/postcss-themify')(themifyOptions),
-                  postcssDiscardDuplicates,
-                  autoprefixer({
-                    grid: true,
-                  }),
-                ],
-        },
+    },
+    {
+      loader: 'postcss-loader',
+      options: {
+        sourceMap: config.sourceMaps,
+        plugins: () => [
+          require('@bolt/postcss-themify')(themifyOptions),
+          postcssDiscardDuplicates,
+          autoprefixer({
+            grid: true,
+          }),
+        ],
       },
-      {
-        loader: 'clean-css-loader',
-        options: {
-          level: config.prod ? 2 : 0,
-          format: config.prod ? false : 'beautify',
-          inline: ['remote'],
-        },
+    },
+    {
+      loader: 'clean-css-loader',
+      options: {
+        level: config.prod ? 2 : 0,
+        format: config.prod ? false : 'beautify',
+        inline: ['remote'],
       },
-      {
-        loader: 'resolve-url-loader',
+    },
+    {
+      loader: 'resolve-url-loader',
+    },
+
+    {
+      loader: 'sass-loader',
+      options: {
+        sourceMap: config.sourceMaps,
+        importer: [npmSass.importer],
+        functions: sassExportData,
+        precision: 3,
+        data: globalSassData.join('\n'),
+        outputStyle: 'nested',
       },
-      {
-        loader: 'sass-loader',
-        options: {
-          sourceMap: config.sourceMaps,
-          importer: [npmSass.importer],
-          functions: sassExportData,
-          precision: 3,
-          data: globalSassData.join('\n'),
-          outputStyle: 'nested',
-        },
-      },
-    ];
-  };
+    },
+  ];
 
   let webpackConfig = {
     target: 'web',
@@ -341,57 +269,6 @@ async function createWebpackConfig(buildConfig) {
     },
     module: {
       rules: [
-        // @todo: uncomment once future updates to handle SVG icon spritesheet in place
-        // {
-        //   test: /\.svg$/,
-        //   include: path.dirname(require.resolve('@bolt/components-icons/package.json')),
-        //   use: [
-        //     'svg-sprite-loader',
-        //     'svgo-loader'
-        //   ]
-        // },
-
-        // minify non spritesheet SVGs icons
-        {
-          test: /\.svg$/,
-          include: path.dirname(
-            require.resolve('@bolt/components-icons/package.json'),
-          ),
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: 'icons/[name].min.[ext]',
-              },
-            },
-            {
-              loader: 'svgo-loader',
-              options: {
-                plugins: svgoConfig.plugins,
-              },
-            },
-          ],
-        },
-        {
-          test: /\.svg$/,
-          exclude: path.dirname(
-            require.resolve('@bolt/components-icons/package.json'),
-          ),
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[ext]',
-              },
-            },
-            {
-              loader: 'svgo-loader',
-              options: {
-                plugins: svgoConfig.plugins,
-              },
-            },
-          ],
-        },
         {
           test: /\.(ts|tsx)$/,
           loader: 'ts-loader',
@@ -400,42 +277,18 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.(scoped.scss)$/,
+          test: /\.scss$/,
           oneOf: [
             {
               issuer: /\.js$/,
-              use: [scssLoaders(true, true)].reduce(
-                (acc, val) => acc.concat(val),
-                [],
-              ),
+              use: [scssLoaders].reduce((acc, val) => acc.concat(val), []),
             },
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: [
                 // 'css-hot-loader',
                 MiniCssExtractPlugin.loader,
-                scssLoaders(false, true),
-              ].reduce((acc, val) => acc.concat(val), []),
-            },
-          ],
-        },
-        {
-          test: /\.(scss)$/,
-          exclude: /\.scoped.scss/,
-          oneOf: [
-            {
-              issuer: /\.js$/,
-              use: [scssLoaders(true, false)].reduce(
-                (acc, val) => acc.concat(val),
-                [],
-              ),
-            },
-            {
-              // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
-              use: [
-                // 'css-hot-loader',
-                MiniCssExtractPlugin.loader,
-                scssLoaders(false, false),
+                scssLoaders,
               ].reduce((acc, val) => acc.concat(val), []),
             },
           ],
@@ -461,7 +314,7 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.(cur)$/,
+          test: /\.(cur|svg)$/,
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
@@ -556,25 +409,9 @@ async function createWebpackConfig(buildConfig) {
           maxAge: 2 * 24 * 60 * 60 * 1000,
           // All caches together must be larger than `sizeThreshold` before any
           // caches will be deleted. Together they must be at least 300MB in size
-          sizeThreshold: 3000 * 1024 * 1024,
-        },
-        environmentHash: {
-          root: process.cwd(),
-          directories: [],
-          files: ['package-lock.json', 'yarn.lock'],
+          sizeThreshold: 300 * 1024 * 1024,
         },
       }),
-
-      new HardSourceWebpackPlugin.ExcludeModulePlugin([
-        {
-          // HardSource works with mini-css-extract-plugin but due to how
-          // mini-css emits assets, assets are not emitted on repeated builds with
-          // mini-css and hard-source together. Ignoring the mini-css loader
-          // modules, but not the other css loader modules, excludes the modules
-          // that mini-css needs rebuilt to output assets every time.
-          test: /(mini-css-extract-plugin[\\/]dist[\\/]loader|postcss-modules)/,
-        },
-      ]),
     );
   }
 
@@ -599,24 +436,23 @@ async function createWebpackConfig(buildConfig) {
     );
 
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
-    // webpackConfig.plugins.push(
-    //   new OptimizeCssAssetsPlugin({
-    //     canPrint: config.verbosity > 2,
-    //     cssProcessor: require('cssnano'),
-    //     // @ts-ignore
-    //     cssProcessorPluginOptions: {
-    //       preset: [
-    //         'default',
-    //         {
-    //           discardComments: { removeAll: true },
-    //           mergeLonghand: false, // don't merge longhand values -- required for CSS Vars theming, etc.
-    //           zindex: false, // don't alter `z-index` values
-    //           mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
-    //         },
-    //       ],
-    //     },
-    //   }),
-    // );
+    webpackConfig.plugins.push(
+      new OptimizeCssAssetsPlugin({
+        canPrint: config.verbosity > 2,
+        cssProcessor: require('cssnano'),
+        cssProcessorPluginOptions: {
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true },
+              mergeLonghand: false, // don't merge longhand values -- required for CSS Vars theming, etc.
+              zindex: false, // don't alter `z-index` values
+              mergeRules: false, // this MUST be disabled - otherwise certain selectors (ex. ::slotted(*), which IE 11 can't parse) break
+            },
+          ],
+        },
+      }),
+    );
 
     // @todo evaluate best source map approach for production builds -- particularly source-map vs hidden-source-map
     webpackConfig.devtool =

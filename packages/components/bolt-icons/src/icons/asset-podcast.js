@@ -1,15 +1,8 @@
 import { h } from '@bolt/core/renderers';
 
-export const AssetPodcast = ({
-  bgColor,
-  fgColor,
-  size,
-  title,
-  ...otherProps
-}) => {
+export const AssetPodcast = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg {...otherProps} viewBox="0 0 24 24">
-      <title>{title}</title>
       <g fill="none" fill-rule="evenodd">
         <path />
         <path
