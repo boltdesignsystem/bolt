@@ -533,12 +533,11 @@
                 {% include "@bolt-components-button/button.twig" with {
                   text: "Search Pega.com",
                   iconOnly: true,
-                  color: "text",
+                  style: "text",
                   icon: {
                     title: "Search Pega.com",
                     name: "search",
                     slot: "before",
-                    fallback: true,
                     attributes: {
                       class: "c-global-search-panel-trigger__icon"
                     }
@@ -553,7 +552,7 @@
                 {% include "@bolt-components-button/button.twig" with {
                   text: "Close search",
                   iconOnly: true,
-                  color: "text",
+                  style: "text",
                   icon: {
                     title: "Close search",
                     name: "close",
@@ -577,7 +576,7 @@
               <div class="c-hamburger">
                 {% include "@bolt-components-button/button.twig" with {
                   text: "Open menu",
-                  color: "text",
+                  style: "text",
                   iconOnly: true,
                   icon: {
                     title: "Open Menu",
@@ -610,7 +609,7 @@
         {% grid "o-bolt-grid--center c-global-search-panel__content__transition" %}
           {% cell "u-bolt-width-12/12 u-bolt-width-10/12@large" %}
             <div class="u-bolt-margin-bottom-small">
-              {% include "@pl/typeahead-with-js-hook.twig" only %}
+              {% include "@bolt-components-typeahead/typeahead.demo.twig" only %}
             </div>
             <bolt-text font-size="xsmall" align="center">
               Placeholder for helper text and did-you-mean text.
