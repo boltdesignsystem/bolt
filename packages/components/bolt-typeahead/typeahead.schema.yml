@@ -5,9 +5,9 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
-  maxResults:
+  max_results:
     type: number
-    description: Maximum number of typeahead results to display
+    description: The maximum number of typeahead results to display
     default: 10
   # noClearButton:
   #   type: boolean
@@ -17,7 +17,7 @@ properties:
     description: Array of suggested results (JavaScript Only)
   fallback_form_method:
     type: string
-    description: Configures the fallback HTML form to submit via GET vs POST
+    description: Configures the fallback HTML form to submit via GET vs POST (Currently Twig Only)
     default: get
     enum:
       - get
@@ -25,10 +25,35 @@ properties:
   fallback_form_target:
     type: string
     default: _blank
-    description: Configures the fallback HTML form to submit in the same window or new window.
+    description: Configures the fallback HTML form to submit in the same window or new window. (Currently Twig Only)
     enum:
       - _blank
       - _self
+
   fallback_form_action:
     type: string
-    description: Configures the location that the fallback HTML form submits to
+    description: Configures the location that the fallback HTML form submits to (Currently Twig Only)
+
+  fallback_form_label:
+    type: string
+    description: The visually hidden, accessible label that's used when pre-rendering Typeahead using Twig.
+    default: Search the website
+
+  clear_button_text:
+    type: string
+    description: The visually hidden, accessible text used for the clear button.
+    default: Clear search input
+
+  submit_button_text:
+    type: string
+    description: The visually hidden, accessible text used for the submit button.
+    default: Search the website
+
+  placeholder:
+    type: string
+    description: The placeholder text to display inside the Typeahead search input.
+    default: Enter to search
+
+  initial_value:
+    type: string
+    description: Initial value to pre-populate the input field

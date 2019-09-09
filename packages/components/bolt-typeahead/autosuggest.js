@@ -57,18 +57,20 @@ class BoltAutosuggest extends withPreact() {
 
   static props = {
     placeholder: props.string,
-    noClearButton: props.boolean,
-    clearButtonText: props.string,
-    fallbackMethod: props.string,
-    fallbackTarget: props.string,
-    fallbackAction: props.string,
     value: props.string,
+
+    noClearButton: props.boolean,
+    clearButtonText: {
+      ...props.string,
+      ...{ default: 'Clear Search Results' },
+    },
+    items: props.array,
     submitButtonText: {
       ...props.string,
       ...{ default: 'Submit' },
     },
     maxResults: {
-      ...props.string,
+      ...props.number,
       ...{ default: 10 },
     },
   };
@@ -259,37 +261,37 @@ class BoltAutosuggest extends withPreact() {
     this.items = items;
 
     // skip default onChange behavior if external listeners have hooked in
-    // @todo: decide if / how this logic should get bypassed if there's hooking into the getSuggestions method
-    // if (!this._listeners['getSuggestions']) {
-    const fuseOptions = {
-      shouldSort: true,
-      threshold: 0.3,
-      tokenize: true,
-      includeMatches: true,
-      location: 0,
-      distance: 100,
-      maxPatternLength: 32,
-      minMatchCharLength: 1,
-      keys: ['label', 'description'],
-    };
-    const fuse = new Fuse(items, fuseOptions);
-    const results = fuse.search(value);
+    // @todo: decide if / how this logic should actually get fully bypassed when hooking into the getSuggestions method
+    if (!this._listeners['getSuggestions']) {
+      const fuseOptions = {
+        shouldSort: true,
+        threshold: 0.3,
+        tokenize: true,
+        includeMatches: true,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: ['label', 'description'],
+      };
+      const fuse = new Fuse(items, fuseOptions);
+      const results = fuse.search(value);
 
-    results.forEach(resultItem => {
-      highlightSearchResults(resultItem);
-    });
+      results.forEach(resultItem => {
+        highlightSearchResults(resultItem);
+      });
 
-    const reducedResults = results.reduce((total, result) => {
-      total.push(result.item);
-      return total;
-    }, []);
+      const reducedResults = results.reduce((total, result) => {
+        total.push(result.item);
+        return total;
+      }, []);
 
-    if (reducedResults.length < this.props.maxResults) {
-      return reducedResults;
-    } else {
-      return reducedResults.slice(0, this.props.maxResults);
+      if (reducedResults.length < this.props.maxResults) {
+        return reducedResults;
+      } else {
+        return reducedResults.slice(0, this.props.maxResults);
+      }
     }
-    // }
   }
 
   /**

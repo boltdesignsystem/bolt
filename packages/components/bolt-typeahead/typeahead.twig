@@ -40,10 +40,8 @@
 } %}
 
 {% set text = {
-  label: "Search the website",
-  submit: "Search the website",
+  label: "",
   clearInput: "Clear search input",
-  inputPlaceholder: "Enter to search"
 } %}
 
 {% set data = {
@@ -55,9 +53,16 @@
 {% set fallback_form_method = fallback_form_method | default('get') %}
 {% set fallback_form_action = fallback_form_action | default('') %}
 {% set fallback_form_target = fallback_form_target | default('_blank') %}
+{% set fallback_form_label = fallback_form_label | default('Search the website') %}
+{% set placeholder = placeholder | default('Enter to search') %}
+{% set submit_button_text = submit_button_text | default('Search the website') %}
+
+{% set initial_value = initial_value | default('') %}
+{% set max_results = max_results | default(10) %}
+
 
 {% set search_icon %}
-  {% embed "@bolt-components-icon/icon.twig" with {
+{% embed "@bolt-components-icon/icon.twig" with {
     name: "search",
     preload: true,
     attributes: {
@@ -66,15 +71,15 @@
       ]
     }
   } only %}
-    {% block icon_inner %}
-      {{ source("@bolt-components-typeahead/search.min.svg") }}
-    {% endblock icon_inner %}
-  {% endembed %}
+  {% block icon_inner %}
+    {{ source("@bolt-components-typeahead/search.min.svg") }}
+  {% endblock icon_inner %}
+{% endembed %}
 {% endset %}
 
 
 {% set clear_icon %}
-  {% embed "@bolt-components-icon/icon.twig" with {
+{% embed "@bolt-components-icon/icon.twig" with {
     name: "close-solid",
     preload: true,
     attributes: {
@@ -83,33 +88,23 @@
       ]
     }
   } only %}
-    {% block icon_inner %}
-      {{ source("@bolt-components-typeahead/close-solid.min.svg") }}
-    {% endblock icon_inner %}
-  {% endembed %}
+  {% block icon_inner %}
+    {{ source("@bolt-components-typeahead/close-solid.min.svg") }}
+  {% endblock icon_inner %}
+{% endembed %}
 {% endset %}
 
 
 {% spaceless %}
-<bolt-typeahead {{ attributes }} placeholder="{{ text.inputPlaceholder }}">
-  <div class="{{ classNames.typeahead }}">
-    <form class="{{ classNames.inputWrapper }}" method="{{ fallback_form_method }}" action="{{ fallback_form_action }}" target="{{ fallback_form_target }}">
-      <label for="{{ data.uuid }}" class="{{ classNames.label }}">
-        <span class="{{ utils.visuallyHidden }}">{{ text.label }}</span>
-      </label>
-      <input
-        id="{{ data.uuid }}"
-        type="text"
-        autocomplete="off"
-        aria-autocomplete="list"
-        class="{{ classNames.input }}"
-        placeholder="{{ text.inputPlaceholder }}"
-        value="{{ initialValue }}"
-        required
-        name="q"
-      />
+  <bolt-typeahead {{ attributes }} placeholder="{{ placeholder }}" max-results="{{ max_results }}">
+    <div class="{{ classNames.typeahead }}">
+      <form class="{{ classNames.inputWrapper }}" method="{{ fallback_form_method }}" action="{{ fallback_form_action }}" target="{{ fallback_form_target }}">
+        <label for="{{ data.uuid }}" class="{{ classNames.label }}">
+          <span class="{{ utils.visuallyHidden }}">{{ fallback_form_label }}</span>
+        </label>
+        <input id="{{ data.uuid }}" type="text" autocomplete="off" aria-autocomplete="list" class="{{ classNames.input }}" placeholder="{{ placeholder }}" value="{{ initial_value }}" required name="q"/>
 
-      {% embed "@bolt-components-button/button.twig" with {
+        {% embed "@bolt-components-button/button.twig" with {
         text: text.clearInput,
         iconOnly: true,
         style: "text",
@@ -121,28 +116,28 @@
         },
         type: "reset"
       } %}
-        {% block slot_after %}
-          <replace-with-children class="c-bolt-button__icon">
-            {{ clear_icon }}
-          </replace-with-children>
-        {% endblock slot_after %}
-      {% endembed %}
+          {% block slot_after %}
+            <replace-with-children class="c-bolt-button__icon">
+              {{ clear_icon }}
+            </replace-with-children>
+          {% endblock slot_after %}
+        {% endembed %}
 
-      <div class="{{ classNames.submitButton | join(' ') }}">
-        {% embed "@bolt-components-button/button.twig" with {
-          text: text.submit,
+        <div class="{{ classNames.submitButton | join(' ') }}">
+          {% embed "@bolt-components-button/button.twig" with {
+          text: submit_button_text,
           iconOnly: true,
           style: "text",
           type: "submit"
         } %}
-          {% block slot_after %}
-            <replace-with-children class="c-bolt-button__icon">
-              {{ search_icon }}
-            </replace-with-children>
-          {% endblock slot_after %}
-        {% endembed %}
-      </div>
-    </form>
-  </div>
-</bolt-typeahead>
+            {% block slot_after %}
+              <replace-with-children class="c-bolt-button__icon">
+                {{ search_icon }}
+              </replace-with-children>
+            {% endblock slot_after %}
+          {% endembed %}
+        </div>
+      </form>
+    </div>
+  </bolt-typeahead>
 {% endspaceless %}
