@@ -4,15 +4,31 @@ type: object
 properties:
   attributes:
     type: object
-
     description: A Drupal-style attributes object with extra attributes to append to this component.
   maxResults:
     type: number
     description: Maximum number of typeahead results to display
     default: 10
-  noClearButton:
-    type: boolean
-    description: Optionally disables displaying the typeahead clear button when results are displayed
+  # noClearButton:
+  #   type: boolean
+  #   description: Optionally disables displaying the typeahead clear button when results are displayed
   items:
     type: array
-    description: Array of suggested results
+    description: Array of suggested results (JavaScript Only)
+  fallback_form_method:
+    type: string
+    description: Configures the fallback HTML form to submit via GET vs POST
+    default: get
+    enum:
+      - get
+      - post
+  fallback_form_target:
+    type: string
+    default: _blank
+    description: Configures the fallback HTML form to submit in the same window or new window.
+    enum:
+      - _blank
+      - _self
+  fallback_form_action:
+    type: string
+    description: Configures the location that the fallback HTML form submits to
