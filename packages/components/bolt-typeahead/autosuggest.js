@@ -86,9 +86,12 @@ class BoltAutosuggest extends withPreact() {
   }
 
   // return the parent that's rendering <bolt-autosuggest> based on Shadow DOM usage
+  // https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode
+  //
+  // @todo: move this into it's own decorator in Bolt Core?
   get getParent() {
-    if (this.shadowRoot && this.shadowRoot.host) {
-      return this.shadowRoot.host;
+    if (this.getRootNode) {
+      return this.getRootNode().host;
     } else {
       return this.closest('bolt-typeahead');
     }
@@ -167,14 +170,6 @@ class BoltAutosuggest extends withPreact() {
     this.onSelected = this.onSelected.bind(this);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    // this.context = this.contexts.get(TypeaheadContext);
-
-    // Inherit items from `bolt-typeahead`
-    // this.items = this.getParent.items || this.items || [];
-  }
-
   connected() {
     super.connected && super.connected();
 
@@ -194,7 +189,6 @@ class BoltAutosuggest extends withPreact() {
 
   _updateInputFallback(newValue) {
     if (this.hasExternalInput) {
-      // this.hasExternalInput.value = value;
       this.hasExternalInput.setAttribute('value', newValue);
     }
   }
@@ -263,9 +257,9 @@ class BoltAutosuggest extends withPreact() {
 
     const items = this.getParent.items;
     this.items = items;
-    // console.log(this.context.items);
 
     // skip default onChange behavior if external listeners have hooked in
+    // @todo: decide if / how this logic should get bypassed if there's hooking into the getSuggestions method
     // if (!this._listeners['getSuggestions']) {
     const fuseOptions = {
       shouldSort: true,
@@ -305,7 +299,6 @@ class BoltAutosuggest extends withPreact() {
    * @param {{newValue: string}} newValue - the updated input value
    */
   onChange = (event, { newValue, method }) => {
-    // console.log(newValue);
     this._fire('onChange', event, newValue, method);
     this._setState({ value: newValue });
   };
@@ -355,75 +348,9 @@ class BoltAutosuggest extends withPreact() {
 
     this._fire('onRenderInput', value);
 
-    // console.log(value);
-
-    const shouldShowClearButton = true;
-    //
-    //   this.props.noClearButton !== undefined &&
-    //   this.props.noClearButton !== true &&
-    //   value !== '';
-
-    // const clearButtonText = this.props.clearButtonText
-    //   ? this.props.clearButtonText
-    //   : 'Clear Search Results';
-
-    // const submitButtonText = this.props.submitButtonText
-    //   ? this.props.submitButtonText
-    //   : 'Submit';
-
     return (
-      <div
-        className={cx(`c-bolt-typeahead__input-wrapper`, {
-          [`c-bolt-typeahead__input-wrapper--with-clear-button`]: shouldShowClearButton,
-        })}>
+      <div className={cx(`c-bolt-typeahead__input-wrapper`)}>
         <input {...inputProps} />
-        {/* {shouldShowClearButton && (
-          <bolt-button
-            dangerouslySetInnerHTML="foo"
-            color="text"
-            icon-only
-            type="reset"
-            className={cx(
-              'c-bolt-typeahead__button',
-              'c-bolt-typeahead__button--clear',
-              {
-                [`is-visible`]: value !== '',
-              },
-            )}
-            onClick={() => {
-              this.clearSearch();
-            }}>
-            {clearButtonText}
-            <bolt-icon
-              name="close-solid"
-              slot="before"
-              className={cx('c-bolt-typeahead__icon')}
-              title={clearButtonText}
-            />
-          </bolt-button>
-        )}
-        <bolt-button
-          dangerouslySetInnerHTML="foo"
-          type="submit"
-          color="text"
-          icon-only
-          onClick={() => {
-            this.querySelector('form')
-              ? this.querySelector('form').submit()
-              : '';
-          }}
-          className={cx(
-            'c-bolt-typeahead__button',
-            'c-bolt-typeahead__button--submit',
-          )}>
-          {submitButtonText}
-          <bolt-icon
-            name="search"
-            className={cx('c-bolt-typeahead__icon')}
-            title={submitButtonText}
-            slot="before"
-          />
-        </bolt-button> */}
       </div>
     );
   }
