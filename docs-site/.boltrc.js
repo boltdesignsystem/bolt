@@ -157,6 +157,10 @@ const config = {
       to: path.join(__dirname, '../www/build'),
     },
     {
+      from: path.join(path.dirname(require.resolve(`@bolt/components-typeahead`)),'typeahead.data.json'),
+      to: path.join(__dirname, '../www/build/data'),
+    },
+    {
       from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),
       flatten: true,

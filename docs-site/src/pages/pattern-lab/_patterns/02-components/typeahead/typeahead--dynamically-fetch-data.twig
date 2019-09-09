@@ -1,0 +1,86 @@
+{% set typeahead_markdown_docs %}
+# Typeahead Demo: Dyamically Fetch Results
+
+This example demonstrates populating the `<bolt-typeahead>` component with JSON data that's dynamically fetched from an external source via the `getSuggestions` hook.
+
+Also, this demo caps the max # of search results to display at 5.
+
+{% endset %}
+
+{{ typeahead_markdown_docs | markdown }}
+
+{% include "@bolt-components-typeahead/typeahead.twig" with {
+  attributes: {
+    class: [
+      "js-typeahead-hook--dynamically-fetch-data"
+    ]
+  },
+  max_results: 5,
+} %}
+
+{% set typeahead_example_js %}
+<script>
+  // NOTE: you'd want to run all this code through Babel before shipping. This is just inlined here. for demo puproses.
+  const dynamicTypeaheadDemo = document.querySelector('.js-typeahead-hook--dynamically-fetch-data');
+
+  dynamicTypeaheadDemo.addEventListener('ready', function (e) {
+    if (e.detail.name === 'bolt-typeahead') {
+
+      // note: make sure to let Typeahead know when the data fetched is ready
+      dynamicTypeaheadDemo.on('getSuggestions', async (value) => {
+        return await new Promise(async resolve => {
+          await fetch('/build/data/typeahead.data.json')
+            .then(function(response) {
+              return response.json();
+            })
+            .then(function(data) {
+              return resolve(data);
+            });
+        });
+      });
+
+      dynamicTypeaheadDemo.on('onSelected', (element, event, suggestion) => {
+        const exactMatch = element.items.filter(item => item.label === suggestion.suggestionValue)[0];
+
+        function navigateTo(url) {
+          if (window.location !== window.parent.location) {
+            const win = window.open(url, '_blank');
+            win.focus();
+          } else {
+            window.location = url;
+          }
+        }
+
+        if (exactMatch && exactMatch.url) {
+          if (exactMatch.url) {
+            navigateTo(exactMatch.url);
+          } else {
+            navigateTo(`https://www.pega.com/search?q=${
+              itemSelected.label
+            }`);
+          }
+        } else if (suggestion.suggestionValue !== '') {
+          navigateTo(`https://www.pega.com/search?q=${
+            suggestion.suggestionValue
+          }`);
+        }
+      });
+    }
+  });
+</script>
+{% endset %}
+
+{{ typeahead_example_js }}
+
+<bolt-code-snippet syntax="light" lang="html" class="u-bolt-block u-bolt-margin-top-medium">
+  {% spaceless %}
+    <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
+<code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight" is="shadow-root">
+{{ typeahead_example_js | replace({
+'<': '&lt;',
+'>': '&gt;',
+}) | trim | raw }}
+</code>
+</pre>
+  {% endspaceless %}
+</bolt-code-snippet>

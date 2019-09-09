@@ -258,43 +258,51 @@ class BoltAutosuggest extends withPreact() {
   getSuggestionValue = suggestion => suggestion.label;
 
   // highlights keywords in the search results in a react-friendly way + limits the total number of results displayed
-  getSuggestions(value) {
-    this._fire('getSuggestions', value);
-
-    const items = this.getParent.items;
-    this.items = items;
+  async getSuggestions(value) {
+    let items;
 
     // skip default onChange behavior if external listeners have hooked in
-    // @todo: decide if / how this logic should actually get fully bypassed when hooking into the getSuggestions method
-    if (!this._listeners['getSuggestions']) {
-      const fuseOptions = {
-        shouldSort: true,
-        threshold: 0.3,
-        tokenize: true,
-        includeMatches: true,
-        location: 0,
-        distance: 100,
-        maxPatternLength: 32,
-        minMatchCharLength: 1,
-        keys: ['label', 'description'],
-      };
-      const fuse = new Fuse(items, fuseOptions);
-      const results = fuse.search(value);
-
-      results.forEach(resultItem => {
-        highlightSearchResults(resultItem);
+    if (!this.getParent._listeners['getSuggestions']) {
+      items = this.getParent.items;
+      this.items = items;
+    } else {
+      await new Promise(async resolve => {
+        const listeners = this.getParent._listeners['getSuggestions'] || [];
+        const listener = listeners[0];
+        items = await listener(this, value);
+        this.items = items;
+        return resolve();
       });
+    }
 
-      const reducedResults = results.reduce((total, result) => {
-        total.push(result.item);
-        return total;
-      }, []);
+    // @todo: decide if / how this sorting / highlighting logic should stay built-in vs getting exposed via an external hook
+    const fuseOptions = {
+      shouldSort: true,
+      threshold: 0.2,
+      tokenize: true,
+      includeMatches: true,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: ['label', 'description'],
+    };
+    const fuse = new Fuse(items, fuseOptions);
+    const results = fuse.search(value);
 
-      if (reducedResults.length < this.props.maxResults) {
-        return reducedResults;
-      } else {
-        return reducedResults.slice(0, this.props.maxResults);
-      }
+    results.forEach(resultItem => {
+      highlightSearchResults(resultItem);
+    });
+
+    const reducedResults = results.reduce((total, result) => {
+      total.push(result.item);
+      return total;
+    }, []);
+
+    if (reducedResults.length < this.props.maxResults) {
+      return reducedResults;
+    } else {
+      return reducedResults.slice(0, this.props.maxResults);
     }
   }
 
@@ -310,12 +318,12 @@ class BoltAutosuggest extends withPreact() {
   };
 
   // Autosuggest calls this every time you need to update suggestions.
-  onSuggestionsFetchRequested = ({ value }) => {
-    this._fire('onSuggestionsFetchRequested', value);
-    this._setState({ isOpen: true });
+  onSuggestionsFetchRequested = async ({ value }) => {
+    await this._fire('onSuggestionsFetchRequested', value);
+    await this._setState({ isOpen: true });
 
-    this._setState({
-      suggestions: this.getSuggestions(value),
+    await this._setState({
+      suggestions: await this.getSuggestions(value),
     });
   };
 
