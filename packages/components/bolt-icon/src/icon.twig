@@ -3,17 +3,6 @@
 {% endif %}
 
 {% set attributes = create_attribute(attributes | default({})) %}
-{% set inner_attributes = create_attribute({
-  class: [
-    "c-bolt-icon",
-    "c-bolt-icon--" ~ size
-  ]
-}) %}
-{% set svg_attributes = create_attribute({
-  class: [
-    "c-bolt-icon__icon"
-  ]
-}) %}
 
 {% set attributes = attributes
   .setAttribute("name", name)

@@ -42,7 +42,7 @@ properties:
       - medium
       - large
       - xlarge
-  color:
+  style:
     type: string
     description: 'Style of the button determined by information hierarchy.'
     default: primary
@@ -107,11 +107,3 @@ properties:
       - submit
       - reset
     default: button
-  style:
-    title: 'DEPRECATED'
-    description: 'Temporarily renamed to `color` -- will be renamed to `variant` in v3.0'
-    default: primary
-    enum:
-      - primary
-      - secondary
-      - text

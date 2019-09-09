@@ -112,7 +112,7 @@
       {% embed "@bolt-components-button/button.twig" with {
         text: text.clearInput,
         iconOnly: true,
-        color: "text",
+        style: "text",
         attributes: {
           onclick: "this.previousElementSibling.focus()",
           class: [
@@ -132,7 +132,7 @@
         {% embed "@bolt-components-button/button.twig" with {
           text: text.submit,
           iconOnly: true,
-          color: "text",
+          style: "text",
           type: "submit"
         } %}
           {% block slot_after %}
