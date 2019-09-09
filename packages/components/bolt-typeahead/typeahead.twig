@@ -34,17 +34,49 @@
 } %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set fallback_form = {
-  method: 'get',
-  action: 'https://www.pega.com/search',
-  target: '_blank'
-} %}
+
+{% set fallback_form_method = fallback_form_method | default('get') %}
+{% set fallback_form_action = fallback_form_action | default('') %}
+{% set fallback_form_target = fallback_form_target | default('_blank') %}
+
+{% set search_icon %}
+  {% embed "@bolt-components-icon/icon.twig" with {
+    name: "search",
+    preload: true,
+    attributes: {
+      class: [
+        classNames.icon
+      ]
+    }
+  } only %}
+    {% block icon_inner %}
+      {{ source("@bolt-components-typeahead/search.min.svg") }}
+    {% endblock icon_inner %}
+  {% endembed %}
+{% endset %}
+
+
+{% set clear_icon %}
+  {% embed "@bolt-components-icon/icon.twig" with {
+    name: "close-solid",
+    preload: true,
+    attributes: {
+      class: [
+        classNames.icon
+      ]
+    }
+  } only %}
+    {% block icon_inner %}
+      {{ source("@bolt-components-typeahead/close-solid.min.svg") }}
+    {% endblock icon_inner %}
+  {% endembed %}
+{% endset %}
+
 
 {% spaceless %}
-<bolt-typeahead {{ attributes }} placeholder="{{ text.inputPlaceholder }}" fallback-method="{{ fallback_form.method }}" fallback-action="{{ fallback_form.action }}"
- fallback-target="{{ fallback_form.target }}">
+<bolt-typeahead {{ attributes }} placeholder="{{ text.inputPlaceholder }}">
   <div class="{{ classNames.typeahead }}">
-    <form class="{{ classNames.inputWrapper }}" method="{{ fallback_form.method }}" action="{{ fallback_form.action }}" target="{{ fallback_form.target }}">
+    <form class="{{ classNames.inputWrapper }}" method="{{ fallback_form_method }}" action="{{ fallback_form_action }}" target="{{ fallback_form_target }}">
       <label for="{{ data.uuid }}" class="{{ classNames.label }}">
         <span class="{{ utils.visuallyHidden }}">{{ text.label }}</span>
       </label>
@@ -59,20 +91,11 @@
         required
         name="q"
       />
-      {% include "@bolt-components-button/button.twig" with {
+
+      {% embed "@bolt-components-button/button.twig" with {
         text: text.clearInput,
         iconOnly: true,
         color: "text",
-        icon: {
-          title: text.clearInput,
-          name: "close-solid",
-          preload: true,
-          attributes: {
-            class: [
-              classNames.icon
-            ]
-          }
-        },
         attributes: {
           onclick: "this.previousElementSibling.focus()",
           class: [
@@ -80,25 +103,27 @@
           ],
         },
         type: "reset"
-      } only %}
+      } %}
+        {% block slot_after %}
+          <replace-with-children class="c-bolt-button__icon">
+            {{ clear_icon }}
+          </replace-with-children>
+        {% endblock slot_after %}
+      {% endembed %}
 
       <div class="{{ classNames.submitButton | join(' ') }}">
-        {% include "@bolt-components-button/button.twig" with {
+        {% embed "@bolt-components-button/button.twig" with {
           text: text.submit,
           iconOnly: true,
           color: "text",
-          icon: {
-            title: text.submit,
-            name: "search",
-            preload: true,
-            attributes: {
-              class: [
-                classNames.icon
-              ]
-            }
-          },
           type: "submit"
-        } only %}
+        } %}
+          {% block slot_after %}
+            <replace-with-children class="c-bolt-button__icon">
+              {{ search_icon }}
+            </replace-with-children>
+          {% endblock slot_after %}
+        {% endembed %}
       </div>
     </form>
   </div>
