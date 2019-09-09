@@ -1,4 +1,4 @@
-## Features
+### Features
 
 - Progressively enhanced simple html `<form>` fallback (via Twig)
 - Server-side pre-rendered SVG icons (when using Twig)!
@@ -9,12 +9,12 @@
 - Fully customizable behavior to handle partial vs full result matches, etc 
 - Supports rendering to the Shadow DOM _and_ the Light DOM
 
-## Installation
+### Installation
 ```sh
 npm install @bolt/bolt-typeahead
 ```
 
-## What's Next? (Future Updates)
+### What's Next? (Future Updates)
 - Fully support theming system colors
 - JSDoc support / further improve docs and demos
 - Broader testing coverage
