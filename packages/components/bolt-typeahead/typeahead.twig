@@ -96,7 +96,7 @@
 
 
 {% spaceless %}
-  <bolt-typeahead {{ attributes }} placeholder="{{ placeholder }}" max-results="{{ max_results }}">
+  <bolt-typeahead {{ attributes }} placeholder="{{ placeholder }}" max-results="{{ max_results }}" {% if no_highlight %}no-highlight {% endif %}>
     <div class="{{ classNames.typeahead }}">
       <form class="{{ classNames.inputWrapper }}" method="{{ fallback_form_method }}" action="{{ fallback_form_action }}" target="{{ fallback_form_target }}">
         <label for="{{ data.uuid }}" class="{{ classNames.label }}">

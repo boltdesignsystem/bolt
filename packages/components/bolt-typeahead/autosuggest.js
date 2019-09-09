@@ -58,7 +58,10 @@ class BoltAutosuggest extends withPreact() {
   static props = {
     placeholder: props.string,
     value: props.string,
-
+    noHighlight: {
+      ...props.boolean,
+      ...{ default: false },
+    },
     noClearButton: props.boolean,
     clearButtonText: {
       ...props.string,
@@ -170,6 +173,7 @@ class BoltAutosuggest extends withPreact() {
     this.renderInputComponent = this.renderInputComponent.bind(this);
     this.openSearch = this.openSearch.bind(this);
     this.onSelected = this.onSelected.bind(this);
+    this.renderSuggestion = this.renderSuggestion.bind(this);
   }
 
   connected() {
@@ -336,7 +340,7 @@ class BoltAutosuggest extends withPreact() {
       <span
         className={cx('c-bolt-typeahead__result-text')}
         title={suggestion.description || ''}>
-        {suggestion.label}
+        {this.noHighlight ? suggestion.label : suggestion.highlightedLabel}
       </span>
     );
   }

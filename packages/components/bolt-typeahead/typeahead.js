@@ -14,6 +14,10 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
 
   static props = {
     placeholder: props.string,
+    noHighlight: {
+      ...props.boolean,
+      ...{ default: false },
+    },
     clearButtonText: {
       ...props.string,
       ...{ default: 'Clear Search Results' },
@@ -81,6 +85,7 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
       <bolt-autosuggest
         .value=${this.initialValue}
         .items=${this.items}
+        .noHighlight=${this.noHighlight}
         .placeholder=${this.placeholder}
         @keypress=${this.handleKeyPress.bind(this)}
       ></bolt-autosuggest>
