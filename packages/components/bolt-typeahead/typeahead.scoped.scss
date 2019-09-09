@@ -232,6 +232,7 @@ bolt-autosuggest {
 
 .c-bolt-typeahead__icon {
   color: bolt-color(indigo, light);
+  --bolt-theme-background: 255, 255, 255; // workaround so dark themes don't wipe the inner icon color. @todo: remove once full theming support added
   line-height: 1;
   font-size: 1.5rem;
 }
