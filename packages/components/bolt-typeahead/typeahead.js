@@ -85,6 +85,7 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
       <bolt-autosuggest
         .value=${this.initialValue}
         .items=${this.items}
+        .maxResults=${this.maxResults}
         .noHighlight=${this.noHighlight}
         .placeholder=${this.placeholder}
         @keypress=${this.handleKeyPress.bind(this)}
