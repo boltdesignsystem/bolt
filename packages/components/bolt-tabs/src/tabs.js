@@ -18,9 +18,9 @@ import schema from '../tabs.schema.yml';
 
 // define which specific props to provide to children that subscribe
 export const TabsContext = defineContext({
-  spacing: '',
-  inset: false,
-  name: '',
+  inset: 'auto',
+  panelSpacing: 'small', // no need to pass `labelSpacing`, only used in this template
+  uuid: '',
   selectedIndex: 0,
   useShadow: hasNativeShadowDomSupport,
 });
@@ -33,10 +33,11 @@ class BoltTabs extends withContext(withLitHtml()) {
 
   static props = {
     align: props.string,
-    spacing: props.string,
-    inset: props.boolean,
+    inset: props.string,
+    labelSpacing: props.string,
+    panelSpacing: props.string,
     variant: props.string,
-    name: props.string,
+    // uuid: props.string, @todo: make `uuid` a prop, for now internal only
     selectedTab: {
       ...props.number,
       ...{ default: schema.properties.selected_tab.default },
@@ -60,13 +61,12 @@ class BoltTabs extends withContext(withLitHtml()) {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
 
-    const { uuid, selectedTab } = this.validateProps(this.props);
+    const { selectedTab } = this.validateProps(this.props);
 
     const panels = this.tabPanels;
 
-    // This is a last resort to ensure each tab instance has a unique identifier. Will be different on each load. For constant and/or readable `id`s user must provide one.
-    this.uniqueId = getUniqueId();
-    this.tabsId = uuid || this.uniqueId;
+    // Set a unique identifier for each tab instance. Will be different on each load. For constant and/or readable `id`s, this must be exposed as a prop.
+    this.tabsId = getUniqueId();
 
     // Convert tab index to 0-based numbering with some additional validation
     this.selectedIndex = this.validateIndex(selectedTab - 1);
@@ -255,12 +255,13 @@ class BoltTabs extends withContext(withLitHtml()) {
   }
 
   template() {
-    const { align, spacing, inset } = this.validateProps(this.props);
+    const { align, labelSpacing, panelSpacing, inset } = this.validateProps(
+      this.props,
+    );
 
     const classes = cx('c-bolt-tabs', {
       [`c-bolt-tabs--align-${align}`]: align,
-      [`c-bolt-tabs--spacing-${spacing}`]: spacing,
-      [`c-bolt-tabs--inset`]: inset,
+      [`c-bolt-tabs--inset`]: inset === 'auto' || inset === 'on',
     });
     const labelInnerClasses = cx('c-bolt-tabs__label-inner');
     const labelTextClasses = cx('c-bolt-tabs__label-text');
@@ -273,9 +274,8 @@ class BoltTabs extends withContext(withLitHtml()) {
       Array.from(this.tabPanels).forEach((item, index) => {
         const isSelected = index === this.selectedIndex;
         const label = item.querySelector('[slot="label"]');
-        const spacingOption = item.getAttribute('label-spacing') || spacing;
         const labelClasses = cx('c-bolt-tabs__label', {
-          [`c-bolt-tabs__label--spacing-${spacingOption}`]: spacingOption,
+          [`c-bolt-tabs__label--spacing-${labelSpacing}`]: labelSpacing,
         });
         const labelText = label ? label.textContent : `Tab label ${index + 1}`; // @todo: add icon support? how to handle missing labels?
         const labelId = `tab-${this.tabsId}-${index + 1}`; // Use 1-based Id's
@@ -347,15 +347,12 @@ class BoltTabs extends withContext(withLitHtml()) {
   }
 
   render() {
-    const { spacing, inset, uuid, selectedTab } = this.validateProps(
-      this.props,
-    );
+    const { inset, panelSpacing, selectedTab } = this.validateProps(this.props);
 
-    this.tabsId = uuid || this.uniqueId;
     this.selectedIndex = this.validateIndex(selectedTab - 1);
 
-    this.contexts.get(TabsContext).spacing = spacing;
     this.contexts.get(TabsContext).inset = inset;
+    this.contexts.get(TabsContext).panelSpacing = panelSpacing;
     this.contexts.get(TabsContext).uuid = this.tabsId;
     this.contexts.get(TabsContext).selectedIndex = this.selectedIndex;
     this.contexts.get(TabsContext).tabPanels = this.tabPanels;

@@ -8,15 +8,13 @@
 {% set this = init(schema.properties.panels.items) %}
 {% set inner_attributes = create_attribute({}) %}
 {% set label_attributes = create_attribute({}) %}
-{% set panel_spacing = this.data.panel_spacing.value|default(spacing) %}
-{% set label_spacing = this.data.label_spacing.value|default(spacing) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   "c-bolt-tab-panel",
   this.data.align.value ? "c-bolt-tabs--align-" ~ this.data.align.value : "",
   panel_spacing ? "c-bolt-tab-panel--spacing-" ~ panel_spacing : "",
-  inset ? "c-bolt-tab-panel--inset" : ""
+  inset == "on"  ? "c-bolt-tab-panel--inset" : "",
 ] %}
 
 {% set label_classes = [

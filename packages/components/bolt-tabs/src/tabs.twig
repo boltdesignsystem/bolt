@@ -9,13 +9,13 @@
 {% set inner_attributes = create_attribute({}) %}
 
 {# Append string to `random()` to coerce to string #}
-{% set uuid = this.data.name.value|default(bolt.data.config.env == "test" ? "12345" : random() ~ "") %}
+{% set uuid = bolt.data.config.env == "test" ? "12345" : random() ~ "" %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   "c-bolt-tabs",
   this.data.align.value ? "c-bolt-tabs--align-" ~ this.data.align.value : "",
-  this.data.inset.value ? "c-bolt-tabs--inset" : ""
+  this.data.inset.value == "auto" or this.data.inset.value == "on" ? "c-bolt-tabs--inset" : ""
 ] %}
 
 {#
@@ -43,12 +43,12 @@
       {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
     >
     {% for panel in panels %}
-      {# Note: when passing boolean values, provide your own default. Currently returns empty string instead of `false`, which is against its schema type. #}
       {% include "@bolt-components-tabs/TabPanel/tab-panel.twig" with panel|merge({
         index: loop.index,
         uuid: uuid,
-        spacing: this.data.spacing.value,
-        inset: this.data.inset.value|default(false),
+        label_spacing: this.data.label_spacing.value,
+        panel_spacing: this.data.panel_spacing.value,
+        inset: this.data.inset.value,
         selected_tab: this.data.selected_tab.value,
       }) only %}
     {% endfor %}

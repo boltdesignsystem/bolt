@@ -18,16 +18,6 @@ properties:
           type: boolean
           description: Set active state on tab. Only one active tab allowed at a time. Defaults to first tab.
           default: false
-        label_spacing:
-          type: string
-          hidden: true
-          description: Override label spacing. By default inherits `spacing` set on `<bolt-tabs>`.
-          $ref: '#/definitions/spacing'
-        panel_spacing:
-          type: string
-          hidden: true
-          description: Override panel spacing. By default inherits `spacing` set on `<bolt-tabs>`.
-          $ref: '#/definitions/spacing'
   align:
     description: Horizontal alignment of tab labels.
     type: string
@@ -36,34 +26,39 @@ properties:
       - center
       - end
     default: start
-  spacing:
-    $ref: '#/definitions/spacing'
+  label_spacing:
     type: string
-    description: Controls the spacing of each item.
+    description: Set label spacing.
     default: small
-  inset:
-    type: boolean
-    description: Set spacing on the inside of each item.
-    default: false
-  variant:
-    type: string
-    description: Controls the tab label style (WIP).
-    default: underline
     enum:
-      - underline
-      - pill
-    hidden: true
-  uuid:
+      - small
+      - medium
+  panel_spacing:
     type: string
-    description: Group identifier for tabs. Must be unique. Used to generate label and panel `id`s.
+    description: Set panel spacing.
+    default: small
+    enum:
+      - none
+      - small
+      - medium
+  inset:
+    type: string
+    description: Controls spacing placement on tab labels and panels.
+    default: auto
+    enum:
+      - auto
+      - 'on'
+      - 'off'
   selected_tab:
     type: integer
     description: Set selected tab by index. *This* index is 1-based (i.e. first tab is `1` not `0`), as opposed to the Web Component API which is 0-based.
     default: 1
     minimum: 1
-definitions:
-  spacing:
-    enum:
-      - none
-      - small
-      - medium
+  # variant:
+  #   type: string
+  #   description: Controls the tab label style (WIP).
+  #   default: underline
+  #   enum:
+  #     - underline
+  #     - pill
+  #   hidden: true

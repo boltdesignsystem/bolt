@@ -17,15 +17,14 @@ class TabPanel extends withContext(withLitHtml()) {
 
   static props = {
     selected: props.boolean,
-    panelSpacing: props.string,
   };
 
   // subscribe to specific props that are defined and available on the parent container
   // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
   static get consumes() {
     return [
-      [TabsContext, 'spacing'],
       [TabsContext, 'inset'],
+      [TabsContext, 'panelSpacing'],
       [TabsContext, 'uuid'],
       [TabsContext, 'selectedIndex'],
       [TabsContext, 'tabPanels'],
@@ -74,8 +73,7 @@ class TabPanel extends withContext(withLitHtml()) {
   }
 
   template() {
-    const { uuid, selectedIndex, spacing, inset } = this.context;
-    const { panelSpacing } = this.validateProps(this.props);
+    const { uuid, selectedIndex, panelSpacing, inset } = this.context;
 
     const index = this.panelIndex;
 
@@ -86,11 +84,9 @@ class TabPanel extends withContext(withLitHtml()) {
     const labelledById = `tab-label-${uuid}-${index + 1}`;
     const panelId = `tab-panel-${uuid}-${index + 1}`;
 
-    // Give preference to `panelSpacing`, fallback to `spacing`
-    const spacingOption = panelSpacing || spacing;
     const classes = cx('c-bolt-tab-panel', {
-      [`c-bolt-tab-panel--spacing-${spacingOption}`]: spacingOption,
-      [`c-bolt-tab-panel--inset`]: inset,
+      [`c-bolt-tab-panel--spacing-${panelSpacing}`]: panelSpacing,
+      [`c-bolt-tab-panel--inset`]: inset === 'on',
     });
 
     const contentClasses = cx('c-bolt-tab-panel__content');
