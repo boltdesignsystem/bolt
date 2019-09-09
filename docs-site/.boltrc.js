@@ -77,7 +77,6 @@ const config = {
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
-      '@bolt/animations',
       '@bolt/components-animate',
       '@bolt/docs-search',
       // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
