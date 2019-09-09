@@ -598,10 +598,10 @@ bolt-animate {
         padding-top: 13%;
       }
 
-      @include bolt-mq($from: xxlarge) {
-        width: calc(#{$pega-wwo--block-width-basis} + 130px);
+      @include bolt-mq($from: xxxlarge) {
         top: 5%;
         left: 11%;
+        width: calc(#{$pega-wwo--block-width-basis} + 130px);
       }
     }
 
@@ -632,8 +632,8 @@ bolt-animate {
       }
 
       @include bolt-mq($from: xxxlarge) {
-        width: calc(#{$pega-wwo--block-width-basis} + 90px);
         left: 7%;
+        width: calc(#{$pega-wwo--block-width-basis} + 90px);
       }
     }
 
@@ -790,12 +790,12 @@ bolt-animate {
 
       @include bolt-mq($from: xlarge) {
         position: absolute;
+        top: 50%;
         left: $pega-wwo--result-left-pos + 3%;
+        transform: translateY(-50%);
         min-width: 350px;
         max-width: 29%;
         padding-top: 5%;
-        top: 50%;
-        transform: translateY(-50%);
         padding-right: 0;
         padding-left: 0;
       }
