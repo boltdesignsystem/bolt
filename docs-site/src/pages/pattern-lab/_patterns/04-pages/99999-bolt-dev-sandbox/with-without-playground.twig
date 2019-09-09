@@ -1,3 +1,41 @@
-<bolt-animate group="initial" out="fade-out"  out-duration="6000">
-  <div class="c-pega-wwo__modal-bg"></div>
+
+
+<button style="position:absolute; z-index:99999999; top: 50vh; left: 46vw" onclick="function(e){
+  document.querySelector('.c-pega-wwo__modal-bg--wrapper').triggerAnimOut();
+}">
+  fade out modal
+</button>
+
+<bolt-animate class="c-pega-wwo__modal-bg--wrapper" group="initial" out="fade-out" out-duration="1500">
+  <div is="shadow-root">
+   <div class="c-pega-wwo__modal-bg"></div>
+  </div>
 </bolt-animate>
+
+<bolt-animate group="initial" in="fade-in-slide-up" in-order="5" in-duration="300">
+  <div is="shadow-root">
+    <ul class="bolt-toggle">
+      <li class="bolt-toggle__item">
+        <input class="bolt-toggle__input c-pega-www__toggle-input reset" type="radio" name="c-pega-www__toggle-input" id="wo" checked>
+        <label class="bolt-toggle__label" for="radio1">Without Pega</label>
+      </li>
+      <li class="bolt-toggle__item">
+        <input class="bolt-toggle__input c-pega-www__toggle-input reset" type="radio" name="c-pega-www__toggle-input" id="w">
+        <label class="bolt-toggle__label" for="radio2">With Pega</label>
+        <div aria-hidden="true" class="bolt-toggle__toggle"><span class="bolt-toggle__marker"></span></div>
+      </li>
+    </ul>
+  </div>
+</bolt-animate>
+<button onclick="function(e){
+  document.querySelector('.block-test  .c-pega-wwo__region-blocks-line-wrapper').triggerAnimOut();
+  document.querySelector('.block-test  .c-pega-wwo__sm-circle-mobile--wrapper').triggerAnimIn();
+}">
+  Trigger line/circle in
+</button>
+<button onclick="function(e){
+  document.querySelector('.block-test .c-pega-wwo__region-blocks-line-wrapper').triggerAnimOut();
+  document.querySelector('.block-test .c-pega-wwo__sm-circle-mobile--wrapper').triggerAnimIn();
+}">
+  Trigger line/circle in
+</button>

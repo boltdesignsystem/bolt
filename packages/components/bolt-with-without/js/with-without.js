@@ -6,6 +6,8 @@ import {
   handleActiveRegionChangeRequest,
 } from './handleActiveRegionChange';
 
+document.querySelectorAll('bolt-animate').forEach(el => {});
+
 // Set up the resize listener which helps with some of the abs. pos. stuff.
 handleResize();
 window.addEventListener('resize', handleResize);

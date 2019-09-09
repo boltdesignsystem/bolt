@@ -8,12 +8,25 @@ $pega-wwo--block-bottom-margin: 2rem;
 $pega-wwo--max-width: 100%;
 $pega-wwo--desktop-ratio: 59.222%;
 $pega-wwo--desktop-ratio-decimal: .59222;
-$pega-wwo--sm-circle-size: 10px;
+$pega-wwo--sm-circle-size--relative: 2%;
+$pega-wwo--sm-circle-size--fixed: 10px;
 $pega-wwo--sm-circle-outline-size: 3px;
 $pega-wwo--dashed-circle-height: 48.05%;
 $pega-wwo--content-max-mobile-width: 550px;
 $bolt-medium-icon-half-size: 12px;
-$pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-wwo--sm-circle-size / 2);
+$pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-wwo--sm-circle-size--fixed / 2);
+
+// Fix IE 11 opacity inheritance for non-static elements.
+bolt-animate {
+ &[out^="fade"],
+ &[in^="fade"] {
+   > [is="shadow-root"] {
+     > * {
+       opacity: inherit;
+     }
+   }
+ }
+}
 
 .c-pega-wwo {
   position: relative;
@@ -214,7 +227,11 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     font-size: 28px;
     font-weight: normal;
 
-    span {
+    @include bolt-mq($from: xxxlarge) {
+      padding-top: 11rem;
+    }
+
+      span {
       display: block;
       z-index: 12;
     }
@@ -281,20 +298,21 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
     }
   }
 
+  // Circles on self-drawing circle
   &__sm-circle {
     @include bolt-mq($from: large) {
       display: block;
       position: absolute;
-      width: $pega-wwo--sm-circle-size;
-      height: $pega-wwo--sm-circle-size;
+      width: $pega-wwo--sm-circle-size--relative;
+      height: $pega-wwo--sm-circle-size--relative;
       border-radius: 50%;
       background-color: bolt-color(white);
     }
 
     &-lit {
       z-index: 1;
-      width: $pega-wwo--sm-circle-size;
-      height: $pega-wwo--sm-circle-size;
+      width: $pega-wwo--sm-circle-size--relative;
+      height: $pega-wwo--sm-circle-size--relative;
       background-color: bolt-color(yellow, light);
 
 
@@ -302,10 +320,10 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
         content: '';
         opacity: .3;
         position: absolute;
-        top: -10px;
-        left: -10px;
-        width: $pega-wwo--sm-circle-size + 20px;
-        height: $pega-wwo--sm-circle-size + 20px;
+        top: -75%;
+        left: -75%;
+        width: 250%;
+        height: 250%;
         border-radius: 50%;
         background-color: bolt-color(yellow, light);
         @include bolt-animation--pulse($base: true, $duration: $bolt-duration--xslow, $active: true);
@@ -327,9 +345,9 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
       display: block;
       position: relative;
       top: $pega-wwo--sm-circle-top-margin--mobile;
-      left: (-$pega-wwo--sm-circle-size / 2) + 1px; // 1px is the outline size
-      width: $pega-wwo--sm-circle-size;
-      height: $pega-wwo--sm-circle-size;
+      left: (-$pega-wwo--sm-circle-size--fixed / 2) + 1px; // 1px is the outline size
+      width: $pega-wwo--sm-circle-size--fixed;
+      height: $pega-wwo--sm-circle-size--fixed;
       margin-right: 2px;
       border-radius: 50%;
       background-color: bolt-color(white);
@@ -343,11 +361,11 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
           content: '';
           opacity: .2;
           position: absolute;
-          top: -$pega-wwo--sm-circle-size / 2;
-          left: -$pega-wwo--sm-circle-size / 2;
+          top: -$pega-wwo--sm-circle-size--fixed / 2;
+          left: -$pega-wwo--sm-circle-size--fixed / 2;
           z-index: -1;
-          width: $pega-wwo--sm-circle-size + 10px;
-          height: $pega-wwo--sm-circle-size + 10px;
+          width: $pega-wwo--sm-circle-size--fixed + 10px;
+          height: $pega-wwo--sm-circle-size--fixed + 10px;
           border-radius: 50%;
           background-color: bolt-color(yellow, light);
           @include bolt-animation--pulse($base: true, $duration: $bolt-duration--xslow, $active: true);
@@ -355,11 +373,11 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
       }
 
       &.c-pega-wwo__sm-circle-outlined {
-        left: (-$pega-wwo--sm-circle-size / 2) - .5px;
+        left: (-$pega-wwo--sm-circle-size--fixed / 2) - .5px;
       }
 
       .c-pega-wwo__block-expanded & {
-        $pega-wwo--sm-circle-size-outlined: $pega-wwo--sm-circle-size + ($pega-wwo--sm-circle-outline-size * 2);
+        $pega-wwo--sm-circle-size-outlined: $pega-wwo--sm-circle-size--fixed + ($pega-wwo--sm-circle-outline-size * 2);
         top: $pega-wwo--sm-circle-top-margin--mobile - $pega-wwo--sm-circle-outline-size;
         left: (-$pega-wwo--sm-circle-size-outlined / 2) + .5px;
         width: $pega-wwo--sm-circle-size-outlined;
@@ -373,10 +391,10 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
         background-color: bolt-color(yellow);
 
         &:before {
-          top: -$pega-wwo--sm-circle-size / 2;
-          left: -$pega-wwo--sm-circle-size / 2;
-          width: $pega-wwo--sm-circle-size + 10px;
-          height: $pega-wwo--sm-circle-size + 10px;
+          top: -$pega-wwo--sm-circle-size--fixed / 2;
+          left: -$pega-wwo--sm-circle-size--fixed / 2;
+          width: $pega-wwo--sm-circle-size--fixed + 10px;
+          height: $pega-wwo--sm-circle-size--fixed + 10px;
         }
       }
 
@@ -458,7 +476,7 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
       }
 
       @include bolt-mq($from: xxlarge) {
-        font-size: 13px;
+        font-size: 16px;
       }
     }
 
@@ -515,16 +533,30 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
         width: calc(#{$pega-wwo--block-width-basis} + 110px);
         padding-top: 14.21%;
       }
+
+      @include bolt-mq($from: xxlarge) {
+        left: 13%;
+      }
+
+      @include bolt-mq($from: xxxlarge) {
+        left: 16%;
+      }
     }
 
     &-block-frustration-wo {
       @include bolt-mq($from: xlarge) {
         top: 0;
-        left: 10%;
+        left: 9%;
         width: calc(#{$pega-wwo--block-width-basis} + 110px);
         padding-top: 33.75%;
       }
+
+      @include bolt-mq($from: xxlarge) {
+        left: 11.5%;
+      }
+
     }
+
     &-block-business-wo {
       @include bolt-mq($from: xlarge) {
         top: 0;
@@ -565,7 +597,14 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
         left: 9%;
         padding-top: 13%;
       }
+
+      @include bolt-mq($from: xxlarge) {
+        width: calc(#{$pega-wwo--block-width-basis} + 130px);
+        top: 5%;
+        left: 11%;
+      }
     }
+
     &-block-signals-w {
       .c-pega-wwo__block-title {
         color: bolt-color(yellow);
@@ -591,6 +630,11 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
         left: 4.3%;
         width: calc(#{$pega-wwo--block-width-basis} + 110px);
       }
+
+      @include bolt-mq($from: xxxlarge) {
+        width: calc(#{$pega-wwo--block-width-basis} + 90px);
+        left: 7%;
+      }
     }
 
     &-block-respond-w {
@@ -602,8 +646,12 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
         padding-top: 41.75%;
       }
 
+      @include bolt-mq($from: xxxlarge) {
+        left: 10%;
+      }
+
       .c-pega-wwo__block-title {
-        color: bolt-color(yellow);
+          color: bolt-color(yellow);
       }
     }
 
@@ -684,7 +732,7 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
         top: $pega-wwo--sm-circle-top-margin--mobile;
         left: 0;
         width: 2px;
-        height: calc(calc(calc(100% + #{$pega-wwo--block-bottom-margin}) - #{$pega-wwo--sm-circle-top-margin--mobile}) + #{$pega-wwo--sm-circle-size / 2});
+        height: calc(((100% + #{$pega-wwo--block-bottom-margin}) - #{$pega-wwo--sm-circle-top-margin--mobile}) + #{$pega-wwo--sm-circle-size--fixed / 2});
         --bolt-animate--slide-up-max-height: 80px;
 
         @include bolt-mq(xlarge) {
@@ -742,21 +790,22 @@ $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-ww
 
       @include bolt-mq($from: xlarge) {
         position: absolute;
-        top: 0;
-        left: $pega-wwo--result-left-pos;
+        left: $pega-wwo--result-left-pos + 3%;
         min-width: 350px;
         max-width: 29%;
-        padding-top: 15%;
+        padding-top: 5%;
+        top: 50%;
+        transform: translateY(-50%);
         padding-right: 0;
         padding-left: 0;
       }
 
-      @include bolt-mq($from: xlarge) {
-        padding-top: 18.5%;
+      @include bolt-mq($from: xxlarge) {
+        left: $pega-wwo--result-left-pos;
       }
 
       @include bolt-mq($from: xxxlarge) {
-        padding-top: 27%;
+        left: $pega-wwo--result-left-pos - 8%;
       }
     }
   }
