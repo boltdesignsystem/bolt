@@ -1,0 +1,27 @@
+{% extends "@bolt/form.twig" %}
+
+{% set children %}
+
+  {# TODO: Add native support for inline display to the form-element component. #}
+  <div style="display: inline-flex;">
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Email Address",
+      inputAttributes: {
+        placeholder: "Enter Email Address",
+        required: true,
+        type: "email"
+      },
+      labelDisplayType: "floating"
+    } only %}
+  </div>
+
+  {# Note that bolt-button already supports inline-flex display; the following is only necessary with the special
+   form button.  This example should be removed when forms can again use the vanilla bolt-button. #}
+  <div style="display: inline-flex;">
+    {% include "@bolt/form-button.twig" with {
+      text: "Sign up now",
+     tag: "submit"
+    } only %}
+  </div>
+
+{% endset %}
