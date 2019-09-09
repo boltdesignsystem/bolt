@@ -1,140 +1,61 @@
-## Props
+## Features
 
-clearButtonText
-submitButtonText
-noClearButton
-placeholder_text
-maxResults
-
-
-
-# WIP
-- Form Submit / Clicking behavior when JS working
-- Theming Colors
-
-
-
-
-# `<bolt-typeahead>` [![Published on npm](https://img.shields.io/npm/v/@bolt/components-typeahead.svg)](https://www.npmjs.com/package/@bolt/components-typeahead)
-
-Snackbars provide brief messages about app processes at the bottom of the
-screen.
-
-![](images/action_button.png)
-
-[Material Design Guidelines: Snackbars](https://material.io/design/components/snackbars.html)
+- Progressively enhanced simple html `<form>` fallback (via Twig)
+- Server-side pre-rendered SVG icons (when using Twig)!
+- Uses the new `withEvents` base class to allow for much deeper JavaScript customization
+- Fuzzy logic search / fuzzy matching using [fuse.io](https://fusejs.io/)
+- Keyboard combo-support (command+shift+f)
+- Wired up to use CSS Modules (once they ship in a future Bolt release)
+- Fully customizable behavior to handle partial vs full result matches, etc 
+- Supports rendering to the Shadow DOM _and_ the Light DOM
 
 ## Installation
-
 ```sh
 npm install @bolt/bolt-typeahead
 ```
 
-> NOTE: The Material Web Components are distributed as ES2017 JavaScript
-> Modules, and use the Custom Elements API. They are compatible with all modern
-> browsers including Chrome, Firefox, Safari, Edge, and IE11, but an additional
-> tooling step is required to resolve *bare module specifiers*, as well as
-> transpilation and polyfills for Edge and IE11. See
-> [here](https://github.com/material-components/material-components-web-components#quick-start)
-> for detailed instructions.
+## What's Next? (Future Updates)
+- Fully support theming system colors
+- JSDoc support / further improve docs and demos
+- Broader testing coverage
+- Look into adding `<slot>` support
+- More customization for additional use cases?
+- Multi-section support
 
-## Example usage
 
-### Standard
+# API
+<br>
 
-![](images/standard.png)
-
-```html
-<mwc-snackbar id="photoErrorSnackbar"
-              labelText="Can't send photo. Retry in 5 seconds.">
-</mwc-snackbar>
-
-<script type="module">
-  import '@material/mwc-snackbar';
-  const snackbar = document.querySelector('#photoErrorSnackbar');
-  sendPhoto.then(...).catch(() => snackbar.open());
-</script>
-```
-
-### Optional action and dismiss button
-
-![](images/action_and_dismiss.png)
-
-```html
-<mwc-snackbar labelText="Can't send photo. Retry in 5 seconds.">
-  <mwc-button slot="action">RETRY</mwc-button>
-  <mwc-icon-button icon="close" slot="dismiss"></mwc-icon-button>
-</mwc-snackbar>
-```
-
-### Custom action button color
-
-![](images/custom_action_color.png)
-
-```css
-mwc-snackbar {
-  --mdc-snackbar-action-color: #64dc17;
-}
-```
-
-## Variants
-
-### Stacked
-
-Action buttons with long text should be positioned below the label instead of
-alongside it. Set the `stacked` attribute or property to enable this layout.
-
-![](images/stacked.png)
-
-### Leading
-
-By default, snackbars are centered horizontally within the viewport. On larger
-screens, they can optionally be displayed on the leading edge of the screen
-(the left side in LTR, or the right side in RTL). Set the `leading`
-attribute or property to enable this layout.
-
-## API
-
-### Slots
-
-| Name      | Description
-| --------- | -----------
-| `action`  | Optional `<mwc-button>` which closes the snackbar with reason `'action'`.
-| `dismiss` | Optional `<mwc-icon-button>` which closes the snackbar with reason `'dismiss'`.
-
-### Properties/Attributes
+### JavaScript Properties/Attributes
 
 | Name                | Type                  | Description
 | ------------------- | --------------------- |------------
-| `isOpen`            | `boolean` (read-only) | Whether the snackbar is currently open.
-| `timeoutMs`         | `number`              | Automatic dismiss timeout in milliseconds. Value must be between `4000` and `10000` or an error will be thrown. Defaults to `5000` (5 seconds).
-| `closeOnEscape`     | `boolean`             | Whether the snackbar closes when it is focused and the user presses the ESC key. Defaults to `true`.
-| `labelText`         | `string`              | The text content the label element.
-| `stacked`           | `boolean`             | Enables the *stacked* layout (see above).
-| `leading`           | `boolean`             | Enables the *leading* layout (see above).
+| `items`             | `array`               | An array of objects that populates the dropdown
 
-### Methods
 
+### Methods ()
+> Note: these aren't fully wired up for MVP so your milage will vary!
 | Name     | Description
 | -------- | -------------
-| `open() => void`   | Opens the snackbar.
-| `close(reason: string = '') => void` | Closes the snackbar, optionally with the specified reason indicating why it was closed.
+| `toggleSearch() => void`   | Toggle search open / closed
+| `openSearch() => void` | Forces the dropdown to open + focuses in on the search input
+| `closeSearch() => void` | Manually closes the typeahead dropdown
+| `clearSearch() => void` | Clears any text entered into the search input.
 
-### Events
 
-| Name                  | Detail              | Description
-| --------------------- | ------------------- | -----------
-| `MDCSnackbar:opening` | `{}`                | Indicates when the snackbar begins its opening animation.
-| `MDCSnackbar:opened`  | `{}`                | Indicates when the snackbar finishes its opening animation.
-| `MDCSnackbar:closing` | `{reason?: string}` | Indicates when the snackbar begins its closing animation. `reason` contains the reason why the snackbar closed (`'dismiss'`, `'action'`, or a custom `string` via the `close` method).
-| `MDCSnackbar:closed`  | `{reason?: string}` | Indicates when the snackbar finishes its closing animation. `reason` contains the reason why the snackbar closed (`'dismiss'`, `'action'`, or a custom `string` via the `close` method).
+### JavaScript Event Hooks
 
-### CSS Custom Properties
+| Name                           | Params                | Description
+| ------------------------------ | --------------------- | -----------
+| `onInput`                      | `event`, <br> `value`  | Called every time the input value changes
+| `getSuggestions`               | `value`               | Called by `onSuggestionsFetchRequested` when re-rendering suggestions. Handles highlighting keywords in the search results in a React-friendly way + handles limiting the total number of results displayed
+| `onChange`                     | `event`, <br> `newValue`, `method` | Called when a search result is selected. Includes info on how the particular item was selected (click, keyboard, etc)
+| `onSuggestionsFetchRequested`  | `value`                  | Called every very time you need to gather / update suggestions to display. See [onSuggestionsFetchRequested](https://github.com/moroshko/react-autosuggest#onsuggestionsfetchrequested-required) for more info.
+| `onSuggestionsClearRequested`  |                        | Called when clearing suggestions. See [onSuggestionsClearRequested](https://github.com/moroshko/react-autosuggest#onsuggestionsclearrequested-required-unless-alwaysrendersuggestionstrue) for more info.
+| `onSelected`                   | `event`, <br> `suggestion` | Will be called every time suggestion is selected via mouse or keyboard. See [onSuggestionSelected](https://github.com/moroshko/react-autosuggest#onsuggestionsfetchrequested-required) for more info.
+| `onRenderInput`                | `value`                  | Fired when the input is being rendered
 
-| Name                          | Default | Description
-| ----------------------------- | ------- |------------
-| `--mdc-snackbar-action-color` | ![](images/color_bb86fc.png) `#bb86fc` | Color of the action button text.
 
 ## Additional references
 
-- [MDC Web Snackbars](https://material.io/develop/web/components/snackbars/)
+- [React Autosuggest](http://react-autosuggest.js.org/)
