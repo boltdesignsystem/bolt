@@ -56,8 +56,10 @@ class TabPanel extends withContext(withLitHtml()) {
     Array.from(this.context.tabPanels).forEach(item => {
       if (item !== this) {
         item.removeAttribute('selected');
+        item.selected = false;
       } else {
         item.setAttribute('selected', '');
+        item.selected = true;
       }
     });
 
