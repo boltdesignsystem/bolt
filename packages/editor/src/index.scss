@@ -32,16 +32,16 @@
     }
 
     &--blocks {
-      flex: 1 0;
-      flex-basis: 50%;
+      //flex: 1 0;
+      width: 45%;
     }
 
     &--layers {
-      width: 25%;
+      width: 35%;
       line-height: 1;
     }
 
-    &--traits {
+    &--selected {
       width: 20%;
     }
   }
@@ -49,6 +49,9 @@
   .gjs-trt-trait {
     display: block;
     .gjs-label {
+      width: 100%;
+    }
+    .gjs-label-wrp {
       width: 100%;
     }
     .gjs-field {
@@ -87,8 +90,10 @@
   }
 }
 
-.in-editor [slot] {
-  min-width: 25px;
-  min-height: 25px;
-  outline: 1px dashed lightgray;
+.gjs-dashed {
+  [data-highlightable] {
+    [slot] {
+      outline: dotted 1px blue;
+    }
+  }
 }

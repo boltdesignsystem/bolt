@@ -23,6 +23,7 @@ export * from './context/with-context';
 export { mapWithDepth } from './map-with-depth.js';
 export * from './validate-props';
 export * from './mode';
+export * from './query';
 
 // https://www.polymer-project.org/3.0/docs/devguide/custom-elements#defer-work
 export {

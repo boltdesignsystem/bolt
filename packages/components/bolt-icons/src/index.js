@@ -45,6 +45,7 @@ export * from './icons/download';
 export * from './icons/email';
 export * from './icons/energy';
 export * from './icons/entertainment';
+export * from './icons/exclamation';
 export * from './icons/exit-full-screen';
 export * from './icons/external-link';
 export * from './icons/eye';

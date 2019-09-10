@@ -1,1 +1,23 @@
+@import "src/character.scss";
+@import "src/connection.scss";
+@import "src/cta.scss";
+@import "src/icon-group.scss";
 @import 'src/interactive-step.scss';
+@import 'src/interactive-pathway.scss';
+@import 'src/interactive-pathways.scss';
+@import 'src/one-character-layout.scss';
+@import 'src/status-dialogue-bar.scss';
+@import 'src/two-character-layout.scss';
+
+bolt-character {
+  display: inline-block;
+}
+
+bolt-interactive-pathway,
+bolt-interactive-pathways {
+  display: block;
+}
+
+bolt-interactive-pathways {
+  opacity: 0;
+}

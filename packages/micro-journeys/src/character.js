@@ -3,8 +3,32 @@ import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import schema from './character.schema';
 import styles from './character.scss';
+import customerHappy from './images/customer-happy.png';
+import customerNeutral from './images/customer-neutral.png';
+import customerSad from './images/customer-sad.png';
+import customerSurprise from './images/customer-surprise.png';
+import pegaRep from './images/pega-rep.png';
+import uCommPlus from './images/u-comm-plus.png';
 
 let cx = classNames.bind(styles);
+
+const resolveCharacterImage = characterImage => {
+  switch (characterImage) {
+    case 'customer-neutral':
+      return customerNeutral;
+    case 'customer-sad':
+      return customerSad;
+    case 'customer-surprise':
+      return customerSurprise;
+    case 'pega-rep':
+      return pegaRep;
+    case 'u-comm-plus':
+      return uCommPlus;
+    default:
+    case 'customer-happy':
+      return customerHappy;
+  }
+};
 
 @define
 class BoltCharacter extends withLitHtml() {
@@ -26,12 +50,22 @@ class BoltCharacter extends withLitHtml() {
   }
 
   render() {
-    const { characterUrl, size, useIcon } = this.validateProps(this.props);
+    const {
+      characterImage,
+      characterCustomUrl,
+      size,
+      useIcon,
+    } = this.validateProps(this.props);
     const classes = cx('c-bolt-character', `c-bolt-character--${size}`);
+
+    const image =
+      characterImage === 'custom'
+        ? characterCustomUrl
+        : resolveCharacterImage(characterImage);
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         <span
           class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--top"
         >
@@ -56,19 +90,22 @@ class BoltCharacter extends withLitHtml() {
           ${useIcon
             ? html`
                 <span
-                  class="c-bolt-character__slot c-bolt-character__slot--icon"
+                  class="c-bolt-character__slot c-bolt-character__slot--icon--wrapper"
                 >
-                  <bolt-icon></bolt-icon>
+                  <bolt-icon class="c-bolt-character__slot--icon"></bolt-icon>
                 </span>
               `
             : html`
                 <img
                   class="c-bolt-character__main-image"
-                  src="${characterUrl}"
+                  src="${image}"
                   alt="Character Image"
                 />
               `}
         </div>
+        <span class="c-bolt-character__background">
+          ${this.slot('background')}
+        </span>
       </div>
     `;
   }

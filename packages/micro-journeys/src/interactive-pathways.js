@@ -1,5 +1,5 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './interactive-pathways.scss';
 // import schema from '../interactive-pathways.schema.yml';
@@ -15,10 +15,6 @@ class BoltInteractivePathways extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    activePathwayId: {
-      ...props.number,
-      ...{ default: 0 },
-    },
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -26,126 +22,79 @@ class BoltInteractivePathways extends withLitHtml() {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     // self.schema = schema;
+    this.activePathwayIndex = 0;
 
     return self;
   }
 
   connectedCallback() {
     super.connectedCallback();
-
-    this.dropdownMenu = this.renderRoot.querySelector('bolt-dropdown');
-
-    this.style.display = 'block';
-    this.style.opacity = '1';
-    document.querySelectorAll('.temp-loading-placeholder').forEach(node => {
-      node.style.display = 'none';
+    // @todo remove
+    setTimeout(() => {
+      // wait till children are mounted before trying to find them
+      setTimeout(() => {
+        this.style.opacity = 1;
+        this.showPathway(0);
+      }, 0);
     });
   }
 
   /**
-   * Respond to a dropdown click. Only react to clicks on a menu item. Update the active
-   * status of all the child pathways if active pathway is changed.
-   *
-   * @param event
-   */
-  handleMenuItemClick = event => {
-    if (event.target.tagName !== 'BOLT-TEXT') {
-      return;
-    }
-    const { activePathwayId: oldActivePathwayId } = this;
-    const newActivePathwayId = event.target.getAttribute('assocPathwayId');
-
-    if (oldActivePathwayId === newActivePathwayId) {
-      return;
-    }
-
-    this.activePathwayId = newActivePathwayId;
-
-    // Trigger update in child pathways.
-    this._getPathways().forEach(pathway => {
-      pathway.activePathwayId = newActivePathwayId;
-    });
-  };
-
-  /**
    * Gets all the HTML bolt-interactive-pathway's on the page
-   *
-   * @returns {HTMLElement[]}
-   * @private
+   * @returns {BoltInteractivePathway[]}
    */
-  _getPathways = () => {
+  getPathways = () => {
     return Array.from(this.querySelectorAll('bolt-interactive-pathway'));
   };
 
-  /**
-   *
-   * @param {int} id the pathwayId of the pathway to return
-   * @returns {HTMLElement}
-   * @private
-   */
-  _getActivePathwayById = (id = null) => {
-    // This pattern is because (id = this.state.activePathwayId) triggers undef func error.
-    id = id === null ? this.activePathwayId : id;
-    return this._getPathways().find(
-      el => el.getAttribute('pathwayId') === `${id}`,
-    );
-  };
-
-  /**
-   * gets the litHTML for the dropdown menu items.
-   * @returns {TemplateResult[]}
-   * @private
-   */
-  _renderPathwaysDropdownMenuItems = () => {
-    return Array.from(this._getPathways()).map((item, i) => {
-      const pathwayId = item.getAttribute('pathwayId');
-      return html`
-        <bolt-text
-          assocPathwayId="${pathwayId}"
-          class="c-bolt-interactive-pathways__menu-item"
-          ?active=${pathwayId === this.activePathwayId}
-        >
-          ${item.querySelector('[slot="pathway-title"]').innerText}
-        </bolt-text>
-      `;
-    });
-  };
-
-  /**
-   * Gets the litHTML for the dropdown menu
-   *
-   * @return {TemplateResult}
-   */
-  _renderPathwaysDropdownMenu = () => {
-    return html`
-      <bolt-dropdown
-        center
-        title="${this._getActivePathwayById().querySelector(
-          '[slot="pathway-title"]',
-        ).innerText}"
-        @click=${this.handleMenuItemClick}
-      >
-        <bolt-block-list>
-          ${this._renderPathwaysDropdownMenuItems()}
-        </bolt-block-list>
-      </bolt-dropdown>
-    `;
-  };
+  showPathway(index) {
+    const pathways = this.getPathways();
+    const currentPathway = pathways[this.activePathwayIndex];
+    currentPathway.setActive(false);
+    const newPathway = pathways[index];
+    newPathway.setActive(true);
+    this.activePathwayIndex = index;
+    this.triggerUpdate();
+  }
 
   render() {
     const classes = cx('c-bolt-interactive-pathways');
 
+    const pathways = this.getPathways();
+    const titles = pathways.map((pathway, i) => pathway.getTitle());
+
+    const menuItems = titles.map((title, i) => {
+      const isActiveItem = i === this.activePathwayIndex;
+      return html`
+        <bolt-text
+          class="c-bolt-interactive-pathways__menu-item"
+          font-weight="${isActiveItem ? 'bold' : 'regular'}"
+          @click=${() => this.showPathway(i)}
+        >
+          ${title}
+        </bolt-text>
+      `;
+    });
+
+    const menu = html`
+      <bolt-dropdown center title="${titles[this.activePathwayIndex]}">
+        ${menuItems}
+      </bolt-dropdown>
+    `;
+
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         <div class="c-bolt-interactive-pathways__header">
           <img
             src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/interactive-pathways-logo.png"
             alt="Two diamond logo"
           />
           <div class="c-bolt-interactive-pathways__nav">
-            ${this.slot('interactive-pathways-lead-text')}
-            ${this._renderPathwaysDropdownMenu()}
+            <span class="c-bolt-interactive-pathways__nav-text"
+              >${this.slot('interactive-pathways-lead-text')}</span
+            >
+            ${menu}
           </div>
         </div>
 

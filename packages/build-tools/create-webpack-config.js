@@ -233,6 +233,7 @@ async function createWebpackConfig(buildConfig) {
         functions: sassExportData,
         precision: 3,
         data: globalSassData.join('\n'),
+        outputStyle: 'nested',
       },
     },
   ];
@@ -314,7 +315,7 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.(cur|svg)$/,
+          test: /\.(cur|svg|png)$/,
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
@@ -330,6 +331,10 @@ async function createWebpackConfig(buildConfig) {
         {
           test: [/\.yml$/, /\.yaml$/],
           use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+        },
+        {
+          test: [/\.html$/],
+          loader: 'raw-loader', // file as string
         },
       ],
     },

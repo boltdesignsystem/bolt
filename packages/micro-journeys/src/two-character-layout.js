@@ -36,7 +36,7 @@ class BoltTwoCharacterLayout extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         <div class="c-bolt-two-character-layout__character-row">
           <span
             class="c-bolt-two-character-layout__character c-bolt-two-character-layout__character--left"

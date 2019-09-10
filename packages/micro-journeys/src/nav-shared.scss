@@ -1,0 +1,63 @@
+$header-text-size: 1rem;
+$header-text-line-height: 1.65;
+$nav-circle-size: 12px;
+$nav-circle-size--active: 14px;
+$nav-circle-border-size: 2px;
+
+@mixin bolt-micro-journeys-nav-dot($active: false) {
+  @if $active {
+    width: $nav-circle-size--active;
+    height: $nav-circle-size--active;
+    margin-left: -$nav-circle-size--active / 2 - $nav-circle-border-size;
+    border: $nav-circle-border-size solid bolt-theme(primary);
+    // @TODO there's no good way to match the comps here given we can't know what theme we're in b/c shadow dom.
+    background-color: bolt-theme(secondary);
+  }
+
+  @else {
+    content: '';
+    display: inline-block;
+    box-sizing: content-box;
+    z-index: 1;
+    width: $nav-circle-size;
+    height: $nav-circle-size;
+    margin-right: bolt-spacing(small);
+    margin-left: -$nav-circle-size / 2;
+    border-radius: 50%;
+    background-color: bolt-theme(primary);
+  }
+}
+
+@mixin bolt-micro-journeys-nav-line() {
+  $top: $header-text-size * $header-text-line-height / 2;
+  $line-width: 1px;
+  content: '';
+  display: block;
+  position: absolute;
+  top: $top;
+  left: -$line-width / 2;
+  width: $line-width;
+  height: 100%;
+  background-color: bolt-theme(primary);
+}
+
+@mixin bolt-micro-journeys-nav-title($active: false) {
+  @if $active {
+    color: bolt-theme(primary);
+    cursor: default;
+    font-weight: bolder;
+  }
+  @else {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1.65rem;
+    white-space: nowrap;
+    line-height: $header-text-line-height;
+    font-size: $header-text-size;
+    transition: color 0.5s ease, transform 0.5s ease;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -16,15 +16,11 @@ class BoltInteractiveStep extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    disabled: {
-      ...props.boolean,
-      ...{ default: false },
-    },
-    step: {
+    tabTitle: {
       ...props.string,
-      ...{ default: '1' },
+      ...{ default: 'The Title' },
     },
-    active: {
+    disabled: {
       ...props.boolean,
       ...{ default: false },
     },
@@ -34,19 +30,24 @@ class BoltInteractiveStep extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
+    self._isActiveStep = false;
     return self;
+  }
+
+  setActive(isActive = true) {
+    this._isActiveStep = isActive;
+    this.triggerUpdate();
   }
 
   /**
    * @param {Event} event
    */
   handleAnimationEnd(event) {
-    console.log('bolt:transitionend', event);
+    console.debug('bolt:transitionend', event);
   }
 
   connectedCallback() {
     super.connectedCallback();
-
     this.addEventListener('bolt:transitionend', this.handleAnimationEnd);
   }
 
@@ -68,44 +69,101 @@ class BoltInteractiveStep extends withLitHtml() {
     super.attributeChangedCallback(name, oldValue, newValue);
   }
 
+  /**
+   * @return {string}
+   */
+  getTitle() {
+    // /** @type {HTMLElement} */
+    // const pathwayTitleEl = this.querySelector('[slot="title"]');
+    // return pathwayTitleEl ? pathwayTitleEl.innerText : '';
+    return this.props.tabTitle;
+  }
+
+  /**
+   * Request that this step becomes the new active step
+   * @event change-active-step
+   * @return {void}
+   */
+  triggerStepChange() {
+    this.dispatchEvent(
+      new CustomEvent('change-active-step', {
+        bubbles: true,
+      }),
+    );
+  }
+
+  getThemeFromParent() {}
+
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled, active, step } = this.validateProps(this.props);
+    const { disabled, tabTitle } = this.validateProps(this.props);
+    const isLastStep = !(
+      this.nextElementSibling &&
+      this.nextElementSibling.tagName.toLowerCase() === 'bolt-interactive-step'
+    );
+    const isFirstStep = !(
+      this.previousElementSibling &&
+      this.previousElementSibling.tagName.toLowerCase() ===
+        'bolt-interactive-step'
+    );
 
     const classes = cx('c-bolt-interactive-step', {
       [`c-bolt-interactive-step--disabled`]: disabled,
-      [`c-bolt-interactive-step--active`]: active,
+      [`c-bolt-interactive-step--active`]: this._isActiveStep,
+      [`c-bolt-interactive-step--first`]: isFirstStep,
+      [`c-bolt-interactive-step--last`]: isLastStep,
     });
 
-    const eventChangeActiveStep = new CustomEvent('change-active-step', {
-      bubbles: true,
-      detail: {
-        stepId: this.props.step,
-      },
-    });
-
+    const titleClasses = cx('c-bolt-interactive-step__title');
+    // new approach
     return html`
       ${this.addStyles([styles])}
-      <li class="${classes}" is="shadow-root" data-step="${step}">
+      <article class="${classes}">
+        <header
+          class="${titleClasses}"
+          @click=${() => this.triggerStepChange()}
+        >
+          ${tabTitle}
+        </header>
+        <div class="c-bolt-interactive-step__body">
+          <div class="c-bolt-interactive-step__body-inner">
+            <div class="c-bolt-interactive-step__top-slot">
+              ${this.slot('top')}
+            </div>
+            <div class="c-bolt-interactive-step__bottom-slot">
+              ${this.slot('bottom')}
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+
+    // old approach
+    const old = html`
+      ${this.addStyles([styles])}
+      <li class="${classes}">
         <div
           class="c-bolt-interactive-step__nav-item-wrapper"
-          @click=${e => e.target.dispatchEvent(eventChangeActiveStep)}
+          @click=${() => this.triggerStepChange()}
         >
+          <div class="c-bolt-interactive-step__line"></div>
           <span class="c-bolt-interactive-step__dot">&#9679;</span>
           <span class="c-bolt-interactive-step__title">
             ${this.slot('title')}
           </span>
         </div>
-        <div class="c-bolt-interactive-step__body" data-active="${active}">
-          <div
-            class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--top"
-          >
-            ${this.slot('top')}
-          </div>
-          <div
-            class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--bottom"
-          >
-            ${this.slot('bottom')}
+        <div class="c-bolt-interactive-step__body">
+          <div class="c-bolt-interactive-step__body-inner">
+            <div
+              class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--top"
+            >
+              ${this.slot('top')}
+            </div>
+            <div
+              class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--bottom"
+            >
+              ${this.slot('bottom')}
+            </div>
           </div>
         </div>
       </li>

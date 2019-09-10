@@ -1,4 +1,5 @@
 @import '@bolt/core';
+@import './nav-shared';
 
 // Local interactive-pathway Variables
 
@@ -11,19 +12,57 @@
 //@import "@bolt/animations/tools/tools-animations";
 //
 //@import "@bolt/animations/utilities/utilities-animation";
-
+$bolt-interactive-step--dot-size: 1.2rem;
 .c-bolt-interactive-pathway {
   display: none;
   position: relative;
 
   &--active {
-    display: block;
+    display: flex;
   }
 
   &__nav {
-    position: relative;
-    padding-left: 0;
-    list-style: none;
+    display: none;
+  }
+  @include bolt-mq(medium) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    &__nav {
+      display: block;
+      flex: 0 1;
+      position: relative;
+      margin-right: bolt-spacing(large);
+    }
+
+    &__nav-item {
+      position: relative;
+      @include bolt-micro-journeys-nav-title;
+
+      &:before {
+        @include bolt-micro-journeys-nav-dot;
+      }
+
+      &:after {
+        @include bolt-micro-journeys-nav-line;
+      }
+
+      &--active {
+        @include bolt-micro-journeys-nav-title($active: true);
+
+        &:before {
+          @include bolt-micro-journeys-nav-dot($active: true);
+        }
+      }
+
+      &:last-of-type:after {
+        display: none;
+      }
+    }
+
+    &__items {
+      flex: 1 1;
+    }
   }
 }
 
@@ -35,13 +74,6 @@ bolt-interactive-pathway {
   margin-bottom: 0 !important; // override the global vertical spacing rhythm, as only one is visible in any list
 }
 
-bolt-interactive-pathway:before {
-  content: '';
-  position: absolute;
-  top: 18px;
-  left: 2.5px;
-  z-index: 5;
-  height: calc(100% - 30px);
-  margin-left: 5px;
-  border-left: 2px solid #AAB2F2;
+.c-bolt-interactive-pathway__nav-item:last-of-type {
+
 }

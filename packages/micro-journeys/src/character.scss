@@ -8,19 +8,19 @@
 
   &--small,
   &--small &__main-image-wrapper,
-  &--small bolt-icon {
+  &--small &__slot--icon {
     width: 60px;
     height: 60px;
   }
   &--medium,
   &--medium &__main-image-wrapper,
-  &--medium bolt-icon {
+  &--medium &__slot--icon {
     width: 80px;
     height: 80px;
   }
   &--large,
   &--large &__main-image-wrapper,
-  &--large bolt-icon {
+  &--large &__slot--icon {
     width: 120px;
     height: 120px;
   }
@@ -29,9 +29,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 75px;
+    max-height: 75px;
     overflow: hidden;
     border-radius: 50%;
+    background-color: white;
     @include bolt-shadow('level-20');
+
+    @include bolt-mq(xsmall) {
+      max-width: unset;
+      max-height: unset;
+    }
   }
 
   &__main-image {
@@ -41,9 +49,25 @@
     border-radius: 50%;
   }
 
+  &__background {
+    position: absolute;
+    transform: scale(0.65);
+    z-index: -1;
+    width: 200px; //@todo this is here cause the SVG's are not completely square
+    height: 200px; //@todo this is here cause the SVG's are not completely square
+  }
+
   &__slot {
     &--cardinal {
-      width: 275px; // @todo Fix issue with slot forcing content to break instead of getting width from content
+      min-width: 180px; // @todo Fix issue with slot forcing content to break instead of getting width from content
+
+      @include bolt-mq(xsmall) {
+        min-width: 250px;
+      }
+
+      @include bolt-mq(small) {
+        min-width: 275px;
+      }
     }
     &--top {
       position: absolute;

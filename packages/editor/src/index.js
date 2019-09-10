@@ -1,4 +1,4 @@
-import { query } from './utils';
+import { query } from '@bolt/core/utils';
 
 const defaultConfig = {};
 
@@ -14,8 +14,11 @@ function createEditorUiHtml(appendTo = document.body) {
       <div class="pega-editor-ui__slot pega-editor-ui__slot--layers">
         <h5>Layers</h5>
       </div>
-      <div class="pega-editor-ui__slot pega-editor-ui__slot--traits">
-        <h5>Properties</h5>
+      <div class="pega-editor-ui__slot pega-editor-ui__slot--selected">
+        <h5>Selected</h5>
+        <div class="pega-editor-ui__slot-controls"></div>
+        <div class="pega-editor-ui__traits"></div>
+        <div class="pega-editor-ui__component-meta"></div>
       </div>
     </div>
   `;
@@ -118,7 +121,7 @@ function init() {
       return;
     }
 
-    /** @type {BoltEditorConfig} */
+    /** @type {import('grapesjs').BoltEditorConfig} */
     const config = Object.assign({}, defaultConfig, userConfig);
 
     if (!config.styles || config.styles.length === 0) {
@@ -166,7 +169,6 @@ function init() {
           break;
         }
         case EDITOR_STATES.CLOSED: {
-          console.log('editor launching...');
           trigger.innerText = 'Loading...';
           await addGrapesCssToPage();
           const { enableEditor } = await import(
@@ -207,67 +209,5 @@ function init() {
   // uncomment to have first editor open on page load for easier dev experience
   // document.querySelector('.js-pega-editor__trigger').click();
 }
-
-//
-// function isRegistered(elName) {
-//   // return document.createElement(elName).constructor !== window.HTMLElement;
-//   return !!window.customElements.get(elName);
-// };
-//
-// const boltComponents = [
-//   'action-blocks',
-//   'background',
-//   'background-shapes',
-//   'band',
-//   'block-list',
-//   'blockquote',
-//   'breadcrumb',
-//   'button',
-//   'button-group',
-//   'card',
-//   'chip',
-//   'chip-list',
-//   'code-snippet',
-//   'copy-to-clipboard',
-//   'critical-css-vars',
-//   'critical-fonts',
-//   'device-viewer',
-//   'figure',
-//   'form',
-//   'grid',
-//   'headline',
-//   'icon',
-//   'icons',
-//   'image',
-//   'link',
-//   'list',
-//   'logo',
-//   'nav-indicator',
-//   'nav-priority',
-//   'navbar',
-//   'navlink',
-//   'ordered-list',
-//   'pagination',
-//   'share',
-//   'site',
-//   'smooth-scroll',
-//   'sticky',
-//   'teaser',
-//   'text',
-//   'tooltip',
-//   'unordered-list',
-//   'video',
-// ];
-//
-// const registeredComponents = boltComponents.map(componentName => ({
-//   name: componentName,
-//   registered: isRegistered(componentName),
-// }));
-//
-// console.log('Registered Components');
-// console.table(registeredComponents.filter(component => component.registered));
-//
-// console.log('Not Registered Components');
-// console.table(registeredComponents.filter(component => !component.registered));
 
 init();

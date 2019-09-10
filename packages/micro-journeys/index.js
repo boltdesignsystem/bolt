@@ -11,11 +11,12 @@ polyfillLoader.then(res => {
     /* webpackMode: 'eager', webpackChunkName: 'bolt-interactive-step' */ './src/interactive-step'
   );
   import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-connection' */ './src/connection'
-  );
-  import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-character' */ './src/character'
   );
+  import(
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-connection' */ './src/connection'
+  );
+  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-cta' */ './src/cta');
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-status-dialogue-bar' */ './src/status-dialogue-bar'
   );
@@ -24,5 +25,8 @@ polyfillLoader.then(res => {
   );
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-two-character-layout' */ './src/two-character-layout'
+  );
+  import(
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-one-character-layout' */ './src/one-character-layout'
   );
 });

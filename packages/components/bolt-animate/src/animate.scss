@@ -1,5 +1,4 @@
 @import '@bolt/core';
-@import '@bolt/animations';
 
 bolt-animate {
   display: inline-block;
@@ -65,6 +64,21 @@ $bolt-animate-slide-amount: 20px;
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-fade-out {
+  from {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 

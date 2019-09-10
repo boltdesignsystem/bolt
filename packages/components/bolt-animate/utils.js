@@ -50,7 +50,6 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
             console.debug(`${eventName}`, animEl);
           }
           if (!triggered) {
-            console.error({ animEl });
             reject(
               new Error(
                 `Attempted to trigger animation when there was no animation`,
@@ -113,4 +112,24 @@ export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
   }
 
   return true;
+}
+
+/**
+ * Trigger `<bolt-animate>` animations found within Element
+ * @param {Element} el
+ * @param {string} [stage='IN'] must be either 'IN' or 'OUT'
+ * @return {Promise<boolean>}
+ */
+export async function triggerAnimsInEl(el, stage = 'IN') {
+  if (!el.querySelectorAll) {
+    console.error(el);
+    throw new Error(
+      `When running "triggerAnimsInEl", the passed element does not have "querySelectorAll" method.`,
+    );
+  }
+  const animEls = Array.from(el.querySelectorAll('bolt-animate'));
+  if (animEls.length === 0) {
+    return false;
+  }
+  return triggerAnims({ animEls, stage });
 }
