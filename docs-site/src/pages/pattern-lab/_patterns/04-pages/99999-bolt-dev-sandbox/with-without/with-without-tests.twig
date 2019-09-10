@@ -1,0 +1,72 @@
+
+<script>
+
+  const fadeOutModal = function () {
+    console.log('fadin');
+    document.querySelector('#c-pega-wwo__modal-test').triggerAnimOut();
+  };
+
+  const animateLinesAndDots = function(direction) {
+
+    if (direction === 'IN') {
+      document.querySelector('#block-test .c-pega-wwo__region-blocks-line-wrapper').triggerAnimIn();
+      document.querySelector('#block-test .c-pega-wwo__sm-circle-mobile--wrapper').triggerAnimIn();
+    } else {
+      document.querySelector('#block-test .c-pega-wwo__region-blocks-line-wrapper').triggerAnimOut();
+      document.querySelector('#block-test .c-pega-wwo__sm-circle-mobile--wrapper').triggerAnimOut();
+    }
+  }
+
+
+</script>
+<button onclick="fadeOutModal()">
+  fade out modal
+</button>
+
+<bolt-animate id="c-pega-wwo__modal-test" style="position: relative; height: 100px; width: 100%; overflow: hidden;" group="initial" out="fade-out" out-duration="1500">
+  <div is="shadow-root">
+    <div class="c-pega-wwo__modal-bg"></div>
+  </div>
+</bolt-animate>
+
+<button onclick="animateLinesAndDots('OUT')">
+  animate lines and dots out
+</button>
+
+<button onclick="animateLinesAndDots('IN')">
+  animate lines and dots in
+</button>
+
+<div id="block-test">
+  <div style="background-color: black; margin-left: 3rem;" class="c-pega-wwo__block c-pega-wwo__block-block-credit-w">
+    <bolt-animate class="c-pega-wwo__region-blocks-line-wrapper c-pega-wwo__shadow-height-full" in-duration="300" in-order="40" in="slide-down" group="w" secondary-group="circles" type="in-effect-only" out="fade-out" out-duration="0">
+      <div is="shadow-root">
+        <div class="c-pega-wwo__region-blocks-line"></div>
+      </div>
+    </bolt-animate>
+    <bolt-animate class="c-pega-wwo__sm-circle-mobile--wrapper" in-duration="400" in-order="30" in="fade-in" group="w" secondary-group="circles" type="in-effect-only" out="fade-out" out-duration="0">
+      <div is="shadow-root">
+        <div class="c-pega-wwo__sm-circle-mobile"></div>
+      </div>
+    </bolt-animate>
+    <bolt-animate class="c-pega-wwo__block-content--animator" type="in-effect-only" out-duration="0" group="w" in="fade-in-slide-right" in-order="30" out="fade-out-slide-left" out-order="30">
+      <div is="shadow-root">
+        <div class="c-pega-wwo__block--icon-and-title-wrapper">
+          <div class="c-pega-wwo__icon c-pega-wwo__icon-credit-card">
+            {% include "@bolt-components-icon/icon.twig" with {
+              name: "credit-card",
+              size: "medium",
+            } only %}
+          </div>
+          <h4 class="c-pega-wwo__block-title">Problem: High
+            credit card fees</h4>
+        </div>
+        <bolt-animate in="slide-down" out="slide-up" class="c-pega-wwo__block-contents" initial-appearance="default">
+          <div is="shadow-root">
+            <p class="c-pega-wwo__block-body">Frank has a high-interest card and is accruing lots of additional fees.</p>
+          </div>
+        </bolt-animate>
+      </div>
+    </bolt-animate>
+  </div>
+</div>

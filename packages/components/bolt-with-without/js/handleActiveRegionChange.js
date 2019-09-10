@@ -75,12 +75,14 @@ const triggerAnimateOutOnInOnlyContent = async (groupAttrVal, mainWrapper) => {
     .querySelector(`#c-pega-wwo__self-drawing-circle[group="${groupAttrVal}"]`)
     .triggerAnimOut();
 
-  // console.log('triggerAnimateOutOnInOnlyContent animInEls', animOutEls);
+  console.debug('triggering:triggerAnimateOutOnInOnlyContent animInEls');
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'OUT',
     debug: true,
   });
+  console.debug('triggered done:triggerAnimateOutOnInOnlyContent animInEls');
+
 };
 
 const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
