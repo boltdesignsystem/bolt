@@ -87,5 +87,11 @@ module.exports = {
       type: 'number',
       default: 1,
     },
+
+    showMeta: {
+      type: 'boolean',
+      title: 'Show Meta info in attributes',
+      default: false,
+    },
   },
 };
