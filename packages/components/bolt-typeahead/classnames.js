@@ -1,3 +1,5 @@
+// @todo: move to @bolt/core once Typeahead ships and/or CSS Modules ships
+
 /*!
   Copyright (c) 2018 Jed Watson.
   Licensed under the MIT License (MIT), see

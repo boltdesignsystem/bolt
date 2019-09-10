@@ -3,7 +3,7 @@ import { define, props } from 'skatejs';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { withEvents } from '@bolt/core/renderers/with-events';
 import { bind } from './classnames';
-import './autosuggest';
+import './typeahead.autosuggest'; // main Preact logic split from lit-html wrapper
 
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);

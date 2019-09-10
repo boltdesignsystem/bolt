@@ -1,8 +1,8 @@
 {% set schema = bolt.data.components["@bolt-components-typeahead"].schema %}
 
-{# {% if enable_json_schema_validation %}
+{% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
-{% endif %} #}
+{% endif %}
 
 {# @todo: re-enable once CSS Modules ships %}
 {# {% set selectors = get_data("@bolt-components-typeahead/typeahead.scoped.json") %}
@@ -43,10 +43,6 @@
 {% set utils = {
   visuallyHidden: "u-bolt-visuallyhidden",
   hidden: "u-bolt-hidden"
-} %}
-
-{% set data = {
-  uuid: "bolt-typeahead-uuid"
 } %}
 
 {% set this = init(schema) %}

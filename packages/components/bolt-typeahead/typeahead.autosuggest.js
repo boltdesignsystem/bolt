@@ -49,12 +49,6 @@ export const highlightSearchResults = function(item) {
 class BoltAutosuggest extends withPreact() {
   static is = 'bolt-autosuggest';
 
-  // subscribe to specific props that are defined and available on the parent container
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  // static get consumes() {
-  //   return [[TypeaheadContext, 'items']];
-  // }
-
   static props = {
     placeholder: props.string,
     value: props.string,
@@ -64,10 +58,6 @@ class BoltAutosuggest extends withPreact() {
     },
     noClearButton: props.boolean,
     items: props.array,
-    submitButtonText: {
-      ...props.string,
-      ...{ default: 'Submit' },
-    },
     maxResults: {
       ...props.number,
       ...{ default: 10 },
@@ -151,7 +141,6 @@ class BoltAutosuggest extends withPreact() {
   // @ts-ignore
   constructor() {
     super();
-    // self.useShadow = false;
     // Autosuggest is a controlled component.
     // This means that you need to provide an input value
     // and an onChange handler that updates this value (see below).
@@ -174,7 +163,9 @@ class BoltAutosuggest extends withPreact() {
 
   connected() {
     super.connected && super.connected();
+    const self = this;
 
+    // if an input element exists when booting up, use the initial text value if it exists
     this._externalInputElement = this.querySelector('input[type="text"]');
     if (this._externalInputElement) {
       this._setState({
@@ -182,7 +173,7 @@ class BoltAutosuggest extends withPreact() {
       });
     }
 
-    const self = this;
+    // @todo: allow for this to be customized?
     Mousetrap.bind('command+shift+f', function(e) {
       e.preventDefault();
       self.toggleSearch();
@@ -219,11 +210,6 @@ class BoltAutosuggest extends withPreact() {
     this._setState({
       value,
     });
-
-    // skip default onInput behavior if external listeners have hooked in
-    // if (this._listeners['onInput']) {
-    //   return;
-    // }
 
     this.onSuggestionsFetchRequested({ value }); // re-render search results immediately based on latest input value
   };
