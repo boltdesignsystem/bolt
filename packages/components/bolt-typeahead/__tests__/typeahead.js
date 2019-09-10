@@ -39,9 +39,23 @@ describe('<bolt-typeahead> Component', () => {
   }, timeout);
 
   test('Typeahead Twig Template Renders', async () => {
-    const results = await renderTwig(
-      '@bolt-components-typeahead/typeahead.twig',
-    );
+    const results = await renderTwigString(`
+      {% include "@bolt-components-form/form.twig" with {
+        children: include("@bolt-components-typeahead/typeahead.twig", {
+          attributes: {
+            class: [
+              "js-typeahead-hook"
+            ]
+          },
+          max_results: 5,
+        }),
+        attributes: {
+          action: "https://www.pega.com/search",
+          target: "_blank",
+          method: "GET"
+        }
+      } %}
+    `);
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });

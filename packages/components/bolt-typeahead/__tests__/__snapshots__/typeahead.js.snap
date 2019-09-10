@@ -1,31 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
-<bolt-typeahead placeholder="Enter to search"
-                max-results="10"
+<form action="https://www.pega.com/search"
+      target="_blank"
+      method="GET"
 >
-  <div class="c-bolt-typeahead">
-    <form class="c-bolt-typeahead__input-wrapper"
-          method="get"
-          action
-          target="_blank"
-    >
-      <label for="bolt-typeahead-uuid"
+  <bolt-typeahead class="js-typeahead-hook"
+                  max-results="5"
+  >
+    <div class="c-bolt-typeahead">
+      <label for="12345"
              class="c-bolt-typeahead__label"
       >
         <span class="u-bolt-visuallyhidden">
-          Search the website
         </span>
       </label>
-      <input id="bolt-typeahead-uuid"
+      <input id="12345"
              type="text"
              autocomplete="off"
              aria-autocomplete="list"
              class="c-bolt-typeahead__input"
-             placeholder="Enter to search"
+             placeholder="Enter your search query"
              value
              required
-             name="q"
+             name
       >
       <bolt-button size="medium"
                    color="text"
@@ -44,7 +42,7 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
           <replace-with-children class="c-bolt-button__icon is-empty">
           </replace-with-children>
           <replace-with-children class="c-bolt-button__item">
-            Clear search input
+            Clear search
           </replace-with-children>
           <replace-with-children class="c-bolt-button__icon">
             <bolt-icon class="c-bolt-typeahead__icon"
@@ -83,6 +81,7 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
                      align="center"
                      transform="none"
                      icon-only
+                     class="js-typeahead-hook"
         >
           <button type="submit"
                   class="c-bolt-button c-bolt-button--medium c-bolt-button--text c-bolt-button--border-radius-regular c-bolt-button--center c-bolt-button--icon-only"
@@ -91,7 +90,7 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
             <replace-with-children class="c-bolt-button__icon is-empty">
             </replace-with-children>
             <replace-with-children class="c-bolt-button__item">
-              Search the website
+              Submit search query
             </replace-with-children>
             <replace-with-children class="c-bolt-button__icon">
               <bolt-icon class="c-bolt-typeahead__icon"
@@ -116,7 +115,7 @@ exports[`<bolt-typeahead> Component Typeahead Twig Template Renders 1`] = `
           </button>
         </bolt-button>
       </div>
-    </form>
-  </div>
-</bolt-typeahead>
+    </div>
+  </bolt-typeahead>
+</form>
 `;
