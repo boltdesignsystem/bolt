@@ -13,16 +13,16 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
   static is = 'bolt-typeahead';
 
   static props = {
-    placeholder: props.string,
+    inputPlaceholder: props.string,
+    inputValue: props.string,
     noHighlight: {
       ...props.boolean,
       ...{ default: false },
     },
-    clearButtonText: {
+    clearInputText: {
       ...props.string,
       ...{ default: 'Clear Search Results' },
     },
-    initialValue: props.string,
     items: props.array,
     submitButtonText: {
       ...props.string,
@@ -47,13 +47,13 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
 
     this._externalInputElement = this.querySelector('input[type="text"]');
     if (this._externalInputElement) {
-      this.initialValue = this._externalInputElement.value || '';
-      this.placeholder = this._externalInputElement.placeholder || '';
+      this.inputValue = this._externalInputElement.value || '';
+      this.inputPlaceholder = this._externalInputElement.placeholder || '';
     }
   }
 
   clearSearch() {
-    this.initialValue = '';
+    this.inputValue = '';
     this.autosuggest.clearSearch();
   }
 
@@ -70,9 +70,9 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
     if (e.target.value !== '') {
       if (e.key === 'Enter') {
         this.autosuggest.onSelected(e, {
-          suggestionValue: this.initialValue,
+          suggestionValue: this.inputValue,
           suggestion: {
-            label: this.initialValue,
+            label: this.inputValue,
           },
         });
       }
@@ -83,11 +83,11 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
     return html`
       ${this.addStyles([styles])}
       <bolt-autosuggest
-        .value=${this.initialValue}
+        .value=${this.inputValue}
         .items=${this.items}
         .maxResults=${this.maxResults}
         .noHighlight=${this.noHighlight}
-        .placeholder=${this.placeholder}
+        .placeholder=${this.inputPlaceholder}
         @keypress=${this.handleKeyPress.bind(this)}
       ></bolt-autosuggest>
       <bolt-button
@@ -104,7 +104,6 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
         <bolt-icon
           name="search"
           class=${cx('c-bolt-typeahead__icon')}
-          title=${this.submitButtonText}
           slot="before"
         ></bolt-icon>
       </bolt-button>
@@ -118,16 +117,16 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
           'c-bolt-typeahead__button',
           'c-bolt-typeahead__button--clear',
           {
-            [`is-visible`]: this.initialValue !== '',
+            [`is-visible`]: this.inputValue !== '',
           },
         )}
       >
-        ${this.clearButtonText}
+        ${this.clearInputText}
         <bolt-icon
           name="close-solid"
           slot="before"
           class=${cx('c-bolt-typeahead__icon')}
-          title=${this.clearButtonText}
+          title=${this.clearInputText}
         />
       </bolt-button>
     `;
@@ -140,11 +139,11 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
       this.autosuggest = this.renderRoot.querySelector('bolt-autosuggest');
       this.autosuggest.addEventListener('ready', () => {
         this.autosuggest.on('onInput', (element, event, newValue) => {
-          this.initialValue = newValue;
+          this.inputValue = newValue;
         });
 
         this.autosuggest.on('onChange', (element, event, newValue) => {
-          this.initialValue = newValue;
+          this.inputValue = newValue;
         });
       });
     }
