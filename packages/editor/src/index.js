@@ -1,4 +1,5 @@
 import { query } from '@bolt/core/utils';
+import { detect } from 'detect-browser';
 
 const defaultConfig = {};
 
@@ -71,6 +72,7 @@ function init() {
     CLOSED: 'CLOSED',
   };
 
+  /** @type {HTMLElement[]} */
   const pegaEditors = query(selectors.editor.base)
     // ensure we don't try to init an editor that is already init-ed
     .filter(
@@ -169,6 +171,11 @@ function init() {
           break;
         }
         case EDITOR_STATES.CLOSED: {
+          const { name: browserName } = detect();
+          if (browserName !== 'chrome') {
+            window.alert('The Editor can only be used in Chrome, sorry.');
+            return;
+          }
           trigger.innerText = 'Loading...';
           await addGrapesCssToPage();
           const { enableEditor } = await import(
