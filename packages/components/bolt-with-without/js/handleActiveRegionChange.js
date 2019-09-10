@@ -82,7 +82,6 @@ const triggerAnimateOutOnInOnlyContent = async (groupAttrVal, mainWrapper) => {
     debug: true,
   });
   console.debug('triggered done:triggerAnimateOutOnInOnlyContent animInEls');
-
 };
 
 const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
