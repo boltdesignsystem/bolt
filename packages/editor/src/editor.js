@@ -2,6 +2,7 @@ import * as grapesjs from 'grapesjs';
 import { html, render } from '@bolt/core';
 import { query, IS_PROD } from '@bolt/core/utils';
 import { triggerAnimsInEl } from '@bolt/components-animate/utils';
+import { detect } from 'detect-browser';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
@@ -137,6 +138,46 @@ export function enableEditor({ space, uiWrapper, config }) {
               command: {
                 run: editor => editor.setDevice('Desktop'),
                 stop: editor => editor.setDevice('Full'),
+              },
+            },
+            {
+              id: 'submit-bug',
+              label: 'Submit Bug',
+              togglable: false,
+              className: 'gjs-pega-editor-panels-btn--bug',
+              command: {
+                run: editor => {
+                  const {
+                    name: browserName,
+                    os: browserOs,
+                    version: browserVersion,
+                  } = detect();
+                  const bugFormUrl =
+                    'https://form.asana.com?hash=744845a6517b30c25e59baebae1245d3f999d10961fa63e47a0d6e26a3220605&id=1126340469376247';
+                  const metadata = `
+URL: ${window.location.href}     
+Browser Name: ${browserName}             
+Browser Version: ${browserVersion}             
+Browser OS: ${browserOs}      
+
+Editor Markup:
+
+${editor.getHtml()}       
+                  `;
+
+                  const content = `
+                    <h3>Submit Bug Report</h3>
+                    
+                    <h4>Select and copy this Metadata field, then paste it in the Metadata bug form</h4>
+                    <textarea style="width: 100%;" rows="3">${metadata}</textarea>
+                    
+                    <bolt-button url="${bugFormUrl}" target="_blank">Open bug form</bolt-button>
+                  `;
+                  editor.Modal.open({
+                    title: 'Submit Bug',
+                    content,
+                  });
+                },
               },
             },
           ],
