@@ -14,7 +14,9 @@ module.exports = {
       )
       .waitForElementVisible('.js-c-typeahead__input', 3000)
       .assert.elementPresent('.js-typeahead-hook--dynamically-fetch-data')
-      .assert.elementPresent('.js-typeahead-hook--dynamically-fetch-data .c-bolt-button')
+      .assert.elementPresent(
+        '.js-typeahead-hook--dynamically-fetch-data .c-bolt-button',
+      )
       .click('.js-c-typeahead__input'); // click on the PL search input
 
     if (browser.sendKeys) {
@@ -24,15 +26,16 @@ module.exports = {
     }
 
     browser.saveScreenshot(
-      `screenshots/pattern-lab/typeahead--${browser.capabilities
-        .browserName || 'chrome'}.png`,
+      `screenshots/pattern-lab/typeahead--${browser.capabilities.browserName ||
+        'chrome'}.png`,
     );
 
     browser.expect.elements('.c-bolt-typeahead__result').count.to.equal(1);
 
-    browser.waitForElementVisible('.c-bolt-typeahead__result', 3000)
+    browser
+      .waitForElementVisible('.c-bolt-typeahead__result', 3000)
       .click('.c-bolt-typeahead__result') // click on the first result
-      .waitForElementVisible('.c-page-header', 3000)
+      .waitForElementVisible('.c-page-header', 3000);
 
     browser.assert.urlContains('https://www.pega.com');
   },
