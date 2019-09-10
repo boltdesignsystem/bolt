@@ -1,6 +1,6 @@
 /* eslint-disable no-extend-native */
 // import polyfill for Symbol and Object.getOwnPropertySymbols
-import 'get-own-property-symbols/build/get-own-property-symbols.max.js';
+import 'get-own-property-symbols/src/get-own-property-symbols.js';
 
 // Fix issue in toString patch when compiled into strict mode via closure
 // https://github.com/es-shims/get-own-property-symbols/issues/16
