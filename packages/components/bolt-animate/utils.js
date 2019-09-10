@@ -108,6 +108,7 @@ export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
     await triggerAnimOnEls({
       animEls: animElsToTrigger,
       stage,
+      debug,
     });
   }
 
