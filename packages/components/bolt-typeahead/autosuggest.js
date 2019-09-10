@@ -63,10 +63,6 @@ class BoltAutosuggest extends withPreact() {
       ...{ default: false },
     },
     noClearButton: props.boolean,
-    clearButtonText: {
-      ...props.string,
-      ...{ default: 'Clear Search Results' },
-    },
     items: props.array,
     submitButtonText: {
       ...props.string,
