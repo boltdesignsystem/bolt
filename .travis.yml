@@ -77,7 +77,7 @@ jobs:
         # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
-        - travis_wait yarn run build
+        - yarn run build
         - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
