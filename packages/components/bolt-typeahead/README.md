@@ -1,5 +1,11 @@
-### Features
+### Installation
+```sh
+npm install @bolt/components-typeahead
+```
 
+<hr>
+
+### Features
 - Progressively enhanced simple html `<form>` fallback (via Twig)
 - Server-side pre-rendered SVG icons (when using Twig)!
 - Uses the new `withEvents` base class to allow for much deeper JavaScript customization
@@ -9,11 +15,6 @@
 - Fully customizable behavior to handle partial vs full result matches, etc 
 - Supports rendering to the Shadow DOM _and_ the Light DOM
 
-### Installation
-```sh
-npm install @bolt/bolt-typeahead
-```
-
 ### What's Next? (Future Updates)
 - Fully support theming system colors
 - JSDoc support / further improve docs and demos
@@ -22,6 +23,7 @@ npm install @bolt/bolt-typeahead
 - More customization for additional use cases?
 - Multi-section support
 
+<hr>
 
 # API
 
@@ -56,5 +58,4 @@ npm install @bolt/bolt-typeahead
 
 
 ## Additional references
-
 - [React Autosuggest](http://react-autosuggest.js.org/)

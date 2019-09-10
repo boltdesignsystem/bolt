@@ -1,5 +1,5 @@
 {% set typeahead_markdown_docs %}
-# Typeahead Demo: Navigate To Search Results
+# Typeahead Demo: Navigate To Search Results {id=navigate-to-search-results}
 
 Demos populating the `<bolt-typeahead>` component with a larger batch of results + customizing the `onSelected` behavior to always go to the search results page when selecting an item.
 
@@ -11,11 +11,19 @@ For example, manually selecting / entering `Case Management` in the input field 
 
 {{ typeahead_markdown_docs | markdown }}
 
-{% include "@bolt-components-typeahead/typeahead.twig" with {
+{% include "@bolt-components-form/form.twig" with {
+  children: include("@bolt-components-typeahead/typeahead.twig", {
+    attributes: {
+      class: [
+        "js-typeahead-hook"
+      ]
+    },
+    max_results: 5,
+  }),
   attributes: {
-    class: [
-      "js-typeahead-hook"
-    ]
+    action: "https://www.pega.com/search",
+    target: "_blank",
+    method: "GET"
   }
 } %}
 

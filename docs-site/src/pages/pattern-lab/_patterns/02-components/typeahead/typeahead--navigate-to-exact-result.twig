@@ -1,5 +1,5 @@
 {% set typeahead_markdown_docs %}
-# Typeahead Demo: Navigate Directly To Result
+## Demo: Navigate to Exact Result {id=navigate-to-exact-result}
 
 Demos populating the `<bolt-typeahead>` component with a small batch of results + customizing the `onSelected` behavior to go directly to the result selected (vs the search results page) for exact matches.
 
@@ -8,12 +8,20 @@ Submitting the form with text that isn't a 1:1 match will fall back to the searc
 
 {{ typeahead_markdown_docs | markdown }}
 
-{% include "@bolt-components-typeahead/typeahead.twig" with {
+{% include "@bolt-components-form/form.twig" with {
+  children: include("@bolt-components-typeahead/typeahead.twig", {
+    attributes: {
+      class: [
+        "js-typeahead-hook--exact-result"
+      ]
+    },
+    max_results: 5,
+  }),
   attributes: {
-    class: [
-      "js-typeahead-hook--exact-result"
-    ]
-  },
+    action: "https://www.pega.com/search",
+    target: "_blank",
+    method: "GET"
+  }
 } %}
 
 {% set typeahead_example_js %}
