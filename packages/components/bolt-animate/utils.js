@@ -77,7 +77,7 @@ export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
   let eventName;
   switch (stage) {
     case 'IN':
-      eventName = 'bolt-animate:end:out';
+      eventName = 'bolt-animate:end:in';
       orderProp = 'inOrder';
       hasAnimProp = 'hasAnimIn';
       break;
