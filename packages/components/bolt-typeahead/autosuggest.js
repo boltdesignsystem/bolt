@@ -95,7 +95,7 @@ class BoltAutosuggest extends withPreact() {
   //
   // @todo: move this into it's own decorator in Bolt Core?
   get getParent() {
-    if (this.getRootNode) {
+    if (this.getRootNode && this.useShadow === true) {
       return this.getRootNode().host;
     } else {
       return this.closest('bolt-typeahead');
