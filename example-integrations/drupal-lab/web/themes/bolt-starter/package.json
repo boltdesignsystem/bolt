@@ -11,7 +11,8 @@
     "build:en": "bolt build --prod",
     "build:ja": "bolt build --prod --config-file .boltrc--ja.js",
     "start": "bolt start",
-    "test": "jest __tests__/index.js"
+    "test": "jest __tests__/index.js",
+    "postbuild": "npm run test"
   },
   "dependencies": {
     "yargs": "^13.2.4",
@@ -19,12 +20,12 @@
     "patch-package": "^6.1.2",
     "postinstall-postinstall": "^2.0.0",
     "@bolt/build-tools": "latest",
-    "@bolt/components-button": "latest",
-    "@bolt/components-headline": "latest",
-    "@bolt/components-icon": "latest",
-    "@bolt/components-link": "latest",
-    "@bolt/components-navbar": "latest",
-    "@bolt/components-sticky": "latest",
-    "@bolt/global": "latest"
+    "@bolt/components-button": "file:../../../../../packages/components/bolt-button",
+    "@bolt/components-headline": "file:../../../../../packages/components/bolt-headline",
+    "@bolt/components-icon": "file:../../../../../packages/components/bolt-icon",
+    "@bolt/components-link": "file:../../../../../packages/components/bolt-link",
+    "@bolt/components-navbar": "file:../../../../../packages/components/bolt-navbar",
+    "@bolt/components-sticky": "file:../../../../../packages/components/bolt-sticky",
+    "@bolt/global": "file:../../../../../packages/global"
   }
 }
