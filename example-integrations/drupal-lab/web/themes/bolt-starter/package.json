@@ -3,9 +3,6 @@
   "description": "Drupal 8 Starter Theme using the Bolt Design System",
   "version": "2.4.0",
   "private": true,
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "build": "FORCE_COLOR=1 npx npm-run-all --serial build:*",
     "build:en": "bolt build --prod",
@@ -17,14 +14,24 @@
   "dependencies": {
     "yargs": "^13.2.4",
     "jest": "^24.8.0",
-    "@bolt/core": "file:../../../../../packages/core",
-    "@bolt/build-tools": "file:../../../../../packages/build-tools",
-    "@bolt/components-button": "file:../../../../../packages/components/bolt-button",
-    "@bolt/components-headline": "file:../../../../../packages/components/bolt-headline",
-    "@bolt/components-icon": "file:../../../../../packages/components/bolt-icon",
-    "@bolt/components-link": "file:../../../../../packages/components/bolt-link",
-    "@bolt/components-navbar": "file:../../../../../packages/components/bolt-navbar",
-    "@bolt/components-sticky": "file:../../../../../packages/components/bolt-sticky",
-    "@bolt/global": "file:../../../../../packages/global"
+    "@bolt/core": "^2.6.0",
+    "@bolt/build-tools": "^2.6.0",
+    "@bolt/components-button": "^2.6.0",
+    "@bolt/components-headline": "^2.6.0",
+    "@bolt/components-icon": "^2.6.0",
+    "@bolt/components-link": "^2.6.0",
+    "@bolt/components-navbar": "^2.6.0",
+    "@bolt/components-sticky": "^2.6.0",
+    "@bolt/global": "^2.6.0",
+    "patch-package": "^6.1.4",
+    "postinstall-postinstall": "^2.0.0"
+  },
+  "workspaces": {
+    "packages": [
+      "../../../../../packages/core",
+      "../../../../../packages/build-tools",
+      "../../../../../packages/global",
+      "../../../../../packages/components/*"
+    ]
   }
 }
