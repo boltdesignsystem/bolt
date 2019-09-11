@@ -1,10 +1,10 @@
 @import '@bolt/core';
 
 .c-bolt-dropdown {
+  overflow: visible;
+  margin: 0 .65rem;
   box-shadow: none;
   background: transparent;
-  margin: 0 .65rem;
-  overflow: visible;
 
   &__header {
     border-bottom: 1px solid bolt_theme(text);
@@ -28,8 +28,9 @@
   }
 
   &__content {
-    box-shadow: none;
+    position: absolute;
     overflow: visible;
+    box-shadow: none;
   }
 
   &__content-inner {

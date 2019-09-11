@@ -104,19 +104,22 @@ class BoltInteractivePathways extends withLitHtml() {
 
     const menuItems = titles.map((title, i) => {
       const isActiveItem = i === this.activePathwayIndex;
+      const menuItemTextColor = isActiveItem
+        ? 'color: #0074B3; --bolt-theme-text: #0074B3;'
+        : 'color: rgb(0, 0, 0); --bolt-theme-text: rgb(0, 0, 0);';
+
       return html`
         <bolt-text
-          class="c-bolt-interactive-pathways__menu-item"
+          class="c-bolt-interactive-pathways__menu-item${isActiveItem
+            ? ' c-bolt-interactive-pathways__menu-item--active'
+            : ''}"
           font-weight="semi-bold"
           @click=${() => this.showPathway(i)}
-          style="
-            color: rgb(0, 0, 0);
-            --bolt-theme-text: rgb(255, 255, 255);
-          "
+          style=${menuItemTextColor}
         >
           ${isActiveItem
             ? html`
-                <bolt-icon name="check"></bolt-icon>
+                <bolt-icon size="medium" name="check"></bolt-icon>
               `
             : ''}
           ${title}
@@ -138,7 +141,7 @@ class BoltInteractivePathways extends withLitHtml() {
     const singleTitle = html`
       <bolt-text
         class="c-bolt-interactive-pathways__single-title"
-        font-weight="semibold"
+        subheadline
         font-size="xxlarge"
       >
         ${this.pathways.length > 0 ? this.pathways[0].getTitle() : ''}
