@@ -13,7 +13,6 @@
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop",
   "license": "MIT",
   "scripts": {
-    "_preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",
     "build": "webpack-cli --config webpack.config.js --display=minimal",
     "test": "npm run build -- --bail",
     "watch": "webpack-cli --config webpack.config.js --progress --watch"

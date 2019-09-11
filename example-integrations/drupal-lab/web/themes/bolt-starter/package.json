@@ -11,12 +11,16 @@
     "build:en": "bolt build --prod",
     "build:ja": "bolt build --prod --config-file .boltrc--ja.js",
     "start": "bolt start",
-    "test": "jest __tests__/index.js"
+    "postbuild": "yarn run test",
+    "test": "jest __tests__/index.js",
+    "postinstall": "npm run patch:core && npm run patch:image",
+    "patch:core": "cd node_modules/@bolt/core && yarn && yarn run postinstall",
+    "patch:image": "cd node_modules/@bolt/components-image && yarn && yarn run postinstall"
   },
   "dependencies": {
-    "yargs": "^13.2.4",
-    "jest": "^24.8.0",
-    "patch-package": "^6.1.2",
+    "yargs": "^14.0.0",
+    "jest": "^24.9.0",
+    "patch-package": "^6.1.4",
     "postinstall-postinstall": "^2.0.0",
     "@bolt/build-tools": "latest",
     "@bolt/components-button": "latest",
