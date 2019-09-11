@@ -166,9 +166,7 @@ describe('carousel', () => {
         const carouselItems = Array.from(
           document.querySelectorAll('bolt-carousel-item'),
         );
-        const images = Array.from(
-          document.querySelectorAll('bolt-image'),
-        );
+        const images = Array.from(document.querySelectorAll('bolt-image'));
         const allElements = [...carousels, ...carouselItems, ...images];
         return await Promise.all(
           allElements.map(element => {
