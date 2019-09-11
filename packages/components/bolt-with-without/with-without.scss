@@ -245,6 +245,8 @@ bolt-animate {
   &__circles-and-blocks--animator[meta-stage="OUT"] {
     // There was a flash of a badly-styled circle right after animate.
     margin-left: -9999999px;
+    z-index: -999;
+    pointer-events: none;
   }
 
   &__circles-wrapper {
@@ -478,7 +480,7 @@ bolt-animate {
       }
 
       @include bolt-mq($from: xxlarge) {
-        font-size: 16px;
+        font-size: 13px;
       }
     }
 
@@ -551,6 +553,7 @@ bolt-animate {
         left: 9%;
         width: calc(#{$pega-wwo--block-width-basis} + 110px);
         padding-top: 33.75%;
+        z-index: 1;
       }
 
       @include bolt-mq($from: xxlarge) {
@@ -612,10 +615,6 @@ bolt-animate {
         color: bolt-color(yellow);
 
         @include bolt-mq($from: xlarge) {
-          white-space: nowrap;
-        }
-
-        @include bolt-mq($from: xlarge) {
           white-space: normal;
         }
       }
@@ -625,6 +624,7 @@ bolt-animate {
         left: 1.5%;
         width: calc(#{$pega-wwo--block-width-basis} + 130px);
         padding-top: 24%;
+        z-index: 1;
       }
 
       @include bolt-mq($from: xxlarge) {
