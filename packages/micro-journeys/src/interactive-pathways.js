@@ -109,6 +109,10 @@ class BoltInteractivePathways extends withLitHtml() {
           class="c-bolt-interactive-pathways__menu-item"
           font-weight="semi-bold"
           @click=${() => this.showPathway(i)}
+          style="
+            color: rgb(0, 0, 0);
+            --bolt-theme-text: rgb(255, 255, 255);
+          "
         >
           ${isActiveItem
             ? html`

@@ -3,10 +3,13 @@
 .c-bolt-dropdown {
   box-shadow: none;
   background: transparent;
+  margin: 0 .65rem;
+  overflow: visible;
 
   &__header {
+    border-bottom: 1px solid bolt_theme(text);
     box-shadow: none;
-    
+
     &:after {
       display: none;
     }
@@ -14,21 +17,28 @@
 
   &__header-button {
     display: block;
-    margin-left: .65rem;
     padding: 0;
     color: bolt_theme(primary);
-    line-height: 1.31;
     line-height: 1.65;
     font-size: 1.75rem;
-    border-bottom: 1px solid bolt_theme(text);
+  }
+
+  &__header-icon {
+    padding: 0 calc(1rem / 2);
+  }
+
+  &__content {
+    box-shadow: none;
+    overflow: visible;
   }
 
   &__content-inner {
+    overflow: visible;
 
     &:after {
       display: none;
     }
-    
+
     &:hover {
       cursor: pointer;
     }
