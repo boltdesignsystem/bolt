@@ -400,7 +400,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-interactive-step',
     draggable: 'bolt-interactive-pathway',
-    editable: false,
+    editable: true,
     highlightable: false,
     extraTraits: ['tab-title'],
     slots: {
@@ -458,7 +458,7 @@ export function setupBolt(editor) {
     highlightable: true,
     extraTraits: ['pathway-title'],
     slots: {
-      default: true,
+      default: 'bolt-interactive-step',
     },
     slotControls: [
       {

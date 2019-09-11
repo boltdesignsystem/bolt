@@ -17,6 +17,7 @@ $nav-circle-border-size: 2px;
   @else {
     content: '';
     display: inline-block;
+    box-sizing: content-box;
     z-index: 1;
     width: $nav-circle-size;
     height: $nav-circle-size;
@@ -52,8 +53,11 @@ $nav-circle-border-size: 2px;
     padding-bottom: 1.65rem;
     white-space: nowrap;
     line-height: $header-text-line-height;
-    cursor: pointer;
     font-size: $header-text-size;
     transition: color 0.5s ease, transform 0.5s ease;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

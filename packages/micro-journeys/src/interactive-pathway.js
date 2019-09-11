@@ -6,6 +6,7 @@ import {
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames';
+import debounce from 'lodash.debounce';
 import styles from './interactive-pathway.scss';
 // import schema from '../interactive-pathway.schema.yml';
 
@@ -35,12 +36,62 @@ class BoltInteractivePathway extends withLitHtml() {
     self.isActivePathway = false;
     self.activeStep = -1;
     self.steps = [];
-    self.addEventListener('change-active-step', event => {
+    this.checkChildrenAndRender = debounce(done => {
+      this.steps = this.getSteps();
+      this.triggerUpdate();
+      // using callback since debounced promises require a different library that's not already in Bolt
+      if (done) setTimeout(done, 0);
+    }, 150);
+
+    self.addEventListener(
+      'bolt-interactive-step:connected',
+      this.handleStepConnect,
+    );
+    self.addEventListener(
+      'bolt-interactive-step:disconnected',
+      this.handleStepDisconnect,
+    );
+
+    self.addEventListener('bolt-interactive-step:change-active-step', event => {
       const steps = this.getSteps();
       const stepId = steps.findIndex(step => step.el === event.target);
       this.setActiveStep(stepId);
     });
+
+    self.addEventListener('bolt-interactive-step:title-updated', () => {
+      this.checkChildrenAndRender();
+    });
     return self;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent(`${BoltInteractivePathway.is}:connected`, {
+          bubbles: true,
+          detail: {
+            title: this.getTitle(),
+          },
+        }),
+      );
+    }, 0);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+
+    setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent(`${BoltInteractivePathway.is}:disconnected`, {
+          bubbles: true,
+          detail: {
+            title: this.getTitle(),
+          },
+        }),
+      );
+    }, 0);
   }
 
   /**
@@ -58,6 +109,36 @@ class BoltInteractivePathway extends withLitHtml() {
     }));
   }
 
+  /**
+   * @param {Event} event
+   */
+  handleStepConnect(event) {
+    this.checkChildrenAndRender();
+  }
+
+  /**
+   * @param {Event} event
+   */
+  handleStepDisconnect(event) {
+    this.checkChildrenAndRender();
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    super.attributeChangedCallback(name, oldValue, newValue);
+    switch (name) {
+      case 'pathway-title':
+        if (oldValue !== newValue) {
+          // this.triggerUpdate();
+          this.dispatchEvent(
+            new CustomEvent(`${BoltInteractivePathway.is}:title-updated`, {
+              bubbles: true,
+            }),
+          );
+        }
+        break;
+    }
+  }
+
   setActive(isActive = true) {
     this.isActivePathway = isActive;
     this.setActiveStep(0);
@@ -69,15 +150,6 @@ class BoltInteractivePathway extends withLitHtml() {
    */
   getTitle() {
     return this.props.pathwayTitle;
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    // let children render before trying to access
-    setTimeout(() => {
-      this.steps = this.getSteps();
-      this.triggerUpdate();
-    }, 0);
   }
 
   /**
@@ -108,8 +180,8 @@ class BoltInteractivePathway extends withLitHtml() {
       await currentActiveStep.el.triggerAnimOuts();
       currentActiveStep.el.setActive(false);
     }
-    newActiveStep.el.setActive(true);
     this.activeStep = stepIndex;
+    newActiveStep.el.setActive(true);
     await newActiveStep.el.triggerAnimIns();
     this.triggerUpdate();
   };
@@ -122,7 +194,7 @@ class BoltInteractivePathway extends withLitHtml() {
 
     const navClasses = cx('c-bolt-interactive-pathway__nav');
     const itemClasses = cx('c-bolt-interactive-pathway__items');
-    // new approach
+
     return html`
       ${this.addStyles([styles])}
       <section class="${classes}">
@@ -146,16 +218,6 @@ class BoltInteractivePathway extends withLitHtml() {
           ${this.slot('default')}
         </div>
       </section>
-    `;
-
-    // old approach
-    const old = html`
-      ${this.addStyles([styles])}
-      <div class="${classes}">
-        <ul class="c-bolt-interactive-pathway__nav">
-          ${this.slot('default')}
-        </ul>
-      </div>
     `;
   }
 }

@@ -48,11 +48,36 @@ class BoltInteractiveStep extends withLitHtml() {
 
   connectedCallback() {
     super.connectedCallback();
+
     this.addEventListener('bolt:transitionend', this.handleAnimationEnd);
+
+    setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent(`${BoltInteractiveStep.is}:connected`, {
+          bubbles: true,
+          detail: {
+            title: this.getTitle(),
+          },
+        }),
+      );
+    }, 0);
   }
 
   disconnectedCallback() {
+    super.disconnectedCallback();
+
     this.removeEventListener('bolt:transitionend', this.handleAnimationEnd);
+
+    setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent(`${BoltInteractiveStep.is}:disconnected`, {
+          bubbles: true,
+          detail: {
+            title: this.getTitle(),
+          },
+        }),
+      );
+    }, 0);
   }
 
   async triggerAnimOuts() {
@@ -67,15 +92,24 @@ class BoltInteractiveStep extends withLitHtml() {
 
   attributeChangedCallback(name, oldValue, newValue) {
     super.attributeChangedCallback(name, oldValue, newValue);
+    switch (name) {
+      case 'tab-title':
+        if (oldValue !== newValue) {
+          // this.triggerUpdate();
+          this.dispatchEvent(
+            new CustomEvent(`${BoltInteractiveStep.is}:title-updated`, {
+              bubbles: true,
+            }),
+          );
+        }
+        break;
+    }
   }
 
   /**
    * @return {string}
    */
   getTitle() {
-    // /** @type {HTMLElement} */
-    // const pathwayTitleEl = this.querySelector('[slot="title"]');
-    // return pathwayTitleEl ? pathwayTitleEl.innerText : '';
     return this.props.tabTitle;
   }
 
@@ -86,7 +120,7 @@ class BoltInteractiveStep extends withLitHtml() {
    */
   triggerStepChange() {
     this.dispatchEvent(
-      new CustomEvent('change-active-step', {
+      new CustomEvent(`${BoltInteractiveStep.is}:change-active-step`, {
         bubbles: true,
       }),
     );
@@ -115,7 +149,7 @@ class BoltInteractiveStep extends withLitHtml() {
     });
 
     const titleClasses = cx('c-bolt-interactive-step__title');
-    // new approach
+
     return html`
       ${this.addStyles([styles])}
       <article class="${classes}">
@@ -136,37 +170,6 @@ class BoltInteractiveStep extends withLitHtml() {
           </div>
         </div>
       </article>
-    `;
-
-    // old approach
-    const old = html`
-      ${this.addStyles([styles])}
-      <li class="${classes}">
-        <div
-          class="c-bolt-interactive-step__nav-item-wrapper"
-          @click=${() => this.triggerStepChange()}
-        >
-          <div class="c-bolt-interactive-step__line"></div>
-          <span class="c-bolt-interactive-step__dot">&#9679;</span>
-          <span class="c-bolt-interactive-step__title">
-            ${this.slot('title')}
-          </span>
-        </div>
-        <div class="c-bolt-interactive-step__body">
-          <div class="c-bolt-interactive-step__body-inner">
-            <div
-              class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--top"
-            >
-              ${this.slot('top')}
-            </div>
-            <div
-              class="c-bolt-interactive-step__slot c-bolt-interactive-step__slot--bottom"
-            >
-              ${this.slot('bottom')}
-            </div>
-          </div>
-        </div>
-      </li>
     `;
   }
 }

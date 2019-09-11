@@ -117,6 +117,9 @@ class BoltAnimate extends withLitHtml() {
     if (isTriggered) {
       this._animStage = ANIM_STAGES[id];
       this.triggerUpdate();
+      if (this.props.showMeta) {
+        this.setAttribute('meta-stage', this._animStage);
+      }
     }
     return isTriggered;
   }
