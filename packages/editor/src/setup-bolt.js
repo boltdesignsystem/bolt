@@ -482,7 +482,9 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-animate',
     schema: animateSchema,
-    propsToTraits: Object.keys(animateSchema.properties),
+    propsToTraits: Object.keys(animateSchema.properties).filter(
+      prop => prop !== 'showMeta',
+    ),
     draggable: false,
     editable: true,
     highlightable: true,
