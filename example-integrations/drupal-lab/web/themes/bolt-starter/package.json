@@ -13,7 +13,7 @@
     "start": "bolt start",
     "postbuild": "yarn run test",
     "test": "jest __tests__/index.js",
-    "setup": "yarn && yarn run patch:core && yarn run patch:image",
+    "setup": "yarn --ignore-scripts && yarn run patch:core && yarn run patch:image",
     "patch:core": "npx patch-package --patch-dir node_modules/@bolt/core/.patches",
     "patch:image": "npx patch-package --patch-dir node_modules/@bolt/components-image/patches"
   },
