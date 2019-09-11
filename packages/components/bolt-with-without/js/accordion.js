@@ -16,14 +16,13 @@ const handleBlockTitleMobileAccordionClick = async e => {
   const targetIsTitle = e.target.classList.contains('c-pega-wwo__block-title');
   const targetIsToggler = targetIsIcon || targetIsTitle;
   const isMobile = window.matchMedia(mediaQuery).matches;
-
+  
   if (!targetIsToggler || !isMobile) {
     return;
   }
 
-  // @TODO remove tight coupling between markup structure and this.
-  const parentBlock =
-    e.target.parentElement.parentElement.parentElement.parentElement;
+  // @TODO `closest()` may not be polyfilled/transpiled on IE.
+  const parentBlock = e.target.closest('.c-pega-wwo__block');
   const targetIsExpanded = parentBlock.classList.contains(expandedClass);
   if (targetIsExpanded) {
     parentBlock.classList.remove(expandedClass);

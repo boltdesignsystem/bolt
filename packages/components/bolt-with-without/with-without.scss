@@ -772,7 +772,7 @@ bolt-animate {
           display: block;
           overflow: hidden;
 
-          &[meta-stage="INITIAL"] {
+          &:not([meta-stage]) {
             max-height: 0;
           }
 
@@ -780,9 +780,6 @@ bolt-animate {
             max-height: unset;
             overflow: visible;
           }
-        }
-
-        &.c-pega-wwo__block-expanded .c-pega-wwo__block-contents {
         }
       }
     }
