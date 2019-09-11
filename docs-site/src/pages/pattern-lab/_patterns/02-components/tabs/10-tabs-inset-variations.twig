@@ -25,7 +25,7 @@
 
 {% for inset in schema.properties.inset.enum %}
   <bolt-text headline font-size="large">Inset: <code>{{ inset }}</code></bolt-text>
-  <div class="t-bolt-light u-bolt-margin-bottom-medium">
+  <div class="u-bolt-margin-bottom-medium">
     {% include "@bolt-components-tabs/tabs.twig" with {
       inset: inset,
       panels: [

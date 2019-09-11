@@ -83,23 +83,68 @@
   } only %}
 {% endset %}
 
-{% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
-  {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
-    {% include "@bolt-components-tabs/tabs.twig" with {
-      panels: [
-        {
-          label: "An image",
-          content: image_content
-        },
-        {
-          label: "A table",
-          content: table_content
-        },
-        {
-          label: "A teaser",
-          content: teaser_content
-        },
-      ]
+{% set tab_content %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel",
+      size: "large",
     } only %}
-  {% endcell %}
-{% endgrid %}
+{% endset %}
+
+<div class="u-bolt-margin-bottom-small">
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
+      {% include "@bolt-components-tabs/tabs.twig" with {
+        panels: [
+          {
+            label: "An image",
+            content: image_content
+          },
+          {
+            label: "A table",
+            content: table_content
+          },
+          {
+            label: "A teaser",
+            content: teaser_content
+          },
+        ]
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+</div>
+
+<div class="u-bolt-margin-bottom-small">
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
+      {% include "@bolt-components-tabs/tabs.twig" with {
+        panels: [
+          {
+            label: "Tab label 1",
+            content: tab_content
+          },
+          {
+            label: "Tab label 2",
+            content: tab_content
+          },
+          {
+            label: "A very long tab label",
+            content: tab_content
+          },
+          {
+            label: "Tab label 4",
+            content: tab_content
+          },
+          {
+            label: "Tab label 5",
+            content: tab_content
+          },
+          {
+            label: "Tab label 6",
+            content: tab_content
+          },
+        ]
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+</div>
+
