@@ -3,7 +3,7 @@ module.exports = {
   title: 'Interactive Pathways',
   type: 'object',
   properties: {
-    imageSrc: {
+    customImageSrc: {
       type: 'string',
       description:
         'URL source for the image at the top of the pathway. Fallback is the two diamond logo.',

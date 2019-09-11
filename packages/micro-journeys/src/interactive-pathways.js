@@ -100,7 +100,7 @@ class BoltInteractivePathways extends withLitHtml() {
   }
 
   render() {
-    const { imageSrc = pathwaysLogo, imageAlt } = this.validateProps(
+    const { customImageSrc = pathwaysLogo, imageAlt } = this.validateProps(
       this.props,
     );
     const classes = cx('c-bolt-interactive-pathways');
@@ -162,7 +162,7 @@ class BoltInteractivePathways extends withLitHtml() {
           <bolt-image
             no-lazy
             sizes="auto"
-            src="${imageSrc}"
+            src="${customImageSrc}"
             alt="${imageAlt}"
           ></bolt-image>
           <div class="c-bolt-interactive-pathways__nav">
