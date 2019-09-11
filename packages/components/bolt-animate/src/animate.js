@@ -40,13 +40,13 @@ class BoltAnimate extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    this.schema = schema;
-    this._animStage = ANIM_STAGES.INITIAL;
+    self.schema = schema;
+    self._animStage = ANIM_STAGES.INITIAL;
     /** @type {CSSStyleDeclaration} */
-    this._animStyle = {};
-    this.hasAnimIn = false;
-    this.hasAnimIdle = false;
-    this.hasAnimOut = false;
+    self._animStyle = {};
+    self.hasAnimIn = false;
+    self.hasAnimIdle = false;
+    self.hasAnimOut = false;
 
     return self;
   }
@@ -62,14 +62,15 @@ class BoltAnimate extends withLitHtml() {
     super.connectedCallback();
     this._processProps();
 
-    if (this.hasAnimIn) {
-      this._animStyle = {
-        animationName: null,
-        opacity: this.props.initialAppearance === 'hidden' ? '0' : null,
-      };
-    } else {
-      if (this.hasAnimIdle) {
-        this._triggerAnimIdle();
+    if (this._animStage === ANIM_STAGES.INITIAL) {
+      if (this.hasAnimIn) {
+        if (this.props.initialAppearance === 'hidden') {
+          this._animStyle.opacity = 0;
+        }
+      } else {
+        if (this.hasAnimIdle) {
+          this._triggerAnimIdle();
+        }
       }
     }
   }
