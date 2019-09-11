@@ -3,28 +3,32 @@
   "description": "Drupal 8 Starter Theme using the Bolt Design System",
   "version": "2.4.0",
   "private": true,
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "build": "FORCE_COLOR=1 npx npm-run-all --serial build:*",
     "build:en": "bolt build --prod",
     "build:ja": "bolt build --prod --config-file .boltrc--ja.js",
     "start": "bolt start",
-    "test": "jest __tests__/index.js"
+    "test": "jest __tests__/index.js",
+    "postbuild": "npm run test",
+    "preinstall": "npm install @bolt/core @bolt/components-image @bolt/components-figure --ignore-scripts && npx json -I -f node_modules/@bolt/core/package.json -e 'delete this.scripts' && npx json -I -f node_modules/@bolt/components-image/package.json -e 'delete this.scripts'",
+    "postinstall": "patch-package"
   },
   "dependencies": {
-    "yargs": "^13.2.4",
+    "@bolt/build-tools": "^2.6.0",
+    "@bolt/components-button": "^2.6.0",
+    "@bolt/components-figure": "^2.6.0",
+    "@bolt/components-headline": "^2.6.0",
+    "@bolt/components-icon": "^2.6.0",
+    "@bolt/components-image": "^2.6.0",
+    "@bolt/components-link": "^2.6.0",
+    "@bolt/components-navbar": "^2.6.0",
+    "@bolt/components-sticky": "^2.6.0",
+    "@bolt/core": "^2.6.0",
+    "@bolt/global": "^2.6.0",
+    "get-own-property-symbols": "^0.9.4",
     "jest": "^24.8.0",
-    "patch-package": "^6.1.2",
+    "patch-package": "^6.1.4",
     "postinstall-postinstall": "^2.0.0",
-    "@bolt/build-tools": "latest",
-    "@bolt/components-button": "latest",
-    "@bolt/components-headline": "latest",
-    "@bolt/components-icon": "latest",
-    "@bolt/components-link": "latest",
-    "@bolt/components-navbar": "latest",
-    "@bolt/components-sticky": "latest",
-    "@bolt/global": "latest"
+    "yargs": "^13.2.4"
   }
 }
