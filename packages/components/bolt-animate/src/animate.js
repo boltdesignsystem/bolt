@@ -135,12 +135,17 @@ class BoltAnimate extends withLitHtml() {
   }) {
     this._animStyle = {
       animationName,
-      animationDuration: `${animationDuration}ms`,
-      animationDelay: `${animationDelay}ms`,
+      // Safari breaks with 0ms animation-duration
+      animationDuration: `${Math.max(1, animationDuration)}ms`,
       animationFillMode,
       animationTimingFunction,
       animationIterationCount,
     };
+
+    // Safari breaks with 0ms animation-delay
+    if (animationDelay > 0) {
+      this._animStyle.animationDelay = `${animationDelay}ms`;
+    }
   }
 
   triggerAnimIn() {
