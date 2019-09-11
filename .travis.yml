@@ -1,13 +1,7 @@
-sudo: false
-dist: trusty
+dist: bionic
 language: php
 php:
   - 7.1
-
-cache:
-  yarn: true
-  directories:
-    - $HOME/.composer/cache
 
 addons:
   chrome: stable
