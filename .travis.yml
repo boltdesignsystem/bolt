@@ -1,13 +1,7 @@
-sudo: false
-dist: trusty
+dist: bionic
 language: php
 php:
   - 7.1
-
-cache:
-  yarn: true
-  directories:
-    - $HOME/.composer/cache
 
 addons:
   chrome: stable
@@ -60,16 +54,12 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Build Tools'
       after_failure: ./scripts/check-run-failure.js 'Build Tools'
 
-    # - stage: Prep
-    #   name: 'Build Drupal Lab'
-    #   script:
-    #     - composer global require hirak/prestissimo
-    #     - cd example-integrations/drupal-lab
-    #     - composer install --prefer-dist --no-dev
-    #     - cd web/themes/bolt-starter && yarn --force
-    #     - yarn run build
-    #     - yarn run test # run Jest tests on the FE build that just compiled
-    #     - cd ../../../ && composer run build # finish running through the remainder of the Drupal Lab build
+    - stage: Prep
+      name: 'Build Drupal Lab'
+      script:
+        - composer global require hirak/prestissimo
+        - cd example-integrations/drupal-lab
+        - npm run setup
 
     - stage: Prep
       name: 'Build + Deploy Website'
