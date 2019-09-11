@@ -19,7 +19,7 @@ const vrtDefaultConfig = {
   },
 };
 
-const timeout = 120000;
+const timeout = 240000;
 
 const viewportSizes = [
   {
@@ -166,7 +166,10 @@ describe('carousel', () => {
         const carouselItems = Array.from(
           document.querySelectorAll('bolt-carousel-item'),
         );
-        const allElements = [...carousels, ...carouselItems];
+        const images = Array.from(
+          document.querySelectorAll('bolt-image'),
+        );
+        const allElements = [...carousels, ...carouselItems, ...images];
         return await Promise.all(
           allElements.map(element => {
             if (element._wasInitiallyRendered) return;
