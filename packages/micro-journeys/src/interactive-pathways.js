@@ -137,9 +137,11 @@ class BoltInteractivePathways extends withLitHtml() {
         font-weight="semibold"
         font-size="xxlarge"
       >
-        ${pathways.length > 0 ? pathways[0].getTitle() : ''}
+        ${this.pathways.length > 0 ? this.pathways[0].getTitle() : ''}
       </bolt-text>
     `;
+
+    console.log('pathways.length', this.pathways.length);
 
     return html`
       ${this.addStyles([styles])}
@@ -154,7 +156,7 @@ class BoltInteractivePathways extends withLitHtml() {
               <span class="c-bolt-interactive-pathways__nav-text"
                 >${this.slot('interactive-pathways-lead-text')}</span
               >
-              ${pathways.length > 1 ? menu : singleTitle}
+              ${this.pathways.length > 1 ? menu : singleTitle}
             </div>
           </div>
         </div>
