@@ -14,3 +14,32 @@ $bolt-tabs-text-transition: $bolt-transition;
 $bolt-selected-tab-border-size: 4px;
 $bolt-selected-tab-border-transition-ease: $bolt-transition-ease;
 $bolt-selected-tab-border-transition-timing: $bolt-transition-timing;
+
+// @todo: copied from tabs, consider refactoring?
+@mixin bolt-tabs-scrollbar() {
+  &::-webkit-scrollbar {
+    width: bolt-v-spacing(xsmall);
+    height: bolt-v-spacing(xsmall);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(63, 63, 68, 0.15) 100%
+    );
+
+    background-image: linear-gradient(
+      to bottom,
+      bolt-theme(secondary-darken-15) 0%,
+      bolt-theme(secondary-darken-25) 100%
+    );
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(bolt-color(gray, dark), 0.25);
+    background-color: bolt-theme(secondary, 0.1);
+  }
+}

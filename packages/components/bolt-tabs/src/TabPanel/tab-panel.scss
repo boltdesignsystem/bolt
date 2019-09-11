@@ -19,6 +19,11 @@ bolt-tab-panel {
   &[aria-expanded='true'] {
     display: block;
   }
+
+  &:focus {
+    // gets focus when you tab after opening a tab panel, user agent adds focus ring by default
+    outline: none;
+  }
 }
 
 // Panel spacing
@@ -30,6 +35,8 @@ bolt-tab-panel {
       '' and
       $spacing-value-name !=
       'xxsmall' and
+      $spacing-value-name !=
+      'large' and
       $spacing-value-name !=
       'xlarge' and
       $spacing-value-name !=
