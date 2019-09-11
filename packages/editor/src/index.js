@@ -173,6 +173,7 @@ function init() {
         case EDITOR_STATES.CLOSED: {
           const { name: browserName } = detect();
           if (browserName !== 'chrome') {
+            // eslint-disable-next-line no-alert
             window.alert('The Editor can only be used in Chrome, sorry.');
             return;
           }

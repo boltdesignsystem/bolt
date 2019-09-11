@@ -431,7 +431,7 @@ export function setupBolt(editor) {
       default: 'bolt-interactive-pathway',
     },
     initialContent: [
-      `<p slot="interactive-pathways-lead-text">How Pega technology resolves</p>`,
+      `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
       `<bolt-interactive-pathway pathway-title="New Title">
         ${starters.stepOneCharacterLorem}        
         ${starters.stepTwoCharacterLorem}
