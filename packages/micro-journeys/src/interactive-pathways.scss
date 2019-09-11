@@ -43,7 +43,7 @@
       position: absolute;
       left: 50%;
       transform: translate(-50%);
-      z-index: 999999;
+      z-index: 999;
       max-width: 100%;
       white-space: nowrap;
 
@@ -55,12 +55,12 @@
     }
 
 
-    //Todo:  is this necessary?  currently seems ineffetual 
+    //Todo:  is this necessary?  currently seems ineffetual
       bolt-dropdown {
       z-index: 1;
       height: 56.83px; // Temp fix for the dropdown menu pushing content down. @todo resolve this better
       overflow: visible;
-      
+
       @include bolt-mq(small) {
         margin-left: 5px;
       }
@@ -89,7 +89,7 @@
     & + & {
       border-top: 1px solid bolt-color(gray, dark);
     }
-    
+
     p {
       color: bolt-color(black);
       font-weight: 600;
