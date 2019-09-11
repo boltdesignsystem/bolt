@@ -14,6 +14,9 @@ polyfillLoader.then(res => {
     /* webpackMode: 'eager', webpackChunkName: 'bolt-interactive-step' */ './src/interactive-step'
   );
   import(
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-svg-animations' */ './src/bolt-svg-animations/svg-animations'
+  );
+  import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-character' */ './src/character'
   );
   import(
@@ -28,6 +31,9 @@ polyfillLoader.then(res => {
   );
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-two-character-layout' */ './src/two-character-layout'
+  );
+  import(
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-one-character-layout' */ './src/one-character-layout'
   );
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-one-character-layout' */ './src/one-character-layout'
