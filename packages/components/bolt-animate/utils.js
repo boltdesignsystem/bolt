@@ -24,9 +24,14 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
     animEls.map(
       animEl =>
         new Promise((resolve, reject) => {
+          let timeoutId;
+          let triggered = false;
+          let duration = 0;
+
           animEl.addEventListener(
             eventName,
             () => {
+              if (timeoutId) clearTimeout(timeoutId);
               resolve({
                 success: true,
                 animEl,
@@ -37,18 +42,39 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
             },
           );
 
-          let triggered = false;
           switch (stage) {
             case 'IN':
               triggered = animEl.triggerAnimIn();
+              duration = animEl.inDuration;
               break;
             case 'OUT':
               triggered = animEl.triggerAnimOut();
+              duration = animEl.outDuration;
               break;
           }
+
           if (debug) {
             console.debug(`${eventName}`, animEl);
           }
+
+          if (typeof duration === 'number') {
+            timeoutId = setTimeout(() => {
+              console.warn(
+                `animation taking too long for stage "${stage}", cancelling and moving on to next one.`,
+                animEl,
+              );
+              resolve({
+                success: false,
+                animEl,
+              });
+            }, duration + 100);
+          } else {
+            console.warn(
+              `Uh oh, animation duration retrieved was not a number: ${duration}`,
+              animEl,
+            );
+          }
+
           if (!triggered) {
             reject(
               new Error(
