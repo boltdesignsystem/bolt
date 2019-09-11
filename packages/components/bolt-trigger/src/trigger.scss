@@ -18,32 +18,30 @@ bolt-trigger {
   outline: none; // [3]
 }
 
-// @todo: move this to core and combine with bolt-custom-element() mixin.
-@mixin bolt-trigger-element-styles($name, $props: null) {
-  @if $props {
-    @each $prop in $props {
-      #{$name}#{$prop} {
-        @content;
-      }
-      :host(#{$prop}) {
-        @content;
-      }
-    }
-  } @else {
-    #{$name} {
-      @content;
-    }
-    :host {
-      @content;
-    }
-  }
-}
-
-@include bolt-trigger-element-styles(
-  bolt-trigger,
-  ('[no-outline]:active', '[no-outline]:focus', '[no-outline]:focus-within')
+@include bolt-repeat-rule(
+  (
+    'bolt-trigger[no-outline]:active',
+    ':host([no-outline]:active)',
+    'bolt-trigger[no-outline]:focus',
+    ':host([no-outline]:focus)',
+    'bolt-trigger[no-outline]:focus-within',
+    ':host([no-outline]:focus-within)'
+  )
 ) {
   outline: none;
+}
+
+@include bolt-repeat-rule(
+  (
+    'bolt-trigger[type="button"]',
+    ':host([type="button"])',
+    'bolt-trigger[type="reset"]',
+    ':host([type="reset"])',
+    'bolt-trigger[type="submit"]',
+    ':host([type="submit"])'
+  )
+) {
+  -webkit-appearance: none;
 }
 
 // Component styles
