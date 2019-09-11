@@ -104,22 +104,51 @@ class BoltInteractivePathways extends withLitHtml() {
 
     const menuItems = titles.map((title, i) => {
       const isActiveItem = i === this.activePathwayIndex;
+      const menuItemTextColor = isActiveItem
+        ? 'color: #0074B3; --bolt-theme-text: #0074B3;'
+        : 'color: rgb(0, 0, 0); --bolt-theme-text: rgb(0, 0, 0);';
+
       return html`
         <bolt-text
-          class="c-bolt-interactive-pathways__menu-item"
-          font-weight="${isActiveItem ? 'bold' : 'regular'}"
+          class="c-bolt-interactive-pathways__menu-item${isActiveItem
+            ? ' c-bolt-interactive-pathways__menu-item--active'
+            : ''}"
+          font-weight="semi-bold"
           @click=${() => this.showPathway(i)}
+          style=${menuItemTextColor}
         >
+          ${isActiveItem
+            ? html`
+                <bolt-icon size="medium" name="check"></bolt-icon>
+              `
+            : ''}
           ${title}
         </bolt-text>
       `;
     });
 
     const menu = html`
-      <bolt-dropdown center title="${titles[this.activePathwayIndex]}">
-        ${menuItems}
-      </bolt-dropdown>
+      <bolt-micro-journeys-dropdown
+        center
+        title="${titles[this.activePathwayIndex]}"
+      >
+        <div class="c-bolt-interactive-pathways__menu-container">
+          ${menuItems}
+        </div>
+      </bolt-micro-journeys-dropdown>
     `;
+
+    const singleTitle = html`
+      <bolt-text
+        class="c-bolt-interactive-pathways__single-title"
+        subheadline
+        font-size="xxlarge"
+      >
+        ${this.pathways.length > 0 ? this.pathways[0].getTitle() : ''}
+      </bolt-text>
+    `;
+
+    console.log('pathways.length', this.pathways.length);
 
     return html`
       ${this.addStyles([styles])}
@@ -130,10 +159,12 @@ class BoltInteractivePathways extends withLitHtml() {
             alt="Two diamond logo"
           />
           <div class="c-bolt-interactive-pathways__nav">
-            <span class="c-bolt-interactive-pathways__nav-text"
-              >${this.slot('interactive-pathways-lead-text')}</span
-            >
-            ${menu}
+            <div class="c-bolt-interactive-pathways__nav--inner">
+              <span class="c-bolt-interactive-pathways__nav-text"
+                >${this.slot('interactive-pathways-lead-text')}</span
+              >
+              ${this.pathways.length > 1 ? menu : singleTitle}
+            </div>
           </div>
         </div>
 
