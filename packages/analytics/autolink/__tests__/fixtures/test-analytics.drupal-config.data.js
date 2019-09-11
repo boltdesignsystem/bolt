@@ -1,7 +1,7 @@
 // example configuration of how data used to mock up the GA config getting used in Drupal
 window.drupalSettings = {
   google_analytics: {
-    trackCrossDomains: ['developer.mozilla.org'],
+    trackCrossDomains: ['web.dev'],
   },
 };
 
