@@ -16,7 +16,7 @@ const handleBlockTitleMobileAccordionClick = async e => {
   const targetIsTitle = e.target.classList.contains('c-pega-wwo__block-title');
   const targetIsToggler = targetIsIcon || targetIsTitle;
   const isMobile = window.matchMedia(mediaQuery).matches;
-  
+
   if (!targetIsToggler || !isMobile) {
     return;
   }
