@@ -7,7 +7,7 @@ import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
-import svgAnimationsSchema from '@bolt/components-svg-animations/svg-animations.schema';
+import svgAnimationsSchema from '@bolt/micro-journeys/src/bolt-svg-animations/svg-animations.schema';
 // @ts-ignore
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 // @ts-ignore
@@ -431,7 +431,7 @@ export function setupBolt(editor) {
       default: 'bolt-interactive-pathway',
     },
     initialContent: [
-      `<p slot="interactive-pathways-lead-text">How Pega technology resolves</p>`,
+      `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
       `<bolt-interactive-pathway pathway-title="New Title">
         ${starters.stepOneCharacterLorem}        
         ${starters.stepTwoCharacterLorem}

@@ -123,7 +123,6 @@ const config = {
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
       '@bolt/components-stack',
-      '@bolt/components-svg-animations',
       '@bolt/components-table',
       '@bolt/components-teaser',
       '@bolt/components-text',

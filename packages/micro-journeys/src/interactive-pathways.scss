@@ -25,36 +25,70 @@
   }
 
   &__nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.65rem;
     padding: 1.65rem 0;
 
-    @include bolt-mq(small) {
-      flex-direction: row;
-      position: static;
-    }
+    &--inner {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+      z-index: 999;
+      max-width: 100%;
+      white-space: nowrap;
 
-    bolt-dropdown {
-      z-index: 1;
-      height: 56.83px; // Temp fix for the dropdown menu pushing content down. @todo resolve this better
-      overflow: visible;
-
-      @include bolt-mq(small) {
-        margin-left: 5px;
+      @include bolt-mq(medium) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: baseline;
       }
     }
   }
 
-  &__nav-text {
-    margin-top: 1.65rem; // To balance the 1.65 rem vertical rhythm spacing
+  &__single-title {
+    display: block;
+    margin-left: .65rem;
+  }
+
+  &__menu-container {
+    border-radius: .35rem;
+    box-shadow: .5rem .5rem .5rem rgba(0,0,0,.25);
+    background-color: bolt-color(white);
   }
 
   &__menu-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    position: relative;
+    margin-bottom: 0;
+    padding: bolt-spacing(small);
     justify-items: center;
-    padding: 0.825rem 1rem;
+
+    & + & {
+      border-top: 1px solid bolt-color(gray, dark);
+    }
+
+    p {
+      color: bolt-color(black);
+      font-weight: 600;
+    }
+
+    bolt-icon {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+    }
+
+    &--active {
+      bolt-icon,
+      p {
+        color: bolt-color(blue);
+      }
+    }
 
     //&:hover {
     //  cursor: pointer;
