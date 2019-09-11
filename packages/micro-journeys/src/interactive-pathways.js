@@ -114,7 +114,15 @@ class BoltInteractivePathways extends withLitHtml() {
             ? ' c-bolt-interactive-pathways__menu-item--active'
             : ''}"
           font-weight="semi-bold"
-          @click=${() => this.showPathway(i)}
+          @click=${() => {
+            this.showPathway(i);
+            setTimeout(() => {
+              this.renderRoot
+                .querySelector('bolt-micro-journeys-dropdown')
+                .renderRoot.querySelector('button')
+                .click();
+            });
+          }}
           style=${menuItemTextColor}
         >
           ${isActiveItem
