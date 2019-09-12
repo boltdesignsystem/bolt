@@ -12,8 +12,8 @@ import twoCharacters3 from './two-characters-3.html';
 import twoCharacters4 from './two-characters-4.html';
 import oneCharacterLorem from './one-character-lorem.html';
 import oneCharacter1 from './one-character-1.html';
-import stepOneLorem from './steo-one-character-lorem.html';
-import stepTwoLorem from './steo-two-character-lorem.html';
+import stepOneLorem from './step-one-character-lorem.html';
+import stepTwoLorem from './step-two-character-lorem.html';
 import pathwayLorem from './pathwayLorem';
 
 export {

@@ -1,5 +1,5 @@
-import stepOneCharacterLorem from './steo-one-character-lorem.html';
-import stepTwoCharacterLorem from './steo-two-character-lorem.html';
+import stepOneCharacterLorem from './step-one-character-lorem.html';
+import stepTwoCharacterLorem from './step-two-character-lorem.html';
 
 const pathwayLoerm = `
 <bolt-interactive-pathway pathway-title="New Title">
