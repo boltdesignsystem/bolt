@@ -1,33 +1,5 @@
-{% set typeahead_markdown_docs %}
-{{ source("@bolt-components-typeahead/typeahead.dynamically-fetch-data.md") }}
-{% endset %}
-
-{{ typeahead_markdown_docs | markdown }}
-
-{% include "@bolt-components-typeahead/typeahead.dynamically-fetch-data.twig" %}
-
-<bolt-code-snippet syntax="light" lang="twig" class="u-bolt-block u-bolt-margin-top-medium">
-  {% spaceless %}
-    <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
-<code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight" is="shadow-root">
-{{ source("@bolt-components-typeahead/typeahead.dynamically-fetch-data.twig") | replace({
-'<': '&lt;',
-'>': '&gt;',
-}) | trim | raw }}
-</code>
-</pre>
-  {% endspaceless %}
-</bolt-code-snippet>
-
-<bolt-code-snippet syntax="light" lang="html" class="u-bolt-block u-bolt-margin-top-medium">
-  {% spaceless %}
-    <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
-<code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight" is="shadow-root">
-{{ source("@bolt-components-typeahead/typeahead.dynamically-fetch-data.js") | replace({
-'<': '&lt;',
-'>': '&gt;',
-}) | trim | raw }}
-</code>
-</pre>
-  {% endspaceless %}
-</bolt-code-snippet>
+{% include "_typeahead-demo.twig" with {
+  markdown_path: "@bolt-components-typeahead/typeahead.dynamically-fetch-data.md",
+  twig_path: "@bolt-components-typeahead/typeahead.dynamically-fetch-data.twig",
+  js_path: "@bolt-components-typeahead/typeahead.dynamically-fetch-data.js"
+} %}
