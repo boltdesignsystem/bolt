@@ -1,6 +1,7 @@
 import 'es6-promise/auto';
 import 'element-closest';
 import 'mdn-polyfills/Node.prototype.prepend';
+import 'mdn-polyfills/Node.prototype.replaceWith'; // used in dropdown
 import 'core-js/modules/es.array.iterator';
 import 'core-js/modules/es.array.from';
 import 'core-js/modules/es.string.starts-with';
