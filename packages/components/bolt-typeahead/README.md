@@ -34,14 +34,14 @@ npm install @bolt/components-typeahead
 | `items`             | `array`               | An array of objects that populates the dropdown
 
 
-### Methods ()
+<!-- ### Methods ()
 > Note: these aren't fully wired up for MVP so your milage will vary!
 | Name     | Description
 | -------- | -------------
 | `toggleSearch() => void`   | Toggle search open / closed
 | `openSearch() => void` | Forces the dropdown to open + focuses in on the search input
 | `closeSearch() => void` | Manually closes the typeahead dropdown
-| `clearSearch() => void` | Clears any text entered into the search input.
+| `clearSearch() => void` | Clears any text entered into the search input. -->
 
 
 ### JavaScript Event Hooks
@@ -50,7 +50,7 @@ npm install @bolt/components-typeahead
 | ------------------------------ | --------------------- | -----------
 | `onInput`                      | `event`, <br> `value`  | Called every time the input value changes
 | `getSuggestions`               | `value`               | Called by `onSuggestionsFetchRequested` when re-rendering suggestions. Handles highlighting keywords in the search results in a React-friendly way + handles limiting the total number of results displayed
-| `onChange`                     | `event`, <br> `newValue`, `method` | Called when a search result is selected. Includes info on how the particular item was selected (click, keyboard, etc)
+| `onChange`                     | `event`, <br> `newValue`, `method` | Called when a suggestion is selected. Includes info on how the particular item was selected (click, keyboard, etc)
 | `onSuggestionsFetchRequested`  | `value`                  | Called every very time you need to gather / update suggestions to display. See [onSuggestionsFetchRequested](https://github.com/moroshko/react-autosuggest#onsuggestionsfetchrequested-required) for more info.
 | `onSuggestionsClearRequested`  |                        | Called when clearing suggestions. See [onSuggestionsClearRequested](https://github.com/moroshko/react-autosuggest#onsuggestionsclearrequested-required-unless-alwaysrendersuggestionstrue) for more info.
 | `onSelected`                   | `event`, <br> `suggestion` | Will be called every time suggestion is selected via mouse or keyboard. See [onSuggestionSelected](https://github.com/moroshko/react-autosuggest#onsuggestionsfetchrequested-required) for more info.
