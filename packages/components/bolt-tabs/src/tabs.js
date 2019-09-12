@@ -138,8 +138,19 @@ class BoltTabs extends withContext(withLitHtml()) {
     this._ssrHydrationPrep = true;
   }
 
+  // account for nested tabs when rendering to the Shadow DOM + Light DOM
   get tabPanels() {
-    return this.getElementsByTagName('bolt-tab-panel');
+    if (this.useShadow){
+      return Array.from(this.children).filter(
+        child => child.tagName === 'BOLT-TAB-PANEL',
+      );
+    } else if (this.slots && this.slots.default !== undefined) {
+      return Array.from(this.slots.default).filter(
+        child => child.tagName === 'BOLT-TAB-PANEL',
+      );
+    } else {
+      return this.getElementsByTagName('bolt-tab-panel');
+    }
   }
 
   get tabLabels() {
