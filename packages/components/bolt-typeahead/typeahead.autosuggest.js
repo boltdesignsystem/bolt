@@ -49,13 +49,11 @@ export const highlightSearchResults = function(item) {
 class BoltAutosuggest extends withPreact() {
   static is = 'bolt-autosuggest';
 
+  // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
     placeholder: props.string,
     value: props.string,
-    noHighlight: {
-      ...props.boolean,
-      ...{ default: false },
-    },
+    noHighlight: props.boolean,
     noClearButton: props.boolean,
     items: props.array,
     maxResults: {
@@ -263,6 +261,7 @@ class BoltAutosuggest extends withPreact() {
       shouldSort: true,
       threshold: 0.2,
       tokenize: true,
+      includeScore: true,
       includeMatches: true,
       location: 0,
       distance: 100,
@@ -271,11 +270,13 @@ class BoltAutosuggest extends withPreact() {
       keys: ['label', 'description'],
     };
     const fuse = new Fuse(items, fuseOptions);
-    const results = fuse.search(value);
+    let results = fuse.search(value);
 
     results.forEach(resultItem => {
       highlightSearchResults(resultItem);
     });
+
+    results = results.filter(result => result.score <= 0.9);
 
     const reducedResults = results.reduce((total, result) => {
       total.push(result.item);
@@ -331,7 +332,11 @@ class BoltAutosuggest extends withPreact() {
       <span
         className={cx('c-bolt-typeahead__result-text')}
         title={suggestion.description || ''}>
-        {this.noHighlight ? suggestion.label : suggestion.highlightedLabel}
+        {this.noHighlight
+          ? suggestion.label
+          : suggestion.highlightedLabel
+          ? suggestion.highlightedLabel
+          : suggestion.label}
       </span>
     );
   }

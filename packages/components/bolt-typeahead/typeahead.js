@@ -12,21 +12,19 @@ const cx = bind(styles);
 class BoltTypeahead extends withEvents(withLitHtml()) {
   static is = 'bolt-typeahead';
 
+  // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
     inputPlaceholder: props.string,
     inputValue: props.string,
-    noHighlight: {
-      ...props.boolean,
-      ...{ default: false },
-    },
+    noHighlight: props.boolean,
     clearInputText: {
       ...props.string,
-      ...{ default: 'Clear Search Results' },
+      ...{ default: 'Clear search results' },
     },
     items: props.array,
     submitButtonText: {
       ...props.string,
-      ...{ default: 'Submit' },
+      ...{ default: 'Submit search query' },
     },
     maxResults: {
       ...props.number,

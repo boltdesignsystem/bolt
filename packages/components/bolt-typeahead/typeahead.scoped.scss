@@ -1,5 +1,5 @@
 //------------------------------------
-//    #TWITTER TYPEAHEAD
+//    #BOLT TYPEAHEAD COMPONENT
 //------------------------------------
 
 @import '@bolt/core/styles/index.scss';
@@ -14,6 +14,10 @@ $bolt-typeahead-border-radius: 6px;
 $bolt-typeahead-placeholder-color: bolt-theme(text-on-secondary, 0.4);
 
 $bolt-typeahead-result-highlight-color: #F5F5FA;
+
+/**
+ * 1. relative z-index so doesn't need to use bolt z-index mixin
+ */
 
 bolt-typeahead {
   display: flex;
@@ -31,7 +35,6 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead {
-  // @include bolt-shadow('level-10');
   display: flex;
   flex-direction: column;
   position: relative;
@@ -55,7 +58,6 @@ bolt-autosuggest {
   padding-right: $bolt-typeahead-button-width;
   padding-left: $bolt-typeahead-button-width;
   color: bolt-theme(text-on-secondary);
-  text-transform: capitalize;
   font-size: 16px; // prevent zooming in on mobile
   border-radius: $bolt-typeahead-border-radius;
   border-width: $bolt-typeahead-border-width;
@@ -76,8 +78,10 @@ bolt-autosuggest {
   }
 
   &:focus {
+    border-color: rgba(84, 93, 166, 0.8);
     border-color: bolt-theme(link, 0.8);
-    box-shadow: 0 0 0 3px bolt-theme(link, 0.2);
+    box-shadow: 0 0 0 2px rgba(var(--bolt-theme-link), 0.5), inset 0 0 0 1px rgba(var(--bolt-theme-link), 1);
+    outline: 0;
   }
 
   &--open {
@@ -113,16 +117,12 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__menu {
-  // @include bolt-shadow(
-  //   $key: 'level-20',
-  //   $base-color: bolt-color(indigo, light)
-  // );
   display: block;
   opacity: 0;
   position: absolute;
-  top: 100%;
+  top: calc(100% + 2px);
   right: 0;
-  z-index: 10;
+  z-index: 10; /* [1] */
   width: 100%;
   min-width: 100%;
   max-height: 0;
@@ -142,8 +142,6 @@ bolt-autosuggest {
     )
   );
   background-color: var(--bolt-typeahead-menu-background, rgba(var(--bolt-theme-secondary), 1));
-
-  // transition: max-height 0.3s ease, opacity 0.3s ease;
   transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1);
 
   &.is-open {
@@ -187,7 +185,7 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__result-highlight {
-  @include bolt-font-weight(bold);
+  @include bolt-font-weight(semibold);
 }
 
 .c-bolt-typeahead__result-text {
@@ -195,6 +193,7 @@ bolt-autosuggest {
   display: block;
   padding-left: $bolt-typeahead-button-width;
   color: inherit;
+  text-transform: initial; // fix for weird capitalization
   cursor: pointer;
   font-size: 0.8rem;
 }
@@ -212,9 +211,7 @@ bolt-autosuggest {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1;
-  // width: $bolt-typeahead-button-width;
-  // height: $bolt-typeahead-button-width;
+  z-index: 1; /* [1] */
   cursor: pointer;
   border: 0;
   transition: opacity 0.1s ease;
@@ -243,7 +240,7 @@ bolt-autosuggest {
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
-  z-index: 1;
+  z-index: 1; /* [1] */
   width: 1rem; // needed for icon SSR rendering
   font-size: 1rem; // needed for icon SSR rendering
 }
