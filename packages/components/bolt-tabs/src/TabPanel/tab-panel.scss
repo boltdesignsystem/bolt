@@ -43,12 +43,12 @@ bolt-tab-panel {
       'xxlarge'
   ) {
     .c-bolt-tab-panel--spacing-#{$spacing-value-name} {
-      .c-bolt-tab-panel__content {
+      > .c-bolt-tab-panel__content {
         @include bolt-padding(#{$spacing-value-name});
       }
 
       &:not(.c-bolt-tab-panel--inset) {
-        .c-bolt-tab-panel__content {
+        > .c-bolt-tab-panel__content {
           @include bolt-padding-left(0);
           @include bolt-padding-right(0);
           @include bolt-padding-bottom(0);
