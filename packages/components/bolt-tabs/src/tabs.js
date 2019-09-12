@@ -38,6 +38,7 @@ class BoltTabs extends withContext(withLitHtml()) {
     panelSpacing: props.string,
     variant: props.string,
     // uuid: props.string, @todo: make `uuid` a prop, for now internal only
+    // `selectedTab` is a 1-based index, everywhere else is 0-based
     selectedTab: {
       ...props.number,
       ...{ default: schema.properties.selected_tab.default },
