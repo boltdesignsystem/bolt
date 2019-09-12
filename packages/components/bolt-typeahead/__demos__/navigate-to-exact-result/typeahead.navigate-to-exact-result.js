@@ -20,35 +20,37 @@ const typeaheadDemoItems = [
   },
 ];
 
-typeaheadDemo.addEventListener('ready', function(e) {
-  if (e.detail.name === 'bolt-typeahead') {
-    typeaheadDemo.items = typeaheadDemoItems;
+if (typeaheadDemo) {
+  typeaheadDemo.addEventListener('ready', function(e) {
+    if (e.detail.name === 'bolt-typeahead') {
+      typeaheadDemo.items = typeaheadDemoItems;
 
-    typeaheadDemo.on('onSelected', (element, event, suggestion) => {
-      const exactMatch = element.items.filter(
-        item => item.label === suggestion.suggestionValue,
-      )[0];
+      typeaheadDemo.on('onSelected', (element, event, suggestion) => {
+        const exactMatch = element.items.filter(
+          item => item.label === suggestion.suggestionValue,
+        )[0];
 
-      function navigateTo(url) {
-        if (window.location !== window.parent.location) {
-          const win = window.open(url, '_blank');
-          win.focus();
-        } else {
-          window.location = url;
+        function navigateTo(url) {
+          if (window.location !== window.parent.location) {
+            const win = window.open(url, '_blank');
+            win.focus();
+          } else {
+            window.location = url;
+          }
         }
-      }
 
-      if (exactMatch && exactMatch.url) {
-        if (exactMatch.url) {
-          navigateTo(exactMatch.url);
-        } else {
-          navigateTo(`https://www.pega.com/search?q=${itemSelected.label}`);
+        if (exactMatch && exactMatch.url) {
+          if (exactMatch.url) {
+            navigateTo(exactMatch.url);
+          } else {
+            navigateTo(`https://www.pega.com/search?q=${itemSelected.label}`);
+          }
+        } else if (suggestion.suggestionValue !== '') {
+          navigateTo(
+            `https://www.pega.com/search?q=${suggestion.suggestionValue}`,
+          );
         }
-      } else if (suggestion.suggestionValue !== '') {
-        navigateTo(
-          `https://www.pega.com/search?q=${suggestion.suggestionValue}`,
-        );
-      }
-    });
-  }
-});
+      });
+    }
+  });
+}
