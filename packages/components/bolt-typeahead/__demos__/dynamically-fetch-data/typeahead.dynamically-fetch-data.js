@@ -1,4 +1,4 @@
-// NOTE: you'd want to run all this code through Babel before shipping. This is just inlined here. for demo puproses.
+// NOTE: make sure you're running this code through a tool like Babel before shipping for cross browser compatibility!
 const dynamicTypeaheadDemo = document.querySelector(
   '.js-typeahead-hook--dynamically-fetch-data',
 );
