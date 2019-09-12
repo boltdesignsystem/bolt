@@ -12,7 +12,7 @@ polyfillLoader.then(res => {
   );
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-svg-animations' */ './src/bolt-svg-animations/svg-animations'
-    );
+  );
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-character' */ './src/character'
   );
@@ -34,5 +34,5 @@ polyfillLoader.then(res => {
   );
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-one-character-layout' */ './src/one-character-layout'
-    );
+  );
 });
