@@ -81,12 +81,12 @@ class BoltInteractiveStep extends withLitHtml() {
   }
 
   async triggerAnimOuts() {
-    const anims = Array.from(this.querySelectorAll('bolt-animate'));
+    const anims = this.querySelectorAll('bolt-animate');
     return triggerAnims({ animEls: anims, stage: 'OUT' });
   }
 
   async triggerAnimIns() {
-    const anims = Array.from(this.querySelectorAll('bolt-animate'));
+    const anims = this.querySelectorAll('bolt-animate');
     return triggerAnims({ animEls: anims, stage: 'IN' });
   }
 
@@ -125,8 +125,6 @@ class BoltInteractiveStep extends withLitHtml() {
       }),
     );
   }
-
-  getThemeFromParent() {}
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
