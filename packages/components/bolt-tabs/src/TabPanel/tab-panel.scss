@@ -60,6 +60,6 @@ bolt-tab-panel {
 
 // No-js styles
 .c-bolt-tab-panel__outer {
-  order: 99;
+  order: 99; // tab panels must *appear* at the end but live next to their respective labels for adjacent sibling selectors to work
   width: 100%; // required for no-JS panel alignment
 }

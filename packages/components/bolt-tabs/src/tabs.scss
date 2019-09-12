@@ -20,9 +20,7 @@ bolt-tabs {
   flex-shrink: 0;
   opacity: 0.9;
   position: relative;
-  padding-bottom: (
-    $bolt-selected-tab-border-size
-  ); // add space for negative margin of active tab underline
+  padding-bottom: $bolt-tabs-selected-border-size; // add space for negative margin of active tab underline
   color: bolt-theme(headline-link);
   text-decoration: none;
   cursor: pointer;
@@ -119,17 +117,17 @@ bolt-tabs {
 
 .c-bolt-tabs__label-text {
   display: block;
-  position: relative; // required for z-index layering
+  position: relative; // allows this element to stack on top of `.c-bolt-tabs__label-inner:before`
 
   &:after {
     content: '';
     opacity: bolt-opacity(0);
     position: absolute;
-    bottom: -($bolt-selected-tab-border-size);
+    bottom: -($bolt-tabs-selected-border-size);
     left: 50%;
     transform: translateX(-50%);
     width: 0;
-    height: ($bolt-selected-tab-border-size);
+    height: $bolt-tabs-selected-border-size;
     background-color: bolt-theme(primary);
     will-change: opacity;
     transition: opacity $bolt-tabs-text-transition;
