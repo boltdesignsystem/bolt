@@ -6,6 +6,7 @@
 // 1. [Mai] Reset button and input tag browser defaults.
 // 2. [Morse] Bolt-trigger is inline and sometimes contains an inline <a> or <button>, which can cause unwanted whitespace. Zero-out and reset font-size to avoid this issue.
 // 3. [Morse] Bolt-trigger delegates focus to inner element.
+// 4. [Morse] Use `bolt-repeat-rule` to output the same styles for each selector *separately*. If grouped, IE will ignore the whole block because it doesn't recognize `:host`.
 
 @import '@bolt/core';
 
@@ -29,7 +30,7 @@ bolt-trigger {
   )
 ) {
   outline: none;
-}
+} // [4]
 
 @include bolt-repeat-rule(
   (
@@ -41,8 +42,8 @@ bolt-trigger {
     ':host([type="submit"])'
   )
 ) {
-  -webkit-appearance: none;
-}
+  appearance: none;
+} // [4]
 
 // Component styles
 .c-bolt-trigger {
