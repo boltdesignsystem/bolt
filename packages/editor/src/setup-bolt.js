@@ -81,7 +81,7 @@ const link = {
   content: `<bolt-link display="inline" valign="start">I'm a link</bolt-link>`,
 };
 
-const iconGroupVerticle = {
+const iconGroupVertical = {
   id: 'bolt-icon-group-vertical',
   title: 'Icon Group (vertical)',
   content: `
@@ -131,7 +131,7 @@ const basicSlottableComponents = [
   basicText,
   cta,
   link,
-  iconGroupVerticle,
+  iconGroupVertical,
   iconGroupHorizontal,
 ];
 
@@ -347,7 +347,13 @@ export function setupBolt(editor) {
     schema: buttonSchema,
     extend: 'text',
     initialContent: ['Button'],
-    propsToTraits: ['size', 'width', 'border_radius'],
+    propsToTraits: [
+      'size',
+      'width',
+      'border_radius',
+      'on_click',
+      'on_click_target',
+    ],
     extraTraits: [colorTrait],
   });
 
