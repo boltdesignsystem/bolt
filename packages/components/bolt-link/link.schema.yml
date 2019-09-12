@@ -27,6 +27,12 @@ properties:
   target:
     type: string
     description: Specifies where to display the linked URL. This may also be passed as part of `attributes`.
+  on_click_target:
+    description: '`className` (e.g. "js-click-me") used in `querySelector` to reference a web component on the page. `onClick`, the `on_click` method name will be called on this element.'
+    type: string
+  on_click:
+    description: 'The name of a method on the `on_click_target`.'
+    type: string
   icon:
     type: object
     description: Bolt icon. Accepts the same options as Bolt Icon Component `@bolt-components-icon` plus an additional 'position' parameter that determines placement within the button.
