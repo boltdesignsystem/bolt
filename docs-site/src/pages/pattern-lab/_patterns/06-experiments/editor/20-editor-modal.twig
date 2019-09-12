@@ -1,7 +1,10 @@
 {% set content %}
-  <bolt-button size="medium" width="auto" border-radius="regular" color="primary" on-click-target="editor-demo-modal" on-click="show">
-    <span>This is a Button triggering on on-page Modal</span>
+  <bolt-button size="medium" width="auto" border-radius="regular" color="primary" on-click-target="editor-demo__modal" on-click="show">
+    <span>This is a Button triggering an on-page Modal</span>
   </bolt-button>
+  <bolt-link on-click-target="editor-demo__modal" on-click="show" url="#">
+    This is a Link triggering an on-page Modal
+  </bolt-link>
 {% endset %}
 
 {% include '@bolt-components-editor/editor-in-pl.twig' with {
@@ -16,14 +19,14 @@
     showMeta: true,
     showMetaTitle: true,
     attributes: {
-      class: "editor-demo-modal"
+      class: "editor-demo__modal"
     }
   } only %}
 {% endset %}
 
 {% include "@bolt-components-modal/modal.twig" with {
   attributes: {
-    class: "editor-demo-modal"
+    class: "editor-demo__modal"
   },
   content: video_content,
   width: "optimal",
