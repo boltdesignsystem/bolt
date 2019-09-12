@@ -133,7 +133,7 @@ const config = {
       '@bolt/components-ul',
       '@bolt/components-ol',
       '@bolt/components-video',
-      '@bolt/components-with-without',
+      '@bolt/with-without',
       '@bolt/components-grid',
       '@bolt/micro-journeys',
       '@bolt/components-editor',

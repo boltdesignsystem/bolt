@@ -76,6 +76,7 @@ module.exports = {
       '@bolt/analytics-autolink',
       '@bolt/components-editor',
       '@bolt/micro-journeys',
+      '@bolt/with-without',
     ],
   },
   images: {
