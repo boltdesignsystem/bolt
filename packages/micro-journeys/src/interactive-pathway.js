@@ -3,12 +3,13 @@ import {
   define,
   hasNativeShadowDomSupport,
   query,
+  convertSchemaToProps,
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import styles from './interactive-pathway.scss';
-// import schema from '../interactive-pathway.schema.yml';
+import schema from './interactive-pathway.schema';
 
 let cx = classNames.bind(styles);
 
@@ -17,14 +18,11 @@ class BoltInteractivePathway extends withLitHtml() {
   static is = 'bolt-interactive-pathway';
 
   static props = {
-    pathwayTitle: {
-      ...props.string,
-      ...{ default: '' },
-    },
     noShadow: {
       ...props.boolean,
       ...{ default: false },
     },
+    ...convertSchemaToProps(schema),
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
