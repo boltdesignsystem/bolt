@@ -79,7 +79,9 @@ class BoltInteractivePathways extends withLitHtml() {
    * @returns {BoltInteractivePathway[]}
    */
   getPathways = () => {
-    return Array.prototype.slice.call(this.querySelectorAll('bolt-interactive-pathway'));
+    return Array.prototype.slice.call(
+      this.querySelectorAll('bolt-interactive-pathway'),
+    );
   };
 
   showPathway(index) {

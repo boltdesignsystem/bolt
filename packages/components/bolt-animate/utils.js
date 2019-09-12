@@ -159,7 +159,9 @@ export async function triggerAnimsInEl(el, stage = 'IN') {
       `When running "triggerAnimsInEl", the passed element does not have "querySelectorAll" method.`,
     );
   }
-  const animEls = Array.prototype.slice.call(el.querySelectorAll('bolt-animate'));
+  const animEls = Array.prototype.slice.call(
+    el.querySelectorAll('bolt-animate'),
+  );
   if (animEls.length === 0) {
     return false;
   }
