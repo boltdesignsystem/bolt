@@ -136,6 +136,7 @@ const basicSlottableComponents = [
 ];
 
 const characterSlottableComponents = [];
+const pathwaySlottableComponents = [];
 const ctaTextSlottableComponents = [];
 
 Object.keys(starters).map(id => {
@@ -150,6 +151,9 @@ Object.keys(starters).map(id => {
   }
   if (id.includes('Character')) {
     characterSlottableComponents.push(component);
+  }
+  if (id.startsWith('step')) {
+    pathwaySlottableComponents.push(component);
   }
 });
 
@@ -471,7 +475,7 @@ export function setupBolt(editor) {
     initialContent: [
       `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
       `<bolt-interactive-pathway pathway-title="New Title">
-        ${starters.stepOneCharacterLorem}        
+        ${starters.stepOneCharacterLorem}    
         ${starters.stepTwoCharacterLorem}
       </bolt-interactive-pathway>`,
     ],
@@ -505,12 +509,12 @@ export function setupBolt(editor) {
           {
             id: 'stepOneCharacterLorem',
             title: 'Step - One Character Lorem',
-            content: starters.stepOneCharacterLorem,
+            content: starters.stepOneLorem,
           },
           {
             id: 'stepTwoCharacterLorem',
             title: 'Step - Two Character Lorem',
-            content: starters.stepTwoCharacterLorem,
+            content: starters.stepTwoLorem,
           },
         ],
       },
