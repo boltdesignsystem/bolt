@@ -140,7 +140,7 @@ class BoltTabs extends withContext(withLitHtml()) {
 
   // account for nested tabs when rendering to the Shadow DOM + Light DOM
   get tabPanels() {
-    if (this.useShadow){
+    if (this.useShadow) {
       return Array.from(this.children).filter(
         child => child.tagName === 'BOLT-TAB-PANEL',
       );
