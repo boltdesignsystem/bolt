@@ -267,7 +267,9 @@ class BoltAutosuggest extends withPreact() {
       distance: 100,
       maxPatternLength: 32,
       minMatchCharLength: 1,
-      keys: ['label', 'description'],
+      // @todo: re-enable description meta data after further testing + refinement
+      // keys: ['label', 'description'],
+      keys: ['label'],
     };
     const fuse = new Fuse(items, fuseOptions);
     let results = fuse.search(value);
