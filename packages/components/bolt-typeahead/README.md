@@ -40,7 +40,7 @@ npm install @bolt/components-typeahead
 | -------- | -------------
 | `toggleSearch() => void`   | Toggle search open / closed
 | `openSearch() => void` | Forces the dropdown to open + focuses in on the search input
-| `closeSearch() => void` | Manually closes the typeahead dropdown
+| `closeSearch() => void` | Manually closes the Typeahead dropdown
 | `clearSearch() => void` | Clears any text entered into the search input. -->
 
 

@@ -29,7 +29,10 @@ properties:
   type:
     description: 'Determines the button tag type for semantic buttons'
     type: string
+    # @todo: v3.0 make button the default
+    # default: button
     enum:
+      - button
       - submit
       - reset
   size:
