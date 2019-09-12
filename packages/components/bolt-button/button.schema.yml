@@ -69,6 +69,12 @@ properties:
     enum:
       - regular
       - full
+  on_click_target:
+    description: '`className` (e.g. "js-click-me") used in `querySelector` to reference a web component on the page. `onClick`, the `on_click` method name will be called on this element.'
+    type: string
+  on_click:
+    description: 'The name of a method on the `on_click_target`.'
+    type: string
   align:
     description: 'Horizontal alignment of items (text and icon) inside the button. Note: the values left and right are deprecated, use start and end instead.'
     type: string
