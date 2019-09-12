@@ -1,4 +1,5 @@
 import './elements';
+import { getData } from './data/get-data';
 
 export * from './data';
 export * from './polyfills';
@@ -12,4 +13,17 @@ if (typeof module.hot === 'object') {
       console.error('Cannot apply HMR update.', err);
     }
   });
+}
+
+window.bolt = window.bolt || {};
+
+if (!window.bolt.meta) {
+  setTimeout(() => {
+    getData('meta')
+      .then(data => {
+        console.log({ data });
+        window.bolt.meta = data;
+      })
+      .catch(console.log.bind(console));
+  }, 100);
 }
