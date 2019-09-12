@@ -30,12 +30,12 @@ polyfillLoader.then(res => {
     /* webpackMode: 'eager', webpackChunkName: 'bolt-icon-group' */ './src/icon-group'
   );
   import(
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-one-character-layout' */ './src/one-character-layout'
+  );
+  import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-two-character-layout' */ './src/two-character-layout'
   );
   import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-one-character-layout' */ './src/one-character-layout'
-  );
-  import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-one-character-layout' */ './src/one-character-layout'
+    /* webpackMode: 'eager', webpackChunkName: 'bolt-three-character-layout' */ './src/three-character-layout'
   );
 });

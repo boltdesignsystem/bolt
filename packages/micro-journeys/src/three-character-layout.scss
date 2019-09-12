@@ -1,0 +1,34 @@
+@import '@bolt/core';
+
+.c-bolt-three-character-layout {
+  &__character-row {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 90px 0; // This margin is needed to accommodate speech bubbles that are absolute positioned around characters
+
+    @include bolt-mq(small) {
+      margin: 110px 0; // This margin is needed to accommodate speech bubbles that are absolute positioned around characters
+    }
+  }
+
+  &__character {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--left {
+      transform: translateX(50%);
+      z-index: 1;
+    }
+
+    &--middle {
+      z-index: 1;
+      margin: 0 -20px;
+    }
+
+    &--right {
+      transform: translateX(-50%);
+    }
+  }
+}
