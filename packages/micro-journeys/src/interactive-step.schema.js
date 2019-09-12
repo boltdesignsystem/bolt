@@ -5,8 +5,7 @@ module.exports = {
   properties: {
     tabTitle: {
       type: 'string',
-      description:
-        'Title of the step.',
+      description: 'Title of the step.',
       default: 'New Step Title',
     },
   },
