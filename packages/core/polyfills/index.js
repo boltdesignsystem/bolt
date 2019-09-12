@@ -1,5 +1,6 @@
 import 'es6-promise/auto';
 import 'element-closest';
+import 'whatwg-fetch';
 import 'mdn-polyfills/Node.prototype.prepend';
 import 'core-js/modules/es.array.iterator';
 import 'core-js/modules/es.array.from';
