@@ -35,11 +35,12 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
   };
 
   // @ts-ignore
-  constructor() {
-    super();
-    this.clearSearch = this.clearSearch.bind(this);
-    this.submit = this.submit.bind(this);
-    this.on = this.on.bind(this);
+  constructor(self) {
+    self = super(self);
+    self.clearSearch = self.clearSearch.bind(self);
+    self.submit = self.submit.bind(self);
+    self.on = self.on.bind(self);
+    return self;
   }
 
   connected() {

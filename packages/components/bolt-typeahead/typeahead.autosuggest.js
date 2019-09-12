@@ -139,26 +139,27 @@ class BoltAutosuggest extends withPreact() {
   }
 
   // @ts-ignore
-  constructor() {
-    super();
+  constructor(self) {
+    self = super(self);
     // Autosuggest is a controlled component.
     // This means that you need to provide an input value
     // and an onChange handler that updates this value (see below).
     // Suggestions also need to be provided to the Autosuggest,
     // and they are initially empty because the Autosuggest is closed.
-    this.state = {
+    self.state = {
       value: '',
       suggestions: [],
     };
 
     // self.onChange = self.onChange.bind(self);
-    this.toggleSearch = this.toggleSearch.bind(this);
-    this.clearSearch = this.clearSearch.bind(this);
-    this.closeSearch = this.closeSearch.bind(this);
-    this.renderInputComponent = this.renderInputComponent.bind(this);
-    this.openSearch = this.openSearch.bind(this);
-    this.onSelected = this.onSelected.bind(this);
-    this.renderSuggestion = this.renderSuggestion.bind(this);
+    self.toggleSearch = self.toggleSearch.bind(self);
+    self.clearSearch = self.clearSearch.bind(self);
+    self.closeSearch = self.closeSearch.bind(self);
+    self.renderInputComponent = self.renderInputComponent.bind(self);
+    self.openSearch = self.openSearch.bind(self);
+    self.onSelected = self.onSelected.bind(self);
+    self.renderSuggestion = self.renderSuggestion.bind(self);
+    return self;
   }
 
   connected() {
