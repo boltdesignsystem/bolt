@@ -154,11 +154,21 @@ export function enableEditor({ space, uiWrapper, config }) {
                   } = detect();
                   const bugFormUrl =
                     'https://form.asana.com?hash=744845a6517b30c25e59baebae1245d3f999d10961fa63e47a0d6e26a3220605&id=1126340469376247';
+                  let gitSha = 'unknown';
+                  if (
+                    window.bolt &&
+                    window.bolt.meta &&
+                    window.bolt.meta.gitSha
+                  ) {
+                    gitSha = window.bolt.meta.gitSha;
+                  }
+
                   const metadata = `
 URL: ${window.location.href}     
 Browser Name: ${browserName}             
 Browser Version: ${browserVersion}             
 Browser OS: ${browserOs}      
+Git SHA: ${gitSha}
 
 Editor Markup:
 
