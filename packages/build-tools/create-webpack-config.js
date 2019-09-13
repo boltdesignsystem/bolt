@@ -295,7 +295,21 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(js|tsx|mjs)$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+          exclude: thePath => {
+            if (
+              thePath.endsWith(
+                'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+              )
+            ) {
+              return true;
+            }
+
+            if (thePath.endsWith('grapesjs/dist/grapes.js')) {
+              return true;
+            }
+
+            return false;
+          },
           use: {
             loader: 'babel-loader',
             options: {
@@ -314,7 +328,7 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.(cur|svg)$/,
+          test: /\.(cur|svg|png)$/,
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
@@ -323,6 +337,10 @@ async function createWebpackConfig(buildConfig) {
         {
           test: [/\.yml$/, /\.yaml$/],
           use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+        },
+        {
+          test: [/\.html$/],
+          loader: 'raw-loader', // file as string
         },
       ],
     },

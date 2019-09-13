@@ -215,6 +215,8 @@ async function build(shouldReturnTime = false) {
       ? await Promise.all(await compileBasedOnEnvironment())
       : '';
 
+    await internalTasks.writeMetadata();
+
     if (shouldReturnTime) {
       return startTime;
     } else {

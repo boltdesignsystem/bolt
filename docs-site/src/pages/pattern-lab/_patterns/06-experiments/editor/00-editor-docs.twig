@@ -1,0 +1,16 @@
+{% set usage %}{% verbatim %}
+{% set content %}
+  <bolt-text>Hello World!</bolt-text>
+{% endset %}
+
+{% include '@bolt-components-editor/editor.twig' with {
+  styles: ['/build/bolt-global.css'],
+  scripts: ['/build/bolt-global.js'],
+  content: content,
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: 'editor',
+  usage: usage,
+} only %}

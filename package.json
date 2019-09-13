@@ -51,6 +51,7 @@
     "create:component": "yo ./packages/generator-bolt/generators/component/index.js",
     "cz": "git-cz",
     "deploy": "./scripts/deploy.js",
+    "fix": "yarn lint:js --fix; yarn lint:scss --fix",
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
@@ -139,6 +140,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.15"
+    "@types/jest": "^24.0.15",
+    "@types/skatejs": "^5.0.1"
   }
 }

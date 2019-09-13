@@ -77,6 +77,7 @@ const config = {
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
+      '@bolt/components-animate',
       '@bolt/docs-search',
       '@bolt/components-typeahead',
       // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
@@ -133,6 +134,8 @@ const config = {
       '@bolt/components-ol',
       '@bolt/components-video',
       '@bolt/components-grid',
+      '@bolt/micro-journeys',
+      '@bolt/components-editor',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
@@ -173,7 +176,7 @@ const config = {
     },
     {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json'),
+        resolve.sync('@bolt/global/package.json')
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -182,7 +185,7 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json'),
+        resolve.sync('@bolt/twig-renderer/package.json')
       )}/SetupTwigRenderer.php`,
       functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },
