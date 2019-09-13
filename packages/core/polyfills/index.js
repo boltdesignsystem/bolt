@@ -12,7 +12,8 @@ import 'core-js/modules/es.string.includes';
 import 'core-js/modules/es.string.repeat';
 import './custom-event-polyfill';
 import 'core-js/modules/es.array.find';
-import 'core-js/modules/es.array.find-index';
+// @todo: find-index polyfill is temporarily disabled until we can fix bug in table.js
+// import 'core-js/modules/es.array.find-index';
 import './symbol-polyfill';
 import './remove-polyfill';
 import '@webcomponents/template/template.js';
