@@ -42,7 +42,7 @@ jobs:
         # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
         - yarn test:php
         - yarn test:monorepo --maxWorkers=1
-        - yarn test:pkgs --ignore=@bolt/uikit-workshop --ignore=@bolt/build-tools --ignore=@bolt/build-tools--test-multi-lang
+        - yarn test:pkgs --ignore=@bolt/uikit-workshop --ignore=@bolt/build-tools --ignore=@bolt/build-tools--test-multi-lang --ignore=@bolt/components-editor
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
 
