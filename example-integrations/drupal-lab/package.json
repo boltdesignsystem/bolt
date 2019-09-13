@@ -14,7 +14,7 @@
     }
   ],
   "scripts": {
-    "setup:js": "cd web/themes/bolt-starter && yarn && npm run build",
+    "setup:js": "cd web/themes/bolt-starter && npm install && npm run build",
     "setup:php": "composer install && composer run build",
     "setup": "npx npm-run-all --serial setup:*",
     "deploy": "now deploy --local-config=now.drupal-lab.json --team boltdesignsystem --no-verify"

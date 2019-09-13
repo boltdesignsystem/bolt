@@ -1,5 +1,5 @@
 <bolt-text headline font-size="xlarge">Content Modal Usage</bolt-text>
-<bolt-text>Content modals can be as simple as a few lines of text or as complex as a page layout. Note: when using bands inside a modal, the <bolt-code-snippet display="inline" lang="html">full_bleed</bolt-code-snippet> prop must be set to false.</bolt-text>
+<bolt-text>Content modals can be as simple as a few lines of text or as complex as a page layout. Note: when using bands inside a modal, the <bolt-code-snippet display="inline" lang="html">full_bleed</bolt-code-snippet> prop must be set to <bolt-code-snippet display="inline" lang="html">false</bolt-code-snippet>.</bolt-text>
 
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
   {% set modal_content %}
@@ -30,7 +30,7 @@
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Show a simple layout</bolt-text>
-    <bolt-text>Pass any components inside the modal content to create a simple layout, such as short confirmations, alerts, notifications, etc.</bolt-text>
+    <bolt-text>Pass any components inside the modal content to create simple layouts, such as short confirmations, alerts, notifications, etc.</bolt-text>
   {% endset %}
   {% include "@bolt-components-grid/grid.twig" with {
     items: [
@@ -141,7 +141,7 @@
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Show a complex layout</bolt-text>
-    <bolt-text>Create complex layouts with components and layout objects inside the modal content and set the modal width to full to maximize space. For example, you can build a multi-column layout with the grid, band, and card components.</bolt-text>
+    <bolt-text>Create complex layouts with components and layout objects inside the modal content and set the modal <bolt-code-snippet display="inline" lang="html">width</bolt-code-snippet> to <bolt-code-snippet display="inline" lang="html">full</bolt-code-snippet> to maximize space. For example, you can build a multi-column layout with the grid, band, and card components.</bolt-text>
   {% endset %}
   {% include "@bolt-components-grid/grid.twig" with {
     items: [
