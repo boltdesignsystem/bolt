@@ -73,9 +73,15 @@ class BoltTabs extends withContext(withLitHtml()) {
     this.selectedIndex = this.validateIndex(selectedTab - 1);
 
     // Check if any panels have `selected` prop set, return index
-    const preselectedIndex = Array.from(panels).findIndex(element => {
-      return element.hasAttribute('selected');
-    });
+    // const preselectedIndex = Array.from(panels).findIndex(element => {
+    //   return element.hasAttribute('selected');
+    // });
+
+    // @todo: replace this with the block above once `findIndex` can be safely polyfilled
+    const panelsArray = Array.from(panels);
+    const preselectedIndex = panelsArray.indexOf(
+      panelsArray.find(element => element.hasAttribute('selected')),
+    );
 
     // If there is a preselected panel, it overrides `selectedTab` prop
     const initialSelectedTab =
