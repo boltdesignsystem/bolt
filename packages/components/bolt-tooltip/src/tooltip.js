@@ -2,6 +2,7 @@ import { define, props } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 
 import styles from './tooltip.scss';
 
@@ -162,7 +163,9 @@ class BoltTooltip extends withLitHtml() {
           role="tooltip"
           aria-hidden="true"
         >
-          <span class="c-bolt-tooltip__content-bubble">${this.content}</span>
+          <span class="c-bolt-tooltip__content-bubble"
+            >${unsafeHTML(this.content)}</span
+          >
         </bolt-tooltip-content>
       </span>
     `;
