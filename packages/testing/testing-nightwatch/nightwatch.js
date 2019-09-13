@@ -76,6 +76,7 @@ module.exports = {
         browserName: 'chrome',
         chromeOptions: {
           args: ['headless'],
+          w3c: false,
         },
       },
     },
@@ -86,9 +87,10 @@ module.exports = {
         version: '76',
         javascriptEnabled: true,
         acceptSslCerts: true,
-        //         chromeOptions: {
-        //           args: ['headless'],
-        //         },
+        chromeOptions: {
+          // args: ['headless'],
+          w3c: false,
+        },
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,

@@ -1,0 +1,53 @@
+{# @todo: `isBackgroundVideo` will be removed with Bolt v3.0. Hide this demo page for now and remove it entirely with v3.0. #}
+
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "dark",
+  size: "medium",
+  background: {
+    "opacity": "heavy",
+    "fill": "color",
+    "focalPoint": {
+      "vertical": "center",
+      "horizontal": "center"
+    },
+    "contentItems": [
+      {
+        "pattern": "image",
+        "src": "/images/content/backgrounds/background-tall-1.jpg"
+      },
+      {
+        "pattern": "video",
+        "isBackgroundVideo": true,
+        "videoId": "3861325118001",
+        "accountId": "1900410236",
+        "playerId": "r1CAdLzTW",
+        "videoUuid": "pega-video-3861325118001-d",
+        "on_init": "initBrightcovePlugins",
+        "attributes": {
+          "data-email-subject": "Pega - CRM Evolved Atlanta: Customer Engagement in a Digital World",
+          "data-email-body": "Check out this video from Pega",
+          "data-email-videourl": "https://demo1.d8.pega.com/insights/resources/crm-evolved-atlanta-customer-engagement-digital-world"
+        }
+      }
+    ]
+  }
+} %}
+  {% block band_content %}
+    <p>
+      This video is coming from the band's background.
+    </p>
+
+    {% include "@bolt/_video-inline-script.twig" with {
+      socialUrl: "https://demo1.d8.pega.com/insights/resources/crm-evolved-atlanta-customer-engagement-digital-world"
+    } %}
+
+    {% include "@bolt/button.twig" with {
+        text: "Watch Video",
+        tag: "button",
+        attributes: {
+          "on-click": "toggle",
+          "on-click-target": "pega-video-3861325118001-d"
+        }
+    } only %}
+  {% endblock band_content %}
+{% endembed %}
