@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*!
 Copyright (C) 2015 by WebReflection
 

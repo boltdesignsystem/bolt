@@ -1,3 +1,4 @@
+/* eslint-disable */
 (function(window, factory) {
 	var lazySizes = factory(window, window.document);
 	window.lazySizes = lazySizes;
