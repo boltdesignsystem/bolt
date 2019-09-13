@@ -193,12 +193,7 @@ async function createWebpackConfig(buildConfig) {
   }
 
   const scssLoaders = [
-    {
-      loader: 'cache-loader',
-      options: {
-        cacheDirectory: './.webpack-cache',
-      },
-    },
+    'cache-loader',
     {
       loader: 'css-loader',
       options: {
@@ -278,12 +273,7 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(ts|tsx)$/,
           use: [
-            {
-              loader: 'cache-loader',
-              options: {
-                cacheDirectory: './.webpack-cache',
-              },
-            },
+            'cache-loader',
             {
               loader: 'ts-loader',
               options: {
@@ -314,12 +304,7 @@ async function createWebpackConfig(buildConfig) {
           test: /\.(js|tsx|mjs)$/,
           exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
           use: [
-            {
-              loader: 'cache-loader',
-              options: {
-                cacheDirectory: './.webpack-cache',
-              },
-            },
+            'cache-loader',
             {
               loader: 'babel-loader',
               options: {
@@ -333,12 +318,7 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(woff|woff2)$/,
           use: [
-            {
-              loader: 'cache-loader',
-              options: {
-                cacheDirectory: './.webpack-cache',
-              },
-            },
+            'cache-loader',
             {
               loader: 'url-loader',
               options: {
@@ -351,12 +331,7 @@ async function createWebpackConfig(buildConfig) {
         {
           test: /\.(cur|svg)$/,
           use: [
-            {
-              loader: 'cache-loader',
-              options: {
-                cacheDirectory: './.webpack-cache',
-              },
-            },
+            'cache-loader',
             {
               loader: 'file-loader',
               options: {
@@ -367,16 +342,7 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [
-            {
-              loader: 'cache-loader',
-              options: {
-                cacheDirectory: './.webpack-cache',
-              },
-            },
-            'json-loader',
-            'yaml-loader',
-          ],
+          use: ['cache-loader', 'json-loader', 'yaml-loader'],
         },
       ],
     },
