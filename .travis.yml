@@ -24,12 +24,16 @@ stages:
 jobs:
   include:
     - stage: Prep
-      name: 'Smoke Tests: Linting'
-      install: yarn run setup:quick
-      before_script: ./scripts/check-run-queue.js 'Lint'
-      script: yarn run lint
-      after_success: ./scripts/check-run-success.js 'Lint'
-      after_failure: ./scripts/check-run-failure.js 'Lint'
+      name: 'Build + Deploy Website'
+      script:
+        # Clear incache file on normal Travis builds
+        - find . -name '.incache' -exec rm -rf {} +
+        - yarn run setup
+        - yarn run build
+        - yarn run deploy
+        # need to reset git repo before `update-read-only-git-repos.sh`
+        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+        - ./scripts/release/update-read-only-git-repos.sh
 
     - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
@@ -62,16 +66,13 @@ jobs:
         - npm run setup
 
     - stage: Prep
-      name: 'Build + Deploy Website'
-      script:
-        # Clear incache file on normal Travis builds
-        - find . -name '.incache' -exec rm -rf {} +
-        - yarn run setup
-        - yarn run build
-        - yarn run deploy
-        # need to reset git repo before `update-read-only-git-repos.sh`
-        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
-        - ./scripts/release/update-read-only-git-repos.sh
+      name: 'Smoke Tests: Linting'
+      install: yarn run setup:quick
+      before_script: ./scripts/check-run-queue.js 'Lint'
+      script: yarn run lint
+      after_success: ./scripts/check-run-success.js 'Lint'
+      after_failure: ./scripts/check-run-failure.js 'Lint'
+
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
