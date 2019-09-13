@@ -1,5 +1,6 @@
 import 'es6-promise/auto';
 import 'element-closest';
+import 'whatwg-fetch';
 import 'mdn-polyfills/Node.prototype.prepend';
 import 'mdn-polyfills/Node.prototype.replaceWith'; // used in dropdown
 import 'core-js/modules/es.array.iterator';
@@ -12,6 +13,8 @@ import 'core-js/modules/es.string.includes';
 import 'core-js/modules/es.string.repeat';
 import './custom-event-polyfill';
 import 'core-js/modules/es.array.find';
+// @todo: find-index polyfill is temporarily disabled until we can fix bug in table.js
+// import 'core-js/modules/es.array.find-index';
 import './symbol-polyfill';
 import './remove-polyfill';
 import '@webcomponents/template/template.js';

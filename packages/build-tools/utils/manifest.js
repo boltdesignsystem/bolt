@@ -1,7 +1,9 @@
+/* eslint-disable no-await-in-loop */
 const { promisify } = require('util');
 const resolve = require('resolve');
 const fs = require('fs');
 const path = require('path');
+const $RefParser = require('json-schema-ref-parser');
 const log = require('./log');
 const { ensureFileExists } = require('./general');
 const writeFile = promisify(fs.writeFile);
@@ -158,13 +160,15 @@ async function getPkgInfo(pkgName) {
             .replace(/ /g, '-')
             .toLowerCase();
 
-          info.schema[schemaMachineName] = schema;
+          const dereferencedSchema = await $RefParser.dereference(schema);
+          info.schema[schemaMachineName] = dereferencedSchema;
         }
       } else {
         const schemaFilePath = path.join(dir, pkg.schema);
         const schema = await getDataFile(schemaFilePath);
         validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
-        info.schema = schema;
+        const dereferencedSchema = await $RefParser.dereference(schemaFilePath);
+        info.schema = dereferencedSchema;
       }
     }
     // @todo Allow verbosity settings

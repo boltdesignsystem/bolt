@@ -1036,7 +1036,7 @@
   resolved "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.2.4.tgz#684a14f4ca35d46f44abc87dfc696e5e4fe8a020"
   integrity sha512-Ze5SDNt325yZvNO7s5C4fXDscjJ6dcqLFXJQ/M7dZRQCewuDj2iDUuBi6jLQt+APbW9RjjVEvLr35FXuOEqjow==
 
-"@hapi/joi@^15.0.0", "@hapi/joi@^15.0.3", "@hapi/joi@^15.1.0":
+"@hapi/joi@^15.0.0", "@hapi/joi@^15.0.3":
   version "15.1.1"
   resolved "https://registry.npmjs.org/@hapi/joi/-/joi-15.1.1.tgz#c675b8a71296f02833f8d6d243b34c57b8ce19d7"
   integrity sha512-entf8ZMOK8sc+8YfeOlM8pCfg3b5+WZIKBfUaaJT8UsjAAPjartzxIYm3TIbjvA4u+u++KbcXD38k682nVHDAQ==
@@ -5105,6 +5105,11 @@ compose-function@3.0.3:
   dependencies:
     arity-n "^1.0.4"
 
+compute-scroll-into-view@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/compute-scroll-into-view/-/compute-scroll-into-view-1.0.11.tgz#7ff0a57f9aeda6314132d8994cce7aeca794fecf"
+  integrity sha512-uUnglJowSe0IPmWOdDtrlHXof5CTIJitfJEyITHBW6zDVOGu9Pjk5puaLM73SLcwak0L4hEjO7Td88/a6P5i7A==
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -5682,43 +5687,6 @@ critical@2.0.0-19:
     postcss "^7.0.17"
     postcss-discard "^0.3.0"
     postcss-image-inliner "^3.0.0"
-    postcss-url "^8.0.0"
-    prettier "^1.18.2"
-    replace-ext "^1.0.0"
-    slash "^3.0.0"
-    tempy "^0.3.0"
-    through2 "^3.0.1"
-    vinyl "^2.2.0"
-
-critical@^2.0.0-20:
-  version "2.0.0-20"
-  resolved "https://registry.npmjs.org/critical/-/critical-2.0.0-20.tgz#1af73265df5d47992f484507fed5c83e23fb39d6"
-  integrity sha512-1WmuNCiMY9lg0SUff4spjNzesdjneS4ZhIAkhL/ZaFfM1FuAuOa6LjdhQZKszcwxLmHUFFWk2ZW7GhICeIbmHw==
-  dependencies:
-    "@hapi/joi" "^15.1.0"
-    chalk "^2.4.2"
-    clean-css "^4.2.1"
-    common-tags "^1.8.0"
-    css-url-parser "^1.1.3"
-    debug "^4.1.1"
-    find-up "^4.1.0"
-    fs-extra "^8.1.0"
-    get-stdin "^7.0.0"
-    globby "^9.2.0"
-    got "^9.6.0"
-    group-args "^0.1.0"
-    indent-string "^4.0.0"
-    inline-critical "^5.2.2"
-    is-glob "^4.0.1"
-    lodash "^4.17.15"
-    meow "^5.0.0"
-    oust "^0.5.2"
-    p-all "^2.1.0"
-    penthouse "^2.2.0"
-    plugin-error "^1.0.1"
-    postcss "^7.0.17"
-    postcss-discard "^0.3.0"
-    postcss-image-inliner "^3.0.2"
     postcss-url "^8.0.0"
     prettier "^1.18.2"
     replace-ext "^1.0.0"
@@ -9969,7 +9937,7 @@ init-package-json@^1.10.3:
     validate-npm-package-license "^3.0.1"
     validate-npm-package-name "^3.0.0"
 
-inline-critical@^5.2.1, inline-critical@^5.2.2:
+inline-critical@^5.2.1:
   version "5.2.2"
   resolved "https://registry.npmjs.org/inline-critical/-/inline-critical-5.2.2.tgz#2c16ace40cf91dd8cdc209c9cb7dae4ead810e1b"
   integrity sha512-j2IGRTQO+mWX8epsl1728Zzvs0V0sdxbIRwbz6+NmiSrlxFhpiTDm3B+tJ0ub2aJbs4O4xQUuQChfQGvcUl77Q==
@@ -11447,6 +11415,15 @@ json-parse-better-errors@^1.0.0, json-parse-better-errors@^1.0.1, json-parse-bet
   version "1.0.2"
   resolved "https://registry.npmjs.org/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
   integrity sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
+
+json-schema-ref-parser@^7.1.0:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/json-schema-ref-parser/-/json-schema-ref-parser-7.1.1.tgz#16896f5af14560233e24bd0c6ed581f6a94fb315"
+  integrity sha512-5DGfOTuTAMFzjNw56kwEQ9YqjCvRPHRbEmPkPSNPuK4DR4TmLQrZ1k0UdO8EJ9DKjOPqtyBjtlSnvzAC6kwUsg==
+  dependencies:
+    call-me-maybe "^1.0.1"
+    js-yaml "^3.13.1"
+    ono "^5.0.1"
 
 json-schema-traverse@^0.4.1:
   version "0.4.1"
@@ -14428,6 +14405,11 @@ onetime@^5.1.0:
   dependencies:
     mimic-fn "^2.1.0"
 
+ono@^5.0.1:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/ono/-/ono-5.0.2.tgz#672e25b2d96b60530c62cf18236cbd82e3249eae"
+  integrity sha512-6XDlkEDQCgHNOdWS5SQlCSEJrJ9Ifh6lGrI8llR/UYOOA83EUVCt+4eWo8LT0rvEfyYSYJG90ExJHnTJqsoPBA==
+
 opencollective-postinstall@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/opencollective-postinstall/-/opencollective-postinstall-2.0.2.tgz#5657f1bede69b6e33a45939b061eb53d3c6c3a89"
@@ -15528,7 +15510,7 @@ postcss-html@^0.36.0:
   dependencies:
     htmlparser2 "^3.10.0"
 
-postcss-image-inliner@^3.0.0, postcss-image-inliner@^3.0.2:
+postcss-image-inliner@^3.0.0:
   version "3.0.3"
   resolved "https://registry.npmjs.org/postcss-image-inliner/-/postcss-image-inliner-3.0.3.tgz#75aa717f646a361cf763845649ebde59a964924c"
   integrity sha512-/6mEBsrF2uOLFkMmml1FjSWw+EypV8/VhpI+d+gohrjbJ/DfNLxHcqJVodPmQAwAovv1wshmJCDUwPyLZBLLQg==
@@ -16338,10 +16320,10 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer-core@^1.17.0, puppeteer-core@^1.18.1:
-  version "1.20.0"
-  resolved "https://registry.npmjs.org/puppeteer-core/-/puppeteer-core-1.20.0.tgz#cfad0c7cbb6e9bb0d307c6e955e5c924134bbeb5"
-  integrity sha512-akoSCMDVv6BFd/4+dtW6mVgdaRQhy/cmkGzXcx9HAXZqnY9zXYbsfoXMiMpwt3+53U9zFGSjgvsi0mDKNJLfqg==
+puppeteer-core@1.17.0:
+  version "1.17.0"
+  resolved "https://registry.npmjs.org/puppeteer-core/-/puppeteer-core-1.17.0.tgz#c3e58c52cdfc5e03b6946c7a6f48cc21d32a05f0"
+  integrity sha512-3Em/zPGO9Y6PVxiIBCEUiCXhKLyNfyuEIDP7OO5ZEG1N/XNaeoDCIGUsJSUqXMe+kdPQITsJjvw0/7pyecjL4w==
   dependencies:
     debug "^4.1.0"
     extract-zip "^1.6.6"
@@ -20772,6 +20754,11 @@ whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3, whatwg-encoding@^1.0.5:
   integrity sha512-b5lim54JOPN9HtzvK9HFXvBma/rnfFeqsic0hSpjtDbVxR3dJKLc+KB4V6GgiGOvl7CY/KNh8rxSo9DKQrnUEw==
   dependencies:
     iconv-lite "0.4.24"
+
+whatwg-fetch@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-3.0.0.tgz#fc804e458cc460009b1a2b966bc8817d2578aefb"
+  integrity sha512-9GSJUgz1D4MfyKU7KRqwOjXCXTqWdFNvEr7eUBYchQiVc744mqK/MzXPNR2WsPkmkOa4ywfg8C2n8h+13Bey1Q==
 
 whatwg-mimetype@^2.1.0, whatwg-mimetype@^2.2.0, whatwg-mimetype@^2.3.0:
   version "2.3.0"
