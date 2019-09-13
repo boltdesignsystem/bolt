@@ -9,6 +9,29 @@ exports[`<bolt-tooltip> Component Basic usage 1`] = `
 </bolt-tooltip>
 `;
 
+exports[`<bolt-tooltip> Component Bolt component content 1`] = `
+<bolt-tooltip trigger-type="text"
+              trigger-text="Trigger text"
+              trigger-icon-name="info-open"
+              content="&lt;bolt-ul&gt;
+        &lt;bolt-li&gt;1&lt;/bolt-li&gt;
+        &lt;bolt-li&gt;2&lt;/bolt-li&gt;
+        &lt;bolt-li&gt;3&lt;/bolt-li&gt;
+        &lt;bolt-li&gt;4&lt;/bolt-li&gt;
+      &lt;bolt-ul&gt;"
+>
+</bolt-tooltip>
+`;
+
+exports[`<bolt-tooltip> Component Bolt component content 2`] = `
+<bolt-tooltip trigger-type="text"
+              trigger-text="Trigger text"
+              trigger-icon-name="info-open"
+              content="This is the tooltip content with html &lt;a href=&quot;example.com&quot;&gt;link&lt;/a&gt;."
+>
+</bolt-tooltip>
+`;
+
 exports[`<bolt-tooltip> Component Direction of the tooltip bubble: down 1`] = `
 <bolt-tooltip trigger-type="button"
               trigger-text="Trigger text"

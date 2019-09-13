@@ -32,6 +32,44 @@ describe('<bolt-tooltip> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  // Bolt Component in content Usage
+  test('Bolt component content', async () => {
+    const results = await render('@bolt-components-tooltip/tooltip.twig', {
+      trigger: {
+        type: 'text',
+        text: 'Trigger text',
+        icon: {
+          name: 'info-open',
+        },
+      },
+      content: `<bolt-ul>
+        <bolt-li>1</bolt-li>
+        <bolt-li>2</bolt-li>
+        <bolt-li>3</bolt-li>
+        <bolt-li>4</bolt-li>
+      <bolt-ul>`,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  // HTML in content usage
+  test('Bolt component content', async () => {
+    const results = await render('@bolt-components-tooltip/tooltip.twig', {
+      trigger: {
+        type: 'text',
+        text: 'Trigger text',
+        icon: {
+          name: 'info-open',
+        },
+      },
+      content:
+        'This is the tooltip content with html <a href="example.com">link</a>.',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   // Props
   direction.enum.forEach(async directionChoice => {
     test(`Direction of the tooltip bubble: ${directionChoice}`, async () => {
