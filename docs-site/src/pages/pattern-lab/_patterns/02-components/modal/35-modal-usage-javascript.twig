@@ -39,8 +39,8 @@
 </script>
 {% endset %}
 
-<bolt-text headline font-size="xlarge">Custom Javascript Usage</bolt-text>
-<bolt-text>You can write custom javascript to target the modal and attach specific behaviors. Please note that Bolt does not ship with custom javascript, the following is an example of how you can manipulate the <bolt-code-snippet display="inline" lang="html">bolt-modal</bolt-code-snippet> component.</bolt-text>
+<bolt-text headline font-size="xlarge">Custom JavaScript Usage</bolt-text>
+<bolt-text>You can write custom JavaScript to target the modal and attach behaviors. The following is an example of how you can use JavaScript to manipulate the Modal component. Please note that Bolt does not ship with any of this custom JavaScript.</bolt-text>
 
 <bolt-text headline font-size="large">Demo</bolt-text>
 <div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
@@ -55,7 +55,7 @@
   {% endset %}
   {% set trigger %}
     {% include "@bolt-components-button/button.twig" with {
-      text: "Activate javascript",
+      text: "Activate JavaScript",
       size: "small",
       width: "full",
       attributes: {
@@ -72,7 +72,7 @@
   {% endset %}
   {% set description %}
     <bolt-text headline font-size="large">Automatically open a modal</bolt-text>
-    <bolt-text>Use custom javascript to automatically open a modal on page load (after a short delay). Click on the activate button to see a demo. The page will reload and a modal will open after 3 seconds.</bolt-text>
+    <bolt-text>Use custom JavaScript to automatically open a modal on page load, after a short delay. Click on the "Activate JavaScript" button to see a demo. The page will reload and a modal will open after 3 seconds.</bolt-text>
   {% endset %}
   {% include "@bolt-components-grid/grid.twig" with {
     items: [
@@ -96,7 +96,7 @@
   } only %}
 </div>
 
-<bolt-text headline font-size="large">Custom Javascript</bolt-text>
+<bolt-text headline font-size="large">Custom JavaScript</bolt-text>
 <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
   {{ javascript | replace({
     '<': '&lt;',
