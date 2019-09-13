@@ -18,12 +18,14 @@ if (typeof module.hot === 'object') {
 window.bolt = window.bolt || {};
 
 if (!window.bolt.meta) {
+  // selecting a long delay since this isn't super important
+  const delay = 5000;
+
   setTimeout(() => {
     getData('meta')
       .then(data => {
-        console.log({ data });
         window.bolt.meta = data;
       })
       .catch(console.log.bind(console));
-  }, 100);
+  }, delay);
 }

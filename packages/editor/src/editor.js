@@ -371,7 +371,7 @@ ${editor.getHtml()}
 
   addThemeContextClasses({ space, canvasWrapper });
 
-  canvasDoc.body.classList.add('in-editor');
+  // canvasDoc.body.classList.add('in-editor');
 
   // prevents `overflow: hidden` from cutting off child elements that break out of their box
   canvasWrapper.style.padding = '20px';
