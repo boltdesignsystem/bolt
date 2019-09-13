@@ -33,6 +33,7 @@ module.exports = async function globalSetup() {
     launchTimeout: 300000,
     port: 4444,
     usedPortAction: 'kill',
+    debug: true,
   });
 
   const browser = await puppeteer.launch({
