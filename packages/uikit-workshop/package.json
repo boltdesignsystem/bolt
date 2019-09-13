@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",
-    "build": "webpack-cli --config webpack.config.js",
+    "build": "webpack-cli --config webpack.config.js --display=minimal",
     "test": "npm run build -- --bail",
     "watch": "webpack-cli --config webpack.config.js --progress --watch"
   },
