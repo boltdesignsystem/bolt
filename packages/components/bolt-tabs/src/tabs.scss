@@ -35,6 +35,7 @@ bolt-tabs {
 
   &[aria-selected='true'] {
     opacity: bolt-opacity(100);
+    color: bolt-theme(headline);
 
     .c-bolt-tabs__label-text:after {
       opacity: bolt-opacity(100);
@@ -110,7 +111,7 @@ bolt-tabs {
     width: 100%;
     height: 100%;
     border-radius: $bolt-tabs-bg-border-radius;
-    background-color: currentColor;
+    background-color: bolt-theme(headline-link);
     transition: all 0.1s ease;
   }
 }
@@ -246,6 +247,7 @@ bolt-tabs:not([ready]) {
 
 .c-bolt-tabs__input:checked + .c-bolt-tabs__label {
   opacity: bolt-opacity(100);
+  color: bolt-theme(headline);
 
   .c-bolt-tabs__label-text:after {
     opacity: bolt-opacity(100);
