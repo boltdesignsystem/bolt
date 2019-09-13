@@ -73,9 +73,9 @@ module.exports = {
   components: {
     global: [
       ...allComponentPackages,
-      '@bolt/analytics-autolink',
-      '@bolt/components-editor',
+      '@bolt/components-animate',
       '@bolt/micro-journeys',
+      '@bolt/analytics-autolink',
     ],
   },
   images: {
