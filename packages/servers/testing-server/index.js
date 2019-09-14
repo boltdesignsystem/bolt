@@ -34,6 +34,7 @@ getConfig().then(async boltConfig => {
 
   await getLatestDeploy()
     .then(async url => {
+      app.use(express.static(path.relative(process.cwd(), config.wwwDir)));
       app.use((req, res) => {
         // const assetsByChunkName = res.locals.webpackStats.toJson().children[0]
         //   .assetsByChunkName;
