@@ -35,7 +35,8 @@ jobs:
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
 
-    - stage: Test Live Site
+    # - stage: Test Live Site
+    - stage: Prep
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
         - travis_retry yarn run setup:full
