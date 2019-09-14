@@ -24,6 +24,44 @@ stages:
 jobs:
   include:
     - stage: Prep
+      name: 'Smoke Tests: Linting'
+      install: yarn run setup:quick
+      before_script: ./scripts/check-run-queue.js 'Lint'
+      script: yarn run lint
+      after_success: ./scripts/check-run-success.js 'Lint'
+      after_failure: ./scripts/check-run-failure.js 'Lint'
+
+    - stage: Prep
+      name: 'Smoke Tests: Unit Tests (Jest)'
+      install:
+        - travis_retry yarn run setup:full
+        - yarn workspace @bolt/website prep # creates data and manifest files
+      before_script: ./scripts/check-run-queue.js 'Unit'
+      script:
+        - travis_retry yarn test:js --bail --maxWorkers=1
+        # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
+        - yarn test:php
+        - yarn test:monorepo --maxWorkers=1
+        - yarn test:pkgs --ignore=@bolt/uikit-workshop --ignore=@bolt/build-tools --ignore=@bolt/build-tools--test-multi-lang
+      after_success: ./scripts/check-run-success.js 'Unit'
+      after_failure: ./scripts/check-run-failure.js 'Unit'
+
+    - stage: Prep
+      name: 'Smoke Tests: Build Tools'
+      install: 'npm run setup'
+      before_script: ./scripts/check-run-queue.js 'Build Tools'
+      script: yarn run test:build-tools
+      after_success: ./scripts/check-run-success.js 'Build Tools'
+      after_failure: ./scripts/check-run-failure.js 'Build Tools'
+
+    - stage: Prep
+      name: 'Build Drupal Lab'
+      script:
+        - composer global require hirak/prestissimo
+        - cd example-integrations/drupal-lab
+        - npm run setup
+
+    - stage: Prep
       name: 'Build + Deploy Website'
       script:
         # Clear incache file on normal Travis builds
@@ -34,44 +72,6 @@ jobs:
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
-
-    - stage: Prep
-      name: 'Smoke Tests: Linting'
-      install: yarn run setup:quick
-      before_script: ./scripts/check-run-queue.js 'Lint'
-      script: yarn run lint
-      after_success: ./scripts/check-run-success.js 'Lint'
-      after_failure: ./scripts/check-run-failure.js 'Lint'
-
-    - stage: Test Live Site
-      name: 'Smoke Tests: Unit Tests (Jest)'
-      install:
-        - travis_retry yarn run setup:full
-        - yarn workspace @bolt/website prep # creates data and manifest files
-      before_script: ./scripts/check-run-queue.js 'Unit'
-      script:
-        - travis_retry yarn test:js --maxWorkers=1
-        # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
-        - yarn test:php
-        - yarn test:monorepo --maxWorkers=1
-        - yarn test:pkgs --ignore=@bolt/uikit-workshop --ignore=@bolt/build-tools --ignore=@bolt/build-tools--test-multi-lang --ignore=@bolt/components-editor
-      after_success: ./scripts/check-run-success.js 'Unit'
-      after_failure: ./scripts/check-run-failure.js 'Unit'
-
-    - stage: Test Live Site
-      name: 'Smoke Tests: Build Tools'
-      install: 'npm run setup'
-      before_script: ./scripts/check-run-queue.js 'Build Tools'
-      script: yarn run test:build-tools
-      after_success: ./scripts/check-run-success.js 'Build Tools'
-      after_failure: ./scripts/check-run-failure.js 'Build Tools'
-
-    - stage: Test Live Site
-      name: 'Build Drupal Lab'
-      script:
-        - composer global require hirak/prestissimo
-        - cd example-integrations/drupal-lab
-        - npm run setup
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
@@ -100,11 +100,11 @@ jobs:
       after_failure:
         - ./scripts/check-run-failure.js 'Site is live'
 
-    # - stage: Test Live Site
-    #   name: 'Example master only job'
-    #   if: branch = master
-    #   script:
-    #     - echo "This example only runs on master branch builds"
+    - stage: Test Live Site
+      name: 'Example master only job'
+      if: branch = master
+      script:
+        - echo "This example only runs on master branch builds"
 
 notifications:
   email:
