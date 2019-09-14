@@ -156,11 +156,11 @@ export function enableEditor({ space, uiWrapper, config }) {
                     'https://form.asana.com?hash=744845a6517b30c25e59baebae1245d3f999d10961fa63e47a0d6e26a3220605&id=1126340469376247';
                   let gitSha = 'unknown';
                   if (
-                    window.bolt &&
-                    window.bolt.meta &&
-                    window.bolt.meta.gitSha
+                    window['bolt'] &&
+                    window['bolt'].meta &&
+                    window['bolt'].meta.gitSha
                   ) {
-                    gitSha = window.bolt.meta.gitSha;
+                    gitSha = window['bolt'].meta.gitSha;
                   }
 
                   const metadata = `
@@ -256,8 +256,8 @@ ${editor.getHtml()}
   const editor = grapesjs.init(editorConfig);
 
   /**
-   * @param {Object} opt
-   * @param {string} name - tag name
+   * @param {object} opt
+   * @param {string} opt.name - tag name
    * @param {string} opt.slotName
    * @param {string} opt.content - HTML to add
    * @param {boolean} [opt.shouldCreateAnimatableSlotIfNotPresent=true]
