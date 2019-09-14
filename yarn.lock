@@ -810,10 +810,63 @@
     ev-emitter "^1.1.1"
     handorgel "^0.4.5"
 
-"@bolt/components-page-footer@file:packages/components/bolt-page-footer":
+"@bolt/components-icon@^2.6.0":
   version "2.7.0"
+  resolved "https://registry.npmjs.org/@bolt/components-icon/-/components-icon-2.7.0.tgz#1c4660be8f19708a21e1fa963db49dab5b9a96e8"
+  integrity sha512-V8YUgvz/W7P6NyM9LnuILhHOxVONBsuXCsw1kQA5tMq5TxDlWjuPkgEU1KeoP3egw4UwhbJDHM3VjuiOerC6zQ==
+  dependencies:
+    "@bolt/components-icons" "^2.7.0"
+    "@bolt/core" "^2.7.0"
+    pubsub-js "^1.6.0"
+    uppercamelcase "^3.0.0"
+
+"@bolt/components-icons@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.npmjs.org/@bolt/components-icons/-/components-icons-2.7.0.tgz#4ab1bfb45da7430ad3383a7f5348af88758f030b"
+  integrity sha512-nOBx/1VXIetda033Evnan6sGYMlEvDyoRClTRdKmNxMSBx5iI+eqJpOyL8jkRR0QLg5XZMs7GnSfGuz5nvIw7Q==
   dependencies:
     "@bolt/core" "^2.7.0"
+
+"@bolt/components-page-footer@file:packages/components/bolt-page-footer":
+  version "2.8.0-beta.1"
+  dependencies:
+    "@bolt/core" "^2.8.0-beta.1"
+
+"@bolt/core@^2.6.0", "@bolt/core@^2.7.0":
+  version "2.7.0"
+  resolved "https://registry.npmjs.org/@bolt/core/-/core-2.7.0.tgz#b6f86e6d5812109393e85647eccf70b9ab0f009f"
+  integrity sha512-m/OLwW4rJY0d1R218QDVXtg3RmObm6ADPZvPas++uYYoYXrxLzlb6xEKvPV8b+BftWnebHuTPfYbNWmmScfoHQ==
+  dependencies:
+    "@polymer/polymer" "^3.3.0"
+    "@webcomponents/custom-elements" "^1.2.4"
+    "@webcomponents/shadydom" "^1.6.0"
+    "@webcomponents/template" "^1.4.0"
+    "@webcomponents/webcomponentsjs" "^2.2.10"
+    ajv "^6.10.1"
+    change-case "^3.1.0"
+    classnames "^2.2.6"
+    color "^3.1.2"
+    core-js "^3.1.4"
+    document-register-element "^1.13.2"
+    element-closest "^2.0.2"
+    es6-promise "^4.2.8"
+    get-own-property-symbols "^0.9.3"
+    html-element "^2.3.0"
+    lit-element "^2.2.0"
+    lit-html "^1.1.1"
+    lodash.merge "^4.6.2"
+    mdn-polyfills "^5.17.1"
+    preact "8.4.2"
+    preact-compat "^3.19.0"
+    pwa-helpers "^0.9.1"
+    raf "^3.4.1"
+    redux "3.7.2"
+    redux-thunk "^2.3.0"
+    sass-mq "github:bolt-design-system/sass-mq#master"
+    sassy-maps "github:at-import/Sassy-Maps#0.x.x"
+    skatejs "^5.2.4"
+    smoothscroll-polyfill "^0.4.4"
+    whatwg-fetch "^3.0.0"
 
 "@ckeditor/ckeditor5-build-classic@^12.1.0":
   version "12.4.0"
@@ -20673,7 +20726,7 @@ webidl-conversions@^4.0.2:
   resolved "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
 
-webpack-cli@^3.3.2, webpack-cli@^3.3.5:
+webpack-cli@^3.3.2, webpack-cli@^3.3.8:
   version "3.3.8"
   resolved "https://registry.npmjs.org/webpack-cli/-/webpack-cli-3.3.8.tgz#caeaebcc26f685db1736e5decd3f01aac30123ec"
   integrity sha512-RANYSXwikSWINjHMd/mtesblNSpjpDLoYTBtP99n1RhXqVI/wxN40Auqy42I7y4xrbmRBoA5Zy5E0JSBD5XRhw==
@@ -20781,7 +20834,7 @@ webpack@4.32.2:
     watchpack "^1.5.0"
     webpack-sources "^1.3.0"
 
-webpack@^4.35.3:
+webpack@^4.40.2:
   version "4.40.2"
   resolved "https://registry.npmjs.org/webpack/-/webpack-4.40.2.tgz#d21433d250f900bf0facbabe8f50d585b2dc30a7"
   integrity sha512-5nIvteTDCUws2DVvP9Qe+JPla7kWPPIDFZv55To7IycHWZ+Z5qBdaBYPyuXWdhggTufZkQwfIK+5rKQTVovm2A==
