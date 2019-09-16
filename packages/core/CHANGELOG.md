@@ -3,6 +3,67 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Bug Fixes
+
+* add find-index polyfill for IE ([205b9b1](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/205b9b1))
+* add missing fetch polyfill needed for IE 11 support ([42c6a75](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/42c6a75))
+* address prettier issues ([2251bf5](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/2251bf5))
+* comment-out findIndex polyfill for now, exposing a bug in table JS ([5e9831b](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/5e9831b))
+* disable linting on patched libs ([0c8b76d](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/0c8b76d))
+* make sure all available prop data gets passed along to any listeners added ([18b2d07](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/18b2d07))
+* temporarily switch to using a locally patched version of get-own-property-symbols to fix patch-package-related postinstall issues ([ce1b187](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/ce1b187))
+
+
+### Features
+
+* add new @bolt/core withEvents mixin to more easily add declarative events to components ([f7a07b3](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/f7a07b3))
+* add tabs component ([b591d67](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/b591d67))
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/core
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/core
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* address eslint issues ([e330908](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/e330908))
+* major cross browser fixes + polyfill updates ([50b4214](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/50b4214))
+* remove unused classname ([5904236](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/5904236))
+* revert bolt/core dependency updates + temporarily remove yarn.lock to ensure a fresh install on Travis ([20c8386](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/20c8386))
+* revert patch change ([856d137](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/856d137))
+* update patch path + commit ref ([e1b468d](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/e1b468d))
+
+
+### Features
+
+* add repeat-rule mixin ([e8d24c7](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/e8d24c7))
+* move scrollbar helpers to core, scrollbar calc functions to Class, add 'preventBodyScroll' as prop ([5a731b0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/5a731b0))
+
+
+
+
+
 ## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.5.5...v2.5.6) (2019-07-30)
 
 

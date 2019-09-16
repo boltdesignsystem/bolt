@@ -1,11 +1,9 @@
 @import '@bolt/core';
 
 .pl-c-main {
-  @include bolt-padding-left(medium);
-  @include bolt-padding-right(medium);
-  max-width: 1000px; // @todo: get this updated to 1000px once component side-effects are fixed
-  overflow: auto;
-  margin: 0 auto;
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+  min-height: 100vh; // so demos with overlays, etc aren't immediately chopped off
 }
 
 .sg-main {

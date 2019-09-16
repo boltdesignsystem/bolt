@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/bolt-design-system/bolt/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+**Note:** Version bump only for package @bolt/components-copy-to-clipboard
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/components-copy-to-clipboard
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/components-copy-to-clipboard
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* make sure Jest tests using the Twig Renderer stop the server when finished ([5e880f5](https://github.com/bolt-design-system/bolt/commit/5e880f5))
+
+
+### Features
+
+* add a nightwatch test for copy to clipboard ([4537e1b](https://github.com/bolt-design-system/bolt/commit/4537e1b))
+
+
+
+
+
 ## [2.5.6](https://github.com/bolt-design-system/bolt/compare/v2.5.5...v2.5.6) (2019-07-30)
 
 **Note:** Version bump only for package @bolt/components-copy-to-clipboard
