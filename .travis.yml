@@ -86,7 +86,7 @@ jobs:
       after_success:
         - travis_retry ./scripts/deploy-branch-alias.js
         - travis_retry ./scripts/deploy-tagged-release.js
-        - git reset --hard && yarn run release
+        - git reset --hard && git clean -f && yarn run release
 
     - stage: Test Live Site
       name: 'Ensure site is live'
