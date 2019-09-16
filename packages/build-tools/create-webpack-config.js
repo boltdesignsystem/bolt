@@ -93,6 +93,7 @@ async function createWebpackConfig(buildConfig) {
       ? JSON.stringify('production')
       : JSON.stringify('development'),
     bolt: {
+      publicPath: JSON.stringify(publicPath),
       mode: JSON.stringify(config.mode),
       isClient: config.mode === 'client' ? true : false,
       isServer: config.mode === 'server' ? true : false,
