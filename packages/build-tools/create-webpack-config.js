@@ -15,7 +15,6 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
 const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
 const {
@@ -32,7 +31,7 @@ const log = require('@bolt/build-utils/log');
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
 
-async function createWebpackConfig(buildConfig, isModern) {
+async function createWebpackConfig(buildConfig) {
   const config = buildConfig;
   const fullBuildConfig = await getConfig();
 
@@ -58,11 +57,9 @@ async function createWebpackConfig(buildConfig, isModern) {
 
   let themifyOptions = {
     watchForChanges:
-      config.watch === true && config.mode !== 'server' && isModern === false
-        ? true
-        : false,
+      config.watch === true && config.mode !== 'server' ? true : false,
     classPrefix: 't-bolt-',
-    screwIE11: config.mode === 'server' || isModern === true ? true : false,
+    screwIE11: config.mode === 'server' ? true : false,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -155,51 +152,34 @@ async function createWebpackConfig(buildConfig, isModern) {
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
-      entry[globalEntryName] = [
-        '@bolt/core/styles/index.scss',
-        '@bolt/global/styles/index.scss',
-        // '@bolt/global/styles/index.utils.scss',
-      ];
+      entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
 
       components.global.forEach(component => {
         if (component.assets.style) {
           entry[globalEntryName].push(component.assets.style);
         }
 
-        if (component.assets.module !== undefined && isModern === true) {
-          entry[globalEntryName].push(component.assets.module);
-        } else if (component.assets.main) {
+        if (component.assets.main) {
           entry[globalEntryName].push(component.assets.main);
         }
       });
 
-      // const useHotMiddleware =
-      //   Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1
-      //     ? false
-      //     : true;
+      const useHotMiddleware =
+        Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1
+          ? false
+          : true;
 
-      // if (!config.prod && config.webpackDevServer && useHotMiddleware) {
-      //   entry[globalEntryName].push(
-      //     `webpack-hot-middleware/client?name=${config.lang}&noInfo=true&quiet=true&logLevel=silent&reload=true`,
-      //   );
-      // }
+      if (!config.prod && config.webpackDevServer && useHotMiddleware) {
+        entry[globalEntryName].push(
+          `webpack-hot-middleware/client?name=${config.lang}&noInfo=true&quiet=true&logLevel=silent&reload=true`,
+        );
+      }
     }
-
     if (components.individual) {
       components.individual.forEach(component => {
         const files = [];
-        // files.push('@bolt/core/styles/index.with-json-export.scss');
-
-        if (component.assets.style) {
-          files.push(component.assets.style);
-        }
-
-        if (component.assets.module !== undefined && isModern === true) {
-          files.push(component.assets.module);
-        } else if (component.assets.main) {
-          files.push(component.assets.main);
-        }
-
+        if (component.assets.style) files.push(component.assets.style);
+        if (component.assets.main) files.push(component.assets.main);
         if (files) {
           entry[component.basicName] = files;
         }
@@ -213,6 +193,7 @@ async function createWebpackConfig(buildConfig, isModern) {
   }
 
   const scssLoaders = [
+    'cache-loader',
     {
       loader: 'css-loader',
       options: {
@@ -253,6 +234,7 @@ async function createWebpackConfig(buildConfig, isModern) {
         functions: sassExportData,
         precision: 3,
         data: globalSassData.join('\n'),
+        outputStyle: 'nested',
       },
     },
   ];
@@ -265,10 +247,8 @@ async function createWebpackConfig(buildConfig, isModern) {
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${
         config.mode !== 'client' ? `.${config.mode}` : ''
-      }.${isModern ? 'mjs' : 'js'}`,
-      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].${
-        isModern ? 'mjs' : 'js'
-      }`,
+      }.js`,
+      chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
       publicPath,
     },
     resolve: {
@@ -292,16 +272,22 @@ async function createWebpackConfig(buildConfig, isModern) {
       rules: [
         {
           test: /\.(ts|tsx)$/,
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+              },
+            },
+          ],
         },
         {
           test: /\.scss$/,
           oneOf: [
             {
-              issuer: /(\.js|\.mjs)$/,
+              issuer: /\.js$/,
               use: [scssLoaders].reduce((acc, val) => acc.concat(val), []),
             },
             {
@@ -315,48 +301,70 @@ async function createWebpackConfig(buildConfig, isModern) {
           ],
         },
         {
-          test: /\.m?js$/,
-          exclude: isModern
-            ? /node_modules/
-            : /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              babelrc: false,
-              cacheDirectory: true,
-              presets: [
-                `@bolt/babel-preset-bolt${isModern ? '/index.modern.js' : ''}`,
-              ],
+          test: /\.(js|tsx|mjs)$/,
+          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+          use: [
+            'cache-loader',
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                cacheDirectory: true,
+                presets: ['@bolt/babel-preset-bolt'],
+              },
             },
-          },
+          ],
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 500,
-            name: 'fonts/[name].[ext]',
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 500,
+                name: 'fonts/[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: /\.(cur|svg)$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+          use: ['cache-loader', 'json-loader', 'yaml-loader'],
         },
       ],
     },
     mode: config.prod ? 'production' : 'development',
-    // optimization: {
-    //   mergeDuplicateChunks: true,
-    // },
     optimization: {
-      minimizer: config.prod ? [new TerserPlugin()] : [],
+      minimizer: config.prod
+        ? [
+            new UglifyJsPlugin({
+              sourceMap: true,
+              parallel: true,
+              cache: true,
+              uglifyOptions: {
+                compress: true,
+                mangle: true,
+                output: {
+                  comments: false,
+                  beautify: false,
+                },
+              },
+            }),
+          ]
+        : [],
     },
     plugins: [
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
@@ -396,12 +404,12 @@ async function createWebpackConfig(buildConfig, isModern) {
     );
   }
 
-  // if (!config.prod && config.webpackDevServer) {
-  //   webpackConfig.plugins.push(
-  //     // new webpack.HotModuleReplacementPlugin(),
-  //     // new webpack.NoEmitOnErrorsPlugin(),
-  //   );
-  // }
+  if (!config.prod && config.webpackDevServer) {
+    webpackConfig.plugins.push(
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
+    );
+  }
 
   // Enable new experimental cache mode to significantly speed up the initial build times
   // if (config.enableCache && !config.prod) {
@@ -427,6 +435,17 @@ async function createWebpackConfig(buildConfig, isModern) {
   if (config.prod) {
     // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
     // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
+    webpackConfig.plugins.push(
+      new UglifyJsPlugin({
+        sourceMap: config.sourceMaps,
+        parallel: true,
+        cache: true,
+        uglifyOptions: {
+          compress: true,
+          mangle: true,
+        },
+      }),
+    );
 
     // https://webpack.js.org/plugins/module-concatenation-plugin/
     webpackConfig.plugins.push(
@@ -471,8 +490,7 @@ async function createWebpackConfig(buildConfig, isModern) {
       quiet: true,
       clientLogLevel: 'none',
       stats: statsPreset(webpackStats[config.verbosity]),
-      hot: false,
-      // hot: config.prod ? false : true,
+      hot: config.prod ? false : true,
       noInfo: true, // webpackTasks.watch handles output info related to success & failure
       publicPath,
     };
@@ -499,17 +517,14 @@ async function createWebpackConfig(buildConfig, isModern) {
 }
 
 // Helper function to associate each unique language in the build config with a separate Webpack build instance (making filenames, etc unique);
-async function assignLangToWebpackConfig(config, lang, isModern) {
+async function assignLangToWebpackConfig(config, lang) {
   let langSpecificConfig = config;
 
   if (lang) {
     langSpecificConfig.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
   }
 
-  let langSpecificWebpackConfig = await createWebpackConfig(
-    langSpecificConfig,
-    isModern,
-  );
+  let langSpecificWebpackConfig = await createWebpackConfig(langSpecificConfig);
 
   if (langSpecificConfig.webpackStats) {
     langSpecificWebpackConfig.profile = true;
@@ -530,21 +545,12 @@ module.exports = async function() {
     if (Array.isArray(langs)) {
       for (const lang of langs) {
         /* eslint-disable no-await-in-loop */
-        promises.push(
-          await assignLangToWebpackConfig(config, lang, true),
-          await assignLangToWebpackConfig(config, lang, false),
-        );
+        promises.push(await assignLangToWebpackConfig(config, lang));
       }
     } else if (langs === 'en') {
-      promises.push(
-        await assignLangToWebpackConfig(config, null, true),
-        await assignLangToWebpackConfig(config, null, false),
-      );
+      promises.push(await assignLangToWebpackConfig(config, null));
     } else {
-      promises.push(
-        await assignLangToWebpackConfig(config, config.lang, true),
-        await assignLangToWebpackConfig(config, config.lang, false),
-      );
+      promises.push(await assignLangToWebpackConfig(config, config.lang));
     }
 
     await Promise.all(promises).then(() => {
