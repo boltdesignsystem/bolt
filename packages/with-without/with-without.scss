@@ -2,6 +2,7 @@
 @import '@bolt/animations/tools/_tools-animations';
 @import './bolt-toggle/bolt-toggle';
 @import './swiper';
+@import './bolt-self-drawing-circle/self-drawing-circle';
 
 $pega-wwo--block-width-basis: 6%; // ~100px at full site width.
 $pega-wwo--block-bottom-margin: 2rem;
@@ -250,7 +251,7 @@ bolt-animate {
   }
 
   &__circles-wrapper {
-    $pega-wwo--circles-top-padding: 18%;
+    $pega-wwo--circles-top-padding: 17%;
     // For some reason, the calculation was off, and the circle wobbled.
     $pega-wwo--circles-top-padding--height-calculation: 17.98225%;
     display: none;

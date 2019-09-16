@@ -11,6 +11,13 @@ polyfillLoader.then(res => {
   import(
     /*
     webpackMode: 'eager',
+    webpackChunkName: 'bolt-self-drawing-circle'
+  */ './bolt-self-drawing-circle/self-drawing-circle'
+  );
+
+  import(
+    /*
+    webpackMode: 'eager',
     webpackChunkName: 'replace-with-children'
   */ './js/shadowDomPiercingHacks'
   );

@@ -1,7 +1,7 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './self-drawing-circle.scss';
-import schema from '../self-drawing-circle.schema.yml';
+import schema from './self-drawing-circle.schema.yml';
 
 @define
 class SvgAnimations extends withLitHtml() {

@@ -124,8 +124,6 @@ const config = {
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
       '@bolt/components-stack',
-      '@bolt/components-svg-animations',
-      '@bolt/components-self-drawing-circle',
       '@bolt/components-table',
       '@bolt/components-tabs',
       '@bolt/components-teaser',
