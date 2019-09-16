@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/bolt-design-system/bolt/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Bug Fixes
+
+* address stylelint issues ([00d1fba](https://github.com/bolt-design-system/bolt/commit/00d1fba))
+* themed docs ([24ed29c](https://github.com/bolt-design-system/bolt/commit/24ed29c))
+* update code to match .com branch ([446de1c](https://github.com/bolt-design-system/bolt/commit/446de1c))
+* update PL main demo page for Typeahead ([5f8afd4](https://github.com/bolt-design-system/bolt/commit/5f8afd4))
+
+
+### Features
+
+* add <title> support to SVG icons ([2849ff4](https://github.com/bolt-design-system/bolt/commit/2849ff4))
+* add demo of background image valign, add bottom margin to all background demos ([edd19dd](https://github.com/bolt-design-system/bolt/commit/edd19dd))
+* add demo page for `selected_tab` ([0f5fe6a](https://github.com/bolt-design-system/bolt/commit/0f5fe6a))
+* add early typeahead demo with custom hooks to modify result behavior ([8023287](https://github.com/bolt-design-system/bolt/commit/8023287))
+* add Pattern Lab demo + component updates to support fully dynamic / async fetched search results ([82b7d41](https://github.com/bolt-design-system/bolt/commit/82b7d41))
+* add tabs component ([b591d67](https://github.com/bolt-design-system/bolt/commit/b591d67))
+* initially wire up typeahead ([9f19226](https://github.com/bolt-design-system/bolt/commit/9f19226))
+* iterating on the Typeahead API + examples ([d0e074a](https://github.com/bolt-design-system/bolt/commit/d0e074a))
+* rename `items` to `panels` ([46e8478](https://github.com/bolt-design-system/bolt/commit/46e8478))
+* schema updates to `label_spacing`, `panel_spacing`, `inset`, and `uuid`; update docs ([f756568](https://github.com/bolt-design-system/bolt/commit/f756568))
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+
+### Bug Fixes
+
+* doc copy ([b8cece8](https://github.com/bolt-design-system/bolt/commit/b8cece8))
+
+
+
+
+
 # [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
 
 
