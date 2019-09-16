@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Bug Fixes
+
+* disable linting on patched libs ([0c8b76d](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/0c8b76d))
+* temporarily switch to using a locally patched version of lazysizes to fix patch-package-related postinstall issues ([8a50642](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/8a50642))
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+
+### Bug Fixes
+
+* check that `lazySizes.elements` is defined before pushing to it ([1704cec](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/1704cec))
+
+
+
+
+
 # [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
 
 **Note:** Version bump only for package @bolt/components-image

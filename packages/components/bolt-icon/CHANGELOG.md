@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Bug Fixes
+
+* ignore missing SVG icons in the Twig template when attempting to inline the fallback SVG icon ([4a0381b](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/4a0381b))
+* reformat icon `preload` prop description ([183a0ab](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/183a0ab))
+* update icon component snapshots ([8361a55](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/8361a55))
+
+
+### Features
+
+* add ability to display titles in SVG icons + add POC ability to server-side render specific icons ([5b691e8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/5b691e8))
+* add optional Twig template blocks to the Button and Icon component; workaround to SSR-rendered SVG icons for Typeahead without requiring build tool updates ([71dafa9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/71dafa9))
+* automatically invert SVG icon color at the Twig level ([802be34](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/802be34))
+* automatically replace hard coded fill and stroke colors in inlined SVGs with CSS custom prop placeholders ([9cc1887](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/9cc1887))
+* pull in all SVG icons into the Webpack build automatically ([a8f24a5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/a8f24a5))
+* update bolt-icon to now eagerly load so pre-rendered icons don't flash when booting up ([bf47407](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/bf47407))
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/components-icon
+
+
+
+
+
 # [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
 
 **Note:** Version bump only for package @bolt/components-icon
