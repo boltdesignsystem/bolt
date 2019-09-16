@@ -33,7 +33,7 @@
   @if ($leading != '' and  $leading != null) {
     @if (type-of($leading) == number) {
       $leading: $leading;
-    } @elseif (type-of($leading) == string) {
+    } @else if (type-of($leading) == string) {
       $leading: map-get-deep($bolt-font-sizes, 'font-sizes', $size, 'line-height', $leading);
     }
 

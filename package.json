@@ -48,7 +48,7 @@
     "clean:empty": "find . -empty -type d -delete",
     "clean:npm": "find . -name 'node_modules' -type d -exec rm -rf {} +",
     "clean:www": "find . -name 'www' -type d -exec rm -rf {} +",
-    "create:component": "yo ./packages/generator-bolt/generators/component/index.js",
+    "create:component": "yo ./packages/generators/yeoman-create-component/generators/component/index.js",
     "cz": "git-cz",
     "deploy": "./scripts/deploy.js",
     "lint": "npm-run-all --parallel lint:*",

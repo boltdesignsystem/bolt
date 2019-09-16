@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Bug Fixes
+
+* upgrade Twig renderer to the latest version to fix occasional memory errors getting thrown ([d0bdb39](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/d0bdb39))
+
+
+
+
+
 # [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
 
 **Note:** Version bump only for package @bolt/twig-renderer
