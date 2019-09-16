@@ -1,4 +1,5 @@
 import { query } from '@bolt/core/utils';
+import { version } from 'grapesjs/package.json';
 import { detect } from 'detect-browser';
 
 const defaultConfig = {};
@@ -39,8 +40,7 @@ function createEditorUiHtml(appendTo = document.body) {
  */
 function addGrapesCssToPage() {
   return new Promise((resolve, reject) => {
-    // @todo either lock to current installed grapesjs version or load from local `node_modules`
-    const href = '//unpkg.com/grapesjs/dist/css/grapes.min.css';
+    const href = `//unpkg.com/grapesjs@${version}/dist/css/grapes.min.css`;
     if (document.querySelector(`link[href="${href}"]`)) {
       resolve();
     } else {
@@ -55,6 +55,21 @@ function addGrapesCssToPage() {
   });
 }
 
+function addJsToPage(src) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) {
+      resolve();
+    } else {
+      const scriptEl = document.createElement('script');
+      scriptEl.src = src;
+      scriptEl.type = 'text/javascript';
+      scriptEl.async = true;
+      scriptEl.addEventListener('load', () => resolve(), { once: true });
+      document.head.appendChild(scriptEl);
+    }
+  });
+}
+
 function init() {
   const selectors = {
     editor: {
@@ -62,6 +77,7 @@ function init() {
       init: '.js-pega-editor--init',
     },
     trigger: '.js-pega-editor__trigger',
+    feedback: '.js-pega-editor__feedback',
     space: '.js-pega-editor__space',
     config: '.js-pega-editor__config',
   };
