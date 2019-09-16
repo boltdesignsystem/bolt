@@ -1,0 +1,52 @@
+{% set content %}
+<bolt-interactive-pathways>
+  <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
+  <bolt-interactive-pathway pathway-title="Simple Steps">
+    <bolt-interactive-step tab-title="Step 1">
+      <bolt-animate slot="top" in="fade-in-slide-up" in-order="1" out="fade-out-slide-down" out-order="2">
+        {{ source('@bolt-micro-journeys/starters/three-characters-lorem.html') }}
+      </bolt-animate>
+
+      <bolt-animate slot="bottom" in="fade-in-slide-up" in-order="2" out-order="1" out="fade-out-slide-down">
+        {{ source('@bolt-micro-journeys/starters/cta-text-2.html') }}
+      </bolt-animate>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 2">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-skyline.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 3">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 4">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-skyline.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 5">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 6">
+      <div slot="top">
+        <img src="/images/placeholders/landscape-16x9-skyline.jpg" alt="">
+      </div>
+    </bolt-interactive-step>
+  </bolt-interactive-pathway>
+
+</bolt-interactive-pathways>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: 'dark'
+} only %}
