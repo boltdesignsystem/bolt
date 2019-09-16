@@ -223,6 +223,12 @@ function init() {
           container.innerHTML = html;
           trigger.innerText = 'Edit';
           editorState = EDITOR_STATES.CLOSED;
+          pegaEditor.dispatchEvent(
+            new CustomEvent('editor:save', {
+              bubbles: true,
+              detail: { html },
+            }),
+          );
           break;
         }
       }
