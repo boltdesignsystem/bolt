@@ -21,7 +21,7 @@ class BoltVideo extends withPreact() {
     accountId: props.string,
     playerId: props.string,
     poster: props.object,
-    isBackgroundVideo: props.boolean,
+    isBackgroundVideo: props.boolean, // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
     onInit: props.string,
     showMeta: props.boolean,
     showMetaTitle: props.boolean,

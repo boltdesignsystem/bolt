@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<bolt-tabs> Component basic usage 1`] = `
+<bolt-tabs>
+  <replace-with-grandchildren class="c-bolt-tabs c-bolt-tabs--align-start c-bolt-tabs--inset">
+    <input type="radio"
+           name="tabs-12345"
+           id="tabs-12345-1"
+           class="c-bolt-tabs__input"
+           checked
+    >
+    <label for="tabs-12345-1"
+           class="c-bolt-tabs__label c-bolt-tabs__label--spacing-small"
+    >
+      <span class="c-bolt-tabs__label-inner">
+        <span class="c-bolt-tabs__label-text">
+          Tab label 1
+        </span>
+      </span>
+    </label>
+    <replace-with-children class="c-bolt-tab-panel__outer">
+      <bolt-tab-panel ssr-hydrate="keep">
+        <div slot="label">
+          Tab label 1
+        </div>
+        <replace-with-grandchildren class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
+          <div role="tabpanel"
+               class="c-bolt-tab-panel__content"
+          >
+            This is the tab content.
+          </div>
+        </replace-with-grandchildren>
+      </bolt-tab-panel>
+    </replace-with-children>
+    <input type="radio"
+           name="tabs-12345"
+           id="tabs-12345-2"
+           class="c-bolt-tabs__input"
+    >
+    <label for="tabs-12345-2"
+           class="c-bolt-tabs__label c-bolt-tabs__label--spacing-small"
+    >
+      <span class="c-bolt-tabs__label-inner">
+        <span class="c-bolt-tabs__label-text">
+          Tab label 2
+        </span>
+      </span>
+    </label>
+    <replace-with-children class="c-bolt-tab-panel__outer">
+      <bolt-tab-panel ssr-hydrate="keep">
+        <div slot="label">
+          Tab label 2
+        </div>
+        <replace-with-grandchildren class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
+          <div role="tabpanel"
+               class="c-bolt-tab-panel__content"
+          >
+            This is the tab content.
+          </div>
+        </replace-with-grandchildren>
+      </bolt-tab-panel>
+    </replace-with-children>
+    <input type="radio"
+           name="tabs-12345"
+           id="tabs-12345-3"
+           class="c-bolt-tabs__input"
+    >
+    <label for="tabs-12345-3"
+           class="c-bolt-tabs__label c-bolt-tabs__label--spacing-small"
+    >
+      <span class="c-bolt-tabs__label-inner">
+        <span class="c-bolt-tabs__label-text">
+          Tab label 3
+        </span>
+      </span>
+    </label>
+    <replace-with-children class="c-bolt-tab-panel__outer">
+      <bolt-tab-panel ssr-hydrate="keep">
+        <div slot="label">
+          Tab label 3
+        </div>
+        <replace-with-grandchildren class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
+          <div role="tabpanel"
+               class="c-bolt-tab-panel__content"
+          >
+            This is the tab content.
+          </div>
+        </replace-with-grandchildren>
+      </bolt-tab-panel>
+    </replace-with-children>
+  </replace-with-grandchildren>
+</bolt-tabs>
+`;
