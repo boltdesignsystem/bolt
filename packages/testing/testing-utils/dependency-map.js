@@ -60,7 +60,9 @@ async function getTwigFilePath(templateName) {
     return join(twigNamespaceRoot, path, suffix);
   });
 
-  const files = await globby(globPatterns);
+  const files = await globby(globPatterns, {
+    gitignore: true,
+  });
 
   if (files.length === 0) {
     throw new Error(`No Twig files found when looking for "${templateName}".`);
