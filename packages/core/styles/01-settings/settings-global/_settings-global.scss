@@ -108,7 +108,7 @@ $bolt-block-elements-list: 'p',
 $bolt-unquoted-block-elements-list: ();
 
 @each $bolt-block-element-type in $bolt-block-elements-list {
-  $bolt-unquoted-block-elements-list: append($bolt-unquoted-block-elements-list, unquote($bolt-block-element-type), comma) !global;
+  $bolt-unquoted-block-elements-list: append($bolt-unquoted-block-elements-list, unquote($bolt-block-element-type), comma);
 }
 
 /// Bolt's definition of all unquoted block level elements.
@@ -130,7 +130,7 @@ $bolt-heading-elements-list: 'h1',
 $bolt-unquoted-heading-elements-list: ();
 
 @each $bolt-heading-element-type in $bolt-heading-elements-list {
-  $bolt-unquoted-heading-elements-list: append($bolt-unquoted-heading-elements-list, unquote($bolt-heading-element-type), comma) !global;
+  $bolt-unquoted-heading-elements-list: append($bolt-unquoted-heading-elements-list, unquote($bolt-heading-element-type), comma);
 }
 
 /// Bolt's definition of all unquoted heading elements.
@@ -145,21 +145,21 @@ $bolt-all-heading-elements: $bolt-unquoted-heading-elements-list;
 
 /// Quoted custom block elements used to globally collect group generic styles. Elements registered via @mixin bolt-register-element.
 /// @see {mixin} bolt-register-element
-$_bolt-custom-block-elements: () !global;
+$_bolt-custom-block-elements: ();
 /// Quoted custom inline elements used to globally collect group generic styles. Elements registered via @mixin bolt-register-element.
 /// @see {mixin} bolt-register-element
-$_bolt-custom-inline-elements: () !global;
+$_bolt-custom-inline-elements: ();
 /// Quoted custom inline-block elements used to globally collect group generic styles. Elements registered via @mixin bolt-register-element.
 /// @see {mixin} bolt-register-element
-$_bolt-custom-inline-block-elements: () !global;
+$_bolt-custom-inline-block-elements: ();
 
 // Equivalent custom elements from above without the quotes -- perfect for using as a group CSS selector.
 /// All (unquoted) custom block elements used to globally collect group generic styles
-$bolt-all-custom-block-elements: () !global;
+$bolt-all-custom-block-elements: ();
 /// All (unquoted) custom inline-block elements used to globally collect group generic styles
-$bolt-all-custom-inline-block-elements: () !global;
+$bolt-all-custom-inline-block-elements: ();
 /// All (unquoted) custom inline elements used to globally collect group generic styles
-$bolt-all-custom-inline-elements: () !global;
+$bolt-all-custom-inline-elements: ();
 
 
 /// Register Element helper mixin: registers any custom elements getting included (used outside selector or declaration)

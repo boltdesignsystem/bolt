@@ -1,0 +1,62 @@
+{% set schema = bolt.data.components["@bolt-components-tabs"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# Variables #}
+{% set this = init(schema.properties.panels.items) %}
+{% set inner_attributes = create_attribute({}) %}
+{% set label_attributes = create_attribute({}) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  "c-bolt-tab-panel",
+  this.data.align.value ? "c-bolt-tabs--align-" ~ this.data.align.value : "",
+  panel_spacing ? "c-bolt-tab-panel--spacing-" ~ panel_spacing : "",
+  inset == "on"  ? "c-bolt-tab-panel--inset" : "",
+] %}
+
+{% set label_classes = [
+  "c-bolt-tabs__label",
+  label_spacing ? "c-bolt-tabs__label--spacing-" ~ label_spacing : "",
+] %}
+
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+{% set panel_name = "tabs-#{uuid}" %}
+{% set panel_id = "tabs-#{uuid}-#{index}" %}
+{% set selected_tab = selected_tab ?? 1 %}
+
+<input type="radio" name="{{ panel_name }}" id="{{ panel_id }}" class="c-bolt-tabs__input" {% if index == selected_tab %} checked {% endif %}/>
+<label for="{{ panel_id }}" {{ label_attributes.addClass(label_classes) }}>
+  <span class="c-bolt-tabs__label-inner">
+    <span class="c-bolt-tabs__label-text">
+      {{ label }}
+    </span>
+  </span>
+</label>
+<replace-with-children class="c-bolt-tab-panel__outer">
+  <bolt-tab-panel {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %} {{ this.props|without("label")|without("content")|without("class") }} ssr-hydrate="keep">
+    <div slot="label">{{ label }}</div>
+    <replace-with-grandchildren {{ inner_attributes.addClass(inner_classes) }}>
+      <div role="tabpanel" class="c-bolt-tab-panel__content">
+        {{ content }}
+      </div>
+    </replace-with-grandchildren>
+  </bolt-tab-panel>
+</replace-with-children>

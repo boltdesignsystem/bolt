@@ -1,0 +1,47 @@
+{% set schema = bolt.data.components["@bolt-components-tabs"].schema %}
+
+{% set tab_content_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 1",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 2",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 3",
+      size: "large",
+    } only %}
+{% endset %}
+
+<bolt-text>
+  The <code>inset</code> prop controls how <code>label_spacing</code> and <code>panel_spacing</code> are applied. When set to <code>auto</code> (default), there is inset spacing around labels and no inset spacing around panels, which means panels are flush with the edges of the parent container. When set to <code>on</code>, spacing is applied around the labels as well as the panels. This works well in a container which has no inner padding of its own. When set to <code>off</code>, all inset spacing is turned off. <code>label_spacing</code> applies <i>between</i> labels rather than around them, and <code>panel_spacing</code> only applies above the panel, making the panel flush with the edges of the parent container.
+</bolt-text>
+
+{% for inset in schema.properties.inset.enum %}
+  <bolt-text headline font-size="large">Inset: <code>{{ inset }}</code></bolt-text>
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-tabs/tabs.twig" with {
+      inset: inset,
+      panels: [
+        {
+          label: "Tab label 1",
+          content: tab_content_1,
+        },
+        {
+          label: "Tab label 2",
+          content: tab_content_2,
+        },
+        {
+          label: "Tab label 3",
+          content: tab_content_3,
+        }
+      ]
+    } only %}
+  </div>
+{% endfor %}

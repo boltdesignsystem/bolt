@@ -1,4 +1,7 @@
-import lazySizes from 'lazysizes/lazysizes.js'; // Mostly just for automatic `size` attribute support
+// temporarily use local pre-patched version of lazysizes
+// @todo: replace this with a proper fork or improved patch-package workflow
+import lazySizes from './lazysizes.js';
+
 // import 'lazysizes/src/lazysizes-intersection';
 import 'lazysizes/plugins/unveilhooks/ls.unveilhooks';
 import 'lazysizes/plugins/progressive/ls.progressive';

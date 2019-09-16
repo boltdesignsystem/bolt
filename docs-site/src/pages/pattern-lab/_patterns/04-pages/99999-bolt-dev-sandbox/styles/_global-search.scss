@@ -1,0 +1,263 @@
+/* ------------------------------------ *\
+   Global Search
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+
+/**
+ * Search Field
+ */
+
+$bolt-search-field-placeholder-color: bolt-theme(text, 0.4);
+$bolt-search-field-border-width: $bolt-border-width;
+$bolt-search-field-border-style: $bolt-border-style;
+$bolt-search-field-icon-only-button-width: bolt-spacing(medium) + 1rem;
+
+
+.c-bolt-search-field {
+  @include bolt-shadow('level-10');
+
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: bolt-border-radius(small);
+  transition: all $bolt-transition;
+
+  &[class*='t-bolt'] {
+    background-color: transparent;
+  }
+}
+
+.c-bolt-search-field__label {
+  @include bolt-visuallyhidden;
+}
+
+.c-bolt-search-field__input {
+  @include bolt-padding(medium, squished);
+  @include bolt-padding-right(small);
+
+  flex: 1;
+  order: 1;
+  appearance: none;
+  opacity: bolt-opacity(100);
+  padding-left: $bolt-search-field-icon-only-button-width;
+  color: bolt-theme(text);
+  border-radius: bolt-border-radius(small);
+  border-width: $bolt-search-field-border-width;
+  border-style: $bolt-search-field-border-style;
+  outline: none;
+  transition: all $bolt-transition;
+
+  @at-root .c-bolt-search-field[class*='t-bolt'] #{&} {
+    border-color: bolt-theme(link, 0.2);
+    background-color: bolt-theme(background);
+
+    &:focus {
+      border-color: rgba(bolt-color(indigo, light), 0.8);
+      box-shadow: 0 0 0 3px rgba(bolt-color(gray, light), 0.4);
+    }
+  }
+
+  @at-root .c-bolt-search-field:not([class*='t-bolt']) #{&} {
+    border-color: bolt-theme(link, 0.2);
+    background-color: rgba(bolt-color(white), 0.1);
+
+    &:focus {
+      border-color: bolt-theme(link, 0.8);
+      box-shadow: 0 0 0 3px bolt-theme(link, 0.2);
+    }
+  }
+
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $bolt-search-field-placeholder-color;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $bolt-search-field-placeholder-color;
+  }
+
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $bolt-search-field-placeholder-color;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $bolt-search-field-placeholder-color;
+  }
+
+  &:valid {
+    padding-right: $bolt-search-field-icon-only-button-width;
+  }
+}
+
+.c-bolt-search-field__button {
+  order: 0;
+  width: 0;
+}
+
+.c-bolt-search-field__button--reset {
+  order: 2;
+  transform: translate3d(($bolt-search-field-icon-only-button-width * -1), 0, 0);
+
+  @at-root .c-bolt-search-field__input:not(:valid) ~ #{&} {
+    display: none;
+  }
+}
+
+
+/**
+ * Mega Nav
+ */
+
+.c-page-header--global-search-active {
+  border-bottom-width: 0;
+}
+
+/**
+ * Global Search Panel
+ */
+
+.c-global-search-panel {
+  display: block;
+}
+
+.c-global-search-panel--floating {
+  @include bolt-shadow('level-40');
+
+  position: absolute;
+  top: calc(100% - 1px);
+  right: 0;
+  left: 0;
+  width: 100%;
+  max-height: 0;
+  pointer-events: none;
+  transition: all $bolt-transition;
+
+  @at-root .c-page-header--global-search-active #{&} {
+    pointer-events: auto;
+  }
+}
+
+.c-global-search-panel__overlay {
+  display: flex;
+  opacity: bolt-opacity(0);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1; // This is self contained z-index within the search panel. Its only purpose is to define stacking order of elements in this specific container.
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  text-indent: 99999px; // This hides trigger text.
+  pointer-events: none;
+  background-color: bolt-color(indigo, xdark);
+  transition: opacity .1s ease;
+
+  @at-root .c-page-header--global-search-active #{&} {
+    opacity: bolt-opacity(20);
+    pointer-events: auto;
+  }
+}
+
+.c-global-search-panel__content {
+  @include bolt-padding(small 0);
+
+  position: relative;
+
+
+
+  @at-root .c-global-search-panel--floating #{&} {
+    opacity: bolt-opacity(0);
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale3d(1, .5, 1);
+    transition: all $bolt-transition;
+    @include bolt-shadow('level-40');
+    transform-origin: 0 0;
+
+    > * {
+      opacity: 0;
+      transform: translate3d(0, 0px, 0) scale3d(0.99, 0.8, 1);
+      transition: opacity ease-in-out 200ms 200ms, transform ease-in-out 200ms;
+      transition-delay: 133.333ms;
+
+      .c-page-header--global-search-active & {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+  }
+
+  @at-root .c-page-header--global-search-active .c-global-search-panel--floating #{&} {
+    opacity: bolt-opacity(100);
+    transform: translate3d(0, 0, 0);
+    z-index: 2; // This is self contained z-index within the search panel. Its only purpose is to define stacking order of elements in this specific container.
+  }
+}
+
+.c-global-search-panel__content__transition {
+  @at-root .c-global-search-panel--floating #{&} {
+    opacity: bolt-opacity(0);
+    transform: translate3d(0, -20%, 0) scale3d(0.99, 0.8, 1);
+    transition: all $bolt-transition;
+  }
+
+  @at-root .c-page-header--global-search-active .c-global-search-panel--floating #{&} {
+    opacity: bolt-opacity(100);
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+    transition-delay: $bolt-transition-timing / 1.5;
+  }
+}
+
+.c-global-search-panel-trigger__icon {
+  font-size: 1.25rem;
+}
+
+.c-global-search-panel-trigger__open-button {
+  display: block;
+
+  @at-root .c-page-header--global-search-active #{&} {
+    display: none;
+  }
+}
+
+.c-global-search-panel-trigger__close-button {
+  display: none;
+
+  @at-root .c-page-header--global-search-active #{&} {
+    display: block;
+  }
+}
+
+.c-global-search-panel-trigger {
+  position: relative;
+}
+
+.c-global-search-panel-trigger__panel-tip {
+  display: block;
+  opacity: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 100%, 0) rotate(45deg) scale(0);
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+  background-color: bolt-theme(background);
+  transition: all $bolt-transition;
+
+  @at-root .c-page-header--global-search-active #{&} {
+    opacity: 1;
+    transform: translate3d(-50%, 0, 0) rotate(45deg) scale(1);
+  }
+
+  @at-root .c-page-header--global-search-active:not(.is-top) #{&} {
+    @include bolt-mq(large) {
+      transform: translate3d(-50%, calc(8px - 0.2vw), 0) rotate(45deg) scale(1); // This is a magic number to position the triangle.
+    }
+  }
+
+  @at-root .c-page-header--global-search-active.is-top #{&} {
+    @include bolt-mq(large) {
+      transform: translate3d(-50%, calc(18px - 0.2vw), 0) rotate(45deg) scale(1); // This is a magic number to position the triangle.
+    }
+  }
+}

@@ -1,0 +1,133 @@
+{% set schema = bolt.data.components["@bolt-components-typeahead"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{# @todo: re-enable once CSS Modules ships %}
+{# {% set selectors = get_data("@bolt-components-typeahead/typeahead.scoped.json") %}
+{% set classNames = {
+  icon: selectors["c-bolt-typeahead__icon"],
+  clearIcon: selectors["c-bolt-typeahead__icon--clear"],
+  clearButton: [
+    selectors["c-bolt-typeahead__button"],
+    selectors["c-bolt-typeahead__button--clear"],
+  ],
+  submitButton: [
+    selectors["c-bolt-typeahead__button"],
+    selectors["c-bolt-typeahead__button--submit"],
+  ],
+  input: selectors["c-bolt-typeahead__input"],
+  inputWrapper: selectors["c-bolt-typeahead__input-wrapper"],
+  label: selectors["c-bolt-typeahead__label"],
+  typeahead: selectors["c-bolt-typeahead"],
+} %} #}
+
+{% set classNames = {
+  icon: "c-bolt-typeahead__icon",
+  clearIcon: "c-bolt-typeahead__icon--clear",
+  clearButton: [
+    "c-bolt-typeahead__button",
+    "c-bolt-typeahead__button--clear",
+  ],
+  submitButton: [
+    "c-bolt-typeahead__button",
+    "c-bolt-typeahead__button--submit",
+  ],
+  input: "c-bolt-typeahead__input",
+  inputWrapper: "c-bolt-typeahead__input-wrapper",
+  label: "c-bolt-typeahead__label",
+  typeahead: "c-bolt-typeahead",
+} %}
+
+{% set utils = {
+  visuallyHidden: "u-bolt-visuallyhidden",
+  hidden: "u-bolt-hidden"
+} %}
+
+{% set this = init(schema) %}
+
+{% set uuid = this.data.name.value|default(bolt.data.config.env == "test" ? "12345" : random() ~ "") %}
+
+{% set search_icon %}
+{% embed "@bolt-components-icon/icon.twig" with {
+    name: "search",
+    preload: true,
+    attributes: {
+      class: [
+        classNames.icon
+      ]
+    }
+  } only %}
+  {% block icon_inner %}
+    {{ source("@bolt-components-typeahead/search.min.svg") }}
+  {% endblock icon_inner %}
+{% endembed %}
+{% endset %}
+
+
+{% set clear_icon %}
+{% embed "@bolt-components-icon/icon.twig" with {
+    name: "close-solid",
+    preload: true,
+    attributes: {
+      class: [
+        classNames.icon
+      ]
+    }
+  } only %}
+  {% block icon_inner %}
+    {{ source("@bolt-components-typeahead/close-solid.min.svg") }}
+  {% endblock icon_inner %}
+{% endembed %}
+{% endset %}
+
+{% spaceless %}
+  <bolt-typeahead {{ this.props }}>
+    <div class="{{ classNames.typeahead }}">
+      {% block label %}
+        <label for="{{ uuid }}" class="{{ classNames.label }}">
+          <span class="{{ utils.visuallyHidden }}">{{ this.data.input_label.value }}</span>
+        </label>
+      {% endblock %}
+
+      {% block input %}
+        <input id="{{ uuid }}" type="text" autocomplete="off" aria-autocomplete="list" class="{{ classNames.input }}" placeholder="{{ this.data.input_placeholder.value }}" value="{{ this.data.input_value.value }}" required name="{{ this.data.input_name.value }}"/>
+      {% endblock %}
+
+      {% embed "@bolt-components-button/button.twig" with {
+        text: this.data.clear_input_text.value,
+        iconOnly: true,
+        style: "text",
+        attributes: {
+          onclick: "this.previousElementSibling.focus()",
+          class: [
+            classNames.clearButton | join(' ')
+          ],
+        },
+        type: "reset"
+      } %}
+        {% block slot_after %}
+          <replace-with-children class="c-bolt-button__icon">
+            {{ clear_icon }}
+          </replace-with-children>
+        {% endblock slot_after %}
+      {% endembed %}
+
+      <div class="{{ classNames.submitButton | join(' ') }}">
+        {% embed "@bolt-components-button/button.twig" with {
+          text: this.data.submit_button_text.value,
+          iconOnly: true,
+          style: "text",
+          type: "submit"
+        } %}
+          {% block slot_after %}
+            <replace-with-children class="c-bolt-button__icon">
+              {{ search_icon }}
+            </replace-with-children>
+          {% endblock slot_after %}
+        {% endembed %}
+      </div>
+    </div>
+  </bolt-typeahead>
+{% endspaceless %}
