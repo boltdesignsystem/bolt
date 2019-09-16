@@ -1,0 +1,225 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% set hero_band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
+        {# This is a standard teaser #}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "This Is an Eyebrow",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xxxlarge",
+          text: "This Is a Headline",
+        } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          size: "xxlarge",
+          text: "This Is a Subheadline",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "This is a paragraph.",
+        } only %}
+        {% include "@bolt-components-button/button.twig" with {
+          text: "This is a button",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+        {% include "@bolt-components-list/list.twig" with {
+          separator: "solid",
+          spacing: "medium",
+          items: [
+            include("@bolt-components-link/link.twig", {
+              text: "Block List Item 1",
+              url: "#!",
+            }),
+            include("@bolt-components-link/link.twig", {
+              text: "Block List Item 2",
+              url: "#!",
+            }),
+            include("@bolt-components-link/link.twig", {
+              text: "Block List Item 3",
+              url: "#!",
+            }),
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% set card_band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              lazyload: false,
+              alt: "Image description"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Collection 1"
+            },
+            {
+              pattern: "button",
+              text: "This is a button",
+              url: "http://pega.com",
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              lazyload: false,
+              alt: "Image description"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Collection 2"
+            },
+            {
+              pattern: "button",
+              text: "This is a button",
+              url: "http://pega.com",
+            }
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+        {% include "@bolt-components-card/card.twig" with {
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/placeholders/landscape-16x9-mountains.jpg",
+              lazyload: false,
+              alt: "Image description"
+            },
+            {
+              pattern: "headline",
+              tag: "h3",
+              size: "large",
+              text: "Collection 3"
+            },
+            {
+              pattern: "button",
+              text: "This is a button",
+              url: "http://pega.com",
+            }
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% set flag_band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-12/12@only-small u-bolt-flex-grow" %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "This Is a Flag",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "large",
+          text: "With text on the left and CTAs on the right.",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12@only-small" %}
+        {% set button_1 %}
+          {% include "@bolt-components-button/button.twig" with {
+            size: "small",
+            style: "primary",
+            text: "Primary action",
+          } only %}
+        {% endset %}
+        {% set button_2 %}
+          {% include "@bolt-components-button/button.twig" with {
+            size: "small",
+            style: "secondary",
+            text: "Secondary action",
+          } only %}
+        {% endset %}
+        {% include "@bolt-components-list/list.twig" with {
+          display: "inline",
+          items: [
+            button_1,
+            button_2,
+          ],
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% set action_band_content %}
+    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+      contentItems: [
+        {
+          text: "Item 1",
+          url: "#!",
+          icon: {
+            name: "asset-interactive",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 2",
+          url: "#!",
+          icon: {
+            name: "asset-media",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 3",
+          url: "#!",
+          icon: {
+            name: "asset-data",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 4",
+          url: "#!",
+          icon: {
+            name: "asset-presentation",
+            size: "large",
+          }
+        },
+        {
+          text: "Item 5",
+          url: "#!",
+          icon: {
+            name: "asset-podcast",
+            size: "large",
+          }
+        }
+      ]
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    content: hero_band_content,
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    content: card_band_content,
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    size: "small",
+    content: flag_band_content,
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "dark",
+    content: action_band_content,
+  } only %}
+{% endblock %}

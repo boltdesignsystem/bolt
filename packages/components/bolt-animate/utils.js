@@ -24,9 +24,14 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
     animEls.map(
       animEl =>
         new Promise((resolve, reject) => {
+          let timeoutId;
+          let triggered = false;
+          let duration = 0;
+
           animEl.addEventListener(
             eventName,
             () => {
+              if (timeoutId) clearTimeout(timeoutId);
               resolve({
                 success: true,
                 animEl,
@@ -37,18 +42,39 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
             },
           );
 
-          let triggered = false;
           switch (stage) {
             case 'IN':
               triggered = animEl.triggerAnimIn();
+              duration = animEl.inDuration;
               break;
             case 'OUT':
               triggered = animEl.triggerAnimOut();
+              duration = animEl.outDuration;
               break;
           }
+
           if (debug) {
             console.debug(`${eventName}`, animEl);
           }
+
+          if (typeof duration === 'number') {
+            timeoutId = setTimeout(() => {
+              console.warn(
+                `animation taking too long for stage "${stage}", cancelling and moving on to next one.`,
+                animEl,
+              );
+              resolve({
+                success: false,
+                animEl,
+              });
+            }, duration + 100);
+          } else {
+            console.warn(
+              `Uh oh, animation duration retrieved was not a number: ${duration}`,
+              animEl,
+            );
+          }
+
           if (!triggered) {
             reject(
               new Error(
@@ -67,7 +93,7 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
 
 /**
  * @param {Object} opt
- * @param {BoltAnimate[]} opt.animEls
+ * @param {BoltAnimate[] | NodeListOf<BoltAnimate>} opt.animEls
  * @param {string} [opt.stage='IN']
  * @param {boolean=} [opt.debug=false]
  */
@@ -77,7 +103,7 @@ export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
   let eventName;
   switch (stage) {
     case 'IN':
-      eventName = 'bolt-animate:end:out';
+      eventName = 'bolt-animate:end:in';
       orderProp = 'inOrder';
       hasAnimProp = 'hasAnimIn';
       break;
@@ -88,6 +114,11 @@ export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
       break;
   }
   if (!orderProp) throw new Error(`Incorrect stage name passed: ${stage}`);
+
+  // convert NodeList over to array in case `querySelectorAll` was used
+  animEls = Array.isArray(animEls)
+    ? animEls
+    : Array.prototype.slice.call(animEls);
 
   const orders = new Set();
   animEls.forEach(animEl => {
@@ -128,7 +159,9 @@ export async function triggerAnimsInEl(el, stage = 'IN') {
       `When running "triggerAnimsInEl", the passed element does not have "querySelectorAll" method.`,
     );
   }
-  const animEls = Array.from(el.querySelectorAll('bolt-animate'));
+  const animEls = Array.prototype.slice.call(
+    el.querySelectorAll('bolt-animate'),
+  );
   if (animEls.length === 0) {
     return false;
   }

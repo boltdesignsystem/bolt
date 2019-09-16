@@ -1,7 +1,6 @@
 <div class="demo-animate">
 
-  <button class="demo-animate__trigger" onclick="trigger('in')">Trigger Build In</button>
-  <button class="demo-animate__trigger" onclick="trigger('out')">Trigger Build Out</button>
+  <button class="demo-animate__trigger">Trigger</button>
   <div class="demo-animate__items">
     <div class="demo-animate__item">
       <bolt-animate
@@ -11,9 +10,7 @@
         idle="pulse"
         out="fade-out"
       >
-        <div is="shadow-root">
-          <h2>In, Idle, Out</h2>
-        </div>
+        <h2>In, Idle, Out</h2>
       </bolt-animate>
     </div>
 
@@ -22,9 +19,7 @@
         initial-appearance="hidden"
         in="fade-in"
       >
-        <div is="shadow-root">
-          <h2>In</h2>
-        </div>
+        <h2>In</h2>
       </bolt-animate>
     </div>
 
@@ -34,9 +29,7 @@
         idle-duration="5000"
         out="fade-out"
       >
-        <div is="shadow-root">
-          <h2>Idle, Out</h2>
-        </div>
+        <h2>Idle, Out</h2>
       </bolt-animate>
     </div>
 
@@ -44,9 +37,7 @@
       <bolt-animate
         out="fade-out"
       >
-        <div is="shadow-root">
-         <h2>Out</h2>
-        </div>
+        <h2>Out</h2>
       </bolt-animate>
     </div>
 
@@ -56,9 +47,7 @@
         in="fade-in"
         out="fade-out"
       >
-        <div is="shadow-root">
-          <h2>In, Out</h2>
-        </div>
+        <h2>In, Out</h2>
       </bolt-animate>
     </div>
 
@@ -68,9 +57,7 @@
         in="fade-in"
         idle="pulse"
       >
-        <div is="shadow-root">
-          <h2>In, Idle</h2>
-        </div>
+        <h2>In, Idle</h2>
       </bolt-animate>
     </div>
 
@@ -79,9 +66,7 @@
         idle="pulse"
         idle-duration="5000"
       >
-        <div is="shadow-root">
-          <h2>Idle</h2>
-        </div>
+        <h2>Idle</h2>
       </bolt-animate>
     </div>
   </div>
@@ -94,11 +79,18 @@
   </style>
 
   <script type="application/javascript">
-    // This is untranspiled IE 11 code, so polyfill foreach.
+    const els = document.querySelectorAll('.demo-animate__items bolt-animate');
+    els.forEach(el => {
+      el.addEventListener('bolt-animate:end:in', event => {
+        console.log('pl bolt-animate:end:in', event);
+      });
+      el.addEventListener('bolt-animate:end:out', event => {
+        console.log('pl bolt-animate:end:out', event);
+      });
+    });
 
     function trigger(type) {
-      const els = document.querySelectorAll('.demo-animate__items bolt-animate');
-      els.forEach(function(el) {
+      els.forEach(el => {
         if (type === 'in') {
           el.triggerAnimIn();
         }
@@ -108,7 +100,6 @@
         // el.setAttribute('trigger', type);
       });
     }
-
   </script>
 
 </div>

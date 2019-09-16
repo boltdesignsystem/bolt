@@ -1,5 +1,5 @@
 const promiseLimit = require('promise-limit');
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const localChrome = require('local-chrome');
 
 const waitForRender = function(options) {

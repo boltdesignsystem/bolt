@@ -73,6 +73,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+  width: 100%;
   padding: 2px;
 
   >.gjs-pega-editor-panels-btn {
@@ -86,6 +87,11 @@
     &:hover {
       cursor: pointer;
       background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    &--bug {
+      margin-left: auto;
+      background-color: #661A00; // @todo use var
     }
   }
 }

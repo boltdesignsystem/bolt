@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button-group/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+**Note:** Version bump only for package @bolt/components-button-group
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button-group/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+**Note:** Version bump only for package @bolt/components-button-group
+
+
+
+
+
 # [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button-group/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
 
 **Note:** Version bump only for package @bolt/components-button-group

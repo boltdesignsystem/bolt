@@ -1,0 +1,48 @@
+@import '@bolt/core';
+
+.c-bolt-dropdown {
+  overflow: visible;
+  margin: 0 .65rem;
+  box-shadow: none;
+  background: transparent;
+
+  &__header {
+    border-bottom: 1px solid bolt_theme(text);
+    box-shadow: none;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  &__header-button {
+    display: block;
+    padding: 0;
+    color: bolt_theme(primary);
+    line-height: 1.65;
+    font-size: 1.75rem;
+  }
+
+  &__header-icon {
+    padding: 0 calc(1rem / 2);
+  }
+
+  &__content {
+    position: absolute;
+    overflow: visible;
+    box-shadow: none;
+  }
+
+  &__content-inner {
+    overflow: visible;
+
+    &:after {
+      display: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+

@@ -79,6 +79,7 @@ const config = {
       '@bolt/global',
       '@bolt/components-animate',
       '@bolt/docs-search',
+      '@bolt/components-typeahead',
       // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
@@ -126,6 +127,7 @@ const config = {
       '@bolt/components-svg-animations',
       '@bolt/components-self-drawing-circle',
       '@bolt/components-table',
+      '@bolt/components-tabs',
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
@@ -160,6 +162,10 @@ const config = {
     {
       from: require.resolve(`@bolt/critical-path-polyfills`),
       to: path.join(__dirname, '../www/build'),
+    },
+    {
+      from: path.join(path.dirname(require.resolve(`@bolt/components-typeahead`)),'__demos__/typeahead.data.json'),
+      to: path.join(__dirname, '../www/build/data'),
     },
     {
       from: `src/assets/bolt-sketch.zip`,

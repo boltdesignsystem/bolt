@@ -73,16 +73,17 @@ module.exports = {
   components: {
     global: [
       ...allComponentPackages,
-      '@bolt/analytics-autolink',
-      '@bolt/components-editor',
+      '@bolt/components-animate',
       '@bolt/micro-journeys',
       '@bolt/with-without',
+      '@bolt/analytics-autolink',
     ],
   },
   images: {
     sets: imageSets,
   },
   prod: true,
+  sourceMaps: false,
   enableCache: true,
   verbosity: 1,
   copy: [...itemsToCopy],

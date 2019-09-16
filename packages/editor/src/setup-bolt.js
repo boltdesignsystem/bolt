@@ -7,7 +7,7 @@ import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
-import svgAnimationsSchema from '@bolt/components-svg-animations/svg-animations.schema';
+import svgAnimationsSchema from '@bolt/micro-journeys/src/bolt-svg-animations/svg-animations.schema';
 // @ts-ignore
 import blockquoteSchema from '@bolt/components-blockquote/blockquote.schema.yml';
 // @ts-ignore
@@ -81,6 +81,42 @@ const link = {
   content: `<bolt-link display="inline" valign="start">I'm a link</bolt-link>`,
 };
 
+const iconGroupVerticle = {
+  id: 'bolt-icon-group-vertical',
+  title: 'Icon Group (vertical)',
+  content: `
+<bolt-list display="block" spacing="small">
+  <bolt-list-item>
+    <bolt-icon name="mobility" size="large"></bolt-icon>
+  </bolt-list-item>
+  <bolt-list-item>
+    <bolt-icon name="documentation" size="large"></bolt-icon>
+  </bolt-list-item>
+  <bolt-list-item last="">
+    <bolt-icon name="print" size="large"></bolt-icon>
+  </bolt-list-item>
+</bolt-list>
+  `,
+};
+
+const iconGroupHorizontal = {
+  id: 'bolt-icon-group-horizontal',
+  title: 'Icon Group (horizontal)',
+  content: `
+<bolt-list display="inline" spacing="small">
+  <bolt-list-item>
+    <bolt-icon name="mobility" size="large"></bolt-icon>
+  </bolt-list-item>
+  <bolt-list-item>
+    <bolt-icon name="documentation" size="large"></bolt-icon>
+  </bolt-list-item>
+  <bolt-list-item last="">
+    <bolt-icon name="print" size="large"></bolt-icon>
+  </bolt-list-item>
+</bolt-list>
+  `,
+};
+
 const svgAnimations = {
   id: 'bolt-svg-animations',
   title: 'Svg Animtions',
@@ -95,6 +131,8 @@ const basicSlottableComponents = [
   basicText,
   cta,
   link,
+  iconGroupVerticle,
+  iconGroupHorizontal,
 ];
 
 const characterSlottableComponents = [];
@@ -400,7 +438,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-interactive-step',
     draggable: 'bolt-interactive-pathway',
-    editable: false,
+    editable: true,
     highlightable: false,
     extraTraits: ['tab-title'],
     slots: {
@@ -431,7 +469,7 @@ export function setupBolt(editor) {
       default: 'bolt-interactive-pathway',
     },
     initialContent: [
-      `<p slot="interactive-pathways-lead-text">How Pega technology resolves</p>`,
+      `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
       `<bolt-interactive-pathway pathway-title="New Title">
         ${starters.stepOneCharacterLorem}        
         ${starters.stepTwoCharacterLorem}
@@ -458,7 +496,7 @@ export function setupBolt(editor) {
     highlightable: true,
     extraTraits: ['pathway-title'],
     slots: {
-      default: true,
+      default: 'bolt-interactive-step',
     },
     slotControls: [
       {
@@ -482,7 +520,9 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-animate',
     schema: animateSchema,
-    propsToTraits: Object.keys(animateSchema.properties),
+    propsToTraits: Object.keys(animateSchema.properties).filter(
+      prop => prop !== 'showMeta',
+    ),
     draggable: false,
     editable: true,
     highlightable: true,

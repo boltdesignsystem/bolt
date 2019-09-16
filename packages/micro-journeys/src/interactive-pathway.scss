@@ -24,15 +24,20 @@ $bolt-interactive-step--dot-size: 1.2rem;
   &__nav {
     display: none;
   }
+
   @include bolt-mq(medium) {
     flex-wrap: nowrap;
     justify-content: space-between;
 
+    $gutter: bolt-spacing(large);
+    $half-gutter: $gutter / 2;
+
     &__nav {
       display: block;
-      flex: 0 1;
       position: relative;
+      width: calc(30% - #{$half-gutter});
       margin-right: bolt-spacing(large);
+      @include bolt-micro-journeys-nav-items-wrapper;
     }
 
     &__nav-item {
@@ -61,7 +66,7 @@ $bolt-interactive-step--dot-size: 1.2rem;
     }
 
     &__items {
-      flex: 1 1;
+      width: calc(70% - #{$half-gutter});
     }
   }
 }
