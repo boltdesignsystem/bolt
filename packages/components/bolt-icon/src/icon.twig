@@ -11,4 +11,4 @@
   .setAttribute("color", color)
 %}
 
-<bolt-icon {{ attributes }}></bolt-icon>
+<bolt-icon {{ attributes }}>{% block icon_inner %}{% endblock %}</bolt-icon>
