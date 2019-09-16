@@ -55,6 +55,8 @@
         {% for item in contentItems %}
 
           {% set itemAttributes = item.pattern ~ "Attributes" %}
+
+          {# todo: in v3.0 remove reference to Video, no longer supported #}
           {# Image expects "ratio" to be passed as string, Video expects boolean #}
           {% set ratioValue = item.pattern == "image" ? "none" : false %}
 
@@ -65,7 +67,8 @@
               }
             }) %}
           {% endif %}
-          
+
+          {# todo: in v3.0 nix the pattern_template pattern? #}
           {% include pattern_template(item.pattern) with item | merge({
             ratio: ratioValue,
             lazyload: item.lazyload ?? true,

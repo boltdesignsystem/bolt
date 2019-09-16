@@ -237,6 +237,8 @@ class BoltTable extends withLitHtml {
     }
 
     function injectClasses(classes, attributes) {
+      // @todo: `findIndex` does not work in IE11 without a polyfill, so it silently stops/fails here.
+      // Once polyfilled, the table markup disappears on load. Come back to this, polyfill it, and fix he underlying table bug.
       const classIndex = attributes.findIndex(item => item.key === 'class');
 
       if (classIndex === -1) {
