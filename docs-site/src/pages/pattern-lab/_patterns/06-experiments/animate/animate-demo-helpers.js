@@ -13,11 +13,10 @@ export function enableAnimDemos() {
         const trigger = animDemo.querySelector('.demo-animate__trigger');
         const wrapper = animDemo.querySelector('.demo-animate__wrapper');
         let animEls = Array.from(animDemo.querySelectorAll('bolt-animate'));
+        if (!trigger) return;
         setTriggerText({ trigger, stage: 'IN', totalAnims: animEls.length });
-        animEls.forEach(x => x.classList.add('found-it'));
 
         trigger.addEventListener('click', () => {
-          animEls.forEach(x => x.classList.add('ran-it'));
           animEls = Array.from(animDemo.querySelectorAll('bolt-animate'));
           const stage = triggeredIn ? 'OUT' : 'IN';
           triggerAnims({ animEls, stage, debug: false }).then(() => {
