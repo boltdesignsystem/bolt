@@ -19,6 +19,7 @@ class BoltTrigger extends BoltAction {
   static props = {
     url: props.string,
     target: props.string,
+    type: props.string,
     cursor: props.string,
     display: props.string,
     noOutline: props.boolean,
@@ -47,6 +48,7 @@ class BoltTrigger extends BoltAction {
     const {
       url,
       target,
+      type,
       cursor,
       display,
       noOutline,
@@ -93,6 +95,11 @@ class BoltTrigger extends BoltAction {
         } else {
           triggerElement.removeAttribute('disabled');
         }
+
+        // check `this.props.type` not `type` to see if type has been set, the validated `type` const will always return a value
+        if (this.props.type) {
+          triggerElement.setAttribute('type', type);
+        }
       }
 
       // @todo: use of buttons/anchors in the default slot has not been thoroughly tested. Is this even required?
@@ -116,6 +123,7 @@ class BoltTrigger extends BoltAction {
       triggerElement = html`
         <button
           class="${classes}"
+          type="${type}"
           disabled=${ifDefined(disabled ? '' : undefined)}
           @focus="${e => this._handleFocus(e)}"
           @blur="${e => this._handleBlur(e)}"
