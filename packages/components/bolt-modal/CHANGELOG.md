@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+# [2.6.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+
+### Bug Fixes
+
+* make sure text styles are not inherited from external container and correct cursor type on overlay ([7bc8444](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/7bc8444))
+* typo on testing instructions ([660c30a](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/660c30a))
+
+
+
+
+
 # [2.6.0-beta.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
 
 **Note:** Version bump only for package @bolt/components-modal
