@@ -1,0 +1,324 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Yeoman component generator JS file exist 1`] = `
+"import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import classNames from 'classnames/bind';
+import styles from './test.scss';
+import schema from '../test.schema.yml';
+
+let cx = classNames.bind(styles);
+
+@define
+class BoltTest extends withLitHtml() {
+  static is = 'bolt-test';
+
+  static props = {
+    noShadow: {
+      ...props.boolean,
+      ...{ default: false },
+    },
+    disabled: {
+      ...props.boolean,
+      ...{ default: false },
+    },
+  };
+
+  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  constructor(self) {
+    self = super(self);
+    self.useShadow = hasNativeShadowDomSupport;
+    self.schema = this.getModifiedSchema(schema);
+    return self;
+  }
+
+  render() {
+    // validate the original prop data passed along -- returns back the validated data w/ added default values
+    const { disabled } = this.validateProps(this.props);
+
+    const classes = cx('c-bolt-test', {
+      [\`c-bolt-test--disabled\`]: disabled,
+    });
+
+    return html\`
+      \${this.addStyles([styles])}
+      <div class=\\"\${classes}\\" is=\\"shadow-root\\">
+        \${this.slot('default')}
+      </div>
+    \`;
+  }
+}
+
+export { BoltTest };
+"
+`;
+
+exports[`Yeoman component generator SCSS file exist 1`] = `
+"@import '@bolt/core';
+
+// Local test Variables
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-test', block, medium);
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+.c-bolt-test {
+  //Styles go here.
+  display: block;
+}
+"
+`;
+
+exports[`Yeoman component generator folder structure of component package is correct 1`] = `
+Array [
+  "packages/generators/yeoman-create-component/generators/component/tmp/.boltrc.js",
+  "packages/generators/yeoman-create-component/generators/component/tmp/docs-site/src/pages/pattern-lab/_patterns/02-components/test/00-test-docs.twig",
+  "packages/generators/yeoman-create-component/generators/component/tmp/package.json",
+  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/README.md",
+  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/__tests__/index.js",
+  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/index.js",
+  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/index.scss",
+  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/package.json",
+  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/src/test.js",
+  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/src/test.scss",
+  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/src/test.twig",
+  "packages/generators/yeoman-create-component/generators/component/tmp/packages/components/bolt-test/test.schema.yml",
+]
+`;
+
+exports[`Yeoman component generator index JS file exist 1`] = `
+"import { polyfillLoader } from '@bolt/core/polyfills';
+
+polyfillLoader.then(res => {
+  import(/* webpackMode: 'eager', webpackChunkName: 'bolt-test' */ './src/test');
+});
+"
+`;
+
+exports[`Yeoman component generator index SCSS file exist 1`] = `
+"@import 'src/test.scss';
+"
+`;
+
+exports[`Yeoman component generator package.json file exist 1`] = `
+"{
+  \\"name\\": \\"@bolt/components-test\\",
+  \\"version\\": \\"0.0.0\\",
+  \\"description\\": \\"Test Description\\",
+  \\"repository\\": {
+    \\"type\\": \\"git\\",
+    \\"url\\": \\"git+https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-test\\"
+  },
+  \\"author\\": \\"Test User <test@example.org>\\",
+  \\"license\\": \\"MIT\\",
+  \\"bugs\\": {
+    \\"url\\": \\"https://github.com/bolt-design-system/bolt/issues\\"
+  },
+  \\"keywords\\": [
+    \\"bolt design system\\"
+  ],
+  \\"dependencies\\": {
+    \\"@bolt/core\\": \\"^0.0.0\\"
+  },
+  \\"publishConfig\\": {
+    \\"access\\": \\"public\\"
+  },
+  \\"style\\": \\"index.scss\\",
+  \\"main\\": \\"index.js\\",
+  \\"twig\\": \\"src/test.twig\\",
+  \\"schema\\": \\"test.schema.yml\\"
+}
+"
+`;
+
+exports[`Yeoman component generator pattern lab file exist 1`] = `
+"{% set usage %}{% verbatim %}
+{% include '@bolt-components-test/test.twig' only %}
+{% endverbatim %}{% endset %}
+
+{% include \\"@utils/docs.twig\\" with {
+  componentName: \\"test\\",
+  usage: usage
+} only %}
+"
+`;
+
+exports[`Yeoman component generator readme file exist 1`] = `
+"Test Description. Part of the collection of components, visual styles, and build tools that power the the [Bolt Design System](https://www.boltdesignsystem.com).
+
+###### Install via NPM
+\`\`\`
+npm install @bolt/components-test
+\`\`\`
+"
+`;
+
+exports[`Yeoman component generator schema file exist 1`] = `
+"title: Test
+type: object
+properties:
+  attributes:
+    title: Attributes (Twig-only)
+    type: object
+    description: A Drupal attributes object. Used to apply with extra HTML attributes to the outer &lt;bolt-test&gt; tag.
+  disabled:
+    title: Disabled
+    type: boolean
+    description: Default \`disabled\` prop supported globally by most Bolt components.
+  no_shadow:
+    title: 'Disable Shadow DOM (Twig-only)'
+    description: 'Manually disables the component from rendering to the Shadow DOM in a Twig template. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.'
+    hidden: true
+    type: boolean
+  'no-shadow':
+    title: 'Disable Shadow DOM (Web Component-only)'
+    description: 'Manually disables the web component from rendering to the Shadow DOM. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.'
+    hidden: true
+    type: boolean"
+`;
+
+exports[`Yeoman component generator tests file exist 1`] = `
+"import {
+  render,
+  renderString,
+  stop as stopTwigRenderer,
+} from '@bolt/twig-renderer';
+import { fixture as html } from '@open-wc/testing-helpers';
+
+const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
+const { join } = require('path');
+const schema = readYamlFileSync(
+  join(__dirname, '../test.schema.yml'),
+);
+const { tag } = schema.properties;
+
+async function renderTwig(template, data) {
+  return await render(template, data, true);
+}
+
+async function renderTwigString(template, data) {
+  return await renderString(template, data, true);
+}
+
+const timeout = 120000;
+
+describe('test', async () => {
+  let page;
+
+  afterAll(async () => {
+    await stopServer();
+  }, timeout);
+
+  beforeEach(async () => {
+    page = await global.__BROWSER__.newPage();
+    await page.goto('http://127.0.0.1:4444/', {
+      waitUntil: 'networkidle0',
+      timeout: 0,
+    });
+  }, timeout);
+
+  test('basic test component renders', async () => {
+    const results = await renderTwig(
+      '@bolt-components-test/test.twig',
+    );
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('basic test component with the global \`no-shadow\` prop added', async () => {
+    const results = await renderTwig(
+      '@bolt-components-test/test.twig',
+      {
+        no_shadow: true,
+      },
+    );
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('test with outer CSS class via Drupal Attributes', async () => {
+    const results = await renderTwig(
+      '@bolt-components-test/test.twig',
+      {
+        attributes: {
+          class: ['u-bolt-margin-top-medium'],
+        },
+      },
+    );
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('Default <bolt-test> w/o Shadow DOM renders', async function() {
+    const renderedComponentHTML = await page.evaluate(() => {
+      const component = document.createElement(
+        'bolt-test',
+      );
+      btn.textContent = 'test Test';
+      document.body.appendChild(btn);
+      component.useShadow = false;
+      component.updated();
+      return component.outerHTML;
+    });
+
+    const renderedHTML = await html(renderedComponentHTML);
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedHTML).toMatchSnapshot();
+  });
+
+  test('Default <bolt-test> with Shadow DOM renders', async function() {
+    const defaultComponentShadowRoot = await page.evaluate(() => {
+      const component = document.createElement(
+        'bolt-test',
+      );
+      component.textContent =
+        'test Component Test -- Shadow Root HTML';
+      document.body.appendChild(component);
+      component.updated();
+      return component.renderRoot.innerHTML;
+    });
+
+    const defaultComponentOuter = await page.evaluate(() => {
+      const component = document.createElement(
+        'bolt-test',
+      );
+      component.textContent =
+        'test Component Test -- Outer HTML';
+      document.body.appendChild(component);
+      component.updated();
+      return component.outerHTML;
+    });
+
+    const renderedShadowDomHTML = await html(defaultComponentShadowRoot);
+    const renderedHTML = await html(defaultComponentOuter);
+
+    expect(renderedHTML.textContent).toEqual(
+      'test Component Test -- Outer HTML',
+    );
+
+    const image = await page.screenshot();
+
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.01',
+      failureThresholdType: 'percent',
+    });
+
+    expect(renderedShadowDomHTML).toMatchSnapshot();
+    expect(renderedHTML).toMatchSnapshot();
+  });
+});
+"
+`;

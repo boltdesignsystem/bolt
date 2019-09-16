@@ -1,0 +1,28 @@
+{% set themes = get_data("@bolt/themes.schema.json") %}
+
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-medium" %}
+  {% for theme in themes.properties.colors.enum %}
+    {% cell "u-bolt-width-1/1" %}
+      {% embed "@utils/theme-demo.twig" %}
+        {% block demo_content %}
+          {% include "@bolt-components-tabs/tabs.twig" with {
+            panels: [
+              {
+                label: "Tab label 1",
+                content: "Tab panel 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porta ut tortor id luctus. Cras fermentum pretium ipsum sit amet tempus. Sed lobortis dui ante, feugiat pharetra turpis dapibus sit amet. Donec hendrerit diam vel ante hendrerit ornare. Donec non aliquam nisi.",
+              },
+              {
+                label: "Tab label 2",
+                content: "Tab panel 2. Aliquam dignissim non ligula et condimentum. Donec et luctus orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer quis dui velit. Proin hendrerit turpis eu elementum rhoncus.",
+              },
+              {
+                label: "Tab label 3",
+                content: "Tab panel 3. Curabitur fermentum dolor sed dignissim lobortis. Curabitur rutrum arcu velit, a placerat nunc sodales at. Sed vel mi ac lectus volutpat accumsan nec in ipsum. In hac habitasse platea dictumst. Morbi lobortis pellentesque ultricies. Cras ultrices sapien quis tellus porttitor consequat.",
+              }
+            ]
+          } only %}
+        {% endblock %}
+      {% endembed %}
+    {% endcell %}
+  {% endfor %}
+{% endgrid %}

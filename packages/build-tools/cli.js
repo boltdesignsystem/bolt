@@ -15,6 +15,8 @@ const packageJson = require('./package.json');
 
 let userConfig;
 
+const parseIntWithRadix = string => parseInt(string, 10);
+
 // global `bolt` cli options & meta
 program
   .version(packageJson.version)
@@ -26,7 +28,7 @@ program
   .option(
     '-v, --verbosity <amount>',
     configSchema.properties.verbosity.description,
-    parseInt,
+    parseIntWithRadix,
   )
   .parse(process.argv);
 
@@ -55,7 +57,7 @@ if (program.configFile) {
 
 (async () => {
   await configStore.init(userConfig).then(async () => {
-    // Now that config is initilized, we can start requiring other things
+    // Now that config is initialized, we can start requiring other things
     const { buildBoltManifest } = require('@bolt/build-utils/manifest');
     const log = require('@bolt/build-utils/log');
 
