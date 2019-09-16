@@ -1,0 +1,36 @@
+{
+  "name": "auto-plugin-bolt-release",
+  "version": "0.0.0",
+  "description": "Automated releases for the Bolt Design System",
+  "author": "Salem Ghoweri",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolt-design-system/bolt.git"
+  },
+  "dependencies": {
+    "@auto-it/core": "^7.6.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133",
+  "main": "dist/auto-release.cjs.js",
+  "module": "dist/auto-release.esm.js",
+  "browser": "dist/auto-release.umd.js",
+  "devDependencies": {
+    "rollup": "^1.19.4",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-terser": "^5.1.1"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "prepublish": "npm run build",
+    "postbootstrap": "npm run build"
+  },
+  "files": [
+    "dist"
+  ]
+}
