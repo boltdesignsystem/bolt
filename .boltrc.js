@@ -78,6 +78,7 @@ module.exports = {
     sets: imageSets,
   },
   prod: true,
+  sourceMaps: false,
   enableCache: true,
   verbosity: 1,
   copy: [...itemsToCopy],

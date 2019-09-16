@@ -46,7 +46,7 @@
 {% set tag = tag in tag_options ? tag : schema.properties.tag.default %}
 {% set iconOnly = iconOnly is sameas(true) or iconOnly is sameas(false) ? iconOnly : scheuma.properties.iconOnly.default %}
 
-{% if tag == "submit" %}
+{% if tag == "submit" or type == "submit" %}
   {% set tag = "button" %}
   {% set inner_attributes = inner_attributes.setAttribute("type", "submit") %}
 {% elseif tag == "link" or tag == "a" or url != null %}
@@ -61,7 +61,7 @@
   {% if attributes.target %}
     {% set inner_attributes = inner_attributes.setAttribute("target", attributes.target) %}
   {% endif %}
-{% elseif tag == "reset" %}
+{% elseif tag == "reset" or type == "reset" %}
   {% set tag = "button" %}
   {% set inner_attributes = inner_attributes.setAttribute("type", "reset") %}
 {% endif %}
@@ -110,7 +110,7 @@ Sort classes passed in via attributes into two groups:
     {% set inner_classes = inner_classes|merge([class]) %}
   {% elseif class starts with "has-" == true %}
     {% set inner_classes = inner_classes|merge([class]) %}
-  {% elseif class starts with "c-bolt-" == false %}
+  {% elseif class starts with "c-bolt-button" == false %}
     {% set outer_classes = outer_classes|merge([class]) %}
   {% endif %}
   {% set original_classes = original_classes|merge([class]) %}
@@ -124,7 +124,8 @@ Sort classes passed in via attributes into two groups:
     <replace-with-children class="c-bolt-button__icon">
       {% set icon = icon | merge({
         attributes: {
-          slot: slotName
+          slot: slotName,
+          class: icon.attributes.class | default([])
         }
       }) %}
       {% include "@bolt-components-icon/icon.twig" with icon only %}
@@ -160,8 +161,12 @@ Sort classes passed in via attributes into two groups:
 
   {# choose a semantic <a> tag or <button> tag for better accessibility, depending on whether or not a url is getting passed along #}
   <{{ tag }} {{ inner_attributes|without("on-click")|without("on-click-target") }} is="shadow-root">
-    {{ macros.slottedIcon(icon, icon_position, "before") }}
+    {% block slot_before %}
+      {{ macros.slottedIcon(icon, icon_position, "before") }}
+    {% endblock %}
     <replace-with-children class="c-bolt-button__item">{{ text }}</replace-with-children>
-    {{ macros.slottedIcon(icon, icon_position, 'after') }}
+    {% block slot_after %}
+      {{ macros.slottedIcon(icon, icon_position, 'after') }}
+    {% endblock %}
   </{{ tag }}>
 </bolt-button>
