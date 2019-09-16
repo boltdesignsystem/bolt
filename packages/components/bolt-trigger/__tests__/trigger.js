@@ -77,6 +77,16 @@ describe('trigger', () => {
     // @todo: also test rendered HTML for `disabled` attribute
   });
 
+  test('Trigger with "type" adds attr to <button>', async () => {
+    const results = await render('@bolt-components-trigger/trigger.twig', {
+      content: 'Hello World',
+      type: 'submit',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   test('Trigger with outer classes via Drupal Attributes', async () => {
     const results = await render('@bolt-components-trigger/trigger.twig', {
       content: 'Trigger with outer classes',

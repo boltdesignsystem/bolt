@@ -13,6 +13,7 @@
 {% set cursor = this.data.cursor.value %}
 {% set url = this.data.url.value %}
 {% set target = this.data.target.value %}
+{% set type = this.data.type.value %}
 {% set disabled = this.data.disabled.value %}
 
 {% if url %}
@@ -29,7 +30,7 @@
 {% else %}
   {# Otherwise, it's a button #}
   {% set tag = "button" %}
-  {% set inner_attributes = inner_attributes.setAttribute("type", "button") %}
+  {% set inner_attributes = inner_attributes.setAttribute("type", type) %}
   {% if disabled %}
     {% set inner_attributes = inner_attributes.setAttribute("disabled", true) %}
   {% endif %}
