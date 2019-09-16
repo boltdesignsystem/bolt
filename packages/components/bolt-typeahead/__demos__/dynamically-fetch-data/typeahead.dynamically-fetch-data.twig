@@ -1,0 +1,15 @@
+{% include "@bolt-components-form/form.twig" with {
+  children: include("@bolt-components-typeahead/typeahead.twig", {
+    attributes: {
+      class: [
+        "js-typeahead-hook--dynamically-fetch-data"
+      ]
+    },
+    max_results: 5,
+  }),
+  attributes: {
+    action: "https://www.pega.com/search",
+    target: "_blank",
+    method: "GET"
+  }
+} %}

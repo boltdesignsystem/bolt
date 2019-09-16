@@ -1,0 +1,256 @@
+//------------------------------------
+//    #BOLT TYPEAHEAD COMPONENT
+//------------------------------------
+
+@import '@bolt/core/styles/index.scss';
+
+$bolt-clear-button-size: 1.7rem;
+$bolt-clear-button-size-at-med: 1.4rem;
+$bolt-typeahead-button-width: bolt-spacing(medium) + .75rem;
+
+$bolt-typeahead-border-width: $bolt-border-width;
+$bolt-typeahead-border-style: $bolt-border-style;
+$bolt-typeahead-border-radius: 6px;
+$bolt-typeahead-placeholder-color: bolt-theme(text-on-secondary, 0.4);
+
+$bolt-typeahead-result-highlight-color: #F5F5FA;
+
+/**
+ * 1. relative z-index so doesn't need to use bolt z-index mixin
+ */
+
+bolt-typeahead {
+  display: flex;
+  align-self: stretch;
+  position: relative;
+  text-align: start;
+}
+
+:host {
+  position: relative;
+}
+
+bolt-autosuggest {
+  width: 100%;
+}
+
+.c-bolt-typeahead {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  color: bolt-theme(text);
+  border-radius: $bolt-typeahead-border-radius;
+  background-color: inherit;
+  --bolt-theme-background: 255, 255, 255;
+}
+
+.c-bolt-typeahead__label {
+  position: relative;
+}
+
+.c-bolt-typeahead__input {
+  box-sizing: border-box; // needed when rendered to the Shadow DOM
+  -webkit-appearance: none; // removes default styling (ex. heavy box shadow) in Safari
+  width: 100%;
+  max-width: 100%;
+  @include bolt-padding(medium, squished);
+  padding-right: $bolt-typeahead-button-width;
+  padding-left: $bolt-typeahead-button-width;
+  color: bolt-theme(text-on-secondary);
+  font-size: 16px; // prevent zooming in on mobile
+  border-radius: $bolt-typeahead-border-radius;
+  border-width: $bolt-typeahead-border-width;
+  border-style: $bolt-typeahead-border-style;
+  border-color: bolt-theme(link, .5);
+  background-color: bolt-theme(secondary, 1);
+  text-overflow: ellipsis;
+  transition: all 0.1s ease;
+  outline-offset: -3px;
+  outline-width: 2px;
+
+  @media all and (min-width: bolt-bp(medium)) {
+    padding-right: $bolt-clear-button-size-at-med;
+  }
+
+  @include bolt-mq(medium) {
+    font-size: inherit;
+  }
+
+  &:focus {
+    border-color: rgba(84, 93, 166, 0.8);
+    border-color: bolt-theme(link, 0.8);
+    box-shadow: 0 0 0 2px rgba(var(--bolt-theme-link), 0.5), inset 0 0 0 1px rgba(var(--bolt-theme-link), 1);
+    outline: 0;
+  }
+
+  &--open {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  // Remove the native <input> clear button in IE 11 in lieu of JS-controlled clear button
+  &::-ms-clear {
+    display: none;
+  }
+
+  &::-webkit-input-placeholder,
+  &::-moz-input-placeholder {
+    transition: all 0.1s ease;
+  }
+
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $bolt-typeahead-placeholder-color;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $bolt-typeahead-placeholder-color;
+  }
+
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $bolt-typeahead-placeholder-color;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $bolt-typeahead-placeholder-color;
+  }
+}
+
+.c-bolt-typeahead__menu {
+  display: block;
+  opacity: 0;
+  position: absolute;
+  top: calc(100% + 2px);
+  right: 0;
+  z-index: 10; /* [1] */
+  width: 100%;
+  min-width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  color: bolt-theme(text-on-secondary);
+  text-transform: capitalize;
+  border-bottom-right-radius: $bolt-typeahead-border-radius;
+  border-bottom-left-radius: $bolt-typeahead-border-radius;
+  box-shadow: rgba(bolt-color(gray, dark), 0.3) 0px 15px 46px -10px;
+
+  background-color: bolt-theme(
+    (
+      xdark: brand-darken-5,
+      dark: brand-lighten-20,
+      light: secondary,
+      xlight: secondary,
+    )
+  );
+  background-color: var(--bolt-typeahead-menu-background, rgba(var(--bolt-theme-secondary), 1));
+  transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1);
+
+  &.is-open {
+    opacity: 1;
+    overflow-y: auto;
+    max-height: calc(100vh - #{$bolt-typeahead-button-width});
+    max-height: calc(100vh - var(--typeahead-height) );
+  }
+
+}
+
+.c-bolt-typeahead__results {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom-right-radius: $bolt-typeahead-border-radius;
+  border-bottom-left-radius: $bolt-typeahead-border-radius;
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-bottom(xsmall);
+
+  &:empty {
+    max-height: 0;
+    border-width: 0;
+  }
+}
+
+.c-bolt-typeahead__result {
+  overflow: hidden;
+  color: inherit;
+  transition: background-color 0.1s ease;
+
+  &.has-cursor {
+    background-color: $bolt-typeahead-result-highlight-color;
+  }
+
+  &:active,
+  &:focus {
+    background-color: rgba(bolt-color(indigo, xlight), .5);
+  }
+}
+
+.c-bolt-typeahead__result-highlight {
+  @include bolt-font-weight(bold);
+}
+
+.c-bolt-typeahead__result-text {
+  @include bolt-padding(medium, squished);
+  display: block;
+  padding-left: $bolt-typeahead-button-width;
+  color: inherit;
+  text-transform: initial; // fix for weird capitalization
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.c-bolt-typeahead__wrapper {
+  width: 100%;
+}
+
+.c-bolt-typeahead__input-wrapper {
+  flex-shrink: 0;
+  position: relative; // used for positioning search clear button in relation to the <input>
+}
+
+.c-bolt-typeahead__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* [1] */
+  cursor: pointer;
+  border: 0;
+  transition: opacity 0.1s ease;
+}
+
+.c-bolt-typeahead__button--clear {
+  visibility: hidden;
+  opacity: 0;
+  right: 0;
+}
+
+.c-bolt-typeahead__button--submit {
+  left: 0;
+}
+
+.c-bolt-typeahead__icon {
+  color: bolt-color(indigo, light);
+  --bolt-theme-background: 255, 255, 255; // workaround so dark themes don't wipe the inner icon color. @todo: remove once full theming support added
+  line-height: 1;
+  font-size: 1.5rem;
+}
+
+.c-bolt-typeahead__icon--clear {
+  fill: currentColor;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 1; /* [1] */
+  width: 1rem; // needed for icon SSR rendering
+  font-size: 1rem; // needed for icon SSR rendering
+}
+
+.c-bolt-typeahead__input[required]:valid ~ .c-bolt-typeahead__button--clear,
+.c-bolt-typeahead__button--clear.is-visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.c-bolt-typeahead__input--with-clear-button ~ .c-bolt-typeahead__button--submit {
+  opacity: 1;
+}
