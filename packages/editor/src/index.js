@@ -131,6 +131,8 @@ function init() {
       return;
     }
 
+    const [feedbackEl] = query(selectors.feedback, pegaEditor);
+
     let userConfig;
     try {
       userConfig = JSON.parse(configEl.innerHTML);
@@ -228,6 +230,77 @@ function init() {
 
     pegaEditor.classList.add(selectors.editor.init.replace('.', ''));
     editorState = EDITOR_STATES.CLOSED;
+
+    if (feedbackEl) {
+      window['onUsersnapLoad'] = api => {
+        window['usersnapApi'] = api;
+        api.init({
+          button: null,
+          fields: {
+            email: {
+              label: 'E-Mail',
+              required: false,
+            },
+            comment: {
+              required: false,
+            },
+            assignee: null,
+            title: {
+              required: true,
+            },
+            label: {
+              required: false,
+            },
+          },
+        });
+
+        api.on('open', event => {
+          const {
+            name: browserName,
+            os: browserOs,
+            version: browserVersion,
+          } = detect();
+          let gitSha = 'unknown';
+          if (
+            window['bolt'] &&
+            window['bolt'].meta &&
+            window['bolt'].meta.gitSha
+          ) {
+            gitSha = window['bolt'].meta.gitSha;
+          }
+
+          let html;
+          if (editorState === EDITOR_STATES.OPEN) {
+            html = editor.getHtml();
+          } else {
+            html = space.innerHTML;
+          }
+
+          const metadata = `
+URL: ${window.location.href}
+Git SHA: ${gitSha}
+Browser: ${browserName} ${browserVersion} ${browserOs}
+Screen Width: ${window.screen.width}
+
+HTML in Editor:
+
+${html}`;
+
+          event.api.setValue('customData', metadata);
+        });
+
+        api.on('error', event => {
+          console.error('Usersnap error', event);
+        });
+      };
+      addJsToPage(
+        '//api.usersnap.com/load/3d381185-491e-443f-8c1f-969ff8117d84.js?onload=onUsersnapLoad',
+      );
+    }
+
+    feedbackEl.addEventListener('click', async event => {
+      window['usersnapApi'].open();
+    });
   });
 
   // uncomment to have first editor open on page load for easier dev experience
