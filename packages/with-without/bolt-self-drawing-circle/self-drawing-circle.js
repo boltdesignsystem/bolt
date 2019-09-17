@@ -34,7 +34,9 @@ class SvgAnimations extends withLitHtml() {
   }
 
   _resetCircle() {
-    const outline = this.renderRoot.querySelector('circle');
+    const outline = this.renderRoot.querySelector(
+      '#bolt-self-drawing-circle-outline',
+    );
     outline.setAttribute('stroke-dasharray', `0 1000`);
     this.renderRoot
       .querySelector('.bolt-self-drawing-circle')
@@ -42,7 +44,9 @@ class SvgAnimations extends withLitHtml() {
   }
 
   async _drawCircle(dashSize, speed) {
-    const outline = this.renderRoot.querySelector('circle');
+    const outline = this.renderRoot.querySelector(
+      '#bolt-self-drawing-circle-outline',
+    );
 
     const threshold = Math.ceil(494 / dashSize);
 
