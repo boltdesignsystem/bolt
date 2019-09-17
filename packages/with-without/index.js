@@ -1,6 +1,7 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
+  console.debug('polyfills loaded');
   import(
     /*
     webpackMode: 'eager',
