@@ -87,7 +87,7 @@ async function server(customWebpackConfig) {
             : `${boltBuildConfig.hostname}:${boltBuildConfig.port}`,
           logLevel: 'info',
           ui: false,
-          tunnel: true,
+          tunnel: false,
           notify: false,
           open: false,
           logFileChanges: false,
