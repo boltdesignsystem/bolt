@@ -27,6 +27,7 @@ class BoltInteractivePathways extends withLitHtml() {
     self.activePathwayIndex = -1;
     self.pathways = [];
     self._isVisible = false;
+    self.dropdownActive = false;
 
     this.checkChildrenAndRender = debounce(done => {
       this.pathways = this.getPathways();
@@ -99,6 +100,11 @@ class BoltInteractivePathways extends withLitHtml() {
     this.triggerUpdate();
   }
 
+  toggleDropdown() {
+    this.dropdownActive = !this.dropdownActive;
+    this.triggerUpdate();
+  }
+
   render() {
     const classes = cx('c-bolt-interactive-pathways');
 
@@ -111,11 +117,12 @@ class BoltInteractivePathways extends withLitHtml() {
         : 'color: rgb(0, 0, 0); --bolt-theme-text: rgb(0, 0, 0);';
 
       return html`
-        <bolt-text
+        <li><bolt-text
           class="c-bolt-interactive-pathways__menu-item${isActiveItem
             ? ' c-bolt-interactive-pathways__menu-item--active'
             : ''}"
-          font-weight="semi-bold"
+          font-weight="semibold"
+          font-size="small"
           @click=${() => this.showPathway(i)}
           style=${menuItemTextColor}
         >
@@ -125,19 +132,22 @@ class BoltInteractivePathways extends withLitHtml() {
               `
             : ''}
           ${title}
-        </bolt-text>
+        </bolt-text></li>
       `;
     });
 
-    const menu = html`
-      <bolt-micro-journeys-dropdown
-        center
-        title="${titles[this.activePathwayIndex]}"
-      >
-        <div class="c-bolt-interactive-pathways__menu-container">
-          ${menuItems}
-        </div>
-      </bolt-micro-journeys-dropdown>
+    const dropdown = html`
+      <nav class="c-bolt-interactive-pathways__menu-dropdown">
+        <h3>
+          <button @click=${() => this.toggleDropdown()}>
+            ${titles[this.activePathwayIndex]}
+            <bolt-icon style=${this.dropdownActive ? `transform: rotate(-180deg)` : `` } name="chevron-down"></bolt-icon>
+          </button>
+        </h3>
+          <ol class="c-bolt-interactive-pathways__menu-container  ${this.dropdownActive ? 'active' : ''}">
+            ${menuItems}
+          </ol>
+      </nav>
     `;
 
     const singleTitle = html`
@@ -161,9 +171,9 @@ class BoltInteractivePathways extends withLitHtml() {
           <div class="c-bolt-interactive-pathways__nav">
             <div class="c-bolt-interactive-pathways__nav--inner">
               <span class="c-bolt-interactive-pathways__nav-text"
-                >${this.slot('interactive-pathways-lead-text')}</span
+                >${this.slot('interactive-pathways-lead-text')} </span
               >
-              ${this.pathways.length > 1 ? menu : singleTitle}
+              ${this.pathways.length > 1 ? dropdown : singleTitle}
             </div>
           </div>
         </div>

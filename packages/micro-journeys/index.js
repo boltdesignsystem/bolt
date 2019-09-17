@@ -2,9 +2,6 @@ import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
   import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-micro-journeys-dropdown' */ './src/micro-journeys-dropdown'
-  );
-  import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-interactive-pathways' */ './src/interactive-pathways'
   );
   import(

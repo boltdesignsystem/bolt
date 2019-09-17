@@ -52,12 +52,75 @@
     margin-left: .65rem;
   }
 
-  &__menu-container {
-    border-radius: .35rem;
-    box-shadow: .5rem .5rem .5rem rgba(0,0,0,.25);
-    background-color: bolt-color(white);
+  &__menu-dropdown { 
+    padding: 0 0.5em;
+    position: relative;
+
+    h3 {
+      background-color: bolt-theme(background);
+      border-bottom: 2px solid bolt-color(black);
+      display: flex;
+      position: relative;
+      z-index: 10;
+      margin: 0;
+      
+      button {
+        @include bolt-font-weight(semibold);
+        background: none;
+        border: none;
+        color: rgba(var(--bolt-theme-primary), 1);
+        cursor: pointer;
+        display: block;
+        font-size: 1.75rem;
+        letter-spacing: 0.03em;
+        line-height: 1.65;
+        padding: 0;
+        
+        &:active, &:hover {
+          background: transparent;
+        }
+      }
+
+      bolt-icon {
+        transition: transform 350ms ease;
+      }
+    }
   }
 
+  &__menu-container {
+    @include bolt-shadow("level-40");
+    border-radius: .35rem;
+    background-color: bolt-color(white);
+    list-style-type: none;
+    margin-top: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-left: 0;
+    position: absolute;
+    min-width: 14rem;
+    transition: opacity 200ms ease;
+    width:calc(100% - 1rem);
+    z-index: -1;
+
+    &.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    li {
+      cursor: pointer;
+
+      & + li {
+        border-top: 1px solid rgba(58, 65, 78, 0.1);
+      }
+
+      &:hover {
+        background: rgba(58, 65, 78, 0.1);
+      }
+
+    }
+  }
+  
   &__menu-item {
     display: flex;
     flex-direction: column;
@@ -66,15 +129,6 @@
     margin-bottom: 0;
     padding: bolt-spacing(small);
     justify-items: center;
-
-    & + & {
-      border-top: 1px solid bolt-color(gray, dark);
-    }
-
-    p {
-      color: bolt-color(black);
-      font-weight: 600;
-    }
 
     bolt-icon {
       position: absolute;
