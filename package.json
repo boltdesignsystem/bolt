@@ -41,6 +41,7 @@
   },
   "scripts": {
     "build": "cd docs-site && yarn run build:prod",
+    "build:knapsack": "NODE_ENV=production knapsack build",
     "cc": "yarn create:component",
     "clean": "npx npm-run-all --parallel clean:*",
     "clean:cache": "find . -name 'cache' -type d -exec rm -rf {} +",
@@ -59,6 +60,7 @@
     "release:beta": "./scripts/release/release-beta.sh",
     "release:rc": "./scripts/release/release-rc.sh",
     "serve": "node packages/servers/default-server",
+    "serve:knapsack": "NODE_ENV=production knapsack serve",
     "setup": "yarn && yarn run setup:php",
     "setup:full": "yarn --force && yarn run setup:php",
     "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer update --prefer-dist --quiet",
@@ -72,6 +74,7 @@
     "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
+    "test:knapsack": "knapsack test",
     "pretest:js": "npm run setup:php",
     "jest": "jest --maxWorkers=3 --all --colors",
     "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
@@ -82,7 +85,8 @@
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
     "test:types": "tsc",
-    "postinstall": "patch-package && npx lerna run postbootstrap"
+    "postinstall": "patch-package && npx lerna run postbootstrap",
+    "watch:knapsack": "knapsack start"
   },
   "husky": {
     "hooks": {
@@ -141,6 +145,8 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
-    "@types/skatejs": "^5.0.1"
+    "@types/skatejs": "^5.0.1",
+    "@basalt/knapsack": "^1.3.0",
+    "@knapsack/renderer-twig": "^1.0.0"
   }
 }

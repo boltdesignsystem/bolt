@@ -1,0 +1,99 @@
+{
+  "title": "Bolt Button",
+  "description": "Buttons are the core of our action components.",
+  "type": "object",
+  "required": [
+    "text"
+  ],
+  "not": {
+    "anyOf": [
+      {
+        "required": [
+          "itemAlignment"
+        ]
+      },
+      {
+        "required": [
+          "rounded"
+        ]
+      }
+    ]
+  },
+  "properties": {
+    "text": {
+      "description": "Text inside the button.",
+      "type": "string"
+    },
+    "transform": {
+      "type": "string",
+      "description": "Transforms the button text to various cases.",
+      "default": "none",
+      "enum": [
+        "uppercase",
+        "lowercase",
+        "capitalize",
+        "none"
+      ]
+    },
+    "type": {
+      "description": "Determines the button tag type for semantic buttons",
+      "type": "string",
+      "enum": [
+        "button",
+        "submit",
+        "reset"
+      ]
+    },
+    "size": {
+      "type": "string",
+      "description": "Size of the button.",
+      "default": "medium",
+      "enum": [
+        "xsmall",
+        "small",
+        "medium",
+        "large",
+        "xlarge"
+      ]
+    },
+    "style": {
+      "type": "string",
+      "description": "Style of the button determined by information hierarchy.",
+      "default": "primary",
+      "enum": [
+        "primary",
+        "secondary",
+        "text"
+      ]
+    },
+    "width": {
+      "type": "string",
+      "description": "Controls the width of the button.",
+      "default": "auto",
+      "enum": [
+        "auto",
+        "full",
+        "full@small"
+      ]
+    },
+    "border_radius": {
+      "type": "string",
+      "description": "Rounds the corners of the button.",
+      "default": "regular",
+      "enum": [
+        "regular",
+        "full"
+      ]
+    },
+    "align": {
+      "description": "Horizontal alignment of items (text and icon) inside the button. Note: the values left and right are deprecated, use start and end instead.",
+      "type": "string",
+      "enum": [
+        "start",
+        "center",
+        "end"
+      ],
+      "default": "center"
+    }
+  }
+}

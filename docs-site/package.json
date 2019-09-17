@@ -23,7 +23,11 @@
     "start:lang": "bolt start --i18n",
     "start:prod": "bolt start --prod",
     "test:links": "blc http://localhost:3000 --recursive --ordered --filter-level 2",
-    "watch": "bolt watch"
+    "watch": "bolt watch",
+    "build:knapsack": "NODE_ENV=production knapsack build",
+    "serve:knapsack": "NODE_ENV=production knapsack serve",
+    "test:knapsack": "knapsack test",
+    "watch:knapsack": "knapsack start"
   },
   "dependencies": {
     "@bolt/analytics-autolink": "^2.7.0",
