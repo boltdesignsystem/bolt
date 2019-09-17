@@ -12,5 +12,5 @@ module.exports = {
   connection,
   iconGroup,
   statusDialogueBar,
-  svgAnimation
+  svgAnimation,
 };
