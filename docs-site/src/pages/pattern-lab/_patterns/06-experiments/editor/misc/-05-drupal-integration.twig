@@ -1,0 +1,58 @@
+<h1>How to get the Editor integrated into Drupal</h1>
+
+<h3>Install package</h3>
+
+<bolt-code-snippet lang="bash" syntax="dark">npm install --save @bolt/components-editor</bolt-code-snippet>
+
+Then add to <code>.boltrc.js</code> file <a href="/docs/guides/install-component.html">like so.</a>
+
+<h3>Add to a Drupal Template file</h3>
+
+<p>First, find out the JS & CSS files that are used to display the content we want to edit. This will most likely simply be from the Drupal Libraries that are loaded for the current page from the theme. We need to get the variables <code>styles</code>, which is an array of strings to CSS files; and <code>scripts</code> which is the same but for JS.</p>
+
+<bolt-blockquote>Be sure to check it with CSS & JS Aggregation on & off!</bolt-blockquote>
+
+<bolt-code-snippet lang="twig" syntax="dark">
+{% verbatim %}
+{# Just some example content #}
+{% set content %}
+  <bolt-button>Hello World!</bolt-button>
+{% endset %}
+
+{% if userLoggedIn %}
+  {# get these strings from Drupal based on what Drupal Libraries are loaded #}
+  {% set styles = ['/build/bolt-global.css'] %}
+  {% set scripts = ['/build/bolt-global.js'] %}
+
+  {# whatever id is needed to save this back to Drupal; probably a Paragraph id! #}
+  {% set id = 'probably-paragraph-id' %}
+
+  {% include '@bolt-components-editor/editor.twig' with {
+    styles: styles,
+    scripts: scripts,
+    content: content,
+    id: id,
+  } only %}
+{% else %}
+  {# if user is not logged, then just render `content`, no need to pass into Editor template! #}
+  {{ content }}
+{% endif %}
+
+{% endverbatim %}
+</bolt-code-snippet>
+
+<h3>Listen for "editor:save" event</h3>
+
+<p>Here's some JavaScript that will listen for the <code>editor:save</code> event after the user clicks the "Save" button. This is when you should save the HTML to Drupal.</p>
+
+<bolt-code-snippet lang="js" syntax="dark">
+document.querySelectorAll('.js-pega-editor').forEach((pegaEditor) => {
+  pegaEditor.addEventListener('editor:save', (event) => {
+    console.log('An editor just saved and we have new HTML to send to Drupal!', {
+      id: event.detail.id,
+      html: event.detail.html,
+      editorElement: event.target, // same as `pegaEditor`
+    });
+  });
+});
+</bolt-code-snippet>
