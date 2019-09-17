@@ -7,11 +7,14 @@ const setActiveRegionAttr = (inactiveToRemove, activeToSet) => {
 };
 
 /*
- * Filter els by likely invisibility.
+ * Filter el or array of els by likely invisibility.
  * Triggering animations on els with display: none parents breaks all subsequent animations.
  * Based on @https://davidwalsh.name/offsetheight-visibility
  */
 const filterInvisibles = els => {
+  if (!Array.isArray(els)) {
+    return els.offsetHeight > 0 ? els : null;
+  }
   return els.filter(el => el.offsetHeight > 0);
 };
 
@@ -71,9 +74,16 @@ const triggerAnimateOutOnInOnlyContent = async (groupAttrVal, mainWrapper) => {
       `bolt-animate[group="${groupAttrVal}"][type="in-effect-only"]`,
     ),
   );
-  document
-    .querySelector(`#c-pega-wwo__self-drawing-circle[group="${groupAttrVal}"]`)
-    .triggerAnimOut();
+
+  const desktopCircle = filterInvisibles(
+    document.querySelector(
+      `#c-pega-wwo__self-drawing-circle[group="${groupAttrVal}"]`,
+    ),
+  );
+  console.debug('desktopCircle', desktopCircle);
+  if (desktopCircle) {
+    desktopCircle.triggerAnimOut();
+  }
 
   console.debug('triggering:triggerAnimateOutOnInOnlyContent animInEls');
   await triggerAnims({
@@ -139,11 +149,14 @@ const getCurriedAnimateContentIn = (inGroupAttrVal, mainWrapper) => {
     );
 
     setTimeout(() => {
-      document
-        .querySelector(
+      const desktopCircle = filterInvisibles(
+        document.querySelector(
           `#c-pega-wwo__self-drawing-circle[group="${inGroupAttrVal}"]`,
-        )
-        .triggerAnimIn();
+        ),
+      );
+      if (desktopCircle) {
+        desktopCircle.triggerAnimIn();
+      }
     }, 0);
     // console.log('AnimateContentIn', animInEls);
 
@@ -234,7 +247,6 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
     }
 
     console.error('withIsBecomingActive', withIsBecomingActive);
-
   }
   return true;
 };
