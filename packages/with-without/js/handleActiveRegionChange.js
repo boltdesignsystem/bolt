@@ -209,22 +209,32 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
   } else {
     // The event handler for swiper doesn't respect await, so trigger here directly.
 
+    console.error('before restoreContentBeforeSlideIn');
     await restoreContentBeforeSlideIn(inGroupAttrVal, mainWrapper);
+    console.error('before getCurriedAnimateContentOut');
+
     await getCurriedAnimateContentOut(
       outGroupAttrVal,
       inGroupAttrVal,
       mainWrapper,
     )();
 
+    console.error('before once slideChangeTransitionEnd', wwoSwiper);
+
     wwoSwiper.once(
       'slideChangeTransitionEnd',
       getCurriedAnimateContentIn(inGroupAttrVal, mainWrapper),
     );
+    console.error('before wwoSwiper.slideNext or slidePrev');
+
     if (withIsBecomingActive) {
       wwoSwiper.slideNext();
     } else {
       wwoSwiper.slidePrev();
     }
+
+    console.error('withIsBecomingActive', withIsBecomingActive);
+
   }
   return true;
 };
@@ -232,6 +242,7 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
 const handleActiveRegionChangeRequest = (checked, wwoSwiper) => {
   const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
   const animIsInProgress = !!animControllerEl.getAttribute('anim-in-progress');
+  console.error('in handleActiveRegionChangeRequest', animIsInProgress);
 
   if (animIsInProgress) {
     return;

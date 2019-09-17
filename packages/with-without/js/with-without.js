@@ -18,7 +18,7 @@ const toggleInputClass = '.c-pega-www__toggle-input';
 const checkedValue = 'w';
 
 // Initialize the swiper for sliding between with and without.
-const wwoSwiper = new Swiper('.c-pega-wwo__swiper-container', {
+const wwoSwiper = new Swiper('#c-pega-wwo__swiper-container', {
   speed: 500,
   spaceBetween: 0,
   noSwiping: true,
@@ -45,10 +45,12 @@ Array.from(document.querySelectorAll(toggleInputClass)).forEach(el => {
 const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
 
 animControllerEl.addEventListener('animateStart', e => {
+  console.error('animateStart');
   e.target.setAttribute('anim-in-progress', 1);
 });
 
 animControllerEl.addEventListener('animateEnd', e => {
+  console.error('animateEnd');
   e.target.removeAttribute('anim-in-progress');
   // If the animation state doesn't match the state of the toggle, transition.
   const activeAttr = animControllerEl.getAttribute('active');
@@ -68,6 +70,7 @@ document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
   el.addEventListener('click', handleBlockTitleMobileAccordionClick);
 });
 
+// Set up the modals.
 const learnMoreModal = document.querySelector('.c-pega-www__modal--learn-more');
 const learnMoreVideo = document.querySelector('.c-pega-www__video--learn-more');
 

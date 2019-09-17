@@ -1,6 +1,20 @@
 import { triggerAnimateInOnInOnlyContent } from './handleActiveRegionChange';
 
+let lastWindowHeight;
+let lastWindowWidth;
+
 const handleResize = () => {
+  // To fix Edge firing resize constantly.
+  const heightHasChanged =
+    window.innerHeight && window.innerHeight !== lastWindowHeight;
+  const widthHasChanged =
+    window.innerWidth && window.innerWidth !== lastWindowWidth;
+  if (!widthHasChanged || !heightHasChanged) {
+    return; // bail if no change.
+  }
+  lastWindowHeight = window.innerHeight;
+  lastWindowWidth = window.innerWidth;
+
   // @TODO replace with theme token.
   const isMobile = window.matchMedia('(max-width: 1200px)').matches;
   const slideContentInner = Array.from(
@@ -13,7 +27,6 @@ const handleResize = () => {
   )
     ? 'wo'
     : 'w';
-
   triggerAnimateInOnInOnlyContent(activeSlideString);
 
   if (isMobile) {

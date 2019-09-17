@@ -74,14 +74,16 @@ class SvgAnimations extends withLitHtml() {
         class="bolt-self-drawing-circle"
         is="shadow-root"
       >
-        <svg viewBox="-160 -160 320 320">
-          <circle
-            id="bolt-self-drawing-circle-outline"
-            class="bolt-self-drawing-circle-outline"
-            r="159"
-            stroke-dasharray="0 1000"
-          />
-        </svg>
+        <div class="bolt-self-drawing-circle-rotation">
+          <svg viewBox="-160 -160 320 320">
+            <circle
+              id="bolt-self-drawing-circle-outline"
+              class="bolt-self-drawing-circle-outline"
+              r="159"
+              stroke-dasharray="0 1000"
+            />
+          </svg>
+        </div>
       </div>
     `;
   }
