@@ -196,8 +196,9 @@ bolt-animate {
     background-repeat: no-repeat;
     background-size: $pega-wwo--max-width auto;
 
+    // @TODO add webpack build process to allow images here. See handleResize.js.
     &-wo {
-      background-image: url("./img/BG_withoutPega_mobile.jpg");
+      background-image: url("./img/BG_without_mobile.jpg");
 
       @include bolt-mq($from: medium) {
         background-image: url("./img/BG_without_tablet.jpg");
@@ -209,14 +210,14 @@ bolt-animate {
     }
 
     &-w {
-      background-image: url("./img/BG_withPega_mobile.jpg");
+      background-image: url("./img/BG_with_mobile.jpg");
 
       @include bolt-mq($from: medium) {
-        background-image: url("./img/BG_withPega_tablet.jpg");
+        background-image: url("./img/BG_with_tablet.jpg");
       }
 
       @include bolt-mq($from: xlarge) {
-        background-image: url("./img/BG_withPega_desktop.jpg");
+        background-image: url("./img/BG_with_desktop.jpg");
       }
     }
   }
