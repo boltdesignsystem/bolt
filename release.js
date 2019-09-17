@@ -1,4 +1,5 @@
 const shell = require('shelljs');
+const cp = require('child_process');
 const path = require('path');
 const semver = require('semver');
 const { branchName } = require('@bolt/scripts/utils/branch-name');
@@ -101,8 +102,9 @@ async function init() {
     //   npm run setup
     //   npm run build
     // `).stdout;
-    child_process.execFileSync('npm', ['run', 'setup'], { stdio: 'inherit' });
-    child_process.execFileSync('npm', ['run', 'build'], { stdio: 'inherit' });
+    cp.execFileSync('rm', ['.incache'], { stdio: 'inherit' });
+    cp.execFileSync('npm', ['run', 'setup'], { stdio: 'inherit' });
+    cp.execFileSync('npm', ['run', 'build'], { stdio: 'inherit' });
   }
 
   if (!existsSync(twigNamespacesManifestPath)) {
