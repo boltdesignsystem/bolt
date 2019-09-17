@@ -17,6 +17,12 @@ $pega-wwo--content-max-mobile-width: 550px;
 $bolt-medium-icon-half-size: 12px;
 $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-wwo--sm-circle-size--fixed / 2);
 
+@mixin bolt-edge-all() {
+  @supports (-ms-ime-align:auto) {
+    @content;
+  }
+}
+
 // Fix IE 11 opacity inheritance for non-static elements.
 bolt-animate {
  &[out^="fade"],
@@ -49,6 +55,15 @@ bolt-animate {
     min-height: 1px;
   }
 
+  .c-pega-wwo__shadow-height-inherit {
+    width: 100%;
+    height: 100%;
+
+    > * {
+      height: inherit;
+    }
+  }
+
   // This is for icon colors wrong w/o shadow dom.
   &__content-wo {
     .c-pega-wwo__result-blocks {
@@ -73,13 +88,14 @@ bolt-animate {
   }
 
     &__wrapper {
-    width: 100%;
-    height: 100%;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
 
-    @include bolt-mq($from: xlarge) {
-      // This div scales to full with of padding-hacked wrapper.
-      position: absolute;
-    }
+      @include bolt-mq($from: xlarge) {
+        // This div scales to full with of padding-hacked wrapper.
+        position: absolute;
+      }
   }
 
   // This wrapper is the animate component and establishes z-index outside shadow dom wrapping.
@@ -168,21 +184,6 @@ bolt-animate {
       height: 100%;
     }
 
-    //@include bolt-mq(xxlarge) {
-    //  max-width: bolt-breakpoint(xxlarge);
-    //  max-height: calc(#{bolt-breakpoint(xxlarge)} * #{$pega-wwo--desktop-ratio-decimal});
-    //  top: 35%;
-    //  left: 50%;
-    //  transform: translate(-50%, -50%);
-    //}
-  }
-
-  &__content-w {
-
-  }
-
-  &__content-wo {
-
   }
 
   &__bg {
@@ -196,7 +197,6 @@ bolt-animate {
     background-repeat: no-repeat;
     background-size: $pega-wwo--max-width auto;
 
-    // @TODO add webpack build process to allow images here. See handleResize.js.
     &-wo {
       background-image: url("./img/BG_without_mobile.jpg");
 
@@ -265,18 +265,18 @@ bolt-animate {
       height: calc(#{$pega-wwo--dashed-circle-height} + (#{$pega-wwo--circles-top-padding--height-calculation} / #{$pega-wwo--desktop-ratio-decimal}));
     }
 
-    .c-pega-wwo__shadow-height-inherit {
-      width: 100%;
-      height: 100%;
-
-      > * {
-        height: inherit;
-      }
-    }
-
     &-wo {
       left: 23.7%;
       padding-top: $pega-wwo--circles-top-padding;
+
+      @include bolt-edge-all {
+        left: 26%;
+      }
+
+      @include bolt-ie11-only {
+        left: 26%;
+      }
+
     }
 
     &-w {
