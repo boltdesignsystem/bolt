@@ -101,6 +101,11 @@ function init() {
 
   pegaEditors.forEach(pegaEditor => {
     let editorState = EDITOR_STATES.NOT_READY;
+
+    pegaEditor.addEventListener('editor:save', event => {
+      console.debug('event heard: "editor:save"', event);
+    });
+
     const [trigger] = query(selectors.trigger, pegaEditor);
 
     if (!trigger) {
@@ -217,7 +222,6 @@ function init() {
               'There were unsaved changes we will lose on next page reload...',
             );
           }
-          console.log({ html });
           const container = editor.getContainer();
           cleanup();
           container.innerHTML = html;
@@ -226,7 +230,10 @@ function init() {
           pegaEditor.dispatchEvent(
             new CustomEvent('editor:save', {
               bubbles: true,
-              detail: { html },
+              detail: {
+                html,
+                id: config.id,
+              },
             }),
           );
           break;

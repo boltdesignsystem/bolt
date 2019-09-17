@@ -21,5 +21,10 @@ module.exports = {
         type: 'string',
       },
     },
+    id: {
+      type: 'string',
+      description:
+        'ID for this content. Useful for saving back to a data store like Drupal by passing in the paragraph ID. ID emitted in save event.',
+    },
   },
 };
