@@ -140,7 +140,11 @@ class BoltInteractivePathways extends withLitHtml() {
 
     const dropdown = html`
       <nav class="c-bolt-interactive-pathways__menu-dropdown">
-        <h3 style="border-color: ${this.dropdownActive ? `transparent` : `var(--bolt-theme-text)`}">
+        <h3
+          style="border-color: ${this.dropdownActive
+            ? `transparent`
+            : `var(--bolt-theme-text)`}"
+        >
           <button @click=${() => this.toggleDropdown()}>
             ${titles[this.activePathwayIndex]}
             <bolt-icon
