@@ -58,6 +58,7 @@ class BoltImage extends withLitHtml() {
       'lazyload',
       'useAspectRatio',
     ]);
+    self.initialClasses = [];
     return self;
   }
 
