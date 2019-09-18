@@ -12,7 +12,7 @@
     {% set assets = get_data(manifestConfigFile) %}
   {% endif %}
 
-  <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}" async></script>
+  <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
 
   {{ patternLabFoot | raw }}
 
