@@ -30,6 +30,7 @@ class BoltInteractivePathways extends withLitHtml() {
     self.pathways = [];
     self._isVisible = false;
     self.dropdownActive = false;
+    self._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
 
     this.checkChildrenAndRender = debounce(done => {
       this.pathways = this.getPathways();
@@ -53,10 +54,18 @@ class BoltInteractivePathways extends withLitHtml() {
     return self;
   }
 
+  connecting() {
+    //Hide dropdown on ESC keypress
+    document.addEventListener('keydown', this._handleKeyPresseskeypress);
+  }
+
   connectedCallback() {
     super.connectedCallback();
-
     this.style.opacity = 1;
+  }
+
+  disconnecting() {
+    document.removeEventListener('keydown', this._handleKeyPresseskeypress);
   }
 
   /**
@@ -69,6 +78,18 @@ class BoltInteractivePathways extends withLitHtml() {
       }
     });
   }
+
+  /**
+   * @param {Event} event
+   */
+  _handleKeyPresseskeypress = function(event) {
+    // Close dropdown on ESC keypress
+    if (this.dropdownActive && event.which === 27) {
+      event.preventDefault();
+      this.dropdownActive = false;
+      this.triggerUpdate();
+    }
+  };
 
   /**
    * @param {Event} event
