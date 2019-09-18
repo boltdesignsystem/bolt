@@ -93,7 +93,7 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
 
 /**
  * @param {Object} opt
- * @param {BoltAnimate[]} opt.animEls
+ * @param {BoltAnimate[] | NodeListOf<BoltAnimate>} opt.animEls
  * @param {string} [opt.stage='IN']
  * @param {boolean=} [opt.debug=false]
  */
@@ -114,6 +114,11 @@ export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
       break;
   }
   if (!orderProp) throw new Error(`Incorrect stage name passed: ${stage}`);
+
+  // convert NodeList over to array in case `querySelectorAll` was used
+  animEls = Array.isArray(animEls)
+    ? animEls
+    : Array.prototype.slice.call(animEls);
 
   const orders = new Set();
   animEls.forEach(animEl => {
@@ -154,7 +159,9 @@ export async function triggerAnimsInEl(el, stage = 'IN') {
       `When running "triggerAnimsInEl", the passed element does not have "querySelectorAll" method.`,
     );
   }
-  const animEls = Array.from(el.querySelectorAll('bolt-animate'));
+  const animEls = Array.prototype.slice.call(
+    el.querySelectorAll('bolt-animate'),
+  );
   if (animEls.length === 0) {
     return false;
   }

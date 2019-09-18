@@ -35,8 +35,6 @@ bolt-interactive-step {
       }
     }
 
-    //c-bolt-interactive-pathway__nav-item c-bolt-interactive-pathway__nav-item--active
-
     // The nav line on mobile
     &:after {
       @include bolt-micro-journeys-nav-line;
@@ -76,6 +74,11 @@ bolt-interactive-step {
 
     @include bolt-mq(medium) {
       max-width: 700px;
+    }
+
+    // IE11 bug: Column flex items set to align-items: center overflow their container ~ https://github.com/philipwalton/flexbugs#flexbug-2
+    > * {
+      max-width: 100%;
     }
   }
 }

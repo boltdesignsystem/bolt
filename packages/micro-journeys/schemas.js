@@ -1,9 +1,9 @@
 const character = require('./src/character.schema');
 const connection = require('./src/connection.schema');
-const iconGroup = require('./src/icon-group.schema');
+const interactivePathway = require('./src/interactive-pathway.schema');
+const interactiveStep = require('./src/interactive-step.schema');
 const statusDialogueBar = require('./src/status-dialogue-bar.schema');
 const svgAnimation = require('./src/bolt-svg-animations/svg-animations.schema');
-const microJourneysDropdown = require('./src/micro-journeys-dropdown.schema');
 
 // collecting all the schemas for all templates used here so it can be accessed in Pattern Lab for docs like so:
 // {% set schema = bolt.data.components["@bolt-micro-journeys"].schema.connection %}
@@ -11,8 +11,8 @@ const microJourneysDropdown = require('./src/micro-journeys-dropdown.schema');
 module.exports = {
   character,
   connection,
-  iconGroup,
+  interactivePathway,
+  interactiveStep,
   statusDialogueBar,
   svgAnimation,
-  microJourneysDropdown,
 };

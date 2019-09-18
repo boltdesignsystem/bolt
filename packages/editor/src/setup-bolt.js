@@ -82,6 +82,42 @@ const link = {
   content: `<bolt-link display="inline" valign="start">I'm a link</bolt-link>`,
 };
 
+const iconGroupVerticle = {
+  id: 'bolt-icon-group-vertical',
+  title: 'Icon Group (vertical)',
+  content: `
+<bolt-list display="block" spacing="small">
+  <bolt-list-item>
+    <bolt-icon name="mobility" size="large"></bolt-icon>
+  </bolt-list-item>
+  <bolt-list-item>
+    <bolt-icon name="documentation" size="large"></bolt-icon>
+  </bolt-list-item>
+  <bolt-list-item last="">
+    <bolt-icon name="print" size="large"></bolt-icon>
+  </bolt-list-item>
+</bolt-list>
+  `,
+};
+
+const iconGroupHorizontal = {
+  id: 'bolt-icon-group-horizontal',
+  title: 'Icon Group (horizontal)',
+  content: `
+<bolt-list display="inline" spacing="small">
+  <bolt-list-item>
+    <bolt-icon name="mobility" size="large"></bolt-icon>
+  </bolt-list-item>
+  <bolt-list-item>
+    <bolt-icon name="documentation" size="large"></bolt-icon>
+  </bolt-list-item>
+  <bolt-list-item last="">
+    <bolt-icon name="print" size="large"></bolt-icon>
+  </bolt-list-item>
+</bolt-list>
+  `,
+};
+
 const svgAnimations = {
   id: 'bolt-svg-animations',
   title: 'Svg Animtions',
@@ -96,6 +132,8 @@ const basicSlottableComponents = [
   basicText,
   cta,
   link,
+  iconGroupVerticle,
+  iconGroupHorizontal,
 ];
 
 const characterSlottableComponents = [];
@@ -587,9 +625,17 @@ export function setupBolt(editor) {
     },
   });
 
+  // The bolt-svg-animations component is only used internally by the connection component,
+  // and as a background slot for the character component. The following bit of logic removes
+  // the connection bands from the schema so that they do not appear as options when editing
+  // the svg animations behind a character.
+  const svgAnimationsSchemaForCharacter = svgAnimationsSchema;
+  svgAnimationsSchemaForCharacter.properties.animType.enum = svgAnimationsSchema.properties.animType.enum.filter(
+    item => item !== 'connectionBand' && item !== 'tripleConnectionBand',
+  );
   registerBoltComponent({
     name: 'bolt-svg-animations',
-    schema: svgAnimationsSchema,
+    schema: svgAnimationsSchemaForCharacter,
     registerBlock: false,
     propsToTraits: ['animType', 'direction', 'speed', 'theme'],
   });

@@ -81,7 +81,9 @@ class BoltInteractivePathways extends withLitHtml() {
    * @returns {BoltInteractivePathway[]}
    */
   getPathways = () => {
-    return Array.from(this.querySelectorAll('bolt-interactive-pathway'));
+    return Array.prototype.slice.call(
+      this.querySelectorAll('bolt-interactive-pathway'),
+    );
   };
 
   showPathway(index) {
@@ -152,8 +154,6 @@ class BoltInteractivePathways extends withLitHtml() {
         ${this.pathways.length > 0 ? this.pathways[0].getTitle() : ''}
       </bolt-text>
     `;
-
-    console.log('pathways.length', this.pathways.length);
 
     return html`
       ${this.addStyles([styles])}

@@ -6,5 +6,5 @@
  * @return {HTMLElement[]}
  */
 export function query(selector, context = document) {
-  return [].slice.call(context.querySelectorAll(selector));
+  return Array.prototype.slice.call(context.querySelectorAll(selector));
 }

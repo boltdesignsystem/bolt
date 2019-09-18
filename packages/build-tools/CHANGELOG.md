@@ -3,6 +3,82 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **editor:** exclude grapes from babel ([1c87756](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/1c87756))
+* add .js AND ref support schemas ([300faab](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/300faab))
+* add raw-loader dep ([e174852](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e174852))
+
+
+### Features
+
+* **build-tools:** add JS as schema file option ([4f7dbd0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/4f7dbd0))
+* update webpack to process png with file-loader ([569fd24](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/569fd24))
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+
+### Bug Fixes
+
+* **editor:** exclude grapes from babel ([1c87756](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/1c87756))
+* add .js AND ref support schemas ([300faab](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/300faab))
+* add raw-loader dep ([e174852](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e174852))
+
+
+### Features
+
+* **build-tools:** add JS as schema file option ([4f7dbd0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/4f7dbd0))
+* update webpack to process png with file-loader ([569fd24](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/569fd24))
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Bug Fixes
+
+* address prettier formatting issues ([41c0076](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/41c0076))
+* address prettier issues with webpack config file ([9cf64f7](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/9cf64f7))
+* fix eslint issues ([89d358f](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/89d358f))
+* fix eslint issues ([dc6a2eb](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/dc6a2eb))
+* fix prettier / eslint issues ([ab80b1e](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/ab80b1e))
+* fix Webpack CSS Modules issue ([9a1a755](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/9a1a755))
+* update build tool snapshots ([d632488](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/d632488))
+* update build tools Jest snapshot ([62b9816](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/62b9816))
+* update build tools snapshot ([965d3b0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/965d3b0))
+* update svgo Webpack config import so the config customizations work as expected ([2ef3644](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/2ef3644))
+* update test file to address prettier issue ([e5e8198](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e5e8198))
+* update Webpack config to omit all css-module plugins when not compiling *.scoped.scss files ([329b52a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/329b52a))
+
+
+### Features
+
+* add `inset`, `label_spacing`, and `panel_spacing` props to schems, $ref support ([1057bf0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/1057bf0))
+* add ability to display titles in SVG icons + add POC ability to server-side render specific icons ([f64dc9a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f64dc9a))
+* add ability to display titles in SVG icons + add POC ability to server-side render specific icons ([5b691e8](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/5b691e8))
+* add css module support to Bolt ([f0b697d](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/f0b697d))
+* update Webpack build to minify SVG icons through SVGO — used for server-side pre-rendering SVGs ([08f7f4f](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/08f7f4f))
+* update Webpack build to minify SVG icons through SVGO — used for server-side pre-rendering SVGs ([7d0c684](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/7d0c684))
+* update webpack CSS Module behavior to exclude t-bolt classes from getting mangled ([dbbc5b4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/dbbc5b4))
+
+
+### Reverts
+
+* revert adding SVG icon assets to the icons component folder — move back to using the wwwDir / buildDir to organize everything ([ecdfcfb](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/ecdfcfb))
+
+
+
+
+
 # [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
 
 **Note:** Version bump only for package @bolt/build-tools

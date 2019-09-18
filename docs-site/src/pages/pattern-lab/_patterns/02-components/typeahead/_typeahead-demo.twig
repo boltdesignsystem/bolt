@@ -1,0 +1,35 @@
+<div class="o-bolt-wrapper">
+{% set typeahead_markdown_docs %}
+{{ source(markdown_path) }}
+{% endset %}
+
+{{ typeahead_markdown_docs | markdown }}
+
+{% include twig_path %}
+
+<bolt-code-snippet syntax="light" lang="twig" class="u-bolt-block u-bolt-margin-top-medium">
+  {% spaceless %}
+    <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
+<code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight" is="shadow-root">
+{{ source(twig_path) | replace({
+'<': '&lt;',
+'>': '&gt;',
+}) | trim | raw }}
+</code>
+</pre>
+  {% endspaceless %}
+</bolt-code-snippet>
+
+<bolt-code-snippet syntax="light" lang="js" class="u-bolt-block u-bolt-margin-top-medium">
+  {% spaceless %}
+    <pre class="c-bolt-code-snippet c-bolt-code-snippet-syntax--light language-html">
+<code class="c-bolt-code-snippet__code c-bolt-code-snippet__code--block c-bolt-code-snippet-syntax--light language-html nohighlight" is="shadow-root">
+{{ source(js_path) | replace({
+'<': '&lt;',
+'>': '&gt;',
+}) | trim | raw }}
+</code>
+</pre>
+  {% endspaceless %}
+</bolt-code-snippet>
+</div>

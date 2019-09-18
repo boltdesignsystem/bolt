@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/drupal-stubs/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/drupal-twig-extensions
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/drupal-stubs/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+**Note:** Version bump only for package @bolt/drupal-twig-extensions
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/drupal-stubs/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+**Note:** Version bump only for package @bolt/drupal-twig-extensions
+
+
+
+
+
 ## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/drupal-stubs/compare/v2.5.0...v2.5.1) (2019-06-21)
 
 **Note:** Version bump only for package @bolt/drupal-twig-extensions
