@@ -176,7 +176,7 @@ class BoltInteractivePathway extends withLitHtml() {
     }
     if (currentActiveStep) {
       await currentActiveStep.el.triggerAnimOuts();
-      currentActiveStep.el.setActive(false);
+      steps.forEach(step => step.el.setActive(false));
     }
     this.activeStep = stepIndex;
     newActiveStep.el.setActive(true);
