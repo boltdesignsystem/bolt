@@ -1,7 +1,8 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './status-dialogue-bar.scss';
+import schema from './status-dialogue-bar.schema';
 
 let cx = classNames.bind(styles);
 
@@ -14,24 +15,7 @@ class BoltStatusDialogueBar extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    iconName: {
-      ...props.string,
-      ...{
-        default: '',
-      },
-    },
-    isAlertMessage: {
-      ...props.boolean,
-      ...{
-        default: false,
-      },
-    },
-    dialogueArrowDirection: {
-      ...props.string,
-      ...{
-        default: 'none',
-      },
-    },
+    ...convertSchemaToProps(schema),
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context

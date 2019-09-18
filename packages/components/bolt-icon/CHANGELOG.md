@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Features
+
+* **icons:** add exclamation icon ([af221dd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/af221dd))
+* **svg-component:** add animated svg components ([#1343](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/issues/1343)) ([c82108f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/c82108f))
+
+
+
+
+
 # [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
 
 

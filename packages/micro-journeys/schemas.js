@@ -1,6 +1,7 @@
 const character = require('./src/character.schema');
 const connection = require('./src/connection.schema');
-const iconGroup = require('./src/icon-group.schema');
+const interactivePathway = require('./src/interactive-pathway.schema');
+const interactiveStep = require('./src/interactive-step.schema');
 const statusDialogueBar = require('./src/status-dialogue-bar.schema');
 const svgAnimation = require('./src/bolt-svg-animations/svg-animations.schema');
 
@@ -10,7 +11,8 @@ const svgAnimation = require('./src/bolt-svg-animations/svg-animations.schema');
 module.exports = {
   character,
   connection,
-  iconGroup,
+  interactivePathway,
+  interactiveStep,
   statusDialogueBar,
   svgAnimation,
 };
