@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **twig-renderer:** upgrade @basalt/twig-renderer 0.12.0 => 0.12.1 ([d57414f](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/d57414f))
+
+
+
+
+
 # [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
 
 
