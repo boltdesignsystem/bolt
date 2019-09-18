@@ -28,7 +28,9 @@ class BoltInteractivePathways extends withLitHtml() {
     // self.schema = schema;
     self.activePathwayIndex = -1;
     self.pathways = [];
+    self._hasBeenInViewport = false;
     self._isVisible = false;
+    self._isReady = false;
 
     this.checkChildrenAndRender = debounce(done => {
       this.pathways = this.getPathways();
@@ -54,8 +56,39 @@ class BoltInteractivePathways extends withLitHtml() {
 
   connectedCallback() {
     super.connectedCallback();
-
     this.style.opacity = 1;
+
+    if (IntersectionObserver) {
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              this._hasBeenInViewport = true;
+              if (this._isReady) {
+                this.beginItAll();
+              }
+            }
+          });
+        },
+        {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1,
+        },
+      );
+
+      observer.observe(this);
+    } else {
+      // If IntersectionObserver is not available (i.e. IE11) the alternative is debounced scroll event listeners that would add even more JS burden; it's not worth it - showing first step right away instead
+      this._hasBeenInViewport = true;
+      if (this._isReady) {
+        this.beginItAll();
+      }
+    }
+  }
+
+  beginItAll() {
+    this.showPathway(0);
   }
 
   /**
@@ -64,7 +97,10 @@ class BoltInteractivePathways extends withLitHtml() {
   handlePathwayConnect(event) {
     this.checkChildrenAndRender(() => {
       if (this.activePathwayIndex === -1) {
-        this.showPathway(0);
+        this._isReady = true;
+        if (this._hasBeenInViewport) {
+          this.beginItAll();
+        }
       }
     });
   }
