@@ -626,9 +626,17 @@ export function setupBolt(editor) {
     },
   });
 
+  // The bolt-svg-animations component is only used internally by the connection component,
+  // and as a background slot for the character component. The following bit of logic removes
+  // the connection bands from the schema so that they do not appear as options when editing
+  // the svg animations behind a character.
+  const svgAnimationsSchemaForCharacter = svgAnimationsSchema;
+  svgAnimationsSchemaForCharacter.properties.animType.enum = svgAnimationsSchema.properties.animType.enum.filter(
+    item => item !== 'connectionBand' && item !== 'tripleConnectionBand',
+  );
   registerBoltComponent({
     name: 'bolt-svg-animations',
-    schema: svgAnimationsSchema,
+    schema: svgAnimationsSchemaForCharacter,
     registerBlock: false,
     propsToTraits: ['animType', 'direction', 'speed', 'theme'],
   });
