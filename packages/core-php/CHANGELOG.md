@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/core-php
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+**Note:** Version bump only for package @bolt/core-php
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Features
+
+* port over Craft CMS Twig filter that adds support for using regex in the default Twig replace filter ([1d29f45](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/commit/1d29f45))
+
+
+
+
+
 # [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core-php/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
 
 **Note:** Version bump only for package @bolt/core-php

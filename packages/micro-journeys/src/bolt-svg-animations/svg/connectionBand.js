@@ -9,15 +9,14 @@ export const connectionBand = ({ direction }) => {
     0px) translate(-82.3648681640625px, 0px) translate(297px, 0px); } 100% {
     transform: translate(82.3648681640625px, 0px) translate(-82.3648681640625px,
     0px) translate(297px, 0px); } } #animatedConnectionBand { transform:
-    ${direction === 'right' ? 'scaleX(-1)' : 'scaleX(1)'};}
+    ${direction === 'right' ? 'scaleX(-1)' : 'scaleX(1)'}; }
     #animatedConnectionBand * { animation-duration: 1s;
     animation-iteration-count: infinite; animation-timing-function:
-    cubic-bezier(0, 0, 1, 1); } #connectionGradientBG { transform:
-    translate(-28px, 0px); fill: url(#connectionGradient); }
-    #connectionDirectionAnchor { transform: translate(-140px) translateZ(0); }
-    #connectionArrows { animation-fill-mode: backwards; animation-name:
-    connectionArrowScroll; animation-timing-function: cubic-bezier(0, 0, 1, 1);
-    }
+    cubic-bezier(0, 0, 1, 1); } #connectionGradientBG { fill:
+    url(#connectionGradient); } #connectionDirectionAnchor { transform:
+    translate(-140px) translateZ(0); } #connectionArrows { animation-fill-mode:
+    backwards; animation-name: connectionArrowScroll; animation-timing-function:
+    cubic-bezier(0, 0, 1, 1); }
   `;
 
   return svg`
@@ -31,7 +30,7 @@ export const connectionBand = ({ direction }) => {
           <stop stop-color="#7ACCCC" stop-opacity="0" offset="100%"/>
         </linearGradient>
       </defs>
-      <polygon id="connectionGradientBG" points="27.9324324 57.4358974 276.459459 57.4358974 276.459459 0 27.9324324 0"/>
+      <polygon id="connectionGradientBG" points="0 57.4358974 276.459459 57.4358974 276.459459 0 0 0"/>
       <g id="connectionDirectionAnchor">
         <g id="connectionArrows" fill-rule="evenodd">
           <polygon id="el_aJxwcKruLg" fill="rgba(255,255,255, .3)" points="82.3648649 0 102.092324 28.7186667 82.3648649 57.4358974 91.2867703 57.4358974 111.013514 28.7186667 91.2867703 0"/>

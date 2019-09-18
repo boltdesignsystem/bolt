@@ -1,8 +1,9 @@
 .c-bolt-svg-animations {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
   position: relative;
+  > svg {
+    vertical-align: middle; // removes mysterious margin bottom https://stackoverflow.com/a/10844318
+  }
 }
 
 .c-bolt-svg-animations__content {
