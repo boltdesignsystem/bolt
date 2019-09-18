@@ -57,7 +57,7 @@ bolt-interactive-step {
     .c-bolt-interactive-step--active & {
       position: static;
     }
-
+    c-bolt-interactive-step__body-inner
     .c-bolt-interactive-step--last & {
       width: calc(100% + #{$nav-circle-size / 2});
       margin-left: -$nav-circle-size / 2;
@@ -71,6 +71,7 @@ bolt-interactive-step {
     justify-content: center;
     align-items: center;
     max-width: 100%;
+    overflow: hidden;
 
     @include bolt-mq(medium) {
       max-width: 700px;
