@@ -1,31 +1,48 @@
-{% if addAnimateButtons %}
-  {% set content %}
-    <div class="demo-animate">
-      <button class="demo-animate__trigger">Trigger Animations In</button>
-      <div class="demo-animate__wrapper">
-        {{ content }}
+<bolt-button onclick="changeTheme()" style="margin-bottom: 2rem;">Toggle light/dark theme</bolt-button>
+
+<div id="theme-controller">
+  {% if addAnimateButtons %}
+    {% set content %}
+      <div class="demo-animate">
+        <button class="demo-animate__trigger">Trigger Animations In</button>
+        <div class="demo-animate__wrapper">
+          {{ content }}
+        </div>
       </div>
-    </div>
-  {% endset %}
-{% endif %}
+    {% endset %}
+  {% endif %}
 
-{% if enableEditor %}
-  {# Editors can only be used when Shadow DOM is present #}
-  {% include '@bolt-components-editor/editor-in-pl.twig' with {
-    content: content,
-  } only %}
-{% else %}
-  {{ content }}
-{% endif %}
+  {% if enableEditor %}
+    {# Editors can only be used when Shadow DOM is present #}
+    {% include '@bolt-components-editor/editor-in-pl.twig' with {
+      content: content,
+    } only %}
+  {% else %}
+    {{ content }}
+  {% endif %}
 
-{# @TODO It makes no sense, but this and this alone fixes the 2px content overflow. #}
-<div style="width: calc(100vw - 2px);">
-  <hr>
-  <h2>Shadow DOM – yes:☝️ no:👇</h2>
-  <hr>
+  {# @TODO It makes no sense, but this and this alone fixes the 2px content overflow. #}
+  <div style="overflow: hidden; max-width: 100vw;">
+    <hr>
+    <h2>Shadow DOM – yes:☝️ no:👇</h2>
+    <hr>
+  </div>
+
+  {# When Bolt Web Components are wrapped in a `<form>` element all children have Shadow DOM disabled automatically #}
+  <form onsubmit="event.preventDefault()">
+    {{ content }}
+  </form>
 </div>
 
-{# When Bolt Web Components are wrapped in a `<form>` element all children have Shadow DOM disabled automatically #}
-<form onsubmit="event.preventDefault()">
-  {{ content }}
-</form>
+<script>
+  // Note: this code is not transpiled so it has to run in IE.
+  function changeTheme() {
+    const lightClass = 't-bolt-light';
+    const darkClass = 't-bolt-dark';
+    const themeEl = document.getElementById('theme-controller');
+    const classToRemove = themeEl.classList.contains(darkClass) ? darkClass : lightClass;
+    const classToAdd = themeEl.classList.contains(darkClass) ? lightClass : darkClass;
+    themeEl.classList.remove(classToRemove);
+    themeEl.classList.add(classToAdd);
+  }
+</script>
