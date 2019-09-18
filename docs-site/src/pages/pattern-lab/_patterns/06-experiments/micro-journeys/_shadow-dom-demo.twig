@@ -19,7 +19,7 @@
 {% endif %}
 
 {# @TODO It makes no sense, but this and this alone fixes the 2px content overflow. #}
-<div style="width: calc(100vw - 2px);">
+<div style="overflow: hidden; max-width: 100vw;">
   <hr>
   <h2>Shadow DOM – yes:☝️ no:👇</h2>
   <hr>
