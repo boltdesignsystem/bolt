@@ -3,6 +3,7 @@ import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
 import styles from './interactive-pathways.scss';
+import interactivePathwaysLogo from './images/interactive-pathways-logo.png';
 // import schema from '../interactive-pathways.schema.yml';
 
 let cx = classNames.bind(styles);
@@ -178,10 +179,7 @@ class BoltInteractivePathways extends withLitHtml() {
       ${this.addStyles([styles])}
       <div class="${classes}">
         <div class="c-bolt-interactive-pathways__header">
-          <img
-            src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/interactive-pathways-logo.png"
-            alt="Two diamond logo"
-          />
+          <img src="${interactivePathwaysLogo}" alt="Two diamond logo" />
           <div class="c-bolt-interactive-pathways__nav">
             <div class="c-bolt-interactive-pathways__nav--inner">
               <span class="c-bolt-interactive-pathways__nav-text"
