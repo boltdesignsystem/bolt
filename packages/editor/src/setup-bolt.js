@@ -6,6 +6,7 @@ import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
+import pathwaysSchema from '@bolt/micro-journeys/src/interactive-pathways.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
 import svgAnimationsSchema from '@bolt/micro-journeys/src/bolt-svg-animations/svg-animations.schema';
 // @ts-ignore
@@ -459,6 +460,8 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-interactive-pathways',
+    schema: pathwaysSchema,
+    propsToTraits: ['customImageSrc', 'imageAlt'],
     category: 'Starters',
     blockTitle: 'Pathways',
     draggable: true,
