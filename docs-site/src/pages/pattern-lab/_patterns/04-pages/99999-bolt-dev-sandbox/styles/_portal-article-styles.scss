@@ -6,6 +6,8 @@
 
 $pegaportal-letter-spacing-tight: -0.025rem;
 $pegaportal-letter-spacing-loose: 0.05rem;
+$pegaportal-element-spacing: $bolt-spacing-leading - (($bolt-spacing-leading - 1) / 2) * 1rem;
+
 
 .c-pegaportal-article {
   // remove later
@@ -19,12 +21,27 @@ $pegaportal-letter-spacing-loose: 0.05rem;
   figure,
   pre,
   ul,
-  ol {
-    @include bolt-margin(0 0 medium 0);
+  ol,
+  hr {
+    @include bolt-margin-top(0);
+    @include bolt-margin-right(0);
+    @include bolt-margin-left(0);
+
+    margin-bottom: $pegaportal-element-spacing;
 
     &:last-child {
       @include bolt-margin-bottom(0);
     }
+  }
+
+  hr {
+    box-sizing: content-box;
+    opacity: 1;
+    height: 0;
+    overflow: visible;
+    margin-top: $pegaportal-element-spacing;
+    border: none;
+    border-bottom: 1px solid rgba(bolt-color(gray), 0.25);
   }
 
   p {
@@ -75,17 +92,6 @@ $pegaportal-letter-spacing-loose: 0.05rem;
 
     text-transform: uppercase;
     letter-spacing: $pegaportal-letter-spacing-loose;
-  }
-
-  hr {
-    @include bolt-margin-top(small);
-    @include bolt-margin-bottom(small);
-
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
-    border: none;
-    border-bottom: 1px solid rgba(bolt-color(gray), 0.25);
   }
 
   b,
