@@ -22,6 +22,7 @@ const {
   testMonorepo,
   deployWebsite,
   clearCache,
+  getCanaryVersion,
 } = require('./release-utils');
 const urlFriendlyVersion = normalizedUrlString(nextReleaseVersion);
 
@@ -101,66 +102,26 @@ async function preRelease() {
     await testMonorepo();
     console.log(chalk.green('OK: All pre-release Jest tests passed! \n'));
 
-    console.log(chalk.blue('Step 3. Bump PHP Dependencies'));
-    await bumpPhpDependencies(nextReleaseVersion);
-    console.log(chalk.green('OK: Updated PHP Dependencies to new version.\n'));
+    // console.log(chalk.blue('Step 3. Bump PHP Dependencies'));
+    // await bumpPhpDependencies(nextReleaseVersion);
+    // console.log(chalk.green('OK: Updated PHP Dependencies to new version.\n'));
 
     console.log(chalk.blue('Step 4. Publish Canary Release'));
-    await canary();
+    await publishCanaryRelease();
     console.log(chalk.green('OK: Published our canary release!\n'));
   } catch (error) {
     console.log(chalk.red(`ERROR: the pre-release checks failed! ${error}`));
   }
 }
 
-function getCanaryVersion() {
-  const previousVersions = JSON.parse(
-    shell.exec(`npm view @bolt/core versions --json`).stdout,
-  );
-  const previousCanary = JSON.parse(
-    shell.exec(`npm view @bolt/core@canary dist-tags --json`).stdout,
-  ).canary;
-
-  let newCanaryVersionSuffix = 0;
-  let newCanaryVersion;
-
-  if (previousCanary !== '') {
-    newCanaryVersionSuffix = parseInt(
-      previousCanary.split('.')[previousCanary.split('.').length - 1],
-    );
-  }
-
-  newCanaryVersion = `${nextReleaseVersion}-canary.${gitSha}.${newCanaryVersionSuffix}`;
-
-  while (previousVersions.includes(newCanaryVersion)) {
-    console.warn(
-      `We found a previous canary release of ${newCanaryVersion} so bumping the canary version!`,
-    );
-    newCanaryVersion = `${nextReleaseVersion}-canary.${gitSha}.${newCanaryVersionSuffix +
-      1}`;
-  }
-
-  return newCanaryVersion;
-}
-
-// shell.exec(
-//   `lerna publish --preid next --no-git-tag-version --no-push --yes ${newVersion} -m "[skip travis] chore(release): pre-release %s"`,
-// );
-
-// {
-//   "latest": "2.8.0-beta.2",
-//   "next": "2.8.0-beta.1",
-//   "canary": "2.8.0-canary.33b5593d7.0"
-// }
-
-// preRelease();
-
-function canary() {
+function publishCanaryRelease() {
   shell.exec(
     `lerna publish --preid canary --no-git-tag-version --no-push --yes ${getCanaryVersion()} -m "[skip travis] chore(release): pre-release %s"`,
   );
-  // npx lerna publish --canary ${nextReleaseType} --preid next --force-publish
 }
+
+// preRelease();
+
 
 // clearCache();
 //

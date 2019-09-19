@@ -105,6 +105,36 @@ function clearCache() {
   }, 2000);
 }
 
+function getCanaryVersion() {
+  const previousVersions = JSON.parse(
+    shell.exec(`npm view @bolt/core versions --json`).stdout,
+  );
+  const previousCanary = JSON.parse(
+    shell.exec(`npm view @bolt/core@canary dist-tags --json`).stdout,
+  ).canary;
+
+  let newCanaryVersionSuffix = 0;
+  let newCanaryVersion;
+
+  if (previousCanary !== '') {
+    newCanaryVersionSuffix = parseInt(
+      previousCanary.split('.')[previousCanary.split('.').length - 1],
+    );
+  }
+
+  newCanaryVersion = `${nextReleaseVersion}-canary.${gitSha}.${newCanaryVersionSuffix}`;
+
+  while (previousVersions.includes(newCanaryVersion)) {
+    console.warn(
+      `We found a previous canary release of ${newCanaryVersion} so bumping the canary version!`,
+    );
+    newCanaryVersion = `${nextReleaseVersion}-canary.${gitSha}.${newCanaryVersionSuffix +
+      1}`;
+  }
+
+  return newCanaryVersion;
+}
+
 module.exports = {
   currentVersion,
   nextReleaseType,
@@ -112,6 +142,7 @@ module.exports = {
   normalizedUrlString,
   buildBeforeDeploying,
 
+  getCanaryVersion,
   deployWebsite,
   testMonorepo,
   clearCache,
