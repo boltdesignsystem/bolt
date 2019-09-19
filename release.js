@@ -116,12 +116,11 @@ async function preRelease() {
 
 function publishCanaryRelease() {
   shell.exec(
-    `lerna publish --preid canary --no-git-tag-version --no-push --yes ${getCanaryVersion()} -m "[skip travis] chore(release): pre-release %s"`,
+    `lerna publish --dist-tag canary --no-git-tag-version --no-push --yes ${getCanaryVersion()} -m "[skip travis] chore(release): pre-release %s"`,
   );
 }
 
-// preRelease();
-
+preRelease();
 
 // clearCache();
 //
