@@ -1,0 +1,171 @@
+/* ------------------------------------ *\
+   Pega Portal Article
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+$pegaportal-letter-spacing-tight: -0.025rem;
+$pegaportal-letter-spacing-loose: 0.05rem;
+
+.c-pegaportal-article {
+  // remove later
+  max-width: 75ch;
+  // remove later
+
+  color: bolt-theme(text);
+
+  p,
+  blockquote,
+  figure,
+  pre,
+  ul,
+  ol {
+    @include bolt-margin(0 0 medium 0);
+
+    &:last-child {
+      @include bolt-margin-bottom(0);
+    }
+  }
+
+  p {
+    @include bolt-font-size(medium);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include bolt-margin(0 0 xxsmall 0);
+
+    color: bolt-theme(headline);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: $pegaportal-letter-spacing-tight;
+  }
+
+  h1 {
+    @include bolt-font-size(xxlarge);
+  }
+
+  h2 {
+    @include bolt-font-size(xlarge);
+  }
+
+  h3 {
+    @include bolt-font-size(large);
+  }
+
+  h4 {
+    @include bolt-font-size(medium);
+  }
+
+  h5 {
+    @include bolt-font-size(xsmall);
+  }
+
+  h6 {
+    @include bolt-font-size(xsmall);
+    @include bolt-font-weight(semibold);
+
+    text-transform: uppercase;
+    letter-spacing: $pegaportal-letter-spacing-loose;
+  }
+
+  hr {
+    @include bolt-margin-top(small);
+    @include bolt-margin-bottom(small);
+
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+    border: none;
+    border-bottom: 1px solid rgba(bolt-color(gray), 0.25);
+  }
+
+  b,
+  strong {
+    @include bolt-font-weight(bold);
+  }
+
+  small,
+  figcaption {
+    @include bolt-font-size(xsmall);
+  }
+
+  sub,
+  sup {
+    position: relative;
+    line-height: 0;
+    vertical-align: baseline;
+    font-size: bolt-strip-unit(bolt-font-size(xsmall)) + em;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  img {
+    border-style: none;
+  }
+
+  blockquote {
+    @include bolt-margin-right(0);
+    @include bolt-margin-left(0);
+    @include bolt-padding-left(small);
+    @include bolt-font-size(large);
+    @include bolt-font-weight(semibold);
+
+    border-left: 3px solid bolt-color(teal);
+
+    p {
+      font-size: inherit;
+
+      & + p {
+        margin-top: bolt-v-spacing(small) * -1;
+      }
+    }
+  }
+
+  blockquote footer,
+  figcaption {
+    opacity: 0.5;
+  }
+
+  figure {
+    @include bolt-padding(0);
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  ol,
+  ul {
+    @include bolt-padding-right(0);
+    @include bolt-padding-left(2.25em);
+
+    li {
+      @include bolt-margin-bottom(xsmall);
+
+      &:last-of-type {
+        @include bolt-margin-bottom(0);
+      }
+
+      ol,
+      ul {
+        @include bolt-margin-top(xsmall);
+        @include bolt-padding-left(1.25em);
+      }
+    }
+  }
+}

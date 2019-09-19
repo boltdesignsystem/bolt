@@ -1,0 +1,127 @@
+{# Header Band #}
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
+      {# This is a standard teaser #}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxlarge",
+        text: "This is the Page Title",
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "This is a paragraph describing what this page is about.",
+      } only %}
+      {% include "@bolt-components-button/button.twig" with {
+        text: "This is a button",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+} only %}
+{# Header Band #}
+
+{# Content Band #}
+{% set article_content %}
+  <div class="c-pegaportal-article">
+    <h2>Kitchen sink</h2>
+
+    <p>Paragraphs. <strong>Bold</strong>, <em>italic</em>, <a href="javascript:">linked</a>, <code>code</code>, <small>small</small>, super<sup>script</sup>, sub<sub>script</sub>.</p>
+
+    <p>Chuck shank kielbasa, shankle ground round corned beef ribeye pig filet mignon alcatra ball tip. Kielbasa ham drumstick pastrami. Sirloin kevin bacon, ribeye swine.</p>
+
+    <p>Bresaola pork capicola ham, doner turducken beef. Strip steak rump flank salami fatback meatloaf, short loin bresaola kevin cupim leberkas drumstick. Doner meatloaf t-bone turkey meatball rump ball tip drumstick short loin.</p>
+
+    <blockquote>
+      <p>Pull quote FTW leberkas capicola tri-tip porchetta turducken short ribs shoulder salami. Pork belly tail alcatra turducken prosciutto hamburger picanha.</p>
+      <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus.</p>
+    </blockquote>
+
+    <ul>
+      <li>Unordered list item</li>
+      <li>Unordered list item</li>
+      <li>Unordered list item</li>
+    </ul>
+
+    <ol>
+      <li>Ordered list item</li>
+      <li>Ordered list item</li>
+      <li>Ordered list item</li>
+    </ol>
+
+    <ul>
+      <li>
+        Unordered list item level 1
+        <ul>
+          <li>
+            Unordered list item level 2
+            <ul>
+              <li>
+                Unordered list item level 3
+              </li>
+              <li>
+                Unordered list item level 3
+              </li>
+            </ul>
+          </li>
+          <li>
+            Unordered list item level 2
+          </li>
+        </ul>
+      </li>
+      <li>
+        Unordered list item level 1
+      </li>
+    </ul>
+
+    <ol>
+      <li>
+        Ordered list item level 1
+        <ol>
+          <li>
+            Ordered list item level 2
+            <ol>
+              <li>
+                Ordered list item level 3
+              </li>
+              <li>
+                Ordered list item level 3
+              </li>
+            </ol>
+          </li>
+          <li>
+            Ordered list item level 2
+          </li>
+        </ol>
+      </li>
+      <li>
+        Ordered list item level 1
+      </li>
+    </ol>
+
+    <pre><code>pre { padding: .5em 1em; border-left: 5px solid $gray-light; background-color: $gray-lightest; }</code></pre>
+
+    <h2>H2 Header</h2>
+    <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor.</p>
+    <h3>H3 Header</h3>
+    <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor.</p>
+    <h4>H4 Header</h4>
+    <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor.</p>
+    <h5>H5 Header</h5>
+    <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor.</p>
+    <h6>H6 Header</h6>
+    <p>In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor.</p>
+
+    <figure>
+      <img alt="Image alt." src="https://via.placeholder.com/1600x900">
+      <figcaption>Figure caption</figcaption>
+    </figure>
+  </div>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: article_content,
+  theme: "xlight",
+} only %}
+{# Content Band #}
