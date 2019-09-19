@@ -7,6 +7,7 @@ $nav-circle-border-size: 2px;
 @mixin bolt-micro-journeys-nav-dot($active: false) {
   @if $active {
     width: $nav-circle-size--active;
+    min-width: $nav-circle-size--active; // to prevent squishing when text grows.
     height: $nav-circle-size--active;
     margin-left: -$nav-circle-size--active / 2 - $nav-circle-border-size;
     border: $nav-circle-border-size solid bolt-theme(primary);
@@ -20,6 +21,7 @@ $nav-circle-border-size: 2px;
     box-sizing: content-box;
     z-index: 1;
     width: $nav-circle-size;
+    min-width: $nav-circle-size; // to prevent squishing when text grows.
     height: $nav-circle-size;
     margin-right: bolt-spacing(small);
     margin-left: -$nav-circle-size / 2;

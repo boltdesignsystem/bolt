@@ -29,13 +29,10 @@ $bolt-interactive-step--dot-size: 1.2rem;
     flex-wrap: nowrap;
     justify-content: space-between;
 
-    $gutter: bolt-spacing(large);
-    $half-gutter: $gutter / 2;
-
     &__nav {
       display: block;
+      flex: 1 0 30%;
       position: relative;
-      width: calc(30% - #{$half-gutter});
       margin-right: bolt-spacing(large);
       @include bolt-micro-journeys-nav-items-wrapper;
     }
@@ -66,7 +63,7 @@ $bolt-interactive-step--dot-size: 1.2rem;
     }
 
     &__items {
-      width: calc(70% - #{$half-gutter});
+      flex: 1 1 70%;
     }
   }
 }
