@@ -225,13 +225,24 @@ function init() {
           const container = editor.getContainer();
           cleanup();
           container.innerHTML = html;
+
+          // We need to make sure that any `<bolt-animate>` elements that are empty get removed. These are usually added via the slot controls, then had their children/contents (the actual elements being animated) deleted by user but the `<bolt-animate>` (which is almost always a slot) remains. We need this gone so that conditionals that check for empty slots don't return a false positive (i.e. conditional that says a slot is not empty but no visible elements are shown)
+          container.querySelectorAll('bolt-animate').forEach(
+            /** @type {HTMLElement} */
+            animEl => {
+              if (animEl.innerHTML === '') {
+                animEl.remove();
+              }
+            },
+          );
+
           trigger.innerText = 'Edit';
           editorState = EDITOR_STATES.CLOSED;
           pegaEditor.dispatchEvent(
             new CustomEvent('editor:save', {
               bubbles: true,
               detail: {
-                html,
+                html: container.innerHTML,
                 id: config.id,
               },
             }),
