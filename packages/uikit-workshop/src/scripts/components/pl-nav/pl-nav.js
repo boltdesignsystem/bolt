@@ -51,7 +51,7 @@ const SubSubList = (props) => {
                 </a>
 
                 {
-                  nonViewAllItems.length > 1 && elem.layoutMode && (
+                  nonViewAllItems.length > 0 && elem.layoutMode && (
                     <SpecialButton
                       aria-controls={category}
                       onClick={elem.toggleSpecialNavPanel}
@@ -74,7 +74,7 @@ const SubSubList = (props) => {
       }
 
       {
-        ((viewAllItems.length > 0 && nonViewAllItems.length > 1) || (viewAllItems.length === 0)) && (
+        ((viewAllItems.length > 0 && nonViewAllItems.length > 0) || (viewAllItems.length === 0)) && (
           <ol id={category}
           className={`pl-c-nav__subsublist pl-c-nav__subsublist--dropdown pl-js-acc-panel`}>
             {

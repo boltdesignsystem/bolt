@@ -15,6 +15,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const Renderer = require('@bolt/uikit-prerenderer');
 const puppeteer = require('puppeteer-core');
+const argv = require('yargs').argv;
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
@@ -248,7 +249,7 @@ module.exports = async function() {
       ],
     };
 
-    if (localChrome) {
+    if (localChrome && ! argv.watch) {
       webpackConfig.plugins.unshift(
         new PrerenderSPAPlugin({
           // Required - The path to the webpack-outputted app to prerender.
@@ -292,7 +293,7 @@ module.exports = async function() {
       }),
     );
 
-    if (localChrome) {
+    if (localChrome && ! argv.watch) {
       const browserPromise = puppeteer.launch({
         executablePath: localChrome,
         ignoreHTTPSErrors: true,
