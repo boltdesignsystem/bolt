@@ -72,13 +72,15 @@ ${vrtScreenshots.join('\n')}
       `;
     }
 
-    console.log(
-      boxen(testSummary + summaryOfFailingTests + summaryOfVrtResults, {
-        padding: 1,
-        margin: 1,
-        borderStyle: 'double',
-      }),
-    );
+    if (!this._globalConfig.silent) {
+      console.log(
+        boxen(testSummary + summaryOfFailingTests + summaryOfVrtResults, {
+          padding: 1,
+          margin: 1,
+          borderStyle: 'single',
+        }),
+      );
+    }
   }
 
   onTestResult(test, testResult, aggregateResults) {
