@@ -79,7 +79,8 @@
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
     "test:types": "tsc",
-    "postinstall": "patch-package && npx lerna run postbootstrap"
+    "postinstall": "patch-package && npx lerna run postbootstrap",
+    "cache:clear": "json -I -f docs-site/.incache -e 'this[\"bolt-tags\"].expiresOn = \"2019-06-14T12:30:26.377Z\"; this[\"bolt-urls-to-test\"].expiresOn = \"2019-06-14T12:30:26.377Z\"'"
   },
   "husky": {
     "hooks": {
@@ -102,6 +103,11 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
+    "clear": "^0.1.0",
+    "json": "^9.0.6",
+    "bit-message-box": "^1.0.1",
+    "cfonts": "^2.4.5",
+    "ora": "^3.4.0",
     "auto": "^7.6.0",
     "@auto-it/core": "^7.6.0",
     "conf": "^5.0.0",
