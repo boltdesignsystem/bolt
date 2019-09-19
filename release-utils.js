@@ -5,6 +5,7 @@ const currentVersion = require(path.join(__dirname, './lerna.json')).version;
 const cp = require('child_process');
 const ora = require('ora');
 const clear = require('clear');
+const { gitSha } = require('@bolt/scripts/utils');
 shell.config.silent = true;
 
 function getNextReleaseType() {
