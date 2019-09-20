@@ -85,7 +85,11 @@ class BoltInteractivePathways extends withLitHtml() {
    */
   _handleClosingEvent = function(event) {
     // Close dropdown on ESC keypress or clicks outside of the dropdown
-    if (this.dropdownActive && event.which === 27 || event.type === "click" || event.type === "tap") {
+    if (
+      (this.dropdownActive && event.which === 27) ||
+      event.type === 'click' ||
+      event.type === 'tap'
+    ) {
       event.preventDefault();
       this.dropdownActive = false;
       this.triggerUpdate();
@@ -168,8 +172,15 @@ class BoltInteractivePathways extends withLitHtml() {
 
     const dropdown = html`
       <nav class="c-bolt-interactive-pathways__menu-dropdown">
-        <h3 class="c-bolt-interactive-pathways__heading ${this.dropdownActive ? `--active` : ``}">
-          <button class="c-bolt-interactive-pathways__dropdown-trigger" @click=${e => this.toggleDropdown(e)}>
+        <h3
+          class="c-bolt-interactive-pathways__heading ${this.dropdownActive
+            ? `--active`
+            : ``}"
+        >
+          <button
+            class="c-bolt-interactive-pathways__dropdown-trigger"
+            @click=${e => this.toggleDropdown(e)}
+          >
             ${titles[this.activePathwayIndex]}
             <bolt-icon
               style=${this.dropdownActive ? `transform: rotate(-180deg)` : ``}
