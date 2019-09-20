@@ -62,7 +62,7 @@
     position: relative;
     z-index: 10;
     margin: 0;
-    border-bottom: 2px solid bolt-color(black);
+    border-bottom: 2px solid bolt_theme(text);
     background-color: bolt-theme(background);
 
     &--active {
@@ -71,21 +71,21 @@
 
     bolt-icon {
       transition: transform 350ms ease;
-    }  
+    }
   }
 
   &__dropdown-trigger {
     @include bolt-font-weight(semibold);
     display: block;
     padding: 0;
-    color: rgba(var(--bolt-theme-primary), 1);
+    color: bolt_theme(primary);
     line-height: 1.65;
     letter-spacing: 0.03em;
     cursor: pointer;
     font-size: 1.75rem;
     border: none;
     background: none;
-    
+
     &:active, &:hover {
       background: transparent;
     }
@@ -124,7 +124,7 @@
 
     }
   }
-  
+
   &__menu-item {
     display: flex;
     flex-direction: column;
