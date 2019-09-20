@@ -26,6 +26,8 @@ const {
 } = require('./release-utils');
 const urlFriendlyVersion = normalizedUrlString(nextReleaseVersion);
 
+let canaryReleaseVersion;
+
 const { runAllChecks } = require('./release-checks');
 
 const isPr = process.env.TRAVIS_PULL_REQUEST || false;
@@ -118,10 +120,14 @@ function publishCanaryRelease() {
   shell.exec(
     `lerna publish --dist-tag canary --no-git-tag-version --no-push --yes ${getCanaryVersion()} -m "[skip travis] chore(release): pre-release %s"`,
   );
+
+  shell.exec(`git reset --hard`);
+  shell.exec(`git clean -f`);
+  // normalizedUrlString(getCanaryVersion())
+  // shell.exec(`now alias https://boltdesignsystem-123ab99sz.now.sh normalizedUrlString(getCanaryVersion()).boltdesignsystem.com`);
 }
 
 preRelease();
-
 // clearCache();
 //
 
