@@ -75,7 +75,7 @@ export const tripleConnectionBand = ({ speed, direction, theme }) => {
 					transform: translate(126.5999984741211px, 46.5px) translate(-126.5999984741211px, -46.5px) translate(196px, 0px);
 			}
 			100% {
-					transform: translate(126.5999984741211px, 46.5px) translate(-126.5999984741211px, -46.5px) translate(196px, 0px);
+					transform: translate(126.5999984741211px, 46.5px) translate(-126.5999984741211px, -46.5px) translate(296px, 0px);
 			}
 	}
 
@@ -101,13 +101,13 @@ export const tripleConnectionBand = ({ speed, direction, theme }) => {
 					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(-256px, 16px);
 			}
 			16.67% {
-					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(-73px,  -2px);
+					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(-73px,  -4px);
 			}
 			33.33% {
 					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(100px, 7px);
 			}
 			100% {
-					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(100px, 7px);
+					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(560px, 27px);
 			}
 	}
 
