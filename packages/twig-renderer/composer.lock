@@ -98,17 +98,12 @@
         },
         {
             "name": "bolt-design-system/core-php",
-            "version": "2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bolt-design-system/core-php.git",
-                "reference": "4a2c5665ee655c012f962850f2f49a7df86e06f5"
-            },
+            "version": "2.7.0",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bolt-design-system/core-php/zipball/4a2c5665ee655c012f962850f2f49a7df86e06f5",
-                "reference": "4a2c5665ee655c012f962850f2f49a7df86e06f5",
-                "shasum": ""
+                "type": "path",
+                "url": "../core-php",
+                "reference": "06f271fd7c33d6a957f72c6b5cbcb284ab0f248a",
+                "shasum": null
             },
             "require": {
                 "asm89/twig-lint": "^1.0",
@@ -134,7 +129,15 @@
                     "Bolt\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "setup": [
+                    "@composer install --no-interaction --prefer-dist --no-progress"
+                ],
+                "test": [
+                    "@composer install --no-interaction --prefer-dist --no-progress",
+                    "vendor/bin/phpunit --colors=always tests"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -147,8 +150,7 @@
                     "name": "Evan Lovely"
                 }
             ],
-            "description": "Core PHP functionality for the Bolt Design System",
-            "time": "2019-08-30T21:04:54+00:00"
+            "description": "Core PHP functionality for the Bolt Design System"
         },
         {
             "name": "bolt-design-system/drupal-twig-extensions",
@@ -156,7 +158,8 @@
             "dist": {
                 "type": "path",
                 "url": "../drupal-twig-extensions",
-                "reference": "f5939913e3ce84896f84d7e639557fa99b8e3882"
+                "reference": "f5939913e3ce84896f84d7e639557fa99b8e3882",
+                "shasum": null
             },
             "require": {
                 "drupal/core-render": "^8.0.0",
