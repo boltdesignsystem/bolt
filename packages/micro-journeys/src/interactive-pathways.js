@@ -5,6 +5,7 @@ import debounce from 'lodash.debounce';
 import styles from './interactive-pathways.scss';
 import pathwaysLogo from './images/interactive-pathways-logo.png';
 import schema from './interactive-pathways.schema';
+import { getClosestTheme, themeMutationObserver } from './util';
 
 let cx = classNames.bind(styles);
 
@@ -137,11 +138,20 @@ class BoltInteractivePathways extends withLitHtml() {
     this.triggerUpdate();
   }
 
+  connected() {
+    themeMutationObserver();
+    document.body.addEventListener('boltThemeHasChanged', e => {
+      console.log('theme changed');
+      this.triggerUpdate();
+    });
+  }
+
   render() {
+    const closestTheme = getClosestTheme({ space: this });
     const { customImageSrc = pathwaysLogo, imageAlt } = this.validateProps(
       this.props,
     );
-    const classes = cx('c-bolt-interactive-pathways');
+    const classes = cx('c-bolt-interactive-pathways', closestTheme);
 
     const titles = this.pathways.map((pathway, i) => pathway.getTitle());
 
