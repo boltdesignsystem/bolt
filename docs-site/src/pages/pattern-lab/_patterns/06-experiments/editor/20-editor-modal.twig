@@ -1,0 +1,36 @@
+{% set content %}
+  <bolt-button size="medium" width="auto" border-radius="regular" color="primary" on-click-target="editor-demo__modal" on-click="show">
+    <span>This is a Button triggering an on-page Modal</span>
+  </bolt-button>
+  <bolt-link on-click-target="editor-demo__modal" on-click="show" url="#">
+    This is a Link triggering an on-page Modal
+  </bolt-link>
+{% endset %}
+
+{% include '@bolt-components-editor/editor-in-pl.twig' with {
+  content: content,
+} only %}
+
+{% set video_content %}
+  {% include "@bolt-components-video/video.twig" with {
+    videoId: "3861325118001",
+    accountId: "1900410236",
+    playerId: "r1CAdLzTW",
+    showMeta: true,
+    showMetaTitle: true,
+    attributes: {
+      class: "editor-demo__modal"
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-modal/modal.twig" with {
+  attributes: {
+    class: "editor-demo__modal"
+  },
+  content: video_content,
+  width: "optimal",
+  spacing: "none",
+  theme: "none",
+  scroll: "overall",
+} only %}

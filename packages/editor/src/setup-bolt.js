@@ -624,7 +624,7 @@ export function setupBolt(editor) {
       default: true,
     },
     initialContent: [`I'm a link`],
-    extraTraits:[
+    extraTraits: [
       {
         label: 'On Click',
         name: 'on-click',
