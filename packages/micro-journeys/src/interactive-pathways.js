@@ -66,7 +66,7 @@ class BoltInteractivePathways extends withLitHtml() {
     super.connectedCallback();
     this.style.opacity = 1;
 
-    if (IntersectionObserver) {
+    if (window.IntersectionObserver) {
       const observer = new IntersectionObserver(
         entries => {
           entries.forEach(entry => {
