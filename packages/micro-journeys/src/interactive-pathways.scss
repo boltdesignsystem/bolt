@@ -55,35 +55,39 @@
   &__menu-dropdown {
     position: relative;
     padding: 0 0.5em;
+  }
 
-    h3 {
-      display: flex;
-      position: relative;
-      z-index: 10;
-      margin: 0;
-      border-bottom: 2px solid bolt-color(black);
-      background-color: bolt-theme(background);
-      
-      button {
-        @include bolt-font-weight(semibold);
-        display: block;
-        padding: 0;
-        color: rgba(var(--bolt-theme-primary), 1);
-        line-height: 1.65;
-        letter-spacing: 0.03em;
-        cursor: pointer;
-        font-size: 1.75rem;
-        border: none;
-        background: none;
-        
-        &:active, &:hover {
-          background: transparent;
-        }
-      }
+  &__heading {
+    display: flex;
+    position: relative;
+    z-index: 10;
+    margin: 0;
+    border-bottom: 2px solid bolt-color(black);
+    background-color: bolt-theme(background);
 
-      bolt-icon {
-        transition: transform 350ms ease;
-      }
+    &--active {
+      border-color: transparent;
+    }
+
+    bolt-icon {
+      transition: transform 350ms ease;
+    }  
+  }
+
+  &__dropdown-trigger {
+    @include bolt-font-weight(semibold);
+    display: block;
+    padding: 0;
+    color: rgba(var(--bolt-theme-primary), 1);
+    line-height: 1.65;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    font-size: 1.75rem;
+    border: none;
+    background: none;
+    
+    &:active, &:hover {
+      background: transparent;
     }
   }
 
@@ -107,10 +111,10 @@
       z-index: 1;
     }
 
-    li {
+    &__item {
       cursor: pointer;
 
-      & + li {
+      & + & {
         border-top: 1px solid rgba(58, 65, 78, 0.1);
       }
 

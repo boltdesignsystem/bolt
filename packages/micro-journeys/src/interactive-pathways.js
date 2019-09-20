@@ -30,7 +30,7 @@ class BoltInteractivePathways extends withLitHtml() {
     self.pathways = [];
     self._isVisible = false;
     self.dropdownActive = false;
-    self._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
+    self._handleClosingEvent = this._handleClosingEvent.bind(this);
 
     this.checkChildrenAndRender = debounce(done => {
       this.pathways = this.getPathways();
@@ -56,7 +56,8 @@ class BoltInteractivePathways extends withLitHtml() {
 
   connecting() {
     //Hide dropdown on ESC keypress
-    document.addEventListener('keydown', this._handleKeyPresseskeypress);
+    document.addEventListener('keydown', this._handleClosingEvent);
+    document.addEventListener('click', this._handleClosingEvent);
   }
 
   connectedCallback() {
@@ -65,7 +66,7 @@ class BoltInteractivePathways extends withLitHtml() {
   }
 
   disconnecting() {
-    document.removeEventListener('keydown', this._handleKeyPresseskeypress);
+    document.removeEventListener('keydown', this._handleClosingEvent);
   }
 
   /**
@@ -82,9 +83,9 @@ class BoltInteractivePathways extends withLitHtml() {
   /**
    * @param {Event} event
    */
-  _handleKeyPresseskeypress = function(event) {
-    // Close dropdown on ESC keypress
-    if (this.dropdownActive && event.which === 27) {
+  _handleClosingEvent = function(event) {
+    // Close dropdown on ESC keypress or clicks outside of the dropdown
+    if (this.dropdownActive && event.which === 27 || event.type === "click" || event.type === "tap") {
       event.preventDefault();
       this.dropdownActive = false;
       this.triggerUpdate();
@@ -123,8 +124,9 @@ class BoltInteractivePathways extends withLitHtml() {
     this.triggerUpdate();
   }
 
-  toggleDropdown() {
+  toggleDropdown(event) {
     this.dropdownActive = !this.dropdownActive;
+    event.stopPropagation();
     this.triggerUpdate();
   }
 
@@ -143,13 +145,13 @@ class BoltInteractivePathways extends withLitHtml() {
         : 'color: rgb(0, 0, 0); --bolt-theme-text: rgb(0, 0, 0);';
 
       return html`
-        <li>
+        <li class="c-bolt-interactive-pathways__menu-container__item">
           <bolt-text
             class="c-bolt-interactive-pathways__menu-item${isActiveItem
               ? ' c-bolt-interactive-pathways__menu-item--active'
               : ''}"
             font-weight="semibold"
-            font-size="small"
+            font-size="xsmall"
             @click=${() => this.showPathway(i)}
             style=${menuItemTextColor}
           >
@@ -166,12 +168,8 @@ class BoltInteractivePathways extends withLitHtml() {
 
     const dropdown = html`
       <nav class="c-bolt-interactive-pathways__menu-dropdown">
-        <h3
-          style="border-color: ${this.dropdownActive
-            ? `transparent`
-            : `var(--bolt-theme-text)`}"
-        >
-          <button @click=${() => this.toggleDropdown()}>
+        <h3 class="c-bolt-interactive-pathways__heading ${this.dropdownActive ? `--active` : ``}">
+          <button class="c-bolt-interactive-pathways__dropdown-trigger" @click=${e => this.toggleDropdown(e)}>
             ${titles[this.activePathwayIndex]}
             <bolt-icon
               style=${this.dropdownActive ? `transform: rotate(-180deg)` : ``}
