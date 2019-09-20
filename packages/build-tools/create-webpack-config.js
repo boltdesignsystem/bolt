@@ -56,10 +56,9 @@ async function createWebpackConfig(buildConfig) {
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
   let themifyOptions = {
-    watchForChanges:
-      config.watch === true && config.mode !== 'server' ? true : false,
+    watchForChanges: config.watch && config.mode !== 'server',
     classPrefix: 't-bolt-',
-    screwIE11: config.mode === 'server' ? true : false,
+    screwIE11: config.mode === 'server',
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -94,14 +93,14 @@ async function createWebpackConfig(buildConfig) {
       : JSON.stringify('development'),
     bolt: {
       mode: JSON.stringify(config.mode),
-      isClient: config.mode === 'client' ? true : false,
-      isServer: config.mode === 'server' ? true : false,
+      isClient: config.mode === 'client',
+      isServer: config.mode === 'server',
       namespace: JSON.stringify(config.namespace),
       themingFallbackCSS: JSON.stringify(
-        publicPath + themifyOptions.fallback.filename + '.css',
+        `${publicPath}${themifyOptions.fallback.filename}.css`,
       ),
       config: {
-        prod: config.prod ? true : false,
+        prod: config.prod,
         lang: JSON.stringify(config.lang),
         env: JSON.stringify(config.env),
       },
@@ -165,9 +164,7 @@ async function createWebpackConfig(buildConfig) {
       });
 
       const useHotMiddleware =
-        Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1
-          ? false
-          : true;
+        Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1;
 
       if (!config.prod && config.webpackDevServer && useHotMiddleware) {
         entry[globalEntryName].push(

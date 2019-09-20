@@ -158,7 +158,10 @@ const config = {
       to: path.join(__dirname, '../www/build'),
     },
     {
-      from: path.join(path.dirname(require.resolve(`@bolt/components-typeahead`)),'__demos__/typeahead.data.json'),
+      from: path.join(
+        path.dirname(require.resolve(`@bolt/components-typeahead`)),
+        '__demos__/typeahead.data.json',
+      ),
       to: path.join(__dirname, '../www/build/data'),
     },
     {
