@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.7.1) (2019-09-20)
+
+
+### Bug Fixes
+
+* add missing fuse.js library to Typeahead ([55e72c4](https://github.com/bolt-design-system/bolt/commit/55e72c4))
+
+
+
+
+
 # [2.7.0](https://github.com/bolt-design-system/bolt/compare/v2.6.0...v2.7.0) (2019-09-13)
 
 
