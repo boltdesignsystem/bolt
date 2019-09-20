@@ -342,6 +342,10 @@ export function setupBolt(editor) {
   });
   colorTrait.label = 'Color';
 
+  console.debug('Hey Super Smart Developer! You probably want this info ->', {
+    theInfo: buttonSchema,
+  });
+
   registerBoltComponent({
     name: 'bolt-button',
     registerBlock: true,
@@ -349,7 +353,21 @@ export function setupBolt(editor) {
     extend: 'text',
     initialContent: ['Button'],
     propsToTraits: ['size', 'width', 'border_radius'],
-    extraTraits: [colorTrait],
+    extraTraits: [
+      colorTrait,
+      {
+        label: 'On Click',
+        name: 'on-click',
+        type: 'select',
+        options: ['none', 'show'],
+        default: 'none',
+      },
+      {
+        label: 'On Click Target',
+        name: 'on-click-target',
+        type: 'string',
+      },
+    ],
   });
 
   registerBoltComponent({
@@ -606,6 +624,20 @@ export function setupBolt(editor) {
       default: true,
     },
     initialContent: [`I'm a link`],
+    extraTraits:[
+      {
+        label: 'On Click',
+        name: 'on-click',
+        type: 'select',
+        options: ['none', 'show'],
+        default: 'none',
+      },
+      {
+        label: 'On Click Target',
+        name: 'on-click-target',
+        type: 'string',
+      },
+    ],
   });
 
   registerBoltComponent({
