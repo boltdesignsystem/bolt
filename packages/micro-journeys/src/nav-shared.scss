@@ -1,8 +1,13 @@
+// @TODO these are just here for testing as per Mike Mai, and should be removed, not needed.
+@import '@bolt/global/styles/06-themes/themes.all.scss';
+@import "@bolt/global/styles/index.scss";
+
 $header-text-size: 1rem;
 $header-text-line-height: 1.65;
 $nav-circle-size: 12px;
 $nav-circle-size--active: 14px;
 $nav-circle-border-size: 2px;
+
 
 @mixin bolt-micro-journeys-nav-dot($active: false) {
   @if $active {
@@ -13,10 +18,12 @@ $nav-circle-border-size: 2px;
     // @TODO there's no good way to match the comps here given we can't know what theme we're in b/c shadow dom.
     background-color: bolt-theme(
       (
-        xdark: primary 1,
-        dark: primary 1,
-        light: secondary 1,
-        xlight: secondary 1
+        // needs to be yellow
+        xdark: primary,
+        dark: primary,
+        // needs to be white
+        light: secondary,
+        xlight: secondary,
       )
     );
   }
