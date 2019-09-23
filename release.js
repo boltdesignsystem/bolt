@@ -25,11 +25,7 @@ const {
   getCanaryVersion,
 } = require('./release-utils');
 const urlFriendlyVersion = normalizedUrlString(nextReleaseVersion);
-
 const canaryReleaseVersion = getCanaryVersion();
-
-console.log(canaryReleaseVersion);
-console.log(normalizedUrlString(canaryReleaseVersion));
 
 const { runAllChecks } = require('./release-checks');
 
