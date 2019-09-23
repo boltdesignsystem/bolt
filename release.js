@@ -26,7 +26,10 @@ const {
 } = require('./release-utils');
 const urlFriendlyVersion = normalizedUrlString(nextReleaseVersion);
 
-let canaryReleaseVersion;
+const canaryReleaseVersion = getCanaryVersion();
+
+console.log(canaryReleaseVersion);
+console.log(normalizedUrlString(canaryReleaseVersion));
 
 const { runAllChecks } = require('./release-checks');
 
@@ -52,6 +55,8 @@ const aliasUrls = [
   'www.bolt-design-system.com',
   `v${urlFriendlyVersion}.boltdesignsystem.com`,
 ];
+
+// const isPreRelease = branchName !== 'master';
 
 async function init() {
   /* eslint-disable prettier/prettier */
@@ -104,34 +109,68 @@ async function preRelease() {
     await testMonorepo();
     console.log(chalk.green('OK: All pre-release Jest tests passed! \n'));
 
-    // console.log(chalk.blue('Step 3. Bump PHP Dependencies'));
-    // await bumpPhpDependencies(nextReleaseVersion);
-    // console.log(chalk.green('OK: Updated PHP Dependencies to new version.\n'));
+
+    console.log(chalk.blue('Step 3. Bump PHP Dependencies (Skipped)'));
+    //   await bumpPhpDependencies(nextReleaseVersion);
+    //   console.log(chalk.green('OK: Updated PHP Dependencies to new version.\n'));
 
     console.log(chalk.blue('Step 4. Publish Canary Release'));
-    await publishCanaryRelease();
+    await shell.exec(
+      `lerna publish --dist-tag canary --no-git-tag-version --no-push --yes ${canaryReleaseVersion} -m "[skip travis] chore(release): pre-release %s"`,
+    );
     console.log(chalk.green('OK: Published our canary release!\n'));
+
+    // reset updated CHANGELOG.md + package.json files
+    console.log(
+      chalk.blue('Step 5. Clean up modified files post-canary release.'),
+    );
+    await shell.exec(`git reset --hard`);
+    await shell.exec(`git clean -f`);
+
+    // clear .inache file + rebuild website
+    await clearCache();
+    await buildBeforeDeploying();
+
+    await shell.exec(`git add docs-site/.incache`);
+    await shell.exec(
+      `git commit -m "[skip travis] chore(release): publish v${canaryReleaseVersion}`,
+    );
+
+    const deployUrl = await deployWebsite();
+
+    // await shell.exec(`now alias ${deployUrl} next.boltdesignsystem.com`);
+    await shell.exec(`now alias ${deployUrl} canary.boltdesignsystem.com`);
+    await shell.exec(
+      `now alias ${deployUrl} ${normalizedUrlString(
+        canaryReleaseVersion,
+      )}.boltdesignsystem.com`,
+    );
+
+    console.log(chalk.green('Finished automatically publishing canary release!\n'));
+    // now alias newDeployUrl boltdesignsystem.com
+    // now alias newDeployUrl www.boltdesignsystem.com
+    // now alias newDeployUrl bolt-design-system.com
+    // now alias newDeployUrl www.bolt-design-system.com
+    // now alias newDeployUrl release-2-x.boltdesignsystem.com
+    // now alias newDeployUrl v2-5-5.boltdesignsystem.com
+    // if (branchName === 'release/2.x') {
+    //   console.log(chalk.blue('Step 3. Bump PHP Dependencies'));
+    //   await bumpPhpDependencies(nextReleaseVersion);
+    //   console.log(chalk.green('OK: Updated PHP Dependencies to new version.\n'));
+    // } else {
+    // }
+
+    // now alias boltdesignsystem.com v${urlFriendlyVersion}.boltdesignsystem.com
   } catch (error) {
     console.log(chalk.red(`ERROR: the pre-release checks failed! ${error}`));
   }
 }
 
-function publishCanaryRelease() {
-  shell.exec(
-    `lerna publish --dist-tag canary --no-git-tag-version --no-push --yes ${getCanaryVersion()} -m "[skip travis] chore(release): pre-release %s"`,
-  );
-
-  shell.exec(`git reset --hard`);
-  shell.exec(`git clean -f`);
-  // normalizedUrlString(getCanaryVersion())
-  // shell.exec(`now alias https://boltdesignsystem-123ab99sz.now.sh normalizedUrlString(getCanaryVersion()).boltdesignsystem.com`);
-}
-
-preRelease();
-// clearCache();
+// preRelease();
+//
 //
 
-// const isStableRelease = branchName === 'master';
+//
 
 // # Alias the new tagged release URL
 // now alias boltdesignsystem.com v${urlFriendlyVersion}.boltdesignsystem.com
