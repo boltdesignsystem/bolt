@@ -79,6 +79,7 @@
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
     "test:types": "tsc",
+    "test:canary": "cd ./__tests__/canary-release && npm run setup",
     "postinstall": "patch-package && npx lerna run postbootstrap",
     "cache:clear": "json -I -f docs-site/.incache -e 'this[\"bolt-tags\"].expiresOn = \"2019-06-14T12:30:26.377Z\"; this[\"bolt-urls-to-test\"].expiresOn = \"2019-06-14T12:30:26.377Z\"'"
   },

@@ -106,6 +106,32 @@ function clearCache() {
   }, 2000);
 }
 
+// v2.5.5
+function bumpPhpDependencies(newVersion) {
+  const spinner = ora('Updating PHP dependencies...').start();
+
+  try {
+    shell.exec(
+      `node scripts/release/update-php-package-versions.js -v ${newVersion}`,
+    );
+
+    shell.exec(
+      `git add \
+        packages/core-php/composer.json \
+        packages/drupal-modules/bolt_connect/bolt_connect.info.yml \
+        packages/drupal-modules/bolt_connect/composer.json
+      `,
+    );
+
+    shell.exec(
+      `git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${newVersion}"`,
+    );
+    spinner.succeed('OK: finished updating PHP dependencies');
+  } catch (error) {
+    return spinner.fail(`Failed to update PHP dependencies.`);
+  }
+}
+
 function getCanaryVersion() {
   const previousVersions = JSON.parse(
     shell.exec(`npm view @bolt/core versions --json`).stdout,
@@ -143,6 +169,7 @@ module.exports = {
   normalizedUrlString,
   buildBeforeDeploying,
 
+  bumpPhpDependencies,
   getCanaryVersion,
   deployWebsite,
   testMonorepo,

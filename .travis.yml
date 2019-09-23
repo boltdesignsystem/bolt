@@ -18,6 +18,7 @@ stages:
   - Prep
   - Test Live Site
   - Release
+  - Post-Release
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
@@ -113,6 +114,12 @@ jobs:
       if: branch = next OR branch = develop
       script:
         - node ./release.js
+
+    - stage: Post-Release
+      name: 'Automatically test canary release just published'
+      if: branch = next OR branch = develop
+      script:
+        - npm run test:canary
 
 notifications:
   email:
