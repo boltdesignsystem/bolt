@@ -27,6 +27,9 @@ const {
 const urlFriendlyVersion = normalizedUrlString(nextReleaseVersion);
 const canaryReleaseVersion = getCanaryVersion();
 
+const { IncomingWebhook } = require('@slack/webhook');
+const url = process.env.SLACK_WEBHOOK_URL;
+
 const { runAllChecks } = require('./release-checks');
 
 const isPr = process.env.TRAVIS_PULL_REQUEST || false;
@@ -124,25 +127,46 @@ async function preRelease() {
     await shell.exec(`git clean -f`);
 
     // clear .inache file + rebuild website
+    console.log(
+      chalk.blue('Step 6. Rebuild the docs site.'),
+    );
     await clearCache();
     await buildBeforeDeploying();
 
-    await shell.exec(`git add docs-site/.incache`);
-    await shell.exec(
-      `git commit -m "[skip travis] chore(release): publish v${canaryReleaseVersion}`,
-    );
 
+
+    console.log(
+      chalk.blue('Step 7. Deploy to now.sh.'),
+    );
     const deployUrl = await deployWebsite();
 
     // await shell.exec(`now alias ${deployUrl} next.boltdesignsystem.com`);
+    console.log(
+      chalk.blue('Step 8. Alias deployed site.'),
+    );
     await shell.exec(`now alias ${deployUrl} canary.boltdesignsystem.com`);
     await shell.exec(
       `now alias ${deployUrl} ${normalizedUrlString(
         canaryReleaseVersion,
       )}.boltdesignsystem.com`,
     );
+    // console.log(chalk.green('Finished automatically publishing canary release!\n'));
 
-    console.log(chalk.green('Finished automatically publishing canary release!\n'));
+    console.log(
+      chalk.blue('Step 9. Send Slack notification'),
+    );
+
+    // await shell.exec(`git add docs-site/.incache`);
+    // await shell.exec(
+    //   `git commit -m "[skip travis] chore(release): publish v${canaryReleaseVersion}`,
+    // );
+    // await shell.exec(`git push --no-verify`);
+
+    const webhook = new IncomingWebhook(url);
+    await webhook.send({
+      text: `Bolt canary release ${canaryReleaseVersion} has successfully published! <https://canary.boltdesignsystem.com|View Here>`,
+    });
+
     // now alias newDeployUrl boltdesignsystem.com
     // now alias newDeployUrl www.boltdesignsystem.com
     // now alias newDeployUrl bolt-design-system.com
