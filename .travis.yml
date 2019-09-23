@@ -113,6 +113,7 @@ jobs:
       name: 'Automatically publish a canary release.'
       if: branch = next OR branch = develop
       script:
+        - yarn
         - node ./release.js
 
     - stage: Post-Release
