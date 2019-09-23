@@ -166,7 +166,7 @@ async function preRelease() {
   }
 }
 
-// preRelease();
+preRelease();
 //
 //
 
