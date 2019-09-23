@@ -34,6 +34,8 @@ const isPr = process.env.TRAVIS_PULL_REQUEST || false;
 const baseBranch =
   JSON.parse(fs.readFileSync('./.autorc', 'utf-8')).baseBranch || 'master';
 
+const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
+
 CFonts.say('Bolt Design System', {
   font: 'simple', // define the font face
   align: 'left', // define text alignment
@@ -139,7 +141,6 @@ async function preRelease() {
         canaryReleaseVersion,
       )}.boltdesignsystem.com`,
     );
-    // console.log(chalk.green('Finished automatically publishing canary release!\n'));
 
     console.log(chalk.blue('Step 9. Send Slack notification'));
 
@@ -148,18 +149,24 @@ async function preRelease() {
     //   `git commit -m "[skip travis] chore(release): publish v${canaryReleaseVersion}`,
     // );
     // await shell.exec(`git push --no-verify`);
-    if (process.env.SLACK_WEBHOOK_URL) {
-      const webhook = new IncomingWebhook(process.env.SLACK_WEBHOOK_URL);
+    if (SLACK_WEBHOOK_URL) {
+      const webhook = new IncomingWebhook(SLACK_WEBHOOK_URL);
       await webhook.send({
-        text: `Bolt canary release ${canaryReleaseVersion} has successfully published! <https://canary.boltdesignsystem.com|View Here>`,
+        text: `Bolt canary release, *v${canaryReleaseVersion}*, has successfully published!
+          - <https://canary.boltdesignsystem.com|Shared Canary URL>
+          - <https://${normalizedUrlString(
+            canaryReleaseVersion,
+          )}.boltdesignsystem.com|Unique Canary URL>`,
       });
     } else {
       console.log(
-        chalk.blue(
+        chalk.yellow(
           'Skipped sending Slack notification -- missing `SLACK_WEBHOOK_URL` env variable!',
         ),
       );
     }
+
+    console.log(chalk.green('Finished publishing canary release!\n'));
 
     // now alias newDeployUrl boltdesignsystem.com
     // now alias newDeployUrl www.boltdesignsystem.com

@@ -17,6 +17,7 @@ before_install:
 stages:
   - Prep
   - Test Live Site
+  - Release
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
@@ -106,6 +107,12 @@ jobs:
       if: branch = master
       script:
         - echo "This example only runs on master branch builds"
+
+    - stage: Release
+      name: 'Automatically publish a canary release.'
+      if: branch = next OR branch = develop
+      script:
+        - node ./release.js
 
 notifications:
   email:
