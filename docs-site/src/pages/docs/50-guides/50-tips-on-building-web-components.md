@@ -20,7 +20,7 @@ title: Tips on Building Web Components
     3. If it hasn’t, listen for the `ready` event and filter by the tag name (details.name)
 2. Use `this.renderRoot` to internally reference elements rendered inside the current component
 3. This._wasInitiallyRendered is a helpful flag to check to see if a component has rendered at least once
-4. In lit-HTML rendered components, yo7 can add real <slot> tags + automatic  “pseudo slots” (when unsupported / unavailable) via the this.slot(‘slotName’) syntax
+4. In lit-HTML rendered components, you can add real <slot> tags + automatic  “pseudo slots” (when unsupported / unavailable) via the this.slot(‘slotName’) syntax
 5. this.addStyles to auto-add <style> tags when rendering to the Shadow DOM
 6. this.useShadow to manually opt a component out of rendering to Shadow DOM
 7. Styling using :host vs `custom-element` selector
