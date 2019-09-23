@@ -21,6 +21,10 @@ properties:
           enum:
             - true
             - false
+        inactive:
+          type: boolean
+          description: Display item trigger as an inactive element. Item content will be collapsed and the toggle icon hidden.
+          default: false
         uuid:
           type: string
           description: Unique ID for an item, randomly generated if not provided.
