@@ -4,6 +4,7 @@
 
 $header-text-size: 1rem;
 $header-text-line-height: 1.65;
+// @todo: switch to 20px when enabling consolidated / animated dot styles
 $nav-circle-size: 12px;
 $nav-circle-size--active: 14px;
 $nav-circle-border-size: 2px;
@@ -45,6 +46,45 @@ $nav-circle-border-size: 2px;
     border-radius: 50%;
     background-color: bolt-theme(primary);
   }
+
+  // @todo: enable animated dot + more consolidated styles
+  // @if $active {
+  //   transform: translateX(-50%) scale(0.85);
+  //   border: $nav-circle-border-size solid;
+  //   border-color: bolt-theme(
+  //     (
+  //       xdark: secondary,
+  //       dark: secondary,
+  //       light: primary,
+  //       xlight: primary,
+  //     )
+  //   );
+  //   background-color: bolt-theme(
+  //     (
+  //       xdark: primary,
+  //       dark: primary,
+  //       light: secondary,
+  //       xlight: secondary,
+  //     )
+  //   );
+  // }
+
+  // @else {
+  //   content: '';
+  //   display: inline-block;
+  //   box-sizing: content-box;
+  //   transform: translateX(-50%) scale(0.5);
+  //   z-index: 1;
+  //   width: $nav-circle-size;
+  //   height: $nav-circle-size;
+  //   margin-right: bolt-spacing(small);
+  //   border-radius: 50%;
+  //   border-width: 2px;
+  //   border-style: solid;
+  //   border-color: transparent;
+  //   background-color: bolt-theme(primary);
+  //   transition: all 0.2s ease;
+  // }
 }
 
 @mixin bolt-micro-journeys-nav-line() {
