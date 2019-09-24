@@ -14,14 +14,19 @@ $nav-circle-border-size: 2px;
     width: $nav-circle-size--active;
     height: $nav-circle-size--active;
     margin-left: -$nav-circle-size--active / 2 - $nav-circle-border-size;
-    border: $nav-circle-border-size solid bolt-theme(primary);
-    // @TODO there's no good way to match the comps here given we can't know what theme we're in b/c shadow dom.
+    border: $nav-circle-border-size solid;
+    border-color: bolt-theme(
+      (
+        xdark: secondary,
+        dark: secondary,
+        light: primary,
+        xlight: primary,
+      )
+    );
     background-color: bolt-theme(
       (
-        // needs to be yellow
         xdark: primary,
         dark: primary,
-        // needs to be white
         light: secondary,
         xlight: secondary,
       )
