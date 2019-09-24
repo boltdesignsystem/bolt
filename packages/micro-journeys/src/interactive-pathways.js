@@ -1,15 +1,26 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import {
+  props,
+  define,
+  hasNativeShadowDomSupport,
+  withContext,
+  defineContext,
+} from '@bolt/core/utils';
 import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
 import styles from './interactive-pathways.scss';
+import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
 import pathwaysLogo from './images/interactive-pathways-logo.png';
 import schema from './interactive-pathways.schema';
 
 let cx = classNames.bind(styles);
 
+export const BoltInteractivePathwaysContext = defineContext({
+  theme: schema.properties.theme.default,
+});
+
 @define
-class BoltInteractivePathways extends withLitHtml() {
+class BoltInteractivePathways extends withContext(withLitHtml()) {
   static is = 'bolt-interactive-pathways';
 
   static props = {
@@ -19,6 +30,12 @@ class BoltInteractivePathways extends withLitHtml() {
     },
     ...convertSchemaToProps(schema),
   };
+
+  // provide context info to children that subscribe
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get provides() {
+    return [BoltInteractivePathwaysContext];
+  }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   // @ts-ignore
@@ -138,10 +155,17 @@ class BoltInteractivePathways extends withLitHtml() {
   }
 
   render() {
-    const { customImageSrc = pathwaysLogo, imageAlt } = this.validateProps(
-      this.props,
-    );
-    const classes = cx('c-bolt-interactive-pathways');
+    const {
+      customImageSrc = pathwaysLogo,
+      imageAlt,
+      theme,
+    } = this.validateProps(this.props);
+
+    this.contexts.get(BoltInteractivePathwaysContext).theme = theme;
+
+    const classes = cx('c-bolt-interactive-pathways', {
+      [`t-bolt-${theme}`]: theme,
+    });
 
     const titles = this.pathways.map((pathway, i) => pathway.getTitle());
 
@@ -192,7 +216,7 @@ class BoltInteractivePathways extends withLitHtml() {
     `;
 
     return html`
-      ${this.addStyles([styles])}
+      ${this.addStyles([styles, themes])}
       <div class="${classes}">
         <div class="c-bolt-interactive-pathways__header">
           <bolt-image
