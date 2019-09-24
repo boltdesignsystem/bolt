@@ -67,7 +67,7 @@ class BoltTabs extends withContext(withLitHtml()) {
     const panels = this.tabPanels;
 
     // Set a unique identifier for each tab instance. Will be different on each load. For constant and/or readable `id`s, this must be exposed as a prop.
-    this.tabsId = getUniqueId();
+    this.tabsId = bolt.config.env === 'test' ? '12345' : getUniqueId();
 
     // Convert tab index to 0-based numbering with some additional validation
     this.selectedIndex = this.validateIndex(selectedTab - 1);
