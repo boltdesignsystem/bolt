@@ -13,7 +13,6 @@ import { BoltInteractivePathwaysContext } from './interactive-pathways';
 import styles from './interactive-pathway.scss';
 import schema from './interactive-pathway.schema';
 
-
 let cx = classNames.bind(styles);
 
 @define
@@ -28,12 +27,10 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
     ...convertSchemaToProps(schema),
   };
 
-   // subscribe to specific props that are defined and available on the parent container
+  // subscribe to specific props that are defined and available on the parent container
   // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
   static get consumes() {
-    return [
-      [BoltInteractivePathwaysContext, 'theme'],
-    ];
+    return [[BoltInteractivePathwaysContext, 'theme']];
   }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
