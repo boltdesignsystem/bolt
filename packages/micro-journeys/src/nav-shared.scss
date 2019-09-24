@@ -9,9 +9,29 @@ $nav-circle-border-size: 2px;
     width: $nav-circle-size--active;
     height: $nav-circle-size--active;
     margin-left: -$nav-circle-size--active / 2 - $nav-circle-border-size;
+<<<<<<< HEAD
     border: $nav-circle-border-size solid bolt-theme(primary);
     // @TODO there's no good way to match the comps here given we can't know what theme we're in b/c shadow dom.
     background-color: bolt-theme(secondary);
+=======
+    border: $nav-circle-border-size solid;
+    border-color: bolt-theme(
+      (
+        xdark: secondary,
+        dark: secondary,
+        light: primary,
+        xlight: primary,
+      )
+    );
+    background-color: bolt-theme(
+      (
+        xdark: primary,
+        dark: primary,
+        light: secondary,
+        xlight: secondary,
+      )
+    );
+>>>>>>> 946d6c934... fix: update Sass to use bolt-theme outside of a media query + add border color to styles
   }
 
   @else {

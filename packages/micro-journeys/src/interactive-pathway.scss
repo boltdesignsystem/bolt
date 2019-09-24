@@ -25,6 +25,18 @@ $bolt-interactive-step--dot-size: 1.2rem;
     display: none;
   }
 
+  &__nav-item {
+    &:before {
+      @include bolt-micro-journeys-nav-dot;
+    }
+
+    &--active {
+      &:before {
+        @include bolt-micro-journeys-nav-dot($active: true);
+      }
+    }
+  }
+
   @include bolt-mq(medium) {
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -44,9 +56,6 @@ $bolt-interactive-step--dot-size: 1.2rem;
       position: relative;
       @include bolt-micro-journeys-nav-title;
 
-      &:before {
-        @include bolt-micro-journeys-nav-dot;
-      }
 
       &:after {
         @include bolt-micro-journeys-nav-line;
@@ -55,9 +64,6 @@ $bolt-interactive-step--dot-size: 1.2rem;
       &--active {
         @include bolt-micro-journeys-nav-title($active: true);
 
-        &:before {
-          @include bolt-micro-journeys-nav-dot($active: true);
-        }
       }
 
       &:last-of-type:after {
