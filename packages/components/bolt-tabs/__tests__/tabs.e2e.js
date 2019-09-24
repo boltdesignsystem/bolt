@@ -2,11 +2,11 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'tabs', 'web component'],
-  'Tabs: tab opened': function(browser) {
+  'Tabs: tab selected': function(browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
-    let testName = 'tabs-tab-opened';
+    let testName = 'tabs-tab-selected';
 
     browser
       .url(
