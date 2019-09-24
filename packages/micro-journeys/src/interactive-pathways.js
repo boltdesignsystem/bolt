@@ -8,8 +8,8 @@ import {
 import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
-import styles from './interactive-pathways.scss';
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
+import styles from './interactive-pathways.scss';
 import pathwaysLogo from './images/interactive-pathways-logo.png';
 import schema from './interactive-pathways.schema';
 
