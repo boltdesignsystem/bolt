@@ -3,7 +3,6 @@ import {
   withContext,
   define,
   props,
-  hasNativeShadowDomSupport,
   containsTagName,
   getUniqueId,
 } from '@bolt/core/utils';
@@ -22,7 +21,6 @@ export const TabsContext = defineContext({
   panelSpacing: 'small', // no need to pass `labelSpacing`, only used in this template
   uuid: '',
   selectedIndex: 0,
-  useShadow: hasNativeShadowDomSupport,
 });
 
 let cx = classNames.bind(styles);
@@ -47,7 +45,6 @@ class BoltTabs extends withContext(withLitHtml()) {
 
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema);
 
     return self;
