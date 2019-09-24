@@ -326,7 +326,7 @@ class BoltTabs extends withContext(withLitHtml()) {
 
     return html`
       <div class="${classes}">
-        <div class="${listClasses}" role="tablist" aria-label="Sample Tabs">
+        <div class="${listClasses}" role="tablist">
           ${tabButtons()}
         </div>
         <div class="${panelsClasses}">
