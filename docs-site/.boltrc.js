@@ -77,6 +77,7 @@ const config = {
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
+      '@bolt/animations',
       '@bolt/components-animate',
       '@bolt/docs-search',
       '@bolt/components-typeahead',
