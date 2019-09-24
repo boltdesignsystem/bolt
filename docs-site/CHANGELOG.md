@@ -138,6 +138,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 * wip transfer to new package structure, new PL docs ([7627e83](https://github.com/bolt-design-system/bolt/commit/7627e83))
 
 
+## [2.7.1](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.7.1) (2019-09-20)
+
+**Note:** Version bump only for package @bolt/website
+
+
 
 
 
