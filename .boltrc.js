@@ -66,13 +66,17 @@ nonImageFixtures.forEach(fixturePath => {
   });
 });
 
-
 module.exports = {
   wwwDir: adjustRelativePath(siteConfig.wwwDir),
   buildDir: adjustRelativePath(siteConfig.buildDir),
   iconDir: [],
   components: {
-    global: [...allComponentPackages, '@bolt/analytics-autolink'],
+    global: [
+      ...allComponentPackages,
+      '@bolt/components-animate',
+      '@bolt/micro-journeys',
+      '@bolt/analytics-autolink',
+    ],
   },
   images: {
     sets: imageSets,

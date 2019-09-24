@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* make sure Dropdown isn't double-defined + workaround to fix Dropdown component rendering / interaction when being extended in MicroJourneysDropdown ([74d22a4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown/commit/74d22a4))
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* make sure Dropdown isn't double-defined + workaround to fix Dropdown component rendering / interaction when being extended in MicroJourneysDropdown ([74d22a4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown/commit/74d22a4))
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+
+### Bug Fixes
+
+* make sure Dropdown isn't double-defined + workaround to fix Dropdown component rendering / interaction when being extended in MicroJourneysDropdown ([74d22a4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown/commit/74d22a4))
+
+
+
+
+
 # [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-dropdown/compare/v2.6.0...v2.7.0) (2019-09-13)
 
 **Note:** Version bump only for package @bolt/components-dropdown

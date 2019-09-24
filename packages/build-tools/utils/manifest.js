@@ -149,9 +149,14 @@ async function getPkgInfo(pkgName) {
         const schemas = pkg.schema;
 
         for (const schemaPath of schemas) {
+          let schema;
           const schemaFilePath = path.join(dir, schemaPath);
           // eslint-disable-next-line
-          const schema = await getDataFile(schemaFilePath);
+          if (schemaFilePath.endsWith('.js')) {
+            schema = require(schemaFilePath);
+          } else {
+            schema = await getDataFile(schemaFilePath);
+          }
           validateSchemaSchema(
             schema,
             `Schema not valid for: ${schemaFilePath}`,
@@ -164,10 +169,15 @@ async function getPkgInfo(pkgName) {
           info.schema[schemaMachineName] = dereferencedSchema;
         }
       } else {
+        let schema;
         const schemaFilePath = path.join(dir, pkg.schema);
-        const schema = await getDataFile(schemaFilePath);
+        if (schemaFilePath.endsWith('.js')) {
+          schema = require(schemaFilePath);
+        } else {
+          schema = await getDataFile(schemaFilePath);
+        }
         validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
-        const dereferencedSchema = await $RefParser.dereference(schemaFilePath);
+        const dereferencedSchema = await $RefParser.dereference(schema);
         info.schema = dereferencedSchema;
       }
     }

@@ -1,0 +1,5 @@
+<h2>Icon Group Docs</h2>
+<pre><code>{{ '<bolt-icon-group icon-one-name="eye" icon-two-name="eye" icon-three-name="eye" icon-color="teal"></bolt-icon-group>' | e }}</code></pre>
+
+{% set schema = bolt.data.components["@bolt-micro-journeys"].schema.iconGroup %}
+{% include '@utils/schema-docs.twig' with { schema: schema } only %}
