@@ -3,6 +3,172 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **animate:** IE11 issue by not using Array.from() ([0dfd86c](https://github.com/bolt-design-system/bolt/commit/0dfd86c))
+* **character:** IE11 background slot ([c261314](https://github.com/bolt-design-system/bolt/commit/c261314))
+* **interactive-step:** active dot ff/chrome left pos discrepancy ([7f33edf](https://github.com/bolt-design-system/bolt/commit/7f33edf))
+* **interactive-step:** add padding for nav dot truncation ([c89d4e4](https://github.com/bolt-design-system/bolt/commit/c89d4e4))
+* **interactive-step:** IE 11 bottom slot layout ([5afac18](https://github.com/bolt-design-system/bolt/commit/5afac18))
+* **interactive-step:** last step padding fix; consolidate padding vars ([04f7d06](https://github.com/bolt-design-system/bolt/commit/04f7d06))
+* lint fixes ([b13742c](https://github.com/bolt-design-system/bolt/commit/b13742c))
+* **interactive-step:** mobile styling: bolt-connection content overflow; desktop nav padding; fix mobile issues ([408e0bb](https://github.com/bolt-design-system/bolt/commit/408e0bb))
+* **interactive-step:** mobile styling: line strikethrough; body padding ([e6f9f80](https://github.com/bolt-design-system/bolt/commit/e6f9f80))
+* **micro-journeys:** add missing styles for IE11 ([f81cef0](https://github.com/bolt-design-system/bolt/commit/f81cef0))
+* **micro-journeys:** adjust animation config for examples ([1a4646e](https://github.com/bolt-design-system/bolt/commit/1a4646e))
+* **micro-journeys:** correct schema import ([8768622](https://github.com/bolt-design-system/bolt/commit/8768622))
+* **micro-journeys:** fix horizontal scroll problem; responsiveness for bolt-connection ([b1ad432](https://github.com/bolt-design-system/bolt/commit/b1ad432))
+* **micro-journeys:** fixes for no shadow dom, mostly icons ([52b3791](https://github.com/bolt-design-system/bolt/commit/52b3791))
+* **micro-journeys:** importing dropdown scss ([aa9dcd1](https://github.com/bolt-design-system/bolt/commit/aa9dcd1))
+* **micro-journeys:** increase robustness of parent-child components ([84bd753](https://github.com/bolt-design-system/bolt/commit/84bd753))
+* **micro-journeys:** move pathway title to attribute ([ef4e303](https://github.com/bolt-design-system/bolt/commit/ef4e303))
+* **micro-journeys:** pathways should wait for children ([b88ce14](https://github.com/bolt-design-system/bolt/commit/b88ce14))
+* **micro-journeys:** remove [is=shadow-root] from shadow dom ([1b5a387](https://github.com/bolt-design-system/bolt/commit/1b5a387))
+* **micro-journeys:** remove transform from connection band to fix ie 11 ([fd49331](https://github.com/bolt-design-system/bolt/commit/fd49331))
+* **micro-journeys:** set correct local version of dropdown dependency ([b21b148](https://github.com/bolt-design-system/bolt/commit/b21b148))
+* **micro-journeys:** set status-dialog-bar to inline-block ([e193087](https://github.com/bolt-design-system/bolt/commit/e193087))
+* **micro-journeys:** show pathways title in non-shadow dom ([7f92bb7](https://github.com/bolt-design-system/bolt/commit/7f92bb7))
+* **micro-journeys:** strikethrough line alignment and padding fix ([9bb74b4](https://github.com/bolt-design-system/bolt/commit/9bb74b4))
+* **micro-journeys:** switch active tab before triggering new anims ([4ff500c](https://github.com/bolt-design-system/bolt/commit/4ff500c))
+* **micro-journeys-dropdown:** add pointer on menu item hover ([55aa7a8](https://github.com/bolt-design-system/bolt/commit/55aa7a8))
+* **micro-journeys-dropdown:** bump version of dropdown fixing no action on click ([19084d8](https://github.com/bolt-design-system/bolt/commit/19084d8))
+* **micro-journeys-dropdown:** correct z-index higher than error overlay ([d9cd353](https://github.com/bolt-design-system/bolt/commit/d9cd353))
+* **micro-journeys-dropdown:** properly add colors with bolt_theme ([0a52ccb](https://github.com/bolt-design-system/bolt/commit/0a52ccb))
+* **micro-journeys-dropdown:** super.render() crash ([dffa91e](https://github.com/bolt-design-system/bolt/commit/dffa91e))
+* **pathway:** IE 11 layout ([da4b151](https://github.com/bolt-design-system/bolt/commit/da4b151))
+* **pathways:** restore menu broken by pathways instead of this.pathways ([a3f1d79](https://github.com/bolt-design-system/bolt/commit/a3f1d79))
+* micro journey misc styling ([#1352](https://github.com/bolt-design-system/bolt/issues/1352)) ([9b38f72](https://github.com/bolt-design-system/bolt/commit/9b38f72))
+* **status-dialogue-bar:** force black text; remove bolt-text passed to dialog; widen left/right padding ([6a4760f](https://github.com/bolt-design-system/bolt/commit/6a4760f))
+* character with "none" for svg-anim ([7fd417c](https://github.com/bolt-design-system/bolt/commit/7fd417c))
+* lint fix ([34f1143](https://github.com/bolt-design-system/bolt/commit/34f1143))
+* lint fixes ([9037645](https://github.com/bolt-design-system/bolt/commit/9037645))
+* lint fixes ([6e606ef](https://github.com/bolt-design-system/bolt/commit/6e606ef))
+* lint fixes ([af1642f](https://github.com/bolt-design-system/bolt/commit/af1642f))
+* lint fixes ([836b3c8](https://github.com/bolt-design-system/bolt/commit/836b3c8))
+* **svg-animations:** show in IE11 ([7135e3c](https://github.com/bolt-design-system/bolt/commit/7135e3c))
+* make sure Dropdown isn't double-defined + workaround to fix Dropdown component rendering / interaction when being extended in MicroJourneysDropdown ([74d22a4](https://github.com/bolt-design-system/bolt/commit/74d22a4))
+* mobile styling of status bars, no longer overlap ([4905840](https://github.com/bolt-design-system/bolt/commit/4905840))
+* pull out imports of scss animations package ([fd1f33d](https://github.com/bolt-design-system/bolt/commit/fd1f33d))
+* styling and theme override ([d8fb3f8](https://github.com/bolt-design-system/bolt/commit/d8fb3f8))
+* trigger active pathway from pathways ([057dd0a](https://github.com/bolt-design-system/bolt/commit/057dd0a))
+
+
+### Features
+
+* **editor:** easier add components to slots ([9220e32](https://github.com/bolt-design-system/bolt/commit/9220e32))
+* **micro-journeys:** add starter templates to step ([bd06ead](https://github.com/bolt-design-system/bolt/commit/bd06ead))
+* **micro-journeys:** exposing multiple schemas ([460b7c6](https://github.com/bolt-design-system/bolt/commit/460b7c6))
+* **micro-journeys:** extend bolt dropdown and theme to comps ([03c52e2](https://github.com/bolt-design-system/bolt/commit/03c52e2))
+* **micro-journeys:** extend bolt-dropdown ([d8a9652](https://github.com/bolt-design-system/bolt/commit/d8a9652))
+* **micro-journeys:** hide everything till ready ([71d4f55](https://github.com/bolt-design-system/bolt/commit/71d4f55))
+* **micro-journeys:** re-style tabs after refactor; replace colors with theme ones ([8a2f14e](https://github.com/bolt-design-system/bolt/commit/8a2f14e))
+* a few more lorem starters ([664393c](https://github.com/bolt-design-system/bolt/commit/664393c))
+* add custom cta with icon component ([05382a3](https://github.com/bolt-design-system/bolt/commit/05382a3))
+* add lorem impsum starters for the step top and bottom ([08e99e2](https://github.com/bolt-design-system/bolt/commit/08e99e2))
+* add new property to micro journey character ([3329128](https://github.com/bolt-design-system/bolt/commit/3329128))
+* add triple band to one of the demo steps ([b159b1f](https://github.com/bolt-design-system/bolt/commit/b159b1f))
+* dropdown and nav cleanup ([4aba778](https://github.com/bolt-design-system/bolt/commit/4aba778))
+* fade-in fade-out animation, add character background slot ([c8fec87](https://github.com/bolt-design-system/bolt/commit/c8fec87))
+* one character layout and bug fixes ([815c0dc](https://github.com/bolt-design-system/bolt/commit/815c0dc))
+* setup markup for fully animated two character layout template ([f5bbd9a](https://github.com/bolt-design-system/bolt/commit/f5bbd9a))
+* transfer image assests into micro journey package ([0a7032e](https://github.com/bolt-design-system/bolt/commit/0a7032e))
+* update character to work with both pre-defined img and custom url ([753b258](https://github.com/bolt-design-system/bolt/commit/753b258))
+* update connection component to use animated svg ([e6fff6e](https://github.com/bolt-design-system/bolt/commit/e6fff6e))
+* update starter templates to have bolt-animate for all slots ([2b5ce96](https://github.com/bolt-design-system/bolt/commit/2b5ce96))
+* wip transfer to new package structure, new PL docs ([7627e83](https://github.com/bolt-design-system/bolt/commit/7627e83))
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **animate:** IE11 issue by not using Array.from() ([0dfd86c](https://github.com/bolt-design-system/bolt/commit/0dfd86c))
+* **character:** IE11 background slot ([c261314](https://github.com/bolt-design-system/bolt/commit/c261314))
+* **interactive-step:** active dot ff/chrome left pos discrepancy ([7f33edf](https://github.com/bolt-design-system/bolt/commit/7f33edf))
+* **interactive-step:** add padding for nav dot truncation ([c89d4e4](https://github.com/bolt-design-system/bolt/commit/c89d4e4))
+* **interactive-step:** IE 11 bottom slot layout ([5afac18](https://github.com/bolt-design-system/bolt/commit/5afac18))
+* **interactive-step:** last step padding fix; consolidate padding vars ([04f7d06](https://github.com/bolt-design-system/bolt/commit/04f7d06))
+* lint fixes ([b13742c](https://github.com/bolt-design-system/bolt/commit/b13742c))
+* **interactive-step:** mobile styling: bolt-connection content overflow; desktop nav padding; fix mobile issues ([408e0bb](https://github.com/bolt-design-system/bolt/commit/408e0bb))
+* **interactive-step:** mobile styling: line strikethrough; body padding ([e6f9f80](https://github.com/bolt-design-system/bolt/commit/e6f9f80))
+* **micro-journeys:** add missing styles for IE11 ([f81cef0](https://github.com/bolt-design-system/bolt/commit/f81cef0))
+* **micro-journeys:** adjust animation config for examples ([1a4646e](https://github.com/bolt-design-system/bolt/commit/1a4646e))
+* **micro-journeys:** correct schema import ([8768622](https://github.com/bolt-design-system/bolt/commit/8768622))
+* **micro-journeys:** fix horizontal scroll problem; responsiveness for bolt-connection ([b1ad432](https://github.com/bolt-design-system/bolt/commit/b1ad432))
+* **micro-journeys:** fixes for no shadow dom, mostly icons ([52b3791](https://github.com/bolt-design-system/bolt/commit/52b3791))
+* **micro-journeys:** importing dropdown scss ([aa9dcd1](https://github.com/bolt-design-system/bolt/commit/aa9dcd1))
+* **micro-journeys:** increase robustness of parent-child components ([84bd753](https://github.com/bolt-design-system/bolt/commit/84bd753))
+* **micro-journeys:** move pathway title to attribute ([ef4e303](https://github.com/bolt-design-system/bolt/commit/ef4e303))
+* **micro-journeys:** pathways should wait for children ([b88ce14](https://github.com/bolt-design-system/bolt/commit/b88ce14))
+* **micro-journeys:** remove [is=shadow-root] from shadow dom ([1b5a387](https://github.com/bolt-design-system/bolt/commit/1b5a387))
+* **micro-journeys:** remove transform from connection band to fix ie 11 ([fd49331](https://github.com/bolt-design-system/bolt/commit/fd49331))
+* **micro-journeys:** set correct local version of dropdown dependency ([b21b148](https://github.com/bolt-design-system/bolt/commit/b21b148))
+* **micro-journeys:** set status-dialog-bar to inline-block ([e193087](https://github.com/bolt-design-system/bolt/commit/e193087))
+* **micro-journeys:** show pathways title in non-shadow dom ([7f92bb7](https://github.com/bolt-design-system/bolt/commit/7f92bb7))
+* **micro-journeys:** strikethrough line alignment and padding fix ([9bb74b4](https://github.com/bolt-design-system/bolt/commit/9bb74b4))
+* **micro-journeys:** switch active tab before triggering new anims ([4ff500c](https://github.com/bolt-design-system/bolt/commit/4ff500c))
+* **micro-journeys-dropdown:** add pointer on menu item hover ([55aa7a8](https://github.com/bolt-design-system/bolt/commit/55aa7a8))
+* **micro-journeys-dropdown:** bump version of dropdown fixing no action on click ([19084d8](https://github.com/bolt-design-system/bolt/commit/19084d8))
+* **micro-journeys-dropdown:** correct z-index higher than error overlay ([d9cd353](https://github.com/bolt-design-system/bolt/commit/d9cd353))
+* **micro-journeys-dropdown:** properly add colors with bolt_theme ([0a52ccb](https://github.com/bolt-design-system/bolt/commit/0a52ccb))
+* **micro-journeys-dropdown:** super.render() crash ([dffa91e](https://github.com/bolt-design-system/bolt/commit/dffa91e))
+* **pathway:** IE 11 layout ([da4b151](https://github.com/bolt-design-system/bolt/commit/da4b151))
+* **pathways:** restore menu broken by pathways instead of this.pathways ([a3f1d79](https://github.com/bolt-design-system/bolt/commit/a3f1d79))
+* micro journey misc styling ([#1352](https://github.com/bolt-design-system/bolt/issues/1352)) ([9b38f72](https://github.com/bolt-design-system/bolt/commit/9b38f72))
+* **status-dialogue-bar:** force black text; remove bolt-text passed to dialog; widen left/right padding ([6a4760f](https://github.com/bolt-design-system/bolt/commit/6a4760f))
+* character with "none" for svg-anim ([7fd417c](https://github.com/bolt-design-system/bolt/commit/7fd417c))
+* lint fix ([34f1143](https://github.com/bolt-design-system/bolt/commit/34f1143))
+* lint fixes ([9037645](https://github.com/bolt-design-system/bolt/commit/9037645))
+* lint fixes ([6e606ef](https://github.com/bolt-design-system/bolt/commit/6e606ef))
+* lint fixes ([af1642f](https://github.com/bolt-design-system/bolt/commit/af1642f))
+* lint fixes ([836b3c8](https://github.com/bolt-design-system/bolt/commit/836b3c8))
+* **svg-animations:** show in IE11 ([7135e3c](https://github.com/bolt-design-system/bolt/commit/7135e3c))
+* make sure Dropdown isn't double-defined + workaround to fix Dropdown component rendering / interaction when being extended in MicroJourneysDropdown ([74d22a4](https://github.com/bolt-design-system/bolt/commit/74d22a4))
+* mobile styling of status bars, no longer overlap ([4905840](https://github.com/bolt-design-system/bolt/commit/4905840))
+* pull out imports of scss animations package ([fd1f33d](https://github.com/bolt-design-system/bolt/commit/fd1f33d))
+* styling and theme override ([d8fb3f8](https://github.com/bolt-design-system/bolt/commit/d8fb3f8))
+* trigger active pathway from pathways ([057dd0a](https://github.com/bolt-design-system/bolt/commit/057dd0a))
+
+
+### Features
+
+* **editor:** easier add components to slots ([9220e32](https://github.com/bolt-design-system/bolt/commit/9220e32))
+* **micro-journeys:** add starter templates to step ([bd06ead](https://github.com/bolt-design-system/bolt/commit/bd06ead))
+* **micro-journeys:** exposing multiple schemas ([460b7c6](https://github.com/bolt-design-system/bolt/commit/460b7c6))
+* **micro-journeys:** extend bolt dropdown and theme to comps ([03c52e2](https://github.com/bolt-design-system/bolt/commit/03c52e2))
+* **micro-journeys:** extend bolt-dropdown ([d8a9652](https://github.com/bolt-design-system/bolt/commit/d8a9652))
+* **micro-journeys:** hide everything till ready ([71d4f55](https://github.com/bolt-design-system/bolt/commit/71d4f55))
+* **micro-journeys:** re-style tabs after refactor; replace colors with theme ones ([8a2f14e](https://github.com/bolt-design-system/bolt/commit/8a2f14e))
+* a few more lorem starters ([664393c](https://github.com/bolt-design-system/bolt/commit/664393c))
+* add custom cta with icon component ([05382a3](https://github.com/bolt-design-system/bolt/commit/05382a3))
+* add lorem impsum starters for the step top and bottom ([08e99e2](https://github.com/bolt-design-system/bolt/commit/08e99e2))
+* add new property to micro journey character ([3329128](https://github.com/bolt-design-system/bolt/commit/3329128))
+* add triple band to one of the demo steps ([b159b1f](https://github.com/bolt-design-system/bolt/commit/b159b1f))
+* dropdown and nav cleanup ([4aba778](https://github.com/bolt-design-system/bolt/commit/4aba778))
+* fade-in fade-out animation, add character background slot ([c8fec87](https://github.com/bolt-design-system/bolt/commit/c8fec87))
+* one character layout and bug fixes ([815c0dc](https://github.com/bolt-design-system/bolt/commit/815c0dc))
+* setup markup for fully animated two character layout template ([f5bbd9a](https://github.com/bolt-design-system/bolt/commit/f5bbd9a))
+* transfer image assests into micro journey package ([0a7032e](https://github.com/bolt-design-system/bolt/commit/0a7032e))
+* update character to work with both pre-defined img and custom url ([753b258](https://github.com/bolt-design-system/bolt/commit/753b258))
+* update connection component to use animated svg ([e6fff6e](https://github.com/bolt-design-system/bolt/commit/e6fff6e))
+* update starter templates to have bolt-animate for all slots ([2b5ce96](https://github.com/bolt-design-system/bolt/commit/2b5ce96))
+* wip transfer to new package structure, new PL docs ([7627e83](https://github.com/bolt-design-system/bolt/commit/7627e83))
+
+
+
+
+
 # [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
 
 
