@@ -126,10 +126,8 @@ async function getPkgInfo(pkgName) {
      */
     let normalizedPkgName;
     if (pkg.name.match(scopedRegex())) {
-      const matchedName = pkg.name
-      .match(scopedRegex())[0];
-      const pkgNamePrefix = matchedName.split('/')[0]
-      .replace('@', '');
+      const matchedName = pkg.name.match(scopedRegex())[0];
+      const pkgNamePrefix = matchedName.split('/')[0].replace('@', '');
       const pkgNameSuffix = matchedName.split('/')[1];
       normalizedPkgName = `${pkgNamePrefix}-${pkgNameSuffix}`;
     } else {

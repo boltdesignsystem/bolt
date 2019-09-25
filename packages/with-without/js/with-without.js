@@ -25,7 +25,7 @@ const wwoSwiper = new Swiper('#c-pega-wwo__swiper-container', {
 });
 
 // Pushed to bottom of call stack b/c w/o shadowdom enabled it breaks if not.
-if (document.querySelector(toggleInputClass)){
+if (document.querySelector(toggleInputClass)) {
   setTimeout(() => {
     // Initialize the page.
     triggerActiveRegionChange(
@@ -46,7 +46,7 @@ Array.from(document.querySelectorAll(toggleInputClass)).forEach(el => {
 // Add animation start and end event listeners to keep event from firing while in progress.
 const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
 
-if (animControllerEl){
+if (animControllerEl) {
   animControllerEl.addEventListener('animateStart', e => {
     // console.error('animateStart');
     e.target.setAttribute('anim-in-progress', 1);
@@ -69,7 +69,6 @@ if (animControllerEl){
   });
 }
 
-
 // Initialize the accordion.
 document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
   el.addEventListener('click', handleBlockTitleMobileAccordionClick);
@@ -79,15 +78,15 @@ document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
 const learnMoreModal = document.querySelector('.c-pega-www__modal--learn-more');
 const learnMoreVideo = document.querySelector('.c-pega-www__video--learn-more');
 
-if (learnMoreModal){
+if (learnMoreModal) {
   learnMoreModal.addEventListener('modal:show', function() {
-    if (learnMoreVideo){
+    if (learnMoreVideo) {
       learnMoreVideo.play();
     }
   });
 
   learnMoreModal.addEventListener('modal:hide', function() {
-    if (learnMoreVideo){
+    if (learnMoreVideo) {
       learnMoreVideo.pause();
     }
   });

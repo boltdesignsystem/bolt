@@ -132,7 +132,6 @@ const triggerAnimateInOnOutOnlyContent = async (groupAttrVal, mainWrapper) => {
 
 const getCurriedAnimateContentIn = (inGroupAttrVal, mainWrapper) => {
   return async () => {
-
     const animInEls = Array.from(
       mainWrapper.querySelectorAll(
         `bolt-animate[group="${inGroupAttrVal}"][in]:not([type="out-effect-only"])`,

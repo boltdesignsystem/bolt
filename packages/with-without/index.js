@@ -1,11 +1,9 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
-  import(
-    /*
+  import(/*
     webpackMode: 'eager',
-  */ './js/accordion'
-  );
+  */ './js/accordion');
 
   import(
     /*
@@ -13,27 +11,19 @@ polyfillLoader.then(res => {
   */ './wwo-self-drawing-circle/self-drawing-circle'
   );
 
-  import(
-    /*
+  import(/*
     webpackMode: 'eager',
-  */ './js/shadowDomPiercingHacks'
-  );
+  */ './js/shadowDomPiercingHacks');
 
-  import(
-    /*
+  import(/*
     webpackMode: 'eager',
-  */ './js/handleActiveRegionChange'
-  );
+  */ './js/handleActiveRegionChange');
 
-  import(
-    /*
+  import(/*
     webpackMode: 'eager',
-  */ './js/handleResize'
-  );
+  */ './js/handleResize');
 
-  import(
-    /*
+  import(/*
     webpackMode: 'eager',
-  */ './js/with-without'
-  );
+  */ './js/with-without');
 });
