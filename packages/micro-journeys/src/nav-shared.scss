@@ -1,6 +1,5 @@
 $header-text-size: 1rem;
 $header-text-line-height: 1.65;
-// @todo: switch to 20px when enabling consolidated / animated dot styles
 $nav-circle-size: 12px;
 $nav-circle-size--active: 14px;
 $nav-circle-border-size: 2px;
@@ -10,29 +9,16 @@ $nav-circle-border-size: 2px;
     width: $nav-circle-size--active;
     height: $nav-circle-size--active;
     margin-left: -$nav-circle-size--active / 2 - $nav-circle-border-size;
-<<<<<<< HEAD
     border: $nav-circle-border-size solid bolt-theme(primary);
     // @TODO there's no good way to match the comps here given we can't know what theme we're in b/c shadow dom.
-    background-color: bolt-theme(secondary);
-=======
-    border: $nav-circle-border-size solid;
-    border-color: bolt-theme(
-      (
-        xdark: secondary,
-        dark: secondary,
-        light: primary,
-        xlight: primary,
-      )
-    );
     background-color: bolt-theme(
       (
-        xdark: primary,
-        dark: primary,
-        light: secondary,
-        xlight: secondary,
+        xdark: primary 1,
+        dark: primary 1,
+        light: secondary 1,
+        xlight: secondary 1
       )
     );
->>>>>>> 946d6c934... fix: update Sass to use bolt-theme outside of a media query + add border color to styles
   }
 
   @else {
@@ -47,45 +33,6 @@ $nav-circle-border-size: 2px;
     border-radius: 50%;
     background-color: bolt-theme(primary);
   }
-
-  // @todo: enable animated dot + more consolidated styles
-  // @if $active {
-  //   transform: translateX(-50%) scale(0.85);
-  //   border: $nav-circle-border-size solid;
-  //   border-color: bolt-theme(
-  //     (
-  //       xdark: secondary,
-  //       dark: secondary,
-  //       light: primary,
-  //       xlight: primary,
-  //     )
-  //   );
-  //   background-color: bolt-theme(
-  //     (
-  //       xdark: primary,
-  //       dark: primary,
-  //       light: secondary,
-  //       xlight: secondary,
-  //     )
-  //   );
-  // }
-
-  // @else {
-  //   content: '';
-  //   display: inline-block;
-  //   box-sizing: content-box;
-  //   transform: translateX(-50%) scale(0.5);
-  //   z-index: 1;
-  //   width: $nav-circle-size;
-  //   height: $nav-circle-size;
-  //   margin-right: bolt-spacing(small);
-  //   border-radius: 50%;
-  //   border-width: 2px;
-  //   border-style: solid;
-  //   border-color: transparent;
-  //   background-color: bolt-theme(primary);
-  //   transition: all 0.2s ease;
-  // }
 }
 
 @mixin bolt-micro-journeys-nav-line() {
