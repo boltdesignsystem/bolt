@@ -53,10 +53,13 @@ $nav-circle-border-size: 2px;
     white-space: nowrap;
     line-height: $header-text-line-height;
     font-size: $header-text-size;
-    transition: color 0.5s ease, transform 0.5s ease;
+    transition: all 0.5s ease, transform 0.5s ease;
+    transition-property: font-weight, color;
 
     &:hover {
+      color: bolt-theme(primary);
       cursor: pointer;
+      font-weight: bolder;
     }
   }
 }
