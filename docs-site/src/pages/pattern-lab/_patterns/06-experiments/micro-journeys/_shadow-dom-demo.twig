@@ -37,14 +37,10 @@
 <script>
   // Note: this code is not transpiled so it has to run in IE.
   function changeTheme() {
-    const lightClass = 't-bolt-light';
-    const darkClass = 't-bolt-dark';
-    const themeEls = document.querySelectorAll('.bolt-demo-theme-controller');
-    Array.prototype.slice.call(themeEls).forEach( function(themeEl) {
-      const classToRemove = themeEl.classList.contains(darkClass) ? darkClass : lightClass;
-      const classToAdd = themeEl.classList.contains(darkClass) ? lightClass : darkClass;
-      themeEl.classList.remove(classToRemove);
-      themeEl.classList.add(classToAdd);
+    Array.prototype.slice.call(document.querySelectorAll('bolt-interactive-pathways')).forEach( function(pathwaysEl) {
+      const currentTheme = pathwaysEl.getAttribute('theme');
+      const newTheme = (currentTheme === 'light' || !currentTheme) ? 'dark' : 'light';
+      pathwaysEl.setAttribute('theme', newTheme);
     });
   }
 </script>
