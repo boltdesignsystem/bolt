@@ -1,21 +1,15 @@
 @import '@bolt/core';
 @import './nav-shared';
 
-// Local interactive-pathway Variables
-
 // Register Custom Block Element
 @include bolt-custom-element('bolt-interactive-pathway', block, medium);
 
-//@import "@bolt/animations/settings/settings-animations";
-//
-//@import "@bolt/animations/tools/tools-transitions";
-//@import "@bolt/animations/tools/tools-animations";
-//
-//@import "@bolt/animations/utilities/utilities-animation";
 $bolt-interactive-step--dot-size: 1.2rem;
 .c-bolt-interactive-pathway {
   display: none;
   position: relative;
+  padding-top: 1.65rem;
+  overflow: hidden;
 
   &--active {
     display: flex;
@@ -28,11 +22,20 @@ $bolt-interactive-step--dot-size: 1.2rem;
   &__nav-item {
     &:before {
       @include bolt-micro-journeys-nav-dot;
+
+      section.c-bolt-interactive-pathway.t-bolt-dark & {
+        background-color: bolt-color(indigo, light);
+      }
     }
 
     &--active {
       &:before {
         @include bolt-micro-journeys-nav-dot($active: true);
+
+        section.c-bolt-interactive-pathway.t-bolt-dark & {
+          border-color: bolt-color(white) !important;
+          background-color: bolt-color(yellow) !important;
+        }
       }
     }
   }
@@ -41,15 +44,13 @@ $bolt-interactive-step--dot-size: 1.2rem;
     flex-wrap: nowrap;
     justify-content: space-between;
 
-    $gutter: bolt-spacing(large);
-    $half-gutter: $gutter / 2;
-
     &__nav {
       display: block;
+      flex: 1 0 30%;
       position: relative;
-      width: calc(30% - #{$half-gutter});
       margin-right: bolt-spacing(large);
       @include bolt-micro-journeys-nav-items-wrapper;
+      margin-right: bolt-spacing(large);
     }
 
     &__nav-item {
@@ -59,6 +60,10 @@ $bolt-interactive-step--dot-size: 1.2rem;
 
       &:after {
         @include bolt-micro-journeys-nav-line;
+
+        section.c-bolt-interactive-pathway.t-bolt-dark & {
+          background-color: bolt-color(indigo, light);
+        }
       }
 
       &--active {
@@ -70,10 +75,10 @@ $bolt-interactive-step--dot-size: 1.2rem;
         display: none;
       }
     }
+  }
 
-    &__items {
-      width: calc(70% - #{$half-gutter});
-    }
+  &__items {
+    flex: 1 1 70%;
   }
 }
 

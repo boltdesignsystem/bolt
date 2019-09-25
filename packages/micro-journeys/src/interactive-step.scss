@@ -7,13 +7,13 @@ bolt-interactive-step {
   padding-left: $nav-circle-size--active / 2 + $nav-circle-border-size;
 }
 
-
 .c-bolt-interactive-step {
   $nav-circle-size: 12px;
   $nav-circle-size--active: 14px;
 
   position: relative;
   text-align: left;
+  max-width: 100vw;
 
   &__title {
 
@@ -30,14 +30,27 @@ bolt-interactive-step {
     &:before {
       @include bolt-micro-journeys-nav-dot;
 
+      .c-bolt-interactive-step.t-bolt-dark & {
+        background-color: bolt-color(indigo, light);
+      }
+
       .c-bolt-interactive-step--active & {
         @include bolt-micro-journeys-nav-dot($active: true);
+      }
+
+      .c-bolt-interactive-step--active.t-bolt-dark & {
+        border-color: bolt-color(white);
+        background-color: bolt-color(yellow);
       }
     }
 
     // The nav line on mobile
     &:after {
       @include bolt-micro-journeys-nav-line;
+
+      .c-bolt-interactive-step.t-bolt-dark & {
+        background-color: bolt-color(indigo, light);
+      }
 
       .c-bolt-interactive-step--last & {
         display: none;
@@ -56,6 +69,11 @@ bolt-interactive-step {
 
     .c-bolt-interactive-step--active & {
       position: static;
+
+      .c-bolt-interactive-step.t-bolt-dark & {
+        background-color: bolt-color(yellow);
+        border-color: bolt-color(white);
+      }
     }
 
     .c-bolt-interactive-step--last & {
