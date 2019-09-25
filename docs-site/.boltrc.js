@@ -134,7 +134,7 @@ const config = {
       '@bolt/components-ul',
       '@bolt/components-ol',
       '@bolt/components-video',
-      '@bolt/with-without',
+      '@pegawww/with-without',
       '@bolt/components-grid',
       '@bolt/micro-journeys',
       '@bolt/components-editor',
