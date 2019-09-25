@@ -25,14 +25,16 @@ const wwoSwiper = new Swiper('#c-pega-wwo__swiper-container', {
 });
 
 // Pushed to bottom of call stack b/c w/o shadowdom enabled it breaks if not.
-setTimeout(() => {
-  // Initialize the page.
-  triggerActiveRegionChange(
-    document.querySelector(toggleInputClass).id === checkedValue,
-    wwoSwiper,
-    true,
-  );
-}, 0);
+if (document.querySelector(toggleInputClass)){
+  setTimeout(() => {
+    // Initialize the page.
+    triggerActiveRegionChange(
+      document.querySelector(toggleInputClass).id === checkedValue,
+      wwoSwiper,
+      true,
+    );
+  }, 0);
+}
 
 // Wire up the toggler to the event region switcher.
 Array.from(document.querySelectorAll(toggleInputClass)).forEach(el => {
@@ -44,26 +46,29 @@ Array.from(document.querySelectorAll(toggleInputClass)).forEach(el => {
 // Add animation start and end event listeners to keep event from firing while in progress.
 const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
 
-animControllerEl.addEventListener('animateStart', e => {
-  console.error('animateStart');
-  e.target.setAttribute('anim-in-progress', 1);
-});
+if (animControllerEl){
+  animControllerEl.addEventListener('animateStart', e => {
+    // console.error('animateStart');
+    e.target.setAttribute('anim-in-progress', 1);
+  });
 
-animControllerEl.addEventListener('animateEnd', e => {
-  console.error('animateEnd');
-  e.target.removeAttribute('anim-in-progress');
-  // If the animation state doesn't match the state of the toggle, transition.
-  const activeAttr = animControllerEl.getAttribute('active');
-  const checkedRadio = Array.from(
-    document.querySelectorAll(toggleInputClass),
-  ).find(input => input.checked);
-  if (checkedRadio.id !== activeAttr) {
-    handleActiveRegionChangeRequest(
-      checkedRadio.id === checkedValue,
-      wwoSwiper,
-    );
-  }
-});
+  animControllerEl.addEventListener('animateEnd', e => {
+    // console.error('animateEnd');
+    e.target.removeAttribute('anim-in-progress');
+    // If the animation state doesn't match the state of the toggle, transition.
+    const activeAttr = animControllerEl.getAttribute('active');
+    const checkedRadio = Array.from(
+      document.querySelectorAll(toggleInputClass),
+    ).find(input => input.checked);
+    if (checkedRadio.id !== activeAttr) {
+      handleActiveRegionChangeRequest(
+        checkedRadio.id === checkedValue,
+        wwoSwiper,
+      );
+    }
+  });
+}
+
 
 // Initialize the accordion.
 document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
@@ -74,10 +79,16 @@ document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
 const learnMoreModal = document.querySelector('.c-pega-www__modal--learn-more');
 const learnMoreVideo = document.querySelector('.c-pega-www__video--learn-more');
 
-learnMoreModal.addEventListener('modal:show', function() {
-  learnMoreVideo.play();
-});
+if (learnMoreModal){
+  learnMoreModal.addEventListener('modal:show', function() {
+    if (learnMoreVideo){
+      learnMoreVideo.play();
+    }
+  });
 
-learnMoreModal.addEventListener('modal:hide', function() {
-  learnMoreVideo.pause();
-});
+  learnMoreModal.addEventListener('modal:hide', function() {
+    if (learnMoreVideo){
+      learnMoreVideo.pause();
+    }
+  });
+}
