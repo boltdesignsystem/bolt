@@ -46,7 +46,6 @@ const getCurriedAnimateContentOut = (
         `bolt-animate[group="${outGroupAttrVal}"][out]:not([type="in-effect-only"])`,
       ),
     );
-    // console.log('getCurriedAnimateContentOut', filterInvisibles(animOutEls));
     await triggerAnims({
       animEls: filterInvisibles(animOutEls),
       stage: 'OUT',
@@ -95,7 +94,6 @@ const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
     ),
   );
 
-  console.log('triggerAnimateInOnInOnlyContent animInEls', animOutEls);
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'IN',
@@ -122,7 +120,6 @@ const triggerAnimateInOnOutOnlyContent = async (groupAttrVal, mainWrapper) => {
     ),
   );
 
-  // console.log(' triggerAnimateInOnOutOnlyContent animOutEls', animOutEls);
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'IN',
@@ -148,7 +145,6 @@ const getCurriedAnimateContentIn = (inGroupAttrVal, mainWrapper) => {
         desktopCircle.triggerAnimIn();
       }
     }, 0);
-    // console.log('AnimateContentIn', animInEls);
 
     await triggerAnims({
       animEls: filterInvisibles(animInEls),
@@ -156,7 +152,6 @@ const getCurriedAnimateContentIn = (inGroupAttrVal, mainWrapper) => {
       debug: true,
     });
 
-    console.log('about to dispatch animateEnd', mainWrapper);
     mainWrapper.dispatchEvent(
       new CustomEvent('animateEnd', {
         bubbles: false,
@@ -212,9 +207,7 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
   } else {
     // The event handler for swiper doesn't respect await, so trigger here directly.
 
-    console.error('before restoreContentBeforeSlideIn');
     await restoreContentBeforeSlideIn(inGroupAttrVal, mainWrapper);
-    console.error('before getCurriedAnimateContentOut');
 
     await getCurriedAnimateContentOut(
       outGroupAttrVal,
@@ -222,21 +215,16 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
       mainWrapper,
     )();
 
-    console.error('before once slideChangeTransitionEnd', wwoSwiper);
-
     wwoSwiper.once(
       'slideChangeTransitionEnd',
       getCurriedAnimateContentIn(inGroupAttrVal, mainWrapper),
     );
-    console.error('before wwoSwiper.slideNext or slidePrev');
 
     if (withIsBecomingActive) {
       wwoSwiper.slideNext();
     } else {
       wwoSwiper.slidePrev();
     }
-
-    console.error('withIsBecomingActive', withIsBecomingActive);
   }
   return true;
 };
@@ -244,7 +232,6 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
 const handleActiveRegionChangeRequest = (checked, wwoSwiper) => {
   const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
   const animIsInProgress = !!animControllerEl.getAttribute('anim-in-progress');
-  console.error('in handleActiveRegionChangeRequest', animIsInProgress);
 
   if (animIsInProgress) {
     return;

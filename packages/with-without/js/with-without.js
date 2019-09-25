@@ -48,12 +48,10 @@ const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
 
 if (animControllerEl) {
   animControllerEl.addEventListener('animateStart', e => {
-    // console.error('animateStart');
     e.target.setAttribute('anim-in-progress', 1);
   });
 
   animControllerEl.addEventListener('animateEnd', e => {
-    // console.error('animateEnd');
     e.target.removeAttribute('anim-in-progress');
     // If the animation state doesn't match the state of the toggle, transition.
     const activeAttr = animControllerEl.getAttribute('active');
