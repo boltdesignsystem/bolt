@@ -20,7 +20,6 @@ const filterInvisibles = els => {
 
 const getCurriedPageLoadAnimation = mainWrapper => {
   return () => {
-    console.debug('triggered:InitialAnimation');
     const animInitOutEls = Array.from(
       mainWrapper.querySelectorAll('bolt-animate[group="initial"][out]'),
     );
@@ -42,7 +41,6 @@ const getCurriedAnimateContentOut = (
   mainWrapper,
 ) => {
   return async () => {
-    console.debug('triggered:BeforeSlideAnimation');
     const animOutEls = Array.from(
       mainWrapper.querySelectorAll(
         `bolt-animate[group="${outGroupAttrVal}"][out]:not([type="in-effect-only"])`,
@@ -68,7 +66,6 @@ const getCurriedAnimateContentOut = (
  * @returns {void}
  */
 const triggerAnimateOutOnInOnlyContent = async (groupAttrVal, mainWrapper) => {
-  console.debug('triggered:triggerAnimateOutOnInOnlyContent');
   const animOutEls = Array.from(
     mainWrapper.querySelectorAll(
       `bolt-animate[group="${groupAttrVal}"][type="in-effect-only"]`,
@@ -80,22 +77,18 @@ const triggerAnimateOutOnInOnlyContent = async (groupAttrVal, mainWrapper) => {
       `#c-pega-wwo__self-drawing-circle[group="${groupAttrVal}"]`,
     ),
   );
-  console.debug('desktopCircle', desktopCircle);
   if (desktopCircle) {
     desktopCircle.triggerAnimOut();
   }
 
-  console.debug('triggering:triggerAnimateOutOnInOnlyContent animInEls');
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'OUT',
     debug: true,
   });
-  console.debug('triggered done:triggerAnimateOutOnInOnlyContent animInEls');
 };
 
 const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
-  console.debug('triggered:triggerAnimateInOnInOnlyContent');
   const animOutEls = Array.from(
     document.querySelectorAll(
       `bolt-animate[group="${inGroupAttrVal}"][type="in-effect-only"]`,
@@ -123,7 +116,6 @@ const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
  * @returns {void}
  */
 const triggerAnimateInOnOutOnlyContent = async (groupAttrVal, mainWrapper) => {
-  console.debug('triggerAnimateInOnOutOnlyContent');
   const animOutEls = Array.from(
     mainWrapper.querySelectorAll(
       `bolt-animate[group="${groupAttrVal}"][type="out-effect-only"]`,
@@ -140,7 +132,6 @@ const triggerAnimateInOnOutOnlyContent = async (groupAttrVal, mainWrapper) => {
 
 const getCurriedAnimateContentIn = (inGroupAttrVal, mainWrapper) => {
   return async () => {
-    console.debug('triggered:AnimateContentIn ');
 
     const animInEls = Array.from(
       mainWrapper.querySelectorAll(

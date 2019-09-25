@@ -1,8 +1,8 @@
 @import '@bolt/core';
 @import '@bolt/animations/tools/_tools-animations';
-@import './bolt-toggle/bolt-toggle';
+@import './wwo-toggle/wwo-toggle';
 @import './swiper';
-@import './bolt-self-drawing-circle/self-drawing-circle';
+@import './wwo-self-drawing-circle/self-drawing-circle';
 
 $pega-wwo--block-width-basis: 6%; // ~100px at full site width.
 $pega-wwo--block-bottom-margin: 2rem;
@@ -17,7 +17,8 @@ $pega-wwo--content-max-mobile-width: 550px;
 $bolt-medium-icon-half-size: 12px;
 $pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-wwo--sm-circle-size--fixed / 2);
 
-@mixin bolt-edge-all() {
+// stylelint-disable scss/at-mixin-pattern
+@mixin edge-all() {
   @supports (-ms-ime-align:auto) {
     @content;
   }
@@ -267,7 +268,7 @@ bolt-animate {
       left: 23.7%;
       padding-top: $pega-wwo--circles-top-padding;
 
-      @include bolt-edge-all {
+      @include edge-all {
         left: 26%;
       }
 

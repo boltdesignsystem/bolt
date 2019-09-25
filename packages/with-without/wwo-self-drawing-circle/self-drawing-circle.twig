@@ -1,7 +1,7 @@
 {% set schema = bolt.data.components["@bolt-components-self-drawing-circle"].schema %}
 
 {% set attributes = create_attribute(attributes | default({})) %}
-  
+
 {% if dashSize %}
   {% set attributes = attributes.setAttribute("dashSize", dashSize) %}
 {% endif %}
@@ -13,4 +13,4 @@
 {% set attributes = attributes.setAttribute("animType", "self-drawing-circle") %}
 
 
-<bolt-self-drawing-circle {{ attributes }}></bolt-self-drawing-circle>
+<wwo-self-drawing-circle {{ attributes }}></wwo-self-drawing-circle>

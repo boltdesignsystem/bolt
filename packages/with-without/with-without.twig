@@ -10,15 +10,15 @@
         </h2>
         <div class="c-pega-wwo__toggle">
           <bolt-animate group="initial" in="fade-in-slide-up" in-order="5" in-duration="200">
-            <ul class="bolt-toggle">
-              <li class="bolt-toggle__item">
-                <input class="bolt-toggle__input c-pega-www__toggle-input reset" type="radio" name="c-pega-www__toggle-input" id="wo" checked>
-                <label class="bolt-toggle__label" for="radio1">Without Pega</label>
+            <ul class="wwo-toggle">
+              <li class="wwo-toggle__item">
+                <input class="wwo-toggle__input c-pega-www__toggle-input reset" type="radio" name="c-pega-www__toggle-input" id="wo" checked>
+                <label class="wwo-toggle__label" for="radio1">Without Pega</label>
               </li>
-              <li class="bolt-toggle__item">
-                <input class="bolt-toggle__input c-pega-www__toggle-input reset" type="radio" name="c-pega-www__toggle-input" id="w">
-                <label class="bolt-toggle__label" for="radio2">With Pega</label>
-                <div aria-hidden="true" class="bolt-toggle__toggle"><span class="bolt-toggle__marker"></span></div>
+              <li class="wwo-toggle__item">
+                <input class="wwo-toggle__input c-pega-www__toggle-input reset" type="radio" name="c-pega-www__toggle-input" id="w">
+                <label class="wwo-toggle__label" for="radio2">With Pega</label>
+                <div aria-hidden="true" class="wwo-toggle__toggle"><span class="wwo-toggle__marker"></span></div>
               </li>
             </ul>
           </bolt-animate>
@@ -34,7 +34,7 @@
                   <bolt-animate class="c-pega-wwo__shadow-height-inherit c-pega-wwo__circles-and-blocks--animator" show-meta group="wo" type="out-effect-only" out="fade-out-slide-left" out-order="30" out-delay="100" in="fade-in" out-duration="1" initial-appearance="default" out-duration="150">
                     <div class="c-pega-wwo__circles-wrapper c-pega-wwo__circles-wrapper-wo">
                       <div class="c-pega-wwo__circles c-pega-wwo__circles-wo">
-                        <bolt-self-drawing-circle group="wo" id="c-pega-wwo__self-drawing-circle" class="c-pega-wwo__self-drawing-circle"></bolt-self-drawing-circle>
+                        <wwo-self-drawing-circle group="wo" id="c-pega-wwo__self-drawing-circle" class="c-pega-wwo__self-drawing-circle"></wwo-self-drawing-circle>
                         <div class="c-pega-wwo__dashed-circle"></div>
                         <bolt-animate group="wo" secondary-group="circles" type="in-effect-only" in="fade-in" in-order="49" out="fade-out" out-duration="1" in-duration="200">
                           <div class="c-pega-wwo__sm-circle c-pega-wwo__sm-circle-wo-1"></div>
@@ -116,7 +116,7 @@
                                       <a class="c-pega-wwo__block-action-link c-pega-wwo__block-action-link-wo"
                                          href="#">
                                         <span class="c-pega-wwo__icon c-pega-wwo__icon-eye">
-                                          {% include "@bolt-with-without/svg/eye-contrast.twig" with {} only %}
+                                          {% include "@pegawww-with-without/svg/eye-contrast.twig" with {} only %}
                                         </span>See it in action
                                         <span
                                           class="c-pega-wwo__arrow">{% include "@bolt-components-icon/icon.twig" with {
@@ -244,7 +244,7 @@
                   <bolt-animate class="c-pega-wwo__shadow-height-inherit c-pega-wwo__circles-and-blocks--animator" show-meta group="w" type="out-effect-only" out="fade-out-slide-left" out-order="30" out-delay="100" in="fade-in" out-duration="1" initial-appearance="default" out-duration="150" in-duration="1">
                     <div class="c-pega-wwo__circles-wrapper c-pega-wwo__circles-wrapper-w">
                       <div class="c-pega-wwo__circles c-pega-wwo__circles-w">
-                        <bolt-self-drawing-circle group="w" id="c-pega-wwo__self-drawing-circle" class="c-pega-wwo__self-drawing-circle"></bolt-self-drawing-circle>
+                        <wwo-self-drawing-circle group="w" id="c-pega-wwo__self-drawing-circle" class="c-pega-wwo__self-drawing-circle"></wwo-self-drawing-circle>
                         <bolt-animate group="w" secondary-group="circles" type="in-effect-only" in="fade-in" in-order="29" out="fade-out" out-duration="1" in-duration="200">
                           <div class="c-pega-wwo__sm-circle c-pega-wwo__sm-circle-w-1"></div>
                         </bolt-animate>
@@ -293,7 +293,7 @@
                         <bolt-animate class="c-pega-wwo__block-content--animator" type="in-effect-only" out-duration="1" group="w" in="fade-in-slide-right" in-order="40" out="fade-out-slide-left" out-order="30"  in-duration="200">
                           <div class="c-pega-wwo__block--icon-and-title-wrapper">
                             <div class="c-pega-wwo__icon c-pega-wwo__icon-open-book">
-                              {% include "@bolt-with-without/svg/book.twig" with {} only %}
+                              {% include "@pegawww-with-without/svg/book.twig" with {} only %}
                             </div>
                             <h4 class="c-pega-wwo__block-title">Recognize the signals</h4>
                           </div>
@@ -306,7 +306,7 @@
                                   <a class="c-pega-wwo__block-action-link c-pega-wwo__block-action-link-w"
                                      href="#">
                                         <span class="c-pega-wwo__icon c-pega-wwo__icon-eye">
-                                          {% include "@bolt-with-without/svg/eye-contrast.twig" with {} only %}
+                                          {% include "@pegawww-with-without/svg/eye-contrast.twig" with {} only %}
                                         </span>See it in action
                                       <span
                                         class="c-pega-wwo__arrow">{% include "@bolt-components-icon/icon.twig" with {

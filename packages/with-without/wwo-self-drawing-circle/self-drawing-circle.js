@@ -5,7 +5,7 @@ import schema from './self-drawing-circle.schema.yml';
 
 @define
 class SvgAnimations extends withLitHtml() {
-  static is = 'bolt-self-drawing-circle';
+  static is = 'wwo-self-drawing-circle';
 
   static props = {
     dashSize: props.integer,
@@ -35,17 +35,17 @@ class SvgAnimations extends withLitHtml() {
 
   _resetCircle() {
     const outline = this.renderRoot.querySelector(
-      '#bolt-self-drawing-circle-outline',
+      '#wwo-self-drawing-circle-outline',
     );
     outline.setAttribute('stroke-dasharray', `0 1000`);
     this.renderRoot
-      .querySelector('.bolt-self-drawing-circle')
+      .querySelector('.wwo-self-drawing-circle')
       .classList.remove('rotate');
   }
 
   async _drawCircle(dashSize, speed) {
     const outline = this.renderRoot.querySelector(
-      '#bolt-self-drawing-circle-outline',
+      '#wwo-self-drawing-circle-outline',
     );
 
     const threshold = Math.ceil(494 / dashSize);
@@ -64,7 +64,7 @@ class SvgAnimations extends withLitHtml() {
 
       if (i === threshold) {
         this.renderRoot
-          .querySelector('.bolt-self-drawing-circle')
+          .querySelector('.wwo-self-drawing-circle')
           .classList.add('rotate');
       }
     }
@@ -74,15 +74,15 @@ class SvgAnimations extends withLitHtml() {
     return html`
       ${this.addStyles([styles])}
       <div
-        id="bolt-self-drawing-circle"
-        class="bolt-self-drawing-circle"
+        id="wwo-self-drawing-circle"
+        class="wwo-self-drawing-circle"
         is="shadow-root"
       >
-        <div class="bolt-self-drawing-circle-rotation">
+        <div class="wwo-self-drawing-circle-rotation">
           <svg viewBox="-160 -160 320 320">
             <circle
-              id="bolt-self-drawing-circle-outline"
-              class="bolt-self-drawing-circle-outline"
+              id="wwo-self-drawing-circle-outline"
+              class="wwo-self-drawing-circle-outline"
               r="159"
               stroke-dasharray="0 1000"
             />
