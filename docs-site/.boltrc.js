@@ -134,7 +134,7 @@ const config = {
       '@bolt/components-ul',
       '@bolt/components-ol',
       '@bolt/components-video',
-      '@pegawww/with-without',
+      '@pegawww/with-without', // @todo: remove once w/wo has shipped
       '@bolt/components-grid',
       '@bolt/micro-journeys',
       '@bolt/components-editor',
