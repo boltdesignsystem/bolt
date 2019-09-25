@@ -1,12 +1,12 @@
 // style
-$bolt-toggle-width: 350px;
-$bolt-toggle-width--mobile: 280px;
-$bolt-toggle-height: 40px;
-$bolt-toggle-padding: 4px;
-$bolt-toggle-radius: 50em;
+$wwo-toggle-width: 350px;
+$wwo-toggle-width--mobile: 280px;
+$wwo-toggle-height: 40px;
+$wwo-toggle-padding: 4px;
+$wwo-toggle-radius: 50em;
 
 // animation
-$bolt-toggle-animation-duration: 0.2s;
+$wwo-toggle-animation-duration: 0.2s;
 
 $color-contrast-low: bolt-color(white);
 $color-contrast-lower: bolt-color(white);
@@ -14,43 +14,43 @@ $color-primary: bolt-color(teal, light);
 $text-sm: 14px;
 $shadow-sm: 1px;
 
-.bolt-toggle {
+.wwo-toggle {
   display: inline-block; // flexbox fallback
   display: inline-flex;
   position: relative;
   margin: 0;
 }
 
-.bolt-toggle__label {
+.wwo-toggle__label {
   color: bolt-color(black);
 }
 
-.bolt-toggle__item {
+.wwo-toggle__item {
   position: relative;
   float: left; // flexbox fallback
-  height: $bolt-toggle-height;
+  height: $wwo-toggle-height;
   list-style: none;
 }
 
-.bolt-toggle__input {
+.wwo-toggle__input {
   opacity: 0;
   position: relative;
   transform: scaleX(2); // scale up the input element so that it covers the entire switch
   z-index: 2;
-  width: calc(#{$bolt-toggle-width--mobile}*0.5);
+  width: calc(#{$wwo-toggle-width--mobile}*0.5);
   height: 100%;
   cursor: pointer;
   transform-origin: 0 0;
 
   @include bolt-mq(small) {
-    width: calc(#{$bolt-toggle-width}*0.5);
+    width: calc(#{$wwo-toggle-width}*0.5);
   }
 
-  .bolt-toggle__item:last-of-type & {
+  .wwo-toggle__item:last-of-type & {
     transform-origin: 100% 100%;
   }
 
-  .bolt-toggle__item:first-of-type & {
+  .wwo-toggle__item:first-of-type & {
     order: 1; // input follows label
   }
 
@@ -59,7 +59,7 @@ $shadow-sm: 1px;
   }
 }
 
-.bolt-toggle__label {
+.wwo-toggle__label {
   display: block;
   position: absolute;
   top: 50%;
@@ -68,86 +68,86 @@ $shadow-sm: 1px;
   z-index: 2;
   width: 100%;
   margin: 0;
-  line-height: $bolt-toggle-height;
+  line-height: $wwo-toggle-height;
   text-align: center;
   pointer-events: none;
   user-select: none;
   font-size: 14px;
-  transition: color $bolt-toggle-animation-duration;
+  transition: color $wwo-toggle-animation-duration;
 
   @include bolt-mq(small) {
     font-size: 16px;
   }
 
-  .bolt-toggle__item:first-of-type & {
+  .wwo-toggle__item:first-of-type & {
     float: left; // flexbox fallback
     margin-right: bolt-spacing(small);
   }
 
-  .bolt-toggle__item:last-of-type & {
+  .wwo-toggle__item:last-of-type & {
     float: right; // flexbox fallback
   }
 
-  .bolt-toggle__input:checked ~ & {
+  .wwo-toggle__input:checked ~ & {
     color: bolt-color(black);
   }
 
-  .bolt-toggle__input:focus ~ & { // focus effect if :focus-within is not supported
+  .wwo-toggle__input:focus ~ & { // focus effect if :focus-within is not supported
     outline: 2px solid alpha($color-primary), 0.2;
     outline-offset: 2px;
   }
 
   :not(*):focus-within,
-  .bolt-toggle__input:focus ~ & { // reset focus style for browsers supporting :focus-within
+  .wwo-toggle__input:focus ~ & { // reset focus style for browsers supporting :focus-within
     outline: none;
   }
 }
 
-.bolt-toggle__toggle {
+.wwo-toggle__toggle {
   position: absolute;
   top: 0;
   left: 0;
   transform: translateX(-50%);
   z-index: 1;
-  width: $bolt-toggle-width--mobile;
-  height: $bolt-toggle-height;
-  border-radius: $bolt-toggle-radius;
+  width: $wwo-toggle-width--mobile;
+  height: $wwo-toggle-height;
+  border-radius: $wwo-toggle-radius;
   background-color: $color-contrast-lower;
 
   @include bolt-mq(small) {
-    width: $bolt-toggle-width;
+    width: $wwo-toggle-width;
   }
 
-  .bolt-toggle:focus-within &,
-  .bolt-toggle:active & { // focus effect if :focus-within is supported
+  .wwo-toggle:focus-within &,
+  .wwo-toggle:active & { // focus effect if :focus-within is supported
     box-shadow: 0 0 0 2px $color-contrast-low;
   }
 }
 
-.bolt-toggle__marker {
+.wwo-toggle__marker {
   position: absolute;
-  top: $bolt-toggle-padding;
-  left: $bolt-toggle-padding;
+  top: $wwo-toggle-padding;
+  left: $wwo-toggle-padding;
   z-index: 1;
-  width: calc(#{$bolt-toggle-width--mobile / 2} - #{$bolt-toggle-padding} * 2);
-  height: calc(#{$bolt-toggle-height} - #{$bolt-toggle-padding} * 2);
-  border-radius: $bolt-toggle-radius;
+  width: calc(#{$wwo-toggle-width--mobile / 2} - #{$wwo-toggle-padding} * 2);
+  height: calc(#{$wwo-toggle-height} - #{$wwo-toggle-padding} * 2);
+  border-radius: $wwo-toggle-radius;
   box-shadow: $shadow-sm;
   background-color: $color-primary;
   will-change: left;
-  transition: left $bolt-toggle-animation-duration;
+  transition: left $wwo-toggle-animation-duration;
 
   @include bolt-mq(small) {
-    width: calc(#{$bolt-toggle-width / 2} - #{$bolt-toggle-padding} * 2);
+    width: calc(#{$wwo-toggle-width / 2} - #{$wwo-toggle-padding} * 2);
   }
 }
 
-.bolt-toggle__input:checked ~ .bolt-toggle__toggle .bolt-toggle__marker {
-  left: calc(#{$bolt-toggle-width--mobile} - #{$bolt-toggle-width--mobile / 2} + #{$bolt-toggle-padding});
+.wwo-toggle__input:checked ~ .wwo-toggle__toggle .wwo-toggle__marker {
+  left: calc(#{$wwo-toggle-width--mobile} - #{$wwo-toggle-width--mobile / 2} + #{$wwo-toggle-padding});
   background-color: bolt-color(yellow);
 
   @include bolt-mq(small) {
-    left: calc(#{$bolt-toggle-width} - #{$bolt-toggle-width / 2} + #{$bolt-toggle-padding});
+    left: calc(#{$wwo-toggle-width} - #{$wwo-toggle-width / 2} + #{$wwo-toggle-padding});
 
   }
 }
