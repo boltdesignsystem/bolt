@@ -107,9 +107,38 @@ async function getPkgInfo(pkgName) {
     const dir = path.dirname(pkgJsonPath);
     const pkg = require(pkgJsonPath);
 
+    // automatically convert scoped package names into Twig namespaces
+
+    // match NPM scoped package names
+    // borrowed from https://github.com/sindresorhus/scoped-regex
+    const regex = '@[a-z\\d][\\w-.]+/[a-z\\d][\\w-.]*';
+    const scopedRegex = options =>
+      options && options.exact
+        ? new RegExp(`^${regex}$`, 'i')
+        : new RegExp(regex, 'gi');
+
+    /**
+     * Strip out @ signs and the first dash in the package name.
+     *
+     * For example:
+     * @bolt/ -> bolt-
+     * @pegawww/ -> pegawww-
+     */
+    let normalizedPkgName;
+    if (pkg.name.match(scopedRegex())) {
+      const matchedName = pkg.name
+      .match(scopedRegex())[0];
+      const pkgNamePrefix = matchedName.split('/')[0]
+      .replace('@', '');
+      const pkgNameSuffix = matchedName.split('/')[1];
+      normalizedPkgName = `${pkgNamePrefix}-${pkgNameSuffix}`;
+    } else {
+      normalizedPkgName = pkg.name.replace('@bolt/', 'bolt-');
+    }
+
     const info = {
       name: pkg.name,
-      basicName: pkg.name.replace('@bolt/', 'bolt-'),
+      basicName: normalizedPkgName,
       dir,
       assets: {},
       deps: [],
