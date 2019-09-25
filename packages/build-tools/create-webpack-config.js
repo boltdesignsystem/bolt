@@ -330,14 +330,7 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.(cur|svg|png)$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
-        },
-        {
-          test: /\.jpg$/,
+          test: /\.(cur|svg|png|jpg)$/,
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
