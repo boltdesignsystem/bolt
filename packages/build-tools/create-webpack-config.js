@@ -262,6 +262,7 @@ async function createWebpackConfig(buildConfig) {
         '.scss',
         '.ts',
         '.tsx',
+        '.jpg',
       ],
       alias: {
         react: 'preact-compat',
@@ -329,7 +330,7 @@ async function createWebpackConfig(buildConfig) {
           },
         },
         {
-          test: /\.(cur|svg|png)$/,
+          test: /\.(cur|svg|png|jpg)$/,
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
