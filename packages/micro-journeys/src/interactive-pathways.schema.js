@@ -3,6 +3,12 @@ module.exports = {
   title: 'Interactive Pathways',
   type: 'object',
   properties: {
+    theme: {
+      type: 'string',
+      description: 'Sets the color theme used by an interactive pathway',
+      default: '',
+      enum: ['xlight', 'light', 'dark', 'xdark'],
+    },
     customImageSrc: {
       type: 'string',
       description:
