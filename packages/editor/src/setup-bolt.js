@@ -349,7 +349,32 @@ export function setupBolt(editor) {
     extend: 'text',
     initialContent: ['Button'],
     propsToTraits: ['size', 'width', 'border_radius'],
-    extraTraits: [colorTrait],
+    extraTraits: [
+      colorTrait,
+      {
+        label: 'On Click',
+        name: 'on-click',
+        type: 'select',
+        options: ['none', 'show'],
+        default: 'none',
+      },
+      {
+        label: 'On Click Target',
+        name: 'on-click-target',
+        type: 'string',
+      },
+      {
+        label: 'Url',
+        name: 'url',
+        type: 'string',
+      },
+      {
+        label: 'Disabled',
+        name: 'disabled',
+        type: 'checkbox',
+        default: false,
+      },
+    ],
   });
 
   registerBoltComponent({
@@ -606,6 +631,20 @@ export function setupBolt(editor) {
       default: true,
     },
     initialContent: [`I'm a link`],
+    extraTraits: [
+      {
+        label: 'On Click',
+        name: 'on-click',
+        type: 'select',
+        options: ['none', 'show'],
+        default: 'none',
+      },
+      {
+        label: 'On Click Target',
+        name: 'on-click-target',
+        type: 'string',
+      },
+    ],
   });
 
   registerBoltComponent({
