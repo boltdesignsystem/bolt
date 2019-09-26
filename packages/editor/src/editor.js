@@ -263,9 +263,15 @@ export function enableEditor({ space, uiWrapper, config }) {
     }
 
     const newComponent = tempComponent.replaceWith(content);
-    if (selectAfterAdd) editor.select(newComponent);
+    // if `content` has more than one top level element, we'll get an array, so we need to get the parent element to select in editor and trigger possible animations
+    const singleComponent =
+      Array.isArray(newComponent) && newComponent.length > 0
+        ? newComponent[0].parent()
+        : newComponent;
+
+    if (selectAfterAdd) editor.select(singleComponent);
     if (triggerAnimsAfterAdd) {
-      const newEl = newComponent.getEl();
+      const newEl = singleComponent.getEl();
       triggerAnimsInEl(newEl);
     }
     return newComponent;

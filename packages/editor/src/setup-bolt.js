@@ -486,7 +486,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-interactive-pathways',
     schema: pathwaysSchema,
-    propsToTraits: ['customImageSrc', 'imageAlt'],
+    propsToTraits: ['customImageSrc', 'imageAlt', 'theme'],
     category: 'Starters',
     blockTitle: 'Pathways',
     draggable: true,

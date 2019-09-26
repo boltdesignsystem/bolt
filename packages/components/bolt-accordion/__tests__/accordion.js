@@ -118,6 +118,31 @@ describe('<bolt-accordion> Component', () => {
     });
   });
 
+  test(`Inactive item`, async () => {
+    const results = await renderTwig(
+      '@bolt-components-accordion/accordion.twig',
+      {
+        items: [
+          {
+            trigger: 'Active accordion item',
+            content: 'This is the accordion content.',
+          },
+          {
+            trigger: 'Inactive accordion item',
+            content: 'This is the accordion content.',
+            inactive: true,
+          },
+          {
+            trigger: 'Active accordion item',
+            content: 'This is the accordion content.',
+          },
+        ],
+      },
+    );
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   test('Default <bolt-accordion> with Shadow DOM renders', async function() {
     const defaultAccordionShadowRoot = await page.evaluate(() => {
       const accordion = document.createElement('bolt-accordion');
