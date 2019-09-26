@@ -28,56 +28,9 @@ class AccordionItem extends withContext(withLitHtml()) {
     ];
   }
 
-  // @todo: move to BoltBase and/or move into a standalone addon function components can opt into
-  ssrHydrationPrep() {
-    if (this._ssrHydrationPrep) return;
-    const parentElem = this;
-    const initialNodesToKeep = Array.from(
-      this.querySelectorAll('[ssr-hydrate]'),
-    );
-    const nodesToClean = [];
-
-    initialNodesToKeep.forEach(item => {
-      const hydrationType = item.getAttribute('ssr-hydrate');
-
-      switch (hydrationType) {
-        case 'keep-children':
-          while (item.firstChild) {
-            parentElem.appendChild(item.firstChild);
-          }
-          break;
-        case 'keep':
-        default:
-          parentElem.appendChild(item);
-          nodesToClean.push(item); // track the [ssr-hydrate] nodes to clean up later
-      }
-    });
-
-    // grab an array of the pre-rendered DOM nodes to potentially remove
-    const nodesToRemove = Array.from(
-      parentElem.querySelectorAll(
-        '[class*="c-bolt-accordion"]:not([ssr-hydrate]):first-child',
-      ),
-    );
-
-    // remove pre-rendered DOM nodes not containing children with [ssr-hydrate] attributes
-    nodesToRemove.forEach(node => {
-      if (!node.closest(['[ssr-hydrate]'])) {
-        node.parentElement.removeChild(node);
-      }
-    });
-
-    // cleanup any [ssr-hydrate] nodes afterward
-    nodesToClean.forEach(node => {
-      node.removeAttribute('ssr-hydrate');
-    });
-
-    this._ssrHydrationPrep = true;
-  }
-
   constructor(self) {
     self = super(self);
-
+    self.useSsr = true;
     return self;
   }
 
