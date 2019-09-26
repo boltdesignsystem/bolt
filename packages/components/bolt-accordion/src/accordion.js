@@ -100,6 +100,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
       }
     });
   }
+
   getModifiedSchema(schema) {
     var modifiedSchema = schema;
 
