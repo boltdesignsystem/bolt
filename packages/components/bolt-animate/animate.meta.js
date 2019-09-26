@@ -8,6 +8,10 @@ const buildIns = [
     name: 'Fade In',
   },
   {
+    value: 'slide-down',
+    name: 'Slide Down',
+  },
+  {
     value: 'fade-in-slide-up',
     name: 'Fade In, Slide Up',
   },
@@ -60,6 +64,10 @@ const buildOuts = [
   {
     value: 'fade-out-slide-up',
     name: 'Fade Out, Slide Up',
+  },
+  {
+    value: 'slide-up',
+    name: 'Slide Up',
   },
   {
     value: 'fade-out-slide-down',
