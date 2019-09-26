@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* address eslint issues ([e90e7b3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/commit/e90e7b3))
+
+
+### Features
+
+* automatically convert Bolt + non-Bolt package.json package names into valid Twig namespaces ([bbb6184](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/commit/bbb6184))
+
+
+
+
+
 # [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/utils/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
 
 

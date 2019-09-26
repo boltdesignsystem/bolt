@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* **build:** error on yarn build:noisy; fix integer cast for verbosity arg ([08f199a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/08f199a))
+* address eslint issues ([e90e7b3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e90e7b3))
+* update Build Tools to check if config.components.global / config.components.individual exist before trying to auto-run the Icon build task ([d340701](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/d340701))
+
+
+### Features
+
+* automatically convert Bolt + non-Bolt package.json package names into valid Twig namespaces ([bbb6184](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/bbb6184))
+
+
+
+
+
 # [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
 
 
