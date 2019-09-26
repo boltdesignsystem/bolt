@@ -1,0 +1,317 @@
+{% macro code_example(code) %}
+  <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as accordion_demo %}
+
+{% set basic_usage %}
+<bolt-accordion>
+  <bolt-accordion-item>
+    <bolt-text headline font-size="large" slot="trigger">Accordion item 1</bolt-text>
+    <bolt-text>Accordion item 1 content.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <bolt-text headline font-size="large" slot="trigger">Accordion item 2</bolt-text>
+    <bolt-text>Accordion item 2 content.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <bolt-text headline font-size="large" slot="trigger">Accordion item 3</bolt-text>
+    <bolt-text>Accordion item 3 content.</bolt-text>
+  </bolt-accordion-item>
+</bolt-accordion>
+{% endset %}
+
+{% set twig_usage %}
+// Twig include coming soon.
+{% endset %}
+
+{% set no_separator_usage %}
+<bolt-accordion no-separator>
+  <bolt-accordion-item>
+    <bolt-text headline font-size="large" slot="trigger">There are no separators</bolt-text>
+    <bolt-text>Accordion item 1 content.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <bolt-text headline font-size="large" slot="trigger">In between these</bolt-text>
+    <bolt-text>Accordion item 2 content.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <bolt-text headline font-size="large" slot="trigger">Accordion items</bolt-text>
+    <bolt-text>Accordion item 3 content.</bolt-text>
+  </bolt-accordion-item>
+</bolt-accordion>
+{% endset %}
+
+{% set open_usage %}
+<bolt-accordion>
+  <bolt-accordion-item>
+    <bolt-text headline font-size="large" slot="trigger">Accordion item 1 collapsed</bolt-text>
+    <bolt-text>Accordion item 1 content.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item open>
+    <bolt-text headline font-size="large" slot="trigger">Accordion item 2 open</bolt-text>
+    <bolt-text>Accordion item 2 content.</bolt-text>
+  </bolt-accordion-item>
+  <bolt-accordion-item>
+    <bolt-text headline font-size="large" slot="trigger">Accordion item 3 collapsed</bolt-text>
+    <bolt-text>Accordion item 3 content.</bolt-text>
+  </bolt-accordion-item>
+</bolt-accordion>
+{% endset %}
+
+{% set agenda_usage %}
+<bolt-accordion>
+  <bolt-accordion-item>
+    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--middle" slot="trigger">
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-3/12@small">
+        <bolt-text>
+          12:00 PM
+        </bolt-text>
+      </div>
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-9/12@small">
+        <bolt-text font-weight="bold">
+          Lunch & Networking
+        </bolt-text>
+      </div>
+    </div>
+    <div class="o-bolt-grid o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--right">
+      <div class="o-bolt-grid__cell u-bolt-width-12/12 u-bolt-width-9/12@small">
+        <bolt-text>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        </bolt-text>
+        <bolt-text font-weight="bold">
+          Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.
+        </bolt-text>
+        <bolt-button size="small">
+          Click me
+        </bolt-button>
+      </div>
+    </div>
+  </bolt-accordion-item>
+</bolt-accordion>
+{% endset %}
+
+
+
+
+{# Header Band #}
+{% set content %}
+  {# This is a standard teaser #}
+  <bolt-text headline font-size="xxxlarge" tag="h1">
+    Accordion
+  </bolt-text>
+  <bolt-text subheadline font-size="xxlarge" tag="h2">
+    Vertically stacked list of items that can reveal or hide their associated content.
+  </bolt-text>
+  <bolt-list display="inline" separator="solid">
+    <bolt-list-item>
+      <bolt-text font-size="xsmall" opacity="60">
+        <bolt-icon name="check-solid"></bolt-icon>
+        Web Component
+      </bolt-text>
+    </bolt-list-item>
+    <bolt-list-item>
+      <bolt-text font-size="xsmall" opacity="60">
+        <bolt-icon name="check-solid"></bolt-icon>
+        Twig
+      </bolt-text>
+    </bolt-list-item>
+    <bolt-list-item>
+      <bolt-text font-size="xsmall" opacity="60">
+        Last updated:
+        <strong>
+          Release 2.7
+        </strong>
+      </bolt-text>
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  theme: "light",
+} only %}
+{# Header Band #}
+
+
+{# Demo Band #}
+{% set demo_content %}
+  <div class="t-bolt-xlight u-bolt-shadow-level-10 u-bolt-border-radius-small u-bolt-margin-bottom-medium u-bolt-padding-medium">
+    {{ basic_usage }}
+  </div>
+  <bolt-tabs inset="off" label-spacing="medium">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Web Component</bolt-text>
+      {% include accordion_demo.code_example(basic_usage) %}
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <bolt-text slot="label">Twig</bolt-text>
+      {% include accordion_demo.code_example(twig_usage) %}
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <bolt-text slot="label">API</bolt-text>
+      <bolt-table borderless>
+        <table>
+          <thead>
+            <tr>
+              <td></td>
+              <th>Description</th>
+              <th>Type</th>
+              <th>Default</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Items</th>
+              <td>All of the items in the accordion. Each item should contain a header and a content.</td>
+              <td><code>array</code></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>no-separator</th>
+              <td>Removes the separator in between items.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+              <td><code>true</code> or <code>false</code></td>
+            </tr>
+            <tr>
+              <th>single</th>
+              <td>Allow only one panel to open at a time.</td>
+              <td><code>boolean</code></td>
+              <td><code>false</code></td>
+              <td><code>true</code> or <code>false</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </bolt-table>
+    </bolt-tab-panel>
+  </bolt-tabs>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: demo_content,
+  theme: "xlight",
+} only %}
+{# Demo Band #}
+
+
+{# Content Band #}
+{% set article_content %}
+  <bolt-text headline font-size="xxlarge" tag="h2">
+    Examples
+  </bolt-text>
+  <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-small">
+  <bolt-text>
+    Bolt has built in multiple options for Accordion to be used in different scenarios.
+  </bolt-text>
+  <bolt-text headline font-size="xlarge" tag="h3">
+    States
+  </bolt-text>
+  <bolt-text>
+    Use when blah blah blah.
+  </bolt-text>
+  <div class="t-bolt-xlight u-bolt-shadow-level-10 u-bolt-border-radius-small u-bolt-margin-bottom-medium u-bolt-padding-medium">
+    {{ open_usage }}
+  </div>
+  <bolt-tabs inset="off" label-spacing="medium">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Web Component</bolt-text>
+      {% include accordion_demo.code_example(open_usage) %}
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <bolt-text slot="label">Twig</bolt-text>
+      {% include accordion_demo.code_example(twig_usage) %}
+    </bolt-tab-panel>
+  </bolt-tabs>
+  <bolt-text headline font-size="xlarge" tag="h3">
+    Without Separator
+  </bolt-text>
+  <bolt-text>
+    Use when blah blah blah.
+  </bolt-text>
+  <div class="t-bolt-xlight u-bolt-shadow-level-10 u-bolt-border-radius-small u-bolt-margin-bottom-medium u-bolt-padding-medium">
+    {{ no_separator_usage }}
+  </div>
+  <bolt-tabs inset="off" label-spacing="medium">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Web Component</bolt-text>
+      {% include accordion_demo.code_example(no_separator_usage) %}
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <bolt-text slot="label">Twig</bolt-text>
+      {% include accordion_demo.code_example(twig_usage) %}
+    </bolt-tab-panel>
+  </bolt-tabs>
+  <bolt-text>
+    <mark>••• insert example of each prop •••</mark>
+  </bolt-text>
+
+  <bolt-text headline font-size="xxlarge" tag="h2">
+    Usage Guidelines
+  </bolt-text>
+  <hr class="u-bolt-margin-top-none u-bolt-margin-bottom-small">
+  <bolt-text>
+    Bolt recommends these specific configurations for the different use cases.
+  </bolt-text>
+  <bolt-text headline font-size="xlarge" tag="h3">
+    Agenda
+  </bolt-text>
+  <bolt-text>
+    Use when blah blah blah.
+  </bolt-text>
+  <div class="t-bolt-xlight u-bolt-shadow-level-10 u-bolt-border-radius-small u-bolt-margin-bottom-medium u-bolt-padding-medium">
+    {{ agenda_usage }}
+  </div>
+  <bolt-tabs inset="off" label-spacing="medium">
+    <bolt-tab-panel>
+      <bolt-text slot="label">Web Component</bolt-text>
+      {% include accordion_demo.code_example(agenda_usage) %}
+    </bolt-tab-panel>
+    <bolt-tab-panel>
+      <bolt-text slot="label">Twig</bolt-text>
+      {% include accordion_demo.code_example(twig_usage) %}
+    </bolt-tab-panel>
+  </bolt-tabs>
+  <bolt-list>
+    <bolt-list-item>
+      <div class="t-bolt-xlight u-bolt-shadow-level-20 u-bolt-border-radius-small u-bolt-margin-bottom-small u-bolt-padding-medium">
+        <bolt-icon name="check-solid"></bolt-icon>
+        Do this blah blah blah.
+      </div>
+    </bolt-list-item>
+    <bolt-list-item>
+      <div class="t-bolt-light u-bolt-shadow-level-10 u-bolt-opacity-60 u-bolt-border-radius-small u-bolt-margin-bottom-small u-bolt-padding-medium">
+        <bolt-icon name="close-solid"></bolt-icon>
+        Don't do that blah blah blah.
+      </div>
+    </bolt-list-item>
+    <bolt-list-item>
+      <div class="t-bolt-xlight u-bolt-shadow-level-20 u-bolt-border-radius-small u-bolt-margin-bottom-small u-bolt-padding-medium">
+        <bolt-icon name="check-solid"></bolt-icon>
+        Do this blah blah blah.
+      </div>
+    </bolt-list-item>
+    <bolt-list-item>
+      <div class="t-bolt-light u-bolt-shadow-level-10 u-bolt-opacity-60 u-bolt-border-radius-small u-bolt-margin-bottom-small u-bolt-padding-medium">
+        <bolt-icon name="close-solid"></bolt-icon>
+        Don't do that blah blah blah.
+      </div>
+    </bolt-list-item>
+  </bolt-list>
+  <bolt-text>
+    <mark>••• insert guidelines for each use case •••</mark>
+  </bolt-text>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: article_content,
+  theme: "light",
+} only %}
+{# Content Band #}
