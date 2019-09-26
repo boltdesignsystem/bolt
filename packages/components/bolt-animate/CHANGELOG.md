@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* **bolt-animate:** add debug to triggerAnimOnEls ([d3c5a54](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/commit/d3c5a54))
+* **bolt-animate:** safari animation fixes ([b1f1399](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/commit/b1f1399))
+* **with-without:** animation fixes ([7dd96cf](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/commit/7dd96cf))
+
+
+### Features
+
+* **bolt-animate:** add debug flag for determining animation sequencing ([ca3abfb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/commit/ca3abfb))
+* **with-without:** WIP mobile theming ([7109dc6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/commit/7109dc6))
+
+
+
+
+
 # [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
 
 
