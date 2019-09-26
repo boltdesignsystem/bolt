@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* pull in custom Switch JS to fix custom event issue; add example with/without page with Shadow DOM disabled for debugging; ([8261a6f](https://github.com/bolt-design-system/bolt/commit/8261a6f))
+* **animations:** PL JS code for IE 11 ([e2be1a5](https://github.com/bolt-design-system/bolt/commit/e2be1a5))
+* **bolt-animate:** add shadow dom wrapper ([0abb401](https://github.com/bolt-design-system/bolt/commit/0abb401))
+* **bolt-animate:** move demo JS to separate file so it gets transpiled ([baedf7a](https://github.com/bolt-design-system/bolt/commit/baedf7a))
+* **bolt-editor:** fix failing build; incorrect namespace ([a31f42c](https://github.com/bolt-design-system/bolt/commit/a31f42c))
+* **editor:** editor inclusion in pl package.json fix ([ad91adf](https://github.com/bolt-design-system/bolt/commit/ad91adf))
+* **with-without:** fixing content overflow ([9be6494](https://github.com/bolt-design-system/bolt/commit/9be6494))
+* **with-without:** numerous fixes ([b360340](https://github.com/bolt-design-system/bolt/commit/b360340))
+* **with-without:** remove padding from PL b/c it breaks w/wo ([b71b030](https://github.com/bolt-design-system/bolt/commit/b71b030))
+* **with-without:** safari title z-index bug ([1e3df49](https://github.com/bolt-design-system/bolt/commit/1e3df49))
+
+
+
+
+
 # [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
 
 

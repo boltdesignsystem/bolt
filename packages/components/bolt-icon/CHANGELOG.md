@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* **bolt-icon:** updating icon schema after merge ([4f9dc33](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/4f9dc33))
+
+
+### Features
+
+* **with-with:** self-drawing circle added ([a799a8a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/a799a8a))
+* **with-without:** continued development ([b0f62aa](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/commit/b0f62aa))
+
+
+
+
+
 # [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icon/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
 
 
