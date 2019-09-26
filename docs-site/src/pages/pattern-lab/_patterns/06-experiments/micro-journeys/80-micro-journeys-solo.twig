@@ -1,0 +1,49 @@
+{% set content %}
+<bolt-interactive-pathways>
+  <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
+  <bolt-interactive-pathway pathway-title="Simple Steps">
+    <p slot="pathway-title">Simple Steps</p>
+    <bolt-interactive-step tab-title="Step 1">
+      <bolt-animate in="fade-in" out="fade-out" slot="top">
+        <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="">
+      </bolt-animate>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 2">
+      <bolt-animate in="fade-in" out="fade-out" slot="top">
+        <img src="/images/placeholders/landscape-16x9-skyline.jpg" alt="">
+      </bolt-animate>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 3">
+      <bolt-animate in="fade-in" out="fade-out" slot="top">
+        <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="">
+      </bolt-animate>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 4">
+      <bolt-animate in="fade-in" out="fade-out" slot="top">
+        <img src="/images/placeholders/landscape-16x9-skyline.jpg" alt="">
+      </bolt-animate>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 5">
+      <bolt-animate in="fade-in" out="fade-out" slot="top">
+        <img src="/images/placeholders/landscape-16x9-mountains.jpg" alt="">
+      </bolt-animate>
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Step 6">
+      <bolt-animate in="fade-in" out="fade-out" slot="top">
+        <img src="/images/placeholders/landscape-16x9-skyline.jpg" alt="">
+      </bolt-animate>
+    </bolt-interactive-step>
+  </bolt-interactive-pathway>
+
+</bolt-interactive-pathways>
+{% endset %}
+
+{% include '@pl/_shadow-dom-demo.twig' with {
+  content: content,
+  enableEditor: true,
+} only %}

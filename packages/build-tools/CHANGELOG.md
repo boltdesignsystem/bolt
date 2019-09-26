@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* **build:** error on yarn build:noisy; fix integer cast for verbosity arg ([08f199a](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/08f199a))
+* address eslint issues ([e90e7b3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e90e7b3))
+* update Build Tools to check if config.components.global / config.components.individual exist before trying to auto-run the Icon build task ([d340701](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/d340701))
+
+
+### Features
+
+* automatically convert Bolt + non-Bolt package.json package names into valid Twig namespaces ([bbb6184](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/bbb6184))
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **editor:** exclude grapes from babel ([1c87756](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/1c87756))
+* add .js AND ref support schemas ([300faab](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/300faab))
+* add raw-loader dep ([e174852](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e174852))
+
+
+### Features
+
+* **build-tools:** add JS as schema file option ([4f7dbd0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/4f7dbd0))
+* update webpack to process png with file-loader ([569fd24](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/569fd24))
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **editor:** exclude grapes from babel ([1c87756](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/1c87756))
+* add .js AND ref support schemas ([300faab](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/300faab))
+* add raw-loader dep ([e174852](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e174852))
+
+
+### Features
+
+* **build-tools:** add JS as schema file option ([4f7dbd0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/4f7dbd0))
+* update webpack to process png with file-loader ([569fd24](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/569fd24))
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+
+### Bug Fixes
+
+* **editor:** exclude grapes from babel ([1c87756](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/1c87756))
+* add .js AND ref support schemas ([300faab](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/300faab))
+* add raw-loader dep ([e174852](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/e174852))
+
+
+### Features
+
+* **build-tools:** add JS as schema file option ([4f7dbd0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/4f7dbd0))
+* update webpack to process png with file-loader ([569fd24](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/commit/569fd24))
+
+
+
+
+
 # [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/build-tools/compare/v2.6.0...v2.7.0) (2019-09-13)
 
 

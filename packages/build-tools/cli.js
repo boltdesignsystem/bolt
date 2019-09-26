@@ -76,7 +76,7 @@ if (program.configFile) {
         config.verbosity =
           typeof program.verbosity === 'undefined'
             ? config.verbosity
-            : program.verbosity;
+            : parseInt(program.verbosity, 10);
 
         config.openServerAtStart =
           typeof options.open === 'undefined'

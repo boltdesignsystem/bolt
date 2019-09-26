@@ -1,0 +1,14 @@
+.c-bolt-svg-animations {
+  display: inline-block;
+  position: relative;
+  > svg {
+    vertical-align: middle; // removes mysterious margin bottom https://stackoverflow.com/a/10844318
+  }
+}
+
+.c-bolt-svg-animations__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
