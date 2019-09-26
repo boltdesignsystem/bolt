@@ -2,13 +2,17 @@ import {
   render,
   stopServer,
   html,
-  vrtDefaultConfig,
+  vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
 
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../tabs.schema.yml'));
 const { align, inset } = schema.properties;
+
+const vrtDefaultConfig = Object.assign(vrtConfig, {
+  failureThreshold: '0.02',
+});
 
 const timeout = 120000;
 
