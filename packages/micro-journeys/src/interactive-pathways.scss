@@ -1,0 +1,101 @@
+@import '@bolt/core';
+
+// Local interactive-pathways Variables
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-interactive-pathways', block, medium);
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+.c-bolt-interactive-pathways {
+  //Styles go here. /* [1] */
+  display: block;
+  overflow: visible;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__nav {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.65rem;
+    padding: 1.65rem 0;
+
+    &--inner {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+      z-index: 999;
+      max-width: 100%;
+      white-space: nowrap;
+
+      @include bolt-mq(medium) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: baseline;
+      }
+    }
+  }
+
+  &__single-title {
+    display: block;
+    margin-left: .65rem;
+  }
+
+  &__menu-container {
+    border-radius: .35rem;
+    box-shadow: .5rem .5rem .5rem rgba(0,0,0,.25);
+    background-color: bolt-color(white);
+  }
+
+  &__menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 0;
+    padding: bolt-spacing(small);
+    justify-items: center;
+
+    & + & {
+      border-top: 1px solid bolt-color(gray, dark);
+    }
+
+    p {
+      color: bolt-color(black);
+      font-weight: 600;
+    }
+
+    bolt-icon {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+    }
+
+    &--active {
+      bolt-icon,
+      p {
+        color: bolt-color(blue);
+      }
+    }
+
+    //&:hover {
+    //  cursor: pointer;
+    //}
+  }
+}
+
+bolt-text[slot="interactive-pathways-lead-text"] {
+  margin-bottom: 0;
+}
