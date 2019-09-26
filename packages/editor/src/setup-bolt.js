@@ -342,10 +342,6 @@ export function setupBolt(editor) {
   });
   colorTrait.label = 'Color';
 
-  console.debug('Hey Super Smart Developer! You probably want this info ->', {
-    theInfo: buttonSchema,
-  });
-
   registerBoltComponent({
     name: 'bolt-button',
     registerBlock: true,
@@ -366,6 +362,17 @@ export function setupBolt(editor) {
         label: 'On Click Target',
         name: 'on-click-target',
         type: 'string',
+      },
+      {
+        label: 'Url',
+        name: 'url',
+        type: 'string',
+      },
+      {
+        label: 'Disabled',
+        name: 'disabled',
+        type: 'checkbox',
+        default: false,
       },
     ],
   });
