@@ -1,0 +1,84 @@
+@import '@bolt/core';
+@import './nav-shared';
+
+// Local interactive-pathway Variables
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-interactive-pathway', block, medium);
+
+//@import "@bolt/animations/settings/settings-animations";
+//
+//@import "@bolt/animations/tools/tools-transitions";
+//@import "@bolt/animations/tools/tools-animations";
+//
+//@import "@bolt/animations/utilities/utilities-animation";
+$bolt-interactive-step--dot-size: 1.2rem;
+.c-bolt-interactive-pathway {
+  display: none;
+  position: relative;
+
+  &--active {
+    display: flex;
+  }
+
+  &__nav {
+    display: none;
+  }
+
+  @include bolt-mq(medium) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    $gutter: bolt-spacing(large);
+    $half-gutter: $gutter / 2;
+
+    &__nav {
+      display: block;
+      position: relative;
+      width: calc(30% - #{$half-gutter});
+      margin-right: bolt-spacing(large);
+      @include bolt-micro-journeys-nav-items-wrapper;
+    }
+
+    &__nav-item {
+      position: relative;
+      @include bolt-micro-journeys-nav-title;
+
+      &:before {
+        @include bolt-micro-journeys-nav-dot;
+      }
+
+      &:after {
+        @include bolt-micro-journeys-nav-line;
+      }
+
+      &--active {
+        @include bolt-micro-journeys-nav-title($active: true);
+
+        &:before {
+          @include bolt-micro-journeys-nav-dot($active: true);
+        }
+      }
+
+      &:last-of-type:after {
+        display: none;
+      }
+    }
+
+    &__items {
+      width: calc(70% - #{$half-gutter});
+    }
+  }
+}
+
+/**
+ * This builds the vertical strikethrough line on the interactive pathway nav
+ */
+bolt-interactive-pathway {
+  position: relative;
+  margin-bottom: 0 !important; // override the global vertical spacing rhythm, as only one is visible in any list
+}
+
+.c-bolt-interactive-pathway__nav-item:last-of-type {
+
+}

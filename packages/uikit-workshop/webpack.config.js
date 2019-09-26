@@ -14,7 +14,7 @@ const localChrome = require('local-chrome');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const Renderer = require('@bolt/uikit-prerenderer');
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');

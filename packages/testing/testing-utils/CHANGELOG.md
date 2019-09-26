@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+**Note:** Version bump only for package @bolt/testing-utils
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **testing-utils:** finding twig should ignore what .gitignore does ([47caa70](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/commit/47caa70))
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **testing-utils:** finding twig should ignore what .gitignore does ([47caa70](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/commit/47caa70))
+
+
+
+
+
 # [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.6.0...v2.7.0) (2019-09-13)
 
 **Note:** Version bump only for package @bolt/testing-utils
