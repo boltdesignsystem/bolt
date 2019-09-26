@@ -92,6 +92,14 @@ class BoltAccordion extends withContext(withLitHtml()) {
     };
   }
 
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this.addEventListener('bolt:layout-size-changed', e => {
+      if (e.target !== this) {
+        this.accordion && this.accordion.resize();
+      }
+    });
+  }
   getModifiedSchema(schema) {
     var modifiedSchema = schema;
 
@@ -150,6 +158,22 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.accordion.on('destroyed', fold => {
       delete this.accordion;
     });
+
+    this.accordion.on('fold:opened', fold => {
+      this.handleLayoutSizeChange();
+    });
+
+    this.accordion.on('fold:closed', fold => {
+      this.handleLayoutSizeChange();
+    });
+  }
+
+  handleLayoutSizeChange() {
+    this.dispatchEvent(
+      new CustomEvent('bolt:layout-size-changed', {
+        bubbles: true,
+      }),
+    );
   }
 
   setupAccordion() {
