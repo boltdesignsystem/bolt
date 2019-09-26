@@ -1,10 +1,4 @@
-import {
-  withContext,
-  define,
-  props,
-  css,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+import { withContext, define, props, css } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
@@ -31,7 +25,6 @@ class AccordionItem extends withContext(withLitHtml()) {
       [AccordionContext, 'boxShadow'],
       [AccordionContext, 'spacing'],
       [AccordionContext, 'iconValign'],
-      [AccordionContext, 'useShadow'],
     ];
   }
 
@@ -85,7 +78,6 @@ class AccordionItem extends withContext(withLitHtml()) {
   constructor(self) {
     self = super(self);
 
-    this.useShadow = hasNativeShadowDomSupport;
     return self;
   }
 
@@ -101,6 +93,8 @@ class AccordionItem extends withContext(withLitHtml()) {
   }
 
   connecting() {
+    super.connecting && super.connecting();
+
     const originalInput = this.querySelector('.c-bolt-accordion-item__state');
     const originalLinks = this.querySelectorAll(
       '.c-bolt-accordion-item__trigger-link',
@@ -118,11 +112,8 @@ class AccordionItem extends withContext(withLitHtml()) {
   }
 
   connectedCallback() {
-    super.connectedCallback();
+    super.connectedCallback && super.connectedCallback();
     this.context = this.contexts.get(AccordionContext);
-
-    // Inherit useShadow from `bolt-accordion`
-    this.useShadow = this.context.useShadow;
   }
 
   close() {

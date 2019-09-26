@@ -4,7 +4,6 @@ import {
   define,
   props,
   css,
-  hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
@@ -20,7 +19,6 @@ export const AccordionContext = defineContext({
   boxShadow: schema.properties.box_shadow.default,
   spacing: schema.properties.spacing.default,
   iconValign: schema.properties.icon_valign.default,
-  useShadow: hasNativeShadowDomSupport,
 });
 
 @define
@@ -37,7 +35,6 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema);
 
     return self;
@@ -277,7 +274,6 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.contexts.get(AccordionContext).boxShadow = boxShadow;
     this.contexts.get(AccordionContext).spacing = spacing;
     this.contexts.get(AccordionContext).iconValign = iconValign;
-    this.contexts.get(AccordionContext).useShadow = this.useShadow;
 
     return html`
       ${this.addStyles([styles, heightUtils])} ${this.template()}
