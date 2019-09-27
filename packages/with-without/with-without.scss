@@ -38,8 +38,12 @@ bolt-animate {
 
 .c-pega-wwo {
   position: relative;
+  right: 50%;
+  left: 50%;
   width: 100vw;
   height: 100%;
+  margin-right: -50vw;
+  margin-left: -50vw;
   line-height: 1.4;
   background-color: black;
 
@@ -252,16 +256,15 @@ bolt-animate {
 
   &__circles-wrapper {
     $pega-wwo--circles-top-padding: 18%;
-    // For some reason, the calculation was off, and the circle wobbled.
-    $pega-wwo--circles-top-padding--height-calculation: 17.98225%;
     display: none;
     top: 0;
+
 
     @include bolt-mq($from: xlarge) {
       display: block;
       position: absolute;
-      width: calc(#{$pega-wwo--dashed-circle-height} * #{$pega-wwo--desktop-ratio-decimal});
-      height: calc(#{$pega-wwo--dashed-circle-height} + (#{$pega-wwo--circles-top-padding--height-calculation} / #{$pega-wwo--desktop-ratio-decimal}));
+      width: 29%;
+      //height: calc(#{$pega-wwo--dashed-circle-height} + (#{$pega-wwo--circles-top-padding--height-calculation} / #{$pega-wwo--desktop-ratio-decimal}));
     }
 
     &-wo {
@@ -282,13 +285,22 @@ bolt-animate {
       left: 19.7%;
       padding-top: $pega-wwo--circles-top-padding;
     }
+
+    [secondary-group="circles"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__circles {
     display: none;
     position: relative;
     width: 100%;
-    height: 100%;
+    // This makes it perfectly square. Inside, elements are abs pos.
+    padding-top: 100%;
 
     @include bolt-mq($from: xlarge) {
       display: block;
@@ -297,6 +309,9 @@ bolt-animate {
 
   &__self-drawing-circle {
     display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     transform:rotate(-20deg);
     width: 100%;
     height: 100%;
