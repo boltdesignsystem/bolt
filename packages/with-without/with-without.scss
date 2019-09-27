@@ -582,6 +582,11 @@ bolt-animate {
       @include bolt-mq($from: xlarge) {
         top: 0;
         left: 29%;
+        width: calc(#{$pega-wwo--block-width-basis} + 100px);
+        padding-top: 46%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
         width: calc(#{$pega-wwo--block-width-basis} + 70px);
         padding-top: 47.6%;
       }
@@ -659,8 +664,13 @@ bolt-animate {
       @include bolt-mq($from: xlarge) {
         display: block;
         top: 0;
-        left: 7%;
+        left: 5%;
         width: calc(#{$pega-wwo--block-width-basis} + 170px);
+        padding-top: 39%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        left: 7%;
         padding-top: 41.75%;
       }
 
@@ -676,10 +686,16 @@ bolt-animate {
     &-block-relationship-w {
       @include bolt-mq($from: xlarge) {
         top: 0;
-        left: 39%;
+        left: 42%;
         width: calc(#{$pega-wwo--block-width-basis} + 200px);
+        padding-top: 45%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        left: 39%;
         padding-top: 46.7%;
       }
+
     }
   }
   &__icon {
