@@ -24,7 +24,7 @@ const config = {
     enabled: true,
   },
   sourceMaps: !(process.env.TRAVIS || argv.prod),
-  enableCache: !(process.env.TRAVIS || argv.prod),
+  enableCache: true,
   enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
@@ -165,11 +165,6 @@ const config = {
     {
       from: path.join(path.dirname(require.resolve(`@bolt/components-typeahead`)),'__demos__/typeahead.data.json'),
       to: path.join(__dirname, '../www/build/data'),
-    },
-    {
-      from: `src/assets/bolt-sketch.zip`,
-      to: path.join(__dirname, '../www/assets'),
-      flatten: true,
     },
     {
       from: `src/assets/videos`,
