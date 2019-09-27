@@ -166,7 +166,12 @@ class BoltImage extends withLitHtml() {
     });
 
     // grab the last image path referenced in srcset as a fallback if src isn't defined
-    const fallbackSrc = srcset ? srcset.split(',')[srcset.split(',').length - 1].trim().split(' ')[0] : undefined;
+    const fallbackSrc = srcset
+      ? srcset
+          .split(',')
+          [srcset.split(',').length - 1].trim()
+          .split(' ')[0]
+      : undefined;
 
     const imageElement = () => {
       if (src || srcset) {
