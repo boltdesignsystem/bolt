@@ -15,6 +15,9 @@ cache:
     - www
     - node_modules
     - .cache
+    - packages/core-php/vendor
+    - packages/drupal-twig-extensions/vendor
+    - packages/packages/twig-renderer/vendor
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
