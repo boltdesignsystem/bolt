@@ -89,3 +89,9 @@ if (learnMoreModal) {
     }
   });
 }
+
+// Force just the size-setting event to set height properly after dom loaded to fix content overlap bug on tablet.
+// We want height to be accurate as soon as possible *and* afterward, so this lightweight double-check should stay.
+setTimeout(() => {
+  handleResize(true, false);
+}, 0);
