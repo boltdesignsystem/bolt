@@ -60,7 +60,17 @@ jobs:
     #   after_failure: ./scripts/check-run-failure.js 'Lint'
 
     - stage: Prep
-      name: 'Smoke Tests: Lint + Jest Tests'
+      name: 'Smoke Tests: Lint + Jest Tests (Slow)'
+      install:
+        - yarn run setup
+      before_script:
+        - yarn workspace @bolt/website prep # creates data and manifest files
+      script:
+        - yarn run lint
+        - yarn test:js
+
+    - stage: Prep
+      name: 'Smoke Tests: Lint + Jest Tests (Quick)'
       install:
         - yarn run setup
       before_script:
