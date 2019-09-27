@@ -71,24 +71,7 @@ jobs:
       script:
         - yarn run lint
         - yarn test:js
-
-    - stage: Prep
-      name: 'Smoke Tests: Lint + Jest Tests (Quick)'
-      install:
-        - yarn run setup
-      before_script:
-        - yarn workspace @bolt/website prep # creates data and manifest files
-      script:
-        - yarn run lint
-        - travis_retry yarn test:js:quick --bail --maxWorkers=1
-      # before_script: ./scripts/check-run-queue.js 'Lint + Jest'
-      # after_success: ./scripts/check-run-success.js 'Lint + Jest'
-      # after_failure: ./scripts/check-run-failure.js 'Lint + Jest'
-        # - travis_retry yarn test:js --bail --maxWorkers=1
-        # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
-        # - yarn test:php
-        # - yarn test:monorepo --maxWorkers=1
-        # - yarn test:pkgs --ignore=@bolt/uikit-workshop --ignore=@bolt/build-tools --ignore=@bolt/build-tools--test-multi-lang
+        # - travis_retry yarn test:js:quick --bail --maxWorkers=1
 
     - stage: Prep
       name: 'Build + Deploy Website'
