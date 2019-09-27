@@ -195,9 +195,31 @@
   </bolt-tabs>
 {% endset %}
 
+{% set pinned_links %}
+  <bolt-list display="inline" spacing="small">
+    <bolt-list-item>
+      <bolt-link><bolt-icon name="java" slot="before"></bolt-icon>Playground</bolt-link>
+    </bolt-list-item>
+    <bolt-list-item>
+      <bolt-link><bolt-icon name="life-sciences" slot="before"></bolt-icon>Test</bolt-link>
+    </bolt-list-item>
+    <bolt-list-item>
+      <bolt-link><bolt-icon name="github" slot="before"></bolt-icon>Source code</bolt-link>
+    </bolt-list-item>
+  </bolt-list>
+{% endset %}
+
 {% include "@bolt-components-band/band.twig" with {
   content: demo_content,
   theme: "xlight",
+  pinned_content: {
+    upper: [
+      {
+        content: pinned_links,
+        align: "end",
+      },
+    ],
+  }
 } only %}
 {# Demo Band #}
 
