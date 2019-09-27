@@ -8,7 +8,7 @@ const os = require('os');
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
 const chromePath = require('@moonandyou/chrome-path');
-const { buildPrep } = require('@bolt/build-tools/tasks/task-collections.js');
+const { buildPrep, clean } = require('@bolt/build-tools/tasks/task-collections.js');
 const imageTasks = require('@bolt/build-tools/tasks/image-tasks');
 const iconTasks = require('@bolt/build-tools/tasks/icon-tasks');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
@@ -24,6 +24,7 @@ module.exports = async function globalSetup() {
     path.join(__dirname, '../../../__tests__/fixtures'),
   ];
 
+  await clean(true);
   await buildPrep(true); // clear out all folders before running
   await imageTasks.processImages(true); // process image fixtures used by any tests, but don't optimize
   await iconTasks.build(); // process icons used by any tests
