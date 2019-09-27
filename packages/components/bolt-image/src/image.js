@@ -243,7 +243,7 @@ class BoltImage extends withLitHtml() {
 
     const ratioTemplate = children => {
       return html`
-        <bolt-ratio ratio="${ratioW * 1}/${ratioH * 1}">
+        <bolt-ratio ratio="${ratioW * 1}/${ratioH * 1}" .useShadow=${this.useShadow}>
           ${children}
         </bolt-ratio>
       `;
