@@ -1,7 +1,7 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
-export const orbit = ({ speed }) => {
+export const orbit = ({ speed, theme }) => {
   const authoredStyle = html`
     #el_4FVBcL2d5 { overflow: visible; transform: translateZ(0);}
     @-webkit-keyframes kf_el_3_mf5AZNVo_an_9jFWXwODG { 0% { -webkit-transform:
@@ -19,17 +19,17 @@ export const orbit = ({ speed }) => {
     -webkit-animation-iteration-count: infinite; animation-iteration-count:
     infinite; -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 1);
     animation-timing-function: cubic-bezier(0, 0, 1, 1); } #el_3_mf5AZNVo {
-    stroke: none; stroke-width: 1; fill: none; } #el_Kq0Ppgd0n6 { stroke:
-    #535DA6; stroke-width: 0.914634146; } #el_XZMv5KV-BQ { fill: #009999; }
-    #el_D9rhYqcKss { fill: #009999; } #el_GmGtSmeZzg { fill: #009999; }
-    #el_3_mf5AZNVo_an_9jFWXwODG { -webkit-animation-fill-mode: backwards;
-    animation-fill-mode: backwards; -webkit-transform: translate(75px, 75px)
-    rotate(0deg) translate(-75px, -75px); transform: translate(75px, 75px)
-    rotate(0deg) translate(-75px, -75px); -webkit-animation-name:
-    kf_el_3_mf5AZNVo_an_9jFWXwODG; animation-name:
-    kf_el_3_mf5AZNVo_an_9jFWXwODG; -webkit-animation-timing-function:
-    cubic-bezier(0, 0, 1, 1); animation-timing-function: cubic-bezier(0, 0, 1,
-    1); }
+    stroke: none; stroke-width: 1; fill: none; } #dashed_circle { stroke:
+    ${theme === 'dark' ? `#FFFFFF` : `#535DA6`}; stroke-width: 0.914634146; }
+    #el_XZMv5KV-BQ { fill: #009999; } #el_D9rhYqcKss { fill: #009999; }
+    #el_GmGtSmeZzg { fill: #009999; } #el_3_mf5AZNVo_an_9jFWXwODG {
+    -webkit-animation-fill-mode: backwards; animation-fill-mode: backwards;
+    -webkit-transform: translate(75px, 75px) rotate(0deg) translate(-75px,
+    -75px); transform: translate(75px, 75px) rotate(0deg) translate(-75px,
+    -75px); -webkit-animation-name: kf_el_3_mf5AZNVo_an_9jFWXwODG;
+    animation-name: kf_el_3_mf5AZNVo_an_9jFWXwODG;
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 1);
+    animation-timing-function: cubic-bezier(0, 0, 1, 1); }
   `;
 
   return svg`
@@ -49,7 +49,7 @@ export const orbit = ({ speed }) => {
         <g fill-rule="evenodd" id="el_3_mf5AZNVo">
           <path
             d="M75,150 C116.421356,150 150,116.421356 150,75 C150,33.5786438 116.421356,0 75,0 C33.5786438,0 0,33.5786438 0,75 C0,116.421356 33.5786438,150 75,150 Z"
-            id="el_Kq0Ppgd0n6"
+            id="dashed_circle"
             stroke-dasharray="3.658536585365854"
           />
           <circle
