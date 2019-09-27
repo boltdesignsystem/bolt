@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* update Typeahead to include additional packages missing from package.json ([9382c4a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/commit/9382c4a))
+
+
+
+
+
 # [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
 
 

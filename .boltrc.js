@@ -75,6 +75,7 @@ module.exports = {
       ...allComponentPackages,
       '@bolt/components-animate',
       '@bolt/micro-journeys',
+      '@pegawww/with-without', // @todo: remove once w/wo has shipped
       '@bolt/analytics-autolink',
     ],
   },

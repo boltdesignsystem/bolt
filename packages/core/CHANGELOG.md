@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* pull in custom Switch JS to fix custom event issue; add example with/without page with Shadow DOM disabled for debugging; ([8261a6f](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/8261a6f))
+
+
+
+
+
 # [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
 
 
