@@ -165,14 +165,19 @@ class BoltImage extends withLitHtml() {
       'c-bolt-image--cover': cover,
     });
 
+    // grab the last image path referenced in srcset as a fallback if src isn't defined
+    const fallbackSrc = srcset ? srcset.split(',')[srcset.split(',').length - 1].trim().split(' ')[0] : undefined;
+
     const imageElement = () => {
       if (src || srcset) {
         return html`
           <img
             class="${classes}"
-            src="${ifDefined(src ? src : undefined)}"
+            src="${ifDefined(src ? src : fallbackSrc)}"
             alt="${ifDefined(alt ? alt : undefined)}"
-            srcset="${ifDefined(lazyload ? placeholderImage : srcset ? srcset : undefined)}"
+            srcset="${ifDefined(
+              lazyload ? placeholderImage : srcset ? srcset : undefined,
+            )}"
             data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
             sizes="${ifDefined(
               this.isLoaded || (this.sizes && this.sizes !== 'auto')
