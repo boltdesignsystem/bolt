@@ -170,12 +170,9 @@ class BoltImage extends withLitHtml() {
         return html`
           <img
             class="${classes}"
-            src="${lazyload && !this.isLoaded ? placeholderImage : src}"
-            data-src="${ifDefined(lazyload ? src : undefined)}"
+            src="${ifDefined(src ? src : undefined)}"
             alt="${ifDefined(alt ? alt : undefined)}"
-            srcset="${ifDefined(
-              !lazyload || this.isLoaded ? srcset || src : undefined,
-            )}"
+            srcset="${ifDefined(lazyload ? placeholderImage : srcset ? srcset : undefined)}"
             data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
             sizes="${ifDefined(
               this.isLoaded || (this.sizes && this.sizes !== 'auto')
