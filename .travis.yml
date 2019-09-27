@@ -62,7 +62,7 @@ jobs:
     - stage: Prep
       name: 'Smoke Tests: Lint + Jest Tests'
       install:
-        - yarn run setup:full
+        - yarn run setup
       before_script:
         - yarn workspace @bolt/website prep # creates data and manifest files
       script:
