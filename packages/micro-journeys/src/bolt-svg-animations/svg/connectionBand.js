@@ -18,7 +18,6 @@ export const connectionBand = ({ direction, theme }) => {
     backwards; animation-name: connectionArrowScroll; animation-timing-function:
     cubic-bezier(0, 0, 1, 1); }
   `;
-
   const gradientColors =
     theme === 'dark'
       ? svg`
