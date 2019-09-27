@@ -75,7 +75,7 @@
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "pretest:js": "npm run setup:php",
     "jest": "jest --maxWorkers=3 --all --colors",
-    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
+    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests --maxWorkers=2",
     "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
