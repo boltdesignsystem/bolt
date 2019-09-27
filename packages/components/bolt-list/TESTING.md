@@ -21,13 +21,13 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: display variations
 
 1. Given I am viewing the [display variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-15-list-display-variations/02-components-list-15-list-display-variations.html).
-2. When I am viewing the Block section.
+2. When I am viewing the "Block" section.
 3. Then I should see a vertical list of items.
-4. When I am viewing the Flex section.
+4. When I am viewing the "Flex" section.
 5. Then I should see a horizontal list of items evenly distributed across the width of the browser.
-6. When I am viewing the Inline section.
+6. When I am viewing the "Inline" section.
 7. Then I should see a horizontal list of items with auto width.
-8. When I am viewing each of the Inline@[breakpoint name] sections.
+8. When I am viewing each of the "Inline@[breakpoint name]" sections.
 9. Then I should see a vertical list when the browser is smaller than the breakpoint specified, and a horizontal list when the browser is equal to or larger than the breakpoint specified.
 
 Note: Reference the breakpoint sizes on the [Breakpoints page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-breakpoints)
