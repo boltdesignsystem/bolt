@@ -8,7 +8,10 @@ const os = require('os');
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 
 const chromePath = require('@moonandyou/chrome-path');
-const { buildPrep, clean } = require('@bolt/build-tools/tasks/task-collections.js');
+const {
+  buildPrep,
+  clean,
+} = require('@bolt/build-tools/tasks/task-collections.js');
 const imageTasks = require('@bolt/build-tools/tasks/image-tasks');
 const iconTasks = require('@bolt/build-tools/tasks/icon-tasks');
 const { getConfig } = require('@bolt/build-tools/utils/config-store');
