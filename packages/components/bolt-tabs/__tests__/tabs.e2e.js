@@ -13,6 +13,22 @@ module.exports = {
         `${testingUrl}/pattern-lab/patterns/02-components-tabs-05-tabs/02-components-tabs-05-tabs.html`,
       )
       .waitForElementVisible('bolt-tabs', 1000)
+      .executeAsync(
+        function(data, done) {
+          const tabs = document.querySelector('bolt-tabs');
+          if (tabs._wasInitiallyRendered) {
+            done();
+          } else {
+            tabs.addEventListener('ready', () => {
+              done();
+            });
+          }
+        },
+        [undefined],
+        function(data) {
+          // console.log(data);
+        },
+      )
       .execute(function(data) {
         return document
           .querySelector('bolt-tabs')
