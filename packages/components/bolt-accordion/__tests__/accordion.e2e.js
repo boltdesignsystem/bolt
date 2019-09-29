@@ -67,26 +67,30 @@ module.exports = {
           const hasInactiveClass = label.classList.contains(
             'c-bolt-accordion-item__trigger-label--inactive',
           );
-          const hasExpandedAttr =
-            label.getAttribute('aria-expanded') === 'false';
-          const isDiv = label.tagName === 'DIV';
+          // const hasExpandedAttr =
+          //   label.getAttribute('aria-expanded') === 'false';
+          // const isDiv = label.tagName === 'DIV';
 
-          return { hasInactiveClass, hasExpandedAttr, isDiv };
+          return hasInactiveClass;
         },
         [],
         function(result) {
           browser.assert.ok(
-            result.value.hasInactiveClass === true,
+            result.value === true,
             `Clicked on an inactive accordion item and verified the trigger has the inactive class 'c-bolt-accordion-item__trigger-label--inactive'`,
           );
-          browser.assert.ok(
-            result.value.hasExpandedAttr === true,
-            `Clicked on an inactive accordion item and verified the label has the attribute 'aria-expanded="false"'`,
-          );
-          browser.assert.ok(
-            result.value.isDiv === true,
-            `Clicked on an inactive accordion item and verified the label has the tag name 'DIV'`,
-          );
+          // browser.assert.ok(
+          //   result.value.hasInactiveClass === true,
+          //   `Clicked on an inactive accordion item and verified the trigger has the inactive class 'c-bolt-accordion-item__trigger-label--inactive'`,
+          // );
+          // browser.assert.ok(
+          //   result.value.hasExpandedAttr === true,
+          //   `Clicked on an inactive accordion item and verified the label has the attribute 'aria-expanded="false"'`,
+          // );
+          // browser.assert.ok(
+          //   result.value.isDiv === true,
+          //   `Clicked on an inactive accordion item and verified the label has the tag name 'DIV'`,
+          // );
         },
       )
       .saveScreenshot(
