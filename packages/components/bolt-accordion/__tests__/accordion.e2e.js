@@ -61,28 +61,26 @@ module.exports = {
           const accordionItem = document.querySelector(
             'bolt-accordion-item:nth-child(2)',
           );
-          const trigger = accordionItem.renderRoot.querySelector(
-            '.c-bolt-accordion-item__trigger',
-          );
-          const label = trigger.querySelector(
+          const label = accordionItem.renderRoot.querySelector(
             '.c-bolt-accordion-item__trigger-label',
           );
-          const isDisabled = trigger.classList.contains(
-            'handorgel__header--disabled',
+          const hasInactiveClass = label.classList.contains(
+            'c-bolt-accordion-item__trigger-label--inactive',
           );
-          const isNotExpanded = label.getAttribute('aria-expanded') === 'false';
+          const hasExpandedAttr =
+            label.getAttribute('aria-expanded') === 'false';
           const isDiv = label.tagName === 'DIV';
 
-          return { isDisabled, isNotExpanded, isDiv };
+          return { hasInactiveClass, hasExpandedAttr, isDiv };
         },
         [],
         function(result) {
           browser.assert.ok(
-            result.value.isDisabled === true,
-            `Clicked on an inactive accordion item and verified the trigger has the disabled class 'handorgel__header--disabled'`,
+            result.value.hasInactiveClass === true,
+            `Clicked on an inactive accordion item and verified the trigger has the inactive class 'c-bolt-accordion-item__trigger-label--inactive'`,
           );
           browser.assert.ok(
-            result.value.isNotExpanded === true,
+            result.value.hasExpandedAttr === true,
             `Clicked on an inactive accordion item and verified the label has the attribute 'aria-expanded="false"'`,
           );
           browser.assert.ok(
