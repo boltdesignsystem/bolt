@@ -5,7 +5,7 @@ import '@bolt/core/utils/testing-helpers/dom-shims';
 
 import nextAnimationFrame from '@bolt/core/utils/testing-helpers/next-animation-frame';
 import { compactHtml } from '@bolt/core/utils/testing-helpers/compact-html';
-import { BoltButton } from '../src/button.standalone';
+import { BoltButton } from '../src/button';
 
 customElements.define(`bolt-button`, BoltButton);
 

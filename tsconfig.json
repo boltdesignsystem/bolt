@@ -1,0 +1,38 @@
+{
+  "include": [
+    "packages",
+    "scripts"
+  ],
+  "exclude": [
+    "dist",
+    "www",
+    "**/vendor/**",
+    "packages/generators/yeoman-create-component/generators/component",
+    "packages/components/bolt-icons/",
+    "packages/components/bolt-icon",
+    "packages/uikit-workshop",
+  ],
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "target": "esnext",
+    "jsx": "react",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "baseUrl": "packages",
+    "paths": {
+      "@bolt/core": ["core"]
+    }
+  },
+  "typeAcquisition": {
+    "enable": true
+  }
+}

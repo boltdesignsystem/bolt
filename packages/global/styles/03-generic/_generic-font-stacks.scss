@@ -71,9 +71,10 @@ $bolt-font-stacks: (
 
   @font-face {
     font-family: map-get($fontValue, 'fontFamily');
-    src: $fontSrc;
-    font-weight: map-get($fontValue, 'weight');
     font-style: map-get($fontValue, 'style');
+    font-weight: map-get($fontValue, 'weight');
+    src: $fontSrc;
+    font-display: swap;
   }
 }
 

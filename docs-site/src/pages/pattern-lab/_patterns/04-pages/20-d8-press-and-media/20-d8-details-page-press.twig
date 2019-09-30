@@ -1,0 +1,299 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    "theme": "xlight",
+    "size": "medium"
+  } %}
+    {% block band_content %}
+      {% include "@bolt-components-headline/eyebrow.twig" with {
+        "text": "Press Releases",
+        "url": "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-press-browse--list-view/04-pages-100-d8-Press-and-Media-d8-press-browse--list-view.html",
+        "icon": {
+          "name": "arrow-left",
+          "position": "before"
+        }
+      } only %}
+
+      {% include "@bolt-components-headline/headline.twig" with {
+        "text": "Pegasystems Launches Pega Community to Empower Anyone to Create Better Software",
+        "size": "xxxlarge"
+      } only %}
+
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        "text": "New community fosters collaborative approach to developing Pega apps for both experienced and new developers",
+        "size": "xxlarge"
+      } only %}
+
+      {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-8/12@medium' %}
+
+          <p>
+          <strong>LAS VEGAS – June 5, 2018</strong> – <a href="#">Pegasystems Inc.</a> (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced <a href="#">Pega Community</a>, an open online community empowering Pega users of all experience levels to build better software without coding. This new community allows anyone – from novice to expert – to access the latest resources and tutorials to unlock the power of <a href="#">Pega Infinity</a>™, Pega’s next generation digital transformation suite.
+          </p>
+          
+        <div class="u-bolt-margin-bottom-medium">
+          {% include '@bolt-components-image/image.twig' with {
+            src: "https://pbs.twimg.com/media/De8QS1iUwAEHfJu.jpg",
+            alt: "Pega Community homepage",
+            lazyload: true,
+          } only %}
+        </div>
+
+          {% include "@bolt-components-headline/text.twig" with {
+            "text": "As organizations race to digitally transform their businesses, people with the skills to rapidly create the required solutions are in high demand. Pega Community aims to change how software gets built and redefine who gets to build it by providing an engaging educational resource for Pega’s no-code development environment. From business users to veteran developers, the site offers valuable resources to quickly drive successful digital transformation projects from start to finish. Members can stay current with Pega technology, enhance existing skills, and take their careers to the next level. Pega Community allows developers to network with each other to share ideas and discuss projects, while providing Pega clients with a prime resource to find people with the necessary skills needed for their next project."
+          } only %}
+
+          {% include "@bolt-components-headline/headline.twig" with {
+            "text": "Find out what's new",
+            "size": "large"
+          } only %}
+
+          {% include "@bolt-components-headline/text.twig" with {
+            "text": "Pega Community is open today and offers the following:"
+          } only %}
+
+          <div class="u-bolt-margin-bottom-medium">
+            {% include "@bolt-components-ul/ul.twig" with {
+              "items" : [
+                "Pega Launchpad: New Pega users can engage with several core ‘missions’ to help familiarize them with Pega and accelerate their learning – at their own pace. These missions include a look at key Pega capabilities such as artificial intelligence (AI) and robotics; designing effective applications to meet users’ goals; tips on leveraging Pega Community; and more. Users will soon be able to earn badges they can attach to their profiles as they complete courses, learn new skills, and quickly gain confidence to develop solutions on their own.",
+                "Pega Community Profiles and ”Find a Pega Pro”: Newly expanded profile pages enable Pega Community members to build their personal Pega brand and connect with other developers and potential employers. Profiles include project history, areas of expertise, and availability status for new projects. Additionally, users can showcase their achievements with their official verified Pega certifications, as well as badges earned from completing courses, attending events and seminars, demonstrating product knowledge, and more. Through the new “Find a Pega Pro” tool, Pega’s industry-leading clients – representing some of the most successful companies in the world – can search within their own organizations to find available Pega developers who match the skills and qualifications they’re seeking. This tool will help Pega Community members looking for their next project to market their skills and find exciting new career opportunities.",
+                "Project Hub: Project Hub gives users a comprehensive, centralized source of information, guidance, and tools needed to run successful Pega projects. These continuously updated resources – from basic to advanced articles, to templates and role-specific resources – bolster success by helping users accelerate projects, ensure app quality and relevance, and drive agility. The information is structured around the project lifecycle and key capabilities for fast and easy reference. For the first time, users have access to all the delivery insights cultivated from more than 35 years of Pega consulting projects."
+              ]
+            } only %}
+          </div>
+
+          {% set complexText %}
+              Pega Community will be debuted during today’s keynote presentation at PegaWorld — Pega’s annual conference being held through June 6 in Las Vegas. To join Pega Community, please visit <a href="https://community.pega.com/">https://community.pega.com/</a>.          
+          {% endset %}
+          {% include "@bolt-components-headline/text.twig" with {
+            "text": complexText,
+          } only %}
+          
+
+          {% include "@bolt-components-headline/headline.twig" with {
+            "text": "Quotes & Commentary",
+            "size": "large"
+          } only %}
+
+          {% include "@bolt-components-headline/text.twig" with {
+            "text": "“AI and automation technologies have generated tremendous hype, but the potential within the enterprise remains largely untapped,“ said Don Schuerman, chief technology officer and vice president, product marketing, Pegasystems. “Organizations must augment their human intelligence with AI across the entire organization in order to move beyond basic efficiency improvements. By deploying AI and automation with an end-to-end view in mind, businesses can move closer to fulfilling their customer centric vision.”"
+          } only %}
+
+          {% include "@bolt-components-link/link.twig" with {
+            text: "Download related media assets for this story.",
+            url: "#!",
+            icon: {
+              name: "download",
+              position: "before"
+            },
+          } only %}
+          <hr>
+
+
+          {% include "@bolt-components-headline/text.twig" with {
+            "text": "All trademarks are the property of their respective owners.",
+            "size": "xsmall"
+          } only %}
+
+          {% include "@bolt-components-headline/text.twig" with {
+            "text": "The information contained in this press release is not a commitment, promise, or legal obligation to deliver any material, code or functionality. The development, release and timing of any features or functionality described remains at the sole discretion of Pegasystems, Pegasystems specifically disclaims any liability with respect to this information.",
+            "size": "xsmall"
+          } only %}
+
+        {% endcell %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-4/12@medium' %}
+          {% grid "o-bolt-grid--matrix" %}
+            {% cell "u-bolt-width-1/1" %}
+              {# share widget #}
+              <div class="u-bolt-margin-bottom-medium">
+                {% include '@bolt-components-share/share.twig' with {
+                  text: 'Share this page',
+                  sources: [
+                    {
+                      name: "facebook",
+                      url: "https://www.facebook.com/sharer/sharer.php?u={url}&src=sdkpreparse"
+                    },
+                    {
+                      name: "twitter",
+                      url: "https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}"
+                    },
+                    {
+                      name: "linkedin",
+                      url: "https://www.linkedin.com/shareArticle?url={url}&title={title}"
+                    },
+                    {
+                      name: "email",
+                      url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+                    }
+                  ]
+                } only %}
+              </div>
+              
+              <div class="c-bolt-card">
+                <div class="c-bolt-card__body">
+                  <div class="u-bolt-margin-bottom-xsmall">
+                    {% include "@bolt-components-headline/headline.twig" with {
+                      "text": "Press Kit",
+                      "size": "large",
+                    } only %}
+                  </div>
+                  
+
+                  {% include "@bolt/ui-list.twig" with {
+                    "size": "small",
+                    "contentItems": [
+                      {
+                        "contentItems": [
+                          {
+                            "pattern": "headline",
+                            "text": "Corporate Fact Sheet",
+                            "size": "xsmall",
+                            "url": "#",
+                            "icon": {
+                              "name": "chevron-right"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "contentItems": [
+                          {
+                            "pattern": "headline",
+                            "text": "Management Team",
+                            "size": "xsmall",
+                            "url": "#",
+                            "icon": {
+                              "name": "chevron-right"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "contentItems": [
+                          {
+                            "pattern": "headline",
+                            "text": "YouTube Channel",
+                            "size": "xsmall",
+                            "url": "#",
+                            "icon": {
+                              "name": "chevron-right"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "contentItems": [
+                          {
+                            "pattern": "headline",
+                            "text": "Analyst Coverage",
+                            "size": "xsmall",
+                            "url": "#",
+                            "icon": {
+                              "name": "chevron-right"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  } only %}
+                </div>
+              </div>
+            {% endcell %}
+            {% cell "u-bolt-width-1/1" %}
+              {% include "@bolt-components-headline/headline.twig" with {
+                "text": "Media Contacts",
+                "size": "large"
+              } only %}
+
+              <p class="c-bolt-text">
+                Lisa Pintchman Rogers
+                <br>
+                VP, Corporate Communications
+                <br>
+                <a href="mailto:Lisa.Pintchman@pega.com">Lisa.Pintchman@pega.com</a>
+                <br>
+                +1 617-866-6022
+              </p>
+
+              {% include "@bolt-components-headline/headline.twig" with {
+                "text": "North America",
+                "size": "small"
+              } only %}
+
+              <p class="c-bolt-text">
+                Sean Audet
+                <br>
+                Director, Corporate Communications
+                <br>
+                <a href="mailto:Sean.Audet@pega.com">Sean.Audet@pega.com</a>
+                <br>
+                +1 617-528-5230
+              </p>
+
+              <p class="c-bolt-text">
+                Ilena Ryan
+                <br>
+                Sr. Manager, Public Relations
+                <br>
+                <a href="mailto:Ilena.Ryan@pega.com">Ilena.Ryan@pega.com</a>
+                <br>
+                +1 617-866-6722
+              </p>
+
+              {% include "@bolt-components-headline/headline.twig" with {
+                "text": "Europe",
+                "size": "small"
+              } only %}
+
+              <p class="c-bolt-text">
+                Joanna Richardson
+                <br>
+                Director, Corporate Communications
+                <br>
+                <a href="mailto:Joanna.Richardson@pega.com">Joanna.Richardson@pega.com</a>
+                <br>
+                +44 (0) 118 9651 660
+              </p>
+
+              <p class="c-bolt-text">
+                Jon Brigden
+                <br>
+                PR &amp; Communications Manager
+                <br>
+                <a href="mailto:Jon.Brigden@pega.com">Jon.Brigden@pega.com</a>
+                <br>
+                +44 (0) 118 9398 584
+              </p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-1/1' %}
+              {% include "@bolt-components-headline/headline.twig" with {
+                "text": "Pegasystems Inc.",
+                "size": "large"
+              } only %}
+
+              <p class="c-bolt-text">
+                One Rogers St.
+                <br>
+                Cambridge, MA 02142
+                <br>
+                U.S.A.
+                <br>
+                Phone +1 617-374-9600
+                <br>
+                Fax +1 617-374-9620
+              </p>
+            {% endcell %}
+          {% endgrid %}
+        {% endcell %}
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+
+{% endblock %}

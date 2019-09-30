@@ -65,14 +65,14 @@ pre.line-numbers > code {
 
 .line-numbers-rows > span {
   display: block;
-  pointer-events: none;
   counter-increment: linenumber;
+  pointer-events: none;
 }
 
 .line-numbers-rows > span:before {
+  content: counter(linenumber);
   display: block;
   padding-right: 0.8em;
-  content: counter(linenumber);
   text-align: right;
 }
 

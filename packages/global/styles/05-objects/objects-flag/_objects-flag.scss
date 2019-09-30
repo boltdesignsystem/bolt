@@ -17,15 +17,18 @@ $bolt-flag-alignments: (
 .o-bolt-flag {
   // display: table;
   // width: 100%;
-  @include bolt-margin-bottom(medium);
   display: flex;
   align-items: flex-start;
+
+  &:not(:last-child) {
+    @include bolt-margin-bottom(medium);
+  }
 }
 
 .o-bolt-flag__body {
+  flex-basis: auto;
   flex-grow: 1;
   flex-shrink: 1;
-  flex-basis: auto;
   width: 100%; // Required so IE11 properly calculates the component's layout (and doesn't overflow content) when flex / inline-flex items are nested inside of the flag body
 }
 

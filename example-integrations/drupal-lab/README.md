@@ -6,14 +6,14 @@ In order to get up and running with the Drupal Lab and the Bolt Starter Theme, t
 
 1. Any Composer and NPM dependnecies (via Yarn) used will need to get installed.
 
-2. The front-end theme needs to get compiled for the very first time. 
+2. The front-end Bolt-powered Drupal theme needs to get compiled for the very first time (for Twig namespaces, etc).
 
 > This is important as some important JSON config data that's used by the Bolt Connect module in Drupal for knowing where Twig templates live (automatically configuring Twig Namespaces) + auto-wiring up the shared Twig extensions that ship in Bolt.
 
 3. And finally, the Drupal sandbox needs to setup, configurations imported, fake content generated for the SQLite database, etc.
 
 
-Thankfully there's a quick composer command available to take care of all three of these automatically:
+Thankfully there's a quick NPM command available to take care of all three of these automatically:
 
 ```bash
 composer run setup
@@ -27,7 +27,7 @@ Finally to start up the local PHP dev server for Drupal run:
 composer run serve
 ```
 
-And, if you also want to watch your front-end codebase for local changes (ex. changing any Sass or JS and recompiling), in a separate tab, run:
+And, if you also want to watch your front-end codebase for local changes (ex. changing any Sass or JS and automatically recompiling -- which you probably want), run the following in a separate terminal / console tab:
 
 ```bash
 composer run bolt:start
@@ -35,7 +35,7 @@ composer run bolt:start
 
 
 ### Compiling theme-specific front-end Sass and JavaScript
-Check out the `.boltrc` config example used in Bolt's [Pattern Lab configuration](https://github.com/bolt-design-system/bolt/blob/master/apps/pattern-lab/.boltrc.js#L132). This example shows that you can combine and build components coming from Bolt with additional front-end code that lives locally in your site theme using one unified build process!
+Check out the `.boltrc` config example used in Bolt's [Pattern Lab configuration](https://github.com/bolt-design-system/bolt/blob/master/docs-site/.boltrc.js#L132). This example shows that you can combine and build components coming from Bolt with additional front-end code that lives locally in your site theme using one unified build process!
 
 
 #### Workflows

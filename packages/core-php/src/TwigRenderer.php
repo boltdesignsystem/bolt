@@ -12,7 +12,7 @@ use Symfony\Component\Finder\Finder;
 
 class TwigRenderer {
   /**
-   * @var $twig \Twig_Environment
+   * @var $twig \Twig\Environment
    */
   private $twig;
   private $twigLoaders;
@@ -55,13 +55,12 @@ class TwigRenderer {
     $loaders = new \Twig_Loader_Chain($twigLoaders);
 
     // Create Twig Environment with the `$loaders` just made and some global settings
-    $this->twig = new \Twig_Environment($loaders, [
+    $this->twig = new \Twig\Environment($loaders, [
       'debug' => true,
       'autoescape' => false,
     ]);
 
     $this->twigExtensions = [
-      // '\PatternLab\DrupalTwigExtensions\Basic',
       '\Bolt\TwigExtensions\BoltCore',
       '\Bolt\TwigExtensions\BoltExtras',
     ];
@@ -144,7 +143,7 @@ class TwigRenderer {
   }
 
   /**
-   * @return \Twig_Environment
+   * @return \Twig\Environment
    */
   public function getTwig() {
     return $this->twig;

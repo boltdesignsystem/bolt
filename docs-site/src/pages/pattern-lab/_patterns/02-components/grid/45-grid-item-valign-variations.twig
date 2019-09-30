@@ -1,0 +1,100 @@
+<h3>Vertical item alignment</h3>
+<p>Vertical alignment of an item can simply be defined by the <code>valign</code> prop.</p>
+
+{% set item_large %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item",
+    size: "large",
+  } only %}
+{% endset %}
+{% set item_medium %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item",
+    size: "medium",
+  } only %}
+{% endset %}
+{% set item_small %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item",
+    size: "small",
+  } only %}
+{% endset %}
+
+<h3>Start</h3>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        valign: "start",
+        column_start: "1",
+        column_span: "4",
+        content: item_large,
+      },
+      {
+        valign: "start",
+        column_start: "5",
+        column_span: "4",
+        content: item_medium,
+      },
+      {
+        valign: "start",
+        column_start: "9",
+        column_span: "4",
+        content: item_small,
+      },
+    ]
+  } only %}
+</div>
+
+<h3>Center</h3>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        valign: "center",
+        column_start: "1",
+        column_span: "4",
+        content: item_large,
+      },
+      {
+        valign: "center",
+        column_start: "5",
+        column_span: "4",
+        content: item_medium,
+      },
+      {
+        valign: "center",
+        column_start: "9",
+        column_span: "4",
+        content: item_small,
+      },
+    ]
+  } only %}
+</div>
+
+<h3>End</h3>
+<div class="u-bolt-margin-bottom-medium">
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        valign: "end",
+        column_start: "1",
+        column_span: "4",
+        content: item_large,
+      },
+      {
+        valign: "end",
+        column_start: "5",
+        column_span: "4",
+        content: item_medium,
+      },
+      {
+        valign: "end",
+        column_start: "9",
+        column_span: "4",
+        content: item_small,
+      },
+    ]
+  } only %}
+</div>
+

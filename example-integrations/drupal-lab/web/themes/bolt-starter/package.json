@@ -1,21 +1,29 @@
 {
   "name": "@bolt/bolt-starter",
   "description": "Drupal 8 Starter Theme using the Bolt Design System",
-  "version": "2.2.0-rc.1",
+  "version": "2.4.0",
   "private": true,
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
-    "build": "bolt build --prod",
-    "start": "bolt start"
+    "build": "FORCE_COLOR=1 npx npm-run-all --serial build:*",
+    "build:en": "bolt build --prod",
+    "build:ja": "bolt build --prod --config-file .boltrc--ja.js",
+    "start": "bolt start",
+    "test": "jest __tests__/index.js",
+    "postbuild": "npm run test"
   },
   "dependencies": {
-    "@bolt/build-tools": "^2.2.0-rc.1",
-    "@bolt/components-button": "^2.2.0-rc.1",
-    "@bolt/components-headline": "^2.2.0-rc.1",
-    "@bolt/components-icon": "^2.2.0-rc.1",
-    "@bolt/components-link": "^2.2.0-rc.1",
-    "@bolt/global": "^2.2.0-rc.1"
+    "@bolt/build-tools": "^2.7.0",
+    "@bolt/components-button": "^2.7.0",
+    "@bolt/components-figure": "^2.7.0",
+    "@bolt/components-headline": "^2.7.0",
+    "@bolt/components-icon": "^2.7.0",
+    "@bolt/components-image": "^2.7.0",
+    "@bolt/components-link": "^2.7.0",
+    "@bolt/components-navbar": "^2.7.0",
+    "@bolt/components-sticky": "^2.7.0",
+    "@bolt/core": "^2.7.0",
+    "@bolt/global": "^2.7.0",
+    "jest": "^24.8.0",
+    "yargs": "^13.2.4"
   }
 }

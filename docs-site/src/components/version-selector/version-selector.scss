@@ -1,0 +1,82 @@
+@import '../bolt-select/bolt-select.scss';
+
+.#{$choices-selector}__inner {
+  min-height: 0; // overrides min-height 44px
+  @include bolt-font-size(small);
+}
+
+.#{$choices-selector}__heading {
+  @include bolt-padding(bolt-v-spacing(small) bolt-spacing(small) 0 bolt-spacing(xsmall));
+  line-height: 1;
+}
+
+.#{$choices-selector}__group ~ .#{$choices-selector}__item {
+  @include bolt-padding(small, squished);
+}
+
+.#{$choices-selector}__input {
+  @include bolt-margin-bottom(0);
+  font-size: 16px; // prevent input zoom on mobile
+}
+
+.#{$choices-selector}[data-type*="select-one"].is-open:after {
+  border-bottom-color: currentColor;
+}
+
+.#{$choices-selector}[data-type*="select-one"]:after {
+  border-top-color: currentColor;
+}
+
+.#{$choices-selector}__list--single {
+  padding-right: bolt-spacing(small) + bolt-spacing(xsmall);
+}
+
+.#{$choices-selector}__inner,
+.#{$choices-selector}[data-type*="select-one"] .#{$choices-selector}__inner {
+  @include bolt-padding-top(0);
+  @include bolt-padding-bottom(0);
+  @include bolt-padding-left(xsmall);
+}
+
+.#{$choices-selector}__list--dropdown {
+  width: auto;
+  color: bolt-color(black);
+
+  @include bolt-mq(small){
+    width: 100%;
+    min-width: 140px;
+  }
+}
+
+.#{$choices-selector} {
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  transition: $bolt-transition;
+}
+
+.#{$choices-selector}.is-focused {
+  border-color: bolt-color(indigo, light);
+  @include bolt-shadow($key: 'level-20', $base-color: bolt-color(indigo, light));
+}
+
+
+.c-bds-version-selector {
+  @include bolt-font-size(small);
+  color: inherit;
+  line-height: 1;
+  border-color: transparent;
+  background-color: transparent;
+
+
+
+  & ~ .c-bolt-input-icons {
+    padding: 0.05rem 0.1rem 0 0; // This is a one-off override for this site only. It would stop working if the bolt-form becomes a web component.
+    color: inherit;
+    background-color: transparent;
+    
+    &:before {
+      display: none;
+    }
+  }
+}

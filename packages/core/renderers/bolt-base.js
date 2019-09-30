@@ -1,33 +1,43 @@
-// HyperHTML Renderer ported to SkateJS
-import { withComponent, shadow, props } from 'skatejs';
-import { hasNativeShadowDomSupport } from '../utils/environment';
-import { findParentTag } from '../utils/find-parent-tag';
+import Ajv from 'ajv';
+import { withComponent, props } from 'skatejs';
+import changeCase from 'change-case';
+import { findParentTag, hasNativeShadowDomSupport, renameKey } from '../utils';
+
+export function shadow(elem) {
+  // eslint-disable-next-line no-return-assign
+  return (
+    elem._shadowRoot ||
+    (elem._shadowRoot =
+      elem.shadowRoot ||
+      elem.attachShadow({
+        mode: 'open',
+        delegatesFocus: elem.delegateFocus || false,
+      }))
+  );
+}
 
 export function BoltBase(Base = HTMLElement) {
   return class extends Base {
-    constructor(...args) {
-      super(...args);
+    constructor(self) {
+      super(self);
       this._wasInitiallyRendered = false;
+      return self;
     }
 
-    connectedCallback() {
-      // NOTE: it's SUPER important that setupSlots is run during the component's connectedCallback lifecycle event
-      // Without this, browsers like IE 11 won't re-render as expected when props change!
-      this.setupSlots();
-
-      // Automatically force a component to render if no props exist BUT props are defined.
-      if (
-        Object.keys(this.props).length !== 0 &&
-        Object.keys(this._props).length === 0
-      ) {
-        this.updated();
-      }
+    /**
+     * Update component state and schedule a re-render.
+     * @param {object} state A dict of state properties to be shallowly merged
+     * 	into the current state
+     */
+    setState(state) {
+      this.state = Object.assign({}, this.state, state);
+      // super.shouldUpdate && super.shouldUpdate();
     }
 
     setupSlots() {
       // Automatically adjust which inner element inside the custom element gets used as the base when evaluating slotted children. Necessary when including deeply nested slots in the initial HTML being rendered, which might include a few wrapping containers that get removed when the JavaScript kicks in. <-- this is how we get slotted buttons to work!
       const isShadowRootSelector = this.querySelector('[is="shadow-root"]');
-      if (isShadowRootSelector && isShadowRootSelector.childNodes) {
+      if (isShadowRootSelector) {
         if (isShadowRootSelector.childNodes) {
           this.slots = this._checkSlots(isShadowRootSelector.childNodes);
         } else {
@@ -54,12 +64,12 @@ export function BoltBase(Base = HTMLElement) {
       // ensure every component instance renders to the light DOM when needed (ex. if nested inside of a form, render to the light DOM)
       // this ensures that things work as expected, even when a component gets removed / re-added to the page
       this.setupShadow();
+      this.ssrHydrationPrep && this.ssrHydrationPrep();
 
-      // @todo: rework to disable this extra check here (used for demoing before/after behavior), unless a specific feature flag is used (debug mode?)
-      // @todo: Uncommment the following conditional when we have a debug flag or similar solution in place to re-enable test examples.
-      // if (!this.closest('.js-disable-extra-slot-check')) {
-      this.setupSlots(); // hotfix to ensure heavily nested elements containing text-nodes like <replace-with-children> re-render consistently in browsers that don't natively support custom elements Fixes wwwd8-2678
-      // }
+      // @todo: add debug flag the build to allow conditionally enabling / disabling this extra slot setup check here.
+      if (!this.slots) {
+        this.setupSlots(); // hotfix to ensure heavily nested elements containing text-nodes like <replace-with-children> re-render consistently in browsers that don't natively support custom elements Fixes wwwd8-2678
+      }
 
       if (hasNativeShadowDomSupport && this.useShadow === true) {
         return super.renderRoot || shadow(this);
@@ -68,12 +78,123 @@ export function BoltBase(Base = HTMLElement) {
       }
     }
 
+    validateProps(propData) {
+      var validatedData = propData;
+      const ajv = new Ajv({ useDefaults: 'shared', coerceTypes: true });
+
+      // remove default strings in prop data so schema validation can fill in the default
+      for (let property in validatedData) {
+        if (validatedData[property] === '') {
+          delete validatedData[property];
+        }
+      }
+
+      // Skip this if formatted schema data is already stored
+      if (this.schema && !this.formattedSchema) {
+        this.formattedSchema = {};
+        Object.assign(this.formattedSchema, this.schema);
+        Object.keys(this.formattedSchema.properties).map(key => {
+          this.formattedSchema.properties = renameKey(
+            key,
+            changeCase.camelCase(key),
+            this.formattedSchema.properties,
+          );
+        });
+      }
+
+      if (this.formattedSchema) {
+        let isValid = ajv.validate(this.formattedSchema, validatedData);
+
+        // bark at any schema validation errors
+        if (!isValid) {
+          console.log(ajv.errors);
+        }
+      }
+
+      return validatedData;
+    }
+
+    /**
+     * Get modified version of schema, removing any properties not wanted on Web Component
+     * @param {object} schema A valid JSON schema
+     * @param {(string|string[])} propsToRemove A prop or list of props to be removed from the schema
+     * @returns {object} returns the modified JSON schema
+     */
+    getModifiedSchema(schema, propsToRemove = 'content') {
+      let modifiedSchema = schema;
+
+      if (typeof propsToRemove === 'string') {
+        propsToRemove = [propsToRemove];
+      }
+
+      try {
+        propsToRemove.forEach(item => {
+          if (modifiedSchema.properties && modifiedSchema.properties[item]) {
+            // Delete property key from schema
+            delete modifiedSchema.properties[item];
+          }
+
+          if (modifiedSchema.required) {
+            const index = modifiedSchema.required.indexOf(item);
+            if (index !== -1) {
+              // Remove from list of required fields
+              modifiedSchema.required.splice(index, 1);
+              if (!modifiedSchema.required.length) {
+                // If no required props remain, just delete the whole key
+                delete modifiedSchema.required;
+              }
+            }
+          }
+        });
+      } catch (e) {
+        console.warn(e.message, e.name);
+      }
+
+      return modifiedSchema;
+    }
+
     addStyles(stylesheet) {
       let styles = Array.from(stylesheet);
       styles = styles.join(' ');
 
       if (this.useShadow && this.renderStyles) {
         return this.renderStyles(styles);
+      }
+    }
+
+    /**
+     * Automatically adds classes for the first and last slotted item (in the default slot) to help with tricky ::slotted selectors
+     * @param {string[]} slotNames an array of slot names as strings
+     */
+    addClassesToSlottedChildren(slotNames = ['default']) {
+      if (this.slots) {
+        const applyClasses = slotName => {
+          if (!(slotName in this.slots)) return;
+
+          const currentSlot = [];
+
+          this.slots[slotName].forEach(item => {
+            if (item.tagName) {
+              item.classList.remove('is-first-child');
+              item.classList.remove('is-last-child'); // clean up existing classes
+              currentSlot.push(item);
+            }
+          });
+
+          if (currentSlot[0]) {
+            currentSlot[0].classList.add('is-first-child');
+
+            if (currentSlot.length === 1) {
+              currentSlot[0].classList.add('is-last-child');
+            }
+          }
+
+          if (currentSlot[currentSlot.length - 1]) {
+            currentSlot[currentSlot.length - 1].classList.add('is-last-child');
+          }
+        };
+
+        slotNames.forEach(name => applyClasses(name));
       }
     }
 
@@ -96,11 +217,6 @@ export function BoltBase(Base = HTMLElement) {
       });
 
       return slots;
-    }
-
-    disconnectedCallback() {
-      this.disconnecting && this.disconnecting();
-      this.disconnected && this.disconnected();
     }
 
     rendered() {

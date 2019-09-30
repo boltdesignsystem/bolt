@@ -1,0 +1,11 @@
+{% set schema = bolt.data.components['@bolt-components-blockquote'].schema %}
+
+<p>No quotes</p>
+{% include '@bolt-components-blockquote/blockquote.twig' with {
+  no_quotes: true,
+  author: {
+    name: "Michelangelo di Lodovico Buonarroti Simoni",
+    title: "Renaissance Artist"
+  },
+  content: "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>"
+} %}

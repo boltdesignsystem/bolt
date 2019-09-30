@@ -1,0 +1,62 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+  {% set header %}
+    {% include "@bolt/headline.twig" with {
+      "text": "CKEditor 5",
+      "size": "xxxlarge",
+      "tag": "h1"
+    } only %}
+  {% endset %}
+  {% set article %}
+
+    {# https://ckeditor.com/docs/ckeditor5/latest/builds/guides/quick-start.html #}
+
+    <h1>Classic editor</h1>
+    <textarea name="content" id="editor-classic">
+      {% spaceless %}
+        <p>Regular paragraph</p>
+        <bolt-text ck-custom="true">Bolt text paragraph</bolt-text>
+        <bolt-text headline="true" font-size="xxxlarge" tag="h1">Bolt headline 1</bolt-text>
+        <bolt-text headline="true" font-size="xxlarge" tag="h2">Bolt headline 2</bolt-text>
+        <bolt-text headline="true" font-size="xlarge" tag="h3">Bolt headline 3</bolt-text>
+        <bolt-text headline="true" font-size="large" tag="h4">Bolt headline 4</bolt-text>
+        <bolt-text headline="true" font-size="small" tag="h5">Bolt headline 5</bolt-text>
+        <bolt-text headline="true" font-size="xsmall" tag="h6">Bolt headline 6</bolt-text>
+        <bolt-text subheadline="true" font-size="xxlarge" tag="p">Bolt subheadline 1</bolt-text>
+        <bolt-text subheadline="true" font-size="xlarge" tag="p">Bolt subheadline 2</bolt-text>
+        <bolt-text subheadline="true" font-size="large" tag="p">Bolt subheadline 3</bolt-text>
+        <bolt-text eyebrow="true" tag="p">Bolt eyebrow</bolt-text>
+        <bolt-text eyebrow="true" tag="a">Bolt link</bolt-text>
+        <bolt-blockquote>Bolt blockquote</bolt-blockquote>
+      {% endspaceless %}
+    </textarea>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/classic/ckeditor.js"></script>
+
+    {# <br>
+
+    <h1>Inline editor</h1>
+    <div id="editor-inline">
+      {% include "_bolt-component-examples.twig" %}
+    </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/inline/ckeditor.js"></script>
+
+    <br>
+
+    <h1>Balloon editor</h1>
+    <div id="editor-balloon">
+      {% include "_bolt-component-examples.twig" %}
+    </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.1.1/balloon/ckeditor.js"></script> #}
+
+  {% endset %}
+  {% include "@bolt-components-band/band.twig" with {
+    "theme": "dark",
+    "size": "large",
+    "content": header
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    "theme": "xlight",
+    "content": article
+  } only %}
+{% endblock %}

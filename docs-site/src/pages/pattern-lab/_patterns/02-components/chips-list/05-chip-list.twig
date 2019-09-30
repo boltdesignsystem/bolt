@@ -1,0 +1,41 @@
+<h3>Chip list with links</h3>
+
+{% include "@bolt-components-chip-list/chip-list.twig" with {
+  items: [
+    {
+      text: "Do not include any data or information in your posts that are confidential!",
+      url: "#!"
+    },
+    {
+      text: "Apply basic practices for collaborative work.",
+      url: "#!"
+    },
+    {
+      text: "Be honest, respectful, trustworthy and helpful.",
+      url: "#!"
+    },
+    {
+      text: "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.",
+      url: "#!"
+    }
+  ]
+} %}
+
+<h3>Chip list with text</h3>
+
+{% include "@bolt-components-chip-list/chip-list.twig" with {
+  items: [
+    {
+      text: "Do not include any data or information in your posts that are confidential!",
+    },
+    {
+      text: "Apply basic practices for collaborative work.",
+    },
+    {
+      text: "Be honest, respectful, trustworthy and helpful.",
+    },
+    {
+      text: "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.",
+    }
+  ]
+} %}

@@ -27,17 +27,17 @@
 
   &:not(:last-child):after {
     @include bolt-margin(0 xxsmall);
+    content: '';
 
     display: inline-block;
     position: relative;
     top: -1px; // [Mai] Offsets the 1px border to align the chevron with text.
+    transform: rotate(45deg);
     width: bolt-v-spacing(xsmall);
     height: bolt-v-spacing(xsmall);
-    content: '';
     vertical-align: baseline;
-    border-color: bolt-theme(text);
-    border-style: solid;
     border-width: 1px 1px 0 0;
-    transform: rotate(45deg);
+    border-style: solid;
+    border-color: bolt-theme(text);
   }
 }

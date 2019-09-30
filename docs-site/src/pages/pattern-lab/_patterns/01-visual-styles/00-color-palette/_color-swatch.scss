@@ -1,0 +1,193 @@
+.c-bolt-swatch {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%; // So vertical centering works -- same update we had to make for cards since teaking how flex grid behaves
+}
+
+.c-bolt-swatch__color {
+  display: block;
+
+  &:not(.c-bolt-swatch__color--large) {
+    @include bolt-padding(small, stretched);
+  }
+}
+
+
+.c-bolt-swatch__color:nth-last-child(n+4) ~ .c-bolt-swatch__color:last-child:nth-child(even) {
+  margin-bottom: auto;
+}
+
+
+
+.c-bolt-swatch__color--large {
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+  @include bolt-padding-top(large);
+  @include bolt-padding-bottom(large);
+
+  &:first-child {
+    margin-top: auto;
+  }
+
+  &:last-child {
+    margin-bottom: auto;
+  }
+}
+
+
+.c-bolt-swatch__text {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.c-bolt-swatch__meta {
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(bold);
+  display: block;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.c-bolt-swatch__name {
+  @include bolt-font-size(large);
+  @include bolt-font-weight(bold);
+}
+
+.c-bolt-swatch__value {
+  @include bolt-font-size(large);
+  @include bolt-font-weight(bold);
+  margin-left: auto;
+  text-transform: uppercase;
+}
+
+
+
+
+.c-bolt-accessibility-table {
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-right(small);
+  @include bolt-padding-bottom(xsmall);
+  @include bolt-padding-left(small);
+}
+
+
+.c-bolt-accessibility-table__table {
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+
+.c-bolt-accessibility-table__row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  width: 100%;
+
+  &:after {
+    content: '';
+    display: block;
+    opacity: 0.3;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    border-bottom-color: currentColor;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+  }
+
+  &:last-child:after {
+    display: none;
+  }
+}
+
+.c-bolt-accessibility-table__column {
+  @include bolt-font-size(xsmall);
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-bottom(xsmall);
+  display: block;
+  align-items: center;
+  margin: 0;
+}
+
+.c-bolt-accessibility-table__column:nth-child(1) {
+  min-width: 70px;
+}
+
+.c-bolt-accessibility-table__title {
+  @include bolt-font-weight(semibold);
+}
+
+.c-bolt-accessibility-table__text--large {
+  @include bolt-font-size(xxlarge);
+  @include bolt-font-weight(normal);
+}
+
+.c-bolt-accessibility-table__text--medium {
+  @include bolt-font-size(large);
+  @include bolt-font-weight(normal);
+}
+
+
+
+.c-bolt-accessibility-table__column:nth-child(2),
+.c-bolt-accessibility-table__column:nth-child(3) {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-self: flex-end;
+  margin: 0 bolt-spacing(xsmall);
+  text-align: right;
+}
+
+.c-bolt-accessibility-table__results {
+  @include bolt-font-size(small);
+  @include bolt-margin-right(xsmall);
+  @include bolt-padding(xsmall);
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  color: bolt-color(gray, xdark);
+  line-height: 1.65;
+  line-height: 1.375;
+  border: solid 1px bolt-color(gray, light);
+  border-radius: 4px;
+  background-color: bolt-color(gray, light);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.c-bolt-accessibility-table__results--aa18 {
+  background-color: color(yellow);
+}
+
+.c-bolt-accessibility-table__results--fail {
+  background-color: color(warning);
+}
+
+
+.c-bolt-accessibility-table__text {
+  @include bolt-margin-right(xsmall);
+  display: inline-block;
+
+  &:last-child {
+    @include bolt-margin-right(0);
+  }
+}
+
+.c-bolt-accessibility-table__small-text {
+  @include bolt-font-size(xsmall);
+}
+
+.c-bolt-accessibility-table__column--white {
+  color: bolt-color(white);
+}
+
+.c-bolt-accessibility-table__column--black {
+  color: bolt-color(black);
+}

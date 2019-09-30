@@ -1,0 +1,77 @@
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {% include "@bolt-components-card/card.twig" with {
+        contentItems: [
+          {
+            pattern: "image",
+            src: "/images/placeholders/landscape-16x9-mountains.jpg",
+            lazyload: false,
+            alt: "Image description"
+          },
+          {
+            pattern: "headline",
+            tag: "h3",
+            size: "large",
+            text: "Collection 1"
+          },
+          {
+            pattern: "button",
+            text: "This is a button",
+            url: "http://pega.com",
+          }
+        ]
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {% include "@bolt-components-card/card.twig" with {
+        contentItems: [
+          {
+            pattern: "image",
+            src: "/images/placeholders/landscape-16x9-mountains.jpg",
+            lazyload: false,
+            alt: "Image description"
+          },
+          {
+            pattern: "headline",
+            tag: "h3",
+            size: "large",
+            text: "Collection 2"
+          },
+          {
+            pattern: "button",
+            text: "This is a button",
+            url: "http://pega.com",
+          }
+        ]
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+      {% include "@bolt-components-card/card.twig" with {
+        contentItems: [
+          {
+            pattern: "image",
+            src: "/images/placeholders/landscape-16x9-mountains.jpg",
+            lazyload: false,
+            alt: "Image description"
+          },
+          {
+            pattern: "headline",
+            tag: "h3",
+            size: "large",
+            text: "Collection 3"
+          },
+          {
+            pattern: "button",
+            text: "This is a button",
+            url: "http://pega.com",
+          }
+        ]
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: content,
+} only %}

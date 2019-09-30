@@ -1,16 +1,16 @@
 import { define } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers/renderer-hyperhtml';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 @define
-class ReplaceWithChildren extends withHyperHtml() {
+class ReplaceWithChildren extends HTMLElement {
   static is = 'replace-with-children';
 
-  connecting() {
-    this.replaceElementWithChildren();
-  }
-
-  replaceElementWithChildren() {
+  connectedCallback() {
     const parentElement = this.parentElement;
+
+    if (bolt.isServer) {
+      return;
+    }
 
     if (!parentElement) {
       Error(

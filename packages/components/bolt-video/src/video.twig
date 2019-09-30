@@ -2,7 +2,7 @@
   {{ validate_data_schema(bolt.data.components["@bolt-components-video"].schema, _self) | raw }}
 {% endif %}
 
-{% set videoUuid = videoUuid | default("js-bolt-video-uuid--" ~ random()) %}
+{% set videoUuid = videoUuid | default("js-bolt-video-uuid--" ~ (bolt.data.config.env == "test" ? "12345" : random())) %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
 {% set attributes = attributes.addClass(videoUuid) %}
@@ -17,26 +17,28 @@
   collapsed is not null and collapsed == false ? "is-expanded" : "is-collapsed"
 ] %}
 
-{% if ratio == true %}
-  {# Move utility classes to a separate attributes object so they can be added to the wrapping ratio object instead #}
-  {% set ratioAttributes = create_attribute({}) %}
-  {% for class in attributes["class"] %}
-    {% if class starts with "u-" %}
-      {% set ratioAttributes = ratioAttributes.addClass(class) %}
-      {% set attributes = attributes.removeClass(class) %}
-    {% endif %}
-  {% endfor %}
+{% spaceless %}
+  {% if ratio == true %}
+    {# Move utility classes to a separate attributes object so they can be added to the wrapping ratio object instead #}
+    {% set ratioAttributes = create_attribute({}) %}
+    {% for class in attributes["class"] %}
+      {% if class starts with "u-" %}
+        {% set ratioAttributes = ratioAttributes.addClass(class) %}
+        {% set attributes = attributes.removeClass(class) %}
+      {% endif %}
+    {% endfor %}
 
-  {% set innerVideo %}
+    {% set innerVideo %}
+      {% include "@bolt/_video-tag.twig" %}
+    {% endset %}
+
+    {% include "@bolt-components-ratio/ratio.twig" with {
+      aspectRatioHeight: aspectRatioHeight ?? 9,
+      aspectRatioWidth: aspectRatioWidth ?? 16,
+      children: innerVideo,
+      attributes: ratioAttributes
+    } only %}
+  {% else %}
     {% include "@bolt/_video-tag.twig" %}
-  {% endset %}
-
-  {% include "@bolt/ratio.twig" with {
-    aspectRatioHeight: aspectRatioHeight ?? 9,
-    aspectRatioWidth: aspectRatioWidth ?? 16,
-    children: innerVideo,
-    attributes: ratioAttributes
-  } only %}
-{% else %}
-  {% include "@bolt/_video-tag.twig" %}
-{% endif %}
+  {% endif %}
+{% endspaceless %}

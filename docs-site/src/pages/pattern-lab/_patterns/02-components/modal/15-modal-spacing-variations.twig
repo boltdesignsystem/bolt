@@ -1,0 +1,42 @@
+{% set schema = bolt.data.components["@bolt-components-modal"].schema %}
+
+<bolt-text>The modal container's spacing can be adjusted by the <code>spacing</code> prop. The default is set to <code>medium</code>.</bolt-text>
+
+<bolt-text headline font-size="xlarge">Spacing Options</bolt-text>
+
+<bolt-table>
+  <table>
+    <tbody>
+      {% for spacing in schema.properties.spacing.enum %}
+        <tr>
+          <th>
+            {% include "@bolt-components-button/button.twig" with {
+              text: spacing|capitalize,
+              size: "small",
+              width: "full",
+              attributes: {
+                onclick: "this.nextElementSibling.show()",
+              }
+            } only %}
+            {% include "@bolt-components-modal/modal.twig" with {
+              content: "This is a modal set to " ~ spacing ~ " spacing.",
+              spacing: spacing,
+            } only %}
+          </th>
+          <td>
+            {% if spacing == "none" %}
+              This removes the spacing inside the modal container.
+            {% else %}
+              This sets {{ spacing }} inset spacing on the modal container.
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2">Additional Notes: this prop only applies to viewports equal to or above the small breakpoint (~600px).</th>
+      </tr>
+    </tfoot>
+  </table>
+</bolt-table>

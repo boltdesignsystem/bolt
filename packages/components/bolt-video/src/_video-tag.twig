@@ -1,5 +1,3 @@
-{% set version = get_data("@bolt-components-video/package.json").version %}
-
 {% set attributes = create_attribute(attributes | default({})) %}
 
 {# if videoAttributes %}
@@ -18,9 +16,6 @@
   {% endfor %}
 {% endif #}
 
-{# force HTML5 Only Rendering + disable resizeManager in Brightcove to fix ability to click overlapping elements on iOS:
-https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747a/src/js/resize-manager.js#L19 #}
-{% set attributes = attributes.setAttribute("data-setup", '{"techOrder": ["Html5"], "resizeManager": false}') %}
 {% set showMeta = showMeta is null ? true : showMeta %}
 {% set showMetaTitle = showMeta is null ? false : showMetaTitle %}
 
@@ -60,6 +55,22 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
   {% set attributes = attributes.setAttribute("loop", true) %}
 {% endif %}
 
+{% if enabled_plugins %}
+  {% set attributes = attributes.setAttribute("enabled-plugins", enabled_plugins) %}
+{% endif %}
+
+{% if disabled_plugins %}
+  {% set attributes = attributes.setAttribute("disabled-plugins", disabled_plugins) %}
+{% endif %}
+
+{# don't use the snake_case on-init config if the on-init attribute already exists #}
+{% if on_init and not attributes["on-init"] %}
+  {% set attributes = attributes.setAttribute("on-init", on_init) %}
+{% endif %}
+
+{% set attributes = attributes.setAttribute("share-description", share_description|default('Share This Video'|t)) %}
+
+{# @todo: `isBackgroundVideo` will be removed with Bolt v3.0 #}
 {% if isBackgroundVideo %}
   {% set attributes = attributes.setAttribute("is-background-video", isBackgroundVideo) %}
 {% else %}
@@ -68,4 +79,4 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
 
 {% set customElementName = "#{bolt.data.config.namespace}-video" %}
 
-<{{ customElementName }} {{ attributes }} v="{{ version }}"></{{ customElementName }}>
+<{{ customElementName }} {{ attributes }}></{{ customElementName }}>

@@ -9,13 +9,13 @@
 
 // Unit on which all spacing is based
 /// Bolt gutter spacing value
-$bolt-spacing-gutter: 2rem;
+$bolt-spacing-gutter: 2rem !default;
 /// Bolt default leading spacing value
 $bolt-spacing-leading: 1.65 !default;
 /// Bolt squished spacing value
-$bolt-spacing-squished: 0.5;
+$bolt-spacing-squished: 0.5 !default;
 /// Bolt stretched spacing value
-$bolt-spacing-stretched: 1.5;
+$bolt-spacing-stretched: 1.5 !default;
 
 /// Bolt's definition of spacing scale. Used within 'export-data()' to JSON.
 /// @type Map
@@ -28,18 +28,18 @@ $bolt-spacing-values: (
   'large': 2,
   'xlarge': 4,
   'xxlarge': 8,
-);
+) !default;
 
 @include bolt-export-data('spacing/scale.bolt.json', $bolt-spacing-values);
 
 /// Bolt's definition of available spacing properties.
 /// @type Map
-$bolt-spacing-properties: ('padding', 'margin');
+$bolt-spacing-properties: ('padding', 'margin') !default;
 
 /// Bolt's definition of spacing directions.
 /// @type Map
-$bolt-spacing-directions: ('', 'top', 'right', 'bottom', 'left');
+$bolt-spacing-directions: ('', 'top', 'right', 'bottom', 'left') !default;
 
 /// Bolt's definition of spacing types.
 /// @type Map
-$bolt-spacing-types: ('', 'squished', 'stretched');
+$bolt-spacing-types: ('', 'squished', 'stretched') !default;

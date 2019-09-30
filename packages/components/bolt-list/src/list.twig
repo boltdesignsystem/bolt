@@ -14,7 +14,6 @@
 {% set display_options = schema.properties.display.enum %}
 {% set spacing_options = schema.properties.spacing.enum %}
 {% set separator_options = schema.properties.separator.enum %}
-{% set inset_options = schema.properties.inset.enum %}
 {% set align_options = schema.properties.align.enum %}
 {% set valign_options = schema.properties.valign.enum %}
 
@@ -23,9 +22,9 @@
 {% set display = display in display_options ? display : schema.properties.display.default %}
 {% set spacing = spacing in spacing_options ? spacing : schema.properties.spacing.default %}
 {% set separator = separator in separator_options ? separator : schema.properties.separator.default %}
-{% set inset = inset in inset_options ? inset : schema.properties.inset.default %}
 {% set align = align in align_options ? align : schema.properties.align.default %}
 {% set valign = valign in valign_options ? valign : schema.properties.valign.default %}
+{% set inset = inset is sameas(true) or inset is sameas(false) ? inset : schema.properties.inset.default %}
 
 {# Conditions for the semantic tag usage #}
 {% if tag == "div" or tag == "span" %}
@@ -40,9 +39,9 @@
   {% if display %} display="{{ display }}" {% endif %}
   {% if spacing %} spacing="{{ spacing }}" {% endif %}
   {% if separator %} separator="{{ separator }}" {% endif %}
-  {% if inset %} inset {% endif %}
   {% if align %} align="{{ align }}" {% endif %}
   {% if valign %} valign="{{ valign }}" {% endif %}
+  {% if inset %} inset {% endif %}
   {{ attributes }}
 >
   {# This sets none values to not render anything. #}
@@ -55,20 +54,18 @@
     display in display_options ? "#{base_class}--display-#{display}" : "",
     spacing in spacing_options ? "#{base_class}--spacing-#{spacing}" : "",
     separator in separator_options ? "#{base_class}--separator-#{separator}" : "",
-    inset == true ? "#{base_class}--inset",
     align in align_options ? "#{base_class}--align-#{align}" : "",
     valign in valign_options ? "#{base_class}--valign-#{valign}" : "",
+    inset ? "#{base_class}--inset",
   ] %}
 
-  <{{ tag }} {{ inner_attributes.addClass(classes) }}>
-    {% for item in items %}
-      <{{ item_tag }} class="{{ "#{base_class}__item" }}">
-        {% if item is iterable %}
-          {{ item.content | join }}
-        {% else %}
-          {{ item }}
+  <replace-with-grandchildren>
+    <{{ tag }} {{ inner_attributes.addClass(classes) }}>
+      {% for item in items %}
+        {% if item %}
+          {% include "@bolt-components-list/_list-item.twig" %}
         {% endif %}
-      </{{ item_tag }}>
-    {% endfor %}
-  </{{ tag }}>
+      {% endfor %}
+    </{{ tag }}>
+  </replace-with-grandchildren>
 </bolt-list>

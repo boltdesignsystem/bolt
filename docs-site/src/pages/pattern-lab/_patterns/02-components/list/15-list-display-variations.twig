@@ -1,0 +1,37 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% set placeholder_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 1",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 2",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 3",
+    size: "xsmall",
+  } only %}
+{% endset %}
+
+{# Start component specific code #}
+{% for display in schema.properties.display.enum %}
+  <h3>{{ display|capitalize }}</h3>
+  {% include "@bolt-components-list/list.twig" with {
+    display: display,
+    items: [
+      placeholder_1,
+      placeholder_2,
+      placeholder_3,
+    ]
+  } only %}
+{% endfor %}
+
+<h3>Inline@breakpoint</h3>
+<p><mark>Note: this type of display option will transform a block list to inline when the browser is equal to or greater than the breakpoint specified.</mark></p>
+{# End component specific code #}

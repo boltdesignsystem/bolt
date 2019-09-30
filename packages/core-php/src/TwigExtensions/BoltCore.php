@@ -2,13 +2,14 @@
 
 namespace Bolt\TwigExtensions;
 
-use Bolt;
 use BasaltInc\TwigTools;
+use Bolt;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
 use \Webmozart\PathUtil\Path; // https://github.com/webmozart/path-util
 use \Shudrum\Component\ArrayFinder\ArrayFinder; // https://github.com/Shudrum/ArrayFinder
 
+require_once 'Faker.php';
 
 class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInterface {
 
@@ -24,7 +25,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
     }
   }
 
-  function initRuntime(\Twig_Environment $env) {
+  function initRuntime(\Twig\Environment $env) {
     try {
       $fullManifestPath = TwigTools\Utils::resolveTwigPath($env, '@bolt-data/full-manifest.bolt.json');
       $dataDir = dirname($fullManifestPath);
@@ -79,6 +80,7 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
     return [
       'bolt' => [
         'data' => $this->data,
+        'faker' => new Bolt\TwigExtensions\TwigFaker(),
       ],
       'enable_json_schema_validation' => true,
     ];
@@ -88,11 +90,15 @@ class BoltCore extends \Twig_Extension implements \Twig_Extension_InitRuntimeInt
     return [
       TwigTools\TwigFunctions::get_data(),
       TwigTools\TwigFunctions::validate_data_schema(),
+      Bolt\TwigFunctions::init(),
       Bolt\TwigFunctions::publicpath(),
       Bolt\TwigFunctions::base64(),
       Bolt\TwigFunctions::bgcolor(),
       Bolt\TwigFunctions::ratio(),
       Bolt\TwigFunctions::getImageData(),
+      Bolt\TwigFunctions::fileExists(),
+      Bolt\TwigFunctions::inlineFile(),
+      Bolt\TwigFunctions::gcd(),
     ];
   }
 

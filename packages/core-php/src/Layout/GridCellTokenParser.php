@@ -14,9 +14,9 @@ use Bolt\Layout\GridCellNode;
 
 
 // Custom Token Parser for Wrapper component
-class GridCellTokenParser extends \Twig_TokenParser {
+class GridCellTokenParser extends \Twig\TokenParser\AbstractTokenParser {
 
-  public function parse(\Twig_Token $token) {
+  public function parse(\Twig\Token $token) {
 
     $lineno = $token->getLine();
     $stream = $this->parser->getStream();
@@ -58,7 +58,7 @@ class GridCellTokenParser extends \Twig_TokenParser {
       // if your endmytag can also contains params, you can uncomment this line:
       // $params = array_merge($params, $this->getInlineParams($token));
       // and comment this one:
-      $stream->expect(\Twig_Token::BLOCK_END_TYPE);
+      $stream->expect(\Twig\Token::BLOCK_END_TYPE);
     }
 
     return new GridCellNode(new \Twig_Node($params), $lineno, $this->getTag());
@@ -67,16 +67,16 @@ class GridCellTokenParser extends \Twig_TokenParser {
 /**
   * Recovers all tag parameters until we find a BLOCK_END_TYPE ( %} )
   *
-  * @param \Twig_Token $token
+  * @param \Twig\Token $token
   * @return array
   */
-  public function getInlineParams(\Twig_Token $token) {
+  public function getInlineParams(\Twig\Token $token) {
     $stream = $this->parser->getStream();
     $params = array ();
-    while (!$stream->test(\Twig_Token::BLOCK_END_TYPE)) {
+    while (!$stream->test(\Twig\Token::BLOCK_END_TYPE)) {
       $params[] = $this->parser->getExpressionParser()->parseExpression();
     }
-    $stream->expect(\Twig_Token::BLOCK_END_TYPE);
+    $stream->expect(\Twig\Token::BLOCK_END_TYPE);
     return $params;
   }
 
@@ -89,10 +89,10 @@ class GridCellTokenParser extends \Twig_TokenParser {
   * Callback called at each tag name when subparsing, must return
   * true when the expected end tag is reached.
   *
-  * @param \Twig_Token $token
+  * @param \Twig\Token $token
   * @return bool
   */
-  public function decideMyTagFork(\Twig_Token $token) {
+  public function decideMyTagFork(\Twig\Token $token) {
     return $token->test(array("cell", "endcell"));
   }
 }

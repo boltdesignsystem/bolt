@@ -1,0 +1,12 @@
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+
+<p><mark>Note: medium is the default size.</mark></p>
+
+{% for size in schema.properties.size.enum %}
+  <p>
+    {% include "@bolt-components-button/button.twig" with {
+      size: size,
+      text: "This is a " ~ size ~" button"
+    } only %}
+  </p>
+{% endfor %}

@@ -1,51 +1,49 @@
-@import '@bolt/core';
-@import 'videojs-enhancements';
-@import 'video-meta';
-
 // Same as max-width of wrapper container
 $bolt-video-wrapper--max-width: bolt-breakpoint(xxlarge);
-$bolt-video-background-color: rgba(22, 26, 60, .8);
+$bolt-video-background-color: rgba(22, 26, 60, 0.8);
 $bolt-video-background-max-height: 50.625vw;
-
 
 #{$bolt-namespace}-video {
   display: block;
   width: 100%;
-  background-color: bolt-color(black); // placeholder color before poster loads up.
+  background-color: bolt-color(
+    black
+  ); // placeholder color before poster loads up.
 
-  &[is-background-video]{
+  // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
+  &[is-background-video] {
     @include bolt-margin-right(auto);
     @include bolt-margin-left(auto);
-    z-index: 20;
     flex-grow: 1;
+    opacity: bolt-opacity(0);
+    z-index: 20;
     min-width: 100%;
     max-width: none;
-    transition: opacity 0.3s ease, min-height 0.3s ease;
-    background-color: $bolt-video-background-color;
-    pointer-events: none;
-    opacity: bolt-opacity(0);
-    height: calc((90vw * (9 / 16)) - 4rem);
     max-width: 100vh;
+    height: calc((90vw * (9 / 16)) - 4rem);
     max-height: 56.25vh;
+    pointer-events: none;
+    background-color: $bolt-video-background-color;
+    transition: opacity 0.3s ease, min-height 0.3s ease;
 
     @media (max-width: (bolt-breakpoint(small) - 1px)) {
       min-height: calc(#{$bolt-video-background-max-height} + 2.5rem);
     }
 
     .is-expanded & {
-      pointer-events: auto;
       opacity: bolt-opacity(100);
+      pointer-events: auto;
     }
 
     .video-js {
       @include bolt-margin(0 auto);
+      position: relative;
       width: 100%;
       min-width: 0;
       height: 100%;
+      pointer-events: none;
       background-color: transparent;
       transition: all 0.4s ease;
-      position: relative;
-      pointer-events: none;
 
       .is-expanded & {
         pointer-events: auto;
@@ -58,52 +56,67 @@ $bolt-video-background-max-height: 50.625vw;
   }
 }
 
-
 /**
   * 1. 90vw instead of 100vw so the video close button
   * doesn't spill outside of the video container in IE 11 /
   * on Windows
   */
 .c-#{$bolt-namespace}-video {
+  z-index: bolt-z-index('tooltip');
   width: 100%;
   max-width: none;
-  z-index: bolt-z-index('tooltip');
-  transition: transform .4s cubic-bezier(.645, 0, .355, 1);
+  transition: transform 0.4s cubic-bezier(0.645, 0, 0.355, 1);
+
+  // Force control icons to be visible at smaller layout sizes, commented out names are shown here to indicate which ones are hidden.
+  .video-js.vjs-layout-tiny,
+  .video-js.vjs-layout-x-small,
+  .video-js.vjs-layout-small {
+    &:not(.vjs-fullscreen) {
+      /* .vjs-time-divider, */
+      /* .vjs-duration, */
+      /* .vjs-volume-panel, */
+      /* .vjs-volume-control, */
+      .vjs-mute-control,
+      .vjs-playback-rate,
+      .vjs-current-time,
+      .vjs-button.vjs-share-control {
+        display: flex;
+      }
+    }
+  }
 
   &.c-#{$bolt-namespace}-video--background {
     display: block;
     position: relative;
     max-width: calc(100% - #{bolt-spacing(large)});
+    height: $bolt-video-background-max-height;
     max-height: 100%;
     margin: 0 auto;
-    height: $bolt-video-background-max-height;
 
     @media (max-width: (bolt-breakpoint(small) - 1px)) {
       max-width: calc(100vw - 40px);
     }
 
-    @include bolt-mq(small){
-      max-width: 100vh;
-      max-height: 56.25vh;
+    @include bolt-mq(small) {
       width: calc(90vw - 7rem);
+      max-width: 100vh;
       height: calc((90vw * (9 / 16)) - 4rem);
+      max-height: 56.25vh;
     }
   }
 }
 
-
-
 .c-#{$bolt-namespace}-video__close-button {
-  color: bolt-color(orange);
-  @include bolt-css-vars((
-    --#{$bolt-namespace}-theme-icon: bolt-color(orange),
-  ));
+  opacity: bolt-opacity(
+    0
+  ); // Initial state before brightcove video player kicks in
   position: absolute;
-  z-index: bolt-z-index('tooltip');
   top: bolt-spacing(xsmall);
   right: bolt-spacing(xsmall);
+  z-index: bolt-z-index('tooltip');
+  color: bolt-color(orange);
   transition: all 0.3s ease;
-  opacity: bolt-opacity(0); // Initial state before brightcove video player kicks in
+  @include bolt-css-vars((--#{$bolt-namespace}-theme-icon: bolt-color(orange)));
 
   @include bolt-mq(small) {
     right: (bolt-spacing(large) / -2) - bolt-spacing(xsmall);
@@ -130,10 +143,9 @@ $bolt-video-background-max-height: 50.625vw;
 
 .c-#{$bolt-namespace}-video__close-button--icon-to-text {
   @media (max-width: (bolt-breakpoint(small) - 1px)) {
-    @include bolt-padding(xsmall 0);
-    top: 0;
     display: block;
     position: relative;
+    top: 0;
     right: 0;
     float: right;
     .c-#{$bolt-namespace}-video__close-button-icon {
@@ -163,7 +175,6 @@ $bolt-video-background-max-height: 50.625vw;
   color: bolt-color(white);
   text-decoration: underline;
 }
-
 
 .c-#{$bolt-namespace}-video--hide-controls {
   .video-js .vjs-control-bar {

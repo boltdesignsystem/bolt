@@ -1,21 +1,32 @@
-$schema: http://json-schema.org/draft-04/schema#
 title: Figure
 type: object
 properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
-  image:
+  media:
     type: object
-    description: A bolt image object.
-    ref: '@bolt-components-image/image.schema.yml'
+    description: Media accepts either image, icon, video, or table.
+    properties:
+      image:
+        type: object
+        description: A Bolt image object.
+        ref: '@bolt-components-image/image.schema.yml'
+      icon:
+        type: object
+        description: A Bolt icon object.
+        ref: '@bolt-components-icon/icon.schema.json'
+      video:
+        type: object
+        description: A Bolt video object.
+        ref: '@bolt-components-video/video.schema.yml'
+      table:
+        type: object
+        description: A Bolt table object.
+        ref: '@bolt-components-table/table.schema.yml'
   caption:
-    description: A renderable figure caption.
     type: [string, object, array]
-  icon:
-    type: object
-    description: A bolt icon object.
-    ref: '@bolt-components-icon/icon.schema.yml'
+    description: Caption for the figure.
   content:
-    type: [string, object, array]
-    description: A catch-all for renderable content (e.g. a string, render array, or included pattern object) to place in the figure.
+    title: DEPRECATED.
+    description: Figure contains no content. Only media and caption.

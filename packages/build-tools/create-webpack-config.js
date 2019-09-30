@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -11,26 +11,29 @@ const fs = require('fs');
 const deepmerge = require('deepmerge');
 const resolve = require('resolve');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const globImporter = require('node-sass-glob-importer');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
-const WriteAssetsWebpackPlugin = require('write-assets-webpack-plugin');
-const { BoltCache, getFileHash } = require('@bolt/build-tools/utils/cache');
-const chokidar = require('chokidar');
-const { getConfig } = require('./utils/config-store');
-const SassDocPlugin = require('./plugins/sassdoc-webpack-plugin');
-const { boltWebpackProgress } = require('./utils/webpack-helpers');
+const merge = require('webpack-merge');
+const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
+const {
+  webpackStats,
+  statsPreset,
+} = require('@bolt/build-utils/webpack-verbosity');
 
 const {
   getBoltManifest,
   mapComponentNameToTwigNamespace,
-} = require('./utils/manifest');
-const log = require('./utils/log');
+} = require('@bolt/build-utils/manifest');
+const log = require('@bolt/build-utils/log');
 
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
 
 async function createWebpackConfig(buildConfig) {
   const config = buildConfig;
+  const fullBuildConfig = await getConfig();
 
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
@@ -43,7 +46,7 @@ async function createWebpackConfig(buildConfig) {
 
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@bolt/sass-export-data')({
-    path: path.resolve(process.cwd(), config.dataDir),
+    path: config.dataDir,
   });
 
   // map out Twig namespaces with the NPM package name
@@ -53,9 +56,10 @@ async function createWebpackConfig(buildConfig) {
   let langSuffix = `${config.lang ? '-' + config.lang : ''}`;
 
   let themifyOptions = {
-    watchForChanges: config.watch === true ? true : false,
+    watchForChanges:
+      config.watch === true && config.mode !== 'server' ? true : false,
     classPrefix: 't-bolt-',
-    screwIE11: false,
+    screwIE11: config.mode === 'server' ? true : false,
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
@@ -65,12 +69,10 @@ async function createWebpackConfig(buildConfig) {
   themifyOptions = deepmerge(themifyOptions, {
     fallback: {
       jsonPath: path.resolve(
-        process.cwd(),
         config.buildDir,
         `data/${themifyOptions.fallback.jsonDataExport}.json`,
       ),
       cssPath: path.resolve(
-        process.cwd(),
         config.buildDir,
         `${themifyOptions.fallback.filename}.css`,
       ),
@@ -80,15 +82,9 @@ async function createWebpackConfig(buildConfig) {
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
-    `$bolt-css-vars-json-data-export: ${
-      themifyOptions.fallback.jsonDataExport
-    };`,
+    `$bolt-css-vars-json-data-export: ${themifyOptions.fallback.jsonDataExport};`,
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
-    `${
-      config.lang && config.lang.length > 1
-        ? `$bolt-lang: ${config.lang};`
-        : '$bolt-lang: null;'
-    }`,
+    `${config.lang ? `$bolt-lang: ${config.lang};` : '$bolt-lang: null;'}`,
   ];
 
   // Default global JS data defined
@@ -97,13 +93,18 @@ async function createWebpackConfig(buildConfig) {
       ? JSON.stringify('production')
       : JSON.stringify('development'),
     bolt: {
+      publicPath: JSON.stringify(publicPath),
+      mode: JSON.stringify(config.mode),
+      isClient: config.mode === 'client' ? true : false,
+      isServer: config.mode === 'server' ? true : false,
       namespace: JSON.stringify(config.namespace),
       themingFallbackCSS: JSON.stringify(
         publicPath + themifyOptions.fallback.filename + '.css',
       ),
       config: {
         prod: config.prod ? true : false,
-        lang: config.lang,
+        lang: JSON.stringify(config.lang),
+        env: JSON.stringify(config.env),
       },
     },
   };
@@ -152,11 +153,7 @@ async function createWebpackConfig(buildConfig) {
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
-      entry[globalEntryName] = [];
-
-      if (!config.prod && config.webpackDevServer) {
-        entry[globalEntryName].push('webpack/hot/dev-server');
-      }
+      entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
 
       components.global.forEach(component => {
         if (component.assets.style) {
@@ -167,6 +164,17 @@ async function createWebpackConfig(buildConfig) {
           entry[globalEntryName].push(component.assets.main);
         }
       });
+
+      const useHotMiddleware =
+        Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1
+          ? false
+          : true;
+
+      if (!config.prod && config.webpackDevServer && useHotMiddleware) {
+        entry[globalEntryName].push(
+          `webpack-hot-middleware/client?name=${config.lang}&noInfo=true&quiet=true&logLevel=silent&reload=true`,
+        );
+      }
     }
     if (components.individual) {
       components.individual.forEach(component => {
@@ -185,90 +193,8 @@ async function createWebpackConfig(buildConfig) {
     return entry;
   }
 
-  // Map out the global config verbosity setting to the 6 preset levels of Webpack stats: https://webpack.js.org/configuration/stats/#stats + https://github.com/webpack/webpack/blob/b059e07cf90db871fe9497f5c14b9383fc71d2ad/lib/Stats.js#L906
-
-  const webpackStats = {
-    0: 'none', // Output nothing
-    1: 'errors-only', // only output when errors happen
-    2: 'minimal', // only output when errors or new compilation happen
-    3: 'normal', // standard output
-    4: 'detailed',
-    5: 'verbose', // output everything
-  };
-
-  function statsPreset(name) {
-    /**
-     * Accepted values: none, errors-only, minimal, normal, detailed,
-     * verbose. Any other falsy value will behave as 'none', truthy
-     * values as 'normal'
-     */
-    const pn =
-      (typeof name === 'string' && name.toLowerCase()) || name || 'none';
-
-    switch (pn) {
-      case 'none':
-        return {
-          all: false,
-        };
-      case 'verbose':
-        return {
-          entrypoints: true,
-          modules: false,
-          colors: true,
-          chunks: true,
-          chunkModules: true,
-          chunkOrigins: true,
-          depth: true,
-          env: true,
-          reasons: true,
-          usedExports: true,
-          providedExports: true,
-          optimizationBailout: true,
-          errorDetails: true,
-          publicPath: true,
-          exclude: () => false,
-          maxModules: Infinity,
-        };
-      case 'detailed':
-        return {
-          entrypoints: true,
-          chunks: true,
-          colors: true,
-          chunkModules: false,
-          chunkOrigins: true,
-          depth: true,
-          usedExports: true,
-          providedExports: true,
-          optimizationBailout: true,
-          errorDetails: true,
-          publicPath: true,
-          exclude: () => false,
-          maxModules: Infinity,
-        };
-      case 'minimal':
-        return {
-          all: false,
-          colors: true,
-          modules: true,
-          maxModules: 0,
-          errors: true,
-          warnings: true,
-        };
-      case 'errors-only':
-        return {
-          all: false,
-          colors: true,
-          errors: true,
-          moduleTrace: true,
-        };
-      default:
-        return {
-          colors: true,
-        };
-    }
-  }
-
   const scssLoaders = [
+    'cache-loader',
     {
       loader: 'css-loader',
       options: {
@@ -284,7 +210,6 @@ async function createWebpackConfig(buildConfig) {
           require('@bolt/postcss-themify')(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer({
-            browsers: require('@bolt/config-browserlist'),
             grid: true,
           }),
         ],
@@ -296,57 +221,50 @@ async function createWebpackConfig(buildConfig) {
         level: config.prod ? 2 : 0,
         format: config.prod ? false : 'beautify',
         inline: ['remote'],
-        format: 'beautify',
       },
     },
     {
       loader: 'resolve-url-loader',
     },
 
-    // @todo: conditionally toggle sass-loader vs fast-sass-loader based on --debug flag when sourcemaps are needed
     {
       loader: 'sass-loader',
       options: {
         sourceMap: config.sourceMaps,
-        importer: [globImporter(), npmSass.importer],
+        importer: [npmSass.importer],
         functions: sassExportData,
         precision: 3,
         data: globalSassData.join('\n'),
+        outputStyle: 'nested',
       },
     },
-    // @todo: re-evaluate options similar to fast-sass-loader, but w/ importer support
-    // {
-    //   loader: '@bolt/fast-sass-loader',
-    //   options: {
-    //     sourceMap: true,
-    //     functions: sassExportData,
-    //     outputStyle: 'expanded',
-    //     precision: 3,
-    //     data: globalSassData.join('\n'),
-    //   },
-    // },
   ];
 
-  // THIS IS IT!! The object that gets passed in as WebPack's config object.
-  const webpackConfig = {
+  let webpackConfig = {
     target: 'web',
     entry: await buildWebpackEntry(),
-    // watchOptions: {
-    //   ignored: [
-    //     path.resolve(process.cwd(), config.buildDir) + '**/*',
-    //     path.resolve(process.cwd(), config.wwwDir) + '**/*',
-    //     'node_modules',
-    //   ],
-    // },
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
-      filename: `[name]${langSuffix}.js`,
+      // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
+      filename: `[name]${langSuffix}${
+        config.mode !== 'client' ? `.${config.mode}` : ''
+      }.js`,
       chunkFilename: `[name]-bundle${langSuffix}-[chunkhash].js`,
       publicPath,
     },
     resolve: {
       mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
-      extensions: ['.js', '.jsx', '.mjs', '.json', '.svg', '.scss'],
+      extensions: [
+        '.js',
+        '.jsx',
+        '.mjs',
+        '.json',
+        '.svg',
+        '.scss',
+        '.ts',
+        '.tsx',
+        '.jpg',
+      ],
       alias: {
         react: 'preact-compat',
         'react-dom': 'preact-compat',
@@ -354,6 +272,19 @@ async function createWebpackConfig(buildConfig) {
     },
     module: {
       rules: [
+        {
+          test: /\.(ts|tsx)$/,
+          use: [
+            'cache-loader',
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+              },
+            },
+          ],
+        },
         {
           test: /\.scss$/,
           oneOf: [
@@ -364,7 +295,7 @@ async function createWebpackConfig(buildConfig) {
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: [
-                'css-hot-loader',
+                // 'css-hot-loader',
                 MiniCssExtractPlugin.loader,
                 scssLoaders,
               ].reduce((acc, val) => acc.concat(val), []),
@@ -372,54 +303,101 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.(js|mjs)$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              babelrc: false,
-              presets: ['@bolt/babel-preset-bolt'],
-            },
+          test: /\.(js|tsx|mjs)$/,
+          exclude: thePath => {
+            if (
+              thePath.endsWith(
+                'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+              )
+            ) {
+              return true;
+            }
+
+            if (thePath.endsWith('grapesjs/dist/grapes.js')) {
+              return true;
+            }
+
+            return false;
           },
+          use: [
+            'cache-loader',
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                cacheDirectory: true,
+                presets: ['@bolt/babel-preset-bolt'],
+              },
+            },
+          ],
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 500,
-            name: 'fonts/[name].[ext]',
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 500,
+                name: 'fonts/[name].[ext]',
+              },
+            },
+          ],
         },
         {
-          test: /\.svg$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
+          test: /\.(cur|svg|png|jpg)$/,
+          use: [
+            'cache-loader',
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+          use: ['cache-loader', 'json-loader', 'yaml-loader'],
+        },
+        {
+          test: [/\.html$/],
+          loader: 'raw-loader', // file as string
         },
       ],
     },
     mode: config.prod ? 'production' : 'development',
     optimization: {
-      mergeDuplicateChunks: true,
+      minimizer: config.prod
+        ? [
+            new UglifyJsPlugin({
+              sourceMap: true,
+              parallel: true,
+              cache: true,
+              uglifyOptions: {
+                compress: true,
+                mangle: true,
+                output: {
+                  comments: false,
+                  beautify: false,
+                },
+              },
+            }),
+          ]
+        : [],
     },
     plugins: [
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
-      new WriteAssetsWebpackPlugin({
-        force: true,
-        extension: ['js', 'json', 'css'],
-      }),
+      new WriteFilePlugin(),
       new MiniCssExtractPlugin({
         filename: `[name]${langSuffix}.css`,
         chunkFilename: `[id]${langSuffix}.css`,
       }),
       // @todo This needs to be in `config.dataDir`
       new ManifestPlugin({
-        fileName: `bolt-webpack-manifest${langSuffix}.json`,
+        fileName: `bolt-webpack-manifest${langSuffix}${
+          config.mode === 'client' ? '' : `.${config.mode}`
+        }.json`,
         publicPath,
         writeToFileEmit: true,
         seed: {
@@ -429,27 +407,33 @@ async function createWebpackConfig(buildConfig) {
       new webpack.DefinePlugin(globalJsData),
       new webpack.NamedModulesPlugin(),
       new CopyWebpackPlugin(config.copy ? config.copy : []),
+    ],
+  };
+
+  if (config.mode !== 'server') {
+    webpackConfig.plugins.push(
       new SassDocPlugin(
         {
           src: `${path.dirname(resolve.sync('@bolt/core'))}/styles/`,
-          dest: path.resolve(
-            process.cwd(),
-            `${config.buildDir}/data/sassdoc.bolt.json`,
-          ),
+          dest: path.resolve(`${config.dataDir}/sassdoc.bolt.json`),
         },
         {
           outputPath: config.buildDir,
         },
       ),
-    ],
-  };
+    );
+  }
 
   if (!config.prod && config.webpackDevServer) {
-    webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+    webpackConfig.plugins.push(
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
+    );
   }
 
   // Enable new experimental cache mode to significantly speed up the initial build times
-  if (config.enableCache && !config.prod) {
+  // if (config.enableCache && !config.prod) {
+  if (config.enableCache) {
     webpackConfig.plugins.push(
       new HardSourceWebpackPlugin({
         info: {
@@ -475,6 +459,7 @@ async function createWebpackConfig(buildConfig) {
       new UglifyJsPlugin({
         sourceMap: config.sourceMaps,
         parallel: true,
+        cache: true,
         uglifyOptions: {
           compress: true,
           mangle: true,
@@ -519,54 +504,33 @@ async function createWebpackConfig(buildConfig) {
   if (config.wwwDir) {
     webpackConfig.devServer = {
       logLevel: 'silent',
-      contentBase: path.resolve(process.cwd(), config.wwwDir),
+      log: false,
+      overlayWarnings: true,
+      overlay: true,
       quiet: true,
       clientLogLevel: 'none',
-      port: config.port,
       stats: statsPreset(webpackStats[config.verbosity]),
       hot: config.prod ? false : true,
-      inline: true,
       noInfo: true, // webpackTasks.watch handles output info related to success & failure
       publicPath,
-      watchContentBase: false,
-      before(app, server) {
-        if (!config.prod && config.webpackDevServer) {
-          if (config.webpackDevServer.watchedExtensions) {
-            const watchedPaths = [];
-
-            // generate wwwDir globbed paths for each file extension being watched
-            config.webpackDevServer.watchedExtensions.forEach(ext => {
-              watchedPaths.push(path.join(config.wwwDir, '**/*' + ext));
-            });
-
-            // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
-            const watcher = chokidar.watch(watchedPaths, {
-              ignoreInitial: true,
-              cwd: process.cwd(),
-              ignored: ['**/node_modules/**', '**/vendor/**'],
-            });
-
-            // only auto-refresh when a particular file's contents has changed to reduce browser thrashing
-            watcher.on('all', (event, filePath) => {
-              if (event === 'add' || event === 'change') {
-                getFileHash(filePath, function(hash) {
-                  let previousFileHash = BoltCache.get(filePath);
-                  let currentFileHash = hash;
-
-                  if (
-                    previousFileHash === undefined ||
-                    previousFileHash !== currentFileHash
-                  ) {
-                    BoltCache.set(filePath, currentFileHash);
-                    server.sockWrite(server.sockets, 'content-changed');
-                  }
-                });
-              }
-            });
-          }
-        }
-      },
     };
+  }
+
+  // Simple Configuration
+  // The easiest way to tweak the Bolt webpack config is by providing an object to the configureWebpack option in the `.boltrc.js` config:
+
+  // // .boltrc.js
+  // module.exports = {
+  //   configureWebpack: {
+  //     plugins: [
+  //       new MyAwesomeWebpackPlugin()
+  //     ]
+  //   }
+  // }
+  // The object will be merged into the final webpack config using webpack-merge.
+
+  if (config.configureWebpack) {
+    webpackConfig = merge(webpackConfig, config.configureWebpack);
   }
 
   return webpackConfig;
@@ -598,13 +562,15 @@ module.exports = async function() {
     const promises = [];
 
     // update the array of Webpack configs so each config is assigned to only one language (used in the filename's suffix when bundling language-tailed CSS and JS)
-    if (langs && langs.length > 1) {
+    if (Array.isArray(langs)) {
       for (const lang of langs) {
         /* eslint-disable no-await-in-loop */
         promises.push(await assignLangToWebpackConfig(config, lang));
       }
-    } else {
+    } else if (langs === 'en') {
       promises.push(await assignLangToWebpackConfig(config, null));
+    } else {
+      promises.push(await assignLangToWebpackConfig(config, config.lang));
     }
 
     await Promise.all(promises).then(() => {

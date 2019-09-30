@@ -3,97 +3,302 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="1.0.0-beta.0"></a>
-# [1.0.0-beta.0](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/compare/@pattern-lab/uikit-workshop@1.0.0-alpha.7...@pattern-lab/uikit-workshop@1.0.0-beta.0) (2018-09-07)
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Features
+
+* make PL viewport width 100% by default when JS is disabled ([fdca217](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/fdca217))
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
 
 
 ### Bug Fixes
 
-* add missing node-sass dependency ([643808b](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/643808b))
-* add webpack-cli as a uikit-workshop dependency; update npm script to use locally installed version vs globally / temp version via npx ([812efe9](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/812efe9))
-* adjust how PL's viewport is sized / positioned when the sidebar layout is active so iframed content is centered properly ([3caffbf](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/3caffbf))
-* change const back to var since PL's Uikit JS isn't run through Babel just yet.. update Prettier config to ignore Uikit's JavaScript for the time being ([35c5726](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/35c5726))
-* check to make sure the code panel-related <script> tag contains data before attempting to parse expected JSON. Partial fix to [#761](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/issues/761) as this should at least help prevent the current batch of JS errors from getting thrown ([9c16675](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/9c16675))
-* fix broken / missing closing HTML tag ([100ea8f](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/100ea8f))
-* fix JS paths imported ([1d7dec8](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/1d7dec8))
-* update ish-controls to be vertically centered in the global PL header by default ([f75de74](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/f75de74))
-* update PL code viewer to open and resize as expected + animate much more performantly using CSS transforms; update existing JS logic to clean up inlined CSS styles when closing PL modal / code viewer panel ([a5be07b](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/a5be07b))
-* **ui:**  fix keyboard shortcut for M link ([b4286ca](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/b4286ca))
-* **uikit:** correct ishViewportRange logic ([365c626](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/365c626))
-* **uikit:** remove indent from code panels ([e263fb0](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/e263fb0))
-* update PrismJS import ([564da7a](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/564da7a))
-* update typeahead selector so styles work as expected ([da13765](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/da13765))
-* workaround fix for the PL UIKit viewport resizer width occasionally getting stuck with a width of 0px in Safari and Firefox when the JS is initially booting up ([64c971d](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/64c971d))
-
-
-### Features
-
-* 1st pass wiring up automatic critical CSS generation to UIkit ([7a982d6](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/7a982d6))
-* lay down prep work for adding full on service worker support to Pattern Lab's UI. Cache busting logic will likely need to get added but the overall setup being added pretty much works! ([c6051e3](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/c6051e3))
-* wire up new PL-specific iframe loader toast to display before the JS updating the iframe content kicks in ([4cb08d5](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/4cb08d5))
-* **package:** add test command which bails on error ([3118cac](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/3118cac))
+* fix nav scrollbar in IE 11 + fix dependency-related JS error getting thrown in IE 11 ([e777ca2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/e777ca2))
+* immediately load up the pl-search component vs defer loading ([3a49603](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/3a49603))
+* major cross browser fixes + polyfill updates ([50b4214](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/50b4214))
+* retest build after removing Babel-related dependencies hoisted when installing ([733cf0d](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/733cf0d))
+* update deps ([7fedea2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/7fedea2))
 
 
 
 
 
-<a name="1.0.0-alpha.7"></a>
+## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.5.0...v2.5.1) (2019-06-21)
 
-# [1.0.0-alpha.7](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/compare/@pattern-lab/uikit-workshop@1.0.0-alpha.6...@pattern-lab/uikit-workshop@1.0.0-alpha.7) (2018-07-06)
+**Note:** Version bump only for package @bolt/uikit-workshop
 
-### Features
 
-* **package:** add npmrc file ([55f5bc2](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/55f5bc2))
-* **package:** pin all dependencies ([415698e](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/415698e))
-* **package:** remove package-lock.json files ([5ab3995](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/5ab3995))
 
-<a name="1.0.0-alpha.6"></a>
 
-# [1.0.0-alpha.6](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/compare/@pattern-lab/uikit-workshop@1.0.0-alpha.5...@pattern-lab/uikit-workshop@1.0.0-alpha.6) (2018-07-05)
 
-### Features
+## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.4.2...v2.4.3) (2019-05-31)
 
-* **tests:** use lerna run test at the monorepo level ([38a01b1](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/38a01b1))
-
-<a name="1.0.0-alpha.5"></a>
-
-# [1.0.0-alpha.5](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/compare/@pattern-lab/uikit-workshop@1.0.0-alpha.4...@pattern-lab/uikit-workshop@1.0.0-alpha.5) (2018-05-04)
-
-**Note:** Version bump only for package @pattern-lab/uikit-workshop
-
-<a name="1.0.0-alpha.4"></a>
-
-# [1.0.0-alpha.4](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/compare/@pattern-lab/uikit-workshop@1.0.0-alpha.3...@pattern-lab/uikit-workshop@1.0.0-alpha.4) (2018-03-21)
 
 ### Bug Fixes
 
-* **lint:** run code through prettier ([ca52fde](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/ca52fde)), closes [#825](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/issues/825)
-* **package:** remove files obsoleted by monorepo ([9abb8ac](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/9abb8ac))
-* **package:** update LICENSE ([337aa32](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/337aa32))
-* **polyfill:** Remove classList reference ([f0978da](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/f0978da))
-* **README:** update content for consistency ([4edf0d4](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/4edf0d4)), closes [#815](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/issues/815)
-* **README:** update installation command ([026e810](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/026e810))
+* globally update non-private package.json files with devDependencies and peerDependencies that might not get installed as expected when used / published outside of the Bolt monorepo ([617bd86](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/617bd86))
 
-### Features
 
-* **package:** Add bower as an explicit dependency ([c070b80](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/c070b80))
 
-<a name="1.0.0-alpha.3"></a>
 
-# [1.0.0-alpha.3](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/compare/@pattern-lab/uikit-workshop@1.0.0-alpha.2...@pattern-lab/uikit-workshop@1.0.0-alpha.3) (2018-03-05)
+
+# [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.3.2...v2.4.0) (2019-05-14)
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.2.2...v2.4.0-beta.0) (2019-04-16)
+
 
 ### Bug Fixes
 
-* **config:** Add npm registry to lerna config ([1473cd5](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/1473cd5))
+* add missing polyfiills needed for IE 11 ([0cac28f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/0cac28f))
+* adjust breakpoint for hiding viewport resizer controls ([2b792bd](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/2b792bd))
+* adjust default link line height + icon and text spacing ([806814f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/806814f))
+* enable prod mode + disable sourcemaps to improve loading performance ([7dd8a15](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/7dd8a15))
+* ensure code viewer works consistently when async loading modal-viewer JS; fix width of code displaying in drawer ([bbb9f95](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/bbb9f95))
+* fix for the PL nav incorrectly auto-closing in certain situations ([9ff9fc8](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/9ff9fc8))
+* fix issues with nav opening / closing when expected based on screen size + layout mode ([e4d2750](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/e4d2750))
+* misc docs site related UI fixes ([5ef9667](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/5ef9667))
+* relocate chrome path dependency ([5bb6342](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/5bb6342))
+* testing working for async PL data not always being available when needed ([56fece6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/56fece6))
+* update broken path import with iframe-resizer library ([e07b687](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/e07b687))
+* update incorrect text component version + repo url for uikit ([cfa6fde](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/cfa6fde))
+* update logic to auto-update the page title ([1a0fecc](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/1a0fecc))
+* update max height for uikit dropdown menu + fix JS error when page navigation changes ([740e472](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/740e472))
+* update nav links to handle the content / icon variations ([d5d0e10](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/d5d0e10))
+* update pattern lab to fix header / layout issue in IE 11 ([4a5aba3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/4a5aba3))
+* update so certain PL assets are prefetched vs preloaded ([904ae87](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/904ae87))
+* update Twig rendering service API when running on master + add / update caching layers to speed up subsequent builds on Travis ([a8ed82f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/a8ed82f))
 
-<a name="1.0.0-alpha.2"></a>
-
-# 1.0.0-alpha.2 (2018-03-02)
-
-### Bug Fixes
-
-* **packages:** Allow scoped publishing ([58beeb6](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/58beeb6))
 
 ### Features
 
-* **packages:** Update all package.json repo and bug links ([5eb2c11](https://github.com/pattern-lab/patternlab-node/tree/master/packages/uikit-workshop/commit/5eb2c11))
+* clean up nav UI to make it easier to see which links have two actions vs only one ([6325574](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/6325574))
+
+
+
+
+
+# [2.4.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.3.0...v2.4.0-beta.0) (2019-04-16)
+
+
+### Bug Fixes
+
+* add missing polyfiills needed for IE 11 ([0cac28f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/0cac28f))
+* adjust breakpoint for hiding viewport resizer controls ([2b792bd](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/2b792bd))
+* adjust default link line height + icon and text spacing ([806814f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/806814f))
+* enable prod mode + disable sourcemaps to improve loading performance ([7dd8a15](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/7dd8a15))
+* ensure code viewer works consistently when async loading modal-viewer JS; fix width of code displaying in drawer ([bbb9f95](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/bbb9f95))
+* fix for the PL nav incorrectly auto-closing in certain situations ([9ff9fc8](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/9ff9fc8))
+* fix issues with nav opening / closing when expected based on screen size + layout mode ([e4d2750](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/e4d2750))
+* misc docs site related UI fixes ([5ef9667](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/5ef9667))
+* relocate chrome path dependency ([5bb6342](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/5bb6342))
+* testing working for async PL data not always being available when needed ([56fece6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/56fece6))
+* update broken path import with iframe-resizer library ([e07b687](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/e07b687))
+* update incorrect text component version + repo url for uikit ([cfa6fde](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/cfa6fde))
+* update logic to auto-update the page title ([1a0fecc](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/1a0fecc))
+* update max height for uikit dropdown menu + fix JS error when page navigation changes ([740e472](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/740e472))
+* update nav links to handle the content / icon variations ([d5d0e10](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/d5d0e10))
+* update pattern lab to fix header / layout issue in IE 11 ([4a5aba3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/4a5aba3))
+* update so certain PL assets are prefetched vs preloaded ([904ae87](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/904ae87))
+* update Twig rendering service API when running on master + add / update caching layers to speed up subsequent builds on Travis ([a8ed82f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/a8ed82f))
+
+
+### Features
+
+* clean up nav UI to make it easier to see which links have two actions vs only one ([6325574](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/6325574))
+
+
+
+
+
+# [2.3.0-rc.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.2.2...v2.3.0-rc.0) (2019-01-08)
+
+
+
+## [2.2.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.2.1...v2.2.2) (2019-01-07)
+
+
+
+## [2.2.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.2.0...v2.2.1) (2018-12-17)
+
+
+
+# [2.2.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.2.0-rc.1...v2.2.0) (2018-11-18)
+
+
+
+# [2.2.0-rc.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.1.6...v2.2.0-rc.1) (2018-11-07)
+
+
+
+## [2.1.6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.1.5...v2.1.6) (2018-10-23)
+
+
+
+## [2.1.4](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.1.3...v2.1.4) (2018-10-18)
+
+
+
+## [2.1.3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.1.2...v2.1.3) (2018-10-18)
+
+
+
+## [2.1.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.1.1...v2.1.2) (2018-10-16)
+
+
+
+## [2.1.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.1.0...v2.1.1) (2018-10-10)
+
+
+
+# [2.1.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.1.0-beta.0...v2.1.0) (2018-10-10)
+
+
+### Bug Fixes
+
+* adjust border styling so the context menu's border shows up more consistently ([b620422](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/b620422))
+* clean up tabs / modal styling for better responsible behavior + less hacks required ([f5f94b4](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/f5f94b4))
+* fix missing background color from dropdown nav ([ec936ea](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/ec936ea))
+* fixing CSS var syntax ([d2bc3d7](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/d2bc3d7))
+* fixing page scrolling behavior + IE 11 layout issue ([a684a41](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/a684a41))
+* misc small Pattern Lab UI bug fixes uncovered in testing things out for the next release ([b9cb636](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/b9cb636))
+* remove default search styling from Safari, hide search clear icon in IE 11 + tweak the breakpoint when the Search component's font size reduces ([fd499d5](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/fd499d5))
+* remove old styling clashing with nav background color ([4fc19c9](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/4fc19c9))
+* remove old typeahead styling — particularly visible on Safari ([4ba33b6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/4ba33b6))
+* update the viewport CSS logic to behave the same when the sidebar layout is used — fixes issue with a slight overflow when resizing the PL iframe to full and the sidebar layout is used ([9a4decf](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/9a4decf))
+
+
+
+# [2.1.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.0.0...v2.1.0-beta.0) (2018-10-05)
+
+
+### Bug Fixes
+
+* fix largest scrolling and overflow issues + start to clean up accordion behavior across different UI variations ([310109c](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/310109c))
+* fix scrolling issues with sidebar layout when nested nav sections are open ([1a7eda9](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/1a7eda9))
+* mark patternlab uikit as private ([8e50a8f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/8e50a8f))
+* refactor search to use react autosuggest library due to more consistent behavior + library being better maintained ([8812ae5](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/8812ae5))
+
+
+
+# [2.0.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v1.8.3...v2.0.0-beta.2) (2018-09-19)
+
+
+### Bug Fixes
+
+* patch Pattern Lab's UIKit CSS to prevent the viewport `ish` resizer from exceeding the width of the browser window. Fixes a persistent bug with the JS powering this failing to recognize screen resizes and allowing the resizer to exceed the maximum page width automatically. ([ed40bec](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/ed40bec))
+
+
+
+# [2.0.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2018-09-06)
+
+
+
+# [2.0.0-beta.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v1.8.1...v2.0.0-beta.0) (2018-09-05)
+
+
+### Bug Fixes
+
+* fix missing comma in package.json ([e5e64e9](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/e5e64e9))
+* update uikit javascript to properly check if selector exists -- previous logic wasn't returning results the way it was expected to ([f453653](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/f453653))
+* workaround to IE 11 flex bug causing Pattern Lab UI to collapse ([ad3088c](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/ad3088c))
+
+
+
+## [1.7.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v1.7.0...v1.7.1) (2018-08-09)
+
+
+### Bug Fixes
+
+* add missing loadCSS preload polyfill to index.twig; fix async CSS loading bug in IE11 in Pattern Lab ([5819b8f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/5819b8f))
+
+
+
+# [1.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v1.6.8...v1.7.0) (2018-08-08)
+
+
+### Bug Fixes
+
+* fix missing / closing div tag in Pattern Lab UIkit template ([ede84f1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/ede84f1))
+* revert Prism.js getting removed to avoid JS errors in PL getting thrown ([03812d0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/03812d0))
+
+
+
+# [1.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v1.5.3...v1.6.0) (2018-07-04)
+
+
+### Bug Fixes
+
+* add shim for previousElementSibling ([580b2e2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/580b2e2))
+* misc fixes ([8c7d380](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/8c7d380))
+* remove additional cache buster strings ([608d516](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/608d516))
+* remove iframe "preload" based on testing results ([391fae1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/391fae1))
+* renaming vendor folder in uikit-workshop to prevent files from being accidentally gitignored (even with local .gitignore config settings) ([8ca4aa4](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/8ca4aa4))
+* replace gulp-ruby-sass with gulp-sass ([31ff9e0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/31ff9e0))
+* revert to using DOMContentLoaded to prevent PL scripts occasionally getting run out of order; tweak the band component it it doesn't render any HTML -- workaround to JS error seen in Firefox when testing ([7cbc882](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/7cbc882))
+* switching iframe loader to be a progressive enhancement ([d6627ea](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/d6627ea))
+* update now.json condfig ([b3f03be](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/b3f03be))
+
+
+### Features
+
+* pull in the latest Pattern Lab styleguidekit + Twig templates used in PL; fix path issues w/ Now.sh deploys, misc UI issues in PL (dropdown menu scrolling bug) + update everything in PL to load asynchronously ([dfafe9a](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/dfafe9a))

@@ -19,35 +19,37 @@
       height: 100vh; /* 2 */
       flex-direction: column; /* 3 */
       border-bottom: 0; /* 4 */
-      padding: 1rem;
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
+      // padding: 1rem;
+      // overflow: auto;
+      // -webkit-overflow-scrolling: touch;
       justify-content: space-between;
     }
 
     /**
          * Header within light theme
          */
-    &.pl-c-body--theme-light {
-      .pl-c-header {
-        border-right: 1px solid $pl-color-gray-20;
-      }
-    }
+    // &.pl-c-body--theme-light {
+    //   .pl-c-header {
+    //     border-right: 1px solid $pl-color-gray-20;
+    //   }
+    // }
 
     /**
          * Logo
          */
     .pl-c-logo {
       max-width: 7rem;
-      margin: 0 auto 1rem;
+      margin: 0 0.5rem;
     }
 
     /**
         * Nav sub sub list
         */
     .pl-c-nav {
-      display: block;
+      // display: block;
+      flex-grow: 1;
       flex-direction: column;
+      flex-flow: column-reverse;
     }
 
     /**
@@ -71,26 +73,26 @@
     /**
         * Nav sublist
         */
-    .pl-c-nav__sublist .pl-c-nav__link {
-      padding-left: 1rem;
-    }
+    // .pl-c-nav__sublist .pl-c-nav__link {
+    //   padding-left: 1rem;
+    // }
 
     /**
         * Nav sublist
         */
-    .pl-c-nav__sublist--dropdown.pl-is-active {
-      border: 0;
-      border-left: 1px solid $pl-color-gray-70;
-    }
+    // .pl-c-nav__sublist--dropdown.pl-is-active {
+    //   border: 0;
+    //   border-left: 1px solid $pl-color-gray-70;
+    // }
 
     /**
          * Nav sublist inside the light theme
          */
-    &.pl-c-body--theme-light {
-      .pl-c-nav__sublist--dropdown.pl-is-active {
-        border-left-color: $pl-color-gray-07;
-      }
-    }
+    // &.pl-c-body--theme-light {
+    //   .pl-c-nav__sublist--dropdown.pl-is-active {
+    //     border-left-color: $pl-color-gray-07;
+    //   }
+    // }
 
     /**
          * Dropdown sublist
@@ -101,8 +103,8 @@
         * Nav sub sub list
         */
     .pl-c-nav__subsublist {
-      border-left: 1px solid $pl-color-gray-70;
-      margin-left: 1rem;
+      // border-left: 1px solid $pl-color-gray-70;
+      // margin-left: 1rem;
     }
 
     /**
@@ -143,10 +145,6 @@
       display: block; // Display flex + flex direction column gives a similar result, but this fixes a bunch of rendering quirks in IE 11
       justify-self: flex-end;
       margin-left: 0;
-    }
-
-    .pl-c-viewport-size {
-      display: none;
     }
 
     /**

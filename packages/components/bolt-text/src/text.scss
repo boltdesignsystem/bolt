@@ -10,10 +10,10 @@ bolt-text {
   @include bolt-font-size(medium); // Default font-size
   display: block;
 
-  &[display="inline"] {
+  &[display='inline'] {
     display: inline;
   }
-  &[display="block"] {
+  &[display='block'] {
     display: block;
   }
 
@@ -29,6 +29,35 @@ bolt-text {
   &:last-child {
     @include bolt-margin-bottom(0);
   }
+}
+
+// when fully encapsulated in the Shadow DOM
+:host {
+  @include bolt-margin-bottom(medium); // Default vspacing
+  @include bolt-font-size(medium); // Default font-size
+  display: block;
+}
+
+:host([display='inline']) {
+  display: inline;
+}
+
+:host([display='block']) {
+  display: block;
+}
+
+// Adding vspacing here so that we can remove vspacing on last-child
+:host([headline]),
+:host([eyebrow]) {
+  @include bolt-margin-bottom(xxsmall);
+}
+
+:host([subheadline]) {
+  @include bolt-margin-bottom(xsmall);
+}
+
+:host(:last-child) {
+  @include bolt-margin-bottom(0);
 }
 
 $bolt-text-v2--minus-letter-spacing: -0.025rem;
@@ -152,14 +181,16 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
   &--align-inherit {
     text-align: inherit;
   }
-  &--align-left {
+  &--align-start {
     text-align: left;
+    text-align: start;
   }
   &--align-center {
     text-align: center;
   }
-  &--align-right {
+  &--align-end {
     text-align: right;
+    text-align: end;
   }
 
   // Transform text
@@ -249,8 +280,8 @@ $bolt-text-v2--plus-letter-spacing: 0.05rem;
     }
 
     &:before {
-      position: absolute;
       content: '\201C';
+      position: absolute;
       transform: translate3d(-110%, 0, 0);
     }
 

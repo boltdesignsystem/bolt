@@ -1,0 +1,13 @@
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+
+<p><mark>Note: the align prop only works with full width buttons.</mark></p>
+
+{% for align in schema.properties.align.enum %}
+  <p>
+    {% include "@bolt-components-button/button.twig" with {
+      align: align,
+      width: "full",
+      text: "This button's items are aligned to the " ~ align
+    } only %}
+  </p>
+{% endfor %}

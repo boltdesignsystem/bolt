@@ -1,0 +1,67 @@
+{% set attributes = create_attribute({}) %}
+{% set icon_size = "medium" %}
+
+{% set custom_trigger %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This has a custom trigger",
+    url: "#!",
+    icon: {
+      name: "warning",
+      position: "before",
+      size: icon_size
+    }
+  } only %}
+{% endset %}
+
+{% set custom_transition %}
+  Custom transition
+{% endset %}
+
+{% set custom_confirmation %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "Custom confirmation",
+    icon: {
+      name: "check",
+      position: "before",
+      size: icon_size
+    }
+  } only %}
+{% endset %}
+
+{% set custom_all %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This has a custom trigger, transition, and confirmation",
+    url: "#!",
+    icon: {
+      name: "warning",
+      position: "before",
+      size: icon_size
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+  trigger_text: "This text gets ignored by custom trigger",
+  text_to_copy: "https://boltdesignsystem.com/#custom-trigger",
+  custom_trigger: custom_trigger,
+} only %}
+
+{% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+  trigger_text: "This has custom transition",
+  text_to_copy: "https://boltdesignsystem.com/#custom-transition",
+  custom_transition: custom_transition,
+} only %}
+
+{% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+  trigger_text: "This has custom confirmation",
+  text_to_copy: "https://boltdesignsystem.com/#custom-confirmation",
+  confirmation: custom_confirmation
+} only %}
+
+{% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+  trigger_text: "This text gets ignored by custom trigger",
+  text_to_copy: "https://boltdesignsystem.com/#custom-all",
+  custom_trigger: custom_all,
+  custom_transition: custom_transition,
+  custom_confirmation: custom_confirmation
+} only %}

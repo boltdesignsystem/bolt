@@ -9,13 +9,15 @@
       </div>
     </li>
 
+    {% set icon_size = icon_size|default("medium") %}
+
     {% for icon in icons %}
       {% if icon == 'search' %}
 
         {# The search icon is a special case; the icon itself needs to be a submit button #}
         <li class="o-bolt-inline-list__item">
           <button class="c-bolt-input-icon c-bolt-input-icon--link" type="submit">
-            <bolt-icon name="{{ icon }}" size="medium"></bolt-icon>
+            <bolt-icon name="{{ icon }}" size="{{ icon_size }}"></bolt-icon>
           </button>
         </li>
 
@@ -23,7 +25,7 @@
 
         <li class="o-bolt-inline-list__item">
           <div class="c-bolt-input-icon">
-            <bolt-icon name="{{ icon }}" size="medium"></bolt-icon>
+            <bolt-icon name="{{ icon }}" size="{{ icon_size }}"></bolt-icon>
           </div>
         </li>
 

@@ -1,0 +1,182 @@
+bolt-carousel:not(.is-ready) {
+  > [slot='previous-btn'],
+  > [slot='next-btn'] {
+    display: none;
+  }
+}
+
+bolt-carousel.is-ready
+  .c-bolt-carousel__button:not(.c-bolt-carousel__button--hidden):not(.c-bolt-carousel__button--disabled) {
+  opacity: 1;
+}
+
+bolt-carousel:not(.is-ready) > [slot='previous-btn'],
+bolt-carousel:not(.is-ready) > [slot='next-btn'] {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.c-bolt-carousel__button {
+  @include bolt-z-index(contentTop);
+
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+
+  bolt-button {
+    pointer-events: none;
+  }
+
+  &.c-bolt-carousel__button--outside {
+    top: calc(50% - #{bolt-v-spacing(medium)} + #{$bolt-carousel-bullet-height});
+
+    @at-root bolt-carousel[no-pagination] & {
+      top: 50%;
+    }
+
+    &:active,
+    &.is-pressed {
+      --bolt-theme-secondary: var(--bolt-theme-secondary-darken-15);
+    }
+
+    &:hover,
+    &:focus {
+      --bolt-theme-secondary: var(--bolt-theme-secondary-darken-5);
+    }
+
+    &:focus:not(:hover) {
+      box-shadow:
+        0 -1px 2px bolt-theme(background),
+        0 1px 2px bolt-theme(background),
+        0 0 5px rgb(59, 153, 252),
+        0 -1px 0.65rem rgb(59, 153, 252),
+        0 1px 0.65rem rgb(59, 153, 252);
+    }
+
+    &.c-bolt-carousel__button--previous {
+      left: bolt-spacing(medium);
+      transform: translateX(-50%) translateY(-50%);
+
+      &.is-pressed {
+        transform: translateX(-50%) translateY(-50%) translateY(1px);
+      }
+    }
+
+    &.c-bolt-carousel__button--next {
+      right: bolt-spacing(medium);
+      transform: translateX(50%) translateY(-50%);
+
+      &.is-pressed {
+        transform: translateX(50%) translateY(-50%) translateY(1px);
+      }
+    }
+  }
+
+  &.c-bolt-carousel__button--inside {
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: calc(50% - 0.5rem);
+      width: 4px;
+      height: 0.9rem; // This is a magic number for fixing the subpixel issue with the CSS chevron. Don't change this unless you have a completely different method for drawing the chevron.
+      border-radius: 1px;
+      box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.025), 3px 1px 3px 0px rgba(bolt-color(black), 0.025);
+      background-color: bolt-color(white);
+      will-change: box-shadow;
+      transition: box-shadow $bolt-transition;
+      transform-origin: 50% 50%;
+
+      @include bolt-ie11-only {
+        border: 1px solid bolt-color(white);
+      }
+    }
+
+    &.c-bolt-carousel__button--previous {
+      right: auto;
+      left: 0;
+
+      &:before {
+        left: calc(50% - 0.5rem);
+        transform: rotate(135deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
+      }
+
+      &:after {
+        left: calc(50% - 0.5rem);
+        transform: rotate(-135deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
+      }
+    }
+
+    &.c-bolt-carousel__button--next {
+      right: 0;
+      left: auto;
+
+      &:before {
+        right: calc(50% - 0.5rem);
+        transform: rotate(45deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
+      }
+
+      &:after {
+        right: calc(50% - 0.5rem);
+        transform: rotate(-45deg) translateX(150%) translateY(0) translateZ(0) perspective(1px);
+      }
+    }
+
+    &,
+    &:hover,
+    &:active,
+    &:focus,
+    &.is-pressed,
+    &.is-pressed:focus {
+      top: 0;
+      transform: none;
+      width: 3.5rem;
+      height: calc(100% - #{bolt-v-spacing(medium)} - 8px);
+      border-radius: 0;
+
+      @at-root bolt-carousel[no-pagination] & {
+        height: 100%;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      &:before,
+      &:after {
+        box-shadow: 3px -1px 3px 0px rgba(bolt-color(black), 0.1), 3px 1px 3px 0px rgba(bolt-color(black), 0.1);
+      }
+    }
+
+    > * {
+      @include bolt-visuallyhidden;
+    }
+  }
+}
+
+.c-bolt-carousel__button--hidden {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+.c-bolt-carousel__button--disabled:not(.c-bolt-carousel__button--hidden) {
+  visibility: hidden;
+}
+
+.c-bolt-carousel__button:focus,
+.c-bolt-carousel__button:active,
+.c-bolt-carousel__button:hover {
+  outline: 0;
+}
+
+.c-bolt-carousel__button:focus {
+  outline: 0;
+}
+
+.c-bolt-carousel__pagination__bullet {
+  outline-offset: -3px;
+}

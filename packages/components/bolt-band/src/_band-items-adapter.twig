@@ -1,0 +1,21 @@
+<div class="{{ "#{base_class}__content #{base_class}__content--pinned #{base_class}__content--pinned-upper" }}">
+  {% set deprecated_items %}
+    <div class="{{ "#{base_class}__pinned-items" }}">
+      {% for item in items %}
+        {% set item_align = item.position.align %}
+        {% set item_classes = [
+          "#{base_class}__pinned-item",
+          item_align ? "#{base_class}__pinned-item--#{item_align}" : "",
+        ] %}
+
+        <div {{ attributes.addClass(item_classes) }}>
+          {{ item.content }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endset %}
+
+  {% include "@bolt/wrapper.twig" with {
+    content: deprecated_items,
+  } only %}
+</div>

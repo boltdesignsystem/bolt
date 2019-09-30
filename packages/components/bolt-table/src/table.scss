@@ -2,11 +2,22 @@
    Table
 \* ------------------------------------ */
 
+@import '@bolt/core';
+
 $bolt-table-overflow-shadow-color: bolt-theme(text, 0.25);
-$bolt-table-border: 1px solid bolt-theme(disabled);
+
+// see https://github.com/datorama/themify#known-issues for more info on why the border styles need to be written out longhand
+$bolt-table-border-width: 1px;
+$bolt-table-border-style: solid;
+$bolt-table-border-color: bolt-theme(disabled);
 $bolt-table-header-background-color: bolt-theme(text, 0.04375);
 $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 
+@mixin bolt-table-border($direction){
+  border-#{$direction}-color: $bolt-table-border-color;
+  border-#{$direction}-style: $bolt-table-border-style;
+  border-#{$direction}-width: $bolt-table-border-width;
+}
 
 @include bolt-custom-element('bolt-table', block, medium);
 
@@ -17,12 +28,9 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 
   display: inline-block;
   max-width: 100%;
-  overflow-x: auto;
   vertical-align: top;
-  border-right: $bolt-table-border;
-  border-left: $bolt-table-border;
-  border-collapse: collapse;
-  border-spacing: 0;
+  @include bolt-table-border(right);
+  @include bolt-table-border(left);
   background:
     -webkit-radial-gradient(
       left,
@@ -36,20 +44,23 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
       bolt-theme(text, 0.25) 0%,
       bolt-theme(text, 0) 75%
     ) 100% center;
-  background-size: .5em 100%, .5em 100%;
   background-attachment: scroll, scroll;
-  background-repeat: no-repeat;
   background-color: bolt-theme(background);
+  background-repeat: no-repeat;
+  background-size: .5em 100%, .5em 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
   -ms-overflow-style: -ms-autohiding-scrollbar;
 
   // Caption is not offered in the component. These generic styles are in place in case there are some legacy tables out there that used <caption>.
   caption {
     @include bolt-font-size(small);
-
-    caption-side: bottom;
     color: bolt-theme(text, 0.65);
     text-align: center;
     background-color: bolt-theme(background);
+
+    caption-side: bottom;
   }
 }
 
@@ -67,8 +78,8 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
 }
 
 .c-bolt-table__row {
-  border-top: $bolt-table-border;
-  border-bottom: $bolt-table-border;
+  @include bolt-table-border(top);
+  @include bolt-table-border(bottom);
   transition: background-color $bolt-transition;
 
   @at-root .c-bolt-table > *:not(.c-bolt-table__head) #{&}:hover {
@@ -81,7 +92,7 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   vertical-align: top;
 
   &:not(:last-child) {
-    border-right: $bolt-table-border;
+    @include bolt-table-border(right);
   }
 
   &:first-child:empty ~ .c-bolt-table__cell {
@@ -144,15 +155,15 @@ $bolt-table-row-hover-background-color: bolt-theme(text, 0.025);
   }
 
   .c-bolt-table__cell--data[rowspan]:not(:last-child) {
-    border-right: $bolt-table-border;
+    @include bolt-table-border(right);
   }
 
   td.c-bolt-table__cell--data[rowspan]:not(:first-of-type) {
-    border-left: $bolt-table-border;
+    @include bolt-table-border(left);
   }
 
   > *:not(.c-bolt-table__head) .c-bolt-table__cell--header:first-child {
-    border-right: $bolt-table-border;
+    @include bolt-table-border(right);
   }
 }
 

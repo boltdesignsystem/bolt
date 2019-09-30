@@ -1,4 +1,3 @@
-$schema: http://json-schema.org/draft-04/schema#
 title: List
 description: Minimal list component for laying out a group of items.
 type: object
@@ -7,16 +6,16 @@ required:
 properties:
   attributes:
     type: object
-    description: A Drupal-style attributes object with extra attributes to append to this component.
+    description: 'A Drupal-style attributes object with extra attributes to append to this component.'
   items:
     type: array
-    description: All items can be simple text or `items`.
+    description: 'All items can be simple text or `items`.'
     items:
       type: [string, object, array]
       description: Renderable content (i.e. a string, render array, or included pattern) for a single list item.
   tag:
     type: string
-    description: Apply the semantic tag for the list.
+    description: 'Apply the semantic tag for the list.'
     default: ul
     enum:
       - ul
@@ -25,21 +24,23 @@ properties:
       - span
   display:
     type: string
-    description: Display either an inline list of items or a block (stacked) list of items. Responsive options are also available for transforming from block to inline at specific breakpoints.
+    description: 'Display either an inline list of items or a block (stacked) list of items. Responsive options are also available for transforming from block to inline at specific breakpoints.'
     default: block
     enum:
-      - inline
       - block
+      - flex
+      - inline
       - inline@xxsmall
       - inline@xsmall
       - inline@small
       - inline@medium
   spacing:
     type: string
-    description: Control the spacing in between items.
+    description: 'Control the spacing in between items.'
     default: xsmall
     enum:
       - none
+      - xxsmall
       - xsmall
       - small
       - medium
@@ -47,7 +48,7 @@ properties:
       - xlarge
   separator:
     type: string
-    description: Display a separator in between items.
+    description: 'Display a separator in between items.'
     default: none
     enum:
       - none
@@ -55,11 +56,14 @@ properties:
       - dashed
   inset:
     type: boolean
-    description: Turn spacing to the inside of each item.
+    description: 'Turn spacing to the inside of each item.'
     default: false
+    enum:
+      - true
+      - false
   align:
     type: string
-    description: Control the horizontal alignment of items.
+    description: 'Control the horizontal alignment of items.'
     default: start
     enum:
       - start
@@ -67,7 +71,7 @@ properties:
       - end
   valign:
     type: string
-    description: Control the vertical alignment of items.
+    description: 'Control the vertical alignment of items.'
     default: center
     enum:
       - start

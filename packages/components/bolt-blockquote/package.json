@@ -8,8 +8,7 @@
     "design system",
     "components"
   ],
-  "version": "2.2.0-rc.1",
-  "sourceFilesFrom": "0.9.0",
+  "version": "2.8.0-beta.5",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -22,17 +21,23 @@
       "web": "http://mikemai.net/"
     }
   ],
-  "homepage": "https://bolt-design-system.com",
+  "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "style": "src/blockquote.scss",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^2.2.0-rc.1"
+    "@bolt/components-headline": "^2.8.0-beta.4",
+    "@bolt/components-image": "^2.8.0-beta.5",
+    "@bolt/components-logo": "^2.8.0-beta.5",
+    "@bolt/components-text": "^2.8.0-beta.4",
+    "@bolt/core": "^2.8.0-beta.4"
   },
+  "style": "index.scss",
+  "main": "index.js",
+  "twig": "src/blockquote.twig",
   "schema": "blockquote.schema.yml",
-  "gitHead": "8dd538d0bd2b00baeac2779570d00e27d23405db"
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
 }

@@ -1,5 +1,5 @@
-const { promisify } = require('util');
 const fs = require('fs');
+const { promisify } = require('util');
 const path = require('path');
 const symlink = promisify(fs.symlink);
 const readFile = promisify(fs.readFile);
@@ -9,13 +9,53 @@ const chokidar = require('chokidar');
 const chalk = require('chalk');
 const globby = require('globby');
 const ora = require('ora');
-const sharp = require('sharp');
+const sharpImport = require('sharp');
 const SVGO = require('svgo');
-const log = require('../utils/log');
-const timer = require('../utils/timer');
-const { getConfig } = require('../utils/config-store');
-const { flattenArray } = require('../utils/general');
-let config;
+const { spawnSync } = require('child_process');
+const log = require('@bolt/build-utils/log');
+const timer = require('@bolt/build-utils/timer');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { flattenArray } = require('@bolt/build-utils/general');
+let config, sharp;
+
+// https://github.com/lovell/sharp/issues/1593#issuecomment-491171982
+function warmupSharp(sharp) {
+  return sharp(
+    Buffer.from(
+      `<svg xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" /></svg>`,
+      'utf-8',
+    ),
+  )
+    .metadata()
+    .then(() => sharp, () => sharp);
+}
+
+const {
+  TRAVIS,
+  TRAVIS_BRANCH,
+  TRAVIS_PULL_REQUEST_BRANCH,
+  TRAVIS_PULL_REQUEST,
+} = process.env;
+
+let branchName = 'detached-HEAD';
+try {
+  branchName = spawnSync('git', ['symbolic-ref', 'HEAD'], {
+    encoding: 'utf8',
+  })
+    .stdout.replace('refs/heads/', '')
+    .replace(/\//g, '-')
+    .trim();
+} catch (error) {
+  process.exit(1);
+}
+
+if (TRAVIS === 'true') {
+  if (TRAVIS_PULL_REQUEST === 'false') {
+    branchName = TRAVIS_BRANCH;
+  } else {
+    branchName = TRAVIS_PULL_REQUEST_BRANCH;
+  }
+}
 
 const svgo = new SVGO({
   plugins: [
@@ -28,8 +68,8 @@ const svgo = new SVGO({
   ],
 });
 
-// @todo Consider moving this to a place to share - also duplicated in `@bolt/core/images-sizes.js`
-const boltImageSizes = [
+// full set of image sizes used by default unless being run on a feature-specific branch
+let boltImageSizes = [
   50,
   100,
   200,
@@ -45,6 +85,15 @@ const boltImageSizes = [
   2880,
 ];
 
+// don't resize images to all available options on feature-specific branches to speed up build times
+if (
+  branchName.includes('feature') === true &&
+  process.env.NODE_ENV !== 'test' &&
+  TRAVIS === true
+) {
+  boltImageSizes = [320, 640, 1024, 1920];
+}
+
 function makeWebPath(imagePath) {
   return `/${path.relative(config.wwwDir, imagePath)}`;
 }
@@ -58,7 +107,7 @@ async function writeImageManifest(imgManifest) {
   );
 }
 
-async function processImage(file, set) {
+async function processImage(file, set, skipOptimization = false) {
   config = config || (await getConfig());
 
   if (config.verbosity > 3) {
@@ -80,7 +129,7 @@ async function processImage(file, set) {
 
   // We add `null` to beginning b/c we want the original file too
   // Filter the list to not include sizes bigger than our file
-  const sizes = [null, ...boltImageSizes].filter(size => width > size);
+  const sizes = [null, ...boltImageSizes].filter(size => width >= size);
 
   // looping through all sizes and resizing
   return Promise.all(
@@ -101,9 +150,8 @@ async function processImage(file, set) {
       const newSizedPath = path.format(thisPathInfo);
       const newSizeWebPath = makeWebPath(newSizedPath);
 
-      if (config.prod) {
+      if (config.prod && skipOptimization === false) {
         if (isOrig) {
-          await writeFile(newSizedPath, originalFileBuffer);
           if (
             pathInfo.ext === '.jpeg' ||
             pathInfo.ext === '.jpg' ||
@@ -167,18 +215,44 @@ async function processImage(file, set) {
           }
         }
       } else {
-        // Not prod, so let's be quick.
-        // Symlinking works even if the original file is not served
-        const symlinkPath = path.relative(thisPathInfo.dir, file);
-        try {
-          await symlink(symlinkPath, newSizedPath);
-        } catch (error) {
-          // If it's the error for symlink already exists, we don't care.
-          if (error.code !== 'EEXIST') {
-            log.errorAndExit(
-              `Problem when attempting to symlink ${file} to ${newSizedPath}.`,
-              error,
-            );
+        if (config.prod) {
+          if (
+            pathInfo.ext === '.jpeg' ||
+            pathInfo.ext === '.jpg' ||
+            pathInfo.ext === '.png'
+          ) {
+            await sharp(originalFileBuffer)
+              .resize(size)
+              .toFile(newSizedPath);
+          } else if (pathInfo.ext === '.svg') {
+            const result = await svgo.optimize(originalFileBuffer);
+            const optimizedSVG = result.data;
+            await writeFile(newSizedPath, optimizedSVG);
+          }
+        } else {
+          // Not prod, so let's be quicker
+          if (
+            pathInfo.ext === '.jpeg' ||
+            pathInfo.ext === '.jpg' ||
+            pathInfo.ext === '.png'
+          ) {
+            const symlinkPath = path.relative(thisPathInfo.dir, file);
+
+            try {
+              await symlink(symlinkPath, newSizedPath);
+            } catch (error) {
+              // If it's the error for symlink already exists, we don't care.
+              if (error.code !== 'EEXIST') {
+                log.errorAndExit(
+                  `Problem when attempting to symlink ${file} to ${newSizedPath}.`,
+                  error,
+                );
+              }
+            }
+          } else if (pathInfo.ext === '.svg') {
+            const result = await svgo.optimize(originalFileBuffer);
+            const optimizedSVG = result.data;
+            await writeFile(newSizedPath, optimizedSVG);
           }
         }
       }
@@ -207,8 +281,9 @@ async function processImage(file, set) {
   });
 }
 
-async function processImages() {
+async function processImages(skipOptimization = false) {
   config = config || (await getConfig());
+  sharp = await warmupSharp(sharpImport);
 
   if (!config.images) {
     return;
@@ -226,7 +301,9 @@ async function processImages() {
     config.images.sets.map(async set => {
       const imagePaths = await globby(path.join(set.base, set.glob));
       return Promise.all(
-        imagePaths.map(imagePath => processImage(imagePath, set)),
+        imagePaths.map(imagePath =>
+          processImage(imagePath, set, skipOptimization),
+        ),
       );
     }),
   ).then(async setsOfImageMetas => {

@@ -3,13 +3,9 @@
 {% endif %}
 
 {% set tags = ["span", "a"] %} {# Available Chip Tags #}
-{% set prefix = "c-bolt-" %}
 
 {% set attributes = create_attribute(attributes|default({})) %}
-
-
-{% set componentName = "chip" %}
-{% set baseClass = prefix ~ componentName %}
+{% set base_class = "c-bolt-chip" %}
 
 {% if url %}
   {% set tag = "a" %}
@@ -17,19 +13,22 @@
   {% set tag = tag in tags ? tag: "span" %}
 {% endif %}
 
-
 {% set classes = [
-  baseClass
+  base_class
 ] %}
 
 
-{% if url %}
-  {% set attributes = attributes.setAttribute("href", url) %}
-{% endif %}
-
-
-<bolt-chip bolt-component>
-  <{{ tag }} {{ attributes.addClass(classes | raw) }}>
-    <span class="{{ "#{baseClass}__item-text" }}">{{ text }}</span>
-  </{{ tag }}>
+<bolt-chip
+  tag="{{ tag }}"
+  {% if url %} url="{{ url }}"{% endif %}
+  {{ attributes | without("class") }}
+>
+  {% if url %}
+    {% set attributes = attributes.setAttribute("href", url) %}
+  {% endif %}
+  <replace-with-grandchildren>
+    <{{ tag }} {{ attributes.addClass(classes) }}>
+      <span class="{{ "#{base_class}__item-text" }}">{{ text }}</span>
+    </{{ tag }}>
+  </replace-with-grandchildren>
 </bolt-chip>

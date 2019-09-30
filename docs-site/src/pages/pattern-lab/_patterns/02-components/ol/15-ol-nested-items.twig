@@ -1,0 +1,20 @@
+{% include "@bolt-components-ol/ol.twig" with {
+  "theme": theme,
+  "items" : [
+    "Do not include any data or information in your posts that are confidential!",
+    "Apply basic practices for collaborative work.",
+    "Be honest, respectful, trustworthy and helpful.",
+    "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.",
+    [
+      "Answer questions authoritatively and concisely.",
+      include("@bolt-components-ol/ol.twig", {
+        items: [
+          "Item 1",
+          "Item 2",
+          "Item 3",
+          "Item 4"
+        ]
+      })
+    ]
+  ]
+} %}

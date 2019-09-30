@@ -1,0 +1,14 @@
+{% set content %}
+  <video controls poster="/videos/poster.png">
+    <source src="/videos/devstories.webm" type="video/webm;codecs=&quot;vp8, vorbis&quot;">
+    <source src="/videos/devstories.mp4" type="video/mp4;codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+    <track src="/videos/devstories-en.vtt" label="English subtitles" kind="subtitles" srclang="en" default="">
+  </video>
+{% endset %}
+
+{% include "@bolt-components-ratio/ratio.twig" with {
+  children: content,
+  ratio: "640/360",
+  no_shadow: true,
+  no_css_vars: true,
+} only %}

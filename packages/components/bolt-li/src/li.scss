@@ -1,0 +1,115 @@
+@import '@bolt/core';
+
+// Local Variables
+$bolt-ul-bullet-size: 6px; // Using px here because I need to make a perfect circle without subpixel issues.
+
+// Local Variables
+$bolt-ol-bullet-size: $bolt-line-height--xsmall + rem;
+$bolt-ol-bullet-bg-color: rgba(bolt-color(gray), 0.2);
+
+.c-bolt-li {
+  box-sizing: border-box;
+  position: relative;
+  margin-bottom: bolt-spacing(xxsmall);
+  margin-left: bolt-spacing(medium); // was bolt-spacing(small) + bolt-spacing(xsmall) but this breaks down when mixing together ordered and unordered lists
+  @include bolt-padding(0);
+
+  &--last-item {
+    margin-bottom: 0;
+  }
+}
+
+// unordered-list specific list-item styles
+.c-bolt-li--ul-item {
+  &:before {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    top: calc(0.55rem + 1px);
+    left: bolt-spacing(small) * -2;
+    width: $bolt-ul-bullet-size;
+    height: $bolt-ul-bullet-size;
+    line-height: $bolt-ul-bullet-size;
+    border-radius: $bolt-ul-bullet-size;
+    border-width: $bolt-border-width;
+    border-style: $bolt-border-style;
+    border-color: bolt-theme(headline);
+    background-color: bolt-theme(headline);
+  }
+
+  &.c-bolt-li--level {
+    &-2 {
+      &:before {
+        border-radius: $bolt-ul-bullet-size;
+        background-color: transparent;
+      }
+    }
+
+    &-3 {
+      &:before {
+        border-radius: 0;
+        background-color: bolt-theme(headline);
+      }
+    }
+  }
+}
+
+.c-bolt-ul {
+  .c-bolt-ul {
+    .c-bolt-li--ul-item {
+      &:before {
+        border-radius: $bolt-ul-bullet-size;
+        background-color: transparent;
+      }
+    }
+
+    .c-bolt-ul {
+      .c-bolt-li--ul-item {
+        &:before {
+          border-radius: 0;
+          background-color: bolt-theme(headline);
+        }
+      }
+    }
+  }
+}
+
+ol,
+bolt-ol {
+  > bolt-li {
+    position: relative;
+
+    &:before {
+      @include bolt-font-size(xsmall);
+      @include bolt-font-weight(bold);
+      content: counter(li);
+      position: absolute;
+      top: .25em;
+      left: bolt-spacing(small) / 2;
+      counter-increment: li;
+    }
+  }
+}
+
+// ordered-list specific list-item styles
+.c-bolt-li--ol-item:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0.125em;
+  left: bolt-spacing(small) * -2;
+  width: $bolt-ol-bullet-size;
+  height: $bolt-ol-bullet-size;
+  color: bolt-theme(headline);
+  line-height: $bolt-ol-bullet-size;
+  border-radius: $bolt-ol-bullet-size;
+  background-color: $bolt-ol-bullet-bg-color;
+}
+
+// [Mai] This is an IE specific fix to center the number inside the circle. IE calculates line-height differently.
+@include bolt-ie11-only {
+  .c-bolt-li--ol-item:before {
+    line-height: $bolt-line-height--medium;
+  }
+}

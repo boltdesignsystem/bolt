@@ -1,56 +1,149 @@
-/**
-  * @define c-bolt-band
-  */
+/* ------------------------------------ *\
+   Band
+\* ------------------------------------ */
+
 @import '@bolt/core';
 
-.c-bolt-band {
-  display: block;
+// Custom element styles, some are neccessary for the video background
+// @todo: remove any unnecessary styles when `isBackgroundVideo` is removed in Bolt v3.0
+bolt-band {
+  display: flex;
+  width: 100%;
+  height: 100%;
   min-height: 0;
-  transition: min-height 0.3s ease; // don't transition band widths
+  max-height: none;
+  will-change: height, min-height;
+  transition: min-height $bolt-transition;
 }
 
+// Component styles
+.c-bolt-band {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  min-height: 0;
+  transition: min-height $bolt-transition; // Do not transition band widths
 
-.c-bolt-band__content {
-  position: relative; //Needed for absolutely positioned inner elements, like the background component.
+  @include bolt-ie11-only {
+    .is-expanded & {
+      min-height: 56.25vh;
+    }
+  }
 }
 
-
-.c-bolt-band--large {
-  @include bolt-padding-top(large);
-  @include bolt-padding-bottom(large);
-}
-
-.c-bolt-band--medium {
-  @include bolt-padding-top(medium);
-  @include bolt-padding-bottom(medium);
-}
-
-.c-bolt-band--small {
-  @include bolt-padding-top(small);
-  @include bolt-padding-bottom(small);
-}
-
-.c-bolt-band--xsmall {
-  @include bolt-padding-top(xsmall);
-  @include bolt-padding-bottom(xsmall);
-}
-
-.c-bolt-band--full {
+.c-bolt-band--full-bleed {
   @include bolt-full-bleed;
 }
 
+$bolt-band-sizes: (
+  'xsmall': bolt-v-spacing(small),
+  'small': bolt-v-spacing(medium),
+  'medium': bolt-v-spacing(large),
+  'large': bolt-v-spacing(xlarge),
+);
 
-bolt-band {
-  display: block;
-  display: flex; // So children increase in height
+@each $size in $bolt-band-sizes {
+  $size-name: nth($size, 1);
+  $size-value: nth($size, 2);
+
+  .c-bolt-band--#{$size-name} {
+    padding-top: $size-value;
+    padding-bottom: $size-value;
+
+    .c-bolt-band__content--pinned {
+      min-height: $size-value;
+    }
+
+    .c-bolt-band__content--pinned-upper {
+      margin-top: $size-value * -1;
+    }
+
+    .c-bolt-band__content--pinned-lower {
+      margin-bottom: $size-value * -1;
+    }
+  }
+}
+
+// Band content
+.c-bolt-band__content {
+  position: relative;
   width: 100%;
-  transition: min-height 0.3s ease;
-  max-height: none;
-  min-height: 0;
-  will-change: height, min-height;
-  height: 100%;
+}
 
-  &.is-expanded {
-    min-height: 56.25vh;
+.c-bolt-band__content--pinned {
+  display: flex;
+
+  > * {
+    width: 100%;
+  }
+
+  &-upper {
+    align-items: flex-start;
+  }
+
+  &-lower {
+    align-items: flex-end;
+  }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .c-bolt-band__content--pinned {
+    display: table; // Table display is used to make this work in IE.
+
+    > * {
+      display: table-cell;
+    }
+
+    &-upper {
+      > * {
+        vertical-align: top;
+      }
+    }
+
+    &-lower {
+      > * {
+        vertical-align: bottom;
+      }
+    }
+  }
+}
+
+// Items inside pinned content
+.c-bolt-band__pinned-items {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: bolt-v-spacing(small);
+  margin-right: bolt-spacing(small) * -1 / 2;
+  margin-bottom: bolt-v-spacing(small);
+  margin-left: bolt-spacing(small) * -1 / 2;
+}
+
+.c-bolt-band__pinned-item {
+  padding-top: bolt-v-spacing(small);
+  padding-right: bolt-spacing(small) / 2;
+  padding-bottom: bolt-v-spacing(small);
+  padding-left: bolt-spacing(small) / 2;
+  line-height: 1;
+
+  // Align modifiers are only needed if there's only one item.
+  &--start:only-child {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  &--end:only-child {
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  &--center:only-child {
+    margin-right: auto;
+    margin-left: auto;
   }
 }

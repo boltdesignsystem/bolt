@@ -13,9 +13,19 @@ export { html, render } from 'lit-html';
 
 export function withLitHtml(Base = HTMLElement) {
   return class extends withComponent(BoltBase(Base)) {
+    // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
+
     static props = {
       onClick: props.string,
       onClickTarget: props.string,
+      isServer: {
+        ...props.boolean,
+        ...{ default: bolt.isServer },
+      },
+      isClient: {
+        ...props.boolean,
+        ...{ default: bolt.isClient },
+      },
     };
 
     constructor(...args) {
@@ -24,11 +34,9 @@ export function withLitHtml(Base = HTMLElement) {
 
     renderStyles(styles) {
       if (styles) {
-        return html`
-          <style>
-            ${styles}
-          </style>
-        `;
+        // [1]
+        // prettier-ignore
+        return html`<style>${styles}</style>`;
       }
     }
 
@@ -37,6 +45,8 @@ export function withLitHtml(Base = HTMLElement) {
         this.slots[name] = [];
       }
 
+      // [1]
+      // prettier-ignore
       if (this.useShadow && hasNativeShadowDomSupport) {
         if (name === 'default') {
           return html`<slot />`;
@@ -45,13 +55,9 @@ export function withLitHtml(Base = HTMLElement) {
         }
       } else {
         if (name === 'default') {
-          return html`
-            ${this.slots.default}
-          `;
+          return html`${this.slots.default}`;
         } else if (this.slots[name] && this.slots[name] !== []) {
-          return html`
-            ${this.slots[name]}
-          `;
+          return html`${this.slots[name]}`;
         } else {
           return ''; // No slots assigned so don't return any markup.
           console.log(`The ${name} slot doesn't appear to exist...`);

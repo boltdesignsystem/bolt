@@ -1,0 +1,115 @@
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as image_demo %}
+
+{% set image_demo_basic %}
+<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber"></bolt-image>
+{% endset %}
+
+{% set image_demo_responsive %}
+<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" srcset="/images/placeholders/tout-4x3-climber-320.jpg 320w" sizes="auto" alt="A Rock Climber"></bolt-image>
+{% endset %}
+
+{% set image_demo_ratio %}
+<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" ratio="4/3"></bolt-image>
+{% endset %}
+
+{% set image_demo_lazy %}
+<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" no-lazy></bolt-image>
+{% endset %}
+
+{% set image_demo_placeholder %}
+<bolt-image src="/images/placeholders/tout-4x3-climber.jpg" alt="A Rock Climber" ratio="4/3" placeholder-color="#D3D3D3" placeholder-image="http://placehold.it/400x300"></bolt-image>
+{% endset %}
+
+
+
+<div class="o-bolt-wrapper">
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Web Component Usage
+    </bolt-text>
+    <bolt-text>
+      Bolt Image is a web component that renders a semantic <bolt-code-snippet display="inline" lang="html">&lt;img&gt;</bolt-code-snippet> tag with Bolt styles. All that's required to make a <bolt-code-snippet display="inline" lang="html">&lt;bolt-image&gt;</bolt-code-snippet> are the <bolt-code-snippet display="inline" lang="html">src</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">alt</bolt-code-snippet> attributes.
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
+          {{ image_demo_basic }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include image_demo.code_example(image_demo_basic, true) %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Responsize Images
+    </bolt-text>
+    <bolt-text>
+      Optionally, pass <bolt-code-snippet display="inline" lang="html">srcset</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">sizes</bolt-code-snippet> to <bolt-code-snippet display="inline" lang="html">&lt;bolt-image&gt;</bolt-code-snippet> for responsive images.
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
+          {{ image_demo_responsive }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include image_demo.code_example(image_demo_responsive, true) %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Setting the Aspect-ratio
+    </bolt-text>
+    <bolt-text>
+      Setting the aspect ratio on an image provides a placeholder while the image is loading. Do this by adding the <bolt-code-snippet display="inline" lang="html">ratio</bolt-code-snippet> attribute with the image's aspect-ratio as slash-separated values, e.g. "4/3" or "400/300".
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
+          {{ image_demo_ratio }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include image_demo.code_example(image_demo_ratio, true) %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Lazyloading
+    </bolt-text>
+    <bolt-text>
+      Lazyloading is on by default. Turn it off with the <bolt-code-snippet display="inline" lang="html">no-lazy</bolt-code-snippet> attribute.
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
+          {{ image_demo_lazy }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include image_demo.code_example(image_demo_lazy, true) %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-text headline>
+      Custom Placeholder
+    </bolt-text>
+    <bolt-text>
+      Placeholder image and color options can be set via the attributes <bolt-code-snippet display="inline" lang="html">placeholder-image</bolt-code-snippet> and <bolt-code-snippet display="inline" lang="html">placeholder-color</bolt-code-snippet> where "image" is an image path and "color" is a valid CSS background-color. Note: the <bolt-code-snippet display="inline" lang="html">ratio</bolt-code-snippet> attribute must be provided for placholder image or color to display.
+    </bolt-text>
+    <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@large" %}
+          {{ image_demo_placeholder }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+    {% include image_demo.code_example(image_demo_placeholder, true) %}
+  </div>
+</div>

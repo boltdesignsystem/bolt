@@ -1,0 +1,22 @@
+.c-bolt-carousel--offset-before.c-bolt-carousel--offset-after {
+  width: calc(100% + 10px);
+  max-width: calc(100% + 10px);
+  margin-right: -5px;
+  margin-left: -5px;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.c-bolt-carousel--offset-before:not(.c-bolt-carousel--offset-after),
+.c-bolt-carousel--offset-after:not(.c-bolt-carousel--offset-before) {
+  width: calc(100% + 5px);
+  max-width: calc(100% + 5px);
+}
+
+.c-bolt-carousel--offset-before:not(.c-bolt-carousel--offset-after) {
+  margin-left: -5px;
+}
+
+.c-bolt-carousel--offset-after:not(.c-bolt-carousel--offset-before) {
+  margin-right: -5px;
+}

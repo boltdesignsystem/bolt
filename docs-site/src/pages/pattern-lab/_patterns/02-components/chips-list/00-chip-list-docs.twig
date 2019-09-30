@@ -1,0 +1,23 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-chip-list/chip-list.twig" with {
+  items: [
+    {
+      text: "Chip 1",
+      url: "#!"
+    },
+    {
+      text: "Chip 2",
+      url: "#!"
+    },
+    {
+      text: "Chip 3",
+      url: "#!"
+    }
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "chip-list",
+  usage: usage
+} only %}

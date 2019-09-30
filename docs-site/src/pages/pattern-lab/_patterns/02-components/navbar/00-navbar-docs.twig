@@ -1,0 +1,62 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-navbar/navbar.twig" with {
+  title: {
+    tag: "h2",
+    text: "Title Text",
+    icon: {
+      name: "icon-name"
+    }
+  },
+  links: [
+    {
+      text: "Link 1 Text",
+      url: "#!"
+    },
+    {
+      text: "Link 2 Text",
+      url: "#!"
+    },
+    {
+      text: "Link 3 Text",
+      url: "#!"
+    }
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "navbar",
+  usage: usage,
+  schemaForm: {
+    template: '@bolt-components-navbar/navbar.twig',
+    layout: "horizontal",
+    initialData: {
+      width: "auto",
+      "title": {
+        "tag": "h2",
+        "text": "Title Text",
+        "icon": {
+          "name": "marketing-gray"
+        }
+      },
+      "links": [
+        {
+          "text": "Features",
+          "url": "#!"
+        },
+        {
+          "text": "Resources",
+          "url": "#!"
+        },
+        {
+          "text": "Industry Apps",
+          "url": "#!"
+        },
+        {
+          "text": "Customer Success",
+          "url": "#!"
+        }
+      ]
+    },
+  },
+} only %}

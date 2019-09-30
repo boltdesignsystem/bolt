@@ -82,7 +82,7 @@ function taskStart(task) {
 ===
 Task Started: ${task}
 VVV
-  
+
   `),
   );
 }
@@ -106,39 +106,33 @@ Task Done: ${task}
  */
 function intro() {
   // @TODO: How best to pull in .scss color data export to reference branch colors below?
-  const b = chalk.hex('#545DA6'); // indigo, light
+  const i = chalk.hex('#545DA6'); // indigo, light
   const y = chalk.hex('#ffcc4d'); // yellow, base
+  const o = chalk.hex('#E84B17');
+  const t = chalk.hex('#009999');
+  const w = chalk.hex('#FFFFFF');
 
-  const CLI_TITLE = chalk.bold.underline('Bolt-CLI');
-  const CLI_DESCRIPTION = 'Welcome to the Bolt CLI ⚡️  Have fun!';
+  const CLI_TITLE = chalk.bold.underline('Bolt Design System CLI');
   const CLI_USAGE = 'Usage: `bolt <command> [options ...]`';
-  const HELP_USAGE = 'Help: `bolt --help` or `bolt <command> --help`';
+  const HELP_USAGE = 'Help: `bolt -h` or `bolt <command> --help`';
 
-  // const HELP_HEADER_BACKUP = `
-  //     /˜˜˜˜˜˜˜˜˜˜˜˜\
-  //    / /˜˜˜˜/|˜˜˜˜\ \
-  //   / /    / |     \ \
-  //  / /    /  |____  \ \
-  // / /    /       /   \ \
-  // \ \   /____   /    / /
-  //  \ \      |  /    / /
-  //   \ \     | /    / /
-  //    \ \____|/____/ /
-  //     \____________/
-  // `
-
-  // ^ Colorized + partially filled in version of logo above
   const HELP_HEADER = `
-    ${b('///////|\\\\\\\\\\\\')}
-   ${b('///˜˜˜˜')}${y('/|')}${b('˜˜˜˜\\\\\\')}
-  ${b('///    ')}${y('//|')}${b('     \\\\\\')}     ${CLI_TITLE}
- ${b('///    ')}${y('///|____')}${b('  \\\\\\')}
-${b('///    ')}${y('/////////')}${b('   \\\\\\')}   ${CLI_DESCRIPTION}
-${b('\\\\\\   ')}${y('/////////')}${b('    ///')}
- ${b('\\\\\\      ')}${y('|///')}${b('    ///')}    ${CLI_USAGE}
-  ${b('\\\\\\     ')}${y('|//')}${b('    ///')}     ${HELP_USAGE}
-   ${b('\\\\\\____')}${y('|/')}${b('____///')}
-    ${b('\\\\\\\\\\\\|///////')}
+        ${o('__________')}${y('___________')}
+       ${o('/ttttttt|')}  ${y('|BCCCCCCCL;\\')}
+      ${o('/;ttttttt|')}  ${y('|CCCCCCCCLi.\\')}
+     ${o('/,iiiiiiii|')}  ${y('|11111111111:\\')}
+    ${o('/_______')}  ${y('_________')}  ${w('_______\\')}
+   ${o('/,1ttttt|')} ${y('|fCCCCCCCC|')} ${w('|C0000C:\\')}     ${CLI_TITLE}
+  ${o('/:ttttttt|')} ${y('|fCCCCCCCC|')} ${w('|888888Gi\\')}
+ ${o('/:::::::::|')} ${y('|;;;;;;;;;|')} ${w('|11111111i\\')}   ${CLI_USAGE}
+ ${i('\\:;;;;;;;;;;;|')} ${t('|::::::::::::::::::/')}           ${HELP_USAGE}
+  ${i('\\:tfffffffff|')} ${t('|ttttttttttttttt1:/')}
+   ${i('\\,1ffffffft|')} ${t('|tttttttttttttti,/')}
+    ${i('\\¯¯¯¯¯¯¯¯¯¯')}  ${t('¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯/')}
+     ${i('\\,iiiiiiiiiiii|')} ${t('|iiiiiii1,/')}
+      ${i('\\.;ffffffffff|')} ${t('|ttttttt;/')}
+       ${i('\\:tfffffffff|')} ${t('|ttttt1:/')}
+        ${i('¯¯¯¯¯¯¯¯¯¯¯¯')}${t('¯¯¯¯¯¯¯¯¯')}
 `;
 
   info(HELP_HEADER);

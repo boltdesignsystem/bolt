@@ -1,0 +1,32 @@
+{% set attributes = create_attribute(attributes | default({})) %}
+
+{% set ratioW = aspectRatioWidth ?? ratio|split("/")[0] ?? "1" %}
+{% set ratioH = aspectRatioHeight ?? ratio|split("/")[1] ?? "1" %}
+{% set gcd = gcd(ratioW, ratioH) %}
+
+{% if ratioH and ratioW %}
+  {% set ratioH = ratioH / gcd %}
+  {% set ratioW = ratioW / gcd %}
+
+  {% set attributes = attributes.setAttribute("ratio", "#{ratioW}/#{ratioH}") %}
+  {% set inline_styles = [
+    "padding-bottom: calc((#{ratioH} / #{ratioW}) * 100%);",
+    "--aspect-ratio: #{ratioW / ratioH};",
+  ] %}
+{% endif %}
+
+{% if no_shadow %}
+  {% set attributes = attributes.setAttribute("no-shadow", "") %}
+{% endif %}
+
+{% if no_css_vars %}
+  {% set attributes = attributes.setAttribute("no-css-vars", "") %}
+{% endif %}
+
+<bolt-ratio {{ attributes }}>
+  <replace-with-children class="c-bolt-ratio" style="{{ inline_styles | join(" ") }}">
+    {% block ratio_content %}
+      {{ children }}
+    {% endblock %}
+  </replace-with-children>
+</bolt-ratio>

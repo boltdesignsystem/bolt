@@ -44,17 +44,17 @@ The share component provides the user a visual queue to share the content with r
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Bolt Design System: Page Title" />
 <meta property="og:description" content="Sample description" />
-<meta property="og:image" content="https://bolt-design-system.com/images/500x500-480.jpg" />
+<meta property="og:image" content="https://boltdesignsystem.com/images/500x500-480.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="480" />
 <meta property="og:image:height" content="480" />
-<meta property="og:url" content="https://bolt-design-system.com/some-page-title-here" />
+<meta property="og:url" content="https://boltdesignsystem.com/some-page-title-here" />
 <meta property="og:site_name" content="Bolt Design System" />
 <!-- Twitter specific tags -->
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Bolt Design System: Page Title" />
 <meta name="twitter:description" content="Sample description" />
-<meta name="twitter:image" content="https://bolt-design-system.com/images/500x500-480.jpg" />
+<meta name="twitter:image" content="https://boltdesignsystem.com/images/500x500-480.jpg" />
 <meta name="twitter:site" content="@pega" />
 ```
 

@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test the Bolt Twig Renderer API renders attributes on the button component correctly 1`] = `
+<bolt-button size="medium"
+             color="primary"
+             width="auto"
+             border-radius="regular"
+             align="center"
+             transform="none"
+             class="u-bolt-margin-bottom-large"
+>
+  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
+          is="shadow-root"
+  >
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__item">
+      Hello world!
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+  </button>
+</bolt-button>
+`;
+
+exports[`Test the Bolt Twig Renderer API renders the button component correctly 1`] = `
+<bolt-button size="medium"
+             color="primary"
+             width="auto"
+             border-radius="regular"
+             align="center"
+             transform="none"
+>
+  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--primary c-bolt-button--border-radius-regular c-bolt-button--center"
+          is="shadow-root"
+  >
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__item">
+      Hello world!2
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+  </button>
+</bolt-button>
+`;
+
+exports[`Test the Bolt Twig Renderer API renders the secondary button correctly 1`] = `
+<bolt-button size="medium"
+             color="secondary"
+             width="auto"
+             border-radius="regular"
+             align="center"
+             transform="none"
+>
+  <button class="c-bolt-button c-bolt-button--medium c-bolt-button--secondary c-bolt-button--border-radius-regular c-bolt-button--center"
+          is="shadow-root"
+  >
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__item">
+      Secondary Button!
+    </replace-with-children>
+    <replace-with-children class="c-bolt-button__icon is-empty">
+    </replace-with-children>
+  </button>
+</bolt-button>
+`;

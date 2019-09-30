@@ -31,7 +31,7 @@
     {% endfor %}
 
   {% if content %}
-    {% include "@bolt/text.twig" with {
+    {% include "@bolt-components-headline/text.twig" with {
       text: content | striptags,
       tag: "p"
     } only %}

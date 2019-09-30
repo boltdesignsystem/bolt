@@ -1,0 +1,61 @@
+/*------------------------------------*\
+    #LOGO
+\*------------------------------------*/
+
+pl-logo {
+  // max-width: 2rem;
+  max-width: 7rem;
+  align-self: center;
+  // margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 100;
+  
+  @media all and (min-width: $pl-bp-med) {
+    .pl-c-body--theme-sidebar & {
+      // box-shadow: 0 2px 5px rgba(0,0,0,.1);
+      max-width: none;
+      width: 7rem;
+      padding: 0.5rem;
+    }
+  }
+}
+
+.pl-c-logo {
+  width: 7rem;
+  padding: 0.5rem;
+
+  @media all and (min-width: $pl-bp-med) {
+    .pl-c-body--theme-sidebar & {
+      width: 7rem;
+    }
+  }
+  outline: 0;
+  // margin: 0.5rem auto;
+  // @media all and (min-width: $pl-bp-med) {
+  //   .pl-c-body--theme-sidebar & {
+  //     width: 100%;
+  //   }
+  // }
+  // max-width: 2rem;
+  // margin: 0 1rem;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+
+  &:focus {
+    outline: 1px dotted $pl-color-gray-50;
+    outline-offset: -1px;
+  }
+}
+
+.pl-c-logo__img {
+  display: block;
+  height: auto;
+  width: 100%;
+}

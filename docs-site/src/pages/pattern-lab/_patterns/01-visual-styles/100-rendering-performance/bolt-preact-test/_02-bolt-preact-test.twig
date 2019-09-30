@@ -1,0 +1,28 @@
+<h1>Bolt - Preact</h1>
+
+<script>
+  function toggleThrottledPreactRendering(){
+    console.log('toggleThrottledRendering');
+
+    var element = document.querySelector('.js-preact-test');
+    var buttonTriggle = document.querySelector('.js-preact-test-button');
+
+    if (element.hasAttribute('throttle')){
+      element.removeAttribute('throttle');
+      buttonTriggle.textContent = 'Enable Preact Throttling';
+    } else {
+      element.setAttribute('throttle', '');
+      buttonTriggle.textContent = 'Disable Preact Throttling';
+    }
+  };
+
+  window.toggleThrottledPreactRendering = toggleThrottledPreactRendering;
+</script>
+
+
+<bolt-button on-click="toggleThrottledPreactRendering" class="js-preact-test-button">Enable Preact Throttling</bolt-button>
+
+<bolt-preact-test class="js-preact-test"></bolt-preact-test>
+
+
+

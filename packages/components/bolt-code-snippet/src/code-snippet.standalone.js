@@ -32,10 +32,15 @@ class BoltCodeSnippetClass extends withPreact() {
     syntax: props.string,
   };
 
-  highlightHTML(code, lang) {
-    let highlightedHTML = Prism.highlight(code, Prism.languages[lang]);
+  replaceEntities(string) {
+    return string
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>');
+  }
 
-    return highlightedHTML;
+  highlightHTML(code, lang) {
+    return Prism.highlight(this.replaceEntities(code), Prism.languages[lang]);
   }
 
   constructor(self) {

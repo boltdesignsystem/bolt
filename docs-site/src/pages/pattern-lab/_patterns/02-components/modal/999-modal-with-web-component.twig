@@ -1,0 +1,155 @@
+{% macro code_example(code) %}
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+{% endmacro %}
+
+{% import _self as modal_code %}
+
+
+      "on-click": "show",
+      "on-click-target": "js-modal-123"
+
+{% set modal_demo %}
+<bolt-button on-click="show" on-click-target="js-bolt-modal-demo">
+  Open Modal
+</bolt-button>
+<bolt-modal class="js-bolt-modal-demo">
+  This is a modal.
+</bolt-modal>
+{% endset %}
+
+{% set modal_basic_demo %}
+<bolt-button on-click="show" on-click-target="js-bolt-modal-basic-demo">
+  Open Modal
+</bolt-button>
+<bolt-modal class="js-bolt-modal-basic-demo">
+  <bolt-text slot="header">This is the header</bolt-text>
+  <bolt-text>This is the body (default).</bolt-text>
+  <bolt-text slot="footer">This is the footer</bolt-text>
+</bolt-modal>
+{% endset %}
+
+{% set modal_trigger_demo %}
+<bolt-button on-click="show" on-click-target="js-bolt-modal-trigger-demo">
+  Open Modal
+</bolt-button>
+<bolt-modal class="js-bolt-modal-trigger-demo">
+  <bolt-text>This modal has a close button along with the content.</bolt-text>
+  <bolt-button on-click="hide">Close Modal</bolt-button>
+</bolt-modal>
+{% endset %}
+
+{% set modal_advanced_demo %}
+<bolt-button on-click="show" on-click-target="js-bolt-modal-advanced-demo">
+  Open Modal
+</bolt-button>
+<bolt-modal width="optimal" spacing="none" theme="none" scroll="overall" class="js-bolt-modal-advanced-demo">
+  <bolt-image src="/images/content/backgrounds/background-robotics-customer-service.jpg" alt="This is an image"></bolt-image>
+</bolt-modal>
+{% endset %}
+
+{% set modal_ssr_demo_noshadow %}
+{% filter bolt_ssr %}
+<bolt-button on-click="show" on-click-target="js-bolt-modal-ssr-demo-noshadow">
+  Open Modal
+</bolt-button>
+<bolt-modal class="js-bolt-modal-ssr-demo-noshadow">
+  This is a modal.
+</bolt-modal>
+{% endfilter %}
+{% endset %}
+
+{% set modal_ssr_demo %}
+&lbrace;&percnt; filter bolt_ssr &percnt;&rbrace;
+<bolt-button on-click="show" on-click-target="js-bolt-modal-ssr-demo">
+  Open Modal
+</bolt-button>
+<bolt-modal class="js-bolt-modal-ssr-demo">
+  This is a modal.
+</bolt-modal>
+&lbrace;&percnt; endfilter &percnt;&rbrace;
+{% endset %}
+
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Modal is a web component. You can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet> in the markup to make it render. In the following examples, we use <bolt-code-snippet display="inline" lang="html">onclick</bolt-code-snippet> to trigger the modal. However, the same options shown on the <bolt-link url="/pattern-lab/?p=components-modal-trigger-variations">Trigger Options page</bolt-link> are also available on the web component.
+  </bolt-text>
+  {% include modal_code.code_example(modal_demo) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Basic Usage
+  </bolt-text>
+  <bolt-text>
+    The modal container has 3 sections (slots) for passing content, <bolt-code-snippet display="inline" lang="html">header</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">default</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">footer</bolt-code-snippet>. To pass content to either the header or footer, <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> must be defined.
+  </bolt-text>
+  {% include modal_code.code_example(modal_basic_demo) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Trigger Usage
+  </bolt-text>
+  <bolt-text>
+    When using an open button that comes right before a <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet>, set <bolt-code-snippet display="inline" lang="html">onclick</bolt-code-snippet> to <bolt-code-snippet display="inline" lang="html">this.nextElementSibling.show()</bolt-code-snippet>.
+  </bolt-text>
+  </bolt-ol>
+  <bolt-text>
+    When using a close button that's inside a <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet>, set <bolt-code-snippet display="inline" lang="html">onclick</bolt-code-snippet> to <bolt-code-snippet display="inline" lang="html">this.closest('bolt-modal').hide()</bolt-code-snippet>.
+  </bolt-text>
+  {% include modal_code.code_example(modal_trigger_demo) %}
+</div>
+
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Advanced Usage
+  </bolt-text>
+  <bolt-text>
+    The web component has all the options shown in the schema table. You can define each prop on the <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet> element. Use unique combinations to customize a modal to your liking.
+  </bolt-text>
+  {% include modal_code.code_example(modal_advanced_demo) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Server-side Rendered Web Components (Experimental)
+  </bolt-text>
+  <bolt-text>
+    The Modal component, among many other web components in Bolt, will support server-side rendering via the new upcoming <bolt-code-snippet display="inline" lang="twig">{% verbatim %}{% filter bolt_ssr %}{% endverbatim %}</bolt-code-snippet> custom Twig filter. Check out the docs on <a href="https://master.boltdesignsystem.com/docs/development/server-side-rendering.html">server-side rendering</a> for information!
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ modal_ssr_demo_noshadow }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ modal_ssr_demo | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+</div>
+

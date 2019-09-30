@@ -1,37 +1,11 @@
 {
-  "static": {
-    "trailingSlash": true,
-    "cleanUrls": false,
-    "directoryListing": false,
-    "rewrites": [
-      {
-        "source": "/",
-        "destination": "/index.html"
-      },
-      {
-        "source": "/pattern-lab",
-        "destination": "/pattern-lab/index.html"
-      },
-      {
-        "source": "/pattern-lab/splash-screen/",
-        "destination": "/pattern-lab/splash-screen.html"
-      },
-      {
-        "source": "/docs",
-        "destination": "/docs/getting-started/index.html"
-      },
-      {
-        "source": "/docs/",
-        "destination": "/docs/getting-started/index.html"
-      },
-      {
-        "source": "/docs/index.html",
-        "destination": "/docs/getting-started/index.html"
-      },
-      {
-        "source": "/favicon.ico",
-        "destination": "/pattern-lab/favicons/favicon.ico"
-      }
-    ]
-  }
+  "version": 2,
+  "scope": "boltdesignsystem",
+  "name": "boltdesignsystem",
+  "builds": [
+    { "src": "www/**", "use": "@now/static" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "www/$1" }
+  ]
 }

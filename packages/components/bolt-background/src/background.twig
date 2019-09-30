@@ -55,12 +55,24 @@
         {% for item in contentItems %}
 
           {% set itemAttributes = item.pattern ~ "Attributes" %}
+
+          {# todo: in v3.0 remove reference to Video, no longer supported #}
+          {# Image expects "ratio" to be passed as string, Video expects boolean #}
+          {% set ratioValue = item.pattern == "image" ? "none" : false %}
+
+          {% if item.pattern != "image" %}
+            {% set item = item | merge({
+              (itemAttributes): {
+                class: ["c-bolt-background__#{item.pattern}"]
+              }
+            }) %}
+          {% endif %}
+
+          {# todo: in v3.0 nix the pattern_template pattern? #}
           {% include pattern_template(item.pattern) with item | merge({
-            (itemAttributes): {
-              class: ["c-bolt-background__#{item.pattern}"]
-            },
-            ratio: false,
-            lazyload: item.lazyload ? item.lazyload : true
+            ratio: ratioValue,
+            lazyload: item.lazyload ?? true,
+            cover: true
           }) only %}
         {% endfor %}
       {% endif %}

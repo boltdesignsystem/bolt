@@ -1,15 +1,26 @@
+@import '@bolt/core';
+
 /* ------------------------------------ *\
    Figure
 \* ------------------------------------ */
 
-/**
-  * 1. Change the default custom element layout from inline to block to fix an IE 11 layout
-  *  issue with the vertical alignment of the flag object's `figure` not being vertically
-  *  aligned as expected (internally the flag object uses a nested figure)
-  */
+// Register Custom Block Element
+@include bolt-custom-element('bolt-figure', block, medium);
 
-@import '@bolt/core';
+.c-bolt-figure {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
 
-bolt-figure {
-  display: block; /* [1] */
+  display: block;
+}
+
+.c-bolt-figure__media {
+  display: block;
+}
+
+.c-bolt-figure__caption {
+  @include bolt-padding-top(xsmall);
+  @include bolt-font-size(xsmall);
+
+  display: block;
 }

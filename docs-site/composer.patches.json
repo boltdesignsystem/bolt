@@ -1,0 +1,23 @@
+{
+  "patches": {
+    "pattern-lab/core": {
+      "[FIX] Fix Psuedo Pattern Template Paths If Organized In Different Folder From Base Template. Addresses https://github.com/drupal-pattern-lab/patternlab-php-core/issues/22": ".patches/fixPsuedoPatternTemplatePaths.patch",
+      "[FEATURE] Allow markdown files to specify associated pattern + also includes compiling embedded templates in .md files": ".patches/allowMarkdownFilesToSpecifyAssociatedPattern.patch",
+      "[FIX] Allow PL to Ignore Certain Folders like Node Modules.": ".patches/ignoreCertainFolders.patch",
+      "[FEATURE] Allow default Pattern Data configuration rules to be disabled. Also adds ability to add on extra Pattern Data rules to customize and extend default Pattern Lab behavior.": ".patches/configurablePatternDataRules.patch",
+      "[FEATURE] Allow regenerateion of Styleguidekit to be conditional based on config.yml flag. Set `regenerateStyleguidekit` to 'false' to BYO index.html file and not write to the public folder": ".patches/dont-regenerate-styleguidekit.patch",
+      "[FEATURE] Add named exports to JS file outputted": ".patches/exported-data.patch",
+      "[FEATURE] Export all global data (ex. nav links) to a JS file.": ".patches/exported-data-all.patch",
+      "[FEATURE: --data-only] Adds a new --data-only command to Pattern Lab. (1 of 4)": ".patches/add-data-only-command--builder.patch",
+      "[FEATURE: --data-only] Adds a new --data-only command to Pattern Lab. (2 of 4)": ".patches/add-data-only-command--generator-command.patch",
+      "[FEATURE: --data-only] Adds a new --data-only command to Pattern Lab. (3 of 4)": ".patches/add-data-only-command--generator.patch",
+      "[FEATURE: --data-only] Adds a new --data-only command to Pattern Lab. (4 of 4)": ".patches/add-data-only-command--pattern-data.patch"
+    },
+    "pattern-lab/patternengine-twig": {
+      "[FEATURE] Add Twig Globals to Pattern Engine.": ".patches/addTwigGlobals.patch"
+    },
+    "basaltinc/twig-tools": {
+      "Add schema error reporting configuration": ".patches/configurableSchemaErrorReporting.patch"
+    }
+  }
+}

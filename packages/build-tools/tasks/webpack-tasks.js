@@ -1,11 +1,20 @@
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
+const express = require('express');
+const browserSync = require('browser-sync').create();
+const webpackDevMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
 const chalk = require('chalk');
+const opn = require('better-opn');
+const { handleRequest } = require('@bolt/api');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { boltWebpackMessages } = require('@bolt/build-utils/webpack-helpers');
+const events = require('@bolt/build-utils/events');
 const createWebpackConfig = require('../create-webpack-config');
-const { getConfig } = require('../utils/config-store');
-const { boltWebpackMessages } = require('../utils/webpack-helpers');
+const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
 
 let boltBuildConfig;
+let browserSyncIsRunning = false;
+const app = express();
 
 async function compile(customWebpackConfig) {
   boltBuildConfig = boltBuildConfig || (await getConfig());
@@ -46,49 +55,115 @@ watch.description = 'Watch & fast re-compile Webpack';
 watch.displayName = 'webpack:watch';
 
 async function server(customWebpackConfig) {
-  boltBuildConfig = boltBuildConfig || (await getConfig());
+  const boltBuildConfig = await getConfig();
+  const useHotMiddleware = !(
+    Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1
+  );
+
   const webpackConfig =
     customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
 
-  return new Promise((resolve, reject) => {
-    const compiler = boltWebpackMessages(webpack(webpackConfig));
+  const browserSyncFileToWatch = [
+    `${boltBuildConfig.wwwDir}/**/*.css`,
+    `${boltBuildConfig.wwwDir}/**/*.html`,
+    `!**/node_modules/**/*`,
+    `!**/vendor/**/*`,
+  ];
 
-    // Add Hot Module Reloading scripts to Webpack entrypoint
-    if (webpackConfig[0].devServer.hot) {
-      webpackConfig[0].entry['bolt-global'].unshift(
-        `webpack-dev-server/client?http://localhost:${
-          webpackConfig[0].devServer.port
-        }/`,
-        'webpack/hot/dev-server',
+  const isUsingInternalServer =
+    typeof boltBuildConfig.proxyHostname === 'undefined' &&
+    typeof boltBuildConfig.proxyPort === 'undefined';
+
+  if (useHotMiddleware === false || isUsingInternalServer) {
+    browserSyncFileToWatch.push(`${boltBuildConfig.wwwDir}/**/*.js`);
+  }
+
+  return new Promise((resolve, reject) => {
+    if (!browserSyncIsRunning) {
+      browserSync.init(
+        {
+          proxy: !isUsingInternalServer
+            ? `${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`
+            : `${boltBuildConfig.hostname}:${boltBuildConfig.port}`,
+          logLevel: 'info',
+          ui: false,
+          notify: false,
+          open: false,
+          logFileChanges: false,
+          reloadOnRestart: true,
+          watchOptions: {
+            ignoreInitial: true,
+          },
+          port: boltBuildConfig.port,
+          files: browserSyncFileToWatch,
+        },
+        function(err, bs) {
+          browserSyncIsRunning = true; // so we only spin this up once Webpack has finished up initially
+
+          if (boltBuildConfig.openServerAtStart) {
+            opn(`http://${boltBuildConfig.hostname}:${boltBuildConfig.port}`);
+          }
+
+          if (!isUsingInternalServer) {
+            console.log(
+              chalk.green(
+                `\nBrowsersync is now proxying ${chalk.underline(
+                  `http://${boltBuildConfig.proxyHostname}:${boltBuildConfig.proxyPort}`,
+                )}.\nOpen ${chalk.underline(
+                  `http://${boltBuildConfig.hostname}:${boltBuildConfig.port}`,
+                )} to have your locally served pages automatically reload when HTML, CSS, and Javascript files are updated. \n`,
+              ),
+            );
+          }
+        },
       );
     }
 
-    const server = new WebpackDevServer(compiler, webpackConfig[0].devServer);
+    const compiler = boltWebpackMessages(webpack(webpackConfig));
 
-    server.listen(boltBuildConfig.port, '0.0.0.0', err => {
-      const localLabel = chalk.bold('Local: ');
-      const localAddress = chalk.magenta(
-        `http://localhost:${boltBuildConfig.port}/${boltBuildConfig.startPath}`,
-      );
+    compiler.hooks.done.tap('AfterDonePlugin', (params, callback) => {
+      events.emit('webpack-dev-server:compiled');
+    });
 
-      const externalLabel = chalk.bold('External: ');
-      const externalAddress = chalk.magenta(
-        `http://${boltBuildConfig.ip}:${boltBuildConfig.port}/${
-          boltBuildConfig.startPath
+    app.use(
+      webpackDevServerWaitpage(compiler, {
+        proxyHeader: boltBuildConfig.proxyHeader,
+        redirectPath: `${boltBuildConfig.proxyHostname}:${
+          boltBuildConfig.proxyPort
+        }/${
+          boltBuildConfig.startPath !== '/' ? boltBuildConfig.startPath : ''
         }`,
+      }),
+    );
+    app.use(webpackDevMiddleware(compiler, webpackConfig[0].devServer));
+
+    // Don't use hot middleware when there's more than 1 language setup in the config -- workaround to prevent infinite loops when doing local dev
+    if (useHotMiddleware) {
+      app.use(
+        webpackHotMiddleware(compiler, {
+          log: false,
+          quiet: true,
+          noInfo: true,
+          logLevel: 'silent',
+          reload: true,
+        }),
       );
-
-      const lineBreak = chalk.gray(
-        '--------------------------------------------',
+    } else {
+      console.log(
+        chalk.yellow(
+          '\n⚠️  Warning: disabling webpackHotMiddleware (HMR) to avoid infinite loops... falling back to a simple page reload. \n   To re-enable HMR, update your .boltrc config to only compile for one language at a time while doing local dev work.\n',
+        ),
       );
+    }
 
-      console.log(`\n${lineBreak}`);
-      console.log(`${localLabel}${localAddress}`);
-      console.log(`${externalLabel}${externalAddress}`);
-      console.log(`${lineBreak}`);
+    app.use(express.static(boltBuildConfig.wwwDir));
+    // app.use('/api', handleRequest); // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
 
+    app.listen(boltBuildConfig.port, boltBuildConfig.hostname, function onStart(
+      err,
+    ) {
       if (err) {
-        reject(err);
+        console.log(err);
       }
     });
   });

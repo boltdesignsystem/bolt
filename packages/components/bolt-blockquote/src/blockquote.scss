@@ -1,46 +1,3 @@
-/* ------------------------------------ *\
-   Blockquote
-\* ------------------------------------ */
-
-// Sample Usage
-// <bolt-blockquote bolt-component>
-//   <blockquote class="c-bolt-blockquote c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical">
-//     <div class="c-bolt-blockquote__logo">
-//       <bolt-logo>
-//         ...
-//       </bolt-logo>
-//     </div>
-//     <div class="c-bolt-blockquote__quote">
-//       <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-//         <span class="c-bolt-text__text">
-//           <p>This is the quote.</p>
-//         </span>
-//       </div>
-//     </div>
-//     <footer class="c-bolt-blockquote__footer">
-//       <div class="c-bolt-blockquote__footer-item">
-//         <div class="c-bolt-blockquote__image">
-//           <bolt-image>
-//             ...
-//           </bolt-image>
-//         </div>
-//       </div>
-//       <div class="c-bolt-blockquote__footer-item">
-//         <cite class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall">
-//           <span class="c-bolt-text__text">
-//             Author Name
-//           </span>
-//         </cite>
-//         <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
-//           <span class="c-bolt-text__text">
-//             Author Title
-//           </span>
-//         </p>
-//       </div>
-//     </footer>
-//   </blockquote>
-// </bolt-blockquote>
-
 @import '@bolt/core';
 
 // Local Variables
@@ -53,10 +10,8 @@ $bolt-blockquote-image-border-style: $bolt-border-style;
 $bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
 $bolt-blockquote-image-size: 4rem;
 
-
 // Register Custom Block Element
 @include bolt-custom-element('bolt-blockquote', block, medium);
-
 
 // Blockquote container
 .c-bolt-blockquote {
@@ -64,10 +19,10 @@ $bolt-blockquote-image-size: 4rem;
 
   &:before,
   &:after {
-    width: 100%;
-    height: $bolt-blockquote-border-width;
-    max-width: 300px;
     content: '';
+    width: 100%;
+    max-width: 300px;
+    height: $bolt-blockquote-border-width;
     vertical-align: top;
     background-color: $bolt-blockquote-border-color;
   }
@@ -81,13 +36,11 @@ $bolt-blockquote-image-size: 4rem;
   }
 }
 
-
 // Logo
 .c-bolt-blockquote__logo {
   @include bolt-margin-bottom(small);
   display: block;
 }
-
 
 // Quotation
 .c-bolt-blockquote__quote {
@@ -97,31 +50,61 @@ $bolt-blockquote-image-size: 4rem;
   max-width: 44rem;
   color: bolt-theme(headline);
 
-  p:first-child:before,
-  p:last-child:after {
+  p:not([slot]):first-child:before,
+  p:not([slot]):last-child:after {
     font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
   }
 
-  p:first-child:before {
+  p:not([slot]):first-child:before {
     content: '\201C';
   }
 
-  p:last-child:after {
+  p:not([slot]):last-child:after {
     content: '\201D';
+  }
+
+  ::slotted(p:first-child),
+  ::slotted(p.is-first-child),
+  ::slotted(p:last-child),
+  ::slotted(p.is-last-child) {
+    &:before,
+    &:after {
+      font-family: 'Georgia', serif; // TODO: Replace with Noto Serif when it is added.
+    }
+  }
+
+  ::slotted(p:first-child),
+  ::slotted(p.is-first-child) {
+    &:before {
+      content: '\201C';
+    }
+  }
+
+  ::slotted(p:last-child),
+  ::slotted(p.is-last-child) {
+    &:after {
+      content: '\201D';
+    }
   }
 }
 
-
 // Attribution
 .c-bolt-blockquote__image {
+  @include bolt-margin-bottom(small);
   display: inline-block;
+  box-sizing: border-box;
   width: $bolt-blockquote-image-size;
   height: $bolt-blockquote-image-size;
+  overflow: hidden;
+  vertical-align: middle;
+  border-radius: 50%;
   border-width: $bolt-blockquote-image-border-width;
   border-style: $bolt-blockquote-image-border-style;
   border-color: $bolt-blockquote-image-border-color;
-  border-radius: 50%;
-  overflow: hidden;
+
+  > * {
+    max-width: 100%;
+  }
 }
 
 .c-bolt-blockquote__footer {
@@ -130,14 +113,12 @@ $bolt-blockquote-image-size: 4rem;
 }
 
 .c-bolt-blockquote__footer-item {
-  @include bolt-margin-bottom(small);
   display: block;
 
   &:last-child {
     @include bolt-margin-bottom(0);
   }
 }
-
 
 // Horizontal alignment of items inside
 .c-bolt-blockquote--align-items-start {
@@ -158,6 +139,11 @@ $bolt-blockquote-image-size: 4rem;
     @include bolt-margin-right(auto);
     @include bolt-margin-left(auto);
   }
+
+  .c-bolt-blockquote__logo > *::slotted(*) {
+    @include bolt-margin-right(auto);
+    @include bolt-margin-left(auto);
+  }
 }
 
 .c-bolt-blockquote--align-items-end {
@@ -168,17 +154,25 @@ $bolt-blockquote-image-size: 4rem;
     @include bolt-margin-right(0);
     @include bolt-margin-left(auto);
   }
-}
 
+  .c-bolt-blockquote__logo > *::slotted(*) {
+    @include bolt-margin-right(0);
+    @include bolt-margin-left(auto);
+  }
+}
 
 // Border Options
 .c-bolt-blockquote--bordered-vertical {
   @include bolt-padding(0 medium);
   border-style: $bolt-blockquote-border-style;
   border-color: $bolt-blockquote-border-color;
-  border-color: var(--bolt-theme-blockquote-border, $bolt-blockquote-border-color);
+  border-color: var(
+    --bolt-theme-blockquote-border,
+    $bolt-blockquote-border-color
+  );
 
-  &:before, &:after {
+  &:before,
+  &:after {
     display: none;
   }
 
@@ -205,18 +199,19 @@ $bolt-blockquote-image-size: 4rem;
 }
 
 .c-bolt-blockquote--bordered-horizontal {
-  &:before, &:after {
+  &:before,
+  &:after {
     display: inline-block;
     display: inline-flex;
   }
 }
 
 .c-bolt-blockquote--borderless {
-  &:before, &:after {
+  &:before,
+  &:after {
     display: none;
   }
 }
-
 
 // Full bleed. Text takes up full width of screen instead of hitting a max width
 .c-bolt-blockquote--full {
@@ -224,7 +219,6 @@ $bolt-blockquote-image-size: 4rem;
     max-width: 100%;
   }
 }
-
 
 // Indent options
 .c-bolt-blockquote--indented {
@@ -239,13 +233,20 @@ $bolt-blockquote-image-size: 4rem;
   }
 }
 
-
 // Perfecting the hanging quotation mark's position in all browsers.
 .c-bolt-blockquote--align-items-start {
   .c-bolt-blockquote__quote {
     p:first-child:before {
       position: absolute;
       transform: translate3d(-110%, 0, 0);
+    }
+
+    ::slotted(p:first-child),
+    ::slotted(p.is-first-child) {
+      &:before {
+        position: absolute;
+        transform: translate3d(-110%, 0, 0);
+      }
     }
   }
 }
@@ -254,6 +255,13 @@ $bolt-blockquote-image-size: 4rem;
   .c-bolt-blockquote__quote {
     p:first-child:before {
       @include bolt-padding(0 2px);
+    }
+
+    ::slotted(p:first-child),
+    ::slotted(p.is-first-child) {
+      &:before {
+        @include bolt-padding(0 2px);
+      }
     }
   }
 }
@@ -264,9 +272,38 @@ $bolt-blockquote-image-size: 4rem;
       @include bolt-padding(0 2px);
     }
 
+    ::slotted(p:first-child),
+    ::slotted(p.is-first-child) {
+      &:before {
+        @include bolt-padding(0 2px);
+      }
+    }
+
     p:last-child:after {
       position: absolute;
-      transform: translate3d(10%, 0 ,0);
+      transform: translate3d(10%, 0, 0);
+    }
+
+    ::slotted(p:last-child),
+    ::slotted(p.is-last-child) {
+      &:after {
+        position: absolute;
+        transform: translate3d(10%, 0, 0);
+      }
+    }
+  }
+}
+
+.c-bolt-blockquote--no-quotes {
+  .c-bolt-blockquote__quote {
+    p:before,
+    p:after {
+      display: none;
+    }
+
+    ::slotted(p):before,
+    ::slotted(p):after {
+      display: none;
     }
   }
 }

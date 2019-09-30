@@ -40,7 +40,26 @@ for (let i = 0, len = inputs.length; i < len; i++) {
       return;
     }
 
+    input.showErrors();
+  };
+
+  // A custom event listener that allows other scripts to manually show errors.
+  input.addEventListener(
+    'showerrors',
+    function() {
+      input.showErrors();
+    },
+    false,
+  );
+
+  // Callback function to display validation errors for a given input.
+  input.showErrors = function() {
     input.classList.add('is-touched');
+
+    // Clear existing errors.
+    if (input.errors) {
+      input.errors.remove();
+    }
 
     if (input.validationMessage) {
       let error = document.createElement('div');

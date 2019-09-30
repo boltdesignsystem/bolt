@@ -1,10 +1,10 @@
 import { define, props } from 'skatejs';
 import { h } from 'preact';
 
+
 import { store } from '../../store.js'; // connect to the Redux store.
 import { updateThemeMode } from '../../actions/app.js'; // redux actions needed
 import { BaseComponent } from '../base-component.js';
-
 
 @define
 class ThemeToggle extends BaseComponent {
@@ -12,7 +12,11 @@ class ThemeToggle extends BaseComponent {
 
   constructor(self) {
     self = super(self);
-    this.useShadow = false;
+    self.useShadow = false;
+    self.targetOrigin =
+      window.location.protocol === 'file:'
+        ? '*'
+        : window.location.protocol + '//' + window.location.host;
     return self;
   }
 
@@ -28,6 +32,19 @@ class ThemeToggle extends BaseComponent {
 
   _stateChanged(state) {
     this.themeMode = state.app.themeMode;
+
+    this.iframeElement = document.querySelector('.pl-js-iframe');
+
+    if (this.iframeElement){
+      const obj = JSON.stringify({
+        event: 'patternLab.stateChange',
+        state,
+      });
+      this.iframeElement.contentWindow.postMessage(
+        obj,
+        this.targetOrigin
+      );
+    }
   }
 
   render({ themeMode }) {

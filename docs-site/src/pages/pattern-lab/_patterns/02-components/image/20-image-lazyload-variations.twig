@@ -1,0 +1,47 @@
+<h4>Jpg: Lazyload true</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/images/placeholders/500x500.jpg",
+  alt: "Bill Murray",
+  lazyload: true,
+} only %}
+
+<h4>Jpg: Lazyload false</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/images/placeholders/500x500.jpg",
+  alt: "Bill Murray",
+  lazyload: false,
+} only %}
+
+<h4>Png: Lazyload true</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/images/content/charts/decision-hub-chart.png",
+  alt: "decision hub chart",
+  lazyload: true,
+} only %}
+
+<h4>Png: Lazyload false</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/images/content/charts/decision-hub-chart.png",
+  alt: "decision hub chart",
+  lazyload: false,
+} only %}
+
+<h4>Svg: Lazyload: true</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/images/content/logos/logo-paypal.svg",
+  alt: "logo paypal svg",
+  lazyload: true,
+} only %}
+
+<h4>Svg: Lazyload: false</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/images/content/logos/logo-paypal.svg",
+  alt: "logo paypal svg",
+  lazyload: false,
+} only %}

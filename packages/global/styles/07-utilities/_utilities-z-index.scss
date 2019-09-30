@@ -6,8 +6,8 @@
 $indexes: map-get($bolt-z-indexes, 'sets');
 
 @each $key, $value in $indexes {
-  $prefix: map-get($bolt-z-indexes, 'utility-class-prefix');
-  .#{$prefix}#{$key} {
+  .u-bolt-z-index--#{$key}, // DEPRECATED.  Utility classes with double dashes will be removed in the next major release.
+  .u-bolt-z-index-#{$key} {
     @include bolt-z-index($key, $utility: true);
   }
 }

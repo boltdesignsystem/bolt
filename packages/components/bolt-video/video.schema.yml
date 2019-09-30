@@ -1,6 +1,10 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Video
 type: object
+not:
+  anyOf:
+    - required:
+        - isBackgroundVideo
 properties:
   attributes:
     type: object
@@ -17,6 +21,10 @@ properties:
   videoUuid:
     type: string
     description: A unique identifying string, randomly generated if not provided.
+  share_description:
+    type: string
+    description: A custom title to use in the share overlay
+    default: Share This Video
   ratio:
     type: boolean
     description: Maintain video ratio.
@@ -43,7 +51,32 @@ properties:
     type: boolean
     description: Should the video loop.
     default: false
+  on_init:
+    type: string
+    description: 'The `on_init` config allows for an external Javascript function inlined on the page to add any 3rd party scripts or video plugins to a `<bolt-video>` player instance when initializing. Please see the new recommended `enabled_plugins` and `disabled_plugins` options below.'
+  default_plugins:
+    type: array
+    readonly: true
+    description: An array of the default `<bolt-video>` player plugins that are globally enabled by default.
+    enum:
+      - playback
+    hidden: true
+  available_plugins:
+    type: array
+    readonly: true
+    description: The built-in `<bolt-video>` player plugins that are availble to be used in any player instance without requiring the use of any extra Javascript.
+    enum:
+      - playback
+      - social
+      - email
+      - cue
+    hidden: true
+  enabled_plugins:
+    type: string
+    description: 'Space-separated list of built-in `<bolt-video>` plugins for Brightcove to enable. Current include `social`, `email`, `playback`, and `cue`. For example: `<bolt-video enabled-plugins="cue social email playback">`.'
+  disabled_plugins:
+    type: string
+    description: 'Space-separated list of any built-in `<bolt-video>` plugins for Brightcove to disable. Used to opt-out of any video plugins that are enabled by default (ex. the `playback` plugin). For example: `<bolt-video disabled-plugins="playback">`.'
   isBackgroundVideo:
-    type: boolean
-    description: Set to true if the video is a background.
-    default: false
+    title: DEPRECATED
+    description: Background video feature will be removed with Bolt v3.0

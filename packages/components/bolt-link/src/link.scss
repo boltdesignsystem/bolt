@@ -1,33 +1,39 @@
-@import '@bolt/core';
-
 /* ------------------------------------ *\
-   Link
+   Links
 \* ------------------------------------ */
 
 // Dev Notes
 // 1. [Mai] Reset button and input tag browser defaults.
 // 2. [Mai] All the theming stuff is an interim fix until the bolt-text is refactored, which will cover all the text link styles as well.
+// 3. [Morse] This mixin outputs a separate ruleset for each selector to prevent IE from failing on unrecognized selectors like `:host`. It is not a substitute for comma-separated selectors.
+// 4. [Morse] Bolt-link delegates focus to inner element.
 
+@import '@bolt/core';
 
 // Component variables
 $bolt-link-transition: $bolt-transition;
+$bolt-link-spacing: 'xxsmall';
+
+// Custom element styles
+@include bolt-repeat-rule(('bolt-link', ':host')) {
+  // [3]
+  outline: none; // [4]
+}
 
 // Component styles
 .c-bolt-link {
-  @include bolt-padding(0);  // [1]
-  @include bolt-font-family(body);  // [1]
-
-  display: inline-block;
-  display: inline-flex;
-  align-items: center; // So icons are vertically centered
-  cursor: pointer;
-  text-decoration: underline;
-  border: none;  // [1]
-  background: none;  // [1]
+  @include bolt-padding(0); // [1]
+  @include bolt-font-family(body); // [1]
+  display: inline;
+  appearance: none; // [1]
   opacity: bolt-opacity(100);
-  transition: all $bolt-link-transition;
+  margin-left: bolt-spacing(#{$bolt-link-spacing}) * -1;
   color: bolt-theme(link);
-
+  text-decoration: underline;
+  cursor: pointer;
+  border: none; // [1]
+  background: none; // [1]
+  transition: all $bolt-link-transition;
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;
@@ -39,32 +45,40 @@ $bolt-link-transition: $bolt-transition;
   }
 }
 
+.c-bolt-link--display-flex {
+  display: inline-flex;
 
+  &.c-bolt-link--valign-start {
+    align-items: flex-start;
+  }
+
+  &.c-bolt-link--valign-center {
+    align-items: center;
+  }
+}
+
+.c-bolt-link--display-inline {
+  .c-bolt-link__icon {
+    display: inline;
+    white-space: nowrap; // Combine this with Zero Width No-break Space (&#xfeff; in the markup), it fixes the orphan icon issue. The last word will always wrap with the icon.
+  }
+}
+
+.c-bolt-link__icon,
+.c-bolt-link__text {
+  @include bolt-padding-left(#{$bolt-link-spacing});
+}
+
+.c-bolt-link__text {
+  display: inline;
+}
 
 // Changes the underline styles when a link is also a headline, chevrons are added to headline links by default.
 .c-bolt-link--headline {
-  text-decoration: none;
   color: bolt-theme(headline-link);
+  text-decoration: none;
 
   &:hover {
     text-decoration: underline;
   }
-}
-
-
-// Text and icon spacing
-.c-bolt-link__text + .c-bolt-link__icon {
-  @include bolt-margin-left(xxsmall);
-}
-
-.c-bolt-link__icon + .c-bolt-link__text {
-  @include bolt-margin-left(xxsmall);
-}
-
-
-// Icon styles
-.c-bolt-link__icon {
-  display: inline-block;
-  line-height: 1; // workaround so icons can be vertically aligned properly
-  vertical-align: baseline;
 }

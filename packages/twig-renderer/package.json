@@ -1,10 +1,16 @@
 {
   "name": "@bolt/twig-renderer",
-  "version": "2.2.0-rc.1",
+  "version": "2.8.0-beta.4",
   "license": "MIT",
-  "description": "Renders Twig",
+  "description": "Renders Twig templates using an on-the-fly PHP rendering service.",
   "main": "twig-renderer.js",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer",
+  "keywords": [
+    "design system",
+    "bolt design system",
+    "twig",
+    "php"
+  ],
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -13,15 +19,19 @@
     }
   ],
   "dependencies": {
-    "@basalt/twig-renderer": "^0.10.2",
-    "@bolt/build-tools": "^2.2.0-rc.1",
+    "@basalt/twig-renderer": "^0.12.1",
+    "@bolt/build-utils": "^2.8.0-beta.4",
+    "@bolt/drupal-twig-extensions": "^2.8.0-beta.4",
     "sleep-promise": "^8.0.1"
   },
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "setup": "composer run setup"
+  },
   "schema": "utils/config.schema.yml",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
-  "homepage": "https://bolt-design-system.com",
-  "gitHead": "8dd538d0bd2b00baeac2779570d00e27d23405db"
+  "homepage": "https://boltdesignsystem.com",
+  "gitHead": "3d198feea5f73c63913a956a2a077e229ad8d462"
 }

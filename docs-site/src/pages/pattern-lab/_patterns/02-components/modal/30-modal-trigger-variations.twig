@@ -1,0 +1,80 @@
+<bolt-text headline font-size="xlarge">Trigger Options</bolt-text>
+
+<bolt-table>
+  <table>
+    <tbody>
+      <tr>
+        <th>
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Button trigger",
+            size: "small",
+            attributes: {
+              "on-click": "show",
+              "on-click-target": "js-modal-trigger-button",
+            },
+          } only %}
+          {% include "@bolt-components-modal/modal.twig" with {
+            attributes: {
+              class: "js-modal-trigger-button"
+            },
+            content: "This modal is triggered by a button.",
+          } only %}
+        </th>
+        <td>
+          The Button component is the standard method to trigger a modal.
+        </td>
+      </tr>
+      <tr>
+        <th>
+          {% set trigger_content %}
+            {% include "@bolt-components-image/image.twig" with {
+              src: "/images/placeholders/tout-4x3-climber.jpg",
+              alt: "A Rock Climber",
+            } only %}
+          {% endset %}
+
+          {% set modal_content %}
+            {% include "@bolt-components-image/image.twig" with {
+              src: "/images/placeholders/tout-4x3-climber.jpg",
+              alt: "A Rock Climber",
+              max_width: "640px",
+            } only %}
+          {% endset %}
+
+          {% include "@bolt-components-trigger/trigger.twig" with {
+            content: trigger_content,
+            cursor: "zoom-in",
+            display: "block",
+            attributes: {
+              "on-click": "show",
+              "on-click-target": "js-modal-trigger-image",
+            },
+          } only %}
+
+          {% include "@bolt-components-modal/modal.twig" with {
+            attributes: {
+              class: "js-modal-trigger-image"
+            },
+            content: modal_content,
+            spacing: "none",
+            theme: "none",
+            scroll: "overall",
+            width: "auto",
+          } only %}
+        </th>
+        <td>
+          <p>Image trigger can be created by wrapping the Trigger component around an Image component.</p>
+          <p><strong>Advanced usage:</strong> if the Image component has an absolute value (e.g. 640px) defined for <code>max_width</code>, then the modal's width prop can be set to <code>auto</code>. This will allow the image inside the modal to be responsive but does not stretch beyond the specified <code>max_width</code>.</p>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <del>Link trigger</del>
+        </th>
+        <td>
+          Link trigger is currently not supported.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</bolt-table>

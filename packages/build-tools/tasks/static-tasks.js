@@ -15,12 +15,12 @@ const debounce = require('lodash.debounce');
 const fm = require('front-matter');
 const ora = require('ora');
 const marked = require('marked');
-const timer = require('../utils/timer');
-const manifest = require('../utils/manifest');
-const { getConfig } = require('../utils/config-store');
-const log = require('../utils/log');
-const events = require('../utils/events');
-const sh = require('../utils/sh');
+const timer = require('@bolt/build-utils/timer');
+const manifest = require('@bolt/build-utils/manifest');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const log = require('@bolt/build-utils/log');
+const events = require('@bolt/build-utils/events');
+const sh = require('@bolt/build-utils/sh');
 let config;
 
 async function asyncConfig() {
@@ -29,7 +29,7 @@ async function asyncConfig() {
   } else {
     config = Object.assign(
       {
-        watchedExtensions: ['twig', 'md', 'html', 'yml', 'php'],
+        watchedExtensions: ['twig', 'md', 'html', 'yml'],
       },
       await getConfig(),
     );
@@ -102,6 +102,7 @@ async function getPages(srcDir) {
   const allPaths = await globby([
     path.join(srcDir, '**/*.{md,html}'),
     '!**/_*/**/*.{md,html}',
+    '!**/pattern-lab/**/*',
     '!**/_*.{md,html}',
   ]);
 
@@ -130,7 +131,7 @@ async function getPages(srcDir) {
 async function getNestedPages(folder) {
   config = config || (await asyncConfig());
 
-  const items = await globby(['*', '!_*'], {
+  const items = await globby(['*', '!_*', '!pattern-lab'], {
     cwd: folder,
     onlyFiles: false,
   });
@@ -255,7 +256,7 @@ function compileWithNoExit() {
 async function watch() {
   config = Object.assign(
     {
-      watchedExtensions: ['.twig', '.md', '.html', '.yml', '.php'],
+      watchedExtensions: ['.twig', '.md', '.html', '.yml'],
     },
     await getConfig(),
   );
@@ -271,7 +272,7 @@ async function watch() {
   const watcher = chokidar.watch(watchedPaths, {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignored: ['**/node_modules/**', '**/vendor/**'],
+    ignored: ['**/node_modules/**', '**/vendor/**', '**/_patterns/**'],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events

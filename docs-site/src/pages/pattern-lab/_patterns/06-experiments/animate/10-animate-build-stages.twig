@@ -1,0 +1,46 @@
+{% set schema = bolt.data.components["@bolt-components-animate"].schema %}
+
+<div class="demo-animate">
+  <h2>Build Ins</h2>
+  <button class="demo-animate__trigger">Trigger</button>
+
+  <div class="demo-animate__wrapper">
+
+    {% for buildIn in schema.properties.in.enum %}
+
+    <div><code>in="{{ buildIn }}"</code></div>
+      <bolt-animate
+        in="{{ buildIn }}"
+        in-duration="2000"
+        out="fade-out"
+      >
+        <h2>{{ buildIn }}</h2>
+      </bolt-animate>
+    <hr />
+    {% endfor %}
+  </div>
+</div>
+
+
+<div class="demo-animate">
+  <h2>Build Outs</h2>
+  <button class="demo-animate__trigger">Trigger</button>
+
+  <div class="demo-animate__wrapper">
+
+    {% for buildOut in schema.properties.out.enum %}
+
+    <div><code>out="{{ buildOut }}"</code></div>
+      <bolt-animate
+        in="fade-in"
+        out="{{ buildOut }}"
+        out-duration="2000"
+      >
+        <h2>{{ buildOut }}</h2>
+      </bolt-animate>
+    <hr />
+    {% endfor %}
+  </div>
+</div>
+
+

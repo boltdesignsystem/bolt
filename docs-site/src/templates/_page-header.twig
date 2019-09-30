@@ -1,0 +1,53 @@
+{% set navbar %}
+  {% include "@bolt-site/release-banner.twig" only %}
+  {% include "@bolt-site/_navbar-with-version-selector.twig" with {
+    theme: "xdark",
+    width: "auto",
+    title: {
+      tag: "h1",
+      text: 'Bolt<span class="u-bolt-hidden u-bolt-inline@xlarge"> Design System</span></span>',
+      url: "/",
+      icon: {
+        name: "bolt-logo-colored"
+      }
+    },
+    links: [
+      {
+        text: "Components",
+        url: "/pattern-lab/index.html"
+      },
+      {
+        text: "Docs",
+        url: "/docs/getting-started/index.html"
+      },
+      {
+        text: "Releases",
+        url: "https://github.com/bolt-design-system/bolt/releases",
+        attributes: {
+          target: "_blank"
+        },
+      },
+      {
+        text: 'Github',
+        url: "https://github.com/bolt-design-system/bolt",
+        attributes: {
+          target: "_blank"
+        },
+        icon: {
+          name: "github",
+          position: "after"
+        }
+      }
+    ],
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-sticky/sticky.twig" with {
+  attributes: {
+    class: [
+      "c-bds-layout__header"
+    ]
+  },
+  content: navbar
+} %}
+

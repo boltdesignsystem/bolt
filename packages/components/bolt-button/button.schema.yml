@@ -5,28 +5,81 @@ type: object
 required:
   - text
 not:
-  required:
-    - itemAlignment
+  anyOf:
+    - required:
+      - itemAlignment
+    - required:
+      - rounded
 properties:
   attributes:
     type: object
-    description: A Drupal-style attributes object with extra attributes to append to this component.
+    description: 'A Drupal-style attributes object with extra attributes to append to this component.'
   text:
-    title: 'Button Text'
-    description: 'The text displayed inside a button'
+    description: 'Text inside the button.'
     type: string
   transform:
     type: string
-    description: Text transformation.
+    description: 'Transforms the button text to various cases.'
     default: none
     enum:
       - uppercase
       - lowercase
       - capitalize
       - none
+  type:
+    description: 'Determines the button tag type for semantic buttons'
+    type: string
+    # @todo: v3.0 make button the default
+    # default: button
+    enum:
+      - button
+      - submit
+      - reset
+  size:
+    type: string
+    description: 'Size of the button.'
+    default: medium
+    enum:
+      - xsmall
+      - small
+      - medium
+      - large
+      - xlarge
+  style:
+    type: string
+    description: 'Style of the button determined by information hierarchy.'
+    default: primary
+    enum:
+      - primary
+      - secondary
+      - text
+  width:
+    type: string
+    description: 'Controls the width of the button.'
+    default: auto
+    enum:
+      - auto
+      - full
+      - full@small
+  border_radius:
+    type: string
+    description: 'Rounds the corners of the button.'
+    default: regular
+    enum:
+      - regular
+      - full
+  align:
+    description: 'Horizontal alignment of items (text and icon) inside the button. Note: the values left and right are deprecated, use start and end instead.'
+    type: string
+    enum:
+      - start
+      - center
+      - end
+    default: center
   icon:
     type: object
-    description: Icon data as expected by the icon component.  Accepts an additional 'position' parameter that determines placement within the button.
+    description: 'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the button.'
+    ref: '@bolt-components-icon/icon.schema.json'
     properties:
       position:
         type: string
@@ -34,9 +87,21 @@ properties:
         enum:
           - before
           - after
+  iconOnly:
+    type: boolean
+    description: 'Make the button to display only the icon and hide the text (which is still required). You are required to pass both text and icon data for this option to work.'
+    default: false
+    required:
+      - icon
+  itemAlignment:
+    title: 'DEPRECATED'
+    description: 'Use the align parameter instead.'
+  rounded:
+    title: 'DEPRECATED'
+    description: 'Use the border_radius parameter instead.'
   tag:
-    title: 'Semantic tag'
-    description: 'What should this element semantically be?'
+    title: 'DEPRECATED'
+    description: 'Switch to using the new type prop instead.'
     type: string
     enum:
       - a
@@ -45,55 +110,3 @@ properties:
       - submit
       - reset
     default: button
-  size:
-    type: string
-    title: 'Button Size'
-    description: 'How large is this button?'
-    default: medium
-    enum:
-      - xsmall
-      - small
-      - medium
-      - large
-      - xlarge
-  itemAlignment:
-    title: 'DEPRECATED'
-    description: 'Use the align parameter instead.'
-  align:
-    title: 'Button Alignment'
-    description: 'How should content be horizontally aligned?  Note: the values <em>left</em> and <em>right</em> are <strong>DEPRECATED</strong>, use <em>start</em> and <em>end</em> instead.'
-    type: string
-    enum:
-      - start
-      - center
-      - end
-    default: center
-  style:
-    type: string
-    title: 'Button Style'
-    description: 'What''s the button style / theme?'
-    default: primary
-    enum:
-      - primary
-      - secondary
-      - text
-  width:
-    type: string
-    title: 'Button Width'
-    description: 'Should a button be full width, it''s default size, or full width, but only on smaller screens?'
-    enum:
-      - full
-      - full@small
-  rounded:
-    type: string
-    title: 'Rounded Corners?'
-    description: 'What kind of rounded corners should the button have?'
-    enum:
-      - rounded
-  iconOnly:
-    type: boolean
-    title: 'Icon Only?'
-    description: 'Is this an icon-only button (with visually hidden text)?'
-    default: false
-    required:
-      - icon

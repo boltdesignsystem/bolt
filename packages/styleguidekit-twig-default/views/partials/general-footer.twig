@@ -2,14 +2,8 @@
   {{ patternData | raw }}
 </script>
 
-<script id="pl-js-insert-{{ cacheBuster }}">
-  /*! loadJS: load a JS file asynchronously. [c]2014 @scottjehl, Filament Group, Inc. (Based on http://goo.gl/REQGQ by Paul Irish). Licensed MIT */
-  !function(e){var t=function(t,n){"use strict";var o=e.document.getElementsByTagName("script")[0],r=e.document.createElement("script");return r.src=t,r.async=!0,o.parentNode.insertBefore(r,o),n&&"function"==typeof n&&(r.onload=n),r};"undefined"!=typeof module?module.exports=t:e.loadJS=t}("undefined"!=typeof global?global:this);
-
-  {# (function() {
-    if (self != top) {
-      loadJS('../../styleguide/js/patternlab-pattern.js');
-    }
-  })(); #}
-  loadJS('../../styleguide/js/patternlab-pattern.js');
+<script>
+  window.patternData = {{ patternData | raw }};
 </script>
+
+<script src="/pattern-lab/styleguide/js/patternlab-pattern.js" async></script>

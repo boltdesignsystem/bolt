@@ -1,0 +1,749 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    size: "medium",
+    theme: "dark"
+  } only %}
+    {% block band_content  %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
+        {% include "@bolt/headline.twig" with {
+            text: "Pega Events",
+            size: "xsmall",
+            tag: "span",
+            url: "/events",
+            icon: {
+              name: "arrow-left",
+              position: "before"
+            }
+        } only %}
+
+        {% include "@bolt/headline.twig" with {
+            text: "CRM Applications for Real-Time Engagement",
+            size: "xxxlarge",
+            tag: "h1",
+        } only %}
+
+        {% include "@bolt/subheadline.twig" with {
+            text: "Pega’s AI powered CRM Suite is transforming the way enterprises drive greater engagement across the entire customer journey.",
+            size: "xlarge",
+            tag: "p",
+        } only %}
+
+        <ul class="o-bolt-inline-list o-bolt-inline-list--medium">
+          <li class="o-bolt-inline-list__item">
+            {% include "@bolt/headline.twig" with {
+              text: "January 25, 2018",
+              size: "large",
+              tag: "span",
+              url: "#!",
+              icon: {
+                name: "calendar",
+                position: "before",
+                size: "medium"
+              },
+            } only %}
+          </li>
+          <li class="o-bolt-inline-list__item">
+            {% include "@bolt/headline.twig" with {
+              text: "10:00 AM EST",
+              size: "large",
+              tag: "span",
+              url: "#!",
+              icon: {
+                name: "watch",
+                position: "before",
+                size: "medium"
+              }
+            } only %}
+          </li>
+          <li class="o-bolt-inline-list__item">
+            {% include "@bolt/headline.twig" with {
+              text: "New York, NY",
+              size: "large",
+              tag: "span",
+              url: "#!",
+              icon: {
+                name: "map-pin",
+                position: "before",
+                size: "medium"
+              }
+            } only %}
+          </li>
+        </ul>
+      {% endcell %}
+    {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+
+ {% embed "@bolt-components-band/band.twig" with {
+    size: "small",
+    theme: "xlight"
+  } only %}
+
+    {% block band_content  %}
+      {% grid %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-2/3@medium' %}
+          <p>At Pega, we’re obsessed with being unified. Our mobility, real-time AI, robotic automation, BPM, and case management are best in breed – go ask the analysts. But we didn’t cobble this together from pieces of dead companies – we built it from the ground up on a unified, enterprise-ready architecture.</p>
+
+          <p>When you don’t have to waste time feeding the Frankenstack, you can focus on stuff that matters: designing awesome customer experiences. Automating your most complicated processes. Innovating in ways that disrupt the market."</p>
+
+          {% include "@bolt-components-ul/ul.twig" with {
+            items : [
+              "The growing importance and demands of a unified adtech and martech world",
+              "Four foundational use cases for unifying your DMP",
+              "The role of decisioning technology",
+              "The unified DMP solution offered by Merkle | Comet and Pega® Customer Decision Hub, Pega’s decisioning technology—providing a bi-directional integration of your third-party DMP and marketing technology"
+            ]
+          } only %}
+
+        {% include "@bolt/headline.twig" with {
+          text: "Event Agenda",
+          size: "xxlarge",
+          tag: "h2",
+          attributes: {
+            class: "u-bolt-margin-top-large"
+          }
+        } only %}
+          <hr>
+          {% grid "u-bolt-margin-bottom-medium" %}
+            {% cell 'u-bolt-width-2/8@medium' %}
+              <p>11:00 - 12:00 pm</p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-5/8@medium' %}
+              <p>Registration</p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-1/8@medium' %}
+              <div class="u-bolt-color-indigo-light">
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "add-open",
+                  size: "medium"
+                } only %}
+              </div>
+            {% endcell %}
+          {% endgrid %}
+          <hr>
+          {% grid "u-bolt-margin-bottom-medium" %}
+            {% cell 'u-bolt-width-2/8@medium' %}
+              <p>11:00 - 12:00 pm</p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-5/8@medium' %}
+              <p>Networking Lunch</p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-1/8@medium' %}
+              <div class="u-bolt-color-indigo-light">
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "add-open",
+                  size: "medium"
+                } only %}
+              </div>
+            {% endcell %}
+          {% endgrid %}
+          <hr>
+          {% grid "u-bolt-margin-bottom-medium" %}
+            {% cell 'u-bolt-width-2/8@medium' %}
+              <p>11:00 - 12:00 pm</p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-5/8@medium' %}
+              <p>Welcome & Keynote</p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-1/8@medium' %}
+              <div class="u-bolt-color-indigo-light">
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "add-open",
+                  size: "medium"
+                } only %}
+              </div>
+            {% endcell %}
+          {% endgrid %}
+          <hr>
+          {% grid "u-bolt-margin-bottom-medium" %}
+            {% cell 'u-bolt-width-2/8@medium' %}
+              <p>11:00 - 12:00 pm</p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-5/8@medium' %}
+              <p>Customer Engagement Program: Panel Discussion, Demos, Presentations</p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-1/8@medium' %}
+              <div class="u-bolt-color-indigo-light">
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "add-open",
+                  size: "medium"
+                } only %}
+              </div>
+            {% endcell %}
+          {% endgrid %}
+          <hr>
+          {% grid "u-bolt-margin-bottom-medium" %}
+            {% cell 'u-bolt-width-2/8@medium' %}
+              <p>11:00 - 12:00 pm</p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-5/8@medium' %}
+              <p>Networking Reception</p>
+            {% endcell %}
+
+            {% cell 'u-bolt-width-1/8@medium' %}
+              <div class="u-bolt-color-indigo-light">
+                {% include "@bolt-components-icon/icon.twig" with {
+                  name: "add-open",
+                  size: "medium"
+                } only %}
+              </div>
+            {% endcell %}
+          {% endgrid %}
+          <hr>
+        {% endcell %}
+
+        {% cell 'u-bolt-width-1/1 u-bolt-width-1/3@medium' %}
+
+          {% include "@pl/_event-annotation.twig" with {
+            text: 'The finished page should be different from what is shown here in the following ways (consider the <a class="c-bolt-link" href="https://pega.invisionapp.com/d/main#/projects/prototypes/13581279">Invision comps</a> canonical in these respects): <br/>
+            * It should have an optional negative top margin to overlay the band above it<br/>
+            * At mobile breakpoints, the form should overlay the whole screen'
+          } only %}
+
+          {% include "@pl/_event-annotation.twig" with {
+            text: 'Styling details of the form fields such as font size may appear slightly different.  That should
+            not be reason to fail this during QA - the correct sizes will be pulled in when the site is updated to use the latest 1.x version of Bolt.'
+          } only %}
+
+          {% embed "@bolt/card.twig" with {
+            theme: "light",
+          } only %}
+
+            {% block card_media %}
+            {% endblock %}
+
+            {% block card_body %}
+
+              {% include "@bolt/headline.twig" with {
+                text: "Register now",
+                size: "xlarge"
+              } only %}
+
+              {% include "@bolt-components-headline/text.twig" with {
+                text: "(all fields are required)",
+                size: "small",
+                attributes: {
+                  class: "u-bolt-color-gray-dark"
+                }
+              } only %}
+
+              <p class="u-bolt-margin-bottom-small">
+                {% include "@bolt/link.twig" with {
+                  "text": "Fill out this form with LinkedIn"|t,
+                  "icon": {
+                    "position": "before",
+                    "name": "linkedin-solid",
+                    "color": "blue",
+                    "size": "medium"
+                  }
+                } only %}
+              </p>
+
+              {% include "@pl/_event-register-form.twig" %}
+
+            {% endblock %}
+
+          {% endembed %}
+        {% endcell %}
+
+      {% endgrid %}
+    {% endblock %}
+  {% endembed %}
+
+{# Start Location Details section #}
+  {% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "xlight",
+  full_bleed: true
+  } only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+        {% include "@bolt/headline.twig" with {
+          text: "Location Details",
+          size: "xxlarge",
+          tag: "h2",
+          attributes: {
+            class: "u-bolt-margin-bottom-large"
+          }
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "This Is The Place Where The Event Is Happening",
+          size: "xlarge"
+        } only %}
+
+       {% include "@bolt-components-headline/text.twig" with {
+          text: "123 Sesame St.",
+          attributes: {
+            class: "u-bolt-margin-bottom-xsmall"
+          }
+        } only %}
+
+       {% include "@bolt-components-headline/text.twig" with {
+          text: "New York, NY 10012",
+          size: "medium"
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat.",
+          size: "medium"
+        } only %}
+
+        {% include "@bolt/button-group.twig" with {
+          "buttons": [
+            {
+              "text": "Get Directions",
+              "style": "primary"
+            },
+            {
+              "text": "Make Reservations",
+              "style": "secondary"
+            }
+          ]
+        } only %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96708.34194152504!2d-74.03927092356082!3d40.759040329429915!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2588f046ee661%3A0xa0b3281fcecc08c!2sManhattan%2C+New+York%2C+NY!5e0!3m2!1sen!2sus!4v1521836261337" width="750" height="380" frameborder="0" style="border:0; max-width: 100%;" allowfullscreen></iframe>
+      {% endcell %}
+
+    {% endgrid %}
+
+    {% endblock %}
+  {% endembed %}
+{# End Location Details section #}
+
+{# Start Speakers section #}
+  {% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "xlight",
+  full_bleed: true
+  } only %}
+    {% block band_content %}
+      {% include "@bolt/headline.twig" with {
+        text: "Hear From Our Industry Leaders",
+        size: "xxlarge",
+        tag: "h2",
+        attributes: {
+            class: "u-bolt-margin-bottom-large"
+          }
+      } only %}
+
+      {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
+        {% grid %}
+          {% cell "u-bolt-width-1/2" %}
+          {% include "@bolt/image.twig" with {
+                src: "/images/placeholders/events--speakers--placeholder.jpg",
+          } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/2" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Stanley Wheeler",
+              size: "large",
+              tag: "h3"
+            } only %}
+            <p>Executive Director, My Company</p>
+            {% include "@bolt-components-link/link.twig" with {
+              text: "Show more",
+              url: "#!",
+            } only %}
+
+            {% include "@pl/_event-annotation.twig" with {
+              text: 'The "show more" link should open details in a modal.  Use
+                <a class="c-bolt-link" href="https://pega.invisionapp.com/d/main#/console/13581279/283315541/preview">this Invision comp</a>
+                as the source of truth for that modal.'
+            } only %}
+
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
+        {% grid %}
+          {% cell "u-bolt-width-1/2" %}
+          {% include "@bolt/image.twig" with {
+                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/2" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Stanley Wheeler",
+              size: "large",
+              tag: "h3"
+            } only %}
+            <p>Executive Director, My Company</p>
+            {% include "@bolt-components-link/link.twig" with {
+              text: "Show more",
+              url: "#!",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
+        {% grid %}
+          {% cell "u-bolt-width-1/2" %}
+          {% include "@bolt/image.twig" with {
+                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/2" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Stanley Wheeler",
+              size: "large",
+              tag: "h3"
+            } only %}
+            <p>Executive Director, My Company</p>
+            {% include "@bolt-components-link/link.twig" with {
+              text: "Show more",
+              url: "#!",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
+        {% grid %}
+          {% cell "u-bolt-width-1/2" %}
+          {% include "@bolt/image.twig" with {
+                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/2" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Stanley Wheeler",
+              size: "large",
+              tag: "h3"
+            } only %}
+            <p>Executive Director, My Company</p>
+            {% include "@bolt-components-link/link.twig" with {
+              text: "Show more",
+              url: "#!",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
+        {% grid %}
+          {% cell "u-bolt-width-1/2" %}
+          {% include "@bolt/image.twig" with {
+                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/2" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Stanley Wheeler",
+              size: "large",
+              tag: "h3"
+            } only %}
+            <p>Executive Director, My Company</p>
+            {% include "@bolt-components-link/link.twig" with {
+              text: "Show more",
+              url: "#!",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-1/3@medium" %}
+        {% grid %}
+          {% cell "u-bolt-width-1/2" %}
+          {% include "@bolt/image.twig" with {
+                src: "/images/placeholders/events--speakers--placeholder.jpg"
+          } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/2" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Stanley Wheeler",
+              size: "large",
+              tag: "h3"
+            } only %}
+            <p>Executive Director, My Company</p>
+            {% include "@bolt-components-link/link.twig" with {
+              text: "Show more",
+              url: "#!",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+      {% endgrid %}
+
+    {% endblock %}
+  {% endembed %}
+{# End Speakers section #}
+
+{# Start 2017 Highlights section #}
+  {% embed "@pl/_band--collection.twig" with {
+  "theme": "xlight",
+  "size": "large",
+  "contentItems": [
+    {
+      "pattern": "card",
+      "image": {
+          "src": "/images/placeholders/1200x660.jpg"
+        },
+        "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Headline #2",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Call to action",
+            "style": "secondary",
+            "url": "#",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/images/content/promos/promo-16x9-anthem.jpg"
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Headline #2",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Call to action",
+            "style": "secondary",
+            "url": "#",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+        "image": {
+          "src": "/images/content/promos/promo-16x9-ai.jpg"
+        },
+        "teaser": {
+          "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+            {
+              "type": "headline",
+              "text": "Headline #3",
+              "size": "large"
+            }
+          ],
+          "content": "Simplify and automate to reduce costs and improve agility.",
+          "buttons": [
+            {
+              "text": "Call to action",
+              "style": "text",
+              "url": "#",
+              "width": "full"
+            }
+          ]
+        }
+    }
+  ]
+} %}
+  {% block band_content %}
+    {% include "@bolt/headline.twig" with {
+      text: "Highlights from 2017",
+      size: "xxlarge",
+      tag: "h2",
+      attributes: {
+        class: "u-bolt-margin-bottom-large"
+      }
+    } only %}
+    {{ parent() }}
+  {% endblock band_content %}
+  {% endembed %}
+{# End 2017 Highlights section#}
+
+{# Start Events Sponsors section#}
+  {% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "light",
+  full_bleed: true
+  } only %}
+    {% block band_content  %}
+      {% include "@bolt/headline.twig" with {
+          text: "Event Sponsors",
+          align: "center",
+          size: "xxlarge",
+          tag: "h2",
+          attributes: {
+            class: "u-bolt-margin-bottom-large"
+          }
+      } only %}
+
+      <div class="u-bolt-text-align-center">
+        {% include "@pl/_event-annotation.twig" with {
+          text: 'This section was originally designed as a simple 5-column Bolt grid .  However, because Drupal already
+          has a structure for putting partner logos within action blocks, it was redesigned to use that structure
+          instead.  It should be built using those existing structures, not rebuilt from the example below.  However,
+          the example below can still serve as the source-of-truth for the finished product.'
+        } only %}
+      </div>
+
+      {% include "@pl/_event-sponsors-with-action-block.twig" %}
+
+      {#
+        {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+          {% set logoImages = ["logo-incessant.png", "logo-capgemini.svg", "logo-cognizant.png", "logo-merkle.png", "logo-infosys.png"] %}
+          {% for logoImage in logoImages %}
+            {% cell "u-bolt-width-1/2 u-bolt-width-1/5@small" %}
+              {% include "@bolt/image.twig" with {
+                src: "/images/content/logos/" ~ logoImage
+              } only %}
+            {% endcell %}
+          {% endfor %}
+        {% endgrid %}
+      #}
+
+    {% endblock band_content %}
+  {% endembed %}
+{# End Event Sponsors section #}
+
+
+{# Start Related Resources section #}
+  {% embed "@pl/_band--collection.twig" with {
+  "theme": "dark",
+  "size": "large",
+  "contentItems": [
+    {
+      "pattern": "card",
+      "image": {
+          "src": "/images/placeholders/1200x660.jpg"
+        },
+        "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Headline #2",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Call to action",
+            "style": "secondary",
+            "url": "#",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/images/content/promos/promo-16x9-anthem.jpg"
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Headline #2",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Call to action",
+            "style": "secondary",
+            "url": "#",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+        "image": {
+          "src": "/images/content/promos/promo-16x9-ai.jpg"
+        },
+        "teaser": {
+          "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+            {
+              "type": "headline",
+              "text": "Headline #3",
+              "size": "large"
+            }
+          ],
+          "content": "Simplify and automate to reduce costs and improve agility.",
+          "buttons": [
+            {
+              "text": "Call to action",
+              "style": "text",
+              "url": "#",
+              "width": "full"
+            }
+          ]
+        }
+    }
+  ]
+  } %}
+  {% block band_content %}
+    {% include "@bolt/headline.twig" with {
+      text: "Related Resources",
+      size: "xxlarge",
+      tag: "h3",
+      attributes: {
+        class: "u-bolt-margin-bottom-large"
+      }
+    } only %}
+    {{ parent() }}
+  {% endblock band_content %}
+  {% endembed %}
+  {# End Related Resources section#}
+
+{% endblock %}

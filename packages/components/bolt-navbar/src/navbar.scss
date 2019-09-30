@@ -30,10 +30,22 @@ bolt-navbar {
 }
 
 .c-bolt-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
   width: 100%;
+
+  // @include bolt-padding-top($bolt-navbar-vspacing-small);
+  max-width: bolt-breakpoint(xxlarge);
+  margin: 0 auto;
   margin: 0 auto;
   @include bolt-padding-left(small);
   @include bolt-padding-right(small);
+
+  > *:not(:last-child){
+    @include bolt-margin-right(small);
+  }
 
   @include bolt-mq($bolt-navbar-xsmall-bp){
     @include bolt-padding-left(medium);
@@ -51,14 +63,6 @@ bolt-navbar {
       @include bolt-padding-top(0);
     }
   }
-
-  // @include bolt-padding-top($bolt-navbar-vspacing-small);
-  max-width: bolt-breakpoint(xxlarge);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
 
   @include bolt-mq(medium) {
     @include bolt-padding-left(large);
@@ -80,13 +84,13 @@ bolt-navbar {
     @media screen and (max-width: $bolt-navbar-xsmall-bp) {
       @include bolt-padding-left(0);
       @include bolt-padding-right(0);
-      flex-direction: row;
       display: grid;
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
       grid-template-columns: bolt-spacing(small) auto 1fr bolt-spacing(medium);
       grid-template-rows: 1fr auto;
-      align-content: center;
-      justify-content: center;
-      align-items: center;
     }
   }
 
@@ -118,9 +122,9 @@ bolt-navbar {
     }
   }
 
-  // Don't include these inner "full-bleed" styles till Navbar is updated to support theming classes internally, 
+  // Don't include these inner "full-bleed" styles till Navbar is updated to support theming classes internally,
   // otherwise full bleed + center styling combos are broken
-  // @todo: uncomment once the [width*="full"] updates from above ^ are addressed 
+  // @todo: uncomment once the [width*="full"] updates from above ^ are addressed
   // &--full {
   //   @include bolt-full-bleed;
   // }
@@ -139,22 +143,23 @@ bolt-navbar {
 // Nav title
 .c-bolt-navbar__title {
   @include bolt-margin-right(small); // Maintain space between items
-  padding-bottom: $bolt-navbar-vspacing-small;
-  align-self: center;
   display: flex;
   flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed, but only when absolutely necessary (prevents jumps when resizing)
   flex-wrap: nowrap;
   align-items: center;
+  align-self: center;
+  padding-bottom: $bolt-navbar-vspacing-small;
   color: bolt-theme(headline);
   white-space: nowrap;
+
+  > *:not(:last-child){
+    @include bolt-margin-right(small);
+  }
 
   @supports (--css: variables) {
     padding-bottom: var(--bolt-vspacing, $bolt-navbar-vspacing-small);
   }
 
-  @include bolt-mq(medium){
-    @include bolt-margin-right(medium); // Maintain space between items
-  }
 
   &:only-child {
     @include bolt-margin-right(auto);
@@ -175,22 +180,22 @@ bolt-navbar {
     @include bolt-mq(xsmall){
       @include bolt-margin-left(auto);
       @include bolt-margin-right(auto);
-      width: 100%;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      width: 100%;
     }
   }
 }
 
 .c-bolt-navbar__title--link {
-  text-decoration: none;
-  opacity: bolt-opacity(100);
-  transition: all $bolt-navbar-title-transition;
   display: flex;
-  align-self: center;
   flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed.
   flex-wrap: nowrap;
   align-items: center;
+  align-self: center;
+  opacity: bolt-opacity(100);
+  text-decoration: none;
+  transition: all $bolt-navbar-title-transition;
   white-space: nowrap;
 
   &:hover {
@@ -200,10 +205,10 @@ bolt-navbar {
 
 .c-bolt-navbar__title-icon {
   @include bolt-margin(0 xsmall 0 0);
+  flex-basis: auto;
 
   // Fix cross-browser bug where icon shrinks below its minimum natural width - see https://github.com/philipwalton/flexbugs#flexbug-1
   flex-shrink: 0;
-  flex-basis: auto;
 }
 
 .c-bolt-navbar__title-text {
@@ -223,8 +228,8 @@ bolt-navbar {
 // Nav items
 .c-bolt-navbar__nav {
   @include bolt-margin(0 0 0 small);
-  width: 100%;
   flex-shrink: 1;
+  width: 100%;
   -webkit-overflow-scrolling: touch;
 }
 

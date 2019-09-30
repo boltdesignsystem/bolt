@@ -8,6 +8,8 @@ npm install @bolt/components-image
 
 ## Image sizes
 
+**IMPORTANT: This method of adding classes to images is DEPRECATED.**
+
 To specify image size (e.g `u-bolt-width-1/1`) pass the correct class like so:
 
 ```

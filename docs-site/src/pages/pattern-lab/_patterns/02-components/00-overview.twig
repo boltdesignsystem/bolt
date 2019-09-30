@@ -1,0 +1,65 @@
+{% embed "@bolt-components-band/band.twig" with {
+  size: "none",
+  theme: "xlight",
+  full_bleed: true,
+  attributes: {
+    class: [
+      "u-bolt-min-height-screen",
+    ],
+    style: [
+      "transition: none;",
+    ]
+  }
+} only %}
+  {% block band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-padding-top-medium u-bolt-padding-bottom-medium" %}
+      {% if fileExists('@bolt-assets/status-board.twig') %}
+        {% cell "u-bolt-width-1/1" %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h1",
+            text: "Bolt Component Status Board",
+            size: "xlarge",
+            attributes: {
+              class: "u-bolt-margin-bottom-medium"
+            }
+          } only %}
+
+          {# Looking for the Status Board's Twig template / logic? Everything lives here: packages/build-tools/tasks/api-tasks/bolt-status-board.js #}
+          {% include "@bolt-assets/status-board.twig" only %}
+        {% endcell %}
+      {% endif %}
+
+      {# {% cell "u-bolt-width-1/1 u-bolt-width-2/3@medium" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          tag: "h1",
+          text: "Component",
+          size: "xxxlarge",
+          attributes: {
+            class: "u-bolt-margin-bottom-small"
+          }
+        } only %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          tag: "p",
+          text: "[kuh m-poh-nuh nt, kom-]",
+          attributes: {
+            class: "u-bolt-margin-bottom-medium"
+          }
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          tag: "p",
+          text: "noun",
+          attributes: {
+            class: "u-bolt-margin-bottom-xsmall"
+          }
+        } only %}
+        {% include "@bolt-components-ol/ol.twig" with {
+          items : [
+            "a constituent part; element; ingredient.",
+            "a part of a design system.",
+            "<em>Boltism</em>. a reusable user interface element that has been broken down to its most basic and flexible form, with options to configure (e.g. a band has 4 color themes and various spacing sizes)."
+          ]
+        } only %}
+      {% endcell %} #}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}

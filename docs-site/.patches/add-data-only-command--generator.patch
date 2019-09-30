@@ -1,0 +1,39 @@
+diff --git a/src/PatternLab/Generator.php b/src/PatternLab/Generator.php
+index d6c936cfb..0fcb7e01e 100644
+--- a/src/PatternLab/Generator.php
++++ b/src/PatternLab/Generator.php
+@@ -34,6 +34,34 @@ class Generator extends Builder {
+ 		parent::__construct($config);
+ 		
+ 	}
++
++
++	/**
++	* Pulls together the data for a particular PL instance. Helpful when combining this data with other external systems.
++	*/
++	public function generateData() {
++		Config::setOption("cacheBuster",0);
++		
++		// gather up all of the data to be used in patterns
++		Data::gather();
++		
++		// gather all of the various pattern info
++		$options = array();
++		$options["exportClean"] = false;
++		$options["dataOnly"] = true;
++		$options["exportFiles"] = false;
++		PatternData::gather($options);
++		
++		// render out just the index.html file + the PL data we need
++		// $this->generateIndex();
++		$this->generateViewAllPages(true);
++		
++		// update the change time so the auto-reload will fire (doesn't work for the index and style guide)
++		Util::updateChangeTime();
++		
++		Console::writeLine("your site's data has been generated...");
++		Timer::stop();
++	}
+ 	
+ 	/**
+ 	* Pulls together a bunch of functions from builder.lib.php in an order that makes sense

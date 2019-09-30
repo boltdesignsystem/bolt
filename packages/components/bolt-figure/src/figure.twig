@@ -1,30 +1,70 @@
+{% set schema = bolt.data.components["@bolt-components-figure"].schema %}
+
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-figure'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self)|raw }}
 {% endif %}
 
-{% set prefix = "c-bolt-" %}
+{# Variables #}
+{% set base_class = "c-bolt-figure" %}
 {% set attributes = create_attribute(attributes|default({})) %}
-{% set componentName = "figure" %}
-{% set baseClass = prefix ~ componentName %}
+{% set inner_attributes = create_attribute({}) %}
 
+{# Array of classes based on the defined + default props #}
 {% set classes = [
-  baseClass
+  base_class,
+  string in string_options ? "#{base_class}--#{string}" : "",
 ] %}
 
-<bolt-{{ componentName }} bolt-component>
-  <figure {{ attributes.addClass(classes) }}>
-    {% if image %}
-      {% include "@bolt/image.twig" with image only %}
-    {% elseif icon %}
-      {% include "@bolt/icon.twig" with icon only %}
-    {% endif %}
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
 
-    {% if content %}
-      {{ content }}
-    {% endif %}
+{% for class in attributes["class"] %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
 
-    {% if caption %}
-      <figcation class="{{ "#{baseClass}__figcation" }}">{{ caption }}</figcation>
-    {% endif %}
-  </figure>
-</bolt-{{ componentName }}>
+{# figure component's custom element wrapper #}
+<bolt-figure
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ attributes|without('class') }}
+>
+  <replace-with-grandchildren>
+    <figure {{ inner_attributes.addClass(inner_classes) }}>
+      {% if media %}
+        <replace-with-children class="{{ "#{base_class}__media" }}">
+          <div slot="media">
+            {% set image = media.image %}
+            {% set icon = media.icon %}
+            {% set video = media.video %}
+            {% set table = media.table %}
+
+            {% if image %}
+              {% include "@bolt-components-image/image.twig" with image only %}
+            {% elseif icon %}
+              {% include "@bolt-components-icon/icon.twig" with icon only %}
+            {% elseif video %}
+              {% include "@bolt-components-video/video.twig" with video only %}
+            {% elseif table %}
+              {% include "@bolt-components-table/table.twig" with table only %}
+            {% endif %}
+          </div>
+        </replace-with-children>
+      {% endif %}
+      {% if caption %}
+        <replace-with-grandchildren>
+          <figcaption class="{{ "#{base_class}__caption" }}">
+            {{ caption }}
+          </figcaption>
+        </replace-with-grandchildren>
+      {% endif %}
+    </figure>
+  </replace-with-grandchildren>
+</bolt-figure>

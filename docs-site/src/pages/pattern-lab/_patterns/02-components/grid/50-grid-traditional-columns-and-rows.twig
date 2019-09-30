@@ -1,0 +1,59 @@
+<h3>Traditional Columns and Rows</h3>
+<ol>
+  <li>Use a parent grid to create rows, each item span for 12 columns.</li>
+  <li>Inside each item of the parent grid, pass a child grid to create columns.</li>
+</ol>
+
+{% set item %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item",
+  } only %}
+{% endset %}
+
+{% set row %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1",
+        column_span: "4",
+        content: item,
+      },
+      {
+        column_start: "5",
+        column_span: "4",
+        content: item,
+      },
+      {
+        column_start: "9",
+        column_span: "4",
+        content: item,
+      },
+    ]
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-grid/grid.twig" with {
+  items: [
+    {
+      column_start: "1",
+      column_span: "12",
+      row_start: "1",
+      row_span: "1",
+      content: row,
+    },
+    {
+      column_start: "1",
+      column_span: "12",
+      row_start: "2",
+      row_span: "1",
+      content: row,
+    },
+    {
+      column_start: "1",
+      column_span: "12",
+      row_start: "3",
+      row_span: "1",
+      content: row,
+    },
+  ]
+} only %}

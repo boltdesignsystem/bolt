@@ -1,0 +1,52 @@
+{% set schema = bolt.data.components["@bolt-components-modal"].schema %}
+
+{% set modal_content %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+    alt: "Tall image",
+    lazyload: false,
+  } only %}
+{% endset %}
+
+<bolt-text>The scrollable area can be adjusted by using the <code>scroll</code> prop. The default is set to <code>container</code>.</bolt-text>
+
+<bolt-text headline font-size="xlarge">Scroll Options</bolt-text>
+
+<bolt-table>
+  <table>
+    <tbody>
+      {% for scroll in schema.properties.scroll.enum %}
+        <tr>
+          <th>
+            {% include "@bolt-components-button/button.twig" with {
+              text: scroll|capitalize,
+              size: "small",
+              width: "full",
+              attributes: {
+                onclick: "this.nextElementSibling.show()",
+              }
+            } only %}
+            {% include "@bolt-components-modal/modal.twig" with {
+              content: modal_content,
+              scroll: scroll,
+              spacing: "none",
+              theme: "none",
+            } only %}
+          </th>
+          <td>
+            {% if scroll == "overall" %}
+              This makes the overall viewport area scrollable.
+            {% else %}
+              This makes the modal container itself scrollable.
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2">Additional Notes: this prop only applies to viewports equal to or above the small breakpoint (~600px).</th>
+      </tr>
+    </tfoot>
+  </table>
+</bolt-table>

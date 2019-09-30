@@ -1,0 +1,35 @@
+{% extends "@bolt-components-navbar/navbar.twig" %}
+
+{% block navbar_title %}
+  {{ parent() }}
+  {% include "@bolt-site/version-selector.twig" only %}
+{% endblock %}
+
+{% block navbar_nav %}
+  <bds-docs-search>
+    {% set label %}
+      {% include("@bolt-components-form/form-label.twig") with {
+        "title": 'Search the Bolt Docs',
+        "displayType": 'floating'
+      } only %}
+    {% endset %}
+
+    {% set children %}
+      {% include("@bolt-components-form/form-input.twig") with {
+        "attributes": {
+          'placeholder': 'Search the docs',
+          'type': 'search',
+          'class': 'js-docs-search'
+        },
+        icon_size: "small"
+      } only %}
+    {% endset %}
+
+    {% include "@bolt-components-form/form-element.twig" with {
+      label: label,
+      children: children,
+      icon_size: "small"
+    } only %}
+  </bds-docs-search>
+  {{ parent() }}
+{% endblock %}

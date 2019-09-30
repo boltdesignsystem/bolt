@@ -1,11 +1,19 @@
+@import '@bolt/core';
+
 // Image Component Styling (if any)
 
 bolt-image {
   display: block;
 }
 
+.c-bolt-image__image {
+  display: block;
+  // temp fix, prevents huge image when in shadow dom but not in bolt-ratio
+  max-width: 100%;
+}
+
 .c-bolt-image__lazyload {
-  transition: opacity .2s ease, filter .2s ease;
+  transition: opacity 0.2s ease, filter 0.2s ease;
 }
 
 .c-bolt-image__lazyload--blur {
@@ -24,8 +32,32 @@ bolt-image {
   }
 }
 
-
 .c-bolt-image__image-placeholder {
-  transition: opacity .2s ease;
   pointer-events: none;
+  filter: blur(20px); // low quality image placeholders should always be blurred
+  transition: opacity 0.2s ease;
+}
+
+.c-bolt-image--cover {
+  @include bolt-margin(auto);
+  position: absolute;
+  top: -9999px;
+  right: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  min-width: 100%;
+  max-width: none; //Required to handle instances where a max-width is previously set.
+  min-height: 100%;
+
+  @supports (object-fit: cover) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .is-expanded & {
+    opacity: bolt-opacity(100);
+    filter: blur(10px);
+  }
 }

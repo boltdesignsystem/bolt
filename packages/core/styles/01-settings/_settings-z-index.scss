@@ -12,7 +12,6 @@
 /// @see {mixin} bolt-z-index
 /// @see bolt-z-index
 $bolt-z-indexes: (
-  'utility-class-prefix': 'u-bolt-z-index--', // @TODO Utility classes should not contain "--"
   sets: (
     fab: 300,
     modal: 200,
@@ -28,6 +27,6 @@ $bolt-z-indexes: (
     background: 0,
     backgroundBottom: -20,
   ),
-);
+) !default;
 
 @include export-data('z-indexes.bolt.json', $bolt-z-indexes);

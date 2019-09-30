@@ -1,0 +1,42 @@
+<div class="o-bolt-wrapper">
+  {% embed "@bolt-components-card/card.twig" with {
+    contentItems: [
+      {
+        pattern: "eyebrow",
+        text: "Video"
+      },
+      {
+        pattern: "headline",
+        tag: "h3",
+        size: "large",
+        text: "Anthem: Service Desktop"
+      },
+      {
+        pattern: "text",
+        text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+      },
+      {
+        pattern: "button",
+        text: "Get the report",
+        url: "http://pega.com",
+      }
+    ]
+  } only %}
+    {% block card_media %}
+      {% include "@bolt-components-carousel/carousel.twig" with {
+        slides: [
+          '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
+          '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
+          '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-3.jpg)"></bolt-ratio>',
+          '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-4.jpg)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
+          '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
+        ],
+        slidesPerView: 1,
+        spaceBetween: "small",
+        noPagination: true,
+        navButtonPosition: "inside",
+      } only %}
+    {% endblock %}
+  {% endembed %}
+</div>

@@ -1,0 +1,60 @@
+@import '@bolt/core';
+
+/* ------------------------------------ *\
+   Grid Items
+\* ------------------------------------ */
+
+$bolt-grid-item-alignments: (
+  start, center, end
+);
+
+$bolt-grid-item-directions: (
+  column, row
+);
+
+bolt-grid-item {
+  display: block;
+  width: auto;
+
+  @each $valignment in $bolt-grid-item-alignments {
+    &[valign='#{$valignment}'] {
+      align-self: #{$valignment};
+    }
+  }
+
+  // Column, row start and end
+  @each $direction in $bolt-grid-item-directions {
+    @for $bolt-grid-columns from 1 through 12 {
+      &[#{$direction}-start~='#{$bolt-grid-columns}'] {
+        grid-#{$direction}-start: #{$bolt-grid-columns};
+      }
+
+      &[#{$direction}-span~='#{$bolt-grid-columns}'] {
+        grid-#{$direction}-end: span #{$bolt-grid-columns};
+      }
+    }
+  }
+
+  // Responsive column, row start and end
+  @each $direction in $bolt-grid-item-directions {
+    @each $breakpoint in $bolt-breakpoints {
+      $breakpoint-name: nth($breakpoint, 1);
+
+      @for $bolt-grid-columns from 1 through 12 {
+        @include bolt-mq($breakpoint-name) {
+          &[#{$direction}-start~='#{$bolt-grid-columns}\@#{$breakpoint-name}'] {
+            grid-#{$direction}-start: #{$bolt-grid-columns};
+          }
+        }
+      }
+
+      @include bolt-mq($breakpoint-name) {
+        @for $bolt-grid-columns from 1 through 12 {
+          &[#{$direction}-span~='#{$bolt-grid-columns}\@#{$breakpoint-name}'] {
+            grid-#{$direction}-end: span #{$bolt-grid-columns};
+          }
+        }
+      }
+    }
+  }
+}

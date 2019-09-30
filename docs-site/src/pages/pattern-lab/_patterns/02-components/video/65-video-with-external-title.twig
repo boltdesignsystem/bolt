@@ -1,0 +1,71 @@
+<p>
+  This video has <code>showMetaTitle</code> set to <code>false</code> to hide the title from the video player, so you can pass the title to other markup.
+</p>
+
+
+
+
+{% include "@bolt/headline.twig" with {
+  "tag": "h3",
+  "size": "large",
+  "text": "Figure and Figcaption"
+} only %}
+
+{% set content %}
+  <figure>
+    {% include "@bolt/video.twig" with {
+      "videoId": "3861325118001",
+      "accountId": "1900410236",
+      "playerId": "r1CAdLzTW",
+      "showMeta": true,
+      "showMetaTitle": false,
+      "attributes": {
+        "class": "u-bolt-margin-bottom-small"
+      }
+    } only %}
+    <figcaption>
+      {% include "@bolt/text.twig" with {
+        "size": "xsmall",
+        "text": "EE: Transforming the Customer Journey Through 1:1 Customer Engagement (Suzanne Woolley)"
+      } only %}
+    </figcaption>
+  </figure>
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  "size": "medium",
+  "theme": "light",
+  "content": content,
+  "attributes": {
+    "class": "u-bolt-margin-bottom-medium"
+  }
+} only %}
+
+
+
+
+{% include "@bolt/headline.twig" with {
+  "tag": "h3",
+  "size": "large",
+  "text": "Headline with Video"
+} only %}
+
+{% set content %}
+  {% include "@bolt/headline.twig" with {
+    "size": "xxlarge",
+    "text": "EE: Transforming the Customer Journey Through 1:1 Customer Engagement (Suzanne Woolley)"
+  } only %}
+  {% include "@bolt/video.twig" with {
+    "videoId": "3861325118001",
+    "accountId": "1900410236",
+    "playerId": "r1CAdLzTW",
+    "showMeta": true,
+    "showMetaTitle": false
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  "size": "medium",
+  "theme": "dark",
+  "content": content
+} only %}

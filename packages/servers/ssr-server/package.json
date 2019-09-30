@@ -1,0 +1,37 @@
+{
+  "name": "@bolt/ssr-server",
+  "description": "Express and jsdom-powered server / CLI being used by the Bolt Design System for experimentally pre-rendering web components",
+  "version": "2.8.0-beta.4",
+  "license": "MIT",
+  "module": "index.js",
+  "scripts": {
+    "_postbootstrap": "patch-package --patch-dir .patches",
+    "_postinstall": "patch-package --patch-dir .patches",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "design system",
+    "design system",
+    "bolt design system",
+    "web components",
+    "ssr",
+    "server side rendering"
+  ],
+  "dependencies": {
+    "@bolt/api": "^2.8.0-beta.4",
+    "@bolt/build-tools": "^2.8.0-beta.4",
+    "cli-highlight": "^2.1.1",
+    "document-register-element": "^1.13.1",
+    "express": "^4.16.3",
+    "globby": "^9.2.0",
+    "is-reachable": "^3.0.0",
+    "mutationobserver-shim": "^0.3.3",
+    "patch-package": "^6.0.5",
+    "postinstall-postinstall": "^2.0.0",
+    "raf": "^3.4.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
+}

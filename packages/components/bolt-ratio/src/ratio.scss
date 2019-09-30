@@ -1,0 +1,66 @@
+/* ==========================================================================
+   #BOLT RATIO OBJECT
+   ========================================================================== */
+
+@import '@bolt/core';
+
+bolt-ratio {
+  display: block;
+  width: 100%;
+  overflow: hidden; // Hide placeholder blurred images from leaking through
+
+  &:not(:defined){
+    @supports (--custom: property) {
+      &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        padding-bottom: calc(100% / (var(--aspect-ratio)));
+      }
+    }
+  }
+}
+
+:host {
+  display: block;
+  overflow: hidden; // Hide placeholder blurred images from leaking through
+}
+
+.c-bolt-ratio {
+  display: block;
+  position: relative;
+  width: 100%;
+
+  @include bolt-css-vars(
+    (
+      --aspect-ratio: 1/1,
+    )
+  );
+
+  @supports (--custom: property) {
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }
+}
+
+// fallback styles if JS hasn't kicked in yet (or is turned off) + if rendering without Shadow DOM
+.c-bolt-ratio > *,
+.c-bolt-ratio > noscript > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 100%; // workaround for content w/ hard-coded height & width
+  height: 100%;
+  min-height: 100%;
+}
+
+// same styles as above but specifically for when rendering with Shadow DOM
+.c-bolt-ratio ::slotted(*) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 100%; // workaround for content w/ hard-coded height & width
+  height: 100%;
+  min-height: 100%;
+}

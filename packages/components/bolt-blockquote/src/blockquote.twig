@@ -1,125 +1,109 @@
-{# Sample Usage
-  {% include "@bolt/twig" with {
-    // Default is large. [large, xlarge, xxlarge]
-    "size": "large",
-
-    // Default is left. [left, center, right]
-    "alignItems": "left",
-
-    // Default is vertical. [vertical, horizontal, none]
-    "border": "vertical",
-
-    // Default is false. [true, false]
-    "fullBleed": false,
-
-    // Logo is optional.
-    "logo": {
-      "src": "/images/sample/PayPal-logo.svg"
-    },
-
-    // Content is required.
-    "content": "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",
-
-    // Author is optional.
-    "author": {
-      "image": {
-        "src": "/images/placeholders/500x500.jpg"
-      },
-      "name": "Michelangelo di Lodovico Buonarroti Simoni",
-      "title": "Renaissance Artist"
-    }
-  } only %}
-#}
+{% set schema = bolt.data.components["@bolt-components-blockquote"].schema %}
 
 {% if enable_json_schema_validation %}
-  {{ validate_data_schema(bolt.data.components['@bolt-components-blockquote'].schema, _self) | raw }}
+  {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set prefix = "c-bolt-" %}
+{# Variables #}
+{% set base_class = "c-bolt-blockquote" %}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
 
-{% set sizeOptions = [
-  "large",
-  "xlarge",
-  "xxlarge"
-] %}
-
-{% set alignItemsOptions = {
+{# Required by Blockquote to map prop values to strings used in classname #}
+{% set align_items_options = {
   "left": "start",
   "center": "center",
   "right": "end"
 } %}
 
-{% set borderOptions = {
-  "none": "borderless",
-  "vertical": "bordered-vertical",
-  "horizontal": "bordered-horizontal"
-} %}
+{# Blockquote content is not required to be wrapped in a <p> tag, but if it is, update variables accordingly #}
+{% set quote_tag = "<p>" in content ? "replace-with-grandchildren" : "replace-with-children" %}
+{% set text_tag = "<p>" in content ? "div" : "p" %}
 
-{% set attributes = create_attribute(attributes|default({})) %}
-
-
-{% set componentName = "blockquote" %}
-{% set baseClass = prefix ~ componentName %}
-{% set size = size == false and size is null ? "xlarge" : size | default("xlarge") %}
-{% set alignItems = alignItems == false and alignItems is null ? "left" : alignItems | default("left") %}
-{% set border = border == false and border is null ? "vertical" : border | default("vertical") %}
-{% set fullBleed = fullBleed == false and fullBleed is null ? "false" : "true" %}
-
-
+{# Array of classes based on the defined + default props #}
 {% set classes = [
-  baseClass,
-  size in sizeOptions ? baseClass ~ "--" ~ size : "",
-  alignItems in alignItemsOptions|keys ? baseClass ~ "--align-items-" ~ alignItemsOptions[alignItems],
-  border in borderOptions|keys ? baseClass ~ "--" ~ borderOptions[border],
-  indent ? baseClass ~ "--indented" : "",
-  fullBleed == "true" ? baseClass ~ "--full" : ""
+  base_class,
+  this.data.size.value in schema.properties.size.enum ? base_class ~ "--" ~ this.data.size.value : "",
+  this.data.align_items.value in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[this.data.align_items.value],
+  this.data.border.value == 'none' ? base_class ~ "--borderless" : base_class ~ "--bordered-" ~ this.data.border.value,
+  this.data.indent.value ? base_class ~ "--indented" : "",
+  this.data.full_bleed.value ? base_class ~ "--full" : "",
+  this.data.no_quotes.value ? base_class ~ "--no-quotes" : ""
 ] %}
 
-<bolt-{{ componentName }} bolt-component>
-  <blockquote {{ attributes.addClass(classes) }}>
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+<bolt-blockquote
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ this.props|without("content")|without("class") }}
+>
+  <blockquote {{ inner_attributes.addClass(inner_classes) }} is="shadow-root">
     {% if logo %}
-      {% block blockquote_logo %}
-        <div class="{{ "#{baseClass}__logo" }}">
-          {% include "@bolt/logo.twig" with logo only %}
-        </div>
-      {% endblock %}
+      <replace-with-children class="{{ "#{base_class}__logo" }}">
+        {% include "@bolt/logo.twig" with logo|merge({
+          slot: "logo",
+        }) only %}
+      </replace-with-children>
     {% endif %}
-    {% block blockquote_quote %}
-      <div class="{{ "#{baseClass}__quote" }}">
-        {% include "@bolt/text.twig" with {
-          text: content,
-          tag: "div",
-          size: size,
-          weight: "semibold"
-        } only %}
-      </div>
-    {% endblock %}
+
+    <{{quote_tag}} class="{{ "#{base_class}__quote" }}">
+      {% include "@bolt-components-headline/text.twig" with {
+        text: content,
+        tag: text_tag,
+        size: this.data.size.value,
+        weight: "semibold"
+      } only %}
+    </{{quote_tag}}>
+
     {% if author %}
-      {% block blockquote_footer %}
-        <footer class="{{ "#{baseClass}__footer" }}">
-          {% if author.image %}
-            <div class="{{ "#{baseClass}__footer-item" }}">
-              <div class="{{ "#{baseClass}__image" }}">
-                {% include "@bolt/image.twig" with author.image only %}
-              </div>
-            </div>
-          {% endif %}
-          <div class="{{ "#{baseClass}__footer-item" }}">
-            {% include "@bolt/text.twig" with {
-              text: author.name,
-              tag: "cite",
-              size: "xsmall",
-              weight: "bold"
-            } only %}
-            {% if author.title %}
-              {% include "@bolt/text.twig" with {
-                text: author.title,
-                size: "xsmall"
-              } only %}
+      <replace-with-grandchildren>
+        <footer class="{{ "#{base_class}__footer" }}">
+            {% if author.image %}
+              <replace-with-grandchildren class="{{ "#{base_class}__footer-item" }}">
+                <div class="{{ "#{base_class}__image" }}">
+                  {% include "@bolt/image.twig" with author.image|merge({ slot:"author-image"}) only %}
+                </div>
+              </replace-with-grandchildren>
             {% endif %}
-          </div>
+
+            {% if author.name %}
+              <replace-with-children class="{{ "#{base_class}__footer-item" }}">
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: author.name,
+                  tag: "cite",
+                  size: "xsmall",
+                  weight: "bold",
+                  slot: "author-name"
+                } %}
+              </replace-with-children>
+            {% endif %}
+
+            {% if author.title %}
+              <replace-with-children class="{{ "#{base_class}__footer-item" }}">
+                {% include "@bolt-components-headline/text.twig" with {
+                  text: author.title,
+                  tag: "cite",
+                  size: "xsmall",
+                  slot: "author-title"
+                } only %}
+              </replace-with-children>
+            {% endif %}
         </footer>
-      {% endblock %}
+      </replace-with-grandchildren>
     {% endif %}
   </blockquote>
-</bolt-{{ componentName }}>
+</bolt-blockquote>

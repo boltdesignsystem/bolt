@@ -1,0 +1,19 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-ratio/ratio.twig" with {
+  content: '&lt;img src="https://via.placeholder.com/350x150"&gt;',
+  ratio: "350/150"
+} only %}
+{% endverbatim %}{% endset %}
+
+{# @todo: re-enable component explorer demo here after adding preset examples: http://vjira2:8080/browse/BDS-1126 #}
+{# {% include "@utils/docs.twig" with {
+  componentName: "ratio",
+  usage: usage,
+  schemaForm: {
+    template: '@bolt-components-ratio/ratio.twig',
+    initialData: {
+      content: "1x1 Aspect Ratio",
+      ratio: "1/1",
+    },
+  },
+} only %} #}

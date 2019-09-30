@@ -1,28 +1,70 @@
 $schema: 'http://json-schema.org/draft-04/schema#'
-title: Bolt Band
-category: layout
+title: Band
 type: object
-format: grid
+not:
+  anyOf:
+    - required:
+      - fullBleed
+    - required:
+      - contentTag
+    - required:
+      - items
+    - required:
+      - row_gutter
+    - required:
+      - content_row_start
 properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
-  fullBleed:
-    type: boolean
-    description: If set to true, the band will take the full width of the page.
-  size:
+  content:
+    type:
+      - string
+      - array
+      - object
+    description: Main content of the band.
+  pinned_content:
+    type: object
+    description: Pinned content of the band.
+    properties:
+      upper:
+        type: array
+        description: Pinned to the upper area of the band.
+        properties:
+          content:
+            type:
+              - string
+              - array
+              - object
+            description: A pinned area can contain 1 or more items.
+          align:
+            type: string
+            description: Horizontal alignment of a single item.
+            enum:
+              - start
+              - center
+              - end
+      lower:
+        type: array
+        description: Pinned to the lower area of the band.
+        properties:
+          content:
+            type:
+              - string
+              - array
+              - object
+            description: A pinned area can contain 1 or more items.
+          align:
+            type: string
+            description: Horizontal alignment of a single item.
+            enum:
+              - start
+              - center
+              - end
+  tag:
     type: string
-    description: Height of the band.
-    default: medium
-    enum:
-      - xsmall
-      - small
-      - medium
-      - large
-      - none
-  contentTag:
-    type: string
-    description: Html tag to use for the band's content.
+    description: Controls the semantic HTML tag to use for the band's content.
+    default: div
     enum:
       - div
       - article
@@ -30,38 +72,46 @@ properties:
       - header
       - footer
       - nav
-      - figcaption
+      - figure
+  size:
+    type: string
+    description: Controls the vertical spacing of the band.
+    default: medium
+    enum:
+      - none
+      - xsmall
+      - small
+      - medium
+      - large
+  full_bleed:
+    type: boolean
+    default: true
+    description: If set to true, the band will take the full width of the page.
+    enum:
+      - true
+      - false
   theme:
     type: string
-    description: Bolt theme.
+    description: Controls the theme of the band.
     default: dark
     enum:
+      - none
       - xlight
       - light
       - dark
       - xdark
-      - none
   row_gutter:
-    description: "Configures the amount of vertical whitespace in-between each <code>&lt;bolt-grid-item&gt;</code> in the nested <code>&lt;bolt-grid&gt;</code> component.</code>. Defaults to <code>small</code> when there's more than than 1 item in the items array, otherwise defaults to <code>none</code>. Shares the same <code>row_gutter</code> config options as the <a href='https://github.com/bolt-design-system/bolt/blob/master/packages/components/bolt-grid/grid.schema.yml#L9' target='_blank'>grid component</a>."
-    type: string
-    default: "small / none"
-    enum:
-      - none
-      - small
-      - medium
-      - large
+    title: DEPRECATED
+    description: Please use `pinned_content`. Instructions on how to use `pinned_content` is on the Band with Pinned Content demo page.
   content_row_start:
-    description: "Configures which row the Band Component's legacy <code>content</code> Twig block should be 'automatically' displayed on. Under the hood, this identical to the <a href='https://github.com/bolt-design-system/bolt/blob/master/packages/components/bolt-grid/grid-item.schema.yml#L34' target='_blank'>Grid Item's</a> <code>row_start</code> config."
-    type: string
-    default: 2
+    title: DEPRECATED
+    description: Please use `pinned_content`. Instructions on how to use `pinned_content` is on the Band with Pinned Content demo page.
   items:
-    type: array
-    description: "Array of content items to display inside the band component. Internally this uses the new <code>&lt;bolt-grid&gt;</code> component to handle layout."
-    properties:
-      content:
-        type: [string, object, array]
-        description: "Content to render inside each <code>&lt;bolt-grid-item&gt;</code>"
-      position:
-        type: object
-        ref: '@bolt-components-grid/grid-item.schema.yml'
-        description: "Layout-specific config options for each internal <code>&lt;bolt-grid-item&gt;</code>"
+    title: DEPRECATED
+    description: Please use `content` and `pinned_content`. Instructions on how to use `pinned_content` is on the Band with Pinned Content demo page.
+  fullBleed:
+    title: DEPRECATED
+    description: This prop has been renamed. Please use `full_bleed`.
+  contentTag:
+    title: DEPRECATED
+    description: This prop is no longer needed. `tag` takes care of the semantic markup automatically.

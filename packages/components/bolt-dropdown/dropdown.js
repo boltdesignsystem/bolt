@@ -4,15 +4,18 @@ import {
   css,
   hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
-import { wire, withHyperHtml } from '@bolt/core/renderers';
+import {
+  render,
+  withLitHtml,
+  html,
+} from '@bolt/core/renderers/renderer-lit-html';
 
 import Handorgel from 'handorgel';
 
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './dropdown.scss';
 
-@define
-class BoltDropdown extends withHyperHtml() {
+class BoltDropdown extends withLitHtml() {
   static is = 'bolt-dropdown';
 
   static props = {
@@ -114,27 +117,32 @@ class BoltDropdown extends withHyperHtml() {
       ? this.props.title
       : '';
 
-    return wire(this.props)`
+    return html`
       <h3 class="${dropdownHeaderClasses}">
         <button class="c-bolt-dropdown__header-button">
           ${dropdownTitle}
 
           <span class="c-bolt-dropdown__header-icons">
             <div class="c-bolt-dropdown__header-icons-inner">
-              <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--open">
+              <span
+                class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--open"
+              >
                 <bolt-icon name="chevron-down"></bolt-icon>
               </span>
 
-              <span class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--close">
+              <span
+                class="c-bolt-dropdown__header-icon c-bolt-dropdown__header-icon--close"
+              >
                 <bolt-icon name="chevron-up"></bolt-icon>
               </span>
             </div>
           </span>
         </button>
-      </h3>`;
+      </h3>
+    `;
   }
 
-  template() {
+  render() {
     const classes = css(
       'c-bolt-dropdown',
       this.props.collapse ? 'c-bolt-dropdown--collapse@small' : '',
@@ -146,31 +154,28 @@ class BoltDropdown extends withHyperHtml() {
       ? this.props.children
       : '';
 
-    return wire(this.props)`
+    return html`
+      ${this.addStyles([styles, heightUtils])}
       <div class="${classes}" id="${this.uuid}">
         ${this.dropdownHeader()}
-
         <div class="c-bolt-dropdown__content">
-          <div class="c-bolt-dropdown__content-inner">
-            ${dropdownChildren}
-          </div>
+          <div class="c-bolt-dropdown__content-inner">${dropdownChildren}</div>
         </div>
       </div>
     `;
   }
 
-  render() {
-    this.dropdownTemplate = document.createDocumentFragment();
-    this.dropdownTemplate.appendChild(this.template());
+  rendered() {
+    super.rendered && super.rendered();
 
-    this.contentElem = this.dropdownTemplate.querySelector(
+    this.contentElem = this.renderRoot.querySelector(
       '.c-bolt-dropdown__content',
     );
 
     this.autoHeight();
 
     this.dropdown = new Handorgel(
-      this.dropdownTemplate.querySelector('.c-bolt-dropdown'),
+      this.renderRoot.querySelector('.c-bolt-dropdown'),
       {
         // whether multiple folds can be opened at once
         multiSelectable: true,
@@ -212,11 +217,6 @@ class BoltDropdown extends withHyperHtml() {
         contentNoTransitionClass: 'c-bolt-dropdown__content--notransition',
       },
     );
-
-    return this.html`
-      ${this.addStyles([styles, heightUtils])}
-      ${this.dropdownTemplate}
-    `;
   }
 }
 

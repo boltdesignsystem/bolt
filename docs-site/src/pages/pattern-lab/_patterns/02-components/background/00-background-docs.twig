@@ -1,0 +1,21 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-background/background.twig" with {
+  opacity: "heavy",
+  fill: "gradient",
+  focalPoint: {
+    vertical: "center",
+    horizontal: "center"
+  },
+  contentItems: [
+    {
+      pattern: "image",
+      src: "/images/content/backgrounds/background-tall-4.jpg"
+    }
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "background",
+  usage: usage
+} only %}

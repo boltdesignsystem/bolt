@@ -1,99 +1,9 @@
-/* ------------------------------------ *\
-   Action Blocks
-\* ------------------------------------ */
-
-// Sample Usage
-// <bolt-action-blocks bolt-component>
-//   <ul class="c-bolt-action-blocks c-bolt-action-blocks--item-max-6 c-bolt-action-blocks--vertical-align-start c-bolt-action-blocks--bordered">
-//     <li class="c-bolt-action-blocks__item">
-//       <bolt-action-block bolt-component>
-//         <a href="http://google.com" class="c-bolt-action-block">
-//           <div class="c-bolt-action-block__item">
-//             <bolt-icon name="download" background="circle" size="large"></bolt-icon>
-//           </div>
-//           <div class="c-bolt-action-block__item">
-//             Item 1, Proin Quis Tortor Orci Etiam At Risus Et Justo Dignissim.
-//           </div>
-//         </a>
-//       </bolt-action-block>
-//     </li>
-//   </ul>
-// </bolt-action-blocks>
-
 @import '@bolt/core';
+@import './action-blocks-settings-and-tools';
 
-// Local Variables
-$bolt-action-block-transition-ease: $bolt-transition-ease;
-$bolt-action-block-transition-timing: 300ms;
-$bolt-action-block-item-max-width: 20ch;
-
-$bolt-action-blocks-border-width: $bolt-border-width;
-$bolt-action-blocks-border-style: $bolt-border-style;
-$bolt-action-block-background: bolt-color(indigo, light);
-
-// Individual Action Block Styles
-.c-bolt-action-block {
-  @include bolt-padding(medium, stretched);
-
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  position: relative;
-  width: 100%;
-  height: 100%;
-  color: bolt-theme(headline);
-  outline: none;
-  transition: color $bolt-action-block-transition-timing cubic-bezier(0.25, 0.8, 0.25, 1);
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: bolt-theme(secondary);
-  }
-
-  &:before {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    content: '';
-    pointer-events: none;
-    background-color: $bolt-action-block-background;
-    opacity: bolt-opacity(0);
-    transition: all $bolt-action-block-transition-timing cubic-bezier(0.25, 0.8, 0.25, 1);
-  }
-
-  &:hover, &:focus {
-    &:before {
-      opacity: bolt-opacity(100);
-    }
-  }
-
-  &:active {
-    &:before {
-      opacity: .8;
-    }
-  }
-}
-
-.c-bolt-action-block__item {
-  @include bolt-margin(0 auto small auto);
-  @include bolt-font-size(xsmall);
-  @include bolt-font-weight(bold);
-
-  display: block;
-  position: relative;
-  width: 100%;
-  max-width: $bolt-action-block-item-max-width;
-  text-align: center;
-
-  &:last-child {
-    @include bolt-margin-bottom(0);
-  }
-}
-
+/* ------------------------------------ *\
+   Action Blocks Container
+\* ------------------------------------ */
 
 // The Frame to Contain a Group of Action Blocks
 bolt-action-blocks {
@@ -104,9 +14,9 @@ bolt-action-blocks {
 .c-bolt-action-blocks {
   @include bolt-margin(0 -1px -1px 0);
   @include bolt-padding(0);
-  transform: translate3d(0, 0, 0); //Force hardware accelerated rendering to cleanly remove extra border from showing up sometimes
   display: flex;
   flex-wrap: wrap;
+  transform: translate3d(0, 0, 0); //Force hardware accelerated rendering to cleanly remove extra border from showing up sometimes
   list-style: none;
 }
 
@@ -115,45 +25,45 @@ bolt-action-blocks {
   flex-grow: 1;
   position: relative;
   min-width: 150px;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: bolt-z-index('background');
+    width: 100%;
+    height: 100%;
+    border-right-color: bolt-theme(border, 0.2);
+    border-right-style: $bolt-action-blocks-border-style;
+    border-right-width: $bolt-action-blocks-border-width;
+    border-bottom-color: bolt-theme(border, 0.2);
+    border-bottom-style: $bolt-action-blocks-border-style;
+    border-bottom-width: $bolt-action-blocks-border-width;
+  }
 }
 
-.c-bolt-action-blocks--bordered > .c-bolt-action-blocks__item:before {
-  border-bottom-width: $bolt-action-blocks-border-width;
-  border-bottom-style: $bolt-action-blocks-border-style;
-  border-right-width: $bolt-action-blocks-border-width;
-  border-right-style: $bolt-action-blocks-border-style;
-  display: block;
-  position: absolute;
-  z-index: bolt-z-index('background');
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  content: '';
-  border-bottom-color: bolt-theme(border, 0.2);
-  border-right-color: bolt-theme(border, 0.2);
-}
-
-.c-bolt-action-blocks--borderless > .c-bolt-action-blocks__item {
-  border-bottom-color: transparent;
+.c-bolt-action-blocks--borderless > .c-bolt-action-blocks__item:before {
   border-right-color: transparent;
+  border-bottom-color: transparent;
 }
 
-.c-bolt-action-blocks--vertical-align-start {
+.c-bolt-action-blocks--valign-start {
   // TODO: [Mai] I know this feels dirty, but how else can it do this?
   .c-bolt-action-block {
     justify-content: flex-start;
   }
 }
 
-.c-bolt-action-blocks--vertical-align-center {
+.c-bolt-action-blocks--valign-center {
   // TODO: [Mai] I know this feels dirty, but how else can it do this?
   .c-bolt-action-block {
     justify-content: center;
   }
 }
 
-.c-bolt-action-blocks--vertical-align-end {
+.c-bolt-action-blocks--valign-end {
   // TODO: [Mai] I know this feels dirty, but how else can it do this?
   .c-bolt-action-block {
     justify-content: flex-end;
@@ -168,8 +78,8 @@ bolt-action-blocks {
 
 
 .c-bolt-action-block__text {
-  transition: color $bolt-action-block-transition-timing cubic-bezier(0.25, 0.8, 0.25, 1);
   color: bolt-theme(headline-link);
+  transition: color $bolt-action-blocks-transition-timing $bolt-action-blocks-transition-ease;
 
   .c-bolt-action-block:focus &,
   .c-bolt-action-block:hover &,

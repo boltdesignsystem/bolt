@@ -1,62 +1,17 @@
-import { define, props, css } from '@bolt/core/utils';
+import { beforeNextRender, define, props, css } from '@bolt/core/utils';
 import { h, withPreact } from '@bolt/core/renderers';
-import dasherize from 'dasherize';
 import Mousetrap from 'mousetrap';
+import classNames from 'classnames';
 
-// Bolt v2.0 will be shipping with this in Bolt core -- manually adding this in to the Bolt video player as a temp workaround till then.
-import { beforeNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+import {
+  socialPlugin,
+  emailPlugin,
+  playbackPlugin,
+  cuePointsPlugin,
+} from '../plugins/index';
+import { datasetToObject, formatVideoDuration } from '../utils';
 
 let index = 0;
-
-@define
-class BoltVideoMeta extends withPreact() {
-  static is = `${bolt.namespace}-video-meta`;
-
-  constructor(self) {
-    self = super(self);
-    return self;
-  }
-
-  static props = {
-    duration: props.string,
-    title: props.string,
-  };
-
-  get renderRoot() {
-    return this;
-  }
-
-  render() {
-    // All of its logic is contained here in render(), but it could be updated to be a property that is set
-    // externally (such as when the video has finished fully loading).
-
-    // [Mai] 'reveal' allows the meta data (title and duration) to be hidden.
-    const reveal = Boolean(this.title || this.duration);
-    return (
-      <div className={`c-${bolt.namespace}-video-meta`}>
-        {reveal ? (
-          <div className={`c-${bolt.namespace}-video-meta__wrapper`}>
-            {this.title ? (
-              <div
-                className={`c-${bolt.namespace}-video-meta__item c-${
-                  bolt.namespace
-                }-video-meta__item--title`}>
-                {this.title}
-              </div>
-            ) : null}
-            <div
-              className={`c-${bolt.namespace}-video-meta__item c-${
-                bolt.namespace
-              }-video-meta__item--duration`}>
-              {this.duration}
-            </div>
-          </div>
-        ) : null}
-      </div>
-    );
-  }
-}
-
 @define
 class BoltVideo extends withPreact() {
   static is = `${bolt.namespace}-video`;
@@ -66,60 +21,50 @@ class BoltVideo extends withPreact() {
     accountId: props.string,
     playerId: props.string,
     poster: props.object,
-    isBackgroundVideo: props.boolean,
+    isBackgroundVideo: props.boolean, // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
     onInit: props.string,
     showMeta: props.boolean,
     showMetaTitle: props.boolean,
     closeButtonText: props.string,
+    shareDescription: props.string,
     loop: props.boolean,
-    // onError: null,
-    // onPlay: null,
-    // onPause: null,
-    // onFinish: null,
-    // onProgress: null,
-    // onDuration: null,
     controls: props.boolean,
     autoplay: props.boolean,
     resetOnFinish: props.boolean,
     directToFullscreen: props.boolean,
     hideFullScreenButton: props.boolean,
+    overlayAlignment: {
+      ...props.string,
+      ...{ default: 'bottom' },
+    },
+    enabledPlugins: {
+      ...props.string,
+      ...{ default: 'playback' },
+    },
+    disabledPlugins: props.string,
+    overlayBackground: props.boolean,
   };
 
   constructor(self) {
     self = super(self);
+    self.useShadow = false;
+
+    this.defaultPlugins = ['playback'];
 
     index += 1;
 
+    // These bindings are necessary to make `this` work in the callback
     this.onPlay = this.onPlay.bind(this);
     this.onPause = this.onPause.bind(this);
     this.onEnded = this.onEnded.bind(this);
-    // this.onProgress = this.onProgress.bind(this);
     this.onDurationChange = this.onDurationChange.bind(this);
     this.onSeeked = this.onSeeked.bind(this);
-
-    // This binding is necessary to make `this` work in the callback
     this.handleClose = this.handleClose.bind(this);
-
     this.collapseOnClickAway = this.collapseOnClickAway.bind(this);
 
     // BoltVideo.globalErrors.forEach(this.props.onError);
 
-    this.defaultProps = {
-      // width: 320,
-      // height: 180,
-      // playerId: "default",
-      // onError: () => { },
-      // onPlay: () => { },
-      // onPause: () => { },
-      // onFinish: () => { },
-      // onProgress: () => { },
-      // onDuration: () => { },
-      loop: false,
-      autoplay: false,
-      hideFullScreenButton: false,
-      directToFullscreen: false,
-      resetOnFinish: false,
-    };
+    this.shareDescription = this.shareDescription || 'Share This Video';
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
@@ -128,13 +73,16 @@ class BoltVideo extends withPreact() {
     return self;
   }
 
-  get renderRoot() {
-    return this;
-  }
-
   get expandedHeight() {
     return this.getAttribute('expandedHeight');
   }
+
+  static availablePlugins = {
+    playback: playbackPlugin,
+    cue: cuePointsPlugin,
+    social: socialPlugin,
+    email: emailPlugin,
+  };
 
   /**
    * Properties and their corresponding attributes should mirror one another.
@@ -167,13 +115,6 @@ class BoltVideo extends withPreact() {
     );
   }
 
-  // Called to check whether or not the component should call
-  // updated(), much like React's shouldComponentUpdate().
-  // updating(props, state) {
-  //   console.log(props);
-  //   console.log(state);
-  // }
-
   _setMetaTitle(title) {
     if (this.props.showMeta && this.props.showMetaTitle) {
       this.querySelector(`${bolt.namespace}-video-meta`).setAttribute(
@@ -185,7 +126,7 @@ class BoltVideo extends withPreact() {
 
   _setMetaDuration(seconds) {
     if (this.props.showMeta) {
-      const durationFormatted = BoltVideo._formatDuration(seconds);
+      const durationFormatted = formatVideoDuration(seconds);
       this.querySelector(`${bolt.namespace}-video-meta`).setAttribute(
         'duration',
         durationFormatted,
@@ -193,27 +134,55 @@ class BoltVideo extends withPreact() {
     }
   }
 
-  static _formatDuration(seconds) {
-    const mm = Math.floor(seconds / 60) || 0;
-    const ss = ('0' + Math.floor(seconds % 60)).slice(-2);
-
-    return mm + ':' + ss;
-  }
-
   _setVideoDimensions(width, height) {
     this.srcWidth = width;
     this.srcHeight = height;
+  }
+
+  _setupPlugins(elem, player) {
+    // loop through any enabled plugins added, remove any flagged as being disabled, and apply what's left to the player instance.
+    const enabledPlugins = Array.from(elem.enabledPlugins.split(' '));
+    const disabledPlugins = elem.disabledPlugins
+      ? Array.from(elem.disabledPlugins.split(' '))
+      : [];
+    const allPlugins = [...elem.defaultPlugins, ...enabledPlugins];
+
+    // remove duplicates
+    const uniqueAndEnabledPlugins = allPlugins.filter(function(item, index) {
+      const itemName = allPlugins[index];
+      return (
+        allPlugins.indexOf(item) >= index &&
+        disabledPlugins.includes(item) !== true
+      );
+    });
+
+    // check to confirm plugins exist before initializing
+    uniqueAndEnabledPlugins.forEach(pluginName => {
+      if (BoltVideo.availablePlugins) {
+        if (BoltVideo.availablePlugins[pluginName]) {
+          BoltVideo.availablePlugins[pluginName](player, elem);
+        }
+      }
+    });
   }
 
   static handlePlayerReady(context) {
     const player = this;
     const elem = context;
 
+    elem._setupOverlay();
+    elem._setupPlugins(elem, player);
+
     elem.setPlayer(player);
 
     // If the option to show controls is set to false (meaning, no controls will be shown), make sure the video is also muted.
     if (elem.controls === false) {
       elem.player.muted(true);
+    }
+
+    // auto-configure the social overlay config (loaded via the social plugin)
+    if (player.socialOverlay) {
+      player.socialOverlay.options_.description = elem.props.shareDescription;
     }
 
     player.on('loadedmetadata', function() {
@@ -261,8 +230,6 @@ class BoltVideo extends withPreact() {
     player.on('ended', function() {
       elem.onEnded(player);
     });
-
-    // this.contextmenu({ disabled: true });
   }
 
   static appendScript(s) {
@@ -281,9 +248,22 @@ class BoltVideo extends withPreact() {
     return Math.round(player.duration() * 1000);
   }
 
-  // static isBackgroundVideo() {
-  //   return this.props.isBackgroundVideo;
-  // }
+  _setupOverlay() {
+    this.overlayElement = this.querySelector('.vjs-overlay');
+
+    const overlayClasses = classNames({
+      [`vjs-overlay-${this.overlayAlignment}`]: this.props.overlayAlignment,
+      'vjs-overlay-no-background': this.props.overlayBackground !== true,
+      'vjs-overlay-background': this.props.overlayBackground === true,
+    });
+
+    if (this.overlayElement) {
+      // clear out any default overlay bg classes
+      this.overlayElement.classList.remove('vjs-overlay-no-background');
+      this.overlayElement.classList.remove('vjs-overlay-background');
+      this.overlayElement.className += ' ' + overlayClasses;
+    }
+  }
 
   handleClose() {
     this.close();
@@ -303,15 +283,6 @@ class BoltVideo extends withPreact() {
       this._calculateIdealVideoSize();
     }
 
-    if (this.defaultProps) {
-      const defaultProps = this.defaultProps;
-      for (const propName in defaultProps) {
-        if (this.props[propName] === undefined) {
-          this.props[propName] = defaultProps[propName];
-        }
-      }
-    }
-
     if (BoltVideo.globalErrors !== undefined && BoltVideo.globalErrors.length) {
       // console.log('adding default errors');
       // console.log(this.state.errors);
@@ -326,15 +297,22 @@ class BoltVideo extends withPreact() {
       return;
     }
 
-    // only ever append script once
+    // only ever append script once per unique playerId
     if (!BoltVideo.players) {
       BoltVideo.players = [];
+    }
+
+    const playerId = this.props.playerId;
+
+    if (!BoltVideo.players[playerId]) {
+      BoltVideo.players[playerId] = playerId;
 
       const s = this.createScript();
 
       s.onload = () => {
+        // We know Brightcove has loaded, so immediately call initVideoJS() on each video
         BoltVideo.players.forEach(function(player) {
-          player.initVideoJS(player.state.id);
+          player.initVideoJS();
         });
       };
 
@@ -351,15 +329,6 @@ class BoltVideo extends withPreact() {
       };
 
       BoltVideo.appendScript(s);
-    }
-
-    this.init();
-
-    // If onInit event exists on element, run that instead of auto initializing
-    if (this.props.onInit) {
-      if (window[this.props.onInit]) {
-        window[this.props.onInit](this);
-      }
     }
 
     // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
@@ -383,24 +352,6 @@ class BoltVideo extends withPreact() {
     }
   }
 
-  // shouldUpdate(props, state) {
-  //   return true;
-  // }
-
-  // Called when props have been set regardless of if they've changed.
-  // updating(props) { }
-
-  /**
-   * `attributeChangedCallback` processes changes to the `expanded` attribute.
-   */
-  // attributeChangedCallback(attributeName, oldValue, newValue) {
-  //   console.log(attributeName);
-  //   // `expanded` is a boolean attribute it is either set or not set. The
-  //   // actual value is irrelevant.
-  //   // const value = this.hasAttribute('expanded');
-  //   // this._shadowButton.setAttribute('aria-expanded', value);
-  // }
-
   disconnecting() {
     if (this.props.isBackgroundVideo) {
       window.removeEventListener('optimizedResize', this._onWindowResize);
@@ -415,10 +366,29 @@ class BoltVideo extends withPreact() {
     this.props.onError(player.error());
   }
 
+  hideOverlay() {
+    if (this.overlayElement) {
+      this.overlayElement.classList.add('vjs-overlay--hidden');
+
+      setTimeout(() => {
+        this.overlayElement.classList.add('vjs-hidden');
+      }, 200);
+    }
+  }
+
+  showOverlay() {
+    if (this.overlayElement) {
+      this.overlayElement.classList.remove('vjs-hidden');
+
+      setTimeout(() => {
+        this.overlayElement.classList.remove('vjs-overlay--hidden');
+      }, 50);
+    }
+  }
+
   onPlay(player) {
     this.classList.add('is-playing');
-    this.classList.remove('is-finished');
-    this.classList.remove('is-paused');
+    this.classList.remove('is-finished', 'is-paused');
 
     // @TODO: implement internal setState method
     // elem.setState({
@@ -527,41 +497,6 @@ class BoltVideo extends withPreact() {
     return s;
   }
 
-  initVideoJS(id) {
-    const self = this;
-
-    beforeNextRender(this, function() {
-      const player = videojs(id);
-      const handler = BoltVideo.handlePlayerReady.bind(player, self);
-      player.ready(handler);
-    });
-  }
-
-  initVideo(id) {
-    const self = this;
-
-    beforeNextRender(this, function() {
-      bc(self.querySelector(`#${id}`), {
-        controlBar: {
-          fullscreenToggle: !self.props.hideFullScreenButton,
-        },
-      });
-      self.initVideoJS(id);
-    });
-  }
-
-  init() {
-    const self = this;
-
-    beforeNextRender(this, function() {
-      if (window.bc && window.videojs) {
-        self.initVideo(self.state.id);
-      } else {
-        BoltVideo.players.push(self);
-      }
-    });
-  }
-
   play() {
     if (this.player) {
       this.player.play();
@@ -621,8 +556,69 @@ class BoltVideo extends withPreact() {
     }
   }
 
+  initVideoJS() {
+    try {
+      /**
+       * NOTE:
+       * We delay initialization of all Brightcove videos following the steps outlined here: https://support.brightcove.com/delaying-player-instantiation
+       * - Don't include 'data-account', 'data-player', and 'data-video-id' attributes on first render of the video-js element or videos will auto-initialize.
+       * - Wait until this function is called to add these attributes.
+       * - Then manually initialize the player here via the bc() method and pass any configuration options.
+       * - This avoids multiple initializations, which has unpredictable results.
+       */
+
+      if (this.hasInitialized) {
+        return;
+      }
+
+      // Setting these attributes will trigger a re-render, hence the 'hasInitialized' check above ^
+      this.videoElement.setAttribute('data-account', this.accountId);
+      this.videoElement.setAttribute('data-player', this.playerId);
+      this.videoElement.setAttribute('data-video-id', this.videoId);
+
+      // https://support.brightcove.com/player-configuration-guide
+      // You should NOT use data-setup with Brightcove Player!
+      const player = bc(this.videoElement, {
+        // Force HTML5 Only Rendering + disable resizeManager in Brightcove to fix ability to click overlapping elements on iOS:
+        // https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747a/src/js/resize-manager.js#L19
+        techOrder: ['Html5'],
+        resizeManager: false,
+        controlBar: {
+          fullscreenToggle: !this.props.hideFullScreenButton,
+        },
+      });
+
+      player.ready(() => {
+        BoltVideo.handlePlayerReady.call(player, this);
+      });
+
+      // If onInit callback is set, run that now
+      if (this.props.onInit) {
+        if (window[this.props.onInit]) {
+          window[this.props.onInit](this);
+        }
+      }
+
+      this.hasInitialized = true;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  rendered() {
+    super.rendered && super.rendered();
+
+    // Now that the video is rendered, add a reference to it
+    this.videoElement = this.querySelector(`#${this.state.id}`);
+
+    // If Brightcove and Video.js are loaded, init; otherwise add video to stack.
+    // In most cases it's the latter, and video is initialized from the s.onload callback.
+    window.bc && window.videojs
+      ? this.initVideoJS()
+      : BoltVideo.players.push(this);
+  }
+
   render({ state, props }) {
-    // console.log('render callback');
     // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
     // data-email-body="Check out this video from Pega"
     // data-email-videourl="https://local.d8.pega.com/insights/resources/intelligent-virtual-assistant-email"
@@ -632,20 +628,7 @@ class BoltVideo extends withPreact() {
     //     ▶️
     //   </span>
     // );
-    /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
-
-    // Loop through any extra (unknown) data attributes on the main element; copy over to the <video> tag being rendered
-    function datasetToObject(elem) {
-      var data = {};
-      [].forEach.call(elem.attributes, function(attr) {
-        if (/^data-/.test(attr.name)) {
-          data[dasherize(attr.name)] = attr.value;
-        }
-      });
-      return data;
-    }
-
     const dataAttributes = datasetToObject(this);
 
     let closeButtonText = null;
@@ -656,6 +639,7 @@ class BoltVideo extends withPreact() {
     }
 
     const classes = css(
+      `t-bolt-xdark`,
       `c-${bolt.namespace}-video`,
       this.props.controls === false
         ? `c-${bolt.namespace}-video--hide-controls`
@@ -669,15 +653,16 @@ class BoltVideo extends withPreact() {
 
     return (
       <span className={classes}>
-        <video
+        <video-js
           {...dataAttributes}
           id={this.state.id}
           {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
+          // Do not add these attributes or Video.js will auto init this video
+          // data-account={this.props.accountId}
+          // data-player={this.props.playerId}
+          // data-video-id={this.props.videoId}
           data-embed="default"
-          data-video-id={this.props.videoId}
           preload="none"
-          data-account={this.props.accountId}
-          data-player={this.props.playerId}
           // playIcon={playIconEmoji()}
           // following 'autoplay' can not expected to always work on web
           // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html
@@ -689,24 +674,27 @@ class BoltVideo extends withPreact() {
         />
         {this.props.showMeta && h(videoMetaTag)}
         {this.props.isBackgroundVideo && (
-          <a
+          <div
+            onClick={this.handleClose}
             className={css(
               `c-${bolt.namespace}-video__close-button`,
               `c-${bolt.namespace}-video__close-button--icon-to-text`,
-            )}
-            href="javascript:"
-            onClick={this.handleClose}>
+            )}>
             <span className={`c-${bolt.namespace}-video__close-button-icon`}>
-              <div class="c-bolt-button c-bolt-button--xsmall c-bolt-button--secondary c-bolt-button--rounded c-bolt-button--icon-only">
-                <span class="c-bolt-button__icon">
-                  <bolt-icon name="close" size="small" />
-                </span>
-              </div>
+              <bolt-button
+                icon-only
+                size="xsmall"
+                color="secondary"
+                border-radius="full">
+                <bolt-icon name="close" size="small" slot="after" />
+              </bolt-button>
             </span>
             <span className={`c-${bolt.namespace}-video__close-button-text`}>
-              {closeButtonText}
+              <bolt-button size="small" color="text">
+                {closeButtonText}
+              </bolt-button>
             </span>
-          </a>
+          </div>
         )}
       </span>
     );
@@ -715,4 +703,4 @@ class BoltVideo extends withPreact() {
 
 export default BoltVideo;
 
-export { BoltVideo, BoltVideoMeta };
+export { BoltVideo };

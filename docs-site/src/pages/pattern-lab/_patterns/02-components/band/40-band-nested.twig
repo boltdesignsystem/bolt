@@ -1,0 +1,39 @@
+{% set parent_band_content %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxxlarge",
+    text: "This Band Has 2 Bands Nested Inside",
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    size: "xsmall",
+    theme: "light",
+    full_bleed: false,
+    content: "Nested band 1",
+  } only %}
+  {% include "@bolt-components-band/band.twig" with {
+    size: "large",
+    theme: "xlight",
+    full_bleed: false,
+    content: "Nested band 2",
+  } only %}
+{% endset %}
+
+
+{% include "@bolt-components-band/band.twig" with {
+  theme: "xdark",
+  background: {
+    opacity: "heavy",
+    fill: "color",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-short-1.jpg",
+        lazyload: false
+      },
+    ]
+  },
+  content: parent_band_content,
+} only %}

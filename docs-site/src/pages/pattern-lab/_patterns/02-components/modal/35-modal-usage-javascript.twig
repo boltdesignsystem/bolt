@@ -1,0 +1,105 @@
+{% set javascript %}
+<script>
+  // Add parameter to the URL - demo helper function, not required in production
+  var setAutoOpenModalParam = function(set){
+    var currentUrl = window.location.href.split('?').shift();
+    var param = '?showModal=true';
+    window.location.href = set ? currentUrl + param : currentUrl;
+  }
+
+  // Get parameter to the URL - demo helper function, not required in production
+  var getUrlParameter = function(name) {
+      name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+      var results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
+
+  // Reference to the modal
+  var autoOpenModal = document.querySelector('#js-modal-advanced-auto-open');
+
+  // Calls modal 'show' method after a delay
+  var setAutoOpenModal = function(el) {
+    if (getUrlParameter('showModal')) {
+      setTimeout(function(){
+        el.show();
+      }, 3000)
+    }
+  }
+
+  // Callback on modal 'ready'
+  var onModalReady = function(e) {
+    setAutoOpenModal(autoOpenModal);
+    // IMPORTANT: remove this event listener unless you want it called each time the modal component renders
+    e.target.removeEventListener('modal:ready', onModalReady);
+  }
+
+  // Add 'ready' callback
+  autoOpenModal.addEventListener('modal:ready', onModalReady);
+</script>
+{% endset %}
+
+<bolt-text headline font-size="xlarge">Custom JavaScript Usage</bolt-text>
+<bolt-text>You can write custom JavaScript to target the modal and attach behaviors. The following is an example of how you can use JavaScript to manipulate the Modal component. Please note that Bolt does not ship with any of this custom JavaScript.</bolt-text>
+
+<bolt-text headline font-size="large">Demo</bolt-text>
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set modal_content %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      text: "Auto-open Modal",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "This modal will open 3 seconds after page load."
+    } only %}
+  {% endset %}
+  {% set trigger %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Activate JavaScript",
+      size: "small",
+      width: "full",
+      attributes: {
+        onclick: "setAutoOpenModalParam(true)",
+      }
+    } only %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      content: modal_content,
+      attributes: {
+        id: "js-modal-advanced-auto-open"
+      },
+    } only %}
+    {{ javascript }}
+  {% endset %}
+  {% set description %}
+    <bolt-text headline font-size="large">Automatically open a modal</bolt-text>
+    <bolt-text>Use custom JavaScript to automatically open a modal on page load, after a short delay. Click on the "Activate JavaScript" button to see a demo. The page will reload and a modal will open after 3 seconds.</bolt-text>
+  {% endset %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1 1@small",
+        column_span: "12 8@small 9@medium",
+        row_start: "2 1@small",
+        row_span: "1",
+        valign: "center",
+        content: description,
+      },
+      {
+        column_start: "1 10@small 11@medium",
+        column_span: "6 3@small 2@medium",
+        row_start: "1 1@small",
+        row_span: "1",
+        valign: "center",
+        content: trigger,
+      },
+    ]
+  } only %}
+</div>
+
+<bolt-text headline font-size="large">Custom JavaScript</bolt-text>
+<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+  {{ javascript | replace({
+    '<': '&lt;',
+    '>': '&gt;',
+  }) | trim | raw }}
+{% endspaceless %}</bolt-code-snippet>

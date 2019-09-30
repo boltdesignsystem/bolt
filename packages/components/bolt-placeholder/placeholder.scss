@@ -4,12 +4,12 @@
 
 .c-bolt-placeholder {
   display: block;
-  background-color: bolt-color(gray, light);
   overflow: hidden;
+  color: bolt-color(gray);
   text-align: center;
   text-transform: uppercase;
-  color: bolt-color(gray);
   text-shadow: 1px 1px 0.08px bolt-color(gray, light);
+  background-color: bolt-color(gray, light);
 }
 
 .c-bolt-placeholder__content {
@@ -43,19 +43,19 @@
 
 // Wrapper layer - created the dashed line treatment
 .c-bolt-placeholder__wrapper {
-  overflow:hidden;
-  position:relative;
   display: block; // Needed so custom elements take up the correct space
+  position:relative;
+  overflow:hidden;
 }
 
 
 .c-bolt-placeholder__wrapper-x,
 .c-bolt-placeholder__wrapper-y {
+  display: block;
   position: absolute;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  display: block;
 }
 
 
@@ -63,14 +63,14 @@
 .c-bolt-placeholder__wrapper-x:after {
   content: '';
   position: absolute;
-  height: 100%;
-  bottom: 0;
   top: 0;
+  bottom: 0;
+  width: 2px;
+  height: 100%;
   background-image: linear-gradient(to top, bolt-color(gray) 70%, rgba(bolt-color(black), 0) 0%);
   background-position: bottom;
-  background-size: 2px 11px;
   background-repeat: repeat-y;
-  width: 2px;
+  background-size: 2px 11px;
 }
 
 .c-bolt-placeholder__wrapper-x:after {
@@ -85,13 +85,13 @@
 .c-bolt-placeholder__wrapper-y:after {
   content: '';
   position: absolute;
-  left: 0;
   right: 0;
+  left: 0;
   width: 100%;
   height: 2px;
-  background-size: 11px 2px;
-  background-repeat: repeat-x;
   background-image: linear-gradient(to right, bolt-color(gray) 71%, rgba(bolt-color(black), 0) 0%);
+  background-repeat: repeat-x;
+  background-size: 11px 2px;
 }
 
 .c-bolt-placeholder__wrapper-y:before {

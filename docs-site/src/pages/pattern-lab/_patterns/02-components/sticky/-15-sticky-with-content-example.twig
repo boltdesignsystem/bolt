@@ -1,0 +1,325 @@
+{% embed "@bolt-components-sticky/sticky.twig" %}
+  {% block sticky_content %}
+    {% include "@bolt-components-navbar/navbar.twig" with {
+      "theme": "dark",
+      "title":
+      {
+        "tag": "h2",
+        "text": "Pega for Government: Healthcare & Social Programs",
+        "icon":
+        {
+          "name": "marketing-gray"
+        }
+      },
+      "links":
+      [
+        {
+          "text": "Visualization & Simulation",
+          "url": "#visualization-and-simulation"
+        },
+        {
+          "text": "Section 1",
+          "url": "#section-1"
+        },
+        {
+          "text": "Section 2 is a lot longer",
+          "url": "#section-2"
+        },
+        {
+          "text": "The constituent experience",
+          "url": "#the-constituent-experience"
+        },
+        {
+          "text": "Section 4",
+          "url": "#section-4"
+        }
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "dark",
+  full_bleed: true,
+  tag: "figure",
+  attributes: {
+    id: [
+      "visualization-and-simulation"
+    ]
+  }
+} %}
+  {% block band_background %}
+    {% include "@bolt-components-background/background.twig" with {
+      "opacity": "medium",
+      "fill": "color",
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/images/content/backgrounds/background-tall-1.jpg"
+        }
+      ]
+    } only %}
+  {% endblock band_background %}
+
+  {% block band_content %}
+    {% grid with {
+        attributes: {
+          class: [
+            "o-bolt-grid--flex",
+            "o-bolt-grid--middle",
+            "o-bolt-grid--large",
+            "o-bolt-grid--matrix"
+          ]
+        }
+      } %}
+
+      {% cell with {
+        attributes: {
+          class: [
+            "u-bolt-width-1/1",
+            "u-bolt-width-2/3@small"
+          ]
+        }
+      } %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Visualization & Simulation",
+          size: "xxxlarge",
+          tag: "h1"
+        } only %}
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Continuously improve results by visualizing how future adjustments to your strategies can impact business performance. Simulate and test your ideas, evaluate the results using intuitive views, and then deploy optimal alterations."
+        } only %}
+
+        {% include "@bolt-components-button/button.twig" with {
+          text: "View the data sheet"
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+
+  {% endblock band_content %}
+{% endembed %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "xlight",
+  full_bleed: true,
+  attributes: {
+    id: [
+      "section-1"
+    ]
+  }
+} %}
+  {% block band_content %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Section 1",
+      size: "xxlarge",
+      tag: "h2"
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus quam, egestas ac tincidunt a, lacinia vel velit. Aenean facilisis nulla vitae urna tincidunt congue sed."
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci."
+    } only %}
+
+  {% endblock band_content %}
+{% endembed %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "dark",
+  full_bleed: true,
+  attributes: {
+    id: [
+      "section-2"
+    ]
+  }
+} %}
+  {% block band_content %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Section 2",
+      size: "xxlarge",
+      tag: "h2"
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus quam, egestas ac tincidunt a, lacinia vel velit. Aenean facilisis nulla vitae urna tincidunt congue sed."
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci."
+    } only %}
+
+  {% endblock band_content %}
+{% endembed %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "light",
+  full_bleed: true,
+  attributes: {
+    id: [
+      "section-3"
+    ]
+  }
+} %}
+  {% block band_content %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Section 3",
+      size: "xxlarge",
+      tag: "h2"
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus quam, egestas ac tincidunt a, lacinia vel velit. Aenean facilisis nulla vitae urna tincidunt congue sed."
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci."
+    } only %}
+
+  {% endblock band_content %}
+{% endembed %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "xdark",
+  full_bleed: true,
+  attributes: {
+    id: [
+      "section-4"
+    ]
+  }
+} %}
+  {% block band_content %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Section 4",
+      size: "xxlarge",
+      tag: "h2"
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus quam, egestas ac tincidunt a, lacinia vel velit. Aenean facilisis nulla vitae urna tincidunt congue sed."
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci."
+    } only %}
+
+  {% endblock band_content %}
+{% endembed %}
+
+{% embed "@bolt-components-sticky/sticky.twig" %}
+  {% block sticky_content %}
+    {% include "@bolt-components-navbar/navbar.twig" with {
+      theme: "light",
+      center: true,
+      title:
+      {
+        "tag": "h2",
+        "text": "2nd Sticky Nav Bar",
+      },
+      links: [
+        {
+          "text": "Link",
+          "url": "#section-5"
+        },
+        {
+          "text": "Link",
+          "url": "#section-6"
+        }
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "xlight",
+  full_bleed: true,
+  attributes: {
+    id: [
+      "section-5"
+    ]
+  }
+} %}
+  {% block band_content %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Section 5",
+      size: "xxlarge",
+      tag: "h2"
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus quam, egestas ac tincidunt a, lacinia vel velit. Aenean facilisis nulla vitae urna tincidunt congue sed."
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci."
+    } only %}
+
+  {% endblock band_content %}
+{% endembed %}
+
+{# @todo: re-enable when working on navbar edge cases (multiple heights + non-existent links #}
+{# {% embed "@bolt-components-sticky/sticky.twig" %}
+  {% block sticky_content %}
+    {% include "@bolt-components-navbar/navbar.twig" with {
+      theme: "light",
+      center: true,
+      links: [
+        {
+          "text": "Link X",
+          "url": "#section-x"
+        },
+        {
+          "text": "Link Y",
+          "url": "#section-y"
+        },
+         {
+          "text": "Link Z",
+          "url": "#section-z"
+        }
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %} #}
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "light",
+  full_bleed: true,
+  attributes: {
+    id: [
+    "section-6"
+    ]
+  }
+} %}
+  {% block band_content %}
+
+    {% include "@bolt-components-headline/headline.twig" with {
+      text: "Section 6",
+      size: "xxlarge",
+      tag: "h2"
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus quam, egestas ac tincidunt a, lacinia vel velit. Aenean facilisis nulla vitae urna tincidunt congue sed."
+    } only %}
+
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci."
+    } only %}
+
+  {% endblock band_content %}
+{% endembed %}

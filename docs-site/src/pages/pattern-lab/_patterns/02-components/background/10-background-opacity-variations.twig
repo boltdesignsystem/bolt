@@ -1,0 +1,20 @@
+{% set schema = bolt.data.components['@bolt-components-background'].schema %}
+
+{% for opacity in schema.properties.opacity.enum %}
+<p>{{ opacity|capitalize }} Opacity</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    opacity: opacity,
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-2.jpg"
+      }
+    ]
+  }
+} %}
+{% endfor %}

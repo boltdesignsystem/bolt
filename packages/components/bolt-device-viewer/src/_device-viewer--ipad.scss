@@ -7,23 +7,23 @@ $bolt-ipad-viewer-padding-lg: 90px;
 .c-bolt-ipad-viewer {
   width: 100%;
   max-width: $bolt-ipad-viewer-width * .6;
-  background: #242324;
+  border-top-right-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
 
   border-top-left-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
-  border-top-right-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
-  border-bottom-left-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
   border-bottom-right-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
+  border-bottom-left-radius: (44px / $bolt-ipad-viewer-width * 100%) (44px / $bolt-ipad-viewer-height * 100%);
+  background: #242324;
 
   @include bolt-shadow('level-40');
 
 
   &.c-bolt-ipad-viewer--landscape {
     max-width: $bolt-ipad-viewer-height * .8;
+    border-top-right-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
 
     border-top-left-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
-    border-top-right-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
-    border-bottom-left-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
     border-bottom-right-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
+    border-bottom-left-radius: (44px / $bolt-ipad-viewer-height * 100%) (44px / $bolt-ipad-viewer-width * 100%);
   }
 
   &.c-bolt-ipad-viewer--silver {
@@ -39,25 +39,25 @@ $bolt-ipad-viewer-padding-lg: 90px;
   }
 
   &:before {
-    background: #1e1e1e;
-
-    width: auto;
-    height: auto;
     top: 4px / $bolt-ipad-viewer-height * 100%;
     right: 4px / $bolt-ipad-viewer-width * 100%;
     bottom: 4px / $bolt-ipad-viewer-height * 100%;
     left: 4px / $bolt-ipad-viewer-width * 100%;
 
-    border-top-left-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
+    width: auto;
+    height: auto;
     border-top-right-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
-    border-bottom-left-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
+
+    border-top-left-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
     border-bottom-right-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
+    border-bottom-left-radius: (40px / $bolt-ipad-viewer-width * 100%) (40px / $bolt-ipad-viewer-height * 100%);
+    background: #1e1e1e;
 
     .c-bolt-ipad-viewer--landscape & {
-      border-top-left-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
       border-top-right-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
-      border-bottom-left-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
+      border-top-left-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
       border-bottom-right-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
+      border-bottom-left-radius: (40px / $bolt-ipad-viewer-height * 100%) (40px / $bolt-ipad-viewer-width * 100%);
     }
 
     .c-bolt-ipad-viewer--silver & {
@@ -68,8 +68,8 @@ $bolt-ipad-viewer-padding-lg: 90px;
 
 
 .c-bolt-ipad-viewer__screen {
-  background: white;
   padding-bottom: 133.33159722%;
+  background: white;
 
   .c-bolt-ipad-viewer--landscape & {
     padding-bottom: 73.82908632%;
@@ -78,37 +78,37 @@ $bolt-ipad-viewer-padding-lg: 90px;
 
 .c-bolt-ipad-viewer__top-bar,
 .c-bolt-ipad-viewer__bottom-bar {
+  display: block;
+  width: 100%;
   height: 3px;
   background: black;
-  width: 100%;
-  display: block;
 }
 
 .c-bolt-ipad-viewer__middle-bar {
-  width: 3px;
-  height: 4px;
   top: 0px;
   left: 90px;
+  width: 3px;
+  height: 4px;
   background: black;
 }
 
 .c-bolt-ipad-viewer__camera {
   $leftOffset: 44px / $bolt-ipad-viewer-width * 100%;
-  background: #3c3d3d;
-
-  transform: translateX(-50%); // Center align without knowing size of element
   top: 44px / $bolt-ipad-viewer-height * 100%;
   left: 50%;
+
+  transform: translateX(-50%); // Center align without knowing size of element
   width: 10px / $bolt-ipad-viewer-width * 100%;
   height: 10px / $bolt-ipad-viewer-height * 100%;
+  background: #3c3d3d;
 
   .c-bolt-ipad-viewer--landscape & {
-    width: 10px / $bolt-ipad-viewer-height * 100%;
-    height: 10px / $bolt-ipad-viewer-width * 100%;
-    left: calc(100% - #{$leftOffset});
     // right: 44px / $bolt-ipad-viewer-width * 100%;
     top: 50%;
+    left: calc(100% - #{$leftOffset});
     transform: translateY(-50%) translateX(100%); // Center align without knowing size of element
+    width: 10px / $bolt-ipad-viewer-height * 100%;
+    height: 10px / $bolt-ipad-viewer-width * 100%;
   }
 }
 
@@ -118,16 +118,16 @@ $bolt-ipad-viewer-padding-lg: 90px;
 }
 
 .c-bolt-ipad-viewer__home {
-  background: #242324;
+  bottom: 22px / $bolt-ipad-viewer-height * 100%;
+  left: 50%;
+  transform: translateX(-50%); // Center align without knowing size of element
   width: 50px / $bolt-ipad-viewer-width * 100%;
   height: 50px / $bolt-ipad-viewer-height * 100%;
-  transform: translateX(-50%); // Center align without knowing size of element
-  left: 50%;
-  bottom: 22px / $bolt-ipad-viewer-height * 100%;
+  background: #242324;
 
   .c-bolt-ipad-viewer--silver & {
-    background: #fcfcfc;
     box-shadow: inset 0 0 0 1px #bcbcbc;
+    background: #fcfcfc;
 
     &:after{
       border-color: rgba(0, 0, 0, 0.2);
@@ -136,26 +136,26 @@ $bolt-ipad-viewer-padding-lg: 90px;
 
   .c-bolt-ipad-viewer--landscape & {
     top: 50%;
-    left: 22px / $bolt-ipad-viewer-width * 100%;
     bottom: auto;
-    margin-left: 0;
-    transform: translateY(-50%) translateX(-25%);// Center align without knowing size of element
+    left: 22px / $bolt-ipad-viewer-width * 100%;
+    transform: translateY(-50%) translateX(-25%);
     width: 50px / $bolt-ipad-viewer-height * 100%;
     height: 50px / $bolt-ipad-viewer-width * 100%;
+    margin-left: 0;// Center align without knowing size of element
   }
 
   &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
     width: 15px / 50px * 100%;
     height: 15px / 50px * 100%;
-    transform: translate3d(-50%, -50%, 0);
+    border-radius: 4px;
     border-width: 1px;
     border-style: solid;
     border-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    position: absolute;
-    display: block;
-    content: '';
-    top: 50%;
-    left: 50%;
   }
 }

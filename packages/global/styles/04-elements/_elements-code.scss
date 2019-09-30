@@ -21,7 +21,8 @@ code {
 
 pre {
   @include bolt-padding(small, squished);
-  @include bolt-horizontal-scroll;
+  overflow-y: auto;
+  overflow-x: auto;
 
   display: block;
   background-color: $bolt-code-background-color;
@@ -35,8 +36,8 @@ code {
   @include bolt-font-size(small);
 
   display: inline;
-  background-color: $bolt-code-background-color;
   letter-spacing: 0.05rem;
+  background-color: $bolt-code-background-color;
 }
 
 pre code {

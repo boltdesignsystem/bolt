@@ -9,9 +9,9 @@
 
 4. Which branch(es) are seeing this issue?
 	* On a feature-specific branch?
-	* Master? ex. https://master.bolt-design-system.com
-	* The latest release branch? (ie. latest hotfix release) https://release-1-x.bolt-design-system.com
-	* The latest minor release tag? https://v1-5-0.bolt-design-system.com
+	* Master? ex. https://master.boltdesignsystem.com
+	* The latest release branch? (ie. latest hotfix release) https://release-1-x.boltdesignsystem.com
+	* The latest minor release tag? https://v1-5-0.boltdesignsystem.com
 	
 > To put this another way — is this issue *visibly broken* **everywhere** this component is used? Or does it work fine in some places?
 

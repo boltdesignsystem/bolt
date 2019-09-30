@@ -1,14 +1,34 @@
 {
-  "lerna": "3.4.3",
-  "version": "2.2.0-rc.1",
+  "lerna": "3.10.7",
+  "version": "2.8.0-beta.5",
   "command": {
     "publish": {
       "allowBranch": [
-        "release/1.x",
-        "release/2.x"
-      ]
+        "master",
+        "next",
+        "next/*",
+        "release/*",
+        "develop"
+      ],
+      "conventionalCommits": true,
+      "gitReset": true,
+      "includeMergedTags": true,
+      "noCommitHooks": true,
+      "verifyAccess": true
+    },
+    "changed": {
+      "includeMergedTags": true
     }
   },
+  "ignoreChanges": [
+    "**/__fixtures__/**",
+    "**/__tests__/**",
+    "**/*.md",
+    "**/__snapshots__/**"
+  ],
   "npmClient": "yarn",
+  "npmClientArgs": [
+    "--ignore-optional"
+  ],
   "useWorkspaces": true
 }

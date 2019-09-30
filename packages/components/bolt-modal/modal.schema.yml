@@ -1,0 +1,132 @@
+title: Modal
+type: object
+properties:
+  attributes:
+    title: Attributes (Twig-only)
+    type: object
+    description: A Drupal attributes object. Used to apply additional HTML attributes to the outer &lt;bolt-modal&gt; tag.
+  disabled:
+    type: boolean
+    title: Disabled
+    description: Default `disabled` prop supported globally by most Bolt components.
+    hidden: true
+  no_shadow:
+    type: boolean
+    title: 'Disable Shadow DOM (Twig-only)'
+    description: 'Manually disables the component from rendering to the Shadow DOM in a Twig template. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.'
+    hidden: true
+  'no-shadow':
+    type: boolean
+    title: 'Disable Shadow DOM (Web Component-only)'
+    description: 'Manually disables the web component from rendering to the Shadow DOM. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.'
+    hidden: true
+  width:
+    type: string
+    description: Controls the width of the modal container.
+    default: optimal
+    enum:
+      - full
+      - regular
+      - optimal
+      - auto
+  spacing:
+    type: string
+    description: Controls the spacing around the modal container.
+    default: medium
+    enum:
+      - none
+      - small
+      - medium
+      - large
+  theme:
+    type: string
+    description: Controls the color theme of the modal container.
+    default: xlight
+    enum:
+      - none
+      - xlight
+      - light
+      - dark
+      - xdark
+  scroll:
+    type: string
+    description: Controls the scrolling area.
+    default: container
+    enum:
+      - overall
+      - container
+  uuid:
+    type: string
+    description: Unique ID for modal, randomly generated if not provided.
+  # @todo: persistent and hide close button props are not ready.
+  # persistent:
+  #   type: boolean
+  #   default: false
+  #   description: Configures the modal to remain open until a specific close modal action is completed.
+  #   enum:
+  #     - true
+  #     - false
+  # hide_close_button:
+  #   type: boolean
+  #   default: false
+  #   description: Controls the visibility of the default close button.
+  #   enum:
+  #     - true
+  #     - false
+  # 'hide-close-button':
+  #   type: boolean
+  #   default: false
+  #   description: Controls the visibility of the default close button.
+  #   enum:
+  #     - true
+  #     - false
+  #   hidden: true
+  slots:
+    type: object
+    description: There are 3 sections (slots) within the modal container. By assigning the appropriate slot name, content will be passed into the respective section.
+    properties:
+      default:
+        description: The body section of the modal container.
+      header:
+        description: The header section of the modal container.
+      footer:
+        description: The footer section of the modal container.
+  # scrollable:
+  #   type: boolean
+  #   description: When set to true, allows the modal's content area to be scrollable while the modal's header and footer areas are fixed in place.
+  #   default: false
+  # animation:
+  #   type: 'string'
+  #   description: Pre-defined animations (which vary depending on if the modal is opening or closing) inspired by https://tympanus.net/Development/ModalWindowEffects/
+  #   default: 'fade-in-scale'
+  #   enum:
+  #     - slide-in-bottom
+  #     - slide-in-top
+  #     - sticky-up
+  #     - sticky-down
+  #     - blur
+  #     - fade-in-scale
+  # no-overlay
+  # full-screen
+  # overlay-color:
+  #   type: string
+  #   description: Controls the color of the overlay.
+  #   default: dark
+  #   enum:
+  #     - dark
+  #     - light
+  #     - none # turn off the overlay (visually)
+  # size:
+  #   description: How large should the modal be in relation to the rest of the page
+# definitions:
+#   align:
+#     type: string
+#     description: Horizontal alignment of a single item.
+#     enum:
+#       - start
+#       - center
+#       - end
+
+# note: props handling the alignment of content within a slot is TBD. I'm a little torn on the pros and cons to both approaches.
+
+# note: Modals with content that doesn't fit within the available window space will always scroll the container if the `scrollable` prop isn't specified.

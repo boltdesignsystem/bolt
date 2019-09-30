@@ -1,5 +1,5 @@
 import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withHyperHtml } from '@bolt/core/renderers';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';
@@ -149,7 +149,7 @@ let gumshoeStateModule = (function() {
 })();
 
 @define
-class BoltNavIndicator extends withHyperHtml() {
+class BoltNavIndicator extends withLitHtml() {
   static is = 'bolt-nav-indicator';
 
   // Behavior for `<bolt-nav>` parent container
@@ -181,7 +181,7 @@ class BoltNavIndicator extends withHyperHtml() {
   }
 
   render() {
-    return this.html`
+    return html`
       ${this.slot('default')}
     `;
   }
@@ -300,6 +300,12 @@ class BoltNavIndicator extends withHyperHtml() {
 
   // `<bolt-nav-link>` emits a custom event when the link is active
   connecting() {
+    super.connecting && super.connecting();
+
+    this.addEventListener('navlink:active', this._onActivateLink);
+    window.addEventListener('optimizedResize', this._onWindowResize);
+    this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
+
     Promise.all([
       customElements.whenDefined('bolt-nav-priority'),
       customElements.whenDefined('bolt-navlink'),
@@ -329,10 +335,6 @@ class BoltNavIndicator extends withHyperHtml() {
 
       this._initializeGumshoe();
       this._upgradeProperty('offset');
-
-      this.addEventListener('navlink:active', this._onActivateLink);
-      window.addEventListener('optimizedResize', this._onWindowResize);
-      this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
     });
   }
 
@@ -352,8 +354,11 @@ class BoltNavIndicator extends withHyperHtml() {
 
   // Clean up event listeners when being removed from the page
   disconnecting() {
+    super.disconnecting && super.disconnecting();
+
     this.removeEventListener('navlink:active', this._onActivateLink);
     window.removeEventListener('optimizedResize', this._onWindowResize);
+    this.removeEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
   }
 }
 

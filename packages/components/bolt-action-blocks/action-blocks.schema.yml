@@ -1,17 +1,23 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Action blocks
 type: object
+not:
+  anyOf:
+    - required:
+      - maxItemsPerRow
+    - required:
+      - align
+    - required:
+      - border
 properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
-  maxItemsPerRow:
+  max_items_per_row:
     type: number
-    description: Number of items to place in a row before beginning a new row.
-    minimum: 2
-    maximum: 12
-    default: 3
-    emun:
+    description: The max amount of items (action blocks) to be displayed in one row.
+    default: 6
+    enum:
       - 2
       - 3
       - 4
@@ -23,18 +29,21 @@ properties:
       - 10
       - 11
       - 12
-  align:
+  valign:
     type: string
-    description: Alignment of action block content.
-    default: top
+    description: Vertical alignment of the content inside each action block.
+    default: start
     enum:
-      - top
+      - start
       - center
-      - bottom
-  border:
+      - end
+  borderless:
     type: boolean
-    description: Display a border around the action blocks.
-    default: true
+    description: Removes the border in between each action block.
+    default: false
+    enum:
+      - true
+      - false
   contentItems:
     type: array
     description: Content items to populate the action blocks.
@@ -54,3 +63,12 @@ properties:
               type: string
             background:
               type: string
+  maxItemsPerRow:
+    title: DEPRECATED
+    description: Use max_items_per_row prop instead.
+  align:
+    title: DEPRECATED
+    description: Use valign prop instead.
+  border:
+    title: DEPRECATED
+    description: Use borderless prop instead.

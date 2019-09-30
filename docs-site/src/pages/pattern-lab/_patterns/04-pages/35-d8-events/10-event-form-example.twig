@@ -1,0 +1,48 @@
+ {% embed "@bolt-components-band/band.twig" with {
+    size: "small",
+    theme: "xlight"
+  } only %}
+
+    {% block band_content  %}
+
+      {% embed "@bolt/card.twig" with {
+        theme: "light",
+      } only %}
+
+        {% block card_media %}{% endblock %}
+
+        {% block card_body %}
+
+          {% include "@bolt/headline.twig" with {
+            text: "Register now",
+            size: "xlarge"
+          } only %}
+
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "(all fields are required)",
+            size: "small",
+            attributes: {
+              class: "u-bolt-color-gray-dark"
+            }
+          } only %}
+
+          <p class="u-bolt-margin-bottom-small">
+            {% include "@bolt/link.twig" with {
+              "text": "Fill out this form with LinkedIn"|t,
+              "icon": {
+                "position": "before",
+                "name": "linkedin-solid",
+                "color": "blue",
+                "size": "medium"
+              }
+            } only %}
+          </p>
+
+          {% include "@pl/_event-register-form.twig" %}
+
+        {% endblock %}
+
+      {% endembed %}
+
+    {% endblock %}
+  {% endembed %}

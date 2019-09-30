@@ -8,7 +8,7 @@ use Drupal\Core\StreamWrapper\PublicStream;
 class BoltConnectController extends ControllerBase {
 
   public function customPage() {
-    /** @var \Twig_Environment $twig */
+    /** @var \Twig\Environment $twig */
     $twig = \Drupal::service('twig');
     $boltCoreEnabled = $twig->hasExtension('\Bolt\TwigExtensions\BoltCore');
 
@@ -42,11 +42,16 @@ class BoltConnectController extends ControllerBase {
     }
 
     $config = \Drupal::config('bolt_connect.settings');
-    $namespaces = \Drupal::service('bolt_connect.twig_namespaces');
+    $twig_namespaces = \Drupal::service('bolt_connect.twig_namespaces');
+
+    $namespaces = [];
+    foreach ($twig_namespaces->getNamespaces() as $namespace) {
+      $namespaces[$namespace]['paths'] = $twig_namespaces->getPaths($namespace);
+    }
 
     return [
       '#theme' => 'bolt_info_page',
-      '#namespaces' => $namespaces->twigLoaderConfig,
+      '#namespaces' => $namespaces,
       '#functions' => $functions,
       '#filters' => $filters,
     ];

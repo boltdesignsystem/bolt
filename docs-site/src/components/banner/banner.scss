@@ -1,0 +1,13 @@
+@import '@bolt/core';
+
+.c-bds-banner {
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-bottom(xsmall);
+  @include bolt-font-size(small);
+  position: relative;
+  z-index: 1000;
+  width: 100%;
+  margin: 0 auto;
+  color: bolt-theme(secondary);
+  background: linear-gradient(90deg, #0F0664 0%, #751B84 100%);
+}

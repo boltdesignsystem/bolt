@@ -1,0 +1,91 @@
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% block content %}
+  <bolt-text headline>
+    Typographic Design
+  </bolt-text>
+  <bolt-text>
+    The following are the official recipes for each piece of our typography. They will cover all common use cases. Only in edge cases, you'd want to break away and create your own recipes.
+  </bolt-text>
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set headlines_demo %}
+<bolt-text headline font-size="xxxlarge">
+  This Is the XXXLarge Headline
+</bolt-text>
+<bolt-text headline font-size="xxlarge">
+  This Is the XXLarge Headline
+</bolt-text>
+<bolt-text headline font-size="xlarge">
+  This Is the XLarge Headline
+</bolt-text>
+<bolt-text headline font-size="large">
+  This Is the Large Headline
+</bolt-text>
+<bolt-text headline font-size="small">
+  This Is the Small Headline
+</bolt-text>
+<bolt-text headline font-size="xsmall" text-transform="uppercase" letter-spacing="wide">
+  This Is the XSmall Headline
+</bolt-text>
+{% endset %}
+
+  <bolt-text headline>
+    Headlines
+  </bolt-text>
+  {% include text_code.code_example(headlines_demo, true) %}
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set subheadlines_demo %}
+<bolt-text subheadline font-size="xxlarge">
+  This Is the XXLarge Subheadline
+</bolt-text>
+<bolt-text subheadline font-size="xlarge">
+  This Is the XLarge Subheadline
+</bolt-text>
+<bolt-text subheadline font-size="large">
+  This Is the Large Subheadline
+</bolt-text>
+{% endset %}
+
+  <bolt-text headline>
+    Subheadlines
+  </bolt-text>
+  {% include text_code.code_example(subheadlines_demo, true) %}
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set eyebrow_demo %}
+<bolt-text eyebrow>
+  This Is the Eyebrow
+</bolt-text>
+{% endset %}
+
+  <bolt-text headline>
+    Eyebrow
+  </bolt-text>
+  {% include text_code.code_example(eyebrow_demo, true) %}
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set teaser_demo %}
+<bolt-text eyebrow>
+  This is an eyebrow
+</bolt-text>
+<bolt-text headline font-size="xxxlarge">
+  This is a headline
+</bolt-text>
+<bolt-text subheadline font-size="xxlarge">
+  This is a subheadline
+</bolt-text>
+<bolt-text>
+  This is regular text, and some lorem ipsum. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante.
+</bolt-text>
+{% endset %}
+
+  <bolt-text headline>
+    Teaser
+  </bolt-text>
+  <bolt-text>
+    Teaser is a combination of text with clear information architecture. It is commonly used as a quick summary that draws the reader to a longer piece of content.
+  </bolt-text>
+  {% include text_code.code_example(teaser_demo, true) %}
+{% endblock %}

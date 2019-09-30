@@ -17,6 +17,13 @@
       title: Array of language-specific builds to generate. The 1st langugage specified is the default used for local development.
       default:
         - en
+    mode:
+      type: string
+      title: Switches which context the Bolt build process and component rendering behavior should be compiling for -- either in the browser context (ie. client-side rendering) or in a Node.js server context (server-side rendering). This config is used to toggle server-side rendering functionality on and off.
+      default: client
+      enum:
+        - client
+        - server
     watch:
       type: boolean
       description: Configures internal tasks to watch for changes vs exiting when finished.
@@ -32,10 +39,16 @@
       type: number
       title: Desired port for Browsersync server
       default: 3000
+    hostname:
+      type: string
+      title: Desired host for Browsersync Proxy
+      default: localhost
     proxyPort:
       type: number
       title: Desired port for Webpack Proxy
-      default: 8080
+    proxyHostname:
+      type: string
+      title: Desired host for Webpack Proxy
     proxyHeader:
       type: string
       description: Special request header when proxying Webpack's dev server
@@ -71,11 +84,13 @@
       type: string
       title: Environment Type
       description: What is being compiled? Pattern Lab? Drupal? A static site? Or is the new in-progress Progressive Web App (PWA) that combines Pattern Lab + the docs site into one single environment?
+      default: pwa
       enum:
         - pl
         - static
         - drupal
         - pwa
+        - test
     renderingService:
       type: boolean
       description: Automatically start up the PHP / Twig Rendering Service?
@@ -108,6 +123,9 @@
       type: string
       title: Path to server root
       description: "Where static files are served from. The wwwDir config specifies the public web distribution directory. This directory is commonly the root directory for a server, where all static files can be served. This directory is built and rebuilt directly from the source files. Note: We recommend this directory is not committed to a repository."
+    iconDir:
+      type: array
+      description: The iconDir config specifies from where Bolt will be taking svg for icons creation.
     startPath:
       type: string
       title: Local server start path
@@ -205,6 +223,12 @@
       type: boolean
       description: Production build, will compress assets.
       default: false
+    enableSSR:
+      type: boolean
+      description: Manually enables or disables server-side rendering web components regardless on the build enviornment (vs automatically disabling in dev mode, enabling when in prod mode).
+      enum:
+        - true
+        - false
     schemaErrorReporting:
       description: Setting for where schema errors should be reported.  Note that reporting to cli will cause builds to fail if there are errors.
       type: string
@@ -213,6 +237,9 @@
         - none
         - console
         - cli
+    configureWebpack:
+      type: object
+      description: 'Passing in an object will merge any config customizations with the default Bolt Webpack config (via <a href="https://github.com/survivejs/webpack-merge" target="_blank">webpack-merge</a>).'
     configFileUsed:
       type: string
       description: The filepath to the `.boltrc` file used to load config. Programatically added to config.

@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logo Basic usage 1`] = `
+<bolt-logo>
+  <bolt-image src="/fixtures/logo-paypal.svg"
+              srcset="/fixtures/logo-paypal.svg"
+              sizes="auto"
+              ratio="124/33"
+              placeholder-color="hsl(233, 33%, 97%)"
+              placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              no-lazy
+  >
+    <bolt-ratio ratio="124/33">
+      <replace-with-children class="c-bolt-ratio"
+                             style="padding-bottom: calc((33 / 124) * 100%); --aspect-ratio: 3.7575757575758;"
+      >
+        <img class="c-bolt-image__image"
+             srcset="/fixtures/logo-paypal.svg"
+             sizes="auto"
+             src="/fixtures/logo-paypal.svg"
+        >
+      </replace-with-children>
+    </bolt-ratio>
+  </bolt-image>
+</bolt-logo>
+`;
+
+exports[`logo Default <bolt-logo> renders 2`] = `
+<bolt-logo
+  style=""
+>
+  <bolt-image
+    alt="Paypal Logo"
+    ratio="124/33"
+    src="/fixtures/logo-paypal.svg"
+    style=""
+  />
+</bolt-logo>
+`;
+
+exports[`logo Inverted <bolt-logo> renders as inverted 2`] = `
+<bolt-logo
+  class="c-bolt-logo--invert"
+  style=""
+>
+  <bolt-image
+    alt="Paypal Logo"
+    ratio="124/33"
+    src="/fixtures/logo-paypal.svg"
+    style=""
+  />
+</bolt-logo>
+`;
+
+exports[`logo Logo with invert set to "true" renders properly 1`] = `
+<bolt-logo class="c-bolt-logo--invert">
+  <bolt-image src="/fixtures/logo-paypal.svg"
+              srcset="/fixtures/logo-paypal.svg"
+              sizes="auto"
+              ratio="124/33"
+              placeholder-color="hsl(233, 33%, 97%)"
+              placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+              no-lazy
+  >
+    <bolt-ratio ratio="124/33">
+      <replace-with-children class="c-bolt-ratio"
+                             style="padding-bottom: calc((33 / 124) * 100%); --aspect-ratio: 3.7575757575758;"
+      >
+        <img class="c-bolt-image__image"
+             srcset="/fixtures/logo-paypal.svg"
+             sizes="auto"
+             src="/fixtures/logo-paypal.svg"
+        >
+      </replace-with-children>
+    </bolt-ratio>
+  </bolt-image>
+</bolt-logo>
+`;

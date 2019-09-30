@@ -7,17 +7,20 @@ const chokidar = require('chokidar');
 const del = require('del');
 const debounce = require('lodash.debounce');
 const Ora = require('ora');
-const log = require('../utils/log');
-const { getConfig } = require('../utils/config-store');
-const events = require('../utils/events');
-const sh = require('../utils/sh');
-const { readYamlFileSync } = require('../utils/yaml');
-const manifest = require('../utils/manifest');
-const timer = require('../utils/timer');
+const log = require('@bolt/build-utils/log');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const events = require('@bolt/build-utils/events');
+const sh = require('@bolt/build-utils/sh');
+const { readYamlFileSync } = require('@bolt/build-utils/yaml');
+const manifest = require('@bolt/build-utils/manifest');
+const timer = require('@bolt/build-utils/timer');
+const { fileExists, dirExists } = require('@bolt/build-utils/general');
+const shell = require('shelljs');
 
 let plSource, plPublic, consolePath;
 let config;
 let initialBuild = true;
+let isWatching = false;
 
 async function asyncConfig() {
   if (config) {
@@ -26,7 +29,7 @@ async function asyncConfig() {
     config = Object.assign(
       {
         plConfigFile: 'config/config.yml',
-        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md', 'png', 'php'],
+        watchedExtensions: ['twig', 'json', 'yaml', 'yml', 'md'],
         debounceRate: 1000,
       },
       await getConfig(),
@@ -42,22 +45,26 @@ async function asyncConfig() {
   }
 }
 
-async function plBuild(errorShouldExit) {
+async function compile(errorShouldExit, dataOnly = false) {
   config = config || (await asyncConfig());
 
-  return new Promise(async (resolve, reject) => {
-    const startCompilingPlMsg = 'Building Pattern Lab for the first time...';
-    const startRecompilingPlMsg = 'Recompiling Pattern Lab...';
+  const plTaskName = dataOnly ? 'Pattern Lab Data' : 'Pattern Lab';
 
-    const failedCompilingPlMsg = 'The initial Pattern Lab compile failed!';
-    const failedRecompilingPlMsg = 'Failed to recompile Pattern Lab!';
+  return new Promise(async (resolve, reject) => {
+    const startCompilingPlMsg = `Building ${plTaskName} for the first time...`;
+    const startRecompilingPlMsg = `Recompiling ${plTaskName}...`;
+
+    const failedCompilingPlMsg = `The initial ${plTaskName} compile failed!`;
+    const failedRecompilingPlMsg = `Failed to recompile ${plTaskName}!`;
 
     const endCompilingPlMsg = function(startTime) {
-      return `Compiled Pattern Lab in ${chalk.bold(timer.end(startTime))}`;
+      return `Compiled ${plTaskName} in ${chalk.bold(timer.end(startTime))}`;
     };
 
     const endRecompilingPlMsg = function(startTime) {
-      return `Pattern Lab recompiled in ${chalk.bold(timer.end(startTime))}`;
+      return `${plTaskName} ${
+        initialBuild ? 'compiled' : 'recompiled'
+      } in ${chalk.bold(timer.end(startTime))}`;
     };
 
     const plSpinner = new Ora(
@@ -67,7 +74,13 @@ async function plBuild(errorShouldExit) {
 
     sh(
       'php',
-      ['-d', 'memory_limit=4048M', consolePath, '--generate'],
+      [
+        '-d',
+        'memory_limit=4048M',
+        consolePath,
+        '--generate',
+        dataOnly ? '--dataonly' : '',
+      ],
       errorShouldExit,
       false,
     )
@@ -80,7 +93,9 @@ async function plBuild(errorShouldExit) {
           ),
         );
 
-        initialBuild = false;
+        if (!dataOnly) {
+          initialBuild = false;
+        }
 
         if (config.verbosity > 2) {
           console.log('---');
@@ -88,6 +103,11 @@ async function plBuild(errorShouldExit) {
           console.log('===\n');
         }
 
+        if (dataOnly) {
+          events.emit('build-tasks/pattern-lab:compiled-data');
+        } else {
+          events.emit('build-tasks/pattern-lab:compiled');
+        }
         // events.emit('reload');
 
         resolve(output);
@@ -99,23 +119,67 @@ async function plBuild(errorShouldExit) {
           ),
         );
 
-        initialBuild = false;
+        if (!dataOnly) {
+          initialBuild = false;
+        }
 
         console.log(error);
-        // reject(error);
+        reject(error);
       });
   });
 }
 
-async function compile() {
-  return await plBuild(true);
+async function precompile() {
+  config = config || (await asyncConfig());
+
+  return new Promise(async (resolve, reject) => {
+    const jsFolderExists = await dirExists(
+      path.join(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/js/'),
+    );
+
+    const scssFolderExists = await dirExists(
+      path.join(process.cwd(), config.wwwDir, 'pattern-lab/styleguide/css/'),
+    );
+
+    const indexHtmlExists = await fileExists(
+      path.join(process.cwd(), config.wwwDir, 'pattern-lab/index.html'),
+    );
+
+    const isPatternLabAlreadyCompiled =
+      jsFolderExists && scssFolderExists && indexHtmlExists;
+
+    await compile(true)
+      .then(output => {
+        // check if pattern lab's UIKIt assets exist -- automatically regenerate if the required assets are missing.
+        if (!isPatternLabAlreadyCompiled || config.prod === true) {
+          chalk.yellow(
+            '⚠️ Uh-oh. Pattern Labs UIKit is missing... Regenerating!',
+          );
+
+          const result = shell.exec(
+            `yarn --cwd ${path.join(
+              process.cwd(),
+              '../packages/uikit-workshop',
+            )} run build`,
+          ).stdout;
+
+          resolve(result);
+        } else {
+          resolve();
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        reject(error);
+      });
+  });
 }
 
 compile.description = 'Compile Pattern Lab';
 compile.displayName = 'pattern-lab:compile';
 
 async function compileWithNoExit() {
-  return await plBuild(false);
+  await compile(true);
 }
 
 compileWithNoExit.displayName = 'pattern-lab:compile';
@@ -132,6 +196,7 @@ async function watch() {
     dirs.map(dir => path.join(dir, globPattern)),
     path.join(plSource, globPattern),
     path.join(config.dataDir, '**/*'),
+    `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
   ];
 
   // @todo show this when spinners are disabled at this high of verbosity
@@ -140,19 +205,41 @@ async function watch() {
   //   console.log(watchedFiles);
   // }
 
-  // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
-  const watcher = chokidar.watch(watchedFiles, {
-    ignoreInitial: true,
-    cwd: process.cwd(),
-    ignored: ['**/node_modules/**', '**/vendor/**'],
+  let compileWhenReady = false;
+
+  // listen for api prep work to complete before re-generating PL
+  events.on('api-tasks/status-board:generated', async () => {
+    if (isWatching === true) {
+      await compileWithNoExit();
+    } else {
+      compileWhenReady = true;
+    }
   });
 
-  // list of all events: https://www.npmjs.com/package/chokidar#methods--events
-  watcher.on('all', (event, path) => {
-    if (config.verbosity > 3) {
-      console.log('Pattern Lab watch event: ', event, path);
+  // auto-regenerate when pattern lab data emitted
+  events.on('webpack-dev-server:compiled', async () => {
+    if (isWatching === false) {
+      isWatching = true;
     }
-    debouncedCompile();
+
+    if (compileWhenReady) {
+      compileWhenReady = false;
+      await compileWithNoExit();
+    }
+
+    const watcher = chokidar.watch(watchedFiles, {
+      ignoreInitial: true,
+      cwd: process.cwd(),
+      ignored: ['**/node_modules/**', '**/vendor/**'],
+    });
+
+    // list of all events: https://www.npmjs.com/package/chokidar#methods--events
+    watcher.on('all', (event, path) => {
+      if (config.verbosity > 3) {
+        console.log('Pattern Lab watch event: ', event, path);
+      }
+      debouncedCompile();
+    });
   });
 }
 
@@ -161,5 +248,6 @@ watch.displayName = 'pattern-lab:watch';
 
 module.exports = {
   compile,
+  precompile,
   watch,
 };

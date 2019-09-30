@@ -107,11 +107,11 @@ $bolt-input-transition: $bolt-transition;
 
 @mixin bolt-input-placeholder($color) {
   &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: $color;
 
     // Workaround for pega.com Drupal, which currently uses sanitize.css.  Once that's
     // removed, the following line will be unnecessary.
     opacity: bolt-opacity(100);
+    color: $color;
   }
 
   &::-moz-placeholder { /* Firefox 19+ */
@@ -135,29 +135,29 @@ $bolt-input-transition: $bolt-transition;
   @include bolt-input-placeholder($bolt-input-placeholder-color);
 
   display: block;
-  width: 100%;
-  color: $bolt-input-text-color;
-  line-height: calc(#{$bolt-line-height--xsmall + em} - 2px); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
-  font-size: $bolt-font-size--small;
-  border-color: $bolt-input-border-color;
-  border-style: $bolt-input-border-style;
-  border-width: $bolt-input-border-width;
-  border-radius: $bolt-input-border-radius;
-  background-color: $bolt-input-background-color;
-  opacity: bolt-opacity(100); // [Mai] Reset mobile Safari browser default.
-  outline: none;
-  transition: all $bolt-input-transition;
-
-  // Force browsers to render this using hardward acceleration.
-  // This resolves a rendering quirk seen in Chrome where the hover
-  // state would only work intermittently.
-  transform: translate3d(0, 0, 0);
 
   // Removing native controls
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
+  opacity: bolt-opacity(100); // [Mai] Reset mobile Safari browser default.
+
+  // Force browsers to render this using hardward acceleration.
+  // This resolves a rendering quirk seen in Chrome where the hover
+  // state would only work intermittently.
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+  color: $bolt-input-text-color;
+  line-height: calc(#{$bolt-line-height--xsmall + em} - 2px); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
   text-indent: 0.01px;
+  font-size: $bolt-font-size--small;
+  border-radius: $bolt-input-border-radius;
+  border-width: $bolt-input-border-width;
+  border-style: $bolt-input-border-style;
+  border-color: $bolt-input-border-color;
+  outline: none;
+  background-color: $bolt-input-background-color;
+  transition: all $bolt-input-transition;
   text-overflow: '';
 
   @media (max-width: bolt-breakpoint(small)) {
@@ -215,18 +215,18 @@ $bolt-input-transition: $bolt-transition;
 }
 
 .c-bolt-floating-label {
+  opacity: bolt-opacity(0);
   position: absolute;
   top: 0.9rem;
   left: $bolt-floating-label-text-indent;
+  transform: translate3d(0, -50%, 0) translateY(.4rem);
   color: $bolt-floating-label-text-color;
   line-height: $bolt-floating-label-text-scale;
-  white-space: nowrap;
-  user-select: none;
   pointer-events: none;
-  opacity: bolt-opacity(0);
-  transform: translate3d(0, -50%, 0) translateY(.4rem);
-  transform-origin: 0 100%;
+  user-select: none;
   transition: all $bolt-floating-label-transition;
+  white-space: nowrap;
+  transform-origin: 0 100%;
 }
 
 .c-bolt-input.is-filled,
@@ -263,14 +263,14 @@ $bolt-input-transition: $bolt-transition;
   }
 
   &:before {
+    content: '';
     top: 0.2em;
     left: 0;
     width: 1em;
     height: 1em;
-    content: '';
-    border-color: $bolt-inline-label-input-border-color;
-    border-style: $bolt-inline-label-input-border-style;
     border-width: $bolt-inline-label-input-border-width;
+    border-style: $bolt-inline-label-input-border-style;
+    border-color: $bolt-inline-label-input-border-color;
     background-color: $bolt-input-background-color;
   }
 
@@ -289,12 +289,12 @@ $bolt-input-transition: $bolt-transition;
   &:after {
     top: 0.3em;
     left: 0.375em;
+    transform: rotate(45deg) scale(0.1);
     width: calc(1em - 0.675em);
     height: calc(1em - 0.325em);
-    border-color: $bolt-inline-label-input-color;
-    border-style: solid;
     border-width: 0 2px 2px 0;
-    transform: rotate(45deg) scale(0.1);
+    border-style: solid;
+    border-color: $bolt-inline-label-input-color;
   }
 }
 
@@ -307,10 +307,10 @@ $bolt-input-transition: $bolt-transition;
   &:after {
     top: calc(0.2em + 3px);
     left: 3px;
+    transform: scale(0.1);
     width: calc(1em - 6px);
     height: calc(1em - 6px);
     background-color: $bolt-inline-label-input-color;
-    transform: scale(0.1);
   }
 }
 
@@ -384,12 +384,12 @@ $bolt-input-transition: $bolt-transition;
   background-color: $bolt-input-background-color;
 
   &:before {
+    content: '';
     position: absolute;
     top: 0;
     left: -.95rem;
     width: 1rem;
     height: 100%;
-    content: '';
     background: linear-gradient(to left, $bolt-input-background-color, rgba(255, 255, 255, 0));
   }
 }
@@ -433,10 +433,10 @@ $bolt-input-transition: $bolt-transition;
 .c-bolt-input-icon--link {
   @include bolt-padding(0);
   @include bolt-font-family(body);
+  text-decoration: none;
 
   cursor: pointer;
   pointer-events: auto;
-  text-decoration: none;
   border: none;
   background: none;
 }
@@ -573,9 +573,9 @@ $bolt-strength-indicator-transition: $bolt-transition;
   @include bolt-padding(0.65rem 0.75rem);
   display: block;
   cursor: pointer;
-  border-color: transparent;
-  border-style: $bolt-input-border-style;
-  border-width: $bolt-input-border-width;
   border-radius: $bolt-input-border-radius;
+  border-width: $bolt-input-border-width;
+  border-style: $bolt-input-border-style;
+  border-color: transparent;
   transition: all $bolt-input-transition;
 }

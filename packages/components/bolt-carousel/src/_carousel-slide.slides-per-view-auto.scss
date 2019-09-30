@@ -1,0 +1,57 @@
+@import '@bolt/core';
+
+bolt-carousel[slides-per-view="auto"]:not(.is-ready){
+  @for $i from 2 to 8 {
+    @if ($i == 2) {
+      bolt-carousel-slide:nth-last-of-type(n + #{$i}),
+      bolt-carousel-slide:nth-last-of-type(n + #{$i}) ~ bolt-carousel-slide {
+        @include bolt-mq($from: 500px) {
+          @include bolt-calculate-slide-basis($i);
+        }
+      }
+  
+      bolt-carousel-slide:nth-last-of-type(n+2):nth-last-of-type(-n+2):first-child, 
+      bolt-carousel-slide:nth-last-of-type(n+2):nth-last-of-type(-n+2):first-child ~ bolt-carousel-slide {
+        @include bolt-mq($from: 500px) {
+          @include bolt-calculate-slide-basis(2, true);
+        }
+      }
+    } @else if ($i == 3) {
+      bolt-carousel-slide:nth-last-of-type(n + #{$i}),
+      bolt-carousel-slide:nth-last-of-type(n + #{$i}) ~ bolt-carousel-slide {
+        @include bolt-mq($from: medium) {
+          @include bolt-calculate-slide-basis($i);
+        }
+      }
+  
+      bolt-carousel-slide:nth-last-of-type(n+3):nth-last-of-type(-n+3):first-child, 
+      bolt-carousel-slide:nth-last-of-type(n+3):nth-last-of-type(-n+3):first-child ~ bolt-carousel-slide {
+        @include bolt-mq($from: medium) {
+          @include bolt-calculate-slide-basis(3, true);
+        }
+      }
+      
+    } @else if ($i == 4) {
+      bolt-carousel-slide:nth-last-of-type(n + #{$i}),
+      bolt-carousel-slide:nth-last-of-type(n + #{$i}) ~ bolt-carousel-slide {
+        @include bolt-mq($from: large) {
+          @include bolt-calculate-slide-basis($i);
+        }
+      }
+  
+      bolt-carousel-slide:nth-last-of-type(n+4):nth-last-of-type(-n+4):first-child, 
+      bolt-carousel-slide:nth-last-of-type(n+4):nth-last-of-type(-n+4):first-child ~ bolt-carousel-slide {
+        @include bolt-mq($from: large) {
+          @include bolt-calculate-slide-basis(4, true);
+        }
+      }
+    } @else if ($i > 4) {
+      bolt-carousel-slide:nth-last-of-type(n + #{$i}),
+      bolt-carousel-slide:nth-last-of-type(n + #{$i}) ~ bolt-carousel-slide {
+        @include bolt-mq($from: xlarge) {
+          @include bolt-calculate-slide-basis($i);
+        }
+      }
+    }
+  }
+}

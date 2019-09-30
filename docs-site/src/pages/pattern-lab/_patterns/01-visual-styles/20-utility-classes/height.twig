@@ -1,0 +1,34 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Height"
+} only %}
+
+  {% set heights = bolt.data.height %}
+
+  {% block utility_description %}
+    <p>Add the utility class <code>.u-bolt-height-xx</code> where xx equals the spacing size you wish to apply as height.</p>
+    <p><strong><u>Possible values include:</u></strong></p>
+    <ul>
+      {% for height, val in heights %}
+        <li><code>{{ height }}</code>: {{ val }}</li>
+      {% endfor %}
+    </ul>
+  {% endblock %}
+
+  {% block utility_demo %}
+    {% for height, val in heights %}
+      <div class="c-bds-docs__height-demo">
+        <code>{{ ".u-bolt-height-#{height}" }}</code> ({{ val }})
+        <div class="c-bds-docs__height-item {{ "u-bolt-height-#{height}" }}">
+          <p><u>Begin</u> Nisi amet elit blandit pellentesque pulvinar per facilisis id, taciti ante etiam iaculis ut eget porta nec vivamus, aliquet malesuada bibendum lorem morbi egestas duis. Platea fames nulla venenatis commodo inceptos convallis mollis sem, pretium duis ante porta cras amet erat litora posuere, elementum in accumsan parturient vel suspendisse hendrerit. Lorem tincidunt id suscipit dui parturient nascetur gravida ridiculus fames malesuada, netus cras potenti pellentesque facilisis sagittis euismod consequat nostra, dis faucibus ut duis nam accumsan montes eu cum. In sem facilisi quis odio cursus ridiculus, egestas urna purus vitae sit, laoreet convallis himenaeos proin feugiat. A nostra nec rhoncus libero habitasse senectus laoreet nisi ultricies mattis lectus odio, euismod inceptos venenatis magna dapibus sagittis nibh lobortis fermentum massa aliquet et, gravida cubilia class pretium mollis litora penatibus cursus adipiscing elit natoque. Mi sed aliquam pretium blandit euismod consequat suspendisse lobortis, dignissim taciti tempor iaculis ultrices ligula quam, maecenas donec vitae cursus dis cras ante.</p>
+
+          <p>Nisl gravida nibh iaculis inceptos netus senectus augue, ante velit dui praesent sodales dapibus cum facilisi, tempor integer nunc pellentesque primis fringilla. Conubia nunc egestas condimentum nostra magna neque himenaeos, sociis penatibus tellus non accumsan pellentesque est, montes nisl platea convallis fermentum eget.</p>
+
+          <p>Placerat dui cubilia dictum lacus natoque turpis integer penatibus posuere suspendisse, congue sit lectus elit per dictumst gravida duis sociis. Habitasse dictumst sapien volutpat suscipit diam viverra amet imperdiet sodales, sit cubilia mus libero ornare himenaeos lacinia sem natoque, eu ullamcorper nunc consectetur torquent gravida massa elementum. Nam dapibus rutrum tempus turpis magna porttitor massa eros class, varius platea eleifend tincidunt enim habitant facilisis ipsum aliquet nisi, convallis quis ultricies pellentesque fermentum fringilla magnis justo.</p>
+
+          <p>Dignissim velit at felis posuere consequat magnis facilisi vel non nascetur sociis, praesent malesuada molestie penatibus taciti lacus natoque venenatis luctus urna, quisque aliquam mus aliquet varius etiam facilisis blandit pretium hendrerit. Vehicula nunc fusce pharetra tempor vitae dolor potenti sollicitudin varius, lectus praesent fringilla morbi aenean massa nullam leo, duis elementum porta dignissim nascetur risus elit etiam. Aliquet senectus porta fames felis elit hendrerit praesent ante, vulputate consequat ultricies risus cum suscipit viverra bibendum laoreet, molestie facilisi lacus massa vel nunc sapien. Morbi aenean cursus sem sit nostra luctus vulputate dis justo maecenas, eros nibh aliquet dolor scelerisque tempus mauris cum curae duis, lobortis eleifend fermentum in ut viverra gravida condimentum tincidunt. Molestie mollis velit phasellus donec odio diam leo faucibus egestas neque convallis, congue curae pellentesque eleifend conubia natoque magnis posuere aenean a primis consequat, dictumst sagittis nisl sapien amet accumsan proin vivamus sed nullam. Cursus aptent gravida euismod nisl habitasse sociis ornare convallis at, suscipit ac quam nam sem inceptos vehicula magnis blandit, rutrum tincidunt elit hac amet vestibulum suspendisse primis. Sem iaculis imperdiet varius vel diam at senectus, facilisis nisl purus fermentum hendrerit natoque, aliquam ante turpis luctus habitasse cum <u>End</u>.</p>
+        </div>
+      </div>
+    {% endfor %}
+  {% endblock %}
+
+{% endembed %}

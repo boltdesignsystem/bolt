@@ -23,8 +23,8 @@
     {% endfor %}
 
     {% if content %}
-      {% include "@bolt/text.twig" with {
-        text: content | striptags('<a>'),
+      {% include "@bolt-components-headline/text.twig" with {
+        text: content,
         tag: "p"
       } only %}
     {% endif %}

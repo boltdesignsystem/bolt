@@ -1,0 +1,9 @@
+<h2>Without Visible Scrollbar</h2>
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  freeScroll: true
+} only %}

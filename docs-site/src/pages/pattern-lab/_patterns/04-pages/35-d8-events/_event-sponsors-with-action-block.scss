@@ -1,0 +1,62 @@
+.event-sponsors-proof-of-concept {
+  .c-partner-card {
+    @include bolt-padding(medium, stretched);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: color 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    &::before {
+      content: '';
+      display: block;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    > * {
+      @include bolt-margin(0 auto small auto);
+      @include bolt-font-size(xsmall);
+      @include bolt-font-weight(bold);
+      position: relative;
+      width: 100%;
+
+      max-width: 160px;
+      text-align: center;
+
+      &:last-child {
+        @include bolt-margin-bottom(0);
+      }
+    }
+  }
+
+  .c-partner-card__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 1.5rem;
+
+    @include bolt-mq(small) {
+      height: 74px;
+    }
+
+    img {
+      width: auto;
+      max-width: 160px;
+      height: auto;
+      max-height: 50px;
+
+      @include bolt-mq(small) {
+        max-height: 74px;
+      }
+    }
+  }
+}

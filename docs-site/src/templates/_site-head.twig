@@ -1,0 +1,140 @@
+{% if bolt.data.config.lang is iterable %}
+  {% set lang = bolt.data.config.lang[0] %}
+{% else %}
+  {% set lang = bolt.data.config.lang %}
+{% endif %}
+
+{% set manifestConfigFile = "@bolt-assets/bolt-webpack-manifest#{lang != "" ? "-" ~ lang : ""}.json" %}
+
+{% set assets = [] %}
+{% if fileExists(manifestConfigFile) %}
+  {% set assets = get_data(manifestConfigFile) %}
+{% endif %}
+
+{% set urlChunks = page.url | split('/') %}
+{% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
+{% set currentUrl = page.url %}
+
+{% if page.url starts with currentSection %}
+  {% set nestedPages = [] %}
+  {% for page in site.nestedPages if page.url starts with currentSection %}
+    {% set nestedPages = page.children %}
+  {% endfor %}
+{% endif %}
+{% set hasSidebar = nestedPages or sidebar %}
+
+{% set cacheBuster = bolt.data.config.prod ? "?v=" ~ bolt.data.fullManifest.version : "" %}
+
+{% set htmlClasses = [
+  currentUrl == 'index.html' ? 'u-bolt-min-height-screen u-bolt-flex' : ''
+] %}
+
+<!DOCTYPE html>
+<html lang="en-US" class="{{ htmlClasses|join(' ') }}">
+  <head>
+    {% if fileExists("@bolt-assets/bolt-critical-path-polyfills.cjs.js") %}
+    <script>{{ inline(assets["bolt-critical-path-polyfills.cjs.js"] | default("")) }}</script>
+    {% endif %}
+
+    <script src="https://www.google-analytics.com/analytics.js" defer></script>
+    <script>
+      window.drupalSettings = {
+        google_analytics: {
+          trackCrossDomains: ['github.com']
+        }
+      }
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Bolt Design System</title>
+
+    <link rel="image_src" href="/images/bolt-logo-480.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=LbyzAXRqNz">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=LbyzAXRqNz">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=LbyzAXRqNz">
+    <link rel="manifest" href="/site.webmanifest?v=LbyzAXRqNz">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v=LbyzAXRqNz" color="#1f2656">
+    <link rel="shortcut icon" href="/favicon.ico?v=LbyzAXRqNz">
+    <meta name="apple-mobile-web-app-title" content="Bolt DS">
+    <meta name="application-name" content="Bolt Design System">
+    <meta name="msapplication-TileColor" content="#1f2656">
+    <meta name="msapplication-config" content="/browserconfig.xml?v=LbyzAXRqNz">
+    <meta name="theme-color" content="#1f2656">
+
+    <!-- OG Tags -->
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Bolt Design System" />
+    <meta property="og:description" content="The Bolt Design System provides guidelines, reusable UI components, visual styles, tools, and other resources that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope." />
+    <meta property="og:image" content="https://boltdesignsystem.com/images/bolt-logo-480.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="480" />
+    <meta property="og:image:height" content="480" />
+    <meta property="og:url" content="https://boltdesignsystem.com/" />
+    <meta property="og:site_name" content="Bolt Design System" />
+    <!-- Twitter specific tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Bolt Design System" />
+    <meta name="twitter:description" content="The Bolt Design System provides guidelines, reusable UI components, visual styles, tools, and other resources that power Pega’s digital ecosystem; saving time while keeping projects on-brand, and in scope." />
+    <meta name="twitter:image" content="https://boltdesignsystem.com/images/bolt-logo-480.png" />
+    <meta name="twitter:site" content="@pega" />
+
+    <!-- async load PL's CSS -->
+    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}?cacheBuster={{ cacheBuster }}" media="all" />
+
+    <noscript>
+      <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
+    </noscript>
+
+    {# @TODO: wire this up to use Critical CSS #}
+    <style>
+      {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
+        {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
+      {% endif %}
+    </style>
+
+    <script>
+      {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
+        {{ inline( assets["bolt-components-critical-css.js"] | default("") ) }}
+        {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
+        {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
+      {% endif %}
+
+      window.bolt = window.bolt || {};
+      window.bolt.data = window.bolt.data || {};
+      window.bolt.data.fullManifest = window.bolt.data.fullManifest || {};
+      window.bolt.data.fullManifest.version = window.bolt.data.fullManifest.version || {{ bolt.data.fullManifest.version|json_encode|raw }};
+    </script>
+
+    {# <script>console.log('Bolt Global Twig variable. In Twig, you can tap into the `bolt` global var to access all sorts of helpful information about the Bolt Design System, such as colors, spacing, and more. Most is exported from Sass; to add more, add this to any Sass file: `@include export-data("myVariables.bolt.json", $my-variables-in-a-sass-map);`, and then you can access it in Twig via `bolt.data.myVariables`. Here is all the data available to the current templates, including the `bolt` var:');</script> #}
+
+    {# {% if inline_global_data %}
+      <script>
+        window.bolt = JSON.parse('{{ bolt.data|json_encode|e('js') }}');
+      </script>
+    {% endif %} #}
+
+    {% if patternLabFoot %}
+      {# {% set pl_data = patternLabFoot | raw | striptags %} #}
+
+      <script>
+        {# var patternLab = JSON.parse({{ pl_data }});
+        delete patternLab.cssEnabled;
+        delete patternLab.extraOutput; #}
+
+        {# console.clear(); // clear previous messages with new page loads in PL #}
+        {# console.log('Pattern / Component Info:'); #}
+        //console.table(patternLab);
+      </script>
+    {% endif %}
+  </head>
+
+  {% set bodyClasses = [
+    pl_data.patternBreadcrumb.patternType == 'pages' ? 'c-bolt-site' : '',
+    currentUrl == 'index.html' ? 't-bolt-xdark' : '',
+    hasSidebar and patternLabFoot is not defined ? 'c-bds-layout--has-sidebar' : '',
+    patternLabFoot is not defined ? 'c-bds-layout' : '',
+    patternLabFoot is not defined ? ('c-bds-layout--' ~ urlChunks | length >= 2 ? urlChunks|first : 'c-bds-layout--parent') : '',
+  ] %}
+<body class="{{ bodyClasses|join(' ') }}">

@@ -1,0 +1,387 @@
+{# Element title #}
+
+{% macro elementTitle(item) %}
+  {% set name = item.context.name %}
+
+  {% if item.context.type == "variable" %}
+    {% set name = item.type ? "$#{item.context.name} [#{item.type|lower}]" : "$#{item.context.name}" %}
+  {% elseif item.context.type == "function" or item.context.type == "mixin" %}
+    {% set name = "@#{item.context.type} #{item.context.name}" %}
+  {% endif %}
+
+  {% include "@bolt/headline.twig" with {
+    size: "xlarge",
+    tag: "h3",
+    url: "##{item.context.type}-#{item.context.name}",
+    text: name,
+    icon: "none",
+    attributes: {
+      class: [
+        "u-bolt-margin-bottom-xsmall",
+        "c-bds-docs__heading-fragment"
+      ],
+      id: "#{item.context.type}-#{item.context.name}"
+    }
+  } only %}
+{% endmacro %}
+
+{# Element description for things like author(s), throws, variable type, etc #}
+{% macro elementDescription(title, descriptor) %}
+  {% if descriptor %}
+    <div class="c-bds-docs__meta-item">
+      {% if title %}
+        {% include "@bolt/headline.twig" with {
+          size: "small",
+          tag: "h4",
+          text: title,
+          attributes: {
+            class: [
+              "u-bolt-margin-bottom-xsmall",
+            ]
+          }
+        } only %}
+      {% endif %}
+      {% for item in descriptor %}
+        {% if loop.last %}
+          {{-item-}}
+        {% else %}
+          {{-"#{item}\n"|nl2br-}}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{# Renders the code block #}
+{% macro elementCode(item) %}
+  {% import _self as macros %}
+
+  {% set code = context.value %}
+
+  {% if item.context.type == "variable" %}
+    {% set code = "$#{item.context.name}: #{item.context.value};" %}
+  {% elseif item.context.type == "function" or item.context.type == "mixin" %}
+    {% set params = [] %}
+
+    {% if item.parameter %}
+      {% for param in item.parameter %}
+        {% set paramName = param.default ? "$#{param.name}: #{param.default}" : "$#{param.name}" %}
+        {% set params = params|merge([paramName]) %}
+      {% endfor %}
+    {% endif %}
+
+    {% set code = "@#{item.context.type} #{item.context.name}(#{params|join(', ')}) { #{item.context.code}}" %}
+  {% endif %}
+
+  {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+    display: "block",
+    lang: "scss",
+    content: code
+  } only %}
+{% endmacro %}
+
+{# Renders the params table #}
+{% macro elementParamTable(item) %}
+  {% import _self as macros %}
+
+  {% if item.parameter %}
+    {% include "@bolt/headline.twig" with {
+      size: "small",
+      tag: "h4",
+      url: "##{item.context.type}-#{item.context.name}--params",
+      text: "Params",
+      icon: "none",
+      attributes: {
+        class: [
+          "u-bolt-margin-bottom-xsmall"
+        ],
+        id: "#{item.context.type}-#{item.context.name}--params"
+      }
+    } only %}
+    <div class="c-bds-docs-table c-bds-docs-table--sassdoc">
+      <table>
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+        </thead>
+        <tbody>
+          {% for param in item.parameter %}
+            <tr class="c-bds-docs-table__row">
+              <td class="c-bds-docs-table__col c-bds-docs-table__col--key">{{ "$#{param.name}" }}</td>
+              <td class="c-bds-docs-table__col">{{ param.type|length ? "<code>#{param.type}</code>" }}</td>
+              <td class="c-bds-docs-table__col">{{ param.description }}</td>
+              <td class="c-bds-docs-table__col">{{ param.default|length ? "<code>#{param.default}</code>" : "(None)" }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{# Renders the categorized right side floating navigation #}
+{% macro sassdocNav(contentItems) %}
+  {% if contentItems %}
+    {% set navItems = {} %}
+
+    {% set group = '' %}
+    {% set section = '' %}
+
+    {% for item in contentItems %}
+      {% set group = item.group[0] ? item.group[0] : group %}
+      {% set section = item.context.type ? item.context.type : section %}
+
+      {% set groupName = "#{group}" %}
+
+      {# Generates our navigation schema #}
+      {% if navItems[groupName] is defined %}
+        {% if section not in navItems[groupName] %}
+          {% set navItems = navItems|merge({
+            (groupName): navItems[groupName]|merge([section])
+          }) %}
+        {% endif %}
+      {% else %}
+        {% set navItems = navItems|merge({
+          (groupName): [section]
+        }) %}
+      {% endif %}
+    {% endfor %}
+
+    {# Everything is ready, render nav dropdown below -- NOTE: currently not used #}
+    {% for label,nav in navItems %}
+
+      {% set children = [] %}
+
+      {% for link in nav %}
+        {% set url = "##{label|replace({' ':'',':':'-'})}-section-#{link}" %}
+
+        {% if loop.first %}
+          {% set url = "#group--#{label|replace({' ':'',':':'-'})}" %}
+        {% endif %}
+
+        {% set children = children|merge([
+          include("@bolt-components-link/link.twig", {
+            "text": link|capitalize,
+            "url": url
+          })
+        ]) %}
+      {% endfor %}
+
+      {% set content %}
+        {% include "@bolt-components-list/list.twig" with {
+          items: children,
+          spacing: small
+        } only %}
+      {% endset %}
+      {% include "@bolt-components-dropdown/dropdown.twig" with {
+        title: label|capitalize,
+        content: content
+      } only %}
+    {% endfor %}
+
+  {% endif %}
+{% endmacro %}
+
+{# Renders the flat right side floating navigation #}
+{% macro sassdocNavFlat(contentItems) %}
+  {% if contentItems %}
+
+    {% set navItems = {} %}
+
+    {% for item in contentItems %}
+      {% set groupName = "#{item.group[0]}" %}
+      {% if navItems[groupName] is defined %}
+          {% set navItems = navItems|merge({
+            (groupName): navItems[groupName]|merge([{
+              'name': item.context.name,
+              'type': item.context.type
+            }])
+          }) %}
+      {% else %}
+        {% set navItems = navItems|merge({
+          (groupName): [{
+            'name': item.context.name,
+            'type': item.context.type
+          }]
+        }) %}
+      {% endif %}
+    {% endfor %}
+
+    {% for label,nav in navItems %}
+
+      {% set children = [] %}
+
+      {% for link in nav %}
+        {% if link.type == "variable" %}
+          {% set text = "$#{link.name}" %}
+        {% elseif link.type == "function" or link.type == "mixin" %}
+          {% set text = "@#{link.type} #{link.name}" %}
+        {% endif %}
+        {% set children = children|merge([
+          include("@bolt-components-link/link.twig", {
+            "text": text,
+            "url": "##{link.type}-#{link.name}"
+          })
+        ]) %}
+      {% endfor %}
+
+      {% set content %}
+        {% include "@bolt-components-block-list/block-list.twig" with {
+          "items": children
+        } %}
+      {% endset %}
+      {% include "@bolt-components-dropdown/dropdown.twig" with {
+        title: label|capitalize,
+        content: content
+      } only %}
+    {% endfor %}
+
+  {% endif %}
+{% endmacro %}
+
+
+{% import _self as macros %}
+
+
+<div class="c-bds-docs c-bds-docs--sassdoc t-bolt-xlight u-bolt-padding-left-none u-bolt-padding-right-none">
+  <div class="c-bds-docs__page-content u-bolt-padding-left-none">
+    {% if contentItems %}
+      {% set group = '' %}
+      {% set section = '' %}
+      {% for item in contentItems %}
+        <div class="c-bds-docs--sassdoc__item">
+          {% if item %}
+            {% if group != item.group[0] %}
+              {% set group = item.group[0] %}
+              {% set section = item.context.type %}
+              <div class="u-bolt-margin-bottom-large">
+                {% include "@bolt/headline.twig" with {
+                  size: "xxlarge",
+                  tag: "h2",
+                  url: "#group--#{group|replace({' ':'',':':'-'})}",
+                  text: group|capitalize,
+                  icon: "none",
+                  attributes: {
+                    id: "group--#{group|replace({' ':'',':':'-'})}",
+                    class: [
+                      "c-bds-docs__heading-fragment",
+                      "u-bolt-margin-bottom-xsmall"
+                    ]
+                  }
+                } only %}
+                <hr class="u-bolt-margin-top-small">
+              </div>
+            {% endif %}
+
+            {{ macros.elementTitle(item) }}
+
+            <div class="c-bds-docs__lead u-bolt-margin-bottom-medium">
+              {{ item.description }}
+            </div>
+
+            {% include "@bolt/headline.twig" with {
+              size: "small",
+              tag: "h4",
+              url: "##{item.context.type}-#{item.context.name}--code",
+              text: "Code",
+              icon: "none",
+              attributes: {
+                class: [
+                  "u-bolt-margin-bottom-xsmall"
+                ],
+                id: "#{item.context.type}-#{item.context.name}--code"
+              }
+            } only %}
+
+            <div class="c-bds-docs__usage">
+              {{ macros.elementCode(item) }}
+              {{ macros.elementParamTable(item) }}
+            </div>
+
+            {% if item.example  %}
+              <div class="c-bds-docs__example">
+                {% for example in item.example %}
+                  {% set title = example.description ? "Example #{example.type|upper}: #{example.description}" : "Example: #{example.type|upper}" %}
+                  <div class="c-bds-docs__example-item">
+                    {% include "@bolt/headline.twig" with {
+                      size: "small",
+                      tag: "h4",
+                      url: "##{item.context.type}-#{item.context.name}--example-#{example.type}",
+                      text: title,
+                      icon: "none",
+                      attributes: {
+                        class: [
+                          "u-bolt-margin-bottom-xsmall"
+                        ],
+                        id: "#{item.context.type}-#{item.context.name}--example-#{example.type}"
+                      }
+                    } only %}
+                    {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+                      display: "block",
+                      lang: example.type,
+                      content: example.code
+                    } only %}
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% if item.return  %}
+              <div class="c-bds-docs__return">
+                {% include "@bolt/headline.twig" with {
+                  size: "small",
+                  tag: "h4",
+                  text: "Returns",
+                  attributes: {
+                    class: [
+                      "u-bolt-margin-bottom-xsmall",
+                    ]
+                  }
+                } only %}
+                <span class="c-bds-docs__return-label">{{ item.return.type }}</span>{% if item.return.description %} – <em>{{ item.return.description }}</em>{% endif %}
+              </div>
+            {% endif %}
+
+            <div class="c-bds-docs__meta">
+              {{ macros.elementDescription('Throws', item.throw) }}
+              <div class="c-bds-docs__meta-item">
+                {% include "@bolt/headline.twig" with {
+                  size: "small",
+                  tag: "h4",
+                  text: "Source",
+                  attributes: {
+                    class: [
+                      "u-bolt-margin-bottom-xsmall",
+                    ]
+                  }
+                } only %}
+                <details>
+                  <summary>{{-item.file.name-}}:{{-item.context.line.start-}}</summary>
+                  <em>{{ item.file.path }}</em><br />
+                  <a href="https://github.com/bolt-design-system/bolt/tree/master/packages/core/styles/{{item.file.path}}#L{{item.commentRange.start}}-L{{item.context.line.end}}" target="_parent">View on GitHub</a>
+                </details>
+              </div>
+              {{ macros.elementDescription('Author', item.author) }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="c-bds-docs__page-nav c-bds-docs__page-nav--sassdoc">
+    <ul class="o-bolt-ui-list o-bolt-ui-list--xsmall c-bds-docs__page-nav-list">
+      <li class="o-bolt-ui-list__item">
+        <ul class="o-bolt-ui-list o-bolt-ui-list--xxsmall o-bolt-ui-list--borderless o-bolt-ui-list--sassdoc">
+          <li class="o-bolt-ui-list__item t-bolt-xlight">
+            {{ macros.sassdocNavFlat(contentItems) }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

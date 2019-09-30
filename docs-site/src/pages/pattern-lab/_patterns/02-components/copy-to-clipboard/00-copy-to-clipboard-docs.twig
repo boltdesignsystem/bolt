@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-copy-to-clipboard/copy-to-clipboard.twig" with {
+  text_to_copy: "https://boltdesignsystem.com"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "copy-to-clipboard",
+  usage: usage
+} only %}

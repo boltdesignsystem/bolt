@@ -4,41 +4,53 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
+{% set attributes = create_attribute(attributes | default({})) %}
+{% set code_attributes = create_attribute({}) %}
+{% set base_class = "c-bolt-code-snippet" %}
+{% set attributes = create_attribute(attributes | default({})) %}
 
-{% set prefix = "c-bolt-" %}
-{% set componentName = "code-snippet" %}
-{% set baseClass = prefix ~ componentName %}
-{% set attributes = create_attribute(attributes|default({})) %}
+{% set display_options = schema.properties.display.enum %}
+{% set display = display in display_options ? display : schema.properties.display.default %}
 
-{% set displayOptions = schema.properties.display.enum %}
-{% set display = display in displayOptions ? display : schema.properties.display.default %}
+{% set lang_options = schema.properties.lang.enum %}
+{% set lang = lang in lang_options ? lang : schema.properties.lang.default %}
 
-{% set langOptions = schema.properties.lang.enum %}
-{% set lang = lang in langOptions ? lang : schema.properties.lang.default %}
-
-{% set syntaxOptions = schema.properties.syntax.enum %}
-{% set syntax = syntax in syntaxOptions ? syntax : schema.properties.syntax.default %}
+{% set syntax_options = schema.properties.syntax.enum %}
+{% set syntax = syntax in syntax_options ? syntax : schema.properties.syntax.default %}
 
 {% set classes = [
-  baseClass
+  base_class,
+  "#{base_class}-syntax--#{syntax}",
+  "language-#{lang}"
 ] %}
 
-{% set codeContent %}{% spaceless %}
-  <code class="{{ "#{baseClass}__code #{baseClass}__code--#{display}" }} nohighlight" is="shadow-root">{% block children %}{{ content }}{% endblock %}</code>
-{% endspaceless %}{% endset %}
+{% set code_classes = [
+  "#{base_class}__code",
+  "#{base_class}__code--#{display}",
+  "#{base_class}-syntax--#{syntax}",
+  "language-#{lang}",
+  "nohighlight"
+] %}
 
+{% set updated_content %}{% if display == "inline" %}
+{% spaceless %}{{ content }}{% endspaceless %}
+{% else %}{{ content }}{% endif %}
+{% endset %}
 
+{% set code_content %}
+  <code {{ code_attributes.addClass(code_classes) }} is="shadow-root">{{ updated_content | e }}</code>
+{% endset %}
 
-
-<bolt-{{ componentName }}
+<bolt-code-snippet
   {% if display %} display="{{ display }}" {% endif %}
   {% if lang %} lang="{{ lang }}" {% endif %}
   {% if syntax %} syntax="{{ syntax }}" {% endif %}
-  bolt-component
 >
   {% if display == "inline" %}
-    {{ codeContent }}
+    {% spaceless %}
+      {{ code_content }}
+    {% endspaceless %}
   {% else %}
-    <pre {{ attributes.addClass(classes) }}>{{ codeContent }}</pre>
+    <pre {{ attributes.addClass(classes) }}>{{ code_content }}</pre>
   {% endif %}
-</bolt-{{ componentName }}>
+</bolt-code-snippet>

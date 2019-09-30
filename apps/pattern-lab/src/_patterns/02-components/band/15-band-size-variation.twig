@@ -1,9 +1,0 @@
-{% set schema = bolt.data.components['@bolt-components-band'].schema %}
-
-{% for size in schema.properties.size.enum %}
-  <p>Size: {{ size }}</p>
-  {% include "@bolt-components-band/band.twig" with {
-    content: "This band is size "~size,
-    size: size,
-  } only %}
-{% endfor %}

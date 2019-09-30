@@ -1,0 +1,20 @@
+<p>
+  This video has <code>enabled_plugins</code> set to a few values. Therefore enabling the plugins defined in the values.
+</p>
+
+<p>
+  Accepted plugins: <code>cue</code>, <code>social</code>, <code>playback</code>, and <code>email</code>.
+</p>
+
+{% include "@bolt/video.twig" with {
+  "videoId": "3861325118001",
+  "accountId": "1900410236",
+  "playerId": "r1CAdLzTW",
+  "videoUuid": "pega-video-3861325118001-c",
+  "enabled_plugins": "cue social playback email",
+  "attributes": {
+    "data-email-subject": "Pega - CRM Evolved Atlanta: Customer Engagement in a Digital World",
+    "data-email-body": "Check out this video from Pega",
+    "data-email-videourl": "https://demo1.d8.pega.com/insights/resources/crm-evolved-atlanta-customer-engagement-digital-world"
+  }
+} only %}

@@ -1,0 +1,44 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% set regular_display_options = [
+  "block",
+  "flex",
+  "inline",
+] %}
+{% set link_1 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Item 1",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set link_2 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Item 2",
+    url: "#!",
+  } only %}
+{% endset %}
+{% set link_3 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Item 3",
+    url: "#!",
+  } only %}
+{% endset %}
+
+{# Start component specific code #}
+{% for display in regular_display_options %}
+  {% for separator in schema.properties.separator.enum %}
+    {% if separator != "none" %}
+      <h3>{{ display|capitalize }} list with separators ({{ separator }})</h3>
+      {% include "@bolt-components-list/list.twig" with {
+        display: display,
+        separator: separator,
+        items: [
+          link_1,
+          link_2,
+          link_3,
+        ]
+      } only %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+{# End component specific code #}

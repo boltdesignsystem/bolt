@@ -1,0 +1,11 @@
+.c-bds-docs__text-align-demo {
+  @extend %bolt-demo-wrapper;
+  @include bolt-margin-bottom(2rem);
+}
+
+.c-bds-docs__text-align-item {
+  @extend %bolt-demo-item-border;
+  h4+& {
+    @include bolt-margin-top(0.75rem);
+  }
+}

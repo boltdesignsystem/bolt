@@ -3,7 +3,7 @@
 namespace Bolt\Layout;
 
 use \Drupal\Core\Template\Attribute;
-use Bolt\Layout\BoltStringLoader;
+use Bolt\BoltStringLoader;
 
 
 // Default attributes and inheritted data all cell components inherit (ex. base CSS class)
@@ -15,7 +15,7 @@ $GLOBALS['cell_counter'] = 0;
 
 
 // Custom Wrapper Twig Tag Node
-class GridCellNode extends \Twig_Node {
+class GridCellNode extends \Twig\Node\Node {
 
   public function __construct($params, $lineno = 0, $tag = null){
     parent::__construct(array ('params' => $params), array (), $lineno, $tag);
@@ -119,7 +119,7 @@ class GridCellNode extends \Twig_Node {
     echo $rendered, PHP_EOL;
   }
 
-  public function compile(\Twig_Compiler $compiler) {
+  public function compile(\Twig\Compiler $compiler) {
     $count = count($this->getNode('params'));
 
     $compiler->addDebugInfo($this);

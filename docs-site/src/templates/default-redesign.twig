@@ -1,0 +1,13 @@
+{% extends "@bolt-site/base-template.twig" %}
+
+{% block site_body %}
+  {% include "@bolt-site/_page-header.twig" %}
+
+  {% block site_content %}
+    <div class="c-bds-layout__content c-bolt-site__content c-bolt-site__content--middle">
+      <div class="c-bds-layout__wrapper">
+        {{ content }}
+      </div>
+    </div>
+  {% endblock %}
+{% endblock %}

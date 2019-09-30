@@ -1,92 +1,149 @@
 {
   "name": "bolt",
-  "description": "Bolt Design System",
+  "version": "0.0.0-development",
   "private": true,
-  "author": "Salem Ghoweri",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bolt-design-system/bolt.git"
-  },
+  "description": "Bolt Design System",
+  "keywords": [
+    "bolt",
+    "bolt design system",
+    "design system",
+    "pattern lab",
+    "web components"
+  ],
   "homepage": "https://github.com/bolt-design-system/bolt#readme",
   "bugs": {
     "url": "https://github.com/bolt-design-system/bolt/issues"
   },
-  "keywords": [
-    "design",
-    "system",
-    "design system",
-    "bolt design system",
-    "pattern lab"
-  ],
-  "scripts": {
-    "start": "echo 'To start up a server and watches, head into any of the folders in the apps/ directory, then run npm start there.' && echo 'If you want to start Pattern Lab, run this:' && echo '' && echo 'cd apps/pattern-lab' && echo 'npm start'",
-    "setup": "yarn && yarn run bootstrap && yarn run composer",
-    "build:pl": "cd apps/pattern-lab && yarn run build:prod",
-    "build:bolt-site": "cd apps/bolt-site && yarn run build:prod",
-    "Xbuild:drupal-lab": "cd example-integrations/drupal-lab && cd web/themes/flash && yarn run build && cd - && composer run build",
-    "build:icons": "lerna exec --scope @bolt/components-icons -- yarn run build",
-    "build:uikit": "lerna exec --scope @bolt/uikit-workshop -- yarn run build",
-    "build": "npm-run-all build:* --aggregate-output --print-label --print-name --parallel",
-    "composer:pl": "cd apps/pattern-lab && composer install --no-interaction --prefer-dist",
-    "composer:core-php": "cd packages/core-php && composer install --no-interaction --prefer-dist",
-    "composer:bolt-site": "cd apps/bolt-site && composer install --no-interaction --prefer-dist",
-    "composer": "npm-run-all --parallel composer:* --aggregate-output --print-label --print-name",
-    "xcomposer:drupal-lab": "cd example-integrations/drupal-lab && composer install --no-interaction --prefer-dist",
-    "bootstrap": "lerna bootstrap --reject-cycles",
-    "postbootstrap": "yarn run build:icons && yarn run build:uikit && node scripts/monorepo-tests.js",
-    "Xpredeploy": "yarn run build",
-    "deploy": "./scripts/deploy.js",
-    "clean:git": "git clean -xdf && rm -rf apps/**/vendor apps/**/node_modules && find . -empty -type d -delete",
-    "clean:lerna": "npx lerna clean --yes",
-    "clean": "npm run clean:lerna && npm run clean:git",
-    "prepublishOnly": "yarn run build && node scripts/monorepo-tests.js",
-    "Xlint:editorconfig": "editorconfig-checker --exclude-pattern './www/**/*' --exclude-pattern './**/sandbox/**/*' --exclude-pattern './**/vendor/*' --exclude-pattern './example-integrations/drupal-lab/**' ",
-    "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'apps/**/*.js'",
-    "lint:js:fix": "yarn run lint:js --fix",
-    "Xlint:sh": "which shellcheck; if [ $? -eq 0 ]; then shellcheck scripts/*.sh ; else echo 'Shell script linting requires `shellcheck` to be installed, skipping for now; use `brew install shellcheck` to install ~ https://github.com/koalaman/shellcheck '; fi",
-    "lint:style": "stylelint 'packages/**/*.scss' 'apps/**/*.scss' '!example-integrations/drupal-lab/**' '!apps/pattern-lab/src/components/schema-form/**' '!packages/uikit-workshop/**' '!**/vendor/**' --config .stylelintrc",
-    "lint:style:fix": "yarn run lint:style -- --fix",
-    "lint:twig": "./packages/core-php/vendor/bin/twig-lint lint packages --only-print-errors && ./packages/core-php/vendor/bin/twig-lint lint apps --only-print-errors --exclude=example-integrations/drupal-lab",
-    "lint:yaml": "yamllint 'packages/**/*.yml' --ignore='**/vendor/**'",
-    "lint": "npm-run-all --continue-on-error --parallel lint:*",
-    "prepush": "yarn run test && yarn run lint",
-    "test:js": "jest",
-    "test:js:watch": "jest --watch",
-    "test:php": "cd packages/core-php && composer run test",
-    "test": "npm-run-all --parallel test:*",
-    "watch:icons": "lerna exec --scope @bolt/components-icons -- yarn run watch"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolt-design-system/bolt.git"
   },
-  "dependencies": {
-    "sassdoc": "^2.5.0"
-  },
-  "devDependencies": {
-    "editorconfig-checker": "^1.3.3",
-    "husky": "^0.14.3",
-    "jest": "^23.5.0",
-    "lerna": "^3.4.3",
-    "node-fetch": "^2.2.0",
-    "now": "^11.4.6",
-    "npm-run-all": "^4.1.3",
-    "yaml-lint": "^1.2.4",
-    "git-semver-tags": "^2.0.0",
-    "nightwatch": "^1.0.8",
-    "url-exists": "^1.0.3"
-  },
+  "license": "MIT",
+  "author": "Salem Ghoweri",
   "workspaces": {
     "packages": [
-      "apps/*",
-      "apps/pattern-lab/src/components/schema-form",
-      "packages/build-tools",
+      "docs-site",
+      "docs-site/src/components/banner",
+      "docs-site/src/components/docs-search",
+      "docs-site/src/components/radio-switch",
+      "packages/*",
+      "packages/*/*",
+      "packages/build-tools/__tests__/*",
       "packages/build-tools/plugins/*",
-      "packages/components/*",
-      "packages/config-presets/*",
-      "packages/core",
-      "packages/twig-renderer",
-      "packages/global",
-      "packages/uikit-workshop",
-      "example-integrations/vue",
-      "example-integrations/drupal-lab/web/themes/bolt-starter"
+      "scripts"
+    ],
+    "nohoist": [
+      "lazysizes",
+      "**/lazysizes",
+      "get-own-property-symbols",
+      "**/get-own-property-symbols"
     ]
+  },
+  "scripts": {
+    "build": "cd docs-site && yarn run build:prod",
+    "cc": "yarn create:component",
+    "clean": "npx npm-run-all --parallel clean:*",
+    "clean:cache": "find . -name 'cache' -type d -exec rm -rf {} +",
+    "clean:composer": "find . -name 'vendor' -type d -exec rm -rf {} +",
+    "clean:empty": "find . -empty -type d -delete",
+    "clean:npm": "find . -name 'node_modules' -type d -exec rm -rf {} +",
+    "clean:www": "find . -name 'www' -type d -exec rm -rf {} +",
+    "create:component": "yo ./packages/generators/yeoman-create-component/generators/component/index.js",
+    "cz": "git-cz",
+    "deploy": "./scripts/deploy.js",
+    "fix": "yarn lint:js --fix; yarn lint:scss --fix",
+    "lint": "npm-run-all --parallel lint:*",
+    "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
+    "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
+    "release": "./scripts/release/release.sh",
+    "release:beta": "./scripts/release/release-beta.sh",
+    "release:rc": "./scripts/release/release-rc.sh",
+    "serve": "node packages/servers/default-server",
+    "setup": "yarn && yarn run setup:php",
+    "setup:full": "yarn --force && yarn run setup:php",
+    "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer update --prefer-dist --quiet",
+    "setup:quick": "yarn && yarn run setup:php",
+    "start": "cd docs-site && yarn run start",
+    "test": "npm-run-all --parallel --aggregate-output test:js test:php test:monorepo test:build-tools",
+    "test:e2e:full": "./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
+    "test:e2e:full-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
+    "test:e2e:full-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,safari",
+    "test:e2e:full-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.js --env chrome,firefox,ie11",
+    "test:e2e:quick-live": " NOW_URL=https://boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
+    "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
+    "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
+    "pretest:js": "npm run setup:php",
+    "jest": "jest --maxWorkers=3 --all --colors",
+    "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
+    "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
+    "test:js:update": "yarn run test:js -u",
+    "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
+    "test:build-tools": "cd packages/build-tools && yarn run test",
+    "test:php": "cd packages/core-php -- composer run test",
+    "test:pkgs": "lerna run test",
+    "test:types": "tsc",
+    "postinstall": "patch-package && npx lerna run postbootstrap"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn run lint && npm run test:monorepo",
+      "commitmsg": "commitlint -E $GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "puppeteer_skip_chromium_download": true,
+    "commitizen": {
+      "path": "./node_modules/@instructure/cz-lerna-changelog"
+    }
+  },
+  "browserslist": [
+    "extends @bolt/browserslist-config"
+  ],
+  "dependencies": {
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "@instructure/cz-lerna-changelog": "^6.6.0",
+    "@open-wc/testing-helpers": "^1.0.10",
+    "ci-utils": "^0.6.0",
+    "commitizen": "^3.1.1",
+    "conf": "^5.0.0",
+    "conventional-changelog-cli": "^2.0.21",
+    "cz-conventional-changelog": "^2.1.0",
+    "eslint": "^6.0.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.2",
+    "globby": "^10.0.1",
+    "@bolt/testing-utils": "^2.8.0-beta.4",
+    "find-pkg": "^2.0.0",
+    "get-port": "^5.0.0",
+    "haunted": "^4.4.0",
+    "husky": "^3.0.0",
+    "jest": "^24.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "lerna": "^3.15.0",
+    "lit-element": "^2.2.0",
+    "lit-html": "^1.1.1",
+    "npm-run-all": "^4.1.5",
+    "patch-package": "^6.1.2",
+    "postinstall-postinstall": "^2.0.0",
+    "proxy-polyfill": "^0.3.0",
+    "release-it": "^12.3.2",
+    "semantic-release": "^15.13.18",
+    "typescript": "^3.5.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "stylelint": "^10.1.0",
+    "stylelint-order": "^3.0.1",
+    "stylelint-scss": "^3.9.2",
+    "@types/skatejs": "^5.0.1"
   }
 }

@@ -9,10 +9,10 @@ $bolt-navbar-xsmall-bp: 420px; // Slightly increase the default 400px xsmall bre
 
 bolt-nav-priority {
   display: block;
-  position: relative;
-  align-self: center;
-  padding-bottom: var(--bolt-vspacing);
   flex-shrink: 4; // shrink faster than other components in tight spots
+  align-self: center;
+  position: relative;
+  padding-bottom: var(--bolt-vspacing);
 
   @include bolt-if-browser-supports-display-contents {
     @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
@@ -59,9 +59,8 @@ bolt-nav-priority {
 }
 
 .c-bolt-nav-priority__show-button {
-  width: 100%;
-  height: 100%;
   display: block;
+  width: 100%;
   color: bolt-theme(headline);
   background-color: transparent;
 }
@@ -76,8 +75,8 @@ bolt-nav-priority {
   }
 
   display: flex;
-  list-style: none;
   margin: 0;
+  list-style: none;
 }
 
 .c-bolt-nav-priority__item {
@@ -100,35 +99,46 @@ bolt-nav-priority {
 }
 
 .c-bolt-nav-priority__dropdown-list {
-  list-style: none;
-  margin: 0;
+
+  opacity: bolt-opacity(0);
+  transform: translate3d(0, bolt-spacing(medium) * -1, 0);
   width: 100%;
+  overflow: hidden;
+  margin: 0;
+  list-style: none;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s, opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
   @include bolt-padding-top(xsmall);
   @include bolt-padding-bottom(xsmall);
   @include bolt-padding-left(xsmall);
   @include bolt-padding-right(xsmall);
-  overflow: hidden;
-  pointer-events: none;
 
   @include bolt-mq(small) {
     @include bolt-padding-left(xsmall);
     @include bolt-padding-right(xsmall);
   }
 
-  opacity: bolt-opacity(0);
-  transform: translate3d(0, bolt-spacing(medium) * -1, 0);
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s, opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
-
   .c-bolt-nav-priority--show-dropdown & {
     opacity: bolt-opacity(100);
     transform: translate3d(0, 0, 0);
-    transition-delay: 0.2s, 0.1s;
     pointer-events: auto;
+    transition-delay: 0.2s, 0.1s;
   }
 }
 
 .c-bolt-nav-priority__dropdown {
   @include bolt-z-index(tooltip);
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: calc(100vw - #{bolt-spacing(large)});
+  min-width: 12rem;
+  max-width: 100vw;
+  max-height: 0;
+  border-bottom-right-radius: $bolt-border-radius;
+  border-bottom-left-radius: $bolt-border-radius;
+  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
   background-color: bolt-theme(
     (
       xdark: brand-darken-5,
@@ -137,18 +147,7 @@ bolt-nav-priority {
       xlight: secondary,
     )
   );
-  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
-  min-width: 12rem;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  max-height: 0;
-  width: calc(100vw - #{bolt-spacing(large)});
-  max-width: 100vw;
-  border-bottom-left-radius: $bolt-border-radius;
-  border-bottom-right-radius: $bolt-border-radius;
   transition: max-height 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) 0s, visibility 0s linear 0.3s;
-  visibility: hidden;
 
   * {
     white-space: normal;
@@ -161,21 +160,21 @@ bolt-nav-priority {
 
   @include bolt-if-browser-supports-display-contents {
     @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
+      left: 0;
+      width: auto;
       grid-row: 2 / span 1;
       grid-column: 1 / span 6;
-      width: auto;
-      left: 0;
     }
   }
 
   .c-bolt-nav-priority--show-dropdown & {
     visibility: visible;
+    visibility: visible;
     max-height: 400px;
     max-height: calc(100vh - 48px - 48px);
+    pointer-events: auto;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    pointer-events: auto;
-    visibility: visible;
     transition-delay: 0.1s, 0s;
   }
 
@@ -203,36 +202,39 @@ bolt-nav-priority {
   @include bolt-mq($bolt-navbar-xsmall-bp){
     @include bolt-padding(small, squished);
   }
+  position: relative;
+  cursor: pointer;
+  border-radius: 3px;
+  border-radius: $bolt-border-radius;
   // Added border so that &:after,&:focus doesn't change the size of the band
   // We should consider making this thin dotted style a mixin to share with nav-priority
   border-width: thin;
   border-style: solid;
-  border-radius: 3px;
   border-color: transparent;
-  border-radius: $bolt-border-radius;
-  white-space: nowrap;
-  transition: background-color 0.3s ease;
   background-color: bolt-theme(secondary, 0.05);
-  cursor: pointer;
-  position: relative;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
   
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
-    border-radius: 0;
-    border-left-width: 1px;
+    height: 100%; // fix for height: 100% causing issues on larger screen sizes
     border-left-color: bolt-theme(headline, 0.2);
+    border-left-width: 1px;
+    border-radius: 0;
   }
 
   &:before {
-    position: absolute;
     content: '';
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    pointer-events: none;
     opacity: bolt-opacity(0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    pointer-events: none;
     background-color: bolt-theme(
       (
         xdark: brand 0.95,
@@ -241,9 +243,7 @@ bolt-nav-priority {
         xlight: neutral 0.95,
       )
     );
-
-    overflow: hidden;
-    z-index: 1;
+    transition: opacity 0.3s ease;
   }
 
   &:hover {
@@ -256,9 +256,9 @@ bolt-nav-priority {
 
   &:focus,
   &.is-active {
-    outline: none;
     border-style: dotted;
     border-color: bolt-theme(primary);
+    outline: none;
   }
 
   &.is-active,
@@ -293,11 +293,11 @@ bolt-nav-priority {
 
 .c-bolt-nav-priority__show-icon {
   display: inline-block;
-  transition: transform 0.2s;
   position: relative;
   z-index: 10;
   line-height: 0;
   font-size: 1em;
+  transition: transform 0.2s;
 
   @include bolt-mq($until: $bolt-navbar-xsmall-bp) {
     font-size: 24px;
@@ -323,9 +323,9 @@ bolt-nav-priority {
 // }
 
 .c-bolt-nav-priority__dropdown-list > .c-bolt-nav-priority__item {
-  transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1), transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1); // transition:
-  transform: translate3d(0, bolt-spacing(large) * -1, 0);
   opacity: bolt-opacity(0);
+  transform: translate3d(0, bolt-spacing(large) * -1, 0);
+  transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1), transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1); // transition:
   transition-property: transform, opacity;
 }
 

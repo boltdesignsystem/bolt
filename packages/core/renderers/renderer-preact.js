@@ -43,6 +43,14 @@ export function withPreact(Base = HTMLElement) {
       // cases for children by using a slot.
       return {
         ...super.props,
+        isServer: {
+          ...props.boolean,
+          ...{ default: bolt.isServer },
+        },
+        isClient: {
+          ...props.boolean,
+          ...{ default: bolt.isClient },
+        },
       };
     }
 

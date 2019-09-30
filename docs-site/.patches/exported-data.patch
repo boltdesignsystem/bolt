@@ -1,0 +1,12 @@
+diff --git a/src/PatternLab/Builder.php b/src/PatternLab/Builder.php
+index 4c9bc6173..aebbe6c05 100644
+--- a/src/PatternLab/Builder.php
++++ b/src/PatternLab/Builder.php
+@@ -210,6 +210,7 @@ class Builder {
+ 			}
+ 		}
+ 		$output .= "var plugins = ".json_encode($packagesInfo).";";
++		//$output .= "module.exports = { config, ishControls, navItems, patternPaths, viewAllPaths, plugins }";
+ 
+ 		// write out the data
+ 		file_put_contents($dataDir."/patternlab-data.js",$output);

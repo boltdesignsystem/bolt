@@ -38,19 +38,19 @@ bolt-card {
 
 .c-bolt-card {
   display: flex;
-  flex-direction: column;
   flex-basis: 100%;
+  flex-direction: column;
   flex-grow: 1; //If used in a flex box container, grow to fill available space.
   position: relative;
+  transform: translate3d(0, 0, 0) scale(1, 1);
   max-width: 100%; //IE11 flexbox fix
   border-radius: $bolt-card-border-radius;
-  transform: translate3d(0, 0, 0) scale(1, 1);
   transition: $bolt-card-transition;
 
   @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+    background-color: rgba(bolt-color(white), 0.3);
     -webkit-backdrop-filter: blur(10px) saturate(30%) brightness(300%);
     backdrop-filter: blur(10px) saturate(30%) brightness(300%);
-    background-color: rgba(bolt-color(white), 0.3);
   }
 
   bolt-card[class*=t-bolt] & {
@@ -62,9 +62,9 @@ bolt-card {
     }
 
     @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+      background-color: rgba(bolt-color(white), 0.3);
       -webkit-backdrop-filter: blur(10px) saturate(30%) brightness(300%);
       backdrop-filter: blur(10px) saturate(30%) brightness(300%);
-      background-color: rgba(bolt-color(white), 0.3);
     }
   }
 
@@ -75,15 +75,15 @@ bolt-card {
 
   &:before,
   &:after {
+    content: '';
     display: block;
     position: absolute;
-    z-index: bolt-z-index('background') - 5;
     top: 0;
     left: 0;
+    transform: translate3d(0, 0, 0); //Help prevent rounding errors in Chrome so bg doesn't spill out
+    z-index: bolt-z-index('background') - 5;
     width: 100%;
     height: 100%;
-    transform: translate3d(0, 0, 0); //Help prevent rounding errors in Chrome so bg doesn't spill out
-    content: '';
     pointer-events: none;
     border-radius: $bolt-card-border-radius;
   }
@@ -93,13 +93,13 @@ bolt-card {
   }
 
   &:after {
+
+    box-shadow: none;
     background-color: rgba(bolt-color(white), 0.1);
+    transition: $bolt-card-transition;
     @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
       background-color: transparent;
     }
-
-    box-shadow: none;
-    transition: $bolt-card-transition;
   }
 
   &.is-actionable {
@@ -142,21 +142,21 @@ bolt-card {
 }
 
 .c-bolt-card__footer {
-  position: relative;
   display: flex;
+  position: relative;
   overflow: hidden; // Prevent the card footer's border from overflowing outside the card. Workaround if card footer container rendering despite not having any content to display.
 
   &:before {
     content: '';
-    border-top-color: bolt-theme(border, 0.2);
-    border-top-width: $bolt-card-border-width;
-    border-top-style: solid;
+    display: block;
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
-    display: block;
+    left: 0;
     height: 1px;
+    border-top-color: bolt-theme(border, 0.2);
+    border-top-style: solid;
+    border-top-width: $bolt-card-border-width;
   }
 }
 
@@ -166,8 +166,8 @@ bolt-card {
     flex: 1;
     justify-content: center;
     position: relative;
-    text-align: center;
     color: currentColor;
+    text-align: center;
   }
 
   &:only-child {
@@ -176,14 +176,14 @@ bolt-card {
 }
 
 .c-bolt-card__footer-item + .c-bolt-card__footer-item:before {
-  display: block;
   content: '';
-  border-left-color: bolt-theme(border, 0.2);
-  border-left-width: $bolt-card-border-width;
-  border-left-style: solid;
+  display: block;
   position: absolute;
   top: 1px; // Prevent double border on top
   left: 0;
   width: 1px;
   height: 100%;
+  border-left-color: bolt-theme(border, 0.2);
+  border-left-style: solid;
+  border-left-width: $bolt-card-border-width;
 }

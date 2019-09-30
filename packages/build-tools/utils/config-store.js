@@ -9,7 +9,6 @@ const { validateSchema } = require('./schemas');
 const configSchema = readYamlFileSync(
   path.join(__dirname, './config.schema.yml'),
 );
-const { getPort } = require('./get-port');
 
 let isInitialized = false;
 let config = {};
@@ -25,36 +24,32 @@ let config = {};
 const ip = address.ip();
 
 async function getDefaultConfig() {
-  return Promise.all([
-    await getPort(configSchema.properties.port.default),
-    await getPort(configSchema.properties.proxyPort.default),
-    await getPort(configSchema.properties.renderingServicePort.default),
-  ]).then(function(ports) {
-    return {
-      port: ports[0],
-      proxyPort: ports[1],
-      renderingServicePort: ports[2],
-      ip,
-      enableCache: configSchema.properties.enableCache.default,
-      proxyHeader: configSchema.properties.proxyHeader.default,
-      watch: configSchema.properties.watch.default,
-      sourceMaps: configSchema.properties.sourceMaps.default,
-      i18n: configSchema.properties.i18n.default,
-      renderingService: configSchema.properties.renderingService.default,
-      namespace: configSchema.properties.namespace.default,
-      templatesDir: configSchema.properties.templatesDir.default,
-      verbosity: configSchema.properties.verbosity.default,
-      openServerAtStart: configSchema.properties.openServerAtStart.default,
-      quick: configSchema.properties.quick.default,
-      webpackDevServer: configSchema.properties.webpackDevServer.default,
-      prod: process.env.NODE_ENV === 'production',
-      startPath: configSchema.properties.startPath.default,
-      webpackStats: configSchema.properties.webpackStats.default,
-      globalData: {},
-      schemaErrorReporting:
-        configSchema.properties.schemaErrorReporting.default,
-    };
-  });
+  return {
+    port: configSchema.properties.port.default,
+    hostname: configSchema.properties.hostname.default,
+    proxyHostname: configSchema.properties.proxyHostname.default,
+    proxyHeader: configSchema.properties.proxyHeader.default,
+    ip,
+    enableSSR: configSchema.properties.enableSSR.default,
+    mode: configSchema.properties.mode.default,
+    env: process.env.NODE_ENV,
+    enableCache: configSchema.properties.enableCache.default,
+    watch: configSchema.properties.watch.default,
+    sourceMaps: configSchema.properties.sourceMaps.default,
+    i18n: configSchema.properties.i18n.default,
+    renderingService: configSchema.properties.renderingService.default,
+    namespace: configSchema.properties.namespace.default,
+    templatesDir: configSchema.properties.templatesDir.default,
+    verbosity: configSchema.properties.verbosity.default,
+    openServerAtStart: configSchema.properties.openServerAtStart.default,
+    quick: configSchema.properties.quick.default,
+    webpackDevServer: configSchema.properties.webpackDevServer.default,
+    prod: process.env.NODE_ENV === 'production',
+    startPath: configSchema.properties.startPath.default,
+    webpackStats: configSchema.properties.webpackStats.default,
+    globalData: {},
+    schemaErrorReporting: configSchema.properties.schemaErrorReporting.default,
+  };
 }
 
 async function getEnvVarsConfig() {
@@ -85,18 +80,26 @@ async function getEnvVarsConfig() {
 
 async function isReady() {
   if (!isInitialized) {
-    console.log(
-      chalk.yellow(
-        'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
-      ),
-    );
+    // console.log(
+    //   chalk.yellow(
+    //     'Bolt config not yet setup -- trying to find a .boltconfig.rc file...',
+    //   ),
+    // );
     const searchedFor = explorer.searchSync();
-    if (searchedFor.config) {
-      await init({
-        ...searchedFor.config,
-        configFileUsed: searchedFor.filepath,
-      });
-      return true;
+    if (searchedFor) {
+      if (searchedFor.config) {
+        await init({
+          ...searchedFor.config,
+          configFileUsed: searchedFor.filepath,
+        });
+        return true;
+      } else {
+        console.log(
+          chalk.red(
+            '.boltrc config not found -- you must initialize config before trying to get or update it.',
+          ),
+        );
+      }
     } else {
       console.log(
         chalk.red(
@@ -146,7 +149,7 @@ async function getConfig() {
  */
 async function updateConfig(updater) {
   await isReady();
-  const newConfig = updater(config);
+  const newConfig = await updater(config);
   validateSchema(
     configSchema,
     newConfig,

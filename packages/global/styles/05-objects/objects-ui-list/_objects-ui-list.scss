@@ -28,9 +28,9 @@ $bolt-ui-list-border-style: solid !default;
   position: relative;
 
   &:not(:last-child) {
-    border-bottom-width: $bolt-ui-list-border-width;
-    border-bottom-style: $bolt-ui-list-border-style;
     border-bottom-color: bolt-theme(border, 0.2);
+    border-bottom-style: $bolt-ui-list-border-style;
+    border-bottom-width: $bolt-ui-list-border-width;
   }
 
   > *:last-child {

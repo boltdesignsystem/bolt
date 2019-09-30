@@ -1,49 +1,59 @@
 /* ------------------------------------ *\
-   Buttons
+   Button
 \* ------------------------------------ */
 
+// Dev Notes
+// 1. [Morse] This mixin outputs a separate ruleset for each selector to prevent IE from failing on unrecognized selectors like `:host`. It is not a substitute for comma-separated selectors.
+// 2. [Morse] Bolt-link delegates focus to inner element.
+
 @import '@bolt/core';
+@import './button-settings-and-tools';
 
-@import './button.settings';
-@import './button.mixins';
+/**
+ * Base Button
+ */
+@include bolt-repeat-rule(('bolt-button', ':host')) {
+  // [1]
+  display: inline-flex;
+  outline: none; // [2]
 
-
-
-
-/** Base Button Styles **/
-bolt-button {
-  display: inline-block; // Fallback
-  display: inline-flex; // So equal height works
-  -webkit-appearance: none; // override default [type=submit] button styles coming from Normalize
+  &[type="button"],
+  &[type="reset"],
+  &[type="submit"] {
+    appearance: none;
+  }
 }
 
 .c-bolt-button {
   @include bolt-button;
 }
 
-
-
-/** Button Style Variations **/
+/**
+ * Button Styles
+ */
 .c-bolt-button--primary {
   @include bolt-button-style(primary);
+  @include bolt-button-raised-effect;
 }
 
 .c-bolt-button--secondary {
   @include bolt-button-style(secondary);
+  @include bolt-button-raised-effect;
 }
 
 .c-bolt-button--text {
   @include bolt-button-style(text);
 }
 
+[aria-disabled='true'] .c-bolt-button,
 .c-bolt-button[disabled],
 .c-bolt-button--disabled {
   @include bolt-button-style(disabled);
 }
 
-
-
-/** Button Text Transform Variations **/
+/**
+ * Button Text Transform
+ */
 .c-bolt-button--uppercase {
   text-transform: uppercase;
 }
@@ -56,24 +66,34 @@ bolt-button {
   text-transform: capitalize;
 }
 
+@function bolt-button-icon-only-size($paddingSize, $fontSize: xsmall) {
+  $line-height: map-get-deep(
+    $bolt-font-sizes,
+    'font-sizes',
+    $fontSize,
+    'line-height',
+    'regular'
+  );
+  $font-size: map-get-deep(
+    $bolt-font-sizes,
+    'font-sizes',
+    $fontSize,
+    'font-size'
+  );
+  @return (bolt-v-spacing($paddingSize) * $bolt-spacing-squished * 2) +
+    ($line-height * $font-size);
+}
 
-
-/** Button Size Variations **/
+/**
+ * Button Sizes
+ */
 .c-bolt-button--medium {
   @include bolt-padding(medium, squished);
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    padding: bolt-spacing(medium);
-  }
-}
-
-.c-bolt-button--xxsmall {
-  @include bolt-padding(xxsmall, squished);
-  @include bolt-font-size(xsmall);
-
-  &.c-bolt-button--icon-only {
-    padding: bolt-spacing(xxsmall);
+    width: bolt-button-icon-only-size(medium);
+    min-height: bolt-button-icon-only-size(medium);
   }
 }
 
@@ -82,7 +102,8 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    padding: bolt-spacing(xsmall);
+    width: bolt-button-icon-only-size(xsmall);
+    min-height: bolt-button-icon-only-size(xsmall);
   }
 }
 
@@ -91,7 +112,8 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    padding: bolt-spacing(small);
+    width: bolt-button-icon-only-size(small);
+    min-height: bolt-button-icon-only-size(small);
   }
 }
 
@@ -100,7 +122,8 @@ bolt-button {
   @include bolt-font-size(medium);
 
   &.c-bolt-button--icon-only {
-    padding: bolt-spacing(medium);
+    width: bolt-button-icon-only-size(medium, medium);
+    min-height: bolt-button-icon-only-size(medium, medium);
   }
 }
 
@@ -109,83 +132,161 @@ bolt-button {
   @include bolt-font-size(large);
 
   &.c-bolt-button--icon-only {
-    padding: bolt-spacing(large);
+    width: bolt-button-icon-only-size(large, large);
+    min-height: bolt-button-icon-only-size(large, large);
   }
 }
 
+/**
+ * Icon Only Buttons
+ */
+.c-bolt-button--icon-only {
+  @include bolt-padding(0);
 
+  .c-bolt-button__item,
+  .c-bolt-button__icon {
+    @include bolt-margin(0);
+  }
 
+  .c-bolt-button__item {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    color: transparent;
+    text-indent: -99999em;
+    white-space: nowrap;
+  }
 
-/** Button Width Variations **/
+  .c-bolt-button__icon-sizer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+  // Scale icon only version's icon size based on button size
+  &.c-bolt-button--xsmall {
+    .c-bolt-button__icon-sizer {
+      font-size: 1em;
+    }
+  }
+
+  &.c-bolt-button--small {
+    .c-bolt-button__icon-sizer {
+      font-size: 1.25em;
+    }
+  }
+
+  &.c-bolt-button--medium {
+    .c-bolt-button__icon-sizer {
+      font-size: 1.5em;
+    }
+  }
+
+  &.c-bolt-button--large {
+    .c-bolt-button__icon-sizer {
+      font-size: 1.75em;
+    }
+  }
+
+  &.c-bolt-button--xlarge {
+    .c-bolt-button__icon-sizer {
+      font-size: 2em;
+    }
+  }
+}
+
+/**
+ * Button Width
+ */
 bolt-button[width='full'],
 .c-bolt-button--full {
   width: 100%;
 }
 
+// :host selector for correctly styling the <bolt-button> element inside other components
+// writing this out in a separate selector due to unsupporting browsers throwing out the :host selector
+:host([width='full']) {
+  width: 100%;
+}
+
+// full@small width variations
 bolt-button[width='full@small'],
 .c-bolt-button--full\@small {
-  @media screen and (max-width: map-get($bolt-breakpoints, small)) {
+  @include bolt-mq($until: small) {
     width: 100%;
   }
 }
 
-
-
-
-/** Rounded off buttons (ie. pills or icon-only buttons) **/
-.c-bolt-button--rounded,
-.c-bolt-button--rounded:before {
-  border-radius: 50rem;
+// :host selector for correctly styling the <bolt-button> element inside other components
+// writing this out in a separate selector due to unsupporting browsers throwing out the :host selector
+:host([width='full@small']) {
+  @include bolt-mq($until: small) {
+    width: 100%;
+  }
 }
 
+/**
+ * Border Radius
+ */
+@each $radius-name, $radius-value in $bolt-button-border-radii {
+  .c-bolt-button--border-radius-#{$radius_name} {
+    &,
+    &:before {
+      border-radius: $radius-value;
+    }
+  }
 
+  bolt-button[border-radius='#{$radius_name}'] {
+    border-radius: $radius-value;
+  }
+}
 
+/**
+ * Icon and text spacing and display
+ */
+.c-bolt-button__icon.is-empty {
+  display: none;
+}
 
-/** Button Alignments **/
+.c-bolt-button__icon:not(.is-empty) {
+  display: flex;
+}
 
+.c-bolt-button__item {
+  display: inline-flex;
+  text-align: left;
+  text-align: start;
+}
+
+.c-bolt-button__icon:not(.is-empty) {
+  .c-bolt-button__icon-sizer {
+    display: flex; // This fixes the spacing issue caused by bolt-icon defined as inline-block.
+  }
+}
+
+// Spacing only applies when there are BOTH text and icon
+.c-bolt-button:not(.c-bolt-button--icon-only) {
+  .c-bolt-button__item + .c-bolt-button__icon:not(.is-empty) {
+    @include bolt-margin-left(xxsmall);
+  }
+
+  .c-bolt-button__icon:not(.is-empty) + .c-bolt-button__item {
+    @include bolt-margin-left(xxsmall);
+  }
+}
+
+/**
+ * Button Alignments
+ */
 .c-bolt-button--center {
-  text-align: center;
   justify-content: center;
 }
 
 .c-bolt-button--start {
-  text-align: left;
-  text-align: start;
   justify-content: flex-start;
 }
 
 .c-bolt-button--end {
-  text-align: right;
-  text-align: end;
   justify-content: flex-end;
-}
-
-
-
-
-/** Handle Button Icon Alignment + Before / After **/
-.c-bolt-button__item + .c-bolt-button__icon:not(.is-empty) {
-  @include bolt-margin-left(xxsmall);
-
-  .c-bolt-button--icon-only & {
-    @include bolt-margin-left(0);
-  }
-}
-
-.c-bolt-button__icon:not(.is-empty) + .c-bolt-button__item {
-  @include bolt-margin-left(xsmall);
-
-  .c-bolt-button--icon-only & {
-    @include bolt-margin-left(0);
-  }
-}
-
-.c-bolt-button__icon {
-  display: inline-block;
-  display: inline-flex;
-  vertical-align: middle;
-  align-self: center;
-  transition: transform $bolt-transition-ease 150ms;
-  text-align: center; // Horizontally center icons
-  line-height: 1; // workaround so icons can be vertically aligned properly
 }

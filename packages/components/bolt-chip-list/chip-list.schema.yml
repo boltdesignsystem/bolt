@@ -4,9 +4,17 @@ type: object
 require:
   - contentItems
 properties:
-  contentItems:
+  items:
     type: array
     description: An array of Chips.
+    items:
+      type: object
+      description: Chip.
+      ref: '@bolt-components-chip/chip.schema.yml'
+  contentItems:
+    type: array
+    title: 'DEPRECATED'
+    description: 'Deprecated (will be removed in Bolt v3.0) - use the <code>items</code> prop instead.'
     items:
       type: object
       description: Chip.

@@ -1,7 +1,0 @@
-{% set schema = bolt.data.components['@bolt-components-text'].schema %}
-
-{% for align in schema.properties.align.enum %}
-  <bolt-text align="{{ align }}">
-    This is regular text using {{ align }} align
-  </bolt-text>
-{% endfor %}

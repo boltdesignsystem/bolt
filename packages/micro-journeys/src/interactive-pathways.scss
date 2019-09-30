@@ -1,0 +1,164 @@
+@import '@bolt/core';
+
+// Local interactive-pathways Variables
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-interactive-pathways', block, medium);
+
+/**
+ * Long-form comment.
+ *
+ * This spans multiple lines and is also constrained to no longer than 80
+ * characters in width.
+ *
+ * 1. Provide line-comments like this.
+ */
+.c-bolt-interactive-pathways {
+  //Styles go here. /* [1] */
+  display: block;
+  overflow: visible;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__nav {
+    position: relative;
+    width: 100%;
+    padding: 1.65rem 0;
+
+    &--inner {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+      z-index: 999;
+      max-width: 100%;
+      white-space: nowrap;
+
+      @include bolt-mq(medium) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: baseline;
+      }
+    }
+  }
+
+  &__single-title {
+    display: block;
+    margin-left: .65rem;
+  }
+
+  &__menu-dropdown {
+    position: relative;
+    padding: 0 0.5em;
+  }
+
+  &__heading {
+    display: flex;
+    position: relative;
+    z-index: 10;
+    margin: 0;
+    border-bottom: 2px solid bolt_theme(text);
+    background-color: bolt-theme(background);
+
+    &--active {
+      border-color: transparent;
+    }
+
+    bolt-icon {
+      transition: transform 350ms ease;
+    }
+  }
+
+  &__dropdown-trigger {
+    @include bolt-font-weight(semibold);
+    display: block;
+    padding: 0;
+    color: bolt_theme(primary);
+    line-height: 1.65;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    font-size: 1.75rem;
+    border: none;
+    background: none;
+
+    &:active, &:hover {
+      background: transparent;
+    }
+  }
+
+  &__menu-container {
+    @include bolt-shadow("level-40");
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    width:calc(100% - 1rem);
+    min-width: 14rem;
+    max-width: 100vw;
+    // @TODO refactor to remove CSS transforms in bolt-character that required this for Edge/IE
+    overflow: hidden;
+    margin: 0;
+    padding-left: 0;
+    list-style-type: none;
+    border-radius: .35rem;
+    background-color: bolt-color(white);
+    transition: opacity 200ms ease;
+
+    &.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    &__item {
+      cursor: pointer;
+
+      bolt-text.c-bolt-interactive-pathways__menu-container__item .c-bolt-text-v2 {
+        color: bolt-color(black) !important;
+      }
+
+      & + & {
+        border-top: 1px solid rgba(58, 65, 78, 0.1);
+      }
+
+      &:hover {
+        background: rgba(58, 65, 78, 0.1);
+      }
+
+    }
+  }
+
+  &__menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 0;
+    padding: bolt-spacing(small);
+    justify-items: center;
+
+    bolt-icon {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+    }
+
+    &--active {
+      bolt-icon,
+      p {
+        color: bolt-color(blue);
+      }
+    }
+
+    //&:hover {
+    //  cursor: pointer;
+    //}
+  }
+}
+
+bolt-text[slot="interactive-pathways-lead-text"] {
+  margin-bottom: 0;
+}
