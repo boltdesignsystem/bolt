@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.5](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2019-09-30)
+
+**Note:** Version bump only for package @bolt/global
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 **Note:** Version bump only for package @bolt/global

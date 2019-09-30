@@ -1,14 +1,20 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import {
+  props,
+  define,
+  hasNativeShadowDomSupport,
+  withContext,
+} from '@bolt/core/utils';
+import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
+import { BoltInteractivePathwaysContext } from './interactive-pathways';
 import styles from './interactive-step.scss';
-//import schema from '../interactive-step.schema.yml'; //Todo: Uncomment when you will need schema
+import schema from './interactive-step.schema';
 
 const cx = classNames.bind(styles);
 
 @define
-class BoltInteractiveStep extends withLitHtml() {
+class BoltInteractiveStep extends withContext(withLitHtml()) {
   static is = 'bolt-interactive-step';
 
   static props = {
@@ -16,15 +22,12 @@ class BoltInteractiveStep extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    tabTitle: {
-      ...props.string,
-      ...{ default: 'The Title' },
-    },
-    disabled: {
-      ...props.boolean,
-      ...{ default: false },
-    },
+    ...convertSchemaToProps(schema),
   };
+
+  static get consumes() {
+    return [[BoltInteractivePathwaysContext, 'theme']];
+  }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
@@ -128,7 +131,8 @@ class BoltInteractiveStep extends withLitHtml() {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { disabled, tabTitle } = this.validateProps(this.props);
+    const { tabTitle } = this.validateProps(this.props);
+    this.theme = this.context.theme;
     const isLastStep = !(
       this.nextElementSibling &&
       this.nextElementSibling.tagName.toLowerCase() === 'bolt-interactive-step'
@@ -140,10 +144,10 @@ class BoltInteractiveStep extends withLitHtml() {
     );
 
     const classes = cx('c-bolt-interactive-step', {
-      [`c-bolt-interactive-step--disabled`]: disabled,
       [`c-bolt-interactive-step--active`]: this._isActiveStep,
       [`c-bolt-interactive-step--first`]: isFirstStep,
       [`c-bolt-interactive-step--last`]: isLastStep,
+      [`t-bolt-${this.theme}`]: this.theme,
     });
 
     const titleClasses = cx('c-bolt-interactive-step__title');
