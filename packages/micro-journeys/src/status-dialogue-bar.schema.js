@@ -13,7 +13,7 @@ module.exports = {
     iconName: {
       type: 'string',
       description: 'Icon name.',
-      default: '',
+      default: 'mobility',
       enum: ['', ...iconSchema.properties.name.enum],
     },
     isAlertMessage: {
