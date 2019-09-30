@@ -410,9 +410,10 @@ class BoltCarousel extends withLitHtml() {
       freeMode: this.props.freeScroll, //@todo: re-enable when adding free-scroll prop options
       slidesPerView: this.calculateSlidesPerView(this.props.slidesPerView),
 
-      // 'observer' feature uses rAF so it should be pretty performant, but let's keep an eye on it (https://github.com/nolimits4web/swiper/pull/2731)
-      observer: true, // Set to true to enable Mutation Observer on Swiper and its elements
-      observeParents: true, // Set to true if you also need to watch Mutations for Swiper parent elements
+      // If carousel has no 'height' on load (!this.offsetHeight), it is hidden and we must add an observer to re-init when element is revealed
+      // Swiper's 'observer' feature uses rAF so it should be pretty performant, but let's still keep an eye on it (https://github.com/nolimits4web/swiper/pull/2731)
+      observer: !this.offsetHeight, // Set to true to enable Mutation Observer on Swiper and its elements
+      observeParents: !this.offsetHeight, // Set to true if you also need to watch Mutations for Swiper parent elements
     };
 
     this.calculateSlidesPerViewBreakpoints();
