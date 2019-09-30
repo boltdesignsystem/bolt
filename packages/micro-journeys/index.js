@@ -2,9 +2,6 @@ import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
   import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-micro-journeys-dropdown' */ './src/micro-journeys-dropdown'
-  );
-  import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-interactive-pathways' */ './src/interactive-pathways'
   );
   import(
@@ -25,9 +22,6 @@ polyfillLoader.then(res => {
   import(/* webpackMode: 'eager', webpackChunkName: 'bolt-cta' */ './src/cta');
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-status-dialogue-bar' */ './src/status-dialogue-bar'
-  );
-  import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-icon-group' */ './src/icon-group'
   );
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-two-character-layout' */ './src/two-character-layout'
