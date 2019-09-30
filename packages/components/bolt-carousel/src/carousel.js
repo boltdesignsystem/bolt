@@ -268,7 +268,7 @@ class BoltCarousel extends withLitHtml() {
     }
   }
 
-  configureSwiper() {
+  configureSlidesPerGroup() {
     // opt out of the default slidesPerGroup behavior if being used as an image gallery
     if (this.mode === 'gallery' || this.mode === 'gallery-thumbnail') {
       // console.log(
@@ -477,7 +477,7 @@ class BoltCarousel extends withLitHtml() {
       );
 
       // customizes slidesPerGroup
-      this.configureSwiper(this.swiper);
+      this.configureSlidesPerGroup();
       this.hideArrowsIfAllSlidesAreVisible();
       this.disableSwipingIfAllSlidesAreVisible();
       this.swiper.on('slideChange', this.onSlideChange);
