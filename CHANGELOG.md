@@ -3,6 +3,102 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.5](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2019-09-30)
+
+
+### Bug Fixes
+
+* add src path fallback if only srcset is defined ([c2f3e24](https://github.com/bolt-design-system/bolt/commit/c2f3e24))
+* auto sync enabling / disabling Shadow DOM when rendering Ratio inside of image ([930ba87](https://github.com/bolt-design-system/bolt/commit/930ba87))
+* fix prettier formatting ([c4ba7b5](https://github.com/bolt-design-system/bolt/commit/c4ba7b5))
+* fix prettier issues ([fa17a45](https://github.com/bolt-design-system/bolt/commit/fa17a45))
+* update <img> markup to use a placeholder in srcset but always display the fallback `src` for older browsers ([228ff16](https://github.com/bolt-design-system/bolt/commit/228ff16))
+
+
+
+
+
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* **animations:** PL JS code for IE 11 ([e2be1a5](https://github.com/bolt-design-system/bolt/commit/e2be1a5))
+* **bolt-animate:** add debug to triggerAnimOnEls ([d3c5a54](https://github.com/bolt-design-system/bolt/commit/d3c5a54))
+* **bolt-animate:** add shadow dom wrapper ([0abb401](https://github.com/bolt-design-system/bolt/commit/0abb401))
+* **bolt-animate:** move demo JS to separate file so it gets transpiled ([baedf7a](https://github.com/bolt-design-system/bolt/commit/baedf7a))
+* **bolt-animate:** safari animation fixes ([b1f1399](https://github.com/bolt-design-system/bolt/commit/b1f1399))
+* **bolt-editor:** fix failing build; incorrect namespace ([a31f42c](https://github.com/bolt-design-system/bolt/commit/a31f42c))
+* **bolt-icon:** updating icon schema after merge ([4f9dc33](https://github.com/bolt-design-system/bolt/commit/4f9dc33))
+* **build:** error on yarn build:noisy; fix integer cast for verbosity arg ([08f199a](https://github.com/bolt-design-system/bolt/commit/08f199a))
+* **editor:** editor inclusion in pl package.json fix ([ad91adf](https://github.com/bolt-design-system/bolt/commit/ad91adf))
+* **micro-journeys:** broken test fixed with 'yarn test:monorepo -- -u' ([e868fba](https://github.com/bolt-design-system/bolt/commit/e868fba))
+* **sasslint:** fix broken sasslint on local ([3a75481](https://github.com/bolt-design-system/bolt/commit/3a75481))
+* address eslint issues ([e90e7b3](https://github.com/bolt-design-system/bolt/commit/e90e7b3))
+* make sure to confirm the with/without container exists before running JS logic ([aab0223](https://github.com/bolt-design-system/bolt/commit/aab0223))
+* pull in custom Switch JS to fix custom event issue; add example with/without page with Shadow DOM disabled for debugging; ([8261a6f](https://github.com/bolt-design-system/bolt/commit/8261a6f))
+* remove duplicate package names ([1fd7395](https://github.com/bolt-design-system/bolt/commit/1fd7395))
+* update Build Tools to check if config.components.global / config.components.individual exist before trying to auto-run the Icon build task ([d340701](https://github.com/bolt-design-system/bolt/commit/d340701))
+* update JS logic to run only when the container / element query-selected exists ([87334ce](https://github.com/bolt-design-system/bolt/commit/87334ce))
+* **with-without:** fix accordion toggle breakage ([f443e0e](https://github.com/bolt-design-system/bolt/commit/f443e0e))
+* update Typeahead to include additional packages missing from package.json ([9382c4a](https://github.com/bolt-design-system/bolt/commit/9382c4a))
+* **self-drawing-circle:** decrease stroke width ([6e75dc1](https://github.com/bolt-design-system/bolt/commit/6e75dc1))
+* **self-drawing-circle:** fix overdrawn line ([1c91def](https://github.com/bolt-design-system/bolt/commit/1c91def))
+* **self-drawing-circle:** replace shadowRoot with renderRoot for IE 11 ([eab2bec](https://github.com/bolt-design-system/bolt/commit/eab2bec))
+* **with-without:** add debug code to determine that polyfills have loaded to debug slowness on edge/ie ([f357e4a](https://github.com/bolt-design-system/bolt/commit/f357e4a))
+* **with-without:** add show-meta stage to animate ([225e31c](https://github.com/bolt-design-system/bolt/commit/225e31c))
+* **with-without:** addressing various feedback from yao ([03e5938](https://github.com/bolt-design-system/bolt/commit/03e5938))
+* **with-without:** animation fixes ([7dd96cf](https://github.com/bolt-design-system/bolt/commit/7dd96cf))
+* **with-without:** animation stability fixes ([10b37c0](https://github.com/bolt-design-system/bolt/commit/10b37c0))
+* **with-without:** animation stability when toggling multiple times in a row ([91cd13b](https://github.com/bolt-design-system/bolt/commit/91cd13b))
+* **with-without:** fix IE 11 not supporting transform w/in svg ([3973bfc](https://github.com/bolt-design-system/bolt/commit/3973bfc))
+* **with-without:** fix ie and edge, cleanup ([6eb1f15](https://github.com/bolt-design-system/bolt/commit/6eb1f15))
+* **with-without:** fix overzealous styling for lightdom breaking circle height ([9daa096](https://github.com/bolt-design-system/bolt/commit/9daa096))
+* **with-without:** fix self-drawing circle too big on monster size ([04b3e78](https://github.com/bolt-design-system/bolt/commit/04b3e78))
+* **with-without:** fix toggle after change to radio ([259ec2a](https://github.com/bolt-design-system/bolt/commit/259ec2a))
+* **with-without:** fix toggle after change to radio ([82d87c5](https://github.com/bolt-design-system/bolt/commit/82d87c5))
+* **with-without:** fixing content overflow ([9be6494](https://github.com/bolt-design-system/bolt/commit/9be6494))
+* **with-without:** fixing some svg errors on ie 11 ([16f3503](https://github.com/bolt-design-system/bolt/commit/16f3503))
+* **with-without:** ie/edge broken when animateIn called on invisible desktop circle when on mobile ([695393f](https://github.com/bolt-design-system/bolt/commit/695393f))
+* **with-without:** increase animation speed ([3b548ce](https://github.com/bolt-design-system/bolt/commit/3b548ce))
+* **with-without:** numerous fixes ([b360340](https://github.com/bolt-design-system/bolt/commit/b360340))
+* **with-without:** remove accordion/markup coupling, style for no meta-stage=INITIAL ([a691769](https://github.com/bolt-design-system/bolt/commit/a691769))
+* **with-without:** remove height:100% from shadow inherit compnent ([31a1fad](https://github.com/bolt-design-system/bolt/commit/31a1fad))
+* **with-without:** remove padding from PL b/c it breaks w/wo ([b71b030](https://github.com/bolt-design-system/bolt/commit/b71b030))
+* **with-without:** remove self-drawing circle wobble; adjust dots ([489c4a1](https://github.com/bolt-design-system/bolt/commit/489c4a1))
+* **with-without:** safari title z-index bug ([1e3df49](https://github.com/bolt-design-system/bolt/commit/1e3df49))
+* **with-without:** sass fixes for no shadow dom icons ([fcf71e6](https://github.com/bolt-design-system/bolt/commit/fcf71e6))
+* **with-without:** sass fixes for no shadow dom icons; remove swiping ([2eceb3e](https://github.com/bolt-design-system/bolt/commit/2eceb3e))
+* **with-without:** tightening up animation markup props ([b4f4442](https://github.com/bolt-design-system/bolt/commit/b4f4442))
+* **with-without:** unclosed div ([b4686ad](https://github.com/bolt-design-system/bolt/commit/b4686ad))
+* **with-without:** whoops, or instead of and caused resize not to fire :) ([698aa65](https://github.com/bolt-design-system/bolt/commit/698aa65))
+* **with-without:** working with no shadow dom; replace a-simple-switch for no-js alternative ([414d42e](https://github.com/bolt-design-system/bolt/commit/414d42e))
+
+
+### Features
+
+* **bolt-animate:** add debug flag for determining animation sequencing ([ca3abfb](https://github.com/bolt-design-system/bolt/commit/ca3abfb))
+* **with-with:** self-drawing circle added ([a799a8a](https://github.com/bolt-design-system/bolt/commit/a799a8a))
+* **with-without:** add modal video ([ec89be1](https://github.com/bolt-design-system/bolt/commit/ec89be1))
+* **with-without:** alignment changes for sliding ([de28318](https://github.com/bolt-design-system/bolt/commit/de28318))
+* **with-without:** continued development ([b0f62aa](https://github.com/bolt-design-system/bolt/commit/b0f62aa))
+* **with-without:** continued theming ([694a027](https://github.com/bolt-design-system/bolt/commit/694a027))
+* **with-without:** fixing modal opacity fade out ([1cb0750](https://github.com/bolt-design-system/bolt/commit/1cb0750))
+* **with-without:** mobile circles; tablet background; css fixes ([b3a43ab](https://github.com/bolt-design-system/bolt/commit/b3a43ab))
+* **with-without:** various fixes, breaking JS into separate files ([a9772b9](https://github.com/bolt-design-system/bolt/commit/a9772b9))
+* automatically convert Bolt + non-Bolt package.json package names into valid Twig namespaces ([bbb6184](https://github.com/bolt-design-system/bolt/commit/bbb6184))
+* **with-without:** WIP mobile theming ([7109dc6](https://github.com/bolt-design-system/bolt/commit/7109dc6))
+* **with-without:** WIP mobile theming ([7a36ed2](https://github.com/bolt-design-system/bolt/commit/7a36ed2))
+
+
+### Reverts
+
+* revert update to Twig renderer package ([70c12ce](https://github.com/bolt-design-system/bolt/commit/70c12ce))
+
+
+
+
+
 # [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
 
 
