@@ -6,6 +6,9 @@ import './pages/pattern-lab/_patterns/02-components/card/__tests__';
 // import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/bolt-lit-test';
 // import './pages/pattern-lab/_patterns/01-styleguide/100-rendering-performance/lazy-lit-test';
 import './pages/pattern-lab/_patterns/04-pages/99999-bolt-dev-sandbox/editor-integration';
+import { enableAnimDemos } from './pages/pattern-lab/_patterns/06-experiments/animate/animate-demo-helpers.js';
+
+enableAnimDemos();
 
 // Component-specific examples that need to get compiled:
 import '@bolt/components-typeahead/__demos__/dynamically-fetch-data/typeahead.dynamically-fetch-data';

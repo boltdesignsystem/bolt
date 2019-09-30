@@ -2,6 +2,7 @@ import 'es6-promise/auto';
 import 'element-closest';
 import 'whatwg-fetch';
 import 'mdn-polyfills/Node.prototype.prepend';
+import 'mdn-polyfills/Node.prototype.replaceWith'; // used in dropdown
 import 'core-js/modules/es.array.iterator';
 import 'core-js/modules/es.array.from';
 import 'core-js/modules/es.string.starts-with';
@@ -10,7 +11,7 @@ import 'core-js/modules/es.array.for-each';
 import 'core-js/modules/es.object.assign';
 import 'core-js/modules/es.string.includes';
 import 'core-js/modules/es.string.repeat';
-import './custom-event-polyfill';
+import 'custom-event-polyfill'; // something in bolt-animate or recent animations work requires this to work in IE 11
 import 'core-js/modules/es.array.find';
 // @todo: find-index polyfill is temporarily disabled until we can fix bug in table.js
 // import 'core-js/modules/es.array.find-index';
