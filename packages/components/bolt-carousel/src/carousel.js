@@ -43,8 +43,6 @@ function addBoltCarouselResizer() {
       // such as scroll.
       throttle('resize', 'carousel:resize');
     })();
-  } else {
-    // console.log('carouselResizer already Added');
   }
 }
 
@@ -245,7 +243,6 @@ class BoltCarousel extends withLitHtml() {
   }
 
   calculateSlidesPerViewBreakpoints() {
-    // let slidesPerViewBreakpoints = {};
     for (let i = 1; i < this.props.maxSlidesPerView; i++) {
       const bpNumber = boltBreakpoints[Object.keys(boltBreakpoints)[i]].replace(
         'px',
@@ -271,9 +268,6 @@ class BoltCarousel extends withLitHtml() {
   configureSlidesPerGroup() {
     // opt out of the default slidesPerGroup behavior if being used as an image gallery
     if (this.mode === 'gallery' || this.mode === 'gallery-thumbnail') {
-      // console.log(
-      //   'opting out of reconfiguring Swiper slidesPerGroup while in `gallery` or `gallery-thumbnail` mode.',
-      // );
       return;
     }
 
@@ -307,12 +301,6 @@ class BoltCarousel extends withLitHtml() {
 
     this.options.slidesPerGroup = this.swiper.params.slidesPerGroup;
   }
-
-  // init() {
-  //   this.props.noAutoInit = false;
-  //   this.rendered();
-  //   this.swiper.init();
-  // }
 
   rendered() {
     if (this.props.noJs) {
@@ -407,18 +395,11 @@ class BoltCarousel extends withLitHtml() {
             delay: 5000,
           }
         : false,
-      // touchEventsTarget: 'wrapper',
       centeredSlides: false,
       centerInsufficientSlides: false,
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
       slideToClickedSlide: true,
-      // preventClicks: false,
-      // mousewheel: {
-      //   invert: true,
-      //   releaseOnEdges: false,
-      //   forceToAxis: true,
-      // },
       threshold: 3,
       keyboard: {
         enabled: true,
@@ -481,6 +462,7 @@ class BoltCarousel extends withLitHtml() {
       this.hideArrowsIfAllSlidesAreVisible();
       this.disableSwipingIfAllSlidesAreVisible();
       this.swiper.on('slideChange', this.onSlideChange);
+
       this.reInitCarousel(); // this fires when the props on the component changes HOWEVER it also needs to fire once the component has finished rendering for the very first time so that the appropriate slidesPerGroup value is automatically set for the initial state
     } else {
       if (this.swiper) {
