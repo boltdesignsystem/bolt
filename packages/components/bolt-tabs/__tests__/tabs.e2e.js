@@ -7,61 +7,22 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
     let testName = 'tabs-tab-selected';
+    const secondTabSelector = 'bolt-tabs .c-bolt-tabs__label:nth-child(2)';
+    const secondPanelSelector = 'bolt-tabs bolt-tab-panel:nth-child(2)';
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-tabs-05-tabs/02-components-tabs-05-tabs.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-tabs--40-tabs-no-shadow/02-components-tabs--40-tabs-no-shadow.html`,
       )
       .waitForElementVisible('bolt-tabs', 1000)
-      .executeAsync(
-        function(data, done) {
-          const tabs = document.querySelector('bolt-tabs');
-          if (tabs._wasInitiallyRendered) {
-            done();
-          } else {
-            tabs.addEventListener('ready', () => {
-              done();
-            });
-          }
-        },
-        [undefined],
-        function(data) {
-          // console.log(data);
-        },
-      )
-      .execute(function(data) {
-        return document
-          .querySelector('bolt-tabs')
-          .renderRoot.querySelectorAll('.c-bolt-tabs__label')[1]
-          .click();
-      })
+      .assert.elementPresent(secondTabSelector)
+      .assert.attributeEquals(secondTabSelector, 'aria-selected', 'false')
+      .assert.elementPresent(secondPanelSelector)
+      .click(secondTabSelector)
+      .assert.attributeEquals(secondTabSelector, 'aria-selected', 'true')
+      .assert.attributeEquals(secondPanelSelector, 'selected', 'true')
       .saveScreenshot(
         `screenshots/bolt-tabs/${testName}--${currentBrowser}.png`,
-      )
-      .execute(
-        function(data) {
-          const tabs = document.querySelector('bolt-tabs');
-          const selectedTab = tabs.renderRoot.querySelectorAll(
-            '.c-bolt-tabs__label',
-          )[1];
-          const selectedPanel = tabs.querySelectorAll('bolt-tab-panel')[1];
-          const tabIsSelected =
-            selectedTab.getAttribute('aria-selected') === 'true';
-          const panelIsSelected = selectedPanel.hasAttribute('selected');
-
-          return { tabIsSelected, panelIsSelected };
-        },
-        [],
-        function(result) {
-          browser.assert.ok(
-            result.value.tabIsSelected === true,
-            `Clicked on second tab and verified the second tab label has the attribute 'aria-selected="true"'`,
-          );
-          browser.assert.ok(
-            result.value.panelIsSelected === true,
-            `Clicked on second tab and verified the second tab panel has the attribute 'selected'`,
-          );
-        },
       )
       .end();
   },
