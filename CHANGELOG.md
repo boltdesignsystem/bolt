@@ -3,21 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.7.2](https://github.com/bolt-design-system/bolt/compare/v2.7.1...v2.7.2) (2019-09-30)
-
-
-### Bug Fixes
-
-* add src path fallback if only srcset is defined ([c2f3e24](https://github.com/bolt-design-system/bolt/commit/c2f3e24))
-* auto sync enabling / disabling Shadow DOM when rendering Ratio inside of image ([930ba87](https://github.com/bolt-design-system/bolt/commit/930ba87))
-* fix prettier formatting ([c4ba7b5](https://github.com/bolt-design-system/bolt/commit/c4ba7b5))
-* fix prettier issues ([fa17a45](https://github.com/bolt-design-system/bolt/commit/fa17a45))
-* update <img> markup to use a placeholder in srcset but always display the fallback `src` for older browsers ([228ff16](https://github.com/bolt-design-system/bolt/commit/228ff16))
-
-
-
-
-
 ## [2.7.1](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.7.1) (2019-09-20)
 
 
