@@ -59,13 +59,17 @@ bolt-interactive-step {
   }
 
   &__body {
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: absolute;
     left: -9999px;
     padding-bottom: bolt-spacing(medium);
     padding-left: bolt-spacing(medium);
+
+    @include bolt-mq(medium) {
+      align-items: center;
+    }
 
     .c-bolt-interactive-step--active & {
       position: static;
@@ -87,10 +91,11 @@ bolt-interactive-step {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     max-width: 100%;
 
     @include bolt-mq(medium) {
+      align-items: center;
       max-width: 700px;
     }
 

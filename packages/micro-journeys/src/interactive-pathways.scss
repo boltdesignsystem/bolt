@@ -30,18 +30,19 @@
     padding: 1.65rem 0;
 
     &--inner {
+      align-items: center;
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
-      align-items: center;
-      z-index: 999;
       max-width: 100%;
-      white-space: nowrap;
+      text-align: center;
+      z-index: 999;
 
       @include bolt-mq(medium) {
+        align-items: baseline;
         flex-direction: row;
         justify-content: center;
-        align-items: baseline;
+        white-space: nowrap;
       }
     }
   }
