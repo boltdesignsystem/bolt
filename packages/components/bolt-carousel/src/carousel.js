@@ -277,7 +277,12 @@ class BoltCarousel extends withLitHtml() {
       return;
     }
 
-    if (this.props.slidesPerGroup && this.props.slidesPerGroup === 'auto') {
+    if (this.swiper.params.slidesPerView === 'auto') {
+      this.swiper.params.slidesPerGroup = 1;
+    } else if (
+      this.props.slidesPerGroup &&
+      this.props.slidesPerGroup === 'auto'
+    ) {
       this.swiper.params.slidesPerGroup = parseInt(
         this.swiper.params.slidesPerView,
         10,
@@ -423,6 +428,10 @@ class BoltCarousel extends withLitHtml() {
       effect: this.props.fade ? 'fade' : 'slide',
       freeMode: this.props.freeScroll, //@todo: re-enable when adding free-scroll prop options
       slidesPerView: this.calculateSlidesPerView(this.props.slidesPerView),
+
+      // 'observer' feature uses rAF so it should be pretty performant, but let's keep an eye on it (https://github.com/nolimits4web/swiper/pull/2731)
+      observer: true, // Set to true to enable Mutation Observer on Swiper and its elements
+      observeParents: true, // Set to true if you also need to watch Mutations for Swiper parent elements
     };
 
     this.calculateSlidesPerViewBreakpoints();
