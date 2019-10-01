@@ -24,15 +24,7 @@ class BoltTwoCharacterLayout extends withLitHtml() {
   }
 
   render() {
-    // const {} = this.validateProps(this.props);
     const classes = cx('c-bolt-two-character-layout');
-
-    // const eventChangeActiveStep = new CustomEvent('change-active-step', {
-    //   bubbles: true,
-    //   detail: {
-    //     stepId: this.props.step,
-    //   },
-    // });
 
     return html`
       ${this.addStyles([styles])}

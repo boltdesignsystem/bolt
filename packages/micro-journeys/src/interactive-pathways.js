@@ -1,14 +1,26 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import {
+  props,
+  define,
+  hasNativeShadowDomSupport,
+  withContext,
+  defineContext,
+} from '@bolt/core/utils';
+import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
+import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
 import styles from './interactive-pathways.scss';
-// import schema from '../interactive-pathways.schema.yml';
+import pathwaysLogo from './images/interactive-pathways-logo.png';
+import schema from './interactive-pathways.schema';
 
 let cx = classNames.bind(styles);
 
+export const BoltInteractivePathwaysContext = defineContext({
+  theme: schema.properties.theme.default,
+});
+
 @define
-class BoltInteractivePathways extends withLitHtml() {
+class BoltInteractivePathways extends withContext(withLitHtml()) {
   static is = 'bolt-interactive-pathways';
 
   static props = {
@@ -16,7 +28,14 @@ class BoltInteractivePathways extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
+    ...convertSchemaToProps(schema),
   };
+
+  // provide context info to children that subscribe
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get provides() {
+    return [BoltInteractivePathwaysContext];
+  }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   // @ts-ignore
@@ -26,7 +45,11 @@ class BoltInteractivePathways extends withLitHtml() {
     // self.schema = schema;
     self.activePathwayIndex = -1;
     self.pathways = [];
+    self._hasBeenInViewport = false;
     self._isVisible = false;
+    self.dropdownActive = false;
+    self._handleClosingEvent = this._handleClosingEvent.bind(this);
+    self._isReady = false;
 
     this.checkChildrenAndRender = debounce(done => {
       this.pathways = this.getPathways();
@@ -50,10 +73,51 @@ class BoltInteractivePathways extends withLitHtml() {
     return self;
   }
 
+  connecting() {
+    //Hide dropdown on ESC keypress
+    document.addEventListener('keydown', this._handleClosingEvent);
+    document.addEventListener('click', this._handleClosingEvent);
+  }
+
   connectedCallback() {
     super.connectedCallback();
-
     this.style.opacity = 1;
+
+    if (window.IntersectionObserver) {
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              this._hasBeenInViewport = true;
+              if (this._isReady) {
+                this.beginItAll();
+              }
+            }
+          });
+        },
+        {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.1,
+        },
+      );
+
+      observer.observe(this);
+    } else {
+      // If IntersectionObserver is not available (i.e. IE11) the alternative is debounced scroll event listeners that would add even more JS burden; it's not worth it - showing first step right away instead
+      this._hasBeenInViewport = true;
+      if (this._isReady) {
+        this.beginItAll();
+      }
+    }
+  }
+
+  beginItAll() {
+    this.showPathway(0);
+  }
+
+  disconnecting() {
+    document.removeEventListener('keydown', this._handleClosingEvent);
   }
 
   /**
@@ -62,10 +126,29 @@ class BoltInteractivePathways extends withLitHtml() {
   handlePathwayConnect(event) {
     this.checkChildrenAndRender(() => {
       if (this.activePathwayIndex === -1) {
-        this.showPathway(0);
+        this._isReady = true;
+        if (this._hasBeenInViewport) {
+          this.beginItAll();
+        }
       }
     });
   }
+
+  /**
+   * @param {Event} event
+   */
+  _handleClosingEvent = function(event) {
+    // Close dropdown on ESC keypress or clicks outside of the dropdown
+    if (
+      (this.dropdownActive && event.which === 27) ||
+      event.type === 'click' ||
+      event.type === 'tap'
+    ) {
+      event.preventDefault();
+      this.dropdownActive = false;
+      this.triggerUpdate();
+    }
+  };
 
   /**
    * @param {Event} event
@@ -99,8 +182,24 @@ class BoltInteractivePathways extends withLitHtml() {
     this.triggerUpdate();
   }
 
+  toggleDropdown(event) {
+    this.dropdownActive = !this.dropdownActive;
+    event.stopPropagation();
+    this.triggerUpdate();
+  }
+
   render() {
-    const classes = cx('c-bolt-interactive-pathways');
+    const {
+      customImageSrc = pathwaysLogo,
+      imageAlt,
+      theme,
+    } = this.validateProps(this.props);
+
+    this.contexts.get(BoltInteractivePathwaysContext).theme = theme;
+
+    const classes = cx('c-bolt-interactive-pathways', {
+      [`t-bolt-${theme}`]: theme,
+    });
 
     const titles = this.pathways.map((pathway, i) => pathway.getTitle());
 
@@ -111,33 +210,54 @@ class BoltInteractivePathways extends withLitHtml() {
         : 'color: rgb(0, 0, 0); --bolt-theme-text: rgb(0, 0, 0);';
 
       return html`
-        <bolt-text
-          class="c-bolt-interactive-pathways__menu-item${isActiveItem
-            ? ' c-bolt-interactive-pathways__menu-item--active'
-            : ''}"
-          font-weight="semi-bold"
-          @click=${() => this.showPathway(i)}
-          style=${menuItemTextColor}
-        >
-          ${isActiveItem
-            ? html`
-                <bolt-icon size="medium" name="check"></bolt-icon>
-              `
-            : ''}
-          ${title}
-        </bolt-text>
+        <li class="c-bolt-interactive-pathways__menu-container__item">
+          <bolt-text
+            class="c-bolt-interactive-pathways__menu-item${isActiveItem
+              ? ' c-bolt-interactive-pathways__menu-item--active'
+              : ''}"
+            font-weight="semibold"
+            font-size="xsmall"
+            @click=${() => this.showPathway(i)}
+            style=${menuItemTextColor}
+          >
+            ${isActiveItem
+              ? html`
+                  <bolt-icon size="medium" name="check"></bolt-icon>
+                `
+              : ''}
+            ${title}
+          </bolt-text>
+        </li>
       `;
     });
 
-    const menu = html`
-      <bolt-micro-journeys-dropdown
-        center
-        title="${titles[this.activePathwayIndex]}"
-      >
-        <div class="c-bolt-interactive-pathways__menu-container">
+    const dropdown = html`
+      <nav class="c-bolt-interactive-pathways__menu-dropdown">
+        <h3
+          class="c-bolt-interactive-pathways__heading ${this.dropdownActive
+            ? `--active`
+            : ``}"
+        >
+          <button
+            class="c-bolt-interactive-pathways__dropdown-trigger"
+            @click=${e => this.toggleDropdown(e)}
+          >
+            ${titles[this.activePathwayIndex]}
+            <bolt-icon
+              style=${this.dropdownActive ? `transform: rotate(-180deg)` : ``}
+              name="chevron-down"
+            ></bolt-icon>
+          </button>
+        </h3>
+        <ol
+          class="c-bolt-interactive-pathways__menu-container  ${this
+            .dropdownActive
+            ? 'active'
+            : ''}"
+        >
           ${menuItems}
-        </div>
-      </bolt-micro-journeys-dropdown>
+        </ol>
+      </nav>
     `;
 
     const singleTitle = html`
@@ -151,19 +271,21 @@ class BoltInteractivePathways extends withLitHtml() {
     `;
 
     return html`
-      ${this.addStyles([styles])}
+      ${this.addStyles([styles, themes])}
       <div class="${classes}">
         <div class="c-bolt-interactive-pathways__header">
-          <img
-            src="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/interactive-pathways-logo.png"
-            alt="Two diamond logo"
-          />
+          <bolt-image
+            no-lazy
+            sizes="auto"
+            src="${customImageSrc}"
+            alt="${imageAlt}"
+          ></bolt-image>
           <div class="c-bolt-interactive-pathways__nav">
             <div class="c-bolt-interactive-pathways__nav--inner">
               <span class="c-bolt-interactive-pathways__nav-text"
-                >${this.slot('interactive-pathways-lead-text')}</span
-              >
-              ${this.pathways.length > 1 ? menu : singleTitle}
+                >${this.slot('interactive-pathways-lead-text')}
+              </span>
+              ${this.pathways.length > 1 ? dropdown : singleTitle}
             </div>
           </div>
         </div>

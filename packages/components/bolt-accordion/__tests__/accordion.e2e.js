@@ -2,36 +2,52 @@ let currentBrowser;
 
 module.exports = {
   tags: ['component', 'accordion', 'web component'],
-  'Bolt Accordion': function(browser) {
+  'Accordion: item opened': function(browser) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
-    let testName = 'bolt-accordion';
+    let testName = 'accordion-item-opened';
+    const firstTriggerSelector =
+      'bolt-accordion:first-of-type .c-bolt-accordion-item__trigger';
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-accordion-40-accordion-content-variations/02-components-accordion-40-accordion-content-variations.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-accordion--45-accordion-no-shadow/02-components-accordion--45-accordion-no-shadow.html`,
       )
       .waitForElementVisible('bolt-accordion', 1000)
-      .click(
-        'bolt-accordion:first-of-type bolt-accordion-item:first-of-type div[slot="trigger"]',
+      .assert.elementPresent(firstTriggerSelector)
+
+      .click(firstTriggerSelector)
+      .assert.cssClassPresent(firstTriggerSelector, 'handorgel__header--opened')
+      .saveScreenshot(
+        `screenshots/bolt-accordion/${testName}--${currentBrowser}.png`,
       )
-      .pause(1000)
-      .execute(
-        function(data) {
-          const accordionItem = document.querySelector('bolt-accordion-item');
-          return accordionItem.renderRoot
-            .querySelector('.c-bolt-accordion-item__trigger')
-            .classList.contains('handorgel__header--opened');
-        },
-        [],
-        function(result) {
-          browser.assert.ok(
-            result.value === true,
-            `verified that <bolt-accordion> rendered the accordion element, opened it and the active section has a class of handorgel__header--opened.`,
-          );
-        },
+      .end();
+  },
+
+  'Accordion: inactive item remains closed': function(browser) {
+    const { testingUrl } = browser.globals;
+    console.log(`global browser url: ${testingUrl}`);
+    currentBrowser = '--' + browser.currentEnv || 'chrome';
+    let testName = 'accordion-inactive-item-closed';
+    const inactiveTriggerSelector =
+      'bolt-accordion-item[inactive] .c-bolt-accordion-item__trigger';
+    const inactiveLabelSelector =
+      'bolt-accordion-item[inactive] .c-bolt-accordion-item__trigger-label';
+
+    browser
+      .url(
+        `${testingUrl}/pattern-lab/patterns/02-components-accordion--45-accordion-no-shadow/02-components-accordion--45-accordion-no-shadow.html`,
       )
+      .waitForElementVisible('bolt-accordion', 1000)
+      .assert.elementPresent(inactiveTriggerSelector)
+      .assert.elementPresent(inactiveLabelSelector)
+      .click(inactiveLabelSelector)
+      .assert.cssClassPresent(
+        inactiveTriggerSelector,
+        'handorgel__header--disabled',
+      )
+      .assert.attributeContains(inactiveLabelSelector, 'aria-expanded', 'false')
       .saveScreenshot(
         `screenshots/bolt-accordion/${testName}--${currentBrowser}.png`,
       )
