@@ -21,44 +21,56 @@ Functional testing should be performed manually by the QA team across the standa
 ## Scenario: display variations
 
 1. Given I am viewing the [display variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-15-list-display-variations/02-components-list-15-list-display-variations.html).
-2. Block display should show a vertical list.
-3. Flex display should show a horizontal list with even width items spanning the full width of the list.
-4. Inline display should show a horizontal list with auto width items.
-5. Inline@breakpoint display should show a vertical list when the browser is smaller than the breakpoint specified, and a horizontal list when the browser is equal to or larger than the breakpoint specified. Breakpoint sizes can be referenced on the [Breakpoint page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-breakpoints).
+2. When I am viewing the "Block" section.
+3. Then I should see a vertical list of items.
+4. When I am viewing the "Flex" section.
+5. Then I should see a horizontal list of items evenly distributed across the width of the browser.
+6. When I am viewing the "Inline" section.
+7. Then I should see a horizontal list of items with auto width.
+8. When I am viewing each of the "Inline@[breakpoint name]" sections.
+9. Then I should see a vertical list when the browser is smaller than the breakpoint specified, and a horizontal list when the browser is equal to or larger than the breakpoint specified.
+
+Note: Reference the breakpoint sizes on the [Breakpoints page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-breakpoints)
 
 ## Scenario: spacing variations
 
 1. Given I am viewing the [spacing variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-20-list-spacing-variations/02-components-list-20-list-spacing-variations.html).
-2. None spacing should show no spacing in between items.
-3. Xsmall to xlarge spacing should show the respective spacing in between items. Reference the spacing sizes on the [Spacing page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-spacing).
+2. When I am viewing each of the "Block list with spacing" sections.
+3. Then I should see a vertical list of items spaced out to the specific size.
+4. When I am viewing each of the "Flex list with spacing" sections.
+5. Then I should see a horizontal list of items evenly distributed across the width of the browser, and spaced out to the specific size.
+6. When I am viewing each of the "Inline list with spacing" sections.
+7. Then I should see a horizontal list of items with auto width spaced out to the specific size.
+
+Note: Reference the spacing sizes on the [Spacing page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-spacing).
 
 ## Scenario: separator variations
 
-1. Given I am viewing the [separator variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-25-list-separator-variations/02-components-list-25-list-separator-variations.html).
-2. Solid separator should show a solid line in between items.
-3. Dashed separator should show a dashed line in between items.
+[Separator variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-25-list-separator-variations/02-components-list-25-list-separator-variations.html).
+
+`// This is a purely visual test, use VRT`
 
 ## Scenario: inset variations
 
 1. Given I am viewing the [inset variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-30-list-inset-variations/02-components-list-30-list-inset-variations.html).
-2. Inset spacing should show the spacing surrounding the item in all 4 directions (top, right, bottom, left).
-3. Xsmall to xlarge spacing should show the respective spacing surrounding each item. Reference the spacing sizes on the [Spacing page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-spacing).
+2. When I am viewing each of the "Regular spacing" sections.
+3. Then I should see spacing only in between items.
+4. When I am viewing each of the "Inset spacing" sections.
+5. Then I should see spacing surrounding each item in all 4 directions (top, right, bottom, left).
+
+Note: Reference the spacing sizes on the [Spacing page](https://boltdesignsystem.com/pattern-lab/?p=viewall-visual-styles-spacing).
 
 ## Scenario: align variations
 
-1. Given I am viewing the [align variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-40-list-align-variations/02-components-list-40-list-align-variations.html).
-2. Make sure the example lists are defined as inline (horizontal).
-3. Start align should show items aligned to the left (start of the list).
-4. Center align should show items aligned to the center.
-5. End align should show items aligned to the right (end of the list).
+[Align variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-40-list-align-variations/02-components-list-40-list-align-variations.html).
+
+`// This is a purely visual test, use VRT`
 
 ## Scenario: valign variations
 
-1. Given I am viewing the [valign variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-45-list-valign-variations/02-components-list-45-list-valign-variations.html).
-2. Make sure the example lists are defined as either inline or flex (horizontal).
-3. Start valign should show items aligned to the top (start of the list).
-4. Center valign should show items aligned to the center.
-5. End valign should show items aligned to the bottom (end of the list).
+[Valign variations page](https://boltdesignsystem.com/pattern-lab/patterns/02-components-list-45-list-valign-variations/02-components-list-45-list-valign-variations.html).
+
+`// This is a purely visual test, use VRT`
 
 ## Scenario: List with Web Components
 

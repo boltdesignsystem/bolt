@@ -1,5 +1,10 @@
-import { render } from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 
 const timeout = 90000;
 
@@ -7,13 +12,22 @@ describe('logo', () => {
   let page;
 
   beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
+
+  afterAll(async function() {
+    await stopServer();
+    await page.close();
+  });
 
   test('Basic usage', async () => {
     const results = await render('@bolt-components-logo/logo.twig', {
@@ -47,6 +61,7 @@ describe('logo', () => {
     });
 
     const renderedHTML = await html(renderedLogoHTML);
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
@@ -74,7 +89,22 @@ describe('logo', () => {
       return logo.outerHTML;
     });
 
+    await page.evaluate(async () => {
+      const selectors = Array.from(document.querySelectorAll('bolt-logo'));
+      await Promise.all(
+        selectors.map(logo => {
+          const logoImage = logo.querySelector('bolt-image');
+          if (logoImage._wasInitiallyRendered === true) return;
+          return new Promise((resolve, reject) => {
+            logoImage.addEventListener('ready', resolve);
+            logoImage.addEventListener('error', reject);
+          });
+        }),
+      );
+    });
+
     const renderedHTML = await html(renderedLogoHTML);
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({

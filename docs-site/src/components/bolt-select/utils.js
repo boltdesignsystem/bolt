@@ -37,9 +37,9 @@ export function createSelectOptions(options) {
   const selectOptions = Array.from(options);
   return selectOptions.map(
     option =>
-      wire(this)`<option value=${option.value} selected=${option.selected}>${
-        option.text
-      }</option>`,
+      wire(
+        this,
+      )`<option value=${option.value} selected=${option.selected}>${option.text}</option>`,
   );
 }
 

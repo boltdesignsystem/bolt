@@ -1,0 +1,372 @@
+{# Setting variables for demo purposes #}
+{% set band_slide_1 %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: "Band slide 1",
+    size: "large",
+    theme: "xdark",
+    full_bleed: false,
+  } only %}
+{% endset %}
+{% set band_slide_2 %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: "Band slide 2",
+    size: "large",
+    theme: "dark",
+    full_bleed: false,
+  } only %}
+{% endset %}
+{% set band_slide_3 %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: "Band slide 3",
+    size: "large",
+    theme: "light",
+    full_bleed: false,
+  } only %}
+{% endset %}
+{% set band_slide_4 %}
+  {% include "@bolt-components-band/band.twig" with {
+    content: "Band slide 4",
+    size: "large",
+    theme: "xlight",
+    full_bleed: false,
+  } only %}
+{% endset %}
+
+{% set call_to_action_slide_1 %}
+  <div class="u-bolt-padding-padding-right-medium u-bolt-padding-right-medium">
+    {% include "@bolt-components-headline/eyebrow.twig" with {
+      text: "This Is an Eyebrow",
+    } only %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      url: "https://pega.com",
+      text: "This Is a Call to Action Headline 1",
+    } only %}
+  </div>
+{% endset %}
+{% set call_to_action_slide_2 %}
+  <div class="u-bolt-padding-padding-right-medium u-bolt-padding-right-medium">
+    {% include "@bolt-components-headline/eyebrow.twig" with {
+      text: "This Is an Eyebrow",
+    } only %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      url: "https://pega.com",
+      text: "This Is a Call to Action Headline 2",
+    } only %}
+  </div>
+{% endset %}
+{% set call_to_action_slide_3 %}
+  <div class="u-bolt-padding-padding-right-medium u-bolt-padding-right-medium">
+    {% include "@bolt-components-headline/eyebrow.twig" with {
+      text: "This Is an Eyebrow",
+    } only %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      url: "https://pega.com",
+      text: "This Is a Call to Action Headline 3",
+    } only %}
+  </div>
+{% endset %}
+{% set call_to_action_slide_4 %}
+  <div class="u-bolt-padding-padding-right-medium u-bolt-padding-right-medium">
+    {% include "@bolt-components-headline/eyebrow.twig" with {
+      text: "This Is an Eyebrow",
+    } only %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      url: "https://pega.com",
+      text: "This Is a Call to Action Headline 4",
+    } only %}
+  </div>
+{% endset %}
+{% set call_to_action_slide_5 %}
+  <div class="u-bolt-padding-padding-right-medium u-bolt-padding-right-medium">
+    {% include "@bolt-components-headline/eyebrow.twig" with {
+      text: "This Is an Eyebrow",
+    } only %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      url: "https://pega.com",
+      text: "This Is a Call to Action Headline 5",
+    } only %}
+  </div>
+{% endset %}
+
+{% set blockquote_slide_1 %}
+  {% include "@bolt-components-blockquote/blockquote.twig" with {
+    content: "<p>You buy yourself a tape recorder, you just record yourself for a whole day. I think you’re going to be surprised at some of your phrasing.</p>",
+    author: {
+      image: {
+        src: "/images/placeholders/500x500.jpg",
+        lazyload: false
+      },
+      name: "Michael",
+    },
+    alignItems: "center",
+    border: "none",
+  } %}
+{% endset %}
+{% set blockquote_slide_2 %}
+  {% include "@bolt-components-blockquote/blockquote.twig" with {
+    content: "<p>There’s always money in the banana stand.</p>",
+    author: {
+      image: {
+        src: "/images/placeholders/500x500.jpg",
+        lazyload: false
+      },
+      name: "George",
+    },
+    alignItems: "center",
+    border: "none",
+  } %}
+{% endset %}
+{% set blockquote_slide_3 %}
+  {% include "@bolt-components-blockquote/blockquote.twig" with {
+    content: "<p>I don’t understand the question and I won’t respond to it.</p>",
+    author: {
+      image: {
+        src: "/images/placeholders/500x500.jpg",
+        lazyload: false
+      },
+      name: "Lucille",
+    },
+    alignItems: "center",
+    border: "none",
+  } %}
+{% endset %}
+
+{% set card_slide_1 %}
+  {% include "@bolt-components-card/card.twig" with {
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+        lazyload: false,
+        alt: "Image"
+      },
+      {
+        pattern: "eyebrow",
+        text: "Slide 1"
+      },
+      {
+        pattern: "headline",
+        tag: "h3",
+        size: "large",
+        text: "This is a card"
+      },
+      {
+        pattern: "button",
+        text: "This is a button",
+        url: "https://pega.com",
+      }
+    ]
+  } only %}
+{% endset %}
+{% set card_slide_2 %}
+  {% include "@bolt-components-card/card.twig" with {
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+        lazyload: false,
+        alt: "Image"
+      },
+      {
+        pattern: "eyebrow",
+        text: "Slide 2"
+      },
+      {
+        pattern: "headline",
+        tag: "h3",
+        size: "large",
+        text: "This is a card"
+      },
+      {
+        pattern: "button",
+        text: "This is a button",
+        url: "https://pega.com",
+      }
+    ]
+  } only %}
+{% endset %}
+{% set card_slide_3 %}
+  {% include "@bolt-components-card/card.twig" with {
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+        lazyload: false,
+        alt: "Image"
+      },
+      {
+        pattern: "eyebrow",
+        text: "Slide 3"
+      },
+      {
+        pattern: "headline",
+        tag: "h3",
+        size: "large",
+        text: "This is a card"
+      },
+      {
+        pattern: "button",
+        text: "This is a button",
+        url: "https://pega.com",
+      }
+    ]
+  } only %}
+{% endset %}
+{% set card_slide_4 %}
+  {% include "@bolt-components-card/card.twig" with {
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+        lazyload: false,
+        alt: "Image"
+      },
+      {
+        pattern: "eyebrow",
+        text: "Slide 4"
+      },
+      {
+        pattern: "headline",
+        tag: "h3",
+        size: "large",
+        text: "This is a card"
+      },
+      {
+        pattern: "button",
+        text: "This is a button",
+        url: "https://pega.com",
+      }
+    ]
+  } only %}
+{% endset %}
+
+{% set image_slide_1 %}
+  {% include "@bolt-components-figure/figure.twig" with {
+    media: {
+      image: {
+        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+        alt: "Image caption",
+      },
+    },
+    caption: "This is caption for image figure slide 1."
+  } only %}
+{% endset %}
+{% set image_slide_2 %}
+  {% include "@bolt-components-figure/figure.twig" with {
+    media: {
+      image: {
+        src: "/images/placeholders/landscape-16x9-skyline.jpg",
+        alt: "Image caption",
+      },
+    },
+    caption: "This is caption for image figure slide 2."
+  } only %}
+{% endset %}
+
+{% set video_slide_1 %}
+  {% include "@bolt-components-video/video.twig" with {
+    videoId: "6011242531001",
+    accountId: "1900410236",
+    playerId: "r1CAdLzTW",
+    showMeta: true,
+    showMetaTitle: true
+  } only %}
+{% endset %}
+{% set video_slide_2 %}
+  {% include "@bolt-components-video/video.twig" with {
+    videoId: "5999651124001",
+    accountId: "1900410236",
+    playerId: "r1CAdLzTW",
+    showMeta: true,
+    showMetaTitle: true
+  } only %}
+{% endset %}
+{% set video_slide_3 %}
+  {% include "@bolt-components-video/video.twig" with {
+    videoId: "5797173084001",
+    accountId: "1900410236",
+    playerId: "r1CAdLzTW",
+    showMeta: true,
+    showMetaTitle: true
+  } only %}
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  {# Start component specific code #}
+  <h3>Basic Usage</h3>
+  <p>When using the basic carousel component, it is recommended to pass the same type of content for each slide of the carousel, and make sure each piece of content have similar dimensions.</p>
+
+  <h3>A carousel of bands</h3>
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    autoplay: true,
+    slides: [
+      band_slide_1,
+      band_slide_2,
+      band_slide_3,
+      band_slide_4,
+    ]
+  } only %}
+
+  <h3>A carousel of calls to action</h3>
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    autoplay: true,
+    slides_per_view: 3,
+    no_nav_buttons: true,
+    slides: [
+      call_to_action_slide_1,
+      call_to_action_slide_2,
+      call_to_action_slide_3,
+      call_to_action_slide_4,
+      call_to_action_slide_5,
+    ]
+  } only %}
+
+  <h3>A carousel of cards</h3>
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides_per_view: 2,
+    slides: [
+      card_slide_1,
+      card_slide_2,
+      card_slide_3,
+      card_slide_4,
+    ]
+  } only %}
+
+  <h3>A carousel of images</h3>
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    slides: [
+      image_slide_1,
+      image_slide_2,
+    ]
+  } only %}
+
+  <h3>A carousel of blockquotes</h3>
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    autoplay: true,
+    no_nav_buttons: true,
+    slides: [
+      blockquote_slide_1,
+      blockquote_slide_2,
+      blockquote_slide_3,
+    ]
+  } only %}
+
+  {# @todo: Requires more testing. It still throws errors when loop="true" and you resize too quickly, something to do with Brightcove cloning slides (?). Also, might want to add JS to pause a video when you navigate away from it. #}
+  {# <h3>A carousel of videos</h3>
+  {% include "@bolt-components-carousel/carousel.twig" with {
+    loop: true,
+    slides_per_view: 1,
+    slides: [
+      video_slide_1,
+      video_slide_2,
+      video_slide_3,
+    ]
+  } only %} #}
+
+  {# End component specific code #}
+</div>

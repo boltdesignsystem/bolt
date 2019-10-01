@@ -392,6 +392,7 @@ exports[`<bolt-blockquote> component <bolt-blockquote> indent usage 1`] = `
 
 exports[`<bolt-blockquote> component <bolt-blockquote> renders to Light DOM 2`] = `
 <bolt-blockquote
+  align-items="center"
   author-image="/fixtures/500x500.jpg"
   author-name="Michelangelo di Lodovico Buonarroti Simoni"
   author-title="Renaissance Artist"
@@ -402,8 +403,7 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders to Light DOM 2`] 
       
       
   <blockquote
-    class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
-    is="shadow-root"
+    class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-center c-bolt-blockquote--bordered-vertical"
     style=""
   >
     
@@ -420,7 +420,7 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders to Light DOM 2`] 
       <img
         alt="PayPal Logo"
         slot="logo"
-        src="/fixtures/logo-paypal.svg"
+        src="/fixtures/paypal-logo.svg"
         style=""
       >
         <!---->
@@ -453,7 +453,7 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders to Light DOM 2`] 
           class="is-first-child"
           style=""
         >
-          The greater danger for most of us lies not in setting our aim too high and falling short...
+          Bolt Blockquote w/ Shadow DOM Manually Disabled
         </p>
         <!---->
         
@@ -463,8 +463,11 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders to Light DOM 2`] 
           class="is-last-child"
           style=""
         >
-          In fact, the greater danger is setting our aim too low and achieving our mark.
+          Press any key to continue or any other key to quit.
         </p>
+        <!---->
+        
+      
         <!---->
         <!---->
         
@@ -579,41 +582,26 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders to Light DOM 2`] 
 
 exports[`<bolt-blockquote> component <bolt-blockquote> renders to Shadow DOM 2`] = `
 <bolt-blockquote
-  author-image="/fixtures/500x500.jpg"
-  author-name="Michelangelo di Lodovico Buonarroti Simoni"
-  author-title="Renaissance Artist"
+  author-name="Chris Heilmann"
+  author-title="Developer Evangelist"
   style=""
 >
-  <img
-    alt="PayPal Logo"
-    slot="logo"
-    src="/fixtures/logo-paypal.svg"
-    style=""
-  >
-    
-        
-  </img>
-  <p
-    class="is-first-child"
-    style=""
-  >
-    The greater danger for most of us lies not in setting our aim too high and falling short...
-  </p>
   
         
   <p
-    class="is-last-child"
+    class="is-first-child is-last-child"
     style=""
   >
-    In fact, the greater danger is setting our aim too low and achieving our mark.
+    Java is to JavaScript what Car is to Carpet.
   </p>
+  
+      
 </bolt-blockquote>
 `;
 
 exports[`<bolt-blockquote> component <bolt-blockquote> renders when inside a <form> 2`] = `
 <blockquote
-  class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
-  is="shadow-root"
+  class="c-bolt-blockquote c-bolt-blockquote--xxlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-horizontal"
   style=""
 >
   
@@ -628,10 +616,10 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders when inside a <fo
     <!---->
     <!---->
     <img
-      alt="PayPal Logo"
+      alt="Bolt Design System Logo"
       slot="logo"
-      src="/fixtures/logo-paypal.svg"
-      style=""
+      src="/fixtures/bolt-logo.svg"
+      style="max-width:200px;"
     >
       <!---->
       <!---->
@@ -659,11 +647,14 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders when inside a <fo
       
         
       <!---->
+      
+        
+      <!---->
       <p
         class="is-first-child"
         style=""
       >
-        The greater danger for most of us lies not in setting our aim too high and falling short...
+        Bolt Blockquote w/ Shadow DOM auto-disabled
       </p>
       <!---->
       
@@ -673,8 +664,11 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders when inside a <fo
         class="is-last-child"
         style=""
       >
-        In fact, the greater danger is setting our aim too low and achieving our mark.
+        Yeah, but it works on my machine...
       </p>
+      <!---->
+      
+      
       <!---->
       <!---->
       
@@ -701,26 +695,6 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders when inside a <fo
     >
       
                       
-      
-      <div
-        class="c-bolt-blockquote__image"
-        style=""
-      >
-        
-        
-              
-        <img
-          alt="Renaissance Artist"
-          src="/fixtures/500x500.jpg"
-          style=""
-        >
-          
-            
-      
-        </img>
-      </div>
-      
-    
                     
     </div>
     
@@ -740,7 +714,7 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders when inside a <fo
         style=""
       >
         
-        Michelangelo di Lodovico Buonarroti Simoni
+        Every Developer, Ever.
       
       </cite>
       
@@ -764,7 +738,7 @@ exports[`<bolt-blockquote> component <bolt-blockquote> renders when inside a <fo
         style=""
       >
         
-        Renaissance Artist
+        Web Developer
       
       </cite>
       
@@ -885,6 +859,32 @@ exports[`<bolt-blockquote> component <bolt-blockquote> size variations: xxlarge 
 </bolt-blockquote>
 `;
 
+exports[`<bolt-blockquote> component <bolt-blockquote> with No Quotes renders 2`] = `
+<bolt-blockquote
+  author-name="Michelangelo di Lodovico Buonarroti Simoni"
+  author-title="Renaissance Artist"
+  no-quotes=""
+  style=""
+>
+  
+        
+  <p
+    class="is-first-child"
+    style=""
+  >
+    The greater danger for most of us lies not in setting our aim too high and falling short...
+  </p>
+  
+        
+  <p
+    class="is-last-child"
+    style=""
+  >
+    In fact, the greater danger is setting our aim too low and achieving our mark.
+  </p>
+</bolt-blockquote>
+`;
+
 exports[`<bolt-blockquote> component advanced <bolt-blockquote> usage 1`] = `
 <bolt-blockquote border="horizontal">
   <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-horizontal"
@@ -899,17 +899,25 @@ exports[`<bolt-blockquote> component advanced <bolt-blockquote> usage 1`] = `
                     srcset="/fixtures/paypal.svg"
                     sizes="auto"
                     ratio="124/33"
-                    no-lazy
+                    placeholder-color="hsl(233, 33%, 97%)"
+                    placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
         >
           <bolt-ratio ratio="124/33">
             <replace-with-children class="c-bolt-ratio"
                                    style="padding-bottom: calc((33 / 124) * 100%); --aspect-ratio: 3.7575757575758;"
             >
-              <img class="c-bolt-image__image"
-                   srcset="/fixtures/paypal.svg"
-                   sizes="auto"
+              <img class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade js-lazyload"
+                   data-srcset="/fixtures/paypal.svg"
+                   data-sizes="auto"
+                   srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                    src="/fixtures/paypal.svg"
               >
+              <noscript>
+                <img class="c-bolt-image__image"
+                     src="/fixtures/paypal.svg"
+                     srcset="/fixtures/paypal.svg"
+                >
+              </noscript>
             </replace-with-children>
           </bolt-ratio>
         </bolt-image>
@@ -931,6 +939,8 @@ exports[`<bolt-blockquote> component advanced <bolt-blockquote> usage 1`] = `
                         srcset="/fixtures/author-50.jpg 50w, /fixtures/author-100.jpg 100w, /fixtures/author-200.jpg 200w, /fixtures/author-320.jpg 320w, /fixtures/author-480.jpg 480w"
                         sizes="auto"
                         ratio="500/500"
+                        placeholder-color="hsl(233, 33%, 97%)"
+                        placeholder-image="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                         no-lazy
                         style="background-color: hsl(233, 33%, 97%);"
             >
@@ -969,434 +979,5 @@ exports[`<bolt-blockquote> component advanced <bolt-blockquote> usage 1`] = `
       </footer>
     </replace-with-grandchildren>
   </blockquote>
-</bolt-blockquote>
-`;
-
-exports[`button Basic usage 1`] = `
-
-<bolt-blockquote>
-  <blockquote class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
-              is="shadow-root"
-  >
-    <replace-with-grandchildren class="c-bolt-blockquote__quote">
-      <div class="c-bolt-text c-bolt-text--semibold c-bolt-text--normal c-bolt-text--xlarge">
-        <p>
-          The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.
-        </p>
-      </div>
-    </replace-with-grandchildren>
-    <replace-with-grandchildren>
-      <footer class="c-bolt-blockquote__footer">
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-name"
-                class="c-bolt-text c-bolt-text--bold c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Michelangelo di Lodovico Buonarroti Simoni
-          </cite>
-        </replace-with-children>
-        <replace-with-children class="c-bolt-blockquote__footer-item">
-          <cite slot="author-title"
-                class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall"
-          >
-            Renaissance Artist
-          </cite>
-        </replace-with-children>
-      </footer>
-    </replace-with-grandchildren>
-  </blockquote>
-</bolt-blockquote>
-
-`;
-
-exports[`button Default <bolt-blockquote> inside a <form> renders 2`] = `
-<blockquote
-  class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
-  is="shadow-root"
-  style=""
->
-  
-        
-              
-  <div
-    class="c-bolt-blockquote__logo"
-    style=""
-  >
-    
-                
-    <!---->
-    <!---->
-    <img
-      alt="PayPal Logo"
-      slot="logo"
-      src="/fixtures/logo-paypal.svg"
-      style=""
-    >
-      <!---->
-      <!---->
-      
-              
-    </img>
-  </div>
-  
-            
-        
-  <div
-    class="c-bolt-blockquote__quote"
-    style=""
-  >
-    
-          
-    <div
-      class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xlarge c-bolt-text-v2--font-weight-semibold c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
-      style=""
-    >
-      
-            
-      <!---->
-      <!---->
-      
-        
-      <!---->
-      <p
-        class="is-first-child"
-        style=""
-      >
-        The greater danger for most of us lies not in setting our aim too high and falling short...
-      </p>
-      <!---->
-      
-        
-      <!---->
-      <p
-        class="is-last-child"
-        style=""
-      >
-        In fact, the greater danger is setting our aim too low and achieving our mark.
-      </p>
-      <!---->
-      <!---->
-      
-          
-    </div>
-    
-        
-  </div>
-  
-        
-              
-  <footer
-    class="c-bolt-blockquote__footer"
-    style=""
-  >
-    
-                
-    <!---->
-    
-                    
-    <div
-      class="c-bolt-blockquote__footer-item"
-      style=""
-    >
-      
-                      
-      
-      <div
-        class="c-bolt-blockquote__image"
-        style=""
-      >
-        
-        
-              
-        <img
-          alt="Renaissance Artist"
-          src="/fixtures/500x500.jpg"
-          style=""
-        >
-          
-            
-      
-        </img>
-      </div>
-      
-    
-                    
-    </div>
-    
-                  
-    <!---->
-    
-                    
-    <div
-      class="c-bolt-blockquote__footer-item"
-      style=""
-    >
-      
-                      
-      
-      <cite
-        class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xsmall c-bolt-text-v2--font-weight-bold c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
-        style=""
-      >
-        
-        Michelangelo di Lodovico Buonarroti Simoni
-      
-      </cite>
-      
-    
-                    
-    </div>
-    
-                  
-    <!---->
-    
-                    
-    <div
-      class="c-bolt-blockquote__footer-item"
-      style=""
-    >
-      
-                      
-      
-      <cite
-        class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xsmall c-bolt-text-v2--font-weight-regular c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
-        style=""
-      >
-        
-        Renaissance Artist
-      
-      </cite>
-      
-    
-                    
-    </div>
-    
-                  
-    <!---->
-    
-              
-  </footer>
-  
-            
-      
-</blockquote>
-`;
-
-exports[`button Default <bolt-blockquote> w/o Shadow DOM renders 2`] = `
-<bolt-blockquote
-  author-image="/fixtures/500x500.jpg"
-  author-name="Michelangelo di Lodovico Buonarroti Simoni"
-  author-title="Renaissance Artist"
-  style=""
->
-  <!---->
-  
-      
-      
-  <blockquote
-    class="c-bolt-blockquote c-bolt-blockquote--xlarge c-bolt-blockquote--align-items-start c-bolt-blockquote--bordered-vertical"
-    is="shadow-root"
-    style=""
-  >
-    
-        
-              
-    <div
-      class="c-bolt-blockquote__logo"
-      style=""
-    >
-      
-                
-      <!---->
-      <!---->
-      <img
-        alt="PayPal Logo"
-        slot="logo"
-        src="/fixtures/logo-paypal.svg"
-        style=""
-      >
-        <!---->
-        <!---->
-        
-              
-      </img>
-    </div>
-    
-            
-        
-    <div
-      class="c-bolt-blockquote__quote"
-      style=""
-    >
-      
-          
-      <div
-        class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xlarge c-bolt-text-v2--font-weight-semibold c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
-        style=""
-      >
-        
-            
-        <!---->
-        <!---->
-        
-        
-        <!---->
-        <p
-          class="is-first-child"
-          style=""
-        >
-          The greater danger for most of us lies not in setting our aim too high and falling short...
-        </p>
-        <!---->
-        
-        
-        <!---->
-        <p
-          class="is-last-child"
-          style=""
-        >
-          In fact, the greater danger is setting our aim too low and achieving our mark.
-        </p>
-        <!---->
-        <!---->
-        
-          
-      </div>
-      
-        
-    </div>
-    
-        
-              
-    <footer
-      class="c-bolt-blockquote__footer"
-      style=""
-    >
-      
-                
-      <!---->
-      
-                    
-      <div
-        class="c-bolt-blockquote__footer-item"
-        style=""
-      >
-        
-                      
-      
-        <div
-          class="c-bolt-blockquote__image"
-          style=""
-        >
-          
-        
-              
-          <img
-            alt="Renaissance Artist"
-            src="/fixtures/500x500.jpg"
-            style=""
-          >
-            
-            
-      
-          </img>
-        </div>
-        
-    
-                    
-      </div>
-      
-                  
-      <!---->
-      
-                    
-      <div
-        class="c-bolt-blockquote__footer-item"
-        style=""
-      >
-        
-                      
-      
-        <cite
-          class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xsmall c-bolt-text-v2--font-weight-bold c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
-          style=""
-        >
-          
-        Michelangelo di Lodovico Buonarroti Simoni
-      
-        </cite>
-        
-    
-                    
-      </div>
-      
-                  
-      <!---->
-      
-                    
-      <div
-        class="c-bolt-blockquote__footer-item"
-        style=""
-      >
-        
-                      
-      
-        <cite
-          class="c-bolt-text-v2 c-bolt-text-v2--block c-bolt-text-v2--body c-bolt-text-v2--font-size-xsmall c-bolt-text-v2--font-weight-regular c-bolt-text-v2--font-style-regular c-bolt-text-v2--color-theme-headline c-bolt-text-v2--letter-spacing-regular c-bolt-text-v2--align-inherit c-bolt-text-v2--text-transform-regular c-bolt-text-v2--line-height-regular c-bolt-text-v2--opacity-100"
-          style=""
-        >
-          
-        Renaissance Artist
-      
-        </cite>
-        
-    
-                    
-      </div>
-      
-                  
-      <!---->
-      
-              
-    </footer>
-    
-            
-      
-  </blockquote>
-  
-    
-  <!---->
-</bolt-blockquote>
-`;
-
-exports[`button Default <bolt-blockquote> with Shadow DOM renders 2`] = `
-<bolt-blockquote
-  author-image="/fixtures/500x500.jpg"
-  author-name="Michelangelo di Lodovico Buonarroti Simoni"
-  author-title="Renaissance Artist"
-  style=""
->
-  <img
-    alt="PayPal Logo"
-    slot="logo"
-    src="/fixtures/logo-paypal.svg"
-    style=""
-  >
-    
-        
-  </img>
-  <p
-    class="is-first-child"
-    style=""
-  >
-    The greater danger for most of us lies not in setting our aim too high and falling short...
-  </p>
-  
-        
-  <p
-    class="is-last-child"
-    style=""
-  >
-    In fact, the greater danger is setting our aim too low and achieving our mark.
-  </p>
 </bolt-blockquote>
 `;

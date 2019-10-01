@@ -1,31 +1,24 @@
 import {
+  isConnected,
   render,
   renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../tooltip.schema.yml'));
 const { direction, noWrap, spacing } = schema.properties;
-
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
-
-async function renderTwigString(template, data) {
-  return await renderString(template, data, true);
-}
-
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<bolt-tooltip> Component', () => {
   afterAll(async () => {
-    await stopTwigRenderer();
-  }, timeout);
+    await stopServer();
+  }, 100);
 
   // Basic Usage
   test('Basic usage', async () => {
-    const results = await renderTwig('@bolt-components-tooltip/tooltip.twig', {
+    const results = await render('@bolt-components-tooltip/tooltip.twig', {
       trigger: {
         type: 'text',
         text: 'Trigger text',
@@ -42,20 +35,17 @@ describe('<bolt-tooltip> Component', () => {
   // Props
   direction.enum.forEach(async directionChoice => {
     test(`Direction of the tooltip bubble: ${directionChoice}`, async () => {
-      const results = await renderTwig(
-        '@bolt-components-tooltip/tooltip.twig',
-        {
-          trigger: {
-            type: 'button',
-            text: 'Trigger text',
-            icon: {
-              name: 'info-open',
-            },
+      const results = await render('@bolt-components-tooltip/tooltip.twig', {
+        trigger: {
+          type: 'button',
+          text: 'Trigger text',
+          icon: {
+            name: 'info-open',
           },
-          content: 'Tooltip content.',
-          direction: directionChoice,
         },
-      );
+        content: 'Tooltip content.',
+        direction: directionChoice,
+      });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
@@ -63,21 +53,18 @@ describe('<bolt-tooltip> Component', () => {
 
   noWrap.enum.forEach(async noWrapChoice => {
     test(`No wrapping for tooltip content: ${noWrapChoice}`, async () => {
-      const results = await renderTwig(
-        '@bolt-components-tooltip/tooltip.twig',
-        {
-          trigger: {
-            type: 'text',
-            text: 'Trigger text',
-            icon: {
-              name: 'info-open',
-            },
+      const results = await render('@bolt-components-tooltip/tooltip.twig', {
+        trigger: {
+          type: 'text',
+          text: 'Trigger text',
+          icon: {
+            name: 'info-open',
           },
-          content:
-            'Tooltip content. This text should wrap if noWrap is set to false, otherwise it should not wrap.',
-          noWrap: noWrapChoice,
         },
-      );
+        content:
+          'Tooltip content. This text should wrap if noWrap is set to false, otherwise it should not wrap.',
+        noWrap: noWrapChoice,
+      });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
@@ -85,20 +72,17 @@ describe('<bolt-tooltip> Component', () => {
 
   spacing.enum.forEach(async spacingChoice => {
     test(`Direction of the tooltip bubble: ${spacingChoice}`, async () => {
-      const results = await renderTwig(
-        '@bolt-components-tooltip/tooltip.twig',
-        {
-          trigger: {
-            type: 'text',
-            text: 'Trigger text',
-            icon: {
-              name: 'info-open',
-            },
+      const results = await render('@bolt-components-tooltip/tooltip.twig', {
+        trigger: {
+          type: 'text',
+          text: 'Trigger text',
+          icon: {
+            name: 'info-open',
           },
-          content: 'Tooltip content.',
-          spacing: spacingChoice,
         },
-      );
+        content: 'Tooltip content.',
+        spacing: spacingChoice,
+      });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });

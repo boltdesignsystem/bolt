@@ -1,0 +1,254 @@
+<div class="o-bolt-wrapper">
+  <h3>Advanced Usage</h3>
+  <p>Use specific combination of props to create different kinds of advanced carousel.</p>
+
+  {#<div class="u-bolt-margin-bottom-large">
+    <h3>Image Gallery</h3>
+    <p><mark>Note: extra javascript is needed for this.</mark></p>
+    {# Specific Combination of Props to Create Image Gallery #}
+    {# Main Content #}
+    {# {% include "@bolt-components-carousel/carousel.twig" with {
+      slides: [
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/1)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/2)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/3)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/4)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/5)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/6)"></bolt-ratio>',
+      ],
+      slides_per_view: 1,
+      space_between: "none",
+      no_pagination: true,
+      mode: 'gallery',
+      attributes: {
+        class: [
+          "js-swiper-gallery--demo",
+          "u-bolt-margin-bottom-none"
+        ]
+      }
+    } only %} #}
+    {# Thumbnails #}
+    {# Note: the carousel + thumbnail combo needs a bit more work so disabling this temporarily #}
+    {# {% include "@bolt-components-carousel/carousel.twig" with {
+      slides: [
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/1)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/2)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/3)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/4)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/5)"></bolt-ratio>',
+        '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(http://lorempixel.com/1200/1200/nature/6)"></bolt-ratio>',
+      ],
+      slides_per_view: 4,
+      max_slides_per_view: 4,
+      space_between: "none",
+      no_scrollbar: true,
+      no_nav_buttons: true,
+      no_pagination: true,
+      no_min_width: true,
+      free_scroll: true,
+      mode: 'gallery-thumbnail',
+      slide_to_clicked_slide: true,
+      attributes: {
+        class: [
+          "js-swiper-gallery--thumbnails",
+        ]
+      }
+    } only %} #}
+
+    {# Custom JS for Image Gallery #}
+    {#<script>
+      var mainCarousel = document.querySelector('.js-swiper-gallery--demo');
+      var mainCarouselRendered = false;
+      var existingMainCarouselRenderListener = false;
+
+      var thumbnailCarousel = document.querySelector('.js-swiper-gallery--thumbnails');
+      var thumbnailCarouselRendered = false;
+      var existingThumbnailCarouselRenderListener = false;
+
+      var galleryInit = false;
+
+      function checkIfShouldInitCarouselGallery(){
+        if (thumbnailCarousel._wasInitiallyRendered === true && mainCarousel._wasInitiallyRendered === true && galleryInit === false){
+          galleryInit = true;
+          initCarouselGallery();
+        }
+      }
+
+      function initCarouselGallery(){
+        mainCarousel.removeEventListener('rendered', checkIfShouldInitCarouselGallery);
+        thumbnailCarousel.removeEventListener('rendered', checkIfShouldInitCarouselGallery);
+
+        mainCarousel.thumbs = {
+          swiper: thumbnailCarousel.swiper,
+          slideThumbActiveClass: 'c-bolt-carousel__slide--thumbnail-active',
+          thumbsContainerClass: 'c-bolt-carousel--thumbnails t-bolt-xdark',
+        }
+
+        mainCarousel.options.thumbs = mainCarousel.swiper.params.thumbs;
+        mainCarousel.reInitCarousel();
+      }
+
+      if (thumbnailCarousel._wasInitiallyRendered === true){
+        checkIfShouldInitCarouselGallery();
+      } else {
+        thumbnailCarousel.addEventListener('rendered', checkIfShouldInitCarouselGallery);
+      }
+
+      if (mainCarousel._wasInitiallyRendered === true){
+        checkIfShouldInitCarouselGallery();
+      } else {
+        mainCarousel.addEventListener('rendered', checkIfShouldInitCarouselGallery);
+      }
+    </script>
+  </div>#}
+
+  <div class="u-bolt-margin-bottom-large">
+    <h3>Card Carousel</h3>
+    {% embed "@bolt-components-card/card.twig" with {
+      contentItems: [
+        {
+          pattern: "headline",
+          tag: "h3",
+          size: "large",
+          text: "This card's media has an image carousel"
+        },
+        {
+          pattern: "button",
+          text: "This is a button",
+          url: "https://pega.com",
+        }
+      ]
+    } only %}
+      {% block card_media %}
+        {# Specific Combination of Props to Create Card Carousel #}
+        {% include "@bolt-components-carousel/carousel.twig" with {
+          slides: [
+            '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
+            '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
+            '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-3.jpg)"></bolt-ratio>',
+            '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-4.jpg)"></bolt-ratio>',
+          '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-1.jpg)"></bolt-ratio>',
+            '<bolt-ratio ratio="16/9" style="--aspect-ratio: 16/9; background-size: cover; background-image:url(/images/content/backgrounds/background-tall-2.jpg)"></bolt-ratio>',
+          ],
+          slides_per_view: 1,
+          space_between: "small",
+          no_pagination: true,
+          nav_button_position: "inside",
+        } only %}
+      {% endblock %}
+    {% endembed %}
+  </div>
+
+  <div class="u-bolt-margin-bottom-large">
+    {% set content_image %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxxlarge",
+        align: "center",
+        text: "Experience The Best of Both Worlds",
+      } only %}
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        size: "xxlarge",
+        align: "center",
+        text: "Customer engagement meets intelligent automation.",
+      } only %}
+      <div style="text-align: center">
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/logos/pw19-logo-diamond.png",
+          attributes: {
+            class: "u-bolt-margin-bottom-medium",
+            style: "max-width: 200px; margin: 0 auto;",
+          },
+        } only %}
+        {% include "@bolt-components-button/button.twig" with {
+          text: "This is band slide 1",
+        } only %}
+      </div>
+    {% endset %}
+    {% set band_slide_1 %}
+      {% include "@bolt-components-band/band.twig" with {
+        size: "large",
+        full_bleed: false,
+        background: {
+          opacity: "heavy",
+          fill: "color",
+          focalPoint: {
+            vertical: "center",
+            horizontal: "center"
+          },
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/backgrounds/pw19-hp-bg2.jpg",
+              lazyload: false
+            },
+          ]
+        },
+        content: content_image
+      } only %}
+    {% endset %}
+
+    {% set content_image %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxxlarge",
+        align: "center",
+        text: "Customer Success",
+      } only %}
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        size: "xxlarge",
+        align: "center",
+        text: "Every enterprise success story starts with the right technology.",
+      } only %}
+      <div style="text-align: center">
+        {% include "@bolt-components-image/image.twig" with {
+          src: "/images/logos/pw19-logo-diamond.png",
+          attributes: {
+            class: "u-bolt-margin-bottom-medium",
+            style: "max-width: 200px; margin: 0 auto;",
+          },
+        } only %}
+        {% include "@bolt-components-button/button.twig" with {
+          text: "This is band slide 2",
+        } only %}
+      </div>
+    {% endset %}
+    {% set band_slide_2 %}
+      {% include "@bolt-components-band/band.twig" with {
+        size: "large",
+        full_bleed: false,
+        background: {
+          opacity: "heavy",
+          fill: "color",
+          focalPoint: {
+            vertical: "center",
+            horizontal: "center"
+          },
+          contentItems: [
+            {
+              pattern: "image",
+              src: "/images/backgrounds/pw19-hero-banner.png",
+              lazyload: false
+            },
+          ]
+        },
+        content: content_image
+      } only %}
+    {% endset %}
+  </div>
+</div>
+
+<h3>Hero Band Carousel</h3>
+{# Specific Combination of Props to Create Hero Band Carousel #}
+{% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    band_slide_1,
+    band_slide_2,
+  ],
+  slides_per_view: 1,
+  loop: true,
+  autoplay: true,
+  loop: true,
+  space_between: "none",
+  no_pagination: false,
+  no_nav_buttons: true,
+  nav_button_position: "inside",
+} only %}

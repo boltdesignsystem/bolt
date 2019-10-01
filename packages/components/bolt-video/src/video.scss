@@ -10,6 +10,7 @@ $bolt-video-background-max-height: 50.625vw;
     black
   ); // placeholder color before poster loads up.
 
+  // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
   &[is-background-video] {
     @include bolt-margin-right(auto);
     @include bolt-margin-left(auto);
@@ -66,18 +67,18 @@ $bolt-video-background-max-height: 50.625vw;
   max-width: none;
   transition: transform 0.4s cubic-bezier(0.645, 0, 0.355, 1);
 
-  // Force icons to be visible at smaller layout sizes
+  // Force control icons to be visible at smaller layout sizes, commented out names are shown here to indicate which ones are hidden.
   .video-js.vjs-layout-tiny,
   .video-js.vjs-layout-x-small,
   .video-js.vjs-layout-small {
     &:not(.vjs-fullscreen) {
+      /* .vjs-time-divider, */
+      /* .vjs-duration, */
+      /* .vjs-volume-panel, */
+      /* .vjs-volume-control, */
       .vjs-mute-control,
-      .vjs-volume-panel,
-      .vjs-volume-control,
       .vjs-playback-rate,
       .vjs-current-time,
-      .vjs-time-divider,
-      .vjs-duration,
       .vjs-button.vjs-share-control {
         display: flex;
       }

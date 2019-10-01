@@ -15,7 +15,6 @@ import Handorgel from 'handorgel';
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './dropdown.scss';
 
-@define
 class BoltDropdown extends withLitHtml() {
   static is = 'bolt-dropdown';
 
@@ -143,7 +142,7 @@ class BoltDropdown extends withLitHtml() {
     `;
   }
 
-  template() {
+  render() {
     const classes = css(
       'c-bolt-dropdown',
       this.props.collapse ? 'c-bolt-dropdown--collapse@small' : '',
@@ -156,6 +155,7 @@ class BoltDropdown extends withLitHtml() {
       : '';
 
     return html`
+      ${this.addStyles([styles, heightUtils])}
       <div class="${classes}" id="${this.uuid}">
         ${this.dropdownHeader()}
         <div class="c-bolt-dropdown__content">
@@ -165,18 +165,17 @@ class BoltDropdown extends withLitHtml() {
     `;
   }
 
-  render() {
-    this.dropdownTemplate = document.createDocumentFragment();
-    render(this.template(), this.dropdownTemplate);
+  rendered() {
+    super.rendered && super.rendered();
 
-    this.contentElem = this.dropdownTemplate.querySelector(
+    this.contentElem = this.renderRoot.querySelector(
       '.c-bolt-dropdown__content',
     );
 
     this.autoHeight();
 
     this.dropdown = new Handorgel(
-      this.dropdownTemplate.querySelector('.c-bolt-dropdown'),
+      this.renderRoot.querySelector('.c-bolt-dropdown'),
       {
         // whether multiple folds can be opened at once
         multiSelectable: true,
@@ -218,10 +217,6 @@ class BoltDropdown extends withLitHtml() {
         contentNoTransitionClass: 'c-bolt-dropdown__content--notransition',
       },
     );
-
-    return html`
-      ${this.addStyles([styles, heightUtils])} ${this.dropdownTemplate}
-    `;
   }
 }
 

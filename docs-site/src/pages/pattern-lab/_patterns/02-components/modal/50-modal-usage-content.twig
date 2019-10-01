@@ -1,0 +1,166 @@
+<bolt-text headline font-size="xlarge">Content Modal Usage</bolt-text>
+<bolt-text>Content modals can be as simple as a few lines of text or as complex as a page layout. Note: when using bands inside a modal, the <bolt-code-snippet display="inline" lang="html">full_bleed</bolt-code-snippet> prop must be set to <bolt-code-snippet display="inline" lang="html">false</bolt-code-snippet>.</bolt-text>
+
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set modal_content %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xxxlarge",
+      text: "This Is a Headline",
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "This is a paragraph. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante.",
+    } only %}
+  {% endset %}
+  {% set trigger %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Show content",
+      size: "small",
+      width: "full",
+      attributes: {
+        onclick: "this.nextElementSibling.show()",
+      }
+    } only %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      attributes: {
+        class: "js-image-modal-simple-layout",
+      },
+      content: modal_content,
+      spacing: "large",
+    } only %}
+  {% endset %}
+  {% set description %}
+    <bolt-text headline font-size="large">Show a simple layout</bolt-text>
+    <bolt-text>Pass any components inside the modal content to create simple layouts, such as short confirmations, alerts, notifications, etc.</bolt-text>
+  {% endset %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1 1@small",
+        column_span: "12 8@small 9@medium",
+        row_start: "2 1@small",
+        row_span: "1",
+        valign: "center",
+        content: description,
+      },
+      {
+        column_start: "1 10@small 11@medium",
+        column_span: "6 3@small 2@medium",
+        row_start: "1 1@small",
+        row_span: "1",
+        valign: "center",
+        content: trigger,
+      },
+    ]
+  } only %}
+</div>
+
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set form_children %}
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Email Address",
+      inputAttributes: {
+        placeholder: "Enter your email address",
+        type: "email",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+    {% include "@pl/10-form-element-demo-input-element.twig" with {
+      title: "Password",
+      inputAttributes: {
+        placeholder: "Enter your password",
+        type: "password",
+        required: true
+      },
+      labelDisplayType: "floating"
+    } only %}
+    {% include "@pl/30-form-element-demo-checkbox.twig" with {
+      labelTitle: "Remember this computer",
+      elementId: "checkbox-" ~ random(),
+      labelDisplayType: "inline"
+    } only %}
+    {% include "@bolt-components-form/form-button.twig" with {
+      text: "Sign In",
+      width: "full"
+    } only %}
+  {% endset %}
+  {% set band_content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-8/12@medium" %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "This Is an Eyebrow",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xxxlarge",
+          text: "This Is a Headline",
+        } only %}
+        {% include "@bolt-components-headline/subheadline.twig" with {
+          size: "xxlarge",
+          text: "This Is a Subheadline",
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "This is a paragraph. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante.",
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Sign in to view PegaWorld live stream",
+          size: "xlarge"
+        } only %}
+        {% include "@bolt-components-form/form.twig" with {
+          children: form_children,
+        } only  %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% set modal_content %}
+    {% include "@bolt-components-band/band.twig" with {
+      content: band_content,
+      theme: "none",
+      full_bleed: false,
+    } only %}
+  {% endset %}
+  {% set trigger %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Show content",
+      size: "small",
+      width: "full",
+      attributes: {
+        onclick: "this.nextElementSibling.show()",
+      }
+    } only %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      attributes: {
+        class: "js-image-modal-advanced-complex-layout",
+      },
+      content: modal_content,
+      width: "full",
+      spacing: "none",
+      scroll: "overall",
+    } only %}
+  {% endset %}
+  {% set description %}
+    <bolt-text headline font-size="large">Show a complex layout</bolt-text>
+    <bolt-text>Create complex layouts with components and layout objects inside the modal content and set the modal <bolt-code-snippet display="inline" lang="html">width</bolt-code-snippet> to <bolt-code-snippet display="inline" lang="html">full</bolt-code-snippet> to maximize space. For example, you can build a multi-column layout with the grid, band, and card components.</bolt-text>
+  {% endset %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1 1@small",
+        column_span: "12 8@small 9@medium",
+        row_start: "2 1@small",
+        row_span: "1",
+        valign: "center",
+        content: description,
+      },
+      {
+        column_start: "1 10@small 11@medium",
+        column_span: "6 3@small 2@medium",
+        row_start: "1 1@small",
+        row_span: "1",
+        valign: "center",
+        content: trigger,
+      },
+    ]
+  } only %}
+</div>

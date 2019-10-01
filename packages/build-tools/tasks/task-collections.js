@@ -1,15 +1,16 @@
 const path = require('path');
-const log = require('../utils/log');
+const log = require('@bolt/build-utils/log');
+const manifest = require('@bolt/build-utils/manifest');
+const timer = require('@bolt/build-utils/timer');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const events = require('@bolt/build-utils/events');
 const webpackTasks = require('./webpack-tasks');
 // const criticalcssTasks = require('./criticalcss-tasks');
-const manifest = require('../utils/manifest');
 const internalTasks = require('./internal-tasks');
 const imageTasks = require('./image-tasks');
 const iconTasks = require('./icon-tasks');
-const timer = require('../utils/timer');
-const { getConfig } = require('../utils/config-store');
+
 const { writeBoltVersions } = require('./api-tasks/bolt-versions');
-const events = require('../utils/events');
 const extraTasks = [];
 let config;
 
@@ -198,8 +199,10 @@ async function build(shouldReturnTime = false) {
 
     // don't try to process / convert SVG icons if the `@bolt/components-icon` package isn't part of the build
     if (
-      config.components.global.includes('@bolt/components-icon') ||
-      config.components.individual.includes('@bolt/components-icon')
+      (config.components.global &&
+        config.components.global.includes('@bolt/components-icon')) ||
+      (config.components.individual &&
+        config.components.individual.includes('@bolt/components-icon'))
     ) {
       await iconTasks.build();
     }
@@ -213,6 +216,8 @@ async function build(shouldReturnTime = false) {
     config.prod || config.watch === false
       ? await Promise.all(await compileBasedOnEnvironment())
       : '';
+
+    await internalTasks.writeMetadata();
 
     if (shouldReturnTime) {
       return startTime;

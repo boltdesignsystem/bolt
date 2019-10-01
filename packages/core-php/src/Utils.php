@@ -2,9 +2,12 @@
 
 namespace Bolt;
 
+use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
 use Michelf\MarkdownExtra;
 use \Webmozart\PathUtil\Path;
 use \Drupal\Core\Template\Attribute;
+use \Shudrum\Component\ArrayFinder\ArrayFinder; // https://github.com/Shudrum/ArrayFinder
 
 // https://github.com/nabil1337/case-helper
 use CaseHelper\CaseHelperFactory;
@@ -261,5 +264,58 @@ class Utils {
     }
 
     return $props;
+  }
+
+  /**
+   * Return greatest common denominator of two numbers
+   * https://www.php.net/manual/en/function.gmp-gcd.php#69189
+   *
+   * @param integer|string $a - First numeric value
+   * @param integer|string $b - Second numeric value
+   * @return integer - Returns greatest common denominator
+   */
+  public static function gcd($a, $b) {
+    return ($a % $b) ? self::gcd($b, $a % $b) : $b;
+  }
+
+  /**
+   * @param $dataDir {string} - Path to data directory
+   * @return {array} - All json files in data parsed as a single data array
+   */
+  public static function buildBoltData($dataDir) {
+    // Looping through all the files in the data dir, we'll get ones that end in `bolt.json` like `my-stuff.bolt.json`
+    // We're building up a big data array that will look like this:
+    //  'data' => [
+    //    'spacingSizes' => // contents of `spacing-sizes.bolt.json`
+    //    'colors' => [
+    //      'brand' => // contents of `colors/brand.bolt.json`
+    //      'status' => // contents of `colors/status.bolt.json`
+    //    ]
+    //  ]
+    $data = new ArrayFinder();
+    $data->changeSeparator('/');
+    $items = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dataDir), RecursiveIteratorIterator::SELF_FIRST);
+    foreach ($items as $key => $item) {
+      if ($item->isFile() && $item->getExtension() === 'json') {
+        $fullPath = $item->getPathname();
+        // `colors/my-stuff.bolt.json` => `my-stuff.bolt`
+        $extensionLessFilename = Path::getFilenameWithoutExtension($fullPath);
+        if (Path::hasExtension($extensionLessFilename, 'bolt')) {
+          // if file is `colors/my-stuff.bolt.json`, this becomes `myStuff` (which is the key we'll store it's data under)
+          $dataKey = self::dashesToCamelCase(Path::getFilenameWithoutExtension($extensionLessFilename, 'bolt'));
+          $fileString = file_get_contents($fullPath);
+          $fileData = json_decode($fileString, true);
+          $relativePath = Path::makeRelative($fullPath, $dataDir);
+          // if file is `colors/my-stuff.bolt.json`, this is `colors`, if file is `my-stuff.bolt.json`, this is `.`
+          $subDir = dirname($relativePath);
+          if ($subDir === '.') {// not nested in sub directory
+            $data->set($dataKey, $fileData);
+          } else {// nested in sub directory
+            $data->set($subDir . '/' . $dataKey, $fileData);
+          }
+        }
+      }
+    }
+    return $data->get();
   }
 }

@@ -40,7 +40,9 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
 }
 
 
-
+bolt-background {
+  flex-grow: 1;
+}
 
 .c-bolt-background {
   position: absolute;
@@ -77,6 +79,7 @@ $bolt-bg-shape-offset-side-large: $bolt-bg-shape-offset-bottom-large * 1.2;
   animation: a-bolt-zoom-in-out 45s ease-in-out infinite both;
 }
 
+// todo: remove in v3.0, video background in deprecated
 .c-bolt-background__video {
   top: 0;
   right: 0;

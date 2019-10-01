@@ -28,15 +28,19 @@ class BoltButton extends BoltAction {
     transform: props.string,
     disabled: props.boolean,
     target: props.string,
+    type: props.string,
     url: props.string,
     onClick: props.string, // Managed by base class
     onClickTarget: props.string, // Managed by base class
+    tabindex: props.number,
+    inert: props.boolean, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
     self.schema = schema;
+    self.delegateFocus = true;
     return self;
   }
 
@@ -58,6 +62,7 @@ class BoltButton extends BoltAction {
       [`c-bolt-button--${this.props.transform}`]:
         this.props.transform && this.props.transform !== 'none',
       'c-bolt-button--disabled': this.props.disabled,
+      'c-bolt-button--inert': this.props.tabindex === -1 || this.props.inert,
       'c-bolt-button--icon-only': this.props.iconOnly,
     });
 
@@ -141,20 +146,54 @@ class BoltButton extends BoltAction {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
       buttonElement.className += ' ' + classes;
 
-      if (this.props.url) {
-        buttonElement.setAttribute('href', this.props.url);
+      // @todo: find automatic way to dissolve original HTML elements into their respective props + custom attributes
+      if (buttonElement.tagName === 'A') {
+        const url = this.props.url || this.originalUrl;
+
+        if (this.props.disabled) {
+          this.originalUrl = buttonElement.getAttribute('href');
+          buttonElement.setAttribute('aria-disabled', 'true');
+          buttonElement.removeAttribute('href');
+        } else {
+          buttonElement.removeAttribute('aria-disabled');
+
+          if (url) {
+            buttonElement.setAttribute('href', url);
+          }
+        }
+
+        if (this.props.target) {
+          buttonElement.setAttribute('target', this.props.target);
+        }
+      } else {
+        if (this.props.disabled) {
+          buttonElement.setAttribute('disabled', '');
+        } else {
+          buttonElement.removeAttribute('disabled');
+        }
       }
 
-      if (this.props.target) {
-        buttonElement.setAttribute('target', this.props.target);
+      if (this.props.tabindex) {
+        buttonElement.setAttribute('tabindex', this.props.tabindex);
       }
+
       render(innerSlots, buttonElement);
     } else if (hasUrl) {
       buttonElement = html`
         <a
-          href="${this.props.url}"
+          href="${ifDefined(
+            this.props.url && !this.props.disabled ? this.props.url : undefined,
+          )}"
           class="${classes}"
           target="${urlTarget}"
+          tabindex=${ifDefined(
+            this.props.tabindex === -1
+              ? '-1'
+              : this.props.tabindex
+              ? this.props.tabindex
+              : undefined,
+          )}
+          aria-disabled=${ifDefined(this.props.disabled ? 'true' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
           >${innerSlots}</a
         >
@@ -163,6 +202,15 @@ class BoltButton extends BoltAction {
       buttonElement = html`
         <button
           class="${classes}"
+          tabindex=${ifDefined(
+            this.props.tabindex === -1
+              ? '-1'
+              : this.props.tabindex
+              ? this.props.tabindex
+              : undefined,
+          )}
+          type=${ifDefined(this.props.type ? this.props.type : undefined)}
+          disabled=${ifDefined(this.props.disabled ? '' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
         >
           ${innerSlots}

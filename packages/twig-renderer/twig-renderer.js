@@ -1,7 +1,7 @@
 const TwigRenderer = require('@basalt/twig-renderer');
 const sleep = require('sleep-promise');
-const { getTwigNamespaceConfig } = require('@bolt/build-tools/utils/manifest');
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { getTwigNamespaceConfig } = require('@bolt/build-utils/manifest');
+const { getConfig } = require('@bolt/build-utils/config-store');
 const path = require('path');
 
 let twigNamespaces;
@@ -36,7 +36,7 @@ async function init(keepAlive = false) {
     debug: true,
     alterTwigEnv: config.alterTwigEnv,
     hasExtraInfoInResponses: false, // Will add `info` onto results with a lot of info about Twig Env
-    maxConcurrency: 50,
+    maxConcurrency: 30,
     keepAlive, // only set this to be true when doing in-browser requests to avoid issues with this process not exiting when complete
   });
   state = STATES.READY;
@@ -67,7 +67,7 @@ async function prep(keepAlive) {
  * @param {string} template - Template name (i.e. `@bolt/button.twig`)
  * @param {Object} data - Optional data to pass to template
  * @param {Boolean} keepAlive - Optionally tell the Twig renderer service to keep alive to help speed up requests
- * @return {Promise<{{ ok: boolean, html: string, message: string}}>} - Results of render
+ * @return {Promise<{ ok: boolean, html: string, message: string }>} - Results of render
  */
 async function render(template, data = {}, keepAlive = false) {
   await prep(keepAlive);
@@ -80,7 +80,7 @@ async function render(template, data = {}, keepAlive = false) {
  * @param {string} templateString - String that is a Twig template (i.e. `<p>{{ text }}</p>`)
  * @param {Object} data - Optional data to pass to template
  * @param {Boolean} keepAlive - Optionally tell the Twig renderer service to keep alive to help speed up requests
- * @return {Promise<{{ ok: boolean, html: string, message: string}}>} - Results of render
+ * @return {Promise<{ ok: boolean, html: string, message: string }>} - Results of render
  */
 async function renderString(templateString, data = {}, keepAlive = false) {
   await prep(keepAlive);

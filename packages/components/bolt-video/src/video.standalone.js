@@ -21,7 +21,7 @@ class BoltVideo extends withPreact() {
     accountId: props.string,
     playerId: props.string,
     poster: props.object,
-    isBackgroundVideo: props.boolean,
+    isBackgroundVideo: props.boolean, // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
     onInit: props.string,
     showMeta: props.boolean,
     showMetaTitle: props.boolean,
@@ -310,8 +310,9 @@ class BoltVideo extends withPreact() {
       const s = this.createScript();
 
       s.onload = () => {
+        // We know Brightcove has loaded, so immediately call initVideoJS() on each video
         BoltVideo.players.forEach(function(player) {
-          player.initVideoJS(player.state.id);
+          player.initVideoJS();
         });
       };
 
@@ -328,15 +329,6 @@ class BoltVideo extends withPreact() {
       };
 
       BoltVideo.appendScript(s);
-    }
-
-    this.init();
-
-    // If onInit event exists on element, run that instead of auto initializing
-    if (this.props.onInit) {
-      if (window[this.props.onInit]) {
-        window[this.props.onInit](this);
-      }
     }
 
     // If our video can expand/collapse we add the collapse listener and "close on escape" behavior
@@ -505,41 +497,6 @@ class BoltVideo extends withPreact() {
     return s;
   }
 
-  initVideoJS(id) {
-    const self = this;
-
-    beforeNextRender(this, function() {
-      const player = videojs(id);
-      const handler = BoltVideo.handlePlayerReady.bind(player, self);
-      player.ready(handler);
-    });
-  }
-
-  initVideo(id) {
-    const self = this;
-
-    beforeNextRender(this, function() {
-      bc(self.querySelector(`#${id}`), {
-        controlBar: {
-          fullscreenToggle: !self.props.hideFullScreenButton,
-        },
-      });
-      self.initVideoJS(id);
-    });
-  }
-
-  init() {
-    const self = this;
-
-    beforeNextRender(this, function() {
-      if (window.bc && window.videojs) {
-        self.initVideo(self.state.id);
-      } else {
-        BoltVideo.players.push(self);
-      }
-    });
-  }
-
   play() {
     if (this.player) {
       this.player.play();
@@ -599,6 +556,68 @@ class BoltVideo extends withPreact() {
     }
   }
 
+  initVideoJS() {
+    try {
+      /**
+       * NOTE:
+       * We delay initialization of all Brightcove videos following the steps outlined here: https://support.brightcove.com/delaying-player-instantiation
+       * - Don't include 'data-account', 'data-player', and 'data-video-id' attributes on first render of the video-js element or videos will auto-initialize.
+       * - Wait until this function is called to add these attributes.
+       * - Then manually initialize the player here via the bc() method and pass any configuration options.
+       * - This avoids multiple initializations, which has unpredictable results.
+       */
+
+      if (this.hasInitialized) {
+        return;
+      }
+
+      // Setting these attributes will trigger a re-render, hence the 'hasInitialized' check above ^
+      this.videoElement.setAttribute('data-account', this.accountId);
+      this.videoElement.setAttribute('data-player', this.playerId);
+      this.videoElement.setAttribute('data-video-id', this.videoId);
+
+      // https://support.brightcove.com/player-configuration-guide
+      // You should NOT use data-setup with Brightcove Player!
+      const player = bc(this.videoElement, {
+        // Force HTML5 Only Rendering + disable resizeManager in Brightcove to fix ability to click overlapping elements on iOS:
+        // https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747a/src/js/resize-manager.js#L19
+        techOrder: ['Html5'],
+        resizeManager: false,
+        controlBar: {
+          fullscreenToggle: !this.props.hideFullScreenButton,
+        },
+      });
+
+      player.ready(() => {
+        BoltVideo.handlePlayerReady.call(player, this);
+      });
+
+      // If onInit callback is set, run that now
+      if (this.props.onInit) {
+        if (window[this.props.onInit]) {
+          window[this.props.onInit](this);
+        }
+      }
+
+      this.hasInitialized = true;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  rendered() {
+    super.rendered && super.rendered();
+
+    // Now that the video is rendered, add a reference to it
+    this.videoElement = this.querySelector(`#${this.state.id}`);
+
+    // If Brightcove and Video.js are loaded, init; otherwise add video to stack.
+    // In most cases it's the latter, and video is initialized from the s.onload callback.
+    window.bc && window.videojs
+      ? this.initVideoJS()
+      : BoltVideo.players.push(this);
+  }
+
   render({ state, props }) {
     // data-email-subject="Pega - Intelligent Virtual Assistant for Email"
     // data-email-body="Check out this video from Pega"
@@ -609,7 +628,6 @@ class BoltVideo extends withPreact() {
     //     ▶️
     //   </span>
     // );
-    /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
     const dataAttributes = datasetToObject(this);
 
@@ -635,15 +653,16 @@ class BoltVideo extends withPreact() {
 
     return (
       <span className={classes}>
-        <video
+        <video-js
           {...dataAttributes}
           id={this.state.id}
           {...(this.props.poster ? { poster: this.props.poster.uri } : {})}
+          // Do not add these attributes or Video.js will auto init this video
+          // data-account={this.props.accountId}
+          // data-player={this.props.playerId}
+          // data-video-id={this.props.videoId}
           data-embed="default"
-          data-video-id={this.props.videoId}
           preload="none"
-          data-account={this.props.accountId}
-          data-player={this.props.playerId}
           // playIcon={playIconEmoji()}
           // following 'autoplay' can not expected to always work on web
           // see: https://docs.brightcove.com/en/player/brightcove-player/guides/in-page-embed-player-implementation.html

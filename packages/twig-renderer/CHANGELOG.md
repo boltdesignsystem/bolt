@@ -3,6 +3,121 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+**Note:** Version bump only for package @bolt/twig-renderer
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **twig-renderer:** upgrade @basalt/twig-renderer 0.12.0 => 0.12.1 ([d57414f](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/d57414f))
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* **twig-renderer:** upgrade @basalt/twig-renderer 0.12.0 => 0.12.1 ([d57414f](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/d57414f))
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+
+### Bug Fixes
+
+* **twig-renderer:** upgrade @basalt/twig-renderer 0.12.0 => 0.12.1 ([d57414f](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/d57414f))
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Bug Fixes
+
+* upgrade Twig renderer to the latest version to fix occasional memory errors getting thrown ([d0bdb39](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/d0bdb39))
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/twig-renderer
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/twig-renderer
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+**Note:** Version bump only for package @bolt/twig-renderer
+
+
+
+
+
+## [2.5.2](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.5.1...v2.5.2) (2019-06-25)
+
+**Note:** Version bump only for package @bolt/twig-renderer
+
+
+
+
+
+## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.5.0...v2.5.1) (2019-06-21)
+
+**Note:** Version bump only for package @bolt/twig-renderer
+
+
+
+
+
+## [2.4.4](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.4.3...v2.4.4) (2019-06-05)
+
+
+### Bug Fixes
+
+* split up the core-php BoltExtra Twig extensions into the ones needed for Drupal compatibility vs any extra Twig extensions used internally for building the docs site. Update Twig renderer configs to use the full set of Twig extensions for the docs site but only BoltCore and BoltCoreCompat when running component tests ([0287e7a](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/commit/0287e7a))
+
+
+
+
+
+## [2.4.3](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.4.2...v2.4.3) (2019-05-31)
+
+**Note:** Version bump only for package @bolt/twig-renderer
+
+
+
+
+
 # [2.4.0](https://github.com/bolt-design-system/bolt/tree/master/packages/twig-renderer/compare/v2.3.2...v2.4.0) (2019-05-14)
 
 

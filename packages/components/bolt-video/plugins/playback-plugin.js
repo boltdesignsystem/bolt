@@ -1,6 +1,6 @@
 export const playbackPlugin = player => {
   var options = {
-    playbackRates: [1, 1.3, 1.5, 2],
+    playbackRates: [1, 1.25, 1.5, 2],
   };
 
   if (Array.isArray(options.playbackRates)) {

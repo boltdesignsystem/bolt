@@ -31,7 +31,7 @@ pl-iframe {
   z-index: 0;
   flex-grow: 1;
   transition: height 0.3s ease;
-  background-color: $pl-color-white;
+  background-color: #F6F6F9;
   // background-color: var(--theme-bg, $pl-color-white);
 
   @supports (position: sticky) {
@@ -68,21 +68,27 @@ pl-iframe {
 .pl-c-viewport__iframe-wrapper {
   display: flex;
   flex-direction: column;
-  max-width: 100vw;
-  width: 100%; // bug fix for Safari and Firefox getting stuck calculating a width of 0px when the JS first kicks in
+  // width: 100%; // bug fix for Safari and Firefox getting stuck calculating a width of 0px when the JS first kicks in
+  width: calc(100vw);
+  max-width: calc(100vw);
   position: relative;
   margin: 0 auto;
   flex-grow: 1;
   -webkit-overflow-scrolling: touch;
+  min-width: 240px;
+  max-width: 100vw;
+  background: white;
+  box-shadow: 0 3px 6px rgba(21,22,25,.16), 0 3px 6px rgba(21,22,25,.23);
 
   &.hay-mode {
     transition: all 40s linear;
   }
-  width: 100%; // bug fix for Safari and Firefox getting stuck calculating a width of 0px when the JS first kicks in
+  // width: 100%; // bug fix for Safari and Firefox getting stuck calculating a width of 0px when the JS first kicks in
 
   .pl-c-body--theme-sidebar & {
     @media all and (min-width: $pl-bp-med) {
       max-width: calc(100vw - #{$pl-sidebar-width});
+      width: calc(100vw - #{$pl-sidebar-width});
     }
   }
 }
@@ -105,6 +111,8 @@ pl-iframe {
   // background-color: var(--theme-bg, $pl-color-white);
   max-width: 100vw; // https://github.com/bolt-design-system/bolt/pull/868
   width: 100%;
+  padding-right: 30px;
+  overflow: hidden;
 
   &.is-ready {
     min-height: 0;
@@ -112,6 +120,7 @@ pl-iframe {
 
   .pl-c-body--theme-sidebar & {
     @media all and (min-width: $pl-bp-med) {
+      width: 100%;
       max-width: calc(100vw - #{$pl-sidebar-width});
     }
   }
@@ -132,10 +141,10 @@ pl-iframe {
 */
 .pl-c-viewport__resizer {
   position: absolute;
+  width: 30px;
   right: 0;
   top: 0;
   bottom: 0;
-  width: 14px;
   margin: 0;
   height: 100%;
   cursor: ew-resize;
@@ -149,17 +158,34 @@ pl-iframe {
   margin: 0;
   width: 100%;
   height: 100%;
-  background-color: #808080;
   transition: opacity $pl-animate-quick ease-out;
-  opacity: 0.05;
+  position: relative;
+  color: #545DA6;
 
-  &:hover {
-    opacity: 0.2;
+  &:hover:after,
+  &.is-resizing:after {
+    background-color: #F6F6F9;
+  }
+
+  &:after {
+    content: '';
+    box-shadow: 0 1px 4px 1px rgba(6,10,36,.1), 0 5px 10px 0 rgba(6,10,36,.08);
+    transition: .3s cubic-bezier(.25,.8,.25,1)!important;
+    cursor: ew-resize;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    position: fixed;
+    top: 50vh;
+    bottom: 0;
+    transform: translate3d(0, -50%, 0);
+    width: 30px;
+    background: white;
   }
 
   &:active {
     cursor: move;
-    opacity: 0.2;
     // background-color: $pl-color-gray-70;
   }
 }

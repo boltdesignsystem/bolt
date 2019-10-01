@@ -16,9 +16,6 @@
   {% endfor %}
 {% endif #}
 
-{# force HTML5 Only Rendering + disable resizeManager in Brightcove to fix ability to click overlapping elements on iOS:
-https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747a/src/js/resize-manager.js#L19 #}
-{% set attributes = attributes.setAttribute("data-setup", '{"techOrder": ["Html5"], "resizeManager": false}') %}
 {% set showMeta = showMeta is null ? true : showMeta %}
 {% set showMetaTitle = showMeta is null ? false : showMetaTitle %}
 
@@ -73,6 +70,7 @@ https://github.com/videojs/video.js/blob/22fd327076cb044c135c747086b58b7be64a747
 
 {% set attributes = attributes.setAttribute("share-description", share_description|default('Share This Video'|t)) %}
 
+{# @todo: `isBackgroundVideo` will be removed with Bolt v3.0 #}
 {% if isBackgroundVideo %}
   {% set attributes = attributes.setAttribute("is-background-video", isBackgroundVideo) %}
 {% else %}

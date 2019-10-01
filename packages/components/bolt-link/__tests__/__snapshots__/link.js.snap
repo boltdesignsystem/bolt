@@ -1,7 +1,124 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`link Link with an onClick attributes renders properly 1`] = `
+exports[`link Default <bolt-link> w/o Shadow DOM renders 1`] = `
+<bolt-link url="http://pega.com">
+  <a href="http://pega.com"
+     class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
+     target="_self"
+  >
+    <slot name="before">
+    </slot>
+    <span class="c-bolt-link__text">
+      This is a link
+    </span>
+    <slot name="after">
+    </slot>
+  </a>
+</bolt-link>
+`;
 
+exports[`link Default <bolt-link> w/o Shadow DOM renders 3`] = `
+<div
+  style=""
+>
+  <bolt-link
+    style=""
+    url="http://pega.com"
+  >
+    <!---->
+    <!---->
+    <!---->
+  </bolt-link>
+  <a
+    class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
+    href="http://pega.com"
+    style=""
+    target="_self"
+  >
+    <!---->
+    <!---->
+    <slot
+      name="before"
+      style=""
+    />
+    <!---->
+    <span
+      class="c-bolt-link__text"
+      style=""
+    >
+      <!---->
+      <!---->
+      <!---->
+      This is a link
+      <!---->
+      <!---->
+      <!---->
+    </span>
+    <!---->
+    <slot
+      name="after"
+      style=""
+    />
+    <!---->
+    <!---->
+  </a>
+  <!---->
+  <!---->
+</div>
+`;
+
+exports[`link Default <bolt-link> with Shadow DOM renders 1`] = `
+<style>
+  <!---->bolt-link{outline:0}:host{outline:0}.c-bolt-link{padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;font-family:var(--bolt-font-family-body);display:inline;-webkit-appearance:none;-moz-appearance:none;appearance:none;opacity:1;margin-left:-.25rem;color:rgba(var(--bolt-theme-link), 1);text-decoration:underline;cursor:pointer;border:none;background:0 0;-webkit-transition:.2s ease-in-out;transition:.2s ease-in-out}.js-fonts-loaded .c-bolt-link{font-family:"Open Sans","Helvetica Neue",sans-serif;font-family:var(--bolt-font-family-body)}.c-bolt-link:hover{opacity:.8}.c-bolt-link:active,.c-bolt-link:focus:active{opacity:.6}.c-bolt-link--display-flex{display:-webkit-inline-box;display:inline-flex}.c-bolt-link--display-flex.c-bolt-link--valign-start{-webkit-box-align:start;align-items:flex-start}.c-bolt-link--display-flex.c-bolt-link--valign-center{-webkit-box-align:center;align-items:center}.c-bolt-link--display-inline .c-bolt-link__icon{display:inline;white-space:nowrap}.c-bolt-link__icon,.c-bolt-link__text{padding-left:.25rem}.c-bolt-link__text{display:inline}.c-bolt-link--headline{color:rgba(var(--bolt-theme-headline-link), 1);text-decoration:none}.c-bolt-link--headline:hover{text-decoration:underline}
+  <!---->
+</style>
+<a href="http://pega.com"
+   class="c-bolt-link c-bolt-link--display-inline c-bolt-link--valign-center"
+   target="_self"
+>
+  <slot name="before">
+  </slot>
+  <span class="c-bolt-link__text">
+    <slot>
+    </slot>
+  </span>
+  <slot name="after">
+  </slot>
+</a>
+`;
+
+exports[`link Default <bolt-link> with Shadow DOM renders 2`] = `
+<bolt-link url="http://pega.com">
+  Link Test -- Outer HTML
+</bolt-link>
+`;
+
+exports[`link Default <bolt-link> with Shadow DOM renders with no extra whitespace 1`] = `
+<div>
+  (
+  <bolt-link url="http://pega.com">
+    Link Test -- No extra whitespace
+  </bolt-link>
+  )
+</div>
+`;
+
+exports[`link Default <bolt-link> with Shadow DOM renders with no extra whitespace 3`] = `
+<div
+  style=""
+>
+  (
+  <bolt-link
+    style=""
+    url="http://pega.com"
+  >
+    Link Test -- No extra whitespace
+  </bolt-link>
+  )
+</div>
+`;
+
+exports[`link Link with an onClick attributes renders properly 1`] = `
 <bolt-link display="inline"
            valign="center"
            on-click="on-click-test"
@@ -15,11 +132,9 @@ exports[`link Link with an onClick attributes renders properly 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;
 
 exports[`link Link with an onClick param renders properly 1`] = `
-
 <bolt-link display="inline"
            valign="center"
            on-click="on-click-test"
@@ -32,11 +147,9 @@ exports[`link Link with an onClick param renders properly 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;
 
 exports[`link Link with c-bolt- class is thrown out 1`] = `
-
 <bolt-link display="inline"
            valign="center"
 >
@@ -48,11 +161,9 @@ exports[`link Link with c-bolt- class is thrown out 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;
 
 exports[`link Link with inner classes via Drupal Attributes 1`] = `
-
 <bolt-link display="inline"
            valign="center"
 >
@@ -64,11 +175,9 @@ exports[`link Link with inner classes via Drupal Attributes 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;
 
 exports[`link Link with outer JS-class via Drupal Attributes 1`] = `
-
 <bolt-link display="inline"
            valign="center"
            class="js-click-me"
@@ -81,11 +190,9 @@ exports[`link Link with outer JS-class via Drupal Attributes 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;
 
 exports[`link Link with outer classes via Drupal Attributes 1`] = `
-
 <bolt-link display="inline"
            valign="center"
            class="u-bolt-padding-medium"
@@ -98,11 +205,9 @@ exports[`link Link with outer classes via Drupal Attributes 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;
 
 exports[`link basic link 1`] = `
-
 <bolt-link display="inline"
            valign="center"
 >
@@ -114,11 +219,9 @@ exports[`link basic link 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;
 
 exports[`link link display: flex 1`] = `
-
 <bolt-link display="flex"
            valign="center"
 >
@@ -130,11 +233,9 @@ exports[`link link display: flex 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;
 
 exports[`link link display: inline 1`] = `
-
 <bolt-link display="inline"
            valign="center"
 >
@@ -146,11 +247,9 @@ exports[`link link display: inline 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;
 
 exports[`link link valign: center 1`] = `
-
 <bolt-link display="inline"
            valign="center"
 >
@@ -162,11 +261,9 @@ exports[`link link valign: center 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;
 
 exports[`link link valign: start 1`] = `
-
 <bolt-link display="inline"
            valign="start"
 >
@@ -178,5 +275,4 @@ exports[`link link valign: start 1`] = `
     </replace-with-children>
   </a>
 </bolt-link>
-
 `;

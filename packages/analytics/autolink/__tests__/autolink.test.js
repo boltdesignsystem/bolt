@@ -8,15 +8,18 @@ describe('analytics autolinker', () => {
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
+      waitUntil: 'networkidle0',
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
 
     await page.addScriptTag({
       url: 'https://www.google-analytics.com/analytics.js',
     });
   }, timeout);
+
+  afterEach(async () => {
+    await page.close();
+  });
 
   test('autolinker does not modify component URLs already containing an _ga query string', async function() {
     await page.addScriptTag({
@@ -37,7 +40,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga=1234');
-  }, 30000);
+  }, 120000);
 
   test('autolinker updates the URLs of a <bolt-button> with an external url (2nd in the config) + rendering to the Shadow DOM', async function() {
     await page.addScriptTag({
@@ -58,7 +61,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 30000);
+  }, 120000);
 
   test('autolinker tracks the URLs of a <bolt-button> with an external url (2nd in the config) + rendering to the Shadow DOM - even after re-rendering', async function() {
     await page.addScriptTag({
@@ -69,7 +72,7 @@ describe('analytics autolinker', () => {
     await page.evaluate(() => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'External URL - Shadow DOM Test';
-      btn.setAttribute('url', 'https://www.pega.com');
+      btn.setAttribute('url', 'https://developer.mozilla.org');
       document.body.appendChild(btn);
     });
 
@@ -87,7 +90,7 @@ describe('analytics autolinker', () => {
 
     expect(currentUrl).toContain('_ga');
     expect(currentUrl).toContain('brightcove.com');
-  }, 30000);
+  }, 120000);
 
   test('autolinker updates the URLs of a <bolt-button> with an external url + rendering to the Shadow DOM', async function() {
     await page.addScriptTag({
@@ -108,7 +111,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 30000);
+  }, 120000);
 
   test('autolinker updates the URLs of <bolt-button>s with external urls + render to the light DOM', async function() {
     await page.addScriptTag({
@@ -130,7 +133,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 30000);
+  }, 120000);
 
   test('autolinker does not track <bolt-button>s with urls not containing domains in the config', async function() {
     await page.addScriptTag({
@@ -141,7 +144,7 @@ describe('analytics autolinker', () => {
     await page.evaluate(() => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'External URL - Untracked Domain';
-      btn.setAttribute('url', 'https://www.pega.com');
+      btn.setAttribute('url', 'https://developer.mozilla.org');
       document.body.appendChild(btn);
     });
 
@@ -151,7 +154,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).not.toContain('_ga');
-  }, 30000);
+  }, 120000);
 
   test('autolinker updates the URLs of a <bolt-link> with an external url + rendering to the Shadow DOM', async function() {
     await page.addScriptTag({
@@ -173,7 +176,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 30000);
+  }, 120000);
 
   test('autolinker updates the URLs of a <bolt-link> with an external url + rendering to the light DOM', async function() {
     await page.addScriptTag({
@@ -195,7 +198,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 30000);
+  }, 120000);
 
   test('autolinker does not track <bolt-link>s with urls not containing domains in the config', async function() {
     await page.addScriptTag({
@@ -207,7 +210,7 @@ describe('analytics autolinker', () => {
       const link = document.createElement('bolt-link');
       link.textContent = 'External URL - Untracked Domain';
       link.style.display = 'inline-block'; // for some strange reason, without any :host styles or this, puppeteer can't seem to find this DOM node to click on
-      link.setAttribute('url', 'https://www.pega.com');
+      link.setAttribute('url', 'https://developer.mozilla.org');
       document.body.appendChild(link);
     });
 
@@ -217,7 +220,7 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).not.toContain('_ga');
-  }, 30000);
+  }, 120000);
 
   test('the correct inline config for specifying autolink domains inside Drupal exists', async function() {
     await page.addScriptTag({
@@ -234,8 +237,8 @@ describe('analytics autolinker', () => {
       return window.drupalSettings.google_analytics.trackCrossDomains[0];
     });
 
-    expect(config).toBe('pega.com');
-  }, 30000);
+    expect(config).toBe('developer.mozilla.org');
+  }, 120000);
 
   test('allow Drupal to configure which domains get configured / tracked by autolink.', async function() {
     await page.addScriptTag({
@@ -250,7 +253,7 @@ describe('analytics autolinker', () => {
       const btn = document.createElement('bolt-button');
       btn.textContent =
         'External URL - Normally Untracked But Now Tracked Domain';
-      btn.setAttribute('url', 'https://www.pega.com');
+      btn.setAttribute('url', 'https://developer.mozilla.org');
       document.body.appendChild(btn);
     });
 
@@ -260,5 +263,5 @@ describe('analytics autolinker', () => {
     const currentUrl = await page.url();
 
     expect(currentUrl).toContain('_ga');
-  }, 30000);
+  }, 120000);
 });

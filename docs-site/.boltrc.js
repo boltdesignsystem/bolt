@@ -8,7 +8,7 @@ const config = {
   // lang: ['en', 'ja'],
 
   renderingService: false, // starts PHP service for rendering Twig templates
-  openServerAtStart: false,
+  openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pwa',
   srcDir: './src/pages',
@@ -23,9 +23,9 @@ const config = {
   webpackDevServer: {
     enabled: true,
   },
-  sourceMaps: (process.env.TRAVIS || argv.prod) ? false : true,
-  enableCache: (process.env.TRAVIS || argv.prod) ? false : true,
-  enableSSR: false, // temp disabld till Travis issue fixed
+  sourceMaps: !(process.env.TRAVIS || argv.prod),
+  enableCache: !(process.env.TRAVIS || argv.prod),
+  enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
       recursive: true,
@@ -74,13 +74,18 @@ const config = {
 
   components: {
     global: [
-      '@bolt/analytics-autotrack',
+      '@bolt/components-radio-switch',
+      '@bolt/components-carousel',
       '@bolt/global',
+      '@bolt/animations',
+      '@bolt/components-animate',
       '@bolt/docs-search',
-      '@bolt/schema-form',
+      '@bolt/components-typeahead',
+      // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
       '@bolt/components-placeholder',
+      '@bolt/components-accordion',
       '@bolt/components-action-blocks',
       '@bolt/components-banner',
       '@bolt/components-dropdown',
@@ -105,6 +110,7 @@ const config = {
       '@bolt/components-image',
       '@bolt/components-link',
       '@bolt/components-list',
+      '@bolt/components-modal',
       '@bolt/components-nav-indicator',
       '@bolt/components-nav-priority',
       '@bolt/components-navbar',
@@ -118,14 +124,20 @@ const config = {
       '@bolt/components-site',
       '@bolt/components-smooth-scroll',
       '@bolt/components-sticky',
+      '@bolt/components-stack',
       '@bolt/components-table',
+      '@bolt/components-tabs',
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
+      '@bolt/components-trigger',
       '@bolt/components-ul',
       '@bolt/components-ol',
       '@bolt/components-video',
+      '@pegawww/with-without', // @todo: remove once w/wo has shipped
       '@bolt/components-grid',
+      '@bolt/micro-journeys',
+      '@bolt/components-editor',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
@@ -147,6 +159,14 @@ const config = {
   },
   copy: [
     {
+      from: require.resolve(`@bolt/critical-path-polyfills`),
+      to: path.join(__dirname, '../www/build'),
+    },
+    {
+      from: path.join(path.dirname(require.resolve(`@bolt/components-typeahead`)),'__demos__/typeahead.data.json'),
+      to: path.join(__dirname, '../www/build/data'),
+    },
+    {
       from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),
       flatten: true,
@@ -158,7 +178,7 @@ const config = {
     },
     {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json'),
+        resolve.sync('@bolt/global/package.json')
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -167,9 +187,9 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json'),
+        resolve.sync('@bolt/twig-renderer/package.json')
       )}/SetupTwigRenderer.php`,
-      functions: ['addBoltExtensions'],
+      functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },
   ],
 };

@@ -9,9 +9,26 @@ import imageStyles from './image.scss';
 
 import schema from '../image.schema.yml';
 
-import './_image-lazy-sizes';
+import { lazySizes } from './_image-lazy-sizes';
 
 let cx = classNames.bind(imageStyles);
+
+let passiveIfSupported = false;
+
+// https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
+try {
+  window.addEventListener(
+    'test',
+    null,
+    Object.defineProperty({}, 'passive', {
+      // eslint-disable-next-line getter-return
+      get() {
+        // @ts-ignore
+        passiveIfSupported = { passive: true };
+      },
+    }),
+  );
+} catch (err) {}
 
 @define
 class BoltImage extends withLitHtml() {
@@ -24,39 +41,30 @@ class BoltImage extends withLitHtml() {
     srcset: props.string,
     sizes: props.string,
     ratio: props.string,
+    maxWidth: props.string,
     placeholderColor: props.string,
     placeholderImage: props.string,
     zoom: props.boolean,
     cover: props.boolean,
+    valign: props.string,
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
+    self.onResize = self.onResize.bind(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.schema = this.getModifiedSchema(schema);
+    self.schema = this.getModifiedSchema(schema, [
+      'lazyload',
+      'useAspectRatio',
+    ]);
+    self.initialClasses = [];
     return self;
   }
 
-  getModifiedSchema(schema) {
-    var modifiedSchema = schema;
-
-    // Remove "lazyload" and "useAspectRatio" from schema, does not apply to web component.
-    for (let property in modifiedSchema.properties) {
-      if (property === 'lazyload' || property === 'useAspectRatio') {
-        delete modifiedSchema.properties[property];
-      }
-    }
-
-    return modifiedSchema;
-  }
-
-  lazyloadImage(image) {
-    if (!this.isLoaded) {
-      // Note: This immediately unveils the image. Add intersection observer?
-      lazySizes.loader.unveil(image);
-      this.isLoaded = true;
-    }
+  disconnecting() {
+    super.disconnecting && super.disconnecting();
+    window.removeEventListener('resize', this.onResize);
   }
 
   connecting() {
@@ -71,21 +79,40 @@ class BoltImage extends withLitHtml() {
         this.removeChild(this.firstChild);
       }
     }
+
+    window.addEventListener('resize', this.onResize, passiveIfSupported);
+  }
+
+  onResize() {
+    if (
+      this.isLoaded &&
+      (this.getAttribute('sizes') === 'auto' || !this.getAttribute('sizes'))
+    ) {
+      this.sizes = `${this.offsetWidth}px`;
+    }
   }
 
   rendered() {
     super.rendered && super.rendered();
 
-    const lazyImage = this.renderRoot.querySelector('.js-lazyload');
+    const { noLazy } = this.validateProps(this.props);
 
-    if (lazyImage) {
-      // check if placeholder image has loaded; lazySizes will only unveil an image that is "complete"
-      if (lazyImage.complete) {
-        this.lazyloadImage(lazyImage);
-      } else {
-        lazyImage.onload = () => {
-          this.lazyloadImage(lazyImage);
-        };
+    // if image should lazyload
+    if (!noLazy) {
+      const lazyImage = this.renderRoot.querySelector(
+        `.${lazySizes.cfg.lazyClass}`,
+      );
+
+      // if component contains a lazy image that is rendering for the first time
+      if (lazyImage && !this.isLoaded) {
+        // set a flag so that image is not lazyloaded on subsequent re-renders
+        this.isLoaded = true;
+
+        // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
+        lazySizes.elements && lazySizes.elements.push(lazyImage);
+
+        // force rechecks -- probably not needed. @todo: can we remove?
+        // lazySizes.autoSizer.checkElems();
       }
     }
   }
@@ -99,10 +126,12 @@ class BoltImage extends withLitHtml() {
       srcset,
       sizes,
       ratio,
+      maxWidth,
       placeholderColor,
       placeholderImage,
       zoom,
       cover,
+      valign,
     } = this.validateProps(this.props);
 
     // negate and rename variables for readability
@@ -131,26 +160,43 @@ class BoltImage extends withLitHtml() {
 
     const classes = cx(...this.initialClasses, 'c-bolt-image__image', {
       'c-bolt-image__lazyload': lazyload,
-      'c-bolt-image__lazyload--fade': lazyload,
-      'c-bolt-image__lazyload--blur': lazyload && _isJpg,
+      'c-bolt-image__lazyload--fade': lazyload && !this.isLoaded,
+      'c-bolt-image__lazyload--blur': lazyload && _isJpg && !this.isLoaded,
       'js-lazyload': lazyload,
       'c-bolt-image--cover': cover,
     });
+
+    // grab the last image path referenced in srcset as a fallback if src isn't defined
+    const fallbackSrc = srcset
+      ? srcset
+          .split(',')
+          [srcset.split(',').length - 1].trim()
+          .split(' ')[0]
+      : undefined;
 
     const imageElement = () => {
       if (src || srcset) {
         return html`
           <img
             class="${classes}"
-            src="${lazyload ? placeholderImage : src}"
+            src="${ifDefined(src ? src : fallbackSrc)}"
             alt="${ifDefined(alt ? alt : undefined)}"
             srcset="${ifDefined(
-              !lazyload || this.isLoaded ? srcset || src : undefined,
+              lazyload ? placeholderImage : srcset ? srcset : undefined,
             )}"
             data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
-            sizes="${ifDefined(!lazyload || this.isLoaded ? sizes : undefined)}"
-            data-sizes="${ifDefined(lazyload ? sizes : undefined)}"
+            sizes="${ifDefined(
+              this.isLoaded || (this.sizes && this.sizes !== 'auto')
+                ? this.sizes
+                : `${this.offsetWidth}px`,
+            )}"
+            data-sizes="${ifDefined(
+              lazyload && this.sizes === 'auto' ? 'auto' : undefined,
+            )}"
             data-zoom="${ifDefined(zoom ? src : undefined)}"
+            style="${ifDefined(
+              valign ? `object-position: center ${valign};` : undefined,
+            )}"
           />
         `;
       }
@@ -205,7 +251,10 @@ class BoltImage extends withLitHtml() {
 
     const ratioTemplate = children => {
       return html`
-        <bolt-ratio ratio="${ratioW * 1}/${ratioH * 1}">
+        <bolt-ratio
+          ratio="${ratioW * 1}/${ratioH * 1}"
+          .useShadow=${this.useShadow}
+        >
           ${children}
         </bolt-ratio>
       `;
@@ -213,6 +262,14 @@ class BoltImage extends withLitHtml() {
 
     if (_canUsePlaceholder && placeholderColor) {
       this.style.backgroundColor = placeholderColor;
+    }
+
+    if (maxWidth) {
+      this.style.width = maxWidth;
+      // Don't bother setting `max-width` if `width` is also a percentage
+      if (!maxWidth.includes('%')) {
+        this.style.maxWidth = '100%';
+      }
     }
 
     let renderedImage;

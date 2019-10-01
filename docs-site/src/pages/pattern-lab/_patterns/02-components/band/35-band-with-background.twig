@@ -1,0 +1,75 @@
+{# Background Image #}
+<div class="u-bolt-margin-bottom-small">
+  {% set content_image %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xxxlarge",
+      text: "This Band Has a Backround Image",
+    } only %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "This is a button",
+    } only %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    size: "large",
+    background: {
+      opacity: "heavy",
+      fill: "color",
+      focalPoint: {
+        vertical: "center",
+        horizontal: "center"
+      },
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/images/content/backgrounds/background-short-1.jpg",
+          lazyload: false
+        },
+      ]
+    },
+    content: content_image
+  } only %}
+</div>
+
+{# @todo: `isBackgroundVideo` will be removed with Bolt v3.0. Hide this demo page for now and remove it entirely with v3.0. #}
+{# Background Video #}
+{# {% set content_video %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxxlarge",
+    text: "This Band Has a Backround Video",
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This button activates the video",
+    attributes: {
+      "on-click": "toggle",
+      "on-click-target": "js-video-bg-test-1"
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  size: "large",
+  background: {
+    opacity: "heavy",
+    fill: "color",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "video",
+        isBackgroundVideo: true,
+        videoId: "5609376179001",
+        accountId: "1900410236",
+        playerId: "r1CAdLzTW",
+        attributes: {
+          class: [
+            "js-video-bg-test-1"
+          ]
+        }
+      }
+    ]
+  },
+  content: content_video
+} only %} #}

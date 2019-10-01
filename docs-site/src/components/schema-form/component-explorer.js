@@ -42,6 +42,8 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
       formData: '',
       renderedHTML: '',
       schema: '',
+      formattedHTML: '',
+      theme: 'xlight',
     };
     this.useShadow = false;
     this.requestRender = this.requestRender.bind(this);
@@ -71,6 +73,12 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
     if (this.schemaForm) {
       this.schemaForm.resetForm();
     }
+  }
+
+  switchTheme(themeName){
+    this.setState({
+      theme: themeName,
+    });
   }
 
   shouldUpdate(prevProps, prevState) {
@@ -137,26 +145,91 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
           flexWrap: 'wrap',
           backgroundColor: '#F6F6F9',
           margin: '0 auto',
+          border: '1px solid rgba(0, 0, 0, 0.075)',
         })}"
       >
         <div
-          class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-6/10@xsmall"
+          class="${`u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-6/10@small t-bolt-${this.state.theme}`}"
           style="${styleMap({
-            backgroundColor: '#FFF',
-            border: '1px solid rgba(0, 0, 0, .075)',
             display: 'flex',
+            flexDirection: 'column',
             position: 'relative',
           })}"
         >
           <div
-            class="u-bolt-padding-medium c-bds-component-explorer__demo-container"
-            style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; box-shadow: inset rgba(0, 0, 0, 0.1) 0px 0px 30px;"
+            class="u-bolt-padding-medium u-bolt-padding-bottom-large c-bds-component-explorer__demo-container"
+            style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;"
           >
             ${unsafeHTML(this.state.renderedHTML || '')}
           </div>
+
+          <div style="position: absolute; bottom: 0; right: 0.5rem">
+            <bolt-list class="u-bolt-padding-small-squished" tag="ul" display="inline" spacing="none" separator="none" align="start" valign="center">
+              <bolt-list-item class="u-bolt-margin-left-small">
+                <input
+                  type="radio"
+                  id="theme-xlight"
+                  name="radio-theme-picker"
+                  @click=${() => this.switchTheme('xlight')}
+                  class="c-bolt-input c-bolt-input--radio is-filled"
+                  checked
+                />
+
+                <label
+                  for="theme-xlight"
+                  class="c-bolt-inline-label c-bolt-inline-label--radio"
+                  >xlight</label>
+              </bolt-list-item>
+
+              <bolt-list-item class="u-bolt-margin-left-small">
+                <input
+                  type="radio"
+                  id="theme-light"
+                  name="radio-theme-picker"
+                  @click=${() => this.switchTheme('light')}
+                  class="c-bolt-input c-bolt-input--radio is-filled"
+                />
+
+                <label
+                  for="theme-light"
+                  class="c-bolt-inline-label c-bolt-inline-label--radio"
+                  >light</label>
+              </bolt-list-item>
+
+              <bolt-list-item class="u-bolt-margin-left-small">
+                <input
+                  type="radio"
+                  id="theme-dark"
+                  name="radio-theme-picker"
+                  @click=${() => this.switchTheme('dark')}
+                  class="c-bolt-input c-bolt-input--radio is-filled"
+                />
+
+                <label
+                  for="theme-dark"
+                  class="c-bolt-inline-label c-bolt-inline-label--radio"
+                  >dark</label>
+              </bolt-list-item>
+
+              <bolt-list-item class="u-bolt-margin-left-small">
+                <input
+                  type="radio"
+                  id="theme-xdark"
+                  name="radio-theme-picker"
+                  @click=${() => this.switchTheme('xdark')}
+                  class="c-bolt-input c-bolt-input--radio is-filled"
+                />
+
+                <label
+                  for="theme-xdark"
+                  class="c-bolt-inline-label c-bolt-inline-label--radio"
+                  >xdark</label>
+              </bolt-list-item>
+            </bolt-list>
+          </div>
         </div>
         <div
-          class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-4/10@xsmall"
+          class="u-bolt-flex-grow u-bolt-flex-shrink u-bolt-width-1/1 u-bolt-width-4/10@small"
           style="${styleMap({
             flexBasis: '200px',
             overflow: 'visible',
@@ -168,6 +241,7 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
             style="${styleMap({
               minHeight: '320px',
               overflow: 'scroll',
+              height: '100%',
               '-webkit-overflow-scroll': 'touch',
             })}"
           >
@@ -190,7 +264,7 @@ export default class ComponentExplorer extends withContext(withLitHtml()) {
             })}"
             @click=${() => this.resetForm()}
           >
-            Reset Component Demo
+            Reset Component Explorer
           </bolt-button>
         </div>
       </div>

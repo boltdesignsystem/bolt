@@ -4,13 +4,17 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const CriticalCssPlugin = require('critical-css-webpack-plugin');
+const CriticalCssPlugin = require('@bolt/critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
-const PrerenderSPAPlugin = require('prerender-spa-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
+const localChrome = require('local-chrome');
+// const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
+const Renderer = require('@bolt/uikit-prerenderer');
+const puppeteer = require('puppeteer');
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
@@ -48,18 +52,7 @@ module.exports = async function() {
         loader: 'postcss-loader',
         options: {
           sourceMap: config.sourceMaps,
-          plugins: () => [
-            autoprefixer({
-              browsers: [
-                'last 2 version',
-                'safari 5',
-                'ie 8',
-                'ie 9',
-                'opera 12.1',
-                'android 4',
-              ],
-            }),
-          ],
+          plugins: () => [autoprefixer()],
         },
       },
       {
@@ -126,13 +119,11 @@ module.exports = async function() {
             use: {
               loader: 'babel-loader',
               options: {
+                compact: false,
                 presets: [
                   [
                     '@babel/preset-env',
                     {
-                      targets: {
-                        browsers: ['>0.25%', 'ie 11'],
-                      },
                       modules: false,
                       debug: false,
                     },
@@ -225,39 +216,9 @@ module.exports = async function() {
         //     },
         //   },
         // },
-        minimizer: config.prod
-          ? [
-              new UglifyJsPlugin({
-                sourceMap: false,
-                parallel: true,
-                cache: true,
-                uglifyOptions: {
-                  compress: true,
-                  mangle: true,
-                  output: {
-                    comments: false,
-                    beautify: false,
-                  },
-                },
-              }),
-            ]
-          : [],
+        minimizer: config.prod ? [new TerserPlugin()] : [],
       },
       plugins: [
-        new PrerenderSPAPlugin({
-          // Required - The path to the webpack-outputted app to prerender.
-          // staticDir: path.join(__dirname, 'dist'),
-          staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
-          // Required - Routes to render.
-          routes: ['/'],
-          postProcess(context) {
-            context.html = context.html.replace(
-              /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
-              '',
-            );
-            return context;
-          },
-        }),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
           [
@@ -287,6 +248,33 @@ module.exports = async function() {
       ],
     };
 
+    if (localChrome) {
+      webpackConfig.plugins.unshift(
+        new PrerenderSPAPlugin({
+          // Required - The path to the webpack-outputted app to prerender.
+          // staticDir: path.join(__dirname, 'dist'),
+          staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
+          // Required - Routes to render.
+          routes: ['/'],
+          postProcess(context) {
+            context.html = context.html.replace(
+              /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
+              '',
+            );
+            return context;
+          },
+          renderer: new Renderer({
+            // Optional - The name of the property to add to the window object with the contents of `inject`.
+            injectProperty: '__PRERENDER_INJECTED',
+            // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
+            inject: {
+              foo: 'bar',
+            },
+          }),
+        }),
+      );
+    }
+
     webpackConfig.plugins.push(
       new HardSourceWebpackPlugin({
         info: {
@@ -304,33 +292,51 @@ module.exports = async function() {
       }),
     );
 
-    webpackConfig.plugins.push(
-      new CriticalCssPlugin({
-        base: path.resolve(__dirname, config.buildDir),
-        src: 'index.html',
-        dest: 'index.html',
-        inline: true,
-        minify: true,
-        extract: false,
-        width: 1300,
-        height: 900,
-        penthouse: {
-          keepLargerMediaQueries: true,
-
-          // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
-          forceInclude: [
-            '.pl-c-body--theme-light',
-            '.pl-c-body--theme-sidebar',
-            '.pl-c-body--theme-sidebar .pl-c-viewport',
-            '.pl-c-body--theme-density-compact',
-          ],
-          timeout: 30000, // ms; abort critical CSS generation after this timeout
-          maxEmbeddedBase64Length: 1000,
-          renderWaitTime: 1000,
-          blockJSRequests: false,
+    if (localChrome) {
+      const browserPromise = puppeteer.launch({
+        executablePath: localChrome,
+        ignoreHTTPSErrors: true,
+        args: ['--disable-setuid-sandbox', '--no-sandbox'],
+        // not required to specify here, but saves Penthouse some work if you will
+        // re-use the same viewport for most penthouse calls.
+        defaultViewport: {
+          width: 1300,
+          height: 900,
         },
-      }),
-    );
+      });
+
+      webpackConfig.plugins.push(
+        new CriticalCssPlugin({
+          base: path.resolve(__dirname, config.buildDir),
+          src: 'index.html',
+          target: { html: 'index.html' },
+          inline: true,
+          minify: true,
+          extract: false,
+          width: 1300,
+          height: 900,
+          penthouse: {
+            keepLargerMediaQueries: true,
+
+            // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
+            forceInclude: [
+              '.pl-c-body--theme-light',
+              '.pl-c-body--theme-sidebar',
+              '.pl-c-body--theme-sidebar .pl-c-viewport',
+              '.pl-c-body--theme-density-compact',
+            ],
+            timeout: 30000, // ms; abort critical CSS generation after this timeout
+            maxEmbeddedBase64Length: 1000,
+            renderWaitTime: 1000,
+            blockJSRequests: false,
+            puppeteer: {
+              executablePath: localChrome,
+              getBrowser: () => browserPromise
+            }
+          },
+        }),
+      );
+    }
 
     return resolve(webpackConfig);
   });

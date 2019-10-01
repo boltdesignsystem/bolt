@@ -293,3 +293,17 @@ $bolt-blockquote-image-size: 4rem;
     }
   }
 }
+
+.c-bolt-blockquote--no-quotes {
+  .c-bolt-blockquote__quote {
+    p:before,
+    p:after {
+      display: none;
+    }
+
+    ::slotted(p):before,
+    ::slotted(p):after {
+      display: none;
+    }
+  }
+}

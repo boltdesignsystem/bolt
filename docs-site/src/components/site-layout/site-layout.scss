@@ -245,7 +245,7 @@ $bds-sidebar-width: 320px;
   display: grid;
   flex-grow: 1;
   align-self: start;
-  min-height: 100%;
+  // min-height: 100%; // causes extra (unnecessary) scrolling on the homepage. can we remove?
   grid-column-start: 1;
   grid-column-end: 3;
   grid-template-columns: auto;
@@ -294,8 +294,8 @@ $bds-sidebar-width: 320px;
   display: -ms-grid; /* [1] */
   display: grid;
 
-  -ms-grid-rows: bolt-spacing(small) auto auto 1fr bolt-spacing(small); /* [1] */
-  grid-template-rows: bolt-spacing(small) auto auto 1fr bolt-spacing(small);
+  -ms-grid-rows: bolt-spacing(small) auto auto auto 1fr bolt-spacing(small); /* [1] */
+  grid-template-rows: bolt-spacing(small) auto auto auto 1fr bolt-spacing(small);
 
   -ms-grid-columns: 1fr 90% 1fr; /* [1] */
   grid-template-columns: 1fr 90% 1fr;
@@ -304,8 +304,8 @@ $bds-sidebar-width: 320px;
   margin: 0 auto;
 
   @include bolt-mq(small) {
-    -ms-grid-rows: bolt-spacing(medium) auto auto 1fr bolt-spacing(medium); /* [1] */
-    grid-template-rows: bolt-spacing(medium) auto auto 1fr bolt-spacing(medium);
+    -ms-grid-rows: bolt-spacing(medium) auto auto auto 1fr bolt-spacing(medium); /* [1] */
+    grid-template-rows: bolt-spacing(medium) auto auto auto 1fr bolt-spacing(medium);
   }
 
   @include bolt-mq(medium) {
@@ -370,6 +370,44 @@ $bds-sidebar-width: 320px;
     -ms-grid-column: 2; /* [1] */
     -ms-grid-column-span: 1; /* [1] */
     grid-column: 2/span 1;
+  }
+}
+
+.c-bds-docs__page-schema {
+  width: 100%;
+
+  min-width: 0;
+  -ms-grid-row: 5; /* [1] */
+  -ms-grid-row-span: 1; /* [1] */
+  grid-row: 5/span 1;
+
+  -ms-grid-column: 1; /* [1] */
+  -ms-grid-column-span: 3; /* [1] */
+  grid-column: 1/span 3;
+
+  @include bolt-mq(medium) {
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+
+    margin-left: initial; // remove on larger screens
+
+    -ms-grid-row: 5; /* [1] */
+    -ms-grid-row-span: 1; /* [1] */
+    grid-row: 5/span 1;
+
+    -ms-grid-column: 1; /* [1] */
+    -ms-grid-column-span: 4; /* [1] */
+    grid-column: 1/span 4;
+  }
+
+  @include bolt-mq(large) {
+    -ms-grid-row: 5; /* [1] */
+    -ms-grid-row-span: 1; /* [1] */
+    grid-row: 5/span 1;
+
+    -ms-grid-column: 1; /* [1] */
+    -ms-grid-column-span: 4; /* [1] */
+    grid-column: 1/span 4;
   }
 }
   

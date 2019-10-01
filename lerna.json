@@ -1,13 +1,14 @@
 {
   "lerna": "3.10.7",
-  "version": "2.4.1",
+  "version": "2.8.0-beta.5",
   "command": {
     "publish": {
       "allowBranch": [
         "master",
         "next",
         "next/*",
-        "release/*"
+        "release/*",
+        "develop"
       ],
       "conventionalCommits": true,
       "gitReset": true,
@@ -19,6 +20,15 @@
       "includeMergedTags": true
     }
   },
+  "ignoreChanges": [
+    "**/__fixtures__/**",
+    "**/__tests__/**",
+    "**/*.md",
+    "**/__snapshots__/**"
+  ],
   "npmClient": "yarn",
+  "npmClientArgs": [
+    "--ignore-optional"
+  ],
   "useWorkspaces": true
 }

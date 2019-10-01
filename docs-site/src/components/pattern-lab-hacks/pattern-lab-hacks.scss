@@ -3,6 +3,7 @@
 .pl-c-main {
   @include bolt-padding-left(small);
   @include bolt-padding-right(small);
+  min-height: 100vh; // so demos with overlays, etc aren't immediately chopped off
 }
 
 .sg-main {
@@ -39,13 +40,21 @@
   max-height: 0px; // prevent background from showing up
 }
 
+.pl-c-pattern {
+  position: static;
+}
+
 .pl-c-category,
-.pl-c-category__title, 
-.pl-c-pattern[id*=-docs] > .pl-c-pattern__header, 
+.pl-c-category__title,
+.pl-c-pattern[id*=-docs] > .pl-c-pattern__header,
 .pl-c-pattern[id*=-docs] > .pl-c-pattern__extra {
   display: none;
 }
 
 .pl-c-category:first-of-type {
   margin: 0;
+}
+
+.pl-c-pattern[id*="-docs"] .pl-c-pattern__extra-wrapper {
+  display: none;
 }

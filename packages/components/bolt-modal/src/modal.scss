@@ -1,0 +1,438 @@
+@import '@bolt/core';
+@import '@bolt/global/styles/06-themes/_themes.all.scss';
+
+/* ------------------------------------ *\
+   Modal
+   ---
+   Based originally off of
+   https://github.com/edenspiekermann/a11y-dialog
+   before heavy modifications
+   and customizations
+\* ------------------------------------ */
+
+/**
+ * When `<dialog>` is properly supported, the overlay is implied and can be
+ * styled with `::backdrop`, which means the DOM one should be removed.
+ */
+/*
+[data-a11y-dialog-native] .dialog-overlay {
+  @todo: look further into this to see why the natively supported ::backdrop wasn't showing up as expected
+  display: none;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.66);
+}
+*/
+
+$bolt-modal-overlay-bg-color-dark: rgba(
+  bolt-color(indigo, xdark),
+  bolt-opacity(80)
+);
+$bolt-modal-overlay-bg-color-light: rgba(bolt-color(white), bolt-opacity(80));
+$bolt-modal-border-width: $bolt-border-width;
+$bolt-modal-border-style: $bolt-border-style;
+$bolt-modal-border-color: bolt-theme(text, 0.15);
+$bolt-modal-border-radius: bolt-border-radius(small);
+$bolt-modal-max-height: 80vh;
+$bolt-modal-transition: $bolt-transition;
+$bolt-modal-breakpoint: 'small';
+$bolt-modal-animation-scale: 0.95;
+
+// Hide all the non-trigger (button / link, etc) content inside the <bolt-modal> container before the JS kicks in
+bolt-modal:not([ready]) {
+  display: none;
+}
+
+.c-bolt-modal {
+  @include bolt-z-index(modal);
+  @include bolt-font-family(body);
+  @include bolt-font-size(medium);
+  @include bolt-font-weight(regular);
+
+  display: block;
+  opacity: bolt-opacity(0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; // Use % instead of vh or modal scrollbar is hidden behind bold scrollbar in IE11
+  height: 100vh;
+  pointer-events: none;
+  transition: opacity $bolt-modal-transition;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  &.is-open {
+    opacity: bolt-opacity(100);
+    cursor: pointer;
+    pointer-events: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @include bolt-mq($until: $bolt-modal-breakpoint) {
+    visibility: hidden;
+    opacity: bolt-opacity(0);
+    transition: opacity $bolt-modal-transition;
+
+    [class*='t-bolt-'] {
+      color: bolt-color(black);
+      background-color: bolt-color(white);
+    }
+
+    .c-bolt-modal__overlay {
+      display: none;
+    }
+
+    .c-bolt-modal__content {
+      width: 100%;
+    }
+
+    .c-bolt-modal__container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      color: bolt-color(black);
+      background-color: bolt-color(white);
+    }
+
+    .c-bolt-modal__container-header {
+      @include bolt-padding(small large small small);
+    }
+
+    .c-bolt-modal__container-header--hidden {
+      @include bolt-padding(0);
+
+      height: bolt-v-spacing(medium) + (bolt-v-spacing(small) * 2); // Match close button icon size and margin.
+    }
+
+    .c-bolt-modal__container-body {
+      @include bolt-margin-top(auto);
+      @include bolt-margin-bottom(auto);
+
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .c-bolt-modal__container-footer {
+      @include bolt-padding(small);
+    }
+
+    [class*='c-bolt-modal__container--spacing-'] {
+      .c-bolt-modal__container-body {
+        @include bolt-padding(small);
+      }
+    }
+
+    &.is-open {
+      visibility: visible;
+      opacity: bolt-opacity(100);
+    }
+  }
+}
+
+// Overlay color options
+.c-bolt-modal,
+.c-bolt-modal--overlay-dark {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    background-color: $bolt-modal-overlay-bg-color-dark;
+  }
+}
+
+.c-bolt-modal--overlay-light {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    background-color: $bolt-modal-overlay-bg-color-light;
+  }
+}
+
+// Content box
+.c-bolt-modal__content {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+
+  @include bolt-mq($bolt-modal-breakpoint) {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
+    max-width: calc(100% - #{bolt-spacing(medium) * 2});
+    max-height: $bolt-modal-max-height;
+    transition: visibility $bolt-transition-timing $bolt-transition-ease $bolt-transition-timing;
+  }
+
+  @at-root .c-bolt-modal.is-open #{&} {
+    cursor: auto;
+
+    @include bolt-mq($bolt-modal-breakpoint) {
+      visibility: visible;
+      transition: visibility 0s $bolt-transition-ease 0s;
+    }
+  }
+}
+
+// Scroll options
+@include bolt-mq($bolt-modal-breakpoint) {
+  .c-bolt-modal--scroll-overall {
+    .c-bolt-modal__content {
+      @include bolt-margin(0 auto);
+      position: relative;
+      top: 50vh;
+      transform: translateX(0) translateY(-50%);
+    }
+
+    &.is-open {
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      pointer-events: auto;
+
+      .c-bolt-modal__content {
+        transform: translateX(0) translateY(-50%) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
+      }
+    }
+  }
+
+  .c-bolt-modal--scroll-container {
+    .c-bolt-modal__content {
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    &.is-open {
+      .c-bolt-modal__content {
+        transform: translateX(-50%) translateY(-50%) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
+      }
+    }
+
+    .c-bolt-modal__container-body {
+      max-height: calc(#{$bolt-modal-max-height} - 6rem);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+}
+
+// Content width options
+@include bolt-mq($bolt-modal-breakpoint) {
+  .c-bolt-modal__content--width-regular {
+    width: 100% / 12 * 10;
+  }
+
+  .c-bolt-modal__content--width-optimal {
+    width: 75ch;
+  }
+
+  .c-bolt-modal__content--width-full {
+    width: calc(100% - #{bolt-spacing(medium) * 2});
+  }
+}
+
+/**
+  * Modal Container
+  * 1. translate3d(0, 0, 0) is needed to fix http://vjira2:8080/browse/BDS-1672?filter=-1
+**/
+.c-bolt-modal__container {
+  display: block;
+  opacity: bolt-opacity(0);
+  transform: translate3d(0, 0, 0) scale($bolt-modal-animation-scale); /* [1] */
+  transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
+
+  @at-root .c-bolt-modal.is-open #{&} {
+    opacity: bolt-opacity(100);
+    transform: translate3d(0, 0, 0) scale(1); /* [1] */
+  }
+
+  @include bolt-mq($bolt-modal-breakpoint) {
+    border-radius: $bolt-modal-border-radius;
+  }
+}
+
+.c-bolt-modal__container-header,
+.c-bolt-modal__container-footer,
+.c-bolt-modal__container-body {
+  display: block;
+
+  // @todo [Mai] Normally, block level spacing gets cancelled out if it's the last child, but that does not work with slots. This is an interim solution for it.
+  ::slotted(*:last-child),
+  ::slotted(*.is-last-child) {
+    margin-bottom: 0 !important;
+  }
+}
+
+.c-bolt-modal__container-header,
+.c-bolt-modal__container-footer {
+  position: relative;
+}
+
+.c-bolt-modal__container-header {
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+    height: bolt-v-spacing(xxsmall);
+    pointer-events: none;
+    background-image: linear-gradient(
+      rgba(bolt-color(gray, light), 0.25),
+      transparent
+    );
+  }
+}
+
+.c-bolt-modal__container-header--hidden {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    @include bolt-visuallyhidden;
+  }
+}
+
+.c-bolt-modal__container-footer {
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    transform: translateY(-100%);
+    height: bolt-v-spacing(xxsmall);
+    pointer-events: none;
+    background-image: linear-gradient(
+      transparent,
+      rgba(bolt-color(gray, light), 0.25)
+    );
+  }
+}
+
+// Container spacing options
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  @include bolt-mq($bolt-modal-breakpoint) {
+    .c-bolt-modal__container--spacing-#{$spacing-value-name} {
+      .c-bolt-modal__container-body {
+        @include bolt-padding(#{$spacing-value-name});
+      }
+
+      .c-bolt-modal__container-header,
+      .c-bolt-modal__container-footer {
+        @include bolt-padding(#{$spacing-value-name}, squished);
+      }
+    }
+  }
+}
+
+// Controls
+.c-bolt-modal__close-button {
+  @include bolt-z-index(modal);
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  transition: background-color $bolt-modal-transition;
+
+  @include bolt-mq($bolt-modal-breakpoint) {
+    @include bolt-border-radius(full);
+
+    transform: translate3d(100%, -100%, 0);
+
+    &:hover,
+    &:focus-within {
+      background-color: bolt-theme(background, 0.1);
+    }
+  }
+}
+
+// For IE which doesn't support :focus-within
+.c-bolt-modal__close-button--focus-within {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    background-color: bolt-theme(background, 0.1);
+  }
+}
+
+.c-bolt-modal__close-button--hidden {
+  @include bolt-mq($bolt-modal-breakpoint) {
+    @include bolt-visuallyhidden;
+  }
+}
+
+.c-bolt-modal__close-button__text {
+  @include bolt-visuallyhidden;
+}
+
+.c-bolt-modal__close-button__icon {
+  display: block;
+  position: relative;
+  width: bolt-v-spacing(medium);
+  height: bolt-v-spacing(medium);
+  margin: bolt-v-spacing(small);
+
+  @include bolt-mq($bolt-modal-breakpoint) {
+    @include bolt-margin(0);
+
+    width: bolt-spacing(medium) - 0.2rem;
+    height: bolt-spacing(medium) - 0.2rem;
+  }
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: bolt-spacing(small);
+    height: 2px;
+    border-radius: $bolt-modal-border-radius;
+    background-color: bolt-color(indigo, light);
+    transform-origin: 50% 50%;
+
+    @include bolt-mq($bolt-modal-breakpoint) {
+      height: 0.1rem;
+      background-color: bolt-color(white);
+    }
+  }
+
+  &:before {
+    transform: translate3d(-50%, -50%, 0) rotate(45deg);
+  }
+
+  &:after {
+    transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+  }
+}
+
+.c-bolt-modal__close-button--dark {
+  .c-bolt-modal__close-button__icon {
+    &:before,
+    &:after {
+      @include bolt-mq($bolt-modal-breakpoint) {
+        background-color: bolt-color(indigo, light);
+      }
+    }
+  }
+}
+
+.c-bolt-modal__close-button--light {
+  .c-bolt-modal__close-button__icon {
+    &:before,
+    &:after {
+      @include bolt-mq($bolt-modal-breakpoint) {
+        background-color: bolt-color(white);
+      }
+    }
+  }
+}
+
+.c-bolt-modal__dialog-title {
+  @include bolt-visuallyhidden;
+}

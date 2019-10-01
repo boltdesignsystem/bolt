@@ -1,0 +1,46 @@
+{% set schema = bolt.data.components["@bolt-components-modal"].schema %}
+
+<bolt-text>The modal container's width can be adjusted by the <code>width</code> prop. The default is set to <code>optimal</code>.</bolt-text>
+
+<bolt-text headline font-size="xlarge">Width Options</bolt-text>
+
+<bolt-table>
+  <table>
+    <tbody>
+      {% for width in schema.properties.width.enum %}
+        <tr>
+          <th>
+            {% include "@bolt-components-button/button.twig" with {
+              text: width|capitalize,
+              size: "small",
+              width: "full",
+              attributes: {
+                onclick: "this.nextElementSibling.show()",
+              }
+            } only %}
+            {% include "@bolt-components-modal/modal.twig" with {
+              content: "This is a modal set to " ~ width ~ " width.",
+              width: width,
+            } only %}
+          </th>
+          <td>
+            {% if width == "full" %}
+              This is taking up the full width of the screen minus the gutters (about 2rem on left and right).
+            {% elseif width == "regular" %}
+              This is 10 out 12 columns wide, about 80% of the screen width.
+            {% elseif width == "optimal" %}
+              This is about 75 characters wide, close to optimal reading length.
+            {% elseif width == "auto" %}
+              This adjusts to the width of the modal content. In most cases, the user must define a max-width in absolute value (do not use relative value such as %) on the modal content to get the desired results. Recommended for advanced usage.
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2">Additional Notes: this prop only applies to viewports equal to or above the small breakpoint (~600px).</th>
+      </tr>
+    </tfoot>
+  </table>
+</bolt-table>

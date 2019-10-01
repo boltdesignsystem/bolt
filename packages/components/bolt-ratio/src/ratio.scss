@@ -6,10 +6,24 @@
 
 bolt-ratio {
   display: block;
+  width: 100%;
+  overflow: hidden; // Hide placeholder blurred images from leaking through
+
+  &:not(:defined){
+    @supports (--custom: property) {
+      &:before {
+        content: '';
+        display: block;
+        width: 100%;
+        padding-bottom: calc(100% / (var(--aspect-ratio)));
+      }
+    }
+  }
 }
 
 :host {
   display: block;
+  overflow: hidden; // Hide placeholder blurred images from leaking through
 }
 
 .c-bolt-ratio {

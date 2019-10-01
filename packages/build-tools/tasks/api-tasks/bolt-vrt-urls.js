@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs');
-const { getConfig } = require('@bolt/build-tools/utils/config-store');
+const { getConfig } = require('@bolt/build-utils/config-store');
 const path = require('path');
 const shell = require('shelljs');
 const { getBoltTags } = require('./bolt-versions');
@@ -18,20 +18,28 @@ async function generateVrtUrls() {
 
   const filteredUrls = {
     patterns: {},
-    pages: [],
+    // pages: [],
   };
 
   const boltPackages = JSON.parse(
     shell.exec('lerna ls --json --all', { silent: true }).stdout,
   );
 
-  const allPackages = boltPackages.filter(pkg =>
-    pkg.name.includes('@bolt/components'),
+  const allPackages = boltPackages.filter(
+    pkg =>
+      pkg.name.includes('@bolt/components-image') ||
+      pkg.name.includes('@bolt/components-band') ||
+      pkg.name.includes('@bolt/components-blockquote') ||
+      pkg.name.includes('@bolt/components-teaser') ||
+      pkg.name.includes('@bolt/components-video'),
   );
 
   getBoltTags().then(versions => {
     const latestVersion = versions[0].name.replace(/\./g, '-');
     const previousVersion = versions[1].name.replace(/\./g, '-');
+
+    console.log(latestVersion);
+    console.log(previousVersion);
 
     // @todo: double-check each url path generated to make sure the URL path actually exists
     // @todo: update to reference bolt-version data -- comparing the current version (already wired up) + the previous version (not yet wired up) of the design system.
@@ -45,7 +53,7 @@ async function generateVrtUrls() {
 
         if (
           urlName.includes(packageName) &&
-          !urlName.includes('viewall') &&
+          // urlName.includes('viewall') &&
           !urlName.includes('docs')
         ) {
           // filteredUrls.patterns = filteredUrls.patterns
@@ -54,55 +62,56 @@ async function generateVrtUrls() {
           filteredUrls.patterns[name] = filteredUrls.patterns[name]
             ? filteredUrls.patterns[name]
             : [];
-          if (!boltUrls[url].added) {
-            filteredUrls.patterns[name].push({
-              patternVariation: urlName,
-              previousReleaseUrl: urlAddress.replace(
-                '../../',
-                `https://${previousVersion}.boltdesignsystem.com/pattern-lab/`,
-              ),
-              currentReleaseUrl: urlAddress.replace(
-                '../../',
-                `https://${latestVersion}.boltdesignsystem.com/pattern-lab/`,
-              ),
-              nextReleaseUrl: urlAddress.replace(
-                '../../',
-                `https://master.boltdesignsystem.com/pattern-lab/`,
-              ),
-            });
 
-            boltUrls[url].added = true;
+          if (
+            urlName.includes(packageName) &&
+            // urlName.includes('viewall') &&
+            !urlName.includes('viewall') &&
+            !urlName.includes('docs')
+          ) {
+            if (!boltUrls[url].added) {
+              filteredUrls.patterns[name].push({
+                patternVariation: urlName,
+                previousReleaseUrl: urlAddress.replace(
+                  '../../',
+                  `https://${previousVersion}.boltdesignsystem.com/pattern-lab/`,
+                ),
+                currentReleaseUrl: urlAddress.replace(
+                  '../../',
+                  `https://${latestVersion}.boltdesignsystem.com/pattern-lab/`,
+                ),
+                // nextReleaseUrl: urlAddress.replace(
+                //   '../../',
+                //   `https://master.boltdesignsystem.com/pattern-lab/`,
+                // ),
+              });
+
+              boltUrls[url].added = true;
+            }
+          } else if (urlName.includes('viewall')) {
+            if (!boltUrls[url].added) {
+              // filteredUrls.pages = filteredUrls.pages || [];
+              filteredUrls.patterns[name].push({
+                patternVariation: urlName,
+                previousReleaseUrl: urlAddress.replace(
+                  '../../',
+                  `https://${previousVersion}.boltdesignsystem.com/pattern-lab/`,
+                ),
+                currentReleaseUrl: urlAddress.replace(
+                  '../../',
+                  `https://${latestVersion}.boltdesignsystem.com/pattern-lab/`,
+                ),
+                // nextReleaseUrl: urlAddress.replace(
+                //   '../../',
+                //   `https://master.boltdesignsystem.com/pattern-lab/`,
+                // ),
+              });
+
+              boltUrls[url].added = true;
+            }
           }
         }
       });
-
-      if (
-        urlName.includes('pages-') &&
-        !urlName.includes('viewall') &&
-        !urlName.includes('wysiwyg') &&
-        !urlName.includes('ckeditor')
-      ) {
-        if (!boltUrls[url].added) {
-          // filteredUrls.pages = filteredUrls.pages || [];
-          filteredUrls.pages.push({
-            pageName: urlName,
-            previousReleaseUrl: urlAddress.replace(
-              '../../',
-              `https://${previousVersion}.boltdesignsystem.com/pattern-lab/`,
-            ),
-            currentReleaseUrl: urlAddress.replace(
-              '../../',
-              `https://${latestVersion}.boltdesignsystem.com/pattern-lab/`,
-            ),
-            nextReleaseUrl: urlAddress.replace(
-              '../../',
-              `https://master.boltdesignsystem.com/pattern-lab/`,
-            ),
-          });
-
-          boltUrls[url].added = true;
-        }
-      }
     });
 
     writeResults(latestVersion, previousVersion);
@@ -122,12 +131,19 @@ async function generateVrtUrls() {
           console.log('An error occured while writing JSON Object to File.');
           return console.log(err);
         }
-
-        // console.log('VRT testing URLs have been generated.');
+        console.log('VRT testing URLs have been generated.');
+        console.log(
+          path.join(
+            config.dataDir,
+            `bolt-vrt-urls--${latestVersion}-vs-${previousVersion}.json`,
+          ),
+        );
       },
     );
   }
 }
+
+generateVrtUrls();
 
 module.exports = {
   generateVrtUrls,

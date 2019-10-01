@@ -15,15 +15,18 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
 const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
-const { getConfig } = require('./utils/config-store');
-const { boltWebpackProgress } = require('./utils/webpack-helpers');
-const { webpackStats, statsPreset } = require('./utils/webpack-verbosity');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
+const {
+  webpackStats,
+  statsPreset,
+} = require('@bolt/build-utils/webpack-verbosity');
 
 const {
   getBoltManifest,
   mapComponentNameToTwigNamespace,
-} = require('./utils/manifest');
-const log = require('./utils/log');
+} = require('@bolt/build-utils/manifest');
+const log = require('@bolt/build-utils/log');
 
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
@@ -79,9 +82,7 @@ async function createWebpackConfig(buildConfig) {
   // Default global Sass data defined
   let globalSassData = [
     `$bolt-namespace: ${config.namespace};`,
-    `$bolt-css-vars-json-data-export: ${
-      themifyOptions.fallback.jsonDataExport
-    };`,
+    `$bolt-css-vars-json-data-export: ${themifyOptions.fallback.jsonDataExport};`,
     // output $bolt-lang variable in Sass even if not specified so things fall back accordingly.
     `${config.lang ? `$bolt-lang: ${config.lang};` : '$bolt-lang: null;'}`,
   ];
@@ -92,6 +93,7 @@ async function createWebpackConfig(buildConfig) {
       ? JSON.stringify('production')
       : JSON.stringify('development'),
     bolt: {
+      publicPath: JSON.stringify(publicPath),
       mode: JSON.stringify(config.mode),
       isClient: config.mode === 'client' ? true : false,
       isServer: config.mode === 'server' ? true : false,
@@ -101,7 +103,8 @@ async function createWebpackConfig(buildConfig) {
       ),
       config: {
         prod: config.prod ? true : false,
-        lang: config.lang,
+        lang: JSON.stringify(config.lang),
+        env: JSON.stringify(config.env),
       },
     },
   };
@@ -150,7 +153,7 @@ async function createWebpackConfig(buildConfig) {
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
-      entry[globalEntryName] = [];
+      entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
 
       components.global.forEach(component => {
         if (component.assets.style) {
@@ -169,9 +172,7 @@ async function createWebpackConfig(buildConfig) {
 
       if (!config.prod && config.webpackDevServer && useHotMiddleware) {
         entry[globalEntryName].push(
-          `webpack-hot-middleware/client?name=${
-            config.lang
-          }&noInfo=true&quiet=true&logLevel=silent&reload=true`,
+          `webpack-hot-middleware/client?name=${config.lang}&noInfo=true&quiet=true&logLevel=silent&reload=true`,
         );
       }
     }
@@ -193,6 +194,7 @@ async function createWebpackConfig(buildConfig) {
   }
 
   const scssLoaders = [
+    'cache-loader',
     {
       loader: 'css-loader',
       options: {
@@ -208,7 +210,6 @@ async function createWebpackConfig(buildConfig) {
           require('@bolt/postcss-themify')(themifyOptions),
           postcssDiscardDuplicates,
           autoprefixer({
-            browsers: require('@bolt/config-browserlist'),
             grid: true,
           }),
         ],
@@ -234,6 +235,7 @@ async function createWebpackConfig(buildConfig) {
         functions: sassExportData,
         precision: 3,
         data: globalSassData.join('\n'),
+        outputStyle: 'nested',
       },
     },
   ];
@@ -261,6 +263,7 @@ async function createWebpackConfig(buildConfig) {
         '.scss',
         '.ts',
         '.tsx',
+        '.jpg',
       ],
       alias: {
         react: 'preact-compat',
@@ -271,10 +274,16 @@ async function createWebpackConfig(buildConfig) {
       rules: [
         {
           test: /\.(ts|tsx)$/,
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+              },
+            },
+          ],
         },
         {
           test: /\.scss$/,
@@ -295,61 +304,70 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(js|tsx|mjs)$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              babelrc: false,
-              cacheDirectory: true,
-              presets: ['@bolt/babel-preset-bolt'],
-            },
+          exclude: thePath => {
+            if (
+              thePath.endsWith(
+                'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+              )
+            ) {
+              return true;
+            }
+
+            if (thePath.endsWith('grapesjs/dist/grapes.js')) {
+              return true;
+            }
+
+            return false;
           },
+          use: [
+            'cache-loader',
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                cacheDirectory: true,
+                presets: ['@bolt/babel-preset-bolt'],
+              },
+            },
+          ],
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 500,
-            name: 'fonts/[name].[ext]',
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 500,
+                name: 'fonts/[name].[ext]',
+              },
+            },
+          ],
         },
         {
-          test: /\.svg$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
+          test: /\.(cur|svg|png|jpg)$/,
+          use: [
+            'cache-loader',
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+          use: ['cache-loader', 'json-loader', 'yaml-loader'],
+        },
+        {
+          test: [/\.html$/],
+          loader: 'raw-loader', // file as string
         },
       ],
     },
     mode: config.prod ? 'production' : 'development',
-    // optimization: {
-    //   mergeDuplicateChunks: true,
-    // },
     optimization: {
-      minimize: true,
-      occurrenceOrder: true,
-      namedChunks: true,
-      removeAvailableModules: true,
-      removeEmptyChunks: true,
-      nodeEnv: 'production',
-      mergeDuplicateChunks: true,
-      concatenateModules: true,
-      splitChunks: {
-        chunks: 'async',
-        cacheGroups: {
-          vendors: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'async',
-            reuseExistingChunk: true,
-          },
-        },
-      },
       minimizer: config.prod
         ? [
             new UglifyJsPlugin({

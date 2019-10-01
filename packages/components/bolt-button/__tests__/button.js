@@ -1,6 +1,10 @@
-import { render } from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
-
+import {
+  isConnected,
+  render,
+  renderString,
+  stopServer,
+  html,
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../button.schema.yml'));
@@ -11,18 +15,39 @@ const timeout = 90000;
 describe('button', () => {
   let page;
 
+  afterAll(async () => {
+    await stopServer();
+    await page.close();
+  });
+
   beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
   test('Basic usage', async () => {
     const results = await render('@bolt-components-button/button.twig', {
       text: 'This is a button',
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('Button adds target if passed via attributes', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a button',
+      url: 'http://pega.com',
+      attributes: {
+        target: '_blank',
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -37,6 +62,29 @@ describe('button', () => {
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
+  });
+
+  test('Button with "disabled" adds attr to <button>', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a button',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    // @todo: also test rendered HTML for `disabled` attribute
+  });
+
+  test('Button with "disabled" adds attr to <a>', async () => {
+    const results = await render('@bolt-components-button/button.twig', {
+      text: 'This is a button',
+      url: 'http://pega.com',
+      disabled: true,
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    // @todo: also test rendered HTML for `disabled` attribute
   });
 
   test('Button with outer classes via Drupal Attributes', async () => {
@@ -169,5 +217,29 @@ describe('button', () => {
 
     expect(renderedShadowDomHTML).toMatchSnapshot();
     expect(renderedHTML).toMatchSnapshot();
+  });
+
+  test('Inline button inside a container with defined text alignment.', async () => {
+    const results = await renderString(`
+      {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-right" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align right"
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-center" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align center"
+          } only %}
+        {% endcell %}
+        {% cell "u-bolt-width-12/12 u-bolt-text-align-left" %}
+          {% include "@bolt-components-button/button.twig" with {
+            text: "Align left"
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+    `);
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
   });
 });

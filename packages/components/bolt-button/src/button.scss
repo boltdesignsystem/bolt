@@ -2,20 +2,31 @@
    Button
 \* ------------------------------------ */
 
+// Dev Notes
+// 1. [Morse] This mixin outputs a separate ruleset for each selector to prevent IE from failing on unrecognized selectors like `:host`. It is not a substitute for comma-separated selectors.
+// 2. [Morse] Bolt-link delegates focus to inner element.
+
 @import '@bolt/core';
 @import './button-settings-and-tools';
 
 /**
  * Base Button
  */
-bolt-button {
+@include bolt-repeat-rule(('bolt-button', ':host')) {
+  // [1]
   display: inline-flex;
+  outline: none; // [2]
+
+  &[type="button"],
+  &[type="reset"],
+  &[type="submit"] {
+    appearance: none;
+  }
 }
 
 .c-bolt-button {
   @include bolt-button;
 }
-
 
 /**
  * Button Styles
@@ -34,11 +45,11 @@ bolt-button {
   @include bolt-button-style(text);
 }
 
+[aria-disabled='true'] .c-bolt-button,
 .c-bolt-button[disabled],
 .c-bolt-button--disabled {
   @include bolt-button-style(disabled);
 }
-
 
 /**
  * Button Text Transform
@@ -55,6 +66,23 @@ bolt-button {
   text-transform: capitalize;
 }
 
+@function bolt-button-icon-only-size($paddingSize, $fontSize: xsmall) {
+  $line-height: map-get-deep(
+    $bolt-font-sizes,
+    'font-sizes',
+    $fontSize,
+    'line-height',
+    'regular'
+  );
+  $font-size: map-get-deep(
+    $bolt-font-sizes,
+    'font-sizes',
+    $fontSize,
+    'font-size'
+  );
+  @return (bolt-v-spacing($paddingSize) * $bolt-spacing-squished * 2) +
+    ($line-height * $font-size);
+}
 
 /**
  * Button Sizes
@@ -64,8 +92,8 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    width: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
-    height: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
+    width: bolt-button-icon-only-size(medium);
+    min-height: bolt-button-icon-only-size(medium);
   }
 }
 
@@ -74,8 +102,8 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    width: (bolt-v-spacing(xsmall) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
-    height: (bolt-v-spacing(xsmall) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
+    width: bolt-button-icon-only-size(xsmall);
+    min-height: bolt-button-icon-only-size(xsmall);
   }
 }
 
@@ -84,8 +112,8 @@ bolt-button {
   @include bolt-font-size(xsmall);
 
   &.c-bolt-button--icon-only {
-    width: (bolt-v-spacing(small) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
-    height: (bolt-v-spacing(small) * $bolt-spacing-squished * 2) + ($bolt-line-height--xsmall * $bolt-font-size--xsmall);
+    width: bolt-button-icon-only-size(small);
+    min-height: bolt-button-icon-only-size(small);
   }
 }
 
@@ -94,8 +122,8 @@ bolt-button {
   @include bolt-font-size(medium);
 
   &.c-bolt-button--icon-only {
-    width: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--medium * $bolt-font-size--medium);
-    height: (bolt-v-spacing(medium) * $bolt-spacing-squished * 2) + ($bolt-line-height--medium * $bolt-font-size--medium);
+    width: bolt-button-icon-only-size(medium, medium);
+    min-height: bolt-button-icon-only-size(medium, medium);
   }
 }
 
@@ -104,11 +132,10 @@ bolt-button {
   @include bolt-font-size(large);
 
   &.c-bolt-button--icon-only {
-    width: (bolt-v-spacing(large) * $bolt-spacing-squished * 2) + ($bolt-line-height--large * $bolt-font-size--large);
-    height: (bolt-v-spacing(large) * $bolt-spacing-squished * 2) + ($bolt-line-height--large * $bolt-font-size--large);
+    width: bolt-button-icon-only-size(large, large);
+    min-height: bolt-button-icon-only-size(large, large);
   }
 }
-
 
 /**
  * Icon Only Buttons
@@ -169,7 +196,6 @@ bolt-button {
   }
 }
 
-
 /**
  * Button Width
  */
@@ -183,7 +209,6 @@ bolt-button[width='full'],
 :host([width='full']) {
   width: 100%;
 }
-
 
 // full@small width variations
 bolt-button[width='full@small'],
@@ -201,7 +226,6 @@ bolt-button[width='full@small'],
   }
 }
 
-
 /**
  * Border Radius
  */
@@ -212,8 +236,11 @@ bolt-button[width='full@small'],
       border-radius: $radius-value;
     }
   }
-}
 
+  bolt-button[border-radius='#{$radius_name}'] {
+    border-radius: $radius-value;
+  }
+}
 
 /**
  * Icon and text spacing and display
@@ -248,7 +275,6 @@ bolt-button[width='full@small'],
     @include bolt-margin-left(xxsmall);
   }
 }
-
 
 /**
  * Button Alignments

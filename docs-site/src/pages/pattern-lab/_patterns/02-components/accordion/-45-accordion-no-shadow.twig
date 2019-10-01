@@ -1,0 +1,197 @@
+{% set link_1 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Get the presentation",
+    url: "https://pega.com",
+    icon: {
+      position: "before",
+      name: "asset-presentation",
+    },
+  } only %}
+{% endset %}
+
+{% set link_2 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Watch video",
+    url: "https://pega.com",
+    icon: {
+      position: "before",
+      name: "asset-video",
+    },
+  } only %}
+{% endset %}
+
+{% set trigger %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-3/12@small" %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "12:00 PM",
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "Lunch & Networking",
+        size: "xlarge",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+{% set content %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--right" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at. Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Neque minima nisi optio cumque esse ullam rerum reiciendis itaque iste, quod sunt explicabo, est eum quo aliquid hic commodi laboriosam at.",
+        weight: "bold",
+      } only %}
+      {% include "@bolt-components-list/list.twig" with {
+        display: "inline",
+        spacing: "small",
+        items: [
+          link_1,
+          link_2,
+        ]
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+
+<h3>Using the grid inside trigger and content</h3>
+{% include "@bolt-components-accordion/accordion.twig" with {
+  icon_valign: "center",
+  items: [
+    {
+      trigger: trigger,
+      content: content
+    },
+    {
+      trigger: trigger,
+      content: content,
+      inactive: true,
+    },
+    {
+      trigger: trigger,
+      content: content
+    },
+  ],
+  attributes: {
+    "no-shadow": true,
+  }
+} only %}
+
+{% set image_content %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/placeholders/tout-4x3-climber.jpg",
+    alt: "A Rock Climber",
+  } only %}
+{% endset %}
+
+{% set table_content %}
+  {% include "@bolt-components-table/table.twig" with {
+    headers: {
+      top: {
+        cells: [
+          "Column 1",
+          "Column 2",
+          "Column 3",
+        ]
+      },
+      side: {
+        cells: [
+          "Row 1",
+          "Row 2",
+          "Row 3",
+          "Footer",
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          "R1C1",
+          "R1C2",
+          "R1C3",
+        ]
+      },
+      {
+        cells: [
+          "R2C1",
+          "R2C2",
+          "R2C3",
+        ]
+      },
+      {
+        cells: [
+          "R3C1",
+          "R3C2",
+          "R3C3",
+        ]
+      }
+    ],
+    footer: {
+      cells: [
+        "FC1",
+        "FC2",
+        "FC3",
+      ]
+    }
+  } only %}
+{% endset %}
+
+{% set share_content %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "This is a headline",
+    size: "xlarge",
+  } only %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This is regular text. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et.",
+  } only %}
+  {% include "@bolt-components-share/share.twig" with {
+    size: "small",
+    sources: [
+      {
+        name: "facebook",
+        url: "https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
+      },
+      {
+        name: "twitter",
+        url: "https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+      },
+      {
+        name: "linkedin",
+        url: "https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
+      },
+      {
+        name: "email",
+        url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+      }
+    ],
+    copy_to_clipboard: {
+      text_to_copy: "https://boltdesignsystem.com"
+    },
+  } only %}
+{% endset %}
+
+<h3>Pass various components into the content</h3>
+{% include "@bolt-components-accordion/accordion.twig" with {
+  box_shadow: true,
+  items: [
+    {
+      trigger: "Expand this to see an image",
+      content: image_content
+    },
+    {
+      trigger: "Expand this to see a table",
+      content: table_content
+    },
+    {
+      trigger: "Expand this to see a share tool and a paragraph of text",
+      content: share_content
+    },
+  ],
+  attributes: {
+    "no-shadow": true,
+  }
+} only %}

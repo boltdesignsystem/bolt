@@ -21,6 +21,7 @@ class BoltBlockquote extends withLitHtml() {
     border: props.string,
     indent: props.boolean,
     fullBleed: props.boolean,
+    noQuotes: props.boolean,
     authorName: props.string,
     authorTitle: props.string,
     authorImage: props.string,
@@ -76,22 +77,6 @@ class BoltBlockquote extends withLitHtml() {
     if (window.MutationObserver && this.observer) {
       this.observer.disconnect();
     }
-  }
-
-  getModifiedSchema(schema) {
-    var modifiedSchema = schema;
-
-    // Remove "content" from schema, does not apply to web component.
-    for (let property in modifiedSchema.properties) {
-      if (property === 'content') {
-        delete modifiedSchema.properties[property];
-      }
-    }
-
-    const index = modifiedSchema.required.indexOf('content');
-    modifiedSchema.required.splice(index, 1);
-
-    return modifiedSchema;
   }
 
   getAlignItemsOption(prop) {
@@ -155,6 +140,7 @@ class BoltBlockquote extends withLitHtml() {
       border,
       indent,
       fullBleed,
+      noQuotes,
       authorName,
       authorTitle,
       authorImage,
@@ -170,6 +156,7 @@ class BoltBlockquote extends withLitHtml() {
       )}`]: this.getBorderOption(border),
       [`c-bolt-blockquote--indented`]: indent,
       [`c-bolt-blockquote--full`]: fullBleed,
+      [`c-bolt-blockquote--no-quotes`]: noQuotes,
     });
 
     let footerItems = [];
@@ -194,7 +181,7 @@ class BoltBlockquote extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles, textStyles])}
-      <blockquote class="${classes}" is="shadow-root">
+      <blockquote class="${classes}">
         ${this.slots.logo
           ? html`
               <div class="${cx('c-bolt-blockquote__logo')}">

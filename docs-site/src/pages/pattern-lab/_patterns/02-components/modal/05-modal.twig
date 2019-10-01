@@ -1,0 +1,39 @@
+{% set modal_content %}
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This is the modal container's header.",
+    attributes: {
+      slot: "header",
+    }
+  } only %}
+  <div>
+    {% include "@bolt-components-headline/headline.twig" with {
+      size: "xlarge",
+      text: "This is the modal container's body"
+    } only %}
+    {% include "@bolt-components-headline/text.twig" with {
+      text: "This is the modal container's body."
+    } only %}
+  </div>
+  {% include "@bolt-components-headline/text.twig" with {
+    text: "This is the modal container's footer.",
+    attributes: {
+      slot: "footer",
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-button/button.twig" with {
+  text: "Open Modal",
+  size: "small",
+  attributes: {
+    "on-click": "show",
+    "on-click-target": "js-bolt-modal",
+  },
+} only %}
+
+{% include "@bolt-components-modal/modal.twig" with {
+  content: modal_content,
+  attributes: {
+    class: "js-bolt-modal",
+  },
+} only %}

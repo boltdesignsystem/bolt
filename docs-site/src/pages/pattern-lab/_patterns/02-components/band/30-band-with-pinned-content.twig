@@ -1,0 +1,186 @@
+{% set content %}
+  {% include "@bolt-components-headline/headline.twig" with {
+    size: "xxxlarge",
+    text: "This Is a Headline",
+  } only %}
+  {% include "@bolt-components-headline/subheadline.twig" with {
+    size: "xxlarge",
+    text: "This Is a Subheadline",
+  } only %}
+  {% include "@bolt-components-button/button.twig" with {
+    text: "This is a button",
+  } only %}
+{% endset %}
+
+{% set breadcrumb_item_1 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Home",
+    url: "#!"
+  } only %}
+{% endset %}
+{% set breadcrumb_item_2 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Landing Page",
+    url: "#!"
+  } only %}
+{% endset %}
+{% set breadcrumb_item_3 %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Sub Page",
+    url: "#!"
+  } only %}
+{% endset %}
+
+{% set pinned_breadcrumb %}
+  {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
+    contentItems: [
+      breadcrumb_item_1,
+      breadcrumb_item_2,
+      breadcrumb_item_3,
+      "Current Page"
+    ]
+  } only %}
+{% endset %}
+
+{% set pinned_share %}
+  {% include "@bolt-components-share/share.twig" with {
+    size: "small",
+    opacity: 60,
+    sources: [
+      {
+        name: "facebook",
+        url: "https://www.facebook.com/sharer/sharer.php?u=https://boltdesignsystem.com&amp;src=sdkpreparse"
+      },
+      {
+        name: "twitter",
+        url: "https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+      },
+      {
+        name: "linkedin",
+        url: "https://www.linkedin.com/shareArticle?url=https://boltdesignsystem.com"
+      },
+      {
+        name: "email",
+        url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+      }
+    ],
+    copy_to_clipboard: {
+      text_to_copy: "https://boltdesignsystem.com"
+    }
+  } only %}
+{% endset %}
+
+<div class="u-bolt-margin-bottom-large">
+  <h3>Each pinned area (upper and lower) can have 1 or more items, spacing will be evenly distributed</h3>
+  <div class="u-bolt-margin-bottom-small">
+    {% include "@bolt-components-band/band.twig" with {
+      size: "large",
+      content: content,
+      pinned_content: {
+        upper: [
+          {
+            content: "upper pinned 1",
+          },
+          {
+            content: "upper pinned 2",
+          },
+          {
+            content: "upper pinned 3",
+          },
+        ],
+        lower: [
+          {
+            content: "lower pinned 1",
+          },
+          {
+            content: "lower pinned 2",
+          },
+          {
+            content: "lower pinned 3",
+          },
+        ]
+      }
+    } only %}
+  </div>
+  {% include "@bolt-components-band/band.twig" with {
+    size: "large",
+    content: content,
+    pinned_content: {
+      upper: [
+        {
+          content: pinned_breadcrumb,
+        },
+        {
+          content: pinned_share,
+        },
+      ],
+    }
+  } only %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <h3>When there is only 1 item, you can set the align prop to your liking (start, center, end)</h3>
+  {% include "@bolt-components-band/band.twig" with {
+    size: "large",
+    content: content,
+    pinned_content: {
+      upper: [
+        {
+          content: pinned_share,
+          align: "end",
+        },
+      ],
+    }
+  } only %}
+</div>
+
+
+
+{# Deprecated items #}
+{% set items_demo %}
+{% verbatim %}{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  items: [
+    {
+      position: {
+        align: "end",
+        valign: "center",
+        row_start: 1,
+        column_start: 1,
+        column_end: 12,
+      },
+      content: pinned_share,
+    },
+  ]
+} only %}{% endverbatim %}
+{% endset %}
+
+{% set pinned_content_demo %}
+{% verbatim %}{% include "@bolt-components-band/band.twig" with {
+  content: content,
+  pinned_content: {
+    upper: [
+      {
+        content: pinned_share,
+        align: "end",
+      },
+    ],
+  }
+} only %}{% endverbatim %}
+{% endset %}
+
+<p><mark>Note: please convert the deprecated items prop to the new pinned_content prop.</mark></p>
+
+<h3>Deprecated items prop usage</h3>
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  display: "block",
+  lang: "twig",
+  content: items_demo
+} only %}
+
+<h3>New pinned_content prop usage</h3>
+{% include "@bolt-components-code-snippet/code-snippet.twig" with {
+  display: "block",
+  lang: "twig",
+  content: pinned_content_demo
+} only %}

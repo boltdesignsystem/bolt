@@ -1,0 +1,70 @@
+@import '@bolt/core';
+
+.c-bolt-carousel__pagination {
+  @include bolt-z-index(contentTop);
+
+  display: flex;
+  justify-content: center;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+  text-align: center;
+  transition: 300ms opacity;
+
+  &.c-bolt-carousel__pagination--hidden {
+    opacity: 0;
+  }
+
+  & ~ .c-bolt-carousel__scrollbar {
+    margin-top: 0;
+  }
+}
+
+.c-bolt-carousel__pagination--bullets {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.c-bolt-carousel__pagination__bullet {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.2;
+  position: relative;
+  width: 20px;
+  height: calc(#{$bolt-carousel-bullet-height} + #{bolt-v-spacing(medium)});
+
+  &:after {
+    content: '';
+    width: 8px;
+    height: $bolt-carousel-bullet-height;
+    border-radius: 100%;
+    background-color: bolt-theme(text);
+  }
+
+  @at-root button#{&} {
+    appearance: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .c-bolt-carousel__pagination--clickable & {
+    cursor: pointer;
+  }
+}
+
+.c-bolt-carousel__pagination__bullet--active {
+  opacity: 1;
+
+  // disable if there's only one bullet displayed
+  &:first-child:last-child {
+    opacity: 0;
+  }
+
+  &:after {
+    background-color: bolt-theme(primary);
+  }
+}

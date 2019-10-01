@@ -80,7 +80,6 @@ export class Drawer extends BaseComponent {
     drawerOpened: props.boolean,
   };
 
-
   render({ drawerOpened, drawerHeight, isViewallPage }) {
     const classes = css(
       'pl-c-drawer',

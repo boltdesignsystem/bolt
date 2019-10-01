@@ -4,22 +4,18 @@ const path = require('path');
 const program = require('commander');
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('bolt');
-const packageJson = require('./package.json');
-const configStore = require('./utils/config-store');
-const { readYamlFileSync } = require('./utils/yaml');
+const configStore = require('@bolt/build-utils/config-store');
+const log = require('@bolt/build-utils/log');
+const { readYamlFileSync } = require('@bolt/build-utils/yaml');
+const { getPort } = require('@bolt/build-utils/get-port');
 const configSchema = readYamlFileSync(
   path.join(__dirname, './utils/config.schema.yml'),
 );
+const packageJson = require('./package.json');
 
-const searchedFor = explorer.searchSync();
-if (!searchedFor.config) {
-  log.errorAndExit('Could not find config in a .boltrc file');
-}
+let userConfig;
 
-let userConfig = {
-  ...searchedFor.config,
-  configFileUsed: searchedFor.filepath,
-};
+const parseIntWithRadix = string => parseInt(string, 10);
 
 // global `bolt` cli options & meta
 program
@@ -32,7 +28,7 @@ program
   .option(
     '-v, --verbosity <amount>',
     configSchema.properties.verbosity.description,
-    parseInt,
+    parseIntWithRadix,
   )
   .parse(process.argv);
 
@@ -47,13 +43,23 @@ if (program.configFile) {
     ...configFile,
     configFileUsed: configFilePath,
   };
+} else {
+  try {
+    const searchedFor = explorer.searchSync();
+    userConfig = {
+      ...searchedFor.config,
+      configFileUsed: searchedFor.filepath,
+    };
+  } catch (error) {
+    log.errorAndExit('Could not find config in a .boltrc file', error);
+  }
 }
 
 (async () => {
-  await configStore.init(userConfig).then(config => {
-    // Now that config is initilized, we can start requiring other things
-    const { buildBoltManifest } = require('./utils/manifest');
-    const log = require('./utils/log');
+  await configStore.init(userConfig).then(async () => {
+    // Now that config is initialized, we can start requiring other things
+    const { buildBoltManifest } = require('@bolt/build-utils/manifest');
+    const log = require('@bolt/build-utils/log');
 
     // store a copy of the original config before modifying with defaults + auto values. This allows us to point out if a config option was manually vs automatically set.
     let originalConfig;
@@ -64,13 +70,13 @@ if (program.configFile) {
      * @returns {Object} config - Final updated config
      */
     async function updateConfig(options, programInstance) {
-      await configStore.updateConfig(config => {
+      await configStore.updateConfig(async config => {
         originalConfig = config;
 
         config.verbosity =
           typeof program.verbosity === 'undefined'
             ? config.verbosity
-            : program.verbosity;
+            : parseInt(program.verbosity, 10);
 
         config.openServerAtStart =
           typeof options.open === 'undefined'
@@ -89,6 +95,9 @@ if (program.configFile) {
           : typeof options.env === 'undefined'
           ? config.env
           : options.env;
+
+        //check port not only when setting defaults but in boltrc.js too
+        config.port = await getPort(config.port);
 
         config.webpackStats =
           typeof options.webpackStats === 'undefined'
@@ -115,12 +124,13 @@ if (program.configFile) {
         // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
         config.enableSSR = false;
 
+        // automatically enable i18n in production builds if undefined
         config.i18n =
-          typeof options.i18n === 'undefined'
-            ? config.prod
-              ? true
-              : false
-            : options.i18n;
+          typeof options.i18n !== 'undefined'
+            ? options.i18n
+            : config.prod
+            ? true
+            : false;
 
         // If i18n is disabled, ignore and remove lang config settings
         if (config.lang && config.i18n === false) {
@@ -132,6 +142,7 @@ if (program.configFile) {
       });
 
       const config = await configStore.getConfig();
+
       log.dim(`Verbosity: ${config.verbosity}`);
       log.dim(`Prod: ${config.prod}`);
       log.dim(`i18n: ${config.i18n}`);
@@ -155,7 +166,7 @@ if (program.configFile) {
       return config;
     }
 
-    log.intro();
+    await log.intro();
 
     program
       .option(
@@ -267,6 +278,7 @@ if (program.configFile) {
 
     program
       .command('img')
+      .alias('images')
       .description('Image process')
       .action(async options => {
         await updateConfig(options, program);

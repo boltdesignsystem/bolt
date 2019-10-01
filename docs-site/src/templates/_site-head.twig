@@ -32,6 +32,10 @@
 <!DOCTYPE html>
 <html lang="en-US" class="{{ htmlClasses|join(' ') }}">
   <head>
+    {% if fileExists("@bolt-assets/bolt-critical-path-polyfills.cjs.js") %}
+    <script>{{ inline(assets["bolt-critical-path-polyfills.cjs.js"] | default("")) }}</script>
+    {% endif %}
+
     <script src="https://www.google-analytics.com/analytics.js" defer></script>
     <script>
       window.drupalSettings = {
@@ -40,7 +44,7 @@
         }
       }
     </script>
-  
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
     <title>Bolt Design System</title>
@@ -77,7 +81,7 @@
 
     <!-- async load PL's CSS -->
     <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}" media="all" />
+    <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}?cacheBuster={{ cacheBuster }}" media="all" />
 
     <noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">

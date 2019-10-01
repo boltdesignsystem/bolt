@@ -13,6 +13,8 @@ export { html, render } from 'lit-html';
 
 export function withLitHtml(Base = HTMLElement) {
   return class extends withComponent(BoltBase(Base)) {
+    // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
+
     static props = {
       onClick: props.string,
       onClickTarget: props.string,
@@ -32,11 +34,9 @@ export function withLitHtml(Base = HTMLElement) {
 
     renderStyles(styles) {
       if (styles) {
-        return html`
-          <style>
-            ${styles}
-          </style>
-        `;
+        // [1]
+        // prettier-ignore
+        return html`<style>${styles}</style>`;
       }
     }
 
@@ -45,8 +45,8 @@ export function withLitHtml(Base = HTMLElement) {
         this.slots[name] = [];
       }
 
+      // [1]
       // prettier-ignore
-      // Remove line breaks before and after lit-html template tags, causes unwanted space on inline elements
       if (this.useShadow && hasNativeShadowDomSupport) {
         if (name === 'default') {
           return html`<slot />`;

@@ -55,9 +55,15 @@ async function handleRequest(req, res, next) {
           console.error('The template paramater is missing!');
         }
         const body = await getBody(req);
-        const data = query.data
-          ? JSON.parse(toJson(query.data))
-          : checkRequestData(body);
+        let data;
+
+        if (req.headers['content-type'] === 'application/json') {
+          data = body;
+        } else {
+          data = query.data
+            ? JSON.parse(toJson(query.data))
+            : checkRequestData(body);
+        }
 
         const { ok, html, message } = await render(query.template, data, true);
 
@@ -78,9 +84,14 @@ async function handleRequest(req, res, next) {
           console.error('The template paramater is missing!');
         }
         const body = await getBody(req);
-        const data = query.data
-          ? JSON.parse(toJson(query.data))
-          : checkRequestData(body);
+        let data;
+        if (req.headers['content-type'] === 'application/json') {
+          data = body;
+        } else {
+          data = query.data
+            ? JSON.parse(toJson(query.data))
+            : checkRequestData(body);
+        }
         const { ok, html, message } = await renderString(
           query.template,
           data,

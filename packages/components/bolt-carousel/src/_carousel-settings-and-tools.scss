@@ -1,0 +1,46 @@
+@import '@bolt/core';
+
+$bolt-carousel-bullet-height: 8px;
+
+@mixin bolt-carousel-scrollbar() {
+  &::-webkit-scrollbar {
+    width: bolt-v-spacing(xsmall);
+    height: bolt-v-spacing(xsmall);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(63, 63, 68, 0.15) 100%
+    );
+  
+    background-image: linear-gradient(
+      to bottom,
+      bolt-theme(primary-lighten-15) 0%,
+      bolt-theme(primary-darken-25) 100%
+    );
+  }
+  
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(bolt-color(gray, dark), 0.5);
+    background-color: bolt-theme(secondary, 0.1);
+  }
+}
+
+@mixin bolt-calculate-slide-basis($numberOfSlidesToDisplay, $exactNumberOfSlides: false, $minWidth: false) {
+  flex-basis: 0;
+
+  @if $exactNumberOfSlides == false {
+    min-width: calc(100% / #{$numberOfSlidesToDisplay} - calc(#{bolt-spacing(medium) * ($numberOfSlidesToDisplay - 1)} / #{$numberOfSlidesToDisplay}));
+  } @else {
+    min-width: calc(100% / #{$numberOfSlidesToDisplay} - #{bolt-spacing(medium)});
+  }
+}
+
+@mixin bolt-calculate-slide-min-width($minNumberOfSlidesToDisplay) {
+  flex-basis: 0;
+  min-width: 100% / $minNumberOfSlidesToDisplay;
+}

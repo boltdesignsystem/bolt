@@ -5,6 +5,7 @@
 @import '@bolt/core';
 
 // Custom element styles, some are neccessary for the video background
+// @todo: remove any unnecessary styles when `isBackgroundVideo` is removed in Bolt v3.0
 bolt-band {
   display: flex;
   width: 100%;
@@ -13,10 +14,6 @@ bolt-band {
   max-height: none;
   will-change: height, min-height;
   transition: min-height $bolt-transition;
-
-  &.is-expanded {
-    min-height: 56.25vh;
-  }
 }
 
 // Component styles
@@ -29,6 +26,12 @@ bolt-band {
   width: 100%;
   min-height: 0;
   transition: min-height $bolt-transition; // Do not transition band widths
+
+  @include bolt-ie11-only {
+    .is-expanded & {
+      min-height: 56.25vh;
+    }
+  }
 }
 
 .c-bolt-band--full-bleed {
@@ -107,7 +110,6 @@ $bolt-band-sizes: (
     }
   }
 }
-
 
 // Items inside pinned content
 .c-bolt-band__pinned-items {

@@ -1,5 +1,5 @@
-const { promisify } = require('util');
 const fs = require('fs');
+const { promisify } = require('util');
 const path = require('path');
 const symlink = promisify(fs.symlink);
 const readFile = promisify(fs.readFile);
@@ -9,18 +9,26 @@ const chokidar = require('chokidar');
 const chalk = require('chalk');
 const globby = require('globby');
 const ora = require('ora');
-const sharp = require('sharp');
+const sharpImport = require('sharp');
 const SVGO = require('svgo');
 const { spawnSync } = require('child_process');
-const log = require('../utils/log');
-const timer = require('../utils/timer');
-const { getConfig } = require('../utils/config-store');
-const { flattenArray } = require('../utils/general');
-let config;
+const log = require('@bolt/build-utils/log');
+const timer = require('@bolt/build-utils/timer');
+const { getConfig } = require('@bolt/build-utils/config-store');
+const { flattenArray } = require('@bolt/build-utils/general');
+let config, sharp;
 
-sharp.cache({ items: 10000, files: 10000 });
-sharp.concurrency(16);
-sharp.simd(true);
+// https://github.com/lovell/sharp/issues/1593#issuecomment-491171982
+function warmupSharp(sharp) {
+  return sharp(
+    Buffer.from(
+      `<svg xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" /></svg>`,
+      'utf-8',
+    ),
+  )
+    .metadata()
+    .then(() => sharp, () => sharp);
+}
 
 const {
   TRAVIS,
@@ -99,7 +107,7 @@ async function writeImageManifest(imgManifest) {
   );
 }
 
-async function processImage(file, set) {
+async function processImage(file, set, skipOptimization = false) {
   config = config || (await getConfig());
 
   if (config.verbosity > 3) {
@@ -142,7 +150,7 @@ async function processImage(file, set) {
       const newSizedPath = path.format(thisPathInfo);
       const newSizeWebPath = makeWebPath(newSizedPath);
 
-      if (config.prod) {
+      if (config.prod && skipOptimization === false) {
         if (isOrig) {
           if (
             pathInfo.ext === '.jpeg' ||
@@ -207,18 +215,44 @@ async function processImage(file, set) {
           }
         }
       } else {
-        // Not prod, so let's be quick.
-        // Symlinking works even if the original file is not served
-        const symlinkPath = path.relative(thisPathInfo.dir, file);
-        try {
-          await symlink(symlinkPath, newSizedPath);
-        } catch (error) {
-          // If it's the error for symlink already exists, we don't care.
-          if (error.code !== 'EEXIST') {
-            log.errorAndExit(
-              `Problem when attempting to symlink ${file} to ${newSizedPath}.`,
-              error,
-            );
+        if (config.prod) {
+          if (
+            pathInfo.ext === '.jpeg' ||
+            pathInfo.ext === '.jpg' ||
+            pathInfo.ext === '.png'
+          ) {
+            await sharp(originalFileBuffer)
+              .resize(size)
+              .toFile(newSizedPath);
+          } else if (pathInfo.ext === '.svg') {
+            const result = await svgo.optimize(originalFileBuffer);
+            const optimizedSVG = result.data;
+            await writeFile(newSizedPath, optimizedSVG);
+          }
+        } else {
+          // Not prod, so let's be quicker
+          if (
+            pathInfo.ext === '.jpeg' ||
+            pathInfo.ext === '.jpg' ||
+            pathInfo.ext === '.png'
+          ) {
+            const symlinkPath = path.relative(thisPathInfo.dir, file);
+
+            try {
+              await symlink(symlinkPath, newSizedPath);
+            } catch (error) {
+              // If it's the error for symlink already exists, we don't care.
+              if (error.code !== 'EEXIST') {
+                log.errorAndExit(
+                  `Problem when attempting to symlink ${file} to ${newSizedPath}.`,
+                  error,
+                );
+              }
+            }
+          } else if (pathInfo.ext === '.svg') {
+            const result = await svgo.optimize(originalFileBuffer);
+            const optimizedSVG = result.data;
+            await writeFile(newSizedPath, optimizedSVG);
           }
         }
       }
@@ -247,8 +281,9 @@ async function processImage(file, set) {
   });
 }
 
-async function processImages() {
+async function processImages(skipOptimization = false) {
   config = config || (await getConfig());
+  sharp = await warmupSharp(sharpImport);
 
   if (!config.images) {
     return;
@@ -266,7 +301,9 @@ async function processImages() {
     config.images.sets.map(async set => {
       const imagePaths = await globby(path.join(set.base, set.glob));
       return Promise.all(
-        imagePaths.map(imagePath => processImage(imagePath, set)),
+        imagePaths.map(imagePath =>
+          processImage(imagePath, set, skipOptimization),
+        ),
       );
     }),
   ).then(async setsOfImageMetas => {
