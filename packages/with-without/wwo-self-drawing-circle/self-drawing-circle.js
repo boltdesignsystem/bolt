@@ -50,7 +50,7 @@ class SvgAnimations extends withLitHtml() {
 
     const threshold = Math.ceil(494 / dashSize);
 
-    for (var i = 0; i <= threshold; i++) {
+    for (let i = 0; i <= threshold; i++) {
       outline.setAttribute(
         'stroke-dasharray',
         i === 0
@@ -71,6 +71,7 @@ class SvgAnimations extends withLitHtml() {
   }
 
   render() {
+    console.error('SELF-DRAWING CIRCLE RENDER');
     return html`
       ${this.addStyles([styles])}
       <div
