@@ -25,7 +25,7 @@ class BoltConnection extends withLitHtml() {
   }
 
   render() {
-    const { direction, animType, speed } = this.validateProps(this.props);
+    const props = this.validateProps(this.props);
     const classes = cx('c-bolt-connection');
     return html`
       ${this.addStyles([styles])}
@@ -38,9 +38,9 @@ class BoltConnection extends withLitHtml() {
           `}
         <bolt-svg-animations
           class="c-bolt-connection__main-image"
-          speed="${speed}"
-          anim-type="${animType}"
-          direction="${direction}"
+          speed="${props.speed}"
+          anim-type="${props.animType}"
+          direction="${props.direction}"
         />
         ${this.slots.bottom &&
           html`

@@ -26,26 +26,22 @@ class BoltStatusDialogueBar extends withLitHtml() {
   }
 
   render() {
-    const {
-      iconName,
-      isAlertMessage,
-      dialogueArrowDirection,
-    } = this.validateProps(this.props);
+    const props = this.validateProps(this.props);
     const classes = cx('c-bolt-status-dialogue-bar', {
-      [`c-bolt-status-dialogue-bar--alert`]: isAlertMessage,
-      [`c-bolt-status-dialogue-bar--include-${dialogueArrowDirection}-arrow`]: !!(
-        dialogueArrowDirection && dialogueArrowDirection !== 'none'
+      [`c-bolt-status-dialogue-bar--alert`]: props.isAlertMessage,
+      [`c-bolt-status-dialogue-bar--include-${props.dialogueArrowDirection}-arrow`]: !!(
+        props.dialogueArrowDirection && props.dialogueArrowDirection !== 'none'
       ),
     });
 
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}">
-        ${iconName
+        ${props.iconName
           ? html`
               <bolt-icon
                 size="medium"
-                name="${iconName}"
+                name="${props.iconName}"
                 class="c-bolt-status-dialogue-bar__icon"
               />
             `
