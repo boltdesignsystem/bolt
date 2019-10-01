@@ -1,0 +1,13 @@
+{% set content %}
+  <div class="u-bolt-padding-large">
+    <bolt-status-dialogue-bar>
+      <p slot="text">
+        Hey now!
+      </p>
+    </bolt-status-dialogue-bar>
+  </div>
+{% endset %}
+
+{% include '@bolt-components-editor/editor-in-pl.twig' with {
+  content: content,
+} only %}

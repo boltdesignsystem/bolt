@@ -140,6 +140,16 @@ class BoltAccordion extends withContext(withLitHtml()) {
       this.accordionOptions,
     );
 
+    this.accordion.folds.forEach(fold => {
+      if (
+        fold.button.classList.contains(
+          'c-bolt-accordion-item__trigger-label--inactive',
+        )
+      ) {
+        fold.disable();
+      }
+    });
+
     this.accordion.on('destroyed', fold => {
       delete this.accordion;
     });
