@@ -28,13 +28,11 @@ class TabPanel extends withContext(withLitHtml()) {
       [TabsContext, 'uuid'],
       [TabsContext, 'selectedIndex'],
       [TabsContext, 'tabPanels'],
-      [TabsContext, 'useShadow'],
     ];
   }
 
   constructor(self) {
     self = super(self);
-    this.useShadow = hasNativeShadowDomSupport;
 
     return self;
   }
@@ -49,7 +47,6 @@ class TabPanel extends withContext(withLitHtml()) {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
     this.context = this.contexts.get(TabsContext);
-    this.useShadow = this.context.useShadow; // Inherit useShadow from `bolt-tabs`
   }
 
   setSelectedTab() {

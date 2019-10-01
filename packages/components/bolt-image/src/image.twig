@@ -84,7 +84,8 @@
   .setAttribute('alt', alt)
   .setAttribute( (lazyload ? "data-" : null) ~ "srcset", srcset ? srcset : null)
   .setAttribute( (lazyload ? "data-" : null) ~ "sizes", sizes)
-  .setAttribute('src', lazyload ? schema.properties.placeholder_image.default : src)
+  .setAttribute('srcset', lazyload ? schema.properties.placeholder_image.default : srcset)
+  .setAttribute('src', src)
 %}
 
 {% if zoom %}
