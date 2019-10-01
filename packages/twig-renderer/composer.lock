@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b71230d682dfe48a0372ea22a8447a95",
+    "content-hash": "83e89c3fe8c6ec1cca259e2ed3dacaea",
     "packages": [
         {
             "name": "asm89/twig-lint",
@@ -98,17 +98,12 @@
         },
         {
             "name": "bolt-design-system/core-php",
-            "version": "2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bolt-design-system/core-php.git",
-                "reference": "4a2c5665ee655c012f962850f2f49a7df86e06f5"
-            },
+            "version": "2.8.0-beta.4",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bolt-design-system/core-php/zipball/4a2c5665ee655c012f962850f2f49a7df86e06f5",
-                "reference": "4a2c5665ee655c012f962850f2f49a7df86e06f5",
-                "shasum": ""
+                "type": "path",
+                "url": "../core-php",
+                "reference": "d96516c9fdaf790253470b8d1219f8efe887c3ce",
+                "shasum": null
             },
             "require": {
                 "asm89/twig-lint": "^1.0",
@@ -134,7 +129,15 @@
                     "Bolt\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "setup": [
+                    "@composer install --no-interaction --prefer-dist --no-progress"
+                ],
+                "test": [
+                    "@composer install --no-interaction --prefer-dist --no-progress",
+                    "vendor/bin/phpunit --colors=always tests"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -147,16 +150,15 @@
                     "name": "Evan Lovely"
                 }
             ],
-            "description": "Core PHP functionality for the Bolt Design System",
-            "time": "2019-08-30T21:04:54+00:00"
+            "description": "Core PHP functionality for the Bolt Design System"
         },
         {
             "name": "bolt-design-system/drupal-twig-extensions",
-            "version": "2.4.0",
+            "version": "2.8.0-beta.4",
             "dist": {
                 "type": "path",
                 "url": "../drupal-twig-extensions",
-                "reference": "f5939913e3ce84896f84d7e639557fa99b8e3882",
+                "reference": "0b6d9663a35dded63031e62fb67b0ef411776471",
                 "shasum": null
             },
             "require": {
@@ -1360,7 +1362,10 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "bolt-design-system/core-php": 10,
+        "bolt-design-system/drupal-twig-extensions": 10
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
