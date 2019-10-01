@@ -1,0 +1,29 @@
+<bolt-two-character-layout>
+  <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="1">
+    <bolt-character size="medium" character-image="customer-surprise">
+      <bolt-animate slot="bottom"><bolt-text font-size="xsmall">lorem</bolt-text></bolt-animate>
+      <bolt-animate slot="background" in="fade-in" in-order="1">
+        <bolt-svg-animations
+          speed="4000"
+          anim-type="radar"
+          theme="dark"
+        ></bolt-svg-animations>
+      </bolt-animate>
+    </bolt-character>
+  </bolt-animate>
+  <bolt-animate slot="connection" in="fade-in" in-order="1" out="fade-out" out-order="1">
+    <bolt-connection></bolt-connection>
+  </bolt-animate>
+  <bolt-animate slot="character--right" in="fade-in" in-order="1" out="fade-out" out-order="1">
+    <bolt-character size="medium" character-image="customer-surprise">
+      <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="top" out-order="1">
+        <bolt-status-dialogue-bar icon-name="mobility">
+          <p slot="text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </bolt-status-dialogue-bar>
+      </bolt-animate>
+      <bolt-animate slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></bolt-animate>
+    </bolt-character>
+  </bolt-animate>
+</bolt-two-character-layout>

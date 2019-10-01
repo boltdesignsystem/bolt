@@ -58,6 +58,7 @@ class BoltImage extends withLitHtml() {
       'lazyload',
       'useAspectRatio',
     ]);
+    self.initialClasses = [];
     return self;
   }
 
@@ -165,15 +166,23 @@ class BoltImage extends withLitHtml() {
       'c-bolt-image--cover': cover,
     });
 
+    // grab the last image path referenced in srcset as a fallback if src isn't defined
+    const fallbackSrc = srcset
+      ? srcset
+          .split(',')
+          [srcset.split(',').length - 1].trim()
+          .split(' ')[0]
+      : undefined;
+
     const imageElement = () => {
       if (src || srcset) {
         return html`
           <img
             class="${classes}"
-            src="${lazyload ? placeholderImage : src}"
+            src="${ifDefined(src ? src : fallbackSrc)}"
             alt="${ifDefined(alt ? alt : undefined)}"
             srcset="${ifDefined(
-              !lazyload || this.isLoaded ? srcset || src : undefined,
+              lazyload ? placeholderImage : srcset ? srcset : undefined,
             )}"
             data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
             sizes="${ifDefined(
@@ -242,7 +251,10 @@ class BoltImage extends withLitHtml() {
 
     const ratioTemplate = children => {
       return html`
-        <bolt-ratio ratio="${ratioW * 1}/${ratioH * 1}">
+        <bolt-ratio
+          ratio="${ratioW * 1}/${ratioH * 1}"
+          .useShadow=${this.useShadow}
+        >
           ${children}
         </bolt-ratio>
       `;

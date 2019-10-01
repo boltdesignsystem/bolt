@@ -14,7 +14,7 @@ const raf = require('raf');
 const NodeEnvironment = require('jest-environment-node');
 const fs = require('fs');
 const path = require('path');
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const os = require('os');
 
 const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
