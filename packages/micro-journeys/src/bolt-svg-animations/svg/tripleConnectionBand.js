@@ -1,4 +1,3 @@
-import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
 export const tripleConnectionBand = ({ speed, direction, theme }) => {
