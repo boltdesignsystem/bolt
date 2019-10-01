@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c36c270b5e515e0beddea0028fd7792c",
+    "content-hash": "13fab2bbde690fb7e89ca9e0072e8dd6",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -165,17 +165,12 @@
         },
         {
             "name": "bolt-design-system/core-php",
-            "version": "2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bolt-design-system/core-php.git",
-                "reference": "4a2c5665ee655c012f962850f2f49a7df86e06f5"
-            },
+            "version": "2.8.0-beta.4",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bolt-design-system/core-php/zipball/4a2c5665ee655c012f962850f2f49a7df86e06f5",
-                "reference": "4a2c5665ee655c012f962850f2f49a7df86e06f5",
-                "shasum": ""
+                "type": "path",
+                "url": "../packages/core-php",
+                "reference": "d96516c9fdaf790253470b8d1219f8efe887c3ce",
+                "shasum": null
             },
             "require": {
                 "asm89/twig-lint": "^1.0",
@@ -201,44 +196,13 @@
                     "Bolt\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Salem Ghoweri",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "Evan Lovely"
-                }
-            ],
-            "description": "Core PHP functionality for the Bolt Design System",
-            "time": "2019-08-30T21:04:54+00:00"
-        },
-        {
-            "name": "bolt-design-system/drupal-twig-extensions",
-            "version": "2.4.0",
-            "dist": {
-                "type": "path",
-                "url": "../packages/drupal-twig-extensions",
-                "reference": "f5939913e3ce84896f84d7e639557fa99b8e3882",
-                "shasum": null
-            },
-            "require": {
-                "drupal/core-render": "^8.0.0",
-                "drupal/core-utility": "^8.0.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Drupal\\Core\\": "src/Core"
-                }
-            },
             "scripts": {
                 "setup": [
                     "@composer install --no-interaction --prefer-dist --no-progress"
+                ],
+                "test": [
+                    "@composer install --no-interaction --prefer-dist --no-progress",
+                    "vendor/bin/phpunit --colors=always tests"
                 ]
             },
             "license": [
@@ -253,7 +217,47 @@
                     "name": "Evan Lovely"
                 }
             ],
-            "description": "Extra Twig extensions for adding Drupal-specific functionality to the Bolt Design System"
+            "description": "Core PHP functionality for the Bolt Design System"
+        },
+        {
+            "name": "bolt-design-system/drupal-twig-extensions",
+            "version": "2.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bolt-design-system/drupal-twig-extensions.git",
+                "reference": "3159350aeb951fe0c77aaaaef7abb5c58f941b11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bolt-design-system/drupal-twig-extensions/zipball/3159350aeb951fe0c77aaaaef7abb5c58f941b11",
+                "reference": "3159350aeb951fe0c77aaaaef7abb5c58f941b11",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/core-render": "^8.0.0",
+                "drupal/core-utility": "^8.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Drupal\\Core\\": "src/Core"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Salem Ghoweri",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Evan Lovely"
+                }
+            ],
+            "description": "Extra Twig extensions for adding Drupal-specific functionality to the Bolt Design System",
+            "time": "2019-06-27T15:24:04+00:00"
         },
         {
             "name": "bolt-design-system/styleguidekit-twig-default",
@@ -2057,7 +2061,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "bolt-design-system/core-php": 10
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
