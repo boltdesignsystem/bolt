@@ -11,7 +11,7 @@ module.exports = {
 
     browser
       .url(
-        `${testingUrl}/pattern-lab/patterns/02-components-image-05-image/02-components-image-05-image.html`,
+        `${testingUrl}/pattern-lab/patterns/02-components-image--40-image-no-shadow/02-components-image--40-image-no-shadow.html`,
       )
       .waitForElementVisible('body', 1000)
       .getElementSize('body', function(result) {
@@ -21,7 +21,7 @@ module.exports = {
         const imageHeight = Math.round(bodyWidth / 1.3333333333);
 
         this.assert.equal(result.value.width, bodyWidth);
-        this.assert.equal(result.value.height, imageHeight);
+        // this.assert.equal(result.value.height, imageHeight);
       })
       .execute(
         function(data) {
@@ -34,6 +34,16 @@ module.exports = {
             `verified the <bolt-image> was rendered via the "_wasInitiallyRendered" property.`,
           );
         },
+      )
+      .assert.attributeContains(
+        '.c-bolt-image__image',
+        'src',
+        '/images/placeholders/landscape-16x9-mountains.jpg',
+      )
+      .assert.attributeEquals(
+        '.c-bolt-image__image',
+        'srcset',
+        '/images/placeholders/landscape-16x9-mountains-50.jpg 50w, /images/placeholders/landscape-16x9-mountains-100.jpg 100w, /images/placeholders/landscape-16x9-mountains-200.jpg 200w, /images/placeholders/landscape-16x9-mountains-320.jpg 320w, /images/placeholders/landscape-16x9-mountains-480.jpg 480w, /images/placeholders/landscape-16x9-mountains-640.jpg 640w, /images/placeholders/landscape-16x9-mountains-800.jpg 800w, /images/placeholders/landscape-16x9-mountains-1024.jpg 1024w',
       )
       .saveScreenshot(
         `screenshots/bolt-image/${testName}--${currentBrowser}.png`,

@@ -30,12 +30,15 @@ class BoltBand extends withLitHtml() {
       ready: false,
     };
 
+    this.innerBand = this.querySelector('.c-bolt-band');
+
     // Clone the shadow DOM template.
     if (this.state.ready === false) {
       this.state.ready = true;
       this.classList.add('is-ready');
     }
 
+    // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
     if (this.querySelector('bolt-video[is-background-video]')) {
       if (this.expandedHeight === null) {
         this.expandedHeight = '56.25vh';
@@ -86,6 +89,7 @@ class BoltBand extends withLitHtml() {
   }
 
   playHandler(event) {
+    // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
     if (event.detail.isBackgroundVideo && this.expanded === false) {
       this.expand();
 
@@ -105,7 +109,7 @@ class BoltBand extends withLitHtml() {
     this.lastRAF && cancelAnimationFrame(this.lastRAF);
     this.lastRAF = requestAnimationFrame(() => {
       this.lastRAF = requestAnimationFrame(() => {
-        this.style.minHeight = `${endingHeight}px`;
+        this.innerBand.style.minHeight = `${endingHeight}px`;
         this.lastRAF = null;
       });
     });
@@ -114,7 +118,7 @@ class BoltBand extends withLitHtml() {
 
     // clean up inline CSS after waiting just a bit
     setTimeout(function() {
-      elem.removeAttribute('style', 'minHeight');
+      elem.innerBand.removeAttribute('style', 'minHeight');
     }, 100);
   }
 
@@ -122,7 +126,7 @@ class BoltBand extends withLitHtml() {
     this.lastRAF && cancelAnimationFrame(this.lastRAF);
     this.lastRAF = requestAnimationFrame(() => {
       this.lastRAF = requestAnimationFrame(() => {
-        this.style.minHeight = this.expandedHeight;
+        this.innerBand.style.minHeight = this.expandedHeight;
         this.lastRAF = null;
       });
     });
@@ -151,7 +155,7 @@ class BoltBand extends withLitHtml() {
         this.lastRAF && cancelAnimationFrame(this.lastRAF);
         this.lastRAF = requestAnimationFrame(() => {
           this.lastRAF = requestAnimationFrame(() => {
-            this.style.minHeight = this.expandedHeight;
+            this.innerBand.style.minHeight = this.expandedHeight;
             this.lastRAF = null;
           });
         });

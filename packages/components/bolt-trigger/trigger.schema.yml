@@ -17,6 +17,14 @@ properties:
   target:
     type: string
     description: Specifies where to display the linked URL. This may also be passed as part of `attributes`.
+  type:
+    description: Determines the button tag type for semantic buttons
+    type: string
+    default: button
+    enum:
+      - button
+      - submit
+      - reset
   cursor:
     description: Type of cursor shown on hover.
     type: string
@@ -42,4 +50,8 @@ properties:
   no_outline:
     type: boolean
     description: Turn off the default outline on focus
+    default: false
+  disabled:
+    type: boolean
+    description: Make trigger unusable and un-clickable. Only applies to `button`.
     default: false

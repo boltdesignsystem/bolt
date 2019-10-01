@@ -13,23 +13,23 @@ const { display, valign } = schema.properties;
 const timeout = 90000;
 
 describe('link', () => {
-  let page, isOnline, context;
-
-  beforeAll(async () => {
-    isOnline = await isConnected();
-    context = await global.__BROWSER__.createIncognitoBrowserContext();
-  });
+  let page;
 
   afterAll(async () => {
     await stopServer();
+    await page.close();
   });
 
   beforeEach(async () => {
-    page = await context.newPage();
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
@@ -219,5 +219,50 @@ describe('link', () => {
     });
 
     expect(renderedHTML).toMatchSnapshot();
+  });
+
+  test('<bolt-link> does not have duplicate IDs', async () => {
+    // The reported bug was only a problem when rendering the initial link with
+    // twig, so start by rendering the link with twig.
+    const template = await renderString(`
+      {% include "@bolt-components-link/link.twig" with {
+        text: "Test link -- Has id attribute",
+        url: "https://pega.com",
+        attributes: {
+          id: 'my-link'
+         }
+        } only %}
+    `);
+
+    // Next, convert to a javascript node and disable shadow dom so we can evaluate it with js.
+    const renderedLinkHTML = await page.evaluate(html => {
+      const div = document.createElement('div');
+      div.innerHTML = `${html}`;
+      document.body.appendChild(div);
+      const link = document.querySelector('bolt-link');
+      link.useShadow = false;
+      link.updated();
+      return link.outerHTML;
+    }, template.html);
+
+    const renderedHTML = await html('<div></div>');
+    renderedHTML.innerHTML = renderedLinkHTML;
+
+    // Loop though all elements with any ID to see if there are duplicates.
+    // todo: `querySelectorAll('#my-id')` does not return multiple elements when there are dupes. It does in Chrome. See if upgrading basichtml from "0.22.1" to "1.1.1" adds that feature.
+    const elemsWithAnyId = renderedHTML.querySelectorAll('[id]');
+    let allIds = [];
+    let dupIds = [];
+    elemsWithAnyId.forEach(el => {
+      if (el.id) {
+        if (allIds.includes(el.id)) {
+          dupIds.push(el.id);
+        } else {
+          allIds.push(el.id);
+        }
+      }
+    });
+
+    expect(dupIds.length).toEqual(0);
   });
 });

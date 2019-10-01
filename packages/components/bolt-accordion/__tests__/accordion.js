@@ -17,22 +17,27 @@ async function renderTwigString(template, data) {
   return await renderString(template, data, true);
 }
 
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<bolt-accordion> Component', () => {
   let page;
 
   beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
   afterAll(async () => {
     await stopTwigRenderer();
+    await page.close();
   }, timeout);
 
   test('basic usage', async () => {
@@ -113,6 +118,31 @@ describe('<bolt-accordion> Component', () => {
     });
   });
 
+  test(`Inactive item`, async () => {
+    const results = await renderTwig(
+      '@bolt-components-accordion/accordion.twig',
+      {
+        items: [
+          {
+            trigger: 'Active accordion item',
+            content: 'This is the accordion content.',
+          },
+          {
+            trigger: 'Inactive accordion item',
+            content: 'This is the accordion content.',
+            inactive: true,
+          },
+          {
+            trigger: 'Active accordion item',
+            content: 'This is the accordion content.',
+          },
+        ],
+      },
+    );
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
   test('Default <bolt-accordion> with Shadow DOM renders', async function() {
     const defaultAccordionShadowRoot = await page.evaluate(() => {
       const accordion = document.createElement('bolt-accordion');
@@ -141,6 +171,7 @@ describe('<bolt-accordion> Component', () => {
 
     const renderedShadowDomHTML = await html(defaultAccordionShadowRoot);
 
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
@@ -182,6 +213,7 @@ describe('<bolt-accordion> Component', () => {
 
     const renderedShadowDomHTML = await html(defaultAccordionShadowRoot);
 
+    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({

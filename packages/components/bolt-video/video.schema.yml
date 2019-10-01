@@ -1,6 +1,10 @@
 $schema: http://json-schema.org/draft-04/schema#
 title: Video
 type: object
+not:
+  anyOf:
+    - required:
+        - isBackgroundVideo
 properties:
   attributes:
     type: object
@@ -47,10 +51,6 @@ properties:
     type: boolean
     description: Should the video loop.
     default: false
-  isBackgroundVideo:
-    type: boolean
-    description: Set to true if the video is a background.
-    default: false
   on_init:
     type: string
     description: 'The `on_init` config allows for an external Javascript function inlined on the page to add any 3rd party scripts or video plugins to a `<bolt-video>` player instance when initializing. Please see the new recommended `enabled_plugins` and `disabled_plugins` options below.'
@@ -77,3 +77,6 @@ properties:
   disabled_plugins:
     type: string
     description: 'Space-separated list of any built-in `<bolt-video>` plugins for Brightcove to disable. Used to opt-out of any video plugins that are enabled by default (ex. the `playback` plugin). For example: `<bolt-video disabled-plugins="playback">`.'
+  isBackgroundVideo:
+    title: DEPRECATED
+    description: Background video feature will be removed with Bolt v3.0

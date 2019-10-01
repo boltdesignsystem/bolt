@@ -4,7 +4,7 @@ properties:
   attributes:
     title: Attributes (Twig-only)
     type: object
-    description: A Drupal attributes object. Used to apply with extra HTML attributes to the outer &lt;bolt-modal&gt; tag.
+    description: A Drupal attributes object. Used to apply additional HTML attributes to the outer &lt;bolt-modal&gt; tag.
   disabled:
     type: boolean
     title: Disabled
@@ -25,9 +25,10 @@ properties:
     description: Controls the width of the modal container.
     default: optimal
     enum:
-      - auto
-      - optimal
       - full
+      - regular
+      - optimal
+      - auto
   spacing:
     type: string
     description: Controls the spacing around the modal container.
@@ -57,7 +58,6 @@ properties:
   uuid:
     type: string
     description: Unique ID for modal, randomly generated if not provided.
-
   # @todo: persistent and hide close button props are not ready.
   # persistent:
   #   type: boolean

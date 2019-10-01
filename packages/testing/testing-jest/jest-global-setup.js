@@ -25,14 +25,15 @@ module.exports = async function globalSetup() {
   ];
 
   await buildPrep(true); // clear out all folders before running
-  await imageTasks.processImages(); // process image fixtures used by any tests
+  await imageTasks.processImages(true); // process image fixtures used by any tests, but don't optimize
   await iconTasks.build(); // process icons used by any tests
 
   await setupDevServer({
     command: `node packages/servers/testing-server`,
-    launchTimeout: 120000,
+    launchTimeout: 300000,
     port: 4444,
     usedPortAction: 'kill',
+    debug: true,
   });
 
   const browser = await puppeteer.launch({

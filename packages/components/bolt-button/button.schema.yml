@@ -30,16 +30,15 @@ properties:
       - lowercase
       - capitalize
       - none
-  tag:
-    description: 'Determines the semantic HTML tag for the button.'
+  type:
+    description: 'Determines the button tag type for semantic buttons'
     type: string
+    # @todo: v3.0 make button the default
+    # default: button
     enum:
-      - a
-      - link
       - button
       - submit
       - reset
-    default: button
   size:
     type: string
     description: 'Size of the button.'
@@ -84,7 +83,7 @@ properties:
   icon:
     type: object
     description: 'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the button.'
-    ref: '@bolt-components-icon/icon.schema.yml'
+    ref: '@bolt-components-icon/icon.schema.json'
     properties:
       position:
         type: string
@@ -110,3 +109,14 @@ properties:
   rounded:
     title: 'DEPRECATED'
     description: 'Use the border_radius parameter instead.'
+  tag:
+    title: 'DEPRECATED'
+    description: 'Switch to using the new type prop instead.'
+    type: string
+    enum:
+      - a
+      - link
+      - button
+      - submit
+      - reset
+    default: button

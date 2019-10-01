@@ -9,13 +9,13 @@ describe('Test the Bolt Twig Renderer API', () => {
     const result = await render(buttonTemplate, buttonData);
 
     expect(result.ok).toEqual(true);
-  });
+  }, 10000);
 
   test('handles missing data', async () => {
     const result = await render(buttonTemplate);
 
     expect(result.ok).toEqual(true);
-  });
+  }, 10000);
 
   test('handles non-existent template path', async () => {
     const result = await render('@bolt-components-button/button2.twig', {
@@ -23,7 +23,7 @@ describe('Test the Bolt Twig Renderer API', () => {
     });
 
     expect(result.ok).toEqual(false);
-  });
+  }, 10000);
 
   test('renders the button component correctly', async () => {
     const result = await render(buttonTemplate, {
@@ -31,7 +31,7 @@ describe('Test the Bolt Twig Renderer API', () => {
     });
 
     expect(result.html).toMatchSnapshot();
-  });
+  }, 10000);
 
   test('renders attributes on the button component correctly', async () => {
     const result = await render(buttonTemplate, {
@@ -42,7 +42,7 @@ describe('Test the Bolt Twig Renderer API', () => {
     });
 
     expect(result.html).toMatchSnapshot();
-  });
+  }, 10000);
 
   test('renders the secondary button correctly', async () => {
     const result = await render(buttonTemplate, {
@@ -51,5 +51,5 @@ describe('Test the Bolt Twig Renderer API', () => {
     });
 
     expect(result.html).toMatchSnapshot();
-  });
+  }, 10000);
 });

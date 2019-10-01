@@ -22,9 +22,9 @@
 {% set alt = alt ? alt : null %}
 
 {# Temp: prefix "ph" to preserve original value for web component, better pattern in the works #}
-{% set ph_color = placeholder_color|default(image_data_twig.color|default(schema.properties.placeholder_color.default)) %}
+{% set ph_color = placeholder_color|default(image_data_bolt.color|default(schema.properties.placeholder_color.default)) %}
 {# Note: image-specific base64 data is only generated in production mode, default data is used for local development #}
-{% set ph_image = placeholder_image|default(image_data_twig.base64|default(schema.properties.placeholder_image.default)) %}
+{% set ph_image = placeholder_image|default(image_data_bolt.base64|default(schema.properties.placeholder_image.default)) %}
 
 {% set is_jpg = src|split('.')|last == "jpg" %}
 
@@ -84,7 +84,8 @@
   .setAttribute('alt', alt)
   .setAttribute( (lazyload ? "data-" : null) ~ "srcset", srcset ? srcset : null)
   .setAttribute( (lazyload ? "data-" : null) ~ "sizes", sizes)
-  .setAttribute('src', lazyload ? ph_image : src)
+  .setAttribute('srcset', lazyload ? schema.properties.placeholder_image.default : srcset)
+  .setAttribute('src', src)
 %}
 
 {% if zoom %}
@@ -100,6 +101,10 @@
 {% if cover %}
   {% set image_attributes = image_attributes.addClass("c-bolt-image--cover") %}
   {% set image_fallback_attributes = image_fallback_attributes.addClass("c-bolt-image--cover") %}
+{% endif %}
+
+{% if valign and cover %}
+  {% set image_attributes = image_attributes.setAttribute("style", "object-position: 50% #{valign};") %}
 {% endif %}
 
 {% set image_tag %}
@@ -124,13 +129,14 @@
 <bolt-image
   {% if slot %}slot="{{ slot }}"{% endif %}
   {% if src %}src="{{ src }}"{% endif %}
+  {% if valign %}valign="{{ valign }}"{% endif %}
   {% if srcset %}srcset="{{ srcset }}"{% endif %}
   {% if alt %}alt="{{ alt }}"{% endif %}
   {% if max_width %}max-width="{{ max_width }}"{% endif %}
   {% if sizes %}sizes="{{ sizes }}"{% endif %}
   {% if ratio_string %}ratio="{{ ratio_string }}"{% elseif not use_ratio %}ratio="none"{% elseif can_use_ratio %}ratio="{{ width * 1 }}/{{ height * 1 }}"{% endif %}
-  {% if placeholder_color %}placeholder-color="{{ placeholder_color }}"{% endif %}
-  {% if placeholder_image %}placeholder-image="{{ placeholder_image }}"{% endif %}
+  {% if (placeholder_color or ph_color) %}placeholder-color="{{ placeholder_color | default(ph_color) }}"{% endif %}
+  {% if (placeholder_image or ph_image) %}placeholder-image="{{ placeholder_image | default(ph_image) }}"{% endif %}
   {% if zoom %}zoom{% endif %}
   {% if cover %}cover{% endif %}
   {% if not lazyload %}no-lazy{% endif %}

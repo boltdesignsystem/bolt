@@ -107,7 +107,7 @@ async function writeImageManifest(imgManifest) {
   );
 }
 
-async function processImage(file, set) {
+async function processImage(file, set, skipOptimization = false) {
   config = config || (await getConfig());
 
   if (config.verbosity > 3) {
@@ -150,7 +150,7 @@ async function processImage(file, set) {
       const newSizedPath = path.format(thisPathInfo);
       const newSizeWebPath = makeWebPath(newSizedPath);
 
-      if (config.prod) {
+      if (config.prod && skipOptimization === false) {
         if (isOrig) {
           if (
             pathInfo.ext === '.jpeg' ||
@@ -215,18 +215,44 @@ async function processImage(file, set) {
           }
         }
       } else {
-        // Not prod, so let's be quick.
-        // Symlinking works even if the original file is not served
-        const symlinkPath = path.relative(thisPathInfo.dir, file);
-        try {
-          await symlink(symlinkPath, newSizedPath);
-        } catch (error) {
-          // If it's the error for symlink already exists, we don't care.
-          if (error.code !== 'EEXIST') {
-            log.errorAndExit(
-              `Problem when attempting to symlink ${file} to ${newSizedPath}.`,
-              error,
-            );
+        if (config.prod) {
+          if (
+            pathInfo.ext === '.jpeg' ||
+            pathInfo.ext === '.jpg' ||
+            pathInfo.ext === '.png'
+          ) {
+            await sharp(originalFileBuffer)
+              .resize(size)
+              .toFile(newSizedPath);
+          } else if (pathInfo.ext === '.svg') {
+            const result = await svgo.optimize(originalFileBuffer);
+            const optimizedSVG = result.data;
+            await writeFile(newSizedPath, optimizedSVG);
+          }
+        } else {
+          // Not prod, so let's be quicker
+          if (
+            pathInfo.ext === '.jpeg' ||
+            pathInfo.ext === '.jpg' ||
+            pathInfo.ext === '.png'
+          ) {
+            const symlinkPath = path.relative(thisPathInfo.dir, file);
+
+            try {
+              await symlink(symlinkPath, newSizedPath);
+            } catch (error) {
+              // If it's the error for symlink already exists, we don't care.
+              if (error.code !== 'EEXIST') {
+                log.errorAndExit(
+                  `Problem when attempting to symlink ${file} to ${newSizedPath}.`,
+                  error,
+                );
+              }
+            }
+          } else if (pathInfo.ext === '.svg') {
+            const result = await svgo.optimize(originalFileBuffer);
+            const optimizedSVG = result.data;
+            await writeFile(newSizedPath, optimizedSVG);
           }
         }
       }
@@ -255,7 +281,7 @@ async function processImage(file, set) {
   });
 }
 
-async function processImages() {
+async function processImages(skipOptimization = false) {
   config = config || (await getConfig());
   sharp = await warmupSharp(sharpImport);
 
@@ -275,7 +301,9 @@ async function processImages() {
     config.images.sets.map(async set => {
       const imagePaths = await globby(path.join(set.base, set.glob));
       return Promise.all(
-        imagePaths.map(imagePath => processImage(imagePath, set)),
+        imagePaths.map(imagePath =>
+          processImage(imagePath, set, skipOptimization),
+        ),
       );
     }),
   ).then(async setsOfImageMetas => {

@@ -32,12 +32,12 @@
   }
   @else {
     @each $fontFamilyName in $fontFamilyNames {
-      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font') ;};
+      --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'fallback-font')};
     }
 
     &.#{$fonts-loaded-class} {
       @each $fontFamilyName in $fontFamilyNames {
-        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font') ;};
+        --bolt-font-family-#{$fontFamilyName}: #{map-get-deep($bolt-font-families, 'font-families', $fontFamilyName, 'custom-font')};
       }
 
       font-family: $custom-font-family;

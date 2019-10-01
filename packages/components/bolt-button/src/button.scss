@@ -2,34 +2,31 @@
    Button
 \* ------------------------------------ */
 
+// Dev Notes
+// 1. [Morse] This mixin outputs a separate ruleset for each selector to prevent IE from failing on unrecognized selectors like `:host`. It is not a substitute for comma-separated selectors.
+// 2. [Morse] Bolt-link delegates focus to inner element.
+
 @import '@bolt/core';
 @import './button-settings-and-tools';
 
 /**
  * Base Button
  */
-bolt-button {
+@include bolt-repeat-rule(('bolt-button', ':host')) {
+  // [1]
   display: inline-flex;
+  outline: none; // [2]
 
-  &[disabled],
-  &[disabled]:focus {
-    outline: none;
+  &[type="button"],
+  &[type="reset"],
+  &[type="submit"] {
+    appearance: none;
   }
-}
-
-:host {
-  display: inline-flex;
-}
-
-:host([disabled]),
-:host([disabled]):focus {
-  outline: none;
 }
 
 .c-bolt-button {
   @include bolt-button;
 }
-
 
 /**
  * Button Styles
@@ -48,12 +45,11 @@ bolt-button {
   @include bolt-button-style(text);
 }
 
-[aria-disabled="true"] .c-bolt-button,
+[aria-disabled='true'] .c-bolt-button,
 .c-bolt-button[disabled],
 .c-bolt-button--disabled {
   @include bolt-button-style(disabled);
 }
-
 
 /**
  * Button Text Transform
@@ -70,12 +66,23 @@ bolt-button {
   text-transform: capitalize;
 }
 
-@function bolt-button-icon-only-size($paddingSize, $fontSize: xsmall){
-  $line-height: map-get-deep($bolt-font-sizes, 'font-sizes', $fontSize, 'line-height', 'regular');
-  $font-size: map-get-deep($bolt-font-sizes, 'font-sizes', $fontSize, 'font-size');
-  @return (bolt-v-spacing($paddingSize) * $bolt-spacing-squished * 2) + ($line-height * $font-size);
+@function bolt-button-icon-only-size($paddingSize, $fontSize: xsmall) {
+  $line-height: map-get-deep(
+    $bolt-font-sizes,
+    'font-sizes',
+    $fontSize,
+    'line-height',
+    'regular'
+  );
+  $font-size: map-get-deep(
+    $bolt-font-sizes,
+    'font-sizes',
+    $fontSize,
+    'font-size'
+  );
+  @return (bolt-v-spacing($paddingSize) * $bolt-spacing-squished * 2) +
+    ($line-height * $font-size);
 }
-
 
 /**
  * Button Sizes
@@ -129,7 +136,6 @@ bolt-button {
     min-height: bolt-button-icon-only-size(large, large);
   }
 }
-
 
 /**
  * Icon Only Buttons
@@ -190,7 +196,6 @@ bolt-button {
   }
 }
 
-
 /**
  * Button Width
  */
@@ -204,7 +209,6 @@ bolt-button[width='full'],
 :host([width='full']) {
   width: 100%;
 }
-
 
 // full@small width variations
 bolt-button[width='full@small'],
@@ -222,7 +226,6 @@ bolt-button[width='full@small'],
   }
 }
 
-
 /**
  * Border Radius
  */
@@ -234,11 +237,10 @@ bolt-button[width='full@small'],
     }
   }
 
-  bolt-button[border-radius="#{$radius_name}"] {
+  bolt-button[border-radius='#{$radius_name}'] {
     border-radius: $radius-value;
   }
 }
-
 
 /**
  * Icon and text spacing and display
@@ -273,7 +275,6 @@ bolt-button[width='full@small'],
     @include bolt-margin-left(xxsmall);
   }
 }
-
 
 /**
  * Button Alignments

@@ -50,7 +50,7 @@ async function init() {
       // } else {
       // }
       deployedUrl = shell.exec(
-        `now --meta gitSha="${gitSha}" --token=${NOW_TOKEN}`,
+        `npx now --meta gitSha="${gitSha}" --token=${NOW_TOKEN}`,
       ).stdout;
 
       deployedUrlPretty = deployedUrl.trim();

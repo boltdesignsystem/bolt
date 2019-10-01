@@ -46,13 +46,16 @@ bolt-modal:not([ready]) {
 
 .c-bolt-modal {
   @include bolt-z-index(modal);
+  @include bolt-font-family(body);
+  @include bolt-font-size(medium);
+  @include bolt-font-weight(regular);
 
   display: block;
   opacity: bolt-opacity(0);
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%; // Use % instead of vh or modal scrollbar is hidden behind bold scrollbar in IE11
   height: 100vh;
   pointer-events: none;
   transition: opacity $bolt-modal-transition;
@@ -61,6 +64,7 @@ bolt-modal:not([ready]) {
 
   &.is-open {
     opacity: bolt-opacity(100);
+    cursor: pointer;
     pointer-events: auto;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -163,9 +167,10 @@ bolt-modal:not([ready]) {
   }
 
   @at-root .c-bolt-modal.is-open #{&} {
+    cursor: auto;
+
     @include bolt-mq($bolt-modal-breakpoint) {
       visibility: visible;
-      cursor: auto;
       transition: visibility 0s $bolt-transition-ease 0s;
     }
   }
@@ -215,6 +220,10 @@ bolt-modal:not([ready]) {
 
 // Content width options
 @include bolt-mq($bolt-modal-breakpoint) {
+  .c-bolt-modal__content--width-regular {
+    width: 100% / 12 * 10;
+  }
+
   .c-bolt-modal__content--width-optimal {
     width: 75ch;
   }
@@ -224,16 +233,19 @@ bolt-modal:not([ready]) {
   }
 }
 
-// Container
+/**
+  * Modal Container
+  * 1. translate3d(0, 0, 0) is needed to fix http://vjira2:8080/browse/BDS-1672?filter=-1
+**/
 .c-bolt-modal__container {
   display: block;
   opacity: bolt-opacity(0);
-  transform: scale($bolt-modal-animation-scale);
+  transform: translate3d(0, 0, 0) scale($bolt-modal-animation-scale); /* [1] */
   transition: opacity $bolt-modal-transition, transform $bolt-modal-transition;
 
   @at-root .c-bolt-modal.is-open #{&} {
     opacity: bolt-opacity(100);
-    transform: scale(1);
+    transform: translate3d(0, 0, 0) scale(1); /* [1] */
   }
 
   @include bolt-mq($bolt-modal-breakpoint) {
@@ -387,16 +399,6 @@ bolt-modal:not([ready]) {
     @include bolt-mq($bolt-modal-breakpoint) {
       height: 0.1rem;
       background-color: bolt-color(white);
-
-      .t-bolt-light &,
-      .t-bolt-xlight & {
-        background-color: bolt-color(white);
-      }
-
-      .t-bolt-dark &,
-      .t-bolt-xdark & {
-        background-color: bolt-color(indigo, light);
-      }
     }
   }
 
@@ -406,6 +408,28 @@ bolt-modal:not([ready]) {
 
   &:after {
     transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+  }
+}
+
+.c-bolt-modal__close-button--dark {
+  .c-bolt-modal__close-button__icon {
+    &:before,
+    &:after {
+      @include bolt-mq($bolt-modal-breakpoint) {
+        background-color: bolt-color(indigo, light);
+      }
+    }
+  }
+}
+
+.c-bolt-modal__close-button--light {
+  .c-bolt-modal__close-button__icon {
+    &:before,
+    &:after {
+      @include bolt-mq($bolt-modal-breakpoint) {
+        background-color: bolt-color(white);
+      }
+    }
   }
 }
 

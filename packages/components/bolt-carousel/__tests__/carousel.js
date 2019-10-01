@@ -5,11 +5,21 @@ import {
   renderString,
   stopServer,
   html,
+  //vrtDefaultConfig as vrtConfig,
 } from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 
-const timeout = 120000;
+const vrtDefaultConfig = {
+  failureThreshold: '0.0028',
+  failureThresholdType: 'percent',
+  customDiffConfig: {
+    threshold: '0.1',
+    includeAA: true,
+  },
+};
+
+const timeout = 180000;
 
 const viewportSizes = [
   {
@@ -44,23 +54,26 @@ const viewportSizes = [
   },
 ];
 
-const imageVrtConfig = {
-  failureThreshold: '0.03',
-  failureThresholdType: 'percent',
-};
-
 describe('carousel', () => {
   let page;
 
   beforeEach(async () => {
-    const context = await global.__BROWSER__.createIncognitoBrowserContext();
-    page = await context.newPage();
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+    await page.setViewport({ width: 800, height: 600 });
+  }, timeout);
+
+  beforeAll(async () => {
+    page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
+
+  afterAll(async () => {
+    await page.close();
+  }, 100);
 
   // test('basic carousel component renders', async () => {
   //   const results = await render('@bolt-components-carousel/carousel.twig');
@@ -95,7 +108,7 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders',
     async function() {
-      const renderedComponentHTML = await page.evaluate(() => {
+      const renderedComponentHTML = await page.evaluate(async () => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
@@ -111,7 +124,10 @@ describe('carousel', () => {
         image1.setAttribute('ratio', '1200/660');
         image1.setAttribute('alt', 'A Rock Climber');
         image1.setAttribute('no-lazy', '');
-        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
+        image1.setAttribute(
+          'style',
+          'background-color: hsl(233, 33%, 97%); width: 100%;',
+        );
 
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
@@ -142,11 +158,27 @@ describe('carousel', () => {
         carousel.appendChild(carouselSlide3);
 
         document.body.appendChild(carousel);
-        carousel.updated();
-        return carousel.outerHTML;
-      });
 
-      await page.waitFor(1000);
+        // return back the carousel's HTML once the carousel + carousel items have all finished rendering
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const allElements = [...carousels, ...carouselItems];
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        ).then(() => {
+          return carousel.outerHTML;
+        });
+      });
 
       const screenshots = [];
 
@@ -158,8 +190,11 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -168,7 +203,7 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls',
     async function() {
-      const renderedComponentHTML = await page.evaluate(() => {
+      const renderedComponentHTML = await page.evaluate(async () => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
@@ -184,7 +219,10 @@ describe('carousel', () => {
         image1.setAttribute('ratio', '1200/660');
         image1.setAttribute('alt', 'A Rock Climber');
         image1.setAttribute('no-lazy', '');
-        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
+        image1.setAttribute(
+          'style',
+          'background-color: hsl(233, 33%, 97%); width: 100%;',
+        );
 
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
@@ -202,8 +240,8 @@ describe('carousel', () => {
         text3.textContent = 'Slide 3';
 
         const buttonControls = `
-        <bolt-button slot="previous-btn" variant="secondary" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
-        <bolt-button slot="next-btn" variant="secondary" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
+        <bolt-button slot="previous-btn" color="secondary" border-radius="full" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
+        <bolt-button slot="next-btn" color="secondary" border-radius="full" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
       `;
 
         carousel.innerHTML = buttonControls;
@@ -222,11 +260,27 @@ describe('carousel', () => {
         carousel.appendChild(carouselSlide3);
 
         document.body.appendChild(carousel);
-        carousel.updated();
-        return carousel.outerHTML;
+        // return back the carousel's HTML once the carousel + carousel items have all finished rendering
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const images = Array.from(document.querySelectorAll('bolt-image'));
+        const allElements = [...carousels, ...carouselItems, ...images];
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        ).then(() => {
+          return carousel.outerHTML;
+        });
       });
-
-      await page.waitFor(1000);
 
       const screenshots = [];
 
@@ -238,8 +292,11 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -248,9 +305,9 @@ describe('carousel', () => {
   test(
     'Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls',
     async function() {
-      const renderedComponentHTML = await page.evaluate(() => {
+      const renderedComponentHTML = await page.evaluate(async () => {
         const carousel = document.createElement('bolt-carousel');
-        carousel.setAttribute('nav-position', 'outside');
+        carousel.setAttribute('nav-button-position', 'outside');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
@@ -265,7 +322,10 @@ describe('carousel', () => {
         image1.setAttribute('ratio', '1200/660');
         image1.setAttribute('alt', 'A Rock Climber');
         image1.setAttribute('no-lazy', '');
-        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
+        image1.setAttribute(
+          'style',
+          'background-color: hsl(233, 33%, 97%); width: 100%;',
+        );
 
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
@@ -283,8 +343,8 @@ describe('carousel', () => {
         text3.textContent = 'Slide 3';
 
         const buttonControls = `
-        <bolt-button slot="previous-btn" variant="secondary" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
-        <bolt-button slot="next-btn" variant="secondary" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
+        <bolt-button slot="previous-btn" color="secondary" border-radius="full" icon-only>Previous <bolt-icon slot="before" name="chevron-left"></bolt-icon></bolt-button>
+        <bolt-button slot="next-btn" color="secondary" border-radius="full" icon-only>Next <bolt-icon slot="after" name="chevron-right"></bolt-icon></bolt-button>
       `;
 
         carousel.innerHTML = buttonControls;
@@ -303,11 +363,27 @@ describe('carousel', () => {
         carousel.appendChild(carouselSlide3);
 
         document.body.appendChild(carousel);
-        carousel.updated();
-        return carousel.outerHTML;
+        // return back the carousel's HTML once the carousel + carousel items have all finished rendering
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const images = Array.from(document.querySelectorAll('bolt-image'));
+        const allElements = [...carousels, ...carouselItems, ...images];
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        ).then(() => {
+          return carousel.outerHTML;
+        });
       });
-
-      await page.waitFor(1000);
 
       const screenshots = [];
 
@@ -319,19 +395,22 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
   );
 
   test(
-    'Basic 3 Slide <bolt-carousel> Renders w/ 1 Slide Per View',
+    'Basic 3 Slide <bolt-carousel> Renders w/ Variable (Auto) Slide Per View',
     async function() {
-      const renderedComponentHTML = await page.evaluate(() => {
+      const renderedComponentHTML = await page.evaluate(async () => {
         const carousel = document.createElement('bolt-carousel');
-        carousel.setAttribute('slides-per-view', 1);
+        carousel.setAttribute('slides-per-view', 'auto');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
         const carouselSlide3 = document.createElement('bolt-carousel-slide');
@@ -346,7 +425,10 @@ describe('carousel', () => {
         image1.setAttribute('ratio', '1200/660');
         image1.setAttribute('alt', 'A Rock Climber');
         image1.setAttribute('no-lazy', '');
-        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
+        image1.setAttribute(
+          'style',
+          'background-color: hsl(233, 33%, 97%); width: 100%;',
+        );
 
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
@@ -377,11 +459,27 @@ describe('carousel', () => {
         carousel.appendChild(carouselSlide3);
 
         document.body.appendChild(carousel);
-        carousel.updated();
-        return carousel.outerHTML;
+        // return back the carousel's HTML once the carousel + carousel items have all finished rendering
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        // const images = Array.from(document.querySelectorAll('bolt-image'));
+        const allElements = [...carousels, ...carouselItems];
+        return Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        ).then(() => {
+          return carousel.outerHTML;
+        });
       });
-
-      await page.waitFor(1000);
 
       const screenshots = [];
 
@@ -393,8 +491,11 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,
@@ -403,7 +504,7 @@ describe('carousel', () => {
   test(
     'Basic 7 Slide <bolt-carousel> Renders',
     async function() {
-      const renderedComponentHTML = await page.evaluate(() => {
+      const renderedComponentHTML = await page.evaluate(async () => {
         const carousel = document.createElement('bolt-carousel');
         const carouselSlide1 = document.createElement('bolt-carousel-slide');
         const carouselSlide2 = document.createElement('bolt-carousel-slide');
@@ -423,7 +524,10 @@ describe('carousel', () => {
         image1.setAttribute('ratio', '1200/660');
         image1.setAttribute('alt', 'A Rock Climber');
         image1.setAttribute('no-lazy', '');
-        image1.setAttribute('style', 'background-color: hsl(233, 33%, 97%);');
+        image1.setAttribute(
+          'style',
+          'background-color: hsl(233, 33%, 97%); width: 100%;',
+        );
 
         const image2 = image1.cloneNode(true);
         const image3 = image1.cloneNode(true);
@@ -490,11 +594,27 @@ describe('carousel', () => {
         carousel.appendChild(carouselSlide7);
 
         document.body.appendChild(carousel);
-        carousel.updated();
-        return carousel.outerHTML;
+        // return back the carousel's HTML once the carousel + carousel items have all finished rendering
+        const carousels = Array.from(
+          document.querySelectorAll('bolt-carousel'),
+        );
+        const carouselItems = Array.from(
+          document.querySelectorAll('bolt-carousel-item'),
+        );
+        const images = Array.from(document.querySelectorAll('bolt-image'));
+        const allElements = [...carousels, ...carouselItems, ...images];
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        ).then(() => {
+          return carousel.outerHTML;
+        });
       });
-
-      await page.waitFor(1000);
 
       const screenshots = [];
 
@@ -506,8 +626,11 @@ describe('carousel', () => {
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
+        await page.waitFor(500);
         screenshots[size].default = await page.screenshot();
-        expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
+        expect(screenshots[size].default).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
       }
     },
     timeout,

@@ -1,0 +1,15 @@
+{% set config = {
+  styles: styles | default([]),
+  scripts: scripts | default([]),
+  id: id | default(''),
+} %}
+
+<div class="js-pega-editor">
+  <script class="js-pega-editor__config" type="application/json">{{ config | json_encode }}</script>
+  <bolt-button color="primary" size="xsmall" class="js-pega-editor__trigger">Edit</bolt-button>
+  <bolt-button color="secondary" size="xsmall" class="js-pega-editor__feedback">Submit Feedback</bolt-button>
+  <br>
+  <div class="js-pega-editor__space">
+    {{ content }}
+  </div>
+</div>

@@ -20,7 +20,7 @@ async function renderTwigString(template, data) {
   return await renderString(template, data, true);
 }
 
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<%= props.name.noCase %>', async () => {
   let page;
@@ -32,9 +32,8 @@ describe('<%= props.name.noCase %>', async () => {
   beforeEach(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
+      waitUntil: 'networkidle0',
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 

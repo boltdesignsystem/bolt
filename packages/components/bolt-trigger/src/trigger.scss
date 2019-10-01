@@ -6,6 +6,7 @@
 // 1. [Mai] Reset button and input tag browser defaults.
 // 2. [Morse] Bolt-trigger is inline and sometimes contains an inline <a> or <button>, which can cause unwanted whitespace. Zero-out and reset font-size to avoid this issue.
 // 3. [Morse] Bolt-trigger delegates focus to inner element.
+// 4. [Morse] Use `bolt-repeat-rule` to output the same styles for each selector *separately*. If grouped, IE will ignore the whole block because it doesn't recognize `:host`.
 
 @import '@bolt/core';
 
@@ -18,33 +19,31 @@ bolt-trigger {
   outline: none; // [3]
 }
 
-// @todo: move this to core and combine with bolt-custom-element() mixin.
-@mixin bolt-trigger-element-styles($name, $props: null) {
-  @if $props {
-    @each $prop in $props {
-      #{$name}#{$prop} {
-        @content;
-      }
-      :host(#{$prop}) {
-        @content;
-      }
-    }
-  } @else {
-    #{$name} {
-      @content;
-    }
-    :host {
-      @content;
-    }
-  }
-}
-
-@include bolt-trigger-element-styles(
-  bolt-trigger,
-  ('[no-outline]:active', '[no-outline]:focus', '[no-outline]:focus-within')
+@include bolt-repeat-rule(
+  (
+    'bolt-trigger[no-outline]:active',
+    ':host([no-outline]:active)',
+    'bolt-trigger[no-outline]:focus',
+    ':host([no-outline]:focus)',
+    'bolt-trigger[no-outline]:focus-within',
+    ':host([no-outline]:focus-within)'
+  )
 ) {
   outline: none;
-}
+} // [4]
+
+@include bolt-repeat-rule(
+  (
+    'bolt-trigger[type="button"]',
+    ':host([type="button"])',
+    'bolt-trigger[type="reset"]',
+    ':host([type="reset"])',
+    'bolt-trigger[type="submit"]',
+    ':host([type="submit"])'
+  )
+) {
+  appearance: none;
+} // [4]
 
 // Component styles
 .c-bolt-trigger {
@@ -81,6 +80,16 @@ $bolt-trigger-cursor-values: auto pointer zoom-in zoom-out; // These values need
 @each $cursor in $bolt-trigger-cursor-values {
   .c-bolt-trigger--cursor-#{$cursor} {
     cursor: #{$cursor};
+
+    @if $cursor == zoom-in {
+      @include bolt-ie11-only {
+        cursor: url('~@bolt/components-trigger/src/cursor-zoom-in.cur'), pointer;
+      }
+    } @else if $cursor == zoom-out {
+      @include bolt-ie11-only {
+        cursor: url('~@bolt/components-trigger/src/cursor-zoom-out.cur'), pointer;
+      }
+    }
   }
 }
 

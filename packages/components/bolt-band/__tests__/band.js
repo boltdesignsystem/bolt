@@ -10,22 +10,27 @@ const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../band.schema.yml'));
 const { size, theme, tag } = schema.properties;
 
-const timeout = 60000;
+const timeout = 120000;
 
 describe('<bolt-band> Component', () => {
   let page;
 
   beforeEach(async () => {
+    await page.evaluate(() => {
+      document.body.innerHTML = '';
+    });
+  }, timeout);
+
+  beforeAll(async () => {
     page = await global.__BROWSER__.newPage();
     await page.goto('http://127.0.0.1:4444/', {
       timeout: 0,
-      waitLoad: true,
-      waitNetworkIdle: true, // defaults to false
     });
   }, timeout);
 
   afterAll(async () => {
     await stopServer();
+    await page.close();
   }, 100);
 
   // Basic Usage

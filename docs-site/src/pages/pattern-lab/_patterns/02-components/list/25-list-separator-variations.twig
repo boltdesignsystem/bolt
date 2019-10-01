@@ -5,40 +5,26 @@
   "flex",
   "inline",
 ] %}
-{% set link_1 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Item 1",
-    url: "#!",
-  } only %}
-{% endset %}
-{% set link_2 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Item 2",
-    url: "#!",
-  } only %}
-{% endset %}
-{% set link_3 %}
-  {% include "@bolt-components-link/link.twig" with {
-    text: "Item 3",
-    url: "#!",
-  } only %}
-{% endset %}
 
 {# Start component specific code #}
-{% for display in regular_display_options %}
-  {% for separator in schema.properties.separator.enum %}
-    {% if separator != "none" %}
-      <h3>{{ display|capitalize }} list with separators ({{ separator }})</h3>
-      {% include "@bolt-components-list/list.twig" with {
-        display: display,
-        separator: separator,
-        items: [
-          link_1,
-          link_2,
-          link_3,
-        ]
-      } only %}
-    {% endif %}
-  {% endfor %}
+{% for separator in schema.properties.separator.enum %}
+  {% if separator != "none" %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-large" %}
+      {% for display in regular_display_options %}
+        {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+          <h3>{{ separator|capitalize }} separators in a {{ display }} list</h3>
+          {% include "@bolt-components-list/list.twig" with {
+            display: display,
+            separator: separator,
+            items: [
+              "Item 1",
+              "Item 2",
+              "Item 3",
+            ]
+          } only %}
+        {% endcell %}
+      {% endfor %}
+    {% endgrid %}
+  {% endif %}
 {% endfor %}
 {# End component specific code #}

@@ -21,7 +21,7 @@ class BoltVideo extends withPreact() {
     accountId: props.string,
     playerId: props.string,
     poster: props.object,
-    isBackgroundVideo: props.boolean,
+    isBackgroundVideo: props.boolean, // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
     onInit: props.string,
     showMeta: props.boolean,
     showMetaTitle: props.boolean,
@@ -628,7 +628,6 @@ class BoltVideo extends withPreact() {
     //     ▶️
     //   </span>
     // );
-    /* eslint jsx-a11y/media-has-caption: "off" */
     // Added a wrapping div as brightcove adds siblings to the video tag
     const dataAttributes = datasetToObject(this);
 

@@ -15,6 +15,7 @@ const { readYamlFileSync } = require('@bolt/build-utils/yaml');
 const manifest = require('@bolt/build-utils/manifest');
 const timer = require('@bolt/build-utils/timer');
 const { fileExists, dirExists } = require('@bolt/build-utils/general');
+const shell = require('shelljs');
 
 let plSource, plPublic, consolePath;
 let config;
@@ -154,20 +155,15 @@ async function precompile() {
           chalk.yellow(
             '⚠️ Uh-oh. Pattern Labs UIKit is missing... Regenerating!',
           );
-          sh(
-            'yarn',
-            [
-              '--cwd',
-              path.join(process.cwd(), '../packages/uikit-workshop'),
-              'run',
-              'build',
-            ],
-            false,
-            true,
-          ).then(output => {
-            // console.log(output);
-            resolve();
-          });
+
+          const result = shell.exec(
+            `yarn --cwd ${path.join(
+              process.cwd(),
+              '../packages/uikit-workshop',
+            )} run build`,
+          ).stdout;
+
+          resolve(result);
         } else {
           resolve();
         }
@@ -201,13 +197,32 @@ async function watch() {
     path.join(plSource, globPattern),
     path.join(config.dataDir, '**/*'),
     `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
+    `!${dirs.map(dir => path.join(dir, '**/*.schema.yml'))}`, // ignore watching schema files since the new schema file watcher below handles this
   ];
 
-  // @todo show this when spinners are disabled at this high of verbosity
-  // if (config.verbosity > 4) {
-  //   log.info('Pattern Lab is Watching:');
-  //   console.log(watchedFiles);
-  // }
+  // watch schema files for changes; regenerate the globally shared manifest data when updated
+  //
+  // @todo: include other data sources (like package.json) that get pulled into the global data store
+  // @todo: update manifest.writeBoltManifest to only rewrite files on the filesystem when the data has ACTUALLY changed (avoid unnecessary recompiles)
+  // @todo: move this entire
+  const schemaFileWatcher = chokidar.watch(
+    [
+      dirs.map(dir => path.join(dir, `**/*.schema.yml`)),
+      path.join(plSource, `**/*.schema.yml`),
+      `!${path.join(config.dataDir, 'sassdoc.bolt.json')}`,
+    ],
+    {
+      ignoreInitial: true,
+      cwd: process.cwd(),
+      ignored: ['**/node_modules/**', '**/vendor/**'],
+    },
+  );
+
+  schemaFileWatcher.on('all', async (event, path) => {
+    await manifest.writeBoltManifest();
+  });
+  // <!-- @todo: move this entire watch task to a separate top-level data task in the build tools (which would probably include build + watch functions)
+  // right now this ^ only works when PL is running. this should run independently of PL + the Static site!
 
   let compileWhenReady = false;
 

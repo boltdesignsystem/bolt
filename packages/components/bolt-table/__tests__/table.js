@@ -5,6 +5,7 @@ import {
   renderString,
   stop as stopTwigRenderer,
 } from '@bolt/twig-renderer';
+import { html } from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../table.schema.yml'));
@@ -18,12 +19,163 @@ async function renderTwigString(template, data) {
   return await renderString(template, data, true);
 }
 
-const timeout = 60000;
+const timeout = 120000;
+
+const vrtDefaultConfig = {
+  failureThreshold: '0.02',
+  failureThresholdType: 'percent',
+  customDiffConfig: {
+    threshold: '0.1',
+    includeAA: false,
+  },
+};
 
 describe('<bolt-table> Component', () => {
+  let page;
+
   afterAll(async () => {
     await stopTwigRenderer();
+  });
+
+  beforeEach(async () => {
+    page = await global.__BROWSER__.newPage();
+    await page.goto('http://127.0.0.1:4444/', {
+      waitUntil: 'networkidle0',
+    });
   }, timeout);
+
+  test('Twig-rendered Table with HTML comments', async () => {
+    const results = await render('@bolt-components-table/table.twig', {
+      first_col_fixed_width: true,
+      rows: [
+        {
+          cells: ['<!-- test -->R1C1', 'R1C2', 'R1C3'],
+        },
+        {
+          cells: ['R2C1', 'R2C2', 'R2C3'],
+        },
+        {
+          cells: ['R3C1', 'R3C2', 'R3C3'],
+        },
+      ],
+    });
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+
+    const twigHTML = results.html;
+
+    const renderedTableHTML = await page.evaluate(async twigHTML => {
+      document.getElementById('root').innerHTML = twigHTML;
+      const table = document.querySelector('bolt-table');
+      return await Promise.all([
+        async () => {
+          if (table._wasInitiallyRendered) return;
+          return new Promise((resolve, reject) => {
+            table.addEventListener('ready', resolve);
+            table.addEventListener('error', reject);
+          });
+        },
+      ]).then(() => {
+        return table.outerHTML;
+      });
+    }, twigHTML);
+
+    const renderedHTML = await html(renderedTableHTML);
+    expect(renderedHTML).toMatchSnapshot();
+
+    expect(
+      renderedHTML
+        .querySelector('.c-bolt-table')
+        .classList.contains('c-bolt-table--first-col-fixed-width'),
+    ).toBe(true);
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
+  });
+
+  test('Web Component-rendered Table with HTML comments', async () => {
+    const staticHTML = `
+      <bolt-table first-col-fixed-width>
+        <table>
+          <thead>
+              <tr>
+                <th>Prop Name</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Default Value</th>
+                <th>Option(s)</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <!-- name -->
+                <td>
+                    <strong>
+                      <!---->
+                      align
+                      <!---->
+                    </strong>
+                </td>
+                <!-- description -->
+                <td>
+                    <p>Horizontal alignment of items (text and icon) inside the button. Note: the values left and right are deprecated, use start and end instead.</p>
+                </td>
+                <!-- type -->
+                <td>
+                    <code>string</code>
+                    <!-- default value -->
+                </td>
+                <td>
+                    <code>center</code>
+                </td>
+                <!-- values -->
+                <td>
+                    <ul>
+                      <li>
+                          <code>start</code>
+                      </li>
+                      <li>
+                          <code>center</code>
+                      </li>
+                      <li>
+                          <code>end</code>
+                      </li>
+                    </ul>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </bolt-table>
+    `;
+
+    const renderedTableHTML = await page.evaluate(async staticHTML => {
+      document.getElementById('root').innerHTML = staticHTML;
+      const table = document.querySelector('bolt-table');
+      return await Promise.all([
+        async () => {
+          if (table._wasInitiallyRendered) return;
+          return new Promise((resolve, reject) => {
+            table.addEventListener('ready', resolve);
+            table.addEventListener('error', reject);
+          });
+        },
+      ]).then(() => {
+        return table.outerHTML;
+      });
+    }, staticHTML);
+
+    const renderedHTML = await html(renderedTableHTML);
+    expect(renderedHTML).toMatchSnapshot();
+
+    expect(
+      renderedHTML
+        .querySelector('.c-bolt-table')
+        .classList.contains('c-bolt-table--first-col-fixed-width'),
+    ).toBe(true);
+
+    const image = await page.screenshot();
+    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
+  });
 
   test('table with rows only', async () => {
     const results = await renderTwig('@bolt-components-table/table.twig', {

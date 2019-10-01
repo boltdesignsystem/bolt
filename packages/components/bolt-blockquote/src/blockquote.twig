@@ -27,7 +27,8 @@
   this.data.align_items.value in align_items_options|keys ? base_class ~ "--align-items-" ~ align_items_options[this.data.align_items.value],
   this.data.border.value == 'none' ? base_class ~ "--borderless" : base_class ~ "--bordered-" ~ this.data.border.value,
   this.data.indent.value ? base_class ~ "--indented" : "",
-  this.data.full_bleed.value ? base_class ~ "--full" : ""
+  this.data.full_bleed.value ? base_class ~ "--full" : "",
+  this.data.no_quotes.value ? base_class ~ "--no-quotes" : ""
 ] %}
 
 {#
@@ -54,7 +55,6 @@
     {% if logo %}
       <replace-with-children class="{{ "#{base_class}__logo" }}">
         {% include "@bolt/logo.twig" with logo|merge({
-          "lazyload": false,
           slot: "logo",
         }) only %}
       </replace-with-children>
@@ -75,7 +75,7 @@
             {% if author.image %}
               <replace-with-grandchildren class="{{ "#{base_class}__footer-item" }}">
                 <div class="{{ "#{base_class}__image" }}">
-                  {% include "@bolt/image.twig" with author.image|merge({"lazyload": false, slot:"author-image"}) only %}
+                  {% include "@bolt/image.twig" with author.image|merge({ slot:"author-image"}) only %}
                 </div>
               </replace-with-grandchildren>
             {% endif %}

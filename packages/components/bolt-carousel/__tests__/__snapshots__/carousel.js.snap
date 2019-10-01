@@ -34,7 +34,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -55,7 +55,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -76,7 +76,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -146,10 +146,10 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders 1`] = `
       
     <bolt-button
       border-radius="full"
+      color="secondary"
       icon-only=""
       size="medium"
       style=""
-      variant="secondary"
     >
       
         Previous
@@ -182,221 +182,10 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders 1`] = `
       
     <bolt-button
       border-radius="full"
+      color="secondary"
       icon-only=""
       size="medium"
       style=""
-      variant="secondary"
-    >
-      
-        Next
-        
-      <bolt-icon
-        name="chevron-right"
-        size="large"
-        slot="before"
-        style=""
-      />
-      
-      
-    </bolt-button>
-    
-    
-            
-  </div>
-  
-          
-    
-  <!---->
-</bolt-carousel>
-`;
-
-exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ 1 Slide Per View 1`] = `
-<bolt-carousel
-  class="is-ready"
-  slides-per-view="1"
-  style=""
->
-  <!---->
-  
-      
-      
-  <div
-    class="c-bolt-carousel c-bolt-carousel--no-overflow c-bolt-carousel--initialized c-bolt-carousel--horizontal"
-    style="cursor:grab;"
-  >
-    
-        
-    <div
-      class="c-bolt-carousel__wrapper"
-      style="transform:translate3d(0px, 0px, 0px);"
-    >
-      
-          
-      <!---->
-      <!---->
-      <bolt-carousel-slide
-        class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--visible c-bolt-carousel__slide--active"
-        style="width:800px;margin-right:30px;"
-      >
-        <bolt-image
-          alt="A Rock Climber"
-          no-lazy=""
-          ratio="1200/660"
-          sizes="auto"
-          src="/fixtures/1200x660.jpg"
-          srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
-        />
-        <bolt-text
-          headline=""
-          style=""
-        >
-          Slide 1
-        </bolt-text>
-      </bolt-carousel-slide>
-      <!---->
-      <bolt-carousel-slide
-        class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--next"
-        style="width:800px;margin-right:30px;"
-      >
-        <bolt-image
-          alt="A Rock Climber"
-          no-lazy=""
-          ratio="1200/660"
-          sizes="auto"
-          src="/fixtures/1200x660.jpg"
-          srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
-        />
-        <bolt-text
-          headline=""
-          style=""
-        >
-          Slide 2
-        </bolt-text>
-      </bolt-carousel-slide>
-      <!---->
-      <bolt-carousel-slide
-        class="c-bolt-carousel__slide is-ready"
-        style="width:800px;margin-right:30px;"
-      >
-        <bolt-image
-          alt="A Rock Climber"
-          no-lazy=""
-          ratio="1200/660"
-          sizes="auto"
-          src="/fixtures/1200x660.jpg"
-          srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
-        />
-        <bolt-text
-          headline=""
-          style=""
-        >
-          Slide 3
-        </bolt-text>
-      </bolt-carousel-slide>
-      <!---->
-      <!---->
-      
-        
-    </div>
-    
-        
-              
-    <div
-      class="c-bolt-carousel__pagination c-bolt-carousel__pagination--clickable c-bolt-carousel__pagination--bullets"
-      style=""
-    >
-      <span
-        aria-label="Go to slide 1"
-        class="c-bolt-carousel__pagination__bullet c-bolt-carousel__pagination__bullet--active"
-        role="button"
-        style=""
-        tabindex="0"
-      />
-      <span
-        aria-label="Go to slide 2"
-        class="c-bolt-carousel__pagination__bullet"
-        role="button"
-        style=""
-        tabindex="0"
-      />
-      <span
-        aria-label="Go to slide 3"
-        class="c-bolt-carousel__pagination__bullet"
-        role="button"
-        style=""
-        tabindex="0"
-      />
-    </div>
-    
-            
-      
-    <span
-      aria-atomic="true"
-      aria-live="assertive"
-      class="c-bolt-carousel__notification"
-      style=""
-    />
-  </div>
-  
-
-      
-            
-  <div
-    aria-disabled="true"
-    aria-label="Previous slide"
-    class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--inside c-bolt-carousel__button--disabled"
-    role="button"
-    style=""
-    tabindex="0"
-  >
-    
-              
-      
-    <bolt-button
-      border-radius="full"
-      icon-only=""
-      size="medium"
-      style=""
-      variant="secondary"
-    >
-      
-        Previous
-        
-      <bolt-icon
-        name="chevron-left"
-        size="large"
-        slot="before"
-        style=""
-      />
-      
-      
-    </bolt-button>
-    
-    
-            
-  </div>
-  
-            
-  <div
-    aria-disabled="false"
-    aria-label="Next slide"
-    class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
-    role="button"
-    style=""
-    tabindex="0"
-  >
-    
-              
-      
-    <bolt-button
-      border-radius="full"
-      icon-only=""
-      size="medium"
-      style=""
-      variant="secondary"
     >
       
         Next
@@ -464,7 +253,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -485,7 +274,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -506,7 +295,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -576,11 +365,12 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
     <!---->
     <!---->
     <bolt-button
+      border-radius="full"
+      color="secondary"
       icon-only=""
       slot="previous-btn"
       style=""
       tabindex="-1"
-      variant="secondary"
     >
       Previous 
       <bolt-icon
@@ -609,11 +399,12 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
     <!---->
     <!---->
     <bolt-button
+      border-radius="full"
+      color="secondary"
       icon-only=""
       slot="next-btn"
       style=""
       tabindex="-1"
-      variant="secondary"
     >
       Next 
       <bolt-icon
@@ -637,7 +428,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Nav Controls 1`] = `
 exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`] = `
 <bolt-carousel
   class="is-ready"
-  nav-position="outside"
+  nav-button-position="outside"
   style=""
 >
   <!---->
@@ -678,7 +469,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -699,7 +490,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -720,7 +511,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -780,7 +571,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
   <div
     aria-disabled="true"
     aria-label="Previous slide"
-    class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--inside c-bolt-carousel__button--disabled"
+    class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--outside c-bolt-carousel__button--disabled"
     role="button"
     style=""
     tabindex="0"
@@ -790,11 +581,12 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
     <!---->
     <!---->
     <bolt-button
+      border-radius="full"
+      color="secondary"
       icon-only=""
       slot="previous-btn"
       style=""
       tabindex="-1"
-      variant="secondary"
     >
       Previous 
       <bolt-icon
@@ -813,7 +605,7 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
   <div
     aria-disabled="false"
     aria-label="Next slide"
-    class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
+    class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--outside"
     role="button"
     style=""
     tabindex="0"
@@ -823,11 +615,12 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
     <!---->
     <!---->
     <bolt-button
+      border-radius="full"
+      color="secondary"
       icon-only=""
       slot="next-btn"
       style=""
       tabindex="-1"
-      variant="secondary"
     >
       Next 
       <bolt-icon
@@ -838,6 +631,210 @@ exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Outer Nav Controls 1`
     </bolt-button>
     <!---->
     <!---->
+    
+            
+  </div>
+  
+          
+    
+  <!---->
+</bolt-carousel>
+`;
+
+exports[`carousel Basic 3 Slide <bolt-carousel> Renders w/ Variable (Auto) Slide Per View 1`] = `
+<bolt-carousel
+  class="is-ready"
+  slides-per-view="auto"
+  style=""
+>
+  <!---->
+  
+      
+      
+  <div
+    class="c-bolt-carousel c-bolt-carousel--no-overflow c-bolt-carousel--initialized c-bolt-carousel--horizontal"
+    style="cursor:grab;"
+  >
+    
+        
+    <div
+      class="c-bolt-carousel__wrapper"
+      style="transform:translate3d(0px, 0px, 0px);"
+    >
+      
+          
+      <!---->
+      <!---->
+      <bolt-carousel-slide
+        class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--visible c-bolt-carousel__slide--active"
+        style="width:385px;margin-right:30px;"
+      >
+        <bolt-image
+          alt="A Rock Climber"
+          no-lazy=""
+          ratio="1200/660"
+          sizes="auto"
+          src="/fixtures/1200x660.jpg"
+          srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
+        />
+        <bolt-text
+          headline=""
+          style=""
+        >
+          Slide 1
+        </bolt-text>
+      </bolt-carousel-slide>
+      <!---->
+      <bolt-carousel-slide
+        class="c-bolt-carousel__slide is-ready c-bolt-carousel__slide--visible c-bolt-carousel__slide--next"
+        style="width:385px;margin-right:30px;"
+      >
+        <bolt-image
+          alt="A Rock Climber"
+          no-lazy=""
+          ratio="1200/660"
+          sizes="auto"
+          src="/fixtures/1200x660.jpg"
+          srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
+        />
+        <bolt-text
+          headline=""
+          style=""
+        >
+          Slide 2
+        </bolt-text>
+      </bolt-carousel-slide>
+      <!---->
+      <bolt-carousel-slide
+        class="c-bolt-carousel__slide is-ready"
+        style="width:385px;margin-right:30px;"
+      >
+        <bolt-image
+          alt="A Rock Climber"
+          no-lazy=""
+          ratio="1200/660"
+          sizes="auto"
+          src="/fixtures/1200x660.jpg"
+          srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
+        />
+        <bolt-text
+          headline=""
+          style=""
+        >
+          Slide 3
+        </bolt-text>
+      </bolt-carousel-slide>
+      <!---->
+      <!---->
+      
+        
+    </div>
+    
+        
+              
+    <div
+      class="c-bolt-carousel__pagination c-bolt-carousel__pagination--clickable c-bolt-carousel__pagination--bullets"
+      style=""
+    >
+      <span
+        aria-label="Go to slide 1"
+        class="c-bolt-carousel__pagination__bullet c-bolt-carousel__pagination__bullet--active"
+        role="button"
+        style=""
+        tabindex="0"
+      />
+      <span
+        aria-label="Go to slide 2"
+        class="c-bolt-carousel__pagination__bullet"
+        role="button"
+        style=""
+        tabindex="0"
+      />
+    </div>
+    
+            
+      
+    <span
+      aria-atomic="true"
+      aria-live="assertive"
+      class="c-bolt-carousel__notification"
+      style=""
+    />
+  </div>
+  
+
+      
+            
+  <div
+    aria-disabled="true"
+    aria-label="Previous slide"
+    class="c-bolt-carousel__button c-bolt-carousel__button--previous c-bolt-carousel__button--inside c-bolt-carousel__button--disabled"
+    role="button"
+    style=""
+    tabindex="0"
+  >
+    
+              
+      
+    <bolt-button
+      border-radius="full"
+      color="secondary"
+      icon-only=""
+      size="medium"
+      style=""
+    >
+      
+        Previous
+        
+      <bolt-icon
+        name="chevron-left"
+        size="large"
+        slot="before"
+        style=""
+      />
+      
+      
+    </bolt-button>
+    
+    
+            
+  </div>
+  
+            
+  <div
+    aria-disabled="false"
+    aria-label="Next slide"
+    class="c-bolt-carousel__button c-bolt-carousel__button--next c-bolt-carousel__button--inside"
+    role="button"
+    style=""
+    tabindex="0"
+  >
+    
+              
+      
+    <bolt-button
+      border-radius="full"
+      color="secondary"
+      icon-only=""
+      size="medium"
+      style=""
+    >
+      
+        Next
+        
+      <bolt-icon
+        name="chevron-right"
+        size="large"
+        slot="before"
+        style=""
+      />
+      
+      
+    </bolt-button>
+    
     
             
   </div>
@@ -882,7 +879,7 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -903,7 +900,7 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -924,7 +921,7 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -945,7 +942,7 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -966,7 +963,7 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -987,7 +984,7 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -1008,7 +1005,7 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
           sizes="auto"
           src="/fixtures/1200x660.jpg"
           srcset="/fixtures/1200x660-50.jpg 50w, /fixtures/1200x660-100.jpg 100w, /fixtures/1200x660-200.jpg 200w, /fixtures/1200x660-320.jpg 320w, /fixtures/1200x660-480.jpg 480w, /fixtures/1200x660-640.jpg 640w, /fixtures/1200x660-800.jpg 800w, /fixtures/1200x660-1024.jpg 1024w"
-          style="background-color:hsl(233, 33%, 97%);"
+          style="background-color:hsl(233, 33%, 97%);width:100%;"
         />
         <bolt-text
           headline=""
@@ -1106,10 +1103,10 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
       
     <bolt-button
       border-radius="full"
+      color="secondary"
       icon-only=""
       size="medium"
       style=""
-      variant="secondary"
     >
       
         Previous
@@ -1142,10 +1139,10 @@ exports[`carousel Basic 7 Slide <bolt-carousel> Renders 1`] = `
       
     <bolt-button
       border-radius="full"
+      color="secondary"
       icon-only=""
       size="medium"
       style=""
-      variant="secondary"
     >
       
         Next
