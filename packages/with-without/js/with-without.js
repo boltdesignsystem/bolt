@@ -6,92 +6,100 @@ import {
   handleActiveRegionChangeRequest,
 } from './handleActiveRegionChange';
 
-document.querySelectorAll('bolt-animate').forEach(el => {});
+(() => {
+  const toggleInputClass = '.c-pega-www__toggle-input';
+  // short-circuit if no toggler is found.
+  if (!document.querySelector(toggleInputClass)) {
+    return;
+  }
 
-// Set up the resize listener which helps with some of the abs. pos. stuff.
-handleResize();
-window.addEventListener('resize', handleResize);
+  // Set up the resize listener which helps with some of the abs. pos. stuff.
+  handleResize()();
+  window.addEventListener('resize', handleResize());
 
-// Initialize the with/without slide-toggle.
-const toggleInputClass = '.c-pega-www__toggle-input';
-// This was moved from a checkbox to a radio.
-const checkedValue = 'w';
+  // This was moved from a checkbox to a radio.
+  const checkedValue = 'w';
 
-// Initialize the swiper for sliding between with and without.
-const wwoSwiper = new Swiper('#c-pega-wwo__swiper-container', {
-  speed: 500,
-  spaceBetween: 0,
-  noSwiping: true,
-});
+  // Initialize the swiper for sliding between with and without.
+  const wwoSwiper = new Swiper('#c-pega-wwo__swiper-container', {
+    speed: 500,
+    spaceBetween: 0,
+    noSwiping: true,
+  });
 
-// Pushed to bottom of call stack b/c w/o shadowdom enabled it breaks if not.
-if (document.querySelector(toggleInputClass)) {
+  // Wire up the toggler to the event region switcher.
+  Array.from(document.querySelectorAll(toggleInputClass)).forEach(el => {
+    el.addEventListener('change', e => {
+      handleActiveRegionChangeRequest(e.target.id === 'w', wwoSwiper);
+    });
+  });
+
+  // Add animation start and end event listeners to keep event from firing while in progress.
+  const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
+
+  if (animControllerEl) {
+    animControllerEl.addEventListener('animateStart', e => {
+      e.target.setAttribute('anim-in-progress', 1);
+    });
+
+    animControllerEl.addEventListener('animateEnd', e => {
+      e.target.removeAttribute('anim-in-progress');
+      // If the animation state doesn't match the state of the toggle, transition.
+      const activeAttr = animControllerEl.getAttribute('active');
+      const checkedRadio = Array.from(
+        document.querySelectorAll(toggleInputClass),
+      ).find(input => input.checked);
+      if (checkedRadio.id !== activeAttr) {
+        handleActiveRegionChangeRequest(
+          checkedRadio.id === checkedValue,
+          wwoSwiper,
+        );
+      }
+    });
+  }
+
+  // Initialize the accordion.
+  document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
+    el.addEventListener('click', handleBlockTitleMobileAccordionClick);
+  });
+
+  // Set up the modals.
+  const learnMoreModal = document.querySelector(
+    '.c-pega-www__modal--learn-more',
+  );
+  const learnMoreVideo = document.querySelector(
+    '.c-pega-www__video--learn-more',
+  );
+
+  if (learnMoreModal) {
+    learnMoreModal.addEventListener('modal:show', function() {
+      if (learnMoreVideo) {
+        learnMoreVideo.play();
+      }
+    });
+
+    learnMoreModal.addEventListener('modal:hide', function() {
+      if (learnMoreVideo) {
+        learnMoreVideo.pause();
+      }
+    });
+  }
+
+  // Force just the size-setting event to set height properly after dom loaded to fix content overlap bug on tablet.
+  // We want height to be accurate as soon as possible *and* afterward, so this lightweight double-check should stay.
   setTimeout(() => {
-    // Initialize the page.
-    triggerActiveRegionChange(
-      document.querySelector(toggleInputClass).id === checkedValue,
-      wwoSwiper,
-      true,
-    );
+    handleResize(true, false)();
   }, 0);
-}
 
-// Wire up the toggler to the event region switcher.
-Array.from(document.querySelectorAll(toggleInputClass)).forEach(el => {
-  el.addEventListener('change', e => {
-    handleActiveRegionChangeRequest(e.target.id === 'w', wwoSwiper);
-  });
-});
-
-// Add animation start and end event listeners to keep event from firing while in progress.
-const animControllerEl = document.querySelector('#c-pega-wwo__wrapper');
-
-if (animControllerEl) {
-  animControllerEl.addEventListener('animateStart', e => {
-    e.target.setAttribute('anim-in-progress', 1);
-  });
-
-  animControllerEl.addEventListener('animateEnd', e => {
-    e.target.removeAttribute('anim-in-progress');
-    // If the animation state doesn't match the state of the toggle, transition.
-    const activeAttr = animControllerEl.getAttribute('active');
-    const checkedRadio = Array.from(
-      document.querySelectorAll(toggleInputClass),
-    ).find(input => input.checked);
-    if (checkedRadio.id !== activeAttr) {
-      handleActiveRegionChangeRequest(
-        checkedRadio.id === checkedValue,
+  // Pushed to bottom of call stack b/c w/o shadowdom enabled it breaks if not.
+  if (document.querySelector(toggleInputClass)) {
+    setTimeout(() => {
+      // Initialize the page.
+      triggerActiveRegionChange(
+        document.querySelector(toggleInputClass).id === checkedValue,
         wwoSwiper,
+        true,
       );
-    }
-  });
-}
-
-// Initialize the accordion.
-document.querySelectorAll('.c-pega-wwo__region-blocks').forEach(el => {
-  el.addEventListener('click', handleBlockTitleMobileAccordionClick);
-});
-
-// Set up the modals.
-const learnMoreModal = document.querySelector('.c-pega-www__modal--learn-more');
-const learnMoreVideo = document.querySelector('.c-pega-www__video--learn-more');
-
-if (learnMoreModal) {
-  learnMoreModal.addEventListener('modal:show', function() {
-    if (learnMoreVideo) {
-      learnMoreVideo.play();
-    }
-  });
-
-  learnMoreModal.addEventListener('modal:hide', function() {
-    if (learnMoreVideo) {
-      learnMoreVideo.pause();
-    }
-  });
-}
-
-// Force just the size-setting event to set height properly after dom loaded to fix content overlap bug on tablet.
-// We want height to be accurate as soon as possible *and* afterward, so this lightweight double-check should stay.
-setTimeout(() => {
-  handleResize(true, false);
-}, 0);
+    }, 0);
+  }
+})();
