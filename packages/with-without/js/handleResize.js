@@ -51,7 +51,7 @@ const handleResize = (shouldForce = false, shouldTriggerAnims = true) => {
         greatestHeight = height > greatestHeight ? height : greatestHeight;
       });
       container.style.height = `${greatestHeight +
-      parseInt(toggleRegionHeight, 10)}px`;
+        parseInt(toggleRegionHeight, 10)}px`;
       slideContentInner.forEach(el => {
         el.style.paddingTop = toggleRegionHeight;
       });
@@ -61,7 +61,7 @@ const handleResize = (shouldForce = false, shouldTriggerAnims = true) => {
       });
       container.style.height = '100%';
     }
-  }
+  };
 };
 
 export default handleResize;
