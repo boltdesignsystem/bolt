@@ -18,7 +18,7 @@ class BoltBlockList extends withPreact() {
   }
 
   render() {
-    const theItems = this.props.items.split(',');
+    const theItems = this.props.items ? this.props.items.split(',') : [];
     let finalItems = '';
     theItems.forEach(value => {
       finalItems += `<li class="c-bolt-block-list__item">${value}</li>`;

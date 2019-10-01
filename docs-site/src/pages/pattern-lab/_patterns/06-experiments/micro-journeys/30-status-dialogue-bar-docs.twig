@@ -1,0 +1,5 @@
+<h2>Status Dialogue Bar Docs</h2>
+<pre><code>{{ '<bolt-status-dialolgue-bar size="small"></bolt-status-dialolgue-bar>' | e }}</code></pre>
+
+{% set schema = bolt.data.components["@bolt-micro-journeys"].schema.statusDialogueBar %}
+{% include '@utils/schema-docs.twig' with { schema: schema } only %}
