@@ -94,11 +94,10 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
-    this.addEventListener('bolt:layout-size-changed', e => {
-      if (e.target !== this) {
-        this.accordion && this.accordion.resize();
-      }
-    });
+    this.addEventListener(
+      'bolt:layout-size-changed',
+      this.handleLayoutSizeChanged,
+    );
   }
 
   getModifiedSchema(schema) {
@@ -161,20 +160,34 @@ class BoltAccordion extends withContext(withLitHtml()) {
     });
 
     this.accordion.on('fold:opened', fold => {
-      this.handleLayoutSizeChange();
+      this.onLayoutSizeChanged();
+
+      // @todo: register these elements in Bolt data instead?
+      const elementsToUpdate = this.querySelectorAll('[will-update]');
+      if (elementsToUpdate.length) {
+        elementsToUpdate.forEach(el => {
+          el.update && el.update();
+        });
+      }
     });
 
     this.accordion.on('fold:closed', fold => {
-      this.handleLayoutSizeChange();
+      this.onLayoutSizeChanged();
     });
   }
 
-  handleLayoutSizeChange() {
+  onLayoutSizeChanged() {
     this.dispatchEvent(
       new CustomEvent('bolt:layout-size-changed', {
         bubbles: true,
       }),
     );
+  }
+
+  handleLayoutSizeChanged(e) {
+    if (e.target !== this) {
+      this.accordion && this.accordion.resize();
+    }
   }
 
   setupAccordion() {
@@ -283,6 +296,11 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
   disconnected() {
     super.disconnected && super.disconnected();
+
+    this.removeEventListener(
+      'bolt:layout-size-changed',
+      this.handleLayoutSizeChanged,
+    );
 
     // remove MutationObserver if supported + exists
     if (window.MutationObserver && this.observer) {

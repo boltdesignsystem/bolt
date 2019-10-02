@@ -173,6 +173,12 @@ class BoltTabs extends withContext(withLitHtml()) {
             bubbles: true,
           }),
         );
+        const elementsToUpdate = this.querySelectorAll('[will-update]');
+        if (elementsToUpdate.length) {
+          elementsToUpdate.forEach(el => {
+            el.update && el.update();
+          });
+        }
       }, 0);
     }
   }
