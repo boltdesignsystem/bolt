@@ -35,6 +35,7 @@ const fireInitialAnimations = (toggleInputs, checkedValue, wwoSwiper) => {
     document.querySelectorAll('.c-pega-www__toggle-input'),
   );
 
+  // Get accurate height as soon as possible.
   handleResize(true, false)();
   window.addEventListener('resize', handleResize());
 
