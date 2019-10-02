@@ -62,10 +62,10 @@ const cta = {
   content: `
       <bolt-cta>
         <bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>
-        <bolt-text font-size="xsmall" slot="link" display="inline">
+        <bolt-link slot="link" display="inline">
           CTA Text
           <bolt-icon name="chevron-right"></bolt-icon>
-        </bolt-text>
+        </bolt-link>
       </bolt-cta>
       `,
 };
@@ -611,10 +611,10 @@ export function setupBolt(editor) {
     },
     initialContent: [
       `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>`,
-      `<bolt-text font-size="xsmall" slot="link" display="inline">
+      `<bolt-link slot="link" display="inline">
         CTA Text
         <bolt-icon name="chevron-right"></bolt-icon>
-      </bolt-text>`,
+      </bolt-link>`,
     ],
     extraTraits: [],
   });
