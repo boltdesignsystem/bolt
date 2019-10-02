@@ -68,7 +68,6 @@ class SelfDrawingCircle extends withLitHtml() {
       <div
         id="wwo-self-drawing-circle"
         class="wwo-self-drawing-circle"
-        is="shadow-root"
       >
         <div class="wwo-self-drawing-circle-rotation">
           <svg viewBox="-160 -160 320 320">
