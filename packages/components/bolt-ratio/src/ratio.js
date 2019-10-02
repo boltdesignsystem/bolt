@@ -6,6 +6,8 @@ import styles from './ratio.scss';
 
 @define
 class BoltRatio extends withLitHtml() {
+  static is = 'bolt-ratio';
+
   static props = {
     ratio: props.string,
     _ratioW: props.string, // internal only prop for handling the width-specific data from the ratio prop
