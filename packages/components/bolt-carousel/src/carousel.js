@@ -401,10 +401,6 @@ class BoltCarousel extends withLitHtml() {
       watchSlidesVisibility: true,
       slideToClickedSlide: true,
       threshold: 3,
-      keyboard: {
-        enabled: true,
-        onlyInViewport: true,
-      },
       centeredSlides: this.props.slideAlign === 'center' ? true : false,
       effect: this.props.fade ? 'fade' : 'slide',
       freeMode: this.props.freeScroll, //@todo: re-enable when adding free-scroll prop options
