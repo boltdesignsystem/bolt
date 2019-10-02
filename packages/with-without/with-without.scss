@@ -50,7 +50,7 @@ bolt-animate {
 
   // This is because vw in Edge and IE adds the vertical scrollbar, causing horizontal scroll.
   @include edge-all {
-    // I measured scrollbar width as 16px in Win10 Edge, but being cautious. Better a little truncation of bg than white border. https://stackoverflow.com/questions/986937/how-can-i-get-the-browsers-scrollbar-sizes
+    // Scrollbar width measured at 16px in Win10 Edge, but being cautious. Better a little truncation of bg than white border. https://stackoverflow.com/questions/986937/how-can-i-get-the-browsers-scrollbar-sizes
     width: calc(100vw - 10px);
     overflow: hidden;
   }
