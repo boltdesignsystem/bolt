@@ -64,8 +64,8 @@ class SvgAnimations extends withLitHtml() {
 
       if (i === threshold) {
         this.renderRoot
-          .querySelector('.wwo-self-drawing-circle')
-          .classList.add('rotate');
+          .querySelector('.wwo-self-drawing-circle__spinner')
+          .classList.add('spin');
       }
     }
   }
@@ -76,10 +76,10 @@ class SvgAnimations extends withLitHtml() {
       ${this.addStyles([styles])}
       <div
         id="wwo-self-drawing-circle"
-        class="wwo-self-drawing-circle"
+        class="wwo-self-drawing-circle wwo-self-drawing-circle__rotater"
         is="shadow-root"
       >
-        <div class="wwo-self-drawing-circle-rotation">
+        <div class="wwo-self-drawing-circle__spinner">
           <svg viewBox="-160 -160 320 320">
             <circle
               id="wwo-self-drawing-circle-outline"
