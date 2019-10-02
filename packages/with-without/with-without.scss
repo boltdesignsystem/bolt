@@ -38,6 +38,7 @@ bolt-animate {
 
 .c-pega-wwo {
   position: relative;
+  // The following forces full bleed.
   right: 50%;
   left: 50%;
   width: 100vw;
@@ -46,6 +47,18 @@ bolt-animate {
   margin-left: -50vw;
   line-height: 1.4;
   background-color: black;
+
+  // This is because vw in Edge and IE adds the vertical scrollbar, causing horizontal scroll.
+  @include edge-all {
+    // I measured scrollbar width as 16px in Win10 Edge, but being cautious. Better a little truncation of bg than white border. https://stackoverflow.com/questions/986937/how-can-i-get-the-browsers-scrollbar-sizes
+    width: calc(100vw - 10px);
+    overflow: hidden;
+  }
+  @include bolt-ie11-only {
+    // This was measured at 17 px in Win10 IE11.
+    width: calc(100vw - 10px);
+    overflow: hidden;
+  }
 
   @include bolt-mq($from: xlarge) {
     height: 0;
