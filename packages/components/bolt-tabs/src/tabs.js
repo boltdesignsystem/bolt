@@ -3,7 +3,6 @@ import {
   withContext,
   define,
   props,
-  hasNativeShadowDomSupport,
   containsTagName,
   getUniqueId,
 } from '@bolt/core/utils';
@@ -22,7 +21,6 @@ export const TabsContext = defineContext({
   panelSpacing: 'small', // no need to pass `labelSpacing`, only used in this template
   uuid: '',
   selectedIndex: 0,
-  useShadow: hasNativeShadowDomSupport,
 });
 
 let cx = classNames.bind(styles);
@@ -47,7 +45,6 @@ class BoltTabs extends withContext(withLitHtml()) {
 
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema);
     self.useSsr = true;
 
@@ -68,7 +65,7 @@ class BoltTabs extends withContext(withLitHtml()) {
     const panels = this.tabPanels;
 
     // Set a unique identifier for each tab instance. Will be different on each load. For constant and/or readable `id`s, this must be exposed as a prop.
-    this.tabsId = getUniqueId();
+    this.tabsId = bolt.config.env === 'test' ? '12345' : getUniqueId();
 
     // Convert tab index to 0-based numbering with some additional validation
     this.selectedIndex = this.validateIndex(selectedTab - 1);
@@ -291,7 +288,7 @@ class BoltTabs extends withContext(withLitHtml()) {
 
     return html`
       <div class="${classes}">
-        <div class="${listClasses}" role="tablist" aria-label="Sample Tabs">
+        <div class="${listClasses}" role="tablist">
           ${tabButtons()}
         </div>
         <div class="${panelsClasses}">
