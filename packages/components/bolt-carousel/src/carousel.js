@@ -504,7 +504,7 @@ class BoltCarousel extends withLitHtml() {
   disconnecting() {
     super.disconnecting && super.disconnecting();
 
-    self.isVisible = false;
+    this.isVisible = false;
 
     if (this.carouselResizeEventAdded === true) {
       this.carouselResizeEventAdded = false;
