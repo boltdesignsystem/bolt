@@ -65,10 +65,7 @@ class SelfDrawingCircle extends withLitHtml() {
   render() {
     return html`
       ${this.addStyles([styles])}
-      <div
-        id="wwo-self-drawing-circle"
-        class="wwo-self-drawing-circle"
-      >
+      <div id="wwo-self-drawing-circle" class="wwo-self-drawing-circle">
         <div class="wwo-self-drawing-circle-rotation">
           <svg viewBox="-160 -160 320 320">
             <circle
