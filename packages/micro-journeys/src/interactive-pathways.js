@@ -216,7 +216,32 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
               : ''}"
             font-weight="semibold"
             font-size="xsmall"
-            @click=${() => this.showPathway(i)}
+            @click=${() => {
+              this.showPathway(i);
+              setTimeout(() => {
+                try {
+                  let boltMicroJourneyDropdown;
+                  let boltMicroJourneyDropdownButton;
+                  boltMicroJourneyDropdown = this.renderRoot
+                    ? this.renderRoot.querySelector(
+                        'bolt-micro-journeys-dropdown',
+                      )
+                    : null;
+                  if (boltMicroJourneyDropdown) {
+                    boltMicroJourneyDropdownButton = boltMicroJourneyDropdown.renderRoot
+                      ? boltMicroJourneyDropdown.renderRoot.querySelector(
+                          'button',
+                        )
+                      : null;
+                  }
+                  if (boltMicroJourneyDropdownButton) {
+                    boltMicroJourneyDropdownButton.click();
+                  }
+                } catch {
+                  console.error('Autoclose of micro-journey dropdown failed');
+                }
+              });
+            }}
             style=${menuItemTextColor}
           >
             ${isActiveItem
