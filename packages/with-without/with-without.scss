@@ -64,6 +64,7 @@ bolt-animate {
     height: 0;
     // Scale bg image by width padding is relative to width. So this is an aspect ratio hack.
     // In desktop, all content is floated over this div and containers are 100%
+    // @TODO replace with bolt-ratio
     padding-bottom: $pega-wwo--desktop-ratio;
   }
 
@@ -178,6 +179,7 @@ bolt-animate {
     margin: bolt-spacing(medium) auto 0 auto;
     text-align: center;
   }
+
   // see handleResize. Height on mobile is used to set height of slide c-pega-wwo__swiper-container-wrapper
   &__content {
     width: 100%;
@@ -313,6 +315,7 @@ bolt-animate {
     position: relative;
     width: 100%;
     // This makes it perfectly square. Inside, elements are abs pos.
+    // @TODO replace w/ bolt-ratio
     padding-top: 100%;
 
     @include bolt-mq($from: xlarge) {
