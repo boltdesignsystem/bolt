@@ -94,10 +94,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
-    this.addEventListener(
-      'bolt:layout-size-changed',
-      this.handleLayoutSizeChanged,
-    );
+    this.addEventListener('bolt:layout-size-changed', this.handleLayoutChanged);
   }
 
   getModifiedSchema(schema) {
@@ -160,7 +157,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
     });
 
     this.accordion.on('fold:opened', fold => {
-      this.onLayoutSizeChanged();
+      this.dispatchLayoutChanged();
 
       // @todo: register these elements in Bolt data instead?
       const elementsToUpdate = this.querySelectorAll('[will-update]');
@@ -172,11 +169,11 @@ class BoltAccordion extends withContext(withLitHtml()) {
     });
 
     this.accordion.on('fold:closed', fold => {
-      this.onLayoutSizeChanged();
+      this.dispatchLayoutChanged();
     });
   }
 
-  onLayoutSizeChanged() {
+  dispatchLayoutChanged() {
     this.dispatchEvent(
       new CustomEvent('bolt:layout-size-changed', {
         bubbles: true,
@@ -184,7 +181,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
     );
   }
 
-  handleLayoutSizeChanged(e) {
+  handleLayoutChanged(e) {
     if (e.target !== this) {
       this.accordion && this.accordion.resize();
     }
@@ -299,7 +296,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
     this.removeEventListener(
       'bolt:layout-size-changed',
-      this.handleLayoutSizeChanged,
+      this.handleLayoutChanged,
     );
 
     // remove MutationObserver if supported + exists
