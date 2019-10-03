@@ -2,32 +2,35 @@ import {
   props,
   define,
   hasNativeShadowDomSupport,
-  withContext,
 } from '@bolt/core/utils';
 import { classMap } from 'lit-html/directives/class-map.js';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import * as SVGs from './svg';
 import styles from './svg-animations.scss';
 import schema from './svg-animations.schema';
 import { BoltInteractivePathwaysContext } from '../interactive-pathways';
 
 @define
-class SVGAnimations extends withContext(withLitHtml()) {
+class SVGAnimations extends withLitContext() {
   static is = 'bolt-svg-animations';
 
   static props = {
     ...convertSchemaToProps(schema),
   };
 
-  static get consumes() {
-    return [[BoltInteractivePathwaysContext, 'theme']];
-  }
-
   constructor(self) {
     self = super(self);
     self.schema = schema;
     this.useShadow = hasNativeShadowDomSupport;
     return self;
+  }
+
+  static get observedContexts() {
+    return ['theme'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
   render() {

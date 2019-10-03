@@ -6,17 +6,16 @@ import {
   withContext,
   convertSchemaToProps,
 } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import { fromProp, withLitContext, html } from '@bolt/core';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
-import { BoltInteractivePathwaysContext } from './interactive-pathways';
 import styles from './interactive-pathway.scss';
 import schema from './interactive-pathway.schema';
 
 let cx = classNames.bind(styles);
 
 @define
-class BoltInteractivePathway extends withContext(withLitHtml()) {
+class BoltInteractivePathway extends withLitContext() {
   static is = 'bolt-interactive-pathway';
 
   static props = {
@@ -27,10 +26,12 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
     ...convertSchemaToProps(schema),
   };
 
-  // subscribe to specific props that are defined and available on the parent container
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get consumes() {
-    return [[BoltInteractivePathwaysContext, 'theme']];
+  static get observedContexts() {
+    return ['theme'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -72,7 +73,6 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
 
   connectedCallback() {
     super.connectedCallback();
-    this.context = this.contexts.get(BoltInteractivePathwaysContext);
 
     setTimeout(() => {
       this.dispatchEvent(
