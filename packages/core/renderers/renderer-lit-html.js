@@ -34,14 +34,6 @@ export const withLit = (Base = HTMLElement) =>
       super(...args);
     }
 
-    contextChangedCallback(name, oldValue, value) {
-      // console.log(
-      //   this.constructor.name,
-      //   `context "${name}" changed from "${oldValue}" to "${value}"`,
-      // );
-      this.triggerUpdate();
-    }
-
     renderStyles(styles) {
       if (styles) {
         // [1]
@@ -80,9 +72,13 @@ export const withLit = (Base = HTMLElement) =>
     }
   };
 
-export const withLitHtml = (Base = HTMLElement) =>
-  class extends withLit(
+export function withLitHtml(Base = HTMLElement) {
+  return class extends withLit(withComponent(BoltBase(Base))) {};
+}
+
+export const withLitContext = (Base = HTMLElement) =>
+  withLit(
     withContext(
       withLifecycle(withChildren(withUpdate(withRenderer(BoltBase(Base))))),
     ),
-  ) {};
+  );

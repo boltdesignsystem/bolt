@@ -1,5 +1,5 @@
 import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import * as SVGs from './svg';
 import styles from './svg-animations.scss';
@@ -8,7 +8,7 @@ import schema from './svg-animations.schema';
 let cx = classNames.bind(styles);
 
 @define
-class SVGAnimations extends withLitHtml() {
+class SVGAnimations extends withLitContext() {
   static is = 'bolt-svg-animations';
 
   static props = {
@@ -24,6 +24,10 @@ class SVGAnimations extends withLitHtml() {
 
   static get observedContexts() {
     return ['theme'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
   render() {

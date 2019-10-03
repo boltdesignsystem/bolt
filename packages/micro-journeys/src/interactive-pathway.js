@@ -3,10 +3,9 @@ import {
   define,
   hasNativeShadowDomSupport,
   query,
-  withContext,
   convertSchemaToProps,
 } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import { withLitContext, html } from '@bolt/core';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import styles from './interactive-pathway.scss';
@@ -15,7 +14,7 @@ import schema from './interactive-pathway.schema';
 let cx = classNames.bind(styles);
 
 @define
-class BoltInteractivePathway extends withLitHtml() {
+class BoltInteractivePathway extends withLitContext() {
   static is = 'bolt-interactive-pathway';
 
   static props = {
@@ -29,6 +28,10 @@ class BoltInteractivePathway extends withLitHtml() {
 
   static get observedContexts() {
     return ['theme'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context

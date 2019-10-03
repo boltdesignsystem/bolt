@@ -1,11 +1,5 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-  withContext,
-  defineContext,
-} from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
@@ -17,7 +11,7 @@ import pathwaysLogo from './images/interactive-pathways-logo.png';
 let cx = classNames.bind(styles);
 
 @define
-class BoltInteractivePathways extends withLitHtml() {
+class BoltInteractivePathways extends withLitContext() {
   static is = 'bolt-interactive-pathways';
 
   static props = {
