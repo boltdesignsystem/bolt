@@ -10,13 +10,15 @@ import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
 import styles from './interactive-pathways.scss';
-import pathwaysLogo from './images/interactive-pathways-logo.png';
 import schema from './interactive-pathways.schema';
+// @TODO this default image should be located in schema
+import pathwaysLogo from './images/interactive-pathways-logo.png';
 
 let cx = classNames.bind(styles);
 
 export const BoltInteractivePathwaysContext = defineContext({
   theme: schema.properties.theme.default,
+  contextIsOptional: true,
 });
 
 @define
@@ -189,16 +191,13 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
   }
 
   render() {
-    const {
-      customImageSrc = pathwaysLogo,
-      imageAlt,
-      theme,
-    } = this.validateProps(this.props);
-
-    this.contexts.get(BoltInteractivePathwaysContext).theme = theme;
+    const props = this.validateProps(this.props);
+    // @TODO fix https://github.com/bolt-design-system/bolt/issues/1460
+    this.contexts.get(BoltInteractivePathwaysContext).theme =
+      props.theme || schema.properties.theme.default;
 
     const classes = cx('c-bolt-interactive-pathways', {
-      [`t-bolt-${theme}`]: theme,
+      [`t-bolt-${props.theme}`]: !!props.theme,
     });
 
     const titles = this.pathways.map((pathway, i) => pathway.getTitle());
@@ -217,7 +216,32 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
               : ''}"
             font-weight="semibold"
             font-size="xsmall"
-            @click=${() => this.showPathway(i)}
+            @click=${() => {
+              this.showPathway(i);
+              setTimeout(() => {
+                try {
+                  let boltMicroJourneyDropdown;
+                  let boltMicroJourneyDropdownButton;
+                  boltMicroJourneyDropdown = this.renderRoot
+                    ? this.renderRoot.querySelector(
+                        'bolt-micro-journeys-dropdown',
+                      )
+                    : null;
+                  if (boltMicroJourneyDropdown) {
+                    boltMicroJourneyDropdownButton = boltMicroJourneyDropdown.renderRoot
+                      ? boltMicroJourneyDropdown.renderRoot.querySelector(
+                          'button',
+                        )
+                      : null;
+                  }
+                  if (boltMicroJourneyDropdownButton) {
+                    boltMicroJourneyDropdownButton.click();
+                  }
+                } catch {
+                  console.error('Autoclose of micro-journey dropdown failed');
+                }
+              });
+            }}
             style=${menuItemTextColor}
           >
             ${isActiveItem
@@ -277,8 +301,8 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
           <bolt-image
             no-lazy
             sizes="auto"
-            src="${customImageSrc}"
-            alt="${imageAlt}"
+            src="${props.customImageSrc || pathwaysLogo}"
+            alt="${props.imageAlt}"
           ></bolt-image>
           <div class="c-bolt-interactive-pathways__nav">
             <div class="c-bolt-interactive-pathways__nav--inner">

@@ -46,6 +46,7 @@ module.exports = {
     useIcon: {
       type: 'boolean',
       description: 'Use a bolt-icon in place of an image Url.',
+      default: false,
     },
   },
 };

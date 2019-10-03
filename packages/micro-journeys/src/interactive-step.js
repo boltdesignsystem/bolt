@@ -45,9 +45,7 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
   /**
    * @param {Event} event
    */
-  handleAnimationEnd(event) {
-    console.debug('bolt:transitionend', event);
-  }
+  handleAnimationEnd(event) {}
 
   connectedCallback() {
     super.connectedCallback();
@@ -131,7 +129,7 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { tabTitle } = this.validateProps(this.props);
+    const props = this.validateProps(this.props);
     this.theme = this.context.theme;
     const isLastStep = !(
       this.nextElementSibling &&
@@ -159,7 +157,7 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
           class="${titleClasses}"
           @click=${() => this.triggerStepChange()}
         >
-          ${tabTitle}
+          ${props.tabTitle}
         </header>
         <div class="c-bolt-interactive-step__body">
           <div class="c-bolt-interactive-step__body-inner">

@@ -1,23 +1,15 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './self-drawing-circle.scss';
-import schema from './self-drawing-circle.schema.yml';
 
 @define
-class SvgAnimations extends withLitHtml() {
+class SelfDrawingCircle extends withLitHtml() {
   static is = 'wwo-self-drawing-circle';
 
   static props = {
     dashSize: props.integer,
     speed: props.integer,
   };
-
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    this.useShadow = hasNativeShadowDomSupport;
-    return self;
-  }
 
   triggerAnimIn(dashSize = 6, speed = 20) {
     const animateCircle = this._drawCircle(dashSize, speed);
@@ -71,13 +63,11 @@ class SvgAnimations extends withLitHtml() {
   }
 
   render() {
-    console.error('SELF-DRAWING CIRCLE RENDER');
     return html`
       ${this.addStyles([styles])}
       <div
         id="wwo-self-drawing-circle"
         class="wwo-self-drawing-circle wwo-self-drawing-circle__rotater"
-        is="shadow-root"
       >
         <div class="wwo-self-drawing-circle__spinner">
           <svg viewBox="-160 -160 320 320">
@@ -86,7 +76,7 @@ class SvgAnimations extends withLitHtml() {
               class="wwo-self-drawing-circle-outline"
               r="159"
               stroke-dasharray="0 1000"
-            />
+            ></circle>
           </svg>
         </div>
       </div>
@@ -94,4 +84,4 @@ class SvgAnimations extends withLitHtml() {
   }
 }
 
-export { SvgAnimations };
+export { SelfDrawingCircle };

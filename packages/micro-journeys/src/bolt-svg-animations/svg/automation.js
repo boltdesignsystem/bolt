@@ -1,6 +1,6 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 
-export const automation = ({ speed }) => {
+export const automation = ({ speed, theme }) => {
   const authoredStyle = html`
     #bolt-automation-container { max-height: 400px; max-width: 400px; }
     bolt-automation-svg { transform: translateZ(0);} @keyframes kf_line1 { 0%
@@ -95,14 +95,15 @@ export const automation = ({ speed }) => {
     0px);} 0% {transform: translate(0px, 70.80000305175781px) translate(0px,
     -70.80000305175781px) translate(36px, 0px);} 100% {transform: translate(0px,
     70.80000305175781px) translate(0px, -70.80000305175781px) translate(36px,
-    0px);} } #el_gXuR0UKW0 path, #el_gXuR0UKW0 rect { fill: #000000; }
-    #el_FUdCGwmldWw { transform: matrix(0.7071, -0.7071, 0.7071, 0.7071,
-    -31.3589, 75.707); } #el_ov2W8FYkaoZ { transform: matrix(0.7071, -0.7071,
-    0.7071, 0.7071, -80.5583, 54.4995); } #el_3jMEQqFnTKm { transform:
-    matrix(0.7071, -0.7071, 0.7071, 0.7071, -31.773, 74.7071); } #el_CzsYCmcxmp8
-    { transform: matrix(0.7071, -0.7071, 0.7071, 0.7071, 18.3324, 95.4615); }
-    #el_3oyaiVNAY7y { transform: matrix(0.7071, -0.7071, 0.7071, 0.7071,
-    -30.359, 75.2929); } #line1 { transform: translate(70.80000305175781px, 0px)
+    0px);} } #bolt-automation-svg path, #bolt-automation-svg rect { fill:
+    ${theme === 'dark' ? `#FFFFFF` : `#1f2656`}; } #el_FUdCGwmldWw { transform:
+    matrix(0.7071, -0.7071, 0.7071, 0.7071, -31.3589, 75.707); } #el_ov2W8FYkaoZ
+    { transform: matrix(0.7071, -0.7071, 0.7071, 0.7071, -80.5583, 54.4995); }
+    #el_3jMEQqFnTKm { transform: matrix(0.7071, -0.7071, 0.7071, 0.7071,
+    -31.773, 74.7071); } #el_CzsYCmcxmp8 { transform: matrix(0.7071, -0.7071,
+    0.7071, 0.7071, 18.3324, 95.4615); } #el_3oyaiVNAY7y { transform:
+    matrix(0.7071, -0.7071, 0.7071, 0.7071, -30.359, 75.2929); } #line1 {
+    transform: translate(70.80000305175781px, 0px)
     translate(-70.80000305175781px, 0px) translate(0px, 37px); animation:
     kf_line1 ${speed}ms ease infinite backwards; } #line5 { transform:
     translate(70.5999984741211px, 75px) translate(-70.5999984741211px, -75px)
@@ -136,7 +137,6 @@ export const automation = ({ speed }) => {
       <svg
         id="bolt-automation-svg"
         version="1.1"
-        id="el_gXuR0UKW0"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         x="0px"
@@ -148,7 +148,7 @@ export const automation = ({ speed }) => {
         width="200px"
       >
         <style>
-          {authoredStyle}
+          ${authoredStyle}
         </style>
 
         <title>Automation</title>

@@ -62,10 +62,10 @@ const cta = {
   content: `
       <bolt-cta>
         <bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>
-        <bolt-text font-size="xsmall" slot="link" display="inline">
+        <bolt-link slot="link" display="inline">
           CTA Text
           <bolt-icon name="chevron-right"></bolt-icon>
-        </bolt-text>
+        </bolt-link>
       </bolt-cta>
       `,
 };
@@ -349,7 +349,32 @@ export function setupBolt(editor) {
     extend: 'text',
     initialContent: ['Button'],
     propsToTraits: ['size', 'width', 'border_radius'],
-    extraTraits: [colorTrait],
+    extraTraits: [
+      colorTrait,
+      {
+        label: 'On Click',
+        name: 'on-click',
+        type: 'select',
+        options: ['none', 'show'],
+        default: 'none',
+      },
+      {
+        label: 'On Click Target',
+        name: 'on-click-target',
+        type: 'string',
+      },
+      {
+        label: 'Url',
+        name: 'url',
+        type: 'string',
+      },
+      {
+        label: 'Disabled',
+        name: 'disabled',
+        type: 'checkbox',
+        default: false,
+      },
+    ],
   });
 
   registerBoltComponent({
@@ -586,10 +611,10 @@ export function setupBolt(editor) {
     },
     initialContent: [
       `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>`,
-      `<bolt-text font-size="xsmall" slot="link" display="inline">
+      `<bolt-link slot="link" display="inline">
         CTA Text
         <bolt-icon name="chevron-right"></bolt-icon>
-      </bolt-text>`,
+      </bolt-link>`,
     ],
     extraTraits: [],
   });
@@ -606,6 +631,20 @@ export function setupBolt(editor) {
       default: true,
     },
     initialContent: [`I'm a link`],
+    extraTraits: [
+      {
+        label: 'On Click',
+        name: 'on-click',
+        type: 'select',
+        options: ['none', 'show'],
+        default: 'none',
+      },
+      {
+        label: 'On Click Target',
+        name: 'on-click-target',
+        type: 'string',
+      },
+    ],
   });
 
   registerBoltComponent({
