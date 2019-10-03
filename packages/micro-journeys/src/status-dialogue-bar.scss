@@ -20,6 +20,10 @@ $bolt-tooltip-bubble-triangle-width: 8px;
   @include bolt-mq(small) {
     max-width: 300px;
   }
+  
+  @include bolt-mq($from: medium, $until: large) {
+    transform: translateX(-2rem);
+  }
 
   &--alert {
     color: bolt-color(white);
