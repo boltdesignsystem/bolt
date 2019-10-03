@@ -1,14 +1,9 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { classMap } from 'lit-html/directives/class-map.js';
 import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import * as SVGs from './svg';
 import styles from './svg-animations.scss';
 import schema from './svg-animations.schema';
-import { BoltInteractivePathwaysContext } from '../interactive-pathways';
 
 @define
 class SVGAnimations extends withLitContext() {

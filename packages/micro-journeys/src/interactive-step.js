@@ -7,7 +7,6 @@ import {
 import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
-import { BoltInteractivePathwaysContext } from './interactive-pathways';
 import styles from './interactive-step.scss';
 import schema from './interactive-step.schema';
 

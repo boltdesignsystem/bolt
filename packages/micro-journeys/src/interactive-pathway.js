@@ -6,7 +6,7 @@ import {
   withContext,
   convertSchemaToProps,
 } from '@bolt/core/utils';
-import { fromProp, withLitContext, html } from '@bolt/core';
+import { withLitContext, html } from '@bolt/core';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import styles from './interactive-pathway.scss';
