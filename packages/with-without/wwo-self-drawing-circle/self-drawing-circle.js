@@ -42,7 +42,7 @@ class SelfDrawingCircle extends withLitHtml() {
 
     const threshold = Math.ceil(494 / dashSize);
 
-    for (var i = 0; i <= threshold; i++) {
+    for (let i = 0; i <= threshold; i++) {
       outline.setAttribute(
         'stroke-dasharray',
         i === 0
