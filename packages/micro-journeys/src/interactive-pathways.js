@@ -17,6 +17,7 @@ let cx = classNames.bind(styles);
 
 export const BoltInteractivePathwaysContext = defineContext({
   theme: schema.properties.theme.default,
+  contextIsOptional: true,
 });
 
 @define
