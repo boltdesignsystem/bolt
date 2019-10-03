@@ -242,4 +242,33 @@ describe('button', () => {
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
+
+  test('<bolt-button> supports ID attribute', async () => {
+    // The reported bug was only a problem when rendering the initial button
+    // with twig, so start by rendering the button with twig.
+    const template = await renderString(`
+      {% include "@bolt-components-button/button.twig" with {
+        text: "Button Test -- ID attribute",
+        attributes: {
+          id: "my-button"
+        }
+      } only %}
+    `);
+
+    // Next, convert to a javascript node so we can evaluate it with js.
+    const renderedButtonHTML = await page.evaluate(html => {
+      const div = document.createElement('div');
+      div.innerHTML = `${html}`;
+      document.body.appendChild(div);
+      const button = document.querySelector('bolt-button');
+      return button.outerHTML;
+    }, template.html);
+
+    const renderedHTML = await html('<div></div>');
+    renderedHTML.innerHTML = renderedButtonHTML;
+
+    const button = document.getElementById('my-button');
+
+    expect(button).not.toBeNull();
+  });
 });
