@@ -1,0 +1,183 @@
+{# Tabbed Band Variables #}
+{% set tabbed_band_theme = "light" %}
+{% set tabbed_band_tabs_algin = "center" %}
+{% set tabbed_band_tabs_inset = "off" %}
+{% set tabbed_band_tabs_label_spacing = "medium" %}
+{% set tabbed_band_tabs_panel_spacing = "medium" %}
+{# Tabbed Band Variables #}
+
+{# Demo Variables #}
+{% set tab_content_1 %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-5/12@small" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+        weight: "regular",
+        size: "xxlarge",
+        tag: "h2"
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+        size: "medium"
+      } only %}
+      {% include "@bolt-components-button-group/button-group.twig" with {
+        "buttons": [
+          {
+            "text": "Call to action",
+            "style": "primary"
+          },
+          {
+            "text": "Call to action",
+            "style": "secondary"
+          }
+        ]
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
+      {% include "@bolt-components-device-viewer/device-viewer.twig" with {
+        device: "ipad",
+        orientation: "landscape",
+        color: "black",
+        image: {
+          src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+          lazyload: true,
+          _sizes: "(min-width: 1400px) 40.64285714vw, (min-width: 600px) 41vw, 72.5vw",
+          placeholder_color: "#ececec"
+        }
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+{% set tab_content_2 %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-7/12@small" %}
+      {% include "@bolt-components-device-viewer/device-viewer.twig" with {
+        device: "ipad",
+        orientation: "portrait",
+        color: "black",
+        image: {
+          src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+          placeholder_color: "#1c1c1c"
+        }
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-5/12@small" %}
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        text: "Maximize Value with <strong>Next&nbsp;Best Action Intelligence</strong>",
+        size: "xxlarge",
+        tag: "span"
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "Blow away your customer’s expectations - engage each individual one-to-one, letting the AI constantly adapt to their needs.",
+        size: "medium"
+      } only %}
+      {% include "@bolt-components-button-group/button-group.twig" with {
+        "buttons": [
+          {
+            "text": "Call to action",
+            "style": "primary"
+          },
+          {
+            "text": "Call to action",
+            "style": "secondary"
+          }
+        ]
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+{% set tab_content_3 %}
+  {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+      {% include "@bolt-components-image/image.twig" with {
+        src: "/images/content/charts/decision-hub-chart.png",
+        lazyload: true
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-6/12@small" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "Customer Decision Hub",
+        size: "xxxlarge",
+        tag: "h2"
+      } only %}
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        text: "Infuse real-time AI into every customer engagement",
+        size: "xlarge",
+        tag: "p"
+      } only %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "There’s nothing artificial about Pega’s proven AI. This always-on brain gets results. Using pragmatic artificial intelligence and decision management, you can improve response rates by up to 6X, NPS by 30 points, and get ROI as high as 500%.",
+        size: "medium"
+      } only %}
+      {% include "@bolt-components-button/button.twig" with {
+        text: "Call to Action",
+        url: "www.google.com"
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+{# Demo Variables #}
+
+{# Tabbed Band Sections #}
+{% set tabbed_band_header %}
+  {% grid "o-bolt-grid--center u-bolt-margin-bottom-medium" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-8/12@small" %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "This is a Tabbed Band",
+        size: "xxlarge",
+        align: "center",
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+{% endset %}
+{% set tabs %}
+  {{ tabbed_band_header }}
+  {% include "@bolt-components-tabs/tabs.twig" with {
+    align: tabbed_band_tabs_algin,
+    inset: tabbed_band_tabs_inset,
+    label_spacing: tabbed_band_tabs_label_spacing,
+    panel_spacing: tabbed_band_tabs_panel_spacing,
+    panels: [
+      {
+        label: "This is Tab 1",
+        content: tab_content_1,
+      },
+      {
+        label: "This is Tab 2",
+        content: tab_content_2,
+      },
+      {
+        label: "This is Tab 3",
+        content: tab_content_3,
+      }
+    ]
+  } only %}
+{% endset %}
+{# Tabbed Band Sections #}
+
+{# Demo UI #}
+<bolt-text headline>
+  Tabbed Band
+</bolt-text>
+<bolt-text>
+  A Tabbed Band is a high-level content container that utilizes a specific configuration of the Band and the Tabs components. Tabs will need the following props:
+</bolt-text>
+{% set code %}
+inset: "off",
+label_spacing: "medium",
+panel_spacing: "medium",
+{% endset %}
+<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+  {{ code | replace({
+    '<': '&lt;',
+    '>': '&gt;',
+  }) | trim | raw }}
+{% endspaceless %}</bolt-code-snippet>
+{# Demo UI #}
+
+{# Tabbed Band #}
+{% include "@bolt-components-band/band.twig" with {
+  content: tabs,
+  theme: tabbed_band_theme,
+} only %}
+{# Tabbed Band #}
