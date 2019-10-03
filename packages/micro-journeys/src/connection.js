@@ -28,6 +28,10 @@ class BoltConnection extends withLitContext() {
     return ['theme'];
   }
 
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
+  }
+
   render() {
     const props = this.validateProps(this.props);
     const classes = cx('c-bolt-connection');
