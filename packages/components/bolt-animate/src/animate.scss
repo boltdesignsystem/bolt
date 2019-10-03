@@ -171,3 +171,32 @@ $bolt-animate-slide-amount: 20px;
     transform: scale(1);
   }
 }
+
+@keyframes slide-down {
+  from {
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  99% {
+    max-height: var(--bolt-animate--slide-up-max-height, 500px);
+    overflow: hidden;
+  }
+
+  100% {
+    max-height: unset;
+    overflow: visible;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    max-height: var(--bolt-animate--slide-up-max-height, 500px);
+    overflow: hidden;
+  }
+
+  100% {
+    max-height: 0;
+    overflow: hidden;
+  }
+}

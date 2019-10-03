@@ -6,6 +6,7 @@ import textSchema from '@bolt/components-text/text.schema.yml';
 import iconSchema from '@bolt/components-icon/icon.schema.json';
 import characterSchema from '@bolt/micro-journeys/src/character.schema';
 import connectionSchema from '@bolt/micro-journeys/src/connection.schema';
+import pathwaysSchema from '@bolt/micro-journeys/src/interactive-pathways.schema';
 import statusDialogueBarSchema from '@bolt/micro-journeys/src/status-dialogue-bar.schema';
 import svgAnimationsSchema from '@bolt/micro-journeys/src/bolt-svg-animations/svg-animations.schema';
 // @ts-ignore
@@ -61,10 +62,10 @@ const cta = {
   content: `
       <bolt-cta>
         <bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>
-        <bolt-text font-size="xsmall" slot="link" display="inline">
+        <bolt-link slot="link" display="inline">
           CTA Text
           <bolt-icon name="chevron-right"></bolt-icon>
-        </bolt-text>
+        </bolt-link>
       </bolt-cta>
       `,
 };
@@ -348,7 +349,32 @@ export function setupBolt(editor) {
     extend: 'text',
     initialContent: ['Button'],
     propsToTraits: ['size', 'width', 'border_radius'],
-    extraTraits: [colorTrait],
+    extraTraits: [
+      colorTrait,
+      {
+        label: 'On Click',
+        name: 'on-click',
+        type: 'select',
+        options: ['none', 'show'],
+        default: 'none',
+      },
+      {
+        label: 'On Click Target',
+        name: 'on-click-target',
+        type: 'string',
+      },
+      {
+        label: 'Url',
+        name: 'url',
+        type: 'string',
+      },
+      {
+        label: 'Disabled',
+        name: 'disabled',
+        type: 'checkbox',
+        default: false,
+      },
+    ],
   });
 
   registerBoltComponent({
@@ -459,6 +485,8 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-interactive-pathways',
+    schema: pathwaysSchema,
+    propsToTraits: ['customImageSrc', 'imageAlt', 'theme'],
     category: 'Starters',
     blockTitle: 'Pathways',
     draggable: true,
@@ -583,10 +611,10 @@ export function setupBolt(editor) {
     },
     initialContent: [
       `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>`,
-      `<bolt-text font-size="xsmall" slot="link" display="inline">
+      `<bolt-link slot="link" display="inline">
         CTA Text
         <bolt-icon name="chevron-right"></bolt-icon>
-      </bolt-text>`,
+      </bolt-link>`,
     ],
     extraTraits: [],
   });
@@ -603,6 +631,20 @@ export function setupBolt(editor) {
       default: true,
     },
     initialContent: [`I'm a link`],
+    extraTraits: [
+      {
+        label: 'On Click',
+        name: 'on-click',
+        type: 'select',
+        options: ['none', 'show'],
+        default: 'none',
+      },
+      {
+        label: 'On Click Target',
+        name: 'on-click-target',
+        type: 'string',
+      },
+    ],
   });
 
   registerBoltComponent({
@@ -622,9 +664,17 @@ export function setupBolt(editor) {
     },
   });
 
+  // The bolt-svg-animations component is only used internally by the connection component,
+  // and as a background slot for the character component. The following bit of logic removes
+  // the connection bands from the schema so that they do not appear as options when editing
+  // the svg animations behind a character.
+  const svgAnimationsSchemaForCharacter = svgAnimationsSchema;
+  svgAnimationsSchemaForCharacter.properties.animType.enum = svgAnimationsSchema.properties.animType.enum.filter(
+    item => item !== 'connectionBand' && item !== 'tripleConnectionBand',
+  );
   registerBoltComponent({
     name: 'bolt-svg-animations',
-    schema: svgAnimationsSchema,
+    schema: svgAnimationsSchemaForCharacter,
     registerBlock: false,
     propsToTraits: ['animType', 'direction', 'speed', 'theme'],
   });

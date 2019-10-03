@@ -1,21 +1,15 @@
 @import '@bolt/core';
 @import './nav-shared';
 
-// Local interactive-pathway Variables
-
 // Register Custom Block Element
 @include bolt-custom-element('bolt-interactive-pathway', block, medium);
 
-//@import "@bolt/animations/settings/settings-animations";
-//
-//@import "@bolt/animations/tools/tools-transitions";
-//@import "@bolt/animations/tools/tools-animations";
-//
-//@import "@bolt/animations/utilities/utilities-animation";
 $bolt-interactive-step--dot-size: 1.2rem;
 .c-bolt-interactive-pathway {
   display: none;
   position: relative;
+  overflow: hidden;
+  padding-top: 1.65rem;
 
   &--active {
     display: flex;
@@ -24,45 +18,67 @@ $bolt-interactive-step--dot-size: 1.2rem;
   &__nav {
     display: none;
   }
+
+  &__nav-item {
+    &:before {
+      @include bolt-micro-journeys-nav-dot;
+
+      section.c-bolt-interactive-pathway.t-bolt-dark & {
+        background-color: bolt-color(indigo, light);
+      }
+    }
+
+    &--active {
+      &:before {
+        @include bolt-micro-journeys-nav-dot($active: true);
+
+        section.c-bolt-interactive-pathway.t-bolt-dark & {
+          border-color: bolt-color(white) !important;
+          background-color: bolt-color(yellow) !important;
+        }
+      }
+    }
+  }
+
   @include bolt-mq(medium) {
     flex-wrap: nowrap;
     justify-content: space-between;
 
     &__nav {
       display: block;
-      flex: 0 1;
+      flex: 1 0 30%;
       position: relative;
       margin-right: bolt-spacing(large);
+      margin-right: bolt-spacing(large);
+      @include bolt-micro-journeys-nav-items-wrapper;
     }
 
     &__nav-item {
       position: relative;
       @include bolt-micro-journeys-nav-title;
 
-      &:before {
-        @include bolt-micro-journeys-nav-dot;
-      }
 
       &:after {
         @include bolt-micro-journeys-nav-line;
+
+        section.c-bolt-interactive-pathway.t-bolt-dark & {
+          background-color: bolt-color(indigo, light);
+        }
       }
 
       &--active {
         @include bolt-micro-journeys-nav-title($active: true);
 
-        &:before {
-          @include bolt-micro-journeys-nav-dot($active: true);
-        }
       }
 
       &:last-of-type:after {
         display: none;
       }
     }
+  }
 
-    &__items {
-      flex: 1 1;
-    }
+  &__items {
+    flex: 1 1 70%;
   }
 }
 

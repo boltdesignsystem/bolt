@@ -1,7 +1,8 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './status-dialogue-bar.scss';
+import schema from './status-dialogue-bar.schema';
 
 let cx = classNames.bind(styles);
 
@@ -14,24 +15,7 @@ class BoltStatusDialogueBar extends withLitHtml() {
       ...props.boolean,
       ...{ default: false },
     },
-    iconName: {
-      ...props.string,
-      ...{
-        default: '',
-      },
-    },
-    isAlertMessage: {
-      ...props.boolean,
-      ...{
-        default: false,
-      },
-    },
-    dialogueArrowDirection: {
-      ...props.string,
-      ...{
-        default: 'none',
-      },
-    },
+    ...convertSchemaToProps(schema),
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -42,26 +26,22 @@ class BoltStatusDialogueBar extends withLitHtml() {
   }
 
   render() {
-    const {
-      iconName,
-      isAlertMessage,
-      dialogueArrowDirection,
-    } = this.validateProps(this.props);
+    const props = this.validateProps(this.props);
     const classes = cx('c-bolt-status-dialogue-bar', {
-      [`c-bolt-status-dialogue-bar--alert`]: isAlertMessage,
-      [`c-bolt-status-dialogue-bar--include-${dialogueArrowDirection}-arrow`]: !!(
-        dialogueArrowDirection && dialogueArrowDirection !== 'none'
+      [`c-bolt-status-dialogue-bar--alert`]: props.isAlertMessage,
+      [`c-bolt-status-dialogue-bar--include-${props.dialogueArrowDirection}-arrow`]: !!(
+        props.dialogueArrowDirection && props.dialogueArrowDirection !== 'none'
       ),
     });
 
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}">
-        ${iconName
+        ${props.iconName
           ? html`
               <bolt-icon
                 size="medium"
-                name="${iconName}"
+                name="${props.iconName}"
                 class="c-bolt-status-dialogue-bar__icon"
               />
             `

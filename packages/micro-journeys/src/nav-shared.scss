@@ -10,7 +10,6 @@ $nav-circle-border-size: 2px;
     height: $nav-circle-size--active;
     margin-left: -$nav-circle-size--active / 2 - $nav-circle-border-size;
     border: $nav-circle-border-size solid bolt-theme(primary);
-    // @TODO there's no good way to match the comps here given we can't know what theme we're in b/c shadow dom.
     background-color: bolt-theme(secondary);
   }
 
@@ -60,4 +59,8 @@ $nav-circle-border-size: 2px;
       cursor: pointer;
     }
   }
+}
+
+@mixin bolt-micro-journeys-nav-items-wrapper() {
+  padding-left: ($nav-circle-size--active / 2) + $nav-circle-border-size;
 }

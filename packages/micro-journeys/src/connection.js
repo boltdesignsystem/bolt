@@ -18,7 +18,6 @@ class BoltConnection extends withLitHtml() {
     ...convertSchemaToProps(schema),
   };
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
@@ -26,25 +25,29 @@ class BoltConnection extends withLitHtml() {
   }
 
   render() {
-    const { direction, animType, speed } = this.validateProps(this.props);
+    const props = this.validateProps(this.props);
     const classes = cx('c-bolt-connection');
-
-    // @TODO hide top slot if there's no content
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}">
-        <span class="c-bolt-connection__slot--top">
-          ${this.slot('top')}
-        </span>
+        ${this.slots.top &&
+          html`
+            <span class="c-bolt-connection__slot--top">
+              ${this.slot('top')}
+            </span>
+          `}
         <bolt-svg-animations
           class="c-bolt-connection__main-image"
-          speed="${speed}"
-          anim-type="${animType}"
-          direction="${direction}"
+          speed="${props.speed}"
+          anim-type="${props.animType}"
+          direction="${props.direction}"
         />
-        <span class="c-bolt-connection__slot--bottom">
-          ${this.slot('bottom')}
-        </span>
+        ${this.slots.bottom &&
+          html`
+            <span class="c-bolt-connection__slot--bottom">
+              ${this.slot('bottom')}
+            </span>
+          `}
       </div>
     `;
   }
