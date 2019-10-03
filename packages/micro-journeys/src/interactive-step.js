@@ -1,8 +1,4 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
