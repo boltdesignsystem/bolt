@@ -5,7 +5,7 @@ import {
   withContext,
   defineContext,
 } from '@bolt/core/utils';
-import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
+import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
@@ -17,7 +17,7 @@ import pathwaysLogo from './images/interactive-pathways-logo.png';
 let cx = classNames.bind(styles);
 
 @define
-class BoltInteractivePathways extends withLitContext() {
+class BoltInteractivePathways extends withLitHtml() {
   static is = 'bolt-interactive-pathways';
 
   static props = {

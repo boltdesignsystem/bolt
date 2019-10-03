@@ -6,7 +6,7 @@ import {
   withContext,
   convertSchemaToProps,
 } from '@bolt/core/utils';
-import { withLitContext, html } from '@bolt/core';
+import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import styles from './interactive-pathway.scss';
@@ -15,7 +15,7 @@ import schema from './interactive-pathway.schema';
 let cx = classNames.bind(styles);
 
 @define
-class BoltInteractivePathway extends withLitContext() {
+class BoltInteractivePathway extends withLitHtml() {
   static is = 'bolt-interactive-pathway';
 
   static props = {
@@ -23,15 +23,12 @@ class BoltInteractivePathway extends withLitContext() {
       ...props.boolean,
       ...{ default: false },
     },
+    theme: props.string,
     ...convertSchemaToProps(schema),
   };
 
   static get observedContexts() {
     return ['theme'];
-  }
-
-  contextChangedCallback(name, oldValue, value) {
-    this.triggerUpdate();
   }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -195,12 +192,12 @@ class BoltInteractivePathway extends withLitContext() {
 
   render() {
     // Inherit theme from `interactive-pathways`
-    this.theme = this.context.theme;
+    const theme = this.context.theme || this.theme || '';
 
     const classes = cx('c-bolt-interactive-pathway', {
       [`c-bolt-interactive-pathway--disabled`]: !this.isActivePathway,
       [`c-bolt-interactive-pathway--active`]: this.isActivePathway,
-      [`t-bolt-${this.theme}`]: this.theme,
+      [`t-bolt-${theme}`]: theme,
     });
 
     const navClasses = cx('c-bolt-interactive-pathway__nav');

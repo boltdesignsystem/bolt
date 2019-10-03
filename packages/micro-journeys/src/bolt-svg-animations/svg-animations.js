@@ -1,12 +1,15 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { classMap } from 'lit-html/directives/class-map.js';
-import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
+import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import * as SVGs from './svg';
 import styles from './svg-animations.scss';
 import schema from './svg-animations.schema';
+import classNames from 'classnames/bind';
+
+let cx = classNames.bind(styles);
 
 @define
-class SVGAnimations extends withLitContext() {
+class SVGAnimations extends withLitHtml() {
   static is = 'bolt-svg-animations';
 
   static props = {
@@ -24,25 +27,21 @@ class SVGAnimations extends withLitContext() {
     return ['theme'];
   }
 
-  contextChangedCallback(name, oldValue, value) {
-    this.triggerUpdate();
-  }
-
   render() {
     const props = this.validateProps(this.props);
-    this.theme = this.context.theme;
-    const classes = {
-      'c-bolt-svg-animations': true,
-      [`t-bolt-${this.theme}`]: this.theme,
-    };
+    const theme = this.context.theme || this.theme || '';
+    const classes = cx('c-bolt-svg-animations', {
+      [`t-bolt-${theme}`]: theme,
+    });
+
     const SVGTag = SVGs[`${props.animType}`];
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classMap(classes)}">
+      <div class="${classes}">
         ${SVGTag({
           speed: props.speed,
-          theme: this.theme,
+          theme,
           direction: props.direction,
         })}
       </div>

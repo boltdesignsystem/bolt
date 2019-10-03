@@ -24,6 +24,10 @@ class BoltConnection extends withLitHtml() {
     return self;
   }
 
+  static get observedContexts() {
+    return ['theme'];
+  }
+
   render() {
     const props = this.validateProps(this.props);
     const classes = cx('c-bolt-connection');
@@ -41,6 +45,7 @@ class BoltConnection extends withLitHtml() {
           speed="${props.speed}"
           anim-type="${props.animType}"
           direction="${props.direction}"
+          .theme=${this.context.theme}
         />
         ${this.slots.bottom &&
           html`

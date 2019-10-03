@@ -4,7 +4,7 @@ import {
   hasNativeShadowDomSupport,
   withContext,
 } from '@bolt/core/utils';
-import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
+import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
 import styles from './interactive-step.scss';
@@ -13,7 +13,7 @@ import schema from './interactive-step.schema';
 const cx = classNames.bind(styles);
 
 @define
-class BoltInteractiveStep extends withLitContext() {
+class BoltInteractiveStep extends withLitHtml() {
   static is = 'bolt-interactive-step';
 
   static props = {
