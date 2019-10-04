@@ -13,6 +13,7 @@ module.exports = {
       type: 'string',
       description:
         'URL source for the image at the top of the pathway. Fallback is the two diamond logo.',
+      // @TODO the default image should be located here.
       default: '',
     },
     imageAlt: {

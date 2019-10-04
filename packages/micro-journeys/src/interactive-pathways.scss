@@ -36,12 +36,13 @@
       align-items: center;
       z-index: 999;
       max-width: 100%;
-      white-space: nowrap;
+      text-align: center;
 
       @include bolt-mq(medium) {
         flex-direction: row;
         justify-content: center;
         align-items: baseline;
+        white-space: nowrap;
       }
     }
   }
@@ -109,7 +110,7 @@
 
     &.active {
       opacity: 1;
-      z-index: 1;
+      z-index: 2;
     }
 
     &__item {

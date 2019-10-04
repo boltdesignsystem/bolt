@@ -2,9 +2,9 @@
 @import './nav-shared';
 
 bolt-interactive-step {
+  @include bolt-padding-left(small);
   // Override generic styles from _generic-shared.scss
   margin-bottom: 0 !important;
-  padding-left: $nav-circle-size--active / 2 + $nav-circle-border-size;
 }
 
 .c-bolt-interactive-step {
@@ -59,13 +59,19 @@ bolt-interactive-step {
   }
 
   &__body {
+    @include bolt-padding-right(small);
+    @include bolt-padding-bottom(medium);
+    @include bolt-padding-left(small);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     position: absolute;
     left: -9999px;
-    padding-bottom: bolt-spacing(medium);
-    padding-left: bolt-spacing(medium);
+
+    @include bolt-mq(medium) {
+      @include bolt-padding-right(medium);
+      align-items: center;
+    }
 
     .c-bolt-interactive-step--active & {
       position: static;

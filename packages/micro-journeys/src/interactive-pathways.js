@@ -1,26 +1,17 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-  withContext,
-  defineContext,
-} from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
 import styles from './interactive-pathways.scss';
-import pathwaysLogo from './images/interactive-pathways-logo.png';
 import schema from './interactive-pathways.schema';
+// @TODO this default image should be located in schema
+import pathwaysLogo from './images/interactive-pathways-logo.png';
 
 let cx = classNames.bind(styles);
 
-export const BoltInteractivePathwaysContext = defineContext({
-  theme: schema.properties.theme.default,
-});
-
 @define
-class BoltInteractivePathways extends withContext(withLitHtml()) {
+class BoltInteractivePathways extends withLitContext() {
   static is = 'bolt-interactive-pathways';
 
   static props = {
@@ -31,10 +22,10 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
     ...convertSchemaToProps(schema),
   };
 
-  // provide context info to children that subscribe
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get provides() {
-    return [BoltInteractivePathwaysContext];
+  static get providedContexts() {
+    return {
+      theme: { property: 'theme' },
+    };
   }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -118,6 +109,7 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
 
   disconnecting() {
     document.removeEventListener('keydown', this._handleClosingEvent);
+    document.removeEventListener('click', this._handleClosingEvent);
   }
 
   /**
@@ -144,7 +136,6 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
       event.type === 'click' ||
       event.type === 'tap'
     ) {
-      event.preventDefault();
       this.dropdownActive = false;
       this.triggerUpdate();
     }
@@ -189,16 +180,11 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
   }
 
   render() {
-    const {
-      customImageSrc = pathwaysLogo,
-      imageAlt,
-      theme,
-    } = this.validateProps(this.props);
-
-    this.contexts.get(BoltInteractivePathwaysContext).theme = theme;
+    const props = this.validateProps(this.props);
+    // @TODO fix https://github.com/bolt-design-system/bolt/issues/1460
 
     const classes = cx('c-bolt-interactive-pathways', {
-      [`t-bolt-${theme}`]: theme,
+      [`t-bolt-${props.theme}`]: !!props.theme,
     });
 
     const titles = this.pathways.map((pathway, i) => pathway.getTitle());
@@ -217,7 +203,32 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
               : ''}"
             font-weight="semibold"
             font-size="xsmall"
-            @click=${() => this.showPathway(i)}
+            @click=${() => {
+              this.showPathway(i);
+              setTimeout(() => {
+                try {
+                  let boltMicroJourneyDropdown;
+                  let boltMicroJourneyDropdownButton;
+                  boltMicroJourneyDropdown = this.renderRoot
+                    ? this.renderRoot.querySelector(
+                        'bolt-micro-journeys-dropdown',
+                      )
+                    : null;
+                  if (boltMicroJourneyDropdown) {
+                    boltMicroJourneyDropdownButton = boltMicroJourneyDropdown.renderRoot
+                      ? boltMicroJourneyDropdown.renderRoot.querySelector(
+                          'button',
+                        )
+                      : null;
+                  }
+                  if (boltMicroJourneyDropdownButton) {
+                    boltMicroJourneyDropdownButton.click();
+                  }
+                } catch {
+                  console.error('Autoclose of micro-journey dropdown failed');
+                }
+              });
+            }}
             style=${menuItemTextColor}
           >
             ${isActiveItem
@@ -277,8 +288,8 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
           <bolt-image
             no-lazy
             sizes="auto"
-            src="${customImageSrc}"
-            alt="${imageAlt}"
+            src="${props.customImageSrc || pathwaysLogo}"
+            alt="${props.imageAlt}"
           ></bolt-image>
           <div class="c-bolt-interactive-pathways__nav">
             <div class="c-bolt-interactive-pathways__nav--inner">

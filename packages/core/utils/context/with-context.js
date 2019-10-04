@@ -34,7 +34,10 @@ export class ContextGetter {
         }
       } while ((node = node.parentNode || node.host));
 
-      throw new Error('Context not found');
+      // Special prop `contextIsOptional` prevents error if node.parentNode w/context is not found.
+      if (!Context.contextIsOptional) {
+        throw new Error('Context not found');
+      }
     } else throw new Error('Not consuming or providing the specified context');
   }
 
