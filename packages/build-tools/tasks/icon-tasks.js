@@ -213,12 +213,11 @@ async function transpileIcons(icons) {
 
   export const ${uppercamelcase(
     id,
-  )} = ({ bgColor, fgColor, size, title, ...otherProps }) => {
+  )} = ({ bgColor, fgColor, size, ...otherProps }) => {
       return (
         ${
           fileName.includes('-color')
             ? $(optimizedSVG)
-                .prepend('<title>{ title }</title>')
                 .toString()
                 .replace('viewBox', '{...otherProps} viewBox') // tack on extra props next to viewBox attribute
                 .replace('d="M0 0h24v24H0z"', '')
@@ -226,7 +225,6 @@ async function transpileIcons(icons) {
                 .replace(/height=".*?"/, 'height={size}')
                 .replace('otherProps="..."', '{...otherProps}')
             : $(optimizedSVG)
-                .prepend('<title>{ title }</title>')
                 .toString()
                 .replace('fill="#FFF"', 'fill={fgColor}')
                 .replace('stroke="#FFF"', 'stroke={fgColor}')
@@ -285,9 +283,9 @@ async function build() {
     const extendedIconDirs = config.iconDir ? config.iconDir : [];
 
     const dirs = [rootDir, ...extendedIconDirs];
-    const iconsToProcess = dirs.map(dir => path.join(dir, globPattern));
-    const allIcons = [...iconsToProcess, '!**/*.min.svg'];
-    const iconPaths = await globby.sync(allIcons);
+    const allIcons = dirs.map(dir => path.join(dir, globPattern));
+
+    const iconPaths = await globby(allIcons);
 
     iconSpinner = new Ora(
       chalk.blue(
@@ -315,17 +313,13 @@ async function build() {
       log.dim(`Built ${iconPaths.length} icons.`);
     }
   } catch (error) {
-    if (iconSpinner && iconSpinner.fail) {
-      iconSpinner.fail(
-        chalk.red(
-          initialBuild
-            ? `${failedBuildingIconsMsg} : ${error}`
-            : `${failedRebuildingIconsMsg} : ${error}`,
-        ),
-      );
-    } else {
-      console.log(error);
-    }
+    iconSpinner.fail(
+      chalk.red(
+        initialBuild
+          ? `${failedBuildingIconsMsg} : ${error}`
+          : `${failedRebuildingIconsMsg} : ${error}`,
+      ),
+    );
 
     process.exitCode = 1;
   }
@@ -340,13 +334,13 @@ async function generateFile(icons) {
     const iconComponentDir = path.dirname(
       resolve.sync('@bolt/components-icon/package.json'),
     );
-    const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.yml');
+    const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.json');
     const names = icons.map(icon => icon.id);
-    const schema = yaml.safeLoad(fs.readFileSync(iconComponentSchema, 'utf8'));
+    const schema = await fs.readJson(iconComponentSchema);
     schema.properties.name.enum = names;
 
     // update bolt-icon schema with newest icons from svgs folder
-    await fs.writeFile(iconComponentSchema, yaml.safeDump(schema));
+    await fs.writeJson(iconComponentSchema, schema, { spaces: 2 });
     // generate `icons.bolt.json` file with newest icons array
     await fs.writeFile(
       path.join(config.dataDir, 'icons.bolt.json'),
@@ -378,7 +372,7 @@ async function watch() {
 
   // for now, only watch the main @bolt/components-icons folder for .svg file changes.
   const extendedIconDirs = config.iconDir ? config.iconDir : [];
-  const dirs = [path.join(rootDir, 'src/icons'), ...extendedIconDirs];
+  const dirs = [rootDir, ...extendedIconDirs];
 
   // Used by watches
   const debouncedCompile = debounce(build, config.debounceRate);
@@ -386,17 +380,10 @@ async function watch() {
   const watchedFiles = dirs.map(dir => path.join(dir, globPattern));
 
   // The watch event ~ same engine gulp uses https://www.npmjs.com/package/chokidar
-  const watcher = chokidar.watch([...watchedFiles], {
+  const watcher = chokidar.watch(watchedFiles, {
     ignoreInitial: true,
     cwd: process.cwd(),
-    ignored: [
-      '**/node_modules/**',
-      '**/vendor/**',
-      path.join(
-        path.dirname(require.resolve('@bolt/components-icons/package.json')),
-        'dist/**/*',
-      ),
-    ],
+    ignored: ['**/node_modules/**', '**/vendor/**'],
   });
 
   // list of all events: https://www.npmjs.com/package/chokidar#methods--events

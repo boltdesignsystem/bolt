@@ -13,13 +13,6 @@ import { h, withPreact } from '@bolt/core/renderers';
 import PubSub from 'pubsub-js';
 import upperCamelCase from 'uppercamelcase';
 import * as Icons from '@bolt/components-icons';
-
-// automatically pull in all icons to minify for Twig-based SSR
-const icons = require.context(
-  '@bolt/components-icons/src/svgs',
-  true,
-  /\.svg$/,
-);
 import styles from './icon.scss';
 
 const backgroundStyles = ['circle', 'square'];
@@ -94,7 +87,7 @@ class BoltIcon extends withPreact() {
   }
 
   render() {
-    const { size, name, color, background, title } = this.props;
+    const { size, name, color, background } = this.props;
     const { primaryColor, secondaryColor } = this.state;
 
     const classes = css(
@@ -130,7 +123,6 @@ class BoltIcon extends withPreact() {
           size={iconSize}
           bgColor={primaryColor}
           fgColor={secondaryColor}
-          title={title || name + ' icon'}
         />
         {background && size === 'xlarge' && (
           <span className={backgroundClasses} />

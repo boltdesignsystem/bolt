@@ -1,15 +1,8 @@
 import { h } from '@bolt/core/renderers';
 
-export const BoltLogoColored = ({
-  bgColor,
-  fgColor,
-  size,
-  title,
-  ...otherProps
-}) => {
+export const BoltLogoColored = ({ bgColor, fgColor, size, ...otherProps }) => {
   return (
     <svg {...otherProps} viewBox="0 0 198 182">
-      <title>{title}</title>
       <g fill="none" fill-rule="evenodd">
         <path
           fill="#FFCC4C"

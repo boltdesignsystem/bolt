@@ -27,7 +27,6 @@ const {
   mapComponentNameToTwigNamespace,
 } = require('@bolt/build-utils/manifest');
 const log = require('@bolt/build-utils/log');
-const svgoConfig = require('./svgo-config');
 
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
@@ -94,6 +93,7 @@ async function createWebpackConfig(buildConfig) {
       ? JSON.stringify('production')
       : JSON.stringify('development'),
     bolt: {
+      publicPath: JSON.stringify(publicPath),
       mode: JSON.stringify(config.mode),
       isClient: config.mode === 'client' ? true : false,
       isServer: config.mode === 'server' ? true : false,
@@ -194,6 +194,7 @@ async function createWebpackConfig(buildConfig) {
   }
 
   const scssLoaders = [
+    'cache-loader',
     {
       loader: 'css-loader',
       options: {
@@ -262,6 +263,7 @@ async function createWebpackConfig(buildConfig) {
         '.scss',
         '.ts',
         '.tsx',
+        '.jpg',
       ],
       alias: {
         react: 'preact-compat',
@@ -270,68 +272,18 @@ async function createWebpackConfig(buildConfig) {
     },
     module: {
       rules: [
-        // @todo: uncomment once future updates to handle SVG icon spritesheet in place
-        // {
-        //   test: /\.svg$/,
-        //   include: path.dirname(require.resolve('@bolt/components-icons/package.json')),
-        //   use: [
-        //     'svg-sprite-loader',
-        //     'svgo-loader'
-        //   ]
-        // },
-
-        // minify non spritesheet SVGs icons
-        {
-          test: /\.svg$/,
-          include: path.dirname(
-            require.resolve('@bolt/components-icons/package.json'),
-          ),
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: path.join(
-                  path.dirname(
-                    require.resolve('@bolt/components-icons/package.json'),
-                  ),
-                  'dist/[name].min.[ext]',
-                ),
-              },
-            },
-            {
-              loader: 'svgo-loader',
-              options: {
-                plugins: svgoConfig.plugins,
-              },
-            },
-          ],
-        },
-        {
-          test: /\.svg$/,
-          exclude: path.dirname(
-            require.resolve('@bolt/components-icons/package.json'),
-          ),
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[ext]',
-              },
-            },
-            {
-              loader: 'svgo-loader',
-              options: {
-                plugins: svgoConfig.plugins,
-              },
-            },
-          ],
-        },
         {
           test: /\.(ts|tsx)$/,
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+              },
+            },
+          ],
         },
         {
           test: /\.scss$/,
@@ -352,41 +304,69 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(js|tsx|mjs)$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              babelrc: false,
-              cacheDirectory: true,
-              presets: ['@bolt/babel-preset-bolt'],
-            },
+          exclude: thePath => {
+            if (
+              thePath.endsWith(
+                'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+              )
+            ) {
+              return true;
+            }
+
+            if (thePath.endsWith('grapesjs/dist/grapes.js')) {
+              return true;
+            }
+
+            return false;
           },
+          use: [
+            'cache-loader',
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                cacheDirectory: true,
+                presets: ['@bolt/babel-preset-bolt'],
+              },
+            },
+          ],
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 500,
-            name: 'fonts/[name].[ext]',
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 500,
+                name: 'fonts/[name].[ext]',
+              },
+            },
+          ],
         },
         {
-          test: /\.(cur)$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
+          test: /\.(cur|svg|png|jpg)$/,
+          use: [
+            'cache-loader',
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+          use: ['cache-loader', 'json-loader', 'yaml-loader'],
+        },
+        {
+          test: [/\.html$/],
+          loader: 'raw-loader', // file as string
         },
       ],
     },
     mode: config.prod ? 'production' : 'development',
-    // optimization: {
-    //   mergeDuplicateChunks: true,
-    // },
     optimization: {
       minimizer: config.prod
         ? [

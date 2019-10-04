@@ -9,40 +9,6 @@
   .setAttribute("background", background)
   .setAttribute("size", size)
   .setAttribute("color", color)
-  .setAttribute("title", title)
 %}
 
-{% set icon_filters %}
-  <filter id="invert" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
-    <feComponentTransfer x="0%" y="0%" width="100%" height="100%" in="SourceAlpha" result="componentTransfer">
-      <feFuncR type="table" tableValues="1 0 1"/>
-      <feFuncG type="table" tableValues="1 0 1"/>
-      <feFuncB type="table" tableValues="1 0 1"/>
-      <feFuncA type="table" tableValues="0 1"/>
-    </feComponentTransfer>
-  </filter>
-{% endset %}
-
-<bolt-icon {{ attributes }}>{% spaceless %}
-  {% if fallback %}
-    {% set svgIcon %}
-      {% include "@bolt-components-icons/#{name}.min.svg" %}
-    {% endset %}
-
-    {{ svgIcon
-      | replace('fill="#FFF"', 'filter="url(#invert)" fill="currentColor"')
-      | replace('fill="none"', '_fill="none"')
-      | replace('/ fill="((?!(var(--bolt-theme-icon|none)).*$)[^"]+)"/', ' fill="currentColor"')
-      | replace('_fill="', 'fill="')
-      | replace('<svg ', '<svg ' ~ 'class="' ~ attributes.class ~ '"')
-      | replace('/<!--(.*)-->/Uis', '')
-      | replace('/height="([^"]+)"/', '')
-      | replace('/width="([^"]+)"/', '')
-      | replace('/<desc>([^<]+)/', '')
-      | replace('</svg>', icon_filters ~ '</svg>')
-      | replace('</desc>', '')
-      | replace('<defs></defs>', '')
-      | replace('<path d="M0 0h24v24H0z"/>', '')
-    }}
-  {% endif %}
-{% endspaceless %}</bolt-icon>
+<bolt-icon {{ attributes }}>{% block icon_inner %}{% endblock %}</bolt-icon>
