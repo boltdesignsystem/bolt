@@ -30,7 +30,6 @@ class AccordionItem extends withContext(withLitHtml()) {
 
   constructor(self) {
     self = super(self);
-    self.useSsr = true;
     return self;
   }
 

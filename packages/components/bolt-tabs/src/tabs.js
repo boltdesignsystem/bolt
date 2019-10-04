@@ -46,7 +46,6 @@ class BoltTabs extends withContext(withLitHtml()) {
   constructor(self) {
     self = super(self);
     self.schema = this.getModifiedSchema(schema);
-    self.useSsr = true;
 
     return self;
   }

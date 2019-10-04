@@ -21,6 +21,12 @@ export function BoltBase(Base = HTMLElement) {
     constructor(self) {
       super(self);
       this._wasInitiallyRendered = false;
+
+      // Check if any `<ssr-keep>` elements have registered themselves here. If so, kick off the one-time hydration prep task.
+      if (this.ssrKeep && !this.ssrPrepped) {
+        this.ssrHydrationPrep();
+      }
+
       return self;
     }
 
@@ -64,10 +70,6 @@ export function BoltBase(Base = HTMLElement) {
       // ensure every component instance renders to the light DOM when needed (ex. if nested inside of a form, render to the light DOM)
       // this ensures that things work as expected, even when a component gets removed / re-added to the page
       this.setupShadow();
-
-      if (this.useSsr && !this.isSsrPrepped) {
-        this.ssrHydrationPrep();
-      }
 
       // @todo: add debug flag the build to allow conditionally enabling / disabling this extra slot setup check here.
       if (!this.slots) {
@@ -157,52 +159,26 @@ export function BoltBase(Base = HTMLElement) {
     }
 
     /**
-     * Replace server-side rendered HTML with only the markup needed to hydrate web component, as marked by `[ssr-hydrate]` attribute.
-     * - `[ssr-hydrate="keep-children"]`: retains a node's children
-     * - `[ssr-hydrate="keep]"`: retains the node itself
+     * Replace server-side rendered HTML with only the markup needed to hydrate web component, as marked by `<ssr-keep>` elements.
      */
     ssrHydrationPrep() {
-      // Get all `[ssr-hydrate]` elements, filter out any nested `[ssr-hydrate]` items. Assume those are in other components that will handle themselves.
-      const allMatches = Array.from(this.querySelectorAll('[ssr-hydrate]'));
-      const allNestedMatches = Array.from(
-        this.querySelectorAll(`:scope [ssr-hydrate] [ssr-hydrate]`),
-      );
-      const topLevelMatches = allMatches.filter(
-        item => !allNestedMatches.includes(item),
-      );
+      this.nodesToKeep = [];
 
-      const nodesToClean = [];
-      const nodesToKeep = [];
-
-      topLevelMatches.forEach(item => {
-        switch (item.getAttribute('ssr-hydrate')) {
-          case 'keep-children':
-            while (item.firstChild) {
-              nodesToKeep.push(item.firstChild);
-              this.appendChild(item.firstChild);
-            }
-            break;
-          case 'keep':
-          default:
-            nodesToKeep.push(item); // track the nodes that will be preserved
-            nodesToClean.push(item); // track the [ssr-hydrate] nodes to clean up later
-            this.appendChild(item);
+      this.ssrKeep.forEach(item => {
+        while (item.firstChild) {
+          this.nodesToKeep.push(item.firstChild); // track the nodes that will be preserved
+          this.appendChild(item.firstChild);
         }
       });
 
-      // Remove all children node in the "keep" array
+      // Remove all children not in the "keep" array
       Array.from(this.children)
-        .filter(item => !nodesToKeep.includes(item))
+        .filter(item => !this.nodesToKeep.includes(item))
         .forEach(node => {
           node.parentElement.removeChild(node);
         });
 
-      // Cleanup any [ssr-hydrate] nodes afterward
-      nodesToClean.forEach(node => {
-        node.removeAttribute('ssr-hydrate');
-      });
-
-      this.isSsrPrepped = true;
+      this.ssrPrepped = true;
     }
 
     addStyles(stylesheet) {
