@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* fix linting issues ([ed6bde2](https://github.com/bolt-design-system/bolt/commit/ed6bde2))
+* remove `is="shadow-root"` to prevent HTML from getting mistakenly nuked when booting up ([5d8853e](https://github.com/bolt-design-system/bolt/commit/5d8853e))
+* update with/without to use the latest version of Bolt Core ([78d3af1](https://github.com/bolt-design-system/bolt/commit/78d3af1))
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 
