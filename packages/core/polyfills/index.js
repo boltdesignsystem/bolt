@@ -18,7 +18,6 @@ import 'core-js/modules/es.array.find';
 import './symbol-polyfill';
 import './remove-polyfill';
 import '@webcomponents/template/template.js';
-import 'element-qsa-scope';
 
 import smoothscroll from 'smoothscroll-polyfill';
 
