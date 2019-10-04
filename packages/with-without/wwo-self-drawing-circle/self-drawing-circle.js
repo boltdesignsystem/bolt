@@ -31,8 +31,8 @@ class SelfDrawingCircle extends withLitHtml() {
     );
     outline.setAttribute('stroke-dasharray', `0 1000`);
     this.renderRoot
-      .querySelector('.wwo-self-drawing-circle')
-      .classList.remove('rotate');
+      .querySelector('.wwo-self-drawing-circle__spinner')
+      .classList.remove('spin');
   }
 
   async _drawCircle(dashSize, speed) {
