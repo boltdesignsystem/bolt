@@ -1,4 +1,6 @@
 import { html, render } from 'lit-html';
+import { withChildren, withLifecycle, withUpdate, withRenderer } from 'skatejs';
+import { withContext } from 'wc-context/skatejs';
 
 import {
   withComponent,
@@ -11,8 +13,8 @@ import { BoltBase } from './bolt-base';
 
 export { html, render } from 'lit-html';
 
-export function withLitHtml(Base = HTMLElement) {
-  return class extends withComponent(BoltBase(Base)) {
+export const withLit = (Base = HTMLElement) =>
+  class extends Base {
     // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
 
     static props = {
@@ -69,4 +71,14 @@ export function withLitHtml(Base = HTMLElement) {
       render(call(), root);
     }
   };
+
+export function withLitHtml(Base = HTMLElement) {
+  return class extends withLit(withComponent(BoltBase(Base))) {};
 }
+
+export const withLitContext = (Base = HTMLElement) =>
+  withLit(
+    withContext(
+      withLifecycle(withChildren(withUpdate(withRenderer(BoltBase(Base))))),
+    ),
+  );

@@ -1,20 +1,14 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-  withContext,
-} from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
-import { BoltInteractivePathwaysContext } from './interactive-pathways';
 import styles from './interactive-step.scss';
 import schema from './interactive-step.schema';
 
 const cx = classNames.bind(styles);
 
 @define
-class BoltInteractiveStep extends withContext(withLitHtml()) {
+class BoltInteractiveStep extends withLitContext() {
   static is = 'bolt-interactive-step';
 
   static props = {
@@ -25,8 +19,8 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
     ...convertSchemaToProps(schema),
   };
 
-  static get consumes() {
-    return [[BoltInteractivePathwaysContext, 'theme']];
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
