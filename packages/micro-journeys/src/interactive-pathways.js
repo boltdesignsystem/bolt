@@ -109,6 +109,7 @@ class BoltInteractivePathways extends withLitContext() {
 
   disconnecting() {
     document.removeEventListener('keydown', this._handleClosingEvent);
+    document.removeEventListener('click', this._handleClosingEvent);
   }
 
   /**
@@ -135,7 +136,6 @@ class BoltInteractivePathways extends withLitContext() {
       event.type === 'click' ||
       event.type === 'tap'
     ) {
-      event.preventDefault();
       this.dropdownActive = false;
       this.triggerUpdate();
     }
