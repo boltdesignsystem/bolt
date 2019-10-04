@@ -380,7 +380,7 @@ exports[`Bolt Tabs Inset: on 2`] = `
 
 exports[`Bolt Tabs Twig usage 1`] = `
 <bolt-tabs>
-  <replace-with-grandchildren class="c-bolt-tabs c-bolt-tabs--align-start c-bolt-tabs--inset">
+  <div class="c-bolt-tabs c-bolt-tabs--align-start c-bolt-tabs--inset">
     <input type="radio"
            name="tabs-12345"
            id="tabs-12345-1"
@@ -396,20 +396,26 @@ exports[`Bolt Tabs Twig usage 1`] = `
         </span>
       </span>
     </label>
-    <replace-with-children class="c-bolt-tab-panel__outer">
-      <bolt-tab-panel ssr-hydrate="keep">
-        <div slot="label">
-          Tab label 1
-        </div>
-        <replace-with-grandchildren class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
-          <div role="tabpanel"
-               class="c-bolt-tab-panel__content"
-          >
-            This is the tab content.
+    <div class="c-bolt-tab-panel__outer">
+      <ssr-keep for="bolt-tabs">
+        <bolt-tab-panel>
+          <ssr-keep for="bolt-tab-panel">
+            <div slot="label">
+              Tab label 1
+            </div>
+          </ssr-keep>
+          <div class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
+            <div role="tabpanel"
+                 class="c-bolt-tab-panel__content"
+            >
+              <ssr-keep for="bolt-tab-panel">
+                This is the tab content.
+              </ssr-keep>
+            </div>
           </div>
-        </replace-with-grandchildren>
-      </bolt-tab-panel>
-    </replace-with-children>
+        </bolt-tab-panel>
+      </ssr-keep>
+    </div>
     <input type="radio"
            name="tabs-12345"
            id="tabs-12345-2"
@@ -424,20 +430,26 @@ exports[`Bolt Tabs Twig usage 1`] = `
         </span>
       </span>
     </label>
-    <replace-with-children class="c-bolt-tab-panel__outer">
-      <bolt-tab-panel ssr-hydrate="keep">
-        <div slot="label">
-          Tab label 2
-        </div>
-        <replace-with-grandchildren class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
-          <div role="tabpanel"
-               class="c-bolt-tab-panel__content"
-          >
-            This is the tab content.
+    <div class="c-bolt-tab-panel__outer">
+      <ssr-keep for="bolt-tabs">
+        <bolt-tab-panel>
+          <ssr-keep for="bolt-tab-panel">
+            <div slot="label">
+              Tab label 2
+            </div>
+          </ssr-keep>
+          <div class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
+            <div role="tabpanel"
+                 class="c-bolt-tab-panel__content"
+            >
+              <ssr-keep for="bolt-tab-panel">
+                This is the tab content.
+              </ssr-keep>
+            </div>
           </div>
-        </replace-with-grandchildren>
-      </bolt-tab-panel>
-    </replace-with-children>
+        </bolt-tab-panel>
+      </ssr-keep>
+    </div>
     <input type="radio"
            name="tabs-12345"
            id="tabs-12345-3"
@@ -452,21 +464,27 @@ exports[`Bolt Tabs Twig usage 1`] = `
         </span>
       </span>
     </label>
-    <replace-with-children class="c-bolt-tab-panel__outer">
-      <bolt-tab-panel ssr-hydrate="keep">
-        <div slot="label">
-          Tab label 3
-        </div>
-        <replace-with-grandchildren class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
-          <div role="tabpanel"
-               class="c-bolt-tab-panel__content"
-          >
-            This is the tab content.
+    <div class="c-bolt-tab-panel__outer">
+      <ssr-keep for="bolt-tabs">
+        <bolt-tab-panel>
+          <ssr-keep for="bolt-tab-panel">
+            <div slot="label">
+              Tab label 3
+            </div>
+          </ssr-keep>
+          <div class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
+            <div role="tabpanel"
+                 class="c-bolt-tab-panel__content"
+            >
+              <ssr-keep for="bolt-tab-panel">
+                This is the tab content.
+              </ssr-keep>
+            </div>
           </div>
-        </replace-with-grandchildren>
-      </bolt-tab-panel>
-    </replace-with-children>
-  </replace-with-grandchildren>
+        </bolt-tab-panel>
+      </ssr-keep>
+    </div>
+  </div>
 </bolt-tabs>
 `;
 
