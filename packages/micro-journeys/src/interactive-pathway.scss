@@ -1,0 +1,96 @@
+@import '@bolt/core';
+@import './nav-shared';
+
+// Register Custom Block Element
+@include bolt-custom-element('bolt-interactive-pathway', block, medium);
+
+$bolt-interactive-step--dot-size: 1.2rem;
+.c-bolt-interactive-pathway {
+  display: none;
+  position: relative;
+  overflow: hidden;
+  padding-top: 1.65rem;
+
+  &--active {
+    display: flex;
+  }
+
+  &__nav {
+    display: none;
+  }
+
+  &__nav-item {
+    &:before {
+      @include bolt-micro-journeys-nav-dot;
+
+      section.c-bolt-interactive-pathway.t-bolt-dark & {
+        background-color: bolt-color(indigo, light);
+      }
+    }
+
+    &--active {
+      &:before {
+        @include bolt-micro-journeys-nav-dot($active: true);
+
+        section.c-bolt-interactive-pathway.t-bolt-dark & {
+          border-color: bolt-color(white) !important;
+          background-color: bolt-color(yellow) !important;
+        }
+      }
+    }
+  }
+
+  @include bolt-mq(medium) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    &__nav {
+      display: block;
+      flex: 1 0 30%;
+      position: relative;
+      margin-right: bolt-spacing(large);
+      margin-right: bolt-spacing(large);
+      @include bolt-micro-journeys-nav-items-wrapper;
+    }
+
+    &__nav-item {
+      position: relative;
+      @include bolt-micro-journeys-nav-title;
+
+
+      &:after {
+        @include bolt-micro-journeys-nav-line;
+
+        section.c-bolt-interactive-pathway.t-bolt-dark & {
+          background-color: bolt-color(indigo, light);
+        }
+      }
+
+      &--active {
+        @include bolt-micro-journeys-nav-title($active: true);
+
+      }
+
+      &:last-of-type:after {
+        display: none;
+      }
+    }
+  }
+
+  &__items {
+    flex: 1 1 70%;
+    max-width: 100%; // fix to prevent UI from overflowing on smaller screen sizes
+  }
+}
+
+/**
+ * This builds the vertical strikethrough line on the interactive pathway nav
+ */
+bolt-interactive-pathway {
+  position: relative;
+  margin-bottom: 0 !important; // override the global vertical spacing rhythm, as only one is visible in any list
+}
+
+.c-bolt-interactive-pathway__nav-item:last-of-type {
+
+}

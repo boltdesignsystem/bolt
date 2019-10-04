@@ -84,7 +84,10 @@ $PSEUDO_CLASSES: (
 }
 
 /**
-  * Helper functions for applying global color swatches stored in Sass Maps
+  * Helper functions for applying global color swatches stored in Sass Maps. See @settings-themes/index.scss
+  * @param {map|...params} $props
+  *   - Map values are printed json encoded straight to bolt-themify to be processed by webpack plugin postcss-themify
+  *   - Other args generate a bolt-themify json-encoded map according to theme settings in `settings-themes/index.scss`
   */
 @function bolt-theme($props...) {
   @if (is-map($props...)) {

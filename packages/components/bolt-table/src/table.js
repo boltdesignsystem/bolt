@@ -39,12 +39,25 @@ class BoltTable extends withLitHtml() {
 
   removeEmptyNodes(nodes) {
     return nodes.filter(node => {
+      if (node.type !== 'comment') {
+        if (node.type === 'element') {
+          node.children = this.removeEmptyNodes(node.children);
+          return true;
+        }
+        return node.content.length;
+      }
+    });
+  }
+
+  removeCommentNodes(nodes) {
+    return nodes.filter(node => {
       if (node.type === 'element') {
-        node.children = this.removeEmptyNodes(node.children);
+        node.children = this.removeCommentNodes(node.children);
         return true;
       }
       return node.content.length;
     });
+    return nodes;
   }
 
   stripWhitespace(nodes) {
@@ -63,6 +76,10 @@ class BoltTable extends withLitHtml() {
 
   removeWhitespace(nodes) {
     return this.removeEmptyNodes(this.stripWhitespace(nodes));
+  }
+
+  removeComments(nodes) {
+    return this.removeCommentNodes(nodes);
   }
 
   createProp(object, prop, value) {
@@ -102,6 +119,8 @@ class BoltTable extends withLitHtml() {
   }
 
   rendered() {
+    super.rendered && super.rendered();
+
     const nodesToUpdate = this.renderRoot.querySelectorAll('*[data-attrs]');
     const tdInThead = this.renderRoot.querySelectorAll('thead td');
 
@@ -125,7 +144,9 @@ class BoltTable extends withLitHtml() {
   }
 
   render() {
-    const parseCode = this.removeWhitespace(parse(this.innerHTML));
+    const parseCode = this.removeComments(
+      this.removeWhitespace(parse(this.innerHTML)),
+    );
     const { format, borderless, firstColFixedWidth } = this.props;
     const tableClasses = cx('c-bolt-table', {
       [`c-bolt-table--format-${format}`]: format !== 'regular',
@@ -237,6 +258,8 @@ class BoltTable extends withLitHtml() {
     }
 
     function injectClasses(classes, attributes) {
+      // @todo: `findIndex` does not work in IE11 without a polyfill, so it silently stops/fails here.
+      // Once polyfilled, the table markup disappears on load. Come back to this, polyfill it, and fix he underlying table bug.
       const classIndex = attributes.findIndex(item => item.key === 'class');
 
       if (classIndex === -1) {

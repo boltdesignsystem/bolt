@@ -16,19 +16,21 @@ exports[`<bolt-accordion> Component Default <bolt-accordion> w/o Shadow DOM rend
   >
     <!---->
     
-      
+          
     <button
-      class="c-bolt-accordion-item__trigger-button c-bolt-accordion-spacing--medium"
+      class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
       style=""
+      type="button"
     >
       
-        
+            
+      
       <div
         class="c-bolt-accordion-item__trigger-content"
         style=""
       >
         
-          
+        
         <!---->
         <!---->
         <bolt-text
@@ -41,37 +43,38 @@ exports[`<bolt-accordion> Component Default <bolt-accordion> w/o Shadow DOM rend
         <!---->
         <!---->
         
-        
+      
       </div>
       
-        
+      
       <span
         class="c-bolt-accordion-item__trigger-icons"
         style=""
       >
         
-          
+        
         <div
           class="c-bolt-accordion-item__trigger-icons-inner"
           style=""
         >
           
-            
+          
           <bolt-icon
             name="chevron-down"
             style=""
           />
           
-          
+        
         </div>
         
-        
+      
       </span>
       
-      
+    
+          
     </button>
     
-    
+        
     <!---->
   </div>
   
@@ -124,6 +127,139 @@ exports[`<bolt-accordion> Component Default <bolt-accordion> w/o Shadow DOM rend
 </div>
 `;
 
+exports[`<bolt-accordion> Component Inactive item 1`] = `
+<bolt-accordion>
+  <replace-with-children class="c-bolt-accordion">
+    <bolt-accordion-item>
+      <input class="c-bolt-accordion-item__state"
+             type="checkbox"
+             id="c-bolt-accordion-item-12345"
+      >
+      <div class="c-bolt-accordion-item c-bolt-accordion-item--separator c-bolt-accordion-item--first-item"
+           id="c-bolt-accordion-item-inner-12345"
+      >
+        <div class="c-bolt-accordion-item__trigger">
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
+          >
+            <div class="c-bolt-accordion-item__trigger-content">
+              <div slot="trigger"
+                   ssr-hydrate="keep"
+              >
+                Active accordion item
+              </div>
+            </div>
+          </label>
+          <a href="#c-bolt-accordion-item-12345"
+             class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--open c-bolt-accordion-spacing--medium"
+          >
+            <span class="c-bolt-accordion-item__toggle-text">
+              Open Accordion
+            </span>
+          </a>
+          <a href="#c-bolt-accordion-item-inner-12345"
+             class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--close c-bolt-accordion-spacing--medium"
+          >
+            <span class="c-bolt-accordion-item__toggle-text">
+              Close Accordion
+            </span>
+          </a>
+        </div>
+        <div class="c-bolt-accordion-item__content">
+          <div class="c-bolt-accordion-item__content-inner c-bolt-accordion-spacing--medium"
+               ssr-hydrate="keep-children"
+          >
+            This is the accordion content.
+          </div>
+        </div>
+      </div>
+    </bolt-accordion-item>
+    <bolt-accordion-item inactive>
+      <div class="c-bolt-accordion-item c-bolt-accordion-item--separator"
+           id="c-bolt-accordion-item-inner-12345"
+      >
+        <div class="c-bolt-accordion-item__trigger">
+          <div class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-item__trigger-label--inactive c-bolt-accordion-spacing--medium">
+            <div class="c-bolt-accordion-item__trigger-content">
+              <div slot="trigger"
+                   ssr-hydrate="keep"
+              >
+                Inactive accordion item
+              </div>
+            </div>
+          </div>
+          <a href="#c-bolt-accordion-item-12345"
+             class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--open c-bolt-accordion-spacing--medium"
+          >
+            <span class="c-bolt-accordion-item__toggle-text">
+              Open Accordion
+            </span>
+          </a>
+          <a href="#c-bolt-accordion-item-inner-12345"
+             class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--close c-bolt-accordion-spacing--medium"
+          >
+            <span class="c-bolt-accordion-item__toggle-text">
+              Close Accordion
+            </span>
+          </a>
+        </div>
+        <div class="c-bolt-accordion-item__content">
+          <div class="c-bolt-accordion-item__content-inner c-bolt-accordion-spacing--medium"
+               ssr-hydrate="keep-children"
+          >
+            This is the accordion content.
+          </div>
+        </div>
+      </div>
+    </bolt-accordion-item>
+    <bolt-accordion-item>
+      <input class="c-bolt-accordion-item__state"
+             type="checkbox"
+             id="c-bolt-accordion-item-12345"
+      >
+      <div class="c-bolt-accordion-item c-bolt-accordion-item--separator c-bolt-accordion-item--last-item"
+           id="c-bolt-accordion-item-inner-12345"
+      >
+        <div class="c-bolt-accordion-item__trigger">
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
+          >
+            <div class="c-bolt-accordion-item__trigger-content">
+              <div slot="trigger"
+                   ssr-hydrate="keep"
+              >
+                Active accordion item
+              </div>
+            </div>
+          </label>
+          <a href="#c-bolt-accordion-item-12345"
+             class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--open c-bolt-accordion-spacing--medium"
+          >
+            <span class="c-bolt-accordion-item__toggle-text">
+              Open Accordion
+            </span>
+          </a>
+          <a href="#c-bolt-accordion-item-inner-12345"
+             class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--close c-bolt-accordion-spacing--medium"
+          >
+            <span class="c-bolt-accordion-item__toggle-text">
+              Close Accordion
+            </span>
+          </a>
+        </div>
+        <div class="c-bolt-accordion-item__content">
+          <div class="c-bolt-accordion-item__content-inner c-bolt-accordion-spacing--medium"
+               ssr-hydrate="keep-children"
+          >
+            This is the accordion content.
+          </div>
+        </div>
+      </div>
+    </bolt-accordion-item>
+  </replace-with-children>
+</bolt-accordion>
+`;
+
 exports[`<bolt-accordion> Component basic usage 1`] = `
 <bolt-accordion>
   <replace-with-children class="c-bolt-accordion">
@@ -136,8 +272,8 @@ exports[`<bolt-accordion> Component basic usage 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -180,8 +316,8 @@ exports[`<bolt-accordion> Component basic usage 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -224,8 +360,8 @@ exports[`<bolt-accordion> Component basic usage 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -275,8 +411,8 @@ exports[`<bolt-accordion> Component expand single items: false 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -319,8 +455,8 @@ exports[`<bolt-accordion> Component expand single items: false 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -363,8 +499,8 @@ exports[`<bolt-accordion> Component expand single items: false 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -414,8 +550,8 @@ exports[`<bolt-accordion> Component expand single items: true 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -458,8 +594,8 @@ exports[`<bolt-accordion> Component expand single items: true 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -502,8 +638,8 @@ exports[`<bolt-accordion> Component expand single items: true 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -553,8 +689,8 @@ exports[`<bolt-accordion> Component spacing: large 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--large"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--large"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -597,8 +733,8 @@ exports[`<bolt-accordion> Component spacing: large 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--large"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--large"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -641,8 +777,8 @@ exports[`<bolt-accordion> Component spacing: large 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--large"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--large"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -692,8 +828,8 @@ exports[`<bolt-accordion> Component spacing: medium 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -736,8 +872,8 @@ exports[`<bolt-accordion> Component spacing: medium 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -780,8 +916,8 @@ exports[`<bolt-accordion> Component spacing: medium 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--medium"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -831,8 +967,8 @@ exports[`<bolt-accordion> Component spacing: none 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--none"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--none"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -875,8 +1011,8 @@ exports[`<bolt-accordion> Component spacing: none 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--none"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--none"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -919,8 +1055,8 @@ exports[`<bolt-accordion> Component spacing: none 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--none"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--none"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -970,8 +1106,8 @@ exports[`<bolt-accordion> Component spacing: small 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--small"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--small"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -1014,8 +1150,8 @@ exports[`<bolt-accordion> Component spacing: small 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--small"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--small"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -1058,8 +1194,8 @@ exports[`<bolt-accordion> Component spacing: small 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--small"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--small"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -1109,8 +1245,8 @@ exports[`<bolt-accordion> Component spacing: xsmall 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--xsmall"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--xsmall"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -1153,8 +1289,8 @@ exports[`<bolt-accordion> Component spacing: xsmall 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--xsmall"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--xsmall"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"
@@ -1197,8 +1333,8 @@ exports[`<bolt-accordion> Component spacing: xsmall 1`] = `
            id="c-bolt-accordion-item-inner-12345"
       >
         <div class="c-bolt-accordion-item__trigger">
-          <label class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--xsmall"
-                 for="c-bolt-accordion-item-12345"
+          <label for="c-bolt-accordion-item-12345"
+                 class="c-bolt-accordion-item__trigger-label c-bolt-accordion-item__trigger-label--offset c-bolt-accordion-spacing--xsmall"
           >
             <div class="c-bolt-accordion-item__trigger-content">
               <div slot="trigger"

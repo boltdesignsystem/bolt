@@ -1,0 +1,47 @@
+{
+  "name": "@bolt/components-typeahead",
+  "description": "Typeahead is an input field with dropdown-like listbox that displays suggested results that most closely match a user's given search term.",
+  "keywords": [
+    "bolt design system",
+    "bolt",
+    "design system",
+    "web component"
+  ],
+  "version": "2.8.0-beta.6",
+  "maintainers": [
+    {
+      "name": "Salem Ghoweri",
+      "email": "me@salemghoweri.com",
+      "web": "https://github.com/sghoweri"
+    },
+    {
+      "name": "Mike Mai",
+      "email": "boss@mikemai.net",
+      "web": "http://mikemai.net/"
+    },
+    {
+      "name": "Dan Morse"
+    }
+  ],
+  "homepage": "https://boltdesignsystem.com",
+  "license": "MIT",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-typeahead",
+  "bugs": "https://github.com/bolt-design-system/bolt/issues",
+  "style": "typeahead.scoped.scss",
+  "main": "typeahead.polyfilled.js",
+  "module": "typeahead.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@bolt/components-button": "^2.8.0-beta.6",
+    "@bolt/components-form": "^2.8.0-beta.6",
+    "@bolt/components-icon": "^2.8.0-beta.6",
+    "@bolt/core": "^2.8.0-beta.6",
+    "fuse.js": "^3.4.5",
+    "mousetrap": "^1.6.3",
+    "react-autosuggest": "^9.4.3",
+    "react-html-parser": "^2.0.2"
+  },
+  "schema": "typeahead.schema.yml"
+}

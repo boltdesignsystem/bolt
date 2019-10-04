@@ -1,0 +1,244 @@
+<bolt-list separator="solid" spacing="none">
+  {# Mega nav placeholder #}
+  <bolt-list-item class="t-bolt-light">
+    <bolt-list display="flex" inset>
+      <bolt-list-item>
+        <bolt-list display="inline@xsmall">
+          <bolt-list-item>
+            <bolt-text font-size="xsmall">
+              <bolt-link url="#">
+                Training
+              </bolt-link>
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="xsmall">
+              <bolt-link url="#">
+                Support
+              </bolt-link>
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="xsmall">
+              <bolt-link url="#">
+                Knowledge Base
+              </bolt-link>
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="xsmall">
+              <bolt-link url="#">
+                More
+                <bolt-icon name="chevron-down"></bolt-icon>
+              </bolt-link>
+            </bolt-text>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-list-item>
+      <bolt-list-item>
+        <bolt-list display="inline" align="end">
+          <bolt-list-item>
+            <bolt-text font-size="xsmall">
+              <bolt-link>
+                Log In
+              </bolt-link>
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-text font-size="xsmall">
+              <bolt-link>
+                Sign Up
+              </bolt-link>
+            </bolt-text>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-list-item>
+    </bolt-list>
+  </bolt-list-item>
+  <bolt-list-item class="t-bolt-xlight">
+    <bolt-list display="flex" spacing="medium" inset>
+      <bolt-list-item>
+        <bolt-list display="inline" spacing="large">
+          <bolt-list-item>
+            <bolt-text headline font-size="xxlarge" text-transform="uppercase">
+              Pega
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-list display="inline">
+              <bolt-list-item>
+                <bolt-button color="text" size="xsmall" url="#">
+                  Products
+                </bolt-button>
+              </bolt-list-item>
+              <bolt-list-item>
+                <bolt-button color="text" size="xsmall" url="#">
+                  Solutions
+                </bolt-button>
+              </bolt-list-item>
+              <bolt-list-item>
+                <bolt-button color="text" size="xsmall" url="#">
+                  Customers
+                </bolt-button>
+              </bolt-list-item>
+              <bolt-list-item>
+                <bolt-button color="text" size="xsmall" url="#">
+                  Why Pega?
+                </bolt-button>
+              </bolt-list-item>
+              <bolt-list-item>
+                <bolt-button color="text" size="xsmall" url="#">
+                  Services &amp; Partners
+                </bolt-button>
+              </bolt-list-item>
+              <bolt-list-item>
+                <bolt-button color="text" size="xsmall" url="#">
+                  Events
+                </bolt-button>
+              </bolt-list-item>
+              <bolt-list-item>
+                <bolt-button color="text" size="xsmall" url="#">
+                  About
+                </bolt-button>
+              </bolt-list-item>
+            </bolt-list>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-list-item>
+      <bolt-list-item>
+        <bolt-list display="inline" align="end" spacing="small" separator="solid">
+          <bolt-list-item>
+            <div class="c-bolt-global-search-trigger">
+              <bolt-link url="#">
+                <bolt-icon name="search" size="medium"></bolt-icon>
+              </bolt-link>
+            </div>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-button color="primary" size="small">
+              Try Pega
+            </bolt-button>
+          </bolt-list-item>
+      </bolt-list-item>
+    </bolt-list>
+  </bolt-list-item>
+  {# Mega nav placeholder #}
+
+  {% set search_bar %}
+    <form>
+      <label class="c-bolt-search-field">
+        <span class="c-bolt-search-field__label">Search the Pegasystems website</span>
+        <input class="c-bolt-search-field__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
+        <div class="c-bolt-search-field__button">
+          <bolt-button color="text" tag="submit" icon-only>
+            <bolt-icon name="search" slot="before"></bolt-icon>
+          </bolt-button>
+        </div>
+        <div class="c-bolt-search-field__button c-bolt-search-field__button--reset">
+          <bolt-button color="text" tag="reset" icon-only>
+            <bolt-icon name="close-solid" slot="before"></bolt-icon>
+          </bolt-button>
+        </div>
+      </label>
+    </form>
+  {% endset %}
+
+  {% set search_bar_themed %}
+    <form>
+      <label class="c-bolt-search-field t-bolt-xlight">
+        <span class="c-bolt-search-field__label">Search the Pegasystems website</span>
+        <input class="c-bolt-search-field__input" type="search" name="search-bar" placeholder="Enter to search" required autofocus>
+        <div class="c-bolt-search-field__button">
+          <bolt-button color="text" tag="submit" icon-only>
+            <bolt-icon name="search" slot="before"></bolt-icon>
+          </bolt-button>
+        </div>
+        <div class="c-bolt-search-field__button c-bolt-search-field__button--reset">
+          <bolt-button color="text" tag="reset" icon-only>
+            <bolt-icon name="close-solid" slot="before"></bolt-icon>
+          </bolt-button>
+        </div>
+      </label>
+    </form>
+  {% endset %}
+
+  <bolt-list-item>
+    <div class="t-bolt-dark u-bolt-padding-top-small u-bolt-padding-right-medium u-bolt-padding-bottom-small u-bolt-padding-left-medium">
+      {% grid "o-bolt-grid--center" %}
+        {% cell "u-bolt-width-12/12 u-bolt-width-6/12@large" %}
+          {{ search_bar_themed }}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+  </bolt-list-item>
+
+  <bolt-list-item>
+    <bolt-list spacing="large" inset>
+      <bolt-list-item>
+        <bolt-text headline font-size="xxxlarge" align="center">
+          Theme-able Search Bar
+        </bolt-text>
+      </bolt-list-item>
+    </bolt-list>
+  </bolt-list-item>
+
+  <bolt-list-item>
+    <bolt-list spacing="large" inset>
+      <bolt-list-item>
+        <bolt-list>
+          <bolt-list-item>
+            <bolt-text headline>
+              Individually themed
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-list display="flex" spacing="medium" align="center" inset>
+              <bolt-list-item class="t-bolt-xdark">
+                {{ search_bar_themed }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-dark">
+                {{ search_bar_themed }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-light">
+                {{ search_bar_themed }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-xlight">
+                {{ search_bar_themed }}
+              </bolt-list-item>
+            </bolt-list>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-list-item>
+    </bolt-list>
+  </bolt-list-item>
+
+  <bolt-list-item>
+    <bolt-list spacing="large" inset>
+      <bolt-list-item>
+        <bolt-list>
+          <bolt-list-item>
+            <bolt-text headline>
+              Inside a themed container
+            </bolt-text>
+          </bolt-list-item>
+          <bolt-list-item>
+            <bolt-list display="flex" spacing="medium" align="center" inset>
+              <bolt-list-item class="t-bolt-xdark">
+                {{ search_bar }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-dark">
+                {{ search_bar }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-light">
+                {{ search_bar }}
+              </bolt-list-item>
+              <bolt-list-item class="t-bolt-xlight">
+                {{ search_bar }}
+              </bolt-list-item>
+            </bolt-list>
+          </bolt-list-item>
+        </bolt-list>
+      </bolt-list-item>
+    </bolt-list>
+  </bolt-list-item>
+</bolt-list>

@@ -95,6 +95,7 @@ async function createWebpackConfig(buildConfig) {
       ? JSON.stringify('production')
       : JSON.stringify('development'),
     bolt: {
+      publicPath: JSON.stringify(publicPath),
       mode: JSON.stringify(config.mode),
       isClient: config.mode === 'client' ? true : false,
       isServer: config.mode === 'server' ? true : false,
@@ -196,6 +197,7 @@ async function createWebpackConfig(buildConfig) {
 
   const scssLoaders = function(isJsFile = false, isScoped = false) {
     return [
+      'cache-loader',
       {
         loader: 'css-loader',
         options: {
@@ -333,6 +335,7 @@ async function createWebpackConfig(buildConfig) {
         '.scss',
         '.ts',
         '.tsx',
+        '.jpg',
       ],
       alias: {
         react: 'preact-compat',
@@ -343,10 +346,16 @@ async function createWebpackConfig(buildConfig) {
       rules: [
         {
           test: /\.(ts|tsx)$/,
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+              },
+            },
+          ],
         },
         {
           test: /\.(scoped.scss)$/,
@@ -391,41 +400,69 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(js|tsx|mjs)$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
-          use: {
-            loader: 'babel-loader',
-            options: {
-              babelrc: false,
-              cacheDirectory: true,
-              presets: ['@bolt/babel-preset-bolt'],
-            },
+          exclude: thePath => {
+            if (
+              thePath.endsWith(
+                'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+              )
+            ) {
+              return true;
+            }
+
+            if (thePath.endsWith('grapesjs/dist/grapes.js')) {
+              return true;
+            }
+
+            return false;
           },
+          use: [
+            'cache-loader',
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                cacheDirectory: true,
+                presets: ['@bolt/babel-preset-bolt'],
+              },
+            },
+          ],
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 500,
-            name: 'fonts/[name].[ext]',
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 500,
+                name: 'fonts/[name].[ext]',
+              },
+            },
+          ],
         },
         {
-          test: /\.(cur|svg)$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
+          test: /\.(cur|svg|png|jpg)$/,
+          use: [
+            'cache-loader',
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+          use: ['cache-loader', 'json-loader', 'yaml-loader'],
+        },
+        {
+          test: [/\.html$/],
+          loader: 'raw-loader', // file as string
         },
       ],
     },
     mode: config.prod ? 'production' : 'development',
-    // optimization: {
-    //   mergeDuplicateChunks: true,
-    // },
     optimization: {
       minimizer: config.prod
         ? [
