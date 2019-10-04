@@ -19,6 +19,23 @@ async function renderTwigString(template, data) {
 
 const timeout = 120000;
 
+const accordionInnerHTML = `
+  <bolt-accordion>
+    <bolt-accordion-item>
+      <bolt-text slot="trigger">Accordion item 1</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+    <bolt-accordion-item>
+      <bolt-text slot="trigger">Accordion item 2</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+    <bolt-accordion-item>
+      <bolt-text slot="trigger">Accordion item 3</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+  </bolt-accordion>
+`;
+
 describe('<bolt-accordion> Component', () => {
   let page;
 
@@ -144,32 +161,21 @@ describe('<bolt-accordion> Component', () => {
   });
 
   test('Default <bolt-accordion> with Shadow DOM renders', async function() {
-    const defaultAccordionShadowRoot = await page.evaluate(() => {
-      const accordion = document.createElement('bolt-accordion');
-      accordion.innerHTML = `
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 1</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 2</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 3</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>`;
+    const accordionOuter = await page.evaluate(accordionInnerHTML => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = accordionInnerHTML;
+      document.body.appendChild(wrapper);
 
-      document.body.appendChild(accordion);
-      accordion.updated();
+      const accordion = document.querySelector('bolt-accordion');
+      const accordionItems = Array.from(
+        document.querySelectorAll('bolt-accordion-item'),
+      );
+      [accordion, ...accordionItems].forEach(el => el.updated());
 
-      const child = accordion.querySelector('bolt-accordion-item');
-      child.updated();
+      return accordion.outerHTML;
+    }, accordionInnerHTML);
 
-      return child.renderRoot.innerHTML;
-    });
-
-    const renderedShadowDomHTML = await html(defaultAccordionShadowRoot);
+    const renderedShadowDomHTML = await html(accordionOuter);
 
     await page.waitFor(500);
     const image = await page.screenshot();
@@ -179,39 +185,28 @@ describe('<bolt-accordion> Component', () => {
       failureThresholdType: 'percent',
     });
 
-    // @todo: this just renders the <style> tag, same happens in button
-    // Is there any point in adding this snapshot?
-    // expect(renderedShadowDomHTML).toMatchSnapshot();
+    expect(renderedShadowDomHTML).toMatchSnapshot();
   });
 
   test('Default <bolt-accordion> w/o Shadow DOM renders', async function() {
-    const defaultAccordionShadowRoot = await page.evaluate(() => {
-      const accordion = document.createElement('bolt-accordion');
-      accordion.innerHTML = `
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 1</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 2</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 3</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>`;
+    const accordionOuter = await page.evaluate(accordionInnerHTML => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = accordionInnerHTML;
+      document.body.appendChild(wrapper);
 
-      document.body.appendChild(accordion);
-      accordion.useShadow = false;
-      accordion.updated();
+      const accordion = document.querySelector('bolt-accordion');
+      const accordionItems = Array.from(
+        document.querySelectorAll('bolt-accordion-item'),
+      );
+      [accordion, ...accordionItems].forEach(el => {
+        el.setAttribute('no-shadow', '');
+        el.updated();
+      });
 
-      const child = accordion.querySelector('bolt-accordion-item');
-      child.updated();
+      return accordion.outerHTML;
+    }, accordionInnerHTML);
 
-      return child.renderRoot.innerHTML;
-    });
-
-    const renderedShadowDomHTML = await html(defaultAccordionShadowRoot);
+    const renderedShadowDomHTML = await html(accordionOuter);
 
     await page.waitFor(500);
     const image = await page.screenshot();
