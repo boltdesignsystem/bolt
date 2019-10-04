@@ -69,7 +69,7 @@ module.exports = {
       type: 'number',
       title: 'Build Out Duration',
       description: 'Set in milliseconds',
-      default: 500,
+      default: 350,
     },
     outDelay: {
       type: 'number',

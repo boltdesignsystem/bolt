@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* **editor:** prevent bug with inserting array of starter elements ([2bf865b](https://github.com/bolt-design-system/bolt/commit/2bf865b))
+* **editor:** remove empty <bolt-animate>s on save ([85212df](https://github.com/bolt-design-system/bolt/commit/85212df))
+* lint and docs ([df83534](https://github.com/bolt-design-system/bolt/commit/df83534))
+* update all micro journey cta to use bolt link over text ([228f659](https://github.com/bolt-design-system/bolt/commit/228f659))
+
+
+### Features
+
+* add onClick and onClick target to button and link through editor ([fff8cf8](https://github.com/bolt-design-system/bolt/commit/fff8cf8))
+* add theme support to interactive-pathways via withContext and defineContext ([eb32484](https://github.com/bolt-design-system/bolt/commit/eb32484))
+* expose props to edit the image atop the interactive pathways co… ([#1411](https://github.com/bolt-design-system/bolt/issues/1411)) ([9fe1993](https://github.com/bolt-design-system/bolt/commit/9fe1993))
+* remove the connection band options from the character background slot ([#1427](https://github.com/bolt-design-system/bolt/issues/1427)) ([f2a8757](https://github.com/bolt-design-system/bolt/commit/f2a8757))
+* **editor:** add url and disabled to button in editor ([0eb9374](https://github.com/bolt-design-system/bolt/commit/0eb9374))
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 **Note:** Version bump only for package @bolt/components-editor
