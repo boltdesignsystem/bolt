@@ -36,17 +36,10 @@ bolt-animate {
  }
 }
 
-.c-pega-wwo {
-  position: relative;
-  // The following forces full bleed.
-  right: 50%;
-  left: 50%;
+// The following forces full bleed.
+.c-pega-wwo__full-bleed {
   width: 100vw;
-  height: 100%;
-  margin-right: -50vw;
-  margin-left: -50vw;
-  line-height: 1.4;
-  background-color: black;
+  margin: auto calc(50% - 50vw);
 
   // This is because vw in Edge and IE adds the vertical scrollbar, causing horizontal scroll.
   @include edge-all {
@@ -54,18 +47,26 @@ bolt-animate {
     width: calc(100vw - 10px);
     overflow: hidden;
   }
+
   @include bolt-ie11-only {
     // This was measured at 17 px in Win10 IE11.
     width: calc(100vw - 10px);
     overflow: hidden;
   }
+}
+
+.c-pega-wwo {
+  line-height: 1.4;
+  background-color: black;
 
   @include bolt-mq($from: xlarge) {
+    position: relative;
     height: 0;
     // Scale bg image by width padding is relative to width. So this is an aspect ratio hack.
     // In desktop, all content is floated over this div and containers are 100%
     // @TODO replace with bolt-ratio
     padding-bottom: $pega-wwo--desktop-ratio;
+
   }
 
   bolt-animate {
