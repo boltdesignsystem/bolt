@@ -435,7 +435,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["ci-utils", "npm:0.6.0"],
             ["commitizen", "npm:4.0.3"],
             ["eslint", "npm:6.3.0"],
-            ["husky", "npm:3.0.5"],
+            ["husky", "npm:4.0.0-beta.2"],
             ["jest", "npm:24.9.0"],
             ["lerna", "npm:3.16.4"],
             ["npm-run-all", "npm:4.1.5"],
@@ -8583,7 +8583,7 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["ci-utils", "npm:0.6.0"],
             ["commitizen", "npm:4.0.3"],
             ["eslint", "npm:6.3.0"],
-            ["husky", "npm:3.0.5"],
+            ["husky", "npm:4.0.0-beta.2"],
             ["jest", "npm:24.9.0"],
             ["lerna", "npm:3.16.4"],
             ["npm-run-all", "npm:4.1.5"],
@@ -16065,10 +16065,10 @@ function $$SETUP_STATE(hydrateRuntimeState) {
         }]
       ]],
       ["husky", [
-        ["npm:3.0.5", {
-          "packageLocation": "./.yarn/unplugged/husky-npm-3.0.5-ee486e0eba/node_modules/husky/",
+        ["npm:4.0.0-beta.2", {
+          "packageLocation": "./.yarn/unplugged/husky-npm-4.0.0-beta.2-fbe4e4f3d9/node_modules/husky/",
           "packageDependencies": [
-            ["husky", "npm:3.0.5"],
+            ["husky", "npm:4.0.0-beta.2"],
             ["chalk", "npm:2.4.2"],
             ["cosmiconfig", "npm:5.2.1"],
             ["execa", "npm:1.0.0"],
@@ -16079,7 +16079,8 @@ function $$SETUP_STATE(hydrateRuntimeState) {
             ["please-upgrade-node", "npm:3.2.0"],
             ["read-pkg", "npm:5.2.0"],
             ["run-node", "npm:1.0.0"],
-            ["slash", "npm:3.0.0"]
+            ["slash", "npm:3.0.0"],
+            ["which-pm-runs", "npm:1.0.0"]
           ]
         }]
       ]],
