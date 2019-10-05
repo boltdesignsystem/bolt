@@ -22,6 +22,7 @@
   "author": "Salem Ghoweri",
   "workspaces": {
     "packages": [
+      "!packages/build-tools-rollup",
       "docs-site",
       "docs-site/src/components/banner",
       "docs-site/src/components/docs-search",
@@ -30,7 +31,8 @@
       "packages/*/*",
       "packages/build-tools/__tests__/*",
       "packages/build-tools/plugins/*",
-      "scripts"
+      "scripts",
+      "!packages/build-tools-rollup"
     ],
     "nohoist": [
       "lazysizes",
@@ -82,7 +84,7 @@
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
     "test:types": "tsc",
-    "postinstall": "patch-package && npx lerna run postbootstrap",
+    "postinstall": "npx lerna run postbootstrap",
     "postpublish": "auto release"
   },
   "husky": {
@@ -107,36 +109,19 @@
   ],
   "dependencies": {
     "@auto-it/slack": "^7.7.0",
-    "auto": "^7.7.0",
-    "@commitlint/cli": "^8.0.0",
-    "@commitlint/config-conventional": "^8.0.0",
-    "@instructure/cz-lerna-changelog": "^6.6.0",
-    "@open-wc/testing-helpers": "^1.0.10",
-    "ci-utils": "^0.6.0",
-    "commitizen": "^3.1.1",
-    "conf": "^5.0.0",
-    "conventional-changelog-cli": "^2.0.21",
-    "cz-conventional-changelog": "^2.1.0",
-    "eslint": "^6.0.1",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.14.2",
-    "globby": "^10.0.1",
     "@bolt/testing-utils": "^2.8.0-beta.4",
-    "find-pkg": "^2.0.0",
-    "get-port": "^5.0.0",
-    "haunted": "^4.4.0",
-    "husky": "^3.0.0",
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@instructure/cz-lerna-changelog": "^6.13.0",
+    "auto": "^7.7.0",
+    "ci-utils": "^0.6.0",
+    "commitizen": "^4.0.3",
+    "eslint": "^6.0.1",
+    "husky": "next",
     "jest": "^24.8.0",
-    "jsonwebtoken": "^8.5.1",
-    "lerna": "^3.15.0",
-    "lit-element": "^2.2.0",
-    "lit-html": "^1.1.1",
+    "lerna": "^3.16.4",
     "npm-run-all": "^4.1.5",
-    "patch-package": "^6.1.2",
-    "postinstall-postinstall": "^2.0.0",
-    "proxy-polyfill": "^0.3.0",
-    "release-it": "^12.3.2",
-    "semantic-release": "^15.13.18",
+    "semantic-release": "^15.0.0",
     "typescript": "^3.5.3"
   },
   "publishConfig": {
@@ -144,9 +129,9 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.15",
+    "@types/skatejs": "^5.0.1",
     "stylelint": "^10.1.0",
     "stylelint-order": "^3.0.1",
-    "stylelint-scss": "^3.9.2",
-    "@types/skatejs": "^5.0.1"
+    "stylelint-scss": "^3.9.2"
   }
 }

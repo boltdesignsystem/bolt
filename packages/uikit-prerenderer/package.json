@@ -9,7 +9,7 @@
   },
   "scripts": {
     "postinstall": "npm run build",
-    "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",
+    "preinstall": "PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",
     "build": "babel renderer.mjs --out-file index.js",
     "prepublishOnly": "npm run build"
   },
