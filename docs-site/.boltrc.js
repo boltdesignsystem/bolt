@@ -92,6 +92,7 @@ const config = {
       '@bolt/components-background',
       '@bolt/components-background-shapes',
       '@bolt/components-band',
+      '@bolt/components-ratio',
       '@bolt/components-block-list',
       '@bolt/components-blockquote',
       '@bolt/components-breadcrumb',
@@ -148,8 +149,8 @@ const config = {
        * webpack-cli directly using Bolt's webpack config)
        */
       // Keeping PL specific assets here so we can remove an extra JS + CSS request from the site
-      resolve.sync('./src/index.scss'),
-      resolve.sync('./src/index.js'),
+      require.resolve('./src/index.scss'),
+      require.resolve('./src/index.js'),
     ],
     individual: [
       '@bolt/components-critical-fonts',
@@ -178,7 +179,7 @@ const config = {
     },
     {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json')
+        require.resolve('@bolt/global/package.json')
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -187,7 +188,7 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json')
+        require.resolve('@bolt/twig-renderer/package.json')
       )}/SetupTwigRenderer.php`,
       functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },

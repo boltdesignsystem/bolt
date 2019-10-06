@@ -1,8 +1,10 @@
 /* eslint-disable no-await-in-loop */
 const { promisify } = require('util');
-const resolve = require('resolve');
+// const resolve = require('resolve');
 const fs = require('fs');
 const path = require('path');
+const {PosixFS, ZipOpenFS} = require('@yarnpkg/fslib');
+// const pnpapi = require('pnpapi');
 const $RefParser = require('json-schema-ref-parser');
 const log = require('./log');
 const { ensureFileExists } = require('./general');
@@ -11,6 +13,7 @@ const { getDataFile } = require('./yaml');
 const { validateSchemaSchema } = require('./schemas');
 const { getConfig } = require('./config-store');
 
+const { resolve, resolveDependency } = require('./pnp');
 // recursively flatten heavily nested arrays
 function flattenDeep(arr1) {
   return arr1.reduce(
@@ -103,7 +106,7 @@ async function getPkgInfo(pkgName) {
     return info;
   } else {
     // package name
-    const pkgJsonPath = require.resolve(`${pkgName}/package.json`);
+    const pkgJsonPath = `${resolve(pkgName)}/package.json`;
     const dir = path.dirname(pkgJsonPath);
     const pkg = require(pkgJsonPath);
 
@@ -221,6 +224,13 @@ async function aggregateBoltDependencies(data) {
 
   componentsWithoutDeps.forEach(item => {
     if (item.deps) {
+      const pkgName = item.name;
+
+      item.deps.forEach(dependency => {
+        console.log(resolveDependency(pkgName, dependency));
+        console.log('\n');
+        console.log('\n');
+      });
       componentDependencies.push([...item.deps]);
     }
   });

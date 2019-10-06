@@ -22,7 +22,6 @@
   "author": "Salem Ghoweri",
   "workspaces": {
     "packages": [
-      "!packages/build-tools-rollup",
       "docs-site",
       "docs-site/src/components/banner",
       "docs-site/src/components/docs-search",
@@ -31,8 +30,7 @@
       "packages/*/*",
       "packages/build-tools/__tests__/*",
       "packages/build-tools/plugins/*",
-      "scripts",
-      "!packages/build-tools-rollup"
+      "scripts"
     ],
     "nohoist": [
       "lazysizes",
@@ -117,6 +115,7 @@
     "ci-utils": "^0.6.0",
     "commitizen": "^4.0.3",
     "eslint": "^6.5.1",
+    "globby": "^10.0.1",
     "husky": "next",
     "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1",
