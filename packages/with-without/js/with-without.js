@@ -5,6 +5,7 @@ import {
   triggerActiveRegionChange,
   handleActiveRegionChangeRequest,
 } from './handleActiveRegionChange';
+import blurEdgeFocus from './blurEdgeFocus';
 
 document.querySelectorAll('bolt-animate').forEach(el => {});
 
@@ -40,6 +41,7 @@ if (document.querySelector(toggleInputClass)) {
 Array.from(document.querySelectorAll(toggleInputClass)).forEach(el => {
   el.addEventListener('change', e => {
     handleActiveRegionChangeRequest(e.target.id === 'w', wwoSwiper);
+    blurEdgeFocus();
   });
 });
 
