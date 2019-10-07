@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* **micro-journeys:** allow for multiple demo theme controllers to address PR feedback ([bb9f142](https://github.com/bolt-design-system/bolt/commit/bb9f142))
+* **micro-journeys:** ie 11 color fixes ([c60ca03](https://github.com/bolt-design-system/bolt/commit/c60ca03))
+* lint and docs ([df83534](https://github.com/bolt-design-system/bolt/commit/df83534))
+
+
+
+
+
 # [2.8.0-beta.5](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2019-09-30)
 
 **Note:** Version bump only for package @bolt/website

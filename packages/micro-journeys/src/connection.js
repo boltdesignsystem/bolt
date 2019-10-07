@@ -1,5 +1,5 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './connection.scss';
 import schema from './connection.schema';
@@ -7,7 +7,7 @@ import schema from './connection.schema';
 let cx = classNames.bind(styles);
 
 @define
-class BoltConnection extends withLitHtml() {
+class BoltConnection extends withLitContext() {
   static is = 'bolt-connection';
 
   static props = {
@@ -22,6 +22,14 @@ class BoltConnection extends withLitHtml() {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     return self;
+  }
+
+  static get observedContexts() {
+    return ['theme'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
   render() {
@@ -41,6 +49,7 @@ class BoltConnection extends withLitHtml() {
           speed="${props.speed}"
           anim-type="${props.animType}"
           direction="${props.direction}"
+          .theme=${this.context.theme}
         />
         ${this.slots.bottom &&
           html`

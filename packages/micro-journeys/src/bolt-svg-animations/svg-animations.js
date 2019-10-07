@@ -1,27 +1,19 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-  withContext,
-} from '@bolt/core/utils';
-import { classMap } from 'lit-html/directives/class-map.js';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
+import classNames from 'classnames/bind';
 import * as SVGs from './svg';
 import styles from './svg-animations.scss';
 import schema from './svg-animations.schema';
-import { BoltInteractivePathwaysContext } from '../interactive-pathways';
+
+let cx = classNames.bind(styles);
 
 @define
-class SVGAnimations extends withContext(withLitHtml()) {
+class SVGAnimations extends withLitContext() {
   static is = 'bolt-svg-animations';
 
   static props = {
     ...convertSchemaToProps(schema),
   };
-
-  static get consumes() {
-    return [[BoltInteractivePathwaysContext, 'theme']];
-  }
 
   constructor(self) {
     self = super(self);
@@ -30,21 +22,29 @@ class SVGAnimations extends withContext(withLitHtml()) {
     return self;
   }
 
+  static get observedContexts() {
+    return ['theme'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
+  }
+
   render() {
     const props = this.validateProps(this.props);
-    this.theme = this.context.theme;
-    const classes = {
-      'c-bolt-svg-animations': true,
-      [`t-bolt-${this.theme}`]: this.theme,
-    };
+    const theme = this.context.theme || this.theme || '';
+    const classes = cx('c-bolt-svg-animations', {
+      [`t-bolt-${theme}`]: theme,
+    });
+
     const SVGTag = SVGs[`${props.animType}`];
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classMap(classes)}">
+      <div class="${classes}">
         ${SVGTag({
           speed: props.speed,
-          theme: this.theme,
+          theme,
           direction: props.direction,
         })}
       </div>

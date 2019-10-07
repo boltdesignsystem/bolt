@@ -3,20 +3,18 @@ import {
   define,
   hasNativeShadowDomSupport,
   query,
-  withContext,
   convertSchemaToProps,
 } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import { withLitContext, html } from '@bolt/core';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
-import { BoltInteractivePathwaysContext } from './interactive-pathways';
 import styles from './interactive-pathway.scss';
 import schema from './interactive-pathway.schema';
 
 let cx = classNames.bind(styles);
 
 @define
-class BoltInteractivePathway extends withContext(withLitHtml()) {
+class BoltInteractivePathway extends withLitContext() {
   static is = 'bolt-interactive-pathway';
 
   static props = {
@@ -24,13 +22,16 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
       ...props.boolean,
       ...{ default: false },
     },
+    theme: props.string,
     ...convertSchemaToProps(schema),
   };
 
-  // subscribe to specific props that are defined and available on the parent container
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get consumes() {
-    return [[BoltInteractivePathwaysContext, 'theme']];
+  static get observedContexts() {
+    return ['theme'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -72,7 +73,6 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
 
   connectedCallback() {
     super.connectedCallback();
-    this.context = this.contexts.get(BoltInteractivePathwaysContext);
 
     setTimeout(() => {
       this.dispatchEvent(
@@ -195,12 +195,12 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
 
   render() {
     // Inherit theme from `interactive-pathways`
-    this.theme = this.context.theme;
+    const theme = this.context.theme || this.theme || '';
 
     const classes = cx('c-bolt-interactive-pathway', {
       [`c-bolt-interactive-pathway--disabled`]: !this.isActivePathway,
       [`c-bolt-interactive-pathway--active`]: this.isActivePathway,
-      [`t-bolt-${this.theme}`]: this.theme,
+      [`t-bolt-${theme}`]: theme,
     });
 
     const navClasses = cx('c-bolt-interactive-pathway__nav');

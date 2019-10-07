@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.6](https://github.com/boltdesignsystem/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* **editor:** prevent bug with inserting array of starter elements ([2bf865b](https://github.com/boltdesignsystem/bolt/commit/2bf865b))
+* **editor:** remove empty <bolt-animate>s on save ([85212df](https://github.com/boltdesignsystem/bolt/commit/85212df))
+* update with/without to use the latest version of Bolt Core ([78d3af1](https://github.com/boltdesignsystem/bolt/commit/78d3af1))
+* **image:** prevent error where initialClasses were not defined in time ([37bbab6](https://github.com/boltdesignsystem/bolt/commit/37bbab6))
+* add static "is" for registering the component ([018dd5b](https://github.com/boltdesignsystem/bolt/commit/018dd5b))
+* add Weakset polyfill for IE 11 ([0867e5f](https://github.com/boltdesignsystem/bolt/commit/0867e5f))
+* address linting issues ([03f30b5](https://github.com/boltdesignsystem/bolt/commit/03f30b5))
+* fix eslint issues ([b95aa72](https://github.com/boltdesignsystem/bolt/commit/b95aa72))
+* fix linting issues ([ed6bde2](https://github.com/boltdesignsystem/bolt/commit/ed6bde2))
+* **micro-journeys:** lots of IE 11 fixes ([e68ced3](https://github.com/boltdesignsystem/bolt/commit/e68ced3))
+* fix overflow issue on smaller screen sizes ([e50c081](https://github.com/boltdesignsystem/bolt/commit/e50c081))
+* incorret character schema default fixed ([e92cc0d](https://github.com/boltdesignsystem/bolt/commit/e92cc0d))
+* lint and docs ([df83534](https://github.com/boltdesignsystem/bolt/commit/df83534))
+* multiple layout fixes for micro journeys on small-ish screen sizes ([97af5d0](https://github.com/boltdesignsystem/bolt/commit/97af5d0))
+* remove `is="shadow-root"` to prevent HTML from getting mistakenly nuked when booting up ([5d8853e](https://github.com/boltdesignsystem/bolt/commit/5d8853e))
+* remove click event listener when disconnecting + remove preventDefault that was causing UI like buttons to not click as expected as a result ([a3a0a71](https://github.com/boltdesignsystem/bolt/commit/a3a0a71))
+* update all micro journey cta to use bolt link over text ([228f659](https://github.com/boltdesignsystem/bolt/commit/228f659))
+* update connection band to re-trigger an update when the context changes ([113d34c](https://github.com/boltdesignsystem/bolt/commit/113d34c))
+* update prettier issues ([bcda2f5](https://github.com/boltdesignsystem/bolt/commit/bcda2f5))
+* update Ratio component to now directly register the component Class vs previously returning a function to allow for generating a custom-namespaced ratio component. fixes a major Edge issue where Ratio was deleting nested immediate children when booting up. ([26dbef3](https://github.com/boltdesignsystem/bolt/commit/26dbef3))
+* **micro-journeys:** allow for multiple demo theme controllers to address PR feedback ([bb9f142](https://github.com/boltdesignsystem/bolt/commit/bb9f142))
+* **micro-journeys:** Context JS error when animations have no parent bolt-interactive-pathways w/ context ([44f85b0](https://github.com/boltdesignsystem/bolt/commit/44f85b0))
+* **micro-journeys:** fix dropdown text color in IE 11 ([92ac37c](https://github.com/boltdesignsystem/bolt/commit/92ac37c))
+* **micro-journeys:** fix IntersectionObserver on IE 11 ([fd15c6e](https://github.com/boltdesignsystem/bolt/commit/fd15c6e))
+* **micro-journeys:** ie 11 color fixes ([c60ca03](https://github.com/boltdesignsystem/bolt/commit/c60ca03))
+* **micro-journeys:** prevent rapid click of steps from showing multiple steps ([cc0f7d8](https://github.com/boltdesignsystem/bolt/commit/cc0f7d8))
+* update Sass to use bolt-theme outside of a media query + add border color to styles ([7c68d1f](https://github.com/boltdesignsystem/bolt/commit/7c68d1f))
+* z-index clash between dropdown menu and status bars ([61d5567](https://github.com/boltdesignsystem/bolt/commit/61d5567))
+
+
+### Features
+
+* add animated dot styles + todo comment to enable ([4bdbed4](https://github.com/boltdesignsystem/bolt/commit/4bdbed4))
+* add auto to semi-automate releases ([b1ead01](https://github.com/boltdesignsystem/bolt/commit/b1ead01))
+* add onClick and onClick target to button and link through editor ([fff8cf8](https://github.com/boltdesignsystem/bolt/commit/fff8cf8))
+* add theme support to interactive-pathways via withContext and defineContext ([eb32484](https://github.com/boltdesignsystem/bolt/commit/eb32484))
+* custom dropdown closes with you select an option ([7c7da6b](https://github.com/boltdesignsystem/bolt/commit/7c7da6b))
+* expose props to edit the image atop the interactive pathways co… ([#1411](https://github.com/boltdesignsystem/bolt/issues/1411)) ([9fe1993](https://github.com/boltdesignsystem/bolt/commit/9fe1993))
+* pathways dropdown closes with a new pathway is selected ([ceadc0c](https://github.com/boltdesignsystem/bolt/commit/ceadc0c))
+* remove the connection band options from the character background slot ([#1427](https://github.com/boltdesignsystem/bolt/issues/1427)) ([f2a8757](https://github.com/boltdesignsystem/bolt/commit/f2a8757))
+* speed up default exit animation to create a smoother experience ([efe8425](https://github.com/boltdesignsystem/bolt/commit/efe8425))
+* **editor:** add url and disabled to button in editor ([0eb9374](https://github.com/boltdesignsystem/bolt/commit/0eb9374))
+* **micro-journeys:** add theme consumer to interactive-step; lint scss ([03b09ab](https://github.com/boltdesignsystem/bolt/commit/03b09ab))
+* **micro-journeys:** add theme toggler to micro journeys demo ([984384d](https://github.com/boltdesignsystem/bolt/commit/984384d))
+* **svg-animations:** theme switching for animations ([0b7df25](https://github.com/boltdesignsystem/bolt/commit/0b7df25))
+
+
+### Reverts
+
+* revert combining withLitHTML base with withLitContext for now ([ca828da](https://github.com/boltdesignsystem/bolt/commit/ca828da))
+
+
+
+
+
 # [2.8.0-beta.5](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2019-09-30)
 
 

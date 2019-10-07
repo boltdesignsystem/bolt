@@ -1,11 +1,5 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-  withContext,
-  defineContext,
-} from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
@@ -16,13 +10,8 @@ import pathwaysLogo from './images/interactive-pathways-logo.png';
 
 let cx = classNames.bind(styles);
 
-export const BoltInteractivePathwaysContext = defineContext({
-  theme: schema.properties.theme.default,
-  contextIsOptional: true,
-});
-
 @define
-class BoltInteractivePathways extends withContext(withLitHtml()) {
+class BoltInteractivePathways extends withLitContext() {
   static is = 'bolt-interactive-pathways';
 
   static props = {
@@ -33,10 +22,10 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
     ...convertSchemaToProps(schema),
   };
 
-  // provide context info to children that subscribe
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get provides() {
-    return [BoltInteractivePathwaysContext];
+  static get providedContexts() {
+    return {
+      theme: { property: 'theme' },
+    };
   }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -120,6 +109,7 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
 
   disconnecting() {
     document.removeEventListener('keydown', this._handleClosingEvent);
+    document.removeEventListener('click', this._handleClosingEvent);
   }
 
   /**
@@ -146,7 +136,6 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
       event.type === 'click' ||
       event.type === 'tap'
     ) {
-      event.preventDefault();
       this.dropdownActive = false;
       this.triggerUpdate();
     }
@@ -193,8 +182,6 @@ class BoltInteractivePathways extends withContext(withLitHtml()) {
   render() {
     const props = this.validateProps(this.props);
     // @TODO fix https://github.com/bolt-design-system/bolt/issues/1460
-    this.contexts.get(BoltInteractivePathwaysContext).theme =
-      props.theme || schema.properties.theme.default;
 
     const classes = cx('c-bolt-interactive-pathways', {
       [`t-bolt-${props.theme}`]: !!props.theme,
