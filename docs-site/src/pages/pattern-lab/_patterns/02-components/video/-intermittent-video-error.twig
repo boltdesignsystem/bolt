@@ -1,0 +1,107 @@
+<style type="text/css">
+  .video-js {
+    position: relative;
+    width: 640px;
+    height: 360px;
+  }
+  .pl-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .pl-column {
+    flex-basis: 50%;
+  }
+
+</style>
+
+<div class="pl-row">
+  <div class="pl-column">
+
+    <h2>Video 1, techOrder: default</h2>
+    <video-js id="myPlayer1"
+      data-embed="default"
+      data-application-id
+      class="video-js"
+      width="640" height="360"
+      controls></video-js>
+
+    <br>
+
+    <h2>Video 1, techOrder: ['html5']</h2>
+    <video-js id="myPlayer2"
+      data-embed="default"
+      data-application-id
+      class="video-js"
+      width="640" height="360"
+      controls></video-js>
+
+  </div>
+
+  <div class="pl-column">
+
+    <h2>Video 2, techOrder: default</h2>
+    <video-js id="myPlayer3"
+      data-embed="default"
+      data-application-id
+      class="video-js"
+      width="640" height="360"
+      controls></video-js>
+
+    <br>
+
+    <h2>Video 2, techOrder: ['html5']</h2>
+    <video-js id="myPlayer4"
+      data-embed="default"
+      data-application-id
+      class="video-js"
+      width="640" height="360"
+      controls></video-js>
+
+  </div>
+</div>
+
+<script src="//players.brightcove.net/1900410236/r1CAdLzTW_default/index.min.js"></script>
+
+<script type="text/javascript">
+
+// Player 1
+var options1 = {};
+var myPlayerEl1 = document.getElementById('myPlayer1');
+myPlayerEl1.setAttribute('data-account', 1900410236);
+myPlayerEl1.setAttribute('data-player', 'r1CAdLzTW');
+myPlayerEl1.setAttribute('data-video-id', 3861325118001);
+bc(myPlayerEl1, options1);
+
+
+// Player 2
+var options2 = {
+  techOrder: ['html5'],
+};
+var myPlayerEl2 = document.getElementById('myPlayer2');
+myPlayerEl2.setAttribute('data-account', 1900410236);
+myPlayerEl2.setAttribute('data-player', 'r1CAdLzTW');
+myPlayerEl2.setAttribute('data-video-id', 3861325118001);
+bc(myPlayerEl2, options2);
+
+// Player 3
+var options3 = {};
+var myPlayerEl3 = document.getElementById('myPlayer3');
+myPlayerEl3.setAttribute('data-account', 1900410236);
+myPlayerEl3.setAttribute('data-player', 'r1CAdLzTW');
+myPlayerEl3.setAttribute('data-video-id', 5761126564001);
+bc(myPlayerEl3, options3);
+
+
+// Player 4
+var options4 = {
+  techOrder: ['html5'],
+};
+var myPlayerEl4 = document.getElementById('myPlayer4');
+myPlayerEl4.setAttribute('data-account', 1900410236);
+myPlayerEl4.setAttribute('data-player', 'r1CAdLzTW');
+myPlayerEl4.setAttribute('data-video-id', 5761126564001);
+bc(myPlayerEl4, options4);
+
+</script>
