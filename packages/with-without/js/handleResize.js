@@ -45,13 +45,19 @@ const handleResize = (shouldForce = false, shouldTriggerAnims = true) => {
       ).height;
 
       const contents = document.querySelectorAll('.c-pega-wwo__content');
+
+      // Set padding-top of slides to compensate for toggle height b/c of abs pos of toggle slide controls
+      slideContentInner.forEach(el => {
+        el.style.paddingTop = toggleRegionHeight;
+      });
+
+      // Figure out which of our slides is the largest and set both to that height to prevent height grow after slide.
       let greatestHeight = 0;
       contents.forEach(el => {
         const height = parseInt(window.getComputedStyle(el).height, 10);
         greatestHeight = height > greatestHeight ? height : greatestHeight;
       });
-      container.style.height = `${greatestHeight +
-        parseInt(toggleRegionHeight, 10)}px`;
+      container.style.height = `${greatestHeight}px`;
       slideContentInner.forEach(el => {
         el.style.paddingTop = toggleRegionHeight;
       });
