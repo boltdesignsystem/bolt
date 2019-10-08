@@ -17,7 +17,7 @@ if (typeof module.hot === 'object') {
 
 window.bolt = window.bolt || {};
 
-if (!window.bolt.meta) {
+/** if (!window.bolt.meta) {
   // selecting a long delay since this isn't super important
   const delay = 5000;
 
@@ -28,4 +28,4 @@ if (!window.bolt.meta) {
       })
       .catch(console.log.bind(console));
   }, delay);
-}
+} **/
