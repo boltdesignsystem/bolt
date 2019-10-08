@@ -2,6 +2,9 @@ import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
   import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-chip' */ './src/chip'
+    /* webpackChunkName: 'bolt-chip' */
+    /* webpackMode: 'lazy' */
+    /* webpackPreload: true */
+    './src/chip'
   );
 });
