@@ -21,5 +21,11 @@ module.exports = {
       description: 'Alt attribute for the image at the top of the pathway',
       default: 'Pega logo',
     },
+    hidePathwaysImage: {
+      title: 'Hide Pathways Image',
+      type: 'boolean',
+      description: 'Do not show the image at the top of the patheay',
+      default: false,
+    },
   },
 };
