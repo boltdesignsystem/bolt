@@ -2,8 +2,7 @@
 
 {% set children %}
 
-  {# TODO: Add native support for inline display to the form-element component. #}
-  <div style="display: inline-flex;">
+  {% set form_field %}
     {% include "@pl/10-form-element-demo-input-element.twig" with {
       title: "Email Address",
       inputAttributes: {
@@ -13,15 +12,51 @@
       },
       labelDisplayType: "floating"
     } only %}
-  </div>
+  {% endset %}
 
-  {# Note that bolt-button already supports inline-flex display; the following is only necessary with the special
-   form button.  This example should be removed when forms can again use the vanilla bolt-button. #}
-  <div style="display: inline-flex;">
-    {% include "@bolt/form-button.twig" with {
+  {% set submit_button %}
+    {% include "@bolt-components-form/form-button.twig" with {
       text: "Sign up now",
-     tag: "submit"
+      tag: "submit"
     } only %}
+  {% endset %}
+
+  <div style="display: inline-flex; vertical-align: top;">
+    {{ form_field }}
   </div>
 
+  <div style="display: inline-flex;">
+    {{ submit_button }}
+  </div>
+
+  <div style="display:flex;">
+    <div style="flex-grow: 1;">
+      {{ form_field }}
+    </div>
+    <div style="flex-grow: 0;">
+      {{ submit_button }}
+    </div>
+  </div>
+
+  {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
+    {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
+      {{ form_field }}
+    {% endcell %}
+
+    {% cell 'u-bolt-width-1/1 u-bolt-width-1/4@small' %}
+      {{ submit_button }}
+    {% endcell %}
+  {% endgrid %}
+
+
+  {% include "@bolt-components-list/list.twig" with {
+    display: "inline",
+    spacing: "xsmall",
+    align: "start",
+    valign: "center",
+    items: [
+      form_field,
+      submit_button
+    ]
+  } only %}
 {% endset %}
