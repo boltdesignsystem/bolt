@@ -234,7 +234,6 @@ export function setupBolt(editor) {
       const prop = properties[propName];
 
       if (!prop) {
-        console.log({ schema });
         throw new EditorRegisterBoltError(
           `Prop "${propName} does not exist on schema for "${name}"`,
         );
@@ -499,7 +498,7 @@ export function setupBolt(editor) {
     initialContent: [
       `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
       `<bolt-interactive-pathway pathway-title="New Title">
-        ${starters.stepOneCharacterLorem}        
+        ${starters.stepOneCharacterLorem}
         ${starters.stepTwoCharacterLorem}
       </bolt-interactive-pathway>`,
     ],
