@@ -71,7 +71,7 @@ var options1 = {};
 var myPlayerEl1 = document.getElementById('myPlayer1');
 myPlayerEl1.setAttribute('data-account', 1900410236);
 myPlayerEl1.setAttribute('data-player', 'r1CAdLzTW');
-myPlayerEl1.setAttribute('data-video-id', 3861325118001);
+myPlayerEl1.setAttribute('data-video-id', 5810409173001);
 bc(myPlayerEl1, options1);
 
 
@@ -82,7 +82,7 @@ var options2 = {
 var myPlayerEl2 = document.getElementById('myPlayer2');
 myPlayerEl2.setAttribute('data-account', 1900410236);
 myPlayerEl2.setAttribute('data-player', 'r1CAdLzTW');
-myPlayerEl2.setAttribute('data-video-id', 3861325118001);
+myPlayerEl2.setAttribute('data-video-id', 5810409173001);
 bc(myPlayerEl2, options2);
 
 // Player 3
@@ -103,5 +103,42 @@ myPlayerEl4.setAttribute('data-account', 1900410236);
 myPlayerEl4.setAttribute('data-player', 'r1CAdLzTW');
 myPlayerEl4.setAttribute('data-video-id', 5761126564001);
 bc(myPlayerEl4, options4);
+
+// Logging Player 1
+videojs.getPlayer('myPlayer1').ready(function() {
+  var myPlayer = this;
+  myPlayer.on('loadstart',function(){
+    console.log('Player 1:' + myPlayer.mediainfo.id);
+    console.log(myPlayer.mediainfo.sources);
+  })
+});
+
+// Logging Player 2
+videojs.getPlayer('myPlayer2').ready(function() {
+  var myPlayer = this;
+  myPlayer.on('loadstart',function(){
+    console.log('Player 2:' + myPlayer.mediainfo.id);
+    console.log(myPlayer.mediainfo.sources);
+  })
+});
+
+// Logging Player 3
+videojs.getPlayer('myPlayer3').ready(function() {
+  var myPlayer = this;
+  myPlayer.on('loadstart',function(){
+    console.log('Player 3:' + myPlayer.mediainfo.id);
+    console.log(myPlayer.mediainfo.sources);
+  })
+});
+
+// Logging Player 4
+videojs.getPlayer('myPlayer4').ready(function() {
+  var myPlayer = this;
+  myPlayer.on('loadstart',function(){
+    console.log('Player 4:' + myPlayer.mediainfo.id);
+    console.log(myPlayer.mediainfo.sources);
+  })
+});
+
 
 </script>
