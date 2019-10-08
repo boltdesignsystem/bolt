@@ -12,10 +12,6 @@
     {% set assets = get_data(manifestConfigFile) %}
   {% endif %}
 
-  <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
-
-  {{ patternLabFoot | raw }}
-
   {# {{ console_log(_context) }} #}
   {# Showing off global vars in Browsers Console #}
   {# {% if not bolt.data.config.prod %}
