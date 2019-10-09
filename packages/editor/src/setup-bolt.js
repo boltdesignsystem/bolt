@@ -18,7 +18,7 @@ import imageSchema from '@bolt/components-image/image.schema.yml';
 import animateSchema from '@bolt/components-animate/animate.schema';
 import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore
-import linkSchema from '../../components/bolt-link/link.schema.yml'; // @todo figure out why the @bolt module name does not resolve for this
+import linkSchema from '@bolt/components-link/link.schema.yml';
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import { isChildOfEl, convertSchemaPropToTrait } from './utils';
 

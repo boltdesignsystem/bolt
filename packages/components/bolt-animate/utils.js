@@ -19,7 +19,6 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
   if (!stage) {
     throw new Error(`Incorrect stage name passed in ${stage}`);
   }
-
   return Promise.all(
     animEls.map(
       animEl =>
@@ -120,15 +119,24 @@ export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
     ? animEls
     : Array.prototype.slice.call(animEls);
 
-  const orders = new Set();
+  // If we receive 0 elements, then we've successfully animated all of them.
+  if (!animEls.length) {
+    return true;
+  }
+
+  const orders = [];
+
   animEls.forEach(animEl => {
-    const order = animEl[orderProp] || 1;
-    orders.add(order);
+    animEl[orderProp] = animEl[orderProp] || 1;
+    const order = animEl[orderProp];
+    if (!orders.includes(order)) {
+      orders.push(order);
+    }
   });
 
-  const animOrders = [...orders].sort((a, b) => a - b);
-
+  const animOrders = orders.sort((a, b) => a - b);
   for (const order of animOrders) {
+    // Trigger the animations in order
     const animElsToTrigger = animEls
       .filter(a => a[hasAnimProp])
       .filter(a => a[orderProp] === order);

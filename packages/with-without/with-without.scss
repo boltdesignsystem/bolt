@@ -36,18 +36,40 @@ bolt-animate {
  }
 }
 
-.c-pega-wwo {
-  position: relative;
+// The following forces full bleed.
+.c-pega-wwo__full-bleed {
   width: 100vw;
-  height: 100%;
+  margin: auto calc(50% - 50vw);
+
+  // This is because vw in Edge and IE adds the vertical scrollbar, causing horizontal scroll.
+  @include edge-all {
+    // Scrollbar width measured at 16px in Win10 Edge, but being cautious. Better a little truncation of bg than white border. https://stackoverflow.com/questions/986937/how-can-i-get-the-browsers-scrollbar-sizes
+    width: calc(100vw - 10px);
+    overflow: hidden;
+  }
+
+  @include bolt-ie11-only {
+    // This was measured at 17 px in Win10 IE11.
+    width: calc(100vw - 10px);
+    overflow: hidden;
+  }
+}
+
+.c-pega-wwo {
   line-height: 1.4;
   background-color: black;
 
   @include bolt-mq($from: xlarge) {
+    position: relative;
     height: 0;
     // Scale bg image by width padding is relative to width. So this is an aspect ratio hack.
     // In desktop, all content is floated over this div and containers are 100%
+    // @TODO replace with bolt-ratio
     padding-bottom: $pega-wwo--desktop-ratio;
+  }
+
+  @include bolt-ie11-only {
+    display: none;
   }
 
   bolt-animate {
@@ -129,12 +151,12 @@ bolt-animate {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     // On mobile, this gets height from handleResize().
     min-height: 100vh;
     overflow: hidden;
 
     @include bolt-mq(xlarge) {
+      height: 100%;
       min-height: 100%;
     }
   }
@@ -142,7 +164,18 @@ bolt-animate {
   // This 100% w/h stuff is to to ensure full width through all divs. Gross.
   &__swiper-container {
     width: 100%;
-    height: 100%;
+
+    @include bolt-mq(xlarge) {
+      height: 100%;
+    }
+  }
+
+  &__swiper-slide {
+    height: auto;
+
+    @include bolt-mq(xlarge) {
+      height: 100%;
+    }
   }
 
   &__swiper-wrapper {
@@ -161,6 +194,7 @@ bolt-animate {
     margin: bolt-spacing(medium) auto 0 auto;
     text-align: center;
   }
+
   // see handleResize. Height on mobile is used to set height of slide c-pega-wwo__swiper-container-wrapper
   &__content {
     width: 100%;
@@ -195,6 +229,14 @@ bolt-animate {
     background-color: black;
     background-repeat: no-repeat;
     background-size: $pega-wwo--max-width auto;
+
+    @include bolt-mq($from: medium) {
+      background-position: bottom center;
+    }
+
+    @include bolt-mq($from: xlarge) {
+      background-position: 0 0;
+    }
 
     &-wo {
       background-image: url("./images-optimized/wwo-without-mobile.jpg");
@@ -252,16 +294,15 @@ bolt-animate {
 
   &__circles-wrapper {
     $pega-wwo--circles-top-padding: 18%;
-    // For some reason, the calculation was off, and the circle wobbled.
-    $pega-wwo--circles-top-padding--height-calculation: 17.98225%;
     display: none;
     top: 0;
+
 
     @include bolt-mq($from: xlarge) {
       display: block;
       position: absolute;
-      width: calc(#{$pega-wwo--dashed-circle-height} * #{$pega-wwo--desktop-ratio-decimal});
-      height: calc(#{$pega-wwo--dashed-circle-height} + (#{$pega-wwo--circles-top-padding--height-calculation} / #{$pega-wwo--desktop-ratio-decimal}));
+      width: 29%;
+      //height: calc(#{$pega-wwo--dashed-circle-height} + (#{$pega-wwo--circles-top-padding--height-calculation} / #{$pega-wwo--desktop-ratio-decimal}));
     }
 
     &-wo {
@@ -282,13 +323,23 @@ bolt-animate {
       left: 19.7%;
       padding-top: $pega-wwo--circles-top-padding;
     }
+
+    [secondary-group="circles"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__circles {
     display: none;
     position: relative;
     width: 100%;
-    height: 100%;
+    // This makes it perfectly square. Inside, elements are abs pos.
+    // @TODO replace w/ bolt-ratio
+    padding-top: 100%;
 
     @include bolt-mq($from: xlarge) {
       display: block;
@@ -297,6 +348,9 @@ bolt-animate {
 
   &__self-drawing-circle {
     display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     transform:rotate(-20deg);
     width: 100%;
     height: 100%;
@@ -567,12 +621,18 @@ bolt-animate {
       @include bolt-mq($from: xlarge) {
         top: 0;
         left: 29%;
+        width: calc(#{$pega-wwo--block-width-basis} + 100px);
+        padding-top: 46%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
         width: calc(#{$pega-wwo--block-width-basis} + 70px);
         padding-top: 47.6%;
       }
     }
     // Result region blocks
-    &-block-outcome-customer-wo {
+    &-block-outcome-customer-wo,
+    &-block-outcome-customer-w {
       margin-right: bolt-spacing(small);
     }
 
@@ -644,8 +704,13 @@ bolt-animate {
       @include bolt-mq($from: xlarge) {
         display: block;
         top: 0;
-        left: 7%;
+        left: 5%;
         width: calc(#{$pega-wwo--block-width-basis} + 170px);
+        padding-top: 39%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        left: 7%;
         padding-top: 41.75%;
       }
 
@@ -661,10 +726,16 @@ bolt-animate {
     &-block-relationship-w {
       @include bolt-mq($from: xlarge) {
         top: 0;
-        left: 39%;
+        left: 42%;
         width: calc(#{$pega-wwo--block-width-basis} + 200px);
+        padding-top: 45%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        left: 39%;
         padding-top: 46.7%;
       }
+
     }
   }
   &__icon {
