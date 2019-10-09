@@ -12,133 +12,73 @@
 
   .pl-column {
     flex-basis: 50%;
+    margin-bottom: 2rem;
   }
 
 </style>
 
-<div class="pl-row">
-  <div class="pl-column">
-
-    <h2>Video 1, techOrder: default</h2>
-    <video-js id="myPlayer1"
-      data-embed="default"
-      data-application-id
-      class="video-js"
-      width="640" height="360"
-      controls></video-js>
-
-    <br>
-
-    <h2>Video 1, techOrder: ['html5']</h2>
-    <video-js id="myPlayer2"
-      data-embed="default"
-      data-application-id
-      class="video-js"
-      width="640" height="360"
-      controls></video-js>
-
-  </div>
-
-  <div class="pl-column">
-
-    <h2>Video 2, techOrder: default</h2>
-    <video-js id="myPlayer3"
-      data-embed="default"
-      data-application-id
-      class="video-js"
-      width="640" height="360"
-      controls></video-js>
-
-    <br>
-
-    <h2>Video 2, techOrder: ['html5']</h2>
-    <video-js id="myPlayer4"
-      data-embed="default"
-      data-application-id
-      class="video-js"
-      width="640" height="360"
-      controls></video-js>
-
-  </div>
-</div>
+<div id="pl-video-container" class="pl-row"></div>
 
 <script src="//players.brightcove.net/1900410236/r1CAdLzTW_default/index.min.js"></script>
 
 <script type="text/javascript">
 
-// Player 1
-var options1 = {};
-var myPlayerEl1 = document.getElementById('myPlayer1');
-myPlayerEl1.setAttribute('data-account', 1900410236);
-myPlayerEl1.setAttribute('data-player', 'r1CAdLzTW');
-myPlayerEl1.setAttribute('data-video-id', 5810409173001);
-bc(myPlayerEl1, options1);
+var workingVideos = [
+  '5808137778001',
+  '5546925726001',
+  '5460968351001',
+  '4218804832001'
+];
 
+var brokenVideos = [
+  '5797173084001',
+  '6010219518001'
+];
 
-// Player 2
-var options2 = {
-  techOrder: ['html5'],
-};
-var myPlayerEl2 = document.getElementById('myPlayer2');
-myPlayerEl2.setAttribute('data-account', 1900410236);
-myPlayerEl2.setAttribute('data-player', 'r1CAdLzTW');
-myPlayerEl2.setAttribute('data-video-id', 5810409173001);
-bc(myPlayerEl2, options2);
+function setupVideo(id, working) {
+  var player = document.createElement('video-js');
+  player.setAttribute('data-embed', 'default');
+  player.setAttribute('data-application-id', true);
+  player.setAttribute('width', '640');
+  player.setAttribute('height', '360');
+  player.setAttribute('controls', true);
+  player.setAttribute('data-account', 1900410236);
+  player.setAttribute('data-player', 'r1CAdLzTW');
+  player.setAttribute('data-video-id', id);
+  player.classList.add('video-js');
 
-// Player 3
-var options3 = {};
-var myPlayerEl3 = document.getElementById('myPlayer3');
-myPlayerEl3.setAttribute('data-account', 1900410236);
-myPlayerEl3.setAttribute('data-player', 'r1CAdLzTW');
-myPlayerEl3.setAttribute('data-video-id', 5761126564001);
-bc(myPlayerEl3, options3);
+  var title = document.createElement('h2');
+  var titleText = working ? "Working Video: " + id : "Broken Video: " + id;
+  title.textContent = titleText;
 
+  var wrapper = document.createElement('div');
+  wrapper.classList.add('pl-column');
+  wrapper.appendChild(title);
+  wrapper.appendChild(player);
 
-// Player 4
-var options4 = {
-  techOrder: ['html5'],
-};
-var myPlayerEl4 = document.getElementById('myPlayer4');
-myPlayerEl4.setAttribute('data-account', 1900410236);
-myPlayerEl4.setAttribute('data-player', 'r1CAdLzTW');
-myPlayerEl4.setAttribute('data-video-id', 5761126564001);
-bc(myPlayerEl4, options4);
+  document.querySelector('#pl-video-container').appendChild(wrapper);
 
-// Logging Player 1
-videojs.getPlayer('myPlayer1').ready(function() {
-  var myPlayer = this;
-  myPlayer.on('loadstart',function(){
-    console.log('Player 1:' + myPlayer.mediainfo.id);
-    console.log(myPlayer.mediainfo.sources);
+  var options = {
+    techOrder: ['html5'],
+  };
+
+  var bcPlayer = bc(player, options);
+
+  bcPlayer.on('loadstart', function() {
+    var container = document.querySelector('#pl-log-container');
+
+    console.log(titleText);
+    console.log(bcPlayer.mediainfo.sources);
   })
+
+}
+
+brokenVideos.forEach(function(id){
+  setupVideo(id);
 });
 
-// Logging Player 2
-videojs.getPlayer('myPlayer2').ready(function() {
-  var myPlayer = this;
-  myPlayer.on('loadstart',function(){
-    console.log('Player 2:' + myPlayer.mediainfo.id);
-    console.log(myPlayer.mediainfo.sources);
-  })
+workingVideos.forEach(function(id){
+  setupVideo(id, true);
 });
-
-// Logging Player 3
-videojs.getPlayer('myPlayer3').ready(function() {
-  var myPlayer = this;
-  myPlayer.on('loadstart',function(){
-    console.log('Player 3:' + myPlayer.mediainfo.id);
-    console.log(myPlayer.mediainfo.sources);
-  })
-});
-
-// Logging Player 4
-videojs.getPlayer('myPlayer4').ready(function() {
-  var myPlayer = this;
-  myPlayer.on('loadstart',function(){
-    console.log('Player 4:' + myPlayer.mediainfo.id);
-    console.log(myPlayer.mediainfo.sources);
-  })
-});
-
 
 </script>
