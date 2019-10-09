@@ -67,8 +67,10 @@ module.exports = async function() {
         loader: 'sass-loader',
         options: {
           sourceMap: config.sourceMaps,
-          outputStyle: 'expanded',
-          importer: [selectorImporter()],
+          sassOptions: {
+            importer: [selectorImporter()],
+            outputStyle: 'expanded',
+          }
         },
       },
     ];

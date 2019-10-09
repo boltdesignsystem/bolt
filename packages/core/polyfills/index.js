@@ -18,6 +18,8 @@ import 'core-js/modules/es.array.find';
 import './symbol-polyfill';
 import './remove-polyfill';
 import '@webcomponents/template/template.js';
+import WeakSet from '@ungap/weakset';
+window.WeakSet = WeakSet;
 
 import smoothscroll from 'smoothscroll-polyfill';
 

@@ -29,8 +29,9 @@ module.exports = {
     theme: {
       type: 'string',
       enum: ['light', 'dark'],
+      default: '',
       description:
-        'control color scheme of component, not applicable to all animTypes',
+        'Sets the theme context of the animation manually, if applicable.',
     },
   },
 };

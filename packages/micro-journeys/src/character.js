@@ -50,18 +50,13 @@ class BoltCharacter extends withLitHtml() {
   }
 
   render() {
-    const {
-      characterImage,
-      characterCustomUrl,
-      size,
-      useIcon,
-    } = this.validateProps(this.props);
-    const classes = cx('c-bolt-character', `c-bolt-character--${size}`);
+    const props = this.validateProps(this.props);
+    const classes = cx('c-bolt-character', `c-bolt-character--${props.size}`);
 
     const image =
-      characterImage === 'custom'
-        ? characterCustomUrl
-        : resolveCharacterImage(characterImage);
+      props.characterImage === 'custom'
+        ? props.characterCustomUrl
+        : resolveCharacterImage(props.characterImage);
 
     return html`
       ${this.addStyles([styles])}
@@ -87,7 +82,7 @@ class BoltCharacter extends withLitHtml() {
           ${this.slot('right')}
         </span>
         <div class="c-bolt-character__main-image-wrapper">
-          ${useIcon
+          ${props.useIcon
             ? html`
                 <span
                   class="c-bolt-character__slot c-bolt-character__slot--icon--wrapper"

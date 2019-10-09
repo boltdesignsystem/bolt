@@ -18,7 +18,7 @@ import imageSchema from '@bolt/components-image/image.schema.yml';
 import animateSchema from '@bolt/components-animate/animate.schema';
 import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore
-import linkSchema from '../../components/bolt-link/link.schema.yml'; // @todo figure out why the @bolt module name does not resolve for this
+import linkSchema from '@bolt/components-link/link.schema.yml';
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import { isChildOfEl, convertSchemaPropToTrait } from './utils';
 
@@ -62,10 +62,10 @@ const cta = {
   content: `
       <bolt-cta>
         <bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>
-        <bolt-text font-size="xsmall" slot="link" display="inline">
+        <bolt-link slot="link" display="inline">
           CTA Text
           <bolt-icon name="chevron-right"></bolt-icon>
-        </bolt-text>
+        </bolt-link>
       </bolt-cta>
       `,
 };
@@ -234,7 +234,6 @@ export function setupBolt(editor) {
       const prop = properties[propName];
 
       if (!prop) {
-        console.log({ schema });
         throw new EditorRegisterBoltError(
           `Prop "${propName} does not exist on schema for "${name}"`,
         );
@@ -486,7 +485,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-interactive-pathways',
     schema: pathwaysSchema,
-    propsToTraits: ['customImageSrc', 'imageAlt', 'theme'],
+    propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
     category: 'Starters',
     blockTitle: 'Pathways',
     draggable: true,
@@ -499,7 +498,7 @@ export function setupBolt(editor) {
     initialContent: [
       `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
       `<bolt-interactive-pathway pathway-title="New Title">
-        ${starters.stepOneCharacterLorem}        
+        ${starters.stepOneCharacterLorem}
         ${starters.stepTwoCharacterLorem}
       </bolt-interactive-pathway>`,
     ],
@@ -611,10 +610,10 @@ export function setupBolt(editor) {
     },
     initialContent: [
       `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>`,
-      `<bolt-text font-size="xsmall" slot="link" display="inline">
+      `<bolt-link slot="link" display="inline">
         CTA Text
         <bolt-icon name="chevron-right"></bolt-icon>
-      </bolt-text>`,
+      </bolt-link>`,
     ],
     extraTraits: [],
   });
