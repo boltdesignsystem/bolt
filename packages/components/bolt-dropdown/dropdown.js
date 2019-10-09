@@ -120,7 +120,7 @@ class BoltDropdown extends withLitHtml() {
 
     return html`
       <h3 class="${dropdownHeaderClasses}">
-        <button class="c-bolt-dropdown__header-button">
+        <button class="c-bolt-dropdown__header-button" type="button">
           ${dropdownTitle}
 
           <span class="c-bolt-dropdown__header-icons">
