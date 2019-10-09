@@ -4,16 +4,18 @@
   display: inline-block;
   width: 100%;
   height: 100%;
-
-  &.rotate {
-    animation: 10000ms linear infinite spin;
-  }
 }
 
-.wwo-self-drawing-circle-rotation {
+.wwo-self-drawing-circle__rotater {
   transform: rotate(70deg) scaleX(-1);
   width: 100%;
   height: 100%;
+}
+
+.wwo-self-drawing-circle__spinner.spin {
+  width: 100%;
+  height: 100%;
+  animation: 10000ms linear infinite spin;
 }
 
 .wwo-self-drawing-circle-outline {
@@ -24,6 +26,6 @@
 
 @keyframes spin {
  100% {
-   transform: rotateZ(-360deg);
+   transform: rotateZ(360deg);
   }
 }

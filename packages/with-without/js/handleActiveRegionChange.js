@@ -49,7 +49,7 @@ const getCurriedAnimateContentOut = (
     await triggerAnims({
       animEls: filterInvisibles(animOutEls),
       stage: 'OUT',
-      debug: true,
+      // debug: true,
     });
   };
 };
@@ -83,7 +83,7 @@ const triggerAnimateOutOnInOnlyContent = async (groupAttrVal, mainWrapper) => {
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'OUT',
-    debug: true,
+    // debug: true,
   });
 };
 
@@ -97,7 +97,7 @@ const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'IN',
-    debug: true,
+    // debug: true,
   });
 };
 
@@ -123,7 +123,7 @@ const triggerAnimateInOnOutOnlyContent = async (groupAttrVal, mainWrapper) => {
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'IN',
-    debug: true,
+    // debug: true,
   });
 };
 
