@@ -31,8 +31,8 @@ class SelfDrawingCircle extends withLitHtml() {
     );
     outline.setAttribute('stroke-dasharray', `0 1000`);
     this.renderRoot
-      .querySelector('.wwo-self-drawing-circle')
-      .classList.remove('rotate');
+      .querySelector('.wwo-self-drawing-circle__spinner')
+      .classList.remove('spin');
   }
 
   async _drawCircle(dashSize, speed) {
@@ -42,7 +42,7 @@ class SelfDrawingCircle extends withLitHtml() {
 
     const threshold = Math.ceil(494 / dashSize);
 
-    for (var i = 0; i <= threshold; i++) {
+    for (let i = 0; i <= threshold; i++) {
       outline.setAttribute(
         'stroke-dasharray',
         i === 0
@@ -56,8 +56,8 @@ class SelfDrawingCircle extends withLitHtml() {
 
       if (i === threshold) {
         this.renderRoot
-          .querySelector('.wwo-self-drawing-circle')
-          .classList.add('rotate');
+          .querySelector('.wwo-self-drawing-circle__spinner')
+          .classList.add('spin');
       }
     }
   }
@@ -65,8 +65,11 @@ class SelfDrawingCircle extends withLitHtml() {
   render() {
     return html`
       ${this.addStyles([styles])}
-      <div id="wwo-self-drawing-circle" class="wwo-self-drawing-circle">
-        <div class="wwo-self-drawing-circle-rotation">
+      <div
+        id="wwo-self-drawing-circle"
+        class="wwo-self-drawing-circle wwo-self-drawing-circle__rotater"
+      >
+        <div class="wwo-self-drawing-circle__spinner">
           <svg viewBox="-160 -160 320 320">
             <circle
               id="wwo-self-drawing-circle-outline"

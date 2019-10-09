@@ -181,7 +181,6 @@ class BoltInteractivePathways extends withLitContext() {
 
   render() {
     const props = this.validateProps(this.props);
-    // @TODO fix https://github.com/bolt-design-system/bolt/issues/1460
 
     const classes = cx('c-bolt-interactive-pathways', {
       [`t-bolt-${props.theme}`]: !!props.theme,
@@ -285,12 +284,17 @@ class BoltInteractivePathways extends withLitContext() {
       ${this.addStyles([styles, themes])}
       <div class="${classes}">
         <div class="c-bolt-interactive-pathways__header">
-          <bolt-image
-            no-lazy
-            sizes="auto"
-            src="${props.customImageSrc || pathwaysLogo}"
-            alt="${props.imageAlt}"
-          ></bolt-image>
+          ${props.hidePathwaysImage
+            ? ''
+            : html`
+                <bolt-image
+                  no-lazy
+                  sizes="auto"
+                  src="${props.customImageSrc || pathwaysLogo}"
+                  alt="${props.imageAlt}"
+                ></bolt-image>
+              `}
+
           <div class="c-bolt-interactive-pathways__nav">
             <div class="c-bolt-interactive-pathways__nav--inner">
               <span class="c-bolt-interactive-pathways__nav-text"

@@ -218,7 +218,7 @@ function init() {
           const html = editor.getHtml();
           const unsavedChanges = editor.getDirtyCount();
           if (unsavedChanges) {
-            console.log(
+            console.warn(
               'There were unsaved changes we will lose on next page reload...',
             );
           }
