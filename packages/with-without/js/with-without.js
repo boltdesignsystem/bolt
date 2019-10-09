@@ -5,6 +5,7 @@ import {
   triggerActiveRegionChange,
   handleActiveRegionChangeRequest,
 } from './handleActiveRegionChange';
+import blurEdgeFocus from './blurEdgeFocus';
 
 const fireInitialAnimations = (toggleInputs, checkedValue, wwoSwiper) => {
   // Pushed to bottom of call stack b/c w/o shadowdom enabled it breaks if not.
@@ -53,6 +54,7 @@ const fireInitialAnimations = (toggleInputs, checkedValue, wwoSwiper) => {
   toggleInputs.forEach(el => {
     el.addEventListener('change', e => {
       handleActiveRegionChangeRequest(e.target.id === 'w', wwoSwiper);
+      blurEdgeFocus();
     });
   });
 
