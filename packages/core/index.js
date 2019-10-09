@@ -17,9 +17,8 @@ if (typeof module.hot === 'object') {
 
 window.bolt = window.bolt || {};
 
-/** if (!window.bolt.meta) {
-  // selecting a long delay since this isn't super important
-  const delay = 5000;
+if (!window.bolt.meta && 'noModule' in document.createElement('script')) {
+  const delay = 0;
 
   setTimeout(() => {
     getData('meta')
@@ -28,4 +27,4 @@ window.bolt = window.bolt || {};
       })
       .catch(console.log.bind(console));
   }, delay);
-} **/
+}

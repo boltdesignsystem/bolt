@@ -1,6 +1,7 @@
 import { query } from '@bolt/core/utils';
 import { version } from 'grapesjs/package.json';
 import { detect } from 'detect-browser';
+import loadjs from 'loadjs';
 
 const defaultConfig = {};
 
@@ -317,14 +318,25 @@ ${html}`;
           console.error('Usersnap error', event);
         });
       };
-      //addJsToPage(
-      //  '//api.usersnap.com/load/3d381185-491e-443f-8c1f-969ff8117d84.js?onload=onUsersnapLoad',
-      //);
-    }
 
-    // feedbackEl.addEventListener('click', async event => {
-    // window['usersnapApi'].open();
-    // });
+      if (
+          'noModule' in document.createElement('script') &&
+          !loadjs.isDefined('usersnap')
+        ) {
+          loadjs(
+            [
+              '//api.usersnap.com/load/3d381185-491e-443f-8c1f-969ff8117d84.js?onload=onUsersnapLoad',
+            ],
+            'usersnap',
+            function() {
+              feedbackEl.addEventListener('click', async event => {
+                window['usersnapApi'].open();
+              });
+            },
+          );
+        }
+      }
+    }
   });
 
   // uncomment to have first editor open on page load for easier dev experience
