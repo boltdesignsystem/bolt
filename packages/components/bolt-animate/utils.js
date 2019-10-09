@@ -111,7 +111,7 @@ export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
   }
   if (!orderProp) throw new Error(`Incorrect stage name passed: ${stage}`);
 
-  // convert NodeList over to array in case `querySelectorAll` was used
+  // Convert NodeList over to array in case `querySelectorAll` was used
   animEls = Array.isArray(animEls)
     ? animEls
     : Array.prototype.slice.call(animEls);
