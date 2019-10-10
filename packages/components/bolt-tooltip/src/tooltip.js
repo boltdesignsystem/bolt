@@ -47,7 +47,7 @@ class BoltTooltip extends withLitHtml() {
       ...{ default: 'small' },
     },
     triggerID: props.string,
-    positionVert: {
+    direction: {
       ...props.string,
       ...{ default: 'up' },
     },
@@ -141,8 +141,8 @@ class BoltTooltip extends withLitHtml() {
       [`c-bolt-tooltip${
         this.triggerType === 'button' ? `--action` : `--help`
       }`]: this.triggerType,
-      [`is-push-${this.positionVert}`]: this.positionVert,
       [`is-open`]: this.isOpen,
+      [`is-push-${this.direction}`]: this.direction,
       [`c-bolt-tooltip--nowrap`]: this.noWrap,
       [`c-bolt-tooltip--spacing-${this.spacing}`]: this.spacing,
     });
