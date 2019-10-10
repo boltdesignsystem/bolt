@@ -485,7 +485,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-interactive-step',
-    draggable: 'bolt-interactive-pathway',
+    draggable: false,
     editable: true,
     highlightable: false,
     extraTraits: ['tab-title'],
@@ -551,7 +551,7 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-interactive-pathway',
-    draggable: 'bolt-interactive-pathways',
+    draggable: false,
     editable: false,
     highlightable: true,
     extraTraits: ['pathway-title'],
