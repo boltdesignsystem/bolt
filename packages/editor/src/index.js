@@ -161,9 +161,9 @@ function init() {
         }
         case EDITOR_STATES.CLOSED: {
           const { name: browserName } = detect();
-          if (browserName !== 'chrome') {
+          if (browserName === 'ie') {
             // eslint-disable-next-line no-alert
-            window.alert('The Editor can only be used in Chrome, sorry.');
+            window.alert('Sorry, the Editor is not supported in IE.');
             return;
           }
           trigger.innerText = 'Loading...';
