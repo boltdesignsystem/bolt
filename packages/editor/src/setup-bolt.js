@@ -336,7 +336,9 @@ export function setupBolt(editor) {
 
     if (registerBlock) {
       const block = BlockManager.add(name, {
-        label: `<span title="${description}">${blockTitle || name}</span>`,
+        label: `
+          <div class="gjs-block-label__icon gjs-block-label__icon--${name}"></div>
+          <div title="${description}">${blockTitle || name}</div>`,
         category,
         select: true,
         content: {

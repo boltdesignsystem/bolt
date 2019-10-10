@@ -306,7 +306,7 @@ async function createWebpackConfig(buildConfig) {
               return true;
             }
 
-            if (thePath.endsWith('grapesjs/dist/grapes.js')) {
+            if (thePath.includes('grapesjs')) {
               return true;
             }
 

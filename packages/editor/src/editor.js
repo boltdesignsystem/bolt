@@ -2,6 +2,8 @@ import * as grapesjs from 'grapesjs';
 import { html, render } from '@bolt/core';
 import { query, IS_PROD } from '@bolt/core/utils';
 import { triggerAnimsInEl } from '@bolt/components-animate/utils';
+import pluginTooltip from 'grapesjs-tooltip';
+import grapesjsTouch from 'grapesjs-touch';
 import { setupPanels } from './panels';
 import { setupBlocks } from './blocks';
 import { setupComponents } from './components';
@@ -35,7 +37,14 @@ export function enableEditor({ space, uiWrapper, config }) {
     autorender: false,
     // height: '100vh',
     // width: 'auto',
-    plugins: [setupBolt, setupComponents, setupPanels, setupBlocks],
+    plugins: [
+      setupBolt,
+      setupComponents,
+      setupPanels,
+      setupBlocks,
+      pluginTooltip,
+      grapesjsTouch,
+    ],
     noticeOnUnload: IS_PROD,
     panels: {
       stylePrefix: `${stylePrefix}panels-`,
@@ -63,20 +72,31 @@ export function enableEditor({ space, uiWrapper, config }) {
             {
               command: 'core:undo',
               id: 'undo',
-              label: 'Undo',
-              // className: 'fa fa-undo',
-              // attributes: { title: 'Undo' },
+              className: 'fa fa-undo',
+              attributes: {
+                title: 'Undo',
+                'data-tooltip': 'Undo',
+                'data-tooltip-pos': 'top',
+              },
             },
             {
               command: 'core:redo',
               id: 'redo',
-              label: 'Redo',
-              // className: 'fa fa-repeat',
-              // attributes: { title: 'Redo' },
+              className: 'fa fa-repeat',
+              attributes: {
+                title: 'Redo',
+                'data-tooltip': 'Redo',
+                'data-tooltip-pos': 'top',
+              },
             },
             {
               id: 'duplicate',
-              label: 'Duplicate',
+              className: 'fa fa-clone u-bolt-margin-left-xsmall',
+              attributes: {
+                title: 'Duplicate',
+                'data-tooltip': 'Duplicate',
+                'data-tooltip-pos': 'top',
+              },
               command: {
                 run: editor => {
                   editor.runCommand('core:copy');
@@ -87,34 +107,54 @@ export function enableEditor({ space, uiWrapper, config }) {
             {
               command: 'core:component-delete',
               id: 'component-delete',
-              label: 'Delete',
+              className: 'fa fa-eraser u-bolt-margin-right-small',
+              attributes: {
+                title: 'Delete',
+                'data-tooltip': 'Delete',
+                'data-tooltip-pos': 'top',
+              },
             },
             {
               command: 'core:canvas-clear',
               id: 'canvas-clear',
-              label: 'Clear Canvas',
+              className: 'fa fa-trash u-bolt-margin-left-auto@small',
+              attributes: {
+                title: 'Clear Canvas',
+                'data-tooltip': 'Clear Canvas',
+                'data-tooltip-pos': 'top',
+              },
             },
             {
               id: 'visibility',
               active: true,
-              label: 'Toggle Borders',
               command: 'sw-visibility',
+              className: 'fa fa-square-o',
+              attributes: {
+                title: 'Toggle Borders',
+                'data-tooltip': 'Toggle Borders',
+                'data-tooltip-pos': 'top',
+              },
             },
-            {
-              id: 'fullscreen',
-              label: 'Full Screen',
-              command: 'core:fullscreen',
-              attributes: { title: 'Full Screen' },
-            },
+
             {
               id: 'export',
-              className: 'btn-open-export',
-              label: 'Export HTML',
+              className:
+                'btn-open-export fa fa-code u-bolt-margin-right-auto@small',
+              attributes: {
+                title: 'Export HTML',
+                'data-tooltip': 'Export HTML',
+                'data-tooltip-pos': 'top',
+              },
               command: 'export-template',
             },
             {
               id: 'device-mobile',
-              label: 'Resize: Mobile',
+              className: 'fa fa-mobile',
+              attributes: {
+                title: 'Resize to Mobile',
+                'data-tooltip': 'Resize: Mobile',
+                'data-tooltip-pos': 'top',
+              },
               togglable: true,
               command: {
                 run: editor => editor.setDevice('Mobile'),
@@ -123,7 +163,12 @@ export function enableEditor({ space, uiWrapper, config }) {
             },
             {
               id: 'device-tablet',
-              label: 'Resize: Tablet',
+              className: 'fa fa-tablet',
+              attributes: {
+                title: 'Resize to Tablet',
+                'data-tooltip': 'Resize: Tablet',
+                'data-tooltip-pos': 'top',
+              },
               togglable: true,
               command: {
                 run: editor => editor.setDevice('Tablet'),
@@ -132,7 +177,12 @@ export function enableEditor({ space, uiWrapper, config }) {
             },
             {
               id: 'device-desktop',
-              label: 'Resize: Desktop',
+              className: 'fa fa-desktop',
+              attributes: {
+                title: 'Resize to Desktop',
+                'data-tooltip': 'Resize: Desktop',
+                'data-tooltip-pos': 'top',
+              },
               togglable: true,
               command: {
                 run: editor => editor.setDevice('Desktop'),
@@ -140,10 +190,25 @@ export function enableEditor({ space, uiWrapper, config }) {
               },
             },
             {
+              id: 'fullscreen',
+              command: 'core:fullscreen',
+              className: 'fa fa-arrows-alt',
+              attributes: {
+                title: 'Full Screen',
+                'data-tooltip': 'Full Screen',
+                'data-tooltip-pos': 'top',
+              },
+            },
+            {
               id: 'submit-bug',
-              label: 'Submit Bug',
+              className:
+                'fa fa-bug gjs-pega-editor-panels-btn--bug u-bolt-margin-left-small',
               togglable: false,
-              className: 'gjs-pega-editor-panels-btn--bug',
+              attributes: {
+                title: 'Submit Bug',
+                'data-tooltip': 'Submit Bug',
+                'data-tooltip-pos': 'top',
+              },
               command: {
                 run: () => {
                   if (!window['usersnapApi']) return;
@@ -288,35 +353,52 @@ export function enableEditor({ space, uiWrapper, config }) {
       return;
     }
 
-    const slotControlMarkup = slotControls.map(({ slotName, components }) => {
-      return html`
-        <h4>${slotName}</h4>
-        <select
-          @change=${event => {
-            const { value } = event.target;
-            if (value === 'none') return;
-            const component = components.find(c => c.id === value);
-            const newComponent = addComponentToSelectedComponentsSlot({
-              slotName,
-              content: component.content,
-              name,
-            });
-            event.target.value = 'none';
-          }}
-        >
-          <option value="none">(Add component to slot)</option>
-          ${components.map(
-            component => html`
-              <option value="${component.id}">${component.title}</option>
-            `,
-          )}
-        </select>
-      `;
-    });
+    const slotControlMarkup = slotControls.map(
+      ({ slotName, components }, index) => {
+        return html`
+          <bolt-text
+            tag="h4"
+            headline
+            style="color: white; --bolt-theme-headline: 255,255,255;"
+            >${slotName}</bolt-text
+          >
+          <select
+            class="${slotControls.length - 1 === index
+              ? ''
+              : 'u-bolt-margin-bottom-medium'}"
+            @change=${event => {
+              const { value } = event.target;
+              if (value === 'none') return;
+              const component = components.find(c => c.id === value);
+              const newComponent = addComponentToSelectedComponentsSlot({
+                slotName,
+                content: component.content,
+                name,
+              });
+              event.target.value = 'none';
+            }}
+          >
+            <option value="none">(Add component to slot)</option>
+            ${components.map(
+              component => html`
+                <option value="${component.id}">${component.title}</option>
+              `,
+            )}
+          </select>
+        `;
+      },
+    );
 
     const content = html`
-      <h2>Slots</h2>
-      ${slotControlMarkup}
+      <bolt-text
+        style="margin-left: 2rem; margin-bottom: -1.6rem;     color: white; --bolt-theme-headline: 255,255,255;"
+        font-size="small"
+        headline
+        >Slots</bolt-text
+      >
+      <div class="pega-editor-ui__slot-container">
+        ${slotControlMarkup}
+      </div>
     `;
     render(content, editorSlots.slotControls);
   }

@@ -1,0 +1,73 @@
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  display: block;
+  opacity: 0;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 99;
+  max-width: 32rem;
+  overflow: hidden;
+  padding: 0.6rem 1rem;
+  color: #fff;
+  line-height: normal;
+  text-align: center;
+  pointer-events: none;
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+  border-radius: 3px;
+  background: rgba(51, 51, 51, 0.9);
+  background: rgba(55, 61, 73, 0.9);
+  text-overflow: ellipsis;
+  transition: all 0.216s ease;
+}
+
+[data-tooltip]:focus::after,
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -0.5rem);
+}
+
+[data-tooltip][disabled],
+[data-tooltip].disabled {
+  pointer-events: auto;
+}
+
+[data-tooltip-pos=right]::after {
+  bottom: 50%;
+  left: 100%;
+  transform: translate(0, 50%);
+}
+
+[data-tooltip-pos=right]:focus::after,
+[data-tooltip-pos=right]:hover::after {
+  transform: translate(0.5rem, 50%);
+}
+
+[data-tooltip-pos=bottom]::after {
+  top: 100%;
+  bottom: auto;
+  transform: translate(-50%, 0);
+}
+
+[data-tooltip-pos=bottom]:focus::after,
+[data-tooltip-pos=bottom]:hover::after {
+  transform: translate(-50%, 0.5rem);
+}
+
+[data-tooltip-pos=left]::after {
+  right: 100%;
+  bottom: 50%;
+  left: auto;
+  transform: translate(0, 50%);
+}
+
+[data-tooltip-pos=left]:focus::after,
+[data-tooltip-pos=left]:hover::after {
+  transform: translate(-0.5rem, 50%);
+}
