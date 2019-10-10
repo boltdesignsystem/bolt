@@ -64,17 +64,109 @@ class BoltTooltip extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.clickHandler = self.clickHandler.bind(self);
+
+    self.handleMovingOverTrigger = self.handleMovingOverTrigger.bind(self);
+    self.handleMovingOutOfTrigger = self.handleMovingOutOfTrigger.bind(self);
+
+    self.handleMovingOverContent = self.handleMovingOverContent.bind(self);
+    self.handleMovingOutOfContent = self.handleMovingOutOfContent.bind(self);
+
+    self.handleExternalClick = self.handleExternalClick.bind(self);
     return self;
   }
 
   connected() {
+    super.connected && super.connected();
     this.triggerID = `bolt-tooltip-id-${Math.floor(Math.random() * 20)}`;
+    this.isWatchingForExternalClicks = false;
+
+    this.addEventListener('mouseover', this.handleMovingOverTrigger);
+    this.addEventListener('mouseleave', this.handleMovingOutOfTrigger);
+  }
+
+  rendered(){
+    super.rendered && super.rendered();
+    this.setAttribute('ready', '');
+    this.renderRoot.querySelector('.c-bolt-tooltip__content').addEventListener('mouseover', this.handleMovingOverContent);
+    this.renderRoot.querySelector('.c-bolt-tooltip__content').addEventListener('mouseleave', this.handleMovingOutOfContent);
+
+    if (
+      this.triggerType === 'button' &&
+      this.isWatchingForExternalClicks === false &&
+      this.isOpen === true
+    ) {
+      document.addEventListener('click', this.handleExternalClick);
+      this.isWatchingForExternalClicks = true;
+    } else if (
+      this.isWatchingForExternalClicks === true &&
+      this.triggerType !== 'button'
+    ) {
+      document.removeEventListener('click', this.handleExternalClick);
+    }
+  }
+
+  disconnected(){
+    super.disconnected && super.disconnected();
+
+    this.removeEventListener('mouseover', this.handleMovingOverTrigger);
+    this.removeEventListener('mouseleave', this.handleMovingOutOfTrigger);
+    this.renderRoot.querySelector('.c-bolt-tooltip__content').removeEventListener('mouseover', this.handleMovingOverContent);
+    this.renderRoot.querySelector('.c-bolt-tooltip__content').removeEventListener('mouseleave', this.handleMovingOutOfContent);
+
+    if (this.isWatchingForExternalClicks === true) {
+      document.removeEventListener('click', this.handleExternalClick);
+      this.isWatchingForExternalClicks = false;
+    }
   }
 
   clickHandler() {
     this.isOpen = !this.isOpen;
   }
 
+  handleExternalClick(e) {
+    if (
+      (e.target.closest('bolt-tooltip') &&
+        e.target.closest('bolt-tooltip') === this) ||
+      this.isOpen === false
+    ) {
+      return;
+    }
+    this.isOpen = false;
+  }
+
+  handleMovingOverContent(e) {
+    this.isHoveringOverContent = true;
+
+    if (this.isOpen !== true && this.triggerType !== 'button') {
+      this.isOpen = true;
+    }
+  }
+
+  handleMovingOutOfContent(e) {
+    this.isHoveringOverContent = false;
+    setTimeout(() => {
+      if (!this.isHoveringOverTrigger && this.triggerType !== 'button') {
+        this.isOpen = false;
+      }
+    }, 10);
+  }
+
+  handleMovingOutOfTrigger(e) {
+    this.isHoveringOverTrigger = false;
+
+    setTimeout(() => {
+      if (!this.isHoveringOverContent && this.triggerType !== 'button') {
+        this.isOpen = false;
+      }
+    }, 10);
+  }
+
+  handleMovingOverTrigger(e) {
+    this.isHoveringOverTrigger = true;
+
+    if (this.isOpen !== true && this.triggerType !== 'button') {
+      this.isOpen = true;
+    }
   }
 
   setClick() {
@@ -148,7 +240,6 @@ class BoltTooltip extends withLitHtml() {
     });
 
     const contentClasses = cx('c-bolt-tooltip__content', {
-      [`c-bolt-tooltip__content--${this.triggerType}`]: this.triggerType,
       [`c-bolt-tooltip__content--${this.count}`]: this.count,
     });
 
