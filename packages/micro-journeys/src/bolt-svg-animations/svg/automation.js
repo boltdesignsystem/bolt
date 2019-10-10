@@ -154,17 +154,15 @@ export const automation = ({ speed, theme, animId }) => {
         <title>Automation</title>
         <g id="line1" data-animator-group="true" data-animator-type="0">
           <g id="el_dGAPtPCPIB">
-            <rect x="74.5" y="4" width="1" height="71" id="el_4SrIO-NU3e" />
-            <g id="el_GjsxKTyhLE">
+            <rect x="74" y="4" width="1" height="71" id="el_4SrIO-NU3e" />
               <path
                 d="M70.8,4.2C70.8,1.9,72.7,0,75,0s4.2,1.9,4.2,4.2c0,2.3-1.9,4.2-4.2,4.2S70.8,6.5,70.8,4.2z"
                 id="el_f2h4TxhdJ4"
               />
-            </g>
           </g>
         </g>
         <g id="line5" data-animator-group="true" data-animator-type="0">
-          <rect x="74.5" y="75" width="1" height="70.9" id="el_uVK02C_rOM" />
+          <rect x="74" y="75" width="1" height="70.9" id="el_uVK02C_rOM" />
           <path
             d="M79.4,145.6c0,2.4-2,4.4-4.4,4.4s-4.4-2-4.4-4.4c0-2.4,2-4.4,4.4-4.4S79.4,143.2,79.4,145.6z"
             id="el_VsqLZlRVcI"
