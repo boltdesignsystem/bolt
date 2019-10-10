@@ -28,6 +28,57 @@ export function enableEditor({ space, uiWrapper, config }) {
 
   const stylePrefix = 'pega-editor-';
 
+  /**
+   * Move bolt-interactive-step or bolt-interactive-pathway up or down.
+   *
+   * @param editor {grapesjs.Editor}
+   * @param directionIsUp {boolean}: If true, move direction is up. If false, direction is down.
+   */
+  const moveElement = (editor, directionIsUp = true) => {
+    if (!editor.getSelected()) {
+      return;
+    }
+
+    const selected = editor.getSelected();
+
+    const isStep = selected.attributes.tagName === 'bolt-interactive-step';
+    const isPathway =
+      selected.attributes.tagName === 'bolt-interactive-pathway';
+    if (!(isPathway || isStep)) {
+      // eslint-disable-next-line no-alert
+      alert('"Move Up" and "Move Down" only work for Steps and Pathways');
+      return;
+    }
+    const parentCollection = selected.parent().components();
+    if (!parentCollection.length > 1) {
+      return;
+    }
+    const indexOfSelected = parentCollection.indexOf(selected);
+    parentCollection.remove(selected);
+    if (directionIsUp) {
+      parentCollection.add(selected, {
+        at: Math.max(indexOfSelected - 1, 0),
+      });
+    } else {
+      parentCollection.add(selected, {
+        at: Math.min(indexOfSelected + 1, parentCollection.length),
+      });
+    }
+    const eventTargetSelector = isStep
+      ? 'bolt-interactive-pathway'
+      : 'bolt-interactive-pathways';
+    const eventName = isStep
+      ? 'bolt-interactive-step:change-active-step'
+      : 'bolt-interactive-pathway:title-updated';
+    const event = new CustomEvent(eventName, {
+      bubbles: true,
+    });
+    parentCollection
+      .at(0)
+      .closest(eventTargetSelector)
+      .view.el.dispatchEvent(event);
+  };
+
   /** @type {grapesjs.EditorConfig} */
   const editorConfig = {
     container: space,
@@ -148,6 +199,28 @@ export function enableEditor({ space, uiWrapper, config }) {
                 run: () => {
                   if (!window['usersnapApi']) return;
                   window['usersnapApi'].open();
+                },
+              },
+            },
+            {
+              id: 'move-up',
+              label: 'Move Up',
+              togglable: false,
+              className: 'gjs-pega-editor-panels-btn--move-up',
+              command: {
+                run: (/** @type {grapesjs.Editor} */ editor) => {
+                  moveElement(editor, true);
+                },
+              },
+            },
+            {
+              id: 'move-down',
+              label: 'Move Down',
+              togglable: false,
+              className: 'gjs-pega-editor-panels-btn--move-down',
+              command: {
+                run: (/** @type {grapesjs.Editor} */ editor) => {
+                  moveElement(editor, false);
                 },
               },
             },
