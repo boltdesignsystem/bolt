@@ -1,6 +1,7 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
+  console.error('Polyfills just finished loading, kicking off w/wo.');
   import(/*
     webpackMode: 'eager',
   */ './js/accordion');
