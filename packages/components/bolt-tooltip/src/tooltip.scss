@@ -161,7 +161,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
     &.is-push-up {
       .c-bolt-tooltip__content {
-        transform: translate(-50%, calc(-100% - #{$bolt-tooltip-bubble-triangle-width}));
+        transform: translate(-50%, calc(-100%));
 
         &--button {
           transform: translate(-50%, -115%) scale(1);
@@ -208,7 +208,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
     &.is-push-down {
       .c-bolt-tooltip__content {
-        transform: translate(-50%, #{$bolt-tooltip-bubble-triangle-width});
+        transform: translate(-50%);
 
         &--button {
           transform: translate(-50%, 15%) scale(1);
@@ -398,6 +398,7 @@ $bolt-tooltip-transition: $bolt-transition;
   display: block;
   position: absolute;
   z-index: bolt-z-index('tooltip');
+  cursor: default;
   transition: all $bolt-tooltip-transition;
 
   &--button {
@@ -452,7 +453,7 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip.is-push-up {
   &:not(:hover) > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-bottom: 0;
+    padding-bottom: $bolt-tooltip-bubble-triangle-width;
   }
 
   &:hover > .c-bolt-tooltip__content,
@@ -476,7 +477,7 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip.is-push-down {
   &:not(:hover) > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-top: 0;
+    padding-top: $bolt-tooltip-bubble-triangle-width;
   }
 
   &:hover > .c-bolt-tooltip__content,
