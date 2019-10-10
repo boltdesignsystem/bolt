@@ -82,7 +82,7 @@ const link = {
   content: `<bolt-link display="inline" valign="start">I'm a link</bolt-link>`,
 };
 
-const iconGroupVerticle = {
+const iconGroupVertical = {
   id: 'bolt-icon-group-vertical',
   title: 'Icon Group (vertical)',
   content: `
@@ -132,7 +132,7 @@ const basicSlottableComponents = [
   basicText,
   cta,
   link,
-  iconGroupVerticle,
+  iconGroupVertical,
   iconGroupHorizontal,
 ];
 
@@ -530,7 +530,7 @@ export function setupBolt(editor) {
     },
     initialContent: [
       `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
-      `<bolt-interactive-pathway pathway-title="New Title">
+      `<bolt-interactive-pathway pathway-title="First Title">
         ${starters.stepOneCharacterLorem}
         ${starters.stepTwoCharacterLorem}
       </bolt-interactive-pathway>`,
