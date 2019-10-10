@@ -11,6 +11,7 @@ const fireInitialAnimations = (toggleInputs, checkedValue, wwoSwiper) => {
   // Pushed to bottom of call stack b/c w/o shadowdom enabled it breaks if not.
   // Set up the resize listener which helps with some of the abs. pos. stuff.
   handleResize()();
+  console.debug('w/wo firing fireInitialAnimations');
   setTimeout(() => {
     // Initialize the page.
     triggerActiveRegionChange(
@@ -25,6 +26,7 @@ const fireInitialAnimations = (toggleInputs, checkedValue, wwoSwiper) => {
 };
 
 (() => {
+  console.debug('w/wo JS code has fired');
   const toggleInputsWrapper = document.getElementById('c-pega-wwo__toggle');
 
   // short-circuit all the things if no toggler is found.

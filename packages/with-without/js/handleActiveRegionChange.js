@@ -20,6 +20,8 @@ const filterInvisibles = els => {
 
 const getCurriedPageLoadAnimation = mainWrapper => {
   return () => {
+    console.debug('w/wo firing getCurriedPageLoadAnimation');
+
     const animInitOutEls = Array.from(
       mainWrapper.querySelectorAll('bolt-animate[group="initial"][out]'),
     );
@@ -31,6 +33,7 @@ const getCurriedPageLoadAnimation = mainWrapper => {
     return triggerAnims({
       animEls: filterInvisibles(animInitEls),
       stage: 'IN',
+      debug: true,
     });
   };
 };
@@ -41,6 +44,8 @@ const getCurriedAnimateContentOut = (
   mainWrapper,
 ) => {
   return async () => {
+    console.debug('w/wo firing getCurriedAnimateContentOut');
+
     const animOutEls = Array.from(
       mainWrapper.querySelectorAll(
         `bolt-animate[group="${outGroupAttrVal}"][out]:not([type="in-effect-only"])`,
@@ -49,7 +54,7 @@ const getCurriedAnimateContentOut = (
     await triggerAnims({
       animEls: filterInvisibles(animOutEls),
       stage: 'OUT',
-      // debug: true,
+      debug: true,
     });
   };
 };
@@ -65,6 +70,8 @@ const getCurriedAnimateContentOut = (
  * @returns {void}
  */
 const triggerAnimateOutOnInOnlyContent = async (groupAttrVal, mainWrapper) => {
+  console.debug('w/wo firing triggerAnimateOutOnInOnlyContent');
+
   const animOutEls = Array.from(
     mainWrapper.querySelectorAll(
       `bolt-animate[group="${groupAttrVal}"][type="in-effect-only"]`,
@@ -83,11 +90,13 @@ const triggerAnimateOutOnInOnlyContent = async (groupAttrVal, mainWrapper) => {
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'OUT',
-    // debug: true,
+    debug: true,
   });
 };
 
 const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
+  console.debug('w/wo firing triggerAnimateInOnInOnlyContent');
+
   const animOutEls = Array.from(
     document.querySelectorAll(
       `bolt-animate[group="${inGroupAttrVal}"][type="in-effect-only"]`,
@@ -97,7 +106,7 @@ const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'IN',
-    // debug: true,
+    debug: true,
   });
 };
 
@@ -114,6 +123,8 @@ const triggerAnimateInOnInOnlyContent = async inGroupAttrVal => {
  * @returns {void}
  */
 const triggerAnimateInOnOutOnlyContent = async (groupAttrVal, mainWrapper) => {
+  console.debug('w/wo firing triggerAnimateInOnOutOnlyContent');
+
   const animOutEls = Array.from(
     mainWrapper.querySelectorAll(
       `bolt-animate[group="${groupAttrVal}"][type="out-effect-only"]`,
@@ -123,12 +134,14 @@ const triggerAnimateInOnOutOnlyContent = async (groupAttrVal, mainWrapper) => {
   await triggerAnims({
     animEls: filterInvisibles(animOutEls),
     stage: 'IN',
-    // debug: true,
+    debug: true,
   });
 };
 
 const getCurriedAnimateContentIn = (inGroupAttrVal, mainWrapper) => {
   return async () => {
+    console.debug('w/wo firing getCurriedAnimateContentIn');
+
     const animInEls = Array.from(
       mainWrapper.querySelectorAll(
         `bolt-animate[group="${inGroupAttrVal}"][in]:not([type="out-effect-only"])`,
@@ -191,7 +204,11 @@ const triggerActiveRegionChange = async (checked, wwoSwiper, init = false) => {
   if (init) {
     pierceShadowDomEls(mainWrapper);
 
+    console.debug('w/wo firing pageLoadAnimation');
+
     getCurriedPageLoadAnimation(mainWrapper)();
+
+    console.debug('w/wo fired pageLoadAnimation');
 
     if (withIsBecomingActive) {
       // In this case the checked button is With Pega, so transition to that slide first.
