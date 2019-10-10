@@ -1,5 +1,9 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
-  import('./block-list.standalone.js');
+  import(
+    /* webpackChunkName: 'bolt-block-list' */
+    /* webpackMode: 'eager' */
+    './block-list.standalone.js'
+  );
 });

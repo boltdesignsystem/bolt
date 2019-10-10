@@ -2,16 +2,14 @@ import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
   import(
-    /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-accordion'
-  */ './src/accordion'
+    /* webpackChunkName: 'bolt-accordion' */
+    /* webpackMode: 'eager' */
+    './src/accordion'
   );
 
   import(
-    /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-accordion-item'
-  */ './src/AccordionItem'
+    /* webpackChunkName: 'bolt-accordion-item' */
+    /* webpackMode: 'eager' */
+    './src/AccordionItem'
   );
 });

@@ -2,6 +2,8 @@ import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
   import(
-    /* webpackMode: 'eager', webpackChunkName: 'bolt-chip' */ './src/chip'
+    /* webpackChunkName: 'bolt-chip' */
+    /* webpackMode: 'eager' */
+    './src/chip'
   );
 });
