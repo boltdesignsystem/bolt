@@ -1,9 +1,9 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
-export const orbit = ({ speed, theme }) => {
+export const orbit = ({ speed, theme, animId }) => {
   const authoredStyle = html`
-    #el_4FVBcL2d5 { overflow: visible; transform: translateZ(0);}
+    #${animId} { overflow: visible; transform: translateZ(0);}
     @-webkit-keyframes kf_el_3_mf5AZNVo_an_9jFWXwODG { 0% { -webkit-transform:
     translate(75px, 75px) rotate(0deg) translate(-75px, -75px); transform:
     translate(75px, 75px) rotate(0deg) translate(-75px, -75px); } 100% {
@@ -14,12 +14,12 @@ export const orbit = ({ speed, theme }) => {
     -75px); transform: translate(75px, 75px) rotate(0deg) translate(-75px,
     -75px); } 100% { -webkit-transform: translate(75px, 75px) rotate(360deg)
     translate(-75px, -75px); transform: translate(75px, 75px) rotate(360deg)
-    translate(-75px, -75px); } } #el_4FVBcL2d5 * { -webkit-animation-duration:
+    translate(-75px, -75px); } } #${animId} * { -webkit-animation-duration:
     ${speed}ms; animation-duration: ${speed}ms;
     -webkit-animation-iteration-count: infinite; animation-iteration-count:
     infinite; -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 1);
     animation-timing-function: cubic-bezier(0, 0, 1, 1); } #el_3_mf5AZNVo {
-    stroke: none; stroke-width: 1; fill: none; } #dashed_circle { stroke:
+    stroke: none; stroke-width: 1; fill: none; } #${animId} #dashed_circle { stroke:
     ${theme === 'dark' ? `#FFFFFF` : `#535DA6`}; stroke-width: 0.914634146; }
     #el_XZMv5KV-BQ { fill: #009999; } #el_D9rhYqcKss { fill: #009999; }
     #el_GmGtSmeZzg { fill: #009999; } #el_3_mf5AZNVo_an_9jFWXwODG {
@@ -34,7 +34,7 @@ export const orbit = ({ speed, theme }) => {
 
   return svg`
     <svg
-      id="el_4FVBcL2d5"
+      id="${animId}"
       viewBox="0 0 152 152"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"

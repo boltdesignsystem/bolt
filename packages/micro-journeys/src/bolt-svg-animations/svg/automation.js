@@ -1,9 +1,9 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 
-export const automation = ({ speed, theme }) => {
+export const automation = ({ speed, theme, animId }) => {
   const authoredStyle = html`
     #bolt-automation-container { max-height: 400px; max-width: 400px; }
-    bolt-automation-svg { transform: translateZ(0);} @keyframes kf_line1 { 0%
+    ${animId} { transform: translateZ(0);} @keyframes kf_line1 { 0%
     {transform: translate(70.80000305175781px, 0px)
     translate(-70.80000305175781px, 0px) translate(0px, 37px);} 16.67%
     {transform: translate(70.80000305175781px, 0px)
@@ -95,7 +95,7 @@ export const automation = ({ speed, theme }) => {
     0px);} 0% {transform: translate(0px, 70.80000305175781px) translate(0px,
     -70.80000305175781px) translate(36px, 0px);} 100% {transform: translate(0px,
     70.80000305175781px) translate(0px, -70.80000305175781px) translate(36px,
-    0px);} } #bolt-automation-svg path, #bolt-automation-svg rect { fill:
+    0px);} } #${animId} path, #${animId} rect { fill:
     ${theme === 'dark' ? `#FFFFFF` : `#1f2656`}; } #el_FUdCGwmldWw { transform:
     matrix(0.7071, -0.7071, 0.7071, 0.7071, -31.3589, 75.707); } #el_ov2W8FYkaoZ
     { transform: matrix(0.7071, -0.7071, 0.7071, 0.7071, -80.5583, 54.4995); }
@@ -135,7 +135,7 @@ export const automation = ({ speed, theme }) => {
     </style>
     <div id="bolt-automation-container">
       <svg
-        id="bolt-automation-svg"
+        id="${animId}"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
