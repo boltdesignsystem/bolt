@@ -2,7 +2,6 @@ import { define, props } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
 import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import { ifDefined } from 'lit-html/directives/if-defined';
-
 import styles from './tooltip.scss';
 
 let cx = classNames.bind(styles);
@@ -84,11 +83,25 @@ class BoltTooltip extends withLitHtml() {
     this.addEventListener('mouseleave', this.handleMovingOutOfTrigger);
   }
 
-  rendered(){
+  rendered() {
     super.rendered && super.rendered();
-    this.setAttribute('ready', '');
-    this.renderRoot.querySelector('.c-bolt-tooltip__content').addEventListener('mouseover', this.handleMovingOverContent);
-    this.renderRoot.querySelector('.c-bolt-tooltip__content').addEventListener('mouseleave', this.handleMovingOutOfContent);
+    if (!this.hasAttribute('ready')) {
+      this.setAttribute('ready', '');
+    }
+    this.tooltipContentElem = this.renderRoot.querySelector(
+      '.c-bolt-tooltip__content',
+    );
+
+    if (this.tooltipContentElem) {
+      this.tooltipContentElem.addEventListener(
+        'mouseover',
+        this.handleMovingOverContent,
+      );
+      this.tooltipContentElem.addEventListener(
+        'mouseleave',
+        this.handleMovingOutOfContent,
+      );
+    }
 
     if (
       this.triggerType === 'button' &&
@@ -105,13 +118,22 @@ class BoltTooltip extends withLitHtml() {
     }
   }
 
-  disconnected(){
+  disconnected() {
     super.disconnected && super.disconnected();
 
     this.removeEventListener('mouseover', this.handleMovingOverTrigger);
     this.removeEventListener('mouseleave', this.handleMovingOutOfTrigger);
-    this.renderRoot.querySelector('.c-bolt-tooltip__content').removeEventListener('mouseover', this.handleMovingOverContent);
-    this.renderRoot.querySelector('.c-bolt-tooltip__content').removeEventListener('mouseleave', this.handleMovingOutOfContent);
+
+    if (this.tooltipContentElem) {
+      this.tooltipContentElem.removeEventListener(
+        'mouseover',
+        this.handleMovingOverContent,
+      );
+      this.tooltipContentElem.removeEventListener(
+        'mouseleave',
+        this.handleMovingOutOfContent,
+      );
+    }
 
     if (this.isWatchingForExternalClicks === true) {
       document.removeEventListener('click', this.handleExternalClick);
