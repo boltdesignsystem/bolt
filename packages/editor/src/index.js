@@ -1,6 +1,7 @@
 import { query } from '@bolt/core/utils';
 import { version } from 'grapesjs/package.json';
 import { detect } from 'detect-browser';
+import loadjs from 'loadjs';
 
 const defaultConfig = {};
 
@@ -33,41 +34,6 @@ function createEditorUiHtml(appendTo = document.body) {
     el: uiWrapper,
     destroy: () => uiWrapper.remove(),
   };
-}
-
-/**
- * @return {Promise<void>}
- */
-function addGrapesCssToPage() {
-  return new Promise((resolve, reject) => {
-    const href = `//unpkg.com/grapesjs@${version}/dist/css/grapes.min.css`;
-    if (document.querySelector(`link[href="${href}"]`)) {
-      resolve();
-    } else {
-      const link = document.createElement('link');
-      link.href = href;
-      link.type = 'text/css';
-      link.rel = 'stylesheet';
-      link.media = 'screen';
-      link.addEventListener('load', () => resolve(), { once: true });
-      document.head.appendChild(link);
-    }
-  });
-}
-
-function addJsToPage(src) {
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(`script[src="${src}"]`)) {
-      resolve();
-    } else {
-      const scriptEl = document.createElement('script');
-      scriptEl.src = src;
-      scriptEl.type = 'text/javascript';
-      scriptEl.async = true;
-      scriptEl.addEventListener('load', () => resolve(), { once: true });
-      document.head.appendChild(scriptEl);
-    }
-  });
 }
 
 function init() {
@@ -201,7 +167,10 @@ function init() {
             return;
           }
           trigger.innerText = 'Loading...';
-          await addGrapesCssToPage();
+          loadjs(
+            [`//unpkg.com/grapesjs@${version}/dist/css/grapes.min.css`],
+            'grapesjs',
+          );
           const { enableEditor } = await import(
             /* webpackChunkName: "pega-editor" */ './editor'
           );
@@ -317,14 +286,23 @@ ${html}`;
           console.error('Usersnap error', event);
         });
       };
-      addJsToPage(
-        '//api.usersnap.com/load/3d381185-491e-443f-8c1f-969ff8117d84.js?onload=onUsersnapLoad',
-      );
+      if (
+        !loadjs.isDefined('usersnap') &&
+        'noModule' in document.createElement('script')
+      ) {
+        loadjs(
+          [
+            '//api.usersnap.com/load/3d381185-491e-443f-8c1f-969ff8117d84.js?onload=onUsersnapLoad',
+          ],
+          'usersnap',
+          function() {
+            feedbackEl.addEventListener('click', async event => {
+              window['usersnapApi'].open();
+            });
+          },
+        );
+      }
     }
-
-    feedbackEl.addEventListener('click', async event => {
-      window['usersnapApi'].open();
-    });
   });
 
   // uncomment to have first editor open on page load for easier dev experience
