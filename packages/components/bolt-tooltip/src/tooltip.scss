@@ -181,7 +181,7 @@ $bolt-tooltip-transition: $bolt-transition;
         }
       }
 
-      .is-active+.c-bolt-tooltip__content--button {
+      .is-open+.c-bolt-tooltip__content--button {
         animation: bounceUp 500ms ease forwards;
 
         &.c-bolt-tooltip__content--count-5 {
@@ -215,7 +215,7 @@ $bolt-tooltip-transition: $bolt-transition;
         }
       }
 
-      .is-active+.c-bolt-tooltip__content--button {
+      .is-open+.c-bolt-tooltip__content--button {
         animation: bounceDown 500ms ease forwards;
       }
 
@@ -404,7 +404,7 @@ $bolt-tooltip-transition: $bolt-transition;
     opacity: 0 !important; // We need this to override the hover functionality
     pointer-events: none;
 
-    .is-active+& {
+    .is-open+& {
       opacity: bolt-opacity(100) !important; // Brings us back only when active
       pointer-events: auto !important; // Brings back the ability to click links within the tooltip only when active
     }
@@ -436,14 +436,15 @@ $bolt-tooltip-transition: $bolt-transition;
 
 
 // Show and hide effects
-.c-bolt-tooltip:not(:hover) > .c-bolt-tooltip__content,
+.c-bolt-tooltip:not(:hover):not(.is-open) > .c-bolt-tooltip__content,
 .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
   opacity: bolt-opacity(0);
   pointer-events: none;
 }
 
-.c-bolt-tooltip:hover > .c-bolt-tooltip__content,
-.c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+.c-bolt-tooltip:hover:not(.is-rendered) > .c-bolt-tooltip__content,
+.c-bolt-tooltip.is-open > .c-bolt-tooltip__content,
+.c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
   opacity: bolt-opacity(100);
   pointer-events: auto;
 }
@@ -455,7 +456,7 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
     //padding-bottom: 0.25em; // Extra spacing between the bubble and the trigger
   }
 }
@@ -467,7 +468,7 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
     padding-left: $bolt-tooltip-bubble-triangle-width * 1.5; // Extra spacing between the bubble and the trigger
   }
 }
@@ -479,7 +480,7 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
     //padding-top: 0.25em; // Extra spacing between the bubble and the trigger
   }
 }
@@ -491,7 +492,7 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
     padding-right: $bolt-tooltip-bubble-triangle-width * 1.5; // Extra spacing between the bubble and the trigger
   }
 }
