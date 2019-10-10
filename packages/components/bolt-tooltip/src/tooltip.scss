@@ -44,6 +44,21 @@ $bolt-tooltip-transition: $bolt-transition;
   100% { transform: translate(-50%, -110%) scale(1); }
 }
 
+:host {
+  display: inline-block;
+}
+
+// display the initial text for simple text-based Tooltips
+bolt-tooltip:not([ready]):not([trigger-type="button"]):before {
+  content: attr(trigger-text);
+}
+
+// hide the initial tooltip content before the JS is ready
+// @todo: refactor + replace when restoring tooltips that work w/o JS
+bolt-tooltip:not([ready]) > * {
+  display: none;
+}
+
 // Tooltip positioning
 .c-bolt-tooltip {
   display: inline-block;
