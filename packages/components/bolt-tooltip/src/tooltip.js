@@ -55,7 +55,7 @@ class BoltTooltip extends withLitHtml() {
       ...props.string,
       ...{ default: undefined },
     }, // For use ONLY with share
-    active: {
+    isOpen: {
       ...props.boolean,
       ...{ default: false },
     },
@@ -72,17 +72,16 @@ class BoltTooltip extends withLitHtml() {
   }
 
   clickHandler() {
-    this.active = !this.active;
-    this.renderRoot
-      .querySelector('bolt-tooltip-trigger')
-      .classList.toggle('is-active');
+    this.isOpen = !this.isOpen;
+  }
+
   }
 
   setClick() {
     if (this.triggerType === 'button') {
       return html`
         <bolt-tooltip-trigger
-          class="c-bolt-tooltip__trigger"
+          class="${this.isOpen ? 'is-active' : ''} c-bolt-tooltip__trigger"
           aria-describedby=${this.triggerID}
           @click=${this.clickHandler}
         >
@@ -92,7 +91,7 @@ class BoltTooltip extends withLitHtml() {
     } else {
       return html`
         <bolt-tooltip-trigger
-          class="c-bolt-tooltip__trigger"
+          class="${this.isOpen ? 'is-active' : ''} c-bolt-tooltip__trigger"
           aria-describedby=${this.triggerID}
         >
           ${this.setTrigger()}
@@ -110,14 +109,14 @@ class BoltTooltip extends withLitHtml() {
           >${this.triggerIconName &&
             html`
               <bolt-icon
-                name="${this.active
+                name="${this.isOpen
                   ? this.triggerToggleIcon
                   : this.triggerIconName}"
                 size="${this.triggerIconSize}"
                 slot="before"
               ></bolt-icon>
             `}
-          ${this.active
+          ${this.isOpen
             ? this.triggerToggleText
             : this.triggerText}</bolt-button
         >
@@ -138,11 +137,12 @@ class BoltTooltip extends withLitHtml() {
   }
 
   render() {
-    const classes = cx('c-bolt-tooltip is-align-center', {
+    const classes = cx('c-bolt-tooltip is-align-center is-rendered', {
       [`c-bolt-tooltip${
         this.triggerType === 'button' ? `--action` : `--help`
       }`]: this.triggerType,
       [`is-push-${this.positionVert}`]: this.positionVert,
+      [`is-open`]: this.isOpen,
       [`c-bolt-tooltip--nowrap`]: this.noWrap,
       [`c-bolt-tooltip--spacing-${this.spacing}`]: this.spacing,
     });
@@ -162,7 +162,9 @@ class BoltTooltip extends withLitHtml() {
           role="tooltip"
           aria-hidden="true"
         >
-          <span class="c-bolt-tooltip__content-bubble">${this.content}</span>
+          <span class="c-bolt-tooltip__content-bubble"
+            >${this.slot('default')}</span
+          >
         </bolt-tooltip-content>
       </span>
     `;
