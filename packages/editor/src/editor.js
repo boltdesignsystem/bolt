@@ -40,19 +40,21 @@ export function enableEditor({ space, uiWrapper, config }) {
     }
 
     const selected = editor.getSelected();
-
     const isStep = selected.attributes.tagName === 'bolt-interactive-step';
     const isPathway =
       selected.attributes.tagName === 'bolt-interactive-pathway';
+
     if (!(isPathway || isStep)) {
       // eslint-disable-next-line no-alert
       alert('"Move Up" and "Move Down" only work for Steps and Pathways');
       return;
     }
+
     const parentCollection = selected.parent().components();
-    if (!parentCollection.length > 1) {
+    if (parentCollection.length <= 1) {
       return;
     }
+
     const indexOfSelected = parentCollection.indexOf(selected);
     parentCollection.remove(selected);
     if (directionIsUp) {
