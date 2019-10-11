@@ -58,7 +58,7 @@ class TwigFunctions {
     $context = new ArrayFinder($context);
     $boltConfig = $context->get('bolt.data.config');
 
-    // if the config option used to manually set server-side rendering behavior (enabled, disabled, or auto) doesn't exist, automatically disable and exit early.  
+    // if the config option used to manually set server-side rendering behavior (enabled, disabled, or auto) doesn't exist, automatically disable and exit early.
     if (!isset($boltConfig["enableSSR"])){
       return $html;
     }
@@ -67,7 +67,7 @@ class TwigFunctions {
     if ($boltConfig["enableSSR"] == false){
       return $html;
     }
-    
+
     $ssrServerPath = dirname($boltConfig["configFileUsed"], 2) . '/node_modules/@bolt/ssr-server/cli.js';
     $ssrServerPathAlt = dirname($boltConfig["configFileUsed"], 1) . '/node_modules/@bolt/ssr-server/cli.js';
     $ssrServerLocation = '';
@@ -78,7 +78,7 @@ class TwigFunctions {
     } elseif (file_exists( $ssrServerPathAlt )){
       $ssrServerLocation = $ssrServerPathAlt; // SSR file to use for rendering found one level higher than the .boltrc config
     } else {
-      return $html; // if the ssr-server can't be found 
+      return $html; // if the ssr-server can't be found
     }
 
     // auto-disable syntax highlighting via the 2nd prop
@@ -324,12 +324,23 @@ class TwigFunctions {
     });
   }
 
+  // Returns an up-to-date version of the global `bolt.data` data store
+  public static function getBoltData() {
+    return new Twig_SimpleFunction('getBoltData', function(\Twig\Environment $env) {
+      $fullManifestPath = TwigTools\Utils::resolveTwigPath($env, '@bolt-data/full-manifest.bolt.json');
+      $dataDir = dirname($fullManifestPath);
+      return Bolt\Utils::buildBoltData($dataDir);
+    }, [
+      'needs_environment' => true,
+    ]);
+  }
+
   /**
    * Build an array of Twig props and data
-   * 
+   *
    * array["props"] object - Combines "attributes" and schema-allowed props, wrapped in a Drupal Attribute object for rendering as HTML attributes
    * array["data"] array - Schema-allowed props plus default prop values for internal use in our Twig templates
-   * 
+   *
    * @param array $context - The current Twig $context, includes all available template variables
    * @param array $schema - The schema object for a particular component
    * @return array - An array of Twig data (See above)

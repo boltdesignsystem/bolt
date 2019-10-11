@@ -3,6 +3,50 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.6](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.8.0-beta.4](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.8.0-beta.3](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.8.0-beta.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
+# [2.8.0-beta.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+**Note:** Version bump only for package @bolt/components-carousel
+
+
+
+
+
 # [2.7.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.6.0...v2.7.0) (2019-09-13)
 
 
