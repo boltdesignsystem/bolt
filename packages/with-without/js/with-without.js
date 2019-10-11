@@ -112,7 +112,7 @@ const fireInitialAnimations = (toggleInputs, checkedValue, wwoSwiper) => {
     const observer = new IntersectionObserver(
       entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          if (entry.intersectionRatio >= 0.5) {
             fireInitialAnimations(toggleInputs, checkedValue, wwoSwiper);
             observer.unobserve(toggleInputsWrapper);
           }

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Yeoman component generator JS file exist 1`] = `
-"import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+"import { props, define } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './test.scss';
@@ -27,7 +27,6 @@ class BoltTest extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema);
     return self;
   }
@@ -42,7 +41,7 @@ class BoltTest extends withLitHtml() {
 
     return html\`
       \${this.addStyles([styles])}
-      <div class=\\"\${classes}\\" is=\\"shadow-root\\">
+      <div class=\\"\${classes}\\">
         \${this.slot('default')}
       </div>
     \`;
