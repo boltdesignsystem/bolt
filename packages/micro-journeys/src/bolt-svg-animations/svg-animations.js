@@ -38,7 +38,8 @@ class SVGAnimations extends withLitContext() {
     });
 
     const SVGTag = SVGs[`${props.animType}`];
-    const uniqId = String.fromCharCode(65 + Math.floor(Math.random() * 26))  + Date.now();  //generate a random id to prevent CSS collission from embedded SVG styles in IE/Edge
+    const uniqId =
+      String.fromCharCode(65 + Math.floor(Math.random() * 26)) + Date.now(); //generate a random id to prevent CSS collission from embedded SVG styles in IE/Edge
 
     return html`
       ${this.addStyles([styles])}
@@ -47,7 +48,7 @@ class SVGAnimations extends withLitContext() {
           speed: props.speed,
           theme,
           direction: props.direction,
-          animId: uniqId
+          animId: uniqId,
         })}
       </div>
     `;

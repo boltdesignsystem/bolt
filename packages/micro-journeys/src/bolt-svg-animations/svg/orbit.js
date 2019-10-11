@@ -19,10 +19,10 @@ export const orbit = ({ speed, theme, animId }) => {
     -webkit-animation-iteration-count: infinite; animation-iteration-count:
     infinite; -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 1);
     animation-timing-function: cubic-bezier(0, 0, 1, 1); } #el_3_mf5AZNVo {
-    stroke: none; stroke-width: 1; fill: none; } #${animId} #dashed_circle { stroke:
-    ${theme === 'dark' ? `#FFFFFF` : `#535DA6`}; stroke-width: 0.914634146; }
-    #el_XZMv5KV-BQ { fill: #009999; } #el_D9rhYqcKss { fill: #009999; }
-    #el_GmGtSmeZzg { fill: #009999; } #el_3_mf5AZNVo_an_9jFWXwODG {
+    stroke: none; stroke-width: 1; fill: none; } #${animId} #dashed_circle {
+    stroke: ${theme === 'dark' ? `#FFFFFF` : `#535DA6`}; stroke-width:
+    0.914634146; } #el_XZMv5KV-BQ { fill: #009999; } #el_D9rhYqcKss { fill:
+    #009999; } #el_GmGtSmeZzg { fill: #009999; } #el_3_mf5AZNVo_an_9jFWXwODG {
     -webkit-animation-fill-mode: backwards; animation-fill-mode: backwards;
     -webkit-transform: translate(75px, 75px) rotate(0deg) translate(-75px,
     -75px); transform: translate(75px, 75px) rotate(0deg) translate(-75px,

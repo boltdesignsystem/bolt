@@ -3,19 +3,19 @@ import { html } from '@bolt/core/renderers/renderer-lit-html';
 export const automation = ({ speed, theme, animId }) => {
   const authoredStyle = html`
     #bolt-automation-container { max-height: 400px; max-width: 400px; }
-    ${animId} { transform: translateZ(0);} @keyframes kf_line1 { 0%
-    {transform: translate(70.80000305175781px, 0px)
-    translate(-70.80000305175781px, 0px) translate(0px, 37px);} 16.67%
-    {transform: translate(70.80000305175781px, 0px)
-    translate(-70.80000305175781px, 0px) translate(0px, -30px);} 50% {transform:
+    ${animId} { transform: translateZ(0);} @keyframes kf_line1 { 0% {transform:
     translate(70.80000305175781px, 0px) translate(-70.80000305175781px, 0px)
-    translate(0px, -30px);} 66.67% {transform: translate(70.80000305175781px,
-    0px) translate(-70.80000305175781px, 0px) translate(0px, 37px);} 100%
+    translate(0px, 37px);} 16.67% {transform: translate(70.80000305175781px,
+    0px) translate(-70.80000305175781px, 0px) translate(0px, -30px);} 50%
     {transform: translate(70.80000305175781px, 0px)
-    translate(-70.80000305175781px, 0px) translate(0px, 37px);} } @keyframes
-    kf_line2 { 4.17% {transform: translate(74.64534759521484px,
-    20.724998474121094px) translate(-74.64534759521484px, -20.724998474121094px)
-    translate(-26px, 26px);} 21.67% {transform: translate(74.64534759521484px,
+    translate(-70.80000305175781px, 0px) translate(0px, -30px);} 66.67%
+    {transform: translate(70.80000305175781px, 0px)
+    translate(-70.80000305175781px, 0px) translate(0px, 37px);} 100% {transform:
+    translate(70.80000305175781px, 0px) translate(-70.80000305175781px, 0px)
+    translate(0px, 37px);} } @keyframes kf_line2 { 4.17% {transform:
+    translate(74.64534759521484px, 20.724998474121094px)
+    translate(-74.64534759521484px, -20.724998474121094px) translate(-26px,
+    26px);} 21.67% {transform: translate(74.64534759521484px,
     20.724998474121094px) translate(-74.64534759521484px, -20.724998474121094px)
     translate(26px, -26px);} 55.00% {transform: translate(74.64534759521484px,
     20.724998474121094px) translate(-74.64534759521484px, -20.724998474121094px)
@@ -155,10 +155,10 @@ export const automation = ({ speed, theme, animId }) => {
         <g id="line1" data-animator-group="true" data-animator-type="0">
           <g id="el_dGAPtPCPIB">
             <rect x="74" y="4" width="1" height="71" id="el_4SrIO-NU3e" />
-              <path
-                d="M70.8,4.2C70.8,1.9,72.7,0,75,0s4.2,1.9,4.2,4.2c0,2.3-1.9,4.2-4.2,4.2S70.8,6.5,70.8,4.2z"
-                id="el_f2h4TxhdJ4"
-              />
+            <path
+              d="M70.8,4.2C70.8,1.9,72.7,0,75,0s4.2,1.9,4.2,4.2c0,2.3-1.9,4.2-4.2,4.2S70.8,6.5,70.8,4.2z"
+              id="el_f2h4TxhdJ4"
+            />
           </g>
         </g>
         <g id="line5" data-animator-group="true" data-animator-type="0">

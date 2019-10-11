@@ -25,15 +25,16 @@ export const radar = ({ speed, theme, animId }) => {
     74.87999725341797px) rotate(0deg) translate(-74.8799963593483px,
     -74.87999725341797px);} 100% {transform: translate(74.8799963593483px,
     74.87999725341797px) rotate(360deg) translate(-74.8799963593483px,
-    -74.87999725341797px);} } #${animId} { transform: translateZ(0);
-    }#${animId} * { animation-duration: 2s; animation-iteration-count:
-    infinite; animation-timing-function: cubic-bezier(0, 0, 1, 1); }
-    #el_tbKqO34v2S { clip-path: url(#a); } #el_2UN1ufNGj1 { overflow: visible;
-    transform: matrix(0.48, 0, 0, -0.48, -0.96, 150.48); } #${animId} #el_d8_3YPeiQ5 {
+    -74.87999725341797px);} } #${animId} { transform: translateZ(0); }#${animId}
+    * { animation-duration: 2s; animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1); } #el_tbKqO34v2S {
+    clip-path: url(#a); } #el_2UN1ufNGj1 { overflow: visible; transform:
+    matrix(0.48, 0, 0, -0.48, -0.96, 150.48); } #${animId} #el_d8_3YPeiQ5 {
     fill: none; stroke: ${primaryColor}; stroke-width: 0.5; stroke-miterlimit:
-    10; stroke-dasharray: 2.6087; } #${animId} #el_qDh9wHf6FM { fill: none; stroke:
-    ${primaryColor}; stroke-width: 0.5; stroke-miterlimit: 10; stroke-dasharray:
-    2.6087; } #${animId} #el_NeV7-4GsdB, #${animId} #el_fzJ7A95FI-, #${animId} #el_vfSwk5hMIQ, #${animId} #el_aP0xuWOs4- {
+    10; stroke-dasharray: 2.6087; } #${animId} #el_qDh9wHf6FM { fill: none;
+    stroke: ${primaryColor}; stroke-width: 0.5; stroke-miterlimit: 10;
+    stroke-dasharray: 2.6087; } #${animId} #el_NeV7-4GsdB, #${animId}
+    #el_fzJ7A95FI-, #${animId} #el_vfSwk5hMIQ, #${animId} #el_aP0xuWOs4- {
     animation-fill-mode: backwards; animation-timing-function: cubic-bezier(0,
     0, 1, 1); clip-rule: evenodd; fill-rule: evenodd; fill: ${primaryColor}; }
     #el_NeV7-4GsdB { animation-name: kf_el_NeV7-4GsdB_an_zwfIwf8-6; opacity: 1;
