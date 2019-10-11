@@ -63,15 +63,7 @@ class BoltAnimate extends withLitHtml() {
     this._processProps();
 
     if (this._animStage === ANIM_STAGES.INITIAL) {
-      if (this.hasAnimIn) {
-        if (this.props.initialAppearance === 'hidden') {
-          this._animStyle.opacity = 0;
-        }
-      } else {
-        if (this.hasAnimIdle) {
-          this._triggerAnimIdle();
-        }
-      }
+      this.resetAnimStage();
     }
   }
 
@@ -111,6 +103,8 @@ class BoltAnimate extends withLitHtml() {
             animationTimingFunction: this.props.outEasing,
           });
           isTriggered = true;
+        } else {
+          this.resetAnimStage();
         }
         break;
     }
@@ -118,9 +112,9 @@ class BoltAnimate extends withLitHtml() {
     if (isTriggered) {
       this._animStage = ANIM_STAGES[id];
       this.triggerUpdate();
-      if (this.props.showMeta) {
-        this.setAttribute('meta-stage', this._animStage);
-      }
+    }
+    if (this.props.showMeta) {
+      this.setAttribute('meta-stage', this._animStage);
     }
     return isTriggered;
   }
@@ -164,6 +158,23 @@ class BoltAnimate extends withLitHtml() {
     const hadAnim = this._triggerAnim(ANIM_STAGES.IDLE);
     // console.log(`triggered idle`, { hadAnim });
     return hadAnim;
+  }
+
+  resetAnimStage() {
+    this._animStage = ANIM_STAGES.INITIAL;
+    this._animStyle = {};
+
+    if (this.hasAnimIn) {
+      if (this.props.initialAppearance === 'hidden') {
+        this._animStyle.opacity = 0;
+      }
+    } else {
+      if (this.hasAnimIdle) {
+        this._triggerAnimIdle();
+      }
+    }
+
+    this.triggerUpdate();
   }
 
   /**

@@ -56,11 +56,11 @@ bolt-animate {
 }
 
 .c-pega-wwo {
+  position: relative;
   line-height: 1.4;
   background-color: black;
 
   @include bolt-mq($from: xlarge) {
-    position: relative;
     height: 0;
     // Scale bg image by width padding is relative to width. So this is an aspect ratio hack.
     // In desktop, all content is floated over this div and containers are 100%
