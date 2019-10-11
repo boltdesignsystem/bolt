@@ -41,6 +41,36 @@
     typescript-memoize "^1.0.0-alpha.3"
     url-join "^4.0.0"
 
+"@auto-it/core@^7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-7.8.0.tgz#f41dab7787a9b1fbc4f5edd4a2cb9ef7b254f34c"
+  integrity sha512-JDLl2CQ63unmFWjgsrYb5woQ3nQg13w9sXTNCOJm+R2ymAIQb5P9W49PMKCzZffpZwKa4O3e/+nM9DmWS/aoSA==
+  dependencies:
+    "@atomist/slack-messages" "~1.1.0"
+    "@octokit/graphql" "^4.0.0"
+    "@octokit/plugin-enterprise-compatibility" "^1.1.1"
+    "@octokit/plugin-retry" "^2.2.0"
+    "@octokit/plugin-throttling" "^2.6.0"
+    "@octokit/rest" "16.30.1"
+    await-to-js "^2.1.1"
+    cosmiconfig "5.2.1"
+    dedent "^0.7.0"
+    deepmerge "^4.0.0"
+    dotenv "^8.0.0"
+    enquirer "^2.3.0"
+    env-ci "^4.1.1"
+    gitlog "^3.1.2"
+    https-proxy-agent "^2.2.2"
+    import-cwd "^3.0.0"
+    lodash.chunk "^4.2.0"
+    node-fetch "2.6.0"
+    semver "^6.0.0"
+    signale "^1.4.0"
+    tapable "^2.0.0-beta.2"
+    tinycolor2 "^1.4.1"
+    typescript-memoize "^1.0.0-alpha.3"
+    url-join "^4.0.0"
+
 "@auto-it/npm@^7.7.0":
   version "7.7.0"
   resolved "https://registry.yarnpkg.com/@auto-it/npm/-/npm-7.7.0.tgz#55eadd6f440a550a6503443aa45e5be112290e6a"
@@ -64,6 +94,16 @@
   dependencies:
     "@auto-it/core" "^7.7.0"
     deepmerge "^4.0.0"
+
+"@auto-it/slack@^7.7.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/slack/-/slack-7.8.0.tgz#41f80090deda7f167803d6b09477a2f0b528db3a"
+  integrity sha512-mGvnx7ar9Tifesc4ZgMok3W7eBtJ/Qweeis/d+3cyWhe69qXMaO1Ht5FbBrok12HSAcgXn2emYCRsAEVqz7+AQ==
+  dependencies:
+    "@atomist/slack-messages" "~1.1.0"
+    "@auto-it/core" "^7.8.0"
+    node-fetch "2.6.0"
+    url-join "^4.0.0"
 
 "@babel/cli@^7.5.0":
   version "7.6.0"
@@ -978,9 +1018,9 @@
     sleep-promise "^8.0.1"
 
 "@bolt/components-page-footer@file:packages/components/bolt-page-footer":
-  version "2.8.0-beta.4"
+  version "2.8.0-beta.6"
   dependencies:
-    "@bolt/core" "^2.8.0-beta.4"
+    "@bolt/core" "^2.8.0-beta.6"
 
 "@ckeditor/ckeditor5-build-classic@^12.1.0":
   version "12.4.0"
@@ -10074,9 +10114,9 @@ https-proxy-agent@2.2.1:
     agent-base "^4.1.0"
     debug "^3.1.0"
 
-https-proxy-agent@^2.2.1:
+https-proxy-agent@^2.2.1, https-proxy-agent@^2.2.2:
   version "2.2.2"
-  resolved "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-2.2.2.tgz#271ea8e90f836ac9f119daccd39c19ff7dfb0793"
+  resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-2.2.2.tgz#271ea8e90f836ac9f119daccd39c19ff7dfb0793"
   integrity sha512-c8Ndjc9Bkpfx/vCJueCPy0jlP4ccCCSNDp8xwCZzPjKJUm+B+u9WX2x98Qx4n1PiMNTWo3D7KK5ifNV/yJyRzg==
   dependencies:
     agent-base "^4.3.0"
