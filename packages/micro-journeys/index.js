@@ -1,6 +1,7 @@
 import { polyfillLoader } from '@bolt/core/polyfills';
 
 polyfillLoader.then(res => {
+  console.debug('Bold polyfills and code have loaded, Micro Journey code is about to run.');
   import(
     /* webpackMode: 'eager', webpackChunkName: 'bolt-interactive-pathways' */ './src/interactive-pathways'
   );
