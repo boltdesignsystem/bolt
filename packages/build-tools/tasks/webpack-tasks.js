@@ -89,7 +89,6 @@ async function server(customWebpackConfig) {
           ui: false,
           notify: false,
           open: false,
-          tunnel: false, //TODO leaving for easy toggling to test IE locally.  remove before merge to master.
           logFileChanges: false,
           reloadOnRestart: true,
           watchOptions: {
