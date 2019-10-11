@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+
+### Bug Fixes
+
+* **self-drawing-circle:** move transforms outside of spin animation to fix Edge jerkiness ([2b8e70e](https://github.com/bolt-design-system/bolt/commit/2b8e70e))
+* **self-drawing-circle:** rotation direction fix and spin stopping on reset ([4133d03](https://github.com/bolt-design-system/bolt/commit/4133d03))
+* **with-without:** add check for toggler, bail if not found; overload handleResize and call to fix overlap bug on tablet ([8030996](https://github.com/bolt-design-system/bolt/commit/8030996))
+* **with-without:** add padding right to with results block ([ab924b3](https://github.com/bolt-design-system/bolt/commit/ab924b3))
+* **with-without:** blur edge focus after toggle to remove ugly outline ([598f951](https://github.com/bolt-design-system/bolt/commit/598f951))
+* **with-without:** bottom blocks at beginning of xlarge overflowing height ([c995f91](https://github.com/bolt-design-system/bolt/commit/c995f91))
+* **with-without:** edge fixes; resize window after accordion open/close ([13ad441](https://github.com/bolt-design-system/bolt/commit/13ad441))
+* **with-without:** fix title bar overflow ([97aa9e4](https://github.com/bolt-design-system/bolt/commit/97aa9e4))
+* **with-without:** force full-bleed as per comps; simplify CSS in desktop circle for stability ([d65ba1d](https://github.com/bolt-design-system/bolt/commit/d65ba1d))
+* update intersection observer logic to kick off the animations when the With/Without UI is 50% (or more) visible on the screen ([1976d5d](https://github.com/bolt-design-system/bolt/commit/1976d5d))
+* **with-without:** full-bleed force broken inside max-width ([40573d9](https://github.com/bolt-design-system/bolt/commit/40573d9))
+* **with-without:** remove horizontal scroll when vertical scrollbar present on IE/Edge ([e5539e5](https://github.com/bolt-design-system/bolt/commit/e5539e5))
+* **with-without:** tablet height overflow on load; force resize ([91d7717](https://github.com/bolt-design-system/bolt/commit/91d7717))
+
+
+### Features
+
+* **with-without:** attempt toggle outline removal on hover-capable devices ([704f158](https://github.com/bolt-design-system/bolt/commit/704f158))
+* **with-without:** detect pointer hover and only remove focus if found ([4a3ca92](https://github.com/bolt-design-system/bolt/commit/4a3ca92))
+* **with-without:** fire animations on intersection; clean up dom querying ([636b379](https://github.com/bolt-design-system/bolt/commit/636b379))
+
+
+
+
+
 # [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
 
 
