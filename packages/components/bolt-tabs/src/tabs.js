@@ -212,6 +212,21 @@ class BoltTabs extends withContext(withLitHtml()) {
       this.contexts.get(TabsContext).selectedIndex = newIndex; // Keep context 0-based
 
       this.scrollToSelectedTab();
+
+      // set timeout allows time for sub component to re-render, better that than putting this on the sub component where it'll be fired many more times than needed
+      setTimeout(() => {
+        this.dispatchEvent(
+          new CustomEvent('bolt:layout-size-changed', {
+            bubbles: true,
+          }),
+        );
+        const elementsToUpdate = this.querySelectorAll('[will-update]');
+        if (elementsToUpdate.length) {
+          elementsToUpdate.forEach(el => {
+            el.update && el.update();
+          });
+        }
+      }, 0);
     }
   }
 

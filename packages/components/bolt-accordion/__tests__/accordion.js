@@ -144,7 +144,7 @@ describe('<bolt-accordion> Component', () => {
   });
 
   test('Default <bolt-accordion> with Shadow DOM renders', async function() {
-    const defaultAccordionShadowRoot = await page.evaluate(() => {
+    const defaultAccordionShadowRoot = await page.evaluate(async () => {
       const accordion = document.createElement('bolt-accordion');
       accordion.innerHTML = `
         <bolt-accordion-item>
@@ -161,15 +161,36 @@ describe('<bolt-accordion> Component', () => {
         </bolt-accordion-item>`;
 
       document.body.appendChild(accordion);
-      accordion.updated();
 
-      const child = accordion.querySelector('bolt-accordion-item');
-      child.updated();
-
-      return child.renderRoot.innerHTML;
+      const accordionItems = Array.from(
+        accordion.querySelectorAll('bolt-accordion-item'),
+      );
+      const allElements = [accordion, ...accordionItems];
+      return await Promise.all(
+        allElements.map(element => {
+          if (element._wasInitiallyRendered) return;
+          return new Promise((resolve, reject) => {
+            element.addEventListener('ready', resolve);
+            element.addEventListener('error', reject);
+          });
+        }),
+      ).then(() => {
+        return accordion.renderRoot.innerHTML;
+      });
     });
 
-    const renderedShadowDomHTML = await html(defaultAccordionShadowRoot);
+    const defaultAccordionItemShadowRoot = await page.evaluate(async () => {
+      const accordionItem = document.querySelector('bolt-accordion-item');
+      return accordionItem.renderRoot.innerHTML;
+    });
+
+    const accordionRenderedHTML = await html(defaultAccordionShadowRoot);
+    const accordionItemRenderedHTML = await html(
+      defaultAccordionItemShadowRoot,
+    );
+
+    expect(accordionRenderedHTML).toMatchSnapshot();
+    expect(accordionItemRenderedHTML).toMatchSnapshot();
 
     await page.waitFor(500);
     const image = await page.screenshot();
@@ -178,15 +199,12 @@ describe('<bolt-accordion> Component', () => {
       failureThreshold: '0.01',
       failureThresholdType: 'percent',
     });
-
-    // @todo: this just renders the <style> tag, same happens in button
-    // Is there any point in adding this snapshot?
-    // expect(renderedShadowDomHTML).toMatchSnapshot();
   });
 
   test('Default <bolt-accordion> w/o Shadow DOM renders', async function() {
-    const defaultAccordionShadowRoot = await page.evaluate(() => {
+    const defaultAccordionShadowRoot = await page.evaluate(async () => {
       const accordion = document.createElement('bolt-accordion');
+      accordion.setAttribute('no-shadow', '');
       accordion.innerHTML = `
         <bolt-accordion-item>
           <bolt-text slot="trigger">Accordion item 1</bolt-text>
@@ -202,16 +220,36 @@ describe('<bolt-accordion> Component', () => {
         </bolt-accordion-item>`;
 
       document.body.appendChild(accordion);
-      accordion.useShadow = false;
-      accordion.updated();
 
-      const child = accordion.querySelector('bolt-accordion-item');
-      child.updated();
-
-      return child.renderRoot.innerHTML;
+      const accordionItems = Array.from(
+        accordion.querySelectorAll('bolt-accordion-item'),
+      );
+      const allElements = [accordion, ...accordionItems];
+      return await Promise.all(
+        allElements.map(element => {
+          if (element._wasInitiallyRendered) return;
+          return new Promise((resolve, reject) => {
+            element.addEventListener('ready', resolve);
+            element.addEventListener('error', reject);
+          });
+        }),
+      ).then(() => {
+        return accordion.renderRoot.innerHTML;
+      });
     });
 
-    const renderedShadowDomHTML = await html(defaultAccordionShadowRoot);
+    const defaultAccordionItemShadowRoot = await page.evaluate(async () => {
+      const accordionItem = document.querySelector('bolt-accordion-item');
+      return accordionItem.renderRoot.innerHTML;
+    });
+
+    const accordionRenderedHTML = await html(defaultAccordionShadowRoot);
+    const accordionItemRenderedHTML = await html(
+      defaultAccordionItemShadowRoot,
+    );
+
+    expect(accordionRenderedHTML).toMatchSnapshot();
+    expect(accordionItemRenderedHTML).toMatchSnapshot();
 
     await page.waitFor(500);
     const image = await page.screenshot();
@@ -220,7 +258,5 @@ describe('<bolt-accordion> Component', () => {
       failureThreshold: '0.01',
       failureThresholdType: 'percent',
     });
-
-    expect(renderedShadowDomHTML).toMatchSnapshot();
   });
 });
