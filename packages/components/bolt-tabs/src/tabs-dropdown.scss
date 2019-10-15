@@ -1,8 +1,36 @@
 // @todo: The majority of these styles were copied from nav-priority and adjusted to fit Tabs. These components are ready for a refactor.
 
+@import '_tabs-settings-and-tools.scss';
+
 // Local Tabs Variables
 $bolt-tabs-vspacing-small: bolt-v-spacing(small);
 $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-menu, and bolt-navlink components
+
+@keyframes a-bolt-tabs-bg-hover {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  40% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  60% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 0.99, 0.99);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
 
 // required so the dropdown can be positioned consistently
 .c-bolt-tabs__show-more {
@@ -104,7 +132,10 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
 }
 
 .c-bolt-tabs__show-button {
-  display: block;
+  @include bolt-font-size(medium);
+  @include bolt-font-weight(semibold);
+  display: flex;
+  align-items: center;
   position: relative;
   color: bolt-theme(headline);
   cursor: pointer;
@@ -118,7 +149,9 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
   background-color: bolt-theme(secondary, 0.05);
   transition: background-color 0.3s ease;
   white-space: nowrap;
-  @include bolt-padding(xsmall, squished);
+  @include bolt-padding(small, squished);
+  @include bolt-padding-top(0);
+  @include bolt-padding-bottom(0);
 
   &:before {
     content: '';
@@ -134,15 +167,8 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
     pointer-events: none;
     pointer-events: none;
     border-radius: $bolt-tabs-bg-border-radius;
-    background-color: bolt-theme(
-      (
-        xdark: brand 0.95,
-        dark: brand 0.95,
-        light: neutral 0.95,
-        xlight: neutral 0.95,
-      )
-    );
-    transition: opacity 0.3s ease;
+    background-color: bolt-theme(primary);
+    transition: all 0.1s ease;
   }
 
   &:hover {
@@ -150,6 +176,7 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
 
     &:before {
       opacity: 0.1;
+      animation: a-bolt-tabs-bg-hover $bolt-tabs-bg-transition-timing both;
     }
   }
 
@@ -171,13 +198,17 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
 }
 
 .c-bolt-tabs__show-text {
-  @include bolt-font-size(small);
-  @include bolt-font-weight(semibold);
   position: relative;
   z-index: 10;
 
   @include bolt-mq($until: $bolt-tabs-xsmall-bp) {
     @include bolt-visuallyhidden;
+  }
+
+  & + * {
+    @include bolt-mq($from: $bolt-tabs-xsmall-bp) {
+      @include bolt-margin-left(xsmall);
+    }
   }
 }
 
