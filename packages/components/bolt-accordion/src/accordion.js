@@ -155,7 +155,6 @@ class BoltAccordion extends withContext(withLitHtml()) {
     });
 
     this.accordion.on('fold:opened', fold => {
-
       // @todo: register these elements in Bolt data instead?
       const elementsToUpdate = this.querySelectorAll('[will-update]');
       if (elementsToUpdate.length) {
