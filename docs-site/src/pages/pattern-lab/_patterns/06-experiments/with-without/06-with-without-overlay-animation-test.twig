@@ -1,0 +1,17 @@
+<bolt-button onclick="triggerOverlayFade()" class="u-bolt-margin-bottom-large" style="z-index: 9999999999; position: relative;">Trigger Overlay Fade-Out with triggerAnimationOut</bolt-button>
+
+<bolt-button onclick="window.triggerOverlayDemoFadeOut()" class="u-bolt-margin-bottom-large" style="z-index: 9999999999; position: relative;">Trigger Overlay Fade-Out with triggerAnims</bolt-button>
+
+<bolt-animate class="c-pega-wwo__modal-bg--animator" show-meta group="initial" out="fade-out" out-duration="1500">
+  <div class="c-pega-wwo__modal-bg"></div>
+</bolt-animate>
+
+<script>
+  function triggerOverlayFade() {
+    const overlay = document.querySelector('.c-pega-wwo__modal-bg--animator');
+
+    if (overlay) {
+      overlay.triggerAnimOut();
+    }
+  }
+</script>
