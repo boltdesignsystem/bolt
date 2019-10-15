@@ -32,8 +32,10 @@ module.exports = {
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
     let testName = 'tabs-adaptive-menu';
-    const hiddenPrimaryLabel = 'bolt-tabs .c-bolt-tabs__nav > .c-bolt-tabs__label:nth-child(5)';
-    const visibleDropdownLabel = 'bolt-tabs .c-bolt-tabs__dropdown-list > .c-bolt-tabs__label:nth-child(5)';
+    const hiddenPrimaryLabel =
+      'bolt-tabs .c-bolt-tabs__nav > .c-bolt-tabs__label:nth-child(5)';
+    const visibleDropdownLabel =
+      'bolt-tabs .c-bolt-tabs__dropdown-list > .c-bolt-tabs__label:nth-child(5)';
 
     browser
       .url(
