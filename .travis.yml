@@ -93,7 +93,7 @@ jobs:
 
     - stage: Post-deploy
       name: 'Smoke Tests: Build Tools'
-      if: (tag =~ ^v) OR branch =~ /^(master|develop|release|hotfix|bug|fix)
+      if: (tag =~ ^v) OR branch =~ /^(master|develop|release|hotfix|bug|fix)/
       install: 'npm run setup'
       before_script: ./scripts/check-run-queue.js 'Build Tools'
       script: yarn run test:build-tools
@@ -102,7 +102,7 @@ jobs:
 
     - stage: Post-deploy
       name: 'Build Drupal Lab'
-      if: (tag =~ ^v) OR branch =~ /^(master|develop|release|hotfix|bug|fix)
+      if: (tag =~ ^v) OR branch =~ /^(master|develop|release|hotfix|bug|fix)/
       script:
         - composer global require hirak/prestissimo
         - cd example-integrations/drupal-lab
