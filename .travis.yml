@@ -15,15 +15,15 @@ before_install:
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
 stages:
-  - Prep
-  - Test Live Site
+  - Pre-deploy
+  - Post-deploy
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
 
 jobs:
   include:
-    - stage: Prep
+    - stage: Pre-deploy
       name: 'Smoke Tests: Linting'
       install: yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Lint'
@@ -31,7 +31,7 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Lint'
       after_failure: ./scripts/check-run-failure.js 'Lint'
 
-    - stage: Prep
+    - stage: Pre-deploy
       name: 'Smoke Tests: Unit Tests (Jest)'
       install:
         - travis_retry yarn run setup:full
@@ -46,22 +46,7 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Unit'
       after_failure: ./scripts/check-run-failure.js 'Unit'
 
-    - stage: Prep
-      name: 'Smoke Tests: Build Tools'
-      install: 'npm run setup'
-      before_script: ./scripts/check-run-queue.js 'Build Tools'
-      script: yarn run test:build-tools
-      after_success: ./scripts/check-run-success.js 'Build Tools'
-      after_failure: ./scripts/check-run-failure.js 'Build Tools'
-
-    - stage: Prep
-      name: 'Build Drupal Lab'
-      script:
-        - composer global require hirak/prestissimo
-        - cd example-integrations/drupal-lab
-        - npm run setup
-
-    - stage: Prep
+    - stage: Pre-deploy
       name: 'Build + Deploy Website'
       script:
         # Clear incache file on normal Travis builds
@@ -76,7 +61,7 @@ jobs:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - yarn run lh -- $NOW_URL
 
-    - stage: Test Live Site
+    - stage: Post-deploy
       name: 'Nightwatch End-to-End'
       install: travis_retry yarn run setup
       before_script: travis_retry ./scripts/check-run-in-progress.js 'Nightwatch'
@@ -85,29 +70,26 @@ jobs:
         - echo "The Now URL is $NOW_URL"
         - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
         - travis_wait yarn run test:e2e:full
-        - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
       after_success:
         - travis_retry ./scripts/deploy-branch-alias.js
         - travis_retry ./scripts/deploy-tagged-release.js
+        - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
 
-    - stage: Test Live Site
-      name: 'Ensure site is live'
-      install: yarn run setup
-      before_script: ./scripts/check-run-in-progress.js 'Site is live'
-      script:
-        - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
-        - time curl -sSf "$NOW_URL" > /dev/null
-      after_success:
-        - ./scripts/check-run-success.js 'Site is live'
-      after_failure:
-        - ./scripts/check-run-failure.js 'Site is live'
 
-    - stage: Test Live Site
-      name: 'Example master only job'
-      if: branch = master
+    - stage: Post-deploy
+      name: 'Smoke Tests: Build Tools'
+      install: 'npm run setup'
+      before_script: ./scripts/check-run-queue.js 'Build Tools'
+      script: yarn run test:build-tools
+      after_success: ./scripts/check-run-success.js 'Build Tools'
+      after_failure: ./scripts/check-run-failure.js 'Build Tools'
+
+    - stage: Post-deploy
+      name: 'Build Drupal Lab'
       script:
-        - echo "This example only runs on master branch builds"
+        - composer global require hirak/prestissimo
+        - cd example-integrations/drupal-lab
+        - npm run setup
 
 notifications:
   email:
