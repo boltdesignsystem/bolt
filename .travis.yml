@@ -25,6 +25,7 @@ jobs:
   include:
     - stage: Pre-deploy
       name: 'Smoke Tests: Linting'
+      if: type = push
       install: yarn run setup:quick
       before_script: ./scripts/check-run-queue.js 'Lint'
       script: yarn run lint
@@ -33,6 +34,7 @@ jobs:
 
     - stage: Pre-deploy
       name: 'Smoke Tests: Unit Tests (Jest)'
+      if: type IN (push, cron)
       install:
         - travis_retry yarn run setup:full
         - yarn workspace @bolt/website prep # creates data and manifest files
@@ -48,21 +50,35 @@ jobs:
 
     - stage: Pre-deploy
       name: 'Build + Deploy Website'
+      if: type IN (push, cron)
       script:
-        # Clear incache file on normal Travis builds
         - find . -name '.incache' -exec rm -rf {} +
         - yarn run setup
         - yarn run build
         - yarn run deploy
-        # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
       after_success:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - yarn run lh -- $NOW_URL
 
+      - stage: Pre-deploy
+        name: 'Build + Deploy Website'
+        if: type = pull_request
+        script:
+          - find . -name '.incache' -exec rm -rf {} +
+          - yarn run setup
+          - yarn run build
+          - yarn run deploy
+          - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+          - ./scripts/release/update-read-only-git-repos.sh
+        after_success:
+          - export NOW_URL=$(./scripts/get-latest-deploy.js)
+          - yarn run lh -- $NOW_URL
+
     - stage: Post-deploy
       name: 'Nightwatch End-to-End'
+      if: type IN (push, cron)
       install: travis_retry yarn run setup
       before_script: travis_retry ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
@@ -75,9 +91,9 @@ jobs:
         - travis_retry ./scripts/deploy-tagged-release.js
         - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
 
-
     - stage: Post-deploy
       name: 'Smoke Tests: Build Tools'
+      if: (tag =~ ^v) OR branch =~ /^(master|develop|release|hotfix|bug|fix)
       install: 'npm run setup'
       before_script: ./scripts/check-run-queue.js 'Build Tools'
       script: yarn run test:build-tools
@@ -86,6 +102,7 @@ jobs:
 
     - stage: Post-deploy
       name: 'Build Drupal Lab'
+      if: (tag =~ ^v) OR branch =~ /^(master|develop|release|hotfix|bug|fix)
       script:
         - composer global require hirak/prestissimo
         - cd example-integrations/drupal-lab
