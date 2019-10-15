@@ -255,6 +255,16 @@
   } only %}
 {% endset %}
 
+{% set video_content %}
+  {% include "@bolt/video.twig" with {
+    "videoId": "3861325118001",
+    "accountId": "1900410236",
+    "playerId": "r1CAdLzTW",
+    "showMeta": true,
+    "showMetaTitle": true
+  } only %}
+{% endset %}
+
 <h3>Pass various components into the content</h3>
 {% include "@bolt-components-accordion/accordion.twig" with {
   box_shadow: true,
@@ -270,6 +280,10 @@
     {
       trigger: "Expand this to see a share tool and a paragraph of text",
       content: share_content
+    },
+    {
+      trigger: "Expand this to see a video",
+      content: video_content
     },
     {
       trigger: "Expand this to see tabs",

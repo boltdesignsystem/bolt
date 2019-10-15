@@ -153,6 +153,16 @@
   } only %}
 {% endset %}
 
+{% set video_content %}
+  {% include "@bolt/video.twig" with {
+    "videoId": "3861325118001",
+    "accountId": "1900410236",
+    "playerId": "r1CAdLzTW",
+    "showMeta": true,
+    "showMetaTitle": true
+  } only %}
+{% endset %}
+
 <div class="u-bolt-margin-bottom-small">
   {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
@@ -169,6 +179,10 @@
           {
             label: "A teaser",
             content: teaser_content
+          },
+          {
+            label: "A video",
+            content: video_content,
           },
           {
             label: "An accordion",
