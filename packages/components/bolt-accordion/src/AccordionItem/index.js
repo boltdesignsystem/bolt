@@ -40,7 +40,7 @@ class AccordionItem extends withContext(withLitHtml()) {
     if (this._ssrHydrationPrep) return;
     const parentElem = this;
     const initialNodesToKeep = Array.from(
-      this.querySelectorAll('[ssr-hydrate]'),
+      this.querySelectorAll('[ssr-hydrate][for="bolt-accordion-item"]'),
     );
     const nodesToClean = [];
 
