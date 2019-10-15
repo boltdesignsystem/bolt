@@ -8,7 +8,6 @@ import {
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion.scss';
 import schema from '../accordion.schema.yml';
 
@@ -290,7 +289,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.contexts.get(AccordionContext).useShadow = this.useShadow;
 
     return html`
-      ${this.addStyles([styles, heightUtils])} ${this.template()}
+      ${this.addStyles([styles])} ${this.template()}
     `;
   }
 }
