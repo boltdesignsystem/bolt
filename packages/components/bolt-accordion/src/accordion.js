@@ -153,6 +153,17 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.accordion.on('destroyed', fold => {
       delete this.accordion;
     });
+
+    this.accordion.on('fold:opened', fold => {
+
+      // @todo: register these elements in Bolt data instead?
+      const elementsToUpdate = this.querySelectorAll('[will-update]');
+      if (elementsToUpdate.length) {
+        elementsToUpdate.forEach(el => {
+          el.update && el.update();
+        });
+      }
+    });
   }
 
   setupAccordion() {
