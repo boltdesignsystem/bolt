@@ -83,7 +83,8 @@
     "test:pkgs": "lerna run test",
     "test:types": "tsc",
     "postinstall": "patch-package && npx lerna run postbootstrap",
-    "postpublish": "auto release"
+    "postpublish": "auto release",
+    "lh": "lighthousebot"
   },
   "husky": {
     "hooks": {
@@ -107,6 +108,7 @@
   ],
   "dependencies": {
     "@auto-it/slack": "^7.7.0",
+    "lighthousebot": "github:GoogleChromeLabs/lighthousebot",
     "auto": "^7.7.0",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",

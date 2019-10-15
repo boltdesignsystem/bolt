@@ -72,6 +72,9 @@ jobs:
         # need to reset git repo before `update-read-only-git-repos.sh`
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
+      after_success:
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - yarn run lh -- $NOW_URL
 
     - stage: Test Live Site
       name: 'Nightwatch End-to-End'
