@@ -6,11 +6,10 @@ import {
   hasNativeShadowDomSupport,
   containsTagName,
   getUniqueId,
+  whichTransitionEvent,
+  waitForTransitionEnd,
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
-// Add `scrollIntoViewIfNeeded` support via `compute-scroll-into-view` not `scroll-into-view-if-needed` as the latter lacks shadow DOM support
-import computeScrollIntoView from 'compute-scroll-into-view';
 
 import classNames from 'classnames/bind';
 import styles from './tabs.scss';
@@ -43,12 +42,24 @@ class BoltTabs extends withContext(withLitHtml()) {
       ...props.number,
       ...{ default: schema.properties.selected_tab.default },
     },
+    menuIsOpen: {
+      ...props.boolean,
+      ...{ default: false },
+    },
   };
 
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema);
+
+    this.transitionEvent = whichTransitionEvent();
+    this._resizeMenu = this._resizeMenu.bind(this);
+    this._handleExternalClicks = this._handleExternalClicks.bind(this);
+    this._handleDropdownToggle = this._handleDropdownToggle.bind(this);
+    this._waitForDropdownToFinishAnimating = this._waitForDropdownToFinishAnimating.bind(
+      this,
+    );
 
     return self;
   }
@@ -160,8 +171,11 @@ class BoltTabs extends withContext(withLitHtml()) {
     }
   }
 
+  // Get tab labels, excluding duplicate labels in the "show more" menu
   get tabLabels() {
-    return this.renderRoot.querySelectorAll('.c-bolt-tabs__label');
+    return this.renderRoot.querySelectorAll(
+      '.c-bolt-tabs__label:not(.c-bolt-tabs__label--is-duplicate)',
+    );
   }
 
   validateIndex(index) {
@@ -210,8 +224,22 @@ class BoltTabs extends withContext(withLitHtml()) {
 
       this.setAttribute('selected-tab', newIndex + 1); // Convert `selectedTab` back to 1-based scale
       this.contexts.get(TabsContext).selectedIndex = newIndex; // Keep context 0-based
-
       this.scrollToSelectedTab();
+
+      // set timeout allows time for sub component to re-render, better that than putting this on the sub component where it'll be fired many more times than needed
+      setTimeout(() => {
+        this.dispatchEvent(
+          new CustomEvent('bolt:layout-size-changed', {
+            bubbles: true,
+          }),
+        );
+        const elementsToUpdate = this.querySelectorAll('[will-update]');
+        if (elementsToUpdate.length) {
+          elementsToUpdate.forEach(el => {
+            el.update && el.update();
+          });
+        }
+      }, 0);
     }
   }
 
@@ -269,6 +297,15 @@ class BoltTabs extends withContext(withLitHtml()) {
     if (newIndex !== undefined) {
       this.renderRoot.querySelectorAll('[role="tab"]')[newIndex].focus();
       this.setSelectedTab(newIndex);
+
+      // If menu button is displayed, handle keying in and out of the dropdown
+      if (!this.menuButtonIsHidden) {
+        if (this.tabLabels[newIndex].classList.contains('is-hidden')) {
+          !this.menuIsOpen && this.openDropdown();
+        } else {
+          this.menuIsOpen && this.closeDropdown();
+        }
+      }
     }
   }
 
@@ -280,29 +317,35 @@ class BoltTabs extends withContext(withLitHtml()) {
     const classes = cx('c-bolt-tabs', {
       [`c-bolt-tabs--align-${align}`]: align,
       [`c-bolt-tabs--inset`]: inset === 'auto' || inset === 'on',
+      [`c-bolt-tabs--show-dropdown`]: this.menuIsOpen,
     });
     const labelInnerClasses = cx('c-bolt-tabs__label-inner');
     const labelTextClasses = cx('c-bolt-tabs__label-text');
     const listClasses = cx('c-bolt-tabs__nav', {});
     const panelsClasses = cx('c-bolt-tabs__panels-container');
 
-    const tabButtons = () => {
+    const tabButtons = isDropdown => {
       let buttons = [];
 
       Array.from(this.tabPanels).forEach((item, index) => {
         const isSelected = index === this.selectedIndex;
         const label = item.querySelector('[slot="label"]');
-        const labelClasses = cx('c-bolt-tabs__label', {
+        const labelClasses = cx('c-bolt-tabs__label', 'c-bolt-tabs__item', {
           [`c-bolt-tabs__label--spacing-${labelSpacing}`]: labelSpacing,
+          [`c-bolt-tabs__label--is-duplicate`]: isDropdown,
+          [`c-bolt-tabs__label--vertical-border`]: isDropdown,
         });
         const labelText = label ? label.textContent : `Tab label ${index + 1}`; // @todo: add icon support? how to handle missing labels?
-        const labelId = `tab-${this.tabsId}-${index + 1}`; // Use 1-based Id's
+        const labelId = isDropdown
+          ? `tab-dropdown-${this.tabsId}-${index + 1}`
+          : `tab-${this.tabsId}-${index + 1}`; // Use 1-based Id's
         const panelId = `tab-panel-${this.tabsId}-${index + 1}`; // Use 1-based Id's
 
         let button = html`
           <bolt-trigger
             class="${labelClasses}"
             no-outline
+            display="${isDropdown ? 'block' : 'inline'}"
             role="tab"
             aria-selected="${isSelected}"
             aria-controls="${panelId}"
@@ -324,10 +367,41 @@ class BoltTabs extends withContext(withLitHtml()) {
       return buttons;
     };
 
+    const dropdown = () => {
+      return html`
+        <div
+          class="${cx(
+            'c-bolt-tabs__item',
+            'c-bolt-tabs__show-more',
+            'is-invisible',
+          )}"
+        >
+          <button
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="${this.menuIsOpen}"
+            class="${cx('c-bolt-tabs__button', 'c-bolt-tabs__show-button')}"
+          >
+            <span class="${cx('c-bolt-tabs__show-text')}">
+              ${this.props.moreText ? this.props.moreText : 'More'}
+            </span>
+            <span class="${cx('c-bolt-tabs__show-icon')}">
+              <bolt-icon name="chevron-down"></bolt-icon>
+            </span>
+          </button>
+          <div class="${cx('c-bolt-tabs__dropdown')}">
+            <div class="${cx('c-bolt-tabs__dropdown-list')}">
+              ${tabButtons(true)}
+            </div>
+          </div>
+        </div>
+      `;
+    };
+
     return html`
       <div class="${classes}">
-        <div class="${listClasses}" role="tablist" aria-label="Sample Tabs">
-          ${tabButtons()}
+        <div class="${listClasses}" role="tablist">
+          ${tabButtons()} ${dropdown()}
         </div>
         <div class="${panelsClasses}">
           ${this.slots.default ? this.slot('default') : ''}
@@ -336,27 +410,196 @@ class BoltTabs extends withContext(withLitHtml()) {
     `;
   }
 
+  _hideLabel(el) {
+    el.classList.add('is-hidden');
+    el.setAttribute('aria-hidden', 'true');
+  }
+
+  _showLabel(el) {
+    el.classList.remove('is-hidden');
+    el.setAttribute('aria-hidden', 'false');
+  }
+
+  _resizeMenu() {
+    this.classList.add('is-resizing');
+
+    const navWidth = this.primaryMenu.offsetWidth;
+    const buttonWidth = this.dropdownButton.offsetWidth;
+    const tolerance = 5; // Extra wiggle room when calculating how many items can fit
+    const maxWidth = navWidth - tolerance - buttonWidth;
+
+    // hide items that won't fit in the Primary
+    let currentWidth = 0;
+    let hiddenItems = [];
+    let isOverflowing = false; // keep track when the items in the nav stop fitting
+
+    // reveal all items for the calculation
+    this.allItems.forEach(item => {
+      this._showLabel(item);
+    });
+
+    this.primaryItems.forEach((item, i) => {
+      const itemFits = currentWidth + item.offsetWidth <= maxWidth;
+      // make sure the items fit + we haven't already started to encounter items that don't
+      if (itemFits && !isOverflowing) {
+        currentWidth += item.offsetWidth;
+      } else {
+        isOverflowing = true;
+        this._hideLabel(item);
+        hiddenItems.push(i);
+      }
+    });
+
+    // toggle the visibility of More button and items in Secondary
+    if (hiddenItems.length) {
+      this.dropdownItems.forEach((item, i) => {
+        if (!hiddenItems.includes(i)) {
+          this._hideLabel(item);
+        }
+      });
+      this.menuButtonIsHidden = false;
+    } else {
+      this.menuIsOpen = false;
+      this.removeAttribute('open');
+      this.showMoreItem.classList.add('is-hidden');
+      this.showMoreItem.setAttribute('aria-hidden', 'true');
+      this.menuButtonIsHidden = true;
+
+      this.container.classList.remove('c-bolt-tabs--show-dropdown');
+      this.dropdownButton.classList.remove('is-active');
+      this.dropdownButton.setAttribute('aria-expanded', false);
+    }
+
+    // is invisible on render so we can get width without flashing it onscreen
+    this.showMoreItem.classList.remove('is-invisible');
+    this.classList.remove('is-resizing');
+  }
+
+  _handleExternalClicks(e) {
+    // use path not target, target won't work in shadow dom
+    const el = this.useShadow ? e.path[0] : e.target;
+
+    // If not inside "show more" container OR you clicked on a different set of tabs
+    if (
+      el.closest('.c-bolt-tabs__show-more') === null ||
+      !this.renderRoot.contains(el)
+    ) {
+      this.closeDropdown();
+      document.removeEventListener('click', this._handleExternalClicks);
+    }
+  }
+
+  _handleDropdownToggle(e) {
+    e.preventDefault();
+    this.menuIsOpen = !this.menuIsOpen;
+    this.menuIsOpen ? this.openDropdown() : this.closeDropdown();
+  }
+
+  // Wait for the longest transition to finish before cleaning up animation-specific classes
+  _waitForDropdownToFinishAnimating(event) {
+    waitForTransitionEnd(
+      this,
+      this.priorityDropdown,
+      this._afterDropdownHasFinishedAnimating,
+    )(event);
+  }
+
+  // Post-animation cleanup -- removes event listeners added, once they're no longer needed
+  _afterDropdownHasFinishedAnimating(self, element, event) {
+    self.classList.remove('is-opening');
+    self.classList.remove('is-closing');
+
+    // Wait until now to add event listener, otherwise we have to stop propagation to avoid immediate open/close
+    if (self.menuIsOpen) {
+      document.addEventListener('click', self._handleExternalClicks);
+    }
+
+    self.priorityDropdown.removeEventListener(
+      self.transitionEvent,
+      self._waitForDropdownToFinishAnimating,
+      true,
+    );
+  }
+
+  openDropdown() {
+    this.menuIsOpen = true;
+    this.setAttribute('open', true);
+    this.container.classList.add('c-bolt-tabs--show-dropdown');
+    this.classList.add('is-opening');
+    this.dropdownButton.classList.add('is-active');
+    this.dropdownButton.setAttribute('aria-expanded', true);
+
+    this.priorityDropdown.addEventListener(
+      this.transitionEvent,
+      this._waitForDropdownToFinishAnimating,
+      true,
+    );
+  }
+
+  closeDropdown() {
+    this.menuIsOpen = false;
+    this.removeAttribute('open');
+    this.classList.add('is-closing');
+    this.container.classList.remove('c-bolt-tabs--show-dropdown');
+    this.dropdownButton.classList.remove('is-active');
+    this.dropdownButton.setAttribute('aria-expanded', false);
+
+    this.priorityDropdown.addEventListener(
+      this.transitionEvent,
+      this._waitForDropdownToFinishAnimating,
+    );
+  }
+
   rendered() {
     super.rendered && super.rendered();
 
-    if (!this.observer) {
-      this.addMutationObserver();
-    }
-
     if (!this.ready) {
+      // Now that the template has rendered, we can query the page for the parts we need to update after the fact
+      this.container = this.renderRoot.querySelector('.c-bolt-tabs');
+      this.primaryMenu = this.renderRoot.querySelector('.c-bolt-tabs__nav');
+      this.allItems = this.renderRoot.querySelectorAll('.c-bolt-tabs__item');
+      this.primaryItems = this.renderRoot.querySelectorAll(
+        '.c-bolt-tabs__nav > .c-bolt-tabs__item:not(.c-bolt-tabs__show-more)',
+      );
+      this.dropdownItems = this.renderRoot.querySelectorAll(
+        '.c-bolt-tabs__dropdown .c-bolt-tabs__item',
+      );
+      this.showMoreItem = this.renderRoot.querySelector(
+        '.c-bolt-tabs__show-more',
+      );
+      this.dropdownButton = this.renderRoot.querySelector(
+        '.c-bolt-tabs__show-button',
+      );
+      this.priorityDropdown = this.renderRoot.querySelector(
+        '.c-bolt-tabs__dropdown',
+      );
+
+      Promise.all([customElements.whenDefined('bolt-trigger')]).then(_ => {
+        this._resizeMenu();
+      });
+
+      window.addEventListener('optimizedResize', this._resizeMenu);
+      this.dropdownButton.addEventListener('click', this._handleDropdownToggle);
+
       this.ready = true;
       this.setAttribute('ready', '');
       this.dispatchEvent(new CustomEvent('tabs:ready'));
+    }
 
-      // On first render, if last item is selected, needs timeout to get acurate scroll position
-      setTimeout(() => {
-        this.scrollToSelectedTab();
-      }, 0);
+    if (!this.observer) {
+      this.addMutationObserver();
     }
   }
 
   disconnected() {
     super.disconnected && super.disconnected();
+
+    window.removeEventListener('optimizedResize', this._resizeMenu);
+    document.removeEventListener('click', this._handleExternalClicks);
+    this.dropdownButton.removeEventListener(
+      'click',
+      this._handleDropdownToggle,
+    );
 
     // remove MutationObserver if supported + exists
     if (window.MutationObserver && this.observer) {
@@ -380,5 +623,31 @@ class BoltTabs extends withContext(withLitHtml()) {
     `;
   }
 }
+
+// Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
+// won't fire before a previous event is complete.
+// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
+(function() {
+  function throttle(type, name, obj) {
+    obj = obj || window;
+    let running = false;
+
+    function func() {
+      if (running) {
+        return;
+      }
+      running = true;
+      requestAnimationFrame(function() {
+        obj.dispatchEvent(new CustomEvent(name));
+        running = false;
+      });
+    }
+    obj.addEventListener(type, func);
+  }
+
+  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
+  // such as scroll.
+  throttle('resize', 'optimizedResize');
+})();
 
 export { BoltTabs };
