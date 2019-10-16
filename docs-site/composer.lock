@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c36c270b5e515e0beddea0028fd7792c",
+    "content-hash": "591273f072560ba33266d119ecd048f5",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -70,16 +70,16 @@
         },
         {
             "name": "asm89/twig-lint",
-            "version": "1.0.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asm89/twig-lint.git",
-                "reference": "bbf7bc49689ed55d2900de7528c528c93db19431"
+                "reference": "9ce57f6e45dc699dbecb8a23034b01cf1f89774b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asm89/twig-lint/zipball/bbf7bc49689ed55d2900de7528c528c93db19431",
-                "reference": "bbf7bc49689ed55d2900de7528c528c93db19431",
+                "url": "https://api.github.com/repos/asm89/twig-lint/zipball/9ce57f6e45dc699dbecb8a23034b01cf1f89774b",
+                "reference": "9ce57f6e45dc699dbecb8a23034b01cf1f89774b",
                 "shasum": ""
             },
             "require": {
@@ -117,7 +117,7 @@
                 "lint",
                 "twig"
             ],
-            "time": "2016-07-25T21:02:13+00:00"
+            "time": "2016-12-30T10:04:11+00:00"
         },
         {
             "name": "basaltinc/twig-tools",
@@ -165,17 +165,12 @@
         },
         {
             "name": "bolt-design-system/core-php",
-            "version": "2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bolt-design-system/core-php.git",
-                "reference": "4a2c5665ee655c012f962850f2f49a7df86e06f5"
-            },
+            "version": "2.8.0",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bolt-design-system/core-php/zipball/4a2c5665ee655c012f962850f2f49a7df86e06f5",
-                "reference": "4a2c5665ee655c012f962850f2f49a7df86e06f5",
-                "shasum": ""
+                "type": "path",
+                "url": "../packages/core-php",
+                "reference": "6d3e4cc340abed89cb507f35bf5c8ba4072d1d8e",
+                "shasum": null
             },
             "require": {
                 "asm89/twig-lint": "^1.0",
@@ -201,7 +196,15 @@
                     "Bolt\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "scripts": {
+                "setup": [
+                    "@composer install --no-interaction --prefer-dist --no-progress"
+                ],
+                "test": [
+                    "@composer install --no-interaction --prefer-dist --no-progress",
+                    "vendor/bin/phpunit --colors=always tests"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -214,16 +217,15 @@
                     "name": "Evan Lovely"
                 }
             ],
-            "description": "Core PHP functionality for the Bolt Design System",
-            "time": "2019-08-30T21:04:54+00:00"
+            "description": "Core PHP functionality for the Bolt Design System"
         },
         {
             "name": "bolt-design-system/drupal-twig-extensions",
-            "version": "2.4.0",
+            "version": "2.8.0-beta.4",
             "dist": {
                 "type": "path",
                 "url": "../packages/drupal-twig-extensions",
-                "reference": "f5939913e3ce84896f84d7e639557fa99b8e3882",
+                "reference": "0b6d9663a35dded63031e62fb67b0ef411776471",
                 "shasum": null
             },
             "require": {
@@ -279,15 +281,15 @@
         },
         {
             "name": "bolt-design-system/twig-renderer",
-            "version": "2.6.0",
+            "version": "2.8.0-beta.4",
             "dist": {
                 "type": "path",
                 "url": "../packages/twig-renderer",
-                "reference": "3c68909e01dc074ee9f404900a3f0485dca91351",
+                "reference": "9577fdc16885df5a03669f19f43811ff55141940",
                 "shasum": null
             },
             "require": {
-                "bolt-design-system/core-php": "^2.6.0",
+                "bolt-design-system/core-php": "*",
                 "bolt-design-system/drupal-twig-extensions": "*",
                 "symfony/finder": "*",
                 "twig/twig": "1.37.1",
@@ -306,7 +308,7 @@
         },
         {
             "name": "cweagans/composer-patches",
-            "version": "1.6.7",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweagans/composer-patches.git",
@@ -417,21 +419,21 @@
         },
         {
             "name": "drupal/core-render",
-            "version": "8.7.8",
+            "version": "8.9.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-render.git",
-                "reference": "088f75280b4357930dc5136c5323cc1641772514"
+                "reference": "d20b0afe9ca3ca768c6e828442e4cdebbb2cfeec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-render/zipball/088f75280b4357930dc5136c5323cc1641772514",
-                "reference": "088f75280b4357930dc5136c5323cc1641772514",
+                "url": "https://api.github.com/repos/drupal/core-render/zipball/d20b0afe9ca3ca768c6e828442e4cdebbb2cfeec",
+                "reference": "d20b0afe9ca3ca768c6e828442e4cdebbb2cfeec",
                 "shasum": ""
             },
             "require": {
-                "drupal/core-utility": "^8.2",
-                "php": ">=5.5.9"
+                "drupal/core-utility": "^8.8",
+                "php": ">=7.0.8"
             },
             "type": "library",
             "autoload": {
@@ -448,28 +450,25 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2018-05-08T20:55:21+00:00"
+            "time": "2019-10-10T19:45:32+00:00"
         },
         {
             "name": "drupal/core-utility",
-            "version": "8.7.8",
+            "version": "8.9.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-utility.git",
-                "reference": "d31513b29161eec6c3dbeb6529b691840ed677c5"
+                "reference": "61e9c26798f0f86b7ed4a0d9c5404747437db3a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core-utility/zipball/d31513b29161eec6c3dbeb6529b691840ed677c5",
-                "reference": "d31513b29161eec6c3dbeb6529b691840ed677c5",
+                "url": "https://api.github.com/repos/drupal/core-utility/zipball/61e9c26798f0f86b7ed4a0d9c5404747437db3a1",
+                "reference": "61e9c26798f0f86b7ed4a0d9c5404747437db3a1",
                 "shasum": ""
             },
             "require": {
-                "drupal/core-render": "^8.2",
-                "paragonie/random_compat": "^1.0|^2.0",
-                "php": ">=5.5.9",
-                "symfony/polyfill-iconv": "~1.0",
-                "symfony/polyfill-mbstring": "~1.0"
+                "drupal/core-render": "^8.8",
+                "php": ">=7.0.8"
             },
             "type": "library",
             "autoload": {
@@ -486,7 +485,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2019-09-09T10:55:36+00:00"
+            "time": "2019-10-13T11:02:36+00:00"
         },
         {
             "name": "evanlovely/plugin-twig-namespaces",
@@ -545,16 +544,16 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.8.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de"
+                "reference": "300a564096ce5ce90dfd12a27fc8bc7ecbec523d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/f72816b43e74063c8b10357394b6bba8cb1c10de",
-                "reference": "f72816b43e74063c8b10357394b6bba8cb1c10de",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/300a564096ce5ce90dfd12a27fc8bc7ecbec523d",
+                "reference": "300a564096ce5ce90dfd12a27fc8bc7ecbec523d",
                 "shasum": ""
             },
             "require": {
@@ -563,12 +562,12 @@
             "require-dev": {
                 "ext-intl": "*",
                 "phpunit/phpunit": "^4.8.35 || ^5.7",
-                "squizlabs/php_codesniffer": "^1.5"
+                "squizlabs/php_codesniffer": "^2.9.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -591,7 +590,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2018-07-12T10:23:15+00:00"
+            "time": "2019-10-09T14:06:15+00:00"
         },
         {
             "name": "gregwar/cache",
@@ -690,7 +689,7 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.2.8",
+            "version": "5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
@@ -928,66 +927,17 @@
             "time": "2014-12-06T02:33:17+00:00"
         },
         {
-            "name": "paragonie/random_compat",
-            "version": "v2.0.18",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "0a58ef6e3146256cc3dc7cc393927bcc7d1b72db"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/0a58ef6e3146256cc3dc7cc393927bcc7d1b72db",
-                "reference": "0a58ef6e3146256cc3dc7cc393927bcc7d1b72db",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.*|5.*"
-            },
-            "suggest": {
-                "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "lib/random.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Paragon Initiative Enterprises",
-                    "email": "security@paragonie.com",
-                    "homepage": "https://paragonie.com"
-                }
-            ],
-            "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
-            "keywords": [
-                "csprng",
-                "polyfill",
-                "pseudorandom",
-                "random"
-            ],
-            "time": "2019-01-03T20:59:08+00:00"
-        },
-        {
             "name": "pattern-lab/core",
-            "version": "v2.9.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pattern-lab/patternlab-php-core.git",
-                "reference": "009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3"
+                "url": "https://github.com/boltdesignsystem/patternlab-php-core.git",
+                "reference": "41f32e4ee68e0c3a110f1746fbd8932a16d17c2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/patternlab-php-core/zipball/009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3",
-                "reference": "009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3",
+                "url": "https://api.github.com/repos/boltdesignsystem/patternlab-php-core/zipball/41f32e4ee68e0c3a110f1746fbd8932a16d17c2d",
+                "reference": "41f32e4ee68e0c3a110f1746fbd8932a16d17c2d",
                 "shasum": ""
             },
             "require": {
@@ -1025,16 +975,10 @@
                     "PatternLab": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
-                {
-                    "name": "Brad Frost",
-                    "homepage": "http://bradfrostweb.com",
-                    "role": "Creator"
-                },
                 {
                     "name": "Evan Lovely",
                     "homepage": "http://evanlovely.com",
@@ -1050,6 +994,11 @@
                     "email": "dmolsen@gmail.com",
                     "homepage": "http://dmolsen.com",
                     "role": "Former Lead Developer"
+                },
+                {
+                    "name": "Brad Frost",
+                    "homepage": "http://bradfrostweb.com",
+                    "role": "Creator"
                 }
             ],
             "description": "The core functionality for Pattern Lab.",
@@ -1061,7 +1010,12 @@
                 "style guide",
                 "styleguide"
             ],
-            "time": "2018-02-27T22:12:27+00:00"
+            "support": {
+                "issues": "https://github.com/pattern-lab/patternlab-php-core/issues",
+                "wiki": "http://patternlab.io/docs/",
+                "source": "https://github.com/pattern-lab/patternlab-php-core/releases"
+            },
+            "time": "2019-08-02T18:53:10+00:00"
         },
         {
             "name": "pattern-lab/patternengine-twig",
@@ -1131,16 +1085,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
+                "reference": "c4421fcac1edd5a324fda73e589a5cf96e52ffd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/c4421fcac1edd5a324fda73e589a5cf96e52ffd0",
+                "reference": "c4421fcac1edd5a324fda73e589a5cf96e52ffd0",
                 "shasum": ""
             },
             "require": {
@@ -1149,7 +1103,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -1174,7 +1128,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2018-11-20T15:27:04+00:00"
+            "time": "2018-11-21T13:42:00+00:00"
         },
         {
             "name": "seld/jsonlint",
@@ -1267,7 +1221,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.32",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -1339,16 +1293,16 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.3.5",
+            "version": "4.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "cc5c1efd0edfcfd10b354750594a46b3dd2afbbe"
+                "reference": "25fd3ba9cf14a2201aeaab9e0c4b8f455cbf0db7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/cc5c1efd0edfcfd10b354750594a46b3dd2afbbe",
-                "reference": "cc5c1efd0edfcfd10b354750594a46b3dd2afbbe",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/25fd3ba9cf14a2201aeaab9e0c4b8f455cbf0db7",
+                "reference": "25fd3ba9cf14a2201aeaab9e0c4b8f455cbf0db7",
                 "shasum": ""
             },
             "require": {
@@ -1359,12 +1313,12 @@
                 "symfony/http-kernel": "<3.4"
             },
             "require-dev": {
-                "symfony/http-kernel": "~3.4|~4.0"
+                "symfony/http-kernel": "^3.4|^4.0|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -1391,11 +1345,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2019-09-19T15:51:53+00:00"
+            "time": "2019-10-15T13:25:17+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.4.32",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -1458,7 +1412,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.32",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -1508,7 +1462,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.32",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -1557,7 +1511,7 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.12.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -1614,76 +1568,17 @@
             "time": "2019-08-06T08:03:45+00:00"
         },
         {
-            "name": "symfony/polyfill-iconv",
-            "version": "v1.12.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-iconv.git",
-                "reference": "685968b11e61a347c18bf25db32effa478be610f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-iconv/zipball/685968b11e61a347c18bf25db32effa478be610f",
-                "reference": "685968b11e61a347c18bf25db32effa478be610f",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "suggest": {
-                "ext-iconv": "For best performance"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.12-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Iconv\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill for the Iconv extension",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "iconv",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "time": "2019-08-06T08:03:45+00:00"
-        },
-        {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.12.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
+                "reference": "a874bbf9135bd76175baa2c26d14312c9ef25543"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/a874bbf9135bd76175baa2c26d14312c9ef25543",
+                "reference": "a874bbf9135bd76175baa2c26d14312c9ef25543",
                 "shasum": ""
             },
             "require": {
@@ -1729,11 +1624,11 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-09-17T10:46:08+00:00"
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.32",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -1782,7 +1677,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.32",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -2009,20 +1904,20 @@
         },
         {
             "name": "webmozart/path-util",
-            "version": "2.3.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/path-util.git",
-                "reference": "d939f7edc24c9a1bb9c0dee5cb05d8e859490725"
+                "reference": "95a8f7ad150c2a3773ff3c3d04f557a24c99cfd2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/path-util/zipball/d939f7edc24c9a1bb9c0dee5cb05d8e859490725",
-                "reference": "d939f7edc24c9a1bb9c0dee5cb05d8e859490725",
+                "url": "https://api.github.com/repos/webmozart/path-util/zipball/95a8f7ad150c2a3773ff3c3d04f557a24c99cfd2",
+                "reference": "95a8f7ad150c2a3773ff3c3d04f557a24c99cfd2",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3",
+                "php": "^5.3.3|^7.0",
                 "webmozart/assert": "~1.0"
             },
             "require-dev": {
@@ -2051,13 +1946,22 @@
                 }
             ],
             "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
-            "time": "2015-12-17T08:42:14+00:00"
+            "time": "2016-08-15T15:31:42+00:00"
         }
     ],
     "packages-dev": [],
-    "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "aliases": [
+        {
+            "alias": "2.9.0",
+            "alias_normalized": "2.9.0.0",
+            "version": "dev-develop",
+            "package": "pattern-lab/core"
+        }
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "pattern-lab/core": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
