@@ -224,7 +224,6 @@ class BoltTabs extends withContext(withLitHtml()) {
 
       this.setAttribute('selected-tab', newIndex + 1); // Convert `selectedTab` back to 1-based scale
       this.contexts.get(TabsContext).selectedIndex = newIndex; // Keep context 0-based
-      this.scrollToSelectedTab();
 
       // set timeout allows time for sub component to re-render, better that than putting this on the sub component where it'll be fired many more times than needed
       setTimeout(() => {
@@ -240,22 +239,6 @@ class BoltTabs extends withContext(withLitHtml()) {
           });
         }
       }, 0);
-    }
-  }
-
-  scrollToSelectedTab() {
-    const selectedLabel = this.tabLabels[this.selectedIndex];
-
-    if (selectedLabel) {
-      // https://www.npmjs.com/package/compute-scroll-into-view#usage
-      const actions = computeScrollIntoView(selectedLabel, {
-        scrollMode: 'if-needed',
-        inline: 'center',
-      });
-
-      actions.forEach(({ el, top, left }) => {
-        el.scroll({ top, left });
-      });
     }
   }
 
