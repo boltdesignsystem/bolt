@@ -44,6 +44,21 @@ $bolt-tooltip-transition: $bolt-transition;
   100% { transform: translate(-50%, -110%) scale(1); }
 }
 
+:host {
+  display: inline-block;
+}
+
+// display the initial text for simple text-based Tooltips
+bolt-tooltip:not([ready]):not([trigger-type="button"]):before {
+  content: attr(trigger-text);
+}
+
+// hide the initial tooltip content before the JS is ready
+// @todo: refactor + replace when restoring tooltips that work w/o JS
+bolt-tooltip:not([ready]) > * {
+  display: none;
+}
+
 // Tooltip positioning
 .c-bolt-tooltip {
   display: inline-block;
@@ -161,7 +176,7 @@ $bolt-tooltip-transition: $bolt-transition;
 
     &.is-push-up {
       .c-bolt-tooltip__content {
-        transform: translate(-50%, calc(-100% - #{$bolt-tooltip-bubble-triangle-width}));
+        transform: translate(-50%, calc(-100%));
 
         &--button {
           transform: translate(-50%, -115%) scale(1);
@@ -181,7 +196,7 @@ $bolt-tooltip-transition: $bolt-transition;
         }
       }
 
-      .is-active+.c-bolt-tooltip__content--button {
+      .is-open+.c-bolt-tooltip__content--button {
         animation: bounceUp 500ms ease forwards;
 
         &.c-bolt-tooltip__content--count-5 {
@@ -208,14 +223,14 @@ $bolt-tooltip-transition: $bolt-transition;
 
     &.is-push-down {
       .c-bolt-tooltip__content {
-        transform: translate(-50%, #{$bolt-tooltip-bubble-triangle-width});
+        transform: translate(-50%);
 
         &--button {
           transform: translate(-50%, 15%) scale(1);
         }
       }
 
-      .is-active+.c-bolt-tooltip__content--button {
+      .is-open+.c-bolt-tooltip__content--button {
         animation: bounceDown 500ms ease forwards;
       }
 
@@ -398,13 +413,14 @@ $bolt-tooltip-transition: $bolt-transition;
   display: block;
   position: absolute;
   z-index: bolt-z-index('tooltip');
+  cursor: default;
   transition: all $bolt-tooltip-transition;
 
   &--button {
     opacity: 0 !important; // We need this to override the hover functionality
     pointer-events: none;
 
-    .is-active+& {
+    .is-open+& {
       opacity: bolt-opacity(100) !important; // Brings us back only when active
       pointer-events: auto !important; // Brings back the ability to click links within the tooltip only when active
     }
@@ -436,14 +452,15 @@ $bolt-tooltip-transition: $bolt-transition;
 
 
 // Show and hide effects
-.c-bolt-tooltip:not(:hover) > .c-bolt-tooltip__content,
+.c-bolt-tooltip:not(:hover):not(.is-open) > .c-bolt-tooltip__content,
 .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
   opacity: bolt-opacity(0);
   pointer-events: none;
 }
 
-.c-bolt-tooltip:hover > .c-bolt-tooltip__content,
-.c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+.c-bolt-tooltip:hover:not(.is-rendered) > .c-bolt-tooltip__content,
+.c-bolt-tooltip.is-open > .c-bolt-tooltip__content,
+.c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
   opacity: bolt-opacity(100);
   pointer-events: auto;
 }
@@ -451,11 +468,11 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip.is-push-up {
   &:not(:hover) > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-bottom: 0;
+    padding-bottom: $bolt-tooltip-bubble-triangle-width;
   }
 
   &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
     //padding-bottom: 0.25em; // Extra spacing between the bubble and the trigger
   }
 }
@@ -467,7 +484,7 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
     padding-left: $bolt-tooltip-bubble-triangle-width * 1.5; // Extra spacing between the bubble and the trigger
   }
 }
@@ -475,11 +492,11 @@ $bolt-tooltip-transition: $bolt-transition;
 .c-bolt-tooltip.is-push-down {
   &:not(:hover) > .c-bolt-tooltip__content,
   .c-bolt-tooltip__trigger + .c-bolt-tooltip__content {
-    padding-top: 0;
+    padding-top: $bolt-tooltip-bubble-triangle-width;
   }
 
   &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
     //padding-top: 0.25em; // Extra spacing between the bubble and the trigger
   }
 }
@@ -491,7 +508,7 @@ $bolt-tooltip-transition: $bolt-transition;
   }
 
   &:hover > .c-bolt-tooltip__content,
-  .c-bolt-tooltip__trigger.is-active + .c-bolt-tooltip__content {
+  .c-bolt-tooltip__trigger.is-open + .c-bolt-tooltip__content {
     padding-right: $bolt-tooltip-bubble-triangle-width * 1.5; // Extra spacing between the bubble and the trigger
   }
 }

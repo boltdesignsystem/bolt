@@ -1,4 +1,4 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { props, define } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './<%= props.name.kebabCase %>.scss';
@@ -24,7 +24,6 @@ class Bolt<%= props.name.pascalCase %> extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema);
     return self;
   }
@@ -39,7 +38,7 @@ class Bolt<%= props.name.pascalCase %> extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles])}
-      <div class="${classes}" is="shadow-root">
+      <div class="${classes}">
         ${this.slot('default')}
       </div>
     `;

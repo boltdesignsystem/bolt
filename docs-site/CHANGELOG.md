@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+
+### Bug Fixes
+
+* cherry pick a handful of updates from [#1457](https://github.com/bolt-design-system/bolt/issues/1457) to pull in ([761b005](https://github.com/bolt-design-system/bolt/commit/761b005))
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+
+### Bug Fixes
+
+* **self-drawing-circle:** PL animation fix ([3bd8087](https://github.com/bolt-design-system/bolt/commit/3bd8087))
+* **with-without:** full-bleed force broken inside max-width ([40573d9](https://github.com/bolt-design-system/bolt/commit/40573d9))
+
+
+### Features
+
+* **micro-journeys:** add icon-group to PL; spelling fixes ([46a8782](https://github.com/bolt-design-system/bolt/commit/46a8782))
+* **with-without:** add visual cues to see if with-without properly breaks out of padding ([5203ce4](https://github.com/bolt-design-system/bolt/commit/5203ce4))
+* **with-without:** fire animations on intersection; clean up dom querying ([636b379](https://github.com/bolt-design-system/bolt/commit/636b379))
+* **with-without:** isolated background visual test for with/without for ie11 debugging ([058d25f](https://github.com/bolt-design-system/bolt/commit/058d25f))
+
+
+
+
+
 # [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
 
 

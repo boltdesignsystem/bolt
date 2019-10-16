@@ -3,6 +3,68 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/boltdesignsystem/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+
+### Bug Fixes
+
+* address prettier issues ([baa1471](https://github.com/boltdesignsystem/bolt/commit/baa1471))
+* cherry pick a handful of updates from [#1457](https://github.com/boltdesignsystem/bolt/issues/1457) to pull in ([761b005](https://github.com/boltdesignsystem/bolt/commit/761b005))
+* tweak AccordionItem's SSR hydration logic to only target children belonging to that particular custom element ([fc9a30f](https://github.com/boltdesignsystem/bolt/commit/fc9a30f))
+* update Accordion component Jest tests to wait till the component has finished rendering first before grabbing the HTML ([648cb66](https://github.com/boltdesignsystem/bolt/commit/648cb66))
+
+
+### Features
+
+* add adaptive menu to Tabs component ([5da94fb](https://github.com/boltdesignsystem/bolt/commit/5da94fb))
+
+
+
+
+
+# [2.8.0](https://github.com/boltdesignsystem/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+
+### Bug Fixes
+
+* **bolt-animate:** remove use of Set, polyfill breaking erratically ([c0e53a4](https://github.com/boltdesignsystem/bolt/commit/c0e53a4))
+* **editor:** make Move Up and Move Down buttons for Steps and Pathways ([da0e8f7](https://github.com/boltdesignsystem/bolt/commit/da0e8f7))
+* **editor:** syntax error fix -- thank you tests ([408d7b6](https://github.com/boltdesignsystem/bolt/commit/408d7b6))
+* **editor:** use package name for import ([433b01b](https://github.com/boltdesignsystem/bolt/commit/433b01b))
+* **micro-journeys:** config for update of parents with event on editor removal; add events for step and pathway removal ([43b6419](https://github.com/boltdesignsystem/bolt/commit/43b6419))
+* **self-drawing-circle:** move transforms outside of spin animation to fix Edge jerkiness ([2b8e70e](https://github.com/boltdesignsystem/bolt/commit/2b8e70e))
+* **self-drawing-circle:** PL animation fix ([3bd8087](https://github.com/boltdesignsystem/bolt/commit/3bd8087))
+* **self-drawing-circle:** rotation direction fix and spin stopping on reset ([4133d03](https://github.com/boltdesignsystem/bolt/commit/4133d03))
+* **with-without:** add check for toggler, bail if not found; overload handleResize and call to fix overlap bug on tablet ([8030996](https://github.com/boltdesignsystem/bolt/commit/8030996))
+* **with-without:** add padding right to with results block ([ab924b3](https://github.com/boltdesignsystem/bolt/commit/ab924b3))
+* **with-without:** blur edge focus after toggle to remove ugly outline ([598f951](https://github.com/boltdesignsystem/bolt/commit/598f951))
+* **with-without:** bottom blocks at beginning of xlarge overflowing height ([c995f91](https://github.com/boltdesignsystem/bolt/commit/c995f91))
+* **with-without:** edge fixes; resize window after accordion open/close ([13ad441](https://github.com/boltdesignsystem/bolt/commit/13ad441))
+* **with-without:** fix title bar overflow ([97aa9e4](https://github.com/boltdesignsystem/bolt/commit/97aa9e4))
+* **with-without:** force full-bleed as per comps; simplify CSS in desktop circle for stability ([d65ba1d](https://github.com/boltdesignsystem/bolt/commit/d65ba1d))
+* **with-without:** full-bleed force broken inside max-width ([40573d9](https://github.com/boltdesignsystem/bolt/commit/40573d9))
+* adjust styles to reduce the gap between the Tooltip content vs Trigger ([f59f91d](https://github.com/boltdesignsystem/bolt/commit/f59f91d))
+* more robust animation resets to allow retrigger when no idle or build out is defined ([4d1c3b1](https://github.com/boltdesignsystem/bolt/commit/4d1c3b1))
+* update intersection observer logic to kick off the animations when the With/Without UI is 50% (or more) visible on the screen ([1976d5d](https://github.com/boltdesignsystem/bolt/commit/1976d5d))
+* **with-without:** remove horizontal scroll when vertical scrollbar present on IE/Edge ([e5539e5](https://github.com/boltdesignsystem/bolt/commit/e5539e5))
+* **with-without:** tablet height overflow on load; force resize ([91d7717](https://github.com/boltdesignsystem/bolt/commit/91d7717))
+
+
+### Features
+
+* **editor:** hide pathways image options ([2536517](https://github.com/boltdesignsystem/bolt/commit/2536517))
+* **micro-journeys:** add icon-group to PL; spelling fixes ([46a8782](https://github.com/boltdesignsystem/bolt/commit/46a8782))
+* **micro-journeys:** add ms hint to animate title schemas ([9c14f46](https://github.com/boltdesignsystem/bolt/commit/9c14f46))
+* **with-without:** add visual cues to see if with-without properly breaks out of padding ([5203ce4](https://github.com/boltdesignsystem/bolt/commit/5203ce4))
+* **with-without:** attempt toggle outline removal on hover-capable devices ([704f158](https://github.com/boltdesignsystem/bolt/commit/704f158))
+* **with-without:** detect pointer hover and only remove focus if found ([4a3ca92](https://github.com/boltdesignsystem/bolt/commit/4a3ca92))
+* **with-without:** fire animations on intersection; clean up dom querying ([636b379](https://github.com/boltdesignsystem/bolt/commit/636b379))
+* **with-without:** isolated background visual test for with/without for ie11 debugging ([058d25f](https://github.com/boltdesignsystem/bolt/commit/058d25f))
+
+
+
+
+
 # [2.8.0-beta.6](https://github.com/boltdesignsystem/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
 
 

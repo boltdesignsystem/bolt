@@ -1,21 +1,21 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 
-export const automation = ({ speed, theme }) => {
+export const automation = ({ speed, theme, animId }) => {
   const authoredStyle = html`
     #bolt-automation-container { max-height: 400px; max-width: 400px; }
-    bolt-automation-svg { transform: translateZ(0);} @keyframes kf_line1 { 0%
-    {transform: translate(70.80000305175781px, 0px)
-    translate(-70.80000305175781px, 0px) translate(0px, 37px);} 16.67%
-    {transform: translate(70.80000305175781px, 0px)
-    translate(-70.80000305175781px, 0px) translate(0px, -30px);} 50% {transform:
+    ${animId} { transform: translateZ(0);} @keyframes kf_line1 { 0% {transform:
     translate(70.80000305175781px, 0px) translate(-70.80000305175781px, 0px)
-    translate(0px, -30px);} 66.67% {transform: translate(70.80000305175781px,
-    0px) translate(-70.80000305175781px, 0px) translate(0px, 37px);} 100%
+    translate(0px, 37px);} 16.67% {transform: translate(70.80000305175781px,
+    0px) translate(-70.80000305175781px, 0px) translate(0px, -30px);} 50%
     {transform: translate(70.80000305175781px, 0px)
-    translate(-70.80000305175781px, 0px) translate(0px, 37px);} } @keyframes
-    kf_line2 { 4.17% {transform: translate(74.64534759521484px,
-    20.724998474121094px) translate(-74.64534759521484px, -20.724998474121094px)
-    translate(-26px, 26px);} 21.67% {transform: translate(74.64534759521484px,
+    translate(-70.80000305175781px, 0px) translate(0px, -30px);} 66.67%
+    {transform: translate(70.80000305175781px, 0px)
+    translate(-70.80000305175781px, 0px) translate(0px, 37px);} 100% {transform:
+    translate(70.80000305175781px, 0px) translate(-70.80000305175781px, 0px)
+    translate(0px, 37px);} } @keyframes kf_line2 { 4.17% {transform:
+    translate(74.64534759521484px, 20.724998474121094px)
+    translate(-74.64534759521484px, -20.724998474121094px) translate(-26px,
+    26px);} 21.67% {transform: translate(74.64534759521484px,
     20.724998474121094px) translate(-74.64534759521484px, -20.724998474121094px)
     translate(26px, -26px);} 55.00% {transform: translate(74.64534759521484px,
     20.724998474121094px) translate(-74.64534759521484px, -20.724998474121094px)
@@ -95,7 +95,7 @@ export const automation = ({ speed, theme }) => {
     0px);} 0% {transform: translate(0px, 70.80000305175781px) translate(0px,
     -70.80000305175781px) translate(36px, 0px);} 100% {transform: translate(0px,
     70.80000305175781px) translate(0px, -70.80000305175781px) translate(36px,
-    0px);} } #bolt-automation-svg path, #bolt-automation-svg rect { fill:
+    0px);} } #${animId} path, #${animId} rect { fill:
     ${theme === 'dark' ? `#FFFFFF` : `#1f2656`}; } #el_FUdCGwmldWw { transform:
     matrix(0.7071, -0.7071, 0.7071, 0.7071, -31.3589, 75.707); } #el_ov2W8FYkaoZ
     { transform: matrix(0.7071, -0.7071, 0.7071, 0.7071, -80.5583, 54.4995); }
@@ -135,7 +135,7 @@ export const automation = ({ speed, theme }) => {
     </style>
     <div id="bolt-automation-container">
       <svg
-        id="bolt-automation-svg"
+        id="${animId}"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -154,17 +154,15 @@ export const automation = ({ speed, theme }) => {
         <title>Automation</title>
         <g id="line1" data-animator-group="true" data-animator-type="0">
           <g id="el_dGAPtPCPIB">
-            <rect x="74.5" y="4" width="1" height="71" id="el_4SrIO-NU3e" />
-            <g id="el_GjsxKTyhLE">
-              <path
-                d="M70.8,4.2C70.8,1.9,72.7,0,75,0s4.2,1.9,4.2,4.2c0,2.3-1.9,4.2-4.2,4.2S70.8,6.5,70.8,4.2z"
-                id="el_f2h4TxhdJ4"
-              />
-            </g>
+            <rect x="74" y="4" width="1" height="71" id="el_4SrIO-NU3e" />
+            <path
+              d="M70.8,4.2C70.8,1.9,72.7,0,75,0s4.2,1.9,4.2,4.2c0,2.3-1.9,4.2-4.2,4.2S70.8,6.5,70.8,4.2z"
+              id="el_f2h4TxhdJ4"
+            />
           </g>
         </g>
         <g id="line5" data-animator-group="true" data-animator-type="0">
-          <rect x="74.5" y="75" width="1" height="70.9" id="el_uVK02C_rOM" />
+          <rect x="74" y="75" width="1" height="70.9" id="el_uVK02C_rOM" />
           <path
             d="M79.4,145.6c0,2.4-2,4.4-4.4,4.4s-4.4-2-4.4-4.4c0-2.4,2-4.4,4.4-4.4S79.4,143.2,79.4,145.6z"
             id="el_VsqLZlRVcI"
