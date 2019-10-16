@@ -36,6 +36,21 @@ const accordionInnerHTML = `
   </bolt-accordion>
 `;
 
+const accordionTwigItems = [
+  {
+    trigger: 'Accordion item 1',
+    content: 'This is the accordion content.',
+  },
+  {
+    trigger: 'Accordion item 2',
+    content: 'This is the accordion content.',
+  },
+  {
+    trigger: 'Accordion item 3',
+    content: 'This is the accordion content.',
+  },
+];
+
 describe('<bolt-accordion> Component', () => {
   let page;
 
@@ -61,20 +76,7 @@ describe('<bolt-accordion> Component', () => {
     const results = await renderTwig(
       '@bolt-components-accordion/accordion.twig',
       {
-        items: [
-          {
-            trigger: 'Accordion item 1',
-            content: 'This is the accordion content.',
-          },
-          {
-            trigger: 'Accordion item 2',
-            content: 'This is the accordion content.',
-          },
-          {
-            trigger: 'Accordion item 3',
-            content: 'This is the accordion content.',
-          },
-        ],
+        items: accordionTwigItems,
       },
     );
     expect(results.ok).toBe(true);
@@ -87,20 +89,7 @@ describe('<bolt-accordion> Component', () => {
         '@bolt-components-accordion/accordion.twig',
         {
           single: singleChoice,
-          items: [
-            {
-              trigger: 'Accordion item 1',
-              content: 'This is the accordion content.',
-            },
-            {
-              trigger: 'Accordion item 2',
-              content: 'This is the accordion content.',
-            },
-            {
-              trigger: 'Accordion item 3',
-              content: 'This is the accordion content.',
-            },
-          ],
+          items: accordionTwigItems,
         },
       );
       expect(results.ok).toBe(true);
@@ -114,20 +103,7 @@ describe('<bolt-accordion> Component', () => {
         '@bolt-components-accordion/accordion.twig',
         {
           spacing: spacingChoice,
-          items: [
-            {
-              trigger: 'Accordion item 1',
-              content: 'This is the accordion content.',
-            },
-            {
-              trigger: 'Accordion item 2',
-              content: 'This is the accordion content.',
-            },
-            {
-              trigger: 'Accordion item 3',
-              content: 'This is the accordion content.',
-            },
-          ],
+          items: accordionTwigItems,
         },
       );
       expect(results.ok).toBe(true);
