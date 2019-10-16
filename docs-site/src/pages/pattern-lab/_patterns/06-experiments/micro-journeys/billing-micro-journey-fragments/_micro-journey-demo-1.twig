@@ -1,0 +1,55 @@
+<bolt-interactive-pathways theme="{{ theme ? theme }}">
+  <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
+  <bolt-interactive-pathway pathway-title="Billing Inquires">
+    <bolt-interactive-step tab-title="Proactive service">
+      {% include "./billing-micro-journey-fragments/_step-one.twig" %}
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Customer-facing insights">
+      {% include "./billing-micro-journey-fragments/_step-two.twig" %}
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Smart offers">
+      {% include "./billing-micro-journey-fragments/_step-three.twig" %}
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Empowered agents">
+      {% include "./billing-micro-journey-fragments/_step-four.twig" %}
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Fewer calls">
+      {% include "./billing-micro-journey-fragments/_step-five.twig" %}
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="What's next?">
+      {% include "./billing-micro-journey-fragments/_step-six.twig" %}
+    </bolt-interactive-step>
+  </bolt-interactive-pathway>
+
+  <bolt-interactive-pathway pathway-title="Another Story">
+    <bolt-interactive-step tab-title="Empowered agents">
+      {% include "./billing-micro-journey-fragments/_step-four.twig" %}
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Fewer calls">
+      {% include "./billing-micro-journey-fragments/_step-five.twig" %}
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Proactive service">
+      {% include "./billing-micro-journey-fragments/_step-one.twig" %}
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Customer-facing insights">
+      {% include "./billing-micro-journey-fragments/_step-two.twig" %}
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="Smart offers">
+      {% include "./billing-micro-journey-fragments/_step-three.twig" %}
+    </bolt-interactive-step>
+
+    <bolt-interactive-step tab-title="What's next?">
+      {% include "./billing-micro-journey-fragments/_step-six.twig" %}
+    </bolt-interactive-step>
+  </bolt-interactive-pathway>
+
+</bolt-interactive-pathways>

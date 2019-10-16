@@ -56,8 +56,11 @@ class IFrame extends BaseComponent {
     const urlParams = new URLSearchParams(queryString);
     let patternParam = urlParams.get('p');
 
-    if (e.detail.pattern) {
-      document.title = 'Pattern Lab - ' + e.detail.pattern;
+    let currentPattern =
+      e.detail.pattern || window.config.defaultPattern || 'all';
+
+    if (currentPattern) {
+      document.title = 'Pattern Lab - ' + currentPattern;
 
       const addressReplacement =
         window.location.protocol === 'file:'
@@ -67,13 +70,13 @@ class IFrame extends BaseComponent {
             window.location.host +
             window.location.pathname.replace('index.html', '') +
             '?p=' +
-            e.detail.pattern;
+            currentPattern;
 
       // first time hitting a PL page -- no query string on the current page
       if (patternParam === null) {
         window.history.replaceState(
           {
-            currentPattern: e.detail.pattern,
+            currentPattern: currentPattern,
           },
           null,
           addressReplacement,
@@ -81,7 +84,7 @@ class IFrame extends BaseComponent {
       } else {
         window.history.replaceState(
           {
-            currentPattern: e.detail.pattern,
+            currentPattern: currentPattern,
           },
           null,
           addressReplacement,
@@ -347,7 +350,10 @@ class IFrame extends BaseComponent {
       if (window.patternData) {
         patternParam = window.patternData.patternPartial;
       } else {
-        patternParam = 'components-overview';
+        patternParam =
+          window.config && window.config.defaultPattern
+            ? window.config.defaultPattern
+            : 'all';
       }
     }
 
@@ -401,9 +407,7 @@ class IFrame extends BaseComponent {
           class="pl-c-viewport__iframe-wrapper pl-js-vp-iframe-container"
           style={`width: ${initialWidth}`}>
           <iframe
-            className={`pl-c-viewport__iframe pl-js-iframe pl-c-body--theme-${
-              this.themeMode
-            }`}
+            className={`pl-c-viewport__iframe pl-js-iframe pl-c-body--theme-${this.themeMode}`}
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
             // srcdoc={render(<IframeInner />)}
             src={url}

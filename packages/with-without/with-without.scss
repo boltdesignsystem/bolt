@@ -1,0 +1,939 @@
+@import '@bolt/core';
+@import '@bolt/animations/tools/_tools-animations';
+@import './wwo-toggle/wwo-toggle';
+@import './swiper';
+@import './wwo-self-drawing-circle/self-drawing-circle';
+
+$pega-wwo--block-width-basis: 6%; // ~100px at full site width.
+$pega-wwo--block-bottom-margin: 2rem;
+$pega-wwo--max-width: 100%;
+$pega-wwo--desktop-ratio: 59.222%;
+$pega-wwo--desktop-ratio-decimal: .59222;
+$pega-wwo--sm-circle-size--relative: 2%;
+$pega-wwo--sm-circle-size--fixed: 10px;
+$pega-wwo--sm-circle-outline-size: 3px;
+$pega-wwo--dashed-circle-height: 48.05%;
+$pega-wwo--content-max-mobile-width: 550px;
+$bolt-medium-icon-half-size: 12px;
+$pega-wwo--sm-circle-top-margin--mobile: $bolt-medium-icon-half-size - ($pega-wwo--sm-circle-size--fixed / 2);
+
+// stylelint-disable scss/at-mixin-pattern
+@mixin edge-all() {
+  @supports (-ms-ime-align:auto) {
+    @content;
+  }
+}
+
+// Fix IE 11 opacity inheritance for non-static elements.
+bolt-animate {
+ &[out^="fade"],
+ &[in^="fade"] {
+   > [is="shadow-root"] {
+     > * {
+       opacity: inherit;
+     }
+   }
+ }
+}
+
+// The following forces full bleed.
+.c-pega-wwo__full-bleed {
+  width: 100vw;
+  margin: auto calc(50% - 50vw);
+
+  // This is because vw in Edge and IE adds the vertical scrollbar, causing horizontal scroll.
+  @include edge-all {
+    // Scrollbar width measured at 16px in Win10 Edge, but being cautious. Better a little truncation of bg than white border. https://stackoverflow.com/questions/986937/how-can-i-get-the-browsers-scrollbar-sizes
+    width: calc(100vw - 10px);
+    overflow: hidden;
+  }
+
+  @include bolt-ie11-only {
+    // This was measured at 17 px in Win10 IE11.
+    width: calc(100vw - 10px);
+    overflow: hidden;
+  }
+}
+
+.c-pega-wwo {
+  position: relative;
+  line-height: 1.4;
+  background-color: black;
+
+  @include bolt-mq($from: xlarge) {
+    height: 0;
+    // Scale bg image by width padding is relative to width. So this is an aspect ratio hack.
+    // In desktop, all content is floated over this div and containers are 100%
+    // @TODO replace with bolt-ratio
+    padding-bottom: $pega-wwo--desktop-ratio;
+  }
+
+  @include bolt-ie11-only {
+    display: none;
+  }
+
+  bolt-animate {
+    // This is to detect invisible elements so as not to trigger anims on them.
+    min-width: 1px;
+    min-height: 1px;
+  }
+
+  .c-pega-wwo__shadow-height-inherit {
+    width: 100%;
+    > is[shadow-root] { /* stylelint-disable-line  selector-type-no-unknown  */
+      height: inherit;
+    }
+  }
+
+  // This is for icon colors wrong w/o shadow dom.
+  &__content-wo {
+    .c-pega-wwo__result-blocks {
+      .c-pega-wwo__icon svg path {
+        fill: bolt-color(teal);
+      }
+    }
+
+    .c-pega-wwo__region-blocks {
+      .c-pega-wwo__icon:not(.c-pega-wwo__icon-eye) svg path {
+        fill: bolt-color(white);
+      }
+    }
+  }
+
+  &__content-w {
+    .c-pega-wwo__region-blocks {
+      .c-pega-wwo__icon:not(.c-pega-wwo__icon-eye) svg path {
+        fill: bolt-color(white);
+      }
+    }
+  }
+
+    &__wrapper {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      @include bolt-mq($from: xlarge) {
+        // This div scales to full with of padding-hacked wrapper.
+        position: absolute;
+      }
+  }
+
+  // This wrapper is the animate component and establishes z-index outside shadow dom wrapping.
+  &__modal-bg--animator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 33;
+    width: 100%;
+    height: 3000px;
+
+    &[meta-stage="OUT"] {
+      display: none;
+    }
+  }
+
+  // The full-screen modal that fades out on anim
+  &__modal-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    height: 3000px;
+    pointer-events: none;
+    background-color: black;
+  }
+
+  &__swiper-container-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    // On mobile, this gets height from handleResize().
+    min-height: 100vh;
+    overflow: hidden;
+
+    @include bolt-mq(xlarge) {
+      height: 100%;
+      min-height: 100%;
+    }
+  }
+
+  // This 100% w/h stuff is to to ensure full width through all divs. Gross.
+  &__swiper-container {
+    width: 100%;
+
+    @include bolt-mq(xlarge) {
+      height: 100%;
+    }
+  }
+
+  &__swiper-slide {
+    height: auto;
+
+    @include bolt-mq(xlarge) {
+      height: 100%;
+    }
+  }
+
+  &__swiper-wrapper {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__title-and-toggle--wrapper {
+    padding-bottom: bolt-spacing(large);
+  }
+
+  &__toggle {
+    position: relative;
+    z-index: 12;
+    width: 100%;
+    margin: bolt-spacing(medium) auto 0 auto;
+    text-align: center;
+  }
+
+  // see handleResize. Height on mobile is used to set height of slide c-pega-wwo__swiper-container-wrapper
+  &__content {
+    width: 100%;
+  }
+
+  // Mobile top padding is set in handleResize
+  &__content--inner {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    max-width: $pega-wwo--content-max-mobile-width;
+    margin: 0 auto;
+
+    @include bolt-mq(xlarge) {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+    }
+
+  }
+
+  &__bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: $pega-wwo--max-width auto;
+
+    @include bolt-mq($from: medium) {
+      background-position: bottom center;
+    }
+
+    @include bolt-mq($from: xlarge) {
+      background-position: 0 0;
+    }
+
+    &-wo {
+      background-image: url("./images-optimized/wwo-without-mobile.jpg");
+
+      @include bolt-mq($from: medium) {
+        background-image: url("./images-optimized/wwo-without-tablet.jpg");
+      }
+
+      @include bolt-mq($from: xlarge) {
+        background-image: url("./images-optimized/wwo-without-desktop.jpg");
+      }
+    }
+
+    &-w {
+      background-image: url("./images-optimized/wwo-with-mobile.jpg");
+
+      @include bolt-mq($from: medium) {
+        background-image: url("./images-optimized/wwo-with-tablet.jpg");
+      }
+
+      @include bolt-mq($from: xlarge) {
+        background-image: url("./images-optimized/wwo-with-desktop.jpg");
+      }
+    }
+  }
+
+  &__title--animate {
+    position: relative;
+    z-index: 12;
+  }
+
+  &__title {
+    z-index: 12;
+    padding: bolt-spacing(large) bolt-spacing(small) 0 bolt-spacing(small);
+    text-align: center;
+    font-size: 28px;
+    font-weight: normal;
+
+    @include bolt-mq($from: xxxlarge) {
+      padding-top: 11rem;
+    }
+
+      span {
+      display: block;
+      z-index: 12;
+    }
+  }
+
+  &__circles-and-blocks--animator[meta-stage="OUT"] {
+    z-index: -999;
+    // There was a flash of a badly-styled circle right after animate.
+    margin-left: -9999999px;
+    pointer-events: none;
+  }
+
+  &__circles-wrapper {
+    $pega-wwo--circles-top-padding: 18%;
+    display: none;
+    top: 0;
+
+
+    @include bolt-mq($from: xlarge) {
+      display: block;
+      position: absolute;
+      width: 29%;
+      //height: calc(#{$pega-wwo--dashed-circle-height} + (#{$pega-wwo--circles-top-padding--height-calculation} / #{$pega-wwo--desktop-ratio-decimal}));
+    }
+
+    &-wo {
+      left: 23.7%;
+      padding-top: $pega-wwo--circles-top-padding;
+
+      @include edge-all {
+        left: 26%;
+      }
+
+      @include bolt-ie11-only {
+        left: 26%;
+      }
+
+    }
+
+    &-w {
+      left: 19.7%;
+      padding-top: $pega-wwo--circles-top-padding;
+    }
+
+    [secondary-group="circles"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__circles {
+    display: none;
+    position: relative;
+    width: 100%;
+    // This makes it perfectly square. Inside, elements are abs pos.
+    // @TODO replace w/ bolt-ratio
+    padding-top: 100%;
+
+    @include bolt-mq($from: xlarge) {
+      display: block;
+    }
+  }
+
+  &__self-drawing-circle {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform:rotate(-20deg);
+    width: 100%;
+    height: 100%;
+
+    &[group="w"] {
+      transform:rotate(-25deg);
+    }
+  }
+
+  // Circles on self-drawing circle
+  &__sm-circle {
+    @include bolt-mq($from: large) {
+      display: block;
+      position: absolute;
+      width: $pega-wwo--sm-circle-size--relative;
+      height: $pega-wwo--sm-circle-size--relative;
+      border-radius: 50%;
+      background-color: bolt-color(white);
+    }
+
+    &-lit {
+      z-index: 1;
+      width: $pega-wwo--sm-circle-size--relative;
+      height: $pega-wwo--sm-circle-size--relative;
+      background-color: bolt-color(yellow, light);
+
+
+      &:before {
+        content: '';
+        opacity: .3;
+        position: absolute;
+        top: -75%;
+        left: -75%;
+        width: 250%;
+        height: 250%;
+        border-radius: 50%;
+        background-color: bolt-color(yellow, light);
+        @include bolt-animation--pulse($base: true, $duration: $bolt-duration--xslow, $active: true);
+      }
+    }
+
+    &-mobile--wrapper {
+      display: block;
+      flex: 0 0 15px;
+      margin-right: 1rem;
+
+      @include bolt-mq(xlarge) {
+        display: none;
+      }
+    }
+
+    // Mobile dots
+    &-mobile {
+      display: block;
+      position: relative;
+      top: $pega-wwo--sm-circle-top-margin--mobile;
+      left: (-$pega-wwo--sm-circle-size--fixed / 2) + 1px; // 1px is the outline size
+      width: $pega-wwo--sm-circle-size--fixed;
+      height: $pega-wwo--sm-circle-size--fixed;
+      margin-right: 2px;
+      border-radius: 50%;
+      background-color: bolt-color(white);
+      transition: background-color 500ms linear;
+
+      &-lit {
+        position: relative;
+        background-color: bolt-color(yellow);
+
+        &:before {
+          content: '';
+          opacity: .2;
+          position: absolute;
+          top: -$pega-wwo--sm-circle-size--fixed / 2;
+          left: -$pega-wwo--sm-circle-size--fixed / 2;
+          z-index: -1;
+          width: $pega-wwo--sm-circle-size--fixed + 10px;
+          height: $pega-wwo--sm-circle-size--fixed + 10px;
+          border-radius: 50%;
+          background-color: bolt-color(yellow, light);
+          @include bolt-animation--pulse($base: true, $duration: $bolt-duration--xslow, $active: true);
+        }
+      }
+
+      &.c-pega-wwo__sm-circle-outlined {
+        left: (-$pega-wwo--sm-circle-size--fixed / 2) - .5px;
+      }
+
+      .c-pega-wwo__block-expanded & {
+        $pega-wwo--sm-circle-size-outlined: $pega-wwo--sm-circle-size--fixed + ($pega-wwo--sm-circle-outline-size * 2);
+        top: $pega-wwo--sm-circle-top-margin--mobile - $pega-wwo--sm-circle-outline-size;
+        left: (-$pega-wwo--sm-circle-size-outlined / 2) + .5px;
+        width: $pega-wwo--sm-circle-size-outlined;
+        height: $pega-wwo--sm-circle-size-outlined;
+        margin-right: 0;
+        border: $pega-wwo--sm-circle-outline-size solid bolt-color(white);
+        background-color: bolt-color(black);
+      }
+
+      .c-pega-wwo__block-expanded &.c-pega-wwo__sm-circle-mobile-lit {
+        background-color: bolt-color(yellow);
+
+        &:before {
+          top: -$pega-wwo--sm-circle-size--fixed / 2;
+          left: -$pega-wwo--sm-circle-size--fixed / 2;
+          width: $pega-wwo--sm-circle-size--fixed + 10px;
+          height: $pega-wwo--sm-circle-size--fixed + 10px;
+        }
+      }
+
+      @include bolt-mq($from: xlarge) {
+        display: none;
+      }
+    }
+
+    &-wo-1 {
+      top: 9.3%;
+      left: 19%;
+    }
+
+    &-wo-2 {
+      top: 58%;
+      left: .1%;
+    }
+
+    &-wo-3 {
+      top: 96.1%;
+      left: 33%;
+    }
+
+    &-w-1 {
+      top: 11.7%;
+      left: 16.1%;
+    }
+
+    &-w-2 {
+      top: 44.5%;
+      left: -.55%;
+    }
+
+    &-w-3 {
+      top: 89.1%;
+      left: 19.7%;
+    }
+
+    &-w-4 {
+      top: 94.8%;
+      left: 68%;
+    }
+  }
+
+  &__block {
+    margin-bottom: $pega-wwo--block-bottom-margin;
+
+    @include bolt-mq($from: xlarge) {
+      width: calc(#{$pega-wwo--block-width-basis} + 100px);
+    }
+
+    &-title {
+      display: inline-block;
+
+      @include bolt-mq($from: xlarge) {
+        display: block;
+      }
+    }
+
+    &--icon-and-title-wrapper {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+
+      @include bolt-mq(xlarge) {
+        display: block;
+      }
+    }
+
+    &-body {
+      margin-bottom: .5rem;
+      font-size: 13px;
+
+      @include bolt-mq($from: xlarge) {
+        font-size: 12px;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        font-size: 13px;
+      }
+    }
+
+    &-ul {
+      margin-bottom: 0;
+      margin-left: 1rem;
+    }
+
+    &-li {
+      line-height: 1.65;
+    }
+
+    &-number-label {
+      font-size: 13px;
+    }
+
+    &-numbers-wrapper {
+      display: flex;
+    }
+
+    &-number-wrapper {
+      flex: 1 1 50%;
+    }
+
+    &-number {
+      font-size: 30px;
+      font-weight: 800;
+    }
+
+    &-number-label {
+
+    }
+
+    &-action {
+      &-link {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+      }
+    }
+
+    &-button {
+      display: inline-block;
+      &-learn {
+        margin-right: bolt-spacing(small);
+      }
+    }
+
+    &-block-credit-wo {
+      @include bolt-mq($from: xlarge) {
+        position: absolute;
+        top: 0;
+        left: 10%;
+        width: calc(#{$pega-wwo--block-width-basis} + 110px);
+        padding-top: 14.21%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        left: 13%;
+      }
+
+      @include bolt-mq($from: xxxlarge) {
+        left: 16%;
+      }
+    }
+
+    &-block-frustration-wo {
+      @include bolt-mq($from: xlarge) {
+        top: 0;
+        left: 9%;
+        z-index: 1;
+        width: calc(#{$pega-wwo--block-width-basis} + 110px);
+        padding-top: 33.75%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        left: 11.5%;
+      }
+
+    }
+
+    &-block-business-wo {
+      @include bolt-mq($from: xlarge) {
+        top: 0;
+        left: 29%;
+        width: calc(#{$pega-wwo--block-width-basis} + 100px);
+        padding-top: 46%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        width: calc(#{$pega-wwo--block-width-basis} + 70px);
+        padding-top: 47.6%;
+      }
+    }
+    // Result region blocks
+    &-block-outcome-customer-wo,
+    &-block-outcome-customer-w {
+      margin-right: bolt-spacing(small);
+    }
+
+    &-block-outcome-business-wo {
+    }
+
+    &-block-conversion-w {
+      display: block;
+      flex: 1 0 100%;
+
+      .c-pega-wwo__block-body {
+        margin-bottom: bolt-spacing(small);
+
+        @include bolt-mq($from: xlarge) {
+          margin-bottom: 0;
+        }
+
+        @include bolt-mq($from: xxlarge) {
+          margin-bottom: bolt-spacing(small);
+        }
+
+      }
+    }
+
+    &-block-credit-w {
+      @include bolt-mq($from: xlarge) {
+        top: 0;
+        left: 9%;
+        padding-top: 13%;
+      }
+
+      @include bolt-mq($from: xxxlarge) {
+        top: 5%;
+        left: 11%;
+        width: calc(#{$pega-wwo--block-width-basis} + 130px);
+      }
+    }
+
+    &-block-signals-w {
+      .c-pega-wwo__block-title {
+        color: bolt-color(yellow);
+
+        @include bolt-mq($from: xlarge) {
+          white-space: normal;
+        }
+      }
+
+      @include bolt-mq($from: xlarge) {
+        top: 0;
+        left: 1.5%;
+        z-index: 1;
+        width: calc(#{$pega-wwo--block-width-basis} + 130px);
+        padding-top: 24%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        top: 0;
+        left: 4.3%;
+        width: calc(#{$pega-wwo--block-width-basis} + 110px);
+      }
+
+      @include bolt-mq($from: xxxlarge) {
+        left: 7%;
+        width: calc(#{$pega-wwo--block-width-basis} + 90px);
+      }
+    }
+
+    &-block-respond-w {
+      @include bolt-mq($from: xlarge) {
+        display: block;
+        top: 0;
+        left: 5%;
+        width: calc(#{$pega-wwo--block-width-basis} + 170px);
+        padding-top: 39%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        left: 7%;
+        padding-top: 41.75%;
+      }
+
+      @include bolt-mq($from: xxxlarge) {
+        left: 10%;
+      }
+
+      .c-pega-wwo__block-title {
+          color: bolt-color(yellow);
+      }
+    }
+
+    &-block-relationship-w {
+      @include bolt-mq($from: xlarge) {
+        top: 0;
+        left: 42%;
+        width: calc(#{$pega-wwo--block-width-basis} + 200px);
+        padding-top: 45%;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        left: 39%;
+        padding-top: 46.7%;
+      }
+
+    }
+  }
+  &__icon {
+
+    &-open-book {
+      width: 50px;
+    }
+
+    &-eye {
+      width: 1rem;
+      height: 1rem;
+      margin-right: .5rem;
+    }
+  }
+
+  &__region {
+    &-blocks {
+      position: relative;
+      padding-left: bolt-spacing(medium);
+
+      @include bolt-mq($from: xlarge) {
+        position: static;
+        padding: 0;
+      }
+
+      .c-pega-wwo__block {
+        display: flex;
+        flex-wrap: nowrap;
+
+        @include bolt-mq($from: xlarge) {
+          display: block;
+        }
+      }
+
+      .c-pega-wwo__block-title {
+        display: inline-block;
+
+        @include bolt-mq($from: xlarge) {
+          display: block;
+        }
+      }
+
+      .c-pega-wwo__block-body {
+        margin-top: bolt-spacing(xsmall);
+
+        @include bolt-mq($from: xlarge) {
+          margin-top: 0;
+        }
+      }
+
+      .c-pega-wwo__icon {
+        display: inline-block;
+        margin-right: bolt-spacing(xsmall);
+
+        @include bolt-mq($from: xlarge) {
+          display: block;
+
+          &-eye {
+            display: inline-block;
+          }
+        }
+      }
+
+      &-line-wrapper {
+        display: flex;
+        align-items: flex-start;
+        position: absolute;
+        top: $pega-wwo--sm-circle-top-margin--mobile;
+        left: 0;
+        width: 2px;
+        height: calc(((100% + #{$pega-wwo--block-bottom-margin}) - #{$pega-wwo--sm-circle-top-margin--mobile}) + #{$pega-wwo--sm-circle-size--fixed / 2});
+        --bolt-animate--slide-up-max-height: 80px;
+
+        @include bolt-mq(xlarge) {
+          display: none;
+        }
+      }
+
+      &-line {
+        height: 100%;
+        border-left: 1px dashed bolt-color(white);
+
+        @include bolt-mq($from: xlarge) {
+          display: none;
+        }
+      }
+
+      .c-pega-wwo__block {
+        position: relative;
+
+        @include bolt-mq($from: xlarge) {
+          position: absolute;
+        }
+
+        .c-pega-wwo__block-title,
+        .c-pega-wwo__icon {
+          &:hover {
+            cursor: pointer;
+            @include bolt-mq($from: xlarge) {
+              cursor: auto;
+            }
+          }
+        }
+
+        .c-pega-wwo__block-contents {
+          display: block;
+          overflow: hidden;
+
+          &:not([meta-stage]) {
+            max-height: 0;
+          }
+
+          @include bolt-mq($from: xlarge) {
+            max-height: 100%;
+            overflow: visible;
+          }
+        }
+      }
+    }
+    &-result {
+      $pega-wwo--result-left-pos: 63%;
+      max-width: $pega-wwo--content-max-mobile-width;
+      padding: 0 bolt-spacing(medium);
+
+      @include bolt-mq($from: xlarge) {
+        position: absolute;
+        top: 50%;
+        left: $pega-wwo--result-left-pos + 3%;
+        transform: translateY(-50%);
+        min-width: 350px;
+        max-width: 29%;
+        padding-top: 5%;
+        padding-right: 0;
+        padding-left: 0;
+      }
+
+      @include bolt-mq($from: xxlarge) {
+        left: $pega-wwo--result-left-pos;
+      }
+
+      @include bolt-mq($from: xxxlarge) {
+        left: $pega-wwo--result-left-pos - 8%;
+      }
+    }
+  }
+  &__result {
+    &-label {
+      text-transform: uppercase;
+      letter-spacing: 0;
+      font-size: .85rem;
+
+      &-wo {
+        color: bolt-color(teal, light);
+      }
+
+      &-w {
+        color: bolt-color(yellow);
+      }
+    }
+
+    &-title {
+      line-height: 1.05;
+      font-size: 2.15rem;
+    }
+
+    &-blocks {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: bolt-spacing(medium);
+
+      @include bolt-mq(xxxlarge) {
+        margin-top: bolt-spacing(large);
+      }
+
+      .c-pega-wwo__block {
+        flex: 1 1 auto;
+
+        .c-pega-wwo__icon {
+          // Hack b/c large icons enforce padding & aren't configurable
+          position: relative;
+          left: -16px;
+        }
+      }
+
+      .c-pega-wwo__block-block-conversion-w {
+        flex: 1 0 100%;
+
+        @include bolt-mq(xxlarge) {
+          margin-top: bolt-spacing(small);
+        }
+
+        .c-pega-wwo__block-body {
+          margin-bottom: bolt-spacing(small);
+          @include bolt-mq($from: xlarge) {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

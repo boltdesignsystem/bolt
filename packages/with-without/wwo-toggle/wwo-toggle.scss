@@ -1,0 +1,175 @@
+// style
+$wwo-toggle-width: 350px;
+$wwo-toggle-width--mobile: 280px;
+$wwo-toggle-height: 40px;
+$wwo-toggle-padding: 4px;
+$wwo-toggle-radius: 50em;
+
+// animation
+$wwo-toggle-animation-duration: 0.2s;
+
+$color-contrast-low: bolt-color(white);
+$color-contrast-lower: bolt-color(white);
+$color-primary: bolt-color(teal, light);
+$text-sm: 14px;
+$shadow-sm: 1px;
+
+.wwo-toggle {
+  display: inline-block; // flexbox fallback
+  display: inline-flex;
+  position: relative;
+  margin: 0;
+}
+
+.wwo-toggle__label {
+  color: bolt-color(black);
+}
+
+.wwo-toggle__item {
+  position: relative;
+  float: left; // flexbox fallback
+  height: $wwo-toggle-height;
+  list-style: none;
+}
+
+.wwo-toggle__input {
+  opacity: 0;
+  position: relative;
+  transform: scaleX(2); // scale up the input element so that it covers the entire switch
+  z-index: 2;
+  width: calc(#{$wwo-toggle-width--mobile}*0.5);
+  height: 100%;
+  cursor: pointer;
+  transform-origin: 0 0;
+
+  @include bolt-mq(small) {
+    width: calc(#{$wwo-toggle-width}*0.5);
+  }
+
+  // @TODO make this work to remove focus outline on Edge. See hack blurEdgeFocus.
+  //@media (hover: hover) {
+  //  &,
+  //  &:focus,
+  //  &::selection,
+  //  &:active,
+  //  &:checked {
+  //    border-color: transparent;
+  //    box-shadow: none;
+  //    outline: none;
+  //  }
+  //}
+  //
+  //@media (hover: none) {
+  //  &:focus,
+  //  &::selection {
+  //    border-color: transparent;
+  //    box-shadow: none;
+  //    outline: 1px;
+  //  }
+  //}
+
+  .wwo-toggle__item:last-of-type & {
+    transform-origin: 100% 100%;
+  }
+
+  .wwo-toggle__item:first-of-type & {
+    order: 1; // input follows label
+  }
+
+  &:checked {
+    z-index: -1; // make sure the unchecked input is the only one clickable
+  }
+}
+
+.wwo-toggle__label {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 100%;
+  margin: 0;
+  line-height: $wwo-toggle-height;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+  font-size: 14px;
+  transition: color $wwo-toggle-animation-duration;
+
+  @include bolt-mq(small) {
+    font-size: 16px;
+  }
+
+  .wwo-toggle__item:first-of-type & {
+    float: left; // flexbox fallback
+    margin-right: bolt-spacing(small);
+  }
+
+  .wwo-toggle__item:last-of-type & {
+    float: right; // flexbox fallback
+  }
+
+  .wwo-toggle__input:checked ~ & {
+    color: bolt-color(black);
+  }
+
+  .wwo-toggle__input:focus ~ & { // focus effect if :focus-within is not supported
+    outline: 2px solid alpha($color-primary), 0.2;
+    outline-offset: 2px;
+  }
+
+  :not(*):focus-within,
+  .wwo-toggle__input:focus ~ & { // reset focus style for browsers supporting :focus-within
+    outline: none;
+  }
+}
+
+.wwo-toggle__toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: $wwo-toggle-width--mobile;
+  height: $wwo-toggle-height;
+  border-radius: $wwo-toggle-radius;
+  background-color: $color-contrast-lower;
+
+  @include bolt-mq(small) {
+    width: $wwo-toggle-width;
+  }
+
+  .wwo-toggle:focus-within &,
+  .wwo-toggle:active & { // focus effect if :focus-within is supported
+    box-shadow: 0 0 0 2px $color-contrast-low;
+  }
+}
+
+.wwo-toggle__marker {
+  position: absolute;
+  top: $wwo-toggle-padding;
+  left: $wwo-toggle-padding;
+  z-index: 1;
+  width: calc(#{$wwo-toggle-width--mobile / 2} - #{$wwo-toggle-padding} * 2);
+  height: calc(#{$wwo-toggle-height} - #{$wwo-toggle-padding} * 2);
+  border-radius: $wwo-toggle-radius;
+  box-shadow: $shadow-sm;
+  background-color: $color-primary;
+  will-change: left;
+  transition: left $wwo-toggle-animation-duration;
+
+  @include bolt-mq(small) {
+    width: calc(#{$wwo-toggle-width / 2} - #{$wwo-toggle-padding} * 2);
+  }
+}
+
+.wwo-toggle__input:checked ~ .wwo-toggle__toggle .wwo-toggle__marker {
+  left: calc(#{$wwo-toggle-width--mobile} - #{$wwo-toggle-width--mobile / 2} + #{$wwo-toggle-padding});
+  background-color: bolt-color(yellow);
+
+  @include bolt-mq(small) {
+    left: calc(#{$wwo-toggle-width} - #{$wwo-toggle-width / 2} + #{$wwo-toggle-padding});
+
+  }
+}

@@ -7,7 +7,6 @@ import {
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion-item.scss';
 import { AccordionItemTrigger } from './AccordionItemTrigger';
 import { AccordionItemContent } from './AccordionItemContent';
@@ -19,6 +18,7 @@ class AccordionItem extends withContext(withLitHtml()) {
 
   static props = {
     open: props.boolean,
+    inactive: props.boolean,
     uuid: props.string,
   };
 
@@ -39,7 +39,7 @@ class AccordionItem extends withContext(withLitHtml()) {
     if (this._ssrHydrationPrep) return;
     const parentElem = this;
     const initialNodesToKeep = Array.from(
-      this.querySelectorAll('[ssr-hydrate]'),
+      this.querySelectorAll('[ssr-hydrate][for="bolt-accordion-item"]'),
     );
     const nodesToClean = [];
 
@@ -186,7 +186,7 @@ class AccordionItem extends withContext(withLitHtml()) {
     this.addClassesToSlottedChildren(['default', 'trigger']);
 
     return html`
-      ${this.addStyles([styles, heightUtils])} ${this.template()}
+      ${this.addStyles([styles])} ${this.template()}
     `;
   }
 }

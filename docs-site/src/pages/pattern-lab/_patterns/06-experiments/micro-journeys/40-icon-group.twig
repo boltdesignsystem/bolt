@@ -1,0 +1,32 @@
+{% set content %}
+  <div class="u-bolt-padding-large">
+    <bolt-list display="inline" spacing="small">
+      <bolt-text>Horizontal Icon Group</bolt-text>
+        <bolt-list-item>
+        <bolt-icon name="mobility" size="large"></bolt-icon>
+      </bolt-list-item>
+      <bolt-list-item>
+        <bolt-icon name="documentation" size="large"></bolt-icon>
+      </bolt-list-item>
+      <bolt-list-item last="">
+        <bolt-icon name="print" size="large"></bolt-icon>
+      </bolt-list-item>
+    </bolt-list>
+    <bolt-text>Vertical Icon Group</bolt-text>
+    <bolt-list display="block" spacing="small">
+      <bolt-list-item>
+        <bolt-icon name="mobility" size="large"></bolt-icon>
+      </bolt-list-item>
+      <bolt-list-item>
+        <bolt-icon name="documentation" size="large"></bolt-icon>
+      </bolt-list-item>
+      <bolt-list-item last="">
+        <bolt-icon name="print" size="large"></bolt-icon>
+      </bolt-list-item>
+    </bolt-list>
+  </div>
+{% endset %}
+
+{% include '@bolt-components-editor/editor-in-pl.twig' with {
+  content: content,
+} only %}
