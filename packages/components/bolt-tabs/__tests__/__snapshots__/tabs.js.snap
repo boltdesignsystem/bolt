@@ -517,7 +517,8 @@ exports[`Bolt Tabs Web Component usage (Light DOM) 2`] = `
       <bolt-trigger
         aria-controls="tab-panel-12345-1"
         aria-selected="true"
-        class="c-bolt-tabs__label c-bolt-tabs__label--spacing-small"
+        class="c-bolt-tabs__label c-bolt-tabs__item c-bolt-tabs__label--spacing-small"
+        display="inline"
         id="tab-12345-1"
         no-outline=""
         role="tab"
@@ -550,7 +551,8 @@ exports[`Bolt Tabs Web Component usage (Light DOM) 2`] = `
       <bolt-trigger
         aria-controls="tab-panel-12345-2"
         aria-selected="false"
-        class="c-bolt-tabs__label c-bolt-tabs__label--spacing-small"
+        class="c-bolt-tabs__label c-bolt-tabs__item c-bolt-tabs__label--spacing-small"
+        display="inline"
         id="tab-12345-2"
         no-outline=""
         role="tab"
@@ -583,7 +585,8 @@ exports[`Bolt Tabs Web Component usage (Light DOM) 2`] = `
       <bolt-trigger
         aria-controls="tab-panel-12345-3"
         aria-selected="false"
-        class="c-bolt-tabs__label c-bolt-tabs__label--spacing-small"
+        class="c-bolt-tabs__label c-bolt-tabs__item c-bolt-tabs__label--spacing-small"
+        display="inline"
         id="tab-12345-3"
         no-outline=""
         role="tab"
@@ -611,6 +614,176 @@ exports[`Bolt Tabs Web Component usage (Light DOM) 2`] = `
       
         
       <!---->
+       
+        
+      <div
+        class="c-bolt-tabs__item c-bolt-tabs__show-more is-invisible"
+        style=""
+      >
+        
+          
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="c-bolt-tabs__button c-bolt-tabs__show-button"
+          style=""
+          type="button"
+        >
+          
+            
+          <span
+            class="c-bolt-tabs__show-text"
+            style=""
+          >
+            
+              More
+            
+          </span>
+          
+            
+          <span
+            class="c-bolt-tabs__show-icon"
+            style=""
+          >
+            
+              
+            <bolt-icon
+              name="chevron-down"
+              style=""
+            />
+            
+            
+          </span>
+          
+          
+        </button>
+        
+          
+        <div
+          class="c-bolt-tabs__dropdown"
+          style=""
+        >
+          
+            
+          <div
+            class="c-bolt-tabs__dropdown-list"
+            style=""
+          >
+            
+              
+            <!---->
+            
+          
+            <bolt-trigger
+              aria-controls="tab-panel-12345-1"
+              aria-selected="true"
+              class="c-bolt-tabs__label c-bolt-tabs__item c-bolt-tabs__label--spacing-small c-bolt-tabs__label--is-duplicate c-bolt-tabs__label--vertical-border"
+              display="block"
+              id="tab-dropdown-12345-1"
+              no-outline=""
+              role="tab"
+              style=""
+              tabindex="0"
+            >
+              
+            
+              <span
+                class="c-bolt-tabs__label-inner"
+                style=""
+              >
+                <span
+                  class="c-bolt-tabs__label-text"
+                  style=""
+                >
+                  <!---->
+                  Tab label 1
+                  <!---->
+                </span>
+              </span>
+              
+          
+            </bolt-trigger>
+            
+        
+            <!---->
+            
+          
+            <bolt-trigger
+              aria-controls="tab-panel-12345-2"
+              aria-selected="false"
+              class="c-bolt-tabs__label c-bolt-tabs__item c-bolt-tabs__label--spacing-small c-bolt-tabs__label--is-duplicate c-bolt-tabs__label--vertical-border"
+              display="block"
+              id="tab-dropdown-12345-2"
+              no-outline=""
+              role="tab"
+              style=""
+              tabindex="-1"
+            >
+              
+            
+              <span
+                class="c-bolt-tabs__label-inner"
+                style=""
+              >
+                <span
+                  class="c-bolt-tabs__label-text"
+                  style=""
+                >
+                  <!---->
+                  Tab label 2
+                  <!---->
+                </span>
+              </span>
+              
+          
+            </bolt-trigger>
+            
+        
+            <!---->
+            
+          
+            <bolt-trigger
+              aria-controls="tab-panel-12345-3"
+              aria-selected="false"
+              class="c-bolt-tabs__label c-bolt-tabs__item c-bolt-tabs__label--spacing-small c-bolt-tabs__label--is-duplicate c-bolt-tabs__label--vertical-border"
+              display="block"
+              id="tab-dropdown-12345-3"
+              no-outline=""
+              role="tab"
+              style=""
+              tabindex="-1"
+            >
+              
+            
+              <span
+                class="c-bolt-tabs__label-inner"
+                style=""
+              >
+                <span
+                  class="c-bolt-tabs__label-text"
+                  style=""
+                >
+                  <!---->
+                  Tab label 3
+                  <!---->
+                </span>
+              </span>
+              
+          
+            </bolt-trigger>
+            
+        
+            <!---->
+            
+            
+          </div>
+          
+          
+        </div>
+        
+        
+      </div>
+      
       
         
     </div>

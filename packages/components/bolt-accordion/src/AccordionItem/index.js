@@ -1,7 +1,6 @@
 import { withContext, define, props, css } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion-item.scss';
 import { AccordionItemTrigger } from './AccordionItemTrigger';
 import { AccordionItemContent } from './AccordionItemContent';
@@ -130,7 +129,7 @@ class AccordionItem extends withContext(withLitHtml()) {
     this.addClassesToSlottedChildren(['default', 'trigger']);
 
     return html`
-      ${this.addStyles([styles, heightUtils])} ${this.template()}
+      ${this.addStyles([styles])} ${this.template()}
     `;
   }
 }

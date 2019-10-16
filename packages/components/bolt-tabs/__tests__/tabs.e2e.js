@@ -26,4 +26,34 @@ module.exports = {
       )
       .end();
   },
+
+  'Tabs: adaptive menu': function(browser) {
+    const { testingUrl } = browser.globals;
+    console.log(`global browser url: ${testingUrl}`);
+    currentBrowser = '--' + browser.currentEnv || 'chrome';
+    let testName = 'tabs-adaptive-menu';
+    const hiddenPrimaryLabel =
+      'bolt-tabs .c-bolt-tabs__nav > .c-bolt-tabs__label:nth-child(5)';
+    const visibleDropdownLabel =
+      'bolt-tabs .c-bolt-tabs__dropdown-list > .c-bolt-tabs__label:nth-child(5)';
+
+    browser
+      .url(
+        `${testingUrl}/pattern-lab/patterns/02-components-tabs--40-tabs-no-shadow/02-components-tabs--40-tabs-no-shadow.html`,
+      )
+      .waitForElementVisible('bolt-tabs', 1000)
+      .resizeWindow(600, 400)
+      .assert.elementPresent(hiddenPrimaryLabel)
+      .assert.attributeEquals(hiddenPrimaryLabel, 'aria-hidden', 'true')
+      .assert.elementPresent(visibleDropdownLabel)
+      .assert.attributeEquals(visibleDropdownLabel, 'aria-hidden', 'false')
+      .click('.c-bolt-tabs__show-button')
+      .waitForElementVisible(visibleDropdownLabel, 1000)
+      .click(visibleDropdownLabel)
+      .assert.attributeEquals(visibleDropdownLabel, 'aria-selected', 'true')
+      .saveScreenshot(
+        `screenshots/bolt-tabs/${testName}--${currentBrowser}.png`,
+      )
+      .end();
+  },
 };

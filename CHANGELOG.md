@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/boltdesignsystem/bolt/compare/v2.8.1...v2.8.2) (2019-10-16)
+
+
+### Bug Fixes
+
+* remove Tabs JS accidentally added when resolving merge conflict ([141985a](https://github.com/boltdesignsystem/bolt/commit/141985a))
+
+
+
+
+
+## [2.8.1](https://github.com/boltdesignsystem/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+
+### Bug Fixes
+
+* address prettier issues ([baa1471](https://github.com/boltdesignsystem/bolt/commit/baa1471))
+* cherry pick a handful of updates from [#1457](https://github.com/boltdesignsystem/bolt/issues/1457) to pull in ([761b005](https://github.com/boltdesignsystem/bolt/commit/761b005))
+* tweak AccordionItem's SSR hydration logic to only target children belonging to that particular custom element ([fc9a30f](https://github.com/boltdesignsystem/bolt/commit/fc9a30f))
+* update Accordion component Jest tests to wait till the component has finished rendering first before grabbing the HTML ([648cb66](https://github.com/boltdesignsystem/bolt/commit/648cb66))
+
+
+### Features
+
+* add adaptive menu to Tabs component ([5da94fb](https://github.com/boltdesignsystem/bolt/commit/5da94fb))
+
+
+
+
+
 # [2.8.0](https://github.com/boltdesignsystem/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
 
 

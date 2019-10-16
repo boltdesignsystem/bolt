@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+
+### Bug Fixes
+
+* address prettier issues ([baa1471](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/baa1471))
+* cherry pick a handful of updates from [#1457](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/issues/1457) to pull in ([761b005](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/761b005))
+* tweak AccordionItem's SSR hydration logic to only target children belonging to that particular custom element ([fc9a30f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/fc9a30f))
+* update Accordion component Jest tests to wait till the component has finished rendering first before grabbing the HTML ([648cb66](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/648cb66))
+
+
+
+
+
 # [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
 
 **Note:** Version bump only for package @bolt/components-accordion
