@@ -99,7 +99,7 @@ describe('Bolt Tabs', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test.skip('Web Component usage (Light DOM)', async () => {
+  test('Web Component usage (Light DOM)', async () => {
     const tabsOuter = await page.evaluate(tabsInnerHTML => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = tabsInnerHTML;
