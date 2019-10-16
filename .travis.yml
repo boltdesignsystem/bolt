@@ -39,14 +39,6 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Lint + Jest Tests'
       after_failure: ./scripts/check-run-failure.js 'Lint + Jest Tests'
 
-    # - stage: Post-deploy
-    #   name: 'Smoke Tests: Build Tools'
-    #   install: 'npm run setup'
-    #   before_script: ./scripts/check-run-queue.js 'Build Tools'
-    #   script: yarn run test:build-tools
-    #   after_success: ./scripts/check-run-success.js 'Build Tools'
-    #   after_failure: ./scripts/check-run-failure.js 'Build Tools'
-
     - stage: Pre-deploy
       if: (tag =~ ^v) OR (branch =~ /(master|release)/)
       name: 'Build Drupal Lab'
