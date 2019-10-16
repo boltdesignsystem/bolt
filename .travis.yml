@@ -24,20 +24,30 @@ stages:
 jobs:
   include:
     - stage: Pre-deploy
-      name: 'Smoke Tests: Lint + Jest Tests'
+      name: 'Smoke Tests: Jest Component-Specific Tests'
       install:
         - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
-      before_script: ./scripts/check-run-queue.js 'Lint + Jest Tests'
+      before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
       script:
-        - yarn run lint
         - yarn test:js
         # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
+      after_success: ./scripts/check-run-success.js 'Jest Component Tests'
+      after_failure: ./scripts/check-run-failure.js 'Jest Component Tests'
+
+    - stage: Pre-deploy
+      name: 'Smoke Tests: Lint + Jest Unit Tests'
+      install:
+        - yarn run setup
+        - yarn workspace @bolt/website prep # creates data and manifest files
+      before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
+      script:
+        - yarn run lint
         - yarn test:php
         - yarn test:monorepo --maxWorkers=1
         - yarn test:pkgs
-      after_success: ./scripts/check-run-success.js 'Lint + Jest Tests'
-      after_failure: ./scripts/check-run-failure.js 'Lint + Jest Tests'
+      after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
+      after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
 
     - stage: Pre-deploy
       if: (tag =~ ^v) OR (branch =~ /(master|release)/)
