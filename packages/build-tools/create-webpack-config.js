@@ -194,7 +194,6 @@ async function createWebpackConfig(buildConfig) {
   }
 
   const scssLoaders = [
-    'cache-loader',
     {
       loader: 'css-loader',
       options: {
