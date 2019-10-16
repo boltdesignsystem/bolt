@@ -46,6 +46,28 @@ $shadow-sm: 1px;
     width: calc(#{$wwo-toggle-width}*0.5);
   }
 
+  // @TODO make this work to remove focus outline on Edge. See hack blurEdgeFocus.
+  //@media (hover: hover) {
+  //  &,
+  //  &:focus,
+  //  &::selection,
+  //  &:active,
+  //  &:checked {
+  //    border-color: transparent;
+  //    box-shadow: none;
+  //    outline: none;
+  //  }
+  //}
+  //
+  //@media (hover: none) {
+  //  &:focus,
+  //  &::selection {
+  //    border-color: transparent;
+  //    box-shadow: none;
+  //    outline: 1px;
+  //  }
+  //}
+
   .wwo-toggle__item:last-of-type & {
     transform-origin: 100% 100%;
   }

@@ -1,4 +1,5 @@
 import { triggerAnims } from '@bolt/components-animate/utils';
+import handleResize from './handleResize';
 
 /**
  * Event handler for click on block region, only fires
@@ -44,6 +45,8 @@ const handleBlockTitleMobileAccordionClick = async e => {
 
   parentBlock.classList.add(expandedClass);
   parentBlock.querySelector(`.${animateClass}`).triggerAnimIn();
+
+  handleResize(true, false)();
 };
 
 export default handleBlockTitleMobileAccordionClick;

@@ -18,7 +18,7 @@ import imageSchema from '@bolt/components-image/image.schema.yml';
 import animateSchema from '@bolt/components-animate/animate.schema';
 import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore
-import linkSchema from '../../components/bolt-link/link.schema.yml'; // @todo figure out why the @bolt module name does not resolve for this
+import linkSchema from '@bolt/components-link/link.schema.yml';
 // import { animationNames } from '@bolt/components-animate/animation-meta';
 import { isChildOfEl, convertSchemaPropToTrait } from './utils';
 
@@ -62,10 +62,10 @@ const cta = {
   content: `
       <bolt-cta>
         <bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>
-        <bolt-text font-size="xsmall" slot="link" display="inline">
+        <bolt-link slot="link" display="inline">
           CTA Text
           <bolt-icon name="chevron-right"></bolt-icon>
-        </bolt-text>
+        </bolt-link>
       </bolt-cta>
       `,
 };
@@ -82,7 +82,7 @@ const link = {
   content: `<bolt-link display="inline" valign="start">I'm a link</bolt-link>`,
 };
 
-const iconGroupVerticle = {
+const iconGroupVertical = {
   id: 'bolt-icon-group-vertical',
   title: 'Icon Group (vertical)',
   content: `
@@ -132,7 +132,7 @@ const basicSlottableComponents = [
   basicText,
   cta,
   link,
-  iconGroupVerticle,
+  iconGroupVertical,
   iconGroupHorizontal,
 ];
 
@@ -186,6 +186,12 @@ export function setupBolt(editor) {
    */
 
   /**
+   * @typedef removalEventsToFireOnParents
+   * @prop {string} parentSelector
+   * @prop {function} eventFactory
+   */
+
+  /**
    * @param {Object} opt
    * @param {string} opt.name i.e. `bolt-button`
    * @param {string} [opt.blockTitle] only used if `registerBlock` is `true`
@@ -205,6 +211,7 @@ export function setupBolt(editor) {
    * @param {(el: HTMLElement) => boolean} [opt.isComponent] - function to determine if an HTMLElement is this component. Defaults to seeing if tag name is component name
    * @param {Object.<string, boolean|string>} [opt.slots={ default: true }] - Which slots are available and what can go in them. For example `{ default: true, top: 'bolt-text, bolt-button' }` would let any element be placed as a direct child (the `default` slot) and the `top` slot would only accept `<bolt-text>` or `<bolt-button>`. Those values are passed right to Grape JS's `droppable`.
    * @param {SlotControl[]} [opt.slotControls]
+   * @param {removalEventsToFireOnParents[]} [opt.removalEventsToFireOnParents=[]]
    * @returns {{ component: Object, block: Object }} instances from registering @todo fill out types
    * @see {convertSchemaPropToTrait}
    */
@@ -227,6 +234,7 @@ export function setupBolt(editor) {
     isComponent,
     slots = { default: false },
     slotControls,
+    removalEventsToFireOnParents = [],
   }) {
     const { title, description, properties } = schema;
 
@@ -234,7 +242,6 @@ export function setupBolt(editor) {
       const prop = properties[propName];
 
       if (!prop) {
-        console.log({ schema });
         throw new EditorRegisterBoltError(
           `Prop "${propName} does not exist on schema for "${name}"`,
         );
@@ -288,7 +295,7 @@ export function setupBolt(editor) {
       });
     });
 
-    const component = DomComponents.addType(name, {
+    const componentConfig = {
       isComponent: isComponent
         ? isComponent
         : el => el.tagName === name.toUpperCase(),
@@ -310,7 +317,22 @@ export function setupBolt(editor) {
           return slotControls;
         },
       },
-    });
+    };
+
+    if (removalEventsToFireOnParents.length) {
+      componentConfig.model.removed = function() {
+        removalEventsToFireOnParents.forEach(eventConfig => {
+          // this.closest(whatever) is always 0 so we use this.parent().closest(). Meaning immediate ancestors won't work.
+          const parent = this.parent().closest(eventConfig.parentSelector);
+          // parent is only found and dispatched once, because (my guess is that) nodes are removed from parent -> down.
+          if (parent) {
+            parent.view.el.dispatchEvent(eventConfig.eventFactory());
+          }
+        });
+      };
+    }
+
+    const component = DomComponents.addType(name, componentConfig);
 
     if (registerBlock) {
       const block = BlockManager.add(name, {
@@ -463,10 +485,20 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-interactive-step',
-    draggable: 'bolt-interactive-pathway',
+    draggable: false,
     editable: true,
     highlightable: false,
     extraTraits: ['tab-title'],
+    removalEventsToFireOnParents: [
+      {
+        parentSelector: 'bolt-interactive-pathway',
+        eventFactory: () => {
+          return new CustomEvent('bolt-interactive-step:title-updated', {
+            bubbles: true,
+          });
+        },
+      },
+    ],
     slots: {
       top: true,
       bottom: true,
@@ -486,7 +518,7 @@ export function setupBolt(editor) {
   registerBoltComponent({
     name: 'bolt-interactive-pathways',
     schema: pathwaysSchema,
-    propsToTraits: ['customImageSrc', 'imageAlt', 'theme'],
+    propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
     category: 'Starters',
     blockTitle: 'Pathways',
     draggable: true,
@@ -498,8 +530,8 @@ export function setupBolt(editor) {
     },
     initialContent: [
       `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
-      `<bolt-interactive-pathway pathway-title="New Title">
-        ${starters.stepOneCharacterLorem}        
+      `<bolt-interactive-pathway pathway-title="First Title">
+        ${starters.stepOneCharacterLorem}
         ${starters.stepTwoCharacterLorem}
       </bolt-interactive-pathway>`,
     ],
@@ -519,10 +551,20 @@ export function setupBolt(editor) {
 
   registerBoltComponent({
     name: 'bolt-interactive-pathway',
-    draggable: 'bolt-interactive-pathways',
+    draggable: false,
     editable: false,
     highlightable: true,
     extraTraits: ['pathway-title'],
+    removalEventsToFireOnParents: [
+      {
+        parentSelector: 'bolt-interactive-pathways',
+        eventFactory: () => {
+          return new CustomEvent('bolt-interactive-pathway:title-updated', {
+            bubbles: true,
+          });
+        },
+      },
+    ],
     slots: {
       default: 'bolt-interactive-step',
     },
@@ -611,10 +653,10 @@ export function setupBolt(editor) {
     },
     initialContent: [
       `<bolt-icon size="medium" slot="icon" name="asset-presentation"></bolt-icon>`,
-      `<bolt-text font-size="xsmall" slot="link" display="inline">
+      `<bolt-link slot="link" display="inline">
         CTA Text
         <bolt-icon name="chevron-right"></bolt-icon>
-      </bolt-text>`,
+      </bolt-link>`,
     ],
     extraTraits: [],
   });

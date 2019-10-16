@@ -10,13 +10,13 @@
     "pattern lab",
     "web components"
   ],
-  "homepage": "https://github.com/bolt-design-system/bolt#readme",
+  "homepage": "https://github.com/boltdesignsystem/bolt#readme",
   "bugs": {
-    "url": "https://github.com/bolt-design-system/bolt/issues"
+    "url": "https://github.com/boltdesignsystem/bolt/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bolt-design-system/bolt.git"
+    "url": "git+https://github.com/boltdesignsystem/bolt.git"
   },
   "license": "MIT",
   "author": "Salem Ghoweri",
@@ -82,7 +82,8 @@
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
     "test:types": "tsc",
-    "postinstall": "patch-package && npx lerna run postbootstrap"
+    "postinstall": "patch-package && npx lerna run postbootstrap",
+    "postpublish": "auto release"
   },
   "husky": {
     "hooks": {
@@ -96,7 +97,7 @@
     ]
   },
   "config": {
-    "puppeteer_skip_chromium_download": true,
+    "puppeteer_skip_chromium_download": false,
     "commitizen": {
       "path": "./node_modules/@instructure/cz-lerna-changelog"
     }
@@ -105,6 +106,8 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
+    "@auto-it/slack": "^7.7.0",
+    "auto": "^7.7.0",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@instructure/cz-lerna-changelog": "^6.6.0",

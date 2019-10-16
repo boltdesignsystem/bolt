@@ -1,7 +1,29 @@
 {% set content %}
   <div class="u-bolt-padding-large">
-    <h2>WIP</h2>
-    <bolt-icon-group></bolt-icon-group>
+    <bolt-list display="inline" spacing="small">
+      <bolt-text>Horizontal Icon Group</bolt-text>
+        <bolt-list-item>
+        <bolt-icon name="mobility" size="large"></bolt-icon>
+      </bolt-list-item>
+      <bolt-list-item>
+        <bolt-icon name="documentation" size="large"></bolt-icon>
+      </bolt-list-item>
+      <bolt-list-item last="">
+        <bolt-icon name="print" size="large"></bolt-icon>
+      </bolt-list-item>
+    </bolt-list>
+    <bolt-text>Vertical Icon Group</bolt-text>
+    <bolt-list display="block" spacing="small">
+      <bolt-list-item>
+        <bolt-icon name="mobility" size="large"></bolt-icon>
+      </bolt-list-item>
+      <bolt-list-item>
+        <bolt-icon name="documentation" size="large"></bolt-icon>
+      </bolt-list-item>
+      <bolt-list-item last="">
+        <bolt-icon name="print" size="large"></bolt-icon>
+      </bolt-list-item>
+    </bolt-list>
   </div>
 {% endset %}
 

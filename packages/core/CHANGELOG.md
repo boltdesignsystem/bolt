@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+
+### Features
+
+* add adaptive menu to Tabs component ([5da94fb](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/5da94fb))
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/core
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* **micro-journeys:** Context JS error when animations have no parent bolt-interactive-pathways w/ context ([44f85b0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/44f85b0))
+* add Weakset polyfill for IE 11 ([0867e5f](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/0867e5f))
+
+
+### Reverts
+
+* revert combining withLitHTML base with withLitContext for now ([ca828da](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/ca828da))
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 

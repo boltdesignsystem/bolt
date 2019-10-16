@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/components-animate
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+
+### Bug Fixes
+
+* **bolt-animate:** remove use of Set, polyfill breaking erratically ([c0e53a4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/commit/c0e53a4))
+* more robust animation resets to allow retrigger when no idle or build out is defined ([4d1c3b1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/commit/4d1c3b1))
+
+
+### Features
+
+* **micro-journeys:** add ms hint to animate title schemas ([9c14f46](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/commit/9c14f46))
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Features
+
+* speed up default exit animation to create a smoother experience ([efe8425](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/commit/efe8425))
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-animate/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 
