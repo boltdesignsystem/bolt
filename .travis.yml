@@ -61,25 +61,11 @@ jobs:
       name: 'Build + Deploy Website'
       install:
         - yarn run setup
-      script:
-        # Clear incache file on normal Travis builds
+      before_script:
         - find . -name '.incache' -exec rm -rf {} +
+      script:
         - yarn run build
         - yarn run deploy
-        # need to reset git repo before `update-read-only-git-repos.sh`
-        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
-        - ./scripts/release/update-read-only-git-repos.sh
-
-    - stage: Post-deploy
-      name: 'Nightwatch End-to-End (Quick)'
-      if: NOT (tag =~ ^v) AND NOT (branch =~ /(master|release|bug|fix)/)
-      install:
-        - npx json -I -f package.json -e 'delete this.dependencies'
-        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
-        - npx json -I -f package.json -e 'this.workspaces.packages =  this.workspaces.packages=["packages/testing/testing-nightwatch", "scripts"]'
-        - yarn
-      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
-      script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
         - yarn run test:e2e:quick
       after_success:
