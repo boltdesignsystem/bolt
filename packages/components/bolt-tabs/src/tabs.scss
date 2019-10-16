@@ -10,6 +10,10 @@
 
 bolt-tabs {
   text-align: initial; // unset user-agent styles targeting `align` prop
+
+  &.is-resizing {
+    overflow: hidden;
+  }
 }
 
 @include bolt-repeat-rule(
@@ -274,9 +278,6 @@ bolt-tabs {
 }
 
 .c-bolt-tabs__dropdown {
-  &.is-invisible {
-    visibility: hidden;
-  }
   .c-bolt-tabs__label {
     flex-grow: 1;
   }
