@@ -8,7 +8,6 @@ import {
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion.scss';
 import schema from '../accordion.schema.yml';
 
@@ -153,6 +152,16 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.accordion.on('destroyed', fold => {
       delete this.accordion;
     });
+
+    this.accordion.on('fold:opened', fold => {
+      // @todo: register these elements in Bolt data instead?
+      const elementsToUpdate = this.querySelectorAll('[will-update]');
+      if (elementsToUpdate.length) {
+        elementsToUpdate.forEach(el => {
+          el.update && el.update();
+        });
+      }
+    });
   }
 
   setupAccordion() {
@@ -280,7 +289,7 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.contexts.get(AccordionContext).useShadow = this.useShadow;
 
     return html`
-      ${this.addStyles([styles, heightUtils])} ${this.template()}
+      ${this.addStyles([styles])} ${this.template()}
     `;
   }
 }
