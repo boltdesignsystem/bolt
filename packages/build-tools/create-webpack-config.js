@@ -194,7 +194,6 @@ async function createWebpackConfig(buildConfig) {
   }
 
   const scssLoaders = [
-    'cache-loader',
     {
       loader: 'css-loader',
       options: {
@@ -226,16 +225,17 @@ async function createWebpackConfig(buildConfig) {
     {
       loader: 'resolve-url-loader',
     },
-
     {
       loader: 'sass-loader',
       options: {
         sourceMap: config.sourceMaps,
-        importer: [npmSass.importer],
-        functions: sassExportData,
-        precision: 3,
-        data: globalSassData.join('\n'),
-        outputStyle: 'nested',
+        prependData: globalSassData.join('\n'),
+        sassOptions: {
+          importer: [npmSass.importer],
+          functions: sassExportData,
+          precision: 3,
+          outputStyle: 'nested',
+        },
       },
     },
   ];
@@ -244,6 +244,8 @@ async function createWebpackConfig(buildConfig) {
     target: 'web',
     entry: await buildWebpackEntry(),
     output: {
+      jsonpFunction: 'webpackJsonpLocal',
+      pathinfo: false,
       path: path.resolve(process.cwd(), config.buildDir),
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
       filename: `[name]${langSuffix}${
@@ -295,8 +297,13 @@ async function createWebpackConfig(buildConfig) {
             {
               // no issuer here as it has a bug when its an entry point - https://github.com/webpack/webpack/issues/5906
               use: [
-                // 'css-hot-loader',
-                MiniCssExtractPlugin.loader,
+                {
+                  loader: MiniCssExtractPlugin.loader,
+                  options: {
+                    hmr: config.prod === false,
+                    reloadAll: true,
+                  },
+                },
                 scssLoaders,
               ].reduce((acc, val) => acc.concat(val), []),
             },
@@ -308,12 +315,12 @@ async function createWebpackConfig(buildConfig) {
             if (
               thePath.endsWith(
                 'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
-              )
+              ) ||
+              thePath.includes('babel') ||
+              thePath.includes('core-js') ||
+              thePath.includes('webcomponentsjs') ||
+              thePath.endsWith('grapesjs/dist/grapes.js')
             ) {
-              return true;
-            }
-
-            if (thePath.endsWith('grapesjs/dist/grapes.js')) {
               return true;
             }
 
@@ -325,7 +332,7 @@ async function createWebpackConfig(buildConfig) {
               loader: 'babel-loader',
               options: {
                 babelrc: false,
-                cacheDirectory: true,
+                cacheDirectory: false,
                 presets: ['@bolt/babel-preset-bolt'],
               },
             },
@@ -367,6 +374,9 @@ async function createWebpackConfig(buildConfig) {
       ],
     },
     mode: config.prod ? 'production' : 'development',
+    performance: {
+      hints: 'warning',
+    },
     optimization: {
       minimizer: config.prod
         ? [
@@ -453,25 +463,6 @@ async function createWebpackConfig(buildConfig) {
   }
 
   if (config.prod) {
-    // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
-    // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
-    webpackConfig.plugins.push(
-      new UglifyJsPlugin({
-        sourceMap: config.sourceMaps,
-        parallel: true,
-        cache: true,
-        uglifyOptions: {
-          compress: true,
-          mangle: true,
-        },
-      }),
-    );
-
-    // https://webpack.js.org/plugins/module-concatenation-plugin/
-    webpackConfig.plugins.push(
-      new webpack.optimize.ModuleConcatenationPlugin(),
-    );
-
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
     webpackConfig.plugins.push(
       new OptimizeCssAssetsPlugin({
