@@ -20,13 +20,9 @@ let config;
 
 sharp.cache( {
   items: 1000,
-  files: 1000,
+  files: 1500,
   memory: 1000,
 });
-
-sharp.concurrency = 4;
-
-// https://github.com/lovell/sharp/issues/1593#issuecomment-491171982
 
 const {
   TRAVIS,
