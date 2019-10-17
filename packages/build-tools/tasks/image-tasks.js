@@ -9,26 +9,24 @@ const chokidar = require('chokidar');
 const chalk = require('chalk');
 const globby = require('globby');
 const ora = require('ora');
-const sharpImport = require('sharp');
+const sharp = require('sharp');
 const SVGO = require('svgo');
 const { spawnSync } = require('child_process');
 const log = require('@bolt/build-utils/log');
 const timer = require('@bolt/build-utils/timer');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { flattenArray } = require('@bolt/build-utils/general');
-let config, sharp;
+let config;
+
+sharp.cache( {
+  items: 1000,
+  files: 1000,
+  memory: 1000,
+});
+
+sharp.concurrency = 4;
 
 // https://github.com/lovell/sharp/issues/1593#issuecomment-491171982
-function warmupSharp(sharp) {
-  return sharp(
-    Buffer.from(
-      `<svg xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" /></svg>`,
-      'utf-8',
-    ),
-  )
-    .metadata()
-    .then(() => sharp, () => sharp);
-}
 
 const {
   TRAVIS,
@@ -283,7 +281,6 @@ async function processImage(file, set, skipOptimization = false) {
 
 async function processImages(skipOptimization = false) {
   config = config || (await getConfig());
-  sharp = await warmupSharp(sharpImport);
 
   if (!config.images) {
     return;
