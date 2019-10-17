@@ -34,7 +34,7 @@ jobs:
         - yarn workspace @bolt/website prep # creates data and manifest files
       before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
       script:
-        - yarn test:js
+        - travis_retry yarn test:js
         # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
       after_success: ./scripts/check-run-success.js 'Jest Component Tests'
       after_failure: ./scripts/check-run-failure.js 'Jest Component Tests'
