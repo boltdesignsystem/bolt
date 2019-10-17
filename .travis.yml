@@ -57,7 +57,7 @@ jobs:
       if: (tag =~ ^v) OR (branch =~ /(master|release)/)
       name: 'Build Drupal Lab'
       script:
-        - composer global require hirak/prestissimo
+        # - composer global require hirak/prestissimo
         - cd example-integrations/drupal-lab
         - npm run setup
 
