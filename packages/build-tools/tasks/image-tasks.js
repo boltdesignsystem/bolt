@@ -18,7 +18,7 @@ const { getConfig } = require('@bolt/build-utils/config-store');
 const { flattenArray } = require('@bolt/build-utils/general');
 let config;
 
-sharp.cache( {
+sharp.cache({
   items: 1000,
   files: 1500,
   memory: 1000,
