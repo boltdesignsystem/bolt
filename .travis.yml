@@ -8,9 +8,11 @@ addons:
 
 cache:
   directories:
+    - node_modules
     - docs-site/node_modules/.cache
-    
+
 before_cache:
+- mkdir -p node_modules
 - mkdir -p docs-site/node_modules/.cache
 
 before_install:
@@ -80,7 +82,7 @@ jobs:
         - yarn run test:e2e:quick
       after_success:
         - ./scripts/deploy-branch-alias.js
-        
+
     # full build + Nightwatch tests for non-feature branches + tagged releases
     - stage: Pre-deploy
       name: 'Build + Deploy Website (Full)'

@@ -24,7 +24,7 @@ module.exports = async function globalSetup() {
     path.join(__dirname, '../../../__tests__/fixtures'),
   ];
 
-  await buildPrep(true); // clear out all folders before running
+  await buildPrep(); // clear out all folders before running
   await imageTasks.processImages(true); // process image fixtures used by any tests, but don't optimize
   await iconTasks.build(); // process icons used by any tests
 

@@ -23,7 +23,7 @@ module.exports = async function() {
 
   await iconTasks.build(); // cleaning icons after all tests
   await teardownDevServer();
-  await buildPrep(true); // clear out all built www folders when complete
+  await buildPrep(); // clear out all built www folders when complete
 
   // clean-up the wsEndpoint file
   rimraf.sync(DIR);
