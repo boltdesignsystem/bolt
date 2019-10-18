@@ -74,8 +74,6 @@ jobs:
       install:
         - npx json -I -f package.json -e 'delete this.dependencies'
         - npx json -I -f package.json -e 'delete this.scripts.postinstall'
-        - rm -rf packages/testing
-        - rm -rf packages/servers
         - yarn run setup
         - npx lerna run postbootstrap
       script:
