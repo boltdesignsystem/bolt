@@ -2,11 +2,26 @@
   "repo": "bolt",
   "name": "Salem Ghoweri",
   "plugins": [
-    "slack",
-    {
-      "url": "https://hooks.slack.com/services/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",
-      "atTarget": "here"
-    }
+    [
+      "slack",
+      {
+        "url": "https://hooks.slack.com/services/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",
+        "atTarget": "here"
+      }
+    ],
+    [
+      "released",
+      {
+        "label": ":shipit:",
+        "message": "%TYPE went out with version: %VERSION"
+      }
+    ],
+    [
+      "omit-commits",
+      {
+        "subject": ["skip travis"]
+      }
+    ]
   ],
   "owner": "boltdesignsystem",
   "email": "me@salemghoweri.com",
