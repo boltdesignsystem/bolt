@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/boltdesignsystem/bolt/compare/v2.8.2...v2.8.3) (2019-10-18)
+
+
+### Bug Fixes
+
+* adjust escape strategy to work in Bolt and in Drupal ([33d56b1](https://github.com/boltdesignsystem/bolt/commit/33d56b1))
+* unset 'ready' prop on disconnected to fix ie bug, add demo with tabs inside band ([3412f55](https://github.com/boltdesignsystem/bolt/commit/3412f55))
+* update editor.twig to help better support Drupal autoescape behavior ([623e38e](https://github.com/boltdesignsystem/bolt/commit/623e38e))
+
+
+
+
+
 ## [2.8.2](https://github.com/boltdesignsystem/bolt/compare/v2.8.1...v2.8.2) (2019-10-16)
 
 
