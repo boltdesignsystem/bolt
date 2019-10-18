@@ -9,6 +9,9 @@ addons:
 cache:
   yarn: true
   npm: true
+  directories:
+    - docs-site/node_modules/.cache
+    - node_modules
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
@@ -57,16 +60,19 @@ jobs:
       if: (tag =~ ^v) OR (branch =~ /(master|release)/)
       name: 'Build Drupal Lab'
       script:
-        # - composer global require hirak/prestissimo
         - cd example-integrations/drupal-lab
         - npm run setup
 
+    # quicker build + Nightwatch tests for feature branches
     - stage: Pre-deploy
-      name: 'Build + Deploy Website'
+      name: 'Build + Deploy Website (Quick)'
+      if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
       install:
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - rm -rf packages/testing
+        - rm -rf packages/servers
         - yarn run setup
-      before_script:
-        - find . -name '.incache' -exec rm -rf {} +
       script:
         - yarn run build
         - yarn run deploy
@@ -74,7 +80,18 @@ jobs:
         - yarn run test:e2e:quick
       after_success:
         - ./scripts/deploy-branch-alias.js
-        - ./scripts/deploy-tagged-release.js
+        
+    # full build + Nightwatch tests for non-feature branches + tagged releases
+    - stage: Pre-deploy
+      name: 'Build + Deploy Website (Full)'
+      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
+      install:
+        - yarn run setup
+      before_script:
+        - find . -name '.incache' -exec rm -rf {} +
+      script:
+        - yarn run build
+        - yarn run deploy
 
     - stage: Post-deploy
       name: 'Nightwatch End-to-End (Full)'
@@ -87,7 +104,7 @@ jobs:
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - yarn run test:e2e:quick
+        - yarn run test:e2e:full
       after_success:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
