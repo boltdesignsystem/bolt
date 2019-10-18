@@ -7,13 +7,10 @@ addons:
   chrome: stable
 
 cache:
-  yarn: true
-  npm: true
   directories:
     - docs-site/node_modules/.cache
     
 before_cache:
-- mkdir node_modules
 - mkdir -p docs-site/node_modules/.cache
 
 before_install:
