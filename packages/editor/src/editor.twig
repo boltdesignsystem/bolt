@@ -7,7 +7,7 @@
 <div class="js-pega-editor">
   <script class="js-pega-editor__config" type="application/json">
     {% autoescape 'js' %}
-        {{ config | json_encode }}
+      {{ config | json_encode | raw }}
     {% endautoescape %}
   </script>
   <bolt-button color="primary" size="xsmall" class="js-pega-editor__trigger">Edit</bolt-button>
