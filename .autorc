@@ -1,7 +1,13 @@
 {
   "repo": "bolt",
   "name": "Salem Ghoweri",
-  "_plugins": ["bolt-release"],
+  "plugins": [
+    "slack",
+    {
+      "url": "https://hooks.slack.com/services/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",
+      "atTarget": "here"
+    }
+  ],
   "owner": "boltdesignsystem",
   "email": "me@salemghoweri.com",
   "skipReleaseLabels": ["docs", "chore", "internal", "wip", "devops"],
