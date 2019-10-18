@@ -2,6 +2,7 @@
   "repo": "bolt",
   "name": "Salem Ghoweri",
   "plugins": [
+    ['./scripts/auto-plugin.js'],
     [
       "slack",
       {
@@ -14,12 +15,6 @@
       {
         "label": ":shipit:",
         "message": "%TYPE went out with version: %VERSION"
-      }
-    ],
-    [
-      "omit-commits",
-      {
-        "subject": ["skip travis"]
       }
     ]
   ],
@@ -79,6 +74,11 @@
         "description": "Increment the patch version when merged"
       }
     ],
-    "prerelease": "beta"
+    "prerelease": "beta",
+    "pushToBaseBranch":  [
+      {
+        "title": "Misc 🔧"
+      }
+    ]
   }
 }
