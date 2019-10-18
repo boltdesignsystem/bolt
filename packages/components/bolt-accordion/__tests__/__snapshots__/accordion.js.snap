@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<bolt-accordion> Component Default <bolt-accordion> w/o Shadow DOM renders 2`] = `
+exports[`<bolt-accordion> Component Default <bolt-accordion> w/o Shadow DOM renders 1`] = `
 <bolt-accordion
   no-shadow=""
   style=""
@@ -477,88 +477,56 @@ exports[`<bolt-accordion> Component Default <bolt-accordion> w/o Shadow DOM rend
 </bolt-accordion>
 `;
 
-exports[`<bolt-accordion> Component Default <bolt-accordion> with Shadow DOM renders 2`] = `
-<bolt-accordion
-  style=""
+exports[`<bolt-accordion> Component Default <bolt-accordion> with Shadow DOM renders 1`] = `
+<style>
+  bolt-accordion,bolt-accordion replace-with-children,bolt-accordion replace-with-grandchildren{display:block}bolt-accordion:not(:last-child){margin-bottom:1.65rem}.c-bolt-accordion{position:relative;background-color:rgba(var(--bolt-theme-background), 1)}.c-bolt-accordion--box-shadow{box-shadow:0 1px 4px 1px rgba(6,10,36,.1),0 5px 10px 0 rgba(6,10,36,.08);-webkit-transition:.3s cubic-bezier(.25,.8,.25,1);transition:.3s cubic-bezier(.25,.8,.25,1);border-radius:3px;border-width:1px;border-style:solid;border-color:rgba(var(--bolt-theme-text), 0.15)}
+</style>
+<div class="c-bolt-accordion"
+     id="handorgel1"
+     aria-multiselectable="true"
 >
-  
-    
-  <bolt-accordion-item
-    style=""
+  <slot>
+  </slot>
+</div>
+`;
+
+exports[`<bolt-accordion> Component Default <bolt-accordion> with Shadow DOM renders 2`] = `
+<style>
+  bolt-accordion-item{display:block}bolt-accordion-item replace-with-children,bolt-accordion-item replace-with-grandchildren{display:block;-webkit-box-flex:1;flex-grow:1}.c-bolt-accordion-item ::slotted(.is-last-child),.c-bolt-accordion-item ::slotted(:last-child){margin-bottom:0!important}.c-bolt-accordion-item__state{display:none}.c-bolt-accordion-item--box-shadow .c-bolt-accordion-item__content{background-color:rgba(224,226,235,.1)}.c-bolt-accordion-item--box-shadow .c-bolt-accordion-item__content:after,.c-bolt-accordion-item--box-shadow .c-bolt-accordion-item__content:before{content:'';display:block;opacity:1;position:absolute;right:0;left:0;height:.206rem;pointer-events:none;will-change:opacity;-webkit-transition:opacity .1s ease-in-out;transition:opacity .1s ease-in-out}.c-bolt-accordion-item--box-shadow .c-bolt-accordion-item__content:before{top:0;background:-webkit-gradient(linear,left top, left bottom,color-stop(0, rgba(141,142,153,.1)),to(transparent));background:linear-gradient(to bottom,rgba(141,142,153,.1) 0,transparent 100%)}.c-bolt-accordion-item--box-shadow .c-bolt-accordion-item__content:after{bottom:0;background:-webkit-gradient(linear,left top, left bottom,color-stop(0, transparent),to(rgba(141,142,153,.1)));background:linear-gradient(to bottom,transparent 0,rgba(141,142,153,.1) 100%)}.c-bolt-accordion-item--box-shadow.c-bolt-accordion-item--first-item .c-bolt-accordion-item__trigger,.c-bolt-accordion-item--box-shadow.c-bolt-accordion-item--first-item .c-bolt-accordion-item__trigger-label{border-top-right-radius:3px;border-top-left-radius:3px}.c-bolt-accordion-item--box-shadow.c-bolt-accordion-item--last-item .c-bolt-accordion-item__content,.c-bolt-accordion-item--box-shadow.c-bolt-accordion-item--last-item .c-bolt-accordion-item__trigger-label,.c-bolt-accordion-item--box-shadow.c-bolt-accordion-item--last-item .c-bolt-accordion-item__trigger:not(.c-bolt-accordion-item__trigger--open){border-bottom-right-radius:3px;border-bottom-left-radius:3px}.c-bolt-accordion-item--box-shadow.c-bolt-accordion-item--last-item .c-bolt-accordion-item__content:after{display:none}.c-bolt-accordion-item__trigger{display:-webkit-box;display:flex;position:relative;margin:0}.c-bolt-accordion-item__trigger-label{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;font-family:var(--bolt-font-family-heading);font-size:1rem;line-height:1.65;display:-webkit-box;display:flex;-webkit-box-pack:justify;justify-content:space-between;-webkit-box-align:center;align-items:center;-webkit-appearance:none;-moz-appearance:none;appearance:none;position:relative;width:100%;margin:0;padding:0;color:inherit;text-align:left;text-align:start;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;outline-offset:-4px;border:none;background-color:rgba(var(--bolt-theme-background), 1)}.js-fonts-loaded .c-bolt-accordion-item__trigger-label{font-family:"Open Sans","Helvetica Neue",sans-serif;font-family:var(--bolt-font-family-heading)}.c-bolt-accordion-item--icon-valign-top .c-bolt-accordion-item__trigger-label{-webkit-box-align:start;align-items:flex-start}.c-bolt-accordion-item__trigger-label:-moz-focusring{outline:0}.c-bolt-accordion-item__trigger-label:before{content:'';display:block;opacity:0;position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;background-color:rgba(var(--bolt-theme-primary), 0.15);will-change:opacity;-webkit-transition:opacity .1s ease-in-out;transition:opacity .1s ease-in-out}.c-bolt-accordion-item__trigger-label:not(.c-bolt-accordion-item__trigger-label--inactive){cursor:pointer}.c-bolt-accordion-item__trigger-label:not(.c-bolt-accordion-item__trigger-label--inactive):hover:before{opacity:.2}.c-bolt-accordion-item__trigger-label:not(.c-bolt-accordion-item__trigger-label--inactive):active:before{opacity:1}.c-bolt-accordion-item__trigger-link{display:block;position:absolute;top:0;right:0;width:.311rem;height:100%;outline-offset:-4px}.c-bolt-accordion-item__trigger-link:after{content:'';display:block;position:absolute;top:50%;right:50%;width:.622rem;height:.622rem;border-radius:1px;border-width:3px 3px 0 0;border-style:solid;border-color:rgba(var(--bolt-theme-link), 1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%}.c-bolt-accordion-item__trigger-label--inactive~.c-bolt-accordion-item__trigger-link{visibility:hidden}.c-bolt-accordion-item__trigger-link--open:after{-webkit-transform:rotate(135deg) translateX(-50%) translateY(50%);transform:rotate(135deg) translateX(-50%) translateY(50%)}.c-bolt-accordion-item__trigger-link--close:after{-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}.c-bolt-accordion-item__toggle-text{position:absolute;width:1px;height:1px;overflow:hidden;margin:-1px;padding:0;border:0;clip:rect(0 0 0 0);-webkit-clip-path:inset(50%);clip-path:inset(50%);white-space:nowrap}.c-bolt-accordion-item__state:checked+.c-bolt-accordion-item .c-bolt-accordion-item__trigger-link--open,.c-bolt-accordion-item__state:target+.c-bolt-accordion-item .c-bolt-accordion-item__trigger-link--open,.c-bolt-accordion-item__trigger-link--close{display:none}.c-bolt-accordion-item__state:checked+.c-bolt-accordion-item .c-bolt-accordion-item__trigger-link--close,.c-bolt-accordion-item__state:target+.c-bolt-accordion-item .c-bolt-accordion-item__trigger-link--close{display:block}.c-bolt-accordion-item__trigger--open{z-index:1}.c-bolt-accordion-item__trigger-icons{display:-webkit-box;display:flex;flex-shrink:0;position:relative;-webkit-transform:translateX(.25rem);transform:translateX(.25rem);overflow:hidden;color:rgba(var(--bolt-theme-link), 1);line-height:0;font-size:1.4rem}.c-bolt-accordion-item__trigger-label--inactive .c-bolt-accordion-item__trigger-icons{visibility:hidden}.c-bolt-accordion-item__trigger-icons-inner{padding:.206rem 0;display:block;-webkit-transform:rotate(0);transform:rotate(0);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;will-change:transform;-webkit-transition:-webkit-transform .2s ease-in-out;transition:-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out;transition:transform .2s ease-in-out, -webkit-transform .2s ease-in-out}[aria-expanded=false] .c-bolt-accordion-item__trigger-icons-inner{-webkit-transform:rotate(0);transform:rotate(0)}[aria-expanded=true] .c-bolt-accordion-item__trigger-icons-inner{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.c-bolt-accordion-item__trigger-content{-webkit-box-flex:1;flex-grow:1;margin-bottom:0}.c-bolt-accordion-item__content{display:none;position:relative;-webkit-transform:translateY(-1rem);transform:translateY(-1rem);width:100%;height:0;will-change:transform;-webkit-transition:-webkit-transform .2s cubic-bezier(0,0,.3,1) .1s;transition:-webkit-transform .2s cubic-bezier(0,0,.3,1) .1s;transition:transform .2s cubic-bezier(0,0,.3,1) .1s;transition:transform .2s cubic-bezier(0,0,.3,1) .1s, -webkit-transform .2s cubic-bezier(0,0,.3,1) .1s}.c-bolt-accordion-item__content[data-open]:not([style*=height]){visibility:visible;height:auto;-webkit-transition:none;transition:none}.c-bolt-accordion-item__content:not([role=region]){display:block;visibility:hidden;height:auto;max-height:0}.c-bolt-accordion-item__state:checked+.c-bolt-accordion-item .c-bolt-accordion-item__content,.c-bolt-accordion-item__state:target+.c-bolt-accordion-item .c-bolt-accordion-item__content{visibility:visible;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);max-height:none;will-change:transform,height;-webkit-transition:height .2s ease-in-out,-webkit-transform .2s ease-in-out;transition:height .2s ease-in-out,-webkit-transform .2s ease-in-out;transition:transform .2s ease-in-out,height .2s ease-in-out;transition:transform .2s ease-in-out,height .2s ease-in-out,-webkit-transform .2s ease-in-out}.c-bolt-accordion-item__content--open{display:block;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);-webkit-transition:height .2s ease-in-out;transition:height .2s ease-in-out}.c-bolt-accordion-item__content-inner{opacity:0;position:relative;overflow:auto;will-change:opacity;-webkit-transition:opacity .1s ease-in-out;transition:opacity .1s ease-in-out;-webkit-overflow-scrolling:touch}.c-bolt-accordion-item__content--opened .c-bolt-accordion-item__content-inner,.c-bolt-accordion-item__state:checked+.c-bolt-accordion-item .c-bolt-accordion-item__content-inner,.c-bolt-accordion-item__state:target+.c-bolt-accordion-item .c-bolt-accordion-item__content-inner{opacity:1;will-change:opacity;-webkit-transition:opacity .2s ease-in-out;transition:opacity .2s ease-in-out}.c-bolt-accordion-item__state+.c-bolt-accordion-item .c-bolt-accordion-item__trigger{z-index:1}.c-bolt-accordion-item--separator{border-top-color:rgba(var(--bolt-theme-text), 0.15);border-top-style:solid;border-top-width:1px}.c-bolt-accordion-item--separator.c-bolt-accordion-item--last-item{border-bottom-color:rgba(var(--bolt-theme-text), 0.15);border-bottom-style:solid;border-bottom-width:1px}.c-bolt-accordion-item--separator.c-bolt-accordion-item--box-shadow.c-bolt-accordion-item--first-item{border-top:none}.c-bolt-accordion-item--separator.c-bolt-accordion-item--box-shadow.c-bolt-accordion-item--last-item{border-bottom:none}.c-bolt-accordion-spacing--xsmall{padding:.206rem .5rem}.c-bolt-accordion-spacing--xsmall.c-bolt-accordion-item__content-inner,.c-bolt-accordion-spacing--xsmall.c-bolt-accordion-item__trigger-label.c-bolt-accordion-item__trigger-label--offset{padding-right:calc(1.9rem)}.c-bolt-accordion-spacing--xsmall.c-bolt-accordion-item__content-inner{padding-bottom:.412rem}.c-bolt-accordion-spacing--small{padding:.412rem 1rem}.c-bolt-accordion-spacing--small.c-bolt-accordion-item__content-inner,.c-bolt-accordion-spacing--small.c-bolt-accordion-item__trigger-label.c-bolt-accordion-item__trigger-label--offset{padding-right:calc(2.4rem)}.c-bolt-accordion-spacing--small.c-bolt-accordion-item__content-inner{padding-bottom:.825rem}.c-bolt-accordion-spacing--medium{padding:.825rem 2rem}.c-bolt-accordion-spacing--medium.c-bolt-accordion-item__content-inner,.c-bolt-accordion-spacing--medium.c-bolt-accordion-item__trigger-label.c-bolt-accordion-item__trigger-label--offset{padding-right:calc(3.4rem)}.c-bolt-accordion-spacing--medium.c-bolt-accordion-item__content-inner{padding-bottom:1.65rem}.c-bolt-accordion-spacing--large{padding:1.65rem 4rem}.c-bolt-accordion-spacing--large.c-bolt-accordion-item__content-inner,.c-bolt-accordion-spacing--large.c-bolt-accordion-item__trigger-label.c-bolt-accordion-item__trigger-label--offset{padding-right:calc(5.4rem)}.c-bolt-accordion-spacing--large.c-bolt-accordion-item__content-inner{padding-bottom:3.3rem}
+</style>
+<div class="c-bolt-accordion-item c-bolt-accordion-item--separator c-bolt-accordion-item--first-item">
+  <div class="c-bolt-accordion-item__trigger"
+       id="handorgel1-fold1-header"
   >
-    
-      
-    <bolt-text
-      class="is-first-child is-last-child"
-      slot="trigger"
-      style=""
+    <button type="button"
+            class="c-bolt-accordion-item__trigger-label c-bolt-accordion-spacing--medium"
+            aria-controls="handorgel1-fold1-content"
+            aria-expanded="false"
+            aria-disabled="false"
     >
-      Accordion item 1
-    </bolt-text>
-    
-      
-    <bolt-text
-      class="is-first-child is-last-child"
-      style=""
-    >
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-    </bolt-text>
-    
-    
-  </bolt-accordion-item>
-  
-    
-  <bolt-accordion-item
-    style=""
+      <div class="c-bolt-accordion-item__trigger-content">
+        <slot name="trigger">
+        </slot>
+      </div>
+      <span class="c-bolt-accordion-item__trigger-icons">
+        <div class="c-bolt-accordion-item__trigger-icons-inner">
+          <bolt-icon name="chevron-down">
+          </bolt-icon>
+        </div>
+      </span>
+    </button>
+  </div>
+  <div class="c-bolt-accordion-item__content"
+       id="handorgel1-fold1-content"
+       role="region"
+       aria-labelledby="handorgel1-fold1-header"
   >
-    
-      
-    <bolt-text
-      class="is-first-child is-last-child"
-      slot="trigger"
-      style=""
-    >
-      Accordion item 2
-    </bolt-text>
-    
-      
-    <bolt-text
-      class="is-first-child is-last-child"
-      style=""
-    >
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-    </bolt-text>
-    
-    
-  </bolt-accordion-item>
-  
-    
-  <bolt-accordion-item
-    style=""
-  >
-    
-      
-    <bolt-text
-      class="is-first-child is-last-child"
-      slot="trigger"
-      style=""
-    >
-      Accordion item 3
-    </bolt-text>
-    
-      
-    <bolt-text
-      class="is-first-child is-last-child"
-      style=""
-    >
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-    </bolt-text>
-    
-    
-  </bolt-accordion-item>
-  
-  
-</bolt-accordion>
+    <div class="c-bolt-accordion-item__content-inner c-bolt-accordion-spacing--medium">
+      <slot>
+      </slot>
+    </div>
+  </div>
+</div>
 `;
 
 exports[`<bolt-accordion> Component Inactive item 1`] = `

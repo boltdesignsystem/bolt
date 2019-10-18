@@ -19,7 +19,7 @@ async function renderTwigString(template, data) {
 
 const timeout = 120000;
 
-const accordionInnerHTML = `
+const accordionHTML = `
   <bolt-accordion>
     <bolt-accordion-item>
       <bolt-text slot="trigger">Accordion item 1</bolt-text>
@@ -30,6 +30,23 @@ const accordionInnerHTML = `
       <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
     </bolt-accordion-item>
     <bolt-accordion-item>
+      <bolt-text slot="trigger">Accordion item 3</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+  </bolt-accordion>
+`;
+
+const accordionNoShadowHTML = `
+  <bolt-accordion no-shadow>
+    <bolt-accordion-item no-shadow>
+      <bolt-text slot="trigger">Accordion item 1</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+    <bolt-accordion-item no-shadow>
+      <bolt-text slot="trigger">Accordion item 2</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+    <bolt-accordion-item no-shadow>
       <bolt-text slot="trigger">Accordion item 3</bolt-text>
       <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
     </bolt-accordion-item>
@@ -137,21 +154,42 @@ describe('<bolt-accordion> Component', () => {
   });
 
   test('Default <bolt-accordion> with Shadow DOM renders', async function() {
-    const accordionOuter = await page.evaluate(accordionInnerHTML => {
+    const accordionShadowRoot = await page.evaluate(async accordionHTML => {
       const wrapper = document.createElement('div');
-      wrapper.innerHTML = accordionInnerHTML;
+      wrapper.innerHTML = accordionHTML;
       document.body.appendChild(wrapper);
 
       const accordion = document.querySelector('bolt-accordion');
       const accordionItems = Array.from(
         document.querySelectorAll('bolt-accordion-item'),
       );
-      [accordion, ...accordionItems].forEach(el => el.updated());
+      const allElements = [accordion, ...accordionItems];
 
-      return accordion.outerHTML;
-    }, accordionInnerHTML);
+      return await Promise.all(
+        allElements.map(element => {
+          if (element._wasInitiallyRendered) return;
+          return new Promise((resolve, reject) => {
+            element.addEventListener('ready', resolve);
+            element.addEventListener('error', reject);
+          });
+        }),
+      ).then(() => {
+        return accordion.renderRoot.innerHTML;
+      });
+    }, accordionHTML);
 
-    const renderedShadowDomHTML = await html(accordionOuter);
+    const accordionItemShadowRoot = await page.evaluate(async () => {
+      const item = document.querySelector('bolt-accordion-item');
+      return item.renderRoot.innerHTML;
+    });
+
+    const renderedShadowRoot = await html(`<div>${accordionShadowRoot}</div>`);
+    const renderedItemShadowRoot = await html(
+      `<div>${accordionItemShadowRoot}</div>`,
+    );
+
+    expect(renderedShadowRoot.innerHTML).toMatchSnapshot();
+    expect(renderedItemShadowRoot.innerHTML).toMatchSnapshot();
 
     await page.waitFor(500);
     const image = await page.screenshot();
@@ -160,38 +198,37 @@ describe('<bolt-accordion> Component', () => {
       failureThreshold: '0.01',
       failureThresholdType: 'percent',
     });
-
-    expect(renderedShadowDomHTML).toMatchSnapshot();
   });
 
   test('Default <bolt-accordion> w/o Shadow DOM renders', async function() {
-    const accordionOuter = await page.evaluate(accordionInnerHTML => {
-      const wrapper = document.createElement('div');
-      wrapper.innerHTML = accordionInnerHTML;
-      document.body.appendChild(wrapper);
+    const accordionOuterHTML = await page.evaluate(
+      async accordionNoShadowHTML => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = accordionNoShadowHTML;
+        document.body.appendChild(wrapper);
 
-      const accordion = document.querySelector('bolt-accordion');
-      const accordionItems = Array.from(
-        document.querySelectorAll('bolt-accordion-item'),
-      );
-      [accordion, ...accordionItems].forEach(el => {
-        el.setAttribute('no-shadow', '');
-        el.updated();
-      });
+        const accordion = document.querySelector('bolt-accordion');
+        const accordionItems = Array.from(
+          document.querySelectorAll('bolt-accordion-item'),
+        );
+        const allElements = [accordion, ...accordionItems];
 
-      return accordion.outerHTML;
-    }, accordionInnerHTML);
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        ).then(() => {
+          return accordion.outerHTML;
+        });
+      },
+      accordionNoShadowHTML,
+    );
 
-    const renderedShadowDomHTML = await html(accordionOuter);
-
-    await page.waitFor(500);
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
-
-    expect(renderedShadowDomHTML).toMatchSnapshot();
+    const accordionRenderedHTML = await html(accordionOuterHTML);
+    expect(accordionRenderedHTML).toMatchSnapshot();
   });
 });
