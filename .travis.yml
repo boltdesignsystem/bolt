@@ -75,6 +75,7 @@ jobs:
         - rm -rf packages/testing
         - rm -rf packages/servers
         - yarn run setup
+        - npx lerna run postbootstrap
       script:
         - yarn run build
         - yarn run deploy
@@ -103,6 +104,7 @@ jobs:
         - npx json -I -f package.json -e 'delete this.scripts.postinstall'
         - npx json -I -f package.json -e 'this.workspaces.packages =  this.workspaces.packages=["packages/testing/testing-nightwatch", "scripts"]'
         - yarn
+        - npx lerna run postbootstrap
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
