@@ -10,10 +10,12 @@ cache:
   directories:
     - node_modules
     - docs-site/node_modules/.cache
+    - www
 
 before_cache:
 - mkdir -p node_modules
 - mkdir -p docs-site/node_modules/.cache
+- mkdir -p www
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
