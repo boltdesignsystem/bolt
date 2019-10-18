@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.1...v2.8.2) (2019-10-16)
+
+
+### Bug Fixes
+
+* remove Tabs JS accidentally added when resolving merge conflict ([141985a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/141985a))
+
+
+
+
+
 ## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.0...v2.8.1) (2019-10-16)
 
 
