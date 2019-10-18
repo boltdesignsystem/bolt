@@ -577,12 +577,16 @@ class BoltTabs extends withContext(withLitHtml()) {
   disconnected() {
     super.disconnected && super.disconnected();
 
+    this.ready = false;
+    this.removeAttribute('ready');
+
     window.removeEventListener('optimizedResize', this._resizeMenu);
     document.removeEventListener('click', this._handleExternalClicks);
-    this.dropdownButton.removeEventListener(
-      'click',
-      this._handleDropdownToggle,
-    );
+    this.dropdownButton &&
+      this.dropdownButton.removeEventListener(
+        'click',
+        this._handleDropdownToggle,
+      );
 
     // remove MutationObserver if supported + exists
     if (window.MutationObserver && this.observer) {
