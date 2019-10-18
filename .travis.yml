@@ -7,11 +7,15 @@ addons:
   chrome: stable
 
 cache:
-#  yarn: true
-#  npm: true
+  yarn: true
+  npm: true
   directories:
     - docs-site/node_modules/.cache
     - node_modules
+    
+before_cache:
+- mkdir node_modules
+- mkdir -p docs-site/node_modules/.cache
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
@@ -34,81 +38,81 @@ jobs:
       name: 'Smoke Tests: Jest Component-Specific Tests'
       install:
         - yarn run setup
-#         - yarn workspace @bolt/website prep # creates data and manifest files
-#       before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
-#       script:
-#         - travis_retry yarn test:js
-#         # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
-#       after_success: ./scripts/check-run-success.js 'Jest Component Tests'
-#       after_failure: ./scripts/check-run-failure.js 'Jest Component Tests'
+        - yarn workspace @bolt/website prep # creates data and manifest files
+      before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
+      script:
+        - travis_retry yarn test:js
+        # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
+      after_success: ./scripts/check-run-success.js 'Jest Component Tests'
+      after_failure: ./scripts/check-run-failure.js 'Jest Component Tests'
 
-#     - stage: Pre-deploy
-#       name: 'Smoke Tests: Lint + Jest Unit Tests'
-#       install:
-#         - yarn run setup
-#         - yarn workspace @bolt/website prep # creates data and manifest files
-#       before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
-#       script:
-#         - yarn run lint
-#         - yarn test:php
-#         - yarn test:monorepo --maxWorkers=1
-#         - yarn test:pkgs
-#       after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
-#       after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
+    - stage: Pre-deploy
+      name: 'Smoke Tests: Lint + Jest Unit Tests'
+      install:
+        - yarn run setup
+        - yarn workspace @bolt/website prep # creates data and manifest files
+      before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
+      script:
+        - yarn run lint
+        - yarn test:php
+        - yarn test:monorepo --maxWorkers=1
+        - yarn test:pkgs
+      after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
+      after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
 
-#     - stage: Pre-deploy
-#       if: (tag =~ ^v) OR (branch =~ /(master|release)/)
-#       name: 'Build Drupal Lab'
-#       script:
-#         - cd example-integrations/drupal-lab
-#         - npm run setup
+    - stage: Pre-deploy
+      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
+      name: 'Build Drupal Lab'
+      script:
+        - cd example-integrations/drupal-lab
+        - npm run setup
 
-#     # quicker build + Nightwatch tests for feature branches
-#     - stage: Pre-deploy
-#       name: 'Build + Deploy Website (Quick)'
-#       if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
-#       install:
-#         - npx json -I -f package.json -e 'delete this.dependencies'
-#         - npx json -I -f package.json -e 'delete this.scripts.postinstall'
-#         - rm -rf packages/testing
-#         - rm -rf packages/servers
-#         - yarn run setup
-#       script:
-#         - yarn run build
-#         - yarn run deploy
-#         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-#         - yarn run test:e2e:quick
-#       after_success:
-#         - ./scripts/deploy-branch-alias.js
+    # quicker build + Nightwatch tests for feature branches
+    - stage: Pre-deploy
+      name: 'Build + Deploy Website (Quick)'
+      if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
+      install:
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - rm -rf packages/testing
+        - rm -rf packages/servers
+        - yarn run setup
+      script:
+        - yarn run build
+        - yarn run deploy
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - yarn run test:e2e:quick
+      after_success:
+        - ./scripts/deploy-branch-alias.js
         
-#     # full build + Nightwatch tests for non-feature branches + tagged releases
-#     - stage: Pre-deploy
-#       name: 'Build + Deploy Website (Full)'
-#       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
-#       install:
-#         - yarn run setup
-#       before_script:
-#         - find . -name '.incache' -exec rm -rf {} +
-#       script:
-#         - yarn run build
-#         - yarn run deploy
+    # full build + Nightwatch tests for non-feature branches + tagged releases
+    - stage: Pre-deploy
+      name: 'Build + Deploy Website (Full)'
+      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
+      install:
+        - yarn run setup
+      before_script:
+        - find . -name '.incache' -exec rm -rf {} +
+      script:
+        - yarn run build
+        - yarn run deploy
 
-#     - stage: Post-deploy
-#       name: 'Nightwatch End-to-End (Full)'
-#       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
-#       install:
-#         - npx json -I -f package.json -e 'delete this.dependencies'
-#         - npx json -I -f package.json -e 'delete this.scripts.postinstall'
-#         - npx json -I -f package.json -e 'this.workspaces.packages =  this.workspaces.packages=["packages/testing/testing-nightwatch", "scripts"]'
-#         - yarn
-#       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
-#       script:
-#         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-#         - yarn run test:e2e:full
-#       after_success:
-#         - ./scripts/deploy-branch-alias.js
-#         - ./scripts/deploy-tagged-release.js
-#         - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+    - stage: Post-deploy
+      name: 'Nightwatch End-to-End (Full)'
+      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
+      install:
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
+        - npx json -I -f package.json -e 'this.workspaces.packages =  this.workspaces.packages=["packages/testing/testing-nightwatch", "scripts"]'
+        - yarn
+      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
+      script:
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - yarn run test:e2e:full
+      after_success:
+        - ./scripts/deploy-branch-alias.js
+        - ./scripts/deploy-tagged-release.js
+        - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
 
 notifications:
   email:
