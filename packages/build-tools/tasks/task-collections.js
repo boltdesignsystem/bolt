@@ -121,7 +121,7 @@ async function clean(cleanAll = false) {
         dirs = [config.buildDir];
         break;
     }
-    if (cleanAll === true) {
+    if (cleanAll === true && config.env !== 'pwa') {
       dirs = [config.wwwDir];
     }
     await internalTasks.clean(dirs);

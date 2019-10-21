@@ -273,10 +273,16 @@ async function createWebpackConfig(buildConfig) {
       rules: [
         {
           test: /\.(ts|tsx)$/,
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true,
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+              },
+            },
+          ],
         },
         {
           test: /\.scss$/,
@@ -312,33 +318,46 @@ async function createWebpackConfig(buildConfig) {
 
             return false;
           },
-          use: {
-            loader: 'babel-loader',
-            options: {
-              babelrc: false,
-              cacheDirectory: true,
-              presets: ['@bolt/babel-preset-bolt'],
+          use: [
+            'cache-loader',
+            {
+              loader: 'babel-loader',
+              options: {
+                babelrc: false,
+                cacheDirectory: true,
+                presets: ['@bolt/babel-preset-bolt'],
+              },
             },
-          },
+          ],
         },
         {
           test: /\.(woff|woff2)$/,
-          loader: 'url-loader',
-          options: {
-            limit: 500,
-            name: 'fonts/[name].[ext]',
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 500,
+                name: 'fonts/[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: /\.(cur|svg|png|jpg)$/,
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-          },
+          use: [
+            'cache-loader',
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+              },
+            },
+          ],
         },
         {
           test: [/\.yml$/, /\.yaml$/],
-          use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+          use: ['cache-loader', 'json-loader', 'yaml-loader'],
         },
         {
           test: [/\.html$/],
@@ -347,9 +366,6 @@ async function createWebpackConfig(buildConfig) {
       ],
     },
     mode: config.prod ? 'production' : 'development',
-    // optimization: {
-    //   mergeDuplicateChunks: true,
-    // },
     optimization: {
       minimizer: config.prod
         ? [

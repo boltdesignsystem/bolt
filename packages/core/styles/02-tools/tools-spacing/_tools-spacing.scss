@@ -58,7 +58,7 @@ $bolt-spacing-sizes: _bolt-create-spacing-map($bolt-spacing-values);
 @function bolt-v-spacing($size, $modifier: null) {
   @if ($modifier == 'squished') {
     $modifier: $bolt-spacing-squished;
-  } @elseif ($modifier == 'stretched') {
+  } @else if ($modifier == 'stretched') {
     $modifier: $bolt-spacing-stretched;
   } @else {
     $modifier: 1;
