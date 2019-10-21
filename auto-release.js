@@ -83,7 +83,7 @@ async function init() {
         git reset --hard HEAD
         npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
         npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
-        npx now alias boltdesignsystem.com ${tagSpecificUrl}
+        npx now alias boltdesignsystem.com ${tagSpecificUrl} --token=${NOW_TOKEN}
       `);
 
       // do the full build + output CLI in real time
@@ -98,7 +98,7 @@ async function init() {
       const latestUrl = await getLatestDeploy();
 
       nowAliases.forEach(alias => {
-        shell.exec(`npx now alias ${latestUrl} ${alias}`);
+        shell.exec(`npx now alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`);
       });
 
       await shell.exec('git reset --hard HEAD').stdout;
@@ -176,7 +176,7 @@ async function init() {
         git reset --hard HEAD
         npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
         npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
-        npx now alias boltdesignsystem.com ${tagSpecificUrl}
+        npx now alias boltdesignsystem.com ${tagSpecificUrl} --token=${NOW_TOKEN}
       `);
 
       // do the full build + output CLI in real time
@@ -192,7 +192,7 @@ async function init() {
       const latestUrl = await getLatestDeploy();
 
       nowAliases.forEach(alias => {
-        shell.exec(`npx now alias ${latestUrl} ${alias}`);
+        shell.exec(`npx now alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`);
       });
 
       await shell.exec(`
