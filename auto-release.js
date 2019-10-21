@@ -1,7 +1,8 @@
 const shell = require('shelljs');
 const { branchName } = require('./scripts/utils/branch-name');
 const isCanaryRelease = branchName === 'master';
-const isFullRelease = branchName === 'release-2.x';
+const isFullRelease =
+  branchName === 'release-2.x' || branchName === 'release/2.x';
 const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { gitSha } = require('./scripts/utils');
 const execSync = require('child_process').execSync;
