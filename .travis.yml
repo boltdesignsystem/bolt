@@ -113,9 +113,27 @@ jobs:
         - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
 
     - stage: Auto-release
-      name: 'Auto-release'
-      if: (branch =~ /(master|release)/)
+      name: 'Canary Release'
+      if: (branch =~ /(master)/)
       install:
+        - git config --global user.email ${GITHUB_EMAIL}
+        - git config --global user.name ${GITHUB_USER}
+        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
+        - git checkout master
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
+        - npm run setup
+      script:
+        - yarn run release
+
+    - stage: Auto-release
+      name: 'Full Release'
+      if: (branch =~ /(release)/)
+      install:
+        - git config --global user.email ${GITHUB_EMAIL}
+        - git config --global user.name ${GITHUB_USER}
+        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
+        - git checkout release/2.x
+        - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> $HOME/.npmrc 2> /dev/null
         - npm run setup
       script:
         - yarn run release
