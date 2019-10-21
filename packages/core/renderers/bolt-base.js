@@ -21,6 +21,12 @@ export function BoltBase(Base = HTMLElement) {
     constructor(self) {
       super(self);
       this._wasInitiallyRendered = false;
+
+      // Check if any `<ssr-keep>` elements have registered themselves here. If so, kick off the one-time hydration prep task.
+      if (this.ssrKeep && !this.ssrPrepped) {
+        this.ssrHydrationPrep();
+      }
+
       return self;
     }
 
@@ -64,7 +70,6 @@ export function BoltBase(Base = HTMLElement) {
       // ensure every component instance renders to the light DOM when needed (ex. if nested inside of a form, render to the light DOM)
       // this ensures that things work as expected, even when a component gets removed / re-added to the page
       this.setupShadow();
-      this.ssrHydrationPrep && this.ssrHydrationPrep();
 
       // @todo: add debug flag the build to allow conditionally enabling / disabling this extra slot setup check here.
       if (!this.slots) {
@@ -151,6 +156,29 @@ export function BoltBase(Base = HTMLElement) {
       }
 
       return modifiedSchema;
+    }
+
+    /**
+     * Replace server-side rendered HTML with only the markup needed to hydrate web component, as marked by `<ssr-keep>` elements.
+     */
+    ssrHydrationPrep() {
+      this.nodesToKeep = [];
+
+      this.ssrKeep.forEach(item => {
+        while (item.firstChild) {
+          this.nodesToKeep.push(item.firstChild); // track the nodes that will be preserved
+          this.appendChild(item.firstChild);
+        }
+      });
+
+      // Remove all children not in the "keep" array
+      Array.from(this.children)
+        .filter(item => !this.nodesToKeep.includes(item))
+        .forEach(node => {
+          node.parentElement.removeChild(node);
+        });
+
+      this.ssrPrepped = true;
     }
 
     addStyles(stylesheet) {

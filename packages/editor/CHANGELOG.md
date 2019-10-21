@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/bolt-design-system/bolt/compare/v2.8.2...v2.8.3) (2019-10-18)
+
+
+### Bug Fixes
+
+* adjust escape strategy to work in Bolt and in Drupal ([33d56b1](https://github.com/bolt-design-system/bolt/commit/33d56b1))
+* update editor.twig to help better support Drupal autoescape behavior ([623e38e](https://github.com/bolt-design-system/bolt/commit/623e38e))
+
+
+
+
+
 ## [2.8.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
 
 **Note:** Version bump only for package @bolt/components-editor
