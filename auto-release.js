@@ -10,6 +10,7 @@ const { getLatestDeploy } = require('./scripts/utils');
 const { IncomingWebhook } = require('@slack/webhook');
 const chalk = require('chalk');
 const semver = require('semver');
+const { NOW_TOKEN } = process.env;
 
 const lernaConfig = require('./lerna.json');
 const currentVersion = lernaConfig.version;
@@ -91,7 +92,7 @@ async function init() {
         console.log('', stderr);
       });
       await shell.exec(
-        `npx now deploy --meta gitSha='${gitSha}' --token=${process.env.NOW_TOKEN}`,
+        `npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}`,
       );
 
       const latestUrl = await getLatestDeploy();
@@ -185,7 +186,7 @@ async function init() {
       });
 
       await shell.exec(
-        `npx now deploy --meta gitSha='${gitSha}' --token=${process.env.NOW_TOKEN}`,
+        `npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}`,
       );
 
       const latestUrl = await getLatestDeploy();
