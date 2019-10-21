@@ -101,9 +101,6 @@ jobs:
       name: 'Nightwatch End-to-End (Full)'
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
-        - npx json -I -f package.json -e 'delete this.dependencies'
-        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
-        - npx json -I -f package.json -e 'this.workspaces.packages =  this.workspaces.packages=["packages/testing/testing-nightwatch", "scripts"]'
         - yarn
         - npx lerna run postbootstrap
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
