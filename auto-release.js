@@ -134,8 +134,6 @@ async function init() {
     // publish
     // alias new version
 
-
-
     // console.log(
     //   `https://github.com/boltdesignsystem/bolt/releases/tag/v${currentVersion}`,
     // );
