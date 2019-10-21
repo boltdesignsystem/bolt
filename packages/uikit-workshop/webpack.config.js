@@ -225,6 +225,8 @@ module.exports = async function() {
         new CleanWebpackPlugin(
           [
             `${config.buildDir}/index.html`,
+            `${config.buildDir}/styleguide/css`,
+            `${config.buildDir}/styleguide/js`,
           ],
           {
             allowExternal: true,
