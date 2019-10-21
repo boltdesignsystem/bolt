@@ -108,51 +108,6 @@ class BoltTabs extends withContext(withLitHtml()) {
     // });
   }
 
-  // @todo: move to BoltBase and/or move into a standalone addon function components can opt into
-  ssrHydrationPrep() {
-    if (this._ssrHydrationPrep) return;
-    const parentElem = this;
-    const initialNodesToKeep = Array.from(
-      this.querySelectorAll('[ssr-hydrate]'),
-    );
-    const nodesToClean = [];
-
-    initialNodesToKeep.forEach(item => {
-      const hydrationType = item.getAttribute('ssr-hydrate');
-
-      switch (hydrationType) {
-        case 'keep-children':
-          while (item.firstChild) {
-            parentElem.appendChild(item.firstChild);
-          }
-          break;
-        case 'keep':
-        default:
-          parentElem.appendChild(item);
-          nodesToClean.push(item); // track the [ssr-hydrate] nodes to clean up later
-      }
-    });
-
-    // grab an array of the pre-rendered DOM nodes to potentially remove
-    const nodesToRemove = Array.from(
-      parentElem.querySelectorAll('[class*="c-bolt-tabs"]:not([ssr-hydrate])'),
-    );
-
-    // remove pre-rendered DOM nodes not containing children with [ssr-hydrate] attributes
-    nodesToRemove.forEach(node => {
-      if (!node.closest(['[ssr-hydrate]'])) {
-        node.parentElement.removeChild(node);
-      }
-    });
-
-    // cleanup any [ssr-hydrate] nodes afterward
-    nodesToClean.forEach(node => {
-      node.removeAttribute('ssr-hydrate');
-    });
-
-    this._ssrHydrationPrep = true;
-  }
-
   // account for nested tabs when rendering to the Shadow DOM + Light DOM
   get tabPanels() {
     if (this.useShadow) {
@@ -349,13 +304,7 @@ class BoltTabs extends withContext(withLitHtml()) {
 
     const dropdown = () => {
       return html`
-        <div
-          class="${cx(
-            'c-bolt-tabs__item',
-            'c-bolt-tabs__show-more',
-            'is-invisible',
-          )}"
-        >
+        <div class="${cx('c-bolt-tabs__item', 'c-bolt-tabs__show-more')}">
           <button
             type="button"
             aria-haspopup="true"
@@ -401,9 +350,20 @@ class BoltTabs extends withContext(withLitHtml()) {
   }
 
   _resizeMenu() {
+    const navWidth = this.primaryMenu.offsetWidth;
+
+    // If nav has no width, assume it is hidden and must be resized when it is shown, e.g. it is in an accordion
+    if (navWidth === 0) {
+      // If not visible, add attribute so that it can be found by other components and updated manually
+      this.setAttribute('will-update', '');
+      return;
+    }
+
+    // Remove attribute so that tabs will not be resized unnecessarily
+    this.removeAttribute('will-update', '');
+
     this.classList.add('is-resizing');
 
-    const navWidth = this.primaryMenu.offsetWidth;
     const buttonWidth = this.dropdownButton.offsetWidth;
     const tolerance = 5; // Extra wiggle room when calculating how many items can fit
     const maxWidth = navWidth - tolerance - buttonWidth;
@@ -450,8 +410,6 @@ class BoltTabs extends withContext(withLitHtml()) {
       this.dropdownButton.setAttribute('aria-expanded', false);
     }
 
-    // is invisible on render so we can get width without flashing it onscreen
-    this.showMoreItem.classList.remove('is-invisible');
     this.classList.remove('is-resizing');
   }
 
@@ -528,6 +486,10 @@ class BoltTabs extends withContext(withLitHtml()) {
       this.transitionEvent,
       this._waitForDropdownToFinishAnimating,
     );
+  }
+
+  update() {
+    this._resizeMenu();
   }
 
   rendered() {

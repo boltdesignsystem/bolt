@@ -43,8 +43,6 @@ function addBoltCarouselResizer() {
       // such as scroll.
       throttle('resize', 'carousel:resize');
     })();
-  } else {
-    // console.log('carouselResizer already Added');
   }
 }
 
@@ -160,6 +158,19 @@ class BoltCarousel extends withLitHtml() {
     this.checkForSlideOffset();
   }
 
+  init() {
+    this.swiper = new Swiper(
+      this.renderRoot.querySelector('.c-bolt-carousel'),
+      {
+        ...this.options,
+      },
+    );
+
+    this.configureSlidesPerGroup();
+    this.hideArrowsIfAllSlidesAreVisible();
+    this.disableSwipingIfAllSlidesAreVisible();
+  }
+
   // recalculates the ideal # of slides to display when the overal carousel width changes
   // @todo: update to only reinitialize when the data for this changes
   reInitCarousel() {
@@ -182,12 +193,7 @@ class BoltCarousel extends withLitHtml() {
       this.swiper.destroy(false, true);
       this.options.thumbs = this.props.thumbs;
 
-      this.swiper = new Swiper(
-        this.renderRoot.querySelector('.c-bolt-carousel'),
-        {
-          ...this.options,
-        },
-      );
+      this.init();
     }
   }
 
@@ -245,7 +251,6 @@ class BoltCarousel extends withLitHtml() {
   }
 
   calculateSlidesPerViewBreakpoints() {
-    // let slidesPerViewBreakpoints = {};
     for (let i = 1; i < this.props.maxSlidesPerView; i++) {
       const bpNumber = boltBreakpoints[Object.keys(boltBreakpoints)[i]].replace(
         'px',
@@ -268,16 +273,19 @@ class BoltCarousel extends withLitHtml() {
     }
   }
 
-  configureSwiper() {
+  configureSlidesPerGroup() {
     // opt out of the default slidesPerGroup behavior if being used as an image gallery
     if (this.mode === 'gallery' || this.mode === 'gallery-thumbnail') {
-      // console.log(
-      //   'opting out of reconfiguring Swiper slidesPerGroup while in `gallery` or `gallery-thumbnail` mode.',
-      // );
       return;
     }
 
-    if (this.props.slidesPerGroup && this.props.slidesPerGroup === 'auto') {
+    if (this.swiper.params.slidesPerView === 'auto') {
+      // If `slidesPerView` is still equal to 'auto', the carousel was probably hidden on load. Just set `slidesPerGroup` to `1` for now, must be an integer.
+      this.swiper.params.slidesPerGroup = 1;
+    } else if (
+      this.props.slidesPerGroup &&
+      this.props.slidesPerGroup === 'auto'
+    ) {
       this.swiper.params.slidesPerGroup = parseInt(
         this.swiper.params.slidesPerView,
         10,
@@ -301,13 +309,10 @@ class BoltCarousel extends withLitHtml() {
     }
 
     this.options.slidesPerGroup = this.swiper.params.slidesPerGroup;
-  }
 
-  // init() {
-  //   this.props.noAutoInit = false;
-  //   this.rendered();
-  //   this.swiper.init();
-  // }
+    // Must call `update()` after setting slidesPerGroup for the change to take effect
+    this.swiper.update();
+  }
 
   rendered() {
     if (this.props.noJs) {
@@ -315,6 +320,14 @@ class BoltCarousel extends withLitHtml() {
     }
 
     const self = this;
+
+    if (this.offsetHeight) {
+      // Set flag so that carousel will not be re-initialized unnecessarily on update()
+      this.isVisible = true;
+    } else {
+      // If not visible, add attribute so that it can be found by other components and updated manually.
+      this.setAttribute('will-update', '');
+    }
 
     const spacingUnit =
       window.getComputedStyle(document.body).fontSize.replace('px', '') * 2;
@@ -402,27 +415,44 @@ class BoltCarousel extends withLitHtml() {
             delay: 5000,
           }
         : false,
-      // touchEventsTarget: 'wrapper',
       centeredSlides: false,
       centerInsufficientSlides: false,
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
       slideToClickedSlide: true,
-      // preventClicks: false,
-      // mousewheel: {
-      //   invert: true,
-      //   releaseOnEdges: false,
-      //   forceToAxis: true,
-      // },
       threshold: 3,
-      keyboard: {
-        enabled: true,
-        onlyInViewport: true,
-      },
       centeredSlides: this.props.slideAlign === 'center' ? true : false,
       effect: this.props.fade ? 'fade' : 'slide',
       freeMode: this.props.freeScroll, //@todo: re-enable when adding free-scroll prop options
       slidesPerView: this.calculateSlidesPerView(this.props.slidesPerView),
+
+      // If not visible, observer will automatically re-int when element is shown
+      // Swiper's 'observer' feature uses rAF so it should be pretty performant, but let's still keep an eye on it (https://github.com/nolimits4web/swiper/pull/2731)
+      observer: !this.isVisible, // Set to true to enable Mutation Observer on Swiper and its elements
+      observeParents: !this.isVisible, // Set to true if you also need to watch Mutations for Swiper parent elements
+      on: {
+        update: () => {
+          // If `observer` has been set, carousel now has height, and the `isVisible` flag has not yet been switched, reinit the carousel with some updated options
+          if (this.options.observer && this.offsetHeight && !this.isVisible) {
+            // Set the flag so that this block is only ever run once
+            this.isVisible = true;
+            // Turn off the observers, not needed once properly initialized
+            this.options.observer = false;
+            this.options.observeParents = false;
+
+            this.reInitCarousel();
+          }
+
+          this.dispatchEvent(
+            new CustomEvent('bolt:layout-size-changed', {
+              bubbles: true,
+            }),
+          );
+        },
+        slideChange: () => {
+          this.onSlideChange();
+        },
+      },
     };
 
     this.calculateSlidesPerViewBreakpoints();
@@ -460,19 +490,7 @@ class BoltCarousel extends withLitHtml() {
         slide.classList.add('is-ready');
       });
 
-      this.swiper = new Swiper(
-        this.renderRoot.querySelector('.c-bolt-carousel'),
-        {
-          ...this.options,
-        },
-      );
-
-      // customizes slidesPerGroup
-      this.configureSwiper(this.swiper);
-      this.hideArrowsIfAllSlidesAreVisible();
-      this.disableSwipingIfAllSlidesAreVisible();
-      this.swiper.on('slideChange', this.onSlideChange);
-      this.reInitCarousel(); // this fires when the props on the component changes HOWEVER it also needs to fire once the component has finished rendering for the very first time so that the appropriate slidesPerGroup value is automatically set for the initial state
+      this.init();
     } else {
       if (this.swiper) {
         // update swiper if component re-rendered
@@ -486,10 +504,16 @@ class BoltCarousel extends withLitHtml() {
   disconnecting() {
     super.disconnecting && super.disconnecting();
 
+    this.isVisible = false;
+
     if (this.carouselResizeEventAdded === true) {
       this.carouselResizeEventAdded = false;
       window.removeEventListener('carousel:resize', this.reInitCarousel);
     }
+  }
+
+  update() {
+    this.swiper && this.swiper.update();
   }
 
   // make sure the pagination tracking keeps updating accurately when the component re-renders

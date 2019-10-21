@@ -58,28 +58,27 @@
   {% endgrid %}
 {% endset %}
 
-<h3>Using the grid inside trigger and content</h3>
-{% include "@bolt-components-accordion/accordion.twig" with {
-  icon_valign: "center",
-  items: [
-    {
-      trigger: trigger,
-      content: content
-    },
-    {
-      trigger: trigger,
-      content: content,
-      inactive: true,
-    },
-    {
-      trigger: trigger,
-      content: content
-    },
-  ],
-  attributes: {
-    "no-shadow": true,
-  }
-} only %}
+<form>
+  <h3>Using the grid inside trigger and content</h3>
+  {% include "@bolt-components-accordion/accordion.twig" with {
+    icon_valign: "center",
+    items: [
+      {
+        trigger: trigger,
+        content: content
+      },
+      {
+        trigger: trigger,
+        content: content,
+        inactive: true,
+      },
+      {
+        trigger: trigger,
+        content: content
+      },
+    ],
+  } only %}
+</form>
 
 {% set image_content %}
   {% include "@bolt-components-image/image.twig" with {
@@ -174,24 +173,23 @@
   } only %}
 {% endset %}
 
-<h3>Pass various components into the content</h3>
-{% include "@bolt-components-accordion/accordion.twig" with {
-  box_shadow: true,
-  items: [
-    {
-      trigger: "Expand this to see an image",
-      content: image_content
-    },
-    {
-      trigger: "Expand this to see a table",
-      content: table_content
-    },
-    {
-      trigger: "Expand this to see a share tool and a paragraph of text",
-      content: share_content
-    },
-  ],
-  attributes: {
-    "no-shadow": true,
-  }
-} only %}
+<form>
+  <h3>Pass various components into the content</h3>
+  {% include "@bolt-components-accordion/accordion.twig" with {
+    box_shadow: true,
+    items: [
+      {
+        trigger: "Expand this to see an image",
+        content: image_content
+      },
+      {
+        trigger: "Expand this to see a table",
+        content: table_content
+      },
+      {
+        trigger: "Expand this to see a share tool and a paragraph of text",
+        content: share_content
+      },
+    ],
+  } only %}
+</form>
