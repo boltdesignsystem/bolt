@@ -12,6 +12,37 @@
   resolved "https://registry.yarnpkg.com/@atomist/slack-messages/-/slack-messages-1.1.1.tgz#9de42932e89065fb4fe4842978ca2d1ed3424cea"
   integrity sha512-m2OzlTDbhvzK4hgswH9Lx0cdpq1AntXu53Klz5RGkFfuoDvKsnlU7tmtVfNWtUiP0zZbGtrb/BZYH7aB6TRnMA==
 
+"@auto-it/core@^7.11.0":
+  version "7.11.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-7.11.0.tgz#c281c9f4d94679879acf751ddfea9117f5aeeaf0"
+  integrity sha512-NcehLqJI1LI3wZ7muYXHMxP0PZe5JTXlmdwBRBklNZCxt/Kb0TxDw056OEV8Kpv0PruwgQIWWF6VyxBifGAyKw==
+  dependencies:
+    "@atomist/slack-messages" "~1.1.0"
+    "@octokit/graphql" "^4.0.0"
+    "@octokit/plugin-enterprise-compatibility" "^1.1.1"
+    "@octokit/plugin-retry" "^2.2.0"
+    "@octokit/plugin-throttling" "^2.6.0"
+    "@octokit/rest" "16.33.1"
+    await-to-js "^2.1.1"
+    cosmiconfig "5.2.1"
+    dedent "^0.7.0"
+    deepmerge "^4.0.0"
+    dotenv "^8.0.0"
+    enquirer "^2.3.0"
+    env-ci "^4.1.1"
+    gitlog "^3.1.2"
+    https-proxy-agent "^3.0.0"
+    import-cwd "^3.0.0"
+    lodash.chunk "^4.2.0"
+    node-fetch "2.6.0"
+    semver "^6.0.0"
+    signale "^1.4.0"
+    tapable "^2.0.0-beta.2"
+    tinycolor2 "^1.4.1"
+    tslib "1.10.0"
+    typescript-memoize "^1.0.0-alpha.3"
+    url-join "^4.0.0"
+
 "@auto-it/core@^7.9.2":
   version "7.9.2"
   resolved "https://registry.yarnpkg.com/@auto-it/core/-/core-7.9.2.tgz#6b5afd77f465c18aa9ebeabdcc3516602e859b5d"
@@ -60,6 +91,14 @@
     url-join "^4.0.0"
     user-home "^2.0.0"
 
+"@auto-it/omit-commits@^7.9.2":
+  version "7.11.0"
+  resolved "https://registry.yarnpkg.com/@auto-it/omit-commits/-/omit-commits-7.11.0.tgz#f64322c45cf4e3b00ec7f1fb7a4850394087ba9d"
+  integrity sha512-n/NQq4+0JDdBmhOCTDGfFuozTLbeFBXxnqSS5qiwdv8xJrhMkY4C/K6j0ERUxjK85BVaqW3FDXNC/JNSpeDZbQ==
+  dependencies:
+    "@auto-it/core" "^7.11.0"
+    tslib "1.10.0"
+
 "@auto-it/released@^7.9.2":
   version "7.9.2"
   resolved "https://registry.yarnpkg.com/@auto-it/released/-/released-7.9.2.tgz#71e4e71f40376349088b4de3047408debea83790"
@@ -68,17 +107,6 @@
     "@auto-it/core" "^7.9.2"
     deepmerge "^4.0.0"
     tslib "1.10.0"
-
-"@auto-it/slack@^7.9.2":
-  version "7.9.2"
-  resolved "https://registry.yarnpkg.com/@auto-it/slack/-/slack-7.9.2.tgz#5c5fc696ba0df8042f0f30052d41acc031fd9d89"
-  integrity sha512-AaLqRc8Wzul72sLkWfVICAIoP07F4n8pbUPgIHrUUBTC02a9NVkB83LkU3mpMBaziMT6d1N/myt4Z3pKP++/Mg==
-  dependencies:
-    "@atomist/slack-messages" "~1.1.0"
-    "@auto-it/core" "^7.9.2"
-    node-fetch "2.6.0"
-    tslib "1.10.0"
-    url-join "^4.0.0"
 
 "@babel/cli@^7.5.0":
   version "7.6.0"
@@ -2451,6 +2479,20 @@
   resolved "https://registry.npmjs.org/@skatejs/renderer-preact/-/renderer-preact-0.3.3.tgz#887638a0f3665ea8145bbca072ed66df1d375ab1"
   integrity sha512-dNrY0p5qNdnQNcL5Z2m+fa8iMsRhLANHvL4ywzr+xLE47GO3gWkH/wtsFR3F4N2LMcnfWivkXPcZHtiSorZivA==
 
+"@slack/types@^1.1.0":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@slack/types/-/types-1.2.1.tgz#132d50d02efb452c9a58573964b22f5f18ab9b1a"
+  integrity sha512-NyGh7MibW+a0OHkwwOPlv63hC639dzQdkFy4dj0tl4sAdZR4OBaE/OhXixKhCzcT3kJsPXaQmvkUN7sqSf52iA==
+
+"@slack/webhook@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@slack/webhook/-/webhook-5.0.2.tgz#822f7f930291ad2600db1ce8c39254260dc4d2fe"
+  integrity sha512-Ns35+KC//EWu+g+Bzp5m18V7qsCBdqAdvV4FJi2ng8+jto4rH2Bv2vUMmMioRn9LIiZ38LPsX/InrFjaO5XwGA==
+  dependencies:
+    "@slack/types" "^1.1.0"
+    "@types/node" ">=8.9.0"
+    axios "^0.18.0"
+
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
   resolved "https://registry.npmjs.org/@svgr/babel-plugin-add-jsx-attribute/-/babel-plugin-add-jsx-attribute-4.2.0.tgz#dadcb6218503532d6884b210e7f3c502caaa44b1"
@@ -2673,6 +2715,11 @@
   version "12.7.5"
   resolved "https://registry.npmjs.org/@types/node/-/node-12.7.5.tgz#e19436e7f8e9b4601005d73673b6dc4784ffcc2f"
   integrity sha512-9fq4jZVhPNW8r+UYKnxF1e2HkDWOWKM5bC2/7c9wPV835I0aOrVbS/Hw/pWPk2uKrNXQqg9Z959Kz+IYDd5p3w==
+
+"@types/node@>=8.9.0":
+  version "12.11.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.11.1.tgz#1fd7b821f798b7fa29f667a1be8f3442bb8922a3"
+  integrity sha512-TJtwsqZ39pqcljJpajeoofYRfeZ7/I/OMUQ5pR4q5wOKf2ocrUvBAZUMhWsOvKx3dVc/aaV5GluBivt0sWqA5A==
 
 "@types/node@^8.0.7":
   version "8.10.54"
@@ -3693,6 +3740,14 @@ axios@0.19.0:
   version "0.19.0"
   resolved "https://registry.npmjs.org/axios/-/axios-0.19.0.tgz#8e09bff3d9122e133f7b8101c8fbdd00ed3d2ab8"
   integrity sha512-1uvKqKQta3KBxIz14F2v06AEHZ/dIoeKfbTRkK1E5oqjDnuEerLmYTgJB5AiQZHJcljpg1TuRzdjDR06qNk0DQ==
+  dependencies:
+    follow-redirects "1.5.10"
+    is-buffer "^2.0.2"
+
+axios@^0.18.0:
+  version "0.18.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.1.tgz#ff3f0de2e7b5d180e757ad98000f1081b87bcea3"
+  integrity sha512-0BfJq4NSfQXd+SkFdrvFbG7addhYSBA2mQwISr46pD6E5iqkWg02RAs8vyTT/j0RTnoYmeXauBuSv1qKwR179g==
   dependencies:
     follow-redirects "1.5.10"
     is-buffer "^2.0.2"
