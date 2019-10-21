@@ -45,17 +45,12 @@ async function getLernaPackages() {
 async function init() {
   if (isCanaryRelease) {
     try {
-      const version = shell
+      const version = await shell
         .exec('auto version', { silent: true })
         .stdout.trim();
 
-      shell.exec(
+      await shell.exec(
         `npx lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --ignore-scripts --no-push --force-publish --yes -m "[skip travis] chore(release): pre-release %s"`,
-        { async: true },
-        (code, stdout, stderr) => {
-          console.log('', stdout);
-          console.log('', stderr);
-        },
       );
 
       const packages = await getLernaPackages();
@@ -91,12 +86,11 @@ async function init() {
       `);
 
       // do the full build + output CLI in real time
-      shell.exec('npm run build', { async: true }, (code, stdout, stderr) => {
-        console.log('Exit code:', code);
+      await shell.exec('npm run build', (code, stdout, stderr) => {
         console.log('', stdout);
         console.log('', stderr);
       });
-      shell.exec(
+      await shell.exec(
         `npx now deploy --meta gitSha='${gitSha}' --token=${process.env.NOW_TOKEN}`,
       );
 
@@ -127,21 +121,20 @@ async function init() {
     }
   } else if (isFullRelease) {
     try {
-      const version = shell
+      const version = await shell
         .exec('auto version', { silent: true })
         .stdout.trim();
 
-      const nextVersion = semver.inc(currentVersion, version);
+      const nextVersion = await semver.inc(currentVersion, version);
 
-      shell.exec(`
+      await shell.exec(`
         node scripts/release/update-php-package-versions.js -v ${nextVersion}
         git add packages/core-php/composer.json packages/drupal-modules/bolt_connect/bolt_connect.info.yml packages/drupal-modules/bolt_connect/composer.json
         git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
       `);
 
-      shell.exec(
+      await shell.exec(
         `npx lerna publish ${nextVersion} --yes -m "[skip travis] chore(release): release %s"`,
-        { async: true },
         (code, stdout, stderr) => {
           console.log('', stdout);
           console.log('', stderr);
@@ -186,13 +179,12 @@ async function init() {
       `);
 
       // do the full build + output CLI in real time
-      shell.exec('npm run build', { async: true }, (code, stdout, stderr) => {
-        console.log('Exit code:', code);
+      await shell.exec('npm run build', (code, stdout, stderr) => {
         console.log('', stdout);
         console.log('', stderr);
       });
 
-      shell.exec(
+      await shell.exec(
         `npx now deploy --meta gitSha='${gitSha}' --token=${process.env.NOW_TOKEN}`,
       );
 
