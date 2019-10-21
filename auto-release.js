@@ -6,6 +6,11 @@ const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { gitSha } = require('./scripts/utils');
 const execSync = require('child_process').execSync;
 const { getLatestDeploy } = require('./scripts/utils');
+const { IncomingWebhook } = require('@slack/webhook');
+const chalk = require('chalk');
+
+const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
+const SLACK_WEBPACK_URL_CANARY = process.env.SLACK_WEBPACK_URL_CANARY;
 
 async function getLernaPackages() {
   const packages = shell.exec('npx lerna ls -pl', {
@@ -43,9 +48,9 @@ async function init() {
         gitSha}`;
 
       await shell.exec(
-        `npx lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --yes -m "[skip travis] chore(release): pre-release %s"`,
+        `npx lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --ignore-scripts --no-push --yes -m "[skip travis] chore(release): pre-release %s"`,
       );
-      console.log('Successfully published canary version');
+      console.log('Canary published to NPM.');
       const packages = await getLernaPackages();
 
       await shell.exec('git reset --hard HEAD').stdout;
@@ -60,21 +65,59 @@ async function init() {
         );
       }
 
-      const newVersion = versioned.version.split('+')[0];
+      const canaryReleaseVersion = `v${versioned.version.split('+')[0].trim()}`; // ex. 2.9.0-canary.6b70020b5.0
 
-      console.log(newVersion);
+      const branchSpecificUrl = await normalizeUrlAlias(branchName);
+      const tagSpecificUrl = await normalizeUrlAlias(canaryReleaseVersion);
 
-      // await shell.exec(`
-      //   npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
-      //   npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
-      // `);
+      const nowAliases = [];
+      nowAliases.push(branchSpecificUrl);
+      nowAliases.push(await normalizeUrlAlias('canary'));
+      nowAliases.push(tagSpecificUrl);
 
-      // execSync('npm run build');
-      // shell.exec(
-      //   `npx now deploy --meta gitSha="${gitSha}" --token=${process.env.NOW_TOKEN}`,
-      // );
+      console.log(nowAliases);
 
-      // const latestUrl = await getLatestDeploy();
+      await shell.exec(`
+        npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
+        npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
+      `);
+
+      shell.exec(`npx now alias boltdesignsystem.com ${tagSpecificUrl}`);
+
+      execSync('npm run build');
+      shell.exec(
+        `npx now deploy --meta gitSha="${gitSha}" --token=${process.env.NOW_TOKEN}`,
+      );
+
+      const latestUrl = await getLatestDeploy();
+
+      nowAliases.forEach(alias => {
+        shell.exec(`npx now alias ${latestUrl} ${alias}`);
+      });
+
+      shell.exec(`
+        git tag -d ${canaryReleaseVersion}
+        git push origin :refs/tags/${canaryReleaseVersion}
+      `);
+
+      await shell.exec('git reset --hard HEAD').stdout;
+
+      if (SLACK_WEBPACK_URL_CANARY) {
+        const webhook = new IncomingWebhook(SLACK_WEBPACK_URL_CANARY);
+        await webhook.send({
+          text: `Bolt canary release, *${canaryReleaseVersion}*, has successfully published!
+           - <https://canary.boltdesignsystem.com|Shared Canary URL>
+           - <${tagSpecificUrl}|Unique Canary URL>`,
+        });
+      } else {
+        console.log(
+          chalk.yellow(
+            'Skipped sending Slack notification about upcoming Canary release -- missing `SLACK_WEBPACK_URL_CANARY` env variable!',
+          ),
+        );
+      }
+
+      console.log('Finished publishing canary release!');
 
       // const urlVersion = urlFriendlyString(newVersion);
 
@@ -91,8 +134,7 @@ async function init() {
     // publish
     // alias new version
 
-    // const branchSpecificUrl = await normalizeUrlAlias(branchName);
-    // const tagSpecificUrl = await normalizeUrlAlias(version);
+
 
     // console.log(
     //   `https://github.com/boltdesignsystem/bolt/releases/tag/v${currentVersion}`,
@@ -126,7 +168,7 @@ init();
 
 // // clear docs site .incache file
 
-// const { IncomingWebhook } = require('@slack/webhook');
+//
 // const url = process.env.SLACK_WEBHOOK_URL;
 // // Read a url from the environment variables
 
