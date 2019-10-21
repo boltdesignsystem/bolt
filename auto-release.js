@@ -50,7 +50,7 @@ async function init() {
         .stdout.trim();
 
       shell.exec(
-        `npx lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --ignore-scripts --no-push --yes -m "[skip travis] chore(release): pre-release %s"`,
+        `npx lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --ignore-scripts --no-push --force-publish --yes -m "[skip travis] chore(release): pre-release %s"`,
         { async: true },
         (code, stdout, stderr) => {
           console.log('', stdout);
@@ -58,15 +58,17 @@ async function init() {
         },
       );
 
-      console.log(
-        'Canary release successfully published to NPM. Doing a fresh build + deploying to now.sh.',
-      );
-
       const packages = await getLernaPackages();
       const versioned = packages.find(p => p.version.includes('canary'));
       if (!versioned) {
         console.log(
           'No packages were changed so no canary version was published.',
+        );
+
+        return;
+      } else {
+        console.log(
+          'Canary release successfully published to NPM. Doing a fresh build + deploying to now.sh.',
         );
       }
 
@@ -146,9 +148,20 @@ async function init() {
         },
       );
 
-      console.log(
-        'Bolt release successfully published to NPM. Doing a fresh build + deploying to now.sh.',
-      );
+      const packages = await getLernaPackages();
+      const versioned = packages.find(p => p.version.includes(nextVersion));
+
+      if (!versioned) {
+        console.warn(
+          'No packages were changed so the full release was not published!',
+        );
+        console.warn(`expected version to release was: ${nextVersion}`);
+        return;
+      } else {
+        console.log(
+          'The full Bolt release was successfully published to NPM. Doing a fresh build + deploying the updated site to now.sh.',
+        );
+      }
 
       // get the version we just published
       const releaseVersion = `v${nextVersion}`; // ex. v2.9.0
