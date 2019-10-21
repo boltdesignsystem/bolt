@@ -84,16 +84,9 @@ async function init() {
         npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
         npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
         npx now alias boltdesignsystem.com ${tagSpecificUrl} --token=${NOW_TOKEN}
+        npm run build
+        npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}
       `);
-
-      // do the full build + output CLI in real time
-      await shell.exec('npm run build', (code, stdout, stderr) => {
-        console.log('', stdout);
-        console.log('', stderr);
-      });
-      await shell.exec(
-        `npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}`,
-      );
 
       const latestUrl = await getLatestDeploy();
 
@@ -177,17 +170,9 @@ async function init() {
         npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
         npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
         npx now alias boltdesignsystem.com ${tagSpecificUrl} --token=${NOW_TOKEN}
+        npm run build
+        npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}
       `);
-
-      // do the full build + output CLI in real time
-      await shell.exec('npm run build', (code, stdout, stderr) => {
-        console.log('', stdout);
-        console.log('', stderr);
-      });
-
-      await shell.exec(
-        `npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}`,
-      );
 
       const latestUrl = await getLatestDeploy();
 
@@ -201,8 +186,8 @@ async function init() {
         git tag -fa ${releaseVersion} -m ${releaseVersion}
         git push --no-verify
         git push origin ${releaseVersion} --no-verify --force
+        git reset --hard HEAD
       `);
-      await shell.exec('git reset --hard HEAD').stdout;
 
       if (SLACK_WEBHOOK_URL) {
         const webhook = new IncomingWebhook(SLACK_WEBHOOK_URL);
