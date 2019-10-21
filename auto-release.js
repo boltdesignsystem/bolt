@@ -3,12 +3,93 @@ const { branchName } = require('./scripts/utils/branch-name');
 const isCanaryRelease = branchName === 'master';
 const isFullRelease = branchName === 'release-2.x';
 const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
+const { gitSha } = require('./scripts/utils');
+const execSync = require('child_process').execSync;
+const { getLatestDeploy } = require('./scripts/utils');
+
+async function getLernaPackages() {
+  const packages = shell.exec('npx lerna ls -pl', {
+    silent: true,
+  }).stdout;
+  const formattedPackages = [];
+  packages.split('\n').map(packageInfo => {
+    const [packagePath, name, version] = packageInfo.split(':');
+
+    if (packagePath && version) {
+      formattedPackages.push({ path: packagePath, name, version });
+    }
+  });
+
+  return formattedPackages;
+}
+
+async function getIndependentPackageList() {
+  return getLernaPackages().then(packages =>
+    packages.map(p => `\n - \`${p.name}@${p.version.split('+')[0]}\``).join(''),
+  );
+}
 
 async function init() {
   if (isCanaryRelease) {
-    shell.exec(`auto canary`);
+    try {
+      const version = shell
+        .exec('auto version', {
+          silent: true,
+        })
+        .stdout.trim();
+
+      const canaryVersion = `.${process.env.TRAVIS_PULL_REQUEST_SHA ||
+        process.env.TRAVIS_JOB_NUMBER ||
+        gitSha}`;
+
+      await shell.exec(
+        `npx lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --yes -m "[skip travis] chore(release): pre-release %s"`,
+      );
+      console.log('Successfully published canary version');
+      const packages = await getLernaPackages();
+
+      await shell.exec('git reset --hard HEAD').stdout;
+
+      // const independentPackages = await getIndependentPackageList();
+      // console.log(independentPackages);
+
+      const versioned = packages.find(p => p.version.includes('canary'));
+      if (!versioned) {
+        console.log(
+          'No packages were changed so no canary version was published.',
+        );
+      }
+
+      const newVersion = versioned.version.split('+')[0];
+
+      console.log(newVersion);
+
+      // await shell.exec(`
+      //   npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
+      //   npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
+      // `);
+
+      // execSync('npm run build');
+      // shell.exec(
+      //   `npx now deploy --meta gitSha="${gitSha}" --token=${process.env.NOW_TOKEN}`,
+      // );
+
+      // const latestUrl = await getLatestDeploy();
+
+      // const urlVersion = urlFriendlyString(newVersion);
+
+      // await shell.exec(`
+      //   npx now alias ${latestUrl} next.boltdesignsystem.com
+      //   npx now alias ${latestUrl} next.boltdesignsystem.com
+      // `);
+    } catch (error) {
+      console.error(error);
+    }
   } else if (isFullRelease) {
     console.log('full release!');
+
+    // publish
+    // alias new version
 
     // const branchSpecificUrl = await normalizeUrlAlias(branchName);
     // const tagSpecificUrl = await normalizeUrlAlias(version);
@@ -44,10 +125,6 @@ async function init() {
 init();
 
 // // clear docs site .incache file
-// shell.exec(`
-//   npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
-//   npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
-// `);
 
 // const { IncomingWebhook } = require('@slack/webhook');
 // const url = process.env.SLACK_WEBHOOK_URL;
@@ -88,8 +165,6 @@ init();
 //   // console.log(latestUrl);
 
 //   const urlVersion = urlFriendlyString(currentVersion);
-
-
 
 //   const url = process.env.SLACK_WEBHOOK_URL;
 
