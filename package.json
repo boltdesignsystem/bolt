@@ -55,9 +55,6 @@
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
-    "release": "./scripts/release/release.sh",
-    "release:beta": "./scripts/release/release-beta.sh",
-    "release:rc": "./scripts/release/release-rc.sh",
     "serve": "node packages/servers/default-server",
     "setup": "yarn && yarn run setup:php",
     "setup:full": "yarn --force && yarn run setup:php",
@@ -84,6 +81,7 @@
     "test:pkgs": "lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--*",
     "test:types": "tsc",
     "postinstall": "patch-package && npx lerna run postbootstrap",
+    "release": "npx lerna publish -m \"[skip travis] chore(release): publish %s\"",
     "postpublish": "auto release"
   },
   "husky": {
@@ -107,8 +105,10 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
-    "@auto-it/slack": "^7.7.0",
-    "auto": "^7.7.0",
+    "@auto-it/slack": "^7.9.2",
+    "@auto-it/released": "^7.9.2",
+    "@auto-it/omit-commits": "^7.9.2",
+    "auto": "^7.9.2",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@instructure/cz-lerna-changelog": "^6.6.0",
