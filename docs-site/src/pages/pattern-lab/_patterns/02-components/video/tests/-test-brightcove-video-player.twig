@@ -1,0 +1,85 @@
+<style type="text/css">
+  .video-js {
+    position: relative;
+    width: 640px;
+    height: 360px;
+  }
+  .pl-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .pl-column {
+    flex-basis: 50%;
+    margin-bottom: 2rem;
+  }
+
+</style>
+
+<div id="pl-video-container" class="pl-row"></div>
+
+<script src="//players.brightcove.net/1900410236/r1CAdLzTW_default/index.min.js"></script>
+
+<script type="text/javascript">
+
+var workingVideos = [
+  '5808137778001',
+  '5546925726001',
+  '5460968351001',
+  '4218804832001',
+  '5797173084001',
+  '6010219518001',
+  '5761126564001'
+];
+
+var brokenVideos = [
+];
+
+function setupVideo(id, working) {
+  var player = document.createElement('video-js');
+  player.setAttribute('data-embed', 'default');
+  player.setAttribute('data-application-id', true);
+  player.setAttribute('width', '640');
+  player.setAttribute('height', '360');
+  player.setAttribute('controls', true);
+  player.setAttribute('data-account', 1900410236);
+  player.setAttribute('data-player', 'r1CAdLzTW');
+  player.setAttribute('data-video-id', id);
+  player.classList.add('video-js');
+
+  var title = document.createElement('h2');
+  var titleText = working ? "Working Video: " + id : "Broken Video: " + id;
+  title.textContent = titleText;
+
+  var wrapper = document.createElement('div');
+  wrapper.classList.add('pl-column');
+  wrapper.appendChild(title);
+  wrapper.appendChild(player);
+
+  document.querySelector('#pl-video-container').appendChild(wrapper);
+
+  var options = {
+    techOrder: ['html5'],
+  };
+
+  var bcPlayer = bc(player, options);
+
+  bcPlayer.on('loadstart', function() {
+    var container = document.querySelector('#pl-log-container');
+
+    console.log(titleText);
+    console.log(bcPlayer.mediainfo.sources);
+  })
+
+}
+
+brokenVideos.forEach(function(id){
+  setupVideo(id);
+});
+
+workingVideos.forEach(function(id){
+  setupVideo(id, true);
+});
+
+</script>
