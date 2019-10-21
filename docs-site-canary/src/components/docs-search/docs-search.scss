@@ -1,0 +1,104 @@
+@import '@bolt/core';
+@import 'docsearch.js/dist/npm/styles/main.scss';
+
+// temporary style overrides to the default form input until we're done refactoring to support additional input sizes + icon placement
+bds-docs-search {
+  flex-shrink: 1;
+  max-width: 100%;
+  margin-left: auto;
+  transition: all 250ms;
+
+  ~ bolt-nav-priority:not(.is-ready) {
+    grid-column: 1/span 4;
+    justify-self: center;
+  }
+
+  @include bolt-mq($from: small){
+    width: 50px;
+    min-width: 100px;
+  }
+
+  @include bolt-mq($from: medium){
+    width: auto;
+    min-width: none;
+  }
+
+  &:focus-within {
+    width: 200px;
+    transition: all 250ms;
+
+    @include bolt-mq($from: medium){
+      width: auto;
+    }
+  }
+
+  .c-bolt-navbar & {
+    @include bolt-mq($until: 420px){
+      -ms-grid-column: 3;
+      -ms-grid-column-span: 2;
+      grid-column: 3/span 2;
+      padding-bottom: 0;
+    }
+  }
+
+  .c-bolt-input-icons,
+  .c-bolt-input,
+  .c-bolt-input:focus {
+    padding-top: bolt-v-spacing(xsmall);
+    padding-right: bolt-spacing(small);
+    padding-bottom: bolt-v-spacing(xsmall);
+    padding-left: bolt-spacing(medium);
+    line-height: 1;
+    border-radius: 50rem;
+  }
+
+  .c-bolt-input::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
+  }
+
+  .c-bolt-input-icons {
+    top: 50%;
+    right: auto;
+    left: 0;
+    transform: translateY(-50%) translateY(-1px) translateX(2px);
+    padding-right: bolt-spacing(xsmall);
+    padding-left: bolt-spacing(xsmall);
+    line-height: 1;
+    pointer-events: none;
+    border-radius: 50rem;
+    background-color: transparent;
+
+
+    &:before {
+      display: none;
+    }
+  }
+
+  .c-bolt-input-icon--link {
+    pointer-events: none;
+  }
+
+  .o-bolt-inline-list__item:first-child {
+    display: none;
+
+    &:last-child {
+      display: inline-block;
+    }
+  }
+
+  .algolia-autocomplete {
+    width: 100%;
+  }
+
+  .algolia-autocomplete .ds-dropdown-menu {
+    @include bolt-mq($until: small){
+      min-width: 250px;
+      max-width: 95vw;
+    }
+
+    @include bolt-mq($from: small, $until: medium){
+      min-width: 320px;
+      max-width: 80vw;
+    }
+  }
+}

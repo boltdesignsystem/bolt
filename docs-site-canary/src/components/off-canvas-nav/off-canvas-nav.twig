@@ -1,0 +1,79 @@
+{% macro menu(items, depth, currentUrl) %}
+  {% import _self as macros %}
+  <ul class="c-bds-offcanvas__list c-bds-offcanvas__list--depth-{{ depth }}">
+    {% for item in items %}
+      {% set isActive = currentUrl == item.url %}
+      {% set isActivePath = currentUrl starts with item.url|replace({'index.html': ''}) %}
+
+      <li class="c-bds-offcanvas__item 
+        {% if depth == 1 and not loop.first %} u-bolt-margin-top-medium {% endif %}">
+        
+
+      {% if item.meta.category and depth != 1%}
+        <details 
+          class="c-bds-offcanvas__collapsible"
+          {% if isActivePath %}open{% endif %}>
+      {% endif %}
+
+        {% if item.meta.category and depth == 1 %}
+          {% include '@bolt-components-headline/eyebrow.twig' with {
+            text: item.meta.category,
+            tag: "h2",
+            weight: "semibold"
+          } %}
+        {% elseif item.meta.category %}
+          <summary class="c-bds-offcanvas__collapsible-header">
+            {% include '@bolt-components-headline/text.twig' with {
+              text: item.meta.category,
+              tag: "h3",
+              weight: "regular",
+              size: "small",
+              attributes: {
+                class: [
+                  "u-bolt-margin-bottom-none"
+                ]
+              }
+            } %}
+          </summary>
+
+        {% endif %}
+
+        {% if not item.meta.hidden %}
+          {% include '@bolt-components-link/link.twig' with {
+            text: item.meta.title,
+            url: "/" ~ item.url,
+            attributes: {
+              class: [
+                "c-bds-offcanvas__link",
+                depth == 1 ? "is-parent" : "",
+                isActive ? "is-active" : "",
+                isActivePath ? "is-active-path" : ""
+              ]
+            }
+          } %}
+        {% endif %}
+        
+        {% if item.children %}
+          {{ macros.menu(item.children, depth + 1, currentUrl) }}
+        {% endif %}
+
+        {% if item.meta.category and depth != 1%}</details>{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% import _self as macros %}
+{% set currentUrl = page.url %}
+
+<nav class="c-bds-offcanvas">
+  {# {% if currentSection %} #}
+    {# <a href="#" class="c-bds-docs__close-menu u-bolt-hidden@medium">
+      {% include "@bolt-components-icon/icon.twig" with {
+        name: "close",
+        size: "medium",
+      } %}
+    </a>
+  {# {% endif %} #}
+  {{ macros.menu(nestedPages, 1, currentUrl) }}
+</nav>

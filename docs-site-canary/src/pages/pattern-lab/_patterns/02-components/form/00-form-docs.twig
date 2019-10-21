@@ -1,0 +1,11 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-form/form.twig" with {
+  text: "This is a form",
+  url: "#!",
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "form",
+  usage: usage
+} only %}

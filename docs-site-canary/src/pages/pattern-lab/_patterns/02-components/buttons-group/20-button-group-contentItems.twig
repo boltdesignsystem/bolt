@@ -1,0 +1,26 @@
+{% include "@bolt-components-button-group/button-group.twig" with {
+  contentItems: [
+    {
+      pattern: "button",
+      text: "Example",
+      style: "primary",
+      size: "xsmall",
+      iconOnly: true,
+      border_radius: "full",
+      icon: {
+        name: "close",
+      },
+    },
+    {
+      pattern: "button",
+      text: "About Pega",
+      style: "secondary",
+      size: "xsmall",
+      iconOnly: true,
+      icon: {
+        name: "close",
+      },
+    },
+  ],
+  content: "This is text with the <bold>tags</bold> stripped.",
+} %}

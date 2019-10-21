@@ -1,0 +1,65 @@
+{% include "@bolt-components-ul/ul.twig" with {
+  "items" : [
+    "Do not include any data or information in your posts that are confidential!",
+    "Apply basic practices for collaborative work.",
+    "Be honest, respectful, trustworthy and helpful.",
+    [
+      "Level 1",
+      include("@bolt-components-ul/ul.twig", {
+        items: [
+          "Item 1",
+          [
+            "Level 2",
+            include("@bolt-components-ul/ul.twig", {
+              items: [
+                "Item 1",
+                "Item 2",
+                [
+                  "Level 3",
+                  include("@bolt-components-ul/ul.twig", {
+                    items: [
+                      "Item 1",
+                      "Item 2",
+                      "Item 3",
+                      [
+                        "Level 4",
+                        include("@bolt-components-ul/ul.twig", {
+                          items: [
+                            "Item 1",
+                            "Item 2",
+                            "Item 3",
+                            "Item 4",
+                            [
+                              "Level 5",
+                              include("@bolt-components-ul/ul.twig", {
+                                items: [
+                                  "Item 1",
+                                  "Item 2",
+                                  "Item 3",
+                                  "Item 4",
+                                  "Item 5"
+                                ]
+                              })
+                            ],
+                            "Item 5"
+                          ]
+                        })
+                      ],
+                      "Item 5"
+                    ]
+                  })
+                ],
+                "Item 4",
+                "Item 5"
+              ]
+            })
+          ],
+          "Item 3",
+          "Item 4",
+          "Item 5"
+        ]
+      })
+    ],
+    "Avoid cluttering discussions with noise."
+  ]
+} %}

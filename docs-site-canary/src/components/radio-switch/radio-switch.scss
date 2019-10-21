@@ -1,0 +1,134 @@
+/* -------------------------------- 
+
+Title: Radio Switch
+Descr: A custom radio button with a switch element and two labels
+
+-------------------------------- */
+@import '@bolt/core';
+
+:root {
+  // style
+  --radio-switch-width: 52px;
+  --radio-switch-height: 30px;
+  --radio-switch-padding: 4px;
+  --radio-switch-radius: 50em;
+
+  // animation
+  --radio-switch-animation-duration: 0.3s;
+}
+
+.c-bolt-radio-switch {
+  display: inline-block; // flexbox fallback
+  display: inline-flex;
+  position: relative;
+  margin: 0;
+  list-style: none;
+}
+
+.c-bolt-radio-switch__item {
+  position: relative;
+  float: left; // flexbox fallback
+  height: var(--radio-switch-height);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.c-bolt-radio-switch__input {
+  opacity: 0;
+  position: relative;
+  transform: scaleX(
+    2
+  ); // scale up the input element so that it covers the entire switch
+  z-index: 2;
+  width: calc(var(--radio-switch-width) * 0.5);
+  height: 100%;
+  cursor: pointer;
+  transform-origin: 0 0;
+
+  .c-bolt-radio-switch__item:last-of-type & {
+    transform-origin: 100% 100%;
+  }
+
+  .c-bolt-radio-switch__item:first-of-type & {
+    order: 1; // input follows label
+  }
+
+  &:checked {
+    z-index: -1; // make sure the unchecked input is the only one clickable
+  }
+}
+
+.c-bolt-radio-switch__label {
+  display: block;
+  position: relative;
+  z-index: 2;
+  @include bolt-no-select;
+  @include bolt-font-size(small);
+  transition: color var(--radio-switch-animation-duration);
+
+  .c-bolt-radio-switch__item:first-of-type & {
+    float: left; // flexbox fallback
+    @include bolt-margin-right(xsmall);
+  }
+
+  .c-bolt-radio-switch__item:last-of-type & {
+    float: right; // flexbox fallback
+    @include bolt-margin-left(xsmall);
+  }
+
+  .c-bolt-radio-switch__input:checked ~ & {
+    color: bolt-theme(primary);
+  }
+
+  .c-bolt-radio-switch__input:focus ~ & {
+    // focus effect if :focus-within is not supported
+    outline: 2px solid bolt-theme(primary, 0.2);
+    outline-offset: 2px;
+  }
+
+  :not(*):focus-within,
+  .c-bolt-radio-switch__input:focus ~ & {
+    // reset focus style for browsers supporting :focus-within
+    outline: none;
+  }
+}
+
+.c-bolt-radio-switch__toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: var(--radio-switch-width);
+  height: var(--radio-switch-height);
+  border-radius: var(--radio-switch-radius);
+  box-shadow: 0 0 0 1px bolt-color(gray);
+
+  .c-bolt-radio-switch:focus-within &,
+  .c-bolt-radio-switch:active & {
+    box-shadow: 0 0 0 1px bolt-color(gray), 0 0 0 3px bolt-color(gray, dark); // focus effect if :focus-within is supported
+  }
+}
+
+.c-bolt-radio-switch__marker {
+  position: absolute;
+  top: var(--radio-switch-padding);
+  left: var(--radio-switch-padding);
+  z-index: 1;
+  width: calc(var(--radio-switch-height) - var(--radio-switch-padding) * 2);
+  height: calc(var(--radio-switch-height) - var(--radio-switch-padding) * 2);
+  border-radius: 50%;
+  background-color: bolt-theme(primary);
+  will-change: left;
+  transition: left var(--radio-switch-animation-duration);
+}
+
+.c-bolt-radio-switch__input:checked
+  ~ .c-bolt-radio-switch__toggle
+  .c-bolt-radio-switch__marker {
+  left: calc(
+    var(--radio-switch-width) - var(--radio-switch-height) +
+      var(--radio-switch-padding)
+  );
+}

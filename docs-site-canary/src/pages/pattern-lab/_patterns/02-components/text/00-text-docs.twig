@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+<bolt-text>
+  This is text.
+</bolt-text>
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "text",
+  usage: usage
+} only %}

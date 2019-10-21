@@ -1,0 +1,11 @@
+{% set usage %}{% verbatim %}
+{% include '@bolt-components-image/image.twig' with {
+  src: "/src/images/turtle.jpg",
+  alt: "A Turtle"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "image",
+  usage: usage
+} only %}

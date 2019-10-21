@@ -1,0 +1,28 @@
+<h1>Bolt - LitHTML Test</h1>
+
+<script>
+  function toggleThrottledLitRendering(){
+    console.log('toggleThrottledLitRendering');
+
+    var element = document.querySelector('.js-lit-test');
+    var buttonTriggle = document.querySelector('.js-lit-test-button');
+
+    if (element.hasAttribute('throttle')){
+      element.removeAttribute('throttle');
+      buttonTriggle.textContent = 'Enable LitHTML Throttling';
+    } else {
+      element.setAttribute('throttle', '');
+      buttonTriggle.textContent = 'Disable LitHTML Throttling';
+    }
+  };
+
+  window.toggleThrottledLitRendering = toggleThrottledLitRendering;
+</script>
+
+
+<bolt-button on-click="toggleThrottledLitRendering" class="js-lit-test-button">Enable LitHTML Throttling</bolt-button>
+
+<bolt-lit-test class="js-lit-test"></bolt-lit-test>
+
+
+

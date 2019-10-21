@@ -1,0 +1,88 @@
+{% set schema = bolt.data.components['@bolt-components-pagination'].schema %}
+
+<h3>Internationalization Support</h3>
+<p>For better internationalization support, align prop uses the <code>start</code> (left) and <code>end</code> (right) vocab. This helps the pagination to have the desired alignment regardless of the writing direction of the language being displayed.</p>
+
+{% for align in schema.properties.align.enum %}
+  <h3>Align {{ align }}</h3>
+  {% include "@bolt-components-pagination/pagination.twig" with {
+    align: align,
+    current: 5,
+    total: 10,
+    first: {
+      href: '#!'
+    },
+    previous: {
+      href: '#!'
+    },
+    pages: {
+      3: {
+        href: '#!'
+      },
+      4: {
+        href: '#!'
+      },
+      5: {
+        href: '#!'
+      },
+      6: {
+        href: '#!'
+      },
+      7: {
+        href: '#!'
+      }
+    },
+    next: {
+      href: '#!'
+    },
+    last: {
+      href: '#!'
+    },
+  } only %}
+{% endfor %}
+
+<h3>Pagination on the Left, Something on the Right</h3>
+<p>In this case, you must set the align prop to be <code>start</code> so it is not centered within the cell.</p>
+<div class="u-bolt-margin-bottom-medium">
+  {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+    {% cell "o-bolt-grid__cell u-bolt-flex-grow" %}
+      {% include "@bolt-components-pagination/pagination.twig" with {
+        align: "start",
+        current: 5,
+        total: 10,
+        first: {
+          href: '#!'
+        },
+        previous: {
+          href: '#!'
+        },
+        pages: {
+          3: {
+            href: '#!'
+          },
+          4: {
+            href: '#!'
+          },
+          5: {
+            href: '#!'
+          },
+          6: {
+            href: '#!'
+          },
+          7: {
+            href: '#!'
+          }
+        },
+        next: {
+          href: '#!'
+        },
+        last: {
+          href: '#!'
+        },
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@small" %}
+      <p style="background: yellow; text-align: right;">Something on the right</p>
+    {% endcell %}
+  {% endgrid %}
+</div>

@@ -1,0 +1,150 @@
+<p>Bolt's SVG icon system provides the ability to customize an individual icon's color (the shape itself), background color, and background opacity levels, in both the Twig and Custom Element formats the design system ships.</p>
+
+
+<h2>via Web Component:</h2>
+
+{% set customElementExample %}{%- verbatim -%}
+<bolt-icon
+  size="xlarge"
+  background="circle"
+  name="marketing-gray"
+  style="
+    color: #a65388;
+    --bolt-theme-icon-background: #a65388;
+    --bolt-theme-icon: #FFF;
+    --bolt-theme-icon-background-opacity: 1;
+  "></bolt-icon>
+{%- endverbatim -%}{% endset %}
+
+{% embed "@bolt-components-code-snippet/code-snippet.twig" with {
+  lang: "html",
+  content: customElementExample
+} %}
+{% endembed %}
+
+<bolt-icon
+  size="xlarge"
+  background="circle"
+  name="marketing-gray"
+  style="
+    color: #a65388;
+    --bolt-theme-icon-background: #a65388;
+    --bolt-theme-icon: #FFF;
+    --bolt-theme-icon-background-opacity: 1;
+  "></bolt-icon>
+
+<bolt-icon
+  size="xlarge"
+  background="circle"
+  name="customer-service"
+  style="
+    color: #e64b18;
+    --bolt-theme-icon-background: #e64b18;
+    --bolt-theme-icon: #FFF;
+    --bolt-theme-icon-background-opacity: 1;
+  "></bolt-icon>
+
+<bolt-icon
+  size="xlarge"
+  background="circle"
+  name="sales-automation"
+  style="
+    color: #535da6;
+    --bolt-theme-icon-background: #535da6;
+    --bolt-theme-icon: #FFF;
+    --bolt-theme-icon-background-opacity: 1;
+  "></bolt-icon>
+
+<bolt-icon
+  size="xlarge"
+  background="circle"
+  name="brand-operations"
+  style="
+    color: #209952;
+    --bolt-theme-icon-background: #209952;
+    --bolt-theme-icon: #FFF;
+    --bolt-theme-icon-background-opacity: 1;
+  "></bolt-icon>
+
+
+<hr>
+
+<h2>via Twig Include:</h2>
+
+{% set twigIncludeExample %}{%- verbatim -%}
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "customer-service",
+  background: "circle",
+  size: "xlarge",
+  attributes: {
+    style: [
+      "color: #e64b18;",
+      "--bolt-theme-icon-background: #e64b18;",
+      "--bolt-theme-icon: #FFF;",
+      "--bolt-theme-icon-background-opacity: 1;"
+    ]
+  }
+} only %}
+{%- endverbatim -%}{% endset %}
+
+{% embed "@bolt-components-code-snippet/code-snippet.twig" with {
+  lang: "twig",
+  content: twigIncludeExample
+} %}
+{% endembed %}
+
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "marketing-gray",
+  background: "circle",
+  size: "xlarge",
+  attributes: {
+    style: [
+      "color: #a65388;",
+      "--bolt-theme-icon-background: #a65388;",
+      "--bolt-theme-icon: #FFF;",
+      "--bolt-theme-icon-background-opacity: 1;"
+    ]
+  }
+} only %}
+
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "customer-service",
+  background: "circle",
+  size: "xlarge",
+  attributes: {
+    style: [
+      "color: #e64b18;",
+      "--bolt-theme-icon-background: #e64b18;",
+      "--bolt-theme-icon: #FFF;",
+      "--bolt-theme-icon-background-opacity: 1;"
+    ]
+  }
+} only %}
+
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "sales-automation",
+  background: "circle",
+  size: "xlarge",
+  attributes: {
+    style: [
+      "color: #535da6;",
+      "--bolt-theme-icon-background: #535da6;",
+      "--bolt-theme-icon: #FFF;",
+      "--bolt-theme-icon-background-opacity: 1;"
+    ]
+  }
+} only %}
+
+{% include "@bolt-components-icon/icon.twig" with {
+  name: "brand-operations",
+  background: "circle",
+  size: "xlarge",
+  attributes: {
+    style: [
+      "color: #209952;",
+      "--bolt-theme-icon-background: #209952;",
+      "--bolt-theme-icon: #FFF;",
+      "--bolt-theme-icon-background-opacity: 1;"
+    ]
+  }
+} only %}

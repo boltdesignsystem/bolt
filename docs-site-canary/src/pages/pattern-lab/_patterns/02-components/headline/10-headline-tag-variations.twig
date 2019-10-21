@@ -1,0 +1,19 @@
+{% set headingExamples = {
+  h1: "xxxlarge",
+  h2: "xxlarge",
+  h3: "xlarge",
+  h4: "large",
+  h5: "medium",
+  h6: "small",
+  p: "xsmall",
+  span: "xsmall",
+} %}
+
+{% for tag, heading in headingExamples %}
+  <p>{{ tag|upper }}</p>
+  {% include "@bolt-components-headline/headline.twig" with {
+    text: "This is an example of " ~ tag|upper,
+    tag: tag,
+    size: heading,
+  } only %}
+{% endfor %}

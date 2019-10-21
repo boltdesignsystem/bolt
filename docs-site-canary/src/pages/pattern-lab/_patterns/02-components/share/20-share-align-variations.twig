@@ -1,0 +1,13 @@
+{% set schema = bolt.data.components["@bolt-components-share"].schema %}
+{% extends "@pl/_share-variables.twig" %}
+
+{% block content %}
+  {% for align in schema.properties.align.enum %}
+    <h3>Align: {{ align }}</h3>
+    {% include "@bolt-components-share/share.twig" with {
+      align: align,
+      sources: sources,
+      copy_to_clipboard: copy_to_clipboard,
+    } only %}
+  {% endfor %}
+{% endblock %}

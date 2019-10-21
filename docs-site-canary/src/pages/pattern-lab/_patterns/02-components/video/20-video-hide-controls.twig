@@ -1,0 +1,21 @@
+<p>
+  This video has <code>controls</code> set to <code>false</code>, you cannot interact with the video player but you can create external control to interact with it:
+</p>
+<p>
+  {% include "@bolt/button.twig" with {
+    "text": "Play or pause",
+    "tag": "button",
+    "attributes": {
+      "on-click": "toggle",
+      "on-click-target": "pega-video-3861325118001-e"
+    }
+  } only %}
+</p>
+
+{% include "@bolt/video.twig" with {
+  "videoId": "3861325118001",
+  "accountId": "1900410236",
+  "playerId": "r1CAdLzTW",
+  "controls": false,
+  "videoUuid": "pega-video-3861325118001-e"
+} only %}

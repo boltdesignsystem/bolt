@@ -1,0 +1,192 @@
+@keyframes bds-shapes-fade {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(calc(var(--rotate) * 2));
+  }
+  10% {
+    transform: translate3d(0, 0, 0) rotate(calc(var(--rotate) * 2));
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bds-shapes-drift {
+  0% {
+    transform: translate3d(100vw, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-30vw, 0, 0);
+  }
+}
+
+.c-bds-shapes {
+  opacity: 0;
+  position: fixed;
+  top: bolt-v-spacing(medium); // offset the top just a tad
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+
+  .is-ready & {
+    animation: bds-shapes-fade 0.8s ease-out forwards;
+  }
+}
+
+.c-bds-shapes__shape-inner {
+  transform: translate3d(0, calc(var(--criterion, 0) * -2 * var(--size)), 0)
+    rotate(calc((1 - var(--criterion, 0) * -2) * var(--rotate)));
+  width: var(--size);
+  height: var(--size);
+  will-change: transform;
+}
+
+.c-bds-shapes__animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.c-bds-shapes__animation--1 {
+  opacity: 0.1;
+  top: 0;
+  z-index: 8;
+  width: 10vh;
+  height: 10vh;
+  filter: blur(1px);
+  will-change: transform;
+  animation-delay: -12s;
+  animation-duration: 55s;
+  animation-iteration-count: infinite;
+  animation-name: bds-shapes-drift;
+  animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.c-bds-shapes__animation--2 {
+  opacity: 1;
+  top: 8vh;
+  z-index: 7;
+  width: 3vh;
+  height: 3vh;
+  filter: blur(3px);
+  will-change: transform;
+  animation-delay: -38s;
+  animation-duration: 58s;
+  animation-iteration-count: infinite;
+  animation-name: bds-shapes-drift;
+  animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.c-bds-shapes__animation--3 {
+  opacity: 0.5;
+  top: 20vh;
+  z-index: 1;
+  width: 4vh;
+  height: 4vh;
+  filter: blur(5px);
+  will-change: transform;
+  animation-delay: -60s;
+  animation-duration: 76s;
+  animation-iteration-count: infinite;
+  animation-name: bds-shapes-drift;
+  animation-timing-function: linear;
+}
+
+.c-bds-shapes__animation--4 {
+  opacity: 0.8;
+  top: 33vh;
+  z-index: 6;
+  width: 7vh;
+  height: 7vh;
+  filter: blur(5px);
+  will-change: transform;
+  animation-delay: -29s;
+  animation-duration: 51s;
+  animation-iteration-count: infinite;
+  animation-name: bds-shapes-drift;
+  animation-timing-function: ease-in;
+}
+
+.c-bds-shapes__animation--5 {
+  opacity: 0.45;
+  top: 40vh;
+  z-index: 4;
+  width: 4vh;
+  height: 4vh;
+  filter: blur(4px);
+  will-change: transform;
+  animation-delay: -5s;
+  animation-duration: 67s;
+  animation-iteration-count: infinite;
+  animation-name: bds-shapes-drift;
+  animation-timing-function: linear;
+}
+
+.c-bds-shapes__animation--6 {
+  opacity: 0.7;
+  top: 68vh;
+  z-index: 5;
+  width: 6vh;
+  height: 6vh;
+  filter: blur(3px);
+  will-change: transform;
+  animation-delay: -31s;
+  animation-duration: 64s;
+  animation-iteration-count: infinite;
+  animation-name: bds-shapes-drift;
+  animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.c-bds-shapes__animation--7 {
+  opacity: 0.6;
+  top: 82vh;
+  z-index: 3;
+  width: 2vh;
+  height: 2vh;
+  filter: blur(1px);
+  will-change: transform;
+  animation-delay: -42s;
+  animation-duration: 70s;
+  animation-iteration-count: infinite;
+  animation-name: bds-shapes-drift;
+  animation-timing-function: linear;
+}
+
+.c-bds-shapes__animation--8 {
+  opacity: 0.55;
+  top: 90vh;
+  z-index: 2;
+  width: 2vh;
+  height: 2vh;
+  filter: blur(6px);
+  will-change: transform;
+  animation-delay: -55s;
+  animation-duration: 73s;
+  animation-iteration-count: infinite;
+  animation-name: bds-shapes-drift;
+  animation-timing-function: ease-in;
+}
+
+.c-bds-shapes__animation--9 {
+  opacity: 0.95;
+  top: 60vh;
+  z-index: 2;
+  width: 3vh;
+  height: 3vh;
+  filter: blur(6px);
+  will-change: transform;
+  animation-delay: -25s;
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+  animation-name: bds-shapes-drift;
+  animation-timing-function: ease-in;
+}

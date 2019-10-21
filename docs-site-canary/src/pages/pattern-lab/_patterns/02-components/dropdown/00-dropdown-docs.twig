@@ -1,0 +1,53 @@
+{% set usage %}{% verbatim %}
+// Via Twig
+{% embed "@bolt-components-dropdown/dropdown.twig" with {
+  title: "Toggle Menu",
+  collapse: true
+} %}
+  {% block content %}
+    {% include "@bolt-components-nav/nav.twig" with {
+      links: [
+        {
+        text: "Link 1 Text",
+        url": "#!"
+      },
+      {
+        text: "Link 2 Text",
+        url": "#!"
+      },
+      {
+        text: "Link 3 Text",
+        url": "#!"
+      }
+      ]
+    } %}
+  {% endblock %}
+{% endembed %}
+
+// Via Web Component and Twig
+<bolt-dropdown
+  title="Custom Element w/ Collapse &amp; Center"
+>
+  {% include "@bolt-components-nav/nav.twig" with {
+    links: [
+      {
+        text: "Link 1 Text",
+        url": "#!"
+      },
+      {
+        text: "Link 2 Text",
+        url": "#!"
+      },
+      {
+        text: "Link 3 Text",
+        url": "#!"
+      }
+    ]
+  } only %}
+</bolt-dropdown>
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "dropdown",
+  usage: usage
+} only %}

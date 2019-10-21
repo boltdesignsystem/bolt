@@ -1,0 +1,21 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-grid/grid.twig" with {
+  gutter: "medium",
+  row_gutter: "medium",
+  items: [
+    {
+      column_start: "1",
+      column_span: "1",
+      row_start: "1",
+      row_span: "1",
+      valign: "start",
+      content: "Item Content",
+    },
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "grid",
+  usage: usage
+} only %}

@@ -1,0 +1,21 @@
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% block content %}
+  <bolt-text headline>
+    Font-style Usage
+  </bolt-text>
+  <bolt-text>
+    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> has font-style options to indicate simple emphasis.
+  </bolt-text>
+  {% for font_style in schema.properties["font-style"].enum %}
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set text_demo %}
+<bolt-text font-style="{{ font_style }}">
+  This text has its font-style prop defined as: {{ font_style }}
+</bolt-text>
+{% endset %}
+
+    {% include text_code.code_example(text_demo, true) %}
+  {% endfor %}
+{% endblock %}

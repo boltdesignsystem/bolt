@@ -1,0 +1,29 @@
+{% embed "@bolt-components-dropdown/dropdown.twig" with {
+  title: "Toggle Menu",
+  collapse: true
+} %}
+  {% block content %}
+    {% include "@bolt-components-block-list/block-list.twig" with {
+      "items": [
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 1 Text",
+          "url": "#!"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 2 Text",
+          "url": "#!"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 3 Text",
+          "url": "#!"
+        }),
+        include("@bolt-components-link/link.twig", {
+          "text": "Link 4 Text",
+          "url": "#!"
+        }),
+      ]
+    } %}
+  {% endblock %}
+{% endembed %}
+
+

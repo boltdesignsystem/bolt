@@ -1,0 +1,32 @@
+{% include "@bolt-components-card/card.twig" with {
+  url: "#!",
+  contentItems: [
+    {
+      pattern: "image",
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      lazyload: false,
+      alt: "Anthem Video"
+    },
+    {
+      pattern: "eyebrow",
+      text: "Video"
+    },
+    {
+      pattern: "headline",
+      tag: "h3",
+      size: "large",
+      text: headline_demo_text | default("Anthem: Service Desktop")
+    },
+    {
+      pattern: "text",
+      text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+    },
+    {
+      pattern: "button",
+      width: "full",
+      text: "Get the report"
+    }
+  ]
+} %}
+
+

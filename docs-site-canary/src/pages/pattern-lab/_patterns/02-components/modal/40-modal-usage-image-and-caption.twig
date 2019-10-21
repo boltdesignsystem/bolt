@@ -1,0 +1,165 @@
+<bolt-text headline font-size="xlarge">Image Modal Usage</bolt-text>
+<bolt-text><bolt-code-snippet display="inline" lang="html">&lt;bolt-trigger&gt;</bolt-code-snippet> is needed to create an image modal that gets triggered from either the Image component or the Device Viewer component. The following are examples of how you can assemble the necessary pieces together. Please note that you should use the <bolt-code-snippet display="inline" lang="html">width</bolt-code-snippet> prop on <bolt-code-snippet display="inline" lang="html">&lt;bolt-modal&gt;</bolt-code-snippet> to accommodate your needs, <bolt-code-snippet display="inline" lang="html">optimal</bolt-code-snippet> width is about 70 characters wide, <bolt-code-snippet display="inline" lang="html">full</bolt-code-snippet> width will take up the width of the page.</bolt-text>
+
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set image_content %}
+    {% include "@bolt-components-image/image.twig" with {
+      src: "/images/placeholders/tout-4x3-climber.jpg",
+      alt: "Image description.",
+      ratio: "none",
+    } only %}
+  {% endset %}
+  {% set caption %}
+    <div class="u-bolt-padding-top-xsmall u-bolt-padding-right-small u-bolt-padding-bottom-small u-bolt-padding-left-small">
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "This is the caption for the image.",
+        size: "small",
+      } only %}
+    </div>
+  {% endset %}
+  {% set modal_content %}
+    {% include "@bolt-components-figure/figure.twig" with {
+      media: {
+        image: {
+          src: "/images/placeholders/tout-4x3-climber.jpg",
+          alt: "Image description.",
+          max_width: "1000px",
+        },
+      },
+      caption: caption,
+    } only %}
+  {% endset %}
+  {% set trigger %}
+    {% include "@bolt-components-trigger/trigger.twig" with {
+      content: image_content,
+      display: "block",
+      cursor: "zoom-in",
+      attributes: {
+        "on-click": "show",
+        "on-click-target": "js-image-modal-advanced-image-and-caption",
+      }
+    } only %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      attributes: {
+        class: "js-image-modal-advanced-image-and-caption",
+      },
+      content: modal_content,
+      spacing: "none",
+      scroll: "overall",
+      width: "auto",
+    } only %}
+  {% endset %}
+  {% set description %}
+    <bolt-text headline font-size="large">Enlarge image and show caption</bolt-text>
+    <bolt-text>Create a thumbnail image trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high-resolution image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
+    <bolt-text>Modal <bolt-code-snippet display="inline" lang="html">width</bolt-code-snippet>  is set to <bolt-code-snippet display="inline" lang="html">auto</bolt-code-snippet>  and image <bolt-code-snippet display="inline" lang="html">max-width</bolt-code-snippet>  is set to <bolt-code-snippet display="inline" lang="html">1000px</bolt-code-snippet>.</bolt-text>
+  {% endset %}
+
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1 1@small",
+        column_span: "12 8@small 9@medium",
+        row_start: "2 1@small",
+        row_span: "1",
+        valign: "center",
+        content: description,
+      },
+      {
+        column_start: "1 10@small 11@medium",
+        column_span: "6 3@small 2@medium",
+        row_start: "1 1@small",
+        row_span: "1",
+        valign: "center",
+        content: trigger,
+      },
+    ]
+  } only %}
+</div>
+
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set image_content %}
+    {% include "@bolt-components-image/image.twig" with {
+      src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+      alt: "Image description.",
+      ratio: "none",
+    } only %}
+  {% endset %}
+  {% set caption %}
+    <div class="u-bolt-padding-top-xsmall u-bolt-padding-right-small u-bolt-padding-bottom-small u-bolt-padding-left-small">
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "This is the caption for the image.",
+        size: "small",
+      } only %}
+    </div>
+  {% endset %}
+  {% set modal_content %}
+    {% include "@bolt-components-figure/figure.twig" with {
+      media: {
+        image: {
+          src: "/images/content/screenshots/device-screenshot--desktop.jpg",
+          alt: "Image description.",
+        },
+      },
+      caption: caption,
+    } only %}
+  {% endset %}
+
+  {% set trigger %}
+    {% include "@bolt-components-trigger/trigger.twig" with {
+      content: image_content,
+      display: "block",
+      cursor: "zoom-in",
+      attributes: {
+        "on-click": "show",
+        "on-click-target": "js-image-modal-advanced-device-viewer",
+      }
+    } only %}
+  {% endset %}
+
+  {% set device_viewer %}
+    {% embed "@bolt-components-device-viewer/device-viewer.twig" with {
+      device: "macbook",
+    } %}
+      {% block device_viewer_image %}
+        {{ trigger }}
+      {% endblock %}
+    {% endembed %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      attributes: {
+        class: "js-image-modal-advanced-device-viewer",
+      },
+      content: modal_content,
+      spacing: "none",
+      scroll: "overall",
+      width: "optimal",
+    } only %}
+  {% endset %}
+
+  {% set description %}
+    <bolt-text headline font-size="large">Enlarge image (inside device viewer) and show caption</bolt-text>
+    <bolt-text>Create a device viewer trigger and pass a figure with image and caption into the modal content. Note: make sure you upload a high-resolution image (up to 2880px wide) if you intend to show the image as big as possible.</bolt-text>
+    <bolt-text>Modal <bolt-code-snippet display="inline" lang="html">width</bolt-code-snippet>  is set to <bolt-code-snippet display="inline" lang="html">optimal</bolt-code-snippet> .</bolt-text>
+  {% endset %}
+
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1 1@small",
+        column_span: "12 8@small 9@medium",
+        row_start: "2 1@small",
+        row_span: "1",
+        valign: "center",
+        content: description,
+      },
+      {
+        column_start: "1 10@small 11@medium",
+        column_span: "6 3@small 2@medium",
+        row_start: "1 1@small",
+        row_span: "1",
+        valign: "center",
+        content: device_viewer,
+      },
+    ]
+  } only %}
+</div>

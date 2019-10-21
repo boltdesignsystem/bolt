@@ -1,0 +1,22 @@
+{% set schema = bolt.data.components['@bolt-components-blockquote'].schema %}
+
+{% for alignItems in schema.properties.alignItems.enum %}
+  <p>alignItems: {{ alignItems }}</p>
+  {% include "@bolt-components-blockquote/blockquote.twig" with {
+    alignItems: alignItems,
+    logo: {
+      invert: true,
+      src: "/images/content/logos/logo-paypal.svg"
+    },
+    content: "<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>",
+    author: {
+      image: {
+        src: "/images/placeholders/500x500.jpg",
+        lazyload: false
+      },
+      name: "Michelangelo di Lodovico Buonarroti Simoni",
+      title: "Renaissance Artist"
+    }
+  } %}
+
+{% endfor %}

@@ -1,0 +1,13 @@
+{% set schema = bolt.data.components["@bolt-components-share"].schema %}
+{% extends "@pl/_share-variables.twig" %}
+
+{% block content %}
+  {% for size in schema.properties.size.enum %}
+    <h3>{{ size|capitalize }} Size</h3>
+    {% include "@bolt-components-share/share.twig" with {
+      size: size,
+      sources: sources,
+      copy_to_clipboard: copy_to_clipboard,
+    } only %}
+  {% endfor %}
+{% endblock %}

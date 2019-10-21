@@ -1,0 +1,39 @@
+{% set text_advanced_ssr_demo_noshadow %}
+{% filter bolt_ssr %}
+<bolt-text no-shadow>
+  This is text.
+</bolt-text>
+{% endfilter %}
+{% endset %}
+
+{% set text_advanced_ssr_demo %}
+&lbrace;&percnt; filter bolt_ssr &percnt;&rbrace;
+  <bolt-text>
+    This is text.
+  </bolt-text>
+&lbrace;&percnt; endfilter &percnt;&rbrace;
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Server-side Rendered Web Components (Experimental)
+  </bolt-text>
+  <bolt-text>
+    The <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> component, among many other web components in Bolt, will support server-side rendering via the new upcoming <bolt-code-snippet display="inline" lang="twig">{% verbatim %}{% filter bolt_ssr %}{% endverbatim %}</bolt-code-snippet> custom Twig filter. Check out the docs on <a href="https://master.boltdesignsystem.com/docs/development/server-side-rendering.html">server-side rendering</a> for information!
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ text_advanced_ssr_demo_noshadow }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ text_advanced_ssr_demo | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+</div>

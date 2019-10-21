@@ -1,0 +1,61 @@
+<h3>Headline w/ Icon Position <code>before</code></h3>
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "What we do at Pega is brilliant!",
+  icon: {
+    name: "arrow-left",
+    position: "before"
+  }
+} only %}
+<br><br>
+
+
+<h3>Headline w/ Icon Position <code>after</code></h3>
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "What we do at Pega is brilliant!",
+  icon: {
+    name: "chevron-right",
+    position: "after"
+  }
+} only %}
+<br><br>
+
+
+<h3>Headline w/ Default Icon Position</h3>
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "What we do at Pega is brilliant!",
+  icon: "chevron-right",
+} only %}
+<br><br>
+
+
+<h3>Headline w/ Icon Options</h3>
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "What we do at Pega is brilliant!",
+  icon: {
+    name: "energy",
+    color: "blue"
+  }
+} only %}
+
+<br><br><br><br>
+
+<hr>
+
+<h3>Headline w/ <code>Left</code> Icon Position (Deprecated)</h3>
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "What we do at Pega is brilliant!",
+  icon: {
+    name: "arrow-left",
+    position: "left"
+  }
+} only %}
+<br><br>
+
+<h3>Headline w/ <code>Right</code> Icon Position (Deprecated)</h3>
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "What we do at Pega is brilliant!",
+  icon: {
+    name: "chevron-right",
+    position: "right"
+  }
+} only %}

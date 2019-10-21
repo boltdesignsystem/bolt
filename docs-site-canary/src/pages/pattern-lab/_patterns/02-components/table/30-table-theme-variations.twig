@@ -1,0 +1,62 @@
+{% set schema = bolt.data.components["@bolt-components-table"].schema %}
+{% set themes = get_data("@bolt/themes.schema.json") %}
+
+{% for theme in themes.properties.colors.enum %}
+  <h3>{{ theme }}</h3>
+  <div class="u-bolt-margin-bottom-medium">
+    {% embed "@utils/theme-demo.twig" %}
+      {% block demo_content %}
+        {% include "@bolt-components-table/table.twig" with {
+          format: "regular",
+          headers: {
+            top: {
+              cells: [
+                "Column 1",
+                "Column 2",
+                "Column 3",
+              ]
+            },
+            side: {
+              cells: [
+                "Row 1",
+                "Row 2",
+                "Row 3",
+                "Footer",
+              ]
+            }
+          },
+          rows: [
+            {
+              cells: [
+                "R1C1",
+                "R1C2",
+                "R1C3",
+              ]
+            },
+            {
+              cells: [
+                "R2C1",
+                "R2C2",
+                "R2C3",
+              ]
+            },
+            {
+              cells: [
+                "R3C1",
+                "R3C2",
+                "R3C3",
+              ]
+            }
+          ],
+          footer: {
+            cells: [
+              "FC1",
+              "FC2",
+              "FC3",
+            ]
+          }
+        } only %}
+      {% endblock %}
+    {% endembed %}
+  </div>
+{% endfor %}

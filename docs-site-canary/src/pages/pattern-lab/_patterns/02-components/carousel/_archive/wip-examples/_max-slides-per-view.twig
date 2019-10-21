@@ -1,0 +1,11 @@
+ {% include "@bolt-components-carousel/carousel.twig" with {
+  slides: [
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+    include("_carousel-slide-content.twig"),
+  ],
+  maxSlidesPerView: 3,
+} only %}

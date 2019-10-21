@@ -1,0 +1,601 @@
+// @todo: refactor this and break apart
+
+@import '@bolt/core';
+$bds-sidebar-width: 320px;
+
+.c-bds-layout {
+  grid-template-columns: auto 1fr auto;
+  display: grid;
+  align-content: stretch;
+  min-height: 100vh;
+
+  &--parent:not(.c-bds-layout--has-sidebar) {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  @include bolt-mq(medium) {
+    &.c-bds-layout--has-sidebar {
+      grid-template-columns: $bds-sidebar-width auto 1fr auto;
+    }
+  }
+}
+
+.c-bds-layout__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  justify-self: stretch;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  max-width: 100vw;
+  margin: 0 auto;
+
+  .c-bds-layout__content--has-sidebar & {
+    @include bolt-mq(medium) {
+      max-width: calc(100vw - 320px);
+    }
+  }
+}
+
+.c-bds-layout__main {
+  width: 100%;
+
+  .c-bds-layout__content--has-sidebar & {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+}
+
+.c-bds-layout__title {
+  padding: 15px 20px;
+
+  span {
+    vertical-align: middle;
+  }
+
+  .c-bds-layout__content--has-sidebar & {
+    width: 100%;
+  }
+}
+
+.c-bds-layout__header {
+  position: relative;
+  position: sticky;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  z-index: bolt-z-index('modalBG') + 20;
+
+  .c-bolt-navbar {
+    max-width: none;
+
+    @include bolt-mq(medium) {
+      @include bolt-padding-left(medium);
+      @include bolt-padding-right(medium);
+    }
+  }
+
+  @include bolt-mq(medium) {
+    .c-bds-layout--has-sidebar & {
+      grid-column-start: 1;
+      grid-column-end: 4;
+    }
+  }
+}
+
+.c-bds-layout__header__nav {
+  padding: 15px 20px;
+  text-align: right;
+
+  @include bolt-mq($until: 599px) {
+    width: 100%;
+    text-align: center;
+  }
+
+  a {
+    padding: 6px 12px;
+    color: #fff;
+
+    &.active,
+    &.active-path {
+      display: none; // we need more room at mobile and this is the item which makes most sense to exclude since we're already there!
+      border: 1px solid #fff;
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(21, 22, 25, 0.12),
+        0 1px 2px rgba(21, 22, 25, 0.24);
+      background: rgba(0, 0, 0, 0.1);
+
+      @include bolt-mq(small) {
+        display: initial;
+      }
+
+      &.active-path {
+        text-decoration: none;
+      }
+    }
+
+    &.c-bds-layout__hamburger {
+      color: bolt-color(yellow);
+
+      > span {
+        display: none;
+
+        @include bolt-mq(xsmall) {
+          display: initial;
+        }
+      }
+    }
+  }
+}
+
+.c-bds-layout__header__link {
+  text-decoration: none;
+}
+
+.c-bds-layout__sidebar__overlay {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: bolt-z-index('modalBG');
+  pointer-events: none;
+  background-color: bolt-color(black);
+  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+    visibility 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.c-bds-layout__sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  transform: translate3d(-$bds-sidebar-width, 0, 0);
+  width: $bds-sidebar-width;
+  overflow: auto;
+  border-right: 1px solid #e0e2eb;
+  background-color: bolt-color(gray, xlight);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-overflow-scrolling: touch;
+
+  @include bolt-mq($until: medium){
+    z-index: bolt-z-index('modal') + 30;
+  }
+
+  &:target {
+    transform: translate3d(0, 0, 0);
+
+    & ~ .c-bds-layout__sidebar__overlay {
+      visibility: visible;
+      opacity: 0.2;
+      pointer-events: auto;
+
+      @include bolt-mq(medium) {
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+    }
+  }
+
+  @include bolt-mq(medium) {
+    @include bolt-margin-top(bolt-spacing(xlarge) - bolt-spacing(medium));
+    transform: translate3d(0, 0, 0);
+  
+    @include bolt-mq(medium) {
+      .c-bds-layout--has-sidebar & {
+        grid-column-start: 1;
+        grid-column-end: 2;
+
+        grid-row-start: 2;
+        grid-row-end: 4;
+      }
+    }
+  }
+
+  .c-bds-offcanvas {
+    position: relative;
+
+    > h2 {
+      margin: 0;
+      padding: 10px 20px;
+      color: #fff;
+      font-size: 1.11rem;
+      border-bottom: 1px solid #fff;
+      background-color: bolt-color(indigo);
+    }
+
+    .c-bds-layout__close-menu {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      color: bolt-color(yellow);
+    }
+  }
+}
+
+.c-bds-layout__docs {
+  // Styling for markdown content (classes not available)
+  article {
+    h2 {
+      margin-bottom: 0.9rem;
+      font-size: 1.33rem;
+    }
+
+    h3 {
+      margin-bottom: 0.65rem;
+    }
+  }
+}
+
+.c-bds-layout__content {
+  .c-bds-layout--parent:not(.c-bds-layout--has-sidebar) & {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  /* autoprefixer: ignore next */
+  display: grid;
+  flex-grow: 1;
+  align-self: start;
+  // min-height: 100%; // causes extra (unnecessary) scrolling on the homepage. can we remove?
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-template-columns: auto;
+  justify-self: start;
+  grid-template-rows: auto;
+  overflow: hidden;
+  grid-row-start: 2;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+
+  @include bolt-mq(medium) {
+    .c-bds-layout--has-sidebar & {
+      grid-template-columns: auto;
+      grid-column-start: 2;
+      grid-column-end: 4;
+    }
+  }
+
+  @include bolt-mq(1400px + 320px) {
+    .c-bds-layout--has-sidebar & {
+      grid-template-columns: auto 320px;
+      grid-column-start: 2;
+      grid-column-end: 4;
+    }
+  }
+}
+
+.c-bds-layout__footer {
+  align-self: end;
+  position: relative; // Fallback positioning
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+
+  grid-column-start: 1;
+  grid-column-end: 1;
+}
+
+// 1. Vendor prefixes added due to limitations of Autoprefixer transpiling (esp. the old CSS grid spec used in IE 11)
+.c-bds-docs {
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+  display: -ms-grid; /* [1] */
+  display: grid;
+
+  -ms-grid-rows: bolt-spacing(small) auto auto auto 1fr bolt-spacing(small); /* [1] */
+  grid-template-rows: bolt-spacing(small) auto auto auto 1fr bolt-spacing(small);
+
+  -ms-grid-columns: 1fr 90% 1fr; /* [1] */
+  grid-template-columns: 1fr 90% 1fr;
+
+  max-width: 1440px;
+  margin: 0 auto;
+
+  @include bolt-mq(small) {
+    -ms-grid-rows: bolt-spacing(medium) auto auto auto 1fr bolt-spacing(medium); /* [1] */
+    grid-template-rows: bolt-spacing(medium) auto auto auto 1fr bolt-spacing(medium);
+  }
+
+  @include bolt-mq(medium) {
+    -ms-grid-columns: 1fr 75% 25% 1fr; /* [1] */
+    grid-template-columns: 1fr 75% 25% 1fr;
+  }
+}
+
+.c-bds-docs__page-intro {
+  @include bolt-margin-bottom(medium);
+  width: 100%;
+
+  min-width: 0;
+  max-width: 1440px;
+  -ms-grid-row: 2; /* [1] */
+  -ms-grid-row-span: 1; /* [1] */
+  grid-row: 2/span 1;
+
+  -ms-grid-column: 1; /* [1] */
+  -ms-grid-column-span: 3; /* [1] */
+  grid-column: 1/span 3;
+
+  @include bolt-mq(medium) {
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+  }
+}
+  
+.c-bds-docs__page-content {
+  width: 100%;
+
+  min-width: 0;
+  max-width: 960px;
+  -ms-grid-row: 4; /* [1] */
+  -ms-grid-row-span: 1; /* [1] */
+  grid-row: 4/span 1;
+
+  -ms-grid-column: 1; /* [1] */
+  -ms-grid-column-span: 3; /* [1] */
+  grid-column: 1/span 3;
+
+  @include bolt-mq(medium) {
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+
+    margin-left: initial; // remove on larger screens
+
+    -ms-grid-row: 4; /* [1] */
+    -ms-grid-row-span: 1; /* [1] */
+    grid-row: 4/span 1;
+
+    -ms-grid-column: 1; /* [1] */
+    -ms-grid-column-span: 2; /* [1] */
+    grid-column: 1/span 2;
+  }
+
+  @include bolt-mq(large) {
+    -ms-grid-row: 4; /* [1] */
+    -ms-grid-row-span: 1; /* [1] */
+    grid-row: 4/span 1;
+
+    -ms-grid-column: 2; /* [1] */
+    -ms-grid-column-span: 1; /* [1] */
+    grid-column: 2/span 1;
+  }
+}
+
+.c-bds-docs__page-schema {
+  width: 100%;
+
+  min-width: 0;
+  -ms-grid-row: 5; /* [1] */
+  -ms-grid-row-span: 1; /* [1] */
+  grid-row: 5/span 1;
+
+  -ms-grid-column: 1; /* [1] */
+  -ms-grid-column-span: 3; /* [1] */
+  grid-column: 1/span 3;
+
+  @include bolt-mq(medium) {
+    @include bolt-padding-left(medium);
+    @include bolt-padding-right(medium);
+
+    margin-left: initial; // remove on larger screens
+
+    -ms-grid-row: 5; /* [1] */
+    -ms-grid-row-span: 1; /* [1] */
+    grid-row: 5/span 1;
+
+    -ms-grid-column: 1; /* [1] */
+    -ms-grid-column-span: 4; /* [1] */
+    grid-column: 1/span 4;
+  }
+
+  @include bolt-mq(large) {
+    -ms-grid-row: 5; /* [1] */
+    -ms-grid-row-span: 1; /* [1] */
+    grid-row: 5/span 1;
+
+    -ms-grid-column: 1; /* [1] */
+    -ms-grid-column-span: 4; /* [1] */
+    grid-column: 1/span 4;
+  }
+}
+  
+.c-bds-docs__page-nav {
+  @include bolt-margin-bottom(large);
+  -ms-grid-row: 3; /* [1] */
+  -ms-grid-row-span: 1; /* [1] */
+  grid-row: 3/span 1;
+
+  -ms-grid-column: 1; /* [1] */
+  -ms-grid-column-span: 3; /* [1] */
+  grid-column: 1/span 3;
+
+  text-align: right;
+
+  @include bolt-mq(medium) {
+    @include bolt-padding-right(medium);
+
+    -ms-grid-row: 4; /* [1] */
+    -ms-grid-row-span: 1; /* [1] */
+    grid-row: 4/span 1;
+
+    -ms-grid-column: 3; /* [1] */
+    -ms-grid-column-span: 1; /* [1] */
+    grid-column: 3/span 1;
+
+    text-align: left;
+  }
+}
+  
+  
+  
+.c-bds-docs__page-nav__link {
+  @include bolt-font-size(small);
+}
+
+
+.c-bds-docs__title {
+  @include bolt-font-size(xxlarge);
+  @include bolt-font-weight(semibold);
+  @include bolt-margin-bottom(medium);
+  color: bolt-color(black);
+}
+
+.c-bds-docs__lead {
+  @include bolt-font-weight(regular);
+  color: bolt-color(black);
+  border: 1px dotted transparent;
+  border-radius: 4px;
+  transition: border 0.3s ease-in-out;
+
+  &.edit-this-readme {
+    border: 1px dotted var(--bolt-theme-primary);
+  }
+
+  > *:last-child {
+    @include bolt-margin-bottom(0);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @include bolt-margin-bottom(xxsmall);
+    &:last-child {
+      @include bolt-margin-bottom(0);
+    }
+  }
+
+  h1, h2 {
+    @include bolt-font-size(xxlarge);
+  }
+
+  h3 {
+    @include bolt-font-size(xlarge);
+  }
+
+  h4 {
+    @include bolt-font-size(large);
+  }
+
+  h5 {
+    @include bolt-font-size(small);
+  }
+
+  h6 {
+    @include bolt-font-size(xsmall);
+
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+  }
+
+  table {
+    @include bolt-font-size(small);
+    @include bolt-font-family(code);
+    transform: translate3d(0, 0, 0);
+    width: 100%;
+    border: 1px solid bolt-color(gray, light);
+    table-layout: auto;
+  }
+
+  thead {
+    border-bottom: 1px solid bolt-color(gray, light);
+  }
+
+  tr {
+    transition: background-color 0.1s ease;
+  }
+
+  tr + tr {
+    border-top: 1px solid bolt-color(gray, light);
+  }
+
+  tr:hover {
+    background-color: rgba(bolt-color(gray, xlight), 0.5);
+  }
+
+
+  th {
+    @include bolt-padding(small);
+    @include bolt-font-size(xsmall);
+    @include bolt-font-weight(semibold);
+    color: bolt-color(gray, dark);
+    text-align: left;
+    text-transform: uppercase;
+    vertical-align: bottom;
+    background-color: bolt-color(gray, xlight);
+  }
+
+  td {
+    @include bolt-padding(small);
+    vertical-align: top;
+  }
+}
+
+.c-bds-docs-list {
+  margin: 0;
+  list-style-position: inside;
+  list-style-type: none;
+
+  & > ul {
+    margin-bottom: 0;
+  }
+}
+
+.c-bds-docs-list__child {
+  margin: 0 0 0 1.25rem;
+  list-style-position: outside;
+  list-style-type: square;
+
+  &--level-3,
+  &--level-4,
+  &--level-5 {
+    margin-bottom: 0;
+
+    ul {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+.c-bds-docs__heading-fragment a {
+  display: flex;
+  position: relative;
+
+  &:before {
+    @include bolt-font-size(small);
+    content: '#';
+    align-self: center;
+    opacity: 0.3;
+    position: absolute;
+    top: 50%; // Fix IE11 vcentering
+    left: -1.5rem;
+    transform: translateY(-50%); // Fix IE11 vcentering
+    width: 1.5rem;
+    color: inherit;
+    text-align: center;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+}
+
+.c-bds-docs__heading-fragment a:hover:before {
+  opacity: 0.6;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+// Sticky positioning of side nav links, if supported
+.c-bds-docs__page-nav-list {
+  position: sticky;
+  top: bolt-spacing(large);
+}

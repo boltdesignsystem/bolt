@@ -1,0 +1,23 @@
+{% set themes = ["xdark", "dark", "medium", "light", "xlight", null] %}
+
+{% for theme in themes %}
+  <div class="u-bolt-padding-medium {{ theme != null ? "t-bolt-#{theme}" : "" }}">
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "add-open",
+      background: "circle",
+      size: "large"
+    } %}
+
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "add-solid",
+      background: "circle",
+      size: "large"
+    } %}
+
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "twitter-solid",
+      background: "circle",
+      size: "large"
+    } %}
+  </div>
+{% endfor %}

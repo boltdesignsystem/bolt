@@ -1,0 +1,14 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-tooltip/tooltip.twig" with {
+  trigger: {
+    type: "text",
+    text: "This is the tooltip trigger"
+  },
+  content: "This is the tooltip content."
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "tooltip",
+  usage: usage
+} only %}

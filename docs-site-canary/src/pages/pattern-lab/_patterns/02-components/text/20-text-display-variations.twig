@@ -1,0 +1,20 @@
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% set text_demo %}
+<bolt-text display="block">
+  This paragraph of text has block display, which means it will take up the full width of its container.
+</bolt-text>
+<bolt-text display="block">
+  This paragraph of text also has block display, but within this paragraph, certain text can be <bolt-text display="inline" font-weight="bold" text-transform="uppercase">inline display</bolt-text>, and it can be styled differently than the rest of the paragraph.
+</bolt-text>
+{% endset %}
+
+{% block content %}
+  <bolt-text headline>
+    Display Usage
+  </bolt-text>
+  <bolt-text>
+    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> can be defined as a paragraph of text (block display) or a piece of inline text (inline display).
+  </bolt-text>
+  {% include text_code.code_example(text_demo, true) %}
+{% endblock %}

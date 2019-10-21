@@ -1,0 +1,29 @@
+{% set schema = bolt.data.components['@bolt-components-headline'].schema %}
+
+{% for size in schema.properties.size.enum %}
+  {% for weight in schema.properties.weight.enum %}
+    {% for style in schema.properties.style.enum %}
+      {% include "@bolt-components-headline/text.twig" with {
+        text: "This is " ~ weight ~ " weight and " ~ style ~ " text",
+        weight: weight,
+        style: style,
+        size: size,
+      } only %}
+
+      {% include "@bolt-components-headline/headline.twig" with {
+        text: "This is " ~ weight ~ " weight and " ~ style ~ " headline",
+        weight: weight,
+        style: style,
+        size: size,
+      } only %}
+
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        text: "This is " ~ weight ~ " weight and " ~ style ~ " subheadline",
+        weight: weight,
+        style: style,
+        size: size
+      } only %}
+
+    {% endfor %}
+  {% endfor %}
+{% endfor %}

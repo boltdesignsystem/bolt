@@ -1,0 +1,76 @@
+{% set theme ="light" %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "Theme: " ~ theme,
+  size: "small"
+} only %}
+{% embed '@bolt-components-band/band.twig' with {
+  theme: theme
+} only %}
+  {% block band_content %}
+    {% set exampleBackgrounds = ["circle", "square"] %}
+    {% set exampleColors = [null, "teal", "blue"] %}
+
+    <ul class="bolt-icon-list-demo">
+      {% for background in exampleBackgrounds %}
+        {% for color in exampleColors %}
+          <li>
+            {% set iconVars = {
+              name: "add-open",
+              background: background,
+              size: "xlarge"
+            } %}
+
+            {% if color %}
+              {% set iconVars = iconVars | merge({color: color}) %}
+            {% endif %}
+
+            {% include "@bolt-components-icon/icon.twig" with iconVars only %}
+            <br />{{ background ? "Background: " ~ background : '' }}
+            <br />{{ color ? "Color: " ~ color : '' }}
+          </li>
+        {% endfor %}
+        <hr>
+      {% endfor %}
+    </ul>
+  {% endblock band_content %}
+{% endembed %}
+
+{# @todo Figure out why wrapping this all in a for loop doubles memory usage when compiling PL #}
+{% set theme ="dark" %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+text: "Theme: " ~ theme,
+size: "small"
+} only %}
+{% embed '@bolt-components-band/band.twig' with {
+theme: theme
+} only %}
+  {% block band_content %}
+    {% set exampleBackgrounds = ["circle", "square"] %}
+    {% set exampleColors = [null, "teal", "blue"] %}
+
+    <ul class="bolt-icon-list-demo">
+      {% for background in exampleBackgrounds %}
+        {% for color in exampleColors %}
+          <li>
+            {% set iconVars = {
+              name: "add-open",
+              background: background,
+              size: "xlarge"
+            } %}
+
+            {% if color %}
+              {% set iconVars = iconVars | merge({color: color}) %}
+            {% endif %}
+
+            {% include "@bolt-components-icon/icon.twig" with iconVars only %}
+            <br />{{ background ? "Background: " ~ background : '' }}
+            <br />{{ color ? "Color: " ~ color : '' }}
+          </li>
+        {% endfor %}
+        <hr>
+      {% endfor %}
+    </ul>
+  {% endblock band_content %}
+{% endembed %}

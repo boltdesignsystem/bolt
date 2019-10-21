@@ -1,0 +1,20 @@
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% set text_demo %}
+<bolt-text>
+  This is text.
+</bolt-text>
+{% endset %}
+
+{% block content %}
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Text is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> in the markup to make it render.
+  </bolt-text>
+  {% include text_code.code_example(text_demo, true) %}
+{% endblock %}
+
+
+

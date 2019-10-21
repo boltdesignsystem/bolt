@@ -1,0 +1,47 @@
+{% embed "@bolt-components-band/band.twig" with {
+  size: "large",
+  theme: "xdark"
+} %}
+
+  {% block band_content %}
+    {% grid with {
+      attributes: {
+        class: [
+          "o-bolt-grid--flex",
+          "o-bolt-grid--matrix"
+        ]
+      }
+    } %}
+
+      {% for card_theme in ["xlight", "light", "dark"] %}
+        {% cell with {
+          attributes: {
+            class: [
+              "u-bolt-width-1/1",
+              "u-bolt-width-1/3@small"
+            ]
+          }
+        } %}
+
+          {% embed "@bolt-components-card/card.twig" with {
+            theme: card_theme
+          } only %}
+            {% block card_body %}
+              {% include "@pl/60-form-full-campaign-landing.twig" only %}
+            {% endblock %}
+          {% endembed %}
+
+          {% if "dark" in card_theme %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "(Note: forms do not offically support dark themes yet.  Use at your own risk.)",
+              size: "small"
+            } only %}
+          {% endif %}
+
+        {% endcell %}
+      {% endfor %}
+
+    {% endgrid %}
+  {% endblock band_content %}
+
+{% endembed %}

@@ -1,0 +1,31 @@
+<h4>Custom Height and Width, JPEG (2:1)</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/images/placeholders/500x500.jpg",
+  alt: "Bill Murray",
+  ratio: "2/1",
+} only %}
+
+<h4>Custom Height and Width, PNG (2:1)</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/images/content/charts/decision-hub-chart.png",
+  alt: "decision hub chart",
+  ratio: "2/1",
+} only %}
+
+<h4>Custom Height and Width, SVG (10:1)</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/images/content/logos/logo-paypal.svg",
+  alt: "logo paypal svg",
+  ratio: "10/1",
+} only %}
+
+<h4>Custom Max-Width, JPG (200px)</h4>
+
+{% include '@bolt-components-image/image.twig' with {
+  src: "/images/placeholders/thumb-square-yosemite.jpg",
+  alt: "rocks in Yosemite",
+  max_width: "200px",
+} only %}

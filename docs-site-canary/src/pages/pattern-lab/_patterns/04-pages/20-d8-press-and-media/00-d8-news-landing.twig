@@ -1,0 +1,417 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% embed "@bolt-components-sticky/sticky.twig" %}
+    {% block sticky_content %}
+      {% include "@bolt-components-navbar/navbar.twig" with {
+        theme: "xdark",
+        "title": {
+          "tag": "h2",
+          "text": "Newsroom",
+          "icon": {
+            "name": "info-solid"
+          }
+        },
+        "links": [
+          {
+            "text": "News",
+            "url": "#"
+          },
+          {
+            "text": "Press Kit & Resources",
+            "url": "#"
+          },
+          {
+            "text": "Media Contacts",
+            "url": "#"
+          },
+          {
+            "text": "Another Link",
+            "url": "#"
+          }
+        ]
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+  {% embed "@bolt-components-band/band.twig" with {
+    theme: "dark",
+    size: "large",
+    full_bleed: true,
+    background: {
+      shapeGroup: "A"
+      }
+    } only %}
+
+    {% block band_content %}
+      {% include "@bolt-components-headline/headline.twig" with {
+        size: "xxxlarge",
+        text: "In The News"
+      } only %}
+      {% include "@bolt-components-headline/subheadline.twig" with {
+        size: "xxlarge",
+        text: "See the latest updates and media coverage about Pega from around the world."
+      } only %}
+      {% include "@bolt-components-button-group/button-group.twig" with {
+        buttons: [
+          {
+            text: "Press Releases",
+            url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-press-browse--list-view/04-pages-100-d8-Press-and-Media-press-browse--list-view.html",
+            style: "secondary",
+            width: "full@small"
+          },
+          {
+            text: "Media Coverage",
+            url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-media-browse--list-view/04-pages-100-d8-Press-and-Media-d8-media-browse--list-view.html",
+            style: "secondary",
+            width: "full@small",
+          }
+        ],
+      } only %}
+    {% endblock %}
+  {% endembed %}
+
+  <div style="float: right" class="u-bolt-margin-top-small u-bolt-margin-bottom-medium">
+    {% include '@bolt-components-share/share.twig' with {
+      sources: [
+        {
+          name: "facebook",
+          url: "https://www.facebook.com/sharer/sharer.php?u=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html&amp;src=sdkpreparse"
+        },
+        {
+          name: "twitter",
+          url: "https://twitter.com/intent/tweet?url=https://boltdesignsystem.com&text=Sample%20Share%20Text&via=pega&hashtags=boltDesignSystemRocks!"
+        },
+        {
+          name: "linkedin",
+          url: "https://www.linkedin.com/shareArticle?url=https://5abd3062df99537b79e29496--bolt-design-system.netlify.com/pattern-lab/patterns/02-components-action-blocks-05-action-blocks/02-components-action-blocks-05-action-blocks.html"
+        },
+        {
+          name: "email",
+          url: "mailto:?&body=Sample%20Text%20--%20https%3A//boltdesignsystem.com"
+        }
+      ]
+    } only %}
+</div>
+
+  {% embed "@pl/_band--collection.twig" with {
+    "theme": "xlight",
+    "size": "medium",
+    "contentItems": [
+      {
+        "pattern": "card",
+        "teaser": {
+          "eyebrow": {
+            text: "Jan 18 2018"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "Pegasystems to Present at the Needham Growth Conference",
+              "size": "large"
+            }
+          ],
+          "content": "CAMBRIDGE, Mass. – January 11, 2018 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced that its chief financial officer, chief...",
+          "buttons": [
+            {
+              "text": "Read more",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      },
+      {
+        "pattern": "card",
+        "teaser": {
+          "eyebrow": {
+            text: "Jan 18 2018"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "Pega Receives Highest Scores in Two Use Cases in Gartner’s Critical Capabilities for the CRM Customer Engagement Center",
+              "size": "large"
+            }
+          ],
+          "content": "CAMBRIDGE, Mass. – December 26, 2017 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced it received the highest scores in the business-...",
+          "buttons": [
+            {
+              "text": "Read more",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      },
+      {
+        "pattern": "card",
+        "teaser": {
+          "eyebrow": {
+            text: "Jan 04 2018"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "Pegasystems Announces Quarterly Cash Dividend",
+              "size": "large"
+            }
+          ],
+          "content": "CAMBRIDGE, Mass. – December 15, 2017 – Pegasystems Inc. (NASDAQ: PEGA), the software company empowering customer engagement at the world’s leading enterprises, today announced a quarterly cash dividend of $0.03 per share,...",
+          "buttons": [
+            {
+              "text": "Read more",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      }
+    ]
+  } %}
+    {% block band_content %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-padding-bottom-medium" %}
+        {% cell "u-bolt-flex-grow" %}
+          {% grid %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+              {% include "@bolt-components-headline/headline.twig" with {
+                text: "Featured Press Releases",
+                size: "xlarge",
+                tag: "h3"
+              } only %}
+            {% endcell %}
+          {% endgrid %}
+        {% endcell %}
+        {% cell %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "See all press releases",
+            size: "small",
+            weight: "bold",
+            tag: "p",
+            url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-press-browse--list-view/04-pages-100-d8-Press-and-Media-press-browse--list-view.html",
+            icon: {
+              name: "chevron-right",
+              position: "after"
+            }
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+
+      {{ parent() }}
+    {% endblock band_content %}
+  {% endembed %}
+
+  {% embed "@pl/_band--collection.twig" with {
+    "theme": "light",
+    "size": "medium",
+    "contentItems": [
+      {
+        "pattern": "card",
+        "teaser": {
+          "eyebrow": {
+            text: "Jan 22 2018"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "A New CRM Bill of Rights for the Future Empowered Enterprise",
+              "size": "large"
+            }
+          ],
+          "content": "Jeff Nicholson of Pega provides insight into what companies should expect from CRM vendors.",
+          "buttons": [
+            {
+              "text": "MARTECH ADVISOR",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      },
+      {
+        "pattern": "card",
+        "teaser": {
+          "eyebrow": {
+            text: "Jan 11 2018"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "6 Customer Experience Trends to Watch in 2018",
+              "size": "large"
+            }
+          ],
+          "content": "Pega's Don Schuerman previews customer experience questions and trends for the New Year.",
+          "buttons": [
+            {
+              "text": "CMS WIRE",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      },
+      {
+        "pattern": "card",
+        "teaser": {
+          "eyebrow": {
+            text: "Dec 26 2017"
+          },
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "3 Reasons Your AI-Driven Customer Experiences are Falling Short",
+              "size": "large"
+            }
+          ],
+          "content": "Pega's Jeff Nicholson examines the state of AI in today's customer experiences.",
+          "buttons": [
+            {
+              "text": "CIO AUSTRALIA",
+              "url": "http://www.google.com",
+              "width": "full"
+            }
+          ]
+        }
+      }
+    ]
+  } %}
+    {% block band_content %}
+      {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-padding-bottom-medium" %}
+        {% cell "u-bolt-flex-grow" %}
+          {% grid %}
+            {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+              {% include "@bolt-components-headline/headline.twig" with {
+                text: "Featured Media Coverage",
+                size: "xlarge",
+                tag: "h3"
+              } only %}
+            {% endcell %}
+          {% endgrid %}
+        {% endcell %}
+        {% cell %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "See all media coverage",
+            size: "small",
+            weight: "bold",
+            tag: "p",
+            url: "/pattern-lab/patterns/04-pages-100-d8-Press-and-Media-d8-media-browse--list-view/04-pages-100-d8-Press-and-Media-d8-media-browse--list-view.html",
+            icon: {
+              name: "chevron-right",
+              position: "after"
+            }
+          } only %}
+        {% endcell %}
+      {% endgrid %}
+
+      {{ parent() }}
+    {% endblock band_content %}
+  {% endembed %}
+
+  {# Featured Resources #}
+  {% embed "@pl/_band--collection.twig" with {
+  "theme": "dark",
+  "size": "medium",
+  "contentItems": [
+    {
+      "pattern": "card",
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/images/placeholders/1200x660.jpg"
+        },
+        {
+          "pattern": "headline",
+          "text": "First resource",
+          "size": "large",
+          "tag": "h3"
+        },
+        {
+          "pattern": "text",
+          "text": "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+        },
+        {
+          "pattern": "button",
+          "width": "full",
+          "text": "Get the resource",
+          "style": "text"
+        }
+      ]
+    },
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/images/content/promos/promo-16x9-anthem.jpg"
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Optional resource type"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Second resource",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "First CTA",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          },
+          {
+            "text": "Optional CTA",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+      "contentItems": [
+        {
+          "pattern": "image",
+          "src": "/images/content/promos/promo-16x9-ai.jpg"
+        },
+        {
+          "pattern": "teaser",
+          "headlines": [
+            {
+              "type": "headline",
+              "text": "Third resource",
+              "size": "large"
+            }
+          ],
+          "content": "Simplify and automate to reduce costs and improve agility.",
+          "buttons": [
+            {
+              "text": "Learn more",
+              "style": "text",
+              "url": "www.google.com/pega7",
+              "width": "full"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} %}
+  {% block band_content %}
+    {% include "@bolt/headline.twig" with {
+      text: "Related resources",
+      size: "xlarge",
+      tag: "h3"
+    } only %}
+    {{ parent() }}
+  {% endblock band_content %}
+{% endembed %}
+{% endblock %}

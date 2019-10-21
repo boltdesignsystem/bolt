@@ -1,0 +1,111 @@
+{% extends "@bolt-site/base-template.twig" %}
+
+{% set urlChunks = page.url | split('/') %}
+{% set currentSection = urlChunks | length >= 1 ? urlChunks|first : '' %}
+{% set currentUrl = page.url %}
+
+{% if page.url starts with currentSection %}
+  {% set nestedPages = [] %}
+  {% for page in site.nestedPages if page.url starts with currentSection %}
+    {% set nestedPages = page.children %}
+  {% endfor %}
+{% endif %}
+{% set hasSidebar = nestedPages or sidebar %}
+
+{% block site_body %}
+  {% include "@bolt-site/_page-header.twig" %}
+
+   {% if hasSidebar %}
+    <aside class="c-bds-layout__sidebar" id="menu">
+      {% if nestedPages %}
+        {% include '@bolt-site/off-canvas-nav.twig' with {
+          nestedPages: nestedPages,
+        } %}
+      {% endif %}
+    </aside>
+
+    {% if 'docs/' in currentUrl %}
+      {% include '@bolt-site/hamburger-button.twig' %}
+    {% endif %}
+
+
+    <a href="#" class="c-bds-layout__sidebar__overlay"></a>
+  {% endif %}
+
+  <div class="c-bds-layout__content c-bolt-site__content {% if hasSidebar %} c-bds-layout__content--has-sidebar{% endif %} {% if currentUrl == 'index.html' %}c-bolt-site__content--middle {% endif %}">
+
+    <div class="c-bds-layout__wrapper">
+      <main class="c-bds-layout__main {{ currentUrl != 'index.html' ? 't-bolt-xlight' }}">
+        {% set gitBranch = gitBranch ? gitBranch : "master" %}
+
+        {% set pinned_content %}
+          {% include "@bolt-components-button/button.twig" with {
+            url: "https://github.com/bolt-design-system/bolt/blob/" ~ gitBranch ~ "/docs-site/" ~  page.srcPath,
+            text: "Edit on Github",
+            style: "text",
+            size: "xsmall",
+            icon: {
+              name: "pencil"
+            }
+          } only %}
+        {% endset %}
+
+        {% set band_content %}
+          {% include "@bolt-components-headline/headline.twig" with {
+            text: page.meta.title,
+            size: "xxxlarge",
+            tag: "h2",
+            longTitle: true,
+          } only %}
+
+          {% block article_content %}
+            {{ page.body|raw }}
+          {% endblock %}
+        {% endset %}
+
+        {% include "@bolt-components-band/band.twig" with {
+          content: band_content,
+          pinned_content: {
+            upper: [
+              {
+                content: pinned_content,
+                align: "end",
+              },
+            ],
+          },
+          full_bleed: false,
+          size: "xsmall",
+          theme: currentUrl == 'index.html' ? 'none' : 'xlight'
+        } only %}
+      </main>
+    </div>
+
+    {# <footer role="contentinfo" class="c-bds-layout__footer c-bolt-site__footer">
+      {% set band_content %}
+        {% set gitBranch = 'master' %}
+
+        <nav>
+          <ul class="o-bolt-bare-list" style="flex-flow: row wrap; display: flex; justify-content: space-between; align-items: center;">
+            <li class="u-bolt-margin-right@small">
+              {% include "@bolt-components-headline/text.twig" with {
+                size: "xsmall",
+                weight: "bold",
+                tag: "p",
+                text: "Copyright &copy;" ~ "now"|date("Y") ~ " Pegasystems, Inc."
+              } only %}
+            </li>
+          </ul>
+        </nav>
+      {% endset %}
+
+      {% include "@bolt-components-band/band.twig" with {
+        theme: "xlight",
+        size: "xsmall",
+        full_bleed: false,
+        page: page,
+        content: band_content
+      } only %}
+    </footer> #}
+  </div>
+
+{% endblock %}

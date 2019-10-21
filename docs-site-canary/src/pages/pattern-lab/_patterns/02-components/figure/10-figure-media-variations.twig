@@ -1,0 +1,91 @@
+<h3>Image Figure</h3>
+{% include "@bolt-components-figure/figure.twig" with {
+  media: {
+    image: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      lazyload: false,
+    },
+  },
+  caption: "Fig. 1: This is an image."
+} only %}
+
+<h3>Icon Figure</h3>
+{% include "@bolt-components-figure/figure.twig" with {
+  media: {
+    icon: {
+      name: "add-open",
+      size: "large",
+    }
+  },
+  caption: "Fig. 2: This is an icon."
+} only %}
+
+<h3>Video Figure</h3>
+{% include "@bolt-components-figure/figure.twig" with {
+  media: {
+    video: {
+      "videoId": "3861325118001",
+      "accountId": "1900410236",
+      "playerId": "r1CAdLzTW",
+      "showMeta": true,
+      "showMetaTitle": true,
+    }
+  },
+  caption: "Fig. 3: This is a video."
+} only %}
+
+<h3>Table Figure</h3>
+{% include "@bolt-components-figure/figure.twig" with {
+  media: {
+    table: {
+      headers: {
+        top: {
+          cells: [
+            "Column 1",
+            "Column 2",
+            "Column 3",
+          ]
+        },
+        side: {
+          cells: [
+            "Row 1",
+            "Row 2",
+            "Row 3",
+            "Footer",
+          ]
+        }
+      },
+      rows: [
+        {
+          cells: [
+            "R1C1",
+            "R1C2",
+            "R1C3",
+          ]
+        },
+        {
+          cells: [
+            "R2C1",
+            "R2C2",
+            "R2C3",
+          ]
+        },
+        {
+          cells: [
+            "R3C1",
+            "R3C2",
+            "R3C3",
+          ]
+        }
+      ],
+      footer: {
+        cells: [
+          "FC1",
+          "FC2",
+          "FC3",
+        ]
+      }
+    }
+  },
+  caption: "Fig. 4: This is a table."
+} only %}

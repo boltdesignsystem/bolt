@@ -1,0 +1,13 @@
+<p>Demo of server-side rendering a vanilla <code>&lt;bolt-button&gt;</code> web component with a Twig-generated <code>&lt;bolt-icon&gt;</code> component inside of it.</p>
+
+{% filter bolt_ssr %}
+  <bolt-button>
+    SSR via web component button + Twig-embedded icon
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "chevron-right",
+      attributes: {
+        slot: "after"
+      }
+    } %}
+  </bolt-button>
+{% endfilter %}

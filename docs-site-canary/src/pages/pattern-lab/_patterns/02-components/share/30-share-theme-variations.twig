@@ -1,0 +1,27 @@
+{% set schema = bolt.data.components["@bolt-components-share"].schema %}
+{% set themes = get_data("@bolt/themes.schema.json") %}
+{% extends "@pl/_share-variables.twig" %}
+
+{% block content %}
+  {% for theme in themes.properties.colors.enum %}
+    <h3>{{ theme }}</h3>
+    <div class="u-bolt-margin-bottom-medium">
+      {% embed "@utils/theme-demo.twig" %}
+        {% block demo_content %}
+          {% for size in schema.properties.size.enum %}
+            {% include "@bolt-components-share/share.twig" with {
+              size: size,
+              sources: sources,
+              copy_to_clipboard: copy_to_clipboard,
+            } only %}
+          {% endfor %}
+          {% include "@bolt-components-share/share.twig" with {
+            opacity: 60,
+            sources: sources,
+            copy_to_clipboard: copy_to_clipboard,
+          } only %}
+        {% endblock %}
+      {% endembed %}
+    </div>
+  {% endfor %}
+{% endblock %}

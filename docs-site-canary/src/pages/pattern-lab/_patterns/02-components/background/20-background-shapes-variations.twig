@@ -1,0 +1,22 @@
+<p>Background Shapes: Shape Group A</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    shapeGroup: "A"
+  }
+} %}
+
+<p>Background Shapes: Shape Group B</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    shapeGroup: "B"
+  }
+} %}
+
+<p>Background Shapes: Shape Group A, Alignment Left</p>
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    shapeGroup: "A",
+    shapeAlignment: "left"
+  },
+  teaserPosition: "right"
+} %}

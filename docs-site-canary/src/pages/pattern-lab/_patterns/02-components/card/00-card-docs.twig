@@ -1,0 +1,36 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-card/card.twig" with {
+  tag: "article",
+  contentItems: [
+    {
+      pattern: "image",
+      src: "/images/sample/anthem-video.jpg",
+      alt: "Anthem Video"
+    },
+    {
+      pattern: "eyebrow",
+      text: "Video"
+    },
+    {
+      pattern: "headline",
+      tag: "h3",
+      size: "large",
+      text: "Anthem: Service Desktop"
+    },
+    {
+      pattern: "text",
+      text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+    },
+    {
+      pattern: "button",
+      width: "full",
+      text: "Get the report"
+    }
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "card",
+  usage: usage
+} only %}

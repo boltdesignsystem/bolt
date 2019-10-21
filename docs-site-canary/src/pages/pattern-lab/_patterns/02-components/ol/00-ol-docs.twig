@@ -1,0 +1,15 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-ol/ol.twig" with {
+  items: [
+    "Do not include any data or information in your posts that are confidential!",
+    "Apply basic practices for collaborative work.",
+    "Be honest, respectful, trustworthy and helpful.",
+    "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise."
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "ol",
+  usage: usage
+} only %}

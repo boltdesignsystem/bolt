@@ -1,0 +1,22 @@
+.c-bds-callout {
+  @include bolt-padding(medium, squished);
+  @include bolt-margin-top(small);
+  @include bolt-margin-bottom(small);
+  border: 1px solid bolt-color(gray, light);
+  border-left-width: .25rem;
+  border-radius: .25rem;
+
+  @include bolt-font-size(small);
+
+  > p:not(:last-child) {
+    @include bolt-margin-bottom(small);
+  }
+}
+
+.c-bds-callout--notice {
+  border-left-color: bolt-color(blue);
+}
+
+// .c-bds-callout--warning {
+//   border-left-color: bolt-color(blue);
+// }

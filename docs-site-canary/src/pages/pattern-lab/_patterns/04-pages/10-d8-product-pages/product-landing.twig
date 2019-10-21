@@ -1,0 +1,497 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@pl/_page-header.twig" %}
+{% endblock %}
+
+{% block main_content %}
+  {% embed "@pl/_band--feature.twig" with {
+    teaserPosition: "left",
+    teaserWidth: "2/3",
+    size: "large",
+    full: true,
+    theme: "dark",
+    background: {
+      opacity: "medium",
+      fill: "gradient",
+      focalPoint: {
+        vertical: "center",
+        horizontal: "right"
+      },
+      contentItems: [{
+        pattern: "image",
+        src: "/images/content/backgrounds/background-short-1.jpg",
+        alt: "Background banner of conference keynote",
+        lazyload: true
+      }]
+    },
+    primaryTeaser: {
+      headlines: [
+        {
+          type: "headline",
+          text: "Products",
+          size: "xsmall",
+          tag: "span",
+          url: "pega.com",
+          icon: {
+            name: "arrow-left",
+            position: "before"
+          }
+        },
+        {
+          type: "headline",
+          text: "CRM Applications for Real-Time Engagement",
+          size: "xxxlarge",
+          tag: "h1"
+        },
+        {
+          type: "subheadline",
+          text: "Pega’s AI powered CRM Suite is transforming the way enterprises drive greater engagement across the entire customer journey.",
+          size: "xlarge",
+          tag: "p"
+        }
+      ],
+      buttons: [
+        {
+          text: "Call to Action",
+          style: "primary",
+          url: "#!"
+        }
+      ]
+    }
+  } only %}{% endembed %}
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "small",
+  theme: "dark",
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "o-u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+        {% include "@bolt/headline.twig" with {
+          text: "Explore the Pega CRM Suite",
+          size: "xxlarge"
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Move past traditional CRM systems to a true journey-enabled, customer engagement suite. Learn how Pega is helping enterprises revolutionize their customer engagement with end-to-end automation and real-time AI on the only unified CRM platform.",
+          size: "medium"
+        } only %}
+      {% endcell %}
+
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small" %}
+        {% set flag_item_1 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
+            figure: {
+              "icon": {
+                name: "app-development",
+                size: "xlarge",
+                background: "circle",
+                color: "teal"
+              }
+            },
+            items: [
+              {
+                "pattern": "headline",
+                "size": "large",
+                "text": "Marketing",
+                "url": "https://www.google.com",
+                "icon": {
+                  name: "chevron-right"
+                }
+              },
+              {
+                "pattern": "text",
+                "text": "Engage customers with real-time 1:1 marketing on any channel.",
+                "size": "medium",
+              }
+            ]
+          } only %}
+        {% endset %}
+        {% set flag_item_2 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
+            figure: {
+              "icon": {
+                name: "sales-automation",
+                size: "xlarge",
+                background: "circle",
+                color: "teal"
+              }
+            },
+            items: [
+              {
+                "pattern": "headline",
+                "size": "large",
+                "text": "Sales Automation",
+                "url": "https://www.google.com",
+                "icon": {
+                  name: "chevron-right"
+                }
+              },
+              {
+                "pattern": "text",
+                "text": "Intelligently guide sales professionals and automate the sales process.",
+                "size": "medium",
+              }
+            ]
+          } only %}
+        {% endset %}
+        {% set flag_item_3 %}
+          {% include "@bolt/flag.twig" with {
+            valign: "middle",
+            url: "#!",
+            figure: {
+              "icon": {
+                name: "customer-service",
+                size: "xlarge",
+                background: "circle",
+                color: "teal"
+              }
+            },
+            items: [
+              {
+                "pattern": "headline",
+                "size": "large",
+                "text": "Customer Service",
+                "url": "https://www.google.com",
+                "icon": {
+                  name: "chevron-right"
+                }
+              },
+              {
+                "pattern": "text",
+                "text": "Serve, satisfy and engage every customer with digital customer service.",
+                "size": "medium",
+              }
+            ]
+          } only %}
+        {% endset %}
+
+        {% include "@bolt-components-list/list.twig" with {
+          display: "block",
+          separator: "solid",
+          spacing: "small",
+          items: [
+            flag_item_1,
+            flag_item_2,
+            flag_item_3,
+          ]
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+  {% endblock %}
+{% endembed %}
+
+
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "xlight",
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--large o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-7/12@small" %}
+        {% include "@bolt/image.twig" with {
+          src: "/images/content/charts/decision-hub-chart.png",
+          lazyload: true
+        } only %}
+      {% endcell %}
+
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
+        {% include "@bolt/headline.twig" with {
+          text: "Customer Decision Hub",
+          size: "xxxlarge",
+          tag: "h2"
+        } only %}
+        {% include "@bolt/subheadline.twig" with {
+          text: "Infuse real-time AI into every customer engagement",
+          size: "xlarge",
+          tag: "p"
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "There’s nothing artificial about Pega’s proven AI. This always-on brain gets results. Using pragmatic artificial intelligence and decision management, you can improve response rates by up to 6X, NPS by 30 points, and get ROI as high as 500%.",
+          size: "medium"
+        } only %}
+        {% include "@bolt/button.twig" with {
+          text: "Call to Action",
+          url: "www.google.com"
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+  {% endblock %}
+{% endembed %}
+
+
+
+{% embed "@pl/_band--collection.twig" with {
+  "theme": "light",
+  "size": "medium",
+  "contentItems": [
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/images/content/promos/promo-16x9-anthem.jpg",
+        "lazyload": true
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "logo": {
+          src: "/images/content/logos/logo-paypal.svg",
+          lazyload: true
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Gartner Magic Quadrant for the CRM Customer Engagement Center",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Learn More",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/images/content/promos/promo-16x9-anthem.jpg",
+        "lazyload": true
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Gartner Magic Quadrant for the CRM Customer Engagement Center",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Learn More",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          }
+        ]
+      }
+    },
+    {
+      "pattern": "card",
+      "image": {
+        "src": "/images/content/promos/promo-16x9-anthem.jpg",
+        "lazyload": true
+      },
+      "teaser": {
+        "eyebrow": {
+          text: "Article"
+        },
+        "headlines": [
+          {
+            "type": "headline",
+            "text": "Gartner Magic Quadrant for the CRM Customer Engagement Center",
+            "size": "large"
+          }
+        ],
+        "content": "Simplify and automate to reduce costs and improve agility.",
+        "buttons": [
+          {
+            "text": "Learn More",
+            "style": "secondary",
+            "url": "www.google.com/pega7",
+            "width": "full"
+          }
+        ]
+      }
+    }
+  ]
+} %}
+  {% block band_content %}
+
+
+
+   {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix u-bolt-margin-bottom" %}
+
+      {% cell "u-bolt-flex-grow" %}
+
+        {% grid %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+            {% include "@bolt/headline.twig" with {
+              text: "Analyst Reports",
+              size: "xlarge",
+              tag: "h3"
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+
+      {% cell %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "See all analyst reports",
+          size: "small",
+          weight: "bold",
+          tag: "p",
+          url: "pega.com",
+          icon: {
+            name: "chevron-right",
+            position: "after"
+          }
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+    {{ parent() }}
+  {% endblock band_content %}
+{% endembed %}
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: "xdark",
+  full_bleed: true,
+  background: {
+    "opacity": "heavy",
+    "fill": "color",
+    "focalPoint": {
+      "vertical": "center",
+      "horizontal": "center"
+    },
+    "contentItems": [
+      {
+        "pattern": "image",
+        "src": "/images/content/backgrounds/background-tall-4.jpg",
+        "lazyload": true
+      }
+    ]
+  }
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small u-bolt-text-align-center" %}
+
+
+
+        {% include "@bolt/blockquote.twig" with {
+          size: "xlarge",
+          border: "horizontal",
+          alignItems: "center",
+          logo: {
+            src: "/images/content/logos/logo-paypal.svg",
+            invert: true,
+            lazyload: true
+          },
+          author: {
+            image: {
+              src: "/images/placeholders/500x500.jpg",
+              lazyload: true
+            },
+            name: "Jessica Cuthbertson",
+            title: "CEO, RBS"
+          },
+          content: "<p>We’re creating an environment where we know our customers individually, and we want to use what we know to really understand what’s important to them – so we can be there in the moments that matter.</p>"
+        } only %}
+
+
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Watch Birgit König, Ph.D., CEO, Allianz Health Germany, share how the Pega platform meets rapidly changing customer expectations."
+        } only %}
+
+        {% include "@bolt/button.twig" with {
+          text: "Call to Action",
+          url: "www.google.com",
+          style: "secondary"
+        } only %}
+
+
+      {% endcell %}
+    {% endgrid %}
+  {% endblock %}
+{% endembed %}
+
+
+
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "small",
+  theme: "xdark",
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow" %}
+
+        {% grid %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+            {% include "@bolt/headline.twig" with {
+              text: "See How Pega Can Help Your Business",
+              size: "xlarge"
+            } only %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+
+      {% cell "u-bolt-width-1/1@only-small" %}
+        {% include "@bolt/button.twig" with {
+          text: "Call to action",
+          width: "full",
+          size: "medium"
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+  {% endblock %}
+{% endembed %}
+
+
+
+
+
+
+{% endblock %}

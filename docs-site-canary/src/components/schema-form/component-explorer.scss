@@ -1,0 +1,651 @@
+// Extremely WIP - everything below needs to be refactored; this is purely for demo purposes of the new API rendering service + rendered schema form
+
+
+@import '@bolt/core';
+@import '@bolt/components-button';
+
+// Checkbox and Radio Inputs
+$bolt-inline-label-transition: $bolt-transition-timing cubic-bezier(0.45,1.8,0.5,0.75);
+$bolt-inline-label-input-color: bolt-color(indigo, light);
+$bolt-inline-label-input-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
+$bolt-inline-label-input-border-style: $bolt-border-style;
+$bolt-inline-label-input-border-width: $bolt-border-width;
+
+// Data Inputs
+$bolt-floating-label-text-scale: bolt-strip-unit($bolt-font-size--xsmall);
+$bolt-floating-label-text-color: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Denton] This is the theme text color at 66%
+$bolt-floating-label-text-color-active: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
+$bolt-floating-label-text-indent: calc(#{bolt-spacing(small)} + 2px);
+$bolt-floating-label-transition: $bolt-transition;
+
+$bolt-input-text-color: bolt-color(gray, xdark); // TODO: [Mai] This is the theme text color
+$bolt-input-text-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
+$bolt-input-text-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-background-color: bolt-color(white); // TODO: [Mai] This is the theme input background color
+$bolt-input-background-color--disabled: bolt-color(gray, xlight);
+$bolt-input-background-color--invalid: lighten(bolt-color(error), 58%);
+$bolt-input-placeholder-color: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-placeholder-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
+$bolt-input-placeholder-color--disabled: rgba(bolt-color(gray, xdark), 0.5); // TODO: [Mai] This is the theme text color at 66%
+$bolt-input-icon-color--active: bolt-color(indigo, light);
+$bolt-input-icon-color--invalid: bolt-color(error);
+$bolt-input-border-color: rgba(bolt-color(indigo, light), 0.25); // TODO: [Mai] This is the theme link color at 25%
+$bolt-input-border-color--focus: bolt-color(indigo, light); // TODO: [Mai] This is the theme link color
+$bolt-input-border-color--invalid: bolt-color(error); // TODO: [Mai] This is the theme error color
+$bolt-input-border-width: $bolt-border-width;
+$bolt-input-border-style: $bolt-border-style;
+$bolt-input-border-radius: $bolt-border-radius;
+$bolt-input-box-shadow: bolt-color(indigo, light);
+$bolt-input-shadow-level: 'level-20';
+$bolt-input-transition: $bolt-transition;
+
+
+bolt-component-explorer {
+  @include bolt-margin-bottom(medium);
+  display: block;
+}
+
+.c-bds-component-explorer__demo-container > * {
+  max-width: 100%;
+  left: 0 !important;
+  right: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+@mixin bolt-input-placeholder($color) {
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $color;
+
+    // Workaround for pega.com Drupal, which currently uses sanitize.css.  Once that's
+    // removed, the following line will be unnecessary.
+    opacity: 1;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: $color;
+  }
+
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: $color;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: $color;
+  }
+}
+
+.range-view {
+  @include bolt-margin-left(xsmall);
+  display: inline-block;
+}
+
+.rjsf {
+  // border-color: rgb(216, 216, 218);
+  // border-width: 1px;
+  border: 0;
+  // max-height: 80vh;
+  // overflow: auto;
+  // border-style: solid;
+  width: 100%;
+  padding: 0.5rem;
+  height: 100%;
+
+  // hide submit button -- not needed since we submit automatically
+  > .form-group + p {
+    display: none;
+  }
+
+  i.glyphicon {
+    display: none;
+  }
+
+
+  .btn-default {
+    // display: flex;
+    // text-align: left;
+    // width: 100%;
+    // align-self: center;
+    // justify-self: center;
+    // flex-grow: 1;
+    // height: 100%;
+  }
+
+  .btn-add::after {
+    content: '+';
+  }
+
+  .array-item-move-up {
+
+    &:after {
+      content: '↑';
+    }
+  }
+
+  .array-item-move-down {
+
+    &:after {
+      content: '↓';
+    }
+  }
+
+  .array-item-remove::after {
+    content: '×';
+  }
+
+  form {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  fieldset {
+    padding: 0;
+    margin: 0;
+    border: none;
+    width: 100%;
+  }
+
+  // fieldset .form-group:nth-child(2n - 1) {
+  //   background-color: #efefef;
+  // }
+
+  textarea {
+    width: 100%;
+  }
+
+  legend {
+    @include bolt-font-size(small);
+    @include bolt-margin-bottom(xsmall);
+    @include bolt-font-weight(bold);
+    color: bolt-color(gray, xdark);
+    border-bottom: 1px solid bolt-color(gray);
+    width: 100%;
+
+  }
+
+  article > h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  article:not(:last-child) {
+    border-bottom: solid 1px lightgrey;
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    align-items: center;
+    flex-flow: row wrap;
+
+    &.field-boolean {
+      align-self: flex-end;
+    }
+
+    &:last-child,
+    &:last-of-type {
+      border-bottom: 0;
+    }
+    // padding: 0.75rem;
+  }
+
+  .form-group .field-array {
+    /*padding: 0.75rem;*/
+    padding: 0;
+    background-color: hsla(235, 6%, 58%, 0.1);
+    // margin-top: 1rem;
+    // margin-bottom: 1rem;
+    margin-left: -.5rem;
+    margin-right: -.5rem;
+  }
+
+  .form-control {
+    // display: block;
+    // min-width: 200px;
+    // max-width: 650px;
+    // padding: 4px;
+    // background-clip: padding-box;
+    // box-sizing: border-box;
+    padding: 4px;
+    background-clip: padding-box;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+
+    // prevent zooming on iOS
+    &[select] {
+      font-size: 16px;
+    }
+  }
+
+  .btn {
+    font-size: 0.8rem;
+  }
+
+  .control-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    vertical-align: middle;
+    flex-grow: 1;
+    // text-transform: capitalize;
+    flex-basis: 6rem; // make different lengths of inputs + labels more similar in appearance
+    margin-right: 1rem;
+  }
+
+  .field-description {
+    @include bolt-font-size(xsmall);
+    color: bolt-color(gray);
+    margin: 0.5rem 0;
+    max-width: 650px;
+    display: none;
+  }
+
+  .field-undefined.field-undefined.field-undefined {
+    display: none;
+  }
+
+
+  .demo-stage {
+    background-color: #9a9b9f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  fieldset.field.field-array.field-array-of-object {
+    background-color: transparent;
+    padding: 0.5rem;
+    margin: 0;
+  }
+
+  .col-xs-3 {
+    display: inline-block;
+    box-sizing: border-box;
+    // width: 10%;
+  }
+
+  .text-right {
+    float: right;
+  }
+
+  .col-xs-9 {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 90%;
+    padding-right: 0.5rem;
+    flex-grow: 1;
+  }
+
+  .array-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+
+  .array-item:nth-child(2n) .form-group  {
+    // background-color: white;
+  }
+
+  .btn-group {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .btn + .btn {
+    margin-top: 5px;
+  }
+
+  > p {
+    padding: 0 0.75rem;
+    margin: 0;
+  }
+
+  .unsupported-field {
+    display: none;
+  }
+
+
+  div:empty {
+    display: none;
+  }
+
+  input.form-control {
+    // This should ONLY apply to <input> elements, NOT anything else like <label>, <div>, <span>, etc.
+    @include bolt-padding(xsmall, squished); // [Mai] This matches button vertical spacing.
+    @include bolt-padding-right(small); // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
+    @include bolt-padding-left(small); // [Mai] This does not match the button horizontal spacing, which is what we want. We only want inputs to be as tall as buttons.
+    @include bolt-input-placeholder($bolt-input-placeholder-color);
+
+    display: block;
+    // width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    color: $bolt-input-text-color;
+    line-height: calc(#{$bolt-line-height--xsmall + em} - 2px); // [Mai] The line-height matches button's line-height, the 2px offsets the 1px border from the input.
+    font-size: $bolt-font-size--small;
+    border-color: $bolt-input-border-color;
+    border-style: $bolt-input-border-style;
+    border-width: $bolt-input-border-width;
+    border-radius: $bolt-input-border-radius;
+    background-color: $bolt-input-background-color;
+    opacity: 1; // [Mai] Reset mobile Safari browser default.
+    outline: none;
+    transition: all $bolt-input-transition;
+
+    // Force browsers to render this using hardward acceleration.
+    // This resolves a rendering quirk seen in Chrome where the hover
+    // state would only work intermittently.
+    transform: translate3d(0, 0, 0);
+
+    // Removing native controls
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+    text-indent: 0.01px;
+    text-overflow: '';
+
+    @media (max-width: bolt-breakpoint(small)) {
+      line-height: calc(#{$bolt-line-height--xsmall + em} - 6px); // [Mai] This is just magic number, if the font-size ever changes, this also needs to change by inspecting in the browser and push the px.
+      font-size: 16px; // [Mai] Mobile Safari will zoom in when input is focused if the text is not at least 16px.
+    }
+
+    // &::-ms-expand
+    //   {
+    //     display: none;
+    //   }
+      // Removing native controls
+
+      // &.is-invalid,
+      // &.is-touched:invalid {
+      //   @include bolt-input-placeholder($bolt-input-placeholder-color--invalid);
+
+      //   color: $bolt-input-text-color--invalid;
+      //   border-color: $bolt-input-border-color--invalid;
+      //   background-color: $bolt-input-background-color--invalid;
+      // }
+
+      &.is-disabled,
+      &:disabled {
+        @include bolt-input-placeholder($bolt-input-placeholder-color--disabled);
+
+        color: $bolt-input-text-color--disabled;
+        cursor: not-allowed;
+        background-color: $bolt-input-background-color--disabled;
+      }
+
+      // &.is-filled,
+      // &:focus {
+      //   padding-top: calc(#{bolt-v-spacing(small)} + 0.55rem);
+      //   padding-bottom: calc(#{bolt-v-spacing(small)} - 0.55rem);
+      // }
+
+      &:focus,
+      &:hover {
+        &:not(.is-disabled):not(:disabled) {
+          @include bolt-shadow($key: $bolt-input-shadow-level, $base-color: $bolt-input-box-shadow);
+        }
+      }
+
+      &:focus {
+        border-color: $bolt-input-border-color--focus !important;
+      }
+  }
+
+  label {
+    @include bolt-font-size(small);
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .control-label ~ .form-control {
+    // @include bolt-margin-left(small);
+  }
+
+  input[type="checkbox"]{
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+  }
+
+  .checkbox label > span {
+    @include bolt-padding-left(1.5em);
+
+    &:before,
+    &:after {
+      position: absolute;
+      transition: all $bolt-inline-label-transition;
+    }
+
+    &:before {
+      top: 0.2em;
+      left: 0;
+      width: 1em;
+      height: 1em;
+      content: '';
+      border-color: $bolt-inline-label-input-border-color;
+      border-style: $bolt-inline-label-input-border-style;
+      border-width: $bolt-inline-label-input-border-width;
+      background-color: $bolt-input-background-color;
+    }
+
+    &:after {
+      content: '';
+      opacity: 0;
+      transform-origin: center;
+    }
+
+    &:before {
+      border-radius: 2px;
+    }
+
+    &:after {
+      top: 0.3em;
+      left: 0.375em;
+      width: calc(1em - 0.675em);
+      height: calc(1em - 0.325em);
+      border-color: $bolt-inline-label-input-color;
+      border-style: solid;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) scale(0.1);
+    }
+  }
+
+  .checkbox label input:checked + span {
+    &:after {
+      opacity: 1;
+      transform: rotate(45deg) scale(1);
+    }
+  }
+
+  .btn[disabled]{
+    @include bolt-button-style--disabled;
+  }
+
+  .btn-default,
+  .btn-info {
+    @include bolt-button;
+    @include bolt-button-style--secondary;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-info {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .btn-danger {
+    @include bolt-button;
+    background-color: bolt-color(error);
+    color: bolt-color(white);
+    border-color: bolt-color(error, dark);
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:after {
+      line-height: 1;
+      align-self: center;
+      justify-self: center;
+    }
+  }
+}
+
+
+
+
+.form-group.field.field-boolean {
+  flex-basis: 50%;
+  display: inline-block;
+  padding-right: 1rem;
+}
+
+
+.react-resizable {
+  position: relative;
+  background-color: rgb(244, 246, 248);
+  padding: 1rem 2rem 1rem 1rem;
+  border-radius: 8px;
+
+
+  &.resizing {
+    cursor: ew-resize;
+  }
+}
+
+.react-draggable-transparent-selection {
+  cursor: ew-resize;
+}
+
+
+.react-resizable-handle {
+  // position: absolute;
+  // width: 50px;
+  // height: 50px;
+  // bottom: 0;
+  // right: 0;
+  // background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2IDYiIHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOiNmZmZmZmYwMCIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI2cHgiIGhlaWdodD0iNnB4Ij48ZyBvcGFjaXR5PSIwLjMwMiI+PHBhdGggZD0iTSA2IDYgTCAwIDYgTCAwIDQuMiBMIDQgNC4yIEwgNC4yIDQuMiBMIDQuMiAwIEwgNiAwIEwgNiA2IEwgNiA2IFoiIGZpbGw9IiMwMDAwMDAiLz48L2c+PC9zdmc+');
+  // background-position: bottom right;
+  // padding: 0 3px 3px 0;
+  // background-repeat: no-repeat;
+  // background-origin: content-box;
+  // box-sizing: border-box;
+  // cursor: se-resize;
+  contain: strict;
+  cursor: ew-resize;
+  display: block;
+  height: 100%;
+  // right: -15px;
+  right: 0;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  // flex: 0 0 auto;
+  // -ms-flex-pack: center;
+  // justify-content: center;
+  // -ms-flex-align: center;
+  // align-items: center;
+  width: 1rem;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1.2rem 3.6rem rgba(0, 0, 0, 0.4);
+  color: bolt-color(orange);
+
+  &:hover,
+  &:active {
+    cursor: ew-resize;
+  }
+
+  &:before {
+    // background-image: linear-gradient(90deg,currentColor,currentColor 1px,transparent 2px,transparent 5px);
+    // background-size: 4px;
+    content: "";
+    display: block;
+    height: 30px;
+    // margin-left: 10px;
+    opacity: 1;
+    pointer-events: none;
+    position: absolute;
+    border-left: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    // position: fixed;
+    // position: -webkit-sticky;
+    // position: sticky;
+    // top: 50vh;
+    top: 50%;
+    right: 50%;
+    transform: translate3d(50%, -50%, 0);
+    // width: 10px;
+    width: 8px;
+  }
+}
+
+
+.c-bolt-demo-grid {
+  width: 100%;
+}
+
+
+.react-grid-item {
+  border: 1px solid rgba(0, 0, 0, .075);
+}
+
+// .react-grid-item.react-grid-placeholder {
+//   // background: red;
+//   border-style: dotted;
+//   border-width: 2px;
+//   border-color: black;
+//   background-color: #e0e2eb;
+//   opacity: 0.2;
+//   transition-duration: 100ms;
+//   z-index: 2;
+//   cursor: ew-resize;
+//   -webkit-user-select: none;
+//   -moz-user-select: none;
+//   -ms-user-select: none;
+//   -o-user-select: none;
+//   user-select: none;
+// }
+
+.help-block {
+  @include bolt-font-size(xsmall);
+  color: bolt-color(gray, dark);
+}
+
+legend[id="root__title"]{
+  display: none;
+}
+
+.field-range-wrapper {
+  display: flex;
+}
+
+.rjsf input[type="range"].form-control {
+  padding: 0.25rem;
+  border-radius: 25rem;
+}
+
+
+bolt-schema-form {
+  display: block;
+  height: 100%;
+}

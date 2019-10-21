@@ -1,0 +1,465 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% macro link(text, href, attributes) %}
+  {% include "@bolt/link.twig" with {
+    text: text,
+    href: href,
+    attributes: attributes | default({})
+  } only %}
+{% endmacro %}
+{% import _self as bolt %}
+
+{% block main_content %}
+
+  {% set feature_band_content %}
+    {% include "@bolt/ui-list.twig" with {
+      contentItems : [
+        {
+          contentItems: [
+            {
+              pattern: "eyebrow",
+              text: "Customer Retention"
+            },
+            {
+              pattern: "headline",
+              text: "Personalized. Not Creepy.",
+              size: "large",
+              url: "https://www.google.com"
+            }
+          ]
+        },
+        {
+          contentItems: [
+            {
+              pattern: "eyebrow",
+              text: "Sales Effectiveness"
+            },
+            {
+              pattern: "headline",
+              text: "Create Sales Superstars",
+              size: "large"
+            }
+          ]
+        },
+        {
+          contentItems: [
+            {
+              pattern: "eyebrow",
+              text: "Operations &amp; IT"
+            },
+            {
+              pattern: "headline",
+              text: "Stop Coding. Start Designing.",
+              size: "large"
+            }
+          ]
+        }
+      ]
+    } %}
+  {% endset %}
+
+  {% set feature_band = {} %}
+  {% set feature_band = feature_band | merge({
+    content: feature_band_content
+  }) %}
+
+
+
+  {% embed "@pl/_band--feature.twig" with {
+    teaserPosition: "left",
+    teaserWidth: "2/3",
+    size: "medium",
+    full: true,
+    theme: qaTheme,
+    primaryTeaser: {
+      eyebrow: {
+        text: "Customer Service"
+      },
+      headlines: [
+        {
+          type: "headline",
+          text: "We're able to predict that you're going to call before you need to actually contact us.",
+          size: "xxlarge",
+          tag: "h1"
+        }
+      ],
+      logo: {
+        src: "/images/content/logos/logo-paypal.svg",
+        invert: true,
+        lazyload: false
+      },
+      content: "Powered by real AI," ~ bolt.link("Pega Customer Service", "google.com") ~ " delivers game-changing results for enterprises.",
+      buttons: [
+        {
+          text: "Sign Up",
+          style: "primary",
+          url: "#!"
+        },
+        {
+          text: "Learn More",
+          style: "secondary",
+          url: "#!"
+        },
+        {
+          text: "Read More",
+          style: "text",
+          url: "#!",
+          icon: {
+            name: "chevron-right"
+          }
+        }
+      ]
+    },
+    content: feature_band.content | default(content)
+  } only %}{% endembed %}
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "small",
+  theme: qaTheme,
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+
+      {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small u-bolt-flex-grow" %}
+
+        {% grid %}
+          {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+            {% include "@bolt-components-headline/text.twig" with {
+              text: "Pega is #1 in software for customer engagement and operational excellence.",
+              size: "large",
+              weight: "regular"
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+
+
+      {% cell "u-bolt-width-1/1@only-small" %}
+        {% include "@bolt/button.twig" with {
+          text: "Learn More",
+          width: "full",
+          size: "medium"
+        } only %}
+      {% endcell %}
+
+    {% endgrid %}
+
+
+  {% endblock %}
+{% endembed %}
+
+
+
+{% embed "@pl/_band--collection.twig" with {
+  theme: qaTheme,
+  size: "medium",
+  background: {
+    opacity: "heavy",
+    fill: "color",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-1.jpg",
+        lazyload: false
+      }
+    ]
+  },
+  contentItems: [
+    {
+      pattern: "card",
+      url: "https://www.pega.com",
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/images/placeholders/1200x660.jpg",
+          lazyload: false
+        },
+        {
+          pattern: "headline",
+          text: "2017 Forrester Wave Report",
+          size: "large",
+          tag: "h3"
+        },
+        {
+          pattern: "text",
+          text: "Pega cited as a Leader in The Forrester Wave™: Digital Process Automation Software, Q3 2017."
+        },
+        {
+          pattern: "button",
+          width: "full",
+          text: "Get the report",
+          style: "text"
+        }
+      ]
+    },
+    {
+      pattern: "card",
+      image: {
+        src: "/images/content/promos/promo-16x9-anthem.jpg",
+        lazyload: false
+      },
+      teaser: {
+        eyebrow: {
+          text: "Article"
+        },
+        headlines: [
+          {
+            type: "headline",
+            text: "Headline #2",
+            size: "large"
+          }
+        ],
+        content: "Simplify and automate to reduce costs and improve agility.",
+        buttons: [
+          {
+            text: "Learn More",
+            style: "secondary",
+            url: "www.google.com/pega7",
+            width: "full"
+          },
+          {
+            text: "About Pega",
+            style: "secondary",
+            url: "www.google.com/pega7",
+            width: "full"
+          }
+        ]
+      }
+    },
+    {
+      pattern: "card",
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/images/content/promos/promo-16x9-ai.jpg",
+          lazyload: false
+        },
+        {
+          pattern: "teaser",
+          headlines: [
+            {
+              type: "headline",
+              text: "Headline #3",
+              size: "large"
+            }
+          ],
+          content: "Simplify and automate to reduce costs and improve agility.",
+          buttons: [
+            {
+              text: "Learn More About Pega 7",
+              style: "text",
+              url: "www.google.com/pega7",
+              width: "full"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+} only %}
+  {% block band_content %}
+    {% include "@bolt/headline.twig" with {
+      text: "What's Trending",
+      size: "xlarge",
+      tag: "h3"
+    } only %}
+    {{ parent() }}
+  {% endblock band_content %}
+{% endembed %}
+
+
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: qaTheme,
+  full_bleed: true
+} only %}
+  {% block band_content %}
+
+      {% grid "o-bolt-grid--matrix o-bolt-grid--large" %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
+          {% include "@bolt/image.twig" with {
+            src: "/images/content/promos/promo-16x9-salesforce-vs-pega.png",
+            lazyload: false
+          } only %}
+        {% endcell %}
+
+        {% cell "u-bolt-width-1/1 u-bolt-width-2/3@small" %}
+
+          {% grid %}
+
+            {% cell "u-bolt-width-1/1 u-bolt-width-3/4@small" %}
+
+              {% include "@bolt/headline.twig" with {
+                text: "There’s a real alternative to the Salesforce.com hype: Pega CRM.",
+                size: "xlarge",
+                tag: "h3"
+              } only %}
+
+              <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall o-bolt-inline-list--valign-top">
+              <li class="o-bolt-inline-list__item">
+
+<span class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
+  <span class="c-bolt-text__text">
+          Whiteboard
+      </span>
+
+  </span>
+        </li>
+              <li class="o-bolt-inline-list__item">
+
+
+
+<span class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
+  <span class="c-bolt-text__text">
+          03:17
+      </span>
+
+  </span>
+
+        </li>
+          </ul>
+
+              <ul class="o-bolt-inline-list o-bolt-inline-list--xsmall o-bolt-inline-list--delimited o-bolt-inline-list--valign-top">
+              <li class="o-bolt-inline-list__item">
+
+<span class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
+  <span class="c-bolt-text__text">
+          Whiteboard
+      </span>
+
+  </span>
+        </li>
+              <li class="o-bolt-inline-list__item">
+
+
+
+<span class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--xsmall">
+  <span class="c-bolt-text__text">
+          03:17
+      </span>
+
+  </span>
+
+        </li>
+          </ul>
+
+              {% include "@bolt/inline-list.twig" with {
+                delimited: true,
+                valign: "top",
+                contentItems: [
+                  {
+                    text: "Top aligned inline List Item #1"
+                  },
+                  {
+                    text: "Inline List Item #2"
+                  },
+                  {
+                    text: "Inline List Item #3"
+                  }
+                ]
+              } only %}
+
+              <p>Considering Salesforce.com? Don’t fall for the hype. See why today’s leading enterprises choose Pega CRM.</p>
+
+              {% include "@bolt/button-group.twig" with {
+                buttons: [
+                  {
+                    text: "Learn More",
+                    style: "primary"
+                  },
+                  {
+                    text: "About Pega",
+                    style: "secondary"
+                  }
+                ]
+              } only %}
+
+              {% include "@bolt/button-group.twig" with {
+                buttons: [
+                  {
+                    text: "Learn More",
+                    style: "text"
+                  }
+                ]
+              } only %}
+
+            {% endcell %}
+          {% endgrid %}
+
+        {% endcell %}
+      {% endgrid %}
+
+  {% endblock %}
+{% endembed %}
+
+
+
+{% embed "@bolt-components-band/band.twig" with {
+  size: "medium",
+  theme: qaTheme,
+  full_bleed: true
+} only %}
+  {% block band_content %}
+    {% include "@bolt-components-action-blocks/action-blocks.twig" with {
+      max_items_per_row: 8,
+      contentItems: [
+        {
+          text: "Product Information",
+          url: "http://google.com",
+          icon: {
+            name: "product"
+          }
+        },
+        {
+          text: "Industry Solutions",
+          url: "http://google.com",
+          icon: {
+            name: "industries"
+          }
+        },
+        {
+          text: "Training and Certification",
+          url: "http://google.com",
+          icon: {
+            name: "training"
+          }
+        },
+        {
+          text: "Vision and Technology",
+          url: "http://google.com",
+          icon: {
+            name: "vision"
+          }
+        },
+        {
+          text: "Services and Partners",
+          url: "http://google.com",
+          icon: {
+            name: "partners"
+          }
+        },
+        {
+          text: "Career Opportunities",
+          url: "http://google.com",
+          icon: {
+            name: "careers"
+          }
+        }
+      ]
+    } only %}
+  {% endblock %}
+{% endembed %}
+
+{% endblock %}

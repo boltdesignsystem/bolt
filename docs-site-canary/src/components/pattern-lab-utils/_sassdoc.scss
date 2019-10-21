@@ -1,0 +1,57 @@
+.c-bds-docs--sassdoc__item {
+  @include bolt-margin-bottom(xlarge);
+
+  &:first-of-type hr:first-child {
+    display: none;
+  }
+}
+
+.c-bds-docs__return,
+.c-bds-docs__example,
+.c-bds-docs-table--sassdoc {
+  @include bolt-margin-bottom(medium);
+}
+
+.c-bds-docs__return-label {
+  @include bolt-font-weight(bold);
+  color: bolt-color(indigo, light);
+  font-family: monospace;
+}
+
+.c-bds-docs__meta {
+  display: flex;
+  justify-content: space-between;
+}
+
+.c-bds-docs__meta-item {
+  details {
+    @include bolt-margin(0);
+
+    &[open] summary {
+      @include bolt-font-weight(bold);
+    }
+  }
+  summary {
+    @include bolt-margin(0);
+    user-select: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+/*
+** Our floating navigation needs to have an overflow when items expand beyond viewer-height
+* [1] Floating nav receives 4rem from .c-bds-docs__page-nav-list and we add .5 rem to reach the bottom
+* [2] The overflow added in the parent wrapper removes hides the shadow so we bring it back here
+ */
+.o-bolt-ui-list--sassdoc {
+  max-height: calc(100vh - 4.5rem); // [1]
+  overflow-y: auto;
+
+  bolt-dropdown { // [2]
+    width: calc(100% - 6px);
+    margin: 0 auto;
+  }
+}

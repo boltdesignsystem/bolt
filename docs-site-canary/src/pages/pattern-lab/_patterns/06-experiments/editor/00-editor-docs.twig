@@ -1,0 +1,53 @@
+{% set usage %}{% verbatim %}
+{% set content %}
+  <bolt-text>Hello World!</bolt-text>
+{% endset %}
+
+{% include '@bolt-components-editor/editor.twig' with {
+  styles: ['/build/bolt-global.css'],
+  scripts: ['/build/bolt-global.js'],
+  content: content,
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: 'editor',
+  usage: usage,
+} only %}
+
+<ul>
+  <li><a href="{{ link['experiments-drupal-integration'] }}">Docs on Drupal Integration</a></li>
+</ul>
+
+<h3>Events</h3>
+{% include "@bolt-components-table/table.twig" with {
+  first_col_fixed_width: false,
+  headers: {
+    top: {
+      cells: [
+        "Name",
+        "Detail",
+        "Description",
+      ]
+    },
+  },
+  rows: [
+    {
+      cells: [
+      "<code>editor:save</code>",
+      "<code>{ html: string }</code>",
+      "After the editor is saved, all the html is available in the event detail.
+<bolt-code-snippet lang=\"js\" display=\"block\">
+const editors = document.querySelectorAll('.js-pega-editor');
+
+editors.forEach(editor => {
+  editor.addEventListener('editor:save', event => {
+    console.log('Editor saved HTML:', event.detail.html);
+  });
+});
+</bolt-code-snippet>
+",
+    ]
+    },
+  ],
+} only %}

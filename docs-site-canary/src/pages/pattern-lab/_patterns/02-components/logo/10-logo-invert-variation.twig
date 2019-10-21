@@ -1,0 +1,11 @@
+{% embed "@bolt-components-band/band.twig" with {
+  theme: "dark",
+} %}
+  {% block band_content %}
+    {% include "@bolt-components-logo/logo.twig" with {
+      src: "/images/content/logos/logo-paypal.svg",
+      lazyload: false,
+      invert: true,
+    } only %}
+  {% endblock band_content %}
+{% endembed %}

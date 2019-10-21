@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-page-header/page-header.twig" with {
+  content: content
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "page-header",
+  usage: usage
+} only %}

@@ -1,0 +1,18 @@
+{% grid with {
+  attributes: {
+    class: [
+      "o-bolt-grid--flex",
+      "o-bolt-grid--small",
+      "o-bolt-grid--matrix"
+    ]
+  }
+} %}
+  {% for colorName, palette in bolt.data.colors.status %}
+    {% include "_color-swatch.twig" with {
+      color_swatch: {
+        colorName: colorName,
+        palette: palette
+      }
+    } %}
+  {% endfor %}
+{% endgrid %}

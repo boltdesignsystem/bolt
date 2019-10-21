@@ -1,0 +1,66 @@
+{% set schema = bolt.data.components["@bolt-components-table"].schema %}
+
+<p><mark>Numeric format is recommended for a table with numbers only, such as box scores.</mark></p>
+{% for format in schema.properties.format.enum %}
+  <h3>{{ format|capitalize }} Format</h3>
+  {% include "@bolt-components-table/table.twig" with {
+    format: format,
+    headers: {
+      top: {
+        cells: [
+          "Pts",
+          "Reb",
+          "Ast",
+          "Stl",
+          "Blk",
+        ]
+      },
+      side: {
+        cells: [
+          "Michael Jordan",
+          "Toni Kukoc",
+          "Steve Kerr",
+          "Total",
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          "70",
+          "10",
+          "2",
+          "5",
+          "1",
+        ]
+      },
+      {
+        cells: [
+          "21",
+          "15",
+          "10",
+          "3",
+          "4",
+        ]
+      },
+      {
+        cells: [
+          "5",
+          "2",
+          "20",
+          "5",
+          "0",
+        ]
+      }
+    ],
+    footer: {
+      cells: [
+        "91",
+        "27",
+        "32",
+        "13",
+        "5",
+      ]
+    }
+  } only %}
+{% endfor %}

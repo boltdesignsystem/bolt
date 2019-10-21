@@ -1,0 +1,59 @@
+{% set content %}
+<ul class="c-bolt-block-list">
+  <li class="c-bolt-block-list__item">
+    <bolt-link display="inline" valign="center" url="" target="_blank" class="js-bolt-share__facebook">
+      <bolt-icon slot="before" name="facebook-solid" size="medium"></bolt-icon>Facebook</bolt-link>
+  </li>
+  <li class="c-bolt-block-list__item">
+    <bolt-link display="inline" valign="center" url="" target="_blank" class="js-bolt-share__twitter">
+      <bolt-icon slot="before" name="twitter" size="medium"></bolt-icon>Twitter</bolt-link>
+  </li>
+  <li class="c-bolt-block-list__item">
+    <bolt-link display="inline" valign="center" url="" target="_blank" class="js-bolt-share__linkedin">
+      <bolt-icon slot="before" name="linkedin" size="medium"></bolt-icon>LinkedIn</bolt-link>
+  </li>
+  <li class="c-bolt-block-list__item">
+    <bolt-link display="inline" valign="center" url="" target="_self" class="js-bolt-share__email">
+      <bolt-icon slot="before" name="email" size="medium"></bolt-icon>Email</bolt-link>
+  </li>
+  <li class="c-bolt-block-list__item">
+    <bolt-copy-to-clipboard>
+      <span class="c-bolt-copy-to-clipboard js-bolt-copy-to-clipboard">
+        <button class="c-bolt-copy-to-clipboard__trigger" data-clipboard-text="https://community.pega.com/knowledgebase/articles/documents-api-pega-infinity-mobile-client">
+          <div class="c-bolt-copy-to-clipboard__action">
+            <bolt-icon name="asset-link" size="medium"></bolt-icon>
+            <span class="c-bolt-copy-to-clipboard__action-text">
+              Copy Link
+            </span>
+          </div>
+        </button>
+        <span class="c-bolt-copy-to-clipboard__transition">
+          <span class="c-bolt-copy-to-clipboard__transition-animation">
+            <bolt-icon name="refresh" size="medium"></bolt-icon>
+          </span>
+        </span>
+        <span class="c-bolt-copy-to-clipboard__confirmation">
+          <div class="c-bolt-copy-to-clipboard__info js-bolt-copy-to-clipboard__trigger">
+            <bolt-icon name="check" size="medium"></bolt-icon>
+            Copied!
+          </div>
+        </span>
+      </span>
+    </bolt-copy-to-clipboard>
+  </li>
+</ul>
+{% endset %}
+
+<div class="u-bolt-padding-top-large u-bolt-padding-bottom-large">
+  {% grid "o-bolt-grid--center" %}
+    {% cell "o-bolt-grid__cell" %}
+      {% include "@bolt-components-tooltip/tooltip.twig" with {
+        trigger: {
+          type: "text",
+          text: "This is the tooltip trigger"
+        },
+        content: content
+      } only %}
+    {% endcell %}
+  {% endgrid %}
+</div>

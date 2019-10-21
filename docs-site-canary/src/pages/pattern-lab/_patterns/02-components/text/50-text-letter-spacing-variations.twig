@@ -1,0 +1,21 @@
+{% extends "@pl/_text-doc-template.twig" %}
+
+{% block content %}
+  <bolt-text headline>
+    Letter-spacing Usage
+  </bolt-text>
+  <bolt-text>
+    <bolt-code-snippet display="inline" lang="html">&lt;bolt-text&gt;</bolt-code-snippet> has a few options for the spacing in between letters. It can be adjusted for legibility. The default is regular.
+  </bolt-text>
+  {% for letter_spacing in schema.properties["letter-spacing"].enum %}
+
+{# Indents are removed to eliminate unnecessary white space when the code sample renders. #}
+{% set text_demo %}
+<bolt-text letter-spacing="{{ letter_spacing }}">
+  This text has its letter-spacing prop defined as: {{ letter_spacing }}
+</bolt-text>
+{% endset %}
+
+    {% include text_code.code_example(text_demo, true) %}
+  {% endfor %}
+{% endblock %}

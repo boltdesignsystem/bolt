@@ -1,0 +1,15 @@
+{% set schema = bolt.data.components["@bolt-components-share"].schema %}
+{% extends "@pl/_share-variables.twig" %}
+
+{% block content %}
+  <p><mark>Opacity will make the share tool semi-transparent, and transparency goes away if user hovers over it. This should be used if you don't want the share tool to create too much distractions on first impression.</mark></p>
+
+  {% for opacity in schema.properties.opacity.enum %}
+    <h3>Opacity: {{ opacity|capitalize }}</h3>
+    {% include "@bolt-components-share/share.twig" with {
+      opacity: opacity,
+      sources: sources,
+      copy_to_clipboard: copy_to_clipboard,
+    } only %}
+  {% endfor %}
+{% endblock %}

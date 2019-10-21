@@ -1,0 +1,87 @@
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as blockquote_demo %}
+
+{% set blockquote_demo_simple %}
+<bolt-blockquote author-name="Michelangelo di Lodovico Buonarroti Simoni" author-title="Renaissance Artist" author-image="/images/placeholders/500x500.jpg">
+  <p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>
+</bolt-blockquote>
+{% endset %}
+
+{% set blockquote_demo_attributes %}
+<bolt-blockquote align-items="center" border="horizontal" author-name="Michelangelo di Lodovico Buonarroti Simoni" author-title="Renaissance Artist" author-image="/images/placeholders/500x500.jpg">
+  <p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>
+</bolt-blockquote>
+{% endset %}
+
+{% set blockquote_demo_logo %}
+<bolt-blockquote author-name="Michelangelo di Lodovico Buonarroti Simoni" author-title="Renaissance Artist" author-image="/images/placeholders/500x500.jpg">
+  <img slot="logo" src="/images/content/logos/logo-paypal.svg" alt="PayPal Logo">
+  <p>The greater danger for most of us lies not in setting our aim too high and falling short...</p>
+  <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>
+</bolt-blockquote>
+{% endset %}
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Link is a web component that renders a semantic blockquote with Bolt styles. For a simple blockquote, wrap your quote content in the <bolt-code-snippet display="inline" lang="html">&lt;bolt-blockquote&gt;</bolt-code-snippet> custom element. Note: you must wrap your quote text in <bolt-code-snippet display="inline" lang="html">&lt;p&gt;</bolt-code-snippet> tags for the appropriate quotation marks to appear. Add attribution to the quote by adding the <bolt-code-snippet display="inline" lang="html">author-name</bolt-code-snippet>, <bolt-code-snippet display="inline" lang="html">author-title</bolt-code-snippet>, and <bolt-code-snippet display="inline" lang="html">author-image</bolt-code-snippet> attributes to <bolt-code-snippet display="inline" lang="html">&lt;bolt-blockquote&gt;</bolt-code-snippet>. 
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ blockquote_demo_simple }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include blockquote_demo.code_example(blockquote_demo_simple, true) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Additional Options
+  </bolt-text>
+  <bolt-text>
+    Apply additional configuration options via attributes on the <bolt-code-snippet display="inline" lang="html">&lt;bolt-blockquote&gt;</bolt-code-snippet> element. Attribute names and values match the Twig schema but use "kebab-case" instead of "camelCase". For example, <bolt-code-snippet display="inline" lang="html">alignItems</bolt-code-snippet> becomes <bolt-code-snippet display="inline" lang="html">align-items</bolt-code-snippet>.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ blockquote_demo_attributes }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include blockquote_demo.code_example(blockquote_demo_attributes, true) %}
+  </div>
+</div>
+
+<div class="o-bolt-wrapper">
+  <bolt-text headline>
+    Advanced Usage
+  </bolt-text>
+  <bolt-text>
+    To add a logo to <bolt-code-snippet display="inline" lang="html">&lt;bolt-blockquote&gt;</bolt-code-snippet> place logo content (for example: <bolt-code-snippet display="inline" lang="html">&lt;bolt-logo&gt;</bolt-code-snippet> or <bolt-code-snippet display="inline" lang="html">&lt;img&gt;</bolt-code-snippet>) next to blockquote text, and add the attribute <bolt-code-snippet display="inline" lang="html">slot="logo"</bolt-code-snippet> to the logo's outermost container.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ blockquote_demo_logo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    {% include blockquote_demo.code_example(blockquote_demo_logo, true) %}
+  </div>
+</div>

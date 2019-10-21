@@ -1,0 +1,14 @@
+{% include "@bolt-components-ul/ul.twig" with {
+  attributes: {
+    "data-attr": "some attribute",
+  },
+  items: [
+    "Do not include any data or information in your posts that are confidential!",
+    "Apply basic practices for collaborative work.",
+    include("@bolt-components-link/link.twig", {
+      text: "Be honest, respectful, trustworthy and helpful.",
+      url: "#!",
+    }),
+    "Answer questions authoritatively and concisely. Avoid cluttering discussions with noise."
+  ]
+} %}

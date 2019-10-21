@@ -1,0 +1,56 @@
+<div id="{{ partial.patternPartial }}" class="pl-c-pattern">
+
+  <div class="pl-c-pattern__header">
+    <h3 class="pl-c-pattern__title">
+      <a href="../../patterns/{{ partial.patternLink }}" class="pl-c-pattern__title-link patternLink" data-patternpartial="{{ partial.patternPartial }}" title="Link to Pattern">
+        {{ partial.patternName }}
+        {% if partial.patternState %}
+          <span class="pl-c-pattern-state pl-c-pattern-state--{{ partial.patternState }}" title="{{ partial.patternState }}">{{ partial.patternState }}</span>
+        {% endif %}
+      </a>
+
+      <button class="pl-c-pattern__extra-toggle pl-js-pattern-extra-toggle" id="pl-pattern-extra-toggle-{{partial.patternPartial}}" data-patternpartial="{{ partial.patternPartial }}" title="View Pattern Info">
+        <span class="pl-c-pattern__toggle-icon">&#9660;</span>
+      </button>
+    </h3>
+    
+    <!-- @todo: why doesn't PL node have breadcrumbs?? keeping in the Twig version -->
+    {# {% set breadcrumbs = partial.patternData|json_decode %} #}
+    {# {% if breadcrumbs.patternBreadcrumb.patternType %}
+      <ul class="pl-c-breadcrumb">
+        {% if breadcrumbs.patternBreadcrumb.patternType %}
+          <li class="pl-c-breadcrumb__item">{{ breadcrumbs.patternBreadcrumb.patternType }}</li>
+        {% endif %}
+
+        {% if breadcrumbs.patternBreadcrumb.patternSubtype %}
+          <li class="pl-c-breadcrumb__item">{{ breadcrumbs.patternBreadcrumb.patternSubtype }}</li>
+        {% endif %}
+      </ul>
+    {% endif %} #}
+
+    {# {% if partial.patternDesc %}
+      <div class="pl-c-category__description pl-c-text-passage">
+        {{ partial.patternDesc | raw }}
+      </div>
+    {% endif %} #}
+  </div><!--end pl-c-pattern__header-->
+
+  <div class="pl-c-pattern__extra-wrapper">
+    <div class="pl-c-pattern__extra pl-js-pattern-extra" id="pl-pattern-extra-{{ partial.patternPartial }}"></div>
+  </div>
+
+  <div class="pl-js-pattern-example">
+    {{ partial.patternPartialCode | raw }}
+  </div>
+
+  <script type="text/json" id="pl-pattern-data-{{partial.patternPartial}}" class="pl-js-pattern-data">
+    {{ partial.patternData | raw }}
+  </script>
+  
+  <script type="text/json">
+    window.bolt = window.bolt || {};
+    window.bolt.patterns = window.bolt.patterns || {};
+    window.bolt.patterns[{{ patternName }}] = {{ partial|json_encode }}
+  </script>
+
+</div><!--end pl-c-pattern-->

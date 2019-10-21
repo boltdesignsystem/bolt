@@ -1,0 +1,25 @@
+<p>
+  This video has external controls and an inline script:
+</p>
+<p>
+  {% include "@bolt/button.twig" with {
+    "text": "Play or pause",
+    "tag": "button",
+    "attributes": {
+      "on-click": "toggle",
+      "on-click-target": "pega-video-3861325118001-b"
+    }
+  } only %}
+</p>
+
+{% include "@bolt/_video-inline-script.twig" with {
+  "socialUrl": "https://demo1.d8.pega.com/insights/resources/crm-evolved-atlanta-customer-engagement-digital-world"
+} %}
+
+{% include "@bolt/video.twig" with {
+  "videoId": "3861325118001",
+  "accountId": "1900410236",
+  "playerId": "r1CAdLzTW",
+  "videoUuid": "pega-video-3861325118001-b",
+  "on_init": "initBrightcovePlugins",
+} only %}

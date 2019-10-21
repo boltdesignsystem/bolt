@@ -1,0 +1,15 @@
+{% set schema = bolt.data.components['@bolt-components-code-snippet'].schema %}
+{% set code %}{%- verbatim -%}
+<header>
+  <h1>Headline</h1>
+</header>
+{%- endverbatim -%}{% endset %}
+
+{% for display in schema.properties.display.enum %}
+  <h3>{{ display }}:</h3>
+  {% embed "@bolt-components-code-snippet/code-snippet.twig" with {
+    display: display,
+    content: code
+  } only %}
+  {% endembed %}
+{% endfor %}

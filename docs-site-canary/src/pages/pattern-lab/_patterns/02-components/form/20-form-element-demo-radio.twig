@@ -1,0 +1,21 @@
+{% extends "@bolt-components-form/form-element.twig" %}
+
+{% set label %}
+  {% include("@bolt-components-form/form-label.twig") with {
+    "title": labelTitle,
+    "displayType": "inline-radio",
+    "attributes": {
+      "for": elementId
+    }
+  } %}
+{% endset %}
+
+{% set children %}
+  {% include("@bolt-components-form/form-input.twig") with {
+    "attributes": {
+      "type": "radio",
+      "id": elementId,
+      "name": name
+    },
+  } %}
+{% endset %}

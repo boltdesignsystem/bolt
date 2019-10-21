@@ -1,0 +1,14 @@
+{% set tags = ["ul", "ol"] %} {# Available Headline Types #}
+
+{% for tag in tags %}
+  {% include '@bolt-global/bare-list.twig' with {
+    tag: tag,
+    contentItems: [
+      { text: faker.words() },
+      { text: faker.words() },
+      { text: faker.words() },
+      { text: faker.words() },
+      { text: faker.words() }
+    ]
+  } %}
+{% endfor %}

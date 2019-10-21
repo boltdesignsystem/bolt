@@ -1,0 +1,24 @@
+{% set options = bolt.data.boltReleases.options %}
+
+{% set children %}
+  <bolt-select should-sort-items="true" item-select-text="">
+    {% include("@bolt-components-form/form-select.twig") with {
+      options: options,
+      attributes: {
+        class: [
+          "js-bolt-version-selector",
+          "c-bds-version-selector",
+          "u-bolt-padding-top-xsmall",
+          "u-bolt-padding-left-xsmall",
+          "u-bolt-padding-bottom-xsmall",
+          "u-bolt-padding-right-xsmall",
+        ]
+      },
+    } only %}
+  </bolt-select>
+{% endset %}
+
+{% include("@bolt-components-form/form-element.twig") with {
+  children: children,
+} only %}
+

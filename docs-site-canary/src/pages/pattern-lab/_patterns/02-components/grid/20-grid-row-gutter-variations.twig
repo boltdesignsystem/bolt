@@ -1,0 +1,38 @@
+{% set schema = bolt.data.components["@bolt-components-grid"].schema %}
+
+{% set row_gutters = schema.properties.row_gutter.enum %}
+
+{% set placeholder %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Span 12 columns",
+  } only %}
+{% endset %}
+
+{% for row_gutter in row_gutters %}
+  <h3>{{ row_gutter|capitalize }} Row Gutter</h3>
+  <div class="u-bolt-margin-bottom-medium">
+    {% include "@bolt-components-grid/grid.twig" with {
+      row_gutter: row_gutter,
+      items: [
+        {
+          row_start: "1",
+          column_start: "1",
+          column_span: "12",
+          content: placeholder,
+        },
+        {
+          row_start: "2",
+          column_start: "1",
+          column_span: "12",
+          content: placeholder,
+        },
+        {
+          row_start: "3",
+          column_start: "1",
+          column_span: "12",
+          content: placeholder,
+        },
+      ]
+    } only %}
+  </div>
+{% endfor %}

@@ -1,0 +1,87 @@
+{% extends "@bolt-site/default-redesign.twig" %}
+
+{% set content %}
+  {% set band_content %}
+
+    {% include "@bolt-site/animated-shapes.twig" %}
+
+    <svg style="display: none;" width="1" height="1" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="bolt-logo" viewBox="0 0 666 183">
+        <g fill="none" fill-rule="evenodd"><g fill="#FFF"><path d="M515.8 0h42.4c.9 0 1.6.7 1.6 1.6v176.6c0 .9-.7 1.6-1.6 1.6h-42.4c-1 0-1.7-.7-1.7-1.6V1.6c0-.9.8-1.6 1.7-1.6zM313 46.3c11.9 0 22.7 2.7 32.4 8.2a59.8 59.8 0 0 1 23 23.7 72.5 72.5 0 0 1 8.6 35.7c0 13.6-2.9 25.5-8.6 35.9a60.5 60.5 0 0 1-23 23.8A63.8 63.8 0 0 1 313 182c-17.1 0-30-5-38.5-15.3v11.5c0 .9-.7 1.6-1.6 1.6h-40.3c-.9 0-1.6-.7-1.6-1.6V1.6c0-.9.7-1.6 1.6-1.6h42.5c.9 0 1.6.7 1.6 1.6V60c8.8-9 21-13.6 36.3-13.6zm-9.6 99.1c8 0 14.6-2.8 19.7-8.4a32.9 32.9 0 0 0 7.7-23.1 32 32 0 0 0-7.7-22.8 25.8 25.8 0 0 0-19.7-8.2c-8 0-14.6 2.7-19.7 8.2A32 32 0 0 0 276 114c0 9.9 2.5 17.6 7.7 23.1a25.6 25.6 0 0 0 19.7 8.4z"/><path d="M439.2 182a68.4 68.4 0 1 1 .1-136.8 68.4 68.4 0 0 1-.1 136.8zm-.4-36.9a31.1 31.1 0 1 0-.1-62.2 31.1 31.1 0 0 0 0 62.2zM626 57.3h37.6c1-.1 1.7.6 1.7 1.5V96c0 .9-.8 1.6-1.7 1.6l-37.6.1v33.5c0 7.2 5.9 13.1 13.1 13.1h24.5c1 0 1.7.8 1.7 1.7v34.4c0 .9-.8 1.6-1.7 1.6H626a45.9 45.9 0 0 1-45.8-45.9v-90c0-1 .6-2.2 1.6-2.7l41.7-24.7a1.6 1.6 0 0 1 2.5 1.4v37.2z"/></g><path d="M72.8 50h52.5c1 0 1.7.8 1.7 1.8v31.5c0 1-.8 1.7-1.8 1.7H72.7c-1 0-1.7-.8-1.7-1.7V51.8c0-1 .8-1.8 1.8-1.8z" fill="#FFCC4C"/><path d="M1 79.8l16.7-29c.3-.5 1-.8 1.5-.8h36c1 0 1.8.8 1.8 1.8v31.5c0 1-.8 1.7-1.8 1.7H4.1a3.5 3.5 0 0 1-3-5.2z" fill="#F63"/><path d="M141 83.3V51.8c0-1 .8-1.8 1.7-1.8h36c.7 0 1.3.3 1.6.9l16.6 28.9a3.5 3.5 0 0 1-3 5.2h-51.2c-1 0-1.7-.8-1.7-1.7z" fill="#E1E2EB"/><path d="M85 2.8v31.4c0 1-.8 1.8-1.8 1.8H29.4a1.8 1.8 0 0 1-1.5-2.6L42.5 8a14 14 0 0 1 12-7h28.8c1 0 1.7.8 1.7 1.8z" fill="#F63"/><path d="M100.8 1h42.6c5 0 9.6 2.7 12.1 7l14.7 25.4a1.7 1.7 0 0 1-1.5 2.6h-68c-1 0-1.7-.8-1.7-1.7V2.8c0-1 .8-1.8 1.8-1.8z" fill="#FFCC4C"/><path d="M42.5 176l-14.7-25.4a1.8 1.8 0 0 1 1.5-2.6h68c1 0 1.7.8 1.7 1.8v31.4c0 1-.8 1.8-1.8 1.8H54.6a14 14 0 0 1-12.1-7z" fill="#6C79D9"/><path d="M114.7 148h54a1.8 1.8 0 0 1 1.5 2.6L155.5 176a14 14 0 0 1-12 7h-28.8c-1 0-1.7-.8-1.7-1.7v-31.5c0-1 .8-1.8 1.7-1.8z" fill="#12B3B3"/><path d="M71 100.8v31.5c0 1-.8 1.7-1.8 1.7h-50c-.6 0-1.2-.3-1.5-.9L1.1 104.2A3.5 3.5 0 0 1 4 99h65.1c1 0 1.8.8 1.8 1.7z" fill="#6C79D9"/><path d="M86.7 99H194a3.5 3.5 0 0 1 3 5.2l-16.6 29c-.3.5-1 .8-1.5.8h-92c-1 0-1.8-.8-1.8-1.8v-31.4c0-1 .8-1.8 1.7-1.8z" fill="#12B3B3"/></g>
+      </symbol>
+    </svg>
+
+    <div style="position: relative; z-index: 10;">
+      {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--middle u-bolt-padding-top-medium u-bolt-padding-bottom-medium" %}
+        {% cell 'u-bolt-width-1/1 u-bolt-width-7/8@small u-bolt-width-6/7@medium u-bolt-width-5/7@large u-bolt-text-align-center' %}
+
+          <div class="u-bolt-margin-left-auto u-bolt-margin-right-auto">
+            {% include "@bolt-site/animated-logo.twig" %}
+          </div>
+
+          {% include "@bolt/subheadline.twig" with {
+            text: 'The Bolt Design System provides robust Twig and Web Component-powered <a href="/pattern-lab/?p=components-overview">UI components</a>, reusable <a href="/pattern-lab/?p=viewall-visual-styles-all">visual styles</a>, and <a href="/docs/getting-started/index.html">powerful tooling</a> to help developers, designers, and content authors build, maintain, and scale best of class digital experiences.',
+            size: "large",
+            tag: "h2",
+          } only %}
+
+          <div class="u-bolt-margin-bottom-medium">
+            {% include "@bolt-components-button-group/button-group.twig" with {
+              buttons: [
+                {
+                  text: "View The Components",
+                  url: "/pattern-lab/index.html",
+                  width: "full",
+                  style: "primary"
+                },
+                {
+                  text: "Get Started",
+                  url: "/docs/getting-started/index.html",
+                  width: "full",
+                  style: "secondary"
+                }
+              ],
+              full: true,
+            } only %}
+          </div>
+
+          {# {% include "@bolt-components-link/link.twig" with {
+            text: "Download Sketch Assets",
+            url: "/assets/bolt-sketch.zip",
+            icon: {
+              name: "download",
+              position: "before"
+            },
+            attributes: {
+              download: true
+            }
+          } only %} #}
+        {% endcell %}
+      {% endgrid %}
+    </div>
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    size: "none",
+    theme: "xdark",
+    full_bleed: true,
+    background: {
+      opacity: "medium",
+      fill: "gradient",
+      focalPoint: {
+        vertical: "center",
+        horizontal: "center"
+      },
+    },
+    attributes: {
+      style: [
+        "flex-grow: 1;",
+        "--criterion: 0;",
+        "--multiplier: 4;",
+        "overflow: hidden;",
+        "overflow: hidden;"
+      ]
+    },
+    content: band_content,
+  } only %}
+{% endset %}

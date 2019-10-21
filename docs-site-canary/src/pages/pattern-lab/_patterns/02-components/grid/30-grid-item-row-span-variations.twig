@@ -1,0 +1,170 @@
+{% set span_3_rows %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Span 3 rows",
+  } only %}
+{% endset %}
+{% set span_6_rows %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Span 6 rows",
+  } only %}
+{% endset %}
+{% set span_9_rows %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Span 9 rows",
+  } only %}
+{% endset %}
+{% set row %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Row",
+  } only %}
+{% endset %}
+
+<h3>Each item can span from 1 to 12 rows</h3>
+<p>Row span works as long as you have multiple rows. For example, if you only have 2 rows of content, you cannot have an item to span 3 rows because the highest you can get is 2.</p>
+<div class="u-bolt-margin-bottom-large">
+  {% include "@bolt-components-grid/grid.twig" with {
+    row_gutter: "small",
+    items: [
+      {
+        row_start: "1",
+        row_span: "3",
+        column_start: "1",
+        column_span: "2",
+        content: "3 rows",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+            "u-bolt-min-height-full",
+          ]
+        },
+      },
+      {
+        row_start: "1",
+        row_span: "6",
+        column_start: "3",
+        column_span: "2",
+        content: "6 rows",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+            "u-bolt-min-height-full",
+          ]
+        },
+      },
+      {
+        row_start: "1",
+        row_span: "9",
+        column_start: "5",
+        column_span: "2",
+        content: "9 rows",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+            "u-bolt-min-height-full",
+          ]
+        },
+      },
+      {
+        row_start: "1",
+        row_span: "12",
+        column_start: "7",
+        column_span: "2",
+        content: "12 rows",
+        attributes: {
+          class: [
+            "t-bolt-dark",
+            "u-bolt-padding-small",
+            "u-bolt-min-height-full",
+          ]
+        },
+      },
+      {
+        row_start: "1",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "2",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "3",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "4",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "5",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "6",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "7",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "8",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "9",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "10",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "11",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+      {
+        row_start: "12",
+        row_span: "1",
+        column_start: "9",
+        column_span: "4",
+        content: row,
+      },
+    ]
+  } only %}
+</div>

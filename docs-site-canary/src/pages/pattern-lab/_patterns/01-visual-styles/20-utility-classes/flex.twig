@@ -1,0 +1,63 @@
+{% embed "@utils/utilities.twig" with {
+  utility_name: "Bolt Flex"
+} only %}
+
+  {% block utility_description %}
+    <p>Add the following utility classes to apply the desired flex properties (individual flex items):</p>
+    <ul>
+      <li><code>.u-bolt-flex-grow</code> - Sets each item with this class to take up equal space. Flex grow overrides any width set.</li>
+      <li><code>.u-bolt-flex-shrink</code> - Provides the opposite effect of flex-grow. It specifies which items can shrink as the wrapper element shrinks. This is useful in Bolt <u>only</u> when the <code>flex-shrink</code> property has already been set (since the default value is already <code>1</code>).</li>
+      <li><code>.u-bolt-flex-basis-auto</code> - Distributes the extra space based on the <code>flex-grow</code> value.</li>
+    </ul>
+    <p><strong>All demos below are resizable!</strong></p>
+  {% endblock %}
+
+  {% block utility_demo %}
+    <h4>Flex items: Default</h4>
+    <div class="c-bds-docs__flex-demo u-bolt-flex">
+      <div class="c-bds-docs__flex-item">DEFAULT</div>
+      <div class="c-bds-docs__flex-item">DEFAULT</div>
+      <div class="c-bds-docs__flex-item">DEFAULT</div>
+      <div class="c-bds-docs__flex-item">DEFAULT</div>
+      <div class="c-bds-docs__flex-item">DEFAULT</div>
+    </div>
+
+    <h4>Flex items: <code>.u-bolt-flex-grow</code></h4>
+    <div class="c-bds-docs__flex-demo u-bolt-flex">
+      <div class="c-bds-docs__flex-item u-bolt-flex-grow">GROW (1)</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-grow">GROW (1)</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-grow">GROW (1)</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-grow">GROW (1)</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-grow">GROW (1)</div>
+    </div>
+
+    <div class="c-bds-docs__flex-demo u-bolt-flex">
+      <div class="c-bds-docs__flex-item">DEFAULT</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-grow">GROW (1)</div>
+      <div class="c-bds-docs__flex-item">DEFAULT</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-grow">GROW (1)</div>
+      <div class="c-bds-docs__flex-item">DEFAULT</div>
+    </div>
+
+    <h4>Flex items: <code>.u-bolt-flex-shrink</code></h4>
+    <p><strong><u>Note</u>:</strong> The below example uses a non-utility style (shrink and grow) for the sake of the demo. You can see that each element given then shrink utility class is able to shrink in size, while the items with <code>flex-shrink</code> set to <code>0</code> and <code>flex-grow</code> set - won't.</p>
+    <div class="c-bds-docs__flex-demo u-bolt-flex">
+      <div class="c-bds-docs__flex-item u-bolt-flex-grow c-bds-docs__flex-item--shrink-0">SHRINK (0)<br />GROW (1)</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-shrink">SHRINK (1)</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-grow c-bds-docs__flex-item--shrink-0">SHRINK (0)<br />GROW (1)</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-shrink">SHRINK (1)</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-grow c-bds-docs__flex-item--shrink-0">SHRINK (0)<br />GROW (1)</div>
+    </div>
+
+    <h4>Flex items: <code>.u-bolt-flex-basis-auto</code></h4>
+    <p><strong><u>Note</u>:</strong> The below example uses a non-utility style (basis 100px) for the sake of the demo. You can see that items with <code>flex-basis</code> set to <code>auto</code> will only expand to the needed width, while items with <code>flex-basis</code> set to <code>100px</code> are set to that specific maximum width (but can still get smaller).</p>
+    <div class="c-bds-docs__flex-demo u-bolt-flex">
+      <div class="c-bds-docs__flex-item u-bolt-flex-basis-auto">BASIS (AUTO)</div>
+      <div class="c-bds-docs__flex-item c-bds-docs__flex-item--basis-100">BASIS (100px)</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-basis-auto">BASIS (AUTO)</div>
+      <div class="c-bds-docs__flex-item c-bds-docs__flex-item--basis-100">BASIS (100px)</div>
+      <div class="c-bds-docs__flex-item u-bolt-flex-basis-auto">BASIS (AUTO)</div>
+    </div>
+  {% endblock %}
+
+{% endembed %}

@@ -1,0 +1,35 @@
+<div class="c-bds-hamburger u-bolt-hidden@medium">
+  <div class="c-bds-hamburger__inner">
+    <div class="c-bds-hamburger__button c-bds-hamburger__button--open">
+      {% include "@bolt-components-button/button.twig" with {
+        text: 'Open Menu',
+        iconOnly: true,
+        url: "#menu",
+        style: "primary",
+        size: "medium",
+        rounded: "rounded",
+        icon: {
+          name: "menu",
+          size: "medium",
+          position: "after"
+        }
+      } %}
+    </div>
+
+    <div class="c-bds-hamburger__button c-bds-hamburger__button--close">
+      {% include "@bolt-components-button/button.twig" with {
+        text: 'Close Menu',
+        iconOnly: true,
+        url: "#",
+        style: "primary",
+        size: "medium",
+        rounded: "rounded",
+        icon: {
+          name: "close",
+          size: "medium",
+          position: "after"
+        }
+      } %}
+    </div>
+  </div>
+</div>

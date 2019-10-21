@@ -1,0 +1,14 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt/video.twig" with {
+  videoId: "5609376179001",
+  accountId: "1900410236",
+  playerId: "r1CAdLzTW",
+  showMeta: true,
+  showMetaTitle: false
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "video",
+  usage: usage
+} only %}

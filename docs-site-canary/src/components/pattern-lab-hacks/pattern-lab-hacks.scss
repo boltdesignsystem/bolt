@@ -1,0 +1,60 @@
+@import '@bolt/core';
+
+.pl-c-main {
+  @include bolt-padding-left(small);
+  @include bolt-padding-right(small);
+  min-height: 100vh; // so demos with overlays, etc aren't immediately chopped off
+}
+
+.sg-main {
+  @include bolt-padding(medium);
+}
+
+// Remove double padding in PL when top level wrapper exists
+.sg-pattern-example > bolt-wrapper > .o-bolt-wrapper {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.sg-pattern-head.sg-pattern-head {
+  @include bolt-padding(medium, squished);
+  position: sticky;
+  top: 0;
+  z-index: bolt-z-index('nav');
+  margin-right: -1 * bolt-spacing(medium);
+  margin-bottom: 0;
+  margin-left: -1 * bolt-spacing(medium);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.12);
+  background-color: bolt-color(white);
+}
+
+.sg-pattern-extra.sg-pattern-extra.sg-pattern-extra {
+  @include bolt-margin-top(medium);
+  max-width: 1400px;
+  margin-right: auto;
+  margin-left: auto;
+  border-top: 0;
+}
+
+.sg-pattern-extra.sg-pattern-extra {
+  max-height: 0px; // prevent background from showing up
+}
+
+.pl-c-pattern {
+  position: static;
+}
+
+.pl-c-category,
+.pl-c-category__title,
+.pl-c-pattern[id*=-docs] > .pl-c-pattern__header,
+.pl-c-pattern[id*=-docs] > .pl-c-pattern__extra {
+  display: none;
+}
+
+.pl-c-category:first-of-type {
+  margin: 0;
+}
+
+.pl-c-pattern[id*="-docs"] .pl-c-pattern__extra-wrapper {
+  display: none;
+}

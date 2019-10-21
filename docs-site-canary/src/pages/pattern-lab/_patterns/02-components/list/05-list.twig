@@ -1,0 +1,29 @@
+{# Setting variables for demo purposes #}
+{% set placeholder_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 1",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 2",
+    size: "xsmall",
+  } only %}
+{% endset %}
+{% set placeholder_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 3",
+    size: "xsmall",
+  } only %}
+{% endset %}
+
+{# Start component specific code #}
+{% include "@bolt-components-list/list.twig" with {
+  items: [
+    placeholder_1,
+    placeholder_2,
+    placeholder_3,
+  ]
+} only %}
+{# End component specific code #}

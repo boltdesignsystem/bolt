@@ -1,0 +1,104 @@
+{% set children %}
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "First Name",
+    "inputAttributes": {
+      "placeholder": "Enter your first name",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "Last Name",
+    "inputAttributes": {
+      "placeholder": "Enter your last name",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "Email Address",
+    "inputAttributes": {
+      "placeholder": "Enter your email address",
+      "type": "email",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "Title",
+    "inputAttributes": {
+      "placeholder": "Enter your current job title",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/10-form-element-demo-input-element.twig" with {
+    "title": "Company Name",
+    "inputAttributes": {
+      "placeholder": "Enter the name of your company",
+      "required": true
+    },
+    "labelDisplayType": "floating"
+  } only %}
+
+  {% include "@pl/40-form-element-demo-select.twig" with {
+    "title": "Country",
+    "selectAttributes": {
+      "required": true
+    },
+    "options": [
+      {
+        "type": "option",
+        "value": "",
+        "label": "- Select a Country -"
+      },
+      {
+        "type": "option",
+        "value": "a",
+        "label": "Argentina"
+      },
+      {
+        "type": "option",
+        "value": "b",
+        "label": "Belgium"
+      },
+      {
+        "type": "option",
+        "value": "c",
+        "label": "Croatia"
+      }
+    ]
+  } only %}
+
+  {% include "@pl/30-form-element-demo-checkbox.twig" with {
+    "labelTitle": "Receive periodic emails on key analyst reports, Pega events, and important news.  You can unsubscribe at any time",
+    "elementId": "checkbox-" ~ random(),
+    "labelDisplayType": "inline"
+  } only %}
+
+  {% include "@bolt/form-button.twig" with {
+    "text": "Download Now",
+    "width": "full",
+    "icon": {
+      "name": "download"
+    }
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "Get the Report",
+  size: "xlarge"
+} only %}
+
+{% include "@bolt-components-headline/text.twig" with {
+  text: "(all fields are required)",
+  size: "small"
+} only %}
+
+{% include "@bolt/form.twig" with {
+  children: children
+} only  %}

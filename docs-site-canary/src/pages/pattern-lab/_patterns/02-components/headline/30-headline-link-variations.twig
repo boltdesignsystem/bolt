@@ -1,0 +1,16 @@
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "This headline is a link, with Default Icon",
+  url: "#!"
+} only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "This headline is also a link, with Defined Icon",
+  url: "#!",
+  icon: "search"
+} only %}
+
+{% include "@bolt-components-headline/headline.twig" with {
+  text: "This headline is also a link, without an Icon",
+  url: "#!",
+  icon: "none"
+} only %}

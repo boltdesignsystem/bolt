@@ -1,0 +1,17 @@
+{% include "./_00-background-band-demo.twig" with {
+  background: {
+    fill: "color",
+    overlay: "disabled",
+    opacity: "medium",
+    focalPoint: {
+      vertical: "center",
+      horizontal: "center"
+    },
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/content/backgrounds/background-tall-2.jpg"
+      }
+    ]
+  }
+} %}

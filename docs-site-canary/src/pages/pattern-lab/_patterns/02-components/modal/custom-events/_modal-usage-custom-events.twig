@@ -1,0 +1,132 @@
+{% set javascript %}
+<script>
+  // If the browser body has scrollbar, set padding on the element the width of the scrollbar
+  const setScrollbarPadding = function(element, hasScrollbar, scrollbarWidth) {
+    if (!element) {
+      return;
+    }
+
+    if (hasScrollbar) {
+      const originalPadding = element.style.paddingRight;
+      const calculatedPadding = window.getComputedStyle(element)[
+      'padding-right'
+      ];
+
+      // Save original padding value for later
+      element.setAttribute('data-padding-right', originalPadding);
+      element.style.paddingRight = parseFloat(calculatedPadding) + scrollbarWidth + 'px';
+    }
+  }
+
+  // Reset the padding on that element after modal is hidden
+  const resetScrollbarPadding = function(element) {
+    if (!element) {
+      return;
+    }
+
+    const padding = element.getAttribute('data-padding-right');
+
+    element.style.paddingRight = '';
+
+    if (typeof padding === 'undefined') {
+      element.style.paddingRight = '';
+    } else {
+      element.removeAttribute('data-padding-right');
+      // Restore original padding value
+      element.style.paddingRight = padding;
+    }
+  }
+
+  // Arbitrary fixed element, could be .c-page-header
+  const fixedElement = document.querySelector('.placeholder-fixed-element');
+
+  // Listen for 'modal:show' on the body, event will bubble up from the modal
+  document.body.addEventListener('modal:show', function(e) {
+    setScrollbarPadding(fixedElement, e.detail.hasScrollbar, e.detail.scrollbarWidth);
+  });
+
+  // Listen for 'modal:hidden', fires after the modal has animated out
+  document.body.addEventListener('modal:hidden', function(e) {
+    resetScrollbarPadding(fixedElement);
+  });
+</script>
+{% endset %}
+
+<bolt-text headline font-size="xlarge" style="margin-top: 120px;">Modal Custom Events</bolt-text>
+<bolt-text>Bolt Modal emits the following custom events: <code>modal:show</code>, <code>modal:shown</code>, <code>modal:hide</code>, <code>modal:hidden</code>.</bolt-text>
+
+<div class="placeholder-fixed-element" style="background: yellow; padding: 2rem; text-align: center; position: fixed; top: 0; height: 100px; width: 100%;">
+  Placeholder "fixed" element, should not shift when modal shows/hides.
+</div>
+
+<bolt-text headline font-size="large">Demo</bolt-text>
+<div class="t-bolt-light u-bolt-padding-medium u-bolt-margin-bottom-small">
+  {% set modal_content %}
+    {% include "@bolt-components-video/video.twig" with {
+      videoId: "3861325118001",
+      accountId: "1900410236",
+      playerId: "r1CAdLzTW",
+      showMeta: true,
+      showMetaTitle: true,
+      attributes: {
+        class: "js-modal-video-123"
+      }
+    } only %}
+  {% endset %}
+
+  {% set trigger %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Play the video",
+      size: "small",
+      width: "full",
+      attributes: {
+        "on-click": "show",
+        "on-click-target": "js-modal-123"
+      }
+    } only %}
+    {% include "@bolt-components-modal/modal.twig" with {
+      attributes: {
+        class: "js-modal-123"
+      },
+      content: modal_content,
+      width: "optimal",
+      spacing: "none",
+      theme: "none",
+      scroll: "overall",
+    } only %}
+    {{ javascript }}
+  {% endset %}
+  {% set description %}
+    <bolt-text headline font-size="large">Set padding on a "fixed" element when modal shows/hides</bolt-text>
+    <bolt-text>Use the <code>modal:show</code> and <code>modal:hidden</code> events to set padding on a fixed element to prevent it from shifting.</bolt-text>
+    <bolt-text>Note: for this example, you must use <code>modal:hidden</code> not <code>modal:hide</code> event, as <code>modal:hidden</code> fires after the modal animation, and that is key to getting the correct <code>hasScrollbar</code> state.</bolt-text>
+  {% endset %}
+  {% include "@bolt-components-grid/grid.twig" with {
+    items: [
+      {
+        column_start: "1 1@small",
+        column_span: "12 8@small 9@medium",
+        row_start: "2 1@small",
+        row_span: "1",
+        valign: "center",
+        content: description,
+      },
+      {
+        column_start: "1 10@small 11@medium",
+        column_span: "6 3@small 2@medium",
+        row_start: "1 1@small",
+        row_span: "1",
+        valign: "center",
+        content: trigger,
+      },
+    ]
+  } only %}
+</div>
+
+<bolt-text headline font-size="large">Custom JavaScript</bolt-text>
+<bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+  {{ javascript | replace({
+    '<': '&lt;',
+    '>': '&gt;',
+  }) | trim | raw }}
+{% endspaceless %}</bolt-code-snippet>

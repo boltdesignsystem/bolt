@@ -1,0 +1,20 @@
+{
+  "name": "@bolt/build-tools--canary",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Tests for upcoming canary release",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "yarn run build",
+    "build": "bolt build --prod --i18n --config-file .boltrc.multi-lang.js",
+    "test": "npx jest index.js",
+    "posttest": "rm -rf dist-lang/"
+  },
+  "dependencies": {
+    "@bolt/build-tools": "canary",
+    "@bolt/components-button": "canary",
+    "@bolt/core": "canary",
+    "@bolt/global": "canary"
+  }
+}

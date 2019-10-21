@@ -1,0 +1,189 @@
+<h2>Web Component Usage</h2>
+<p>Bolt Unordered List is a web component, you can simply use <code class="language-html">&lt;bolt-ul&gt;</code> in the markup to make it render. Its inner content is comprised of <code class="language-html">&lt;bolt-li&gt;</code>.</p>
+<h3>Example</h3>
+<pre class="c-bolt-code-snippet-syntax--light"><code class="language-html">&lt;bolt-ul&gt;
+  &lt;bolt-li&gt;Item 1&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 2&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 3&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 4&lt;/bolt-li&gt;
+  &lt;bolt-li&gt;Item 5&lt;/bolt-li&gt;
+&lt;/bolt-ul&gt;</code></pre>
+
+<h3>Simple usage</h3>
+<bolt-ul>
+  <bolt-li>Item 1</bolt-li>
+  <bolt-li>Item 2</bolt-li>
+  <bolt-li>Item 3</bolt-li>
+  <bolt-li>Item 4</bolt-li>
+  <bolt-li>Item 5</bolt-li>
+</bolt-ul>
+
+<h3>Nesting of lists (ol and ul)</h3>
+<bolt-ul>
+  <bolt-li>Coffee</bolt-li>
+  <bolt-li>Tea
+    <bolt-ul>
+      <bolt-li>Black tea</bolt-li>
+      <bolt-li>Green tea
+        <bolt-ul>
+          <bolt-li>Good tea</bolt-li>
+          <bolt-li>Great tea
+            <bolt-ul>
+              <bolt-li>Is the best</bolt-li>
+            </bolt-ul>
+          </bolt-li>
+        </bolt-ul>
+      </bolt-li>
+    </bolt-ul>
+  </bolt-li>
+  <bolt-li>Milk</bolt-li>
+</bolt-ul>
+
+<bolt-demo>
+  <bolt-ul>
+    <bolt-li>L1 - Tea</bolt-li>
+    <bolt-li>L1 - Coffee
+      <bolt-ul>
+        <bolt-li>L2 - Light roast</bolt-li>
+        <bolt-li>
+          L2 - Dark roast
+          <bolt-ul>
+            <bolt-li>
+              L3 - Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.Answer questions authoritatively and concisely. Avoid cluttering discussions with noise.
+              <bolt-ul>
+                <bolt-li>L4 - Tea</bolt-li>
+                <bolt-li>L4 - Coffee
+                  <bolt-ul>
+                    <bolt-li>L5 - Light roast</bolt-li>
+                    <bolt-li>
+                      L5 - Dark roast
+                      <bolt-ul>
+                        <bolt-li>
+                          L6 - Italian Roast
+                        </bolt-li>
+                        <bolt-li>
+                          L6 - Coffee from Italy
+                        </bolt-li>
+                      </bolt-ul>
+                    </bolt-li>
+                    <bolt-li>L5 - Medium roast</bolt-li>
+                  </bolt-ul>
+                </bolt-li>
+                <bolt-li>L4 - Milk</bolt-li>
+              </bolt-ul>
+            </bolt-li>
+            <bolt-li>
+              L3 - Coffee from Italy
+            </bolt-li>
+          </bolt-ul>
+        </bolt-li>
+        <bolt-li>L2 - Medium roast</bolt-li>
+      </bolt-ul>
+    </bolt-li>
+    <bolt-li>L1 - Milk</bolt-li>
+  </bolt-ul>
+</bolt-demo>
+
+<bolt-demo>
+  <bolt-ul>
+    <bolt-li>Level 1 - Item 1</bolt-li>
+    <bolt-li>Level 1 - Item 2</bolt-li>
+    <bolt-li>Level 1 - Item 3</bolt-li>
+    <bolt-li>Level 1 - Item 4
+      <bolt-ol>
+        <bolt-li>Level 2 - Item 1</bolt-li>
+        <bolt-li>Level 2 - Item 2</bolt-li>
+        <bolt-li>Level 2 - Item 3
+          <bolt-ul>
+            <bolt-li>Level 3 - Item 1</bolt-li>
+            <bolt-li>Level 3 - Item 2
+              <bolt-ol>
+                <bolt-li>Level 4 - Item 1
+                  <bolt-ul>
+                    <bolt-li>Level 5 - Item 1</bolt-li>
+                    <bolt-li>Level 5 - Item 2</bolt-li>
+                    <bolt-li>Level 5 - Item 3</bolt-li>
+                    <bolt-li>Level 5 - Item 4</bolt-li>
+                    <bolt-li>Level 5 - Item 5</bolt-li>
+                  </bolt-ul>
+                </bolt-li>
+                <bolt-li>Level 4 - Item 2</bolt-li>
+                <bolt-li>Level 4 - Item 3</bolt-li>
+                <bolt-li>Level 4 - Item 4</bolt-li>
+                <bolt-li>Level 4 - Item 5</bolt-li>
+              </bolt-ol>
+            </bolt-li>
+            <bolt-li>Level 3 - Item 3</bolt-li>
+            <bolt-li>Level 3 - Item 4</bolt-li>
+            <bolt-li>Level 3 - Item 5</bolt-li>
+          </bolt-ul>
+        </bolt-li>
+        <bolt-li>Level 2 - Item 4</bolt-li>
+        <bolt-li>Level 2 - Item 5</bolt-li>
+      </bolt-ol>
+    </bolt-li>
+    <bolt-li>Level 1 - Item 5</bolt-li>
+  </bolt-ul>
+</bolt-demo>
+
+<bolt-demo class="t-bolt-light">
+  <bolt-ul>
+    <bolt-li>Coffee</bolt-li>
+    <bolt-li>Tea
+      <bolt-ul>
+        <bolt-li>Black tea</bolt-li>
+        <bolt-li>Green tea</bolt-li>
+      </bolt-ul>
+    </bolt-li>
+    <bolt-li>Milk</bolt-li>
+  </bolt-ul>
+</bolt-demo>
+
+<bolt-demo class="t-bolt-dark">
+  <bolt-ul>
+    <bolt-li>Coffee</bolt-li>
+    <bolt-li>Tea
+      <bolt-ul>
+        <bolt-li>Black tea</bolt-li>
+        <bolt-li>Green tea</bolt-li>
+      </bolt-ul>
+    </bolt-li>
+    <bolt-li>Milk</bolt-li>
+  </bolt-ul>
+</bolt-demo>
+
+<bolt-demo class="t-bolt-light">
+  <bolt-ul>
+    <bolt-li>Coffee</bolt-li>
+    <bolt-li>Tea
+      <bolt-ol>
+        <bolt-li>Black tea</bolt-li>
+        <bolt-li>Green tea</bolt-li>
+      </bolt-ol>
+    </bolt-li>
+    <bolt-li>Milk</bolt-li>
+  </bolt-ul>
+</bolt-demo>
+
+<bolt-demo>
+  <bolt-ul>
+    <bolt-li>Coffee</bolt-li>
+    <bolt-li>Tea</bolt-li>
+    <bolt-li>Milk</bolt-li>
+  </bolt-ul>
+</bolt-demo>
+
+<h3>Theme variations</h3>
+{% for theme in ["xlight", "light", "dark", "xdark"] %}
+  <p>Theme: {{ theme }}</p>
+  <bolt-demo class="t-bolt-{{ theme }}">
+    <bolt-ol>
+      <bolt-li>Item 1</bolt-li>
+      <bolt-li>Item 2</bolt-li>
+      <bolt-li>Item 3</bolt-li>
+      <bolt-li>Item 4</bolt-li>
+      <bolt-li>Item 5</bolt-li>
+    </bolt-ol>
+  </bolt-demo>
+  <br>
+{% endfor %}

@@ -1,0 +1,148 @@
+.c-bds-schema-table {
+  &:not(:last-child) {
+    @include bolt-margin-bottom(medium);
+  }
+
+  ul {
+    p {
+      display: inline;
+      margin: 0;
+    }
+
+    code {
+      font-weight: normal;
+    }
+
+    details {
+      cursor: pointer;
+
+      summary {
+        user-select: none;
+        font-weight: bolt-font-weight(700);
+        &:focus {
+          outline: none;
+        }
+      }
+      &,
+      summary {
+        margin: 0;
+      }
+
+      ul {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+bolt-schema-table.is-twig {
+  .c-bds-docs-table__row--twig-only {
+    display: table-row;
+  }
+
+  .c-bds-docs-table__row--web-component-only {
+    display: none;
+  }
+}
+
+bolt-schema-table.is-wc {
+  .c-bds-docs-table__row--twig-only {
+    display: none;
+  }
+
+  .c-bds-docs-table__row--web-component-only {
+    display: table-row;
+  }
+}
+
+// .c-bolt-site {
+//   display: block;
+// }
+
+.c-bds-schema-table {
+  border-radius: $bolt-border-radius;
+
+  background-attachment: local, local, scroll, scroll;
+  // background-image: -webkit-linear-gradient(left, bolt-color(white), bolt-color(black)),
+  // -webkit-linear-gradient(right, bolt-color(white), bolt-color(black)),
+  // -webkit-linear-gradient(left, bolt-color(gray, xlight), bolt-color(gray, xdark)),
+  // -webkit-linear-gradient(right, bolt-color(gray, xlight), bolt-color(gray, xdark));
+
+  // background-image: linear-gradient(left, bolt-color(white), bolt-color(black)),
+  //   linear-gradient(right, bolt-color(white), bolt-color(black)),
+  //   linear-gradient(left, bolt-color(gray, xlight), bolt-color(gray, xdark)),
+  //   linear-gradient(right, bolt-color(gray, xlight), bolt-color(gray, xdark));
+
+
+  background-color: bolt-color(white);
+  background-image: -webkit-linear-gradient(left, #fff, hsla(0, 0%, 100%, 0)),
+  -webkit-linear-gradient(right, #fff, hsla(0, 0%, 100%, 0)),
+  -webkit-linear-gradient(left, #eaf0f6, rgba(234, 240, 246, 0)),
+  -webkit-linear-gradient(right, #eaf0f6, rgba(234, 240, 246, 0));
+  background-position: 0 0, 100% 0, 0 0, 100% 0;
+  background-repeat: no-repeat;
+  background-size: 4em 100%, 4em 100%, 1em 100%, 1em 100%;
+
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  table {
+    @include bolt-font-size(xsmall);
+    @include bolt-font-family(body);
+    @include bolt-margin-bottom(0);
+    transform: translate3d(0, 0, 0);
+    width: 100%;
+    border: 1px solid bolt-color(gray, light);
+    table-layout: auto;
+  }
+
+  thead {
+    border-bottom: 1px solid bolt-color(gray, light);
+  }
+
+  tr {
+    transition: background-color 0.1s ease;
+
+    &:not(:last-child){
+      border-bottom: 1px solid bolt-color(gray, light);
+    }
+  }
+
+  tr:hover {
+    background-color: rgba(bolt-color(gray, xlight), 0.5);
+  }
+
+
+  th {
+    @include bolt-padding(xsmall);
+    @include bolt-font-size(xsmall);
+    @include bolt-font-weight(semibold);
+    color: bolt-color(gray, dark);
+    text-align: left;
+    vertical-align: bottom;
+    background-color: bolt-color(gray, xlight);
+  }
+
+  td {
+    @include bolt-padding(xsmall);
+    vertical-align: top;
+  }
+
+  .required-key {
+    color: red;
+  }
+}
+
+.c-bds-schema-table__row {
+  border-top: 1px solid bolt-color(gray, light);
+}
+
+.c-bds-schema-table__col--key {
+  font-weight: bolt-font-weight(600);
+}
+
+.c-bds-schema-table .c-bds-schema-table {
+  overflow: hidden; // Prevent nested tables from scrolling to keep things from getting too crazy
+}

@@ -1,0 +1,20 @@
+{% set schema = bolt.data.components["@bolt-components-link"].schema %}
+
+<p>
+  <mark>Note that valign only works with flex link (with the icon hanging to the side), it has no effects on inline link.</mark>
+</p>
+{% for valign in schema.properties.valign.enum %}
+  <h3>Valign: {{ valign }}</h3>
+  <p style="max-width: 300px;">
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Vertically align " ~ valign ~ ". This will align the text and icon to the " ~ valign ~ " relative to the height of the link.",
+      url: "https://pega.com",
+      display: "flex",
+      valign: valign,
+      icon: {
+        name: "chevron-left",
+        position: "before"
+      },
+    } only %}
+  </p>
+{% endfor %}

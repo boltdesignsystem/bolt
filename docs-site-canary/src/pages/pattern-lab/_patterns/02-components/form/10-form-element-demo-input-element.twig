@@ -1,0 +1,18 @@
+{% extends "@bolt-components-form/form-element.twig" %}
+
+{% set label %}
+  {% include("@bolt-components-form/form-label.twig") with {
+    "title": title,
+    "displayType": labelDisplayType
+  } only %}
+{% endset %}
+
+{% set children %}
+  {# Default input type is text #}
+  {% set inputAttributes = inputAttributes|merge({'type': inputAttributes.type|default('text')}) %}
+
+  {% include("@bolt-components-form/form-input.twig") with {
+    "attributes": inputAttributes,
+    "hasErrors": errors is not empty
+  } only %}
+{% endset %}

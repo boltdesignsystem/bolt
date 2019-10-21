@@ -1,0 +1,103 @@
+{% macro code_example(code, copy) %}
+  <bolt-code-snippet syntax="dark" lang="html" {{ copy ? 'copy-to-clipboard' : '' }}>{% spaceless %}
+    {{ code | replace({
+      '<': '&lt;',
+      '>': '&gt;',
+    }) | trim | raw }}
+  {% endspaceless %}</bolt-code-snippet>
+{% endmacro %}
+
+{% import _self as list_code %}
+
+{% set list_demo %}
+<bolt-list>
+  <bolt-list-item>Item 1</bolt-list-item>
+  <bolt-list-item>Item 2</bolt-list-item>
+  <bolt-list-item>Item 3</bolt-list-item>
+</bolt-list>
+{% endset %}
+
+{% set list_basic_demo %}
+<bolt-list
+  display="inline"
+  spacing="xsmall"
+  separator="dashed"
+  align="center"
+>
+  <bolt-list-item>Item 1</bolt-list-item>
+  <bolt-list-item>Item 2</bolt-list-item>
+  <bolt-list-item>Item 3</bolt-list-item>
+</bolt-list>
+{% endset %}
+
+{% set list_advanced_demo %}
+<bolt-list display="inline">
+  <bolt-list-item>
+    <bolt-link url="https://pega.com">
+      Item 1
+    </bolt-link>
+  </bolt-list-item>
+  <bolt-list-item>
+    <bolt-chip url="https://pega.com">
+      Item 2
+    </bolt-chip>
+  </bolt-list-item>
+  <bolt-list-item>
+    <bolt-button url="https://pega.com">
+      Item 3
+    </bolt-button>
+  </bolt-list-item>
+</bolt-list>
+{% endset %}
+
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Button is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-list&gt;</bolt-code-snippet> in the markup to make it render.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ list_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include list_code.code_example(list_demo, true) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Basic Usage
+  </bolt-text>
+  <bolt-text>
+    All the props defined in the schema table can be used directly on the <bolt-code-snippet display="inline" lang="html">&lt;bolt-list&gt;</bolt-code-snippet> element.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ list_basic_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include list_code.code_example(list_basic_demo, true) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Advanced Usage
+  </bolt-text>
+  <bolt-text>
+    Instead of passing plain text into each item, you may also pass other Bolt components or regular HTML.
+  </bolt-text>
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ list_advanced_demo }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  {% include list_code.code_example(list_advanced_demo, true) %}
+</div>

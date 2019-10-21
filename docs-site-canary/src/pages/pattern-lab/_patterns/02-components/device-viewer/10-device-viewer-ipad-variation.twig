@@ -1,0 +1,50 @@
+{% set schema = bolt.data.components['@bolt-components-device-viewer'].schema %}
+
+{% for color in schema.properties.color.enum if (color != 'gold') %}
+  <p>Color: {{ color }}<br />Orientation: 'portrait'</p>
+  {% include "@bolt-components-device-viewer/device-viewer.twig" with {
+    device: "ipad",
+    orientation: "portrait",
+    color: color,
+    image: {
+      src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+      lazyload: false
+    }
+  } %}
+
+  <p>Color: {{ color }}<br />Orientation: 'landscape'</p>
+  {% include "@bolt-components-device-viewer/device-viewer.twig" with {
+    device: "ipad",
+    orientation: "landscape",
+    color: color,
+    image: {
+      src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+      lazyload: false
+    }
+  } %}
+
+{% endfor %}
+
+<p>Magnification: true<br />Orientation: 'portrait'</p>
+{% include "@bolt-components-device-viewer/device-viewer.twig" with {
+  device: "ipad",
+  orientation: "portrait",
+  color: "silver",
+  image: {
+    src: "/images/content/screenshots/device-screenshot--tablet-portrait.jpg",
+    lazyload: false
+  },
+  magnify: true
+} %}
+
+<p>Magnification: true<br />Orientation: 'landscape'</p>
+{% include "@bolt-components-device-viewer/device-viewer.twig" with {
+  device: "ipad",
+  orientation: "landscape",
+  color: "black",
+  image: {
+    src: "/images/content/screenshots/device-screenshot--tablet.jpg",
+    lazyload: false
+  },
+  magnify: true
+} %}

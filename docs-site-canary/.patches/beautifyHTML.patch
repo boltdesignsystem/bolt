@@ -1,0 +1,32 @@
+diff --git a/src/PatternLab/Builder.php b/src/PatternLab/Builder.php
+index 4c9bc6173..a5df38c00 100644
+--- a/src/PatternLab/Builder.php
++++ b/src/PatternLab/Builder.php
+@@ -27,6 +27,7 @@ use \PatternLab\PatternEngine;
+ use \PatternLab\Template;
+ use \PatternLab\Timer;
+ use \Symfony\Component\Finder\Finder;
++use \Gajus\Dindent\Indenter;
+ 
+ class Builder {
+ 
+@@ -297,8 +298,17 @@ class Builder {
+ 				// write out the various pattern files
+ 				file_put_contents($patternPublicDir."/".$path."/".$path.$suffixRendered.".html",$markupFull);
+ 				if (!$exportFiles) {
+-					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixMarkupOnly.".html",$markup);
+-					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixRaw.".".$patternExtension,$markupEngine);
++					if (getenv('NODE_ENV') === 'production') {
++						// Beautify the raw HTML before outputting so the code viewer doesn't look like a mess.
++						$indenter = new Indenter(array(
++							'indentation_character' => '  '
++						));
++						$markup = $indenter->indent($markup);
++						//$markupEngine = $indenter->indent($markupEngine);
++					}
++
++					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixMarkupOnly.".html",$markup);
++					file_put_contents($patternPublicDir."/".$path."/".$path.$suffixRaw.".".$patternExtension,$markupEngine);
+ 				}
+ 
+ 			}

@@ -1,0 +1,19 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-button-group/button-group.twig" with {
+  buttons: [
+    {
+      text: "Learn More",
+      style: "primary"
+    },
+    {
+      text: "About Pega",
+      style: "secondary"
+    }
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "button-group",
+  usage: usage
+} only %}

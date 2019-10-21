@@ -1,0 +1,21 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-list/list.twig" with {
+  display: "inline",
+  spacing: "xsmall",
+  align: "start",
+  valign: "center",
+  items: [
+    "Item 1",
+    "Item 2",
+    "Item 3",
+    "Item 4",
+    "Item 5",
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "list",
+  usage: usage
+} only %}
+

@@ -1,0 +1,21 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-button/button.twig" with {
+  text: "This is a button"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "button",
+  usage: usage,
+  schemaForm: {
+    template: '@bolt-components-button/button.twig',
+    layout: "horizontal",
+    initialData: {
+      text: "This is a button",
+      icon: {
+        name: "close",
+        position: "after"
+      }
+    },
+  },
+} only %}

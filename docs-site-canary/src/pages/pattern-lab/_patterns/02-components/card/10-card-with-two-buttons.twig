@@ -1,0 +1,37 @@
+<div style="max-width: 500px; padding: 2rem;">
+  {% include "@bolt-components-card/card.twig" with {
+    tag: "article",
+    contentItems: [
+      {
+        pattern: "image",
+        src: "/images/placeholders/landscape-16x9-mountains.jpg",
+        lazyload: false,
+        alt: "Anthem Video"
+      },
+      {
+        pattern: "eyebrow",
+        text: "Video"
+      },
+      {
+        pattern: "headline",
+        tag: "h3",
+        size: "large",
+        text: "Anthem: Service Desktop"
+      },
+      {
+        pattern: "text",
+        text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
+      },
+      {
+        pattern: "button",
+        text: "Learn More",
+        url: "http://pega.com",
+      },
+      {
+        pattern: "button",
+        text: "Weitere Informationen",
+        url: "http://pega.com",
+      },
+    ]
+  } only %}
+</div>

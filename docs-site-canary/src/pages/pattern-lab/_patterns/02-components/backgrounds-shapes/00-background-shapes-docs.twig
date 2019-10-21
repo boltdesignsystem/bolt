@@ -1,0 +1,10 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-background-shapes/background-shapes.twig" with {
+  shapeGroup: "B"
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "background-shapes",
+  usage: usage
+} only %}

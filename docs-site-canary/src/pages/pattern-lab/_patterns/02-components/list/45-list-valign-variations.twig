@@ -1,0 +1,45 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-list"].schema %}
+{% set placeholder_small %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 1",
+    size: "small",
+  } only %}
+{% endset %}
+{% set placeholder_medium %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 2",
+    size: "medium",
+  } only %}
+{% endset %}
+{% set placeholder_large %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+    text: "Item 3",
+    size: "large",
+  } only %}
+{% endset %}
+{% set inline_and_flex_options = [
+  "inline",
+  "flex"
+] %}
+
+{# Start component specific code #}
+<p>
+  <mark>Valign prop only works with inline and flex display, it has no effects on block display.</mark>
+</p>
+
+{% for display in inline_and_flex_options %}
+  {% for valign in schema.properties.valign.enum %}
+    <h3>Vertically align {{ display }} items: {{ valign }}</h3>
+    {% include "@bolt-components-list/list.twig" with {
+      display: display,
+      valign: valign,
+      items: [
+        placeholder_small,
+        placeholder_medium,
+        placeholder_large,
+      ]
+    } only %}
+  {% endfor %}
+{% endfor %}
+{# End component specific code #}
