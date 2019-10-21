@@ -5,20 +5,24 @@ const isFullRelease = branchName === 'release-2.x';
 const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 
 async function init() {
-  const branchAlias = await normalizeUrlAlias(branchName);
-  console.log(branchAlias);
-
   if (isCanaryRelease) {
     shell.exec(`auto canary`);
   } else if (isFullRelease) {
     console.log('full release!');
+
+    // const branchSpecificUrl = await normalizeUrlAlias(branchName);
+    // const tagSpecificUrl = await normalizeUrlAlias(version);
+
+    // console.log(
+    //   `https://github.com/boltdesignsystem/bolt/releases/tag/v${currentVersion}`,
+    // );
   } else {
     console.log(
       `Skipping doing an auto-release since the current branch, ${branchName}, isn't master or a release branch!`,
     );
 
     // shell.exec(`
-    //   now alias ${latestUrl} ${branchAlias}.boltdesignsystem.com
+    //   now alias ${latestUrl} ${branchAlias}
     //   now alias ${latestUrl} v${urlVersion}.boltdesignsystem.com
     //   now alias ${latestUrl} boltdesignsystem.com
     //   now alias ${latestUrl} www.boltdesignsystem.com
@@ -93,10 +97,6 @@ init();
 //     icon_emoji: ':bolt:',
 //   });
 
-console.log(
-  `https://github.com/boltdesignsystem/bolt/releases/tag/v${currentVersion}`,
-);
-
 // Send the notification
 // (async () => {
 //   await webhook.send({
@@ -111,7 +111,7 @@ console.log(
 // console.log(isCanaryRelease);
 
 //
-// const tagAlias = await normalizeUrlAlias(version);
+//
 
 // const gitTags = await promisifyGitTags();
 // const latestGitTag = gitTags[0];
