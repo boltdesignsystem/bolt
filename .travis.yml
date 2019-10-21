@@ -116,7 +116,7 @@ jobs:
       name: 'Auto-release'
       if: (branch =~ /(master|release)/)
       install:
-        - yarn
+        - npm run setup
       script:
         - yarn run release
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
