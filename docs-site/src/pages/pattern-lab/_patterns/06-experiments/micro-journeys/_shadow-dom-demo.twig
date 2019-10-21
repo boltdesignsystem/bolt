@@ -1,0 +1,44 @@
+<bolt-button onclick="changeTheme()" style="margin-bottom: 2rem;">Toggle light/dark theme</bolt-button>
+
+{% if addAnimateButtons %}
+  {% set content %}
+    <div class="demo-animate">
+      <button class="demo-animate__trigger">Trigger Animations In</button>
+      <div class="demo-animate__wrapper">
+        {{ content }}
+      </div>
+    </div>
+  {% endset %}
+{% endif %}
+
+{% if enableEditor %}
+  {# Editors can only be used when Shadow DOM is present #}
+  {% include '@bolt-components-editor/editor-in-pl.twig' with {
+    content: content,
+  } only %}
+{% else %}
+  {{ content }}
+{% endif %}
+
+{# Fixes content overflow. #}
+<div style="overflow: hidden; max-width: 100vw;">
+  <hr>
+  <h2>Shadow DOM – yes:☝️ no:👇</h2>
+  <hr>
+</div>
+
+{# When Bolt Web Components are wrapped in a `<form>` element all children have Shadow DOM disabled automatically #}
+<form onsubmit="event.preventDefault()">
+  {{ content }}
+</form>
+
+<script>
+  // Note: this code is not transpiled so it has to run in IE.
+  function changeTheme() {
+    Array.prototype.slice.call(document.querySelectorAll('bolt-interactive-pathways')).forEach( function(pathwaysEl) {
+      const currentTheme = pathwaysEl.getAttribute('theme');
+      const newTheme = (currentTheme === 'light' || !currentTheme) ? 'dark' : 'light';
+      pathwaysEl.setAttribute('theme', newTheme);
+    });
+  }
+</script>

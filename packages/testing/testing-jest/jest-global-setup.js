@@ -1,5 +1,5 @@
 const { setup: setupDevServer } = require('jest-dev-server');
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const mkdirp = require('mkdirp');
 const path = require('path');
 const fs = require('fs');
@@ -30,9 +30,10 @@ module.exports = async function globalSetup() {
 
   await setupDevServer({
     command: `node packages/servers/testing-server`,
-    launchTimeout: 120000,
+    launchTimeout: 300000,
     port: 4444,
     usedPortAction: 'kill',
+    debug: true,
   });
 
   const browser = await puppeteer.launch({

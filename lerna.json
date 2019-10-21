@@ -1,13 +1,14 @@
 {
   "lerna": "3.10.7",
-  "version": "2.5.6",
+  "version": "2.8.3",
   "command": {
     "publish": {
       "allowBranch": [
         "master",
         "next",
         "next/*",
-        "release/*"
+        "release/*",
+        "develop"
       ],
       "conventionalCommits": true,
       "gitReset": true,
@@ -26,6 +27,8 @@
     "**/__snapshots__/**"
   ],
   "npmClient": "yarn",
-  "npmClientArgs": ["--ignore-optional"],
+  "npmClientArgs": [
+    "--ignore-optional"
+  ],
   "useWorkspaces": true
 }

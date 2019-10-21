@@ -15,6 +15,8 @@ const packageJson = require('./package.json');
 
 let userConfig;
 
+const parseIntWithRadix = string => parseInt(string, 10);
+
 // global `bolt` cli options & meta
 program
   .version(packageJson.version)
@@ -26,7 +28,7 @@ program
   .option(
     '-v, --verbosity <amount>',
     configSchema.properties.verbosity.description,
-    parseInt,
+    parseIntWithRadix,
   )
   .parse(process.argv);
 
@@ -55,7 +57,7 @@ if (program.configFile) {
 
 (async () => {
   await configStore.init(userConfig).then(async () => {
-    // Now that config is initilized, we can start requiring other things
+    // Now that config is initialized, we can start requiring other things
     const { buildBoltManifest } = require('@bolt/build-utils/manifest');
     const log = require('@bolt/build-utils/log');
 
@@ -74,7 +76,7 @@ if (program.configFile) {
         config.verbosity =
           typeof program.verbosity === 'undefined'
             ? config.verbosity
-            : program.verbosity;
+            : parseInt(program.verbosity, 10);
 
         config.openServerAtStart =
           typeof options.open === 'undefined'
@@ -122,8 +124,13 @@ if (program.configFile) {
         // automatically set enableSSR to true in prod mode and false in dev mode, unless manually set.
         config.enableSSR = false;
 
+        // automatically enable i18n in production builds if undefined
         config.i18n =
-          typeof options.i18n === 'undefined' ? !config.prod : options.i18n;
+          typeof options.i18n !== 'undefined'
+            ? options.i18n
+            : config.prod
+            ? true
+            : false;
 
         // If i18n is disabled, ignore and remove lang config settings
         if (config.lang && config.i18n === false) {

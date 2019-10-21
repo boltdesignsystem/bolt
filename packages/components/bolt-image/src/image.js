@@ -9,7 +9,7 @@ import imageStyles from './image.scss';
 
 import schema from '../image.schema.yml';
 
-import './_image-lazy-sizes';
+import { lazySizes } from './_image-lazy-sizes';
 
 let cx = classNames.bind(imageStyles);
 
@@ -58,6 +58,7 @@ class BoltImage extends withLitHtml() {
       'lazyload',
       'useAspectRatio',
     ]);
+    self.initialClasses = [];
     return self;
   }
 
@@ -94,13 +95,24 @@ class BoltImage extends withLitHtml() {
   rendered() {
     super.rendered && super.rendered();
 
-    // @todo: update to not keep querySelecting if element already found OR lazyloading is disabled
-    const lazyImage = this.renderRoot.querySelector('.js-lazyload');
+    const { noLazy } = this.validateProps(this.props);
 
-    if (lazyImage) {
-      // check if placeholder image has loaded; lazySizes will only unveil an image that is "complete"
-      if (!this.isLoaded) {
+    // if image should lazyload
+    if (!noLazy) {
+      const lazyImage = this.renderRoot.querySelector(
+        `.${lazySizes.cfg.lazyClass}`,
+      );
+
+      // if component contains a lazy image that is rendering for the first time
+      if (lazyImage && !this.isLoaded) {
+        // set a flag so that image is not lazyloaded on subsequent re-renders
         this.isLoaded = true;
+
+        // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
+        lazySizes.elements && lazySizes.elements.push(lazyImage);
+
+        // force rechecks -- probably not needed. @todo: can we remove?
+        // lazySizes.autoSizer.checkElems();
       }
     }
   }
@@ -154,15 +166,23 @@ class BoltImage extends withLitHtml() {
       'c-bolt-image--cover': cover,
     });
 
+    // grab the last image path referenced in srcset as a fallback if src isn't defined
+    const fallbackSrc = srcset
+      ? srcset
+          .split(',')
+          [srcset.split(',').length - 1].trim()
+          .split(' ')[0]
+      : undefined;
+
     const imageElement = () => {
       if (src || srcset) {
         return html`
           <img
             class="${classes}"
-            src="${lazyload ? placeholderImage : src}"
+            src="${ifDefined(src ? src : fallbackSrc)}"
             alt="${ifDefined(alt ? alt : undefined)}"
             srcset="${ifDefined(
-              !lazyload || this.isLoaded ? srcset || src : undefined,
+              lazyload ? placeholderImage : srcset ? srcset : undefined,
             )}"
             data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
             sizes="${ifDefined(
@@ -231,7 +251,10 @@ class BoltImage extends withLitHtml() {
 
     const ratioTemplate = children => {
       return html`
-        <bolt-ratio ratio="${ratioW * 1}/${ratioH * 1}">
+        <bolt-ratio
+          ratio="${ratioW * 1}/${ratioH * 1}"
+          .useShadow=${this.useShadow}
+        >
           ${children}
         </bolt-ratio>
       `;

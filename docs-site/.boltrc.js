@@ -24,7 +24,7 @@ const config = {
     enabled: true,
   },
   sourceMaps: !(process.env.TRAVIS || argv.prod),
-  enableCache: !(process.env.TRAVIS || argv.prod),
+  enableCache: true,
   enableSSR: false, // temp disabled till Travis issue fixed
   extraTwigNamespaces: {
     bolt: {
@@ -77,7 +77,10 @@ const config = {
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
+      '@bolt/animations',
+      '@bolt/components-animate',
       '@bolt/docs-search',
+      '@bolt/components-typeahead',
       // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
@@ -123,6 +126,7 @@ const config = {
       '@bolt/components-sticky',
       '@bolt/components-stack',
       '@bolt/components-table',
+      '@bolt/components-tabs',
       '@bolt/components-teaser',
       '@bolt/components-text',
       '@bolt/components-tooltip',
@@ -130,7 +134,10 @@ const config = {
       '@bolt/components-ul',
       '@bolt/components-ol',
       '@bolt/components-video',
+      '@pegawww/with-without', // @todo: remove once w/wo has shipped
       '@bolt/components-grid',
+      '@bolt/micro-journeys',
+      '@bolt/components-editor',
       /**
        * note: resolving these paths isn't typically required when
        * the .boltrc config is run through the bolt CLI tool (ie.
@@ -152,6 +159,14 @@ const config = {
   },
   copy: [
     {
+      from: require.resolve(`@bolt/critical-path-polyfills`),
+      to: path.join(__dirname, '../www/build'),
+    },
+    {
+      from: path.join(path.dirname(require.resolve(`@bolt/components-typeahead`)),'__demos__/typeahead.data.json'),
+      to: path.join(__dirname, '../www/build/data'),
+    },
+    {
       from: `src/assets/bolt-sketch.zip`,
       to: path.join(__dirname, '../www/assets'),
       flatten: true,
@@ -163,7 +178,7 @@ const config = {
     },
     {
       from: `${path.dirname(
-        resolve.sync('@bolt/global/package.json'),
+        resolve.sync('@bolt/global/package.json')
       )}/favicons/bolt`,
       to: path.join(__dirname, '../www/'),
       flatten: true,
@@ -172,7 +187,7 @@ const config = {
   alterTwigEnv: [
     {
       file: `${path.dirname(
-        resolve.sync('@bolt/twig-renderer/package.json'),
+        resolve.sync('@bolt/twig-renderer/package.json')
       )}/SetupTwigRenderer.php`,
       functions: ['addBoltCoreExtensions', 'addBoltExtraExtensions'],
     },

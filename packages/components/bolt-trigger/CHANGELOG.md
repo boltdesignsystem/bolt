@@ -3,6 +3,111 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/components-trigger
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/components-trigger
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/components-trigger
+
+
+
+
+
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+**Note:** Version bump only for package @bolt/components-trigger
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/components-trigger
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/components-trigger
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+**Note:** Version bump only for package @bolt/components-trigger
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Features
+
+* add `type` prop to Trigger component ([f57b2c6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/commit/f57b2c6))
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/components-trigger
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/components-trigger
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* add 'disabled' attr to trigger component ([5d53cd2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/commit/5d53cd2))
+* wrong variable name in trigger JS ([bad2ccc](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/commit/bad2ccc))
+
+
+### Features
+
+* add 'disabled' state to trigger link, update demo ([a538ac9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/commit/a538ac9))
+* output `display` instead of `display="true"` for consistency ([aa28e34](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/commit/aa28e34))
+
+
+
+
+
 ## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-trigger/compare/v2.5.5...v2.5.6) (2019-07-30)
 
 

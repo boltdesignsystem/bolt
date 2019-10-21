@@ -1,7 +1,9 @@
+/* eslint-disable no-await-in-loop */
 const { promisify } = require('util');
 const resolve = require('resolve');
 const fs = require('fs');
 const path = require('path');
+const $RefParser = require('json-schema-ref-parser');
 const log = require('./log');
 const { ensureFileExists } = require('./general');
 const writeFile = promisify(fs.writeFile);
@@ -105,9 +107,36 @@ async function getPkgInfo(pkgName) {
     const dir = path.dirname(pkgJsonPath);
     const pkg = require(pkgJsonPath);
 
+    // automatically convert scoped package names into Twig namespaces
+
+    // match NPM scoped package names
+    // borrowed from https://github.com/sindresorhus/scoped-regex
+    const regex = '@[a-z\\d][\\w-.]+/[a-z\\d][\\w-.]*';
+    const scopedRegex = options =>
+      options && options.exact
+        ? new RegExp(`^${regex}$`, 'i')
+        : new RegExp(regex, 'gi');
+
+    /**
+     * Strip out @ signs and the first dash in the package name.
+     *
+     * For example:
+     * @bolt/ -> bolt-
+     * @pegawww/ -> pegawww-
+     */
+    let normalizedPkgName;
+    if (pkg.name.match(scopedRegex())) {
+      const matchedName = pkg.name.match(scopedRegex())[0];
+      const pkgNamePrefix = matchedName.split('/')[0].replace('@', '');
+      const pkgNameSuffix = matchedName.split('/')[1];
+      normalizedPkgName = `${pkgNamePrefix}-${pkgNameSuffix}`;
+    } else {
+      normalizedPkgName = pkg.name.replace('@bolt/', 'bolt-');
+    }
+
     const info = {
       name: pkg.name,
-      basicName: pkg.name.replace('@bolt/', 'bolt-'),
+      basicName: normalizedPkgName,
       dir,
       assets: {},
       deps: [],
@@ -147,9 +176,14 @@ async function getPkgInfo(pkgName) {
         const schemas = pkg.schema;
 
         for (const schemaPath of schemas) {
+          let schema;
           const schemaFilePath = path.join(dir, schemaPath);
           // eslint-disable-next-line
-          const schema = await getDataFile(schemaFilePath);
+          if (schemaFilePath.endsWith('.js')) {
+            schema = require(schemaFilePath);
+          } else {
+            schema = await getDataFile(schemaFilePath);
+          }
           validateSchemaSchema(
             schema,
             `Schema not valid for: ${schemaFilePath}`,
@@ -158,13 +192,20 @@ async function getPkgInfo(pkgName) {
             .replace(/ /g, '-')
             .toLowerCase();
 
-          info.schema[schemaMachineName] = schema;
+          const dereferencedSchema = await $RefParser.dereference(schema);
+          info.schema[schemaMachineName] = dereferencedSchema;
         }
       } else {
+        let schema;
         const schemaFilePath = path.join(dir, pkg.schema);
-        const schema = await getDataFile(schemaFilePath);
+        if (schemaFilePath.endsWith('.js')) {
+          schema = require(schemaFilePath);
+        } else {
+          schema = await getDataFile(schemaFilePath);
+        }
         validateSchemaSchema(schema, `Schema not valid for: ${schemaFilePath}`);
-        info.schema = schema;
+        const dereferencedSchema = await $RefParser.dereference(schema);
+        info.schema = dereferencedSchema;
       }
     }
     // @todo Allow verbosity settings

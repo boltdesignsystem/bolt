@@ -3,6 +3,123 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Bug Fixes
+
+* add minor button reset styles ([332b133](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/332b133))
+* revert font weight change to results + remove vendor prefix for appearance CSS property ([26878c4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/26878c4))
+* update snapshots + linting updates ([fa59ce6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/fa59ce6))
+
+
+### Features
+
+* add optional Twig template blocks to the Button and Icon component; workaround to SSR-rendered SVG icons for Typeahead without requiring build tool updates ([71dafa9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/71dafa9))
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+
+### Bug Fixes
+
+* update JS on/off testing instruction ([73202d6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/73202d6))
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/components-button
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* accidentally set 'target' attr instead of 'tabindex' ([845a472](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/845a472))
+* add 'disabled' attr to button component ([d5081f1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/d5081f1))
+* add 'target' in twig if passed via attributes ([6b0317e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/6b0317e))
+* remove outline from button and link custom-elements to fix double-focus ([5454d1f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/5454d1f))
+
+
+### Features
+
+* add 'disabled' state to button link ([4943355](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/4943355))
+* output `display` instead of `display="true"` for consistency ([aa28e34](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/commit/aa28e34))
+
+
+
+
+
 ## [2.5.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-button/compare/v2.5.5...v2.5.6) (2019-07-30)
 
 **Note:** Version bump only for package @bolt/components-button

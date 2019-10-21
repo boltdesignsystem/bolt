@@ -3,6 +3,100 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+
+### Features
+
+* make PL viewport width 100% by default when JS is disabled ([fdca217](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/fdca217))
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.6.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.5.6...v2.6.0-beta.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* fix nav scrollbar in IE 11 + fix dependency-related JS error getting thrown in IE 11 ([e777ca2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/e777ca2))
+* immediately load up the pl-search component vs defer loading ([3a49603](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/3a49603))
+* major cross browser fixes + polyfill updates ([50b4214](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/50b4214))
+* retest build after removing Babel-related dependencies hoisted when installing ([733cf0d](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/733cf0d))
+* update deps ([7fedea2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/7fedea2))
+
+
+
+
+
 ## [2.5.1](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.5.0...v2.5.1) (2019-06-21)
 
 **Note:** Version bump only for package @bolt/uikit-workshop

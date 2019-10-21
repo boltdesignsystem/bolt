@@ -1,0 +1,376 @@
+/* ------------------------------------ *\
+   Tabs
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import '_tabs-settings-and-tools.scss';
+@import 'tabs-dropdown.scss';
+
+@include bolt-custom-element('bolt-tabs', block, medium);
+
+bolt-tabs {
+  text-align: initial; // unset user-agent styles targeting `align` prop
+
+  &.is-resizing {
+    overflow: hidden;
+  }
+}
+
+@include bolt-repeat-rule(
+  (
+    'bolt-tabs.is-opening, bolt-tabs.is-closing',
+    ':host(.is-opening), :host(.is-closing)'
+  )
+) {
+  .c-bolt-tabs__dropdown {
+    overflow: hidden;
+  }
+}
+
+.c-bolt-tabs__label {
+  // @todo: copied from navlink, refactor into shared styles
+  @include bolt-font-size(medium);
+  @include bolt-font-weight(semibold);
+
+  display: flex;
+  flex-shrink: 0;
+  opacity: 0.9;
+  position: relative;
+  padding-bottom: $bolt-tabs-selected-border-size; // add space for negative margin of active tab underline
+  color: bolt-theme(headline-link);
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: $bolt-tabs-bg-border-radius;
+  border-color: transparent;
+  transition: opacity $bolt-tabs-text-transition,
+    color $bolt-transition-timing ease-out;
+
+  &:active {
+    opacity: bolt-opacity(100);
+  }
+
+  &[aria-selected='true'] {
+    opacity: bolt-opacity(100);
+    color: bolt-theme(headline);
+
+    .c-bolt-tabs__label-text:after {
+      opacity: bolt-opacity(100);
+      width: 100%;
+    }
+  }
+
+  &.c-bolt-tabs__label--vertical-border {
+    &[aria-selected='true'] {
+      .c-bolt-tabs__label-text:before {
+        display: block;
+        opacity: bolt-opacity(100);
+        height: calc(100% - #{$bolt-tabs-selected-border-size * 2});
+      }
+      .c-bolt-tabs__label-text:after {
+        display: none;
+      }
+    }
+  }
+
+  @at-root .c-bolt-tabs--inset & {
+    &:active {
+      .c-bolt-tabs__label-inner:before {
+        opacity: 0.2;
+        transform: scale3d(1, 1, 1);
+        animation: none;
+      }
+    }
+
+    &:not([aria-selected='true']) {
+      &:hover,
+      &:focus {
+        .c-bolt-tabs__label-inner:before {
+          animation: a-bolt-tabs-bg-hover $bolt-tabs-bg-transition-timing both;
+        }
+      }
+    }
+  }
+
+  @at-root .c-bolt-tabs:not(.c-bolt-tabs--inset) & {
+    &:active {
+      .c-bolt-tabs__label-text:after {
+        opacity: bolt-opacity(100);
+      }
+    }
+
+    &:not([aria-selected='true']) {
+      &:hover,
+      &:focus {
+        .c-bolt-tabs__label-text:after {
+          opacity: bolt-opacity(40);
+          width: 100%;
+        }
+      }
+
+      &:active {
+        .c-bolt-tabs__label-text:after {
+          opacity: bolt-opacity(100);
+        }
+      }
+
+      .c-bolt-tabs__label-text:after {
+        transition: opacity $bolt-tabs-text-transition,
+          width $bolt-tabs-text-transition;
+      }
+    }
+
+    // @todo: these selectors are getting very confusing, time to refactor
+    &.c-bolt-tabs__label--vertical-border {
+      .c-bolt-tabs__label-text {
+        &:before {
+          left: -#{$bolt-tabs-selected-border-size * 2};
+        }
+        &:after {
+          display: none;
+        }
+      }
+
+      &:not([aria-selected='true']) {
+        &:hover {
+          .c-bolt-tabs__label-text {
+            &:before {
+              opacity: bolt-opacity(40);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// extra wrapping SPAN to help with inset padding
+.c-bolt-tabs__label-inner {
+  @include bolt-font-weight(
+    semibold
+  ); // include font-weight here to override Trigger defaults
+  display: block;
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale3d(0, 0, 0);
+    width: 100%;
+    height: 100%;
+    border-radius: $bolt-tabs-bg-border-radius;
+    background-color: bolt-theme(headline-link);
+    transition: all 0.1s ease;
+  }
+}
+
+.c-bolt-tabs__label-text {
+  display: block;
+  position: relative; // allows this element to stack on top of `.c-bolt-tabs__label-inner:before`
+
+  &:before,
+  &:after {
+    content: '';
+    opacity: bolt-opacity(0);
+    position: absolute;
+    background-color: bolt-theme(primary);
+    will-change: opacity;
+    transition: opacity $bolt-tabs-text-transition;
+  }
+
+  // dropdown active state (vertical)
+  &:before {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: $bolt-tabs-selected-border-size;
+    height: 0;
+  }
+
+  // primary active state (horizontal)
+  &:after {
+    bottom: -($bolt-tabs-selected-border-size);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: $bolt-tabs-selected-border-size;
+  }
+}
+
+// Label spacing
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  @if (
+    $spacing-value-name !=
+      '' and
+      $spacing-value-name !=
+      'xxsmall' and
+      $spacing-value-name !=
+      'large' and
+      $spacing-value-name !=
+      'xlarge' and
+      $spacing-value-name !=
+      'xxlarge'
+  ) {
+    .c-bolt-tabs:not(.c-bolt-tabs--inset) {
+      .c-bolt-tabs__label--spacing-#{$spacing-value-name} {
+        .c-bolt-tabs__label-inner {
+          padding-right: bolt-spacing(#{$spacing-value-name}) / 2;
+          padding-left: bolt-spacing(#{$spacing-value-name}) / 2;
+        }
+        .c-bolt-tabs__label-text {
+          @include bolt-padding-left(0);
+          @include bolt-padding-right(0);
+        }
+        // first-of-type for no-JS
+        &:first-child,
+        &:first-of-type {
+          .c-bolt-tabs__label-inner {
+            margin-left: -(bolt-spacing(#{$spacing-value-name}) / 2);
+          }
+        }
+        // last-of-type for no-JS
+        &:last-child,
+        &:last-of-type {
+          .c-bolt-tabs__label-inner {
+            margin-right: -(bolt-spacing(#{$spacing-value-name}) / 2);
+          }
+        }
+      }
+    }
+    .c-bolt-tabs--inset {
+      .c-bolt-tabs__label--spacing-#{$spacing-value-name} {
+        .c-bolt-tabs__label-text {
+          @include bolt-padding(#{$spacing-value-name}, squished);
+        }
+      }
+    }
+  }
+}
+
+.c-bolt-tabs__nav {
+  @include bolt-margin-bottom(0);
+  display: flex;
+  flex-flow: row nowrap;
+
+  // Label align
+  @at-root .c-bolt-tabs--align-center & {
+    justify-content: center;
+  }
+  @at-root .c-bolt-tabs--align-start & {
+    justify-content: flex-start;
+  }
+  @at-root .c-bolt-tabs--align-end & {
+    justify-content: flex-end;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+
+  .is-hidden {
+    display: none;
+  }
+}
+
+.c-bolt-tabs__dropdown {
+  .c-bolt-tabs__label {
+    flex-grow: 1;
+  }
+}
+
+// No-JS styles
+bolt-tabs:not([ready]) {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  @include bolt-tabs-scrollbar;
+
+  .c-bolt-tabs {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  // No-JS align styles
+  .c-bolt-tabs--align-center {
+    justify-content: center;
+  }
+  .c-bolt-tabs--align-start {
+    justify-content: flex-start;
+  }
+  .c-bolt-tabs--align-end {
+    justify-content: flex-end;
+  }
+}
+
+.c-bolt-tabs__input {
+  opacity: 0;
+  position: absolute;
+
+  &:checked
+    + .c-bolt-tabs__label
+    + .c-bolt-tab-panel__outer
+    .c-bolt-tab-panel__content {
+    display: block;
+  }
+}
+
+.c-bolt-tabs__input:checked + .c-bolt-tabs__label {
+  opacity: bolt-opacity(100);
+  color: bolt-theme(headline);
+
+  .c-bolt-tabs__label-text:after {
+    opacity: bolt-opacity(100);
+    width: 100%;
+  }
+
+  @at-root .c-bolt-tabs--inset & {
+    &:not(:active) {
+      &:hover,
+      &:focus {
+        .c-bolt-tabs__label-inner:before {
+          animation: none;
+        }
+      }
+    }
+  }
+
+  @at-root .c-bolt-tabs:not(.c-bolt-tabs--inset) & {
+    &:hover {
+      .c-bolt-tabs__label-text:after {
+        opacity: bolt-opacity(100);
+      }
+    }
+  }
+}
+
+@keyframes a-bolt-tabs-bg-hover {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  40% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  60% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 0.99, 0.99);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}

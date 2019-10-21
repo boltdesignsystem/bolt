@@ -46,6 +46,9 @@ bolt-modal:not([ready]) {
 
 .c-bolt-modal {
   @include bolt-z-index(modal);
+  @include bolt-font-family(body);
+  @include bolt-font-size(medium);
+  @include bolt-font-weight(regular);
 
   display: block;
   opacity: bolt-opacity(0);
@@ -61,6 +64,7 @@ bolt-modal:not([ready]) {
 
   &.is-open {
     opacity: bolt-opacity(100);
+    cursor: pointer;
     pointer-events: auto;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -163,9 +167,10 @@ bolt-modal:not([ready]) {
   }
 
   @at-root .c-bolt-modal.is-open #{&} {
+    cursor: auto;
+
     @include bolt-mq($bolt-modal-breakpoint) {
       visibility: visible;
-      cursor: auto;
       transition: visibility 0s $bolt-transition-ease 0s;
     }
   }

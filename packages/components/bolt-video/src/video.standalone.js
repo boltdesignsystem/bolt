@@ -21,7 +21,7 @@ class BoltVideo extends withPreact() {
     accountId: props.string,
     playerId: props.string,
     poster: props.object,
-    isBackgroundVideo: props.boolean,
+    isBackgroundVideo: props.boolean, // @todo: `isBackgroundVideo` will be removed with Bolt v3.0
     onInit: props.string,
     showMeta: props.boolean,
     showMetaTitle: props.boolean,
@@ -359,6 +359,7 @@ class BoltVideo extends withPreact() {
 
     if (this.player) {
       this.player.dispose();
+      this.hasInitialized = false;
     }
   }
 
@@ -600,8 +601,25 @@ class BoltVideo extends withPreact() {
       }
 
       this.hasInitialized = true;
+
+      if (this.offsetHeight) {
+        // Set flag so that video will not be re-initialized unnecessarily on update()
+        this.removeAttribute('will-update', '');
+      } else {
+        // If not visible, add attribute so that it can be found by other components and updated manually.
+        this.setAttribute('will-update', '');
+      }
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  update() {
+    // Brightcove doesn't have a simple "reset/update" method that I could find, so we must dispose and reinit
+    if (this.player) {
+      this.player.dispose();
+      this.hasInitialized = false;
+      this.triggerUpdate();
     }
   }
 

@@ -1,9 +1,11 @@
 {
   "name": "@bolt/prerender-spa-plugin",
-  "version": "0.0.0",
-  "description": "Flexible, framework-agnostic static site generation for sites and SPAs built with webpack.",
+  "version": "2.8.0",
+  "description": "Bolt Design System fork of the Webpack Prerender SPA Plugin",
   "license": "MIT",
-  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "index.js",
   "scripts": {
     "postinstall": "npm run build",
@@ -58,8 +60,8 @@
   "dependencies": {
     "@babel/cli": "^7.5.0",
     "@babel/core": "^7.5.4",
+    "@bolt/uikit-prerenderer": "^2.8.0",
     "@prerenderer/prerenderer": "^0.7.2",
-    "@bolt/uikit-prerenderer": "*",
     "html-minifier": "^4.0.0"
   },
   "engines": {

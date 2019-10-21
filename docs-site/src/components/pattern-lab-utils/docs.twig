@@ -1,5 +1,6 @@
 {% if componentName %}
-  {% set schema = bolt.data.components["@bolt-components-#{componentName}"].schema %}
+  {% set data = getBoltData() %} {# grab a fresh copy of the full manifest data to reflect schema.yml file changes, etc #}
+  {% set schema = data.components["@bolt-components-#{componentName}"].schema %}
   {% set readme_file = "@bolt-components-#{componentName}/README.md" %}
   {% set change_log_file = "@bolt-components-#{componentName}/CHANGELOG.md" %}
   {% set testing_file = "@bolt-components-#{componentName}/TESTING.md" %}
