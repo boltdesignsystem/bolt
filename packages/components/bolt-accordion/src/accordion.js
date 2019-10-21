@@ -4,11 +4,9 @@ import {
   define,
   props,
   css,
-  hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion.scss';
 import schema from '../accordion.schema.yml';
 
@@ -20,7 +18,6 @@ export const AccordionContext = defineContext({
   boxShadow: schema.properties.box_shadow.default,
   spacing: schema.properties.spacing.default,
   iconValign: schema.properties.icon_valign.default,
-  useShadow: hasNativeShadowDomSupport,
 });
 
 @define
@@ -37,7 +34,6 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema);
 
     return self;
@@ -93,6 +89,11 @@ class BoltAccordion extends withContext(withLitHtml()) {
       triggerNoTransitionClass: 'c-bolt-accordion-item__trigger--notransition',
       contentNoTransitionClass: 'c-bolt-accordion-item__content--notransition',
     };
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this.addEventListener('bolt:layout-size-changed', this.handleLayoutChanged);
   }
 
   getModifiedSchema(schema) {
@@ -153,6 +154,36 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.accordion.on('destroyed', fold => {
       delete this.accordion;
     });
+
+    this.accordion.on('fold:opened', fold => {
+      this.dispatchLayoutChanged();
+
+      // @todo: register these elements in Bolt data instead?
+      const elementsToUpdate = this.querySelectorAll('[will-update]');
+      if (elementsToUpdate.length) {
+        elementsToUpdate.forEach(el => {
+          el.update && el.update();
+        });
+      }
+    });
+
+    this.accordion.on('fold:closed', fold => {
+      this.dispatchLayoutChanged();
+    });
+  }
+
+  dispatchLayoutChanged() {
+    this.dispatchEvent(
+      new CustomEvent('bolt:layout-size-changed', {
+        bubbles: true,
+      }),
+    );
+  }
+
+  handleLayoutChanged(e) {
+    if (e.target !== this) {
+      this.accordion && this.accordion.resize();
+    }
   }
 
   setupAccordion() {
@@ -262,6 +293,11 @@ class BoltAccordion extends withContext(withLitHtml()) {
   disconnected() {
     super.disconnected && super.disconnected();
 
+    this.removeEventListener(
+      'bolt:layout-size-changed',
+      this.handleLayoutChanged,
+    );
+
     // remove MutationObserver if supported + exists
     if (window.MutationObserver && this.observer) {
       this.observer.disconnect();
@@ -277,10 +313,9 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.contexts.get(AccordionContext).boxShadow = boxShadow;
     this.contexts.get(AccordionContext).spacing = spacing;
     this.contexts.get(AccordionContext).iconValign = iconValign;
-    this.contexts.get(AccordionContext).useShadow = this.useShadow;
 
     return html`
-      ${this.addStyles([styles, heightUtils])} ${this.template()}
+      ${this.addStyles([styles])} ${this.template()}
     `;
   }
 }

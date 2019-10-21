@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.2...v2.8.3) (2019-10-18)
+
+
+### Bug Fixes
+
+* unset 'ready' prop on disconnected to fix ie bug, add demo with tabs inside band ([3412f55](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/3412f55))
+
+
+
+
+
+## [2.8.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.1...v2.8.2) (2019-10-16)
+
+
+### Bug Fixes
+
+* remove Tabs JS accidentally added when resolving merge conflict ([141985a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/141985a))
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+
+### Bug Fixes
+
+* cherry pick a handful of updates from [#1457](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/issues/1457) to pull in ([761b005](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/761b005))
+
+
+### Features
+
+* add adaptive menu to Tabs component ([5da94fb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/5da94fb))
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/components-tabs
+
+
+
+
+
 # [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
 
 **Note:** Version bump only for package @bolt/components-tabs

@@ -40,13 +40,11 @@
 {% endif %}
 
 {% if direction %}
-  {% set attributes = attributes.setAttribute("position-vert", direction) %}
-{% endif %}
-
-{% if content %}
-  {% set attributes = attributes.setAttribute("content", content) %}
+  {% set attributes = attributes.setAttribute("direction", direction) %}
 {% endif %}
 
 {% set customElementName = customElementName | default('bolt-' ~ componentName) %}
 
-<{{ customElementName }} {{ attributes }}></{{ customElementName }}>
+<{{ customElementName }} {{ attributes }}>
+  {{ content | default("") }}
+</{{ customElementName }}>

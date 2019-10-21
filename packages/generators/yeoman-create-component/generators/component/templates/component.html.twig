@@ -5,15 +5,12 @@
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-<%= props.name.kebabCase %>" %}
-{% set props = create_attribute({
-
-}) %}
-{% set attributes = merge_attributes(create_attribute(attributes|default({})), props) %}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  base_class,
+  "c-bolt-<%= props.name.kebabCase %>",
 ] %}
 
 {#
@@ -34,9 +31,9 @@
 
 <bolt-<%= props.name.kebabCase %>
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ attributes|without('class') }}
+  {{ this.props|without("class") }}
 >
-  <div {{ inner_attributes.addClass(inner_classes) }} is="shadow-root">
-   
-  </div>
+  <replace-with-children {{ inner_attributes.addClass(inner_classes) }}>
+  
+  </replace-with-children>
 </bolt-<%= props.name.kebabCase %>>

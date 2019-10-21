@@ -39,7 +39,7 @@
   {{ this.props|without("content")|without("class") }}
   >
   {% if panels %}
-    <replace-with-grandchildren
+    <div
       {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
     >
     {% for panel in panels %}
@@ -52,6 +52,6 @@
         selected_tab: this.data.selected_tab.value,
       }) only %}
     {% endfor %}
-    </replace-with-grandchildren>
+    </div>
   {% endif %}
 </bolt-tabs>

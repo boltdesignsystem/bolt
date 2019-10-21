@@ -116,7 +116,8 @@
     &__item {
       cursor: pointer;
 
-      bolt-text.c-bolt-interactive-pathways__menu-container__item .c-bolt-text-v2 {
+      // Fix for IE 11
+      & .c-bolt-text-v2 {
         color: bolt-color(black) !important;
       }
 
