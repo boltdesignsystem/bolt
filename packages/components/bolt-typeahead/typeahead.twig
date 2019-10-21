@@ -4,8 +4,7 @@
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{# @todo: re-enable once CSS Modules ships %}
-{# {% set selectors = get_data("@bolt-components-typeahead/typeahead.scoped.json") %}
+{% set selectors = get_data("@bolt-components-typeahead/typeahead.scoped.json") %}
 {% set classNames = {
   icon: selectors["c-bolt-typeahead__icon"],
   clearIcon: selectors["c-bolt-typeahead__icon--clear"],
@@ -21,23 +20,6 @@
   inputWrapper: selectors["c-bolt-typeahead__input-wrapper"],
   label: selectors["c-bolt-typeahead__label"],
   typeahead: selectors["c-bolt-typeahead"],
-} %} #}
-
-{% set classNames = {
-  icon: "c-bolt-typeahead__icon",
-  clearIcon: "c-bolt-typeahead__icon--clear",
-  clearButton: [
-    "c-bolt-typeahead__button",
-    "c-bolt-typeahead__button--clear",
-  ],
-  submitButton: [
-    "c-bolt-typeahead__button",
-    "c-bolt-typeahead__button--submit",
-  ],
-  input: "c-bolt-typeahead__input",
-  inputWrapper: "c-bolt-typeahead__input-wrapper",
-  label: "c-bolt-typeahead__label",
-  typeahead: "c-bolt-typeahead",
 } %}
 
 {% set utils = {
