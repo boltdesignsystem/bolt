@@ -28,6 +28,7 @@ before_install:
 stages:
   - Pre-deploy
   - Post-deploy
+  - Auto-release
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
@@ -113,6 +114,16 @@ jobs:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
         - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+
+    - stage: Auto-release
+      name: 'Auto-release'
+      if: (branch =~ /(master|release)/)
+      install:
+        - yarn
+      script:
+        - yarn run release
+        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+        - ./scripts/release/update-read-only-git-repos.sh
 
 notifications:
   email:
