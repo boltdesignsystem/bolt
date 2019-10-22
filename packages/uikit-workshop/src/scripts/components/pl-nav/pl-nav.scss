@@ -22,7 +22,6 @@ pl-nav {
   }
 }
 
-
 /**
  * Navigation container
  * 1) Collapse height on small screens. Menu trigger button
@@ -75,13 +74,8 @@ pl-nav {
       }
     }
 
-
-
-
     // if nav was opened on smaller screen and screen is resized, it'll be cut off otherwise
     @media all and (min-width: $pl-bp-med) {
-      // overflow: visible;
-      // overflow: auto;
       max-height: none;
     }
   }
@@ -119,7 +113,6 @@ pl-nav {
     // workaround to Firefox-specific flexbox quirk
     .pl-c-body--theme-sidebar & {
       display: block;
-      // display: flex;
     }
   }
 }
@@ -188,7 +181,6 @@ pl-nav {
     opacity: 0.1;
   }
 
-  // &.pl-is-active:after,
   &:focus:after {
     opacity: 0.1;
   }
