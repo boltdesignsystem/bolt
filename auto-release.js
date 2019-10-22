@@ -126,6 +126,8 @@ async function init() {
         node scripts/release/update-php-package-versions.js -v ${nextVersion}
         git add packages/core-php/composer.json packages/drupal-modules/bolt_connect/bolt_connect.info.yml packages/drupal-modules/bolt_connect/composer.json
         git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
+        git checkout yarn.lock
+        rm scripts/bolt-design-system-bot.private-key.pem
       `);
 
       await shell.exec(
