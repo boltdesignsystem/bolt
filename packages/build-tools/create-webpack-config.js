@@ -216,7 +216,10 @@ async function createWebpackConfig(buildConfig) {
                       isJsFile === true &&
                       context.resourcePath.includes('.scoped')
                     ) {
-                      if (localName.includes('t-bolt')) {
+                      if (
+                        localName.includes('t-bolt') ||
+                        config.env === 'test'
+                      ) {
                         return localName;
                       } else {
                         return `${localName}--${crypto
@@ -248,7 +251,11 @@ async function createWebpackConfig(buildConfig) {
                   require('postcss-modules')({
                     // camelCase: true, // disabling camelCase versions of CSS classes till we look into changing the
                     generateScopedName(name, filename, css) {
-                      if (filename.includes('.scoped') && isJsFile === false) {
+                      if (
+                        filename.includes('.scoped') &&
+                        isJsFile === false &&
+                        config.env !== 'test'
+                      ) {
                         const i = css.indexOf(`.${name}`);
 
                         if (name.includes('t-bolt')) {
@@ -265,7 +272,9 @@ async function createWebpackConfig(buildConfig) {
                       }
                     },
                     getJSON(cssFileName, json, outputFileName) {
-                      if (cssFileName.includes('.scoped')) {
+                      if (
+                        cssFileName.includes('.scoped')
+                      ) {
                         var jsonFileName = path.resolve(
                           `${cssFileName.replace('.scss', '')}.json`,
                         );
