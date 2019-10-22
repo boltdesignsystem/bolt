@@ -86,7 +86,8 @@ class BoltImage extends withLitHtml() {
   onResize() {
     if (
       this.isLoaded &&
-      (this.getAttribute('sizes') === 'auto' || !this.getAttribute('sizes'))
+      (this.getAttribute('sizes') === 'auto' || !this.getAttribute('sizes')) &&
+      this.offsetWidth > 0
     ) {
       this.sizes = `${this.offsetWidth}px`;
     }
