@@ -142,7 +142,7 @@ async function init() {
         await shell.exec(`
           git reset --hard
           rm scripts/bolt-design-system-bot.private-key.pem
-          npx lerna publish ${nextVersion} -m "[skip travis] chore(release): release %s"
+          npx lerna publish ${version} -m "[skip travis] chore(release): release %s"
         `);
 
         await shell.exec(`
