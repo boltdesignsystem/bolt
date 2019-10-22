@@ -265,9 +265,7 @@ async function createWebpackConfig(buildConfig) {
                       }
                     },
                     getJSON(cssFileName, json, outputFileName) {
-                      if (
-                        cssFileName.includes('.scoped')
-                      ) {
+                      if (cssFileName.includes('.scoped')) {
                         var jsonFileName = path.resolve(
                           `${cssFileName.replace('.scss', '')}.json`,
                         );
