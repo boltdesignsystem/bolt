@@ -81,7 +81,7 @@ jobs:
         - yarn run build
         - yarn run deploy
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - yarn run test:e2e:quick
+        - travis_retry yarn run test:e2e:quick
       after_success:
         - ./scripts/deploy-branch-alias.js
 
@@ -106,7 +106,7 @@ jobs:
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - yarn run test:e2e:full
+        - travis_retry yarn run test:e2e:full
       after_success:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
