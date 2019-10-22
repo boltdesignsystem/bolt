@@ -9,7 +9,7 @@ module.exports = {
       size: 'large',
     },
     video: {
-      videoId: '3861325118001',
+      videoId: '4892122320001',
       accountId: '1900410236',
       playerId: 'r1CAdLzTW',
       showMeta: true,

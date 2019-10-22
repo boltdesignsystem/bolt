@@ -130,6 +130,13 @@ class BoltTabs extends withContext(withLitHtml()) {
     );
   }
 
+  // Get tab labels in the "show more" menu
+  get dropdownTabLabels() {
+    return this.renderRoot.querySelectorAll(
+      '.c-bolt-tabs__label.c-bolt-tabs__label--is-duplicate',
+    );
+  }
+
   validateIndex(index) {
     const panels = this.tabPanels;
 
@@ -228,12 +235,9 @@ class BoltTabs extends withContext(withLitHtml()) {
         break;
     }
 
-    // If any of the above keys were pressed, update selected tab and set focus
+    // If any of the above keys were pressed, toggle the menu (if needed), update selected tab, and set focus.
     if (newIndex !== undefined) {
-      this.renderRoot.querySelectorAll('[role="tab"]')[newIndex].focus();
-      this.setSelectedTab(newIndex);
-
-      // If menu button is displayed, handle keying in and out of the dropdown
+      // If menu button is displayed, handle keying in and out of the dropdown. Do this before setting focus, or target will be hidden and focus may not be set.
       if (!this.menuButtonIsHidden) {
         if (this.tabLabels[newIndex].classList.contains('is-hidden')) {
           !this.menuIsOpen && this.openDropdown();
@@ -241,6 +245,12 @@ class BoltTabs extends withContext(withLitHtml()) {
           this.menuIsOpen && this.closeDropdown();
         }
       }
+
+      this.tabLabels[newIndex].classList.contains('is-hidden')
+        ? this.dropdownTabLabels[newIndex].focus()
+        : this.tabLabels[newIndex].focus();
+
+      this.setSelectedTab(newIndex);
     }
   }
 
@@ -258,6 +268,11 @@ class BoltTabs extends withContext(withLitHtml()) {
     const labelTextClasses = cx('c-bolt-tabs__label-text');
     const listClasses = cx('c-bolt-tabs__nav', {});
     const panelsClasses = cx('c-bolt-tabs__panels-container');
+
+    const handleLabelClick = (e, index) => {
+      this.setSelectedTab(index);
+      this.menuIsOpen && this.closeDropdown();
+    };
 
     const tabButtons = isDropdown => {
       let buttons = [];
@@ -286,7 +301,7 @@ class BoltTabs extends withContext(withLitHtml()) {
             aria-controls="${panelId}"
             id="${labelId}"
             tabindex="${isSelected ? 0 : -1}"
-            @click=${e => this.setSelectedTab(index)}
+            @click=${e => handleLabelClick(e, index)}
             @keydown=${e => this.handleOnKeydown(e)}
             @keyup=${e => this.handleOnKeyup(e)}
           >
@@ -310,6 +325,8 @@ class BoltTabs extends withContext(withLitHtml()) {
             aria-haspopup="true"
             aria-expanded="${this.menuIsOpen}"
             class="${cx('c-bolt-tabs__button', 'c-bolt-tabs__show-button')}"
+            @keydown=${e => this.handleOnKeydown(e)}
+            @keyup=${e => this.handleOnKeyup(e)}
           >
             <span class="${cx('c-bolt-tabs__show-text')}">
               ${this.props.moreText ? this.props.moreText : 'More'}

@@ -81,8 +81,7 @@
     "test:pkgs": "lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--*",
     "test:types": "tsc",
     "postinstall": "patch-package && npx lerna run postbootstrap",
-    "publish": "node ./auto-release.js",
-    "postpublish": "auto release"
+    "release": "node ./auto-release.js"
   },
   "husky": {
     "hooks": {
