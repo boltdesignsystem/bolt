@@ -130,6 +130,13 @@ class BoltTabs extends withContext(withLitHtml()) {
     );
   }
 
+  // Get tab labels in the "show more" menu
+  get dropdownTabLabels() {
+    return this.renderRoot.querySelectorAll(
+      '.c-bolt-tabs__label.c-bolt-tabs__label--is-duplicate',
+    );
+  }
+
   validateIndex(index) {
     const panels = this.tabPanels;
 
@@ -228,12 +235,9 @@ class BoltTabs extends withContext(withLitHtml()) {
         break;
     }
 
-    // If any of the above keys were pressed, update selected tab and set focus
+    // If any of the above keys were pressed, toggle the menu (if needed), update selected tab, and set focus.
     if (newIndex !== undefined) {
-      this.renderRoot.querySelectorAll('[role="tab"]')[newIndex].focus();
-      this.setSelectedTab(newIndex);
-
-      // If menu button is displayed, handle keying in and out of the dropdown
+      // If menu button is displayed, handle keying in and out of the dropdown. Do this before setting focus, or target will be hidden and focus may not be set.
       if (!this.menuButtonIsHidden) {
         if (this.tabLabels[newIndex].classList.contains('is-hidden')) {
           !this.menuIsOpen && this.openDropdown();
@@ -241,6 +245,12 @@ class BoltTabs extends withContext(withLitHtml()) {
           this.menuIsOpen && this.closeDropdown();
         }
       }
+
+      this.tabLabels[newIndex].classList.contains('is-hidden')
+        ? this.dropdownTabLabels[newIndex].focus()
+        : this.tabLabels[newIndex].focus();
+
+      this.setSelectedTab(newIndex);
     }
   }
 
