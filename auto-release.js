@@ -1,7 +1,8 @@
 const shell = require('shelljs');
 const { branchName } = require('./scripts/utils/branch-name');
 const isCanaryRelease = branchName === 'master';
-const isFullRelease = branchName === 'release-2.x';
+const isFullRelease =
+  branchName === 'release-2.x' || branchName === 'release/2.x';
 const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { gitSha } = require('./scripts/utils');
 const execSync = require('child_process').execSync;
@@ -10,6 +11,7 @@ const { getLatestDeploy } = require('./scripts/utils');
 const { IncomingWebhook } = require('@slack/webhook');
 const chalk = require('chalk');
 const semver = require('semver');
+const { NOW_TOKEN } = process.env;
 
 const lernaConfig = require('./lerna.json');
 const currentVersion = lernaConfig.version;
@@ -82,22 +84,15 @@ async function init() {
         git reset --hard HEAD
         npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
         npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
-        npx now alias boltdesignsystem.com ${tagSpecificUrl}
+        npx now alias boltdesignsystem.com ${tagSpecificUrl} --token=${NOW_TOKEN}
+        npm run build
+        npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}
       `);
-
-      // do the full build + output CLI in real time
-      await shell.exec('npm run build', (code, stdout, stderr) => {
-        console.log('', stdout);
-        console.log('', stderr);
-      });
-      await shell.exec(
-        `npx now deploy --meta gitSha='${gitSha}' --token=${process.env.NOW_TOKEN}`,
-      );
 
       const latestUrl = await getLatestDeploy();
 
       nowAliases.forEach(alias => {
-        shell.exec(`npx now alias ${latestUrl} ${alias}`);
+        shell.exec(`npx now alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`);
       });
 
       await shell.exec('git reset --hard HEAD').stdout;
@@ -125,36 +120,39 @@ async function init() {
         .exec('auto version', { silent: true })
         .stdout.trim();
 
-      const nextVersion = await semver.inc(currentVersion, version);
+      //const nextVersion = await semver.inc(currentVersion, version);
+      const nextVersion = '2.9.0';
 
-      await shell.exec(`
-        node scripts/release/update-php-package-versions.js -v ${nextVersion}
-        git add packages/core-php/composer.json packages/drupal-modules/bolt_connect/bolt_connect.info.yml packages/drupal-modules/bolt_connect/composer.json
-        git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
-      `);
+      //await shell.exec(`
+      //  node scripts/release/update-php-package-versions.js -v ${nextVersion}
+      //  git add packages/core-php/composer.json packages/drupal-modules/bolt_connect/bolt_connect.info.yml packages/drupal-modules/bolt_connect/composer.json
+      //  git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
+      //  git checkout yarn.lock
+      //  rm scripts/bolt-design-system-bot.private-key.pem
+      //`);
 
-      await shell.exec(
-        `npx lerna publish ${nextVersion} --yes -m "[skip travis] chore(release): release %s"`,
-        (code, stdout, stderr) => {
-          console.log('', stdout);
-          console.log('', stderr);
-        },
-      );
+      //await shell.exec(
+      //  `npx lerna publish ${nextVersion} --yes -m "[skip travis] chore(release): release %s"`,
+      //  (code, stdout, stderr) => {
+      //    console.log('', stdout);
+      //    console.log('', stderr);
+      //  },
+      //);
 
-      const packages = await getLernaPackages();
-      const versioned = packages.find(p => p.version.includes(nextVersion));
-
-      if (!versioned) {
-        console.warn(
-          'No packages were changed so the full release was not published!',
-        );
-        console.warn(`expected version to release was: ${nextVersion}`);
-        return;
-      } else {
-        console.log(
-          'The full Bolt release was successfully published to NPM. Doing a fresh build + deploying the updated site to now.sh.',
-        );
-      }
+      //const packages = await getLernaPackages();
+      //const versioned = packages.find(p => p.version.includes(nextVersion));
+      //
+      //if (!versioned) {
+      //  console.warn(
+      //    'No packages were changed so the full release was not published!',
+      //  );
+      //  console.warn(`expected version to release was: ${nextVersion}`);
+      //  return;
+      //} else {
+      //  console.log(
+      //    'The full Bolt release was successfully published to NPM. Doing a fresh build + deploying the updated site to now.sh.',
+      //  );
+      //}
 
       // get the version we just published
       const releaseVersion = `v${nextVersion}`; // ex. v2.9.0
@@ -175,23 +173,15 @@ async function init() {
         git reset --hard HEAD
         npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
         npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
-        npx now alias boltdesignsystem.com ${tagSpecificUrl}
+        npx now alias boltdesignsystem.com ${tagSpecificUrl} --token=${NOW_TOKEN}
+        npm run build
+        npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}
       `);
-
-      // do the full build + output CLI in real time
-      await shell.exec('npm run build', (code, stdout, stderr) => {
-        console.log('', stdout);
-        console.log('', stderr);
-      });
-
-      await shell.exec(
-        `npx now deploy --meta gitSha='${gitSha}' --token=${process.env.NOW_TOKEN}`,
-      );
 
       const latestUrl = await getLatestDeploy();
 
       nowAliases.forEach(alias => {
-        shell.exec(`npx now alias ${latestUrl} ${alias}`);
+        shell.exec(`npx now alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`);
       });
 
       await shell.exec(`
@@ -200,8 +190,8 @@ async function init() {
         git tag -fa ${releaseVersion} -m ${releaseVersion}
         git push --no-verify
         git push origin ${releaseVersion} --no-verify --force
+        git reset --hard HEAD
       `);
-      await shell.exec('git reset --hard HEAD').stdout;
 
       if (SLACK_WEBHOOK_URL) {
         const webhook = new IncomingWebhook(SLACK_WEBHOOK_URL);

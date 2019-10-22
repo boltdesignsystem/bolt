@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* hidden pagination in IE11 ([4470932](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/4470932))
+* this not self ([63c057d](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/63c057d))
+
+
+### Features
+
+* optimization to carousel observer, only turn it on when we need it ([8b00866](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/8b00866))
+* refactor carousel init, eliminating unnecessary re-inits, add 'will-update' feature to link carousel to accordion and tabs change events ([0a17339](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/0a17339))
+* turn off left-right keyboard control of carousels, conflicting with tabs keyboard control ([80b4e99](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/commit/80b4e99))
+
+
+
+
+
 ## [2.8.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-carousel/compare/v2.8.0...v2.8.1) (2019-10-16)
 
 
