@@ -137,7 +137,6 @@ jobs:
       script:
         - yarn run release
       after_success:
-        - yarn run postpublish
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
 
