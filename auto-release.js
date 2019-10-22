@@ -127,11 +127,11 @@ async function init() {
       }
 
       // temp disable PHP version bump till after v2.9.1 released
-      // await shell.exec(`
-      //   node scripts/release/update-php-package-versions.js -v ${nextVersion}
-      //   git add packages/core-php/composer.json packages/drupal-modules/bolt_connect/bolt_connect.info.yml packages/drupal-modules/bolt_connect/composer.json
-      //   git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
-      // `);
+      await shell.exec(`
+        node scripts/release/update-php-package-versions.js -v ${nextVersion}
+        git add packages/core-php/composer.json packages/drupal-modules/bolt_connect/bolt_connect.info.yml packages/drupal-modules/bolt_connect/composer.json
+        git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
+      `);
 
       if (nextVersion === currentVersion) {
         console.warn(
@@ -142,7 +142,7 @@ async function init() {
         await shell.exec(`
           git reset --hard
           rm scripts/bolt-design-system-bot.private-key.pem
-          npx lerna publish ${version} -m "[skip travis] chore(release): release %s"
+          npx lerna publish ${version} --yes -m "[skip travis] chore(release): release %s"
         `);
 
         await shell.exec(`
