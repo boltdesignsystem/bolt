@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "591273f072560ba33266d119ecd048f5",
+    "content-hash": "3041b6c584697d167595eb5cf9b355c6",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -928,16 +928,16 @@
         },
         {
             "name": "pattern-lab/core",
-            "version": "dev-develop",
+            "version": "v2.9.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/boltdesignsystem/patternlab-php-core.git",
-                "reference": "41f32e4ee68e0c3a110f1746fbd8932a16d17c2d"
+                "url": "https://github.com/pattern-lab/patternlab-php-core.git",
+                "reference": "009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/boltdesignsystem/patternlab-php-core/zipball/41f32e4ee68e0c3a110f1746fbd8932a16d17c2d",
-                "reference": "41f32e4ee68e0c3a110f1746fbd8932a16d17c2d",
+                "url": "https://api.github.com/repos/pattern-lab/patternlab-php-core/zipball/009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3",
+                "reference": "009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3",
                 "shasum": ""
             },
             "require": {
@@ -975,10 +975,16 @@
                     "PatternLab": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
+                {
+                    "name": "Brad Frost",
+                    "homepage": "http://bradfrostweb.com",
+                    "role": "Creator"
+                },
                 {
                     "name": "Evan Lovely",
                     "homepage": "http://evanlovely.com",
@@ -994,11 +1000,6 @@
                     "email": "dmolsen@gmail.com",
                     "homepage": "http://dmolsen.com",
                     "role": "Former Lead Developer"
-                },
-                {
-                    "name": "Brad Frost",
-                    "homepage": "http://bradfrostweb.com",
-                    "role": "Creator"
                 }
             ],
             "description": "The core functionality for Pattern Lab.",
@@ -1010,12 +1011,7 @@
                 "style guide",
                 "styleguide"
             ],
-            "support": {
-                "issues": "https://github.com/pattern-lab/patternlab-php-core/issues",
-                "wiki": "http://patternlab.io/docs/",
-                "source": "https://github.com/pattern-lab/patternlab-php-core/releases"
-            },
-            "time": "2019-08-02T18:53:10+00:00"
+            "time": "2018-02-27T22:12:27+00:00"
         },
         {
             "name": "pattern-lab/patternengine-twig",
@@ -1950,18 +1946,9 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [
-        {
-            "alias": "2.9.0",
-            "alias_normalized": "2.9.0.0",
-            "version": "dev-develop",
-            "package": "pattern-lab/core"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "pattern-lab/core": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

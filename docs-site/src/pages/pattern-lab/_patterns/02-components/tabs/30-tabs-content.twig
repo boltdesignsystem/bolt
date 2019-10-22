@@ -232,3 +232,38 @@
     {% endcell %}
   {% endgrid %}
 </div>
+
+{% set basic_tabs %}
+  {% include "@bolt-components-tabs/tabs.twig" with {
+    panels: [
+      {
+        label: "Tab label 1",
+        content: placeholder_content
+      },
+      {
+        label: "Tab label 2",
+        content: placeholder_content
+      },
+      {
+        label: "Tab label 3",
+        content: placeholder_content
+      },
+      {
+        label: "Tab label 4",
+        content: placeholder_content
+      },
+      {
+        label: "Tab label 5",
+        content: placeholder_content
+      },
+      {
+        label: "Tab label 6",
+        content: placeholder_content
+      },
+    ]
+  } only %}
+{% endset %}
+
+{% include "@bolt-components-band/band.twig" with {
+  content: basic_tabs,
+} only %}

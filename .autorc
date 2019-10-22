@@ -1,7 +1,17 @@
 {
   "repo": "bolt",
   "name": "Salem Ghoweri",
-  "_plugins": ["bolt-release"],
+  "baseBranch": "release/2.x",
+  "plugins": [
+    ['./scripts/auto-plugin.js'],
+    [
+      "released",
+      {
+        "label": "shipped :rocket:",
+        "message": "%TYPE was released with %VERSION"
+      }
+    ]
+  ],
   "owner": "boltdesignsystem",
   "email": "me@salemghoweri.com",
   "skipReleaseLabels": ["docs", "chore", "internal", "wip", "devops"],
@@ -58,6 +68,11 @@
         "description": "Increment the patch version when merged"
       }
     ],
-    "prerelease": "beta"
+    "prerelease": "beta",
+    "pushToBaseBranch":  [
+      {
+        "title": "Misc 🔧"
+      }
+    ]
   }
 }

@@ -19,6 +19,55 @@ async function renderTwigString(template, data) {
 
 const timeout = 120000;
 
+const accordionHTML = `
+  <bolt-accordion>
+    <bolt-accordion-item>
+      <bolt-text slot="trigger">Accordion item 1</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+    <bolt-accordion-item>
+      <bolt-text slot="trigger">Accordion item 2</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+    <bolt-accordion-item>
+      <bolt-text slot="trigger">Accordion item 3</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+  </bolt-accordion>
+`;
+
+const accordionNoShadowHTML = `
+  <bolt-accordion no-shadow>
+    <bolt-accordion-item no-shadow>
+      <bolt-text slot="trigger">Accordion item 1</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+    <bolt-accordion-item no-shadow>
+      <bolt-text slot="trigger">Accordion item 2</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+    <bolt-accordion-item no-shadow>
+      <bolt-text slot="trigger">Accordion item 3</bolt-text>
+      <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
+    </bolt-accordion-item>
+  </bolt-accordion>
+`;
+
+const accordionTwigItems = [
+  {
+    trigger: 'Accordion item 1',
+    content: 'This is the accordion content.',
+  },
+  {
+    trigger: 'Accordion item 2',
+    content: 'This is the accordion content.',
+  },
+  {
+    trigger: 'Accordion item 3',
+    content: 'This is the accordion content.',
+  },
+];
+
 describe('<bolt-accordion> Component', () => {
   let page;
 
@@ -44,20 +93,7 @@ describe('<bolt-accordion> Component', () => {
     const results = await renderTwig(
       '@bolt-components-accordion/accordion.twig',
       {
-        items: [
-          {
-            trigger: 'Accordion item 1',
-            content: 'This is the accordion content.',
-          },
-          {
-            trigger: 'Accordion item 2',
-            content: 'This is the accordion content.',
-          },
-          {
-            trigger: 'Accordion item 3',
-            content: 'This is the accordion content.',
-          },
-        ],
+        items: accordionTwigItems,
       },
     );
     expect(results.ok).toBe(true);
@@ -70,20 +106,7 @@ describe('<bolt-accordion> Component', () => {
         '@bolt-components-accordion/accordion.twig',
         {
           single: singleChoice,
-          items: [
-            {
-              trigger: 'Accordion item 1',
-              content: 'This is the accordion content.',
-            },
-            {
-              trigger: 'Accordion item 2',
-              content: 'This is the accordion content.',
-            },
-            {
-              trigger: 'Accordion item 3',
-              content: 'This is the accordion content.',
-            },
-          ],
+          items: accordionTwigItems,
         },
       );
       expect(results.ok).toBe(true);
@@ -97,20 +120,7 @@ describe('<bolt-accordion> Component', () => {
         '@bolt-components-accordion/accordion.twig',
         {
           spacing: spacingChoice,
-          items: [
-            {
-              trigger: 'Accordion item 1',
-              content: 'This is the accordion content.',
-            },
-            {
-              trigger: 'Accordion item 2',
-              content: 'This is the accordion content.',
-            },
-            {
-              trigger: 'Accordion item 3',
-              content: 'This is the accordion content.',
-            },
-          ],
+          items: accordionTwigItems,
         },
       );
       expect(results.ok).toBe(true);
@@ -144,28 +154,17 @@ describe('<bolt-accordion> Component', () => {
   });
 
   test('Default <bolt-accordion> with Shadow DOM renders', async function() {
-    const defaultAccordionShadowRoot = await page.evaluate(async () => {
-      const accordion = document.createElement('bolt-accordion');
-      accordion.innerHTML = `
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 1</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 2</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 3</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>`;
+    const accordionShadowRoot = await page.evaluate(async accordionHTML => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = accordionHTML;
+      document.body.appendChild(wrapper);
 
-      document.body.appendChild(accordion);
-
+      const accordion = document.querySelector('bolt-accordion');
       const accordionItems = Array.from(
-        accordion.querySelectorAll('bolt-accordion-item'),
+        document.querySelectorAll('bolt-accordion-item'),
       );
       const allElements = [accordion, ...accordionItems];
+
       return await Promise.all(
         allElements.map(element => {
           if (element._wasInitiallyRendered) return;
@@ -177,20 +176,20 @@ describe('<bolt-accordion> Component', () => {
       ).then(() => {
         return accordion.renderRoot.innerHTML;
       });
+    }, accordionHTML);
+
+    const accordionItemShadowRoot = await page.evaluate(async () => {
+      const item = document.querySelector('bolt-accordion-item');
+      return item.renderRoot.innerHTML;
     });
 
-    const defaultAccordionItemShadowRoot = await page.evaluate(async () => {
-      const accordionItem = document.querySelector('bolt-accordion-item');
-      return accordionItem.renderRoot.innerHTML;
-    });
-
-    const accordionRenderedHTML = await html(defaultAccordionShadowRoot);
-    const accordionItemRenderedHTML = await html(
-      defaultAccordionItemShadowRoot,
+    const renderedShadowRoot = await html(`<div>${accordionShadowRoot}</div>`);
+    const renderedItemShadowRoot = await html(
+      `<div>${accordionItemShadowRoot}</div>`,
     );
 
-    expect(accordionRenderedHTML).toMatchSnapshot();
-    expect(accordionItemRenderedHTML).toMatchSnapshot();
+    expect(renderedShadowRoot.innerHTML).toMatchSnapshot();
+    expect(renderedItemShadowRoot.innerHTML).toMatchSnapshot();
 
     await page.waitFor(500);
     const image = await page.screenshot();
@@ -202,61 +201,34 @@ describe('<bolt-accordion> Component', () => {
   });
 
   test('Default <bolt-accordion> w/o Shadow DOM renders', async function() {
-    const defaultAccordionShadowRoot = await page.evaluate(async () => {
-      const accordion = document.createElement('bolt-accordion');
-      accordion.setAttribute('no-shadow', '');
-      accordion.innerHTML = `
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 1</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 2</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>
-        <bolt-accordion-item>
-          <bolt-text slot="trigger">Accordion item 3</bolt-text>
-          <bolt-text>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</bolt-text>
-        </bolt-accordion-item>`;
+    const accordionOuterHTML = await page.evaluate(
+      async accordionNoShadowHTML => {
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = accordionNoShadowHTML;
+        document.body.appendChild(wrapper);
 
-      document.body.appendChild(accordion);
+        const accordion = document.querySelector('bolt-accordion');
+        const accordionItems = Array.from(
+          document.querySelectorAll('bolt-accordion-item'),
+        );
+        const allElements = [accordion, ...accordionItems];
 
-      const accordionItems = Array.from(
-        accordion.querySelectorAll('bolt-accordion-item'),
-      );
-      const allElements = [accordion, ...accordionItems];
-      return await Promise.all(
-        allElements.map(element => {
-          if (element._wasInitiallyRendered) return;
-          return new Promise((resolve, reject) => {
-            element.addEventListener('ready', resolve);
-            element.addEventListener('error', reject);
-          });
-        }),
-      ).then(() => {
-        return accordion.renderRoot.innerHTML;
-      });
-    });
-
-    const defaultAccordionItemShadowRoot = await page.evaluate(async () => {
-      const accordionItem = document.querySelector('bolt-accordion-item');
-      return accordionItem.renderRoot.innerHTML;
-    });
-
-    const accordionRenderedHTML = await html(defaultAccordionShadowRoot);
-    const accordionItemRenderedHTML = await html(
-      defaultAccordionItemShadowRoot,
+        return await Promise.all(
+          allElements.map(element => {
+            if (element._wasInitiallyRendered) return;
+            return new Promise((resolve, reject) => {
+              element.addEventListener('ready', resolve);
+              element.addEventListener('error', reject);
+            });
+          }),
+        ).then(() => {
+          return accordion.outerHTML;
+        });
+      },
+      accordionNoShadowHTML,
     );
 
+    const accordionRenderedHTML = await html(accordionOuterHTML);
     expect(accordionRenderedHTML).toMatchSnapshot();
-    expect(accordionItemRenderedHTML).toMatchSnapshot();
-
-    await page.waitFor(500);
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot({
-      failureThreshold: '0.01',
-      failureThresholdType: 'percent',
-    });
   });
 });

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/boltdesignsystem/bolt/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* Removing unwanted yeti icon and changes in icons after test finish ([c4390b4](https://github.com/boltdesignsystem/bolt/commit/c4390b4))
+
+
+
+
+
 ## [2.8.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
 
 **Note:** Version bump only for package @bolt/jest-config

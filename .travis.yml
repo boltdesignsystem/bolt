@@ -1,110 +1,145 @@
 dist: bionic
 language: php
 php:
-  - 7.1
+  - 7.3
 
 addons:
   chrome: stable
 
+cache:
+  directories:
+    - node_modules
+    - docs-site/node_modules/.cache
+    - www
+
+before_cache:
+- mkdir -p node_modules
+- mkdir -p docs-site/node_modules/.cache
+- mkdir -p www
+
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
   - nvm install # version lifted from `.nvmrc`
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.17.3
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.19.1
   - export PATH="$HOME/.yarn/bin:$PATH"
 
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
 # Stages run sequentially; the jobs in them run in parallel
 stages:
-  - Prep
-  - Test Live Site
+  - Pre-deploy
+  - Post-deploy
+  - Auto-release
 #  Just an example of having a whole stage be branch conditional; see more conditions: https://docs.travis-ci.com/user/conditions-v1
 #  - name: Super Hard Tests
 #    if: branch = master
 
 jobs:
   include:
-    - stage: Prep
-      name: 'Smoke Tests: Linting'
-      install: yarn run setup:quick
-      before_script: ./scripts/check-run-queue.js 'Lint'
-      script: yarn run lint
-      after_success: ./scripts/check-run-success.js 'Lint'
-      after_failure: ./scripts/check-run-failure.js 'Lint'
-
-    - stage: Prep
-      name: 'Smoke Tests: Unit Tests (Jest)'
+    - stage: Pre-deploy
+      name: 'Smoke Tests: Jest Component-Specific Tests'
       install:
-        - travis_retry yarn run setup:full
+        - yarn run setup
         - yarn workspace @bolt/website prep # creates data and manifest files
-      before_script: ./scripts/check-run-queue.js 'Unit'
+      before_script: ./scripts/check-run-queue.js 'Jest Component Tests'
       script:
-        - travis_retry yarn test:js --bail --maxWorkers=1
+        - travis_retry yarn test:js
         # - yarn test:js:quick --maxWorkers=1 # running both `test:js` as comparison; remove or comment out this or other one eventually
+      after_success: ./scripts/check-run-success.js 'Jest Component Tests'
+      after_failure: ./scripts/check-run-failure.js 'Jest Component Tests'
+
+    - stage: Pre-deploy
+      name: 'Smoke Tests: Lint + Jest Unit Tests'
+      install:
+        - yarn run setup
+        - yarn workspace @bolt/website prep # creates data and manifest files
+      before_script: ./scripts/check-run-queue.js 'Lint + Unit Tests'
+      script:
+        - yarn run lint
         - yarn test:php
         - yarn test:monorepo --maxWorkers=1
-        - yarn test:pkgs --ignore=@bolt/uikit-workshop --ignore=@bolt/build-tools --ignore=@bolt/build-tools--test-multi-lang
-      after_success: ./scripts/check-run-success.js 'Unit'
-      after_failure: ./scripts/check-run-failure.js 'Unit'
+        - yarn test:pkgs
+      after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
+      after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
 
-    - stage: Prep
-      name: 'Smoke Tests: Build Tools'
-      install: 'npm run setup'
-      before_script: ./scripts/check-run-queue.js 'Build Tools'
-      script: yarn run test:build-tools
-      after_success: ./scripts/check-run-success.js 'Build Tools'
-      after_failure: ./scripts/check-run-failure.js 'Build Tools'
-
-    - stage: Prep
+    - stage: Pre-deploy
+      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
       name: 'Build Drupal Lab'
       script:
-        - composer global require hirak/prestissimo
         - cd example-integrations/drupal-lab
         - npm run setup
 
-    - stage: Prep
-      name: 'Build + Deploy Website'
-      script:
-        # Clear incache file on normal Travis builds
-        - find . -name '.incache' -exec rm -rf {} +
+    # quicker build + Nightwatch tests for feature branches
+    - stage: Pre-deploy
+      name: 'Build + Deploy Website (Quick)'
+      if: (NOT tag =~ ^v) AND (NOT branch =~ /(master|release|bug|fix)/)
+      install:
+        - npx json -I -f package.json -e 'delete this.dependencies'
+        - npx json -I -f package.json -e 'delete this.scripts.postinstall'
         - yarn run setup
+        - npx lerna run postbootstrap
+      script:
         - yarn run build
         - yarn run deploy
-        # need to reset git repo before `update-read-only-git-repos.sh`
-        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
-        - ./scripts/release/update-read-only-git-repos.sh
-
-    - stage: Test Live Site
-      name: 'Nightwatch End-to-End'
-      install: travis_retry yarn run setup
-      before_script: travis_retry ./scripts/check-run-in-progress.js 'Nightwatch'
-      script:
-        - travis_retry export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - echo "The Now URL is $NOW_URL"
-        - travis_retry time curl -sSf "$NOW_URL" > /dev/null # warming up site
-        - travis_wait yarn run test:e2e:full
-        - travis_retry ./packages/testing/testing-nightwatch/nightwatch-report-results.js
+        - export NOW_URL=$(./scripts/get-latest-deploy.js)
+        - yarn run test:e2e:quick
       after_success:
-        - travis_retry ./scripts/deploy-branch-alias.js
-        - travis_retry ./scripts/deploy-tagged-release.js
+        - ./scripts/deploy-branch-alias.js
 
-    - stage: Test Live Site
-      name: 'Ensure site is live'
-      install: yarn run setup
-      before_script: ./scripts/check-run-in-progress.js 'Site is live'
+    # full build + Nightwatch tests for non-feature branches + tagged releases
+    - stage: Pre-deploy
+      name: 'Build + Deploy Website (Full)'
+      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
+      install:
+        - yarn run setup
+      before_script:
+        - find . -name '.incache' -exec rm -rf {} +
+      script:
+        - yarn run build
+        - yarn run deploy
+
+    - stage: Post-deploy
+      name: 'Nightwatch End-to-End (Full)'
+      if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
+      install:
+        - yarn
+        - npx lerna run postbootstrap
+      before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - echo "Testing Now URL \"$NOW_URL\" to see if it is alive."
-        - time curl -sSf "$NOW_URL" > /dev/null
+        - yarn run test:e2e:full
       after_success:
-        - ./scripts/check-run-success.js 'Site is live'
-      after_failure:
-        - ./scripts/check-run-failure.js 'Site is live'
+        - ./scripts/deploy-branch-alias.js
+        - ./scripts/deploy-tagged-release.js
+        - ./packages/testing/testing-nightwatch/nightwatch-report-results.js
 
-    - stage: Test Live Site
-      name: 'Example master only job'
-      if: branch = master
+    - stage: Auto-release
+      name: 'Canary Release'
+      if: (branch =~ /(master)/)
+      before_script:
+        - git config --global user.email ${GITHUB_EMAIL}
+        - git config --global user.name ${GITHUB_USER}
+        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
+        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+        - git checkout master
+      install: npm run setup
+      script: yarn run release
+
+    - stage: Auto-release
+      name: 'Full Release'
+      if: (branch =~ /(release)/)
+      before_script:
+        - git config --global user.email ${GITHUB_EMAIL}
+        - git config --global user.name ${GITHUB_USER}
+        - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
+        - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
+        - git checkout release/2.x
+      install: npm run setup
       script:
-        - echo "This example only runs on master branch builds"
+        - yarn run release
+      after_success:
+        - yarn run postpublish
+        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+        - ./scripts/release/update-read-only-git-repos.sh
 
 notifications:
   email:
