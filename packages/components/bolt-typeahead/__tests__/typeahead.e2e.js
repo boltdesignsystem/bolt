@@ -30,11 +30,18 @@ module.exports = {
         'chrome'}.png`,
     );
 
-    browser.expect.elements('.c-bolt-typeahead__result').count.to.equal(1);
+    browser.assert.elementPresent('[class*="c-bolt-typeahead__result--"]');
+    browser.expect
+      .elements(
+        '[class*="c-bolt-typeahead__results"] > [class*="c-bolt-typeahead__result"]',
+      )
+      .count.to.equal(1);
 
+    // click on the first result
     browser
-      .waitForElementVisible('.c-bolt-typeahead__result', 3000)
-      .click('.c-bolt-typeahead__result') // click on the first result
+      .click(
+        '[class*="c-bolt-typeahead__results"] > [class*="c-bolt-typeahead__result"]:first-child',
+      )
       .waitForElementVisible('.c-page-header', 3000);
 
     browser.assert.urlContains('https://www.pega.com');
