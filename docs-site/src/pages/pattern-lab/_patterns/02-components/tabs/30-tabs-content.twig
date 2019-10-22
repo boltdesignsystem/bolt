@@ -1,7 +1,7 @@
 {% set image_content %}
-  {% include "@bolt-components-image/image.twig" with {
-    src: "/images/placeholders/tout-4x3-climber.jpg",
-    alt: "A Rock Climber",
+  {% include '@bolt-components-image/image.twig' with {
+    src: "/images/placeholders/landscape-16x9-mountains.jpg",
+    alt: "Mountains",
   } only %}
 {% endset %}
 
@@ -169,16 +169,16 @@
       {% include "@bolt-components-tabs/tabs.twig" with {
         panels: [
           {
-            label: "An image",
-            content: image_content
+            label: "A teaser",
+            content: teaser_content
           },
           {
             label: "A table",
             content: table_content
           },
           {
-            label: "A teaser",
-            content: teaser_content
+            label: "An image",
+            content: image_content
           },
           {
             label: "A video",
