@@ -255,15 +255,17 @@ exports[`<bolt-navbar> Component <bolt-navbar> with 6 lengthy links 1`] = `
 >
   <nav class="c-bolt-navbar c-bolt-navbar--full ">
     <div class="c-bolt-navbar__title">
-      <div class="c-bolt-navbar__title-icon">
-        <bolt-icon name="marketing-gray"
-                   size="large"
-        >
-        </bolt-icon>
+      <div class="c-bolt-navbar__title--static">
+        <div class="c-bolt-navbar__title-icon">
+          <bolt-icon name="marketing-gray"
+                     size="large"
+          >
+          </bolt-icon>
+        </div>
+        <h2 class="c-bolt-navbar__title-text">
+          Navbar with links
+        </h2>
       </div>
-      <h2 class="c-bolt-navbar__title-text">
-        Navbar with links
-      </h2>
     </div>
     <bolt-nav-priority more-text="More">
       <nav class="c-bolt-nav-priority">
@@ -516,15 +518,17 @@ exports[`<bolt-navbar> Component <bolt-navbar> without links 1`] = `
 >
   <nav class="c-bolt-navbar c-bolt-navbar--full ">
     <div class="c-bolt-navbar__title">
-      <div class="c-bolt-navbar__title-icon">
-        <bolt-icon name="marketing-gray"
-                   size="large"
-        >
-        </bolt-icon>
+      <div class="c-bolt-navbar__title--static">
+        <div class="c-bolt-navbar__title-icon">
+          <bolt-icon name="marketing-gray"
+                     size="large"
+          >
+          </bolt-icon>
+        </div>
+        <h2 class="c-bolt-navbar__title-text">
+          Navbar without links
+        </h2>
       </div>
-      <h2 class="c-bolt-navbar__title-text">
-        Navbar without links
-      </h2>
     </div>
   </nav>
 </bolt-navbar>

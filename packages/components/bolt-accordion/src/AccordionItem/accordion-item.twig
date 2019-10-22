@@ -73,7 +73,9 @@
     <div class="c-bolt-accordion-item__trigger">
       <{{ trigger_tag }} {{ label_attributes.addClass(label_classes) }}>
         <div class="c-bolt-accordion-item__trigger-content">
-          <div slot="trigger" ssr-hydrate="keep" for="bolt-accordion-item">{{ trigger }}</div>
+          <ssr-keep for="bolt-accordion-item">
+            <div slot="trigger">{{ trigger }}</div>
+          </ssr-keep>
         </div>
       </{{ trigger_tag }}>
 
@@ -87,8 +89,10 @@
     </div>
 
     <div class="c-bolt-accordion-item__content">
-      <div class="c-bolt-accordion-item__content-inner {{ spacing_class }}" ssr-hydrate="keep-children" for="bolt-accordion-item">
-        {{ content }}
+      <div class="c-bolt-accordion-item__content-inner {{ spacing_class }}">
+        <ssr-keep for="bolt-accordion-item">
+          {{ content }}
+        </ssr-keep>
       </div>
     </div>
   </div>

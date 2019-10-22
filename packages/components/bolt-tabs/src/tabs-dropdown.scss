@@ -40,11 +40,6 @@ $bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall break
 
   @include bolt-mq($until: $bolt-tabs-xsmall-bp) {
     margin-left: auto;
-    @include bolt-margin-right(xsmall);
-  }
-
-  &.is-invisible {
-    visibility: hidden;
   }
 }
 

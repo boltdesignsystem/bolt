@@ -19,6 +19,15 @@ polyfillLoader.then(res => {
     );
   }
 
+  if (!window.customElements.get('ssr-keep')) {
+    import(
+      /*
+      webpackMode: 'eager',
+      webpackChunkName: 'ssr-keep'
+    */ './ssr-keep'
+    );
+  }
+
   if (!window.customElements.get('bolt-action')) {
     import(
       /*

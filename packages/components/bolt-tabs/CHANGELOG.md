@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* check that dropdown button is defined before using it ([33a06f9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/33a06f9))
+* re-enable Jest test for tabs + update snapshot ([19322b7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/19322b7))
+* remove placeholder text in JS template ([64381ed](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/64381ed))
+* remove right margin from more button, should align to edge like tab labels ([eb52fcb](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/eb52fcb))
+* temporarily disable Light DOM Jest test for Tabs until snapshot updated ([09f9414](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/09f9414))
+
+
+### Features
+
+* add 'will-update' attr to Tabs so they will resize after being hidden, remove unnecessary 'is-invisible' class ([9ec54c0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/9ec54c0))
+* refactor carousel init, eliminating unnecessary re-inits, add 'will-update' feature to link carousel to accordion and tabs change events ([0a17339](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/0a17339))
+* remove custom useShadow work, allow base class to handle this ([411bfd5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/411bfd5))
+* rework ssr-hydrate technique, now uses `ssr-keep` custom element, which can be used in place of `replace-with-*` ([60e65cc](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/60e65cc))
+* set static tabs id for testing ([c1d329f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/c1d329f))
+
+
+
+
+
+## [2.8.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.2...v2.8.3) (2019-10-18)
+
+
+### Bug Fixes
+
+* unset 'ready' prop on disconnected to fix ie bug, add demo with tabs inside band ([3412f55](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/3412f55))
+
+
+
+
+
+## [2.8.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.1...v2.8.2) (2019-10-16)
+
+
+### Bug Fixes
+
+* remove Tabs JS accidentally added when resolving merge conflict ([141985a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/141985a))
+
+
+
+
+
 ## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.0...v2.8.1) (2019-10-16)
 
 
