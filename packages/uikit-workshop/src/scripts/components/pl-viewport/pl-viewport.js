@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, no-param-reassign */
 import { define, props } from 'skatejs';
 import { h } from 'preact';
 import URLSearchParams from '@ungap/url-search-params'; // URLSearchParams poly for older browsers
@@ -32,7 +33,7 @@ class IFrame extends BaseComponent {
             window
               .getComputedStyle(document.body, null)
               .getPropertyValue('font-size'),
-            10,
+            10
           ); //Body size of the document
     self.handlePageChange = self.handlePageChange.bind(self);
     self.handlePageLoad = self.handlePageLoad.bind(self);
@@ -52,11 +53,11 @@ class IFrame extends BaseComponent {
 
   // update the currently active nav + add / update the page's query string
   handlePageLoad(e) {
-    var queryString = window.location.search;
+    const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    let patternParam = urlParams.get('p');
+    const patternParam = urlParams.get('p');
 
-    let currentPattern =
+    const currentPattern =
       e.detail.pattern || window.config.defaultPattern || 'all';
 
     if (currentPattern) {
@@ -79,7 +80,7 @@ class IFrame extends BaseComponent {
             currentPattern: currentPattern,
           },
           null,
-          addressReplacement,
+          addressReplacement
         );
       } else {
         window.history.replaceState(
@@ -87,7 +88,7 @@ class IFrame extends BaseComponent {
             currentPattern: currentPattern,
           },
           null,
-          addressReplacement,
+          addressReplacement
         );
       }
 
@@ -208,7 +209,7 @@ class IFrame extends BaseComponent {
             this.origOrientation = window.orientation;
           }
         },
-        false,
+        false
       );
     }
   }
@@ -272,7 +273,7 @@ class IFrame extends BaseComponent {
           pattern,
         },
         'Pattern Lab - ' + pattern,
-        null,
+        null
       );
       urlHandler.skipBack = false;
     }
@@ -405,7 +406,8 @@ class IFrame extends BaseComponent {
         <div class="pl-c-viewport__cover pl-js-viewport-cover" />
         <div
           class="pl-c-viewport__iframe-wrapper pl-js-vp-iframe-container"
-          style={`width: ${initialWidth}`}>
+          style={`width: ${initialWidth}`}
+        >
           <iframe
             className={`pl-c-viewport__iframe pl-js-iframe pl-c-body--theme-${this.themeMode}`}
             sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals"
@@ -416,12 +418,14 @@ class IFrame extends BaseComponent {
             <div class="pl-c-viewport__resizer pl-js-resize-container">
               <div
                 class="pl-c-viewport__resizer-handle pl-js-resize-handle"
-                onMouseDown={e => this.handleMouseDown(e)}>
+                onMouseDown={e => this.handleMouseDown(e)}
+              >
                 <svg
                   viewBox="0 0 20 20"
                   preserveAspectRatio="xMidYMid"
                   focusable="false"
-                  style="width: 30px; fill: currentColor; position: absolute; top: 50%; transform: translate3d(0, -50%, 0); z-index: 100;">
+                  style="width: 30px; fill: currentColor; position: absolute; top: 50%; transform: translate3d(0, -50%, 0); z-index: 100;"
+                >
                   <title>Drag to resize Pattern Lab</title>
                   <path d="M6 0h2v20H6zM13 0h2v20h-2z" />
                 </svg>
@@ -458,7 +462,7 @@ class IFrame extends BaseComponent {
     document.body.addEventListener('mouseup', function() {
       self.iframeCover.removeEventListener(
         'mousemove',
-        handleIframeCoverResize,
+        handleIframeCoverResize
       );
       self.iframeCover.style.display = 'none';
       self
