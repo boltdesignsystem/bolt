@@ -49,49 +49,53 @@ export const Panels = {
 function init(event) {
   // does the origin sending the message match the current host? if not dev/null the request
 
+  const fileSuffixPattern =
+    window.config.outputFileSuffixes !== undefined &&
+    window.config.outputFileSuffixes.rawTemplate !== undefined
+      ? window.config.outputFileSuffixes.rawTemplate
+      : '';
 
-      const fileSuffixPattern =
-        window.config.outputFileSuffixes !== undefined &&
-        window.config.outputFileSuffixes.rawTemplate !== undefined
-          ? window.config.outputFileSuffixes.rawTemplate
-          : '';
+  const fileSuffixMarkup =
+    window.config.outputFileSuffixes !== undefined &&
+    window.config.outputFileSuffixes.markupOnly !== undefined
+      ? window.config.outputFileSuffixes.markupOnly
+      : '.markup-only';
 
-      const fileSuffixMarkup =
-        window.config.outputFileSuffixes !== undefined &&
-        window.config.outputFileSuffixes.markupOnly !== undefined
-          ? window.config.outputFileSuffixes.markupOnly
-          : '.markup-only';
+  // add the default panels
+  // Panels.add({ 'id': 'pl-panel-info', 'name': 'info', 'default': true, 'templateID': 'pl-panel-template-info', 'httpRequest': false, 'prismHighlight': false, 'keyCombo': '' });
+  const languages = Object.keys(Prism.languages);
+  // TODO: sort out pl-panel-html
+  Panels.add({
+    id: 'pl-panel-pattern',
+    name: window.config.patternExtension.toUpperCase(),
+    default: true,
+    templateID: 'pl-panel-template-code',
+    httpRequest: true,
+    httpRequestReplace: fileSuffixPattern,
+    httpRequestCompleted: false,
+    prismHighlight: true,
+    language: languages[window.config.patternExtension],
+    keyCombo: 'ctrl+shift+u',
+  });
 
-      // add the default panels
-      // Panels.add({ 'id': 'pl-panel-info', 'name': 'info', 'default': true, 'templateID': 'pl-panel-template-info', 'httpRequest': false, 'prismHighlight': false, 'keyCombo': '' });
-      const languages = Object.keys(Prism.languages);
-      // TODO: sort out pl-panel-html
-      Panels.add({
-        id: 'pl-panel-pattern',
-        name: window.config.patternExtension.toUpperCase(),
-        default: true,
-        templateID: 'pl-panel-template-code',
-        httpRequest: true,
-        httpRequestReplace: fileSuffixPattern,
-        httpRequestCompleted: false,
-        prismHighlight: true,
-        language: languages[window.config.patternExtension],
-        keyCombo: 'ctrl+shift+u',
-      });
+  Panels.add({
+    id: 'pl-panel-html',
+    name: 'HTML',
+    default: false,
+    templateID: 'pl-panel-template-code',
+    httpRequest: true,
+    httpRequestReplace: fileSuffixMarkup + '.html',
+    httpRequestCompleted: false,
+    prismHighlight: true,
+    language: 'markup',
+    keyCombo: 'ctrl+shift+y',
+  });
 
-      Panels.add({
-        id: 'pl-panel-html',
-        name: 'HTML',
-        default: false,
-        templateID: 'pl-panel-template-code',
-        httpRequest: true,
-        httpRequestReplace: fileSuffixMarkup + '.html',
-        httpRequestCompleted: false,
-        prismHighlight: true,
-        language: 'markup',
-        keyCombo: 'ctrl+shift+y',
-      });
-    }
+  if (!window.patternlab) {
+    window.patternlab = {};
+  }
+  window.patternlab.panels = Panels;
+}
 
 // gather panels from plugins
 Dispatcher.trigger('setupPanels');

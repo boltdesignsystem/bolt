@@ -16,15 +16,22 @@ import(
   /* webpackChunkName: "pl-viewport-sizes" */
   /* webpackMode: "lazy" */
   /* webpackPrefetch: true */
-  './components/pl-viewport-size-list/pl-viewport-size-list');
+  './components/pl-viewport-size-list/pl-viewport-size-list'
+);
 
+import(
+  /* webpackChunkName: "pl-plugin-loader" */
+  /* webpackMode: "lazy" */
+  /* webpackPrefetch: true */
+  './components/plugin-loader'
+);
 
 import(
   /* webpackChunkName: "pl-modal-viewer" */
   /* webpackMode: "lazy" */
   /* webpackPrefetch: true */
-  './components/modal-viewer');
-
+  './components/modal-viewer'
+);
 
 // Add hook to auto re-render the root component.
 if (typeof module.hot === 'object') {

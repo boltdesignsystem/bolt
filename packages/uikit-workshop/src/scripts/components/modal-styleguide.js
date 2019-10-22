@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign, no-unused-vars */
 /**
  * "Modal" (aka Panel UI) for the Styleguide Layer - for both annotations and code/info
  */
@@ -79,8 +80,10 @@ export const modalStyleguide = {
       .appendChild(content);
 
     // show the modal
-    const toggle = document.getElementById('pl-pattern-extra-toggle-' + patternPartial);
-    if (toggle){
+    const toggle = document.getElementById(
+      'pl-pattern-extra-toggle-' + patternPartial
+    );
+    if (toggle) {
       toggle.classList.add('pl-is-active');
     }
 
@@ -98,11 +101,13 @@ export const modalStyleguide = {
     modalStyleguide.active[patternPartial] = false;
 
     // hide the modal, look at info-panel.js
-    const toggle = document.getElementById('pl-pattern-extra-toggle-' + patternPartial);
-    if (toggle){
+    const toggle = document.getElementById(
+      'pl-pattern-extra-toggle-' + patternPartial
+    );
+    if (toggle) {
       toggle.classList.remove('pl-is-active');
     }
-    
+
     document
       .getElementById('pl-pattern-extra-' + patternPartial)
       .classList.remove('pl-is-active');

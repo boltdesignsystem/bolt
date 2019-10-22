@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c25053a5a1183c36e71949c5e37253e1",
+    "content-hash": "79fcff5667dee2bc5de2f06d84783f30",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -928,16 +928,16 @@
         },
         {
             "name": "pattern-lab/core",
-            "version": "v2.9.0",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/pattern-lab/patternlab-php-core.git",
-                "reference": "009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3"
+                "url": "https://github.com/boltdesignsystem/patternlab-php-core.git",
+                "reference": "41f32e4ee68e0c3a110f1746fbd8932a16d17c2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pattern-lab/patternlab-php-core/zipball/009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3",
-                "reference": "009399c5cb175f1d5a1fafc7b07abc1f2d13a0a3",
+                "url": "https://api.github.com/repos/boltdesignsystem/patternlab-php-core/zipball/41f32e4ee68e0c3a110f1746fbd8932a16d17c2d",
+                "reference": "41f32e4ee68e0c3a110f1746fbd8932a16d17c2d",
                 "shasum": ""
             },
             "require": {
@@ -975,16 +975,10 @@
                     "PatternLab": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
-                {
-                    "name": "Brad Frost",
-                    "homepage": "http://bradfrostweb.com",
-                    "role": "Creator"
-                },
                 {
                     "name": "Evan Lovely",
                     "homepage": "http://evanlovely.com",
@@ -1000,6 +994,11 @@
                     "email": "dmolsen@gmail.com",
                     "homepage": "http://dmolsen.com",
                     "role": "Former Lead Developer"
+                },
+                {
+                    "name": "Brad Frost",
+                    "homepage": "http://bradfrostweb.com",
+                    "role": "Creator"
                 }
             ],
             "description": "The core functionality for Pattern Lab.",
@@ -1011,7 +1010,12 @@
                 "style guide",
                 "styleguide"
             ],
-            "time": "2018-02-27T22:12:27+00:00"
+            "support": {
+                "issues": "https://github.com/pattern-lab/patternlab-php-core/issues",
+                "wiki": "http://patternlab.io/docs/",
+                "source": "https://github.com/pattern-lab/patternlab-php-core/releases"
+            },
+            "time": "2019-08-02T18:53:10+00:00"
         },
         {
             "name": "pattern-lab/patternengine-twig",
@@ -1293,12 +1297,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "d4306dabe38da0ab361efb2c388510fa8d72d0fc"
+                "reference": "fb99e7765f1cb516022916a95f2e618639b5b82a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/d4306dabe38da0ab361efb2c388510fa8d72d0fc",
-                "reference": "d4306dabe38da0ab361efb2c388510fa8d72d0fc",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/fb99e7765f1cb516022916a95f2e618639b5b82a",
+                "reference": "fb99e7765f1cb516022916a95f2e618639b5b82a",
                 "shasum": ""
             },
             "require": {
@@ -1341,7 +1345,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2019-10-22T17:09:30+00:00"
+            "time": "2019-10-22T15:44:54+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1946,9 +1950,18 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "2.9.0",
+            "alias_normalized": "2.9.0.0",
+            "version": "dev-develop",
+            "package": "pattern-lab/core"
+        }
+    ],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "pattern-lab/core": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

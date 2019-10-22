@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, no-param-reassign */
 import { define, props } from 'skatejs';
 import { h } from 'preact';
 
@@ -20,7 +21,7 @@ class Controls extends BaseComponent {
     self.state = {
       pxSize: '',
       emSize: '',
-    }
+    };
     return self;
   }
 
