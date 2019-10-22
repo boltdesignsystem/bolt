@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* add missing super() call in the table component's JS ([dc235e9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/dc235e9))
+* update table component's web component logic to handle HTML comments encountered when parsing initial HTML ([8736189](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/8736189))
+
+
+
+
+
 ## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.8.0...v2.8.1) (2019-10-16)
 
 **Note:** Version bump only for package @bolt/components-table

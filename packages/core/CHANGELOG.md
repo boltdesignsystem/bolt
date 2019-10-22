@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* add ':scope' polyfill, required by ssr-hydrate function ([8d79bf1](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/8d79bf1))
+
+
+### Features
+
+* remove `:scope` polyfill, no longer used ([9db4acf](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/9db4acf))
+* rework ssr-hydrate technique, now uses `ssr-keep` custom element, which can be used in place of `replace-with-*` ([60e65cc](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/60e65cc))
+* **core-styles:** add documentaiton to bolt-theme ([fd0c8eb](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/fd0c8eb))
+
+
+
+
+
 ## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.8.0...v2.8.1) (2019-10-16)
 
 

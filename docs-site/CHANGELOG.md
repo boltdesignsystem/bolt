@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/bolt-design-system/bolt/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* address install / symlink issues by updating composer.json configs to allow local beta versions of Bolt packages to get installed ([77addbd](https://github.com/bolt-design-system/bolt/commit/77addbd))
+* update PHP-related packages to be in sync with the latest version of Bolt + symlinked properly ([32be05b](https://github.com/bolt-design-system/bolt/commit/32be05b))
+
+
+### Features
+
+* add 'update' method to video to refresh video when inside accordion or tabs ([477fa53](https://github.com/bolt-design-system/bolt/commit/477fa53))
+* add accordion demo, testing `slidesPerView` option ([37d2970](https://github.com/bolt-design-system/bolt/commit/37d2970))
+* add demo page to test videos using standard brightcove player with only 'techOrder' option changed ([a24ed93](https://github.com/bolt-design-system/bolt/commit/a24ed93))
+* add tabs demo with accordion and carousel ([c49eed6](https://github.com/bolt-design-system/bolt/commit/c49eed6))
+* rollback `bolt-text` > `div` edit to accordion demo ([3052895](https://github.com/bolt-design-system/bolt/commit/3052895))
+
+
+
+## [2.7.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.2...v2.7.1) (2019-09-20)
+
+
+### Bug Fixes
+
+* code cleanup ([e2ae3f7](https://github.com/bolt-design-system/bolt/commit/e2ae3f7))
+* docs and testing instructions ([ad7343c](https://github.com/bolt-design-system/bolt/commit/ad7343c))
+* typos ([e417095](https://github.com/bolt-design-system/bolt/commit/e417095))
+
+
+### Features
+
+* add support for displaying advanced schema options on the docs site ([cc20453](https://github.com/bolt-design-system/bolt/commit/cc20453))
+* update the component docs template to pull in always-up-to-date schema data ([e8b9739](https://github.com/bolt-design-system/bolt/commit/e8b9739))
+
+
+
+
+
 ## [2.8.3](https://github.com/bolt-design-system/bolt/compare/v2.8.2...v2.8.3) (2019-10-18)
 
 
