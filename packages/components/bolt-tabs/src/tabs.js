@@ -259,6 +259,11 @@ class BoltTabs extends withContext(withLitHtml()) {
     const listClasses = cx('c-bolt-tabs__nav', {});
     const panelsClasses = cx('c-bolt-tabs__panels-container');
 
+    const handleLabelClick = (e, index) => {
+      this.setSelectedTab(index);
+      this.menuIsOpen && this.closeDropdown();
+    };
+
     const tabButtons = isDropdown => {
       let buttons = [];
 
@@ -286,7 +291,7 @@ class BoltTabs extends withContext(withLitHtml()) {
             aria-controls="${panelId}"
             id="${labelId}"
             tabindex="${isSelected ? 0 : -1}"
-            @click=${e => this.setSelectedTab(index)}
+            @click=${e => handleLabelClick(e, index)}
             @keydown=${e => this.handleOnKeydown(e)}
             @keyup=${e => this.handleOnKeyup(e)}
           >
