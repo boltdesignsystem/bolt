@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/bolt-design-system/bolt/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* code cleanup ([e2ae3f7](https://github.com/bolt-design-system/bolt/commit/e2ae3f7))
+* docs and testing instructions ([ad7343c](https://github.com/bolt-design-system/bolt/commit/ad7343c))
+* flex list spacing ([5b821af](https://github.com/bolt-design-system/bolt/commit/5b821af))
+* linting ([277fad3](https://github.com/bolt-design-system/bolt/commit/277fad3))
+* remove spaghetti code ([77fa7ed](https://github.com/bolt-design-system/bolt/commit/77fa7ed))
+* remove unused comment ([5fd8913](https://github.com/bolt-design-system/bolt/commit/5fd8913))
+* testing copy ([3d5d536](https://github.com/bolt-design-system/bolt/commit/3d5d536))
+* typos ([e417095](https://github.com/bolt-design-system/bolt/commit/e417095))
+
+
+
+
+
 ## [2.8.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
 
 **Note:** Version bump only for package @bolt/components-list
