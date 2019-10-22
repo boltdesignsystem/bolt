@@ -238,7 +238,7 @@ async function createWebpackConfig(buildConfig) {
         options: {
           sourceMap: config.sourceMaps,
           plugins: () =>
-            isJsFile && isScoped
+            !isJsFile && isScoped
               ? [
                   require('@bolt/postcss-themify')(themifyOptions),
                   postcssDiscardDuplicates,
@@ -266,12 +266,12 @@ async function createWebpackConfig(buildConfig) {
                     },
                     getJSON(cssFileName, json, outputFileName) {
                       if (
-                        cssFileName.includes('.scoped') &&
-                        isJsFile === false
+                        cssFileName.includes('.scoped')
                       ) {
                         var jsonFileName = path.resolve(
                           `${cssFileName.replace('.scss', '')}.json`,
                         );
+                        // @todo: update to compare existing vs new JSON data before outputting
                         fs.writeFileSync(jsonFileName, JSON.stringify(json));
                       }
                     },
