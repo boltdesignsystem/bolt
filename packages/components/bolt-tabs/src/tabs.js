@@ -325,6 +325,8 @@ class BoltTabs extends withContext(withLitHtml()) {
             aria-haspopup="true"
             aria-expanded="${this.menuIsOpen}"
             class="${cx('c-bolt-tabs__button', 'c-bolt-tabs__show-button')}"
+            @keydown=${e => this.handleOnKeydown(e)}
+            @keyup=${e => this.handleOnKeyup(e)}
           >
             <span class="${cx('c-bolt-tabs__show-text')}">
               ${this.props.moreText ? this.props.moreText : 'More'}
