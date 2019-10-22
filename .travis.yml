@@ -126,7 +126,7 @@ jobs:
 
     - stage: Auto-release
       name: 'Full Release'
-      if: (branch =~ /(release)/)
+      if: (branch =~ /(release\/2.x)/)
       before_script:
         - git config --global user.email ${GITHUB_EMAIL}
         - git config --global user.name ${GITHUB_USER}
@@ -137,7 +137,6 @@ jobs:
       script:
         - yarn run release
       after_success:
-        - yarn run postpublish
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
 
