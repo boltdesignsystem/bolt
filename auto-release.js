@@ -1,7 +1,8 @@
 const shell = require('shelljs');
 const { branchName } = require('./scripts/utils/branch-name');
 const isCanaryRelease = branchName === 'master';
-const isFullRelease = branchName === 'release-2.x';
+const isFullRelease =
+  branchName === 'release-2.x' || branchName === 'release/2.x';
 const { normalizeUrlAlias } = require('./scripts/utils/normalize-url-alias');
 const { gitSha } = require('./scripts/utils');
 const execSync = require('child_process').execSync;
@@ -119,36 +120,39 @@ async function init() {
         .exec('auto version', { silent: true })
         .stdout.trim();
 
-      const nextVersion = await semver.inc(currentVersion, version);
+      //const nextVersion = await semver.inc(currentVersion, version);
+      const nextVersion = '2.9.0';
 
-      await shell.exec(`
-        node scripts/release/update-php-package-versions.js -v ${nextVersion}
-        git add packages/core-php/composer.json packages/drupal-modules/bolt_connect/bolt_connect.info.yml packages/drupal-modules/bolt_connect/composer.json
-        git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
-      `);
+      //await shell.exec(`
+      //  node scripts/release/update-php-package-versions.js -v ${nextVersion}
+      //  git add packages/core-php/composer.json packages/drupal-modules/bolt_connect/bolt_connect.info.yml packages/drupal-modules/bolt_connect/composer.json
+      //  git commit -m "[skip travis] chore: version bump PHP-related dependencies to v${nextVersion}"
+      //  git checkout yarn.lock
+      //  rm scripts/bolt-design-system-bot.private-key.pem
+      //`);
 
-      await shell.exec(
-        `npx lerna publish ${nextVersion} --yes -m "[skip travis] chore(release): release %s"`,
-        (code, stdout, stderr) => {
-          console.log('', stdout);
-          console.log('', stderr);
-        },
-      );
+      //await shell.exec(
+      //  `npx lerna publish ${nextVersion} --yes -m "[skip travis] chore(release): release %s"`,
+      //  (code, stdout, stderr) => {
+      //    console.log('', stdout);
+      //    console.log('', stderr);
+      //  },
+      //);
 
-      const packages = await getLernaPackages();
-      const versioned = packages.find(p => p.version.includes(nextVersion));
-
-      if (!versioned) {
-        console.warn(
-          'No packages were changed so the full release was not published!',
-        );
-        console.warn(`expected version to release was: ${nextVersion}`);
-        return;
-      } else {
-        console.log(
-          'The full Bolt release was successfully published to NPM. Doing a fresh build + deploying the updated site to now.sh.',
-        );
-      }
+      //const packages = await getLernaPackages();
+      //const versioned = packages.find(p => p.version.includes(nextVersion));
+      //
+      //if (!versioned) {
+      //  console.warn(
+      //    'No packages were changed so the full release was not published!',
+      //  );
+      //  console.warn(`expected version to release was: ${nextVersion}`);
+      //  return;
+      //} else {
+      //  console.log(
+      //    'The full Bolt release was successfully published to NPM. Doing a fresh build + deploying the updated site to now.sh.',
+      //  );
+      //}
 
       // get the version we just published
       const releaseVersion = `v${nextVersion}`; // ex. v2.9.0

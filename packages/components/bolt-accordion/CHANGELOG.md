@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Features
+
+* refactor carousel init, eliminating unnecessary re-inits, add 'will-update' feature to link carousel to accordion and tabs change events ([0a17339](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/0a17339))
+* rework ssr-hydrate technique, now uses `ssr-keep` custom element, which can be used in place of `replace-with-*` ([60e65cc](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/commit/60e65cc))
+
+
+
+
+
 ## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-accordion/compare/v2.8.0...v2.8.1) (2019-10-16)
 
 
