@@ -117,14 +117,6 @@ class AccordionItem extends withContext(withLitHtml()) {
     `;
   }
 
-  rendered() {
-    super.rendered && super.rendered();
-
-    this.contentElem = this.renderRoot.querySelector(
-      '.c-bolt-accordion-item__content',
-    );
-  }
-
   render() {
     this.addClassesToSlottedChildren(['default', 'trigger']);
 
