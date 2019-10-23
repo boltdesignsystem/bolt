@@ -121,7 +121,10 @@ jobs:
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
         - git checkout master
-      install: npm run setup
+      install: 
+        - yarn install --frozen-lockfile 
+        - yarn run setup:php
+        - git reset --hard
       script: yarn run release
 
     - stage: Auto-release
@@ -133,7 +136,10 @@ jobs:
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
         - git checkout release/2.x
-      install: npm run setup
+      install: 
+        - yarn install --frozen-lockfile 
+        - yarn run setup:php
+        - git reset --hard
       script:
         - yarn run release
       after_success:

@@ -163,7 +163,8 @@ bolt-modal:not([ready]) {
     min-width: 200px; // Prevents content without defined width (such as image and video) from falling below 200px.
     max-width: calc(100% - #{bolt-spacing(medium) * 2});
     max-height: $bolt-modal-max-height;
-    transition: visibility $bolt-transition-timing $bolt-transition-ease $bolt-transition-timing;
+    transition: visibility $bolt-transition-timing $bolt-transition-ease
+      $bolt-transition-timing;
   }
 
   @at-root .c-bolt-modal.is-open #{&} {
@@ -193,6 +194,11 @@ bolt-modal:not([ready]) {
 
       .c-bolt-modal__content {
         transform: translateX(0) translateY(-50%) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
+        @supports (-ms-ime-align: auto) {
+          & {
+            transform: translateX(0) translateY(-50%) translateZ(0); // Remove perspective hack for ie-edge only, causes modal content to shift by 1px when modal contains video and user hovers over player
+          }
+        }
       }
     }
   }
@@ -206,7 +212,13 @@ bolt-modal:not([ready]) {
 
     &.is-open {
       .c-bolt-modal__content {
-        transform: translateX(-50%) translateY(-50%) translateZ(0) perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
+        transform: translateX(-50%) translateY(-50%) translateZ(0)
+          perspective(1px); // The perspective hack here is to prevent the content from getting too blurry, a common CSS bug that happens to element with transform. Please note that this sub-pixel issue still persists at random breakpoints.
+        @supports (-ms-ime-align: auto) {
+          & {
+            transform: translateX(-50%) translateY(-50%) translateZ(0); // Remove perspective hack for ie-edge only, causes modal content to shift by 1px when modal contains video and user hovers over player
+          }
+        }
       }
     }
 
