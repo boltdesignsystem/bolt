@@ -16,7 +16,7 @@ describe('<bolt-video> Component', () => {
 
   test('<bolt-video> compiles', async () => {
     const results = await render('@bolt-components-video/video.twig', {
-      videoId: '3861325118001',
+      videoId: '4892122320001',
       accountId: '1900410236',
       playerId: 'r1CAdLzTW',
     });
@@ -26,7 +26,7 @@ describe('<bolt-video> Component', () => {
 
   test('<bolt-video> compiles with a meta description', async () => {
     const results = await render('@bolt-components-video/video.twig', {
-      videoId: '3861325118001',
+      videoId: '4892122320001',
       accountId: '1900410236',
       playerId: 'r1CAdLzTW',
       showMeta: true,
@@ -37,7 +37,7 @@ describe('<bolt-video> Component', () => {
 
   test('<bolt-video> compiles with a meta description + meta title', async () => {
     const results = await render('@bolt-components-video/video.twig', {
-      videoId: '3861325118001',
+      videoId: '4892122320001',
       accountId: '1900410236',
       playerId: 'r1CAdLzTW',
       showMeta: true,

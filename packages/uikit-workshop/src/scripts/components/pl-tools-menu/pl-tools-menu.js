@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { define, props } from 'skatejs';
 import { h } from 'preact';
 import { BaseComponent } from '../base-component.js';
@@ -13,7 +14,8 @@ class ToolsMenu extends BaseComponent {
   static is = 'pl-tools-menu';
 
   _stateChanged(state) {
-    this.currentUrl = state.app.currentUrl || urlHandler.getFileName(patternName);
+    this.currentUrl =
+      state.app.currentUrl || urlHandler.getFileName(patternName);
   }
 
   constructor(self) {
@@ -26,7 +28,8 @@ class ToolsMenu extends BaseComponent {
   connecting() {
     const state = store.getState();
     const { ishControlsHide } = window.ishControls;
-    this.currentUrl = state.app.currentUrl || urlHandler.getFileName(patternName);
+    this.currentUrl =
+      state.app.currentUrl || urlHandler.getFileName(patternName);
     this.ishControlsHide = ishControlsHide;
   }
 

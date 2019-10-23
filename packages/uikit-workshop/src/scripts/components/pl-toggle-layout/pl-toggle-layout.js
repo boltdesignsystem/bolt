@@ -1,6 +1,6 @@
+/* eslint-disable no-unused-vars, no-param-reassign */
 import { define, props } from 'skatejs';
 import { h } from 'preact';
-
 
 import { store } from '../../store.js'; // connect to the Redux store.
 import { updateLayoutMode } from '../../actions/app.js'; // redux actions
@@ -28,19 +28,14 @@ class LayoutToggle extends BaseComponent {
   };
 
   _stateChanged(state) {
-    // if (this.layoutMode !== state.app.layoutMode) {
-    //   this.layoutMode = state.app.layoutMode;
-    // }
-
     this.layoutMode = state.app.layoutMode;
-
     this.triggerUpdate();
   }
 
   render({ layoutMode, text }) {
     const toggleLayoutMode =
       layoutMode !== 'vertical' ? 'vertical' : 'horizontal';
-      
+
     return (
       <div class="pl-c-toggle-layout">
         <button
