@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.2](https://github.com/boltdesignsystem/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+
+### Bug Fixes
+
+* add extra ssrHydration test to fix issue where initial check in connectedCallback runs too early ([b7f14ef](https://github.com/boltdesignsystem/bolt/commit/b7f14ef))
+
+
+
+
+
 ## [2.9.1](https://github.com/boltdesignsystem/bolt/compare/v2.9.0...v2.9.1) (2019-10-22)
 
 
