@@ -265,6 +265,25 @@
   } only %}
 {% endset %}
 
+{% set accordion_content %}
+  {% include "@bolt-components-accordion/accordion.twig" with {
+    items: [
+      {
+        trigger: "Accordion item 1",
+        content: "This is the accordion content.",
+      },
+      {
+        trigger: "Accordion item 2",
+        content: "This is the accordion content.",
+      },
+      {
+        trigger: "Accordion item 3",
+        content: "This is the accordion content.",
+      }
+    ]
+  } only %}
+{% endset %}
+
 <h3>Pass various components into the content</h3>
 {% include "@bolt-components-accordion/accordion.twig" with {
   box_shadow: true,
@@ -284,6 +303,10 @@
     {
       trigger: "Expand this to see a video",
       content: video_content
+    },
+    {
+      trigger: "Expand this to see a nested accordion",
+      content: accordion_content
     },
     {
       trigger: "Expand this to see tabs",
