@@ -23,7 +23,7 @@ export function BoltBase(Base = HTMLElement) {
       this._wasInitiallyRendered = false;
       return self;
     }
-    
+
     connectedCallback() {
       super.connectedCallback && super.connectedCallback();
 
@@ -75,7 +75,7 @@ export function BoltBase(Base = HTMLElement) {
       this.setupShadow();
 
       // double-check if any `<ssr-keep>` elements have registered anything after connectedCallback fired.
-      // this extra check addresses a bug encountered where components like accordions connect BEFORE <ssr-keep> fires  
+      // this extra check addresses a bug encountered where components like accordions connect BEFORE <ssr-keep> fires
       if (this.ssrKeep && !this.ssrPrepped) {
         this.ssrHydrationPrep();
       }
