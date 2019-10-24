@@ -22,6 +22,7 @@ class BoltAction extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.rootElementTags = [];
+    self.delegateFocus = true;
     return self;
   }
 

@@ -32,7 +32,6 @@ class BoltTrigger extends BoltAction {
   constructor(self) {
     self = super(self);
     self.schema = schema;
-    self.delegateFocus = true;
     return self;
   }
 
