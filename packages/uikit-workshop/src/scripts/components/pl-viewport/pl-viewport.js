@@ -40,7 +40,6 @@ class IFrame extends BaseComponent {
     // self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
     self.handleResize = self.handleResize.bind(self);
     self.handleMouseDown = self.handleMouseDown.bind(self);
-    self.handleIframeLoaded = self.handleIframeLoaded.bind(self);
     //set up the default for the
     self.baseIframePath =
       window.location.protocol +
@@ -53,9 +52,7 @@ class IFrame extends BaseComponent {
 
   // update the currently active nav + add / update the page's query string
   handlePageLoad(e) {
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const patternParam = urlParams.get('p');
+    const patternParam = this.getPatternFromParam();
 
     const currentPattern =
       e.detail.pattern || window.config.defaultPattern || 'all';
@@ -104,9 +101,7 @@ class IFrame extends BaseComponent {
 
   // navigate to the new PL page (based on the query string) when the page's pop state changes
   handlePageChange(e) {
-    var queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    let patternParam = urlParams.get('p');
+    const patternParam = this.getPatternFromParam();
 
     if (patternParam) {
       this.navigateTo(patternParam);
@@ -327,10 +322,17 @@ class IFrame extends BaseComponent {
   }
 
   rendered() {
-    super.rendered && super.rendered();
     this.iframe = this.querySelector('.pl-js-iframe');
     this.iframeContainer = this.querySelector('.pl-js-vp-iframe-container');
     this.iframeCover = this.querySelector('.pl-js-viewport-cover');
+
+    if (!this.hasUpdatedSrcset && this.iframe.src) {
+      this.hasUpdatedSrcset = true;
+      this.iframe.setAttribute('src', this.iframe.src);
+      this.iframe.removeAttribute('srcdoc');
+    }
+
+    super.rendered && super.rendered();
   }
 
   handleIframeLoaded() {
@@ -341,11 +343,20 @@ class IFrame extends BaseComponent {
     }
   }
 
-  render() {
-    // use either the page's query string or the patternPartial data to auto-update the URL
-    var queryString = window.location.search;
+  getPatternFromParam() {
+    const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let patternParam = urlParams.get('p');
+
+    if (patternParam && patternParam.includes('viewall')) {
+      patternParam = patternParam.replace(/-[0-9][0-9]/g, '');
+    }
+    return patternParam;
+  }
+
+  render() {
+    // use either the page's query string or the patternPartial data to auto-update the URL
+    let patternParam = this.getPatternFromParam();
 
     if (!patternParam) {
       if (window.patternData) {
