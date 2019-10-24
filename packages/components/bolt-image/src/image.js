@@ -53,6 +53,7 @@ class BoltImage extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.onResize = self.onResize.bind(self);
+    self.onLazyLoaded = self.onLazyLoaded.bind(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema, [
       'lazyload',
@@ -93,27 +94,56 @@ class BoltImage extends withLitHtml() {
     }
   }
 
+  // fires when lazysizes has finished lazyloading a particular component.
+  onLazyLoaded(e) {
+    this.isLazyLoaded = true;
+
+    // delete all element references of this particular image from the lazySizes elements queue
+    lazySizes.elements.forEach((item, index) => {
+      if (item === this.lazyImage) {
+        delete lazySizes.elements[index];
+      }
+    });
+
+    this.lazyImage.removeEventListener('lazyloaded', this.onLazyLoaded);
+    window.addEventListener('optimizedResize', debounce(this.onResize, 300));
+  }
+
   rendered() {
     super.rendered && super.rendered();
 
     const { noLazy } = this.validateProps(this.props);
 
-    // if image should lazyload
-    if (!noLazy) {
-      const lazyImage = this.renderRoot.querySelector(
-        `.${lazySizes.cfg.lazyClass}`,
-      );
+    if (!this._wasInititallyRendered) {
+      this._wasInititallyRendered = true;
 
-      // if component contains a lazy image that is rendering for the first time
-      if (lazyImage && !this.isLoaded) {
-        // set a flag so that image is not lazyloaded on subsequent re-renders
-        this.isLoaded = true;
+      // if image should lazyload
+      if (!noLazy && !this.isLazyLoaded) {
+        this.lazyImage =
+          this.lazyImage ||
+          this.renderRoot.querySelector(`.${lazySizes.cfg.lazyClass}`);
 
-        // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
-        lazySizes.elements && lazySizes.elements.push(lazyImage);
+        // if component contains a lazy image that is rendering for the first time, but hasn't yet lazyloaded
+        if (this.lazyImage) {
+          this.lazyImage.addEventListener('lazyloaded', this.onLazyLoaded);
+          // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
 
-        // force rechecks -- probably not needed. @todo: can we remove?
-        // lazySizes.autoSizer.checkElems();
+          // wait until lazySizes.elements is available
+          const waitForLazySizes = setInterval(checkIfLazySizesReady, 50);
+          // eslint-disable-next-line no-inner-declarations
+          function checkIfLazySizesReady() {
+            if (lazySizes.elements) {
+              lazySizes.elements && lazySizes.elements.push(this.lazyImage);
+              clearInterval(waitForLazySizes);
+            }
+          }
+        }
+      } else if (noLazy) {
+        // decounce setting the sizes prop
+        window.addEventListener(
+          'optimizedResize',
+          debounce(this.onResize, 300),
+        );
       }
     }
   }
