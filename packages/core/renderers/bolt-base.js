@@ -21,13 +21,16 @@ export function BoltBase(Base = HTMLElement) {
     constructor(self) {
       super(self);
       this._wasInitiallyRendered = false;
+      return self;
+    }
+
+    connectedCallback() {
+      super.connectedCallback && super.connectedCallback();
 
       // Check if any `<ssr-keep>` elements have registered themselves here. If so, kick off the one-time hydration prep task.
       if (this.ssrKeep && !this.ssrPrepped) {
         this.ssrHydrationPrep();
       }
-
-      return self;
     }
 
     /**
@@ -70,6 +73,12 @@ export function BoltBase(Base = HTMLElement) {
       // ensure every component instance renders to the light DOM when needed (ex. if nested inside of a form, render to the light DOM)
       // this ensures that things work as expected, even when a component gets removed / re-added to the page
       this.setupShadow();
+
+      // double-check if any `<ssr-keep>` elements have registered anything after connectedCallback fired.
+      // this extra check addresses a bug encountered where components like accordions connect BEFORE <ssr-keep> fires
+      if (this.ssrKeep && !this.ssrPrepped) {
+        this.ssrHydrationPrep();
+      }
 
       // @todo: add debug flag the build to allow conditionally enabling / disabling this extra slot setup check here.
       if (!this.slots) {
