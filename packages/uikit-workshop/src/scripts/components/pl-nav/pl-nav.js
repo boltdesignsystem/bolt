@@ -212,7 +212,8 @@ class Nav extends BaseComponent {
       if (
         e.target.closest('.pl-c-nav') === null &&
         e.target.closest('.pl-js-nav-trigger') === null &&
-        e.target.closest('svg') === null
+        e.target.closest('svg') === null &&
+        e.target.closest('pl-toggle-layout') === null
       ) {
         self.cleanupActiveNav();
       }
