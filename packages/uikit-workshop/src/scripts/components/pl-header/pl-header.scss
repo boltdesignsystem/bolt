@@ -13,6 +13,7 @@ pl-header {
   background-color: $pl-color-black;
   background-color: var(--theme-secondary, $pl-color-black);
   max-height: 100vh;
+  overflow: auto;
 
   color: $pl-color-gray-20;
   color: var(--theme-text, $pl-color-gray-20);
@@ -82,9 +83,15 @@ pl-header {
  */
 .pl-c-header__nav-toggle {
   @include linkStyle();
+  padding: 11px 12px;
   border: 0;
 
   @media all and (min-width: $pl-bp-med) {
     display: none;
+  }
+
+  &:focus {
+    outline: 1px dotted;
+    outline-offset: -1px;
   }
 }
