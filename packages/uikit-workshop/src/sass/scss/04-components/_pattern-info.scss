@@ -18,11 +18,12 @@
      */
   .pl-c-pattern & {
     overflow: scroll;
-    display: flex;
+    display: block;
     -webkit-overflow-scrolling: touch;
 
     @media all and (min-width: $pl-bp-large) {
       max-height: none;
+      display: flex;
       flex-direction: row;
       overflow: visible;
     }
@@ -50,14 +51,19 @@
  *    Right side contains pattern code
  */
 .pl-c-pattern-info__panel {
-  padding: 1.5rem;
+  padding: .5rem;
   flex-shrink: 1;
   display: flex;
   flex-direction: column;
 
+  pl-drawer & {
+    padding: 1rem;
+  }
+
   @media all and (min-width: $pl-bp-large) {
     flex-basis: 50%;
     flex-grow: 1;
+    padding: 1.5rem;
   }
 }
 
