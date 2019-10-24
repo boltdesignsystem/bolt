@@ -6,7 +6,7 @@ import {
   afterNextRender,
   watchForComponentMutations,
 } from '@bolt/core/utils';
-import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
 @define
 class BoltAction extends withLitHtml() {
@@ -21,7 +21,6 @@ class BoltAction extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self.rootElementTags = [];
     return self;
   }
@@ -49,7 +48,7 @@ class BoltAction extends withLitHtml() {
   }
 
   rendered() {
-    super.rendered(); // ensure any events emitted by the Bolt Base class fire as expected
+    super.rendered && super.rendered(); // ensure any events emitted by the Bolt Base class fire as expected
 
     // re-render if Shadow DOM is supported and enabled; temp workaround to dealing w/ components already rendered, but without slot support
     if (hasNativeShadowDomSupport && this.useShadow) {
