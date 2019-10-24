@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/components-tabs
+
+
+
+
+
+## [2.9.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.9.0...v2.9.1) (2019-10-22)
+
+
+### Features
+
+* add keyup handler to show more button ([5cda027](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/5cda027))
+* close dropdown menu when a label is clicked ([59c2953](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/59c2953))
+* update keyup handler to set focus on active tab when it's in the dropdown menu ([fabc7c2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/commit/fabc7c2))
+
+
+
+
+
 # [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-tabs/compare/v2.8.3...v2.9.0) (2019-10-22)
 
 

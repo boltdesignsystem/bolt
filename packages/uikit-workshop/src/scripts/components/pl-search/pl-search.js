@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, no-param-reassign */
 import { define, props } from 'skatejs';
 import { h } from 'preact';
 import { store } from '../../store.js'; // connect to redux
@@ -35,29 +36,13 @@ class Search extends BaseComponent {
     self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
     self.onChange = self.onChange.bind(self);
     self.toggleSearch = self.toggleSearch.bind(self);
-    // self.clearSearch = self.clearSearch.bind(self);
     self.closeSearch = self.closeSearch.bind(self);
     self.renderInputComponent = self.renderInputComponent.bind(self);
     self.openSearch = self.openSearch.bind(self);
-
-    // self.items = [];
-    // for (const patternType in window.patternPaths) {
-    //   if (window.patternPaths.hasOwnProperty(patternType)) {
-    //     for (const pattern in window.patternPaths[patternType]) {
-    //       if (window.patternPaths[patternType].hasOwnProperty(pattern)) {
-    //         const obj = {};
-    //         obj.label = patternType + '-' + pattern;
-    //         obj.id = window.patternPaths[patternType][pattern];
-    //         this.items.push(obj);
-    //       }
-    //     }
-    //   }
-    // }
-
     return self;
   }
 
-  connecting(){
+  connecting() {
     super.connecting && super.connecting();
 
     this.items = [];
@@ -73,7 +58,6 @@ class Search extends BaseComponent {
         }
       }
     }
-    
   }
 
   connected() {
@@ -102,7 +86,7 @@ class Search extends BaseComponent {
   };
 
   onInput = e => {
-    let value = e.target.value;
+    const value = e.target.value;
 
     this.setState({
       value: value,
@@ -370,31 +354,5 @@ class Search extends BaseComponent {
     );
   }
 }
-
-/* <Tooltip
-  placement="bottom"
-  trigger="hover"
-  tooltip="Hotkey: ⌘ + shift + f"
-  usePortal={false}
->
-  {({ getTriggerProps, triggerRef }) => (
-    <div
-      {...getTriggerProps({
-        ref: triggerRef,
-      })}
-    >
-      <Autosuggest
-        theme={theme}
-        suggestions={suggestions}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        getSuggestionValue={this.getSuggestionValue}
-        renderSuggestion={this.renderSuggestion}
-        inputProps={inputProps}
-        renderInputComponent={this.renderInputComponent}
-      />            
-    </div>
-  )}
-</Tooltip> */
 
 export { Search };

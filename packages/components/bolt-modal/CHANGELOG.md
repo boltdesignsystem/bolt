@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.2](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/components-modal
+
+
+
+
+
+## [2.9.1](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.9.0...v2.9.1) (2019-10-22)
+
+
+### Bug Fixes
+
+* remove css 'perspective' hack from ie-edge, causing modal content to shift ([0b4ab69](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/commit/0b4ab69))
+
+
+
+
+
 # [2.9.0](http://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-modal/compare/v2.8.3...v2.9.0) (2019-10-22)
 
 **Note:** Version bump only for package @bolt/components-modal

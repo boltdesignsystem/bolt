@@ -81,7 +81,7 @@ jobs:
         - yarn run build
         - yarn run deploy
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - yarn run test:e2e:quick
+        - travis_retry yarn run test:e2e:quick
       after_success:
         - ./scripts/deploy-branch-alias.js
 
@@ -106,7 +106,7 @@ jobs:
       before_script: ./scripts/check-run-in-progress.js 'Nightwatch'
       script:
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
-        - yarn run test:e2e:full
+        - travis_retry yarn run test:e2e:full
       after_success:
         - ./scripts/deploy-branch-alias.js
         - ./scripts/deploy-tagged-release.js
@@ -121,23 +121,28 @@ jobs:
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
         - git checkout master
-      install: npm run setup
+      install: 
+        - yarn install --frozen-lockfile 
+        - yarn run setup:php
+        - git reset --hard
       script: yarn run release
 
     - stage: Auto-release
       name: 'Full Release'
-      if: (branch =~ /(release)/)
+      if: (branch =~ /(release\/2.x)/)
       before_script:
         - git config --global user.email ${GITHUB_EMAIL}
         - git config --global user.name ${GITHUB_USER}
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
         - git checkout release/2.x
-      install: npm run setup
+      install: 
+        - yarn install --frozen-lockfile 
+        - yarn run setup:php
+        - git reset --hard
       script:
         - yarn run release
       after_success:
-        - yarn run postpublish
         - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
 

@@ -41,7 +41,7 @@ if (!String.prototype.repeat) {
     // strings 1 << 28 chars or longer, so:
     if (str.length * count >= 1 << 28)
       throw new RangeError(
-        'repeat count must not overflow maximum string size',
+        'repeat count must not overflow maximum string size'
       );
 
     var maxCount = str.length * count;

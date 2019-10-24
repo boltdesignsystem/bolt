@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * Panels Util - for both styleguide and viewer
  */
@@ -31,8 +32,8 @@ export const panelsUtil = {
   show(patternPartial, panelID) {
     const activeTabClass = 'pl-is-active-tab';
 
-     // tabPanelabout to become active
-     const activeTabPanel = document.querySelector(
+    // tabPanelabout to become active
+    const activeTabPanel = document.querySelector(
       `#pl-${patternPartial}-${panelID}-panel`
     );
 

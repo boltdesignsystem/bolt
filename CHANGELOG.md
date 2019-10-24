@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.2](https://github.com/boltdesignsystem/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+
+### Bug Fixes
+
+* add extra ssrHydration test to fix issue where initial check in connectedCallback runs too early ([b7f14ef](https://github.com/boltdesignsystem/bolt/commit/b7f14ef))
+
+
+
+
+
+## [2.9.1](https://github.com/boltdesignsystem/bolt/compare/v2.9.0...v2.9.1) (2019-10-22)
+
+
+### Bug Fixes
+
+* only set 'sizes' if image has width, fixes fuzzy images in tabs ([cbdca3e](https://github.com/boltdesignsystem/bolt/commit/cbdca3e))
+* remove css 'perspective' hack from ie-edge, causing modal content to shift ([0b4ab69](https://github.com/boltdesignsystem/bolt/commit/0b4ab69))
+* update auto release script to try and patch up a few issues we ran into with the v2.9.0 release from last night ([f2f5e4b](https://github.com/boltdesignsystem/bolt/commit/f2f5e4b))
+* update Travis config to automatically retry failing Nightwatch tests ([a862ebf](https://github.com/boltdesignsystem/bolt/commit/a862ebf))
+* update Travis job conditional to only run on the release/2.x branch (vs any branch with the name 'release') in the name ([8dd6fba](https://github.com/boltdesignsystem/bolt/commit/8dd6fba))
+
+
+### Features
+
+* add keyup handler to show more button ([5cda027](https://github.com/boltdesignsystem/bolt/commit/5cda027))
+* close dropdown menu when a label is clicked ([59c2953](https://github.com/boltdesignsystem/bolt/commit/59c2953))
+* update keyup handler to set focus on active tab when it's in the dropdown menu ([fabc7c2](https://github.com/boltdesignsystem/bolt/commit/fabc7c2))
+
+
+
+
+
 # [2.9.0](https://github.com/boltdesignsystem/bolt/compare/v2.8.3...v2.9.0) (2019-10-22)
 
 
