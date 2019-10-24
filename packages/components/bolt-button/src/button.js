@@ -17,6 +17,7 @@ class BoltButton extends BoltAction {
   static is = 'bolt-button';
 
   static props = {
+    ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
     color: props.string,
     text: props.string,
     size: props.string,
@@ -26,12 +27,7 @@ class BoltButton extends BoltAction {
     width: props.string,
     align: props.string,
     transform: props.string,
-    disabled: props.boolean,
-    target: props.string,
     type: props.string,
-    url: props.string,
-    onClick: props.string, // Managed by base class
-    onClickTarget: props.string, // Managed by base class
     tabindex: props.number,
     inert: props.boolean, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
   };

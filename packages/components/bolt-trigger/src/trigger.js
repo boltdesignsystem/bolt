@@ -17,15 +17,11 @@ class BoltTrigger extends BoltAction {
   static is = 'bolt-trigger';
 
   static props = {
-    url: props.string,
-    target: props.string,
+    ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
     type: props.string,
     cursor: props.string,
     display: props.string,
     noOutline: props.boolean,
-    disabled: props.boolean,
-    onClick: props.string, // Managed by base class
-    onClickTarget: props.string, // Managed by base class
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context

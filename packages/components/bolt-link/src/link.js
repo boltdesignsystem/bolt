@@ -16,13 +16,10 @@ class BoltLink extends BoltAction {
   static is = 'bolt-link';
 
   static props = {
+    ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
     display: props.string,
     valign: props.string,
-    url: props.string,
-    target: props.string,
     isHeadline: props.boolean,
-    onClick: props.string, // Managed by base class
-    onClickTarget: props.string, // Managed by base class
   };
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context

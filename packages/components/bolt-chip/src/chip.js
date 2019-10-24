@@ -16,8 +16,7 @@ class BoltChip extends BoltAction {
   static is = 'bolt-chip';
 
   static props = {
-    url: props.string,
-    target: props.string,
+    ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
     size: props.string,
   };
 
