@@ -105,6 +105,7 @@
 
 {% if valign and cover %}
   {% set image_attributes = image_attributes.setAttribute("style", "object-position: 50% #{valign};") %}
+  {% set image_fallback_attributes = image_fallback_attributes.setAttribute("style", "object-position: 50% #{valign};") %}
 {% endif %}
 
 {% set image_tag %}
