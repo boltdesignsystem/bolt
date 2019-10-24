@@ -15,6 +15,37 @@ let cx = classNames.bind(imageStyles);
 
 let passiveIfSupported = false;
 
+(function() {
+  var throttle = function(type, name, obj_) {
+    var obj = obj_ || window;
+    var running = false;
+    var func = function() {
+      if (running) {
+        return;
+      }
+      running = true;
+      requestAnimationFrame(function() {
+        obj.dispatchEvent(new CustomEvent(name));
+        running = false;
+      });
+    };
+    obj.addEventListener(type, func);
+  };
+
+  /* init - you can init any event */
+  throttle('resize', 'optimizedResize');
+})();
+
+const debounce = (func, delay) => {
+  let inDebounce;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(inDebounce);
+    inDebounce = setTimeout(() => func.apply(context, args), delay);
+  };
+};
+
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
 try {
   window.addEventListener(
@@ -65,7 +96,7 @@ class BoltImage extends withLitHtml() {
 
   disconnecting() {
     super.disconnecting && super.disconnecting();
-    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('optimizedResize', this.onResize);
   }
 
   connecting() {
@@ -80,15 +111,24 @@ class BoltImage extends withLitHtml() {
         this.removeChild(this.firstChild);
       }
     }
-
-    window.addEventListener('resize', this.onResize, passiveIfSupported);
   }
 
   onResize() {
+    // auto calculate the sizes prop for:
+    // - non-lazy loaded images
+    //   - that don't have a sizes prop specifically set OR
+    //   - that DO have a sizes prop but it's set to auto
+    // - lazy loaded images
+    //   - that have already been lazyloaded by lazysizes + size has changed
+    //
     if (
-      this.isLoaded &&
-      (this.getAttribute('sizes') === 'auto' || !this.getAttribute('sizes')) &&
-      this.offsetWidth > 0
+      (this.noLazy &&
+        (this.getAttribute('sizes') === 'auto' ||
+          !this.getAttribute('sizes')) &&
+        this.offsetWidth > 0) ||
+      (this.isLazyLoaded &&
+        this.offsetWidth > 0 &&
+        this.sizes.replace('px', '') !== this.offsetWidth)
     ) {
       this.sizes = `${this.offsetWidth}px`;
     }
