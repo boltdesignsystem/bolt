@@ -31,15 +31,6 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   @return map-get($bolt-button-border-radii, $name);
 }
 
-// Lightweight style reset for button and input elements
-@mixin bolt-button-reset {
-  @include bolt-padding(0);
-  @include bolt-font-family(body);
-
-  appearance: none; // override default [type=submit] button styles coming from Normalize
-  outline: none;
-}
-
 @mixin bolt-button-raised-effect {
   &:hover,
   &.is-hover {
