@@ -13,12 +13,10 @@ pl-nav {
     display: flex; // vertically align children
   }
 
-  @media all and (min-width: $pl-bp-med) {
-    .pl-c-body--theme-sidebar & {
-      display: block;
-      max-height: 100%;
-      overflow-y: scroll;
-    }
+  .pl-c-body--theme-sidebar & {
+    display: block;
+    max-height: 100%;
+    overflow-y: scroll;
   }
 }
 
@@ -38,13 +36,47 @@ pl-nav {
   flex-direction: column;
   transition: max-height $pl-animate-quick ease-out;
   flex-shrink: 1;
+  visibility: hidden;
+  transition: transform 0.2s ease-out, opacity 0 0.2s ease-out;
 
-  @media all and (min-width: $pl-bp-med) {
-    .pl-c-body--theme-sidebar & {
-      display: block;
-      display: flex;
-      overflow: hidden;
-      flex-shrink: 0;
+  &.pl-is-active {
+    visibility: visible;
+  }
+
+  .pl-c-body--theme-sidebar & {
+    display: block;
+    display: flex;
+    overflow: hidden;
+    visibility: visible;
+    flex-shrink: 0;
+
+    @media all and (min-height: 500px) {
+      flex-shrink: 1;
+    }
+
+    @media all and (max-width: $pl-bp-med) {
+      height: 100vh;
+      max-width: 240px;
+
+      max-height: 100vh;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      transform: translateX(-100%);
+      transition: transform 0.2s ease-out;
+      opacity: 0;
+
+      &.pl-is-active {
+        transform: translateX(0);
+        opacity: 1;
+        transition: transform 0.2s ease-out;
+      }
+    }
+  }
+
+  @media all and (max-width: $pl-bp-med) {
+    &.pl-is-active {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     }
   }
 
@@ -52,6 +84,7 @@ pl-nav {
   @media all and (min-width: $pl-bp-med) {
     overflow: visible;
     max-height: none;
+    visibility: visible;
 
     &.pl-is-active {
       overflow: visible;
@@ -66,10 +99,10 @@ pl-nav {
     */
   &.pl-is-active {
     @media all and (max-width: $pl-bp-med - 1) {
-      box-shadow: 0 1px 1px $pl-color-black;
+      box-shadow: 0 1px 1px $pl-color-black, 0 8px 15px 1px rgba(6,10,36,.1), 0 18px 24px 1px rgba(6,10,36,.12);
 
       .pl-c-body--theme-light & {
-        box-shadow: 0 1px 1px darken($pl-color-gray-20, 15%);
+        box-shadow: 0 1px 1px darken($pl-color-gray-20, 15%), 0 8px 15px 1px rgba(6,10,36,.1), 0 18px 24px 1px rgba(6,10,36,.12);
       }
     }
 
