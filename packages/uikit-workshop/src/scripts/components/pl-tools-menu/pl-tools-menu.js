@@ -159,7 +159,7 @@ class ToolsMenu extends BaseLitComponent {
           ${!this.ishControlsHide['views-new']
             ? html`
                 <li class="pl-c-tools__item">
-                  <pl-button href="${this.currentUrl}" target="_blank">
+                  <pl-button href="${this.currentUrl}" target="_blank" class="pl-js-open-new-window">
                     Open In New Tab
                     <pl-icon name="new-tab" slot="after"></pl-icon>
                   </pl-button>
