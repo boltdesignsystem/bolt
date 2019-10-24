@@ -60,11 +60,9 @@ All commands must be launched from root folder of the Bolt
 *Note: To run E2E local test you should watch bolt files by launching: `yarn start`.\
 Note 2: Monorepo test will fail when you earlier not compile bolt at least one time.*
 
-## Code
+## JEST test
 
-### JEST test
-
-#### How to create basic test
+### How to create basic test
 ```javascript
 test('Basic usage', async () => {
   const results = await render('@bolt-components-button/button.twig', {
@@ -75,7 +73,7 @@ test('Basic usage', async () => {
 });
 ```
 
-#### How to create schema prop test
+### How to create schema prop test
 ```javascript
 const { tag } = schema.properties;
  
@@ -91,7 +89,7 @@ tag.enum.forEach(async tagChoice => {
 });
 ```
 
-#### How to create boolean prop test
+### How to create boolean prop test
 ```javascript
 test('Button with "disabled" adds attr to <a>', async () => {
   const results = await render('@bolt-components-button/button.twig', {
@@ -104,7 +102,7 @@ test('Button with "disabled" adds attr to <a>', async () => {
 });
 ```
 
-#### How to create nested components / string rendering test
+### How to create nested components / string rendering test
 ```javascript
 test('<bolt-ol>with nested <bolt-ul> list', async () => {
   const results = await renderString(`
@@ -133,7 +131,7 @@ test('<bolt-ol>with nested <bolt-ul> list', async () => {
 });
 ```
 
-#### How to create breakpoint/viewport test
+### How to create breakpoint/viewport test
 ```javascript
 const viewportSizes = [
   {
@@ -246,7 +244,7 @@ test(
 );
 ```
 
-#### How to create external resources test
+### How to create external resources test
 ```javascript
 test('<bolt-image> with ratio object compiles', async () => {
   const results = await render('@bolt-components-image/image.twig', {
@@ -260,7 +258,7 @@ test('<bolt-image> with ratio object compiles', async () => {
 ```
 *Note: Fixtures folder must be present in the `__tests__` folder in specific component*
 
-#### How to create w/o Shadow DOM test
+### How to create w/o Shadow DOM test
 ```javascript
 const buttonNoShadowHTML = `
   <bolt-button no-shadow>
@@ -296,7 +294,7 @@ test('Default <bolt-button> w/o Shadow DOM renders', async function() {
 });
 ```
 
-#### How to create with Shadow DOM test
+### How to create with Shadow DOM test
 ```javascript
 const buttonNoShadowHTML = `
   <bolt-button no-shadow>
@@ -348,10 +346,10 @@ test('Default <bolt-button> with Shadow DOM renders', async function() {
 });
 ```
 
-### Nightwatch test
+## Nightwatch test
 Nightwatch tests are not reusable and must be written for specific use case. Documentation how to use and create Nightwatch test is [here](https://nightwatchjs.org/guide).
 
-#### How to check if component contain specific class
+### How to check if component contain specific class
 ```javascript
 'Bolt Image zoom': function(browser) {
   const { testingUrl } = browser.globals;
@@ -371,7 +369,7 @@ Nightwatch tests are not reusable and must be written for specific use case. Doc
 }
 ```
 
-#### How to check if image component renders with specific ratio and is rendered by "_wasInitiallyRendered" property
+### How to check if image component renders with specific ratio and is rendered by "_wasInitiallyRendered" property
 ```javascript
 'Bolt Image image is showed': function(browser) {
   const { testingUrl } = browser.globals;
@@ -413,7 +411,7 @@ Nightwatch tests are not reusable and must be written for specific use case. Doc
 }
 ```
 
-#### How to check if component exist, have specific class and contain some text
+### How to check if component exist, have specific class and contain some text
 ```javascript
 'Bolt Blockquote': function(browser) {
   const { testingUrl } = browser.globals;
@@ -453,7 +451,7 @@ Nightwatch tests are not reusable and must be written for specific use case. Doc
 }
 ```
 
-#### How to check playback rate
+### How to check playback rate
 ```javascript
 'Bolt Video Playback Rate': function(browser) {
   const { testingUrl } = browser.globals;
