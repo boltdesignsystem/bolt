@@ -161,9 +161,10 @@ class BoltImage extends withLitHtml() {
 
     const classes = cx(...this.initialClasses, 'c-bolt-image__image', {
       'c-bolt-image__lazyload': lazyload,
-      'c-bolt-image__lazyload--fade': lazyload && !this.isLoaded,
-      'c-bolt-image__lazyload--blur': lazyload && _isJpg && !this.isLoaded,
-      'js-lazyload': lazyload,
+      'c-bolt-image__lazyload--fade': lazyload && !this.isLazyLoaded,
+      'c-bolt-image__lazyload--blur': lazyload && _isJpg && !this.isLazyLoaded,
+      'js-lazyload': lazyload && !this.isLazyLoaded,
+      'is-lazyloaded': this.isLazyLoaded,
       'c-bolt-image--cover': cover,
     });
 
@@ -187,7 +188,7 @@ class BoltImage extends withLitHtml() {
             )}"
             data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
             sizes="${ifDefined(
-              this.isLoaded || (this.sizes && this.sizes !== 'auto')
+              ththis.isLazyLoaded || (this.sizes && this.sizes !== 'auto')
                 ? this.sizes
                 : `${this.offsetWidth}px`,
             )}"
