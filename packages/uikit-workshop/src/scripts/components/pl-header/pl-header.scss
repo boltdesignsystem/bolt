@@ -13,7 +13,6 @@ pl-header {
   background-color: $pl-color-black;
   background-color: var(--theme-secondary, $pl-color-black);
   max-height: 100vh;
-  overflow: auto;
 
   color: $pl-color-gray-20;
   color: var(--theme-text, $pl-color-gray-20);
@@ -34,6 +33,7 @@ pl-header {
     .pl-c-body--theme-sidebar & {
       position: fixed;
       position: sticky;
+      overflow: auto;
     /**
       * Header
       * 1) Set width to sidebar width defined above
