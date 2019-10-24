@@ -184,7 +184,12 @@ class BoltImage extends withLitHtml() {
       }
     }
 
-    const _isJpg = src && src.split('.').pop() === 'jpg';
+    const _isJpg =
+      src &&
+      src
+        .split('.')
+        .pop()
+        .includes('jpg');
     const _canUseRatio = ratioW > 0 && ratioH > 0 && useRatio && !cover;
     // Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder
     const _canUsePlaceholder = (_canUseRatio || cover) && _isJpg;
