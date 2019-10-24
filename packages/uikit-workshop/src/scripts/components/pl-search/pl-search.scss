@@ -124,7 +124,11 @@ pl-search {
     color: rgba(var(--theme-text-rgb), 0.67);
   }
 
-  &::-webkit-input-placeholder,
+  &::-webkit-input-placeholder {
+    color: $pl-color-white !important;
+    transition: all 0.1s ease;
+  }
+
   &::-moz-input-placeholder {
     color: $pl-color-white !important;
     transition: all 0.1s ease;
