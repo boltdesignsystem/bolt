@@ -9,7 +9,7 @@ properties:
     description: 'A Drupal-style attributes object with extra attributes to append to this component.'
   items:
     type: array
-    description: 'All items can be simple text or `items`.'
+    description: 'All items can be simple text or `items`. For an iterable item (eg an array), item.content will be displayed.'
     items:
       type: [string, object, array]
       description: Renderable content (i.e. a string, render array, or included pattern) for a single list item.
