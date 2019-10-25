@@ -70,71 +70,61 @@ class BoltButton extends BoltAction {
     // The buttonElement to render, based on the initial HTML passed alone.
     let buttonElement = null;
 
-    const slotMarkup = name => {
-      switch (name) {
-        case 'before':
-        case 'after':
-          const iconClasses = cx('c-bolt-button__icon', {
-            'is-empty': name in this.slots === false,
-          });
+    const innerSlots = () => {
+      const itemClasses = cx('c-bolt-button__item', {
+        'is-empty': 'default' in this.slots === false,
+      });
+      const beforeIconClasses = cx('c-bolt-button__icon', {
+        'is-empty': 'before' in this.slots === false,
+      });
+      const afterIconClasses = cx('c-bolt-button__icon', {
+        'is-empty': 'after' in this.slots === false,
+      });
 
-          return bolt.isServer
-            ? html`
-                ${name in this.slots
-                  ? html`
-                      <replace-with-grandchildren class="${iconClasses}"
-                        ><span class="c-bolt-button__icon-sizer"
-                          >${name in this.slots ? this.slot(name) : ''}</span
-                        ></replace-with-grandchildren
-                      >
-                    `
-                  : ''}
-              `
-            : html`
-                <span class="${iconClasses}"
-                  ><span class="c-bolt-button__icon-sizer"
-                    >${name in this.slots
-                      ? this.slot(name)
-                      : html`
-                          <slot name="${name}" />
-                        `}</span
-                  ></span
-                >
-              `;
-        default:
-          const itemClasses = cx('c-bolt-button__item', {
-            'is-empty': name in this.slots === false,
-          });
-
-          return bolt.isServer
-            ? html`
-                ${name in this.slots
-                  ? html`
-                      <replace-with-children class="${itemClasses}"
-                        >${name in this.slots
-                          ? this.slot('default')
-                          : ''}</replace-with-children
-                      >
-                    `
-                  : ''}
-              `
-            : html`
-                <span class="${itemClasses}"
-                  >${name in this.slots
-                    ? this.slot('default')
-                    : html`
-                        <slot />
-                      `}</span
-                >
-              `;
+      if (bolt.isServer) {
+        return html`
+          <replace-with-grandchildren class="${beforeIconClasses}"
+            ><span class="${cx(`c-bolt-button__icon-sizer`)}"
+              >${'before' in this.slots ? this.slot('before') : ''}</span
+            ></replace-with-grandchildren
+          ><replace-with-children class="${itemClasses}"
+            >${'default' in this.slots
+              ? this.slot('default')
+              : ''}</replace-with-children
+          ><replace-with-grandchildren class="${afterIconClasses}"
+            ><span class="${cx(`c-bolt-button__icon-sizer`)}"
+              >${'after' in this.slots ? this.slot('after') : ''}</span
+            ></replace-with-grandchildren
+          >
+        `;
+      } else {
+        return html`
+          <span class="${beforeIconClasses}"
+            ><span class="${cx(`c-bolt-button__icon-sizer`)}"
+              >${'before' in this.slots
+                ? this.slot('before')
+                : html`
+                    <slot name="before" />
+                  `}</span
+            ></span
+          ><span class="${itemClasses}"
+            >${'default' in this.slots
+              ? this.slot('default')
+              : html`
+                  <slot />
+                `}</span
+          ><span class="${afterIconClasses}"
+            ><span class="${cx(`c-bolt-button__icon-sizer`)}"
+              >${'after' in this.slots
+                ? this.slot('after')
+                : html`
+                    <slot name="after" />
+                  `}</span
+            ></span
+          >
+        `;
       }
     };
-
-    const innerSlots = [
-      slotMarkup('before'),
-      slotMarkup('default'),
-      slotMarkup('after'),
-    ];
 
     if (this.rootElement) {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
@@ -171,7 +161,7 @@ class BoltButton extends BoltAction {
         buttonElement.setAttribute('tabindex', this.props.tabindex);
       }
 
-      render(innerSlots, buttonElement);
+      render(innerSlots(), buttonElement);
     } else if (hasUrl) {
       buttonElement = html`
         <a
@@ -189,7 +179,7 @@ class BoltButton extends BoltAction {
           )}
           aria-disabled=${ifDefined(this.props.disabled ? 'true' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
-          >${innerSlots}</a
+          >${innerSlots()}</a
         >
       `;
     } else {
@@ -207,7 +197,7 @@ class BoltButton extends BoltAction {
           disabled=${ifDefined(this.props.disabled ? '' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
         >
-          ${innerSlots}
+          ${innerSlots()}
         </button>
       `;
     }
