@@ -2,23 +2,23 @@
 title: Manual testing standards
 ---
 
-## Main Benefits
+## Main benefits
 
 - Test repeatability
-- Simple instructions that all testers can proceed
+- Intuitive instructions that all testers can follow
 - The same language and wording used
 - Separate scenarios for tests
 
-## Best practises
+## Best practices
 
-- create `TESTING.md` file in root of the component to add manual testing steps
-- use Gherkin format for creating steps in scenarios
-- always linking to https://boltdesignsuystem.com for reference in functionally and visually tests
+- Create `TESTING.md` file in the component's rootfolder to add manual testing steps
+- Use Gherkin format for creating steps in scenarios
+- Always link to https://boltdesignsystem.com for reference in functional and visual tests
 
-## When create manual testing instructions
+## When to create manual testing instructions
 
-- when tests need additional manual testing
-- when we can't test some functionality using automatic testing
+- When a component needs additional manual testing
+- When we can't test some functionality using automatic testing
 
 ### Example of manual testing instructions
 

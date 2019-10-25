@@ -2,23 +2,23 @@
 title: JavaScript testing standards
 ---
 
-> The one imperfect test is better than no test at all.
+> One imperfect test is better than no test at all.
 
-## Main Benefits
+## Main benefits
 
 - Consistent approach to writing tests
-- Best practices can be passed by examples
+- Best practices shown through examples
 - Consistent formatting
 
 ## Best practices
 
-- test files should be added to `__tests__` folder in component root directory
-- naming of the test file should look like `component-name.js`
-- use `fixture` folder for images, icons or any additional resources needed for testing
-- use `testing-helpers` functions located in `packages/testing/testing-helpers/index.js`
-- use component schema to test schema props
-- create tests for all know use cases
-- after fixing a bug, create test to prevent that to happen once again
+- Test files should be added to `__tests__` folder in component root directory
+- Naming of the test file should look like `component-name.js`
+- Use `fixture` folder for images, icons or any additional resources needed for testing
+- Use `testing-helpers` functions located in `packages/testing/testing-helpers/index.js`
+- Use component schema to test schema props
+- Create tests for all known use cases
+- After fixing a bug, create test to prevent that from happening again
 
 ## What type of test we have
 
@@ -29,14 +29,13 @@ title: JavaScript testing standards
    - VRT test
    - Cross browser test
 1. NIGHTWATCH
-
    - E2E test
    - Cross browser test
    - Functionality test
 
 ## How to run tests
 
-All commands must be launched from root folder of the Bolt
+All commands must be run from the root directory of your Bolt project.
 
 1. All tests
    - `yarn test`
@@ -46,22 +45,22 @@ All commands must be launched from root folder of the Bolt
    - `npx jest 'path-to-test-file'`
    - example: `npx jest packages/components/bolt-button/__tests__/button.js`
 1. E2E full/quick tests live site
-   - full: `yarn test:e2e:full-live`
-   - quick: `yarn test:e2e:quick-live`
+   - Full: `yarn test:e2e:full-live`
+   - Quick: `yarn test:e2e:quick-live`
 1. E2E full/quick tests local
-   - full: `yarn test:e2e:full-local`
-   - quick: `yarn test:e2e:quick-local`
+   - Full: `yarn test:e2e:full-local`
+   - Quick: `yarn test:e2e:quick-local`
 1. E2E full/quick tests master branch
-   - full: `yarn test:e2e:full-master`
-   - quick: `yarn test:e2e:quick-master`
-1. E2E specific test localy
+   - Full: `yarn test:e2e:full-master`
+   - Quick: `yarn test:e2e:quick-master`
+1. E2E specific test locally
    - `NOW_URL='url-for-test' ./node_modules/.bin/nightwatch --config 'path-to-config' --env 'brwosers-list' --test 'path-to-e2e-test-file'`
-   - example: `NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,safari --test packages/components/bolt-accordion/__tests__/accordion.e2e.js`
+   - Example: `NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,safari --test packages/components/bolt-accordion/__tests__/accordion.e2e.js`
 
-_Note: To run E2E local test you should watch bolt files by launching: `yarn start`.\
-Note 2: Monorepo test will fail when you earlier not compile bolt at least one time._
+_Note: To run E2E local test you must first "watch" Bolt files by launching: `yarn start`.\
+Note 2: Monorepo test will fail if you have not yet compiled Bolt at least once._
 
-## JEST test
+## Jest examples
 
 ### How to create basic test
 
@@ -263,7 +262,7 @@ test('<bolt-image> with ratio object compiles', async () => {
 });
 ```
 
-_Note: Fixtures folder must be present in the `__tests__` folder in specific component_
+_Note: `fixtures` folder must be present in the `__tests__` folder of your specific component_
 
 ### How to create w/o Shadow DOM test
 
@@ -352,11 +351,11 @@ test('Default <bolt-button> with Shadow DOM renders', async function() {
 });
 ```
 
-## Nightwatch test
+## Nightwatch examples
 
-Nightwatch tests are not reusable and must be written for specific use case. Documentation how to use and create Nightwatch test is [here](https://nightwatchjs.org/guide).
+Nightwatch tests are not reusable and must be written for a specific use case. Documentation how to use and create Nightwatch test is [here](https://nightwatchjs.org/guide).
 
-### How to check if component contain specific class
+### How to check if component contains specific class
 
 ```javascript
 'Bolt Image zoom': function(browser) {
@@ -420,7 +419,7 @@ Nightwatch tests are not reusable and must be written for specific use case. Doc
 }
 ```
 
-### How to check if component exist, have specific class and contain some text
+### How to check if component exist, has specific class and contains certain text
 
 ```javascript
 'Bolt Blockquote': function(browser) {
