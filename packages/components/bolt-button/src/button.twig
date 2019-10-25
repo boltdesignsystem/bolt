@@ -121,15 +121,17 @@ Sort classes passed in via attributes into two groups:
 
 {% macro slottedIcon(icon, icon_position, slotName) %}
   {% if icon and icon_position == slotName %}
-    <replace-with-children class="c-bolt-button__icon">
-      {% set icon = icon | merge({
-        attributes: {
-          slot: slotName,
-          class: icon.attributes.class | default([])
-        }
-      }) %}
-      {% include "@bolt-components-icon/icon.twig" with icon only %}
-    </replace-with-children>
+    <replace-with-grandchildren class="c-bolt-button__icon">
+      <span class="c-bolt-button__icon-sizer">
+        {% set icon = icon | merge({
+          attributes: {
+            slot: slotName,
+            class: icon.attributes.class | default([])
+          }
+        }) %}
+        {% include "@bolt-components-icon/icon.twig" with icon only %}
+      </span>
+    </replace-with-grandchildren>
   {% endif %}
 {% endmacro %}
 
