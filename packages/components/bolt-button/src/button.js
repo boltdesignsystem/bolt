@@ -71,57 +71,65 @@ class BoltButton extends BoltAction {
     let buttonElement = null;
 
     const innerSlots = () => {
-      const itemClasses = cx('c-bolt-button__item', {
-        'is-empty': 'default' in this.slots === false,
-      });
-      const beforeIconClasses = cx('c-bolt-button__icon', {
-        'is-empty': 'before' in this.slots === false,
-      });
-      const afterIconClasses = cx('c-bolt-button__icon', {
-        'is-empty': 'after' in this.slots === false,
-      });
+      const itemClasses = cx('c-bolt-button__item');
+      const iconClasses = cx('c-bolt-button__icon');
+      const sizerClasses = cx('c-bolt-button__icon-sizer');
 
       if (bolt.isServer) {
         return html`
-          <replace-with-grandchildren class="${beforeIconClasses}"
-            ><span class="${cx(`c-bolt-button__icon-sizer`)}"
-              >${'before' in this.slots ? this.slot('before') : ''}</span
-            ></replace-with-grandchildren
-          ><replace-with-children class="${itemClasses}"
-            >${'default' in this.slots
-              ? this.slot('default')
-              : ''}</replace-with-children
-          ><replace-with-grandchildren class="${afterIconClasses}"
-            ><span class="${cx(`c-bolt-button__icon-sizer`)}"
-              >${'after' in this.slots ? this.slot('after') : ''}</span
-            ></replace-with-grandchildren
-          >
+          ${'before' in this.slots
+            ? html`
+                <replace-with-grandchildren class="${iconClasses}"
+                  ><span class="${sizerClasses}"
+                    >${this.slot('before')}</span
+                  ></replace-with-grandchildren
+                >
+              `
+            : ''}${'default' in this.slots
+            ? html`
+                <replace-with-grandchildren class="${itemClasses}"
+                  >${this.slot('default')}</replace-with-grandchildren
+                >
+              `
+            : ''}${'after' in this.slots
+            ? html`
+                <replace-with-grandchildren class="${iconClasses}"
+                  ><span class="${sizerClasses}"
+                    >${this.slot('after')}</span
+                  ></replace-with-grandchildren
+                >
+              `
+            : ''}
         `;
       } else {
         return html`
-          <span class="${beforeIconClasses}"
-            ><span class="${cx(`c-bolt-button__icon-sizer`)}"
-              >${'before' in this.slots
-                ? this.slot('before')
-                : html`
-                    <slot name="before" />
-                  `}</span
-            ></span
-          ><span class="${itemClasses}"
-            >${'default' in this.slots
-              ? this.slot('default')
-              : html`
-                  <slot />
-                `}</span
-          ><span class="${afterIconClasses}"
-            ><span class="${cx(`c-bolt-button__icon-sizer`)}"
-              >${'after' in this.slots
-                ? this.slot('after')
-                : html`
-                    <slot name="after" />
-                  `}</span
-            ></span
-          >
+          ${'before' in this.slots
+            ? html`
+                <span class="${iconClasses}"
+                  ><span class="${sizerClasses}"
+                    >${this.slot('before')}</span
+                  ></span
+                >
+              `
+            : html`
+                <slot name="before" />
+              `}${'default' in this.slots
+            ? html`
+                <span class="${itemClasses}">${this.slot('default')}</span>
+              `
+            : html`
+                <slot />
+              `}${'after' in this.slots
+            ? html`
+                <span class="${iconClasses}"
+                  ><span class="${sizerClasses}"
+                    >${this.slot('after')}</span
+                  ></span
+                >
+              `
+            : html`
+                <slot name="after" />
+              `}
         `;
       }
     };
