@@ -120,7 +120,7 @@ const iconGroupHorizontal = {
 
 const svgAnimations = {
   id: 'bolt-svg-animations',
-  title: 'Svg Animtions',
+  title: 'Svg Animations',
   content: `<bolt-svg-animations anim-type="orbit"></bolt-svg-animations>`,
 };
 
@@ -520,7 +520,7 @@ export function setupBolt(editor) {
     schema: pathwaysSchema,
     propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
     category: 'Starters',
-    blockTitle: 'Pathways',
+    blockTitle: 'Single Pathways',
     draggable: true,
     editable: false,
     highlightable: false,
@@ -549,6 +549,32 @@ export function setupBolt(editor) {
     ],
   });
 
+  // Just adding a second starter GrapesJS "Block" in addition to one above
+  BlockManager.add('Multiple Pathways', {
+    label: `<span title="">Multiple Pathways</span>`,
+    category: 'Starters',
+    select: true,
+    content: `<bolt-interactive-pathways>
+      <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
+      <bolt-interactive-pathway pathway-title="One-character starter">
+        ${starters.stepOneCharacterStarter}
+        ${starters.stepOneCharacterStarter}
+        ${starters.stepOneCharacterStarter}
+        ${starters.stepOneCharacterStarter}
+        ${starters.stepOneCharacterStarter}
+        ${starters.stepOneCharacterStarter}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Two-character starter">
+       ${starters.stepTwoCharacterStarter}
+       ${starters.stepTwoCharacterStarter}
+       ${starters.stepTwoCharacterStarter}
+       ${starters.stepTwoCharacterStarter}
+       ${starters.stepTwoCharacterStarter}
+       ${starters.stepTwoCharacterStarter}
+      </bolt-interactive-pathway>
+    </bolt-interactive-pathways>`,
+  });
+
   registerBoltComponent({
     name: 'bolt-interactive-pathway',
     draggable: false,
@@ -574,12 +600,12 @@ export function setupBolt(editor) {
         components: [
           {
             id: 'stepOneCharacterLorem',
-            title: 'Step - One Character Lorem',
+            title: 'Step - One-Character Starter',
             content: starters.stepOneCharacterLorem,
           },
           {
             id: 'stepTwoCharacterLorem',
-            title: 'Step - Two Character Lorem',
+            title: 'Step - Two-Character Starter',
             content: starters.stepTwoCharacterLorem,
           },
         ],
