@@ -69,7 +69,6 @@ class BoltButton extends BoltAction {
 
     // The buttonElement to render, based on the initial HTML passed alone.
     let buttonElement = null;
-    const self = this;
 
     const slotMarkup = name => {
       switch (name) {
