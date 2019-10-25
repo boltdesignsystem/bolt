@@ -9,12 +9,15 @@ import twoCharacters1 from './two-characters-1.html';
 import twoCharacters2 from './two-characters-2.html';
 import twoCharacters3 from './two-characters-3.html';
 import twoCharacters4 from './two-characters-4.html';
+import threeCharactersLorem from './three-characters-lorem.html';
 import oneCharacterLorem from './one-character-lorem.html';
 import oneCharacter1 from './one-character-1.html';
 import stepOneCharacterLorem from './step-one-character-lorem.html';
 import stepTwoCharacterLorem from './step-two-character-lorem.html';
 import stepOneCharacterStarter from './step-one-character-starter.html';
 import stepTwoCharacterStarter from './step-two-character-starter.html';
+import stepThreeCharacterStarter from './step-three-character-starter.html';
+
 import pathwayLorem from './pathwayLorem';
 
 export {
@@ -29,11 +32,13 @@ export {
   twoCharacters3,
   twoCharacters4,
   twoCharactersLorem,
+  threeCharactersLorem,
   oneCharacter1,
   oneCharacterLorem,
   stepOneCharacterLorem,
   stepTwoCharacterLorem,
   stepOneCharacterStarter,
   stepTwoCharacterStarter,
+  stepThreeCharacterStarter,
   pathwayLorem,
 };

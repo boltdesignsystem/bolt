@@ -1,0 +1,27 @@
+@import '@bolt/core';
+
+.c-bolt-three-character-layout {
+  // THIS CSS IS ENTIRELY WIP mostly cut and pasted from two-char
+  &__character-row {
+    @include bolt-margin-top(xlarge);
+    @include bolt-margin-bottom(xlarge);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__character {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--left {
+      transform: translateX(50%);
+      z-index: 1;
+    }
+
+    &--right {
+      transform: translateX(-50%);
+    }
+  }
+}
