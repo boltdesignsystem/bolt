@@ -229,12 +229,16 @@ async function createWebpackConfig(buildConfig) {
       loader: 'sass-loader',
       options: {
         sourceMap: config.sourceMaps,
+        outputStyle: 'expanded',
+        data: globalSassData.join('\n'),
         prependData: globalSassData.join('\n'),
+        functions: sassExportData,
         sassOptions: {
           importer: [npmSass.importer],
           functions: sassExportData,
           precision: 3,
-          outputStyle: 'nested',
+          outputStyle: 'expanded',
+          data: globalSassData.join('\n'),
         },
       },
     },
