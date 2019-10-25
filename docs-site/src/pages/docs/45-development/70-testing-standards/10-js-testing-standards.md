@@ -4,7 +4,7 @@ title: JavaScript testing standards
 
 > The one imperfect test is better than no test at all.
 
-## Main Benefits 
+## Main Benefits
 
 - Consistent approach to writing tests
 - Best practices can be passed by examples
@@ -23,46 +23,48 @@ title: JavaScript testing standards
 ## What type of test we have
 
 1. JEST
-    - Unit test
-    - Smoke test
-    - Integration test
-    - VRT test
-    - Cross browser test
+   - Unit test
+   - Smoke test
+   - Integration test
+   - VRT test
+   - Cross browser test
 1. NIGHTWATCH
-    - E2E test
-    - Cross browser test
-    - Functionality test
-    
+
+   - E2E test
+   - Cross browser test
+   - Functionality test
+
 ## How to run tests
 
-All commands must be launched from root folder of the Bolt 
+All commands must be launched from root folder of the Bolt
 
 1. All tests
-    - `yarn test`
+   - `yarn test`
 1. All Jest tests
-    - `yarn test:js`
+   - `yarn test:js`
 1. Specific Jest test
-    - `npx jest 'path-to-test-file'`
-    - example: `npx jest packages/components/bolt-button/__tests__/button.js`
+   - `npx jest 'path-to-test-file'`
+   - example: `npx jest packages/components/bolt-button/__tests__/button.js`
 1. E2E full/quick tests live site
-    - full: `yarn test:e2e:full-live`
-    - quick: `yarn test:e2e:quick-live`
+   - full: `yarn test:e2e:full-live`
+   - quick: `yarn test:e2e:quick-live`
 1. E2E full/quick tests local
-    - full: `yarn test:e2e:full-local`
-    - quick: `yarn test:e2e:quick-local`
+   - full: `yarn test:e2e:full-local`
+   - quick: `yarn test:e2e:quick-local`
 1. E2E full/quick tests master branch
-    - full: `yarn test:e2e:full-master`
-    - quick: `yarn test:e2e:quick-master`
+   - full: `yarn test:e2e:full-master`
+   - quick: `yarn test:e2e:quick-master`
 1. E2E specific test localy
-    - `NOW_URL='url-for-test' ./node_modules/.bin/nightwatch --config 'path-to-config' --env 'brwosers-list' --test 'path-to-e2e-test-file'` 
-    - example: `NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,safari --test packages/components/bolt-accordion/__tests__/accordion.e2e.js`
+   - `NOW_URL='url-for-test' ./node_modules/.bin/nightwatch --config 'path-to-config' --env 'brwosers-list' --test 'path-to-e2e-test-file'`
+   - example: `NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js --env chrome,safari --test packages/components/bolt-accordion/__tests__/accordion.e2e.js`
 
-*Note: To run E2E local test you should watch bolt files by launching: `yarn start`.\
-Note 2: Monorepo test will fail when you earlier not compile bolt at least one time.*
+_Note: To run E2E local test you should watch bolt files by launching: `yarn start`.\
+Note 2: Monorepo test will fail when you earlier not compile bolt at least one time._
 
 ## JEST test
 
 ### How to create basic test
+
 ```javascript
 test('Basic usage', async () => {
   const results = await render('@bolt-components-button/button.twig', {
@@ -74,9 +76,10 @@ test('Basic usage', async () => {
 ```
 
 ### How to create schema prop test
+
 ```javascript
 const { tag } = schema.properties;
- 
+
 tag.enum.forEach(async tagChoice => {
   test(`Button tag: ${tagChoice}`, async () => {
     const results = await render('@bolt-components-button/button.twig', {
@@ -90,6 +93,7 @@ tag.enum.forEach(async tagChoice => {
 ```
 
 ### How to create boolean prop test
+
 ```javascript
 test('Button with "disabled" adds attr to <a>', async () => {
   const results = await render('@bolt-components-button/button.twig', {
@@ -103,6 +107,7 @@ test('Button with "disabled" adds attr to <a>', async () => {
 ```
 
 ### How to create nested components / string rendering test
+
 ```javascript
 test('<bolt-ol>with nested <bolt-ul> list', async () => {
   const results = await renderString(`
@@ -132,6 +137,7 @@ test('<bolt-ol>with nested <bolt-ul> list', async () => {
 ```
 
 ### How to create breakpoint/viewport test
+
 ```javascript
 const viewportSizes = [
   {
@@ -155,8 +161,7 @@ const viewportSizes = [
     height: 568,
   },
 ];
- 
- 
+
 test(
   '<bolt-navbar> with 6 lengthy links',
   async () => {
@@ -197,15 +202,15 @@ test(
     });
     expect(ok).toBe(true);
     expect(html).toMatchSnapshot();
- 
+
     await page.evaluate(html => {
       const div = document.createElement('div');
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
     }, html);
- 
+
     const screenshots = [];
- 
+
     async function isVisible(selector) {
       return await page.evaluate(selector => {
         const e = document.querySelector(selector);
@@ -219,15 +224,15 @@ test(
           : false;
       }, selector);
     }
- 
+
     for (const item of viewportSizes) {
       const { height, width, size } = item;
       screenshots[size] = [];
- 
+
       await page.setViewport({ height, width });
       screenshots[size].default = await page.screenshot();
       expect(screenshots[size].default).toMatchImageSnapshot(imageVrtConfig);
- 
+
       if (await isVisible('.c-bolt-nav-priority__show-more')) {
         await page.tap('.c-bolt-nav-priority__button');
         await page.waitFor(500);
@@ -245,6 +250,7 @@ test(
 ```
 
 ### How to create external resources test
+
 ```javascript
 test('<bolt-image> with ratio object compiles', async () => {
   const results = await render('@bolt-components-image/image.twig', {
@@ -256,26 +262,27 @@ test('<bolt-image> with ratio object compiles', async () => {
   expect(results.html).toMatchSnapshot();
 });
 ```
-*Note: Fixtures folder must be present in the `__tests__` folder in specific component*
+
+_Note: Fixtures folder must be present in the `__tests__` folder in specific component_
 
 ### How to create w/o Shadow DOM test
+
 ```javascript
 const buttonNoShadowHTML = `
   <bolt-button no-shadow>
     This is a button
   </bolt-button>
 `;
- 
- 
+
 test('Default <bolt-button> w/o Shadow DOM renders', async function() {
   const buttonOuterHTML = await page.evaluate(async buttonNoShadowHTML => {
     const wrapper = document.createElement('div');
     wrapper.innerHTML = buttonNoShadowHTML;
     document.body.appendChild(wrapper);
- 
+
     const button = document.querySelector('bolt-button');
     const allElements = [button];
- 
+
     return await Promise.all(
       allElements.map(element => {
         if (element._wasInitiallyRendered) return;
@@ -288,37 +295,36 @@ test('Default <bolt-button> w/o Shadow DOM renders', async function() {
       return button.outerHTML;
     });
   }, buttonNoShadowHTML);
- 
+
   const buttonRenderedHTML = await html(buttonOuterHTML);
   expect(buttonRenderedHTML).toMatchSnapshot();
 });
 ```
 
 ### How to create with Shadow DOM test
+
 ```javascript
 const buttonNoShadowHTML = `
   <bolt-button no-shadow>
     This is a button
   </bolt-button>
 `;
- 
- 
+
 const buttonHTML = `
   <bolt-button>
     Button Test -- Shadow Root HTML
   </bolt-button>
 `;
- 
- 
+
 test('Default <bolt-button> with Shadow DOM renders', async function() {
   const buttonShadowRoot = await page.evaluate(async buttonHTML => {
     const wrapper = document.createElement('div');
     wrapper.innerHTML = buttonHTML;
     document.body.appendChild(wrapper);
- 
+
     const button = document.querySelector('bolt-button');
     const allElements = [button];
- 
+
     return await Promise.all(
       allElements.map(element => {
         if (element._wasInitiallyRendered) return;
@@ -331,14 +337,14 @@ test('Default <bolt-button> with Shadow DOM renders', async function() {
       return button.renderRoot.innerHTML;
     });
   }, buttonHTML);
- 
+
   const renderedShadowRoot = await html(`<div>${buttonShadowRoot}</div>`);
- 
+
   expect(renderedShadowRoot.innerHTML).toMatchSnapshot();
- 
+
   await page.waitFor(500);
   const image = await page.screenshot();
- 
+
   expect(image).toMatchImageSnapshot({
     failureThreshold: '0.01',
     failureThresholdType: 'percent',
@@ -347,16 +353,18 @@ test('Default <bolt-button> with Shadow DOM renders', async function() {
 ```
 
 ## Nightwatch test
+
 Nightwatch tests are not reusable and must be written for specific use case. Documentation how to use and create Nightwatch test is [here](https://nightwatchjs.org/guide).
 
 ### How to check if component contain specific class
+
 ```javascript
 'Bolt Image zoom': function(browser) {
   const { testingUrl } = browser.globals;
   console.log(`global browser url: ${testingUrl}`);
   currentBrowser = '--' + browser.currentEnv || 'chrome';
   let testName = 'bolt-image-zoom';
- 
+
   browser
     .url(
       `${testingUrl}/pattern-lab/patterns/02-components-image-30-image-zoom-variation/02-components-image-30-image-zoom-variation.html`,
@@ -369,7 +377,8 @@ Nightwatch tests are not reusable and must be written for specific use case. Doc
 }
 ```
 
-### How to check if image component renders with specific ratio and is rendered by "_wasInitiallyRendered" property
+### How to check if image component renders with specific ratio and is rendered by "\_wasInitiallyRendered" property
+
 ```javascript
 'Bolt Image image is showed': function(browser) {
   const { testingUrl } = browser.globals;
@@ -377,7 +386,7 @@ Nightwatch tests are not reusable and must be written for specific use case. Doc
   currentBrowser = '--' + browser.currentEnv || 'chrome';
   let testName = 'bolt-image-showed';
   let bodyWidth = 0;
- 
+
   browser
     .url(
       `${testingUrl}/pattern-lab/patterns/02-components-image-05-image/02-components-image-05-image.html`,
@@ -388,7 +397,7 @@ Nightwatch tests are not reusable and must be written for specific use case. Doc
     })
     .getElementSize('bolt-image', function(result) {
       const imageHeight = Math.round(bodyWidth / 1.3333333333);
- 
+
       this.assert.equal(result.value.width, bodyWidth);
       this.assert.equal(result.value.height, imageHeight);
     })
@@ -412,13 +421,14 @@ Nightwatch tests are not reusable and must be written for specific use case. Doc
 ```
 
 ### How to check if component exist, have specific class and contain some text
+
 ```javascript
 'Bolt Blockquote': function(browser) {
   const { testingUrl } = browser.globals;
   console.log(`global browser url: ${testingUrl}`);
   currentBrowser = '--' + browser.currentEnv || 'chrome';
   let testName = 'bolt-blockquote';
- 
+
   browser
     .url(
       `${testingUrl}/pattern-lab/patterns/02-components-blockquote-10-blockquote-alignItems-variation/02-components-blockquote-10-blockquote-alignItems-variation.html`,
@@ -452,13 +462,14 @@ Nightwatch tests are not reusable and must be written for specific use case. Doc
 ```
 
 ### How to check playback rate
+
 ```javascript
 'Bolt Video Playback Rate': function(browser) {
   const { testingUrl } = browser.globals;
   console.log(`global browser url: ${testingUrl}`);
   currentBrowser = '--' + browser.currentEnv || 'chrome';
   let testName = 'bolt-video-playback-rate';
- 
+
   browser
     .url(
       `${testingUrl}/pattern-lab/patterns/02-components-video-35-video-with-inline-script-and-external-controls/02-components-video-35-video-with-inline-script-and-external-controls.html`,

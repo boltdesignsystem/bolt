@@ -10,15 +10,18 @@ title: Manual testing standards
 - Separate scenarios for tests
 
 ## Best practises
+
 - create `TESTING.md` file in root of the component to add manual testing steps
 - use Gherkin format for creating steps in scenarios
 - always linking to https://boltdesignsuystem.com for reference in functionally and visually tests
 
 ## When create manual testing instructions
+
 - when tests need additional manual testing
 - when we can't test some functionality using automatic testing
 
 ### Example of manual testing instructions
+
 ```markdown
 # Button component testing steps
 
