@@ -104,6 +104,7 @@ class BoltInteractivePathways extends withLitContext() {
   }
 
   beginItAll() {
+    console.debug('pathways beginItAll has fired');
     this.showPathway(0);
   }
 
@@ -181,6 +182,7 @@ class BoltInteractivePathways extends withLitContext() {
 
   render() {
     const props = this.validateProps(this.props);
+    console.debug('pathways render has happened');
 
     const classes = cx('c-bolt-interactive-pathways', {
       [`t-bolt-${props.theme}`]: !!props.theme,
