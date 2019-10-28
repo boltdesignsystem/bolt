@@ -21,8 +21,6 @@ $bolt-button-transition: $bolt-transition;
 $bolt-button-translate--hover: translate3d(0, -1px, 0);
 $bolt-button-translate--active: translate3d(0, 1px, 0);
 
-
-
 /**
  * Tools
  */
@@ -81,8 +79,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 
   &:focus:not(:hover):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
   &.is-focus:not(.is-hover):not(.is-disabled) {
-    box-shadow:
-      0 -1px 2px bolt-theme(background),
+    box-shadow: 0 -1px 2px bolt-theme(background),
       0 1px 2px bolt-theme(background),
       0 0 5px rgb(59, 153, 252),
       0 -1px 0.65rem rgb(59, 153, 252),
