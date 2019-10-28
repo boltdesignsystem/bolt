@@ -549,14 +549,13 @@ export function setupBolt(editor) {
     ],
   });
 
-  // Just adding a second starter GrapesJS "Block" in addition to one above
-  BlockManager.add('Multiple Pathways', {
-    label: `<span title="">Multiple Pathways</span>`,
+  BlockManager.add('One-Char Pathways', {
+    label: `<span title="">One-char Multiple Pathways</span>`,
     category: 'Starters',
     select: true,
     content: `<bolt-interactive-pathways>
       <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
-      <bolt-interactive-pathway pathway-title="One-character starter">
+      <bolt-interactive-pathway pathway-title="One-character starter pathway 1">
         ${starters.stepOneCharacterStarter}
         ${starters.stepOneCharacterStarter}
         ${starters.stepOneCharacterStarter}
@@ -564,13 +563,38 @@ export function setupBolt(editor) {
         ${starters.stepOneCharacterStarter}
         ${starters.stepOneCharacterStarter}
       </bolt-interactive-pathway>
-      <bolt-interactive-pathway pathway-title="Two-character starter">
-       ${starters.stepTwoCharacterStarter}
-       ${starters.stepTwoCharacterStarter}
-       ${starters.stepTwoCharacterStarter}
-       ${starters.stepTwoCharacterStarter}
-       ${starters.stepTwoCharacterStarter}
-       ${starters.stepTwoCharacterStarter}
+      <bolt-interactive-pathway pathway-title="One-character starter pathway 2">
+        ${starters.stepOneCharacterStarter}
+        ${starters.stepOneCharacterStarter}
+        ${starters.stepOneCharacterStarter}
+        ${starters.stepOneCharacterStarter}
+        ${starters.stepOneCharacterStarter}
+        ${starters.stepOneCharacterStarter}
+      </bolt-interactive-pathway>
+    </bolt-interactive-pathways>`,
+  });
+
+  BlockManager.add('Two-Char Pathways', {
+    label: `<span title="">Two-char multiple Pathways</span>`,
+    category: 'Starters',
+    select: true,
+    content: `<bolt-interactive-pathways>
+      <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
+      <bolt-interactive-pathway pathway-title="Two-character starter pathway 1">
+        ${starters.stepTwoCharacterStarter}
+        ${starters.stepTwoCharacterStarter}
+        ${starters.stepTwoCharacterStarter}
+        ${starters.stepTwoCharacterStarter}
+        ${starters.stepTwoCharacterStarter}
+        ${starters.stepTwoCharacterStarter}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Two-character starter pathway 2">
+        ${starters.stepTwoCharacterStarter}
+        ${starters.stepTwoCharacterStarter}
+        ${starters.stepTwoCharacterStarter}
+        ${starters.stepTwoCharacterStarter}
+        ${starters.stepTwoCharacterStarter}
+        ${starters.stepTwoCharacterStarter}
       </bolt-interactive-pathway>
     </bolt-interactive-pathways>`,
   });
