@@ -29,7 +29,8 @@
     } only %}
   {% endset %}
 
-  <h3>Inline form: standard width</h3>
+  <h3>Inline inputs: auto width</h3>
+  <p>Use a bolt-list with display set to inline, and pass each input as an item. This will create an inline layout with multiple inputs. The width of each input will be adjusted to fit its content.</p>
   {% include "@bolt-components-list/list.twig" with {
     display: "inline",
     spacing: "xsmall",
@@ -41,7 +42,8 @@
     ]
   } only %}
 
-  <h3>Inline form: full width</h3>
+  <h3>Inline inputs: flexible width</h3>
+  <p>Use a bolt-list with display set to flex, and pass each input as an item. This will create a flexible layout with multiple inputs. The width of each input will be adjusted to the available space to fill up the full width of the layout.</p>
   {% include "@bolt-components-list/list.twig" with {
     display: "flex",
     spacing: "xsmall",
