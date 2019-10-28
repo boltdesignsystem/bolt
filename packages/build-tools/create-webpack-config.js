@@ -233,6 +233,7 @@ async function createWebpackConfig(buildConfig) {
         data: globalSassData.join('\n'),
         prependData: globalSassData.join('\n'),
         functions: sassExportData,
+        precision: 3,
         sassOptions: {
           importer: [npmSass.importer],
           functions: sassExportData,
