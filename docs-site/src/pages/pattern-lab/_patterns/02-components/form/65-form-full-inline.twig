@@ -21,42 +21,35 @@
     } only %}
   {% endset %}
 
-  <div style="display: inline-flex; vertical-align: top;">
-    {{ form_field }}
-  </div>
+  {% set full_width_submit_button %}
+    {% include "@bolt-components-form/form-button.twig" with {
+      text: "Sign up now",
+      tag: "submit",
+      width: "full",
+    } only %}
+  {% endset %}
 
-  <div style="display: inline-flex;">
-    {{ submit_button }}
-  </div>
-
-  <div style="display:flex;">
-    <div style="flex-grow: 1;">
-      {{ form_field }}
-    </div>
-    <div style="flex-grow: 0;">
-      {{ submit_button }}
-    </div>
-  </div>
-
-  {% grid 'o-bolt-grid--flex o-bolt-grid--matrix' %}
-    {% cell 'u-bolt-width-1/1 u-bolt-width-3/4@small' %}
-      {{ form_field }}
-    {% endcell %}
-
-    {% cell 'u-bolt-width-1/1 u-bolt-width-1/4@small' %}
-      {{ submit_button }}
-    {% endcell %}
-  {% endgrid %}
-
-
+  <h3>Inline form: standard width</h3>
   {% include "@bolt-components-list/list.twig" with {
     display: "inline",
     spacing: "xsmall",
     align: "start",
-    valign: "center",
+    valign: "start",
     items: [
       form_field,
       submit_button
+    ]
+  } only %}
+
+  <h3>Inline form: full width</h3>
+  {% include "@bolt-components-list/list.twig" with {
+    display: "flex",
+    spacing: "xsmall",
+    align: "start",
+    valign: "start",
+    items: [
+      form_field,
+      full_width_submit_button
     ]
   } only %}
 {% endset %}
