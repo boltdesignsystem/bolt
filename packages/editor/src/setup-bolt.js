@@ -539,6 +539,21 @@ export function setupBolt(editor) {
     </bolt-interactive-pathways>`,
   });
 
+  BlockManager.add('Multiple Two-Character Pathways', {
+    label: `<span title="">Multiple Two-character Pathways</span>`,
+    category: 'Starters',
+    select: true,
+    content: `<bolt-interactive-pathways>
+      <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
+      <bolt-interactive-pathway pathway-title="Billing Inquiries">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Another story">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+    </bolt-interactive-pathways>`,
+  });
+
   registerBoltComponent({
     name: 'bolt-interactive-pathway',
     draggable: false,
