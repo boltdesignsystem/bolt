@@ -20,7 +20,7 @@ import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore
 import linkSchema from '@bolt/components-link/link.schema.yml';
 // import { animationNames } from '@bolt/components-animate/animation-meta';
-import { isChildOfEl, convertSchemaPropToTrait } from './utils';
+import { isChildOfEl, convertSchemaPropToTrait, getStepsLorem } from './utils';
 
 class EditorRegisterBoltError extends Error {}
 
@@ -515,86 +515,26 @@ export function setupBolt(editor) {
     ],
   });
 
-  registerBoltComponent({
-    name: 'bolt-interactive-pathways',
-    schema: pathwaysSchema,
-    propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
-    category: 'Starters',
-    blockTitle: 'Single Pathways',
-    draggable: true,
-    editable: false,
-    highlightable: false,
-    registerBlock: true,
-    slots: {
-      default: 'bolt-interactive-pathway',
-    },
-    initialContent: [
-      `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
-      `<bolt-interactive-pathway pathway-title="First Title">
-        ${starters.stepOneCharacterLorem}
-        ${starters.stepTwoCharacterLorem}
-      </bolt-interactive-pathway>`,
-    ],
-    slotControls: [
-      {
-        slotName: 'default',
-        components: [
-          {
-            id: 'pathway',
-            title: 'Pathway',
-            content: starters.pathwayLorem,
-          },
-        ],
-      },
-    ],
-  });
-
-  BlockManager.add('One-Char Pathways', {
-    label: `<span title="">One-char Multiple Pathways</span>`,
+  BlockManager.add('One-Char Pathway', {
+    label: `<span title="">One-character Pathway</span>`,
     category: 'Starters',
     select: true,
     content: `<bolt-interactive-pathways>
       <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
-      <bolt-interactive-pathway pathway-title="One-character starter pathway 1">
-        ${starters.stepOneCharacterStarter}
-        ${starters.stepOneCharacterStarter}
-        ${starters.stepOneCharacterStarter}
-        ${starters.stepOneCharacterStarter}
-        ${starters.stepOneCharacterStarter}
-        ${starters.stepOneCharacterStarter}
-      </bolt-interactive-pathway>
-      <bolt-interactive-pathway pathway-title="One-character starter pathway 2">
-        ${starters.stepOneCharacterStarter}
-        ${starters.stepOneCharacterStarter}
-        ${starters.stepOneCharacterStarter}
-        ${starters.stepOneCharacterStarter}
-        ${starters.stepOneCharacterStarter}
-        ${starters.stepOneCharacterStarter}
+      <bolt-interactive-pathway pathway-title="Billing Inquiries">
+        ${getStepsLorem(starters.stepOneCharacterStarter, 6)}
       </bolt-interactive-pathway>
     </bolt-interactive-pathways>`,
   });
 
-  BlockManager.add('Two-Char Pathways', {
-    label: `<span title="">Two-char multiple Pathways</span>`,
+  BlockManager.add('Two-Char Pathway', {
+    label: `<span title="">Two-character Pathway</span>`,
     category: 'Starters',
     select: true,
     content: `<bolt-interactive-pathways>
       <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
-      <bolt-interactive-pathway pathway-title="Two-character starter pathway 1">
-        ${starters.stepTwoCharacterStarter}
-        ${starters.stepTwoCharacterStarter}
-        ${starters.stepTwoCharacterStarter}
-        ${starters.stepTwoCharacterStarter}
-        ${starters.stepTwoCharacterStarter}
-        ${starters.stepTwoCharacterStarter}
-      </bolt-interactive-pathway>
-      <bolt-interactive-pathway pathway-title="Two-character starter pathway 2">
-        ${starters.stepTwoCharacterStarter}
-        ${starters.stepTwoCharacterStarter}
-        ${starters.stepTwoCharacterStarter}
-        ${starters.stepTwoCharacterStarter}
-        ${starters.stepTwoCharacterStarter}
-        ${starters.stepTwoCharacterStarter}
+      <bolt-interactive-pathway pathway-title="Billing Inquiries">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
       </bolt-interactive-pathway>
     </bolt-interactive-pathways>`,
   });
@@ -631,6 +571,44 @@ export function setupBolt(editor) {
             id: 'stepTwoCharacterLorem',
             title: 'Step - Two-Character Starter',
             content: starters.stepTwoCharacterLorem,
+          },
+        ],
+      },
+    ],
+  });
+
+  registerBoltComponent({
+    name: 'bolt-interactive-pathways',
+    schema: pathwaysSchema,
+    propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
+    category: 'Starters',
+    blockTitle: 'Multiple Pathways',
+    draggable: true,
+    editable: false,
+    highlightable: false,
+    registerBlock: true,
+    slots: {
+      default: 'bolt-interactive-pathway',
+    },
+    initialContent: [
+      `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
+      `<bolt-interactive-pathway pathway-title="First Title">
+        ${starters.stepOneCharacterLorem}
+        ${starters.stepTwoCharacterLorem}
+      </bolt-interactive-pathway>`,
+      `<bolt-interactive-pathway pathway-title="Second Title">
+        ${starters.stepOneCharacterLorem}
+        ${starters.stepTwoCharacterLorem}
+      </bolt-interactive-pathway>`,
+    ],
+    slotControls: [
+      {
+        slotName: 'default',
+        components: [
+          {
+            id: 'pathways',
+            title: 'Pathways',
+            content: starters.pathwayLorem,
           },
         ],
       },

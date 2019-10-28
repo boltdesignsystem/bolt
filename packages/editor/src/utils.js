@@ -98,3 +98,22 @@ export function addThemeContextClasses({ space, canvasWrapper }) {
   }
   return themeClass;
 }
+
+/**
+ * Wrap a component in a numbered `bolt-interactive-step`.
+ *
+ * @param {string} starter: The starter HTML to wrap. Should not include bolt-interactive-step
+ * @param {number} numberOfSteps The quantity of numbered steps to get.
+ * @returns {string}
+ */
+export function getStepsLorem(starter, numberOfSteps) {
+  let returnVal = '';
+  for (let i = 1; i <= numberOfSteps; i++) {
+    returnVal = `${returnVal}
+    <bolt-interactive-step tab-title="Lorem ipsum step ${i}">
+      ${starter}
+    </bolt-interactive-step>
+  `;
+  }
+  return returnVal;
+}
