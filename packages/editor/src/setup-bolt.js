@@ -515,8 +515,8 @@ export function setupBolt(editor) {
     ],
   });
 
-  BlockManager.add('One-Char Pathway', {
-    label: `<span title="">One-character Pathway</span>`,
+  BlockManager.add('One-Character Pathway', {
+    label: `<span title="">One-Character Pathway</span>`,
     category: 'Starters',
     select: true,
     content: `<bolt-interactive-pathways>
@@ -527,20 +527,35 @@ export function setupBolt(editor) {
     </bolt-interactive-pathways>`,
   });
 
-  BlockManager.add('Two-Char Pathway', {
-    label: `<span title="">Two-character Pathway</span>`,
+  BlockManager.add('Two-Character Pathway', {
+    label: `<span title="">Two-Character Pathway</span>`,
     category: 'Starters',
     select: true,
     content: `<bolt-interactive-pathways>
       <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
       <bolt-interactive-pathway pathway-title="Billing Inquiries">
         ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+    </bolt-interactive-pathways>`,
+  });
+
+  BlockManager.add('Multiple One-Character Pathways', {
+    label: `<span title="">One-Character Pathways</span>`,
+    category: 'Starters',
+    select: true,
+    content: `<bolt-interactive-pathways>
+      <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
+      <bolt-interactive-pathway pathway-title="Billing Inquiries">
+        ${getStepsLorem(starters.stepOneCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Another story">
+        ${getStepsLorem(starters.stepOneCharacterStarter, 6)}
       </bolt-interactive-pathway>
     </bolt-interactive-pathways>`,
   });
 
   BlockManager.add('Multiple Two-Character Pathways', {
-    label: `<span title="">Multiple Two-character Pathways</span>`,
+    label: `<span title="">Two-character Pathways</span>`,
     category: 'Starters',
     select: true,
     content: `<bolt-interactive-pathways>
@@ -548,48 +563,10 @@ export function setupBolt(editor) {
       <bolt-interactive-pathway pathway-title="Billing Inquiries">
         ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
       </bolt-interactive-pathway>
-      <bolt-interactive-pathway pathway-title="Another story">
+       <bolt-interactive-pathway pathway-title="Another story">
         ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
       </bolt-interactive-pathway>
     </bolt-interactive-pathways>`,
-  });
-
-  registerBoltComponent({
-    name: 'bolt-interactive-pathway',
-    draggable: false,
-    editable: false,
-    highlightable: true,
-    extraTraits: ['pathway-title'],
-    removalEventsToFireOnParents: [
-      {
-        parentSelector: 'bolt-interactive-pathways',
-        eventFactory: () => {
-          return new CustomEvent('bolt-interactive-pathway:title-updated', {
-            bubbles: true,
-          });
-        },
-      },
-    ],
-    slots: {
-      default: 'bolt-interactive-step',
-    },
-    slotControls: [
-      {
-        slotName: 'default',
-        components: [
-          {
-            id: 'stepOneCharacterLorem',
-            title: 'Step - One-Character Starter',
-            content: starters.stepOneCharacterLorem,
-          },
-          {
-            id: 'stepTwoCharacterLorem',
-            title: 'Step - Two-Character Starter',
-            content: starters.stepTwoCharacterLorem,
-          },
-        ],
-      },
-    ],
   });
 
   // Commented out because this work was superceded by above starters. But leaving because they're simpler and client may want to reinstate.
@@ -630,6 +607,44 @@ export function setupBolt(editor) {
   //     },
   //   ],
   // });
+
+  registerBoltComponent({
+    name: 'bolt-interactive-pathway',
+    draggable: false,
+    editable: false,
+    highlightable: true,
+    extraTraits: ['pathway-title'],
+    removalEventsToFireOnParents: [
+      {
+        parentSelector: 'bolt-interactive-pathways',
+        eventFactory: () => {
+          return new CustomEvent('bolt-interactive-pathway:title-updated', {
+            bubbles: true,
+          });
+        },
+      },
+    ],
+    slots: {
+      default: 'bolt-interactive-step',
+    },
+    slotControls: [
+      {
+        slotName: 'default',
+        components: [
+          {
+            id: 'stepOneCharacterLorem',
+            title: 'Step - One-Character Starter',
+            content: starters.stepOneCharacterLorem,
+          },
+          {
+            id: 'stepTwoCharacterLorem',
+            title: 'Step - Two-Character Starter',
+            content: starters.stepTwoCharacterLorem,
+          },
+        ],
+      },
+    ],
+  });
 
   registerBoltComponent({
     name: 'bolt-animate',
