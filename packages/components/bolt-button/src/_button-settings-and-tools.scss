@@ -59,6 +59,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   border-style: $bolt-button-border-style;
   @include bolt-shadow('level-20');
   box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20')});
+  outline: none;
   will-change: box-shadow;
 
   &:before {
