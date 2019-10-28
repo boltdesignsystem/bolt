@@ -592,43 +592,44 @@ export function setupBolt(editor) {
     ],
   });
 
-  registerBoltComponent({
-    name: 'bolt-interactive-pathways',
-    schema: pathwaysSchema,
-    propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
-    category: 'Starters',
-    blockTitle: 'Multiple Pathways',
-    draggable: true,
-    editable: false,
-    highlightable: false,
-    registerBlock: true,
-    slots: {
-      default: 'bolt-interactive-pathway',
-    },
-    initialContent: [
-      `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
-      `<bolt-interactive-pathway pathway-title="First Title">
-        ${starters.stepOneCharacterLorem}
-        ${starters.stepTwoCharacterLorem}
-      </bolt-interactive-pathway>`,
-      `<bolt-interactive-pathway pathway-title="Second Title">
-        ${starters.stepOneCharacterLorem}
-        ${starters.stepTwoCharacterLorem}
-      </bolt-interactive-pathway>`,
-    ],
-    slotControls: [
-      {
-        slotName: 'default',
-        components: [
-          {
-            id: 'pathways',
-            title: 'Pathways',
-            content: starters.pathwayLorem,
-          },
-        ],
-      },
-    ],
-  });
+  // Commented out because this work was superceded by above starters. But leaving because they're simpler and client may want to reinstate.
+  // registerBoltComponent({
+  //   name: 'bolt-interactive-pathways',
+  //   schema: pathwaysSchema,
+  //   propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
+  //   category: 'Starters',
+  //   blockTitle: 'Multiple Pathways',
+  //   draggable: true,
+  //   editable: false,
+  //   highlightable: false,
+  //   registerBlock: true,
+  //   slots: {
+  //     default: 'bolt-interactive-pathway',
+  //   },
+  //   initialContent: [
+  //     `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
+  //     `<bolt-interactive-pathway pathway-title="First Title">
+  //       ${starters.stepOneCharacterLorem}
+  //       ${starters.stepTwoCharacterLorem}
+  //     </bolt-interactive-pathway>`,
+  //     `<bolt-interactive-pathway pathway-title="Second Title">
+  //       ${starters.stepOneCharacterLorem}
+  //       ${starters.stepTwoCharacterLorem}
+  //     </bolt-interactive-pathway>`,
+  //   ],
+  //   slotControls: [
+  //     {
+  //       slotName: 'default',
+  //       components: [
+  //         {
+  //           id: 'pathways',
+  //           title: 'Pathways',
+  //           content: starters.pathwayLorem,
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // });
 
   registerBoltComponent({
     name: 'bolt-animate',
