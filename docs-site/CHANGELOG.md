@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/bolt-design-system/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* inline@breakpoint alignment ([5ae3cfe](https://github.com/bolt-design-system/bolt/commit/5ae3cfe))
+* **micro-journeys:** add support for line wrapping to nav ([e0bcb71](https://github.com/bolt-design-system/bolt/commit/e0bcb71))
+* add missing publicConfig ([3a64e78](https://github.com/bolt-design-system/bolt/commit/3a64e78))
+* dependency and tests ([433c105](https://github.com/bolt-design-system/bolt/commit/433c105))
+* globally replace Brightcove Video IDs that no longer play correctly in IE 11 (even on the live boltdesignsystem.com site) with a more recent set of video ids that are confirmed to work as expected ([9b48d34](https://github.com/bolt-design-system/bolt/commit/9b48d34))
+* rename spacing to size ([4a901c8](https://github.com/bolt-design-system/bolt/commit/4a901c8))
+* revert Navbar image snapshots ([ece66f8](https://github.com/bolt-design-system/bolt/commit/ece66f8))
+* test instructions ([d07145f](https://github.com/bolt-design-system/bolt/commit/d07145f))
+* update composer.lock ([021ce36](https://github.com/bolt-design-system/bolt/commit/021ce36))
+* update composer's Pattern Lab PHP core dependency to point to the forked bolt-design-system version with the lineages patch ([e70c903](https://github.com/bolt-design-system/bolt/commit/e70c903))
+* update Github repo url in composer.json ([c16ea21](https://github.com/bolt-design-system/bolt/commit/c16ea21))
+* update Jest tests ([75a8943](https://github.com/bolt-design-system/bolt/commit/75a8943))
+
+
+### Features
+
+* add new videos to Brightcove test page for reference ([13f7b18](https://github.com/bolt-design-system/bolt/commit/13f7b18))
+* update video on accordion and tabs demo pages ([696e26b](https://github.com/bolt-design-system/bolt/commit/696e26b))
+
+
+
+
+
 ## [2.9.2](https://github.com/bolt-design-system/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
 
 **Note:** Version bump only for package @bolt/website

@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* fix image.js typo ([535e5d0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/535e5d0))
+* mirror object fit props on the placeholder image ([d3e9bb6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/d3e9bb6))
+* update JPG check to account for JPGs that have query strings ([d45e559](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/d45e559))
+* update srcset logic to handle lazy vs non-lazy images + srcset / src / placeholder fallbacks depending on the mode the component is getting loaded ([35a9c8f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/35a9c8f))
+
+
+### Features
+
+* update resize handler to heavily debounce resizing to reduce the amount of overhead + opt out if a component hasn't yet lazyloaded ([86356e9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/86356e9))
+
+
+
+
+
 ## [2.9.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.9.1...v2.9.2) (2019-10-23)
 
 **Note:** Version bump only for package @bolt/components-image
