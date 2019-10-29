@@ -4,18 +4,14 @@ import { html } from '@bolt/core/renderers/renderer-lit-html';
 export const AccordionItemTrigger = (children, props, context) => {
   const triggerClasses = css('c-bolt-accordion-item__trigger');
 
-  const spacingClasses = css(
+  const triggerInnerClasses = css(
+    'c-bolt-accordion-item__trigger-label',
+    props.inactive ? `c-bolt-accordion-item__trigger-label--inactive` : '',
     context.spacing || props.spacing
       ? `c-bolt-accordion-spacing--${props.spacing ||
           props.triggerSpacing ||
           context.spacing}`
       : '',
-  );
-
-  const labelClasses = css(
-    'c-bolt-accordion-item__trigger-label',
-    props.inactive ? `c-bolt-accordion-item__trigger-label--inactive` : '',
-    context.spacing ? `c-bolt-accordion-spacing--${context.spacing}` : '',
   );
 
   const labelInner = children => {
@@ -34,10 +30,10 @@ export const AccordionItemTrigger = (children, props, context) => {
   const innerTriggerTemplate = children => {
     return props.inactive
       ? html`
-          <div class="${labelClasses}">${labelInner(children)}</div>
+          <div class="${triggerInnerClasses}">${labelInner(children)}</div>
         `
       : html`
-          <button type="button" class="${labelClasses}">
+          <button type="button" class="${triggerInnerClasses}">
             ${labelInner(children)}
           </button>
         `;
