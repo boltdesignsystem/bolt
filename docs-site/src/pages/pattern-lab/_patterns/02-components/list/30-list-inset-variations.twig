@@ -2,58 +2,58 @@
 {% set schema = bolt.data.components["@bolt-components-list"].schema %}
 {% set regular_display_options = [
   "block",
-  "flex",
   "inline",
+  "flex",
 ] %}
-{% set link_with_icon_1 %}
-  {% include "@bolt-components-link/link.twig" with {
+{% set placeholder_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
     text: "Item 1",
-    url: "#!",
-    icon: {
-      name: "chevron-right",
-      position: "before"
-    },
+    size: "xsmall",
   } only %}
 {% endset %}
-{% set link_with_icon_2 %}
-  {% include "@bolt-components-link/link.twig" with {
+{% set placeholder_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
     text: "Item 2",
-    url: "#!",
-    icon: {
-      name: "chevron-right",
-      position: "before"
-    },
+    size: "xsmall",
   } only %}
 {% endset %}
-{% set link_with_icon_3 %}
-  {% include "@bolt-components-link/link.twig" with {
+{% set placeholder_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
     text: "Item 3",
-    url: "#!",
-    icon: {
-      name: "chevron-right",
-      position: "before"
-    },
+    size: "xsmall",
   } only %}
 {% endset %}
 
 {# Start component specific code #}
-<p><mark>Inset spacing is best suited for block and flex lists, even though you can apply to inline list as well.</mark></p>
 {% for display in regular_display_options %}
-  {% for spacing in schema.properties.spacing.enum %}
-    {% if spacing != "none" %}
-      <h3>{{ display|capitalize }} list with inset spacing ({{ spacing }}) and separators</h3>
+  {% grid "o-bolt-grid--flex o-bolt-grid--matrix u-bolt-margin-bottom-large" %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+      <h3>Regular spacing in a {{ display }} list</h3>
       {% include "@bolt-components-list/list.twig" with {
         display: display,
-        spacing: spacing,
+        spacing: "small",
+        separator: "solid",
+        items: [
+          placeholder_1,
+          placeholder_2,
+          placeholder_3,
+        ]
+      } only %}
+    {% endcell %}
+    {% cell "u-bolt-width-12/12 u-bolt-width-4/12@medium" %}
+      <h3>Inset spacing in a {{ display }} list</h3>
+      {% include "@bolt-components-list/list.twig" with {
+        display: display,
+        spacing: "small",
         separator: "solid",
         inset: true,
         items: [
-          link_with_icon_1,
-          link_with_icon_2,
-          link_with_icon_3,
+          placeholder_1,
+          placeholder_2,
+          placeholder_3,
         ]
       } only %}
-    {% endif %}
-  {% endfor %}
+    {% endcell %}
+  {% endgrid %}
 {% endfor %}
 {# End component specific code #}

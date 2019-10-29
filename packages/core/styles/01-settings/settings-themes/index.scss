@@ -5,6 +5,7 @@
 
 // pre-defined theming system values
 $bolt-theme-ui-colors: (
+  // This is actually dark.
   light: (
     border: bolt-color(white),
     contrast-filter: grayscale(100%) invert(100%) brightness(150%),
@@ -18,7 +19,9 @@ $bolt-theme-ui-colors: (
     text: bolt-color(white),
     neutral: bolt-color(gray),
     brand: bolt-color(indigo),
+    background-secondary: mix(bolt-color(white), bolt-color(indigo), 7.5%),
   ),
+  // This is actually light.
   dark: (
     border: bolt-color(indigo, dark),
     contrast-filter: none,
@@ -32,6 +35,7 @@ $bolt-theme-ui-colors: (
     text: bolt-color(black),
     neutral: bolt-color(gray),
     brand: bolt-color(indigo),
+    background-secondary: bolt-color(white),
   ),
 ) !default;
 

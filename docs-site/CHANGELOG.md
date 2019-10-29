@@ -3,6 +3,401 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/bolt-design-system/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* inline@breakpoint alignment ([5ae3cfe](https://github.com/bolt-design-system/bolt/commit/5ae3cfe))
+* **micro-journeys:** add support for line wrapping to nav ([e0bcb71](https://github.com/bolt-design-system/bolt/commit/e0bcb71))
+* add missing publicConfig ([3a64e78](https://github.com/bolt-design-system/bolt/commit/3a64e78))
+* dependency and tests ([433c105](https://github.com/bolt-design-system/bolt/commit/433c105))
+* globally replace Brightcove Video IDs that no longer play correctly in IE 11 (even on the live boltdesignsystem.com site) with a more recent set of video ids that are confirmed to work as expected ([9b48d34](https://github.com/bolt-design-system/bolt/commit/9b48d34))
+* rename spacing to size ([4a901c8](https://github.com/bolt-design-system/bolt/commit/4a901c8))
+* revert Navbar image snapshots ([ece66f8](https://github.com/bolt-design-system/bolt/commit/ece66f8))
+* test instructions ([d07145f](https://github.com/bolt-design-system/bolt/commit/d07145f))
+* update composer.lock ([021ce36](https://github.com/bolt-design-system/bolt/commit/021ce36))
+* update composer's Pattern Lab PHP core dependency to point to the forked bolt-design-system version with the lineages patch ([e70c903](https://github.com/bolt-design-system/bolt/commit/e70c903))
+* update Github repo url in composer.json ([c16ea21](https://github.com/bolt-design-system/bolt/commit/c16ea21))
+* update Jest tests ([75a8943](https://github.com/bolt-design-system/bolt/commit/75a8943))
+
+
+### Features
+
+* add new videos to Brightcove test page for reference ([13f7b18](https://github.com/bolt-design-system/bolt/commit/13f7b18))
+* update video on accordion and tabs demo pages ([696e26b](https://github.com/bolt-design-system/bolt/commit/696e26b))
+
+
+
+
+
+## [2.9.2](https://github.com/bolt-design-system/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.9.1](https://github.com/bolt-design-system/bolt/compare/v2.9.0...v2.9.1) (2019-10-22)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* address install / symlink issues by updating composer.json configs to allow local beta versions of Bolt packages to get installed ([77addbd](https://github.com/bolt-design-system/bolt/commit/77addbd))
+* update PHP-related packages to be in sync with the latest version of Bolt + symlinked properly ([32be05b](https://github.com/bolt-design-system/bolt/commit/32be05b))
+
+
+### Features
+
+* add 'update' method to video to refresh video when inside accordion or tabs ([477fa53](https://github.com/bolt-design-system/bolt/commit/477fa53))
+* add accordion demo, testing `slidesPerView` option ([37d2970](https://github.com/bolt-design-system/bolt/commit/37d2970))
+* add demo page to test videos using standard brightcove player with only 'techOrder' option changed ([a24ed93](https://github.com/bolt-design-system/bolt/commit/a24ed93))
+* add tabs demo with accordion and carousel ([c49eed6](https://github.com/bolt-design-system/bolt/commit/c49eed6))
+* rollback `bolt-text` > `div` edit to accordion demo ([3052895](https://github.com/bolt-design-system/bolt/commit/3052895))
+
+
+
+## [2.7.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.2...v2.7.1) (2019-09-20)
+
+
+### Bug Fixes
+
+* code cleanup ([e2ae3f7](https://github.com/bolt-design-system/bolt/commit/e2ae3f7))
+* docs and testing instructions ([ad7343c](https://github.com/bolt-design-system/bolt/commit/ad7343c))
+* typos ([e417095](https://github.com/bolt-design-system/bolt/commit/e417095))
+
+
+### Features
+
+* add support for displaying advanced schema options on the docs site ([cc20453](https://github.com/bolt-design-system/bolt/commit/cc20453))
+* update the component docs template to pull in always-up-to-date schema data ([e8b9739](https://github.com/bolt-design-system/bolt/commit/e8b9739))
+
+
+
+
+
+## [2.8.3](https://github.com/bolt-design-system/bolt/compare/v2.8.2...v2.8.3) (2019-10-18)
+
+
+### Bug Fixes
+
+* unset 'ready' prop on disconnected to fix ie bug, add demo with tabs inside band ([3412f55](https://github.com/bolt-design-system/bolt/commit/3412f55))
+
+
+
+
+
+## [2.8.2](https://github.com/bolt-design-system/bolt/compare/v2.8.1...v2.8.2) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+
+### Bug Fixes
+
+* cherry pick a handful of updates from [#1457](https://github.com/bolt-design-system/bolt/issues/1457) to pull in ([761b005](https://github.com/bolt-design-system/bolt/commit/761b005))
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+
+### Bug Fixes
+
+* **self-drawing-circle:** PL animation fix ([3bd8087](https://github.com/bolt-design-system/bolt/commit/3bd8087))
+* **with-without:** full-bleed force broken inside max-width ([40573d9](https://github.com/bolt-design-system/bolt/commit/40573d9))
+
+
+### Features
+
+* **micro-journeys:** add icon-group to PL; spelling fixes ([46a8782](https://github.com/bolt-design-system/bolt/commit/46a8782))
+* **with-without:** add visual cues to see if with-without properly breaks out of padding ([5203ce4](https://github.com/bolt-design-system/bolt/commit/5203ce4))
+* **with-without:** fire animations on intersection; clean up dom querying ([636b379](https://github.com/bolt-design-system/bolt/commit/636b379))
+* **with-without:** isolated background visual test for with/without for ie11 debugging ([058d25f](https://github.com/bolt-design-system/bolt/commit/058d25f))
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* **micro-journeys:** allow for multiple demo theme controllers to address PR feedback ([bb9f142](https://github.com/bolt-design-system/bolt/commit/bb9f142))
+* **micro-journeys:** ie 11 color fixes ([c60ca03](https://github.com/bolt-design-system/bolt/commit/c60ca03))
+* lint and docs ([df83534](https://github.com/bolt-design-system/bolt/commit/df83534))
+
+
+
+
+
+# [2.8.0-beta.5](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2019-09-30)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Bug Fixes
+
+* pull in custom Switch JS to fix custom event issue; add example with/without page with Shadow DOM disabled for debugging; ([8261a6f](https://github.com/bolt-design-system/bolt/commit/8261a6f))
+* **animations:** PL JS code for IE 11 ([e2be1a5](https://github.com/bolt-design-system/bolt/commit/e2be1a5))
+* **bolt-animate:** add shadow dom wrapper ([0abb401](https://github.com/bolt-design-system/bolt/commit/0abb401))
+* **bolt-animate:** move demo JS to separate file so it gets transpiled ([baedf7a](https://github.com/bolt-design-system/bolt/commit/baedf7a))
+* **bolt-editor:** fix failing build; incorrect namespace ([a31f42c](https://github.com/bolt-design-system/bolt/commit/a31f42c))
+* **editor:** editor inclusion in pl package.json fix ([ad91adf](https://github.com/bolt-design-system/bolt/commit/ad91adf))
+* **with-without:** fixing content overflow ([9be6494](https://github.com/bolt-design-system/bolt/commit/9be6494))
+* **with-without:** numerous fixes ([b360340](https://github.com/bolt-design-system/bolt/commit/b360340))
+* **with-without:** remove padding from PL b/c it breaks w/wo ([b71b030](https://github.com/bolt-design-system/bolt/commit/b71b030))
+* **with-without:** safari title z-index bug ([1e3df49](https://github.com/bolt-design-system/bolt/commit/1e3df49))
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+### Features
+
+* add `inactive` demo page, include inactive item on content variations demo ([00b3e55](https://github.com/bolt-design-system/bolt/commit/00b3e55))
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* add editor config with css/js ([4a0b2e2](https://github.com/bolt-design-system/bolt/commit/4a0b2e2))
+* add missing PL demo file ([bccdd08](https://github.com/bolt-design-system/bolt/commit/bccdd08))
+* adding missing pkgs to boltrc ([a34cfe8](https://github.com/bolt-design-system/bolt/commit/a34cfe8))
+* anim demo helper script ([26accec](https://github.com/bolt-design-system/bolt/commit/26accec))
+* another demo animation trigger helper fix ([dbe6a75](https://github.com/bolt-design-system/bolt/commit/dbe6a75))
+* attribute typo ([b061c02](https://github.com/bolt-design-system/bolt/commit/b061c02))
+* character image on step five ([cba7970](https://github.com/bolt-design-system/bolt/commit/cba7970))
+* correcting @bolt/animations pkg version ([49258e2](https://github.com/bolt-design-system/bolt/commit/49258e2))
+* **animate:** animate demo JS ([1fff576](https://github.com/bolt-design-system/bolt/commit/1fff576))
+* **bolt-interactive-step:** modify nav strikethrough so it doesnt break abs pos of body content ([32b8e4f](https://github.com/bolt-design-system/bolt/commit/32b8e4f))
+* lint fixes ([af1642f](https://github.com/bolt-design-system/bolt/commit/af1642f))
+* **docs-site:** restore js/css cachebuster ([#1433](https://github.com/bolt-design-system/bolt/issues/1433)) ([0578c1e](https://github.com/bolt-design-system/bolt/commit/0578c1e))
+* **micro-journeys:** adjust animation config for examples ([1a4646e](https://github.com/bolt-design-system/bolt/commit/1a4646e))
+* **micro-journeys:** fixes for no shadow dom, mostly icons ([52b3791](https://github.com/bolt-design-system/bolt/commit/52b3791))
+* ensure any anim stage combos work ([bf80bf3](https://github.com/bolt-design-system/bolt/commit/bf80bf3))
+* eslint fixes ([faa8269](https://github.com/bolt-design-system/bolt/commit/faa8269))
+* **micro-journeys:** move pathway title to attribute ([ef4e303](https://github.com/bolt-design-system/bolt/commit/ef4e303))
+* micro journey misc styling ([#1352](https://github.com/bolt-design-system/bolt/issues/1352)) ([9b38f72](https://github.com/bolt-design-system/bolt/commit/9b38f72))
+* PL demo fix ([241477e](https://github.com/bolt-design-system/bolt/commit/241477e))
+* text styles for lead text ([b4f79e3](https://github.com/bolt-design-system/bolt/commit/b4f79e3))
+* **status-dialogue-bar:** force black text; remove bolt-text passed to dialog; widen left/right padding ([6a4760f](https://github.com/bolt-design-system/bolt/commit/6a4760f))
+
+
+### Features
+
+* add an interactive pathway step and hook it up to nav ul ([9a935f6](https://github.com/bolt-design-system/bolt/commit/9a935f6))
+* add animation settings to core, start pl for animations ([bcabe3b](https://github.com/bolt-design-system/bolt/commit/bcabe3b))
+* add animation-wrapper ([8e1d25c](https://github.com/bolt-design-system/bolt/commit/8e1d25c))
+* add basic status/dialogue bar ([2210bb8](https://github.com/bolt-design-system/bolt/commit/2210bb8))
+* add bolt animations to animation-wrapper ([f439a9b](https://github.com/bolt-design-system/bolt/commit/f439a9b))
+* add build in/out order to steps ([#1308](https://github.com/bolt-design-system/bolt/issues/1308)) ([822face](https://github.com/bolt-design-system/bolt/commit/822face))
+* create bolt-animate component ([966315b](https://github.com/bolt-design-system/bolt/commit/966315b))
+* **editor:** emit save event ([c8821e5](https://github.com/bolt-design-system/bolt/commit/c8821e5))
+* add custom cta with icon component ([05382a3](https://github.com/bolt-design-system/bolt/commit/05382a3))
+* add demo of bolt collection band getting staggered item animation ([242c69a](https://github.com/bolt-design-system/bolt/commit/242c69a))
+* add demos of connection element to PL ([a8088c1](https://github.com/bolt-design-system/bolt/commit/a8088c1))
+* add editor ([c3d6d60](https://github.com/bolt-design-system/bolt/commit/c3d6d60))
+* add new property to micro journey character ([3329128](https://github.com/bolt-design-system/bolt/commit/3329128))
+* add spinning animation ([60d0a7e](https://github.com/bolt-design-system/bolt/commit/60d0a7e))
+* new component "connection" ([eb08a1f](https://github.com/bolt-design-system/bolt/commit/eb08a1f))
+* **svg-component:** add animated svg components ([#1343](https://github.com/bolt-design-system/bolt/issues/1343)) ([c82108f](https://github.com/bolt-design-system/bolt/commit/c82108f))
+* add status-bar/dialogue and register with editor ([9e26894](https://github.com/bolt-design-system/bolt/commit/9e26894))
+* add transition mixins ([8afc664](https://github.com/bolt-design-system/bolt/commit/8afc664))
+* another band example ([caa94d1](https://github.com/bolt-design-system/bolt/commit/caa94d1))
+* begin icon group, WIP blocked by needed bolt-icon work ([6618c3f](https://github.com/bolt-design-system/bolt/commit/6618c3f))
+* character element now supports either an image or an svg ([7db973f](https://github.com/bolt-design-system/bolt/commit/7db973f))
+* create character component, clean BEM on connection ([48a91dc](https://github.com/bolt-design-system/bolt/commit/48a91dc))
+* create user config, declare css/js in it ([d0545c0](https://github.com/bolt-design-system/bolt/commit/d0545c0))
+* fade-in fade-out animation, add character background slot ([c8fec87](https://github.com/bolt-design-system/bolt/commit/c8fec87))
+* new package for animations ([2a69cbd](https://github.com/bolt-design-system/bolt/commit/2a69cbd))
+* remove old pl markup, add band examples of micro journeys ([4490a6e](https://github.com/bolt-design-system/bolt/commit/4490a6e))
+* setting up animation view trigger js ([ba538b2](https://github.com/bolt-design-system/bolt/commit/ba538b2))
+* setup markup for fully animated two character layout template ([f5bbd9a](https://github.com/bolt-design-system/bolt/commit/f5bbd9a))
+* start examples of staggered bands ([dddf999](https://github.com/bolt-design-system/bolt/commit/dddf999))
+* update character to work with both pre-defined img and custom url ([753b258](https://github.com/bolt-design-system/bolt/commit/753b258))
+* update first step to match new comp ([b2ba98b](https://github.com/bolt-design-system/bolt/commit/b2ba98b))
+* update steps 2 and 3 to new comp ([f500325](https://github.com/bolt-design-system/bolt/commit/f500325))
+* update steps 4 5 6 ([a6bbbf0](https://github.com/bolt-design-system/bolt/commit/a6bbbf0))
+* various image updates for steps ([aa77860](https://github.com/bolt-design-system/bolt/commit/aa77860))
+* wip transfer to new package structure, new PL docs ([7627e83](https://github.com/bolt-design-system/bolt/commit/7627e83))
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Bug Fixes
+
+* add editor config with css/js ([4a0b2e2](https://github.com/bolt-design-system/bolt/commit/4a0b2e2))
+* add missing PL demo file ([bccdd08](https://github.com/bolt-design-system/bolt/commit/bccdd08))
+* adding missing pkgs to boltrc ([a34cfe8](https://github.com/bolt-design-system/bolt/commit/a34cfe8))
+* anim demo helper script ([26accec](https://github.com/bolt-design-system/bolt/commit/26accec))
+* another demo animation trigger helper fix ([dbe6a75](https://github.com/bolt-design-system/bolt/commit/dbe6a75))
+* attribute typo ([b061c02](https://github.com/bolt-design-system/bolt/commit/b061c02))
+* character image on step five ([cba7970](https://github.com/bolt-design-system/bolt/commit/cba7970))
+* correcting @bolt/animations pkg version ([49258e2](https://github.com/bolt-design-system/bolt/commit/49258e2))
+* **animate:** animate demo JS ([1fff576](https://github.com/bolt-design-system/bolt/commit/1fff576))
+* **bolt-interactive-step:** modify nav strikethrough so it doesnt break abs pos of body content ([32b8e4f](https://github.com/bolt-design-system/bolt/commit/32b8e4f))
+* lint fixes ([af1642f](https://github.com/bolt-design-system/bolt/commit/af1642f))
+* **docs-site:** restore js/css cachebuster ([#1433](https://github.com/bolt-design-system/bolt/issues/1433)) ([0578c1e](https://github.com/bolt-design-system/bolt/commit/0578c1e))
+* **micro-journeys:** adjust animation config for examples ([1a4646e](https://github.com/bolt-design-system/bolt/commit/1a4646e))
+* **micro-journeys:** fixes for no shadow dom, mostly icons ([52b3791](https://github.com/bolt-design-system/bolt/commit/52b3791))
+* ensure any anim stage combos work ([bf80bf3](https://github.com/bolt-design-system/bolt/commit/bf80bf3))
+* eslint fixes ([faa8269](https://github.com/bolt-design-system/bolt/commit/faa8269))
+* **micro-journeys:** move pathway title to attribute ([ef4e303](https://github.com/bolt-design-system/bolt/commit/ef4e303))
+* micro journey misc styling ([#1352](https://github.com/bolt-design-system/bolt/issues/1352)) ([9b38f72](https://github.com/bolt-design-system/bolt/commit/9b38f72))
+* PL demo fix ([241477e](https://github.com/bolt-design-system/bolt/commit/241477e))
+* text styles for lead text ([b4f79e3](https://github.com/bolt-design-system/bolt/commit/b4f79e3))
+* **status-dialogue-bar:** force black text; remove bolt-text passed to dialog; widen left/right padding ([6a4760f](https://github.com/bolt-design-system/bolt/commit/6a4760f))
+
+
+### Features
+
+* add an interactive pathway step and hook it up to nav ul ([9a935f6](https://github.com/bolt-design-system/bolt/commit/9a935f6))
+* add animation settings to core, start pl for animations ([bcabe3b](https://github.com/bolt-design-system/bolt/commit/bcabe3b))
+* add animation-wrapper ([8e1d25c](https://github.com/bolt-design-system/bolt/commit/8e1d25c))
+* add basic status/dialogue bar ([2210bb8](https://github.com/bolt-design-system/bolt/commit/2210bb8))
+* add bolt animations to animation-wrapper ([f439a9b](https://github.com/bolt-design-system/bolt/commit/f439a9b))
+* add build in/out order to steps ([#1308](https://github.com/bolt-design-system/bolt/issues/1308)) ([822face](https://github.com/bolt-design-system/bolt/commit/822face))
+* create bolt-animate component ([966315b](https://github.com/bolt-design-system/bolt/commit/966315b))
+* **editor:** emit save event ([c8821e5](https://github.com/bolt-design-system/bolt/commit/c8821e5))
+* add custom cta with icon component ([05382a3](https://github.com/bolt-design-system/bolt/commit/05382a3))
+* add demo of bolt collection band getting staggered item animation ([242c69a](https://github.com/bolt-design-system/bolt/commit/242c69a))
+* add demos of connection element to PL ([a8088c1](https://github.com/bolt-design-system/bolt/commit/a8088c1))
+* add editor ([c3d6d60](https://github.com/bolt-design-system/bolt/commit/c3d6d60))
+* add new property to micro journey character ([3329128](https://github.com/bolt-design-system/bolt/commit/3329128))
+* add spinning animation ([60d0a7e](https://github.com/bolt-design-system/bolt/commit/60d0a7e))
+* new component "connection" ([eb08a1f](https://github.com/bolt-design-system/bolt/commit/eb08a1f))
+* **svg-component:** add animated svg components ([#1343](https://github.com/bolt-design-system/bolt/issues/1343)) ([c82108f](https://github.com/bolt-design-system/bolt/commit/c82108f))
+* add status-bar/dialogue and register with editor ([9e26894](https://github.com/bolt-design-system/bolt/commit/9e26894))
+* add transition mixins ([8afc664](https://github.com/bolt-design-system/bolt/commit/8afc664))
+* another band example ([caa94d1](https://github.com/bolt-design-system/bolt/commit/caa94d1))
+* begin icon group, WIP blocked by needed bolt-icon work ([6618c3f](https://github.com/bolt-design-system/bolt/commit/6618c3f))
+* character element now supports either an image or an svg ([7db973f](https://github.com/bolt-design-system/bolt/commit/7db973f))
+* create character component, clean BEM on connection ([48a91dc](https://github.com/bolt-design-system/bolt/commit/48a91dc))
+* create user config, declare css/js in it ([d0545c0](https://github.com/bolt-design-system/bolt/commit/d0545c0))
+* fade-in fade-out animation, add character background slot ([c8fec87](https://github.com/bolt-design-system/bolt/commit/c8fec87))
+* new package for animations ([2a69cbd](https://github.com/bolt-design-system/bolt/commit/2a69cbd))
+* remove old pl markup, add band examples of micro journeys ([4490a6e](https://github.com/bolt-design-system/bolt/commit/4490a6e))
+* setting up animation view trigger js ([ba538b2](https://github.com/bolt-design-system/bolt/commit/ba538b2))
+* setup markup for fully animated two character layout template ([f5bbd9a](https://github.com/bolt-design-system/bolt/commit/f5bbd9a))
+* start examples of staggered bands ([dddf999](https://github.com/bolt-design-system/bolt/commit/dddf999))
+* update character to work with both pre-defined img and custom url ([753b258](https://github.com/bolt-design-system/bolt/commit/753b258))
+* update first step to match new comp ([b2ba98b](https://github.com/bolt-design-system/bolt/commit/b2ba98b))
+* update steps 2 and 3 to new comp ([f500325](https://github.com/bolt-design-system/bolt/commit/f500325))
+* update steps 4 5 6 ([a6bbbf0](https://github.com/bolt-design-system/bolt/commit/a6bbbf0))
+* various image updates for steps ([aa77860](https://github.com/bolt-design-system/bolt/commit/aa77860))
+* wip transfer to new package structure, new PL docs ([7627e83](https://github.com/bolt-design-system/bolt/commit/7627e83))
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+
+### Bug Fixes
+
+* add editor config with css/js ([4a0b2e2](https://github.com/bolt-design-system/bolt/commit/4a0b2e2))
+* add missing PL demo file ([bccdd08](https://github.com/bolt-design-system/bolt/commit/bccdd08))
+* adding missing pkgs to boltrc ([a34cfe8](https://github.com/bolt-design-system/bolt/commit/a34cfe8))
+* anim demo helper script ([26accec](https://github.com/bolt-design-system/bolt/commit/26accec))
+* another demo animation trigger helper fix ([dbe6a75](https://github.com/bolt-design-system/bolt/commit/dbe6a75))
+* attribute typo ([b061c02](https://github.com/bolt-design-system/bolt/commit/b061c02))
+* character image on step five ([cba7970](https://github.com/bolt-design-system/bolt/commit/cba7970))
+* correcting @bolt/animations pkg version ([49258e2](https://github.com/bolt-design-system/bolt/commit/49258e2))
+* ensure any anim stage combos work ([bf80bf3](https://github.com/bolt-design-system/bolt/commit/bf80bf3))
+* eslint fixes ([faa8269](https://github.com/bolt-design-system/bolt/commit/faa8269))
+* lint fixes ([af1642f](https://github.com/bolt-design-system/bolt/commit/af1642f))
+* **animate:** animate demo JS ([1fff576](https://github.com/bolt-design-system/bolt/commit/1fff576))
+* **bolt-interactive-step:** modify nav strikethrough so it doesnt break abs pos of body content ([32b8e4f](https://github.com/bolt-design-system/bolt/commit/32b8e4f))
+* **micro-journeys:** adjust animation config for examples ([1a4646e](https://github.com/bolt-design-system/bolt/commit/1a4646e))
+* **micro-journeys:** fixes for no shadow dom, mostly icons ([52b3791](https://github.com/bolt-design-system/bolt/commit/52b3791))
+* **micro-journeys:** move pathway title to attribute ([ef4e303](https://github.com/bolt-design-system/bolt/commit/ef4e303))
+* micro journey misc styling ([#1352](https://github.com/bolt-design-system/bolt/issues/1352)) ([9b38f72](https://github.com/bolt-design-system/bolt/commit/9b38f72))
+* PL demo fix ([241477e](https://github.com/bolt-design-system/bolt/commit/241477e))
+* text styles for lead text ([b4f79e3](https://github.com/bolt-design-system/bolt/commit/b4f79e3))
+* **status-dialogue-bar:** force black text; remove bolt-text passed to dialog; widen left/right padding ([6a4760f](https://github.com/bolt-design-system/bolt/commit/6a4760f))
+
+
+### Features
+
+* add an interactive pathway step and hook it up to nav ul ([9a935f6](https://github.com/bolt-design-system/bolt/commit/9a935f6))
+* add animation settings to core, start pl for animations ([bcabe3b](https://github.com/bolt-design-system/bolt/commit/bcabe3b))
+* add animation-wrapper ([8e1d25c](https://github.com/bolt-design-system/bolt/commit/8e1d25c))
+* add basic status/dialogue bar ([2210bb8](https://github.com/bolt-design-system/bolt/commit/2210bb8))
+* add bolt animations to animation-wrapper ([f439a9b](https://github.com/bolt-design-system/bolt/commit/f439a9b))
+* add build in/out order to steps ([#1308](https://github.com/bolt-design-system/bolt/issues/1308)) ([822face](https://github.com/bolt-design-system/bolt/commit/822face))
+* add custom cta with icon component ([05382a3](https://github.com/bolt-design-system/bolt/commit/05382a3))
+* add demo of bolt collection band getting staggered item animation ([242c69a](https://github.com/bolt-design-system/bolt/commit/242c69a))
+* add demos of connection element to PL ([a8088c1](https://github.com/bolt-design-system/bolt/commit/a8088c1))
+* add editor ([c3d6d60](https://github.com/bolt-design-system/bolt/commit/c3d6d60))
+* add new property to micro journey character ([3329128](https://github.com/bolt-design-system/bolt/commit/3329128))
+* add spinning animation ([60d0a7e](https://github.com/bolt-design-system/bolt/commit/60d0a7e))
+* add status-bar/dialogue and register with editor ([9e26894](https://github.com/bolt-design-system/bolt/commit/9e26894))
+* add transition mixins ([8afc664](https://github.com/bolt-design-system/bolt/commit/8afc664))
+* another band example ([caa94d1](https://github.com/bolt-design-system/bolt/commit/caa94d1))
+* begin icon group, WIP blocked by needed bolt-icon work ([6618c3f](https://github.com/bolt-design-system/bolt/commit/6618c3f))
+* character element now supports either an image or an svg ([7db973f](https://github.com/bolt-design-system/bolt/commit/7db973f))
+* create bolt-animate component ([966315b](https://github.com/bolt-design-system/bolt/commit/966315b))
+* create character component, clean BEM on connection ([48a91dc](https://github.com/bolt-design-system/bolt/commit/48a91dc))
+* create user config, declare css/js in it ([d0545c0](https://github.com/bolt-design-system/bolt/commit/d0545c0))
+* fade-in fade-out animation, add character background slot ([c8fec87](https://github.com/bolt-design-system/bolt/commit/c8fec87))
+* new component "connection" ([eb08a1f](https://github.com/bolt-design-system/bolt/commit/eb08a1f))
+* new package for animations ([2a69cbd](https://github.com/bolt-design-system/bolt/commit/2a69cbd))
+* remove old pl markup, add band examples of micro journeys ([4490a6e](https://github.com/bolt-design-system/bolt/commit/4490a6e))
+* setting up animation view trigger js ([ba538b2](https://github.com/bolt-design-system/bolt/commit/ba538b2))
+* setup markup for fully animated two character layout template ([f5bbd9a](https://github.com/bolt-design-system/bolt/commit/f5bbd9a))
+* start examples of staggered bands ([dddf999](https://github.com/bolt-design-system/bolt/commit/dddf999))
+* update character to work with both pre-defined img and custom url ([753b258](https://github.com/bolt-design-system/bolt/commit/753b258))
+* update first step to match new comp ([b2ba98b](https://github.com/bolt-design-system/bolt/commit/b2ba98b))
+* **svg-component:** add animated svg components ([#1343](https://github.com/bolt-design-system/bolt/issues/1343)) ([c82108f](https://github.com/bolt-design-system/bolt/commit/c82108f))
+* update steps 2 and 3 to new comp ([f500325](https://github.com/bolt-design-system/bolt/commit/f500325))
+* update steps 4 5 6 ([a6bbbf0](https://github.com/bolt-design-system/bolt/commit/a6bbbf0))
+* various image updates for steps ([aa77860](https://github.com/bolt-design-system/bolt/commit/aa77860))
+* wip transfer to new package structure, new PL docs ([7627e83](https://github.com/bolt-design-system/bolt/commit/7627e83))
+
+
+## [2.7.1](https://github.com/bolt-design-system/bolt/compare/v2.7.0...v2.7.1) (2019-09-20)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
 # [2.7.0](https://github.com/bolt-design-system/bolt/compare/v2.6.0...v2.7.0) (2019-09-13)
 
 

@@ -20,6 +20,7 @@ patternStates:
     - complete
 styleGuideExcludes:
     - 04-pages
+    - viewall-pages-all
 cacheBusterOn: 'true'
 publicDir: ../www/pattern-lab/
 sourceDir: src/pages/pattern-lab/
@@ -41,11 +42,11 @@ ishControlsHide:
     - hay
     - disco
     - random
+    - all
+    - views-all
 styleguideKit: bolt-design-system/styleguidekit-twig-default
 styleguideKitPath: vendor/bolt-design-system/styleguidekit-twig-default
-lineageMatch: >-
-  {%([ ]+)?(?:include|extends|embed)(
-  |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
+lineageMatch: '{%([ ]+)?(?:include|extends|embed)( |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([ A-Za-z0-9-&\}_\n\{&quot;:\&#039;,\/. \[\]]+)%}'
 lineageMatchKey: 3
 patternExtension: twig
 twigExtensions:

@@ -1,0 +1,36 @@
+<div class="t-bolt-xdark u-bolt-padding-large">
+  <bolt-button onclick="triggerSelfDrawingAnimation()" class="u-bolt-margin-bottom-large">Trigger Self-Drawing Circle</bolt-button>
+
+  <!-- manually disabling Shadow DOM on this demo's Ratio wrapper so we don't need to manually dig into the Ratio's renderRoot -->
+  <bolt-ratio ratio="1/1" class="u-bolt-margin-bottom-large u-bolt-margin-left-auto u-bolt-margin-right-auto" style="max-width: 560px;">
+    {% include '@pegawww-with-without/self-drawing-circle.twig' with {
+      dashSize: 6,
+      speed: 40,
+      attributes: {
+        class: [
+          "js-wwo-self-drawing-circle",
+        ]
+      }
+    } only %}
+  </bolt-ratio>
+
+  <script>
+    // writing this out long-hand so we don't need to run through babel first!
+    function triggerSelfDrawingAnimation() {
+      const selfDrawingCircle = document.querySelector('.js-wwo-self-drawing-circle');
+
+      // check to make sure the component is ready to go before trying to animate
+      if (selfDrawingCircle) {
+        if (selfDrawingCircle._wasInitiallyRendered) {
+          selfDrawingCircle.triggerAnimIn();
+        } else {
+          selfDrawingCircle.addEventListener('ready', function (e) {
+            if (e.detail.name === 'wwo-self-drawing-circle') {
+              selfDrawingCircle.triggerAnimIn();
+            }
+          });
+        }
+      }
+    };
+  </script>
+</div>

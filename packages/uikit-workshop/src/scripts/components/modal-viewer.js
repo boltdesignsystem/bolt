@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * "Modal" (aka Panel UI) for the Viewer Layer - for both annotations and code/info
  */
@@ -13,6 +14,7 @@ export const modalViewer = {
   // set up some defaults
   delayCheckingModalViewer: false,
   iframeElement: document.querySelector('.pl-js-iframe'),
+  iframeCustomElement: document.querySelector('pl-iframe'),
   active: false,
   switchText: true,
   template: 'info',
@@ -78,7 +80,7 @@ export const modalViewer = {
           annotations: modalViewer.patternData.annotations,
         });
 
-        if (modalViewer.iframeElement.contentWindow){
+        if (modalViewer.iframeElement.contentWindow) {
           modalViewer.iframeElement.contentWindow.postMessage(
             obj,
             modalViewer.targetOrigin
@@ -86,7 +88,7 @@ export const modalViewer = {
         } else {
           modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
 
-          if (modalViewer.iframeElement.contentWindow){
+          if (modalViewer.iframeElement.contentWindow) {
             modalViewer.open();
           } else {
             console.log('modelViewer open cannot find the iframeElement...');
@@ -105,8 +107,8 @@ export const modalViewer = {
       event: 'patternLab.patternModalClose',
     });
 
-    if (modalViewer.iframeElement){
-      if (modalViewer.iframeElement.contentWindow){
+    if (modalViewer.iframeElement) {
+      if (modalViewer.iframeElement.contentWindow) {
         modalViewer.iframeElement.contentWindow.postMessage(
           obj,
           modalViewer.targetOrigin
@@ -122,7 +124,7 @@ export const modalViewer = {
       } else {
         modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
 
-        if (modalViewer.iframeElement.contentWindow){
+        if (modalViewer.iframeElement.contentWindow) {
           modalViewer.close();
         } else {
           console.log('modelViewer close cannot find the iframeElement...');
@@ -146,7 +148,7 @@ export const modalViewer = {
         patternPartial,
         modalContent: templateRendered.outerHTML,
       });
-      if (modalViewer.iframeElement.contentWindow){
+      if (modalViewer.iframeElement.contentWindow) {
         modalViewer.iframeElement.contentWindow.postMessage(
           obj,
           modalViewer.targetOrigin
@@ -154,7 +156,7 @@ export const modalViewer = {
       } else {
         modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
 
-        if (modalViewer.iframeElement.contentWindow){
+        if (modalViewer.iframeElement.contentWindow) {
           modalViewer.insert(templateRendered, patternPartial, iframePassback);
         } else {
           console.log('modelViewer insert cannot find the iframeElement...');
@@ -169,7 +171,21 @@ export const modalViewer = {
       }
 
       contentContainer.appendChild(templateRendered);
+      modalViewer.addClickEvents(contentContainer);
     }
+  },
+
+  addClickEvents(contentContainer = document) {
+    contentContainer.querySelectorAll('.pl-js-lineage-link').forEach(link => {
+      link.addEventListener('click', e => {
+        const patternPartial = e.target.getAttribute('data-patternpartial');
+
+        if (patternPartial && modalViewer.iframeCustomElement) {
+          e.preventDefault();
+          modalViewer.iframeCustomElement.navigateTo(patternPartial);
+        }
+      });
+    });
   },
 
   /**
@@ -217,7 +233,10 @@ export const modalViewer = {
       if (i + 1 === pos) {
         els[i].classList.add('pl-is-active');
 
-        scrollTo(patternInfoElem, document.body, { top: els[i].offsetTop - 14, behavior: 'smooth' }).then(function() {
+        scrollTo(patternInfoElem, document.body, {
+          top: els[i].offsetTop - 14,
+          behavior: 'smooth',
+        }).then(function() {
           // console.log('finished scrolling');
         });
       }
@@ -237,8 +256,8 @@ export const modalViewer = {
 
     // only emit this when the iframe element exists.
     // @todo: refactor to better handle async UI rendering
-    if (modalViewer.iframeElement){
-      if (modalViewer.iframeElement.contentWindow){
+    if (modalViewer.iframeElement) {
+      if (modalViewer.iframeElement.contentWindow) {
         modalViewer.iframeElement.contentWindow.postMessage(
           obj,
           modalViewer.targetOrigin
@@ -246,7 +265,7 @@ export const modalViewer = {
       } else {
         modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
 
-        if (modalViewer.iframeElement.contentWindow){
+        if (modalViewer.iframeElement.contentWindow) {
           modalViewer.queryPattern(switchText);
         } else {
           console.log('queryPattern cannot find the iframeElement...');
@@ -255,7 +274,7 @@ export const modalViewer = {
     } else {
       modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
 
-      if (modalViewer.iframeElement.contentWindow){
+      if (modalViewer.iframeElement.contentWindow) {
         modalViewer.iframeElement.contentWindow.postMessage(
           obj,
           modalViewer.targetOrigin
@@ -288,10 +307,9 @@ export const modalViewer = {
     }
 
     if (data.event !== undefined && data.event === 'patternLab.pageLoad') {
-
       // @todo: refactor to better handle async iframe loading
       // extra check to make sure the PL drawer will always render even if the iframe gets async loaded / rendered.
-      if (modalViewer.delayCheckingModalViewer){
+      if (modalViewer.delayCheckingModalViewer) {
         modalViewer._handleInitialModalViewerState();
       }
 
@@ -343,15 +361,15 @@ export const modalViewer = {
     }
   },
 
-  _handleInitialModalViewerState(){
+  _handleInitialModalViewerState() {
     // try to re-locate the iframe element if this UI logic ran too early and the iframe component wasn't yet rendered
-    if (!modalViewer.iframeElement){
+    if (!modalViewer.iframeElement) {
       modalViewer.iframeElement = document.querySelector('.pl-js-iframe');
     }
 
     // only try to auto-open / auto-close the drawer UI if the iframe element exists
     // @todo: refactor to better handle async UI rendering
-    if (modalViewer.iframeElement){
+    if (modalViewer.iframeElement) {
       modalViewer.delayCheckingModalViewer = false;
       if (modalViewer.active) {
         modalViewer.open();
@@ -365,12 +383,10 @@ export const modalViewer = {
 
   _stateChanged(state) {
     modalViewer.active = state.app.drawerOpened;
-    if (modalViewer.iframeElement){
+    if (modalViewer.iframeElement) {
       modalViewer._handleInitialModalViewerState();
     }
   },
 };
 
 modalViewer.onReady();
-
-

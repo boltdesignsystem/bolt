@@ -1,0 +1,31 @@
+@import '@bolt/core';
+
+.wwo-self-drawing-circle {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.wwo-self-drawing-circle__rotater {
+  transform: rotate(70deg) scaleX(-1);
+  width: 100%;
+  height: 100%;
+}
+
+.wwo-self-drawing-circle__spinner.spin {
+  width: 100%;
+  height: 100%;
+  animation: 10000ms linear infinite spin;
+}
+
+.wwo-self-drawing-circle-outline {
+  fill: transparent;
+  stroke: bolt-color(white);
+  stroke-width: 1;
+}
+
+@keyframes spin {
+ 100% {
+   transform: rotateZ(360deg);
+  }
+}

@@ -13,7 +13,7 @@ Object.prototype.toString = function() {
   } else {
     return toString.call(this);
   }
-}
+};
 
 // overwrite Object.keys to filter out symbols
 Object.keys = function(obj) {
@@ -32,14 +32,14 @@ if (!String.prototype[iterator] || !String.prototype.codePointAt) {
     for (let i = 0; i < this.length; i++) {
       yield this[i];
     }
-  }
+  };
 }
 
 if (!Set.prototype[iterator]) {
   /** @this {Set} */
   Set.prototype[iterator] = function*() {
     const temp = [];
-    this.forEach((value) => {
+    this.forEach(value => {
       temp.push(value);
     });
     for (let i = 0; i < temp.length; i++) {
@@ -55,7 +55,7 @@ if (!Map.prototype[iterator]) {
     this.forEach((value, key) => {
       entries.push([key, value]);
     });
-    for(let i = 0; i < entries.length; i++) {
+    for (let i = 0; i < entries.length; i++) {
       yield entries[i];
     }
   };

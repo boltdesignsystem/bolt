@@ -28,7 +28,7 @@ try {
       event,
       params.bubbles,
       params.cancelable,
-      params.detail,
+      params.detail
     );
     origPrevent = evt.preventDefault;
     evt.preventDefault = function() {

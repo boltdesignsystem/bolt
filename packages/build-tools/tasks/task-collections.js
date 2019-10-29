@@ -121,7 +121,7 @@ async function clean(cleanAll = false) {
         dirs = [config.buildDir];
         break;
     }
-    if (cleanAll === true) {
+    if (cleanAll === true && config.env !== 'pwa') {
       dirs = [config.wwwDir];
     }
     await internalTasks.clean(dirs);
@@ -199,8 +199,10 @@ async function build(shouldReturnTime = false) {
 
     // don't try to process / convert SVG icons if the `@bolt/components-icon` package isn't part of the build
     if (
-      config.components.global.includes('@bolt/components-icon') ||
-      config.components.individual.includes('@bolt/components-icon')
+      (config.components.global &&
+        config.components.global.includes('@bolt/components-icon')) ||
+      (config.components.individual &&
+        config.components.individual.includes('@bolt/components-icon'))
     ) {
       await iconTasks.build();
     }
@@ -214,6 +216,8 @@ async function build(shouldReturnTime = false) {
     config.prod || config.watch === false
       ? await Promise.all(await compileBasedOnEnvironment())
       : '';
+
+    await internalTasks.writeMetadata();
 
     if (shouldReturnTime) {
       return startTime;

@@ -8,10 +8,15 @@
 {% set base_class = "c-bolt-accordion-item" %}
 {% set this = init(schema.properties.items.items) %}
 {% set inner_attributes = create_attribute({}) %}
+{% set label_attributes = create_attribute({}) %}
 
 {% set _uuid = this.data.uuid.value|default(bolt.data.config.env == "test" ? "12345" : random()) %}
 {% set primary_uuid = base_class ~ "-#{_uuid}" %}
 {% set secondary_uuid = base_class ~ "-inner-#{_uuid}" %}
+
+{% set inactive = this.data.inactive.value %}
+{% set spacing_class = spacing ? "c-bolt-accordion-spacing--" ~ spacing : "" %}
+{% set trigger_tag = inactive ? "div" : "label" %}
 
 {# init() will not return "trigger" because "trigger" can be an object or array #}
 {% set trigger = trigger|default(schema.properties.items.items.trigger.default) %}
@@ -26,7 +31,17 @@
   last ? base_class ~ "--last-item" : ""
 ] %}
 
-{% set spacing_class = spacing ? "c-bolt-accordion-spacing--" ~ spacing : "" %}
+{% set label_classes = [
+  "c-bolt-accordion-item__trigger-label",
+  "c-bolt-accordion-item__trigger-label--offset",
+  inactive ? "c-bolt-accordion-item__trigger-label--inactive" : "",
+  spacing_class
+] %}
+
+{% if not inactive %}
+  {% set label_attributes = label_attributes.setAttribute("for", primary_uuid) %}
+{% endif %}
+
 {#
   Sort classes passed in via attributes into two groups:
   1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
@@ -47,18 +62,22 @@
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
   >
-  <input class="c-bolt-accordion-item__state" type="checkbox" id="{{ primary_uuid }}" {% if open %} checked{% endif %}>
+  {% if not inactive %}
+    <input class="c-bolt-accordion-item__state" type="checkbox" id="{{ primary_uuid }}" {% if open %} checked{% endif %}>
+  {% endif %}
 
   <div
     {{ inner_attributes.addClass(inner_classes) }}
     id="{{ secondary_uuid }}">
 
     <div class="c-bolt-accordion-item__trigger">
-      <label class="c-bolt-accordion-item__trigger-label {{ spacing_class }}" for="{{ primary_uuid }}">
+      <{{ trigger_tag }} {{ label_attributes.addClass(label_classes) }}>
         <div class="c-bolt-accordion-item__trigger-content">
-          <div slot="trigger" ssr-hydrate="keep">{{ trigger }}</div>
+          <ssr-keep for="bolt-accordion-item">
+            <div slot="trigger">{{ trigger }}</div>
+          </ssr-keep>
         </div>
-      </label>
+      </{{ trigger_tag }}>
 
       <a href="#{{ primary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--open {{ spacing_class }}">
         <span class="c-bolt-accordion-item__toggle-text">{{ this.data.open_label.value }}</span>
@@ -70,8 +89,10 @@
     </div>
 
     <div class="c-bolt-accordion-item__content">
-      <div class="c-bolt-accordion-item__content-inner {{ spacing_class }}" ssr-hydrate="keep-children">
-        {{ content }}
+      <div class="c-bolt-accordion-item__content-inner {{ spacing_class }}">
+        <ssr-keep for="bolt-accordion-item">
+          {{ content }}
+        </ssr-keep>
       </div>
     </div>
   </div>

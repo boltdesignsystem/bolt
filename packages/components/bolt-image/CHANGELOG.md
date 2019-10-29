@@ -3,6 +3,130 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* fix image.js typo ([535e5d0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/535e5d0))
+* mirror object fit props on the placeholder image ([d3e9bb6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/d3e9bb6))
+* update JPG check to account for JPGs that have query strings ([d45e559](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/d45e559))
+* update srcset logic to handle lazy vs non-lazy images + srcset / src / placeholder fallbacks depending on the mode the component is getting loaded ([35a9c8f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/35a9c8f))
+
+
+### Features
+
+* update resize handler to heavily debounce resizing to reduce the amount of overhead + opt out if a component hasn't yet lazyloaded ([86356e9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/86356e9))
+
+
+
+
+
+## [2.9.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+## [2.9.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.9.0...v2.9.1) (2019-10-22)
+
+
+### Bug Fixes
+
+* only set 'sizes' if image has width, fixes fuzzy images in tabs ([cbdca3e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/cbdca3e))
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* **image:** prevent error where initialClasses were not defined in time ([37bbab6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/37bbab6))
+
+
+
+
+
+# [2.8.0-beta.5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2019-09-30)
+
+
+### Bug Fixes
+
+* add src path fallback if only srcset is defined ([c2f3e24](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/c2f3e24))
+* auto sync enabling / disabling Shadow DOM when rendering Ratio inside of image ([930ba87](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/930ba87))
+* fix prettier formatting ([c4ba7b5](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/c4ba7b5))
+* fix prettier issues ([fa17a45](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/fa17a45))
+* update <img> markup to use a placeholder in srcset but always display the fallback `src` for older browsers ([228ff16](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/commit/228ff16))
+
+
+
+
+
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+**Note:** Version bump only for package @bolt/components-image
+
+
+
+
+
 # [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-image/compare/v2.6.0...v2.7.0) (2019-09-13)
 
 
