@@ -15,6 +15,37 @@ let cx = classNames.bind(imageStyles);
 
 let passiveIfSupported = false;
 
+(function() {
+  var throttle = function(type, name, obj_) {
+    var obj = obj_ || window;
+    var running = false;
+    var func = function() {
+      if (running) {
+        return;
+      }
+      running = true;
+      requestAnimationFrame(function() {
+        obj.dispatchEvent(new CustomEvent(name));
+        running = false;
+      });
+    };
+    obj.addEventListener(type, func);
+  };
+
+  /* init - you can init any event */
+  throttle('resize', 'optimizedResize');
+})();
+
+const debounce = (func, delay) => {
+  let inDebounce;
+  return function() {
+    const context = this;
+    const args = arguments;
+    clearTimeout(inDebounce);
+    inDebounce = setTimeout(() => func.apply(context, args), delay);
+  };
+};
+
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
 try {
   window.addEventListener(
@@ -53,6 +84,7 @@ class BoltImage extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.onResize = self.onResize.bind(self);
+    self.onLazyLoaded = self.onLazyLoaded.bind(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema, [
       'lazyload',
@@ -64,7 +96,7 @@ class BoltImage extends withLitHtml() {
 
   disconnecting() {
     super.disconnecting && super.disconnecting();
-    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('optimizedResize', this.onResize);
   }
 
   connecting() {
@@ -79,18 +111,42 @@ class BoltImage extends withLitHtml() {
         this.removeChild(this.firstChild);
       }
     }
-
-    window.addEventListener('resize', this.onResize, passiveIfSupported);
   }
 
   onResize() {
+    // auto calculate the sizes prop for:
+    // - non-lazy loaded images
+    //   - that don't have a sizes prop specifically set OR
+    //   - that DO have a sizes prop but it's set to auto
+    // - lazy loaded images
+    //   - that have already been lazyloaded by lazysizes + size has changed
+    //
     if (
-      this.isLoaded &&
-      (this.getAttribute('sizes') === 'auto' || !this.getAttribute('sizes')) &&
-      this.offsetWidth > 0
+      (this.noLazy &&
+        (this.getAttribute('sizes') === 'auto' ||
+          !this.getAttribute('sizes')) &&
+        this.offsetWidth > 0) ||
+      (this.isLazyLoaded &&
+        this.offsetWidth > 0 &&
+        this.sizes.replace('px', '') !== this.offsetWidth)
     ) {
       this.sizes = `${this.offsetWidth}px`;
     }
+  }
+
+  // fires when lazysizes has finished lazyloading a particular component.
+  onLazyLoaded(e) {
+    this.isLazyLoaded = true;
+
+    // delete all element references of this particular image from the lazySizes elements queue
+    lazySizes.elements.forEach((item, index) => {
+      if (item === this.lazyImage) {
+        delete lazySizes.elements[index];
+      }
+    });
+
+    this.lazyImage.removeEventListener('lazyloaded', this.onLazyLoaded);
+    window.addEventListener('optimizedResize', debounce(this.onResize, 300));
   }
 
   rendered() {
@@ -98,22 +154,36 @@ class BoltImage extends withLitHtml() {
 
     const { noLazy } = this.validateProps(this.props);
 
-    // if image should lazyload
-    if (!noLazy) {
-      const lazyImage = this.renderRoot.querySelector(
-        `.${lazySizes.cfg.lazyClass}`,
-      );
+    if (!this._wasInititallyRendered) {
+      this._wasInititallyRendered = true;
 
-      // if component contains a lazy image that is rendering for the first time
-      if (lazyImage && !this.isLoaded) {
-        // set a flag so that image is not lazyloaded on subsequent re-renders
-        this.isLoaded = true;
+      // if image should lazyload
+      if (!noLazy && !this.isLazyLoaded) {
+        this.lazyImage =
+          this.lazyImage ||
+          this.renderRoot.querySelector(`.${lazySizes.cfg.lazyClass}`);
 
-        // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
-        lazySizes.elements && lazySizes.elements.push(lazyImage);
+        // if component contains a lazy image that is rendering for the first time, but hasn't yet lazyloaded
+        if (this.lazyImage) {
+          this.lazyImage.addEventListener('lazyloaded', this.onLazyLoaded);
+          // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
 
-        // force rechecks -- probably not needed. @todo: can we remove?
-        // lazySizes.autoSizer.checkElems();
+          // wait until lazySizes.elements is available
+          const waitForLazySizes = setInterval(checkIfLazySizesReady, 50);
+          // eslint-disable-next-line no-inner-declarations
+          function checkIfLazySizesReady() {
+            if (lazySizes.elements) {
+              lazySizes.elements && lazySizes.elements.push(this.lazyImage);
+              clearInterval(waitForLazySizes);
+            }
+          }
+        }
+      } else if (noLazy) {
+        // decounce setting the sizes prop
+        window.addEventListener(
+          'optimizedResize',
+          debounce(this.onResize, 300),
+        );
       }
     }
   }
@@ -154,16 +224,22 @@ class BoltImage extends withLitHtml() {
       }
     }
 
-    const _isJpg = src && src.split('.').pop() === 'jpg';
+    const _isJpg =
+      src &&
+      src
+        .split('.')
+        .pop()
+        .includes('jpg');
     const _canUseRatio = ratioW > 0 && ratioH > 0 && useRatio && !cover;
     // Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder
     const _canUsePlaceholder = (_canUseRatio || cover) && _isJpg;
 
     const classes = cx(...this.initialClasses, 'c-bolt-image__image', {
       'c-bolt-image__lazyload': lazyload,
-      'c-bolt-image__lazyload--fade': lazyload && !this.isLoaded,
-      'c-bolt-image__lazyload--blur': lazyload && _isJpg && !this.isLoaded,
-      'js-lazyload': lazyload,
+      'c-bolt-image__lazyload--fade': lazyload && !this.isLazyLoaded,
+      'c-bolt-image__lazyload--blur': lazyload && _isJpg && !this.isLazyLoaded,
+      'js-lazyload': lazyload && !this.isLazyLoaded,
+      'is-lazyloaded': this.isLazyLoaded,
       'c-bolt-image--cover': cover,
     });
 
@@ -183,11 +259,15 @@ class BoltImage extends withLitHtml() {
             src="${ifDefined(src ? src : fallbackSrc)}"
             alt="${ifDefined(alt ? alt : undefined)}"
             srcset="${ifDefined(
-              lazyload ? placeholderImage : srcset ? srcset : undefined,
+              !lazyload
+                ? srcset || src || undefined
+                : this.isLazyLoaded
+                ? srcset
+                : placeholderImage || undefined,
             )}"
             data-srcset="${ifDefined(lazyload ? srcset || src : undefined)}"
             sizes="${ifDefined(
-              this.isLoaded || (this.sizes && this.sizes !== 'auto')
+              this.isLazyLoaded || (this.sizes && this.sizes !== 'auto')
                 ? this.sizes
                 : `${this.offsetWidth}px`,
             )}"

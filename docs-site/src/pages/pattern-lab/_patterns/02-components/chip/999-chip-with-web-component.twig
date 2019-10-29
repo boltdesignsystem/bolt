@@ -1,0 +1,69 @@
+{% macro code_example(code) %}
+  <div class="t-bolt-light u-bolt-margin-bottom-small u-bolt-padding-medium">
+    {% grid %}
+      {% cell "u-bolt-width-12/12" %}
+        {{ code }}
+      {% endcell %}
+    {% endgrid %}
+  </div>
+  <div class="u-bolt-margin-bottom-large">
+    <bolt-code-snippet syntax="dark" lang="html">{% spaceless %}
+      {{ code | replace({
+        '<': '&lt;',
+        '>': '&gt;',
+      }) | trim | raw }}
+    {% endspaceless %}</bolt-code-snippet>
+  </div>
+{% endmacro %}
+
+{% import _self as chip_code %}
+
+{% set chip_demo %}
+<bolt-chip>
+  Chip
+</bolt-chip>
+{% endset %}
+
+{% set chip_basic_demo %}
+<bolt-chip spacing="small" url="https://pega.com" target="_blank">
+  Linked chip
+</bolt-chip>
+{% endset %}
+
+{% set chip_advanced_demo %}
+<bolt-chip>
+  Chip with icon
+  <bolt-icon name="check" slot="after"></bolt-icon>
+</bolt-chip>
+{% endset %}
+
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Web Component Usage
+  </bolt-text>
+  <bolt-text>
+    Bolt Chip is a web component, you can simply use <bolt-code-snippet display="inline" lang="html">&lt;bolt-chip&gt;</bolt-code-snippet> in the markup to make it render.
+  </bolt-text>
+  {% include chip_code.code_example(chip_demo) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Basic Usage
+  </bolt-text>
+  <bolt-text>
+    All the props defined in the schema table can be used directly on the <bolt-code-snippet display="inline" lang="html">&lt;bolt-chip&gt;</bolt-code-snippet> element.
+  </bolt-text>
+  {% include chip_code.code_example(chip_basic_demo) %}
+</div>
+
+<div class="u-bolt-margin-bottom-large">
+  <bolt-text headline>
+    Advanced Usage
+  </bolt-text>
+  <bolt-text>
+    To add icons to <bolt-code-snippet display="inline" lang="html">&lt;bolt-chip&gt;</bolt-code-snippet>, place a <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet> next to your chip text. For icons to have the correct spacing, you <em>must</em> add the <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> attribute to <bolt-code-snippet display="inline" lang="html">&lt;bolt-icon&gt;</bolt-code-snippet>. The <bolt-code-snippet display="inline" lang="html">slot</bolt-code-snippet> value can be <bolt-code-snippet display="inline" lang="html">before</bolt-code-snippet> or <bolt-code-snippet display="inline" lang="html">after</bolt-code-snippet>.
+  </bolt-text>
+  {% include chip_code.code_example(chip_advanced_demo) %}
+</div>

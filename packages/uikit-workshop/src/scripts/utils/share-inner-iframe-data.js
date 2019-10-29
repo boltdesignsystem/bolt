@@ -6,19 +6,19 @@ if (window.self !== window.top) {
    * update the current page's drawer / code viewer
    * @todo: refactor similarly to the new code block below
    */
-  
+
   // handle the options that could be sent to the parent window
   //   - all get path
   //   - pattern & view all get a pattern partial, styleguide gets all
   //   - pattern shares lineage
   const path = window.location.toString();
   const parts = path.split('?');
-  const options = { 
+  const options = {
     event: 'patternLab.pageLoad',
     path: parts[0],
     details: {
-      patternData: window.patternData
-    }
+      patternData: window.patternData,
+    },
   };
 
   options.patternpartial =
@@ -31,7 +31,7 @@ if (window.self !== window.top) {
   window.parent.postMessage(options, targetOrigin);
 
   // tell the parent page which pattern has just loaded
-  const currentPattern = { pattern: window.patternData.patternPartial }
-  var event = new CustomEvent('patternPartial', { detail: currentPattern })
+  const currentPattern = { pattern: window.patternData.patternPartial };
+  var event = new CustomEvent('patternPartial', { detail: currentPattern });
   window.parent.document.dispatchEvent(event);
 }
