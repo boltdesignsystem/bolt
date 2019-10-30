@@ -1,5 +1,5 @@
 import './src/interactive-pathways';
-import './src/interactive-pathway'
+import './src/interactive-pathway';
 import './src/interactive-step';
 import './src/bolt-svg-animations/svg-animations';
 import './src/character';

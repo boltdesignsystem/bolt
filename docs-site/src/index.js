@@ -9,7 +9,6 @@ polyfillLoader.then(res => {
   );
 });
 
-
 // import './components/schema-form'; // Component Explorer is temporarily disabled until we're done migrating our Twig Rendering Service to Now.sh v2
 import './components/handle-iframe-height';
 import './pages/pattern-lab/_patterns/02-components/card/__tests__';

@@ -3,7 +3,8 @@ import { Slotify } from './Slotify';
 import styleInjector from './utils/styleInjector';
 
 const useShadow =
-  ('attachShadow' in Element.prototype && 'getRootNode' in Element.prototype) || window.ShadyDOM;
+  ('attachShadow' in Element.prototype && 'getRootNode' in Element.prototype) ||
+  window.ShadyDOM;
 
 export class BoltElement extends Slotify(LitElement) {
   createRenderRoot() {

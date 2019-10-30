@@ -33,10 +33,13 @@ function getBabelConfig({ isModern = false }) {
           useBuiltIns: false,
         },
       ],
-      ['@babel/proposal-decorators', {
-        legacy: true,
-        // decoratorsBeforeExport: true
-      }],
+      [
+        '@babel/proposal-decorators',
+        {
+          legacy: true,
+          // decoratorsBeforeExport: true
+        },
+      ],
       ['@babel/plugin-proposal-class-properties', { loose: true }],
 
       '@babel/plugin-syntax-dynamic-import',

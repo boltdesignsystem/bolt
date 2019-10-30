@@ -17,7 +17,6 @@ const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
-const { getBabelConfig } = require('./get-babel-config');
 
 const {
   webpackStats,
@@ -29,6 +28,7 @@ const {
   mapComponentNameToTwigNamespace,
 } = require('@bolt/build-utils/manifest');
 const log = require('@bolt/build-utils/log');
+const { getBabelConfig } = require('./get-babel-config');
 
 // Store set of webpack configs used in multiple builds
 let webpackConfigs = [];
@@ -162,7 +162,7 @@ async function createWebpackConfig(buildConfig) {
           entry[globalEntryName].push(component.assets.style);
         }
 
-        if (isModern && component.assets.module){
+        if (isModern && component.assets.module) {
           entry[globalEntryName].push(component.assets.module);
         } else if (component.assets.main) {
           entry[globalEntryName].push(component.assets.main);
@@ -170,7 +170,9 @@ async function createWebpackConfig(buildConfig) {
       });
 
       const useHotMiddleware =
-        (Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1) || config.prod
+        (Array.isArray(fullBuildConfig.lang) &&
+          fullBuildConfig.lang.length > 1) ||
+        config.prod
           ? false
           : true;
 
@@ -185,7 +187,7 @@ async function createWebpackConfig(buildConfig) {
         const files = [];
         if (component.assets.style) files.push(component.assets.style);
 
-        if (isModern && component.assets.module){
+        if (isModern && component.assets.module) {
           files.push(component.assets.module);
         } else if (component.assets.main) {
           files.push(component.assets.main);
@@ -347,11 +349,7 @@ async function createWebpackConfig(buildConfig) {
     },
     mode: config.prod ? 'production' : 'development',
     optimization: {
-      minimizer: config.prod
-        ? [
-            new TerserPlugin()
-          ]
-        : [],
+      minimizer: config.prod ? [new TerserPlugin()] : [],
     },
     plugins: [
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
@@ -486,7 +484,6 @@ async function createWebpackConfig(buildConfig) {
     webpackConfig = merge(webpackConfig, config.configureWebpack);
   }
 
-
   const modernConfig = merge(webpackConfig, {
     output: {
       filename: '[name].modern.js',
@@ -546,9 +543,7 @@ async function createWebpackConfig(buildConfig) {
   });
 
   // @todo: only output one config unless in prod mode
-  return [
-    modernConfig, legacyConfig,
-  ]
+  return [modernConfig, legacyConfig];
   // return [
   //   modernConfig,
   // ]
