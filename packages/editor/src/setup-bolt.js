@@ -566,7 +566,7 @@ export function setupBolt(editor) {
     </bolt-interactive-pathways>`,
   });
 
-  // Commented this out because this work was superceded by above starters. But leaving because they're simpler and client may want to reinstate.
+  // Commented this out because this was superceded by above starters. But leaving because they're simpler and client may want to reinstate.
   // registerBoltComponent({
   //   name: 'bolt-interactive-pathways',
   //   schema: pathwaysSchema,
