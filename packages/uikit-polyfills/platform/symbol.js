@@ -1,3 +1,5 @@
+/* eslint-disable no-extend-native */
+
 /**
 @license
 Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
