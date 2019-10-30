@@ -1,76 +1,76 @@
-import { props, define } from '@bolt/core/utils';
-import { html, render } from '@bolt/core/renderers/renderer-lit-html';
-import { BoltAction } from '@bolt/core/elements/bolt-action';
+import { render } from 'lit-html';
+import { html, customElement, unsafeCSS } from 'lit-element';
 import { convertInitialTags } from '@bolt/core/decorators';
+import { BoltAction } from '@bolt/base';
 import { ifDefined } from 'lit-html/directives/if-defined';
 
 import classNames from 'classnames/bind';
 
-import styles from './button.scss';
+import buttonStyles from './button.scss';
 import schema from '../button.schema.yml';
 
-let cx = classNames.bind(styles);
+let cx = classNames.bind(buttonStyles);
 
-@define
-@convertInitialTags(['button', 'a']) // The first matching tag will have its attributes converted to component props
+@customElement('bolt-button')
+@convertInitialTags(['button', 'a'])
 class BoltButton extends BoltAction {
-  static is = 'bolt-button';
+  static get properties() {
+    return {
+      color: String,
+      text: String,
+      size: String,
+      rounded: Boolean, // DEPRECATED.  Use border-radius instead of rounded.
+      borderRadius: {
+        type: String,
+        attribute: 'border-radius',
+      },
+      iconOnly: {
+        type: Boolean,
+        attribute: 'icon-only',
+      },
+      width: String,
+      align: String,
+      transform: String,
+      type: String,
+      tabindex: Number,
+      inert: Boolean, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
+    };
+  }
 
-  static props = {
-    color: props.string,
-    text: props.string,
-    size: props.string,
-    rounded: props.boolean, // DEPRECATED.  Use border-radius instead of rounded.
-    borderRadius: props.string,
-    iconOnly: props.boolean,
-    width: props.string,
-    align: props.string,
-    transform: props.string,
-    disabled: props.boolean,
-    target: props.string,
-    type: props.string,
-    url: props.string,
-    onClick: props.string, // Managed by base class
-    onClickTarget: props.string, // Managed by base class
-    tabindex: props.number,
-    inert: props.boolean, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
-  };
+  static get styles() {
+    return [unsafeCSS(buttonStyles)];
+  }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    self.delegateFocus = true;
-    return self;
+  constructor() {
+    super();
+    this.schema = schema;
+    this.delegateFocus = true;
   }
 
   render() {
     const classes = cx('c-bolt-button', {
-      'c-bolt-button--medium': !this.props.size, // Default size
-      [`c-bolt-button--${this.props.size}`]: this.props.size,
-      'c-bolt-button--primary': !this.props.color, // Default color
-      [`c-bolt-button--${this.props.color}`]: this.props.color,
-      [`c-bolt-button--${this.props.width}`]:
-        this.props.width && this.props.width !== 'auto',
-      'c-bolt-button--border-radius-regular': !this.props.borderRadius, // Default border radius
-      'c-bolt-button--border-radius-full':
-        this.props.rounded && !this.props.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.
-      [`c-bolt-button--border-radius-${this.props.borderRadius}`]: this.props
-        .borderRadius,
-      'c-bolt-button--center': !this.props.align, // Default align
-      [`c-bolt-button--${this.props.align}`]: this.props.align,
-      [`c-bolt-button--${this.props.transform}`]:
-        this.props.transform && this.props.transform !== 'none',
-      'c-bolt-button--disabled': this.props.disabled,
-      'c-bolt-button--inert': this.props.tabindex === -1 || this.props.inert,
-      'c-bolt-button--icon-only': this.props.iconOnly,
+      'c-bolt-button--medium': !this.size, // Default size
+      [`c-bolt-button--${this.size}`]: this.size,
+      'c-bolt-button--primary': !this.color, // Default color
+      [`c-bolt-button--${this.color}`]: this.color,
+      [`c-bolt-button--${this.width}`]: this.width && this.width !== 'auto',
+      'c-bolt-button--border-radius-regular': !this.borderRadius, // Default border radius
+      'c-bolt-button--border-radius-full': this.rounded && !this.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.
+      [`c-bolt-button--border-radius-${this.borderRadius}`]: this.borderRadius,
+      'c-bolt-button--center': !this.align, // Default align
+      [`c-bolt-button--${this.align}`]: this.align,
+      [`c-bolt-button--${this.transform}`]:
+        this.transform && this.transform !== 'none',
+      'c-bolt-button--disabled': this.disabled,
+      'c-bolt-button--inert': this.tabindex === -1 || this.inert,
+      'c-bolt-button--icon-only': this.iconOnly,
     });
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
-    const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
+    const hasUrl = this.url && this.url.length > 0 && this.url !== 'null';
 
     // Assign default target attribute value if one isn't specified
-    const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
+    const urlTarget = this.target && hasUrl ? this.target : '_self';
 
     // The buttonElement to render, based on the initial HTML passed alone.
     let buttonElement = null;
@@ -81,16 +81,16 @@ class BoltButton extends BoltAction {
         case 'before':
         case 'after':
           const iconClasses = cx('c-bolt-button__icon', {
-            'is-empty': name in this.slots === false,
+            'is-empty': this.slotify(name) === false,
           });
 
           return bolt.isServer
             ? html`
-                ${name in this.slots
+                ${this.slotify(name)
                   ? html`
                       <replace-with-grandchildren class="${iconClasses}"
                         ><span class="c-bolt-button__icon-sizer"
-                          >${name in this.slots ? this.slot(name) : ''}</span
+                          >${this.slotify(name) ? this.slotify(name) : ''}</span
                         ></replace-with-grandchildren
                       >
                     `
@@ -99,8 +99,8 @@ class BoltButton extends BoltAction {
             : html`
                 <span class="${iconClasses}"
                   ><span class="c-bolt-button__icon-sizer"
-                    >${name in this.slots
-                      ? this.slot(name)
+                    >${this.slotify(name)
+                      ? this.slotify(name)
                       : html`
                           <slot name="${name}" />
                         `}</span
@@ -109,16 +109,16 @@ class BoltButton extends BoltAction {
               `;
         default:
           const itemClasses = cx('c-bolt-button__item', {
-            'is-empty': name in this.slots === false,
+            'is-empty': this.slotify(name) === false,
           });
 
           return bolt.isServer
             ? html`
-                ${name in this.slots
+                ${this.slotify(name)
                   ? html`
                       <replace-with-children class="${itemClasses}"
-                        >${name in this.slots
-                          ? this.slot('default')
+                        >${this.slotify(name)
+                          ? this.slotify('default')
                           : ''}</replace-with-children
                       >
                     `
@@ -126,8 +126,8 @@ class BoltButton extends BoltAction {
               `
             : html`
                 <span class="${itemClasses}"
-                  >${name in this.slots
-                    ? this.slot('default')
+                  >${this.slotify(name)
+                    ? this.slotify('default')
                     : html`
                         <slot />
                       `}</span
@@ -148,9 +148,9 @@ class BoltButton extends BoltAction {
 
       // @todo: find automatic way to dissolve original HTML elements into their respective props + custom attributes
       if (buttonElement.tagName === 'A') {
-        const url = this.props.url || this.originalUrl;
+        const url = this.url || this.originalUrl;
 
-        if (this.props.disabled) {
+        if (this.disabled) {
           this.originalUrl = buttonElement.getAttribute('href');
           buttonElement.setAttribute('aria-disabled', 'true');
           buttonElement.removeAttribute('href');
@@ -162,38 +162,36 @@ class BoltButton extends BoltAction {
           }
         }
 
-        if (this.props.target) {
-          buttonElement.setAttribute('target', this.props.target);
+        if (this.target) {
+          buttonElement.setAttribute('target', this.target);
         }
       } else {
-        if (this.props.disabled) {
+        if (this.disabled) {
           buttonElement.setAttribute('disabled', '');
         } else {
           buttonElement.removeAttribute('disabled');
         }
       }
 
-      if (this.props.tabindex) {
-        buttonElement.setAttribute('tabindex', this.props.tabindex);
+      if (this.tabindex) {
+        buttonElement.setAttribute('tabindex', this.tabindex);
       }
 
       render(innerSlots, buttonElement);
     } else if (hasUrl) {
       buttonElement = html`
         <a
-          href="${ifDefined(
-            this.props.url && !this.props.disabled ? this.props.url : undefined,
-          )}"
+          href="${ifDefined(this.url && !this.disabled ? this.url : undefined)}"
           class="${classes}"
           target="${urlTarget}"
           tabindex=${ifDefined(
-            this.props.tabindex === -1
+            this.tabindex === -1
               ? '-1'
-              : this.props.tabindex
-              ? this.props.tabindex
+              : this.tabindex
+              ? this.tabindex
               : undefined,
           )}
-          aria-disabled=${ifDefined(this.props.disabled ? 'true' : undefined)}
+          aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
           >${innerSlots}</a
         >
@@ -203,14 +201,14 @@ class BoltButton extends BoltAction {
         <button
           class="${classes}"
           tabindex=${ifDefined(
-            this.props.tabindex === -1
+            this.tabindex === -1
               ? '-1'
-              : this.props.tabindex
-              ? this.props.tabindex
+              : this.tabindex
+              ? this.tabindex
               : undefined,
           )}
-          type=${ifDefined(this.props.type ? this.props.type : undefined)}
-          disabled=${ifDefined(this.props.disabled ? '' : undefined)}
+          type=${ifDefined(this.type ? this.type : undefined)}
+          disabled=${ifDefined(this.disabled ? '' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
         >
           ${innerSlots}
@@ -219,7 +217,7 @@ class BoltButton extends BoltAction {
     }
 
     return html`
-      ${this.addStyles([styles])} ${buttonElement}
+      ${buttonElement}
     `;
   }
 }

@@ -9,7 +9,6 @@
     "components"
   ],
   "version": "2.9.2",
-  "sourceFilesFrom": "0.9.8",
   "maintainers": [
     {
       "name": "Salem Ghoweri",
@@ -28,12 +27,14 @@
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "style": "index.scss",
   "main": "index.js",
+  "module": "./src/button.js",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
     "@bolt/components-icon": "^2.9.2",
-    "@bolt/core": "^2.9.2"
+    "@bolt/core": "^2.9.2",
+    "@bolt/base": "^0.0.0"
   },
   "schema": "button.schema.yml",
   "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"

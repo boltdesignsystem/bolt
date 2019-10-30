@@ -19,7 +19,7 @@ const app = express();
 async function compile(customWebpackConfig) {
   boltBuildConfig = boltBuildConfig || (await getConfig());
   const webpackConfig =
-    customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
+    customWebpackConfig || (await createWebpackConfig(boltBuildConfig))[0];
 
   return new Promise((resolve, reject) => {
     const compiler = boltWebpackMessages(webpack(webpackConfig));
@@ -56,12 +56,13 @@ watch.displayName = 'webpack:watch';
 
 async function server(customWebpackConfig) {
   const boltBuildConfig = await getConfig();
-  const useHotMiddleware = !(
-    Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1
-  );
+  // const useHotMiddleware = !(
+  //   Array.isArray(boltBuildConfig.lang) && boltBuildConfig.lang.length > 1
+  // );
+  const useHotMiddleware = false;
 
   const webpackConfig =
-    customWebpackConfig || (await createWebpackConfig(boltBuildConfig));
+    customWebpackConfig || (await createWebpackConfig(boltBuildConfig))[0];
 
   const browserSyncFileToWatch = [
     `${boltBuildConfig.wwwDir}/**/*.css`,

@@ -75,6 +75,11 @@ async function getPkgInfo(pkgName) {
       info.dir = path.dirname(pkgName.scss);
       ensureFileExists(pkgName.scss);
     }
+    if (pkgName.mjs) {
+      info.assets.module = pkgName.mjs;
+      info.dir = path.dirname(pkgName.mjs);
+      ensureFileExists(pkgName.mjs);
+    }
     if (pkgName.js) {
       info.assets.main = pkgName.js;
       // yeah I know we're overwriting `dir`... got to have something though... and it's only used by PL to watch Twig
@@ -95,6 +100,9 @@ async function getPkgInfo(pkgName) {
     };
     if (pkgName.endsWith('.scss')) {
       info.assets.style = pkgName;
+    }
+    if (pkgName.endsWith('.mjs')) {
+      info.assets.module = pkgName;
     }
     if (pkgName.endsWith('.js')) {
       info.assets.main = pkgName;
@@ -162,6 +170,10 @@ async function getPkgInfo(pkgName) {
     if (pkg.style) {
       info.assets.style = path.join(dir, pkg.style);
       ensureFileExists(info.assets.style);
+    }
+    if (pkg.module) {
+      info.assets.module = path.join(dir, pkg.module);
+      ensureFileExists(info.assets.module);
     }
     if (pkg.main) {
       info.assets.main = path.join(dir, pkg.main);

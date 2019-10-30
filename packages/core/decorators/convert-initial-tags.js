@@ -13,8 +13,8 @@ import { getComponentRootElement } from '@bolt/core/utils';
 export function convertInitialTags(tags, moveChildrenToRoot = true) {
   return target => {
     return class extends target {
-      connecting() {
-        super.connecting && super.connecting();
+      connectedCallback() {
+        super.connectedCallback && super.connectedCallback();
 
         // Make sure the component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
         if (this._wasInitiallyRendered === false) {

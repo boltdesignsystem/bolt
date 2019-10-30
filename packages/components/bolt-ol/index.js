@@ -7,9 +7,9 @@ polyfillLoader.then(res => {
 
   if (!window.customElements.get('bolt-li')) {
     import(
-      /* 
-      webpackMode: 'eager', 
-      webpackChunkName: 'bolt-li' 
+      /*
+      webpackMode: 'eager',
+      webpackChunkName: 'bolt-li'
     */ '@bolt/components-li/src/li.js'
     );
   }

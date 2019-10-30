@@ -2,6 +2,7 @@ import { beforeNextRender, define, props, css } from '@bolt/core/utils';
 import { h, withPreact } from '@bolt/core/renderers';
 import Mousetrap from 'mousetrap';
 import classNames from 'classnames';
+import './video-meta.js';
 
 import {
   socialPlugin,
