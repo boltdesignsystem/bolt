@@ -5,10 +5,7 @@
 pl-logo {
   max-width: 12rem;
   align-self: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   flex-shrink: 0;
   position: relative;
   z-index: 100;
@@ -16,7 +13,6 @@ pl-logo {
   @media all and (min-width: $pl-bp-med) {
     .pl-c-body--theme-sidebar & {
       max-width: none;
-      width: 7rem;
       padding: 0.5rem;
     }
   }
@@ -25,7 +21,7 @@ pl-logo {
 .pl-c-logo {
   width: auto;
   padding: 0.5rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: inherit;
@@ -47,7 +43,7 @@ pl-logo {
 
 .pl-c-logo__img {
   display: block;
-  height: auto;
+  height: 100%; // fixes IE 11 issue on Windows 7.1
   max-height: 1.7rem;
   max-width: 100%;
 
