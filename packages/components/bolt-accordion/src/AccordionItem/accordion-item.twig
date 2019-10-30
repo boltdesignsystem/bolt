@@ -8,14 +8,17 @@
 {% set base_class = "c-bolt-accordion-item" %}
 {% set this = init(schema.properties.items.items) %}
 {% set inner_attributes = create_attribute({}) %}
-{% set label_attributes = create_attribute({}) %}
+{% set trigger_attributes = create_attribute({}) %}
+{% set content_attributes = create_attribute({}) %}
 
 {% set _uuid = this.data.uuid.value|default(bolt.data.config.env == "test" ? "12345" : random()) %}
 {% set primary_uuid = base_class ~ "-#{_uuid}" %}
 {% set secondary_uuid = base_class ~ "-inner-#{_uuid}" %}
 
 {% set inactive = this.data.inactive.value %}
-{% set spacing_class = spacing ? "c-bolt-accordion-spacing--" ~ spacing : "" %}
+{% set trigger_spacing_class = "c-bolt-accordion-spacing--" ~ trigger_spacing|default(spacing) %}
+{% set content_spacing_class = "c-bolt-accordion-spacing--" ~ content_spacing|default(spacing) %}
+
 {% set trigger_tag = inactive ? "div" : "label" %}
 
 {# init() will not return "trigger" because "trigger" can be an object or array #}
@@ -31,11 +34,17 @@
   last ? base_class ~ "--last-item" : ""
 ] %}
 
-{% set label_classes = [
+{% set trigger_classes = [
   "c-bolt-accordion-item__trigger-label",
   "c-bolt-accordion-item__trigger-label--offset",
   inactive ? "c-bolt-accordion-item__trigger-label--inactive" : "",
-  spacing_class
+  trigger_spacing_class
+] %}
+
+{% set content_classes = [
+  "c-bolt-accordion-item__content-inner",
+  not trigger_spacing and not content_spacing ? "c-bolt-accordion-item__content-inner--offset" : "",
+  content_spacing_class
 ] %}
 
 {% if not inactive %}
@@ -71,25 +80,24 @@
     id="{{ secondary_uuid }}">
 
     <div class="c-bolt-accordion-item__trigger">
-      <{{ trigger_tag }} {{ label_attributes.addClass(label_classes) }}>
+      <{{ trigger_tag }} {{ trigger_attributes.addClass(trigger_classes) }}>
         <div class="c-bolt-accordion-item__trigger-content">
           <ssr-keep for="bolt-accordion-item">
             <div slot="trigger">{{ trigger }}</div>
-          </ssr-keep>
         </div>
       </{{ trigger_tag }}>
 
-      <a href="#{{ primary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--open {{ spacing_class }}">
+      <a href="#{{ primary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--open {{ trigger_spacing_class }}">
         <span class="c-bolt-accordion-item__toggle-text">{{ this.data.open_label.value }}</span>
       </a>
 
-      <a href="#{{ secondary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--close {{ spacing_class }}">
+      <a href="#{{ secondary_uuid }}" class="c-bolt-accordion-item__trigger-link c-bolt-accordion-item__trigger-link--close {{ trigger_spacing_class }}">
         <span class="c-bolt-accordion-item__toggle-text">{{ this.data.close_label.value }}</span>
       </a>
     </div>
 
     <div class="c-bolt-accordion-item__content">
-      <div class="c-bolt-accordion-item__content-inner {{ spacing_class }}">
+      <div {{ content_attributes.addClass(content_classes) }}>
         <ssr-keep for="bolt-accordion-item">
           {{ content }}
         </ssr-keep>

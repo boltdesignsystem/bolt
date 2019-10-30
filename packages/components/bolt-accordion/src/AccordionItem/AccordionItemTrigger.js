@@ -7,10 +7,8 @@ export const AccordionItemTrigger = (children, props, context) => {
   const triggerInnerClasses = css(
     'c-bolt-accordion-item__trigger-label',
     props.inactive ? `c-bolt-accordion-item__trigger-label--inactive` : '',
-    context.spacing || props.spacing
-      ? `c-bolt-accordion-spacing--${props.spacing ||
-          props.triggerSpacing ||
-          context.spacing}`
+    props.triggerSpacing || context.spacing
+      ? `c-bolt-accordion-spacing--${props.triggerSpacing || context.spacing}`
       : '',
   );
 

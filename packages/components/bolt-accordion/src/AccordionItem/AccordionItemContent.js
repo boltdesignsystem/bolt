@@ -3,11 +3,10 @@ import { html } from '@bolt/core/renderers/renderer-lit-html';
 
 export const AccordionItemContent = (children, props, context) => {
   const spacingClasses = css(
-    context.spacing || props.spacing
-      ? `c-bolt-accordion-spacing--${props.spacing ||
-          props.contentSpacing ||
-          context.spacing}`
+    props.contentSpacing || context.spacing
+      ? `c-bolt-accordion-spacing--${props.contentSpacing || context.spacing}`
       : '',
+    !props.contentSpacing ? 'c-bolt-accordion-item__content-inner--offset' : '',
   );
 
   const contentInnerClasses = css(
