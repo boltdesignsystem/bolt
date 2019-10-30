@@ -545,10 +545,22 @@ export function setupBolt(editor) {
     select: true,
     content: `<bolt-interactive-pathways>
       <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
-      <bolt-interactive-pathway pathway-title="Billing Inquiries">
+      <bolt-interactive-pathway pathway-title="Pathway 1">
         ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
       </bolt-interactive-pathway>
-       <bolt-interactive-pathway pathway-title="Another story">
+      <bolt-interactive-pathway pathway-title="Pathway 2">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Pathway 3">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Pathway 4">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Pathway 5">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Pathway 6">
         ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
       </bolt-interactive-pathway>
     </bolt-interactive-pathways>`,
