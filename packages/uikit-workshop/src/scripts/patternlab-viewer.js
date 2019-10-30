@@ -1,4 +1,4 @@
-import './utils/polyfills';
+import '@bolt/uikit-polyfills';
 import './components/pl-nav/pl-nav';
 import './components/pl-logo/pl-logo';
 import './components/pl-layout/pl-layout';

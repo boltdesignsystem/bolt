@@ -79,7 +79,7 @@ module.exports = function() {
           sassOptions: {
             importer: [selectorImporter()],
             outputStyle: 'expanded',
-          }
+          },
         },
       },
     ];
@@ -126,7 +126,6 @@ module.exports = function() {
           },
           {
             test: /\.js$/,
-            exclude: /(bower_components)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -137,21 +136,17 @@ module.exports = function() {
                       targets: {
                         browsers: ['>0.25%', 'ie 11'],
                       },
-                      modules: false,
-                      debug: false,
                     },
                   ],
                 ],
                 plugins: [
                   [
-                    '@babel/plugin-transform-runtime',
+                    '@babel/proposal-decorators',
                     {
-                      helpers: false,
-                      regenerator: true,
+                      legacy: true,
                     },
                   ],
-                  ['@babel/plugin-proposal-decorators', { legacy: true }],
-                  '@babel/plugin-proposal-class-properties',
+                  ['@babel/plugin-proposal-class-properties', { loose: true }],
                   '@babel/plugin-syntax-dynamic-import',
                   '@babel/plugin-syntax-jsx' /* [1] */,
                   [
@@ -200,7 +195,7 @@ module.exports = function() {
                 // otherwise extract the result and write out a .css file per usual
                 use: [MiniCssExtractPlugin.loader, scssLoaders].reduce(
                   (acc, val) => acc.concat(val),
-                  []
+                  [],
                 ),
               },
             ],
@@ -346,8 +341,8 @@ module.exports = function() {
             blockJSRequests: false,
             puppeteer: {
               executablePath: localChrome,
-              getBrowser: () => browserPromise
-            }
+              getBrowser: () => browserPromise,
+            },
           },
         }),
       );
