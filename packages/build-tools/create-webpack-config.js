@@ -349,7 +349,15 @@ async function createWebpackConfig(buildConfig) {
     },
     mode: config.prod ? 'production' : 'development',
     optimization: {
-      minimizer: config.prod ? [new TerserPlugin()] : [],
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          sourceMap: !config.prod,
+          terserOptions: {
+            safari10: true,
+          },
+        }),
+      ],
     },
     plugins: [
       new webpack.ProgressPlugin(boltWebpackProgress), // Ties together the Bolt custom Webpack messages + % complete
