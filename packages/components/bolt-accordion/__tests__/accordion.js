@@ -118,6 +118,42 @@ describe('<bolt-accordion> Component', () => {
     });
   });
 
+  spacing.enum.forEach(async spacingChoice => {
+    test(`trigger spacing: ${spacingChoice}`, async () => {
+      const results = await render(
+        '@bolt-components-accordion/accordion.twig',
+        {
+          items: [
+            {
+              trigger: 'Accordion item 1',
+              content: 'This is the accordion content.',
+              trigger_spacing: spacingChoice,
+            },
+          ],
+        },
+      );
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+    test(`content spacing: ${spacingChoice}`, async () => {
+      const results = await render(
+        '@bolt-components-accordion/accordion.twig',
+        {
+          content_spacing: spacingChoice,
+          items: [
+            {
+              trigger: 'Accordion item 1',
+              content: 'This is the accordion content.',
+              content_spacing: spacingChoice,
+            },
+          ],
+        },
+      );
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
   test(`Inactive item`, async () => {
     const results = await render('@bolt-components-accordion/accordion.twig', {
       items: [
