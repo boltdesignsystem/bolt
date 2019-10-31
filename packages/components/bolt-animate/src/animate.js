@@ -1,11 +1,10 @@
 import {
-  withLitHtml,
-  html,
   props,
   define,
   hasNativeShadowDomSupport,
   convertSchemaToProps,
-} from '@bolt/core';
+} from '@bolt/core/utils';
+import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { styleMap } from 'lit-html/directives/style-map.js';
 import { classMap } from 'lit-html/directives/class-map.js';
 import styles from './animate.scss';

@@ -74,13 +74,15 @@ const config = {
 
   components: {
     global: [
-      '@bolt/components-radio-switch',
+      '@bolt/core',
       '@bolt/components-carousel',
       '@bolt/global',
       '@bolt/animations',
       '@bolt/components-animate',
       '@bolt/docs-search',
+      '@bolt/version-selector',
       '@bolt/components-typeahead',
+      '@bolt/components-ratio',
       // '@bolt/schema-form', // Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2
       '@bolt/analytics-autolink',
       '@bolt/analytics-autotrack',
@@ -109,6 +111,7 @@ const config = {
       '@bolt/components-icon',
       '@bolt/components-image',
       '@bolt/components-link',
+      '@bolt/components-li',
       '@bolt/components-list',
       '@bolt/components-modal',
       '@bolt/components-nav-indicator',

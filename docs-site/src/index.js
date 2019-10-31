@@ -1,14 +1,5 @@
-import { polyfillLoader } from '@bolt/core/polyfills';
 
-polyfillLoader.then(res => {
-  import(
-    /*
-    webpackMode: 'eager',
-    webpackChunkName: 'bolt-docs-components'
-  */ './components.js'
-  );
-});
-
+import './components/version-selector/version-selector.js';
 // import './components/schema-form'; // Component Explorer is temporarily disabled until we're done migrating our Twig Rendering Service to Now.sh v2
 import './components/handle-iframe-height';
 import './pages/pattern-lab/_patterns/02-components/card/__tests__';

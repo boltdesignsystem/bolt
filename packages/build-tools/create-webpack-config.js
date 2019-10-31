@@ -252,7 +252,6 @@ async function createWebpackConfig(buildConfig) {
 
   let webpackConfig = {
     target: 'web',
-    entry: await buildWebpackEntry(),
     output: {
       path: path.resolve(process.cwd(), config.buildDir),
       // @todo: switch this to output .client.js and .server.js file prefixes when we hit Bolt v3.0
@@ -493,6 +492,7 @@ async function createWebpackConfig(buildConfig) {
   }
 
   const modernConfig = merge(webpackConfig, {
+    entry: await buildWebpackEntry(true),
     output: {
       filename: '[name].modern.js',
       chunkFilename: '[name]-bundle-[chunkhash].modern.js',
@@ -515,6 +515,7 @@ async function createWebpackConfig(buildConfig) {
   });
 
   const legacyConfig = merge(webpackConfig, {
+    entry: await buildWebpackEntry(false),
     module: {
       rules: [
         {
@@ -552,9 +553,6 @@ async function createWebpackConfig(buildConfig) {
 
   // @todo: only output one config unless in prod mode
   return [modernConfig, legacyConfig];
-  // return [
-  //   modernConfig,
-  // ]
 }
 
 // Helper function to associate each unique language in the build config with a separate Webpack build instance (making filenames, etc unique);

@@ -265,9 +265,9 @@ async function buildBoltManifest() {
         config.components.global.map(getPkgInfo),
       );
 
-      const globalSrcPlusDeps = await aggregateBoltDependencies(globalSrc);
+      // const globalSrcPlusDeps = await aggregateBoltDependencies(globalSrc);
 
-      boltManifest.components.global = globalSrcPlusDeps;
+      boltManifest.components.global = globalSrc;
     }
     if (config.components.individual) {
       const individualSrc = await Promise.all(
