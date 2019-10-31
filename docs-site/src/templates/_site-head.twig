@@ -118,8 +118,9 @@
         //console.table(patternLab);
       </script>
     {% endif %}
+    
+    <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
 
-    <script src="{{ assets["bolt-global.modern.js"] | default("/build/bolt-global.modern.js") }}?cacheBuster={{ cacheBuster }}" type="module"></script>
     <script src="https://www.google-analytics.com/analytics.js" defer></script>
     <script>
       window.drupalSettings = {

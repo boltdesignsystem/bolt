@@ -262,7 +262,8 @@ async function createWebpackConfig(buildConfig) {
       publicPath,
     },
     resolve: {
-      mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
+      mainFields: ['esnext', 'jsnext:main', 'browser', 'main'],
+      // mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
       extensions: [
         '.js',
         '.jsx',
@@ -552,7 +553,8 @@ async function createWebpackConfig(buildConfig) {
   });
 
   // @todo: only output one config unless in prod mode
-  return [modernConfig, legacyConfig];
+  // return [modernConfig, legacyConfig];
+  return [legacyConfig];
 }
 
 // Helper function to associate each unique language in the build config with a separate Webpack build instance (making filenames, etc unique);
