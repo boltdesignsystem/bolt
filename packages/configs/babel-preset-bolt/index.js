@@ -6,17 +6,19 @@ const preset = function(api, opts = {}) {
         {
           modules: false,
           debug: false,
+          corejs: 3,
+          "useBuiltIns": "entry",
         },
       ],
     ],
     plugins: [
-      [
-        '@babel/plugin-transform-runtime',
-        {
-          helpers: false,
-          regenerator: true,
-        },
-      ],
+      // [
+      //   '@babel/plugin-transform-runtime',
+      //   {
+      //     helpers: false,
+      //     regenerator: true,
+      //   },
+      // ],
 
       /**
        * 1. Helps with our Web Component Preact renderer

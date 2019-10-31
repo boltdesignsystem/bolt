@@ -316,15 +316,19 @@ async function createWebpackConfig(buildConfig) {
               return true;
             }
 
+            if (thePath.includes('core-js')) {
+              return true;
+            }
+
             return false;
           },
           use: [
-            'cache-loader',
+            // 'cache-loader',
             {
               loader: 'babel-loader',
               options: {
                 babelrc: false,
-                cacheDirectory: true,
+                // cacheDirectory: true,
                 presets: ['@bolt/babel-preset-bolt'],
               },
             },

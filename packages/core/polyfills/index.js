@@ -1,4 +1,6 @@
-import 'es6-promise/auto';
+import 'regenerator-runtime/runtime';
+import '@bolt/polyfills';
+// import 'es6-promise/auto';
 import 'element-closest';
 import 'whatwg-fetch';
 import 'mdn-polyfills/Node.prototype.prepend';
@@ -11,13 +13,13 @@ import 'core-js/modules/es.array.for-each';
 import 'core-js/modules/es.object.assign';
 import 'core-js/modules/es.string.includes';
 import 'core-js/modules/es.string.repeat';
-import 'custom-event-polyfill'; // something in bolt-animate or recent animations work requires this to work in IE 11
-import 'core-js/modules/es.array.find';
+// import 'custom-event-polyfill'; // something in bolt-animate or recent animations work requires this to work in IE 11
+// import 'core-js/modules/es.array.find';
 // @todo: find-index polyfill is temporarily disabled until we can fix bug in table.js
 // import 'core-js/modules/es.array.find-index';
-import './symbol-polyfill';
-import './remove-polyfill';
-import '@webcomponents/template/template.js';
+// import './symbol-polyfill';
+// import './remove-polyfill';
+// import '@webcomponents/template/template.js';
 import WeakSet from '@ungap/weakset';
 window.WeakSet = WeakSet;
 
@@ -78,62 +80,19 @@ if (
 }
 
 export const polyfillLoader = new Promise(resolve => {
-  // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-hi-sd-ce-pf-index.js
-  // Used in: IE 11
-  if (polyfills.includes('lite')) {
-    Promise.all([import('document-register-element')]).then(() => {
+  if (
+    polyfills.includes('ce') ||
+    polyfills.includes('sd') ||
+    polyfills.includes('lite') ||
+    void 0 === window.Reflect || // eslint-disable-line
+    void 0 === window.customElements || // eslint-disable-line
+    window.customElements.hasOwnProperty('polyfillWrapFlushCallback') ||
+    window.customElements.nativeShimLoaded === true
+  ) {
+    resolve();
+  } else {
+    import('@webcomponents/custom-elements/src/native-shim.js').then(() => {
       resolve();
     });
-  }
-
-  // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-sd-ce-index.js
-  // Used in: Safari 9, Firefox, Edge
-  else if (polyfills.includes('sd') && polyfills.includes('ce')) {
-    Promise.all([
-      import('@webcomponents/shadydom/src/shadydom.js'),
-      import('document-register-element'),
-    ]).then(() => {
-      resolve();
-    });
-  }
-
-  // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-hi-sd-index.js
-  // Used in: Firefox with CustomElements enabled
-  else if (polyfills.includes('sd')) {
-    Promise.all([import('@webcomponents/shadydom/src/shadydom.js')]).then(
-      () => {
-        resolve();
-      },
-    );
-  }
-
-  // Based on https://github.com/webcomponents/webcomponentsjs/blob/master/entrypoints/webcomponents-hi-ce-index.js
-  // Used in: Safari 10, Firefox once SD is shipped
-  else if (polyfills.includes('ce')) {
-    Promise.all([import('@webcomponents/shadydom/src/shadydom.js')]).then(
-      () => {
-        resolve();
-      },
-    );
-
-    import('document-register-element').then(() => {
-      resolve();
-    });
-  }
-
-  // Used in Modern browsers supporting ES6. Required since we're transpiling ES6 classes through Babel
-  else {
-    if (
-      void 0 === window.Reflect || // eslint-disable-line
-      void 0 === window.customElements || // eslint-disable-line
-      window.customElements.hasOwnProperty('polyfillWrapFlushCallback') ||
-      window.customElements.nativeShimLoaded === true
-    ) {
-      resolve();
-    } else {
-      import('@webcomponents/custom-elements/src/native-shim.js').then(() => {
-        resolve();
-      });
-    }
   }
 });
