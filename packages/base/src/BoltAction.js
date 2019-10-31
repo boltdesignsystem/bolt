@@ -1,16 +1,9 @@
 /* eslint-disable lines-between-class-members */
-
 import {
-  // props,
-  // define,
   declarativeClickHandler,
   hasNativeShadowDomSupport,
-  // afterNextRender,
   watchForComponentMutations,
 } from '@bolt/core/utils';
-// import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
-
-// @define
 
 import { property } from 'lit-element';
 import { BoltElement } from './BoltElement';
@@ -54,7 +47,6 @@ class BoltAction extends BoltElement {
 
   // Attach external events declaratively
   clickHandler() {
-    console.log('click');
     declarativeClickHandler(this);
   }
 

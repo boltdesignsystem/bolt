@@ -37,6 +37,17 @@ export class BoltElement extends Slotify(LitElement) {
   firstUpdated(changedProperties) {
     this._wasInitiallyRendered = true;
     super.firstUpdated && super.firstUpdated(changedProperties);
+
+     // Fired only once, when the component has finished rendering for the first time.
+    this.dispatchEvent(
+      new CustomEvent('ready', {
+        detail: {
+          name: this.tagName.toLowerCase(),
+          shadowDom: this.useShadow ? true : false,
+        },
+        bubbles: true,
+      }),
+    );
   }
 }
 
