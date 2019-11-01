@@ -5,7 +5,9 @@ const Slotify = Base =>
     templateMap = new Map();
 
     assignSlotToContent(child) {
-      return child.getAttribute ? child.getAttribute('slot') || 'default' : 'default';
+      return child.getAttribute
+        ? child.getAttribute('slot') || 'default'
+        : 'default';
     }
 
     isEmptyTextNode(child) {
@@ -72,6 +74,4 @@ const Slotify = Base =>
     }
   };
 
-export {
-  Slotify,
-};
+export { Slotify };

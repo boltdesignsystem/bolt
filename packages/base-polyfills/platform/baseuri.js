@@ -15,8 +15,11 @@ export {};
 // https://github.com/webcomponents/html-imports/blob/v1.2.0/src/html-imports.js
 
 /** @type {Object|undefined} */
-const native_baseURI = Object.getOwnPropertyDescriptor(Node.prototype, 'baseURI');
-if (!native_baseURI) {
+const nativeBaseURI = Object.getOwnPropertyDescriptor(
+  Node.prototype,
+  'baseURI',
+);
+if (!nativeBaseURI) {
   Object.defineProperty(Node.prototype, 'baseURI', {
     /**
      * @this {Node}
@@ -25,7 +28,9 @@ if (!native_baseURI) {
     get() {
       // this.ownerDocument is `null` for documents
       const doc = this.ownerDocument || this;
-      const base = /** @type {HTMLBaseElement} */ (doc.querySelector('base[href]'));
+      const base = /** @type {HTMLBaseElement} */ (doc.querySelector(
+        'base[href]',
+      ));
       return (base && base.href) || window.location.href;
     },
     configurable: true,

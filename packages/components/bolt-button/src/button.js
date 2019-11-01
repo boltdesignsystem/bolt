@@ -10,7 +10,6 @@ import buttonStyles from './button.scss';
 
 let cx = classNames.bind(buttonStyles);
 
-// @customElement('bolt-v3-button')
 @convertInitialTags(['button', 'a'])
 class BoltButton extends BoltActionElement {
   // static lazyStyles = [buttonStyles];
@@ -43,13 +42,10 @@ class BoltButton extends BoltActionElement {
       [`c-bolt-button--${this.size}`]: this.size,
       'c-bolt-button--primary': !this.color, // Default color
       [`c-bolt-button--${this.color}`]: this.color,
-      [`c-bolt-button--${this.width}`]:
-        this.width && this.width !== 'auto',
+      [`c-bolt-button--${this.width}`]: this.width && this.width !== 'auto',
       'c-bolt-button--border-radius-regular': !this.borderRadius, // Default border radius
-      'c-bolt-button--border-radius-full':
-        this.rounded && !this.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.
-      [`c-bolt-button--border-radius-${this.borderRadius}`]: this
-        .borderRadius,
+      'c-bolt-button--border-radius-full': this.rounded && !this.borderRadius, // DEPRECATED.  Use the border-radius property instead of rounded.
+      [`c-bolt-button--border-radius-${this.borderRadius}`]: this.borderRadius,
       'c-bolt-button--center': !this.align, // Default align
       [`c-bolt-button--${this.align}`]: this.align,
       [`c-bolt-button--${this.transform}`]:
@@ -58,9 +54,6 @@ class BoltButton extends BoltActionElement {
       'c-bolt-button--inert': this.tabindex === -1 || this.inert,
       'c-bolt-button--icon-only': this.iconOnly,
     });
-
-    console.log('render!');
-
 
     // Decide on if the rendered button tag should be a <button> or <a> tag, based on if a URL exists OR if a link was passed in from the getgo
     const hasUrl = this.url && this.url.length > 0 && this.url !== 'null';
@@ -80,19 +73,29 @@ class BoltButton extends BoltActionElement {
             'is-empty': this.slotify(name) === false,
           });
 
-          return this.slotify(name) && html`<span class="${iconClasses}">
-            <span class="c-bolt-button__icon-sizer">
-              ${this.slotify(name)}
-            </span>
-          </span>`;
+          return (
+            this.slotify(name) &&
+            html`
+              <span class="${iconClasses}">
+                <span class="c-bolt-button__icon-sizer">
+                  ${this.slotify(name)}
+                </span>
+              </span>
+            `
+          );
         default:
           const itemClasses = cx('c-bolt-button__item', {
             'is-empty': this.slotify(name) === false,
           });
 
-          return this.slotify('default') && html`<span class="${itemClasses}">
-            ${this.slotify('default')}
-          </span>`;
+          return (
+            this.slotify('default') &&
+            html`
+              <span class="${itemClasses}">
+                ${this.slotify('default')}
+              </span>
+            `
+          );
       }
     };
 
@@ -101,8 +104,6 @@ class BoltButton extends BoltActionElement {
       slotMarkup('default'),
       slotMarkup('after'),
     ];
-
-
 
     if (this.rootElement) {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
@@ -143,9 +144,7 @@ class BoltButton extends BoltActionElement {
     } else if (hasUrl) {
       buttonElement = html`
         <a
-          href="${ifDefined(
-            this.url && !this.disabled ? this.url : undefined,
-          )}"
+          href="${ifDefined(this.url && !this.disabled ? this.url : undefined)}"
           class="${classes}"
           target="${urlTarget}"
           tabindex=${ifDefined(
