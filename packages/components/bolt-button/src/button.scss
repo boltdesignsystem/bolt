@@ -17,9 +17,9 @@
   display: inline-flex;
   outline: none; // [2]
 
-  &[type="button"],
-  &[type="reset"],
-  &[type="submit"] {
+  &[type='button'],
+  &[type='reset'],
+  &[type='submit'] {
     appearance: none;
   }
 }
@@ -245,11 +245,7 @@ bolt-button[width='full@small'],
 /**
  * Icon and text spacing and display
  */
-.c-bolt-button__icon.is-empty {
-  display: none;
-}
-
-.c-bolt-button__icon:not(.is-empty) {
+.c-bolt-button__icon {
   display: flex;
 }
 
@@ -259,19 +255,17 @@ bolt-button[width='full@small'],
   text-align: start;
 }
 
-.c-bolt-button__icon:not(.is-empty) {
-  .c-bolt-button__icon-sizer {
-    display: flex; // This fixes the spacing issue caused by bolt-icon defined as inline-block.
-  }
+.c-bolt-button__icon-sizer {
+  display: flex; // This fixes the spacing issue caused by bolt-icon defined as inline-block.
 }
 
 // Spacing only applies when there are BOTH text and icon
 .c-bolt-button:not(.c-bolt-button--icon-only) {
-  .c-bolt-button__item + .c-bolt-button__icon:not(.is-empty) {
+  .c-bolt-button__item + .c-bolt-button__icon {
     @include bolt-margin-left(xxsmall);
   }
 
-  .c-bolt-button__icon:not(.is-empty) + .c-bolt-button__item {
+  .c-bolt-button__icon + .c-bolt-button__item {
     @include bolt-margin-left(xxsmall);
   }
 }
