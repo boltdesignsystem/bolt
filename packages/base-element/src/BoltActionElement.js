@@ -1,8 +1,6 @@
-import {
-  declarativeClickHandler,
-  hasNativeShadowDomSupport,
-  watchForComponentMutations,
-} from '@bolt/core/utils';
+import { declarativeClickHandler } from '@bolt/core/utils/declarative-click-handler';
+import { watchForComponentMutations } from '@bolt/core/utils/watch-for-component-mutations';
+import { supportsShadowDom } from './lib/utils';
 import { BoltElement } from './BoltElement';
 
 class BoltActionElement extends BoltElement {
@@ -37,7 +35,7 @@ class BoltActionElement extends BoltElement {
     super.disconnectedCallback && super.disconnectedCallback();
     this.removeEventListener('click', this.clickHandler);
 
-    if (hasNativeShadowDomSupport && this.useShadow) {
+    if (supportsShadowDom && this.useShadow) {
       if (this.observer) {
         this.observer.disconnect();
       }
@@ -53,7 +51,7 @@ class BoltActionElement extends BoltElement {
     super.firstUpdated && super.firstUpdated();
 
     // re-render if Shadow DOM is supported and enabled; temp workaround to dealing w/ components already rendered, but without slot support
-    if (hasNativeShadowDomSupport && this.useShadow) {
+    if (supportsShadowDom && this.useShadow) {
       this.observer = watchForComponentMutations(this);
 
       this.observer.observe(this, {
