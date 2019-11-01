@@ -29,12 +29,12 @@ export const loadState = () => {
       state.app = {};
     }
 
-    if (!window.__PRERENDER_INJECTED){
+    if (!window.__PRERENDER_INJECTED) {
       if (state.app.drawerOpened === undefined) {
         state.app.drawerOpened = window.config.defaultShowPatternInfo || false;
       }
     }
-  
+
     if (state.app.drawerHeight && !state.app.drawerOpened) {
       state.app.appHeight = window.innerHeight;
     } else if (state.app.drawerHeight && state.app.drawerOpened) {

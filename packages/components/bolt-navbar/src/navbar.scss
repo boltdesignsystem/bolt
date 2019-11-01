@@ -187,16 +187,20 @@ bolt-navbar {
   }
 }
 
+.c-bolt-navbar__title--static,
 .c-bolt-navbar__title--link {
   display: flex;
   flex-shrink: 1; // make sure the title can wrap to multiple lines and shrink if needed.
   flex-wrap: nowrap;
   align-items: center;
   align-self: center;
+  white-space: nowrap;
+}
+
+.c-bolt-navbar__title--link {
   opacity: bolt-opacity(100);
   text-decoration: none;
   transition: all $bolt-navbar-title-transition;
-  white-space: nowrap;
 
   &:hover {
     opacity: $bolt-global-link-hover-opacity;

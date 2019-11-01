@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.2](https://github.com/bolt-design-system/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+## [2.8.3](https://github.com/bolt-design-system/bolt/compare/v2.8.2...v2.8.3) (2019-10-18)
+
+
+### Bug Fixes
+
+* adjust escape strategy to work in Bolt and in Drupal ([33d56b1](https://github.com/bolt-design-system/bolt/commit/33d56b1))
+* update editor.twig to help better support Drupal autoescape behavior ([623e38e](https://github.com/bolt-design-system/bolt/commit/623e38e))
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+
+### Bug Fixes
+
+* **editor:** make Move Up and Move Down buttons for Steps and Pathways ([da0e8f7](https://github.com/bolt-design-system/bolt/commit/da0e8f7))
+* **editor:** syntax error fix -- thank you tests ([408d7b6](https://github.com/bolt-design-system/bolt/commit/408d7b6))
+* **editor:** use package name for import ([433b01b](https://github.com/bolt-design-system/bolt/commit/433b01b))
+* **micro-journeys:** config for update of parents with event on editor removal; add events for step and pathway removal ([43b6419](https://github.com/bolt-design-system/bolt/commit/43b6419))
+
+
+### Features
+
+* **editor:** hide pathways image options ([2536517](https://github.com/bolt-design-system/bolt/commit/2536517))
+* **micro-journeys:** add icon-group to PL; spelling fixes ([46a8782](https://github.com/bolt-design-system/bolt/commit/46a8782))
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* **editor:** prevent bug with inserting array of starter elements ([2bf865b](https://github.com/bolt-design-system/bolt/commit/2bf865b))
+* **editor:** remove empty <bolt-animate>s on save ([85212df](https://github.com/bolt-design-system/bolt/commit/85212df))
+* lint and docs ([df83534](https://github.com/bolt-design-system/bolt/commit/df83534))
+* update all micro journey cta to use bolt link over text ([228f659](https://github.com/bolt-design-system/bolt/commit/228f659))
+
+
+### Features
+
+* add onClick and onClick target to button and link through editor ([fff8cf8](https://github.com/bolt-design-system/bolt/commit/fff8cf8))
+* add theme support to interactive-pathways via withContext and defineContext ([eb32484](https://github.com/bolt-design-system/bolt/commit/eb32484))
+* expose props to edit the image atop the interactive pathways co… ([#1411](https://github.com/bolt-design-system/bolt/issues/1411)) ([9fe1993](https://github.com/bolt-design-system/bolt/commit/9fe1993))
+* remove the connection band options from the character background slot ([#1427](https://github.com/bolt-design-system/bolt/issues/1427)) ([f2a8757](https://github.com/bolt-design-system/bolt/commit/f2a8757))
+* **editor:** add url and disabled to button in editor ([0eb9374](https://github.com/bolt-design-system/bolt/commit/0eb9374))
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 **Note:** Version bump only for package @bolt/components-editor

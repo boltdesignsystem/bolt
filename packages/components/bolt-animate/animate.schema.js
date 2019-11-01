@@ -19,13 +19,13 @@ module.exports = {
     },
     inDuration: {
       type: 'number',
-      title: 'Build In Duration',
+      title: 'Build In Duration (ms)',
       description: 'Set in milliseconds',
       default: 500,
     },
     inDelay: {
       type: 'number',
-      title: 'Build In Delay',
+      title: 'Build In Delay (ms)',
       description: 'Set in milliseconds',
       default: 0,
     },
@@ -48,13 +48,13 @@ module.exports = {
     },
     idleDuration: {
       type: 'number',
-      title: 'Idle Animation Duration (before repeating)',
+      title: 'Idle Animation Duration (before repeating; ms)',
       description: 'Set in milliseconds',
       default: 500,
     },
     idleDelay: {
       type: 'number',
-      title: 'Idle Delay',
+      title: 'Idle Delay (ms)',
       description: 'Set in milliseconds',
       default: 0,
     },
@@ -67,13 +67,13 @@ module.exports = {
     },
     outDuration: {
       type: 'number',
-      title: 'Build Out Duration',
+      title: 'Build Out Duration (ms)',
       description: 'Set in milliseconds',
-      default: 500,
+      default: 350,
     },
     outDelay: {
       type: 'number',
-      title: 'Build Out Delay',
+      title: 'Build Out Delay (ms)',
       description: 'Set in milliseconds',
       default: 0,
     },

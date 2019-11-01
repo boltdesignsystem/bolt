@@ -10,11 +10,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
 const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
 const localChrome = require('local-chrome');
-// const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const Renderer = require('@bolt/uikit-prerenderer');
 const puppeteer = require('puppeteer');
+const argv = require('yargs').argv;
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
@@ -23,14 +24,22 @@ const explorer = cosmiconfig('patternlab');
 const defaultConfig = {
   buildDir: './dist',
   prod: true, // or false for local dev
-  sourceMaps: false,
+  sourceMaps: true,
+  publicPath: './styleguide/',
+  copy: [{ from: './src/images/**', to: 'images', flatten: true }],
 };
 
-module.exports = async function() {
-  return new Promise(async (resolve, reject) => {
+module.exports = function() {
+  return new Promise(async resolve => {
     let customConfig = defaultConfig;
+    let configToSearchFor;
 
-    const configToSearchFor = await explorer.searchSync();
+    if (argv.patternlabrc) {
+      configToSearchFor = await explorer.loadSync(argv.patternlabrc);
+    } else {
+      configToSearchFor = await explorer.searchSync();
+    }
+
     if (configToSearchFor) {
       if (configToSearchFor.config) {
         customConfig = configToSearchFor.config;
@@ -67,8 +76,10 @@ module.exports = async function() {
         loader: 'sass-loader',
         options: {
           sourceMap: config.sourceMaps,
-          outputStyle: 'expanded',
-          importer: [selectorImporter()],
+          sassOptions: {
+            importer: [selectorImporter()],
+            outputStyle: 'expanded',
+          }
         },
       },
     ];
@@ -91,7 +102,7 @@ module.exports = async function() {
       },
       output: {
         path: path.resolve(process.cwd(), `${config.buildDir}/styleguide`),
-        publicPath: '/pattern-lab/styleguide/',
+        publicPath: `${config.publicPath}`,
         filename: '[name].js',
         chunkFilename: `js/[name]-chunk-[chunkhash].js`,
       },
@@ -119,11 +130,13 @@ module.exports = async function() {
             use: {
               loader: 'babel-loader',
               options: {
-                compact: false,
                 presets: [
                   [
                     '@babel/preset-env',
                     {
+                      targets: {
+                        browsers: ['>0.25%', 'ie 11'],
+                      },
                       modules: false,
                       debug: false,
                     },
@@ -187,7 +200,7 @@ module.exports = async function() {
                 // otherwise extract the result and write out a .css file per usual
                 use: [MiniCssExtractPlugin.loader, scssLoaders].reduce(
                   (acc, val) => acc.concat(val),
-                  [],
+                  []
                 ),
               },
             ],
@@ -195,7 +208,8 @@ module.exports = async function() {
         ],
       },
       cache: true,
-      mode: config.prod ? 'production' : 'development',
+      // mode: config.prod ? 'production' : 'development',
+      mode: 'development', // temp workaround till strange rendering issues with full `production` mode are switched on in Webpack
       optimization: {
         minimize: true,
         occurrenceOrder: true,
@@ -205,20 +219,21 @@ module.exports = async function() {
         nodeEnv: 'production',
         mergeDuplicateChunks: true,
         concatenateModules: true,
-        // splitChunks: {
-        //   chunks: 'async',
-        //   cacheGroups: {
-        //     vendors: {
-        //       test: /[\\/]node_modules[\\/]/,
-        //       name: 'vendors',
-        //       chunks: 'async',
-        //       reuseExistingChunk: true,
-        //     },
-        //   },
-        // },
         minimizer: config.prod ? [new TerserPlugin()] : [],
+        splitChunks: {
+          chunks: 'async',
+          cacheGroups: {
+            vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'async',
+              reuseExistingChunk: true,
+            },
+          },
+        },
       },
       plugins: [
+        new CopyPlugin(config.copy),
         // clear out the buildDir on every fresh Webpack build
         new CleanWebpackPlugin(
           [

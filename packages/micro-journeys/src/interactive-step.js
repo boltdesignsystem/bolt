@@ -1,20 +1,14 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-  withContext,
-} from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
-import { BoltInteractivePathwaysContext } from './interactive-pathways';
 import styles from './interactive-step.scss';
 import schema from './interactive-step.schema';
 
 const cx = classNames.bind(styles);
 
 @define
-class BoltInteractiveStep extends withContext(withLitHtml()) {
+class BoltInteractiveStep extends withLitContext() {
   static is = 'bolt-interactive-step';
 
   static props = {
@@ -25,8 +19,8 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
     ...convertSchemaToProps(schema),
   };
 
-  static get consumes() {
-    return [[BoltInteractivePathwaysContext, 'theme']];
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
@@ -45,9 +39,7 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
   /**
    * @param {Event} event
    */
-  handleAnimationEnd(event) {
-    console.debug('bolt:transitionend', event);
-  }
+  handleAnimationEnd(event) {}
 
   connectedCallback() {
     super.connectedCallback();
@@ -131,7 +123,7 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { tabTitle } = this.validateProps(this.props);
+    const props = this.validateProps(this.props);
     this.theme = this.context.theme;
     const isLastStep = !(
       this.nextElementSibling &&
@@ -159,7 +151,7 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
           class="${titleClasses}"
           @click=${() => this.triggerStepChange()}
         >
-          ${tabTitle}
+          ${props.tabTitle}
         </header>
         <div class="c-bolt-interactive-step__body">
           <div class="c-bolt-interactive-step__body-inner">

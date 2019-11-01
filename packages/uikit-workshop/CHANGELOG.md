@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* add missing publicConfig ([3a64e78](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/3a64e78))
+* remove devDeps from package.json ([94ec805](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/94ec805))
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* handle the pattern parameter query string if the page loading doesn't know which pattern is currently getting loaded ([812511a](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/812511a))
+* re-add ability to hide / show All link in PL navigation ([a44f2a0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/a44f2a0))
+* re-add the ability to use Pattern Lab's built-in config for defining the default pattern / component that shows up when initially loading ([196c9c6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/196c9c6))
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 **Note:** Version bump only for package @bolt/uikit-workshop

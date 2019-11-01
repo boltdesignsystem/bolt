@@ -1,6 +1,5 @@
 import './polyfills-shared';
 
-
 let polyfills = [];
 
 // Detect Shadow Dom Support

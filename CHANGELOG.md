@@ -3,6 +3,340 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/boltdesignsystem/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* add missing publicConfig ([3a64e78](https://github.com/boltdesignsystem/bolt/commit/3a64e78))
+* dependency and tests ([433c105](https://github.com/boltdesignsystem/bolt/commit/433c105))
+* filter out `text` from chip schema ([897e0f7](https://github.com/boltdesignsystem/bolt/commit/897e0f7))
+* fix image.js typo ([535e5d0](https://github.com/boltdesignsystem/bolt/commit/535e5d0))
+* globally replace Brightcove Video IDs that no longer play correctly in IE 11 (even on the live boltdesignsystem.com site) with a more recent set of video ids that are confirmed to work as expected ([9b48d34](https://github.com/boltdesignsystem/bolt/commit/9b48d34))
+* inline@breakpoint alignment ([5ae3cfe](https://github.com/boltdesignsystem/bolt/commit/5ae3cfe))
+* lint js ([7414e0c](https://github.com/boltdesignsystem/bolt/commit/7414e0c))
+* mirror object fit props on the placeholder image ([d3e9bb6](https://github.com/boltdesignsystem/bolt/commit/d3e9bb6))
+* overflowing width ([5bd2389](https://github.com/boltdesignsystem/bolt/commit/5bd2389))
+* **micro-journeys:** tighten dialog icon spacing ([8c42eac](https://github.com/boltdesignsystem/bolt/commit/8c42eac))
+* don’t generate yarn / composer.lock files when auto-releasing ([b2a3862](https://github.com/boltdesignsystem/bolt/commit/b2a3862))
+* remove devDeps from package.json ([94ec805](https://github.com/boltdesignsystem/bolt/commit/94ec805))
+* rename spacing to size ([4a901c8](https://github.com/boltdesignsystem/bolt/commit/4a901c8))
+* revert image snapshot updates ([edf3bb1](https://github.com/boltdesignsystem/bolt/commit/edf3bb1))
+* revert Navbar image snapshots ([ece66f8](https://github.com/boltdesignsystem/bolt/commit/ece66f8))
+* test instructions ([d07145f](https://github.com/boltdesignsystem/bolt/commit/d07145f))
+* update Chip to use the new icon.json schema file ([4b8e206](https://github.com/boltdesignsystem/bolt/commit/4b8e206))
+* update composer.lock ([021ce36](https://github.com/boltdesignsystem/bolt/commit/021ce36))
+* update composer's Pattern Lab PHP core dependency to point to the forked bolt-design-system version with the lineages patch ([e70c903](https://github.com/boltdesignsystem/bolt/commit/e70c903))
+* update Github repo url in composer.json ([c16ea21](https://github.com/boltdesignsystem/bolt/commit/c16ea21))
+* update Jest tests ([75a8943](https://github.com/boltdesignsystem/bolt/commit/75a8943))
+* update JPG check to account for JPGs that have query strings ([d45e559](https://github.com/boltdesignsystem/bolt/commit/d45e559))
+* update srcset logic to handle lazy vs non-lazy images + srcset / src / placeholder fallbacks depending on the mode the component is getting loaded ([35a9c8f](https://github.com/boltdesignsystem/bolt/commit/35a9c8f))
+* **micro-journeys:** add support for line wrapping to nav ([e0bcb71](https://github.com/boltdesignsystem/bolt/commit/e0bcb71))
+* update tests ([0f9a166](https://github.com/boltdesignsystem/bolt/commit/0f9a166))
+* update Twig dependency tests to exclude @bolt/uikit-workshop ([020a014](https://github.com/boltdesignsystem/bolt/commit/020a014))
+* **micro-journeys:** dot-and-line nav squished on mobile with overlong text ([121e7f0](https://github.com/boltdesignsystem/bolt/commit/121e7f0))
+* updated tests ([7d8f3d1](https://github.com/boltdesignsystem/bolt/commit/7d8f3d1))
+
+
+### Features
+
+* add new videos to Brightcove test page for reference ([13f7b18](https://github.com/boltdesignsystem/bolt/commit/13f7b18))
+* cleanup, use validated vars instead of props directly ([c91ab29](https://github.com/boltdesignsystem/bolt/commit/c91ab29))
+* update resize handler to heavily debounce resizing to reduce the amount of overhead + opt out if a component hasn't yet lazyloaded ([86356e9](https://github.com/boltdesignsystem/bolt/commit/86356e9))
+* update video on accordion and tabs demo pages ([696e26b](https://github.com/boltdesignsystem/bolt/commit/696e26b))
+
+
+
+
+
+## [2.9.2](https://github.com/boltdesignsystem/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+
+### Bug Fixes
+
+* add extra ssrHydration test to fix issue where initial check in connectedCallback runs too early ([b7f14ef](https://github.com/boltdesignsystem/bolt/commit/b7f14ef))
+
+
+
+
+
+## [2.9.1](https://github.com/boltdesignsystem/bolt/compare/v2.9.0...v2.9.1) (2019-10-22)
+
+
+### Bug Fixes
+
+* only set 'sizes' if image has width, fixes fuzzy images in tabs ([cbdca3e](https://github.com/boltdesignsystem/bolt/commit/cbdca3e))
+* remove css 'perspective' hack from ie-edge, causing modal content to shift ([0b4ab69](https://github.com/boltdesignsystem/bolt/commit/0b4ab69))
+* update auto release script to try and patch up a few issues we ran into with the v2.9.0 release from last night ([f2f5e4b](https://github.com/boltdesignsystem/bolt/commit/f2f5e4b))
+* update Travis config to automatically retry failing Nightwatch tests ([a862ebf](https://github.com/boltdesignsystem/bolt/commit/a862ebf))
+* update Travis job conditional to only run on the release/2.x branch (vs any branch with the name 'release') in the name ([8dd6fba](https://github.com/boltdesignsystem/bolt/commit/8dd6fba))
+
+
+### Features
+
+* add keyup handler to show more button ([5cda027](https://github.com/boltdesignsystem/bolt/commit/5cda027))
+* close dropdown menu when a label is clicked ([59c2953](https://github.com/boltdesignsystem/bolt/commit/59c2953))
+* update keyup handler to set focus on active tab when it's in the dropdown menu ([fabc7c2](https://github.com/boltdesignsystem/bolt/commit/fabc7c2))
+
+
+
+
+
+# [2.9.0](https://github.com/boltdesignsystem/bolt/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* add ':scope' polyfill, required by ssr-hydrate function ([8d79bf1](https://github.com/boltdesignsystem/bolt/commit/8d79bf1))
+* add missing now.sh token references ([0a0d856](https://github.com/boltdesignsystem/bolt/commit/0a0d856))
+* add missing super() call in the table component's JS ([dc235e9](https://github.com/boltdesignsystem/bolt/commit/dc235e9))
+* address install / symlink issues by updating composer.json configs to allow local beta versions of Bolt packages to get installed ([77addbd](https://github.com/boltdesignsystem/bolt/commit/77addbd))
+* address prettier issues ([21582d7](https://github.com/boltdesignsystem/bolt/commit/21582d7))
+* auto-retry failing Jest test ([bff271e](https://github.com/boltdesignsystem/bolt/commit/bff271e))
+* check that dropdown button is defined before using it ([33a06f9](https://github.com/boltdesignsystem/bolt/commit/33a06f9))
+* cleaning config to work with default cache folder ([8e84b83](https://github.com/boltdesignsystem/bolt/commit/8e84b83))
+* cleaning package.json ([9da0ccb](https://github.com/boltdesignsystem/bolt/commit/9da0ccb))
+* code cleanup ([e2ae3f7](https://github.com/boltdesignsystem/bolt/commit/e2ae3f7))
+* correct spacing for non-link title ([a646ba8](https://github.com/boltdesignsystem/bolt/commit/a646ba8))
+* disable source maps ([ba65070](https://github.com/boltdesignsystem/bolt/commit/ba65070))
+* displaying new component in more elegant way in boltrc.js ([ac3d036](https://github.com/boltdesignsystem/bolt/commit/ac3d036))
+* docs and testing instructions ([ad7343c](https://github.com/boltdesignsystem/bolt/commit/ad7343c))
+* don't skip postbootstrap command ([b392d97](https://github.com/boltdesignsystem/bolt/commit/b392d97))
+* fix eslint issues ([89d358f](https://github.com/boltdesignsystem/bolt/commit/89d358f))
+* flex list spacing ([5b821af](https://github.com/boltdesignsystem/bolt/commit/5b821af))
+* handle the pattern parameter query string if the page loading doesn't know which pattern is currently getting loaded ([812511a](https://github.com/boltdesignsystem/bolt/commit/812511a))
+* handle untracked file changes before publishing ([cde5176](https://github.com/boltdesignsystem/bolt/commit/cde5176))
+* hidden pagination in IE11 ([4470932](https://github.com/boltdesignsystem/bolt/commit/4470932))
+* linting ([277fad3](https://github.com/boltdesignsystem/bolt/commit/277fad3))
+* make sure all available prop data gets passed along to any listeners added ([35726a0](https://github.com/boltdesignsystem/bolt/commit/35726a0))
+* make sure dirs exist before trying to cache ([9f831d0](https://github.com/boltdesignsystem/bolt/commit/9f831d0))
+* manually backport Jest testing server fix added in v2.8.0-beta.1 ([ac6194a](https://github.com/boltdesignsystem/bolt/commit/ac6194a))
+* re-add ability to hide / show All link in PL navigation ([a44f2a0](https://github.com/boltdesignsystem/bolt/commit/a44f2a0))
+* re-add the ability to use Pattern Lab's built-in config for defining the default pattern / component that shows up when initially loading ([196c9c6](https://github.com/boltdesignsystem/bolt/commit/196c9c6))
+* re-enable Jest test for tabs + update snapshot ([19322b7](https://github.com/boltdesignsystem/bolt/commit/19322b7))
+* re-test CI publish ([a359ea6](https://github.com/boltdesignsystem/bolt/commit/a359ea6))
+* remove placeholder text in JS template ([64381ed](https://github.com/boltdesignsystem/bolt/commit/64381ed))
+* remove right margin from more button, should align to edge like tab labels ([eb52fcb](https://github.com/boltdesignsystem/bolt/commit/eb52fcb))
+* remove spaghetti code ([77fa7ed](https://github.com/boltdesignsystem/bolt/commit/77fa7ed))
+* remove unused comment ([5fd8913](https://github.com/boltdesignsystem/bolt/commit/5fd8913))
+* Removing unwanted yeti icon and changes in icons after test finish ([c4390b4](https://github.com/boltdesignsystem/bolt/commit/c4390b4))
+* Repair first step not reacting on enter key ([d883ea8](https://github.com/boltdesignsystem/bolt/commit/d883ea8))
+* temporarily disable Light DOM Jest test for Tabs until snapshot updated ([09f9414](https://github.com/boltdesignsystem/bolt/commit/09f9414))
+* testing copy ([3d5d536](https://github.com/boltdesignsystem/bolt/commit/3d5d536))
+* this not self ([63c057d](https://github.com/boltdesignsystem/bolt/commit/63c057d))
+* typos ([e417095](https://github.com/boltdesignsystem/bolt/commit/e417095))
+* update auto-release install process to include composer + NPM deps ([33f06b7](https://github.com/boltdesignsystem/bolt/commit/33f06b7))
+* Update button component to support ID attribute ([7ea097d](https://github.com/boltdesignsystem/bolt/commit/7ea097d))
+* Update code for component generator to work correctly ([79b2df8](https://github.com/boltdesignsystem/bolt/commit/79b2df8))
+* update icon component snapshots ([1ad5fba](https://github.com/boltdesignsystem/bolt/commit/1ad5fba))
+* update Jest snapshots ([77e6075](https://github.com/boltdesignsystem/bolt/commit/77e6075))
+* Update JS and CSS to be correct ([a15baf4](https://github.com/boltdesignsystem/bolt/commit/a15baf4))
+* update PHP-related packages to be in sync with the latest version of Bolt + symlinked properly ([32be05b](https://github.com/boltdesignsystem/bolt/commit/32be05b))
+* update release script to auto-release on release-2.x and release/2.x branch names ([38df60b](https://github.com/boltdesignsystem/bolt/commit/38df60b))
+* update the full Nightwatch test command to include missing deps ([21e595f](https://github.com/boltdesignsystem/bolt/commit/21e595f))
+* update Travis cache syntax ([6d3908b](https://github.com/boltdesignsystem/bolt/commit/6d3908b))
+* **build:** error on yarn build:noisy; fix integer cast for verbosity arg ([9332764](https://github.com/boltdesignsystem/bolt/commit/9332764))
+* **micro-journeys:** black text in dropdown in IE 11 ([fc38211](https://github.com/boltdesignsystem/bolt/commit/fc38211))
+* update table component's web component logic to handle HTML comments encountered when parsing initial HTML ([8736189](https://github.com/boltdesignsystem/bolt/commit/8736189))
+* update test to pass in Travis build ([b5080a3](https://github.com/boltdesignsystem/bolt/commit/b5080a3))
+
+
+### Features
+
+* add 'update' method to video to refresh video when inside accordion or tabs ([477fa53](https://github.com/boltdesignsystem/bolt/commit/477fa53))
+* add 'will-update' attr to Tabs so they will resize after being hidden, remove unnecessary 'is-invisible' class ([9ec54c0](https://github.com/boltdesignsystem/bolt/commit/9ec54c0))
+* add <title> support to SVG icons ([19e4c72](https://github.com/boltdesignsystem/bolt/commit/19e4c72))
+* add ability to display titles in SVG icons + add POC ability to server-side render specific icons ([f64dc9a](https://github.com/boltdesignsystem/bolt/commit/f64dc9a))
+* add accordion demo, testing `slidesPerView` option ([37d2970](https://github.com/boltdesignsystem/bolt/commit/37d2970))
+* add cache-loader to repo ([8b3cdec](https://github.com/boltdesignsystem/bolt/commit/8b3cdec))
+* add demo page to test videos using standard brightcove player with only 'techOrder' option changed ([a24ed93](https://github.com/boltdesignsystem/bolt/commit/a24ed93))
+* add getBoltData Twig function ([9e5be7b](https://github.com/boltdesignsystem/bolt/commit/9e5be7b))
+* add new @bolt/core withEvents mixin to more easily add declarative events to components ([b8e35e2](https://github.com/boltdesignsystem/bolt/commit/b8e35e2))
+* add POC watch task to regenerate manifest data pulled in by the build tools ([88e901f](https://github.com/boltdesignsystem/bolt/commit/88e901f))
+* add support for displaying advanced schema options on the docs site ([cc20453](https://github.com/boltdesignsystem/bolt/commit/cc20453))
+* add tabs demo with accordion and carousel ([c49eed6](https://github.com/boltdesignsystem/bolt/commit/c49eed6))
+* add webpack cache to gitignore ([f4c5a02](https://github.com/boltdesignsystem/bolt/commit/f4c5a02))
+* automatically invert SVG icon color at the Twig level ([3f4aa00](https://github.com/boltdesignsystem/bolt/commit/3f4aa00))
+* automatically replace hard coded fill and stroke colors in inlined SVGs with CSS custom prop placeholders ([dad8745](https://github.com/boltdesignsystem/bolt/commit/dad8745))
+* fully wire up and enable auto releases ([ef3e13c](https://github.com/boltdesignsystem/bolt/commit/ef3e13c))
+* optimization to carousel observer, only turn it on when we need it ([8b00866](https://github.com/boltdesignsystem/bolt/commit/8b00866))
+* port over Craft CMS Twig filter that adds support for using regex in the default Twig replace filter ([c11aa05](https://github.com/boltdesignsystem/bolt/commit/c11aa05))
+* pull in all SVG icons into the Webpack build automatically ([c02de0b](https://github.com/boltdesignsystem/bolt/commit/c02de0b))
+* refactor carousel init, eliminating unnecessary re-inits, add 'will-update' feature to link carousel to accordion and tabs change events ([0a17339](https://github.com/boltdesignsystem/bolt/commit/0a17339))
+* remove `:scope` polyfill, no longer used ([9db4acf](https://github.com/boltdesignsystem/bolt/commit/9db4acf))
+* remove custom useShadow work, allow base class to handle this ([411bfd5](https://github.com/boltdesignsystem/bolt/commit/411bfd5))
+* wiring up canary releases on the master branch ([311cdda](https://github.com/boltdesignsystem/bolt/commit/311cdda))
+* **webpack:** explicitly set browsersync tunnel default and add comment explaining usage ([2e0533a](https://github.com/boltdesignsystem/bolt/commit/2e0533a))
+* rework ssr-hydrate technique, now uses `ssr-keep` custom element, which can be used in place of `replace-with-*` ([60e65cc](https://github.com/boltdesignsystem/bolt/commit/60e65cc))
+* rollback `bolt-text` > `div` edit to accordion demo ([3052895](https://github.com/boltdesignsystem/bolt/commit/3052895))
+* set static tabs id for testing ([c1d329f](https://github.com/boltdesignsystem/bolt/commit/c1d329f))
+* turn off left-right keyboard control of carousels, conflicting with tabs keyboard control ([80b4e99](https://github.com/boltdesignsystem/bolt/commit/80b4e99))
+* update bolt-icon to now eagerly load so pre-rendered icons don't flash when booting up ([5ccb817](https://github.com/boltdesignsystem/bolt/commit/5ccb817))
+* update generator to use latest conventions ([6a6172c](https://github.com/boltdesignsystem/bolt/commit/6a6172c))
+* **core-styles:** add documentaiton to bolt-theme ([fd0c8eb](https://github.com/boltdesignsystem/bolt/commit/fd0c8eb))
+* update node version for travis ([15db25c](https://github.com/boltdesignsystem/bolt/commit/15db25c))
+* update node version for travis ([9b7d02a](https://github.com/boltdesignsystem/bolt/commit/9b7d02a))
+* update the component docs template to pull in always-up-to-date schema data ([e8b9739](https://github.com/boltdesignsystem/bolt/commit/e8b9739))
+* update Webpack build to minify SVG icons through SVGO — used for server-side pre-rendering SVGs ([08f7f4f](https://github.com/boltdesignsystem/bolt/commit/08f7f4f))
+* update webpack configuration ([a14a5d4](https://github.com/boltdesignsystem/bolt/commit/a14a5d4))
+
+
+### Reverts
+
+* don't remove certain package folders when bootstrapping ([719bfdc](https://github.com/boltdesignsystem/bolt/commit/719bfdc))
+* make sure Jest clears out the entire build directory after running tests ([81c6727](https://github.com/boltdesignsystem/bolt/commit/81c6727))
+* revert caching all of the node_nodules directory ([0d9222a](https://github.com/boltdesignsystem/bolt/commit/0d9222a))
+
+
+
+
+
+## [2.8.3](https://github.com/boltdesignsystem/bolt/compare/v2.8.2...v2.8.3) (2019-10-18)
+
+
+### Bug Fixes
+
+* adjust escape strategy to work in Bolt and in Drupal ([33d56b1](https://github.com/boltdesignsystem/bolt/commit/33d56b1))
+* unset 'ready' prop on disconnected to fix ie bug, add demo with tabs inside band ([3412f55](https://github.com/boltdesignsystem/bolt/commit/3412f55))
+* update editor.twig to help better support Drupal autoescape behavior ([623e38e](https://github.com/boltdesignsystem/bolt/commit/623e38e))
+
+
+
+
+
+## [2.8.2](https://github.com/boltdesignsystem/bolt/compare/v2.8.1...v2.8.2) (2019-10-16)
+
+
+### Bug Fixes
+
+* remove Tabs JS accidentally added when resolving merge conflict ([141985a](https://github.com/boltdesignsystem/bolt/commit/141985a))
+
+
+
+
+
+## [2.8.1](https://github.com/boltdesignsystem/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+
+### Bug Fixes
+
+* address prettier issues ([baa1471](https://github.com/boltdesignsystem/bolt/commit/baa1471))
+* cherry pick a handful of updates from [#1457](https://github.com/boltdesignsystem/bolt/issues/1457) to pull in ([761b005](https://github.com/boltdesignsystem/bolt/commit/761b005))
+* tweak AccordionItem's SSR hydration logic to only target children belonging to that particular custom element ([fc9a30f](https://github.com/boltdesignsystem/bolt/commit/fc9a30f))
+* update Accordion component Jest tests to wait till the component has finished rendering first before grabbing the HTML ([648cb66](https://github.com/boltdesignsystem/bolt/commit/648cb66))
+
+
+### Features
+
+* add adaptive menu to Tabs component ([5da94fb](https://github.com/boltdesignsystem/bolt/commit/5da94fb))
+
+
+
+
+
+# [2.8.0](https://github.com/boltdesignsystem/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+
+### Bug Fixes
+
+* **bolt-animate:** remove use of Set, polyfill breaking erratically ([c0e53a4](https://github.com/boltdesignsystem/bolt/commit/c0e53a4))
+* **editor:** make Move Up and Move Down buttons for Steps and Pathways ([da0e8f7](https://github.com/boltdesignsystem/bolt/commit/da0e8f7))
+* **editor:** syntax error fix -- thank you tests ([408d7b6](https://github.com/boltdesignsystem/bolt/commit/408d7b6))
+* **editor:** use package name for import ([433b01b](https://github.com/boltdesignsystem/bolt/commit/433b01b))
+* **micro-journeys:** config for update of parents with event on editor removal; add events for step and pathway removal ([43b6419](https://github.com/boltdesignsystem/bolt/commit/43b6419))
+* **self-drawing-circle:** move transforms outside of spin animation to fix Edge jerkiness ([2b8e70e](https://github.com/boltdesignsystem/bolt/commit/2b8e70e))
+* **self-drawing-circle:** PL animation fix ([3bd8087](https://github.com/boltdesignsystem/bolt/commit/3bd8087))
+* **self-drawing-circle:** rotation direction fix and spin stopping on reset ([4133d03](https://github.com/boltdesignsystem/bolt/commit/4133d03))
+* **with-without:** add check for toggler, bail if not found; overload handleResize and call to fix overlap bug on tablet ([8030996](https://github.com/boltdesignsystem/bolt/commit/8030996))
+* **with-without:** add padding right to with results block ([ab924b3](https://github.com/boltdesignsystem/bolt/commit/ab924b3))
+* **with-without:** blur edge focus after toggle to remove ugly outline ([598f951](https://github.com/boltdesignsystem/bolt/commit/598f951))
+* **with-without:** bottom blocks at beginning of xlarge overflowing height ([c995f91](https://github.com/boltdesignsystem/bolt/commit/c995f91))
+* **with-without:** edge fixes; resize window after accordion open/close ([13ad441](https://github.com/boltdesignsystem/bolt/commit/13ad441))
+* **with-without:** fix title bar overflow ([97aa9e4](https://github.com/boltdesignsystem/bolt/commit/97aa9e4))
+* **with-without:** force full-bleed as per comps; simplify CSS in desktop circle for stability ([d65ba1d](https://github.com/boltdesignsystem/bolt/commit/d65ba1d))
+* **with-without:** full-bleed force broken inside max-width ([40573d9](https://github.com/boltdesignsystem/bolt/commit/40573d9))
+* adjust styles to reduce the gap between the Tooltip content vs Trigger ([f59f91d](https://github.com/boltdesignsystem/bolt/commit/f59f91d))
+* more robust animation resets to allow retrigger when no idle or build out is defined ([4d1c3b1](https://github.com/boltdesignsystem/bolt/commit/4d1c3b1))
+* update intersection observer logic to kick off the animations when the With/Without UI is 50% (or more) visible on the screen ([1976d5d](https://github.com/boltdesignsystem/bolt/commit/1976d5d))
+* **with-without:** remove horizontal scroll when vertical scrollbar present on IE/Edge ([e5539e5](https://github.com/boltdesignsystem/bolt/commit/e5539e5))
+* **with-without:** tablet height overflow on load; force resize ([91d7717](https://github.com/boltdesignsystem/bolt/commit/91d7717))
+
+
+### Features
+
+* **editor:** hide pathways image options ([2536517](https://github.com/boltdesignsystem/bolt/commit/2536517))
+* **micro-journeys:** add icon-group to PL; spelling fixes ([46a8782](https://github.com/boltdesignsystem/bolt/commit/46a8782))
+* **micro-journeys:** add ms hint to animate title schemas ([9c14f46](https://github.com/boltdesignsystem/bolt/commit/9c14f46))
+* **with-without:** add visual cues to see if with-without properly breaks out of padding ([5203ce4](https://github.com/boltdesignsystem/bolt/commit/5203ce4))
+* **with-without:** attempt toggle outline removal on hover-capable devices ([704f158](https://github.com/boltdesignsystem/bolt/commit/704f158))
+* **with-without:** detect pointer hover and only remove focus if found ([4a3ca92](https://github.com/boltdesignsystem/bolt/commit/4a3ca92))
+* **with-without:** fire animations on intersection; clean up dom querying ([636b379](https://github.com/boltdesignsystem/bolt/commit/636b379))
+* **with-without:** isolated background visual test for with/without for ie11 debugging ([058d25f](https://github.com/boltdesignsystem/bolt/commit/058d25f))
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/boltdesignsystem/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* **editor:** prevent bug with inserting array of starter elements ([2bf865b](https://github.com/boltdesignsystem/bolt/commit/2bf865b))
+* **editor:** remove empty <bolt-animate>s on save ([85212df](https://github.com/boltdesignsystem/bolt/commit/85212df))
+* update with/without to use the latest version of Bolt Core ([78d3af1](https://github.com/boltdesignsystem/bolt/commit/78d3af1))
+* **image:** prevent error where initialClasses were not defined in time ([37bbab6](https://github.com/boltdesignsystem/bolt/commit/37bbab6))
+* add static "is" for registering the component ([018dd5b](https://github.com/boltdesignsystem/bolt/commit/018dd5b))
+* add Weakset polyfill for IE 11 ([0867e5f](https://github.com/boltdesignsystem/bolt/commit/0867e5f))
+* address linting issues ([03f30b5](https://github.com/boltdesignsystem/bolt/commit/03f30b5))
+* fix eslint issues ([b95aa72](https://github.com/boltdesignsystem/bolt/commit/b95aa72))
+* fix linting issues ([ed6bde2](https://github.com/boltdesignsystem/bolt/commit/ed6bde2))
+* **micro-journeys:** lots of IE 11 fixes ([e68ced3](https://github.com/boltdesignsystem/bolt/commit/e68ced3))
+* fix overflow issue on smaller screen sizes ([e50c081](https://github.com/boltdesignsystem/bolt/commit/e50c081))
+* incorret character schema default fixed ([e92cc0d](https://github.com/boltdesignsystem/bolt/commit/e92cc0d))
+* lint and docs ([df83534](https://github.com/boltdesignsystem/bolt/commit/df83534))
+* multiple layout fixes for micro journeys on small-ish screen sizes ([97af5d0](https://github.com/boltdesignsystem/bolt/commit/97af5d0))
+* remove `is="shadow-root"` to prevent HTML from getting mistakenly nuked when booting up ([5d8853e](https://github.com/boltdesignsystem/bolt/commit/5d8853e))
+* remove click event listener when disconnecting + remove preventDefault that was causing UI like buttons to not click as expected as a result ([a3a0a71](https://github.com/boltdesignsystem/bolt/commit/a3a0a71))
+* update all micro journey cta to use bolt link over text ([228f659](https://github.com/boltdesignsystem/bolt/commit/228f659))
+* update connection band to re-trigger an update when the context changes ([113d34c](https://github.com/boltdesignsystem/bolt/commit/113d34c))
+* update prettier issues ([bcda2f5](https://github.com/boltdesignsystem/bolt/commit/bcda2f5))
+* update Ratio component to now directly register the component Class vs previously returning a function to allow for generating a custom-namespaced ratio component. fixes a major Edge issue where Ratio was deleting nested immediate children when booting up. ([26dbef3](https://github.com/boltdesignsystem/bolt/commit/26dbef3))
+* **micro-journeys:** allow for multiple demo theme controllers to address PR feedback ([bb9f142](https://github.com/boltdesignsystem/bolt/commit/bb9f142))
+* **micro-journeys:** Context JS error when animations have no parent bolt-interactive-pathways w/ context ([44f85b0](https://github.com/boltdesignsystem/bolt/commit/44f85b0))
+* **micro-journeys:** fix dropdown text color in IE 11 ([92ac37c](https://github.com/boltdesignsystem/bolt/commit/92ac37c))
+* **micro-journeys:** fix IntersectionObserver on IE 11 ([fd15c6e](https://github.com/boltdesignsystem/bolt/commit/fd15c6e))
+* **micro-journeys:** ie 11 color fixes ([c60ca03](https://github.com/boltdesignsystem/bolt/commit/c60ca03))
+* **micro-journeys:** prevent rapid click of steps from showing multiple steps ([cc0f7d8](https://github.com/boltdesignsystem/bolt/commit/cc0f7d8))
+* update Sass to use bolt-theme outside of a media query + add border color to styles ([7c68d1f](https://github.com/boltdesignsystem/bolt/commit/7c68d1f))
+* z-index clash between dropdown menu and status bars ([61d5567](https://github.com/boltdesignsystem/bolt/commit/61d5567))
+
+
+### Features
+
+* add animated dot styles + todo comment to enable ([4bdbed4](https://github.com/boltdesignsystem/bolt/commit/4bdbed4))
+* add auto to semi-automate releases ([b1ead01](https://github.com/boltdesignsystem/bolt/commit/b1ead01))
+* add onClick and onClick target to button and link through editor ([fff8cf8](https://github.com/boltdesignsystem/bolt/commit/fff8cf8))
+* add theme support to interactive-pathways via withContext and defineContext ([eb32484](https://github.com/boltdesignsystem/bolt/commit/eb32484))
+* custom dropdown closes with you select an option ([7c7da6b](https://github.com/boltdesignsystem/bolt/commit/7c7da6b))
+* expose props to edit the image atop the interactive pathways co… ([#1411](https://github.com/boltdesignsystem/bolt/issues/1411)) ([9fe1993](https://github.com/boltdesignsystem/bolt/commit/9fe1993))
+* pathways dropdown closes with a new pathway is selected ([ceadc0c](https://github.com/boltdesignsystem/bolt/commit/ceadc0c))
+* remove the connection band options from the character background slot ([#1427](https://github.com/boltdesignsystem/bolt/issues/1427)) ([f2a8757](https://github.com/boltdesignsystem/bolt/commit/f2a8757))
+* speed up default exit animation to create a smoother experience ([efe8425](https://github.com/boltdesignsystem/bolt/commit/efe8425))
+* **editor:** add url and disabled to button in editor ([0eb9374](https://github.com/boltdesignsystem/bolt/commit/0eb9374))
+* **micro-journeys:** add theme consumer to interactive-step; lint scss ([03b09ab](https://github.com/boltdesignsystem/bolt/commit/03b09ab))
+* **micro-journeys:** add theme toggler to micro journeys demo ([984384d](https://github.com/boltdesignsystem/bolt/commit/984384d))
+* **svg-animations:** theme switching for animations ([0b7df25](https://github.com/boltdesignsystem/bolt/commit/0b7df25))
+
+
+### Reverts
+
+* revert combining withLitHTML base with withLitContext for now ([ca828da](https://github.com/boltdesignsystem/bolt/commit/ca828da))
+
+
+
+
+
 # [2.8.0-beta.5](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2019-09-30)
 
 

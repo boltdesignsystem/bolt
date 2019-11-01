@@ -1,23 +1,15 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './self-drawing-circle.scss';
-import schema from './self-drawing-circle.schema.yml';
 
 @define
-class SvgAnimations extends withLitHtml() {
+class SelfDrawingCircle extends withLitHtml() {
   static is = 'wwo-self-drawing-circle';
 
   static props = {
     dashSize: props.integer,
     speed: props.integer,
   };
-
-  constructor(self) {
-    self = super(self);
-    self.schema = schema;
-    this.useShadow = hasNativeShadowDomSupport;
-    return self;
-  }
 
   triggerAnimIn(dashSize = 6, speed = 20) {
     const animateCircle = this._drawCircle(dashSize, speed);
@@ -39,8 +31,8 @@ class SvgAnimations extends withLitHtml() {
     );
     outline.setAttribute('stroke-dasharray', `0 1000`);
     this.renderRoot
-      .querySelector('.wwo-self-drawing-circle')
-      .classList.remove('rotate');
+      .querySelector('.wwo-self-drawing-circle__spinner')
+      .classList.remove('spin');
   }
 
   async _drawCircle(dashSize, speed) {
@@ -50,7 +42,7 @@ class SvgAnimations extends withLitHtml() {
 
     const threshold = Math.ceil(494 / dashSize);
 
-    for (var i = 0; i <= threshold; i++) {
+    for (let i = 0; i <= threshold; i++) {
       outline.setAttribute(
         'stroke-dasharray',
         i === 0
@@ -64,8 +56,8 @@ class SvgAnimations extends withLitHtml() {
 
       if (i === threshold) {
         this.renderRoot
-          .querySelector('.wwo-self-drawing-circle')
-          .classList.add('rotate');
+          .querySelector('.wwo-self-drawing-circle__spinner')
+          .classList.add('spin');
       }
     }
   }
@@ -75,17 +67,16 @@ class SvgAnimations extends withLitHtml() {
       ${this.addStyles([styles])}
       <div
         id="wwo-self-drawing-circle"
-        class="wwo-self-drawing-circle"
-        is="shadow-root"
+        class="wwo-self-drawing-circle wwo-self-drawing-circle__rotater"
       >
-        <div class="wwo-self-drawing-circle-rotation">
+        <div class="wwo-self-drawing-circle__spinner">
           <svg viewBox="-160 -160 320 320">
             <circle
               id="wwo-self-drawing-circle-outline"
               class="wwo-self-drawing-circle-outline"
               r="159"
               stroke-dasharray="0 1000"
-            />
+            ></circle>
           </svg>
         </div>
       </div>
@@ -93,4 +84,4 @@ class SvgAnimations extends withLitHtml() {
   }
 }
 
-export { SvgAnimations };
+export { SelfDrawingCircle };

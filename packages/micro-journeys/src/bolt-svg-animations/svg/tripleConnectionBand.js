@@ -1,4 +1,3 @@
-import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
 export const tripleConnectionBand = ({ speed, direction, theme }) => {
@@ -75,7 +74,7 @@ export const tripleConnectionBand = ({ speed, direction, theme }) => {
 					transform: translate(126.5999984741211px, 46.5px) translate(-126.5999984741211px, -46.5px) translate(196px, 0px);
 			}
 			100% {
-					transform: translate(126.5999984741211px, 46.5px) translate(-126.5999984741211px, -46.5px) translate(196px, 0px);
+					transform: translate(126.5999984741211px, 46.5px) translate(-126.5999984741211px, -46.5px) translate(296px, 0px);
 			}
 	}
 
@@ -101,13 +100,13 @@ export const tripleConnectionBand = ({ speed, direction, theme }) => {
 					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(-256px, 16px);
 			}
 			16.67% {
-					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(-73px,  -2px);
+					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(-73px,  -4px);
 			}
 			33.33% {
 					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(100px, 7px);
 			}
 			100% {
-					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(100px, 7px);
+					transform: translate(219.90000915527344px, 1.5px) translate(-219.90000915527344px, -1.5px) translate(560px, 27px);
 			}
 	}
 
@@ -228,8 +227,8 @@ export const tripleConnectionBand = ({ speed, direction, theme }) => {
 	<path id="el_mNNv3syQP0" fill="#FFFFFF" d="M234.5,2.7c-1.3-0.1-2.6-0.2-3.9-0.3c2.9,5.6,5.8,11.1,8.7,16.5c-2.9,5-5.8,10.2-8.7,15.4&#xA;&#9;&#9;c1.3,0.1,2.6,0.1,3.9,0.2c2.9-5.2,5.8-10.3,8.7-15.3C240.3,13.7,237.4,8.2,234.5,2.7"/>
 	<path id="el_I62Er4NRpE" fill="#FFFFFF" d="M245.1,3.7c-1.3-0.1-2.6-0.3-3.9-0.4c2.9,5.5,5.8,11,8.7,16.4c-2.9,4.9-5.8,9.9-8.7,15&#xA;&#9;&#9;c1.3,0.1,2.6,0.1,3.9,0.2c2.9-5.1,5.8-10,8.7-14.9C250.9,14.7,248,9.2,245.1,3.7"/>
 </g></g></g>
-<linearGradient id="band_x5F_2_1_" gradientUnits="userSpaceOnUse" x1="-124.1355" y1="356.3593" x2="-125.1384" y2="356.3593" gradientTransform="matrix(347.025 0 0 -33.0724 43426.1367 11848.6641)">
-	<stop offset="0" style="stop-color:#FFCC4C;stop-opacity:0"/>
+<linearGradient id="band_x5F_2_1_" gradientUnits="userSpaceOnUse" x1="550" y1="0" x2="0" y2="0" >
+	<stop offset="0" style="stop-color:#FFCC4C;stop-opacity:1"/>
 	<stop offset="1" style="stop-color:#535DA6"/>
 </linearGradient>
 <path id="connectionStripe2Under" d="M348,73.6c-113.1,8-234.9,8-348,0V52.4c113.1-8,234.9-8,348,0V73.6z"/>
@@ -239,8 +238,8 @@ export const tripleConnectionBand = ({ speed, direction, theme }) => {
 	<path id="el_CSeCRpWXAn" fill="#FFFFFF" d="M141.2,46.6c-1.3,0-2.6,0-3.9,0.1c2.9,5.4,5.8,10.8,8.7,16.3c-2.9,5.5-5.8,10.9-8.7,16.3&#xA;&#9;&#9;c1.3,0,2.6,0,3.9,0.1c2.9-5.4,5.8-10.9,8.7-16.4C147,57.5,144.1,52,141.2,46.6"/>
 	<path id="el_jXTRwSRTHD" fill="#FFFFFF" d="M151.8,46.5c-1.3,0-2.6,0-4,0c2.9,5.5,5.8,10.9,8.7,16.4c-2.9,5.5-5.8,11-8.7,16.4&#xA;&#9;&#9;c1.3,0,2.6,0,4,0c2.9-5.5,5.8-11,8.7-16.5C157.6,57.5,154.7,52,151.8,46.5"/>
 </g></g>
-<linearGradient id="band_x5F_3_1_" gradientUnits="userSpaceOnUse" x1="-124.1355" y1="358.114" x2="-125.1384" y2="358.114" gradientTransform="matrix(347.025 0 0 -43.8672 43426.1367 15813.4707)">
-	<stop offset="0" style="stop-color:#FFCC4C;stop-opacity:0"/>
+<linearGradient id="band_x5F_3_1_" gradientUnits="userSpaceOnUse" x1="550" y1="0" x2="0" y2="0" )">
+	<stop offset="0" style="stop-color:#FFCC4C;stop-opacity:1"/>
 	<stop offset="1" style="stop-color:#535DA6"/>
 </linearGradient>
 <path id="connectionStripe3Under" d="M348,103.2c-113.1,30.5-234.9,30.5-348,0V82c113.1,14.4,234.9,14.4,348,0V103.2z"/>

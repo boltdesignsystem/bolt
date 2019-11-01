@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* dependency and tests ([433c105](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/433c105))
+* revert Navbar image snapshots ([ece66f8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/commit/ece66f8))
+
+
+
+
+
+## [2.9.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/components-chip-list
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip-list/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 **Note:** Version bump only for package @bolt/components-chip-list
