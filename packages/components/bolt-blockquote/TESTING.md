@@ -20,7 +20,7 @@ I verify that:
 
 Blockquotes may include the author's photo, name, and title after the quotation. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/02-components-blockquote-10-blockquote-alignItems-variation/02-components-blockquote-10-blockquote-alignItems-variation.html)
 
-If there is information about the author, I verify that: 
+If there is information about the author, I verify that:
 
 - The author's photo (optional) is below the quotation, after a small space.
 - The author's name and/or title is smaller in size than the quotation.
@@ -42,6 +42,6 @@ If there is a decorative border, I verify that:
 
 Blockquotes may have indent. [View example &raquo;](http://boltdesignsystem.com/pattern-lab/patterns/02-components-blockquote-15-blockquote-indent-variation/02-components-blockquote-15-blockquote-indent-variation.html)
 
-If there is indent applied, I verify that:
+If there is an indent applied, I verify that:
 
-- Is small margin from left and right side of the blockquote.
+- There is a small margin on the left and right sides of the blockquote.
