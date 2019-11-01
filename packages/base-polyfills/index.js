@@ -13,21 +13,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
  * Used in: IE 11
  */
 
+import 'regenerator-runtime/runtime';
 import 'core-js/modules/es.array.find';
-
 import '@bolt/polyfills/platform/remove-polyfill.js';
 import '@bolt/polyfills/platform/es6-misc';
 import '@bolt/polyfills/platform/custom-event';
 import '@webcomponents/template/template.js';
 import '@bolt/polyfills/platform/promise';
-// import 'es6-promise/auto';
 import '@bolt/polyfills/platform/symbol';
 import '@bolt/polyfills/platform/flag-parser';
-// import '@webcomponents/shadydom/src/shadydom.js';
-
 import '@webcomponents/custom-elements/src/custom-elements.js';
-
-// import '@webcomponents/shadycss/entrypoints/scoping-shim.js';
 import '@webcomponents/url/url.js';
 import '@bolt/polyfills/platform/baseuri';
 import '@bolt/polyfills/platform/unresolved';
