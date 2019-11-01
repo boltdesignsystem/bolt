@@ -13,6 +13,8 @@ import oneCharacterLorem from './one-character-lorem.html';
 import oneCharacter1 from './one-character-1.html';
 import stepOneCharacterLorem from './step-one-character-lorem.html';
 import stepTwoCharacterLorem from './step-two-character-lorem.html';
+import stepOneCharacterStarter from './step-one-character-starter.html';
+import stepTwoCharacterStarter from './step-two-character-starter.html';
 import pathwayLorem from './pathwayLorem';
 
 export {
@@ -31,5 +33,7 @@ export {
   oneCharacterLorem,
   stepOneCharacterLorem,
   stepTwoCharacterLorem,
+  stepOneCharacterStarter,
+  stepTwoCharacterStarter,
   pathwayLorem,
 };
