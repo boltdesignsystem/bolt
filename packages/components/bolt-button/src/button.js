@@ -24,8 +24,14 @@ class BoltButton extends BoltActionElement {
       text: String,
       size: String,
       rounded: Boolean, // DEPRECATED.  Use border-radius instead of rounded.
-      borderRadius: String,
-      iconOnly: Boolean,
+      borderRadius: {
+        type: String,
+        attribute: 'border-radius',
+      },
+      iconOnly: {
+        type: Boolean,
+        attribute: 'icon-only',
+      },
       width: String,
       align: String,
       transform: String,
