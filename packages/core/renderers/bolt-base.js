@@ -1,7 +1,8 @@
 import Ajv from 'ajv';
 import { withComponent, props } from 'skatejs';
 import changeCase from 'change-case';
-import { findParentTag, hasNativeShadowDomSupport, renameKey } from '../utils';
+import { renameKey } from '../utils';
+import { shouldUseShadowDom, hasNativeShadowDomSupport } from '@bolt/element';
 
 export function shadow(elem) {
   // eslint-disable-next-line no-return-assign
@@ -58,15 +59,7 @@ export function BoltBase(Base = HTMLElement) {
     }
 
     setupShadow() {
-      if (
-        this.useShadow === false ||
-        findParentTag(this, 'FORM') ||
-        this.getAttribute('no-shadow') !== null
-      ) {
-        this.useShadow = false;
-      } else {
-        this.useShadow = hasNativeShadowDomSupport;
-      }
+      this.useShadow = shouldUseShadowDom(this);
     }
 
     get renderRoot() {
