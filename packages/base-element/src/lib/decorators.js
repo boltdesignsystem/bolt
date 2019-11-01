@@ -71,7 +71,7 @@ export function conditionalShadowDom() {
             attribute: 'no-shadow',
             reflect: true,
             hasChanged(newVal, oldVal) {
-              if (newVal === oldVal){
+              if (newVal === oldVal) {
                 return false;
               } else {
                 return true;
@@ -96,10 +96,13 @@ export function conditionalShadowDom() {
       _disableShadowDom() {
         const template = document.createElement('template');
         template.appendChild(this.cloneNode(true));
-        if (!template.firstChild.hasAttribute('no-shadow')){
+        if (!template.firstChild.hasAttribute('no-shadow')) {
           template.firstChild.setAttribute('no-shadow');
         }
-        this.insertAdjacentElement('beforebegin', template.firstChild.cloneNode(true));
+        this.insertAdjacentElement(
+          'beforebegin',
+          template.firstChild.cloneNode(true),
+        );
         this.parentNode.removeChild(this);
       }
 

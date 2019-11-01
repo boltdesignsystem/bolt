@@ -1,8 +1,8 @@
 import Ajv from 'ajv';
 import { withComponent, props } from 'skatejs';
 import changeCase from 'change-case';
-import { renameKey } from '../utils';
 import { shouldUseShadowDom, hasNativeShadowDomSupport } from '@bolt/element';
+import { renameKey } from '../utils';
 
 export function shadow(elem) {
   // eslint-disable-next-line no-return-assign

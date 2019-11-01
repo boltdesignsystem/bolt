@@ -153,7 +153,10 @@ describe('button', () => {
 
   test('Default <bolt-button> w/o Shadow DOM renders', async function() {
     const renderedButtonHTML = await page.evaluate(async () => {
-      document.body.insertAdjacentHTML('beforeend', '<bolt-button no-shadow>This is a button</bolt-button>');
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        '<bolt-button no-shadow>This is a button</bolt-button>',
+      );
       const btn = document.querySelector('bolt-button');
       await btn.updateComplete;
       return btn.outerHTML;
