@@ -156,10 +156,18 @@ class BoltInteractiveStep extends withLitContext() {
         <div class="c-bolt-interactive-step__body">
           <div class="c-bolt-interactive-step__body-inner">
             <div class="c-bolt-interactive-step__top-slot">
-              ${this.slot('top')}
+              ${this._isActiveStep
+                ? html`
+                    ${this.slot('top')}
+                  `
+                : ''}
             </div>
             <div class="c-bolt-interactive-step__bottom-slot">
-              ${this.slot('bottom')}
+              ${this._isActiveStep
+                ? html`
+                    ${this.slot('bottom')}
+                  `
+                : ''}
             </div>
           </div>
         </div>
