@@ -33,12 +33,6 @@
         </p>
       </bolt-status-dialogue-bar>
     </bolt-animate>
-    <bolt-animate slot="left" idle="none">
-    </bolt-animate>
-    <bolt-animate slot="right" idle="none">
-    </bolt-animate>
-    <bolt-animate slot="bottom" idle="none">
-    </bolt-animate>
   </bolt-character>
 </div>
 <div class="u-bolt-padding-xlarge">
@@ -60,10 +54,28 @@
         </p>
       </bolt-status-dialogue-bar>
     </bolt-animate>
-    <bolt-animate slot="right" idle="none">
-    </bolt-animate>
-    <bolt-animate slot="bottom" idle="none">
-    </bolt-animate>
   </bolt-character>
 </div>
 
+{{ source('@bolt-micro-journeys/starters/one-character-1.html') }}
+
+{{ source('@bolt-micro-journeys/starters/one-character-lorem.html') }}
+
+{{ source('@bolt-micro-journeys/starters/two-characters-1.html') }}
+
+{{ source('@bolt-micro-journeys/starters/two-characters-2.html') }}
+
+{{ source('@bolt-micro-journeys/starters/two-characters-3.html') }}
+
+{{ source('@bolt-micro-journeys/starters/two-characters-4.html') }}
+
+{{ source('@bolt-micro-journeys/starters/two-characters-lorem.html') }}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // @TODO listen for all components to be loaded. Yes, this is definitely evil.
+    setTimeout(function() {
+      Array.from(document.querySelectorAll('bolt-animate')).forEach(function(e) {e.triggerAnimIn()});
+    }, 3000)
+  });
+</script>

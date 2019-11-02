@@ -30,6 +30,10 @@ const resolveCharacterImage = characterImage => {
   }
 };
 
+const rootClass = 'c-bolt-character';
+const centerClass = `${rootClass}__center`;
+const connectionClass = `${rootClass}__slot--connection`;
+
 @define
 class BoltCharacter extends withLitHtml() {
   static is = 'bolt-character';
@@ -42,16 +46,30 @@ class BoltCharacter extends withLitHtml() {
     ...convertSchemaToProps(schema),
   };
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     return self;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent(`${BoltCharacter.is}:connected`, {
+          bubbles: true,
+        }),
+      );
+    }, 0);
+  }
+
   render() {
     const props = this.validateProps(this.props);
-    const classes = cx('c-bolt-character', `c-bolt-character--${props.size}`);
+    const hasSideContent = !!this.slots['left'] || !!this.slots['right'];
+    const classes = cx(rootClass, `${rootClass}--${props.size}`, {
+      [`${rootClass}__has-background`]: !!this.slots['background'],
+      [`${rootClass}__has-side-content`]: hasSideContent,
+    });
 
     const image =
       props.characterImage === 'custom'
@@ -61,49 +79,76 @@ class BoltCharacter extends withLitHtml() {
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}">
-        <span
-          class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--top"
-        >
-          ${this.slot('top')}
-        </span>
-        <span
-          class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--left"
-        >
-          ${this.slot('left')}
-        </span>
-        <span
-          class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--bottom"
-        >
-          ${this.slot('bottom')}
-        </span>
-        <span
-          class="c-bolt-character__slot c-bolt-character__slot--cardinal c-bolt-character__slot--right"
-        >
-          ${this.slot('right')}
-        </span>
-        <div class="c-bolt-character__main-image-wrapper">
-          ${props.useIcon
-            ? html`
-                <span
-                  class="c-bolt-character__slot c-bolt-character__slot--icon--wrapper"
-                >
-                  <bolt-icon class="c-bolt-character__slot--icon"></bolt-icon>
+        ${this.slots['top'] &&
+          html`
+            <span
+              class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--top"
+            >
+              ${this.slot('top')}
+            </span>
+          `}
+        ${hasSideContent
+          ? html`
+              <span
+                class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--left"
+              >
+                ${this.slot('left')}
+              </span>
+            `
+          : ''}
+        <div class="${rootClass}__center--wrapper">
+          <div class="${centerClass}">
+            ${props.useIcon
+              ? html`
+                  <span
+                    class="${rootClass}__slot ${rootClass}__slot--icon--wrapper"
+                  >
+                    <bolt-icon class="${rootClass}__slot--icon"></bolt-icon>
+                  </span>
+                `
+              : html`
+                  <img
+                    class="${rootClass}__main-image"
+                    src="${image}"
+                    alt="Character Image"
+                  />
+                `}
+            ${this.slots['background'] &&
+              html`
+                <span class="${rootClass}__background">
+                  ${this.slot('background')}
                 </span>
-              `
-            : html`
-                <img
-                  class="c-bolt-character__main-image"
-                  src="${image}"
-                  alt="Character Image"
-                />
               `}
+            ${this.slots['connection'] &&
+              html`
+                <span
+                  class="${rootClass}__slot ${rootClass}__slot--connection"
+                >
+                  ${this.slot('connection')}
+                </span>
+              `}
+          </div>
         </div>
-        <span class="c-bolt-character__background">
-          ${this.slot('background')}
-        </span>
+        ${hasSideContent
+          ? html`
+              <span
+                class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--right"
+              >
+                ${this.slot('right')}
+              </span>
+            `
+          : ''}
+        ${this.slots['bottom'] &&
+          html`
+            <span
+              class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--bottom"
+            >
+              ${this.slot('bottom')}
+            </span>
+          `}
       </div>
     `;
   }
 }
 
-export { BoltCharacter };
+export { BoltCharacter, centerClass as boltCharacterCenterClass, rootClass as boltCharacterRootClass, connectionClass as boltCharacterConnectionClass};
