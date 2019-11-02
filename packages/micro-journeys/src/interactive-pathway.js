@@ -206,30 +206,35 @@ class BoltInteractivePathway extends withLitContext() {
     const navClasses = cx('c-bolt-interactive-pathway__nav');
     const itemClasses = cx('c-bolt-interactive-pathway__items');
 
-    return html`
-      ${this.addStyles([styles])}
-      <section class="${classes}">
-        <nav class="${navClasses}">
-          ${this.steps.map((step, stepIndex) => {
-            const isActiveItem = this.activeStep === stepIndex;
-            const navItemClasses = cx('c-bolt-interactive-pathway__nav-item', {
-              'c-bolt-interactive-pathway__nav-item--active': isActiveItem,
-            });
-            return html`
-              <div
-                class="${navItemClasses}"
-                @click=${() => this.setActiveStep(stepIndex)}
-              >
-                ${step.title}
-              </div>
-            `;
-          })}
-        </nav>
-        <div class="${itemClasses}">
-          ${this.slot('default')}
-        </div>
-      </section>
-    `;
+    return this.isActivePathway
+      ? html`
+          ${this.addStyles([styles])}
+          <section class="${classes}">
+            <nav class="${navClasses}">
+              ${this.steps.map((step, stepIndex) => {
+                const isActiveItem = this.activeStep === stepIndex;
+                const navItemClasses = cx(
+                  'c-bolt-interactive-pathway__nav-item',
+                  {
+                    'c-bolt-interactive-pathway__nav-item--active': isActiveItem,
+                  },
+                );
+                return html`
+                  <div
+                    class="${navItemClasses}"
+                    @click=${() => this.setActiveStep(stepIndex)}
+                  >
+                    ${step.title}
+                  </div>
+                `;
+              })}
+            </nav>
+            <div class="${itemClasses}">
+              ${this.slot('default')}
+            </div>
+          </section>
+        `
+      : '';
   }
 }
 
