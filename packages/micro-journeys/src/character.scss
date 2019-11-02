@@ -6,10 +6,10 @@
   justify-content: center;
   align-items: center;
   max-width: 500px;
-  margin: bolt-spacing(small) bolt-spacing(xsmall);
+  margin-bottom:bolt-spacing(xsmall);
 
   @include bolt-mq(small) {
-    margin: bolt-spacing(medium) bolt-spacing(small);
+    margin-bottom: bolt-spacing(small);
   }
 
   &--small &__center {
