@@ -53,7 +53,9 @@ class BoltStatusDialogueBar extends withLitHtml() {
       <div class="${classes}">
         ${hasArrow
           ? html`
-              <span class="c-bolt-status-dialogue-bar--arrow" aria-hidden="true">${triangle}</span>
+              <span class="c-bolt-status-dialogue-bar--arrow" aria-hidden="true"
+                >${triangle}</span
+              >
             `
           : ''}
         <div class="c-bolt-status-dialogue-bar__content">

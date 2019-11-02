@@ -121,9 +121,7 @@ class BoltCharacter extends withLitHtml() {
               `}
             ${this.slots['connection'] &&
               html`
-                <span
-                  class="${rootClass}__slot ${rootClass}__slot--connection"
-                >
+                <span class="${rootClass}__slot ${rootClass}__slot--connection">
                   ${this.slot('connection')}
                 </span>
               `}
@@ -151,4 +149,9 @@ class BoltCharacter extends withLitHtml() {
   }
 }
 
-export { BoltCharacter, centerClass as boltCharacterCenterClass, rootClass as boltCharacterRootClass, connectionClass as boltCharacterConnectionClass};
+export {
+  BoltCharacter,
+  centerClass as boltCharacterCenterClass,
+  rootClass as boltCharacterRootClass,
+  connectionClass as boltCharacterConnectionClass,
+};

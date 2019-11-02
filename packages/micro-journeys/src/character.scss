@@ -2,11 +2,11 @@
 
 .c-bolt-character {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: bolt-spacing(small) bolt-spacing(xsmall);
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   max-width: 500px;
+  margin: bolt-spacing(small) bolt-spacing(xsmall);
 
   @include bolt-mq(small) {
     margin: bolt-spacing(medium) bolt-spacing(small);
@@ -55,8 +55,8 @@
   }
 
   &__center--wrapper {
-    flex: 1 0 33.33%;
     display: flex;
+    flex: 1 0 33.33%;
     justify-content: center;
 
     .c-bolt-character__has-side-content & {
@@ -77,11 +77,11 @@
     flex-grow: 0;
     flex-shrink: 0;
     box-sizing: border-box;
-    border: 4px solid white;
-    background-color: white;
-    border-radius: 50%;
-    z-index: 2;
     position: static;
+    z-index: 2;
+    border: 4px solid white;
+    border-radius: 50%;
+    background-color: white;
   }
 
   &__has-background &__center {
