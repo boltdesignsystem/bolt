@@ -20,7 +20,7 @@ import * as starters from '@bolt/micro-journeys/starters';
 // @ts-ignore
 import linkSchema from '@bolt/components-link/link.schema.yml';
 // import { animationNames } from '@bolt/components-animate/animation-meta';
-import { isChildOfEl, convertSchemaPropToTrait } from './utils';
+import { isChildOfEl, convertSchemaPropToTrait, getStepsLorem } from './utils';
 
 class EditorRegisterBoltError extends Error {}
 
@@ -120,7 +120,7 @@ const iconGroupHorizontal = {
 
 const svgAnimations = {
   id: 'bolt-svg-animations',
-  title: 'Svg Animtions',
+  title: 'Svg Animations',
   content: `<bolt-svg-animations anim-type="orbit"></bolt-svg-animations>`,
 };
 
@@ -515,39 +515,95 @@ export function setupBolt(editor) {
     ],
   });
 
-  registerBoltComponent({
-    name: 'bolt-interactive-pathways',
-    schema: pathwaysSchema,
-    propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
+  BlockManager.add('One-Character Pathway', {
+    label: `<span title="">One-Character Pathway</span>`,
     category: 'Starters',
-    blockTitle: 'Pathways',
-    draggable: true,
-    editable: false,
-    highlightable: false,
-    registerBlock: true,
-    slots: {
-      default: 'bolt-interactive-pathway',
-    },
-    initialContent: [
-      `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
-      `<bolt-interactive-pathway pathway-title="First Title">
-        ${starters.stepOneCharacterLorem}
-        ${starters.stepTwoCharacterLorem}
-      </bolt-interactive-pathway>`,
-    ],
-    slotControls: [
-      {
-        slotName: 'default',
-        components: [
-          {
-            id: 'pathway',
-            title: 'Pathway',
-            content: starters.pathwayLorem,
-          },
-        ],
-      },
-    ],
+    select: true,
+    content: `<bolt-interactive-pathways>
+      <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
+      <bolt-interactive-pathway pathway-title="Billing Inquiries">
+        ${getStepsLorem(starters.stepOneCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+    </bolt-interactive-pathways>`,
   });
+
+  BlockManager.add('Two-Character Pathway', {
+    label: `<span title="">Two-Character Pathway</span>`,
+    category: 'Starters',
+    select: true,
+    content: `<bolt-interactive-pathways>
+      <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
+      <bolt-interactive-pathway pathway-title="Billing Inquiries">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+    </bolt-interactive-pathways>`,
+  });
+
+  BlockManager.add('Multiple Two-Character Pathways', {
+    label: `<span title="">Two-character Pathways</span>`,
+    category: 'Starters',
+    select: true,
+    content: `<bolt-interactive-pathways>
+      <bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>
+      <bolt-interactive-pathway pathway-title="Pathway 1">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Pathway 2">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Pathway 3">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Pathway 4">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Pathway 5">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+      <bolt-interactive-pathway pathway-title="Pathway 6">
+        ${getStepsLorem(starters.stepTwoCharacterStarter, 6)}
+      </bolt-interactive-pathway>
+    </bolt-interactive-pathways>`,
+  });
+
+  // Commented this out because this was superceded by above starters. But leaving because they're simpler and client may want to reinstate.
+  // registerBoltComponent({
+  //   name: 'bolt-interactive-pathways',
+  //   schema: pathwaysSchema,
+  //   propsToTraits: ['customImageSrc', 'imageAlt', 'theme', 'hidePathwaysImage'],
+  //   category: 'Starters',
+  //   blockTitle: 'Multiple Pathways',
+  //   draggable: true,
+  //   editable: false,
+  //   highlightable: false,
+  //   registerBlock: true,
+  //   slots: {
+  //     default: 'bolt-interactive-pathway',
+  //   },
+  //   initialContent: [
+  //     `<bolt-text subheadline font-size="xxlarge" slot="interactive-pathways-lead-text">How Pega technology resolves</bolt-text>`,
+  //     `<bolt-interactive-pathway pathway-title="First Title">
+  //       ${starters.stepOneCharacterLorem}
+  //       ${starters.stepTwoCharacterLorem}
+  //     </bolt-interactive-pathway>`,
+  //     `<bolt-interactive-pathway pathway-title="Second Title">
+  //       ${starters.stepOneCharacterLorem}
+  //       ${starters.stepTwoCharacterLorem}
+  //     </bolt-interactive-pathway>`,
+  //   ],
+  //   slotControls: [
+  //     {
+  //       slotName: 'default',
+  //       components: [
+  //         {
+  //           id: 'pathways',
+  //           title: 'Pathways',
+  //           content: starters.pathwayLorem,
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // });
 
   registerBoltComponent({
     name: 'bolt-interactive-pathway',
@@ -574,12 +630,12 @@ export function setupBolt(editor) {
         components: [
           {
             id: 'stepOneCharacterLorem',
-            title: 'Step - One Character Lorem',
+            title: 'Step - One-Character Starter',
             content: starters.stepOneCharacterLorem,
           },
           {
             id: 'stepTwoCharacterLorem',
-            title: 'Step - Two Character Lorem',
+            title: 'Step - Two-Character Starter',
             content: starters.stepTwoCharacterLorem,
           },
         ],

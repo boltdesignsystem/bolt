@@ -17,6 +17,7 @@ class BoltButton extends BoltAction {
   static is = 'bolt-button';
 
   static props = {
+    ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
     color: props.string,
     text: props.string,
     size: props.string,
@@ -26,12 +27,7 @@ class BoltButton extends BoltAction {
     width: props.string,
     align: props.string,
     transform: props.string,
-    disabled: props.boolean,
-    target: props.string,
     type: props.string,
-    url: props.string,
-    onClick: props.string, // Managed by base class
-    onClickTarget: props.string, // Managed by base class
     tabindex: props.number,
     inert: props.boolean, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
   };
@@ -40,7 +36,6 @@ class BoltButton extends BoltAction {
   constructor(self) {
     self = super(self);
     self.schema = schema;
-    self.delegateFocus = true;
     return self;
   }
 
@@ -74,73 +69,70 @@ class BoltButton extends BoltAction {
 
     // The buttonElement to render, based on the initial HTML passed alone.
     let buttonElement = null;
-    const self = this;
 
-    const slotMarkup = name => {
-      switch (name) {
-        case 'before':
-        case 'after':
-          const iconClasses = cx('c-bolt-button__icon', {
-            'is-empty': name in this.slots === false,
-          });
+    const innerSlots = () => {
+      const itemClasses = cx('c-bolt-button__item');
+      const iconClasses = cx('c-bolt-button__icon');
+      const sizerClasses = cx('c-bolt-button__icon-sizer');
 
-          return bolt.isServer
+      if (bolt.isServer) {
+        return html`
+          ${'before' in this.slots
             ? html`
-                ${name in this.slots
-                  ? html`
-                      <replace-with-grandchildren class="${iconClasses}"
-                        ><span class="c-bolt-button__icon-sizer"
-                          >${name in this.slots ? this.slot(name) : ''}</span
-                        ></replace-with-grandchildren
-                      >
-                    `
-                  : ''}
+                <replace-with-grandchildren class="${iconClasses}"
+                  ><span class="${sizerClasses}"
+                    >${this.slot('before')}</span
+                  ></replace-with-grandchildren
+                >
               `
-            : html`
+            : ''}${'default' in this.slots
+            ? html`
+                <replace-with-grandchildren class="${itemClasses}"
+                  >${this.slot('default')}</replace-with-grandchildren
+                >
+              `
+            : ''}${'after' in this.slots
+            ? html`
+                <replace-with-grandchildren class="${iconClasses}"
+                  ><span class="${sizerClasses}"
+                    >${this.slot('after')}</span
+                  ></replace-with-grandchildren
+                >
+              `
+            : ''}
+        `;
+      } else {
+        return html`
+          ${'before' in this.slots
+            ? html`
                 <span class="${iconClasses}"
-                  ><span class="c-bolt-button__icon-sizer"
-                    >${name in this.slots
-                      ? this.slot(name)
-                      : html`
-                          <slot name="${name}" />
-                        `}</span
+                  ><span class="${sizerClasses}"
+                    >${this.slot('before')}</span
                   ></span
                 >
-              `;
-        default:
-          const itemClasses = cx('c-bolt-button__item', {
-            'is-empty': name in this.slots === false,
-          });
-
-          return bolt.isServer
-            ? html`
-                ${name in this.slots
-                  ? html`
-                      <replace-with-children class="${itemClasses}"
-                        >${name in this.slots
-                          ? this.slot('default')
-                          : ''}</replace-with-children
-                      >
-                    `
-                  : ''}
               `
             : html`
-                <span class="${itemClasses}"
-                  >${name in this.slots
-                    ? this.slot('default')
-                    : html`
-                        <slot />
-                      `}</span
+                <slot name="before" />
+              `}${'default' in this.slots
+            ? html`
+                <span class="${itemClasses}">${this.slot('default')}</span>
+              `
+            : html`
+                <slot />
+              `}${'after' in this.slots
+            ? html`
+                <span class="${iconClasses}"
+                  ><span class="${sizerClasses}"
+                    >${this.slot('after')}</span
+                  ></span
                 >
-              `;
+              `
+            : html`
+                <slot name="after" />
+              `}
+        `;
       }
     };
-
-    const innerSlots = [
-      slotMarkup('before'),
-      slotMarkup('default'),
-      slotMarkup('after'),
-    ];
 
     if (this.rootElement) {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
@@ -177,7 +169,7 @@ class BoltButton extends BoltAction {
         buttonElement.setAttribute('tabindex', this.props.tabindex);
       }
 
-      render(innerSlots, buttonElement);
+      render(innerSlots(), buttonElement);
     } else if (hasUrl) {
       buttonElement = html`
         <a
@@ -195,7 +187,7 @@ class BoltButton extends BoltAction {
           )}
           aria-disabled=${ifDefined(this.props.disabled ? 'true' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
-          >${innerSlots}</a
+          >${innerSlots()}</a
         >
       `;
     } else {
@@ -213,7 +205,7 @@ class BoltButton extends BoltAction {
           disabled=${ifDefined(this.props.disabled ? '' : undefined)}
           is=${ifDefined(bolt.isServer ? 'shadow-root' : undefined)}
         >
-          ${innerSlots}
+          ${innerSlots()}
         </button>
       `;
     }

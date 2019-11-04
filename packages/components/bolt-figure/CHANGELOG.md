@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/bolt-design-system/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* globally replace Brightcove Video IDs that no longer play correctly in IE 11 (even on the live boltdesignsystem.com site) with a more recent set of video ids that are confirmed to work as expected ([9b48d34](https://github.com/bolt-design-system/bolt/commit/9b48d34))
+
+
+
+
+
+## [2.9.2](https://github.com/bolt-design-system/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/components-figure
+
+
+
+
+
 ## [2.9.1](https://github.com/bolt-design-system/bolt/compare/v2.9.0...v2.9.1) (2019-10-22)
 
 **Note:** Version bump only for package @bolt/components-figure

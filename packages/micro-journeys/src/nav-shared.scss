@@ -7,7 +7,10 @@ $nav-circle-border-size: 2px;
 @mixin bolt-micro-journeys-nav-dot($active: false) {
   @if $active {
     width: $nav-circle-size--active;
+    min-width: $nav-circle-size--active;
     height: $nav-circle-size--active;
+    // Center the dot vertical to the first line of text.
+    margin-top: calc(((#{$header-text-line-height} * #{$header-text-size}) - (#{$nav-circle-size--active} + (#{$nav-circle-border-size} * 2))) / 2);
     margin-left: -$nav-circle-size--active / 2 - $nav-circle-border-size;
     border: $nav-circle-border-size solid bolt-theme(primary);
     background-color: bolt-theme(secondary);
@@ -16,10 +19,14 @@ $nav-circle-border-size: 2px;
   @else {
     content: '';
     display: inline-block;
+    align-self: flex-start;
     box-sizing: content-box;
     z-index: 1;
     width: $nav-circle-size;
+    min-width: $nav-circle-size;
     height: $nav-circle-size;
+    // Center the dot vertical to the first line of text.
+    margin-top: calc(((#{$header-text-line-height} * #{$header-text-size}) - #{$nav-circle-size}) / 2);
     margin-right: bolt-spacing(small);
     margin-left: -$nav-circle-size / 2;
     border-radius: 50%;
@@ -54,7 +61,6 @@ $nav-circle-border-size: 2px;
     display: flex;
     align-items: center;
     padding-bottom: 1.65rem;
-    white-space: nowrap;
     line-height: $header-text-line-height;
     font-size: $header-text-size;
     transition: color 0.5s ease, transform 0.5s ease;
