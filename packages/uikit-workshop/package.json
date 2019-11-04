@@ -46,6 +46,7 @@
     "svg-sprite-loader": "^4.1.6",
     "svg-transform-loader": "^2.0.8",
     "svgo-loader": "^2.2.1",
+    "@pattern-lab/uikit-polyfills": "^0.0.0",
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-proposal-decorators": "^7.6.0",
@@ -73,7 +74,7 @@
     "clean-webpack-plugin": "0.1.19",
     "clipboard": "^2.0.4",
     "copy-webpack-plugin": "^5.0.2",
-    "core-js": "^3.3.3",
+    "core-js": "^3.3.6",
     "cosmiconfig": "^5.0.6",
     "critical-css-webpack-plugin": "^0.2.0",
     "critical": "^1.3.4",
@@ -94,11 +95,11 @@
     "iframe-resizer": "^3.6.5",
     "lit-html": "^1.1.2",
     "local-chrome": "^0.1.0",
-    "mini-css-extract-plugin": "^0.4.1",
+    "mini-css-extract-plugin": "^0.8.0",
     "mousetrap": "^1.6.3",
     "no-emit-webpack-plugin": "^1.0.0",
     "node-sass-selector-importer": "^5.2.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.0",
     "penthouse": "^2.2.2",
     "postcss-loader": "^3.0.0",
     "preact-compat": "3.18.4",
@@ -131,12 +132,20 @@
     "whendefined": "^0.0.1",
     "wolfy87-eventemitter": "^5.2.6",
     "workbox-build": "^3.4.1",
-    "yargs": "^14.2.0"
+    "yargs": "^14.2.0",
+    "webpack-merge": "^4.2.2"
   },
   "browserslist": [
     "last 2 version",
     ">0.25%",
     "ie 11",
     "not op_mini all"
+  ],
+  "files": [
+    "src",
+    "dist",
+    "views",
+    "views-twig",
+    "webpack.config.js"
   ]
 }

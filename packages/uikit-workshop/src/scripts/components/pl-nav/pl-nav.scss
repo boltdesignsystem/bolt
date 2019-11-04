@@ -99,10 +99,10 @@ pl-nav {
     */
   &.pl-is-active {
     @media all and (max-width: $pl-bp-med - 1) {
-      box-shadow: 0 1px 1px $pl-color-black, 0 8px 15px 1px rgba(6,10,36,.1), 0 18px 24px 1px rgba(6,10,36,.12);
+      box-shadow: 0 1px 1px $pl-color-black;
 
       .pl-c-body--theme-light & {
-        box-shadow: 0 1px 1px darken($pl-color-gray-20, 15%), 0 8px 15px 1px rgba(6,10,36,.1), 0 18px 24px 1px rgba(6,10,36,.12);
+        box-shadow: 0 1px 1px darken($pl-color-gray-20, 15%);
       }
     }
 
