@@ -17,7 +17,7 @@ export {};
 /** @type {Object|undefined} */
 const nativeBaseURI = Object.getOwnPropertyDescriptor(
   Node.prototype,
-  'baseURI'
+  'baseURI',
 );
 if (!nativeBaseURI) {
   Object.defineProperty(Node.prototype, 'baseURI', {
@@ -29,7 +29,7 @@ if (!nativeBaseURI) {
       // this.ownerDocument is `null` for documents
       const doc = this.ownerDocument || this;
       const base = /** @type {HTMLBaseElement} */ (doc.querySelector(
-        'base[href]'
+        'base[href]',
       ));
       return (base && base.href) || window.location.href;
     },

@@ -76,7 +76,7 @@
         inType,
         Boolean(params.bubbles),
         Boolean(params.cancelable),
-        params.detail
+        params.detail,
       );
       return e;
     };
@@ -108,7 +108,7 @@
         params.shiftKey,
         params.metaKey,
         params.button,
-        params.relatedTarget
+        params.relatedTarget,
       );
       return e;
     };
