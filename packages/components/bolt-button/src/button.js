@@ -6,20 +6,19 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
 
 import buttonStyles from './button.scss';
-// import schema from '../button.schema.yml';
+// import schema from '../button.schema.yml'; @todo: temporarily removed while we switch to `lit-element`, soon to be re-added
 
 let cx = classNames.bind(buttonStyles);
 
 @convertInitialTags(['button', 'a'])
 class BoltButton extends BoltActionElement {
-  // static lazyStyles = [buttonStyles];
-
   static get styles() {
     return [unsafeCSS(buttonStyles)];
   }
 
   static get properties() {
     return {
+      ...BoltActionElement.properties, // Provides: disabled, onClick, onClickTarget, target, url
       color: String,
       text: String,
       size: String,
@@ -35,7 +34,6 @@ class BoltButton extends BoltActionElement {
       width: String,
       align: String,
       transform: String,
-      disabled: Boolean,
       type: String,
       tabindex: Number,
       inert: Boolean, // will eventually go hand in hand with https://github.com/WICG/inert#notes-on-the-polyfill
@@ -69,47 +67,33 @@ class BoltButton extends BoltActionElement {
 
     // The buttonElement to render, based on the initial HTML passed alone.
     let buttonElement = null;
-    const self = this;
 
-    const slotMarkup = name => {
-      switch (name) {
-        case 'before':
-        case 'after':
-          const iconClasses = cx('c-bolt-button__icon', {
-            'is-empty': this.slotify(name) === false,
-          });
+    const innerSlots = () => {
+      const itemClasses = cx('c-bolt-button__item');
+      const iconClasses = cx('c-bolt-button__icon');
+      const sizerClasses = cx('c-bolt-button__icon-sizer');
 
-          return (
-            this.slotify(name) &&
-            html`
-              <span class="${iconClasses}">
-                <span class="c-bolt-button__icon-sizer">
-                  ${this.slotify(name)}
-                </span>
-              </span>
-            `
-          );
-        default:
-          const itemClasses = cx('c-bolt-button__item', {
-            'is-empty': this.slotify(name) === false,
-          });
-
-          return (
-            this.slotify('default') &&
-            html`
-              <span class="${itemClasses}">
-                ${this.slotify('default')}
-              </span>
-            `
-          );
-      }
+      return html`
+        ${this.slotify('before') &&
+          html`
+            <span class="${iconClasses}"
+              ><span class="${sizerClasses}"
+                >${this.slotify('before')}</span
+              ></span
+            >
+          `}${this.slotify('default') &&
+          html`
+            <span class="${itemClasses}">${this.slotify('default')}</span>
+          `}${this.slotify('after') &&
+          html`
+            <span class="${iconClasses}"
+              ><span class="${sizerClasses}"
+                >${this.slotify('after')}</span
+              ></span
+            >
+          `}
+      `;
     };
-
-    const innerSlots = [
-      slotMarkup('before'),
-      slotMarkup('default'),
-      slotMarkup('after'),
-    ];
 
     if (this.rootElement) {
       buttonElement = this.rootElement.firstChild.cloneNode(true);
@@ -146,7 +130,7 @@ class BoltButton extends BoltActionElement {
         buttonElement.setAttribute('tabindex', this.tabindex);
       }
 
-      render(innerSlots, buttonElement);
+      render(innerSlots(), buttonElement);
     } else if (hasUrl) {
       buttonElement = html`
         <a
@@ -161,7 +145,7 @@ class BoltButton extends BoltActionElement {
               : undefined,
           )}
           aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
-          >${innerSlots}</a
+          >${innerSlots()}</a
         >
       `;
     } else {
@@ -178,7 +162,7 @@ class BoltButton extends BoltActionElement {
           type=${ifDefined(this.type ? this.type : undefined)}
           disabled=${ifDefined(this.disabled ? '' : undefined)}
         >
-          ${innerSlots}
+          ${innerSlots()}
         </button>
       `;
     }

@@ -23,6 +23,7 @@ class BoltActionElement extends BoltElement {
   constructor() {
     super();
     this.rootElementTags = [];
+    this.delegateFocus = true;
     this.clickHandler = this.clickHandler.bind(this);
   }
 

@@ -22,17 +22,14 @@ $bolt-link-spacing: 'xxsmall';
 
 // Component styles
 .c-bolt-link {
-  @include bolt-padding(0); // [1]
-  @include bolt-font-family(body); // [1]
+  @include bolt-button-reset; // [1]
   display: inline;
-  appearance: none; // [1]
   opacity: bolt-opacity(100);
   margin-left: bolt-spacing(#{$bolt-link-spacing}) * -1;
   color: bolt-theme(link);
   text-decoration: underline;
   cursor: pointer;
   border: none; // [1]
-  background: none; // [1]
   transition: all $bolt-link-transition;
 
   &:hover {
