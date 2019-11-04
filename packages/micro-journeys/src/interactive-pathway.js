@@ -190,7 +190,9 @@ class BoltInteractivePathway extends withLitContext() {
     this.activeStep = stepIndex;
     newActiveStep.el.setActive(true);
     this.triggerUpdate();
-    await newActiveStep.el.triggerAnimIns();
+    setTimeout(async () => {
+      await newActiveStep.el.triggerAnimIns();
+    });
   };
 
   render() {
