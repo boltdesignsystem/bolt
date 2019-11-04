@@ -1,4 +1,4 @@
-<div class="u-bolt-padding-xlarge">
+<div class="u-bolt-padding-medium">
   <bolt-character
       character-custom-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
       size="small"
@@ -21,7 +21,7 @@
     </bolt-animate>
   </bolt-character>
 </div>
-<div class="u-bolt-padding-xlarge">
+<div class="u-bolt-padding-medium">
   <bolt-character
       character-custom-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
       size="medium"
@@ -35,10 +35,54 @@
     </bolt-animate>
   </bolt-character>
 </div>
-<div class="u-bolt-padding-xlarge">
+<div class="u-bolt-padding-medium">
   <bolt-character
       character-custom-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
       size="large"
+  >
+    <bolt-animate slot="top" idle="none">
+      <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud">
+        <p slot="text">
+          I'm a large character
+        </p>
+      </bolt-status-dialogue-bar>
+    </bolt-animate>
+    <bolt-animate slot="left">
+      <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+        <p slot="text">
+          Bill is due!
+        </p>
+      </bolt-status-dialogue-bar>
+    </bolt-animate>
+  </bolt-character>
+</div>
+
+<div class="u-bolt-padding-medium">
+  <bolt-character
+    character-custom-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+    size="large"
+  >
+    <bolt-animate slot="top" idle="none">
+      <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud">
+        <p slot="text">
+          I'm a large character. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        </p>
+      </bolt-status-dialogue-bar>
+    </bolt-animate>
+    <bolt-animate slot="left">
+      <bolt-status-dialogue-bar icon-name="cloud" is-alert-message>
+        <p slot="text">
+          Bill is due! Lots more text. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        </p>
+      </bolt-status-dialogue-bar>
+    </bolt-animate>
+  </bolt-character>
+</div>
+
+<div class="u-bolt-padding-medium">
+  <bolt-character
+    character-custom-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+    size="large"
   >
     <bolt-animate slot="top" idle="none">
       <bolt-status-dialogue-bar dialogue-arrow-direction="down" icon-name="cloud">
@@ -70,6 +114,36 @@
 {{ source('@bolt-micro-journeys/starters/two-characters-4.html') }}
 
 {{ source('@bolt-micro-journeys/starters/two-characters-lorem.html') }}
+
+<bolt-two-character-layout>
+  <bolt-animate slot="character--left" in-order="1" in="fade-in" out="fade-out" out-order="1">
+    <bolt-character size="medium" character-image="customer-surprise">
+      <bolt-animate slot="bottom"><bolt-text font-size="xsmall">lorem</bolt-text></bolt-animate>
+      <bolt-animate slot="background" in="fade-in" in-order="1">
+        <bolt-svg-animations
+          speed="4000"
+          anim-type="radar"
+          theme="dark"
+        ></bolt-svg-animations>
+      </bolt-animate>
+      <bolt-animate slot="connection" in="fade-in" in-order="1" out="fade-out" out-order="1">
+        <bolt-connection></bolt-connection>
+      </bolt-animate>
+    </bolt-character>
+  </bolt-animate>
+  <bolt-animate slot="character--right" in="fade-in" in-order="1" out="fade-out" out-order="1">
+    <bolt-character size="medium" character-image="customer-surprise">
+      <bolt-animate in="fade-in" in-order="1" out="fade-out" slot="top" out-order="1">
+        <bolt-status-dialogue-bar icon-name="mobility">
+          <p slot="text">
+            Very long. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </bolt-status-dialogue-bar>
+      </bolt-animate>
+      <bolt-animate slot="bottom" idle="none"><bolt-text font-size="xsmall">Customer</bolt-text></bolt-animate>
+    </bolt-character>
+  </bolt-animate>
+</bolt-two-character-layout>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {

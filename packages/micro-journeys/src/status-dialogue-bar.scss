@@ -14,7 +14,7 @@ $bolt-tooltip-bubble-triangle-width: 8px;
   &__content {
     display: flex;
     flex-direction: column;
-    max-width: 100px;
+    max-width: 200px;
     padding: bolt-spacing(xsmall) bolt-spacing(xsmall);
     color: bolt-color(black);
     border-radius: $bolt-border-radius;
@@ -24,12 +24,11 @@ $bolt-tooltip-bubble-triangle-width: 8px;
     @include bolt-mq(xsmall) {
       flex-direction: row;
       align-items: center;
-      max-width: 150px;
+      max-width: 125px;
     }
 
     @include bolt-mq(small) {
       align-items: center;
-      max-width: 300px;
     }
   }
 
