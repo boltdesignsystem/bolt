@@ -44,7 +44,6 @@ export const equalizeRelativeHeights = (
   shouldValidate = true,
 ) => {
   try {
-    console.log('equalizeRelativeHeightsitems', items);
     if (shouldValidate) {
       validateParamsForEqualizeRelativeHeights(items);
     }
@@ -88,16 +87,17 @@ export const equalizeRelativeHeights = (
  *
  * @param {EqualizeRelativeHeightArgItem[]} items
  * @param {function|null} callback: optional callback to call after success.
+ * @param {number} tryCount: the number of times attempted already.
  * @param {number} tryLimit: the number of times to try to validate before erroring out.
  * @param {boolean} debug: whether or not to print debug info to console.
  */
 export const persistentlyAttemptToEqualizeRelativeHeights = (
   items,
   callback,
+  tryCount = 0,
   tryLimit = 3,
   debug = false,
 ) => {
-  let tryCount = 0;
   try {
     validateParamsForEqualizeRelativeHeights(items);
     equalizeRelativeHeights(items, callback, false);
@@ -111,7 +111,7 @@ export const persistentlyAttemptToEqualizeRelativeHeights = (
     }
     if (tryCount <= tryLimit) {
       window.requestAnimationFrame(() => {
-        persistentlyAttemptToEqualizeRelativeHeights(items, callback);
+        persistentlyAttemptToEqualizeRelativeHeights(items, callback, tryCount);
       });
     } else {
       // Simply call it to trigger error if tryLimit was reached.
