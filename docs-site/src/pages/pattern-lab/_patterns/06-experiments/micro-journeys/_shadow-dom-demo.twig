@@ -12,7 +12,7 @@
 {% endif %}
 
 {% if enableEditor %}
-  {# Editors can only be used when Shadow DOM is present #}
+   Editors can only be used when Shadow DOM is present
   {% include '@bolt-components-editor/editor-in-pl.twig' with {
     content: content,
   } only %}
@@ -27,7 +27,7 @@
   <hr>
 </div>
 
-{# When Bolt Web Components are wrapped in a `<form>` element all children have Shadow DOM disabled automatically #}
+{# When Bolt Web Components are wrapped in a `<form>` element all children have Shadow DOM disabled automatically#}
 <form onsubmit="event.preventDefault()">
   {{ content }}
 </form>
