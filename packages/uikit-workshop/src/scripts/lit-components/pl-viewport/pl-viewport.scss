@@ -174,24 +174,12 @@ pl-iframe {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background .3s cubic-bezier(.25,.8,.25,1)!important;
+  cursor: ew-resize;
 
-  &:hover:after,
-  &.is-resizing:after {
+  &:hover,
+  &.is-resizing {
     background-color: #F6F6F9;
-  }
-
-  &:after {
-    content: '';
-    transition: .3s cubic-bezier(.25,.8,.25,1)!important;
-    cursor: ew-resize;
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: $pl-resizer-width;
   }
 
   &:active {

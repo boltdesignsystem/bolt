@@ -254,11 +254,6 @@ module.exports = function() {
       },
       plugins: [
         new CopyPlugin(config.copy),
-        new MiniCssExtractPlugin({
-          filename: `[name].css`,
-          chunkFilename: `[id].css`,
-          allChunks: true,
-        }),
         new NoEmitPlugin(['css/pattern-lab.js']),
       ],
     };
@@ -298,6 +293,13 @@ module.exports = function() {
           },
         ],
       },
+      plugins: [
+        new MiniCssExtractPlugin({
+          filename: `[name].css`,
+          chunkFilename: `[id].css`,
+          allChunks: true,
+        }),
+      ]
     });
 
     const modernConfig = merge(webpackConfig, {
@@ -343,86 +345,89 @@ module.exports = function() {
             beforeEmit: false,
           }
         ),
+        new PrerenderSPAPlugin({
+          // Required - The path to the webpack-outputted app to prerender.
+          // staticDir: path.join(__dirname, 'dist'),
+          staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
+          // Required - Routes to render.
+          routes: ['/'],
+          postProcess(context) {
+            context.html = context.html.replace(
+              /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
+              '',
+            );
+            return context;
+          },
+          renderer: new Renderer({
+            // Optional - The name of the property to add to the window object with the contents of `inject`.
+            injectProperty: '__PRERENDER_INJECTED',
+            // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
+            inject: {
+              foo: 'bar',
+            },
+          }),
+        }),
         new HtmlWebpackPlugin({
           filename: '../index.html',
           template: 'src/html/index.html',
           inject: false,
         }),
+        new MiniCssExtractPlugin({
+          filename: `[name].css`,
+          chunkFilename: `[id].css`,
+          allChunks: true,
+        }),
       ],
     });
 
-    if (!argv.watch) {
-      if (localChrome) {
-        const browserPromise = puppeteer.launch({
-          executablePath: localChrome,
-          ignoreHTTPSErrors: true,
-          args: ['--disable-setuid-sandbox', '--no-sandbox'],
-          // not required to specify here, but saves Penthouse some work if you will
-          // re-use the same viewport for most penthouse calls.
-          defaultViewport: {
-            width: 1300,
-            height: 900,
-          },
-        });
+    // if (localChrome) {
+    //   const browserPromise = puppeteer.launch({
+    //     executablePath: localChrome,
+    //     ignoreHTTPSErrors: true,
+    //     args: ['--disable-setuid-sandbox', '--no-sandbox'],
+    //     // not required to specify here, but saves Penthouse some work if you will
+    //     // re-use the same viewport for most penthouse calls.
+    //     defaultViewport: {
+    //       width: 1300,
+    //       height: 900,
+    //     },
+    //   });
 
-        modernConfig.plugins.push(
-          new PrerenderSPAPlugin({
-            // Required - The path to the webpack-outputted app to prerender.
-            // staticDir: path.join(__dirname, 'dist'),
-            staticDir: path.resolve(process.cwd(), `${config.buildDir}/`),
-            // Required - Routes to render.
-            routes: ['/'],
-            postProcess(context) {
-              context.html = context.html.replace(
-                /<script\s[^>]*charset=\"utf-8\"[^>]*><\/script>/gi,
-                '',
-              );
-              return context;
-            },
-            renderer: new Renderer({
-              // Optional - The name of the property to add to the window object with the contents of `inject`.
-              injectProperty: '__PRERENDER_INJECTED',
-              // Optional - Any values you'd like your app to have access to via `window.injectProperty`.
-              inject: {
-                foo: 'bar',
-              },
-            }),
-          }),
-          new CriticalCssPlugin({
-            base: path.resolve(__dirname, config.buildDir),
-            src: 'index.html',
-            dest: 'index.html',
-            inline: true,
-            minify: true,
-            extract: false,
-            width: 1300,
-            height: 900,
-            penthouse: {
-              keepLargerMediaQueries: true,
+    //   modernConfig.plugins.push(
+    //     new CriticalCssPlugin({
+    //       base: path.resolve(__dirname, config.buildDir),
+    //       src: 'index.html',
+    //       dest: 'index.html',
+    //       inline: true,
+    //       minify: true,
+    //       extract: false,
+    //       width: 1300,
+    //       height: 900,
+    //       penthouse: {
+    //         keepLargerMediaQueries: true,
 
-              // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
-              forceInclude: [
-                'pl-logo',
-                '.pl-c-logo',
-                '.pl-c-logo__img',
-                '.pl-c-body--theme-light',
-                '.pl-c-body--theme-sidebar',
-                '.pl-c-body--theme-sidebar .pl-c-viewport',
-                '.pl-c-body--theme-density-compact',
-              ],
-              timeout: 30000, // ms; abort critical CSS generation after this timeout
-              maxEmbeddedBase64Length: 1000,
-              renderWaitTime: 1000,
-              blockJSRequests: false,
-              puppeteer: {
-                executablePath: localChrome,
-                getBrowser: () => browserPromise
-              }
-            },
-          })
-        );
-      }
-    }
+    //         // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
+    //         forceInclude: [
+    //           'pl-logo',
+    //           '.pl-c-logo',
+    //           '.pl-c-logo__img',
+    //           '.pl-c-body--theme-light',
+    //           '.pl-c-body--theme-sidebar',
+    //           '.pl-c-body--theme-sidebar .pl-c-viewport',
+    //           '.pl-c-body--theme-density-compact',
+    //         ],
+    //         timeout: 30000, // ms; abort critical CSS generation after this timeout
+    //         maxEmbeddedBase64Length: 1000,
+    //         renderWaitTime: 1000,
+    //         blockJSRequests: false,
+    //         puppeteer: {
+    //           executablePath: localChrome,
+    //           getBrowser: () => browserPromise
+    //         }
+    //       },
+    //     })
+    //   );
+    // }
 
     return resolve([modernConfig, legacyConfig]);
   });
