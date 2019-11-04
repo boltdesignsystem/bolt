@@ -71,6 +71,9 @@ class BoltTwoCharacterLayout extends withLitHtml() {
     persistentlyAttemptToEqualizeRelativeHeights(
       eqHeightArgs,
       this.setConnectionWidth,
+      0,
+      3,
+      true,
     );
   }
 
