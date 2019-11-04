@@ -310,7 +310,9 @@ async function createWebpackConfig(buildConfig) {
               thePath.includes('core-js') ||
               thePath.includes('regenerator-runtime') ||
               thePath.includes('critical-path-polyfills') ||
-              thePath.includes('bolt-critical-css-vars')
+              thePath.includes('critical-css-vars') ||
+              thePath.includes('critical-css') ||
+              thePath.includes('critical-fonts')
             ) {
               return true;
             }
@@ -367,14 +369,14 @@ async function createWebpackConfig(buildConfig) {
     optimization: {
       minimizer: config.prod
         ? [
-          new TerserPlugin({
-            test: /\.m?js(\?.*)?$/i,
-            sourceMap: config.sourceMaps,
-            terserOptions: {
-              safari10: true,
-            },
-          })
-        ]
+            new TerserPlugin({
+              test: /\.m?js(\?.*)?$/i,
+              sourceMap: config.sourceMaps,
+              terserOptions: {
+                safari10: true,
+              },
+            }),
+          ]
         : [],
     },
     plugins: [
