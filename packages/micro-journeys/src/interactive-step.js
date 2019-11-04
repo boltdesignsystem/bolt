@@ -23,7 +23,6 @@ class BoltInteractiveStep extends withLitContext() {
     this.triggerUpdate();
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
@@ -156,18 +155,10 @@ class BoltInteractiveStep extends withLitContext() {
         <div class="c-bolt-interactive-step__body">
           <div class="c-bolt-interactive-step__body-inner">
             <div class="c-bolt-interactive-step__top-slot">
-              ${this._isActiveStep
-                ? html`
-                    ${this.slot('top')}
-                  `
-                : ''}
+              ${this.slot('top')}
             </div>
             <div class="c-bolt-interactive-step__bottom-slot">
-              ${this._isActiveStep
-                ? html`
-                    ${this.slot('bottom')}
-                  `
-                : ''}
+              ${this.slot('bottom')}
             </div>
           </div>
         </div>
