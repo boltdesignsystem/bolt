@@ -1,0 +1,65 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block main_content %}
+  <h1>Tooltip vs popover</h1>
+
+
+  <h2>Semantic markup</h2>
+
+  <bolt-list>
+    <bolt-list-item>
+      Porchetta corned beef short loin, jowl leberkas pancetta beef ribs chuck ham hock sausage kevin. Strip
+      <a href="https://pega.com/glossary#crm" aria-describedby="tooltip-crm" aria-controls="tooltip-crm" aria-expanded="false"><abbr>CRM</abbr></a>
+      <span role="tooltip" id="tooltip-crm" aria-hidden="true" class="u-bolt-visuallyhidden">Customer relationship management</span> tail chicken kielbasa, jerky filet mignon fatback ball tip ham hock venison corned beef cupim flank.
+    </bolt-list-item>
+    <bolt-list-item>
+      Bacon ipsum dolor amet tenderloin jowl leberkas short loin ham hock brisket.
+      <span tabindex=0 aria-describedby="tooltip-titles" aria-controls="tooltip-titles" aria-expanded="false">Titles</span>
+      <span role="tooltip" id="tooltip-titles" aria-hidden="true" class="u-bolt-visuallyhidden">The titles you choose determine how and when you come up in search.</span>
+      Porchetta corned beef short loin.
+    </bolt-list-item>
+    <bolt-list-item>
+      <button aria-describedby="tooltip-download" aria-controls="tooltip-download" aria-expanded="false">Download</button>
+      <span role="tooltip" id="tooltip-download" aria-hidden="true" class="u-bolt-visuallyhidden">File size: 25MB</span>
+    </bolt-list-item>
+    <bolt-list-item>
+      <button aria-describedby="tooltip-linkedin" aria-controls="tooltip-linkedin" aria-expanded="false">
+        <i data-icon="linkedin"></i>
+      </button>
+      <span role="tooltip" id="tooltip-linkedin" aria-hidden="true" class="u-bolt-visuallyhidden">Share on LinkedIn</span>
+    </bolt-list-item>
+    <bolt-list-item>
+      <button aria-haspopup="true" aria-expanded="false">Click me</button>
+      <ul role="menu">
+        <li><a href="#" role="menuitem">Additional action 1</a></li>
+        <li><a href="#" role="menuitem">Additional action 2</a></li>
+        <li><a href="#" role="menuitem">Close</a></li>
+      </ul>
+    </bolt-list-item>
+  </bolt-list>
+
+
+
+{# <a href="#" role="tooltip" aria-describedby="txt" aria-controls="txt" class="tooltip">role=tooltip aria-describedby</a>
+<span id="txt">I am the tooltip text referenced to via aria-describedby.</span><br>
+
+<a href="#" role="tooltip" aria-labelledby="link txt2" aria-controls="txt2" id="link" class="tooltip">role=tooltip aria-labelledby</a>
+<span id="txt2">I am the tooltip text referenced to via aria-labelledby as part of the accessible name.</span><br>
+
+<a href="#" aria-describedby="txt3" aria-controls="txt3" class="tooltip">role=link aria-describedby</a>
+<span id="txt3">I am the tooltip text referenced to via aria-describedby.</span><br>
+
+<a href="#" aria-describedby="txt32" aria-controls="txt32" aria-haspopup="true" class="tooltip">role=link aria-describedby aria-haspopup=true</a>
+<span id="txt32">I am the tooltip text referenced to via aria-describedby.</span><br>
+
+<a href="#" aria-describedby="txt321" aria-controls="txt321" aria-haspopup="true" class="tooltip" role="button">role=button aria-describedby aria-haspopup=true</a>
+<span id="txt321" role="tooltip">I am the tooltip text referenced to via aria-describedby. I'm also a role=tooltip.</span><br>
+
+<button aria-describedby="txt5" aria-controls="txt5" role="tooltip" class="tooltip">role=tooltip aria-describedby</button> <span id="txt5">I am the tooltip text referenced to via aria-describedby.</span><br>
+<button role="tooltip" aria-labelledby="button txt6" aria-controls="txt6" id="button" class="tooltip">role=tooltip aria-labelledby</button> <span id="txt6">I am the tooltip text referenced to via aria-labelledby as part of the accessible name.</span><br>
+<button aria-describedby="txt4" aria-controls="txt4" class="tooltip">role=button aria-describedby</button> <span id="txt4">I am the tooltip text referenced to via aria-describedby.</span><br>
+<button aria-describedby="txt42" aria-controls="txt42" aria-haspopup="true" class="tooltip">role=button aria-describedby aria-haspopup=true (VO iOS bug)</button> <span id="txt42">I am the tooltip text referenced to via aria-describedby.</span><br>
+<button aria-describedby="txt3211" aria-controls="txt3211" aria-haspopup="true" class="tooltip">role=button aria-describedby aria-haspopup=true</button><span id="txt3211" role="tooltip">I am the tooltip text referenced to via aria-describedby. I'm also a role=tooltip.</span><br>
+<button>Plain Button NOTHING HERE</button> #}
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% set link_1 %}
+  <bolt-text font-size="xsmall">
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Additional action 1",
+      url: "#!",
+      icon: {
+        name: "chevron-right",
+        position: "after"
+      },
+      attributes: {
+        "role": "menuitem",
+      }
+    } only %}
+  </bolt-text>
+{% endset %}
+{% set link_2 %}
+  <bolt-text font-size="xsmall">
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Additional action 2",
+      url: "#!",
+      icon: {
+        name: "chevron-right",
+        position: "after"
+      },
+      attributes: {
+        "role": "menuitem",
+      }
+    } only %}
+  </bolt-text>
+{% endset %}
+{% set link_3 %}
+  <bolt-text font-size="xsmall">
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Additional action 3",
+      url: "#!",
+      icon: {
+        name: "chevron-right",
+        position: "after"
+      },
+      attributes: {
+        "role": "menuitem",
+      }
+    } only %}
+  </bolt-text>
+{% endset %}
+{% set list %}
+  {% include "@bolt-components-list/list.twig" with {
+    tag: "span",
+    spacing: "small",
+    separator: "solid",
+    inset: true,
+    items: [
+      link_1,
+      link_2,
+      link_3,
+    ]
+  } only %}
+{% endset %}
+
+<div class="demo-popover">
+  <bolt-popover>
+    <span class="c-bolt-popover" id="js-bolt-popover-1">
+      {% include "@bolt-components-button/button.twig" with {
+        text: "This is the popover trigger",
+        attributes: {
+          "aria-haspopup": true,
+          "aria-expanded": false,
+          "role": "button",
+        }
+      } only %}
+      <span class="c-bolt-popover__content" role="menu">
+        {{ list }}
+      </span>
+    </span>
+  </bolt-popover>
+
+  <bolt-popover>
+    <span class="c-bolt-popover is-expanded" id="js-bolt-popover-1">
+      {% include "@bolt-components-button/button.twig" with {
+        text: "This is the popover trigger",
+        attributes: {
+          "aria-haspopup": true,
+          "aria-expanded": true,
+          "role": "button",
+        }
+      } only %}
+      <span class="c-bolt-popover__content" role="menu">
+        {{ list }}
+      </span>
+    </span>
+  </bolt-popover>
+</div>
