@@ -1,0 +1,51 @@
+/* ------------------------------------ *\
+   Stack
+\* ------------------------------------ */
+
+@import '@bolt/core';
+
+// Register Custom Block Element
+@include bolt-repeat-rule(('bolt-popover', ':host')) {
+  display: inline;
+}
+
+.c-bolt-popover {
+  display: inline;
+  position: relative;
+}
+
+.c-bolt-popover__trigger {
+  display: inline-flex;
+}
+
+.c-bolt-popover__content {
+  display: none;
+  position: absolute;
+  transform: translate3d(0, 0.5rem, 0);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: bolt-border-radius(small) bolt-border-radius(large) bolt-border-radius(large) bolt-border-radius(large);
+  background-color: white;
+  box-shadow: bolt-shadow('level-20');
+
+  .c-bolt-popover.is-expanded & {
+    display: block;
+  }
+}
+
+
+
+.demo-popover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+  padding: 2rem;
+
+  > * {
+    margin: 2rem;
+  }
+}
