@@ -1,6 +1,6 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { convertInitialTags } from '@bolt/core/decorators';
 import classNames from 'classnames/bind';
 import textStyles from '@bolt/components-text/index.scss';
@@ -159,6 +159,9 @@ class BoltBlockquote extends withLitHtml() {
       [`c-bolt-blockquote--no-quotes`]: noQuotes,
     });
 
+    // Get closest [lang] tag and add to blockquote element so that CSS selector will work inside shadow DOM
+    const lang = this.closest('[lang]');
+
     let footerItems = [];
     footerItems.push(AuthorImage(this), AuthorName(this), AuthorTitle(this));
 
@@ -181,7 +184,12 @@ class BoltBlockquote extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles, textStyles])}
-      <blockquote class="${classes}">
+      <blockquote
+        class="${classes}"
+        lang="${ifDefined(
+          lang ? lang.getAttribute('lang').toLowerCase() : undefined,
+        )}"
+      >
         ${this.slots.logo
           ? html`
               <div class="${cx('c-bolt-blockquote__logo')}">
