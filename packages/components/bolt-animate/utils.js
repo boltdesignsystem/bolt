@@ -1,12 +1,18 @@
 /**
  * @param {Object} opt
- * @param {BoltAnimate[]} opt.animEls
- * @param {string} [opt.stage='IN']
- * @param {boolean} [opt.debug=false]
+ * @param {BoltAnimate[]} opt.animEls an array of `bolt-animate`s on which to trigger animations
+ * @param {string} [opt.stage='IN'] which stage to trigger
+ * @param {boolean} [opt.debug=false] print debug info to console
+ * @param {number|null} [opt.durationOverride] override the duration for all els
  *
  * @return {Promise<{ success: boolean, animEl: BoltAnimate }[]>}
  */
-async function triggerAnimOnEls({ animEls, stage, debug = false }) {
+async function triggerAnimOnEls({
+  animEls,
+  stage,
+  debug = false,
+  durationOverride = null,
+}) {
   let eventName = '';
   switch (stage) {
     case 'IN':
@@ -42,11 +48,17 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
           switch (stage) {
             case 'IN':
               triggered = animEl.triggerAnimIn();
-              duration = animEl.inDuration;
+              duration =
+                durationOverride === null
+                  ? animEl.inDuration
+                  : durationOverride;
               break;
             case 'OUT':
               triggered = animEl.triggerAnimOut();
-              duration = animEl.outDuration;
+              duration =
+                durationOverride === null
+                  ? animEl.outDuration
+                  : durationOverride;
               break;
           }
 
@@ -92,11 +104,12 @@ async function triggerAnimOnEls({ animEls, stage, debug = false }) {
 
 /**
  * @param {Object} opt
- * @param {BoltAnimate[] | NodeListOf<BoltAnimate>} opt.animEls
- * @param {string} [opt.stage='IN']
- * @param {boolean=} [opt.debug=false]
+ * @param {BoltAnimate[] | NodeListOf<BoltAnimate>} opt.animEls `bolt-animate`s on which to trigger animations
+ * @param {string} [opt.stage='IN'] which stage to trigger
+ * @param {boolean} [opt.debug=false] print debug info to console
+ * @param {number|null} [opt.durationOverride] override the duration for all els
  */
-export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
+export async function triggerAnims({ animEls, stage = 'IN', debug = false, durationOverride = null }) {
   let orderProp;
   let eventName;
   switch (stage) {
@@ -143,6 +156,7 @@ export async function triggerAnims({ animEls, stage = 'IN', debug = false }) {
       animEls: animElsToTrigger,
       stage,
       debug,
+      durationOverride,
     });
   }
 

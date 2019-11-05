@@ -148,8 +148,12 @@ class BoltInteractivePathway extends withLitContext() {
 
   setActive(isActive = true) {
     this.isActivePathway = isActive;
-    this.setActiveStep(0);
     this.triggerUpdate();
+    setTimeout(() => {
+      this.setActiveStep(0);
+      this.triggerUpdate();
+      this.isBecomingActive = false;
+    }, 0);
   }
 
   /**
@@ -183,6 +187,7 @@ class BoltInteractivePathway extends withLitContext() {
       );
       return;
     }
+    await newActiveStep.el.setIsBecomingActive();
     if (currentActiveStep) {
       await currentActiveStep.el.triggerAnimOuts();
       steps.forEach(step => step.el.setActive(false));
@@ -196,9 +201,11 @@ class BoltInteractivePathway extends withLitContext() {
   };
 
   render() {
+    if (!this.isActivePathway && !this.isBecomingActive) {
+      return '';
+    }
     // Inherit theme from `interactive-pathways`
     const theme = this.context.theme || this.theme || '';
-
     const classes = cx('c-bolt-interactive-pathway', {
       [`c-bolt-interactive-pathway--disabled`]: !this.isActivePathway,
       [`c-bolt-interactive-pathway--active`]: this.isActivePathway,
@@ -208,12 +215,13 @@ class BoltInteractivePathway extends withLitContext() {
     const navClasses = cx('c-bolt-interactive-pathway__nav');
     const itemClasses = cx('c-bolt-interactive-pathway__items');
 
+    const activeStep = this.activeStep < 0 ? 0 : this.activeStep;
     return html`
       ${this.addStyles([styles])}
       <section class="${classes}">
         <nav class="${navClasses}">
           ${this.steps.map((step, stepIndex) => {
-            const isActiveItem = this.activeStep === stepIndex;
+            const isActiveItem = activeStep === stepIndex;
             const navItemClasses = cx('c-bolt-interactive-pathway__nav-item', {
               'c-bolt-interactive-pathway__nav-item--active': isActiveItem,
             });

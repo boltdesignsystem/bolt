@@ -1,4 +1,4 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { props, define } from '@bolt/core/utils';
 import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
@@ -23,18 +23,36 @@ class BoltInteractiveStep extends withLitContext() {
     this.triggerUpdate();
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self._isActiveStep = false;
+    self._isBecomingActive = false;
     return self;
   }
 
+  /**
+   * Set this step to be the active step, trigger re-render.
+   *
+   * @param {Boolean} isActive
+   */
   setActive(isActive = true) {
     this._isActiveStep = isActive;
+    this._isBecomingActive = false;
     this.triggerUpdate();
   }
+
+  /**
+   * Prepare the step by rendering the content to the DOM so that `bolt-animate`s
+   * can animate themselves out swiftly in preparation to be animated in.
+   *
+   * @param {Boolean} isBecomingActive
+   * @return {Promise}
+   */
+  setIsBecomingActive = async (isBecomingActive = true) => {
+    this._isBecomingActive = isBecomingActive;
+    this.triggerUpdate();
+    return this.triggerAnimOuts(1);
+  };
 
   /**
    * @param {Event} event
@@ -75,9 +93,9 @@ class BoltInteractiveStep extends withLitContext() {
     }, 0);
   }
 
-  async triggerAnimOuts() {
+  async triggerAnimOuts(durationOverride = null) {
     const anims = this.querySelectorAll('bolt-animate');
-    return triggerAnims({ animEls: anims, stage: 'OUT' });
+    return triggerAnims({ animEls: anims, stage: 'OUT', durationOverride });
   }
 
   async triggerAnimIns() {
@@ -156,14 +174,14 @@ class BoltInteractiveStep extends withLitContext() {
         <div class="c-bolt-interactive-step__body">
           <div class="c-bolt-interactive-step__body-inner">
             <div class="c-bolt-interactive-step__top-slot">
-              ${this._isActiveStep
+              ${this._isActiveStep || this._isBecomingActive
                 ? html`
                     ${this.slot('top')}
                   `
                 : ''}
             </div>
             <div class="c-bolt-interactive-step__bottom-slot">
-              ${this._isActiveStep
+              ${this._isActiveStep || this._isBecomingActive
                 ? html`
                     ${this.slot('bottom')}
                   `
