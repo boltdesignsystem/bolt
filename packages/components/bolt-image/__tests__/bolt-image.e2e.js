@@ -51,6 +51,7 @@ module.exports = {
       .end();
   },
 
+  // test to catch issues like http://vjira2:8080/browse/WWWD-4292 in the future
   'Heavily Delayed, Dynamically Injected Bolt Images Lazyload': function(
     browser,
   ) {
