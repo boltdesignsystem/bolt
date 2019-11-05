@@ -146,7 +146,7 @@ async function init() {
         `);
 
         await shell.exec(`
-          ./node_modules/.bin/auto release --use-version v${currentVersion}
+          ./node_modules/.bin/auto release --from v${currentVersion} --use-version v${nextVersion}
         `);
 
         // get the version we just published
