@@ -51,7 +51,9 @@ module.exports = {
       .end();
   },
 
-  'Heavily Delayed, Dynamically Injected Bolt Images Lazyload': function(browser) {
+  'Heavily Delayed, Dynamically Injected Bolt Images Lazyload': function(
+    browser,
+  ) {
     const { testingUrl } = browser.globals;
     console.log(`global browser url: ${testingUrl}`);
     currentBrowser = '--' + browser.currentEnv || 'chrome';
