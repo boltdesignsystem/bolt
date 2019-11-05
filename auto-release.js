@@ -140,14 +140,17 @@ async function init() {
           rm scripts/bolt-design-system-bot.private-key.pem
           npx lerna publish ${version} --yes -m "[skip travis] chore(release): release %s"
         `);
+
         await shell.exec(`
           ./node_modules/.bin/auto release --from v${currentVersion} --use-version v${nextVersion}
         `);
+
         // get the version we just published
         const releaseVersion = `v${nextVersion}`; // ex. v2.9.0
         const branchSpecificUrl = await normalizeUrlAlias(branchName);
         const tagSpecificUrl = await normalizeUrlAlias(releaseVersion);
         const nowAliases = [];
+
         nowAliases.push(branchSpecificUrl);
         nowAliases.push(tagSpecificUrl);
         nowAliases.push('www.boltdesignsystem.com');
@@ -155,6 +158,7 @@ async function init() {
         nowAliases.push('www.bolt-design-system.com');
         nowAliases.push('bolt-design-system.com');
         nowAliases.push(await normalizeUrlAlias('latest'));
+
         await shell.exec(`
           npx json -I -f docs-site/.incache -e 'this["bolt-tags"].expiresOn = "2019-06-14T12:30:26.377Z"'
           npx json -I -f docs-site/.incache -e 'this["bolt-urls-to-test"].expiresOn = "2019-06-14T12:30:26.377Z"'
@@ -162,12 +166,15 @@ async function init() {
           npm run build
           npx now deploy --meta gitSha='${gitSha}' --token=${NOW_TOKEN}
         `);
+
         const latestUrl = await getLatestDeploy();
+
         nowAliases.forEach(alias => {
           shell.exec(
             `npx now alias ${latestUrl} ${alias} --token=${NOW_TOKEN}`,
           );
         });
+
         await shell.exec(`
           git add docs-site/.incache
           git commit -m "[skip travis] chore: update .incache file"
@@ -176,12 +183,13 @@ async function init() {
           git push origin ${releaseVersion} --no-verify --force
           git reset --hard HEAD
         `);
+
         if (nextVersion && nextVersion !== null && releaseVersion !== 'vnull') {
           if (SLACK_WEBHOOK_URL) {
             const webhook = new IncomingWebhook(SLACK_WEBHOOK_URL);
             await webhook.send({
               text: `Bolt \`${releaseVersion}\` has been released! Check out the <https://github.com/boltdesignsystem/bolt/releases/tag/${releaseVersion}|latest release notes> for more details!
-                   - <https://boltdesignsystem.com|Updated Docs Site>`,
+                 - <https://boltdesignsystem.com|Updated Docs Site>`,
             });
           } else {
             console.log(
@@ -190,6 +198,7 @@ async function init() {
               ),
             );
           }
+
           await shell.exec(`
             git checkout master
             git pull
