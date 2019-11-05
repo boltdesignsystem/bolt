@@ -141,7 +141,7 @@ async function init() {
           npx lerna publish ${version} --yes -m "[skip travis] chore(release): release %s"
         `);
         await shell.exec(`
-          ./node_modules/.bin/auto release --use-version v${currentVersion}
+          ./node_modules/.bin/auto release --from v${currentVersion} --use-version v${nextVersion}
         `);
         // get the version we just published
         const releaseVersion = `v${nextVersion}`; // ex. v2.9.0
