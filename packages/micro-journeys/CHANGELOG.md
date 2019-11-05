@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/bolt-design-system/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* **micro-journeys:** add support for line wrapping to nav ([e0bcb71](https://github.com/bolt-design-system/bolt/commit/e0bcb71))
+* **micro-journeys:** dot-and-line nav squished on mobile with overlong text ([121e7f0](https://github.com/bolt-design-system/bolt/commit/121e7f0))
+* **micro-journeys:** tighten dialog icon spacing ([8c42eac](https://github.com/bolt-design-system/bolt/commit/8c42eac))
+
+
+
+
+
 ## [2.9.2](https://github.com/bolt-design-system/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
 
 **Note:** Version bump only for package @bolt/micro-journeys

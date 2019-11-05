@@ -10,7 +10,8 @@ bolt-accordion-item {
 
   // Required for no-JS styles to display properly
   replace-with-children,
-  replace-with-grandchildren {
+  replace-with-grandchildren,
+  ssr-keep {
     display: block;
     flex-grow: 1;
   }
@@ -395,7 +396,8 @@ bolt-accordion-item {
     .c-bolt-accordion-spacing--#{$spacing-value-name} {
       @include bolt-padding(#{$spacing-value-name}, squished);
 
-      &.c-bolt-accordion-item__content-inner,
+      // Applies only to js content
+      &.c-bolt-accordion-item__content-inner.c-bolt-accordion-item__content-inner--offset,
       // Applies only to no-js trigger
       &.c-bolt-accordion-item__trigger-label.c-bolt-accordion-item__trigger-label--offset {
         padding-right: calc(

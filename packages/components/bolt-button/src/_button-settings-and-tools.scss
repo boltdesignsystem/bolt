@@ -21,23 +21,12 @@ $bolt-button-transition: $bolt-transition;
 $bolt-button-translate--hover: translate3d(0, -1px, 0);
 $bolt-button-translate--active: translate3d(0, 1px, 0);
 
-
-
 /**
  * Tools
  */
 
 @function bolt-button-border-radius($name) {
   @return map-get($bolt-button-border-radii, $name);
-}
-
-// Lightweight style reset for button and input elements
-@mixin bolt-button-reset {
-  @include bolt-padding(0);
-  @include bolt-font-family(body);
-
-  appearance: none; // override default [type=submit] button styles coming from Normalize
-  outline: none;
 }
 
 @mixin bolt-button-raised-effect {
@@ -68,6 +57,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
   border-style: $bolt-button-border-style;
   @include bolt-shadow('level-20');
   box-shadow: var(--bolt-button-box-shadow, #{bolt-shadow('level-20')});
+  outline: none;
   will-change: box-shadow;
 
   &:before {
@@ -89,8 +79,7 @@ $bolt-button-translate--active: translate3d(0, 1px, 0);
 
   &:focus:not(:hover):not(.c-bolt-button--disabled):not(.c-bolt-button--inert),
   &.is-focus:not(.is-hover):not(.is-disabled) {
-    box-shadow:
-      0 -1px 2px bolt-theme(background),
+    box-shadow: 0 -1px 2px bolt-theme(background),
       0 1px 2px bolt-theme(background),
       0 0 5px rgb(59, 153, 252),
       0 -1px 0.65rem rgb(59, 153, 252),

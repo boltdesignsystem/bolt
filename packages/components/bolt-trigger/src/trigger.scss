@@ -47,18 +47,16 @@ bolt-trigger {
 
 // Component styles
 .c-bolt-trigger {
-  @include bolt-padding(0); // [1]
+  @include bolt-button-reset; // [1]
   @include bolt-margin(0); // [1]
   @include bolt-font-family(body); // [1]
   @include bolt-font-size(medium); // [2]
   display: inline; // Default to inline
-  appearance: none; // [1]
   opacity: bolt-opacity(100);
   color: inherit;
   text-align: inherit;
   text-decoration: initial;
   border: none; // [1]
-  background: none; // [1]
 }
 
 // Display styles

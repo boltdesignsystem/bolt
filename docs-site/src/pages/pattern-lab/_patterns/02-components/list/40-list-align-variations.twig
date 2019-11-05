@@ -25,15 +25,19 @@
 </p>
 
 {% for align in schema.properties.align.enum %}
-  <h3>Horizontally align inline items: {{ align }}</h3>
-  {% include "@bolt-components-list/list.twig" with {
-    display: "inline",
-    align: align,
-    items: [
-      placeholder_1,
-      placeholder_2,
-      placeholder_3,
-    ]
-  } only %}
+  {% for display in schema.properties.display.enum %}
+    {% if display != "block" and display != "flex" %}
+      <h3>Horizontally align {{ display }} items: {{ align }}</h3>
+      {% include "@bolt-components-list/list.twig" with {
+        display: display,
+        align: align,
+        items: [
+          placeholder_1,
+          placeholder_2,
+          placeholder_3,
+        ]
+      } only %}
+    {% endif %}
+  {% endfor %}
 {% endfor %}
 {# End component specific code #}
