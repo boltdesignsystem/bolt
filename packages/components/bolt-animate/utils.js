@@ -109,7 +109,12 @@ async function triggerAnimOnEls({
  * @param {boolean} [opt.debug=false] print debug info to console
  * @param {number|null} [opt.durationOverride] override the duration for all els
  */
-export async function triggerAnims({ animEls, stage = 'IN', debug = false, durationOverride = null }) {
+export async function triggerAnims({
+  animEls,
+  stage = 'IN',
+  debug = false,
+  durationOverride = null,
+}) {
   let orderProp;
   let eventName;
   switch (stage) {
