@@ -1,92 +1,47 @@
-{% set link_1 %}
-  <bolt-text font-size="xsmall">
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Additional action 1",
-      url: "#!",
-      icon: {
-        name: "chevron-right",
-        position: "after"
-      },
-      attributes: {
-        "role": "menuitem",
-      }
-    } only %}
-  </bolt-text>
-{% endset %}
-{% set link_2 %}
-  <bolt-text font-size="xsmall">
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Additional action 2",
-      url: "#!",
-      icon: {
-        name: "chevron-right",
-        position: "after"
-      },
-      attributes: {
-        "role": "menuitem",
-      }
-    } only %}
-  </bolt-text>
-{% endset %}
-{% set link_3 %}
-  <bolt-text font-size="xsmall">
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Additional action 3",
-      url: "#!",
-      icon: {
-        name: "chevron-right",
-        position: "after"
-      },
-      attributes: {
-        "role": "menuitem",
-      }
-    } only %}
-  </bolt-text>
-{% endset %}
-{% set list %}
-  {% include "@bolt-components-list/list.twig" with {
-    tag: "span",
-    spacing: "small",
-    separator: "solid",
-    inset: true,
-    items: [
-      link_1,
-      link_2,
-      link_3,
-    ]
-  } only %}
-{% endset %}
+{% set schema = bolt.data.components["@bolt-components-popover"].schema %}
 
-<div class="demo-popover">
-  <bolt-popover>
-    <span class="c-bolt-popover" id="js-bolt-popover-1">
-      {% include "@bolt-components-button/button.twig" with {
-        text: "This is the popover trigger",
-        attributes: {
-          "aria-haspopup": true,
-          "aria-expanded": false,
-          "role": "button",
-        }
-      } only %}
-      <span class="c-bolt-popover__content" role="menu">
-        {{ list }}
-      </span>
-    </span>
-  </bolt-popover>
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
 
-  <bolt-popover>
-    <span class="c-bolt-popover is-expanded" id="js-bolt-popover-1">
-      {% include "@bolt-components-button/button.twig" with {
-        text: "This is the popover trigger",
-        attributes: {
-          "aria-haspopup": true,
-          "aria-expanded": true,
-          "role": "button",
-        }
-      } only %}
-      <span class="c-bolt-popover__content" role="menu">
-        {{ list }}
-      </span>
+{# Variables #}
+{% set base_class = "c-bolt-popover" %}
+{% set this = init(schema) %}
+{% set inner_attributes = create_attribute({}) %}
+
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  base_class,
+  this.data.placement.value ? "c-bolt-popover--" ~ this.data.placement.value : "",
+  "is-expanded",
+] %}
+
+{#
+  Sort classes passed in via attributes into two groups:
+  1. Those that should be applied to the inner tag (namely, "is-" and "has-" classes)
+  2. Those that should be applied to the outer custom element (everything else EXCEPT c-bolt-* classes, which should never be passed in via attributes)
+#}
+{% set outer_classes = [] %}
+{% set inner_classes = classes %}
+
+{% for class in this.props.class %}
+  {% if class starts with "is-" or class starts with "has-" %}
+    {% set inner_classes = inner_classes|merge([class]) %}
+  {% elseif class starts with "c-bolt-" == false %}
+    {% set outer_classes = outer_classes|merge([class]) %}
+  {% endif %}
+{% endfor %}
+
+<bolt-popover
+  {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
+  {{ this.props|without("content")|without("class") }}
+  >
+  <span
+    {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
+  >
+    {{ trigger }}
+    <span role="menu" class="{{ "#{base_class}__content" }}">
+      {{ content }}
     </span>
-  </bolt-popover>
-</div>
+  </span>
+</bolt-popover>

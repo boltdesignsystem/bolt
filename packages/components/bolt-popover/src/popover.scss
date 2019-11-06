@@ -14,22 +14,22 @@
   position: relative;
 }
 
-.c-bolt-popover__trigger {
-  display: inline-flex;
-}
-
 .c-bolt-popover__content {
+  @include bolt-margin(0);
+  @include bolt-padding(0);
+  @include bolt-font-family(body);
+  @include bolt-font-size(medium);
+  @include bolt-font-weight(regular);
+
   display: none;
   position: absolute;
-  transform: translate3d(0, 0.5rem, 0);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  transform: translate3d(0, #{bolt-spacing(xsmall)}, 0);
+  color: bolt-theme(text);
   border-radius: bolt-border-radius(small) bolt-border-radius(large) bolt-border-radius(large) bolt-border-radius(large);
-  background-color: white;
+  background-color: bolt-theme(background);
   box-shadow: bolt-shadow('level-20');
 
-  .c-bolt-popover.is-expanded & {
+  @at-root .c-bolt-popover.is-expanded & {
     display: block;
   }
 }
