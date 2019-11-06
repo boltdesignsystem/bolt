@@ -25,14 +25,16 @@
       {% include "@bolt-components-headline/eyebrow.twig" with {
         text: "After:",
       } only %}
-      {% include "@pl/_personalized-card-example.twig" with {
-        attributes: {
-          class: [
-            "js-personalized-card--client-rendered--with-large-delay"
-          ],
-        },
-        headline_demo_text: "Personalized card, client-rendered, with a large delay (after)"
-      } only %}
+      <div class="js-no-shadow-image-test">
+        {% include "@pl/_personalized-card-example.twig" with {
+          attributes: {
+            class: [
+              "js-personalized-card--client-rendered--with-large-delay"
+            ],
+          },
+          headline_demo_text: "Personalized card, client-rendered, with a large delay (after)"
+        } only %}
+      </div>
     {% endcell %}
   {% endgrid %}
 

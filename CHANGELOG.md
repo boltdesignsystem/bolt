@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.1](https://github.com/boltdesignsystem/bolt/compare/v2.10.0...v2.10.1) (2019-11-05)
+
+
+### Bug Fixes
+
+* fix prettier issue ([af6747a](https://github.com/boltdesignsystem/bolt/commit/af6747a))
+* update auto-release script to use correct args to Auto plugin ([22cc1e3](https://github.com/boltdesignsystem/bolt/commit/22cc1e3))
+* update Image component lazyloading logic to properly scope lazySizes.elements check + ensure lazySizes knows to check late loaded / dynamically injected images ([490ba17](https://github.com/boltdesignsystem/bolt/commit/490ba17))
+* update Nightwatch test selector + demo code to render the client-side image used for testing w/o a Shadow DOM ([163e0b9](https://github.com/boltdesignsystem/bolt/commit/163e0b9))
+
+
+
+
+
 # [2.10.0](https://github.com/boltdesignsystem/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
 
 
