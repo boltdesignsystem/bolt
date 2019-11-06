@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* add missing publicConfig ([3a64e78](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/3a64e78))
+* remove devDeps from package.json ([94ec805](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/94ec805))
+
+
+
+
+
 # [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.3...v2.9.0) (2019-10-22)
 
 

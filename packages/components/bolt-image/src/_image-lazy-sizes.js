@@ -16,6 +16,7 @@ Object.assign(lazySizes.cfg, {
   loadedClass: 'is-lazyloaded',
   preloadAfterLoad: false,
   loadMode: 2,
+  expand: 500,
   // helper function to customize how / which elements lazysizes targets
   getElements(selector) {
     let elements = Array.from(document.querySelectorAll('bolt-image')).map(
