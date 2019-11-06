@@ -25,6 +25,7 @@ export { mapWithDepth } from './map-with-depth.js';
 export * from './validate-props';
 export * from './mode';
 export * from './query';
+export * from './equalize-relative-heights';
 
 // https://www.polymer-project.org/3.0/docs/devguide/custom-elements#defer-work
 export {

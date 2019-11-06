@@ -34,7 +34,6 @@ class BoltInteractivePathway extends withLitContext() {
     this.triggerUpdate();
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   // @ts-ignore
   constructor(self) {
     self = super(self);
@@ -49,7 +48,6 @@ class BoltInteractivePathway extends withLitContext() {
       // using callback since debounced promises require a different library that's not already in Bolt
       if (done) setTimeout(done, 0);
     }, 150);
-
     self.addEventListener(
       'bolt-interactive-step:connected',
       this.handleStepConnect,
@@ -214,8 +212,8 @@ class BoltInteractivePathway extends withLitContext() {
 
     const navClasses = cx('c-bolt-interactive-pathway__nav');
     const itemClasses = cx('c-bolt-interactive-pathway__items');
-
     const activeStep = this.activeStep < 0 ? 0 : this.activeStep;
+
     return html`
       ${this.addStyles([styles])}
       <section class="${classes}">

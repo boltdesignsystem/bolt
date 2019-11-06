@@ -28,6 +28,18 @@ class BoltConnection extends withLitContext() {
     return ['theme'];
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+
+    setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent(`${BoltConnection.is}:connected`, {
+          bubbles: true,
+        }),
+      );
+    }, 0);
+  }
+
   contextChangedCallback(name, oldValue, value) {
     this.triggerUpdate();
   }
@@ -49,7 +61,7 @@ class BoltConnection extends withLitContext() {
           speed="${props.speed}"
           anim-type="${props.animType}"
           direction="${props.direction}"
-          .theme=${this.context.theme}
+          theme=${this.context.theme}
         />
         ${this.slots.bottom &&
           html`

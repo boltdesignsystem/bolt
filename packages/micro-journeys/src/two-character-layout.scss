@@ -1,27 +1,42 @@
 @import '@bolt/core';
 
 .c-bolt-two-character-layout {
+  position: relative;
+
+  &__character {
+    position: relative;
+  }
 
   &__character-row {
-    @include bolt-margin-top(xlarge);
-    @include bolt-margin-bottom(xlarge);
-    display: inline-flex;
+    display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    max-width: 100%;
+
+    @include bolt-mq(xsmall) {
+      max-width: 400px;
+    }
+
+    @include bolt-mq(small) {
+      max-width: 500px;
+    }
   }
 
   &__character {
     display: flex;
+    flex: 1 1 50%;
     justify-content: center;
     align-items: center;
 
-    &--left {
-      transform: translateX(50%);
+    &--left,
+    &--right {
+      position: static;
       z-index: 1;
     }
 
-    &--right {
-      transform: translateX(-50%);
+    &--connection {
+      flex: 1 1 auto;
     }
   }
 }
