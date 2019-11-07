@@ -1,0 +1,160 @@
+/* --------------------------------
+  NOTE: This is a fork of our upcoming <bolt-radio-switch> component!
+  @todo: Once <bolt-radio-switch> is more fully baked, the majority of this code should be able to be cleared out
+-------------------------------- */
+@import '@bolt/core';
+
+bolt-shadow-toggle {
+  display: inline-block;
+  text-align: center;
+}
+
+:root {
+  // style
+  --shadow-toggle-width: 52px;
+  --shadow-toggle-height: 30px;
+  --shadow-toggle-padding: 4px;
+  --shadow-toggle-radius: 50em;
+
+  // animation
+  --shadow-toggle-animation-duration: 0.3s;
+}
+
+.c-bolt-shadow-toggle:not(.is-enabled) {
+  opacity: .5;
+  cursor: pointer;
+
+  .c-bolt-shadow-toggle__item {
+    pointer-events: none;
+  }
+}
+
+.c-bolt-shadow-toggle__reset.is-enabled {
+  opacity: .5;
+  pointer-events: none;
+  transition: all .3s ease;
+}
+
+.c-bolt-shadow-toggle {
+  display: inline-block; // flexbox fallback
+  display: inline-flex;
+  position: relative;
+  margin: 0;
+  list-style: none;
+  transition: all .3s ease;
+}
+
+.c-bolt-shadow-toggle__item {
+  position: relative;
+  float: left; // flexbox fallback
+  height: var(--shadow-toggle-height);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.c-bolt-shadow-toggle__input {
+  opacity: 0;
+  position: relative;
+  transform: scaleX(
+    2
+  ); // scale up the input element so that it covers the entire switch
+  z-index: 2;
+  width: calc(var(--shadow-toggle-width) * 0.5);
+  height: 100%;
+  cursor: pointer;
+  transform-origin: 0 0;
+
+  .c-bolt-shadow-toggle__item:last-of-type & {
+    transform-origin: 100% 100%;
+  }
+
+  .c-bolt-shadow-toggle__item:first-of-type & {
+    order: 1; // input follows label
+  }
+
+  &:checked {
+    z-index: -1; // make sure the unchecked input is the only one clickable
+  }
+}
+
+.c-bolt-shadow-toggle__label {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  z-index: 2;
+  @include bolt-no-select;
+  @include bolt-font-size(small);
+  transition: color var(--shadow-toggle-animation-duration);
+
+  .c-bolt-shadow-toggle__item:first-of-type & {
+    float: left; // flexbox fallback
+    @include bolt-margin-right(xsmall);
+  }
+
+  .c-bolt-shadow-toggle__item:last-of-type & {
+    float: right; // flexbox fallback
+    @include bolt-margin-left(xsmall);
+  }
+
+  .c-bolt-shadow-toggle__input:checked ~ & {
+    color: bolt-theme(primary);
+  }
+
+  .c-bolt-shadow-toggle__input:focus ~ & {
+    // focus effect if :focus-within is not supported
+    outline: 2px solid bolt-theme(primary, 0.2);
+    outline-offset: 2px;
+  }
+
+  :not(*):focus-within,
+  .c-bolt-shadow-toggle__input:focus ~ & {
+    // reset focus style for browsers supporting :focus-within
+    outline: none;
+  }
+}
+
+.c-bolt-shadow-toggle__toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: var(--shadow-toggle-width);
+  height: var(--shadow-toggle-height);
+  border-radius: var(--shadow-toggle-radius);
+  box-shadow: 0 0 0 1px bolt-color(gray);
+
+  .c-bolt-shadow-toggle:focus-within &,
+  .c-bolt-shadow-toggle:active & {
+    box-shadow: 0 0 0 1px bolt-color(gray), 0 0 0 3px bolt-color(gray, dark); // focus effect if :focus-within is supported
+  }
+}
+
+.c-bolt-shadow-toggle__marker {
+  opacity: 0;
+  position: absolute;
+  top: var(--shadow-toggle-padding);
+  left: var(--shadow-toggle-padding);
+  z-index: 1;
+  width: calc(var(--shadow-toggle-height) - var(--shadow-toggle-padding) * 2);
+  height: calc(var(--shadow-toggle-height) - var(--shadow-toggle-padding) * 2);
+  border-radius: 50%;
+  background-color: bolt-theme(primary);
+  will-change: left;
+  transition: opacity var(--shadow-toggle-animation-duration), left var(--shadow-toggle-animation-duration);
+
+  .has-shadow-enabled &,
+  .has-shadow-disabled & {
+    opacity: 1;
+  }
+}
+
+.c-bolt-shadow-toggle__input:checked
+  ~ .c-bolt-shadow-toggle__toggle
+  .c-bolt-shadow-toggle__marker {
+  left: calc(
+    var(--shadow-toggle-width) - var(--shadow-toggle-height) +
+      var(--shadow-toggle-padding)
+  );
+}

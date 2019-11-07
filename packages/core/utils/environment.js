@@ -16,4 +16,20 @@ function supportsShadowDom() {
   }
 }
 
-export const hasNativeShadowDomSupport = supportsShadowDom();
+// global URL query flags & overrides for debugging & testing
+const isDebugMode =
+  (window.localStorage && window.localStorage.getItem('bolt-debug')) || false;
+let shouldUseShadowDom = supportsShadowDom();
+
+if (window.localStorage && window.localStorage.getItem('bolt-enable-shadow')) {
+  shouldUseShadowDom = true;
+} else if (
+  window.localStorage &&
+  window.localStorage.getItem('bolt-disable-shadow')
+) {
+  shouldUseShadowDom = false;
+}
+
+export const hasNativeShadowDomSupport = isDebugMode
+  ? shouldUseShadowDom
+  : supportsShadowDom();

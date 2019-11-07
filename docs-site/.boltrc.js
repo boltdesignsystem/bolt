@@ -74,6 +74,9 @@ const config = {
 
   components: {
     global: [
+      // helper components that are only used internally
+      '@bolt/shadow-toggle',
+
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',
