@@ -141,7 +141,7 @@ class BoltTwoCharacterLayout extends withLitHtml() {
           `.${boltCharacterCenterClass}`,
         );
         connection.style.minWidth = `calc(${nextCharacterCenter.getBoundingClientRect()
-          .x - connection.getBoundingClientRect().x}px + 50%)`;
+          .left - connection.getBoundingClientRect().left}px + 50%)`;
       }
     });
   };

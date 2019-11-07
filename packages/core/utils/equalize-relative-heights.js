@@ -63,8 +63,8 @@ export const equalizeRelativeHeights = (
     items.forEach((item, i) => {
       const { container, elToEqualize } = item;
       item.relativeOffsetTop =
-        elToEqualize.getBoundingClientRect().y -
-        container.getBoundingClientRect().y;
+        elToEqualize.getBoundingClientRect().top -
+        container.getBoundingClientRect().top;
       indexOfLongest = indexOfLongest === null ? i : indexOfLongest;
       indexOfLongest =
         items[indexOfLongest].relativeOffsetTop < item.relativeOffsetTop
