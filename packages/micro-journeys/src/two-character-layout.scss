@@ -7,6 +7,10 @@
     position: relative;
   }
 
+  &__initial {
+    opacity: 0;
+  }
+
   &__character-row {
     display: flex;
     flex-wrap: nowrap;
@@ -25,8 +29,8 @@
 
   &__character {
     display: flex;
-    flex: 1 1 50%;
-    justify-content: center;
+    flex: 0 1 49%;
+    justify-content: space-between;
     align-items: center;
 
     &--left,
