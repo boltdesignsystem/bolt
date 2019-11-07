@@ -6,9 +6,10 @@ import schema from './connection.schema';
 
 let cx = classNames.bind(styles);
 
+const boltConnectionIs = 'bolt-connection';
 @define
 class BoltConnection extends withLitContext() {
-  static is = 'bolt-connection';
+  static is = boltConnectionIs;
 
   static props = {
     noShadow: {
@@ -74,4 +75,4 @@ class BoltConnection extends withLitContext() {
   }
 }
 
-export { BoltConnection };
+export { BoltConnection, boltConnectionIs };
