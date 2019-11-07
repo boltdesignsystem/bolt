@@ -18,7 +18,6 @@ class BoltStatusDialogueBar extends withLitHtml() {
     ...convertSchemaToProps(schema),
   };
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
@@ -27,28 +26,51 @@ class BoltStatusDialogueBar extends withLitHtml() {
 
   render() {
     const props = this.validateProps(this.props);
+    const hasArrow = !!(
+      props.dialogueArrowDirection && props.dialogueArrowDirection !== 'none'
+    );
     const classes = cx('c-bolt-status-dialogue-bar', {
       [`c-bolt-status-dialogue-bar--alert`]: props.isAlertMessage,
-      [`c-bolt-status-dialogue-bar--include-${props.dialogueArrowDirection}-arrow`]: !!(
-        props.dialogueArrowDirection && props.dialogueArrowDirection !== 'none'
-      ),
+      [`c-bolt-status-dialogue-bar--has-arrow c-bolt-status-dialogue-bar--arrow--${props.dialogueArrowDirection}`]: hasArrow,
     });
+    const triangle = (direction => {
+      switch (direction) {
+        case 'right':
+          return '▶';
+        case 'left':
+          return '◀';
+        case 'up':
+          return '▲';
+        case 'down':
+          return '▼';
+        default:
+          return '';
+      }
+    })(props.dialogueArrowDirection);
 
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}">
-        ${props.iconName
+        ${hasArrow
           ? html`
+              <span class="c-bolt-status-dialogue-bar--arrow" aria-hidden="true"
+                >${triangle}</span
+              >
+            `
+          : ''}
+        <div class="c-bolt-status-dialogue-bar__content">
+          ${props.iconName &&
+            html`
               <bolt-icon
                 size="medium"
                 name="${props.iconName}"
                 class="c-bolt-status-dialogue-bar__icon"
               />
-            `
-          : ''}
-        <span class="c-bolt-status-dialogue-bar__slot--text">
-          ${this.slot('text')}
-        </span>
+            `}
+          <span class="c-bolt-status-dialogue-bar__slot--text">
+            ${this.slot('text')}
+          </span>
+        </div>
       </div>
     `;
   }
