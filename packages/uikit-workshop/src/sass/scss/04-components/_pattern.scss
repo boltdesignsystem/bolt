@@ -80,6 +80,8 @@
   transition: all $pl-animate-quick ease-out;
   font-family: $pl-font;
   border-color: #ddd;
+  display: flex;
+  align-items: center;
 
   &:hover,
   &:focus,
@@ -95,23 +97,48 @@
 
   &.pl-is-active {
     border-bottom-color: $pl-color-gray-02;
-
-    .pl-c-pattern__toggle-icon {
-      transform: rotate(360deg);
-    }
   }
 }
 
-.pl-c-pattern__toggle-icon {
-  height: .8em;
-  width: .8em;
-  display: inline-block;
-  transition: transform .2s linear;
-  transform: rotate(180deg);
+.pl-c-pattern__toggle-icon-wrapper {
+  position: relative;
+  height: 1rem;
+  width: 1rem;
 }
 
-.pl-c-pattern__extra-toggle-text ~ .pl-c-pattern__toggle-icon {
-  margin-left: 0.125rem;
+.pl-c-pattern__toggle-icon {
+  height: 0.9rem;
+  width: 0.9rem;
+  display: inline-block;
+  vertical-align: middle;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transition: transform .1s linear, opacity .1s linear;
+}
+
+.pl-c-pattern__toggle-icon--expand {
+  z-index: 1;
+
+  .pl-is-active & {
+    opacity: 0;
+  }
+}
+
+.pl-c-pattern__toggle-icon--collapse {
+  opacity: 0;
+  z-index: 2;
+  height: 1rem;
+  width: 1rem;
+
+  .pl-is-active & {
+    opacity: 1;
+  }
+}
+
+.pl-c-pattern__extra-toggle-text ~ .pl-c-pattern__toggle-icon-wrapper {
+  margin-left: 0.25rem;
 }
 
 .pl-c-pattern__extra-toggle-text--collapse {

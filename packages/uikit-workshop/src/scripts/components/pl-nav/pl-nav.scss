@@ -176,9 +176,7 @@ pl-nav {
 .pl-c-nav__link {
   @include linkStyle;
   outline: 0;
-  min-height: 40px;
   color: inherit;
-  line-height: 1.5;
   display: flex;
   align-items: center;
   margin: 0; // remove default button margin in Safari
@@ -230,7 +228,6 @@ pl-nav {
 .pl-c-nav__link--sublink {
   text-transform: none;
   font-size: 0.78rem;
-  line-height: 1;
   padding-left: $pl-space + ($pl-space / 2);
   padding-right: $pl-space + ($pl-space / 2);
 
@@ -445,7 +442,6 @@ pl-nav {
 
 .pl-c-nav__link--overview.pl-c-nav__link--overview.pl-c-nav__link--overview {
   font-size: 0.85rem;
-  line-height: 1;
   padding-right: 0.5rem;
   padding-left: 1.5rem;
   position: relative;
@@ -457,11 +453,13 @@ pl-nav {
 }
 
 .pl-c-nav__link--title {
-  font-size: 0.85rem;
-  line-height: 1;
+  font-size: 0.8rem;
   color: $pl-color-gray-20;
   color: var(--theme-text, $pl-color-gray-20);
 
+  > .pl-c-nav__link-icon {
+    font-size: inherit;
+  }
 
   .pl-c-body--theme-light & {
     color: $pl-color-black;
