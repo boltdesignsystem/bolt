@@ -212,7 +212,6 @@ class BoltInteractivePathway extends withLitContext() {
 
     const navClasses = cx('c-bolt-interactive-pathway__nav');
     const itemClasses = cx('c-bolt-interactive-pathway__items');
-
     const activeStep = this.activeStep < 0 ? 0 : this.activeStep;
     return html`
       ${this.addStyles([styles])}
