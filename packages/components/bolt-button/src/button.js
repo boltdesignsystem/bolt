@@ -7,7 +7,7 @@ import { ifDefined } from 'lit-html/directives/if-defined';
 import classNames from 'classnames/bind';
 
 import styles from './button.scss';
-import schema from '../button.schema.yml';
+import schema from '../button.schema';
 
 let cx = classNames.bind(styles);
 
