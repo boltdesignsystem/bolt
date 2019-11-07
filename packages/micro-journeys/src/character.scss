@@ -12,24 +12,27 @@
     margin-bottom: bolt-spacing(small);
   }
 
-  &--small &__center {
+  &--small &__main-image--ie-flex-aspect-wrapper {
     width: 60px;
     height: 60px;
+    flex: 0 0 60px;
   }
 
-  &--medium  &__center {
+  &--medium  &__main-image--ie-flex-aspect-wrapper {
     width: 75px;
     height: 75px;
+    flex: 0 0 75px;
   }
 
-  &--large &__center {
+  &--large &__main-image--ie-flex-aspect-wrapper {
     width: 120px;
     height: 120px;
+    flex: 0 0 120px;
   }
 
   &__center--wrapper {
     display: flex;
-    flex: 1 0 33.33%;
+    flex: 0 0 33%;
     justify-content: center;
 
     .c-bolt-character__has-side-content & {
@@ -47,19 +50,20 @@
     @include bolt-shadow('level-20');
   }
 
+  &__main-image--ie-flex-aspect-wrapper {
+    z-index: 2;
+    position: static;
+  }
+
   &__main-image {
     box-sizing: border-box;
-    position: static;
-    z-index: 2;
     width: 100%;
+    flex: 0 0 100%;
     max-width: 100%;
+    min-width: 100%;
     border: 4px solid white;
     border-radius: 50%;
     background-color: white;
-  }
-
-  &__has-background &__center {
-    margin-bottom: bolt-spacing(medium);
   }
 
   &__background {
@@ -95,12 +99,12 @@
     }
 
     &--left {
-      flex: 0 0 33.33%;
+      flex: 0 0 33%;
       text-align: right;
     }
 
     &--right {
-      flex: 0 0 33.33%;
+      flex: 0 0 33%;
     }
   }
 }

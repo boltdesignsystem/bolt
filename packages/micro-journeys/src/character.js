@@ -33,6 +33,7 @@ const resolveCharacterImage = characterImage => {
 const rootClass = 'c-bolt-character';
 const centerClass = `${rootClass}__center`;
 const connectionClass = `${rootClass}__slot--connection`;
+const boltCharacterIs = 'bolt-character';
 
 @define
 class BoltCharacter extends withLitHtml() {
@@ -107,11 +108,13 @@ class BoltCharacter extends withLitHtml() {
                   </span>
                 `
               : html`
-                  <img
-                    class="${rootClass}__main-image"
-                    src="${image}"
-                    alt="Character Image"
-                  />
+                  <div class="${rootClass}__main-image--ie-flex-aspect-wrapper">
+                    <img
+                      class="${rootClass}__main-image"
+                      src="${image}"
+                      alt="Character Image"
+                    />
+                  </div>
                 `}
             ${this.slots['background'] &&
               html`
@@ -121,7 +124,7 @@ class BoltCharacter extends withLitHtml() {
               `}
             ${this.slots['connection'] &&
               html`
-                <span class="${rootClass}__slot ${rootClass}__slot--connection">
+                <span class="${rootClass}__slot ${connectionClass}">
                   ${this.slot('connection')}
                 </span>
               `}
@@ -152,6 +155,5 @@ class BoltCharacter extends withLitHtml() {
 export {
   BoltCharacter,
   centerClass as boltCharacterCenterClass,
-  rootClass as boltCharacterRootClass,
-  connectionClass as boltCharacterConnectionClass,
+  boltCharacterIs,
 };
