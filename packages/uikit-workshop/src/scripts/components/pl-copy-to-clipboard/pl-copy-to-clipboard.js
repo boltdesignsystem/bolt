@@ -18,5 +18,5 @@ clipboard.on('success', function(e) {
     e.trigger.querySelector('.pl-c-code-copy-btn__icon-text').textContent = 'Copy';
     e.clearSelection();
     e.trigger.blur();
-  }, 3000);
+  }, 2000);
 });

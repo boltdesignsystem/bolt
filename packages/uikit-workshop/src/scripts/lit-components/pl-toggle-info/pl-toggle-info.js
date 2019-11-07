@@ -67,11 +67,11 @@ class InfoToggle extends LitElement {
     return html`
       <pl-button @click="${this.handleClick}">
         <span slot="default"
-          >${this.isDrawerOpen ? 'Expand' : 'Collapse'}
-          ${this.isViewallPage ? 'All' : ''} Code Panels</span
+          >${this.isDrawerOpen ? 'Collapse' : 'Expand'}
+          ${this.isViewallPage ? 'All Panels' : 'Panel'}</span
         >
         <pl-icon
-          name="${this.isDrawerOpen ? 'code-hide' : 'code-show'}"
+          name="${this.isDrawerOpen ? 'code-collapse' : 'code-expand'}"
           slot="after"
         ></pl-icon>
       </pl-button>

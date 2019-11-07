@@ -81,13 +81,6 @@
   font-family: $pl-font;
   border-color: #ddd;
 
-  .pl-c-pattern__toggle-icon {
-    height: 1em;
-    width: 1em;
-    display: inline-block;
-    transition: transform .2s linear;
-  }
-
   &:hover,
   &:focus,
   &.pl-is-active {
@@ -107,6 +100,18 @@
       transform: rotate(360deg);
     }
   }
+}
+
+.pl-c-pattern__toggle-icon {
+  height: .8em;
+  width: .8em;
+  display: inline-block;
+  transition: transform .2s linear;
+  transform: rotate(180deg);
+}
+
+.pl-c-pattern__extra-toggle-text ~ .pl-c-pattern__toggle-icon {
+  margin-left: 0.125rem;
 }
 
 .pl-c-pattern__extra-toggle-text--collapse {
