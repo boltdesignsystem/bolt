@@ -3,6 +3,7 @@ import { watchForComponentMutations } from '@bolt/core/utils/watch-for-component
 import { supportsShadowDom } from './lib/utils';
 import { BoltElement } from './BoltElement';
 
+// Subclass of BoltElement that's designed to handle link-like component behavior
 class BoltActionElement extends BoltElement {
   static get properties() {
     return {
