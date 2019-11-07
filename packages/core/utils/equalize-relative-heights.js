@@ -7,6 +7,21 @@
  */
 
 /**
+ *
+ * @param {EqualizeRelativeHeightArgItem} item
+ *
+ * @return {boolean} if all elements on item have width.
+ */
+const validateItem = item => {
+  const { container, elToEqualize, paddingEqualizationTarget } = item;
+  return (
+    !!container.offsetWidth &&
+    !!paddingEqualizationTarget.offsetWidth &&
+    !!elToEqualize.offsetWidth
+  );
+};
+
+/**
  * Validate that all parameters passed to `equalizeRelativeHeightsParams` have
  * width.
  *
@@ -16,12 +31,7 @@
  */
 export const validateParamsForEqualizeRelativeHeights = items => {
   items.forEach((item, i) => {
-    const { container, elToEqualize, paddingEqualizationTarget } = item;
-    if (
-      !container.offsetWidth ||
-      !paddingEqualizationTarget.offsetWidth ||
-      !elToEqualize.offsetWidth
-    ) {
+    if (!validateItem(item)) {
       throw new Error(
         `Element provided to equalizeRelativeHeights has no width. container: ${container.offsetWidth}, elToEqualize: ${elToEqualize.offsetWidth}, paddingEqualizationTarget: ${paddingEqualizationTarget.offsetWidth}`,
       );
@@ -37,11 +47,13 @@ export const validateParamsForEqualizeRelativeHeights = items => {
  * @param {EqualizeRelativeHeightArgItem[]} items
  * @param {function|null} callback: optional callback to call after success.
  * @param {boolean} shouldValidate: whether or not to validate all item properties with validateParamsForEqualizeRelativeHeights.
+ * @param {boolean} debug: whether or not to print debug info to console.
  */
 export const equalizeRelativeHeights = (
   items,
   callback = null,
   shouldValidate = true,
+  debug = false,
 ) => {
   try {
     if (shouldValidate) {
@@ -76,46 +88,9 @@ export const equalizeRelativeHeights = (
       callback();
     }
   } catch (e) {
-    console.error(e);
-  }
-};
-
-/**
- * Attempt to trigger equalizeRelativeHeights `tryLimit` number of times. This
- * is to make sure elements have actually been added to the DOM before we
- * rely on their height and width.
- *
- * @param {EqualizeRelativeHeightArgItem[]} items
- * @param {function|null} callback: optional callback to call after success.
- * @param {number} tryCount: the number of times attempted already.
- * @param {number} tryLimit: the number of times to try to validate before erroring out.
- * @param {boolean} debug: whether or not to print debug info to console.
- */
-export const persistentlyAttemptToEqualizeRelativeHeights = (
-  items,
-  callback,
-  tryCount = 0,
-  tryLimit = 3,
-  debug = false,
-) => {
-  try {
-    validateParamsForEqualizeRelativeHeights(items);
-    equalizeRelativeHeights(items, callback, false);
-  } catch (e) {
-    tryCount++;
+    console.warn(e);
     if (debug) {
-      console.debug(
-        `debug:persistentlyAttemptToEqualizeRelativeHeights:tryCount: ${tryCount}`,
-        items,
-      );
-    }
-    if (tryCount <= tryLimit) {
-      window.requestAnimationFrame(() => {
-        persistentlyAttemptToEqualizeRelativeHeights(items, callback, tryCount);
-      });
-    } else {
-      // Simply call it to trigger error if tryLimit was reached.
-      equalizeRelativeHeights(items, true);
+      console.debug('items:', items);
     }
   }
 };
