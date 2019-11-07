@@ -29,7 +29,7 @@ const validateItem = item => {
  *
  * @throws {Error} when container, elToEqualize, or paddingEqualizationTarget have no offsetWidth.
  */
-export const validateParamsForEqualizeRelativeHeights = items => {
+const validateParamsForEqualizeRelativeHeights = items => {
   items.forEach((item, i) => {
     if (!validateItem(item)) {
       throw new Error(
