@@ -19,7 +19,7 @@
 >
   <replace-with-grandchildren>
     <{{ tag }} {{ attributes.addClass(classes) }}>
-      {% if item is iterable %}
+      {% if item.content %}
         {{ item.content }}
       {% else %}
         {{ item }}

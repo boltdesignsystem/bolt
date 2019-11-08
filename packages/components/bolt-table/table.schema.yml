@@ -15,7 +15,7 @@ properties:
         type: object
         properties:
           cells:
-            description: Each item represents a cell in the top header.
+            description: Each item represents a cell in the top header.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys.
             type: array
             items:
               type: any
@@ -28,7 +28,7 @@ properties:
         type: object
         properties:
           cells:
-            description: Each item represents a cell in the side header.
+            description: Each item represents a cell in the side header.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys
             type: array
             items:
               type: any
@@ -42,7 +42,7 @@ properties:
     description: Generates an array of rows, each can contain an array of `cells`.
     properties:
       cells:
-        description: Each item represents a cell in a row.
+        description: Each item represents a cell in a row.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys
         type: array
         items:
           type: any
@@ -56,7 +56,7 @@ properties:
     description: Generates a table footer, can contain an array of `cells`.
     properties:
       cells:
-        description: Each item represents a cell in the footer.
+        description: Each item represents a cell in the footer.  Accepts either a renderable item (shorthand) or an item with 'content' and 'attributes' keys
         type: array
         items:
           type: any
