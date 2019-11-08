@@ -48,7 +48,7 @@ async function init() {
   if (isCanaryRelease) {
     try {
       const version = await shell
-        .exec('auto version --from v${currentVersion}', { silent: true })
+        .exec(`auto version --from v${currentVersion}`, { silent: true })
         .stdout.trim() || 'patch';
 
       await shell.exec(
