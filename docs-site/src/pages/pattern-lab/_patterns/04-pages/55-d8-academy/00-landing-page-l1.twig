@@ -1,0 +1,329 @@
+{% extends "@pl/_default-page-template.twig" %}
+
+{% block global_header %}
+  {% include "@bolt/page-header.twig" %}
+{% endblock %}
+
+
+{% block main_content %}
+  {# Toolbar #}
+  {% set title %}
+    {% include "@bolt-components-headline/headline.twig" with {
+      tag: "div",
+      size: "large",
+      text: "Case Management Specialist Mission",
+      icon: {
+        name: "launchpad",
+        position: "before",
+        size: "medium",
+      }
+    } only %}
+  {% endset %}
+  {% set progress %}
+    <progress max="100" value="80"></progress>
+  {% endset %}
+  {% set tool_1 %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Share",
+      size: "small",
+      style: "secondary",
+      border_radius: "full",
+      iconOnly: true,
+      icon: {
+        name: "share",
+      }
+    } only %}
+  {% endset %}
+  {% set tool_2 %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Star",
+      size: "small",
+      style: "secondary",
+      border_radius: "full",
+      iconOnly: true,
+      icon: {
+        name: "star-solid",
+      }
+    } only %}
+  {% endset %}
+  {% set tool_3 %}
+    {% include "@bolt-components-button/button.twig" with {
+      text: "Add",
+      size: "small",
+      style: "secondary",
+      border_radius: "full",
+      iconOnly: true,
+      icon: {
+        name: "add-open",
+      }
+    } only %}
+  {% endset %}
+  {% set tools %}
+    {% include "@bolt-components-list/list.twig" with {
+      display: "inline",
+      items: [
+        tool_1,
+        tool_2,
+        tool_3,
+      ]
+    } only %}
+  {% endset %}
+  {% set list %}
+    {% include "@bolt-components-list/list.twig" with {
+      display: "flex",
+      align: "end",
+      spacing: "small",
+      items: [
+        progress,
+        tools,
+      ]
+    } only %}
+  {% endset %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% cell "u-bolt-flex-grow" %}
+        {{ title }}
+      {% endcell %}
+      {% cell "u-bolt-flex-shrink" %}
+        {{ list }}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    size: "xsmall",
+    content: content,
+  } only %}
+  {# End Toolbar #}
+
+  {# Hero #}
+  {% set chip_1 %}
+    {% include "@bolt-components-chip/chip.twig" with {
+      text: "Chip 1",
+      url: "#!",
+      size: "small",
+    } only %}
+  {% endset %}
+  {% set chip_2 %}
+    {% include "@bolt-components-chip/chip.twig" with {
+      text: "Chip 2",
+      url: "#!",
+      size: "small",
+    } only %}
+  {% endset %}
+  {% set chip_3 %}
+    {% include "@bolt-components-chip/chip.twig" with {
+      text: "Chip 3",
+      url: "#!",
+      size: "small",
+    } only %}
+  {% endset %}
+  {% set badge %}
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "launchpad",
+      background: "circle",
+      size: "xlarge"
+    } only %}
+  {% endset %}
+  {% set title %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "small",
+      weight: "semibold",
+      text: "Achievement <br>Badge Awarded",
+    } only %}
+  {% endset %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small" %}
+        {% include "@bolt-components-headline/eyebrow.twig" with {
+          text: "Mission",
+        } only %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "xxxlarge",
+          text: "Case Management Specialist",
+          attributes: {
+            class: "u-bolt-margin-bottom-small",
+          }
+        } only %}
+        {% include "@bolt-components-list/list.twig" with {
+          display: "inline",
+          separator: "solid",
+          items: [
+            "3 Modules",
+            "1 Challenge",
+            "4 hrs 20 min",
+          ]
+        } only %}
+        {% include "@bolt-components-headline/text.twig" with {
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.",
+        } only %}
+        {% include "@bolt-components-list/list.twig" with {
+          display: "inline",
+          items: [
+            chip_1,
+            chip_2,
+            chip_3,
+          ]
+        } only %}
+        {% include "@bolt-components-list/list.twig" with {
+          display: "inline",
+          items: [
+            badge,
+            title,
+          ]
+        } only %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "xdark",
+    content: content,
+    background: {
+      opacity: "light",
+      fill: "gradient",
+      contentItems: [
+        {
+          pattern: "image",
+          src: "/images/content/backgrounds/background-night-sky.jpg",
+        },
+      ]
+    },
+  } only %}
+  {# End Hero #}
+
+
+  {# Chapters #}
+  {% set topic_count %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "xsmall",
+      weight: "semibold",
+      text: "9 topics",
+    } only %}
+  {% endset %}
+  {% set status %}
+    {% include "@bolt-components-headline/text.twig" with {
+      size: "xsmall",
+      weight: "semibold",
+      text: "Completed",
+    } only %}
+  {% endset %}
+  {% set flag %}
+    {% grid "o-bolt-grid--flex" %}
+      {% cell "u-bolt-flex-shrink" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--middle u-bolt-height-full" %}
+          {% cell "u-bolt-width-1/1" %}
+            {% include '@bolt-components-image/image.twig' with {
+              src: "/images/placeholders/thumb-comet.jpg",
+              alt: "Image alt.",
+              max_width: "100px",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+      {% cell "u-bolt-width-6/12 u-bolt-flex-grow" %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--middle u-bolt-height-full" %}
+          {% cell "u-bolt-width-1/1" %}
+            {% grid "o-bolt-grid--flex o-bolt-grid--right" %}
+              {% cell %}
+                <div class="u-bolt-padding-top-xsmall u-bolt-padding-right-xsmall">
+                  {% include "@bolt-components-icon/icon.twig" with {
+                    name: "check-solid",
+                    size: "medium"
+                  } only %}
+                </div>
+              {% endcell %}
+            {% endgrid %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1" %}
+            <div class="u-bolt-padding-right-medium u-bolt-padding-bottom-medium">
+              {% include "@bolt-components-headline/eyebrow.twig" with {
+                text: "Module",
+              } only %}
+              {% include "@bolt-components-headline/headline.twig" with {
+                text: "Configuring a case hierarchy",
+                attributes: {
+                  class: "u-bolt-margin-bottom-none",
+                }
+              } only %}
+              {% include "@bolt-components-list/list.twig" with {
+                display: "inline",
+                separator: "solid",
+                items: [
+                  topic_count,
+                  status,
+                ],
+                attributes: {
+                  class: "u-bolt-margin-bottom-xsmall",
+                }
+              } only %}
+              {% include "@bolt-components-headline/text.twig" with {
+                text: "Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus.",
+              } only %}
+            </div>
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% set chapter %}
+    <div class="t-bolt-xlight u-bolt-display-flex u-bolt-shadow-level-20 u-bolt-border-radius-small">
+      {% include "@bolt-components-trigger/trigger.twig" with {
+        url: "#!",
+        cursor: "pointer",
+        content: flag,
+      } only %}
+    </div>
+  {% endset %}
+  {% set chevron %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center" %}
+      {% cell %}
+        <div class="u-text-align-center">
+          {% include "@bolt-components-icon/icon.twig" with {
+            name: "chevron-down",
+            background: "circle",
+            size: "large",
+          } only %}
+        </div>
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-8/12@medium u-bolt-width-6/12@large" %}
+        {% include "@bolt-components-list/list.twig" with {
+          spacing: "medium",
+          items: [
+            chapter,
+            chevron,
+            chapter,
+            chevron,
+          ]
+        } only %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+          {% cell "u-bolt-flex-shrink" %}
+            {% include "@bolt-components-icon/icon.twig" with {
+              name: "launchpad",
+              background: "circle",
+              size: "xlarge"
+            } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1" %}
+            {% include "@bolt-components-headline/text.twig" with {
+              size: "small",
+              weight: "semibold",
+              align: "center",
+              text: "Achievement Badge Awarded",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    content: content,
+  } only %}
+{% endblock %}
