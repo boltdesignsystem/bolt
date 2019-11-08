@@ -2,10 +2,14 @@
   "version": 2,
   "scope": "boltdesignsystem",
   "name": "boltdesignsystem",
-  "builds": [
-    { "src": "www/**", "use": "@now/static" }
-  ],
+  "builds": [{ "src": "www/**", "use": "@now/static" }],
   "routes": [
-    { "src": "/(.*)", "dest": "www/$1" }
+    {
+      "src": "/(.*)",
+      "dest": "www/$1",
+      "headers": {
+        "Cache-Control": "max-age=3600"
+      }
+    }
   ]
 }
