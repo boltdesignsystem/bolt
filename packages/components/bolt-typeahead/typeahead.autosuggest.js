@@ -13,34 +13,37 @@ const cx = bind(styles);
 export const highlightSearchResults = function(item) {
   const resultItem = item;
   resultItem.matches.forEach(matchItem => {
+    // console.log(matchItem);
     const text = resultItem.item[matchItem.key];
     const result = [];
     const matches = [].concat(matchItem.indices);
     let pair = matches.shift();
 
-    for (let i = 0; i < text.length; i++) {
-      const char = text.charAt(i);
-      if (pair && i === pair[0]) {
-        result.push(
-          `<strong class="${cx('c-bolt-typeahead__result-highlight')}">`,
-        );
+    if (text) {
+      for (let i = 0; i < text.length; i++) {
+        const char = text.charAt(i);
+        if (pair && i === pair[0]) {
+          result.push(
+            `<strong class="${cx('c-bolt-typeahead__result-highlight')}">`,
+          );
+        }
+        result.push(char);
+        if (pair && i === pair[1]) {
+          result.push('</strong>');
+          pair = matches.shift();
+        }
       }
-      result.push(char);
-      if (pair && i === pair[1]) {
-        result.push('</strong>');
-        pair = matches.shift();
+      resultItem.item.highlightedLabel = result.join('');
+
+      resultItem.item.highlightedLabel = ReactHtmlParser(
+        resultItem.item.highlightedLabel,
+      );
+
+      if (resultItem.children && resultItem.children.length > 0) {
+        resultItem.children.forEach(child => {
+          highlightSearchResults(child);
+        });
       }
-    }
-    resultItem.item.highlightedLabel = result.join('');
-
-    resultItem.item.highlightedLabel = ReactHtmlParser(
-      resultItem.item.highlightedLabel,
-    );
-
-    if (resultItem.children && resultItem.children.length > 0) {
-      resultItem.children.forEach(child => {
-        highlightSearchResults(child);
-      });
     }
   });
 };
@@ -51,6 +54,10 @@ class BoltAutosuggest extends withPreact() {
 
   // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
+    renderSuggestionTemplate: props.any,
+    keys: props.array,
+    noSort: props.boolean,
+    noFilter: props.boolean,
     placeholder: props.string,
     value: props.string,
     noHighlight: props.boolean,
@@ -236,7 +243,17 @@ class BoltAutosuggest extends withPreact() {
     document.activeElement.blur();
   }
 
-  getSuggestionValue = suggestion => suggestion.label;
+  // getSuggestionValue = suggestion => suggestion.label;
+  getSuggestionValue = suggestion => {
+    if (this.getParent._listeners['getSuggestionValue']) {
+      return this.getParent._listeners['getSuggestionValue'][0](
+        this,
+        suggestion,
+      );
+    } else {
+      return suggestion => suggestion.label;
+    }
+  };
 
   // highlights keywords in the search results in a react-friendly way + limits the total number of results displayed
   async getSuggestions(value) {
@@ -258,8 +275,8 @@ class BoltAutosuggest extends withPreact() {
 
     // @todo: decide if / how this sorting / highlighting logic should stay built-in vs getting exposed via an external hook
     const fuseOptions = {
-      shouldSort: true,
-      threshold: 0.2,
+      shouldSort: this.noSort ? false : true,
+      threshold: this.noFilter ? 1.0 : 0.2,
       tokenize: true,
       includeScore: true,
       includeMatches: true,
@@ -268,8 +285,7 @@ class BoltAutosuggest extends withPreact() {
       maxPatternLength: 32,
       minMatchCharLength: 1,
       // @todo: re-enable description meta data after further testing + refinement
-      // keys: ['label', 'description'],
-      keys: ['label'],
+      keys: this.keys,
     };
     const fuse = new Fuse(items, fuseOptions);
     let results = fuse.search(value);
@@ -308,9 +324,13 @@ class BoltAutosuggest extends withPreact() {
     await this._fire('onSuggestionsFetchRequested', value);
     await this._setState({ isOpen: true });
 
+    const suggestions = await this.getSuggestions(value);
+
     await this._setState({
-      suggestions: await this.getSuggestions(value),
+      suggestions,
     });
+
+    await this._fire('onSuggestionsReceived', suggestions);
   };
 
   // Autosuggest calls this every time you need to clear suggestions.
@@ -330,17 +350,21 @@ class BoltAutosuggest extends withPreact() {
   }
 
   renderSuggestion(suggestion, { query, isHighlighted }) {
-    return (
-      <span
-        className={cx('c-bolt-typeahead__result-text')}
-        title={suggestion.description || ''}>
-        {this.noHighlight
-          ? suggestion.label
-          : suggestion.highlightedLabel
-          ? suggestion.highlightedLabel
-          : suggestion.label}
-      </span>
-    );
+    if (this.renderSuggestionTemplate) {
+      return this.renderSuggestionTemplate(suggestion);
+    } else {
+      return (
+        <span
+          className={cx('c-bolt-typeahead__result-text')}
+          title={suggestion.description || ''}>
+          {this.noHighlight
+            ? suggestion.label
+            : suggestion.highlightedLabel
+            ? suggestion.highlightedLabel
+            : suggestion.label}
+        </span>
+      );
+    }
   }
 
   /**

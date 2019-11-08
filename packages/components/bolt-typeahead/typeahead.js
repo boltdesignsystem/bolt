@@ -4,9 +4,12 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { withEvents } from '@bolt/core/renderers/with-events';
 import { bind } from './classnames';
 import './typeahead.autosuggest'; // main Preact logic split from lit-html wrapper
+import schema from './typeahead.schema.yml';
 
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
+
+console.log(schema.properties);
 
 @define
 class BoltTypeahead extends withEvents(withLitHtml()) {
@@ -14,21 +17,28 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
 
   // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
+    renderSuggestionTemplate: props.any,
+    keys: {
+      ...props.array,
+      ...{ default: schema.properties.keys.default },
+    },
+    noSort: props.boolean,
+    noFilter: props.boolean,
     inputPlaceholder: props.string,
     inputValue: props.string,
     noHighlight: props.boolean,
     clearInputText: {
       ...props.string,
-      ...{ default: 'Clear search results' },
+      ...{ default: schema.properties.clear_input_text.default },
     },
     items: props.array,
     submitButtonText: {
       ...props.string,
-      ...{ default: 'Submit search query' },
+      ...{ default: schema.properties.submit_button_text.default },
     },
     maxResults: {
       ...props.number,
-      ...{ default: 10 },
+      ...{ default: schema.properties.max_results.default },
     },
   };
 
@@ -82,6 +92,10 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
     return html`
       ${this.addStyles([styles])}
       <bolt-autosuggest
+        .renderSuggestionTemplate=${this.renderSuggestionTemplate}
+        .noSort=${this.noSort}
+        .keys=${this.keys}
+        .noFilter=${this.noFilter}
         .value=${this.inputValue}
         .items=${this.items}
         .maxResults=${this.maxResults}
@@ -94,7 +108,6 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
         color="text"
         icon-only
         @click=${this.submit}
-        no-shadow
         class=${cx(
           'c-bolt-typeahead__button',
           'c-bolt-typeahead__button--submit',
@@ -113,7 +126,6 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
         icon-only
         type="reset"
         @click=${this.clearSearch}
-        no-shadow
         class=${cx(
           'c-bolt-typeahead__button',
           'c-bolt-typeahead__button--clear',
