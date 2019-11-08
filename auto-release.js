@@ -48,8 +48,8 @@ async function init() {
   if (isCanaryRelease) {
     try {
       const version = await shell
-        .exec('auto version', { silent: true })
-        .stdout.trim();
+        .exec('auto version --from v${currentVersion}', { silent: true })
+        .stdout.trim() || 'patch';
 
       await shell.exec(
         `npx lerna publish pre${version} --dist-tag canary --preid canary${canaryVersion} --no-git-reset --no-git-tag-version --exact --ignore-scripts --no-push --force-publish --yes -m "[skip travis] chore(release): pre-release %s"`,
