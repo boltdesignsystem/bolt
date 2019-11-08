@@ -368,6 +368,22 @@ class BoltTabs extends withContext(withLitHtml()) {
     el.setAttribute('aria-hidden', 'false');
   }
 
+  _getShowMoreButtonWidth() {
+    let width = this.dropdownButton.offsetWidth;
+
+    // If button is hidden, we need to show it before we get the width.
+    // Explicitly check for 'is-hidden', as we'll be re-adding the class when we're done.
+    if (this.showMoreItem.classList.contains('is-hidden')) {
+      this.showMoreItem.classList.add('is-invisible');
+      this.showMoreItem.classList.remove('is-hidden');
+      width = this.dropdownButton.offsetWidth;
+      this.showMoreItem.classList.add('is-hidden');
+      this.showMoreItem.classList.remove('is-invisible');
+    }
+
+    return width;
+  }
+
   _resizeMenu() {
     const navWidth = this.primaryMenu.offsetWidth;
 
@@ -382,8 +398,7 @@ class BoltTabs extends withContext(withLitHtml()) {
     this.removeAttribute('will-update', '');
 
     this.classList.add('is-resizing');
-
-    const buttonWidth = this.dropdownButton.offsetWidth;
+    const buttonWidth = this._getShowMoreButtonWidth();
     const tolerance = 5; // Extra wiggle room when calculating how many items can fit
     const maxWidth = navWidth - tolerance - buttonWidth;
 
