@@ -14,7 +14,9 @@
     "build:lang": "bolt build --i18n",
     "build:noisy": "bolt build --verbosity 5",
     "build:pl": "bolt prep && npx lerna exec --scope @bolt/uikit-workshop --loglevel=silent -- yarn run build",
-    "build:prod": "bolt build --prod --no-ssr",
+    "build:prod": "bolt build --prod --no-ssr && npm run build:critical-css-homepage && npm run build:critical-css-overview",
+    "build:critical-css-homepage": "RESULT=$(inline-critical -h ../www/index.html -c ../www/build/bolt-global.css ) && echo $RESULT > ../www/index.html",
+    "build:critical-css-overview": "RESULT=$(inline-critical -h ../www/pattern-lab/patterns/02-components-00-overview/02-components-00-overview.html -c ../www/build/bolt-global.css ) && echo $RESULT > ../www/pattern-lab/patterns/02-components-00-overview/02-components-00-overview.html",
     "clean": "cd ../ && npm run clean",
     "prep": "bolt prep",
     "serve": "bolt serve",
@@ -26,6 +28,7 @@
     "watch": "bolt watch"
   },
   "dependencies": {
+    "inline-critical": "^5.2.3",
     "@bolt/analytics-autolink": "^2.7.0",
     "@bolt/analytics-autotrack": "^2.7.0",
     "@bolt/animations": "^2.9.2",
