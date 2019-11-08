@@ -82,7 +82,9 @@ export const polyfillLoader = new Promise(resolve => {
   ) {
     resolve();
   } else {
-    import('@webcomponents/custom-elements/src/native-shim.js').then(() => {
+    import(
+      /* webpackChunkName: 'bolt-core-polyfills-native-shim' */ '@webcomponents/custom-elements/src/native-shim.js'
+    ).then(() => {
       resolve();
     });
   }
