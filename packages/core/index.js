@@ -19,7 +19,7 @@ window.bolt = window.bolt || {};
 
 if (!window.bolt.meta) {
   // selecting a long delay since this isn't super important
-  const delay = 5000;
+  const delay = 0;
 
   setTimeout(() => {
     getData('meta')
