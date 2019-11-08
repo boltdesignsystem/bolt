@@ -45,6 +45,9 @@ properties:
     description: Hide quotation marks.
     default: false
     type: boolean
+  lang:
+    description: Set language-specific quotation marks. By default, inherits the value of the closest `lang` attribute.
+    type: string
   logo:
     description: Add a logo component.
     type: object

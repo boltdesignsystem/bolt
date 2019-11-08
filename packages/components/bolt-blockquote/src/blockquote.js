@@ -22,6 +22,7 @@ class BoltBlockquote extends withLitHtml() {
     indent: props.boolean,
     fullBleed: props.boolean,
     noQuotes: props.boolean,
+    lang: props.string,
     authorName: props.string,
     authorTitle: props.string,
     authorImage: props.string,
@@ -141,6 +142,7 @@ class BoltBlockquote extends withLitHtml() {
       indent,
       fullBleed,
       noQuotes,
+      lang,
       authorName,
       authorTitle,
       authorImage,
@@ -158,9 +160,6 @@ class BoltBlockquote extends withLitHtml() {
       [`c-bolt-blockquote--full`]: fullBleed,
       [`c-bolt-blockquote--no-quotes`]: noQuotes,
     });
-
-    // Get closest [lang] tag and add to blockquote element so that CSS selector will work inside shadow DOM
-    const lang = this.closest('[lang]');
 
     let footerItems = [];
     footerItems.push(AuthorImage(this), AuthorName(this), AuthorTitle(this));
@@ -187,7 +186,13 @@ class BoltBlockquote extends withLitHtml() {
       <blockquote
         class="${classes}"
         lang="${ifDefined(
-          lang ? lang.getAttribute('lang').toLowerCase() : undefined,
+          lang
+            ? lang
+            : this.closest('[lang]')
+            ? this.closest('[lang]')
+                .getAttribute('lang')
+                .toLowerCase()
+            : undefined,
         )}"
       >
         ${this.slots.logo
