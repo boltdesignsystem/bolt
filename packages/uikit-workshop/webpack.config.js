@@ -1,5 +1,6 @@
 // webpack.config.js
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -371,6 +372,11 @@ module.exports = function() {
           filename: '../index.html',
           template: 'src/html/index.html',
           inject: false,
+        }),
+        new PreloadWebpackPlugin({
+          rel: 'preload',
+          include: 'allChunks',
+          fileBlacklist: [/pattern-lab\.css/, /pattern-lab\.modern\.js/, /pattern-lab\.modern\.js/]
         }),
         new MiniCssExtractPlugin({
           filename: `[name].css`,
