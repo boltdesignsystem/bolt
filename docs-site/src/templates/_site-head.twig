@@ -30,13 +30,12 @@
 ] %}
 
 <!DOCTYPE html>
-<html lang="en-US" class="{{ htmlClasses|join(' ') }}">
+<html lang="en-US" class="{{ htmlClasses|join(' ') }} js-fonts-loaded">
   <head>
     {% if fileExists("@bolt-assets/bolt-critical-path-polyfills.cjs.js") %}
     <script>{{ inline(assets["bolt-critical-path-polyfills.cjs.js"] | default("")) }}</script>
     {% endif %}
 
-    <script src="https://www.google-analytics.com/analytics.js" defer></script>
     <script>
       window.drupalSettings = {
         google_analytics: {
@@ -80,25 +79,17 @@
     <meta name="twitter:site" content="@pega" />
 
     <!-- async load PL's CSS -->
-    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="{{ assets["bolt-global.css"] | default("/build/bolt-global.css") }}?cacheBuster={{ cacheBuster }}" media="all" />
+    <link rel="preload" href="/pattern-lab/styleguide/css/pattern-lab.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
     <noscript>
       <link href="/pattern-lab/styleguide/css/pattern-lab.css" rel="stylesheet">
     </noscript>
 
     {# @TODO: wire this up to use Critical CSS #}
-    <style>
-      {% if fileExists("@bolt-assets/bolt-components-critical-fonts.css") %}
-        {{ inline( assets["bolt-components-critical-fonts.css"] | default("") ) }}
-      {% endif %}
-    </style>
-
     <script>
-      {% if fileExists("@bolt-assets/bolt-components-critical-css.js") %}
-        {{ inline( assets["bolt-components-critical-css.js"] | default("") ) }}
+      {% if fileExists("@bolt-assets/bolt-components-critical-css-vars.js") %}
         {{ inline( assets["bolt-components-critical-css-vars.js"] | default("") ) }}
-        {{ inline( assets["bolt-components-critical-fonts.js"] | default("") ) }}
       {% endif %}
 
       window.bolt = window.bolt || {};
@@ -128,6 +119,9 @@
         //console.table(patternLab);
       </script>
     {% endif %}
+    
+    <script src="{{ assets["bolt-global.js"] | default("/build/bolt-global.js") }}?cacheBuster={{ cacheBuster }}" async></script>
+    <script src="https://www.google-analytics.com/analytics.js" async></script>
   </head>
 
   {% set bodyClasses = [
