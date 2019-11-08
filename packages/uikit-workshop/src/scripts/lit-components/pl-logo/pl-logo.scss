@@ -57,8 +57,10 @@ pl-logo {
     margin-right: 0.25rem;
   }
 
-  .pl-c-body--theme-sidebar & {
-    max-height: 35px;
+  @media all and (min-width: $pl-bp-med) {
+    .pl-c-body--theme-sidebar & {
+      max-height: 35px;
+    }
   }
 }
 
