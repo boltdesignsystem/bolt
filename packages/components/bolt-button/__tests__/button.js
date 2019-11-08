@@ -53,6 +53,9 @@ describe('button', () => {
     expect(results.html).toMatchSnapshot();
   });
 
+  // Tag is deprecated.  The presence or absence of a URL param determines which
+  // tag will be used.  The 'type' prop should be used for the values 'reset'
+  // and 'submit' because those aren't tags.
   tag.enum.forEach(async tagChoice => {
     test(`Button tag: ${tagChoice}`, async () => {
       const results = await render('@bolt-components-button/button.twig', {
