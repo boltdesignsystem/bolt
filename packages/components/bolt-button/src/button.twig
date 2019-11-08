@@ -39,6 +39,7 @@
 {% set transform_options = schema.properties.transform.enum %}
 {% set icon_positions = schema.properties.icon.properties.position.enum %}
 {% set iconOnly_options = schema.properties.iconOnly.enum %}
+{% set type_options = schema.properties.type.enum %}
 
 {# Check that the component's current prop values are valid. if not, default to the schema default #}
 {% set size = size in size_options ? size : schema.properties.size.default %}
