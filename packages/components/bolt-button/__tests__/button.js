@@ -8,7 +8,7 @@ import {
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../button.schema.yml'));
-const { tag } = schema.properties;
+const { tag, type } = schema.properties;
 
 const timeout = 90000;
 
@@ -61,6 +61,17 @@ describe('button', () => {
       const results = await render('@bolt-components-button/button.twig', {
         text: 'This is a button',
         tag: tagChoice,
+      });
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  type.enum.forEach(async typeChoice => {
+    test(`Button type: ${typeChoice}`, async () => {
+      const results = await render('@bolt-components-button/button.twig', {
+        text: 'This is a button',
+        type: typeChoice,
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
