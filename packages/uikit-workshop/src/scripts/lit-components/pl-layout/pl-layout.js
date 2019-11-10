@@ -16,18 +16,12 @@ class Layout extends BaseLitComponent {
         : window.location.protocol + '//' + window.location.host;
   }
 
-  static get properties() {
-    return {
-      layoutMode: String,
-      themeMode: String,
-    };
-  }
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
     styles.use();
     const state = store.getState();
-    this.layoutMode = state.app.layoutMode || 'vertical';
+    this.layoutMode = state.app.layoutMode;
     this.themeMode = state.app.themeMode;
   }
 
@@ -41,17 +35,30 @@ class Layout extends BaseLitComponent {
   }
 
   _stateChanged(state) {
-    this.layoutMode = state.app.layoutMode || 'vertical';
-    this.themeMode = state.app.themeMode;
-    this.iframeElement = document.querySelector('.pl-js-iframe');
-    const layoutModeClass =
+    let hasChanged = false;
+    if (this.layoutMode !== state.app.layoutMode){
+      hasChanged = true;
+      this.layoutMode = state.app.layoutMode || 'vertical';
+    }
+
+    if (this.themeMode !== state.app.themeMode){
+      hasChanged = true;
+      this.themeMode = state.app.themeMode;
+    }
+
+    if (hasChanged === true){
+      hasChanged = false;
+      const layoutModeClass =
       this.layoutMode === 'vertical' ? 'sidebar' : 'horizontal';
 
-    const classes = classNames(`pl-c-body--theme-${layoutModeClass}`, {
-      [`pl-c-body--theme-${this.themeMode}`]: this.themeMode !== undefined,
-    });
+      const classes = classNames(`pl-c-body--theme-${layoutModeClass}`, {
+        [`pl-c-body--theme-${this.themeMode}`]: this.themeMode !== undefined,
+      });
 
-    this.className = classes;
+      this.className = classes;
+    }
+
+    this.iframeElement = document.querySelector('.pl-js-iframe');
 
     if (this.iframeElement) {
       const obj = JSON.stringify({
@@ -62,15 +69,6 @@ class Layout extends BaseLitComponent {
     }
   }
 
-  render() {
-    return html`
-      <pl-header></pl-header>
-      <div class="pl-c-viewport-modal-wrapper">
-        <pl-iframe></pl-iframe>
-        <pl-drawer></pl-drawer>
-      </div>
-    `;
-  }
 }
 
 customElements.define('pl-layout', Layout);

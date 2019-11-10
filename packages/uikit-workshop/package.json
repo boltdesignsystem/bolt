@@ -17,7 +17,7 @@
   "license": "MIT",
   "scripts": {
     "preinstall": "export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1",
-    "build": "webpack-cli --config webpack.config.js --display=minimal && RESULT=$(npx inline-critical -c ../../www/pattern-lab/styleguide/css/pattern-lab.css  -h ../../www/pattern-lab/index.html) && echo $RESULT > ../../www/pattern-lab/index.html",
+    "build": "webpack-cli --config webpack.config.js --display=minimal && RESULT=$( inline-critical -c ../../www/pattern-lab/styleguide/css/pattern-lab.css  -h ../../www/pattern-lab/index.html) && echo $RESULT > ../../www/pattern-lab/index.html",
     "test": "npm run build -- --bail",
     "watch": "webpack-cli --config webpack.config.js --progress --watch"
   },
@@ -39,6 +39,7 @@
     }
   ],
   "dependencies": {
+    "inline-critical": "^5.2.3",
     "ts-loader": "^6.2.1",
     "@babel/plugin-proposal-optional-chaining": "^7.6.0",
     "svgo": "^1.3.0",
