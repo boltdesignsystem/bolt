@@ -214,7 +214,6 @@ class Nav extends BaseComponent {
     super.connectedCallback && super.connectedCallback();
 
     Mousetrap.bind('esc', () => {
-      console.log('mousetrap!');
       if (this.layoutMode !== 'vertical' && window.innerWidth > 670){
         this.cleanupActiveNav(true);
       }
