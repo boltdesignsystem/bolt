@@ -81,7 +81,7 @@ class BoltShadowToggle extends withLitHtml() {
   }
 
   render() {
-      // ${this.addStyles([styles])}
+    // ${this.addStyles([styles])}
     return html`
       <div class="c-bolt-shadow-toggle__wrapper" @click=${this.onClick}>
         <ul

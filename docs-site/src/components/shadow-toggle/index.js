@@ -7,5 +7,4 @@ polyfillLoader.then(res => {
     webpackChunkName: 'bolt-shadow-toggle'
   */ './shadow-toggle.js'
   );
-
 });
