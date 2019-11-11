@@ -5,9 +5,9 @@ import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
 import Mousetrap from 'mousetrap';
 import Autosuggest from 'react-autosuggest';
-import { bind } from './classnames';
 import { Component } from 'preact';
-import { shallowEqualObjects, shallowEqualArrays } from 'shallow-equal';
+import { shallowEqualArrays } from 'shallow-equal';
+import { bind } from './classnames';
 
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);

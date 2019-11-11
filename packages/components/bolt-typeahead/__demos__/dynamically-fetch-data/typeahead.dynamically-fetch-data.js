@@ -23,11 +23,14 @@ if (dynamicTypeaheadDemo) {
 
       dynamicTypeaheadDemo.footerTemplate = function(query, suggestions) {
         return html`
-          <bolt-link target="_blank" url="https://www.pega.com/search?q=${query}">
+          <bolt-link
+            target="_blank"
+            url="https://www.pega.com/search?q=${query}"
+          >
             See All Results
           </bolt-link>
         `;
-      }
+      };
 
       dynamicTypeaheadDemo.on('onSelected', (element, event, suggestion) => {
         const exactMatch = element.items.filter(
