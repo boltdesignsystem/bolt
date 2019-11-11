@@ -58,6 +58,7 @@ async function createWebpackConfig(buildConfig) {
   // @TODO: move this setting to .boltrc config
   const sassExportData = require('@bolt/sass-export-data')({
     path: config.dataDir,
+    dataStore,
   });
 
   // map out Twig namespaces with the NPM package name

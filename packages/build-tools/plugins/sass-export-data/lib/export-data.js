@@ -2,9 +2,15 @@ const fs = require('fs-extra');
 const path = require('path');
 const jsondiff = require('jsondiffpatch');
 const getValue = require('./get-value');
+const { RawObjectData } = require('@bolt/build-utils/data-store/data-cache/types');
 
 module.exports = config => {
   function exportData(file, value) {
+    if (config.dataStore) {
+      config.dataStore.set(file.getValue(), new RawObjectData(getValue(value)));
+      return value;
+    }
+
     const filename = path.join(config.path, file.getValue());
     const output = getValue(value);
 
