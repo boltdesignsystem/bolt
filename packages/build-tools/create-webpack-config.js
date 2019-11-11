@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
@@ -314,13 +314,13 @@ async function createWebpackConfig(buildConfig) {
           test: /\.(js|tsx|mjs)$/,
           exclude: thePath => {
             if (
-              thePath.endsWith(
-                'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
-              ) ||
               thePath.includes('babel') ||
               thePath.includes('core-js') ||
-              thePath.includes('webcomponentsjs') ||
-              thePath.endsWith('grapesjs/dist/grapes.js')
+              thePath.includes('critical-path-polyfills') ||
+              thePath.includes('custom-elements-es5-adapter.js') ||
+              thePath.includes('grapesjs/dist') ||
+              thePath.includes('regenerator-runtime') ||
+              thePath.includes('webcomponentsjs')
             ) {
               return true;
             }
@@ -381,17 +381,11 @@ async function createWebpackConfig(buildConfig) {
     optimization: {
       minimizer: config.prod
         ? [
-            new UglifyJsPlugin({
-              sourceMap: true,
-              parallel: true,
-              cache: true,
-              uglifyOptions: {
-                compress: true,
-                mangle: true,
-                output: {
-                  comments: false,
-                  beautify: false,
-                },
+            new TerserPlugin({
+              test: /\.m?js(\?.*)?$/i,
+              sourceMap: config.sourceMaps,
+              terserOptions: {
+                safari10: true,
               },
             }),
           ]
@@ -464,6 +458,11 @@ async function createWebpackConfig(buildConfig) {
   }
 
   if (config.prod) {
+    // https://webpack.js.org/plugins/module-concatenation-plugin/
+    webpackConfig.plugins.push(
+      new webpack.optimize.ModuleConcatenationPlugin(),
+    );
+
     // Optimize CSS - https://github.com/NMFR/optimize-css-assets-webpack-plugin
     webpackConfig.plugins.push(
       new OptimizeCssAssetsPlugin({

@@ -12,6 +12,8 @@ class AccordionItem extends withContext(withLitHtml()) {
 
   static props = {
     open: props.boolean,
+    contentSpacing: props.string,
+    triggerSpacing: props.string,
     inactive: props.boolean,
     uuid: props.string,
   };
@@ -115,14 +117,6 @@ class AccordionItem extends withContext(withLitHtml()) {
     return html`
       <div class="${accordionClasses}">${innerSlots}</div>
     `;
-  }
-
-  rendered() {
-    super.rendered && super.rendered();
-
-    this.contentElem = this.renderRoot.querySelector(
-      '.c-bolt-accordion-item__content',
-    );
   }
 
   render() {

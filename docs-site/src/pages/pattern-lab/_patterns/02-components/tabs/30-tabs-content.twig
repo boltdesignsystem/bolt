@@ -163,6 +163,44 @@
   } only %}
 {% endset %}
 
+{% set tab_content_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 1",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 2",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 3",
+      size: "large",
+    } only %}
+{% endset %}
+
+{% set tabs_content %}
+  {% include "@bolt-components-tabs/tabs.twig" with {
+    panels: [
+      {
+        label: "Tab label 1",
+        content: tab_content_1,
+      },
+      {
+        label: "Tab label 2",
+        content: tab_content_2,
+      },
+      {
+        label: "Tab label 3",
+        content: tab_content_3,
+      }
+    ]
+  } only %}
+{% endset %}
+
 <div class="u-bolt-margin-bottom-small">
   {% grid "o-bolt-grid--flex o-bolt-grid--middle o-bolt-grid--center" %}
     {% cell "u-bolt-width-12/12 u-bolt-width-9/12@small" %}
@@ -183,6 +221,10 @@
           {
             label: "A video",
             content: video_content,
+          },
+          {
+            label: "Tabs",
+            content: tabs_content,
           },
           {
             label: "An accordion",

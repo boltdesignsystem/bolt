@@ -29,7 +29,7 @@ module.exports = {
   selenium: {
     start_process: true,
     server_path: seleniumServer.path,
-    port: 4444, // Standard selenium port
+    // port: 4444, // Standard selenium port -- commenting this out to try and allow selenium to auto-assign
     cli_args: {
       'webdriver.chrome.driver': chromeDriver.path,
       // 'webdriver.gecko.driver': geckoDriver.path, // temporarily disabling FF testing till self-signed cert issue (when installing geckodriver) is debugged

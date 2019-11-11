@@ -9,17 +9,17 @@
           theme="dark"
         ></bolt-svg-animations>
       </bolt-animate>
+      <bolt-animate slot="connection" in="fade-in" in-order="2" out="fade-out" out-order="1">
+        <bolt-connection></bolt-connection>
+      </bolt-animate>
     </bolt-character>
-  </bolt-animate>
-  <bolt-animate slot="connection" in="fade-in" in-order="2" out="fade-out" out-order="1">
-    <bolt-connection></bolt-connection>
   </bolt-animate>
   <bolt-animate slot="character--right" in="fade-in-slide-up" in-order="10" out="fade-out" out-order="10">
     <bolt-character size="medium" character-image="customer-surprise">
       <bolt-animate in="fade-in-slide-up" in-order="15" out="fade-out" slot="top" out-order="5">
         <bolt-status-dialogue-bar icon-name="mobility">
           <p slot="text">
-            You are about to reach <br>your monthly data limit...
+            You are about to reach your monthly data limit...
           </p>
         </bolt-status-dialogue-bar>
       </bolt-animate>

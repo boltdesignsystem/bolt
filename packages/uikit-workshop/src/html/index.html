@@ -8,8 +8,7 @@
       content="initial-scale=1, width=device-width, viewport-fit=cover"
     />
     <meta name="theme-color" content="#ababab" />
-    <link rel="stylesheet" href="styleguide/css/pattern-lab.css" media="all" />
-
+    <link rel="stylesheet" href="styleguide/css/pattern-lab.css" media="all">
     <link rel="prefetch" as="image" href="/images/bolt-logo--dark.svg">
     <link rel="prefetch" as="image" href="/images/bolt-logo--light.svg">
   </head>
@@ -22,10 +21,38 @@
       ${require('./partials/base-template.html') }
     </script>
 
-    <!-- load Pattern Lab data -->
     <script src="styleguide/data/patternlab-data.js" defer></script>
     <script src="annotations/annotations.js" defer></script>
-    <script src="styleguide/js/patternlab-viewer.js" defer></script>
+    <script
+      src="styleguide/js/patternlab-viewer.modern.js"
+      type="module"
+    ></script>
+    <script>
+      // https://gist.github.com/samthor/64b114e4a4f539915a95b91ffd340acc
+      (function() {
+        var check = document.createElement('script');
+        if (!('noModule' in check) && 'onbeforeload' in check) {
+          var support = false;
+          document.addEventListener(
+            'beforeload',
+            function(e) {
+              if (e.target === check) {
+                support = true;
+              } else if (!e.target.hasAttribute('nomodule') || !support) {
+                return;
+              }
+              e.preventDefault();
+            },
+            true
+          );
+          check.type = 'module';
+          check.src = '.';
+          document.head.appendChild(check);
+          check.remove();
+        }
+      })();
+    </script>
+    <script src="styleguide/js/patternlab-viewer.js" defer nomodule></script>
 
     <script>
       // Check that service workers are registered

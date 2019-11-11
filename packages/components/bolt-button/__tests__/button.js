@@ -152,12 +152,13 @@ describe('button', () => {
   });
 
   test('Default <bolt-button> w/o Shadow DOM renders', async function() {
-    const renderedButtonHTML = await page.evaluate(() => {
-      const btn = document.createElement('bolt-button');
-      btn.textContent = 'This is a button';
-      document.body.appendChild(btn);
-      btn.useShadow = false;
-      btn.updated();
+    const renderedButtonHTML = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        '<bolt-button no-shadow>This is a button</bolt-button>',
+      );
+      const btn = document.querySelector('bolt-button');
+      await btn.updateComplete;
       return btn.outerHTML;
     });
 
@@ -179,19 +180,19 @@ describe('button', () => {
   });
 
   test('Default <bolt-button> with Shadow DOM renders', async function() {
-    const defaultButtonShadowRoot = await page.evaluate(() => {
+    const defaultButtonShadowRoot = await page.evaluate(async () => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'Button Test -- Shadow Root HTML';
       document.body.appendChild(btn);
-      btn.updated();
+      await btn.firstUpdated;
       return btn.renderRoot.innerHTML;
     });
 
-    const defaultButtonOuter = await page.evaluate(() => {
+    const defaultButtonOuter = await page.evaluate(async () => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'Button Test -- Outer HTML';
       document.body.appendChild(btn);
-      btn.updated();
+      await btn.firstUpdated;
       return btn.outerHTML;
     });
 

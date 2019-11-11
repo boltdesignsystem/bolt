@@ -9,7 +9,7 @@ import {
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../blockquote.schema.yml'));
-const { tag } = schema.properties;
+const { tag, size, alignItems, border } = schema.properties;
 
 const vrtDefaultConfig = Object.assign(vrtConfig, {
   failureThreshold: '0.02',
@@ -17,7 +17,7 @@ const vrtDefaultConfig = Object.assign(vrtConfig, {
 
 const timeout = 90000;
 
-describe('button', () => {
+describe('<bolt-blockquote> component', () => {
   let page;
 
   afterAll(async () => {
@@ -38,7 +38,7 @@ describe('button', () => {
     });
   }, timeout);
 
-  test('Basic usage', async () => {
+  test('<bolt-blockquote> basic usage', async () => {
     const results = await render(
       '@bolt-components-blockquote/blockquote.twig',
       {
@@ -55,7 +55,137 @@ describe('button', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('Default <bolt-blockquote> with Shadow DOM renders', async function() {
+  test('<bolt-blockquote> basic usage w/ author', async () => {
+    const results = await render(
+      '@bolt-components-blockquote/blockquote.twig',
+      {
+        content:
+          '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
+      },
+    );
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('<bolt-blockquote> indent usage', async () => {
+    const results = await render(
+      '@bolt-components-blockquote/blockquote.twig',
+      {
+        content:
+          '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
+        indent: true,
+        author: {
+          name: 'Michelangelo di Lodovico Buonarroti Simoni',
+          title: 'Renaissance Artist',
+        },
+      },
+    );
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  size.enum.forEach(async option => {
+    test(`<bolt-blockquote> size variations: ${option}`, async () => {
+      const results = await render(
+        '@bolt-components-blockquote/blockquote.twig',
+        {
+          content:
+            '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
+          size: option,
+          author: {
+            name: 'Michelangelo di Lodovico Buonarroti Simoni',
+            title: 'Renaissance Artist',
+          },
+        },
+      );
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  alignItems.enum.forEach(async option => {
+    test(`<bolt-blockquote> align variations: ${option}`, async () => {
+      const results = await render(
+        '@bolt-components-blockquote/blockquote.twig',
+        {
+          content:
+            '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
+          alignItems: option,
+          author: {
+            name: 'Michelangelo di Lodovico Buonarroti Simoni',
+            title: 'Renaissance Artist',
+          },
+        },
+      );
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  border.enum.forEach(async option => {
+    test(`<bolt-blockquote> border variations: ${option}`, async () => {
+      const results = await render(
+        '@bolt-components-blockquote/blockquote.twig',
+        {
+          content:
+            '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
+          border: option,
+          author: {
+            name: 'Michelangelo di Lodovico Buonarroti Simoni',
+            title: 'Renaissance Artist',
+          },
+        },
+      );
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+
+    test(`<bolt-blockquote> border variations with inset: ${option}`, async () => {
+      const results = await render(
+        '@bolt-components-blockquote/blockquote.twig',
+        {
+          content:
+            '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
+          border: option,
+          inset: true,
+          author: {
+            name: 'Michelangelo di Lodovico Buonarroti Simoni',
+            title: 'Renaissance Artist',
+          },
+        },
+      );
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
+  test(`advanced <bolt-blockquote> usage`, async () => {
+    const results = await render(
+      '@bolt-components-blockquote/blockquote.twig',
+      {
+        content:
+          '<p>The greater danger for most of us lies not in setting our aim too high and falling short; but in setting our aim too low, and achieving our mark.</p>',
+        border: 'horizontal',
+        inset: true,
+        logo: {
+          invert: true,
+          src: '/fixtures/paypal.svg',
+        },
+        author: {
+          image: {
+            src: '/fixtures/author.jpg',
+            lazyload: false,
+          },
+          name: 'Michelangelo di Lodovico Buonarroti Simoni',
+          title: 'Renaissance Artist',
+        },
+      },
+    );
+    expect(results.ok).toBe(true);
+    expect(results.html).toMatchSnapshot();
+  });
+
+  test('<bolt-blockquote> renders to Shadow DOM', async function() {
     const defaultBlockquoteOuter = await page.evaluate(() => {
       const blockquote = document.createElement('bolt-blockquote');
       blockquote.setAttribute('author-name', 'Chris Heilmann');
@@ -94,7 +224,7 @@ describe('button', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Default <bolt-blockquote> w/o Shadow DOM renders', async function() {
+  test('<bolt-blockquote> renders to Light DOM', async function() {
     const renderedBlockquoteHTML = await page.evaluate(() => {
       const blockquote = document.createElement('bolt-blockquote');
       blockquote.setAttribute(
@@ -146,7 +276,7 @@ describe('button', () => {
     expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Default <bolt-blockquote> inside a <form> renders', async function() {
+  test('<bolt-blockquote> renders when inside a <form>', async function() {
     const renderedBlockquoteHTML = await page.evaluate(() => {
       const form = document.createElement('form');
       const blockquote = document.createElement('bolt-blockquote');

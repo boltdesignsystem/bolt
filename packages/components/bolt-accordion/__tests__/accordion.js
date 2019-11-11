@@ -1,21 +1,14 @@
 import {
   render,
-  renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
+  stopServer,
+  html,
+  vrtDefaultConfig as vrtConfig,
+} from '../../../testing/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../accordion.schema.yml'));
-const { single, spacing } = schema.properties;
-
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
-
-async function renderTwigString(template, data) {
-  return await renderString(template, data, true);
-}
+const { single } = schema.properties;
+const { spacing } = schema.definitions;
 
 const timeout = 120000;
 
@@ -85,24 +78,21 @@ describe('<bolt-accordion> Component', () => {
   }, timeout);
 
   afterAll(async () => {
-    await stopTwigRenderer();
+    await stopServer();
     await page.close();
   }, timeout);
 
   test('basic usage', async () => {
-    const results = await renderTwig(
-      '@bolt-components-accordion/accordion.twig',
-      {
-        items: accordionTwigItems,
-      },
-    );
+    const results = await render('@bolt-components-accordion/accordion.twig', {
+      items: accordionTwigItems,
+    });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
   single.enum.forEach(async singleChoice => {
     test(`expand single items: ${singleChoice}`, async () => {
-      const results = await renderTwig(
+      const results = await render(
         '@bolt-components-accordion/accordion.twig',
         {
           single: singleChoice,
@@ -116,7 +106,7 @@ describe('<bolt-accordion> Component', () => {
 
   spacing.enum.forEach(async spacingChoice => {
     test(`spacing: ${spacingChoice}`, async () => {
-      const results = await renderTwig(
+      const results = await render(
         '@bolt-components-accordion/accordion.twig',
         {
           spacing: spacingChoice,
@@ -128,33 +118,66 @@ describe('<bolt-accordion> Component', () => {
     });
   });
 
+  spacing.enum.forEach(async spacingChoice => {
+    test(`trigger spacing: ${spacingChoice}`, async () => {
+      const results = await render(
+        '@bolt-components-accordion/accordion.twig',
+        {
+          items: [
+            {
+              trigger: 'Accordion item 1',
+              content: 'This is the accordion content.',
+              trigger_spacing: spacingChoice,
+            },
+          ],
+        },
+      );
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+    test(`content spacing: ${spacingChoice}`, async () => {
+      const results = await render(
+        '@bolt-components-accordion/accordion.twig',
+        {
+          content_spacing: spacingChoice,
+          items: [
+            {
+              trigger: 'Accordion item 1',
+              content: 'This is the accordion content.',
+              content_spacing: spacingChoice,
+            },
+          ],
+        },
+      );
+      expect(results.ok).toBe(true);
+      expect(results.html).toMatchSnapshot();
+    });
+  });
+
   test(`Inactive item`, async () => {
-    const results = await renderTwig(
-      '@bolt-components-accordion/accordion.twig',
-      {
-        items: [
-          {
-            trigger: 'Active accordion item',
-            content: 'This is the accordion content.',
-          },
-          {
-            trigger: 'Inactive accordion item',
-            content: 'This is the accordion content.',
-            inactive: true,
-          },
-          {
-            trigger: 'Active accordion item',
-            content: 'This is the accordion content.',
-          },
-        ],
-      },
-    );
+    const results = await render('@bolt-components-accordion/accordion.twig', {
+      items: [
+        {
+          trigger: 'Active accordion item',
+          content: 'This is the accordion content.',
+        },
+        {
+          trigger: 'Inactive accordion item',
+          content: 'This is the accordion content.',
+          inactive: true,
+        },
+        {
+          trigger: 'Active accordion item',
+          content: 'This is the accordion content.',
+        },
+      ],
+    });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
   test('Default <bolt-accordion> with Shadow DOM renders', async function() {
-    const accordionShadowRoot = await page.evaluate(async accordionHTML => {
+    await page.evaluate(async accordionHTML => {
       const wrapper = document.createElement('div');
       wrapper.innerHTML = accordionHTML;
       document.body.appendChild(wrapper);
@@ -173,10 +196,15 @@ describe('<bolt-accordion> Component', () => {
             element.addEventListener('error', reject);
           });
         }),
-      ).then(() => {
-        return accordion.renderRoot.innerHTML;
-      });
+      );
     }, accordionHTML);
+
+    // Wait for Handorgel to run, starts after component 'ready' event
+    await page.waitFor(250);
+
+    const accordionShadowRoot = await page.evaluate(async () => {
+      return document.querySelector('bolt-accordion').renderRoot.innerHTML;
+    });
 
     const accordionItemShadowRoot = await page.evaluate(async () => {
       const item = document.querySelector('bolt-accordion-item');
@@ -191,7 +219,6 @@ describe('<bolt-accordion> Component', () => {
     expect(renderedShadowRoot.innerHTML).toMatchSnapshot();
     expect(renderedItemShadowRoot.innerHTML).toMatchSnapshot();
 
-    await page.waitFor(500);
     const image = await page.screenshot();
 
     expect(image).toMatchImageSnapshot({
@@ -201,32 +228,34 @@ describe('<bolt-accordion> Component', () => {
   });
 
   test('Default <bolt-accordion> w/o Shadow DOM renders', async function() {
-    const accordionOuterHTML = await page.evaluate(
-      async accordionNoShadowHTML => {
-        const wrapper = document.createElement('div');
-        wrapper.innerHTML = accordionNoShadowHTML;
-        document.body.appendChild(wrapper);
+    await page.evaluate(async accordionNoShadowHTML => {
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = accordionNoShadowHTML;
+      document.body.appendChild(wrapper);
 
-        const accordion = document.querySelector('bolt-accordion');
-        const accordionItems = Array.from(
-          document.querySelectorAll('bolt-accordion-item'),
-        );
-        const allElements = [accordion, ...accordionItems];
+      const accordion = document.querySelector('bolt-accordion');
+      const accordionItems = Array.from(
+        document.querySelectorAll('bolt-accordion-item'),
+      );
+      const allElements = [accordion, ...accordionItems];
 
-        return await Promise.all(
-          allElements.map(element => {
-            if (element._wasInitiallyRendered) return;
-            return new Promise((resolve, reject) => {
-              element.addEventListener('ready', resolve);
-              element.addEventListener('error', reject);
-            });
-          }),
-        ).then(() => {
-          return accordion.outerHTML;
-        });
-      },
-      accordionNoShadowHTML,
-    );
+      return await Promise.all(
+        allElements.map(element => {
+          if (element._wasInitiallyRendered) return;
+          return new Promise((resolve, reject) => {
+            element.addEventListener('ready', resolve);
+            element.addEventListener('error', reject);
+          });
+        }),
+      );
+    }, accordionNoShadowHTML);
+
+    // Wait for Handorgel to run, starts after component 'ready' event
+    await page.waitFor(250);
+
+    const accordionOuterHTML = await page.evaluate(async () => {
+      return document.querySelector('bolt-accordion').outerHTML;
+    });
 
     const accordionRenderedHTML = await html(accordionOuterHTML);
     expect(accordionRenderedHTML).toMatchSnapshot();

@@ -36,6 +36,16 @@ properties:
           type: string
           description: Accessible label for the close trigger to collapse an item.
           default: Close Accordion
+        trigger_spacing:
+          type: string
+          hidden: true
+          description: Overrides the default trigger spacing (by default, inherited from the parent bolt-accordion)
+          $ref: "#/definitions/spacing"
+        content_spacing:
+          type: string
+          hidden: true
+          description: Overrides the default content spacing (by default, inherited from the parent bolt-accordion)
+          $ref: "#/definitions/spacing"
   single:
     type: boolean
     description: Allow only one section to open at a time.
@@ -60,15 +70,10 @@ properties:
       - true
       - false
   spacing:
+    $ref: "#/definitions/spacing"
     type: string
     description: Controls the inset spacing of each item.
     default: medium
-    enum:
-      - none
-      - xsmall
-      - small
-      - medium
-      - large
   icon_valign:
     type: string
     title: icon_valign (twig) / icon-valign (web component)
@@ -77,3 +82,11 @@ properties:
     enum:
       - top
       - center
+definitions:
+  spacing:
+    enum:
+      - none
+      - xsmall
+      - small
+      - medium
+      - large

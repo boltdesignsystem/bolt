@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.10.1](https://github.com/boltdesignsystem/bolt/compare/v2.10.0...v2.10.1) (2019-11-05)
+
+
+### Bug Fixes
+
+* fix prettier issue ([af6747a](https://github.com/boltdesignsystem/bolt/commit/af6747a))
+* update auto-release script to use correct args to Auto plugin ([22cc1e3](https://github.com/boltdesignsystem/bolt/commit/22cc1e3))
+* update Image component lazyloading logic to properly scope lazySizes.elements check + ensure lazySizes knows to check late loaded / dynamically injected images ([490ba17](https://github.com/boltdesignsystem/bolt/commit/490ba17))
+* update Nightwatch test selector + demo code to render the client-side image used for testing w/o a Shadow DOM ([163e0b9](https://github.com/boltdesignsystem/bolt/commit/163e0b9))
+
+
+
+
+
+# [2.10.0](https://github.com/boltdesignsystem/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* add missing publicConfig ([3a64e78](https://github.com/boltdesignsystem/bolt/commit/3a64e78))
+* dependency and tests ([433c105](https://github.com/boltdesignsystem/bolt/commit/433c105))
+* filter out `text` from chip schema ([897e0f7](https://github.com/boltdesignsystem/bolt/commit/897e0f7))
+* fix image.js typo ([535e5d0](https://github.com/boltdesignsystem/bolt/commit/535e5d0))
+* globally replace Brightcove Video IDs that no longer play correctly in IE 11 (even on the live boltdesignsystem.com site) with a more recent set of video ids that are confirmed to work as expected ([9b48d34](https://github.com/boltdesignsystem/bolt/commit/9b48d34))
+* inline@breakpoint alignment ([5ae3cfe](https://github.com/boltdesignsystem/bolt/commit/5ae3cfe))
+* lint js ([7414e0c](https://github.com/boltdesignsystem/bolt/commit/7414e0c))
+* mirror object fit props on the placeholder image ([d3e9bb6](https://github.com/boltdesignsystem/bolt/commit/d3e9bb6))
+* overflowing width ([5bd2389](https://github.com/boltdesignsystem/bolt/commit/5bd2389))
+* **micro-journeys:** tighten dialog icon spacing ([8c42eac](https://github.com/boltdesignsystem/bolt/commit/8c42eac))
+* don’t generate yarn / composer.lock files when auto-releasing ([b2a3862](https://github.com/boltdesignsystem/bolt/commit/b2a3862))
+* remove devDeps from package.json ([94ec805](https://github.com/boltdesignsystem/bolt/commit/94ec805))
+* rename spacing to size ([4a901c8](https://github.com/boltdesignsystem/bolt/commit/4a901c8))
+* revert image snapshot updates ([edf3bb1](https://github.com/boltdesignsystem/bolt/commit/edf3bb1))
+* revert Navbar image snapshots ([ece66f8](https://github.com/boltdesignsystem/bolt/commit/ece66f8))
+* test instructions ([d07145f](https://github.com/boltdesignsystem/bolt/commit/d07145f))
+* update Chip to use the new icon.json schema file ([4b8e206](https://github.com/boltdesignsystem/bolt/commit/4b8e206))
+* update composer.lock ([021ce36](https://github.com/boltdesignsystem/bolt/commit/021ce36))
+* update composer's Pattern Lab PHP core dependency to point to the forked bolt-design-system version with the lineages patch ([e70c903](https://github.com/boltdesignsystem/bolt/commit/e70c903))
+* update Github repo url in composer.json ([c16ea21](https://github.com/boltdesignsystem/bolt/commit/c16ea21))
+* update Jest tests ([75a8943](https://github.com/boltdesignsystem/bolt/commit/75a8943))
+* update JPG check to account for JPGs that have query strings ([d45e559](https://github.com/boltdesignsystem/bolt/commit/d45e559))
+* update srcset logic to handle lazy vs non-lazy images + srcset / src / placeholder fallbacks depending on the mode the component is getting loaded ([35a9c8f](https://github.com/boltdesignsystem/bolt/commit/35a9c8f))
+* **micro-journeys:** add support for line wrapping to nav ([e0bcb71](https://github.com/boltdesignsystem/bolt/commit/e0bcb71))
+* update tests ([0f9a166](https://github.com/boltdesignsystem/bolt/commit/0f9a166))
+* update Twig dependency tests to exclude @bolt/uikit-workshop ([020a014](https://github.com/boltdesignsystem/bolt/commit/020a014))
+* **micro-journeys:** dot-and-line nav squished on mobile with overlong text ([121e7f0](https://github.com/boltdesignsystem/bolt/commit/121e7f0))
+* updated tests ([7d8f3d1](https://github.com/boltdesignsystem/bolt/commit/7d8f3d1))
+
+
+### Features
+
+* add new videos to Brightcove test page for reference ([13f7b18](https://github.com/boltdesignsystem/bolt/commit/13f7b18))
+* cleanup, use validated vars instead of props directly ([c91ab29](https://github.com/boltdesignsystem/bolt/commit/c91ab29))
+* update resize handler to heavily debounce resizing to reduce the amount of overhead + opt out if a component hasn't yet lazyloaded ([86356e9](https://github.com/boltdesignsystem/bolt/commit/86356e9))
+* update video on accordion and tabs demo pages ([696e26b](https://github.com/boltdesignsystem/bolt/commit/696e26b))
+
+
+
+
+
 ## [2.9.2](https://github.com/boltdesignsystem/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
 
 
