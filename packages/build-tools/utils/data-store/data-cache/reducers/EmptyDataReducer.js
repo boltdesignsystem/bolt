@@ -1,9 +1,8 @@
 const Reducer = require('../Reducer');
 
 module.exports = class EmptyFileReducer extends Reducer {
-
   async reduce(currentData, data) {
-    if (!this.isNull(currentData)&& this.isNull(data)) {
+    if (!this.isNull(currentData) && this.isNull(data)) {
       return currentData;
     }
 
@@ -17,5 +16,4 @@ module.exports = class EmptyFileReducer extends Reducer {
   isNull(data) {
     return data.constructor.name === 'NullData';
   }
-
-}
+};

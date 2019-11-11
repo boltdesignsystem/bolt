@@ -1,5 +1,4 @@
 module.exports = class DataCache extends Map {
-
   constructor(merger) {
     super();
     this.merger = merger;
@@ -10,5 +9,4 @@ module.exports = class DataCache extends Map {
     Map.prototype.set.call(this, key, value);
     return value;
   }
-
-}
+};

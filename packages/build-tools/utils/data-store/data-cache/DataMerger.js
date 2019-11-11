@@ -2,7 +2,6 @@ const fs = require('fs');
 const { NullData } = require('./types');
 
 module.exports = class DataMerger {
-
   constructor(opts) {
     this.rules = opts.rules || {};
 
@@ -18,6 +17,8 @@ module.exports = class DataMerger {
     data = this._formatData(data);
 
     for (const rule of Object.values(this.rules)) {
+      /* Rules must be processed in sequence. */
+      /* eslint-disable no-await-in-loop */
       if (await this._matchRule(rule, key, currentData, data)) {
         data = await this._mapData(rule, key, currentData, data);
         currentData = await this._reduceData(rule, key, currentData, data);
@@ -32,16 +33,25 @@ module.exports = class DataMerger {
   }
 
   async _matchRule(rule, key, currentData, data) {
+    let isMatch = true;
+    const promises = [];
+
     for (const matcher of rule.match) {
-      if (!await matcher.match(key, currentData, data)) {
-        return false;
-      }
+      promises.push(matcher.match(key, currentData, data));
     }
 
-    return true;
+    (await Promise.all(promises)).forEach(result => {
+      if (!result) {
+        isMatch = false;
+      }
+    });
+
+    return isMatch;
   }
 
   async _mapData(rule, key, currentData, data) {
+    /* Mappers must be processed in sequence. */
+    /* eslint-disable no-await-in-loop */
     for (const mapper of rule.map) {
       if (await mapper.canMap(key, currentData, data)) {
         data = await mapper.map(data);
@@ -53,6 +63,8 @@ module.exports = class DataMerger {
   async _reduceData(rule, key, currentData, data) {
     let result = currentData;
 
+    /* Reducers must be processed in sequence. */
+    /* eslint-disable no-await-in-loop */
     for (const reducer of rule.reduce) {
       if (await reducer.canReduce(key, currentData, data)) {
         result = this._formatData(await reducer.reduce(result, data));
@@ -65,10 +77,8 @@ module.exports = class DataMerger {
   _formatData(data) {
     if (data === false || typeof data === 'undefined') {
       return new NullData();
-    }
-    else {
+    } else {
       return data;
     }
   }
-
-}
+};

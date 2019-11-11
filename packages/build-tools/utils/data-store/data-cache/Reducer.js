@@ -1,5 +1,4 @@
 module.exports = class Reducer {
-
   async canReduce(key, currentData, data) {
     return true;
   }
@@ -7,5 +6,4 @@ module.exports = class Reducer {
   async reduce(currentData, data) {
     return currentData;
   }
-
-}
+};

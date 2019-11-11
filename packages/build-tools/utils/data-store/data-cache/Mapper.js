@@ -1,5 +1,4 @@
 module.exports = class Mapper {
-
   async canMap(key, currentData, data) {
     return true;
   }
@@ -7,5 +6,4 @@ module.exports = class Mapper {
   async map(data) {
     return data;
   }
-
-}
+};

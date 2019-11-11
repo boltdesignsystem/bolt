@@ -1,5 +1,4 @@
 module.exports = class DataObject {
-
   constructor(value, previous) {
     this.value = value;
     this.previous = previous;
@@ -18,5 +17,4 @@ module.exports = class DataObject {
 
     return frames.reverse();
   }
-
-}
+};

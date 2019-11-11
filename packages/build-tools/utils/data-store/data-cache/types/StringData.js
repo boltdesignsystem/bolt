@@ -1,4 +1,3 @@
 const Data = require('../Data');
 
-module.exports = class StringData extends Data {
-}
+module.exports = class StringData extends Data {};

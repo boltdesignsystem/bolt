@@ -40,8 +40,7 @@ async function readFile(file, absPath) {
 
   if (isFile) {
     return await set(file, new TextFileData(absPath));
-  }
-  else {
+  } else {
     return await module.cache.get(file);
   }
 }
@@ -65,18 +64,21 @@ async function flush() {
 }
 
 async function initialize(opts) {
-  module.exports.dataDirs = opts.dataDirs = opts.dataDirs || defaults.dataDirs;
-  module.exports.basePath = opts.basePath = opts.basePath || defaults.basePath,
-  module.exports.exportPath = opts.exportPath = opts.exportPath || defaults.exportPath,
-  module.exports.merger = opts.merger = opts.merger || defaults.merger,
-  module.exports.cache = opts.cache = new DataCache(opts.merger);
+  opts.dataDirs = opts.dataDirs || defaults.dataDirs;
+  opts.basePath = opts.basePath || defaults.basePath;
+  opts.exportPath = opts.exportPath || defaults.exportPath;
+  opts.merger = opts.merger || defaults.merger;
+  opts.cache = new DataCache(opts.merger);
+  module.exports = Object.assign(module.exports, opts);
 
   for (let nextDataDir of opts.dataDirs) {
     nextDataDir = path.resolve(opts.basePath, nextDataDir);
 
+    /* Load directories in order specified. */
+    /* eslint-disable no-await-in-loop */
     await new Promise(resolve => {
       glob(`${nextDataDir}/**/*`, (er, files) => {
-        const filePromises = []; 
+        const filePromises = [];
 
         files.forEach(file => {
           file = file.replace(`${nextDataDir}/`, '');
@@ -86,7 +88,7 @@ async function initialize(opts) {
         Promise.all(filePromises).then(resolve);
       });
     });
-  };
+  }
 
   return module.exports;
 }

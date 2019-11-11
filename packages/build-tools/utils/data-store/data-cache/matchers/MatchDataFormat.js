@@ -1,7 +1,6 @@
 const Matcher = require('../Matcher');
 
 module.exports = class MatchDataFormat extends Matcher {
-
   constructor(format) {
     super();
     this.format = format;
@@ -10,5 +9,4 @@ module.exports = class MatchDataFormat extends Matcher {
   async match(key, currentData, data) {
     return !!data.getFrames(frame => frame.constructor.name === this.format);
   }
-
-}
+};
