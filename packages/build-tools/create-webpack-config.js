@@ -75,6 +75,7 @@ async function createWebpackConfig(buildConfig) {
     fallback: {
       filename: 'bolt-css-vars-fallback',
       jsonDataExport: 'theming-css-vars',
+      dataStore,
     },
   };
 

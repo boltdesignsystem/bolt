@@ -1,3 +1,4 @@
+const path = require('path');
 const postcss = require('postcss');
 const fs = require('fs-extra');
 const hexToRgba = require('hex-to-rgba');
@@ -102,6 +103,9 @@ function getColorPalette(invalidateCache = false) {
       BoltCache.set('palette', colorPaletteData);
 
       return JSON.parse(colorPaletteData);
+    } else if (options.fallback.dataStore) {
+      const key = path.basename(options.fallback.jsonPath);
+      return options.fallback.dataStore.get(key).value;
     } else {
       throw new Error(
         "The `@bolt/themify` PostCSS plugin for `@bolt/build-tools` can't find the auto-generated JSON file that contains the data for Bolt's global color palette. This is necessary in order to generate the CSS Custom Properties fallback for older browsers! \n; Is `@bolt/global` the first item in your `.boltrc` file's global components array?",
