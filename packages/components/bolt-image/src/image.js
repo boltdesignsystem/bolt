@@ -1,5 +1,4 @@
 import {
-  schema,
   customElement,
   BoltElement,
   html,
