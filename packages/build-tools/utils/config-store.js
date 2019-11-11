@@ -49,6 +49,7 @@ async function getDefaultConfig() {
     webpackStats: configSchema.properties.webpackStats.default,
     globalData: {},
     schemaErrorReporting: configSchema.properties.schemaErrorReporting.default,
+    partialBuilds: configSchema.properties.partialBuilds.default,
   };
 }
 

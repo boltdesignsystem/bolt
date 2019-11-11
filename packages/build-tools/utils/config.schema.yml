@@ -243,6 +243,15 @@
     configFileUsed:
       type: string
       description: The filepath to the `.boltrc` file used to load config. Programatically added to config.
+    partialBuilds:
+        type: array
+        default: []
+        items:
+          type: object
+          properties:
+            dataDir:
+              type: string
+              description: 'A data directory from a previous build to merge.'
 
   definitions:
     components:

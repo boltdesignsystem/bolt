@@ -15,6 +15,7 @@ const WriteFilePlugin = require('write-file-webpack-plugin');
 const npmSass = require('npm-sass');
 const merge = require('webpack-merge');
 const SassDocPlugin = require('@bolt/sassdoc-webpack-plugin');
+const dataStore = require('@bolt/build-utils/data-store');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackProgress } = require('@bolt/build-utils/webpack-helpers');
 const {
@@ -34,6 +35,16 @@ let webpackConfigs = [];
 async function createWebpackConfig(buildConfig) {
   const config = buildConfig;
   const fullBuildConfig = await getConfig();
+
+  // The data store will hold build data that will eventually be exported to the
+  // file system. Previous builds are passed in to be merged into the active
+  // data store.
+  await dataStore.initialize({
+    exportPath: config.dataDir,
+    dataDirs: config.partialBuilds.map(build => {
+      return build.dataDir;
+    }),
+  });
 
   // The publicPath config sets the client-side base path for all built / asynchronously loaded assets. By default the loader script will automatically figure out the relative path to load your components, but uses publicPath as a fallback. It's recommended to have it start with a `/`. Note: this ONLY sets the base path the browser requests -- it does not set where files are saved during build. To change where files are saved at build time, use the buildDir config.
   // Must start and end with `/`
