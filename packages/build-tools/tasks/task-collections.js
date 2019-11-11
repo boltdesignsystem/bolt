@@ -1,5 +1,6 @@
 const path = require('path');
 const log = require('@bolt/build-utils/log');
+const dataStore = require('@bolt/build-utils/data-store');
 const manifest = require('@bolt/build-utils/manifest');
 const timer = require('@bolt/build-utils/timer');
 const { getConfig } = require('@bolt/build-utils/config-store');
@@ -218,6 +219,8 @@ async function build(shouldReturnTime = false) {
       : '';
 
     await internalTasks.writeMetadata();
+
+    await dataStore.fs.flush();
 
     if (shouldReturnTime) {
       return startTime;
