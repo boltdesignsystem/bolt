@@ -163,7 +163,8 @@ class BoltImage extends BoltElement {
     window.addEventListener('optimizedResize', debounce(this.onResize, 300));
   }
 
-  firstUpdated() {
+  firstUpdated(changedProperties) {
+    super.firstUpdated && super.firstUpdated(changedProperties);
     // if image should lazyload
     if (!this.noLazy) {
       this.lazyImage =
