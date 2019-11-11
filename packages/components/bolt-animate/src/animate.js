@@ -190,7 +190,6 @@ class BoltAnimate extends withLitHtml() {
       composed: true,
       detail,
     });
-    console.debug(`event: ${eventName}`);
     this.dispatchEvent(myEvent);
   }
 
@@ -200,13 +199,14 @@ class BoltAnimate extends withLitHtml() {
     const isAnimIdle = this.props.idle === animationName;
     const isAnimOut = this.props.out === animationName;
 
+    const animatedEls = event.target.children;
     if (isAnimIn) {
-      this._emitEvent(EVENTS.END_IN);
+      this._emitEvent(EVENTS.END_IN, { animatedEls });
       this._triggerAnimIdle();
     } else if (isAnimIdle) {
       // don't care
     } else if (isAnimOut) {
-      this._emitEvent(EVENTS.END_OUT);
+      this._emitEvent(EVENTS.END_OUT, { animatedEls });
     } else {
       console.error('Unknown animation ended!', {
         event,
