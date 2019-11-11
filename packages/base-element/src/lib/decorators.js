@@ -92,27 +92,32 @@ export function conditionalShadowDom() {
       }
 
       // re-initialize components configured to opt in / out of Shadow DOM too late (after createRenderRoot has fired)
-      // solution loosely based on https://stackoverflow.com/a/57583697
       _disableShadowDom() {
-        const template = document.createElement('template');
-        template.appendChild(this.cloneNode(true));
-        if (!template.firstChild.hasAttribute('no-shadow')) {
-          template.firstChild.setAttribute('no-shadow');
+        this.useShadow = false;
+        this.renderRoot = this;
+
+        const skipRerenderingIfContainsThisMarkup = `
+          <!---->
+            <slot></slot>
+          <!---->
+        `;
+
+        const removeWhitespaceRegex = /(\r\n|\n|\r| )/gm;
+
+        if (
+          this.shadowRoot.innerHTML.replace(removeWhitespaceRegex, '') !==
+          skipRerenderingIfContainsThisMarkup.replace(removeWhitespaceRegex, '')
+        ) {
+          console.log('re-rendering to the light DOM...');
+          this.shadowRoot.innerHTML = '<slot>';
+          this.requestUpdate();
         }
-        this.insertAdjacentElement(
-          'beforebegin',
-          template.firstChild.cloneNode(true),
-        );
-        this.parentNode.removeChild(this);
       }
 
       connectedCallback() {
         super.connectedCallback && super.connectedCallback();
 
-        if (
-          (this.hasAttribute('no-shadow') || this.noShadow === true) &&
-          this.useShadow === true
-        ) {
+        if (this.noShadow && this.useShadow) {
           this._disableShadowDom();
         }
       }
@@ -120,10 +125,7 @@ export function conditionalShadowDom() {
       updated(changedProps) {
         super.updated && super.updated(changedProps);
 
-        if (
-          (this.hasAttribute('no-shadow') || this.useShadow === false) &&
-          this.shadowRoot
-        ) {
+        if (this.noShadow && this.useShadow) {
           this._disableShadowDom();
         }
       }

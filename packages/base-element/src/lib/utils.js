@@ -9,8 +9,7 @@ export function findParentTag(el, tag) {
 export function shouldUseShadowDom(elem) {
   if (
     elem.useShadow === false ||
-    elem.constructor.useShadow === false ||
-    elem.constructor.noShadow ||
+    elem.noShadow === true ||
     findParentTag(elem, 'FORM') ||
     elem.hasAttribute('no-shadow') === true
   ) {

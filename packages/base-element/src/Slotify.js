@@ -48,8 +48,14 @@ const Slotify = Base =>
     slotify(slot = 'default', defaultContent) {
       const slotContent = this.templateMap.get(slot);
 
-      // render slots when using Shadow DOM
-      if (this.shadowRoot && slotContent) {
+      // render actualy slots if Shadow DOM supported + getting used
+      // @todo: what's a better way to allow customizing the checks to perform?
+      if (
+        this.shadowRoot &&
+        (this.useShadow === undefined || this.useShadow === true) &&
+        (this.noShadow === undefined || this.useShadow === false) &&
+        slotContent
+      ) {
         const realSlot = document.createElement('slot');
         if (slot !== 'default') {
           realSlot.setAttribute('name', slot);
