@@ -6,9 +6,51 @@ import ReactHtmlParser from 'react-html-parser';
 import Mousetrap from 'mousetrap';
 import Autosuggest from 'react-autosuggest';
 import { bind } from './classnames';
+import { Component } from 'preact';
+import { shallowEqualObjects, shallowEqualArrays } from 'shallow-equal';
 
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
+
+// @todo: abstract this out and move into standalone / reusable wrapper component for using lit-based WCs in Preact without the diffing headaches!
+class AutosuggestFooter extends Component {
+  shouldComponentUpdate() {
+    return false; // don't re-render via diff:
+  }
+
+  // if the parent component's props change, only re-render if the template values themselves have changed
+  componentWillReceiveProps(nextProps) {
+    if (
+      !shallowEqualArrays(this.props.template.values, nextProps.template.values)
+    ) {
+      this.shouldRerender = true;
+      this.componentDidMount();
+    } else if (this.shouldRerender === true) {
+      this.shouldRerender = false;
+      this.componentDidMount();
+    } else {
+      this.shouldRerender === false;
+    }
+  }
+
+  componentDidMount() {
+    render(this.props.template, this.ref);
+  }
+
+  componentWillUnmount() {
+    // component is about to be removed from the DOM, perform any cleanup.
+  }
+
+  render() {
+    return (
+      <div
+        // eslint-disable-next-line no-return-assign
+        ref={c => (this.ref = c)}
+        className={this.props.className}
+      />
+    );
+  }
+}
 
 export const highlightSearchResults = function(item) {
   const resultItem = item;
@@ -146,6 +188,7 @@ class BoltAutosuggest extends withPreact() {
   // @ts-ignore
   constructor(self) {
     self = super(self);
+    self.results = [];
     // Autosuggest is a controlled component.
     // This means that you need to provide an input value
     // and an onChange handler that updates this value (see below).
@@ -157,6 +200,9 @@ class BoltAutosuggest extends withPreact() {
     };
 
     // self.onChange = self.onChange.bind(self);
+    self.renderSuggestionsContainer = self.renderSuggestionsContainer.bind(
+      self,
+    );
     self.toggleSearch = self.toggleSearch.bind(self);
     self.clearSearch = self.clearSearch.bind(self);
     self.closeSearch = self.closeSearch.bind(self);
@@ -243,7 +289,6 @@ class BoltAutosuggest extends withPreact() {
     document.activeElement.blur();
   }
 
-  // getSuggestionValue = suggestion => suggestion.label;
   getSuggestionValue = suggestion => {
     if (this.getParent._listeners['getSuggestionValue']) {
       return this.getParent._listeners['getSuggestionValue'][0](
@@ -251,9 +296,28 @@ class BoltAutosuggest extends withPreact() {
         suggestion,
       );
     } else {
-      return suggestion => suggestion.label;
+      return suggestion.label;
     }
   };
+
+  renderSuggestionsContainer({ containerProps, children, query }) {
+    return (
+      <div {...containerProps}>
+        {children}
+        {this.getParent.footerTemplate && (
+          <div class="c-bolt-typeahead__footer">
+            <AutosuggestFooter
+              template={this.getParent.footerTemplate(
+                this.state.value,
+                this.results,
+              )}
+              className="c-bolt-typeahead__footer-inner"
+            />
+          </div>
+        )}
+      </div>
+    );
+  }
 
   // highlights keywords in the search results in a react-friendly way + limits the total number of results displayed
   async getSuggestions(value) {
@@ -288,15 +352,15 @@ class BoltAutosuggest extends withPreact() {
       keys: this.keys,
     };
     const fuse = new Fuse(items, fuseOptions);
-    let results = fuse.search(value);
+    this.results = fuse.search(value);
 
-    results.forEach(resultItem => {
+    this.results.forEach(resultItem => {
       highlightSearchResults(resultItem);
     });
 
-    results = results.filter(result => result.score <= 0.9);
+    this.results = this.results.filter(result => result.score <= 0.9);
 
-    const reducedResults = results.reduce((total, result) => {
+    const reducedResults = this.results.reduce((total, result) => {
       total.push(result.item);
       return total;
     }, []);
@@ -426,8 +490,10 @@ class BoltAutosuggest extends withPreact() {
         {this.addStyles([styles])}
         <Autosuggest
           theme={theme}
+          shouldRenderSuggestions={this.shouldRenderSuggestions}
           suggestions={suggestions}
           inputProps={inputProps}
+          renderSuggestionsContainer={this.renderSuggestionsContainer}
           getSuggestionValue={this.getSuggestionValue}
           onSuggestionSelected={this.onSelected}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -437,6 +503,15 @@ class BoltAutosuggest extends withPreact() {
         />
       </div>
     );
+  }
+
+  shouldRenderSuggestions(value) {
+    if (value) {
+      if (typeof value === 'function') {
+        return value();
+      }
+      return value.trim();
+    }
   }
 
   rendered() {
