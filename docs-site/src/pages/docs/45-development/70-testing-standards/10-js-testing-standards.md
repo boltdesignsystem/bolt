@@ -74,16 +74,16 @@ test('Basic usage', async () => {
 });
 ```
 
-### How to create schema prop test
+### How to create string prop test
 
 ```javascript
-const { tag } = schema.properties;
+const { size } = schema.properties;
 
-tag.enum.forEach(async tagChoice => {
-  test(`Button tag: ${tagChoice}`, async () => {
+size.enum.forEach(async sizeChoice => {
+  test(`Button tag: ${sizeChoice}`, async () => {
     const results = await render('@bolt-components-button/button.twig', {
       text: 'This is a button',
-      tag: tagChoice,
+      size: sizeChoice,
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -97,7 +97,6 @@ tag.enum.forEach(async tagChoice => {
 test('Button with "disabled" adds attr to <a>', async () => {
   const results = await render('@bolt-components-button/button.twig', {
     text: 'This is a button',
-    url: 'http://pega.com',
     disabled: true,
   });
   expect(results.ok).toBe(true);
