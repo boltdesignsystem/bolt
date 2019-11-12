@@ -33,6 +33,12 @@
     justify-content: space-between;
     align-items: center;
 
+    // IE 11 collapses flexible width, but we need flex for alignment.
+    @include bolt-ie11-only {
+      width: 400px !important;
+      justify-content: flex-start;
+    }
+
     &--left,
     &--right {
       position: static;
@@ -41,6 +47,12 @@
 
     &--connection {
       flex: 1 1 auto;
+      height: 100%;
+      width: 100%;
     }
+  }
+
+  .c-bolt-character {
+
   }
 }
