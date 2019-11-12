@@ -81,7 +81,7 @@ bolt-button[type=\\"submit\\"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  outline: 0;
+  background: 0 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -109,6 +109,7 @@ bolt-button[type=\\"submit\\"] {
     0 1px 4px 1px rgba(6, 10, 36, 0.1),
     0 5px 10px 0 rgba(6, 10, 36, 0.08)
   );
+  outline: 0;
   will-change: box-shadow;
 }
 .js-fonts-loaded .c-bolt-button {
@@ -420,10 +421,7 @@ bolt-button[border-radius=\\"regular\\"] {
 bolt-button[border-radius=\\"full\\"] {
   border-radius: 50em;
 }
-.c-bolt-button__icon.is-empty {
-  display: none;
-}
-.c-bolt-button__icon:not(.is-empty) {
+.c-bolt-button__icon {
   display: -webkit-box;
   display: flex;
 }
@@ -433,16 +431,16 @@ bolt-button[border-radius=\\"full\\"] {
   text-align: left;
   text-align: start;
 }
-.c-bolt-button__icon:not(.is-empty) .c-bolt-button__icon-sizer {
+.c-bolt-button__icon-sizer {
   display: -webkit-box;
   display: flex;
 }
 .c-bolt-button:not(.c-bolt-button--icon-only)
-  .c-bolt-button__icon:not(.is-empty)
+  .c-bolt-button__icon
   + .c-bolt-button__item,
 .c-bolt-button:not(.c-bolt-button--icon-only)
   .c-bolt-button__item
-  + .c-bolt-button__icon:not(.is-empty) {
+  + .c-bolt-button__icon {
   margin-left: 0.25rem;
 }
 .c-bolt-button--center {
@@ -13634,17 +13632,17 @@ bolt-link {
     メイリオ, Meiryo, ＭＳ ゴシック, MS Gothic, HiraKakuProN-W3, TakaoExゴシック,
     TakaoExGothic, MotoyaLCedar, Droid Sans Japanese, sans-serif;
   font-family: var(--bolt-font-family-body);
-  display: inline;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  background: 0 0;
+  display: inline;
   opacity: 1;
   margin-left: -0.25rem;
   color: rgba(var(--bolt-theme-link), 1);
   text-decoration: underline;
   cursor: pointer;
   border: none;
-  background: 0 0;
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
 }
@@ -13772,7 +13770,7 @@ bolt-button[type=\\"submit\\"] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  outline: 0;
+  background: 0 0;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -13800,6 +13798,7 @@ bolt-button[type=\\"submit\\"] {
     0 1px 4px 1px rgba(6, 10, 36, 0.1),
     0 5px 10px 0 rgba(6, 10, 36, 0.08)
   );
+  outline: 0;
   will-change: box-shadow;
 }
 .js-fonts-loaded .c-bolt-button {
@@ -14108,10 +14107,7 @@ bolt-button[border-radius=\\"regular\\"] {
 bolt-button[border-radius=\\"full\\"] {
   border-radius: 50em;
 }
-.c-bolt-button__icon.is-empty {
-  display: none;
-}
-.c-bolt-button__icon:not(.is-empty) {
+.c-bolt-button__icon {
   display: -webkit-box;
   display: flex;
 }
@@ -14121,16 +14117,16 @@ bolt-button[border-radius=\\"full\\"] {
   text-align: left;
   text-align: start;
 }
-.c-bolt-button__icon:not(.is-empty) .c-bolt-button__icon-sizer {
+.c-bolt-button__icon-sizer {
   display: -webkit-box;
   display: flex;
 }
 .c-bolt-button:not(.c-bolt-button--icon-only)
-  .c-bolt-button__icon:not(.is-empty)
+  .c-bolt-button__icon
   + .c-bolt-button__item,
 .c-bolt-button:not(.c-bolt-button--icon-only)
   .c-bolt-button__item
-  + .c-bolt-button__icon:not(.is-empty) {
+  + .c-bolt-button__icon {
   margin-left: 0.25rem;
 }
 .c-bolt-button--center {
@@ -27283,17 +27279,17 @@ bolt-link {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-family: var(--bolt-font-family-body);
-  display: inline;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  background: 0 0;
+  display: inline;
   opacity: 1;
   margin-left: -0.25rem;
   color: rgba(var(--bolt-theme-link), 1);
   text-decoration: underline;
   cursor: pointer;
   border: none;
-  background: 0 0;
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
 }

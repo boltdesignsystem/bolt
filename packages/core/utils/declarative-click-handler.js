@@ -1,6 +1,6 @@
 export function declarativeClickHandler(element) {
-  const clickMethod = element.props.onClick;
-  const clickTarget = element.props.onClickTarget;
+  const clickMethod = element.onClick;
+  const clickTarget = element.onClickTarget;
 
   if (clickMethod) {
     if (clickTarget) {

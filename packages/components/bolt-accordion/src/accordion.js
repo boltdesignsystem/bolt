@@ -204,19 +204,21 @@ class BoltAccordion extends withContext(withLitHtml()) {
     // Array passed to the Accordion plugin, a series of trigger/content pairs
     this.accordionItems = [];
 
-    this.accordionItemElements.forEach(item => {
-      const onItemReady = e => {
-        if (e.detail.name !== 'bolt-accordion-item') return;
+    Promise.all(
+      this.accordionItemElements.map(item => {
+        if (item._wasInitiallyRendered || this._wasMutated) return;
+        return new Promise((resolve, reject) => {
+          item.addEventListener('ready', e => {
+            return item === e.target && resolve();
+          });
+          item.addEventListener('error', reject);
+        });
+      }),
+    ).then(() => {
+      this.accordionItemElements.forEach(item => {
         this.handleAccordionItemReady(item);
-        item.removeEventListener('rendered', onItemReady);
-      };
-
-      if (item._wasInitiallyRendered || this._wasMutated) {
-        this.handleAccordionItemReady(item);
-        this._wasMutated = false;
-      } else {
-        item.addEventListener('rendered', onItemReady);
-      }
+      });
+      this._wasMutated = false;
     });
   }
 

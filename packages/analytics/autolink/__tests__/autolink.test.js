@@ -122,7 +122,7 @@ describe('analytics autolinker', () => {
     await page.evaluate(() => {
       const btn = document.createElement('bolt-button');
       btn.textContent = 'External URL - Light DOM Test';
-      btn.useShadow = false;
+      btn.setAttribute('no-shadow', '');
       btn.setAttribute('url', 'https://www.google.com');
       document.body.appendChild(btn);
     });
