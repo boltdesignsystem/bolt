@@ -10,14 +10,6 @@ properties:
   items:
     type: array
     description: Generates an array of items, each can contain renderable content (i.e. a string, render array, or included pattern).
-    properties:
-      items:
-        type: array
-        description: Renderable content for a single list item.
-        properties:
-          content:
-            type: string
-            description: Use this prop for an iterable item such as an array.
   tag:
     type: string
     description: 'Apply the semantic tag for the list.'

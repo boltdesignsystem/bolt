@@ -1,9 +1,4 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-  equalizeRelativeHeights,
-} from '@bolt/core/utils';
+import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core';
 import classNames from 'classnames/bind';
 import {
@@ -12,6 +7,7 @@ import {
 } from '@bolt/micro-journeys/src/character';
 import { boltConnectionIs } from '@bolt/micro-journeys/src/connection';
 import { triggerAnims } from '@bolt/components-animate/utils';
+import { equalizeRelativeHeights } from './utils/equalize-relative-heights';
 import styles from './two-character-layout.scss';
 
 let cx = classNames.bind(styles);

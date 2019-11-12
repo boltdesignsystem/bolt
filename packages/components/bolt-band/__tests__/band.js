@@ -90,12 +90,13 @@ describe('<bolt-band> Component', () => {
       } only %}
     `);
 
-    const renderedBandHTML = await page.evaluate(html => {
+    const renderedBandHTML = await page.evaluate(async html => {
       const div = document.createElement('div');
       div.style.padding = '40px';
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
       const band = document.querySelector('bolt-band');
+      await band.firstUpdated;
       return band.outerHTML;
     }, template.html);
 
@@ -169,11 +170,12 @@ describe('<bolt-band> Component', () => {
       } only %}
     `);
 
-    const renderedBandHTML = await page.evaluate(html => {
+    const renderedBandHTML = await page.evaluate(async html => {
       const div = document.createElement('div');
       div.innerHTML = `${html}`;
       document.body.appendChild(div);
       const band = document.querySelector('bolt-band');
+      await band.firstUpdated;
       return band.outerHTML;
     }, template.html);
 
