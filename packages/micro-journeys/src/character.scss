@@ -19,8 +19,8 @@ bolt-svg-animations {
 
   // IE 11 collapses flexible width, but we need flex for alignment.
   @include bolt-ie11-only {
-    width: 300px;
     justify-content: flex-start;
+    width: 300px;
   }
 
   &.c-bolt-character__has-one-side-content {
@@ -42,24 +42,24 @@ bolt-svg-animations {
   &--small &__center--wrapper,
   &--small &__main-image--wrapper {
     width: 60px;
-    height: 60px;
     min-width: 60px;
+    height: 60px;
     min-height: 60px;
   }
 
   &--medium &__center--wrapper,
   &--medium  &__main-image--wrapper {
     width: 75px;
-    height: 75px;
     min-width: 75px;
+    height: 75px;
     min-height: 75px;
   }
 
   &--large &__center--wrapper,
   &--large &__main-image--wrapper {
     width: 120px;
-    height: 120px;
     min-width: 120px;
+    height: 120px;
     min-height: 120px;
   }
 
@@ -117,11 +117,11 @@ bolt-svg-animations {
 
     &--connection {
       position: absolute;
+      top: 50%;
       left: 50%;
+      transform: translate(0, -50%);
       z-index: 1;
       margin: auto 0;
-      top: 50%;
-      transform: translate(0, -50%);
 
       @include bolt-ie11-only {
         width: 250px;
@@ -145,20 +145,20 @@ bolt-svg-animations {
 
     &--top {
       flex: 1 0 100%;
-      text-align: center;
       min-width: 100%;
+      text-align: center;
     }
 
     &--bottom {
       flex: 1 0 100%;
-      text-align: center;
       min-width: 100%;
+      text-align: center;
     }
 
     &--left {
       flex: 0 0 33%;
-      text-align: right;
       min-width: 33%;
+      text-align: right;
     }
 
     &--right {
