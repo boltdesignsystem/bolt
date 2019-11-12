@@ -8,19 +8,26 @@ properties:
     type: object
     description: Media accepts either image, icon, video, or table.
     properties:
+      content:
+        type: any
+        description: Figure media content. Pass any renderable content, e.g image, icon, video, etc.
       image:
+        title: 'Deprecated'
         type: object
         description: A Bolt image object.
         ref: '@bolt-components-image/image.schema.yml'
       icon:
+        title: 'Deprecated'
         type: object
         description: A Bolt icon object.
         ref: '@bolt-components-icon/icon.schema.json'
       video:
+        title: 'Deprecated'
         type: object
         description: A Bolt video object.
         ref: '@bolt-components-video/video.schema.yml'
       table:
+        title: 'Deprecated'
         type: object
         description: A Bolt table object.
         ref: '@bolt-components-table/table.schema.yml'
