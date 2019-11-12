@@ -9,8 +9,6 @@ import schema from './typeahead.schema.yml';
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
 
-console.log(schema.properties);
-
 @define
 class BoltTypeahead extends withEvents(withLitHtml()) {
   static is = 'bolt-typeahead';

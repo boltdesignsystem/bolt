@@ -32,7 +32,7 @@ class BoltComponentDemo extends BoltElement {
         })}"
       >
         <bolt-list
-          class="u-bolt-padding-small-squished u-bolt-margin-bottom-none"
+          class="u-bolt-padding-small-squished u-bolt-padding-bottom-none u-bolt-margin-bottom-none"
           tag="ul"
           display="inline"
           spacing="none"
