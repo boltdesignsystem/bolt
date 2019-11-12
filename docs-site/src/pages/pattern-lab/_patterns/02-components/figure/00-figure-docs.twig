@@ -1,10 +1,13 @@
 {% set usage %}{% verbatim %}
+{% set image %}
+  {% include '@bolt-components-image/image.twig' with {
+    src: "/images/placeholders/500x500.jpg"
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-figure/figure.twig" with {
   media: {
-    image: {
-      src: "/images/placeholders/500x500.jpg",
-      lazyload: false
-    },
+    content: image
   },
   caption: "Figure caption."
 } only %}
