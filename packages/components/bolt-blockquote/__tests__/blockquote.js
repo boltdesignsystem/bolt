@@ -350,7 +350,7 @@ describe('<bolt-blockquote> component', () => {
 
   languages.forEach(async lang => {
     test(`<bolt-blockquote> with lang-specific quotes (${lang})`, async () => {
-      const defaultBlockquoteOuter = await page.evaluate(lang => {
+      await page.evaluate(lang => {
         const blockquote = document.createElement('bolt-blockquote');
         blockquote.setAttribute(
           'author-name',
@@ -363,17 +363,24 @@ describe('<bolt-blockquote> component', () => {
           <p>In fact, the greater danger is setting our aim too low and achieving our mark.</p>`;
         document.body.appendChild(blockquote);
         blockquote.updated();
-        return blockquote.outerHTML;
       }, lang);
 
-      const renderedHTML = await html(defaultBlockquoteOuter);
+      const blockquoteShadowRoot = await page.evaluate(async () => {
+        return document
+          .querySelector('bolt-blockquote')
+          .renderRoot.querySelector('.c-bolt-blockquote').outerHTML;
+      });
+
+      const renderedShadowRoot = await html(
+        `<div>${blockquoteShadowRoot}</div>`,
+      );
 
       await page.waitFor(500); // wait half a second before running VRTs
       const image = await page.screenshot();
 
       expect(image).toMatchImageSnapshot(vrtDefaultConfig);
 
-      expect(renderedHTML).toMatchSnapshot();
+      expect(renderedShadowRoot.innerHTML).toMatchSnapshot();
     });
   });
 });
