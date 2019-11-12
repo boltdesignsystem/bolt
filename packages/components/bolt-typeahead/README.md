@@ -29,19 +29,33 @@ npm install @bolt/components-typeahead
 
 ### JavaScript Properties/Attributes
 
-| Name                | Type                  | Description
-| ------------------- | --------------------- |------------
-| `items`             | `array`               | An array of objects that populates the dropdown
+| Name              | Type                | Description
+| ----------------- | ------------------- |------------
+| `items`           | `array`             | An array of objects that populates the dropdown
 
-
-<!-- ### Methods ()
-> Note: these aren't fully wired up for MVP so your milage will vary!
+### Methods ()
 | Name     | Description
 | -------- | -------------
-| `toggleSearch() => void`   | Toggle search open / closed
-| `openSearch() => void` | Forces the dropdown to open + focuses in on the search input
-| `closeSearch() => void` | Manually closes the Typeahead dropdown
-| `clearSearch() => void` | Clears any text entered into the search input. -->
+|`footerTemplate(query, suggestions)` | Render custom UI below the list of suggestions
+
+
+```
+// example
+import { html } from 'lit-html';
+
+const myTypeahead = document.querySelector('bolt-typeahead');
+
+myTypeahead.footerTemplate = function(query, suggestions) {
+  return html`
+    <bolt-link
+      target="_blank"
+      url="https://www.pega.com/search?q=${query}"
+    >
+      See All Results
+    </bolt-link>
+  `;
+};
+```
 
 
 ### JavaScript Event Hooks
@@ -55,7 +69,6 @@ npm install @bolt/components-typeahead
 | `onSuggestionsClearRequested`  |                        | Called when clearing suggestions. See [onSuggestionsClearRequested](https://github.com/moroshko/react-autosuggest#onsuggestionsclearrequested-required-unless-alwaysrendersuggestionstrue) for more info.
 | `onSelected`                   | `event`, <br> `suggestion` | Will be called every time suggestion is selected via mouse or keyboard. See [onSuggestionSelected](https://github.com/moroshko/react-autosuggest#onsuggestionsfetchrequested-required) for more info.
 | `onRenderInput`                | `value`                  | Fired when the input is being rendered
-
 
 ## Additional references
 - [React Autosuggest](http://react-autosuggest.js.org/)
