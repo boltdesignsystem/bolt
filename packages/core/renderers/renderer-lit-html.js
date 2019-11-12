@@ -7,7 +7,6 @@ import {
   shadow,
   props,
   hasNativeShadowDomSupport,
-  findParentTag,
 } from '../utils';
 import { BoltBase } from './bolt-base';
 

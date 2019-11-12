@@ -10,29 +10,45 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 .c-bolt-status-dialogue-bar {
   display: flex;
   align-items: center;
-  max-width: 120px;
-  padding: bolt-spacing(xsmall) bolt-spacing(xsmall);
-  color: bolt-color(black);
-  border-radius: $bolt-border-radius;
-  background-color: bolt-color(white);
-  @include bolt-shadow('level-20', true);
 
-  @include bolt-mq(small) {
-    max-width: 300px;
-  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    padding: bolt-spacing(xsmall) bolt-spacing(xsmall);
+    color: bolt-color(black);
+    border-radius: $bolt-border-radius;
+    background-color: bolt-color(white);
+    @include bolt-shadow('level-20', true);
 
-  &--alert {
-    color: bolt-color(white);
-    background-color: bolt-color(orange);
-    slot[name="text"] {
-      color: bolt-color(white);
-      --foobar: 20px;
+    @include bolt-mq(xsmall) {
+      flex-direction: row;
+      align-items: center;
+      max-width: 125px;
+    }
+
+    @include bolt-mq(small) {
+      align-items: center;
     }
   }
 
-  &__icon{
+  &--alert &__content {
+    color: bolt-color(white);
+    background-color: bolt-color(orange);
+
+    slot[name="text"] {
+      color: bolt-color(white);
+    }
+  }
+
+  &__icon {
     @include bolt-padding-right(xsmall);
     box-sizing: content-box;
+    margin-bottom: .25rem;
+
+    @include bolt-mq(small) {
+      margin-bottom: 0;
+    }
   }
 
   &__slot {
@@ -45,105 +61,87 @@ $bolt-tooltip-bubble-triangle-width: 8px;
     }
   }
 
-  // Styling for the dialogue arrow
-  &:after,
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 0;
-    height: 0;
+  $mobilePadding: bolt-spacing(xxxsmall);
+  $desktopPadding: bolt-spacing(xxsmall);
+
+  &:not(.c-bolt-status-dialogue-bar--has-arrow) {
+    margin: $mobilePadding;
+
+    @include bolt-mq(xsmall) {
+      margin: $desktopPadding;
+    }
+  }
+
+  &--arrow {
+    position: relative;
+    z-index: 1;
+    color: white;
+    line-height: 1;
     pointer-events: none;
-  }
+    font-size: 16px;
 
-  &--include-down-arrow {
-    &:after,
-    &:before {
-      left: 50%;
-      transform: translate(-50%, 100%);
-      border-top: $bolt-tooltip-bubble-triangle-width solid;
-      border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-      border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-      border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-    }
-
-    &:before {
-      top: auto;
-      bottom: 0;
-      border-top-color: $bolt-tooltip-bubble-border-color;
-    }
-
-    &:after {
-      top: auto;
-      bottom: 1px;
-      border-top-color: white;
+    &.c-bolt-status-dialogue-bar--alert {
+      color: bolt-color(orange);
     }
   }
 
-  &--include-up-arrow {
-    &:after,
-    &:before {
-      left: 50%;
-      transform: translate(-50%, -100%);
-      border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
-      border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-      border-bottom: $bolt-tooltip-bubble-triangle-width solid;
-      border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-    }
+  &--arrow--down,
+  &--arrow--up {
+    flex-direction: column;
+  }
 
-    &:before {
-      top: 0;
-      bottom: auto;
-      border-bottom-color: $bolt-tooltip-bubble-border-color;
-    }
+  &--arrow--down &--arrow,
+  &--arrow--up &--arrow {
+    // Arrows are not the correct proportions, so scale.
+    transform: scaleX(1.75);
+  }
 
-    &:after {
-      top: 1px;
-      bottom: auto;
-      border-bottom-color: white;
+  &--arrow--left &--arrow,
+  &--arrow--right &--arrow {
+    // translateY is half of scale offset (.25).
+    transform: translateY(-12.5%) scaleY(1.25);
+  }
+
+  &--arrow--up &--arrow {
+    top: .5px;
+    padding-top: $mobilePadding;
+    // @TODO replace with text-shadow mixin like bolt-shadow
+    text-shadow: 0 -3px 3px rgba(6, 10, 36, 0.18);
+
+    @include bolt-mq(xsmall) {
+      padding-top: $desktopPadding;
     }
   }
 
-  &--include-left-arrow {
-    &:after,
-    &:before {
-      transform: translate(-100%, 0%);
-      border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
-      border-right: $bolt-tooltip-bubble-triangle-width solid;
-      border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-      border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
-    }
+  &--arrow--right &--arrow {
+    order: 2;
+    right: 2.5px;
+    padding-right: $mobilePadding;
+    text-shadow: 3px 0 3px rgba(6, 10, 36, 0.18);
 
-    &:before {
-      left: 0;
-      border-right-color: $bolt-tooltip-bubble-border-color;
-    }
-
-    &:after {
-      left: 1px;
-      border-right-color: white;
+    @include bolt-mq(xsmall) {
+      padding-right: $desktopPadding;
     }
   }
 
-  &--include-right-arrow {
-    &:after,
-    &:before {
-      transform: translate(100%, 0%);
-      border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
-      border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
-      border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
-      border-left: $bolt-tooltip-bubble-triangle-width solid;
-    }
+  &--arrow--down &--arrow {
+    order: 2;
+    bottom: 7.5px;
+    padding-bottom: $mobilePadding;
+    text-shadow: 0 3px 3px rgba(6, 10, 36, 0.18);
 
-    &:before {
-      right: 0;
-      border-left-color: $bolt-tooltip-bubble-border-color;
+    @include bolt-mq(xsmall) {
+      padding-bottom: $desktopPadding;
     }
+  }
 
-    &:after {
-      right: 1px;
-      border-left-color: white;
+  &--arrow--left &--arrow {
+    left: 4.5px;
+    padding-left: $mobilePadding;
+    text-shadow: -3px 0 3px rgba(6, 10, 36, 0.18);
+
+    @include bolt-mq(xsmall) {
+      padding-left: $desktopPadding;
     }
   }
 }
-

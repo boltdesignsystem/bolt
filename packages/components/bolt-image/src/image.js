@@ -11,40 +11,11 @@ import schema from '../image.schema.yml';
 
 import { lazySizes } from './_image-lazy-sizes';
 
+import '@bolt/core/utils/optimized-resize';
+
 let cx = classNames.bind(imageStyles);
 
 let passiveIfSupported = false;
-
-(function() {
-  var throttle = function(type, name, obj_) {
-    var obj = obj_ || window;
-    var running = false;
-    var func = function() {
-      if (running) {
-        return;
-      }
-      running = true;
-      requestAnimationFrame(function() {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    };
-    obj.addEventListener(type, func);
-  };
-
-  /* init - you can init any event */
-  throttle('resize', 'optimizedResize');
-})();
-
-const debounce = (func, delay) => {
-  let inDebounce;
-  return function() {
-    const context = this;
-    const args = arguments;
-    clearTimeout(inDebounce);
-    inDebounce = setTimeout(() => func.apply(context, args), delay);
-  };
-};
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
 try {
@@ -96,7 +67,7 @@ class BoltImage extends withLitHtml() {
 
   disconnecting() {
     super.disconnecting && super.disconnecting();
-    window.removeEventListener('optimizedResize', this.onResize);
+    window.removeEventListener('debouncedResize', this.onResize);
   }
 
   connecting() {
@@ -146,7 +117,7 @@ class BoltImage extends withLitHtml() {
     });
 
     this.lazyImage.removeEventListener('lazyloaded', this.onLazyLoaded);
-    window.addEventListener('optimizedResize', debounce(this.onResize, 300));
+    window.addEventListener('debouncedResize', this.onResize);
   }
 
   rendered() {
@@ -182,11 +153,8 @@ class BoltImage extends withLitHtml() {
           }
         }
       } else if (noLazy) {
-        // decounce setting the sizes prop
-        window.addEventListener(
-          'optimizedResize',
-          debounce(this.onResize, 300),
-        );
+        // debounce setting the `sizes` prop
+        window.addEventListener('debouncedResize', this.onResize);
       }
     }
   }

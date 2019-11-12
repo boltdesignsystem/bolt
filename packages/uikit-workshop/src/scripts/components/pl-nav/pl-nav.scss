@@ -13,12 +13,10 @@ pl-nav {
     display: flex; // vertically align children
   }
 
-  @media all and (min-width: $pl-bp-med) {
-    .pl-c-body--theme-sidebar & {
-      display: block;
-      max-height: 100%;
-      overflow-y: scroll;
-    }
+  .pl-c-body--theme-sidebar & {
+    display: block;
+    max-height: 100%;
+    overflow-y: scroll;
   }
 }
 
@@ -37,15 +35,50 @@ pl-nav {
   display: flex;
   flex-direction: column;
   transition: max-height $pl-animate-quick ease-out;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  visibility: hidden;
+  transition: transform 0.2s ease-out, opacity 0 0.2s ease-out;
 
-  @media all and (min-width: $pl-bp-med) {
-    .pl-c-body--theme-sidebar & {
-      padding-bottom: 0.5rem;
-      display: block;
-      display: flex;
-      overflow: hidden;
+  &.pl-is-active {
+    visibility: visible;
+  }
+
+  .pl-c-body--theme-sidebar & {
+    display: block;
+    display: flex;
+    overflow: hidden;
+    visibility: visible;
+    flex-shrink: 0;
+
+    @media all and (min-height: 500px) {
       flex-shrink: 1;
+    }
+
+    @media all and (max-width: $pl-bp-med) {
+      height: 100vh;
+      max-width: 240px;
+
+      max-height: 100vh;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      transform: translateX(-100%);
+      transition: all 0.3s ease;
+      opacity: 0;
+      box-shadow: 0 3px 6px rgba(21,22,25,.16), 0 3px 6px rgba(21,22,25,.23);
+      visibility: visible;
+
+      &.pl-is-active {
+        transform: translateX(0);
+        opacity: 1;
+        transition: transform 0.2s ease-out;
+      }
+    }
+  }
+
+  @media all and (max-width: $pl-bp-med) {
+    &.pl-is-active {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
     }
   }
 
@@ -53,6 +86,7 @@ pl-nav {
   @media all and (min-width: $pl-bp-med) {
     overflow: visible;
     max-height: none;
+    visibility: visible;
 
     &.pl-is-active {
       overflow: visible;
@@ -141,8 +175,8 @@ pl-nav {
  */
 .pl-c-nav__link {
   @include linkStyle;
+  outline: 0;
   color: inherit;
-  line-height: 1.5;
   display: flex;
   align-items: center;
   margin: 0; // remove default button margin in Safari
@@ -194,13 +228,11 @@ pl-nav {
 .pl-c-nav__link--sublink {
   text-transform: none;
   font-size: 0.78rem;
-  line-height: 1;
   padding-left: $pl-space + ($pl-space / 2);
   padding-right: $pl-space + ($pl-space / 2);
 
   &.pl-is-active {
     box-shadow: inset 4px 0 0 #6c79d9;
-    font-weight: bold;
     pointer-events: none;
   }
 }
@@ -234,6 +266,7 @@ pl-nav {
   transform: rotate(-90deg);
   flex-grow: 0;
   line-height: 0;
+  font-size: 1.3rem; // temp solution till new pl-button used in Navigation
 }
 
 .pl-c-nav__link--overview-wrapper.pl-is-active > .pl-c-nav__link--section-dropdown > .pl-c-nav__link-icon,
@@ -409,7 +442,6 @@ pl-nav {
 
 .pl-c-nav__link--overview.pl-c-nav__link--overview.pl-c-nav__link--overview {
   font-size: 0.85rem;
-  line-height: 1;
   padding-right: 0.5rem;
   padding-left: 1.5rem;
   position: relative;
@@ -421,28 +453,17 @@ pl-nav {
 }
 
 .pl-c-nav__link--title {
-  font-size: 0.85rem;
-  line-height: 1;
+  font-size: 0.8rem;
   color: $pl-color-gray-20;
   color: var(--theme-text, $pl-color-gray-20);
 
-  &.pl-is-active {
-    font-weight: 700;
+  > .pl-c-nav__link-icon {
+    font-size: inherit;
   }
 
   .pl-c-body--theme-light & {
     color: $pl-color-black;
     color: var(--theme-text);
-  }
-}
-
-.pl-c-nav__list > .pl-c-nav__item:not(:last-child) {
-  @media all and (min-width: $pl-bp-med) {
-    .pl-c-body--theme-sidebar & {
-      margin-bottom: 0.5rem;
-      margin-top: 0.5rem;
-
-    }
   }
 }
 
@@ -496,6 +517,11 @@ pl-nav {
     &:focus:after {
       opacity: 0.1;
     }
+  }
+
+  &:focus {
+    outline-offset: -1px;
+    outline: 1px dotted;
   }
 
   &:active:not(:hover):after,

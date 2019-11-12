@@ -6,9 +6,10 @@ import schema from './connection.schema';
 
 let cx = classNames.bind(styles);
 
+const boltConnectionIs = 'bolt-connection';
 @define
 class BoltConnection extends withLitContext() {
-  static is = 'bolt-connection';
+  static is = boltConnectionIs;
 
   static props = {
     noShadow: {
@@ -26,6 +27,18 @@ class BoltConnection extends withLitContext() {
 
   static get observedContexts() {
     return ['theme'];
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent(`${BoltConnection.is}:connected`, {
+          bubbles: true,
+        }),
+      );
+    }, 0);
   }
 
   contextChangedCallback(name, oldValue, value) {
@@ -49,7 +62,7 @@ class BoltConnection extends withLitContext() {
           speed="${props.speed}"
           anim-type="${props.animType}"
           direction="${props.direction}"
-          .theme=${this.context.theme}
+          theme=${this.context.theme}
         />
         ${this.slots.bottom &&
           html`
@@ -62,4 +75,4 @@ class BoltConnection extends withLitContext() {
   }
 }
 
-export { BoltConnection };
+export { BoltConnection, boltConnectionIs };
