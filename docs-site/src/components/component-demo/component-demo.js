@@ -31,101 +31,100 @@ class BoltComponentDemo extends BoltElement {
           position: 'relative',
         })}"
       >
-        <div class="u-bolt-padding-medium u-bolt-padding-top-large">
+        <bolt-list
+          class="u-bolt-padding-small-squished u-bolt-margin-bottom-none"
+          tag="ul"
+          display="inline"
+          spacing="none"
+          separator="none"
+          align="end"
+          valign="center"
+          inset
+        >
+          <bolt-list-item class="u-bolt-margin-left-small">
+            <input
+              type="radio"
+              id="theme-none"
+              name="radio-theme-picker"
+              @click=${() => this.switchTheme('')}
+              class="c-bolt-input c-bolt-input--radio is-filled"
+              checked
+            />
+
+            <label
+              for="theme-none"
+              class="c-bolt-inline-label c-bolt-inline-label--radio"
+              >none</label
+            >
+          </bolt-list-item>
+
+          <bolt-list-item class="u-bolt-margin-left-small">
+            <input
+              type="radio"
+              id="theme-xlight"
+              name="radio-theme-picker"
+              @click=${() => this.switchTheme('xlight')}
+              class="c-bolt-input c-bolt-input--radio"
+            />
+
+            <label
+              for="theme-xlight"
+              class="c-bolt-inline-label c-bolt-inline-label--radio"
+              >xlight</label
+            >
+          </bolt-list-item>
+
+          <bolt-list-item class="u-bolt-margin-left-small">
+            <input
+              type="radio"
+              id="theme-light"
+              name="radio-theme-picker"
+              @click=${() => this.switchTheme('light')}
+              class="c-bolt-input c-bolt-input--radio is-filled"
+            />
+
+            <label
+              for="theme-light"
+              class="c-bolt-inline-label c-bolt-inline-label--radio"
+              >light</label
+            >
+          </bolt-list-item>
+
+          <bolt-list-item class="u-bolt-margin-left-small">
+            <input
+              type="radio"
+              id="theme-dark"
+              name="radio-theme-picker"
+              @click=${() => this.switchTheme('dark')}
+              class="c-bolt-input c-bolt-input--radio is-filled"
+            />
+
+            <label
+              for="theme-dark"
+              class="c-bolt-inline-label c-bolt-inline-label--radio"
+              >dark</label
+            >
+          </bolt-list-item>
+
+          <bolt-list-item class="u-bolt-margin-left-small">
+            <input
+              type="radio"
+              id="theme-xdark"
+              name="radio-theme-picker"
+              @click=${() => this.switchTheme('xdark')}
+              class="c-bolt-input c-bolt-input--radio is-filled"
+            />
+
+            <label
+              for="theme-xdark"
+              class="c-bolt-inline-label c-bolt-inline-label--radio"
+              >xdark</label
+            >
+          </bolt-list-item>
+        </bolt-list>
+
+        <div class="u-bolt-padding-small-squished">
           ${this.slotify('default')}
-        </div>
-
-        <div style="position: absolute; top: 0; right: 0.5rem">
-          <bolt-list
-            class="u-bolt-padding-small-squished"
-            tag="ul"
-            display="inline"
-            spacing="none"
-            separator="none"
-            align="start"
-            valign="center"
-          >
-            <bolt-list-item class="u-bolt-margin-left-small">
-              <input
-                type="radio"
-                id="theme-none"
-                name="radio-theme-picker"
-                @click=${() => this.switchTheme('')}
-                class="c-bolt-input c-bolt-input--radio is-filled"
-                checked
-              />
-
-              <label
-                for="theme-none"
-                class="c-bolt-inline-label c-bolt-inline-label--radio"
-                >none</label
-              >
-            </bolt-list-item>
-
-            <bolt-list-item class="u-bolt-margin-left-small">
-              <input
-                type="radio"
-                id="theme-xlight"
-                name="radio-theme-picker"
-                @click=${() => this.switchTheme('xlight')}
-                class="c-bolt-input c-bolt-input--radio"
-              />
-
-              <label
-                for="theme-xlight"
-                class="c-bolt-inline-label c-bolt-inline-label--radio"
-                >xlight</label
-              >
-            </bolt-list-item>
-
-            <bolt-list-item class="u-bolt-margin-left-small">
-              <input
-                type="radio"
-                id="theme-light"
-                name="radio-theme-picker"
-                @click=${() => this.switchTheme('light')}
-                class="c-bolt-input c-bolt-input--radio is-filled"
-              />
-
-              <label
-                for="theme-light"
-                class="c-bolt-inline-label c-bolt-inline-label--radio"
-                >light</label
-              >
-            </bolt-list-item>
-
-            <bolt-list-item class="u-bolt-margin-left-small">
-              <input
-                type="radio"
-                id="theme-dark"
-                name="radio-theme-picker"
-                @click=${() => this.switchTheme('dark')}
-                class="c-bolt-input c-bolt-input--radio is-filled"
-              />
-
-              <label
-                for="theme-dark"
-                class="c-bolt-inline-label c-bolt-inline-label--radio"
-                >dark</label
-              >
-            </bolt-list-item>
-
-            <bolt-list-item class="u-bolt-margin-left-small">
-              <input
-                type="radio"
-                id="theme-xdark"
-                name="radio-theme-picker"
-                @click=${() => this.switchTheme('xdark')}
-                class="c-bolt-input c-bolt-input--radio is-filled"
-              />
-
-              <label
-                for="theme-xdark"
-                class="c-bolt-inline-label c-bolt-inline-label--radio"
-                >xdark</label
-              >
-            </bolt-list-item>
-          </bolt-list>
         </div>
       </div>
     `;
