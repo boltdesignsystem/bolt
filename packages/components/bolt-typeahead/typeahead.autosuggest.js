@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { define, props } from 'skatejs';
 import { h, withPreact } from '@bolt/core/renderers';
+import { render } from '@bolt/core/renderers/renderer-lit-html';
 import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
 import Mousetrap from 'mousetrap';
@@ -8,7 +9,6 @@ import Autosuggest from 'react-autosuggest';
 import { Component } from 'preact';
 import { shallowEqualArrays } from 'shallow-equal';
 import { bind } from './classnames';
-
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
 
