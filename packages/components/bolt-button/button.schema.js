@@ -1,3 +1,18 @@
+const iconSchema = require('@bolt/components-icon/icon.schema.json');
+let buttonIconSchema = { ...iconSchema };
+
+buttonIconSchema.properties = {
+  position: {
+    type: 'string',
+    default: 'after',
+    enum: ['before', 'after'],
+  },
+  ...iconSchema.properties,
+};
+
+buttonIconSchema.description =
+  'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the button.';
+
 module.exports = {
   $schema: 'http://json-schema.org/draft-04/schema#',
   title: 'Bolt Button',
@@ -66,19 +81,7 @@ module.exports = {
       enum: ['start', 'center', 'end'],
       default: 'center',
     },
-    icon: {
-      type: 'object',
-      description:
-        'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the button.',
-      ref: '@bolt-components-icon/icon.schema.json',
-      properties: {
-        position: {
-          type: 'string',
-          default: 'after',
-          enum: ['before', 'after'],
-        },
-      },
-    },
+    icon: buttonIconSchema,
     iconOnly: {
       type: 'boolean',
       description:
