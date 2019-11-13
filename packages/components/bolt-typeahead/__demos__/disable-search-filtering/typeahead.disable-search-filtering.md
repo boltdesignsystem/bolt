@@ -1,4 +1,4 @@
-## Demo: Disable Filtering Search Results {id=disable-search-filtering}
+## Demo: Disable Filtering Search Results {id=disable-search-filtering-sorting}
 
 In this example, we manually disable the Typeahead component's default internal filtering of results and instead return back exactly the data from the server.
 

@@ -1,6 +1,4 @@
 // NOTE: make sure you're running this code through a tool like Babel before shipping for cross browser compatibility!
-import { html } from 'lit-html';
-
 const dynamicTypeaheadDemo = document.querySelector(
   '.js-typeahead-hook--dynamically-fetch-data',
 );
@@ -21,16 +19,6 @@ if (dynamicTypeaheadDemo) {
         });
       });
 
-      dynamicTypeaheadDemo.footerTemplate = function(query, suggestions) {
-        return html`
-          <bolt-link
-            target="_blank"
-            url="https://www.pega.com/search?q=${query}"
-          >
-            See All Results
-          </bolt-link>
-        `;
-      };
 
       dynamicTypeaheadDemo.on('onSelected', (element, event, suggestion) => {
         const exactMatch = element.items.filter(
