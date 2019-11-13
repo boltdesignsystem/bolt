@@ -4,6 +4,8 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import gumshoe from 'gumshoejs';
 import isVisible from 'is-visible';
 
+import '@bolt/core/utils/optimized-resize';
+
 // const indicatorElement = '.js-bolt-nav-indicator';
 const navLinkElement = 'bolt-navlink'; // Custom element
 const isActiveClass = 'is-active';
@@ -303,7 +305,7 @@ class BoltNavIndicator extends withLitHtml() {
     super.connecting && super.connecting();
 
     this.addEventListener('navlink:active', this._onActivateLink);
-    window.addEventListener('optimizedResize', this._onWindowResize);
+    window.addEventListener('throttledResize', this._onWindowResize);
     this.addEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
 
     Promise.all([
@@ -357,35 +359,9 @@ class BoltNavIndicator extends withLitHtml() {
     super.disconnecting && super.disconnecting();
 
     this.removeEventListener('navlink:active', this._onActivateLink);
-    window.removeEventListener('optimizedResize', this._onWindowResize);
+    window.removeEventListener('throttledResize', this._onWindowResize);
     this.removeEventListener(whichTransitionEndEvent(), this._onTransitionEnd);
   }
 }
-
-// Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
-// won't fire before a previous event is complete.
-// This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-(function() {
-  function throttle(type, name, obj) {
-    obj = obj || window;
-    let running = false;
-
-    function func() {
-      if (running) {
-        return;
-      }
-      running = true;
-      requestAnimationFrame(function() {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    }
-    obj.addEventListener(type, func);
-  }
-
-  // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-  // such as scroll.
-  throttle('resize', 'optimizedResize');
-})();
 
 export { BoltNavIndicator };

@@ -67,9 +67,13 @@ class BoltCharacter extends withLitHtml() {
   render() {
     const props = this.validateProps(this.props);
     const hasSideContent = !!this.slots['left'] || !!this.slots['right'];
+    const hasBothSideContent = !!this.slots['left'] && !!this.slots['right'];
     const classes = cx(rootClass, `${rootClass}--${props.size}`, {
       [`${rootClass}__has-background`]: !!this.slots['background'],
       [`${rootClass}__has-side-content`]: hasSideContent,
+      [`${rootClass}__has-both-side-content`]: hasBothSideContent,
+      [`${rootClass}__has-one-side-content`]:
+        hasSideContent && !hasBothSideContent,
     });
 
     const image =
@@ -82,33 +86,39 @@ class BoltCharacter extends withLitHtml() {
       <div class="${classes}">
         ${this.slots['top'] &&
           html`
-            <span
+            <div
               class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--top"
             >
-              ${this.slot('top')}
-            </span>
+              <div class="c-bolt-micro-journeys-flex-aspect">
+                ${this.slot('top')}
+              </div>
+            </div>
           `}
         ${hasSideContent
           ? html`
-              <span
+              <div
                 class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--left"
               >
-                ${this.slot('left')}
-              </span>
+                <div class="c-bolt-micro-journeys-flex-aspect">
+                  ${this.slot('left')}
+                </div>
+              </div>
             `
           : ''}
         <div class="${rootClass}__center--wrapper">
           <div class="${centerClass}">
             ${props.useIcon
               ? html`
-                  <span
+                  <div
                     class="${rootClass}__slot ${rootClass}__slot--icon--wrapper"
                   >
                     <bolt-icon class="${rootClass}__slot--icon"></bolt-icon>
-                  </span>
+                  </div>
                 `
               : html`
-                  <div class="${rootClass}__main-image--ie-flex-aspect-wrapper">
+                  <div
+                    class="${rootClass}__main-image--wrapper c-bolt-micro-journeys-flex-aspect"
+                  >
                     <img
                       class="${rootClass}__main-image"
                       src="${image}"
@@ -118,34 +128,38 @@ class BoltCharacter extends withLitHtml() {
                 `}
             ${this.slots['background'] &&
               html`
-                <span class="${rootClass}__background">
+                <div class="${rootClass}__background">
                   ${this.slot('background')}
-                </span>
+                </div>
               `}
             ${this.slots['connection'] &&
               html`
-                <span class="${rootClass}__slot ${connectionClass}">
+                <div class="${rootClass}__slot ${connectionClass}">
                   ${this.slot('connection')}
-                </span>
+                </div>
               `}
           </div>
         </div>
         ${hasSideContent
           ? html`
-              <span
+              <div
                 class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--right"
               >
-                ${this.slot('right')}
-              </span>
+                <div class="c-bolt-micro-journeys-flex-aspect">
+                  ${this.slot('right')}
+                </div>
+              </div>
             `
           : ''}
         ${this.slots['bottom'] &&
           html`
-            <span
+            <div
               class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--bottom"
             >
-              ${this.slot('bottom')}
-            </span>
+              <div class="c-bolt-micro-journeys-flex-aspect">
+                ${this.slot('bottom')}
+              </div>
+            </div>
           `}
       </div>
     `;

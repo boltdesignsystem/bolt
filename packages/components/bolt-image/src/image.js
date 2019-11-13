@@ -8,42 +8,11 @@ import {
 import classNames from 'classnames/dedupe';
 import imageStyles from './image.scss';
 import { lazySizes } from './_image-lazy-sizes';
-let cx = classNames.bind(imageStyles);
-
 import schemaFile from '../image.schema.yml';
+import '@bolt/core/utils/optimized-resize';
 
+let cx = classNames.bind(imageStyles);
 let passiveIfSupported = false;
-
-(function() {
-  var throttle = function(type, name, obj_) {
-    var obj = obj_ || window;
-    var running = false;
-    var func = function() {
-      if (running) {
-        return;
-      }
-      running = true;
-      requestAnimationFrame(function() {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    };
-    obj.addEventListener(type, func);
-  };
-
-  /* init - you can init any event */
-  throttle('resize', 'optimizedResize');
-})();
-
-const debounce = (func, delay) => {
-  let inDebounce;
-  return function() {
-    const context = this;
-    const args = arguments;
-    clearTimeout(inDebounce);
-    inDebounce = setTimeout(() => func.apply(context, args), delay);
-  };
-};
 
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
 try {
@@ -109,7 +78,7 @@ class BoltImage extends BoltElement {
 
   disconnectedCallback() {
     super.disconnectedCallback && super.disconnectedCallback();
-    window.removeEventListener('optimizedResize', this.onResize);
+    window.removeEventListener('debouncedResize', this.onResize);
   }
 
   connectedCallback() {
@@ -159,7 +128,7 @@ class BoltImage extends BoltElement {
     });
 
     this.lazyImage.removeEventListener('lazyloaded', this.onLazyLoaded);
-    window.addEventListener('optimizedResize', debounce(this.onResize, 300));
+    window.addEventListener('debouncedResize', this.onResize);
   }
 
   firstUpdated(changedProperties) {
@@ -189,8 +158,8 @@ class BoltImage extends BoltElement {
         }
       }
     } else {
-      // decounce setting the sizes prop
-      window.addEventListener('optimizedResize', debounce(this.onResize, 300));
+      // debounce setting the `sizes` prop
+      window.addEventListener('debouncedResize', this.onResize);
     }
   }
 
