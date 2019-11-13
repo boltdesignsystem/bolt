@@ -1,5 +1,14 @@
 @import '@bolt/core';
 
+bolt-character {
+  display: block;
+}
+
+bolt-svg-animations {
+  display: block;
+  width: 100%;
+}
+
 .c-bolt-character {
   display: flex;
   flex-wrap: wrap;
@@ -8,31 +17,55 @@
   max-width: 500px;
   margin-bottom:bolt-spacing(xsmall);
 
+  // IE 11 collapses flexible width, but we need flex for alignment.
+  @include bolt-ie11-only {
+    justify-content: flex-start;
+    width: 300px;
+  }
+
+  &.c-bolt-character__has-one-side-content {
+    @include bolt-ie11-only {
+      width: 400px;
+    }
+  }
+
+  &.c-bolt-character__has-both-side-content {
+    @include bolt-ie11-only {
+      width: 550px;
+    }
+  }
+
   @include bolt-mq(small) {
     margin-bottom: bolt-spacing(small);
   }
 
-  &--small &__main-image--ie-flex-aspect-wrapper {
-    flex: 0 0 60px;
+  &--small &__center--wrapper,
+  &--small &__main-image--wrapper {
     width: 60px;
+    min-width: 60px;
     height: 60px;
+    min-height: 60px;
   }
 
-  &--medium  &__main-image--ie-flex-aspect-wrapper {
-    flex: 0 0 75px;
+  &--medium &__center--wrapper,
+  &--medium  &__main-image--wrapper {
     width: 75px;
+    min-width: 75px;
     height: 75px;
+    min-height: 75px;
   }
 
-  &--large &__main-image--ie-flex-aspect-wrapper {
-    flex: 0 0 120px;
+  &--large &__center--wrapper,
+  &--large &__main-image--wrapper {
     width: 120px;
+    min-width: 120px;
     height: 120px;
+    min-height: 120px;
   }
 
   &__center--wrapper {
     display: flex;
-    flex: 0 0 33%;
+    flex: 1 0 33%;
     justify-content: center;
 
     .c-bolt-character__has-side-content & {
@@ -47,10 +80,11 @@
     position: relative;
     border-radius: 50%;
     background-color: white;
+
     @include bolt-shadow('level-20');
   }
 
-  &__main-image--ie-flex-aspect-wrapper {
+  &__main-image--wrapper {
     position: static;
     z-index: 2;
   }
@@ -77,11 +111,32 @@
   }
 
   &__slot {
+    .c-bolt-micro-journeys-flex-aspect > bolt-animate {
+      display: block; // for IE 11.
+    }
+
     &--connection {
       position: absolute;
+      top: 50%;
       left: 50%;
+      transform: translate(0, -50%);
       z-index: 1;
       margin: auto 0;
+
+      @include bolt-ie11-only {
+        width: 250px;
+        max-width: 250px;
+      }
+
+      bolt-animate {
+        display: block; // for IE 11.
+      }
+
+      bolt-connection {
+        @include bolt-ie11-only {
+          min-width: 250px !important;
+        }
+      }
     }
 
     &--cardinal {
@@ -90,21 +145,25 @@
 
     &--top {
       flex: 1 0 100%;
+      min-width: 100%;
       text-align: center;
     }
 
     &--bottom {
       flex: 1 0 100%;
+      min-width: 100%;
       text-align: center;
     }
 
     &--left {
       flex: 0 0 33%;
+      min-width: 33%;
       text-align: right;
     }
 
     &--right {
       flex: 0 0 33%;
+      min-width: 33%;
     }
   }
 }
