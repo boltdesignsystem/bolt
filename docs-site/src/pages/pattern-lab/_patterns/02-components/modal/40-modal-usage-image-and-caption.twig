@@ -20,11 +20,11 @@
   {% set modal_content %}
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        image: {
+        content: include("@bolt-components-image/image.twig", {
           src: "/images/placeholders/tout-4x3-climber.jpg",
           alt: "Image description.",
           max_width: "1000px",
-        },
+        }),
       },
       caption: caption,
     } only %}
@@ -96,10 +96,10 @@
   {% set modal_content %}
     {% include "@bolt-components-figure/figure.twig" with {
       media: {
-        image: {
+        content: include("@bolt-components-image/image.twig", {
           src: "/images/content/screenshots/device-screenshot--desktop.jpg",
           alt: "Image description.",
-        },
+        }),
       },
       caption: caption,
     } only %}

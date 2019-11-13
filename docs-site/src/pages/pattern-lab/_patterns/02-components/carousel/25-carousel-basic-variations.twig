@@ -248,10 +248,10 @@
 {% set image_slide_1 %}
   {% include "@bolt-components-figure/figure.twig" with {
     media: {
-      image: {
+      content: include("@bolt-components-image/image.twig", {
         src: "/images/placeholders/landscape-16x9-mountains.jpg",
         alt: "Image caption",
-      },
+      }),
     },
     caption: "This is caption for image figure slide 1."
   } only %}
@@ -259,10 +259,10 @@
 {% set image_slide_2 %}
   {% include "@bolt-components-figure/figure.twig" with {
     media: {
-      image: {
+      content: include("@bolt-components-image/image.twig", {
         src: "/images/placeholders/landscape-16x9-skyline.jpg",
         alt: "Image caption",
-      },
+      }),
     },
     caption: "This is caption for image figure slide 2."
   } only %}
