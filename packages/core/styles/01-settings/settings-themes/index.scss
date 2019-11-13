@@ -39,7 +39,10 @@ $bolt-theme-ui-colors: (
   ),
 ) !default;
 
-$bolt-theme-interactive-ui: (primary, secondary, brand, background-secondary) !default;
+$bolt-theme-interactive-ui: (primary, secondary, brand) !default;
+
+// auto-generate additional text-on-NAME-HERE variations w/o outputting extra lighten / darken options
+$bolt-theme-extra-ui-with-text: (background, background-secondary) !default;
 
 $bolt-theme-interactive-shades: (
   default: (
@@ -128,6 +131,21 @@ $bolt-themes: (
         );
       }
     }
+  }
+
+  @each $element in $bolt-theme-extra-ui-with-text {
+    $propName: #{$element};
+    $propValue: map-get-deep($bolt-themes, $themeName, $element);
+    $bolt-themes: bolt-recursive-map-merge(
+      $bolt-themes,
+      (
+        #{$themeName}:
+          (
+            $propName: $propValue,
+            text-on-#{$propName}: bolt-text-contrast($propValue),
+          )
+      )
+    );
   }
 }
 
