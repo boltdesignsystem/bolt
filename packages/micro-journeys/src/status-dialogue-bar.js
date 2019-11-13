@@ -61,7 +61,7 @@ class BoltStatusDialogueBar extends withLitHtml() {
         <div class="c-bolt-status-dialogue-bar__content">
           ${props.iconName &&
             html`
-              <div class="u-bolt__flex-aspect">
+              <div class="c-bolt-micro-journeys-flex-aspect">
                 <bolt-icon
                   size="medium"
                   name="${props.iconName}"
@@ -70,7 +70,7 @@ class BoltStatusDialogueBar extends withLitHtml() {
               </div>
             `}
           <span class="c-bolt-status-dialogue-bar__slot--text">
-            <div class="u-bolt__flex-aspect u-bolt__flex-aspect-full">
+            <div class="c-bolt-micro-journeys-flex-aspect c-bolt-micro-journeys-flex-aspect-full">
               ${this.slot('text')}
             </div>
           </span>

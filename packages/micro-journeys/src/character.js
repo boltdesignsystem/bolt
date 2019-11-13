@@ -89,7 +89,7 @@ class BoltCharacter extends withLitHtml() {
             <div
               class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--top"
             >
-              <div class="u-bolt__flex-aspect">
+              <div class="c-bolt-micro-journeys-flex-aspect">
                 ${this.slot('top')}
               </div>
             </div>
@@ -99,7 +99,7 @@ class BoltCharacter extends withLitHtml() {
               <div
                 class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--left"
               >
-                <div class="u-bolt__flex-aspect">
+                <div class="c-bolt-micro-journeys-flex-aspect">
                   ${this.slot('left')}
                 </div>
               </div>
@@ -117,7 +117,7 @@ class BoltCharacter extends withLitHtml() {
                 `
               : html`
                   <div
-                    class="${rootClass}__main-image--wrapper u-bolt__flex-aspect"
+                    class="${rootClass}__main-image--wrapper c-bolt-micro-journeys-flex-aspect"
                   >
                     <img
                       class="${rootClass}__main-image"
@@ -145,7 +145,7 @@ class BoltCharacter extends withLitHtml() {
               <div
                 class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--right"
               >
-                <div class="u-bolt__flex-aspect">
+                <div class="c-bolt-micro-journeys-flex-aspect">
                   ${this.slot('right')}
                 </div>
               </div>
@@ -156,7 +156,7 @@ class BoltCharacter extends withLitHtml() {
             <div
               class="${rootClass}__slot ${rootClass}__slot--cardinal ${rootClass}__slot--bottom"
             >
-              <div class="u-bolt__flex-aspect">
+              <div class="c-bolt-micro-journeys-flex-aspect">
                 ${this.slot('bottom')}
               </div>
             </div>
