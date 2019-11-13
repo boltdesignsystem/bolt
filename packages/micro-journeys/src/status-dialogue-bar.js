@@ -70,7 +70,9 @@ class BoltStatusDialogueBar extends withLitHtml() {
               </div>
             `}
           <span class="c-bolt-status-dialogue-bar__slot--text">
-            <div class="c-bolt-micro-journeys-flex-aspect c-bolt-micro-journeys-flex-aspect-full">
+            <div
+              class="c-bolt-micro-journeys-flex-aspect c-bolt-micro-journeys-flex-aspect-full"
+            >
               ${this.slot('text')}
             </div>
           </span>
