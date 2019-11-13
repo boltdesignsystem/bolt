@@ -6,11 +6,11 @@ properties:
     description: A Drupal-style attributes object with extra attributes to append to this component.
   media:
     type: object
-    description: Media accepts either image, icon, video, or table.
+    description: Pass in any renderable media content via the `media.content` prop.
     properties:
       content:
         type: any
-        description: Figure media content. Pass any renderable content, e.g image, icon, video, etc.
+        description: Figure media content, e.g image, icon, video, etc.
       image:
         title: 'Deprecated'
         type: object
