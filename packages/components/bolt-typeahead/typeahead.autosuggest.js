@@ -98,6 +98,7 @@ class BoltAutosuggest extends withPreact() {
   static props = {
     renderSuggestionTemplate: props.any,
     keys: props.array,
+    theme: props.string,
     noSort: props.boolean,
     noFilter: props.boolean,
     placeholder: props.string,
@@ -441,7 +442,10 @@ class BoltAutosuggest extends withPreact() {
     this._fire('onRenderInput', value);
 
     return (
-      <div className={cx(`c-bolt-typeahead__input-wrapper`)}>
+      <div
+        className={cx(`c-bolt-typeahead__input-wrapper`, {
+          [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'auto',
+        })}>
         <input {...inputProps} />
       </div>
     );
