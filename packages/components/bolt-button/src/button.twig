@@ -64,8 +64,11 @@
   {% endif %}
 {% else %}
   {% set tag = "button" %}
-  {% set type = type in type_options ? type : "button" %}
-  {% set inner_attributes = inner_attributes.setAttribute("type", type ) %}
+
+  {# Note that "type" does not have a default; unless an explicit value is specified, none will be set. #}
+  {% if type in type_options %}
+    {% set inner_attributes = inner_attributes.setAttribute("type", type ) %}
+  {% endif %}
 {% endif %}
 
 {# Array of classes based on the defined + default props #}
