@@ -24,7 +24,7 @@ class BoltComponentDemo extends BoltElement {
     };
   }
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback && super.connectedCallback();
     this.theme = this.theme || 'none';
     this.uuid = uuid();

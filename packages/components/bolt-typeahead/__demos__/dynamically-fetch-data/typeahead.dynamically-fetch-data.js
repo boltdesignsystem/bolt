@@ -19,7 +19,6 @@ if (dynamicTypeaheadDemo) {
         });
       });
 
-
       dynamicTypeaheadDemo.on('onSelected', (element, event, suggestion) => {
         const exactMatch = element.items.filter(
           item => item.label === suggestion.suggestionValue,
