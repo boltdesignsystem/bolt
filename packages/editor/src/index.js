@@ -56,7 +56,6 @@ function addGrapesCssToPage() {
   });
 }
 
-
 /**
  * Example function for how to save editor results
  * Assign a function like this to `window.__handleEditorSave` to override this example one.
@@ -67,8 +66,8 @@ function addGrapesCssToPage() {
  */
 function exampleHandleEditorSave({ html, id }) {
   const shouldThisFailToDemo = false;
-  
-  //TODO:  Drupal Axios code likely here 
+
+  //TODO:  Drupal Axios code likely here
   return new Promise((resolve, reject) => {
     // faking async delay
     setTimeout(() => {
@@ -76,7 +75,7 @@ function exampleHandleEditorSave({ html, id }) {
         console.log('exampleHandleEditorSave failed');
         resolve({
           ok: false,
-          message: 'This is a demonstration of how to fail the save'
+          message: 'This is a demonstration of how to fail the save',
         });
       } else {
         console.log('exampleHandleEditorSave ok!');
@@ -86,7 +85,7 @@ function exampleHandleEditorSave({ html, id }) {
         });
       }
     }, 2000);
-  })
+  });
 }
 
 // @ts-ignore
@@ -228,7 +227,7 @@ function init() {
       // eslint-disable-next-line default-case
       switch (editorState) {
         case EDITOR_STATES.NOT_READY: {
-          console.log('not ready')
+          console.log('not ready');
           break;
         }
         case EDITOR_STATES.CLOSED: {
@@ -276,7 +275,8 @@ function init() {
           } else {
             const msg = `Error: could not save editor: ${message}`;
             console.error(msg);
-            alert(msg);
+            // eslint-disable-next-line no-alert
+            window.alert(msg);
           }
           break;
         }
