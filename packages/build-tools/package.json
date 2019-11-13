@@ -19,7 +19,7 @@
     "extends @bolt/browserslist-config"
   ],
   "scripts": {
-    "test": "FORCE_COLOR=1 npx lerna exec --scope @bolt/build-tools--test* --concurrency 1 -- npm run test"
+    "test": "FORCE_COLOR=1 npx lerna exec --scope @bolt/build-tools--test* --concurrency 1 -- yarn run test"
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
