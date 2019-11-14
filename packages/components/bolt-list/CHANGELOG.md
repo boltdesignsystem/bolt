@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* Update list item to allow renderable arrays or objects ([701726a](https://github.com/bolt-design-system/bolt/commit/701726a))
+
+
+
+
+
 # [2.10.0](https://github.com/bolt-design-system/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
 
 

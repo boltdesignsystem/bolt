@@ -3,6 +3,94 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/boltdesignsystem/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* update puppeteer + fix nav from getting chopped off ([7d6f72f](https://github.com/boltdesignsystem/bolt/commit/7d6f72f))
+* **editor:** spelling and organization changes ([5cc57fc](https://github.com/boltdesignsystem/bolt/commit/5cc57fc))
+* do not specify a button "type" attribute by default ([2795f79](https://github.com/boltdesignsystem/bolt/commit/2795f79))
+* update alert and some linting ([e5a84ac](https://github.com/boltdesignsystem/bolt/commit/e5a84ac))
+* **equalize-relaitive-heights:** refactor and simplification ([ac97d3b](https://github.com/boltdesignsystem/bolt/commit/ac97d3b))
+* **micro-journeys:** Edge fix for equalizeRelativeHeights, replace x and y with left and top ([afb1531](https://github.com/boltdesignsystem/bolt/commit/afb1531))
+* **micro-journeys:** fix bolt-link usage with bolt-icon ([cc1cae0](https://github.com/boltdesignsystem/bolt/commit/cc1cae0))
+* **micro-journeys:** fix wording of shadow dom form description ([f00e930](https://github.com/boltdesignsystem/bolt/commit/f00e930))
+* **micro-journeys:** IE 11 fixes for bolt character and connection ([9f99228](https://github.com/boltdesignsystem/bolt/commit/9f99228))
+* add missing JS class ([b4a0af2](https://github.com/boltdesignsystem/bolt/commit/b4a0af2))
+* Add missing type_options variable to button component ([30f93e9](https://github.com/boltdesignsystem/bolt/commit/30f93e9))
+* address eslint / prettier issues ([c4c31f9](https://github.com/boltdesignsystem/bolt/commit/c4c31f9))
+* address minor prettier formatting issues ([50b6dae](https://github.com/boltdesignsystem/bolt/commit/50b6dae))
+* Allow render arrays as table cell content ([b3b585e](https://github.com/boltdesignsystem/bolt/commit/b3b585e))
+* disable automatically assigning selenium to 4444 for local tests (addresses issue when trying to run Nightwatch tests locally) ([7f9b2c3](https://github.com/boltdesignsystem/bolt/commit/7f9b2c3))
+* don't auto-close nav when clicking on a nav toggle ([2c5a5e7](https://github.com/boltdesignsystem/bolt/commit/2c5a5e7))
+* don't try and auto-assign Selenium port when doing local Nightwatch development ([6f6b8b6](https://github.com/boltdesignsystem/bolt/commit/6f6b8b6))
+* don’t set header overflow unless in vertical layout mode ([7a4356e](https://github.com/boltdesignsystem/bolt/commit/7a4356e))
+* fix + update the button component's Jest tests ([7330472](https://github.com/boltdesignsystem/bolt/commit/7330472))
+* fix prettier issue ([af6747a](https://github.com/boltdesignsystem/bolt/commit/af6747a))
+* minor UIkit fixes ([c08700a](https://github.com/boltdesignsystem/bolt/commit/c08700a))
+* misc UI fixes and polish ([d5113f9](https://github.com/boltdesignsystem/bolt/commit/d5113f9))
+* miscalculating menu width when 'show-more' button is hidden ([e98003b](https://github.com/boltdesignsystem/bolt/commit/e98003b))
+* re-add outline 'none' to button css ([b2eddb8](https://github.com/boltdesignsystem/bolt/commit/b2eddb8))
+* Remove redundant button tag logic and dependency on deprecated schema ([38410c5](https://github.com/boltdesignsystem/bolt/commit/38410c5))
+* update Jest snapshots ([8aef49c](https://github.com/boltdesignsystem/bolt/commit/8aef49c))
+* **micro-journeys:** css cleanup ([913c49c](https://github.com/boltdesignsystem/bolt/commit/913c49c))
+* **micro-journeys:** make dialog bar match comps in width; remove br tags from starters ([ecbcf8a](https://github.com/boltdesignsystem/bolt/commit/ecbcf8a))
+* **micro-journeys:** move link component to use slot-after for icon ([bae9819](https://github.com/boltdesignsystem/bolt/commit/bae9819))
+* update auto-release script to fix issue when calculating canary version ([04b2960](https://github.com/boltdesignsystem/bolt/commit/04b2960))
+* **micro-journeys:** clean up equalizeRelativeHeights; fix tryAttempts persistence bug ([5653901](https://github.com/boltdesignsystem/bolt/commit/5653901))
+* **micro-journeys:** don't render inactive pathway; fix render issues on pathway and step ([ee741e1](https://github.com/boltdesignsystem/bolt/commit/ee741e1))
+* **micro-journeys:** refactor two-char layout to control its own animation in and out ([05dc857](https://github.com/boltdesignsystem/bolt/commit/05dc857))
+* pull in small CSS logo fix for ie 11 on windows 7 ([b421ec6](https://github.com/boltdesignsystem/bolt/commit/b421ec6))
+* replace individual 'rendered' event listeners with Promise waiting for 'ready' ([66f0af7](https://github.com/boltdesignsystem/bolt/commit/66f0af7))
+* restore missing search placeholder text ([453ae24](https://github.com/boltdesignsystem/bolt/commit/453ae24))
+* update auto-release script to use correct args to Auto plugin ([22cc1e3](https://github.com/boltdesignsystem/bolt/commit/22cc1e3))
+* update Chrome Driver to the latest version of Chrome to fix issues running Nightwatch locally ([4c78ac2](https://github.com/boltdesignsystem/bolt/commit/4c78ac2))
+* update Image component lazyloading logic to properly scope lazySizes.elements check + ensure lazySizes knows to check late loaded / dynamically injected images ([490ba17](https://github.com/boltdesignsystem/bolt/commit/490ba17))
+* Update list item to allow renderable arrays or objects ([701726a](https://github.com/boltdesignsystem/bolt/commit/701726a))
+* update Nightwatch test selector + demo code to render the client-side image used for testing w/o a Shadow DOM ([163e0b9](https://github.com/boltdesignsystem/bolt/commit/163e0b9))
+* **micro-journeys:** prevent render of content if not active step. Does not work w/o shadow dom. ([12094e9](https://github.com/boltdesignsystem/bolt/commit/12094e9))
+* **micro-journeys:** restore file to pre-ie-11 fix attempt meddling ([f7f8f8a](https://github.com/boltdesignsystem/bolt/commit/f7f8f8a))
+* **micro-journeys:** tighten up spacing around character and two-character elements to match comps ([01bb7c6](https://github.com/boltdesignsystem/bolt/commit/01bb7c6))
+* update dependency graph tests ([0bc2817](https://github.com/boltdesignsystem/bolt/commit/0bc2817))
+* update drawer text color ([1d3ca76](https://github.com/boltdesignsystem/bolt/commit/1d3ca76))
+* update PL Nightwatch tests ([303c0a5](https://github.com/boltdesignsystem/bolt/commit/303c0a5))
+* update typeahead ([db86341](https://github.com/boltdesignsystem/bolt/commit/db86341))
+* version lock Twig version used as temp workaround to build issues from upstream Twig changes ([09f7d66](https://github.com/boltdesignsystem/bolt/commit/09f7d66))
+
+
+### Features
+
+* uikit bug fixes + polishing up nav behavior across screen sizes + layout options ([f7d8bfd](https://github.com/boltdesignsystem/bolt/commit/f7d8bfd))
+* **bolt-animate:** explicitly specify children being animate in event for clear separation of concerns, remove debug code ([2a2db9d](https://github.com/boltdesignsystem/bolt/commit/2a2db9d))
+* **micro-journey:** add export of bolt connection is ([fe61771](https://github.com/boltdesignsystem/bolt/commit/fe61771))
+* **micro-journey:** adding name exports and prepping for IE 11 work, layout fixes ([6ec09e6](https://github.com/boltdesignsystem/bolt/commit/6ec09e6))
+* **micro-journeys:** add a couple more layouts for testing use ([6a9b7c6](https://github.com/boltdesignsystem/bolt/commit/6a9b7c6))
+* **micro-journeys:** add w and w/o shadow dom PL visual tests for character layouts ([6bd6823](https://github.com/boltdesignsystem/bolt/commit/6bd6823))
+* **micro-journeys:** prevent body content render on inactive steps ([019a0ea](https://github.com/boltdesignsystem/bolt/commit/019a0ea))
+* **micro-journeys:** refactor character, dialog, and 2-char layout to cooperate with document flow ([33471a3](https://github.com/boltdesignsystem/bolt/commit/33471a3))
+* add documentation for JS testing standards ([f18bab4](https://github.com/boltdesignsystem/bolt/commit/f18bab4))
+* add documentation for manual testing standards ([97d05f9](https://github.com/boltdesignsystem/bolt/commit/97d05f9))
+* add icon-sizer 'span' to Twig template ([281c886](https://github.com/boltdesignsystem/bolt/commit/281c886))
+* add separate trigger/content spacing options to accordion ([04d1398](https://github.com/boltdesignsystem/bolt/commit/04d1398))
+* add support for loader when pulling in code snippets in the Drawer ([3c63545](https://github.com/boltdesignsystem/bolt/commit/3c63545))
+* add support for the side nav UI on small screens! ([225e699](https://github.com/boltdesignsystem/bolt/commit/225e699))
+* adjust color theme defaults for dark themes ([7dad496](https://github.com/boltdesignsystem/bolt/commit/7dad496))
+* clean up padding used for view all page code snippets vs drawer ([59c47fc](https://github.com/boltdesignsystem/bolt/commit/59c47fc))
+* update schema table layout to fit more onscreen ([be6c5a5](https://github.com/boltdesignsystem/bolt/commit/be6c5a5))
+* **micro-journeys:** starter templates for one and two character ([10bea16](https://github.com/boltdesignsystem/bolt/commit/10bea16))
+* port over major UIKit upgrades from https://github.com/pattern-lab/patternlab-node/pull/1078 ([c62d659](https://github.com/boltdesignsystem/bolt/commit/c62d659))
+* pull in loader styles / animation ([f404208](https://github.com/boltdesignsystem/bolt/commit/f404208))
+* rework button slotted content so that empty spans are not output, remove 'is-empty' CSS ([dd314d9](https://github.com/boltdesignsystem/bolt/commit/dd314d9))
+* update PL config to support the new logo customization option ([8c22db2](https://github.com/boltdesignsystem/bolt/commit/8c22db2))
+* update Search to grow in size when being focused; allow results to be scrolled ([84c75b0](https://github.com/boltdesignsystem/bolt/commit/84c75b0))
+* update UIKit SVG icons ([ddbfe09](https://github.com/boltdesignsystem/bolt/commit/ddbfe09))
+* update viewport sizes UI to try to better fit all the UI on narrower screens ([b8c57c9](https://github.com/boltdesignsystem/bolt/commit/b8c57c9))
+
+
+
+
+
 ## [2.10.1](https://github.com/boltdesignsystem/bolt/compare/v2.10.0...v2.10.1) (2019-11-05)
 
 
