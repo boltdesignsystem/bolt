@@ -42,6 +42,7 @@ class BoltImage extends BoltElement {
       noLazy: {
         type: Boolean,
         attribute: 'no-lazy',
+        reflect: true,
       },
       srcset: String,
       sizes: String,
@@ -58,8 +59,14 @@ class BoltImage extends BoltElement {
         type: String,
         attribute: 'placeholder-image',
       },
-      zoom: Boolean,
-      cover: Boolean,
+      zoom: {
+        type: Boolean,
+        reflect: true,
+      },
+      cover: {
+        type: Boolean,
+        reflect: true, // fix for bg images not getting the right classes w/ just type: Boolean
+      },
       valign: String,
     };
   }
