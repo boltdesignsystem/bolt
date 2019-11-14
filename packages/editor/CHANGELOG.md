@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.2](https://github.com/bolt-design-system/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+## [2.11.1](https://github.com/bolt-design-system/bolt/compare/v2.11.0...v2.11.1) (2019-11-14)
+
+
+### Bug Fixes
+
+* remove unused + undeclared dependency from editor package ([ce5e254](https://github.com/bolt-design-system/bolt/commit/ce5e254))
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* update alert and some linting ([e5a84ac](https://github.com/bolt-design-system/bolt/commit/e5a84ac))
+
+
+### Features
+
+* **micro-journeys:** starter templates for one and two character ([10bea16](https://github.com/bolt-design-system/bolt/commit/10bea16))
+
+
+
+
+
 ## [2.9.2](https://github.com/bolt-design-system/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
 
 **Note:** Version bump only for package @bolt/components-editor

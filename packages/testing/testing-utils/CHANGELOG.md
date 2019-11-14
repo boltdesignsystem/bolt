@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* update dependency graph tests ([0bc2817](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/commit/0bc2817))
+
+
+
+
+
 # [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/testing-utils/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
 
 **Note:** Version bump only for package @bolt/testing-utils

@@ -167,7 +167,7 @@ export const modalViewer = {
 
       // Clear out any existing children before appending the new panel content
       if (contentContainer.firstChild !== null) {
-        while(contentContainer.firstChild !== null){
+        while (contentContainer.firstChild !== null) {
           contentContainer.removeChild(contentContainer.firstChild);
         }
       }
