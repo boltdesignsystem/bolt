@@ -19,8 +19,12 @@ Object.assign(lazySizes.cfg, {
   expand: 500,
   // helper function to customize how / which elements lazysizes targets
   getElements(selector) {
-    let elements = Array.from(document.querySelectorAll('bolt-image')).map(
-      elem => elem.renderRoot.querySelector(selector),
+    let elements = Array.from(
+      document.querySelectorAll('bolt-image'),
+    ).map(elem =>
+      elem.renderRoot
+        ? elem.renderRoot.querySelector(selector)
+        : elem.querySelector(selector),
     );
     elements = elements.filter(function(el) {
       return el != null;
