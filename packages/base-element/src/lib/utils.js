@@ -9,19 +9,19 @@ export function findParentTag(el, tag) {
 // global URL query flags & overrides for debugging & testing
 const isDebugMode =
   (window.localStorage && window.localStorage.getItem('bolt-debug')) || false;
-let shouldUseShadowDom = supportsShadowDom();
+let globallyUseShadowDom = supportsShadowDom();
 
 if (window.localStorage && window.localStorage.getItem('bolt-enable-shadow')) {
-  shouldUseShadowDom = true;
+  globallyUseShadowDom = true;
 } else if (
   window.localStorage &&
   window.localStorage.getItem('bolt-disable-shadow')
 ) {
-  shouldUseShadowDom = false;
+  globallyUseShadowDom = false;
 }
 
 export const hasNativeShadowDomSupport = isDebugMode
-  ? shouldUseShadowDom
+  ? globallyUseShadowDom
   : supportsShadowDom();
 
 // Helper util to check if the browser supports shadow DOM for conditional shimming / progressive rendering

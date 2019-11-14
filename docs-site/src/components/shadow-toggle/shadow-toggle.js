@@ -3,23 +3,25 @@
   @todo: Once <bolt-radio-switch> is more fully baked, the majority of this code should be able to be cleared out
 -------------------------------- */
 
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
-import styles from './shadow-toggle.scss';
+import { html, BoltElement, customElement, unsafeCSS } from '@bolt/element';
+import shadowToggleStyles from './shadow-toggle.scss';
 
-@define
-class BoltShadowToggle extends withLitHtml() {
-  static is = 'bolt-shadow-toggle';
+@customElement('bolt-shadow-toggle')
+class BoltShadowToggle extends BoltElement {
+  static get styles() {
+    return [unsafeCSS(shadowToggleStyles)];
+  }
 
-  static props = {
-    isIndeterminate: props.boolean,
-    isEnabled: props.boolean,
-    isDisabled: props.boolean,
-  };
+  static get properties() {
+    return {
+      isIndeterminate: Boolean,
+      isEnabled: Boolean,
+      isDisabled: Boolean,
+    };
+  }
 
-  constructor(props) {
-    super(props);
-    this.useShadow = false;
+  constructor() {
+    super();
     this.onFormChange = this.onFormChange.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onReset = this.onReset.bind(this);
@@ -158,7 +160,7 @@ class BoltShadowToggle extends withLitHtml() {
     `;
   }
 
-  rendered() {
+  firstUpdated() {
     if (!this._wasInitiallyRendered) {
       this._wasInitiallyRendered = true;
       if (
@@ -172,15 +174,14 @@ class BoltShadowToggle extends withLitHtml() {
           ? true
           : false;
       } else {
-        var inputs = this.renderRoot.getElementsByTagName('input');
+        var inputs = this.renderRoot.querySelector('input');
 
         for (var i = 0; i < inputs.length; i++) {
           inputs[i].indeterminate = true;
         }
       }
     }
-
-    super.rendered && super.rendered();
+    super.firstUpdated && super.firstUpdated();
   }
 }
 

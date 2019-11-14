@@ -8,6 +8,8 @@ import {
   findParentTag,
 } from './src/lib/utils';
 
+export { html, customElement, unsafeCSS } from 'lit-element';
+
 export {
   BoltElement,
   BoltActionElement,
