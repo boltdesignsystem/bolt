@@ -13,7 +13,6 @@ interface BoltEditorConfig {
 
 interface Window {
   HTMLLinkElement: typeof HTMLLinkElement;
-  __handleEditorSave?: ({ html: string, id: string}) => void;
 }
 
 interface GrapeTrait {
