@@ -94,7 +94,7 @@ size.enum.forEach(async sizeChoice => {
 ### How to create boolean prop test
 
 ```javascript
-test('Button with "disabled" adds attr to <a>', async () => {
+test('Button with "disabled" attribute', async () => {
   const results = await render('@bolt-components-button/button.twig', {
     text: 'This is a button',
     disabled: true,
