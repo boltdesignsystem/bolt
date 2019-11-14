@@ -56,8 +56,6 @@ const SubSubList = props => {
               <SpecialButton
                 aria-controls={category}
                 onClick={elem.toggleSpecialNavPanel}
-                isOpen={false}
-                isOpenClass={elem.isOpenClass}
               >
                 {category}
               </SpecialButton>
@@ -68,8 +66,6 @@ const SubSubList = props => {
         <Button
           aria-controls={category}
           onClick={elem.toggleNavPanel}
-          isOpen={false}
-          isOpenClass={elem.isOpenClass}
         >
           {category}
         </Button>
@@ -118,9 +114,7 @@ const SubSubList = props => {
 const SpecialButton = props => {
   return (
     <button
-      className={`pl-c-nav__link pl-c-nav__link--section-dropdown pl-js-acc-handle ${
-        props.isOpen ? props.isOpenClass : ''
-      }`}
+      className={`pl-c-nav__link pl-c-nav__link--section-dropdown pl-js-acc-handle`}
       role="tab"
       {...props}
     >
@@ -138,9 +132,7 @@ const SpecialButton = props => {
 const Button = props => {
   return (
     <button
-      className={`pl-c-nav__link pl-c-nav__link--dropdown pl-js-acc-handle ${
-        props.isOpen ? props.isOpenClass : ''
-      }`}
+      className={`pl-c-nav__link pl-c-nav__link--dropdown pl-js-acc-handle`}
       role="tab"
       {...props}
     >
@@ -158,9 +150,7 @@ const Button = props => {
 const ButtonTitle = props => {
   return (
     <button
-      className={`pl-c-nav__link pl-c-nav__link--title pl-js-acc-handle ${
-        props.isOpen ? props.isOpenClass : ''
-      }`}
+      className={`pl-c-nav__link pl-c-nav__link--title pl-js-acc-handle`}
       role="tab"
       {...props}
     >
@@ -185,11 +175,25 @@ class Nav extends BaseComponent {
     self.toggleSpecialNavPanel = self.toggleSpecialNavPanel.bind(self);
     self.handleClick = self.handleClick.bind(self);
     self.handleURLChange = self.handleURLChange.bind(self);
+    self.handlePageClick = self.handlePageClick.bind(self);
     self._hasInitiallyRendered = false;
-    self.handleURLChangeOnRender = false;
     self.receiveIframeMessage = self.receiveIframeMessage.bind(self);
     self.useShadow = false;
     return self;
+  }
+
+  handlePageClick(e) {
+    if (
+      e.target.closest('.pl-c-nav') === null &&
+      e.target.closest('.pl-js-nav-trigger') === null &&
+      e.target.closest('svg') === null &&
+      e.target.closest('pl-toggle-layout') === null
+      ) {
+      if (this.layoutMode !== 'vertical' && window.innerWidth > 670){
+        console.log('handlePageClick + cleaning up...');
+        this.cleanupActiveNav(true);
+      }
+    }
   }
 
   connected() {
@@ -202,26 +206,23 @@ class Nav extends BaseComponent {
     this.previousActiveLinks = [];
     this.iframeElem = document.querySelector('pl-iframe');
 
-    Mousetrap(this).bind('esc', () => {
-      self.cleanupActiveNav();
-    });
-
     window.addEventListener('message', this.receiveIframeMessage, false);
+    document.body.addEventListener('click', this.handlePageClick);
+  }
 
-    document.body.addEventListener('click', function(e) {
-      if (
-        e.target.closest('.pl-c-nav') === null &&
-        e.target.closest('.pl-js-nav-trigger') === null &&
-        e.target.closest('svg') === null &&
-        e.target.closest('pl-toggle-layout') === null
-      ) {
-        self.cleanupActiveNav();
+  connectedCallback(){
+    super.connectedCallback && super.connectedCallback();
+
+    Mousetrap.bind('esc', () => {
+      if (this.layoutMode !== 'vertical' && window.innerWidth > 670){
+        this.cleanupActiveNav(true);
       }
     });
   }
 
   disconnected() {
     super.disconnected && super.disconnected();
+    document.body.removeEventListener('click', this.handlePageClick);
     window.removeEventListener('message', this.receiveIframeMessage);
   }
 
@@ -231,8 +232,11 @@ class Nav extends BaseComponent {
     }
 
     if (this.currentPattern !== state.app.currentPattern) {
+      if (state.app.currentPattern !== '' && this.currentPattern !== state.app.currentPattern && this._hasInitiallyRendered === true){
+        this.handleURLChange(); // so the nav logic is always correct (ex. layout changes)
+      }
+
       this.currentPattern = state.app.currentPattern;
-      this.handleURLChange(); // so the nav logic is always correct (ex. layout changes)
     }
   }
 
@@ -258,10 +262,9 @@ class Nav extends BaseComponent {
     if (data.event !== undefined && data.event === 'patternLab.pageClick') {
       try {
         if (
-          window.innerWidth <= 670 ||
-          (window.innerWidth >= 670 && self.layoutMode !== 'vertical')
+          self.layoutMode !== 'vertical'
         ) {
-          self.cleanupActiveNav();
+          self.cleanupActiveNav(true);
         }
       } catch (error) {
         console.log(error);
@@ -277,14 +280,14 @@ class Nav extends BaseComponent {
       '.pl-c-nav__link--title.pl-is-active'
     );
 
-    if (topLevelOnly === true) {
+    if (topLevelOnly === true && window.innerWidth > 670) {
       this.navContainer.classList.remove('pl-is-active');
       this.topLevelTriggers.forEach(trigger => {
         trigger.classList.remove('pl-is-active');
+        trigger.nextSibling.classList.remove('pl-is-active');
       });
     } else {
       if (
-        window.matchMedia('(max-width: calc(42em - 1px))').matches ||
         this.layoutMode !== 'vertical'
       ) {
         this.navContainer.classList.remove('pl-is-active');
@@ -307,14 +310,7 @@ class Nav extends BaseComponent {
   }
 
   handleURLChange() {
-    if (!this._hasInitiallyRendered) {
-      this.handleURLChangeOnRender = true;
-      return;
-    }
-
-    const shouldAutoOpenNav =
-      window.matchMedia('(min-width: calc(42em))').matches &&
-      this.layoutMode === 'vertical';
+    const shouldAutoOpenNav = true;
 
     const currentPattern = this.currentPattern;
     const activeLink = document.querySelector(
@@ -422,6 +418,7 @@ class Nav extends BaseComponent {
       ...props.boolean,
       ...{ default: true },
     },
+    currentPattern: props.string,
     layoutMode: props.string,
     collapsedByDefault: {
       ...props.boolean,
@@ -504,9 +501,10 @@ class Nav extends BaseComponent {
       this._hasInitiallyRendered = true;
     }
 
-    if (this.handleURLChangeOnRender === true) {
-      this.handleURLChangeOnRender = false;
-      this.handleURLChange();
+    this.handleURLChange();
+
+    if (this.layoutMode !== 'vertical' && window.innerWidth > 670){
+      this.cleanupActiveNav(true);
     }
   }
 
@@ -527,8 +525,6 @@ class Nav extends BaseComponent {
               <ButtonTitle
                 aria-controls={item.patternTypeLC}
                 onClick={this.toggleNavPanel}
-                isOpen={false}
-                isOpenClass={this.isOpenClass}
               >
                 {item.patternTypeUC}
               </ButtonTitle>
