@@ -1,7 +1,6 @@
 import { query } from '@bolt/core/utils';
 import { version } from 'grapesjs/package.json';
 import { detect } from 'detect-browser';
-import { golang } from 'locutus';
 
 const defaultConfig = {};
 
