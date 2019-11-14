@@ -7,29 +7,39 @@ properties:
   media:
     type: object
     description: Pass in any renderable media content via the `media.content` prop.
+    not:
+      anyOf:
+        - required:
+            - image
+        - required:
+            - icon
+        - required:
+            - video
+        - required:
+            - table
     properties:
       content:
         type: any
         description: Figure media content, e.g image, icon, video, etc.
       image:
-        title: 'Deprecated'
+        title: DEPRECATED
         type: object
-        description: A Bolt image object.
+        description: Use the `content` prop instead.
         ref: '@bolt-components-image/image.schema.yml'
       icon:
-        title: 'Deprecated'
+        title: DEPRECATED
         type: object
-        description: A Bolt icon object.
+        description: Use the `content` prop instead.
         ref: '@bolt-components-icon/icon.schema.json'
       video:
-        title: 'Deprecated'
+        title: DEPRECATED
         type: object
-        description: A Bolt video object.
+        description: Use the `content` prop instead.
         ref: '@bolt-components-video/video.schema.yml'
       table:
-        title: 'Deprecated'
+        title: DEPRECATED
         type: object
-        description: A Bolt table object.
+        description: Use the `content` prop instead.
         ref: '@bolt-components-table/table.schema.yml'
   caption:
     type: [string, object, array]

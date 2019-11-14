@@ -1,9 +1,82 @@
+{% set image %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/placeholders/landscape-16x9-mountains.jpg",
+  } only %}
+{% endset %}
+
+{% set icon %}
+  {% include "@bolt-components-icon/icon.twig" with {
+    name: "add-open",
+    size: "large",
+  } only %}
+{% endset %}
+
+{% set video %}
+  {% include "@bolt-components-video/video.twig" with {
+    "videoId": "4892122320001",
+    "accountId": "1900410236",
+    "playerId": "r1CAdLzTW",
+    "showMeta": true,
+    "showMetaTitle": true,
+  } only %}
+{% endset %}
+
+{% set table %}
+  {% include "@bolt-components-table/table.twig" with {
+    headers: {
+      top: {
+        cells: [
+          "Column 1",
+          "Column 2",
+          "Column 3",
+        ]
+      },
+      side: {
+        cells: [
+          "Row 1",
+          "Row 2",
+          "Row 3",
+          "Footer",
+        ]
+      }
+    },
+    rows: [
+      {
+        cells: [
+          "R1C1",
+          "R1C2",
+          "R1C3",
+        ]
+      },
+      {
+        cells: [
+          "R2C1",
+          "R2C2",
+          "R2C3",
+        ]
+      },
+      {
+        cells: [
+          "R3C1",
+          "R3C2",
+          "R3C3",
+        ]
+      }
+    ],
+    footer: {
+      cells: [
+        "FC1",
+        "FC2",
+        "FC3",
+      ]
+    }
+  } only %}
+{% endset %}
+
 <h3>Image Figure</h3>
 {% include "@bolt-components-figure/figure.twig" with {
   media: {
-    content: include("@bolt-components-image/image.twig", {
-      src: "/images/placeholders/landscape-16x9-mountains.jpg",
-    }),
+    content: image
   },
   caption: "Fig. 1: This is an image."
 } only %}
@@ -11,10 +84,7 @@
 <h3>Icon Figure</h3>
 {% include "@bolt-components-figure/figure.twig" with {
   media: {
-    content: include("@bolt-components-icon/icon.twig", {
-      name: "add-open",
-      size: "large",
-    }),
+    content: icon
   },
   caption: "Fig. 2: This is an icon."
 } only %}
@@ -22,13 +92,7 @@
 <h3>Video Figure</h3>
 {% include "@bolt-components-figure/figure.twig" with {
   media: {
-    content: include("@bolt-components-video/video.twig", {
-      "videoId": "4892122320001",
-      "accountId": "1900410236",
-      "playerId": "r1CAdLzTW",
-      "showMeta": true,
-      "showMetaTitle": true,
-    }),
+    content: figure
   },
   caption: "Fig. 3: This is a video."
 } only %}
@@ -36,55 +100,7 @@
 <h3>Table Figure</h3>
 {% include "@bolt-components-figure/figure.twig" with {
   media: {
-    content: include("@bolt-components-table/table.twig", {
-      headers: {
-        top: {
-          cells: [
-            "Column 1",
-            "Column 2",
-            "Column 3",
-          ]
-        },
-        side: {
-          cells: [
-            "Row 1",
-            "Row 2",
-            "Row 3",
-            "Footer",
-          ]
-        }
-      },
-      rows: [
-        {
-          cells: [
-            "R1C1",
-            "R1C2",
-            "R1C3",
-          ]
-        },
-        {
-          cells: [
-            "R2C1",
-            "R2C2",
-            "R2C3",
-          ]
-        },
-        {
-          cells: [
-            "R3C1",
-            "R3C2",
-            "R3C3",
-          ]
-        }
-      ],
-      footer: {
-        cells: [
-          "FC1",
-          "FC2",
-          "FC3",
-        ]
-      }
-    }),
+    content: table
   },
   caption: "Fig. 4: This is a table."
 } only %}

@@ -1,8 +1,12 @@
+{% set image %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/placeholders/500x500.jpg"
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-figure/figure.twig" with {
   media: {
-    content: include("@bolt-components-image/image.twig", {
-      src: "/images/placeholders/500x500.jpg"
-    }),
+    content: image
   },
   caption: "Fig. 1: This is Bill. He is awesome."
 } only %}
