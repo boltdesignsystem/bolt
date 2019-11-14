@@ -14,6 +14,10 @@ import '@bolt/core/utils/optimized-resize';
 let cx = classNames.bind(imageStyles);
 let passiveIfSupported = false;
 
+// from https://github.com/aFarkas/lazysizes/blob/gh-pages/plugins/respimg/ls.respimg.js#L24
+const img = document.createElement('img');
+const supportsSrcset = 'sizes' in img && 'srcset' in img;
+
 // https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#Improving_scrolling_performance_with_passive_listeners
 try {
   window.addEventListener(
@@ -141,13 +145,19 @@ class BoltImage extends BoltElement {
   firstUpdated(changedProperties) {
     super.firstUpdated && super.firstUpdated(changedProperties);
     // if image should lazyload
+
     if (!this.noLazy) {
       this.lazyImage =
         this.lazyImage ||
         this.renderRoot.querySelector(`.${lazySizes.cfg.lazyClass}`);
 
       // if component contains a lazy image that is rendering for the first time, but hasn't yet lazyloaded
-      if (this.lazyImage) {
+
+      // force unveil lazyloaded SVGs. Workaround to fix lazyloaded SVGs not loading in IE 11
+      if (this._isSvg && this.lazyImage && !supportsSrcset) {
+        this.sizes = `${this.offsetWidth}px`;
+        this.isLazyLoaded = true;
+      } else if (this.lazyImage) {
         this.lazyImage.addEventListener('lazyloaded', this.onLazyLoaded);
         // `lazySizes.elements` may be undefined on first load. That's ok - the line below is just to catch JS injected images.
 
@@ -196,6 +206,13 @@ class BoltImage extends BoltElement {
         .split('.')
         .pop()
         .includes('jpg');
+    this._isSvg =
+      !this._isJpg &&
+      this.src &&
+      this.src
+        .split('.')
+        .pop()
+        .includes('svg');
     const _canUseRatio = ratioW > 0 && ratioH > 0 && _useRatio && !this.cover;
     // Only JPGs allowed, PNGs can have transparency and may not look right layered over placeholder
     const _canUsePlaceholder = (_canUseRatio || this.cover) && _isJpg;
