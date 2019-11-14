@@ -16,7 +16,6 @@ class Layout extends BaseLitComponent {
         : window.location.protocol + '//' + window.location.host;
   }
 
-
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
     styles.use();
@@ -36,20 +35,20 @@ class Layout extends BaseLitComponent {
 
   _stateChanged(state) {
     let hasChanged = false;
-    if (this.layoutMode !== state.app.layoutMode){
+    if (this.layoutMode !== state.app.layoutMode) {
       hasChanged = true;
       this.layoutMode = state.app.layoutMode || 'vertical';
     }
 
-    if (this.themeMode !== state.app.themeMode){
+    if (this.themeMode !== state.app.themeMode) {
       hasChanged = true;
       this.themeMode = state.app.themeMode;
     }
 
-    if (hasChanged === true){
+    if (hasChanged === true) {
       hasChanged = false;
       const layoutModeClass =
-      this.layoutMode === 'vertical' ? 'sidebar' : 'horizontal';
+        this.layoutMode === 'vertical' ? 'sidebar' : 'horizontal';
 
       const classes = classNames(`pl-c-body--theme-${layoutModeClass}`, {
         [`pl-c-body--theme-${this.themeMode}`]: this.themeMode !== undefined,

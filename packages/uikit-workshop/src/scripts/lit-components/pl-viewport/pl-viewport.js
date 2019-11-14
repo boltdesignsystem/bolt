@@ -233,7 +233,7 @@ class IFrame extends BaseLitComponent {
   // Accepted values are 'px' and 'em'
   // 'target' is what inputs to update. Defaults to both
   updateSizeReading(size, unit, target) {
-    if (size === 0){
+    if (size === 0) {
       return;
     }
     let emSize, pxSize;

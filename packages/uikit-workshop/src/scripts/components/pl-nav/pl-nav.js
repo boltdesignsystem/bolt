@@ -63,10 +63,7 @@ const SubSubList = props => {
           </div>
         ))
       ) : (
-        <Button
-          aria-controls={category}
-          onClick={elem.toggleNavPanel}
-        >
+        <Button aria-controls={category} onClick={elem.toggleNavPanel}>
           {category}
         </Button>
       )}
@@ -188,9 +185,8 @@ class Nav extends BaseComponent {
       e.target.closest('.pl-js-nav-trigger') === null &&
       e.target.closest('svg') === null &&
       e.target.closest('pl-toggle-layout') === null
-      ) {
-      if (this.layoutMode !== 'vertical' && window.innerWidth > 670){
-        console.log('handlePageClick + cleaning up...');
+    ) {
+      if (this.layoutMode !== 'vertical' && window.innerWidth > 670) {
         this.cleanupActiveNav(true);
       }
     }
@@ -210,11 +206,11 @@ class Nav extends BaseComponent {
     document.body.addEventListener('click', this.handlePageClick);
   }
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback && super.connectedCallback();
 
     Mousetrap.bind('esc', () => {
-      if (this.layoutMode !== 'vertical' && window.innerWidth > 670){
+      if (this.layoutMode !== 'vertical' && window.innerWidth > 670) {
         this.cleanupActiveNav(true);
       }
     });
@@ -232,7 +228,11 @@ class Nav extends BaseComponent {
     }
 
     if (this.currentPattern !== state.app.currentPattern) {
-      if (state.app.currentPattern !== '' && this.currentPattern !== state.app.currentPattern && this._hasInitiallyRendered === true){
+      if (
+        state.app.currentPattern !== '' &&
+        this.currentPattern !== state.app.currentPattern &&
+        this._hasInitiallyRendered === true
+      ) {
         this.handleURLChange(); // so the nav logic is always correct (ex. layout changes)
       }
 
@@ -261,9 +261,7 @@ class Nav extends BaseComponent {
 
     if (data.event !== undefined && data.event === 'patternLab.pageClick') {
       try {
-        if (
-          self.layoutMode !== 'vertical'
-        ) {
+        if (self.layoutMode !== 'vertical') {
           self.cleanupActiveNav(true);
         }
       } catch (error) {
@@ -287,9 +285,15 @@ class Nav extends BaseComponent {
         trigger.nextSibling.classList.remove('pl-is-active');
       });
     } else {
-      if (
-        this.layoutMode !== 'vertical'
-      ) {
+      if (this.layoutMode !== 'vertical') {
+        this.navContainer.classList.remove('pl-is-active');
+        this.navAccordionTriggers.forEach(trigger => {
+          trigger.classList.remove('pl-is-active');
+        });
+        this.navAccordionPanels.forEach(panel => {
+          panel.classList.remove('pl-is-active');
+        });
+      } else if (this.layoutMode === 'vertical' && window.innerWidth <= 670) {
         this.navContainer.classList.remove('pl-is-active');
         this.navAccordionTriggers.forEach(trigger => {
           trigger.classList.remove('pl-is-active');
@@ -329,24 +333,13 @@ class Nav extends BaseComponent {
       activeLink.classList.add('pl-is-active');
       this.previousActiveLinks.push(activeLink);
 
-      // handle overview links vs nested links
-      if (activeLink.classList.contains('pl-js-link-overview')) {
-        const childDropdownTrigger = activeLink.nextSibling;
-        const childDropdown = activeLink.parentNode.nextSibling;
-
-        if (childDropdown && shouldAutoOpenNav) {
-          if (childDropdown.tagName) {
-            childDropdown.classList.add('pl-is-active');
-            this.previousActiveLinks.push(childDropdown);
-          }
-        }
-
-        if (childDropdownTrigger && shouldAutoOpenNav) {
-          if (childDropdownTrigger.tagName) {
-            childDropdownTrigger.classList.add('pl-is-active');
-            this.previousActiveLinks.push(childDropdownTrigger);
-          }
-        }
+      if (
+        activeLink.parentNode.classList.contains(
+          'pl-c-nav__link--overview-wrapper'
+        )
+      ) {
+        activeLink.parentNode.classList.add('pl-is-active');
+        this.previousActiveLinks.push(activeLink.parentNode);
       }
 
       const parentDropdown = activeLink.closest('.pl-js-acc-panel');
@@ -362,8 +355,8 @@ class Nav extends BaseComponent {
             ) &&
             shouldAutoOpenNav
           ) {
-            this.previousActiveLinks.push(parentDropdown.previousSibling);
             parentDropdown.previousSibling.classList.add('pl-is-active');
+            this.previousActiveLinks.push(parentDropdown.previousSibling);
             parentDropdownTrigger = parentDropdown.previousSibling.querySelector(
               '.pl-js-acc-handle'
             );
@@ -374,31 +367,6 @@ class Nav extends BaseComponent {
           );
           const grandparentDropdownTrigger =
             grandparentDropdown.previousSibling;
-
-          if (parentDropdown && shouldAutoOpenNav) {
-            parentDropdown.classList.add('pl-is-active');
-            this.previousActiveLinks.push(parentDropdown);
-          }
-
-          // don't auto-open
-          if (parentDropdownTrigger) {
-            if (
-              shouldAutoOpenNav === true ||
-              parentDropdownTrigger.classList.contains(
-                'pl-c-nav__link--title'
-              ) === false
-            ) {
-              parentDropdownTrigger.classList.add('pl-is-active');
-              this.previousActiveLinks.push(parentDropdownTrigger);
-            }
-          }
-
-          if (grandparentDropdown && shouldAutoOpenNav) {
-            if (shouldAutoOpenNav) {
-              grandparentDropdown.classList.add('pl-is-active');
-            }
-            this.previousActiveLinks.push(grandparentDropdown);
-          }
 
           if (grandparentDropdownTrigger && shouldAutoOpenNav) {
             if (shouldAutoOpenNav) {
@@ -428,72 +396,12 @@ class Nav extends BaseComponent {
 
   toggleSpecialNavPanel(e) {
     const target = e.target;
-    const panel = target.parentNode.nextSibling;
-    const subnav = panel.parentNode.parentNode.classList.contains(
-      'pl-js-acc-panel'
-    );
-
-    if (!subnav) {
-      const navTriggers = document.querySelectorAll(
-        `.pl-js-acc-handle.pl-is-active`
-      );
-      const navPanels = document.querySelectorAll(
-        `.pl-js-acc-panel.pl-is-active`
-      );
-
-      navTriggers.forEach(navTrigger => {
-        if (navTrigger !== target) {
-          navTrigger.classList.remove('pl-is-active');
-        }
-      });
-
-      navPanels.forEach(navPanel => {
-        if (navPanel !== target) {
-          navPanel.classList.remove('pl-is-active');
-        }
-      });
-    }
-
-    if (target.classList.contains('pl-is-active')) {
-      target.classList.remove('pl-is-active');
-      panel.classList.remove('pl-is-active');
-    } else {
-      target.classList.add('pl-is-active');
-      panel.classList.add('pl-is-active');
-    }
+    target.parentNode.classList.toggle('pl-is-active');
   }
 
   toggleNavPanel(e) {
     const target = e.target;
-    const panel = target.nextSibling;
-    const subnav = target.parentNode.parentNode.classList.contains(
-      'pl-js-acc-panel'
-    );
-
-    if (!subnav) {
-      const navTriggers = document.querySelectorAll('.pl-js-acc-handle');
-      const navPanels = document.querySelectorAll('.pl-js-acc-panel');
-
-      navTriggers.forEach(navTrigger => {
-        if (navTrigger !== target) {
-          navTrigger.classList.remove('pl-is-active');
-        }
-      });
-
-      navPanels.forEach(navPanel => {
-        if (navPanel !== target) {
-          navPanel.classList.remove('pl-is-active');
-        }
-      });
-    }
-
-    if (target.classList.contains('pl-is-active')) {
-      target.classList.remove('pl-is-active');
-      panel.classList.remove('pl-is-active');
-    } else {
-      target.classList.add('pl-is-active');
-      panel.classList.add('pl-is-active');
-    }
+    target.classList.toggle('pl-is-active');
   }
 
   rendered() {
@@ -503,7 +411,7 @@ class Nav extends BaseComponent {
 
     this.handleURLChange();
 
-    if (this.layoutMode !== 'vertical' && window.innerWidth > 670){
+    if (this.layoutMode !== 'vertical' && window.innerWidth > 670) {
       this.cleanupActiveNav(true);
     }
   }

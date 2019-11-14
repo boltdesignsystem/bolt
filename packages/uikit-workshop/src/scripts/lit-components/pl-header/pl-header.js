@@ -49,7 +49,7 @@ class Header extends BaseLitComponent {
   }
 
   _stateChanged(state) {
-    if (this.themeMode !== state.app.themeMode){
+    if (this.themeMode !== state.app.themeMode) {
       this.themeMode = state.app.themeMode || 'dark';
     }
 
@@ -63,17 +63,22 @@ class Header extends BaseLitComponent {
 
   handleExternalClicks(e) {
     if (window.innerWidth <= 670) {
-      if (e.target !== this.navToggle && !e.target.closest('.pl-js-nav-container') && this.isActive === true) {
+      if (
+        e.target !== this.navToggle &&
+        !e.target.closest('.pl-js-nav-container') &&
+        !e.target.closest('pl-toggle-layout') &&
+        this.isActive === true
+      ) {
         this.isActive = false;
       }
     }
   }
 
-  firstUpdated(){
+  firstUpdated() {
     this.navToggle = this.renderRoot.querySelector('.pl-js-nav-trigger');
     this.navTarget = this.querySelector('.pl-js-nav-target');
 
-    if (!window.__PRERENDER_INJECTED){
+    if (!window.__PRERENDER_INJECTED) {
       this._wasInitiallyRendered = true;
     }
   }
@@ -122,7 +127,9 @@ class Header extends BaseLitComponent {
           : ''}
 
         <nav
-          class="pl-c-nav pl-js-nav-target pl-js-nav-container ${this.isActive ? 'pl-is-active' : ''}"
+          class="pl-c-nav pl-js-nav-target pl-js-nav-container ${this.isActive
+            ? 'pl-is-active'
+            : ''}"
           role="navigation"
         >
           <pl-search max-results="10" placeholder="Find a Pattern"></pl-search>
