@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/bolt-design-system/bolt/compare/v2.11.0...v2.11.1) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* **editor:** spelling and organization changes ([5cc57fc](https://github.com/bolt-design-system/bolt/commit/5cc57fc))
+* **micro-journeys:** fix wording of shadow dom form description ([f00e930](https://github.com/bolt-design-system/bolt/commit/f00e930))
+* **micro-journeys:** IE 11 fixes for bolt character and connection ([9f99228](https://github.com/bolt-design-system/bolt/commit/9f99228))
+* update Nightwatch test selector + demo code to render the client-side image used for testing w/o a Shadow DOM ([163e0b9](https://github.com/bolt-design-system/bolt/commit/163e0b9))
+* **micro-journeys:** make dialog bar match comps in width; remove br tags from starters ([ecbcf8a](https://github.com/bolt-design-system/bolt/commit/ecbcf8a))
+* fix UIKit webpack build ([1ec6017](https://github.com/bolt-design-system/bolt/commit/1ec6017))
+* update PL Nightwatch tests ([303c0a5](https://github.com/bolt-design-system/bolt/commit/303c0a5))
+
+
+### Features
+
+* uikit bug fixes + polishing up nav behavior across screen sizes + layout options ([f7d8bfd](https://github.com/bolt-design-system/bolt/commit/f7d8bfd))
+* **micro-journeys:** add a couple more layouts for testing use ([6a9b7c6](https://github.com/bolt-design-system/bolt/commit/6a9b7c6))
+* **micro-journeys:** add w and w/o shadow dom PL visual tests for character layouts ([6bd6823](https://github.com/bolt-design-system/bolt/commit/6bd6823))
+* **micro-journeys:** refactor character, dialog, and 2-char layout to cooperate with document flow ([33471a3](https://github.com/bolt-design-system/bolt/commit/33471a3))
+* add documentation for JS testing standards ([f18bab4](https://github.com/bolt-design-system/bolt/commit/f18bab4))
+* add documentation for manual testing standards ([97d05f9](https://github.com/bolt-design-system/bolt/commit/97d05f9))
+* add separate trigger/content spacing options to accordion ([04d1398](https://github.com/bolt-design-system/bolt/commit/04d1398))
+* update PL config to support the new logo customization option ([8c22db2](https://github.com/bolt-design-system/bolt/commit/8c22db2))
+* update schema table layout to fit more onscreen ([be6c5a5](https://github.com/bolt-design-system/bolt/commit/be6c5a5))
+
+
+
+
+
 ## [2.10.1](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.10.1) (2019-11-05)
 
 
