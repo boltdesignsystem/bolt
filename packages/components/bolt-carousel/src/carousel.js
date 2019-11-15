@@ -11,40 +11,9 @@ import Swiper from 'swiper';
 import styles from '../index.scss';
 import originalSchema from '../carousel.schema.yml';
 
+import '@bolt/core/utils/optimized-resize';
+
 let cx = classNames.bind(styles);
-let wasCarouselResizerAdded = false;
-
-function addBoltCarouselResizer() {
-  if (wasCarouselResizerAdded === false) {
-    wasCarouselResizerAdded = true;
-
-    // Create a custom 'optimizedResize' event that works just like window.resize but is more performant because it
-    // won't fire before a previous event is complete.
-    // This was adapted from https://developer.mozilla.org/en-US/docs/Web/Events/resize
-    (function() {
-      function throttle(type, name, obj) {
-        obj = obj || window;
-        let running = false;
-
-        function func() {
-          if (running) {
-            return;
-          }
-          running = true;
-          requestAnimationFrame(function() {
-            obj.dispatchEvent(new CustomEvent(name));
-            running = false;
-          });
-        }
-        obj.addEventListener(type, func);
-      }
-
-      // Initialize on window.resize event.  Note that throttle can also be initialized on any type of event,
-      // such as scroll.
-      throttle('resize', 'carousel:resize');
-    })();
-  }
-}
 
 // @todo: re-wire to point to actual breakpoint data
 const boltBreakpoints = {
@@ -137,12 +106,8 @@ class BoltCarousel extends withLitHtml() {
 
   connecting() {
     super.connecting && super.connecting();
-    addBoltCarouselResizer();
 
-    if (!this.carouselResizeEventAdded) {
-      this.carouselResizeEventAdded = true;
-      window.addEventListener('carousel:resize', this.reInitCarousel);
-    }
+    window.addEventListener('throttledResize', this.reInitCarousel);
 
     const nextButton = this.querySelector('[slot="next-btn"]');
     const prevButton = this.querySelector('[slot="previous-btn"]');
@@ -506,10 +471,7 @@ class BoltCarousel extends withLitHtml() {
 
     this.isVisible = false;
 
-    if (this.carouselResizeEventAdded === true) {
-      this.carouselResizeEventAdded = false;
-      window.removeEventListener('carousel:resize', this.reInitCarousel);
-    }
+    window.removeEventListener('throttledResize', this.reInitCarousel);
   }
 
   update() {

@@ -1,7 +1,7 @@
 @import '@bolt/core';
 
 bolt-status-dialogue-bar {
-  display: inline-block;
+  display: block;
 }
 
 $bolt-tooltip-bubble-border-color: bolt-color(gray, light);
@@ -9,6 +9,7 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
 .c-bolt-status-dialogue-bar {
   display: flex;
+  justify-content: center;
   align-items: center;
 
   &__content {
@@ -43,6 +44,7 @@ $bolt-tooltip-bubble-triangle-width: 8px;
 
   &__icon {
     @include bolt-padding-right(xsmall);
+    display: block;
     box-sizing: content-box;
     margin-bottom: .25rem;
 

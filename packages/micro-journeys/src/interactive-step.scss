@@ -16,10 +16,14 @@ bolt-interactive-step {
   text-align: left;
 
   &__title {
-
     @include bolt-micro-journeys-nav-title;
+
     @include bolt-mq(medium) {
       display: none;
+    }
+
+    &:hover {
+      cursor: pointer;
     }
 
     .c-bolt-interactive-step--active & {

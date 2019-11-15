@@ -146,7 +146,9 @@ class Drawer extends LitElement {
               </div>
             </div>
             <div class="pl-c-drawer__content pl-js-drawer-content">
-              <div class="pl-c-loader-wrapper pl-c-body--theme-${this.themeMode}">
+              <div
+                class="pl-c-loader-wrapper pl-c-body--theme-${this.themeMode}"
+              >
                 <div class="pl-c-loader">
                   <div class="pl-c-loader__content">
                     <div class="pl-c-loader__message">Loading Code Panel</div>
