@@ -248,8 +248,8 @@ function init() {
           break;
         }
         case EDITOR_STATES.OPEN: {
-          // @ts-ignore
           const handleEditorSave =
+            // @ts-ignore
             window.__handleEditorSave || exampleHandleEditorSave;
           const html = editor.getHtml();
           const unsavedChanges = editor.getDirtyCount();
