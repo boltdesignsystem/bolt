@@ -87,9 +87,6 @@ function exampleHandleEditorSave({ html, id }) {
   });
 }
 
-// @ts-ignore
-const handleEditorSave = window.__handleEditorSave || exampleHandleEditorSave;
-
 function addJsToPage(src) {
   return new Promise((resolve, reject) => {
     if (document.querySelector(`script[src="${src}"]`)) {
@@ -251,6 +248,9 @@ function init() {
           break;
         }
         case EDITOR_STATES.OPEN: {
+          // @ts-ignore
+          const handleEditorSave =
+            window.__handleEditorSave || exampleHandleEditorSave;
           const html = editor.getHtml();
           const unsavedChanges = editor.getDirtyCount();
           if (unsavedChanges) {
