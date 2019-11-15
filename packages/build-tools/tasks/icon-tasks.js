@@ -23,9 +23,7 @@ const failedRebuildingIconsMsg = 'Failed to rebuild Bolt SVG Icons!';
 
 async function build() {
   const iconSpinner = new Ora(
-    chalk.blue(
-      initialBuild ? startBuildingIconsMsg : startRebuildingIconsMsg,
-    ),
+    chalk.blue(initialBuild ? startBuildingIconsMsg : startRebuildingIconsMsg),
   ).start();
 
   try {
@@ -37,7 +35,7 @@ async function build() {
       extendedIconDirs,
     );
 
-    await function generateSchemaFile(icons);
+    await generateSchemaFile(icons);
 
     iconSpinner.succeed(
       chalk.green(
@@ -65,42 +63,22 @@ build.description = 'Minify & convert raw SVG files to browser-friendly icons.';
 build.displayName = 'icons:build';
 
 async function generateSchemaFile(icons) {
-  try {
-    const config = await getConfig();
-    const iconComponentDir = path.dirname(
-      resolve.sync('@bolt/components-icon/package.json'),
-    );
-    const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.json');
-    const names = icons.map(icon => icon.id);
-    const schema = await fs.readJson(iconComponentSchema);
-    schema.properties.name.enum = names;
+  const config = await getConfig();
+  const iconComponentDir = path.dirname(
+    resolve.sync('@bolt/components-icon/package.json'),
+  );
+  const iconComponentSchema = path.join(iconComponentDir, 'icon.schema.json');
+  const names = icons.map(icon => icon.id);
+  const schema = await fs.readJson(iconComponentSchema);
+  schema.properties.name.enum = names;
 
-    // update bolt-icon schema with newest icons from svgs folder
-    await fs.writeJson(iconComponentSchema, schema, { spaces: 2 });
-    // generate `icons.bolt.json` file with newest icons array
-    await fs.writeFile(
-      path.join(config.dataDir, 'icons.bolt.json'),
-      JSON.stringify(names, null, 4),
-    );
-
-    iconSpinner.succeed(
-      chalk.green(
-        initialBuild ? finishedBuildingIconsMsg : finishedRebuildingIconsMsg,
-      ),
-    );
-
-    initialBuild = false;
-  } catch (error) {
-    iconSpinner.fail(
-      chalk.red(
-        initialBuild
-          ? `Error trying to generate Icon YAML document for "@bolt/components-icon". ${error}`
-          : `Error trying to regenerate Icon YAML document for "@bolt/components-icon". ${error}`,
-      ),
-    );
-
-    process.exitCode = 1;
-  }
+  // update bolt-icon schema with newest icons from svgs folder
+  await fs.writeJson(iconComponentSchema, schema, { spaces: 2 });
+  // generate `icons.bolt.json` file with newest icons array
+  await fs.writeFile(
+    path.join(config.dataDir, 'icons.bolt.json'),
+    JSON.stringify(names, null, 4),
+  );
 }
 
 async function watch() {

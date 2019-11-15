@@ -287,15 +287,14 @@ async function generate(outputPackageName, extendedIconDirs) {
   );
   const iconPaths = await globby(allIcons);
 
-  const icons = (await transpileIcons(buildDir, iconPaths))
-    .sort(alphabetizeIconList); // we alphabetize the list so multiple compiles on same set doesn't result in a change that git notices
+  const icons = (await transpileIcons(buildDir, iconPaths)).sort(
+    alphabetizeIconList,
+  ); // we alphabetize the list so multiple compiles on same set doesn't result in a change that git notices
 
-  const allExports = icons
-    .map(icon => `export * from './icons/${icon.id}';`); // building up `export` lines
-
+  const allExports = icons.map(icon => `export * from './icons/${icon.id}';`); // building up `export` lines
   allExports.push('');
 
-  await fs.outputFile(indexPath, allExports.join("\n"), 'utf-8');
+  await fs.outputFile(indexPath, allExports.join('\n'), 'utf-8');
 
   return icons;
 }
