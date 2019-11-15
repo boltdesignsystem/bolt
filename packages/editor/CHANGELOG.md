@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.3](https://github.com/bolt-design-system/bolt/compare/v2.11.2...v2.11.3) (2019-11-15)
+
+
+### Bug Fixes
+
+* define handleEditorSave at runtime ([6fd981b](https://github.com/bolt-design-system/bolt/commit/6fd981b))
+* update ts ignore comment to fix linting issue ([2e4c142](https://github.com/bolt-design-system/bolt/commit/2e4c142))
+
+
+
+
+
 ## [2.11.2](https://github.com/bolt-design-system/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
 
 **Note:** Version bump only for package @bolt/components-editor
