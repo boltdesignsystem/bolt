@@ -42,8 +42,8 @@ All commands must be run from the root directory of your Bolt project.
 1. All Jest tests
    - `yarn test:js`
 1. Specific Jest test
-   - `npx jest 'path-to-test-file'`
-   - example: `npx jest packages/components/bolt-button/__tests__/button.js`
+   - `npx jest 'path-to-test-file'` or `npx jest test-file-name` or `yarn jest test-file-name`
+   - example: `npx jest packages/components/bolt-button/__tests__/button.js` or `npx jest button.js` or `yarn jest button.js`
 1. E2E full/quick tests live site
    - Full: `yarn test:e2e:full-live`
    - Quick: `yarn test:e2e:quick-live`
@@ -302,12 +302,6 @@ test('Default <bolt-button> w/o Shadow DOM renders', async function() {
 ### How to create with Shadow DOM test
 
 ```javascript
-const buttonNoShadowHTML = `
-  <bolt-button no-shadow>
-    This is a button
-  </bolt-button>
-`;
-
 const buttonHTML = `
   <bolt-button>
     Button Test -- Shadow Root HTML
