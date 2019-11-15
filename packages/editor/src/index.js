@@ -263,7 +263,7 @@ function init() {
           trigger.innerText = 'Saving...';
 
           const { ok, message } = await handleEditorSave({
-            html: container.innerHTML,
+            html,
             id: config.id,
           });
 
