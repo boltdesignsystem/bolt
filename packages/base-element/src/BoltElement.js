@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import { LitElement } from 'lit-element';
-import { Slotify } from './Slotify.js';
 import { supportsAdoptingStyleSheets } from 'lit-element/lib/css-tag.js';
+import { Slotify } from './Slotify.js';
 import {
   renderAndRenderedEvents,
   lazyStyles,
