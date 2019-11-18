@@ -271,6 +271,7 @@ function init() {
             cleanup();
             container.innerHTML = html;
             trigger.innerText = 'Edit';
+            editorState = EDITOR_STATES.CLOSED;
           } else {
             const msg = `Error: could not save editor: ${message}`;
             console.error(msg);
