@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.4](https://github.com/boltdesignsystem/bolt/compare/v2.11.3...v2.11.4) (2019-11-18)
+
+
+### Bug Fixes
+
+* adjust import order for Prettier ([6218e54](https://github.com/boltdesignsystem/bolt/commit/6218e54))
+* check to make sure this.renderRoot.adoptedStyleSheet is defined ([17841c9](https://github.com/boltdesignsystem/bolt/commit/17841c9))
+
+
+
+
+
 ## [2.11.2](https://github.com/bolt-design-system/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
 
 **Note:** Version bump only for package @bolt/element
