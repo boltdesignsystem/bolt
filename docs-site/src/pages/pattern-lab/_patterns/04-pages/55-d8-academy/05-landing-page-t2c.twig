@@ -15,7 +15,7 @@
   {% endset %}
   {% set crumb_1 %}
     {% include "@bolt-components-link/link.twig" with {
-      text: "Landing Page",
+      text: "Mission Title",
       url: "#!",
     } only %}
   {% endset %}
@@ -23,7 +23,7 @@
     {% include "@bolt-components-breadcrumb/breadcrumb.twig" with {
       contentItems: [
         crumb_1,
-        "Current Page"
+        "Internal Pega Test"
       ]
     } only %}
   {% endset %}
@@ -110,7 +110,7 @@
   {% endset %}
   {% set chip_2 %}
     {% include "@bolt-components-chip/chip.twig" with {
-      text: "Chip 2",
+      text: "Chip 2 Mauris Iaculis Porttitor Posuere. Praesent Id",
       url: "#!",
       size: "small",
     } only %}
@@ -129,15 +129,40 @@
       text: "Achievement <br>Badge Awarded",
     } only %}
   {% endset %}
+  {% set prereq %}
+    {% include "@bolt/flag.twig" with {
+      valign: "middle",
+      url: "#!",
+      figure: {
+        icon: {
+          name: "launchpad",
+          size: "xlarge",
+          background: "circle",
+          color: "teal"
+        }
+      },
+      items: [
+        {
+          pattern: "headline",
+          size: "large",
+          text: "Mission Title",
+          url: "https://www.pega.com",
+          icon: {
+            name: "chevron-right"
+          }
+        }
+      ]
+    } only %}
+  {% endset %}
   {% set content %}
     {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-8/12@small" %}
+      {% cell "u-bolt-width-1/1" %}
         {% include "@bolt-components-headline/eyebrow.twig" with {
           text: "Module",
         } only %}
         {% include "@bolt-components-headline/headline.twig" with {
           size: "xxxlarge",
-          text: "Configuring a case hierarchy",
+          text: "Internal Pega Test",
           attributes: {
             class: "u-bolt-margin-bottom-small",
           }
@@ -146,8 +171,9 @@
           display: "inline",
           separator: "solid",
           items: [
-            "9 topics",
-            "40 mins remaining",
+            "60 Questions",
+            "90 mins",
+            "Passing Score Needed: 70%",
           ]
         } only %}
         {% include "@bolt-components-list/list.twig" with {
@@ -158,29 +184,43 @@
           ]
         } only %}
       {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-5/12@small" %}
         {% include "@bolt-components-headline/text.twig" with {
           text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.",
         } only %}
       {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-6/12@small" %}
-        <div class="t-bolt-xlight u-bolt-shadow-20 u-bolt-border-radius-large u-bolt-padding-medium">
-          {% include "@bolt-components-headline/headline.twig" with {
-            size: "xlarge",
-            text: "Topics",
-            attributes: {
-              class: "u-bolt-margin-bottom-small",
-            }
-          } only %}
-          {% include "@bolt-components-list/list.twig" with {
-            separator: "solid",
-            items: [
-              "item 1",
-              "item 2",
-              "item 3",
-            ]
-          } only %}
-        </div>
+      {% cell "u-bolt-width-1/1 u-bolt-width-4/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: "Prerequisites",
+          attributes: {
+            class: "u-bolt-margin-bottom-small",
+          }
+        } only %}
+        {% include "@bolt-components-list/list.twig" with {
+          separator: "solid",
+          items: [
+            prereq,
+            prereq,
+            prereq,
+          ]
+        } only %}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-3/12@small" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          size: "large",
+          text: "Exam Topics <small>(% of exam)</small>",
+          attributes: {
+            class: "u-bolt-margin-bottom-small",
+          }
+        } only %}
+        {% include "@bolt-components-ul/ul.twig" with {
+          items: [
+            "Pega Platform (8%)",
+            "Case Lifecycle (25%)",
+            "Case Data Modeling (17%)",
+            "Business Policy Automation (13%)",
+          ]
+        } only %}
       {% endcell %}
     {% endgrid %}
   {% endset %}
@@ -191,16 +231,35 @@
     background: {
       opacity: "light",
       fill: "gradient",
-      contentItems: [
-        {
-          pattern: "image",
-          src: "/images/content/backgrounds/background-night-sky.jpg",
-        },
-      ]
     },
   } only %}
   {# End Hero #}
 
+  {# Body #}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-8/12@medium" %}
+        <div class="t-bolt-xlight u-bolt-padding-medium u-bolt-border-radius-large u-bolt-shadow-level-30">
+          {% include "@bolt-components-headline/headline.twig" with {
+            tag: "h2",
+            size: "large",
+            text: "Before you begin...",
+          } only %}
+          {% include "@bolt-components-headline/text.twig" with {
+            text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.",
+          } only %}
+          {% include "@bolt-components-placeholder/placeholder.twig" with {
+            size: "large",
+            text: "H5P Embed",
+          } only %}
+        </div>
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
 
-
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    content: content,
+  } only %}
+  {# End Body #}
 {% endblock %}

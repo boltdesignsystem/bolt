@@ -214,7 +214,7 @@
       {% cell "u-bolt-flex-shrink" %}
         {% grid "o-bolt-grid--flex o-bolt-grid--middle u-bolt-height-full" %}
           {% cell "u-bolt-width-1/1" %}
-            {% include '@bolt-components-image/image.twig' with {
+            {% include "@bolt-components-image/image.twig" with {
               src: "/images/placeholders/thumb-comet.jpg",
               alt: "Image alt.",
               max_width: "100px",
@@ -326,4 +326,59 @@
     theme: "light",
     content: content,
   } only %}
+  {# End Chapters #}
+
+
+  {# Chapters with Prerequisite #}
+  {% set content %}
+    {% grid "o-bolt-grid--flex o-bolt-grid--center o-bolt-grid--matrix" %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-8/12@medium u-bolt-width-6/12@large" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          tag: "h2",
+          size: "large",
+          text: "Prerequisite",
+        } only %}
+        {{ chapter }}
+      {% endcell %}
+      {% cell "u-bolt-width-1/1 u-bolt-width-10/12@small u-bolt-width-8/12@medium u-bolt-width-6/12@large" %}
+        {% include "@bolt-components-headline/headline.twig" with {
+          tag: "h2",
+          size: "large",
+          text: "Mission Sequence",
+        } only %}
+        {% include "@bolt-components-list/list.twig" with {
+          spacing: "medium",
+          items: [
+            chapter,
+            chevron,
+            chapter,
+            chevron,
+          ]
+        } only %}
+        {% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+          {% cell "u-bolt-flex-shrink" %}
+            {% include "@bolt-components-icon/icon.twig" with {
+              name: "launchpad",
+              background: "circle",
+              size: "xlarge"
+            } only %}
+          {% endcell %}
+          {% cell "u-bolt-width-1/1" %}
+            {% include "@bolt-components-headline/text.twig" with {
+              size: "small",
+              weight: "semibold",
+              align: "center",
+              text: "Achievement Badge Awarded",
+            } only %}
+          {% endcell %}
+        {% endgrid %}
+      {% endcell %}
+    {% endgrid %}
+  {% endset %}
+
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    content: content,
+  } only %}
+  {# End Chapters with Prerequisite #}
 {% endblock %}
