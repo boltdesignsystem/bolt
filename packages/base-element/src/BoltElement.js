@@ -23,6 +23,7 @@ class BoltElement extends Slotify(LitElement) {
     // styling after rendering to ensure adoptedStyles have highest priority.
     if (
       supportsAdoptingStyleSheets &&
+      this.renderRoot.adoptedStyleSheets &&
       this.renderRoot.adoptedStyleSheets.length === 0
     ) {
       this._needsShimAdoptedStyleSheets = false;
