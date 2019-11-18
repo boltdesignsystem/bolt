@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.4](https://github.com/boltdesignsystem/bolt/compare/v2.11.3...v2.11.4) (2019-11-18)
+
+
+### Bug Fixes
+
+* adjust import order for Prettier ([6218e54](https://github.com/boltdesignsystem/bolt/commit/6218e54))
+* check to make sure this.renderRoot.adoptedStyleSheet is defined ([17841c9](https://github.com/boltdesignsystem/bolt/commit/17841c9))
+* Pass correct value for html to editor ([7d4b12b](https://github.com/boltdesignsystem/bolt/commit/7d4b12b))
+* Reset button state on failed save ([bab00bd](https://github.com/boltdesignsystem/bolt/commit/bab00bd))
+* Update editor state on successful save ([04160e8](https://github.com/boltdesignsystem/bolt/commit/04160e8))
+
+
+
+
+
 ## [2.11.3](https://github.com/boltdesignsystem/bolt/compare/v2.11.2...v2.11.3) (2019-11-15)
 
 
