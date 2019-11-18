@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.11.2...v2.11.3) (2019-11-15)
+
+
+### Bug Fixes
+
+* UIKit CSS Hotfix for IE 11 ([d373caa](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/d373caa))
+
+
+
+
+
 # [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.10.0...v2.11.0) (2019-11-14)
 
 
