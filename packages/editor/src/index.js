@@ -277,6 +277,7 @@ function init() {
             console.error(msg);
             // eslint-disable-next-line no-alert
             window.alert(msg);
+            trigger.innerText = 'Save & Close';
           }
           break;
         }
