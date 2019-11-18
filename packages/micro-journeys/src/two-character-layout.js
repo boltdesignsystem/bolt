@@ -138,6 +138,7 @@ class BoltTwoCharacterLayout extends withLitHtml() {
         );
         connection.style.minWidth = `calc(${nextCharacterCenter.getBoundingClientRect()
           .left - connection.getBoundingClientRect().left}px + 50%)`;
+        connection.renderRoot.querySelector('.c-bolt-connection__main-image');
       }
     });
   };
@@ -155,16 +156,16 @@ class BoltTwoCharacterLayout extends withLitHtml() {
       ${this.addStyles([styles])}
       <div class="${classes}">
         <div class="c-bolt-two-character-layout__character-row">
-          <span
+          <div
             class="c-bolt-two-character-layout__character c-bolt-two-character-layout__character--left"
           >
             ${this.slot('character--left')}
-          </span>
-          <span
+          </div>
+          <div
             class="c-bolt-two-character-layout__character c-bolt-two-character-layout__character--right"
           >
             ${this.slot('character--right')}
-          </span>
+          </div>
         </div>
       </div>
     `;

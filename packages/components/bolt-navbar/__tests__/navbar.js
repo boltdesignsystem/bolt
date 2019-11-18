@@ -27,7 +27,7 @@ const viewportSizes = [
   },
   {
     size: 'medium',
-    width: 896,
+    width: 800,
     height: 414,
   },
   {
