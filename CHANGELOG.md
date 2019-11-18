@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.3](https://github.com/boltdesignsystem/bolt/compare/v2.11.2...v2.11.3) (2019-11-15)
+
+
+### Bug Fixes
+
+* define handleEditorSave at runtime ([6fd981b](https://github.com/boltdesignsystem/bolt/commit/6fd981b))
+* fix failing test utils Jest test ([5f2a3d4](https://github.com/boltdesignsystem/bolt/commit/5f2a3d4))
+* UIKit CSS Hotfix for IE 11 ([d373caa](https://github.com/boltdesignsystem/bolt/commit/d373caa))
+* update ts ignore comment to fix linting issue ([2e4c142](https://github.com/boltdesignsystem/bolt/commit/2e4c142))
+
+
+
+
+
 ## [2.11.2](https://github.com/boltdesignsystem/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
 
 **Note:** Version bump only for package bolt
