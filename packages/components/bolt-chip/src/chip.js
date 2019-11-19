@@ -1,72 +1,92 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-  validateProps,
-} from '@bolt/core/utils';
+import { props, define } from '@bolt/core/utils';
+import { html, render } from '@bolt/core/renderers/renderer-lit-html';
+import { BoltAction } from '@bolt/core/elements/bolt-action';
+import { convertInitialTags } from '@bolt/core/decorators';
+
 import classNames from 'classnames/bind';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-import Ajv from 'ajv';
 
 import styles from './chip.scss';
 import schema from '../chip.schema.yml';
 
-const ajv = new Ajv({ useDefaults: 'shared' });
-
 let cx = classNames.bind(styles);
 
 @define
-class BoltChip extends withLitHtml() {
+@convertInitialTags('a', 'span') // The first matching tag will have its attributes converted to component props
+class BoltChip extends BoltAction {
   static is = 'bolt-chip';
 
   static props = {
-    tag: props.string, // a | span
-    url: props.string,
+    ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
+    size: props.string,
   };
 
+  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    self.validate = ajv.compile(schema);
+    self.schema = this.getModifiedSchema(schema, ['text']); // remove `text` prop from schema, Twig only
+    self.delegateFocus = true;
     return self;
   }
 
   render() {
-    const { url } = validateProps(this.props, this.validate);
-    let { tag } = validateProps(this.props, this.validate);
+    // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline chips
+    // 2. Zero Width No-break Space (&#xfeff;) is needed to make the last word always stick with the icon, so the icon will never become an orphan.
 
-    const classes = cx('c-bolt-chip');
-    const textClasses = cx('c-bolt-chip__item-text');
+    // Validate the original prop data passed along -- returns back the validated data w/ added default values
+    const { url, target, size } = this.validateProps(this.props);
 
+    const classes = cx('c-bolt-chip', {
+      [`c-bolt-chip--link`]: url,
+      [`c-bolt-chip--size-${size}`]: size,
+    });
+
+    // Decide on if the rendered tag should be a <span> or <a> tag, based on if a URL exists
+    const hasUrl = url && url.length > 0;
+
+    // Assign default target attribute value if one isn't specified
+    const anchorTarget = target && hasUrl ? target : '_self';
+
+    // The chipElement to render, based on the initial HTML passed alone.
     let renderedChip;
 
-    if (url) {
-      tag = 'a';
+    // 1. Remove line breaks before and after lit-html template tags, causes unwanted space inside and around inline links
+    // 2. Zero Width No-break Space (&#xfeff;) is needed to make the last word always stick with the icon, so the icon will never become an orphan.
+    // prettier-ignore
+    const innerSlots = html`${
+      'before' in this.slots
+        ? html`<span class="${cx(`c-bolt-chip__icon`)}">&#xfeff;${this.slot('before')}</span>`
+        : html`<slot name="before" />`}${
+      'default' in this.slots
+        ? html`<span class="${cx(`c-bolt-chip__text`)}">${this.slot('default')}</span>`
+        : html`<slot />`}${
+      'after' in this.slots
+        ? html`<span class="${cx(`c-bolt-chip__icon`)}">&#xfeff;${this.slot('after')}</span>`
+        : html`<slot name="after" />`}`;
+
+    if (this.rootElement) {
+      renderedChip = this.rootElement.firstChild.cloneNode(true);
+      if (renderedChip.getAttribute('href') === null && hasUrl) {
+        renderedChip.setAttribute('href', this.props.url);
+      }
+      renderedChip.className += ' ' + classes;
+      render(innerSlots, renderedChip);
+    } else if (hasUrl) {
+      // [1]
+      // prettier-ignore
+      renderedChip = html`<a href="${this.props.url}" class="${classes}" target="${anchorTarget}"
+          >${innerSlots}</a
+        >`;
+    } else {
+      // [1]
+      // prettier-ignore
+      renderedChip = html`<span class="${classes}"
+          >${innerSlots}</span
+        >`;
     }
 
-    switch (tag) {
-      case 'a':
-        renderedChip = html`
-          <a href="${url}" class="${classes}">
-            <span class="${textClasses}">
-              ${this.slot('default')}
-            </span>
-          </a>
-        `;
-        break;
-      default:
-        renderedChip = html`
-          <span class="${classes}">
-            <span class="${textClasses}">
-              ${this.slot('default')}
-            </span>
-          </span>
-        `;
-    }
-
-    return html`
-      ${this.addStyles([styles])} ${renderedChip}
-    `;
+    // [1]
+    // prettier-ignore
+    return html`${this.addStyles([styles])}${renderedChip}`;
   }
 }
 

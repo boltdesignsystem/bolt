@@ -6,12 +6,14 @@ const clientRenderedExample = [
       <div id="p-2901335b-2a25-4842-8fd9-650e3c062217" data-href="/events/customer-engagement/amsterdam" class="c-bolt-card">
         <div class="c-bolt-card__media">
           <a href="/events/customer-engagement/amsterdam">
-            <bolt-image src="/images/placeholders/landscape-16x9-skyline.jpg" alt="Customer Engagement Summit Amsterdam" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" ratio="800:450">
-              <bolt-ratio id="p-ab09b014-4c54-4e22-85e4-ec8e865e2eae" aspect-ratio-height="450" aspect-ratio-width="800" style="--aspect-ratio-height: 450; --aspect-ratio-width: 800;">
-                <img  class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade js-lazyload" alt="Customer Engagement Summit Amsterdam" data-srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-                <noscript>
-                  <img  class="c-bolt-image__image" alt="Customer Engagement Summit Amsterdam" src="/images/placeholders/landscape-16x9-skyline.jpg" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" />
-                </noscript>
+            <bolt-image src="/images/placeholders/landscape-16x9-skyline.jpg" alt="Customer Engagement Summit Amsterdam" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" ratio="800/450" no-shadow>
+              <bolt-ratio id="p-ab09b014-4c54-4e22-85e4-ec8e865e2eae" ratio="800/450">
+                <div class="c-bolt-ratio" style="--aspect-ratio:1.77778;">
+                  <img  class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade js-lazyload" alt="Customer Engagement Summit Amsterdam" data-srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+                  <noscript>
+                    <img  class="c-bolt-image__image" alt="Customer Engagement Summit Amsterdam" src="/images/placeholders/landscape-16x9-skyline.jpg" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" />
+                  </noscript>
+                </div>
               </bolt-ratio>
             </bolt-image>
           </a>
@@ -26,7 +28,7 @@ const clientRenderedExample = [
             </bolt-text>
           </bolt-teaser>
         </div>
-        
+
         <div class="c-bolt-card__footer">
           <bolt-teaser>
             <bolt-button-group bolt-component>
@@ -52,12 +54,14 @@ const clientRenderedExample = [
       <div id="p-2901335b-2a25-4842-8fd9-650e3c062217" data-href="/events/customer-engagement/amsterdam" class="c-bolt-card">
         <div class="c-bolt-card__media">
           <a href="/events/customer-engagement/amsterdam">
-            <bolt-image src="/images/placeholders/landscape-16x9-skyline.jpg" alt="Customer Engagement Summit Amsterdam" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" ratio="800:450">
-              <bolt-ratio id="p-ab09b014-4c54-4e22-85e4-ec8e865e2eae" aspect-ratio-height="450" aspect-ratio-width="800" style="--aspect-ratio-height: 450; --aspect-ratio-width: 800;">
-                <img  class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade js-lazyload" alt="Customer Engagement Summit Amsterdam" data-srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-                <noscript>
-                  <img  class="c-bolt-image__image" alt="Customer Engagement Summit Amsterdam" src="/images/placeholders/landscape-16x9-skyline.jpg" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" />
-                </noscript>
+            <bolt-image src="/images/placeholders/landscape-16x9-skyline.jpg" alt="Customer Engagement Summit Amsterdam" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" ratio="800/450" no-shadow>
+              <bolt-ratio id="p-ab09b014-4c54-4e22-85e4-ec8e865e2eae" ratio="800/450">
+                <div class="c-bolt-ratio" style="--aspect-ratio:1.77778;">
+                  <img  class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade js-lazyload" alt="Customer Engagement Summit Amsterdam" data-srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+                  <noscript>
+                    <img  class="c-bolt-image__image" alt="Customer Engagement Summit Amsterdam" src="/images/placeholders/landscape-16x9-skyline.jpg" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" />
+                  </noscript>
+                </div>
               </bolt-ratio>
             </bolt-image>
           </a>
@@ -72,7 +76,7 @@ const clientRenderedExample = [
             </bolt-text>
           </bolt-teaser>
         </div>
-        
+
         <div class="c-bolt-card__footer">
           <bolt-teaser>
             <bolt-button-group bolt-component>
@@ -101,12 +105,14 @@ const serverRenderedExample = [
       <div id="p-2901335b-2a25-4842-8fd9-650e3c062217" data-href="/events/customer-engagement/amsterdam" class="c-bolt-card">
         <div class="c-bolt-card__media">
           <a href="/events/customer-engagement/amsterdam">
-            <bolt-image src="/images/placeholders/landscape-16x9-skyline.jpg" alt="Customer Engagement Summit Amsterdam" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" ratio="800:450">
-              <bolt-ratio id="p-ab09b014-4c54-4e22-85e4-ec8e865e2eae" aspect-ratio-height="450" aspect-ratio-width="800" style="--aspect-ratio-height: 450; --aspect-ratio-width: 800;">
-                <img  class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade js-lazyload" alt="Customer Engagement Summit Amsterdam" data-srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-                <noscript>
-                  <img  class="c-bolt-image__image" alt="Customer Engagement Summit Amsterdam" src="/images/placeholders/landscape-16x9-skyline.jpg" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" />
-                </noscript>
+            <bolt-image src="/images/placeholders/landscape-16x9-skyline.jpg" alt="Customer Engagement Summit Amsterdam" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" ratio="800/450">
+              <bolt-ratio id="p-ab09b014-4c54-4e22-85e4-ec8e865e2eae" ratio="800/450">
+                <div class="c-bolt-ratio" style="--aspect-ratio:1.77778;">
+                  <img  class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade js-lazyload" alt="Customer Engagement Summit Amsterdam" data-srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+                  <noscript>
+                    <img  class="c-bolt-image__image" alt="Customer Engagement Summit Amsterdam" src="/images/placeholders/landscape-16x9-skyline.jpg" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" />
+                  </noscript>
+                </div>
               </bolt-ratio>
             </bolt-image>
           </a>
@@ -119,7 +125,7 @@ const serverRenderedExample = [
             <p>See how Philips Healthcare uses the latest in Digital Process Automation (DPA) to improve health outcomes and foster patient engagement.</p>
           </bolt-teaser>
         </div>
-        
+
         <div class="c-bolt-card__footer">
           <bolt-teaser>
             <bolt-button-group bolt-component>
@@ -149,12 +155,14 @@ const serverRenderedExample = [
       <div id="p-2901335b-2a25-4842-8fd9-650e3c062217" data-href="/events/customer-engagement/amsterdam" class="c-bolt-card">
         <div class="c-bolt-card__media">
           <a href="/events/customer-engagement/amsterdam">
-            <bolt-image src="/images/placeholders/landscape-16x9-skyline.jpg" alt="Customer Engagement Summit Amsterdam" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" ratio="800:450">
-              <bolt-ratio id="p-ab09b014-4c54-4e22-85e4-ec8e865e2eae" aspect-ratio-height="450" aspect-ratio-width="800" style="--aspect-ratio-height: 450; --aspect-ratio-width: 800;">
-                <img  class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade js-lazyload" alt="Customer Engagement Summit Amsterdam" data-srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
-                <noscript>
-                  <img  class="c-bolt-image__image" alt="Customer Engagement Summit Amsterdam" src="/images/placeholders/landscape-16x9-skyline.jpg" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" />
-                </noscript>
+            <bolt-image src="/images/placeholders/landscape-16x9-skyline.jpg" alt="Customer Engagement Summit Amsterdam" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" ratio="800/450">
+              <bolt-ratio id="p-ab09b014-4c54-4e22-85e4-ec8e865e2eae" ratio="800/450">
+                <div class="c-bolt-ratio" style="--aspect-ratio:1.77778;">
+                  <img  class="c-bolt-image__image c-bolt-image__lazyload c-bolt-image__lazyload--fade js-lazyload" alt="Customer Engagement Summit Amsterdam" data-srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+                  <noscript>
+                    <img  class="c-bolt-image__image" alt="Customer Engagement Summit Amsterdam" src="/images/placeholders/landscape-16x9-skyline.jpg" srcset="/images/placeholders/landscape-16x9-skyline.jpg 50w, /images/placeholders/landscape-16x9-skyline.jpg 100w, /images/placeholders/landscape-16x9-skyline.jpg 200w, /images/placeholders/landscape-16x9-skyline.jpg 320w, /images/placeholders/landscape-16x9-skyline.jpg 480w" />
+                  </noscript>
+                </div>
               </bolt-ratio>
             </bolt-image>
           </a>
@@ -167,7 +175,7 @@ const serverRenderedExample = [
             <p>See how Philips Healthcare uses the latest in Digital Process Automation (DPA) to improve health outcomes and foster patient engagement.</p>
           </bolt-teaser>
         </div>
-        
+
         <div class="c-bolt-card__footer">
           <bolt-teaser>
             <bolt-button-group bolt-component>

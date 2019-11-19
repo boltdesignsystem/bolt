@@ -25,8 +25,8 @@
 {% endset %}
 
 {# Start component specific code #}
-{% for spacing in schema.properties.spacing.enum %}
-  {% for display in regular_display_options %}
+{% for display in regular_display_options %}
+  {% for spacing in schema.properties.spacing.enum %}
     <h3>{{ display|capitalize }} list with spacing ({{ spacing }})</h3>
     {% include "@bolt-components-list/list.twig" with {
       display: display,

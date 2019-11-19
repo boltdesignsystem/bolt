@@ -1,7 +1,8 @@
 import Ajv from 'ajv';
 import { withComponent, props } from 'skatejs';
 import changeCase from 'change-case';
-import { findParentTag, hasNativeShadowDomSupport, renameKey } from '../utils';
+import { shouldUseShadowDom, hasNativeShadowDomSupport } from '@bolt/element';
+import { renameKey } from '../utils';
 
 export function shadow(elem) {
   // eslint-disable-next-line no-return-assign
@@ -22,6 +23,15 @@ export function BoltBase(Base = HTMLElement) {
       super(self);
       this._wasInitiallyRendered = false;
       return self;
+    }
+
+    connectedCallback() {
+      super.connectedCallback && super.connectedCallback();
+
+      // Check if any `<ssr-keep>` elements have registered themselves here. If so, kick off the one-time hydration prep task.
+      if (this.ssrKeep && !this.ssrPrepped) {
+        this.ssrHydrationPrep();
+      }
     }
 
     /**
@@ -49,22 +59,19 @@ export function BoltBase(Base = HTMLElement) {
     }
 
     setupShadow() {
-      if (
-        this.useShadow === false ||
-        findParentTag(this, 'FORM') ||
-        this.getAttribute('no-shadow') !== null
-      ) {
-        this.useShadow = false;
-      } else {
-        this.useShadow = hasNativeShadowDomSupport;
-      }
+      this.useShadow = shouldUseShadowDom(this);
     }
 
     get renderRoot() {
       // ensure every component instance renders to the light DOM when needed (ex. if nested inside of a form, render to the light DOM)
       // this ensures that things work as expected, even when a component gets removed / re-added to the page
       this.setupShadow();
-      this.ssrHydrationPrep && this.ssrHydrationPrep();
+
+      // double-check if any `<ssr-keep>` elements have registered anything after connectedCallback fired.
+      // this extra check addresses a bug encountered where components like accordions connect BEFORE <ssr-keep> fires
+      if (this.ssrKeep && !this.ssrPrepped) {
+        this.ssrHydrationPrep();
+      }
 
       // @todo: add debug flag the build to allow conditionally enabling / disabling this extra slot setup check here.
       if (!this.slots) {
@@ -151,6 +158,29 @@ export function BoltBase(Base = HTMLElement) {
       }
 
       return modifiedSchema;
+    }
+
+    /**
+     * Replace server-side rendered HTML with only the markup needed to hydrate web component, as marked by `<ssr-keep>` elements.
+     */
+    ssrHydrationPrep() {
+      this.nodesToKeep = [];
+
+      this.ssrKeep.forEach(item => {
+        while (item.firstChild) {
+          this.nodesToKeep.push(item.firstChild); // track the nodes that will be preserved
+          this.appendChild(item.firstChild);
+        }
+      });
+
+      // Remove all children not in the "keep" array
+      Array.from(this.children)
+        .filter(item => !this.nodesToKeep.includes(item))
+        .forEach(node => {
+          node.parentElement.removeChild(node);
+        });
+
+      this.ssrPrepped = true;
     }
 
     addStyles(stylesheet) {

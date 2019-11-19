@@ -41,7 +41,10 @@ module.exports = {
   },
   persist_globals: true,
   live_output: false, // set to `true` to see output as it happens; make appear interlaced if ran in parallel
-  // test_workers: { enabled: true, workers: '1' },
+  test_workers: {
+    enabled: true,
+    workers: 'auto',
+  },
   test_settings: {
     compatible_testcase_support: true,
     default: {
@@ -97,7 +100,7 @@ module.exports = {
       desiredCapabilities: {
         browserName: 'internet explorer',
         platform: 'Windows 10',
-        version: '11.0',
+        version: '11.285',
       },
       build: `build-${process.env.TRAVIS_JOB_NUMBER}`,
       'tunnel-identifier': `${process.env.TRAVIS_JOB_NUMBER || ''}`,

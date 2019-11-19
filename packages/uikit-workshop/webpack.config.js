@@ -1,20 +1,21 @@
 // webpack.config.js
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const NoEmitPlugin = require('no-emit-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const CriticalCssPlugin = require('@bolt/critical-css-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const selectorImporter = require('node-sass-selector-importer');
+const CopyPlugin = require('copy-webpack-plugin');
 const PrerenderSPAPlugin = require('@bolt/prerender-spa-plugin');
 const localChrome = require('local-chrome');
-// const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const Renderer = require('@bolt/uikit-prerenderer');
 const puppeteer = require('puppeteer');
+const argv = require('yargs').argv;
+const merge = require('webpack-merge');
 
 const cosmiconfig = require('cosmiconfig');
 const explorer = cosmiconfig('patternlab');
@@ -23,14 +24,22 @@ const explorer = cosmiconfig('patternlab');
 const defaultConfig = {
   buildDir: './dist',
   prod: true, // or false for local dev
-  sourceMaps: false,
+  sourceMaps: true,
+  publicPath: './styleguide/',
+  copy: [{ from: './src/images/**', to: 'images', flatten: true }],
 };
 
-module.exports = async function() {
-  return new Promise(async (resolve, reject) => {
+module.exports = function() {
+  return new Promise(async resolve => {
     let customConfig = defaultConfig;
+    let configToSearchFor;
 
-    const configToSearchFor = await explorer.searchSync();
+    if (argv.patternlabrc) {
+      configToSearchFor = await explorer.loadSync(argv.patternlabrc);
+    } else {
+      configToSearchFor = await explorer.searchSync();
+    }
+
     if (configToSearchFor) {
       if (configToSearchFor.config) {
         customConfig = configToSearchFor.config;
@@ -39,6 +48,51 @@ module.exports = async function() {
 
     // Allow external flags for modifying PL's prod mode, on top of the .patternlabrc config file
     const config = Object.assign({}, defaultConfig, customConfig);
+
+    function getBabelConfig(isModern = false) {
+      return {
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: {
+                browsers: isModern
+                  ? [
+                      // NOTE: I'm not using the `esmodules` target due to this issue:
+                      // https://github.com/babel/babel/issues/8809
+                      'last 2 Chrome versions',
+                      'last 2 Safari versions',
+                      'last 2 iOS versions',
+                      'last 2 Edge versions',
+                      'Firefox ESR',
+                    ]
+                  : ['ie 11'],
+              },
+              useBuiltIns: 'entry',
+              corejs: 3,
+              modules: false,
+              debug: false,
+            },
+          ],
+        ],
+        plugins: [
+          '@babel/plugin-proposal-optional-chaining',
+          ['@babel/plugin-proposal-decorators', { legacy: true }],
+          ['@babel/plugin-proposal-class-properties', { loose: true }],
+          '@babel/plugin-syntax-dynamic-import',
+          '@babel/plugin-syntax-jsx' /* [1] */,
+          [
+            '@babel/plugin-transform-react-jsx' /* [1] */,
+            {
+              pragma: 'h',
+              pragmaFrag: '"span"',
+              throwIfNamespace: false,
+              useBuiltIns: false,
+            },
+          ],
+        ],
+      };
+    }
 
     // organize the series of plugins to run our Sass through as an external array -- this is necessary since we need to add additional loaders when compiling Sass to standalone CSS files vs compiling Sass and returning an inline-able <style> block of CSS (which we need to do both)
     const scssLoaders = [
@@ -66,19 +120,16 @@ module.exports = async function() {
       {
         loader: 'sass-loader',
         options: {
-          sourceMap: config.sourceMaps,
-          outputStyle: 'expanded',
-          importer: [selectorImporter()],
+          sassOptions: {
+            sourceMap: config.sourceMaps,
+            outputStyle: 'expanded',
+            importer: [selectorImporter()],
+          }
         },
       },
     ];
 
     const webpackConfig = {
-      entry: {
-        'js/patternlab-pattern': './src/scripts/patternlab-pattern.js',
-        'js/patternlab-viewer': './src/scripts/patternlab-viewer.js',
-        'css/pattern-lab': './src/sass/pattern-lab.scss',
-      },
       performance: {
         hints: false,
       },
@@ -91,12 +142,24 @@ module.exports = async function() {
       },
       output: {
         path: path.resolve(process.cwd(), `${config.buildDir}/styleguide`),
-        publicPath: '/pattern-lab/styleguide/',
+        publicPath: `${config.publicPath}`,
         filename: '[name].js',
         chunkFilename: `js/[name]-chunk-[chunkhash].js`,
       },
       module: {
         rules: [
+          {
+            test: /\.(ts|tsx)$/,
+            use: [
+              {
+                loader: 'ts-loader',
+                options: {
+                  transpileOnly: true,
+                  experimentalWatchApi: true,
+                },
+              },
+            ],
+          },
           {
             test: /\.html$/,
             use: [
@@ -114,52 +177,11 @@ module.exports = async function() {
             ],
           },
           {
-            test: /\.js$/,
-            exclude: /(bower_components)/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                compact: false,
-                presets: [
-                  [
-                    '@babel/preset-env',
-                    {
-                      modules: false,
-                      debug: false,
-                    },
-                  ],
-                ],
-                plugins: [
-                  [
-                    '@babel/plugin-transform-runtime',
-                    {
-                      helpers: false,
-                      regenerator: true,
-                    },
-                  ],
-                  ['@babel/plugin-proposal-decorators', { legacy: true }],
-                  '@babel/plugin-proposal-class-properties',
-                  '@babel/plugin-syntax-dynamic-import',
-                  '@babel/plugin-syntax-jsx' /* [1] */,
-                  [
-                    '@babel/plugin-transform-react-jsx' /* [1] */,
-                    {
-                      pragma: 'h',
-                      pragmaFrag: '"span"',
-                      throwIfNamespace: false,
-                      useBuiltIns: false,
-                    },
-                  ],
-                ],
-              },
-            },
-          },
-          {
             test: /\.svg$/,
             use: [
-              {
-                loader: '@svgr/webpack',
-              },
+              { loader: 'svg-sprite-loader', options: {} },
+              'svg-transform-loader',
+              'svgo-loader',
             ],
           },
           {
@@ -174,6 +196,7 @@ module.exports = async function() {
                 use: [
                   {
                     loader: 'style-loader',
+                    options: { injectType: 'lazySingletonStyleTag' },
                   },
                   scssLoaders,
                 ].reduce((acc, val) => acc.concat(val), []),
@@ -187,7 +210,7 @@ module.exports = async function() {
                 // otherwise extract the result and write out a .css file per usual
                 use: [MiniCssExtractPlugin.loader, scssLoaders].reduce(
                   (acc, val) => acc.concat(val),
-                  [],
+                  []
                 ),
               },
             ],
@@ -195,7 +218,8 @@ module.exports = async function() {
         ],
       },
       cache: true,
-      mode: config.prod ? 'production' : 'development',
+      // mode: config.prod ? 'production' : 'development',
+      mode: config.prod ? 'production' : 'development', // temp workaround till strange rendering issues with full `production` mode are switched on in Webpack
       optimization: {
         minimize: true,
         occurrenceOrder: true,
@@ -205,18 +229,105 @@ module.exports = async function() {
         nodeEnv: 'production',
         mergeDuplicateChunks: true,
         concatenateModules: true,
-        // splitChunks: {
-        //   chunks: 'async',
-        //   cacheGroups: {
-        //     vendors: {
-        //       test: /[\\/]node_modules[\\/]/,
-        //       name: 'vendors',
-        //       chunks: 'async',
-        //       reuseExistingChunk: true,
-        //     },
-        //   },
-        // },
-        minimizer: config.prod ? [new TerserPlugin()] : [],
+        splitChunks: {
+          chunks: 'async',
+          cacheGroups: {
+            vendors: {
+              test: /[\\/]node_modules[\\/]/,
+              name: 'vendors',
+              chunks: 'async',
+              reuseExistingChunk: true,
+            },
+          },
+        },
+        minimizer: config.prod
+          ? [
+              new TerserPlugin({
+                test: /\.m?js(\?.*)?$/i,
+                sourceMap: config.prod ? false : config.sourceMaps,
+                terserOptions: {
+                  safari10: true,
+                },
+              }),
+            ]
+          : [],
+      },
+      plugins: [
+        new CopyPlugin(config.copy),
+        new NoEmitPlugin(['css/pattern-lab.js']),
+      ],
+    };
+
+    webpackConfig.plugins.push(
+      new HardSourceWebpackPlugin({
+        info: {
+          level: 'warn',
+        },
+        // Clean up large, old caches automatically.
+        cachePrune: {
+          // Caches younger than `maxAge` are not considered for deletion. They must
+          // be at least this (default: 2 days) old in milliseconds.
+          maxAge: 2 * 24 * 60 * 60 * 1000,
+          // All caches together must be larger than `sizeThreshold` before any
+          // caches will be deleted. Together they must be at least 300MB in size
+          sizeThreshold: 300 * 1024 * 1024,
+        },
+      })
+    );
+
+    const legacyConfig = merge(webpackConfig, {
+      entry: {
+        'js/patternlab-pattern': './src/scripts/patternlab-pattern.js',
+        'js/patternlab-viewer': './src/scripts/patternlab-viewer.js',
+        'css/pattern-lab': './src/sass/pattern-lab.scss',
+      },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /(bower_components|document-register-element)/,
+            use: {
+              loader: 'babel-loader',
+              options: getBabelConfig(false),
+            },
+          },
+        ],
+      },
+      plugins: [
+        new MiniCssExtractPlugin({
+          filename: `[name].css`,
+          chunkFilename: `[id].css`,
+          allChunks: true,
+        }),
+      ]
+    });
+
+    const modernConfig = merge(webpackConfig, {
+      resolve: {
+        mainFields: ['esnext', 'jsnext:main', 'browser', 'module', 'main'],
+      },
+      entry: {
+        'js/patternlab-pattern': './src/scripts/patternlab-pattern.modern.js',
+        'js/patternlab-viewer': './src/scripts/patternlab-viewer.modern.js',
+        'css/pattern-lab': './src/sass/pattern-lab.scss',
+      },
+      output: {
+        path: path.resolve(process.cwd(), `${config.buildDir}/styleguide`),
+        publicPath: `${config.publicPath}`,
+        filename: '[name].modern.js',
+        chunkFilename: `js/[name]-chunk-[chunkhash].modern.js`,
+      },
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            exclude: /(node_modules)/,
+            use: {
+              loader: 'babel-loader',
+              options: getBabelConfig(true),
+            },
+          },
+        ],
       },
       plugins: [
         // clear out the buildDir on every fresh Webpack build
@@ -231,25 +342,9 @@ module.exports = async function() {
             verbose: false,
 
             // perform clean just before files are emitted to the output dir
-            beforeEmit: true,
-          },
+            beforeEmit: false,
+          }
         ),
-        new HtmlWebpackPlugin({
-          filename: '../index.html',
-          template: 'src/html/index.html',
-          inject: false,
-        }),
-        new MiniCssExtractPlugin({
-          filename: `[name].css`,
-          chunkFilename: `[id].css`,
-          allChunks: true,
-        }),
-        new NoEmitPlugin(['css/pattern-lab.js']),
-      ],
-    };
-
-    if (localChrome) {
-      webpackConfig.plugins.unshift(
         new PrerenderSPAPlugin({
           // Required - The path to the webpack-outputted app to prerender.
           // staticDir: path.join(__dirname, 'dist'),
@@ -272,72 +367,68 @@ module.exports = async function() {
             },
           }),
         }),
-      );
-    }
-
-    webpackConfig.plugins.push(
-      new HardSourceWebpackPlugin({
-        info: {
-          level: 'warn',
-        },
-        // Clean up large, old caches automatically.
-        cachePrune: {
-          // Caches younger than `maxAge` are not considered for deletion. They must
-          // be at least this (default: 2 days) old in milliseconds.
-          maxAge: 2 * 24 * 60 * 60 * 1000,
-          // All caches together must be larger than `sizeThreshold` before any
-          // caches will be deleted. Together they must be at least 300MB in size
-          sizeThreshold: 300 * 1024 * 1024,
-        },
-      }),
-    );
-
-    if (localChrome) {
-      const browserPromise = puppeteer.launch({
-        executablePath: localChrome,
-        ignoreHTTPSErrors: true,
-        args: ['--disable-setuid-sandbox', '--no-sandbox'],
-        // not required to specify here, but saves Penthouse some work if you will
-        // re-use the same viewport for most penthouse calls.
-        defaultViewport: {
-          width: 1300,
-          height: 900,
-        },
-      });
-
-      webpackConfig.plugins.push(
-        new CriticalCssPlugin({
-          base: path.resolve(__dirname, config.buildDir),
-          src: 'index.html',
-          target: { html: 'index.html' },
-          inline: true,
-          minify: true,
-          extract: false,
-          width: 1300,
-          height: 900,
-          penthouse: {
-            keepLargerMediaQueries: true,
-
-            // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
-            forceInclude: [
-              '.pl-c-body--theme-light',
-              '.pl-c-body--theme-sidebar',
-              '.pl-c-body--theme-sidebar .pl-c-viewport',
-              '.pl-c-body--theme-density-compact',
-            ],
-            timeout: 30000, // ms; abort critical CSS generation after this timeout
-            maxEmbeddedBase64Length: 1000,
-            renderWaitTime: 1000,
-            blockJSRequests: false,
-            puppeteer: {
-              executablePath: localChrome,
-              getBrowser: () => browserPromise
-            }
-          },
+        new HtmlWebpackPlugin({
+          filename: '../index.html',
+          template: 'src/html/index.html',
+          inject: false,
         }),
-      );
-    }
+        new MiniCssExtractPlugin({
+          filename: `[name].css`,
+          chunkFilename: `[id].css`,
+          allChunks: true,
+        }),
+      ],
+    });
 
-    return resolve(webpackConfig);
+    // if (localChrome) {
+    //   const browserPromise = puppeteer.launch({
+    //     executablePath: localChrome,
+    //     ignoreHTTPSErrors: true,
+    //     args: ['--disable-setuid-sandbox', '--no-sandbox'],
+    //     // not required to specify here, but saves Penthouse some work if you will
+    //     // re-use the same viewport for most penthouse calls.
+    //     defaultViewport: {
+    //       width: 1300,
+    //       height: 900,
+    //     },
+    //   });
+
+    //   modernConfig.plugins.push(
+    //     new CriticalCssPlugin({
+    //       base: path.resolve(__dirname, config.buildDir),
+    //       src: 'index.html',
+    //       dest: 'index.html',
+    //       inline: true,
+    //       minify: true,
+    //       extract: false,
+    //       width: 1300,
+    //       height: 900,
+    //       penthouse: {
+    //         keepLargerMediaQueries: true,
+
+    //         // @todo: troubleshoot why forceInclude works w/ Penthouse directly but not w/ Critical
+    //         forceInclude: [
+    //           'pl-logo',
+    //           '.pl-c-logo',
+    //           '.pl-c-logo__img',
+    //           '.pl-c-body--theme-light',
+    //           '.pl-c-body--theme-sidebar',
+    //           '.pl-c-body--theme-sidebar .pl-c-viewport',
+    //           '.pl-c-body--theme-density-compact',
+    //         ],
+    //         timeout: 30000, // ms; abort critical CSS generation after this timeout
+    //         maxEmbeddedBase64Length: 1000,
+    //         renderWaitTime: 1000,
+    //         blockJSRequests: false,
+    //         puppeteer: {
+    //           executablePath: localChrome,
+    //           getBrowser: () => browserPromise
+    //         }
+    //       },
+    //     })
+    //   );
+    // }
+
+    return resolve([modernConfig, legacyConfig]);
   });
 };

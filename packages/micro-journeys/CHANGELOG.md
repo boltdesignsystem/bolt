@@ -3,6 +3,140 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.2](https://github.com/bolt-design-system/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* **micro-journeys:** clean up equalizeRelativeHeights; fix tryAttempts persistence bug ([5653901](https://github.com/bolt-design-system/bolt/commit/5653901))
+* **micro-journeys:** css cleanup ([913c49c](https://github.com/bolt-design-system/bolt/commit/913c49c))
+* **micro-journeys:** don't render inactive pathway; fix render issues on pathway and step ([ee741e1](https://github.com/bolt-design-system/bolt/commit/ee741e1))
+* **micro-journeys:** Edge fix for equalizeRelativeHeights, replace x and y with left and top ([afb1531](https://github.com/bolt-design-system/bolt/commit/afb1531))
+* **micro-journeys:** fix bolt-link usage with bolt-icon ([cc1cae0](https://github.com/bolt-design-system/bolt/commit/cc1cae0))
+* **micro-journeys:** IE 11 fixes for bolt character and connection ([9f99228](https://github.com/bolt-design-system/bolt/commit/9f99228))
+* **micro-journeys:** make dialog bar match comps in width; remove br tags from starters ([ecbcf8a](https://github.com/bolt-design-system/bolt/commit/ecbcf8a))
+* **micro-journeys:** move link component to use slot-after for icon ([bae9819](https://github.com/bolt-design-system/bolt/commit/bae9819))
+* **micro-journeys:** prevent render of content if not active step. Does not work w/o shadow dom. ([12094e9](https://github.com/bolt-design-system/bolt/commit/12094e9))
+* **micro-journeys:** refactor two-char layout to control its own animation in and out ([05dc857](https://github.com/bolt-design-system/bolt/commit/05dc857))
+* **micro-journeys:** restore file to pre-ie-11 fix attempt meddling ([f7f8f8a](https://github.com/bolt-design-system/bolt/commit/f7f8f8a))
+* **micro-journeys:** tighten up spacing around character and two-character elements to match comps ([01bb7c6](https://github.com/bolt-design-system/bolt/commit/01bb7c6))
+
+
+### Features
+
+* **micro-journey:** add export of bolt connection is ([fe61771](https://github.com/bolt-design-system/bolt/commit/fe61771))
+* **micro-journey:** adding name exports and prepping for IE 11 work, layout fixes ([6ec09e6](https://github.com/bolt-design-system/bolt/commit/6ec09e6))
+* **micro-journeys:** prevent body content render on inactive steps ([019a0ea](https://github.com/bolt-design-system/bolt/commit/019a0ea))
+* **micro-journeys:** refactor character, dialog, and 2-char layout to cooperate with document flow ([33471a3](https://github.com/bolt-design-system/bolt/commit/33471a3))
+* **micro-journeys:** starter templates for one and two character ([10bea16](https://github.com/bolt-design-system/bolt/commit/10bea16))
+
+
+
+
+
+# [2.10.0](https://github.com/bolt-design-system/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* **micro-journeys:** add support for line wrapping to nav ([e0bcb71](https://github.com/bolt-design-system/bolt/commit/e0bcb71))
+* **micro-journeys:** dot-and-line nav squished on mobile with overlong text ([121e7f0](https://github.com/bolt-design-system/bolt/commit/121e7f0))
+* **micro-journeys:** tighten dialog icon spacing ([8c42eac](https://github.com/bolt-design-system/bolt/commit/8c42eac))
+
+
+
+
+
+## [2.9.2](https://github.com/bolt-design-system/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* **micro-journeys:** black text in dropdown in IE 11 ([fc38211](https://github.com/bolt-design-system/bolt/commit/fc38211))
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/micro-journeys
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+
+### Features
+
+* **editor:** hide pathways image options ([2536517](https://github.com/bolt-design-system/bolt/commit/2536517))
+* **micro-journeys:** add icon-group to PL; spelling fixes ([46a8782](https://github.com/bolt-design-system/bolt/commit/46a8782))
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* **micro-journeys:** Context JS error when animations have no parent bolt-interactive-pathways w/ context ([44f85b0](https://github.com/bolt-design-system/bolt/commit/44f85b0))
+* **micro-journeys:** fix dropdown text color in IE 11 ([92ac37c](https://github.com/bolt-design-system/bolt/commit/92ac37c))
+* **micro-journeys:** fix IntersectionObserver on IE 11 ([fd15c6e](https://github.com/bolt-design-system/bolt/commit/fd15c6e))
+* **micro-journeys:** ie 11 color fixes ([c60ca03](https://github.com/bolt-design-system/bolt/commit/c60ca03))
+* **micro-journeys:** lots of IE 11 fixes ([e68ced3](https://github.com/bolt-design-system/bolt/commit/e68ced3))
+* update all micro journey cta to use bolt link over text ([228f659](https://github.com/bolt-design-system/bolt/commit/228f659))
+* **micro-journeys:** prevent rapid click of steps from showing multiple steps ([cc0f7d8](https://github.com/bolt-design-system/bolt/commit/cc0f7d8))
+* address linting issues ([03f30b5](https://github.com/bolt-design-system/bolt/commit/03f30b5))
+* fix eslint issues ([b95aa72](https://github.com/bolt-design-system/bolt/commit/b95aa72))
+* fix overflow issue on smaller screen sizes ([e50c081](https://github.com/bolt-design-system/bolt/commit/e50c081))
+* incorret character schema default fixed ([e92cc0d](https://github.com/bolt-design-system/bolt/commit/e92cc0d))
+* multiple layout fixes for micro journeys on small-ish screen sizes ([97af5d0](https://github.com/bolt-design-system/bolt/commit/97af5d0))
+* remove click event listener when disconnecting + remove preventDefault that was causing UI like buttons to not click as expected as a result ([a3a0a71](https://github.com/bolt-design-system/bolt/commit/a3a0a71))
+* update connection band to re-trigger an update when the context changes ([113d34c](https://github.com/bolt-design-system/bolt/commit/113d34c))
+* update prettier issues ([bcda2f5](https://github.com/bolt-design-system/bolt/commit/bcda2f5))
+* update Sass to use bolt-theme outside of a media query + add border color to styles ([7c68d1f](https://github.com/bolt-design-system/bolt/commit/7c68d1f))
+* z-index clash between dropdown menu and status bars ([61d5567](https://github.com/bolt-design-system/bolt/commit/61d5567))
+
+
+### Features
+
+* add animated dot styles + todo comment to enable ([4bdbed4](https://github.com/bolt-design-system/bolt/commit/4bdbed4))
+* add theme support to interactive-pathways via withContext and defineContext ([eb32484](https://github.com/bolt-design-system/bolt/commit/eb32484))
+* custom dropdown closes with you select an option ([7c7da6b](https://github.com/bolt-design-system/bolt/commit/7c7da6b))
+* expose props to edit the image atop the interactive pathways co… ([#1411](https://github.com/bolt-design-system/bolt/issues/1411)) ([9fe1993](https://github.com/bolt-design-system/bolt/commit/9fe1993))
+* pathways dropdown closes with a new pathway is selected ([ceadc0c](https://github.com/bolt-design-system/bolt/commit/ceadc0c))
+* **micro-journeys:** add theme consumer to interactive-step; lint scss ([03b09ab](https://github.com/bolt-design-system/bolt/commit/03b09ab))
+* **svg-animations:** theme switching for animations ([0b7df25](https://github.com/bolt-design-system/bolt/commit/0b7df25))
+
+
+### Reverts
+
+* revert combining withLitHTML base with withLitContext for now ([ca828da](https://github.com/bolt-design-system/bolt/commit/ca828da))
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 **Note:** Version bump only for package @bolt/micro-journeys

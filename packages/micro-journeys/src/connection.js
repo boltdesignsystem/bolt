@@ -1,14 +1,15 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './connection.scss';
 import schema from './connection.schema';
 
 let cx = classNames.bind(styles);
 
+const boltConnectionIs = 'bolt-connection';
 @define
-class BoltConnection extends withLitHtml() {
-  static is = 'bolt-connection';
+class BoltConnection extends withLitContext() {
+  static is = boltConnectionIs;
 
   static props = {
     noShadow: {
@@ -24,8 +25,28 @@ class BoltConnection extends withLitHtml() {
     return self;
   }
 
+  static get observedContexts() {
+    return ['theme'];
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    setTimeout(() => {
+      this.dispatchEvent(
+        new CustomEvent(`${BoltConnection.is}:connected`, {
+          bubbles: true,
+        }),
+      );
+    }, 0);
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
+  }
+
   render() {
-    const { direction, animType, speed } = this.validateProps(this.props);
+    const props = this.validateProps(this.props);
     const classes = cx('c-bolt-connection');
     return html`
       ${this.addStyles([styles])}
@@ -38,9 +59,10 @@ class BoltConnection extends withLitHtml() {
           `}
         <bolt-svg-animations
           class="c-bolt-connection__main-image"
-          speed="${speed}"
-          anim-type="${animType}"
-          direction="${direction}"
+          speed="${props.speed}"
+          anim-type="${props.animType}"
+          direction="${props.direction}"
+          theme=${this.context.theme}
         />
         ${this.slots.bottom &&
           html`
@@ -53,4 +75,4 @@ class BoltConnection extends withLitHtml() {
   }
 }
 
-export { BoltConnection };
+export { BoltConnection, boltConnectionIs };

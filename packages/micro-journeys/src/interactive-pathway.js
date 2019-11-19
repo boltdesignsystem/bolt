@@ -3,20 +3,18 @@ import {
   define,
   hasNativeShadowDomSupport,
   query,
-  withContext,
   convertSchemaToProps,
 } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import { withLitContext, html } from '@bolt/core';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
-import { BoltInteractivePathwaysContext } from './interactive-pathways';
 import styles from './interactive-pathway.scss';
 import schema from './interactive-pathway.schema';
 
 let cx = classNames.bind(styles);
 
 @define
-class BoltInteractivePathway extends withContext(withLitHtml()) {
+class BoltInteractivePathway extends withLitContext() {
   static is = 'bolt-interactive-pathway';
 
   static props = {
@@ -24,16 +22,18 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
       ...props.boolean,
       ...{ default: false },
     },
+    theme: props.string,
     ...convertSchemaToProps(schema),
   };
 
-  // subscribe to specific props that are defined and available on the parent container
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get consumes() {
-    return [[BoltInteractivePathwaysContext, 'theme']];
+  static get observedContexts() {
+    return ['theme'];
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
+  }
+
   // @ts-ignore
   constructor(self) {
     self = super(self);
@@ -48,7 +48,6 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
       // using callback since debounced promises require a different library that's not already in Bolt
       if (done) setTimeout(done, 0);
     }, 150);
-
     self.addEventListener(
       'bolt-interactive-step:connected',
       this.handleStepConnect,
@@ -72,7 +71,6 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
 
   connectedCallback() {
     super.connectedCallback();
-    this.context = this.contexts.get(BoltInteractivePathwaysContext);
 
     setTimeout(() => {
       this.dispatchEvent(
@@ -148,8 +146,12 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
 
   setActive(isActive = true) {
     this.isActivePathway = isActive;
-    this.setActiveStep(0);
     this.triggerUpdate();
+    setTimeout(() => {
+      this.setActiveStep(0);
+      this.triggerUpdate();
+      this.isBecomingActive = false;
+    }, 0);
   }
 
   /**
@@ -183,6 +185,7 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
       );
       return;
     }
+    await newActiveStep.el.setIsBecomingActive();
     if (currentActiveStep) {
       await currentActiveStep.el.triggerAnimOuts();
       steps.forEach(step => step.el.setActive(false));
@@ -190,28 +193,32 @@ class BoltInteractivePathway extends withContext(withLitHtml()) {
     this.activeStep = stepIndex;
     newActiveStep.el.setActive(true);
     this.triggerUpdate();
-    await newActiveStep.el.triggerAnimIns();
+    setTimeout(async () => {
+      await newActiveStep.el.triggerAnimIns();
+    });
   };
 
   render() {
+    if (!this.isActivePathway && !this.isBecomingActive) {
+      return '';
+    }
     // Inherit theme from `interactive-pathways`
-    this.theme = this.context.theme;
-
+    const theme = this.context.theme || this.theme || '';
     const classes = cx('c-bolt-interactive-pathway', {
       [`c-bolt-interactive-pathway--disabled`]: !this.isActivePathway,
       [`c-bolt-interactive-pathway--active`]: this.isActivePathway,
-      [`t-bolt-${this.theme}`]: this.theme,
+      [`t-bolt-${theme}`]: theme,
     });
 
     const navClasses = cx('c-bolt-interactive-pathway__nav');
     const itemClasses = cx('c-bolt-interactive-pathway__items');
-
+    const activeStep = this.activeStep < 0 ? 0 : this.activeStep;
     return html`
       ${this.addStyles([styles])}
       <section class="${classes}">
         <nav class="${navClasses}">
           ${this.steps.map((step, stepIndex) => {
-            const isActiveItem = this.activeStep === stepIndex;
+            const isActiveItem = activeStep === stepIndex;
             const navItemClasses = cx('c-bolt-interactive-pathway__nav-item', {
               'c-bolt-interactive-pathway__nav-item--active': isActiveItem,
             });

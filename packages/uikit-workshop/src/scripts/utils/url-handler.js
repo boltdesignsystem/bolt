@@ -36,7 +36,7 @@ export const urlHandler = {
     }
 
     if (withRenderedSuffix === undefined) {
-      withRenderedSuffix = true;
+      withRenderedSuffix = true; // eslint-disable-line no-param-reassign
     }
 
     if (name === 'all') {
@@ -132,7 +132,7 @@ export const urlHandler = {
    */
   getRequestVars() {
     // the following is taken from https://developer.mozilla.org/en-US/docs/Web/API/window.location
-    const oGetVars = new function(sSearch) {
+    const oGetVars = new (function(sSearch) {
       if (sSearch.length > 1) {
         for (
           let aItKey, nKeyId = 0, aCouples = sSearch.substr(1).split('&');
@@ -144,7 +144,7 @@ export const urlHandler = {
             aItKey.length > 1 ? unescape(aItKey[1]) : '';
         }
       }
-    }(window.location.search);
+    })(window.location.search);
 
     return oGetVars;
   },
@@ -174,26 +174,11 @@ export const urlHandler = {
         event: 'patternLab.updatePath',
         path: fileName,
       });
-      
+
       document
-      .querySelector('.pl-js-iframe')
-      .contentWindow.postMessage(obj, urlHandler.targetOrigin);
-
-      // if (urlHandler.iframeElement){
-      //   if (urlHandler.iframeElement.contentWindow){
-      //     urlHandler.iframeElement.contentWindow.postMessage(obj, urlHandler.targetOrigin);
-      //   } else {
-      //     urlHandler.iframeElement = document.querySelector('.pl-js-iframe');
-  
-      //     if (urlHandler.iframeElement.contentWindow){
-      //       urlHandler.iframeElement.contentWindow.postMessage(obj, urlHandler.targetOrigin);
-      //     } else {
-      //       console.log('urlHandler pushPattern cannot find the iframeElement...');
-      //     }
-      //   }
-      // }
-
-    } 
+        .querySelector('.pl-js-iframe')
+        .contentWindow.postMessage(obj, urlHandler.targetOrigin);
+    }
   },
 
   /**
@@ -214,7 +199,8 @@ export const urlHandler = {
     let iFramePath = '';
     iFramePath = this.getFileName(patternName);
     if (iFramePath === '') {
-      iFramePath = this.getFileName('components-overview');
+      iFramePath = 'styleguide/html/styleguide.html';
+      // iFramePath = this.getFileName('components-overview'); // @todo: remove if this new approach isn't needed
     }
 
     const obj = JSON.stringify({

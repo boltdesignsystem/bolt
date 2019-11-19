@@ -1,16 +1,16 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
-export const radar = ({ speed, theme }) => {
-  const primaryColor = theme === 'dark' ? '#535DA6' : '#FFFFFF';
+export const radar = ({ speed, theme, animId }) => {
+  const primaryColor = theme === 'dark' ? '#FFFFFF' : 'rgba(83, 93, 166, .8)';
 
   const themedStyles =
     theme === 'dark'
-      ? `.st4{fill:none;stroke:url(#ring_2_1_);stroke-width:0.5;stroke-dasharray:2.61;}
-        .st5{fill:none;stroke:url(#ring_1_1_);stroke-width:0.5;stroke-dasharray:2.61;}
-        .st6{fill:#FFFFFF;}`
-      : `.st4{fill:none;stroke:#161B3D;stroke-width:0.5;stroke-miterlimit:10;stroke-dasharray:2.61;}
-        .st5{fill:#535DA6;}`;
+      ? `#${animId} .st4{fill:none;stroke:url(#ring_2_1_);stroke-width:0.5;stroke-dasharray:2.61;}
+         #${animId} .st5{fill:none;stroke:url(#ring_1_1_);stroke-width:0.5;stroke-dasharray:2.61;}
+         #${animId} .st6{fill:#FFFFFF;}`
+      : `#${animId} .st4{fill:none;stroke:#161B3D;stroke-width:0.5;stroke-miterlimit:10;stroke-dasharray:2.61;}
+         #${animId} .st5{fill:#535DA6;}`;
 
   const authoredStyle = html`
     @keyframes kf_el_vfSwk5hMIQ_an_sEmV6we0Y { 0% {opacity: 0.1;} 30% {opacity:
@@ -25,15 +25,16 @@ export const radar = ({ speed, theme }) => {
     74.87999725341797px) rotate(0deg) translate(-74.8799963593483px,
     -74.87999725341797px);} 100% {transform: translate(74.8799963593483px,
     74.87999725341797px) rotate(360deg) translate(-74.8799963593483px,
-    -74.87999725341797px);} } #el_SpGBbpa5D { transform: translateZ(0);
-    }#el_SpGBbpa5D * { animation-duration: 2s; animation-iteration-count:
-    infinite; animation-timing-function: cubic-bezier(0, 0, 1, 1); }
-    #el_tbKqO34v2S { clip-path: url(#a); } #el_2UN1ufNGj1 { overflow: visible;
-    transform: matrix(0.48, 0, 0, -0.48, -0.96, 150.48); } #el_d8_3YPeiQ5 {
+    -74.87999725341797px);} } #${animId} { transform: translateZ(0); }#${animId}
+    * { animation-duration: 2s; animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0, 0, 1, 1); } #el_tbKqO34v2S {
+    clip-path: url(#a); } #el_2UN1ufNGj1 { overflow: visible; transform:
+    matrix(0.48, 0, 0, -0.48, -0.96, 150.48); } #${animId} #el_d8_3YPeiQ5 {
     fill: none; stroke: ${primaryColor}; stroke-width: 0.5; stroke-miterlimit:
-    10; stroke-dasharray: 2.6087; } #el_qDh9wHf6FM { fill: none; stroke:
-    ${primaryColor}; stroke-width: 0.5; stroke-miterlimit: 10; stroke-dasharray:
-    2.6087; } #el_NeV7-4GsdB, #el_fzJ7A95FI-, #el_vfSwk5hMIQ, #el_aP0xuWOs4- {
+    10; stroke-dasharray: 2.6087; } #${animId} #el_qDh9wHf6FM { fill: none;
+    stroke: ${primaryColor}; stroke-width: 0.5; stroke-miterlimit: 10;
+    stroke-dasharray: 2.6087; } #${animId} #el_NeV7-4GsdB, #${animId}
+    #el_fzJ7A95FI-, #${animId} #el_vfSwk5hMIQ, #${animId} #el_aP0xuWOs4- {
     animation-fill-mode: backwards; animation-timing-function: cubic-bezier(0,
     0, 1, 1); clip-rule: evenodd; fill-rule: evenodd; fill: ${primaryColor}; }
     #el_NeV7-4GsdB { animation-name: kf_el_NeV7-4GsdB_an_zwfIwf8-6; opacity: 1;
@@ -104,7 +105,7 @@ export const radar = ({ speed, theme }) => {
       viewBox="0 0 150 150"
       style="enable-background:new 0 0 150 150;"
       xml:space="preserve"
-      id="el_SpGBbpa5D"
+      id="${animId}"
       height="200px"
       width="200px">
       <style>${authoredStyle}</style>

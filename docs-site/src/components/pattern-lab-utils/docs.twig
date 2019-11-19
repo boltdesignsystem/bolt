@@ -1,5 +1,6 @@
 {% if componentName %}
-  {% set schema = bolt.data.components["@bolt-components-#{componentName}"].schema %}
+  {% set data = getBoltData() %} {# grab a fresh copy of the full manifest data to reflect schema.yml file changes, etc #}
+  {% set schema = data.components["@bolt-components-#{componentName}"].schema %}
   {% set readme_file = "@bolt-components-#{componentName}/README.md" %}
   {% set change_log_file = "@bolt-components-#{componentName}/CHANGELOG.md" %}
   {% set testing_file = "@bolt-components-#{componentName}/TESTING.md" %}
@@ -22,19 +23,83 @@
   } only %}
 {% endset %}
 
-{# {% include "@bolt-components-list/list.twig" with {
-  display: "inline",
-  separator: "solid",
-  items: [
-    include("@bolt-components-text/text.twig", {
-      text: "Last Updated: <code>#{component_version}</code>"
-    }),
-    include("@bolt-components-text/text.twig", {
-      text: "NPM Package: #{npm_link}",
-    }),
 
-  ]
-} only %} #}
+
+
+{% set defaultLinks = [
+  include("@bolt/link.twig", {
+    text: "Overview",
+    url:  "#overview",
+    isHeadline: true,
+  }),
+  include("@bolt/link.twig", {
+    text: "Usage",
+    url:  "#usage",
+    isHeadline: true,
+  }),
+  include("@bolt/link.twig", {
+    text: "Schema",
+    url:  "#schema",
+    isHeadline: true,
+  }),
+] %}
+
+  {% set upper_list %}
+    {% include "@bolt-components-list/list.twig" with {
+      display: "block",
+      spacing: "xsmall",
+      align: "start",
+      valign: "center",
+      items: defaultLinks | merge(extraLinks | default([])),
+    } only %}
+  {% endset %}
+
+  {% set lower_list_items = [] %}
+
+  {% if fileExists(readme_file) %}
+    {% set lower_list_items = lower_list_items | merge([include("@bolt/link.twig", {
+      text: "Edit this page",
+      url: github_url(readme_file),
+      target: "_blank",
+      display: "flex",
+      isHeadline: true,
+      icon: {
+        position: "after",
+        size: "small",
+        name: "pencil"
+      },
+    })
+    ]) %}
+  {% endif %}
+
+  {% if fileExists(testing_file) %}
+    {% set lower_list_items = lower_list_items | merge([
+      include("@bolt/link.twig", {
+        text: "Testing Steps",
+        url: github_url(testing_file),
+        target: "_blank",
+        display: "flex",
+        isHeadline: true,
+        icon: {
+          position: "after",
+          size: "small",
+          name: "documentation"
+        }
+      })
+    ]) %}
+  {% endif %}
+
+{% set lower_list %}
+  {% include "@bolt-components-list/list.twig" with {
+    display: "block",
+    spacing: "xsmall",
+    align: "start",
+    valign: "center",
+    items: lower_list_items,
+  } only %}
+{% endset %}
+
+
 
 {% set component_explorer %}
   {% if schemaForm and schema %}
@@ -140,147 +205,161 @@
 {% endspaceless %}
 {% endset %}
 
-<div class="c-bds-docs t-bolt-xlight">
-  <div class="c-bds-docs__page-intro">
-
-    {% grid "o-bolt-grid--matrix u-bolt-margin-top-medium" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-3/5@large" %}
-
-        {% if is_private == false %}
-          {% include "@bolt-components-text/text.twig" with {
-            text: "<code>" ~ component_version ~ "</code>",
-            size: "xsmall",
-            attributes: {
-              class: "u-bolt-margin-bottom-none"
-            }
-          } only %}
-        {% endif %}
-
-        {% include "@bolt/headline.twig" with {
-          size: "xxxlarge",
-          tag: "h1",
-          text: schema.title ? schema.title : "Component Title"
-        } only %}
-
-        {% if pkg.description %}
-          {% include "@bolt/subheadline.twig" with {
-              size: "xlarge",
-              tag: "p",
-              text: pkg.description,
-              attributes: {
-                style: "max-width: 1024px",
-                class: "u-bolt-margin-bottom-medium@small",
-              }
-            } only %}
-        {% endif %}
-      {% endcell %}
-
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/2@small u-bolt-width-2/5@large" %}
-        <div class="c-bds-component-status c-bds-component-status--released c-bds-component-status--{{ is_private ? 'inprogress' : 'released'}}">
-          <div class="c-bds-component-status__title">
-            {% include "@bolt-components-headline/headline.twig" with {
-              text: is_private ? "In Progress (Unreleased)" : "Published",
-              size: "small",
-              icon: {
-                name: is_private ? "refresh" : "check-solid",
-                position: "after"
-              }
-            } only %}
-          </div>
-
-          <dl class="c-bds-component-status__definition">
-            <dt>History</dt>
-            <dd>
-              {{ fileExists(change_log_file) ? include("@bolt/link.twig", {
-                text: "View changes",
-                url: github_url(change_log_file),
-                target: "_blank",
-                display: "flex",
-                isHeadline: true
-              }) : 'No component history...' }}
-            </dd>
-
-            {% if is_private == false %}
-              <dt>Install</dt>
-              <dd>
-                {{ npm_link }}
-              </dd>
-            {% endif %}
-
-            {% if is_private == false %}
-              <dt>Source code</dt>
-              <dd>
-                {% include "@bolt-components-link/link.twig" with {
-                text: "View on Github",
-                url: github_url(readme_file) | replace({'README.md':''}),
-                target: "_blank",
-                display: "flex",
-                isHeadline: true,
-                icon: {
-                  name: "github"
-                }
-              } only %}
-              </dd>
-            {% endif %}
-
-             {% if pkg.dependencies %}
-              <dt>Dependencies</dt>
-              <dd>
-                {% set deps = [] %}
-                {% for key, value in pkg.dependencies %}
-                  {% set deps = deps | merge([
-                    include("@bolt-components-link/link.twig", {
-                      text: key,
-                      url: "https://www.npmjs.com/package/#{key}",
-                      isHeadline: true,
-                    })
-                  ]) %}
-                {% endfor %}
-
-              {% include "@bolt-components-list/list.twig" with {
-                display: "inline",
-                separator: "solid",
-                items: deps,
-              } only %}
-              </dd>
-            {% endif %}
-          </dl>
-        </div>
-      {% endcell %}
-    {% endgrid %}
-    {# Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2 #}
-    {# {{ component_explorer }} #}
-    {% if schemaForm and schema %}
-      {% include "@bolt-site/gearbox.twig" with {
-        text: "Bolt's Component Explorer is being upgraded. It'll return in a future release!"
+<div class="o-bolt-grid o-bolt-grid--matrix u-bolt-margin-top-medium u-bolt-margin-bottom-medium">
+  <div class="o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-1/2@small">
+    {% if is_private == false %}
+      {% include "@bolt-components-text/text.twig" with {
+        text: "<code>" ~ component_version ~ "</code>",
+        size: "xsmall",
+        attributes: {
+          class: "u-bolt-margin-bottom-none"
+        }
       } only %}
+    {% endif %}
+
+    {% include "@bolt/headline.twig" with {
+      size: "xxxlarge",
+      tag: "h1",
+      text: schema.title ? schema.title : "Component Title"
+    } only %}
+
+    {% if pkg.description %}
+      {% include "@bolt/subheadline.twig" with {
+          size: "xlarge",
+          tag: "p",
+          text: pkg.description,
+          attributes: {
+            style: "max-width: 1024px",
+            class: "u-bolt-margin-bottom-medium@small",
+          }
+        } only %}
     {% endif %}
   </div>
 
-  <div class="c-bds-docs__page-content">
-    {% if readme_file %}
-      <div class="c-bds-docs__readme">
-        {% include "@bolt/headline.twig" with {
-          size: "xxlarge",
-          tag: "h2",
-          url: "#overview",
-          text: "Overview",
-          icon: "none",
-          attributes: {
-            class: [
-              "u-bolt-margin-bottom-xsmall",
-              "c-bds-docs__heading-fragment"
-            ],
-            id: "overview"
+  <div class="o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-1/2@small">
+    <div class="c-bds-component-status c-bds-component-status--released c-bds-component-status--{{ is_private ? 'inprogress' : 'released'}}">
+      <div class="c-bds-component-status__title">
+        {% include "@bolt-components-headline/headline.twig" with {
+          text: is_private ? "In Progress (Unreleased)" : "Published",
+          size: "small",
+          icon: {
+            name: is_private ? "refresh" : "check-solid",
+            position: "after"
           }
         } only %}
-        <div class="c-bds-docs__lead u-bolt-margin-bottom-large">
-          {{ source(readme_file) | markdown }}
-        </div>
       </div>
-    {% endif %}
 
-    {% if code %}
+      <dl class="c-bds-component-status__definition">
+        <dt>History</dt>
+        <dd>
+          {{ fileExists(change_log_file) ? include("@bolt/link.twig", {
+            text: "View changes",
+            url: github_url(change_log_file),
+            target: "_blank",
+            display: "flex",
+            isHeadline: true
+          }) : 'No component history...' }}
+        </dd>
+
+        {% if is_private == false %}
+          <dt>Install</dt>
+          <dd>
+            {{ npm_link }}
+          </dd>
+        {% endif %}
+
+        {% if is_private == false %}
+          <dt>Source code</dt>
+          <dd>
+            {% include "@bolt-components-link/link.twig" with {
+            text: "View on Github",
+            url: github_url(readme_file) | replace({'README.md':''}),
+            target: "_blank",
+            display: "flex",
+            isHeadline: true,
+            icon: {
+              name: "github"
+            }
+          } only %}
+          </dd>
+        {% endif %}
+
+          {% if pkg.dependencies %}
+          <dt>Dependencies</dt>
+          <dd>
+            {% set deps = [] %}
+            {% for key, value in pkg.dependencies %}
+              {% set deps = deps | merge([
+                include("@bolt-components-link/link.twig", {
+                  text: key,
+                  url: "https://www.npmjs.com/package/#{key}",
+                  isHeadline: true,
+                })
+              ]) %}
+            {% endfor %}
+
+          {% include "@bolt-components-list/list.twig" with {
+            display: "inline",
+            separator: "solid",
+            items: deps,
+          } only %}
+          </dd>
+        {% endif %}
+      </dl>
+    </div>
+  </div>
+
+  {% if schemaForm and schema %}
+    <div class="o-bolt-grid__cell u-bolt-width-1/1">
+      {# Component Explorer being temporarily disabled until we've migrated our Twig Rendering Service to Now.sh v2 #}
+      {# {{ component_explorer }} #}
+      {% include "@bolt-site/gearbox.twig" with {
+        text: "Bolt's Component Explorer is being upgraded. It'll return in a future release!"
+      } only %}
+    </div>
+  {% endif %}
+</div>
+
+<div class="o-bolt-grid o-bolt-grid--matrix o-bolt-grid--flex">
+  <div class="o-bolt-grid__cell u-bolt-width-3/5@medium u-bolt-padding-right-large@medium u-bolt-padding-right-xlarge@large u-bolt-flex-grow ">
+    {% include "@bolt/headline.twig" with {
+      size: "xxlarge",
+      tag: "h2",
+      url: "#overview",
+      text: "Overview",
+      icon: "none",
+      attributes: {
+        class: [
+          "c-bds-docs__heading-fragment"
+        ],
+        id: "overview"
+      }
+    } only %}
+
+    {% if readme_file %}
+      {{ source(readme_file) | markdown }}
+    {% endif %}
+  </div>
+
+  <div class="o-bolt-grid__cell u-bolt-width-1/1 u-bolt-width-1/3@medium u-bolt-width-3/10@large">
+    {% include "@bolt-components-list/list.twig" with {
+      display: "block",
+      spacing: "xsmall",
+      separator: "solid",
+      align: "start",
+      valign: "center",
+      inset: true,
+      attributes: {
+        style: [
+          "font-size: 0.9em;"
+        ]
+      },
+      items: lower_list_items is empty ? [upper_list] : [upper_list, lower_list]
+    } only %}
+  </div>
+
+  {% if code %}
+    <div class="o-bolt-grid__cell u-bolt-width-1/1">
       {% include "@bolt/headline.twig" with {
         size: "xxlarge",
         tag: "h2",
@@ -295,17 +374,16 @@
           id: "usage"
         }
       } only %}
-      <div class="u-bolt-margin-bottom-large">
-        {% include "@bolt-components-code-snippet/code-snippet.twig" with {
-          display: "block",
-          lang: "twig",
-          content: code
-        } only %}
-      </div>
-    {% endif %}
+      {% include "@bolt-components-code-snippet/code-snippet.twig" with {
+        display: "block",
+        lang: "twig",
+        content: code
+      } only %}
+    </div>
+  {% endif %}
 
-
-    {% if schema and schema.properties %}
+  {% if schema and schema.properties %}
+    <div class="o-bolt-grid__cell u-bolt-width-1/1">
       {% include "@bolt/headline.twig" with {
         size: "xxlarge",
         tag: "h2",
@@ -314,223 +392,12 @@
         icon: "none",
         attributes: {
           class: [
-            "u-bolt-margin-bottom-xsmall",
             "c-bds-docs__heading-fragment"
           ],
           id: "schema"
         }
       } only %}
-
-      <div class="u-bolt-margin-bottom-large">
-        {% include '@utils/schema-docs.twig' with { schema: schema } only %}
-      </div>
-    {% endif %}
-
-    {% if links %}
-      {% include "@bolt/headline.twig" with {
-        size: "xxlarge",
-        tag: "h2",
-        url: "#helpful-links",
-        text: "Helpful Links",
-        icon: "none",
-        attributes: {
-          class: [
-            "u-bolt-margin-bottom-xsmall",
-            "c-bds-docs__heading-fragment"
-          ],
-          id: "schema"
-        }
-      } only %}
-
-      <ul class="c-bds-docs__page-nav-list u-bolt-margin-bottom-large">
-        {% for link in links %}
-          <li>
-            {% include "@bolt/headline.twig" with {
-              size: "small",
-              weight: "regular",
-              transform: "capitalize",
-              tag: "h4",
-              text: link.text,
-              url:  link.url,
-              target: '_parent',
-              attributes: {
-                class: [
-                  "c-bolt-headline--link",
-                  "u-bolt-margin-bottom-none"
-                ],
-                'data-scroll-offset': 70
-              },
-              icon: "none",
-            } only %}
-          </li>
-        {% endfor %}
-      </ul>
-
-    {% endif %}
-  </div>
-
-  {% set defaultLinks = [
-    include("@bolt/link.twig", {
-      text: "Overview",
-      url:  "#overview",
-      isHeadline: true,
-    }),
-    include("@bolt/link.twig", {
-      text: "Usage",
-      url:  "#usage",
-      isHeadline: true,
-    }),
-    include("@bolt/link.twig", {
-      text: "Schema",
-      url:  "#schema",
-      isHeadline: true,
-    }),
-  ] %}
-
-  {% set upper_list %}
-    {% include "@bolt-components-list/list.twig" with {
-      display: "block",
-      spacing: "xsmall",
-      align: "start",
-      valign: "center",
-      attributes: {
-        class: variations or examples ? "u-bolt-margin-bottom-small" : ""
-      },
-      items: defaultLinks | merge(extraLinks | default([])),
-    } only %}
-
-    {% if variations %}
-      {% include "@bolt-components-headline/headline.twig" with {
-        size: "xsmall",
-        tag: "h3",
-        text: "Props",
-        attributes: {
-          class: examples ? "u-bolt-margin-bottom-xxsmall" : "u-bolt-margin-bottom-none"
-        }
-      } only %}
-
-      {% include "@bolt-components-list/list.twig" with {
-        display: "block",
-        spacing: "xxsmall",
-        align: "start",
-        valign: "center",
-        items: variations,
-        attributes: {
-          class: [
-            "u-bolt-margin-left-none",
-            "u-bolt-margin-bottom-small"
-          ],
-        }
-      } only %}
-    {% endif %}
-
-    {% if examples %}
-      {% include "@bolt-components-headline/headline.twig" with {
-        size: "xsmall",
-        tag: "h3",
-        text: "Demos",
-        attributes: {
-          class: [
-            "u-bolt-margin-bottom-xxsmall"
-          ],
-        }
-      } only %}
-
-      {% include "@bolt-components-list/list.twig" with {
-        display: "block",
-        spacing: "xxsmall",
-        align: "start",
-        valign: "center",
-        items: examples,
-        attributes: {
-          class: [
-            "u-bolt-margin-left-none",
-            "u-bolt-margin-bottom-small"
-          ],
-        }
-      } only %}
-    {% endif %}
-  {% endset %}
-
-  {% set lower_list_items = [] %}
-
-  {% if fileExists(readme_file) %}
-    {% set lower_list_items = lower_list_items | merge([include("@bolt/link.twig", {
-      text: "Edit this page",
-      url: github_url(readme_file),
-      target: "_blank",
-      display: "flex",
-      isHeadline: true,
-      icon: {
-        position: "after",
-        size: "small",
-        name: "pencil"
-      },
-    })
-    ]) %}
-  {% endif %}
-
-  {% if fileExists(testing_file) %}
-    {% set lower_list_items = lower_list_items | merge([
-      include("@bolt/link.twig", {
-        text: "Testing Steps",
-        url: github_url(testing_file),
-        target: "_blank",
-        display: "flex",
-        isHeadline: true,
-        icon: {
-          position: "after",
-          size: "small",
-          name: "documentation"
-        }
-      })
-    ]) %}
-  {% endif %}
-
-  {% set lower_list %}
-    {% include "@bolt-components-list/list.twig" with {
-      display: "block",
-      spacing: "xsmall",
-      align: "start",
-      valign: "center",
-      items: lower_list_items,
-    } only %}
-  {% endset %}
-
-  <div class="c-bds-docs__page-nav">
-    {% embed "@bolt-components-sticky/sticky.twig" %}
-      {% block sticky_content %}
-
-        {% include "@bolt-components-list/list.twig" with {
-          display: "block",
-          spacing: "xsmall",
-          separator: "solid",
-          align: "start",
-          valign: "center",
-          inset: true,
-          attributes: {
-            style: [
-              "font-size: 0.9em;"
-            ]
-          },
-          items: lower_list_items is empty ? [upper_list] : [upper_list, lower_list]
-        } only %}
-
-      {% endblock %}
-    {% endembed %}
-  </div>
-</div>
-
-<div class="c-bds-docs__page-examples">
-  {% if schema.examples %}
-    {% include "@bolt-components-headline/headline.twig" with {
-      size: "xlarge",
-      tag: "h2",
-      text: "Examples"
-    } only %}
-
-    {% for example in schema.examples %}
-      {% include "@bolt-components-#{componentName}/#{componentName}.twig" ignore missing with example only %}
-    {% endfor %}
+      {% include '@utils/schema-docs.twig' with { schema: schema } only %}
+    </div>
   {% endif %}
 </div>

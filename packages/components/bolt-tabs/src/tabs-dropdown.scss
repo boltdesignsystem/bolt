@@ -1,0 +1,267 @@
+// @todo: The majority of these styles were copied from nav-priority and adjusted to fit Tabs. These components are ready for a refactor.
+
+@import '_tabs-settings-and-tools.scss';
+
+// Local Tabs Variables
+$bolt-tabs-vspacing-small: bolt-v-spacing(small);
+$bolt-tabs-xsmall-bp: 420px; // Slightly increase the default 400px xsmall breakpoint to be better optimized for larger plus-sized mobile devices -- value shared by the bolt-navbar, bolt-nav-menu, and bolt-navlink components
+
+@keyframes a-bolt-tabs-bg-hover {
+  0% {
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  40% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  60% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  80% {
+    transform: scale3d(0.99, 0.99, 0.99);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+// required so the dropdown can be positioned consistently
+.c-bolt-tabs__show-more {
+  display: flex;
+  position: relative;
+  padding-bottom: $bolt-tabs-selected-border-size; // add space for negative margin of active tab underline
+
+  @include bolt-mq($until: $bolt-tabs-xsmall-bp) {
+    margin-left: auto;
+  }
+
+  &.is-invisible {
+    visibility: hidden;
+  }
+}
+
+.c-bolt-tabs__dropdown-list {
+  box-sizing: border-box;
+
+  opacity: bolt-opacity(0);
+  transform: translate3d(0, bolt-spacing(medium) * -1, 0);
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  list-style: none;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1) 0s,
+    opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1) 0.1s;
+  @include bolt-padding-top(xsmall);
+  @include bolt-padding-bottom(xsmall);
+  @include bolt-padding-left(xsmall);
+  @include bolt-padding-right(xsmall);
+
+  @include bolt-mq(small) {
+    @include bolt-padding-left(xsmall);
+    @include bolt-padding-right(xsmall);
+  }
+
+  .c-bolt-tabs--show-dropdown & {
+    opacity: bolt-opacity(100);
+    transform: translate3d(0, 0, 0);
+    pointer-events: auto;
+    transition-delay: 0.2s, 0.1s;
+  }
+}
+
+.c-bolt-tabs__dropdown {
+  @include bolt-z-index(tooltip);
+  visibility: hidden;
+  position: absolute;
+  top: calc(100% - #{$bolt-tabs-selected-border-size});
+  right: 0;
+  width: auto;
+  min-width: 12rem;
+  max-width: calc(100vw - #{bolt-spacing(large)});
+  max-height: 0;
+  border-bottom-right-radius: $bolt-border-radius;
+  border-bottom-left-radius: $bolt-border-radius;
+  box-shadow: 0 1px 2px 1px rgba(6, 10, 36, 0.1);
+  background-color: bolt-theme(background-secondary);
+  transition: max-height 0.3s cubic-bezier(0.28, 0.11, 0.32, 1) 0s,
+    visibility 0s linear 0.3s;
+
+  * {
+    white-space: normal;
+  }
+
+  @include bolt-mq($bolt-tabs-xsmall-bp) {
+    max-width: 100%;
+  }
+
+  .c-bolt-tabs--show-dropdown & {
+    visibility: visible;
+    max-height: 400px;
+    max-height: calc(100vh - 48px - 48px);
+    pointer-events: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transition-delay: 0.1s, 0s;
+  }
+
+  .is-closing &,
+  .is-opening & {
+    overflow: hidden;
+  }
+}
+
+// keyframes
+@keyframes nav-dropdown {
+  0% {
+    opacity: bolt-opacity(0);
+    transform: translateY(-1em);
+  }
+  100% {
+    opacity: bolt-opacity(100);
+    transform: translateY(0);
+  }
+}
+
+.c-bolt-tabs__show-button {
+  @include bolt-font-size(medium);
+  @include bolt-font-weight(semibold);
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: bolt-theme(headline);
+  cursor: pointer;
+  border-radius: $bolt-tabs-bg-border-radius;
+  // Added border so that &:after,&:focus doesn't change the size of the band
+  // We should consider making this thin dotted style a mixin to share with tabs
+  border-width: thin;
+  border-style: solid;
+  border-color: transparent;
+  background-color: transparent;
+  background-color: bolt-theme(secondary, 0.05);
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  @include bolt-padding(small, squished);
+  @include bolt-padding-top(0);
+  @include bolt-padding-bottom(0);
+
+  &:before {
+    content: '';
+    opacity: bolt-opacity(0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+    pointer-events: none;
+    pointer-events: none;
+    border-radius: $bolt-tabs-bg-border-radius;
+    background-color: bolt-theme(primary);
+    transition: all 0.1s ease;
+  }
+
+  &:hover {
+    background-color: bolt-theme(secondary, 0.1);
+
+    &:before {
+      opacity: 0.1;
+      animation: a-bolt-tabs-bg-hover $bolt-tabs-bg-transition-timing both;
+    }
+  }
+
+  &:focus,
+  &.is-active {
+    border-style: dotted;
+    border-color: bolt-theme(primary);
+    outline: none;
+  }
+
+  &.is-active,
+  &:active {
+    background-color: bolt-theme(secondary, 0.1);
+
+    &:before {
+      opacity: 0.1;
+    }
+  }
+}
+
+.c-bolt-tabs__show-text {
+  position: relative;
+  z-index: 10;
+
+  @include bolt-mq($until: $bolt-tabs-xsmall-bp) {
+    @include bolt-visuallyhidden;
+  }
+
+  & + * {
+    @include bolt-mq($from: $bolt-tabs-xsmall-bp) {
+      @include bolt-margin-left(xsmall);
+    }
+  }
+}
+
+.c-bolt-tabs__show-icon {
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  line-height: 0;
+  font-size: 1em;
+  transition: transform 0.2s;
+
+  @include bolt-mq($until: $bolt-tabs-xsmall-bp) {
+    font-size: 24px;
+  }
+
+  .c-bolt-tabs--show-dropdown & {
+    transform: rotate(180deg);
+  }
+}
+
+.c-bolt-tabs__dropdown-list > .c-bolt-tabs__item {
+  opacity: bolt-opacity(0);
+  transform: translate3d(0, bolt-spacing(large) * -1, 0);
+  transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1),
+    transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1); // transition:
+  transition-property: transform, opacity;
+}
+
+@for $quantity from 1 through 12 {
+  $time: 0;
+
+  @for $i from $quantity through 1 {
+    $time: $time + 50;
+    bolt-tabs:not(.is-closing)
+      .c-bolt-tabs__dropdown-list
+      > .c-bolt-tabs__item:nth-last-child(n + #{$quantity}),
+    bolt-tabs:not(.is-closing)
+      .c-bolt-tabs__dropdown-list
+      > .c-bolt-tabs__item:nth-last-child(n + #{$quantity})
+      ~ .c-bolt-tabs__item:nth-child(#{$i}) {
+      transition-delay: $time + ms;
+    }
+
+    .is-closing
+      .c-bolt-tabs__dropdown-list
+      > .c-bolt-tabs__item:nth-child(#{$i}) {
+      transition-delay: $i * 17 + ms;
+    }
+  }
+
+  $time: $time + 50;
+}
+
+.c-bolt-tabs--show-dropdown .c-bolt-tabs__dropdown-list > .c-bolt-tabs__item {
+  opacity: bolt-opacity(100);
+  transform: translate3d(0, 0, 0);
+}

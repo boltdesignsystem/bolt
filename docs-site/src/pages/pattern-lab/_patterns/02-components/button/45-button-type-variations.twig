@@ -1,0 +1,10 @@
+{% set schema = bolt.data.components["@bolt-components-button"].schema %}
+
+{% for type in schema.properties.type.enum %}
+  <p>
+    {% include "@bolt-components-button/button.twig" with {
+      type: type,
+      text: "This button's type is: " ~ type
+    } only %}
+  </p>
+{% endfor %}
