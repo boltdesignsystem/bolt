@@ -20,9 +20,8 @@ const preset = function(api, opts = {}) {
         '@babel/plugin-transform-react-jsx' /* [1] */,
         {
           pragma: 'h',
-          pragmaFrag: '"span"',
+          pragmaFrag: 'Fragment',
           throwIfNamespace: false,
-          useBuiltIns: false,
         },
       ],
 
