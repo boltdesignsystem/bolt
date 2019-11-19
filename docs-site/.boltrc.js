@@ -74,7 +74,7 @@ const config = {
 
   components: {
     global: [
-      '@bolt/component-demo',
+      '@bolt/theme-switcher',
       '@bolt/components-radio-switch',
       '@bolt/components-carousel',
       '@bolt/global',

@@ -1,6 +1,7 @@
 import { styleMap } from 'lit-html/directives/style-map.js';
 import { BoltElement } from '@bolt/element';
 import { html, customElement } from 'lit-element';
+import { getUniqueId } from '@bolt/core/utils/get-unique-id';
 
 /**
  * Generates a UUID.
@@ -8,16 +9,12 @@ import { html, customElement } from 'lit-element';
  * @param {string|undefined=} a
  * @return {string}
  */
-// @todo: move to Bolt Element's new utils file
-const uuid = function b(a) {
-  return a
-    ? // eslint-disable-next-line no-bitwise
-      (a ^ ((Math.random() * 16) >> (a / 4))).toString(16)
-    : ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, b);
-};
 
-@customElement('bolt-component-demo')
-class BoltComponentDemo extends BoltElement {
+ // @todo: move to Bolt Element's new utils file
+// const uuid = getUniqueId();
+
+@customElement('bolt-theme-switcher')
+class BoltThemeSwitcher extends BoltElement {
   static get properties() {
     return {
       theme: String,
@@ -27,7 +24,7 @@ class BoltComponentDemo extends BoltElement {
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
     this.theme = this.theme || 'none';
-    this.uuid = uuid();
+    this.uuid = getUniqueId();
   }
 
   switchTheme(themeName) {
@@ -36,6 +33,12 @@ class BoltComponentDemo extends BoltElement {
 
   createRenderRoot() {
     return this;
+  }
+
+  firstUpdated(){
+    if (this.theme){
+      this.renderRoot.querySelector(`#theme-${this.theme}-${this.uuid}`).setAttribute('checked', '');
+    }
   }
 
   render() {
@@ -68,7 +71,6 @@ class BoltComponentDemo extends BoltElement {
               name="radio-theme-picker-${this.uuid}"
               @click=${() => this.switchTheme('')}
               class="c-bolt-input c-bolt-input--radio is-filled"
-              checked
             />
 
             <label
@@ -84,6 +86,7 @@ class BoltComponentDemo extends BoltElement {
               id="theme-xlight-${this.uuid}"
               name="radio-theme-picker-${this.uuid}"
               @click=${() => this.switchTheme('xlight')}
+              checked
               class="c-bolt-input c-bolt-input--radio"
             />
 
