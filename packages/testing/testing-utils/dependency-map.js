@@ -60,18 +60,15 @@ async function getTwigFilePath(templateName) {
     return join(twigNamespaceRoot, path, suffix);
   });
 
-  const files = await globby(globPatterns);
-
-  if (files.length > 1) {
-    throw new Error(
-      `More than 1 possible Twig file found when looking for "${templateName}".`,
-    );
-  }
+  const files = await globby(globPatterns, {
+    gitignore: true,
+  });
 
   if (files.length === 0) {
     throw new Error(`No Twig files found when looking for "${templateName}".`);
   }
 
+  // Return the first file found that matches, which is the behavior that PHP Twig does with Namespaces
   return files[0];
 }
 

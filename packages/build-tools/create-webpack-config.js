@@ -92,6 +92,7 @@ async function createWebpackConfig(buildConfig) {
       ? JSON.stringify('production')
       : JSON.stringify('development'),
     bolt: {
+      publicPath: JSON.stringify(publicPath),
       mode: JSON.stringify(config.mode),
       isClient: config.mode === 'client',
       isServer: config.mode === 'server',
@@ -259,6 +260,7 @@ async function createWebpackConfig(buildConfig) {
         '.scss',
         '.ts',
         '.tsx',
+        '.jpg',
       ],
       alias: {
         react: 'preact-compat',
@@ -299,7 +301,21 @@ async function createWebpackConfig(buildConfig) {
         },
         {
           test: /\.(js|tsx|mjs)$/,
-          exclude: /(node_modules\/\@webcomponents\/webcomponentsjs\/custom-elements-es5-adapter\.js)/,
+          exclude: thePath => {
+            if (
+              thePath.endsWith(
+                'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
+              )
+            ) {
+              return true;
+            }
+
+            if (thePath.endsWith('grapesjs/dist/grapes.js')) {
+              return true;
+            }
+
+            return false;
+          },
           use: [
             'cache-loader',
             {
@@ -326,7 +342,7 @@ async function createWebpackConfig(buildConfig) {
           ],
         },
         {
-          test: /\.(cur|svg)$/,
+          test: /\.(cur|svg|png|jpg)$/,
           use: [
             'cache-loader',
             {
@@ -340,6 +356,10 @@ async function createWebpackConfig(buildConfig) {
         {
           test: [/\.yml$/, /\.yaml$/],
           use: ['cache-loader', 'json-loader', 'yaml-loader'],
+        },
+        {
+          test: [/\.html$/],
+          loader: 'raw-loader', // file as string
         },
       ],
     },
