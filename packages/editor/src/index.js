@@ -263,7 +263,7 @@ function init() {
           trigger.innerText = 'Saving...';
 
           const { ok, message } = await handleEditorSave({
-            html: container.innerHTML,
+            html,
             id: config.id,
           });
 
@@ -271,11 +271,13 @@ function init() {
             cleanup();
             container.innerHTML = html;
             trigger.innerText = 'Edit';
+            editorState = EDITOR_STATES.CLOSED;
           } else {
             const msg = `Error: could not save editor: ${message}`;
             console.error(msg);
             // eslint-disable-next-line no-alert
             window.alert(msg);
+            trigger.innerText = 'Save & Close';
           }
           break;
         }
