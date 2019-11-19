@@ -76,10 +76,11 @@ jobs:
         - npx json -I -f package.json -e 'delete this.dependencies'
         - npx json -I -f package.json -e 'delete this.scripts.postinstall'
         - yarn run setup
-        - cd example-integrations/drupal-lab
-        - yarn run generate # generate static version of Drupal Lab in the integration folder
         - npx lerna run postbootstrap
       script:
+        - cd example-integrations/drupal-lab
+        - yarn run generate # generate static version of Drupal Lab in the integration folder
+        - cd ../../
         - yarn run build
         - yarn run deploy
         - export NOW_URL=$(./scripts/get-latest-deploy.js)
@@ -93,11 +94,12 @@ jobs:
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
         - yarn run setup
-        - cd example-integrations/drupal-lab
-        - yarn run generate # generate static version of Drupal Lab in the integration folder
       before_script:
         - find . -name '.incache' -exec rm -rf {} +
       script:
+        - cd example-integrations/drupal-lab
+        - yarn run generate # generate static version of Drupal Lab in the integration folder
+        - cd ../../
         - yarn run build
         - yarn run deploy
 
