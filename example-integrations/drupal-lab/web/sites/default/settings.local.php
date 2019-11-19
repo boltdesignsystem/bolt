@@ -119,6 +119,11 @@ $config['system.performance']['js']['preprocess'] = FALSE;
 $settings['rebuild_access'] = TRUE;
 
 /**
+ * Update directory where tome static files will be generated
+ */
+$settings['tome_static_directory'] = '../../../www/integrations/drupal-lab';
+
+/**
  * Skip file system permissions hardening.
  *
  * The system module will periodically check the permissions of your site's

@@ -14,7 +14,7 @@
     }
   ],
   "scripts": {
-    "copy": "cp -fr web/themes/bolt-starter/dist/vendors-bundle-*.js ../../www/integrations/drupal-lab/themes/bolt-starter/dist",
+    "copy": "cp -fr web/themes/bolt-starter/dist/*-bundle-*.js ../../www/integrations/drupal-lab/themes/bolt-starter/dist",
     "deploy": "now deploy --local-config=now.drupal-lab.json --team boltdesignsystem --no-verify",
     "generate": "composer run setup && composer run static && yarn run copy",
     "setup": "npx npm-run-all --serial setup:*",
