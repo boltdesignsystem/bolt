@@ -1,0 +1,16 @@
+{# Setting variables for demo purposes #}
+{% set schema = bolt.data.components["@bolt-components-chip"].schema %}
+
+<bolt-text headline>Size</bolt-text>
+<bolt-list display="inline">
+  {% for size in schema.properties.size.enum %}
+    <bolt-list-item>
+      {# Start component specific code #}
+      {% include "@bolt-components-chip/chip.twig" with {
+        text: size,
+        size: size,
+      } only %}
+      {# End component specific code #}
+    </bolt-list-item>
+  {% endfor %}
+</bolt-list>

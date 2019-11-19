@@ -96,6 +96,8 @@ async function server(customWebpackConfig) {
           ui: false,
           notify: false,
           open: false,
+          // This can be temporarily toggled to solve IP access issues on a lan. https://www.browsersync.io/docs/options#option-tunnel
+          tunnel: false,
           logFileChanges: false,
           reloadOnRestart: true,
           watchOptions: {

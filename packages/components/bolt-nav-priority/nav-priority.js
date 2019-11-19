@@ -5,6 +5,9 @@ import {
   waitForTransitionEnd,
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+
+import '@bolt/core/utils/optimized-resize';
+
 /*
   Consider using these polyfills to broaden browser support:
     — https://www.npmjs.com/package/classlist-polyfill
@@ -95,7 +98,7 @@ class BoltNavPriority extends withLitHtml() {
       );
       this.dropdownButton.addEventListener('click', this._handleDropdownToggle);
       this.addEventListener('navlink:click', this._onActivateLink);
-      window.addEventListener('optimizedResize', this._adaptPriorityNav);
+      window.addEventListener('throttledResize', this._adaptPriorityNav);
     });
   }
 
@@ -272,7 +275,7 @@ class BoltNavPriority extends withLitHtml() {
   // Clean up event listeners when being removed from the page
   disconnecting() {
     this.removeEventListener('navlink:click', this._onActivateLink);
-    window.removeEventListener('optimizedResize', this._adaptPriorityNav);
+    window.removeEventListener('throttledResize', this._adaptPriorityNav);
   }
 }
 

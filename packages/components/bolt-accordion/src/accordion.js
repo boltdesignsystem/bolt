@@ -4,11 +4,9 @@ import {
   define,
   props,
   css,
-  hasNativeShadowDomSupport,
 } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 
-import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './accordion.scss';
 import schema from '../accordion.schema.yml';
 
@@ -20,7 +18,6 @@ export const AccordionContext = defineContext({
   boxShadow: schema.properties.box_shadow.default,
   spacing: schema.properties.spacing.default,
   iconValign: schema.properties.icon_valign.default,
-  useShadow: hasNativeShadowDomSupport,
 });
 
 @define
@@ -37,7 +34,6 @@ class BoltAccordion extends withContext(withLitHtml()) {
 
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self.schema = this.getModifiedSchema(schema);
 
     return self;
@@ -93,6 +89,11 @@ class BoltAccordion extends withContext(withLitHtml()) {
       triggerNoTransitionClass: 'c-bolt-accordion-item__trigger--notransition',
       contentNoTransitionClass: 'c-bolt-accordion-item__content--notransition',
     };
+  }
+
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this.addEventListener('bolt:layout-size-changed', this.handleLayoutChanged);
   }
 
   getModifiedSchema(schema) {
@@ -153,6 +154,36 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.accordion.on('destroyed', fold => {
       delete this.accordion;
     });
+
+    this.accordion.on('fold:opened', fold => {
+      this.dispatchLayoutChanged();
+
+      // @todo: register these elements in Bolt data instead?
+      const elementsToUpdate = this.querySelectorAll('[will-update]');
+      if (elementsToUpdate.length) {
+        elementsToUpdate.forEach(el => {
+          el.update && el.update();
+        });
+      }
+    });
+
+    this.accordion.on('fold:closed', fold => {
+      this.dispatchLayoutChanged();
+    });
+  }
+
+  dispatchLayoutChanged() {
+    this.dispatchEvent(
+      new CustomEvent('bolt:layout-size-changed', {
+        bubbles: true,
+      }),
+    );
+  }
+
+  handleLayoutChanged(e) {
+    if (e.target !== this) {
+      this.accordion && this.accordion.resize();
+    }
   }
 
   setupAccordion() {
@@ -173,19 +204,21 @@ class BoltAccordion extends withContext(withLitHtml()) {
     // Array passed to the Accordion plugin, a series of trigger/content pairs
     this.accordionItems = [];
 
-    this.accordionItemElements.forEach(item => {
-      const onItemReady = e => {
-        if (e.detail.name !== 'bolt-accordion-item') return;
+    Promise.all(
+      this.accordionItemElements.map(item => {
+        if (item._wasInitiallyRendered || this._wasMutated) return;
+        return new Promise((resolve, reject) => {
+          item.addEventListener('ready', e => {
+            return item === e.target && resolve();
+          });
+          item.addEventListener('error', reject);
+        });
+      }),
+    ).then(() => {
+      this.accordionItemElements.forEach(item => {
         this.handleAccordionItemReady(item);
-        item.removeEventListener('rendered', onItemReady);
-      };
-
-      if (item._wasInitiallyRendered || this._wasMutated) {
-        this.handleAccordionItemReady(item);
-        this._wasMutated = false;
-      } else {
-        item.addEventListener('rendered', onItemReady);
-      }
+      });
+      this._wasMutated = false;
     });
   }
 
@@ -262,6 +295,11 @@ class BoltAccordion extends withContext(withLitHtml()) {
   disconnected() {
     super.disconnected && super.disconnected();
 
+    this.removeEventListener(
+      'bolt:layout-size-changed',
+      this.handleLayoutChanged,
+    );
+
     // remove MutationObserver if supported + exists
     if (window.MutationObserver && this.observer) {
       this.observer.disconnect();
@@ -277,10 +315,9 @@ class BoltAccordion extends withContext(withLitHtml()) {
     this.contexts.get(AccordionContext).boxShadow = boxShadow;
     this.contexts.get(AccordionContext).spacing = spacing;
     this.contexts.get(AccordionContext).iconValign = iconValign;
-    this.contexts.get(AccordionContext).useShadow = this.useShadow;
 
     return html`
-      ${this.addStyles([styles, heightUtils])} ${this.template()}
+      ${this.addStyles([styles])} ${this.template()}
     `;
   }
 }

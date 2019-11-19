@@ -1,7 +1,7 @@
 import { html } from '@bolt/core/renderers/renderer-lit-html';
 import { svg } from 'lit-html';
 
-export const connectionBand = ({ direction }) => {
+export const connectionBand = ({ direction, theme }) => {
   const authoredStyle = html`
     @keyframes connectionArrowScroll { 0% { transform:
     translate(82.3648681640625px, 0px) translate(-82.3648681640625px, 0px)
@@ -9,7 +9,7 @@ export const connectionBand = ({ direction }) => {
     0px) translate(-82.3648681640625px, 0px) translate(297px, 0px); } 100% {
     transform: translate(82.3648681640625px, 0px) translate(-82.3648681640625px,
     0px) translate(297px, 0px); } } #animatedConnectionBand { transform:
-    ${direction === 'right' ? 'scaleX(-1)' : 'scaleX(1)'}; }
+    ${direction === 'left' ? 'scaleX(-1)' : 'scaleX(1)'}; }
     #animatedConnectionBand * { animation-duration: 1s;
     animation-iteration-count: infinite; animation-timing-function:
     cubic-bezier(0, 0, 1, 1); } #connectionGradientBG { fill:
@@ -18,6 +18,14 @@ export const connectionBand = ({ direction }) => {
     backwards; animation-name: connectionArrowScroll; animation-timing-function:
     cubic-bezier(0, 0, 1, 1); }
   `;
+  const gradientColors =
+    theme === 'dark'
+      ? svg`
+      <stop stop-color="#887ACC" offset="0%"></stop>
+      <stop stop-color="#887ACC" stop-opacity="0" offset="100%"></stop>`
+      : svg`
+      <stop stop-color="#7ACCCC" offset="0%"/>
+      <stop stop-color="#887ACC"  offset="100%"/>`;
 
   return svg`
     <svg width="100%" viewBox="0 0 249 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="animatedConnectionBand">
@@ -26,8 +34,7 @@ export const connectionBand = ({ direction }) => {
       </style>
       <defs>
         <linearGradient x1="3.0640354%" y1="50%" x2="100%" y2="50%" id="connectionGradient">
-          <stop stop-color="#7ACCCC" offset="0%"/>
-          <stop stop-color="#7ACCCC" stop-opacity="0" offset="100%"/>
+         ${gradientColors}
         </linearGradient>
       </defs>
       <polygon id="connectionGradientBG" points="0 57.4358974 276.459459 57.4358974 276.459459 0 0 0"/>

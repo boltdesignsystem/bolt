@@ -1,0 +1,86 @@
+{
+  "repo": "bolt",
+  "name": "Salem Ghoweri",
+  "baseBranch": "release/2.x",
+  "plugins": [
+    ['./scripts/auto-plugin.js'],
+    [
+      "released",
+      {
+        "label": "shipped :rocket:",
+        "message": "%TYPE was released with %VERSION"
+      }
+    ]
+  ],
+  "owner": "boltdesignsystem",
+  "email": "me@salemghoweri.com",
+  "skipReleaseLabels": ["docs", "chore", "internal", "wip", "devops"],
+  "labels": {
+    "documentation": "docs",
+    "deprecation": [
+      {
+        "title": "Deprecated ⚠️"
+      }
+    ],
+    "major": [
+      {
+        "name": "breaking change",
+        "title": "Major Breaking Changes 🛑",
+        "description": "Add this label to a PR to create a major release when merged."
+      },
+      {
+        "name": "major release",
+        "title": "Major Breaking Changes 🛑",
+        "description": "Add this label to a PR to create a major release when merged."
+      }
+    ],
+    "minor": [
+      {
+        "name": "new component",
+        "title": "New Components 🎉",
+        "description": "Increments the minor version when merged"
+      },
+      {
+        "name": "minor",
+        "description": "Increments the minor version when merged"
+      },
+      {
+        "name": "enhancement",
+        "title": "Features & Enhancements ✨",
+        "description": "Increments the minor version when merged"
+      },
+      {
+        "name": "new feature",
+        "title": "Features & Enhancements ✨",
+        "description": "Increments the minor version when merged"
+      },
+      {
+        "name": "improvement",
+        "title": "Features & Enhancements ✨",
+        "description": "Increments the minor version when merged"
+      }
+    ],
+    "patch": [
+      {
+        "name": "patch",
+        "description": "Increment the patch version when merged"
+      },
+      {
+        "name": "bug",
+        "title": "Bug Fixes 🐛",
+        "description": "Increment the patch version when merged"
+      },
+      {
+        "name": "hotfix",
+        "title": "Bug Fixes 🐛",
+        "description": "Increment the patch version when merged"
+      }
+    ],
+    "prerelease": "beta",
+    "pushToBaseBranch":  [
+      {
+        "title": "Misc 🔧"
+      }
+    ]
+  }
+}

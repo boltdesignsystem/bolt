@@ -1,20 +1,15 @@
-import {
-  props,
-  define,
-  hasNativeShadowDomSupport,
-  withContext,
-} from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { props, define } from '@bolt/core/utils';
+import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
 import { triggerAnims } from '@bolt/components-animate/utils';
 import classNames from 'classnames/bind';
-import { BoltInteractivePathwaysContext } from './interactive-pathways';
+import { boltTwoCharacterLayoutIs } from '@bolt/micro-journeys/src/two-character-layout';
 import styles from './interactive-step.scss';
 import schema from './interactive-step.schema';
 
 const cx = classNames.bind(styles);
 
 @define
-class BoltInteractiveStep extends withContext(withLitHtml()) {
+class BoltInteractiveStep extends withLitContext() {
   static is = 'bolt-interactive-step';
 
   static props = {
@@ -25,35 +20,59 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
     ...convertSchemaToProps(schema),
   };
 
-  static get consumes() {
-    return [[BoltInteractivePathwaysContext, 'theme']];
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
+  // @ts-ignore
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
     self._isActiveStep = false;
+    self._isBecomingActive = false;
+    // These components are responsible for their own inital animate in.
+    self.animateInInitialExclusions = [boltTwoCharacterLayoutIs];
+    self.initializedAnimationExclusions = [];
     return self;
   }
 
+  /**
+   * Set this step to be the active step, trigger re-render.
+   *
+   * @param {Boolean} isActive
+   */
   setActive(isActive = true) {
     this._isActiveStep = isActive;
+    this._isBecomingActive = false;
     this.triggerUpdate();
   }
 
   /**
+   * Prepare the step by rendering the content to the DOM so that `bolt-animate`s
+   * can animate themselves out swiftly in preparation to be animated in.
+   *
+   * @param {Boolean} isBecomingActive
+   * @return {Promise}
+   */
+  setIsBecomingActive = async (isBecomingActive = true) => {
+    this._isBecomingActive = isBecomingActive;
+    this.triggerUpdate();
+    return this.triggerAnimOuts(1);
+  };
+
+  /**
    * @param {Event} event
    */
-  handleAnimationEnd(event) {
-    console.debug('bolt:transitionend', event);
-  }
+  handleAnimationEnd(event) {}
 
   connectedCallback() {
     super.connectedCallback();
-
     this.addEventListener('bolt:transitionend', this.handleAnimationEnd);
-
+    this.animateInInitialExclusions.forEach(exclusionComponent => {
+      this.addEventListener(
+        `${exclusionComponent}:animation-initialized`,
+        this.handleExcludedAnimationInitializedOnChild,
+      );
+    });
     setTimeout(() => {
       this.dispatchEvent(
         new CustomEvent(`${BoltInteractiveStep.is}:connected`, {
@@ -68,8 +87,13 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-
     this.removeEventListener('bolt:transitionend', this.handleAnimationEnd);
+    this.animateInInitialExclusions.forEach(exclusionComponent => {
+      this.removeEventListener(
+        `${exclusionComponent}:animation-initialized`,
+        this.handleExcludedAnimationInitializedOnChild,
+      );
+    });
 
     setTimeout(() => {
       this.dispatchEvent(
@@ -83,14 +107,47 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
     }, 0);
   }
 
-  async triggerAnimOuts() {
+  handleExcludedAnimationInitializedOnChild(e) {
+    this.initializedAnimationExclusions = [
+      ...this.initializedAnimationExclusions,
+      ...e.target.querySelectorAll('bolt-animate'),
+    ];
+  }
+
+  async triggerAnimOuts(durationOverride = null) {
     const anims = this.querySelectorAll('bolt-animate');
-    return triggerAnims({ animEls: anims, stage: 'OUT' });
+    return triggerAnims({ animEls: anims, stage: 'OUT', durationOverride });
   }
 
   async triggerAnimIns() {
-    const anims = this.querySelectorAll('bolt-animate');
-    return triggerAnims({ animEls: anims, stage: 'IN' });
+    let anims = [...this.querySelectorAll('bolt-animate')];
+    // Filter bolt-animates inside animateInInitialExclusions.
+    if (this.animateInInitialExclusions.length) {
+      const animateInInitialExclusions = [
+        ...this.querySelectorAll(
+          `${this.animateInInitialExclusions.join(
+            ' bolt-animate',
+          )} bolt-animate`,
+        ),
+      ];
+      // Tell the excluded components they can animate themselves.
+      [
+        ...this.querySelectorAll(this.animateInInitialExclusions.join(' ')),
+      ].forEach(exclusion => {
+        exclusion.setAttribute('parent-animations-triggered', true);
+      });
+      anims = anims.filter(animateEl => {
+        return !animateInInitialExclusions.find(exclusion =>
+          animateEl.isSameNode(exclusion),
+        );
+      });
+    }
+    // Add any excluded components that have finished initializing to trigger list.
+    const animEls = [...anims, ...this.initializedAnimationExclusions];
+    return triggerAnims({
+      animEls,
+      stage: 'IN',
+    });
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -131,7 +188,7 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
-    const { tabTitle } = this.validateProps(this.props);
+    const props = this.validateProps(this.props);
     this.theme = this.context.theme;
     const isLastStep = !(
       this.nextElementSibling &&
@@ -159,15 +216,23 @@ class BoltInteractiveStep extends withContext(withLitHtml()) {
           class="${titleClasses}"
           @click=${() => this.triggerStepChange()}
         >
-          ${tabTitle}
+          ${props.tabTitle}
         </header>
         <div class="c-bolt-interactive-step__body">
           <div class="c-bolt-interactive-step__body-inner">
             <div class="c-bolt-interactive-step__top-slot">
-              ${this.slot('top')}
+              ${this._isActiveStep || this._isBecomingActive
+                ? html`
+                    ${this.slot('top')}
+                  `
+                : ''}
             </div>
             <div class="c-bolt-interactive-step__bottom-slot">
-              ${this.slot('bottom')}
+              ${this._isActiveStep || this._isBecomingActive
+                ? html`
+                    ${this.slot('bottom')}
+                  `
+                : ''}
             </div>
           </div>
         </div>

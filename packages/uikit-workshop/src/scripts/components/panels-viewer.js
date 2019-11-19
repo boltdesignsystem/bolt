@@ -1,9 +1,9 @@
 /**
  * Panel Builder - supports building the panels to be included in the modal or styleguide
  */
+/* eslint-disable no-param-reassign, no-unused-vars */
 
 import Hogan from 'hogan.js';
-// import Prism from 'prismjs';
 import Normalizer from 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace.js';
 import pretty from 'pretty';
 import { html, render } from 'lit-html';
@@ -20,10 +20,10 @@ const normalizeWhitespace = new Normalizer({
   'left-trim': true,
   'right-trim': true,
   'break-lines': 100,
-  'indent': 2,
+  indent: 2,
   'remove-initial-line-feed': true,
   'tabs-to-spaces': 2,
-  'spaces-to-tabs': 2
+  'spaces-to-tabs': 2,
 });
 
 export const panelsViewer = {
@@ -108,21 +108,35 @@ export const panelsViewer = {
           /* eslint-disable */
           e.onload = (function(i, panels, patternData, iframeRequest) {
             return function() {
+              // since non-existant files (such as .scss from plugin-tab) still return a 200, we need to instead inspect the contents
+              // we look for responseText that starts with the doctype
+              let rText = this.responseText;
+              if (rText.startsWith('<!DOCTYPE html>')) {
+                rText = '';
+              }
 
               // use pretty to format HTML
-              if (panels[i].name === "HTML") {
-                templateFormatted = pretty(this.responseText, {ocd: true});
+              if (panels[i].name === 'HTML') {
+                templateFormatted = pretty(rText, { ocd: true });
               } else {
-                templateFormatted = this.responseText;
+                templateFormatted = rText;
               }
 
               const templateHighlighted = Prism.highlight(
                 templateFormatted,
-                Prism.languages[panels[i].name.toLowerCase()] || 'markup',
+                Prism.languages[panels[i].name.toLowerCase()] ||
+                  Prism.languages['markup']
                 // Prism.languages[panels[i].name.toLowerCase()],
               );
 
-              const codeTemplate = (code, language) => html`<pre class="language-markup"><code id="pl-code-fill-${language}" class="language-${language}">${unsafeHTML(code)}</code></pre>`;
+              const codeTemplate = (code, language) =>
+                html`
+                  <pre
+                    class="language-markup"
+                  ><code id="pl-code-fill-${language}" class="language-${language}">${unsafeHTML(
+                    code
+                  )}</code></pre>
+                `;
 
               const result = document.createDocumentFragment();
               const fallBackResult = document.createDocumentFragment();
@@ -130,12 +144,17 @@ export const panelsViewer = {
               render(codeTemplate(templateHighlighted, 'html'), result);
               render(codeTemplate(templateFormatted, 'html'), fallBackResult);
 
-              if (result.children){
+              if (result.children) {
                 panels[i].content = result.children[0].outerHTML;
-              } else  if (fallBackResult.children){
-                  panels[i].content = fallBackResult.children[0].outerHTML;
+              } else if (fallBackResult.children) {
+                panels[i].content = fallBackResult.children[0].outerHTML;
               } else {
-                panels[i].content = '<pre class="language-markup"><code id="pl-code-fill-html" class="language-html">' + templateFormatted.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code></pre>';
+                panels[i].content =
+                  '<pre class="language-markup"><code id="pl-code-fill-html" class="language-html">' +
+                  templateFormatted
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;') +
+                  '</code></pre>';
               }
 
               Dispatcher.trigger('checkPanels', [
@@ -319,19 +338,6 @@ export const panelsViewer = {
           .classList.add('pl-is-active-tab');
       }
     }
-
-    // find lineage links in the rendered content and add postmessage handlers in case it's in the modal
-    // @todo: refactor and re-enable
-    // $('.pl-js-lineage-link', templateRendered).on('click', function(e) {
-    //   e.preventDefault();
-    //   const obj = JSON.stringify({
-    //     event: 'patternLab.updatePath',
-    //     path: urlHandler.getFileName($(this).attr('data-patternpartial')),
-    //   });
-    //   document
-    //     .querySelector('.pl-js-iframe')
-    //     .contentWindow.postMessage(obj, panelsViewer.targetOrigin);
-    // });
 
     // gather panels from plugins
     Dispatcher.trigger('insertPanels', [

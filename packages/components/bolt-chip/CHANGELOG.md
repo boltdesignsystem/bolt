@@ -3,6 +3,85 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
+# [2.10.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* dependency and tests ([433c105](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/433c105))
+* filter out `text` from chip schema ([897e0f7](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/897e0f7))
+* lint js ([7414e0c](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/7414e0c))
+* rename spacing to size ([4a901c8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/4a901c8))
+* revert Navbar image snapshots ([ece66f8](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/ece66f8))
+* test instructions ([d07145f](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/d07145f))
+* update tests ([0f9a166](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/0f9a166))
+* updated tests ([7d8f3d1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/7d8f3d1))
+
+
+### Features
+
+* cleanup, use validated vars instead of props directly ([c91ab29](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/commit/c91ab29))
+
+
+
+
+
+## [2.9.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/components-chip
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-chip/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 **Note:** Version bump only for package @bolt/components-chip

@@ -13,11 +13,14 @@ import { getComponentRootElement } from '@bolt/core/utils';
 export function convertInitialTags(tags, moveChildrenToRoot = true) {
   return target => {
     return class extends target {
-      connecting() {
-        super.connecting && super.connecting();
-
-        // Make sure the component ONLY ever reuses any existing HTML ONCE. This, in part, helps to prevent rendering diff errors in HyperHTML after booting up!
-        if (this._wasInitiallyRendered === false) {
+      connectedCallback() {
+        super.connectedCallback && super.connectedCallback();
+        // Make sure the component ONLY ever reuses any existing HTML ONCE.
+        if (
+          (this._wasInitiallyRendered === false ||
+            this._wasInitiallyRendered === undefined) &&
+          !this._convertedInitialTags
+        ) {
           // If the initial element contains a child node, break apart the original HTML so we can retain the a tag but swap out the inner content with slots.
           let rootElement = getComponentRootElement(this.childNodes, tags);
 
@@ -32,6 +35,7 @@ export function convertInitialTags(tags, moveChildrenToRoot = true) {
             }
 
             this.rootElement.appendChild(rootElement);
+            this._convertedInitialTags = true;
           }
         }
       }

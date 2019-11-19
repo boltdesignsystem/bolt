@@ -29,12 +29,12 @@ export const loadState = () => {
       state.app = {};
     }
 
-    if (!window.__PRERENDER_INJECTED){
+    if (!window.__PRERENDER_INJECTED) {
       if (state.app.drawerOpened === undefined) {
         state.app.drawerOpened = window.config.defaultShowPatternInfo || false;
       }
     }
-  
+
     if (state.app.drawerHeight && !state.app.drawerOpened) {
       state.app.appHeight = window.innerHeight;
     } else if (state.app.drawerHeight && state.app.drawerOpened) {
@@ -43,11 +43,21 @@ export const loadState = () => {
 
     if (state.app.themeMode === undefined) {
       try {
-        if (window.patternlab.config.theme.color !== undefined) {
-          state.app.themeMode = window.patternlab.config.theme.color;
+        if (window.config.theme.color !== undefined) {
+          state.app.themeMode = window.config.theme.color;
         }
       } catch (e) {
         state.app.themeMode = 'dark';
+      }
+    }
+
+    if (state.app.layoutMode === undefined) {
+      try {
+        if (window.config.theme.layout !== undefined) {
+          state.app.layoutMode = window.config.theme.layout;
+        }
+      } catch (e) {
+        state.app.layoutMode = 'vertical';
       }
     }
 

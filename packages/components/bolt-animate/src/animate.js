@@ -63,15 +63,7 @@ class BoltAnimate extends withLitHtml() {
     this._processProps();
 
     if (this._animStage === ANIM_STAGES.INITIAL) {
-      if (this.hasAnimIn) {
-        if (this.props.initialAppearance === 'hidden') {
-          this._animStyle.opacity = 0;
-        }
-      } else {
-        if (this.hasAnimIdle) {
-          this._triggerAnimIdle();
-        }
-      }
+      this.resetAnimStage();
     }
   }
 
@@ -111,6 +103,8 @@ class BoltAnimate extends withLitHtml() {
             animationTimingFunction: this.props.outEasing,
           });
           isTriggered = true;
+        } else {
+          this.resetAnimStage();
         }
         break;
     }
@@ -118,9 +112,9 @@ class BoltAnimate extends withLitHtml() {
     if (isTriggered) {
       this._animStage = ANIM_STAGES[id];
       this.triggerUpdate();
-      if (this.props.showMeta) {
-        this.setAttribute('meta-stage', this._animStage);
-      }
+    }
+    if (this.props.showMeta) {
+      this.setAttribute('meta-stage', this._animStage);
     }
     return isTriggered;
   }
@@ -166,6 +160,23 @@ class BoltAnimate extends withLitHtml() {
     return hadAnim;
   }
 
+  resetAnimStage() {
+    this._animStage = ANIM_STAGES.INITIAL;
+    this._animStyle = {};
+
+    if (this.hasAnimIn) {
+      if (this.props.initialAppearance === 'hidden') {
+        this._animStyle.opacity = 0;
+      }
+    } else {
+      if (this.hasAnimIdle) {
+        this._triggerAnimIdle();
+      }
+    }
+
+    this.triggerUpdate();
+  }
+
   /**
    * @param {string} eventName
    * @param {Object} [detail]
@@ -179,7 +190,6 @@ class BoltAnimate extends withLitHtml() {
       composed: true,
       detail,
     });
-    console.debug(`event: ${eventName}`);
     this.dispatchEvent(myEvent);
   }
 
@@ -189,13 +199,14 @@ class BoltAnimate extends withLitHtml() {
     const isAnimIdle = this.props.idle === animationName;
     const isAnimOut = this.props.out === animationName;
 
+    const animatedEls = event.target.children;
     if (isAnimIn) {
-      this._emitEvent(EVENTS.END_IN);
+      this._emitEvent(EVENTS.END_IN, { animatedEls });
       this._triggerAnimIdle();
     } else if (isAnimIdle) {
       // don't care
     } else if (isAnimOut) {
-      this._emitEvent(EVENTS.END_OUT);
+      this._emitEvent(EVENTS.END_OUT, { animatedEls });
     } else {
       console.error('Unknown animation ended!', {
         event,

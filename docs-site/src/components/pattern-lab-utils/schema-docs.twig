@@ -9,14 +9,17 @@
   {%- if description %}{{ description | markdown }}{% endif -%}
 {% endmacro %}
 
+{% macro loopThroughEnums(prop) %}
+  {% for x in prop.enum %}
+    <code>{% if prop.type == "boolean" %}{{ x ? "true" : "false" }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
+    {%- if not loop.last %}{{ prop.enum|length == 2 ? " or" : "," }}{% endif -%}
+  {% endfor %}
+{% endmacro %}
 
 {% macro schemaProps(prop) %}
   {% import _self as macros %}
   {% set enum %}
-    {% for x in prop.enum %}
-      <code>{% if prop.type == "boolean" %}{{ x ? "true" : "false" }}{% elseif x == null %}NULL{% else %}{{ x }}{% endif %}</code>
-      {%- if not loop.last %}{{ prop.enum|length == 2 ? " or" : "," }}{% endif -%}
-    {% endfor %}
+    {{ macros.loopThroughEnums(prop) }}
   {% endset %}
   <ul class="c-bds-docs-list">
     <li>
@@ -45,15 +48,21 @@
                     {% if property.type %}
                       <ul class="c-bds-docs-list__child c-bds-docs-list__child--level-3">
                         <li>
-                          Type: 
+                          Type:
                           {% if property.type is iterable %}
                             {% for type in property.type %}
-                              <code>{{ type }}</code> {% if not loop.last %} OR {% endif %}
+                              <code>{{ type }}</code>{% if not loop.last %}, {% endif %}
                             {% endfor %}
                           {% else %}
                             <code>{{ property.type }}</code>
                           {% endif %}
-                          </li>
+                        </li>
+                        {% if property.enum %}
+                        <li>
+                          Enum:
+                          {{ macros.loopThroughEnums(property) }}
+                        </li>
+                        {% endif %}
                         {% if property.type == "object" and property.properties %}
                           <li>Properties:</li>
                           {{ macros.object(property.properties) }}
@@ -73,6 +82,63 @@
   </ul>
 {% endmacro %}
 
+{#
+  @param {string} name
+    The name of the prop being documented.
+  @param {object} prop
+    An object with the details of this property, such as prop.description, prop.type, etc., pulled from a schema file.
+  @param {boolean} required
+    whether this prop is required.
+#}
+{% macro schemaTableRow(name, prop, required) %}
+  <tr class="c-bds-docs-table__row c-bds-docs-table__row--web-component-only {{ 'Deprecated' in prop.title ? 'u-bolt-color-gray u-bolt-opacity-80' : '' }}">
+
+    <!-- name -->
+    <td class="c-bds-docs-table__col c-bds-docs-table__col--key">
+      <strong>
+        {% set capitalizedKey = name[:1]|capitalize ~ name[1:] %}
+        {% set capitalizedKeyWithPrefix = prefix ~ capitalizedKey %}
+        <bolt-change-case mode="snake">{{ capitalizedKeyWithPrefix }}</bolt-change-case>
+        {% if required %}<span class="required-key" title="Required">*</span>{% endif %}
+      </strong>
+    </td>
+
+    <!-- description -->
+    <td class="c-bds-docs-table__col">{{ _self.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}</td>
+
+    <!-- type -->
+    {% set multiples = prop.type is iterable ? prop.type : prop.anyOf|default(prop.oneOf) %}
+    {% if multiples is iterable %}
+    <td class="c-bds-docs-table__col">
+      {% for multiple in multiples %}
+        {% set type = multiple is iterable ? multiple.type : multiple %}
+        <code>{{ type }}</code> {% if not loop.last %}, {% endif %}
+      {% endfor %}
+    </td>
+    {% else %}
+    <td class="c-bds-docs-table__col"><code>{{ prop.type }}</code>
+      {% endif %}
+
+      <!-- default value -->
+    <td class="c-bds-docs-table__col">
+
+      {% if prop.default is sameas(false) %}
+        <code>false</code>
+      {% elseif prop.default is sameas(true) %}
+        <code>true</code>
+      {% elseif prop.default is empty %}
+        —
+      {% else %}
+        <code>{{ prop.default }}</code>
+      {% endif %}
+    </td>
+
+    <!-- values -->
+    <td class="c-bds-docs-table__col">{{ _self.schemaProps(prop) }}</td>
+
+  </tr>
+{% endmacro %}
+
 {% macro object(properties, isRef) %}
   {% import _self as macros %}
   {% set isRef = isRef|default(false) %}
@@ -81,7 +147,7 @@
       <li>
         <code>{{ key }}</code>
         {{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}
-        {% if isRef %}<br />Type: {{ prop.type is iterable ? prop.type|join(" OR ") : prop.type }} {% endif %}
+        {% if isRef %}<br />Type: {{ prop.type is iterable ? prop.type|join(", ") : prop.type }} {% endif %}
         {{ macros.schemaProps(prop) }}
       </li>
     {% endfor %}
@@ -107,123 +173,35 @@
   <div class="c-bds-schema-table">
     <bolt-schema-table>
       <div class="c-bds-docs-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Prop Name</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Default Value</th>
-              <th>Option(s)</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {% for key, prop in schema.properties if not schema.properties[key].hidden and not schema.properties[key].flatten %}
-              <tr class="c-bds-docs-table__row {{ 'Deprecated' in prop.title ? 'u-bolt-color-gray u-bolt-opacity-80' : '' }}">
-
-                <!-- name -->
-                <td class="c-bds-docs-table__col c-bds-docs-table__col--key">
-                  <strong>
-                    <bolt-change-case mode="snake">{{ key }}</bolt-change-case>
-                    {% if key in requiredProps %}<span class="required-key" title="Required">*</span>{% endif %}
-                  </strong>
-                </td>
-
-                 <!-- description -->
-                <td class="c-bds-docs-table__col">{{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}</td>
-
-                <!-- type -->
-                {% set multiples = prop.type is iterable ? prop.type : prop.anyOf|default(prop.oneOf) %}
-                {% if multiples is iterable %}
-                  <td class="c-bds-docs-table__col">
-                    {% for multiple in multiples %}
-                      {% set type = multiple is iterable ? multiple.type : multiple %}
-                      <code>{{ type }}</code> {% if not loop.last %} or {% endif %}
-                    {% endfor %}
-                  </td>
-                {% else %}
-                  <td class="c-bds-docs-table__col"><code>{{ prop.type }}</code>
-                {% endif %}
-
-                <!-- default value -->
-                <td class="c-bds-docs-table__col">
-
-                    {% if prop.default is sameas(false) %}
-                      <code>false</code>
-                    {% elseif prop.default is sameas(true) %}
-                      <code>true</code>
-                    {% elseif prop.default is empty %}
-                      —
-                    {% else %}
-                      <code>{{ prop.default }}</code>
-                    {% endif %}
-                </td>
-
-                <!-- values -->
-                <td class="c-bds-docs-table__col">{{ macros.schemaProps(prop) }}</td>
-
+        <bolt-table borderless first-col-fixed-width>
+          <table>
+            <thead>
+              <tr>
+                <th>Prop Name</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Default Value</th>
+                <th>Option(s)</th>
               </tr>
-            {% endfor %}
+            </thead>
 
-            {% for key, prop in schema.properties if schema.properties[key].flatten %}
-              <tr class="c-bds-docs-table__row c-bds-docs-table__row--twig-only {{ 'Deprecated' in prop.title ? 'u-bolt-color-gray u-bolt-opacity-80' : '' }}">
+            <tbody>
+              {% for key, prop in schema.properties if not schema.properties[key].hidden and not schema.properties[key].flatten %}
+                {{ macros.schemaTableRow(key, prop, key in requiredProps) }}
+              {% endfor %}
 
-                <!-- name -->
-                <td class="c-bds-docs-table__col c-bds-docs-table__col--key">
-                  <strong>
-                    <bolt-change-case mode="snake">{{ key }}</bolt-change-case>
-                    {% if key in requiredProps %}<span class="required-key" title="Required">*</span>{% endif %}
-                  </strong>
-                </td>
+              {% for key, prop in schema.properties if schema.properties[key].flatten %}
 
-                 <!-- description -->
-                <td class="c-bds-docs-table__col">{{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}</td>
-
-                <!-- type -->
-                {% set multiples = prop.type is iterable ? prop.type : prop.anyOf|default(prop.oneOf) %}
-                {% if multiples is iterable %}
-                  <td class="c-bds-docs-table__col">
-                    {% for multiple in multiples %}
-                      {% set type = multiple is iterable ? multiple.type : multiple %}
-                      <code>{{ type }}</code> {% if not loop.last %} or {% endif %}
-                    {% endfor %}
-                  </td>
-                {% else %}
-                  <td class="c-bds-docs-table__col"><code>{{ prop.type }}</code>
-                {% endif %}
-
-                <!-- default value -->
-                <td class="c-bds-docs-table__col">
-
-                    {% if prop.default is sameas(false) %}
-                      <code>false</code>
-                    {% elseif prop.default is sameas(true) %}
-                      <code>true</code>
-                    {% elseif prop.default is empty %}
-                      —
-                    {% else %}
-                      <code>{{ prop.default }}</code>
-                    {% endif %}
-                </td>
-
-                <!-- values -->
-                <td class="c-bds-docs-table__col">{{ macros.schemaProps(prop) }}</td>
-
-              </tr>
-
-              {% set prefix = key %}
-              {% set prefixedProperties = schema.properties[key].properties %}
-
-              {% for key, prop in prefixedProperties if not prefixedProperties[key].hidden %}
-                <tr class="c-bds-docs-table__row c-bds-docs-table__row--web-component-only {{ 'Deprecated' in prop.title ? 'u-bolt-color-gray u-bolt-opacity-80' : '' }}">
+                {#
+                  TODO: Replace the following with the schemaTableRow macro to reduce duplication.
+                  This is postponed only because the following isn't currently in use, so it's difficult to test.
+                #}
+                <tr class="c-bds-docs-table__row c-bds-docs-table__row--twig-only {{ 'Deprecated' in prop.title ? 'u-bolt-color-gray u-bolt-opacity-80' : '' }}">
 
                   <!-- name -->
                   <td class="c-bds-docs-table__col c-bds-docs-table__col--key">
                     <strong>
-                      {% set capitalizedKey = key[:1]|capitalize ~ key[1:] %}
-                      {% set capitalizedKeyWithPrefix = prefix ~ capitalizedKey %}
-                      <bolt-change-case mode="snake">{{ capitalizedKeyWithPrefix }}</bolt-change-case>
+                      <bolt-change-case mode="snake">{{ key }}</bolt-change-case>
                       {% if key in requiredProps %}<span class="required-key" title="Required">*</span>{% endif %}
                     </strong>
                   </td>
@@ -237,7 +215,7 @@
                     <td class="c-bds-docs-table__col">
                       {% for multiple in multiples %}
                         {% set type = multiple is iterable ? multiple.type : multiple %}
-                        <code>{{ type }}</code> {% if not loop.last %} or {% endif %}
+                        <code>{{ type }}</code> {% if not loop.last %}, {% endif %}
                       {% endfor %}
                     </td>
                   {% else %}
@@ -262,10 +240,87 @@
                   <td class="c-bds-docs-table__col">{{ macros.schemaProps(prop) }}</td>
 
                 </tr>
+
+                {% set prefix = key %}
+                {% set prefixedProperties = schema.properties[key].properties %}
+
+                {% for key, prop in prefixedProperties if not prefixedProperties[key].hidden %}
+
+                  {#
+                    TODO: Replace the following with the schemaTableRow macro to reduce duplication.
+                    This is postponed only because the following isn't currently in use, so it's difficult to test.
+                  #}
+                  <tr class="c-bds-docs-table__row c-bds-docs-table__row--web-component-only {{ 'Deprecated' in prop.title ? 'u-bolt-color-gray u-bolt-opacity-80' : '' }}">
+
+                    <!-- name -->
+                    <td class="c-bds-docs-table__col c-bds-docs-table__col--key">
+                      <strong>
+                        {% set capitalizedKey = key[:1]|capitalize ~ key[1:] %}
+                        {% set capitalizedKeyWithPrefix = prefix ~ capitalizedKey %}
+                        <bolt-change-case mode="snake">{{ capitalizedKeyWithPrefix }}</bolt-change-case>
+                        {% if key in requiredProps %}<span class="required-key" title="Required">*</span>{% endif %}
+                      </strong>
+                    </td>
+
+                    <!-- description -->
+                    <td class="c-bds-docs-table__col">{{ macros.titleAndDescription(prop.title, prop.description, prop.minimum, prop.maximum) }}</td>
+
+                    <!-- type -->
+                    {% set multiples = prop.type is iterable ? prop.type : prop.anyOf|default(prop.oneOf) %}
+                    {% if multiples is iterable %}
+                      <td class="c-bds-docs-table__col">
+                        {% for multiple in multiples %}
+                          {% set type = multiple is iterable ? multiple.type : multiple %}
+                          <code>{{ type }}</code> {% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                      </td>
+                    {% else %}
+                      <td class="c-bds-docs-table__col"><code>{{ prop.type }}</code>
+                    {% endif %}
+
+                    <!-- default value -->
+                    <td class="c-bds-docs-table__col">
+
+                        {% if prop.default is sameas(false) %}
+                          <code>false</code>
+                        {% elseif prop.default is sameas(true) %}
+                          <code>true</code>
+                        {% elseif prop.default is empty %}
+                          —
+                        {% else %}
+                          <code>{{ prop.default }}</code>
+                        {% endif %}
+                    </td>
+
+                    <!-- values -->
+                    <td class="c-bds-docs-table__col">{{ macros.schemaProps(prop) }}</td>
+
+                  </tr>
+                {% endfor %}
               {% endfor %}
-            {% endfor %}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </bolt-table>
+
+        {% set advanced_table %}
+          {% for key, prop in schema.properties if schema.properties[key].hidden %}
+            {{ macros.schemaTableRow(key, prop, key in requiredProps) }}
+          {% endfor %}
+        {% endset %}
+
+        {% if advanced_table|trim %}
+          {% include "@bolt-components-accordion/accordion.twig" with {
+            no_separator: true,
+            spacing: "small",
+            items: [
+              {
+                trigger: include("@bolt-components-headline/headline.twig", { text: "Advanced Schema Options", size: "xlarge" }),
+                content: "<bolt-table borderless first-col-fixed-width><table><tbody>" ~ advanced_table ~ "</tbody></table></bolt-table>",
+                content_spacing: "none",
+              },
+            ]
+          } only %}
+        {% endif %}
       </div>
     </bolt-schema-table>
   </div>

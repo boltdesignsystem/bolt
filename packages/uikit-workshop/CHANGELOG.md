@@ -3,6 +3,92 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.11.2...v2.11.3) (2019-11-15)
+
+
+### Bug Fixes
+
+* UIKit CSS Hotfix for IE 11 ([d373caa](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/d373caa))
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* add missing JS class ([b4a0af2](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/b4a0af2))
+* don't auto-close nav when clicking on a nav toggle ([2c5a5e7](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/2c5a5e7))
+* don’t set header overflow unless in vertical layout mode ([7a4356e](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/7a4356e))
+* fix UIKit webpack build ([1ec6017](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/1ec6017))
+* minor UIkit fixes ([c08700a](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/c08700a))
+* misc UI fixes and polish ([d5113f9](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/d5113f9))
+* pull in small CSS logo fix for ie 11 on windows 7 ([b421ec6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/b421ec6))
+* restore missing search placeholder text ([453ae24](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/453ae24))
+* update drawer text color ([1d3ca76](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/1d3ca76))
+* update puppeteer + fix nav from getting chopped off ([7d6f72f](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/7d6f72f))
+
+
+### Features
+
+* add support for loader when pulling in code snippets in the Drawer ([3c63545](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/3c63545))
+* add support for the side nav UI on small screens! ([225e699](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/225e699))
+* adjust color theme defaults for dark themes ([7dad496](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/7dad496))
+* clean up padding used for view all page code snippets vs drawer ([59c47fc](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/59c47fc))
+* port over major UIKit upgrades from https://github.com/pattern-lab/patternlab-node/pull/1078 ([c62d659](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/c62d659))
+* pull in loader styles / animation ([f404208](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/f404208))
+* uikit bug fixes + polishing up nav behavior across screen sizes + layout options ([f7d8bfd](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/f7d8bfd))
+* update Search to grow in size when being focused; allow results to be scrolled ([84c75b0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/84c75b0))
+* update UIKit SVG icons ([ddbfe09](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/ddbfe09))
+* update viewport sizes UI to try to better fit all the UI on narrower screens ([b8c57c9](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/b8c57c9))
+
+
+
+
+
+# [2.10.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* add missing publicConfig ([3a64e78](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/3a64e78))
+* remove devDeps from package.json ([94ec805](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/94ec805))
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* handle the pattern parameter query string if the page loading doesn't know which pattern is currently getting loaded ([812511a](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/812511a))
+* re-add ability to hide / show All link in PL navigation ([a44f2a0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/a44f2a0))
+* re-add the ability to use Pattern Lab's built-in config for defining the default pattern / component that shows up when initially loading ([196c9c6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/196c9c6))
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/uikit-workshop
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 **Note:** Version bump only for package @bolt/uikit-workshop

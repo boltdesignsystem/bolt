@@ -20,6 +20,7 @@ patternStates:
     - complete
 styleGuideExcludes:
     - 04-pages
+    - viewall-pages-all
 cacheBusterOn: 'true'
 publicDir: ../www/pattern-lab/
 sourceDir: src/pages/pattern-lab/
@@ -41,11 +42,11 @@ ishControlsHide:
     - hay
     - disco
     - random
+    - all
+    - views-all
 styleguideKit: bolt-design-system/styleguidekit-twig-default
 styleguideKitPath: vendor/bolt-design-system/styleguidekit-twig-default
-lineageMatch: >-
-  {%([ ]+)?(?:include|extends|embed)(
-  |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([\s\S+]*?)%}
+lineageMatch: '{%([ ]+)?(?:include|extends|embed)( |\()[&quot;\&#039;]([\/.@A-Za-z0-9-_]+)[&quot;\&#039;]([ A-Za-z0-9-&\}_\n\{&quot;:\&#039;,\/. \[\]]+)%}'
 lineageMatchKey: 3
 patternExtension: twig
 twigExtensions:
@@ -72,3 +73,14 @@ plugins:
   twigNamespaces:
     enabled: true
     readFromFile: ../www/build/data/twig-namespaces.bolt.json
+# @todo: remove once we move to Pattern Lab Node + move this config into our patternlab.config.json
+theme:
+  logo:
+    srcDark: '/images/bolt-logo--dark.svg'
+    srcLight: '/images/bolt-logo--light.svg'
+    url: '/pattern-lab/?p=components-overview'
+    altText: 'Logo of the Bolt Design System'
+    text: ''
+  color: 'dark'
+  layout: 'vertical'
+  # "density" : "compact" | "cozy" | "comfortable",

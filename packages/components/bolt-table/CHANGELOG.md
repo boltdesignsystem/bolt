@@ -3,6 +3,69 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-table
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* Allow render arrays as table cell content ([b3b585e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/b3b585e))
+
+
+
+
+
+## [2.9.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/components-table
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* add missing super() call in the table component's JS ([dc235e9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/dc235e9))
+* update table component's web component logic to handle HTML comments encountered when parsing initial HTML ([8736189](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/commit/8736189))
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/components-table
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+**Note:** Version bump only for package @bolt/components-table
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+**Note:** Version bump only for package @bolt/components-table
+
+
+
+
+
 # [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-table/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
 
 **Note:** Version bump only for package @bolt/components-table

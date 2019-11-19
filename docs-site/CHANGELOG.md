@@ -3,6 +3,224 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.4](https://github.com/bolt-design-system/bolt/compare/v2.11.3...v2.11.4) (2019-11-18)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.11.3](https://github.com/bolt-design-system/bolt/compare/v2.11.2...v2.11.3) (2019-11-15)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.11.1](https://github.com/bolt-design-system/bolt/compare/v2.11.0...v2.11.1) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* **editor:** spelling and organization changes ([5cc57fc](https://github.com/bolt-design-system/bolt/commit/5cc57fc))
+* **micro-journeys:** fix wording of shadow dom form description ([f00e930](https://github.com/bolt-design-system/bolt/commit/f00e930))
+* **micro-journeys:** IE 11 fixes for bolt character and connection ([9f99228](https://github.com/bolt-design-system/bolt/commit/9f99228))
+* update Nightwatch test selector + demo code to render the client-side image used for testing w/o a Shadow DOM ([163e0b9](https://github.com/bolt-design-system/bolt/commit/163e0b9))
+* **micro-journeys:** make dialog bar match comps in width; remove br tags from starters ([ecbcf8a](https://github.com/bolt-design-system/bolt/commit/ecbcf8a))
+* fix UIKit webpack build ([1ec6017](https://github.com/bolt-design-system/bolt/commit/1ec6017))
+* update PL Nightwatch tests ([303c0a5](https://github.com/bolt-design-system/bolt/commit/303c0a5))
+
+
+### Features
+
+* uikit bug fixes + polishing up nav behavior across screen sizes + layout options ([f7d8bfd](https://github.com/bolt-design-system/bolt/commit/f7d8bfd))
+* **micro-journeys:** add a couple more layouts for testing use ([6a9b7c6](https://github.com/bolt-design-system/bolt/commit/6a9b7c6))
+* **micro-journeys:** add w and w/o shadow dom PL visual tests for character layouts ([6bd6823](https://github.com/bolt-design-system/bolt/commit/6bd6823))
+* **micro-journeys:** refactor character, dialog, and 2-char layout to cooperate with document flow ([33471a3](https://github.com/bolt-design-system/bolt/commit/33471a3))
+* add documentation for JS testing standards ([f18bab4](https://github.com/bolt-design-system/bolt/commit/f18bab4))
+* add documentation for manual testing standards ([97d05f9](https://github.com/bolt-design-system/bolt/commit/97d05f9))
+* add separate trigger/content spacing options to accordion ([04d1398](https://github.com/bolt-design-system/bolt/commit/04d1398))
+* update PL config to support the new logo customization option ([8c22db2](https://github.com/bolt-design-system/bolt/commit/8c22db2))
+* update schema table layout to fit more onscreen ([be6c5a5](https://github.com/bolt-design-system/bolt/commit/be6c5a5))
+
+
+
+
+
+## [2.10.1](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.10.1) (2019-11-05)
+
+
+### Bug Fixes
+
+* update Nightwatch test selector + demo code to render the client-side image used for testing w/o a Shadow DOM ([163e0b9](https://github.com/bolt-design-system/bolt/commit/163e0b9))
+
+
+
+
+
+# [2.10.0](https://github.com/bolt-design-system/bolt/compare/v2.9.2...v2.10.0) (2019-10-29)
+
+
+### Bug Fixes
+
+* inline@breakpoint alignment ([5ae3cfe](https://github.com/bolt-design-system/bolt/commit/5ae3cfe))
+* **micro-journeys:** add support for line wrapping to nav ([e0bcb71](https://github.com/bolt-design-system/bolt/commit/e0bcb71))
+* add missing publicConfig ([3a64e78](https://github.com/bolt-design-system/bolt/commit/3a64e78))
+* dependency and tests ([433c105](https://github.com/bolt-design-system/bolt/commit/433c105))
+* globally replace Brightcove Video IDs that no longer play correctly in IE 11 (even on the live boltdesignsystem.com site) with a more recent set of video ids that are confirmed to work as expected ([9b48d34](https://github.com/bolt-design-system/bolt/commit/9b48d34))
+* rename spacing to size ([4a901c8](https://github.com/bolt-design-system/bolt/commit/4a901c8))
+* revert Navbar image snapshots ([ece66f8](https://github.com/bolt-design-system/bolt/commit/ece66f8))
+* test instructions ([d07145f](https://github.com/bolt-design-system/bolt/commit/d07145f))
+* update composer.lock ([021ce36](https://github.com/bolt-design-system/bolt/commit/021ce36))
+* update composer's Pattern Lab PHP core dependency to point to the forked bolt-design-system version with the lineages patch ([e70c903](https://github.com/bolt-design-system/bolt/commit/e70c903))
+* update Github repo url in composer.json ([c16ea21](https://github.com/bolt-design-system/bolt/commit/c16ea21))
+* update Jest tests ([75a8943](https://github.com/bolt-design-system/bolt/commit/75a8943))
+
+
+### Features
+
+* add new videos to Brightcove test page for reference ([13f7b18](https://github.com/bolt-design-system/bolt/commit/13f7b18))
+* update video on accordion and tabs demo pages ([696e26b](https://github.com/bolt-design-system/bolt/commit/696e26b))
+
+
+
+
+
+## [2.9.2](https://github.com/bolt-design-system/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.9.1](https://github.com/bolt-design-system/bolt/compare/v2.9.0...v2.9.1) (2019-10-22)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+# [2.9.0](https://github.com/bolt-design-system/bolt/compare/v2.8.3...v2.9.0) (2019-10-22)
+
+
+### Bug Fixes
+
+* address install / symlink issues by updating composer.json configs to allow local beta versions of Bolt packages to get installed ([77addbd](https://github.com/bolt-design-system/bolt/commit/77addbd))
+* update PHP-related packages to be in sync with the latest version of Bolt + symlinked properly ([32be05b](https://github.com/bolt-design-system/bolt/commit/32be05b))
+
+
+### Features
+
+* add 'update' method to video to refresh video when inside accordion or tabs ([477fa53](https://github.com/bolt-design-system/bolt/commit/477fa53))
+* add accordion demo, testing `slidesPerView` option ([37d2970](https://github.com/bolt-design-system/bolt/commit/37d2970))
+* add demo page to test videos using standard brightcove player with only 'techOrder' option changed ([a24ed93](https://github.com/bolt-design-system/bolt/commit/a24ed93))
+* add tabs demo with accordion and carousel ([c49eed6](https://github.com/bolt-design-system/bolt/commit/c49eed6))
+* rollback `bolt-text` > `div` edit to accordion demo ([3052895](https://github.com/bolt-design-system/bolt/commit/3052895))
+
+
+
+## [2.7.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.2...v2.7.1) (2019-09-20)
+
+
+### Bug Fixes
+
+* code cleanup ([e2ae3f7](https://github.com/bolt-design-system/bolt/commit/e2ae3f7))
+* docs and testing instructions ([ad7343c](https://github.com/bolt-design-system/bolt/commit/ad7343c))
+* typos ([e417095](https://github.com/bolt-design-system/bolt/commit/e417095))
+
+
+### Features
+
+* add support for displaying advanced schema options on the docs site ([cc20453](https://github.com/bolt-design-system/bolt/commit/cc20453))
+* update the component docs template to pull in always-up-to-date schema data ([e8b9739](https://github.com/bolt-design-system/bolt/commit/e8b9739))
+
+
+
+
+
+## [2.8.3](https://github.com/bolt-design-system/bolt/compare/v2.8.2...v2.8.3) (2019-10-18)
+
+
+### Bug Fixes
+
+* unset 'ready' prop on disconnected to fix ie bug, add demo with tabs inside band ([3412f55](https://github.com/bolt-design-system/bolt/commit/3412f55))
+
+
+
+
+
+## [2.8.2](https://github.com/bolt-design-system/bolt/compare/v2.8.1...v2.8.2) (2019-10-16)
+
+**Note:** Version bump only for package @bolt/website
+
+
+
+
+
+## [2.8.1](https://github.com/bolt-design-system/bolt/compare/v2.8.0...v2.8.1) (2019-10-16)
+
+
+### Bug Fixes
+
+* cherry pick a handful of updates from [#1457](https://github.com/bolt-design-system/bolt/issues/1457) to pull in ([761b005](https://github.com/bolt-design-system/bolt/commit/761b005))
+
+
+
+
+
+# [2.8.0](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.6...v2.8.0) (2019-10-11)
+
+
+### Bug Fixes
+
+* **self-drawing-circle:** PL animation fix ([3bd8087](https://github.com/bolt-design-system/bolt/commit/3bd8087))
+* **with-without:** full-bleed force broken inside max-width ([40573d9](https://github.com/bolt-design-system/bolt/commit/40573d9))
+
+
+### Features
+
+* **micro-journeys:** add icon-group to PL; spelling fixes ([46a8782](https://github.com/bolt-design-system/bolt/commit/46a8782))
+* **with-without:** add visual cues to see if with-without properly breaks out of padding ([5203ce4](https://github.com/bolt-design-system/bolt/commit/5203ce4))
+* **with-without:** fire animations on intersection; clean up dom querying ([636b379](https://github.com/bolt-design-system/bolt/commit/636b379))
+* **with-without:** isolated background visual test for with/without for ie11 debugging ([058d25f](https://github.com/bolt-design-system/bolt/commit/058d25f))
+
+
+
+
+
+# [2.8.0-beta.6](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.5...v2.8.0-beta.6) (2019-10-04)
+
+
+### Bug Fixes
+
+* **micro-journeys:** allow for multiple demo theme controllers to address PR feedback ([bb9f142](https://github.com/bolt-design-system/bolt/commit/bb9f142))
+* **micro-journeys:** ie 11 color fixes ([c60ca03](https://github.com/bolt-design-system/bolt/commit/c60ca03))
+* lint and docs ([df83534](https://github.com/bolt-design-system/bolt/commit/df83534))
+
+
+
+
+
 # [2.8.0-beta.5](https://github.com/bolt-design-system/bolt/compare/v2.8.0-beta.4...v2.8.0-beta.5) (2019-09-30)
 
 **Note:** Version bump only for package @bolt/website
