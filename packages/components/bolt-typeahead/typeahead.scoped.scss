@@ -90,7 +90,6 @@ bolt-typeahead {
 
 :host {
   position: relative;
-  z-index: 1;
 }
 
 bolt-autosuggest,
@@ -336,8 +335,11 @@ bolt-autosuggest,
   font-size: 1.5rem;
 
   // workaround to ensure nested icons are filled in correctly (esp. in IE 11 or when Shadow DOM isn't used)
-  .c-bolt-icon__icon {
-    fill: bolt-theme-prop(background);
+
+  @include bolt-ie11-only {
+    .c-bolt-icon__icon [fill]:not([fill="currentColor"]) {
+      fill: bolt-theme-prop(background);
+    }
   }
 }
 
