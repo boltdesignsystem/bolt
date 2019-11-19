@@ -1,3 +1,5 @@
+{% set schema = bolt.data.components["@bolt-components-popover"].schema %}
+
 {% set link_1 %}
   <bolt-text font-size="xsmall">
     {% include "@bolt-components-link/link.twig" with {
@@ -45,7 +47,6 @@
 {% endset %}
 {% set content %}
   {% include "@bolt-components-list/list.twig" with {
-    tag: "span",
     spacing: "small",
     separator: "solid",
     inset: true,
@@ -56,9 +57,42 @@
     ]
   } only %}
 {% endset %}
+{% set menu_item_1 %}
+  <bolt-trigger display="block" cursor="pointer" no-outline>
+    <div class="c-bolt-menu-item">
+      Additional action 1
+    </div>
+  </bolt-trigger>
+{% endset %}
+{% set menu_item_2 %}
+  <bolt-trigger display="block" cursor="pointer" no-outline>
+    <div class="c-bolt-menu-item">
+      Additional action 2
+    </div>
+  </bolt-trigger>
+{% endset %}
+{% set menu_item_3 %}
+  <bolt-trigger display="block" cursor="pointer" no-outline>
+    <div class="c-bolt-menu-item">
+      Additional action 3
+    </div>
+  </bolt-trigger>
+{% endset %}
+{% set menu_list %}
+  {% include "@bolt-components-list/list.twig" with {
+    spacing: "none",
+    separator: "solid",
+    items: [
+      menu_item_1,
+      menu_item_2,
+      menu_item_3,
+    ]
+  } only %}
+{% endset %}
 {% set trigger %}
   {% include "@bolt-components-button/button.twig" with {
-    text: "This is the popover trigger",
+    size: "xsmall",
+    text: "Trigger",
     attributes: {
       "aria-haspopup": true,
       "aria-expanded": true,
@@ -66,42 +100,38 @@
     }
   } only %}
 {% endset %}
-
-<div class="demo-popover">
-  {# <bolt-popover>
-    <span class="c-bolt-popover" id="js-bolt-popover-1">
-      {% include "@bolt-components-button/button.twig" with {
-        text: "This is the popover trigger",
-        attributes: {
-          "aria-haspopup": true,
-          "aria-expanded": false,
-          "role": "button",
-        }
-      } only %}
-      <span class="c-bolt-popover__content" role="menu">
-        {{ list }}
-      </span>
-    </span>
-  </bolt-popover>
-
-  <bolt-popover>
-    <span class="c-bolt-popover is-expanded" id="js-bolt-popover-1">
-      {% include "@bolt-components-button/button.twig" with {
-        text: "This is the popover trigger",
-        attributes: {
-          "aria-haspopup": true,
-          "aria-expanded": true,
-          "role": "button",
-        }
-      } only %}
-      <span class="c-bolt-popover__content" role="menu">
-        {{ list }}
-      </span>
-    </span>
-  </bolt-popover> #}
-
-  {% include "@bolt-components-popover/popover.twig" with {
+{% set popover %}
+  {# {% include "@bolt-components-popover/popover.twig" with {
     trigger: trigger,
     content: content,
+  } only %} #}
+
+  <bolt-list display="flex" spacing="xlarge">
+    {% for placement in schema.properties.placement.enum %}
+      <bolt-list-item>
+        {% include "@bolt-components-popover/popover.twig" with {
+          nowrap: true,
+          placement: placement,
+          trigger: trigger,
+          content: menu_list,
+        } only %}
+      </bolt-list-item>
+    {% endfor %}
+  </bolt-list>
+
+{% endset %}
+
+
+<div class="u-bolt-padding-top-xxlarge u-bolt-padding-right-medium u-bolt-padding-bottom-xxlarge u-bolt-padding-left-medium t-bolt-dark">
+  {% include "@bolt-components-band/band.twig" with {
+    theme: "light",
+    full_bleed: false,
+    content: popover,
   } only %}
+
+  {# {% include "@bolt-components-band/band.twig" with {
+    theme: "xlight",
+    full_bleed: false,
+    content: popover,
+  } only %} #}
 </div>

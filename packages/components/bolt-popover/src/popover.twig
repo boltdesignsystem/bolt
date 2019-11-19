@@ -13,6 +13,7 @@
 {% set classes = [
   base_class,
   this.data.placement.value ? "c-bolt-popover--" ~ this.data.placement.value : "",
+  this.data.nowrap.value ? "c-bolt-popover--nowrap" : "",
   "is-expanded",
 ] %}
 

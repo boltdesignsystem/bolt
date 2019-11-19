@@ -20,7 +20,7 @@ properties:
   placement:
     type: string
     description: 'Preferred placement of the popover. The actual placement of the popover will be automatically adjusted based on the space available on screen.'
-    default: bottom
+    default: bottom-left
     enum:
       - top-left
       - top
@@ -34,6 +34,10 @@ properties:
       - bottom-left
       - bottom
       - bottom-right
+  nowrap:
+    type: boolean
+    description: 'Stops the text in the content to wrap to a second line.'
+    default: false
   no_shadow:
     title: 'Disable Shadow DOM (Twig-only)'
     description: 'Manually disables the component from rendering to the Shadow DOM in a Twig template. Useful for testing cross browser functionality / rendering behavior. By default this is handled globally based on browser support.'
