@@ -61,12 +61,12 @@ jobs:
       after_success: ./scripts/check-run-success.js 'Lint + Unit Tests'
       after_failure: ./scripts/check-run-failure.js 'Lint + Unit Tests'
 
-    - stage: Pre-deploy
-      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
-      name: 'Build Drupal Lab'
-      script:
-        - cd example-integrations/drupal-lab
-        - npm run setup
+#    - stage: Pre-deploy
+#      if: (tag =~ ^v) OR (branch =~ /(master|release)/)
+#      name: 'Build Drupal Lab'
+#      script:
+#        - cd example-integrations/drupal-lab
+#        - npm run setup
 
     # quicker build + Nightwatch tests for feature branches
     - stage: Pre-deploy
@@ -76,6 +76,8 @@ jobs:
         - npx json -I -f package.json -e 'delete this.dependencies'
         - npx json -I -f package.json -e 'delete this.scripts.postinstall'
         - yarn run setup
+        - cd example-integrations/drupal-lab
+        - yarn run generate # generate static version of Drupal Lab in the integration folder
         - npx lerna run postbootstrap
       script:
         - yarn run build
@@ -91,6 +93,8 @@ jobs:
       if: (tag =~ ^v) OR (branch =~ /(master|release|bug|fix)/)
       install:
         - yarn run setup
+        - cd example-integrations/drupal-lab
+        - yarn run generate # generate static version of Drupal Lab in the integration folder
       before_script:
         - find . -name '.incache' -exec rm -rf {} +
       script:
