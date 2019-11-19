@@ -39,15 +39,6 @@ if (disableSearchFilteringTypeaheadDemo) {
         });
       });
 
-      // disableSearchFilteringTypeaheadDemo.on(
-      //   'onSuggestionsReceived',
-      //   async (elem, results) => {
-      //     disableSearchFilteringTypeaheadDemoTextArea.value = JSON.stringify(
-      //       results,
-      //     );
-      //   },
-      // );
-
       disableSearchFilteringTypeaheadDemo.on(
         'getSuggestionValue',
         (elem, suggestion) => {

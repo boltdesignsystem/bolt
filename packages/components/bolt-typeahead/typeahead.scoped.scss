@@ -5,6 +5,7 @@
 @import '@bolt/core/styles/index.scss';
 
 $bolt-typeahead-theme-options-used: (link background text) !global;
+$bolt-typeahead-bezier-transition: cubic-bezier(0.645,0.045,0.355,1);
 
 // @todo: move to Core
 // keeps track of which theme props get used to help with inlining what's needed later on
@@ -201,11 +202,11 @@ bolt-autosuggest,
     opacity: 0;
     transform: translateY(-30px);
     max-height: 0;
-    transition: all 0.01s cubic-bezier(0.645,0.045,0.355,1);
+    transition: all 0.01s $bolt-typeahead-bezier-transition;
   }
 
   background-color: bolt-theme-prop(background-secondary);
-  transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1), transform 0.3s cubic-bezier(0.645,0.045,0.355,1);
+  transition: max-height 0.3s $bolt-typeahead-bezier-transition, opacity 0.3s $bolt-typeahead-bezier-transition, transform 0.3s $bolt-typeahead-bezier-transition;
 
   .is-open & {
     visibility: visible;
@@ -215,13 +216,13 @@ bolt-autosuggest,
     max-height: calc(100vh - #{$bolt-typeahead-button-width});
     max-height: calc(100vh - var(--typeahead-height) );
     pointer-events: auto;
-    transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1), transform 0.3s cubic-bezier(0.645,0.045,0.355,1);
+    transition: max-height 0.3s $bolt-typeahead-bezier-transition, opacity 0.3s $bolt-typeahead-bezier-transition, transform 0.3s $bolt-typeahead-bezier-transition;
 
     > * {
       opacity: 1;
       transform: translateY(0);
       max-height: 9999px;
-      transition: all 0.2s cubic-bezier(0.645,0.045,0.355,1) 0.1s;
+      transition: all 0.2s $bolt-typeahead-bezier-transition 0.1s;
     }
   }
 }
@@ -333,6 +334,11 @@ bolt-autosuggest,
   color: bolt-theme-prop(link);
   line-height: 1;
   font-size: 1.5rem;
+
+  // workaround to ensure nested icons are filled in correctly (esp. in IE 11 or when Shadow DOM isn't used)
+  .c-bolt-icon__icon {
+    fill: bolt-theme-prop(background);
+  }
 }
 
 .c-bolt-typeahead__icon--clear {
