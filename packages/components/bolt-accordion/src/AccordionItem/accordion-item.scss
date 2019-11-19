@@ -30,46 +30,65 @@ bolt-accordion-item {
 // Shadow
 .c-bolt-accordion-item--box-shadow {
   .c-bolt-accordion-item__content {
-    &:before {
+    background-color: rgba(bolt-color(gray, light), 0.1);
+
+    &:before,
+    &:after {
       content: '';
       display: block;
       opacity: bolt-opacity(100);
       position: absolute;
-      top: 0;
       right: 0;
-      bottom: 0;
       left: 0;
+      height: bolt-v-spacing(xxsmall);
       pointer-events: none;
-      // This gradient is IE proof, created using https://colorzilla.com/gradient-editor/
+      will-change: opacity;
+      transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
+    }
+
+    &:before {
+      top: 0;
+      // This gradient is IE proof.
       background: -moz-linear-gradient(
         top,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 98%,
-        rgba(bolt-color(gray), 0.2) 100%
+        rgba(bolt-color(gray), 0.1) 0%,
+        transparent 100%
       ); /* FF3.6-15 */
       background: -webkit-linear-gradient(
         top,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 98%,
-        rgba(bolt-color(gray), 0.2) 100%
+        rgba(bolt-color(gray), 0.1) 0%,
+        transparent 100%
       ); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(
         to bottom,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 98%,
-        rgba(bolt-color(gray), 0.2) 100%
+        rgba(bolt-color(gray), 0.1) 0%,
+        transparent 100%
       ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      will-change: opacity;
-      transition: opacity ($bolt-transition-timing / 2) $bolt-transition-ease;
+    }
+
+    &:after {
+      bottom: 0;
+      // This gradient is IE proof.
+      background: -moz-linear-gradient(
+        top,
+        transparent 0%,
+        rgba(bolt-color(gray), 0.1) 100%
+      ); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        top,
+        transparent 0%,
+        rgba(bolt-color(gray), 0.1) 100%
+      ); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(bolt-color(gray), 0.1) 100%
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
   }
 
   &.c-bolt-accordion-item--first-item {
     .c-bolt-accordion-item__trigger,
-    .c-bolt-accordion-item__trigger-button,
     .c-bolt-accordion-item__trigger-label {
       border-top-right-radius: $bolt-accordion-border-radius;
       border-top-left-radius: $bolt-accordion-border-radius;
@@ -78,33 +97,14 @@ bolt-accordion-item {
 
   &.c-bolt-accordion-item--last-item {
     .c-bolt-accordion-item__trigger:not(.c-bolt-accordion-item__trigger--open),
-    .c-bolt-accordion-item__trigger-button,
     .c-bolt-accordion-item__trigger-label,
     .c-bolt-accordion-item__content {
       border-bottom-right-radius: $bolt-accordion-border-radius;
       border-bottom-left-radius: $bolt-accordion-border-radius;
     }
 
-    .c-bolt-accordion-item__content:before {
-      // This gradient is IE proof, created using https://colorzilla.com/gradient-editor/
-      background: -moz-linear-gradient(
-        top,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 100%
-      ); /* FF3.6-15 */
-      background: -webkit-linear-gradient(
-        top,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 100%
-      ); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(
-        to bottom,
-        rgba(bolt-color(gray), 0.2) 0%,
-        rgba(bolt-color(gray, light), 0.1) 2%,
-        rgba(bolt-color(gray, light), 0.1) 100%
-      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    .c-bolt-accordion-item__content:after {
+      display: none;
     }
   }
 }
@@ -116,9 +116,6 @@ bolt-accordion-item {
   margin: 0;
 }
 
-// Button used with JS
-.c-bolt-accordion-item__trigger-button,
-// Label used with no-JS
 .c-bolt-accordion-item__trigger-label {
   @include bolt-font-family(heading);
   @include bolt-font-size(medium);
@@ -134,7 +131,6 @@ bolt-accordion-item {
   color: inherit;
   text-align: left; // Fixes center aligned accordion items in the Shadow DOM.
   text-align: start; // For internationalization, will fall back to left if start is not supported.
-  cursor: pointer;
   user-select: none;
   outline-offset: $bolt-accordion-outline-offset;
   border: none;
@@ -164,12 +160,16 @@ bolt-accordion-item {
     transition: opacity ($bolt-transition-timing/2) $bolt-transition-ease;
   }
 
-  &:hover:before {
-    opacity: bolt-opacity(20);
-  }
+  &:not(.c-bolt-accordion-item__trigger-label--inactive) {
+    cursor: pointer;
 
-  &:active:before {
-    opacity: bolt-opacity(100);
+    &:hover:before {
+      opacity: bolt-opacity(20);
+    }
+
+    &:active:before {
+      opacity: bolt-opacity(100);
+    }
   }
 }
 
@@ -195,6 +195,10 @@ bolt-accordion-item {
     border-style: solid;
     border-color: bolt-theme(link);
     transform-origin: 50% 50%;
+  }
+
+  @at-root .c-bolt-accordion-item__trigger-label--inactive ~ & {
+    visibility: hidden; // keep layout so inner content lines up
   }
 }
 
@@ -245,6 +249,10 @@ bolt-accordion-item {
   color: bolt-theme(link);
   line-height: 0; // Workaround to line-height messing up icon alignment
   font-size: $bolt-accordion-icon-size;
+
+  @at-root .c-bolt-accordion-item__trigger-label--inactive & {
+    visibility: hidden; // keep layout so inner content lines up
+  }
 }
 
 .c-bolt-accordion-item__trigger-icons-inner {
@@ -388,7 +396,8 @@ bolt-accordion-item {
       @include bolt-padding(#{$spacing-value-name}, squished);
 
       &.c-bolt-accordion-item__content-inner,
-      &.c-bolt-accordion-item__trigger-label {
+      // Applies only to no-js trigger
+      &.c-bolt-accordion-item__trigger-label.c-bolt-accordion-item__trigger-label--offset {
         padding-right: calc(
           #{bolt-spacing($spacing-value-name) + $bolt-accordion-icon-size}
         );

@@ -1,16 +1,34 @@
+@import '@bolt/core';
+
 /* ------------------------------------ *\
    List
 \* ------------------------------------ */
 
-@import '@bolt/core';
+// Custom element display and built-in spacing
+@include bolt-repeat-rule(('bolt-list', ':host')) {
+  @include bolt-margin-bottom(medium);
 
-@include bolt-custom-element('bolt-list', block, medium);
+  display: block;
 
+  &:last-child {
+    @include bolt-margin-bottom(0);
+  }
+}
+
+// List base styles
+//
+// 1. Reset typography so it doesn't inherit from a higher level container.
+// 2. Reset text-align so it doesn't conflict with the align prop which handles the horizontal alignment of inline items in a list, not the text-align within.
 .c-bolt-list {
   @include bolt-margin(0);
   @include bolt-padding(0);
+  @include bolt-font-family(body); // [1]
+  @include bolt-font-size(medium); // [1]
+  @include bolt-font-weight(regular); // [1]
 
   list-style: none;
+  text-align: left; // [2]
+  text-align: start; // [2]
 }
 
 // Display Prop
@@ -27,11 +45,13 @@
 .c-bolt-list--display-flex {
   display: flex;
   flex-flow: row wrap;
+}
 
-  ::slotted(bolt-list-item),
-  bolt-list-item {
-    flex: 1 0 auto;
-  }
+@include bolt-repeat-rule((
+  '.c-bolt-list--display-flex bolt-list-item',
+  '.c-bolt-list--display-flex ::slotted(bolt-list-item)'
+)) {
+  flex: 1 1 auto;
 }
 
 @each $breakpoint in $bolt-breakpoints {
@@ -57,7 +77,8 @@
     margin-bottom: bolt-v-spacing(#{$spacing-value-name}) * -1;
     margin-left: bolt-spacing(#{$spacing-value-name}) * -1;
 
-    &.c-bolt-list--display-inline {
+    &.c-bolt-list--display-inline,
+    &.c-bolt-list--display-flex {
       width: calc(100% + #{bolt-spacing($spacing-value-name)} + 1px); // The inline here is talking about the items inside, the List component itself is still a block level element that would fill up the space of any container.
     }
   }
@@ -65,25 +86,6 @@
   .c-bolt-list--spacing-#{$spacing-value-name}.c-bolt-list--inset {
     @include bolt-margin-bottom(0);
     @include bolt-margin-left(0);
-  }
-}
-
-// Separator Prop
-$bolt-list-separator-styles: solid, dashed;
-
-@each $separator-style in $bolt-list-separator-styles {
-  .c-bolt-list--separator-#{$separator-style} {
-    border: {
-      width: 0;
-      color: rgba(bolt-color(gray), 0.25);
-      style: #{$separator-style};
-    }
-  }
-}
-
-[class*='c-bolt-list--separator'] {
-  &.c-bolt-list--display-flex {
-    overflow: hidden;
   }
 }
 

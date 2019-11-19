@@ -51,8 +51,7 @@
     "create:component": "yo ./packages/generator-bolt/generators/component/index.js",
     "cz": "git-cz",
     "deploy": "./scripts/deploy.js",
-    "postinstall": "patch-package && npx lerna run postbootstrap",
-    "jest": "jest --maxWorkers=3 --all --colors",
+    "fix": "yarn lint:js --fix; yarn lint:scss --fix",
     "lint": "npm-run-all --parallel lint:*",
     "lint:js": "eslint --max-warnings 0 'packages/**/*.js' 'docs-site/**/*.js'",
     "lint:scss": "stylelint 'packages/**/*.scss' 'docs-site/**/*.scss' --config .stylelintrc",
@@ -62,7 +61,7 @@
     "serve": "node packages/servers/default-server",
     "setup": "yarn && yarn run setup:php",
     "setup:full": "yarn --force && yarn run setup:php",
-    "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist --quiet",
+    "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer update --prefer-dist --quiet",
     "setup:quick": "yarn && yarn run setup:php",
     "start": "cd docs-site && yarn run start",
     "test": "npm-run-all --parallel --aggregate-output test:js test:php test:monorepo test:build-tools",
@@ -75,13 +74,15 @@
     "test:e2e:quick-local": "NOW_URL=http://localhost:3000 ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "test:e2e:quick-master": " NOW_URL=https://master.boltdesignsystem.com ./node_modules/.bin/nightwatch --config packages/testing/testing-nightwatch/nightwatch.local.js",
     "pretest:js": "npm run setup:php",
+    "jest": "jest --maxWorkers=3 --all --colors",
     "test:js": "NODE_ENV='test' jest --all --colors 'packages|scripts' --passWithNoTests ",
     "test:js:quick": "NODE_ENV='test' jest --colors \"$(bolt-list-pkg-paths-changed)\" --passWithNoTests",
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
     "test:php": "cd packages/core-php -- composer run test",
     "test:pkgs": "lerna run test",
-    "test:types": "tsc"
+    "test:types": "tsc",
+    "postinstall": "patch-package && npx lerna run postbootstrap"
   },
   "husky": {
     "hooks": {
@@ -104,7 +105,6 @@
     "extends @bolt/browserslist-config"
   ],
   "dependencies": {
-    "@bolt/testing-utils": "^2.6.0-beta.1",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@instructure/cz-lerna-changelog": "^6.6.0",
@@ -117,9 +117,10 @@
     "eslint": "^6.0.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.14.2",
+    "globby": "^10.0.1",
+    "@bolt/testing-utils": "^2.8.0-beta.4",
     "find-pkg": "^2.0.0",
     "get-port": "^5.0.0",
-    "globby": "^10.0.1",
     "haunted": "^4.4.0",
     "husky": "^3.0.0",
     "jest": "^24.8.0",
@@ -136,9 +137,10 @@
     "typescript": "^3.5.3"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.15"
-  },
-  "publishConfig": {
-    "access": "public"
+    "@types/jest": "^24.0.15",
+    "stylelint": "^10.1.0",
+    "stylelint-order": "^3.0.1",
+    "stylelint-scss": "^3.9.2",
+    "@types/skatejs": "^5.0.1"
   }
 }

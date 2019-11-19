@@ -1,0 +1,149 @@
+@import '@bolt/core';
+
+bolt-status-dialogue-bar {
+  display: inline-block;
+}
+
+$bolt-tooltip-bubble-border-color: bolt-color(gray, light);
+$bolt-tooltip-bubble-triangle-width: 8px;
+
+.c-bolt-status-dialogue-bar {
+  display: flex;
+  align-items: center;
+  max-width: 110px;
+  padding: bolt-spacing(xsmall) bolt-spacing(small);
+  color: bolt-color(black);
+  border-radius: $bolt-border-radius;
+  background-color: bolt-color(white);
+  @include bolt-shadow('level-20', true);
+
+  @include bolt-mq(small) {
+    max-width: 300px;
+  }
+
+  &--alert {
+    color: bolt-color(white);
+    background-color: bolt-color(orange);
+    slot[name="text"] {
+      color: bolt-color(white);
+      --foobar: 20px;
+    }
+  }
+
+  &__icon{
+    @include bolt-padding-right(small);
+    box-sizing: content-box;
+  }
+
+  &__slot {
+    &--text {
+      color: bolt-color(black);
+      line-height: ($bolt-line-height--xsmall + 0.2);
+      text-align: left;
+      @include bolt-font-weight(regular);
+      @include bolt-font-size(xsmall);
+    }
+  }
+
+  // Styling for the dialogue arrow
+  &:after,
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+
+  &--include-down-arrow {
+    &:after,
+    &:before {
+      left: 50%;
+      transform: translate(-50%, 100%);
+      border-top: $bolt-tooltip-bubble-triangle-width solid;
+      border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
+      border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
+      border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
+    }
+
+    &:before {
+      top: auto;
+      bottom: 0;
+      border-top-color: $bolt-tooltip-bubble-border-color;
+    }
+
+    &:after {
+      top: auto;
+      bottom: 1px;
+      border-top-color: white;
+    }
+  }
+
+  &--include-up-arrow {
+    &:after,
+    &:before {
+      left: 50%;
+      transform: translate(-50%, -100%);
+      border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
+      border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
+      border-bottom: $bolt-tooltip-bubble-triangle-width solid;
+      border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
+    }
+
+    &:before {
+      top: 0;
+      bottom: auto;
+      border-bottom-color: $bolt-tooltip-bubble-border-color;
+    }
+
+    &:after {
+      top: 1px;
+      bottom: auto;
+      border-bottom-color: white;
+    }
+  }
+
+  &--include-left-arrow {
+    &:after,
+    &:before {
+      transform: translate(-100%, 0%);
+      border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
+      border-right: $bolt-tooltip-bubble-triangle-width solid;
+      border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
+      border-left: $bolt-tooltip-bubble-triangle-width solid transparent;
+    }
+
+    &:before {
+      left: 0;
+      border-right-color: $bolt-tooltip-bubble-border-color;
+    }
+
+    &:after {
+      left: 1px;
+      border-right-color: white;
+    }
+  }
+
+  &--include-right-arrow {
+    &:after,
+    &:before {
+      transform: translate(100%, 0%);
+      border-top: $bolt-tooltip-bubble-triangle-width solid transparent;
+      border-right: $bolt-tooltip-bubble-triangle-width solid transparent;
+      border-bottom: $bolt-tooltip-bubble-triangle-width solid transparent;
+      border-left: $bolt-tooltip-bubble-triangle-width solid;
+    }
+
+    &:before {
+      right: 0;
+      border-left-color: $bolt-tooltip-bubble-border-color;
+    }
+
+    &:after {
+      right: 1px;
+      border-left-color: white;
+    }
+  }
+}
+

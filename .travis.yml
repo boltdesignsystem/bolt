@@ -1,13 +1,7 @@
-sudo: false
-dist: trusty
+dist: bionic
 language: php
 php:
   - 7.3
-
-cache:
-  yarn: true
-  directories:
-    - $HOME/.composer/cache
 
 addons:
   chrome: stable
@@ -15,7 +9,7 @@ addons:
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
   - nvm install # version lifted from `.nvmrc`
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.16.0
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.17.3
   - export PATH="$HOME/.yarn/bin:$PATH"
 
 # see more conditions: https://docs.travis-ci.com/user/conditions-v1
@@ -73,7 +67,7 @@ jobs:
         - yarn run build
         - yarn run deploy
         # need to reset git repo before `update-read-only-git-repos.sh`
-        - cd "`git rev-parse --show-toplevel`" && git clean -fd && git reset --hard HEAD && cd -
+        - cd "`git rev-parse --show-toplevel`" && sudo git clean -fd && sudo git reset --hard HEAD && cd -
         - ./scripts/release/update-read-only-git-repos.sh
 
     - stage: Test Live Site

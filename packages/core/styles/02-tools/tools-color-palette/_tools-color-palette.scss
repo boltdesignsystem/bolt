@@ -11,7 +11,7 @@
 /// @param {string} $tone [$bolt-color-default] - Bolt color tone (e.g. light)
 /// @return {HSL|RGB} The mapped bolt color value
 @function bolt-color($color, $tone: $bolt-color-default) {
-  @return map-get-deep($bolt-colors, quote($color), $tone);
+  @return map-get-deep($bolt-colors, "#{$color}", $tone);
 }
 
 /// Mixin to return color value

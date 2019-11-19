@@ -1,10 +1,11 @@
 {
   "name": "@bolt/core",
   "description": "Core dependencies, utils, etc.",
-  "version": "2.6.0-beta.2",
+  "version": "2.8.0-beta.4",
   "license": "MIT",
   "main": "index.js",
   "style": "styles/index.scss",
+  "types": "index.d.ts",
   "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/core",
   "dependencies": {
     "@polymer/polymer": "^3.3.0",
@@ -17,6 +18,7 @@
     "classnames": "^2.2.6",
     "color": "^3.1.2",
     "core-js": "^3.1.4",
+    "custom-event-polyfill": "^1.0.7",
     "document-register-element": "^1.13.2",
     "element-closest": "^2.0.2",
     "es6-promise": "^4.2.8",
@@ -26,8 +28,6 @@
     "lit-html": "^1.1.1",
     "lodash.merge": "^4.6.2",
     "mdn-polyfills": "^5.17.1",
-    "patch-package": "^6.1.2",
-    "postinstall-postinstall": "^2.0.0",
     "preact": "8.4.2",
     "preact-compat": "^3.19.0",
     "pwa-helpers": "^0.9.1",
@@ -37,10 +37,8 @@
     "sass-mq": "github:bolt-design-system/sass-mq#master",
     "sassy-maps": "github:at-import/Sassy-Maps#0.x.x",
     "skatejs": "^5.2.4",
-    "smoothscroll-polyfill": "^0.4.4"
-  },
-  "scripts": {
-    "postinstall": "patch-package --patch-dir .patches/"
+    "smoothscroll-polyfill": "^0.4.4",
+    "whatwg-fetch": "^3.0.0"
   },
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "homepage": "https://boltdesignsystem.com",

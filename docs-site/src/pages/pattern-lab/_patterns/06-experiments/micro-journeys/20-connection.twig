@@ -1,0 +1,18 @@
+{% set content %}
+  <div class="u-bolt-padding-large">
+    <bolt-connection
+        connection-url="https://github.com/basaltinc/temp-pega-dummy-assets/raw/master/animated-bands-ltr.png"
+    >
+      <bolt-animate idle="none" slot="top">
+        top
+      </bolt-animate>
+      <bolt-animate idle="pulse" slot="bottom">
+        bottom
+      </bolt-animate>
+    </bolt-connection>
+  </div>
+{% endset %}
+
+{% include '@bolt-components-editor/editor-in-pl.twig' with {
+  content: content,
+} only %}

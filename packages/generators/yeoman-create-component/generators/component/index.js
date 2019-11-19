@@ -107,17 +107,9 @@ module.exports = class extends Generator {
             return false;
           }
           return true;
-        }.bind(this),
-        filter: function(input) {
-          this.name = {
-            original: input,
-            camelCase: changeCase.camelCase(input),
-            pascalCase: changeCase.pascalCase(input),
-            snakeCase: changeCase.snakeCase(input),
-            kebabCase: changeCase.paramCase(input),
-            noCase: changeCase.noCase(input),
-            titleCase: changeCase.titleCase(input),
-          };
+        },
+        filter: input => {
+          this.name = this.updateComponentName(input);
 
           return (
             input.charAt(0).toUpperCase() + input.slice(1).replace(' ', '-')

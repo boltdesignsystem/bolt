@@ -3,6 +3,71 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0-beta.4](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.8.0-beta.3...v2.8.0-beta.4) (2019-09-26)
+
+
+### Features
+
+* **with-with:** self-drawing circle added ([a799a8a](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/a799a8a))
+* **with-without:** continued development ([b0f62aa](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/b0f62aa))
+
+
+
+
+
+# [2.8.0-beta.3](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.7.1...v2.8.0-beta.3) (2019-09-24)
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Features
+
+* **icons:** add exclamation icon ([af221dd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/af221dd))
+
+
+
+
+
+# [2.8.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.7.0...v2.8.0-beta.2) (2019-09-18)
+
+
+### Features
+
+* **icons:** add exclamation icon ([af221dd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/af221dd))
+
+
+
+
+
+# [2.8.0-beta.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.7.0...v2.8.0-beta.1) (2019-09-14)
+
+
+### Features
+
+* **icons:** add exclamation icon ([af221dd](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/commit/af221dd))
+
+
+
+
+
+# [2.7.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.6.0...v2.7.0) (2019-09-13)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
+# [2.6.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.6.0-beta.2...v2.6.0) (2019-08-30)
+
+**Note:** Version bump only for package @bolt/components-icons
+
+
+
+
+
 # [2.6.0-beta.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-icons/compare/v2.6.0-beta.1...v2.6.0-beta.2) (2019-08-27)
 
 

@@ -1,12 +1,14 @@
 export * from './color-contrast';
 export * from './contains-any';
 export * from './contains-tag-name';
+export * from './convert-schema-to-props';
 export * from './css';
 export * from './declarative-click-handler';
 export * from './environment';
 export * from './find-parent-tag';
 export * from './get-component-root-element';
 export * from './get-transition-duration';
+export * from './get-unique-id';
 export * from './is-valid-selector';
 export * from './rgb2hex';
 export * from './rename-key';
@@ -22,6 +24,7 @@ export * from './context/with-context';
 export { mapWithDepth } from './map-with-depth.js';
 export * from './validate-props';
 export * from './mode';
+export * from './query';
 
 // https://www.polymer-project.org/3.0/docs/devguide/custom-elements#defer-work
 export {

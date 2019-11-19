@@ -1,0 +1,40 @@
+{% set tab_content_1 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 1",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_2 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 2",
+      size: "large",
+    } only %}
+{% endset %}
+{% set tab_content_3 %}
+  {% include "@bolt-components-placeholder/placeholder.twig" with {
+      text: "Tab panel 3",
+      size: "large",
+    } only %}
+{% endset %}
+
+<bolt-text>
+  Use <code>selected_tab</code> prop to pre-selected a tab by number. To select the second tab, set <code>selected_tab</code> to <code>2</code>. Defaults to first.
+</bolt-text>
+
+{% include "@bolt-components-tabs/tabs.twig" with {
+  selected_tab: 2,
+  panels: [
+    {
+      label: "Tab label 1",
+      content: tab_content_1,
+    },
+    {
+      label: "Tab label 2",
+      content: tab_content_2,
+    },
+    {
+      label: "Tab label 3",
+      content: tab_content_3,
+    }
+  ]
+} only %}
