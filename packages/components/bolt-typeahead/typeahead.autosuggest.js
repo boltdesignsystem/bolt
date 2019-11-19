@@ -112,18 +112,6 @@ class BoltAutosuggest extends withPreact() {
     },
   };
 
-  connecting() {
-    super.connecting && super.connecting();
-    // Keep an object of listener types mapped to callback functions
-    this._listeners = {};
-  }
-
-  disconnecting() {
-    super.disconnecting && super.disconnecting();
-    // Keep an object of listener types mapped to callback functions
-    this._listeners = {};
-  }
-
   // return the parent that's rendering <bolt-autosuggest> based on Shadow DOM usage
   // https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode
   //
@@ -214,9 +202,9 @@ class BoltAutosuggest extends withPreact() {
     return self;
   }
 
-  connected() {
-    super.connected && super.connected();
-    const self = this;
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this._listeners = {};
 
     // if an input element exists when booting up, use the initial text value if it exists
     this._externalInputElement = this.querySelector('input[type="text"]');
@@ -227,10 +215,15 @@ class BoltAutosuggest extends withPreact() {
     }
 
     // @todo: allow for this to be customized?
-    Mousetrap.bind('command+shift+f', function(e) {
-      e.preventDefault();
-      self.toggleSearch();
+    Mousetrap.bind('command+shift+f', (e) => {
+      this.toggleSearch();
     });
+
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+    this._listeners = {};
   }
 
   _updateInputFallback(newValue) {
@@ -251,10 +244,6 @@ class BoltAutosuggest extends withPreact() {
     }
   }
 
-  _stateChanged(state) {
-    // throw new Error('_stateChanged() not implemented', this);
-    this.triggerUpdate();
-  }
 
   onInput = e => {
     this._fire('onInput', e, e.target.value);

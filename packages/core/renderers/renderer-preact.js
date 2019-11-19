@@ -1,7 +1,7 @@
 /** @jsx h */
 import { withComponent, props } from 'skatejs';
-import { BoltBase } from './bolt-base';
 import { h, render } from 'preact';
+import { BoltBase } from './bolt-base';
 export { default as Markup } from './preact-markup.js';
 export { Fragment, h } from 'preact';
 
@@ -35,10 +35,7 @@ export function withPreact(Base = HTMLElement) {
 
     renderer(root, call) {
       this._renderRoot = root;
-      render(
-        call(),
-        this._renderRoot,
-      );
+      render(call(), this._renderRoot);
     }
 
     disconnectedCallback() {

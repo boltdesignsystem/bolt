@@ -10,7 +10,7 @@ import { getUniqueId } from '@bolt/core/utils/get-unique-id';
  * @return {string}
  */
 
- // @todo: move to Bolt Element's new utils file
+// @todo: move to Bolt Element's new utils file
 // const uuid = getUniqueId();
 
 @customElement('bolt-theme-switcher')
@@ -35,9 +35,11 @@ class BoltThemeSwitcher extends BoltElement {
     return this;
   }
 
-  firstUpdated(){
-    if (this.theme){
-      this.renderRoot.querySelector(`#theme-${this.theme}-${this.uuid}`).setAttribute('checked', '');
+  firstUpdated() {
+    if (this.theme) {
+      this.renderRoot
+        .querySelector(`#theme-${this.theme}-${this.uuid}`)
+        .setAttribute('checked', '');
     }
   }
 
