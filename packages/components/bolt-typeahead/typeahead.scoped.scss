@@ -89,6 +89,7 @@ bolt-typeahead {
 
 :host {
   position: relative;
+  z-index: 1;
 }
 
 bolt-autosuggest,
@@ -146,7 +147,7 @@ bolt-autosuggest,
     outline: 0;
   }
 
-  &--open {
+  .is-open & {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
@@ -180,23 +181,25 @@ bolt-autosuggest,
 
 .c-bolt-typeahead__menu {
   display: block;
+  visibility: hidden;
   opacity: 0;
   position: absolute;
   top: calc(100% + 2px);
   right: 0;
-  transform: translateY(-30px);
   z-index: 10; /* [1] */
   width: 100%;
   min-width: 100%;
   max-height: 0;
   overflow: hidden;
   text-transform: capitalize;
+  pointer-events: none;
   border-bottom-right-radius: $bolt-typeahead-border-radius;
   border-bottom-left-radius: $bolt-typeahead-border-radius;
   box-shadow: rgba(bolt-color(gray, dark), 0.3) 0px 15px 46px -10px;
 
   > * {
     opacity: 0;
+    transform: translateY(-30px);
     max-height: 0;
     transition: all 0.01s cubic-bezier(0.645,0.045,0.355,1);
   }
@@ -204,16 +207,19 @@ bolt-autosuggest,
   background-color: bolt-theme-prop(background-secondary);
   transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1), transform 0.3s cubic-bezier(0.645,0.045,0.355,1);
 
-  &.is-open {
+  .is-open & {
+    visibility: visible;
     opacity: 1;
     transform: translateY(0);
     overflow-y: auto;
     max-height: calc(100vh - #{$bolt-typeahead-button-width});
     max-height: calc(100vh - var(--typeahead-height) );
+    pointer-events: auto;
     transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1), transform 0.3s cubic-bezier(0.645,0.045,0.355,1);
 
     > * {
       opacity: 1;
+      transform: translateY(0);
       max-height: 9999px;
       transition: all 0.2s cubic-bezier(0.645,0.045,0.355,1) 0.1s;
     }
@@ -243,10 +249,14 @@ bolt-autosuggest,
 
 .c-bolt-typeahead__footer:first-child {
   visibility: hidden;
+  pointer-events: none;
 }
 
 .c-bolt-typeahead__footer:not(:first-child){
-  visibility: visible;
+  .is-open & {
+    visibility: visible;
+    pointer-events: auto;
+  }
 }
 
 .c-bolt-typeahead__footer-inner {
@@ -293,7 +303,7 @@ bolt-autosuggest,
   position: relative; // used for positioning search clear button in relation to the <input>
   border-radius: $bolt-typeahead-border-radius;
 
-  .c-bolt-typeahead--open & {
+  .is-open & {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
@@ -303,7 +313,7 @@ bolt-autosuggest,
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1; /* [1] */
+  z-index: 5; /* [1] */
   cursor: pointer;
   border: 0;
   transition: opacity 0.1s ease;
