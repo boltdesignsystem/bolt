@@ -15,7 +15,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 import 'regenerator-runtime/runtime';
 import 'core-js/modules/es.array.find';
-import '@bolt/polyfills/platform/array.prototype.find-index';
 import '@bolt/polyfills/platform/remove-polyfill.js';
 import '@bolt/polyfills/platform/es6-misc';
 import '@bolt/polyfills/platform/custom-event';
