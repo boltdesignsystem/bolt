@@ -140,9 +140,6 @@ class BoltAutosuggest extends withPreact() {
       };
     };
 
-    self.assistiveHint =
-      'When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.';
-
     // self.onChange = self.onChange.bind(self);
     self.renderSuggestionsContainer = self.renderSuggestionsContainer.bind(
       self,
@@ -370,29 +367,6 @@ class BoltAutosuggest extends withPreact() {
     }
   };
 
-  tStatusNoResults() {
-    return 'No search results';
-  }
-
-  tStatusResults(length, contentSelectedOption) {
-    const words = {
-      result: length === 1 ? 'result' : 'results',
-      is: length === 1 ? 'is' : 'are',
-    };
-
-    return (
-      <span>
-        {length} {words.result} {words.is} available. {contentSelectedOption}
-      </span>
-    );
-  }
-
-  tSelectedOption(selectedOption, length, index) {
-    return `${selectedOption} ${
-      index + 1 <= length ? index + 1 : index
-    } of ${length} is highlighted`;
-  }
-
   // customized UI that the search results are rendered within
   // we customize the default from react-autosuggest by adding optional footer UI
   renderSuggestionsContainer({ containerProps, children, query }) {
@@ -413,7 +387,9 @@ class BoltAutosuggest extends withPreact() {
         <span
           id={this.assistiveHintID || `hint-${this.id}`}
           style={{ display: 'none' }}>
-          {this.assistiveHint}
+          {this.$parent.a11yAssistiveHint
+            ? this.$parent.a11yAssistiveHint
+            : this.a11yAssistiveHint}
         </span>
       </div>
     );
@@ -560,6 +536,37 @@ class BoltAutosuggest extends withPreact() {
     }
   }
 
+  a11ySelectedOption(selectedOption, length, index) {
+    return `${selectedOption} ${
+      index + 1 <= length ? index + 1 : index
+    } of ${length} is highlighted`;
+  }
+
+  a11yQueryTooShort(minQueryLength) {
+    return `Type in ${minQueryLength} or more characters for results`;
+  }
+
+  a11yStatusResults(length, contentSelectedOption) {
+    const words = {
+      result: length === 1 ? 'result' : 'results',
+      is: length === 1 ? 'is' : 'are',
+    };
+
+    return (
+      <>
+        {length} {words.result} {words.is} available. {contentSelectedOption}
+      </>
+    );
+  }
+
+  a11yNoResults() {
+    return 'No search results';
+  }
+
+  a11yAssistiveHint() {
+    return 'When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.';
+  }
+
   /**
    * Customizes the rendering of the input.
    * @param {object} inputProps - Props passed to the rendered input. https://github.com/moroshko/react-autosuggest#inputprops-required
@@ -577,8 +584,27 @@ class BoltAutosuggest extends withPreact() {
           minQueryLength={0}
           selectedOption={this.state.selectedOptionText}
           selectedOptionIndex={this.state.selectedOptionIndex}
-          isInFocus={false}
-          tSelectedOption={this.tSelectedOption}
+          isInFocus={true}
+          tQueryTooShort={
+            this.$parent.a11yQueryTooShort
+              ? this.$parent.a11yQueryTooShort
+              : this.a11yQueryTooShort
+          }
+          tNoResults={
+            this.$parent.a11yNoResults
+              ? this.$parent.a11yNoResults
+              : this.a11yNoResults
+          }
+          tSelectedOption={
+            this.$parent.a11ySelectedOption
+              ? this.$parent.a11ySelectedOption
+              : this.a11ySelectedOption
+          }
+          tResults={
+            this.$parent.a11yStatusResults
+              ? this.$parent.a11yStatusResults
+              : this.a11yStatusResults
+          }
         />
         <div
           className={cx(`c-bolt-typeahead__input-wrapper`, {

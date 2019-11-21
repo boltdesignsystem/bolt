@@ -14,12 +14,13 @@ npm install @bolt/components-typeahead
 - Wired up to use CSS Modules (once they ship in a future Bolt release)
 - Fully customizable behavior to handle partial vs full result matches, etc 
 - Supports rendering to the Shadow DOM _and_ the Light DOM
+- Fully support theming system colors
+- Customizable content below search results
+- Improved Accessibility + Internationalization Support
 
 ### What's Next? (Future Updates)
-- Fully support theming system colors
 - JSDoc support / further improve docs and demos
 - Broader testing coverage
-- Look into adding `<slot>` support
 - More customization for additional use cases?
 - Multi-section support
 
@@ -32,6 +33,83 @@ npm install @bolt/components-typeahead
 | Name              | Type                | Description
 | ----------------- | ------------------- |------------
 | `items`           | `array`             | An array of objects that populates the dropdown
+
+
+### Accessibility / Internationalization
+Typeahead automatically generates and updates visually hidden messages to help users using assistive technologies. These messages can be customized and translated by replace the default functions with custom defined ones.
+
+Ex. 
+
+```js
+const typeahead = document.querySelector('bolt-typeahead');
+// wait for the component to be ready
+
+typeahead.a11yQueryTooShort = function(minQueryLength) {
+  return `Please type in ${minQueryLength} or more characters for results`;
+}
+```
+
+#### `a11ySelectedOption(selectedOption, length, index)`
+- Type: `Function`
+- Description: A function that receives three arguments, the selectedOption, the amount of available options, and the index of the selected item, and it should return the text used in the accessibility hint to indicate which option is selected.
+- Default:
+  ```js
+  a11ySelectedOption(selectedOption, length, index) {
+    return `${selectedOption} ${
+      index + 1 <= length ? index + 1 : index
+    } of ${length} is highlighted`;
+  }
+  ```
+
+#### `a11yQueryTooShort(minQueryLength)`
+- Type: `Function`
+- Description: A function that receives one argument that indicates the minimal amount of characters needed for the dropdown to trigger and should return the text used in the accessibility hint to indicate that the query is too short.
+- Default:
+  ```js
+  a11yQueryTooShort(minQueryLength) {
+    return `Type in ${minQueryLength} or more characters for results`;
+  }
+  ```
+
+#### `a11yStatusResults(length, contentSelectedOption)`
+- Type: `Function`
+- Description: A function that receives two arguments, the count of available options and the return value of tStatusSelectedOption, and should return the text used in the accessibility hint to indicate which options are available and which is selected.
+- Default:
+  ```js
+  a11yStatusResults(length, contentSelectedOption) {
+    const words = {
+      result: length === 1 ? 'result' : 'results',
+      is: length === 1 ? 'is' : 'are',
+    };
+
+    return (
+      <span>
+        {length} {words.result} {words.is} available. {contentSelectedOption}
+      </span>
+    );
+  }
+```
+
+#### `a11yNoResults()`
+- Type: `Function`
+- Description: A function that receives no arguments and should return the text used in the dropdown to indicate that there are no results.
+- Default:
+  ```js
+  a11yNoResults() {
+    return 'No search results';
+  }
+  ```
+
+#### `a11yAssistiveHint()`
+- Type: `Function`
+- Description: A function that receives no arguments and should return the text to be assigned as the aria description of the html input element, via the aria-describedby attribute. This text is intended as an initial instruction to the assistive tech user. The aria-describedby attribute is automatically removed once user input is detected, in order to reduce screen reader verbosity.
+- Default:
+  ```js
+  a11yAssistiveHint(){
+    return 'When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.';
+  }
+  ```
+
 
 ### Methods ()
 | Name     | Description
