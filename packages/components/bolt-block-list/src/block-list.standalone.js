@@ -1,6 +1,5 @@
 import { define, props } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
-
+import { h, withPreact, Fragment, Markup } from '@bolt/core/renderers';
 import styles from './block-list.scss';
 
 @define
@@ -24,13 +23,12 @@ class BoltBlockList extends withPreact() {
       finalItems += `<li class="c-bolt-block-list__item">${value}</li>`;
     });
     return (
-      <span>
+      <>
         {this.useShadow && <style>{styles[0][1]}</style>}
-        <ul
-          className="c-bolt-block-list"
-          dangerouslySetInnerHTML={{ __html: finalItems }}
-        />
-      </span>
+        <ul className="c-bolt-block-list">
+          <Markup markup={finalItems} />
+        </ul>
+      </>
     );
   }
 }
