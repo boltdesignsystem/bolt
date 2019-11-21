@@ -14,6 +14,8 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
 
   // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
+    noSort: props.boolean,
+    noFilter: props.boolean,
     inputPlaceholder: props.string,
     inputValue: props.string,
     noHighlight: props.boolean,
@@ -82,6 +84,8 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
     return html`
       ${this.addStyles([styles])}
       <bolt-autosuggest
+        .noSort=${this.noSort}
+        .noFilter=${this.noFilter}
         .value=${this.inputValue}
         .items=${this.items}
         .maxResults=${this.maxResults}

@@ -5,6 +5,14 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
+  no_filter:
+    type: boolean
+    description: Disables Fuse.js's client-side filtering of the autocomplete results.
+    default: false
+  no_sort:
+    type: boolean
+    description: Disables Fuse.js's client-side sorting of the autocomplete results.
+    default: false
   max_results:
     type: number
     description: The maximum number of typeahead results to display

@@ -1,56 +1,29 @@
 // @ts-nocheck
 import { define, props } from 'skatejs';
-import { h, withPreact } from '@bolt/core/renderers';
+import { h, withPreact, Fragment } from '@bolt/core/renderers';
+import { createRef } from 'preact';
+import { getUniqueId } from '@bolt/core/utils/get-unique-id';
 import Fuse from 'fuse.js';
-import ReactHtmlParser from 'react-html-parser';
 import Mousetrap from 'mousetrap';
 import Autosuggest from 'react-autosuggest';
+import { highlightSearchResults } from './typeahead.utils';
+import { TypeaheadFooter } from './typeahead.footer';
+import { TypeaheadStatus } from './typeahead.status';
 import { bind } from './classnames';
-
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
-
-export const highlightSearchResults = function(item) {
-  const resultItem = item;
-  resultItem.matches.forEach(matchItem => {
-    const text = resultItem.item[matchItem.key];
-    const result = [];
-    const matches = [].concat(matchItem.indices);
-    let pair = matches.shift();
-
-    for (let i = 0; i < text.length; i++) {
-      const char = text.charAt(i);
-      if (pair && i === pair[0]) {
-        result.push(
-          `<strong class="${cx('c-bolt-typeahead__result-highlight')}">`,
-        );
-      }
-      result.push(char);
-      if (pair && i === pair[1]) {
-        result.push('</strong>');
-        pair = matches.shift();
-      }
-    }
-    resultItem.item.highlightedLabel = result.join('');
-
-    resultItem.item.highlightedLabel = ReactHtmlParser(
-      resultItem.item.highlightedLabel,
-    );
-
-    if (resultItem.children && resultItem.children.length > 0) {
-      resultItem.children.forEach(child => {
-        highlightSearchResults(child);
-      });
-    }
-  });
-};
 
 @define
 class BoltAutosuggest extends withPreact() {
   static is = 'bolt-autosuggest';
 
-  // @todo: replace with auto-wired up props approach used in Carousel
+  // @todo: replace with auto-wired up props approach originally used in Carousel
   static props = {
+    renderSuggestionTemplate: props.any,
+    keys: props.array,
+    theme: props.string,
+    noSort: props.boolean,
+    noFilter: props.boolean,
     placeholder: props.string,
     value: props.string,
     noHighlight: props.boolean,
@@ -62,28 +35,21 @@ class BoltAutosuggest extends withPreact() {
     },
   };
 
-  connecting() {
-    super.connecting && super.connecting();
-    // Keep an object of listener types mapped to callback functions
-    this._listeners = {};
-  }
-
-  disconnecting() {
-    super.disconnecting && super.disconnecting();
-    // Keep an object of listener types mapped to callback functions
-    this._listeners = {};
-  }
-
   // return the parent that's rendering <bolt-autosuggest> based on Shadow DOM usage
   // https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode
   //
   // @todo: move this into it's own decorator in Bolt Core?
-  get getParent() {
-    if (this.getRootNode && this.useShadow === true) {
-      return this.getRootNode().host;
-    } else {
-      return this.closest('bolt-typeahead');
+  get $parent() {
+    if (this.parentFound) {
+      return this.parentFound;
     }
+
+    if (this.getRootNode && this.useShadow === true) {
+      this.parentFound = this.getRootNode().host;
+    } else {
+      this.parentFound = this.closest('bolt-typeahead');
+    }
+    return this.parentFound;
   }
 
   /**
@@ -93,11 +59,11 @@ class BoltAutosuggest extends withPreact() {
    * @param {Function} handler
    */
   on(type, handler) {
-    if (typeof this.getParent._listeners[type] === 'undefined') {
-      this.getParent._listeners[type] = [];
+    if (typeof this.$parent._listeners[type] === 'undefined') {
+      this.$parent._listeners[type] = [];
     }
 
-    this.getParent._listeners[type].push(handler);
+    this.$parent._listeners[type].push(handler);
 
     return this;
   }
@@ -109,10 +75,10 @@ class BoltAutosuggest extends withPreact() {
    * @param {Function} handler
    */
   off(type, handler) {
-    var index = this.getParent._listeners[type].indexOf(handler);
+    var index = this.$parent._listeners[type].indexOf(handler);
 
     if (index > -1) {
-      this.getParent._listeners[type].splice(index, 1);
+      this.$parent._listeners[type].splice(index, 1);
     }
 
     return this;
@@ -127,7 +93,7 @@ class BoltAutosuggest extends withPreact() {
    * @param {Event} event
    */
   _fire(type, ...props) {
-    var listeners = this.getParent._listeners[type] || [];
+    var listeners = this.$parent._listeners[type] || [];
 
     listeners.forEach(
       function(listener) {
@@ -136,9 +102,15 @@ class BoltAutosuggest extends withPreact() {
     );
   }
 
+  tStatusQueryTooShort(minQueryLength) {
+    return `Type in ${minQueryLength} or more characters for results`;
+  }
+
   // @ts-ignore
   constructor(self) {
     self = super(self);
+    self.results = [];
+    self.autosuggest = createRef();
     // Autosuggest is a controlled component.
     // This means that you need to provide an input value
     // and an onChange handler that updates this value (see below).
@@ -147,12 +119,44 @@ class BoltAutosuggest extends withPreact() {
     self.state = {
       value: '',
       suggestions: [],
+      selectedOptionIndex: -1,
+      selectedOptionText: null,
+      shouldMenuAutoOpen: true,
+    };
+
+    self.itemProps = ({ sectionIndex, itemIndex }) => {
+      return {
+        'data-section-index': sectionIndex,
+        'data-suggestion-index': itemIndex,
+        onMouseEnter: this.$autosuggest.onSuggestionMouseEnter,
+        onMouseLeave: this.$autosuggest.onSuggestionMouseLeave,
+        onMouseDown: this.$autosuggest.onSuggestionMouseDown,
+        onTouchStart: this.$autosuggest.onSuggestionTouchStart,
+        onTouchMove: this.$autosuggest.onSuggestionTouchMove,
+        onClick: this.$autosuggest.onSuggestionClick,
+        tabindex: -1,
+        ariaPosinset: itemIndex + 1,
+        ariaSetsize: this.state.suggestions.length + 1,
+      };
     };
 
     // self.onChange = self.onChange.bind(self);
+    self.renderSuggestionsContainer = self.renderSuggestionsContainer.bind(
+      self,
+    );
     self.toggleSearch = self.toggleSearch.bind(self);
     self.clearSearch = self.clearSearch.bind(self);
     self.closeSearch = self.closeSearch.bind(self);
+
+    self.onKeyUp = self.onKeyUp.bind(self);
+    self.onExternalClick = self.onExternalClick.bind(self);
+    self.onInputClick = self.onInputClick.bind(self);
+    self.onClearButtonClick = self.onClearButtonClick.bind(self);
+    self.onSuggestionsContainerClick = self.onSuggestionsContainerClick.bind(
+      self,
+    );
+    self.onFocus = self.onFocus.bind(self);
+    self.onBlur = self.onBlur.bind(self);
     self.renderInputComponent = self.renderInputComponent.bind(self);
     self.openSearch = self.openSearch.bind(self);
     self.onSelected = self.onSelected.bind(self);
@@ -160,32 +164,139 @@ class BoltAutosuggest extends withPreact() {
     return self;
   }
 
-  connected() {
-    super.connected && super.connected();
-    const self = this;
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this._listeners = {};
+    this.id = getUniqueId();
 
     // if an input element exists when booting up, use the initial text value if it exists
-    this._externalInputElement = this.querySelector('input[type="text"]');
-    if (this._externalInputElement) {
-      this._setState({
-        value: this._externalInputElement.value || '',
+    this.$externalInput = this.querySelector('input[type="text"]');
+    if (this.$externalInput) {
+      this.setState({
+        value: this.$externalInput.value || '',
       });
     }
 
     // @todo: allow for this to be customized?
-    Mousetrap.bind('command+shift+f', function(e) {
-      e.preventDefault();
-      self.toggleSearch();
+    Mousetrap.bind('command+shift+f', e => {
+      this.toggleSearch();
     });
   }
 
-  _updateInputFallback(newValue) {
-    if (this.hasExternalInput) {
-      this.hasExternalInput.setAttribute('value', newValue);
+  // clean up any external event hooks when tearing down
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
+    this._listeners = {};
+
+    // remove event listeners if they exist
+    if (this.hasEventListenersAdded) {
+      this.$input.removeEventListener('click', this.onInputClick);
+      this.$autosuggest.suggestionsContainer.removeEventListener(
+        'click',
+        this.onSuggestionsContainerClick,
+      );
+
+      this.$clearButton.removeEventListener('click', this.onClearButtonClick);
+      document.removeEventListener('click', this.onExternalClick);
+      document.removeEventListener('keydown', this.onKeyUp);
+
+      this.$input.removeEventListener('focus', this.onFocus);
+      this.$clearButton.removeEventListener('focus', this.onFocus);
+      this.$submitButton.removeEventListener('focus', this.onFocus);
+
+      this.$input.removeEventListener('blur', this.onBlur);
+      this.$clearButton.removeEventListener('blur', this.onBlur);
+      this.$submitButton.removeEventListener('blur', this.onBlur);
     }
   }
 
-  _setState(newValue) {
+  // handle auto-closing when hitting the escape key
+  onKeyUp(e) {
+    if (e.keyCode === 27 && this.state.menuOpen) {
+      this.wasClickedInside = false;
+      this.setState({
+        suggestions: [],
+        menuOpen: false,
+      });
+    }
+  }
+
+  // automatically close the dropdown when clicking outside of the Typeahead UI
+  onExternalClick(e) {
+    if (!this.$parent.contains(e.target) && this.state.menuOpen) {
+      this.wasClickedInside = false;
+      this.setState({
+        menuOpen: false,
+      });
+    }
+  }
+
+  // auto-open when the input field itself is clicked on while being focused
+  onInputClick(e) {
+    this.setState({
+      menuOpen: true,
+    });
+  }
+
+  // auto-clear the search input when clicking the clear button
+  onClearButtonClick() {
+    this.clearSearch();
+  }
+
+  // track clicks inside of the results container to know when a blur event should auto-close or not.
+  onSuggestionsContainerClick(e) {
+    const resultsContainer = this.$autosuggest.suggestionsContainer.querySelector(
+      '.c-bolt-typeahead__results',
+    );
+
+    if (resultsContainer && resultsContainer.contains(e.target)) {
+      this.wasClickedInside = true;
+    }
+  }
+
+  // track when the UI in Typeahead loses focus
+  // NOTE: we add a slight delay here to let the click event fire FIRST so we can better account for clicks vs keyboard usage
+  onBlur(e) {
+    this.selectedOptionText = null;
+    this.selectedOptionIndex = null;
+    setTimeout(() => {
+      if (this.$parent.contains(document.activeElement)) {
+        return;
+      }
+      if (!this.wasClickedInside && this.state.menuOpen === true) {
+        this.setState({
+          menuOpen: false,
+        });
+      }
+    }, 150);
+  }
+
+  // auto-open the results dropdown when focusing in on any Typeahead UI
+  // skip auto-opening when refocusing on input after selecting an item
+  onFocus() {
+    this.state.selectedOptionText = null;
+    this.state.selectedOptionIndex = null;
+    if (
+      this.state.menuOpen === false &&
+      this.state.shouldMenuAutoOpen === true
+    ) {
+      this.setState({
+        menuOpen: true,
+      });
+    } else if (this.state.shouldMenuAutoOpen === false) {
+      this.state.shouldMenuAutoOpen = true;
+    }
+  }
+
+  // if an external HTML input exists manually update the input value to match
+  _updateInputFallback(newValue) {
+    if (this.$externalInput) {
+      this.$externalInput.setAttribute('value', newValue);
+    }
+  }
+
+  // try to update up the external fallback input whenever the input value changes
+  setState(newValue) {
     super.setState && super.setState(newValue);
 
     if (newValue.value) {
@@ -197,58 +308,104 @@ class BoltAutosuggest extends withPreact() {
     }
   }
 
-  _stateChanged(state) {
-    // throw new Error('_stateChanged() not implemented', this);
-    this.triggerUpdate();
-  }
-
+  // get new search suggestions when the input value changes
   onInput = e => {
     this._fire('onInput', e, e.target.value);
     let value = e.target.value;
 
-    this._setState({
+    this.setState({
       value,
     });
 
-    this.onSuggestionsFetchRequested({ value }); // re-render search results immediately based on latest input value
+    // re-render search results immediately based on latest input value
+    this.onSuggestionsFetchRequested({ value });
   };
 
   toggleSearch() {
-    if (!this.state.isOpen) {
+    if (!this.state.menuOpen) {
       this.openSearch();
     } else {
       this.closeSearch();
     }
   }
 
+  // clear the search input + refocus to allow the user to continue typing
   clearSearch() {
-    this._inputElement.focus();
-    this._setState({
+    this.wasClickedInside = true;
+    this.setState({
+      menuOpen: true,
       value: '',
+      suggestions: [],
+    });
+
+    setTimeout(() => {
+      this.$input.focus();
+    }, 50);
+  }
+
+  // manually displays the search result dropdown (if there are any results)
+  openSearch() {
+    this.setState({
+      menuOpen: true,
     });
   }
 
-  openSearch() {
-    this._inputElement.focus();
-  }
-
+  // manually hides the the search result dropdown
   closeSearch() {
-    document.activeElement.blur();
+    this.setState({
+      menuOpen: false,
+    });
   }
 
-  getSuggestionValue = suggestion => suggestion.label;
+  // logic handling how suggestion values are interpretted.
+  // can be overwritten via the getSuggestionValue event hook
+  getSuggestionValue = suggestion => {
+    if (this.$parent._listeners['getSuggestionValue']) {
+      return this.$parent._listeners['getSuggestionValue'][0](this, suggestion);
+    } else {
+      return suggestion.label;
+    }
+  };
+
+  // customized UI that the search results are rendered within
+  // we customize the default from react-autosuggest by adding optional footer UI
+  renderSuggestionsContainer({ containerProps, children, query }) {
+    return (
+      <div {...containerProps}>
+        {children}
+        {this.$parent.footerTemplate && (
+          <div class="c-bolt-typeahead__footer">
+            <TypeaheadFooter
+              template={this.$parent.footerTemplate(
+                this.state.value,
+                this.results,
+              )}
+              className="c-bolt-typeahead__footer-inner"
+            />
+          </div>
+        )}
+        <span
+          id={this.assistiveHintID || `hint-${this.id}`}
+          style={{ display: 'none' }}>
+          {this.$parent.a11yAssistiveHint
+            ? this.$parent.a11yAssistiveHint
+            : this.a11yAssistiveHint}
+        </span>
+      </div>
+    );
+  }
 
   // highlights keywords in the search results in a react-friendly way + limits the total number of results displayed
   async getSuggestions(value) {
     let items;
 
     // skip default onChange behavior if external listeners have hooked in
-    if (!this.getParent._listeners['getSuggestions']) {
-      items = this.getParent.items;
+    if (!this.$parent._listeners['getSuggestions']) {
+      items = this.$parent.items;
       this.items = items;
     } else {
       await new Promise(async resolve => {
-        const listeners = this.getParent._listeners['getSuggestions'] || [];
+        const listeners = this.$parent._listeners['getSuggestions'] || [];
         const listener = listeners[0];
         items = await listener(this, value);
         this.items = items;
@@ -257,9 +414,10 @@ class BoltAutosuggest extends withPreact() {
     }
 
     // @todo: decide if / how this sorting / highlighting logic should stay built-in vs getting exposed via an external hook
+    // with the new noSort / noFilter props this entire piece of logic can be bypassed
     const fuseOptions = {
-      shouldSort: true,
-      threshold: 0.2,
+      shouldSort: this.noSort ? false : true,
+      threshold: this.noFilter ? 1.0 : 0.2,
       tokenize: true,
       includeScore: true,
       includeMatches: true,
@@ -268,19 +426,18 @@ class BoltAutosuggest extends withPreact() {
       maxPatternLength: 32,
       minMatchCharLength: 1,
       // @todo: re-enable description meta data after further testing + refinement
-      // keys: ['label', 'description'],
-      keys: ['label'],
+      keys: this.keys,
     };
     const fuse = new Fuse(items, fuseOptions);
-    let results = fuse.search(value);
+    this.results = fuse.search(value);
 
-    results.forEach(resultItem => {
-      highlightSearchResults(resultItem);
+    this.results.forEach(resultItem => {
+      highlightSearchResults(resultItem, cx);
     });
 
-    results = results.filter(result => result.score <= 0.9);
+    this.results = this.results.filter(result => result.score <= 0.9);
 
-    const reducedResults = results.reduce((total, result) => {
+    const reducedResults = this.results.reduce((total, result) => {
       total.push(result.item);
       return total;
     }, []);
@@ -299,48 +456,115 @@ class BoltAutosuggest extends withPreact() {
    * @param {{newValue: string}} newValue - the updated input value
    */
   onChange = (event, { newValue, method }) => {
-    this._fire('onChange', event, newValue, method);
-    this._setState({ value: newValue });
+    this._fire('onChange', newValue, method);
+
+    // @todo: replace this workaround with this.results.findIndex(findSelectedIndex) once `findIndex` can be safely polyfilled
+    const suggestionIndex = this.results.indexOf(
+      this.results.find(result => result.item.label === newValue),
+    );
+
+    this.setState({
+      value: newValue,
+      selectedOptionText: suggestionIndex === -1 ? null : newValue,
+      selectedOptionIndex: suggestionIndex === -1 ? -1 : suggestionIndex,
+    });
   };
 
   // Autosuggest calls this every time you need to update suggestions.
   onSuggestionsFetchRequested = async ({ value }) => {
+    // exit early if we're trying to stop displaying any new results (ex. if a result was just selected).
+    // Workaround to default Autosuggest behavior trying to keep returning back new results -- even after selecting an option
+    if (this.state.shouldMenuAutoOpen === false) {
+      this.state.shouldMenuAutoOpen = true;
+      return;
+    }
     await this._fire('onSuggestionsFetchRequested', value);
-    await this._setState({ isOpen: true });
+    await this.setState({ value });
 
-    await this._setState({
-      suggestions: await this.getSuggestions(value),
+    let suggestions = await this.getSuggestions(value);
+
+    // eliminate duplicate results when an option has been picked + only one result shows up
+    if (suggestions && suggestions.length === 1) {
+      if (suggestions[0].label === this.state.value) {
+        suggestions = [];
+      }
+    }
+
+    await this.setState({
+      suggestions,
+      menuOpen: true,
     });
+
+    await this._fire('onSuggestionsReceived', suggestions);
   };
 
   // Autosuggest calls this every time you need to clear suggestions.
+  // we handle this logic separately to reduce the # of times the UI gets wiped
   onSuggestionsClearRequested = () => {
     this._fire('onSuggestionsClearRequested');
-    this._setState({
-      suggestions: [],
-      isOpen: false,
-    });
   };
 
   // maps to our custom onSelected event hook
+  // this fires whenever a suggested result is selected via mouse or keyboard
   onSelected(event, suggestion) {
     this._fire('onSelected', event, suggestion);
-    this._setState({ value: suggestion.suggestionValue });
-    this.closeSearch();
+    this.state.shouldMenuAutoOpen = false;
+    this.state.value = suggestion.suggestionValue;
+    this.state.menuOpen = false;
+    this.state.suggestions = [];
   }
 
+  // handles how an individual search result item is rendered
   renderSuggestion(suggestion, { query, isHighlighted }) {
+    const Tag = suggestion.url ? 'span' : 'span';
+
+    if (this.renderSuggestionTemplate) {
+      return this.renderSuggestionTemplate(suggestion);
+    } else {
+      return (
+        <Tag
+          href={suggestion.url || undefined}
+          className={cx('c-bolt-typeahead__result-item')}
+          title={suggestion.description || ''}>
+          {this.noHighlight
+            ? suggestion.label
+            : suggestion.highlightedLabel
+            ? suggestion.highlightedLabel
+            : suggestion.label}
+        </Tag>
+      );
+    }
+  }
+
+  a11ySelectedOption(selectedOption, length, index) {
+    return `${selectedOption} ${
+      index + 1 <= length ? index + 1 : index
+    } of ${length} is highlighted`;
+  }
+
+  a11yQueryTooShort(minQueryLength) {
+    return `Type in ${minQueryLength} or more characters for results`;
+  }
+
+  a11yStatusResults(length, contentSelectedOption) {
+    const words = {
+      result: length === 1 ? 'result' : 'results',
+      is: length === 1 ? 'is' : 'are',
+    };
+
     return (
-      <span
-        className={cx('c-bolt-typeahead__result-text')}
-        title={suggestion.description || ''}>
-        {this.noHighlight
-          ? suggestion.label
-          : suggestion.highlightedLabel
-          ? suggestion.highlightedLabel
-          : suggestion.label}
-      </span>
+      <>
+        {length} {words.result} {words.is} available. {contentSelectedOption}
+      </>
     );
+  }
+
+  a11yNoResults() {
+    return 'No search results';
+  }
+
+  a11yAssistiveHint() {
+    return 'When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.';
   }
 
   /**
@@ -349,16 +573,50 @@ class BoltAutosuggest extends withPreact() {
    */
   renderInputComponent(inputProps) {
     const { value } = this.state;
-
     this._fire('onRenderInput', value);
 
     return (
-      <div className={cx(`c-bolt-typeahead__input-wrapper`)}>
-        <input {...inputProps} />
-      </div>
+      <>
+        <TypeaheadStatus
+          id={`bolt-typeahead-status--${this.id}`}
+          length={this.state.suggestions.length}
+          queryLength={value.length}
+          minQueryLength={0}
+          selectedOption={this.state.selectedOptionText}
+          selectedOptionIndex={this.state.selectedOptionIndex}
+          isInFocus={true}
+          tQueryTooShort={
+            this.$parent.a11yQueryTooShort
+              ? this.$parent.a11yQueryTooShort
+              : this.a11yQueryTooShort
+          }
+          tNoResults={
+            this.$parent.a11yNoResults
+              ? this.$parent.a11yNoResults
+              : this.a11yNoResults
+          }
+          tSelectedOption={
+            this.$parent.a11ySelectedOption
+              ? this.$parent.a11ySelectedOption
+              : this.a11ySelectedOption
+          }
+          tResults={
+            this.$parent.a11yStatusResults
+              ? this.$parent.a11yStatusResults
+              : this.a11yStatusResults
+          }
+        />
+        <div
+          className={cx(`c-bolt-typeahead__input-wrapper`, {
+            [`t-bolt-${this.theme}`]: this.theme && this.theme !== 'auto',
+          })}>
+          <input {...inputProps} />
+        </div>
+      </>
     );
   }
 
+  // render the Autosuggest react component + assign classes based on state / props
   render() {
     const { suggestions } = this.state;
 
@@ -377,7 +635,7 @@ class BoltAutosuggest extends withPreact() {
       inputOpen: cx('c-bolt-typeahead__input--open'),
       inputFocused: cx('c-bolt-typeahead__input--focused'),
       suggestionsContainer: cx('c-bolt-typeahead__menu'),
-      suggestionsContainerOpen: cx('is-open'),
+      suggestionsContainerOpen: cx(''),
       suggestionsList: cx('c-bolt-typeahead__results'),
       suggestion: cx('c-bolt-typeahead__result'),
       suggestionFirst: cx('c-bolt-typeahead__result--first'),
@@ -397,13 +655,23 @@ class BoltAutosuggest extends withPreact() {
 
     return (
       <div
-        class={cx('c-bolt-typeahead__wrapper')}
+        class={cx('c-bolt-typeahead__wrapper', {
+          'is-open':
+            this.state.menuOpen &&
+            this.state.suggestions &&
+            this.state.suggestions.length > 0,
+        })}
         style={`--typeahead-height: ${this.offsetHeight}px;`}>
         {this.addStyles([styles])}
         <Autosuggest
           theme={theme}
+          ref={this.autosuggest}
+          shouldRenderSuggestions={this.shouldRenderSuggestions}
           suggestions={suggestions}
           inputProps={inputProps}
+          focusInputOnSuggestionClick={true}
+          alwaysRenderSuggestions={true} // required to allow clicks on custom footer!
+          renderSuggestionsContainer={this.renderSuggestionsContainer}
           getSuggestionValue={this.getSuggestionValue}
           onSuggestionSelected={this.onSelected}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -415,11 +683,64 @@ class BoltAutosuggest extends withPreact() {
     );
   }
 
+  // check if results should be displayed based on the data structure
+  shouldRenderSuggestions(value) {
+    if (value) {
+      if (typeof value === 'function') {
+        return value();
+      }
+      return value.trim();
+    }
+  }
+
+  // setup initial event listeners + cache common DOM selectors
   rendered() {
     super.rendered && super.rendered();
-    this._inputElement = this.renderRoot.querySelector(
-      '.js-c-typeahead__input',
-    );
+
+    if (!this.hasEventListenersAdded) {
+      this.hasEventListenersAdded = true;
+
+      // register query selectors
+      this.$autosuggest = this.autosuggest.current;
+      this.$autosuggest.itemProps = this.itemProps;
+      this.$input = this.$autosuggest.input;
+      this.$clearButton = this.$parent.renderRoot.querySelector(
+        '.c-bolt-typeahead__button--clear',
+      );
+      this.$submitButton = this.$parent.renderRoot.querySelector(
+        '.c-bolt-typeahead__button--submit',
+      );
+
+      // add event listeners to manage the dropdown behavior in different use cases
+      this.$input.addEventListener('click', this.onInputClick);
+      this.$autosuggest.suggestionsContainer.addEventListener(
+        'click',
+        this.onSuggestionsContainerClick,
+      );
+
+      this.$clearButton.addEventListener('click', this.onClearButtonClick);
+      document.addEventListener('click', this.onExternalClick);
+      document.addEventListener('keydown', this.onKeyUp);
+
+      this.$input.addEventListener('focus', this.onFocus);
+      this.$clearButton.addEventListener('focus', this.onFocus);
+      this.$submitButton.addEventListener('focus', this.onFocus);
+
+      this.$input.addEventListener('blur', this.onBlur);
+      this.$clearButton.addEventListener('blur', this.onBlur);
+      this.$submitButton.addEventListener('blur', this.onBlur);
+    }
+
+    // manually adjusts aria behavior due to react-autosuggest API limitations
+    if (
+      this.state.menuOpen &&
+      this.state.suggestions &&
+      this.state.suggestions.length > 0
+    ) {
+      this.$autosuggest.base.setAttribute('aria-expanded', true);
+    } else {
+      this.$autosuggest.base.setAttribute('aria-expanded', false);
+    }
   }
 }
 
