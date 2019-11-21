@@ -7,7 +7,7 @@ import Fuse from 'fuse.js';
 import Mousetrap from 'mousetrap';
 import Autosuggest from 'react-autosuggest';
 import { highlightSearchResults } from './typeahead.utils';
-import { TypeaheadFooter } from './typeahead.footer'
+import { TypeaheadFooter } from './typeahead.footer';
 import { TypeaheadStatus } from './typeahead.status';
 import { bind } from './classnames';
 import styles from './typeahead.scoped.scss';
