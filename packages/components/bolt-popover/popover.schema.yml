@@ -22,6 +22,7 @@ properties:
     description: 'Preferred placement of the popover. The actual placement of the popover will be automatically adjusted based on the space available on screen.'
     default: bottom-left
     enum:
+      - auto
       - top-left
       - top
       - top-right
@@ -34,6 +35,15 @@ properties:
       - bottom-left
       - bottom
       - bottom-right
+  spacing:
+    type: string
+    description: 'The spacing around the popover content.'
+    default: none
+    enum:
+      - none
+      - xsmall
+      - small
+      - medium
   nowrap:
     type: boolean
     description: 'Stops the text in the content to wrap to a second line.'

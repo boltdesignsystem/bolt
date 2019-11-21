@@ -38,7 +38,7 @@ $bolt-popover-border-color: bolt-theme(text, 0.15);
   @include bolt-margin(0);
   @include bolt-padding(0);
   @include bolt-font-family(body);
-  @include bolt-font-size(medium);
+  @include bolt-font-size(xsmall);
   @include bolt-font-weight(regular);
 
   display: none;
@@ -46,6 +46,7 @@ $bolt-popover-border-color: bolt-theme(text, 0.15);
   transform: translate3d(0, #{bolt-spacing(xxsmall)}, 0);
   z-index: bolt-z-index(popover);
   overflow: hidden;
+  min-width: 200px;
   color: bolt-theme(text);
   border-radius: bolt-border-radius(small);
   border-width: $bolt-popover-border-width;
@@ -58,111 +59,111 @@ $bolt-popover-border-color: bolt-theme(text, 0.15);
     display: block;
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--nowrap & {
+  @at-root .c-bolt-popover--nowrap & {
+    min-width: auto;
     white-space: nowrap;
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--top-right & {
+  @at-root .c-bolt-popover--top-right & {
     @include bolt-popover-bubble-tip-point-to(bottom-right);
-
     right: 0;
     bottom: 100%;
     transform: translate3d(0, -#{bolt-spacing(xxsmall)}, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--top & {
+  @at-root .c-bolt-popover--top & {
     @include bolt-popover-bubble-tip-point-to(null);
-
     bottom: 100%;
     left: 50%;
     transform: translate3d(-50%, -#{bolt-spacing(xxsmall)}, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--top-left & {
+  @at-root .c-bolt-popover--top-left & {
     @include bolt-popover-bubble-tip-point-to(bottom-left);
-
     bottom: 100%;
     left: 0;
     transform: translate3d(0, -#{bolt-spacing(xxsmall)}, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--left-top & {
+  @at-root .c-bolt-popover--left-top & {
     @include bolt-popover-bubble-tip-point-to(top-right);
-
     top: 0;
     right: 100%;
     transform: translate3d(-#{bolt-spacing(xxsmall)}, 0, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--left & {
+  @at-root .c-bolt-popover--left & {
     @include bolt-popover-bubble-tip-point-to(null);
-
     top: 50%;
     right: 100%;
     transform: translate3d(-#{bolt-spacing(xxsmall)}, -50%, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--left-bottom & {
+  @at-root .c-bolt-popover--left-bottom & {
     @include bolt-popover-bubble-tip-point-to(bottom-right);
     right: 100%;
-
     bottom: 0;
     transform: translate3d(-#{bolt-spacing(xxsmall)}, 0, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--right-top & {
+  @at-root .c-bolt-popover--right-top & {
     @include bolt-popover-bubble-tip-point-to(top-left);
-
     top: 0;
     left: 100%;
     transform: translate3d(#{bolt-spacing(xxsmall)}, 0, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--right & {
+  @at-root .c-bolt-popover--right & {
     @include bolt-popover-bubble-tip-point-to(null);
-
     top: 50%;
     left: 100%;
     transform: translate3d(#{bolt-spacing(xxsmall)}, -50%, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--right-bottom & {
+  @at-root .c-bolt-popover--right-bottom & {
     @include bolt-popover-bubble-tip-point-to(bottom-left);
-
     bottom: 0;
     left: 100%;
     transform: translate3d(#{bolt-spacing(xxsmall)}, 0, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--bottom-right & {
+  @at-root .c-bolt-popover--bottom-right & {
     @include bolt-popover-bubble-tip-point-to(top-right);
     top: 100%;
-
     right: 0;
     transform: translate3d(0, #{bolt-spacing(xxsmall)}, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--bottom & {
+  @at-root .c-bolt-popover--bottom & {
     @include bolt-popover-bubble-tip-point-to(null);
-
     top: 100%;
     left: 50%;
     transform: translate3d(-50%, #{bolt-spacing(xxsmall)}, 0);
   }
 
-  @at-root .c-bolt-popover.c-bolt-popover--bottom-left & {
+  @at-root .c-bolt-popover--bottom-left & {
     @include bolt-popover-bubble-tip-point-to(top-left);
-
     top: 100%;
     left: 0;
     transform: translate3d(0, #{bolt-spacing(xxsmall)}, 0);
   }
 }
 
+// Spacing options
+@each $spacing-value in $bolt-spacing-values {
+  $spacing-value-name: nth($spacing-value, 1);
+
+  .c-bolt-popover--spacing-#{$spacing-value-name} {
+    .c-bolt-popover__content {
+      @include bolt-padding(#{$spacing-value-name});
+    }
+  }
+}
 
 
 
 
+// POC code, remove later.
 .c-bolt-menu-item {
   @include bolt-padding(small, squished);
   @include bolt-font-family(body);

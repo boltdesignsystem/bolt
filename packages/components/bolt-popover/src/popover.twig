@@ -12,7 +12,8 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  this.data.placement.value ? "c-bolt-popover--" ~ this.data.placement.value : "",
+  this.data.placement.value != "auto" ? "c-bolt-popover--" ~ this.data.placement.value : "",
+  this.data.spacing.value != "none" ? "c-bolt-popover--spacing-" ~ this.data.spacing.value : "",
   this.data.nowrap.value ? "c-bolt-popover--nowrap" : "",
   "is-expanded",
 ] %}
@@ -40,9 +41,40 @@
   <span
     {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
   >
-    {{ trigger }}
-    <span role="menu" class="{{ "#{base_class}__content" }}">
-      {{ content }}
+    {% if trigger %}
+      {# Custom Trigger #}
+      {{ trigger }}
+    {% elseif button %}
+      {# Predefined Trigger: button | link | trigger #}
+      {# aria and role attributes should be built-in #}
+      {# aria-haspopup is only for true menu (popover content is a list of actions) #}
+      {# aria-expanded is for indicating if popover content is visible or not #}
+      {# {% include "@bolt-components-button/button.twig" with {
+        text: button.text,
+        icon: {
+          name: button.icon.name,
+          position: button.icon.position,
+        },
+        attributes: {
+          "aria-haspopup": true,
+          "aria-expanded": true,
+          role: "button",
+        }
+      } only %} #}
+    {% endif %}
+    <span class="{{ "#{base_class}__content" }}">
+      {% if content %}
+        {# Custom Trigger #}
+        {{ content }}
+      {% elseif menu %}
+        {# Predefined Menu #}
+        {# Role attribute should be built-in for both menu and menu items #}
+        {# {% include "@bolt-components-menu/menu.twig" with {
+          type: "action",
+          separator: "solid",
+          items: menu_items,
+        } only %} #}
+      {% endif %}
     </span>
   </span>
 </bolt-popover>

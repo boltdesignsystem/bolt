@@ -1,76 +1,33 @@
-{% set link_1 %}
-  <bolt-text font-size="xsmall">
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Additional action 1",
-      url: "#!",
-      icon: {
-        name: "chevron-right",
-        position: "after"
-      },
-      attributes: {
-        "role": "menuitem",
-      }
-    } only %}
-  </bolt-text>
-{% endset %}
-{% set link_2 %}
-  <bolt-text font-size="xsmall">
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Additional action 2",
-      url: "#!",
-      icon: {
-        name: "chevron-right",
-        position: "after"
-      },
-      attributes: {
-        "role": "menuitem",
-      }
-    } only %}
-  </bolt-text>
-{% endset %}
-{% set link_3 %}
-  <bolt-text font-size="xsmall">
-    {% include "@bolt-components-link/link.twig" with {
-      text: "Additional action 3",
-      url: "#!",
-      icon: {
-        name: "chevron-right",
-        position: "after"
-      },
-      attributes: {
-        "role": "menuitem",
-      }
-    } only %}
-  </bolt-text>
-{% endset %}
-{% set content %}
-  {% include "@bolt-components-list/list.twig" with {
-    spacing: "small",
-    separator: "solid",
-    inset: true,
-    items: [
-      link_1,
-      link_2,
-      link_3,
-    ]
+{% set trigger %}
+  {% include "@bolt-components-link/link.twig" with {
+    text: "Trigger",
+    icon: {
+      name: "more",
+      position: "after",
+    },
+    attributes: {
+      "aria-haspopup": true,
+      "aria-expanded": true,
+      "role": "button",
+    }
   } only %}
 {% endset %}
 {% set menu_item_1 %}
-  <bolt-trigger display="block" cursor="pointer" no-outline>
+  <bolt-trigger role="menuitem" display="block" cursor="pointer" no-outline>
     <div class="c-bolt-menu-item">
       Additional action 1
     </div>
   </bolt-trigger>
 {% endset %}
 {% set menu_item_2 %}
-  <bolt-trigger display="block" cursor="pointer" no-outline>
+  <bolt-trigger role="menuitem" display="block" cursor="pointer" no-outline>
     <div class="c-bolt-menu-item">
       Additional action 2
     </div>
   </bolt-trigger>
 {% endset %}
 {% set menu_item_3 %}
-  <bolt-trigger display="block" cursor="pointer" no-outline>
+  <bolt-trigger role="menuitem" display="block" cursor="pointer" no-outline>
     <div class="c-bolt-menu-item">
       Additional action 3
     </div>
@@ -84,24 +41,17 @@
       menu_item_1,
       menu_item_2,
       menu_item_3,
-    ]
-  } only %}
-{% endset %}
-{% set trigger %}
-  {% include "@bolt-components-button/button.twig" with {
-    size: "xsmall",
-    text: "Trigger",
+    ],
     attributes: {
-      "aria-haspopup": true,
-      "aria-expanded": true,
-      "role": "button",
-    }
+      role: "menu"
+    },
   } only %}
 {% endset %}
 {% set popover_left %}
   <bolt-list spacing="xxlarge">
     <bolt-list-item>
       {% include "@bolt-components-popover/popover.twig" with {
+        nowrap: true,
         placement: "left-top",
         trigger: trigger,
         content: menu_list,
@@ -259,10 +209,68 @@
   } only %}
 {% endset %}
 
+{% set link_1 %}
+  <bolt-text font-size="xsmall">
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Additional action 1",
+      url: "#!",
+      icon: {
+        name: "chevron-right",
+        position: "after"
+      },
+      attributes: {
+        "role": "menuitem",
+      }
+    } only %}
+  </bolt-text>
+{% endset %}
+{% set link_2 %}
+  <bolt-text font-size="xsmall">
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Additional action 2",
+      url: "#!",
+      icon: {
+        name: "chevron-right",
+        position: "after"
+      },
+      attributes: {
+        "role": "menuitem",
+      }
+    } only %}
+  </bolt-text>
+{% endset %}
+{% set link_3 %}
+  <bolt-text font-size="xsmall">
+    {% include "@bolt-components-link/link.twig" with {
+      text: "Additional action 3",
+      url: "#!",
+      icon: {
+        name: "chevron-right",
+        position: "after"
+      },
+      attributes: {
+        "role": "menuitem",
+      }
+    } only %}
+  </bolt-text>
+{% endset %}
+{% set link_list %}
+  {% include "@bolt-components-list/list.twig" with {
+    spacing: "small",
+    separator: "solid",
+    inset: true,
+    items: [
+      link_1,
+      link_2,
+      link_3,
+    ]
+  } only %}
+{% endset %}
 
 <div class="t-bolt-xlight u-bolt-padding-xxlarge">
   {% include "@bolt-components-band/band.twig" with {
     theme: "none",
+    full_bleed: false,
     content: grid,
   } only %}
 </div>
