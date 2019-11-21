@@ -4,6 +4,7 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { withEvents } from '@bolt/core/renderers/with-events';
 import { bind } from './classnames';
 import './typeahead.autosuggest'; // main Preact logic split from lit-html wrapper
+import schema from './typeahead.schema.yml';
 
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
@@ -14,6 +15,10 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
 
   // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
+    keys: {
+      ...props.array,
+      ...{ default: schema.properties.keys.default },
+    },
     inputPlaceholder: props.string,
     inputValue: props.string,
     noHighlight: props.boolean,
@@ -82,6 +87,7 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
     return html`
       ${this.addStyles([styles])}
       <bolt-autosuggest
+        .keys=${this.keys}
         .value=${this.inputValue}
         .items=${this.items}
         .maxResults=${this.maxResults}

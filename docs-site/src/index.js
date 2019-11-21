@@ -10,9 +10,15 @@ import { enableAnimDemos } from './pages/pattern-lab/_patterns/06-experiments/an
 enableAnimDemos();
 
 // Component-specific examples that need to get compiled:
-import '@bolt/components-typeahead/__demos__/dynamically-fetch-data/typeahead.dynamically-fetch-data';
-import '@bolt/components-typeahead/__demos__/navigate-to-search-results/typeahead.navigate-to-search-results';
-import '@bolt/components-typeahead/__demos__/navigate-to-exact-result/typeahead.navigate-to-exact-result';
+const typeaheadDemos = require.context(
+  '@bolt/components-typeahead/__demos__',
+  true,
+  /\.js$/,
+);
+typeaheadDemos.keys().forEach(typeaheadDemoPath => {
+  const demoPath = typeaheadDemoPath.replace('./', '');
+  import(`@bolt/components-typeahead/__demos__/${demoPath}`);
+});
 
 // here if you need pl only JS
 // document.addEventListener('DOMContentLoaded', () => {

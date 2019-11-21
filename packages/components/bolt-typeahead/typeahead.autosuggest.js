@@ -51,6 +51,7 @@ class BoltAutosuggest extends withPreact() {
 
   // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
+    keys: props.array,
     placeholder: props.string,
     value: props.string,
     noHighlight: props.boolean,
@@ -268,8 +269,7 @@ class BoltAutosuggest extends withPreact() {
       maxPatternLength: 32,
       minMatchCharLength: 1,
       // @todo: re-enable description meta data after further testing + refinement
-      // keys: ['label', 'description'],
-      keys: ['label'],
+      keys: this.keys,
     };
     const fuse = new Fuse(items, fuseOptions);
     let results = fuse.search(value);

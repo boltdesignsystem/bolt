@@ -5,6 +5,11 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
+  keys:
+    type: array
+    description: A list of properties that will be searched in the suggestion data. This supports nested properties, weighted search, searching in arrays of strings and objects.
+    default:
+    - label
   max_results:
     type: number
     description: The maximum number of typeahead results to display
