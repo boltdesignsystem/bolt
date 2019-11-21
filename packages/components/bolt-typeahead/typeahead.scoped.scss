@@ -118,6 +118,7 @@ bolt-autosuggest,
   width: 100%;
   max-width: 100%;
   @include bolt-padding(medium, squished);
+  margin: 0; // remove extra margin top / bottom that Safari auto-adds to inputs
   padding-right: $bolt-typeahead-button-width;
   padding-left: $bolt-typeahead-button-width;
   color: bolt-theme-prop(text-on-background);
@@ -268,23 +269,13 @@ bolt-autosuggest,
 .c-bolt-typeahead__result {
   overflow: hidden;
   color: inherit;
-  transition: background 0.2s ease;
-
-  &.has-cursor {
-    background-color: bolt-theme-prop(link, 0.1);
-  }
-
-  &:active,
-  &:focus {
-    background-color: bolt-theme-prop(link, 0.2);
-  }
 }
 
 .c-bolt-typeahead__result-highlight {
   @include bolt-font-weight(bold);
 }
 
-.c-bolt-typeahead__result-text {
+.c-bolt-typeahead__result-item {
   @include bolt-padding(medium, squished);
   display: block;
   padding-left: $bolt-typeahead-button-width;
@@ -292,6 +283,17 @@ bolt-autosuggest,
   text-transform: initial; // fix for weird capitalization
   cursor: pointer;
   font-size: 0.8rem;
+  transition: background 0.1s ease;
+
+  &:hover,
+  .has-cursor & {
+    background-color: bolt-theme-prop(link, 0.1);
+  }
+
+  &:active,
+  &:focus {
+    background-color: bolt-theme-prop(link, 0.2);
+  }
 }
 
 .c-bolt-typeahead__wrapper {
