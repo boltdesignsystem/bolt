@@ -14,9 +14,6 @@ module.exports = {
       )
       .waitForElementVisible('.js-c-typeahead__input', 3000)
       .assert.elementPresent('.js-typeahead-hook--dynamically-fetch-data')
-      .assert.elementPresent(
-        '.js-typeahead-hook--dynamically-fetch-data .c-bolt-button',
-      )
       .click('.js-c-typeahead__input'); // click on the PL search input
 
     if (browser.sendKeys) {
