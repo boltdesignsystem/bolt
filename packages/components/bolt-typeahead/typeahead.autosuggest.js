@@ -10,7 +10,7 @@ import { bind } from './classnames';
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
 
-export const highlightSearchResults = function(item) {
+export const highlightSearchResults = function(item, cx) {
   const resultItem = item;
   resultItem.matches.forEach(matchItem => {
     const text = resultItem.item[matchItem.key];
@@ -18,29 +18,31 @@ export const highlightSearchResults = function(item) {
     const matches = [].concat(matchItem.indices);
     let pair = matches.shift();
 
-    for (let i = 0; i < text.length; i++) {
-      const char = text.charAt(i);
-      if (pair && i === pair[0]) {
-        result.push(
-          `<strong class="${cx('c-bolt-typeahead__result-highlight')}">`,
-        );
+    if (text) {
+      for (let i = 0; i < text.length; i++) {
+        const char = text.charAt(i);
+        if (pair && i === pair[0]) {
+          result.push(
+            `<strong class="${cx('c-bolt-typeahead__result-highlight')}">`,
+          );
+        }
+        result.push(char);
+        if (pair && i === pair[1]) {
+          result.push('</strong>');
+          pair = matches.shift();
+        }
       }
-      result.push(char);
-      if (pair && i === pair[1]) {
-        result.push('</strong>');
-        pair = matches.shift();
+      resultItem.item.highlightedLabel = result.join('');
+
+      resultItem.item.highlightedLabel = ReactHtmlParser(
+        resultItem.item.highlightedLabel,
+      );
+
+      if (resultItem.children && resultItem.children.length > 0) {
+        resultItem.children.forEach(child => {
+          highlightSearchResults(child);
+        });
       }
-    }
-    resultItem.item.highlightedLabel = result.join('');
-
-    resultItem.item.highlightedLabel = ReactHtmlParser(
-      resultItem.item.highlightedLabel,
-    );
-
-    if (resultItem.children && resultItem.children.length > 0) {
-      resultItem.children.forEach(child => {
-        highlightSearchResults(child);
-      });
     }
   });
 };
@@ -275,7 +277,7 @@ class BoltAutosuggest extends withPreact() {
     let results = fuse.search(value);
 
     results.forEach(resultItem => {
-      highlightSearchResults(resultItem);
+      highlightSearchResults(resultItem, cx);
     });
 
     results = results.filter(result => result.score <= 0.9);
