@@ -53,6 +53,7 @@ class BoltAutosuggest extends withPreact() {
 
   // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
+    renderSuggestionTemplate: props.any,
     keys: props.array,
     placeholder: props.string,
     value: props.string,
@@ -331,18 +332,26 @@ class BoltAutosuggest extends withPreact() {
     this.closeSearch();
   }
 
+  // handles how an individual search result item is rendered
   renderSuggestion(suggestion, { query, isHighlighted }) {
-    return (
-      <span
-        className={cx('c-bolt-typeahead__result-text')}
-        title={suggestion.description || ''}>
-        {this.noHighlight
-          ? suggestion.label
-          : suggestion.highlightedLabel
-          ? suggestion.highlightedLabel
-          : suggestion.label}
-      </span>
-    );
+    const Tag = suggestion.url ? 'span' : 'span';
+
+    if (this.renderSuggestionTemplate) {
+      return this.renderSuggestionTemplate(suggestion);
+    } else {
+      return (
+        <Tag
+          href={suggestion.url || undefined}
+          className={cx('c-bolt-typeahead__result-item')}
+          title={suggestion.description || ''}>
+          {this.noHighlight
+            ? suggestion.label
+            : suggestion.highlightedLabel
+            ? suggestion.highlightedLabel
+            : suggestion.label}
+        </Tag>
+      );
+    }
   }
 
   /**
