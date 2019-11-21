@@ -1,95 +1,17 @@
 // @ts-nocheck
 import { define, props } from 'skatejs';
 import { h, withPreact, Fragment } from '@bolt/core/renderers';
-import { render } from '@bolt/core/renderers/renderer-lit-html';
+import { createRef } from 'preact';
 import { getUniqueId } from '@bolt/core/utils/get-unique-id';
 import Fuse from 'fuse.js';
-import ReactHtmlParser from 'react-html-parser';
 import Mousetrap from 'mousetrap';
 import Autosuggest from 'react-autosuggest';
-import { createRef, Component } from 'preact';
-import { shallowEqualArrays } from 'shallow-equal';
-import { Status } from './typeahead.status';
+import { highlightSearchResults } from './typeahead.utils';
+import { TypeaheadFooter } from './typeahead.footer'
+import { TypeaheadStatus } from './typeahead.status';
 import { bind } from './classnames';
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
-
-// @todo: abstract this out and move into standalone / reusable wrapper component for using lit-based WCs in Preact without the diffing headaches!
-class AutosuggestFooter extends Component {
-  shouldComponentUpdate() {
-    return false; // don't re-render via diff:
-  }
-
-  // if the parent component's props change, only re-render if the template values themselves have changed
-  componentWillReceiveProps(nextProps) {
-    if (
-      !shallowEqualArrays(this.props.template.values, nextProps.template.values)
-    ) {
-      this.shouldRerender = true;
-      this.componentDidMount();
-    } else if (this.shouldRerender === true) {
-      this.shouldRerender = false;
-      this.componentDidMount();
-    } else {
-      this.shouldRerender === false;
-    }
-  }
-
-  componentDidMount() {
-    render(this.props.template, this.ref);
-  }
-
-  componentWillUnmount() {
-    // component is about to be removed from the DOM, perform any cleanup.
-  }
-
-  render() {
-    return (
-      <div
-        // eslint-disable-next-line no-return-assign
-        ref={c => (this.ref = c)}
-        className={this.props.className}
-      />
-    );
-  }
-}
-
-export const highlightSearchResults = function(item) {
-  const resultItem = item;
-  resultItem.matches.forEach(matchItem => {
-    const text = resultItem.item[matchItem.key];
-    const result = [];
-    const matches = [].concat(matchItem.indices);
-    let pair = matches.shift();
-
-    if (text) {
-      for (let i = 0; i < text.length; i++) {
-        const char = text.charAt(i);
-        if (pair && i === pair[0]) {
-          result.push(
-            `<strong class="${cx('c-bolt-typeahead__result-highlight')}">`,
-          );
-        }
-        result.push(char);
-        if (pair && i === pair[1]) {
-          result.push('</strong>');
-          pair = matches.shift();
-        }
-      }
-      resultItem.item.highlightedLabel = result.join('');
-
-      resultItem.item.highlightedLabel = ReactHtmlParser(
-        resultItem.item.highlightedLabel,
-      );
-
-      if (resultItem.children && resultItem.children.length > 0) {
-        resultItem.children.forEach(child => {
-          highlightSearchResults(child);
-        });
-      }
-    }
-  });
-};
 
 @define
 class BoltAutosuggest extends withPreact() {
@@ -479,7 +401,7 @@ class BoltAutosuggest extends withPreact() {
         {children}
         {this.$parent.footerTemplate && (
           <div class="c-bolt-typeahead__footer">
-            <AutosuggestFooter
+            <TypeaheadFooter
               template={this.$parent.footerTemplate(
                 this.state.value,
                 this.results,
@@ -534,7 +456,7 @@ class BoltAutosuggest extends withPreact() {
     this.results = fuse.search(value);
 
     this.results.forEach(resultItem => {
-      highlightSearchResults(resultItem);
+      highlightSearchResults(resultItem, cx);
     });
 
     this.results = this.results.filter(result => result.score <= 0.9);
@@ -573,6 +495,8 @@ class BoltAutosuggest extends withPreact() {
 
   // Autosuggest calls this every time you need to update suggestions.
   onSuggestionsFetchRequested = async ({ value }) => {
+    // exit early if we're trying to stop displaying any new results (ex. if a result was just selected).
+    // Workaround to default Autosuggest behavior trying to keep returning back new results -- even after selecting an option
     if (this.state.shouldMenuAutoOpen === false) {
       this.state.shouldMenuAutoOpen = true;
       return;
@@ -643,20 +567,9 @@ class BoltAutosuggest extends withPreact() {
     const { value } = this.state;
     this._fire('onRenderInput', value);
 
-    const suggestionsLength = () => {
-      if (
-        this.state.suggestions.length === 1 &&
-        this.state.suggestions[0].label === value
-      ) {
-        return 0;
-      } else {
-        return this.state.suggestions.length;
-      }
-    };
-
     return (
       <>
-        <Status
+        <TypeaheadStatus
           id={`bolt-typeahead-status--${this.id}`}
           length={this.state.suggestions.length}
           queryLength={value.length}
@@ -730,7 +643,7 @@ class BoltAutosuggest extends withPreact() {
           suggestions={suggestions}
           inputProps={inputProps}
           focusInputOnSuggestionClick={true}
-          alwaysRenderSuggestions={true}
+          alwaysRenderSuggestions={true} // required to allow clicks on custom footer!
           renderSuggestionsContainer={this.renderSuggestionsContainer}
           getSuggestionValue={this.getSuggestionValue}
           onSuggestionSelected={this.onSelected}
@@ -754,7 +667,6 @@ class BoltAutosuggest extends withPreact() {
   }
 
   // setup initial event listeners + cache common DOM selectors
-  // manually adjusts aria behavior due to react-autosuggest API limitations
   rendered() {
     super.rendered && super.rendered();
 
@@ -792,6 +704,7 @@ class BoltAutosuggest extends withPreact() {
       this.$submitButton.addEventListener('blur', this.onBlur);
     }
 
+    // manually adjusts aria behavior due to react-autosuggest API limitations
     if (
       this.state.menuOpen &&
       this.state.suggestions &&

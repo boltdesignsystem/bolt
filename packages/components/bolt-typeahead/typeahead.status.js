@@ -19,7 +19,7 @@ const debounce = function(func, wait, immediate) {
 };
 const statusDebounceMillis = 1400;
 
-export class Status extends Component {
+export class TypeaheadStatus extends Component {
   static defaultProps = {
     tQueryTooShort: minQueryLength =>
       `Type in ${minQueryLength} or more characters for results`,
