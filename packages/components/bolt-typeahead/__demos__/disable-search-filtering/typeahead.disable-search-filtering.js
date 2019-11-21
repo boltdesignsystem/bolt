@@ -17,7 +17,7 @@ if (disableSearchFilteringTypeaheadDemo) {
     suggestion,
   ) {
     return (
-      <span class="c-bolt-typeahead__result-text">
+      <span class="c-bolt-typeahead__result-item">
         <strong>{suggestion.title}</strong> by {suggestion.author.firstName}
         {suggestion.author.lastName}
       </span>
