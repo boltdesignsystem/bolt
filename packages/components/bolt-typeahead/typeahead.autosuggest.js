@@ -488,7 +488,9 @@ class BoltAutosuggest extends withPreact() {
             />
           </div>
         )}
-        <span id={this.assistiveHintID || `hint-${this.id}`} style={{ display: 'none' }}>
+        <span
+          id={this.assistiveHintID || `hint-${this.id}`}
+          style={{ display: 'none' }}>
           {this.assistiveHint}
         </span>
       </div>
