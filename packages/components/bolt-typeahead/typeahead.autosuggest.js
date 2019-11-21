@@ -240,7 +240,15 @@ class BoltAutosuggest extends withPreact() {
     document.activeElement.blur();
   }
 
-  getSuggestionValue = suggestion => suggestion.label;
+  // logic handling how suggestion values are interpretted.
+  // can be overwritten via the getSuggestionValue event hook
+  getSuggestionValue = suggestion => {
+    if (this.getParent._listeners['getSuggestionValue']) {
+      return this.getParent._listeners['getSuggestionValue'][0](this, suggestion);
+    } else {
+      return suggestion.label;
+    }
+  }
 
   // highlights keywords in the search results in a react-friendly way + limits the total number of results displayed
   async getSuggestions(value) {
