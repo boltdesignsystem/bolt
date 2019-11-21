@@ -4,6 +4,18 @@ properties:
   attributes:
     type: object
     description: A Drupal-style attributes object with extra attributes to append to this component.
+  children:
+    type: array
+    description: Array of renderable items
+    items:
+      type: object
+      properties:
+        component:
+          type: any
+          description: A renderable item
+        slot:
+          type: string
+          description: Name of slot where the item will be placed
   media:
     type: object
     description: Media accepts either image, icon, video, or table.

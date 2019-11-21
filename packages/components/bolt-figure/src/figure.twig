@@ -31,6 +31,26 @@
   {% endif %}
 {% endfor %}
 
+{# 
+  Sort `children` into separate arrays, one for each `slot`:
+  1. `media` slot: contains the media content
+  2. `default` slot: contains caption
+  Note: don't set a `slot` value to `default`, just leave it undefined
+#}
+{% if children and children is iterable %}
+  {% set media_slot = [] %}
+  {% set default_slot = [] %}
+  {% for item in children %}
+    {% if item.component %}
+      {% if item.slot == 'media' %}
+        {% set media_slot = media_slot|merge([item.component]) %}
+      {% elseif item.slot == 'default' or not item.slot %}
+        {% set default_slot = default_slot|merge([item.component]) %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
 {# figure component's custom element wrapper #}
 <bolt-figure
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
@@ -38,32 +58,53 @@
 >
   <replace-with-grandchildren>
     <figure {{ inner_attributes.addClass(inner_classes) }}>
-      {% if media %}
-        <replace-with-children class="{{ "#{base_class}__media" }}">
-          <div slot="media">
-            {% set image = media.image %}
-            {% set icon = media.icon %}
-            {% set video = media.video %}
-            {% set table = media.table %}
+      {% if children %}
+        {% if media_slot|length %}
+          <replace-with-children class="{{ "#{base_class}__media" }}">
+            <div slot="media">
+              {% for item in media_slot %}
+                {{ item }}
+              {% endfor %}
+            </div>
+          </replace-with-children>
+        {% endif %}
+        {% if default_slot|length %}
+          <replace-with-grandchildren>
+            <figcaption class="{{ "#{base_class}__caption" }}">
+              {% for item in default_slot %}
+                {{ item }}
+              {% endfor %}
+            </figcaption>
+          </replace-with-grandchildren>
+        {% endif %}
+      {% else %}
+        {% if media %}
+          <replace-with-children class="{{ "#{base_class}__media" }}">
+            <div slot="media">
+              {% set image = media.image %}
+              {% set icon = media.icon %}
+              {% set video = media.video %}
+              {% set table = media.table %}
 
-            {% if image %}
-              {% include "@bolt-components-image/image.twig" with image only %}
-            {% elseif icon %}
-              {% include "@bolt-components-icon/icon.twig" with icon only %}
-            {% elseif video %}
-              {% include "@bolt-components-video/video.twig" with video only %}
-            {% elseif table %}
-              {% include "@bolt-components-table/table.twig" with table only %}
-            {% endif %}
-          </div>
-        </replace-with-children>
-      {% endif %}
-      {% if caption %}
-        <replace-with-grandchildren>
-          <figcaption class="{{ "#{base_class}__caption" }}">
-            {{ caption }}
-          </figcaption>
-        </replace-with-grandchildren>
+              {% if image %}
+                {% include "@bolt-components-image/image.twig" with image only %}
+              {% elseif icon %}
+                {% include "@bolt-components-icon/icon.twig" with icon only %}
+              {% elseif video %}
+                {% include "@bolt-components-video/video.twig" with video only %}
+              {% elseif table %}
+                {% include "@bolt-components-table/table.twig" with table only %}
+              {% endif %}
+            </div>
+          </replace-with-children>
+        {% endif %}
+        {% if caption %}
+          <replace-with-grandchildren>
+            <figcaption class="{{ "#{base_class}__caption" }}">
+              {{ caption }}
+            </figcaption>
+          </replace-with-grandchildren>
+        {% endif %}
       {% endif %}
     </figure>
   </replace-with-grandchildren>

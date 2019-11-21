@@ -1,9 +1,17 @@
+{% set image %}
+  {% include "@bolt-components-image/image.twig" with {
+    src: "/images/placeholders/500x500.jpg"
+  } only %}
+{% endset %}
+
 {% include "@bolt-components-figure/figure.twig" with {
-  media: {
-    image: {
-      src: "/images/placeholders/500x500.jpg",
-      lazyload: false
+  children: [
+    {
+      component: image,
+      slot: 'media'
     },
-  },
-  caption: "Fig. 1: This is Bill. He is awesome."
+    {
+      component: "Fig. 1: This is Bill. He is awesome."
+    }
+  ],
 } only %}
