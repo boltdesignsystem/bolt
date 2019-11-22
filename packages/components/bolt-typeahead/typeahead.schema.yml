@@ -37,3 +37,6 @@ properties:
     type: boolean
     description: Disable text highlighting in matching search results (highlighting is enabled by default)
     default: false
+  footerTemplate:
+    type: string
+    description: The `footerTemplate` prop provides developers with a way to render custom UI (like links) below the default search results. <br><br>This is a web component-only function that provdes data about the current search term (`query`) + the current search results (`suggestions`) and expects a lit-html template result or HTML string to be returned.
