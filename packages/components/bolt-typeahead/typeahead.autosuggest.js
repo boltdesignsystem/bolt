@@ -194,7 +194,9 @@ class BoltAutosuggest extends withPreact() {
     };
 
     // self.onChange = self.onChange.bind(self);
-    self.renderSuggestionsContainer = self.renderSuggestionsContainer.bind(self);
+    self.renderSuggestionsContainer = self.renderSuggestionsContainer.bind(
+      self,
+    );
     self.toggleSearch = self.toggleSearch.bind(self);
     self.clearSearch = self.clearSearch.bind(self);
     self.closeSearch = self.closeSearch.bind(self);
