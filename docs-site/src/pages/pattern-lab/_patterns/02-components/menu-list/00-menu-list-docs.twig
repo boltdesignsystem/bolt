@@ -1,0 +1,23 @@
+{% set usage %}{% verbatim %}
+{% include "@bolt-components-menu-list/menu-list.twig" with {
+  items: [
+    {
+      text: "Menu Item 1",
+      attributes: {
+        "attribute-name": "function",
+      },
+    },
+    {
+      text: "Menu Item 2",
+      attributes: {
+        "attribute-name": "function",
+      },
+    },
+  ]
+} only %}
+{% endverbatim %}{% endset %}
+
+{% include "@utils/docs.twig" with {
+  componentName: "menu-list",
+  usage: usage
+} only %}
