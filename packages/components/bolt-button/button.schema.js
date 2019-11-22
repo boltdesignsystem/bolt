@@ -1,7 +1,6 @@
 const iconSchema = require('@bolt/components-icon/icon.schema.json');
-let buttonIconSchema = { ...iconSchema };
 
-buttonIconSchema.properties = {
+iconSchema.properties = {
   position: {
     type: 'string',
     default: 'after',
@@ -10,7 +9,7 @@ buttonIconSchema.properties = {
   ...iconSchema.properties,
 };
 
-buttonIconSchema.description =
+iconSchema.description =
   'Icon data as expected by the icon component. Accepts an additional position prop that determines placement within the button.';
 
 module.exports = {
@@ -81,7 +80,7 @@ module.exports = {
       enum: ['start', 'center', 'end'],
       default: 'center',
     },
-    icon: buttonIconSchema,
+    icon: iconSchema,
     iconOnly: {
       type: 'boolean',
       description:
