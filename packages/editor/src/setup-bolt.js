@@ -423,8 +423,6 @@ export function setupBolt(editor) {
       'subheadline',
       'tag',
       'text-transform',
-      'text',
-      'url',
     ],
   });
 
