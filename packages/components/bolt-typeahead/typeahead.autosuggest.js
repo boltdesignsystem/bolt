@@ -193,9 +193,8 @@ class BoltAutosuggest extends withPreact() {
       shouldMenuAutoOpen: true,
     };
 
-    };
-
     // self.onChange = self.onChange.bind(self);
+    self.renderSuggestionsContainer = self.renderSuggestionsContainer.bind(self);
     self.toggleSearch = self.toggleSearch.bind(self);
     self.clearSearch = self.clearSearch.bind(self);
     self.closeSearch = self.closeSearch.bind(self);
@@ -208,6 +207,7 @@ class BoltAutosuggest extends withPreact() {
 
   connected() {
     super.connected && super.connected();
+    this.id = getUniqueId();
     const self = this;
 
     // if an input element exists when booting up, use the initial text value if it exists
@@ -295,9 +295,7 @@ class BoltAutosuggest extends withPreact() {
     return (
       <div {...containerProps}>
         {children}
-        <span
-          id={this.assistiveHintID || `hint-${this.id}`}
-          style={{ display: 'none' }}>
+        <span id={`hint-${this.id || 'text'}`} style={{ display: 'none' }}>
           {this.$parent.a11yAssistiveHint
             ? this.$parent.a11yAssistiveHint
             : this.a11yAssistiveHint}
@@ -460,9 +458,7 @@ class BoltAutosuggest extends withPreact() {
               : this.a11yStatusResults
           }
         />
-        <div
-          className={cx(`c-bolt-typeahead__input-wrapper`, {
-          })}>
+        <div className={cx(`c-bolt-typeahead__input-wrapper`, {})}>
           <input {...inputProps} />
         </div>
       </>
