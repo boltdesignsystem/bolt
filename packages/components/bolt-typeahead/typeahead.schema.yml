@@ -37,3 +37,13 @@ properties:
     type: boolean
     description: Disable text highlighting in matching search results (highlighting is enabled by default)
     default: false
+  theme:
+    type: string
+    description: Manually sets the Bolt color theme to use internally, overriding any color themes that would have otherwise been inheritted.
+    default: auto
+    enum:
+      - xlight
+      - light
+      - dark
+      - xdark
+      - auto

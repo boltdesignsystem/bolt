@@ -14,9 +14,9 @@ npm install @bolt/components-typeahead
 - Wired up to use CSS Modules (once they ship in a future Bolt release)
 - Fully customizable behavior to handle partial vs full result matches, etc 
 - Supports rendering to the Shadow DOM _and_ the Light DOM
+- Fully support theming system colors
 
 ### What's Next? (Future Updates)
-- Fully support theming system colors
 - JSDoc support / further improve docs and demos
 - Broader testing coverage
 - Look into adding `<slot>` support

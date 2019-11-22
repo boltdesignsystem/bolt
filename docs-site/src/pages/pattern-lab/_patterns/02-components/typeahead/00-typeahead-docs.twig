@@ -2,7 +2,22 @@
   componentName: "typeahead",
   variations: [
   ],
-  examples: [
+  extraLinks: [
+    include("@bolt-components-headline/text.twig", {
+      text: "Typeahead Demos",
+      size: "xsmall",
+      weight: "bold",
+      attributes: {
+        class: [
+          "u-bolt-margin-top-small"
+        ]
+      }
+    }),
+    include("@bolt-components-link/link.twig", {
+      text: "Customize Theming",
+      url: "#customize-theming",
+      isHeadline: true,
+    }),
     include("@bolt-components-link/link.twig", {
       text: "Dynamically Fetch Data",
       url: "#dynamically-fetch-data",
