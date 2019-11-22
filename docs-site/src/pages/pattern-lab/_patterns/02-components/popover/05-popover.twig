@@ -1,5 +1,7 @@
 {% set trigger %}
-  {% include "@bolt-components-link/link.twig" with {
+  {% include "@bolt-components-button/button.twig" with {
+    size: "xsmall",
+    iconOnly: true,
     text: "Trigger",
     icon: {
       name: "more",
@@ -8,7 +10,7 @@
     attributes: {
       "aria-haspopup": true,
       "aria-expanded": true,
-      "role": "button",
+      role: "button",
     }
   } only %}
 {% endset %}
@@ -182,16 +184,16 @@
     gutter: "small",
     items: [
       {
-        column_start: "1",
-        column_span: "1",
-        row_start: "2",
-        content: popover_left,
-      },
-      {
         column_start: "2",
         column_span: "10",
         row_start: "1",
         content: popover_top,
+      },
+      {
+        column_start: "12",
+        column_span: "1",
+        row_start: "2",
+        content: popover_right,
       },
       {
         column_start: "2",
@@ -200,10 +202,10 @@
         content: popover_bottom,
       },
       {
-        column_start: "12",
+        column_start: "1",
         column_span: "1",
         row_start: "2",
-        content: popover_right,
+        content: popover_left,
       },
     ]
   } only %}
