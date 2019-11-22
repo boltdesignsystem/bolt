@@ -56,7 +56,7 @@
           position: button.icon.position,
         },
         attributes: {
-          "aria-haspopup": true,
+          "aria-haspopup": menu ? true,
           "aria-expanded": true,
           role: "button",
         }
@@ -64,7 +64,7 @@
     {% endif %}
     <span class="{{ "#{base_class}__content" }}">
       {% if content %}
-        {# Custom Trigger #}
+        {# Custom Content #}
         {{ content }}
       {% elseif menu %}
         {# Predefined Menu #}
