@@ -2,6 +2,7 @@ const iconSchema = require('@bolt/components-icon/icon.schema.json');
 
 iconSchema.properties = {
   position: {
+    description: 'Where to position the icon within the button',
     type: 'string',
     default: 'after',
     enum: ['before', 'after'],
