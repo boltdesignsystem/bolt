@@ -295,10 +295,10 @@ class BoltAutosuggest extends withPreact() {
     return (
       <div {...containerProps}>
         {children}
-        <span id={`hint-${this.id || 'text'}`} style={{ display: 'none' }}>
+        <span id={`hint-${this.id || ''}`} style={{ display: 'none' }}>
           {this.$parent.a11yAssistiveHint
-            ? this.$parent.a11yAssistiveHint
-            : this.a11yAssistiveHint}
+            ? this.$parent.a11yAssistiveHint()
+            : this.a11yAssistiveHint()}
         </span>
       </div>
     );
