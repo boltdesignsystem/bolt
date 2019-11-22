@@ -3,16 +3,6 @@ import { BoltElement } from '@bolt/element';
 import { html, customElement } from 'lit-element';
 import { getUniqueId } from '@bolt/core/utils/get-unique-id';
 
-/**
- * Generates a UUID.
- * https://gist.github.com/jed/982883
- * @param {string|undefined=} a
- * @return {string}
- */
-
-// @todo: move to Bolt Element's new utils file
-// const uuid = getUniqueId();
-
 @customElement('bolt-theme-switcher')
 class BoltThemeSwitcher extends BoltElement {
   static get properties() {
