@@ -17,6 +17,10 @@ const cx = bind(styles);
 class BoltAutosuggest extends withPreact() {
   static is = 'bolt-autosuggest';
 
+  get getParent() {
+    return this.$parent;
+  }
+
   // @todo: replace with auto-wired up props approach originally used in Carousel
   static props = {
     renderSuggestionTemplate: props.any,
@@ -100,10 +104,6 @@ class BoltAutosuggest extends withPreact() {
         listener(this, ...props);
       }.bind(this),
     );
-  }
-
-  tStatusQueryTooShort(minQueryLength) {
-    return `Type in ${minQueryLength} or more characters for results`;
   }
 
   // @ts-ignore
@@ -295,6 +295,10 @@ class BoltAutosuggest extends withPreact() {
     }
   }
 
+  _setState(newValue) {
+    this.setState(newValue);
+  }
+
   // try to update up the external fallback input whenever the input value changes
   setState(newValue) {
     super.setState && super.setState(newValue);
@@ -388,8 +392,8 @@ class BoltAutosuggest extends withPreact() {
           id={this.assistiveHintID || `hint-${this.id}`}
           style={{ display: 'none' }}>
           {this.$parent.a11yAssistiveHint
-            ? this.$parent.a11yAssistiveHint
-            : this.a11yAssistiveHint}
+            ? this.$parent.a11yAssistiveHint()
+            : this.a11yAssistiveHint()}
         </span>
       </div>
     );
@@ -551,7 +555,6 @@ class BoltAutosuggest extends withPreact() {
       result: length === 1 ? 'result' : 'results',
       is: length === 1 ? 'is' : 'are',
     };
-
     return (
       <>
         {length} {words.result} {words.is} available. {contentSelectedOption}
