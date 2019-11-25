@@ -12,7 +12,32 @@
   baseClass
 ] %}
 
-<bolt-block-list items='{{ items|join(',') }}' bolt-component>
+{% set ssrUuid = bolt.data.config.env == "blockList" ? "12345" : random() ~ "" %}
+{% set ssrFunc = "__ssr" ~ ssrUuid %}
+
+{#
+  FYI, this is a nex gen approach for injecting component-specific property data (complex data) in Bolt's Web Components
+  This works by having Twig dynamicly generate and inject a unique JS function that gets automatically called
+
+  NOTES:
+  - For reference, this technique is very loosly inspired by https://github.com/skatejs/skatejs/tree/master/packages/ssr, with some modifications including:
+    - We currently have our own unique spin on having a declarative <shadowroot>
+    - We are _not_ using document.currentScript (unlike the original SkateJS ssr approach) due to IE 11 incompatibility
+    - For now, we are only using this approach to handle passing in complex data to web components
+  - In the future this might get promoted and used elsewhere or get refactored out, depending on how this nets out.
+  - For reference:
+    - When Shadow DOM is supported, SSR cleanup isn't needed!
+    - When it's not, all internal markup gets automatically cleaned up via @bolt/element / LitElement
+#}
+
+<bolt-block-list ssr-uuid="{{ ssrUuid }}">
+<script>
+  function {{ ssrFunc }}() {
+    var a = document.querySelector('[ssr-uuid="{{ssrUuid}}"]');
+    var items = {{ items|join('|BOLT_SSR|')|json_encode|replace({"\n": ""})|raw }};
+    a.items = items.split('|BOLT_SSR|');
+  }
+</script>
   <ul {{ attributes.addClass(classes) }}>
     {% for listItem in items %}
       <li class="{{ "#{baseClass}__item" }}">
@@ -22,4 +47,5 @@
       </li>
     {% endfor %}
   </ul>
+<script>{{ssrFunc}}()</script>
 </bolt-block-list>
