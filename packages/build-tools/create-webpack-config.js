@@ -164,8 +164,9 @@ async function createWebpackConfig(buildConfig) {
         }
       });
 
-      const useHotMiddleware =
-        Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1;
+      const useHotMiddleware = !(
+        Array.isArray(fullBuildConfig.lang) && fullBuildConfig.lang.length > 1
+      );
 
       if (!config.prod && config.webpackDevServer && useHotMiddleware) {
         entry[globalEntryName].push(
