@@ -41,12 +41,17 @@
       {% if media %}
         <replace-with-children class="{{ "#{base_class}__media" }}">
           <div slot="media">
+            {% set content = media.content %}
+
+            {# `image`, `icon`, `video`, and `table` are DEPRECATED. Use `content` instead. #}
             {% set image = media.image %}
             {% set icon = media.icon %}
             {% set video = media.video %}
             {% set table = media.table %}
 
-            {% if image %}
+            {% if content %}
+              {{ content }}
+            {% elseif image %}
               {% include "@bolt-components-image/image.twig" with image only %}
             {% elseif icon %}
               {% include "@bolt-components-icon/icon.twig" with icon only %}
