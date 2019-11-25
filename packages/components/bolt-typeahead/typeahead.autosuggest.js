@@ -1,10 +1,12 @@
 // @ts-nocheck
 import { define, props } from 'skatejs';
 import { h, withPreact } from '@bolt/core/renderers';
+import { getUniqueId } from '@bolt/core/utils/get-unique-id';
 import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
 import Mousetrap from 'mousetrap';
 import Autosuggest from 'react-autosuggest';
+import { TypeaheadStatus } from './typeahead.status';
 import { bind } from './classnames';
 
 import styles from './typeahead.scoped.scss';
@@ -49,7 +51,41 @@ export const highlightSearchResults = function(item) {
 class BoltAutosuggest extends withPreact() {
   static is = 'bolt-autosuggest';
 
-  // @todo: replace with auto-wired up props approach used in Carousel
+  get getParent() {
+    return this.$parent;
+  }
+
+  a11yStatusResults(length, contentSelectedOption) {
+    const words = {
+      result: length === 1 ? 'result' : 'results',
+      is: length === 1 ? 'is' : 'are',
+    };
+    return (
+      <span>
+        {length} {words.result} {words.is} available. {contentSelectedOption}
+      </span>
+    );
+  }
+
+  a11ySelectedOption(selectedOption, length, index) {
+    return `${selectedOption} ${
+      index + 1 <= length ? index + 1 : index
+    } of ${length} is highlighted`;
+  }
+
+  a11yQueryTooShort(minQueryLength) {
+    return `Type in ${minQueryLength} or more characters for results`;
+  }
+
+  a11yNoResults() {
+    return 'No search results';
+  }
+
+  a11yAssistiveHint() {
+    return 'When autocomplete results are available use up and down arrows to review and enter to select.  Touch device users, explore by touch or with swipe gestures.';
+  }
+
+  // @todo: replace with auto-wired up props approach originally used in Carousel
   static props = {
     placeholder: props.string,
     value: props.string,
@@ -78,12 +114,17 @@ class BoltAutosuggest extends withPreact() {
   // https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode
   //
   // @todo: move this into it's own decorator in Bolt Core?
-  get getParent() {
-    if (this.getRootNode && this.useShadow === true) {
-      return this.getRootNode().host;
-    } else {
-      return this.closest('bolt-typeahead');
+  get $parent() {
+    if (this.parentFound) {
+      return this.parentFound;
     }
+
+    if (this.getRootNode && this.useShadow === true) {
+      this.parentFound = this.getRootNode().host;
+    } else {
+      this.parentFound = this.closest('bolt-typeahead');
+    }
+    return this.parentFound;
   }
 
   /**
@@ -147,9 +188,15 @@ class BoltAutosuggest extends withPreact() {
     self.state = {
       value: '',
       suggestions: [],
+      selectedOptionIndex: -1,
+      selectedOptionText: null,
+      shouldMenuAutoOpen: true,
     };
 
     // self.onChange = self.onChange.bind(self);
+    self.renderSuggestionsContainer = self.renderSuggestionsContainer.bind(
+      self,
+    );
     self.toggleSearch = self.toggleSearch.bind(self);
     self.clearSearch = self.clearSearch.bind(self);
     self.closeSearch = self.closeSearch.bind(self);
@@ -162,6 +209,7 @@ class BoltAutosuggest extends withPreact() {
 
   connected() {
     super.connected && super.connected();
+    this.id = getUniqueId();
     const self = this;
 
     // if an input element exists when booting up, use the initial text value if it exists
@@ -186,6 +234,11 @@ class BoltAutosuggest extends withPreact() {
   }
 
   _setState(newValue) {
+    this.setState(newValue);
+  }
+
+  // try to update up the external fallback input whenever the input value changes
+  setState(newValue) {
     super.setState && super.setState(newValue);
 
     if (newValue.value) {
@@ -238,6 +291,21 @@ class BoltAutosuggest extends withPreact() {
 
   getSuggestionValue = suggestion => suggestion.label;
 
+  // customized UI that the search results are rendered within
+  // we customize the default from react-autosuggest by adding optional footer UI
+  renderSuggestionsContainer({ containerProps, children, query }) {
+    return (
+      <div {...containerProps}>
+        {children}
+        <span id={`hint-${this.id || ''}`} style={{ display: 'none' }}>
+          {this.$parent.a11yAssistiveHint
+            ? this.$parent.a11yAssistiveHint()
+            : this.a11yAssistiveHint()}
+        </span>
+      </div>
+    );
+  }
+
   // highlights keywords in the search results in a react-friendly way + limits the total number of results displayed
   async getSuggestions(value) {
     let items;
@@ -272,15 +340,15 @@ class BoltAutosuggest extends withPreact() {
       keys: ['label'],
     };
     const fuse = new Fuse(items, fuseOptions);
-    let results = fuse.search(value);
+    this.results = fuse.search(value);
 
-    results.forEach(resultItem => {
-      highlightSearchResults(resultItem);
+    this.results.forEach(resultItem => {
+      highlightSearchResults(resultItem, cx);
     });
 
-    results = results.filter(result => result.score <= 0.9);
+    this.results = this.results.filter(result => result.score <= 0.9);
 
-    const reducedResults = results.reduce((total, result) => {
+    const reducedResults = this.results.reduce((total, result) => {
       total.push(result.item);
       return total;
     }, []);
@@ -299,8 +367,18 @@ class BoltAutosuggest extends withPreact() {
    * @param {{newValue: string}} newValue - the updated input value
    */
   onChange = (event, { newValue, method }) => {
-    this._fire('onChange', event, newValue, method);
-    this._setState({ value: newValue });
+    this._fire('onChange', newValue, method);
+
+    // @todo: replace this workaround with this.results.findIndex(findSelectedIndex) once `findIndex` can be safely polyfilled
+    const suggestionIndex = this.results.indexOf(
+      this.results.find(result => result.item.label === newValue),
+    );
+
+    this.setState({
+      value: newValue,
+      selectedOptionText: suggestionIndex === -1 ? null : newValue,
+      selectedOptionIndex: suggestionIndex === -1 ? -1 : suggestionIndex,
+    });
   };
 
   // Autosuggest calls this every time you need to update suggestions.
@@ -349,13 +427,43 @@ class BoltAutosuggest extends withPreact() {
    */
   renderInputComponent(inputProps) {
     const { value } = this.state;
-
     this._fire('onRenderInput', value);
 
     return (
-      <div className={cx(`c-bolt-typeahead__input-wrapper`)}>
-        <input {...inputProps} />
-      </div>
+      <>
+        <TypeaheadStatus
+          id={`bolt-typeahead-status--${this.id}`}
+          length={this.state.suggestions.length}
+          queryLength={value.length}
+          minQueryLength={0}
+          selectedOption={this.state.selectedOptionText}
+          selectedOptionIndex={this.state.selectedOptionIndex}
+          isInFocus={true}
+          tQueryTooShort={
+            this.$parent.a11yQueryTooShort
+              ? this.$parent.a11yQueryTooShort
+              : this.a11yQueryTooShort
+          }
+          tNoResults={
+            this.$parent.a11yNoResults
+              ? this.$parent.a11yNoResults
+              : this.a11yNoResults
+          }
+          tSelectedOption={
+            this.$parent.a11ySelectedOption
+              ? this.$parent.a11ySelectedOption
+              : this.a11ySelectedOption
+          }
+          tResults={
+            this.$parent.a11yStatusResults
+              ? this.$parent.a11yStatusResults
+              : this.a11yStatusResults
+          }
+        />
+        <div className={cx(`c-bolt-typeahead__input-wrapper`, {})}>
+          <input {...inputProps} />
+        </div>
+      </>
     );
   }
 
@@ -404,6 +512,7 @@ class BoltAutosuggest extends withPreact() {
           theme={theme}
           suggestions={suggestions}
           inputProps={inputProps}
+          renderSuggestionsContainer={this.renderSuggestionsContainer}
           getSuggestionValue={this.getSuggestionValue}
           onSuggestionSelected={this.onSelected}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}

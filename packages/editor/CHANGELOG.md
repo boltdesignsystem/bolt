@@ -3,6 +3,66 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.4](https://github.com/bolt-design-system/bolt/compare/v2.11.3...v2.11.4) (2019-11-18)
+
+
+### Bug Fixes
+
+* Pass correct value for html to editor ([7d4b12b](https://github.com/bolt-design-system/bolt/commit/7d4b12b))
+* Reset button state on failed save ([bab00bd](https://github.com/bolt-design-system/bolt/commit/bab00bd))
+* Update editor state on successful save ([04160e8](https://github.com/bolt-design-system/bolt/commit/04160e8))
+
+
+
+
+
+## [2.11.3](https://github.com/bolt-design-system/bolt/compare/v2.11.2...v2.11.3) (2019-11-15)
+
+
+### Bug Fixes
+
+* define handleEditorSave at runtime ([6fd981b](https://github.com/bolt-design-system/bolt/commit/6fd981b))
+* update ts ignore comment to fix linting issue ([2e4c142](https://github.com/bolt-design-system/bolt/commit/2e4c142))
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-editor
+
+
+
+
+
+## [2.11.1](https://github.com/bolt-design-system/bolt/compare/v2.11.0...v2.11.1) (2019-11-14)
+
+
+### Bug Fixes
+
+* remove unused + undeclared dependency from editor package ([ce5e254](https://github.com/bolt-design-system/bolt/commit/ce5e254))
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* update alert and some linting ([e5a84ac](https://github.com/bolt-design-system/bolt/commit/e5a84ac))
+
+
+### Features
+
+* **micro-journeys:** starter templates for one and two character ([10bea16](https://github.com/bolt-design-system/bolt/commit/10bea16))
+
+
+
+
+
 ## [2.9.2](https://github.com/bolt-design-system/bolt/compare/v2.9.1...v2.9.2) (2019-10-23)
 
 **Note:** Version bump only for package @bolt/components-editor
