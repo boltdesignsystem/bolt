@@ -12,7 +12,7 @@
   baseClass
 ] %}
 
-{% set ssrUuid = bolt.data.config.env == "blockList" ? "12345" : random() ~ "" %}
+{% set ssrUuid = bolt.data.config.env == "test" ? "12345" : random() ~ "" %}
 {% set ssrFunc = "__ssr" ~ ssrUuid %}
 
 {#
