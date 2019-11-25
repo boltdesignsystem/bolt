@@ -369,7 +369,7 @@ export function setupBolt(editor) {
     registerBlock: true,
     schema: buttonSchema,
     extend: 'text',
-    initialContent: ['Button'],
+    initialContent: ['<span>Button</span>'],
     propsToTraits: ['size', 'width', 'border_radius'],
     extraTraits: [
       colorTrait,
@@ -423,8 +423,6 @@ export function setupBolt(editor) {
       'subheadline',
       'tag',
       'text-transform',
-      'text',
-      'url',
     ],
   });
 
