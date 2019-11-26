@@ -4,6 +4,7 @@ import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
 import { withEvents } from '@bolt/core/renderers/with-events';
 import { bind } from './classnames';
 import './typeahead.autosuggest'; // main Preact logic split from lit-html wrapper
+import schema from './typeahead.schema.yml';
 
 import styles from './typeahead.scoped.scss';
 const cx = bind(styles);
@@ -14,21 +15,31 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
 
   // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
+    theme: {
+      ...props.string,
+      ...{ default: schema.properties.theme.default },
+    },
+    keys: {
+      ...props.array,
+      ...{ default: schema.properties.keys.default },
+    },
+    noSort: props.boolean,
+    noFilter: props.boolean,
     inputPlaceholder: props.string,
     inputValue: props.string,
     noHighlight: props.boolean,
     clearInputText: {
       ...props.string,
-      ...{ default: 'Clear search results' },
+      ...{ default: schema.properties.clear_input_text.default },
     },
     items: props.array,
     submitButtonText: {
       ...props.string,
-      ...{ default: 'Submit search query' },
+      ...{ default: schema.properties.submit_button_text.default },
     },
     maxResults: {
       ...props.number,
-      ...{ default: 10 },
+      ...{ default: schema.properties.max_results.default },
     },
   };
 
@@ -81,55 +92,64 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
   render() {
     return html`
       ${this.addStyles([styles])}
-      <bolt-autosuggest
-        .value=${this.inputValue}
-        .items=${this.items}
-        .maxResults=${this.maxResults}
-        .noHighlight=${this.noHighlight}
-        .placeholder=${this.inputPlaceholder}
-        @keypress=${this.handleKeyPress.bind(this)}
-      ></bolt-autosuggest>
-      <bolt-button
-        type="submit"
-        color="text"
-        icon-only
-        @click=${this.submit}
-        no-shadow
-        class=${cx(
-          'c-bolt-typeahead__button',
-          'c-bolt-typeahead__button--submit',
-        )}
+      <div
+        class="${cx(
+          'c-bolt-typeahead__outer-wrapper',
+          `${this.theme ? `t-bolt-${this.theme}` : ''}`,
+        )}"
       >
-        ${this.submitButtonText}
-        <bolt-icon
-          name="search"
-          class=${cx('c-bolt-typeahead__icon')}
-          slot="before"
-        ></bolt-icon>
-      </bolt-button>
+        <bolt-autosuggest
+          .theme=${this.theme}
+          .noSort=${this.noSort}
+          .keys=${this.keys}
+          .noFilter=${this.noFilter}
+          .value=${this.inputValue}
+          .items=${this.items}
+          .maxResults=${this.maxResults}
+          .noHighlight=${this.noHighlight}
+          .placeholder=${this.inputPlaceholder}
+          @keypress=${this.handleKeyPress.bind(this)}
+        ></bolt-autosuggest>
+        <bolt-button
+          type="submit"
+          color="text"
+          icon-only
+          @click=${this.submit}
+          class=${cx(
+            'c-bolt-typeahead__button',
+            'c-bolt-typeahead__button--submit',
+          )}
+        >
+          ${this.submitButtonText}
+          <bolt-icon
+            name="search"
+            class=${cx('c-bolt-typeahead__icon')}
+            slot="before"
+          ></bolt-icon>
+        </bolt-button>
 
-      <bolt-button
-        color="text"
-        icon-only
-        type="reset"
-        @click=${this.clearSearch}
-        no-shadow
-        class=${cx(
-          'c-bolt-typeahead__button',
-          'c-bolt-typeahead__button--clear',
-          {
-            [`is-visible`]: this.inputValue !== '',
-          },
-        )}
-      >
-        ${this.clearInputText}
-        <bolt-icon
-          name="close-solid"
-          slot="before"
-          class=${cx('c-bolt-typeahead__icon')}
-          title=${this.clearInputText}
-        />
-      </bolt-button>
+        <bolt-button
+          color="text"
+          icon-only
+          type="reset"
+          @click=${this.clearSearch}
+          class=${cx(
+            'c-bolt-typeahead__button',
+            'c-bolt-typeahead__button--clear',
+            {
+              [`is-visible`]: this.inputValue !== '',
+            },
+          )}
+        >
+          ${this.clearInputText}
+          <bolt-icon
+            name="close-solid"
+            slot="before"
+            class=${cx('c-bolt-typeahead__icon')}
+            title=${this.clearInputText}
+          />
+        </bolt-button>
+      </div>
     `;
   }
 

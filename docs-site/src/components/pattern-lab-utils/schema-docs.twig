@@ -128,6 +128,12 @@
         <code>true</code>
       {% elseif prop.default is empty %}
         —
+      {% elseif prop.default is iterable %}
+        <ul class="c-bds-docs-list__child">
+           {% for item in prop.default %}
+            <li><code>{{ item }}</code></li>
+            {% endfor %}
+        </ul>
       {% else %}
         <code>{{ prop.default }}</code>
       {% endif %}

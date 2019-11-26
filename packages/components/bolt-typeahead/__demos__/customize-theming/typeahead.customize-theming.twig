@@ -1,0 +1,53 @@
+{% grid "o-bolt-grid--matrix" %}
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+    <bolt-theme-switcher theme="xdark">
+      {% include "@bolt-components-typeahead/typeahead.twig" with {
+        attributes: {
+          class: ["js-typeahead-hook--customize-theming"]
+        },
+        max_results: 5,
+        input_placeholder: "Typeahead using xlight theme...",
+        theme: "xlight"
+      } only %}
+    </bolt-theme-switcher>
+  {% endcell %}
+
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+    <bolt-theme-switcher theme="dark">
+      {% include "@bolt-components-typeahead/typeahead.twig" with {
+        attributes: {
+          class: ["js-typeahead-hook--customize-theming"]
+        },
+        input_placeholder: "Typeahead using light theme...",
+        max_results: 5,
+        theme: "light"
+      } only %}
+    </bolt-theme-switcher>
+  {% endcell %}
+
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+    <bolt-theme-switcher theme="xlight">
+      {% include "@bolt-components-typeahead/typeahead.twig" with {
+        attributes: {
+          class: ["js-typeahead-hook--customize-theming"]
+        },
+        max_results: 5,
+        input_placeholder: "Typeahead using xdark theme...",
+        theme: "xdark"
+      } only %}
+    </bolt-theme-switcher>
+  {% endcell %}
+
+  {% cell "u-bolt-width-12/12 u-bolt-width-6/12@medium" %}
+    <bolt-theme-switcher theme="light">
+      {% include "@bolt-components-typeahead/typeahead.twig" with {
+        attributes: {
+          class: ["js-typeahead-hook--customize-theming"]
+        },
+        input_placeholder: "Typeahead using dark theme...",
+        max_results: 5,
+        theme: "dark"
+      } only %}
+    </bolt-theme-switcher>
+  {% endcell %}
+{% endgrid %}

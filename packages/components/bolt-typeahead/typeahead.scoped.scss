@@ -4,15 +4,77 @@
 
 @import '@bolt/core/styles/index.scss';
 
+$bolt-typeahead-theme-options-used: (link background text) !global;
+$bolt-typeahead-bezier-transition: cubic-bezier(0.645,0.045,0.355,1);
+
+// @todo: move to Core
+// keeps track of which theme props get used to help with inlining what's needed later on
+@function bolt-theme-prop($props...){
+  $prop: '';
+  @if (length($props) >= 1) {
+    $prop: nth($props, 1);
+  } @else {
+    $prop: $props;
+  }
+
+  $bolt-typeahead-theme-options-used: sl-prepend($bolt-typeahead-theme-options-used, $prop) !global;
+  @return bolt-theme($props...);
+}
+
+// @todo: move to Core
+// mixin that outputs a bolt friendly CSS variable in the correct format (ie. opacity friendly!)
+@mixin bolt-theme-var($varName, $value){
+  @if type-of($value) == color and type-of($value) != string {
+    $red: round(red($value));
+    $green: round(green($value));
+    $blue: round(blue($value));
+    --bolt-theme-#{$varName}: #{$red, $green, $blue};
+  } @else {
+    --bolt-theme-#{$varName}: #{$value};
+  }
+}
+
+// loop through the available themes and generate a custom subset of theme prop options that were used
+// this eliminates the need to inline the entire theming system file with all the vars!
+// @todo: move to Core
+@mixin bolt-theme-subset($map-of-theme-props-used, $outputBackground: true, $outputColor: true){
+  // deduplicate the theme prop options that were used
+  $map-of-theme-props-used: sl-remove-duplicates($map-of-theme-props-used);
+
+  @each $themeName, $themeOptions in $bolt-themes {
+
+    $selector: ':host .t-bolt-#{$themeName}';
+
+    #{unquote($selector)} {
+      @each $themeOptionName, $themeOptionValue in $themeOptions {
+        @each $propName in $map-of-theme-props-used {
+          @if $propName == $themeOptionName {
+            @include bolt-theme-var($themeOptionName, $themeOptionValue);
+          }
+        }
+      }
+
+      @if ($outputColor){
+        color: bolt-theme-prop-value($themeName, text);
+        color: rgba(var(--bolt-theme-text), 1);
+      }
+
+      @if ($outputBackground){
+        background-color: bolt-theme-prop-value($themeName, background);
+        background-color: rgba(var(--bolt-theme-background), 1);
+      }
+    }
+  }
+}
+
+
 $bolt-clear-button-size: 1.7rem;
 $bolt-clear-button-size-at-med: 1.4rem;
 $bolt-typeahead-button-width: bolt-spacing(medium) + .75rem;
-
 $bolt-typeahead-border-width: $bolt-border-width;
 $bolt-typeahead-border-style: $bolt-border-style;
 $bolt-typeahead-border-radius: 6px;
-$bolt-typeahead-placeholder-color: bolt-theme(text-on-secondary, 0.4);
-
+$bolt-typeahead-placeholder-color: bolt-theme-prop(text-on-background, 0.4);
 $bolt-typeahead-result-highlight-color: #F5F5FA;
 
 /**
@@ -30,8 +92,12 @@ bolt-typeahead {
   position: relative;
 }
 
-bolt-autosuggest {
+bolt-autosuggest,
+.c-bolt-typeahead__outer-wrapper {
   width: 100%;
+  border-radius: $bolt-typeahead-border-radius;
+
+  // workaround to allow theme-specific bolt classes to get used w/o running into issues background color conflicts
 }
 
 .c-bolt-typeahead {
@@ -39,10 +105,7 @@ bolt-autosuggest {
   flex-direction: column;
   position: relative;
   width: 100%;
-  color: bolt-theme(text);
   border-radius: $bolt-typeahead-border-radius;
-  background-color: inherit;
-  --bolt-theme-background: 255, 255, 255;
 }
 
 .c-bolt-typeahead__label {
@@ -55,15 +118,16 @@ bolt-autosuggest {
   width: 100%;
   max-width: 100%;
   @include bolt-padding(medium, squished);
+  margin: 0; // remove extra margin top / bottom that Safari auto-adds to inputs
   padding-right: $bolt-typeahead-button-width;
   padding-left: $bolt-typeahead-button-width;
-  color: bolt-theme(text-on-secondary);
+  color: bolt-theme-prop(text-on-background);
   font-size: 16px; // prevent zooming in on mobile
   border-radius: $bolt-typeahead-border-radius;
   border-width: $bolt-typeahead-border-width;
   border-style: $bolt-typeahead-border-style;
-  border-color: bolt-theme(link, .5);
-  background-color: bolt-theme(secondary, 1);
+  border-color: bolt-theme-prop(link, 0.4);
+  background-color: bolt-theme-prop(secondary, 0.1);
   text-overflow: ellipsis;
   transition: all 0.1s ease;
   outline-offset: -3px;
@@ -79,12 +143,12 @@ bolt-autosuggest {
 
   &:focus {
     border-color: rgba(84, 93, 166, 0.8);
-    border-color: bolt-theme(link, 0.8);
+    border-color: bolt-theme-prop(link, 0.8);
     box-shadow: 0 0 0 2px rgba(var(--bolt-theme-link), 0.5), inset 0 0 0 1px rgba(var(--bolt-theme-link), 1);
     outline: 0;
   }
 
-  &--open {
+  .is-open & {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
@@ -118,6 +182,7 @@ bolt-autosuggest {
 
 .c-bolt-typeahead__menu {
   display: block;
+  visibility: hidden;
   opacity: 0;
   position: absolute;
   top: calc(100% + 2px);
@@ -127,30 +192,39 @@ bolt-autosuggest {
   min-width: 100%;
   max-height: 0;
   overflow: hidden;
-  color: bolt-theme(text-on-secondary);
   text-transform: capitalize;
+  pointer-events: none;
   border-bottom-right-radius: $bolt-typeahead-border-radius;
   border-bottom-left-radius: $bolt-typeahead-border-radius;
   box-shadow: rgba(bolt-color(gray, dark), 0.3) 0px 15px 46px -10px;
 
-  background-color: bolt-theme(
-    (
-      xdark: brand-darken-5,
-      dark: brand-lighten-20,
-      light: secondary,
-      xlight: secondary,
-    )
-  );
-  background-color: var(--bolt-typeahead-menu-background, rgba(var(--bolt-theme-secondary), 1));
-  transition: max-height 0.3s cubic-bezier(0.645,0.045,0.355,1), opacity 0.3s cubic-bezier(0.645,0.045,0.355,1);
+  > * {
+    opacity: 0;
+    transform: translateY(-30px);
+    max-height: 0;
+    transition: all 0.01s $bolt-typeahead-bezier-transition;
+  }
 
-  &.is-open {
+  background-color: bolt-theme-prop(background-secondary);
+  transition: max-height 0.3s $bolt-typeahead-bezier-transition, opacity 0.3s $bolt-typeahead-bezier-transition, transform 0.3s $bolt-typeahead-bezier-transition;
+
+  .is-open & {
+    visibility: visible;
     opacity: 1;
+    transform: translateY(0);
     overflow-y: auto;
     max-height: calc(100vh - #{$bolt-typeahead-button-width});
     max-height: calc(100vh - var(--typeahead-height) );
-  }
+    pointer-events: auto;
+    transition: max-height 0.3s $bolt-typeahead-bezier-transition, opacity 0.3s $bolt-typeahead-bezier-transition, transform 0.3s $bolt-typeahead-bezier-transition;
 
+    > * {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: 9999px;
+      transition: all 0.2s $bolt-typeahead-bezier-transition 0.1s;
+    }
+  }
 }
 
 .c-bolt-typeahead__results {
@@ -158,10 +232,15 @@ bolt-autosuggest {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-bottom-right-radius: $bolt-typeahead-border-radius;
-  border-bottom-left-radius: $bolt-typeahead-border-radius;
   @include bolt-padding-top(xsmall);
-  @include bolt-padding-bottom(xsmall);
+
+  // automatically add space below the results container OR the last sibling container (ex. the footer container)
+  &:last-child,
+  &:not(:last-child) ~ *:last-child {
+    @include bolt-padding-bottom(xsmall);
+    border-bottom-right-radius: $bolt-typeahead-border-radius;
+    border-bottom-left-radius: $bolt-typeahead-border-radius;
+  }
 
   &:empty {
     max-height: 0;
@@ -169,26 +248,34 @@ bolt-autosuggest {
   }
 }
 
+.c-bolt-typeahead__footer:first-child {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.c-bolt-typeahead__footer:not(:first-child){
+  .is-open & {
+    visibility: visible;
+    pointer-events: auto;
+  }
+}
+
+.c-bolt-typeahead__footer-inner {
+  @include bolt-padding(medium, squished);
+  @include bolt-padding-left($bolt-typeahead-button-width);
+  font-size: 0.8rem;
+}
+
 .c-bolt-typeahead__result {
   overflow: hidden;
   color: inherit;
-  transition: background-color 0.1s ease;
-
-  &.has-cursor {
-    background-color: $bolt-typeahead-result-highlight-color;
-  }
-
-  &:active,
-  &:focus {
-    background-color: rgba(bolt-color(indigo, xlight), .5);
-  }
 }
 
 .c-bolt-typeahead__result-highlight {
   @include bolt-font-weight(bold);
 }
 
-.c-bolt-typeahead__result-text {
+.c-bolt-typeahead__result-item {
   @include bolt-padding(medium, squished);
   display: block;
   padding-left: $bolt-typeahead-button-width;
@@ -196,6 +283,17 @@ bolt-autosuggest {
   text-transform: initial; // fix for weird capitalization
   cursor: pointer;
   font-size: 0.8rem;
+  transition: background 0.1s ease;
+
+  &:hover,
+  .has-cursor & {
+    background-color: bolt-theme-prop(link, 0.1);
+  }
+
+  &:active,
+  &:focus {
+    background-color: bolt-theme-prop(link, 0.2);
+  }
 }
 
 .c-bolt-typeahead__wrapper {
@@ -205,13 +303,19 @@ bolt-autosuggest {
 .c-bolt-typeahead__input-wrapper {
   flex-shrink: 0;
   position: relative; // used for positioning search clear button in relation to the <input>
+  border-radius: $bolt-typeahead-border-radius;
+
+  .is-open & {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 }
 
 .c-bolt-typeahead__button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 1; /* [1] */
+  z-index: 5; /* [1] */
   cursor: pointer;
   border: 0;
   transition: opacity 0.1s ease;
@@ -228,10 +332,17 @@ bolt-autosuggest {
 }
 
 .c-bolt-typeahead__icon {
-  color: bolt-color(indigo, light);
-  --bolt-theme-background: 255, 255, 255; // workaround so dark themes don't wipe the inner icon color. @todo: remove once full theming support added
+  color: bolt-theme-prop(link);
   line-height: 1;
   font-size: 1.5rem;
+
+  // workaround to ensure nested icons are filled in correctly (esp. in IE 11 or when Shadow DOM isn't used)
+
+  @include bolt-ie11-only {
+    .c-bolt-icon__icon [fill]:not([fill="currentColor"]) {
+      fill: bolt-theme-prop(background);
+    }
+  }
 }
 
 .c-bolt-typeahead__icon--clear {
@@ -254,3 +365,5 @@ bolt-autosuggest {
 .c-bolt-typeahead__input--with-clear-button ~ .c-bolt-typeahead__button--submit {
   opacity: 1;
 }
+
+@include bolt-theme-subset($bolt-typeahead-theme-options-used);
