@@ -10,6 +10,19 @@ $bolt-blockquote-image-border-style: $bolt-border-style;
 $bolt-blockquote-image-border-color: rgba(bolt-color(gray), 0.2);
 $bolt-blockquote-image-size: 4rem;
 
+@mixin bolt-lang-specific-quotes($type: 'open') {
+  content: map-get-deep($bolt-quotation-marks, 'en', $type);
+  [lang='de'] & {
+    content: map-get-deep($bolt-quotation-marks, 'de', $type);
+  }
+  [lang='fr'] & {
+    content: map-get-deep($bolt-quotation-marks, 'fr', $type);
+  }
+  [lang='ja'] & {
+    content: map-get-deep($bolt-quotation-marks, 'ja', $type);
+  }
+}
+
 // Register Custom Block Element
 @include bolt-custom-element('bolt-blockquote', block, medium);
 
@@ -56,11 +69,11 @@ $bolt-blockquote-image-size: 4rem;
   }
 
   p:not([slot]):first-child:before {
-    content: '\201C';
+    @include bolt-lang-specific-quotes('open');
   }
 
   p:not([slot]):last-child:after {
-    content: '\201D';
+    @include bolt-lang-specific-quotes('close');
   }
 
   ::slotted(p:first-child),
@@ -76,14 +89,14 @@ $bolt-blockquote-image-size: 4rem;
   ::slotted(p:first-child),
   ::slotted(p.is-first-child) {
     &:before {
-      content: '\201C';
+      @include bolt-lang-specific-quotes('open');
     }
   }
 
   ::slotted(p:last-child),
   ::slotted(p.is-last-child) {
     &:after {
-      content: '\201D';
+      @include bolt-lang-specific-quotes('close');
     }
   }
 }

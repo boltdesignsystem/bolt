@@ -1,6 +1,6 @@
 import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
 import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { ifDefined } from 'lit-html/directives/if-defined';
 import { convertInitialTags } from '@bolt/core/decorators';
 import classNames from 'classnames/bind';
 import textStyles from '@bolt/components-text/index.scss';
@@ -22,6 +22,7 @@ class BoltBlockquote extends withLitHtml() {
     indent: props.boolean,
     fullBleed: props.boolean,
     noQuotes: props.boolean,
+    lang: props.string,
     authorName: props.string,
     authorTitle: props.string,
     authorImage: props.string,
@@ -141,6 +142,7 @@ class BoltBlockquote extends withLitHtml() {
       indent,
       fullBleed,
       noQuotes,
+      lang,
       authorName,
       authorTitle,
       authorImage,
@@ -181,7 +183,18 @@ class BoltBlockquote extends withLitHtml() {
 
     return html`
       ${this.addStyles([styles, textStyles])}
-      <blockquote class="${classes}">
+      <blockquote
+        class="${classes}"
+        lang="${ifDefined(
+          lang
+            ? lang
+            : this.closest('[lang]')
+            ? this.closest('[lang]')
+                .getAttribute('lang')
+                .toLowerCase()
+            : undefined,
+        )}"
+      >
         ${this.slots.logo
           ? html`
               <div class="${cx('c-bolt-blockquote__logo')}">
