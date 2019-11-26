@@ -15,6 +15,7 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
 
   // @todo: replace with auto-wired up props approach used in Carousel
   static props = {
+    renderSuggestionTemplate: props.any,
     theme: {
       ...props.string,
       ...{ default: schema.properties.theme.default },
@@ -100,6 +101,7 @@ class BoltTypeahead extends withEvents(withLitHtml()) {
       >
         <bolt-autosuggest
           .theme=${this.theme}
+          .renderSuggestionTemplate=${this.renderSuggestionTemplate}
           .noSort=${this.noSort}
           .keys=${this.keys}
           .noFilter=${this.noFilter}

@@ -15,6 +15,7 @@ npm install @bolt/components-typeahead
 - Fully customizable behavior to handle partial vs full result matches, etc 
 - Supports rendering to the Shadow DOM _and_ the Light DOM
 - Fully support theming system colors
+- Customizable content below search results
 - Improved Accessibility + Internationalization Support
 
 ### What's Next? (Future Updates)
