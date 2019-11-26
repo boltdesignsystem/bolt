@@ -31,6 +31,7 @@ const validateItem = item => {
  */
 const validateParamsForEqualizeRelativeHeights = items => {
   items.forEach((item, i) => {
+    const { container, elToEqualize, paddingEqualizationTarget } = item;
     if (!validateItem(item)) {
       throw new Error(
         `Element provided to equalizeRelativeHeights has no width. container: ${container.offsetWidth}, elToEqualize: ${elToEqualize.offsetWidth}, paddingEqualizationTarget: ${paddingEqualizationTarget.offsetWidth}`,
