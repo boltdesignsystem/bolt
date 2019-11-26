@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/bolt-design-system/bolt/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* properly deprecate old figure media props, update old demos ([0022b17](https://github.com/bolt-design-system/bolt/commit/0022b17))
+
+
+### Features
+
+* add `media.content` to schema, deprecate specific media types ([5b7501e](https://github.com/bolt-design-system/bolt/commit/5b7501e))
+
+
+
+
+
 ## [2.11.2](https://github.com/bolt-design-system/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
 
 **Note:** Version bump only for package @bolt/components-figure
