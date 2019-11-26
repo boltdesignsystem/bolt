@@ -78,8 +78,10 @@ class BoltTwoCharacterLayout extends withLitHtml() {
       this.isInitialRender
     ) {
       setTimeout(() => {
-        this.charactersAreReadyInitialization();
-        this.isInitialRender = false;
+        window.requestAnimationFrame(() => {
+          this.charactersAreReadyInitialization();
+          this.isInitialRender = false;
+        });
       });
     }
   }
