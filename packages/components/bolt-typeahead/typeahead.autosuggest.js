@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { define, props } from 'skatejs';
-import { h, withPreact } from '@bolt/core/renderers';
+import { h, withPreact, Fragment } from '@bolt/core/renderers';
 import { getUniqueId } from '@bolt/core/utils/get-unique-id';
 import Fuse from 'fuse.js';
 import ReactHtmlParser from 'react-html-parser';
