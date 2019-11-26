@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* properly deprecate old figure media props, update old demos ([0022b17](https://github.com/bolt-design-system/bolt/tree/master/packages/global/commit/0022b17))
+
+
+
+
+
 ## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/global/compare/v2.11.1...v2.11.2) (2019-11-14)
 
 **Note:** Version bump only for package @bolt/global
