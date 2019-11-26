@@ -16,6 +16,33 @@ exports[`<bolt-modal> Component <bolt-modal> rendered by Twig 1`] = `
 </bolt-modal>
 `;
 
+exports[`<bolt-modal> Component <bolt-modal> rendered by Twig 4`] = `
+<bolt-modal uuid="12345">
+  <bolt-text tag="h3"
+             slot="header"
+  >
+    This is the header
+  </bolt-text>
+  <bolt-text>
+    <p>
+      This is the very long body text(default).
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed id semper risus in hendrerit. Vitae nunc sed velit dignissim sodales ut eu sem integer. Vulputate mi sit amet mauris commodo quis imperdiet massa. Et netus et malesuada fames ac. Nibh mauris cursus mattis molestie a iaculis at erat pellentesque. Tortor condimentum lacinia quis vel eros donec ac odio. Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum. Et egestas quis ipsum suspendisse ultrices. Facilisi morbi tempus iaculis urna id volutpat. Cras fermentum odio eu feugiat. Felis donec et odio pellentesque diam.
+    </p>
+    <p>
+      Amet tellus cras adipiscing enim eu turpis egestas pretium aenean. Enim eu turpis egestas pretium aenean. Diam sit amet nisl suscipit adipiscing bibendum est. Elementum nisi quis eleifend quam adipiscing vitae proin. Dolor purus non enim praesent. Laoreet id donec ultrices tincidunt arcu non. Arcu ac tortor dignissim convallis. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus mattis. Tellus integer feugiat scelerisque varius morbi enim nunc. Porttitor massa id neque aliquam vestibulum morbi. Eros in cursus turpis massa tincidunt dui. Est pellentesque elit ullamcorper dignissim cras.
+    </p>
+    <p>
+      Sed elementum tempus egestas sed sed risus pretium quam vulputate. Faucibus turpis in eu mi bibendum. In ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada. Non tellus orci ac auctor augue. Imperdiet massa tincidunt nunc pulvinar sapien. Ut aliquam purus sit amet luctus. Fames ac turpis egestas sed tempus urna et pharetra pharetra. Lacinia quis vel eros donec ac odio tempor orci dapibus. Varius vel pharetra vel turpis nunc eget lorem dolor sed. Libero id faucibus nisl tincidunt eget nullam. Congue quisque egestas diam in arcu cursus euismod quis.
+    </p>
+  </bolt-text>
+  <bolt-text slot="footer">
+    This is the footer
+  </bolt-text>
+</bolt-modal>
+`;
+
 exports[`<bolt-modal> Component Default <bolt-modal> w/o Shadow DOM renders 2`] = `
 <bolt-modal
   ready=""
@@ -216,6 +243,277 @@ exports[`<bolt-modal> Component Default <bolt-modal> with Shadow DOM renders 2`]
     style=""
   >
     This is the body (default).
+  </bolt-text>
+  
+      
+  <bolt-text
+    class="is-first-child is-last-child"
+    slot="footer"
+    style=""
+  >
+    This is the footer
+  </bolt-text>
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component Long text <bolt-modal> w/o Shadow DOM renders 2`] = `
+<bolt-modal
+  ready=""
+  style=""
+  uuid="12345"
+>
+  <!---->
+  
+      
+      
+  <div
+    aria-hidden="true"
+    class="c-bolt-modal c-bolt-modal--scroll-container c-bolt-modal--overlay-dark"
+    style=""
+  >
+    
+        
+    <!---->
+    <!---->
+    
+        
+    <focus-trap
+      style=""
+    >
+      
+          
+      <dialog
+        aria-hidden="true"
+        aria-labelledby="dialog-title-12345"
+        class="c-bolt-modal__content c-bolt-modal__content--width-optimal"
+        style=""
+      >
+        
+            
+        <article
+          class="c-bolt-modal__container c-bolt-modal__container--spacing-medium t-bolt-xlight"
+          style=""
+        >
+          
+              
+          <div
+            class="c-bolt-modal__close-button c-bolt-modal__close-button--light"
+            style=""
+          >
+            
+                
+      
+            <bolt-trigger
+              autofocus=""
+              class="js-close-button-fallback"
+              display="block"
+              no-outline=""
+              style=""
+              tabindex="0"
+            >
+              
+        
+              <span
+                class="c-bolt-modal__close-button__text"
+                style=""
+              >
+                Close this dialog window
+              </span>
+              
+        
+              <span
+                class="c-bolt-modal__close-button__icon"
+                style=""
+              />
+              
+      
+            </bolt-trigger>
+            
+    
+              
+          </div>
+          
+              
+          <header
+            class="c-bolt-modal__container-header"
+            style=""
+          >
+            
+                
+            <h1
+              class="c-bolt-modal__dialog-title"
+              id="dialog-title-12345"
+              style=""
+            >
+              
+                  Dialog content
+                
+            </h1>
+            
+                
+            <!---->
+            <!---->
+            <bolt-text
+              class="is-first-child is-last-child"
+              slot="header"
+              style=""
+              tag="h3"
+            >
+              This is the header
+            </bolt-text>
+            <!---->
+            <!---->
+            
+              
+          </header>
+          
+              
+          <div
+            class="c-bolt-modal__container-body"
+            style=""
+          >
+            
+                
+            <!---->
+            <!---->
+            
+      
+            <!---->
+            <bolt-text
+              class="is-first-child is-last-child"
+              style=""
+            >
+              
+        
+              <p
+                style=""
+              >
+                This is the very long body text(default).
+              </p>
+              
+        
+              <p
+                style=""
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed id semper risus in hendrerit. Vitae nunc sed velit dignissim sodales ut eu sem integer. Vulputate mi sit amet mauris commodo quis imperdiet massa. Et netus et malesuada fames ac. Nibh mauris cursus mattis molestie a iaculis at erat pellentesque. Tortor condimentum lacinia quis vel eros donec ac odio. Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum. Et egestas quis ipsum suspendisse ultrices. Facilisi morbi tempus iaculis urna id volutpat. Cras fermentum odio eu feugiat. Felis donec et odio pellentesque diam.
+              </p>
+              
+        
+              <p
+                style=""
+              >
+                Amet tellus cras adipiscing enim eu turpis egestas pretium aenean. Enim eu turpis egestas pretium aenean. Diam sit amet nisl suscipit adipiscing bibendum est. Elementum nisi quis eleifend quam adipiscing vitae proin. Dolor purus non enim praesent. Laoreet id donec ultrices tincidunt arcu non. Arcu ac tortor dignissim convallis. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus mattis. Tellus integer feugiat scelerisque varius morbi enim nunc. Porttitor massa id neque aliquam vestibulum morbi. Eros in cursus turpis massa tincidunt dui. Est pellentesque elit ullamcorper dignissim cras.
+              </p>
+              
+        
+              <p
+                style=""
+              >
+                Sed elementum tempus egestas sed sed risus pretium quam vulputate. Faucibus turpis in eu mi bibendum. In ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada. Non tellus orci ac auctor augue. Imperdiet massa tincidunt nunc pulvinar sapien. Ut aliquam purus sit amet luctus. Fames ac turpis egestas sed tempus urna et pharetra pharetra. Lacinia quis vel eros donec ac odio tempor orci dapibus. Varius vel pharetra vel turpis nunc eget lorem dolor sed. Libero id faucibus nisl tincidunt eget nullam. Congue quisque egestas diam in arcu cursus euismod quis.
+              </p>
+              
+      
+            </bolt-text>
+            <!---->
+            
+      
+            <!---->
+            <!---->
+            
+              
+          </div>
+          
+              
+          
+          <footer
+            class="c-bolt-modal__container-footer"
+            style=""
+          >
+            
+            
+            <!---->
+            <!---->
+            <bolt-text
+              class="is-first-child is-last-child"
+              slot="footer"
+              style=""
+            >
+              This is the footer
+            </bolt-text>
+            <!---->
+            <!---->
+            
+          
+          </footer>
+          
+        
+            
+        </article>
+        
+          
+      </dialog>
+      
+        
+    </focus-trap>
+    
+      
+  </div>
+  
+    
+  <!---->
+</bolt-modal>
+`;
+
+exports[`<bolt-modal> Component Long text <bolt-modal> with Shadow DOM renders 2`] = `
+<bolt-modal
+  ready=""
+  style=""
+  uuid="12345"
+>
+  <bolt-text
+    class="is-first-child is-last-child"
+    slot="header"
+    style=""
+    tag="h3"
+  >
+    This is the header
+  </bolt-text>
+  
+      
+  <bolt-text
+    class="is-first-child is-last-child"
+    style=""
+  >
+    
+        
+    <p
+      style=""
+    >
+      This is the very long body text(default).
+    </p>
+    
+        
+    <p
+      style=""
+    >
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed id semper risus in hendrerit. Vitae nunc sed velit dignissim sodales ut eu sem integer. Vulputate mi sit amet mauris commodo quis imperdiet massa. Et netus et malesuada fames ac. Nibh mauris cursus mattis molestie a iaculis at erat pellentesque. Tortor condimentum lacinia quis vel eros donec ac odio. Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum. Et egestas quis ipsum suspendisse ultrices. Facilisi morbi tempus iaculis urna id volutpat. Cras fermentum odio eu feugiat. Felis donec et odio pellentesque diam.
+    </p>
+    
+        
+    <p
+      style=""
+    >
+      Amet tellus cras adipiscing enim eu turpis egestas pretium aenean. Enim eu turpis egestas pretium aenean. Diam sit amet nisl suscipit adipiscing bibendum est. Elementum nisi quis eleifend quam adipiscing vitae proin. Dolor purus non enim praesent. Laoreet id donec ultrices tincidunt arcu non. Arcu ac tortor dignissim convallis. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus mattis. Tellus integer feugiat scelerisque varius morbi enim nunc. Porttitor massa id neque aliquam vestibulum morbi. Eros in cursus turpis massa tincidunt dui. Est pellentesque elit ullamcorper dignissim cras.
+    </p>
+    
+        
+    <p
+      style=""
+    >
+      Sed elementum tempus egestas sed sed risus pretium quam vulputate. Faucibus turpis in eu mi bibendum. In ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada. Non tellus orci ac auctor augue. Imperdiet massa tincidunt nunc pulvinar sapien. Ut aliquam purus sit amet luctus. Fames ac turpis egestas sed tempus urna et pharetra pharetra. Lacinia quis vel eros donec ac odio tempor orci dapibus. Varius vel pharetra vel turpis nunc eget lorem dolor sed. Libero id faucibus nisl tincidunt eget nullam. Congue quisque egestas diam in arcu cursus euismod quis.
+    </p>
+    
+      
   </bolt-text>
   
       
