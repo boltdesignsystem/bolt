@@ -236,7 +236,7 @@ async function createWebpackConfig(buildConfig) {
           importer: [npmSass.importer],
           functions: sassExportData,
           precision: 3,
-        }
+        },
       },
     },
   ];

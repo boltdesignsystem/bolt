@@ -27,10 +27,7 @@ function warmupSharp(sharp) {
     ),
   )
     .metadata()
-    .then(
-      () => sharp,
-      () => sharp,
-    );
+    .then(() => sharp, () => sharp);
 }
 
 const {
