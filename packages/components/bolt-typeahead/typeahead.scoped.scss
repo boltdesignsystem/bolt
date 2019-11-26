@@ -200,7 +200,6 @@ bolt-autosuggest,
 
   > * {
     opacity: 0;
-    transform: translateY(-30px);
     max-height: 0;
     transition: all 0.01s $bolt-typeahead-bezier-transition;
   }
@@ -211,7 +210,6 @@ bolt-autosuggest,
   .is-open & {
     visibility: visible;
     opacity: 1;
-    transform: translateY(0);
     overflow-y: auto;
     max-height: calc(100vh - #{$bolt-typeahead-button-width});
     max-height: calc(100vh - var(--typeahead-height) );
@@ -220,7 +218,6 @@ bolt-autosuggest,
 
     > * {
       opacity: 1;
-      transform: translateY(0);
       max-height: 9999px;
       transition: all 0.2s $bolt-typeahead-bezier-transition 0.1s;
     }
