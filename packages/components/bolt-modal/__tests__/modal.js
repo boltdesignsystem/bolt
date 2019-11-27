@@ -9,7 +9,7 @@ import { fixture as html } from '@open-wc/testing-helpers';
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../modal.schema.yml'));
-const { persistent, width, spacing, theme, scroll } = schema.properties;
+const { width, spacing, theme, scroll } = schema.properties;
 
 async function renderTwig(template, data) {
   return await render(template, data, true);
@@ -45,7 +45,7 @@ const viewportSizes = [
 ];
 
 const modalContent = [
-  '<bolt-text tag="h3" slot="header">This is the header</bolt-text><bolt-text>This is the body (default).</bolt-text><bolt-text slot="footer">This is the footer</bolt-text>',
+  `<bolt-text tag="h3" slot="header">This is the header</bolt-text><bolt-text>This is the body (default).</bolt-text><bolt-text slot="footer">This is the footer</bolt-text>`,
   `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
     <bolt-text>
       <p>This is the very long body text(default).</p>
@@ -129,124 +129,51 @@ describe('<bolt-modal> Component', () => {
     });
   });
 
-  test('Default <bolt-modal> with Shadow DOM renders', async function() {
-    const renderedModal = await page.evaluate(async () => {
-      const modal = document.createElement('bolt-modal');
-      modal.setAttribute('uuid', '12345');
-      modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
-      <bolt-text>This is the body (default).</bolt-text>
-      <bolt-text slot="footer">This is the footer</bolt-text>`;
-      document.body.appendChild(modal);
-      modal.updated();
-      modal.show();
-      return modal.outerHTML;
+  modalContent.forEach(async contentChoice => {
+    test('Default <bolt-modal> with Shadow DOM renders', async () => {
+      const renderedModal = await page.evaluate(async contentChoice => {
+        const modal = document.createElement('bolt-modal');
+        modal.setAttribute('uuid', '12345');
+        modal.innerHTML = contentChoice;
+        document.body.appendChild(modal);
+        modal.updated();
+        modal.show();
+        return modal.outerHTML;
+      }, contentChoice);
+
+      const renderedHTML = await html(renderedModal);
+
+      await page.waitFor(1000); // wait a second before testing
+      const image = await page.screenshot();
+
+      expect(image).toMatchImageSnapshot(imageVrtConfig);
+
+      expect(renderedHTML).toMatchSnapshot();
     });
-
-    // const activeTagName = await page.evaluate(async () => {
-    //   return document.activeElement.tagName;
-    // });
-
-    const renderedHTML = await html(renderedModal);
-
-    await page.waitFor(1000); // wait a second before testing
-    const image = await page.screenshot();
-
-    // @todo: Fix this, returns 'BOLT-MODAL', expected 'BOLT-BUTTON'.
-    // console.log(activeTagName);
-    // expect(renderedModal.activeTagName === 'BOLT-BUTTON').toBe(true);
-
-    expect(image).toMatchImageSnapshot(imageVrtConfig);
-
-    expect(renderedHTML).toMatchSnapshot();
   });
 
-  test('Long text <bolt-modal> with Shadow DOM renders', async function() {
-    const renderedModal = await page.evaluate(async () => {
-      const modal = document.createElement('bolt-modal');
-      modal.setAttribute('uuid', '12345');
-      modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
-      <bolt-text>
-        <p>This is the very long body text(default).</p>
-        <bolt-image src="/fixtures/1200x660.jpg" alt="Placeholder"></bolt-image>
-        <p>Amet tellus cras adipiscing enim eu turpis egestas pretium aenean. Enim eu turpis egestas pretium aenean. Diam sit amet nisl suscipit adipiscing bibendum est. Elementum nisi quis eleifend quam adipiscing vitae proin. Dolor purus non enim praesent. Laoreet id donec ultrices tincidunt arcu non. Arcu ac tortor dignissim convallis. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus mattis. Tellus integer feugiat scelerisque varius morbi enim nunc. Porttitor massa id neque aliquam vestibulum morbi. Eros in cursus turpis massa tincidunt dui. Est pellentesque elit ullamcorper dignissim cras.</p>
-        <p>Sed elementum tempus egestas sed sed risus pretium quam vulputate. Faucibus turpis in eu mi bibendum. In ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada. Non tellus orci ac auctor augue. Imperdiet massa tincidunt nunc pulvinar sapien. Ut aliquam purus sit amet luctus. Fames ac turpis egestas sed tempus urna et pharetra pharetra. Lacinia quis vel eros donec ac odio tempor orci dapibus. Varius vel pharetra vel turpis nunc eget lorem dolor sed. Libero id faucibus nisl tincidunt eget nullam. Congue quisque egestas diam in arcu cursus euismod quis.</p>
-      </bolt-text>
-      <bolt-text slot="footer">This is the footer</bolt-text>`;
-      document.body.appendChild(modal);
-      modal.updated();
-      modal.show();
-      return modal.outerHTML;
+  modalContent.forEach(async contentChoice => {
+    test('Default <bolt-modal> w/o Shadow DOM renders', async () => {
+      const renderedModal = await page.evaluate(contentChoice => {
+        const modal = document.createElement('bolt-modal');
+        modal.setAttribute('uuid', '12345');
+        modal.innerHTML = contentChoice;
+        document.body.appendChild(modal);
+        modal.useShadow = false;
+        modal.updated();
+        modal.show();
+        return modal.outerHTML;
+      }, contentChoice);
+
+      const renderedHTML = await html(renderedModal);
+
+      await page.waitFor(1000); // wait a second before testing
+      const image = await page.screenshot();
+
+      expect(image).toMatchImageSnapshot(imageVrtConfig);
+
+      expect(renderedHTML).toMatchSnapshot();
     });
-
-    // const activeTagName = await page.evaluate(async () => {
-    //   return document.activeElement.tagName;
-    // });
-
-    const renderedHTML = await html(renderedModal);
-
-    await page.waitFor(1000); // wait a second before testing
-    const image = await page.screenshot();
-
-    // @todo: Fix this, returns 'BOLT-MODAL', expected 'BOLT-BUTTON'.
-    // console.log(activeTagName);
-    // expect(renderedModal.activeTagName === 'BOLT-BUTTON').toBe(true);
-
-    expect(image).toMatchImageSnapshot(imageVrtConfig);
-
-    expect(renderedHTML).toMatchSnapshot();
-  });
-
-  test('Default <bolt-modal> w/o Shadow DOM renders', async function() {
-    const renderedModal = await page.evaluate(() => {
-      const modal = document.createElement('bolt-modal');
-      modal.setAttribute('uuid', '12345');
-      modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
-      <bolt-text>This is the body (default).</bolt-text>
-      <bolt-text slot="footer">This is the footer</bolt-text>`;
-      document.body.appendChild(modal);
-      modal.useShadow = false;
-      modal.updated();
-      modal.show();
-      return modal.outerHTML;
-    });
-
-    const renderedHTML = await html(renderedModal);
-
-    await page.waitFor(1000); // wait a second before testing
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot(imageVrtConfig);
-
-    expect(renderedHTML).toMatchSnapshot();
-  });
-
-  test('Long text <bolt-modal> w/o Shadow DOM renders', async function() {
-    const renderedModal = await page.evaluate(() => {
-      const modal = document.createElement('bolt-modal');
-      modal.setAttribute('uuid', '12345');
-      modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
-      <bolt-text>
-        <p>This is the very long body text(default).</p>
-        <bolt-image src="/fixtures/1200x660.jpg" alt="Placeholder"></bolt-image>
-        <p>Amet tellus cras adipiscing enim eu turpis egestas pretium aenean. Enim eu turpis egestas pretium aenean. Diam sit amet nisl suscipit adipiscing bibendum est. Elementum nisi quis eleifend quam adipiscing vitae proin. Dolor purus non enim praesent. Laoreet id donec ultrices tincidunt arcu non. Arcu ac tortor dignissim convallis. Quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus mattis. Tellus integer feugiat scelerisque varius morbi enim nunc. Porttitor massa id neque aliquam vestibulum morbi. Eros in cursus turpis massa tincidunt dui. Est pellentesque elit ullamcorper dignissim cras.</p>
-        <p>Sed elementum tempus egestas sed sed risus pretium quam vulputate. Faucibus turpis in eu mi bibendum. In ornare quam viverra orci sagittis eu volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada. Non tellus orci ac auctor augue. Imperdiet massa tincidunt nunc pulvinar sapien. Ut aliquam purus sit amet luctus. Fames ac turpis egestas sed tempus urna et pharetra pharetra. Lacinia quis vel eros donec ac odio tempor orci dapibus. Varius vel pharetra vel turpis nunc eget lorem dolor sed. Libero id faucibus nisl tincidunt eget nullam. Congue quisque egestas diam in arcu cursus euismod quis.</p>
-      </bolt-text>
-      <bolt-text slot="footer">This is the footer</bolt-text>`;
-      document.body.appendChild(modal);
-      modal.useShadow = false;
-      modal.updated();
-      modal.show();
-      return modal.outerHTML;
-    });
-
-    const renderedHTML = await html(renderedModal);
-
-    await page.waitFor(1000); // wait a second before testing
-    const image = await page.screenshot();
-
-    expect(image).toMatchImageSnapshot(imageVrtConfig);
-
-    expect(renderedHTML).toMatchSnapshot();
   });
 
   modalContent.forEach(async modalContentChoice => {
