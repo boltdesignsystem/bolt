@@ -1,19 +1,18 @@
-{% set schema = bolt.data.components["@bolt-components-menu-list"].schema %}
+{% set schema = bolt.data.components["@bolt-components-menu"].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
 {# Variables #}
-{% set base_class = "c-bolt-menu-list" %}
+{% set base_class = "c-bolt-menu" %}
 {% set this = init(schema) %}
 {% set inner_attributes = create_attribute({}) %}
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  base_class,
-  this.data.align.value ? base_class ~ "--align-" ~ this.data.align.value : "",
-  this.data.spacing.value ? base_class ~ "--spacing-" ~ this.data.spacing.value : "",
+  "c-bolt-menu",
+  this.data.spacing.value ? "c-bolt-menu--spacing-" ~ spacing,
 ] %}
 
 {#
@@ -32,27 +31,23 @@
   {% endif %}
 {% endfor %}
 
-<bolt-menu-list
+<bolt-menu
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
   {{ this.props|without("content")|without("class") }}
-  >
-  <div
-    {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}
-  >
-    {# {% for item in items %}
+  role="menu"
+>
+  <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
+    {% if title %}
+      <replace-with-children class="c-bolt-menu__title">
+        <div slot="title">{{ title }}</div>
+      </replace-with-children>
+    {% endif %}
+    {% for item in items %}
       {% if item %}
-        {% set menu_item %}
-          <bolt-trigger role="menuitem" display="block" cursor="pointer" no-outline>
-            <div class="c-bolt-menu-item">
-              {{ item.text }}
-            </div>
-          </bolt-trigger>
-        {% endset %}
+        {% include "@bolt-components-menu/_menu-item.twig" with item|merge({
+          spacing: this.data.spacing.value,
+        }) only %}
       {% endif %}
     {% endfor %}
-
-    {% include "@bolt-components-list/list.twig" with {
-      items:  menu_items,
-    } only %} #}
-  </div>
-</bolt-menu-list>
+  </replace-with-children>
+</bolt-menu>

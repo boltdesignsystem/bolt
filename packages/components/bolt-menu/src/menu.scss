@@ -1,0 +1,38 @@
+/* ------------------------------------ *\
+   Menu
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import './_menu-settings-and-tools.scss';
+
+// Register Custom Block Element
+@include bolt-repeat-rule(('bolt-menu', ':host')) {
+  display: block;
+}
+
+.c-bolt-menu {
+  @include bolt-font-family(body);
+  @include bolt-font-size(xsmall);
+  @include bolt-font-weight(regular);
+  display: block;
+}
+
+// Title
+.c-bolt-menu__title {
+  @include bolt-font-weight(semibold);
+
+  display: block;
+  color: bolt-theme(headline);
+  letter-spacing: 1px;
+  border-bottom-color: $bolt-menu-border-color;
+  border-bottom-style: $bolt-menu-border-style;
+  border-bottom-width: $bolt-menu-border-width;
+}
+
+@each $value in $bolt-menu-spacing-values {
+  .c-bolt-menu--spacing-#{$value} {
+    .c-bolt-menu__title {
+      @include bolt-padding(#{$value}, squished);
+    }
+  }
+}

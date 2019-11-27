@@ -1,0 +1,39 @@
+{# {% set schema = bolt.data.components["@bolt-components-menu"].schema %}
+
+{% if enable_json_schema_validation %}
+  {{ validate_data_schema(schema, _self) | raw }}
+{% endif %}
+
+{% set this = init(schema.properties.items) %}
+{% set inner_attributes = create_attribute({}) %} #}
+
+{% set item_class = "c-bolt-menu-item" %}
+{% set item_attributes = create_attribute(attributes|merge({
+  "role": "menuitem",
+})) %}
+{% set last = loop.last %}
+{% set item_classes = [
+  item_class,
+  spacing ? item_class ~ "--spacing-" ~ spacing,
+  last ? item_class ~ "--last-item",
+] %}
+{% set menu_item %}
+  <ssr-keep for="bolt-menu-item" {% if item_classes %} class="{{ item_classes|join(' ') }}" {% endif %}>
+    {{ content }}
+  </ssr-keep>
+{% endset %}
+
+
+<bolt-menu-item
+  {% if url %} url="{{ url }}" {% endif %}
+  {% if spacing %} spacing="{{ spacing }}" {% endif %}
+>
+  <replace-with-children>
+    {% include "@bolt-components-trigger/trigger.twig" with {
+      content: menu_item,
+      display: "block",
+      no_outline: true,
+      attributes: item_attributes,
+    } only %}
+  </replace-with-children>
+</bolt-menu-item>

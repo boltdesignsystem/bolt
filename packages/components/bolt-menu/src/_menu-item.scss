@@ -1,11 +1,11 @@
 /* ------------------------------------ *\
-   Menu List
+   Menu
 \* ------------------------------------ */
 
 @import '@bolt/core';
+@import './_menu-settings-and-tools.scss';
 
 .c-bolt-menu-item {
-  @include bolt-padding(small, squished);
   @include bolt-font-family(body);
   @include bolt-font-size(xsmall);
   @include bolt-font-weight(regular);
@@ -14,6 +14,9 @@
   position: relative;
   transform: translate3d(0, 0, 0);
   color: bolt-theme(text);
+  border-bottom-color: $bolt-menu-border-color;
+  border-bottom-style: $bolt-menu-border-style;
+  border-bottom-width: $bolt-menu-border-width;
   transition: background-color $bolt-transition;
 
   &:before,
@@ -72,5 +75,14 @@
     &:after {
       height: 40%;
     }
+  }
+}
+
+// Spacing
+$bolt-menu-spacing-values: xsmall, small, medium;
+
+@each $value in $bolt-menu-spacing-values {
+  .c-bolt-menu-item--spacing-#{$value} {
+    @include bolt-padding(#{$value}, squished);
   }
 }

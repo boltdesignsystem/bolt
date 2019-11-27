@@ -1,13 +1,13 @@
 {
-  "name": "@bolt/components-menu-list",
-  "description": "A vertical list of interactive menu items.",
+  "name": "@bolt/components-menu",
+  "description": "A vertical list of menu items. This component is usually used inside a popover container to provide additional actions.",
   "keywords": [
     "bolt design system",
     "bolt",
     "css framework",
     "design system",
     "components",
-    "menu-list",
+    "menu",
     "collapsible"
   ],
   "version": "0.0.0",
@@ -29,17 +29,18 @@
   ],
   "homepage": "https://boltdesignsystem.com",
   "license": "MIT",
-  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu-list",
+  "repository": "https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-menu",
   "bugs": "https://github.com/bolt-design-system/bolt/issues",
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@bolt/core": "^2.9.2"
+    "@bolt/core": "^2.9.2",
+    "@bolt/components-trigger": "^2.11.2"
   },
   "style": "index.scss",
   "main": "index.js",
-  "twig": "src/menu-list.twig",
-  "schema": "menu-list.schema.yml",
+  "twig": "src/menu.twig",
+  "schema": "menu.schema.yml",
   "gitHead": "d41aa75ae3d195d9d7fb3952eed5e0ae80988133"
 }
