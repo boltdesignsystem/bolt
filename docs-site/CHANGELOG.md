@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/bolt-design-system/bolt/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* properly deprecate old figure media props, update old demos ([0022b17](https://github.com/bolt-design-system/bolt/commit/0022b17))
+
+
+### Features
+
+* add `lang` as a prop, update demo ([7de7c9e](https://github.com/bolt-design-system/bolt/commit/7de7c9e))
+* add lang-specific quotes to blockquote ([1e860d9](https://github.com/bolt-design-system/bolt/commit/1e860d9))
+* manually port over <bolt-theme-switcher> component from [#1542](https://github.com/bolt-design-system/bolt/issues/1542) ([3a88bc7](https://github.com/bolt-design-system/bolt/commit/3a88bc7))
+
+
+
+
+
 ## [2.11.4](https://github.com/bolt-design-system/bolt/compare/v2.11.3...v2.11.4) (2019-11-18)
 
 **Note:** Version bump only for package @bolt/website
