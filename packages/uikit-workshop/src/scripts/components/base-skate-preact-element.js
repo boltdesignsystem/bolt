@@ -23,29 +23,6 @@ const preactNodeName = '__preactNodeName';
 
 let oldVnode;
 
-function newVnode(vnode) {
-  let fn = vnode.nodeName;
-  if (fn && fn.prototype instanceof HTMLElement) {
-    if (!fn[preactNodeName]) {
-      const prefix = fn.name;
-      customElements.define(
-        (fn[preactNodeName] = name(prefix)),
-        class extends fn {}
-      );
-    }
-    vnode.nodeName = fn[preactNodeName];
-  }
-  return vnode;
-}
-
-function setupPreact() {
-  oldVnode = preact.options.vnode;
-  preact.options.vnode = newVnode;
-}
-
-function teardownPreact() {
-  preact.options.vnode = oldVnode;
-}
 
 export class SkatePreactElement extends SkateElement {
   get props() {
@@ -55,14 +32,11 @@ export class SkatePreactElement extends SkateElement {
   }
 
   renderer(root, call) {
-    setupPreact();
     this._renderRoot = root;
     this._preactDom = render(
       call(),
       root,
-      this._preactDom || root.childNodes[0]
     );
-    teardownPreact();
   }
 
   disconnectedCallback() {
@@ -70,8 +44,6 @@ export class SkatePreactElement extends SkateElement {
     super.disconnectedCallback && super.disconnectedCallback();
     this.disconnected && this.disconnected();
     // Render null to unmount. See https://github.com/skatejs/skatejs/pull/1432#discussion_r183381359
-    this._preactDom = render(null, this._renderRoot, this._preactDom);
-    this._renderRoot = null;
 
     this.__storeUnsubscribe && this.__storeUnsubscribe();
 

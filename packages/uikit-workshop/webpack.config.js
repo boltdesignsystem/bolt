@@ -85,7 +85,7 @@ module.exports = function() {
             '@babel/plugin-transform-react-jsx' /* [1] */,
             {
               pragma: 'h',
-              pragmaFrag: '"span"',
+              pragmaFrag: 'Fragment',
               throwIfNamespace: false,
               useBuiltIns: false,
             },
@@ -124,7 +124,7 @@ module.exports = function() {
             sourceMap: config.sourceMaps,
             outputStyle: 'expanded',
             importer: [selectorImporter()],
-          }
+          },
         },
       },
     ];
@@ -136,8 +136,9 @@ module.exports = function() {
       resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
-          react: path.resolve(__dirname, './src/scripts/utils/preact-compat'),
-          'react-dom': 'preact-compat',
+          react: 'preact/compat',
+          'react-dom/test-utils': 'preact/test-utils',
+          'react-dom': 'preact/compat',
         },
       },
       output: {
@@ -210,7 +211,7 @@ module.exports = function() {
                 // otherwise extract the result and write out a .css file per usual
                 use: [MiniCssExtractPlugin.loader, scssLoaders].reduce(
                   (acc, val) => acc.concat(val),
-                  []
+                  [],
                 ),
               },
             ],
@@ -272,7 +273,7 @@ module.exports = function() {
           // caches will be deleted. Together they must be at least 300MB in size
           sizeThreshold: 300 * 1024 * 1024,
         },
-      })
+      }),
     );
 
     const legacyConfig = merge(webpackConfig, {
@@ -299,7 +300,7 @@ module.exports = function() {
           chunkFilename: `[id].css`,
           allChunks: true,
         }),
-      ]
+      ],
     });
 
     const modernConfig = merge(webpackConfig, {
@@ -343,7 +344,7 @@ module.exports = function() {
 
             // perform clean just before files are emitted to the output dir
             beforeEmit: false,
-          }
+          },
         ),
         new PrerenderSPAPlugin({
           // Required - The path to the webpack-outputted app to prerender.

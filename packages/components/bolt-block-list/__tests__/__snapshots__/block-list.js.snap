@@ -1,9 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<bolt-block-list> Component basic usage 1`] = `
-<bolt-block-list items="List Item 1,List Item 2,List Item 3"
-                 bolt-component
->
+<bolt-block-list ssr-uuid="12345">
+  <script>
+    function __ssr12345() {
+    var a = document.querySelector('[ssr-uuid="12345"]');
+    var items = "List Item 1|BOLT_SSR|List Item 2|BOLT_SSR|List Item 3";
+    a.items = items.split('|BOLT_SSR|');
+  }
+  </script>
   <ul class="c-bolt-block-list">
     <li class="c-bolt-block-list__item">
       List Item 1
@@ -15,13 +20,21 @@ exports[`<bolt-block-list> Component basic usage 1`] = `
       List Item 3
     </li>
   </ul>
+  <script>
+    __ssr12345()
+  </script>
 </bolt-block-list>
 `;
 
 exports[`<bolt-block-list> Component block list with Drupal theme attribute 1`] = `
-<bolt-block-list items="List Item 1,List Item 2,List Item 3"
-                 bolt-component
->
+<bolt-block-list ssr-uuid="12345">
+  <script>
+    function __ssr12345() {
+    var a = document.querySelector('[ssr-uuid="12345"]');
+    var items = "List Item 1|BOLT_SSR|List Item 2|BOLT_SSR|List Item 3";
+    a.items = items.split('|BOLT_SSR|');
+  }
+  </script>
   <ul class="t-bolt-dark c-bolt-block-list">
     <li class="c-bolt-block-list__item">
       List Item 1
@@ -33,5 +46,8 @@ exports[`<bolt-block-list> Component block list with Drupal theme attribute 1`] 
       List Item 3
     </li>
   </ul>
+  <script>
+    __ssr12345()
+  </script>
 </bolt-block-list>
 `;

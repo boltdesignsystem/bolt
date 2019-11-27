@@ -1,37 +1,37 @@
-import { define, props } from '@bolt/core/utils';
-import { h, withPreact } from '@bolt/core/renderers';
+import { BoltElement, customElement, unsafeCSS, html } from '@bolt/element';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html';
+import blockListStyles from './block-list.scss';
 
-import styles from './block-list.scss';
+@customElement('bolt-block-list')
+class BoltBlockList extends BoltElement {
+  static get properties() {
+    return {
+      items: Array,
+    };
+  }
 
-@define
-class BoltBlockList extends withPreact() {
-  static is = 'bolt-block-list';
+  static get styles() {
+    return [unsafeCSS(blockListStyles)];
+  }
 
-  static props = {
-    items: props.any,
-  };
-
-  constructor(self) {
-    self = super(self);
-    this.useShadow = false; // @todo: Get this working with shadowDOM + slots
-    return self;
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
+    this.items = this.items || [];
   }
 
   render() {
-    const theItems = this.props.items ? this.props.items.split(',') : [];
-    let finalItems = '';
-    theItems.forEach(value => {
-      finalItems += `<li class="c-bolt-block-list__item">${value}</li>`;
-    });
-    return (
-      <span>
-        {this.useShadow && <style>{styles[0][1]}</style>}
-        <ul
-          className="c-bolt-block-list"
-          dangerouslySetInnerHTML={{ __html: finalItems }}
-        />
-      </span>
-    );
+    return html`
+      <ul class="c-bolt-block-list">
+        ${this.items && this.items.length >= 1
+          ? this.items.map(
+              item =>
+                html`
+                  <li class="c-bolt-block-list__item">${unsafeHTML(item)}</li>
+                `,
+            )
+          : ''}
+      </ul>
+    `;
   }
 }
 
