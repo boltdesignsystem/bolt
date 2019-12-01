@@ -1,36 +1,27 @@
-import { withContext, define, props } from '@bolt/core/utils';
+import { html, customElement } from '@bolt/element';
+import { props } from '@bolt/core/utils';
 import classNames from 'classnames/bind';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { withLitContext } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './_list-item.scss';
-import { ListContext } from './list';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltListItem extends withContext(withLitHtml()) {
-  static is = 'bolt-list-item';
-
+@customElement('bolt-list-item')
+class BoltListItem extends withLitContext {
   static props = {
     last: props.boolean,
   };
 
-  // subscribe to specific props that are defined and available on the parent container
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get consumes() {
-    return [
-      [ListContext, 'spacing'],
-      [ListContext, 'tag'],
-      [ListContext, 'inset'],
-      [ListContext, 'separator'],
-      [ListContext, 'display'],
-      [ListContext, 'align'],
-    ];
-  }
-
   connectedCallback() {
     super.connectedCallback();
-    this.context = this.contexts.get(ListContext);
+  }
+
+  static get observedContexts() {
+    return ['tag', 'spacing', 'inset', 'separator', 'display', 'align'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
   render() {

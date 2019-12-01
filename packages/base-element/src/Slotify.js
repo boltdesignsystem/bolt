@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
+import { LitElement } from 'lit-element';
 
-const Slotify = Base =>
-  class extends Base {
+export class Slotify extends LitElement {
     templateMap = new Map();
 
     assignSlotToContent(child) {
@@ -79,5 +79,3 @@ const Slotify = Base =>
       return null;
     }
   };
-
-export { Slotify };

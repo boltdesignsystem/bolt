@@ -10,7 +10,7 @@ import schema from '../test.schema.yml';
 let cx = classNames.bind(styles);
 
 @define
-class BoltTest extends withLitHtml() {
+class BoltTest extends withLitHtml {
   static is = 'bolt-test';
 
   static props = {

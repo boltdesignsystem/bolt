@@ -1,17 +1,10 @@
-import {
-  define,
-  props,
-  css,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { props, css, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
 import placeholderStyles from './placeholder.scss';
 
-@define
-class BoltPlaceholder extends withLitHtml() {
-  static is = 'bolt-placeholder';
-
+@customElement('bolt-placeholder')
+class BoltPlaceholder extends withLitHtml {
   static props = {
     animated: props.boolean,
     size: props.string,
@@ -20,7 +13,7 @@ class BoltPlaceholder extends withLitHtml() {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    this.useShadow = hasNativeShadowDomSupport;
+    self.useShadow = hasNativeShadowDomSupport;
     return self;
   }
 

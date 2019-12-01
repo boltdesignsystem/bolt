@@ -1,5 +1,6 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
+import { html, customElement } from '@bolt/element';
+import { props, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitContext, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import debounce from 'lodash.debounce';
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
@@ -10,10 +11,9 @@ import pathwaysLogo from './images/interactive-pathways-logo.png';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltInteractivePathways extends withLitContext() {
-  static is = 'bolt-interactive-pathways';
 
+@customElement('bolt-interactive-pathways')
+class BoltInteractivePathways extends withLitContext {
   static props = {
     noShadow: {
       ...props.boolean,
@@ -39,26 +39,26 @@ class BoltInteractivePathways extends withLitContext() {
     self._hasBeenInViewport = false;
     self._isVisible = false;
     self.dropdownActive = false;
-    self._handleClosingEvent = this._handleClosingEvent.bind(this);
+    self._handleClosingEvent = self._handleClosingEvent.bind(self);
     self._isReady = false;
 
-    this.checkChildrenAndRender = debounce(done => {
-      this.pathways = this.getPathways();
-      this.triggerUpdate();
+    self.checkChildrenAndRender = debounce(done => {
+      self.pathways = self.getPathways();
+      self.triggerUpdate();
       // using callback since debounced promises require a different library that's not already in Bolt
       if (done) setTimeout(done, 0);
     }, 150);
 
     self.addEventListener(
       'bolt-interactive-pathway:connected',
-      this.handlePathwayConnect,
+      self.handlePathwayConnect,
     );
     self.addEventListener(
       'bolt-interactive-pathway:disconnected',
-      this.handlePathwayDisconnect,
+      self.handlePathwayDisconnect,
     );
     self.addEventListener('bolt-interactive-pathway:title-updated', () => {
-      this.checkChildrenAndRender();
+      self.checkChildrenAndRender();
     });
 
     return self;

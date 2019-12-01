@@ -1,10 +1,6 @@
-import {
-  renameKey,
-  props,
-  define,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { props, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { html, customElement } from '@bolt/element';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import changeCase from 'change-case';
 import Swiper from 'swiper';
@@ -59,10 +55,8 @@ for (const key of schemaPropKeys) {
   }
 }
 
-@define
-class BoltCarousel extends withLitHtml() {
-  static is = 'bolt-carousel';
-
+@customElement('bolt-carousel')
+class BoltCarousel extends withLitHtml {
   static props = {
     ...carouselProps,
     slideOffsetBefore: props.boolean,
@@ -665,10 +659,8 @@ class BoltCarousel extends withLitHtml() {
   }
 }
 
-@define
-class BoltCarouselSlide extends withLitHtml() {
-  static is = 'bolt-carousel-slide';
-
+@customElement('bolt-carousel-slide')
+class BoltCarouselSlide extends withLitHtml {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);

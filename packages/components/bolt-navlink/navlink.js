@@ -1,5 +1,6 @@
-import { props, define } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { props } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import isVisible from 'is-visible';
 
 // Used for attaching smooth scroll behavior to dynamically created <bolt-navlink> instances
@@ -9,10 +10,8 @@ import {
   getScrollTarget,
 } from '@bolt/components-smooth-scroll';
 
-@define
-class BoltNavLink extends withLitHtml() {
-  static is = 'bolt-navlink';
-
+@customElement('bolt-navlink')
+class BoltNavLink extends withLitHtml {
   static props = {
     active: props.boolean,
     isDropdownLink: props.boolean,
@@ -20,9 +19,9 @@ class BoltNavLink extends withLitHtml() {
 
   constructor(self) {
     self = super(self);
-    this.activeClass = 'is-active';
-    this.useShadow = false; // just-in-case workaround given that the current <bolt-navlink> doesn't actually render any HTML...
-    this.dropdownLinkClass = 'is-dropdown-link';
+    self.activeClass = 'is-active';
+    self.useShadow = false; // just-in-case workaround given that the current <bolt-navlink> doesn't actually render any HTML...
+    self.dropdownLinkClass = 'is-dropdown-link';
     return self;
   }
 
@@ -130,8 +129,8 @@ class BoltNavLink extends withLitHtml() {
     this._shadowLink.classList.remove(this.activeClass);
   }
 
-  connecting() {
-    super.connecting && super.connecting();
+  connectedCallback() {
+    super.connectedCallback && super.connectedCallback();
     this.addEventListener('click', this.onClick);
 
     this._shadowLink = this.querySelector('a');
@@ -147,8 +146,8 @@ class BoltNavLink extends withLitHtml() {
     }
   }
 
-  disconnecting() {
-    super.disconnecting && super.disconnecting();
+  disconnectedCallback() {
+    super.disconnectedCallback && super.disconnectedCallback();
     this.removeEventListener('click', this.onClick);
   }
 }

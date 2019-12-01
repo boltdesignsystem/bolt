@@ -7,13 +7,13 @@ export * from './debounce';
 export * from './declarative-click-handler';
 export * from './environment';
 export * from './find-parent-tag';
-export * from './get-component-root-element';
+// export * from './get-component-root-element';
 export * from './get-transition-duration';
 export * from './get-unique-id';
 export * from './is-valid-selector';
 export * from './rgb2hex';
 export * from './rename-key';
-export * from './sanitize-classes';
+// export * from './sanitize-classes';
 export * from './scrollbar';
 export * from './supports-css-vars';
 export * from './supports-passive-event-listener';
@@ -33,4 +33,4 @@ export {
   afterNextRender,
 } from '@polymer/polymer/lib/utils/render-status.js';
 
-export { shadow, withComponent, props, define } from 'skatejs/dist/esnext';
+export { shadow, withComponent, props, define } from 'skatejs';

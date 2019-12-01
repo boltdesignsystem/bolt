@@ -1,14 +1,13 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { props } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './stack.scss';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltStack extends withLitHtml() {
-  static is = 'bolt-stack';
-
+@customElement('bolt-stack')
+class BoltStack extends withLitHtml {
   static props = {
     noShadow: {
       ...props.boolean,
@@ -19,13 +18,6 @@ class BoltStack extends withLitHtml() {
       ...{ default: false },
     },
   };
-
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    return self;
-  }
 
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values

@@ -1,9 +1,7 @@
-import { define } from '@bolt/core/utils';
+import { customElement } from '@bolt/element';
 
-@define
+@customElement('ssr-keep')
 class ssrKeep extends HTMLElement {
-  static is = 'ssr-keep';
-
   get for() {
     return this.getAttribute('for');
   }

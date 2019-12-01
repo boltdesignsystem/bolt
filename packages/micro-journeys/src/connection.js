@@ -1,5 +1,6 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitContext, html, convertSchemaToProps } from '@bolt/core';
+import { html, customElement } from '@bolt/element';
+import { props, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitContext, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import styles from './connection.scss';
 import schema from './connection.schema';
@@ -7,10 +8,9 @@ import schema from './connection.schema';
 let cx = classNames.bind(styles);
 
 const boltConnectionIs = 'bolt-connection';
-@define
-class BoltConnection extends withLitContext() {
-  static is = boltConnectionIs;
 
+@customElement('bolt-connection')
+class BoltConnection extends withLitContext {
   static props = {
     noShadow: {
       ...props.boolean,

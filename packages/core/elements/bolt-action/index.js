@@ -1,15 +1,13 @@
 import {
   props,
-  define,
   declarativeClickHandler,
   hasNativeShadowDomSupport,
   afterNextRender,
   watchForComponentMutations,
 } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 
-@define
-class BoltAction extends withLitHtml() {
+class BoltAction extends withLitHtml {
   static props = {
     url: props.string,
     target: props.string,

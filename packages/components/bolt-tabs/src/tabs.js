@@ -1,35 +1,21 @@
+import { html, customElement } from '@bolt/element';
 import {
-  defineContext,
-  withContext,
-  define,
   props,
   containsTagName,
   getUniqueId,
   whichTransitionEvent,
   waitForTransitionEnd,
 } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
-
+import { withLitContext } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
+import '@bolt/core/utils/optimized-resize';
 import styles from './tabs.scss';
 import schema from '../tabs.schema.yml';
 
-import '@bolt/core/utils/optimized-resize';
-
-// define which specific props to provide to children that subscribe
-export const TabsContext = defineContext({
-  inset: 'auto',
-  panelSpacing: 'small', // no need to pass `labelSpacing`, only used in this template
-  uuid: '',
-  selectedIndex: 0,
-});
-
 let cx = classNames.bind(styles);
 
-@define
-class BoltTabs extends withContext(withLitHtml()) {
-  static is = 'bolt-tabs';
-
+@customElement('bolt-tabs')
+class BoltTabs extends withLitContext {
   static props = {
     align: props.string,
     inset: props.string,
@@ -42,31 +28,39 @@ class BoltTabs extends withContext(withLitHtml()) {
       ...props.number,
       ...{ default: schema.properties.selected_tab.default },
     },
+    selectedIndex: props.number,
     menuIsOpen: {
       ...props.boolean,
       ...{ default: false },
     },
   };
 
-  constructor(self) {
-    self = super(self);
-    self.schema = this.getModifiedSchema(schema);
-
-    this.transitionEvent = whichTransitionEvent();
-    this._resizeMenu = this._resizeMenu.bind(this);
-    this._handleExternalClicks = this._handleExternalClicks.bind(this);
-    this._handleDropdownToggle = this._handleDropdownToggle.bind(this);
-    this._waitForDropdownToFinishAnimating = this._waitForDropdownToFinishAnimating.bind(
-      this,
-    );
-
-    return self;
+  static get providedContexts() {
+    return {
+      inset: { property: 'inset' },
+      panelSpacing: { property: 'panelSpacing' },
+      uuid: { property: 'uuid' },
+      selectedIndex: { property: 'selectedIndex' },
+      tabPanels: { property: 'tabPanels' },
+    };
   }
 
-  // provide context info to children that subscribe
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get provides() {
-    return [TabsContext];
+  constructor(self) {
+    self = super(self);
+    self.schema = self.getModifiedSchema(schema);
+
+    self.transitionEvent = whichTransitionEvent();
+    self._resizeMenu = self._resizeMenu.bind(self);
+    self._handleExternalClicks = self._handleExternalClicks.bind(self);
+    self._handleDropdownToggle = self._handleDropdownToggle.bind(self);
+    self._waitForDropdownToFinishAnimating = self._waitForDropdownToFinishAnimating.bind(
+      self,
+    );
+
+    self.inset = 'auto';
+    self.panelSpacing = 'small';
+    self.uuid = '';
+    self.selectedIndex = 0;
   }
 
   connectedCallback() {
@@ -184,7 +178,6 @@ class BoltTabs extends withContext(withLitHtml()) {
       this.selectedIndex = newIndex;
 
       this.setAttribute('selected-tab', newIndex + 1); // Convert `selectedTab` back to 1-based scale
-      this.contexts.get(TabsContext).selectedIndex = newIndex; // Keep context 0-based
 
       // set timeout allows time for sub component to re-render, better that than putting this on the sub component where it'll be fired many more times than needed
       setTimeout(() => {
@@ -591,12 +584,6 @@ class BoltTabs extends withContext(withLitHtml()) {
     const { inset, panelSpacing, selectedTab } = this.validateProps(this.props);
 
     this.selectedIndex = this.validateIndex(selectedTab - 1);
-
-    this.contexts.get(TabsContext).inset = inset;
-    this.contexts.get(TabsContext).panelSpacing = panelSpacing;
-    this.contexts.get(TabsContext).uuid = this.tabsId;
-    this.contexts.get(TabsContext).selectedIndex = this.selectedIndex;
-    this.contexts.get(TabsContext).tabPanels = this.tabPanels;
 
     return html`
       ${this.addStyles([styles])} ${this.template()}

@@ -1,34 +1,23 @@
-import {
-  withContext,
-  define,
-  props,
-  hasNativeShadowDomSupport,
-} from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+import { html, customElement } from '@bolt/element';
+import { props } from '@bolt/core/utils';
+import { withLitContext } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './tab-panel.scss';
-import { TabsContext } from '../tabs';
 
 let cx = classNames.bind(styles);
 
-@define
-class TabPanel extends withContext(withLitHtml()) {
-  static is = 'bolt-tab-panel';
-
+@customElement('bolt-tab-panel')
+class TabPanel extends withLitContext {
   static props = {
     selected: props.boolean,
   };
 
-  // subscribe to specific props that are defined and available on the parent container
-  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
-  static get consumes() {
-    return [
-      [TabsContext, 'inset'],
-      [TabsContext, 'panelSpacing'],
-      [TabsContext, 'uuid'],
-      [TabsContext, 'selectedIndex'],
-      [TabsContext, 'tabPanels'],
-    ];
+  static get observedContexts() {
+    return ['inset', 'panelSpacing', 'uuid', 'selectedIndex', 'tabPanels'];
+  }
+
+  contextChangedCallback(name, oldValue, value) {
+    this.triggerUpdate();
   }
 
   constructor(self) {
@@ -46,7 +35,6 @@ class TabPanel extends withContext(withLitHtml()) {
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
-    this.context = this.contexts.get(TabsContext);
   }
 
   setSelectedTab() {

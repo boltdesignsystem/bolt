@@ -1,11 +1,11 @@
+import { html, customElement } from '@bolt/element';
 import {
   props,
-  define,
   hasNativeShadowDomSupport,
   query,
   convertSchemaToProps,
 } from '@bolt/core/utils';
-import { withLitContext, html } from '@bolt/core';
+import { withLitContext } from '@bolt/core';
 import classNames from 'classnames';
 import debounce from 'lodash.debounce';
 import styles from './interactive-pathway.scss';
@@ -13,10 +13,8 @@ import schema from './interactive-pathway.schema';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltInteractivePathway extends withLitContext() {
-  static is = 'bolt-interactive-pathway';
-
+@customElement('bolt-interactive-pathway')
+class BoltInteractivePathway extends withLitContext {
   static props = {
     noShadow: {
       ...props.boolean,
@@ -42,29 +40,29 @@ class BoltInteractivePathway extends withLitContext() {
     self.isActivePathway = false;
     self.activeStep = -1;
     self.steps = [];
-    this.checkChildrenAndRender = debounce(done => {
-      this.steps = this.getSteps();
-      this.triggerUpdate();
+    self.checkChildrenAndRender = debounce(done => {
+      self.steps = self.getSteps();
+      self.triggerUpdate();
       // using callback since debounced promises require a different library that's not already in Bolt
       if (done) setTimeout(done, 0);
     }, 150);
     self.addEventListener(
       'bolt-interactive-step:connected',
-      this.handleStepConnect,
+      self.handleStepConnect,
     );
     self.addEventListener(
       'bolt-interactive-step:disconnected',
-      this.handleStepDisconnect,
+      self.handleStepDisconnect,
     );
 
     self.addEventListener('bolt-interactive-step:change-active-step', event => {
-      const steps = this.getSteps();
+      const steps = self.getSteps();
       const stepId = steps.findIndex(step => step.el === event.target);
-      this.setActiveStep(stepId);
+      self.setActiveStep(stepId);
     });
 
     self.addEventListener('bolt-interactive-step:title-updated', () => {
-      this.checkChildrenAndRender();
+      self.checkChildrenAndRender();
     });
     return self;
   }

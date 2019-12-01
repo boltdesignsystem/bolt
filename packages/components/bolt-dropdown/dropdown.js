@@ -15,7 +15,7 @@ import Handorgel from 'handorgel';
 import heightUtils from '@bolt/global/styles/07-utilities/_utilities-height.scss';
 import styles from './dropdown.scss';
 
-class BoltDropdown extends withLitHtml() {
+class BoltDropdown extends withLitHtml {
   static is = 'bolt-dropdown';
 
   static props = {
@@ -32,14 +32,14 @@ class BoltDropdown extends withLitHtml() {
   constructor(self) {
     self = super(self);
 
-    this.useShadow = hasNativeShadowDomSupport;
+    self.useShadow = hasNativeShadowDomSupport;
 
-    this.state = {
-      open: this.props.autoOpen ? this.props.autoOpen : false,
-      collapse: this.props.collapse ? this.props.collapse : false,
+    self.state = {
+      open: self.props.autoOpen ? self.props.autoOpen : false,
+      collapse: self.props.collapse ? self.props.collapse : false,
     };
 
-    this.uuid = '12345';
+    self.uuid = '12345';
     return self;
   }
 

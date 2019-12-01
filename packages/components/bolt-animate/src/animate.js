@@ -1,13 +1,10 @@
+import { classMap, styleMap, html, customElement } from '@bolt/element';
 import {
   withLitHtml,
-  html,
   props,
-  define,
   hasNativeShadowDomSupport,
   convertSchemaToProps,
 } from '@bolt/core';
-import { styleMap } from 'lit-html/directives/style-map.js';
-import { classMap } from 'lit-html/directives/class-map.js';
 import styles from './animate.scss';
 import schema from '../animate.schema';
 
@@ -31,10 +28,8 @@ export const ANIM_STAGES = {
   OUT: 'OUT',
 };
 
-@define
-class BoltAnimate extends withLitHtml() {
-  static is = 'bolt-animate';
-
+@customElement('bolt-animate')
+class BoltAnimate extends withLitHtml {
   static props = convertSchemaToProps(schema);
 
   constructor(self) {

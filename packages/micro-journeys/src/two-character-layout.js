@@ -1,5 +1,6 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import { html, customElement } from '@bolt/element';
+import { props, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core';
 import classNames from 'classnames/bind';
 import {
   boltCharacterCenterClass,
@@ -14,10 +15,8 @@ let cx = classNames.bind(styles);
 
 const boltTwoCharacterLayoutIs = 'bolt-two-character-layout';
 
-@define
-class BoltTwoCharacterLayout extends withLitHtml() {
-  static is = boltTwoCharacterLayoutIs;
-
+@customElement('bolt-two-character-layout')
+class BoltTwoCharacterLayout extends withLitHtml {
   static props = {
     noShadow: {
       ...props.boolean,
@@ -33,7 +32,7 @@ class BoltTwoCharacterLayout extends withLitHtml() {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.hasConnection = !!this.querySelector(boltConnectionIs);
+    self.hasConnection = !!self.querySelector(boltConnectionIs);
     self.requiredComponentCount = self.hasConnection ? 3 : 2;
     self.renderedComponentCount = 0;
     self.isInitialRender = true;
