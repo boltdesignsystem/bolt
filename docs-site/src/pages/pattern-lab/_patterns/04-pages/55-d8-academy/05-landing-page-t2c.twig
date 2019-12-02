@@ -129,17 +129,20 @@
       text: "Achievement <br>Badge Awarded",
     } only %}
   {% endset %}
+  {% set figure_icon %}
+    {% include "@bolt-components-icon/icon.twig" with {
+      name: "launchpad",
+      size: "xlarge",
+      background: "circle",
+      color: "teal"
+    } only %}
+  {% endset %}
   {% set prereq %}
     {% include "@bolt/flag.twig" with {
       valign: "middle",
       url: "#!",
       figure: {
-        icon: {
-          name: "launchpad",
-          size: "xlarge",
-          background: "circle",
-          color: "teal"
-        }
+        content: figure_icon
       },
       items: [
         {
