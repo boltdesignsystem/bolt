@@ -3,6 +3,38 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/boltdesignsystem/bolt/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* update failing build test ([18d1092](https://github.com/boltdesignsystem/bolt/commit/18d1092))
+
+
+### Features
+
+* port over @bolt/core theme updates from https://github.com/boltdesignsystem/bolt/pull/1542; update build tools CLI task to make it easier to update the build tools-specific Jest test ([713fb44](https://github.com/boltdesignsystem/bolt/commit/713fb44))
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/build-tools--test-multi-lang
+
+
+
+
+
 ## [2.10.1](https://github.com/bolt-design-system/bolt/compare/v2.10.0...v2.10.1) (2019-11-05)
 
 **Note:** Version bump only for package @bolt/build-tools--test-multi-lang

@@ -16,6 +16,8 @@ describe('test-utils', () => {
       '@bolt/components-grid',
       '@bolt/components-background',
       '@bolt/components-background-shapes',
+      '@bolt/element',
+      '@bolt/polyfills',
     ].sort();
     expect(deps.sort()).toEqual(expected);
   });

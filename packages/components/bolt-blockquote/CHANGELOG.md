@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Features
+
+* add `lang` as a prop, update demo ([7de7c9e](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/7de7c9e))
+* add lang-specific quotes to blockquote ([1e860d9](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/commit/1e860d9))
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/components-blockquote
+
+
+
+
+
 ## [2.10.1](https://github.com/bolt-design-system/bolt/tree/master/packages/components/bolt-blockquote/compare/v2.10.0...v2.10.1) (2019-11-05)
 
 **Note:** Version bump only for package @bolt/components-blockquote

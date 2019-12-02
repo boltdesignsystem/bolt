@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin-patch');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssDiscardDuplicates = require('postcss-discard-duplicates');
@@ -230,11 +230,13 @@ async function createWebpackConfig(buildConfig) {
       loader: 'sass-loader',
       options: {
         sourceMap: config.sourceMaps,
-        importer: [npmSass.importer],
-        functions: sassExportData,
-        precision: 3,
-        data: globalSassData.join('\n'),
-        outputStyle: 'nested',
+        prependData: globalSassData.join('\n'),
+        sassOptions: {
+          outputStyle: 'nested',
+          importer: [npmSass.importer],
+          functions: sassExportData,
+          precision: 3,
+        },
       },
     },
   ];
@@ -265,8 +267,9 @@ async function createWebpackConfig(buildConfig) {
         '.jpg',
       ],
       alias: {
-        react: 'preact-compat',
-        'react-dom': 'preact-compat',
+        react: 'preact/compat',
+        'react-dom/test-utils': 'preact/test-utils',
+        'react-dom': 'preact/compat',
       },
     },
     module: {
@@ -305,14 +308,15 @@ async function createWebpackConfig(buildConfig) {
           test: /\.(js|tsx|mjs)$/,
           exclude: thePath => {
             if (
-              thePath.endsWith(
-                'node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js',
-              )
+              thePath.includes('custom-elements-es5-adapter.js') ||
+              thePath.includes('grapesjs/dist') ||
+              thePath.includes('core-js') ||
+              thePath.includes('regenerator-runtime') ||
+              thePath.includes('critical-path-polyfills') ||
+              thePath.includes('critical-css-vars') ||
+              thePath.includes('critical-css') ||
+              thePath.includes('critical-fonts')
             ) {
-              return true;
-            }
-
-            if (thePath.endsWith('grapesjs/dist/grapes.js')) {
               return true;
             }
 
@@ -324,7 +328,6 @@ async function createWebpackConfig(buildConfig) {
               loader: 'babel-loader',
               options: {
                 babelrc: false,
-                cacheDirectory: true,
                 presets: ['@bolt/babel-preset-bolt'],
               },
             },
@@ -369,17 +372,11 @@ async function createWebpackConfig(buildConfig) {
     optimization: {
       minimizer: config.prod
         ? [
-            new UglifyJsPlugin({
-              sourceMap: true,
-              parallel: true,
-              cache: true,
-              uglifyOptions: {
-                compress: true,
-                mangle: true,
-                output: {
-                  comments: false,
-                  beautify: false,
-                },
+            new TerserPlugin({
+              test: /\.m?js(\?.*)?$/i,
+              sourceMap: config.sourceMaps,
+              terserOptions: {
+                safari10: true,
               },
             }),
           ]
@@ -452,20 +449,6 @@ async function createWebpackConfig(buildConfig) {
   }
 
   if (config.prod) {
-    // Optimize JS - https://webpack.js.org/plugins/uglifyjs-webpack-plugin/
-    // Config recommendation based off of https://slack.engineering/keep-webpack-fast-a-field-guide-for-better-build-performance-f56a5995e8f1#f548
-    webpackConfig.plugins.push(
-      new UglifyJsPlugin({
-        sourceMap: config.sourceMaps,
-        parallel: true,
-        cache: true,
-        uglifyOptions: {
-          compress: true,
-          mangle: true,
-        },
-      }),
-    );
-
     // https://webpack.js.org/plugins/module-concatenation-plugin/
     webpackConfig.plugins.push(
       new webpack.optimize.ModuleConcatenationPlugin(),

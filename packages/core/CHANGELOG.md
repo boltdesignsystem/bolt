@@ -3,6 +3,46 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Features
+
+* add lang-specific quotes to blockquote ([1e860d9](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/1e860d9))
+* add Sassy Lists to @bolt/core -- backport of updates from https://github.com/boltdesignsystem/bolt/pull/1542 ([985e6c2](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/985e6c2))
+* port over @bolt/core theme updates from https://github.com/boltdesignsystem/bolt/pull/1542; update build tools CLI task to make it easier to update the build tools-specific Jest test ([713fb44](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/713fb44))
+
+
+
+
+
+## [2.11.4](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.11.3...v2.11.4) (2019-11-18)
+
+**Note:** Version bump only for package @bolt/core
+
+
+
+
+
+## [2.11.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.11.1...v2.11.2) (2019-11-14)
+
+**Note:** Version bump only for package @bolt/core
+
+
+
+
+
+# [2.11.0](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.10.0...v2.11.0) (2019-11-14)
+
+
+### Bug Fixes
+
+* address eslint / prettier issues ([c4c31f9](https://github.com/bolt-design-system/bolt/tree/master/packages/core/commit/c4c31f9))
+
+
+
+
+
 ## [2.9.2](https://github.com/bolt-design-system/bolt/tree/master/packages/core/compare/v2.9.1...v2.9.2) (2019-10-23)
 
 

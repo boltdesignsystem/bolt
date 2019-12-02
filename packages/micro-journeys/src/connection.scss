@@ -1,34 +1,22 @@
 @import '@bolt/core';
 
+bolt-connection {
+  display: block;
+}
+
 .c-bolt-connection {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
 
   &__main-image {
-    // This is a little safety to prevent overflow.
-    // @TODO But what we really need is an image for small.
-    min-width: 100px;
-
-    @include bolt-mq(xsmall) { // 400
-      max-width: 150px;
-    }
-
-    @include bolt-mq(small) { // 600
-      max-width: 300px;
-    }
-
-  }
-
-  &__slot {
-    // TODO see if this fix works.
-    &--top > :last-child {
-      margin-bottom: 10px;
-    }
-    &--bottom {
-      margin-top: 10px;
-    }
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
   }
 }
