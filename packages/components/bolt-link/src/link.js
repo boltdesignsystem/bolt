@@ -48,8 +48,7 @@ class BoltLink extends BoltAction {
     const hasUrl = this.props.url.length > 0 && this.props.url !== 'null';
 
     // Assign default target attribute value if one isn't specified
-    const anchorTarget =
-      this.props.target && hasUrl ? this.props.target : '_self';
+    const urlTarget = this.props.target && hasUrl ? this.props.target : '_self';
 
     // The linkElement to render, based on the initial HTML passed alone.
     let renderedLink;
@@ -73,12 +72,15 @@ class BoltLink extends BoltAction {
       if (renderedLink.getAttribute('href') === null && hasUrl) {
         renderedLink.setAttribute('href', this.props.url);
       }
+      if (renderedLink.getAttribute('target') === null && urlTarget) {
+        renderedLink.setAttribute('target', urlTarget);
+      }
       renderedLink.className += ' ' + classes;
       render(innerSlots, renderedLink);
     } else {
       // [1]
       // prettier-ignore
-      renderedLink = html`<a href="${this.props.url}" class="${classes}" target="${anchorTarget}"
+      renderedLink = html`<a href="${this.props.url}" class="${classes}" target="${urlTarget}"
           >${innerSlots}</a
         >`;
     }

@@ -6,7 +6,7 @@
   "style": "export-data.scss",
   "scripts": {
     "test:compile": "rm -rf tests/basics/dest/ && mkdir tests/basics/dest/ && node-sass --functions tests/basics/function.js tests/basics/scss/style.scss tests/basics/dest/style.css",
-    "test": "mocha tests"
+    "test": "yarn test:compile && mocha tests"
   },
   "keywords": [
     "theme-tools-plugin",
