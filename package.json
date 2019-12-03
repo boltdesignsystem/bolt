@@ -59,7 +59,7 @@
     "serve": "node packages/servers/default-server",
     "setup": "yarn && yarn run setup:php",
     "setup:full": "yarn --force && yarn run setup:php",
-    "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist --quiet",
+    "setup:php": "npx lerna exec --parallel --scope @bolt/twig-renderer --scope @bolt/drupal-twig-extensions --scope @bolt/core-php --scope @bolt/website -- composer install --prefer-dist",
     "setup:quick": "yarn && yarn run setup:php",
     "start": "cd docs-site && yarn run start",
     "test": "npm-run-all --parallel --aggregate-output test:js test:php test:monorepo test:build-tools",
