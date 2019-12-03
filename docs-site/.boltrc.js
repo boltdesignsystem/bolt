@@ -11,7 +11,7 @@ const config = {
   openServerAtStart: true,
   // Environmental variable / preset to use
   env: 'pwa',
-  esModules: true,
+  //esModules: true,
   srcDir: './src/pages',
   buildDir: '../www/build',
   dataDir: '../www/build/data',
