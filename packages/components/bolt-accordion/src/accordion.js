@@ -1,12 +1,20 @@
-import { props, css } from '@bolt/core/utils';
-import { withLitContext } from '@bolt/core/renderers/renderer-lit-html';
 import { html, customElement } from '@bolt/element';
+import { defineContext, withContext, props, css } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './accordion.scss';
 import schema from '../accordion.schema.yml';
 import { Accordion } from './_accordion-handorgel';
 
+// define which specific props to provide to children that subscribe
+export const AccordionContext = defineContext({
+  noSeparator: schema.properties.no_separator.default,
+  boxShadow: schema.properties.box_shadow.default,
+  spacing: schema.properties.spacing.default,
+  iconValign: schema.properties.icon_valign.default,
+});
+
 @customElement('bolt-accordion')
-class BoltAccordion extends withLitContext {
+class BoltAccordion extends withContext(withLitHtml) {
   static props = {
     single: props.boolean,
     noSeparator: props.boolean,
@@ -15,23 +23,17 @@ class BoltAccordion extends withLitContext {
     iconValign: props.string,
   };
 
-  static get providedContexts() {
-    return {
-      noSeparator: { property: 'noSeparator' },
-      boxShadow: { property: 'boxShadow' },
-      spacing: { property: 'spacing' },
-      iconValign: { property: 'iconValign' },
-    };
-  }
-
   constructor(self) {
     self = super(self);
-    self.schema = self.getModifiedSchema(schema);
-    self.noSeparator = schema.properties.no_separator.default;
-    self.boxShadow = schema.properties.box_shadow.default;
-    self.spacing = schema.properties.spacing.default;
-    self.iconValign = schema.properties.icon_valign.default;
+    self.schema = this.getModifiedSchema(schema);
+
     return self;
+  }
+
+  // provide context info to children that subscribe
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get provides() {
+    return [AccordionContext];
   }
 
   get accordionOptions() {
@@ -299,6 +301,11 @@ class BoltAccordion extends withLitContext {
     const { noSeparator, boxShadow, spacing, iconValign } = this.validateProps(
       this.props,
     );
+
+    this.contexts.get(AccordionContext).noSeparator = noSeparator;
+    this.contexts.get(AccordionContext).boxShadow = boxShadow;
+    this.contexts.get(AccordionContext).spacing = spacing;
+    this.contexts.get(AccordionContext).iconValign = iconValign;
 
     return html`
       ${this.addStyles([styles])} ${this.template()}

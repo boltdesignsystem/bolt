@@ -8,7 +8,6 @@ import {
   shouldUseShadowDom,
   hasNativeShadowDomSupport,
 } from '@bolt/element/src/lib/utils';
-import { withContext } from './wc-context';
 import { renameKey } from '../utils';
 
 export function shadow(elem) {
@@ -25,7 +24,7 @@ export function shadow(elem) {
 }
 
 export const withComponent = (Base = HTMLElement) =>
-  withLifecycle(withContext(withUpdate(withRenderer(Base))));
+  withLifecycle(withUpdate(withRenderer(Base)));
 
 export class BoltBase extends withComponent(HTMLElement) {
   connectedCallback() {

@@ -1,13 +1,6 @@
 import { html, render } from 'lit-html';
-import { withChildren, withLifecycle, withUpdate, withRenderer } from 'skatejs';
 import { withContext } from 'wc-context/skatejs';
-
-import {
-  withComponent,
-  shadow,
-  props,
-  hasNativeShadowDomSupport,
-} from '../utils';
+import { props, hasNativeShadowDomSupport } from '../utils';
 import { BoltBase } from './bolt-base';
 
 export { html, render } from 'lit-html';
@@ -68,8 +61,4 @@ export class withLit extends BoltBase {
 
 export class withLitHtml extends withLit {}
 
-// export const withLitHtml(Base = HTMLElement) {
-//   return class extends withLit(withComponent(BoltBase)) {};
-// }
-
-export class withLitContext extends withLit {}
+export class withLitContext extends withContext(withLit) {}

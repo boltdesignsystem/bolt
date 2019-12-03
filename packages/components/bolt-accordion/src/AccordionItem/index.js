@@ -1,12 +1,13 @@
-import { props, css } from '@bolt/core/utils';
-import { withLitContext } from '@bolt/core/renderers/renderer-lit-html';
 import { html, customElement } from '@bolt/element';
+import { withContext, props, css } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import styles from './accordion-item.scss';
 import { AccordionItemTrigger } from './AccordionItemTrigger';
 import { AccordionItemContent } from './AccordionItemContent';
+import { AccordionContext } from '../accordion';
 
 @customElement('bolt-accordion-item')
-class AccordionItem extends withLitContext {
+class AccordionItem extends withContext(withLitHtml) {
   static props = {
     open: props.boolean,
     contentSpacing: props.string,
@@ -15,12 +16,20 @@ class AccordionItem extends withLitContext {
     uuid: props.string,
   };
 
-  static get observedContexts() {
-    return ['noSeparator', 'boxShadow', 'spacing', 'iconValign'];
+  // subscribe to specific props that are defined and available on the parent container
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get consumes() {
+    return [
+      [AccordionContext, 'noSeparator'],
+      [AccordionContext, 'boxShadow'],
+      [AccordionContext, 'spacing'],
+      [AccordionContext, 'iconValign'],
+    ];
   }
 
-  contextChangedCallback(name, oldValue, value) {
-    this.triggerUpdate();
+  constructor(self) {
+    self = super(self);
+    return self;
   }
 
   get isFirstItem() {
@@ -55,6 +64,7 @@ class AccordionItem extends withLitContext {
 
   connectedCallback() {
     super.connectedCallback && super.connectedCallback();
+    this.context = this.contexts.get(AccordionContext);
   }
 
   close() {

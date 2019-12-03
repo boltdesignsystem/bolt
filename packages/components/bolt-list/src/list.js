@@ -1,8 +1,14 @@
 import { html, customElement } from '@bolt/element';
-import { props } from '@bolt/core/utils';
+import {
+  defineContext,
+  withContext,
+  props,
+  define,
+  hasNativeShadowDomSupport,
+} from '@bolt/core/utils';
 import classNames from 'classnames/bind';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import Ajv from 'ajv';
-import { withLitContext } from '@bolt/core/renderers/renderer-lit-html';
 
 import themes from '@bolt/global/styles/06-themes/_themes.all.scss';
 import styles from './list.scss';
@@ -13,9 +19,23 @@ const ajv = new Ajv({ useDefaults: 'shared' });
 let cx = classNames.bind(styles);
 
 // define which specific props to provide to children that subscribe
+export const ListContext = defineContext({
+  tag: 'ul',
+  display: 'inline',
+  spacing: 'none',
+  inset: false,
+  align: 'start',
+  separator: 'none',
+});
 
 @customElement('bolt-list')
-class BoltList extends withLitContext {
+class BoltList extends withContext(withLitHtml) {
+  // provide context info to children that subscribe
+  // (context + subscriber idea originally from https://codepen.io/trusktr/project/editor/XbEOMk)
+  static get provides() {
+    return [ListContext];
+  }
+
   static props = {
     tag: props.string, // ul | ol | div | span
     display: props.string, // inline | block | flex | inline@xxsmall | inline@xsmall | inline@small | inline@medium
@@ -26,27 +46,11 @@ class BoltList extends withLitContext {
     valign: props.string, // start | center | end
   };
 
-  static get providedContexts() {
-    return {
-      tag: { property: 'tag' },
-      display: { property: 'display' },
-      spacing: { property: 'spacing' },
-      inset: { property: 'inset' },
-      align: { property: 'align' },
-      separator: { property: 'separator' },
-    };
-  }
-
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-    this.validate = ajv.compile(schema);
-
-    this.tag = 'ul';
-    this.display = 'inline';
-    this.spacing = 'none';
-    this.inset = false;
-    this.align = 'start';
-    this.separator = 'none';
+  constructor(self) {
+    self = super(self);
+    self.useShadow = hasNativeShadowDomSupport;
+    self.validate = ajv.compile(schema);
+    return self;
   }
 
   validateProps(propData) {
@@ -79,6 +83,13 @@ class BoltList extends withLitContext {
       align,
       valign,
     } = this.validateProps(this.props);
+    this.contexts.get(ListContext).tag = tag || this.props.tag;
+    this.contexts.get(ListContext).display = display || this.props.display;
+    this.contexts.get(ListContext).spacing = spacing || this.props.spacing;
+    this.contexts.get(ListContext).inset = inset || this.props.inset;
+    this.contexts.get(ListContext).align = align || this.props.align;
+    this.contexts.get(ListContext).separator =
+      separator || this.props.separator;
 
     const classes = cx('c-bolt-list', {
       [`c-bolt-list--display-${display}`]: display,
