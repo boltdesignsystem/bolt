@@ -11,7 +11,6 @@ import pathwaysLogo from './images/interactive-pathways-logo.png';
 
 let cx = classNames.bind(styles);
 
-
 @customElement('bolt-interactive-pathways')
 class BoltInteractivePathways extends withLitContext {
   static props = {

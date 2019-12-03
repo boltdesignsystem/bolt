@@ -1,6 +1,5 @@
 import Ajv from 'ajv';
 import { props } from 'skatejs';
-import { withContext } from './wc-context';
 import { withLifecycle } from 'skatejs/dist/esnext/with-lifecycle.js';
 import { withUpdate } from 'skatejs/dist/esnext/with-update.js';
 import { withRenderer } from 'skatejs/dist/esnext/with-renderer.js';
@@ -9,6 +8,7 @@ import {
   shouldUseShadowDom,
   hasNativeShadowDomSupport,
 } from '@bolt/element/src/lib/utils';
+import { withContext } from './wc-context';
 import { renameKey } from '../utils';
 
 export function shadow(elem) {

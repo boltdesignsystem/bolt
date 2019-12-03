@@ -31,7 +31,7 @@ export class withPreact extends BoltBase {
         ...props.boolean,
         ...{ default: bolt.isClient },
       },
-      children: h('slot', null)
+      children: h('slot', null),
     });
   }
 
@@ -43,10 +43,7 @@ export class withPreact extends BoltBase {
 
   renderer(root, call) {
     this._renderRoot = root;
-    this._preactDom = render(
-      call(),
-      root,
-    );
+    this._preactDom = render(call(), root);
   }
 
   get renderRoot() {

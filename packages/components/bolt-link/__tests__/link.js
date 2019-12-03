@@ -128,19 +128,18 @@ describe('link', () => {
   });
 
   test('Default <bolt-link> w/o Shadow DOM renders', async function() {
-    const renderedLinkHTML = await page.evaluate(() => {
-      const link = document.createElement('bolt-link');
-      link.textContent = 'This is a link';
-      link.setAttribute('url', 'http://pega.com');
-      document.body.appendChild(link);
-      link.useShadow = false;
-      link.updated();
-      return link.outerHTML;
+    const renderedLinkHTML = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        '<div><bolt-link url="http://pega.com" no-shadow>This is a link</bolt-link></div>',
+      );
+      const link = document.querySelector('bolt-link');
+      await link.updateComplete;
+      return link.parentNode.outerHTML;
     });
     expect(renderedLinkHTML).toMatchSnapshot();
 
-    const renderedHTML = await html('<div></div>');
-    renderedHTML.innerHTML = renderedLinkHTML;
+    const renderedHTML = await html(renderedLinkHTML);
 
     expect(
       renderedHTML
@@ -158,22 +157,23 @@ describe('link', () => {
   });
 
   test('Default <bolt-link> with Shadow DOM renders', async function() {
-    const defaultLinkShadowRoot = await page.evaluate(() => {
-      const link = document.createElement('bolt-link');
-      link.textContent = 'Link Test -- Shadow Root HTML';
-      link.setAttribute('url', 'http://pega.com');
-      document.body.appendChild(link);
-      link.updated();
+    const defaultLinkShadowRoot = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        '<bolt-link url="http://pega.com">Link Test -- Shadow Root HTML</bolt-link>',
+      );
+      const link = document.querySelector('bolt-link');
+      await link.updateComplete;
       return link.renderRoot.innerHTML;
     });
     expect(defaultLinkShadowRoot).toMatchSnapshot();
 
-    const defaultLinkOuter = await page.evaluate(() => {
+    const defaultLinkOuter = await page.evaluate(async () => {
       const link = document.createElement('bolt-link');
       link.setAttribute('url', 'http://pega.com');
       link.textContent = 'Link Test -- Outer HTML';
       document.body.appendChild(link);
-      link.updated();
+      await link.updateComplete;
       return link.outerHTML;
     });
     expect(defaultLinkOuter).toMatchSnapshot();
@@ -190,18 +190,14 @@ describe('link', () => {
   });
 
   test('Default <bolt-link> with Shadow DOM renders with no extra whitespace', async function() {
-    const defaultLinkOuter = await page.evaluate(() => {
-      const link = document.createElement('bolt-link');
-      link.setAttribute('url', 'http://pega.com');
-      link.textContent = 'Link Test -- No extra whitespace';
-
-      const linkWrapper = document.createElement('div');
-      linkWrapper.innerHTML += '(';
-      linkWrapper.append(link);
-      linkWrapper.innerHTML += ')';
-      document.body.appendChild(linkWrapper);
-      link.updated();
-      return linkWrapper.outerHTML;
+    const defaultLinkOuter = await page.evaluate(async () => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        '<div>(<bolt-link url="http://pega.com">Link Test -- No extra whitespace</bolt-link>)</div>',
+      );
+      const link = document.querySelector('bolt-link').parentNode;
+      await link.updateComplete;
+      return link.outerHTML;
     });
     expect(defaultLinkOuter).toMatchSnapshot();
 
@@ -235,13 +231,14 @@ describe('link', () => {
     `);
 
     // Next, convert to a javascript node and disable shadow dom so we can evaluate it with js.
-    const renderedLinkHTML = await page.evaluate(html => {
+    const renderedLinkHTML = await page.evaluate(async html => {
       const div = document.createElement('div');
-      div.innerHTML = `${html}`;
-      document.body.appendChild(div);
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        html,
+      );
       const link = document.querySelector('bolt-link');
-      link.useShadow = false;
-      link.updated();
+      await link.updateComplete;
       return link.outerHTML;
     }, template.html);
 

@@ -9,13 +9,12 @@ const { handleRequest } = require('@bolt/api');
 const { getConfig } = require('@bolt/build-utils/config-store');
 const { boltWebpackMessages } = require('@bolt/build-utils/webpack-helpers');
 const events = require('@bolt/build-utils/events');
-const createWebpackConfig = require('../create-webpack-config');
-const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
-
 const {
   webpackStats,
   statsPreset,
 } = require('@bolt/build-utils/webpack-verbosity');
+const createWebpackConfig = require('../create-webpack-config');
+const webpackDevServerWaitpage = require('./webpack-dev-server-waitpage');
 
 let boltBuildConfig;
 let browserSyncIsRunning = false;

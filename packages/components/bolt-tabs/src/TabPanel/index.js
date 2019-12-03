@@ -20,21 +20,11 @@ class TabPanel extends withLitContext {
     this.triggerUpdate();
   }
 
-  constructor(self) {
-    self = super(self);
-
-    return self;
-  }
-
   get panelIndex() {
     // Will return undefined until parent context is ready, e.g. if you call from `connectedCallback()`
     return (
       this.context.tabPanels && Array.from(this.context.tabPanels).indexOf(this)
     );
-  }
-
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
   }
 
   setSelectedTab() {

@@ -78,10 +78,10 @@ class BoltIcon extends withPreact {
     }
   }
 
-  disconnectedCallback(){
+  disconnectedCallback() {
     super.disconnectedCallback && super.disconnectedCallback();
 
-    if (this.colorObserver){
+    if (this.colorObserver) {
       PubSub.unsubscribe(this.colorObserver);
     }
   }

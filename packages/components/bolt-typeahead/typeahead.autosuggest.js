@@ -48,7 +48,6 @@ export const highlightSearchResults = function(item) {
   });
 };
 
-
 @customElement('bolt-autosuggest')
 class BoltAutosuggest extends withPreact {
   get getParent() {

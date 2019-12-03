@@ -28,7 +28,6 @@ export class withLit extends BoltBase {
     },
   };
 
-
   renderStyles(styles) {
     if (styles) {
       // [1]
@@ -65,12 +64,12 @@ export class withLit extends BoltBase {
   renderer(root, call) {
     render(call(), root);
   }
-};
+}
 
-export class withLitHtml extends withLit {};
+export class withLitHtml extends withLit {}
 
 // export const withLitHtml(Base = HTMLElement) {
 //   return class extends withLit(withComponent(BoltBase)) {};
 // }
 
-export class withLitContext extends withLit{};
+export class withLitContext extends withLit {}

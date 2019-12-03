@@ -62,4 +62,4 @@ export class withLitEvents extends withLitHtml {
       }.bind(this),
     );
   }
-};
+}

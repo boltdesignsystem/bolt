@@ -300,7 +300,6 @@ class BoltAccordion extends withLitContext {
       this.props,
     );
 
-
     return html`
       ${this.addStyles([styles])} ${this.template()}
     `;

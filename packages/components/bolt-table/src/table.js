@@ -12,7 +12,6 @@ import schema from '../table.schema.yml';
 
 let cx = classNames.bind(styles);
 
-
 @customElement('bolt-table')
 class BoltTable extends withLitHtml {
   static props = {

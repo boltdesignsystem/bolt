@@ -22,7 +22,10 @@ const {
   statsPreset,
 } = require('@bolt/build-utils/webpack-verbosity');
 
-const { modernBabelConfig, legacyBabelConfig } = require('@bolt/babel-preset-bolt');
+const {
+  modernBabelConfig,
+  legacyBabelConfig,
+} = require('@bolt/babel-preset-bolt');
 
 const {
   getBoltManifest,
@@ -157,22 +160,22 @@ async function createWebpackConfig(buildConfig) {
     const globalEntryName = 'bolt-global';
 
     if (components.global) {
-      if (config.esModules){
-        if (isModern){
+      if (config.esModules) {
+        if (isModern) {
           entry[globalEntryName] = [
             '@bolt/polyfills/modern.js',
-            '@bolt/core/styles/index.scss'
+            '@bolt/core/styles/index.scss',
           ];
         } else {
           entry[globalEntryName] = [
             '@bolt/polyfills',
-            '@bolt/core/styles/index.scss'
+            '@bolt/core/styles/index.scss',
           ];
         }
       } else {
         entry[globalEntryName] = [
           '@bolt/polyfills',
-          '@bolt/core/styles/index.scss'
+          '@bolt/core/styles/index.scss',
         ];
       }
       // entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
@@ -499,10 +502,9 @@ async function createWebpackConfig(buildConfig) {
             },
           ],
         },
-      ]
-    }
+      ],
+    },
   });
-
 
   const modernWebpackConfig = merge(sharedWebpackConfig, {
     entry: await buildWebpackEntry(true),
@@ -551,18 +553,14 @@ async function createWebpackConfig(buildConfig) {
             },
           ],
         },
-      ]
-    }
+      ],
+    },
   });
 
   // if esModules support is enabled in the .boltrc config, serve up just the modern bundle for local dev + legacy + modern bundles in prod.
   // Otherwise, continue serving the legacy bundle to everyone.
-  if (config.esModules){
-    if (config.prod){
-      return [legacyWebpackConfig, modernWebpackConfig];
-    } else {
-      return [modernWebpackConfig];
-    }
+  if (config.esModules) {
+    return [legacyWebpackConfig, modernWebpackConfig];
   } else {
     return [legacyWebpackConfig];
   }
@@ -576,7 +574,9 @@ async function assignLangToWebpackConfig(config, lang) {
     langSpecificConfig.lang = lang; // Make sure only ONE language config is set per Webpack build instance.
   }
 
-  let langSpecificWebpackConfigs = await createWebpackConfig(langSpecificConfig);
+  let langSpecificWebpackConfigs = await createWebpackConfig(
+    langSpecificConfig,
+  );
 
   langSpecificWebpackConfigs.forEach(langSpecificWebpackConfig => {
     webpackConfigs.push(langSpecificWebpackConfig);

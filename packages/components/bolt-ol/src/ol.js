@@ -17,7 +17,6 @@ function addNestedLevelProps(childNode, level) {
   return currentLevel;
 }
 
-
 @customElement('bolt-ol')
 class BoltOrderedList extends withLitHtml {
   static props = {

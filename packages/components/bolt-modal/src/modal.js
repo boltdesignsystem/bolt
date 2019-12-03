@@ -21,7 +21,6 @@ import '../focus-trap';
 const ESCAPE_KEY = 27;
 let cx = classNames.bind(styles);
 
-
 @customElement('bolt-modal')
 class BoltModal extends withLitHtml {
   static props = {

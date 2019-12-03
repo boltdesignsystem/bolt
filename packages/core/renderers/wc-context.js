@@ -10,6 +10,7 @@ const initializedElements = new WeakSet();
 const withContext = Base => {
   return class extends Base {
     get context() {
+      // eslint-disable-next-line no-return-assign
       return this.__wcContext || (this.__wcContext = {});
     }
 

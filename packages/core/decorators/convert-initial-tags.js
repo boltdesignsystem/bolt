@@ -8,7 +8,7 @@
  * @returns {Object} - The original Class with extended `connecting()` method.
  */
 
-import { getComponentRootElement } from '@bolt/core/utils';
+import { getComponentRootElement } from '@bolt/core/utils/get-component-root-element';
 
 export function convertInitialTags(tags, moveChildrenToRoot = true) {
   return target => {

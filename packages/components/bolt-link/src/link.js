@@ -37,6 +37,8 @@ class BoltLink extends BoltActionElement {
   constructor(self) {
     self = super(self);
     self.schema = schema;
+    self.display = schema.properties.display.default;
+    self.valign = schema.properties.valign.default;
     return self;
   }
 
