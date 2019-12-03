@@ -233,10 +233,7 @@ describe('link', () => {
     // Next, convert to a javascript node and disable shadow dom so we can evaluate it with js.
     const renderedLinkHTML = await page.evaluate(async html => {
       const div = document.createElement('div');
-      document.body.insertAdjacentHTML(
-        'beforeend',
-        html,
-      );
+      document.body.insertAdjacentHTML('beforeend', html);
       const link = document.querySelector('bolt-link');
       await link.updateComplete;
       return link.outerHTML;
