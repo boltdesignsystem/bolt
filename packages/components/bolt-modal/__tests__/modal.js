@@ -149,7 +149,7 @@ describe('<bolt-modal> Component', () => {
 
       const renderedHTML = await html(renderedModal);
 
-      await page.waitFor(1000); // wait a second before testing
+      await page.waitFor(2000); // wait a second before testing
       const image = await page.screenshot();
 
       expect(image).toMatchImageSnapshot(imageVrtConfig);
@@ -175,7 +175,7 @@ describe('<bolt-modal> Component', () => {
 
       const renderedHTML = await html(renderedModal);
 
-      await page.waitFor(1000); // wait a second before testing
+      await page.waitFor(2000); // wait a second before testing
       const image = await page.screenshot();
 
       expect(image).toMatchImageSnapshot(imageVrtConfig);
@@ -232,7 +232,7 @@ describe('<bolt-modal> Component', () => {
 
           await page.setViewport({ height, width });
           await page.tap('.js-modal-trigger--open');
-          await page.waitFor(500);
+          await page.waitFor(2000);
 
           if (await isVisible('bolt-modal')) {
             screenshots[size].modalOpened = await page.screenshot();
@@ -240,7 +240,7 @@ describe('<bolt-modal> Component', () => {
               imageVrtConfig,
             );
             await page.tap('bolt-button'); // closes modal
-            await page.waitFor(500);
+            await page.waitFor(2000);
           }
         }
       },
@@ -248,74 +248,76 @@ describe('<bolt-modal> Component', () => {
     );
   });
 
-  test(
-    '<bolt-band> with long text in <bolt-modal> rendered by Twig',
-    async () => {
-      const bandWithLongContent = await render(
-        '@bolt-components-band/band.twig',
-        {
-          content: modalContent[1].content,
-          full_bleed: false,
-          theme: 'none',
-        },
-      );
+  modalContent.forEach(async contentChoice => {
+    test(
+      `${contentChoice.name}<bolt-band> in <bolt-modal> rendered by Twig`,
+      async () => {
+        const bandWithLongContent = await render(
+          '@bolt-components-band/band.twig',
+          {
+            content: contentChoice.content,
+            full_bleed: false,
+            theme: 'none',
+          },
+        );
 
-      const { html, ok } = await renderTwig(
-        '@bolt-components-modal/modal.twig',
-        {
-          content: `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
-            ${bandWithLongContent.html}
-            <bolt-text slot="footer">This is the footer</bolt-text>`,
-        },
-      );
-      expect(ok).toBe(true);
-      expect(html).toMatchSnapshot();
+        const { html, ok } = await renderTwig(
+          '@bolt-components-modal/modal.twig',
+          {
+            content: `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
+              ${bandWithLongContent.html}
+              <bolt-text slot="footer">This is the footer</bolt-text>`,
+          },
+        );
+        expect(ok).toBe(true);
+        expect(html).toMatchSnapshot();
 
-      await page.evaluate(html => {
-        const div = document.createElement('div');
-        const trigger = document.createElement('bolt-button');
-        trigger.textContent = 'Open Modal';
-        trigger.setAttribute('class', 'js-modal-trigger--open');
-        trigger.setAttribute('onclick', 'this.nextElementSibling.show()');
-        div.innerHTML = `${html}`;
-        div.prepend(trigger);
-        document.body.appendChild(div);
-      }, html);
+        await page.evaluate(html => {
+          const div = document.createElement('div');
+          const trigger = document.createElement('bolt-button');
+          trigger.textContent = 'Open Modal';
+          trigger.setAttribute('class', 'js-modal-trigger--open');
+          trigger.setAttribute('onclick', 'this.nextElementSibling.show()');
+          div.innerHTML = `${html}`;
+          div.prepend(trigger);
+          document.body.appendChild(div);
+        }, html);
 
-      const screenshots = [];
+        const screenshots = [];
 
-      async function isVisible(selector) {
-        return await page.evaluate(selector => {
-          const e = document.querySelector(selector);
-          if (!e) return false;
-          const style = window.getComputedStyle(e);
-          return style &&
-            style.display !== 'none' &&
-            style.visibility !== 'hidden' &&
-            style.opacity !== '0'
-            ? true
-            : false;
-        }, selector);
-      }
-
-      for (const item of viewportSizes) {
-        const { height, width, size } = item;
-        screenshots[size] = [];
-
-        await page.setViewport({ height, width });
-        await page.tap('.js-modal-trigger--open');
-        await page.waitFor(500);
-
-        if (await isVisible('bolt-modal')) {
-          screenshots[size].modalOpened = await page.screenshot();
-          expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-            imageVrtConfig,
-          );
-          await page.tap('bolt-button'); // closes modal
-          await page.waitFor(500);
+        async function isVisible(selector) {
+          return await page.evaluate(selector => {
+            const e = document.querySelector(selector);
+            if (!e) return false;
+            const style = window.getComputedStyle(e);
+            return style &&
+              style.display !== 'none' &&
+              style.visibility !== 'hidden' &&
+              style.opacity !== '0'
+              ? true
+              : false;
+          }, selector);
         }
-      }
-    },
-    timeout,
-  );
+
+        for (const item of viewportSizes) {
+          const { height, width, size } = item;
+          screenshots[size] = [];
+
+          await page.setViewport({ height, width });
+          await page.tap('.js-modal-trigger--open');
+          await page.waitFor(2000);
+
+          if (await isVisible('bolt-modal')) {
+            screenshots[size].modalOpened = await page.screenshot();
+            expect(screenshots[size].modalOpened).toMatchImageSnapshot(
+              imageVrtConfig,
+            );
+            await page.tap('bolt-button'); // closes modal
+            await page.waitFor(2000);
+          }
+        }
+      },
+      timeout,
+    );
+  });
 });

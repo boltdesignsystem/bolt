@@ -147,3 +147,119 @@ exports[`<bolt-sticky> Component usage with content 1`] = `
   </div>
 </bolt-band>
 `;
+
+exports[`<bolt-sticky> Component usage with content 2`] = `
+<bolt-sticky bolt-component
+             class="c-bolt-sticky js-bolt-sticky"
+>
+  <bolt-navbar class="t-bolt-dark"
+               width="full"
+  >
+    <nav class="c-bolt-navbar c-bolt-navbar--full ">
+      <div class="c-bolt-navbar__title">
+        <div class="c-bolt-navbar__title--static">
+          <div class="c-bolt-navbar__title-icon">
+            <bolt-icon name="marketing-gray"
+                       size="large"
+            >
+            </bolt-icon>
+          </div>
+          <h2 class="c-bolt-navbar__title-text">
+            Pega for Government: Healthcare & Social Programs
+          </h2>
+        </div>
+      </div>
+      <bolt-nav-priority more-text="More">
+        <nav class="c-bolt-nav-priority">
+          <bolt-nav-indicator>
+            <ul class="c-bolt-nav-priority__list c-bolt-nav-priority__primary">
+              <li class="c-bolt-nav-priority__item">
+                <bolt-navlink>
+                  <a href="#visualization-and-simulation"
+                     class="c-bolt-navlink"
+                  >
+                    <span class="c-bolt-navlink__text">
+                      Visualization & Simulation
+                    </span>
+                  </a>
+                </bolt-navlink>
+              </li>
+              <li class="c-bolt-nav-priority__item">
+                <bolt-navlink>
+                  <a href="#section-1"
+                     class="c-bolt-navlink"
+                  >
+                    <span class="c-bolt-navlink__text">
+                      Section 1
+                    </span>
+                  </a>
+                </bolt-navlink>
+              </li>
+              <li class="c-bolt-nav-priority__item">
+                <bolt-navlink>
+                  <a href="#section-2"
+                     class="c-bolt-navlink"
+                  >
+                    <span class="c-bolt-navlink__text">
+                      Section 2 is a lot longer
+                    </span>
+                  </a>
+                </bolt-navlink>
+              </li>
+              <li class="c-bolt-nav-priority__item">
+                <bolt-navlink>
+                  <a href="#the-constituent-experience"
+                     class="c-bolt-navlink"
+                  >
+                    <span class="c-bolt-navlink__text">
+                      The constituent experience
+                    </span>
+                  </a>
+                </bolt-navlink>
+              </li>
+              <li class="c-bolt-nav-priority__item">
+                <bolt-navlink>
+                  <a href="#section-4"
+                     class="c-bolt-navlink"
+                  >
+                    <span class="c-bolt-navlink__text">
+                      Section 4
+                    </span>
+                  </a>
+                </bolt-navlink>
+              </li>
+            </ul>
+          </bolt-nav-indicator>
+        </nav>
+      </bolt-nav-priority>
+    </nav>
+  </bolt-navbar>
+</bolt-sticky>
+<bolt-band tag="div"
+           size="large"
+           theme="dark"
+           full-bleed
+           id="section-2"
+>
+  <div class="c-bolt-band c-bolt-band--large t-bolt-dark c-bolt-band--full-bleed">
+    <div class="c-bolt-band__content">
+      <bolt-wrapper size="xxlarge"
+                    full="true"
+                    bolt-object
+      >
+        <div class="o-bolt-wrapper o-bolt-wrapper--xxlarge o-bolt-wrapper--full">
+          <h2 class="c-bolt-headline c-bolt-headline--bold c-bolt-headline--xxlarge">
+            Section 2
+          </h2>
+          <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+            Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor posuere. Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci tempus eleifend ut et magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero. Vestibulum mollis mauris enim. Morbi euismod magna ac lorem rutrum elementum. Donec viverra auctor lobortis. Pellentesque eu est a nulla placerat dignissim. Morbi a enim in magna semper bibendum. Etiam scelerisque, nunc ac egestas consequat, odio nibh euismod nulla, eget auctor orci nibh vel nisi. Aliquam erat volutpat. Mauris vel neque sit amet nunc gravida congue sed sit amet purus. Quisque lacus quam, egestas ac tincidunt a, lacinia vel velit. Aenean facilisis nulla vitae urna tincidunt congue sed.
+          </p>
+          <p class="c-bolt-text c-bolt-text--regular c-bolt-text--normal c-bolt-text--medium">
+            Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin vel ante a orci.
+          </p>
+        </div>
+      </bolt-wrapper>
+    </div>
+  </div>
+</bolt-band>
+`;

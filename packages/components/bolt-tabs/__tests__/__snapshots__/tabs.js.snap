@@ -189,6 +189,69 @@ exports[`Bolt Tabs Align: start 2`] = `
 </bolt-tabs>
 `;
 
+exports[`Bolt Tabs Align: start 4`] = `
+<bolt-tabs
+  align="start"
+  ready=""
+  style=""
+>
+  
+    
+  <bolt-tab-panel
+    selected=""
+    style=""
+  >
+    
+      
+    <div
+      slot="label"
+      style=""
+    >
+      Tab label 1
+    </div>
+    
+      Tab panel 1
+    
+  </bolt-tab-panel>
+  
+    
+  <bolt-tab-panel
+    style=""
+  >
+    
+      
+    <div
+      slot="label"
+      style=""
+    >
+      Tab label 2
+    </div>
+    
+      Tab panel 2
+    
+  </bolt-tab-panel>
+  
+    
+  <bolt-tab-panel
+    style=""
+  >
+    
+      
+    <div
+      slot="label"
+      style=""
+    >
+      Tab label 3
+    </div>
+    
+      Tab panel 3
+    
+  </bolt-tab-panel>
+  
+  
+</bolt-tabs>
+`;
+
 exports[`Bolt Tabs Inset: auto 2`] = `
 <bolt-tabs
   inset="auto"
@@ -1010,7 +1073,179 @@ exports[`Bolt Tabs Web Component usage (Light DOM) 2`] = `
 </bolt-tabs>
 `;
 
+exports[`Bolt Tabs Web Component usage (Shadow DOM) 1`] = `
+<bolt-tabs>
+  <div class="c-bolt-tabs c-bolt-tabs--align-start c-bolt-tabs--inset">
+    <input type="radio"
+           name="tabs-12345"
+           id="tabs-12345-1"
+           class="c-bolt-tabs__input"
+           checked
+    >
+    <label for="tabs-12345-1"
+           class="c-bolt-tabs__label c-bolt-tabs__label--spacing-small"
+    >
+      <span class="c-bolt-tabs__label-inner">
+        <span class="c-bolt-tabs__label-text">
+          Tab label 1
+        </span>
+      </span>
+    </label>
+    <div class="c-bolt-tab-panel__outer">
+      <ssr-keep for="bolt-tabs">
+        <bolt-tab-panel>
+          <ssr-keep for="bolt-tab-panel">
+            <div slot="label">
+              Tab label 1
+            </div>
+          </ssr-keep>
+          <div class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
+            <div role="tabpanel"
+                 class="c-bolt-tab-panel__content"
+            >
+              <ssr-keep for="bolt-tab-panel">
+                This is the tab content.
+              </ssr-keep>
+            </div>
+          </div>
+        </bolt-tab-panel>
+      </ssr-keep>
+    </div>
+    <input type="radio"
+           name="tabs-12345"
+           id="tabs-12345-2"
+           class="c-bolt-tabs__input"
+    >
+    <label for="tabs-12345-2"
+           class="c-bolt-tabs__label c-bolt-tabs__label--spacing-small"
+    >
+      <span class="c-bolt-tabs__label-inner">
+        <span class="c-bolt-tabs__label-text">
+          Tab label 2
+        </span>
+      </span>
+    </label>
+    <div class="c-bolt-tab-panel__outer">
+      <ssr-keep for="bolt-tabs">
+        <bolt-tab-panel>
+          <ssr-keep for="bolt-tab-panel">
+            <div slot="label">
+              Tab label 2
+            </div>
+          </ssr-keep>
+          <div class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
+            <div role="tabpanel"
+                 class="c-bolt-tab-panel__content"
+            >
+              <ssr-keep for="bolt-tab-panel">
+                This is the tab content.
+              </ssr-keep>
+            </div>
+          </div>
+        </bolt-tab-panel>
+      </ssr-keep>
+    </div>
+    <input type="radio"
+           name="tabs-12345"
+           id="tabs-12345-3"
+           class="c-bolt-tabs__input"
+    >
+    <label for="tabs-12345-3"
+           class="c-bolt-tabs__label c-bolt-tabs__label--spacing-small"
+    >
+      <span class="c-bolt-tabs__label-inner">
+        <span class="c-bolt-tabs__label-text">
+          Tab label 3
+        </span>
+      </span>
+    </label>
+    <div class="c-bolt-tab-panel__outer">
+      <ssr-keep for="bolt-tabs">
+        <bolt-tab-panel>
+          <ssr-keep for="bolt-tab-panel">
+            <div slot="label">
+              Tab label 3
+            </div>
+          </ssr-keep>
+          <div class="c-bolt-tab-panel c-bolt-tab-panel--spacing-small">
+            <div role="tabpanel"
+                 class="c-bolt-tab-panel__content"
+            >
+              <ssr-keep for="bolt-tab-panel">
+                This is the tab content.
+              </ssr-keep>
+            </div>
+          </div>
+        </bolt-tab-panel>
+      </ssr-keep>
+    </div>
+  </div>
+</bolt-tabs>
+`;
+
 exports[`Bolt Tabs Web Component usage (Shadow DOM) 2`] = `
+<bolt-tabs
+  ready=""
+  style=""
+>
+  
+    
+  <bolt-tab-panel
+    selected=""
+    style=""
+  >
+    
+      
+    <div
+      slot="label"
+      style=""
+    >
+      Tab label 1
+    </div>
+    
+      Tab panel 1
+    
+  </bolt-tab-panel>
+  
+    
+  <bolt-tab-panel
+    style=""
+  >
+    
+      
+    <div
+      slot="label"
+      style=""
+    >
+      Tab label 2
+    </div>
+    
+      Tab panel 2
+    
+  </bolt-tab-panel>
+  
+    
+  <bolt-tab-panel
+    style=""
+  >
+    
+      
+    <div
+      slot="label"
+      style=""
+    >
+      Tab label 3
+    </div>
+    
+      Tab panel 3
+    
+  </bolt-tab-panel>
+  
+  
+</bolt-tabs>
+`;
+
+exports[`Bolt Tabs Web Component usage (Shadow DOM) 3`] = `
 <bolt-tabs
   ready=""
   style=""

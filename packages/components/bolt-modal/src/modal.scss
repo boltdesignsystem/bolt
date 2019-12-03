@@ -111,7 +111,9 @@ bolt-modal:not([ready]) {
       @include bolt-margin-top(auto);
       @include bolt-margin-bottom(auto);
 
-      flex: auto;
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: auto;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
 
