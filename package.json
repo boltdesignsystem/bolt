@@ -78,7 +78,7 @@
     "test:js:update": "yarn run test:js -u",
     "test:monorepo": "jest ./__tests__/monorepo -c jest.config.quick.js --noStackTrace",
     "test:build-tools": "cd packages/build-tools && yarn run test",
-    "test:php": "cd packages/php/shared-twig-extensions -- composer run test",
+    "test:php": "cd packages/php/shared-twig-extensions && composer run test",
     "test:pkgs": "lerna run test --ignore=@bolt/uikit-* --ignore=@bolt/build-tools--* --stream",
     "test:types": "tsc",
     "postinstall": "patch-package && npx lerna run postbootstrap",
