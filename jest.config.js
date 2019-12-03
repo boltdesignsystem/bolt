@@ -1,10 +1,10 @@
 // https://facebook.github.io/jest/docs/en/configuration.html
 const globby = require('globby');
 const testFilesToIgnore = globby.sync([
-  'packages/components/**/*.e2e.js',
-  'packages/components/**/*.no2e.js', // workaround to disable a few e2e tests 
+  'packages/ui/components/**/*.e2e.js',
+  'packages/ui/components/**/*.no2e.js', // workaround to disable a few e2e tests
   'packages/**/*.data.js',
-  'packages/generators/**/*.test.js',
+  'packages/tools/component-generator/**/*.test.js',
 ]);
 
 module.exports = {
@@ -12,15 +12,15 @@ module.exports = {
   testPathIgnorePatterns: [
     'node_modules',
     'vendor',
-    'docs-site',
+    'packages/website',
     'brightcove-player.test.js',
-    'example-integrations',
-    'packages/uikit-workshop',
+    'integration-examples',
+    'packages/website-ui/uikit-workshop',
     // 'packages/testing/testing-utils/__tests__',
-    'packages/build-tools/plugins/sass-export-data/tests',
-    'packages/build-tools/__tests__/*',
-    'packages/components/bolt-button/__tests__/button-wc.test.js',
-    'example-integrations/drupal-lab/web/themes/bolt-starter/__tests__/index.js', // tested separately after the Drupal Lab build
+    'packages/tools/build-plugins/sass-export-data/tests',
+    'packages/tools/build-tools/__tests__/*',
+    'packages/ui/components/bolt-button/__tests__/button-wc.test.js',
+    'integration-examples/drupal-lab/web/themes/bolt-starter/__tests__/index.js', // tested separately after the Drupal Lab build
     'packages/patternlab-node',
     ...testFilesToIgnore,
   ],
@@ -31,7 +31,7 @@ module.exports = {
   },
   transformIgnorePatterns: [
     'node_modules/(?!(lit-html|@bolt|@open-wc)/)', // add any additional packages in node_modules that need to be transpiled for Jest
-    'packages/(?!(components|core|analytics|config|testing|generators)/)', // add any additional packages in node_modules that need to be transpiled for Jest
+    'packages/(?!(ui/components|ui/core|config|testing|tools\/component-generator)/)', // add any additional packages in node_modules that need to be transpiled for Jest
     './scripts/monorepo.test.js',
   ],
   globalSetup: './packages/testing/testing-jest/jest-global-setup.js',

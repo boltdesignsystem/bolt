@@ -1,0 +1,418 @@
+@import '@bolt/core';
+
+@import 'device-viewer--iphone8';
+@import 'device-viewer--ipad';
+@import 'device-viewer--macbook';
+
+bolt-device-viewer {
+  display: block;
+}
+
+.c-bolt-device-viewer {
+  box-sizing: content-box; //Required for now till device viewer updated to be fluid in size.
+  position: relative;
+  transform: translate3d(0, 0, 0); // Ensures correct z-index positioning
+  height: auto; // Based on inner contents + padding;
+  margin: 0 auto;
+}
+
+.c-bolt-device-viewer__inner {
+  display: block;
+  position: relative;
+  z-index: bolt-z-index('content');
+
+  &:before,
+  &:after {
+    position: absolute;
+    pointer-events: none; // So scrolling works / mouse doesn't get blocked.
+  }
+
+  &:before {
+    content: '';
+  }
+}
+
+.c-bolt-device-viewer__screen {
+  @include bolt-shadow('level-10');
+  display: block;
+  position: relative;
+  z-index: bolt-z-index('contentTop'); // Must be higher than the z-index of the :before layer on the base component
+  width: 100%;
+  height: 0;
+  overflow: hidden; // Unfortunately zooming + scrolling is very, very tricky. Forcing this for now.
+  border-radius: 1px;
+  background-color: bolt-color(black);
+  perspective: 1000px;
+}
+
+.c-bolt-device-viewer__home {
+  position: absolute;
+  z-index: (bolt-z-index('contentTop') + 5);
+  border-radius: 50%;
+}
+
+.c-bolt-device-viewer__camera {
+  position: absolute;
+  z-index: (bolt-z-index('contentTop') + 10);
+  border-radius: 100%;
+}
+
+.c-bolt-device-viewer__top-bar,
+.c-bolt-device-viewer__bottom-bar {
+  display: block;
+  position: absolute;
+  z-index: bolt-z-index('background') - 5; // Since we want this layer pushed back behind most, but not all, layers
+  width: 100%;
+}
+
+
+// Image zoom custom element
+bolt-image-zoom {
+  display: block; // Required to render magnifying glass properly
+}
+
+$bolt-magnifier-size: 350px;
+
+
+@keyframes pulse {
+  0% {
+    transform: translate3d(-50%, -50%, 0) scale(0.98);
+  }
+
+  50% {
+    transform: translate3d(-50%, -50%, 0) scale(1.1);
+  }
+
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(0.98);
+  }
+}
+
+@keyframes pulseFadeIn {
+  0% {
+    opacity: bolt-opacity(0);
+    transform: scale(1.5) translate3d(-50%, -50%, 0);
+  }
+
+  100% {
+    opacity: bolt-opacity(100);
+    transform: scale(1) translate3d(-50%, -50%, 0);
+  }
+}
+
+@keyframes pulseFadeOut {
+  0% {
+    opacity: bolt-opacity(100);
+    transform: scale(1) translate3d(-50%, -50%, 0);
+  }
+
+  15% {
+    opacity: bolt-opacity(100);
+    transform: scale(1.1) translate3d(-50%, -50%, 0);
+  }
+
+  100% {
+    opacity: bolt-opacity(0);
+    transform: scale(4) translate3d(-50%, -50%, 0);
+  }
+}
+
+
+
+
+@keyframes drift-fadeZoomIn {
+  0% {
+    opacity: bolt-opacity(0);
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: bolt-opacity(100);
+    transform: scale(1);
+  }
+}
+
+@keyframes drift-fadeZoomOut {
+  0% {
+    opacity: bolt-opacity(100);
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: bolt-opacity(0);
+    transform: scale(0.5);
+  }
+}
+
+
+
+@keyframes drift-loader-rotate {
+  0% { transform: translate(-50%, -50%) rotate(0); }
+  50% { transform: translate(-50%, -50%) rotate(-180deg); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+@keyframes drift-loader-before {
+  0% { transform: scale(1); }
+  10% { transform: scale(1.2) translateX(6px); }
+  25% { transform: scale(1.3) translateX(8px); }
+  40% { transform: scale(1.2) translateX(6px); }
+  50% { transform: scale(1); }
+  60% { transform: scale(0.8) translateX(6px); }
+  75% { transform: scale(0.7) translateX(8px); }
+  90% { transform: scale(0.8) translateX(6px); }
+  100% { transform: scale(1); }
+}
+
+@keyframes drift-loader-after {
+  0% { transform: scale(1); }
+  10% { transform: scale(1.2) translateX(-6px); }
+  25% { transform: scale(1.3) translateX(-8px); }
+  40% { transform: scale(1.2) translateX(-6px); }
+  50% { transform: scale(1); }
+  60% { transform: scale(0.8) translateX(-6px); }
+  75% { transform: scale(0.7) translateX(-8px); }
+  90% { transform: scale(0.8) translateX(-6px); }
+  100% { transform: scale(1); }
+}
+
+.c-bolt-image-zoom__overlay {
+  opacity: bolt-opacity(100);
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  z-index: bolt-z-index('navFixed');
+  width: 100%;
+  height: 100%;
+  color: bolt-color(white);
+  pointer-events: none;
+  transition: all 0.2s linear;
+
+  &:before {
+    content: '';
+    display: block;
+    opacity: bolt-opacity(100);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: bolt-z-index('background') - 5;
+    width: 200%;
+    height: 200%;
+    pointer-events: none;
+    background-color: rgba(bolt-color(black), 0.3);
+    transition: all 0.2s linear;
+  }
+}
+
+
+.c-bolt-image-zoom__overlay-icon {
+  @include bolt-shadow('level-60');
+  @include bolt-css-vars((
+    --bolt-theme-icon-background-opacity: 0.5,
+    --bolt-theme-icon-background-color: bolt-color(black),
+  ));
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  line-height: 1;
+  pointer-events: none;
+
+  border-radius: 50%;
+  transition: all 0.1s ease;
+  animation: pulse 3s infinite;
+
+  .is-mouse-leaving & {
+    animation: pulseFadeIn 300ms linear;
+    animation-fill-mode: forwards;
+  }
+
+  .is-mouse-entering & {
+    animation: pulseFadeOut 300ms linear;
+    animation-fill-mode: forwards;
+  }
+}
+
+.c-bolt-image-zoom__tilt {
+  display: block;
+  opacity: bolt-opacity(0);
+  position: absolute;
+  z-index: bolt-z-index('content');
+  width: 33.33%;
+  height: 33.33%;
+
+  &:hover {
+    transform: translateZ(50px);
+  }
+
+  &:hover ~ .c-bolt-image-zoom__overlay > .c-bolt-image-zoom__overlay-icon {
+    transform: translate3d(-50%, -50%, 0) scale(3, 3);
+  }
+}
+
+.c-bolt-image-zoom__tilt--top-left {
+  top: 0;
+  left: 0;
+
+  &:hover {
+    ~ .c-bolt-image-zoom__overlay {
+      transform-origin: right bottom;
+      transform: rotateX(5deg) rotateY(-5deg) translateZ(0) translate3d(-30%, -30%, 0);
+    }
+  }
+}
+
+
+.c-bolt-image-zoom__tilt--top-center {
+  top: 0;
+  left: 33.33%;
+
+  &:hover {
+    ~ .c-bolt-image-zoom__overlay {
+      transform-origin: center bottom;
+      transform: rotateX(5deg) rotateY(0deg) translateZ(0) translate3d(0, -30%, 0);
+    }
+  }
+}
+
+.c-bolt-image-zoom__tilt--top-right {
+  top: 0;
+  left: 66.66%;
+
+  &:hover {
+    ~ .c-bolt-image-zoom__overlay {
+      transform-origin: left bottom;
+      transform: rotateX(5deg) rotateY(5deg) translateZ(0) translate3d(30%, -30%, 0);
+    }
+  }
+}
+
+.c-bolt-image-zoom__tilt--middle-left {
+  top: 33.33%;
+  left: 0;
+
+  &:hover {
+    ~ .c-bolt-image-zoom__overlay {
+      transform-origin: right center;
+      transform: rotateX(0deg) rotateY(-5deg) translateZ(0) translate3d(-30%, 0, 0);
+    }
+  }
+}
+
+.c-bolt-image-zoom__tilt--middle-center {
+  top: 33.33%;
+  left: 33.33%;
+
+  &:hover {
+    ~ .c-bolt-image-zoom__overlay {
+      transform-origin: center center;
+      transform: rotateX(0deg) rotateY(0deg) translateZ(0) translate3d(0, 0, 0);
+    }
+  }
+}
+
+.c-bolt-image-zoom__tilt--middle-right {
+  top: 33.33%;
+  left: 66.66%;
+
+  &:hover {
+    ~ .c-bolt-image-zoom__overlay {
+      transform-origin: left center;
+      transform: rotateX(0deg) rotateY(5deg) translateZ(0) translate3d(30%, 0, 0);
+    }
+  }
+}
+
+.c-bolt-image-zoom__tilt--bottom-left {
+  top: 66.66%;
+  left: 0;
+
+  &:hover {
+    ~ .c-bolt-image-zoom__overlay {
+      transform-origin: right top;
+      transform: rotateX(-5deg) rotateY(-5deg) translateZ(0) translate3d(-30%, 30%, 0);
+    }
+  }
+}
+
+.c-bolt-image-zoom__tilt--bottom-center {
+  top: 66.66%;
+  left: 33.33%;
+
+  &:hover {
+    ~ .c-bolt-image-zoom__overlay {
+      transform-origin: center top;
+      transform: rotateX(-5deg) rotateY(0deg) translateZ(0) translate3d(0, 30%, 0);
+    }
+  }
+}
+
+.c-bolt-image-zoom__tilt--bottom-right {
+  top: 66.66%;
+  left: 66.66%;
+
+  &:hover {
+    ~ .c-bolt-image-zoom__overlay {
+      transform-origin: left top;
+      transform: rotateX(-5deg) rotateY(5deg) translateZ(0) translate3d(30%, 30%, 0);
+    }
+  }
+}
+
+
+
+bolt-image-zoom,
+bolt-device-viewer .c-bolt-device-viewer__screen--magnify {
+  cursor: none;
+
+  // Don't hide cursor on IE10 / 11 due to janky behavior
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    cursor: inherit;
+  }
+}
+
+
+bolt-image-zoom:hover > .c-bolt-image-zoom__overlay {
+  opacity: bolt-opacity(0);
+}
+
+
+.drift-zoom-pane {
+  @include bolt-shadow('level-60');
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  /* This is required because of a bug that causes border-radius to not
+  work with child elements in certain cases. */
+  transform: translate3d(0, 0, 0);
+  z-index: bolt-z-index('tooltip');
+  width: $bolt-magnifier-size;
+  height: $bolt-magnifier-size;
+
+  overflow: hidden;
+  border: 5px solid bolt-color(white);
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.5);
+  will-change: top, left;
+  transition: none; // fix for noticable lag when moving around the screen magnifier
+
+  img {
+    object-fit: cover;
+    object-position: top center;
+  }
+}
+
+.drift-zoom-pane.drift-opening {
+  animation: drift-fadeZoomIn 180ms ease-out;
+  animation-fill-mode: forwards;
+}
+
+.drift-zoom-pane.drift-closing {
+  animation: drift-fadeZoomOut 210ms ease-in;
+  animation-fill-mode: forwards;
+}

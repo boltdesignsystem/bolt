@@ -15,7 +15,7 @@
  */
 const path = require('path');
 const globby = require('globby');
-const baseBoltDir = path.join(__dirname, './docs-site');
+const baseBoltDir = path.join(__dirname, './packages/website');
 const siteConfig = require(path.join(baseBoltDir, '.boltrc'));
 const resolve = require('resolve');
 
@@ -28,7 +28,7 @@ const imageFixtureDirs = globby
   .sync(
     path.join(
       __dirname,
-      './packages/components/**/fixtures/**/*.{jpg,jpeg,png,svg}',
+      './packages/ui/components/**/fixtures/**/*.{jpg,jpeg,png,svg}',
     ),
   )
   .map(file => path.dirname(file));
@@ -43,14 +43,14 @@ imageFixtureDirs.forEach(fixturePath => {
 });
 
 const nonImageFixtures = globby.sync([
-  './packages/components/**/fixtures/**/*',
-  '!./packages/components/**/fixtures/**/*.{jpg,jpeg,png}',
-  './packages/components/**/fixtures/videos/**/*',
+  './packages/ui/components/**/fixtures/**/*',
+  '!./packages/ui/components/**/fixtures/**/*.{jpg,jpeg,png}',
+  './packages/ui/components/**/fixtures/videos/**/*',
 ]);
 const itemsToCopy = [];
 
 const allComponentPackages = globby
-  .sync(path.join(__dirname, './packages/components/*/package.json'))
+  .sync(path.join(__dirname, './packages/ui/components/*/package.json'))
   .map(pkgPath => require(pkgPath))
   .map(pkg => pkg.name);
 

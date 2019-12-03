@@ -3,9 +3,9 @@
   "scope": "boltdesignsystem",
   "name": "boltdesignsystem",
   "builds": [
-    { "src": "www/**", "use": "@now/static" }
+    { "src": "packages/website/dist/**", "use": "@now/static" }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "www/$1" }
+    { "src": "/(.*)", "dest": "packages/website/dist/$1" }
   ]
 }

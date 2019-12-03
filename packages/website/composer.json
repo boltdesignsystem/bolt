@@ -1,0 +1,76 @@
+{
+  "name": "bolt-design-system/pattern-lab",
+  "description": "Hybrid PHP-powered Pattern Lab / Static Docs site for the Bolt Design System",
+  "type": "project",
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../php/shared-twig-extensions"
+    },
+    {
+      "type": "path",
+      "url": "../php/twig-renderer"
+    },
+    {
+      "type": "path",
+      "url": "../php/drupal-attributes-twig-extension"
+    },
+    {
+      "type": "path",
+      "url": "../website-ui/uikit-twig-templates"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/boltdesignsystem/patternlab-php-core"
+    }
+  ],
+  "require": {
+    "bolt-design-system/twig-renderer": "*",
+    "bolt-design-system/core-php": "^2.8.0",
+    "bolt-design-system/drupal-twig-extensions": "*",
+    "bolt-design-system/styleguidekit-twig-default": "*",
+    "pattern-lab/core": "dev-develop as 2.9.0",
+    "pattern-lab/patternengine-twig": "^2.2.2",
+    "cweagans/composer-patches": "^1.6.4",
+    "evanlovely/plugin-twig-namespaces": "^1.1.1"
+  },
+  "autoload": {
+    "psr-0": {
+      "PatternLab": "core/src/"
+    }
+  },
+  "scripts": {
+    "server": "php core/console --server",
+    "build": "php -d memory_limit=4048M core/console --generate",
+    "watch": "php core/console --watch",
+    "start": "php core/console --server --quiet & php core/console --watch",
+    "setup": "@composer install --no-interaction --prefer-dist --no-progress",
+    "post-install-cmd": [
+      "PatternLab\\Installer::postInstallCmd"
+    ],
+    "post-update-cmd": [
+      "PatternLab\\Installer::postUpdateCmd"
+    ],
+    "post-root-package-install": [
+      "PatternLab\\Installer::setProjectInstall",
+      "PatternLab\\Installer::getSuggestedStarterKits",
+      "PatternLab\\Installer::getConfigOverrides"
+    ],
+    "post-package-install": [
+      "PatternLab\\Installer::postPackageInstall"
+    ],
+    "post-package-update": [
+      "PatternLab\\Installer::postPackageUpdate"
+    ],
+    "pre-package-uninstall": [
+      "PatternLab\\Installer::prePackageUninstall"
+    ]
+  },
+  "extra": {
+    "patches-file": "composer.patches.json",
+    "installer-types": [
+      "patternlab-plugin"
+    ]
+  }
+}

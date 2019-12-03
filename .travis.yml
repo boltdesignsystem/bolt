@@ -9,13 +9,13 @@ addons:
 cache:
   directories:
     - node_modules
-    - docs-site/node_modules/.cache
-    - www
+    # - packages/website/node_modules/.cache
+    # - www
 
 before_cache:
 - mkdir -p node_modules
-- mkdir -p docs-site/node_modules/.cache
-- mkdir -p www
+# - mkdir -p packages/websitenode_modules/.cache
+# - mkdir -p www
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_4537e53f71e7_key -iv $encrypted_4537e53f71e7_iv -in scripts/bolt-design-system-bot.private-key.pem.enc -out scripts/bolt-design-system-bot.private-key.pem -d
@@ -121,8 +121,8 @@ jobs:
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
         - git checkout master
-      install: 
-        - yarn install --frozen-lockfile 
+      install:
+        - yarn install --frozen-lockfile
         - yarn run setup:php
         - git reset --hard
       script: yarn run release
@@ -136,8 +136,8 @@ jobs:
         - git remote set-url origin "https://${GITHUB_TOKEN}@github.com/boltdesignsystem/bolt.git" > /dev/null 2>&1
         - echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/.npmrc
         - git checkout release/2.x
-      install: 
-        - yarn install --frozen-lockfile 
+      install:
+        - yarn install --frozen-lockfile
         - yarn run setup:php
         - git reset --hard
       script:
