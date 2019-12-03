@@ -12,9 +12,9 @@
 {# Array of classes based on the defined + default props #}
 {% set classes = [
   base_class,
-  this.data.placement.value != "auto" ? "c-bolt-popover--" ~ this.data.placement.value : "",
-  this.data.spacing.value != "none" ? "c-bolt-popover--spacing-" ~ this.data.spacing.value : "",
-  this.data.nowrap.value ? "c-bolt-popover--nowrap" : "",
+  this.data.placement.value != "auto" ? base_class ~ "--" ~ this.data.placement.value : "",
+  this.data.spacing.value != "none" ? base_class ~ "--spacing-" ~ this.data.spacing.value : "",
+  this.data.nowrap.value ? base_class ~ "--nowrap" : "",
   "is-expanded",
 ] %}
 
