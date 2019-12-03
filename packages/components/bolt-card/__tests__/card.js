@@ -8,7 +8,7 @@ import {
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../card.schema.yml'));
-const { tag, contentTag, theme } = schema.properties;
+const { media, body, actions, tag, link, theme } = schema.properties;
 
 describe('<bolt-card> Component', () => {
   afterAll(async () => {
@@ -17,32 +17,21 @@ describe('<bolt-card> Component', () => {
 
   test('basic usage', async () => {
     const results = await render('@bolt-components-card/card.twig', {
-      contentItems: [
-        {
-          pattern: 'image',
+      media: {
+        image: {
           src: '/fixtures/landscape-16x9-mountains.jpg',
-          lazyload: false,
-          alt: 'Anthem Video',
+          alt: 'Image alt.',
         },
+      },
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This is a headline',
+        paragraph: 'This is a paragraph.',
+      },
+      actions: [
         {
-          pattern: 'eyebrow',
-          text: 'Video',
-        },
-        {
-          pattern: 'headline',
-          tag: 'h3',
-          size: 'large',
-          text: 'Anthem: Service Desktop',
-        },
-        {
-          pattern: 'text',
-          text:
-            'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-        },
-        {
-          pattern: 'button',
-          text: 'Get the report',
-          url: '#!',
+          text: 'This is a button',
+          url: 'https://pega.com',
         },
       ],
     });
@@ -50,39 +39,27 @@ describe('<bolt-card> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('with two buttons in footer', async () => {
+  test('with two buttons as actions', async () => {
     const results = await render('@bolt-components-card/card.twig', {
-      contentItems: [
-        {
-          pattern: 'image',
+      media: {
+        image: {
           src: '/fixtures/landscape-16x9-mountains.jpg',
-          lazyload: false,
-          alt: 'Anthem Video',
+          alt: 'Image alt.',
+        },
+      },
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This is a headline',
+        paragraph: 'This is a paragraph.',
+      },
+      actions: [
+        {
+          text: 'This is the 1st button',
+          url: 'https://pega.com',
         },
         {
-          pattern: 'eyebrow',
-          text: 'Video',
-        },
-        {
-          pattern: 'headline',
-          tag: 'h3',
-          size: 'large',
-          text: 'Anthem: Service Desktop',
-        },
-        {
-          pattern: 'text',
-          text:
-            'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-        },
-        {
-          pattern: 'button',
-          text: 'Get the report',
-          url: '#!',
-        },
-        {
-          pattern: 'button',
-          text: 'Get the second report',
-          url: '#!',
+          text: 'This is the 2nd button',
+          url: 'https://google.com',
         },
       ],
     });
@@ -90,39 +67,35 @@ describe('<bolt-card> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('with video in header', async () => {
+  test('with video as media', async () => {
     const results = await render('@bolt-components-card/card.twig', {
-      contentItems: [
-        {
-          pattern: 'video',
+      link: {
+        attributes: {
+          'on-click': 'toggle',
+          'on-click-target': 'js-bolt-video-uuid',
+        },
+      },
+      media: {
+        video: {
           videoId: '5609376179001',
           accountId: '1900410236',
           playerId: 'r1CAdLzTW',
+          videoUuid: 'js-bolt-video-uuid',
           showMeta: true,
           showMetaTitle: false,
-          videoUuid: 'js-bolt-video-uuid--3c',
         },
+      },
+      body: {
+        headline: 'With link and video',
+        paragraph:
+          'This card has a link, which makes the whole card clickable, and you can make it play/pause the video. Action button is optional in this case.',
+      },
+      actions: [
         {
-          pattern: 'eyebrow',
-          text: 'Video',
-        },
-        {
-          pattern: 'headline',
-          tag: 'h3',
-          size: 'large',
-          text: 'Anthem: Service Desktop',
-        },
-        {
-          pattern: 'text',
-          text:
-            'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-        },
-        {
-          pattern: 'button',
-          text: 'Play or Pause',
+          text: 'This button is video control',
           attributes: {
             'on-click': 'toggle',
-            'on-click-target': 'js-bolt-video-uuid--3c',
+            'on-click-target': 'js-bolt-video-uuid',
           },
         },
       ],
@@ -131,75 +104,31 @@ describe('<bolt-card> Component', () => {
     expect(results.html).toMatchSnapshot();
   });
 
-  test('without footer', async () => {
+  test('without actions', async () => {
     const results = await render('@bolt-components-card/card.twig', {
-      contentItems: [
-        {
-          pattern: 'image',
+      media: {
+        image: {
           src: '/fixtures/landscape-16x9-mountains.jpg',
-          lazyload: false,
-          alt: 'Anthem Video',
+          alt: 'Image alt.',
         },
-        {
-          pattern: 'eyebrow',
-          text: 'Video',
-        },
-        {
-          pattern: 'headline',
-          tag: 'h3',
-          size: 'large',
-          text: 'Anthem: Service Desktop',
-        },
-        {
-          pattern: 'text',
-          text:
-            'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-        },
-      ],
+      },
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This is a headline',
+        paragraph: 'This is a paragraph.',
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
   });
 
-  test('without footer and media', async () => {
+  test('without media and actions', async () => {
     const results = await render('@bolt-components-card/card.twig', {
-      contentItems: [
-        {
-          pattern: 'eyebrow',
-          text: 'Video',
-        },
-        {
-          pattern: 'headline',
-          tag: 'h3',
-          size: 'large',
-          text: 'Anthem: Service Desktop',
-        },
-        {
-          pattern: 'text',
-          text:
-            'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-        },
-      ],
-    });
-    expect(results.ok).toBe(true);
-    expect(results.html).toMatchSnapshot();
-  });
-
-  test('only text', async () => {
-    const results = await render('@bolt-components-card/card.twig', {
-      contentItems: [
-        {
-          pattern: 'headline',
-          tag: 'h3',
-          size: 'large',
-          text: 'Anthem: Service Desktop',
-        },
-        {
-          pattern: 'text',
-          text:
-            'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-        },
-      ],
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This is a headline',
+        paragraph: 'This is a paragraph.',
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
@@ -209,146 +138,60 @@ describe('<bolt-card> Component', () => {
     test(`tag variations: ${option}`, async () => {
       const results = await render('@bolt-components-card/card.twig', {
         tag: option,
-        contentItems: [
-          {
-            pattern: 'image',
+        media: {
+          image: {
             src: '/fixtures/landscape-16x9-mountains.jpg',
-            lazyload: false,
-            alt: 'Anthem Video',
+            alt: 'Image alt.',
           },
-          {
-            pattern: 'eyebrow',
-            text: 'Video',
-          },
-          {
-            pattern: 'headline',
-            tag: 'h3',
-            size: 'large',
-            text: 'Anthem: Service Desktop',
-          },
-          {
-            pattern: 'text',
-            text:
-              'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-          },
-          {
-            pattern: 'button',
-            text: 'Get the report',
-            url: '#!',
-          },
-        ],
+        },
+        body: {
+          eyebrow: 'This is an eyebrow',
+          headline: 'This is a headline',
+          paragraph: 'This is a paragraph.',
+        },
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();
     });
   });
 
-  test('add clickable functionality', async () => {
+  test('clickable card', async () => {
     const results = await render('@bolt-components-card/card.twig', {
-      url: '#!',
-      contentItems: [
-        {
-          pattern: 'image',
+      link: {
+        url: 'https://pega.com',
+        text: 'This entire card is clickable',
+      },
+      media: {
+        image: {
           src: '/fixtures/landscape-16x9-mountains.jpg',
-          lazyload: false,
-          alt: 'Anthem Video',
+          alt: 'Image alt.',
         },
-        {
-          pattern: 'eyebrow',
-          text: 'Video',
-        },
-        {
-          pattern: 'headline',
-          tag: 'h3',
-          size: 'large',
-          text: 'Anthem: Service Desktop',
-        },
-        {
-          pattern: 'text',
-          text:
-            'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-        },
-        {
-          pattern: 'button',
-          text: 'Get the report',
-          url: '#!',
-        },
-      ],
+      },
+      body: {
+        eyebrow: 'This is an eyebrow',
+        headline: 'This is a headline',
+        paragraph: 'This is a paragraph.',
+      },
     });
     expect(results.ok).toBe(true);
     expect(results.html).toMatchSnapshot();
-  });
-
-  contentTag.enum.forEach(async option => {
-    test(`content tag variations: ${option}`, async () => {
-      const results = await render('@bolt-components-card/card.twig', {
-        contentTag: option,
-        contentItems: [
-          {
-            pattern: 'image',
-            src: '/fixtures/landscape-16x9-mountains.jpg',
-            lazyload: false,
-            alt: 'Anthem Video',
-          },
-          {
-            pattern: 'eyebrow',
-            text: 'Video',
-          },
-          {
-            pattern: 'headline',
-            tag: 'h3',
-            size: 'large',
-            text: 'Anthem: Service Desktop',
-          },
-          {
-            pattern: 'text',
-            text:
-              'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-          },
-          {
-            pattern: 'button',
-            text: 'Get the report',
-            url: '#!',
-          },
-        ],
-      });
-      expect(results.ok).toBe(true);
-      expect(results.html).toMatchSnapshot();
-    });
   });
 
   theme.enum.forEach(async option => {
     test(`theme variations: ${option}`, async () => {
       const results = await render('@bolt-components-card/card.twig', {
         theme: option,
-        contentItems: [
-          {
-            pattern: 'image',
+        media: {
+          image: {
             src: '/fixtures/landscape-16x9-mountains.jpg',
-            lazyload: false,
-            alt: 'Anthem Video',
+            alt: 'Image alt.',
           },
-          {
-            pattern: 'eyebrow',
-            text: 'Video',
-          },
-          {
-            pattern: 'headline',
-            tag: 'h3',
-            size: 'large',
-            text: 'Anthem: Service Desktop',
-          },
-          {
-            pattern: 'text',
-            text:
-              'Anthem debuts its next-generation service desktop, driving frictionless customer experiences.',
-          },
-          {
-            pattern: 'button',
-            text: 'Get the report',
-            url: '#!',
-          },
-        ],
+        },
+        body: {
+          eyebrow: 'This is an eyebrow',
+          headline: 'This is a headline',
+          paragraph: 'This is a paragraph.',
+        },
       });
       expect(results.ok).toBe(true);
       expect(results.html).toMatchSnapshot();

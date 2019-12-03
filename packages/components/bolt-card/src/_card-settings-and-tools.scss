@@ -1,0 +1,76 @@
+@import '@bolt/core';
+
+// Settings
+
+$bolt-card-body-spacing: 'medium';
+$bolt-card-shadow-color: bolt-color(gray, dark);
+$bolt-card-border-width: $bolt-border-width;
+$bolt-card-border-style: $bolt-border-style;
+$bolt-card-border-color: bolt-theme(text, 0.15);
+$bolt-card-border-radius: $bolt-border-radius;
+$bolt-card-link-z-index: 1;
+$bolt-card-individual-link-z-index: 2;
+$bolt-card-video-z-index: $bolt-card-individual-link-z-index;
+
+
+// Tools
+
+@mixin bolt-card-border-reset {
+  border: 0;
+  border-style: $bolt-card-border-style;
+  border-color: $bolt-card-border-color;
+}
+
+@mixin bolt-card-content-conditions {
+  // [Mai] Only the card body should not have hidden overflow and border radius because its background is transparent. This also catches any kind of free-form content being passed, making sure they don't poke outside the card (which has rounded corners and box shadows). The reason the card itself shouldn't have hidden overflow is because the card body can contain some kind of tooltip bubble or dropdown ui, they can poke out of the card naturally.
+  > * {
+    overflow: hidden;
+
+    &:first-child {
+      border-radius: $bolt-card-border-radius $bolt-card-border-radius 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 $bolt-card-border-radius $bolt-card-border-radius;
+    }
+
+    &:only-child{
+      border-radius: $bolt-card-border-radius;
+    }
+  }
+
+  > bolt-card-link + * {
+    border-radius: $bolt-card-border-radius $bolt-card-border-radius 0 0;
+
+    &:last-child {
+      border-radius: $bolt-card-border-radius;
+    }
+  }
+
+  > bolt-card-body,
+  > bolt-card-link,
+  > replace-with-children {
+    overflow: visible;
+  }
+
+  > bolt-card-media,
+  > bolt-card-body,
+  > bolt-card-actions {
+    &:last-child {
+      @include bolt-margin-top(auto);
+    }
+
+    &:only-child {
+      @include bolt-margin-top(auto);
+      @include bolt-margin-bottom(auto);
+    }
+  }
+
+  > * + bolt-card-actions {
+    border-top-width: $bolt-card-border-width;
+  }
+
+  > bolt-card-actions:not(:last-child) {
+    border-bottom-width: $bolt-card-border-width;
+  }
+}

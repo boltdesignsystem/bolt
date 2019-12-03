@@ -1,0 +1,46 @@
+{% grid "o-bolt-grid--flex o-bolt-grid--matrix o-bolt-grid--center" %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+    {% include "@bolt-components-card/card.twig" with {
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+        },
+      },
+      body: {
+        headline: "No link",
+        paragraph: "This card doesn't have a link.",
+      },
+      actions: [
+        {
+          text: "This is a button",
+          url: "http://pega.com",
+        }
+      ],
+    } only %}
+  {% endcell %}
+  {% cell "u-bolt-width-6/12 u-bolt-width-4/12@small" %}
+    {% include "@bolt-components-card/card.twig" with {
+      link: {
+        url: "http://pega.com",
+        text: "Go to pega.com"
+      },
+      media: {
+        image: {
+          src: "/images/placeholders/landscape-16x9-mountains.jpg",
+          alt: "Image alt.",
+        },
+      },
+      body: {
+        headline: "With link",
+        paragraph: "This card has a link, which makes the whole card clickable, but you can still have the action button to link somewhere else if needed.",
+      },
+      actions: [
+        {
+          text: "This button has a diffent link",
+          url: "http://google.com",
+        }
+      ],
+    } only %}
+  {% endcell %}
+{% endgrid %}

@@ -164,10 +164,10 @@
     {% endcell %}
 
     {% cell "u-bolt-flex-grow u-bolt-flex-shrink c-pega-careers-reorderable-form-field c-pega-careers-reorderable-form-field--third c-pega-careers-reorderable-form-field--second@small" %}
-      {% include "@bolt-components-form/form-button.twig" with {
+      {# {% include "@bolt-components-form/form-button.twig" with {
         text: "Search",
         width: "full",
-      } only %}
+      } only %} #}
     {% endcell %}
   {% endgrid %}
 {% endset %}
@@ -179,13 +179,11 @@
 {% endset %}
 
 {% set card_with_form %}
-  {% embed "@bolt-components-card/card.twig" %}
-    {% block card_media %}{% endblock %}
-    {% block card_body %}
-      {{ form }}
-    {% endblock %}
-    {% block card_footer %}{% endblock %}
-  {% endembed %}
+  {% include "@bolt-components-card/card.twig" with {
+    body: {
+      content: form
+    }
+  } only %}
 {% endset %}
 
 
@@ -271,73 +269,4 @@
       {% endblock band_content %}
     {% endembed %}
   {% endfor %}
-
-
-  {# Rest of the page #}
-  {% set cards_in_band %}
-    {% include "@bolt-components-headline/headline.twig" with {
-      text: "Placeholder for rest of the page",
-      size: "xxlarge",
-      align: "center",
-    } only %}
-    {% grid "o-bolt-grid--flex o-bolt-grid--matrix" %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
-            {
-              pattern: "image",
-              src: "/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
-            },
-            {
-              pattern: "eyebrow",
-              text: "Eyebrow"
-            },
-            {
-              pattern: "headline",
-              tag: "h3",
-              size: "large",
-              text: "Headline"
-            },
-            {
-              pattern: "button",
-              text: "Button",
-              url: "https://pega.com"
-            }
-          ]
-        } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
-            {
-              pattern: "image",
-              src: "/images/content/promos/promo-16x9-anthem.jpg",
-              alt: "Anthem Video",
-              lazyload: false,
-            },
-            {
-              pattern: "headline",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            }
-          ]
-        } only %}
-      {% endcell %}
-      {% cell "u-bolt-width-1/1 u-bolt-width-1/3@small" %}
-        {% include "@bolt-components-card/card.twig" with {
-          contentItems: [
-            {
-              pattern: "headline",
-              text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-            }
-          ]
-        } only %}
-      {% endcell %}
-    {% endgrid %}
-  {% endset %}
-
-  {% include "@bolt-components-band/band.twig" with {
-    content: cards_in_band,
-  } only %}
 </div>

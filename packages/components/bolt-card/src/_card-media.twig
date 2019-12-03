@@ -1,0 +1,24 @@
+{% set card_image = media.image %}
+{% set card_video = media.video %}
+
+{% set card_media_content = media.content %}
+
+{% if card_media_content %}
+  {# @todo: The replace function is a hack to get around the utf-8 bug. #}
+  {{ card_media_content | join | replace({"UTF-8": ""}) }}
+{% else %}
+  {% if card_image %}
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media">
+        {% include "@bolt-components-image/image.twig" with card_image only %}
+      </replace-with-children>
+    </bolt-card-media>
+  {% endif %}
+  {% if card_video %}
+    <bolt-card-media>
+      <replace-with-children class="c-bolt-card__media c-bolt-card__media--video">
+        {% include "@bolt-components-video/video.twig" with card_video only %}
+      </replace-with-children>
+    </bolt-card-media>
+  {% endif %}
+{% endif %}

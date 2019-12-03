@@ -1,0 +1,38 @@
+/* ------------------------------------ *\
+   Card Action
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import './_card-settings-and-tools.scss';
+
+bolt-card-action {
+  flex: 1;
+
+  // [Mai] When there are 2 actions, the text is likely to be short, that's a situation where it would benefit from text not wrapping to another line. Instead, if it runs out of room, the actions stack on top of each other.
+  &:not(:only-child) {
+    white-space: nowrap;
+  }
+}
+
+.c-bolt-card__action {
+  @include bolt-card-border-reset;
+
+  display: block;
+  position: relative;
+  top: $bolt-card-border-width * -1;
+  border-top-width: $bolt-card-border-width;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: $bolt-card-border-width * -1;
+    width: $bolt-card-border-width;
+    height: calc(100% + #{$bolt-card-border-width});
+    background-color: $bolt-card-border-color;
+  }
+
+  > * {
+    height: 100%;
+  }
+}

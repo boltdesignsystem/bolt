@@ -1,0 +1,234 @@
+{% set tags = ["div", "article", "section", "figure"] %} {# Available overall container tags #}
+{% set themes = ["xlight", "light", "dark", "xdark"] %}
+
+{% set cardTheme = theme in themes ? theme : "none" %}
+{% set cardTag = tag in tags ? tag : "div" %}
+{% set cardAttributes = attributes ? attributes : {} %}
+
+{% set _allowedCardHeaderItems = ["image", "video"] %}
+{% set _allowedCardBodyItems = ["eyebrow", "content", "text", "headline", "teaser"] %}
+{% set _allowedCardFooterItems = ["buttons", "link", "button"] %}
+{% set _allowedItems = _allowedCardHeaderItems | merge(_allowedCardBodyItems) | merge(_allowedCardFooterItems) %}
+
+{% set _allowedCollections = ["contentItems"] %} {# array of different arrays that could exist w/ nested content #}
+{% set _items = [] %}
+
+{% for collectionName in _allowedCollections %}
+  {% if _context[collectionName] %}
+    {% for key, item in _context[collectionName] if item.pattern in _allowedItems or key in _allowedItems %}
+
+      {% if item.buttons %}
+        {% set buttons = item.buttons %}
+        {% for button in buttons %}
+          {% set button = button | merge({
+            "pattern": "button"
+          }) %}
+          {% set _items = _items | merge([button]) %}
+        {% endfor %}
+
+        {% set item = item | merge({
+          "buttons": []
+        }) %}
+      {% endif %}
+
+      {% set _items = _items | merge([item]) %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
+{% for key, item in _context if item.pattern in _allowedItems or key in _allowedItems %}
+  {% if key == "teaser" %}
+    {% if item.buttons %}
+      {% for button in item.buttons %}
+        {% set button = button | merge({ "pattern": "button" }) %}
+        {% set _items = _items | merge([button]) %}
+      {% endfor %}
+      {% set item = item | merge({ "buttons": [] }) %}
+    {% endif %}
+  {% endif %}
+
+  {% if item.pattern == false %}
+    {% set item = item | merge({
+      "pattern": key
+    }) %}
+  {% endif %}
+  {% set _items = _items | merge([item]) %}
+{% endfor %}
+
+{% set cardActions = [] %}
+
+{% for cardAction in _items if cardAction.pattern in _allowedCardFooterItems %}
+  {% set cardAction = [cardAction] %}
+  {% set cardActions = cardActions|merge(cardAction) %}
+{% endfor %}
+
+{% set cardMedia %}
+  <bolt-card-media>
+    <replace-with-children class="c-bolt-card__media">
+      {% if _body_media is not empty %}
+        {{ _body_media | raw }}
+      {% else %}
+        {% for key, item in _items if item.pattern in _allowedCardHeaderItems %}
+          {% if item.pattern %}
+            {% if item.pattern == "image" and url is not empty %}
+              <a href="{{url}}">
+            {% endif %}
+            {% include pattern_template(item.pattern) with item only %}
+            {% if item.pattern == "image" and url is not empty %}
+              </a>
+            {% endif %}
+          {% else %}
+            {{ item }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </replace-with-children>
+  </bolt-card-media>
+{% endset %}
+
+{% set cardBody %}
+  <bolt-card-body>
+    <replace-with-children class="c-bolt-card__body">
+      {% if _body_block is not empty %}
+        {{ _body_block | raw }}
+      {% else %}
+        {% for key,item in _items if item.pattern in _allowedCardBodyItems %}
+          {% if item.pattern %}
+            {% include pattern_template(item.pattern) with item only %}
+          {% elseif key != "content" %}
+            {% include pattern_template(key) with item only %}
+          {% else %}
+            {{ item }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </replace-with-children>
+  </bolt-card-body>
+  {% if _footer_block is not empty %}
+    <div class="c-bolt-card__footer">
+      {{ _footer_block | raw }}
+    </div>
+  {% elseif cardActions | length > 0 %}
+    {% include "@bolt-components-card/_card-actions.twig" with {
+      actions: cardActions,
+    } only %}
+  {% endif %}
+{% endset %}
+
+{% if teasers %}
+  {% set teaserItems = {} %}
+  {% set items = [] %}
+
+  {% set cardBody %}
+    {% for teaser in teasers %}
+
+      {% set teaserItem %}
+        {% include "@bolt-components-teaser/teaser.twig" with teaser only %}
+      {% endset %}
+
+      {% set items = items | merge([teaserItem]) %}
+
+    {% endfor %}
+
+    {% set teaserItems = teaserItems | merge({
+      display: "block",
+      separator: "solid",
+      spacing: "medium",
+      inset: true,
+      items: items,
+    }) %}
+
+    {% include "@bolt-components-list/list.twig" with teaserItems only %}
+  {% endset %}
+{% endif %}
+
+{% set cardContent %}
+  {{ cardMedia }}
+  {{ cardBody }}
+{% endset %}
+
+{% include "@bolt-components-card/card.twig" with {
+  attributes: cardAttributes,
+  theme: cardTheme,
+  tag: cardTag,
+  content: cardContent,
+} only %}
+
+{# TODO Old card structure temporarily kept for reference. #}
+  {#<bolt-card#}
+  {#{% if theme %} class="t-bolt-{{ theme }}"{% endif %}#}
+  {#{% if url %}url={{ url }}{% endif %}#}
+  {#bolt-component>#}
+  {#<{{ tag }} {{ attributes.addClass(classes) }}>#}
+
+  {#{% if block('card_media') is not empty %}#}
+  {#<div class="{{ "#{baseClass}__media" }}">{% spaceless %}#}
+  {#{% block card_media %}#}
+  {#{{ cardMedia }}#}
+  {#{% endblock %}#}
+  {#{% endspaceless %}</div>#}
+  {#{% endif %}#}
+
+
+  {#{% if block('card_body') is not empty %}#}
+  {#<{{ contentTag }} class="{{ "#{baseClass}__body" }}">{% spaceless %}#}
+  {#{% block card_body %}#}
+  {#{% for key,item in _items if item.pattern in _allowedCardBodyItems %}#}
+  {#{% if item.pattern %}#}
+  {#{% include pattern_template(item.pattern) with item only %}#}
+  {#{% elseif key != "content" %}#}
+  {#{% include pattern_template(key) with item only %}#}
+  {#{% else %}#}
+  {#{{ item }}#}
+  {#{% endif %}#}
+
+  {#{% endfor %}#}
+  {#{% endblock card_body %}#}
+  {#{% endspaceless %}</{{ contentTag }}>#}
+  {#{% endif %}#}
+
+  {#{% if block('card_footer') is not empty %}#}
+  {#<div class="{{ "#{baseClass}__footer" }}">{% spaceless %}#}
+  {#{% block card_footer %}#}
+  {#{% for item in _items if item.pattern in _allowedCardFooterItems %}#}
+  {#{% set paramOverrides = {#}
+  {#align: "start",#}
+  {#style: "text",#}
+  {#width: "full",#}
+  {#} %}#}
+
+  {#{% if item.icon == null %}#}
+  {#{% if item.external == true %}#}
+  {#{% set iconOverrides = {#}
+  {#icon: {#}
+  {#name: "external-link"#}
+  {#}#}
+  {#} %}#}
+  {#{% else %}#}
+  {#{% set iconOverrides = {#}
+  {#icon: {#}
+  {#name: "chevron-right"#}
+  {#}#}
+  {#} %}#}
+  {#{% endif %}#}
+  {#{% endif %}#}
+
+  {#<div class="{{ "#{baseClass}__footer-item" }}">#}
+  {#{% if item.pattern %}#}
+  {#{% set item = item | merge(paramOverrides) %}#}
+
+  {# if icon default data set, merge that in as well #}
+  {#{% if iconOverrides %}#}
+  {#{% set item = item | merge(iconOverrides) %}#}
+  {#{% endif %}#}
+  {#{% include pattern_template(item.pattern) with item only %}#}
+  {#{% else %}#}
+  {#{{ item }}#}
+  {#{% endif %}#}
+  {#</div>#}
+  {#{% endfor %}#}
+  {#{% endblock card_footer %}#}
+  {#{% endspaceless %}</div>#}
+  {#{% endif %}#}
+  {#</{{ tag }}>#}
+  {#</bolt-card>#}

@@ -1,0 +1,25 @@
+/* ------------------------------------ *\
+   Card Body
+\* ------------------------------------ */
+
+@import '@bolt/core';
+@import './_card-settings-and-tools.scss';
+
+.c-bolt-card__body {
+  @include bolt-margin(0);
+  @include bolt-padding(#{$bolt-card-body-spacing});
+
+  display: block;
+}
+
+// automatically raise the default z-index of nested bolt-links in the bolt-card-body so they aren't covered by the bolt-card-link layer
+.c-bolt-card__body ::slotted(bolt-link) {
+  position: relative;
+  z-index: $bolt-card-individual-link-z-index;
+}
+
+// fallback version of the above styles -- used if shadow dom isn't supported or not getting used in certain situations
+.c-bolt-card__body bolt-link {
+  position: relative;
+  z-index: $bolt-card-individual-link-z-index;
+}

@@ -1,33 +1,108 @@
-$schema: 'http://json-schema.org/draft-04/schema#'
 title: Card
-category: components
 type: object
-format: grid
 properties:
+  attributes:
+    type: object
+    description: A Drupal-style attributes object with extra attributes to append to this component.
   tag:
     type: string
-    description: Html tag immediately within the `bolt-card` element.
+    description: HTML tag that contains the card content.
+    default: article
     enum:
       - div
       - article
-      - section
       - figure
-  contentTag:
+  height:
     type: string
-    description: Html tag immediately within the `bolt-card` element.
+    description: Controls the height of the card to auto fit to content or the full height of the column in a grid.
+    default: full
     enum:
-      - div
-      - article
-      - section
-      - figcaption
+      - auto
+      - full
   theme:
     type: string
-    description: Bolt theme.
+    description: Controls the theme of the individual card.
+    default: none
     enum:
       - xlight
       - light
       - dark
       - xdark
-  url:
-    type: string
-    description: Providing a URL will make the entire card link to another resource. This is a future prop and does not do anything right now.
+      - none
+  link:
+    type: object
+    description: Providing a link will make the whole card clickable.
+    properties:
+      url:
+        type: string
+        description: Address for the link.
+      text:
+        type: string
+        description: Visually hidden text for link, included for accessibility.
+      attributes:
+        type: object
+        description: A Drupal-style attributes object with extra attributes to append to this component.
+  media:
+    type: object
+    description: Media section of the card, accepts either image and video, or custom content.
+    properties:
+      image:
+        type: object
+        ref: '@bolt-components-image/image.schema.yml'
+      video:
+        type: object
+        ref: '@bolt-components-video/video.schema.yml'
+      content:
+        type:
+          - string
+          - array
+          - object
+        description: Passing free-form content into the card media will ignore image or video data. Use this if the pre-configured image or video doesn't satisfy your needs.
+  body:
+    type: object
+    description: Body section of the card, accepts pre-configured eyebrow, headline, and paragraph or custom content.
+    properties:
+      eyebrow:
+        type: string
+        description: Regular eyebrow.
+      headline:
+        type: string
+        description: Headline pre-defined to size large.
+      paragraph:
+        type: string
+        description: Regular paragraph of text.
+      content:
+        type:
+          - string
+          - array
+          - object
+        description: Passing free-form content into the card body will ignore eyebrow, headline, and paragraph data. Use this if the pre-configured eyebrow, headline, and paragraph don't satisfy your needs.
+  actions:
+    type: array
+    description: Actions section of the card, accepts buttons.
+    properties:
+      text:
+        type: string
+      url:
+        type: string
+      external:
+        type: boolean
+      attributes:
+        type: object
+        description: A Drupal-style attributes object with extra attributes to append to this component.
+  content:
+    type:
+      - string
+      - array
+      - object
+    description: Content will override media, body, and actions props. Use this to build a completely cuztomized card.
+  raised:
+    type: boolean
+    description: Manually switch on / off the raised (shadow + animation effect) treament. By default this config option is applied if the card contains a bolt-card-link OR includes the `url` prop.
+    hidden: true
+  contentItems:
+    title: DEPRECATED
+    description: Please use content.
+  contentTag:
+    title: DEPRECATED
+    description: The tag prop already takes care of any semantic tag usage.

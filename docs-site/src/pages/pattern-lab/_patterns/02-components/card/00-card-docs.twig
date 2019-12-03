@@ -1,32 +1,39 @@
 {% set usage %}{% verbatim %}
+// Standard Card
+
 {% include "@bolt-components-card/card.twig" with {
-  tag: "article",
-  contentItems: [
-    {
-      pattern: "image",
-      src: "/images/sample/anthem-video.jpg",
-      alt: "Anthem Video"
+  media: {
+    image: {
+      src: "/images/placeholders/landscape-16x9-mountains.jpg",
+      alt: "Image alt.",
     },
+  },
+  body: {
+    eyebrow: "This is an eyebrow",
+    headline: "This is a headline",
+    paragraph: "This is a paragraph.",
+  },
+  actions: [
     {
-      pattern: "eyebrow",
-      text: "Video"
+      text: "This is a button",
+      url: "https://pega.com",
     },
-    {
-      pattern: "headline",
-      tag: "h3",
-      size: "large",
-      text: "Anthem: Service Desktop"
-    },
-    {
-      pattern: "text",
-      text: "Anthem debuts its next-generation service desktop, driving frictionless customer experiences."
-    },
-    {
-      pattern: "button",
-      width: "full",
-      text: "Get the report"
-    }
-  ]
+  ],
+} only %}
+
+// Custom Content
+
+{% include "@bolt-components-card/card.twig" with {
+  media: {
+    content: "Pass custom content to the card media.",
+  },
+  body: {
+    content: "Pass custom content to the card body.",
+  },
+} only %}
+
+{% include "@bolt-components-card/card.twig" with {
+  content: "Pass completely custom content to the card, without the styles of the card body.",
 } only %}
 {% endverbatim %}{% endset %}
 
