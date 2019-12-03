@@ -11,6 +11,8 @@ const boltConnectionIs = 'bolt-connection';
 
 @customElement('bolt-connection')
 class BoltConnection extends withLitContext {
+  static is = 'bolt-connection';
+
   static props = {
     noShadow: {
       ...props.boolean,

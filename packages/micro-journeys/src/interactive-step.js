@@ -11,6 +11,8 @@ const cx = classNames.bind(styles);
 
 @customElement('bolt-interactive-step')
 class BoltInteractiveStep extends withLitContext {
+  static is = 'bolt-interactive-step';
+
   static props = {
     noShadow: {
       ...props.boolean,

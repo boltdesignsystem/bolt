@@ -13,6 +13,8 @@ let cx = classNames.bind(styles);
 
 @customElement('bolt-interactive-pathways')
 class BoltInteractivePathways extends withLitContext {
+  static is = 'bolt-interactive-pathways';
+
   static props = {
     noShadow: {
       ...props.boolean,
