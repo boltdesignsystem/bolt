@@ -15,12 +15,12 @@ if [[ $TRAVIS_TAG ]]; then
   echo "This is a tagged git release so we will update read-only git repos...";
 
   ./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/bolt-design-system/core-php.git
-  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/core-php:https://$GH_TOKEN@github.com/bolt-design-system/core-php.git \
+  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/php/shared-twig-extensions:https://$GH_TOKEN@github.com/bolt-design-system/core-php.git \
     --no-heads --update --tags="$CURRENT_VERSION"
   rm -rf .subsplit
 
   ./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git
-  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/drupal-modules/bolt_connect:https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git \
+  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/php/bolt-connect-drupal-module:https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git \
     --no-heads --update --tags="$CURRENT_VERSION"
   rm -rf .subsplit
 
@@ -35,12 +35,12 @@ elif [[ $CURRENT_BRANCH != 'release/2.x' && $CURRENT_BRANCH != 'release/1.x' && 
 else
   echo "This is not a tagged git release but it IS a release-related branch -- updating remote repos!"
   ./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/bolt-design-system/core-php.git
-  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/core-php:https://$GH_TOKEN@github.com/bolt-design-system/core-php.git \
+  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/php/shared-twig-extensions:https://$GH_TOKEN@github.com/bolt-design-system/core-php.git \
     --heads="$CURRENT_BRANCH" --update --tags="$CURRENT_VERSION"
   rm -rf .subsplit
 
   ./scripts/release/git-subsplit.sh init https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git
-  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/drupal-modules/bolt_connect:https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git \
+  ./scripts/release/git-subsplit.sh publish --work-dir=$PWD packages/php/bolt-connect-drupal-module:https://$GH_TOKEN@github.com/bolt-design-system/bolt_connect.git \
     --heads="$CURRENT_BRANCH" --update --tags="$CURRENT_VERSION"
   rm -rf .subsplit
 
