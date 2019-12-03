@@ -16,7 +16,7 @@
     "bolt": "index.js"
   },
   "browserslist": [
-    "extends @bolt/browserslist-config/all.js"
+    "extends @bolt/browserslist-config"
   ],
   "scripts": {
     "test": "FORCE_COLOR=1 npx lerna exec --scope @bolt/build-tools--test* --concurrency 1 -- yarn run test"
