@@ -6,6 +6,8 @@
  * @prop {HTMLElement} paddingEqualizationTarget
  */
 
+export const equalizeRelativeHeightsClass = 'isEqualized';
+
 /**
  *
  * @param {EqualizeRelativeHeightArgItem} item
@@ -83,6 +85,7 @@ export const equalizeRelativeHeights = (
         paddingEqualizationTarget.style.paddingTop = `calc(${items[
           indexOfLongest
         ].relativeOffsetTop - relativeOffsetTop}px + ${previousPadding})`;
+        paddingEqualizationTarget.classList.add(equalizeRelativeHeightsClass);
       }
     });
     if (callback) {
