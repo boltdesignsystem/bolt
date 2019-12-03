@@ -30,9 +30,7 @@
 }
 
 @each $value in $bolt-menu-spacing-values {
-  .c-bolt-menu--spacing-#{$value} {
-    .c-bolt-menu__title {
-      @include bolt-padding(#{$value}, squished);
-    }
+  .c-bolt-menu__title--spacing-#{$value} {
+    @include bolt-padding(#{$value}, squished);
   }
 }

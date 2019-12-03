@@ -1,34 +1,35 @@
-{# {% set schema = bolt.data.components["@bolt-components-menu"].schema %}
+{% set schema = bolt.data.components["@bolt-components-menu"].schema %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
 {% endif %}
 
-{% set this = init(schema.properties.items) %}
-{% set inner_attributes = create_attribute({}) %} #}
-
-{% set item_class = "c-bolt-menu-item" %}
+{# Variables #}
+{% set base_class = "c-bolt-menu-item" %}
+{% set this = init(schema) %}
 {% set item_attributes = create_attribute(attributes|merge({
   "role": "menuitem",
 })) %}
-{% set last = loop.last %}
-{% set item_classes = [
-  item_class,
-  spacing ? item_class ~ "--spacing-" ~ spacing,
-  last ? item_class ~ "--last-item",
-] %}
-{% set menu_item %}
-  <ssr-keep for="bolt-menu-item" {% if item_classes %} class="{{ item_classes|join(' ') }}" {% endif %}>
-    {{ content }}
-  </ssr-keep>
-{% endset %}
 
+{# Array of classes based on the defined + default props #}
+{% set classes = [
+  base_class,
+  spacing ? base_class ~ "--spacing-" ~ spacing,
+  last ? base_class ~ "--last-item",
+] %}
 
 <bolt-menu-item
-  {% if url %} url="{{ url }}" {% endif %}
-  {% if spacing %} spacing="{{ spacing }}" {% endif %}
+  {{ this.props|without("content")|without("display")|without("no_outline")|without("class") }}
 >
   <replace-with-children>
+    {% set menu_item %}
+      <ssr-keep
+        for="bolt-menu-item"
+        {% if classes %} class="{{ classes|join(' ') }}" {% endif %}
+      >
+        {{ content }}
+      </ssr-keep>
+    {% endset %}
     {% include "@bolt-components-trigger/trigger.twig" with {
       content: menu_item,
       display: "block",

@@ -5,6 +5,11 @@
 @import '@bolt/core';
 @import './_menu-settings-and-tools.scss';
 
+// Register Custom Block Element
+@include bolt-repeat-rule(('bolt-menu-item', ':host')) {
+  display: block;
+}
+
 .c-bolt-menu-item {
   @include bolt-font-family(body);
   @include bolt-font-size(xsmall);
@@ -78,9 +83,11 @@
   }
 }
 
-// Spacing
-$bolt-menu-spacing-values: xsmall, small, medium;
+.c-bolt-menu-item--last-item {
+  border-bottom-width: 0;
+}
 
+// Spacing
 @each $value in $bolt-menu-spacing-values {
   .c-bolt-menu-item--spacing-#{$value} {
     @include bolt-padding(#{$value}, squished);

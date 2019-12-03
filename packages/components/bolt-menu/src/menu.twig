@@ -11,8 +11,7 @@
 
 {# Array of classes based on the defined + default props #}
 {% set classes = [
-  "c-bolt-menu",
-  this.data.spacing.value ? "c-bolt-menu--spacing-" ~ spacing,
+  base_class,
 ] %}
 
 {#
@@ -33,12 +32,17 @@
 
 <bolt-menu
   {% if outer_classes %} class="{{ outer_classes|join(' ') }}" {% endif %}
-  {{ this.props|without("content")|without("class") }}
+  {{ this.props|without("content")|without("title")|without("class") }}
   role="menu"
 >
   <replace-with-children {% if inner_classes %} class="{{ inner_classes|join(' ') }}" {% endif %}>
     {% if title %}
-      <replace-with-children class="c-bolt-menu__title">
+      {% set title_class = base_class ~ "__title" %}
+      {% set title_classes = [
+        title_class,
+        this.data.spacing.value ? title_class ~ "--spacing-" ~ this.data.spacing.value,
+      ] %}
+      <replace-with-children {% if title_classes %} class="{{ title_classes|join(' ') }}" {% endif %}>
         <div slot="title">{{ title }}</div>
       </replace-with-children>
     {% endif %}
@@ -46,6 +50,7 @@
       {% if item %}
         {% include "@bolt-components-menu/_menu-item.twig" with item|merge({
           spacing: this.data.spacing.value,
+          last: loop.last,
         }) only %}
       {% endif %}
     {% endfor %}
