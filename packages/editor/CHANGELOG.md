@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/bolt-design-system/bolt/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* Make the text of buttons added in the editor editable ([d702a5f](https://github.com/bolt-design-system/bolt/commit/d702a5f))
+* Remove text and url props from bolt-text component in editor ([f2d55ac](https://github.com/bolt-design-system/bolt/commit/f2d55ac))
+
+
+
+
+
 ## [2.11.4](https://github.com/bolt-design-system/bolt/compare/v2.11.3...v2.11.4) (2019-11-18)
 
 

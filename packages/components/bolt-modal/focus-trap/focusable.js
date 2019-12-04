@@ -53,10 +53,10 @@ export function isFocusable($elem) {
     (($elem instanceof HTMLAnchorElement || $elem instanceof HTMLAreaElement) &&
       $elem.hasAttribute('href')) ||
     // Form elements which are not disabled
-    ($elem instanceof HTMLButtonElement ||
-      $elem instanceof HTMLInputElement ||
-      $elem instanceof HTMLTextAreaElement ||
-      $elem instanceof HTMLSelectElement) ||
+    $elem instanceof HTMLButtonElement ||
+    $elem instanceof HTMLInputElement ||
+    $elem instanceof HTMLTextAreaElement ||
+    $elem instanceof HTMLSelectElement ||
     // IFrames
     $elem instanceof HTMLIFrameElement
   );
