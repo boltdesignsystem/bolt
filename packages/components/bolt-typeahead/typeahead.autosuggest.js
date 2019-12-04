@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { define, props } from 'skatejs';
+import { customElement } from '@bolt/element';
+import { props } from 'skatejs';
 import { h, withPreact, Fragment } from '@bolt/core/renderers';
 import { getUniqueId } from '@bolt/core/utils/get-unique-id';
 import Fuse from 'fuse.js';
@@ -47,10 +48,8 @@ export const highlightSearchResults = function(item) {
   });
 };
 
-@define
-class BoltAutosuggest extends withPreact() {
-  static is = 'bolt-autosuggest';
-
+@customElement('bolt-autosuggest')
+class BoltAutosuggest extends withPreact {
   get getParent() {
     return this.$parent;
   }

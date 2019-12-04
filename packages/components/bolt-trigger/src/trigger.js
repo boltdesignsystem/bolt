@@ -1,9 +1,8 @@
-import { props, define } from '@bolt/core/utils';
-import { html, render } from '@bolt/core/renderers/renderer-lit-html';
+import { html, convertInitialTags, customElement } from '@bolt/element';
+import { props } from '@bolt/core/utils';
+import { render } from '@bolt/core/renderers/renderer-lit-html';
 import { BoltAction } from '@bolt/core/elements/bolt-action';
-import { convertInitialTags } from '@bolt/core/decorators';
 import { ifDefined } from 'lit-html/directives/if-defined';
-
 import classNames from 'classnames/bind';
 
 import styles from './trigger.scss';
@@ -11,11 +10,9 @@ import schema from '../trigger.schema.yml';
 
 let cx = classNames.bind(styles);
 
-@define
+@customElement('bolt-trigger')
 @convertInitialTags(['button', 'a']) // The first matching tag will have its attributes converted to component props
 class BoltTrigger extends BoltAction {
-  static is = 'bolt-trigger';
-
   static props = {
     ...BoltAction.props, // Provides: disabled, onClick, onClickTarget, target, url
     type: props.string,

@@ -1,14 +1,13 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core';
+import { props, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core';
 import classNames from 'classnames/bind';
+import { html, customElement } from '@bolt/element';
 import styles from './one-character-layout.scss';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltOneCharacterLayout extends withLitHtml() {
-  static is = 'bolt-one-character-layout';
-
+@customElement('bolt-one-character-layout')
+class BoltOneCharacterLayout extends withLitHtml {
   static props = {
     noShadow: {
       ...props.boolean,

@@ -1,7 +1,7 @@
+import { customElement } from '@bolt/element';
 import {
   colorContrast,
   css,
-  define,
   props,
   rgb2hex,
   supportsCSSVars,
@@ -18,10 +18,8 @@ const backgroundStyles = ['circle', 'square'];
 
 const colors = ['teal', 'blue'];
 
-@define
-class BoltIcon extends withPreact() {
-  static is = 'bolt-icon';
-
+@customElement('bolt-icon')
+class BoltIcon extends withPreact {
   static props = {
     name: props.string,
     size: props.string,

@@ -1,10 +1,8 @@
-import { define } from '@bolt/core/utils';
+import { customElement } from '@bolt/element';
 import { ReplaceWithChildren } from '../replace-with-children';
 
-@define
+@customElement('replace-with-grandchildren')
 class ReplaceWithGrandchildren extends ReplaceWithChildren {
-  static is = 'replace-with-grandchildren';
-
   connectedCallback() {
     if (bolt.isServer) {
       return false;

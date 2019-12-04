@@ -1,18 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Yeoman component generator JS file exist 1`] = `
-"import { props, define } from '@bolt/core/utils';
-import { withLitHtml, html } from '@bolt/core/renderers/renderer-lit-html';
+"import { html, customElement } from '@bolt/element';
+import { props } from '@bolt/core/utils';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './test.scss';
 import schema from '../test.schema.yml';
 
 let cx = classNames.bind(styles);
 
-@define
-class BoltTest extends withLitHtml() {
-  static is = 'bolt-test';
-
+@customElement('bolt-test')
+class BoltTest extends withLitHtml {
   static props = {
     noShadow: {
       ...props.boolean,

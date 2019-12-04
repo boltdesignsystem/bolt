@@ -1,8 +1,8 @@
 // based originally off of https://github.com/edenspiekermann/a11y-dialog before heavy modifications and customizations
 
+import { html, customElement } from '@bolt/element';
 import {
   props,
-  define,
   hasNativeShadowDomSupport,
   getTransitionDuration,
   bodyHasScrollbar,
@@ -10,7 +10,7 @@ import {
   setScrollbarPadding,
   resetScrollbarPadding,
 } from '@bolt/core/utils';
-import { html, withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
+import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 import classNames from 'classnames/bind';
 import styles from './modal.scss';
 import schema from '../modal.schema.yml';
@@ -21,10 +21,8 @@ import '../focus-trap';
 const ESCAPE_KEY = 27;
 let cx = classNames.bind(styles);
 
-@define
-class BoltModal extends withLitHtml() {
-  static is = 'bolt-modal';
-
+@customElement('bolt-modal')
+class BoltModal extends withLitHtml {
   static props = {
     width: props.string,
     spacing: props.string,

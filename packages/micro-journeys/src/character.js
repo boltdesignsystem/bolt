@@ -1,5 +1,6 @@
-import { props, define, hasNativeShadowDomSupport } from '@bolt/core/utils';
-import { withLitHtml, html, convertSchemaToProps } from '@bolt/core';
+import { html, customElement } from '@bolt/element';
+import { props, hasNativeShadowDomSupport } from '@bolt/core/utils';
+import { withLitHtml, convertSchemaToProps } from '@bolt/core';
 import classNames from 'classnames/bind';
 import schema from './character.schema';
 import styles from './character.scss';
@@ -35,10 +36,8 @@ const centerClass = `${rootClass}__center`;
 const connectionClass = `${rootClass}__slot--connection`;
 const boltCharacterIs = 'bolt-character';
 
-@define
-class BoltCharacter extends withLitHtml() {
-  static is = 'bolt-character';
-
+@customElement('bolt-character')
+class BoltCharacter extends withLitHtml {
   static props = {
     noShadow: {
       ...props.boolean,
