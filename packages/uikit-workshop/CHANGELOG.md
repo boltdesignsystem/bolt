@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* totally unrelated IE 11 CSS hotfix for Pattern Lab encountered while testing ([deeda64](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/commit/deeda64))
+
+
+
+
+
 ## [2.11.3](https://github.com/bolt-design-system/bolt/tree/master/packages/uikit-workshop/compare/v2.11.2...v2.11.3) (2019-11-15)
 
 

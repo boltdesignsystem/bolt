@@ -3,6 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/boltdesignsystem/bolt/compare/v2.11.4...v2.12.0) (2019-11-26)
+
+
+### Bug Fixes
+
+* address prettier issues ([7060025](https://github.com/boltdesignsystem/bolt/commit/7060025))
+* call super in the firstUpdated lifecycle event ([35e2cdc](https://github.com/boltdesignsystem/bolt/commit/35e2cdc))
+* don't shrink 'show-more' button or IE miscalculates button width on resize ([d04599b](https://github.com/boltdesignsystem/bolt/commit/d04599b))
+* fix prettier issues ([73cf9e5](https://github.com/boltdesignsystem/bolt/commit/73cf9e5))
+* get remaining a11y updates wired up and working ([5092418](https://github.com/boltdesignsystem/bolt/commit/5092418))
+* make sure all Boolean props are reflected as HTML attributes. Fix to address background images not getting the right classes with the `cover` prop has been added ([815f041](https://github.com/boltdesignsystem/bolt/commit/815f041))
+* Make the text of buttons added in the editor editable ([d702a5f](https://github.com/boltdesignsystem/bolt/commit/d702a5f))
+* properly deprecate old figure media props, update old demos ([0022b17](https://github.com/boltdesignsystem/bolt/commit/0022b17))
+* Remove text and url props from bolt-text component in editor ([f2d55ac](https://github.com/boltdesignsystem/bolt/commit/f2d55ac))
+* totally unrelated IE 11 CSS hotfix for Pattern Lab encountered while testing ([deeda64](https://github.com/boltdesignsystem/bolt/commit/deeda64))
+* update bolt element version ([192d15d](https://github.com/boltdesignsystem/bolt/commit/192d15d))
+* update failing build test ([18d1092](https://github.com/boltdesignsystem/bolt/commit/18d1092))
+* update lazysizes config to catch instances (IE 11) where images haven't finished rendering and lazysizes initializes ([bd540f9](https://github.com/boltdesignsystem/bolt/commit/bd540f9))
+* update Ratio component Jest test ([73ac7ed](https://github.com/boltdesignsystem/bolt/commit/73ac7ed))
+* update rendering of hint text ([06d99d4](https://github.com/boltdesignsystem/bolt/commit/06d99d4))
+* workaround to address lazyloaded SVG images not loading in IE 11 ([928d1ad](https://github.com/boltdesignsystem/bolt/commit/928d1ad))
+
+
+### Features
+
+* add `lang` as a prop, update demo ([7de7c9e](https://github.com/boltdesignsystem/bolt/commit/7de7c9e))
+* add `media.content` to schema, deprecate specific media types ([5b7501e](https://github.com/boltdesignsystem/bolt/commit/5b7501e))
+* add lang-specific quotes to blockquote ([1e860d9](https://github.com/boltdesignsystem/bolt/commit/1e860d9))
+* add Sassy Lists to @bolt/core -- backport of updates from https://github.com/boltdesignsystem/bolt/pull/1542 ([985e6c2](https://github.com/boltdesignsystem/bolt/commit/985e6c2))
+* manually port over <bolt-theme-switcher> component from [#1542](https://github.com/boltdesignsystem/bolt/issues/1542) ([3a88bc7](https://github.com/boltdesignsystem/bolt/commit/3a88bc7))
+* port over @bolt/core theme updates from https://github.com/boltdesignsystem/bolt/pull/1542; update build tools CLI task to make it easier to update the build tools-specific Jest test ([713fb44](https://github.com/boltdesignsystem/bolt/commit/713fb44))
+
+
+
+
+
 ## [2.11.4](https://github.com/boltdesignsystem/bolt/compare/v2.11.3...v2.11.4) (2019-11-18)
 
 
