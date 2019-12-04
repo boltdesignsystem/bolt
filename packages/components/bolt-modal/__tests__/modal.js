@@ -124,6 +124,7 @@ describe('<bolt-modal> Component', () => {
       const renderedModal = await page.evaluate(async contentChoice => {
         const modal = document.createElement('bolt-modal');
         modal.setAttribute('uuid', '12345');
+        modal.setAttribute('width', 'regular');
         modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
             ${contentChoice.content}
             <bolt-text slot="footer">This is the footer</bolt-text>`;
@@ -149,6 +150,7 @@ describe('<bolt-modal> Component', () => {
       const renderedModal = await page.evaluate(contentChoice => {
         const modal = document.createElement('bolt-modal');
         modal.setAttribute('uuid', '12345');
+        modal.setAttribute('width', 'regular');
         modal.innerHTML = `<bolt-text tag="h3" slot="header">This is the header</bolt-text>${contentChoice.content}<bolt-text slot="footer">This is the footer</bolt-text>`;
         document.body.appendChild(modal);
         modal.useShadow = false;
@@ -174,6 +176,7 @@ describe('<bolt-modal> Component', () => {
       async () => {
         const { html, ok } = await render('@bolt-components-modal/modal.twig', {
           content: `<bolt-text tag="h3" slot="header">This is the header</bolt-text>${contentChoice.content}<bolt-text slot="footer">This is the footer</bolt-text>`,
+          width: 'regular',
         });
         expect(ok).toBe(true);
         expect(html).toMatchSnapshot();
@@ -193,14 +196,12 @@ describe('<bolt-modal> Component', () => {
           await page.evaluate(() => {
             document.querySelector('bolt-modal').show();
           });
-
           await page.waitFor(500);
 
           screenshots[size].modalOpened = await page.screenshot();
-          expect(screenshots[size].modalOpened).toMatchImageSnapshot({
-            ...vrtConfig,
-            failureThreshold: '0.05',
-          });
+          expect(screenshots[size].modalOpened).toMatchImageSnapshot(
+            vrtDefaultConfig,
+          );
 
           await page.evaluate(() => {
             document.querySelector('bolt-modal').hide();
@@ -226,6 +227,7 @@ describe('<bolt-modal> Component', () => {
           content: `<bolt-text tag="h3" slot="header">This is the header</bolt-text>
               ${renderedBand.html}
               <bolt-text slot="footer">This is the footer</bolt-text>`,
+          width: 'regular',
         });
         expect(ok).toBe(true);
         expect(html).toMatchSnapshot();
@@ -248,8 +250,7 @@ describe('<bolt-modal> Component', () => {
 
           screenshots[size].modalOpened = await page.screenshot();
           expect(screenshots[size].modalOpened).toMatchImageSnapshot({
-            ...vrtConfig,
-            failureThreshold: '0.05',
+            vrtDefaultConfig,
           });
 
           await page.evaluate(() => {
