@@ -1,4 +1,4 @@
-{% set schema = bolt.data.components["@bolt-components-menu"].schema %}
+{% set schema = bolt.data.components["@bolt-components-menu"].schema.properties.items %}
 
 {% if enable_json_schema_validation %}
   {{ validate_data_schema(schema, _self) | raw }}
@@ -19,7 +19,7 @@
 ] %}
 
 <bolt-menu-item
-  {{ this.props|without("content")|without("display")|without("no_outline")|without("class") }}
+  {{ this.props|without("content")|without("class") }}
 >
   <replace-with-children>
     {% set menu_item %}
@@ -30,11 +30,15 @@
         {{ content }}
       </ssr-keep>
     {% endset %}
-    {% include "@bolt-components-trigger/trigger.twig" with {
+    {% set trigger_options = {
       content: menu_item,
       display: "block",
       no_outline: true,
-      attributes: item_attributes,
-    } only %}
+      attributes: item_attributes
+    } %}
+    {% if url %}
+      {% set trigger_options = trigger_options|merge({url: url}) %}
+    {% endif %}
+    {% include "@bolt-components-trigger/trigger.twig" with trigger_options only %}
   </replace-with-children>
 </bolt-menu-item>
