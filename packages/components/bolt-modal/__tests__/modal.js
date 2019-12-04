@@ -1,32 +1,19 @@
 /* eslint-disable no-await-in-loop */
 import {
   render,
-  renderString,
-  stop as stopTwigRenderer,
-} from '@bolt/twig-renderer';
-import { fixture as html } from '@open-wc/testing-helpers';
+  stopServer,
+  html,
+  vrtDefaultConfig as vrtConfig,
+} from '../../../testing/testing-helpers';
 
 const { readYamlFileSync } = require('@bolt/build-tools/utils/yaml');
 const { join } = require('path');
 const schema = readYamlFileSync(join(__dirname, '../modal.schema.yml'));
-const { persistent, width, spacing, theme, scroll } = schema.properties;
+const { width, spacing, theme, scroll } = schema.properties;
 
-async function renderTwig(template, data) {
-  return await render(template, data, true);
-}
-
-async function renderTwigString(template, data) {
-  return await renderString(template, data, true);
-}
-
-const imageVrtConfig = {
+const vrtDefaultConfig = Object.assign(vrtConfig, {
   failureThreshold: '0.02',
-  failureThresholdType: 'percent',
-  customDiffConfig: {
-    threshold: '0.1',
-    includeAA: true,
-  },
-};
+});
 
 const timeout = 120000;
 
@@ -61,12 +48,12 @@ describe('<bolt-modal> Component', () => {
   }, timeout);
 
   afterAll(async () => {
-    await stopTwigRenderer();
+    await stopServer();
     await page.close();
-  });
+  }, timeout);
 
   test('basic usage', async () => {
-    const results = await renderTwig('@bolt-components-modal/modal.twig', {
+    const results = await render('@bolt-components-modal/modal.twig', {
       content: 'This is a modal',
     });
     expect(results.ok).toBe(true);
@@ -75,7 +62,7 @@ describe('<bolt-modal> Component', () => {
 
   width.enum.forEach(async widthChoice => {
     test(`modal width: ${widthChoice}`, async () => {
-      const results = await renderTwig('@bolt-components-modal/modal.twig', {
+      const results = await render('@bolt-components-modal/modal.twig', {
         width: widthChoice,
         content: 'This is a modal',
       });
@@ -86,7 +73,7 @@ describe('<bolt-modal> Component', () => {
 
   spacing.enum.forEach(async spacingChoice => {
     test(`modal spacing: ${spacingChoice}`, async () => {
-      const results = await renderTwig('@bolt-components-modal/modal.twig', {
+      const results = await render('@bolt-components-modal/modal.twig', {
         spacing: spacingChoice,
         content: 'This is a modal',
       });
@@ -97,7 +84,7 @@ describe('<bolt-modal> Component', () => {
 
   theme.enum.forEach(async themeChoice => {
     test(`modal theme: ${themeChoice}`, async () => {
-      const results = await renderTwig('@bolt-components-modal/modal.twig', {
+      const results = await render('@bolt-components-modal/modal.twig', {
         theme: themeChoice,
         content: 'This is a modal',
       });
@@ -108,7 +95,7 @@ describe('<bolt-modal> Component', () => {
 
   scroll.enum.forEach(async scrollChoice => {
     test(`modal scroll: ${scrollChoice}`, async () => {
-      const results = await renderTwig('@bolt-components-modal/modal.twig', {
+      const results = await render('@bolt-components-modal/modal.twig', {
         scroll: scrollChoice,
         content: 'This is a modal',
       });
@@ -143,7 +130,7 @@ describe('<bolt-modal> Component', () => {
     // console.log(activeTagName);
     // expect(renderedModal.activeTagName === 'BOLT-BUTTON').toBe(true);
 
-    expect(image).toMatchImageSnapshot(imageVrtConfig);
+    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
 
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -167,7 +154,7 @@ describe('<bolt-modal> Component', () => {
     await page.waitFor(1000); // wait a second before testing
     const image = await page.screenshot();
 
-    expect(image).toMatchImageSnapshot(imageVrtConfig);
+    expect(image).toMatchImageSnapshot(vrtDefaultConfig);
 
     expect(renderedHTML).toMatchSnapshot();
   });
@@ -175,13 +162,10 @@ describe('<bolt-modal> Component', () => {
   test(
     '<bolt-modal> rendered by Twig',
     async () => {
-      const { html, ok } = await renderTwig(
-        '@bolt-components-modal/modal.twig',
-        {
-          content:
-            '<bolt-text tag="h3" slot="header">This is the header</bolt-text><bolt-text>This is the body (default).</bolt-text><bolt-text slot="footer">This is the footer</bolt-text>',
-        },
-      );
+      const { html, ok } = await render('@bolt-components-modal/modal.twig', {
+        content:
+          '<bolt-text tag="h3" slot="header">This is the header</bolt-text><bolt-text>This is the body (default).</bolt-text><bolt-text slot="footer">This is the footer</bolt-text>',
+      });
       expect(ok).toBe(true);
       expect(html).toMatchSnapshot();
 
@@ -223,7 +207,7 @@ describe('<bolt-modal> Component', () => {
         if (await isVisible('bolt-modal')) {
           screenshots[size].modalOpened = await page.screenshot();
           expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-            imageVrtConfig,
+            vrtDefaultConfig,
           );
           await page.tap('bolt-button'); // closes modal
           await page.waitFor(500);
