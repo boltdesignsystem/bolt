@@ -20,13 +20,6 @@ class BoltStack extends withLitHtml() {
     },
   };
 
-  // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
-  constructor(self) {
-    self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
-    return self;
-  }
-
   render() {
     // validate the original prop data passed along -- returns back the validated data w/ added default values
     const { disabled } = this.validateProps(this.props);

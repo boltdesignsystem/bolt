@@ -47,7 +47,7 @@ class BoltText extends withLitHtml() {
 
   constructor(self) {
     self = super(self);
-    this.useShadow = hasNativeShadowDomSupport;
+    self.useShadow = hasNativeShadowDomSupport;
     return self;
   }
 

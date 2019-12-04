@@ -49,27 +49,26 @@ class BoltVideo extends withPreact() {
     self = super(self);
     self.useShadow = false;
 
-    this.defaultPlugins = ['playback'];
+    self.defaultPlugins = ['playback'];
 
     index += 1;
 
     // These bindings are necessary to make `this` work in the callback
-    this.onPlay = this.onPlay.bind(this);
-    this.onPause = this.onPause.bind(this);
-    this.onEnded = this.onEnded.bind(this);
-    this.onDurationChange = this.onDurationChange.bind(this);
-    this.onSeeked = this.onSeeked.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.collapseOnClickAway = this.collapseOnClickAway.bind(this);
+    self.onPlay = self.onPlay.bind(self);
+    self.onPause = self.onPause.bind(self);
+    self.onEnded = self.onEnded.bind(self);
+    self.onDurationChange = self.onDurationChange.bind(self);
+    self.onSeeked = self.onSeeked.bind(self);
+    self.handleClose = self.handleClose.bind(self);
+    self.collapseOnClickAway = self.collapseOnClickAway.bind(self);
 
-    // BoltVideo.globalErrors.forEach(this.props.onError);
+    // BoltVideo.globalErrors.forEach(self.props.onError);
 
-    this.shareDescription = this.shareDescription || 'Share This Video';
+    self.shareDescription = self.shareDescription || 'Share This Video';
 
     // Ensure that 'this' inside the _onWindowResize event handler refers to <bolt-nav-link>
     // even if the handler is attached to another element (window in this case)
-    this._onWindowResize = this._onWindowResize.bind(this);
-
+    self._onWindowResize = self._onWindowResize.bind(self);
     return self;
   }
 
