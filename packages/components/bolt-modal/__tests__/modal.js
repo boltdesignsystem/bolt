@@ -160,7 +160,7 @@ describe('<bolt-modal> Component', () => {
   });
 
   test(
-    '<bolt-modal> rendered by Twig',
+    '<bolt-modal> at various viewport sizes',
     async () => {
       const { html, ok } = await render('@bolt-components-modal/modal.twig', {
         content:
@@ -170,48 +170,31 @@ describe('<bolt-modal> Component', () => {
       expect(html).toMatchSnapshot();
 
       await page.evaluate(html => {
-        const div = document.createElement('div');
-        const trigger = document.createElement('bolt-button');
-        trigger.textContent = 'Open Modal';
-        trigger.setAttribute('class', 'js-modal-trigger--open');
-        trigger.setAttribute('onclick', 'this.nextElementSibling.show()');
-        div.innerHTML = `${html}`;
-        div.prepend(trigger);
-        document.body.appendChild(div);
+        document.body.innerHTML = html;
       }, html);
 
       const screenshots = [];
 
-      async function isVisible(selector) {
-        return await page.evaluate(selector => {
-          const e = document.querySelector(selector);
-          if (!e) return false;
-          const style = window.getComputedStyle(e);
-          return style &&
-            style.display !== 'none' &&
-            style.visibility !== 'hidden' &&
-            style.opacity !== '0'
-            ? true
-            : false;
-        }, selector);
-      }
-
       for (const item of viewportSizes) {
         const { height, width, size } = item;
+
         screenshots[size] = [];
 
         await page.setViewport({ height, width });
-        await page.tap('.js-modal-trigger--open');
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').show();
+        });
         await page.waitFor(500);
 
-        if (await isVisible('bolt-modal')) {
-          screenshots[size].modalOpened = await page.screenshot();
-          expect(screenshots[size].modalOpened).toMatchImageSnapshot(
-            vrtDefaultConfig,
-          );
-          await page.tap('bolt-button'); // closes modal
-          await page.waitFor(500);
-        }
+        screenshots[size].modalOpened = await page.screenshot();
+        expect(screenshots[size].modalOpened).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
+
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').hide();
+        });
+        await page.waitFor(500);
       }
     },
     timeout,
