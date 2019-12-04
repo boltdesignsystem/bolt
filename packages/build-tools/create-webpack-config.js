@@ -178,9 +178,7 @@ async function createWebpackConfig(buildConfig) {
       //     '@bolt/core/styles/index.scss',
       //   ];
       // }
-      entry[globalEntryName] = [
-        '@bolt/core/styles/index.scss'
-      ];
+      entry[globalEntryName] = ['@bolt/core/styles/index.scss'];
 
       components.global.forEach(component => {
         if (component.assets.style) {
