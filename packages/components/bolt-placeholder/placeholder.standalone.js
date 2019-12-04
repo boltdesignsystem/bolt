@@ -13,7 +13,7 @@ class BoltPlaceholder extends withLitHtml {
   // https://github.com/WebReflection/document-register-element#upgrading-the-constructor-context
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
+    this.useShadow = hasNativeShadowDomSupport;
     return self;
   }
 

@@ -118,7 +118,7 @@ export default class SchemaForm extends withContext(withPreact) {
         schema={this.state.schema}
         formData={this.state.formData}
         uiSchema={uiSchema}
-        // widgets={customWidgets}
+        // widgets={customWidgets} 
         onChange={data => this.onFormChange(data)}
         onError={(data) => console.error('Error in Schema Form', formData)}>
       </Form>

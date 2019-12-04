@@ -33,8 +33,8 @@ class BoltRatio extends BoltElement {
     };
   }
 
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
+  constructor() {
+    super();
     this.noCssVars = supportsCSSVars ? false : true;
   }
 

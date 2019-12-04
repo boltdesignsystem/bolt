@@ -32,7 +32,7 @@ class BoltTwoCharacterLayout extends withLitHtml {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.hasConnection = !!self.querySelector(boltConnectionIs);
+    self.hasConnection = !!this.querySelector(boltConnectionIs);
     self.requiredComponentCount = self.hasConnection ? 3 : 2;
     self.renderedComponentCount = 0;
     self.isInitialRender = true;

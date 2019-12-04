@@ -36,7 +36,7 @@ class BoltDeviceViewer extends withLitHtml {
 
   constructor(self) {
     self = super(self);
-    self.useShadow = hasNativeShadowDomSupport;
+    this.useShadow = hasNativeShadowDomSupport;
     return self;
   }
 

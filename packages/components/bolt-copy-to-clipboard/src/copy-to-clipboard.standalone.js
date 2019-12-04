@@ -6,7 +6,7 @@ import { withLitHtml } from '@bolt/core/renderers/renderer-lit-html';
 class BoltCopyToClipboard extends withLitHtml {
   constructor(self) {
     self = super(self);
-    self.useShadow = false;
+    this.useShadow = false;
     return self;
   }
 

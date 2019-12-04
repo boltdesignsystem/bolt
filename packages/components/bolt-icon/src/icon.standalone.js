@@ -2,6 +2,7 @@ import { customElement } from '@bolt/element';
 import {
   colorContrast,
   css,
+  hasNativeShadowDomSupport,
   props,
   rgb2hex,
   supportsCSSVars,
@@ -30,10 +31,15 @@ class BoltIcon extends withPreact {
     contrastColor: props.string,
   };
 
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
-    const elem = this;
+  constructor(self) {
+    self = super(self);
+    this.useShadow = hasNativeShadowDomSupport;
     this.useCssVars = supportsCSSVars;
+    return self;
+  }
+
+  connecting() {
+    const elem = this;
 
     this.state = {
       primaryColor: 'var(--bolt-theme-icon, currentColor)',
@@ -59,7 +65,7 @@ class BoltIcon extends withPreact {
         }
       };
 
-      this.colorObserver = PubSub.subscribe(
+      const colorObserver = PubSub.subscribe(
         'component.icon',
         checkIfColorChanged,
       );
@@ -75,14 +81,6 @@ class BoltIcon extends withPreact {
           rgb2hex(window.getComputedStyle(this).getPropertyValue('color')),
         );
       }
-    }
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback && super.disconnectedCallback();
-
-    if (this.colorObserver) {
-      PubSub.unsubscribe(this.colorObserver);
     }
   }
 

@@ -19,9 +19,9 @@ class BoltNavLink extends withLitHtml {
 
   constructor(self) {
     self = super(self);
-    self.activeClass = 'is-active';
-    self.useShadow = false; // just-in-case workaround given that the current <bolt-navlink> doesn't actually render any HTML...
-    self.dropdownLinkClass = 'is-dropdown-link';
+    this.activeClass = 'is-active';
+    this.useShadow = false; // just-in-case workaround given that the current <bolt-navlink> doesn't actually render any HTML...
+    this.dropdownLinkClass = 'is-dropdown-link';
     return self;
   }
 
@@ -129,8 +129,8 @@ class BoltNavLink extends withLitHtml {
     this._shadowLink.classList.remove(this.activeClass);
   }
 
-  connectedCallback() {
-    super.connectedCallback && super.connectedCallback();
+  connecting() {
+    super.connecting && super.connecting();
     this.addEventListener('click', this.onClick);
 
     this._shadowLink = this.querySelector('a');
@@ -146,8 +146,8 @@ class BoltNavLink extends withLitHtml {
     }
   }
 
-  disconnectedCallback() {
-    super.disconnectedCallback && super.disconnectedCallback();
+  disconnecting() {
+    super.disconnecting && super.disconnecting();
     this.removeEventListener('click', this.onClick);
   }
 }

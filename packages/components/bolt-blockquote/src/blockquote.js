@@ -34,7 +34,7 @@ class BoltBlockquote extends withLitHtml {
   constructor(self) {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
-    self.schema = self.getModifiedSchema(schema);
+    self.schema = this.getModifiedSchema(schema);
     return self;
   }
 

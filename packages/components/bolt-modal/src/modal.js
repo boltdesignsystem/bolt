@@ -49,9 +49,9 @@ class BoltModal extends withLitHtml {
     self = super(self);
     self.useShadow = hasNativeShadowDomSupport;
     self.schema = schema;
-    self.show = self.show.bind(self);
-    self.hide = self.hide.bind(self);
-    self._handleKeyPresseskeypress = self._handleKeyPresseskeypress.bind(self);
+    self.show = self.show.bind(this);
+    self.hide = self.hide.bind(this);
+    self._handleKeyPresseskeypress = this._handleKeyPresseskeypress.bind(this);
     self._noBodyScroll = false; // Internal switch to enable 'no-body-scroll' feature which is not ready for release
 
     return self;

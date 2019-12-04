@@ -32,14 +32,14 @@ class BoltDropdown extends withLitHtml {
   constructor(self) {
     self = super(self);
 
-    self.useShadow = hasNativeShadowDomSupport;
+    this.useShadow = hasNativeShadowDomSupport;
 
-    self.state = {
-      open: self.props.autoOpen ? self.props.autoOpen : false,
-      collapse: self.props.collapse ? self.props.collapse : false,
+    this.state = {
+      open: this.props.autoOpen ? this.props.autoOpen : false,
+      collapse: this.props.collapse ? this.props.collapse : false,
     };
 
-    self.uuid = '12345';
+    this.uuid = '12345';
     return self;
   }
 
