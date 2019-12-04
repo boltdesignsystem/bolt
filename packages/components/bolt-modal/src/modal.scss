@@ -111,9 +111,7 @@ bolt-modal:not([ready]) {
       @include bolt-margin-top(auto);
       @include bolt-margin-bottom(auto);
 
-      flex-basis: auto;
-      flex-grow: 1;
-      flex-shrink: 1;
+      flex: auto;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
 
@@ -246,7 +244,7 @@ bolt-modal:not([ready]) {
   }
 
   .c-bolt-modal__content--width-optimal {
-    width: 75vw;
+    width: 75ch;
   }
 
   .c-bolt-modal__content--width-full {
