@@ -1,11 +1,23 @@
 {
   "ci": {
     "assert": {
-      "preset": "lighthouse:recommended",
+      "preset": "lighthouse:no-pwa",
       "assertions": {
-        "categories.pwa": "off",
-        "categories.performance": "warn",
-        "categories.accessibility": "warn"
+        "unused-css-rules": "warn",
+        "button-name": "warn",
+        "external-anchors-use-rel-noopener": "warn",
+        "meta-description": "warn",
+        "no-document-write": "warn",
+        "offscreen-images": "warn",
+        "uses-rel-preconnect": "warn",
+        "dom-size": "warn",
+        "aria-required-attr": "warn",
+        "aria-required-children": "warn",
+        "aria-valid-attr-value": "warn",
+        "image-alt": "warn",
+        "label": "warn",
+        "list": "warn",
+        "listitem": "warn"
       }
     },
     "upload": {
@@ -13,4 +25,3 @@
     }
   }
 }
-
