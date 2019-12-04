@@ -98,6 +98,7 @@ bolt-modal:not([ready]) {
 
     .c-bolt-modal__container-header {
       @include bolt-padding(small large small small);
+      flex-shrink: 0; // If header text is missing, this will partially collapse without setting flex-shrink
     }
 
     .c-bolt-modal__container-header--hidden {
