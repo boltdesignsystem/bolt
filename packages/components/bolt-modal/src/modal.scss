@@ -110,10 +110,18 @@ bolt-modal:not([ready]) {
       @include bolt-margin-top(auto);
       @include bolt-margin-bottom(auto);
 
-      flex: 1;
-      height: 100%;
+      flex-basis: auto;
+      flex-grow: 1;
+      flex-shrink: 1;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+
+      // This only works in Light DOM, which is fine because we're targeting IE11
+      > .is-first-child {
+        @include bolt-ie11-only {
+          align-items: flex-start;
+        }
+      }
     }
 
     .c-bolt-modal__container-footer {
