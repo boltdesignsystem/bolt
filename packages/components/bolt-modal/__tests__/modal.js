@@ -118,6 +118,47 @@ describe('<bolt-modal> Component', () => {
     });
   });
 
+  test(
+    `<bolt-modal> slots`,
+    async () => {
+      const { html, ok } = await render('@bolt-components-modal/modal.twig', {
+        content: `<bolt-text slot="header">Header slot</bolt-text>Default slot<bolt-text slot="footer">Footer slot</bolt-text>`,
+        width: 'regular',
+      });
+      expect(ok).toBe(true);
+      expect(html).toMatchSnapshot();
+
+      await page.evaluate(html => {
+        document.body.innerHTML = html;
+      }, html);
+
+      const screenshots = [];
+
+      for (const item of viewportSizes) {
+        const { height, width, size } = item;
+
+        screenshots[size] = [];
+
+        await page.setViewport({ height, width });
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').show();
+        });
+        await page.waitFor(500);
+
+        screenshots[size].modalOpened = await page.screenshot();
+        expect(screenshots[size].modalOpened).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
+
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').hide();
+        });
+        await page.waitFor(500);
+      }
+    },
+    timeout,
+  );
+
   modalContent.forEach(async contentChoice => {
     test(`${contentChoice.name} <bolt-modal> with Shadow DOM renders`, async () => {
       const renderedModal = await page.evaluate(async contentChoice => {
@@ -127,17 +168,33 @@ describe('<bolt-modal> Component', () => {
         modal.innerHTML = contentChoice.content;
         document.body.appendChild(modal);
         modal.updated();
-        modal.show();
         return modal.outerHTML;
       }, contentChoice);
 
+      const screenshots = [];
+      for (const item of viewportSizes) {
+        const { height, width, size } = item;
+        screenshots[size] = [];
+
+        await page.setViewport({ height, width });
+
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').show();
+        });
+        await page.waitFor(500);
+        screenshots[size].modalOpened = await page.screenshot();
+
+        expect(screenshots[size].modalOpened).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').hide();
+        });
+
+        await page.waitFor(500);
+      }
+
       const renderedHTML = await html(renderedModal);
-
-      await page.waitFor(1000); // wait a second before testing
-      const image = await page.screenshot();
-
-      expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-
       expect(renderedHTML).toMatchSnapshot();
     });
   });
@@ -152,17 +209,34 @@ describe('<bolt-modal> Component', () => {
         document.body.appendChild(modal);
         modal.useShadow = false;
         modal.updated();
-        modal.show();
         return modal.outerHTML;
       }, contentChoice);
 
+      const screenshots = [];
+
+      for (const item of viewportSizes) {
+        const { height, width, size } = item;
+
+        screenshots[size] = [];
+
+        await page.setViewport({ height, width });
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').show();
+        });
+        await page.waitFor(500);
+
+        screenshots[size].modalOpened = await page.screenshot();
+        expect(screenshots[size].modalOpened).toMatchImageSnapshot(
+          vrtDefaultConfig,
+        );
+
+        await page.evaluate(() => {
+          document.querySelector('bolt-modal').hide();
+        });
+        await page.waitFor(500);
+      }
+
       const renderedHTML = await html(renderedModal);
-
-      await page.waitFor(1000); // wait a second before testing
-      const image = await page.screenshot();
-
-      expect(image).toMatchImageSnapshot(vrtDefaultConfig);
-
       expect(renderedHTML).toMatchSnapshot();
     });
   });
