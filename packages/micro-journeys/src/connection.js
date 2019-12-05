@@ -67,7 +67,6 @@ class BoltConnection extends withLitContext() {
   }
 
   render() {
-    console.log('connection render');
     const props = this.validateProps(this.props);
     const classes = cx('c-bolt-connection');
     return html`

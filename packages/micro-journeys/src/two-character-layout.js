@@ -38,8 +38,6 @@ class BoltTwoCharacterLayout extends withLitHtml() {
   connected() {
     this.connection = this.querySelector(boltConnectionIs);
     this.characters = [...this.querySelectorAll(boltCharacterIs)];
-    // console.log('this.connection', this.connection);
-    // console.log('this.characters', this.characters);
   }
 
   /**
@@ -67,12 +65,8 @@ class BoltTwoCharacterLayout extends withLitHtml() {
 
   triggerAnimIns = async () => {
     if (!this.areCharactersEqualized()) {
-      console.log('2char triggerAnimIns: about to equalize components');
-      // return this._triggerAnimIns();
-
       try {
         await this.ensureComponentsRendered();
-        console.log('2char triggerAnimIns: ensureComponentsRendered happened');
         await this.equalizeCharactersAndStyleConnection();
         this.triggerUpdate();
         return this._triggerAnimIns();
@@ -80,9 +74,6 @@ class BoltTwoCharacterLayout extends withLitHtml() {
         console.error(e);
       }
     } else {
-      console.log(
-        '2char triggerAnimIns: chars are equalized and in this event simply triggerAnimIns was called',
-      );
       return this._triggerAnimIns();
     }
   };
@@ -166,11 +157,6 @@ class BoltTwoCharacterLayout extends withLitHtml() {
       }
     });
     if (this.connection) {
-      console.log(
-        `connectionheight: ${this.connection.offsetHeight}`,
-        this.connection,
-      );
-
       if (!this.connection.offsetHeight) {
         return false;
       }
@@ -198,10 +184,6 @@ class BoltTwoCharacterLayout extends withLitHtml() {
     const classes = cx('c-bolt-two-character-layout', {
       'c-bolt-two-character-layout__initial': !this.areCharactersEqualized(),
     });
-    console.log(
-      '2char render: this.areCharactersEqualized()',
-      this.areCharactersEqualized(),
-    );
     return html`
       ${this.addStyles([styles])}
       <div class="${classes}">

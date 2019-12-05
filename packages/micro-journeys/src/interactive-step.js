@@ -104,17 +104,14 @@ class BoltInteractiveStep extends withLitContext() {
     if (this.animateInExclusions.length) {
       const animateInExclusions = [
         ...this.querySelectorAll(
-          `${this.animateInExclusions.join(
-            ' bolt-animate',
-          )} bolt-animate`,
+          `${this.animateInExclusions.join(' bolt-animate')} bolt-animate`,
         ),
       ];
-      [
-        ...this.querySelectorAll(this.animateInExclusions.join(' ')),
-      ].forEach(exclusion => {
-        console.log('step triggerAnimIns triggering animate on 2char');
-        exclusion.triggerAnimIns();
-      });
+      [...this.querySelectorAll(this.animateInExclusions.join(' '))].forEach(
+        exclusion => {
+          exclusion.triggerAnimIns();
+        },
+      );
       animEls = animEls.filter(animateEl => {
         return !animateInExclusions.find(exclusion =>
           animateEl.isSameNode(exclusion),

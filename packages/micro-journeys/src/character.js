@@ -54,7 +54,6 @@ class BoltCharacter extends withLitHtml() {
   }
 
   connectedCallback() {
-    console.log('char connect');
     super.connectedCallback();
     setTimeout(() => {
       this.dispatchEvent(
@@ -66,7 +65,6 @@ class BoltCharacter extends withLitHtml() {
   }
 
   render() {
-    console.log('char render');
     const props = this.validateProps(this.props);
     const hasSideContent = !!this.slots['left'] || !!this.slots['right'];
     const hasBothSideContent = !!this.slots['left'] && !!this.slots['right'];
