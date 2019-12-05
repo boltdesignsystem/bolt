@@ -12,7 +12,7 @@ const schema = readYamlFileSync(join(__dirname, '../button.schema.yml'));
 const { tag, type } = schema.properties;
 
 const vrtDefaultConfig = Object.assign(vrtConfig, {
-  failureThreshold: '0.01',
+  failureThreshold: '0.02',
   customDiffConfig: {
     includeAA: true,
   },
